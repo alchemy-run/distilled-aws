@@ -115,7 +115,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -123,7 +123,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -171,7 +171,7 @@ export type ProfileResourceState =
   | "PendingMigrationCommit"
   | "CommittingMigration"
   | "AbortingMigration";
-export const ProfileResourceState = /*@__PURE__*/ S.String;
+export const ProfileResourceState = S.String;
 
 /** Provisioning status of the profile. */
 export type ProfileProvisioningState =
@@ -180,7 +180,7 @@ export type ProfileProvisioningState =
   | "Updating"
   | "Deleting"
   | "Creating";
-export const ProfileProvisioningState = /*@__PURE__*/ S.String;
+export const ProfileProvisioningState = S.String;
 
 /** Key-Value pair representing additional properties for profiles. */
 export type ProfilePropertiesExtendedPropertiesMap = {
@@ -193,22 +193,22 @@ export const ProfilePropertiesExtendedPropertiesMap = /*@__PURE__*/ S.Record(
 
 /** State of the log scrubbing config. Default value is Enabled. */
 export type ProfileScrubbingState = "Enabled" | "Disabled";
-export const ProfileScrubbingState = /*@__PURE__*/ S.String;
+export const ProfileScrubbingState = S.String;
 
 /** The variable to be scrubbed from the logs. */
 export type ScrubbingRuleEntryMatchVariable =
   | "RequestIPAddress"
   | "RequestUri"
   | "QueryStringArgNames";
-export const ScrubbingRuleEntryMatchVariable = /*@__PURE__*/ S.String;
+export const ScrubbingRuleEntryMatchVariable = S.String;
 
 /** When matchVariable is a collection, operate on the selector to specify which elements in the collection this rule applies to. */
 export type ScrubbingRuleEntryMatchOperator = "EqualsAny";
-export const ScrubbingRuleEntryMatchOperator = /*@__PURE__*/ S.String;
+export const ScrubbingRuleEntryMatchOperator = S.String;
 
 /** Defines the state of a log scrubbing rule. Default value is enabled. */
 export type ScrubbingRuleEntryState = "Enabled" | "Disabled";
-export const ScrubbingRuleEntryState = /*@__PURE__*/ S.String;
+export const ScrubbingRuleEntryState = S.String;
 
 /** Defines the contents of the log scrubbing rules. */
 export interface ProfileScrubbingRules {
@@ -298,7 +298,7 @@ export type SkuName =
   | "StandardPlus_ChinaCdn"
   | "StandardPlus_955BandWidth_ChinaCdn"
   | "StandardPlus_AvgBandWidth_ChinaCdn";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** Standard_Verizon = The SKU name for a Standard Verizon CDN profile. Premium_Verizon = The SKU name for a Premium Verizon CDN profile. Custom_Verizon = The SKU name for a Custom Verizon CDN profile. Standard_Akamai = The SKU name for an Akamai CDN profile. Standard_ChinaCdn = The SKU name for a China CDN profile for VOD, Web and download scenarios using GB based billing model. Standard_Microsoft = The SKU name for a Standard Microsoft CDN profile. Standard_AzureFrontDoor = The SKU name for an Azure Front Door Standard profile. Premium_AzureFrontDoor = The SKU name for an Azure Front Door Premium profile. Standard_955BandWidth_ChinaCdn = The SKU name for a China CDN profile for VOD, Web and download scenarios using 95-5 peak bandwidth billing model. Standard_AvgBandWidth_ChinaCdn = The SKU name for a China CDN profile for VOD, Web and download scenarios using monthly average peak bandwidth billing model. StandardPlus_ChinaCdn = The SKU name for a China CDN profile for live-streaming using GB based billing model. StandardPlus_955BandWidth_ChinaCdn = The SKU name for a China CDN live-streaming profile using 95-5 peak bandwidth billing model. StandardPlus_AvgBandWidth_ChinaCdn = The SKU name for a China CDN live-streaming profile using monthly average peak bandwidth billing model. */
 export interface Sku {
@@ -317,7 +317,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
@@ -411,7 +411,7 @@ export const AFDProfilesUpgradeResponse = /*@__PURE__*/ S.suspend(() =>
 export type ResourceType =
   | "Microsoft.Cdn/Profiles/Endpoints"
   | "Microsoft.Cdn/Profiles/AfdEndpoints";
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 /** Indicates the endpoint name reuse scope. The default value is TenantReuse. */
 export type AutoGeneratedDomainNameLabelScope =
@@ -419,7 +419,7 @@ export type AutoGeneratedDomainNameLabelScope =
   | "SubscriptionReuse"
   | "ResourceGroupReuse"
   | "NoReuse";
-export const AutoGeneratedDomainNameLabelScope = /*@__PURE__*/ S.String;
+export const AutoGeneratedDomainNameLabelScope = S.String;
 
 export interface CheckAFDProfileEndpointNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -651,7 +651,7 @@ export type AfdCertificateType =
   | "CustomerCertificate"
   | "ManagedCertificate"
   | "AzureFirstPartyManagedCertificate";
-export const AfdCertificateType = /*@__PURE__*/ S.String;
+export const AfdCertificateType = S.String;
 
 /** cipher suite set type that will be used for Https */
 export type AfdCipherSuiteSetType =
@@ -659,11 +659,11 @@ export type AfdCipherSuiteSetType =
   | "TLS10_2019"
   | "TLS12_2022"
   | "TLS12_2023";
-export const AfdCipherSuiteSetType = /*@__PURE__*/ S.String;
+export const AfdCipherSuiteSetType = S.String;
 
 /** TLS protocol version that will be used for Https when cipherSuiteSetType is Customized. */
 export type AfdMinimumTlsVersion = "TLS10" | "TLS12" | "TLS13";
-export const AfdMinimumTlsVersion = /*@__PURE__*/ S.String;
+export const AfdMinimumTlsVersion = S.String;
 
 export type AfdCustomizedCipherSuiteForTls12 =
   | "ECDHE_RSA_AES128_GCM_SHA256"
@@ -672,7 +672,7 @@ export type AfdCustomizedCipherSuiteForTls12 =
   | "DHE_RSA_AES128_GCM_SHA256"
   | "ECDHE_RSA_AES128_SHA256"
   | "ECDHE_RSA_AES256_SHA384";
-export const AfdCustomizedCipherSuiteForTls12 = /*@__PURE__*/ S.String;
+export const AfdCustomizedCipherSuiteForTls12 = S.String;
 
 /** Cipher suites for TLS 1.2. Required at least one in minimumTlsVersion TLS 1.2. */
 export type AFDDomainHttpsCustomizedCipherSuiteSetCipherSuiteSetForTls12List =
@@ -685,7 +685,7 @@ export const AFDDomainHttpsCustomizedCipherSuiteSetCipherSuiteSetForTls12List =
 export type AfdCustomizedCipherSuiteForTls13 =
   | "TLS_AES_128_GCM_SHA256"
   | "TLS_AES_256_GCM_SHA384";
-export const AfdCustomizedCipherSuiteForTls13 = /*@__PURE__*/ S.String;
+export const AfdCustomizedCipherSuiteForTls13 = S.String;
 
 /** Cipher suites for TLS 1.3. Required at least one in minimumTlsVersion TLS 1.2, TLS 1.3. */
 export type AFDDomainHttpsCustomizedCipherSuiteSetCipherSuiteSetForTls13List =
@@ -718,7 +718,7 @@ export const AFDDomainHttpsCustomizedCipherSuiteSet = /*@__PURE__*/ S.suspend(
 
 /** Server TLS group policy that will be used for Https. Standard and Enhanced are service-managed sets; Custom allows specifying serverTlsGroups explicitly. */
 export type AfdServerTlsGroupPolicy = "Standard" | "Enhanced" | "Custom";
-export const AfdServerTlsGroupPolicy = /*@__PURE__*/ S.String;
+export const AfdServerTlsGroupPolicy = S.String;
 
 /** Supported key-exchange groups and curves. The ML-KEM groups are hybrid post-quantum groups. */
 export type AfdServerTlsGroup =
@@ -729,7 +729,7 @@ export type AfdServerTlsGroup =
   | "X25519"
   | "secp384r1"
   | "secp521r1";
-export const AfdServerTlsGroup = /*@__PURE__*/ S.String;
+export const AfdServerTlsGroup = S.String;
 
 /** Server TLS groups that will be used for Https when serverTlsGroupPolicy is Custom. */
 export type AFDDomainHttpsParametersServerTlsGroupsList = Array<
@@ -779,7 +779,7 @@ export type MtlsScenarioType =
   | "ClientCertificateRequiredAndOriginValidates"
   | "ClientCertificateValidatedIfPresented"
   | "CompleteMtlsPassthroughToOrigin";
-export const MtlsScenarioType = /*@__PURE__*/ S.String;
+export const MtlsScenarioType = S.String;
 
 /** Contains the properties to configure mutual TLS for a custom domain with FQDN. Mutual TLS cannot be configured for custom domains with wildcard host names. */
 export interface AFDDomainMtlsParameters {
@@ -872,14 +872,14 @@ export type AfdProvisioningState =
   | "Updating"
   | "Deleting"
   | "Creating";
-export const AfdProvisioningState = /*@__PURE__*/ S.String;
+export const AfdProvisioningState = S.String;
 
 export type DeploymentStatus =
   | "NotStarted"
   | "InProgress"
   | "Succeeded"
   | "Failed";
-export const DeploymentStatus = /*@__PURE__*/ S.String;
+export const DeploymentStatus = S.String;
 
 /** Provisioning substate shows the progress of custom HTTPS enabling/disabling process step by step. DCV stands for DomainControlValidation. */
 export type DomainValidationState =
@@ -892,7 +892,7 @@ export type DomainValidationState =
   | "Approved"
   | "RefreshingValidationToken"
   | "InternalError";
-export const DomainValidationState = /*@__PURE__*/ S.String;
+export const DomainValidationState = S.String;
 
 /** Key-Value pair representing migration properties for domains. */
 export type AFDDomainPropertiesExtendedPropertiesMap = {
@@ -996,11 +996,11 @@ export const CreateAFDEndpointRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Whether to enable use of this rule. Permitted values are 'Enabled' or 'Disabled' */
 export type EnabledState = "Enabled" | "Disabled";
-export const EnabledState = /*@__PURE__*/ S.String;
+export const EnabledState = S.String;
 
 /** Set to Disabled by default. If set to Enabled, only custom domains with mTLS enabled can be added to child Route resources. */
 export type EnforceMtlsEnabledState = "Enabled" | "Disabled";
-export const EnforceMtlsEnabledState = /*@__PURE__*/ S.String;
+export const EnforceMtlsEnabledState = S.String;
 
 /** The JSON object that contains the properties required to create an endpoint. */
 export interface AFDEndpointPropertiesInput {
@@ -1140,7 +1140,7 @@ export type SharedPrivateLinkResourceStatus =
   | "Rejected"
   | "Disconnected"
   | "Timeout";
-export const SharedPrivateLinkResourceStatus = /*@__PURE__*/ S.String;
+export const SharedPrivateLinkResourceStatus = S.String;
 
 /** Describes the properties of an existing Shared Private Link Resource to use when connecting to a private origin. */
 export interface SharedPrivateLinkResourceProperties {
@@ -1172,7 +1172,7 @@ export type CertificateNameCheckValidationMode =
   | "OriginHostname"
   | "CustomCertificateSubject"
   | "IncomingHostHeader";
-export const CertificateNameCheckValidationMode = /*@__PURE__*/ S.String;
+export const CertificateNameCheckValidationMode = S.String;
 
 /** The list of custom certificate subjects to validate against. Only applicable when certificateNameCheckValidationMode is 'CustomCertificateSubject'. Must contain 1 or 2 entries. */
 export type AFDOriginPropertiesInputCustomCertificateSubjectsList =
@@ -1378,11 +1378,11 @@ export const LoadBalancingSettingsParameters = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of health probe request that is made. */
 export type HealthProbeRequestType = "NotSet" | "GET" | "HEAD";
-export const HealthProbeRequestType = /*@__PURE__*/ S.String;
+export const HealthProbeRequestType = S.String;
 
 /** Protocol to use for health probe. */
 export type ProbeProtocol = "NotSet" | "Http" | "Https";
-export const ProbeProtocol = /*@__PURE__*/ S.String;
+export const ProbeProtocol = S.String;
 
 /** The JSON object that contains the properties to send health probes to origin. */
 export interface HealthProbeParameters {
@@ -1410,14 +1410,13 @@ export const HealthProbeParameters = /*@__PURE__*/ S.suspend(() =>
 export type OriginAuthenticationType =
   | "SystemAssignedIdentity"
   | "UserAssignedIdentity";
-export const OriginAuthenticationType = /*@__PURE__*/ S.String;
+export const OriginAuthenticationType = S.String;
 
 /** The HTTP request header where the origin authentication token is placed when forwarding the request to the origin. */
 export type OriginAuthenticationTokenDestinationHeader =
   | "Authorization"
   | "X-Azure-Authorization";
-export const OriginAuthenticationTokenDestinationHeader =
-  /*@__PURE__*/ S.String;
+export const OriginAuthenticationTokenDestinationHeader = S.String;
 
 /** The JSON object that contains the properties of the origin authentication settings. */
 export interface OriginAuthenticationProperties {
@@ -1607,7 +1606,7 @@ export const CreateCustomDomainRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource status of the custom domain. */
 export type CustomDomainResourceState = "Creating" | "Active" | "Deleting";
-export const CustomDomainResourceState = /*@__PURE__*/ S.String;
+export const CustomDomainResourceState = S.String;
 
 /** Provisioning status of the custom domain. */
 export type CustomHttpsProvisioningState =
@@ -1616,7 +1615,7 @@ export type CustomHttpsProvisioningState =
   | "Disabling"
   | "Disabled"
   | "Failed";
-export const CustomHttpsProvisioningState = /*@__PURE__*/ S.String;
+export const CustomHttpsProvisioningState = S.String;
 
 /** Provisioning substate shows the progress of custom HTTPS enabling/disabling process step by step. */
 export type CustomHttpsProvisioningSubstate =
@@ -1630,19 +1629,19 @@ export type CustomHttpsProvisioningSubstate =
   | "CertificateDeployed"
   | "DeletingCertificate"
   | "CertificateDeleted";
-export const CustomHttpsProvisioningSubstate = /*@__PURE__*/ S.String;
+export const CustomHttpsProvisioningSubstate = S.String;
 
 /** Defines the source of the SSL certificate. */
 export type CertificateSource = "AzureKeyVault" | "Cdn";
-export const CertificateSource = /*@__PURE__*/ S.String;
+export const CertificateSource = S.String;
 
 /** Defines the TLS extension protocol that is used for secure delivery. */
 export type ProtocolType = "ServerNameIndication" | "IPBased";
-export const ProtocolType = /*@__PURE__*/ S.String;
+export const ProtocolType = S.String;
 
 /** TLS protocol version that will be used for Https */
 export type MinimumTlsVersion = "None" | "TLS10" | "TLS12";
-export const MinimumTlsVersion = /*@__PURE__*/ S.String;
+export const MinimumTlsVersion = S.String;
 
 /** The JSON object that contains the properties to secure a custom domain. */
 export interface CustomDomainHttpsParameters {
@@ -1742,8 +1741,7 @@ export type EndpointPropertiesInputQueryStringCachingBehavior =
   | "BypassCaching"
   | "UseQueryString"
   | "NotSet";
-export const EndpointPropertiesInputQueryStringCachingBehavior =
-  /*@__PURE__*/ S.String;
+export const EndpointPropertiesInputQueryStringCachingBehavior = S.String;
 
 /** Specifies what scenario the customer wants this CDN endpoint to optimize, e.g. Download, Media services. With this information we can apply scenario driven optimization. */
 export type OptimizationType =
@@ -1752,11 +1750,11 @@ export type OptimizationType =
   | "VideoOnDemandMediaStreaming"
   | "LargeFileDownload"
   | "DynamicSiteAcceleration";
-export const OptimizationType = /*@__PURE__*/ S.String;
+export const OptimizationType = S.String;
 
 /** Action of the geo filter, i.e. allow or block access. */
 export type GeoFilterActions = "Block" | "Allow";
-export const GeoFilterActions = /*@__PURE__*/ S.String;
+export const GeoFilterActions = S.String;
 
 /** Two letter country or region codes defining user country or region access in a geo filter, e.g. AU, MX, US. */
 export type GeoFilterCountryCodesList = Array<string>;
@@ -1788,7 +1786,7 @@ export const EndpointPropertiesInputGeoFiltersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<EndpointPropertiesInputGeoFiltersList>;
 
 export type KeyVaultSigningKeyParametersType = "KeyVaultSigningKeyParameters";
-export const KeyVaultSigningKeyParametersType = /*@__PURE__*/ S.String;
+export const KeyVaultSigningKeyParametersType = S.String;
 
 /** Describes the parameters for using a user's KeyVault for URL Signing Key. */
 export interface KeyVaultSigningKeyParameters {
@@ -1858,7 +1856,7 @@ export type MatchVariable =
   | "ServerPort"
   | "HostName"
   | "SslProtocol";
-export const MatchVariable = /*@__PURE__*/ S.String;
+export const MatchVariable = S.String;
 
 /** A condition for the delivery rule. */
 export interface DeliveryRuleCondition {
@@ -1892,7 +1890,7 @@ export type DeliveryRuleActionName =
   | "RouteConfigurationOverride"
   | "EdgeAction"
   | "AfdUrlSigning";
-export const DeliveryRuleActionName = /*@__PURE__*/ S.String;
+export const DeliveryRuleActionName = S.String;
 
 /** An action for the delivery rule. */
 export interface DeliveryRuleAction {
@@ -1971,7 +1969,7 @@ export type PrivateEndpointStatus =
   | "Rejected"
   | "Disconnected"
   | "Timeout";
-export const PrivateEndpointStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointStatus = S.String;
 
 /** Properties of the origin created on the CDN endpoint. */
 export interface DeepCreatedOriginProperties {
@@ -2054,7 +2052,7 @@ export type ResponseBasedDetectedErrorTypes =
   | "None"
   | "TcpErrorsOnly"
   | "TcpAndHttpErrors";
-export const ResponseBasedDetectedErrorTypes = /*@__PURE__*/ S.String;
+export const ResponseBasedDetectedErrorTypes = S.String;
 
 /** The JSON object that represents the range for http status codes */
 export interface HttpErrorRangeParameters {
@@ -2278,8 +2276,7 @@ export type EndpointPropertiesQueryStringCachingBehavior =
   | "BypassCaching"
   | "UseQueryString"
   | "NotSet";
-export const EndpointPropertiesQueryStringCachingBehavior =
-  /*@__PURE__*/ S.String;
+export const EndpointPropertiesQueryStringCachingBehavior = S.String;
 
 /** List of rules defining the user's geo access within a CDN endpoint. Each geo filter defines an access rule to a specified path or content, e.g. block APAC for path /pictures/ */
 export type EndpointPropertiesGeoFiltersList = Array<GeoFilter>;
@@ -2352,7 +2349,7 @@ export type EndpointResourceState =
   | "Starting"
   | "Stopped"
   | "Stopping";
-export const EndpointResourceState = /*@__PURE__*/ S.String;
+export const EndpointResourceState = S.String;
 
 /** Provisioning status of the endpoint. */
 export type EndpointProvisioningState =
@@ -2361,7 +2358,7 @@ export type EndpointProvisioningState =
   | "Updating"
   | "Deleting"
   | "Creating";
-export const EndpointProvisioningState = /*@__PURE__*/ S.String;
+export const EndpointProvisioningState = S.String;
 
 /** The JSON object that contains the properties required to create an endpoint. */
 export interface EndpointProperties {
@@ -2471,7 +2468,7 @@ export const CreateEndpointResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource status of the origin. */
 export type OriginResourceState = "Creating" | "Active" | "Deleting";
-export const OriginResourceState = /*@__PURE__*/ S.String;
+export const OriginResourceState = S.String;
 
 /** Provisioning status of the origin. */
 export type OriginProvisioningState =
@@ -2480,7 +2477,7 @@ export type OriginProvisioningState =
   | "Updating"
   | "Deleting"
   | "Creating";
-export const OriginProvisioningState = /*@__PURE__*/ S.String;
+export const OriginProvisioningState = S.String;
 
 /** The JSON object that contains the properties of the origin. */
 export interface OriginProperties {
@@ -2600,7 +2597,7 @@ export const OriginGroupPropertiesOriginsList = /*@__PURE__*/ S.Array(
 
 /** Resource status of the origin group. */
 export type OriginGroupResourceState = "Creating" | "Active" | "Deleting";
-export const OriginGroupResourceState = /*@__PURE__*/ S.String;
+export const OriginGroupResourceState = S.String;
 
 /** Provisioning status of the origin group. */
 export type OriginGroupProvisioningState =
@@ -2609,7 +2606,7 @@ export type OriginGroupProvisioningState =
   | "Updating"
   | "Deleting"
   | "Creating";
-export const OriginGroupProvisioningState = /*@__PURE__*/ S.String;
+export const OriginGroupProvisioningState = S.String;
 
 /** The JSON object that contains the properties of the origin group. */
 export interface OriginGroupProperties {
@@ -2896,7 +2893,7 @@ export const RoutePropertiesInputRuleSetsList = /*@__PURE__*/ S.Array(
 
 /** Supported protocols for the customer's endpoint. */
 export type AFDEndpointProtocols = "Http" | "Https";
-export const AFDEndpointProtocols = /*@__PURE__*/ S.String;
+export const AFDEndpointProtocols = S.String;
 
 /** List of supported protocols for this route. */
 export type RoutePropertiesInputSupportedProtocolsList = Array<
@@ -2918,7 +2915,7 @@ export type AfdQueryStringCachingBehavior =
   | "UseQueryString"
   | "IgnoreSpecifiedQueryStrings"
   | "IncludeSpecifiedQueryStrings";
-export const AfdQueryStringCachingBehavior = /*@__PURE__*/ S.String;
+export const AfdQueryStringCachingBehavior = S.String;
 
 /** List of content types on which compression applies. The value should be a valid MIME type. */
 export type CompressionSettingsContentTypesToCompressList = Array<string>;
@@ -2969,15 +2966,15 @@ export type RoutePropertiesInputForwardingProtocol =
   | "HttpOnly"
   | "HttpsOnly"
   | "MatchRequest";
-export const RoutePropertiesInputForwardingProtocol = /*@__PURE__*/ S.String;
+export const RoutePropertiesInputForwardingProtocol = S.String;
 
 /** whether this route will be linked to the default endpoint domain. */
 export type RoutePropertiesInputLinkToDefaultDomain = "Enabled" | "Disabled";
-export const RoutePropertiesInputLinkToDefaultDomain = /*@__PURE__*/ S.String;
+export const RoutePropertiesInputLinkToDefaultDomain = S.String;
 
 /** Whether to automatically redirect HTTP traffic to HTTPS traffic. Note that this is a easy way to set up this rule and it will be the first rule that gets executed. */
 export type RoutePropertiesInputHttpsRedirect = "Enabled" | "Disabled";
-export const RoutePropertiesInputHttpsRedirect = /*@__PURE__*/ S.String;
+export const RoutePropertiesInputHttpsRedirect = S.String;
 
 /** The JSON object that contains the properties of the Routes to create. */
 export interface RoutePropertiesInput {
@@ -3102,15 +3099,15 @@ export type RoutePropertiesForwardingProtocol =
   | "HttpOnly"
   | "HttpsOnly"
   | "MatchRequest";
-export const RoutePropertiesForwardingProtocol = /*@__PURE__*/ S.String;
+export const RoutePropertiesForwardingProtocol = S.String;
 
 /** whether this route will be linked to the default endpoint domain. */
 export type RoutePropertiesLinkToDefaultDomain = "Enabled" | "Disabled";
-export const RoutePropertiesLinkToDefaultDomain = /*@__PURE__*/ S.String;
+export const RoutePropertiesLinkToDefaultDomain = S.String;
 
 /** Whether to automatically redirect HTTP traffic to HTTPS traffic. Note that this is a easy way to set up this rule and it will be the first rule that gets executed. */
 export type RoutePropertiesHttpsRedirect = "Enabled" | "Disabled";
-export const RoutePropertiesHttpsRedirect = /*@__PURE__*/ S.String;
+export const RoutePropertiesHttpsRedirect = S.String;
 
 /** The JSON object that contains the properties of the Routes to create. */
 export interface RouteProperties {
@@ -3201,8 +3198,7 @@ export const RulePropertiesInputActionsList = /*@__PURE__*/ S.Array(
 
 /** If this rule is a match should the rules engine continue running the remaining rules or stop. If not present, defaults to Continue. */
 export type RulePropertiesInputMatchProcessingBehavior = "Continue" | "Stop";
-export const RulePropertiesInputMatchProcessingBehavior =
-  /*@__PURE__*/ S.String;
+export const RulePropertiesInputMatchProcessingBehavior = S.String;
 
 /** The JSON object that contains the properties of the Rules to create. */
 export interface RulePropertiesInput {
@@ -3278,7 +3274,7 @@ export const RulePropertiesActionsList = /*@__PURE__*/ S.Array(
 
 /** If this rule is a match should the rules engine continue running the remaining rules or stop. If not present, defaults to Continue. */
 export type RulePropertiesMatchProcessingBehavior = "Continue" | "Stop";
-export const RulePropertiesMatchProcessingBehavior = /*@__PURE__*/ S.String;
+export const RulePropertiesMatchProcessingBehavior = S.String;
 
 /** The JSON object that contains the properties of the Rules to create. */
 export interface RuleProperties {
@@ -3349,8 +3345,7 @@ export const BatchRulePropertiesInputActionsList = /*@__PURE__*/ S.Array(
 export type BatchRulePropertiesInputMatchProcessingBehavior =
   | "Continue"
   | "Stop";
-export const BatchRulePropertiesInputMatchProcessingBehavior =
-  /*@__PURE__*/ S.String;
+export const BatchRulePropertiesInputMatchProcessingBehavior = S.String;
 
 /** The JSON object that contains a rule with its name for batch mode operations. */
 export interface BatchRulePropertiesInput {
@@ -3448,8 +3443,7 @@ export const BatchRulePropertiesActionsList = /*@__PURE__*/ S.Array(
 
 /** If this rule is a match should the rules engine continue running the remaining rules or stop. If not present, defaults to Continue. */
 export type BatchRulePropertiesMatchProcessingBehavior = "Continue" | "Stop";
-export const BatchRulePropertiesMatchProcessingBehavior =
-  /*@__PURE__*/ S.String;
+export const BatchRulePropertiesMatchProcessingBehavior = S.String;
 
 /** The JSON object that contains a rule with its name for batch mode operations. */
 export interface BatchRuleProperties {
@@ -3542,7 +3536,7 @@ export type SecretType =
   | "ManagedCertificate"
   | "AzureFirstPartyManagedCertificate"
   | "MtlsCertificateChain";
-export const SecretType = /*@__PURE__*/ S.String;
+export const SecretType = S.String;
 
 /** The json object containing secret parameters */
 export interface SecretParameters {
@@ -3648,7 +3642,7 @@ export const CreateSecretResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the Security policy to create. */
 export type SecurityPolicyType = "WebApplicationFirewall";
-export const SecurityPolicyType = /*@__PURE__*/ S.String;
+export const SecurityPolicyType = S.String;
 
 /** The json object containing security policy parameters */
 export interface SecurityPolicyPropertiesParameters {
@@ -4923,8 +4917,7 @@ export type GetLogAnalyticsLogAnalyticsMetricsRequestMetricsItem =
   | "originRequestTraffic"
   | "originRequestBandwidth"
   | "totalLatency";
-export const GetLogAnalyticsLogAnalyticsMetricsRequestMetricsItem =
-  /*@__PURE__*/ S.String;
+export const GetLogAnalyticsLogAnalyticsMetricsRequestMetricsItem = S.String;
 
 export type GetLogAnalyticsLogAnalyticsMetricsRequestMetricsList = Array<
   GetLogAnalyticsLogAnalyticsMetricsRequestMetricsItem | (string & {})
@@ -4938,8 +4931,7 @@ export type GetLogAnalyticsLogAnalyticsMetricsRequestGranularity =
   | "PT5M"
   | "PT1H"
   | "P1D";
-export const GetLogAnalyticsLogAnalyticsMetricsRequestGranularity =
-  /*@__PURE__*/ S.String;
+export const GetLogAnalyticsLogAnalyticsMetricsRequestGranularity = S.String;
 
 export type GetLogAnalyticsLogAnalyticsMetricsRequestGroupByItem =
   | "httpStatusCode"
@@ -4947,8 +4939,7 @@ export type GetLogAnalyticsLogAnalyticsMetricsRequestGroupByItem =
   | "cacheStatus"
   | "countryOrRegion"
   | "customDomain";
-export const GetLogAnalyticsLogAnalyticsMetricsRequestGroupByItem =
-  /*@__PURE__*/ S.String;
+export const GetLogAnalyticsLogAnalyticsMetricsRequestGroupByItem = S.String;
 
 export type GetLogAnalyticsLogAnalyticsMetricsRequestGroupByList = Array<
   GetLogAnalyticsLogAnalyticsMetricsRequestGroupByItem | (string & {})
@@ -5050,14 +5041,14 @@ export const GetLogAnalyticsLogAnalyticsMetricsRequest =
   }) as any as S.Schema<GetLogAnalyticsLogAnalyticsMetricsRequest>;
 
 export type MetricsGranularity = "PT5M" | "PT1H" | "P1D";
-export const MetricsGranularity = /*@__PURE__*/ S.String;
+export const MetricsGranularity = S.String;
 
 export type MetricsSeriesUnit =
   | "count"
   | "bytes"
   | "bitsPerSecond"
   | "milliSeconds";
-export const MetricsSeriesUnit = /*@__PURE__*/ S.String;
+export const MetricsSeriesUnit = S.String;
 
 export interface MetricsResponseSeriesPropertiesItemsItem {
   name?: string;
@@ -5146,8 +5137,7 @@ export type GetLogAnalyticsLogAnalyticsRankingsRequestRankingsItem =
   | "browser"
   | "userAgent"
   | "countryOrRegion";
-export const GetLogAnalyticsLogAnalyticsRankingsRequestRankingsItem =
-  /*@__PURE__*/ S.String;
+export const GetLogAnalyticsLogAnalyticsRankingsRequestRankingsItem = S.String;
 
 export type GetLogAnalyticsLogAnalyticsRankingsRequestRankingsList = Array<
   GetLogAnalyticsLogAnalyticsRankingsRequestRankingsItem | (string & {})
@@ -5164,8 +5154,7 @@ export type GetLogAnalyticsLogAnalyticsRankingsRequestMetricsItem =
   | "missCount"
   | "userErrorCount"
   | "errorCount";
-export const GetLogAnalyticsLogAnalyticsRankingsRequestMetricsItem =
-  /*@__PURE__*/ S.String;
+export const GetLogAnalyticsLogAnalyticsRankingsRequestMetricsItem = S.String;
 
 export type GetLogAnalyticsLogAnalyticsRankingsRequestMetricsList = Array<
   GetLogAnalyticsLogAnalyticsRankingsRequestMetricsItem | (string & {})
@@ -5406,8 +5395,7 @@ export const ResourcesResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type GetLogAnalyticsWafLogAnalyticsMetricsRequestMetricsItem =
   "clientRequestCount";
-export const GetLogAnalyticsWafLogAnalyticsMetricsRequestMetricsItem =
-  /*@__PURE__*/ S.String;
+export const GetLogAnalyticsWafLogAnalyticsMetricsRequestMetricsItem = S.String;
 
 export type GetLogAnalyticsWafLogAnalyticsMetricsRequestMetricsList = Array<
   GetLogAnalyticsWafLogAnalyticsMetricsRequestMetricsItem | (string & {})
@@ -5421,16 +5409,14 @@ export type GetLogAnalyticsWafLogAnalyticsMetricsRequestGranularity =
   | "PT5M"
   | "PT1H"
   | "P1D";
-export const GetLogAnalyticsWafLogAnalyticsMetricsRequestGranularity =
-  /*@__PURE__*/ S.String;
+export const GetLogAnalyticsWafLogAnalyticsMetricsRequestGranularity = S.String;
 
 export type GetLogAnalyticsWafLogAnalyticsMetricsRequestActionsItem =
   | "allow"
   | "block"
   | "log"
   | "redirect";
-export const GetLogAnalyticsWafLogAnalyticsMetricsRequestActionsItem =
-  /*@__PURE__*/ S.String;
+export const GetLogAnalyticsWafLogAnalyticsMetricsRequestActionsItem = S.String;
 
 export type GetLogAnalyticsWafLogAnalyticsMetricsRequestActionsList = Array<
   GetLogAnalyticsWafLogAnalyticsMetricsRequestActionsItem | (string & {})
@@ -5443,8 +5429,7 @@ export const GetLogAnalyticsWafLogAnalyticsMetricsRequestActionsList =
 export type GetLogAnalyticsWafLogAnalyticsMetricsRequestGroupByItem =
   | "httpStatusCode"
   | "customDomain";
-export const GetLogAnalyticsWafLogAnalyticsMetricsRequestGroupByItem =
-  /*@__PURE__*/ S.String;
+export const GetLogAnalyticsWafLogAnalyticsMetricsRequestGroupByItem = S.String;
 
 export type GetLogAnalyticsWafLogAnalyticsMetricsRequestGroupByList = Array<
   GetLogAnalyticsWafLogAnalyticsMetricsRequestGroupByItem | (string & {})
@@ -5459,7 +5444,7 @@ export type GetLogAnalyticsWafLogAnalyticsMetricsRequestRuleTypesItem =
   | "custom"
   | "bot";
 export const GetLogAnalyticsWafLogAnalyticsMetricsRequestRuleTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetLogAnalyticsWafLogAnalyticsMetricsRequestRuleTypesList = Array<
   GetLogAnalyticsWafLogAnalyticsMetricsRequestRuleTypesItem | (string & {})
@@ -5524,10 +5509,10 @@ export const GetLogAnalyticsWafLogAnalyticsMetricsRequest =
   }) as any as S.Schema<GetLogAnalyticsWafLogAnalyticsMetricsRequest>;
 
 export type WafMetricsGranularity = "PT5M" | "PT1H" | "P1D";
-export const WafMetricsGranularity = /*@__PURE__*/ S.String;
+export const WafMetricsGranularity = S.String;
 
 export type WafMetricsSeriesUnit = "count";
-export const WafMetricsSeriesUnit = /*@__PURE__*/ S.String;
+export const WafMetricsSeriesUnit = S.String;
 
 export type WafMetricsResponseSeriesPropertiesItemsItem =
   MetricsResponseSeriesPropertiesItemsItem;
@@ -5594,7 +5579,7 @@ export const WafMetricsResponse = /*@__PURE__*/ S.suspend(() =>
 export type GetLogAnalyticsWafLogAnalyticsRankingsRequestMetricsItem =
   "clientRequestCount";
 export const GetLogAnalyticsWafLogAnalyticsRankingsRequestMetricsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetLogAnalyticsWafLogAnalyticsRankingsRequestMetricsList = Array<
   GetLogAnalyticsWafLogAnalyticsRankingsRequestMetricsItem | (string & {})
@@ -5614,7 +5599,7 @@ export type GetLogAnalyticsWafLogAnalyticsRankingsRequestRankingsItem =
   | "countryOrRegion"
   | "ruleType";
 export const GetLogAnalyticsWafLogAnalyticsRankingsRequestRankingsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetLogAnalyticsWafLogAnalyticsRankingsRequestRankingsList = Array<
   GetLogAnalyticsWafLogAnalyticsRankingsRequestRankingsItem | (string & {})
@@ -5630,7 +5615,7 @@ export type GetLogAnalyticsWafLogAnalyticsRankingsRequestActionsItem =
   | "log"
   | "redirect";
 export const GetLogAnalyticsWafLogAnalyticsRankingsRequestActionsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetLogAnalyticsWafLogAnalyticsRankingsRequestActionsList = Array<
   GetLogAnalyticsWafLogAnalyticsRankingsRequestActionsItem | (string & {})
@@ -5645,7 +5630,7 @@ export type GetLogAnalyticsWafLogAnalyticsRankingsRequestRuleTypesItem =
   | "custom"
   | "bot";
 export const GetLogAnalyticsWafLogAnalyticsRankingsRequestRuleTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetLogAnalyticsWafLogAnalyticsRankingsRequestRuleTypesList = Array<
   GetLogAnalyticsWafLogAnalyticsRankingsRequestRuleTypesItem | (string & {})
@@ -5908,11 +5893,11 @@ export const GetPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Describes if the policy is in enabled or disabled state. Defaults to Enabled if not specified. */
 export type PolicyEnabledState = "Disabled" | "Enabled";
-export const PolicyEnabledState = /*@__PURE__*/ S.String;
+export const PolicyEnabledState = S.String;
 
 /** Describes if it is in detection mode or prevention mode at policy level. */
 export type PolicyMode = "Prevention" | "Detection";
-export const PolicyMode = /*@__PURE__*/ S.String;
+export const PolicyMode = S.String;
 
 /** If the action type is block, this field defines the default customer overridable http response status code. */
 export type PolicySettingsDefaultCustomBlockResponseStatusCode =
@@ -5921,8 +5906,7 @@ export type PolicySettingsDefaultCustomBlockResponseStatusCode =
   | 405
   | 406
   | 429;
-export const PolicySettingsDefaultCustomBlockResponseStatusCode =
-  /*@__PURE__*/ S.Number;
+export const PolicySettingsDefaultCustomBlockResponseStatusCode = S.Number;
 
 /** Defines contents of a web application firewall global configuration */
 export interface PolicySettings {
@@ -5953,7 +5937,7 @@ export const PolicySettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Describes if the custom rule is in enabled or disabled state. Defaults to Enabled if not specified. */
 export type CustomRuleEnabledState = "Disabled" | "Enabled";
-export const CustomRuleEnabledState = /*@__PURE__*/ S.String;
+export const CustomRuleEnabledState = S.String;
 
 /** Match variable to compare against. */
 export type WafMatchVariable =
@@ -5966,7 +5950,7 @@ export type WafMatchVariable =
   | "RequestBody"
   | "Cookies"
   | "PostArgs";
-export const WafMatchVariable = /*@__PURE__*/ S.String;
+export const WafMatchVariable = S.String;
 
 /** Describes operator to be matched */
 export type Operator =
@@ -5982,7 +5966,7 @@ export type Operator =
   | "BeginsWith"
   | "EndsWith"
   | "RegEx";
-export const Operator = /*@__PURE__*/ S.String;
+export const Operator = S.String;
 
 /** List of possible match values. */
 export type MatchConditionMatchValueList = Array<string>;
@@ -5998,7 +5982,7 @@ export type TransformType =
   | "UrlDecode"
   | "UrlEncode"
   | "RemoveNulls";
-export const TransformType = /*@__PURE__*/ S.String;
+export const TransformType = S.String;
 
 /** List of transforms. */
 export type MatchConditionTransformsList = Array<TransformType | (string & {})>;
@@ -6040,7 +6024,7 @@ export const RateLimitRuleMatchConditionsList = /*@__PURE__*/ S.Array(
 
 /** Defines the action to take on rule match. */
 export type ActionType = "Allow" | "Block" | "Log" | "Redirect";
-export const ActionType = /*@__PURE__*/ S.String;
+export const ActionType = S.String;
 
 /** Defines a rate limiting rule that can be included in a waf policy */
 export interface RateLimitRule {
@@ -6138,7 +6122,7 @@ export const CustomRuleList = /*@__PURE__*/ S.suspend(() =>
 
 /** Describes if the managed rule is in enabled or disabled state. */
 export type ManagedRuleEnabledState = "Disabled" | "Enabled";
-export const ManagedRuleEnabledState = /*@__PURE__*/ S.String;
+export const ManagedRuleEnabledState = S.String;
 
 /** Defines a managed rule group override setting. */
 export interface ManagedRuleOverride {
@@ -6258,7 +6242,7 @@ export const CdnWebApplicationFirewallPolicyPropertiesExtendedPropertiesMap =
 
 /** Provisioning state of the WebApplicationFirewallPolicy. */
 export type ProvisioningState = "Creating" | "Succeeded" | "Failed";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Resource status of the policy. */
 export type PolicyResourceState =
@@ -6268,7 +6252,7 @@ export type PolicyResourceState =
   | "Disabling"
   | "Disabled"
   | "Deleting";
-export const PolicyResourceState = /*@__PURE__*/ S.String;
+export const PolicyResourceState = S.String;
 
 /** Defines CDN web application firewall policy properties. */
 export interface CdnWebApplicationFirewallPolicyProperties {
@@ -6896,7 +6880,7 @@ export const ListAFDEndpointResourceUsageRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** An enum describing the unit of measurement. */
 export type UsageUnit = "Count";
-export const UsageUnit = /*@__PURE__*/ S.String;
+export const UsageUnit = S.String;
 
 /** The usage names. */
 export interface UsageName {
@@ -7459,7 +7443,7 @@ export const ListEndpointResourceUsageRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Unit of the usage. e.g. count. */
 export type ResourceUsageUnit = "count";
-export const ResourceUsageUnit = /*@__PURE__*/ S.String;
+export const ResourceUsageUnit = S.String;
 
 /** Output of check resource usage API. */
 export interface ResourceUsage {
@@ -8861,7 +8845,7 @@ export const MigrateProfilesCanRequest = /*@__PURE__*/ S.suspend(() =>
 export type CanMigrateDefaultSku =
   | "Standard_AzureFrontDoor"
   | "Premium_AzureFrontDoor";
-export const CanMigrateDefaultSku = /*@__PURE__*/ S.String;
+export const CanMigrateDefaultSku = S.String;
 
 /** Error response indicates CDN service is not able to process the incoming request. The reason is provided in the error message. */
 export interface MigrationErrorType {
@@ -9846,7 +9830,7 @@ export type EndpointPropertiesUpdateParametersQueryStringCachingBehavior =
   | "UseQueryString"
   | "NotSet";
 export const EndpointPropertiesUpdateParametersQueryStringCachingBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of rules defining the user's geo access within a CDN endpoint. Each geo filter defines an access rule to a specified path or content, e.g. block APAC for path /pictures/ */
 export type EndpointPropertiesUpdateParametersGeoFiltersList = Array<GeoFilter>;
@@ -10473,22 +10457,19 @@ export type RouteUpdatePropertiesParametersInputForwardingProtocol =
   | "HttpOnly"
   | "HttpsOnly"
   | "MatchRequest";
-export const RouteUpdatePropertiesParametersInputForwardingProtocol =
-  /*@__PURE__*/ S.String;
+export const RouteUpdatePropertiesParametersInputForwardingProtocol = S.String;
 
 /** whether this route will be linked to the default endpoint domain. */
 export type RouteUpdatePropertiesParametersInputLinkToDefaultDomain =
   | "Enabled"
   | "Disabled";
-export const RouteUpdatePropertiesParametersInputLinkToDefaultDomain =
-  /*@__PURE__*/ S.String;
+export const RouteUpdatePropertiesParametersInputLinkToDefaultDomain = S.String;
 
 /** Whether to automatically redirect HTTP traffic to HTTPS traffic. Note that this is a easy way to set up this rule and it will be the first rule that gets executed. */
 export type RouteUpdatePropertiesParametersInputHttpsRedirect =
   | "Enabled"
   | "Disabled";
-export const RouteUpdatePropertiesParametersInputHttpsRedirect =
-  /*@__PURE__*/ S.String;
+export const RouteUpdatePropertiesParametersInputHttpsRedirect = S.String;
 
 /** The JSON object that contains the properties of the domain to create. */
 export interface RouteUpdatePropertiesParametersInput {
@@ -10631,7 +10612,7 @@ export type RuleUpdatePropertiesParametersInputMatchProcessingBehavior =
   | "Continue"
   | "Stop";
 export const RuleUpdatePropertiesParametersInputMatchProcessingBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The JSON object that contains the properties of the rule to update. */
 export interface RuleUpdatePropertiesParametersInput {
@@ -10808,7 +10789,7 @@ export type Status =
   | "Invalid"
   | "AccessDenied"
   | "CertificateExpired";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** Output of the validated secret. */
 export interface ValidateSecretOutput {

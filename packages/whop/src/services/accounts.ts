@@ -191,73 +191,73 @@ export type AccountBusinessType =
   | "saas"
   | "course"
   | "community";
-export const AccountBusinessType = /*@__PURE__*/ S.String;
+export const AccountBusinessType = S.String;
 
 /** Bank payins: debits, transfers, and local bank rails */
 export type AccountCapabilitiesAcceptBankPayments =
   | "active"
   | "inactive"
   | "pending";
-export const AccountCapabilitiesAcceptBankPayments = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesAcceptBankPayments = S.String;
 
 /** Buy-now-pay-later payins; requires approval */
 export type AccountCapabilitiesAcceptBnplPayments =
   | "active"
   | "inactive"
   | "pending";
-export const AccountCapabilitiesAcceptBnplPayments = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesAcceptBnplPayments = S.String;
 
 /** Card payins, including Apple Pay and Google Pay */
 export type AccountCapabilitiesAcceptCardPayments =
   | "active"
   | "inactive"
   | "pending";
-export const AccountCapabilitiesAcceptCardPayments = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesAcceptCardPayments = S.String;
 
 /** Deposits by bank wire or ACH to the account's virtual bank account */
 export type AccountCapabilitiesBankDeposit = "active" | "inactive" | "pending";
-export const AccountCapabilitiesBankDeposit = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesBankDeposit = S.String;
 
 /** Balance top-ups by charging a stored payment method */
 export type AccountCapabilitiesCardDeposit = "active" | "inactive" | "pending";
-export const AccountCapabilitiesCardDeposit = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesCardDeposit = S.String;
 
 /** Issuing Whop cards; requires card application approval */
 export type AccountCapabilitiesCardIssuing = "active" | "inactive" | "pending";
-export const AccountCapabilitiesCardIssuing = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesCardIssuing = S.String;
 
 /** On-chain deposits to the account's crypto wallet */
 export type AccountCapabilitiesCryptoDeposit =
   | "active"
   | "inactive"
   | "pending";
-export const AccountCapabilitiesCryptoDeposit = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesCryptoDeposit = S.String;
 
 /** On-chain payouts to a crypto wallet */
 export type AccountCapabilitiesCryptoPayout = "active" | "inactive" | "pending";
-export const AccountCapabilitiesCryptoPayout = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesCryptoPayout = S.String;
 
 /** Instant payouts to an eligible payout destination */
 export type AccountCapabilitiesInstantPayout =
   | "active"
   | "inactive"
   | "pending";
-export const AccountCapabilitiesInstantPayout = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesInstantPayout = S.String;
 
 /** Launching ad campaigns through Whop Ads. `inactive` while a requested ads services agreement is awaiting the account's signature. */
 export type AccountCapabilitiesRunAds = "active" | "inactive" | "pending";
-export const AccountCapabilitiesRunAds = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesRunAds = S.String;
 
 /** Standard payouts to an external payout destination */
 export type AccountCapabilitiesStandardPayout =
   | "active"
   | "inactive"
   | "pending";
-export const AccountCapabilitiesStandardPayout = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesStandardPayout = S.String;
 
 /** Transfers to other accounts */
 export type AccountCapabilitiesTransfer = "active" | "inactive" | "pending";
-export const AccountCapabilitiesTransfer = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesTransfer = S.String;
 
 export interface AccountCapabilities {
   /** Bank payins: debits, transfers, and local bank rails */
@@ -306,7 +306,7 @@ export const AccountCapabilities = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the card application verifies a business (`business`, KYB) or a person (`individual`, consumer identity). `null` when the application is not yet linked to a verification. */
 export type AccountCardsKind = "individual" | "business";
-export const AccountCardsKind = /*@__PURE__*/ S.String;
+export const AccountCardsKind = S.String;
 
 /** Where the card application stands. `approved` means cards can be issued. `needs_verification` means the applicant has not completed identity verification yet; `needs_information` means they did, but the documents were rejected for a fixable reason and must be resubmitted. `pending` and `manual_review` are in flight. `denied`, `locked`, and `canceled` are terminal. */
 export type AccountCardsStatus =
@@ -318,7 +318,7 @@ export type AccountCardsStatus =
   | "canceled"
   | "needs_verification"
   | "needs_information";
-export const AccountCardsStatus = /*@__PURE__*/ S.String;
+export const AccountCardsStatus = S.String;
 
 export interface AccountCards {
   /** Whether the card application verifies a business (`business`, KYB) or a person (`individual`, consumer identity). `null` when the application is not yet linked to a verification. */
@@ -364,8 +364,7 @@ export const AccountCompanyFormationDocumentsList = /*@__PURE__*/ S.Array(
 export type AccountCompanyFormationSignatureRequestStatus =
   | "pending"
   | "unknown";
-export const AccountCompanyFormationSignatureRequestStatus =
-  /*@__PURE__*/ S.String;
+export const AccountCompanyFormationSignatureRequestStatus = S.String;
 
 export interface AccountCompanyFormationSignatureRequest {
   /** When the signing URL expires, as an ISO 8601 timestamp. Present while `status` is `pending`. */
@@ -407,7 +406,7 @@ export type AccountCompanyFormationStatus =
   | "filed"
   | "rejected"
   | "completed";
-export const AccountCompanyFormationStatus = /*@__PURE__*/ S.String;
+export const AccountCompanyFormationStatus = S.String;
 
 export interface AccountCompanyFormation {
   documents?: AccountCompanyFormationDocumentsList;
@@ -456,11 +455,11 @@ export const FileMultipartUploadUrlsList = /*@__PURE__*/ S.Array(
 
 /** Where the file is in its upload lifecycle. */
 export type FileUploadStatus = "pending" | "processing" | "ready" | "failed";
-export const FileUploadStatus = /*@__PURE__*/ S.String;
+export const FileUploadStatus = S.String;
 
 /** `public` files are served via an unsigned CDN URL; `private` files via a signed, expiring URL. */
 export type FileVisibility = "public" | "private";
-export const FileVisibility = /*@__PURE__*/ S.String;
+export const FileVisibility = S.String;
 
 export interface File {
   /** The file's MIME type, e.g. `application/pdf`. */
@@ -514,7 +513,7 @@ export const File = /*@__PURE__*/ S.suspend(() =>
 export type AccountHomePreferencesItem =
   | "hide_member_count"
   | "hide_members_card";
-export const AccountHomePreferencesItem = /*@__PURE__*/ S.String;
+export const AccountHomePreferencesItem = S.String;
 
 export type AccountHomePreferencesList = Array<AccountHomePreferencesItem>;
 export const AccountHomePreferencesList = /*@__PURE__*/ S.Array(
@@ -663,7 +662,7 @@ export type AccountIndustryGroup =
   | "weight_and_metabolic_health"
   | "wellness_and_alternative"
   | "womens_and_mens_health";
-export const AccountIndustryGroup = /*@__PURE__*/ S.String;
+export const AccountIndustryGroup = S.String;
 
 /** Specific industry vertical for the account. See the [business types and industries glossary](/api-reference/beta/accounts/account#business-types-and-industries-glossary) for valid values. */
 export type AccountIndustryType =
@@ -2628,15 +2627,15 @@ export type AccountIndustryType =
   | "coworking_community"
   | "media_company"
   | "research_lab";
-export const AccountIndustryType = /*@__PURE__*/ S.String;
+export const AccountIndustryType = S.String;
 
 /** Type of onboarding the account has completed. */
 export type AccountOnboardingType = "platform" | "seller";
-export const AccountOnboardingType = /*@__PURE__*/ S.String;
+export const AccountOnboardingType = S.String;
 
 /** Account Open Graph image variant. */
 export type AccountOpengraphImageVariant = "white" | "black" | "orange";
-export const AccountOpengraphImageVariant = /*@__PURE__*/ S.String;
+export const AccountOpengraphImageVariant = S.String;
 
 export interface UserProfilePicture {
   /** Avatar image URL. Always present — a generated placeholder when the user set no picture. */
@@ -2747,8 +2746,7 @@ export type AccountPaymentControlsRestrictedPaymentMethodsItem =
   | "card_mastercard"
   | "card_american_express"
   | "card_discover_global_network";
-export const AccountPaymentControlsRestrictedPaymentMethodsItem =
-  /*@__PURE__*/ S.String;
+export const AccountPaymentControlsRestrictedPaymentMethodsItem = S.String;
 
 export type AccountPaymentControlsRestrictedPaymentMethodsList =
   Array<AccountPaymentControlsRestrictedPaymentMethodsItem>;
@@ -2818,7 +2816,7 @@ export type AccountRecommendedActionAction =
   | "enable_tax_collection"
   | "create_card"
   | "apply_for_financing";
-export const AccountRecommendedActionAction = /*@__PURE__*/ S.String;
+export const AccountRecommendedActionAction = S.String;
 
 export type AccountRecommendedActionBlockedCapabilitiesList = Array<string>;
 export const AccountRecommendedActionBlockedCapabilitiesList =
@@ -2828,7 +2826,7 @@ export const AccountRecommendedActionBlockedCapabilitiesList =
 
 /** Always optional — never blocking */
 export type AccountRecommendedActionStatus = "optional";
-export const AccountRecommendedActionStatus = /*@__PURE__*/ S.String;
+export const AccountRecommendedActionStatus = S.String;
 
 export interface AccountRecommendedAction {
   /** The recommendation; new values may be added, so handle unknown actions gracefully */
@@ -2887,7 +2885,7 @@ export type AccountRequiredActionAction =
   | "setup_apple_pay_domains"
   | "configure_tax_remitter"
   | "add_vat_registration";
-export const AccountRequiredActionAction = /*@__PURE__*/ S.String;
+export const AccountRequiredActionAction = S.String;
 
 export type AccountRequiredActionBlockedCapabilitiesList = Array<string>;
 export const AccountRequiredActionBlockedCapabilitiesList =
@@ -2897,7 +2895,7 @@ export const AccountRequiredActionBlockedCapabilitiesList =
 
 /** required (act now) or pending (under review) */
 export type AccountRequiredActionStatus = "required" | "pending";
-export const AccountRequiredActionStatus = /*@__PURE__*/ S.String;
+export const AccountRequiredActionStatus = S.String;
 
 export interface AccountRequiredAction {
   /** What the holder must do; new values may be added, so handle unknown actions gracefully */
@@ -2947,7 +2945,7 @@ export type AccountSocialLinkWebsite =
   | "twitch"
   | "website"
   | "custom";
-export const AccountSocialLinkWebsite = /*@__PURE__*/ S.String;
+export const AccountSocialLinkWebsite = S.String;
 
 export interface AccountSocialLink {
   /** The ID of the social link */
@@ -3005,15 +3003,15 @@ export type AccountStorePageConfigAccentColor =
   | "gold"
   | "bronze"
   | "gray";
-export const AccountStorePageConfigAccentColor = /*@__PURE__*/ S.String;
+export const AccountStorePageConfigAccentColor = S.String;
 
 /** Layout used on the account store page. */
 export type AccountStorePageConfigLayout = "featured" | "compact";
-export const AccountStorePageConfigLayout = /*@__PURE__*/ S.String;
+export const AccountStorePageConfigLayout = S.String;
 
 /** Profile presentation used on the account store page. */
 export type AccountStorePageConfigProfileVariant = "personal" | "business";
-export const AccountStorePageConfigProfileVariant = /*@__PURE__*/ S.String;
+export const AccountStorePageConfigProfileVariant = S.String;
 
 export interface AccountStorePageConfig {
   /** Accent color used on the account store page. */
@@ -3156,7 +3154,7 @@ export type AccountTaxIdentifierTaxIdType =
   | "zw_tin"
   | "sr_fin"
   | "xi_vat";
-export const AccountTaxIdentifierTaxIdType = /*@__PURE__*/ S.String;
+export const AccountTaxIdentifierTaxIdType = S.String;
 
 export interface AccountTaxIdentifier {
   /** Tax identifier ID. */
@@ -3183,19 +3181,19 @@ export const AccountTaxIdentifiersList = /*@__PURE__*/ S.Array(
 
 /** Who calculates and remits tax for the account: `whop` (Whop calculates and remits), `self` (Whop calculates; the account collects and remits), or `none` (neither; the account is responsible). `null` until the account enrolls in the Whop tax service. */
 export type AccountTaxRemittedBy = "whop" | "self" | "none";
-export const AccountTaxRemittedBy = /*@__PURE__*/ S.String;
+export const AccountTaxRemittedBy = S.String;
 
 /** How tax is applied to the account's prices: `inclusive` (tax included in the listed price) or `exclusive` (tax added on top). Defaults to `exclusive` when unset; `null` only when the account has no payment connection. */
 export type AccountTaxType = "inclusive" | "exclusive";
-export const AccountTaxType = /*@__PURE__*/ S.String;
+export const AccountTaxType = S.String;
 
 /** Account-level 3D Secure behavior. `mandate_challenge` requires cardholder verification on supported card payments; `null` uses the standard checkout flow. */
 export type AccountThreeDsLevel = "mandate_challenge";
-export const AccountThreeDsLevel = /*@__PURE__*/ S.String;
+export const AccountThreeDsLevel = S.String;
 
 /** The blockchain network the wallet lives on */
 export type AccountWalletNetwork = "solana" | "ethereum" | "bitcoin";
-export const AccountWalletNetwork = /*@__PURE__*/ S.String;
+export const AccountWalletNetwork = S.String;
 
 export interface AccountWallet {
   /** The on-chain address of the wallet */
@@ -3436,11 +3434,11 @@ export type FormCompanyRequestEntitySuffix =
   | "C Corporation"
   | "CCorp"
   | "Company";
-export const FormCompanyRequestEntitySuffix = /*@__PURE__*/ S.String;
+export const FormCompanyRequestEntitySuffix = S.String;
 
 /** Legal entity type to form. Defaults to `llc`. */
 export type FormCompanyRequestEntityType = "llc" | "c_corp";
-export const FormCompanyRequestEntityType = /*@__PURE__*/ S.String;
+export const FormCompanyRequestEntityType = S.String;
 
 /** Two-letter code of the US state (or `DC`) to form the company in. */
 export type FormCompanyRequestFormationState =
@@ -3495,7 +3493,7 @@ export type FormCompanyRequestFormationState =
   | "WV"
   | "WI"
   | "WY";
-export const FormCompanyRequestFormationState = /*@__PURE__*/ S.String;
+export const FormCompanyRequestFormationState = S.String;
 
 /** Founder's personal address. */
 export type FormCompanyRequestFoundersItemAddress =
@@ -3508,7 +3506,7 @@ export type FormCompanyRequestFoundersItemRolesItem =
   | "secretary"
   | "treasurer"
   | "director";
-export const FormCompanyRequestFoundersItemRolesItem = /*@__PURE__*/ S.String;
+export const FormCompanyRequestFoundersItemRolesItem = S.String;
 
 /** Officer roles held by the member — one member can hold several. Required (at least one role) for every member when `entity_type` is `c_corp`; ignored for LLCs. Across all members every role must be covered; `president`, `secretary` and `treasurer` may each be held by only one member, while `director` may repeat. */
 export type FormCompanyRequestFoundersItemRolesList = Array<
@@ -3692,8 +3690,7 @@ export type GetAccountPreferencesResponseAdsAgreementStatus =
   | "not_required"
   | "pending_signature"
   | "signed";
-export const GetAccountPreferencesResponseAdsAgreementStatus =
-  /*@__PURE__*/ S.String;
+export const GetAccountPreferencesResponseAdsAgreementStatus = S.String;
 
 /** The account's Whop Ads services and payment authorization agreement. While `pending_signature`, campaign launch is blocked; sign by answering `requested_information` via `PATCH /verifications/{id}`. */
 export interface GetAccountPreferencesResponseAdsAgreement {
@@ -3723,7 +3720,7 @@ export type GetAccountPreferencesResponseAdsPaymentMethodsBackupType =
   | "platform_balance"
   | "card";
 export const GetAccountPreferencesResponseAdsPaymentMethodsBackupType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAccountPreferencesResponseAdsPaymentMethodsBackup {
   /** Card brand, present for `card` entries. */
@@ -3764,7 +3761,7 @@ export type GetAccountPreferencesResponseAdsPaymentMethodsPrimaryType =
   | "platform_balance"
   | "card";
 export const GetAccountPreferencesResponseAdsPaymentMethodsPrimaryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAccountPreferencesResponseAdsPaymentMethodsPrimary {
   /** Card brand, present for `card` entries. */
@@ -3821,7 +3818,7 @@ export type GetAccountPreferencesResponseAdsTripleWhaleIntegrationStatus =
   | "not_connected"
   | "requires_shopify_store";
 export const GetAccountPreferencesResponseAdsTripleWhaleIntegrationStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The account's Triple Whale integration, which pushes Whop ad spend to Triple Whale's Data-In API so it reports as a `whop` channel. */
 export interface GetAccountPreferencesResponseAdsTripleWhaleIntegration {
@@ -3901,7 +3898,7 @@ export type AccountReserveTypeType =
   | "sequra"
   | "fraud_hold"
   | "preshipment_hold";
-export const AccountReserveTypeType = /*@__PURE__*/ S.String;
+export const AccountReserveTypeType = S.String;
 
 export interface AccountReserveType {
   /** Amount held for this reason, in native units, as a decimal string. */
@@ -3983,13 +3980,13 @@ export const ListAccountReservesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListAccountReservesResponse>;
 
 export type ListAccountsRequestOrder = "created_at" | "volume";
-export const ListAccountsRequestOrder = /*@__PURE__*/ S.String;
+export const ListAccountsRequestOrder = S.String;
 
 export type ListAccountsRequestDirection = "asc" | "desc";
-export const ListAccountsRequestDirection = /*@__PURE__*/ S.String;
+export const ListAccountsRequestDirection = S.String;
 
 export type ListAccountsRequestStatus = "active" | "suspended";
-export const ListAccountsRequestStatus = /*@__PURE__*/ S.String;
+export const ListAccountsRequestStatus = S.String;
 
 export interface ListAccountsRequest {
   /** The number of accounts to return (default 10, max 50). */
@@ -4175,12 +4172,12 @@ export type UpdateAccountRequestBusinessType =
   | "saas"
   | "course"
   | "community";
-export const UpdateAccountRequestBusinessType = /*@__PURE__*/ S.String;
+export const UpdateAccountRequestBusinessType = S.String;
 
 export type UpdateAccountRequestHomePreferencesItem =
   | "hide_member_count"
   | "hide_members_card";
-export const UpdateAccountRequestHomePreferencesItem = /*@__PURE__*/ S.String;
+export const UpdateAccountRequestHomePreferencesItem = S.String;
 
 /** Public account home page preferences. */
 export type UpdateAccountRequestHomePreferencesList = Array<
@@ -4332,7 +4329,7 @@ export type UpdateAccountRequestIndustryGroup =
   | "weight_and_metabolic_health"
   | "wellness_and_alternative"
   | "womens_and_mens_health";
-export const UpdateAccountRequestIndustryGroup = /*@__PURE__*/ S.String;
+export const UpdateAccountRequestIndustryGroup = S.String;
 
 /** Specific industry vertical for the account. See the [business types and industries glossary](/api-reference/beta/accounts/account#business-types-and-industries-glossary) for valid values. */
 export type UpdateAccountRequestIndustryType =
@@ -6297,7 +6294,7 @@ export type UpdateAccountRequestIndustryType =
   | "coworking_community"
   | "media_company"
   | "research_lab";
-export const UpdateAccountRequestIndustryType = /*@__PURE__*/ S.String;
+export const UpdateAccountRequestIndustryType = S.String;
 
 /** Account logo, used as the profile picture when creating a Whop-managed Facebook page. Image files up to 5 MB. Pass a JSON object containing an `id` from [Create File](/api-reference/files/create-file). */
 export type UpdateAccountRequestLogo = UpdateAccountRequestBannerImage;
@@ -6314,7 +6311,7 @@ export const UpdateAccountRequestMetadataMap = /*@__PURE__*/ S.Record(
 
 /** The type of onboarding the account has completed. */
 export type UpdateAccountRequestOnboardingType = "platform" | "seller";
-export const UpdateAccountRequestOnboardingType = /*@__PURE__*/ S.String;
+export const UpdateAccountRequestOnboardingType = S.String;
 
 /** Open Graph preview media used when the account is shared. Image and video files up to 5 MB. Pass a JSON object containing an `id` from [Create File](/api-reference/files/create-file). */
 export type UpdateAccountRequestOpengraphImage =
@@ -6327,7 +6324,7 @@ export type UpdateAccountRequestOpengraphImageVariant =
   | "white"
   | "black"
   | "orange";
-export const UpdateAccountRequestOpengraphImageVariant = /*@__PURE__*/ S.String;
+export const UpdateAccountRequestOpengraphImageVariant = S.String;
 
 export type UpdateAccountRequestSocialLinksItemMap = {
   [key: string]: unknown | undefined;
@@ -6374,19 +6371,17 @@ export type UpdateAccountRequestStorePageConfigAccentColor =
   | "gold"
   | "bronze"
   | "gray";
-export const UpdateAccountRequestStorePageConfigAccentColor =
-  /*@__PURE__*/ S.String;
+export const UpdateAccountRequestStorePageConfigAccentColor = S.String;
 
 /** Layout used on the account store page. */
 export type UpdateAccountRequestStorePageConfigLayout = "featured" | "compact";
-export const UpdateAccountRequestStorePageConfigLayout = /*@__PURE__*/ S.String;
+export const UpdateAccountRequestStorePageConfigLayout = S.String;
 
 /** Profile presentation used on the account store page. */
 export type UpdateAccountRequestStorePageConfigProfileVariant =
   | "personal"
   | "business";
-export const UpdateAccountRequestStorePageConfigProfileVariant =
-  /*@__PURE__*/ S.String;
+export const UpdateAccountRequestStorePageConfigProfileVariant = S.String;
 
 /** Account store page display configuration. */
 export interface UpdateAccountRequestStorePageConfig {
@@ -6472,8 +6467,7 @@ export type UpdateAccountRequestTaxCollectionEnabledStatesItem =
   | "WV"
   | "WI"
   | "WY";
-export const UpdateAccountRequestTaxCollectionEnabledStatesItem =
-  /*@__PURE__*/ S.String;
+export const UpdateAccountRequestTaxCollectionEnabledStatesItem = S.String;
 
 /** US state codes (50 states plus `DC`) where the account collects tax. Replaces the full set on update. Only settable when `tax_remitted_by` is `self`. */
 export type UpdateAccountRequestTaxCollectionEnabledStatesList = Array<
@@ -6597,8 +6591,7 @@ export type UpdateAccountRequestTaxIdentifiersItemTaxIdType =
   | "zm_tin"
   | "zw_tin"
   | "sr_fin";
-export const UpdateAccountRequestTaxIdentifiersItemTaxIdType =
-  /*@__PURE__*/ S.String;
+export const UpdateAccountRequestTaxIdentifiersItemTaxIdType = S.String;
 
 export interface UpdateAccountRequestTaxIdentifiersItem {
   /** Tax ID type, for example `eu_vat`, `gb_vat`, or `us_ein`. */
@@ -6625,15 +6618,15 @@ export const UpdateAccountRequestTaxIdentifiersList = /*@__PURE__*/ S.Array(
 
 /** Determines whether Whop or the account calculates and remits tax. The account must provide a supported-country business address when it self-remits. */
 export type UpdateAccountRequestTaxRemittedBy = "whop" | "self" | "none";
-export const UpdateAccountRequestTaxRemittedBy = /*@__PURE__*/ S.String;
+export const UpdateAccountRequestTaxRemittedBy = S.String;
 
 /** Determines whether tax is included in the listed price or added at checkout. */
 export type UpdateAccountRequestTaxType = "inclusive" | "exclusive";
-export const UpdateAccountRequestTaxType = /*@__PURE__*/ S.String;
+export const UpdateAccountRequestTaxType = S.String;
 
 /** Account-level 3D Secure behavior. Set `mandate_challenge` to require cardholder verification on supported card payments, or `null` to use the standard checkout flow. */
 export type UpdateAccountRequestThreeDsLevel = "mandate_challenge";
-export const UpdateAccountRequestThreeDsLevel = /*@__PURE__*/ S.String;
+export const UpdateAccountRequestThreeDsLevel = S.String;
 
 export interface UpdateAccountRequest {
   /** Account ID, prefixed `biz_`. */
@@ -6775,7 +6768,7 @@ export type UpdateAccountPreferencesRequestAdsPaymentMethodsBackupType =
   | "platform_balance"
   | "card";
 export const UpdateAccountPreferencesRequestAdsPaymentMethodsBackupType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Optional second method charged if the primary fails. Any pairing is allowed (two cards, card+balance, balance+card); omit it to run on a single method. Must differ from the primary. */
 export interface UpdateAccountPreferencesRequestAdsPaymentMethodsBackup {
@@ -6801,7 +6794,7 @@ export type UpdateAccountPreferencesRequestAdsPaymentMethodsPrimaryType =
   | "platform_balance"
   | "card";
 export const UpdateAccountPreferencesRequestAdsPaymentMethodsPrimaryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateAccountPreferencesRequestAdsPaymentMethodsPrimary {
   /** The funding source ID: a Whop balance (`ldgr_`) for `platform_balance`, or a payment method (`payt_`) for `card`. Optional for `platform_balance` — defaults to the account's default Whop balance. Required for `card`. */
@@ -6898,8 +6891,7 @@ export type UpdateAccountPreferencesResponseAdsAgreementStatus =
   | "not_required"
   | "pending_signature"
   | "signed";
-export const UpdateAccountPreferencesResponseAdsAgreementStatus =
-  /*@__PURE__*/ S.String;
+export const UpdateAccountPreferencesResponseAdsAgreementStatus = S.String;
 
 /** The account's Whop Ads services and payment authorization agreement. While `pending_signature`, campaign launch is blocked; sign by answering `requested_information` via `PATCH /verifications/{id}`. */
 export interface UpdateAccountPreferencesResponseAdsAgreement {
@@ -6929,7 +6921,7 @@ export type UpdateAccountPreferencesResponseAdsPaymentMethodsBackupType =
   | "platform_balance"
   | "card";
 export const UpdateAccountPreferencesResponseAdsPaymentMethodsBackupType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateAccountPreferencesResponseAdsPaymentMethodsBackup {
   /** Card brand, present for `card` entries. */
@@ -6970,7 +6962,7 @@ export type UpdateAccountPreferencesResponseAdsPaymentMethodsPrimaryType =
   | "platform_balance"
   | "card";
 export const UpdateAccountPreferencesResponseAdsPaymentMethodsPrimaryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateAccountPreferencesResponseAdsPaymentMethodsPrimary {
   /** Card brand, present for `card` entries. */
@@ -7029,7 +7021,7 @@ export type UpdateAccountPreferencesResponseAdsTripleWhaleIntegrationStatus =
   | "not_connected"
   | "requires_shopify_store";
 export const UpdateAccountPreferencesResponseAdsTripleWhaleIntegrationStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The account's Triple Whale integration, which pushes Whop ad spend to Triple Whale's Data-In API so it reports as a `whop` channel. */
 export interface UpdateAccountPreferencesResponseAdsTripleWhaleIntegration {

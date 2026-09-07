@@ -75,7 +75,7 @@ export type MediationReportSpecMetricsItemEnum =
   | "MATCHED_REQUESTS"
   | "MATCH_RATE"
   | "OBSERVED_ECPM";
-export const MediationReportSpecMetricsItemEnum = /*@__PURE__*/ S.String;
+export const MediationReportSpecMetricsItemEnum = S.String;
 
 export type MediationReportSpecMetricsItemEnumList = Array<
   MediationReportSpecMetricsItemEnum | (string & {})
@@ -101,7 +101,7 @@ export type MediationReportSpecDimensionsItemEnum =
   | "GMA_SDK_VERSION"
   | "APP_VERSION_NAME"
   | "SERVING_RESTRICTION";
-export const MediationReportSpecDimensionsItemEnum = /*@__PURE__*/ S.String;
+export const MediationReportSpecDimensionsItemEnum = S.String;
 
 export type MediationReportSpecDimensionsItemEnumList = Array<
   MediationReportSpecDimensionsItemEnum | (string & {})
@@ -143,8 +143,7 @@ export type MediationReportSpecDimensionFilterDimensionEnum =
   | "GMA_SDK_VERSION"
   | "APP_VERSION_NAME"
   | "SERVING_RESTRICTION";
-export const MediationReportSpecDimensionFilterDimensionEnum =
-  /*@__PURE__*/ S.String;
+export const MediationReportSpecDimensionFilterDimensionEnum = S.String;
 
 /** Describes which report rows to match based on their dimension values. */
 export interface MediationReportSpecDimensionFilter {
@@ -172,7 +171,7 @@ export type MediationReportSpecSortConditionOrderEnum =
   | "SORT_ORDER_UNSPECIFIED"
   | "ASCENDING"
   | "DESCENDING";
-export const MediationReportSpecSortConditionOrderEnum = /*@__PURE__*/ S.String;
+export const MediationReportSpecSortConditionOrderEnum = S.String;
 
 export type MediationReportSpecSortConditionDimensionEnum =
   | "DIMENSION_UNSPECIFIED"
@@ -191,8 +190,7 @@ export type MediationReportSpecSortConditionDimensionEnum =
   | "GMA_SDK_VERSION"
   | "APP_VERSION_NAME"
   | "SERVING_RESTRICTION";
-export const MediationReportSpecSortConditionDimensionEnum =
-  /*@__PURE__*/ S.String;
+export const MediationReportSpecSortConditionDimensionEnum = S.String;
 
 export type MediationReportSpecSortConditionMetricEnum =
   | "METRIC_UNSPECIFIED"
@@ -204,8 +202,7 @@ export type MediationReportSpecSortConditionMetricEnum =
   | "MATCHED_REQUESTS"
   | "MATCH_RATE"
   | "OBSERVED_ECPM";
-export const MediationReportSpecSortConditionMetricEnum =
-  /*@__PURE__*/ S.String;
+export const MediationReportSpecSortConditionMetricEnum = S.String;
 
 /** Sorting direction to be applied on a dimension or a metric. */
 export interface MediationReportSpecSortCondition {
@@ -436,7 +433,7 @@ export type ReportWarningTypeEnum =
   | "DATA_DELAYED"
   | "OTHER"
   | "REPORT_CURRENCY_NOT_ACCOUNT_CURRENCY";
-export const ReportWarningTypeEnum = /*@__PURE__*/ S.String;
+export const ReportWarningTypeEnum = S.String;
 
 /** Warnings associated with generation of the report. */
 export interface ReportWarning {
@@ -505,8 +502,7 @@ export type NetworkReportSpecSortConditionDimensionEnum =
   | "GMA_SDK_VERSION"
   | "APP_VERSION_NAME"
   | "SERVING_RESTRICTION";
-export const NetworkReportSpecSortConditionDimensionEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkReportSpecSortConditionDimensionEnum = S.String;
 
 export type NetworkReportSpecSortConditionMetricEnum =
   | "METRIC_UNSPECIFIED"
@@ -519,13 +515,13 @@ export type NetworkReportSpecSortConditionMetricEnum =
   | "MATCHED_REQUESTS"
   | "MATCH_RATE"
   | "SHOW_RATE";
-export const NetworkReportSpecSortConditionMetricEnum = /*@__PURE__*/ S.String;
+export const NetworkReportSpecSortConditionMetricEnum = S.String;
 
 export type NetworkReportSpecSortConditionOrderEnum =
   | "SORT_ORDER_UNSPECIFIED"
   | "ASCENDING"
   | "DESCENDING";
-export const NetworkReportSpecSortConditionOrderEnum = /*@__PURE__*/ S.String;
+export const NetworkReportSpecSortConditionOrderEnum = S.String;
 
 /** Sorting direction to be applied on a dimension or a metric. */
 export interface NetworkReportSpecSortCondition {
@@ -567,8 +563,7 @@ export type NetworkReportSpecDimensionFilterDimensionEnum =
   | "GMA_SDK_VERSION"
   | "APP_VERSION_NAME"
   | "SERVING_RESTRICTION";
-export const NetworkReportSpecDimensionFilterDimensionEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkReportSpecDimensionFilterDimensionEnum = S.String;
 
 /** Describes which report rows to match based on their dimension values. */
 export interface NetworkReportSpecDimensionFilter {
@@ -603,7 +598,7 @@ export type NetworkReportSpecMetricsItemEnum =
   | "MATCHED_REQUESTS"
   | "MATCH_RATE"
   | "SHOW_RATE";
-export const NetworkReportSpecMetricsItemEnum = /*@__PURE__*/ S.String;
+export const NetworkReportSpecMetricsItemEnum = S.String;
 
 export type NetworkReportSpecMetricsItemEnumList = Array<
   NetworkReportSpecMetricsItemEnum | (string & {})
@@ -627,7 +622,7 @@ export type NetworkReportSpecDimensionsItemEnum =
   | "GMA_SDK_VERSION"
   | "APP_VERSION_NAME"
   | "SERVING_RESTRICTION";
-export const NetworkReportSpecDimensionsItemEnum = /*@__PURE__*/ S.String;
+export const NetworkReportSpecDimensionsItemEnum = S.String;
 
 export type NetworkReportSpecDimensionsItemEnumList = Array<
   NetworkReportSpecDimensionsItemEnum | (string & {})
@@ -922,7 +917,7 @@ export type AppAppApprovalStateEnum =
   | "ACTION_REQUIRED"
   | "IN_REVIEW"
   | "APPROVED";
-export const AppAppApprovalStateEnum = /*@__PURE__*/ S.String;
+export const AppAppApprovalStateEnum = S.String;
 
 /** Information provided for manual apps which are not linked to an application store (Example: Google Play, App Store). */
 export interface AppManualAppInfo {

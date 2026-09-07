@@ -519,8 +519,7 @@ export class WorkerVersionNotFound
 
 export type ScriptsSecretsBulkUpdateRequestSecretsSecretTextType =
   "secret_text";
-export const ScriptsSecretsBulkUpdateRequestSecretsSecretTextType =
-  /*@__PURE__*/ S.String;
+export const ScriptsSecretsBulkUpdateRequestSecretsSecretTextType = S.String;
 
 export interface ScriptsSecretsBulkUpdateRequestSecretsSecretText {
   /** A JavaScript variable name for the binding. */
@@ -546,12 +545,10 @@ export type ScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat =
   | "pkcs8"
   | "spki"
   | "jwk";
-export const ScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+export const ScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat = S.String;
 
 export type ScriptsSecretsBulkUpdateRequestSecretsSecretKeyType = "secret_key";
-export const ScriptsSecretsBulkUpdateRequestSecretsSecretKeyType =
-  /*@__PURE__*/ S.String;
+export const ScriptsSecretsBulkUpdateRequestSecretsSecretKeyType = S.String;
 
 export type ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem =
   | "encrypt"
@@ -563,7 +560,7 @@ export type ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem =
   | "wrapKey"
   | "unwrapKey";
 export const ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList = Array<
   ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem | (string & {})
@@ -658,8 +655,7 @@ export const BulkUpdateScriptSecretsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BulkUpdateScriptSecretsRequest>;
 
 export type ScriptsSecretsBulkUpdateResultSecretTextType = "secret_text";
-export const ScriptsSecretsBulkUpdateResultSecretTextType =
-  /*@__PURE__*/ S.String;
+export const ScriptsSecretsBulkUpdateResultSecretTextType = S.String;
 
 export interface ScriptsSecretsBulkUpdateResultSecretText {
   /** A JavaScript variable name for the binding. */
@@ -685,12 +681,10 @@ export type ScriptsSecretsBulkUpdateResultSecretKeyFormat =
   | "pkcs8"
   | "spki"
   | "jwk";
-export const ScriptsSecretsBulkUpdateResultSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+export const ScriptsSecretsBulkUpdateResultSecretKeyFormat = S.String;
 
 export type ScriptsSecretsBulkUpdateResultSecretKeyType = "secret_key";
-export const ScriptsSecretsBulkUpdateResultSecretKeyType =
-  /*@__PURE__*/ S.String;
+export const ScriptsSecretsBulkUpdateResultSecretKeyType = S.String;
 
 export type ScriptsSecretsBulkUpdateResultSecretKeyUsagesItem =
   | "encrypt"
@@ -701,8 +695,7 @@ export type ScriptsSecretsBulkUpdateResultSecretKeyUsagesItem =
   | "deriveBits"
   | "wrapKey"
   | "unwrapKey";
-export const ScriptsSecretsBulkUpdateResultSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+export const ScriptsSecretsBulkUpdateResultSecretKeyUsagesItem = S.String;
 
 export type ScriptsSecretsBulkUpdateResultSecretKeyUsagesList =
   Array<ScriptsSecretsBulkUpdateResultSecretKeyUsagesItem>;
@@ -856,7 +849,7 @@ export type BetaWorkersCreateRequestObservabilityTracesPropagationPolicy =
   | "authenticated"
   | "accept";
 export const BetaWorkersCreateRequestObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersCreateRequestObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -1041,7 +1034,7 @@ export type BetaWorkersCreateResponseObservabilityTracesPropagationPolicy =
   | "authenticated"
   | "accept";
 export const BetaWorkersCreateResponseObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersCreateResponseObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -1376,14 +1369,14 @@ export type BetaWorkersVersionsCreateRequestAssetsConfigHtmlHandling =
   | "drop-trailing-slash"
   | "none";
 export const BetaWorkersVersionsCreateRequestAssetsConfigHtmlHandling =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsCreateRequestAssetsConfigNotFoundHandling =
   | "none"
   | "404-page"
   | "single-page-application";
 export const BetaWorkersVersionsCreateRequestAssetsConfigNotFoundHandling =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsCreateRequestAssetsConfigRunWorkerFirstCase0List =
   Array<string>;
@@ -1450,8 +1443,7 @@ export const BetaWorkersVersionsCreateRequestAssets = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<BetaWorkersVersionsCreateRequestAssets>;
 
 export type BetaWorkersVersionsCreateRequestBindingsItemAIType = "ai";
-export const BetaWorkersVersionsCreateRequestBindingsItemAIType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateRequestBindingsItemAIType = S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemAI {
   /** A JavaScript variable name for the binding. */
@@ -1472,7 +1464,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemAI =
 export type BetaWorkersVersionsCreateRequestBindingsItemAISearchType =
   "ai_search";
 export const BetaWorkersVersionsCreateRequestBindingsItemAISearchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemAISearch {
   /** The user-chosen instance name. Must exist at deploy time. The worker can search, chat, update, and manage items/jobs on this instance. */
@@ -1499,7 +1491,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemAISearch =
 export type BetaWorkersVersionsCreateRequestBindingsItemAISearchNamespaceType =
   "ai_search_namespace";
 export const BetaWorkersVersionsCreateRequestBindingsItemAISearchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemAISearchNamespace {
   /** A JavaScript variable name for the binding. */
@@ -1523,7 +1515,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemAISearchNamespace =
 export type BetaWorkersVersionsCreateRequestBindingsItemAnalyticsEngineType =
   "analytics_engine";
 export const BetaWorkersVersionsCreateRequestBindingsItemAnalyticsEngineType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemAnalyticsEngine {
   /** The name of the dataset to bind to. */
@@ -1545,8 +1537,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemAnalyticsEngine =
   }) as any as S.Schema<BetaWorkersVersionsCreateRequestBindingsItemAnalyticsEngine>;
 
 export type BetaWorkersVersionsCreateRequestBindingsItemAssetsType = "assets";
-export const BetaWorkersVersionsCreateRequestBindingsItemAssetsType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateRequestBindingsItemAssetsType = S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemAssets {
   /** A JavaScript variable name for the binding. */
@@ -1565,8 +1556,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemAssets =
   }) as any as S.Schema<BetaWorkersVersionsCreateRequestBindingsItemAssets>;
 
 export type BetaWorkersVersionsCreateRequestBindingsItemBrowserType = "browser";
-export const BetaWorkersVersionsCreateRequestBindingsItemBrowserType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateRequestBindingsItemBrowserType = S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemBrowser {
   /** A JavaScript variable name for the binding. */
@@ -1585,8 +1575,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemBrowser =
   }) as any as S.Schema<BetaWorkersVersionsCreateRequestBindingsItemBrowser>;
 
 export type BetaWorkersVersionsCreateRequestBindingsItemD1Type = "d1";
-export const BetaWorkersVersionsCreateRequestBindingsItemD1Type =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateRequestBindingsItemD1Type = S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemD1 {
   /** Identifier of the D1 database to bind to. */
@@ -1613,7 +1602,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemD1 =
 export type BetaWorkersVersionsCreateRequestBindingsItemDataBlobType =
   "data_blob";
 export const BetaWorkersVersionsCreateRequestBindingsItemDataBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemDataBlob {
   /** A JavaScript variable name for the binding. */
@@ -1637,7 +1626,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemDataBlob =
 export type BetaWorkersVersionsCreateRequestBindingsItemDispatchNamespaceType =
   "dispatch_namespace";
 export const BetaWorkersVersionsCreateRequestBindingsItemDispatchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemDispatchNamespaceOutboundParamsItem {
   /** Name of the parameter. */
@@ -1728,7 +1717,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemDispatchNamespace =
 export type BetaWorkersVersionsCreateRequestBindingsItemDurableObjectNamespaceType =
   "durable_object_namespace";
 export const BetaWorkersVersionsCreateRequestBindingsItemDurableObjectNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemDurableObjectNamespace {
   /** A JavaScript variable name for the binding. */
@@ -1767,7 +1756,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemDurableObjectNamespace 
 export type BetaWorkersVersionsCreateRequestBindingsItemHyperdriveType =
   "hyperdrive";
 export const BetaWorkersVersionsCreateRequestBindingsItemHyperdriveType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemHyperdrive {
   /** Identifier of the Hyperdrive connection to bind to. */
@@ -1789,8 +1778,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemHyperdrive =
   }) as any as S.Schema<BetaWorkersVersionsCreateRequestBindingsItemHyperdrive>;
 
 export type BetaWorkersVersionsCreateRequestBindingsItemInheritType = "inherit";
-export const BetaWorkersVersionsCreateRequestBindingsItemInheritType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateRequestBindingsItemInheritType = S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemInherit {
   /** The name of the inherited binding. */
@@ -1815,8 +1803,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemInherit =
   }) as any as S.Schema<BetaWorkersVersionsCreateRequestBindingsItemInherit>;
 
 export type BetaWorkersVersionsCreateRequestBindingsItemImagesType = "images";
-export const BetaWorkersVersionsCreateRequestBindingsItemImagesType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateRequestBindingsItemImagesType = S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemImages {
   /** A JavaScript variable name for the binding. */
@@ -1835,8 +1822,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemImages =
   }) as any as S.Schema<BetaWorkersVersionsCreateRequestBindingsItemImages>;
 
 export type BetaWorkersVersionsCreateRequestBindingsItemJsonType = "json";
-export const BetaWorkersVersionsCreateRequestBindingsItemJsonType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateRequestBindingsItemJsonType = S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemJson {
   /** JSON data to use. */
@@ -1860,7 +1846,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemJson =
 export type BetaWorkersVersionsCreateRequestBindingsItemKVNamespaceType =
   "kv_namespace";
 export const BetaWorkersVersionsCreateRequestBindingsItemKVNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemKVNamespace {
   /** A JavaScript variable name for the binding. */
@@ -1882,8 +1868,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemKVNamespace =
   }) as any as S.Schema<BetaWorkersVersionsCreateRequestBindingsItemKVNamespace>;
 
 export type BetaWorkersVersionsCreateRequestBindingsItemMediaType = "media";
-export const BetaWorkersVersionsCreateRequestBindingsItemMediaType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateRequestBindingsItemMediaType = S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemMedia {
   /** A JavaScript variable name for the binding. */
@@ -1904,7 +1889,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemMedia =
 export type BetaWorkersVersionsCreateRequestBindingsItemMTLSCertificateType =
   "mtls_certificate";
 export const BetaWorkersVersionsCreateRequestBindingsItemMTLSCertificateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemMTLSCertificate {
   /** Identifier of the certificate to bind to. */
@@ -1928,7 +1913,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemMTLSCertificate =
 export type BetaWorkersVersionsCreateRequestBindingsItemPlainTextType =
   "plain_text";
 export const BetaWorkersVersionsCreateRequestBindingsItemPlainTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemPlainText {
   /** A JavaScript variable name for the binding. */
@@ -1952,7 +1937,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemPlainText =
 export type BetaWorkersVersionsCreateRequestBindingsItemPipelinesType =
   "pipelines";
 export const BetaWorkersVersionsCreateRequestBindingsItemPipelinesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemPipelines {
   /** A JavaScript variable name for the binding. */
@@ -1974,8 +1959,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemPipelines =
   }) as any as S.Schema<BetaWorkersVersionsCreateRequestBindingsItemPipelines>;
 
 export type BetaWorkersVersionsCreateRequestBindingsItemQueueType = "queue";
-export const BetaWorkersVersionsCreateRequestBindingsItemQueueType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateRequestBindingsItemQueueType = S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemQueue {
   /** A JavaScript variable name for the binding. */
@@ -2020,7 +2004,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemRatelimitSimple =
 export type BetaWorkersVersionsCreateRequestBindingsItemRatelimitType =
   "ratelimit";
 export const BetaWorkersVersionsCreateRequestBindingsItemRatelimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemRatelimit {
   /** A JavaScript variable name for the binding. */
@@ -2047,14 +2031,14 @@ export const BetaWorkersVersionsCreateRequestBindingsItemRatelimit =
 export type BetaWorkersVersionsCreateRequestBindingsItemR2BucketType =
   "r2_bucket";
 export const BetaWorkersVersionsCreateRequestBindingsItemR2BucketType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsCreateRequestBindingsItemR2BucketJurisdiction =
   | "eu"
   | "fedramp"
   | "fedramp-high";
 export const BetaWorkersVersionsCreateRequestBindingsItemR2BucketJurisdiction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemR2Bucket {
   /** R2 bucket to bind to. */
@@ -2085,7 +2069,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemR2Bucket =
 export type BetaWorkersVersionsCreateRequestBindingsItemSecretTextType =
   "secret_text";
 export const BetaWorkersVersionsCreateRequestBindingsItemSecretTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemSecretText {
   /** A JavaScript variable name for the binding. */
@@ -2109,7 +2093,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemSecretText =
 export type BetaWorkersVersionsCreateRequestBindingsItemSendEmailType =
   "send_email";
 export const BetaWorkersVersionsCreateRequestBindingsItemSendEmailType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsCreateRequestBindingsItemSendEmailAllowedDestinationAddressesList =
   Array<string>;
@@ -2161,8 +2145,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemSendEmail =
   }) as any as S.Schema<BetaWorkersVersionsCreateRequestBindingsItemSendEmail>;
 
 export type BetaWorkersVersionsCreateRequestBindingsItemServiceType = "service";
-export const BetaWorkersVersionsCreateRequestBindingsItemServiceType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateRequestBindingsItemServiceType = S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemService {
   /** A JavaScript variable name for the binding. */
@@ -2192,7 +2175,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemService =
 export type BetaWorkersVersionsCreateRequestBindingsItemTextBlobType =
   "text_blob";
 export const BetaWorkersVersionsCreateRequestBindingsItemTextBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemTextBlob {
   /** A JavaScript variable name for the binding. */
@@ -2216,7 +2199,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemTextBlob =
 export type BetaWorkersVersionsCreateRequestBindingsItemVectorizeType =
   "vectorize";
 export const BetaWorkersVersionsCreateRequestBindingsItemVectorizeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemVectorize {
   /** Name of the Vectorize index to bind to. */
@@ -2240,7 +2223,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemVectorize =
 export type BetaWorkersVersionsCreateRequestBindingsItemVersionMetadataType =
   "version_metadata";
 export const BetaWorkersVersionsCreateRequestBindingsItemVersionMetadataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemVersionMetadata {
   /** A JavaScript variable name for the binding. */
@@ -2261,7 +2244,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemVersionMetadata =
 export type BetaWorkersVersionsCreateRequestBindingsItemSecretsStoreSecretType =
   "secrets_store_secret";
 export const BetaWorkersVersionsCreateRequestBindingsItemSecretsStoreSecretType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemSecretsStoreSecret {
   /** A JavaScript variable name for the binding. */
@@ -2289,7 +2272,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemSecretsStoreSecret =
 export type BetaWorkersVersionsCreateRequestBindingsItemFlagshipType =
   "flagship";
 export const BetaWorkersVersionsCreateRequestBindingsItemFlagshipType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemFlagship {
   /** ID of the Flagship app to bind to for feature flag evaluation. */
@@ -2316,12 +2299,12 @@ export type BetaWorkersVersionsCreateRequestBindingsItemSecretKeyFormat =
   | "spki"
   | "jwk";
 export const BetaWorkersVersionsCreateRequestBindingsItemSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsCreateRequestBindingsItemSecretKeyType =
   "secret_key";
 export const BetaWorkersVersionsCreateRequestBindingsItemSecretKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsCreateRequestBindingsItemSecretKeyUsagesItem =
   | "encrypt"
@@ -2333,7 +2316,7 @@ export type BetaWorkersVersionsCreateRequestBindingsItemSecretKeyUsagesItem =
   | "wrapKey"
   | "unwrapKey";
 export const BetaWorkersVersionsCreateRequestBindingsItemSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsCreateRequestBindingsItemSecretKeyUsagesList =
   Array<
@@ -2381,7 +2364,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemSecretKey =
 export type BetaWorkersVersionsCreateRequestBindingsItemWorkflowType =
   "workflow";
 export const BetaWorkersVersionsCreateRequestBindingsItemWorkflowType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemWorkflow {
   /** A JavaScript variable name for the binding. */
@@ -2411,7 +2394,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemWorkflow =
 export type BetaWorkersVersionsCreateRequestBindingsItemWasmModuleType =
   "wasm_module";
 export const BetaWorkersVersionsCreateRequestBindingsItemWasmModuleType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemWasmModule {
   /** A JavaScript variable name for the binding. */
@@ -2435,7 +2418,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemWasmModule =
 export type BetaWorkersVersionsCreateRequestBindingsItemVPCServiceType =
   "vpc_service";
 export const BetaWorkersVersionsCreateRequestBindingsItemVPCServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemVPCService {
   /** A JavaScript variable name for the binding. */
@@ -2459,7 +2442,7 @@ export const BetaWorkersVersionsCreateRequestBindingsItemVPCService =
 export type BetaWorkersVersionsCreateRequestBindingsItemVPCNetworkType =
   "vpc_network";
 export const BetaWorkersVersionsCreateRequestBindingsItemVPCNetworkType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateRequestBindingsItemVPCNetwork {
   /** A JavaScript variable name for the binding. */
@@ -2952,8 +2935,7 @@ export const BetaWorkersVersionsCreateRequestPackageDependenciesList =
   ) as any as S.Schema<BetaWorkersVersionsCreateRequestPackageDependenciesList>;
 
 export type BetaWorkersVersionsCreateRequestPlacementModeMode = "smart";
-export const BetaWorkersVersionsCreateRequestPlacementModeMode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateRequestPlacementModeMode = S.String;
 
 export interface BetaWorkersVersionsCreateRequestPlacementMode {
   /** Enables [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement). */
@@ -3008,8 +2990,7 @@ export const BetaWorkersVersionsCreateRequestPlacementHost =
   }) as any as S.Schema<BetaWorkersVersionsCreateRequestPlacementHost>;
 
 export type BetaWorkersVersionsCreateRequestPlacementCase4Mode = "targeted";
-export const BetaWorkersVersionsCreateRequestPlacementCase4Mode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateRequestPlacementCase4Mode = S.String;
 
 export interface BetaWorkersVersionsCreateRequestPlacementCase4 {
   /** Targeted placement mode. */
@@ -3028,8 +3009,7 @@ export const BetaWorkersVersionsCreateRequestPlacementCase4 =
   }) as any as S.Schema<BetaWorkersVersionsCreateRequestPlacementCase4>;
 
 export type BetaWorkersVersionsCreateRequestPlacementCase5Mode = "targeted";
-export const BetaWorkersVersionsCreateRequestPlacementCase5Mode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateRequestPlacementCase5Mode = S.String;
 
 export interface BetaWorkersVersionsCreateRequestPlacementCase5 {
   /** HTTP hostname for targeted placement. */
@@ -3048,8 +3028,7 @@ export const BetaWorkersVersionsCreateRequestPlacementCase5 =
   }) as any as S.Schema<BetaWorkersVersionsCreateRequestPlacementCase5>;
 
 export type BetaWorkersVersionsCreateRequestPlacementCase6Mode = "targeted";
-export const BetaWorkersVersionsCreateRequestPlacementCase6Mode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateRequestPlacementCase6Mode = S.String;
 
 export interface BetaWorkersVersionsCreateRequestPlacementCase6 {
   /** TCP host and port for targeted placement. */
@@ -3068,8 +3047,7 @@ export const BetaWorkersVersionsCreateRequestPlacementCase6 =
   }) as any as S.Schema<BetaWorkersVersionsCreateRequestPlacementCase6>;
 
 export type BetaWorkersVersionsCreateRequestPlacementCase7Mode = "targeted";
-export const BetaWorkersVersionsCreateRequestPlacementCase7Mode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateRequestPlacementCase7Mode = S.String;
 
 export interface BetaWorkersVersionsCreateRequestPlacementCase7TargetItemRegion {
   /** Cloud region in format 'provider:region'. */
@@ -3162,8 +3140,7 @@ export type BetaWorkersVersionsCreateRequestUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const BetaWorkersVersionsCreateRequestUsageModel =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateRequestUsageModel = S.String;
 
 export interface CreateBetaWorkerVersionRequest {
   /** Identifier. */
@@ -3281,14 +3258,14 @@ export type BetaWorkersVersionsCreateResponseAssetsConfigHtmlHandling =
   | "drop-trailing-slash"
   | "none";
 export const BetaWorkersVersionsCreateResponseAssetsConfigHtmlHandling =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsCreateResponseAssetsConfigNotFoundHandling =
   | "none"
   | "404-page"
   | "single-page-application";
 export const BetaWorkersVersionsCreateResponseAssetsConfigNotFoundHandling =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsCreateResponseAssetsConfigRunWorkerFirstCase0List =
   Array<string>;
@@ -3353,8 +3330,7 @@ export const BetaWorkersVersionsCreateResponseAssets = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<BetaWorkersVersionsCreateResponseAssets>;
 
 export type BetaWorkersVersionsCreateResponseBindingsItemAIType = "ai";
-export const BetaWorkersVersionsCreateResponseBindingsItemAIType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateResponseBindingsItemAIType = S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemAI {
   /** A JavaScript variable name for the binding. */
@@ -3375,7 +3351,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemAI =
 export type BetaWorkersVersionsCreateResponseBindingsItemAISearchType =
   "ai_search";
 export const BetaWorkersVersionsCreateResponseBindingsItemAISearchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemAISearch {
   /** The user-chosen instance name. Must exist at deploy time. The worker can search, chat, update, and manage items/jobs on this instance. */
@@ -3402,7 +3378,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemAISearch =
 export type BetaWorkersVersionsCreateResponseBindingsItemAISearchNamespaceType =
   "ai_search_namespace";
 export const BetaWorkersVersionsCreateResponseBindingsItemAISearchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemAISearchNamespace {
   /** A JavaScript variable name for the binding. */
@@ -3427,7 +3403,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemAISearchNamespace =
 export type BetaWorkersVersionsCreateResponseBindingsItemAnalyticsEngineType =
   "analytics_engine";
 export const BetaWorkersVersionsCreateResponseBindingsItemAnalyticsEngineType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemAnalyticsEngine {
   /** The name of the dataset to bind to. */
@@ -3449,8 +3425,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemAnalyticsEngine =
   }) as any as S.Schema<BetaWorkersVersionsCreateResponseBindingsItemAnalyticsEngine>;
 
 export type BetaWorkersVersionsCreateResponseBindingsItemAssetsType = "assets";
-export const BetaWorkersVersionsCreateResponseBindingsItemAssetsType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateResponseBindingsItemAssetsType = S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemAssets {
   /** A JavaScript variable name for the binding. */
@@ -3471,7 +3446,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemAssets =
 export type BetaWorkersVersionsCreateResponseBindingsItemBrowserType =
   "browser";
 export const BetaWorkersVersionsCreateResponseBindingsItemBrowserType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemBrowser {
   /** A JavaScript variable name for the binding. */
@@ -3490,8 +3465,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemBrowser =
   }) as any as S.Schema<BetaWorkersVersionsCreateResponseBindingsItemBrowser>;
 
 export type BetaWorkersVersionsCreateResponseBindingsItemD1Type = "d1";
-export const BetaWorkersVersionsCreateResponseBindingsItemD1Type =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateResponseBindingsItemD1Type = S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemD1 {
   /** Identifier of the D1 database to bind to. */
@@ -3518,7 +3492,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemD1 =
 export type BetaWorkersVersionsCreateResponseBindingsItemDataBlobType =
   "data_blob";
 export const BetaWorkersVersionsCreateResponseBindingsItemDataBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemDataBlob {
   /** A JavaScript variable name for the binding. */
@@ -3542,7 +3516,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemDataBlob =
 export type BetaWorkersVersionsCreateResponseBindingsItemDispatchNamespaceType =
   "dispatch_namespace";
 export const BetaWorkersVersionsCreateResponseBindingsItemDispatchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsCreateResponseBindingsItemDispatchNamespaceOutboundParamsItem =
   BetaWorkersVersionsCreateRequestBindingsItemDispatchNamespaceOutboundParamsItem;
@@ -3631,7 +3605,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemDispatchNamespace =
 export type BetaWorkersVersionsCreateResponseBindingsItemDurableObjectNamespaceType =
   "durable_object_namespace";
 export const BetaWorkersVersionsCreateResponseBindingsItemDurableObjectNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemDurableObjectNamespace {
   /** A JavaScript variable name for the binding. */
@@ -3670,7 +3644,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemDurableObjectNamespace
 export type BetaWorkersVersionsCreateResponseBindingsItemHyperdriveType =
   "hyperdrive";
 export const BetaWorkersVersionsCreateResponseBindingsItemHyperdriveType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemHyperdrive {
   /** Identifier of the Hyperdrive connection to bind to. */
@@ -3694,7 +3668,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemHyperdrive =
 export type BetaWorkersVersionsCreateResponseBindingsItemInheritType =
   "inherit";
 export const BetaWorkersVersionsCreateResponseBindingsItemInheritType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemInherit {
   /** The name of the inherited binding. */
@@ -3719,8 +3693,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemInherit =
   }) as any as S.Schema<BetaWorkersVersionsCreateResponseBindingsItemInherit>;
 
 export type BetaWorkersVersionsCreateResponseBindingsItemImagesType = "images";
-export const BetaWorkersVersionsCreateResponseBindingsItemImagesType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateResponseBindingsItemImagesType = S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemImages {
   /** A JavaScript variable name for the binding. */
@@ -3739,8 +3712,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemImages =
   }) as any as S.Schema<BetaWorkersVersionsCreateResponseBindingsItemImages>;
 
 export type BetaWorkersVersionsCreateResponseBindingsItemJsonType = "json";
-export const BetaWorkersVersionsCreateResponseBindingsItemJsonType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateResponseBindingsItemJsonType = S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemJson {
   /** JSON data to use. */
@@ -3764,7 +3736,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemJson =
 export type BetaWorkersVersionsCreateResponseBindingsItemKVNamespaceType =
   "kv_namespace";
 export const BetaWorkersVersionsCreateResponseBindingsItemKVNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemKVNamespace {
   /** A JavaScript variable name for the binding. */
@@ -3786,8 +3758,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemKVNamespace =
   }) as any as S.Schema<BetaWorkersVersionsCreateResponseBindingsItemKVNamespace>;
 
 export type BetaWorkersVersionsCreateResponseBindingsItemMediaType = "media";
-export const BetaWorkersVersionsCreateResponseBindingsItemMediaType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateResponseBindingsItemMediaType = S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemMedia {
   /** A JavaScript variable name for the binding. */
@@ -3808,7 +3779,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemMedia =
 export type BetaWorkersVersionsCreateResponseBindingsItemMTLSCertificateType =
   "mtls_certificate";
 export const BetaWorkersVersionsCreateResponseBindingsItemMTLSCertificateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemMTLSCertificate {
   /** Identifier of the certificate to bind to. */
@@ -3832,7 +3803,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemMTLSCertificate =
 export type BetaWorkersVersionsCreateResponseBindingsItemPlainTextType =
   "plain_text";
 export const BetaWorkersVersionsCreateResponseBindingsItemPlainTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemPlainText {
   /** A JavaScript variable name for the binding. */
@@ -3856,7 +3827,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemPlainText =
 export type BetaWorkersVersionsCreateResponseBindingsItemPipelinesType =
   "pipelines";
 export const BetaWorkersVersionsCreateResponseBindingsItemPipelinesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemPipelines {
   /** A JavaScript variable name for the binding. */
@@ -3878,8 +3849,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemPipelines =
   }) as any as S.Schema<BetaWorkersVersionsCreateResponseBindingsItemPipelines>;
 
 export type BetaWorkersVersionsCreateResponseBindingsItemQueueType = "queue";
-export const BetaWorkersVersionsCreateResponseBindingsItemQueueType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateResponseBindingsItemQueueType = S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemQueue {
   /** A JavaScript variable name for the binding. */
@@ -3924,7 +3894,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemRatelimitSimple =
 export type BetaWorkersVersionsCreateResponseBindingsItemRatelimitType =
   "ratelimit";
 export const BetaWorkersVersionsCreateResponseBindingsItemRatelimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemRatelimit {
   /** A JavaScript variable name for the binding. */
@@ -3951,14 +3921,14 @@ export const BetaWorkersVersionsCreateResponseBindingsItemRatelimit =
 export type BetaWorkersVersionsCreateResponseBindingsItemR2BucketType =
   "r2_bucket";
 export const BetaWorkersVersionsCreateResponseBindingsItemR2BucketType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsCreateResponseBindingsItemR2BucketJurisdiction =
   | "eu"
   | "fedramp"
   | "fedramp-high";
 export const BetaWorkersVersionsCreateResponseBindingsItemR2BucketJurisdiction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemR2Bucket {
   /** R2 bucket to bind to. */
@@ -3989,7 +3959,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemR2Bucket =
 export type BetaWorkersVersionsCreateResponseBindingsItemSecretTextType =
   "secret_text";
 export const BetaWorkersVersionsCreateResponseBindingsItemSecretTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemSecretText {
   /** A JavaScript variable name for the binding. */
@@ -4013,7 +3983,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemSecretText =
 export type BetaWorkersVersionsCreateResponseBindingsItemSendEmailType =
   "send_email";
 export const BetaWorkersVersionsCreateResponseBindingsItemSendEmailType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsCreateResponseBindingsItemSendEmailAllowedDestinationAddressesList =
   Array<string>;
@@ -4067,7 +4037,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemSendEmail =
 export type BetaWorkersVersionsCreateResponseBindingsItemServiceType =
   "service";
 export const BetaWorkersVersionsCreateResponseBindingsItemServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemService {
   /** A JavaScript variable name for the binding. */
@@ -4097,7 +4067,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemService =
 export type BetaWorkersVersionsCreateResponseBindingsItemTextBlobType =
   "text_blob";
 export const BetaWorkersVersionsCreateResponseBindingsItemTextBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemTextBlob {
   /** A JavaScript variable name for the binding. */
@@ -4121,7 +4091,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemTextBlob =
 export type BetaWorkersVersionsCreateResponseBindingsItemVectorizeType =
   "vectorize";
 export const BetaWorkersVersionsCreateResponseBindingsItemVectorizeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemVectorize {
   /** Name of the Vectorize index to bind to. */
@@ -4145,7 +4115,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemVectorize =
 export type BetaWorkersVersionsCreateResponseBindingsItemVersionMetadataType =
   "version_metadata";
 export const BetaWorkersVersionsCreateResponseBindingsItemVersionMetadataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemVersionMetadata {
   /** A JavaScript variable name for the binding. */
@@ -4166,7 +4136,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemVersionMetadata =
 export type BetaWorkersVersionsCreateResponseBindingsItemSecretsStoreSecretType =
   "secrets_store_secret";
 export const BetaWorkersVersionsCreateResponseBindingsItemSecretsStoreSecretType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemSecretsStoreSecret {
   /** A JavaScript variable name for the binding. */
@@ -4194,7 +4164,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemSecretsStoreSecret =
 export type BetaWorkersVersionsCreateResponseBindingsItemFlagshipType =
   "flagship";
 export const BetaWorkersVersionsCreateResponseBindingsItemFlagshipType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemFlagship {
   /** ID of the Flagship app to bind to for feature flag evaluation. */
@@ -4221,12 +4191,12 @@ export type BetaWorkersVersionsCreateResponseBindingsItemSecretKeyFormat =
   | "spki"
   | "jwk";
 export const BetaWorkersVersionsCreateResponseBindingsItemSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsCreateResponseBindingsItemSecretKeyType =
   "secret_key";
 export const BetaWorkersVersionsCreateResponseBindingsItemSecretKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsCreateResponseBindingsItemSecretKeyUsagesItem =
   | "encrypt"
@@ -4238,7 +4208,7 @@ export type BetaWorkersVersionsCreateResponseBindingsItemSecretKeyUsagesItem =
   | "wrapKey"
   | "unwrapKey";
 export const BetaWorkersVersionsCreateResponseBindingsItemSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsCreateResponseBindingsItemSecretKeyUsagesList =
   Array<BetaWorkersVersionsCreateResponseBindingsItemSecretKeyUsagesItem>;
@@ -4281,7 +4251,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemSecretKey =
 export type BetaWorkersVersionsCreateResponseBindingsItemWorkflowType =
   "workflow";
 export const BetaWorkersVersionsCreateResponseBindingsItemWorkflowType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemWorkflow {
   /** A JavaScript variable name for the binding. */
@@ -4311,7 +4281,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemWorkflow =
 export type BetaWorkersVersionsCreateResponseBindingsItemWasmModuleType =
   "wasm_module";
 export const BetaWorkersVersionsCreateResponseBindingsItemWasmModuleType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemWasmModule {
   /** A JavaScript variable name for the binding. */
@@ -4335,7 +4305,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemWasmModule =
 export type BetaWorkersVersionsCreateResponseBindingsItemVPCServiceType =
   "vpc_service";
 export const BetaWorkersVersionsCreateResponseBindingsItemVPCServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemVPCService {
   /** A JavaScript variable name for the binding. */
@@ -4359,7 +4329,7 @@ export const BetaWorkersVersionsCreateResponseBindingsItemVPCService =
 export type BetaWorkersVersionsCreateResponseBindingsItemVPCNetworkType =
   "vpc_network";
 export const BetaWorkersVersionsCreateResponseBindingsItemVPCNetworkType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsCreateResponseBindingsItemVPCNetwork {
   /** A JavaScript variable name for the binding. */
@@ -4819,8 +4789,7 @@ export const BetaWorkersVersionsCreateResponsePackageDependenciesList =
   ) as any as S.Schema<BetaWorkersVersionsCreateResponsePackageDependenciesList>;
 
 export type BetaWorkersVersionsCreateResponsePlacementModeMode = "smart";
-export const BetaWorkersVersionsCreateResponsePlacementModeMode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateResponsePlacementModeMode = S.String;
 
 export interface BetaWorkersVersionsCreateResponsePlacementMode {
   /** Enables [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement). */
@@ -4851,8 +4820,7 @@ export const BetaWorkersVersionsCreateResponsePlacementHost =
   BetaWorkersVersionsCreateRequestPlacementHost;
 
 export type BetaWorkersVersionsCreateResponsePlacementCase4Mode = "targeted";
-export const BetaWorkersVersionsCreateResponsePlacementCase4Mode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateResponsePlacementCase4Mode = S.String;
 
 export interface BetaWorkersVersionsCreateResponsePlacementCase4 {
   /** Targeted placement mode. */
@@ -4871,8 +4839,7 @@ export const BetaWorkersVersionsCreateResponsePlacementCase4 =
   }) as any as S.Schema<BetaWorkersVersionsCreateResponsePlacementCase4>;
 
 export type BetaWorkersVersionsCreateResponsePlacementCase5Mode = "targeted";
-export const BetaWorkersVersionsCreateResponsePlacementCase5Mode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateResponsePlacementCase5Mode = S.String;
 
 export interface BetaWorkersVersionsCreateResponsePlacementCase5 {
   /** HTTP hostname for targeted placement. */
@@ -4891,8 +4858,7 @@ export const BetaWorkersVersionsCreateResponsePlacementCase5 =
   }) as any as S.Schema<BetaWorkersVersionsCreateResponsePlacementCase5>;
 
 export type BetaWorkersVersionsCreateResponsePlacementCase6Mode = "targeted";
-export const BetaWorkersVersionsCreateResponsePlacementCase6Mode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateResponsePlacementCase6Mode = S.String;
 
 export interface BetaWorkersVersionsCreateResponsePlacementCase6 {
   /** TCP host and port for targeted placement. */
@@ -4911,8 +4877,7 @@ export const BetaWorkersVersionsCreateResponsePlacementCase6 =
   }) as any as S.Schema<BetaWorkersVersionsCreateResponsePlacementCase6>;
 
 export type BetaWorkersVersionsCreateResponsePlacementCase7Mode = "targeted";
-export const BetaWorkersVersionsCreateResponsePlacementCase7Mode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateResponsePlacementCase7Mode = S.String;
 
 export type BetaWorkersVersionsCreateResponsePlacementCase7TargetItemRegion =
   BetaWorkersVersionsCreateRequestPlacementCase7TargetItemRegion;
@@ -4988,8 +4953,7 @@ export type BetaWorkersVersionsCreateResponseUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const BetaWorkersVersionsCreateResponseUsageModel =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsCreateResponseUsageModel = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateBetaWorkerVersionResponse {
@@ -5106,11 +5070,10 @@ export type ObservabilityDestinationsCreateRequestConfigurationLogpushDataset =
   | "opentelemetry-logs"
   | "opentelemetry-metrics";
 export const ObservabilityDestinationsCreateRequestConfigurationLogpushDataset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityDestinationsCreateRequestConfigurationType = "logpush";
-export const ObservabilityDestinationsCreateRequestConfigurationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityDestinationsCreateRequestConfigurationType = S.String;
 
 export interface ObservabilityDestinationsCreateRequestConfiguration {
   headers: ObservabilityDestinationsCreateRequestConfigurationHeadersMap;
@@ -5166,12 +5129,12 @@ export type ObservabilityDestinationsCreateResponseConfigurationLogpushDataset =
   | "opentelemetry-logs"
   | "opentelemetry-metrics";
 export const ObservabilityDestinationsCreateResponseConfigurationLogpushDataset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityDestinationsCreateResponseConfigurationType =
   "logpush";
 export const ObservabilityDestinationsCreateResponseConfigurationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityDestinationsCreateResponseConfiguration {
   destinationConf: string;
@@ -5261,14 +5224,14 @@ export type ObservabilityQueriesCreateRequestParametersCalculationsItemOperator 
   | "STDDEV"
   | "VARIANCE";
 export const ObservabilityQueriesCreateRequestParametersCalculationsItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesCreateRequestParametersCalculationsItemKeyType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityQueriesCreateRequestParametersCalculationsItemKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityQueriesCreateRequestParametersCalculationsItem {
   operator:
@@ -5315,7 +5278,7 @@ export type ObservabilityQueriesCreateRequestParametersFilterCombination =
   | "AND"
   | "OR";
 export const ObservabilityQueriesCreateRequestParametersFilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesCreateRequestParametersFiltersItemCase0FilterCombination =
   | "and"
@@ -5323,7 +5286,7 @@ export type ObservabilityQueriesCreateRequestParametersFiltersItemCase0FilterCom
   | "AND"
   | "OR";
 export const ObservabilityQueriesCreateRequestParametersFiltersItemCase0FilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesCreateRequestParametersFiltersItemCase0FiltersList =
   Array<unknown>;
@@ -5335,7 +5298,7 @@ export const ObservabilityQueriesCreateRequestParametersFiltersItemCase0FiltersL
 export type ObservabilityQueriesCreateRequestParametersFiltersItemCase0Kind =
   "group";
 export const ObservabilityQueriesCreateRequestParametersFiltersItemCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityQueriesCreateRequestParametersFiltersItemCase0 {
   filterCombination:
@@ -5389,19 +5352,19 @@ export type ObservabilityQueriesCreateRequestParametersFiltersItemWorkersObserva
   | "STARTS_WITH"
   | "ENDS_WITH";
 export const ObservabilityQueriesCreateRequestParametersFiltersItemWorkersObservabilityFilterLeafOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesCreateRequestParametersFiltersItemWorkersObservabilityFilterLeafType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityQueriesCreateRequestParametersFiltersItemWorkersObservabilityFilterLeafType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesCreateRequestParametersFiltersItemWorkersObservabilityFilterLeafKind =
   "filter";
 export const ObservabilityQueriesCreateRequestParametersFiltersItemWorkersObservabilityFilterLeafKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesCreateRequestParametersFiltersItemWorkersObservabilityFilterLeafValue =
   | string
@@ -5470,7 +5433,7 @@ export type ObservabilityQueriesCreateRequestParametersGroupBysItemType =
   | "number"
   | "boolean";
 export const ObservabilityQueriesCreateRequestParametersGroupBysItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityQueriesCreateRequestParametersGroupBysItem {
   type:
@@ -5503,7 +5466,7 @@ export type ObservabilityQueriesCreateRequestParametersHavingsItemOperation =
   | "lt"
   | "lte";
 export const ObservabilityQueriesCreateRequestParametersHavingsItemOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityQueriesCreateRequestParametersHavingsItem {
   key: string;
@@ -5557,8 +5520,7 @@ export const ObservabilityQueriesCreateRequestParametersNeedle =
 export type ObservabilityQueriesCreateRequestParametersOrderByOrder =
   | "asc"
   | "desc";
-export const ObservabilityQueriesCreateRequestParametersOrderByOrder =
-  /*@__PURE__*/ S.String;
+export const ObservabilityQueriesCreateRequestParametersOrderByOrder = S.String;
 
 export interface ObservabilityQueriesCreateRequestParametersOrderBy {
   /** Configure which Calculation to order the results by. */
@@ -5697,14 +5659,14 @@ export type ObservabilityQueriesCreateResponseParametersCalculationsItemOperator
   | "STDDEV"
   | "VARIANCE";
 export const ObservabilityQueriesCreateResponseParametersCalculationsItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesCreateResponseParametersCalculationsItemKeyType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityQueriesCreateResponseParametersCalculationsItemKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityQueriesCreateResponseParametersCalculationsItem {
   operator: ObservabilityQueriesCreateResponseParametersCalculationsItemOperator;
@@ -5749,7 +5711,7 @@ export type ObservabilityQueriesCreateResponseParametersFilterCombination =
   | "AND"
   | "OR";
 export const ObservabilityQueriesCreateResponseParametersFilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesCreateResponseParametersFiltersItemCase0FilterCombination =
   | "and"
@@ -5757,7 +5719,7 @@ export type ObservabilityQueriesCreateResponseParametersFiltersItemCase0FilterCo
   | "AND"
   | "OR";
 export const ObservabilityQueriesCreateResponseParametersFiltersItemCase0FilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesCreateResponseParametersFiltersItemCase0FiltersList =
   Array<unknown>;
@@ -5769,7 +5731,7 @@ export const ObservabilityQueriesCreateResponseParametersFiltersItemCase0Filters
 export type ObservabilityQueriesCreateResponseParametersFiltersItemCase0Kind =
   "group";
 export const ObservabilityQueriesCreateResponseParametersFiltersItemCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityQueriesCreateResponseParametersFiltersItemCase0 {
   filterCombination: ObservabilityQueriesCreateResponseParametersFiltersItemCase0FilterCombination;
@@ -5821,19 +5783,19 @@ export type ObservabilityQueriesCreateResponseParametersFiltersItemWorkersObserv
   | "STARTS_WITH"
   | "ENDS_WITH";
 export const ObservabilityQueriesCreateResponseParametersFiltersItemWorkersObservabilityFilterLeafOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesCreateResponseParametersFiltersItemWorkersObservabilityFilterLeafType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityQueriesCreateResponseParametersFiltersItemWorkersObservabilityFilterLeafType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesCreateResponseParametersFiltersItemWorkersObservabilityFilterLeafKind =
   "filter";
 export const ObservabilityQueriesCreateResponseParametersFiltersItemWorkersObservabilityFilterLeafKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesCreateResponseParametersFiltersItemWorkersObservabilityFilterLeafValue =
   | string
@@ -5900,7 +5862,7 @@ export type ObservabilityQueriesCreateResponseParametersGroupBysItemType =
   | "number"
   | "boolean";
 export const ObservabilityQueriesCreateResponseParametersGroupBysItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityQueriesCreateResponseParametersGroupBysItem {
   type: ObservabilityQueriesCreateResponseParametersGroupBysItemType;
@@ -5931,7 +5893,7 @@ export type ObservabilityQueriesCreateResponseParametersHavingsItemOperation =
   | "lt"
   | "lte";
 export const ObservabilityQueriesCreateResponseParametersHavingsItemOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityQueriesCreateResponseParametersHavingsItem {
   key: string;
@@ -5984,7 +5946,7 @@ export type ObservabilityQueriesCreateResponseParametersOrderByOrder =
   | "asc"
   | "desc";
 export const ObservabilityQueriesCreateResponseParametersOrderByOrder =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityQueriesCreateResponseParametersOrderBy {
   /** Configure which Calculation to order the results by. */
@@ -6143,14 +6105,14 @@ export type ObservabilitySharedQueriesCreateRequestParametersCalculationsItemOpe
   | "STDDEV"
   | "VARIANCE";
 export const ObservabilitySharedQueriesCreateRequestParametersCalculationsItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesCreateRequestParametersCalculationsItemKeyType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilitySharedQueriesCreateRequestParametersCalculationsItemKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilitySharedQueriesCreateRequestParametersCalculationsItem {
   /** Aggregation operator to apply. Examples: count, avg, sum, min, max, median, p90, p95, p99, uniq, stddev, variance. */
@@ -6202,7 +6164,7 @@ export type ObservabilitySharedQueriesCreateRequestParametersFilterCombination =
   | "AND"
   | "OR";
 export const ObservabilitySharedQueriesCreateRequestParametersFilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0FilterCombination =
   | "and"
@@ -6210,7 +6172,7 @@ export type ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0Fil
   | "AND"
   | "OR";
 export const ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0FilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0FiltersItemCase0FilterCombination =
   | "and"
@@ -6218,7 +6180,7 @@ export type ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0Fil
   | "AND"
   | "OR";
 export const ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0FiltersItemCase0FilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0FiltersItemCase0FiltersList =
   Array<unknown>;
@@ -6230,7 +6192,7 @@ export const ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0Fi
 export type ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0FiltersItemCase0Kind =
   "group";
 export const ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0FiltersItemCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0FiltersItemCase0 {
   filterCombination:
@@ -6285,19 +6247,19 @@ export type ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0Fil
   | "STARTS_WITH"
   | "ENDS_WITH";
 export const ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafKind =
   "filter";
 export const ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafValue =
   | string
@@ -6364,7 +6326,7 @@ export const ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0Fi
 export type ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0Kind =
   "group";
 export const ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilitySharedQueriesCreateRequestParametersFiltersItemCase0 {
   filterCombination:
@@ -6419,19 +6381,19 @@ export type ObservabilitySharedQueriesCreateRequestParametersFiltersItemWorkersO
   | "STARTS_WITH"
   | "ENDS_WITH";
 export const ObservabilitySharedQueriesCreateRequestParametersFiltersItemWorkersObservabilityFilterLeafOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesCreateRequestParametersFiltersItemWorkersObservabilityFilterLeafType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilitySharedQueriesCreateRequestParametersFiltersItemWorkersObservabilityFilterLeafType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesCreateRequestParametersFiltersItemWorkersObservabilityFilterLeafKind =
   "filter";
 export const ObservabilitySharedQueriesCreateRequestParametersFiltersItemWorkersObservabilityFilterLeafKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesCreateRequestParametersFiltersItemWorkersObservabilityFilterLeafValue =
   | string
@@ -6500,7 +6462,7 @@ export type ObservabilitySharedQueriesCreateRequestParametersGroupBysItemType =
   | "number"
   | "boolean";
 export const ObservabilitySharedQueriesCreateRequestParametersGroupBysItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilitySharedQueriesCreateRequestParametersGroupBysItem {
   /** Data type of the group-by field. */
@@ -6535,7 +6497,7 @@ export type ObservabilitySharedQueriesCreateRequestParametersHavingsItemOperatio
   | "lt"
   | "lte";
 export const ObservabilitySharedQueriesCreateRequestParametersHavingsItemOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilitySharedQueriesCreateRequestParametersHavingsItem {
   /** Calculation alias or operator to filter on after aggregation. */
@@ -6596,7 +6558,7 @@ export type ObservabilitySharedQueriesCreateRequestParametersOrderByOrder =
   | "asc"
   | "desc";
 export const ObservabilitySharedQueriesCreateRequestParametersOrderByOrder =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilitySharedQueriesCreateRequestParametersOrderBy {
   /** Alias of the calculation to order results by. Must match the alias (or operator) of a calculation in the query. */
@@ -6680,8 +6642,7 @@ export type ObservabilitySharedQueriesCreateRequestView =
   | "invocations"
   | "requests"
   | "agents";
-export const ObservabilitySharedQueriesCreateRequestView =
-  /*@__PURE__*/ S.String;
+export const ObservabilitySharedQueriesCreateRequestView = S.String;
 
 export interface CreateObservabilitySharedQueryRequest {
   accountId: string;
@@ -6882,7 +6843,7 @@ export const CreateScriptAssetUploadResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateScriptAssetUploadResponse>;
 
 export type ScriptsDeploymentsCreateRequestStrategy = "percentage";
-export const ScriptsDeploymentsCreateRequestStrategy = /*@__PURE__*/ S.String;
+export const ScriptsDeploymentsCreateRequestStrategy = S.String;
 
 export interface ScriptsDeploymentsCreateRequestVersionsItem {
   percentage: number;
@@ -6956,7 +6917,7 @@ export const CreateScriptDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateScriptDeploymentRequest>;
 
 export type ScriptsDeploymentsCreateResponseStrategy = "percentage";
-export const ScriptsDeploymentsCreateResponseStrategy = /*@__PURE__*/ S.String;
+export const ScriptsDeploymentsCreateResponseStrategy = S.String;
 
 export type ScriptsDeploymentsCreateResponseVersionsItem =
   ScriptsDeploymentsCreateRequestVersionsItem;
@@ -7073,11 +7034,10 @@ export type CreateScriptEdgePreviewMetadataUsageModel =
   | "bundled"
   | "unbound"
   | "standard";
-export const CreateScriptEdgePreviewMetadataUsageModel = /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataUsageModel = S.String;
 
 export type CreateScriptEdgePreviewMetadataBindingPlainTextType = "plain_text";
-export const CreateScriptEdgePreviewMetadataBindingPlainTextType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingPlainTextType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingPlainText {
   type: CreateScriptEdgePreviewMetadataBindingPlainTextType;
@@ -7097,8 +7057,7 @@ export const CreateScriptEdgePreviewMetadataBindingPlainText =
 
 export type CreateScriptEdgePreviewMetadataBindingSecretTextType =
   "secret_text";
-export const CreateScriptEdgePreviewMetadataBindingSecretTextType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingSecretTextType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingSecretText {
   type: CreateScriptEdgePreviewMetadataBindingSecretTextType;
@@ -7117,8 +7076,7 @@ export const CreateScriptEdgePreviewMetadataBindingSecretText =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingSecretText>;
 
 export type CreateScriptEdgePreviewMetadataBindingJsonType = "json";
-export const CreateScriptEdgePreviewMetadataBindingJsonType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingJsonType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingJson {
   type: CreateScriptEdgePreviewMetadataBindingJsonType;
@@ -7138,8 +7096,7 @@ export const CreateScriptEdgePreviewMetadataBindingJson =
 
 export type CreateScriptEdgePreviewMetadataBindingKvNamespaceType =
   "kv_namespace";
-export const CreateScriptEdgePreviewMetadataBindingKvNamespaceType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingKvNamespaceType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingKvNamespace {
   type: CreateScriptEdgePreviewMetadataBindingKvNamespaceType;
@@ -7162,7 +7119,7 @@ export const CreateScriptEdgePreviewMetadataBindingKvNamespace =
 export type CreateScriptEdgePreviewMetadataBindingDurableObjectNamespaceType =
   "durable_object_namespace";
 export const CreateScriptEdgePreviewMetadataBindingDurableObjectNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingDurableObjectNamespace {
   type: CreateScriptEdgePreviewMetadataBindingDurableObjectNamespaceType;
@@ -7187,8 +7144,7 @@ export const CreateScriptEdgePreviewMetadataBindingDurableObjectNamespace =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingDurableObjectNamespace>;
 
 export type CreateScriptEdgePreviewMetadataBindingR2BucketType = "r2_bucket";
-export const CreateScriptEdgePreviewMetadataBindingR2BucketType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingR2BucketType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingR2Bucket {
   type: CreateScriptEdgePreviewMetadataBindingR2BucketType;
@@ -7211,8 +7167,7 @@ export const CreateScriptEdgePreviewMetadataBindingR2Bucket =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingR2Bucket>;
 
 export type CreateScriptEdgePreviewMetadataBindingD1Type = "d1";
-export const CreateScriptEdgePreviewMetadataBindingD1Type =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingD1Type = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingD1 {
   type: CreateScriptEdgePreviewMetadataBindingD1Type;
@@ -7235,8 +7190,7 @@ export const CreateScriptEdgePreviewMetadataBindingD1 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingD1>;
 
 export type CreateScriptEdgePreviewMetadataBindingQueueType = "queue";
-export const CreateScriptEdgePreviewMetadataBindingQueueType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingQueueType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingQueue {
   type: CreateScriptEdgePreviewMetadataBindingQueueType;
@@ -7259,8 +7213,7 @@ export const CreateScriptEdgePreviewMetadataBindingQueue =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingQueue>;
 
 export type CreateScriptEdgePreviewMetadataBindingServiceType = "service";
-export const CreateScriptEdgePreviewMetadataBindingServiceType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingServiceType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingService {
   type: CreateScriptEdgePreviewMetadataBindingServiceType;
@@ -7287,8 +7240,7 @@ export const CreateScriptEdgePreviewMetadataBindingService =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingService>;
 
 export type CreateScriptEdgePreviewMetadataBindingAiType = "ai";
-export const CreateScriptEdgePreviewMetadataBindingAiType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingAiType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingAi {
   type: CreateScriptEdgePreviewMetadataBindingAiType;
@@ -7309,8 +7261,7 @@ export const CreateScriptEdgePreviewMetadataBindingAi = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingAi>;
 
 export type CreateScriptEdgePreviewMetadataBindingBrowserType = "browser";
-export const CreateScriptEdgePreviewMetadataBindingBrowserType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingBrowserType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingBrowser {
   type: CreateScriptEdgePreviewMetadataBindingBrowserType;
@@ -7329,8 +7280,7 @@ export const CreateScriptEdgePreviewMetadataBindingBrowser =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingBrowser>;
 
 export type CreateScriptEdgePreviewMetadataBindingImagesType = "images";
-export const CreateScriptEdgePreviewMetadataBindingImagesType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingImagesType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingImages {
   type: CreateScriptEdgePreviewMetadataBindingImagesType;
@@ -7349,8 +7299,7 @@ export const CreateScriptEdgePreviewMetadataBindingImages =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingImages>;
 
 export type CreateScriptEdgePreviewMetadataBindingVectorizeType = "vectorize";
-export const CreateScriptEdgePreviewMetadataBindingVectorizeType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingVectorizeType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingVectorize {
   type: CreateScriptEdgePreviewMetadataBindingVectorizeType;
@@ -7373,8 +7322,7 @@ export const CreateScriptEdgePreviewMetadataBindingVectorize =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingVectorize>;
 
 export type CreateScriptEdgePreviewMetadataBindingWorkflowType = "workflow";
-export const CreateScriptEdgePreviewMetadataBindingWorkflowType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingWorkflowType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingWorkflow {
   type: CreateScriptEdgePreviewMetadataBindingWorkflowType;
@@ -7399,8 +7347,7 @@ export const CreateScriptEdgePreviewMetadataBindingWorkflow =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingWorkflow>;
 
 export type CreateScriptEdgePreviewMetadataBindingHyperdriveType = "hyperdrive";
-export const CreateScriptEdgePreviewMetadataBindingHyperdriveType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingHyperdriveType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingHyperdrive {
   type: CreateScriptEdgePreviewMetadataBindingHyperdriveType;
@@ -7421,7 +7368,7 @@ export const CreateScriptEdgePreviewMetadataBindingHyperdrive =
 export type CreateScriptEdgePreviewMetadataBindingAnalyticsEngineType =
   "analytics_engine";
 export const CreateScriptEdgePreviewMetadataBindingAnalyticsEngineType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingAnalyticsEngine {
   type: CreateScriptEdgePreviewMetadataBindingAnalyticsEngineType;
@@ -7442,7 +7389,7 @@ export const CreateScriptEdgePreviewMetadataBindingAnalyticsEngine =
 export type CreateScriptEdgePreviewMetadataBindingDispatchNamespaceType =
   "dispatch_namespace";
 export const CreateScriptEdgePreviewMetadataBindingDispatchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingDispatchNamespaceOutboundWorker {
   service?: string;
@@ -7519,8 +7466,7 @@ export const CreateScriptEdgePreviewMetadataBindingDispatchNamespace =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingDispatchNamespace>;
 
 export type CreateScriptEdgePreviewMetadataBindingSendEmailType = "send_email";
-export const CreateScriptEdgePreviewMetadataBindingSendEmailType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingSendEmailType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingSendEmail {
   type: CreateScriptEdgePreviewMetadataBindingSendEmailType;
@@ -7555,7 +7501,7 @@ export const CreateScriptEdgePreviewMetadataBindingSendEmail =
 export type CreateScriptEdgePreviewMetadataBindingMtlsCertificateType =
   "mtls_certificate";
 export const CreateScriptEdgePreviewMetadataBindingMtlsCertificateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingMtlsCertificate {
   type: CreateScriptEdgePreviewMetadataBindingMtlsCertificateType;
@@ -7575,8 +7521,7 @@ export const CreateScriptEdgePreviewMetadataBindingMtlsCertificate =
 
 export type CreateScriptEdgePreviewMetadataBindingWasmModuleType =
   "wasm_module";
-export const CreateScriptEdgePreviewMetadataBindingWasmModuleType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingWasmModuleType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingWasmModule {
   type: CreateScriptEdgePreviewMetadataBindingWasmModuleType;
@@ -7595,8 +7540,7 @@ export const CreateScriptEdgePreviewMetadataBindingWasmModule =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingWasmModule>;
 
 export type CreateScriptEdgePreviewMetadataBindingTextBlobType = "text_blob";
-export const CreateScriptEdgePreviewMetadataBindingTextBlobType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingTextBlobType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingTextBlob {
   type: CreateScriptEdgePreviewMetadataBindingTextBlobType;
@@ -7615,8 +7559,7 @@ export const CreateScriptEdgePreviewMetadataBindingTextBlob =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingTextBlob>;
 
 export type CreateScriptEdgePreviewMetadataBindingDataBlobType = "data_blob";
-export const CreateScriptEdgePreviewMetadataBindingDataBlobType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingDataBlobType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingDataBlob {
   type: CreateScriptEdgePreviewMetadataBindingDataBlobType;
@@ -7635,8 +7578,7 @@ export const CreateScriptEdgePreviewMetadataBindingDataBlob =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingDataBlob>;
 
 export type CreateScriptEdgePreviewMetadataBindingPipelinesType = "pipelines";
-export const CreateScriptEdgePreviewMetadataBindingPipelinesType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingPipelinesType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingPipelines {
   type: CreateScriptEdgePreviewMetadataBindingPipelinesType;
@@ -7657,7 +7599,7 @@ export const CreateScriptEdgePreviewMetadataBindingPipelines =
 export type CreateScriptEdgePreviewMetadataBindingSecretsStoreSecretType =
   "secrets_store_secret";
 export const CreateScriptEdgePreviewMetadataBindingSecretsStoreSecretType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingSecretsStoreSecret {
   type: CreateScriptEdgePreviewMetadataBindingSecretsStoreSecretType;
@@ -7678,8 +7620,7 @@ export const CreateScriptEdgePreviewMetadataBindingSecretsStoreSecret =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingSecretsStoreSecret>;
 
 export type CreateScriptEdgePreviewMetadataBindingStreamType = "stream";
-export const CreateScriptEdgePreviewMetadataBindingStreamType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingStreamType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingStream {
   type: CreateScriptEdgePreviewMetadataBindingStreamType;
@@ -7696,8 +7637,7 @@ export const CreateScriptEdgePreviewMetadataBindingStream =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingStream>;
 
 export type CreateScriptEdgePreviewMetadataBindingMediaType = "media";
-export const CreateScriptEdgePreviewMetadataBindingMediaType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingMediaType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingMedia {
   type: CreateScriptEdgePreviewMetadataBindingMediaType;
@@ -7716,7 +7656,7 @@ export const CreateScriptEdgePreviewMetadataBindingMedia =
 export type CreateScriptEdgePreviewMetadataBindingVersionMetadataType =
   "version_metadata";
 export const CreateScriptEdgePreviewMetadataBindingVersionMetadataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingVersionMetadata {
   type: CreateScriptEdgePreviewMetadataBindingVersionMetadataType;
@@ -7733,8 +7673,7 @@ export const CreateScriptEdgePreviewMetadataBindingVersionMetadata =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingVersionMetadata>;
 
 export type CreateScriptEdgePreviewMetadataBindingAssetsType = "assets";
-export const CreateScriptEdgePreviewMetadataBindingAssetsType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingAssetsType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingAssets {
   type: CreateScriptEdgePreviewMetadataBindingAssetsType;
@@ -7752,8 +7691,7 @@ export const CreateScriptEdgePreviewMetadataBindingAssets =
 
 export type CreateScriptEdgePreviewMetadataBindingWorkerLoaderType =
   "worker_loader";
-export const CreateScriptEdgePreviewMetadataBindingWorkerLoaderType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingWorkerLoaderType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingWorkerLoader {
   type: CreateScriptEdgePreviewMetadataBindingWorkerLoaderType;
@@ -7770,8 +7708,7 @@ export const CreateScriptEdgePreviewMetadataBindingWorkerLoader =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingWorkerLoader>;
 
 export type CreateScriptEdgePreviewMetadataBindingLogfwdrType = "logfwdr";
-export const CreateScriptEdgePreviewMetadataBindingLogfwdrType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingLogfwdrType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingLogfwdr {
   type: CreateScriptEdgePreviewMetadataBindingLogfwdrType;
@@ -7792,7 +7729,7 @@ export const CreateScriptEdgePreviewMetadataBindingLogfwdr =
 export type CreateScriptEdgePreviewMetadataBindingAiSearchNamespaceType =
   "ai_search_namespace";
 export const CreateScriptEdgePreviewMetadataBindingAiSearchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingAiSearchNamespace {
   type: CreateScriptEdgePreviewMetadataBindingAiSearchNamespaceType;
@@ -7811,8 +7748,7 @@ export const CreateScriptEdgePreviewMetadataBindingAiSearchNamespace =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingAiSearchNamespace>;
 
 export type CreateScriptEdgePreviewMetadataBindingAiSearchType = "ai_search";
-export const CreateScriptEdgePreviewMetadataBindingAiSearchType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingAiSearchType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingAiSearch {
   type: CreateScriptEdgePreviewMetadataBindingAiSearchType;
@@ -7831,12 +7767,10 @@ export const CreateScriptEdgePreviewMetadataBindingAiSearch =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingAiSearch>;
 
 export type CreateScriptEdgePreviewMetadataBindingRatelimitType = "ratelimit";
-export const CreateScriptEdgePreviewMetadataBindingRatelimitType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingRatelimitType = S.String;
 
 export type CreateScriptEdgePreviewMetadataBindingRatelimitPeriod = "10" | "60";
-export const CreateScriptEdgePreviewMetadataBindingRatelimitPeriod =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingRatelimitPeriod = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingRatelimitSimple {
   limit: number;
@@ -7871,8 +7805,7 @@ export const CreateScriptEdgePreviewMetadataBindingRatelimit =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingRatelimit>;
 
 export type CreateScriptEdgePreviewMetadataBindingArtifactsType = "artifacts";
-export const CreateScriptEdgePreviewMetadataBindingArtifactsType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingArtifactsType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingArtifacts {
   type: CreateScriptEdgePreviewMetadataBindingArtifactsType;
@@ -7893,7 +7826,7 @@ export const CreateScriptEdgePreviewMetadataBindingArtifacts =
 export type CreateScriptEdgePreviewMetadataBindingUnsafeHelloWorldType =
   "unsafe_hello_world";
 export const CreateScriptEdgePreviewMetadataBindingUnsafeHelloWorldType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingUnsafeHelloWorld {
   type: CreateScriptEdgePreviewMetadataBindingUnsafeHelloWorldType;
@@ -7912,8 +7845,7 @@ export const CreateScriptEdgePreviewMetadataBindingUnsafeHelloWorld =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingUnsafeHelloWorld>;
 
 export type CreateScriptEdgePreviewMetadataBindingFlagshipType = "flagship";
-export const CreateScriptEdgePreviewMetadataBindingFlagshipType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingFlagshipType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingFlagship {
   type: CreateScriptEdgePreviewMetadataBindingFlagshipType;
@@ -7933,8 +7865,7 @@ export const CreateScriptEdgePreviewMetadataBindingFlagship =
 
 export type CreateScriptEdgePreviewMetadataBindingVpcServiceType =
   "vpc_service";
-export const CreateScriptEdgePreviewMetadataBindingVpcServiceType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingVpcServiceType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingVpcService {
   type: CreateScriptEdgePreviewMetadataBindingVpcServiceType;
@@ -7954,8 +7885,7 @@ export const CreateScriptEdgePreviewMetadataBindingVpcService =
 
 export type CreateScriptEdgePreviewMetadataBindingVpcNetworkType =
   "vpc_network";
-export const CreateScriptEdgePreviewMetadataBindingVpcNetworkType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingVpcNetworkType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingVpcNetwork {
   type: CreateScriptEdgePreviewMetadataBindingVpcNetworkType;
@@ -7976,8 +7906,7 @@ export const CreateScriptEdgePreviewMetadataBindingVpcNetwork =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataBindingVpcNetwork>;
 
 export type CreateScriptEdgePreviewMetadataBindingInheritType = "inherit";
-export const CreateScriptEdgePreviewMetadataBindingInheritType =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataBindingInheritType = S.String;
 
 export interface CreateScriptEdgePreviewMetadataBindingInherit {
   type: CreateScriptEdgePreviewMetadataBindingInheritType;
@@ -8166,8 +8095,7 @@ export const CreateScriptEdgePreviewMetadataMigrations =
   }) as any as S.Schema<CreateScriptEdgePreviewMetadataMigrations>;
 
 export type CreateScriptEdgePreviewMetadataPlacementSmartMode = "smart";
-export const CreateScriptEdgePreviewMetadataPlacementSmartMode =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataPlacementSmartMode = S.String;
 
 export interface CreateScriptEdgePreviewMetadataPlacementSmart {
   mode: CreateScriptEdgePreviewMetadataPlacementSmartMode;
@@ -8269,15 +8197,14 @@ export type CreateScriptEdgePreviewMetadataAssetsConfigHtmlHandling =
   | "force-trailing-slash"
   | "drop-trailing-slash"
   | "none";
-export const CreateScriptEdgePreviewMetadataAssetsConfigHtmlHandling =
-  /*@__PURE__*/ S.String;
+export const CreateScriptEdgePreviewMetadataAssetsConfigHtmlHandling = S.String;
 
 export type CreateScriptEdgePreviewMetadataAssetsConfigNotFoundHandling =
   | "single-page-application"
   | "404-page"
   | "none";
 export const CreateScriptEdgePreviewMetadataAssetsConfigNotFoundHandling =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateScriptEdgePreviewMetadataAssetsConfigRunWorkerFirst =
   | boolean
@@ -8626,8 +8553,7 @@ export const CreateScriptTailResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateScriptTailResponse>;
 
 export type ScriptsVersionsCreateRequestBindingsInherit = "strict";
-export const ScriptsVersionsCreateRequestBindingsInherit =
-  /*@__PURE__*/ S.String;
+export const ScriptsVersionsCreateRequestBindingsInherit = S.String;
 
 export interface PutScriptMetadataAnnotations {
   workersMessage?: string;
@@ -8650,13 +8576,13 @@ export type PutScriptAssetsConfigHtmlHandling =
   | "force-trailing-slash"
   | "drop-trailing-slash"
   | "none";
-export const PutScriptAssetsConfigHtmlHandling = /*@__PURE__*/ S.String;
+export const PutScriptAssetsConfigHtmlHandling = S.String;
 
 export type PutScriptAssetsConfigNotFoundHandling =
   | "none"
   | "404-page"
   | "single-page-application";
-export const PutScriptAssetsConfigNotFoundHandling = /*@__PURE__*/ S.String;
+export const PutScriptAssetsConfigNotFoundHandling = S.String;
 
 export type PutScriptMetadataStringList = Array<string>;
 export const PutScriptMetadataStringList = /*@__PURE__*/ S.Array(
@@ -8711,7 +8637,7 @@ export const PutScriptMetadataAssets = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptMetadataAssets>;
 
 export type PutScriptBindingAiType = "ai";
-export const PutScriptBindingAiType = /*@__PURE__*/ S.String;
+export const PutScriptBindingAiType = S.String;
 
 export interface PutScriptBindingAi {
   name: string;
@@ -8727,7 +8653,7 @@ export const PutScriptBindingAi = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingAi>;
 
 export type PutScriptBindingAiSearchType = "ai_search";
-export const PutScriptBindingAiSearchType = /*@__PURE__*/ S.String;
+export const PutScriptBindingAiSearchType = S.String;
 
 export interface PutScriptBindingAiSearch {
   instanceName: string;
@@ -8747,7 +8673,7 @@ export const PutScriptBindingAiSearch = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingAiSearch>;
 
 export type PutScriptBindingAiSearchNamespaceType = "ai_search_namespace";
-export const PutScriptBindingAiSearchNamespaceType = /*@__PURE__*/ S.String;
+export const PutScriptBindingAiSearchNamespaceType = S.String;
 
 export interface PutScriptBindingAiSearchNamespace {
   name: string;
@@ -8765,7 +8691,7 @@ export const PutScriptBindingAiSearchNamespace = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingAiSearchNamespace>;
 
 export type PutScriptBindingAnalyticsEngineType = "analytics_engine";
-export const PutScriptBindingAnalyticsEngineType = /*@__PURE__*/ S.String;
+export const PutScriptBindingAnalyticsEngineType = S.String;
 
 export interface PutScriptBindingAnalyticsEngine {
   dataset: string;
@@ -8783,7 +8709,7 @@ export const PutScriptBindingAnalyticsEngine = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingAnalyticsEngine>;
 
 export type PutScriptBindingAssetsType = "assets";
-export const PutScriptBindingAssetsType = /*@__PURE__*/ S.String;
+export const PutScriptBindingAssetsType = S.String;
 
 export interface PutScriptBindingAssets {
   name: string;
@@ -8799,7 +8725,7 @@ export const PutScriptBindingAssets = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingAssets>;
 
 export type PutScriptBindingBrowserType = "browser";
-export const PutScriptBindingBrowserType = /*@__PURE__*/ S.String;
+export const PutScriptBindingBrowserType = S.String;
 
 export interface PutScriptBindingBrowser {
   name: string;
@@ -8815,7 +8741,7 @@ export const PutScriptBindingBrowser = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingBrowser>;
 
 export type PutScriptBindingD1Type = "d1";
-export const PutScriptBindingD1Type = /*@__PURE__*/ S.String;
+export const PutScriptBindingD1Type = S.String;
 
 export interface PutScriptBindingD1 {
   databaseId: string;
@@ -8835,7 +8761,7 @@ export const PutScriptBindingD1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingD1>;
 
 export type PutScriptBindingDataBlobType = "data_blob";
-export const PutScriptBindingDataBlobType = /*@__PURE__*/ S.String;
+export const PutScriptBindingDataBlobType = S.String;
 
 export interface PutScriptBindingDataBlob {
   name: string;
@@ -8895,7 +8821,7 @@ export const PutScriptBindingDispatchNamespaceOutbound =
   }) as any as S.Schema<PutScriptBindingDispatchNamespaceOutbound>;
 
 export type PutScriptBindingDispatchNamespaceType = "dispatch_namespace";
-export const PutScriptBindingDispatchNamespaceType = /*@__PURE__*/ S.String;
+export const PutScriptBindingDispatchNamespaceType = S.String;
 
 export interface PutScriptBindingDispatchNamespace {
   name: string;
@@ -8916,8 +8842,7 @@ export const PutScriptBindingDispatchNamespace = /*@__PURE__*/ S.suspend(() =>
 
 export type PutScriptBindingDurableObjectNamespaceType =
   "durable_object_namespace";
-export const PutScriptBindingDurableObjectNamespaceType =
-  /*@__PURE__*/ S.String;
+export const PutScriptBindingDurableObjectNamespaceType = S.String;
 
 export interface PutScriptBindingDurableObjectNamespace {
   name: string;
@@ -8946,7 +8871,7 @@ export const PutScriptBindingDurableObjectNamespace = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PutScriptBindingDurableObjectNamespace>;
 
 export type PutScriptBindingHyperdriveType = "hyperdrive";
-export const PutScriptBindingHyperdriveType = /*@__PURE__*/ S.String;
+export const PutScriptBindingHyperdriveType = S.String;
 
 export interface PutScriptBindingHyperdrive {
   id: string;
@@ -8964,7 +8889,7 @@ export const PutScriptBindingHyperdrive = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingHyperdrive>;
 
 export type PutScriptBindingInheritType = "inherit";
-export const PutScriptBindingInheritType = /*@__PURE__*/ S.String;
+export const PutScriptBindingInheritType = S.String;
 
 export interface PutScriptBindingInherit {
   name: string;
@@ -8984,7 +8909,7 @@ export const PutScriptBindingInherit = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingInherit>;
 
 export type PutScriptBindingImagesType = "images";
-export const PutScriptBindingImagesType = /*@__PURE__*/ S.String;
+export const PutScriptBindingImagesType = S.String;
 
 export interface PutScriptBindingImages {
   name: string;
@@ -9000,7 +8925,7 @@ export const PutScriptBindingImages = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingImages>;
 
 export type PutScriptBindingJsonType = "json";
-export const PutScriptBindingJsonType = /*@__PURE__*/ S.String;
+export const PutScriptBindingJsonType = S.String;
 
 export interface PutScriptBindingJson {
   json: unknown;
@@ -9018,7 +8943,7 @@ export const PutScriptBindingJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingJson>;
 
 export type PutScriptBindingKvNamespaceType = "kv_namespace";
-export const PutScriptBindingKvNamespaceType = /*@__PURE__*/ S.String;
+export const PutScriptBindingKvNamespaceType = S.String;
 
 export interface PutScriptBindingKvNamespace {
   name: string;
@@ -9036,7 +8961,7 @@ export const PutScriptBindingKvNamespace = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingKvNamespace>;
 
 export type PutScriptBindingMediaType = "media";
-export const PutScriptBindingMediaType = /*@__PURE__*/ S.String;
+export const PutScriptBindingMediaType = S.String;
 
 export interface PutScriptBindingMedia {
   name: string;
@@ -9052,7 +8977,7 @@ export const PutScriptBindingMedia = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingMedia>;
 
 export type PutScriptBindingMtlsCertificateType = "mtls_certificate";
-export const PutScriptBindingMtlsCertificateType = /*@__PURE__*/ S.String;
+export const PutScriptBindingMtlsCertificateType = S.String;
 
 export interface PutScriptBindingMtlsCertificate {
   certificateId: string;
@@ -9070,7 +8995,7 @@ export const PutScriptBindingMtlsCertificate = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingMtlsCertificate>;
 
 export type PutScriptBindingPlainTextType = "plain_text";
-export const PutScriptBindingPlainTextType = /*@__PURE__*/ S.String;
+export const PutScriptBindingPlainTextType = S.String;
 
 export interface PutScriptBindingPlainText {
   name: string;
@@ -9088,7 +9013,7 @@ export const PutScriptBindingPlainText = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingPlainText>;
 
 export type PutScriptBindingPipelinesType = "pipelines";
-export const PutScriptBindingPipelinesType = /*@__PURE__*/ S.String;
+export const PutScriptBindingPipelinesType = S.String;
 
 export interface PutScriptBindingPipelines {
   name: string;
@@ -9106,7 +9031,7 @@ export const PutScriptBindingPipelines = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingPipelines>;
 
 export type PutScriptBindingQueueType = "queue";
-export const PutScriptBindingQueueType = /*@__PURE__*/ S.String;
+export const PutScriptBindingQueueType = S.String;
 
 export interface PutScriptBindingQueue {
   name: string;
@@ -9139,7 +9064,7 @@ export const PutScriptBindingRatelimitSimple = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingRatelimitSimple>;
 
 export type PutScriptBindingRatelimitType = "ratelimit";
-export const PutScriptBindingRatelimitType = /*@__PURE__*/ S.String;
+export const PutScriptBindingRatelimitType = S.String;
 
 export interface PutScriptBindingRatelimit {
   name: string;
@@ -9162,10 +9087,10 @@ export type PutScriptBindingR2BucketJurisdiction =
   | "eu"
   | "fedramp"
   | "fedramp-high";
-export const PutScriptBindingR2BucketJurisdiction = /*@__PURE__*/ S.String;
+export const PutScriptBindingR2BucketJurisdiction = S.String;
 
 export type PutScriptBindingR2BucketType = "r2_bucket";
-export const PutScriptBindingR2BucketType = /*@__PURE__*/ S.String;
+export const PutScriptBindingR2BucketType = S.String;
 
 export interface PutScriptBindingR2Bucket {
   bucketName: string;
@@ -9185,7 +9110,7 @@ export const PutScriptBindingR2Bucket = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingR2Bucket>;
 
 export type PutScriptBindingSecretTextType = "secret_text";
-export const PutScriptBindingSecretTextType = /*@__PURE__*/ S.String;
+export const PutScriptBindingSecretTextType = S.String;
 
 export interface PutScriptBindingSecretText {
   name: string;
@@ -9203,7 +9128,7 @@ export const PutScriptBindingSecretText = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingSecretText>;
 
 export type PutScriptBindingSendEmailType = "send_email";
-export const PutScriptBindingSendEmailType = /*@__PURE__*/ S.String;
+export const PutScriptBindingSendEmailType = S.String;
 
 export interface PutScriptBindingSendEmail {
   name: string;
@@ -9231,7 +9156,7 @@ export const PutScriptBindingSendEmail = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingSendEmail>;
 
 export type PutScriptBindingServiceType = "service";
-export const PutScriptBindingServiceType = /*@__PURE__*/ S.String;
+export const PutScriptBindingServiceType = S.String;
 
 export interface PutScriptBindingService {
   name: string;
@@ -9253,7 +9178,7 @@ export const PutScriptBindingService = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingService>;
 
 export type PutScriptBindingTextBlobType = "text_blob";
-export const PutScriptBindingTextBlobType = /*@__PURE__*/ S.String;
+export const PutScriptBindingTextBlobType = S.String;
 
 export interface PutScriptBindingTextBlob {
   name: string;
@@ -9271,7 +9196,7 @@ export const PutScriptBindingTextBlob = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingTextBlob>;
 
 export type PutScriptBindingVectorizeType = "vectorize";
-export const PutScriptBindingVectorizeType = /*@__PURE__*/ S.String;
+export const PutScriptBindingVectorizeType = S.String;
 
 export interface PutScriptBindingVectorize {
   indexName: string;
@@ -9289,7 +9214,7 @@ export const PutScriptBindingVectorize = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingVectorize>;
 
 export type PutScriptBindingVersionMetadataType = "version_metadata";
-export const PutScriptBindingVersionMetadataType = /*@__PURE__*/ S.String;
+export const PutScriptBindingVersionMetadataType = S.String;
 
 export interface PutScriptBindingVersionMetadata {
   name: string;
@@ -9305,7 +9230,7 @@ export const PutScriptBindingVersionMetadata = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingVersionMetadata>;
 
 export type PutScriptBindingSecretsStoreSecretType = "secrets_store_secret";
-export const PutScriptBindingSecretsStoreSecretType = /*@__PURE__*/ S.String;
+export const PutScriptBindingSecretsStoreSecretType = S.String;
 
 export interface PutScriptBindingSecretsStoreSecret {
   name: string;
@@ -9325,7 +9250,7 @@ export const PutScriptBindingSecretsStoreSecret = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingSecretsStoreSecret>;
 
 export type PutScriptBindingFlagshipType = "flagship";
-export const PutScriptBindingFlagshipType = /*@__PURE__*/ S.String;
+export const PutScriptBindingFlagshipType = S.String;
 
 export interface PutScriptBindingFlagship {
   appId: string;
@@ -9343,7 +9268,7 @@ export const PutScriptBindingFlagship = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingFlagship>;
 
 export type PutScriptBindingSecretKeyFormat = "raw" | "pkcs8" | "spki" | "jwk";
-export const PutScriptBindingSecretKeyFormat = /*@__PURE__*/ S.String;
+export const PutScriptBindingSecretKeyFormat = S.String;
 
 export type PutScriptBindingSecretKeyUsage =
   | "encrypt"
@@ -9354,7 +9279,7 @@ export type PutScriptBindingSecretKeyUsage =
   | "deriveBits"
   | "wrapKey"
   | "unwrapKey";
-export const PutScriptBindingSecretKeyUsage = /*@__PURE__*/ S.String;
+export const PutScriptBindingSecretKeyUsage = S.String;
 
 export type PutScriptBindingSecretKeyUsagesList = Array<
   PutScriptBindingSecretKeyUsage | (string & {})
@@ -9364,7 +9289,7 @@ export const PutScriptBindingSecretKeyUsagesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PutScriptBindingSecretKeyUsagesList>;
 
 export type PutScriptBindingSecretKeyType = "secret_key";
-export const PutScriptBindingSecretKeyType = /*@__PURE__*/ S.String;
+export const PutScriptBindingSecretKeyType = S.String;
 
 export interface PutScriptBindingSecretKey {
   algorithm: unknown;
@@ -9390,7 +9315,7 @@ export const PutScriptBindingSecretKey = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingSecretKey>;
 
 export type PutScriptBindingWorkflowType = "workflow";
-export const PutScriptBindingWorkflowType = /*@__PURE__*/ S.String;
+export const PutScriptBindingWorkflowType = S.String;
 
 export interface PutScriptBindingWorkflow {
   name: string;
@@ -9412,7 +9337,7 @@ export const PutScriptBindingWorkflow = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingWorkflow>;
 
 export type PutScriptBindingWasmModuleType = "wasm_module";
-export const PutScriptBindingWasmModuleType = /*@__PURE__*/ S.String;
+export const PutScriptBindingWasmModuleType = S.String;
 
 export interface PutScriptBindingWasmModule {
   name: string;
@@ -9430,7 +9355,7 @@ export const PutScriptBindingWasmModule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingWasmModule>;
 
 export type PutScriptBindingVpcServiceType = "vpc_service";
-export const PutScriptBindingVpcServiceType = /*@__PURE__*/ S.String;
+export const PutScriptBindingVpcServiceType = S.String;
 
 export interface PutScriptBindingVpcService {
   name: string;
@@ -9448,7 +9373,7 @@ export const PutScriptBindingVpcService = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingVpcService>;
 
 export type PutScriptBindingVpcNetworkType = "vpc_network";
-export const PutScriptBindingVpcNetworkType = /*@__PURE__*/ S.String;
+export const PutScriptBindingVpcNetworkType = S.String;
 
 export interface PutScriptBindingVpcNetwork {
   name: string;
@@ -9468,7 +9393,7 @@ export const PutScriptBindingVpcNetwork = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingVpcNetwork>;
 
 export type PutScriptBindingWorkerLoaderType = "worker_loader";
-export const PutScriptBindingWorkerLoaderType = /*@__PURE__*/ S.String;
+export const PutScriptBindingWorkerLoaderType = S.String;
 
 export interface PutScriptBindingWorkerLoader {
   name: string;
@@ -9484,7 +9409,7 @@ export const PutScriptBindingWorkerLoader = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingWorkerLoader>;
 
 export type PutScriptBindingArtifactsType = "artifacts";
-export const PutScriptBindingArtifactsType = /*@__PURE__*/ S.String;
+export const PutScriptBindingArtifactsType = S.String;
 
 export interface PutScriptBindingArtifacts {
   name: string;
@@ -9502,7 +9427,7 @@ export const PutScriptBindingArtifacts = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptBindingArtifacts>;
 
 export type PutScriptBindingStreamType = "stream";
-export const PutScriptBindingStreamType = /*@__PURE__*/ S.String;
+export const PutScriptBindingStreamType = S.String;
 
 export interface PutScriptBindingStream {
   name: string;
@@ -9780,8 +9705,7 @@ export const PutScriptObservabilityLogs = /*@__PURE__*/ S.suspend(() =>
 export type PutScriptObservabilityTracesPropagationPolicy =
   | "authenticated"
   | "accept";
-export const PutScriptObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+export const PutScriptObservabilityTracesPropagationPolicy = S.String;
 
 export interface PutScriptObservabilityTraces {
   destinations?: PutScriptMetadataStringList;
@@ -9830,7 +9754,7 @@ export const PutScriptMetadataObservability = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptMetadataObservability>;
 
 export type PutScriptPlacementSmartMode = "smart";
-export const PutScriptPlacementSmartMode = /*@__PURE__*/ S.String;
+export const PutScriptPlacementSmartMode = S.String;
 
 export interface PutScriptPlacementSmart {
   mode: PutScriptPlacementSmartMode;
@@ -9859,7 +9783,7 @@ export const PutScriptPlacementHost =
   CreateScriptEdgePreviewMetadataPlacementHost;
 
 export type PutScriptPlacementTargetedMode = "targeted";
-export const PutScriptPlacementTargetedMode = /*@__PURE__*/ S.String;
+export const PutScriptPlacementTargetedMode = S.String;
 
 export interface PutScriptPlacementTargetedRegion {
   mode: PutScriptPlacementTargetedMode;
@@ -9984,7 +9908,7 @@ export const PutScriptMetadataTailConsumersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PutScriptMetadataTailConsumersList>;
 
 export type PutScriptMetadataUsageModel = "standard" | "bundled" | "unbound";
-export const PutScriptMetadataUsageModel = /*@__PURE__*/ S.String;
+export const PutScriptMetadataUsageModel = S.String;
 
 export interface PutScriptMetadataCache {
   enabled?: boolean;
@@ -10214,7 +10138,7 @@ export const CreateScriptVersionRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type ScriptsVersionsCreateResponseResourcesBindingsItemAIType = "ai";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemAIType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemAI {
   /** A JavaScript variable name for the binding. */
@@ -10235,7 +10159,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemAI =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemAISearchType =
   "ai_search";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemAISearchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemAISearch {
   /** The user-chosen instance name. Must exist at deploy time. The worker can search, chat, update, and manage items/jobs on this instance. */
@@ -10262,7 +10186,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemAISearch =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemAISearchNamespaceType =
   "ai_search_namespace";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemAISearchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemAISearchNamespace {
   /** A JavaScript variable name for the binding. */
@@ -10287,7 +10211,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemAISearchNamespace
 export type ScriptsVersionsCreateResponseResourcesBindingsItemAnalyticsEngineType =
   "analytics_engine";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemAnalyticsEngineType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemAnalyticsEngine {
   /** The name of the dataset to bind to. */
@@ -10312,7 +10236,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemAnalyticsEngine =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemAssetsType =
   "assets";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemAssetsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemAssets {
   /** A JavaScript variable name for the binding. */
@@ -10333,7 +10257,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemAssets =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemBrowserType =
   "browser";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemBrowserType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemBrowser {
   /** A JavaScript variable name for the binding. */
@@ -10353,7 +10277,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemBrowser =
 
 export type ScriptsVersionsCreateResponseResourcesBindingsItemD1Type = "d1";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemD1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemD1 {
   /** Identifier of the D1 database to bind to. */
@@ -10380,7 +10304,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemD1 =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemDataBlobType =
   "data_blob";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemDataBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemDataBlob {
   /** A JavaScript variable name for the binding. */
@@ -10404,7 +10328,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemDataBlob =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemDispatchNamespaceType =
   "dispatch_namespace";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemDispatchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsVersionsCreateResponseResourcesBindingsItemDispatchNamespaceOutboundParamsItem =
   BetaWorkersVersionsCreateRequestBindingsItemDispatchNamespaceOutboundParamsItem;
@@ -10478,7 +10402,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemDispatchNamespace
 export type ScriptsVersionsCreateResponseResourcesBindingsItemDurableObjectNamespaceType =
   "durable_object_namespace";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemDurableObjectNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemDurableObjectNamespace {
   /** A JavaScript variable name for the binding. */
@@ -10517,7 +10441,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemDurableObjectName
 export type ScriptsVersionsCreateResponseResourcesBindingsItemHyperdriveType =
   "hyperdrive";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemHyperdriveType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemHyperdrive {
   /** Identifier of the Hyperdrive connection to bind to. */
@@ -10541,7 +10465,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemHyperdrive =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemInheritType =
   "inherit";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemInheritType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemInherit {
   /** The name of the inherited binding. */
@@ -10568,7 +10492,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemInherit =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemImagesType =
   "images";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemImagesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemImages {
   /** A JavaScript variable name for the binding. */
@@ -10588,7 +10512,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemImages =
 
 export type ScriptsVersionsCreateResponseResourcesBindingsItemJsonType = "json";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemJsonType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemJson {
   /** JSON data to use. */
@@ -10612,7 +10536,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemJson =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemKVNamespaceType =
   "kv_namespace";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemKVNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemKVNamespace {
   /** A JavaScript variable name for the binding. */
@@ -10636,7 +10560,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemKVNamespace =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemMediaType =
   "media";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemMediaType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemMedia {
   /** A JavaScript variable name for the binding. */
@@ -10657,7 +10581,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemMedia =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemMTLSCertificateType =
   "mtls_certificate";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemMTLSCertificateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemMTLSCertificate {
   /** Identifier of the certificate to bind to. */
@@ -10682,7 +10606,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemMTLSCertificate =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemPlainTextType =
   "plain_text";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemPlainTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemPlainText {
   /** A JavaScript variable name for the binding. */
@@ -10706,7 +10630,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemPlainText =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemPipelinesType =
   "pipelines";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemPipelinesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemPipelines {
   /** A JavaScript variable name for the binding. */
@@ -10730,7 +10654,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemPipelines =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemQueueType =
   "queue";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemQueueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemQueue {
   /** A JavaScript variable name for the binding. */
@@ -10759,7 +10683,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemRatelimitSimple =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemRatelimitType =
   "ratelimit";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemRatelimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemRatelimit {
   /** A JavaScript variable name for the binding. */
@@ -10786,14 +10710,14 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemRatelimit =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemR2BucketType =
   "r2_bucket";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemR2BucketType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsVersionsCreateResponseResourcesBindingsItemR2BucketJurisdiction =
   | "eu"
   | "fedramp"
   | "fedramp-high";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemR2BucketJurisdiction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemR2Bucket {
   /** R2 bucket to bind to. */
@@ -10824,7 +10748,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemR2Bucket =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemSecretTextType =
   "secret_text";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemSecretTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemSecretText {
   /** A JavaScript variable name for the binding. */
@@ -10848,7 +10772,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemSecretText =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemSendEmailType =
   "send_email";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemSendEmailType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsVersionsCreateResponseResourcesBindingsItemSendEmailAllowedDestinationAddressesList =
   Array<string>;
@@ -10902,7 +10826,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemSendEmail =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemServiceType =
   "service";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemService {
   /** A JavaScript variable name for the binding. */
@@ -10932,7 +10856,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemService =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemTextBlobType =
   "text_blob";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemTextBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemTextBlob {
   /** A JavaScript variable name for the binding. */
@@ -10956,7 +10880,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemTextBlob =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemVectorizeType =
   "vectorize";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemVectorizeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemVectorize {
   /** Name of the Vectorize index to bind to. */
@@ -10980,7 +10904,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemVectorize =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemVersionMetadataType =
   "version_metadata";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemVersionMetadataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemVersionMetadata {
   /** A JavaScript variable name for the binding. */
@@ -11002,7 +10926,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemVersionMetadata =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemSecretsStoreSecretType =
   "secrets_store_secret";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemSecretsStoreSecretType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemSecretsStoreSecret {
   /** A JavaScript variable name for the binding. */
@@ -11030,7 +10954,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemSecretsStoreSecre
 export type ScriptsVersionsCreateResponseResourcesBindingsItemFlagshipType =
   "flagship";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemFlagshipType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemFlagship {
   /** ID of the Flagship app to bind to for feature flag evaluation. */
@@ -11057,12 +10981,12 @@ export type ScriptsVersionsCreateResponseResourcesBindingsItemSecretKeyFormat =
   | "spki"
   | "jwk";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsVersionsCreateResponseResourcesBindingsItemSecretKeyType =
   "secret_key";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemSecretKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsVersionsCreateResponseResourcesBindingsItemSecretKeyUsagesItem =
   | "encrypt"
@@ -11074,7 +10998,7 @@ export type ScriptsVersionsCreateResponseResourcesBindingsItemSecretKeyUsagesIte
   | "wrapKey"
   | "unwrapKey";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsVersionsCreateResponseResourcesBindingsItemSecretKeyUsagesList =
   Array<ScriptsVersionsCreateResponseResourcesBindingsItemSecretKeyUsagesItem>;
@@ -11118,7 +11042,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemSecretKey =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemWorkflowType =
   "workflow";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemWorkflowType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemWorkflow {
   /** A JavaScript variable name for the binding. */
@@ -11148,7 +11072,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemWorkflow =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemWasmModuleType =
   "wasm_module";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemWasmModuleType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemWasmModule {
   /** A JavaScript variable name for the binding. */
@@ -11172,7 +11096,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemWasmModule =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemVPCServiceType =
   "vpc_service";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemVPCServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemVPCService {
   /** A JavaScript variable name for the binding. */
@@ -11196,7 +11120,7 @@ export const ScriptsVersionsCreateResponseResourcesBindingsItemVPCService =
 export type ScriptsVersionsCreateResponseResourcesBindingsItemVPCNetworkType =
   "vpc_network";
 export const ScriptsVersionsCreateResponseResourcesBindingsItemVPCNetworkType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesBindingsItemVPCNetwork {
   /** A JavaScript variable name for the binding. */
@@ -11414,7 +11338,7 @@ export type ScriptsVersionsCreateResponseResourcesScriptRuntimeUsageModel =
   | "unbound"
   | "standard";
 export const ScriptsVersionsCreateResponseResourcesScriptRuntimeUsageModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsCreateResponseResourcesScriptRuntime {
   /** Date indicating targeted support in the Workers runtime. Backwards incompatible fixes to the runtime following this date will not affect this Worker. */
@@ -11493,8 +11417,7 @@ export type ScriptsVersionsCreateResponseMetadataSource =
   | "quick_editor"
   | "playground"
   | "workersci";
-export const ScriptsVersionsCreateResponseMetadataSource =
-  /*@__PURE__*/ S.String;
+export const ScriptsVersionsCreateResponseMetadataSource = S.String;
 
 export interface ScriptsVersionsCreateResponseMetadata {
   /** Email of the user who created the version. */
@@ -11802,12 +11725,12 @@ export type ObservabilityDestinationsDeleteResponseConfigurationLogpushDataset =
   | "opentelemetry-logs"
   | "opentelemetry-metrics";
 export const ObservabilityDestinationsDeleteResponseConfigurationLogpushDataset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityDestinationsDeleteResponseConfigurationType =
   "logpush";
 export const ObservabilityDestinationsDeleteResponseConfigurationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityDestinationsDeleteResponseConfiguration {
   destinationConf: string;
@@ -12201,7 +12124,7 @@ export type BetaWorkersGetResponseObservabilityTracesPropagationPolicy =
   | "authenticated"
   | "accept";
 export const BetaWorkersGetResponseObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersGetResponseObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -12414,7 +12337,7 @@ export const GetBetaWorkerResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBetaWorkerResponse>;
 
 export type BetaWorkersVersionsGetRequestInclude = "modules";
-export const BetaWorkersVersionsGetRequestInclude = /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetRequestInclude = S.String;
 
 export interface GetBetaWorkerVersionRequest {
   /** Identifier. */
@@ -12460,15 +12383,14 @@ export type BetaWorkersVersionsGetResponseAssetsConfigHtmlHandling =
   | "force-trailing-slash"
   | "drop-trailing-slash"
   | "none";
-export const BetaWorkersVersionsGetResponseAssetsConfigHtmlHandling =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseAssetsConfigHtmlHandling = S.String;
 
 export type BetaWorkersVersionsGetResponseAssetsConfigNotFoundHandling =
   | "none"
   | "404-page"
   | "single-page-application";
 export const BetaWorkersVersionsGetResponseAssetsConfigNotFoundHandling =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsGetResponseAssetsConfigRunWorkerFirstCase0List =
   Array<string>;
@@ -12531,8 +12453,7 @@ export const BetaWorkersVersionsGetResponseAssets = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<BetaWorkersVersionsGetResponseAssets>;
 
 export type BetaWorkersVersionsGetResponseBindingsItemAIType = "ai";
-export const BetaWorkersVersionsGetResponseBindingsItemAIType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemAIType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemAI {
   /** A JavaScript variable name for the binding. */
@@ -12552,8 +12473,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemAI =
 
 export type BetaWorkersVersionsGetResponseBindingsItemAISearchType =
   "ai_search";
-export const BetaWorkersVersionsGetResponseBindingsItemAISearchType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemAISearchType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemAISearch {
   /** The user-chosen instance name. Must exist at deploy time. The worker can search, chat, update, and manage items/jobs on this instance. */
@@ -12580,7 +12500,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemAISearch =
 export type BetaWorkersVersionsGetResponseBindingsItemAISearchNamespaceType =
   "ai_search_namespace";
 export const BetaWorkersVersionsGetResponseBindingsItemAISearchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemAISearchNamespace {
   /** A JavaScript variable name for the binding. */
@@ -12604,7 +12524,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemAISearchNamespace =
 export type BetaWorkersVersionsGetResponseBindingsItemAnalyticsEngineType =
   "analytics_engine";
 export const BetaWorkersVersionsGetResponseBindingsItemAnalyticsEngineType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemAnalyticsEngine {
   /** The name of the dataset to bind to. */
@@ -12626,8 +12546,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemAnalyticsEngine =
   }) as any as S.Schema<BetaWorkersVersionsGetResponseBindingsItemAnalyticsEngine>;
 
 export type BetaWorkersVersionsGetResponseBindingsItemAssetsType = "assets";
-export const BetaWorkersVersionsGetResponseBindingsItemAssetsType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemAssetsType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemAssets {
   /** A JavaScript variable name for the binding. */
@@ -12646,8 +12565,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemAssets =
   }) as any as S.Schema<BetaWorkersVersionsGetResponseBindingsItemAssets>;
 
 export type BetaWorkersVersionsGetResponseBindingsItemBrowserType = "browser";
-export const BetaWorkersVersionsGetResponseBindingsItemBrowserType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemBrowserType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemBrowser {
   /** A JavaScript variable name for the binding. */
@@ -12666,8 +12584,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemBrowser =
   }) as any as S.Schema<BetaWorkersVersionsGetResponseBindingsItemBrowser>;
 
 export type BetaWorkersVersionsGetResponseBindingsItemD1Type = "d1";
-export const BetaWorkersVersionsGetResponseBindingsItemD1Type =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemD1Type = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemD1 {
   /** Identifier of the D1 database to bind to. */
@@ -12693,8 +12610,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemD1 =
 
 export type BetaWorkersVersionsGetResponseBindingsItemDataBlobType =
   "data_blob";
-export const BetaWorkersVersionsGetResponseBindingsItemDataBlobType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemDataBlobType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemDataBlob {
   /** A JavaScript variable name for the binding. */
@@ -12718,7 +12634,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemDataBlob =
 export type BetaWorkersVersionsGetResponseBindingsItemDispatchNamespaceType =
   "dispatch_namespace";
 export const BetaWorkersVersionsGetResponseBindingsItemDispatchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsGetResponseBindingsItemDispatchNamespaceOutboundParamsItem =
   BetaWorkersVersionsCreateRequestBindingsItemDispatchNamespaceOutboundParamsItem;
@@ -12791,7 +12707,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemDispatchNamespace =
 export type BetaWorkersVersionsGetResponseBindingsItemDurableObjectNamespaceType =
   "durable_object_namespace";
 export const BetaWorkersVersionsGetResponseBindingsItemDurableObjectNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemDurableObjectNamespace {
   /** A JavaScript variable name for the binding. */
@@ -12830,7 +12746,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemDurableObjectNamespace =
 export type BetaWorkersVersionsGetResponseBindingsItemHyperdriveType =
   "hyperdrive";
 export const BetaWorkersVersionsGetResponseBindingsItemHyperdriveType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemHyperdrive {
   /** Identifier of the Hyperdrive connection to bind to. */
@@ -12852,8 +12768,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemHyperdrive =
   }) as any as S.Schema<BetaWorkersVersionsGetResponseBindingsItemHyperdrive>;
 
 export type BetaWorkersVersionsGetResponseBindingsItemInheritType = "inherit";
-export const BetaWorkersVersionsGetResponseBindingsItemInheritType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemInheritType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemInherit {
   /** The name of the inherited binding. */
@@ -12878,8 +12793,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemInherit =
   }) as any as S.Schema<BetaWorkersVersionsGetResponseBindingsItemInherit>;
 
 export type BetaWorkersVersionsGetResponseBindingsItemImagesType = "images";
-export const BetaWorkersVersionsGetResponseBindingsItemImagesType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemImagesType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemImages {
   /** A JavaScript variable name for the binding. */
@@ -12898,8 +12812,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemImages =
   }) as any as S.Schema<BetaWorkersVersionsGetResponseBindingsItemImages>;
 
 export type BetaWorkersVersionsGetResponseBindingsItemJsonType = "json";
-export const BetaWorkersVersionsGetResponseBindingsItemJsonType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemJsonType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemJson {
   /** JSON data to use. */
@@ -12923,7 +12836,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemJson =
 export type BetaWorkersVersionsGetResponseBindingsItemKVNamespaceType =
   "kv_namespace";
 export const BetaWorkersVersionsGetResponseBindingsItemKVNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemKVNamespace {
   /** A JavaScript variable name for the binding. */
@@ -12945,8 +12858,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemKVNamespace =
   }) as any as S.Schema<BetaWorkersVersionsGetResponseBindingsItemKVNamespace>;
 
 export type BetaWorkersVersionsGetResponseBindingsItemMediaType = "media";
-export const BetaWorkersVersionsGetResponseBindingsItemMediaType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemMediaType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemMedia {
   /** A JavaScript variable name for the binding. */
@@ -12967,7 +12879,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemMedia =
 export type BetaWorkersVersionsGetResponseBindingsItemMTLSCertificateType =
   "mtls_certificate";
 export const BetaWorkersVersionsGetResponseBindingsItemMTLSCertificateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemMTLSCertificate {
   /** Identifier of the certificate to bind to. */
@@ -12990,8 +12902,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemMTLSCertificate =
 
 export type BetaWorkersVersionsGetResponseBindingsItemPlainTextType =
   "plain_text";
-export const BetaWorkersVersionsGetResponseBindingsItemPlainTextType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemPlainTextType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemPlainText {
   /** A JavaScript variable name for the binding. */
@@ -13014,8 +12925,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemPlainText =
 
 export type BetaWorkersVersionsGetResponseBindingsItemPipelinesType =
   "pipelines";
-export const BetaWorkersVersionsGetResponseBindingsItemPipelinesType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemPipelinesType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemPipelines {
   /** A JavaScript variable name for the binding. */
@@ -13037,8 +12947,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemPipelines =
   }) as any as S.Schema<BetaWorkersVersionsGetResponseBindingsItemPipelines>;
 
 export type BetaWorkersVersionsGetResponseBindingsItemQueueType = "queue";
-export const BetaWorkersVersionsGetResponseBindingsItemQueueType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemQueueType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemQueue {
   /** A JavaScript variable name for the binding. */
@@ -13066,8 +12975,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemRatelimitSimple =
 
 export type BetaWorkersVersionsGetResponseBindingsItemRatelimitType =
   "ratelimit";
-export const BetaWorkersVersionsGetResponseBindingsItemRatelimitType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemRatelimitType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemRatelimit {
   /** A JavaScript variable name for the binding. */
@@ -13093,15 +13001,14 @@ export const BetaWorkersVersionsGetResponseBindingsItemRatelimit =
 
 export type BetaWorkersVersionsGetResponseBindingsItemR2BucketType =
   "r2_bucket";
-export const BetaWorkersVersionsGetResponseBindingsItemR2BucketType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemR2BucketType = S.String;
 
 export type BetaWorkersVersionsGetResponseBindingsItemR2BucketJurisdiction =
   | "eu"
   | "fedramp"
   | "fedramp-high";
 export const BetaWorkersVersionsGetResponseBindingsItemR2BucketJurisdiction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemR2Bucket {
   /** R2 bucket to bind to. */
@@ -13132,7 +13039,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemR2Bucket =
 export type BetaWorkersVersionsGetResponseBindingsItemSecretTextType =
   "secret_text";
 export const BetaWorkersVersionsGetResponseBindingsItemSecretTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemSecretText {
   /** A JavaScript variable name for the binding. */
@@ -13155,8 +13062,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemSecretText =
 
 export type BetaWorkersVersionsGetResponseBindingsItemSendEmailType =
   "send_email";
-export const BetaWorkersVersionsGetResponseBindingsItemSendEmailType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemSendEmailType = S.String;
 
 export type BetaWorkersVersionsGetResponseBindingsItemSendEmailAllowedDestinationAddressesList =
   Array<string>;
@@ -13208,8 +13114,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemSendEmail =
   }) as any as S.Schema<BetaWorkersVersionsGetResponseBindingsItemSendEmail>;
 
 export type BetaWorkersVersionsGetResponseBindingsItemServiceType = "service";
-export const BetaWorkersVersionsGetResponseBindingsItemServiceType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemServiceType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemService {
   /** A JavaScript variable name for the binding. */
@@ -13238,8 +13143,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemService =
 
 export type BetaWorkersVersionsGetResponseBindingsItemTextBlobType =
   "text_blob";
-export const BetaWorkersVersionsGetResponseBindingsItemTextBlobType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemTextBlobType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemTextBlob {
   /** A JavaScript variable name for the binding. */
@@ -13262,8 +13166,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemTextBlob =
 
 export type BetaWorkersVersionsGetResponseBindingsItemVectorizeType =
   "vectorize";
-export const BetaWorkersVersionsGetResponseBindingsItemVectorizeType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemVectorizeType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemVectorize {
   /** Name of the Vectorize index to bind to. */
@@ -13287,7 +13190,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemVectorize =
 export type BetaWorkersVersionsGetResponseBindingsItemVersionMetadataType =
   "version_metadata";
 export const BetaWorkersVersionsGetResponseBindingsItemVersionMetadataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemVersionMetadata {
   /** A JavaScript variable name for the binding. */
@@ -13308,7 +13211,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemVersionMetadata =
 export type BetaWorkersVersionsGetResponseBindingsItemSecretsStoreSecretType =
   "secrets_store_secret";
 export const BetaWorkersVersionsGetResponseBindingsItemSecretsStoreSecretType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemSecretsStoreSecret {
   /** A JavaScript variable name for the binding. */
@@ -13333,8 +13236,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemSecretsStoreSecret =
   }) as any as S.Schema<BetaWorkersVersionsGetResponseBindingsItemSecretsStoreSecret>;
 
 export type BetaWorkersVersionsGetResponseBindingsItemFlagshipType = "flagship";
-export const BetaWorkersVersionsGetResponseBindingsItemFlagshipType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemFlagshipType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemFlagship {
   /** ID of the Flagship app to bind to for feature flag evaluation. */
@@ -13361,12 +13263,11 @@ export type BetaWorkersVersionsGetResponseBindingsItemSecretKeyFormat =
   | "spki"
   | "jwk";
 export const BetaWorkersVersionsGetResponseBindingsItemSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsGetResponseBindingsItemSecretKeyType =
   "secret_key";
-export const BetaWorkersVersionsGetResponseBindingsItemSecretKeyType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemSecretKeyType = S.String;
 
 export type BetaWorkersVersionsGetResponseBindingsItemSecretKeyUsagesItem =
   | "encrypt"
@@ -13378,7 +13279,7 @@ export type BetaWorkersVersionsGetResponseBindingsItemSecretKeyUsagesItem =
   | "wrapKey"
   | "unwrapKey";
 export const BetaWorkersVersionsGetResponseBindingsItemSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsGetResponseBindingsItemSecretKeyUsagesList =
   Array<BetaWorkersVersionsGetResponseBindingsItemSecretKeyUsagesItem>;
@@ -13419,8 +13320,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemSecretKey =
   }) as any as S.Schema<BetaWorkersVersionsGetResponseBindingsItemSecretKey>;
 
 export type BetaWorkersVersionsGetResponseBindingsItemWorkflowType = "workflow";
-export const BetaWorkersVersionsGetResponseBindingsItemWorkflowType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseBindingsItemWorkflowType = S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemWorkflow {
   /** A JavaScript variable name for the binding. */
@@ -13450,7 +13350,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemWorkflow =
 export type BetaWorkersVersionsGetResponseBindingsItemWasmModuleType =
   "wasm_module";
 export const BetaWorkersVersionsGetResponseBindingsItemWasmModuleType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemWasmModule {
   /** A JavaScript variable name for the binding. */
@@ -13474,7 +13374,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemWasmModule =
 export type BetaWorkersVersionsGetResponseBindingsItemVPCServiceType =
   "vpc_service";
 export const BetaWorkersVersionsGetResponseBindingsItemVPCServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemVPCService {
   /** A JavaScript variable name for the binding. */
@@ -13498,7 +13398,7 @@ export const BetaWorkersVersionsGetResponseBindingsItemVPCService =
 export type BetaWorkersVersionsGetResponseBindingsItemVPCNetworkType =
   "vpc_network";
 export const BetaWorkersVersionsGetResponseBindingsItemVPCNetworkType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsGetResponseBindingsItemVPCNetwork {
   /** A JavaScript variable name for the binding. */
@@ -13909,8 +13809,7 @@ export const BetaWorkersVersionsGetResponsePackageDependenciesList =
   ) as any as S.Schema<BetaWorkersVersionsGetResponsePackageDependenciesList>;
 
 export type BetaWorkersVersionsGetResponsePlacementModeMode = "smart";
-export const BetaWorkersVersionsGetResponsePlacementModeMode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponsePlacementModeMode = S.String;
 
 export interface BetaWorkersVersionsGetResponsePlacementMode {
   /** Enables [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement). */
@@ -13941,8 +13840,7 @@ export const BetaWorkersVersionsGetResponsePlacementHost =
   BetaWorkersVersionsCreateRequestPlacementHost;
 
 export type BetaWorkersVersionsGetResponsePlacementCase4Mode = "targeted";
-export const BetaWorkersVersionsGetResponsePlacementCase4Mode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponsePlacementCase4Mode = S.String;
 
 export interface BetaWorkersVersionsGetResponsePlacementCase4 {
   /** Targeted placement mode. */
@@ -13961,8 +13859,7 @@ export const BetaWorkersVersionsGetResponsePlacementCase4 =
   }) as any as S.Schema<BetaWorkersVersionsGetResponsePlacementCase4>;
 
 export type BetaWorkersVersionsGetResponsePlacementCase5Mode = "targeted";
-export const BetaWorkersVersionsGetResponsePlacementCase5Mode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponsePlacementCase5Mode = S.String;
 
 export interface BetaWorkersVersionsGetResponsePlacementCase5 {
   /** HTTP hostname for targeted placement. */
@@ -13981,8 +13878,7 @@ export const BetaWorkersVersionsGetResponsePlacementCase5 =
   }) as any as S.Schema<BetaWorkersVersionsGetResponsePlacementCase5>;
 
 export type BetaWorkersVersionsGetResponsePlacementCase6Mode = "targeted";
-export const BetaWorkersVersionsGetResponsePlacementCase6Mode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponsePlacementCase6Mode = S.String;
 
 export interface BetaWorkersVersionsGetResponsePlacementCase6 {
   /** TCP host and port for targeted placement. */
@@ -14001,8 +13897,7 @@ export const BetaWorkersVersionsGetResponsePlacementCase6 =
   }) as any as S.Schema<BetaWorkersVersionsGetResponsePlacementCase6>;
 
 export type BetaWorkersVersionsGetResponsePlacementCase7Mode = "targeted";
-export const BetaWorkersVersionsGetResponsePlacementCase7Mode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponsePlacementCase7Mode = S.String;
 
 export type BetaWorkersVersionsGetResponsePlacementCase7TargetItemRegion =
   BetaWorkersVersionsCreateRequestPlacementCase7TargetItemRegion;
@@ -14078,7 +13973,7 @@ export type BetaWorkersVersionsGetResponseUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const BetaWorkersVersionsGetResponseUsageModel = /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsGetResponseUsageModel = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetBetaWorkerVersionResponse {
@@ -14235,7 +14130,7 @@ export type ObservabilitySharedQueriesGetRequestView =
   | "events"
   | "invocations"
   | "calculations";
-export const ObservabilitySharedQueriesGetRequestView = /*@__PURE__*/ S.String;
+export const ObservabilitySharedQueriesGetRequestView = S.String;
 
 export interface GetObservabilitySharedQueryRequest {
   accountId: string;
@@ -14302,14 +14197,14 @@ export type ObservabilitySharedQueriesGetResponseRunQueryParametersCalculationsI
   | "STDDEV"
   | "VARIANCE";
 export const ObservabilitySharedQueriesGetResponseRunQueryParametersCalculationsItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesGetResponseRunQueryParametersCalculationsItemKeyType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilitySharedQueriesGetResponseRunQueryParametersCalculationsItemKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilitySharedQueriesGetResponseRunQueryParametersCalculationsItem {
   operator: ObservabilitySharedQueriesGetResponseRunQueryParametersCalculationsItemOperator;
@@ -14355,7 +14250,7 @@ export type ObservabilitySharedQueriesGetResponseRunQueryParametersFilterCombina
   | "AND"
   | "OR";
 export const ObservabilitySharedQueriesGetResponseRunQueryParametersFilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesGetResponseRunQueryParametersFiltersItemCase0FilterCombination =
   | "and"
@@ -14363,7 +14258,7 @@ export type ObservabilitySharedQueriesGetResponseRunQueryParametersFiltersItemCa
   | "AND"
   | "OR";
 export const ObservabilitySharedQueriesGetResponseRunQueryParametersFiltersItemCase0FilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesGetResponseRunQueryParametersFiltersItemCase0FiltersList =
   Array<unknown>;
@@ -14375,7 +14270,7 @@ export const ObservabilitySharedQueriesGetResponseRunQueryParametersFiltersItemC
 export type ObservabilitySharedQueriesGetResponseRunQueryParametersFiltersItemCase0Kind =
   "group";
 export const ObservabilitySharedQueriesGetResponseRunQueryParametersFiltersItemCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilitySharedQueriesGetResponseRunQueryParametersFiltersItemCase0 {
   filterCombination: ObservabilitySharedQueriesGetResponseRunQueryParametersFiltersItemCase0FilterCombination;
@@ -14428,19 +14323,19 @@ export type ObservabilitySharedQueriesGetResponseRunQueryParametersFiltersItemWo
   | "STARTS_WITH"
   | "ENDS_WITH";
 export const ObservabilitySharedQueriesGetResponseRunQueryParametersFiltersItemWorkersObservabilityFilterLeafOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesGetResponseRunQueryParametersFiltersItemWorkersObservabilityFilterLeafType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilitySharedQueriesGetResponseRunQueryParametersFiltersItemWorkersObservabilityFilterLeafType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesGetResponseRunQueryParametersFiltersItemWorkersObservabilityFilterLeafKind =
   "filter";
 export const ObservabilitySharedQueriesGetResponseRunQueryParametersFiltersItemWorkersObservabilityFilterLeafKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesGetResponseRunQueryParametersFiltersItemWorkersObservabilityFilterLeafValue =
   | string
@@ -14507,7 +14402,7 @@ export type ObservabilitySharedQueriesGetResponseRunQueryParametersGroupBysItemT
   | "number"
   | "boolean";
 export const ObservabilitySharedQueriesGetResponseRunQueryParametersGroupBysItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilitySharedQueriesGetResponseRunQueryParametersGroupBysItem {
   type: ObservabilitySharedQueriesGetResponseRunQueryParametersGroupBysItemType;
@@ -14539,7 +14434,7 @@ export type ObservabilitySharedQueriesGetResponseRunQueryParametersHavingsItemOp
   | "lt"
   | "lte";
 export const ObservabilitySharedQueriesGetResponseRunQueryParametersHavingsItemOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilitySharedQueriesGetResponseRunQueryParametersHavingsItem {
   key: string;
@@ -14586,7 +14481,7 @@ export type ObservabilitySharedQueriesGetResponseRunQueryParametersOrderByOrder 
   | "asc"
   | "desc";
 export const ObservabilitySharedQueriesGetResponseRunQueryParametersOrderByOrder =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilitySharedQueriesGetResponseRunQueryParametersOrderBy {
   /** Configure which Calculation to order the results by. */
@@ -14709,8 +14604,7 @@ export const ObservabilitySharedQueriesGetResponseRunQuery =
 export type ObservabilitySharedQueriesGetResponseRunStatus =
   | "STARTED"
   | "COMPLETED";
-export const ObservabilitySharedQueriesGetResponseRunStatus =
-  /*@__PURE__*/ S.String;
+export const ObservabilitySharedQueriesGetResponseRunStatus = S.String;
 
 export type ObservabilitySharedQueriesGetResponseRunTimeframe =
   ObservabilitySharedQueriesCreateRequestTimeframe;
@@ -15328,7 +15222,7 @@ export type ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase0Eve
   | "workflow"
   | "unknown";
 export const ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase0EventType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase0EventMap =
   { [key: string]: unknown | undefined };
@@ -15342,7 +15236,7 @@ export type ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase0Exe
   | "durableObject"
   | "stateless";
 export const ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase0ExecutionModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase0Preview {
   id?: string | null;
@@ -15446,7 +15340,7 @@ export type ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase1Eve
   | "workflow"
   | "unknown";
 export const ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase1EventType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase1DiagnosticsChannelEventsItem {
   channel: string;
@@ -15484,7 +15378,7 @@ export type ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase1Exe
   | "durableObject"
   | "stateless";
 export const ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase1ExecutionModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase1Preview =
   ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase0Preview;
@@ -15827,7 +15721,7 @@ export type ObservabilitySharedQueriesGetResponseInvocationsValueItemWorkersCase
   | "workflow"
   | "unknown";
 export const ObservabilitySharedQueriesGetResponseInvocationsValueItemWorkersCase0EventType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesGetResponseInvocationsValueItemWorkersCase0EventMap =
   { [key: string]: unknown | undefined };
@@ -15841,7 +15735,7 @@ export type ObservabilitySharedQueriesGetResponseInvocationsValueItemWorkersCase
   | "durableObject"
   | "stateless";
 export const ObservabilitySharedQueriesGetResponseInvocationsValueItemWorkersCase0ExecutionModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesGetResponseInvocationsValueItemWorkersCase0Preview =
   ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase0Preview;
@@ -15921,7 +15815,7 @@ export type ObservabilitySharedQueriesGetResponseInvocationsValueItemWorkersCase
   | "workflow"
   | "unknown";
 export const ObservabilitySharedQueriesGetResponseInvocationsValueItemWorkersCase1EventType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesGetResponseInvocationsValueItemWorkersCase1DiagnosticsChannelEventsItem =
   ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase1DiagnosticsChannelEventsItem;
@@ -15947,7 +15841,7 @@ export type ObservabilitySharedQueriesGetResponseInvocationsValueItemWorkersCase
   | "durableObject"
   | "stateless";
 export const ObservabilitySharedQueriesGetResponseInvocationsValueItemWorkersCase1ExecutionModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilitySharedQueriesGetResponseInvocationsValueItemWorkersCase1Preview =
   ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase0Preview;
@@ -16357,7 +16251,7 @@ export const GetScriptDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetScriptDeploymentRequest>;
 
 export type ScriptsDeploymentsGetResponseStrategy = "percentage";
-export const ScriptsDeploymentsGetResponseStrategy = /*@__PURE__*/ S.String;
+export const ScriptsDeploymentsGetResponseStrategy = S.String;
 
 export type ScriptsDeploymentsGetResponseVersionsItem =
   ScriptsDeploymentsCreateRequestVersionsItem;
@@ -16507,7 +16401,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseAnnotations =
 
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemAIType = "ai";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemAIType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemAI {
   /** A JavaScript variable name for the binding. */
@@ -16528,7 +16422,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemAI =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemAISearchType =
   "ai_search";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemAISearchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemAISearch {
   /** The user-chosen instance name. Must exist at deploy time. The worker can search, chat, update, and manage items/jobs on this instance. */
@@ -16556,7 +16450,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemAISearch =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemAISearchNamespaceType =
   "ai_search_namespace";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemAISearchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemAISearchNamespace {
   /** A JavaScript variable name for the binding. */
@@ -16581,7 +16475,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemAISearchNames
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemAnalyticsEngineType =
   "analytics_engine";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemAnalyticsEngineType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemAnalyticsEngine {
   /** The name of the dataset to bind to. */
@@ -16606,7 +16500,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemAnalyticsEngi
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemAssetsType =
   "assets";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemAssetsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemAssets {
   /** A JavaScript variable name for the binding. */
@@ -16627,7 +16521,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemAssets =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemBrowserType =
   "browser";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemBrowserType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemBrowser {
   /** A JavaScript variable name for the binding. */
@@ -16647,7 +16541,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemBrowser =
 
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemD1Type = "d1";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemD1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemD1 {
   /** Identifier of the D1 database to bind to. */
@@ -16674,7 +16568,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemD1 =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemDataBlobType =
   "data_blob";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemDataBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemDataBlob {
   /** A JavaScript variable name for the binding. */
@@ -16699,7 +16593,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemDataBlob =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemDispatchNamespaceType =
   "dispatch_namespace";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemDispatchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemDispatchNamespaceOutboundParamsItem =
   BetaWorkersVersionsCreateRequestBindingsItemDispatchNamespaceOutboundParamsItem;
@@ -16773,7 +16667,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemDispatchNames
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemDurableObjectNamespaceType =
   "durable_object_namespace";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemDurableObjectNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemDurableObjectNamespace {
   /** A JavaScript variable name for the binding. */
@@ -16812,7 +16706,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemDurableObject
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemHyperdriveType =
   "hyperdrive";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemHyperdriveType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemHyperdrive {
   /** Identifier of the Hyperdrive connection to bind to. */
@@ -16837,7 +16731,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemHyperdrive =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemInheritType =
   "inherit";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemInheritType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemInherit {
   /** The name of the inherited binding. */
@@ -16864,7 +16758,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemInherit =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemImagesType =
   "images";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemImagesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemImages {
   /** A JavaScript variable name for the binding. */
@@ -16885,7 +16779,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemImages =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemJsonType =
   "json";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemJsonType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemJson {
   /** JSON data to use. */
@@ -16909,7 +16803,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemJson =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemKVNamespaceType =
   "kv_namespace";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemKVNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemKVNamespace {
   /** A JavaScript variable name for the binding. */
@@ -16934,7 +16828,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemKVNamespace =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemMediaType =
   "media";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemMediaType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemMedia {
   /** A JavaScript variable name for the binding. */
@@ -16955,7 +16849,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemMedia =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemMTLSCertificateType =
   "mtls_certificate";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemMTLSCertificateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemMTLSCertificate {
   /** Identifier of the certificate to bind to. */
@@ -16980,7 +16874,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemMTLSCertifica
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemPlainTextType =
   "plain_text";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemPlainTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemPlainText {
   /** A JavaScript variable name for the binding. */
@@ -17005,7 +16899,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemPlainText =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemPipelinesType =
   "pipelines";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemPipelinesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemPipelines {
   /** A JavaScript variable name for the binding. */
@@ -17030,7 +16924,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemPipelines =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemQueueType =
   "queue";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemQueueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemQueue {
   /** A JavaScript variable name for the binding. */
@@ -17059,7 +16953,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemRatelimitSimp
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemRatelimitType =
   "ratelimit";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemRatelimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemRatelimit {
   /** A JavaScript variable name for the binding. */
@@ -17087,14 +16981,14 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemRatelimit =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemR2BucketType =
   "r2_bucket";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemR2BucketType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemR2BucketJurisdiction =
   | "eu"
   | "fedramp"
   | "fedramp-high";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemR2BucketJurisdiction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemR2Bucket {
   /** R2 bucket to bind to. */
@@ -17126,7 +17020,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemR2Bucket =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretTextType =
   "secret_text";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretText {
   /** A JavaScript variable name for the binding. */
@@ -17151,7 +17045,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretText =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemSendEmailType =
   "send_email";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemSendEmailType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemSendEmailAllowedDestinationAddressesList =
   Array<string>;
@@ -17206,7 +17100,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemSendEmail =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemServiceType =
   "service";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemService {
   /** A JavaScript variable name for the binding. */
@@ -17236,7 +17130,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemService =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemTextBlobType =
   "text_blob";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemTextBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemTextBlob {
   /** A JavaScript variable name for the binding. */
@@ -17261,7 +17155,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemTextBlob =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemVectorizeType =
   "vectorize";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemVectorizeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemVectorize {
   /** Name of the Vectorize index to bind to. */
@@ -17286,7 +17180,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemVectorize =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemVersionMetadataType =
   "version_metadata";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemVersionMetadataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemVersionMetadata {
   /** A JavaScript variable name for the binding. */
@@ -17308,7 +17202,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemVersionMetada
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretsStoreSecretType =
   "secrets_store_secret";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretsStoreSecretType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretsStoreSecret {
   /** A JavaScript variable name for the binding. */
@@ -17336,7 +17230,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretsStoreS
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemFlagshipType =
   "flagship";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemFlagshipType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemFlagship {
   /** ID of the Flagship app to bind to for feature flag evaluation. */
@@ -17364,12 +17258,12 @@ export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretKeyForma
   | "spki"
   | "jwk";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretKeyType =
   "secret_key";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretKeyUsagesItem =
   | "encrypt"
@@ -17381,7 +17275,7 @@ export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretKeyUsage
   | "wrapKey"
   | "unwrapKey";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretKeyUsagesList =
   Array<ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretKeyUsagesItem>;
@@ -17427,7 +17321,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemSecretKey =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemWorkflowType =
   "workflow";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemWorkflowType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemWorkflow {
   /** A JavaScript variable name for the binding. */
@@ -17458,7 +17352,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemWorkflow =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemWasmModuleType =
   "wasm_module";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemWasmModuleType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemWasmModule {
   /** A JavaScript variable name for the binding. */
@@ -17483,7 +17377,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemWasmModule =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemVPCServiceType =
   "vpc_service";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemVPCServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemVPCService {
   /** A JavaScript variable name for the binding. */
@@ -17508,7 +17402,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemVPCService =
 export type ScriptsScriptAndVersionSettingsGetResponseBindingsItemVPCNetworkType =
   "vpc_network";
 export const ScriptsScriptAndVersionSettingsGetResponseBindingsItemVPCNetworkType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseBindingsItemVPCNetwork {
   /** A JavaScript variable name for the binding. */
@@ -17647,7 +17541,7 @@ export type ScriptsScriptAndVersionSettingsGetResponseExportsValueType =
   | "worker"
   | "durable-object";
 export const ScriptsScriptAndVersionSettingsGetResponseExportsValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseExportsValueCache {
   /** Whether caching is enabled for this entrypoint. */
@@ -17994,7 +17888,7 @@ export type ScriptsScriptAndVersionSettingsGetResponseObservabilityTracesPropaga
   | "authenticated"
   | "accept";
 export const ScriptsScriptAndVersionSettingsGetResponseObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponseObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -18062,7 +17956,7 @@ export const ScriptsScriptAndVersionSettingsGetResponseObservability =
 export type ScriptsScriptAndVersionSettingsGetResponsePlacementModeMode =
   "smart";
 export const ScriptsScriptAndVersionSettingsGetResponsePlacementModeMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponsePlacementMode {
   /** Enables [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement). */
@@ -18095,7 +17989,7 @@ export const ScriptsScriptAndVersionSettingsGetResponsePlacementHost =
 export type ScriptsScriptAndVersionSettingsGetResponsePlacementCase4Mode =
   "targeted";
 export const ScriptsScriptAndVersionSettingsGetResponsePlacementCase4Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponsePlacementCase4 {
   /** Targeted placement mode. */
@@ -18116,7 +18010,7 @@ export const ScriptsScriptAndVersionSettingsGetResponsePlacementCase4 =
 export type ScriptsScriptAndVersionSettingsGetResponsePlacementCase5Mode =
   "targeted";
 export const ScriptsScriptAndVersionSettingsGetResponsePlacementCase5Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponsePlacementCase5 {
   /** HTTP hostname for targeted placement. */
@@ -18137,7 +18031,7 @@ export const ScriptsScriptAndVersionSettingsGetResponsePlacementCase5 =
 export type ScriptsScriptAndVersionSettingsGetResponsePlacementCase6Mode =
   "targeted";
 export const ScriptsScriptAndVersionSettingsGetResponsePlacementCase6Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsGetResponsePlacementCase6 {
   /** TCP host and port for targeted placement. */
@@ -18158,7 +18052,7 @@ export const ScriptsScriptAndVersionSettingsGetResponsePlacementCase6 =
 export type ScriptsScriptAndVersionSettingsGetResponsePlacementCase7Mode =
   "targeted";
 export const ScriptsScriptAndVersionSettingsGetResponsePlacementCase7Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsScriptAndVersionSettingsGetResponsePlacementCase7TargetItemRegion =
   BetaWorkersVersionsCreateRequestPlacementCase7TargetItemRegion;
@@ -18267,8 +18161,7 @@ export type ScriptsScriptAndVersionSettingsGetResponseUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const ScriptsScriptAndVersionSettingsGetResponseUsageModel =
-  /*@__PURE__*/ S.String;
+export const ScriptsScriptAndVersionSettingsGetResponseUsageModel = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetScriptScriptAndVersionSettingResponse {
@@ -18387,7 +18280,7 @@ export const GetScriptSecretRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetScriptSecretRequest>;
 
 export type ScriptsSecretsGetResultSecretTextType = "secret_text";
-export const ScriptsSecretsGetResultSecretTextType = /*@__PURE__*/ S.String;
+export const ScriptsSecretsGetResultSecretTextType = S.String;
 
 export interface ScriptsSecretsGetResultSecretText {
   /** A JavaScript variable name for the binding. */
@@ -18412,10 +18305,10 @@ export type ScriptsSecretsGetResultSecretKeyFormat =
   | "pkcs8"
   | "spki"
   | "jwk";
-export const ScriptsSecretsGetResultSecretKeyFormat = /*@__PURE__*/ S.String;
+export const ScriptsSecretsGetResultSecretKeyFormat = S.String;
 
 export type ScriptsSecretsGetResultSecretKeyType = "secret_key";
-export const ScriptsSecretsGetResultSecretKeyType = /*@__PURE__*/ S.String;
+export const ScriptsSecretsGetResultSecretKeyType = S.String;
 
 export type ScriptsSecretsGetResultSecretKeyUsagesItem =
   | "encrypt"
@@ -18426,8 +18319,7 @@ export type ScriptsSecretsGetResultSecretKeyUsagesItem =
   | "deriveBits"
   | "wrapKey"
   | "unwrapKey";
-export const ScriptsSecretsGetResultSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+export const ScriptsSecretsGetResultSecretKeyUsagesItem = S.String;
 
 export type ScriptsSecretsGetResultSecretKeyUsagesList =
   Array<ScriptsSecretsGetResultSecretKeyUsagesItem>;
@@ -18555,7 +18447,7 @@ export type ScriptsSettingsGetResponseObservabilityTracesPropagationPolicy =
   | "authenticated"
   | "accept";
 export const ScriptsSettingsGetResponseObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsSettingsGetResponseObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -18766,8 +18658,7 @@ export const GetScriptVersionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetScriptVersionRequest>;
 
 export type ScriptsVersionsGetResponseResourcesBindingsItemAIType = "ai";
-export const ScriptsVersionsGetResponseResourcesBindingsItemAIType =
-  /*@__PURE__*/ S.String;
+export const ScriptsVersionsGetResponseResourcesBindingsItemAIType = S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemAI {
   /** A JavaScript variable name for the binding. */
@@ -18788,7 +18679,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemAI =
 export type ScriptsVersionsGetResponseResourcesBindingsItemAISearchType =
   "ai_search";
 export const ScriptsVersionsGetResponseResourcesBindingsItemAISearchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemAISearch {
   /** The user-chosen instance name. Must exist at deploy time. The worker can search, chat, update, and manage items/jobs on this instance. */
@@ -18815,7 +18706,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemAISearch =
 export type ScriptsVersionsGetResponseResourcesBindingsItemAISearchNamespaceType =
   "ai_search_namespace";
 export const ScriptsVersionsGetResponseResourcesBindingsItemAISearchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemAISearchNamespace {
   /** A JavaScript variable name for the binding. */
@@ -18840,7 +18731,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemAISearchNamespace =
 export type ScriptsVersionsGetResponseResourcesBindingsItemAnalyticsEngineType =
   "analytics_engine";
 export const ScriptsVersionsGetResponseResourcesBindingsItemAnalyticsEngineType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemAnalyticsEngine {
   /** The name of the dataset to bind to. */
@@ -18865,7 +18756,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemAnalyticsEngine =
 export type ScriptsVersionsGetResponseResourcesBindingsItemAssetsType =
   "assets";
 export const ScriptsVersionsGetResponseResourcesBindingsItemAssetsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemAssets {
   /** A JavaScript variable name for the binding. */
@@ -18886,7 +18777,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemAssets =
 export type ScriptsVersionsGetResponseResourcesBindingsItemBrowserType =
   "browser";
 export const ScriptsVersionsGetResponseResourcesBindingsItemBrowserType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemBrowser {
   /** A JavaScript variable name for the binding. */
@@ -18905,8 +18796,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemBrowser =
   }) as any as S.Schema<ScriptsVersionsGetResponseResourcesBindingsItemBrowser>;
 
 export type ScriptsVersionsGetResponseResourcesBindingsItemD1Type = "d1";
-export const ScriptsVersionsGetResponseResourcesBindingsItemD1Type =
-  /*@__PURE__*/ S.String;
+export const ScriptsVersionsGetResponseResourcesBindingsItemD1Type = S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemD1 {
   /** Identifier of the D1 database to bind to. */
@@ -18933,7 +18823,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemD1 =
 export type ScriptsVersionsGetResponseResourcesBindingsItemDataBlobType =
   "data_blob";
 export const ScriptsVersionsGetResponseResourcesBindingsItemDataBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemDataBlob {
   /** A JavaScript variable name for the binding. */
@@ -18957,7 +18847,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemDataBlob =
 export type ScriptsVersionsGetResponseResourcesBindingsItemDispatchNamespaceType =
   "dispatch_namespace";
 export const ScriptsVersionsGetResponseResourcesBindingsItemDispatchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsVersionsGetResponseResourcesBindingsItemDispatchNamespaceOutboundParamsItem =
   BetaWorkersVersionsCreateRequestBindingsItemDispatchNamespaceOutboundParamsItem;
@@ -19031,7 +18921,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemDispatchNamespace =
 export type ScriptsVersionsGetResponseResourcesBindingsItemDurableObjectNamespaceType =
   "durable_object_namespace";
 export const ScriptsVersionsGetResponseResourcesBindingsItemDurableObjectNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemDurableObjectNamespace {
   /** A JavaScript variable name for the binding. */
@@ -19070,7 +18960,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemDurableObjectNamespa
 export type ScriptsVersionsGetResponseResourcesBindingsItemHyperdriveType =
   "hyperdrive";
 export const ScriptsVersionsGetResponseResourcesBindingsItemHyperdriveType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemHyperdrive {
   /** Identifier of the Hyperdrive connection to bind to. */
@@ -19094,7 +18984,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemHyperdrive =
 export type ScriptsVersionsGetResponseResourcesBindingsItemInheritType =
   "inherit";
 export const ScriptsVersionsGetResponseResourcesBindingsItemInheritType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemInherit {
   /** The name of the inherited binding. */
@@ -19121,7 +19011,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemInherit =
 export type ScriptsVersionsGetResponseResourcesBindingsItemImagesType =
   "images";
 export const ScriptsVersionsGetResponseResourcesBindingsItemImagesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemImages {
   /** A JavaScript variable name for the binding. */
@@ -19140,8 +19030,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemImages =
   }) as any as S.Schema<ScriptsVersionsGetResponseResourcesBindingsItemImages>;
 
 export type ScriptsVersionsGetResponseResourcesBindingsItemJsonType = "json";
-export const ScriptsVersionsGetResponseResourcesBindingsItemJsonType =
-  /*@__PURE__*/ S.String;
+export const ScriptsVersionsGetResponseResourcesBindingsItemJsonType = S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemJson {
   /** JSON data to use. */
@@ -19165,7 +19054,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemJson =
 export type ScriptsVersionsGetResponseResourcesBindingsItemKVNamespaceType =
   "kv_namespace";
 export const ScriptsVersionsGetResponseResourcesBindingsItemKVNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemKVNamespace {
   /** A JavaScript variable name for the binding. */
@@ -19188,7 +19077,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemKVNamespace =
 
 export type ScriptsVersionsGetResponseResourcesBindingsItemMediaType = "media";
 export const ScriptsVersionsGetResponseResourcesBindingsItemMediaType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemMedia {
   /** A JavaScript variable name for the binding. */
@@ -19209,7 +19098,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemMedia =
 export type ScriptsVersionsGetResponseResourcesBindingsItemMTLSCertificateType =
   "mtls_certificate";
 export const ScriptsVersionsGetResponseResourcesBindingsItemMTLSCertificateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemMTLSCertificate {
   /** Identifier of the certificate to bind to. */
@@ -19234,7 +19123,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemMTLSCertificate =
 export type ScriptsVersionsGetResponseResourcesBindingsItemPlainTextType =
   "plain_text";
 export const ScriptsVersionsGetResponseResourcesBindingsItemPlainTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemPlainText {
   /** A JavaScript variable name for the binding. */
@@ -19258,7 +19147,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemPlainText =
 export type ScriptsVersionsGetResponseResourcesBindingsItemPipelinesType =
   "pipelines";
 export const ScriptsVersionsGetResponseResourcesBindingsItemPipelinesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemPipelines {
   /** A JavaScript variable name for the binding. */
@@ -19281,7 +19170,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemPipelines =
 
 export type ScriptsVersionsGetResponseResourcesBindingsItemQueueType = "queue";
 export const ScriptsVersionsGetResponseResourcesBindingsItemQueueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemQueue {
   /** A JavaScript variable name for the binding. */
@@ -19310,7 +19199,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemRatelimitSimple =
 export type ScriptsVersionsGetResponseResourcesBindingsItemRatelimitType =
   "ratelimit";
 export const ScriptsVersionsGetResponseResourcesBindingsItemRatelimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemRatelimit {
   /** A JavaScript variable name for the binding. */
@@ -19337,14 +19226,14 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemRatelimit =
 export type ScriptsVersionsGetResponseResourcesBindingsItemR2BucketType =
   "r2_bucket";
 export const ScriptsVersionsGetResponseResourcesBindingsItemR2BucketType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsVersionsGetResponseResourcesBindingsItemR2BucketJurisdiction =
   | "eu"
   | "fedramp"
   | "fedramp-high";
 export const ScriptsVersionsGetResponseResourcesBindingsItemR2BucketJurisdiction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemR2Bucket {
   /** R2 bucket to bind to. */
@@ -19375,7 +19264,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemR2Bucket =
 export type ScriptsVersionsGetResponseResourcesBindingsItemSecretTextType =
   "secret_text";
 export const ScriptsVersionsGetResponseResourcesBindingsItemSecretTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemSecretText {
   /** A JavaScript variable name for the binding. */
@@ -19399,7 +19288,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemSecretText =
 export type ScriptsVersionsGetResponseResourcesBindingsItemSendEmailType =
   "send_email";
 export const ScriptsVersionsGetResponseResourcesBindingsItemSendEmailType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsVersionsGetResponseResourcesBindingsItemSendEmailAllowedDestinationAddressesList =
   Array<string>;
@@ -19453,7 +19342,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemSendEmail =
 export type ScriptsVersionsGetResponseResourcesBindingsItemServiceType =
   "service";
 export const ScriptsVersionsGetResponseResourcesBindingsItemServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemService {
   /** A JavaScript variable name for the binding. */
@@ -19483,7 +19372,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemService =
 export type ScriptsVersionsGetResponseResourcesBindingsItemTextBlobType =
   "text_blob";
 export const ScriptsVersionsGetResponseResourcesBindingsItemTextBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemTextBlob {
   /** A JavaScript variable name for the binding. */
@@ -19507,7 +19396,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemTextBlob =
 export type ScriptsVersionsGetResponseResourcesBindingsItemVectorizeType =
   "vectorize";
 export const ScriptsVersionsGetResponseResourcesBindingsItemVectorizeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemVectorize {
   /** Name of the Vectorize index to bind to. */
@@ -19531,7 +19420,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemVectorize =
 export type ScriptsVersionsGetResponseResourcesBindingsItemVersionMetadataType =
   "version_metadata";
 export const ScriptsVersionsGetResponseResourcesBindingsItemVersionMetadataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemVersionMetadata {
   /** A JavaScript variable name for the binding. */
@@ -19553,7 +19442,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemVersionMetadata =
 export type ScriptsVersionsGetResponseResourcesBindingsItemSecretsStoreSecretType =
   "secrets_store_secret";
 export const ScriptsVersionsGetResponseResourcesBindingsItemSecretsStoreSecretType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemSecretsStoreSecret {
   /** A JavaScript variable name for the binding. */
@@ -19581,7 +19470,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemSecretsStoreSecret =
 export type ScriptsVersionsGetResponseResourcesBindingsItemFlagshipType =
   "flagship";
 export const ScriptsVersionsGetResponseResourcesBindingsItemFlagshipType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemFlagship {
   /** ID of the Flagship app to bind to for feature flag evaluation. */
@@ -19608,12 +19497,12 @@ export type ScriptsVersionsGetResponseResourcesBindingsItemSecretKeyFormat =
   | "spki"
   | "jwk";
 export const ScriptsVersionsGetResponseResourcesBindingsItemSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsVersionsGetResponseResourcesBindingsItemSecretKeyType =
   "secret_key";
 export const ScriptsVersionsGetResponseResourcesBindingsItemSecretKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsVersionsGetResponseResourcesBindingsItemSecretKeyUsagesItem =
   | "encrypt"
@@ -19625,7 +19514,7 @@ export type ScriptsVersionsGetResponseResourcesBindingsItemSecretKeyUsagesItem =
   | "wrapKey"
   | "unwrapKey";
 export const ScriptsVersionsGetResponseResourcesBindingsItemSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsVersionsGetResponseResourcesBindingsItemSecretKeyUsagesList =
   Array<ScriptsVersionsGetResponseResourcesBindingsItemSecretKeyUsagesItem>;
@@ -19669,7 +19558,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemSecretKey =
 export type ScriptsVersionsGetResponseResourcesBindingsItemWorkflowType =
   "workflow";
 export const ScriptsVersionsGetResponseResourcesBindingsItemWorkflowType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemWorkflow {
   /** A JavaScript variable name for the binding. */
@@ -19699,7 +19588,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemWorkflow =
 export type ScriptsVersionsGetResponseResourcesBindingsItemWasmModuleType =
   "wasm_module";
 export const ScriptsVersionsGetResponseResourcesBindingsItemWasmModuleType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemWasmModule {
   /** A JavaScript variable name for the binding. */
@@ -19723,7 +19612,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemWasmModule =
 export type ScriptsVersionsGetResponseResourcesBindingsItemVPCServiceType =
   "vpc_service";
 export const ScriptsVersionsGetResponseResourcesBindingsItemVPCServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemVPCService {
   /** A JavaScript variable name for the binding. */
@@ -19747,7 +19636,7 @@ export const ScriptsVersionsGetResponseResourcesBindingsItemVPCService =
 export type ScriptsVersionsGetResponseResourcesBindingsItemVPCNetworkType =
   "vpc_network";
 export const ScriptsVersionsGetResponseResourcesBindingsItemVPCNetworkType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesBindingsItemVPCNetwork {
   /** A JavaScript variable name for the binding. */
@@ -19957,7 +19846,7 @@ export type ScriptsVersionsGetResponseResourcesScriptRuntimeUsageModel =
   | "unbound"
   | "standard";
 export const ScriptsVersionsGetResponseResourcesScriptRuntimeUsageModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsVersionsGetResponseResourcesScriptRuntime {
   /** Date indicating targeted support in the Workers runtime. Backwards incompatible fixes to the runtime following this date will not affect this Worker. */
@@ -20033,7 +19922,7 @@ export type ScriptsVersionsGetResponseMetadataSource =
   | "quick_editor"
   | "playground"
   | "workersci";
-export const ScriptsVersionsGetResponseMetadataSource = /*@__PURE__*/ S.String;
+export const ScriptsVersionsGetResponseMetadataSource = S.String;
 
 export interface ScriptsVersionsGetResponseMetadata {
   /** Email of the user who created the version. */
@@ -20126,7 +20015,7 @@ export type ObservabilityTelemetryKeysRequestFiltersItemCase0FilterCombination =
   | "AND"
   | "OR";
 export const ObservabilityTelemetryKeysRequestFiltersItemCase0FilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersItemCase0FilterCombination =
   | "and"
@@ -20134,7 +20023,7 @@ export type ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersItemCase0Fil
   | "AND"
   | "OR";
 export const ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersItemCase0FilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersItemCase0FiltersList =
   Array<unknown>;
@@ -20146,7 +20035,7 @@ export const ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersItemCase0Fi
 export type ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersItemCase0Kind =
   "group";
 export const ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersItemCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersItemCase0 {
   filterCombination:
@@ -20201,19 +20090,19 @@ export type ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersItemWorkersO
   | "STARTS_WITH"
   | "ENDS_WITH";
 export const ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafKind =
   "filter";
 export const ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafValue =
   | string
@@ -20278,8 +20167,7 @@ export const ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersList =
   ) as any as S.Schema<ObservabilityTelemetryKeysRequestFiltersItemCase0FiltersList>;
 
 export type ObservabilityTelemetryKeysRequestFiltersItemCase0Kind = "group";
-export const ObservabilityTelemetryKeysRequestFiltersItemCase0Kind =
-  /*@__PURE__*/ S.String;
+export const ObservabilityTelemetryKeysRequestFiltersItemCase0Kind = S.String;
 
 export interface ObservabilityTelemetryKeysRequestFiltersItemCase0 {
   filterCombination:
@@ -20332,19 +20220,19 @@ export type ObservabilityTelemetryKeysRequestFiltersItemWorkersObservabilityFilt
   | "STARTS_WITH"
   | "ENDS_WITH";
 export const ObservabilityTelemetryKeysRequestFiltersItemWorkersObservabilityFilterLeafOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryKeysRequestFiltersItemWorkersObservabilityFilterLeafType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityTelemetryKeysRequestFiltersItemWorkersObservabilityFilterLeafType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryKeysRequestFiltersItemWorkersObservabilityFilterLeafKind =
   "filter";
 export const ObservabilityTelemetryKeysRequestFiltersItemWorkersObservabilityFilterLeafKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryKeysRequestFiltersItemWorkersObservabilityFilterLeafValue =
   | string
@@ -20502,7 +20390,7 @@ export type ObservabilityTelemetryKeysResultItemType =
   | "string"
   | "boolean"
   | "number";
-export const ObservabilityTelemetryKeysResultItemType = /*@__PURE__*/ S.String;
+export const ObservabilityTelemetryKeysResultItemType = S.String;
 
 export interface ObservabilityTelemetryKeysResultItem {
   key: string;
@@ -20542,14 +20430,14 @@ export const KeysObservabilityTelemetryResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<KeysObservabilityTelemetryResponse>;
 
 export type BetaWorkersListRequestOrder = "asc" | "desc";
-export const BetaWorkersListRequestOrder = /*@__PURE__*/ S.String;
+export const BetaWorkersListRequestOrder = S.String;
 
 export type BetaWorkersListRequestOrderBy =
   | "deployed_on"
   | "updated_on"
   | "created_on"
   | "name";
-export const BetaWorkersListRequestOrderBy = /*@__PURE__*/ S.String;
+export const BetaWorkersListRequestOrderBy = S.String;
 
 export interface ListBetaWorkersRequest {
   /** Identifier. */
@@ -20634,7 +20522,7 @@ export type BetaWorkersListResultItemObservabilityTracesPropagationPolicy =
   | "authenticated"
   | "accept";
 export const BetaWorkersListResultItemObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersListResultItemObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -20914,14 +20802,14 @@ export type BetaWorkersVersionsListResultItemAssetsConfigHtmlHandling =
   | "drop-trailing-slash"
   | "none";
 export const BetaWorkersVersionsListResultItemAssetsConfigHtmlHandling =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsListResultItemAssetsConfigNotFoundHandling =
   | "none"
   | "404-page"
   | "single-page-application";
 export const BetaWorkersVersionsListResultItemAssetsConfigNotFoundHandling =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsListResultItemAssetsConfigRunWorkerFirstCase0List =
   Array<string>;
@@ -20986,8 +20874,7 @@ export const BetaWorkersVersionsListResultItemAssets = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<BetaWorkersVersionsListResultItemAssets>;
 
 export type BetaWorkersVersionsListResultItemBindingsItemAIType = "ai";
-export const BetaWorkersVersionsListResultItemBindingsItemAIType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsListResultItemBindingsItemAIType = S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemAI {
   /** A JavaScript variable name for the binding. */
@@ -21008,7 +20895,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemAI =
 export type BetaWorkersVersionsListResultItemBindingsItemAISearchType =
   "ai_search";
 export const BetaWorkersVersionsListResultItemBindingsItemAISearchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemAISearch {
   /** The user-chosen instance name. Must exist at deploy time. The worker can search, chat, update, and manage items/jobs on this instance. */
@@ -21035,7 +20922,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemAISearch =
 export type BetaWorkersVersionsListResultItemBindingsItemAISearchNamespaceType =
   "ai_search_namespace";
 export const BetaWorkersVersionsListResultItemBindingsItemAISearchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemAISearchNamespace {
   /** A JavaScript variable name for the binding. */
@@ -21060,7 +20947,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemAISearchNamespace =
 export type BetaWorkersVersionsListResultItemBindingsItemAnalyticsEngineType =
   "analytics_engine";
 export const BetaWorkersVersionsListResultItemBindingsItemAnalyticsEngineType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemAnalyticsEngine {
   /** The name of the dataset to bind to. */
@@ -21082,8 +20969,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemAnalyticsEngine =
   }) as any as S.Schema<BetaWorkersVersionsListResultItemBindingsItemAnalyticsEngine>;
 
 export type BetaWorkersVersionsListResultItemBindingsItemAssetsType = "assets";
-export const BetaWorkersVersionsListResultItemBindingsItemAssetsType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsListResultItemBindingsItemAssetsType = S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemAssets {
   /** A JavaScript variable name for the binding. */
@@ -21104,7 +20990,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemAssets =
 export type BetaWorkersVersionsListResultItemBindingsItemBrowserType =
   "browser";
 export const BetaWorkersVersionsListResultItemBindingsItemBrowserType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemBrowser {
   /** A JavaScript variable name for the binding. */
@@ -21123,8 +21009,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemBrowser =
   }) as any as S.Schema<BetaWorkersVersionsListResultItemBindingsItemBrowser>;
 
 export type BetaWorkersVersionsListResultItemBindingsItemD1Type = "d1";
-export const BetaWorkersVersionsListResultItemBindingsItemD1Type =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsListResultItemBindingsItemD1Type = S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemD1 {
   /** Identifier of the D1 database to bind to. */
@@ -21151,7 +21036,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemD1 =
 export type BetaWorkersVersionsListResultItemBindingsItemDataBlobType =
   "data_blob";
 export const BetaWorkersVersionsListResultItemBindingsItemDataBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemDataBlob {
   /** A JavaScript variable name for the binding. */
@@ -21175,7 +21060,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemDataBlob =
 export type BetaWorkersVersionsListResultItemBindingsItemDispatchNamespaceType =
   "dispatch_namespace";
 export const BetaWorkersVersionsListResultItemBindingsItemDispatchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsListResultItemBindingsItemDispatchNamespaceOutboundParamsItem =
   BetaWorkersVersionsCreateRequestBindingsItemDispatchNamespaceOutboundParamsItem;
@@ -21249,7 +21134,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemDispatchNamespace =
 export type BetaWorkersVersionsListResultItemBindingsItemDurableObjectNamespaceType =
   "durable_object_namespace";
 export const BetaWorkersVersionsListResultItemBindingsItemDurableObjectNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemDurableObjectNamespace {
   /** A JavaScript variable name for the binding. */
@@ -21288,7 +21173,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemDurableObjectNamespace
 export type BetaWorkersVersionsListResultItemBindingsItemHyperdriveType =
   "hyperdrive";
 export const BetaWorkersVersionsListResultItemBindingsItemHyperdriveType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemHyperdrive {
   /** Identifier of the Hyperdrive connection to bind to. */
@@ -21312,7 +21197,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemHyperdrive =
 export type BetaWorkersVersionsListResultItemBindingsItemInheritType =
   "inherit";
 export const BetaWorkersVersionsListResultItemBindingsItemInheritType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemInherit {
   /** The name of the inherited binding. */
@@ -21337,8 +21222,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemInherit =
   }) as any as S.Schema<BetaWorkersVersionsListResultItemBindingsItemInherit>;
 
 export type BetaWorkersVersionsListResultItemBindingsItemImagesType = "images";
-export const BetaWorkersVersionsListResultItemBindingsItemImagesType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsListResultItemBindingsItemImagesType = S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemImages {
   /** A JavaScript variable name for the binding. */
@@ -21357,8 +21241,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemImages =
   }) as any as S.Schema<BetaWorkersVersionsListResultItemBindingsItemImages>;
 
 export type BetaWorkersVersionsListResultItemBindingsItemJsonType = "json";
-export const BetaWorkersVersionsListResultItemBindingsItemJsonType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsListResultItemBindingsItemJsonType = S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemJson {
   /** JSON data to use. */
@@ -21382,7 +21265,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemJson =
 export type BetaWorkersVersionsListResultItemBindingsItemKVNamespaceType =
   "kv_namespace";
 export const BetaWorkersVersionsListResultItemBindingsItemKVNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemKVNamespace {
   /** A JavaScript variable name for the binding. */
@@ -21404,8 +21287,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemKVNamespace =
   }) as any as S.Schema<BetaWorkersVersionsListResultItemBindingsItemKVNamespace>;
 
 export type BetaWorkersVersionsListResultItemBindingsItemMediaType = "media";
-export const BetaWorkersVersionsListResultItemBindingsItemMediaType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsListResultItemBindingsItemMediaType = S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemMedia {
   /** A JavaScript variable name for the binding. */
@@ -21426,7 +21308,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemMedia =
 export type BetaWorkersVersionsListResultItemBindingsItemMTLSCertificateType =
   "mtls_certificate";
 export const BetaWorkersVersionsListResultItemBindingsItemMTLSCertificateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemMTLSCertificate {
   /** Identifier of the certificate to bind to. */
@@ -21450,7 +21332,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemMTLSCertificate =
 export type BetaWorkersVersionsListResultItemBindingsItemPlainTextType =
   "plain_text";
 export const BetaWorkersVersionsListResultItemBindingsItemPlainTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemPlainText {
   /** A JavaScript variable name for the binding. */
@@ -21474,7 +21356,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemPlainText =
 export type BetaWorkersVersionsListResultItemBindingsItemPipelinesType =
   "pipelines";
 export const BetaWorkersVersionsListResultItemBindingsItemPipelinesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemPipelines {
   /** A JavaScript variable name for the binding. */
@@ -21496,8 +21378,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemPipelines =
   }) as any as S.Schema<BetaWorkersVersionsListResultItemBindingsItemPipelines>;
 
 export type BetaWorkersVersionsListResultItemBindingsItemQueueType = "queue";
-export const BetaWorkersVersionsListResultItemBindingsItemQueueType =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsListResultItemBindingsItemQueueType = S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemQueue {
   /** A JavaScript variable name for the binding. */
@@ -21526,7 +21407,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemRatelimitSimple =
 export type BetaWorkersVersionsListResultItemBindingsItemRatelimitType =
   "ratelimit";
 export const BetaWorkersVersionsListResultItemBindingsItemRatelimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemRatelimit {
   /** A JavaScript variable name for the binding. */
@@ -21553,14 +21434,14 @@ export const BetaWorkersVersionsListResultItemBindingsItemRatelimit =
 export type BetaWorkersVersionsListResultItemBindingsItemR2BucketType =
   "r2_bucket";
 export const BetaWorkersVersionsListResultItemBindingsItemR2BucketType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsListResultItemBindingsItemR2BucketJurisdiction =
   | "eu"
   | "fedramp"
   | "fedramp-high";
 export const BetaWorkersVersionsListResultItemBindingsItemR2BucketJurisdiction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemR2Bucket {
   /** R2 bucket to bind to. */
@@ -21591,7 +21472,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemR2Bucket =
 export type BetaWorkersVersionsListResultItemBindingsItemSecretTextType =
   "secret_text";
 export const BetaWorkersVersionsListResultItemBindingsItemSecretTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemSecretText {
   /** A JavaScript variable name for the binding. */
@@ -21615,7 +21496,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemSecretText =
 export type BetaWorkersVersionsListResultItemBindingsItemSendEmailType =
   "send_email";
 export const BetaWorkersVersionsListResultItemBindingsItemSendEmailType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsListResultItemBindingsItemSendEmailAllowedDestinationAddressesList =
   Array<string>;
@@ -21669,7 +21550,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemSendEmail =
 export type BetaWorkersVersionsListResultItemBindingsItemServiceType =
   "service";
 export const BetaWorkersVersionsListResultItemBindingsItemServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemService {
   /** A JavaScript variable name for the binding. */
@@ -21699,7 +21580,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemService =
 export type BetaWorkersVersionsListResultItemBindingsItemTextBlobType =
   "text_blob";
 export const BetaWorkersVersionsListResultItemBindingsItemTextBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemTextBlob {
   /** A JavaScript variable name for the binding. */
@@ -21723,7 +21604,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemTextBlob =
 export type BetaWorkersVersionsListResultItemBindingsItemVectorizeType =
   "vectorize";
 export const BetaWorkersVersionsListResultItemBindingsItemVectorizeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemVectorize {
   /** Name of the Vectorize index to bind to. */
@@ -21747,7 +21628,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemVectorize =
 export type BetaWorkersVersionsListResultItemBindingsItemVersionMetadataType =
   "version_metadata";
 export const BetaWorkersVersionsListResultItemBindingsItemVersionMetadataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemVersionMetadata {
   /** A JavaScript variable name for the binding. */
@@ -21768,7 +21649,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemVersionMetadata =
 export type BetaWorkersVersionsListResultItemBindingsItemSecretsStoreSecretType =
   "secrets_store_secret";
 export const BetaWorkersVersionsListResultItemBindingsItemSecretsStoreSecretType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemSecretsStoreSecret {
   /** A JavaScript variable name for the binding. */
@@ -21796,7 +21677,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemSecretsStoreSecret =
 export type BetaWorkersVersionsListResultItemBindingsItemFlagshipType =
   "flagship";
 export const BetaWorkersVersionsListResultItemBindingsItemFlagshipType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemFlagship {
   /** ID of the Flagship app to bind to for feature flag evaluation. */
@@ -21823,12 +21704,12 @@ export type BetaWorkersVersionsListResultItemBindingsItemSecretKeyFormat =
   | "spki"
   | "jwk";
 export const BetaWorkersVersionsListResultItemBindingsItemSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsListResultItemBindingsItemSecretKeyType =
   "secret_key";
 export const BetaWorkersVersionsListResultItemBindingsItemSecretKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsListResultItemBindingsItemSecretKeyUsagesItem =
   | "encrypt"
@@ -21840,7 +21721,7 @@ export type BetaWorkersVersionsListResultItemBindingsItemSecretKeyUsagesItem =
   | "wrapKey"
   | "unwrapKey";
 export const BetaWorkersVersionsListResultItemBindingsItemSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BetaWorkersVersionsListResultItemBindingsItemSecretKeyUsagesList =
   Array<BetaWorkersVersionsListResultItemBindingsItemSecretKeyUsagesItem>;
@@ -21883,7 +21764,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemSecretKey =
 export type BetaWorkersVersionsListResultItemBindingsItemWorkflowType =
   "workflow";
 export const BetaWorkersVersionsListResultItemBindingsItemWorkflowType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemWorkflow {
   /** A JavaScript variable name for the binding. */
@@ -21913,7 +21794,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemWorkflow =
 export type BetaWorkersVersionsListResultItemBindingsItemWasmModuleType =
   "wasm_module";
 export const BetaWorkersVersionsListResultItemBindingsItemWasmModuleType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemWasmModule {
   /** A JavaScript variable name for the binding. */
@@ -21937,7 +21818,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemWasmModule =
 export type BetaWorkersVersionsListResultItemBindingsItemVPCServiceType =
   "vpc_service";
 export const BetaWorkersVersionsListResultItemBindingsItemVPCServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemVPCService {
   /** A JavaScript variable name for the binding. */
@@ -21961,7 +21842,7 @@ export const BetaWorkersVersionsListResultItemBindingsItemVPCService =
 export type BetaWorkersVersionsListResultItemBindingsItemVPCNetworkType =
   "vpc_network";
 export const BetaWorkersVersionsListResultItemBindingsItemVPCNetworkType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersVersionsListResultItemBindingsItemVPCNetwork {
   /** A JavaScript variable name for the binding. */
@@ -22375,8 +22256,7 @@ export const BetaWorkersVersionsListResultItemPackageDependenciesList =
   ) as any as S.Schema<BetaWorkersVersionsListResultItemPackageDependenciesList>;
 
 export type BetaWorkersVersionsListResultItemPlacementModeMode = "smart";
-export const BetaWorkersVersionsListResultItemPlacementModeMode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsListResultItemPlacementModeMode = S.String;
 
 export interface BetaWorkersVersionsListResultItemPlacementMode {
   /** Enables [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement). */
@@ -22407,8 +22287,7 @@ export const BetaWorkersVersionsListResultItemPlacementHost =
   BetaWorkersVersionsCreateRequestPlacementHost;
 
 export type BetaWorkersVersionsListResultItemPlacementCase4Mode = "targeted";
-export const BetaWorkersVersionsListResultItemPlacementCase4Mode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsListResultItemPlacementCase4Mode = S.String;
 
 export interface BetaWorkersVersionsListResultItemPlacementCase4 {
   /** Targeted placement mode. */
@@ -22427,8 +22306,7 @@ export const BetaWorkersVersionsListResultItemPlacementCase4 =
   }) as any as S.Schema<BetaWorkersVersionsListResultItemPlacementCase4>;
 
 export type BetaWorkersVersionsListResultItemPlacementCase5Mode = "targeted";
-export const BetaWorkersVersionsListResultItemPlacementCase5Mode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsListResultItemPlacementCase5Mode = S.String;
 
 export interface BetaWorkersVersionsListResultItemPlacementCase5 {
   /** HTTP hostname for targeted placement. */
@@ -22447,8 +22325,7 @@ export const BetaWorkersVersionsListResultItemPlacementCase5 =
   }) as any as S.Schema<BetaWorkersVersionsListResultItemPlacementCase5>;
 
 export type BetaWorkersVersionsListResultItemPlacementCase6Mode = "targeted";
-export const BetaWorkersVersionsListResultItemPlacementCase6Mode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsListResultItemPlacementCase6Mode = S.String;
 
 export interface BetaWorkersVersionsListResultItemPlacementCase6 {
   /** TCP host and port for targeted placement. */
@@ -22467,8 +22344,7 @@ export const BetaWorkersVersionsListResultItemPlacementCase6 =
   }) as any as S.Schema<BetaWorkersVersionsListResultItemPlacementCase6>;
 
 export type BetaWorkersVersionsListResultItemPlacementCase7Mode = "targeted";
-export const BetaWorkersVersionsListResultItemPlacementCase7Mode =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsListResultItemPlacementCase7Mode = S.String;
 
 export type BetaWorkersVersionsListResultItemPlacementCase7TargetItemRegion =
   BetaWorkersVersionsCreateRequestPlacementCase7TargetItemRegion;
@@ -22544,8 +22420,7 @@ export type BetaWorkersVersionsListResultItemUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const BetaWorkersVersionsListResultItemUsageModel =
-  /*@__PURE__*/ S.String;
+export const BetaWorkersVersionsListResultItemUsageModel = S.String;
 
 export interface BetaWorkersVersionsListResultItem {
   /** Version identifier. */
@@ -22754,11 +22629,10 @@ export const ListDomainsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDomainsResponse>;
 
 export type ObservabilityDestinationsListRequestOrder = "asc" | "desc";
-export const ObservabilityDestinationsListRequestOrder = /*@__PURE__*/ S.String;
+export const ObservabilityDestinationsListRequestOrder = S.String;
 
 export type ObservabilityDestinationsListRequestOrderBy = "created" | "updated";
-export const ObservabilityDestinationsListRequestOrderBy =
-  /*@__PURE__*/ S.String;
+export const ObservabilityDestinationsListRequestOrderBy = S.String;
 
 export interface ListObservabilityDestinationsRequest {
   accountId: string;
@@ -22822,12 +22696,12 @@ export type ObservabilityDestinationsListResultItemConfigurationLogpushDataset =
   | "opentelemetry-logs"
   | "opentelemetry-metrics";
 export const ObservabilityDestinationsListResultItemConfigurationLogpushDataset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityDestinationsListResultItemConfigurationType =
   "logpush";
 export const ObservabilityDestinationsListResultItemConfigurationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityDestinationsListResultItemConfiguration {
   destinationConf: string;
@@ -22901,10 +22775,10 @@ export const ListObservabilityDestinationsResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListObservabilityDestinationsResponse>;
 
 export type ObservabilityQueriesListRequestOrder = "asc" | "desc";
-export const ObservabilityQueriesListRequestOrder = /*@__PURE__*/ S.String;
+export const ObservabilityQueriesListRequestOrder = S.String;
 
 export type ObservabilityQueriesListRequestOrderBy = "created" | "updated";
-export const ObservabilityQueriesListRequestOrderBy = /*@__PURE__*/ S.String;
+export const ObservabilityQueriesListRequestOrderBy = S.String;
 
 export interface ListObservabilityQueriesRequest {
   accountId: string;
@@ -22973,14 +22847,14 @@ export type ObservabilityQueriesListResultItemParametersCalculationsItemOperator
   | "STDDEV"
   | "VARIANCE";
 export const ObservabilityQueriesListResultItemParametersCalculationsItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesListResultItemParametersCalculationsItemKeyType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityQueriesListResultItemParametersCalculationsItemKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityQueriesListResultItemParametersCalculationsItem {
   operator: ObservabilityQueriesListResultItemParametersCalculationsItemOperator;
@@ -23025,7 +22899,7 @@ export type ObservabilityQueriesListResultItemParametersFilterCombination =
   | "AND"
   | "OR";
 export const ObservabilityQueriesListResultItemParametersFilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesListResultItemParametersFiltersItemCase0FilterCombination =
   | "and"
@@ -23033,7 +22907,7 @@ export type ObservabilityQueriesListResultItemParametersFiltersItemCase0FilterCo
   | "AND"
   | "OR";
 export const ObservabilityQueriesListResultItemParametersFiltersItemCase0FilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesListResultItemParametersFiltersItemCase0FiltersList =
   Array<unknown>;
@@ -23045,7 +22919,7 @@ export const ObservabilityQueriesListResultItemParametersFiltersItemCase0Filters
 export type ObservabilityQueriesListResultItemParametersFiltersItemCase0Kind =
   "group";
 export const ObservabilityQueriesListResultItemParametersFiltersItemCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityQueriesListResultItemParametersFiltersItemCase0 {
   filterCombination: ObservabilityQueriesListResultItemParametersFiltersItemCase0FilterCombination;
@@ -23097,19 +22971,19 @@ export type ObservabilityQueriesListResultItemParametersFiltersItemWorkersObserv
   | "STARTS_WITH"
   | "ENDS_WITH";
 export const ObservabilityQueriesListResultItemParametersFiltersItemWorkersObservabilityFilterLeafOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesListResultItemParametersFiltersItemWorkersObservabilityFilterLeafType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityQueriesListResultItemParametersFiltersItemWorkersObservabilityFilterLeafType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesListResultItemParametersFiltersItemWorkersObservabilityFilterLeafKind =
   "filter";
 export const ObservabilityQueriesListResultItemParametersFiltersItemWorkersObservabilityFilterLeafKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityQueriesListResultItemParametersFiltersItemWorkersObservabilityFilterLeafValue =
   | string
@@ -23176,7 +23050,7 @@ export type ObservabilityQueriesListResultItemParametersGroupBysItemType =
   | "number"
   | "boolean";
 export const ObservabilityQueriesListResultItemParametersGroupBysItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityQueriesListResultItemParametersGroupBysItem {
   type: ObservabilityQueriesListResultItemParametersGroupBysItemType;
@@ -23207,7 +23081,7 @@ export type ObservabilityQueriesListResultItemParametersHavingsItemOperation =
   | "lt"
   | "lte";
 export const ObservabilityQueriesListResultItemParametersHavingsItemOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityQueriesListResultItemParametersHavingsItem {
   key: string;
@@ -23260,7 +23134,7 @@ export type ObservabilityQueriesListResultItemParametersOrderByOrder =
   | "asc"
   | "desc";
 export const ObservabilityQueriesListResultItemParametersOrderByOrder =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityQueriesListResultItemParametersOrderBy {
   /** Configure which Calculation to order the results by. */
@@ -23466,8 +23340,7 @@ export const ListScriptDeploymentsRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type ScriptsDeploymentsListResponseDeploymentsItemStrategy =
   "percentage";
-export const ScriptsDeploymentsListResponseDeploymentsItemStrategy =
-  /*@__PURE__*/ S.String;
+export const ScriptsDeploymentsListResponseDeploymentsItemStrategy = S.String;
 
 export type ScriptsDeploymentsListResponseDeploymentsItemVersionsItem =
   ScriptsDeploymentsCreateRequestVersionsItem;
@@ -23647,7 +23520,7 @@ export type ScriptsListResultItemObservabilityTracesPropagationPolicy =
   | "authenticated"
   | "accept";
 export const ScriptsListResultItemObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsListResultItemObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -23706,13 +23579,13 @@ export const ScriptsListResultItemObservability = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ScriptsListResultItemObservability>;
 
 export type ScriptsListResultItemPlacementCase0Mode = "smart";
-export const ScriptsListResultItemPlacementCase0Mode = /*@__PURE__*/ S.String;
+export const ScriptsListResultItemPlacementCase0Mode = S.String;
 
 export type ScriptsListResultItemPlacementCase0Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsListResultItemPlacementCase0Status = /*@__PURE__*/ S.String;
+export const ScriptsListResultItemPlacementCase0Status = S.String;
 
 export interface ScriptsListResultItemPlacementCase0 {
   /** Enables [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement). */
@@ -23738,7 +23611,7 @@ export type ScriptsListResultItemPlacementCase1Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsListResultItemPlacementCase1Status = /*@__PURE__*/ S.String;
+export const ScriptsListResultItemPlacementCase1Status = S.String;
 
 export interface ScriptsListResultItemPlacementCase1 {
   /** Cloud region for targeted placement in format 'provider:region'. */
@@ -23764,7 +23637,7 @@ export type ScriptsListResultItemPlacementCase2Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsListResultItemPlacementCase2Status = /*@__PURE__*/ S.String;
+export const ScriptsListResultItemPlacementCase2Status = S.String;
 
 export interface ScriptsListResultItemPlacementCase2 {
   /** HTTP hostname for targeted placement. */
@@ -23790,7 +23663,7 @@ export type ScriptsListResultItemPlacementCase3Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsListResultItemPlacementCase3Status = /*@__PURE__*/ S.String;
+export const ScriptsListResultItemPlacementCase3Status = S.String;
 
 export interface ScriptsListResultItemPlacementCase3 {
   /** TCP host and port for targeted placement. */
@@ -23813,13 +23686,13 @@ export const ScriptsListResultItemPlacementCase3 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ScriptsListResultItemPlacementCase3>;
 
 export type ScriptsListResultItemPlacementCase4Mode = "targeted";
-export const ScriptsListResultItemPlacementCase4Mode = /*@__PURE__*/ S.String;
+export const ScriptsListResultItemPlacementCase4Mode = S.String;
 
 export type ScriptsListResultItemPlacementCase4Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsListResultItemPlacementCase4Status = /*@__PURE__*/ S.String;
+export const ScriptsListResultItemPlacementCase4Status = S.String;
 
 export interface ScriptsListResultItemPlacementCase4 {
   /** Targeted placement mode. */
@@ -23845,13 +23718,13 @@ export const ScriptsListResultItemPlacementCase4 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ScriptsListResultItemPlacementCase4>;
 
 export type ScriptsListResultItemPlacementCase5Mode = "targeted";
-export const ScriptsListResultItemPlacementCase5Mode = /*@__PURE__*/ S.String;
+export const ScriptsListResultItemPlacementCase5Mode = S.String;
 
 export type ScriptsListResultItemPlacementCase5Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsListResultItemPlacementCase5Status = /*@__PURE__*/ S.String;
+export const ScriptsListResultItemPlacementCase5Status = S.String;
 
 export interface ScriptsListResultItemPlacementCase5 {
   /** HTTP hostname for targeted placement. */
@@ -23877,13 +23750,13 @@ export const ScriptsListResultItemPlacementCase5 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ScriptsListResultItemPlacementCase5>;
 
 export type ScriptsListResultItemPlacementCase6Mode = "targeted";
-export const ScriptsListResultItemPlacementCase6Mode = /*@__PURE__*/ S.String;
+export const ScriptsListResultItemPlacementCase6Mode = S.String;
 
 export type ScriptsListResultItemPlacementCase6Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsListResultItemPlacementCase6Status = /*@__PURE__*/ S.String;
+export const ScriptsListResultItemPlacementCase6Status = S.String;
 
 export interface ScriptsListResultItemPlacementCase6 {
   /** TCP host and port for targeted placement. */
@@ -23909,7 +23782,7 @@ export const ScriptsListResultItemPlacementCase6 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ScriptsListResultItemPlacementCase6>;
 
 export type ScriptsListResultItemPlacementCase7Mode = "targeted";
-export const ScriptsListResultItemPlacementCase7Mode = /*@__PURE__*/ S.String;
+export const ScriptsListResultItemPlacementCase7Mode = S.String;
 
 export type ScriptsListResultItemPlacementCase7TargetItemRegion =
   BetaWorkersVersionsCreateRequestPlacementCase7TargetItemRegion;
@@ -23946,7 +23819,7 @@ export type ScriptsListResultItemPlacementCase7Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsListResultItemPlacementCase7Status = /*@__PURE__*/ S.String;
+export const ScriptsListResultItemPlacementCase7Status = S.String;
 
 export interface ScriptsListResultItemPlacementCase7 {
   /** Targeted placement mode. */
@@ -23994,13 +23867,13 @@ export const ScriptsListResultItemPlacement = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type ScriptsListResultItemPlacementMode = "smart" | "targeted";
-export const ScriptsListResultItemPlacementMode = /*@__PURE__*/ S.String;
+export const ScriptsListResultItemPlacementMode = S.String;
 
 export type ScriptsListResultItemPlacementStatus =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsListResultItemPlacementStatus = /*@__PURE__*/ S.String;
+export const ScriptsListResultItemPlacementStatus = S.String;
 
 export type ScriptsListResultItemRoutesItem = RoutesListResultItem;
 export const ScriptsListResultItemRoutesItem = RoutesListResultItem;
@@ -24030,7 +23903,7 @@ export type ScriptsListResultItemUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const ScriptsListResultItemUsageModel = /*@__PURE__*/ S.String;
+export const ScriptsListResultItemUsageModel = S.String;
 
 export interface ScriptsListResultItem {
   /** The name used to identify the script. */
@@ -24182,8 +24055,7 @@ export const ListScriptSecretsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListScriptSecretsRequest>;
 
 export type ScriptsSecretsListResultItemSecretTextType = "secret_text";
-export const ScriptsSecretsListResultItemSecretTextType =
-  /*@__PURE__*/ S.String;
+export const ScriptsSecretsListResultItemSecretTextType = S.String;
 
 export interface ScriptsSecretsListResultItemSecretText {
   /** A JavaScript variable name for the binding. */
@@ -24209,11 +24081,10 @@ export type ScriptsSecretsListResultItemSecretKeyFormat =
   | "pkcs8"
   | "spki"
   | "jwk";
-export const ScriptsSecretsListResultItemSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+export const ScriptsSecretsListResultItemSecretKeyFormat = S.String;
 
 export type ScriptsSecretsListResultItemSecretKeyType = "secret_key";
-export const ScriptsSecretsListResultItemSecretKeyType = /*@__PURE__*/ S.String;
+export const ScriptsSecretsListResultItemSecretKeyType = S.String;
 
 export type ScriptsSecretsListResultItemSecretKeyUsagesItem =
   | "encrypt"
@@ -24224,8 +24095,7 @@ export type ScriptsSecretsListResultItemSecretKeyUsagesItem =
   | "deriveBits"
   | "wrapKey"
   | "unwrapKey";
-export const ScriptsSecretsListResultItemSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+export const ScriptsSecretsListResultItemSecretKeyUsagesItem = S.String;
 
 export type ScriptsSecretsListResultItemSecretKeyUsagesList =
   Array<ScriptsSecretsListResultItemSecretKeyUsagesItem>;
@@ -24339,8 +24209,7 @@ export type ScriptsVersionsListResponseItemsItemMetadataSource =
   | "quick_editor"
   | "playground"
   | "workersci";
-export const ScriptsVersionsListResponseItemsItemMetadataSource =
-  /*@__PURE__*/ S.String;
+export const ScriptsVersionsListResponseItemsItemMetadataSource = S.String;
 
 export interface ScriptsVersionsListResponseItemsItemMetadata {
   /** Email of the user who created the version. */
@@ -24445,8 +24314,7 @@ export type ObservabilityTelemetryLiveTailRequestFilterCombination =
   | "or"
   | "AND"
   | "OR";
-export const ObservabilityTelemetryLiveTailRequestFilterCombination =
-  /*@__PURE__*/ S.String;
+export const ObservabilityTelemetryLiveTailRequestFilterCombination = S.String;
 
 export type ObservabilityTelemetryLiveTailRequestFiltersItemCase0FilterCombination =
   | "and"
@@ -24454,7 +24322,7 @@ export type ObservabilityTelemetryLiveTailRequestFiltersItemCase0FilterCombinati
   | "AND"
   | "OR";
 export const ObservabilityTelemetryLiveTailRequestFiltersItemCase0FilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryLiveTailRequestFiltersItemCase0FiltersItemCase0FilterCombination =
   | "and"
@@ -24462,7 +24330,7 @@ export type ObservabilityTelemetryLiveTailRequestFiltersItemCase0FiltersItemCase
   | "AND"
   | "OR";
 export const ObservabilityTelemetryLiveTailRequestFiltersItemCase0FiltersItemCase0FilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryLiveTailRequestFiltersItemCase0FiltersItemCase0FiltersList =
   Array<unknown>;
@@ -24474,7 +24342,7 @@ export const ObservabilityTelemetryLiveTailRequestFiltersItemCase0FiltersItemCas
 export type ObservabilityTelemetryLiveTailRequestFiltersItemCase0FiltersItemCase0Kind =
   "group";
 export const ObservabilityTelemetryLiveTailRequestFiltersItemCase0FiltersItemCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityTelemetryLiveTailRequestFiltersItemCase0FiltersItemCase0 {
   filterCombination:
@@ -24529,19 +24397,19 @@ export type ObservabilityTelemetryLiveTailRequestFiltersItemCase0FiltersItemWork
   | "STARTS_WITH"
   | "ENDS_WITH";
 export const ObservabilityTelemetryLiveTailRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryLiveTailRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityTelemetryLiveTailRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryLiveTailRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafKind =
   "filter";
 export const ObservabilityTelemetryLiveTailRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryLiveTailRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafValue =
   | string
@@ -24607,7 +24475,7 @@ export const ObservabilityTelemetryLiveTailRequestFiltersItemCase0FiltersList =
 
 export type ObservabilityTelemetryLiveTailRequestFiltersItemCase0Kind = "group";
 export const ObservabilityTelemetryLiveTailRequestFiltersItemCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityTelemetryLiveTailRequestFiltersItemCase0 {
   filterCombination:
@@ -24660,19 +24528,19 @@ export type ObservabilityTelemetryLiveTailRequestFiltersItemWorkersObservability
   | "STARTS_WITH"
   | "ENDS_WITH";
 export const ObservabilityTelemetryLiveTailRequestFiltersItemWorkersObservabilityFilterLeafOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryLiveTailRequestFiltersItemWorkersObservabilityFilterLeafType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityTelemetryLiveTailRequestFiltersItemWorkersObservabilityFilterLeafType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryLiveTailRequestFiltersItemWorkersObservabilityFilterLeafKind =
   "filter";
 export const ObservabilityTelemetryLiveTailRequestFiltersItemWorkersObservabilityFilterLeafKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryLiveTailRequestFiltersItemWorkersObservabilityFilterLeafValue =
   | string
@@ -24827,7 +24695,7 @@ export type BetaWorkersEditRequestObservabilityTracesPropagationPolicy =
   | "authenticated"
   | "accept";
 export const BetaWorkersEditRequestObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersEditRequestObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -24995,7 +24863,7 @@ export type BetaWorkersEditResponseObservabilityTracesPropagationPolicy =
   | "authenticated"
   | "accept";
 export const BetaWorkersEditResponseObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersEditResponseObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -25219,8 +25087,7 @@ export const ObservabilityDestinationsUpdateRequestConfigurationHeadersMap =
   ) as any as S.Schema<ObservabilityDestinationsUpdateRequestConfigurationHeadersMap>;
 
 export type ObservabilityDestinationsUpdateRequestConfigurationType = "logpush";
-export const ObservabilityDestinationsUpdateRequestConfigurationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityDestinationsUpdateRequestConfigurationType = S.String;
 
 export interface ObservabilityDestinationsUpdateRequestConfiguration {
   headers: ObservabilityDestinationsUpdateRequestConfigurationHeadersMap;
@@ -25269,12 +25136,12 @@ export type ObservabilityDestinationsUpdateResponseConfigurationLogpushDataset =
   | "opentelemetry-logs"
   | "opentelemetry-metrics";
 export const ObservabilityDestinationsUpdateResponseConfigurationLogpushDataset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityDestinationsUpdateResponseConfigurationType =
   "logpush";
 export const ObservabilityDestinationsUpdateResponseConfigurationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityDestinationsUpdateResponseConfiguration {
   destinationConf: string;
@@ -25360,7 +25227,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseAnnotations =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemAIType =
   "ai";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemAIType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemAI {
   /** A JavaScript variable name for the binding. */
@@ -25381,7 +25248,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemAI =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemAISearchType =
   "ai_search";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemAISearchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemAISearch {
   /** The user-chosen instance name. Must exist at deploy time. The worker can search, chat, update, and manage items/jobs on this instance. */
@@ -25409,7 +25276,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemAISearch =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemAISearchNamespaceType =
   "ai_search_namespace";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemAISearchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemAISearchNamespace {
   /** A JavaScript variable name for the binding. */
@@ -25434,7 +25301,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemAISearchName
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemAnalyticsEngineType =
   "analytics_engine";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemAnalyticsEngineType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemAnalyticsEngine {
   /** The name of the dataset to bind to. */
@@ -25459,7 +25326,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemAnalyticsEng
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemAssetsType =
   "assets";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemAssetsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemAssets {
   /** A JavaScript variable name for the binding. */
@@ -25480,7 +25347,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemAssets =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemBrowserType =
   "browser";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemBrowserType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemBrowser {
   /** A JavaScript variable name for the binding. */
@@ -25502,7 +25369,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemBrowser =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemD1Type =
   "d1";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemD1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemD1 {
   /** Identifier of the D1 database to bind to. */
@@ -25529,7 +25396,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemD1 =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemDataBlobType =
   "data_blob";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemDataBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemDataBlob {
   /** A JavaScript variable name for the binding. */
@@ -25554,7 +25421,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemDataBlob =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemDispatchNamespaceType =
   "dispatch_namespace";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemDispatchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemDispatchNamespaceOutboundParamsItem =
   BetaWorkersVersionsCreateRequestBindingsItemDispatchNamespaceOutboundParamsItem;
@@ -25628,7 +25495,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemDispatchName
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemDurableObjectNamespaceType =
   "durable_object_namespace";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemDurableObjectNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemDurableObjectNamespace {
   /** A JavaScript variable name for the binding. */
@@ -25667,7 +25534,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemDurableObjec
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemHyperdriveType =
   "hyperdrive";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemHyperdriveType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemHyperdrive {
   /** Identifier of the Hyperdrive connection to bind to. */
@@ -25692,7 +25559,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemHyperdrive =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemInheritType =
   "inherit";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemInheritType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemInherit {
   /** The name of the inherited binding. */
@@ -25720,7 +25587,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemInherit =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemImagesType =
   "images";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemImagesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemImages {
   /** A JavaScript variable name for the binding. */
@@ -25741,7 +25608,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemImages =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemJsonType =
   "json";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemJsonType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemJson {
   /** JSON data to use. */
@@ -25765,7 +25632,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemJson =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemKVNamespaceType =
   "kv_namespace";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemKVNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemKVNamespace {
   /** A JavaScript variable name for the binding. */
@@ -25790,7 +25657,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemKVNamespace 
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemMediaType =
   "media";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemMediaType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemMedia {
   /** A JavaScript variable name for the binding. */
@@ -25811,7 +25678,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemMedia =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemMTLSCertificateType =
   "mtls_certificate";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemMTLSCertificateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemMTLSCertificate {
   /** Identifier of the certificate to bind to. */
@@ -25836,7 +25703,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemMTLSCertific
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemPlainTextType =
   "plain_text";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemPlainTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemPlainText {
   /** A JavaScript variable name for the binding. */
@@ -25861,7 +25728,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemPlainText =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemPipelinesType =
   "pipelines";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemPipelinesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemPipelines {
   /** A JavaScript variable name for the binding. */
@@ -25886,7 +25753,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemPipelines =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemQueueType =
   "queue";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemQueueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemQueue {
   /** A JavaScript variable name for the binding. */
@@ -25915,7 +25782,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemRatelimitSim
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemRatelimitType =
   "ratelimit";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemRatelimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemRatelimit {
   /** A JavaScript variable name for the binding. */
@@ -25943,14 +25810,14 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemRatelimit =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemR2BucketType =
   "r2_bucket";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemR2BucketType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemR2BucketJurisdiction =
   | "eu"
   | "fedramp"
   | "fedramp-high";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemR2BucketJurisdiction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemR2Bucket {
   /** R2 bucket to bind to. */
@@ -25982,7 +25849,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemR2Bucket =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretTextType =
   "secret_text";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretText {
   /** A JavaScript variable name for the binding. */
@@ -26007,7 +25874,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretText =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemSendEmailType =
   "send_email";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemSendEmailType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemSendEmailAllowedDestinationAddressesList =
   Array<string>;
@@ -26062,7 +25929,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemSendEmail =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemServiceType =
   "service";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemService {
   /** A JavaScript variable name for the binding. */
@@ -26093,7 +25960,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemService =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemTextBlobType =
   "text_blob";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemTextBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemTextBlob {
   /** A JavaScript variable name for the binding. */
@@ -26118,7 +25985,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemTextBlob =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemVectorizeType =
   "vectorize";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemVectorizeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemVectorize {
   /** Name of the Vectorize index to bind to. */
@@ -26143,7 +26010,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemVectorize =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemVersionMetadataType =
   "version_metadata";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemVersionMetadataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemVersionMetadata {
   /** A JavaScript variable name for the binding. */
@@ -26165,7 +26032,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemVersionMetad
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretsStoreSecretType =
   "secrets_store_secret";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretsStoreSecretType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretsStoreSecret {
   /** A JavaScript variable name for the binding. */
@@ -26193,7 +26060,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretsStore
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemFlagshipType =
   "flagship";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemFlagshipType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemFlagship {
   /** ID of the Flagship app to bind to for feature flag evaluation. */
@@ -26221,12 +26088,12 @@ export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretKeyForm
   | "spki"
   | "jwk";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretKeyType =
   "secret_key";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretKeyUsagesItem =
   | "encrypt"
@@ -26238,7 +26105,7 @@ export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretKeyUsag
   | "wrapKey"
   | "unwrapKey";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretKeyUsagesList =
   Array<ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretKeyUsagesItem>;
@@ -26284,7 +26151,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemSecretKey =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemWorkflowType =
   "workflow";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemWorkflowType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemWorkflow {
   /** A JavaScript variable name for the binding. */
@@ -26315,7 +26182,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemWorkflow =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemWasmModuleType =
   "wasm_module";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemWasmModuleType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemWasmModule {
   /** A JavaScript variable name for the binding. */
@@ -26340,7 +26207,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemWasmModule =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemVPCServiceType =
   "vpc_service";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemVPCServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemVPCService {
   /** A JavaScript variable name for the binding. */
@@ -26365,7 +26232,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemVPCService =
 export type ScriptsScriptAndVersionSettingsEditResponseBindingsItemVPCNetworkType =
   "vpc_network";
 export const ScriptsScriptAndVersionSettingsEditResponseBindingsItemVPCNetworkType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseBindingsItemVPCNetwork {
   /** A JavaScript variable name for the binding. */
@@ -26504,7 +26371,7 @@ export type ScriptsScriptAndVersionSettingsEditResponseExportsValueType =
   | "worker"
   | "durable-object";
 export const ScriptsScriptAndVersionSettingsEditResponseExportsValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsScriptAndVersionSettingsEditResponseExportsValueCache =
   ScriptsScriptAndVersionSettingsGetResponseExportsValueCache;
@@ -26832,7 +26699,7 @@ export type ScriptsScriptAndVersionSettingsEditResponseObservabilityTracesPropag
   | "authenticated"
   | "accept";
 export const ScriptsScriptAndVersionSettingsEditResponseObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponseObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -26903,7 +26770,7 @@ export const ScriptsScriptAndVersionSettingsEditResponseObservability =
 export type ScriptsScriptAndVersionSettingsEditResponsePlacementModeMode =
   "smart";
 export const ScriptsScriptAndVersionSettingsEditResponsePlacementModeMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponsePlacementMode {
   /** Enables [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement). */
@@ -26936,7 +26803,7 @@ export const ScriptsScriptAndVersionSettingsEditResponsePlacementHost =
 export type ScriptsScriptAndVersionSettingsEditResponsePlacementCase4Mode =
   "targeted";
 export const ScriptsScriptAndVersionSettingsEditResponsePlacementCase4Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponsePlacementCase4 {
   /** Targeted placement mode. */
@@ -26957,7 +26824,7 @@ export const ScriptsScriptAndVersionSettingsEditResponsePlacementCase4 =
 export type ScriptsScriptAndVersionSettingsEditResponsePlacementCase5Mode =
   "targeted";
 export const ScriptsScriptAndVersionSettingsEditResponsePlacementCase5Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponsePlacementCase5 {
   /** HTTP hostname for targeted placement. */
@@ -26978,7 +26845,7 @@ export const ScriptsScriptAndVersionSettingsEditResponsePlacementCase5 =
 export type ScriptsScriptAndVersionSettingsEditResponsePlacementCase6Mode =
   "targeted";
 export const ScriptsScriptAndVersionSettingsEditResponsePlacementCase6Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsScriptAndVersionSettingsEditResponsePlacementCase6 {
   /** TCP host and port for targeted placement. */
@@ -26999,7 +26866,7 @@ export const ScriptsScriptAndVersionSettingsEditResponsePlacementCase6 =
 export type ScriptsScriptAndVersionSettingsEditResponsePlacementCase7Mode =
   "targeted";
 export const ScriptsScriptAndVersionSettingsEditResponsePlacementCase7Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScriptsScriptAndVersionSettingsEditResponsePlacementCase7TargetItemRegion =
   BetaWorkersVersionsCreateRequestPlacementCase7TargetItemRegion;
@@ -27094,8 +26961,7 @@ export type ScriptsScriptAndVersionSettingsEditResponseUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const ScriptsScriptAndVersionSettingsEditResponseUsageModel =
-  /*@__PURE__*/ S.String;
+export const ScriptsScriptAndVersionSettingsEditResponseUsageModel = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchScriptScriptAndVersionSettingResponse {
@@ -27229,7 +27095,7 @@ export type ScriptsSettingsEditRequestObservabilityTracesPropagationPolicy =
   | "authenticated"
   | "accept";
 export const ScriptsSettingsEditRequestObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsSettingsEditRequestObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -27403,7 +27269,7 @@ export type ScriptsSettingsEditResponseObservabilityTracesPropagationPolicy =
   | "authenticated"
   | "accept";
 export const ScriptsSettingsEditResponseObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsSettingsEditResponseObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -27618,7 +27484,7 @@ export const PutDomainResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutDomainResponse>;
 
 export type ScriptsUpdateRequestBindingsInherit = "strict";
-export const ScriptsUpdateRequestBindingsInherit = /*@__PURE__*/ S.String;
+export const ScriptsUpdateRequestBindingsInherit = S.String;
 
 export interface PutScriptRequest {
   /** Identifier. */
@@ -27850,7 +27716,7 @@ export type ScriptsUpdateResponseObservabilityTracesPropagationPolicy =
   | "authenticated"
   | "accept";
 export const ScriptsUpdateResponseObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsUpdateResponseObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -27909,13 +27775,13 @@ export const ScriptsUpdateResponseObservability = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ScriptsUpdateResponseObservability>;
 
 export type ScriptsUpdateResponsePlacementCase0Mode = "smart";
-export const ScriptsUpdateResponsePlacementCase0Mode = /*@__PURE__*/ S.String;
+export const ScriptsUpdateResponsePlacementCase0Mode = S.String;
 
 export type ScriptsUpdateResponsePlacementCase0Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsUpdateResponsePlacementCase0Status = /*@__PURE__*/ S.String;
+export const ScriptsUpdateResponsePlacementCase0Status = S.String;
 
 export interface ScriptsUpdateResponsePlacementCase0 {
   /** Enables [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement). */
@@ -27941,7 +27807,7 @@ export type ScriptsUpdateResponsePlacementCase1Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsUpdateResponsePlacementCase1Status = /*@__PURE__*/ S.String;
+export const ScriptsUpdateResponsePlacementCase1Status = S.String;
 
 export interface ScriptsUpdateResponsePlacementCase1 {
   /** Cloud region for targeted placement in format 'provider:region'. */
@@ -27967,7 +27833,7 @@ export type ScriptsUpdateResponsePlacementCase2Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsUpdateResponsePlacementCase2Status = /*@__PURE__*/ S.String;
+export const ScriptsUpdateResponsePlacementCase2Status = S.String;
 
 export interface ScriptsUpdateResponsePlacementCase2 {
   /** HTTP hostname for targeted placement. */
@@ -27993,7 +27859,7 @@ export type ScriptsUpdateResponsePlacementCase3Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsUpdateResponsePlacementCase3Status = /*@__PURE__*/ S.String;
+export const ScriptsUpdateResponsePlacementCase3Status = S.String;
 
 export interface ScriptsUpdateResponsePlacementCase3 {
   /** TCP host and port for targeted placement. */
@@ -28016,13 +27882,13 @@ export const ScriptsUpdateResponsePlacementCase3 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ScriptsUpdateResponsePlacementCase3>;
 
 export type ScriptsUpdateResponsePlacementCase4Mode = "targeted";
-export const ScriptsUpdateResponsePlacementCase4Mode = /*@__PURE__*/ S.String;
+export const ScriptsUpdateResponsePlacementCase4Mode = S.String;
 
 export type ScriptsUpdateResponsePlacementCase4Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsUpdateResponsePlacementCase4Status = /*@__PURE__*/ S.String;
+export const ScriptsUpdateResponsePlacementCase4Status = S.String;
 
 export interface ScriptsUpdateResponsePlacementCase4 {
   /** Targeted placement mode. */
@@ -28048,13 +27914,13 @@ export const ScriptsUpdateResponsePlacementCase4 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ScriptsUpdateResponsePlacementCase4>;
 
 export type ScriptsUpdateResponsePlacementCase5Mode = "targeted";
-export const ScriptsUpdateResponsePlacementCase5Mode = /*@__PURE__*/ S.String;
+export const ScriptsUpdateResponsePlacementCase5Mode = S.String;
 
 export type ScriptsUpdateResponsePlacementCase5Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsUpdateResponsePlacementCase5Status = /*@__PURE__*/ S.String;
+export const ScriptsUpdateResponsePlacementCase5Status = S.String;
 
 export interface ScriptsUpdateResponsePlacementCase5 {
   /** HTTP hostname for targeted placement. */
@@ -28080,13 +27946,13 @@ export const ScriptsUpdateResponsePlacementCase5 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ScriptsUpdateResponsePlacementCase5>;
 
 export type ScriptsUpdateResponsePlacementCase6Mode = "targeted";
-export const ScriptsUpdateResponsePlacementCase6Mode = /*@__PURE__*/ S.String;
+export const ScriptsUpdateResponsePlacementCase6Mode = S.String;
 
 export type ScriptsUpdateResponsePlacementCase6Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsUpdateResponsePlacementCase6Status = /*@__PURE__*/ S.String;
+export const ScriptsUpdateResponsePlacementCase6Status = S.String;
 
 export interface ScriptsUpdateResponsePlacementCase6 {
   /** TCP host and port for targeted placement. */
@@ -28112,7 +27978,7 @@ export const ScriptsUpdateResponsePlacementCase6 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ScriptsUpdateResponsePlacementCase6>;
 
 export type ScriptsUpdateResponsePlacementCase7Mode = "targeted";
-export const ScriptsUpdateResponsePlacementCase7Mode = /*@__PURE__*/ S.String;
+export const ScriptsUpdateResponsePlacementCase7Mode = S.String;
 
 export type ScriptsUpdateResponsePlacementCase7TargetItemRegion =
   BetaWorkersVersionsCreateRequestPlacementCase7TargetItemRegion;
@@ -28149,7 +28015,7 @@ export type ScriptsUpdateResponsePlacementCase7Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsUpdateResponsePlacementCase7Status = /*@__PURE__*/ S.String;
+export const ScriptsUpdateResponsePlacementCase7Status = S.String;
 
 export interface ScriptsUpdateResponsePlacementCase7 {
   /** Targeted placement mode. */
@@ -28211,13 +28077,13 @@ export const ScriptsUpdateResponsePlacement = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type ScriptsUpdateResponsePlacementMode = "smart" | "targeted";
-export const ScriptsUpdateResponsePlacementMode = /*@__PURE__*/ S.String;
+export const ScriptsUpdateResponsePlacementMode = S.String;
 
 export type ScriptsUpdateResponsePlacementStatus =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsUpdateResponsePlacementStatus = /*@__PURE__*/ S.String;
+export const ScriptsUpdateResponsePlacementStatus = S.String;
 
 export type ScriptsUpdateResponseTagsList = Array<string>;
 export const ScriptsUpdateResponseTagsList = /*@__PURE__*/ S.Array(
@@ -28239,7 +28105,7 @@ export type ScriptsUpdateResponseUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const ScriptsUpdateResponseUsageModel = /*@__PURE__*/ S.String;
+export const ScriptsUpdateResponseUsageModel = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PutScriptResponse {
@@ -28476,7 +28342,7 @@ export type ScriptsContentUpdateResponseObservabilityTracesPropagationPolicy =
   | "authenticated"
   | "accept";
 export const ScriptsContentUpdateResponseObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ScriptsContentUpdateResponseObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -28540,15 +28406,13 @@ export const ScriptsContentUpdateResponseObservability =
   }) as any as S.Schema<ScriptsContentUpdateResponseObservability>;
 
 export type ScriptsContentUpdateResponsePlacementCase0Mode = "smart";
-export const ScriptsContentUpdateResponsePlacementCase0Mode =
-  /*@__PURE__*/ S.String;
+export const ScriptsContentUpdateResponsePlacementCase0Mode = S.String;
 
 export type ScriptsContentUpdateResponsePlacementCase0Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsContentUpdateResponsePlacementCase0Status =
-  /*@__PURE__*/ S.String;
+export const ScriptsContentUpdateResponsePlacementCase0Status = S.String;
 
 export interface ScriptsContentUpdateResponsePlacementCase0 {
   /** Enables [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement). */
@@ -28577,8 +28441,7 @@ export type ScriptsContentUpdateResponsePlacementCase1Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsContentUpdateResponsePlacementCase1Status =
-  /*@__PURE__*/ S.String;
+export const ScriptsContentUpdateResponsePlacementCase1Status = S.String;
 
 export interface ScriptsContentUpdateResponsePlacementCase1 {
   /** Cloud region for targeted placement in format 'provider:region'. */
@@ -28607,8 +28470,7 @@ export type ScriptsContentUpdateResponsePlacementCase2Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsContentUpdateResponsePlacementCase2Status =
-  /*@__PURE__*/ S.String;
+export const ScriptsContentUpdateResponsePlacementCase2Status = S.String;
 
 export interface ScriptsContentUpdateResponsePlacementCase2 {
   /** HTTP hostname for targeted placement. */
@@ -28637,8 +28499,7 @@ export type ScriptsContentUpdateResponsePlacementCase3Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsContentUpdateResponsePlacementCase3Status =
-  /*@__PURE__*/ S.String;
+export const ScriptsContentUpdateResponsePlacementCase3Status = S.String;
 
 export interface ScriptsContentUpdateResponsePlacementCase3 {
   /** TCP host and port for targeted placement. */
@@ -28664,15 +28525,13 @@ export const ScriptsContentUpdateResponsePlacementCase3 =
   }) as any as S.Schema<ScriptsContentUpdateResponsePlacementCase3>;
 
 export type ScriptsContentUpdateResponsePlacementCase4Mode = "targeted";
-export const ScriptsContentUpdateResponsePlacementCase4Mode =
-  /*@__PURE__*/ S.String;
+export const ScriptsContentUpdateResponsePlacementCase4Mode = S.String;
 
 export type ScriptsContentUpdateResponsePlacementCase4Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsContentUpdateResponsePlacementCase4Status =
-  /*@__PURE__*/ S.String;
+export const ScriptsContentUpdateResponsePlacementCase4Status = S.String;
 
 export interface ScriptsContentUpdateResponsePlacementCase4 {
   /** Targeted placement mode. */
@@ -28701,15 +28560,13 @@ export const ScriptsContentUpdateResponsePlacementCase4 =
   }) as any as S.Schema<ScriptsContentUpdateResponsePlacementCase4>;
 
 export type ScriptsContentUpdateResponsePlacementCase5Mode = "targeted";
-export const ScriptsContentUpdateResponsePlacementCase5Mode =
-  /*@__PURE__*/ S.String;
+export const ScriptsContentUpdateResponsePlacementCase5Mode = S.String;
 
 export type ScriptsContentUpdateResponsePlacementCase5Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsContentUpdateResponsePlacementCase5Status =
-  /*@__PURE__*/ S.String;
+export const ScriptsContentUpdateResponsePlacementCase5Status = S.String;
 
 export interface ScriptsContentUpdateResponsePlacementCase5 {
   /** HTTP hostname for targeted placement. */
@@ -28738,15 +28595,13 @@ export const ScriptsContentUpdateResponsePlacementCase5 =
   }) as any as S.Schema<ScriptsContentUpdateResponsePlacementCase5>;
 
 export type ScriptsContentUpdateResponsePlacementCase6Mode = "targeted";
-export const ScriptsContentUpdateResponsePlacementCase6Mode =
-  /*@__PURE__*/ S.String;
+export const ScriptsContentUpdateResponsePlacementCase6Mode = S.String;
 
 export type ScriptsContentUpdateResponsePlacementCase6Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsContentUpdateResponsePlacementCase6Status =
-  /*@__PURE__*/ S.String;
+export const ScriptsContentUpdateResponsePlacementCase6Status = S.String;
 
 export interface ScriptsContentUpdateResponsePlacementCase6 {
   /** TCP host and port for targeted placement. */
@@ -28775,8 +28630,7 @@ export const ScriptsContentUpdateResponsePlacementCase6 =
   }) as any as S.Schema<ScriptsContentUpdateResponsePlacementCase6>;
 
 export type ScriptsContentUpdateResponsePlacementCase7Mode = "targeted";
-export const ScriptsContentUpdateResponsePlacementCase7Mode =
-  /*@__PURE__*/ S.String;
+export const ScriptsContentUpdateResponsePlacementCase7Mode = S.String;
 
 export type ScriptsContentUpdateResponsePlacementCase7TargetItemRegion =
   BetaWorkersVersionsCreateRequestPlacementCase7TargetItemRegion;
@@ -28813,8 +28667,7 @@ export type ScriptsContentUpdateResponsePlacementCase7Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsContentUpdateResponsePlacementCase7Status =
-  /*@__PURE__*/ S.String;
+export const ScriptsContentUpdateResponsePlacementCase7Status = S.String;
 
 export interface ScriptsContentUpdateResponsePlacementCase7 {
   /** Targeted placement mode. */
@@ -28866,14 +28719,13 @@ export const ScriptsContentUpdateResponsePlacement =
   );
 
 export type ScriptsContentUpdateResponsePlacementMode = "smart" | "targeted";
-export const ScriptsContentUpdateResponsePlacementMode = /*@__PURE__*/ S.String;
+export const ScriptsContentUpdateResponsePlacementMode = S.String;
 
 export type ScriptsContentUpdateResponsePlacementStatus =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const ScriptsContentUpdateResponsePlacementStatus =
-  /*@__PURE__*/ S.String;
+export const ScriptsContentUpdateResponsePlacementStatus = S.String;
 
 export type ScriptsContentUpdateResponseTagsList = Array<string>;
 export const ScriptsContentUpdateResponseTagsList = /*@__PURE__*/ S.Array(
@@ -28896,7 +28748,7 @@ export type ScriptsContentUpdateResponseUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const ScriptsContentUpdateResponseUsageModel = /*@__PURE__*/ S.String;
+export const ScriptsContentUpdateResponseUsageModel = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PutScriptContentResponse {
@@ -29080,14 +28932,14 @@ export const PutScriptScheduleResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptScheduleResponse>;
 
 export type ScriptsSecretsUpdateRequestType = "secret_text" | "secret_key";
-export const ScriptsSecretsUpdateRequestType = /*@__PURE__*/ S.String;
+export const ScriptsSecretsUpdateRequestType = S.String;
 
 export type ScriptsSecretsUpdateRequestFormat =
   | "raw"
   | "pkcs8"
   | "spki"
   | "jwk";
-export const ScriptsSecretsUpdateRequestFormat = /*@__PURE__*/ S.String;
+export const ScriptsSecretsUpdateRequestFormat = S.String;
 
 export type ScriptsSecretsUpdateRequestUsagesItem =
   | "encrypt"
@@ -29098,7 +28950,7 @@ export type ScriptsSecretsUpdateRequestUsagesItem =
   | "deriveBits"
   | "wrapKey"
   | "unwrapKey";
-export const ScriptsSecretsUpdateRequestUsagesItem = /*@__PURE__*/ S.String;
+export const ScriptsSecretsUpdateRequestUsagesItem = S.String;
 
 export type ScriptsSecretsUpdateRequestUsagesList = Array<
   ScriptsSecretsUpdateRequestUsagesItem | (string & {})
@@ -29155,7 +29007,7 @@ export const PutScriptSecretRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutScriptSecretRequest>;
 
 export type ScriptsSecretsUpdateResultSecretTextType = "secret_text";
-export const ScriptsSecretsUpdateResultSecretTextType = /*@__PURE__*/ S.String;
+export const ScriptsSecretsUpdateResultSecretTextType = S.String;
 
 export interface ScriptsSecretsUpdateResultSecretText {
   /** A JavaScript variable name for the binding. */
@@ -29181,10 +29033,10 @@ export type ScriptsSecretsUpdateResultSecretKeyFormat =
   | "pkcs8"
   | "spki"
   | "jwk";
-export const ScriptsSecretsUpdateResultSecretKeyFormat = /*@__PURE__*/ S.String;
+export const ScriptsSecretsUpdateResultSecretKeyFormat = S.String;
 
 export type ScriptsSecretsUpdateResultSecretKeyType = "secret_key";
-export const ScriptsSecretsUpdateResultSecretKeyType = /*@__PURE__*/ S.String;
+export const ScriptsSecretsUpdateResultSecretKeyType = S.String;
 
 export type ScriptsSecretsUpdateResultSecretKeyUsagesItem =
   | "encrypt"
@@ -29195,8 +29047,7 @@ export type ScriptsSecretsUpdateResultSecretKeyUsagesItem =
   | "deriveBits"
   | "wrapKey"
   | "unwrapKey";
-export const ScriptsSecretsUpdateResultSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+export const ScriptsSecretsUpdateResultSecretKeyUsagesItem = S.String;
 
 export type ScriptsSecretsUpdateResultSecretKeyUsagesList =
   Array<ScriptsSecretsUpdateResultSecretKeyUsagesItem>;
@@ -29334,14 +29185,14 @@ export type ObservabilityTelemetryQueryRequestParametersCalculationsItemOperator
   | "STDDEV"
   | "VARIANCE";
 export const ObservabilityTelemetryQueryRequestParametersCalculationsItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryRequestParametersCalculationsItemKeyType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityTelemetryQueryRequestParametersCalculationsItemKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityTelemetryQueryRequestParametersCalculationsItem {
   /** Aggregation operator to apply. Examples: count, avg, sum, min, max, median, p90, p95, p99, uniq, stddev, variance. */
@@ -29392,7 +29243,7 @@ export type ObservabilityTelemetryQueryRequestParametersFilterCombination =
   | "AND"
   | "OR";
 export const ObservabilityTelemetryQueryRequestParametersFilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FilterCombination =
   | "and"
@@ -29400,7 +29251,7 @@ export type ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FilterCo
   | "AND"
   | "OR";
 export const ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FiltersItemCase0FilterCombination =
   | "and"
@@ -29408,7 +29259,7 @@ export type ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FiltersI
   | "AND"
   | "OR";
 export const ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FiltersItemCase0FilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FiltersItemCase0FiltersList =
   Array<unknown>;
@@ -29420,7 +29271,7 @@ export const ObservabilityTelemetryQueryRequestParametersFiltersItemCase0Filters
 export type ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FiltersItemCase0Kind =
   "group";
 export const ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FiltersItemCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FiltersItemCase0 {
   filterCombination:
@@ -29475,19 +29326,19 @@ export type ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FiltersI
   | "STARTS_WITH"
   | "ENDS_WITH";
 export const ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafKind =
   "filter";
 export const ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryRequestParametersFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafValue =
   | string
@@ -29554,7 +29405,7 @@ export const ObservabilityTelemetryQueryRequestParametersFiltersItemCase0Filters
 export type ObservabilityTelemetryQueryRequestParametersFiltersItemCase0Kind =
   "group";
 export const ObservabilityTelemetryQueryRequestParametersFiltersItemCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityTelemetryQueryRequestParametersFiltersItemCase0 {
   filterCombination:
@@ -29608,19 +29459,19 @@ export type ObservabilityTelemetryQueryRequestParametersFiltersItemWorkersObserv
   | "STARTS_WITH"
   | "ENDS_WITH";
 export const ObservabilityTelemetryQueryRequestParametersFiltersItemWorkersObservabilityFilterLeafOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryRequestParametersFiltersItemWorkersObservabilityFilterLeafType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityTelemetryQueryRequestParametersFiltersItemWorkersObservabilityFilterLeafType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryRequestParametersFiltersItemWorkersObservabilityFilterLeafKind =
   "filter";
 export const ObservabilityTelemetryQueryRequestParametersFiltersItemWorkersObservabilityFilterLeafKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryRequestParametersFiltersItemWorkersObservabilityFilterLeafValue =
   | string
@@ -29689,7 +29540,7 @@ export type ObservabilityTelemetryQueryRequestParametersGroupBysItemType =
   | "number"
   | "boolean";
 export const ObservabilityTelemetryQueryRequestParametersGroupBysItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityTelemetryQueryRequestParametersGroupBysItem {
   /** Data type of the group-by field. */
@@ -29724,7 +29575,7 @@ export type ObservabilityTelemetryQueryRequestParametersHavingsItemOperation =
   | "lt"
   | "lte";
 export const ObservabilityTelemetryQueryRequestParametersHavingsItemOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityTelemetryQueryRequestParametersHavingsItem {
   /** Calculation alias or operator to filter on after aggregation. */
@@ -29785,7 +29636,7 @@ export type ObservabilityTelemetryQueryRequestParametersOrderByOrder =
   | "asc"
   | "desc";
 export const ObservabilityTelemetryQueryRequestParametersOrderByOrder =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityTelemetryQueryRequestParametersOrderBy {
   /** Alias of the calculation to order results by. Must match the alias (or operator) of a calculation in the query. */
@@ -29865,7 +29716,7 @@ export type ObservabilityTelemetryQueryRequestView =
   | "invocations"
   | "requests"
   | "agents";
-export const ObservabilityTelemetryQueryRequestView = /*@__PURE__*/ S.String;
+export const ObservabilityTelemetryQueryRequestView = S.String;
 
 export interface QueryObservabilityTelemetryRequest {
   accountId: string;
@@ -29965,14 +29816,14 @@ export type ObservabilityTelemetryQueryResponseRunQueryParametersCalculationsIte
   | "STDDEV"
   | "VARIANCE";
 export const ObservabilityTelemetryQueryResponseRunQueryParametersCalculationsItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryResponseRunQueryParametersCalculationsItemKeyType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityTelemetryQueryResponseRunQueryParametersCalculationsItemKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityTelemetryQueryResponseRunQueryParametersCalculationsItem {
   operator: ObservabilityTelemetryQueryResponseRunQueryParametersCalculationsItemOperator;
@@ -30018,7 +29869,7 @@ export type ObservabilityTelemetryQueryResponseRunQueryParametersFilterCombinati
   | "AND"
   | "OR";
 export const ObservabilityTelemetryQueryResponseRunQueryParametersFilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryResponseRunQueryParametersFiltersItemCase0FilterCombination =
   | "and"
@@ -30026,7 +29877,7 @@ export type ObservabilityTelemetryQueryResponseRunQueryParametersFiltersItemCase
   | "AND"
   | "OR";
 export const ObservabilityTelemetryQueryResponseRunQueryParametersFiltersItemCase0FilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryResponseRunQueryParametersFiltersItemCase0FiltersList =
   Array<unknown>;
@@ -30038,7 +29889,7 @@ export const ObservabilityTelemetryQueryResponseRunQueryParametersFiltersItemCas
 export type ObservabilityTelemetryQueryResponseRunQueryParametersFiltersItemCase0Kind =
   "group";
 export const ObservabilityTelemetryQueryResponseRunQueryParametersFiltersItemCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityTelemetryQueryResponseRunQueryParametersFiltersItemCase0 {
   filterCombination: ObservabilityTelemetryQueryResponseRunQueryParametersFiltersItemCase0FilterCombination;
@@ -30091,19 +29942,19 @@ export type ObservabilityTelemetryQueryResponseRunQueryParametersFiltersItemWork
   | "STARTS_WITH"
   | "ENDS_WITH";
 export const ObservabilityTelemetryQueryResponseRunQueryParametersFiltersItemWorkersObservabilityFilterLeafOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryResponseRunQueryParametersFiltersItemWorkersObservabilityFilterLeafType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityTelemetryQueryResponseRunQueryParametersFiltersItemWorkersObservabilityFilterLeafType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryResponseRunQueryParametersFiltersItemWorkersObservabilityFilterLeafKind =
   "filter";
 export const ObservabilityTelemetryQueryResponseRunQueryParametersFiltersItemWorkersObservabilityFilterLeafKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryResponseRunQueryParametersFiltersItemWorkersObservabilityFilterLeafValue =
   | string
@@ -30170,7 +30021,7 @@ export type ObservabilityTelemetryQueryResponseRunQueryParametersGroupBysItemTyp
   | "number"
   | "boolean";
 export const ObservabilityTelemetryQueryResponseRunQueryParametersGroupBysItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityTelemetryQueryResponseRunQueryParametersGroupBysItem {
   type: ObservabilityTelemetryQueryResponseRunQueryParametersGroupBysItemType;
@@ -30202,7 +30053,7 @@ export type ObservabilityTelemetryQueryResponseRunQueryParametersHavingsItemOper
   | "lt"
   | "lte";
 export const ObservabilityTelemetryQueryResponseRunQueryParametersHavingsItemOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityTelemetryQueryResponseRunQueryParametersHavingsItem {
   key: string;
@@ -30238,7 +30089,7 @@ export type ObservabilityTelemetryQueryResponseRunQueryParametersOrderByOrder =
   | "asc"
   | "desc";
 export const ObservabilityTelemetryQueryResponseRunQueryParametersOrderByOrder =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityTelemetryQueryResponseRunQueryParametersOrderBy {
   /** Configure which Calculation to order the results by. */
@@ -30358,8 +30209,7 @@ export const ObservabilityTelemetryQueryResponseRunQuery =
 export type ObservabilityTelemetryQueryResponseRunStatus =
   | "STARTED"
   | "COMPLETED";
-export const ObservabilityTelemetryQueryResponseRunStatus =
-  /*@__PURE__*/ S.String;
+export const ObservabilityTelemetryQueryResponseRunStatus = S.String;
 
 export type ObservabilityTelemetryQueryResponseRunTimeframe =
   ObservabilitySharedQueriesCreateRequestTimeframe;
@@ -30862,7 +30712,7 @@ export type ObservabilityTelemetryQueryResponseEventsEventsItemWorkersCase0Event
   | "workflow"
   | "unknown";
 export const ObservabilityTelemetryQueryResponseEventsEventsItemWorkersCase0EventType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryResponseEventsEventsItemWorkersCase0EventMap =
   { [key: string]: unknown | undefined };
@@ -30876,7 +30726,7 @@ export type ObservabilityTelemetryQueryResponseEventsEventsItemWorkersCase0Execu
   | "durableObject"
   | "stateless";
 export const ObservabilityTelemetryQueryResponseEventsEventsItemWorkersCase0ExecutionModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryResponseEventsEventsItemWorkersCase0Preview =
   ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase0Preview;
@@ -30956,7 +30806,7 @@ export type ObservabilityTelemetryQueryResponseEventsEventsItemWorkersCase1Event
   | "workflow"
   | "unknown";
 export const ObservabilityTelemetryQueryResponseEventsEventsItemWorkersCase1EventType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryResponseEventsEventsItemWorkersCase1DiagnosticsChannelEventsItem =
   ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase1DiagnosticsChannelEventsItem;
@@ -30982,7 +30832,7 @@ export type ObservabilityTelemetryQueryResponseEventsEventsItemWorkersCase1Execu
   | "durableObject"
   | "stateless";
 export const ObservabilityTelemetryQueryResponseEventsEventsItemWorkersCase1ExecutionModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryResponseEventsEventsItemWorkersCase1Preview =
   ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase0Preview;
@@ -31298,7 +31148,7 @@ export type ObservabilityTelemetryQueryResponseInvocationsValueItemWorkersCase0E
   | "workflow"
   | "unknown";
 export const ObservabilityTelemetryQueryResponseInvocationsValueItemWorkersCase0EventType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryResponseInvocationsValueItemWorkersCase0EventMap =
   { [key: string]: unknown | undefined };
@@ -31312,7 +31162,7 @@ export type ObservabilityTelemetryQueryResponseInvocationsValueItemWorkersCase0E
   | "durableObject"
   | "stateless";
 export const ObservabilityTelemetryQueryResponseInvocationsValueItemWorkersCase0ExecutionModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryResponseInvocationsValueItemWorkersCase0Preview =
   ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase0Preview;
@@ -31392,7 +31242,7 @@ export type ObservabilityTelemetryQueryResponseInvocationsValueItemWorkersCase1E
   | "workflow"
   | "unknown";
 export const ObservabilityTelemetryQueryResponseInvocationsValueItemWorkersCase1EventType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryResponseInvocationsValueItemWorkersCase1DiagnosticsChannelEventsItem =
   ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase1DiagnosticsChannelEventsItem;
@@ -31418,7 +31268,7 @@ export type ObservabilityTelemetryQueryResponseInvocationsValueItemWorkersCase1E
   | "durableObject"
   | "stateless";
 export const ObservabilityTelemetryQueryResponseInvocationsValueItemWorkersCase1ExecutionModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryQueryResponseInvocationsValueItemWorkersCase1Preview =
   ObservabilitySharedQueriesGetResponseEventsEventsItemWorkersCase0Preview;
@@ -31697,7 +31547,7 @@ export const QueryObservabilityTelemetryResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<QueryObservabilityTelemetryResponse>;
 
 export type ScriptsSearchRequestOrderBy = "created_on" | "modified_on" | "name";
-export const ScriptsSearchRequestOrderBy = /*@__PURE__*/ S.String;
+export const ScriptsSearchRequestOrderBy = S.String;
 
 export interface SearchScriptRequest {
   /** Identifier. */
@@ -31828,7 +31678,7 @@ export type BetaWorkersUpdateRequestObservabilityTracesPropagationPolicy =
   | "authenticated"
   | "accept";
 export const BetaWorkersUpdateRequestObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersUpdateRequestObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -31998,7 +31848,7 @@ export type BetaWorkersUpdateResponseObservabilityTracesPropagationPolicy =
   | "authenticated"
   | "accept";
 export const BetaWorkersUpdateResponseObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BetaWorkersUpdateResponseObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -32286,7 +32136,7 @@ export type ObservabilityTelemetryValuesRequestType =
   | "string"
   | "boolean"
   | "number";
-export const ObservabilityTelemetryValuesRequestType = /*@__PURE__*/ S.String;
+export const ObservabilityTelemetryValuesRequestType = S.String;
 
 export type ObservabilityTelemetryValuesRequestFiltersItemCase0FilterCombination =
   | "and"
@@ -32294,7 +32144,7 @@ export type ObservabilityTelemetryValuesRequestFiltersItemCase0FilterCombination
   | "AND"
   | "OR";
 export const ObservabilityTelemetryValuesRequestFiltersItemCase0FilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersItemCase0FilterCombination =
   | "and"
@@ -32302,7 +32152,7 @@ export type ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersItemCase0F
   | "AND"
   | "OR";
 export const ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersItemCase0FilterCombination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersItemCase0FiltersList =
   Array<unknown>;
@@ -32314,7 +32164,7 @@ export const ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersItemCase0
 export type ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersItemCase0Kind =
   "group";
 export const ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersItemCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersItemCase0 {
   filterCombination:
@@ -32369,19 +32219,19 @@ export type ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersItemWorker
   | "STARTS_WITH"
   | "ENDS_WITH";
 export const ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafKind =
   "filter";
 export const ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersItemWorkersObservabilityFilterLeafValue =
   | string
@@ -32446,8 +32296,7 @@ export const ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersList =
   ) as any as S.Schema<ObservabilityTelemetryValuesRequestFiltersItemCase0FiltersList>;
 
 export type ObservabilityTelemetryValuesRequestFiltersItemCase0Kind = "group";
-export const ObservabilityTelemetryValuesRequestFiltersItemCase0Kind =
-  /*@__PURE__*/ S.String;
+export const ObservabilityTelemetryValuesRequestFiltersItemCase0Kind = S.String;
 
 export interface ObservabilityTelemetryValuesRequestFiltersItemCase0 {
   filterCombination:
@@ -32500,19 +32349,19 @@ export type ObservabilityTelemetryValuesRequestFiltersItemWorkersObservabilityFi
   | "STARTS_WITH"
   | "ENDS_WITH";
 export const ObservabilityTelemetryValuesRequestFiltersItemWorkersObservabilityFilterLeafOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryValuesRequestFiltersItemWorkersObservabilityFilterLeafType =
   | "string"
   | "number"
   | "boolean";
 export const ObservabilityTelemetryValuesRequestFiltersItemWorkersObservabilityFilterLeafType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryValuesRequestFiltersItemWorkersObservabilityFilterLeafKind =
   "filter";
 export const ObservabilityTelemetryValuesRequestFiltersItemWorkersObservabilityFilterLeafKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ObservabilityTelemetryValuesRequestFiltersItemWorkersObservabilityFilterLeafValue =
   | string
@@ -32642,8 +32491,7 @@ export type ObservabilityTelemetryValuesResultItemType =
   | "string"
   | "boolean"
   | "number";
-export const ObservabilityTelemetryValuesResultItemType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityTelemetryValuesResultItemType = S.String;
 
 export type ObservabilityTelemetryValuesResultItemValue =
   | string

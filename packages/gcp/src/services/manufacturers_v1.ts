@@ -140,7 +140,7 @@ export type DestinationStatusStatusEnum =
   | "ACTIVE"
   | "PENDING"
   | "DISAPPROVED";
-export const DestinationStatusStatusEnum = /*@__PURE__*/ S.String;
+export const DestinationStatusStatusEnum = S.String;
 
 /** The destination status. */
 export interface DestinationStatus {
@@ -176,14 +176,14 @@ export type IssueResolutionEnum =
   | "RESOLUTION_UNSPECIFIED"
   | "USER_ACTION"
   | "PENDING_PROCESSING";
-export const IssueResolutionEnum = /*@__PURE__*/ S.String;
+export const IssueResolutionEnum = S.String;
 
 export type IssueSeverityEnum =
   | "SEVERITY_UNSPECIFIED"
   | "ERROR"
   | "WARNING"
   | "INFO";
-export const IssueSeverityEnum = /*@__PURE__*/ S.String;
+export const IssueSeverityEnum = S.String;
 
 /** Product issue. */
 export interface Issue {
@@ -304,7 +304,7 @@ export type GetAccountsProductsIncludeEnum =
   | "ATTRIBUTES"
   | "ISSUES"
   | "DESTINATION_STATUSES";
-export const GetAccountsProductsIncludeEnum = /*@__PURE__*/ S.String;
+export const GetAccountsProductsIncludeEnum = S.String;
 
 export type GetAccountsProductsIncludeEnumList = Array<
   GetAccountsProductsIncludeEnum | (string & {})
@@ -338,7 +338,7 @@ export const GetAccountsProductsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccountsProductsRequest>;
 
 export type ImageTypeEnum = "TYPE_UNSPECIFIED" | "CRAWLED" | "UPLOADED";
-export const ImageTypeEnum = /*@__PURE__*/ S.String;
+export const ImageTypeEnum = S.String;
 
 export type ImageStatusEnum =
   | "STATUS_UNSPECIFIED"
@@ -354,7 +354,7 @@ export type ImageStatusEnum =
   | "CRAWL_SKIPPED"
   | "HOSTLOADED"
   | "HTTP_404";
-export const ImageStatusEnum = /*@__PURE__*/ S.String;
+export const ImageStatusEnum = S.String;
 
 /** An image. */
 export interface Image {
@@ -935,7 +935,7 @@ export type ListAccountsProductsIncludeEnum =
   | "ATTRIBUTES"
   | "ISSUES"
   | "DESTINATION_STATUSES";
-export const ListAccountsProductsIncludeEnum = /*@__PURE__*/ S.String;
+export const ListAccountsProductsIncludeEnum = S.String;
 
 export type ListAccountsProductsIncludeEnumList = Array<
   ListAccountsProductsIncludeEnum | (string & {})

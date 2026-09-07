@@ -95,10 +95,10 @@ export type ErrorsCodeEnum =
   | "PRECONDITION_FAILED"
   | "INTERNAL_ERROR"
   | "SERVICE_UNAVAILABLE";
-export const ErrorsCodeEnum = /*@__PURE__*/ S.String;
+export const ErrorsCodeEnum = S.String;
 
 export type ErrorProtoLocationTypeEnum = "PATH" | "OTHER" | "PARAMETER";
-export const ErrorProtoLocationTypeEnum = /*@__PURE__*/ S.String;
+export const ErrorProtoLocationTypeEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(

@@ -54,7 +54,7 @@ export type AIObservabilityInstrumentationCheckEnum =
   | "tool_calls"
   | "user_identity"
   | "trace_structure";
-export const AIObservabilityInstrumentationCheckEnum = /*@__PURE__*/ S.String;
+export const AIObservabilityInstrumentationCheckEnum = S.String;
 
 export interface AiObservabilityInstrumentationChecklistRestoreCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -84,7 +84,7 @@ export type InstrumentationCheckStatusEnum =
   | "warning"
   | "pending"
   | "dismissed";
-export const InstrumentationCheckStatusEnum = /*@__PURE__*/ S.String;
+export const InstrumentationCheckStatusEnum = S.String;
 
 /** Counts this check was graded from, over the same window. Which counts appear depends on the check. */
 export type InstrumentationCheckStatsMap = {
@@ -188,14 +188,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -299,8 +299,7 @@ export type DatasetJSONValue =
   | string
   | number
   | boolean;
-export const DatasetJSONValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DatasetJSONValue>;
+export const DatasetJSONValue = S.Unknown as any as S.Schema<DatasetJSONValue>;
 
 /** JSON object with item metadata. */
 export type DatasetItemReadMetadataMap = { [key: string]: unknown | undefined };
@@ -511,7 +510,7 @@ export const CreateDatasetsExportRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDatasetsExportRequest>;
 
 export type DatasetExportReadStatusEnum = "pending" | "complete" | "failed";
-export const DatasetExportReadStatusEnum = /*@__PURE__*/ S.String;
+export const DatasetExportReadStatusEnum = S.String;
 
 export interface DatasetExportRead {
   /** Export ID used to check status and download the file. */
@@ -598,11 +597,11 @@ export const OfflineExperimentItemsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** * `trace` - trace * `event` - event */
 export type SummarizeTypeEnum = "trace" | "event";
-export const SummarizeTypeEnum = /*@__PURE__*/ S.String;
+export const SummarizeTypeEnum = S.String;
 
 /** * `minimal` - minimal * `detailed` - detailed */
 export type DetailModeValueEnum = "minimal" | "detailed";
-export const DetailModeValueEnum = /*@__PURE__*/ S.String;
+export const DetailModeValueEnum = S.String;
 
 export interface CreateLlmAnalyticsSummarizationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -788,7 +787,7 @@ export type EventTypeEnum =
   | "$ai_span"
   | "$ai_embedding"
   | "$ai_trace";
-export const EventTypeEnum = /*@__PURE__*/ S.String;
+export const EventTypeEnum = S.String;
 
 export interface TextReprOptions {
   /** Maximum length of generated text (default: 2000000) */
@@ -1104,7 +1103,7 @@ export type ListDatasetsRequestOrderBy =
   | "-created_at"
   | "updated_at"
   | "-updated_at";
-export const ListDatasetsRequestOrderBy = /*@__PURE__*/ S.String;
+export const ListDatasetsRequestOrderBy = S.String;
 
 export interface ListDatasetsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1243,8 +1242,7 @@ export type ListLlmAnalyticsPersonalSpendRequestBucketMinutes =
   | 15
   | 30
   | 60;
-export const ListLlmAnalyticsPersonalSpendRequestBucketMinutes =
-  /*@__PURE__*/ S.Number;
+export const ListLlmAnalyticsPersonalSpendRequestBucketMinutes = S.Number;
 
 export interface ListLlmAnalyticsPersonalSpendRequest {
   /** When set, additionally return a `by_bucket` breakdown: a time-ascending UTC cost series for the scoped product at this bucket size in minutes, with per-bucket cost split into uncached input / output / cache read / cache creation components plus the matching token sums. Supported bucket sizes: 5, 15, 30, 60. The window may span at most 600 buckets of the chosen size (e.g. 50 hours at 5-minute buckets). * `5` - 5 * `15` - 15 * `30` - 30 * `60` - 60 */
@@ -1738,7 +1736,7 @@ export type UpdateDatasetItemsPartialRequestInput =
   | number
   | boolean;
 export const UpdateDatasetItemsPartialRequestInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDatasetItemsPartialRequestInput>;
+  S.Unknown as any as S.Schema<UpdateDatasetItemsPartialRequestInput>;
 
 export type UpdateDatasetItemsPartialRequestExpectedOutputCase0Map = {
   [key: string]: unknown | undefined;
@@ -1764,7 +1762,7 @@ export type UpdateDatasetItemsPartialRequestExpectedOutput =
   | number
   | boolean;
 export const UpdateDatasetItemsPartialRequestExpectedOutput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDatasetItemsPartialRequestExpectedOutput>;
+  S.Unknown as any as S.Schema<UpdateDatasetItemsPartialRequestExpectedOutput>;
 
 /** Replacement metadata object. Send an empty object to clear it. */
 export type UpdateDatasetItemsPartialRequestMetadataMap = {

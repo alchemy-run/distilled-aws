@@ -24,7 +24,7 @@ export const CreatePlacementGroupRequestLabelsMap = /*@__PURE__*/ S.Record(
 
 /** Define the Placement Group Type. */
 export type CreatePlacementGroupRequestType = "spread";
-export const CreatePlacementGroupRequestType = /*@__PURE__*/ S.String;
+export const CreatePlacementGroupRequestType = S.String;
 
 export interface CreatePlacementGroupRequest {
   /** Name of the Placement Group. */
@@ -56,8 +56,7 @@ export const CreatePlacementGroupResponsePlacementGroupLabelsMap =
 
 /** Type of Placement Group. */
 export type CreatePlacementGroupResponsePlacementGroupType = "spread";
-export const CreatePlacementGroupResponsePlacementGroupType =
-  /*@__PURE__*/ S.String;
+export const CreatePlacementGroupResponsePlacementGroupType = S.String;
 
 /** Array of IDs of Servers that are part of this Placement Group. */
 export type CreatePlacementGroupResponsePlacementGroupServersList =
@@ -100,7 +99,7 @@ export type CreatePlacementGroupResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const CreatePlacementGroupResponseActionStatus = /*@__PURE__*/ S.String;
+export const CreatePlacementGroupResponseActionStatus = S.String;
 
 export interface CreatePlacementGroupResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -234,8 +233,7 @@ export const GetPlacementGroupResponsePlacementGroupLabelsMap =
 
 /** Type of Placement Group. */
 export type GetPlacementGroupResponsePlacementGroupType = "spread";
-export const GetPlacementGroupResponsePlacementGroupType =
-  /*@__PURE__*/ S.String;
+export const GetPlacementGroupResponsePlacementGroupType = S.String;
 
 /** Array of IDs of Servers that are part of this Placement Group. */
 export type GetPlacementGroupResponsePlacementGroupServersList = Array<number>;
@@ -293,7 +291,7 @@ export type ListPlacementGroupsRequestSortItem =
   | "created"
   | "created:asc"
   | "created:desc";
-export const ListPlacementGroupsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListPlacementGroupsRequestSortItem = S.String;
 
 export type ListPlacementGroupsRequestSortList = Array<
   ListPlacementGroupsRequestSortItem | (string & {})
@@ -304,7 +302,7 @@ export const ListPlacementGroupsRequestSortList = /*@__PURE__*/ S.Array(
 
 /** Type of Placement Group. */
 export type ListPlacementGroupsRequestTypeItem = "spread";
-export const ListPlacementGroupsRequestTypeItem = /*@__PURE__*/ S.String;
+export const ListPlacementGroupsRequestTypeItem = S.String;
 
 export type ListPlacementGroupsRequestTypeList = Array<
   ListPlacementGroupsRequestTypeItem | (string & {})
@@ -352,8 +350,7 @@ export const ListPlacementGroupsResponsePlacementGroupsItemLabelsMap =
 
 /** Type of Placement Group. */
 export type ListPlacementGroupsResponsePlacementGroupsItemType = "spread";
-export const ListPlacementGroupsResponsePlacementGroupsItemType =
-  /*@__PURE__*/ S.String;
+export const ListPlacementGroupsResponsePlacementGroupsItemType = S.String;
 
 /** Array of IDs of Servers that are part of this Placement Group. */
 export type ListPlacementGroupsResponsePlacementGroupsItemServersList =
@@ -491,8 +488,7 @@ export const UpdatePlacementGroupResponsePlacementGroupLabelsMap =
 
 /** Type of Placement Group. */
 export type UpdatePlacementGroupResponsePlacementGroupType = "spread";
-export const UpdatePlacementGroupResponsePlacementGroupType =
-  /*@__PURE__*/ S.String;
+export const UpdatePlacementGroupResponsePlacementGroupType = S.String;
 
 /** Array of IDs of Servers that are part of this Placement Group. */
 export type UpdatePlacementGroupResponsePlacementGroupServersList =

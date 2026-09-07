@@ -47,7 +47,7 @@ export type RunpagespeedPagespeedapiCategoryEnum =
   | "PWA"
   | "SEO"
   | "AGENTIC_BROWSING";
-export const RunpagespeedPagespeedapiCategoryEnum = /*@__PURE__*/ S.String;
+export const RunpagespeedPagespeedapiCategoryEnum = S.String;
 
 export type RunpagespeedPagespeedapiCategoryEnumList = Array<
   RunpagespeedPagespeedapiCategoryEnum | (string & {})
@@ -60,7 +60,7 @@ export type RunpagespeedPagespeedapiStrategyEnum =
   | "STRATEGY_UNSPECIFIED"
   | "DESKTOP"
   | "MOBILE";
-export const RunpagespeedPagespeedapiStrategyEnum = /*@__PURE__*/ S.String;
+export const RunpagespeedPagespeedapiStrategyEnum = S.String;
 
 export interface RunpagespeedPagespeedapiRequest {
   /** A Lighthouse category to run; if none are given, only Performance category will be run */
@@ -247,8 +247,7 @@ export type LighthouseCategoryV5CategoryScoreDisplayModeEnum =
   | "CATEGORY_SCORE_DISPLAY_MODE_UNSPECIFIED"
   | "GAUGE"
   | "FRACTION";
-export const LighthouseCategoryV5CategoryScoreDisplayModeEnum =
-  /*@__PURE__*/ S.String;
+export const LighthouseCategoryV5CategoryScoreDisplayModeEnum = S.String;
 
 /** A Lighthouse category. */
 export interface LighthouseCategoryV5 {

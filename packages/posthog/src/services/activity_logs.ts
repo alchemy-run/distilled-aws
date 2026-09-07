@@ -40,7 +40,7 @@ export class NotFound
   ) {}
 
 export type ListActivityLogRequestOrdering = "-created_at" | "created_at";
-export const ListActivityLogRequestOrdering = /*@__PURE__*/ S.String;
+export const ListActivityLogRequestOrdering = S.String;
 
 export type ListActivityLogRequestScope =
   | "Cohort"
@@ -124,7 +124,7 @@ export type ListActivityLogRequestScope =
   | "Billing"
   | "Loop"
   | "StamphogRepoConfig";
-export const ListActivityLogRequestScope = /*@__PURE__*/ S.String;
+export const ListActivityLogRequestScope = S.String;
 
 /** * `Cohort` - Cohort * `FeatureFlag` - FeatureFlag * `Person` - Person * `Group` - Group * `Insight` - Insight * `Plugin` - Plugin * `PluginConfig` - PluginConfig * `HogFunction` - HogFunction * `HogFlow` - HogFlow * `DataManagement` - DataManagement * `EventDefinition` - EventDefinition * `PropertyDefinition` - PropertyDefinition * `Notebook` - Notebook * `Canvas` - Canvas * `Endpoint` - Endpoint * `EndpointVersion` - EndpointVersion * `Dashboard` - Dashboard * `Replay` - Replay * `Experiment` - Experiment * `ExperimentHoldout` - ExperimentHoldout * `ExperimentSavedMetric` - ExperimentSavedMetric * `Survey` - Survey * `EarlyAccessFeature` - EarlyAccessFeature * `SessionRecordingPlaylist` - SessionRecordingPlaylist * `Comment` - Comment * `Team` - Team * `Project` - Project * `ErrorTrackingIssue` - ErrorTrackingIssue * `DataWarehouseExpression` - DataWarehouseExpression * `DataWarehouseSavedQuery` - DataWarehouseSavedQuery * `LegalDocument` - LegalDocument * `Organization` - Organization * `OrganizationDomain` - OrganizationDomain * `IdentityProviderConfig` - IdentityProviderConfig * `OrganizationMembership` - OrganizationMembership * `Role` - Role * `UserGroup` - UserGroup * `BatchExport` - BatchExport * `BatchImport` - BatchImport * `ExportedAsset` - ExportedAsset * `Integration` - Integration * `Annotation` - Annotation * `Tag` - Tag * `TaggedItem` - TaggedItem * `Subscription` - Subscription * `PersonalAPIKey` - PersonalAPIKey * `ProjectSecretAPIKey` - ProjectSecretAPIKey * `OAuthApplication` - OAuthApplication * `User` - User * `Action` - Action * `AlertConfiguration` - AlertConfiguration * `Threshold` - Threshold * `AlertSubscription` - AlertSubscription * `ExternalDataSource` - ExternalDataSource * `ExternalDataSchema` - ExternalDataSchema * `Evaluation` - Evaluation * `EvaluationDirectory` - EvaluationDirectory * `LLMPrompt` - LLMPrompt * `LLMPromptLabel` - LLMPromptLabel * `LLMTrace` - LLMTrace * `AIGatewayCredit` - AIGatewayCredit * `WebAnalyticsFilterPreset` - WebAnalyticsFilterPreset * `CustomerProfileConfig` - CustomerProfileConfig * `Log` - Log * `LogsAlertConfiguration` - LogsAlertConfiguration * `LogsExclusionRule` - LogsExclusionRule * `LogsRetentionRule` - LogsRetentionRule * `DashboardWidget` - DashboardWidget * `ProductTour` - ProductTour * `Ticket` - Ticket * `InstanceSetting` - InstanceSetting * `SignalReport` - SignalReport * `SignalScoutConfig` - SignalScoutConfig * `SignalTeamConfig` - SignalTeamConfig * `StreamlitApp` - StreamlitApp * `Metric` - Metric * `TableCertification` - TableCertification * `DataQualityCheck` - DataQualityCheck * `Billing` - Billing * `Loop` - Loop * `StamphogRepoConfig` - StamphogRepoConfig */
 export type ListActivityLogRequestScopesItem =
@@ -209,7 +209,7 @@ export type ListActivityLogRequestScopesItem =
   | "Billing"
   | "Loop"
   | "StamphogRepoConfig";
-export const ListActivityLogRequestScopesItem = /*@__PURE__*/ S.String;
+export const ListActivityLogRequestScopesItem = S.String;
 
 export type ListActivityLogRequestScopesList = Array<
   ListActivityLogRequestScopesItem | (string & {})
@@ -274,14 +274,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;

@@ -91,7 +91,7 @@ export const InternalTracker = /*@__PURE__*/ S.suspend(() =>
 
 /** ObjectFormatName of the underlying git repository */
 export type RepositoryObjectFormatName = "sha1" | "sha256";
-export const RepositoryObjectFormatName = /*@__PURE__*/ S.String;
+export const RepositoryObjectFormatName = S.String;
 
 /** User represents a user */
 export interface User {
@@ -213,7 +213,7 @@ export const Organization = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Organization" }) as any as S.Schema<Organization>;
 
 export type TeamPermission = "none" | "read" | "write" | "admin" | "owner";
-export const TeamPermission = /*@__PURE__*/ S.String;
+export const TeamPermission = S.String;
 
 export type TeamUnitsList = Array<string>;
 export const TeamUnitsList = /*@__PURE__*/ S.Array(

@@ -381,15 +381,14 @@ export type GoogleCloudChannelV1RenewalSettingsPaymentPlanEnum =
   | "FREE"
   | "TRIAL"
   | "OFFLINE";
-export const GoogleCloudChannelV1RenewalSettingsPaymentPlanEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1RenewalSettingsPaymentPlanEnum = S.String;
 
 export type GoogleCloudChannelV1PeriodPeriodTypeEnum =
   | "PERIOD_TYPE_UNSPECIFIED"
   | "DAY"
   | "MONTH"
   | "YEAR";
-export const GoogleCloudChannelV1PeriodPeriodTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1PeriodPeriodTypeEnum = S.String;
 
 /** Represents period in days/months/years. */
 export interface GoogleCloudChannelV1Period {
@@ -520,7 +519,7 @@ export type GoogleCloudChannelV1CloudIdentityCustomerAccountCustomerTypeEnum =
   | "DOMAIN"
   | "TEAM";
 export const GoogleCloudChannelV1CloudIdentityCustomerAccountCustomerTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Entity representing a Cloud Identity account that may be associated with a Channel Services API partner. */
 export interface GoogleCloudChannelV1CloudIdentityCustomerAccount {
@@ -582,22 +581,19 @@ export type GoogleCloudChannelV1ChannelPartnerLinkLinkStateEnum =
   | "ACTIVE"
   | "REVOKED"
   | "SUSPENDED";
-export const GoogleCloudChannelV1ChannelPartnerLinkLinkStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1ChannelPartnerLinkLinkStateEnum = S.String;
 
 export type GoogleCloudChannelV1CloudIdentityInfoCustomerTypeEnum =
   | "CUSTOMER_TYPE_UNSPECIFIED"
   | "DOMAIN"
   | "TEAM";
-export const GoogleCloudChannelV1CloudIdentityInfoCustomerTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1CloudIdentityInfoCustomerTypeEnum = S.String;
 
 export type GoogleCloudChannelV1EduDataInstituteTypeEnum =
   | "INSTITUTE_TYPE_UNSPECIFIED"
   | "K12"
   | "UNIVERSITY";
-export const GoogleCloudChannelV1EduDataInstituteTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1EduDataInstituteTypeEnum = S.String;
 
 export type GoogleCloudChannelV1EduDataInstituteSizeEnum =
   | "INSTITUTE_SIZE_UNSPECIFIED"
@@ -608,8 +604,7 @@ export type GoogleCloudChannelV1EduDataInstituteSizeEnum =
   | "SIZE_2001_5000"
   | "SIZE_5001_10000"
   | "SIZE_10001_OR_MORE";
-export const GoogleCloudChannelV1EduDataInstituteSizeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1EduDataInstituteSizeEnum = S.String;
 
 /** Required Edu Attributes */
 export interface GoogleCloudChannelV1EduData {
@@ -787,7 +782,7 @@ export type GoogleCloudChannelV1ConditionalOverrideRebillingBasisEnum =
   | "COST_AT_LIST"
   | "DIRECT_CUSTOMER_COST";
 export const GoogleCloudChannelV1ConditionalOverrideRebillingBasisEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A representation of a decimal value, such as 2.5. Clients may convert values into language-native decimal formats, such as Java's [BigDecimal](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/BigDecimal.html) or Python's [decimal.Decimal](https://docs.python.org/3/library/decimal.html). */
 export interface GoogleTypeDecimal {
@@ -884,8 +879,7 @@ export type GoogleCloudChannelV1RepricingConfigRebillingBasisEnum =
   | "REBILLING_BASIS_UNSPECIFIED"
   | "COST_AT_LIST"
   | "DIRECT_CUSTOMER_COST";
-export const GoogleCloudChannelV1RepricingConfigRebillingBasisEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1RepricingConfigRebillingBasisEnum = S.String;
 
 /** Configuration for repricing a Google bill over a period of time. */
 export interface GoogleCloudChannelV1RepricingConfig {
@@ -1051,7 +1045,7 @@ export type GoogleCloudChannelV1CustomerCustomerAttestationStateEnum =
   | "EXEMPT"
   | "NON_EXEMPT_AND_INFO_VERIFIED";
 export const GoogleCloudChannelV1CustomerCustomerAttestationStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Entity representing a customer of a reseller or distributor. */
 export interface GoogleCloudChannelV1Customer {
@@ -1200,8 +1194,7 @@ export type GoogleCloudChannelV1EntitlementProvisioningStateEnum =
   | "PROVISIONING_STATE_UNSPECIFIED"
   | "ACTIVE"
   | "SUSPENDED";
-export const GoogleCloudChannelV1EntitlementProvisioningStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1EntitlementProvisioningStateEnum = S.String;
 
 /** Settings for trial offers. */
 export interface GoogleCloudChannelV1TrialSettings {
@@ -1227,7 +1220,7 @@ export type GoogleCloudChannelV1EntitlementSuspensionReasonsItemEnum =
   | "PENDING_TOS_ACCEPTANCE"
   | "OTHER";
 export const GoogleCloudChannelV1EntitlementSuspensionReasonsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudChannelV1EntitlementSuspensionReasonsItemEnumList =
   Array<
@@ -1685,7 +1678,7 @@ export type GoogleCloudChannelV1ColumnDataTypeEnum =
   | "MONEY"
   | "DATE"
   | "DATE_TIME";
-export const GoogleCloudChannelV1ColumnDataTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1ColumnDataTypeEnum = S.String;
 
 /** The definition of a report column. Specifies the data properties in the corresponding position of the report rows. */
 export interface GoogleCloudChannelV1Column {
@@ -1780,7 +1773,7 @@ export type GetAccountsChannelPartnerLinksViewEnum =
   | "UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetAccountsChannelPartnerLinksViewEnum = /*@__PURE__*/ S.String;
+export const GetAccountsChannelPartnerLinksViewEnum = S.String;
 
 export interface GetAccountsChannelPartnerLinksRequest {
   /** Required. The resource name of the channel partner link to retrieve. Name uses the format: accounts/{account_id}/channelPartnerLinks/{id} where {id} is the Cloud Identity ID of the partner. */
@@ -2000,7 +1993,7 @@ export type ListAccountsChannelPartnerLinksViewEnum =
   | "UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListAccountsChannelPartnerLinksViewEnum = /*@__PURE__*/ S.String;
+export const ListAccountsChannelPartnerLinksViewEnum = S.String;
 
 export interface ListAccountsChannelPartnerLinksRequest {
   /** Optional. The level of granularity the ChannelPartnerLink will display. */
@@ -2328,7 +2321,7 @@ export type GoogleCloudChannelV1PlanPaymentTypeEnum =
   | "PAYMENT_TYPE_UNSPECIFIED"
   | "PREPAY"
   | "POSTPAY";
-export const GoogleCloudChannelV1PlanPaymentTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1PlanPaymentTypeEnum = S.String;
 
 export type GoogleCloudChannelV1PlanPaymentPlanEnum =
   | "PAYMENT_PLAN_UNSPECIFIED"
@@ -2337,7 +2330,7 @@ export type GoogleCloudChannelV1PlanPaymentPlanEnum =
   | "FREE"
   | "TRIAL"
   | "OFFLINE";
-export const GoogleCloudChannelV1PlanPaymentPlanEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1PlanPaymentPlanEnum = S.String;
 
 /** The payment plan for the Offer. Describes how to make a payment. */
 export interface GoogleCloudChannelV1Plan {
@@ -2371,7 +2364,7 @@ export type GoogleCloudChannelV1ParameterDefinitionParameterTypeEnum =
   | "DOUBLE"
   | "BOOLEAN";
 export const GoogleCloudChannelV1ParameterDefinitionParameterTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudChannelV1ValueList = Array<GoogleCloudChannelV1Value>;
 export const GoogleCloudChannelV1ValueList = /*@__PURE__*/ S.Array(
@@ -2423,8 +2416,7 @@ export type GoogleCloudChannelV1DiscountComponentDiscountTypeEnum =
   | "SALES_DISCOUNT"
   | "RESELLER_MARGIN"
   | "DEAL_CODE";
-export const GoogleCloudChannelV1DiscountComponentDiscountTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1DiscountComponentDiscountTypeEnum = S.String;
 
 /** Represents a single component of the total discount applicable on a Price. */
 export interface GoogleCloudChannelV1DiscountComponent {
@@ -2487,8 +2479,7 @@ export type GoogleCloudChannelV1PricePhasePeriodTypeEnum =
   | "DAY"
   | "MONTH"
   | "YEAR";
-export const GoogleCloudChannelV1PricePhasePeriodTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1PricePhasePeriodTypeEnum = S.String;
 
 /** Defines price at resource tier level. For example, an offer with following definition : * Tier 1: Provide 25% discount for all seats between 1 and 25. * Tier 2: Provide 10% discount for all seats between 26 and 100. * Tier 3: Provide flat 15% discount for all seats above 100. Each of these tiers is represented as a PriceTier. */
 export interface GoogleCloudChannelV1PriceTier {
@@ -2556,8 +2547,7 @@ export type GoogleCloudChannelV1PriceByResourceResourceTypeEnum =
   | "IAAS_USAGE"
   | "SUBSCRIPTION"
   | "AI_CREDITS";
-export const GoogleCloudChannelV1PriceByResourceResourceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1PriceByResourceResourceTypeEnum = S.String;
 
 /** Represents price by resource type. */
 export interface GoogleCloudChannelV1PriceByResource {
@@ -2591,7 +2581,7 @@ export type GoogleCloudChannelV1CustomerConstraintsAllowedCustomerTypesItemEnum 
   | "DOMAIN"
   | "TEAM";
 export const GoogleCloudChannelV1CustomerConstraintsAllowedCustomerTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudChannelV1CustomerConstraintsAllowedCustomerTypesItemEnumList =
   Array<GoogleCloudChannelV1CustomerConstraintsAllowedCustomerTypesItemEnum>;
@@ -2606,7 +2596,7 @@ export type GoogleCloudChannelV1CustomerConstraintsPromotionalOrderTypesItemEnum
   | "TRANSFER"
   | "PROMOTION_SWITCH";
 export const GoogleCloudChannelV1CustomerConstraintsPromotionalOrderTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudChannelV1CustomerConstraintsPromotionalOrderTypesItemEnumList =
   Array<GoogleCloudChannelV1CustomerConstraintsPromotionalOrderTypesItemEnum>;
@@ -2655,7 +2645,7 @@ export const GoogleCloudChannelV1Constraints = /*@__PURE__*/ S.suspend(() =>
 export type GoogleCloudChannelV1MediaTypeEnum =
   | "MEDIA_TYPE_UNSPECIFIED"
   | "MEDIA_TYPE_IMAGE";
-export const GoogleCloudChannelV1MediaTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1MediaTypeEnum = S.String;
 
 /** Represents media information. */
 export interface GoogleCloudChannelV1Media {
@@ -3010,7 +3000,7 @@ export type GoogleCloudChannelV1EntitlementChangeCancellationReasonEnum =
   | "RELATIONSHIP_ENDED"
   | "PARTIAL_TRANSFER";
 export const GoogleCloudChannelV1EntitlementChangeCancellationReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudChannelV1EntitlementChangeOperatorTypeEnum =
   | "OPERATOR_TYPE_UNSPECIFIED"
@@ -3018,8 +3008,7 @@ export type GoogleCloudChannelV1EntitlementChangeOperatorTypeEnum =
   | "SYSTEM"
   | "CUSTOMER"
   | "RESELLER";
-export const GoogleCloudChannelV1EntitlementChangeOperatorTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1EntitlementChangeOperatorTypeEnum = S.String;
 
 export type GoogleCloudChannelV1EntitlementChangeActivationReasonEnum =
   | "ACTIVATION_REASON_UNSPECIFIED"
@@ -3028,7 +3017,7 @@ export type GoogleCloudChannelV1EntitlementChangeActivationReasonEnum =
   | "RENEWAL_SETTINGS_CHANGED"
   | "OTHER_ACTIVATION_REASON";
 export const GoogleCloudChannelV1EntitlementChangeActivationReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudChannelV1EntitlementChangeChangeTypeEnum =
   | "CHANGE_TYPE_UNSPECIFIED"
@@ -3046,8 +3035,7 @@ export type GoogleCloudChannelV1EntitlementChangeChangeTypeEnum =
   | "SUSPENSION_DETAILS_CHANGED"
   | "TRIAL_END_DATE_EXTENDED"
   | "TRIAL_STARTED";
-export const GoogleCloudChannelV1EntitlementChangeChangeTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudChannelV1EntitlementChangeChangeTypeEnum = S.String;
 
 export type GoogleCloudChannelV1EntitlementChangeSuspensionReasonEnum =
   | "SUSPENSION_REASON_UNSPECIFIED"
@@ -3057,7 +3045,7 @@ export type GoogleCloudChannelV1EntitlementChangeSuspensionReasonEnum =
   | "PENDING_TOS_ACCEPTANCE"
   | "OTHER";
 export const GoogleCloudChannelV1EntitlementChangeSuspensionReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Change event entry for Entitlement order history */
 export interface GoogleCloudChannelV1EntitlementChange {
@@ -3388,7 +3376,7 @@ export type ListPurchasableSkusAccountsCustomersChangeOfferPurchase_changeTypeEn
   | "UPGRADE"
   | "DOWNGRADE";
 export const ListPurchasableSkusAccountsCustomersChangeOfferPurchase_changeTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListPurchasableSkusAccountsCustomersRequest {
   /** Required. The resource name of the customer to list SKUs for. Format: accounts/{account_id}/customers/{customer_id}. */
@@ -3698,7 +3686,7 @@ export type GoogleCloudChannelV1TransferEligibilityIneligibilityReasonEnum =
   | "SKU_SUSPENDED"
   | "CHANNEL_PARTNER_NOT_AUTHORIZED_FOR_SKU";
 export const GoogleCloudChannelV1TransferEligibilityIneligibilityReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specifies transfer eligibility of a SKU. */
 export interface GoogleCloudChannelV1TransferEligibility {

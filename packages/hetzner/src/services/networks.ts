@@ -27,7 +27,7 @@ export type CreateNetworkRequestSubnetsItemType =
   | "cloud"
   | "server"
   | "vswitch";
-export const CreateNetworkRequestSubnetsItemType = /*@__PURE__*/ S.String;
+export const CreateNetworkRequestSubnetsItemType = S.String;
 
 export interface CreateNetworkRequestSubnetsItem {
   /** Type of subnet. */
@@ -111,8 +111,7 @@ export type CreateNetworkResponseNetworkSubnetsItemType =
   | "cloud"
   | "server"
   | "vswitch";
-export const CreateNetworkResponseNetworkSubnetsItemType =
-  /*@__PURE__*/ S.String;
+export const CreateNetworkResponseNetworkSubnetsItemType = S.String;
 
 export interface CreateNetworkResponseNetworkSubnetsItem {
   /** Type of subnet. */
@@ -283,7 +282,7 @@ export type GetNetworkResponseNetworkSubnetsItemType =
   | "cloud"
   | "server"
   | "vswitch";
-export const GetNetworkResponseNetworkSubnetsItemType = /*@__PURE__*/ S.String;
+export const GetNetworkResponseNetworkSubnetsItemType = S.String;
 
 export interface GetNetworkResponseNetworkSubnetsItem {
   /** Type of subnet. */
@@ -419,7 +418,7 @@ export type ListNetworksRequestSortItem =
   | "created"
   | "created:asc"
   | "created:desc";
-export const ListNetworksRequestSortItem = /*@__PURE__*/ S.String;
+export const ListNetworksRequestSortItem = S.String;
 
 export type ListNetworksRequestSortList = Array<
   ListNetworksRequestSortItem | (string & {})
@@ -457,8 +456,7 @@ export type ListNetworksResponseNetworksItemSubnetsItemType =
   | "cloud"
   | "server"
   | "vswitch";
-export const ListNetworksResponseNetworksItemSubnetsItemType =
-  /*@__PURE__*/ S.String;
+export const ListNetworksResponseNetworksItemSubnetsItemType = S.String;
 
 export interface ListNetworksResponseNetworksItemSubnetsItem {
   /** Type of subnet. */
@@ -672,8 +670,7 @@ export type UpdateNetworkResponseNetworkSubnetsItemType =
   | "cloud"
   | "server"
   | "vswitch";
-export const UpdateNetworkResponseNetworkSubnetsItemType =
-  /*@__PURE__*/ S.String;
+export const UpdateNetworkResponseNetworkSubnetsItemType = S.String;
 
 export interface UpdateNetworkResponseNetworkSubnetsItem {
   /** Type of subnet. */

@@ -31,7 +31,7 @@ export type CreateZoneRrsetRequestType =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const CreateZoneRrsetRequestType = /*@__PURE__*/ S.String;
+export const CreateZoneRrsetRequestType = S.String;
 
 /** Record of a [RRSet](#tag/zone-rrsets). The `value` is used to identify the record in an [RRSet](#tag/zone-rrsets). */
 export interface CreateZoneRrsetRequestRecordsItem {
@@ -112,7 +112,7 @@ export type CreateZoneRrsetResponseRrsetType =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const CreateZoneRrsetResponseRrsetType = /*@__PURE__*/ S.String;
+export const CreateZoneRrsetResponseRrsetType = S.String;
 
 /** User-defined labels (`key/value` pairs) for the Resource. For more information, see "[Labels](#description/labels)". */
 export type CreateZoneRrsetResponseRrsetLabelsMap = {
@@ -188,7 +188,7 @@ export type CreateZoneRrsetResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const CreateZoneRrsetResponseActionStatus = /*@__PURE__*/ S.String;
+export const CreateZoneRrsetResponseActionStatus = S.String;
 
 export interface CreateZoneRrsetResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -293,7 +293,7 @@ export type DeleteZoneRrsetRequestRrType =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const DeleteZoneRrsetRequestRrType = /*@__PURE__*/ S.String;
+export const DeleteZoneRrsetRequestRrType = S.String;
 
 export interface DeleteZoneRrsetRequest {
   /** ID or Name of the Zone. */
@@ -322,7 +322,7 @@ export type DeleteZoneRrsetResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const DeleteZoneRrsetResponseActionStatus = /*@__PURE__*/ S.String;
+export const DeleteZoneRrsetResponseActionStatus = S.String;
 
 export type DeleteZoneRrsetResponseActionResourcesItem =
   CreateZoneRrsetResponseActionResourcesItem;
@@ -404,7 +404,7 @@ export type GetZoneRrsetRequestRrType =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const GetZoneRrsetRequestRrType = /*@__PURE__*/ S.String;
+export const GetZoneRrsetRequestRrType = S.String;
 
 export interface GetZoneRrsetRequest {
   /** ID or Name of the Zone. */
@@ -446,7 +446,7 @@ export type GetZoneRrsetResponseRrsetType =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const GetZoneRrsetResponseRrsetType = /*@__PURE__*/ S.String;
+export const GetZoneRrsetResponseRrsetType = S.String;
 
 /** User-defined labels (`key/value` pairs) for the Resource. For more information, see "[Labels](#description/labels)". */
 export type GetZoneRrsetResponseRrsetLabelsMap = {
@@ -538,7 +538,7 @@ export type ListZoneRrsetsRequestTypeItem =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const ListZoneRrsetsRequestTypeItem = /*@__PURE__*/ S.String;
+export const ListZoneRrsetsRequestTypeItem = S.String;
 
 export type ListZoneRrsetsRequestTypeList = Array<
   ListZoneRrsetsRequestTypeItem | (string & {})
@@ -557,7 +557,7 @@ export type ListZoneRrsetsRequestSortItem =
   | "created"
   | "created:asc"
   | "created:desc";
-export const ListZoneRrsetsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListZoneRrsetsRequestSortItem = S.String;
 
 export type ListZoneRrsetsRequestSortList = Array<
   ListZoneRrsetsRequestSortItem | (string & {})
@@ -616,7 +616,7 @@ export type ListZoneRrsetsResponseRrsetsItemType =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const ListZoneRrsetsResponseRrsetsItemType = /*@__PURE__*/ S.String;
+export const ListZoneRrsetsResponseRrsetsItemType = S.String;
 
 /** User-defined labels (`key/value` pairs) for the Resource. For more information, see "[Labels](#description/labels)". */
 export type ListZoneRrsetsResponseRrsetsItemLabelsMap = {
@@ -758,7 +758,7 @@ export type UpdateZoneRrsetRequestRrType =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const UpdateZoneRrsetRequestRrType = /*@__PURE__*/ S.String;
+export const UpdateZoneRrsetRequestRrType = S.String;
 
 /** User-defined labels (`key/value` pairs) for the Resource. Note that the set of [Labels](#description/labels) provided in the request will overwrite the existing one. For more information, see "[Labels](#description/labels)". */
 export type UpdateZoneRrsetRequestLabelsMap = {
@@ -812,7 +812,7 @@ export type UpdateZoneRrsetResponseRrsetType =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const UpdateZoneRrsetResponseRrsetType = /*@__PURE__*/ S.String;
+export const UpdateZoneRrsetResponseRrsetType = S.String;
 
 /** User-defined labels (`key/value` pairs) for the Resource. For more information, see "[Labels](#description/labels)". */
 export type UpdateZoneRrsetResponseRrsetLabelsMap = {

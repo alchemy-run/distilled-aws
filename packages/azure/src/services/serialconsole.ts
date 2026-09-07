@@ -62,11 +62,11 @@ export const SerialPortConnectResult = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies whether the port is enabled for a serial console connection. */
 export type SerialPortState = "enabled" | "disabled";
-export const SerialPortState = /*@__PURE__*/ S.String;
+export const SerialPortState = S.String;
 
 /** Specifies whether the port is currently active. */
 export type SerialPortConnectionState = "active" | "inactive";
-export const SerialPortConnectionState = /*@__PURE__*/ S.String;
+export const SerialPortConnectionState = S.String;
 
 /** The properties of the serial port. */
 export interface SerialPortProperties {
@@ -127,7 +127,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -135,7 +135,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {

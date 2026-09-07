@@ -41,7 +41,7 @@ export class Forbidden
 
 /** * `metric` - Metric * `match` - Match */
 export type VisionAlertKindEnum = "metric" | "match";
-export const VisionAlertKindEnum = /*@__PURE__*/ S.String;
+export const VisionAlertKindEnum = S.String;
 
 /** Monitor verdicts to match, e.g. ['yes']. */
 export type VisionAlertSelectionVerdictList = Array<string>;
@@ -78,11 +78,11 @@ export const VisionAlertSelection = /*@__PURE__*/ S.suspend(() =>
 
 /** * `count` - Count matching observations * `avg_score` - Average score */
 export type VisionAlertMetricEnum = "count" | "avg_score";
-export const VisionAlertMetricEnum = /*@__PURE__*/ S.String;
+export const VisionAlertMetricEnum = S.String;
 
 /** * `above` - At or above * `below` - At or below */
 export type VisionAlertDirectionEnum = "above" | "below";
-export const VisionAlertDirectionEnum = /*@__PURE__*/ S.String;
+export const VisionAlertDirectionEnum = S.String;
 
 export interface AlertScheduleRestrictionWindow {
   /** Start time HH:MM (24-hour, project timezone). Inclusive. Each window must span ≥ 30 minutes on the local daily timeline (half-open [start, end)). */
@@ -189,7 +189,7 @@ export type LogsAlertConfigurationStateEnum =
   | "errored"
   | "snoozed"
   | "broken";
-export const LogsAlertConfigurationStateEnum = /*@__PURE__*/ S.String;
+export const LogsAlertConfigurationStateEnum = S.String;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -208,14 +208,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -327,7 +327,7 @@ export const VisionAlertConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** * `slack` - slack * `webhook` - webhook */
 export type VisionAlertCreateDestinationTypeEnum = "slack" | "webhook";
-export const VisionAlertCreateDestinationTypeEnum = /*@__PURE__*/ S.String;
+export const VisionAlertCreateDestinationTypeEnum = S.String;
 
 export interface CreateVisionAlertsDestinationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -441,22 +441,22 @@ export type ScannerTypeEnum =
   | "classifier"
   | "scorer"
   | "summarizer";
-export const ScannerTypeEnum = /*@__PURE__*/ S.String;
+export const ScannerTypeEnum = S.String;
 
 /** * `focused` - Focused * `balanced` - Balanced * `comprehensive` - Comprehensive */
 export type SamplingModeEnum = "focused" | "balanced" | "comprehensive";
-export const SamplingModeEnum = /*@__PURE__*/ S.String;
+export const SamplingModeEnum = S.String;
 
 /** * `google` - Google */
 export type ScannerProviderEnum = "google";
-export const ScannerProviderEnum = /*@__PURE__*/ S.String;
+export const ScannerProviderEnum = S.String;
 
 /** * `gemini-3.5-flash-lite` - Gemini 3.5 Flash Lite * `gemini-3-flash-preview` - Gemini 3 Flash * `gemini-3.8-flash` - Gemini 3.8 Flash */
 export type ScannerModelEnum =
   | "gemini-3.5-flash-lite"
   | "gemini-3-flash-preview"
   | "gemini-3.8-flash";
-export const ScannerModelEnum = /*@__PURE__*/ S.String;
+export const ScannerModelEnum = S.String;
 
 /** The experiment a scanner watches. Scans derive their person-scoped exposure filter from this blob at query time, so it is the only place an experiment can enter a scanner's targeting — which is what lets the write-side access check and read-side redaction cover it. */
 export interface ScannerExperimentTargeting {
@@ -791,7 +791,7 @@ export type BackfillStatusEnum =
   | "paused_quota"
   | "completed"
   | "cancelled";
-export const BackfillStatusEnum = /*@__PURE__*/ S.String;
+export const BackfillStatusEnum = S.String;
 
 export interface ReplayScannerBackfill {
   id: string;
@@ -1179,7 +1179,7 @@ export type PromptSuggestionStatusEnum =
   | "dismissed"
   | "superseded"
   | "no_change";
-export const PromptSuggestionStatusEnum = /*@__PURE__*/ S.String;
+export const PromptSuggestionStatusEnum = S.String;
 
 export interface PromptEvaluationResult {
   /** The rated session that was re-run with the suggested prompt. */
@@ -1412,7 +1412,7 @@ export const SignalScoutOutputDestinations = /*@__PURE__*/ S.suspend(() =>
 
 /** * `trusted` - Trusted domains only * `full` - Full */
 export type SignalScoutConfigNetworkAccessEnum = "trusted" | "full";
-export const SignalScoutConfigNetworkAccessEnum = /*@__PURE__*/ S.String;
+export const SignalScoutConfigNetworkAccessEnum = S.String;
 
 /** Free-form labels for grouping the fleet, e.g. `["revenue", "on-call"]`. Normalized to lowercase kebab-case (`On Call` and `on_call` both become `on-call`), deduped, and stored sorted; at most 10 tags, each at most 50 characters once normalized. Pass the full desired set — a write replaces the existing tags rather than merging into them. Filter the config list with the `tags` query parameter. */
 export type SignalScoutConfigOptionsTagsList = Array<string>;
@@ -1518,7 +1518,7 @@ export const CreateVisionScannersScoutRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `canonical` - canonical * `custom` - custom */
 export type ScoutOriginEnum = "canonical" | "custom";
-export const ScoutOriginEnum = /*@__PURE__*/ S.String;
+export const ScoutOriginEnum = S.String;
 
 /** Who answers for this scout, seed-creator first. Ownership is recorded on the scout's skill rather than on this config, so editing the skill or toggling the scout leaves it unchanged. Reports the scout files suggest these people as reviewers. Prefer this over `created_by`-style fields, which only say who last flipped a switch. Empty when nobody owns the scout, when the owners are no longer members with access to the project, or when the caller is a scout sandbox token: owners are member PII, and a scout reads them through the skill API instead. */
 export type SignalScoutConfigOwnersList = Array<UserBasic>;
@@ -1532,14 +1532,14 @@ export type SignalScoutConfigStatusEnum =
   | "pending_pause"
   | "paused_by_system"
   | "paused_by_user";
-export const SignalScoutConfigStatusEnum = /*@__PURE__*/ S.String;
+export const SignalScoutConfigStatusEnum = S.String;
 
 /** * `no_output` - No output * `ignored` - Ignored * `repeated_failures` - Repeated failures */
 export type SignalScoutConfigPauseReasonEnum =
   | "no_output"
   | "ignored"
   | "repeated_failures";
-export const SignalScoutConfigPauseReasonEnum = /*@__PURE__*/ S.String;
+export const SignalScoutConfigPauseReasonEnum = S.String;
 
 /** Optional JSON Schema (draft 2020-12) describing ONE structured record this scout produces via `scout-record-output` — e.g. a per-report quality judgment (`{"type": "object", "properties": {"verdict": {"enum": ["good", "bad", "unsure"]}, "reason": {"type": "string"}}, "required": ["verdict", "reason"]}`). The root must be `"type": "object"`. Setting a schema turns the structured-output channel on: the run prompt renders the schema and every submitted record is validated against it and recorded in the project as a `$scout_structured_output` event, queryable like any event. The channel also requires emit — a dry-run scout has nowhere to record to. Cardinality is the scout's call (one record per run, one per judged entity, ...). Null = channel off. Setting a schema requires skill-authoring authorization (the `llm_skill:write` scope and skill editor access) since the scout reads it verbatim in its prompt; clearing it needs only the config write. Records validate against the schema in force when the run was dispatched. */
 export type SignalScoutConfigStructuredOutputSchemaMap = {
@@ -1704,7 +1704,7 @@ export const CreateVisionScannersSuggestTagRequest = /*@__PURE__*/ S.suspend(
 
 /** * `observed` - observed * `product` - product * `prompt` - prompt */
 export type TagSuggestionSourceEnum = "observed" | "product" | "prompt";
-export const TagSuggestionSourceEnum = /*@__PURE__*/ S.String;
+export const TagSuggestionSourceEnum = S.String;
 
 /** One grounded tag suggestion. */
 export interface TagSuggestion {
@@ -1901,7 +1901,7 @@ export type GetVisionObservationRequestOrderBy =
   | "scanner_version"
   | "started_at"
   | "status";
-export const GetVisionObservationRequestOrderBy = /*@__PURE__*/ S.String;
+export const GetVisionObservationRequestOrderBy = S.String;
 
 export interface GetVisionObservationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1965,7 +1965,7 @@ export const GetVisionObservationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `configured` - Configured * `inline` - Inline */
 export type ScannerOriginEnum = "configured" | "inline";
-export const ScannerOriginEnum = /*@__PURE__*/ S.String;
+export const ScannerOriginEnum = S.String;
 
 /** * `pending` - Pending * `running` - Running * `succeeded` - Succeeded * `failed` - Failed * `ineligible` - Ineligible */
 export type ObservationStatusEnum =
@@ -1974,7 +1974,7 @@ export type ObservationStatusEnum =
   | "succeeded"
   | "failed"
   | "ineligible";
-export const ObservationStatusEnum = /*@__PURE__*/ S.String;
+export const ObservationStatusEnum = S.String;
 
 /** Mirrors `temporal.types.ScannerSnapshot` for OpenAPI generation. */
 export interface ScannerSnapshot {
@@ -2027,7 +2027,7 @@ export type ObservationTriggerEnum =
   | "on_demand"
   | "retry"
   | "backfill";
-export const ObservationTriggerEnum = /*@__PURE__*/ S.String;
+export const ObservationTriggerEnum = S.String;
 
 export interface ReplayObservation {
   id: string;
@@ -2249,8 +2249,7 @@ export type GetVisionScannersObservationRequestOrderBy =
   | "scanner_version"
   | "started_at"
   | "status";
-export const GetVisionScannersObservationRequestOrderBy =
-  /*@__PURE__*/ S.String;
+export const GetVisionScannersObservationRequestOrderBy = S.String;
 
 export interface GetVisionScannersObservationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2810,7 +2809,7 @@ export const GetVisionScannersScoutReportRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `small` - small * `medium` - medium * `large` - large */
 export type SizeEnum = "small" | "medium" | "large";
-export const SizeEnum = /*@__PURE__*/ S.String;
+export const SizeEnum = S.String;
 
 /** One chart attached to a report — rendered in the inbox and referenceable from the summary. */
 export interface ReportChart {
@@ -3042,7 +3041,7 @@ export type ListVisionAlertsEventsRequestKind =
   | "snooze"
   | "threshold_change"
   | "unsnooze";
-export const ListVisionAlertsEventsRequestKind = /*@__PURE__*/ S.String;
+export const ListVisionAlertsEventsRequestKind = S.String;
 
 export interface ListVisionAlertsEventsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -3083,7 +3082,7 @@ export type VisionAlertEventKindEnum =
   | "snooze"
   | "unsnooze"
   | "threshold_change";
-export const VisionAlertEventKindEnum = /*@__PURE__*/ S.String;
+export const VisionAlertEventKindEnum = S.String;
 
 export interface VisionAlertEvent {
   id: string;
@@ -3153,7 +3152,7 @@ export type ListVisionObservationsRequestOrderBy =
   | "scanner_version"
   | "started_at"
   | "status";
-export const ListVisionObservationsRequestOrderBy = /*@__PURE__*/ S.String;
+export const ListVisionObservationsRequestOrderBy = S.String;
 
 export interface ListVisionObservationsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -3225,7 +3224,7 @@ export type ListVisionScannersRequestOrderBy =
   | "sampling_rate"
   | "scanner_type"
   | "updated_at";
-export const ListVisionScannersRequestOrderBy = /*@__PURE__*/ S.String;
+export const ListVisionScannersRequestOrderBy = S.String;
 
 export interface ListVisionScannersRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -3368,8 +3367,7 @@ export type ListVisionScannersObservationsRequestOrderBy =
   | "scanner_version"
   | "started_at"
   | "status";
-export const ListVisionScannersObservationsRequestOrderBy =
-  /*@__PURE__*/ S.String;
+export const ListVisionScannersObservationsRequestOrderBy = S.String;
 
 export interface ListVisionScannersObservationsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

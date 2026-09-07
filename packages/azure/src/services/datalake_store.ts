@@ -15,7 +15,7 @@ export type { AzureOpError, AzureOpContext };
 /** The resource type. Note: This should not be set by the user, as the constant value is Microsoft.DataLakeStore/accounts */
 export type CheckAccountNameAvailabilityRequestType =
   "Microsoft.DataLakeStore/accounts";
-export const CheckAccountNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+export const CheckAccountNameAvailabilityRequestType = S.String;
 
 export interface CheckAccountNameAvailabilityRequest {
   /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -73,7 +73,7 @@ export const CreateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** The type of encryption being used. Currently the only supported type is 'SystemAssigned'. */
 export type EncryptionIdentityInputType = "SystemAssigned";
-export const EncryptionIdentityInputType = /*@__PURE__*/ S.String;
+export const EncryptionIdentityInputType = S.String;
 
 /** The encryption identity properties. */
 export interface EncryptionIdentityInput {
@@ -90,7 +90,7 @@ export const EncryptionIdentityInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of encryption configuration being used. Currently the only supported types are 'UserManaged' and 'ServiceManaged'. */
 export type EncryptionConfigType = "UserManaged" | "ServiceManaged";
-export const EncryptionConfigType = /*@__PURE__*/ S.String;
+export const EncryptionConfigType = S.String;
 
 /** Metadata information used by account encryption. */
 export interface KeyVaultMetaInfo {
@@ -131,8 +131,7 @@ export const EncryptionConfig = /*@__PURE__*/ S.suspend(() =>
 export type CreateDataLakeStoreAccountPropertiesEncryptionState =
   | "Enabled"
   | "Disabled";
-export const CreateDataLakeStoreAccountPropertiesEncryptionState =
-  /*@__PURE__*/ S.String;
+export const CreateDataLakeStoreAccountPropertiesEncryptionState = S.String;
 
 /** The firewall rule properties to use when creating a new firewall rule. */
 export interface CreateOrUpdateFirewallRuleProperties {
@@ -219,15 +218,14 @@ export const CreateDataLakeStoreAccountPropertiesVirtualNetworkRulesList =
 export type CreateDataLakeStoreAccountPropertiesFirewallState =
   | "Enabled"
   | "Disabled";
-export const CreateDataLakeStoreAccountPropertiesFirewallState =
-  /*@__PURE__*/ S.String;
+export const CreateDataLakeStoreAccountPropertiesFirewallState = S.String;
 
 /** The current state of allowing or disallowing IPs originating within Azure through the firewall. If the firewall is disabled, this is not enforced. */
 export type CreateDataLakeStoreAccountPropertiesFirewallAllowAzureIps =
   | "Enabled"
   | "Disabled";
 export const CreateDataLakeStoreAccountPropertiesFirewallAllowAzureIps =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The trusted identity provider properties to use when creating a new trusted identity provider. */
 export interface CreateOrUpdateTrustedIdProviderProperties {
@@ -273,7 +271,7 @@ export type CreateDataLakeStoreAccountPropertiesTrustedIdProviderState =
   | "Enabled"
   | "Disabled";
 export const CreateDataLakeStoreAccountPropertiesTrustedIdProviderState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The commitment tier to use for next month. */
 export type CreateDataLakeStoreAccountPropertiesNewTier =
@@ -284,8 +282,7 @@ export type CreateDataLakeStoreAccountPropertiesNewTier =
   | "Commitment_500TB"
   | "Commitment_1PB"
   | "Commitment_5PB";
-export const CreateDataLakeStoreAccountPropertiesNewTier =
-  /*@__PURE__*/ S.String;
+export const CreateDataLakeStoreAccountPropertiesNewTier = S.String;
 
 export interface CreateDataLakeStoreAccountProperties {
   /** The default owner group for all new folders and files created in the Data Lake Store account. */
@@ -397,7 +394,7 @@ export const CreateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The type of encryption being used. Currently the only supported type is 'SystemAssigned'. */
 export type EncryptionIdentityType = "SystemAssigned";
-export const EncryptionIdentityType = /*@__PURE__*/ S.String;
+export const EncryptionIdentityType = S.String;
 
 /** The encryption identity properties. */
 export interface EncryptionIdentity {
@@ -431,26 +428,24 @@ export type DataLakeStoreAccountPropertiesProvisioningState =
   | "Deleted"
   | "Undeleting"
   | "Canceled";
-export const DataLakeStoreAccountPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const DataLakeStoreAccountPropertiesProvisioningState = S.String;
 
 /** The state of the Data Lake Store account. */
 export type DataLakeStoreAccountPropertiesState = "Active" | "Suspended";
-export const DataLakeStoreAccountPropertiesState = /*@__PURE__*/ S.String;
+export const DataLakeStoreAccountPropertiesState = S.String;
 
 /** The current state of encryption for this Data Lake Store account. */
 export type DataLakeStoreAccountPropertiesEncryptionState =
   | "Enabled"
   | "Disabled";
-export const DataLakeStoreAccountPropertiesEncryptionState =
-  /*@__PURE__*/ S.String;
+export const DataLakeStoreAccountPropertiesEncryptionState = S.String;
 
 /** The current state of encryption provisioning for this Data Lake Store account. */
 export type DataLakeStoreAccountPropertiesEncryptionProvisioningState =
   | "Creating"
   | "Succeeded";
 export const DataLakeStoreAccountPropertiesEncryptionProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The firewall rule properties. */
 export interface FirewallRuleProperties {
@@ -543,15 +538,13 @@ export const DataLakeStoreAccountPropertiesVirtualNetworkRulesList =
 export type DataLakeStoreAccountPropertiesFirewallState =
   | "Enabled"
   | "Disabled";
-export const DataLakeStoreAccountPropertiesFirewallState =
-  /*@__PURE__*/ S.String;
+export const DataLakeStoreAccountPropertiesFirewallState = S.String;
 
 /** The current state of allowing or disallowing IPs originating within Azure through the firewall. If the firewall is disabled, this is not enforced. */
 export type DataLakeStoreAccountPropertiesFirewallAllowAzureIps =
   | "Enabled"
   | "Disabled";
-export const DataLakeStoreAccountPropertiesFirewallAllowAzureIps =
-  /*@__PURE__*/ S.String;
+export const DataLakeStoreAccountPropertiesFirewallAllowAzureIps = S.String;
 
 /** The trusted identity provider properties. */
 export interface TrustedIdProviderProperties {
@@ -600,8 +593,7 @@ export const DataLakeStoreAccountPropertiesTrustedIdProvidersList =
 export type DataLakeStoreAccountPropertiesTrustedIdProviderState =
   | "Enabled"
   | "Disabled";
-export const DataLakeStoreAccountPropertiesTrustedIdProviderState =
-  /*@__PURE__*/ S.String;
+export const DataLakeStoreAccountPropertiesTrustedIdProviderState = S.String;
 
 /** The commitment tier to use for next month. */
 export type DataLakeStoreAccountPropertiesNewTier =
@@ -612,7 +604,7 @@ export type DataLakeStoreAccountPropertiesNewTier =
   | "Commitment_500TB"
   | "Commitment_1PB"
   | "Commitment_5PB";
-export const DataLakeStoreAccountPropertiesNewTier = /*@__PURE__*/ S.String;
+export const DataLakeStoreAccountPropertiesNewTier = S.String;
 
 /** The commitment tier in use for the current month. */
 export type DataLakeStoreAccountPropertiesCurrentTier =
@@ -623,7 +615,7 @@ export type DataLakeStoreAccountPropertiesCurrentTier =
   | "Commitment_500TB"
   | "Commitment_1PB"
   | "Commitment_5PB";
-export const DataLakeStoreAccountPropertiesCurrentTier = /*@__PURE__*/ S.String;
+export const DataLakeStoreAccountPropertiesCurrentTier = S.String;
 
 /** Data Lake Store account properties information. */
 export interface DataLakeStoreAccountProperties {
@@ -1092,7 +1084,7 @@ export type CapabilityInformationState =
   | "Deleted"
   | "Unregistered"
   | "Warned";
-export const CapabilityInformationState = /*@__PURE__*/ S.String;
+export const CapabilityInformationState = S.String;
 
 /** Subscription-level properties and limits for Data Lake Store. */
 export interface CapabilityInformation {
@@ -1149,7 +1141,7 @@ export type UsageUnit =
   | "Percent"
   | "CountsPerSecond"
   | "BytesPerSecond";
-export const UsageUnit = /*@__PURE__*/ S.String;
+export const UsageUnit = S.String;
 
 /** The usage names that can be used. */
 export interface UsageName {
@@ -1367,12 +1359,11 @@ export type DataLakeStoreAccountPropertiesBasicProvisioningState =
   | "Deleted"
   | "Undeleting"
   | "Canceled";
-export const DataLakeStoreAccountPropertiesBasicProvisioningState =
-  /*@__PURE__*/ S.String;
+export const DataLakeStoreAccountPropertiesBasicProvisioningState = S.String;
 
 /** The state of the Data Lake Store account. */
 export type DataLakeStoreAccountPropertiesBasicState = "Active" | "Suspended";
-export const DataLakeStoreAccountPropertiesBasicState = /*@__PURE__*/ S.String;
+export const DataLakeStoreAccountPropertiesBasicState = S.String;
 
 /** The basic account specific properties that are associated with an underlying Data Lake Store account. */
 export interface DataLakeStoreAccountPropertiesBasic {
@@ -1577,7 +1568,7 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation. */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** An available operation for Data Lake Store. */
 export interface Operation {
@@ -1863,15 +1854,14 @@ export const UpdateDataLakeStoreAccountPropertiesVirtualNetworkRulesList =
 export type UpdateDataLakeStoreAccountPropertiesFirewallState =
   | "Enabled"
   | "Disabled";
-export const UpdateDataLakeStoreAccountPropertiesFirewallState =
-  /*@__PURE__*/ S.String;
+export const UpdateDataLakeStoreAccountPropertiesFirewallState = S.String;
 
 /** The current state of allowing or disallowing IPs originating within Azure through the firewall. If the firewall is disabled, this is not enforced. */
 export type UpdateDataLakeStoreAccountPropertiesFirewallAllowAzureIps =
   | "Enabled"
   | "Disabled";
 export const UpdateDataLakeStoreAccountPropertiesFirewallAllowAzureIps =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The trusted identity provider properties to use when updating a trusted identity provider. */
 export type UpdateTrustedIdProviderProperties = TrustedIdProviderProperties;
@@ -1907,7 +1897,7 @@ export type UpdateDataLakeStoreAccountPropertiesTrustedIdProviderState =
   | "Enabled"
   | "Disabled";
 export const UpdateDataLakeStoreAccountPropertiesTrustedIdProviderState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The commitment tier to use for next month. */
 export type UpdateDataLakeStoreAccountPropertiesNewTier =
@@ -1918,8 +1908,7 @@ export type UpdateDataLakeStoreAccountPropertiesNewTier =
   | "Commitment_500TB"
   | "Commitment_1PB"
   | "Commitment_5PB";
-export const UpdateDataLakeStoreAccountPropertiesNewTier =
-  /*@__PURE__*/ S.String;
+export const UpdateDataLakeStoreAccountPropertiesNewTier = S.String;
 
 /** Data Lake Store account properties information to be updated. */
 export interface UpdateDataLakeStoreAccountProperties {

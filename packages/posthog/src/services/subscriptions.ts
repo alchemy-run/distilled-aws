@@ -52,7 +52,7 @@ export type SubscriptionAIWindowModeEnum =
   | "since_last_sent"
   | "last_n_days"
   | "days_ago_range";
-export const SubscriptionAIWindowModeEnum = /*@__PURE__*/ S.String;
+export const SubscriptionAIWindowModeEnum = S.String;
 
 export interface AIWindowConfig {
   /** What the report analyzes each run: * `since_last_sent` (default) — everything since the previous successful scheduled delivery (gap-free; test/manual sends don't move the anchor) * `last_n_days` — a fixed trailing window of start_days_ago days * `days_ago_range` — the explicit range from start_days_ago to end_days_ago days ago * `since_last_sent` - Since last report * `last_n_days` - Last N days * `days_ago_range` - Between X and Y days ago */
@@ -82,11 +82,11 @@ export const AIPromptConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** * `email` - Email * `slack` - Slack * `teams` - Microsoft Teams */
 export type SubscriptionTargetEnum = "email" | "slack" | "teams";
-export const SubscriptionTargetEnum = /*@__PURE__*/ S.String;
+export const SubscriptionTargetEnum = S.String;
 
 /** * `daily` - Daily * `weekly` - Weekly * `monthly` - Monthly * `yearly` - Yearly */
 export type RecurrenceIntervalEnum = "daily" | "weekly" | "monthly" | "yearly";
-export const RecurrenceIntervalEnum = /*@__PURE__*/ S.String;
+export const RecurrenceIntervalEnum = S.String;
 
 /** * `monday` - Monday * `tuesday` - Tuesday * `wednesday` - Wednesday * `thursday` - Thursday * `friday` - Friday * `saturday` - Saturday * `sunday` - Sunday */
 export type CreateSubscriptionRequestByweekdayItem =
@@ -97,7 +97,7 @@ export type CreateSubscriptionRequestByweekdayItem =
   | "friday"
   | "saturday"
   | "sunday";
-export const CreateSubscriptionRequestByweekdayItem = /*@__PURE__*/ S.String;
+export const CreateSubscriptionRequestByweekdayItem = S.String;
 
 /** Days of week for daily or weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday. */
 export type CreateSubscriptionRequestByweekdayList = Array<
@@ -212,7 +212,7 @@ export type SubscriptionResourceTypeEnum =
   | "insight"
   | "dashboard"
   | "ai_prompt";
-export const SubscriptionResourceTypeEnum = /*@__PURE__*/ S.String;
+export const SubscriptionResourceTypeEnum = S.String;
 
 /** List of insight IDs from the dashboard to include. Required for dashboard subscriptions, max 10. */
 export type SubscriptionOutputDashboardExportInsightsList = Array<number>;
@@ -230,7 +230,7 @@ export type SubscriptionOutputByweekdayItem =
   | "friday"
   | "saturday"
   | "sunday";
-export const SubscriptionOutputByweekdayItem = /*@__PURE__*/ S.String;
+export const SubscriptionOutputByweekdayItem = S.String;
 
 /** Days of week for daily or weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday. */
 export type SubscriptionOutputByweekdayList =
@@ -256,14 +256,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -471,7 +471,7 @@ export type SubscriptionDeliveryStatusEnum =
   | "completed"
   | "failed"
   | "skipped";
-export const SubscriptionDeliveryStatusEnum = /*@__PURE__*/ S.String;
+export const SubscriptionDeliveryStatusEnum = S.String;
 
 export interface AIReportQueryDiagnostic {
   /** What this query step was meant to compute. */
@@ -641,10 +641,10 @@ export type ListSubscriptionsRequestResourceType =
   | "ai_prompt"
   | "dashboard"
   | "insight";
-export const ListSubscriptionsRequestResourceType = /*@__PURE__*/ S.String;
+export const ListSubscriptionsRequestResourceType = S.String;
 
 export type ListSubscriptionsRequestTargetType = "email" | "slack" | "teams";
-export const ListSubscriptionsRequestTargetType = /*@__PURE__*/ S.String;
+export const ListSubscriptionsRequestTargetType = S.String;
 
 export interface ListSubscriptionsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -727,7 +727,7 @@ export type ListSubscriptionsDeliveriesRequestStatus =
   | "failed"
   | "skipped"
   | "starting";
-export const ListSubscriptionsDeliveriesRequestStatus = /*@__PURE__*/ S.String;
+export const ListSubscriptionsDeliveriesRequestStatus = S.String;
 
 export interface ListSubscriptionsDeliveriesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -824,7 +824,7 @@ export type UpdateSubscriptionRequestByweekdayItem =
   | "friday"
   | "saturday"
   | "sunday";
-export const UpdateSubscriptionRequestByweekdayItem = /*@__PURE__*/ S.String;
+export const UpdateSubscriptionRequestByweekdayItem = S.String;
 
 /** Days of week for daily or weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday. */
 export type UpdateSubscriptionRequestByweekdayList = Array<
@@ -943,8 +943,7 @@ export type UpdateSubscriptionsPartialRequestByweekdayItem =
   | "friday"
   | "saturday"
   | "sunday";
-export const UpdateSubscriptionsPartialRequestByweekdayItem =
-  /*@__PURE__*/ S.String;
+export const UpdateSubscriptionsPartialRequestByweekdayItem = S.String;
 
 /** Days of week for daily or weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday. */
 export type UpdateSubscriptionsPartialRequestByweekdayList = Array<

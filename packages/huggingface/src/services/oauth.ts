@@ -58,17 +58,17 @@ export const GetUserInfoResponseHardwareItemsList = /*@__PURE__*/ S.Array(
 
 /** Whether the user is on prepaid or postpaid billing */
 export type GetUserInfoResponseBillingMode = "prepaid" | "postpaid";
-export const GetUserInfoResponseBillingMode = /*@__PURE__*/ S.String;
+export const GetUserInfoResponseBillingMode = S.String;
 
 export type GetUserInfoResponseOrgsItemPlan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const GetUserInfoResponseOrgsItemPlan = /*@__PURE__*/ S.String;
+export const GetUserInfoResponseOrgsItemPlan = S.String;
 
 export type GetUserInfoResponseOrgsItemBillingMode = "prepaid" | "postpaid";
-export const GetUserInfoResponseOrgsItemBillingMode = /*@__PURE__*/ S.String;
+export const GetUserInfoResponseOrgsItemBillingMode = S.String;
 
 export type GetUserInfoResponseOrgsItemRoleInOrg =
   | "admin"
@@ -76,7 +76,7 @@ export type GetUserInfoResponseOrgsItemRoleInOrg =
   | "contributor"
   | "read"
   | "no_access";
-export const GetUserInfoResponseOrgsItemRoleInOrg = /*@__PURE__*/ S.String;
+export const GetUserInfoResponseOrgsItemRoleInOrg = S.String;
 
 export type GetUserInfoResponseOrgsItemSecurityRestrictionsItem =
   | "mfa"
@@ -84,8 +84,7 @@ export type GetUserInfoResponseOrgsItemSecurityRestrictionsItem =
   | "token-revoked"
   | "sso"
   | "ip";
-export const GetUserInfoResponseOrgsItemSecurityRestrictionsItem =
-  /*@__PURE__*/ S.String;
+export const GetUserInfoResponseOrgsItemSecurityRestrictionsItem = S.String;
 
 /** Current security restrictions for accessing data in this organization with current authentication method */
 export type GetUserInfoResponseOrgsItemSecurityRestrictionsList =
@@ -101,8 +100,7 @@ export type GetUserInfoResponseOrgsItemResourceGroupsItemRole =
   | "contributor"
   | "read"
   | "no_access";
-export const GetUserInfoResponseOrgsItemResourceGroupsItemRole =
-  /*@__PURE__*/ S.String;
+export const GetUserInfoResponseOrgsItemResourceGroupsItemRole = S.String;
 
 export interface GetUserInfoResponseOrgsItemResourceGroupsItem {
   sub: string;
@@ -291,17 +289,17 @@ export const PostUserInfoResponseHardwareItemsList = /*@__PURE__*/ S.Array(
 
 /** Whether the user is on prepaid or postpaid billing */
 export type PostUserInfoResponseBillingMode = "prepaid" | "postpaid";
-export const PostUserInfoResponseBillingMode = /*@__PURE__*/ S.String;
+export const PostUserInfoResponseBillingMode = S.String;
 
 export type PostUserInfoResponseOrgsItemPlan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const PostUserInfoResponseOrgsItemPlan = /*@__PURE__*/ S.String;
+export const PostUserInfoResponseOrgsItemPlan = S.String;
 
 export type PostUserInfoResponseOrgsItemBillingMode = "prepaid" | "postpaid";
-export const PostUserInfoResponseOrgsItemBillingMode = /*@__PURE__*/ S.String;
+export const PostUserInfoResponseOrgsItemBillingMode = S.String;
 
 export type PostUserInfoResponseOrgsItemRoleInOrg =
   | "admin"
@@ -309,7 +307,7 @@ export type PostUserInfoResponseOrgsItemRoleInOrg =
   | "contributor"
   | "read"
   | "no_access";
-export const PostUserInfoResponseOrgsItemRoleInOrg = /*@__PURE__*/ S.String;
+export const PostUserInfoResponseOrgsItemRoleInOrg = S.String;
 
 export type PostUserInfoResponseOrgsItemSecurityRestrictionsItem =
   | "mfa"
@@ -317,8 +315,7 @@ export type PostUserInfoResponseOrgsItemSecurityRestrictionsItem =
   | "token-revoked"
   | "sso"
   | "ip";
-export const PostUserInfoResponseOrgsItemSecurityRestrictionsItem =
-  /*@__PURE__*/ S.String;
+export const PostUserInfoResponseOrgsItemSecurityRestrictionsItem = S.String;
 
 /** Current security restrictions for accessing data in this organization with current authentication method */
 export type PostUserInfoResponseOrgsItemSecurityRestrictionsList =
@@ -334,8 +331,7 @@ export type PostUserInfoResponseOrgsItemResourceGroupsItemRole =
   | "contributor"
   | "read"
   | "no_access";
-export const PostUserInfoResponseOrgsItemResourceGroupsItemRole =
-  /*@__PURE__*/ S.String;
+export const PostUserInfoResponseOrgsItemResourceGroupsItemRole = S.String;
 
 export interface PostUserInfoResponseOrgsItemResourceGroupsItem {
   sub: string;
@@ -462,8 +458,7 @@ export type RegisterNewOAuthAppRequestTokenEndpointAuthMethod =
   | "client_secret_basic"
   | "none"
   | "client_secret_post";
-export const RegisterNewOAuthAppRequestTokenEndpointAuthMethod =
-  /*@__PURE__*/ S.String;
+export const RegisterNewOAuthAppRequestTokenEndpointAuthMethod = S.String;
 
 export interface RegisterNewOAuthAppRequest {
   redirect_uris?: RegisterNewOAuthAppRequestRedirectUrisList;
@@ -507,7 +502,7 @@ export type RegisterNewOAuthAppResponseGrantTypesItem =
   | "urn:ietf:params:oauth:grant-type:device_code"
   | "authorization_code"
   | "refresh_token";
-export const RegisterNewOAuthAppResponseGrantTypesItem = /*@__PURE__*/ S.String;
+export const RegisterNewOAuthAppResponseGrantTypesItem = S.String;
 
 export type RegisterNewOAuthAppResponseGrantTypesList =
   Array<RegisterNewOAuthAppResponseGrantTypesItem>;
@@ -524,8 +519,7 @@ export type RegisterNewOAuthAppResponseTokenEndpointAuthMethod =
   | "client_secret_basic"
   | "none"
   | "client_secret_post";
-export const RegisterNewOAuthAppResponseTokenEndpointAuthMethod =
-  /*@__PURE__*/ S.String;
+export const RegisterNewOAuthAppResponseTokenEndpointAuthMethod = S.String;
 
 export interface RegisterNewOAuthAppResponse {
   client_id: string;

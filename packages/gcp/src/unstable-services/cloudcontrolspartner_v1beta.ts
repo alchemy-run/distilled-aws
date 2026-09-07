@@ -71,13 +71,13 @@ export type CustomerOnboardingStepCompletionStateEnum =
   | "SUCCEEDED"
   | "FAILED"
   | "NOT_APPLICABLE";
-export const CustomerOnboardingStepCompletionStateEnum = /*@__PURE__*/ S.String;
+export const CustomerOnboardingStepCompletionStateEnum = S.String;
 
 export type CustomerOnboardingStepStepEnum =
   | "STEP_UNSPECIFIED"
   | "KAJ_ENROLLMENT"
   | "CUSTOMER_ENVIRONMENT";
-export const CustomerOnboardingStepStepEnum = /*@__PURE__*/ S.String;
+export const CustomerOnboardingStepStepEnum = S.String;
 
 /** Container for customer onboarding information */
 export interface CustomerOnboardingStep {
@@ -218,7 +218,7 @@ export type EkmConnectionConnectionStateEnum =
   | "NOT_AVAILABLE"
   | "ERROR"
   | "PERMISSION_DENIED";
-export const EkmConnectionConnectionStateEnum = /*@__PURE__*/ S.String;
+export const EkmConnectionConnectionStateEnum = S.String;
 
 /** Information around the error that occurred if the connection state is anything other than available or unspecified */
 export interface ConnectionError {
@@ -319,13 +319,13 @@ export type WorkloadPartnerEnum =
   | "PARTNER_SOVEREIGN_CONTROLS_BY_CNTXT"
   | "PARTNER_SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM"
   | "PARTNER_SPAIN_DATA_BOUNDARY_BY_TELEFONICA";
-export const WorkloadPartnerEnum = /*@__PURE__*/ S.String;
+export const WorkloadPartnerEnum = S.String;
 
 export type WorkloadOnboardingStepStepEnum =
   | "STEP_UNSPECIFIED"
   | "EKM_PROVISIONED"
   | "SIGNED_ACCESS_APPROVAL_CONFIGURED";
-export const WorkloadOnboardingStepStepEnum = /*@__PURE__*/ S.String;
+export const WorkloadOnboardingStepStepEnum = S.String;
 
 export type WorkloadOnboardingStepCompletionStateEnum =
   | "COMPLETION_STATE_UNSPECIFIED"
@@ -333,7 +333,7 @@ export type WorkloadOnboardingStepCompletionStateEnum =
   | "SUCCEEDED"
   | "FAILED"
   | "NOT_APPLICABLE";
-export const WorkloadOnboardingStepCompletionStateEnum = /*@__PURE__*/ S.String;
+export const WorkloadOnboardingStepCompletionStateEnum = S.String;
 
 /** Container for workload onboarding information. */
 export interface WorkloadOnboardingStep {
@@ -441,7 +441,7 @@ export type RemediationRemediationTypeEnum =
   | "REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION"
   | "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION"
   | "REMEDIATION_RESOURCE_VIOLATION";
-export const RemediationRemediationTypeEnum = /*@__PURE__*/ S.String;
+export const RemediationRemediationTypeEnum = S.String;
 
 /** Remediation instructions to resolve violation via cloud console */
 export interface Console {
@@ -513,7 +513,7 @@ export type ViolationStateEnum =
   | "RESOLVED"
   | "UNRESOLVED"
   | "EXCEPTION";
-export const ViolationStateEnum = /*@__PURE__*/ S.String;
+export const ViolationStateEnum = S.String;
 
 /** Details of resource Violation */
 export interface Violation {
@@ -595,7 +595,7 @@ export type EkmMetadataEkmSolutionEnum =
   | "FUTUREX"
   | "THALES"
   | "VIRTRU";
-export const EkmMetadataEkmSolutionEnum = /*@__PURE__*/ S.String;
+export const EkmMetadataEkmSolutionEnum = S.String;
 
 /** Holds information needed by Mudbray to use partner EKMs for workloads. */
 export interface EkmMetadata {
@@ -672,8 +672,7 @@ export type PartnerPermissionsPartnerPermissionsItemEnum =
   | "ACCESS_APPROVAL_REQUESTS"
   | "ASSURED_WORKLOADS_EKM_CONNECTION_STATUS"
   | "ACCESS_TRANSPARENCY_LOGS_SUPPORT_CASE_VIEWER";
-export const PartnerPermissionsPartnerPermissionsItemEnum =
-  /*@__PURE__*/ S.String;
+export const PartnerPermissionsPartnerPermissionsItemEnum = S.String;
 
 export type PartnerPermissionsPartnerPermissionsItemEnumList =
   Array<PartnerPermissionsPartnerPermissionsItemEnum>;
@@ -850,7 +849,7 @@ export type AccessReasonTypeEnum =
   | "THIRD_PARTY_DATA_REQUEST"
   | "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT"
   | "CLOUD_INITIATED_ACCESS";
-export const AccessReasonTypeEnum = /*@__PURE__*/ S.String;
+export const AccessReasonTypeEnum = S.String;
 
 /** Reason for the access. */
 export interface AccessReason {

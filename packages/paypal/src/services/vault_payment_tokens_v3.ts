@@ -92,7 +92,7 @@ export type CardBrand =
   | "SYNCHRONY"
   | "EFTPOS"
   | "UNKNOWN";
-export const CardBrand = /*@__PURE__*/ S.String;
+export const CardBrand = S.String;
 
 /** The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). */
 export interface DefinitionsPaymentSourceCardBillingAddress {
@@ -154,7 +154,7 @@ export const DefinitionsPaymentSourceCard = /*@__PURE__*/ S.suspend(() =>
 
 /** The tokenization method that generated the ID. */
 export type TokenIdRequestType = "SETUP_TOKEN";
-export const TokenIdRequestType = /*@__PURE__*/ S.String;
+export const TokenIdRequestType = S.String;
 
 /** The Tokenized Payment Source representing a Request to Vault a Token. */
 export interface TokenIdRequest {
@@ -240,7 +240,7 @@ export const CardResponseBillingAddress = /*@__PURE__*/ S.suspend(() =>
 
 /** Verification status of Card. */
 export type CardVerificationStatus = "VERIFIED" | "FAILED";
-export const CardVerificationStatus = /*@__PURE__*/ S.String;
+export const CardVerificationStatus = S.String;
 
 /** The currency and amount for a financial transaction, such as a balance or payment due. */
 export interface Money {
@@ -281,8 +281,7 @@ export type CardVerificationDetailsProcessorResponseAvsCode =
   | "2"
   | "3"
   | "4";
-export const CardVerificationDetailsProcessorResponseAvsCode =
-  /*@__PURE__*/ S.String;
+export const CardVerificationDetailsProcessorResponseAvsCode = S.String;
 
 /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
 export type CardVerificationDetailsProcessorResponseCvvCode =
@@ -300,8 +299,7 @@ export type CardVerificationDetailsProcessorResponseCvvCode =
   | "2"
   | "3"
   | "4";
-export const CardVerificationDetailsProcessorResponseCvvCode =
-  /*@__PURE__*/ S.String;
+export const CardVerificationDetailsProcessorResponseCvvCode = S.String;
 
 /** The processor response information for payment requests, such as direct credit card transactions. */
 export interface CardVerificationDetailsProcessorResponse {
@@ -375,11 +373,11 @@ export const NetworkTransactionReferenceEntity = /*@__PURE__*/ S.suspend(() =>
 
 /** Transactions status result identifier. The outcome of the issuer's authentication. */
 export type ParesStatus = "Y" | "N" | "U" | "A" | "C" | "R" | "D" | "I";
-export const ParesStatus = /*@__PURE__*/ S.String;
+export const ParesStatus = S.String;
 
 /** Status of Authentication eligibility. */
 export type Enrolled = "Y" | "N" | "U" | "B";
-export const Enrolled = /*@__PURE__*/ S.String;
+export const Enrolled = S.String;
 
 /** Results of 3D Secure Authentication. */
 export interface ThreeDSecureAuthenticationResponse2 {
@@ -439,7 +437,7 @@ export const BinDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of card. i.e Credit, Debit and so on. */
 export type CardType = "CREDIT" | "DEBIT" | "PREPAID" | "STORE" | "UNKNOWN";
-export const CardType = /*@__PURE__*/ S.String;
+export const CardType = S.String;
 
 /** Full representation of a Card Payment Token including network token. */
 export interface CardResponse {
@@ -498,7 +496,7 @@ export type PaypalWalletResponseUsagePattern =
   | "SUBSCRIPTION_POSTPAID"
   | "INSTALLMENT_POSTPAID"
   | "INSTALLMENT_PREPAID";
-export const PaypalWalletResponseUsagePattern = /*@__PURE__*/ S.String;
+export const PaypalWalletResponseUsagePattern = S.String;
 
 /** The name of the party. */
 export interface PaypalWalletResponseShippingName {
@@ -536,7 +534,7 @@ export type PaypalWalletResponseShippingType =
   | "PICKUP_IN_PERSON"
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
-export const PaypalWalletResponseShippingType = /*@__PURE__*/ S.String;
+export const PaypalWalletResponseShippingType = S.String;
 
 /** The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). */
 export type PaypalWalletResponseShippingAddress =
@@ -568,11 +566,11 @@ export const PaypalWalletResponseShipping = /*@__PURE__*/ S.suspend(() =>
 
 /** The usage type associated with a digital wallet payment token. */
 export type PaypalWalletResponseUsageType = "MERCHANT" | "PLATFORM";
-export const PaypalWalletResponseUsageType = /*@__PURE__*/ S.String;
+export const PaypalWalletResponseUsageType = S.String;
 
 /** The customer type associated with a digital wallet payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer. */
 export type PaypalWalletResponseCustomerType = "CONSUMER" | "BUSINESS";
-export const PaypalWalletResponseCustomerType = /*@__PURE__*/ S.String;
+export const PaypalWalletResponseCustomerType = S.String;
 
 /** The name of the party. */
 export interface PaypalWalletResponseName {
@@ -592,7 +590,7 @@ export const PaypalWalletResponseName = /*@__PURE__*/ S.suspend(() =>
 
 /** The phone type. */
 export type PhoneType = "FAX" | "HOME" | "MOBILE" | "OTHER" | "PAGER";
-export const PhoneType = /*@__PURE__*/ S.String;
+export const PhoneType = S.String;
 
 /** The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). */
 export interface PhoneWithTypePhoneNumber {
@@ -705,7 +703,7 @@ export type VenmoResponseUsagePattern =
   | "SUBSCRIPTION_POSTPAID"
   | "INSTALLMENT_POSTPAID"
   | "INSTALLMENT_PREPAID";
-export const VenmoResponseUsagePattern = /*@__PURE__*/ S.String;
+export const VenmoResponseUsagePattern = S.String;
 
 /** The name of the party. */
 export type VenmoResponseShippingName = PaypalWalletResponseShippingName;
@@ -723,7 +721,7 @@ export type VenmoResponseShippingType =
   | "PICKUP_IN_PERSON"
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
-export const VenmoResponseShippingType = /*@__PURE__*/ S.String;
+export const VenmoResponseShippingType = S.String;
 
 /** The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). */
 export type VenmoResponseShippingAddress =
@@ -755,11 +753,11 @@ export const VenmoResponseShipping = /*@__PURE__*/ S.suspend(() =>
 
 /** The usage type associated with a digital wallet payment token. */
 export type VenmoResponseUsageType = "MERCHANT" | "PLATFORM";
-export const VenmoResponseUsageType = /*@__PURE__*/ S.String;
+export const VenmoResponseUsageType = S.String;
 
 /** The customer type associated with a digital wallet payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer. */
 export type VenmoResponseCustomerType = "CONSUMER" | "BUSINESS";
-export const VenmoResponseCustomerType = /*@__PURE__*/ S.String;
+export const VenmoResponseCustomerType = S.String;
 
 /** The name of the party. */
 export type VenmoResponseName = PaypalWalletResponseName;
@@ -882,7 +880,7 @@ export type LinkDescriptionMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const LinkDescriptionMethod = /*@__PURE__*/ S.String;
+export const LinkDescriptionMethod = S.String;
 
 /** The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information. */
 export interface LinkDescription {
@@ -942,11 +940,11 @@ export const CreateSetupTokenRequestPaymentSourceCardBillingAddress =
 
 /** The verification method of the card. */
 export type CardVerificationMethod = "SCA_WHEN_REQUIRED" | "SCA_ALWAYS";
-export const CardVerificationMethod = /*@__PURE__*/ S.String;
+export const CardVerificationMethod = S.String;
 
 /** Vault Instruction on action to be performed after a successful payer approval. */
 export type VaultInstruction = "ON_CREATE_PAYMENT_TOKENS" | "ON_PAYER_APPROVAL";
-export const VaultInstruction = /*@__PURE__*/ S.String;
+export const VaultInstruction = S.String;
 
 /** Customizes the Vault creation flow experience for your customers. */
 export interface CreateSetupTokenRequestPaymentSourceCardExperienceContext {
@@ -1027,7 +1025,7 @@ export type PaypalWalletRequestUsagePattern =
   | "SUBSCRIPTION_POSTPAID"
   | "INSTALLMENT_POSTPAID"
   | "INSTALLMENT_PREPAID";
-export const PaypalWalletRequestUsagePattern = /*@__PURE__*/ S.String;
+export const PaypalWalletRequestUsagePattern = S.String;
 
 /** The name of the party. */
 export type PaypalWalletRequestShippingName = PaypalWalletResponseShippingName;
@@ -1045,7 +1043,7 @@ export type PaypalWalletRequestShippingType =
   | "PICKUP_IN_PERSON"
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
-export const PaypalWalletRequestShippingType = /*@__PURE__*/ S.String;
+export const PaypalWalletRequestShippingType = S.String;
 
 /** The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). */
 export type PaypalWalletRequestShippingAddress =
@@ -1077,19 +1075,19 @@ export const PaypalWalletRequestShipping = /*@__PURE__*/ S.suspend(() =>
 
 /** The usage type associated with a digital wallet payment token. */
 export type PaypalWalletRequestUsageType = "MERCHANT" | "PLATFORM";
-export const PaypalWalletRequestUsageType = /*@__PURE__*/ S.String;
+export const PaypalWalletRequestUsageType = S.String;
 
 /** The customer type associated with a digital wallet payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer. */
 export type PaypalWalletRequestCustomerType = "CONSUMER" | "BUSINESS";
-export const PaypalWalletRequestCustomerType = /*@__PURE__*/ S.String;
+export const PaypalWalletRequestCustomerType = S.String;
 
 /** The tenure type of the billing cycle identifies if the billing cycle is a trial(free or discounted) or regular billing cycle. */
 export type BillingCycleTenureType = "REGULAR" | "TRIAL";
-export const BillingCycleTenureType = /*@__PURE__*/ S.String;
+export const BillingCycleTenureType = S.String;
 
 /** The pricing model for the billing cycle. */
 export type PricingSchemePricingModel = "FIXED" | "VARIABLE" | "AUTO_RELOAD";
-export const PricingSchemePricingModel = /*@__PURE__*/ S.String;
+export const PricingSchemePricingModel = S.String;
 
 /** The pricing scheme details. */
 export interface PricingScheme {
@@ -1187,7 +1185,7 @@ export type ExperienceContextShippingPreference =
   | "GET_FROM_FILE"
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
-export const ExperienceContextShippingPreference = /*@__PURE__*/ S.String;
+export const ExperienceContextShippingPreference = S.String;
 
 /** Customizes the Vault creation flow experience for your customers. */
 export interface ExperienceContext {
@@ -1263,7 +1261,7 @@ export type VenmoRequestUsagePattern =
   | "SUBSCRIPTION_POSTPAID"
   | "INSTALLMENT_POSTPAID"
   | "INSTALLMENT_PREPAID";
-export const VenmoRequestUsagePattern = /*@__PURE__*/ S.String;
+export const VenmoRequestUsagePattern = S.String;
 
 /** The name of the party. */
 export type VenmoRequestShippingName = PaypalWalletResponseShippingName;
@@ -1281,7 +1279,7 @@ export type VenmoRequestShippingType =
   | "PICKUP_IN_PERSON"
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
-export const VenmoRequestShippingType = /*@__PURE__*/ S.String;
+export const VenmoRequestShippingType = S.String;
 
 /** The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). */
 export type VenmoRequestShippingAddress =
@@ -1313,19 +1311,18 @@ export const VenmoRequestShipping = /*@__PURE__*/ S.suspend(() =>
 
 /** The usage type associated with a digital wallet payment token. */
 export type VenmoRequestUsageType = "MERCHANT" | "PLATFORM";
-export const VenmoRequestUsageType = /*@__PURE__*/ S.String;
+export const VenmoRequestUsageType = S.String;
 
 /** The customer type associated with a digital wallet payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer. */
 export type VenmoRequestCustomerType = "CONSUMER" | "BUSINESS";
-export const VenmoRequestCustomerType = /*@__PURE__*/ S.String;
+export const VenmoRequestCustomerType = S.String;
 
 /** The shipping preference. This only applies to PayPal payment source. */
 export type VenmoRequestExperienceContextShippingPreference =
   | "GET_FROM_FILE"
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
-export const VenmoRequestExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+export const VenmoRequestExperienceContextShippingPreference = S.String;
 
 /** Customizes the Vault creation flow experience for your customers. */
 export interface VenmoRequestExperienceContext {
@@ -1427,7 +1424,7 @@ export type PaymentTokenStatus =
   | "APPROVED"
   | "VAULTED"
   | "TOKENIZED";
-export const PaymentTokenStatus = /*@__PURE__*/ S.String;
+export const PaymentTokenStatus = S.String;
 
 /** Address request details. */
 export type SetupTokenResponsePaymentSourceCardBillingAddress =

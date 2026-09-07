@@ -31,22 +31,20 @@ export type ProvisioningState =
   | "Updating"
   | "Deleting"
   | "Accepted";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Property which describes the state of private link on a connected cluster resource. */
 export type ConnectedClusterPropertiesInputPrivateLinkState =
   | "Enabled"
   | "Disabled";
-export const ConnectedClusterPropertiesInputPrivateLinkState =
-  /*@__PURE__*/ S.String;
+export const ConnectedClusterPropertiesInputPrivateLinkState = S.String;
 
 /** Indicates whether Azure Hybrid Benefit is opted in */
 export type ConnectedClusterPropertiesInputAzureHybridBenefit =
   | "True"
   | "False"
   | "NotApplicable";
-export const ConnectedClusterPropertiesInputAzureHybridBenefit =
-  /*@__PURE__*/ S.String;
+export const ConnectedClusterPropertiesInputAzureHybridBenefit = S.String;
 
 /** The list of AAD group object IDs that will have admin role of the cluster. */
 export type AadProfileAdminGroupObjectIDsList = Array<string>;
@@ -73,7 +71,7 @@ export const AadProfile = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether the Arc agents on the be upgraded automatically to the latest version. Defaults to Enabled. */
 export type ArcAgentProfileInputAgentAutoUpgrade = "Enabled" | "Disabled";
-export const ArcAgentProfileInputAgentAutoUpgrade = /*@__PURE__*/ S.String;
+export const ArcAgentProfileInputAgentAutoUpgrade = S.String;
 
 /** System extensions and its current versions installed on the cluster resource. */
 export interface SystemComponentInput {
@@ -300,7 +298,7 @@ export const ConnectedClusterPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of identity used for the connected cluster. The type 'SystemAssigned, includes a system created identity. The type 'None' means no identity is assigned to the connected cluster. */
 export type ConnectedClusterIdentityInputType = "None" | "SystemAssigned";
-export const ConnectedClusterIdentityInputType = /*@__PURE__*/ S.String;
+export const ConnectedClusterIdentityInputType = S.String;
 
 /** Identity for the connected cluster. */
 export interface ConnectedClusterIdentityInput {
@@ -317,7 +315,7 @@ export const ConnectedClusterIdentityInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates the kind of Arc connected cluster based on host infrastructure. */
 export type ConnectedClusterKind = "ProvisionedCluster";
-export const ConnectedClusterKind = /*@__PURE__*/ S.String;
+export const ConnectedClusterKind = S.String;
 
 export interface ConnectedClusterCreateOrReplaceRequest {
   /** The ID of the target subscription. */
@@ -366,7 +364,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -374,7 +372,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -419,24 +417,22 @@ export type ConnectivityStatus =
   | "Offline"
   | "Expired"
   | "AgentNotInstalled";
-export const ConnectivityStatus = /*@__PURE__*/ S.String;
+export const ConnectivityStatus = S.String;
 
 /** Property which describes the state of private link on a connected cluster resource. */
 export type ConnectedClusterPropertiesPrivateLinkState = "Enabled" | "Disabled";
-export const ConnectedClusterPropertiesPrivateLinkState =
-  /*@__PURE__*/ S.String;
+export const ConnectedClusterPropertiesPrivateLinkState = S.String;
 
 /** Indicates whether Azure Hybrid Benefit is opted in */
 export type ConnectedClusterPropertiesAzureHybridBenefit =
   | "True"
   | "False"
   | "NotApplicable";
-export const ConnectedClusterPropertiesAzureHybridBenefit =
-  /*@__PURE__*/ S.String;
+export const ConnectedClusterPropertiesAzureHybridBenefit = S.String;
 
 /** Indicates whether the Arc agents on the be upgraded automatically to the latest version. Defaults to Enabled. */
 export type ArcAgentProfileAgentAutoUpgrade = "Enabled" | "Disabled";
-export const ArcAgentProfileAgentAutoUpgrade = /*@__PURE__*/ S.String;
+export const ArcAgentProfileAgentAutoUpgrade = S.String;
 
 /** System extensions and its current versions installed on the cluster resource. */
 export interface SystemComponent {
@@ -641,7 +637,7 @@ export const ConnectedClusterProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of identity used for the connected cluster. The type 'SystemAssigned, includes a system created identity. The type 'None' means no identity is assigned to the connected cluster. */
 export type ConnectedClusterIdentityType = "None" | "SystemAssigned";
-export const ConnectedClusterIdentityType = /*@__PURE__*/ S.String;
+export const ConnectedClusterIdentityType = S.String;
 
 /** Identity for the connected cluster. */
 export interface ConnectedClusterIdentity {
@@ -839,11 +835,11 @@ export const OperationListValueItemDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationListValueItemOrigin = "user" | "system" | "user,system";
-export const OperationListValueItemOrigin = /*@__PURE__*/ S.String;
+export const OperationListValueItemOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationListValueItemActionType = "Internal";
-export const OperationListValueItemActionType = /*@__PURE__*/ S.String;
+export const OperationListValueItemActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface OperationListValueItem {
@@ -1001,7 +997,7 @@ export const ListConnectedClusterBySubscriptionRequest =
 
 /** The mode of client authentication. */
 export type AuthenticationMethod = "Token" | "AAD";
-export const AuthenticationMethod = /*@__PURE__*/ S.String;
+export const AuthenticationMethod = S.String;
 
 export interface ListConnectedClusterClusterUserCredentialRequest {
   /** The ID of the target subscription. */
@@ -1112,7 +1108,7 @@ export const UpdateConnectedClusterRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Indicates whether Azure Hybrid Benefit is opted in */
 export type AzureHybridBenefit = "True" | "False" | "NotApplicable";
-export const AzureHybridBenefit = /*@__PURE__*/ S.String;
+export const AzureHybridBenefit = S.String;
 
 /** Properties which can be patched on the connected cluster resource. */
 export interface ConnectedClusterPatchProperties {

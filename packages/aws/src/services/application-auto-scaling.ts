@@ -214,7 +214,7 @@ export type ServiceNamespace =
   | "neptune"
   | "workspaces"
   | (string & {});
-export const ServiceNamespace = /*@__PURE__*/ S.String;
+export const ServiceNamespace = S.String;
 
 export type ScalableDimension =
   | "ecs:service:DesiredCount"
@@ -242,7 +242,7 @@ export type ScalableDimension =
   | "sagemaker:inference-component:DesiredCopyCount"
   | "workspaces:workspacespool:DesiredUserSessions"
   | (string & {});
-export const ScalableDimension = /*@__PURE__*/ S.String;
+export const ScalableDimension = S.String;
 
 export interface DeleteScalingPolicyRequest {
   PolicyName: string;
@@ -424,7 +424,7 @@ export type ScalingActivityStatusCode =
   | "Unfulfilled"
   | "Failed"
   | (string & {});
-export const ScalingActivityStatusCode = /*@__PURE__*/ S.String;
+export const ScalingActivityStatusCode = S.String;
 
 export interface NotScaledReason {
   Code: string;
@@ -518,14 +518,14 @@ export type PolicyType =
   | "TargetTrackingScaling"
   | "PredictiveScaling"
   | (string & {});
-export const PolicyType = /*@__PURE__*/ S.String;
+export const PolicyType = S.String;
 
 export type AdjustmentType =
   | "ChangeInCapacity"
   | "PercentChangeInCapacity"
   | "ExactCapacity"
   | (string & {});
-export const AdjustmentType = /*@__PURE__*/ S.String;
+export const AdjustmentType = S.String;
 
 export type MetricScale = number;
 export type ScalingAdjustment = number;
@@ -550,7 +550,7 @@ export type MetricAggregationType =
   | "Minimum"
   | "Maximum"
   | (string & {});
-export const MetricAggregationType = /*@__PURE__*/ S.String;
+export const MetricAggregationType = S.String;
 
 export interface StepScalingPolicyConfiguration {
   AdjustmentType?: AdjustmentType;
@@ -603,7 +603,7 @@ export type MetricType =
   | "ECSServiceAverageCPUUtilizationHighResolution"
   | "ECSServiceAverageMemoryUtilizationHighResolution"
   | (string & {});
-export const MetricType = /*@__PURE__*/ S.String;
+export const MetricType = S.String;
 
 export type ResourceLabel = string;
 export interface PredefinedMetricSpecification {
@@ -640,7 +640,7 @@ export type MetricStatistic =
   | "SampleCount"
   | "Sum"
   | (string & {});
-export const MetricStatistic = /*@__PURE__*/ S.String;
+export const MetricStatistic = S.String;
 
 export type MetricUnit = string;
 export type Expression = string;
@@ -919,15 +919,14 @@ export type PredictiveScalingMode =
   | "ForecastOnly"
   | "ForecastAndScale"
   | (string & {});
-export const PredictiveScalingMode = /*@__PURE__*/ S.String;
+export const PredictiveScalingMode = S.String;
 
 export type PredictiveScalingSchedulingBufferTime = number;
 export type PredictiveScalingMaxCapacityBreachBehavior =
   | "HonorMaxCapacity"
   | "IncreaseMaxCapacity"
   | (string & {});
-export const PredictiveScalingMaxCapacityBreachBehavior =
-  /*@__PURE__*/ S.String;
+export const PredictiveScalingMaxCapacityBreachBehavior = S.String;
 
 export type PredictiveScalingMaxCapacityBuffer = number;
 export interface PredictiveScalingPolicyConfiguration {

@@ -372,7 +372,7 @@ export type PrivateConnectionStateEnum =
   | "FAILED"
   | "DELETING"
   | "FAILED_TO_DELETE";
-export const PrivateConnectionStateEnum = /*@__PURE__*/ S.String;
+export const PrivateConnectionStateEnum = S.String;
 
 /** The VPC Peering configuration is used to create VPC peering between Datastream and the consumer's VPC. */
 export interface VpcPeeringConfig {
@@ -791,13 +791,13 @@ export type JsonFileFormatCompressionEnum =
   | "JSON_COMPRESSION_UNSPECIFIED"
   | "NO_COMPRESSION"
   | "GZIP";
-export const JsonFileFormatCompressionEnum = /*@__PURE__*/ S.String;
+export const JsonFileFormatCompressionEnum = S.String;
 
 export type JsonFileFormatSchemaFileFormatEnum =
   | "SCHEMA_FILE_FORMAT_UNSPECIFIED"
   | "NO_SCHEMA_FILE"
   | "AVRO_SCHEMA_FILE";
-export const JsonFileFormatSchemaFileFormatEnum = /*@__PURE__*/ S.String;
+export const JsonFileFormatSchemaFileFormatEnum = S.String;
 
 /** JSON file format configuration. */
 export interface JsonFileFormat {
@@ -816,7 +816,7 @@ export const JsonFileFormat = /*@__PURE__*/ S.suspend(() =>
 export type GcsDestinationConfigGcsFileFormatEnum =
   | "GCS_FILE_FORMAT_UNSPECIFIED"
   | "AVRO";
-export const GcsDestinationConfigGcsFileFormatEnum = /*@__PURE__*/ S.String;
+export const GcsDestinationConfigGcsFileFormatEnum = S.String;
 
 /** AVRO file format configuration. */
 export type AvroFileFormat = CancelOperationRequest;
@@ -876,7 +876,7 @@ export type StreamStateEnum =
   | "FAILED_PERMANENTLY"
   | "STARTING"
   | "DRAINING";
-export const StreamStateEnum = /*@__PURE__*/ S.String;
+export const StreamStateEnum = S.String;
 
 export interface Stream {
   /** Immutable. A reference to a KMS encryption key. If provided, it will be used to encrypt the data. If left blank, data will be encrypted using an internal Stream-specific encryption key provisioned through KMS. */
@@ -1413,13 +1413,13 @@ export type BackfillJobStateEnum =
   | "FAILED"
   | "COMPLETED"
   | "UNSUPPORTED";
-export const BackfillJobStateEnum = /*@__PURE__*/ S.String;
+export const BackfillJobStateEnum = S.String;
 
 export type BackfillJobTriggerEnum =
   | "TRIGGER_UNSPECIFIED"
   | "AUTOMATIC"
   | "MANUAL";
-export const BackfillJobTriggerEnum = /*@__PURE__*/ S.String;
+export const BackfillJobTriggerEnum = S.String;
 
 /** Represents a backfill job on a specific stream object. */
 export interface BackfillJob {

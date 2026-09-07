@@ -114,7 +114,7 @@ export type ApigatewayApiStateEnum =
   | "FAILED"
   | "DELETING"
   | "UPDATING";
-export const ApigatewayApiStateEnum = /*@__PURE__*/ S.String;
+export const ApigatewayApiStateEnum = S.String;
 
 /** An API that can be served by one or more Gateways. */
 export interface ApigatewayApi {
@@ -232,7 +232,7 @@ export type ApigatewayApiConfigStateEnum =
   | "DELETING"
   | "UPDATING"
   | "ACTIVATING";
-export const ApigatewayApiConfigStateEnum = /*@__PURE__*/ S.String;
+export const ApigatewayApiConfigStateEnum = S.String;
 
 /** A lightweight description of a file. */
 export interface ApigatewayApiConfigFile {
@@ -373,7 +373,7 @@ export type ApigatewayGatewayStateEnum =
   | "FAILED"
   | "DELETING"
   | "UPDATING";
-export const ApigatewayGatewayStateEnum = /*@__PURE__*/ S.String;
+export const ApigatewayGatewayStateEnum = S.String;
 
 /** A Gateway is an API-aware HTTP proxy. It performs API-Method and/or API-Consumer specific actions based on an API Config such as authentication, policy enforcement, and backend selection. */
 export interface ApigatewayGateway {
@@ -585,7 +585,7 @@ export type ApigatewayAuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const ApigatewayAuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const ApigatewayAuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface ApigatewayAuditLogConfig {
@@ -760,7 +760,7 @@ export type GetProjectsLocationsApisConfigsViewEnum =
   | "CONFIG_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsApisConfigsViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsApisConfigsViewEnum = S.String;
 
 export interface GetProjectsLocationsApisConfigsRequest {
   /** Required. Resource name of the form: `projects/*\/locations/global/apis/*\/configs/*` */

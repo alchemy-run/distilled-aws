@@ -357,7 +357,7 @@ export type GoogleCloudDocumentaiV1DocumentSchemaEntityTypePropertyOccurrenceTyp
   | "REQUIRED_ONCE"
   | "REQUIRED_MULTIPLE";
 export const GoogleCloudDocumentaiV1DocumentSchemaEntityTypePropertyOccurrenceTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDocumentaiV1DocumentSchemaEntityTypePropertyMethodEnum =
   | "METHOD_UNSPECIFIED"
@@ -365,7 +365,7 @@ export type GoogleCloudDocumentaiV1DocumentSchemaEntityTypePropertyMethodEnum =
   | "DERIVE"
   | "RELAXED_EXTRACT";
 export const GoogleCloudDocumentaiV1DocumentSchemaEntityTypePropertyMethodEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines properties that can be part of the entity type. */
 export interface GoogleCloudDocumentaiV1DocumentSchemaEntityTypeProperty {
@@ -719,7 +719,7 @@ export type GoogleCloudDocumentaiV1ProcessorStateEnum =
   | "CREATING"
   | "FAILED"
   | "DELETING";
-export const GoogleCloudDocumentaiV1ProcessorStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1ProcessorStateEnum = S.String;
 
 /** The first-class citizen for Document AI. Each processor defines how to extract structural information from a document. */
 export interface GoogleCloudDocumentaiV1Processor {
@@ -1166,8 +1166,7 @@ export type GoogleCloudDocumentaiV1ProcessorTypeLaunchStageEnum =
   | "BETA"
   | "GA"
   | "DEPRECATED";
-export const GoogleCloudDocumentaiV1ProcessorTypeLaunchStageEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1ProcessorTypeLaunchStageEnum = S.String;
 
 /** A processor type is responsible for performing a certain document understanding task on a certain type of document. */
 export interface GoogleCloudDocumentaiV1ProcessorType {
@@ -1824,7 +1823,7 @@ export type GoogleCloudDocumentaiV1DocumentPageLayoutOrientationEnum =
   | "PAGE_DOWN"
   | "PAGE_LEFT";
 export const GoogleCloudDocumentaiV1DocumentPageLayoutOrientationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A text segment in the Document.text. The indices may be out of bounds which indicate that the text extends into another document shard for large sharded documents. See ShardInfo.text_offset */
 export interface GoogleCloudDocumentaiV1DocumentTextAnchorTextSegment {
@@ -2099,8 +2098,7 @@ export type GoogleCloudDocumentaiV1DocumentProvenanceTypeEnum =
   | "EVAL_REQUESTED"
   | "EVAL_APPROVED"
   | "EVAL_SKIPPED";
-export const GoogleCloudDocumentaiV1DocumentProvenanceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1DocumentProvenanceTypeEnum = S.String;
 
 /** Structure to identify provenance relationships between annotations in different revisions. */
 export interface GoogleCloudDocumentaiV1DocumentProvenance {
@@ -2477,7 +2475,7 @@ export type GoogleCloudDocumentaiV1DocumentPageTokenDetectedBreakTypeEnum =
   | "WIDE_SPACE"
   | "HYPHEN";
 export const GoogleCloudDocumentaiV1DocumentPageTokenDetectedBreakTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Detected break at the end of a Token. */
 export interface GoogleCloudDocumentaiV1DocumentPageTokenDetectedBreak {
@@ -2737,7 +2735,7 @@ export type GoogleCloudDocumentaiV1DocumentEntityValidationOutputValidationResul
   | "VALIDATION_RESULT_TYPE_SKIPPED"
   | "VALIDATION_RESULT_TYPE_NOT_APPLICABLE";
 export const GoogleCloudDocumentaiV1DocumentEntityValidationOutputValidationResultValidationResultTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Validation result for a single validation rule. */
 export interface GoogleCloudDocumentaiV1DocumentEntityValidationOutputValidationResult {
@@ -2864,7 +2862,7 @@ export type GoogleCloudDocumentaiV1DocumentPageAnchorPageRefLayoutTypeEnum =
   | "TABLE"
   | "FORM_FIELD";
 export const GoogleCloudDocumentaiV1DocumentPageAnchorPageRefLayoutTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a weak reference to a page element within a document. */
 export interface GoogleCloudDocumentaiV1DocumentPageAnchorPageRef {
@@ -3093,8 +3091,7 @@ export type GoogleCloudDocumentaiV1DocumentEntityMethodEnum =
   | "METHOD_UNSPECIFIED"
   | "EXTRACT"
   | "DERIVE";
-export const GoogleCloudDocumentaiV1DocumentEntityMethodEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1DocumentEntityMethodEnum = S.String;
 
 /** An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location. */
 export interface GoogleCloudDocumentaiV1DocumentEntity {
@@ -3664,7 +3661,7 @@ export type GoogleCloudDocumentaiV1ProcessorVersionGenAiModelInfoCustomGenAiMode
   | "VERSIONED_FOUNDATION"
   | "FINE_TUNED";
 export const GoogleCloudDocumentaiV1ProcessorVersionGenAiModelInfoCustomGenAiModelInfoCustomModelTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information for a custom Generative AI model created by the user. These are created with `Create New Version` in either the `Call foundation model` or `Fine tuning` tabs. */
 export interface GoogleCloudDocumentaiV1ProcessorVersionGenAiModelInfoCustomGenAiModelInfo {
@@ -3736,15 +3733,13 @@ export type GoogleCloudDocumentaiV1ProcessorVersionStateEnum =
   | "DELETING"
   | "FAILED"
   | "IMPORTING";
-export const GoogleCloudDocumentaiV1ProcessorVersionStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1ProcessorVersionStateEnum = S.String;
 
 export type GoogleCloudDocumentaiV1ProcessorVersionModelTypeEnum =
   | "MODEL_TYPE_UNSPECIFIED"
   | "MODEL_TYPE_GENERATIVE"
   | "MODEL_TYPE_CUSTOM";
-export const GoogleCloudDocumentaiV1ProcessorVersionModelTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1ProcessorVersionModelTypeEnum = S.String;
 
 /** A processor version is an implementation of a processor. Each processor can have multiple versions, pretrained by Google internally or uptrained by the customer. A processor can only have one default version at a time. Its document-processing behavior is defined by that version. */
 export interface GoogleCloudDocumentaiV1ProcessorVersion {
@@ -3854,7 +3849,7 @@ export type GoogleCloudDocumentaiV1EvaluationMultiConfidenceMetricsMetricsTypeEn
   | "METRICS_TYPE_UNSPECIFIED"
   | "AGGREGATE";
 export const GoogleCloudDocumentaiV1EvaluationMultiConfidenceMetricsMetricsTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Evaluations metrics, at a specific confidence level. */
 export interface GoogleCloudDocumentaiV1EvaluationConfidenceLevelMetrics {
@@ -4586,8 +4581,7 @@ export type GoogleCloudDocumentaiV1HumanReviewStatusStateEnum =
   | "VALIDATION_PASSED"
   | "IN_PROGRESS"
   | "ERROR";
-export const GoogleCloudDocumentaiV1HumanReviewStatusStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1HumanReviewStatusStateEnum = S.String;
 
 /** The status of human review on a processed document. */
 export interface GoogleCloudDocumentaiV1HumanReviewStatus {
@@ -4654,7 +4648,7 @@ export type GoogleCloudDocumentaiV1ReviewDocumentRequestPriorityEnum =
   | "DEFAULT"
   | "URGENT";
 export const GoogleCloudDocumentaiV1ReviewDocumentRequestPriorityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for the ReviewDocument method. */
 export interface GoogleCloudDocumentaiV1ReviewDocumentRequest {
@@ -4774,7 +4768,7 @@ export type GoogleCloudDocumentaiV1TrainProcessorVersionRequestCustomDocumentExt
   | "MODEL_BASED"
   | "TEMPLATE_BASED";
 export const GoogleCloudDocumentaiV1TrainProcessorVersionRequestCustomDocumentExtractionOptionsTrainingMethodEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options to control the training of the Custom Document Extraction (CDE) Processor. */
 export interface GoogleCloudDocumentaiV1TrainProcessorVersionRequestCustomDocumentExtractionOptions {

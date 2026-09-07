@@ -71,7 +71,7 @@ export type ProductAccountProductEnum =
   | "DISPLAY_VIDEO_PARTNER"
   | "DISPLAY_VIDEO_ADVERTISER"
   | "DATA_PARTNER";
-export const ProductAccountProductEnum = /*@__PURE__*/ S.String;
+export const ProductAccountProductEnum = S.String;
 
 export type ProductAccountAccountTypeEnum =
   | "ACCOUNT_TYPE_UNSPECIFIED"
@@ -82,7 +82,7 @@ export type ProductAccountAccountTypeEnum =
   | "GOOGLE_ANALYTICS_PROPERTY"
   | "GOOGLE_AD_MANAGER_AUDIENCE_LINK"
   | "FLOODLIGHT_CONFIG";
-export const ProductAccountAccountTypeEnum = /*@__PURE__*/ S.String;
+export const ProductAccountAccountTypeEnum = S.String;
 
 /** Represents a specific account. */
 export interface ProductAccount {
@@ -142,7 +142,7 @@ export type PartnerLinkFeatureSetEnum =
   | "FEATURE_SET_UNSPECIFIED"
   | "FEATURE_SET_AUDIENCE_AND_EVENT_MANAGEMENT"
   | "FEATURE_SET_AD_EVENT_MANAGEMENT";
-export const PartnerLinkFeatureSetEnum = /*@__PURE__*/ S.String;
+export const PartnerLinkFeatureSetEnum = S.String;
 
 /** A partner link between an owning account and a partner account. */
 export interface PartnerLink {
@@ -201,29 +201,27 @@ export type UserListDirectLicenseClientAccountTypeEnum =
   | "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_DISPLAY_VIDEO_PARTNER"
   | "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_DISPLAY_VIDEO_ADVERTISER"
   | "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_GOOGLE_AD_MANAGER_AUDIENCE_LINK";
-export const UserListDirectLicenseClientAccountTypeEnum =
-  /*@__PURE__*/ S.String;
+export const UserListDirectLicenseClientAccountTypeEnum = S.String;
 
 export type UserListDirectLicenseStatusEnum =
   | "USER_LIST_LICENSE_STATUS_UNSPECIFIED"
   | "USER_LIST_LICENSE_STATUS_ENABLED"
   | "USER_LIST_LICENSE_STATUS_DISABLED";
-export const UserListDirectLicenseStatusEnum = /*@__PURE__*/ S.String;
+export const UserListDirectLicenseStatusEnum = S.String;
 
 export type UserListLicensePricingCostTypeEnum =
   | "USER_LIST_PRICING_COST_TYPE_UNSPECIFIED"
   | "CPC"
   | "CPM"
   | "MEDIA_SHARE";
-export const UserListLicensePricingCostTypeEnum = /*@__PURE__*/ S.String;
+export const UserListLicensePricingCostTypeEnum = S.String;
 
 export type UserListLicensePricingBuyerApprovalStateEnum =
   | "USER_LIST_PRICING_BUYER_APPROVAL_STATE_UNSPECIFIED"
   | "PENDING"
   | "APPROVED"
   | "REJECTED";
-export const UserListLicensePricingBuyerApprovalStateEnum =
-  /*@__PURE__*/ S.String;
+export const UserListLicensePricingBuyerApprovalStateEnum = S.String;
 
 /** A user list license pricing. */
 export interface UserListLicensePricing {
@@ -365,13 +363,13 @@ export type UserListGlobalLicenseLicenseTypeEnum =
   | "USER_LIST_GLOBAL_LICENSE_TYPE_RESELLER"
   | "USER_LIST_GLOBAL_LICENSE_TYPE_DATA_MART_SELL_SIDE"
   | "USER_LIST_GLOBAL_LICENSE_TYPE_DATA_MART_BUY_SIDE";
-export const UserListGlobalLicenseLicenseTypeEnum = /*@__PURE__*/ S.String;
+export const UserListGlobalLicenseLicenseTypeEnum = S.String;
 
 export type UserListGlobalLicenseStatusEnum =
   | "USER_LIST_LICENSE_STATUS_UNSPECIFIED"
   | "USER_LIST_LICENSE_STATUS_ENABLED"
   | "USER_LIST_LICENSE_STATUS_DISABLED";
-export const UserListGlobalLicenseStatusEnum = /*@__PURE__*/ S.String;
+export const UserListGlobalLicenseStatusEnum = S.String;
 
 /** A user list global license. This feature is only available to data partners. */
 export interface UserListGlobalLicense {
@@ -434,7 +432,7 @@ export type PseudonymousIdInfoSyncStatusEnum =
   | "CREATED"
   | "READY_FOR_USE"
   | "FAILED";
-export const PseudonymousIdInfoSyncStatusEnum = /*@__PURE__*/ S.String;
+export const PseudonymousIdInfoSyncStatusEnum = S.String;
 
 /** Additional information when `PSEUDONYMOUS_ID` is one of the `upload_key_types`. */
 export interface PseudonymousIdInfo {
@@ -459,8 +457,7 @@ export type IngestedUserListInfoUploadKeyTypesItemEnum =
   | "USER_ID"
   | "PAIR_ID"
   | "PSEUDONYMOUS_ID";
-export const IngestedUserListInfoUploadKeyTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const IngestedUserListInfoUploadKeyTypesItemEnum = S.String;
 
 export type IngestedUserListInfoUploadKeyTypesItemEnumList = Array<
   IngestedUserListInfoUploadKeyTypesItemEnum | (string & {})
@@ -499,7 +496,7 @@ export type ContactIdInfoDataSourceTypeEnum =
   | "DATA_SOURCE_TYPE_THIRD_PARTY_CREDIT_BUREAU"
   | "DATA_SOURCE_TYPE_THIRD_PARTY_VOTER_FILE"
   | "DATA_SOURCE_TYPE_THIRD_PARTY_PARTNER_DATA";
-export const ContactIdInfoDataSourceTypeEnum = /*@__PURE__*/ S.String;
+export const ContactIdInfoDataSourceTypeEnum = S.String;
 
 /** Additional information when `CONTACT_ID` is one of the `upload_key_types`. */
 export interface ContactIdInfo {
@@ -521,13 +518,13 @@ export type MobileIdInfoDataSourceTypeEnum =
   | "DATA_SOURCE_TYPE_THIRD_PARTY_CREDIT_BUREAU"
   | "DATA_SOURCE_TYPE_THIRD_PARTY_VOTER_FILE"
   | "DATA_SOURCE_TYPE_THIRD_PARTY_PARTNER_DATA";
-export const MobileIdInfoDataSourceTypeEnum = /*@__PURE__*/ S.String;
+export const MobileIdInfoDataSourceTypeEnum = S.String;
 
 export type MobileIdInfoKeySpaceEnum =
   | "KEY_SPACE_UNSPECIFIED"
   | "IOS"
   | "ANDROID";
-export const MobileIdInfoKeySpaceEnum = /*@__PURE__*/ S.String;
+export const MobileIdInfoKeySpaceEnum = S.String;
 
 /** Additional information when `MOBILE_ID` is one of the `upload_key_types`. */
 export interface MobileIdInfo {
@@ -551,8 +548,7 @@ export type PartnerAudienceInfoPartnerAudienceSourceEnum =
   | "COMMERCE_AUDIENCE"
   | "LINEAR_TV_AUDIENCE"
   | "AGENCY_PROVIDER_AUDIENCE";
-export const PartnerAudienceInfoPartnerAudienceSourceEnum =
-  /*@__PURE__*/ S.String;
+export const PartnerAudienceInfoPartnerAudienceSourceEnum = S.String;
 
 /** Additional information for partner audiences. This feature is only available to data partners. */
 export interface PartnerAudienceInfo {
@@ -580,7 +576,7 @@ export type UserIdInfoDataSourceTypeEnum =
   | "DATA_SOURCE_TYPE_THIRD_PARTY_CREDIT_BUREAU"
   | "DATA_SOURCE_TYPE_THIRD_PARTY_VOTER_FILE"
   | "DATA_SOURCE_TYPE_THIRD_PARTY_PARTNER_DATA";
-export const UserIdInfoDataSourceTypeEnum = /*@__PURE__*/ S.String;
+export const UserIdInfoDataSourceTypeEnum = S.String;
 
 /** Additional information when `USER_ID` is one of the `upload_key_types`. */
 export interface UserIdInfo {
@@ -645,7 +641,7 @@ export const SizeInfo = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SizeInfo" }) as any as S.Schema<SizeInfo>;
 
 export type UserListClosingReasonEnum = "CLOSING_REASON_UNSPECIFIED" | "UNUSED";
-export const UserListClosingReasonEnum = /*@__PURE__*/ S.String;
+export const UserListClosingReasonEnum = S.String;
 
 /** Eligibility information for different target networks. */
 export interface TargetNetworkInfo {
@@ -667,13 +663,13 @@ export type UserListAccountAccessStatusEnum =
   | "ACCESS_STATUS_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED";
-export const UserListAccountAccessStatusEnum = /*@__PURE__*/ S.String;
+export const UserListAccountAccessStatusEnum = S.String;
 
 export type UserListMembershipStatusEnum =
   | "MEMBERSHIP_STATUS_UNSPECIFIED"
   | "OPEN"
   | "CLOSED";
-export const UserListMembershipStatusEnum = /*@__PURE__*/ S.String;
+export const UserListMembershipStatusEnum = S.String;
 
 export type UserListAccessReasonEnum =
   | "ACCESS_REASON_UNSPECIFIED"
@@ -682,7 +678,7 @@ export type UserListAccessReasonEnum =
   | "LICENSED"
   | "SUBSCRIBED"
   | "AFFILIATED";
-export const UserListAccessReasonEnum = /*@__PURE__*/ S.String;
+export const UserListAccessReasonEnum = S.String;
 
 /** A user list resource. */
 export interface UserList {
@@ -879,7 +875,7 @@ export type MarketingDataInsightsAttributeGenderEnum =
   | "GENDER_UNKNOWN"
   | "GENDER_MALE"
   | "GENDER_FEMALE";
-export const MarketingDataInsightsAttributeGenderEnum = /*@__PURE__*/ S.String;
+export const MarketingDataInsightsAttributeGenderEnum = S.String;
 
 export type MarketingDataInsightsAttributeAgeRangeEnum =
   | "AGE_RANGE_UNSPECIFIED"
@@ -890,8 +886,7 @@ export type MarketingDataInsightsAttributeAgeRangeEnum =
   | "AGE_RANGE_45_54"
   | "AGE_RANGE_55_64"
   | "AGE_RANGE_65_UP";
-export const MarketingDataInsightsAttributeAgeRangeEnum =
-  /*@__PURE__*/ S.String;
+export const MarketingDataInsightsAttributeAgeRangeEnum = S.String;
 
 /** Insights for a collection of related attributes of the same dimension. */
 export interface MarketingDataInsightsAttribute {
@@ -928,7 +923,7 @@ export type MarketingDataInsightDimensionEnum =
   | "IN_MARKET_USER_INTEREST"
   | "AGE_RANGE"
   | "GENDER";
-export const MarketingDataInsightDimensionEnum = /*@__PURE__*/ S.String;
+export const MarketingDataInsightDimensionEnum = S.String;
 
 /** Insights for marketing data. This feature is only available to data partners. */
 export interface MarketingDataInsight {
@@ -1050,7 +1045,7 @@ export type WarningCountReasonEnum =
   | "PROCESSING_WARNING_REASON_USER_IDENTIFIER_DECRYPTION_ERROR"
   | "PROCESSING_WARNING_REASON_INTERNAL_ERROR"
   | "PROCESSING_WARNING_REASON_AWS_AUTH_FAILED";
-export const WarningCountReasonEnum = /*@__PURE__*/ S.String;
+export const WarningCountReasonEnum = S.String;
 
 /** The warning count for a given warning reason. */
 export interface WarningCount {
@@ -1136,7 +1131,7 @@ export type DataTypeCountTypeEnum =
   | "PHONE_NUMBER"
   | "ADDRESS"
   | "IP_ADDRESS";
-export const DataTypeCountTypeEnum = /*@__PURE__*/ S.String;
+export const DataTypeCountTypeEnum = S.String;
 
 /** The count for a specific data type. */
 export interface DataTypeCount {
@@ -1279,8 +1274,7 @@ export type RequestStatusPerDestinationRequestStatusEnum =
   | "PROCESSING"
   | "FAILED"
   | "PARTIAL_SUCCESS";
-export const RequestStatusPerDestinationRequestStatusEnum =
-  /*@__PURE__*/ S.String;
+export const RequestStatusPerDestinationRequestStatusEnum = S.String;
 
 /** The status of the events ingestion to the destination. */
 export interface IngestEventsStatus {
@@ -1372,7 +1366,7 @@ export type ErrorCountReasonEnum =
   | "PROCESSING_ERROR_REASON_INVALID_OPERATING_ACCOUNT_FOR_CLICK"
   | "PROCESSING_ERROR_REASON_CLICK_NOT_FOUND"
   | "PROCESSING_ERROR_REASON_EXTERNAL_ATTRIBUTION_DATA_MISSING";
-export const ErrorCountReasonEnum = /*@__PURE__*/ S.String;
+export const ErrorCountReasonEnum = S.String;
 
 /** The error count for a given error reason. */
 export interface ErrorCount {
@@ -1464,8 +1458,7 @@ export type IngestUserDataStatusUploadMatchRateRangeEnum =
   | "MATCH_RATE_RANGE_71_TO_80"
   | "MATCH_RATE_RANGE_81_TO_90"
   | "MATCH_RATE_RANGE_91_TO_100";
-export const IngestUserDataStatusUploadMatchRateRangeEnum =
-  /*@__PURE__*/ S.String;
+export const IngestUserDataStatusUploadMatchRateRangeEnum = S.String;
 
 /** The status of the user data ingestion to the destination containing stats related to the ingestion. */
 export interface IngestUserDataStatus {
@@ -1516,8 +1509,7 @@ export type IngestCompositeDataStatusUploadMatchRateRangeEnum =
   | "MATCH_RATE_RANGE_71_TO_80"
   | "MATCH_RATE_RANGE_81_TO_90"
   | "MATCH_RATE_RANGE_91_TO_100";
-export const IngestCompositeDataStatusUploadMatchRateRangeEnum =
-  /*@__PURE__*/ S.String;
+export const IngestCompositeDataStatusUploadMatchRateRangeEnum = S.String;
 
 /** The status of the composite data ingestion to the destination containing stats related to the ingestion. */
 export interface IngestCompositeDataStatus {
@@ -1664,7 +1656,7 @@ export const GetRequestStatusResponse = /*@__PURE__*/ S.suspend(() =>
 export type AwsWrappedKeyInfoKeyTypeEnum =
   | "KEY_TYPE_UNSPECIFIED"
   | "XCHACHA20_POLY1305";
-export const AwsWrappedKeyInfoKeyTypeEnum = /*@__PURE__*/ S.String;
+export const AwsWrappedKeyInfoKeyTypeEnum = S.String;
 
 /** A data encryption key wrapped by an AWS KMS key. */
 export interface AwsWrappedKeyInfo {
@@ -1704,7 +1696,7 @@ export const CoordinatorKeyInfo = /*@__PURE__*/ S.suspend(() =>
 export type GcpWrappedKeyInfoKeyTypeEnum =
   | "KEY_TYPE_UNSPECIFIED"
   | "XCHACHA20_POLY1305";
-export const GcpWrappedKeyInfoKeyTypeEnum = /*@__PURE__*/ S.String;
+export const GcpWrappedKeyInfoKeyTypeEnum = S.String;
 
 /** Information about the Google Cloud Platform wrapped key. */
 export interface GcpWrappedKeyInfo {
@@ -1754,7 +1746,7 @@ export type AdEventAdTypeEnum =
   | "AD_TYPE_HTML"
   | "AD_TYPE_AUDIO"
   | "AD_TYPE_VIDEO";
-export const AdEventAdTypeEnum = /*@__PURE__*/ S.String;
+export const AdEventAdTypeEnum = S.String;
 
 /** Address information for the user. */
 export interface AddressInfo {
@@ -1828,13 +1820,13 @@ export type AdEventTargetingTypeEnum =
   | "TARGETING_TYPE_INTEREST"
   | "TARGETING_TYPE_PURCHASE_INTENT"
   | "TARGETING_TYPE_REMARKETING";
-export const AdEventTargetingTypeEnum = /*@__PURE__*/ S.String;
+export const AdEventTargetingTypeEnum = S.String;
 
 export type ViewabilityInfoViewTypeEnum =
   | "VIEW_TYPE_UNSPECIFIED"
   | "VIEW_TYPE_MRC_VIEWED"
   | "VIEW_TYPE_MRC_RENDERED";
-export const ViewabilityInfoViewTypeEnum = /*@__PURE__*/ S.String;
+export const ViewabilityInfoViewTypeEnum = S.String;
 
 export type ViewabilityInfoMediaQuartileEnum =
   | "MEDIA_QUARTILE_UNSPECIFIED"
@@ -1843,7 +1835,7 @@ export type ViewabilityInfoMediaQuartileEnum =
   | "MEDIA_QUARTILE_MIDPOINT"
   | "MEDIA_QUARTILE_THIRD_QUARTILE"
   | "MEDIA_QUARTILE_COMPLETE";
-export const ViewabilityInfoMediaQuartileEnum = /*@__PURE__*/ S.String;
+export const ViewabilityInfoMediaQuartileEnum = S.String;
 
 /** Details of the viewability of the ad served. */
 export interface ViewabilityInfo {
@@ -1883,7 +1875,7 @@ export type AdEventEventTypeEnum =
   | "EVENT_TYPE_UNSPECIFIED"
   | "EVENT_TYPE_VIEW"
   | "EVENT_TYPE_CLICK";
-export const AdEventEventTypeEnum = /*@__PURE__*/ S.String;
+export const AdEventEventTypeEnum = S.String;
 
 export type AdEventPlatformTypeEnum =
   | "PLATFORM_TYPE_UNSPECIFIED"
@@ -1892,7 +1884,7 @@ export type AdEventPlatformTypeEnum =
   | "PLATFORM_TYPE_CTV"
   | "PLATFORM_TYPE_PHONE"
   | "PLATFORM_TYPE_TABLET";
-export const AdEventPlatformTypeEnum = /*@__PURE__*/ S.String;
+export const AdEventPlatformTypeEnum = S.String;
 
 export type AdEventEventSubtypeEnum =
   | "EVENT_SUBTYPE_UNSPECIFIED"
@@ -1900,13 +1892,13 @@ export type AdEventEventSubtypeEnum =
   | "EVENT_SUBTYPE_ENGAGED_VIEW"
   | "EVENT_SUBTYPE_ONSITE_CLICK"
   | "EVENT_SUBTYPE_OUTBOUND_CLICK";
-export const AdEventEventSubtypeEnum = /*@__PURE__*/ S.String;
+export const AdEventEventSubtypeEnum = S.String;
 
 export type AdEventAttributionHintEnum =
   | "ATTRIBUTION_HINT_UNSPECIFIED"
   | "ATTRIBUTION_HINT_CONVERTED"
   | "ATTRIBUTION_HINT_NOT_CONVERTED";
-export const AdEventAttributionHintEnum = /*@__PURE__*/ S.String;
+export const AdEventAttributionHintEnum = S.String;
 
 /** Information about the device being used (if any) when the event happened. */
 export interface DeviceInfo {
@@ -1963,14 +1955,14 @@ export type AdEventAdPlacementEnum =
   | "AD_PLACEMENT_PROMOTED"
   | "AD_PLACEMENT_SEARCH"
   | "AD_PLACEMENT_STORY";
-export const AdEventAdPlacementEnum = /*@__PURE__*/ S.String;
+export const AdEventAdPlacementEnum = S.String;
 
 export type AdEventPlatformEnum =
   | "PLATFORM_UNSPECIFIED"
   | "PLATFORM_IOS"
   | "PLATFORM_ANDROID"
   | "PLATFORM_WEB";
-export const AdEventPlatformEnum = /*@__PURE__*/ S.String;
+export const AdEventPlatformEnum = S.String;
 
 export type AdEventAdFormatEnum =
   | "AD_FORMAT_UNSPECIFIED"
@@ -1992,7 +1984,7 @@ export type AdEventAdFormatEnum =
   | "AD_FORMAT_STORY"
   | "AD_FORMAT_SPONSORED"
   | "AD_FORMAT_VIDEO";
-export const AdEventAdFormatEnum = /*@__PURE__*/ S.String;
+export const AdEventAdFormatEnum = S.String;
 
 /** An ad event. */
 export interface AdEvent {
@@ -2155,14 +2147,13 @@ export type IngestAudienceMembersRequestEncodingEnum =
   | "ENCODING_UNSPECIFIED"
   | "HEX"
   | "BASE64";
-export const IngestAudienceMembersRequestEncodingEnum = /*@__PURE__*/ S.String;
+export const IngestAudienceMembersRequestEncodingEnum = S.String;
 
 export type TermsOfServiceCustomerMatchTermsOfServiceStatusEnum =
   | "TERMS_OF_SERVICE_STATUS_UNSPECIFIED"
   | "ACCEPTED"
   | "REJECTED";
-export const TermsOfServiceCustomerMatchTermsOfServiceStatusEnum =
-  /*@__PURE__*/ S.String;
+export const TermsOfServiceCustomerMatchTermsOfServiceStatusEnum = S.String;
 
 /** The terms of service that the user has accepted/rejected. */
 export interface TermsOfService {
@@ -2188,13 +2179,13 @@ export type ConsentAdUserDataEnum =
   | "CONSENT_STATUS_UNSPECIFIED"
   | "CONSENT_GRANTED"
   | "CONSENT_DENIED";
-export const ConsentAdUserDataEnum = /*@__PURE__*/ S.String;
+export const ConsentAdUserDataEnum = S.String;
 
 export type ConsentAdPersonalizationEnum =
   | "CONSENT_STATUS_UNSPECIFIED"
   | "CONSENT_GRANTED"
   | "CONSENT_DENIED";
-export const ConsentAdPersonalizationEnum = /*@__PURE__*/ S.String;
+export const ConsentAdPersonalizationEnum = S.String;
 
 /** [Digital Markets Act (DMA)](//digital-markets-act.ec.europa.eu/index_en) consent settings for the user. */
 export interface Consent {
@@ -2424,7 +2415,7 @@ export type FieldWarningReasonEnum =
   | "WARNING_REASON_INVALID_DEVICE_CATEGORY"
   | "WARNING_REASON_INVALID_DEVICE_SCREEN_RESOLUTION"
   | "WARNING_REASON_INVALID_MERCHANT_ID";
-export const FieldWarningReasonEnum = /*@__PURE__*/ S.String;
+export const FieldWarningReasonEnum = S.String;
 
 /** Detailed row-level warning with field paths. */
 export interface FieldWarning {
@@ -2468,7 +2459,7 @@ export type IngestEventsRequestEncodingEnum =
   | "ENCODING_UNSPECIFIED"
   | "HEX"
   | "BASE64";
-export const IngestEventsRequestEncodingEnum = /*@__PURE__*/ S.String;
+export const IngestEventsRequestEncodingEnum = S.String;
 
 /** Custom variable for ads conversions. */
 export interface CustomVariable {
@@ -2618,7 +2609,7 @@ export type UserPropertiesCustomerValueBucketEnum =
   | "LOW"
   | "MEDIUM"
   | "HIGH";
-export const UserPropertiesCustomerValueBucketEnum = /*@__PURE__*/ S.String;
+export const UserPropertiesCustomerValueBucketEnum = S.String;
 
 /** A bucket of any additional [user properties](https://developers.google.com/analytics/devguides/collection/protocol/ga4/user-properties) for the user associated with this event. */
 export interface UserProperty {
@@ -2644,7 +2635,7 @@ export type UserPropertiesCustomerTypeEnum =
   | "NEW"
   | "RETURNING"
   | "REENGAGED";
-export const UserPropertiesCustomerTypeEnum = /*@__PURE__*/ S.String;
+export const UserPropertiesCustomerTypeEnum = S.String;
 
 /** Advertiser-assessed information about the user at the time that the event happened. See https://support.google.com/google-ads/answer/14007601 for more details. */
 export interface UserProperties {
@@ -2693,7 +2684,7 @@ export type EncryptedUserIdSourceEnum =
   | "ENCRYPTION_SOURCE_UNSPECIFIED"
   | "AD_SERVING"
   | "DATA_TRANSFER";
-export const EncryptedUserIdSourceEnum = /*@__PURE__*/ S.String;
+export const EncryptedUserIdSourceEnum = S.String;
 
 export type EncryptedUserIdEntityTypeEnum =
   | "ENCRYPTION_ENTITY_TYPE_UNSPECIFIED"
@@ -2703,7 +2694,7 @@ export type EncryptedUserIdEntityTypeEnum =
   | "DISPLAY_VIDEO_ADVERTISER"
   | "GOOGLE_ADS_CUSTOMER"
   | "GOOGLE_AD_MANAGER_NETWORK_CODE";
-export const EncryptedUserIdEntityTypeEnum = /*@__PURE__*/ S.String;
+export const EncryptedUserIdEntityTypeEnum = S.String;
 
 /** A user identifier issued to be used for attribution. All fields are required if this is used. */
 export interface EncryptedUserId {
@@ -2778,7 +2769,7 @@ export type EventEventSourceEnum =
   | "PHONE"
   | "MESSAGE"
   | "OTHER";
-export const EventEventSourceEnum = /*@__PURE__*/ S.String;
+export const EventEventSourceEnum = S.String;
 
 /** Experimental field representing unofficial fields. */
 export interface ExperimentalField {
@@ -3077,8 +3068,7 @@ export type UserListGlobalLicenseCustomerInfoLicenseTypeEnum =
   | "USER_LIST_GLOBAL_LICENSE_TYPE_RESELLER"
   | "USER_LIST_GLOBAL_LICENSE_TYPE_DATA_MART_SELL_SIDE"
   | "USER_LIST_GLOBAL_LICENSE_TYPE_DATA_MART_BUY_SIDE";
-export const UserListGlobalLicenseCustomerInfoLicenseTypeEnum =
-  /*@__PURE__*/ S.String;
+export const UserListGlobalLicenseCustomerInfoLicenseTypeEnum = S.String;
 
 export type UserListGlobalLicenseCustomerInfoClientAccountTypeEnum =
   | "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_UNKNOWN"
@@ -3086,15 +3076,13 @@ export type UserListGlobalLicenseCustomerInfoClientAccountTypeEnum =
   | "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_DISPLAY_VIDEO_PARTNER"
   | "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_DISPLAY_VIDEO_ADVERTISER"
   | "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_GOOGLE_AD_MANAGER_AUDIENCE_LINK";
-export const UserListGlobalLicenseCustomerInfoClientAccountTypeEnum =
-  /*@__PURE__*/ S.String;
+export const UserListGlobalLicenseCustomerInfoClientAccountTypeEnum = S.String;
 
 export type UserListGlobalLicenseCustomerInfoStatusEnum =
   | "USER_LIST_LICENSE_STATUS_UNSPECIFIED"
   | "USER_LIST_LICENSE_STATUS_ENABLED"
   | "USER_LIST_LICENSE_STATUS_DISABLED";
-export const UserListGlobalLicenseCustomerInfoStatusEnum =
-  /*@__PURE__*/ S.String;
+export const UserListGlobalLicenseCustomerInfoStatusEnum = S.String;
 
 /** Information about a customer of a user list global license. This will automatically be created by the system when a customer purchases a global license. */
 export interface UserListGlobalLicenseCustomerInfo {
@@ -3347,7 +3335,7 @@ export type RemoveAudienceMembersRequestEncodingEnum =
   | "ENCODING_UNSPECIFIED"
   | "HEX"
   | "BASE64";
-export const RemoveAudienceMembersRequestEncodingEnum = /*@__PURE__*/ S.String;
+export const RemoveAudienceMembersRequestEncodingEnum = S.String;
 
 /** Request to remove users from an audience in the provided destinations. Returns a RemoveAudienceMembersResponse. */
 export interface RemoveAudienceMembersRequest {

@@ -69,7 +69,7 @@ export type ComputeInsightsRequestInsightsItemEnum =
   | "INSIGHT_UNSPECIFIED"
   | "INSIGHT_COUNT"
   | "INSIGHT_PLACES";
-export const ComputeInsightsRequestInsightsItemEnum = /*@__PURE__*/ S.String;
+export const ComputeInsightsRequestInsightsItemEnum = S.String;
 
 export type ComputeInsightsRequestInsightsItemEnumList = Array<
   ComputeInsightsRequestInsightsItemEnum | (string & {})
@@ -108,7 +108,7 @@ export type FilterOperatingStatusItemEnum =
   | "OPERATING_STATUS_OPERATIONAL"
   | "OPERATING_STATUS_PERMANENTLY_CLOSED"
   | "OPERATING_STATUS_TEMPORARILY_CLOSED";
-export const FilterOperatingStatusItemEnum = /*@__PURE__*/ S.String;
+export const FilterOperatingStatusItemEnum = S.String;
 
 export type FilterOperatingStatusItemEnumList = Array<
   FilterOperatingStatusItemEnum | (string & {})
@@ -224,7 +224,7 @@ export type FilterPriceLevelsItemEnum =
   | "PRICE_LEVEL_MODERATE"
   | "PRICE_LEVEL_EXPENSIVE"
   | "PRICE_LEVEL_VERY_EXPENSIVE";
-export const FilterPriceLevelsItemEnum = /*@__PURE__*/ S.String;
+export const FilterPriceLevelsItemEnum = S.String;
 
 export type FilterPriceLevelsItemEnumList = Array<
   FilterPriceLevelsItemEnum | (string & {})

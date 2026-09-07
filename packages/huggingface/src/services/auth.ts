@@ -25,8 +25,7 @@ export type GetUserInfoResponseBodyAuthAccessTokenRole =
   | "write"
   | "god"
   | "fineGrained";
-export const GetUserInfoResponseBodyAuthAccessTokenRole =
-  /*@__PURE__*/ S.String;
+export const GetUserInfoResponseBodyAuthAccessTokenRole = S.String;
 
 export type GetUserInfoResponseBodyAuthAccessTokenFineGrainedScopedItemEntityType =
   | "dataset"
@@ -40,7 +39,7 @@ export type GetUserInfoResponseBodyAuthAccessTokenFineGrainedScopedItemEntityTyp
   | "resource-group"
   | "oauth-app";
 export const GetUserInfoResponseBodyAuthAccessTokenFineGrainedScopedItemEntityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetUserInfoResponseBodyAuthAccessTokenFineGrainedScopedItemEntity {
   _id: string;
@@ -92,7 +91,7 @@ export type GetUserInfoResponseBodyAuthAccessTokenFineGrainedGlobalItem =
   | "discussion.write"
   | "post.write";
 export const GetUserInfoResponseBodyAuthAccessTokenFineGrainedGlobalItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetUserInfoResponseBodyAuthAccessTokenFineGrainedGlobalList =
   Array<GetUserInfoResponseBodyAuthAccessTokenFineGrainedGlobalItem>;
@@ -169,18 +168,17 @@ export const GetUserInfoResponseBodyAuth = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetUserInfoResponseBodyAuth>;
 
 export type GetUserInfoResponseBodyBillingMode = "prepaid" | "postpaid";
-export const GetUserInfoResponseBodyBillingMode = /*@__PURE__*/ S.String;
+export const GetUserInfoResponseBodyBillingMode = S.String;
 
 export type GetUserInfoResponseBodyOrgsItemBillingMode = "prepaid" | "postpaid";
-export const GetUserInfoResponseBodyOrgsItemBillingMode =
-  /*@__PURE__*/ S.String;
+export const GetUserInfoResponseBodyOrgsItemBillingMode = S.String;
 
 export type GetUserInfoResponseBodyOrgsItemPlan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const GetUserInfoResponseBodyOrgsItemPlan = /*@__PURE__*/ S.String;
+export const GetUserInfoResponseBodyOrgsItemPlan = S.String;
 
 export type GetUserInfoResponseBodyOrgsItemRoleInOrg =
   | "admin"
@@ -188,7 +186,7 @@ export type GetUserInfoResponseBodyOrgsItemRoleInOrg =
   | "contributor"
   | "read"
   | "no_access";
-export const GetUserInfoResponseBodyOrgsItemRoleInOrg = /*@__PURE__*/ S.String;
+export const GetUserInfoResponseBodyOrgsItemRoleInOrg = S.String;
 
 export type GetUserInfoResponseBodyOrgsItemSecurityRestrictionsItem =
   | "mfa"
@@ -196,8 +194,7 @@ export type GetUserInfoResponseBodyOrgsItemSecurityRestrictionsItem =
   | "token-revoked"
   | "sso"
   | "ip";
-export const GetUserInfoResponseBodyOrgsItemSecurityRestrictionsItem =
-  /*@__PURE__*/ S.String;
+export const GetUserInfoResponseBodyOrgsItemSecurityRestrictionsItem = S.String;
 
 /** Current security restrictions for accessing data in this organization with current authentication method */
 export type GetUserInfoResponseBodyOrgsItemSecurityRestrictionsList =
@@ -213,8 +210,7 @@ export type GetUserInfoResponseBodyOrgsItemResourceGroupsItemRole =
   | "contributor"
   | "read"
   | "no_access";
-export const GetUserInfoResponseBodyOrgsItemResourceGroupsItemRole =
-  /*@__PURE__*/ S.String;
+export const GetUserInfoResponseBodyOrgsItemResourceGroupsItemRole = S.String;
 
 export interface GetUserInfoResponseBodyOrgsItemResourceGroupsItem {
   id: string;

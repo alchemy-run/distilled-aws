@@ -258,15 +258,14 @@ export const BillingTrialsCancelCreateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** * `spend` - Spend * `projected_spend` - Projected spend */
 export type BillingAlertConfigurationMetricEnum = "spend" | "projected_spend";
-export const BillingAlertConfigurationMetricEnum = /*@__PURE__*/ S.String;
+export const BillingAlertConfigurationMetricEnum = S.String;
 
 /** * `relative_increase` - Relative increase * `absolute_value` - Absolute value * `absolute_increase` - Absolute increase */
 export type BillingAlertConfigurationThresholdTypeEnum =
   | "relative_increase"
   | "absolute_value"
   | "absolute_increase";
-export const BillingAlertConfigurationThresholdTypeEnum =
-  /*@__PURE__*/ S.String;
+export const BillingAlertConfigurationThresholdTypeEnum = S.String;
 
 export type BillingAlertDestinationChangesDeleteItemList = Array<string>;
 export const BillingAlertDestinationChangesDeleteItemList =
@@ -282,7 +281,7 @@ export const BillingAlertDestinationChangesDeleteList = /*@__PURE__*/ S.Array(
 
 /** * `slack` - slack * `webhook` - webhook * `teams` - teams */
 export type NotificationDestinationTypeEnum = "slack" | "webhook" | "teams";
-export const NotificationDestinationTypeEnum = /*@__PURE__*/ S.String;
+export const NotificationDestinationTypeEnum = S.String;
 
 export interface BillingAlertDestinationCreateData {
   /** Destination type. * `slack` - slack * `webhook` - webhook * `teams` - teams */
@@ -386,7 +385,7 @@ export const CreateBillingAlertRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `USD` - USD */
 export type CurrencyEnum = "USD";
-export const CurrencyEnum = /*@__PURE__*/ S.String;
+export const CurrencyEnum = S.String;
 
 /** * `not_firing` - Not firing * `firing` - Firing * `errored` - Errored * `snoozed` - Snoozed * `broken` - Broken */
 export type BillingAlertConfigurationStateEnum =
@@ -395,7 +394,7 @@ export type BillingAlertConfigurationStateEnum =
   | "errored"
   | "snoozed"
   | "broken";
-export const BillingAlertConfigurationStateEnum = /*@__PURE__*/ S.String;
+export const BillingAlertConfigurationStateEnum = S.String;
 
 export type BillingAlertDestinationSummaryHogFunctionIdsList = Array<string>;
 export const BillingAlertDestinationSummaryHogFunctionIdsList =
@@ -542,11 +541,11 @@ export type BillingAlertEventKindEnum =
   | "resolved"
   | "errored"
   | "broken_config";
-export const BillingAlertEventKindEnum = /*@__PURE__*/ S.String;
+export const BillingAlertEventKindEnum = S.String;
 
 /** * `scheduled` - Scheduled * `manual` - Manual */
 export type BillingAlertEventSourceEnum = "scheduled" | "manual";
-export const BillingAlertEventSourceEnum = /*@__PURE__*/ S.String;
+export const BillingAlertEventSourceEnum = S.String;
 
 export interface BillingAlertEvent {
   /** Unique identifier for this billing alert event. */
@@ -907,7 +906,7 @@ export const BillingTimeSeriesPointDatesList = /*@__PURE__*/ S.Array(
 
 /** * `type` - type * `team` - team * `multiple` - multiple */
 export type BreakdownTypeEnum = "type" | "team" | "multiple";
-export const BreakdownTypeEnum = /*@__PURE__*/ S.String;
+export const BreakdownTypeEnum = S.String;
 
 export interface BillingTimeSeriesPoint {
   id?: number;

@@ -50,7 +50,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -58,7 +58,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -97,7 +97,7 @@ export const ApprovePipelineConnectionResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Direction of data movement */
 export type Direction = "Send" | "Receive";
-export const Direction = /*@__PURE__*/ S.String;
+export const Direction = S.String;
 
 /** Status of the connection */
 export type ConnectionStatus =
@@ -105,13 +105,13 @@ export type ConnectionStatus =
   | "Approved"
   | "Rejected"
   | "Accepted";
-export const ConnectionStatus = /*@__PURE__*/ S.String;
+export const ConnectionStatus = S.String;
 
 /** Defines different disablement statuses and the circumstances in why they were disabled. */
 export type ForceDisabledStatus =
   | "ConnectionForceDisabled"
   | "FlowTypeForceDisabled";
-export const ForceDisabledStatus = /*@__PURE__*/ S.String;
+export const ForceDisabledStatus = S.String;
 
 /** Force disablement status of the current connection */
 export type ConnectionPropertiesForceDisabledStatusList =
@@ -123,7 +123,7 @@ export const ConnectionPropertiesForceDisabledStatusList =
 
 /** Link status of the current pipeline, connection, flow. */
 export type LinkStatus = "Linked" | "Unlinked";
-export const LinkStatus = /*@__PURE__*/ S.String;
+export const LinkStatus = S.String;
 
 /** Flow type for the specified resource. FlowType will be deprecated starting from version 2025_05_30_preview - please create a FlowProfile resource instead. */
 export type FlowType =
@@ -141,7 +141,7 @@ export type FlowType =
   | "MissionOpaqueXML"
   | "DiskImages"
   | "API";
-export const FlowType = /*@__PURE__*/ S.String;
+export const FlowType = S.String;
 
 /** The flow types being requested for this connection. This FlowType property has reached end of life support starting version 2025-05-30-preview. Please create a FlowProfile resource instead. */
 export type ConnectionPropertiesFlowTypesList = Array<FlowType>;
@@ -161,7 +161,7 @@ export type ProvisioningState =
   | "Failed"
   | "Canceled"
   | "Accepted";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** The policies for this connection. The policies property has reached end of life support starting version 2025-05-30-preview. Please create and use a FlowProfile resource instead. */
 export type ConnectionPropertiesPoliciesList = Array<string>;
@@ -171,11 +171,11 @@ export const ConnectionPropertiesPoliciesList = /*@__PURE__*/ S.Array(
 
 /** Status of the schema. */
 export type SchemaStatus = "New" | "Approved";
-export const SchemaStatus = /*@__PURE__*/ S.String;
+export const SchemaStatus = S.String;
 
 /** The Schema Type. */
 export type SchemaType = "Xsd" | "Zip";
-export const SchemaType = /*@__PURE__*/ S.String;
+export const SchemaType = S.String;
 
 /** The schema object. Schemas has reached end of life support starting version 2025-05-30-preview. Please manage schemas with a FlowProfile resource instead. */
 export interface Schema {
@@ -299,7 +299,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
@@ -824,7 +824,7 @@ export const SelectedResource = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the current flow. */
 export type FlowStatus = "Enabled" | "Disabled";
-export const FlowStatus = /*@__PURE__*/ S.String;
+export const FlowStatus = S.String;
 
 /** Force disablement status of the current flow */
 export type FlowPropertiesForceDisabledStatusList = Array<ForceDisabledStatus>;
@@ -834,7 +834,7 @@ export const FlowPropertiesForceDisabledStatusList = /*@__PURE__*/ S.Array(
 
 /** Transfer Storage Blobs or Tables */
 export type DataType = "Blob" | "Table";
-export const DataType = /*@__PURE__*/ S.String;
+export const DataType = S.String;
 
 /** The policies for this flow. The property has reached end of life support starting version 2025-05-30-preview. Please create and use a FlowProfile resource instead. */
 export type FlowPropertiesPoliciesList = Array<string>;
@@ -844,7 +844,7 @@ export const FlowPropertiesPoliciesList = /*@__PURE__*/ S.Array(
 
 /** Billing tier for this messaging flow. */
 export type FlowBillingTier = "BlobTransport" | "Standard" | "Premium";
-export const FlowBillingTier = /*@__PURE__*/ S.String;
+export const FlowBillingTier = S.String;
 
 /** The option associated with messaging flows. */
 export interface MessagingOptions {
@@ -861,11 +861,11 @@ export const MessagingOptions = /*@__PURE__*/ S.suspend(() =>
 
 /** Remote Calling Mode in the Azure Data Transfer API Flow, which describes how the API Flow will be invoked */
 export type ApiMode = "SDK" | "Endpoint";
-export const ApiMode = /*@__PURE__*/ S.String;
+export const ApiMode = S.String;
 
 /** Flag for if Azure Data Transfer API Flow should extract the user token */
 export type IdentityTranslation = "UserIdentity" | "ServiceIdentity";
-export const IdentityTranslation = /*@__PURE__*/ S.String;
+export const IdentityTranslation = S.String;
 
 /** Properties specific to API Flow Type */
 export interface ApiFlowOptions {
@@ -898,7 +898,7 @@ export const ApiFlowOptions = /*@__PURE__*/ S.suspend(() =>
 
 /** The protocol of the stream */
 export type StreamProtocol = "UDP" | "SRT" | "RTP";
-export const StreamProtocol = /*@__PURE__*/ S.String;
+export const StreamProtocol = S.String;
 
 /** A source IP address or CIDR range */
 export type StreamSourceAddressesSourceAddressesList = Array<string>;
@@ -1178,11 +1178,11 @@ export const EnableFlowResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of action to be executed. */
 export type ActionType = "AllowUpdates" | "ForceDisable";
-export const ActionType = /*@__PURE__*/ S.String;
+export const ActionType = S.String;
 
 /** Type of target to execute the action on */
 export type TargetType = "Pipeline" | "Connection" | "FlowType";
-export const TargetType = /*@__PURE__*/ S.String;
+export const TargetType = S.String;
 
 /** Targets for the action */
 export type ExecutePipelineActionRequestTargetsList = Array<string>;
@@ -1242,8 +1242,7 @@ export type ReadPipelineConnectionSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ReadPipelineConnectionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const ReadPipelineConnectionSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ReadPipelineConnectionSystemDataLastModifiedByType =
@@ -1251,8 +1250,7 @@ export type ReadPipelineConnectionSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ReadPipelineConnectionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const ReadPipelineConnectionSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ReadPipelineConnectionSystemData {
@@ -1286,7 +1284,7 @@ export const ReadPipelineConnectionSystemData = /*@__PURE__*/ S.suspend(() =>
 
 /** Operation status for the last patch request for this connection. */
 export type OperationStatusEnum = "Failed" | "Succeeded";
-export const OperationStatusEnum = /*@__PURE__*/ S.String;
+export const OperationStatusEnum = S.String;
 
 /** Operation status associated with the last patch request */
 export interface OperationStatusProperties {
@@ -1413,7 +1411,7 @@ export const PipelinePropertiesDisabledFlowTypesList = /*@__PURE__*/ S.Array(
 
 /** Status of the current pipeline */
 export type PipelineStatus = "Enabled" | "Disabled";
-export const PipelineStatus = /*@__PURE__*/ S.String;
+export const PipelineStatus = S.String;
 
 /** Properties of pipeline */
 export interface PipelineProperties {
@@ -2672,7 +2670,7 @@ export type PendingConnectionSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PendingConnectionSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const PendingConnectionSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type PendingConnectionSystemDataLastModifiedByType =
@@ -2680,8 +2678,7 @@ export type PendingConnectionSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PendingConnectionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const PendingConnectionSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PendingConnectionSystemData {
@@ -2888,7 +2885,7 @@ export type PendingFlowSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PendingFlowSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const PendingFlowSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type PendingFlowSystemDataLastModifiedByType =
@@ -2896,7 +2893,7 @@ export type PendingFlowSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PendingFlowSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const PendingFlowSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PendingFlowSystemData {
@@ -3156,11 +3153,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -4282,7 +4279,7 @@ export const ValidateAzureDataTransferSchemaRequest = /*@__PURE__*/ S.suspend(
 
 /** Validation status of the schema */
 export type ValidateSchemaStatus = "Succeeded" | "Failed";
-export const ValidateSchemaStatus = /*@__PURE__*/ S.String;
+export const ValidateSchemaStatus = S.String;
 
 /** Result of the schema validation. ValidateSchemaResult has reached end of life support starting version 2025-05-30-preview. Please manage schemas with a FlowProfile resource instead. */
 export interface ValidateSchemaResult {

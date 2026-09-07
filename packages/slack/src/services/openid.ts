@@ -17,7 +17,7 @@ export type { SlackOpError, SlackOpContext };
 export type ConnectTokenRequestGrantType =
   | "authorization_code"
   | "refresh_token";
-export const ConnectTokenRequestGrantType = /*@__PURE__*/ S.String;
+export const ConnectTokenRequestGrantType = S.String;
 
 export interface ConnectTokenRequest {
   /** Issued when you created your application. */
@@ -57,7 +57,7 @@ export const ConnectTokenRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConnectTokenRequest>;
 
 export type ConnectTokenResponseTokenType = "Bearer";
-export const ConnectTokenResponseTokenType = /*@__PURE__*/ S.String;
+export const ConnectTokenResponseTokenType = S.String;
 
 export interface ConnectTokenResponse {
   /** Always `true` (a failed call raises a typed error instead). */

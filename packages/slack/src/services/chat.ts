@@ -58,7 +58,7 @@ export const AppendStreamResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The source of the link to unfurl. The source may either be `composer`, when the link is inside the message composer, or `conversations_history`, when the link has been posted to a conversation. */
 export type ChatUnfurlRequestSource = "composer" | "conversations_history";
-export const ChatUnfurlRequestSource = /*@__PURE__*/ S.String;
+export const ChatUnfurlRequestSource = S.String;
 
 export interface ChatUnfurlRequest {
   /** Channel ID of the message. Both `channel` and `ts` must be provided together, *or* `unfurl_id` and `source` must be provided together. Required for public channels. */
@@ -376,7 +376,7 @@ export type PostEphemeralRequestParse =
   | "full"
   | "mrkdwn"
   | "false";
-export const PostEphemeralRequestParse = /*@__PURE__*/ S.String;
+export const PostEphemeralRequestParse = S.String;
 
 export interface PostEphemeralRequest {
   /** (Legacy) Pass true to post the message as the authed user. Defaults to true if the chat:write:bot scope is not included. Otherwise, defaults to false. */
@@ -618,7 +618,7 @@ export const ScheduleMessageRequestBlocks = /*@__PURE__*/ S.Unknown.pipe(
 
 /** Change how messages are treated. See [chat.postMessage](chat.postMessage#formatting). */
 export type ScheduleMessageRequestParse = "none" | "full";
-export const ScheduleMessageRequestParse = /*@__PURE__*/ S.String;
+export const ScheduleMessageRequestParse = S.String;
 
 export interface ScheduleMessageRequest {
   /** Set to `true` to post the message as the authed user, instead of as a bot. Defaults to false. Cannot be used by [new Slack apps](/quickstart). See [chat.postMessage](chat.postMessage#authorship). */
@@ -707,7 +707,7 @@ export const StartStreamRequestChunksList = /*@__PURE__*/ S.Array(
 
 /** Specifies how tasks are displayed in the message. A `timeline` displays individual tasks with text in sequential order, `plan` displays all tasks together, with the first tasks's placement determining the placement of the rest of the tasks, and `dense` collapses consecutive tool calls into a single summarized task card. */
 export type StartStreamRequestTaskDisplayMode = "timeline" | "plan" | "dense";
-export const StartStreamRequestTaskDisplayMode = /*@__PURE__*/ S.String;
+export const StartStreamRequestTaskDisplayMode = S.String;
 
 export interface StartStreamRequest {
   /** An encoded ID that represents a channel thread or DM. */

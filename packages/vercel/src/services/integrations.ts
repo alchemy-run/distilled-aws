@@ -62,7 +62,7 @@ export type ConnectIntegrationResourceToProjectRequestEnvVarEnvironmentsItem =
   | "preview"
   | "development";
 export const ConnectIntegrationResourceToProjectRequestEnvVarEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConnectIntegrationResourceToProjectRequestEnvVarEnvironmentsList =
   Array<
@@ -135,7 +135,7 @@ export type CreateIntegrationStoreDirectRequestMetadataValue =
   | CreateIntegrationStoreDirectRequestMetadataValueCase3List
   | CreateIntegrationStoreDirectRequestMetadataValueCase4List;
 export const CreateIntegrationStoreDirectRequestMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectRequestMetadataValue>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectRequestMetadataValue>;
 
 /** Optional key-value pairs for resource metadata */
 export type CreateIntegrationStoreDirectRequestMetadataMap = {
@@ -168,7 +168,7 @@ export type CreateIntegrationStoreDirectRequestSource =
   | "oauth"
   | "backoffice"
   | "import-recommended-integrations";
-export const CreateIntegrationStoreDirectRequestSource = /*@__PURE__*/ S.String;
+export const CreateIntegrationStoreDirectRequestSource = S.String;
 
 export interface CreateIntegrationStoreDirectRequest {
   /** The Team identifier to perform the request on behalf of. */
@@ -299,7 +299,7 @@ export type CreateIntegrationStoreDirectResponseStoreProjectsMetadataItemFramewo
   | "xmcp"
   | "zola";
 export const CreateIntegrationStoreDirectResponseStoreProjectsMetadataItemFramework =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProjectsMetadataItemEnvironmentsList =
   Array<string>;
@@ -320,7 +320,7 @@ export type CreateIntegrationStoreDirectResponseStoreProjectsMetadataItemDeploym
   | "preview"
   | "production";
 export const CreateIntegrationStoreDirectResponseStoreProjectsMetadataItemDeploymentsActionsItemEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProjectsMetadataItemDeploymentsActionsItemEnvironmentsList =
   Array<CreateIntegrationStoreDirectResponseStoreProjectsMetadataItemDeploymentsActionsItemEnvironmentsItem>;
@@ -418,7 +418,7 @@ export type CreateIntegrationStoreDirectResponseStoreProjectFilterGitProvidersCa
   | "github"
   | "gitlab";
 export const CreateIntegrationStoreDirectResponseStoreProjectFilterGitProvidersCase0Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProjectFilterGitProvidersCase0List =
   Array<CreateIntegrationStoreDirectResponseStoreProjectFilterGitProvidersCase0Item>;
@@ -430,13 +430,13 @@ export const CreateIntegrationStoreDirectResponseStoreProjectFilterGitProvidersC
 export type CreateIntegrationStoreDirectResponseStoreProjectFilterGitProvidersCase1 =
   "*";
 export const CreateIntegrationStoreDirectResponseStoreProjectFilterGitProvidersCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProjectFilterGitProviders =
   | CreateIntegrationStoreDirectResponseStoreProjectFilterGitProvidersCase0List
   | CreateIntegrationStoreDirectResponseStoreProjectFilterGitProvidersCase1;
 export const CreateIntegrationStoreDirectResponseStoreProjectFilterGitProviders =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProjectFilterGitProviders>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProjectFilterGitProviders>;
 
 export type CreateIntegrationStoreDirectResponseStoreProjectFilterGitOwnersList =
   Array<string>;
@@ -496,15 +496,13 @@ export type CreateIntegrationStoreDirectResponseStoreStatus =
   | "onboarding"
   | "suspended"
   | "uninstalled";
-export const CreateIntegrationStoreDirectResponseStoreStatus =
-  /*@__PURE__*/ S.String;
+export const CreateIntegrationStoreDirectResponseStoreStatus = S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreOwnership =
   | "linked"
   | "owned"
   | "sandbox";
-export const CreateIntegrationStoreDirectResponseStoreOwnership =
-  /*@__PURE__*/ S.String;
+export const CreateIntegrationStoreDirectResponseStoreOwnership = S.String;
 
 export interface CreateIntegrationStoreDirectResponseStoreCapabilitiesSecretRotationCase0 {
   maxDelayHours: number;
@@ -525,7 +523,7 @@ export type CreateIntegrationStoreDirectResponseStoreCapabilitiesSecretRotation 
   | CreateIntegrationStoreDirectResponseStoreCapabilitiesSecretRotationCase0
   | boolean;
 export const CreateIntegrationStoreDirectResponseStoreCapabilitiesSecretRotation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreCapabilitiesSecretRotation>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreCapabilitiesSecretRotation>;
 
 export interface CreateIntegrationStoreDirectResponseStoreCapabilities {
   mcp?: boolean;
@@ -582,7 +580,7 @@ export type CreateIntegrationStoreDirectResponseStoreMetadataValue =
   | CreateIntegrationStoreDirectResponseStoreMetadataValueCase3List
   | boolean;
 export const CreateIntegrationStoreDirectResponseStoreMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreMetadataValue>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreMetadataValue>;
 
 export type CreateIntegrationStoreDirectResponseStoreMetadataMap = {
   [key: string]:
@@ -604,7 +602,7 @@ export type CreateIntegrationStoreDirectResponseStoreExternalResourceStatus =
   | "suspended"
   | "uninstalled";
 export const CreateIntegrationStoreDirectResponseStoreExternalResourceStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductCapabilitiesSecretRotationCase0 =
   CreateIntegrationStoreDirectResponseStoreCapabilitiesSecretRotationCase0;
@@ -615,7 +613,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductCapabilitiesSecretRo
   | CreateIntegrationStoreDirectResponseStoreCapabilitiesSecretRotationCase0
   | boolean;
 export const CreateIntegrationStoreDirectResponseStoreProductCapabilitiesSecretRotation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductCapabilitiesSecretRotation>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductCapabilitiesSecretRotation>;
 
 export interface CreateIntegrationStoreDirectResponseStoreProductCapabilities {
   mcp?: boolean;
@@ -668,17 +666,17 @@ export const CreateIntegrationStoreDirectResponseStoreProductCapabilities =
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaType =
   "object";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0Type =
   "string";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiControl =
   "input";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0EnumList =
   Array<string>;
@@ -704,14 +702,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnly>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnly>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -722,14 +720,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiHiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiHidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiHidden>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -740,14 +738,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiDisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiDisabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiDisabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -758,7 +756,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiDescription>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiDescription>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -836,12 +834,12 @@ export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPrope
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1Type =
   "number";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiControl =
   "input";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiReadOnlyCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -852,14 +850,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiReadOnlyCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiReadOnly>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiReadOnly>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -870,14 +868,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiHiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiHidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiHidden>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -888,14 +886,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiDisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiDisabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiDisabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -906,7 +904,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiDescription>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiDescription>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase1UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -982,12 +980,12 @@ export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPrope
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2Type =
   "boolean";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiControl =
   "toggle";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiReadOnlyCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -998,14 +996,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiReadOnlyCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiReadOnly>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiReadOnly>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1016,14 +1014,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiHiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiHidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiHidden>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1034,14 +1032,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiDisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiDisabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiDisabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1052,7 +1050,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiDescription>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiDescription>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase2UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1118,12 +1116,12 @@ export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPrope
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3Type =
   "array";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3ItemsType =
   "number";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3ItemsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3Items {
   type: CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3ItemsType;
@@ -1153,7 +1151,7 @@ export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPrope
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiControl =
   "slider";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiStepsList =
   Array<number>;
@@ -1178,14 +1176,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiReadOnlyCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiReadOnly>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiReadOnly>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1196,14 +1194,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiHiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiHidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiHidden>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1214,14 +1212,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiDisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiDisabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiDisabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1232,7 +1230,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiDescription>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiDescription>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase3UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1312,12 +1310,12 @@ export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPrope
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4Type =
   "string";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiControl =
   "select";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiOptionsItemDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1328,14 +1326,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiOptionsItemDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiOptionsItemDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiOptionsItemDisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiOptionsItemDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiOptionsItemDisabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiOptionsItemDisabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiOptionsItemHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1346,14 +1344,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiOptionsItemHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiOptionsItemHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiOptionsItemHiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiOptionsItemHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiOptionsItemHidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiOptionsItemHidden>;
 
 export interface CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiOptionsItem {
   value: string;
@@ -1403,14 +1401,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiReadOnlyCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiReadOnly>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiReadOnly>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1421,14 +1419,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiHiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiHidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiHidden>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1439,14 +1437,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiDisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiDisabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiDisabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1457,7 +1455,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiDescription>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiDescription>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase4UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1540,12 +1538,12 @@ export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPrope
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5Type =
   "string";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiControl =
   "radio-button";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiOptionsItemDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1556,14 +1554,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiOptionsItemDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiOptionsItemDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiOptionsItemDisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiOptionsItemDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiOptionsItemDisabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiOptionsItemDisabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiOptionsItemHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1574,14 +1572,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiOptionsItemHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiOptionsItemHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiOptionsItemHiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiOptionsItemHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiOptionsItemHidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiOptionsItemHidden>;
 
 export interface CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiOptionsItem {
   value: string;
@@ -1631,14 +1629,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiReadOnlyCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiReadOnly>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiReadOnly>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1649,14 +1647,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiHiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiHidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiHidden>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1667,14 +1665,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiDisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiDisabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiDisabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1685,7 +1683,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiDescription>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiDescription>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase5UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1768,12 +1766,12 @@ export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPrope
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6Type =
   "array";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6ItemsType =
   "string";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6ItemsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6ItemsEnumList =
   Array<string>;
@@ -1812,7 +1810,7 @@ export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPrope
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiControl =
   "multi-select";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiOptionsItemDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1823,14 +1821,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiOptionsItemDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiOptionsItemDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiOptionsItemDisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiOptionsItemDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiOptionsItemDisabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiOptionsItemDisabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiOptionsItemHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1841,14 +1839,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiOptionsItemHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiOptionsItemHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiOptionsItemHiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiOptionsItemHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiOptionsItemHidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiOptionsItemHidden>;
 
 export interface CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiOptionsItem {
   value: string;
@@ -1898,14 +1896,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiReadOnlyCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiReadOnly>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiReadOnly>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1916,14 +1914,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiHiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiHidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiHidden>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1934,14 +1932,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiDisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiDisabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiDisabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -1952,7 +1950,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiDescription>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiDescription>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase6UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2045,12 +2043,12 @@ export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPrope
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7Type =
   "string";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiControl =
   "vercel-region";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase0DisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2061,14 +2059,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase0DisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase0Disabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase0DisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase0Disabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase0Disabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase0Disabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase0HiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2079,14 +2077,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase0HiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase0Hidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase0HiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase0Hidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase0Hidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase0Hidden>;
 
 export interface CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase0 {
   value: string;
@@ -2122,14 +2120,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase2DisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase2Disabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase2DisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase2Disabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase2Disabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase2Disabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase2HiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2140,14 +2138,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase2HiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase2Hidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase2HiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase2Hidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase2Hidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase2Hidden>;
 
 export interface CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase2 {
   value: string;
@@ -2177,7 +2175,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItemCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItem>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItem>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsList =
   Array<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiOptionsItem>;
@@ -2202,14 +2200,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiReadOnlyCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiReadOnly>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiReadOnly>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2220,14 +2218,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiHiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiHidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiHidden>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2238,14 +2236,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiDisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiDisabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiDisabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2256,7 +2254,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiDescription>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiDescription>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase7UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2339,12 +2337,12 @@ export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPrope
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8Type =
   "array";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8ItemsType =
   "string";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8ItemsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8ItemsEnumList =
   Array<string>;
@@ -2383,7 +2381,7 @@ export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPrope
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiControl =
   "multi-vercel-region";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase0DisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2394,14 +2392,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase0DisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase0Disabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase0DisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase0Disabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase0Disabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase0Disabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase0HiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2412,14 +2410,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase0HiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase0Hidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase0HiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase0Hidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase0Hidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase0Hidden>;
 
 export interface CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase0 {
   value: string;
@@ -2455,14 +2453,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase2DisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase2Disabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase2DisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase2Disabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase2Disabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase2Disabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase2HiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2473,14 +2471,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase2HiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase2Hidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase2HiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase2Hidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase2Hidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase2Hidden>;
 
 export interface CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase2 {
   value: string;
@@ -2510,7 +2508,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItemCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItem>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItem>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsList =
   Array<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiOptionsItem>;
@@ -2535,14 +2533,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiReadOnlyCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiReadOnly>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiReadOnly>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2553,14 +2551,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiHiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiHidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiHidden>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2571,14 +2569,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiDisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiDisabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiDisabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2589,7 +2587,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiDescription>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiDescription>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase8UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2682,12 +2680,12 @@ export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPrope
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9Type =
   "string";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiControl =
   "vercel-country";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase0DisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2698,14 +2696,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase0DisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase0Disabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase0DisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase0Disabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase0Disabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase0Disabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase0HiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2716,14 +2714,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase0HiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase0Hidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase0HiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase0Hidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase0Hidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase0Hidden>;
 
 export interface CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase0 {
   value: string;
@@ -2759,14 +2757,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase2DisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase2Disabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase2DisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase2Disabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase2Disabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase2Disabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase2HiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2777,14 +2775,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase2HiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase2Hidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase2HiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase2Hidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase2Hidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase2Hidden>;
 
 export interface CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase2 {
   value: string;
@@ -2814,7 +2812,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItemCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItem>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItem>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsList =
   Array<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiOptionsItem>;
@@ -2839,14 +2837,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiReadOnlyCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiReadOnly>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiReadOnly>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2857,14 +2855,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiHiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiHidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiHidden>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2875,14 +2873,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiDisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiDisabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiDisabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2893,7 +2891,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiDescription>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiDescription>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase9UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -2976,12 +2974,12 @@ export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPrope
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10Type =
   "string";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiControl =
   "domain";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10EnumList =
   Array<string>;
@@ -2999,14 +2997,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiReadOnlyCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiReadOnly>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiReadOnly>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -3017,14 +3015,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiHiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiHidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiHidden>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -3035,14 +3033,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiDisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiDisabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiDisabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -3053,7 +3051,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiDescription>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiDescription>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -3131,12 +3129,12 @@ export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPrope
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11Type =
   "string";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiControl =
   "git-namespace";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiReadOnlyCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -3147,14 +3145,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiReadOnlyCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiReadOnly>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiReadOnly>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -3165,14 +3163,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiHiddenCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiHidden>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiHidden>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -3183,14 +3181,14 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "create"
   | "update";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiDisabledCase2;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiDisabled>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiDisabled>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -3201,7 +3199,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiDescription>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiDescription>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -3213,7 +3211,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | "github"
   | "gitlab";
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11GitProvidersItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11GitProvidersList =
   Array<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11GitProvidersItem>;
@@ -3298,7 +3296,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaProper
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase10
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase11;
 export const CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValue>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValue>;
 
 export type CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesMap =
   {
@@ -3433,7 +3431,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductTagsItem =
   | "video"
   | "workflow";
 export const CreateIntegrationStoreDirectResponseStoreProductTagsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductTagsList =
   Array<CreateIntegrationStoreDirectResponseStoreProductTagsItem>;
@@ -3456,7 +3454,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductProjectConnectionSco
   | "read:domain"
   | "read:project";
 export const CreateIntegrationStoreDirectResponseStoreProductProjectConnectionScopesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductProjectConnectionScopesList =
   Array<CreateIntegrationStoreDirectResponseStoreProductProjectConnectionScopesItem>;
@@ -3494,7 +3492,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductGuidesItemStepsItemA
   | "configure_project_connections"
   | "connect_to_project";
 export const CreateIntegrationStoreDirectResponseStoreProductGuidesItemStepsItemActionsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateIntegrationStoreDirectResponseStoreProductGuidesItemStepsItemActionsItem {
   type: CreateIntegrationStoreDirectResponseStoreProductGuidesItemStepsItemActionsItemType;
@@ -3575,7 +3573,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductIntegrationCapabilit
   | CreateIntegrationStoreDirectResponseStoreCapabilitiesSecretRotationCase0
   | boolean;
 export const CreateIntegrationStoreDirectResponseStoreProductIntegrationCapabilitiesSecretRotation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductIntegrationCapabilitiesSecretRotation>;
+  S.Unknown as any as S.Schema<CreateIntegrationStoreDirectResponseStoreProductIntegrationCapabilitiesSecretRotation>;
 
 export interface CreateIntegrationStoreDirectResponseStoreProductIntegrationCapabilities {
   provisioning?: boolean;
@@ -3675,7 +3673,7 @@ export type CreateIntegrationStoreDirectResponseStoreProductSupportedProtocolsIt
   | "video"
   | "workflow";
 export const CreateIntegrationStoreDirectResponseStoreProductSupportedProtocolsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductSupportedProtocolsList =
   Array<CreateIntegrationStoreDirectResponseStoreProductSupportedProtocolsItem>;
@@ -3698,13 +3696,13 @@ export type CreateIntegrationStoreDirectResponseStoreProductPrimaryProtocol =
   | "video"
   | "workflow";
 export const CreateIntegrationStoreDirectResponseStoreProductPrimaryProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreProductLogDrainStatus =
   | "disabled"
   | "enabled";
 export const CreateIntegrationStoreDirectResponseStoreProductLogDrainStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateIntegrationStoreDirectResponseStoreProduct {
   id?: string;
@@ -3805,7 +3803,7 @@ export type CreateIntegrationStoreDirectResponseStoreProtocolSettingsAuthenticat
   | "preview"
   | "production";
 export const CreateIntegrationStoreDirectResponseStoreProtocolSettingsAuthenticationAppUrlsItemTarget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateIntegrationStoreDirectResponseStoreProtocolSettingsAuthenticationAppUrlsItem {
   url: string;
@@ -3868,7 +3866,7 @@ export type CreateIntegrationStoreDirectResponseStoreNotificationLevel =
   | "info"
   | "warn";
 export const CreateIntegrationStoreDirectResponseStoreNotificationLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateIntegrationStoreDirectResponseStoreNotification {
   title: string;
@@ -3915,13 +3913,13 @@ export type CreateIntegrationStoreDirectResponseStoreBillingPlanType =
   | "prepayment"
   | "subscription";
 export const CreateIntegrationStoreDirectResponseStoreBillingPlanType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateIntegrationStoreDirectResponseStoreBillingPlanScope =
   | "installation"
   | "resource";
 export const CreateIntegrationStoreDirectResponseStoreBillingPlanScope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateIntegrationStoreDirectResponseStoreBillingPlanDetailsItem {
   label: string;
@@ -4033,8 +4031,7 @@ export type CreateIntegrationStoreDirectResponseStoreTargetsItem =
   | "development"
   | "preview"
   | "production";
-export const CreateIntegrationStoreDirectResponseStoreTargetsItem =
-  /*@__PURE__*/ S.String;
+export const CreateIntegrationStoreDirectResponseStoreTargetsItem = S.String;
 
 /** The deployment targets that this resource is available for. */
 export type CreateIntegrationStoreDirectResponseStoreTargetsList =
@@ -4173,7 +4170,7 @@ export type GetBillingPlansRequestSource =
   | "oauth"
   | "backoffice"
   | "import-recommended-integrations";
-export const GetBillingPlansRequestSource = /*@__PURE__*/ S.String;
+export const GetBillingPlansRequestSource = S.String;
 
 export interface GetBillingPlansRequest {
   integrationIdOrSlug: string;
@@ -4209,10 +4206,10 @@ export const GetBillingPlansRequest = /*@__PURE__*/ S.suspend(() =>
 export type GetBillingPlansResponsePlansItemType =
   | "prepayment"
   | "subscription";
-export const GetBillingPlansResponsePlansItemType = /*@__PURE__*/ S.String;
+export const GetBillingPlansResponsePlansItemType = S.String;
 
 export type GetBillingPlansResponsePlansItemScope = "installation" | "resource";
-export const GetBillingPlansResponsePlansItemScope = /*@__PURE__*/ S.String;
+export const GetBillingPlansResponsePlansItemScope = S.String;
 
 export type GetBillingPlansResponsePlansItemDetailsItem =
   CreateIntegrationStoreDirectResponseStoreBillingPlanDetailsItem;
@@ -4339,15 +4336,13 @@ export const GetConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
 export type GetConfigurationResponseBodyCase0ProjectSelection =
   | "all"
   | "selected";
-export const GetConfigurationResponseBodyCase0ProjectSelection =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase0ProjectSelection = S.String;
 
 export type GetConfigurationResponseBodyCase0NotificationLevel =
   | "error"
   | "info"
   | "warn";
-export const GetConfigurationResponseBodyCase0NotificationLevel =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase0NotificationLevel = S.String;
 
 export interface GetConfigurationResponseBodyCase0Notification {
   level: GetConfigurationResponseBodyCase0NotificationLevel;
@@ -4370,7 +4365,7 @@ export const GetConfigurationResponseBodyCase0Notification =
 export type GetConfigurationResponseBodyCase0TransferRequestCase0Kind =
   "transfer-to-marketplace";
 export const GetConfigurationResponseBodyCase0TransferRequestCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationResponseBodyCase0TransferRequestCase0MetadataMap = {
   [key: string]: unknown | undefined;
@@ -4385,13 +4380,13 @@ export type GetConfigurationResponseBodyCase0TransferRequestCase0BillingPlanType
   | "prepayment"
   | "subscription";
 export const GetConfigurationResponseBodyCase0TransferRequestCase0BillingPlanType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationResponseBodyCase0TransferRequestCase0BillingPlanScope =
   | "installation"
   | "resource";
 export const GetConfigurationResponseBodyCase0TransferRequestCase0BillingPlanScope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetConfigurationResponseBodyCase0TransferRequestCase0BillingPlan {
   id: string;
@@ -4478,7 +4473,7 @@ export const GetConfigurationResponseBodyCase0TransferRequestCase0 =
 export type GetConfigurationResponseBodyCase0TransferRequestCase1Kind =
   "transfer-from-marketplace";
 export const GetConfigurationResponseBodyCase0TransferRequestCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationResponseBodyCase0TransferRequestCase1Requester =
   GetConfigurationResponseBodyCase0TransferRequestCase0Requester;
@@ -4521,7 +4516,7 @@ export type GetConfigurationResponseBodyCase0TransferRequest =
   | GetConfigurationResponseBodyCase0TransferRequestCase0
   | GetConfigurationResponseBodyCase0TransferRequestCase1;
 export const GetConfigurationResponseBodyCase0TransferRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationResponseBodyCase0TransferRequest>;
+  S.Unknown as any as S.Schema<GetConfigurationResponseBodyCase0TransferRequest>;
 
 /** When a configuration is limited to access certain projects, this will contain each of the project ID it is allowed to access. If it is not defined, the configuration has full access. */
 export type GetConfigurationResponseBodyCase0ProjectsList = Array<string>;
@@ -4539,10 +4534,10 @@ export type GetConfigurationResponseBodyCase0Status =
   | "resumed"
   | "suspended"
   | "uninstalled";
-export const GetConfigurationResponseBodyCase0Status = /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase0Status = S.String;
 
 export type GetConfigurationResponseBodyCase0Type = "integration-configuration";
-export const GetConfigurationResponseBodyCase0Type = /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase0Type = S.String;
 
 /** The resources that are allowed to be accessed by the configuration. */
 export type GetConfigurationResponseBodyCase0ScopesList = Array<string>;
@@ -4562,7 +4557,7 @@ export type GetConfigurationResponseBodyCase0Source =
   | "oauth"
   | "resource-claims"
   | "v0";
-export const GetConfigurationResponseBodyCase0Source = /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase0Source = S.String;
 
 export type GetConfigurationResponseBodyCase0DisabledReason =
   | "account-plan-downgrade"
@@ -4571,15 +4566,13 @@ export type GetConfigurationResponseBodyCase0DisabledReason =
   | "feature-not-available"
   | "original-owner-left-the-team"
   | "original-owner-role-downgraded";
-export const GetConfigurationResponseBodyCase0DisabledReason =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase0DisabledReason = S.String;
 
 /** Defines the installation type. - 'external' integrations are installed via the existing integrations flow - 'marketplace' integrations are natively installed: - when accepting the TOS of a partner during the store creation process - if undefined, assume 'external' */
 export type GetConfigurationResponseBodyCase0InstallationType =
   | "external"
   | "marketplace";
-export const GetConfigurationResponseBodyCase0InstallationType =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase0InstallationType = S.String;
 
 export interface GetConfigurationResponseBodyCase0 {
   /** A string representing the permission for projects. Possible values are `all` or `selected`. */
@@ -4674,7 +4667,7 @@ export type GetConfigurationResponseBodyCase1Status =
   | "resumed"
   | "suspended"
   | "uninstalled";
-export const GetConfigurationResponseBodyCase1Status = /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase1Status = S.String;
 
 /** When a configuration is limited to access certain projects, this will contain each of the project ID it is allowed to access. If it is not defined, the configuration has full access. */
 export type GetConfigurationResponseBodyCase1ProjectsList = Array<string>;
@@ -4694,10 +4687,10 @@ export type GetConfigurationResponseBodyCase1Source =
   | "oauth"
   | "resource-claims"
   | "v0";
-export const GetConfigurationResponseBodyCase1Source = /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase1Source = S.String;
 
 export type GetConfigurationResponseBodyCase1Type = "integration-configuration";
-export const GetConfigurationResponseBodyCase1Type = /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase1Type = S.String;
 
 /** The resources that are allowed to be accessed by the configuration. */
 export type GetConfigurationResponseBodyCase1ScopesList = Array<string>;
@@ -4713,15 +4706,13 @@ export type GetConfigurationResponseBodyCase1DisabledReason =
   | "feature-not-available"
   | "original-owner-left-the-team"
   | "original-owner-role-downgraded";
-export const GetConfigurationResponseBodyCase1DisabledReason =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase1DisabledReason = S.String;
 
 /** Defines the installation type. - 'external' integrations are installed via the existing integrations flow - 'marketplace' integrations are natively installed: - when accepting the TOS of a partner during the store creation process - if undefined, assume 'external' */
 export type GetConfigurationResponseBodyCase1InstallationType =
   | "external"
   | "marketplace";
-export const GetConfigurationResponseBodyCase1InstallationType =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase1InstallationType = S.String;
 
 /** The configuration with the provided id */
 export interface GetConfigurationResponseBodyCase1 {
@@ -4808,7 +4799,7 @@ export type GetConfigurationResponseBodyCase2Status =
   | "resumed"
   | "suspended"
   | "uninstalled";
-export const GetConfigurationResponseBodyCase2Status = /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase2Status = S.String;
 
 /** When a configuration is limited to access certain projects, this will contain each of the project ID it is allowed to access. If it is not defined, the configuration has full access. */
 export type GetConfigurationResponseBodyCase2ProjectsList = Array<string>;
@@ -4828,10 +4819,10 @@ export type GetConfigurationResponseBodyCase2Source =
   | "oauth"
   | "resource-claims"
   | "v0";
-export const GetConfigurationResponseBodyCase2Source = /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase2Source = S.String;
 
 export type GetConfigurationResponseBodyCase2Type = "integration-configuration";
-export const GetConfigurationResponseBodyCase2Type = /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase2Type = S.String;
 
 /** The resources that are allowed to be accessed by the configuration. */
 export type GetConfigurationResponseBodyCase2ScopesList = Array<string>;
@@ -4847,15 +4838,13 @@ export type GetConfigurationResponseBodyCase2DisabledReason =
   | "feature-not-available"
   | "original-owner-left-the-team"
   | "original-owner-role-downgraded";
-export const GetConfigurationResponseBodyCase2DisabledReason =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase2DisabledReason = S.String;
 
 /** Defines the installation type. - 'external' integrations are installed via the existing integrations flow - 'marketplace' integrations are natively installed: - when accepting the TOS of a partner during the store creation process - if undefined, assume 'external' */
 export type GetConfigurationResponseBodyCase2InstallationType =
   | "external"
   | "marketplace";
-export const GetConfigurationResponseBodyCase2InstallationType =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationResponseBodyCase2InstallationType = S.String;
 
 /** A configuration represents information about a single installation of an integration within an individual or team account */
 export interface GetConfigurationResponseBodyCase2 {
@@ -4938,7 +4927,7 @@ export type GetConfigurationResponseBody =
   | GetConfigurationResponseBodyCase1
   | GetConfigurationResponseBodyCase2;
 export const GetConfigurationResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationResponseBody>;
+  S.Unknown as any as S.Schema<GetConfigurationResponseBody>;
 
 export type GetConfigurationResponse = GetConfigurationResponseBody;
 export const GetConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
@@ -4975,7 +4964,7 @@ export type GetConfigurationProductsResponseProductsItemProtocolsStorageStatus =
   | "disabled"
   | "enabled";
 export const GetConfigurationProductsResponseProductsItemProtocolsStorageStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemProtocolsStorageRepl =
   CreateIntegrationStoreDirectResponseStoreProductRepl;
@@ -5001,7 +4990,7 @@ export type GetConfigurationProductsResponseProductsItemProtocolsExperimentation
   | "disabled"
   | "enabled";
 export const GetConfigurationProductsResponseProductsItemProtocolsExperimentationStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetConfigurationProductsResponseProductsItemProtocolsExperimentation {
   status: GetConfigurationProductsResponseProductsItemProtocolsExperimentationStatus;
@@ -5023,7 +5012,7 @@ export type GetConfigurationProductsResponseProductsItemProtocolsAiStatus =
   | "disabled"
   | "enabled";
 export const GetConfigurationProductsResponseProductsItemProtocolsAiStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetConfigurationProductsResponseProductsItemProtocolsAi {
   status: GetConfigurationProductsResponseProductsItemProtocolsAiStatus;
@@ -5041,7 +5030,7 @@ export type GetConfigurationProductsResponseProductsItemProtocolsAuthenticationS
   | "disabled"
   | "enabled";
 export const GetConfigurationProductsResponseProductsItemProtocolsAuthenticationStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetConfigurationProductsResponseProductsItemProtocolsAuthentication {
   status: GetConfigurationProductsResponseProductsItemProtocolsAuthenticationStatus;
@@ -5064,7 +5053,7 @@ export type GetConfigurationProductsResponseProductsItemProtocolsObservabilitySt
   | "disabled"
   | "enabled";
 export const GetConfigurationProductsResponseProductsItemProtocolsObservabilityStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetConfigurationProductsResponseProductsItemProtocolsObservability {
   status: GetConfigurationProductsResponseProductsItemProtocolsObservabilityStatus;
@@ -5084,7 +5073,7 @@ export type GetConfigurationProductsResponseProductsItemProtocolsVideoStatus =
   | "disabled"
   | "enabled";
 export const GetConfigurationProductsResponseProductsItemProtocolsVideoStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetConfigurationProductsResponseProductsItemProtocolsVideo {
   status: GetConfigurationProductsResponseProductsItemProtocolsVideoStatus;
@@ -5102,7 +5091,7 @@ export type GetConfigurationProductsResponseProductsItemProtocolsWorkflowStatus 
   | "disabled"
   | "enabled";
 export const GetConfigurationProductsResponseProductsItemProtocolsWorkflowStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetConfigurationProductsResponseProductsItemProtocolsWorkflow {
   status: GetConfigurationProductsResponseProductsItemProtocolsWorkflowStatus;
@@ -5121,7 +5110,7 @@ export type GetConfigurationProductsResponseProductsItemProtocolsChecksStatus =
   | "disabled"
   | "enabled";
 export const GetConfigurationProductsResponseProductsItemProtocolsChecksStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetConfigurationProductsResponseProductsItemProtocolsChecks {
   status: GetConfigurationProductsResponseProductsItemProtocolsChecksStatus;
@@ -5139,7 +5128,7 @@ export type GetConfigurationProductsResponseProductsItemProtocolsLogDrainStatus 
   | "disabled"
   | "enabled";
 export const GetConfigurationProductsResponseProductsItemProtocolsLogDrainStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemProtocolsLogDrainHeadersMap =
   { [key: string]: string | undefined };
@@ -5153,7 +5142,7 @@ export type GetConfigurationProductsResponseProductsItemProtocolsLogDrainFormat 
   | "json"
   | "ndjson";
 export const GetConfigurationProductsResponseProductsItemProtocolsLogDrainFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetConfigurationProductsResponseProductsItemProtocolsLogDrain {
   status: GetConfigurationProductsResponseProductsItemProtocolsLogDrainStatus;
@@ -5181,7 +5170,7 @@ export type GetConfigurationProductsResponseProductsItemProtocolsTraceDrainStatu
   | "disabled"
   | "enabled";
 export const GetConfigurationProductsResponseProductsItemProtocolsTraceDrainStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemProtocolsTraceDrainHeadersMap =
   { [key: string]: string | undefined };
@@ -5195,7 +5184,7 @@ export type GetConfigurationProductsResponseProductsItemProtocolsTraceDrainForma
   | "json"
   | "proto";
 export const GetConfigurationProductsResponseProductsItemProtocolsTraceDrainFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetConfigurationProductsResponseProductsItemProtocolsTraceDrain {
   status: GetConfigurationProductsResponseProductsItemProtocolsTraceDrainStatus;
@@ -5224,7 +5213,7 @@ export type GetConfigurationProductsResponseProductsItemProtocolsMessagingStatus
   | "disabled"
   | "enabled";
 export const GetConfigurationProductsResponseProductsItemProtocolsMessagingStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetConfigurationProductsResponseProductsItemProtocolsMessaging {
   status: GetConfigurationProductsResponseProductsItemProtocolsMessagingStatus;
@@ -5244,7 +5233,7 @@ export type GetConfigurationProductsResponseProductsItemProtocolsOtherStatus =
   | "disabled"
   | "enabled";
 export const GetConfigurationProductsResponseProductsItemProtocolsOtherStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetConfigurationProductsResponseProductsItemProtocolsOther {
   status: GetConfigurationProductsResponseProductsItemProtocolsOtherStatus;
@@ -5328,22 +5317,22 @@ export type GetConfigurationProductsResponseProductsItemPrimaryProtocol =
   | "video"
   | "workflow";
 export const GetConfigurationProductsResponseProductsItemPrimaryProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaType =
   "object";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0Type =
   "string";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiControl =
   "input";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0EnumList =
   Array<string>;
@@ -5361,14 +5350,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiReadOnlyCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiReadOnly>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiReadOnly>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5379,14 +5368,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiHiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiHidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiHidden>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5397,14 +5386,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiDisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiDisabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiDisabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5415,7 +5404,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiDescription>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiDescription>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase0UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5493,12 +5482,12 @@ export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertie
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1Type =
   "number";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiControl =
   "input";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiReadOnlyCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5509,14 +5498,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiReadOnlyCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiReadOnly>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiReadOnly>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5527,14 +5516,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiHiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiHidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiHidden>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5545,14 +5534,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiDisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiDisabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiDisabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5563,7 +5552,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiDescription>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiDescription>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase1UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5639,12 +5628,12 @@ export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertie
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2Type =
   "boolean";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiControl =
   "toggle";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiReadOnlyCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5655,14 +5644,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiReadOnlyCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiReadOnly>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiReadOnly>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5673,14 +5662,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiHiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiHidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiHidden>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5691,14 +5680,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiDisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiDisabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiDisabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5709,7 +5698,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiDescription>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiDescription>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase2UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5775,12 +5764,12 @@ export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertie
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3Type =
   "array";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3ItemsType =
   "number";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3ItemsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3Items {
   type: GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3ItemsType;
@@ -5810,7 +5799,7 @@ export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertie
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiControl =
   "slider";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiStepsList =
   Array<number>;
@@ -5835,14 +5824,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiReadOnlyCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiReadOnly>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiReadOnly>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5853,14 +5842,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiHiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiHidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiHidden>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5871,14 +5860,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiDisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiDisabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiDisabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5889,7 +5878,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiDescription>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiDescription>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase3UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5969,12 +5958,12 @@ export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertie
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4Type =
   "string";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiControl =
   "select";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiOptionsItemDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -5985,14 +5974,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiOptionsItemDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiOptionsItemDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiOptionsItemDisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiOptionsItemDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiOptionsItemDisabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiOptionsItemDisabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiOptionsItemHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6003,14 +5992,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiOptionsItemHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiOptionsItemHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiOptionsItemHiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiOptionsItemHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiOptionsItemHidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiOptionsItemHidden>;
 
 export interface GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiOptionsItem {
   value: string;
@@ -6060,14 +6049,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiReadOnlyCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiReadOnly>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiReadOnly>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6078,14 +6067,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiHiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiHidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiHidden>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6096,14 +6085,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiDisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiDisabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiDisabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6114,7 +6103,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiDescription>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiDescription>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase4UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6197,12 +6186,12 @@ export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertie
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5Type =
   "string";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiControl =
   "radio-button";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiOptionsItemDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6213,14 +6202,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiOptionsItemDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiOptionsItemDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiOptionsItemDisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiOptionsItemDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiOptionsItemDisabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiOptionsItemDisabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiOptionsItemHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6231,14 +6220,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiOptionsItemHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiOptionsItemHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiOptionsItemHiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiOptionsItemHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiOptionsItemHidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiOptionsItemHidden>;
 
 export interface GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiOptionsItem {
   value: string;
@@ -6288,14 +6277,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiReadOnlyCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiReadOnly>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiReadOnly>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6306,14 +6295,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiHiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiHidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiHidden>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6324,14 +6313,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiDisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiDisabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiDisabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6342,7 +6331,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiDescription>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiDescription>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase5UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6425,12 +6414,12 @@ export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertie
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6Type =
   "array";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6ItemsType =
   "string";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6ItemsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6ItemsEnumList =
   Array<string>;
@@ -6469,7 +6458,7 @@ export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertie
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiControl =
   "multi-select";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiOptionsItemDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6480,14 +6469,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiOptionsItemDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiOptionsItemDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiOptionsItemDisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiOptionsItemDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiOptionsItemDisabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiOptionsItemDisabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiOptionsItemHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6498,14 +6487,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiOptionsItemHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiOptionsItemHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiOptionsItemHiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiOptionsItemHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiOptionsItemHidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiOptionsItemHidden>;
 
 export interface GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiOptionsItem {
   value: string;
@@ -6562,14 +6551,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiReadOnlyCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiReadOnly>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiReadOnly>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6580,14 +6569,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiHiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiHidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiHidden>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6598,14 +6587,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiDisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiDisabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiDisabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6616,7 +6605,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiDescription>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiDescription>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase6UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6702,12 +6691,12 @@ export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertie
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7Type =
   "string";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiControl =
   "vercel-region";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase0DisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6718,14 +6707,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase0DisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase0Disabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase0DisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase0Disabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase0Disabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase0Disabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase0HiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6736,14 +6725,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase0HiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase0Hidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase0HiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase0Hidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase0Hidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase0Hidden>;
 
 export interface GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase0 {
   value: string;
@@ -6779,14 +6768,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase2DisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase2Disabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase2DisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase2Disabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase2Disabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase2Disabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase2HiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6797,14 +6786,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase2HiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase2Hidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase2HiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase2Hidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase2Hidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase2Hidden>;
 
 export interface GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase2 {
   value: string;
@@ -6834,7 +6823,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | string
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItemCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItem>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItem>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsList =
   Array<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiOptionsItem>;
@@ -6859,14 +6848,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiReadOnlyCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiReadOnly>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiReadOnly>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6877,14 +6866,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiHiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiHidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiHidden>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6895,14 +6884,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiDisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiDisabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiDisabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6913,7 +6902,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiDescription>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiDescription>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase7UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -6996,12 +6985,12 @@ export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertie
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8Type =
   "array";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8ItemsType =
   "string";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8ItemsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8ItemsEnumList =
   Array<string>;
@@ -7040,7 +7029,7 @@ export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertie
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiControl =
   "multi-vercel-region";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase0DisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7051,14 +7040,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase0DisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase0Disabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase0DisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase0Disabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase0Disabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase0Disabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase0HiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7069,14 +7058,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase0HiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase0Hidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase0HiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase0Hidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase0Hidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase0Hidden>;
 
 export interface GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase0 {
   value: string;
@@ -7112,14 +7101,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase2DisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase2Disabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase2DisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase2Disabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase2Disabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase2Disabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase2HiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7130,14 +7119,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase2HiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase2Hidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase2HiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase2Hidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase2Hidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase2Hidden>;
 
 export interface GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase2 {
   value: string;
@@ -7167,7 +7156,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | string
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItemCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItem>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItem>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsList =
   Array<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiOptionsItem>;
@@ -7199,14 +7188,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiReadOnlyCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiReadOnly>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiReadOnly>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7217,14 +7206,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiHiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiHidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiHidden>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7235,14 +7224,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiDisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiDisabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiDisabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7253,7 +7242,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiDescription>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiDescription>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase8UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7339,12 +7328,12 @@ export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertie
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9Type =
   "string";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiControl =
   "vercel-country";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase0DisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7355,14 +7344,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase0DisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase0Disabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase0DisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase0Disabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase0Disabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase0Disabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase0HiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7373,14 +7362,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase0HiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase0Hidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase0HiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase0Hidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase0Hidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase0Hidden>;
 
 export interface GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase0 {
   value: string;
@@ -7416,14 +7405,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase2DisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase2Disabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase2DisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase2Disabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase2Disabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase2Disabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase2HiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7434,14 +7423,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase2HiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase2Hidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase2HiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase2Hidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase2Hidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase2Hidden>;
 
 export interface GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase2 {
   value: string;
@@ -7471,7 +7460,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | string
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItemCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItem>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItem>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsList =
   Array<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiOptionsItem>;
@@ -7496,14 +7485,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiReadOnlyCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiReadOnly>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiReadOnly>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7514,14 +7503,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiHiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiHidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiHidden>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7532,14 +7521,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiDisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiDisabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiDisabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7550,7 +7539,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiDescription>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiDescription>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase9UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7633,12 +7622,12 @@ export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertie
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10Type =
   "string";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiControl =
   "domain";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10EnumList =
   Array<string>;
@@ -7656,14 +7645,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiReadOnlyCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiReadOnly>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiReadOnly>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7674,14 +7663,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiHiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiHidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiHidden>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7692,14 +7681,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiDisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiDisabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiDisabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7710,7 +7699,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiDescription>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiDescription>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7788,12 +7777,12 @@ export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertie
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11Type =
   "string";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiControl =
   "git-namespace";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiReadOnlyCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7804,14 +7793,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiReadOnlyCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiReadOnly =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiReadOnlyCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiReadOnly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiReadOnly>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiReadOnly>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiHiddenCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7822,14 +7811,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiHiddenCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiHidden =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiHiddenCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiHidden>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiHidden>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiDisabledCase0 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7840,14 +7829,14 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "create"
   | "update";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiDisabledCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiDisabled =
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0
   | boolean
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiDisabledCase2;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiDisabled>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiDisabled>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiDescriptionCase1 =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7858,7 +7847,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | string
   | CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiDescription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiDescription>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiDescription>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11UiFormattedValue =
   CreateIntegrationStoreDirectResponseStoreProductMetadataSchemaPropertiesValueCase0UiReadOnlyCase0;
@@ -7870,7 +7859,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | "github"
   | "gitlab";
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11GitProvidersItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11GitProvidersList =
   Array<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11GitProvidersItem>;
@@ -7955,7 +7944,7 @@ export type GetConfigurationProductsResponseProductsItemMetadataSchemaProperties
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase10
   | GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValueCase11;
 export const GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValue>;
+  S.Unknown as any as S.Schema<GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesValue>;
 
 export type GetConfigurationProductsResponseProductsItemMetadataSchemaPropertiesMap =
   {
@@ -8084,13 +8073,13 @@ export const GetConfigurationProductsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetConfigurationProductsResponse>;
 
 export type GetConfigurationsRequestView = "account" | "project";
-export const GetConfigurationsRequestView = /*@__PURE__*/ S.String;
+export const GetConfigurationsRequestView = S.String;
 
 export type GetConfigurationsRequestInstallationType =
   | "marketplace"
   | "external"
   | "provisioning";
-export const GetConfigurationsRequestInstallationType = /*@__PURE__*/ S.String;
+export const GetConfigurationsRequestInstallationType = S.String;
 
 export interface GetConfigurationsRequest {
   view: GetConfigurationsRequestView | (string & {});
@@ -8131,8 +8120,7 @@ export type GetConfigurationsResponseBodyCase0ItemStatus =
   | "resumed"
   | "suspended"
   | "uninstalled";
-export const GetConfigurationsResponseBodyCase0ItemStatus =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationsResponseBodyCase0ItemStatus = S.String;
 
 /** When a configuration is limited to access certain projects, this will contain each of the project ID it is allowed to access. If it is not defined, the configuration has full access. */
 export type GetConfigurationsResponseBodyCase0ItemProjectsList = Array<string>;
@@ -8152,13 +8140,11 @@ export type GetConfigurationsResponseBodyCase0ItemSource =
   | "oauth"
   | "resource-claims"
   | "v0";
-export const GetConfigurationsResponseBodyCase0ItemSource =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationsResponseBodyCase0ItemSource = S.String;
 
 export type GetConfigurationsResponseBodyCase0ItemType =
   "integration-configuration";
-export const GetConfigurationsResponseBodyCase0ItemType =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationsResponseBodyCase0ItemType = S.String;
 
 /** The resources that are allowed to be accessed by the configuration. */
 export type GetConfigurationsResponseBodyCase0ItemScopesList = Array<string>;
@@ -8174,15 +8160,13 @@ export type GetConfigurationsResponseBodyCase0ItemDisabledReason =
   | "feature-not-available"
   | "original-owner-left-the-team"
   | "original-owner-role-downgraded";
-export const GetConfigurationsResponseBodyCase0ItemDisabledReason =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationsResponseBodyCase0ItemDisabledReason = S.String;
 
 /** Defines the installation type. - 'external' integrations are installed via the existing integrations flow - 'marketplace' integrations are natively installed: - when accepting the TOS of a partner during the store creation process - if undefined, assume 'external' */
 export type GetConfigurationsResponseBodyCase0ItemInstallationType =
   | "external"
   | "marketplace";
-export const GetConfigurationsResponseBodyCase0ItemInstallationType =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationsResponseBodyCase0ItemInstallationType = S.String;
 
 /** The list of configurations for the authenticated user */
 export interface GetConfigurationsResponseBodyCase0Item {
@@ -8307,7 +8291,7 @@ export type GetConfigurationsResponseBodyCase1ItemIntegrationTagIdsItem =
   | "tag_web_automation"
   | "tag_workflow";
 export const GetConfigurationsResponseBodyCase1ItemIntegrationTagIdsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetConfigurationsResponseBodyCase1ItemIntegrationTagIdsList =
   Array<GetConfigurationsResponseBodyCase1ItemIntegrationTagIdsItem>;
@@ -8351,8 +8335,7 @@ export type GetConfigurationsResponseBodyCase1ItemStatus =
   | "resumed"
   | "suspended"
   | "uninstalled";
-export const GetConfigurationsResponseBodyCase1ItemStatus =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationsResponseBodyCase1ItemStatus = S.String;
 
 /** When a configuration is limited to access certain projects, this will contain each of the project ID it is allowed to access. If it is not defined, the configuration has full access. */
 export type GetConfigurationsResponseBodyCase1ItemProjectsList = Array<string>;
@@ -8372,13 +8355,11 @@ export type GetConfigurationsResponseBodyCase1ItemSource =
   | "oauth"
   | "resource-claims"
   | "v0";
-export const GetConfigurationsResponseBodyCase1ItemSource =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationsResponseBodyCase1ItemSource = S.String;
 
 export type GetConfigurationsResponseBodyCase1ItemType =
   "integration-configuration";
-export const GetConfigurationsResponseBodyCase1ItemType =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationsResponseBodyCase1ItemType = S.String;
 
 /** The resources that are allowed to be accessed by the configuration. */
 export type GetConfigurationsResponseBodyCase1ItemScopesList = Array<string>;
@@ -8394,15 +8375,13 @@ export type GetConfigurationsResponseBodyCase1ItemDisabledReason =
   | "feature-not-available"
   | "original-owner-left-the-team"
   | "original-owner-role-downgraded";
-export const GetConfigurationsResponseBodyCase1ItemDisabledReason =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationsResponseBodyCase1ItemDisabledReason = S.String;
 
 /** Defines the installation type. - 'external' integrations are installed via the existing integrations flow - 'marketplace' integrations are natively installed: - when accepting the TOS of a partner during the store creation process - if undefined, assume 'external' */
 export type GetConfigurationsResponseBodyCase1ItemInstallationType =
   | "external"
   | "marketplace";
-export const GetConfigurationsResponseBodyCase1ItemInstallationType =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationsResponseBodyCase1ItemInstallationType = S.String;
 
 export interface GetConfigurationsResponseBodyCase1Item {
   integration: GetConfigurationsResponseBodyCase1ItemIntegration;
@@ -8494,7 +8473,7 @@ export type GetConfigurationsResponseBody =
   | GetConfigurationsResponseBodyCase0List
   | GetConfigurationsResponseBodyCase1List;
 export const GetConfigurationsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigurationsResponseBody>;
+  S.Unknown as any as S.Schema<GetConfigurationsResponseBody>;
 
 export type GetConfigurationsResponse = GetConfigurationsResponseBody;
 export const GetConfigurationsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -8509,7 +8488,7 @@ export type GitNamespacesRequestProvider =
   | "github-custom-host"
   | "gitlab"
   | "bitbucket";
-export const GitNamespacesRequestProvider = /*@__PURE__*/ S.String;
+export const GitNamespacesRequestProvider = S.String;
 
 export interface GitNamespacesRequest {
   /** The custom Git host if using a custom Git provider, like GitHub Enterprise Server */
@@ -8536,11 +8515,11 @@ export const GitNamespacesRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type GitNamespacesResponseBodyItemId = string | number;
 export const GitNamespacesResponseBodyItemId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GitNamespacesResponseBodyItemId>;
+  S.Unknown as any as S.Schema<GitNamespacesResponseBodyItemId>;
 
 export type GitNamespacesResponseBodyItemViewerRole = string | number;
 export const GitNamespacesResponseBodyItemViewerRole =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GitNamespacesResponseBodyItemViewerRole>;
+  S.Unknown as any as S.Schema<GitNamespacesResponseBodyItemViewerRole>;
 
 export interface GitNamespacesResponseBodyItemViewer {
   canCreateApp?: boolean;
@@ -8597,7 +8576,7 @@ export const GitNamespacesResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type SearchRepoRequestNamespaceId = string | number;
 export const SearchRepoRequestNamespaceId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchRepoRequestNamespaceId>;
+  S.Unknown as any as S.Schema<SearchRepoRequestNamespaceId>;
 
 export type SearchRepoRequestProvider =
   | "github"
@@ -8606,7 +8585,7 @@ export type SearchRepoRequestProvider =
   | "gitlab"
   | "bitbucket"
   | "cursor-origin";
-export const SearchRepoRequestProvider = /*@__PURE__*/ S.String;
+export const SearchRepoRequestProvider = S.String;
 
 export interface SearchRepoRequest {
   query?: string;
@@ -8637,7 +8616,7 @@ export const SearchRepoRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SearchRepoRequest>;
 
 export type SearchRepoResponseBodyCase1ErrorCode = "installation_not_found";
-export const SearchRepoResponseBodyCase1ErrorCode = /*@__PURE__*/ S.String;
+export const SearchRepoResponseBodyCase1ErrorCode = S.String;
 
 export interface SearchRepoResponseBodyCase1Error {
   code: SearchRepoResponseBodyCase1ErrorCode;
@@ -8678,12 +8657,10 @@ export const SearchRepoResponseBodyCase2GitAccount = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<SearchRepoResponseBodyCase2GitAccount>;
 
 export type SearchRepoResponseBodyCase2ReposItemProvider = "cursor-origin";
-export const SearchRepoResponseBodyCase2ReposItemProvider =
-  /*@__PURE__*/ S.String;
+export const SearchRepoResponseBodyCase2ReposItemProvider = S.String;
 
 export type SearchRepoResponseBodyCase2ReposItemOwnerType = "team" | "user";
-export const SearchRepoResponseBodyCase2ReposItemOwnerType =
-  /*@__PURE__*/ S.String;
+export const SearchRepoResponseBodyCase2ReposItemOwnerType = S.String;
 
 export interface SearchRepoResponseBodyCase2ReposItemOwner {
   id: string;
@@ -8758,12 +8735,11 @@ export type SearchRepoResponseBodyCase3GitAccountProvider =
   | "github-limited"
   | "gitlab"
   | "vercel";
-export const SearchRepoResponseBodyCase3GitAccountProvider =
-  /*@__PURE__*/ S.String;
+export const SearchRepoResponseBodyCase3GitAccountProvider = S.String;
 
 export type SearchRepoResponseBodyCase3GitAccountNamespaceId = string | number;
 export const SearchRepoResponseBodyCase3GitAccountNamespaceId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchRepoResponseBodyCase3GitAccountNamespaceId>;
+  S.Unknown as any as S.Schema<SearchRepoResponseBodyCase3GitAccountNamespaceId>;
 
 export interface SearchRepoResponseBodyCase3GitAccount {
   provider: SearchRepoResponseBodyCase3GitAccountProvider;
@@ -8781,7 +8757,7 @@ export const SearchRepoResponseBodyCase3GitAccount = /*@__PURE__*/ S.suspend(
 
 export type SearchRepoResponseBodyCase3ReposItemId = string | number;
 export const SearchRepoResponseBodyCase3ReposItemId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchRepoResponseBodyCase3ReposItemId>;
+  S.Unknown as any as S.Schema<SearchRepoResponseBodyCase3ReposItemId>;
 
 export type SearchRepoResponseBodyCase3ReposItemProvider =
   | "bitbucket"
@@ -8791,12 +8767,11 @@ export type SearchRepoResponseBodyCase3ReposItemProvider =
   | "github-limited"
   | "gitlab"
   | "vercel";
-export const SearchRepoResponseBodyCase3ReposItemProvider =
-  /*@__PURE__*/ S.String;
+export const SearchRepoResponseBodyCase3ReposItemProvider = S.String;
 
 export type SearchRepoResponseBodyCase3ReposItemOwnerId = string | number;
 export const SearchRepoResponseBodyCase3ReposItemOwnerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchRepoResponseBodyCase3ReposItemOwnerId>;
+  S.Unknown as any as S.Schema<SearchRepoResponseBodyCase3ReposItemOwnerId>;
 
 export interface SearchRepoResponseBodyCase3ReposItemOwner {
   id: SearchRepoResponseBodyCase3ReposItemOwnerId;
@@ -8813,8 +8788,7 @@ export const SearchRepoResponseBodyCase3ReposItemOwner =
   }) as any as S.Schema<SearchRepoResponseBodyCase3ReposItemOwner>;
 
 export type SearchRepoResponseBodyCase3ReposItemOwnerType = "team" | "user";
-export const SearchRepoResponseBodyCase3ReposItemOwnerType =
-  /*@__PURE__*/ S.String;
+export const SearchRepoResponseBodyCase3ReposItemOwnerType = S.String;
 
 export interface SearchRepoResponseBodyCase3ReposItem {
   id: SearchRepoResponseBodyCase3ReposItemId;
@@ -8873,7 +8847,7 @@ export type SearchRepoResponseBody =
   | SearchRepoResponseBodyCase2
   | SearchRepoResponseBodyCase3;
 export const SearchRepoResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchRepoResponseBody>;
+  S.Unknown as any as S.Schema<SearchRepoResponseBody>;
 
 export type SearchRepoResponse = SearchRepoResponseBody;
 export const SearchRepoResponse = /*@__PURE__*/ S.suspend(() =>

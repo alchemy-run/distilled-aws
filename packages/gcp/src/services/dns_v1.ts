@@ -74,8 +74,7 @@ export type RRSetRoutingPolicyLoadBalancerTargetIpProtocolEnum =
   | "undefined"
   | "tcp"
   | "udp";
-export const RRSetRoutingPolicyLoadBalancerTargetIpProtocolEnum =
-  /*@__PURE__*/ S.String;
+export const RRSetRoutingPolicyLoadBalancerTargetIpProtocolEnum = S.String;
 
 export type RRSetRoutingPolicyLoadBalancerTargetLoadBalancerTypeEnum =
   | "none"
@@ -83,7 +82,7 @@ export type RRSetRoutingPolicyLoadBalancerTargetLoadBalancerTypeEnum =
   | "regionalL4ilb"
   | "regionalL7ilb";
 export const RRSetRoutingPolicyLoadBalancerTargetLoadBalancerTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration for an individual load balancer to health check. */
 export interface RRSetRoutingPolicyLoadBalancerTarget {
@@ -325,7 +324,7 @@ export const ResourceRecordSetList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ResourceRecordSetList>;
 
 export type ChangeStatusEnum = "pending" | "done";
-export const ChangeStatusEnum = /*@__PURE__*/ S.String;
+export const ChangeStatusEnum = S.String;
 
 /** A Change represents a set of `ResourceRecordSet` additions and deletions applied atomically to a ManagedZone. ResourceRecordSets within a ManagedZone are modified by creating a new Change element in the Changes collection. In turn the Changes collection also records the past modifications to the `ResourceRecordSets` in a `ManagedZone`. The current state of the `ManagedZone` is the sum effect of applying all `Change` elements in the `Changes` collection in sequence. */
 export interface Change {
@@ -386,7 +385,7 @@ export type ManagedZoneForwardingConfigNameServerTargetForwardingPathEnum =
   | "default"
   | "private";
 export const ManagedZoneForwardingConfigNameServerTargetForwardingPathEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ManagedZoneForwardingConfigNameServerTarget {
   /** Fully qualified domain name for the forwarding target. */
@@ -598,13 +597,13 @@ export const ManagedZonePeeringConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ManagedZonePeeringConfig>;
 
 export type ManagedZoneDnsSecConfigStateEnum = "off" | "on" | "transfer";
-export const ManagedZoneDnsSecConfigStateEnum = /*@__PURE__*/ S.String;
+export const ManagedZoneDnsSecConfigStateEnum = S.String;
 
 export type ManagedZoneDnsSecConfigNonExistenceEnum = "nsec" | "nsec3";
-export const ManagedZoneDnsSecConfigNonExistenceEnum = /*@__PURE__*/ S.String;
+export const ManagedZoneDnsSecConfigNonExistenceEnum = S.String;
 
 export type DnsKeySpecKeyTypeEnum = "keySigning" | "zoneSigning";
-export const DnsKeySpecKeyTypeEnum = /*@__PURE__*/ S.String;
+export const DnsKeySpecKeyTypeEnum = S.String;
 
 export type DnsKeySpecAlgorithmEnum =
   | "rsasha1"
@@ -612,7 +611,7 @@ export type DnsKeySpecAlgorithmEnum =
   | "rsasha512"
   | "ecdsap256sha256"
   | "ecdsap384sha384";
-export const DnsKeySpecAlgorithmEnum = /*@__PURE__*/ S.String;
+export const DnsKeySpecAlgorithmEnum = S.String;
 
 /** Parameters for DnsKey key generation. Used for generating initial keys for a new ManagedZone and as default when adding a new DnsKey. */
 export interface DnsKeySpec {
@@ -659,7 +658,7 @@ export const ManagedZoneDnsSecConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ManagedZoneDnsSecConfig>;
 
 export type ManagedZoneVisibilityEnum = "public" | "private";
-export const ManagedZoneVisibilityEnum = /*@__PURE__*/ S.String;
+export const ManagedZoneVisibilityEnum = S.String;
 
 /** A zone is a subtree of the DNS namespace under one administrative responsibility. A ManagedZone is a resource that represents a DNS zone hosted by the Cloud DNS service. */
 export interface ManagedZone {
@@ -775,7 +774,7 @@ export type PolicyAlternativeNameServerConfigTargetNameServerForwardingPathEnum 
   | "default"
   | "private";
 export const PolicyAlternativeNameServerConfigTargetNameServerForwardingPathEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PolicyAlternativeNameServerConfigTargetNameServer {
   /** IPv4 address to forward queries to. */
@@ -1032,7 +1031,7 @@ export const ResponsePolicyRuleLocalData = /*@__PURE__*/ S.suspend(() =>
 export type ResponsePolicyRuleBehaviorEnum =
   | "behaviorUnspecified"
   | "bypassResponsePolicy";
-export const ResponsePolicyRuleBehaviorEnum = /*@__PURE__*/ S.String;
+export const ResponsePolicyRuleBehaviorEnum = S.String;
 
 /** A Response Policy Rule is a selector that applies its behavior to queries that match the selector. Selectors are DNS names, which may be wildcards or exact matches. Each DNS query subject to a Response Policy matches at most one ResponsePolicyRule, as identified by the dns_name field with the longest matching suffix. */
 export interface ResponsePolicyRule {
@@ -1307,7 +1306,7 @@ export const GetDnsKeysRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDnsKeysRequest>;
 
 export type DnsKeyTypeEnum = "keySigning" | "zoneSigning";
-export const DnsKeyTypeEnum = /*@__PURE__*/ S.String;
+export const DnsKeyTypeEnum = S.String;
 
 export type DnsKeyAlgorithmEnum =
   | "rsasha1"
@@ -1315,10 +1314,10 @@ export type DnsKeyAlgorithmEnum =
   | "rsasha512"
   | "ecdsap256sha256"
   | "ecdsap384sha384";
-export const DnsKeyAlgorithmEnum = /*@__PURE__*/ S.String;
+export const DnsKeyAlgorithmEnum = S.String;
 
 export type DnsKeyDigestTypeEnum = "sha1" | "sha256" | "sha384";
-export const DnsKeyDigestTypeEnum = /*@__PURE__*/ S.String;
+export const DnsKeyDigestTypeEnum = S.String;
 
 export interface DnsKeyDigest {
   /** The base-16 encoded bytes of this digest. Suitable for use in a DS resource record. */
@@ -1474,7 +1473,7 @@ export type GoogleIamV1AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const GoogleIamV1AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleIamV1AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface GoogleIamV1AuditLogConfig {
@@ -1568,7 +1567,7 @@ export const GetManagedZoneOperationsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetManagedZoneOperationsRequest>;
 
 export type OperationStatusEnum = "pending" | "done";
-export const OperationStatusEnum = /*@__PURE__*/ S.String;
+export const OperationStatusEnum = S.String;
 
 export interface OperationDnsKeyContext {
   /** The pre-operation DnsKey resource. */
@@ -1885,7 +1884,7 @@ export const GetResponsePolicyRulesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponsePolicyRulesRequest>;
 
 export type ListChangesSortByEnum = "changeSequence";
-export const ListChangesSortByEnum = /*@__PURE__*/ S.String;
+export const ListChangesSortByEnum = S.String;
 
 export interface ListChangesRequest {
   /** Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return. */
@@ -1999,7 +1998,7 @@ export const DnsKeysListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DnsKeysListResponse>;
 
 export type ListManagedZoneOperationsSortByEnum = "startTime" | "id";
-export const ListManagedZoneOperationsSortByEnum = /*@__PURE__*/ S.String;
+export const ListManagedZoneOperationsSortByEnum = S.String;
 
 export interface ListManagedZoneOperationsRequest {
   /** Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return. */

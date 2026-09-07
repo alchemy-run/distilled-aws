@@ -44,7 +44,7 @@ export type SandboxEnvironmentNetworkAccessLevelEnum =
   | "trusted"
   | "full"
   | "custom";
-export const SandboxEnvironmentNetworkAccessLevelEnum = /*@__PURE__*/ S.String;
+export const SandboxEnvironmentNetworkAccessLevelEnum = S.String;
 
 /** Allowed domains for custom network access. */
 export type CreateSandboxRequestAllowedDomainsList = Array<string>;

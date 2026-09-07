@@ -252,7 +252,7 @@ export const GetDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The module host type; currently always "wasm". */
 export type GetDatabaseResponseHostType = "wasm";
-export const GetDatabaseResponseHostType = /*@__PURE__*/ S.String;
+export const GetDatabaseResponseHostType = S.String;
 
 export interface GetDatabaseResponse {
   /** The Spacetime identity of the database. */
@@ -483,7 +483,7 @@ export const PublishDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PublishDatabaseRequest>;
 
 export type PublishDatabaseResponseSuccessOp = "created" | "updated";
-export const PublishDatabaseResponseSuccessOp = /*@__PURE__*/ S.String;
+export const PublishDatabaseResponseSuccessOp = S.String;
 
 export interface PublishDatabaseResponseSuccess {
   database_identity: string;
@@ -571,7 +571,7 @@ export const UpdateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDatabaseRequest>;
 
 export type UpdateDatabaseResponseSuccessOp = "created" | "updated";
-export const UpdateDatabaseResponseSuccessOp = /*@__PURE__*/ S.String;
+export const UpdateDatabaseResponseSuccessOp = S.String;
 
 export interface UpdateDatabaseResponseSuccess {
   domain?: string | null;

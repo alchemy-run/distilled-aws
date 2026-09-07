@@ -120,7 +120,7 @@ export type AuthUserSoftBlockReason =
   | "SUBSCRIPTION_CANCELED"
   | "SUBSCRIPTION_EXPIRED"
   | "UNPAID_INVOICE";
-export const AuthUserSoftBlockReason = /*@__PURE__*/ S.String;
+export const AuthUserSoftBlockReason = S.String;
 
 export type AuthUserSoftBlockBlockedDueToOverageType =
   | "analyticsUsage"
@@ -162,7 +162,7 @@ export type AuthUserSoftBlockBlockedDueToOverageType =
   | "wafOwaspRequests"
   | "wafRateLimitRequest"
   | "webAnalyticsEvent";
-export const AuthUserSoftBlockBlockedDueToOverageType = /*@__PURE__*/ S.String;
+export const AuthUserSoftBlockBlockedDueToOverageType = S.String;
 
 /** Metered allocation whose included amount was fully consumed. */
 export type AuthUserSoftBlockHobbyAllocationPauseTriggersItemAllocation =
@@ -206,7 +206,7 @@ export type AuthUserSoftBlockHobbyAllocationPauseTriggersItemAllocation =
   | "wafRateLimitRequest"
   | "webAnalyticsEvent";
 export const AuthUserSoftBlockHobbyAllocationPauseTriggersItemAllocation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Allocations that were at or over 100% when the pause was applied. */
 export interface AuthUserSoftBlockHobbyAllocationPauseTriggersItem {
@@ -295,8 +295,7 @@ export const AuthUserResourceConfigBuildEntitlements = /*@__PURE__*/ S.suspend(
 export type AuthUserResourceConfigBuildQueueConfiguration =
   | "SKIP_NAMESPACE_QUEUE"
   | "WAIT_FOR_NAMESPACE_QUEUE";
-export const AuthUserResourceConfigBuildQueueConfiguration =
-  /*@__PURE__*/ S.String;
+export const AuthUserResourceConfigBuildQueueConfiguration = S.String;
 
 /** An object containing infomation related to the amount of platform resources may be allocated to the User account. */
 export interface AuthUserResourceConfigBuildQueue {
@@ -431,20 +430,17 @@ export const AuthUserResourceConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AuthUserResourceConfig>;
 
 export type AuthUserActiveDashboardViewsItemViewPreference = "cards" | "list";
-export const AuthUserActiveDashboardViewsItemViewPreference =
-  /*@__PURE__*/ S.String;
+export const AuthUserActiveDashboardViewsItemViewPreference = S.String;
 
 export type AuthUserActiveDashboardViewsItemFavoritesViewPreference =
   | "closed"
   | "open";
-export const AuthUserActiveDashboardViewsItemFavoritesViewPreference =
-  /*@__PURE__*/ S.String;
+export const AuthUserActiveDashboardViewsItemFavoritesViewPreference = S.String;
 
 export type AuthUserActiveDashboardViewsItemRecentsViewPreference =
   | "closed"
   | "open";
-export const AuthUserActiveDashboardViewsItemRecentsViewPreference =
-  /*@__PURE__*/ S.String;
+export const AuthUserActiveDashboardViewsItemRecentsViewPreference = S.String;
 
 /** set of dashboard view preferences (cards or list) per scopeId */
 export interface AuthUserActiveDashboardViewsItem {
@@ -479,11 +475,11 @@ export const AuthUserActiveDashboardViewsList = /*@__PURE__*/ S.Array(
 
 export type AuthUserImportFlowGitNamespace = string | number;
 export const AuthUserImportFlowGitNamespace =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AuthUserImportFlowGitNamespace>;
+  S.Unknown as any as S.Schema<AuthUserImportFlowGitNamespace>;
 
 export type AuthUserImportFlowGitNamespaceId = string | number;
 export const AuthUserImportFlowGitNamespaceId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AuthUserImportFlowGitNamespaceId>;
+  S.Unknown as any as S.Schema<AuthUserImportFlowGitNamespaceId>;
 
 export type AuthUserImportFlowGitProvider =
   | "bitbucket"
@@ -493,13 +489,13 @@ export type AuthUserImportFlowGitProvider =
   | "github-limited"
   | "gitlab"
   | "vercel";
-export const AuthUserImportFlowGitProvider = /*@__PURE__*/ S.String;
+export const AuthUserImportFlowGitProvider = S.String;
 
 export type AuthUserPreferredScopesAndGitNamespacesItemGitNamespaceId =
   | string
   | number;
 export const AuthUserPreferredScopesAndGitNamespacesItemGitNamespaceId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AuthUserPreferredScopesAndGitNamespacesItemGitNamespaceId>;
+  S.Unknown as any as S.Schema<AuthUserPreferredScopesAndGitNamespacesItemGitNamespaceId>;
 
 export interface AuthUserPreferredScopesAndGitNamespacesItem {
   scopeId: string;
@@ -629,8 +625,7 @@ export type AuthUserFeatureBlocksSpeedInsightsFreeBlockReason =
   | "admin_override"
   | "hard_blocked"
   | "limits_exceeded";
-export const AuthUserFeatureBlocksSpeedInsightsFreeBlockReason =
-  /*@__PURE__*/ S.String;
+export const AuthUserFeatureBlocksSpeedInsightsFreeBlockReason = S.String;
 
 /** Client-facing view of the `speedInsightsFree` ingestion block. The dashboard needs `blockReason` to tell usage pauses apart from admin blocks. */
 export interface AuthUserFeatureBlocksSpeedInsightsFree {
@@ -863,7 +858,7 @@ export const AuthUserLimited = /*@__PURE__*/ S.suspend(() =>
 
 export type GetAuthUserResponseUser = AuthUser | AuthUserLimited;
 export const GetAuthUserResponseUser =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAuthUserResponseUser>;
+  S.Unknown as any as S.Schema<GetAuthUserResponseUser>;
 
 export interface GetAuthUserResponse {
   user: GetAuthUserResponseUser;
@@ -1555,7 +1550,7 @@ export type ListEventTypeName =
   | "webhook-deleted"
   | "webhook-updated"
   | "workflow-deployment-key-accessed";
-export const ListEventTypeName = /*@__PURE__*/ S.String;
+export const ListEventTypeName = S.String;
 
 /** Categories that group this event type with related event types. */
 export type ListEventTypeCategoriesItem =
@@ -1582,7 +1577,7 @@ export type ListEventTypeCategoriesItem =
   | "v0"
   | "vercel-app"
   | "workflow";
-export const ListEventTypeCategoriesItem = /*@__PURE__*/ S.String;
+export const ListEventTypeCategoriesItem = S.String;
 
 /** Categories that group this event type with related event types. */
 export type ListEventTypeCategoriesList = Array<ListEventTypeCategoriesItem>;
@@ -2254,7 +2249,7 @@ export type ListEventTypeReplacedByItem =
   | "webhook-deleted"
   | "webhook-updated"
   | "workflow-deployment-key-accessed";
-export const ListEventTypeReplacedByItem = /*@__PURE__*/ S.String;
+export const ListEventTypeReplacedByItem = S.String;
 
 /** Event type names that supersede this deprecated event type. */
 export type ListEventTypeReplacedByList = Array<ListEventTypeReplacedByItem>;
@@ -2314,7 +2309,7 @@ export type ListEventTypesResponseCategoriesItemName =
   | "v0"
   | "vercel-app"
   | "workflow";
-export const ListEventTypesResponseCategoriesItemName = /*@__PURE__*/ S.String;
+export const ListEventTypesResponseCategoriesItemName = S.String;
 
 export interface ListEventTypesResponseCategoriesItem {
   name: ListEventTypesResponseCategoriesItemName;
@@ -2417,7 +2412,7 @@ export type UserEventEntitiesItemType =
   | "store"
   | "system"
   | "target";
-export const UserEventEntitiesItemType = /*@__PURE__*/ S.String;
+export const UserEventEntitiesItemType = S.String;
 
 /** A list of "entities" within the event `text`. Useful for enhancing the displayed text with additional styling and links. */
 export interface UserEventEntitiesItem {
@@ -3108,7 +3103,7 @@ export type UserEventType =
   | "webhook-deleted"
   | "webhook-updated"
   | "workflow-deployment-key-accessed";
-export const UserEventType = /*@__PURE__*/ S.String;
+export const UserEventType = S.String;
 
 /** The categories that group this event with related event types. An event can belong to multiple categories (e.g. a firewall event is both Firewall and Security). The first entry is the "primary" category. Use the `/events/types` endpoint to discover the full list of categories. */
 export type UserEventCategoriesItem =
@@ -3135,7 +3130,7 @@ export type UserEventCategoriesItem =
   | "v0"
   | "vercel-app"
   | "workflow";
-export const UserEventCategoriesItem = /*@__PURE__*/ S.String;
+export const UserEventCategoriesItem = S.String;
 
 /** The categories that group this event with related event types. An event can belong to multiple categories (e.g. a firewall event is both Firewall and Security). The first entry is the "primary" category. Use the `/events/types` endpoint to discover the full list of categories. */
 export type UserEventCategoriesList = Array<UserEventCategoriesItem>;
@@ -3162,7 +3157,7 @@ export const UserEventUser = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UserEventUser" }) as any as S.Schema<UserEventUser>;
 
 export type UserEventPrincipalCase0Type = "user";
-export const UserEventPrincipalCase0Type = /*@__PURE__*/ S.String;
+export const UserEventPrincipalCase0Type = S.String;
 
 /** Metadata for {@link principalId}. */
 export interface UserEventPrincipalCase0 {
@@ -3187,7 +3182,7 @@ export const UserEventPrincipalCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPrincipalCase0>;
 
 export type UserEventPrincipalCase1Type = "app";
-export const UserEventPrincipalCase1Type = /*@__PURE__*/ S.String;
+export const UserEventPrincipalCase1Type = S.String;
 
 /** Metadata for {@link principalId}. */
 export interface UserEventPrincipalCase1 {
@@ -3210,7 +3205,7 @@ export const UserEventPrincipalCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPrincipalCase1>;
 
 export type UserEventPrincipalCase2Type = "external";
-export const UserEventPrincipalCase2Type = /*@__PURE__*/ S.String;
+export const UserEventPrincipalCase2Type = S.String;
 
 /** Metadata for {@link principalId}. */
 export interface UserEventPrincipalCase2 {
@@ -3231,7 +3226,7 @@ export const UserEventPrincipalCase2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPrincipalCase2>;
 
 export type UserEventPrincipalCase3Type = "system";
-export const UserEventPrincipalCase3Type = /*@__PURE__*/ S.String;
+export const UserEventPrincipalCase3Type = S.String;
 
 /** Metadata for {@link principalId}. */
 export interface UserEventPrincipalCase3 {
@@ -3251,10 +3246,10 @@ export type UserEventPrincipal =
   | UserEventPrincipalCase2
   | UserEventPrincipalCase3;
 export const UserEventPrincipal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPrincipal>;
+  S.Unknown as any as S.Schema<UserEventPrincipal>;
 
 export type UserEventViaItemCase0Type = "user";
-export const UserEventViaItemCase0Type = /*@__PURE__*/ S.String;
+export const UserEventViaItemCase0Type = S.String;
 
 /** Metadata for {@link viaIds}. */
 export interface UserEventViaItemCase0 {
@@ -3279,7 +3274,7 @@ export const UserEventViaItemCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventViaItemCase0>;
 
 export type UserEventViaItemCase1Type = "app";
-export const UserEventViaItemCase1Type = /*@__PURE__*/ S.String;
+export const UserEventViaItemCase1Type = S.String;
 
 /** Metadata for {@link viaIds}. */
 export interface UserEventViaItemCase1 {
@@ -3302,7 +3297,7 @@ export const UserEventViaItemCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventViaItemCase1>;
 
 export type UserEventViaItemCase2Type = "external";
-export const UserEventViaItemCase2Type = /*@__PURE__*/ S.String;
+export const UserEventViaItemCase2Type = S.String;
 
 /** Metadata for {@link viaIds}. */
 export interface UserEventViaItemCase2 {
@@ -3323,7 +3318,7 @@ export const UserEventViaItemCase2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventViaItemCase2>;
 
 export type UserEventViaItemCase3Type = "system";
-export const UserEventViaItemCase3Type = /*@__PURE__*/ S.String;
+export const UserEventViaItemCase3Type = S.String;
 
 /** Metadata for {@link viaIds}. */
 export interface UserEventViaItemCase3 {
@@ -3342,8 +3337,7 @@ export type UserEventViaItem =
   | UserEventViaItemCase1
   | UserEventViaItemCase2
   | UserEventViaItemCase3;
-export const UserEventViaItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventViaItem>;
+export const UserEventViaItem = S.Unknown as any as S.Schema<UserEventViaItem>;
 
 /** Metadata for {@link viaIds}. */
 export type UserEventViaList = Array<UserEventViaItem>;
@@ -3363,7 +3357,7 @@ export type UserEventPayloadCase1Action =
   | "deleted"
   | "unarchived"
   | "updated";
-export const UserEventPayloadCase1Action = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase1Action = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase1 {
@@ -3390,7 +3384,7 @@ export type UserEventPayloadCase2Action =
   | "deleted"
   | "transitioned"
   | "updated";
-export const UserEventPayloadCase2Action = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase2Action = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase2 {
@@ -3417,7 +3411,7 @@ export const UserEventPayloadCase2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase2>;
 
 export type UserEventPayloadCase3Action = "added" | "deleted" | "rotated";
-export const UserEventPayloadCase3Action = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase3Action = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase3 {
@@ -3440,7 +3434,7 @@ export const UserEventPayloadCase3 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase3>;
 
 export type UserEventPayloadCase4Action = "read";
-export const UserEventPayloadCase4Action = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase4Action = S.String;
 
 export type UserEventPayloadCase4EnvironmentList = Array<string>;
 export const UserEventPayloadCase4EnvironmentList = /*@__PURE__*/ S.Array(
@@ -3467,7 +3461,7 @@ export const UserEventPayloadCase4 = /*@__PURE__*/ S.suspend(() =>
 
 /** Present on new events only. Equivalent to "stripe" when absent. */
 export type UserEventPayloadCase5Provider = "chatgpt" | "stripe";
-export const UserEventPayloadCase5Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase5Provider = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase5 {
@@ -3497,7 +3491,7 @@ export const UserEventPayloadCase5 = /*@__PURE__*/ S.suspend(() =>
 
 /** Present on new events only. Equivalent to "stripe" when absent. */
 export type UserEventPayloadCase6Provider = "chatgpt" | "stripe";
-export const UserEventPayloadCase6Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase6Provider = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase6 {
@@ -3525,7 +3519,7 @@ export const UserEventPayloadCase6 = /*@__PURE__*/ S.suspend(() =>
 
 /** Present on new events only. Equivalent to "stripe" when absent. */
 export type UserEventPayloadCase7Provider = "chatgpt" | "stripe";
-export const UserEventPayloadCase7Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase7Provider = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase7 {
@@ -3555,7 +3549,7 @@ export const UserEventPayloadCase7 = /*@__PURE__*/ S.suspend(() =>
 
 /** Present on new events only. Equivalent to "stripe" when absent. */
 export type UserEventPayloadCase8Provider = "chatgpt" | "stripe";
-export const UserEventPayloadCase8Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase8Provider = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase8 {
@@ -3585,7 +3579,7 @@ export const UserEventPayloadCase8 = /*@__PURE__*/ S.suspend(() =>
 
 /** Present on new events only. Equivalent to "stripe" when absent. */
 export type UserEventPayloadCase9Provider = "chatgpt" | "stripe";
-export const UserEventPayloadCase9Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase9Provider = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase9 {
@@ -3612,10 +3606,10 @@ export const UserEventPayloadCase9 = /*@__PURE__*/ S.suspend(() =>
 
 /** Present on new events only. Equivalent to "stripe" when absent. */
 export type UserEventPayloadCase10Provider = "chatgpt" | "stripe";
-export const UserEventPayloadCase10Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase10Provider = S.String;
 
 export type UserEventPayloadCase10ActorType = "admin";
-export const UserEventPayloadCase10ActorType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase10ActorType = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase10 {
@@ -3650,13 +3644,13 @@ export const UserEventPayloadCase10 = /*@__PURE__*/ S.suspend(() =>
 
 /** Present on new events only. Equivalent to "stripe" when absent. */
 export type UserEventPayloadCase11Provider = "chatgpt" | "stripe";
-export const UserEventPayloadCase11Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase11Provider = S.String;
 
 export type UserEventPayloadCase11FromPlan = "hobby" | "pro";
-export const UserEventPayloadCase11FromPlan = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase11FromPlan = S.String;
 
 export type UserEventPayloadCase11ToPlan = "hobby" | "pro";
-export const UserEventPayloadCase11ToPlan = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase11ToPlan = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase11 {
@@ -3706,7 +3700,7 @@ export type UserEventPayloadCase12BudgetRefreshPeriod =
   | "monthly"
   | "none"
   | "weekly";
-export const UserEventPayloadCase12BudgetRefreshPeriod = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase12BudgetRefreshPeriod = S.String;
 
 export type UserEventPayloadCase12BudgetAlertThresholdsList = Array<number>;
 export const UserEventPayloadCase12BudgetAlertThresholdsList =
@@ -3777,7 +3771,7 @@ export type UserEventPayloadCase14BudgetRefreshPeriod =
   | "monthly"
   | "none"
   | "weekly";
-export const UserEventPayloadCase14BudgetRefreshPeriod = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase14BudgetRefreshPeriod = S.String;
 
 export type UserEventPayloadCase14BudgetAlertThresholdsList = Array<number>;
 export const UserEventPayloadCase14BudgetAlertThresholdsList =
@@ -3809,7 +3803,7 @@ export type UserEventPayloadCase14Change =
   | "enable"
   | "remove"
   | "set";
-export const UserEventPayloadCase14Change = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase14Change = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase14 {
@@ -3834,7 +3828,7 @@ export type UserEventPayloadCase15Change =
   | "enable"
   | "enable-commitment"
   | "update";
-export const UserEventPayloadCase15Change = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase15Change = S.String;
 
 export interface UserEventPayloadCase15Settings {
   minimumBalance: string;
@@ -3890,14 +3884,14 @@ export type UserEventPayloadCase16ScopeType =
   | "project"
   | "team"
   | "user";
-export const UserEventPayloadCase16ScopeType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase16ScopeType = S.String;
 
 export type UserEventPayloadCase16BudgetRefreshPeriod =
   | "daily"
   | "monthly"
   | "none"
   | "weekly";
-export const UserEventPayloadCase16BudgetRefreshPeriod = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase16BudgetRefreshPeriod = S.String;
 
 export type UserEventPayloadCase16BudgetAlertThresholdsList = Array<number>;
 export const UserEventPayloadCase16BudgetAlertThresholdsList =
@@ -3929,7 +3923,7 @@ export type UserEventPayloadCase16Change =
   | "enable"
   | "remove"
   | "set";
-export const UserEventPayloadCase16Change = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase16Change = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase16 {
@@ -3949,14 +3943,14 @@ export const UserEventPayloadCase16 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase16>;
 
 export type UserEventPayloadCase17ScopeType = "project" | "team" | "user";
-export const UserEventPayloadCase17ScopeType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase17ScopeType = S.String;
 
 export type UserEventPayloadCase17BudgetRefreshPeriod =
   | "daily"
   | "monthly"
   | "none"
   | "weekly";
-export const UserEventPayloadCase17BudgetRefreshPeriod = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase17BudgetRefreshPeriod = S.String;
 
 export type UserEventPayloadCase17BudgetAlertThresholdsList = Array<number>;
 export const UserEventPayloadCase17BudgetAlertThresholdsList =
@@ -3988,7 +3982,7 @@ export type UserEventPayloadCase17Change =
   | "enable"
   | "remove"
   | "set";
-export const UserEventPayloadCase17Change = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase17Change = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase17 {
@@ -4227,14 +4221,12 @@ export const UserEventPayloadCase26 = /*@__PURE__*/ S.suspend(() =>
 export type UserEventPayloadCase27RetentionDefaultMode =
   | "days"
   | "until-requested";
-export const UserEventPayloadCase27RetentionDefaultMode =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase27RetentionDefaultMode = S.String;
 
 export type UserEventPayloadCase27RetentionCeilingMode =
   | "days"
   | "until-requested";
-export const UserEventPayloadCase27RetentionCeilingMode =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase27RetentionCeilingMode = S.String;
 
 export interface UserEventPayloadCase27Retention {
   defaultMode: UserEventPayloadCase27RetentionDefaultMode;
@@ -4440,14 +4432,14 @@ export type UserEventPayloadCase34NextRole =
   | "PROJECT_DEVELOPER"
   | "PROJECT_GUEST"
   | "PROJECT_VIEWER";
-export const UserEventPayloadCase34NextRole = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase34NextRole = S.String;
 
 export type UserEventPayloadCase34PreviousRole =
   | "ADMIN"
   | "PROJECT_DEVELOPER"
   | "PROJECT_GUEST"
   | "PROJECT_VIEWER";
-export const UserEventPayloadCase34PreviousRole = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase34PreviousRole = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase34 {
@@ -4598,7 +4590,7 @@ export type UserEventPayloadCase38DeploymentAllowListedReadyStateReasonInternal 
   | "UNAFFECTED_PROJECT"
   | "UNVERIFIED_COMMIT";
 export const UserEventPayloadCase38DeploymentAllowListedReadyStateReasonInternal =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase38Deployment {
   id: string;
@@ -4674,7 +4666,7 @@ export type UserEventPayloadCase39DeploymentAllowListedReadyStateReasonInternal 
   | "UNAFFECTED_PROJECT"
   | "UNVERIFIED_COMMIT";
 export const UserEventPayloadCase39DeploymentAllowListedReadyStateReasonInternal =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase39Deployment {
   id: string;
@@ -4827,7 +4819,7 @@ export const UserEventPayloadCase45 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase45>;
 
 export type UserEventPayloadCase46Action = "created" | "removed";
-export const UserEventPayloadCase46Action = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase46Action = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase46 {
@@ -4900,7 +4892,7 @@ export type UserEventPayloadCase50ScopesItem =
   | "offline_access"
   | "openid"
   | "profile";
-export const UserEventPayloadCase50ScopesItem = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase50ScopesItem = S.String;
 
 export type UserEventPayloadCase50ScopesList =
   Array<UserEventPayloadCase50ScopesItem>;
@@ -4969,7 +4961,7 @@ export type UserEventPayloadCase50PermissionsItem =
   | "read:vcr"
   | "read:web-analytics"
   | "use:ai-gateway";
-export const UserEventPayloadCase50PermissionsItem = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase50PermissionsItem = S.String;
 
 export type UserEventPayloadCase50PermissionsList =
   Array<UserEventPayloadCase50PermissionsItem>;
@@ -5014,7 +5006,7 @@ export type UserEventPayloadCase52NextScopesItem =
   | "offline_access"
   | "openid"
   | "profile";
-export const UserEventPayloadCase52NextScopesItem = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase52NextScopesItem = S.String;
 
 export type UserEventPayloadCase52NextScopesList =
   Array<UserEventPayloadCase52NextScopesItem>;
@@ -5083,7 +5075,7 @@ export type UserEventPayloadCase52NextPermissionsItem =
   | "read:vcr"
   | "read:web-analytics"
   | "use:ai-gateway";
-export const UserEventPayloadCase52NextPermissionsItem = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase52NextPermissionsItem = S.String;
 
 export type UserEventPayloadCase52NextPermissionsList =
   Array<UserEventPayloadCase52NextPermissionsItem>;
@@ -5110,12 +5102,11 @@ export const UserEventPayloadCase52 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase52>;
 
 export type UserEventPayloadCase53BeforeResourcesProjectIdsType = "list";
-export const UserEventPayloadCase53BeforeResourcesProjectIdsType =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase53BeforeResourcesProjectIdsType = S.String;
 
 export type UserEventPayloadCase53BeforeResourcesProjectIdsItemsType = "string";
 export const UserEventPayloadCase53BeforeResourcesProjectIdsItemsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase53BeforeResourcesProjectIdsItems {
   type: UserEventPayloadCase53BeforeResourcesProjectIdsItemsType;
@@ -5218,8 +5209,7 @@ export type UserEventPayloadCase53BeforePermissionsItem =
   | "read:vcr"
   | "read:web-analytics"
   | "use:ai-gateway";
-export const UserEventPayloadCase53BeforePermissionsItem =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase53BeforePermissionsItem = S.String;
 
 export type UserEventPayloadCase53BeforePermissionsList =
   Array<UserEventPayloadCase53BeforePermissionsItem>;
@@ -5242,12 +5232,10 @@ export const UserEventPayloadCase53Before = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase53Before>;
 
 export type UserEventPayloadCase53AfterResourcesProjectIdsType = "list";
-export const UserEventPayloadCase53AfterResourcesProjectIdsType =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase53AfterResourcesProjectIdsType = S.String;
 
 export type UserEventPayloadCase53AfterResourcesProjectIdsItemsType = "string";
-export const UserEventPayloadCase53AfterResourcesProjectIdsItemsType =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase53AfterResourcesProjectIdsItemsType = S.String;
 
 export interface UserEventPayloadCase53AfterResourcesProjectIdsItems {
   type: UserEventPayloadCase53AfterResourcesProjectIdsItemsType;
@@ -5350,8 +5338,7 @@ export type UserEventPayloadCase53AfterPermissionsItem =
   | "read:vcr"
   | "read:web-analytics"
   | "use:ai-gateway";
-export const UserEventPayloadCase53AfterPermissionsItem =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase53AfterPermissionsItem = S.String;
 
 export type UserEventPayloadCase53AfterPermissionsList =
   Array<UserEventPayloadCase53AfterPermissionsItem>;
@@ -5393,12 +5380,10 @@ export const UserEventPayloadCase53 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase53>;
 
 export type UserEventPayloadCase54ResourcesProjectIdsType = "list";
-export const UserEventPayloadCase54ResourcesProjectIdsType =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase54ResourcesProjectIdsType = S.String;
 
 export type UserEventPayloadCase54ResourcesProjectIdsItemsType = "string";
-export const UserEventPayloadCase54ResourcesProjectIdsItemsType =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase54ResourcesProjectIdsItemsType = S.String;
 
 export interface UserEventPayloadCase54ResourcesProjectIdsItems {
   type: UserEventPayloadCase54ResourcesProjectIdsItemsType;
@@ -5500,7 +5485,7 @@ export type UserEventPayloadCase54PermissionsItem =
   | "read:vcr"
   | "read:web-analytics"
   | "use:ai-gateway";
-export const UserEventPayloadCase54PermissionsItem = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase54PermissionsItem = S.String;
 
 export type UserEventPayloadCase54PermissionsList =
   Array<UserEventPayloadCase54PermissionsItem>;
@@ -5651,7 +5636,7 @@ export type UserEventPayloadCase61SettlementMethod =
   | "credited-payment-pending"
   | "refunded-paid"
   | "refunded-payment-pending";
-export const UserEventPayloadCase61SettlementMethod = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase61SettlementMethod = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase61 {
@@ -5694,7 +5679,7 @@ export type UserEventPayloadCase63ChangedFieldsItem =
   | "name"
   | "purchaseOrder"
   | "tax";
-export const UserEventPayloadCase63ChangedFieldsItem = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase63ChangedFieldsItem = S.String;
 
 export type UserEventPayloadCase63ChangedFieldsList =
   Array<UserEventPayloadCase63ChangedFieldsItem>;
@@ -5729,13 +5714,13 @@ export const UserEventPayloadCase64 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase64>;
 
 export type UserEventPayloadCase65Action = "cancel_plan";
-export const UserEventPayloadCase65Action = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase65Action = S.String;
 
 export type UserEventPayloadCase65DataPlanSlug = "v0_business" | "v0_teams";
-export const UserEventPayloadCase65DataPlanSlug = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase65DataPlanSlug = S.String;
 
 export type UserEventPayloadCase65DataReason = "non-payment";
-export const UserEventPayloadCase65DataReason = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase65DataReason = S.String;
 
 export interface UserEventPayloadCase65Data {
   planSlug: UserEventPayloadCase65DataPlanSlug;
@@ -5767,10 +5752,10 @@ export const UserEventPayloadCase65 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase65>;
 
 export type UserEventPayloadCase66Action = "resume_plan";
-export const UserEventPayloadCase66Action = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase66Action = S.String;
 
 export type UserEventPayloadCase66DataPlanSlug = "v0_business" | "v0_teams";
-export const UserEventPayloadCase66DataPlanSlug = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase66DataPlanSlug = S.String;
 
 export interface UserEventPayloadCase66Data {
   planSlug: UserEventPayloadCase66DataPlanSlug;
@@ -5800,7 +5785,7 @@ export const UserEventPayloadCase66 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase66>;
 
 export type UserEventPayloadCase67Action = "mutate";
-export const UserEventPayloadCase67Action = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase67Action = S.String;
 
 export type UserEventPayloadCase67DataMap = {
   [key: string]: unknown | undefined;
@@ -6334,7 +6319,7 @@ export const UserEventPayloadCase92 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase92>;
 
 export type UserEventPayloadCase93SubjectType = "app" | "user";
-export const UserEventPayloadCase93SubjectType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase93SubjectType = S.String;
 
 export type UserEventPayloadCase93FieldsList = Array<string>;
 export const UserEventPayloadCase93FieldsList = /*@__PURE__*/ S.Array(
@@ -6560,7 +6545,7 @@ export type UserEventPayloadCase102DeploymentAllowListedReadyStateReasonInternal
   | "UNAFFECTED_PROJECT"
   | "UNVERIFIED_COMMIT";
 export const UserEventPayloadCase102DeploymentAllowListedReadyStateReasonInternal =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase102Deployment {
   id: string;
@@ -6587,8 +6572,7 @@ export const UserEventPayloadCase102Deployment = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase102Deployment>;
 
 export type UserEventPayloadCase102GitCredentialSource = "external-token";
-export const UserEventPayloadCase102GitCredentialSource =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase102GitCredentialSource = S.String;
 
 export type UserEventPayloadCase102RegionsList = Array<string>;
 export const UserEventPayloadCase102RegionsList = /*@__PURE__*/ S.Array(
@@ -6632,7 +6616,7 @@ export const UserEventPayloadCase102 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase102>;
 
 export type UserEventPayloadCase103JobCase0Type = "bitbucket-push";
-export const UserEventPayloadCase103JobCase0Type = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase0Type = S.String;
 
 /** Since December 2022 All project ids associated to this job. Think monorepo. This job will be for one of these project. */
 export type UserEventPayloadCase103JobCase0JobProjectIdsList = Array<string>;
@@ -6692,8 +6676,7 @@ export type UserEventPayloadCase103JobCase0GitHashtagVercelItem =
   | "#VERCEL_SDDJ_FORCE_GIT_FORK_ERROR"
   | "#VERCEL_SKIP"
   | "#VERCEL_V0_MESSAGE";
-export const UserEventPayloadCase103JobCase0GitHashtagVercelItem =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase0GitHashtagVercelItem = S.String;
 
 /** Since February 2022 All the hashtag-vercel tags found in the commit message triggering the deploy. For example, #VERCEL_DO_SOMETHING */
 export type UserEventPayloadCase103JobCase0GitHashtagVercelList =
@@ -6723,14 +6706,12 @@ export type UserEventPayloadCase103JobCase0CommitVerification =
   | "unknown"
   | "unverified"
   | "verified";
-export const UserEventPayloadCase103JobCase0CommitVerification =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase0CommitVerification = S.String;
 
 export type UserEventPayloadCase103JobCase0NsnbSideEffectAction =
   | "auto-approved-member"
   | "auto-approved-pending-invite";
-export const UserEventPayloadCase103JobCase0NsnbSideEffectAction =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase0NsnbSideEffectAction = S.String;
 
 /** Since March 2026 Records a successful NSNB auto-add result so later GitHub PR comments can deterministically explain why this SHA was allowed to deploy. */
 export interface UserEventPayloadCase103JobCase0NsnbSideEffect {
@@ -6773,7 +6754,7 @@ export const UserEventPayloadCase103JobCase0HeadInfo = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UserEventPayloadCase103JobCase0HeadInfo>;
 
 export type UserEventPayloadCase103JobCase0Provider = "bitbucket";
-export const UserEventPayloadCase103JobCase0Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase0Provider = S.String;
 
 export interface UserEventPayloadCase103JobCase0 {
   type: UserEventPayloadCase103JobCase0Type;
@@ -6878,7 +6859,7 @@ export const UserEventPayloadCase103JobCase1HeadInfo =
   UserEventPayloadCase103JobCase0HeadInfo;
 
 export type UserEventPayloadCase103JobCase1Type = "bitbucket-now-comment";
-export const UserEventPayloadCase103JobCase1Type = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase1Type = S.String;
 
 export type UserEventPayloadCase103JobCase1GitComments =
   UserEventPayloadCase103JobCase0GitComments;
@@ -6886,7 +6867,7 @@ export const UserEventPayloadCase103JobCase1GitComments =
   UserEventPayloadCase103JobCase0GitComments;
 
 export type UserEventPayloadCase103JobCase1Provider = "bitbucket";
-export const UserEventPayloadCase103JobCase1Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase1Provider = S.String;
 
 /** Represents the payload for a Bitbucket comment job This interface defines the structure of data needed when creating a job to handle comments on Bitbucket pull requests or commits. */
 export interface UserEventPayloadCase103JobCase1 {
@@ -6933,7 +6914,7 @@ export const UserEventPayloadCase103JobCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase103JobCase1>;
 
 export type UserEventPayloadCase103JobCase2Type = "pr";
-export const UserEventPayloadCase103JobCase2Type = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase2Type = S.String;
 
 /** Since December 2022 All project ids associated to this job. Think monorepo. This job will be for one of these project. */
 export type UserEventPayloadCase103JobCase2JobProjectIdsList = Array<string>;
@@ -6993,8 +6974,7 @@ export type UserEventPayloadCase103JobCase2GitHashtagVercelItem =
   | "#VERCEL_SDDJ_FORCE_GIT_FORK_ERROR"
   | "#VERCEL_SKIP"
   | "#VERCEL_V0_MESSAGE";
-export const UserEventPayloadCase103JobCase2GitHashtagVercelItem =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase2GitHashtagVercelItem = S.String;
 
 /** Since February 2022 All the hashtag-vercel tags found in the commit message triggering the deploy. For example, #VERCEL_DO_SOMETHING */
 export type UserEventPayloadCase103JobCase2GitHashtagVercelList =
@@ -7015,14 +6995,12 @@ export type UserEventPayloadCase103JobCase2CommitVerification =
   | "unknown"
   | "unverified"
   | "verified";
-export const UserEventPayloadCase103JobCase2CommitVerification =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase2CommitVerification = S.String;
 
 export type UserEventPayloadCase103JobCase2NsnbSideEffectAction =
   | "auto-approved-member"
   | "auto-approved-pending-invite";
-export const UserEventPayloadCase103JobCase2NsnbSideEffectAction =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase2NsnbSideEffectAction = S.String;
 
 /** Since March 2026 Records a successful NSNB auto-add result so later GitHub PR comments can deterministically explain why this SHA was allowed to deploy. */
 export interface UserEventPayloadCase103JobCase2NsnbSideEffect {
@@ -7069,7 +7047,7 @@ export type UserEventPayloadCase103JobCase2Provider =
   | "github"
   | "github-custom-host"
   | "github-limited";
-export const UserEventPayloadCase103JobCase2Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase2Provider = S.String;
 
 export interface UserEventPayloadCase103JobCase2 {
   prId: number;
@@ -7190,7 +7168,7 @@ export const UserEventPayloadCase103JobCase3CommitInfo =
   }) as any as S.Schema<UserEventPayloadCase103JobCase3CommitInfo>;
 
 export type UserEventPayloadCase103JobCase3Type = "push";
-export const UserEventPayloadCase103JobCase3Type = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase3Type = S.String;
 
 /** Since December 2022 All project ids associated to this job. Think monorepo. This job will be for one of these project. */
 export type UserEventPayloadCase103JobCase3JobProjectIdsList = Array<string>;
@@ -7250,8 +7228,7 @@ export type UserEventPayloadCase103JobCase3GitHashtagVercelItem =
   | "#VERCEL_SDDJ_FORCE_GIT_FORK_ERROR"
   | "#VERCEL_SKIP"
   | "#VERCEL_V0_MESSAGE";
-export const UserEventPayloadCase103JobCase3GitHashtagVercelItem =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase3GitHashtagVercelItem = S.String;
 
 /** Since February 2022 All the hashtag-vercel tags found in the commit message triggering the deploy. For example, #VERCEL_DO_SOMETHING */
 export type UserEventPayloadCase103JobCase3GitHashtagVercelList =
@@ -7272,14 +7249,12 @@ export type UserEventPayloadCase103JobCase3CommitVerification =
   | "unknown"
   | "unverified"
   | "verified";
-export const UserEventPayloadCase103JobCase3CommitVerification =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase3CommitVerification = S.String;
 
 export type UserEventPayloadCase103JobCase3NsnbSideEffectAction =
   | "auto-approved-member"
   | "auto-approved-pending-invite";
-export const UserEventPayloadCase103JobCase3NsnbSideEffectAction =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase3NsnbSideEffectAction = S.String;
 
 /** Since March 2026 Records a successful NSNB auto-add result so later GitHub PR comments can deterministically explain why this SHA was allowed to deploy. */
 export interface UserEventPayloadCase103JobCase3NsnbSideEffect {
@@ -7311,7 +7286,7 @@ export type UserEventPayloadCase103JobCase3Provider =
   | "github"
   | "github-custom-host"
   | "github-limited";
-export const UserEventPayloadCase103JobCase3Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase3Provider = S.String;
 
 export interface UserEventPayloadCase103JobCase3 {
   repoPushedAt: number | null;
@@ -7430,7 +7405,7 @@ export const UserEventPayloadCase103JobCase4HeadInfo =
   UserEventPayloadCase103JobCase2HeadInfo;
 
 export type UserEventPayloadCase103JobCase4Type = "now-comment";
-export const UserEventPayloadCase103JobCase4Type = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase4Type = S.String;
 
 export type UserEventPayloadCase103JobCase4GitComments =
   UserEventPayloadCase103JobCase0GitComments;
@@ -7441,7 +7416,7 @@ export type UserEventPayloadCase103JobCase4Provider =
   | "github"
   | "github-custom-host"
   | "github-limited";
-export const UserEventPayloadCase103JobCase4Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase4Provider = S.String;
 
 export interface UserEventPayloadCase103JobCase4 {
   createdAt?: number;
@@ -7488,7 +7463,7 @@ export const UserEventPayloadCase103JobCase4 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase103JobCase4>;
 
 export type UserEventPayloadCase103JobCase5Type = "gitlab-push";
-export const UserEventPayloadCase103JobCase5Type = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase5Type = S.String;
 
 /** Since December 2022 All project ids associated to this job. Think monorepo. This job will be for one of these project. */
 export type UserEventPayloadCase103JobCase5JobProjectIdsList = Array<string>;
@@ -7548,8 +7523,7 @@ export type UserEventPayloadCase103JobCase5GitHashtagVercelItem =
   | "#VERCEL_SDDJ_FORCE_GIT_FORK_ERROR"
   | "#VERCEL_SKIP"
   | "#VERCEL_V0_MESSAGE";
-export const UserEventPayloadCase103JobCase5GitHashtagVercelItem =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase5GitHashtagVercelItem = S.String;
 
 /** Since February 2022 All the hashtag-vercel tags found in the commit message triggering the deploy. For example, #VERCEL_DO_SOMETHING */
 export type UserEventPayloadCase103JobCase5GitHashtagVercelList =
@@ -7570,14 +7544,12 @@ export type UserEventPayloadCase103JobCase5CommitVerification =
   | "unknown"
   | "unverified"
   | "verified";
-export const UserEventPayloadCase103JobCase5CommitVerification =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase5CommitVerification = S.String;
 
 export type UserEventPayloadCase103JobCase5NsnbSideEffectAction =
   | "auto-approved-member"
   | "auto-approved-pending-invite";
-export const UserEventPayloadCase103JobCase5NsnbSideEffectAction =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase5NsnbSideEffectAction = S.String;
 
 /** Since March 2026 Records a successful NSNB auto-add result so later GitHub PR comments can deterministically explain why this SHA was allowed to deploy. */
 export interface UserEventPayloadCase103JobCase5NsnbSideEffect {
@@ -7666,7 +7638,7 @@ export const UserEventPayloadCase103JobCase5Project =
   UserEventPayloadCase103JobCase5HeadInfoProject;
 
 export type UserEventPayloadCase103JobCase5Provider = "gitlab";
-export const UserEventPayloadCase103JobCase5Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase5Provider = S.String;
 
 export interface UserEventPayloadCase103JobCase5 {
   type: UserEventPayloadCase103JobCase5Type;
@@ -7777,7 +7749,7 @@ export const UserEventPayloadCase103JobCase6Project =
   UserEventPayloadCase103JobCase5HeadInfoProject;
 
 export type UserEventPayloadCase103JobCase6Type = "gitlab-now-comment";
-export const UserEventPayloadCase103JobCase6Type = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase6Type = S.String;
 
 export type UserEventPayloadCase103JobCase6GitComments =
   UserEventPayloadCase103JobCase0GitComments;
@@ -7785,7 +7757,7 @@ export const UserEventPayloadCase103JobCase6GitComments =
   UserEventPayloadCase103JobCase0GitComments;
 
 export type UserEventPayloadCase103JobCase6Provider = "gitlab";
-export const UserEventPayloadCase103JobCase6Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase6Provider = S.String;
 
 export interface UserEventPayloadCase103JobCase6 {
   createdAt?: number;
@@ -7824,7 +7796,7 @@ export const UserEventPayloadCase103JobCase6 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase103JobCase6>;
 
 export type UserEventPayloadCase103JobCase7Type = "vercel-push";
-export const UserEventPayloadCase103JobCase7Type = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase7Type = S.String;
 
 export type UserEventPayloadCase103JobCase7DeployHook =
   UserEventPayloadCase100JobDeployHook;
@@ -7889,8 +7861,7 @@ export type UserEventPayloadCase103JobCase7GitHashtagVercelItem =
   | "#VERCEL_SDDJ_FORCE_GIT_FORK_ERROR"
   | "#VERCEL_SKIP"
   | "#VERCEL_V0_MESSAGE";
-export const UserEventPayloadCase103JobCase7GitHashtagVercelItem =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase7GitHashtagVercelItem = S.String;
 
 /** Since February 2022 All the hashtag-vercel tags found in the commit message triggering the deploy. For example, #VERCEL_DO_SOMETHING */
 export type UserEventPayloadCase103JobCase7GitHashtagVercelList =
@@ -7911,14 +7882,12 @@ export type UserEventPayloadCase103JobCase7CommitVerification =
   | "unknown"
   | "unverified"
   | "verified";
-export const UserEventPayloadCase103JobCase7CommitVerification =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase7CommitVerification = S.String;
 
 export type UserEventPayloadCase103JobCase7NsnbSideEffectAction =
   | "auto-approved-member"
   | "auto-approved-pending-invite";
-export const UserEventPayloadCase103JobCase7NsnbSideEffectAction =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase7NsnbSideEffectAction = S.String;
 
 /** Since March 2026 Records a successful NSNB auto-add result so later GitHub PR comments can deterministically explain why this SHA was allowed to deploy. */
 export interface UserEventPayloadCase103JobCase7NsnbSideEffect {
@@ -7955,7 +7924,7 @@ export const UserEventPayloadCase103JobCase7HeadInfo = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UserEventPayloadCase103JobCase7HeadInfo>;
 
 export type UserEventPayloadCase103JobCase7Provider = "vercel";
-export const UserEventPayloadCase103JobCase7Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase7Provider = S.String;
 
 export interface UserEventPayloadCase103JobCase7 {
   type: UserEventPayloadCase103JobCase7Type;
@@ -8040,7 +8009,7 @@ export const UserEventPayloadCase103JobCase7 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase103JobCase7>;
 
 export type UserEventPayloadCase103JobCase8Type = "cursor-origin-push";
-export const UserEventPayloadCase103JobCase8Type = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase8Type = S.String;
 
 export type UserEventPayloadCase103JobCase8DeployHook =
   UserEventPayloadCase100JobDeployHook;
@@ -8105,8 +8074,7 @@ export type UserEventPayloadCase103JobCase8GitHashtagVercelItem =
   | "#VERCEL_SDDJ_FORCE_GIT_FORK_ERROR"
   | "#VERCEL_SKIP"
   | "#VERCEL_V0_MESSAGE";
-export const UserEventPayloadCase103JobCase8GitHashtagVercelItem =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase8GitHashtagVercelItem = S.String;
 
 /** Since February 2022 All the hashtag-vercel tags found in the commit message triggering the deploy. For example, #VERCEL_DO_SOMETHING */
 export type UserEventPayloadCase103JobCase8GitHashtagVercelList =
@@ -8127,14 +8095,12 @@ export type UserEventPayloadCase103JobCase8CommitVerification =
   | "unknown"
   | "unverified"
   | "verified";
-export const UserEventPayloadCase103JobCase8CommitVerification =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase8CommitVerification = S.String;
 
 export type UserEventPayloadCase103JobCase8NsnbSideEffectAction =
   | "auto-approved-member"
   | "auto-approved-pending-invite";
-export const UserEventPayloadCase103JobCase8NsnbSideEffectAction =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase8NsnbSideEffectAction = S.String;
 
 /** Since March 2026 Records a successful NSNB auto-add result so later GitHub PR comments can deterministically explain why this SHA was allowed to deploy. */
 export interface UserEventPayloadCase103JobCase8NsnbSideEffect {
@@ -8179,7 +8145,7 @@ export const UserEventPayloadCase103JobCase8HeadInfo = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UserEventPayloadCase103JobCase8HeadInfo>;
 
 export type UserEventPayloadCase103JobCase8Provider = "cursor-origin";
-export const UserEventPayloadCase103JobCase8Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase8Provider = S.String;
 
 export interface UserEventPayloadCase103JobCase8 {
   type: UserEventPayloadCase103JobCase8Type;
@@ -8287,7 +8253,7 @@ export const UserEventPayloadCase103JobCase9HeadInfo =
   UserEventPayloadCase103JobCase8HeadInfo;
 
 export type UserEventPayloadCase103JobCase9Type = "cursor-origin-now-comment";
-export const UserEventPayloadCase103JobCase9Type = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase9Type = S.String;
 
 export type UserEventPayloadCase103JobCase9GitComments =
   UserEventPayloadCase103JobCase0GitComments;
@@ -8295,7 +8261,7 @@ export const UserEventPayloadCase103JobCase9GitComments =
   UserEventPayloadCase103JobCase0GitComments;
 
 export type UserEventPayloadCase103JobCase9Provider = "cursor-origin";
-export const UserEventPayloadCase103JobCase9Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase103JobCase9Provider = S.String;
 
 export interface UserEventPayloadCase103JobCase9 {
   createdAt?: number;
@@ -8348,7 +8314,7 @@ export type UserEventPayloadCase103Job =
   | UserEventPayloadCase103JobCase8
   | UserEventPayloadCase103JobCase9;
 export const UserEventPayloadCase103Job =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase103Job>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase103Job>;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase103 {
@@ -8385,7 +8351,7 @@ export const UserEventPayloadCase104 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase104>;
 
 export type UserEventPayloadCase105Reason = "ip_allow_list";
-export const UserEventPayloadCase105Reason = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase105Reason = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase105 {
@@ -8456,14 +8422,14 @@ export const UserEventPayloadCase106 = /*@__PURE__*/ S.suspend(() =>
 export type UserEventPayloadCase107RuleName =
   | "deploymentSources"
   | "gitSources";
-export const UserEventPayloadCase107RuleName = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase107RuleName = S.String;
 
 /** Team-level or project-level rule. */
 export type UserEventPayloadCase107RuleProvenance =
   | "default"
   | "project"
   | "team";
-export const UserEventPayloadCase107RuleProvenance = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase107RuleProvenance = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase107 {
@@ -8561,10 +8527,10 @@ export const UserEventPayloadCase110 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase110>;
 
 export type UserEventPayloadCase111Action = "add" | "delete" | "update";
-export const UserEventPayloadCase111Action = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase111Action = S.String;
 
 export type UserEventPayloadCase111Initiator = "system" | "user";
-export const UserEventPayloadCase111Initiator = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase111Initiator = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase111 {
@@ -8782,13 +8748,13 @@ export const UserEventPayloadCase121 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase121>;
 
 export type UserEventPayloadCase122EchMode = "auto" | "disabled" | "enabled";
-export const UserEventPayloadCase122EchMode = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase122EchMode = S.String;
 
 export type UserEventPayloadCase122PreviousEchMode =
   | "auto"
   | "disabled"
   | "enabled";
-export const UserEventPayloadCase122PreviousEchMode = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase122PreviousEchMode = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase122 {
@@ -8821,7 +8787,7 @@ export const UserEventPayloadCase123 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase123>;
 
 export type UserEventPayloadCase124Initiator = "system" | "user";
-export const UserEventPayloadCase124Initiator = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase124Initiator = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase124 {
@@ -9109,7 +9075,7 @@ export const UserEventPayloadCase141EdgeConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase141EdgeConfig>;
 
 export type UserEventPayloadCase141FromAccountType = "team" | "user";
-export const UserEventPayloadCase141FromAccountType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase141FromAccountType = S.String;
 
 export interface UserEventPayloadCase141FromAccount {
   id: string;
@@ -9129,7 +9095,7 @@ export const UserEventPayloadCase141FromAccount = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase141FromAccount>;
 
 export type UserEventPayloadCase141ToAccountType = "team" | "user";
-export const UserEventPayloadCase141ToAccountType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase141ToAccountType = S.String;
 
 export interface UserEventPayloadCase141ToAccount {
   id: string;
@@ -9315,7 +9281,7 @@ export type UserEventPayloadCase148Target =
   | string
   | UserEventPayloadCase148TargetCase1List;
 export const UserEventPayloadCase148Target =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase148Target>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase148Target>;
 
 export type UserEventPayloadCase148CustomEnvironmentSlugsList = Array<string>;
 export const UserEventPayloadCase148CustomEnvironmentSlugsList =
@@ -9366,7 +9332,7 @@ export type UserEventPayloadCase149Target =
   | string
   | UserEventPayloadCase149TargetCase1List;
 export const UserEventPayloadCase149Target =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase149Target>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase149Target>;
 
 export type UserEventPayloadCase149CustomEnvironmentSlugsList = Array<string>;
 export const UserEventPayloadCase149CustomEnvironmentSlugsList =
@@ -9424,14 +9390,14 @@ export type UserEventPayloadCase150Type =
   | "plain"
   | "sensitive"
   | "system";
-export const UserEventPayloadCase150Type = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase150Type = S.String;
 
 /** environments this env variable targets */
 export type UserEventPayloadCase150TargetItem =
   | "development"
   | "preview"
   | "production";
-export const UserEventPayloadCase150TargetItem = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase150TargetItem = S.String;
 
 /** environments this env variable targets */
 export type UserEventPayloadCase150TargetList =
@@ -9529,7 +9495,7 @@ export type UserEventPayloadCase151TargetItem =
   | "development"
   | "preview"
   | "production";
-export const UserEventPayloadCase151TargetItem = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase151TargetItem = S.String;
 
 export type UserEventPayloadCase151TargetList =
   Array<UserEventPayloadCase151TargetItem>;
@@ -9572,15 +9538,14 @@ export type UserEventPayloadCase152OldEnvVarType =
   | "plain"
   | "sensitive"
   | "system";
-export const UserEventPayloadCase152OldEnvVarType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase152OldEnvVarType = S.String;
 
 /** environments this env variable targets */
 export type UserEventPayloadCase152OldEnvVarTargetItem =
   | "development"
   | "preview"
   | "production";
-export const UserEventPayloadCase152OldEnvVarTargetItem =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase152OldEnvVarTargetItem = S.String;
 
 /** environments this env variable targets */
 export type UserEventPayloadCase152OldEnvVarTargetList =
@@ -9678,15 +9643,14 @@ export type UserEventPayloadCase152NewEnvVarType =
   | "plain"
   | "sensitive"
   | "system";
-export const UserEventPayloadCase152NewEnvVarType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase152NewEnvVarType = S.String;
 
 /** environments this env variable targets */
 export type UserEventPayloadCase152NewEnvVarTargetItem =
   | "development"
   | "preview"
   | "production";
-export const UserEventPayloadCase152NewEnvVarTargetItem =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase152NewEnvVarTargetItem = S.String;
 
 /** environments this env variable targets */
 export type UserEventPayloadCase152NewEnvVarTargetList =
@@ -9775,8 +9739,7 @@ export type UserEventPayloadCase152UpdateDiffOldTargetItem =
   | "development"
   | "preview"
   | "production";
-export const UserEventPayloadCase152UpdateDiffOldTargetItem =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase152UpdateDiffOldTargetItem = S.String;
 
 export type UserEventPayloadCase152UpdateDiffOldTargetList =
   Array<UserEventPayloadCase152UpdateDiffOldTargetItem>;
@@ -9789,8 +9752,7 @@ export type UserEventPayloadCase152UpdateDiffNewTargetItem =
   | "development"
   | "preview"
   | "production";
-export const UserEventPayloadCase152UpdateDiffNewTargetItem =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase152UpdateDiffNewTargetItem = S.String;
 
 export type UserEventPayloadCase152UpdateDiffNewTargetList =
   Array<UserEventPayloadCase152UpdateDiffNewTargetItem>;
@@ -9935,7 +9897,7 @@ export const UserEventPayloadCase154 = /*@__PURE__*/ S.suspend(() =>
 
 export type UserEventPayloadCase155ConfigVersion = string | number;
 export const UserEventPayloadCase155ConfigVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase155ConfigVersion>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase155ConfigVersion>;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase155 {
@@ -9955,7 +9917,7 @@ export const UserEventPayloadCase155 = /*@__PURE__*/ S.suspend(() =>
 
 export type UserEventPayloadCase156ConfigVersion = string | number;
 export const UserEventPayloadCase156ConfigVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase156ConfigVersion>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase156ConfigVersion>;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase156 {
@@ -9971,7 +9933,7 @@ export const UserEventPayloadCase156 = /*@__PURE__*/ S.suspend(() =>
 
 export type UserEventPayloadCase157ConfigVersion = string | number;
 export const UserEventPayloadCase157ConfigVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase157ConfigVersion>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase157ConfigVersion>;
 
 export type UserEventPayloadCase157ConfigChangesList = Array<unknown>;
 export const UserEventPayloadCase157ConfigChangesList = /*@__PURE__*/ S.Array(
@@ -10025,8 +9987,7 @@ export type UserEventPayloadCase159RuleGroupsValueAction =
   | "challenge"
   | "deny"
   | "log";
-export const UserEventPayloadCase159RuleGroupsValueAction =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase159RuleGroupsValueAction = S.String;
 
 export interface UserEventPayloadCase159RuleGroupsValue {
   active: boolean;
@@ -10067,7 +10028,7 @@ export const UserEventPayloadCase159 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase159>;
 
 export type UserEventPayloadCase160Action = "challenge" | "deny" | "log";
-export const UserEventPayloadCase160Action = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase160Action = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase160 {
@@ -10106,7 +10067,7 @@ export const UserEventPayloadCase161 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase161>;
 
 export type UserEventPayloadCase162Action = "disable" | "enable";
-export const UserEventPayloadCase162Action = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase162Action = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase162 {
@@ -10125,10 +10086,10 @@ export type UserEventPayloadCase163Provider =
   | "cursor-origin"
   | "github"
   | "gitlab";
-export const UserEventPayloadCase163Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase163Provider = S.String;
 
 export type UserEventPayloadCase163Outcome = "failure" | "success";
-export const UserEventPayloadCase163Outcome = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase163Outcome = S.String;
 
 /** Mirrors `PushFailureStage` in `@api/git-push-repo`. */
 export type UserEventPayloadCase163FailureStage =
@@ -10137,7 +10098,7 @@ export type UserEventPayloadCase163FailureStage =
   | "unexpected"
   | "unknown"
   | "validation";
-export const UserEventPayloadCase163FailureStage = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase163FailureStage = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase163 {
@@ -10227,7 +10188,7 @@ export type UserEventPayloadCase166NewOwnerAbuseBlockHistoryItemAction =
   | "soft-blocked"
   | "unblocked";
 export const UserEventPayloadCase166NewOwnerAbuseBlockHistoryItemAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Since June 2023 */
 export interface UserEventPayloadCase166NewOwnerAbuseBlockHistoryItem {
@@ -10383,8 +10344,7 @@ export type UserEventPayloadCase166NewOwnerBillingPlan =
   | "enterprise"
   | "hobby"
   | "pro";
-export const UserEventPayloadCase166NewOwnerBillingPlan =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase166NewOwnerBillingPlan = S.String;
 
 export interface UserEventPayloadCase166NewOwnerBilling {
   plan: UserEventPayloadCase166NewOwnerBillingPlan;
@@ -10407,8 +10367,7 @@ export type UserEventPayloadCase166NewOwnerCredentialsItemCase0Type =
   | "gitlab"
   | "google"
   | "vercel";
-export const UserEventPayloadCase166NewOwnerCredentialsItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase166NewOwnerCredentialsItemCase0Type = S.String;
 
 export interface UserEventPayloadCase166NewOwnerCredentialsItemCase0 {
   type: UserEventPayloadCase166NewOwnerCredentialsItemCase0Type;
@@ -10426,8 +10385,7 @@ export const UserEventPayloadCase166NewOwnerCredentialsItemCase0 =
 
 export type UserEventPayloadCase166NewOwnerCredentialsItemCase1Type =
   "github-oauth-custom-host";
-export const UserEventPayloadCase166NewOwnerCredentialsItemCase1Type =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase166NewOwnerCredentialsItemCase1Type = S.String;
 
 export interface UserEventPayloadCase166NewOwnerCredentialsItemCase1 {
   type: UserEventPayloadCase166NewOwnerCredentialsItemCase1Type;
@@ -10449,7 +10407,7 @@ export type UserEventPayloadCase166NewOwnerCredentialsItem =
   | UserEventPayloadCase166NewOwnerCredentialsItemCase0
   | UserEventPayloadCase166NewOwnerCredentialsItemCase1;
 export const UserEventPayloadCase166NewOwnerCredentialsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerCredentialsItem>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerCredentialsItem>;
 
 export type UserEventPayloadCase166NewOwnerCredentialsList =
   Array<UserEventPayloadCase166NewOwnerCredentialsItem>;
@@ -10517,13 +10475,13 @@ export type UserEventPayloadCase166NewOwnerImportFlowGitNamespace =
   | string
   | number;
 export const UserEventPayloadCase166NewOwnerImportFlowGitNamespace =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerImportFlowGitNamespace>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerImportFlowGitNamespace>;
 
 export type UserEventPayloadCase166NewOwnerImportFlowGitNamespaceId =
   | string
   | number;
 export const UserEventPayloadCase166NewOwnerImportFlowGitNamespaceId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerImportFlowGitNamespaceId>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerImportFlowGitNamespaceId>;
 
 export type UserEventPayloadCase166NewOwnerImportFlowGitProvider =
   | "bitbucket"
@@ -10533,14 +10491,13 @@ export type UserEventPayloadCase166NewOwnerImportFlowGitProvider =
   | "github-limited"
   | "gitlab"
   | "vercel";
-export const UserEventPayloadCase166NewOwnerImportFlowGitProvider =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase166NewOwnerImportFlowGitProvider = S.String;
 
 export type UserEventPayloadCase166NewOwnerPreferredScopesAndGitNamespacesItemGitNamespaceId =
   | string
   | number;
 export const UserEventPayloadCase166NewOwnerPreferredScopesAndGitNamespacesItemGitNamespaceId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerPreferredScopesAndGitNamespacesItemGitNamespaceId>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerPreferredScopesAndGitNamespacesItemGitNamespaceId>;
 
 export interface UserEventPayloadCase166NewOwnerPreferredScopesAndGitNamespacesItem {
   scopeId: string;
@@ -10570,7 +10527,7 @@ export type UserEventPayloadCase166NewOwnerPreventAutoBlocking =
   | number
   | boolean;
 export const UserEventPayloadCase166NewOwnerPreventAutoBlocking =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerPreventAutoBlocking>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerPreventAutoBlocking>;
 
 export type UserEventPayloadCase166NewOwnerProjectCardWidgetPreferencesItemWidget =
   | "analytics-online"
@@ -10586,7 +10543,7 @@ export type UserEventPayloadCase166NewOwnerProjectCardWidgetPreferencesItemWidge
   | "speed-insights-lcp"
   | "speed-insights-res";
 export const UserEventPayloadCase166NewOwnerProjectCardWidgetPreferencesItemWidget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerProjectCardWidgetPreferencesItem {
   projectId: string;
@@ -10634,7 +10591,7 @@ export type UserEventPayloadCase166NewOwnerResourceConfigBuildQueueConfiguration
   | "SKIP_NAMESPACE_QUEUE"
   | "WAIT_FOR_NAMESPACE_QUEUE";
 export const UserEventPayloadCase166NewOwnerResourceConfigBuildQueueConfiguration =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerResourceConfigBuildQueue {
   configuration?: UserEventPayloadCase166NewOwnerResourceConfigBuildQueueConfiguration;
@@ -10683,7 +10640,7 @@ export type UserEventPayloadCase166NewOwnerResourceConfigBuildMachineDefault =
   | "standard"
   | "turbo";
 export const UserEventPayloadCase166NewOwnerResourceConfigBuildMachineDefault =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Build machine configuration recorded on a team or user `resourceConfig`. This is deliberately separate from the build machine config recorded on a deployment (`DeploymentBuildMachine` in `@api/deployments-types`). A team/user only expresses its default machine for new deployments; the per-build fields (`purchaseType`, `defaultPurchaseType`, `machineSelectionType`, `cores`, `memory`) are recorded on the deployment record when a build actually runs and never belong on a team/user document. */
 export interface UserEventPayloadCase166NewOwnerResourceConfigBuildMachine {
@@ -10814,7 +10771,7 @@ export type UserEventPayloadCase166NewOwnerResourceLimitsValue =
   | UserEventPayloadCase166NewOwnerResourceLimitsValueCase0
   | UserEventPayloadCase166NewOwnerResourceLimitsValueCase1;
 export const UserEventPayloadCase166NewOwnerResourceLimitsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerResourceLimitsValue>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerResourceLimitsValue>;
 
 /** User | Team resource limits. Each entry overrides either a token-bucket rate limit or a ramp admission limit, never both. */
 export type UserEventPayloadCase166NewOwnerResourceLimitsMap = {
@@ -10830,19 +10787,19 @@ export type UserEventPayloadCase166NewOwnerActiveDashboardViewsItemViewPreferenc
   | "cards"
   | "list";
 export const UserEventPayloadCase166NewOwnerActiveDashboardViewsItemViewPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UserEventPayloadCase166NewOwnerActiveDashboardViewsItemFavoritesViewPreference =
   | "closed"
   | "open";
 export const UserEventPayloadCase166NewOwnerActiveDashboardViewsItemFavoritesViewPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UserEventPayloadCase166NewOwnerActiveDashboardViewsItemRecentsViewPreference =
   | "closed"
   | "open";
 export const UserEventPayloadCase166NewOwnerActiveDashboardViewsItemRecentsViewPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerActiveDashboardViewsItem {
   scopeId: string;
@@ -10981,8 +10938,7 @@ export const UserEventPayloadCase166NewOwnerSiftScoresMap =
   ) as any as S.Schema<UserEventPayloadCase166NewOwnerSiftScoresMap>;
 
 export type UserEventPayloadCase166NewOwnerSiftRouteName = "string";
-export const UserEventPayloadCase166NewOwnerSiftRouteName =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase166NewOwnerSiftRouteName = S.String;
 
 export interface UserEventPayloadCase166NewOwnerSiftRoute {
   name: UserEventPayloadCase166NewOwnerSiftRouteName;
@@ -11007,8 +10963,7 @@ export type UserEventPayloadCase166NewOwnerSoftBlockReason =
   | "SUBSCRIPTION_CANCELED"
   | "SUBSCRIPTION_EXPIRED"
   | "UNPAID_INVOICE";
-export const UserEventPayloadCase166NewOwnerSoftBlockReason =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase166NewOwnerSoftBlockReason = S.String;
 
 export type UserEventPayloadCase166NewOwnerSoftBlockBlockedDueToOverageType =
   | "analyticsUsage"
@@ -11051,7 +11006,7 @@ export type UserEventPayloadCase166NewOwnerSoftBlockBlockedDueToOverageType =
   | "wafRateLimitRequest"
   | "webAnalyticsEvent";
 export const UserEventPayloadCase166NewOwnerSoftBlockBlockedDueToOverageType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metered allocation whose included amount was fully consumed. */
 export type UserEventPayloadCase166NewOwnerSoftBlockHobbyAllocationPauseTriggersItemAllocation =
@@ -11095,7 +11050,7 @@ export type UserEventPayloadCase166NewOwnerSoftBlockHobbyAllocationPauseTriggers
   | "wafRateLimitRequest"
   | "webAnalyticsEvent";
 export const UserEventPayloadCase166NewOwnerSoftBlockHobbyAllocationPauseTriggersItemAllocation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Allocations that were at or over 100% when the pause was applied. */
 export interface UserEventPayloadCase166NewOwnerSoftBlockHobbyAllocationPauseTriggersItem {
@@ -11180,8 +11135,7 @@ export type UserEventPayloadCase166NewOwnerTeamsItemRole =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const UserEventPayloadCase166NewOwnerTeamsItemRole =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase166NewOwnerTeamsItemRole = S.String;
 
 export type UserEventPayloadCase166NewOwnerTeamsItemTeamRolesItem =
   | "BILLING"
@@ -11192,8 +11146,7 @@ export type UserEventPayloadCase166NewOwnerTeamsItemTeamRolesItem =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const UserEventPayloadCase166NewOwnerTeamsItemTeamRolesItem =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase166NewOwnerTeamsItemTeamRolesItem = S.String;
 
 export type UserEventPayloadCase166NewOwnerTeamsItemTeamRolesList =
   Array<UserEventPayloadCase166NewOwnerTeamsItemTeamRolesItem>;
@@ -11223,7 +11176,7 @@ export type UserEventPayloadCase166NewOwnerTeamsItemTeamPermissionsItem =
   | "V0Viewer"
   | "WorkflowDecryptor";
 export const UserEventPayloadCase166NewOwnerTeamsItemTeamPermissionsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UserEventPayloadCase166NewOwnerTeamsItemTeamPermissionsList =
   Array<UserEventPayloadCase166NewOwnerTeamsItemTeamPermissionsItem>;
@@ -11253,13 +11206,13 @@ export type UserEventPayloadCase166NewOwnerTeamsItemJoinedFromOrigin =
   | "saml"
   | "teams";
 export const UserEventPayloadCase166NewOwnerTeamsItemJoinedFromOrigin =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UserEventPayloadCase166NewOwnerTeamsItemJoinedFromGitUserId =
   | string
   | number;
 export const UserEventPayloadCase166NewOwnerTeamsItemJoinedFromGitUserId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerTeamsItemJoinedFromGitUserId>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerTeamsItemJoinedFromGitUserId>;
 
 export interface UserEventPayloadCase166NewOwnerTeamsItemJoinedFrom {
   origin: UserEventPayloadCase166NewOwnerTeamsItemJoinedFromOrigin;
@@ -11346,7 +11299,7 @@ export const UserEventPayloadCase166NewOwnerTrialTeamIdsList =
   ) as any as S.Schema<UserEventPayloadCase166NewOwnerTrialTeamIdsList>;
 
 export type UserEventPayloadCase166NewOwnerType = "user";
-export const UserEventPayloadCase166NewOwnerType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase166NewOwnerType = S.String;
 
 /** Contains the timestamps when a user was notified about their usage */
 export interface UserEventPayloadCase166NewOwnerUsageAlerts {
@@ -11792,15 +11745,14 @@ export type UserEventPayloadCase166NewOwnerEnablePreviewFeedback =
   | "off-force"
   | "on"
   | "on-force";
-export const UserEventPayloadCase166NewOwnerEnablePreviewFeedback =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase166NewOwnerEnablePreviewFeedback = S.String;
 
 export type UserEventPayloadCase166NewOwnerFeatureBlocksWebAnalyticsBlockReason =
   | "admin_override"
   | "hard_blocked"
   | "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksWebAnalyticsBlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksWebAnalytics {
   updatedAt: number;
@@ -11828,13 +11780,13 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksMonitoringBlockReason =
   | "hard_blocked"
   | "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksMonitoringBlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UserEventPayloadCase166NewOwnerFeatureBlocksMonitoringBlockType =
   | "hard"
   | "soft";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksMonitoringBlockType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A soft block indicates a temporary pause in data collection (ex limit exceeded for the current cycle) A hard block indicates a stoppage in data collection that requires manual intervention (ex upgrading a pro trial) */
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksMonitoring {
@@ -11864,13 +11816,13 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksObservabilityPlusBlockRe
   | "hard_blocked"
   | "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksObservabilityPlusBlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UserEventPayloadCase166NewOwnerFeatureBlocksObservabilityPlusBlockType =
   | "hard"
   | "soft";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksObservabilityPlusBlockType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksObservabilityPlus {
   updatedAt: number;
@@ -11899,7 +11851,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksDataCacheBlockReason =
   | "hard_blocked"
   | "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksDataCacheBlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksDataCache {
   updatedAt: number;
@@ -11925,7 +11877,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksImageOptimizationTransfo
   | "hard_blocked"
   | "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksImageOptimizationTransformationBlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksImageOptimizationTransformation {
   updatedAt: number;
@@ -11952,7 +11904,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksSourceImagesBlockReason 
   | "hard_blocked"
   | "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksSourceImagesBlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksSourceImages {
   updatedAt: number;
@@ -11976,7 +11928,7 @@ export const UserEventPayloadCase166NewOwnerFeatureBlocksSourceImages =
 export type UserEventPayloadCase166NewOwnerFeatureBlocksBlobCase0BlockReason =
   "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksBlobCase0BlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UserEventPayloadCase166NewOwnerFeatureBlocksBlobCase0OverageReason =
   | "analyticsUsage"
@@ -12019,7 +11971,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksBlobCase0OverageReason =
   | "wafRateLimitRequest"
   | "webAnalyticsEvent";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksBlobCase0OverageReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksBlobCase0 {
   updatedAt: number;
@@ -12047,7 +11999,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksBlobCase1BlockReason =
   | "admin_override"
   | "hard_blocked";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksBlobCase1BlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksBlobCase1 {
   updatedAt: number;
@@ -12072,12 +12024,12 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksBlob =
   | UserEventPayloadCase166NewOwnerFeatureBlocksBlobCase0
   | UserEventPayloadCase166NewOwnerFeatureBlocksBlobCase1;
 export const UserEventPayloadCase166NewOwnerFeatureBlocksBlob =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerFeatureBlocksBlob>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerFeatureBlocksBlob>;
 
 export type UserEventPayloadCase166NewOwnerFeatureBlocksPostgresCase0BlockReason =
   "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksPostgresCase0BlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UserEventPayloadCase166NewOwnerFeatureBlocksPostgresCase0OverageReason =
   | "analyticsUsage"
@@ -12120,7 +12072,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksPostgresCase0OverageReas
   | "wafRateLimitRequest"
   | "webAnalyticsEvent";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksPostgresCase0OverageReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksPostgresCase0 {
   updatedAt: number;
@@ -12148,7 +12100,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksPostgresCase1BlockReason
   | "admin_override"
   | "hard_blocked";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksPostgresCase1BlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksPostgresCase1 {
   updatedAt: number;
@@ -12173,12 +12125,12 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksPostgres =
   | UserEventPayloadCase166NewOwnerFeatureBlocksPostgresCase0
   | UserEventPayloadCase166NewOwnerFeatureBlocksPostgresCase1;
 export const UserEventPayloadCase166NewOwnerFeatureBlocksPostgres =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerFeatureBlocksPostgres>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerFeatureBlocksPostgres>;
 
 export type UserEventPayloadCase166NewOwnerFeatureBlocksRedisCase0BlockReason =
   "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksRedisCase0BlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UserEventPayloadCase166NewOwnerFeatureBlocksRedisCase0OverageReason =
   | "analyticsUsage"
@@ -12221,7 +12173,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksRedisCase0OverageReason 
   | "wafRateLimitRequest"
   | "webAnalyticsEvent";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksRedisCase0OverageReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksRedisCase0 {
   updatedAt: number;
@@ -12249,7 +12201,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksRedisCase1BlockReason =
   | "admin_override"
   | "hard_blocked";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksRedisCase1BlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksRedisCase1 {
   updatedAt: number;
@@ -12274,14 +12226,14 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksRedis =
   | UserEventPayloadCase166NewOwnerFeatureBlocksRedisCase0
   | UserEventPayloadCase166NewOwnerFeatureBlocksRedisCase1;
 export const UserEventPayloadCase166NewOwnerFeatureBlocksRedis =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerFeatureBlocksRedis>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase166NewOwnerFeatureBlocksRedis>;
 
 export type UserEventPayloadCase166NewOwnerFeatureBlocksMicrofrontendsRequestBlockReason =
   | "admin_override"
   | "hard_blocked"
   | "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksMicrofrontendsRequestBlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksMicrofrontendsRequest {
   updatedAt: number;
@@ -12308,7 +12260,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksWorkflowStorageWriteBloc
   | "hard_blocked"
   | "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksWorkflowStorageWriteBlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksWorkflowStorageWrite {
   updatedAt: number;
@@ -12335,7 +12287,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksWorkflowEventsBlockReaso
   | "hard_blocked"
   | "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksWorkflowEventsBlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksWorkflowEvents {
   updatedAt: number;
@@ -12361,7 +12313,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksConnexForwardTriggersBlo
   | "hard_blocked"
   | "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksConnexForwardTriggersBlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksConnexForwardTriggers {
   updatedAt: number;
@@ -12388,7 +12340,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksConnexTokenRequestsBlock
   | "hard_blocked"
   | "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksConnexTokenRequestsBlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksConnexTokenRequests {
   updatedAt: number;
@@ -12415,7 +12367,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksKmsOperationsBlockReason
   | "hard_blocked"
   | "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksKmsOperationsBlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksKmsOperations {
   updatedAt: number;
@@ -12441,7 +12393,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksTracingBlockReason =
   | "hard_blocked"
   | "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksTracingBlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksTracing {
   updatedAt: number;
@@ -12467,7 +12419,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksSandboxStorageBlockReaso
   | "hard_blocked"
   | "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksSandboxStorageBlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksSandboxStorage {
   updatedAt: number;
@@ -12493,7 +12445,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksVcrBlockReason =
   | "hard_blocked"
   | "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksVcrBlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksVcr {
   updatedAt: number;
@@ -12518,7 +12470,7 @@ export type UserEventPayloadCase166NewOwnerFeatureBlocksSpeedInsightsFreeBlockRe
   | "hard_blocked"
   | "limits_exceeded";
 export const UserEventPayloadCase166NewOwnerFeatureBlocksSpeedInsightsFreeBlockReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Pauses Speed Insights free data-point ingestion when the team-wide free allocation is exhausted. The block lasts at least 14 days and is extended while rolling usage stays above half of the allocation. */
 export interface UserEventPayloadCase166NewOwnerFeatureBlocksSpeedInsightsFree {
@@ -12622,7 +12574,7 @@ export const UserEventPayloadCase166NewOwnerFeatureBlocks =
   }) as any as S.Schema<UserEventPayloadCase166NewOwnerFeatureBlocks>;
 
 export type UserEventPayloadCase166NewOwnerVersion = "northstar";
-export const UserEventPayloadCase166NewOwnerVersion = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase166NewOwnerVersion = S.String;
 
 /** An archive of information about the Northstar migration, derived from the old (deprecated) property, `northstarMigrationEvents`. */
 export interface UserEventPayloadCase166NewOwnerNorthstarMigration {
@@ -12682,7 +12634,7 @@ export type UserEventPayloadCase166NewOwnerMfaConfigurationHistoryItemAction =
   | "disabled"
   | "enabled";
 export const UserEventPayloadCase166NewOwnerMfaConfigurationHistoryItemAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Method used for the state change - 'totp': User set up TOTP authenticator - 'passkey': User registered a passkey - 'user_disabled': User disabled their own MFA - 'admin_removal': Admin removed MFA via backoffice - 'self_serve_recovery': User disabled their own MFA through the self-serve MFA disable recovery flow (a "Locked Out User" with only a passkey) - 'unknown': Method unknown (for pre-tracking events) */
 export type UserEventPayloadCase166NewOwnerMfaConfigurationHistoryItemMethod =
@@ -12693,14 +12645,14 @@ export type UserEventPayloadCase166NewOwnerMfaConfigurationHistoryItemMethod =
   | "unknown"
   | "user_disabled";
 export const UserEventPayloadCase166NewOwnerMfaConfigurationHistoryItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Type of actor */
 export type UserEventPayloadCase166NewOwnerMfaConfigurationHistoryItemActorType =
   | "admin"
   | "user";
 export const UserEventPayloadCase166NewOwnerMfaConfigurationHistoryItemActorType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** History of MFA state changes (enabled/disabled events). Most recent events first. */
 export interface UserEventPayloadCase166NewOwnerMfaConfigurationHistoryItem {
@@ -13163,13 +13115,13 @@ export const UserEventPayloadCase172ProjectIdsCase0List = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UserEventPayloadCase172ProjectIdsCase0List>;
 
 export type UserEventPayloadCase172ProjectIdsCase1 = "all";
-export const UserEventPayloadCase172ProjectIdsCase1 = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase172ProjectIdsCase1 = S.String;
 
 export type UserEventPayloadCase172ProjectIds =
   | UserEventPayloadCase172ProjectIdsCase0List
   | UserEventPayloadCase172ProjectIdsCase1;
 export const UserEventPayloadCase172ProjectIds =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase172ProjectIds>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase172ProjectIds>;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase172 {
@@ -13198,7 +13150,7 @@ export type UserEventPayloadCase173QueryType =
   | "data-view"
   | "schema"
   | "user";
-export const UserEventPayloadCase173QueryType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase173QueryType = S.String;
 
 export type UserEventPayloadCase173QueriesItemTablesList = Array<string>;
 export const UserEventPayloadCase173QueriesItemTablesList =
@@ -13287,7 +13239,7 @@ export const UserEventPayloadCase173 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase173>;
 
 export type UserEventPayloadCase174RequestKind = "raw_commands";
-export const UserEventPayloadCase174RequestKind = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase174RequestKind = S.String;
 
 export type UserEventPayloadCase174CommandsList = Array<string>;
 export const UserEventPayloadCase174CommandsList = /*@__PURE__*/ S.Array(
@@ -13325,7 +13277,7 @@ export const UserEventPayloadCase174 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase174>;
 
 export type UserEventPayloadCase175RequestKind = "list_keys";
-export const UserEventPayloadCase175RequestKind = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase175RequestKind = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase175 {
@@ -13356,7 +13308,7 @@ export const UserEventPayloadCase175 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase175>;
 
 export type UserEventPayloadCase176RequestKind = "get_keys_metadata";
-export const UserEventPayloadCase176RequestKind = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase176RequestKind = S.String;
 
 export type UserEventPayloadCase176KeysList = Array<string>;
 export const UserEventPayloadCase176KeysList = /*@__PURE__*/ S.Array(
@@ -13390,7 +13342,7 @@ export const UserEventPayloadCase176 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase176>;
 
 export type UserEventPayloadCase177RequestKind = "get_key_data";
-export const UserEventPayloadCase177RequestKind = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase177RequestKind = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase177 {
@@ -13569,7 +13521,7 @@ export type UserEventPayloadCase186Provider =
   | "gitlab"
   | "google"
   | "saml";
-export const UserEventPayloadCase186Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase186Provider = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase186 {
@@ -13595,7 +13547,7 @@ export type UserEventPayloadCase187Provider =
   | "gitlab"
   | "google"
   | "saml";
-export const UserEventPayloadCase187Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase187Provider = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase187 {
@@ -13687,8 +13639,7 @@ export type UserEventPayloadCase188FactorsCase0ItemOrigin =
   | "otp-link"
   | "saml"
   | "webauthn";
-export const UserEventPayloadCase188FactorsCase0ItemOrigin =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase188FactorsCase0ItemOrigin = S.String;
 
 export interface UserEventPayloadCase188FactorsCase0Item {
   origin: UserEventPayloadCase188FactorsCase0ItemOrigin;
@@ -13731,8 +13682,7 @@ export type UserEventPayloadCase188FactorsCase1ItemCase0Origin =
   | "otp-link"
   | "saml"
   | "webauthn";
-export const UserEventPayloadCase188FactorsCase1ItemCase0Origin =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase188FactorsCase1ItemCase0Origin = S.String;
 
 export interface UserEventPayloadCase188FactorsCase1ItemCase0 {
   origin: UserEventPayloadCase188FactorsCase1ItemCase0Origin;
@@ -13758,8 +13708,7 @@ export type UserEventPayloadCase188FactorsCase1ItemCase1Origin =
   | "recovery-code"
   | "totp"
   | "webauthn";
-export const UserEventPayloadCase188FactorsCase1ItemCase1Origin =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase188FactorsCase1ItemCase1Origin = S.String;
 
 export interface UserEventPayloadCase188FactorsCase1ItemCase1 {
   origin: UserEventPayloadCase188FactorsCase1ItemCase1Origin;
@@ -13777,7 +13726,7 @@ export type UserEventPayloadCase188FactorsCase1Item =
   | UserEventPayloadCase188FactorsCase1ItemCase0
   | UserEventPayloadCase188FactorsCase1ItemCase1;
 export const UserEventPayloadCase188FactorsCase1Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase188FactorsCase1Item>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase188FactorsCase1Item>;
 
 export type UserEventPayloadCase188FactorsCase1List =
   Array<UserEventPayloadCase188FactorsCase1Item>;
@@ -13789,7 +13738,7 @@ export type UserEventPayloadCase188Factors =
   | UserEventPayloadCase188FactorsCase0List
   | UserEventPayloadCase188FactorsCase1List;
 export const UserEventPayloadCase188Factors =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase188Factors>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase188Factors>;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase188 {
@@ -14090,7 +14039,7 @@ export type UserEventPayloadCase195ProjectMicrofrontends =
   | UserEventPayloadCase195ProjectMicrofrontendsCase1
   | UserEventPayloadCase195ProjectMicrofrontendsCase2;
 export const UserEventPayloadCase195ProjectMicrofrontends =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase195ProjectMicrofrontends>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase195ProjectMicrofrontends>;
 
 export interface UserEventPayloadCase195Project {
   id: string;
@@ -14216,7 +14165,7 @@ export type UserEventPayloadCase195PrevProjectMicrofrontends =
   | UserEventPayloadCase195PrevProjectMicrofrontendsCase1
   | UserEventPayloadCase195PrevProjectMicrofrontendsCase2;
 export const UserEventPayloadCase195PrevProjectMicrofrontends =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase195PrevProjectMicrofrontends>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase195PrevProjectMicrofrontends>;
 
 export interface UserEventPayloadCase195PrevProject {
   microfrontends?: UserEventPayloadCase195PrevProjectMicrofrontends;
@@ -14316,7 +14265,7 @@ export type UserEventPayloadCase199NextDefault =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const UserEventPayloadCase199NextDefault = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase199NextDefault = S.String;
 
 export type UserEventPayloadCase199NextRolesValue =
   | "BILLING"
@@ -14327,7 +14276,7 @@ export type UserEventPayloadCase199NextRolesValue =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const UserEventPayloadCase199NextRolesValue = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase199NextRolesValue = S.String;
 
 export type UserEventPayloadCase199NextRolesMap = {
   [key: string]: UserEventPayloadCase199NextRolesValue | undefined;
@@ -14401,7 +14350,7 @@ export const UserEventPayloadCase201 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase201>;
 
 export type UserEventPayloadCase202BillingPlan = "enterprise" | "platform";
-export const UserEventPayloadCase202BillingPlan = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase202BillingPlan = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase202 {
@@ -14495,14 +14444,13 @@ export const UserEventPayloadCase206 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase206>;
 
 export type UserEventPayloadCase207PreviousEnforcementScope = "all" | "preview";
-export const UserEventPayloadCase207PreviousEnforcementScope =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase207PreviousEnforcementScope = S.String;
 
 export type UserEventPayloadCase207PreviousNewResourceBlockingPolicy =
   | "allow"
   | "block";
 export const UserEventPayloadCase207PreviousNewResourceBlockingPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase207Previous {
   enabled: boolean;
@@ -14541,14 +14489,12 @@ export const UserEventPayloadCase207Previous = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase207Previous>;
 
 export type UserEventPayloadCase207NextEnforcementScope = "all" | "preview";
-export const UserEventPayloadCase207NextEnforcementScope =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase207NextEnforcementScope = S.String;
 
 export type UserEventPayloadCase207NextNewResourceBlockingPolicy =
   | "allow"
   | "block";
-export const UserEventPayloadCase207NextNewResourceBlockingPolicy =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase207NextNewResourceBlockingPolicy = S.String;
 
 export interface UserEventPayloadCase207Next {
   enabled: boolean;
@@ -14665,10 +14611,10 @@ export const UserEventPayloadCase210 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase210>;
 
 export type UserEventPayloadCase211ApprovalScope = "all" | "preview";
-export const UserEventPayloadCase211ApprovalScope = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase211ApprovalScope = S.String;
 
 export type UserEventPayloadCase211Kind = "connectSrc" | "script";
-export const UserEventPayloadCase211Kind = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase211Kind = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase211 {
@@ -14693,7 +14639,7 @@ export const UserEventPayloadCase211 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase211>;
 
 export type UserEventPayloadCase212Type = "script";
-export const UserEventPayloadCase212Type = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase212Type = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase212 {
@@ -14712,7 +14658,7 @@ export const UserEventPayloadCase212 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase212>;
 
 export type UserEventPayloadCase213Type = "header";
-export const UserEventPayloadCase213Type = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase213Type = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase213 {
@@ -14731,7 +14677,7 @@ export const UserEventPayloadCase213 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase213>;
 
 export type UserEventPayloadCase214Type = "connectSrc";
-export const UserEventPayloadCase214Type = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase214Type = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase214 {
@@ -14750,7 +14696,7 @@ export const UserEventPayloadCase214 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase214>;
 
 export type UserEventPayloadCase215Kind = "connectSrc" | "script";
-export const UserEventPayloadCase215Kind = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase215Kind = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase215 {
@@ -14845,8 +14791,7 @@ export type UserEventPayloadCase219PreviousPassportDeploymentType =
   | "all_except_custom_domains"
   | "preview"
   | "prod_deployment_urls_and_all_previews";
-export const UserEventPayloadCase219PreviousPassportDeploymentType =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase219PreviousPassportDeploymentType = S.String;
 
 export interface UserEventPayloadCase219PreviousPassport {
   connectorId: string;
@@ -14878,8 +14823,7 @@ export type UserEventPayloadCase219NextPassportDeploymentType =
   | "all_except_custom_domains"
   | "preview"
   | "prod_deployment_urls_and_all_previews";
-export const UserEventPayloadCase219NextPassportDeploymentType =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase219NextPassportDeploymentType = S.String;
 
 export interface UserEventPayloadCase219NextPassport {
   connectorId: string;
@@ -14928,8 +14872,7 @@ export type UserEventPayloadCase220PreviousPassportDeploymentType =
   | "all_except_custom_domains"
   | "preview"
   | "prod_deployment_urls_and_all_previews";
-export const UserEventPayloadCase220PreviousPassportDeploymentType =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase220PreviousPassportDeploymentType = S.String;
 
 export interface UserEventPayloadCase220PreviousPassport {
   connectorId: string;
@@ -14961,8 +14904,7 @@ export type UserEventPayloadCase220NextPassportDeploymentType =
   | "all_except_custom_domains"
   | "preview"
   | "prod_deployment_urls_and_all_previews";
-export const UserEventPayloadCase220NextPassportDeploymentType =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase220NextPassportDeploymentType = S.String;
 
 export interface UserEventPayloadCase220NextPassport {
   connectorId: string;
@@ -15011,8 +14953,7 @@ export type UserEventPayloadCase221RemovedUsersValueRole =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const UserEventPayloadCase221RemovedUsersValueRole =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase221RemovedUsersValueRole = S.String;
 
 export type UserEventPayloadCase221RemovedUsersValueJoinedFromOrigin =
   | "account-update"
@@ -15035,13 +14976,13 @@ export type UserEventPayloadCase221RemovedUsersValueJoinedFromOrigin =
   | "saml"
   | "teams";
 export const UserEventPayloadCase221RemovedUsersValueJoinedFromOrigin =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UserEventPayloadCase221RemovedUsersValueJoinedFromGitUserId =
   | string
   | number;
 export const UserEventPayloadCase221RemovedUsersValueJoinedFromGitUserId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase221RemovedUsersValueJoinedFromGitUserId>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase221RemovedUsersValueJoinedFromGitUserId>;
 
 export interface UserEventPayloadCase221RemovedUsersValueJoinedFrom {
   origin: UserEventPayloadCase221RemovedUsersValueJoinedFromOrigin;
@@ -15150,8 +15091,7 @@ export type UserEventPayloadCase222RemovedUsersValueRole =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const UserEventPayloadCase222RemovedUsersValueRole =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase222RemovedUsersValueRole = S.String;
 
 export type UserEventPayloadCase222RemovedUsersValueJoinedFromOrigin =
   | "account-update"
@@ -15174,13 +15114,13 @@ export type UserEventPayloadCase222RemovedUsersValueJoinedFromOrigin =
   | "saml"
   | "teams";
 export const UserEventPayloadCase222RemovedUsersValueJoinedFromOrigin =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UserEventPayloadCase222RemovedUsersValueJoinedFromGitUserId =
   | string
   | number;
 export const UserEventPayloadCase222RemovedUsersValueJoinedFromGitUserId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase222RemovedUsersValueJoinedFromGitUserId>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase222RemovedUsersValueJoinedFromGitUserId>;
 
 export interface UserEventPayloadCase222RemovedUsersValueJoinedFrom {
   origin: UserEventPayloadCase222RemovedUsersValueJoinedFromOrigin;
@@ -15245,7 +15185,7 @@ export const UserEventPayloadCase222RemovedUsersMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserEventPayloadCase222RemovedUsersMap>;
 
 export type UserEventPayloadCase222ActorType = "admin";
-export const UserEventPayloadCase222ActorType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase222ActorType = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase222 {
@@ -15666,7 +15606,7 @@ export type UserEventPayloadCase233Action =
   | "enabled"
   | "regenerated"
   | "updated";
-export const UserEventPayloadCase233Action = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase233Action = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase233 {
@@ -15832,7 +15772,7 @@ export type UserEventPayloadCase241Widget =
   | "speed-insights-cls"
   | "speed-insights-lcp"
   | "speed-insights-res";
-export const UserEventPayloadCase241Widget = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase241Widget = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase241 {
@@ -15898,13 +15838,13 @@ export type UserEventPayloadCase244ProjectOldConnectConfigurationsItemEnvIdCase1
   | "preview"
   | "production";
 export const UserEventPayloadCase244ProjectOldConnectConfigurationsItemEnvIdCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UserEventPayloadCase244ProjectOldConnectConfigurationsItemEnvId =
   | string
   | UserEventPayloadCase244ProjectOldConnectConfigurationsItemEnvIdCase1;
 export const UserEventPayloadCase244ProjectOldConnectConfigurationsItemEnvId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase244ProjectOldConnectConfigurationsItemEnvId>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase244ProjectOldConnectConfigurationsItemEnvId>;
 
 export type UserEventPayloadCase244ProjectOldConnectConfigurationsItemAwsSubnetIdsList =
   Array<string>;
@@ -15967,13 +15907,13 @@ export type UserEventPayloadCase244ProjectNewConnectConfigurationsItemEnvIdCase1
   | "preview"
   | "production";
 export const UserEventPayloadCase244ProjectNewConnectConfigurationsItemEnvIdCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UserEventPayloadCase244ProjectNewConnectConfigurationsItemEnvId =
   | string
   | UserEventPayloadCase244ProjectNewConnectConfigurationsItemEnvIdCase1;
 export const UserEventPayloadCase244ProjectNewConnectConfigurationsItemEnvId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase244ProjectNewConnectConfigurationsItemEnvId>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase244ProjectNewConnectConfigurationsItemEnvId>;
 
 export type UserEventPayloadCase244ProjectNewConnectConfigurationsItemAwsSubnetIdsList =
   Array<string>;
@@ -16074,7 +16014,7 @@ export const UserEventPayloadCase245 =
   UserEventPayloadCase152UpdateDiffOldProjectsItem;
 
 export type UserEventPayloadCase246Action = "disabled" | "enabled";
-export const UserEventPayloadCase246Action = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase246Action = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase246 {
@@ -16109,14 +16049,12 @@ export const UserEventPayloadCase247 = /*@__PURE__*/ S.suspend(() =>
 export type UserEventPayloadCase248BuildQueueConfiguration =
   | "SKIP_NAMESPACE_QUEUE"
   | "WAIT_FOR_NAMESPACE_QUEUE";
-export const UserEventPayloadCase248BuildQueueConfiguration =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase248BuildQueueConfiguration = S.String;
 
 export type UserEventPayloadCase248OldBuildQueueConfiguration =
   | "SKIP_NAMESPACE_QUEUE"
   | "WAIT_FOR_NAMESPACE_QUEUE";
-export const UserEventPayloadCase248OldBuildQueueConfiguration =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase248OldBuildQueueConfiguration = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase248 {
@@ -16181,8 +16119,7 @@ export type UserEventPayloadCase251PreviousBranchMatcherType =
   | "endsWith"
   | "equals"
   | "startsWith";
-export const UserEventPayloadCase251PreviousBranchMatcherType =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase251PreviousBranchMatcherType = S.String;
 
 export interface UserEventPayloadCase251PreviousBranchMatcher {
   /** The type of matching to perform */
@@ -16216,8 +16153,7 @@ export type UserEventPayloadCase251NextBranchMatcherType =
   | "endsWith"
   | "equals"
   | "startsWith";
-export const UserEventPayloadCase251NextBranchMatcherType =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase251NextBranchMatcherType = S.String;
 
 export interface UserEventPayloadCase251NextBranchMatcher {
   /** The type of matching to perform */
@@ -16519,8 +16455,7 @@ export type UserEventPayloadCase260PreviousGitProvider =
   | "github-limited"
   | "gitlab"
   | "vercel";
-export const UserEventPayloadCase260PreviousGitProvider =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase260PreviousGitProvider = S.String;
 
 export interface UserEventPayloadCase260Previous {
   gitProvider: UserEventPayloadCase260PreviousGitProvider;
@@ -16545,7 +16480,7 @@ export type UserEventPayloadCase260NextGitProvider =
   | "github-limited"
   | "gitlab"
   | "vercel";
-export const UserEventPayloadCase260NextGitProvider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase260NextGitProvider = S.String;
 
 export interface UserEventPayloadCase260Next {
   gitProvider: UserEventPayloadCase260NextGitProvider;
@@ -16588,7 +16523,7 @@ export type UserEventPayloadCase261GitProvider =
   | "github-limited"
   | "gitlab"
   | "vercel";
-export const UserEventPayloadCase261GitProvider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase261GitProvider = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase261 {
@@ -16659,7 +16594,7 @@ export const UserEventPayloadCase264 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase264>;
 
 export type UserEventPayloadCase265CreateDeployments = "disabled" | "enabled";
-export const UserEventPayloadCase265CreateDeployments = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase265CreateDeployments = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase265 {
@@ -16906,7 +16841,7 @@ export type UserEventPayloadCase277ProjectsItemRole =
   | "PROJECT_DEVELOPER"
   | "PROJECT_GUEST"
   | "PROJECT_VIEWER";
-export const UserEventPayloadCase277ProjectsItemRole = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase277ProjectsItemRole = S.String;
 
 export interface UserEventPayloadCase277ProjectsItem {
   projectId: string;
@@ -16999,8 +16934,7 @@ export type UserEventPayloadCase279ProjectMembershipRole =
   | "PROJECT_DEVELOPER"
   | "PROJECT_GUEST"
   | "PROJECT_VIEWER";
-export const UserEventPayloadCase279ProjectMembershipRole =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase279ProjectMembershipRole = S.String;
 
 export interface UserEventPayloadCase279ProjectMembership {
   role: UserEventPayloadCase279ProjectMembershipRole;
@@ -17039,7 +16973,7 @@ export type UserEventPayloadCase280ProjectRole =
   | "PROJECT_DEVELOPER"
   | "PROJECT_GUEST"
   | "PROJECT_VIEWER";
-export const UserEventPayloadCase280ProjectRole = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase280ProjectRole = S.String;
 
 export interface UserEventPayloadCase280Project {
   name: string;
@@ -17080,8 +17014,7 @@ export type UserEventPayloadCase281RemovedMembershipRole =
   | "PROJECT_DEVELOPER"
   | "PROJECT_GUEST"
   | "PROJECT_VIEWER";
-export const UserEventPayloadCase281RemovedMembershipRole =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase281RemovedMembershipRole = S.String;
 
 export interface UserEventPayloadCase281RemovedMembership {
   role: UserEventPayloadCase281RemovedMembershipRole;
@@ -17123,16 +17056,14 @@ export type UserEventPayloadCase282ProjectMembershipRole =
   | "PROJECT_DEVELOPER"
   | "PROJECT_GUEST"
   | "PROJECT_VIEWER";
-export const UserEventPayloadCase282ProjectMembershipRole =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase282ProjectMembershipRole = S.String;
 
 export type UserEventPayloadCase282ProjectMembershipPreviousRole =
   | "ADMIN"
   | "PROJECT_DEVELOPER"
   | "PROJECT_GUEST"
   | "PROJECT_VIEWER";
-export const UserEventPayloadCase282ProjectMembershipPreviousRole =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase282ProjectMembershipPreviousRole = S.String;
 
 export interface UserEventPayloadCase282ProjectMembership {
   role?: UserEventPayloadCase282ProjectMembershipRole;
@@ -17353,7 +17284,7 @@ export type UserEventPayloadCase289PasswordProtectionCase0DeploymentType =
   | "preview"
   | "prod_deployment_urls_and_all_previews";
 export const UserEventPayloadCase289PasswordProtectionCase0DeploymentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase289PasswordProtectionCase0 {
   deploymentType: UserEventPayloadCase289PasswordProtectionCase0DeploymentType;
@@ -17373,14 +17304,13 @@ export type UserEventPayloadCase289PasswordProtectionCase1 =
   | "all_except_custom_domains"
   | "preview"
   | "prod_deployment_urls_and_all_previews";
-export const UserEventPayloadCase289PasswordProtectionCase1 =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase289PasswordProtectionCase1 = S.String;
 
 export type UserEventPayloadCase289PasswordProtection =
   | UserEventPayloadCase289PasswordProtectionCase0
   | UserEventPayloadCase289PasswordProtectionCase1;
 export const UserEventPayloadCase289PasswordProtection =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase289PasswordProtection>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase289PasswordProtection>;
 
 export type UserEventPayloadCase289OldPasswordProtectionCase0DeploymentType =
   | "all"
@@ -17388,7 +17318,7 @@ export type UserEventPayloadCase289OldPasswordProtectionCase0DeploymentType =
   | "preview"
   | "prod_deployment_urls_and_all_previews";
 export const UserEventPayloadCase289OldPasswordProtectionCase0DeploymentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase289OldPasswordProtectionCase0 {
   deploymentType: UserEventPayloadCase289OldPasswordProtectionCase0DeploymentType;
@@ -17408,14 +17338,13 @@ export type UserEventPayloadCase289OldPasswordProtectionCase1 =
   | "all_except_custom_domains"
   | "preview"
   | "prod_deployment_urls_and_all_previews";
-export const UserEventPayloadCase289OldPasswordProtectionCase1 =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase289OldPasswordProtectionCase1 = S.String;
 
 export type UserEventPayloadCase289OldPasswordProtection =
   | UserEventPayloadCase289OldPasswordProtectionCase0
   | UserEventPayloadCase289OldPasswordProtectionCase1;
 export const UserEventPayloadCase289OldPasswordProtection =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase289OldPasswordProtection>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase289OldPasswordProtection>;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase289 {
@@ -17467,7 +17396,7 @@ export type UserEventPayloadCase292ReasonCode =
   | "BACKOFFICE"
   | "BUDGET_REACHED"
   | "PUBLIC_API";
-export const UserEventPayloadCase292ReasonCode = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase292ReasonCode = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase292 {
@@ -17487,7 +17416,7 @@ export const UserEventPayloadCase292 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase292>;
 
 export type UserEventPayloadCase293Consent = "granted" | "refused";
-export const UserEventPayloadCase293Consent = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase293Consent = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase293 {
@@ -17643,7 +17572,7 @@ export const UserEventPayloadCase299 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase299>;
 
 export type UserEventPayloadCase300PreviousIssuerMode = "global" | "team";
-export const UserEventPayloadCase300PreviousIssuerMode = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase300PreviousIssuerMode = S.String;
 
 export interface UserEventPayloadCase300Previous {
   issuerMode?: UserEventPayloadCase300PreviousIssuerMode;
@@ -17657,7 +17586,7 @@ export const UserEventPayloadCase300Previous = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase300Previous>;
 
 export type UserEventPayloadCase300NextIssuerMode = "global" | "team";
-export const UserEventPayloadCase300NextIssuerMode = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase300NextIssuerMode = S.String;
 
 export interface UserEventPayloadCase300Next {
   issuerMode: UserEventPayloadCase300NextIssuerMode;
@@ -17948,8 +17877,7 @@ export type UserEventPayloadCase310SsoProtectionCase0DeploymentType =
   | "all_except_custom_domains"
   | "preview"
   | "prod_deployment_urls_and_all_previews";
-export const UserEventPayloadCase310SsoProtectionCase0DeploymentType =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase310SsoProtectionCase0DeploymentType = S.String;
 
 export type UserEventPayloadCase310SsoProtectionCase0Cve55182MigrationAppliedFrom =
   | "all"
@@ -17957,7 +17885,7 @@ export type UserEventPayloadCase310SsoProtectionCase0Cve55182MigrationAppliedFro
   | "preview"
   | "prod_deployment_urls_and_all_previews";
 export const UserEventPayloadCase310SsoProtectionCase0Cve55182MigrationAppliedFrom =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UserEventPayloadCase310SsoProtectionCase0April2026SecurityIncidentMigrationAppliedFrom =
   | "all"
@@ -17965,7 +17893,7 @@ export type UserEventPayloadCase310SsoProtectionCase0April2026SecurityIncidentMi
   | "preview"
   | "prod_deployment_urls_and_all_previews";
 export const UserEventPayloadCase310SsoProtectionCase0April2026SecurityIncidentMigrationAppliedFrom =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase310SsoProtectionCase0 {
   deploymentType: UserEventPayloadCase310SsoProtectionCase0DeploymentType;
@@ -17996,13 +17924,13 @@ export type UserEventPayloadCase310SsoProtectionCase1 =
   | "all_except_custom_domains"
   | "preview"
   | "prod_deployment_urls_and_all_previews";
-export const UserEventPayloadCase310SsoProtectionCase1 = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase310SsoProtectionCase1 = S.String;
 
 export type UserEventPayloadCase310SsoProtection =
   | UserEventPayloadCase310SsoProtectionCase0
   | UserEventPayloadCase310SsoProtectionCase1;
 export const UserEventPayloadCase310SsoProtection =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase310SsoProtection>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase310SsoProtection>;
 
 export type UserEventPayloadCase310OldSsoProtectionCase0DeploymentType =
   | "all"
@@ -18010,7 +17938,7 @@ export type UserEventPayloadCase310OldSsoProtectionCase0DeploymentType =
   | "preview"
   | "prod_deployment_urls_and_all_previews";
 export const UserEventPayloadCase310OldSsoProtectionCase0DeploymentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UserEventPayloadCase310OldSsoProtectionCase0Cve55182MigrationAppliedFrom =
   | "all"
@@ -18018,7 +17946,7 @@ export type UserEventPayloadCase310OldSsoProtectionCase0Cve55182MigrationApplied
   | "preview"
   | "prod_deployment_urls_and_all_previews";
 export const UserEventPayloadCase310OldSsoProtectionCase0Cve55182MigrationAppliedFrom =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UserEventPayloadCase310OldSsoProtectionCase0April2026SecurityIncidentMigrationAppliedFrom =
   | "all"
@@ -18026,7 +17954,7 @@ export type UserEventPayloadCase310OldSsoProtectionCase0April2026SecurityInciden
   | "preview"
   | "prod_deployment_urls_and_all_previews";
 export const UserEventPayloadCase310OldSsoProtectionCase0April2026SecurityIncidentMigrationAppliedFrom =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase310OldSsoProtectionCase0 {
   deploymentType: UserEventPayloadCase310OldSsoProtectionCase0DeploymentType;
@@ -18058,14 +17986,13 @@ export type UserEventPayloadCase310OldSsoProtectionCase1 =
   | "all_except_custom_domains"
   | "preview"
   | "prod_deployment_urls_and_all_previews";
-export const UserEventPayloadCase310OldSsoProtectionCase1 =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase310OldSsoProtectionCase1 = S.String;
 
 export type UserEventPayloadCase310OldSsoProtection =
   | UserEventPayloadCase310OldSsoProtectionCase0
   | UserEventPayloadCase310OldSsoProtectionCase1;
 export const UserEventPayloadCase310OldSsoProtection =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase310OldSsoProtection>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase310OldSsoProtection>;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase310 {
@@ -18212,7 +18139,7 @@ export type UserEventPayloadCase312TrustedIps =
   | "preview"
   | "prod_deployment_urls_and_all_previews"
   | "production";
-export const UserEventPayloadCase312TrustedIps = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase312TrustedIps = S.String;
 
 export type UserEventPayloadCase312OldTrustedIps =
   | "all"
@@ -18220,7 +18147,7 @@ export type UserEventPayloadCase312OldTrustedIps =
   | "preview"
   | "prod_deployment_urls_and_all_previews"
   | "production";
-export const UserEventPayloadCase312OldTrustedIps = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase312OldTrustedIps = S.String;
 
 export type UserEventPayloadCase312AddedAddressesList = Array<string>;
 export const UserEventPayloadCase312AddedAddressesList = /*@__PURE__*/ S.Array(
@@ -18315,7 +18242,7 @@ export const UserEventPayloadCase313 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase313>;
 
 export type UserEventPayloadCase314ReasonCode = "BACKOFFICE" | "PUBLIC_API";
-export const UserEventPayloadCase314ReasonCode = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase314ReasonCode = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase314 {
@@ -18489,7 +18416,7 @@ export const UserEventPayloadCase322 =
   UserEventPayloadCase166NewOwnerSecondaryEmailsItem;
 
 export type UserEventPayloadCase323ActorType = "admin";
-export const UserEventPayloadCase323ActorType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase323ActorType = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase323 {
@@ -18523,7 +18450,7 @@ export type UserEventPayloadCase325Name =
   | string
   | UserEventPayloadCase40OldTeam;
 export const UserEventPayloadCase325Name =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase325Name>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase325Name>;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase325 {
@@ -18672,7 +18599,7 @@ export type UserEventPayloadCase330FactorsItemOrigin =
   | "google"
   | "otp"
   | "saml";
-export const UserEventPayloadCase330FactorsItemOrigin = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase330FactorsItemOrigin = S.String;
 
 export interface UserEventPayloadCase330FactorsItem {
   origin: UserEventPayloadCase330FactorsItemOrigin;
@@ -18838,8 +18765,7 @@ export const UserEventPayloadCase334 = /*@__PURE__*/ S.suspend(() =>
 
 /** The budget type */
 export type UserEventPayloadCase335BudgetBudgetItemType = "fixed";
-export const UserEventPayloadCase335BudgetBudgetItemType =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase335BudgetBudgetItemType = S.String;
 
 /** Array of the last 3 months of spend data */
 export type UserEventPayloadCase335BudgetBudgetItemPreviousSpendList =
@@ -18864,8 +18790,7 @@ export type UserEventPayloadCase335BudgetBudgetItemPricingPlan =
   | "platform"
   | "plus"
   | "unbundled";
-export const UserEventPayloadCase335BudgetBudgetItemPricingPlan =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase335BudgetBudgetItemPricingPlan = S.String;
 
 /** Represents a budget for tracking and notifying teams on their spending. */
 export interface UserEventPayloadCase335BudgetBudgetItem {
@@ -18945,7 +18870,7 @@ export const UserEventPayloadCase335 = /*@__PURE__*/ S.suspend(() =>
 
 /** The budget type */
 export type UserEventPayloadCase336BudgetType = "fixed";
-export const UserEventPayloadCase336BudgetType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase336BudgetType = S.String;
 
 /** Array of the last 3 months of spend data */
 export type UserEventPayloadCase336BudgetPreviousSpendList = Array<number>;
@@ -18968,7 +18893,7 @@ export type UserEventPayloadCase336BudgetPricingPlan =
   | "platform"
   | "plus"
   | "unbundled";
-export const UserEventPayloadCase336BudgetPricingPlan = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase336BudgetPricingPlan = S.String;
 
 /** Represents a budget for tracking and notifying teams on their spending. */
 export interface UserEventPayloadCase336Budget {
@@ -19034,7 +18959,7 @@ export const UserEventPayloadCase336 = /*@__PURE__*/ S.suspend(() =>
 
 /** The budget type */
 export type UserEventPayloadCase337BudgetType = "fixed";
-export const UserEventPayloadCase337BudgetType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase337BudgetType = S.String;
 
 /** Array of the last 3 months of spend data */
 export type UserEventPayloadCase337BudgetPreviousSpendList = Array<number>;
@@ -19057,7 +18982,7 @@ export type UserEventPayloadCase337BudgetPricingPlan =
   | "platform"
   | "plus"
   | "unbundled";
-export const UserEventPayloadCase337BudgetPricingPlan = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase337BudgetPricingPlan = S.String;
 
 /** Represents a budget for tracking and notifying teams on their spending. */
 export interface UserEventPayloadCase337Budget {
@@ -19125,7 +19050,7 @@ export const UserEventPayloadCase337 = /*@__PURE__*/ S.suspend(() =>
 
 /** The budget type */
 export type UserEventPayloadCase338BudgetType = "fixed";
-export const UserEventPayloadCase338BudgetType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase338BudgetType = S.String;
 
 /** Array of the last 3 months of spend data */
 export type UserEventPayloadCase338BudgetPreviousSpendList = Array<number>;
@@ -19148,7 +19073,7 @@ export type UserEventPayloadCase338BudgetPricingPlan =
   | "platform"
   | "plus"
   | "unbundled";
-export const UserEventPayloadCase338BudgetPricingPlan = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase338BudgetPricingPlan = S.String;
 
 /** Represents a budget for tracking and notifying teams on their spending. */
 export interface UserEventPayloadCase338Budget {
@@ -19201,7 +19126,7 @@ export const UserEventPayloadCase338Budget = /*@__PURE__*/ S.suspend(() =>
 
 /** The budget type */
 export type UserEventPayloadCase338PrevBudgetType = "fixed";
-export const UserEventPayloadCase338PrevBudgetType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase338PrevBudgetType = S.String;
 
 /** Array of the last 3 months of spend data */
 export type UserEventPayloadCase338PrevBudgetPreviousSpendList = Array<number>;
@@ -19224,8 +19149,7 @@ export type UserEventPayloadCase338PrevBudgetPricingPlan =
   | "platform"
   | "plus"
   | "unbundled";
-export const UserEventPayloadCase338PrevBudgetPricingPlan =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase338PrevBudgetPricingPlan = S.String;
 
 /** Represents a budget for tracking and notifying teams on their spending. */
 export interface UserEventPayloadCase338PrevBudget {
@@ -19309,7 +19233,7 @@ export const UserEventPayloadCase339 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase339>;
 
 export type UserEventPayloadCase340StoreType = "postgres" | "redis";
-export const UserEventPayloadCase340StoreType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase340StoreType = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase340 {
@@ -19329,7 +19253,7 @@ export type UserEventPayloadCase341StoreType =
   | "integration"
   | "postgres"
   | "redis";
-export const UserEventPayloadCase341StoreType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase341StoreType = S.String;
 
 export interface UserEventPayloadCase341Store {
   id: string;
@@ -19366,7 +19290,7 @@ export type UserEventPayloadCase342StoreType =
   | "integration"
   | "postgres"
   | "redis";
-export const UserEventPayloadCase342StoreType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase342StoreType = S.String;
 
 export interface UserEventPayloadCase342Store {
   id: string;
@@ -19407,7 +19331,7 @@ export type UserEventPayloadCase343StoreType =
   | "integration"
   | "postgres"
   | "redis";
-export const UserEventPayloadCase343StoreType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase343StoreType = S.String;
 
 export interface UserEventPayloadCase343Store {
   id: string;
@@ -19448,10 +19372,10 @@ export type UserEventPayloadCase344Type =
   | "integration"
   | "postgres"
   | "redis";
-export const UserEventPayloadCase344Type = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase344Type = S.String;
 
 export type UserEventPayloadCase344Access = "private" | "public";
-export const UserEventPayloadCase344Access = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase344Access = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase344 {
@@ -19500,10 +19424,10 @@ export type UserEventPayloadCase346Type =
   | "integration"
   | "postgres"
   | "redis";
-export const UserEventPayloadCase346Type = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase346Type = S.String;
 
 export type UserEventPayloadCase346Access = "private" | "public";
-export const UserEventPayloadCase346Access = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase346Access = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase346 {
@@ -19532,7 +19456,7 @@ export const UserEventPayloadCase346 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase346>;
 
 export type UserEventPayloadCase347ActorType = "admin" | "user";
-export const UserEventPayloadCase347ActorType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase347ActorType = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase347 {
@@ -19564,7 +19488,7 @@ export type UserEventPayloadCase349PreviousScope =
   | "private"
   | "public"
   | "selected_repos";
-export const UserEventPayloadCase349PreviousScope = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase349PreviousScope = S.String;
 
 /** GitHub repos to scope automatic reviews to. Format: "owner/repo" (lowercase). Only used when scope='selected_repos'. */
 export type UserEventPayloadCase349PreviousSelectedReposList = Array<string>;
@@ -19603,7 +19527,7 @@ export type UserEventPayloadCase349NextScope =
   | "private"
   | "public"
   | "selected_repos";
-export const UserEventPayloadCase349NextScope = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase349NextScope = S.String;
 
 /** GitHub repos to scope automatic reviews to. Format: "owner/repo" (lowercase). Only used when scope='selected_repos'. */
 export type UserEventPayloadCase349NextSelectedReposList = Array<string>;
@@ -19764,13 +19688,13 @@ export type UserEventPayloadCase353Previous =
   | "auto-approval"
   | "block"
   | "manual-approval";
-export const UserEventPayloadCase353Previous = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase353Previous = S.String;
 
 export type UserEventPayloadCase353Next =
   | "auto-approval"
   | "block"
   | "manual-approval";
-export const UserEventPayloadCase353Next = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase353Next = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase353 {
@@ -19794,7 +19718,7 @@ export type UserEventPayloadCase354Previous =
   | "enhanced"
   | "standard"
   | "turbo";
-export const UserEventPayloadCase354Previous = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase354Previous = S.String;
 
 export type UserEventPayloadCase354Next =
   | "basic"
@@ -19802,7 +19726,7 @@ export type UserEventPayloadCase354Next =
   | "enhanced"
   | "standard"
   | "turbo";
-export const UserEventPayloadCase354Next = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase354Next = S.String;
 
 export type UserEventPayloadCase354Reason =
   | "basic-floor"
@@ -19816,7 +19740,7 @@ export type UserEventPayloadCase354Reason =
   | "plan-change"
   | "short-build-duration"
   | "sustained-high-cpu";
-export const UserEventPayloadCase354Reason = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase354Reason = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase354 {
@@ -19864,8 +19788,7 @@ export type UserEventPayloadCase355RemovedUsersValueRole =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const UserEventPayloadCase355RemovedUsersValueRole =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase355RemovedUsersValueRole = S.String;
 
 export interface UserEventPayloadCase355RemovedUsersValue {
   role: UserEventPayloadCase355RemovedUsersValueRole;
@@ -19946,7 +19869,7 @@ export const UserEventPayloadCase357 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase357>;
 
 export type UserEventPayloadCase358Environment = "preview" | "production";
-export const UserEventPayloadCase358Environment = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase358Environment = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase358 {
@@ -19967,7 +19890,7 @@ export const UserEventPayloadCase358 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase358>;
 
 export type UserEventPayloadCase359Environment = "preview" | "production";
-export const UserEventPayloadCase359Environment = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase359Environment = S.String;
 
 export type UserEventPayloadCase359Enabled =
   | "default"
@@ -19976,7 +19899,7 @@ export type UserEventPayloadCase359Enabled =
   | "off-force"
   | "on"
   | "on-force";
-export const UserEventPayloadCase359Enabled = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase359Enabled = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase359 {
@@ -20123,16 +20046,16 @@ export type UserEventPayloadCase365Role =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const UserEventPayloadCase365Role = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase365Role = S.String;
 
 export type UserEventPayloadCase365PreviousPlan =
   | "enterprise"
   | "hobby"
   | "pro";
-export const UserEventPayloadCase365PreviousPlan = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase365PreviousPlan = S.String;
 
 export type UserEventPayloadCase365NewPlan = "enterprise" | "hobby" | "pro";
-export const UserEventPayloadCase365NewPlan = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase365NewPlan = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase365 {
@@ -20299,7 +20222,7 @@ export type UserEventPayloadCase369Source =
   | "organization-teams"
   | "saml"
   | "teams";
-export const UserEventPayloadCase369Source = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase369Source = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase369 {
@@ -20341,8 +20264,7 @@ export type UserEventPayloadCase370PreviousTeamRolesItem =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const UserEventPayloadCase370PreviousTeamRolesItem =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase370PreviousTeamRolesItem = S.String;
 
 export type UserEventPayloadCase370PreviousTeamRolesList =
   Array<UserEventPayloadCase370PreviousTeamRolesItem>;
@@ -20360,7 +20282,7 @@ export type UserEventPayloadCase370TeamRolesItem =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const UserEventPayloadCase370TeamRolesItem = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase370TeamRolesItem = S.String;
 
 export type UserEventPayloadCase370TeamRolesList =
   Array<UserEventPayloadCase370TeamRolesItem>;
@@ -20388,8 +20310,7 @@ export type UserEventPayloadCase370PreviousTeamPermissionsItem =
   | "V0Chatter"
   | "V0Viewer"
   | "WorkflowDecryptor";
-export const UserEventPayloadCase370PreviousTeamPermissionsItem =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase370PreviousTeamPermissionsItem = S.String;
 
 export type UserEventPayloadCase370PreviousTeamPermissionsList =
   Array<UserEventPayloadCase370PreviousTeamPermissionsItem>;
@@ -20418,8 +20339,7 @@ export type UserEventPayloadCase370TeamPermissionsItem =
   | "V0Chatter"
   | "V0Viewer"
   | "WorkflowDecryptor";
-export const UserEventPayloadCase370TeamPermissionsItem =
-  /*@__PURE__*/ S.String;
+export const UserEventPayloadCase370TeamPermissionsItem = S.String;
 
 export type UserEventPayloadCase370TeamPermissionsList =
   Array<UserEventPayloadCase370TeamPermissionsItem>;
@@ -20540,7 +20460,7 @@ export const UserEventPayloadCase375 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase375>;
 
 export type UserEventPayloadCase376Plan = "enterprise" | "hobby" | "pro";
-export const UserEventPayloadCase376Plan = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase376Plan = S.String;
 
 export interface UserEventPayloadCase376Trial {
   start: number;
@@ -20570,7 +20490,7 @@ export const UserEventPayloadCase376 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase376>;
 
 export type UserEventPayloadCase377Plan = "enterprise" | "hobby" | "pro";
-export const UserEventPayloadCase377Plan = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase377Plan = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase377 {
@@ -20613,7 +20533,7 @@ export const UserEventPayloadCase379 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase379>;
 
 export type UserEventPayloadCase380ActorType = "admin";
-export const UserEventPayloadCase380ActorType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase380ActorType = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase380 {
@@ -20635,7 +20555,7 @@ export const UserEventPayloadCase380 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase380>;
 
 export type UserEventPayloadCase381Decision = "keep_on" | "turn_off";
-export const UserEventPayloadCase381Decision = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase381Decision = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase381 {
@@ -20652,7 +20572,7 @@ export const UserEventPayloadCase381 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase381>;
 
 export type UserEventPayloadCase382Consent = "granted" | "refused";
-export const UserEventPayloadCase382Consent = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase382Consent = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase382 {
@@ -20696,7 +20616,7 @@ export const UserEventPayloadCase384 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase384>;
 
 export type UserEventPayloadCase385Enabled = "default" | "off" | "on";
-export const UserEventPayloadCase385Enabled = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase385Enabled = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase385 {
@@ -20711,7 +20631,7 @@ export const UserEventPayloadCase385 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase385>;
 
 export type UserEventPayloadCase386Scope = "dashboard" | "log-drains";
-export const UserEventPayloadCase386Scope = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase386Scope = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase386 {
@@ -20748,13 +20668,13 @@ export type UserEventPayloadCase387PreviousValueCase1 =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const UserEventPayloadCase387PreviousValueCase1 = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase387PreviousValueCase1 = S.String;
 
 export type UserEventPayloadCase387PreviousValue =
   | UserEventPayloadCase387PreviousValueCase0
   | UserEventPayloadCase387PreviousValueCase1;
 export const UserEventPayloadCase387PreviousValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase387PreviousValue>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase387PreviousValue>;
 
 export type UserEventPayloadCase387PreviousMap = {
   [key: string]: UserEventPayloadCase387PreviousValue | undefined;
@@ -20778,13 +20698,13 @@ export type UserEventPayloadCase387NextValueCase1 =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const UserEventPayloadCase387NextValueCase1 = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase387NextValueCase1 = S.String;
 
 export type UserEventPayloadCase387NextValue =
   | UserEventPayloadCase387PreviousValueCase0
   | UserEventPayloadCase387NextValueCase1;
 export const UserEventPayloadCase387NextValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayloadCase387NextValue>;
+  S.Unknown as any as S.Schema<UserEventPayloadCase387NextValue>;
 
 export type UserEventPayloadCase387NextMap = {
   [key: string]: UserEventPayloadCase387NextValue | undefined;
@@ -20887,7 +20807,7 @@ export const UserEventPayloadCase392 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase392>;
 
 export type UserEventPayloadCase393ActorType = "admin";
-export const UserEventPayloadCase393ActorType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase393ActorType = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase393 {
@@ -20909,10 +20829,10 @@ export const UserEventPayloadCase393 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase393>;
 
 export type UserEventPayloadCase394SamplingItemType = "head_sampling";
-export const UserEventPayloadCase394SamplingItemType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase394SamplingItemType = S.String;
 
 export type UserEventPayloadCase394SamplingItemEnv = "preview" | "production";
-export const UserEventPayloadCase394SamplingItemEnv = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase394SamplingItemEnv = S.String;
 
 export interface UserEventPayloadCase394SamplingItem {
   type: UserEventPayloadCase394SamplingItemType;
@@ -20954,7 +20874,7 @@ export const UserEventPayloadCase394 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase394>;
 
 export type UserEventPayloadCase395Reason = "limits-exceeded";
-export const UserEventPayloadCase395Reason = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase395Reason = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase395 {
@@ -20981,7 +20901,7 @@ export const UserEventPayloadCase396 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase396>;
 
 export type UserEventPayloadCase397ActorType = "admin" | "user";
-export const UserEventPayloadCase397ActorType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase397ActorType = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase397 {
@@ -21021,7 +20941,7 @@ export const UserEventPayloadCase398 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase398>;
 
 export type UserEventPayloadCase399ActorType = "admin";
-export const UserEventPayloadCase399ActorType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase399ActorType = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase399 {
@@ -21083,7 +21003,7 @@ export const UserEventPayloadCase402 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase402>;
 
 export type UserEventPayloadCase403ActorType = "admin";
-export const UserEventPayloadCase403ActorType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase403ActorType = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase403 {
@@ -21102,7 +21022,7 @@ export const UserEventPayloadCase403 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase403>;
 
 export type UserEventPayloadCase404ActorType = "admin";
-export const UserEventPayloadCase404ActorType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase404ActorType = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase404 {
@@ -21119,7 +21039,7 @@ export const UserEventPayloadCase404 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase404>;
 
 export type UserEventPayloadCase405ActorType = "admin";
-export const UserEventPayloadCase405ActorType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase405ActorType = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase405 {
@@ -21138,7 +21058,7 @@ export const UserEventPayloadCase405 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase405>;
 
 export type UserEventPayloadCase406ActorType = "admin";
-export const UserEventPayloadCase406ActorType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase406ActorType = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase406 {
@@ -21165,7 +21085,7 @@ export type UserEventPayloadCase407Method =
   | "recovery-code"
   | "totp"
   | "webauthn";
-export const UserEventPayloadCase407Method = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase407Method = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase407 {
@@ -21189,7 +21109,7 @@ export type UserEventPayloadCase408AllowedMethodsItem =
   | "recovery-code"
   | "totp"
   | "webauthn";
-export const UserEventPayloadCase408AllowedMethodsItem = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase408AllowedMethodsItem = S.String;
 
 export type UserEventPayloadCase408AllowedMethodsList =
   Array<UserEventPayloadCase408AllowedMethodsItem>;
@@ -21223,7 +21143,7 @@ export type UserEventPayloadCase409Action =
   | "enable"
   | "regenerate-recovery-codes"
   | "remove-passkey";
-export const UserEventPayloadCase409Action = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase409Action = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase409 {
@@ -21260,7 +21180,7 @@ export type UserEventPayloadCase410Method =
   | "self_serve_recovery"
   | "totp"
   | "user_disabled";
-export const UserEventPayloadCase410Method = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase410Method = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase410 {
@@ -21280,7 +21200,7 @@ export const UserEventPayloadCase410 = /*@__PURE__*/ S.suspend(() =>
 
 /** Absent on events predating the field; those were all logins. */
 export type UserEventPayloadCase411Context = "login" | "sudo";
-export const UserEventPayloadCase411Context = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase411Context = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase411 {
@@ -21349,25 +21269,25 @@ export const UserEventPayloadCase415 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase415>;
 
 export type UserEventPayloadCase416Provider = "google";
-export const UserEventPayloadCase416Provider = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase416Provider = S.String;
 
 export type UserEventPayloadCase416Outcome =
   | "account-matched"
   | "linking-required";
-export const UserEventPayloadCase416Outcome = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase416Outcome = S.String;
 
 export type UserEventPayloadCase416DecisionBasis =
   | "gmail"
   | "none"
   | "workspace-mx";
-export const UserEventPayloadCase416DecisionBasis = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase416DecisionBasis = S.String;
 
 export type UserEventPayloadCase416DecisionMxOutcome =
   | "google"
   | "lookup-error"
   | "non-google"
   | "not-checked";
-export const UserEventPayloadCase416DecisionMxOutcome = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase416DecisionMxOutcome = S.String;
 
 export interface UserEventPayloadCase416Decision {
   authoritative: boolean;
@@ -21423,7 +21343,7 @@ export const UserEventPayloadCase417 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase417>;
 
 export type UserEventPayloadCase418ActorType = "admin";
-export const UserEventPayloadCase418ActorType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase418ActorType = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase418 {
@@ -21447,7 +21367,7 @@ export const UserEventPayloadCase418 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase418>;
 
 export type UserEventPayloadCase419ActorType = "admin";
-export const UserEventPayloadCase419ActorType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase419ActorType = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase419 {
@@ -21758,7 +21678,7 @@ export const UserEventPayloadCase433 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserEventPayloadCase433>;
 
 export type UserEventPayloadCase434Tier = "plus" | "pro";
-export const UserEventPayloadCase434Tier = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase434Tier = S.String;
 
 /** The payload of the event, if requested. */
 export interface UserEventPayloadCase434 {
@@ -21895,7 +21815,7 @@ export type UserEventPayloadCase440GrantType =
   | "authorization_code"
   | "urn:ietf:params:oauth:grant-type:device_code"
   | "urn:ietf:params:oauth:grant-type:token-exchange";
-export const UserEventPayloadCase440GrantType = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase440GrantType = S.String;
 
 export type UserEventPayloadCase440AuthMethod =
   | "app"
@@ -21915,7 +21835,7 @@ export type UserEventPayloadCase440AuthMethod =
   | "saml"
   | "sms"
   | "token-exchange-oidc";
-export const UserEventPayloadCase440AuthMethod = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase440AuthMethod = S.String;
 
 export type UserEventPayloadCase440AppClientAuthenticationUsedMethod =
   | "client_secret_basic"
@@ -21925,7 +21845,7 @@ export type UserEventPayloadCase440AppClientAuthenticationUsedMethod =
   | "oidc_token"
   | "private_key_jwt";
 export const UserEventPayloadCase440AppClientAuthenticationUsedMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserEventPayloadCase440AppClientAuthenticationUsed {
   method: UserEventPayloadCase440AppClientAuthenticationUsedMethod;
@@ -21961,11 +21881,11 @@ export const UserEventPayloadCase440App = /*@__PURE__*/ S.suspend(() =>
 
 /** optional since entries prior to 2026-04-23 do not contain this field */
 export type UserEventPayloadCase440TokenPrefix = "vca_";
-export const UserEventPayloadCase440TokenPrefix = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase440TokenPrefix = S.String;
 
 /** optional; only present when a refresh token was issued (offline_access). */
 export type UserEventPayloadCase440RefreshTokenPrefix = "vcr_";
-export const UserEventPayloadCase440RefreshTokenPrefix = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase440RefreshTokenPrefix = S.String;
 
 export type UserEventPayloadCase440GeolocationCityNames =
   UserEventPayloadCase188GeolocationCityNames;
@@ -22407,7 +22327,7 @@ export const UserEventPayloadCase442 = /*@__PURE__*/ S.suspend(() =>
 
 /** The token prefix used when showing a safe checksum-style fingerprint. */
 export type UserEventPayloadCase443TokenPrefix = "vcp_";
-export const UserEventPayloadCase443TokenPrefix = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase443TokenPrefix = S.String;
 
 /** How the token was issued. Always `'manual'` for explicit PAT creation. */
 export type UserEventPayloadCase443Origin =
@@ -22428,15 +22348,15 @@ export type UserEventPayloadCase443Origin =
   | "saml"
   | "sms"
   | "token-exchange-oidc";
-export const UserEventPayloadCase443Origin = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase443Origin = S.String;
 
 /** Scope of the token: - `'user'`: full-account token (not tied to any team). - `'team'`: scoped to a single team. - `'project'`: scoped to a single project within a team. */
 export type UserEventPayloadCase443Scope = "project" | "team" | "user";
-export const UserEventPayloadCase443Scope = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase443Scope = S.String;
 
 /** Present when `scope` is `'project'`. */
 export type UserEventPayloadCase443ProjectScope = "account" | "project-only";
-export const UserEventPayloadCase443ProjectScope = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase443ProjectScope = S.String;
 
 export type UserEventPayloadCase443GeolocationCityNames =
   UserEventPayloadCase188GeolocationCityNames;
@@ -22550,7 +22470,7 @@ export type UserEventPayloadCase444Origin =
   | "saml"
   | "sms"
   | "token-exchange-oidc";
-export const UserEventPayloadCase444Origin = /*@__PURE__*/ S.String;
+export const UserEventPayloadCase444Origin = S.String;
 
 export type UserEventPayloadCase444GeolocationCityNames =
   UserEventPayloadCase188GeolocationCityNames;
@@ -23133,8 +23053,7 @@ export type UserEventPayload =
   | UserEventPayloadCase443
   | UserEventPayloadCase444
   | UserEventPayloadCase445;
-export const UserEventPayload =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserEventPayload>;
+export const UserEventPayload = S.Unknown as any as S.Schema<UserEventPayload>;
 
 /** Array of events generated by the User. */
 export interface UserEvent {

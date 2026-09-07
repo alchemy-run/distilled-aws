@@ -314,7 +314,7 @@ export type UsernameType = string | redacted.Redacted<string>;
 export type EmailAddressType = string | redacted.Redacted<string>;
 export type UserAttributeValueType = string | redacted.Redacted<string>;
 export type UserStatusType = "ACTIVE" | "INACTIVE" | "PENDING" | (string & {});
-export const UserStatusType = /*@__PURE__*/ S.String;
+export const UserStatusType = S.String;
 
 export type UserType =
   | "USER"
@@ -323,7 +323,7 @@ export type UserType =
   | "MINIMALUSER"
   | "WORKSPACESUSER"
   | (string & {});
-export const UserType = /*@__PURE__*/ S.String;
+export const UserType = S.String;
 
 export type TimeZoneIdType = string;
 export type LocaleType =
@@ -339,12 +339,12 @@ export type LocaleType =
   | "pt_BR"
   | "default"
   | (string & {});
-export const LocaleType = /*@__PURE__*/ S.String;
+export const LocaleType = S.String;
 
 export type SizeType = number;
 export type PositiveSizeType = number;
 export type StorageType = "UNLIMITED" | "QUOTA" | (string & {});
-export const StorageType = /*@__PURE__*/ S.String;
+export const StorageType = S.String;
 
 export interface StorageRuleType {
   StorageAllocatedInBytes?: number;
@@ -425,7 +425,7 @@ export type PrincipalType =
   | "ANONYMOUS"
   | "ORGANIZATION"
   | (string & {});
-export const PrincipalType = /*@__PURE__*/ S.String;
+export const PrincipalType = S.String;
 
 export type RoleType =
   | "VIEWER"
@@ -433,7 +433,7 @@ export type RoleType =
   | "OWNER"
   | "COOWNER"
   | (string & {});
-export const RoleType = /*@__PURE__*/ S.String;
+export const RoleType = S.String;
 
 export interface SharePrincipal {
   Id: string;
@@ -490,7 +490,7 @@ export const AddResourcePermissionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddResourcePermissionsRequest",
 }) as any as S.Schema<AddResourcePermissionsRequest>;
 export type ShareStatusType = "SUCCESS" | "FAILURE" | (string & {});
-export const ShareStatusType = /*@__PURE__*/ S.String;
+export const ShareStatusType = S.String;
 
 export interface ShareResult {
   PrincipalId?: string;
@@ -523,7 +523,7 @@ export const AddResourcePermissionsResponse = /*@__PURE__*/ S.suspend(() =>
 export type CommentIdType = string;
 export type CommentTextType = string | redacted.Redacted<string>;
 export type CommentVisibilityType = "PUBLIC" | "PRIVATE" | (string & {});
-export const CommentVisibilityType = /*@__PURE__*/ S.String;
+export const CommentVisibilityType = S.String;
 
 export interface CreateCommentRequest {
   AuthenticationToken?: string | redacted.Redacted<string>;
@@ -569,7 +569,7 @@ export type CommentStatusType =
   | "PUBLISHED"
   | "DELETED"
   | (string & {});
-export const CommentStatusType = /*@__PURE__*/ S.String;
+export const CommentStatusType = S.String;
 
 export interface Comment {
   CommentId: string;
@@ -682,7 +682,7 @@ export type ResourceStateType =
   | "RECYCLING"
   | "RECYCLED"
   | (string & {});
-export const ResourceStateType = /*@__PURE__*/ S.String;
+export const ResourceStateType = S.String;
 
 export type HashType = string;
 export type SharedLabel = string;
@@ -762,10 +762,10 @@ export const CreateLabelsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateLabelsResponse>;
 export type SubscriptionEndPointType = string;
 export type SubscriptionProtocolType = "HTTPS" | "SQS" | (string & {});
-export const SubscriptionProtocolType = /*@__PURE__*/ S.String;
+export const SubscriptionProtocolType = S.String;
 
 export type SubscriptionType = "ALL" | (string & {});
-export const SubscriptionType = /*@__PURE__*/ S.String;
+export const SubscriptionType = S.String;
 
 export interface CreateNotificationSubscriptionRequest {
   OrganizationId: string;
@@ -1282,7 +1282,7 @@ export type ActivityType =
   | "FOLDER_SHAREABLE_LINK_PERMISSION_CHANGED"
   | "FOLDER_MOVED"
   | (string & {});
-export const ActivityType = /*@__PURE__*/ S.String;
+export const ActivityType = S.String;
 
 export interface UserMetadata {
   Id?: string;
@@ -1323,7 +1323,7 @@ export const Participants = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Participants" }) as any as S.Schema<Participants>;
 export type ResourceType = "FOLDER" | "DOCUMENT" | (string & {});
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 export interface ResourceMetadata {
   Type?: ResourceType;
@@ -1491,14 +1491,14 @@ export const DescribeDocumentVersionsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DescribeDocumentVersionsRequest>;
 export type DocumentContentType = string;
 export type DocumentStatusType = "INITIALIZED" | "ACTIVE" | (string & {});
-export const DocumentStatusType = /*@__PURE__*/ S.String;
+export const DocumentStatusType = S.String;
 
 export type DocumentThumbnailType =
   | "SMALL"
   | "SMALL_HQ"
   | "LARGE"
   | (string & {});
-export const DocumentThumbnailType = /*@__PURE__*/ S.String;
+export const DocumentThumbnailType = S.String;
 
 export type UrlType = string | redacted.Redacted<string>;
 export type DocumentThumbnailUrlMap = {
@@ -1509,7 +1509,7 @@ export const DocumentThumbnailUrlMap = /*@__PURE__*/ S.Record(
   SensitiveString.pipe(S.optional),
 );
 export type DocumentSourceType = "ORIGINAL" | "WITH_COMMENTS" | (string & {});
-export const DocumentSourceType = /*@__PURE__*/ S.String;
+export const DocumentSourceType = S.String;
 
 export type DocumentSourceUrlMap = {
   [key in DocumentSourceType]?: string | redacted.Redacted<string>;
@@ -1577,13 +1577,13 @@ export const DescribeDocumentVersionsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeDocumentVersionsResponse",
 }) as any as S.Schema<DescribeDocumentVersionsResponse>;
 export type ResourceSortType = "DATE" | "NAME" | (string & {});
-export const ResourceSortType = /*@__PURE__*/ S.String;
+export const ResourceSortType = S.String;
 
 export type OrderType = "ASCENDING" | "DESCENDING" | (string & {});
-export const OrderType = /*@__PURE__*/ S.String;
+export const OrderType = S.String;
 
 export type FolderContentType = "ALL" | "DOCUMENT" | "FOLDER" | (string & {});
-export const FolderContentType = /*@__PURE__*/ S.String;
+export const FolderContentType = S.String;
 
 export interface DescribeFolderContentsRequest {
   AuthenticationToken?: string | redacted.Redacted<string>;
@@ -1788,7 +1788,7 @@ export const DescribeResourcePermissionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeResourcePermissionsRequest",
 }) as any as S.Schema<DescribeResourcePermissionsRequest>;
 export type RolePermissionType = "DIRECT" | "INHERITED" | (string & {});
-export const RolePermissionType = /*@__PURE__*/ S.String;
+export const RolePermissionType = S.String;
 
 export interface PermissionInfo {
   Role?: RoleType;
@@ -1866,7 +1866,7 @@ export const DescribeRootFoldersResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DescribeRootFoldersResponse>;
 export type UserIdsType = string;
 export type UserFilterType = "ALL" | "ACTIVE_PENDING" | (string & {});
-export const UserFilterType = /*@__PURE__*/ S.String;
+export const UserFilterType = S.String;
 
 export type UserSortType =
   | "USER_NAME"
@@ -1875,7 +1875,7 @@ export type UserSortType =
   | "USER_STATUS"
   | "STORAGE_USED"
   | (string & {});
-export const UserSortType = /*@__PURE__*/ S.String;
+export const UserSortType = S.String;
 
 export interface DescribeUsersRequest {
   AuthenticationToken?: string | redacted.Redacted<string>;
@@ -2184,7 +2184,7 @@ export const GetFolderPathResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetFolderPathResponse",
 }) as any as S.Schema<GetFolderPathResponse>;
 export type ResourceCollectionType = "SHARED_WITH_ME" | (string & {});
-export const ResourceCollectionType = /*@__PURE__*/ S.String;
+export const ResourceCollectionType = S.String;
 
 export interface GetResourcesRequest {
   AuthenticationToken?: string | redacted.Redacted<string>;
@@ -2407,13 +2407,13 @@ export const RestoreDocumentVersionsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RestoreDocumentVersionsResponse",
 }) as any as S.Schema<RestoreDocumentVersionsResponse>;
 export type SearchQueryScopeType = "NAME" | "CONTENT" | (string & {});
-export const SearchQueryScopeType = /*@__PURE__*/ S.String;
+export const SearchQueryScopeType = S.String;
 
 export type SearchQueryScopeTypeList = SearchQueryScopeType[];
 export const SearchQueryScopeTypeList =
   /*@__PURE__*/ S.Array(SearchQueryScopeType);
 export type AdditionalResponseFieldType = "WEBURL" | (string & {});
-export const AdditionalResponseFieldType = /*@__PURE__*/ S.String;
+export const AdditionalResponseFieldType = S.String;
 
 export type AdditionalResponseFieldsList = AdditionalResponseFieldType[];
 export const AdditionalResponseFieldsList = /*@__PURE__*/ S.Array(
@@ -2452,7 +2452,7 @@ export type LanguageCodeType =
   | "ZH"
   | "DEFAULT"
   | (string & {});
-export const LanguageCodeType = /*@__PURE__*/ S.String;
+export const LanguageCodeType = S.String;
 
 export type TextLocaleTypeList = LanguageCodeType[];
 export const TextLocaleTypeList = /*@__PURE__*/ S.Array(LanguageCodeType);
@@ -2467,7 +2467,7 @@ export type ContentCategoryType =
   | "SOURCE_CODE"
   | "OTHER"
   | (string & {});
-export const ContentCategoryType = /*@__PURE__*/ S.String;
+export const ContentCategoryType = S.String;
 
 export type SearchContentCategoryTypeList = ContentCategoryType[];
 export const SearchContentCategoryTypeList =
@@ -2478,7 +2478,7 @@ export type SearchResourceType =
   | "COMMENT"
   | "DOCUMENT_VERSION"
   | (string & {});
-export const SearchResourceType = /*@__PURE__*/ S.String;
+export const SearchResourceType = S.String;
 
 export type SearchResourceTypeList = SearchResourceType[];
 export const SearchResourceTypeList = /*@__PURE__*/ S.Array(SearchResourceType);
@@ -2491,7 +2491,7 @@ export type PrincipalRoleType =
   | "OWNER"
   | "COOWNER"
   | (string & {});
-export const PrincipalRoleType = /*@__PURE__*/ S.String;
+export const PrincipalRoleType = S.String;
 
 export type SearchPrincipalRoleList = PrincipalRoleType[];
 export const SearchPrincipalRoleList = /*@__PURE__*/ S.Array(PrincipalRoleType);
@@ -2511,7 +2511,7 @@ export type SearchAncestorId = string;
 export type SearchAncestorIdList = string[];
 export const SearchAncestorIdList = /*@__PURE__*/ S.Array(S.String);
 export type SearchCollectionType = "OWNED" | "SHARED_WITH_ME" | (string & {});
-export const SearchCollectionType = /*@__PURE__*/ S.String;
+export const SearchCollectionType = S.String;
 
 export type SearchCollectionTypeList = SearchCollectionType[];
 export const SearchCollectionTypeList =
@@ -2570,10 +2570,10 @@ export type OrderByFieldType =
   | "CREATED_TIMESTAMP"
   | "MODIFIED_TIMESTAMP"
   | (string & {});
-export const OrderByFieldType = /*@__PURE__*/ S.String;
+export const OrderByFieldType = S.String;
 
 export type SortOrder = "ASC" | "DESC" | (string & {});
-export const SortOrder = /*@__PURE__*/ S.String;
+export const SortOrder = S.String;
 
 export interface SearchSortResult {
   Field?: OrderByFieldType;
@@ -2635,7 +2635,7 @@ export type ResponseItemType =
   | "COMMENT"
   | "DOCUMENT_VERSION"
   | (string & {});
-export const ResponseItemType = /*@__PURE__*/ S.String;
+export const ResponseItemType = S.String;
 
 export type ResponseItemWebUrl = string | redacted.Redacted<string>;
 export interface ResponseItem {
@@ -2707,7 +2707,7 @@ export const UpdateDocumentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateDocumentResponse",
 }) as any as S.Schema<UpdateDocumentResponse>;
 export type DocumentVersionStatus = "ACTIVE" | (string & {});
-export const DocumentVersionStatus = /*@__PURE__*/ S.String;
+export const DocumentVersionStatus = S.String;
 
 export interface UpdateDocumentVersionRequest {
   AuthenticationToken?: string | redacted.Redacted<string>;
@@ -2783,7 +2783,7 @@ export const UpdateFolderResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateFolderResponse",
 }) as any as S.Schema<UpdateFolderResponse>;
 export type BooleanEnumType = "TRUE" | "FALSE" | (string & {});
-export const BooleanEnumType = /*@__PURE__*/ S.String;
+export const BooleanEnumType = S.String;
 
 export interface UpdateUserRequest {
   AuthenticationToken?: string | redacted.Redacted<string>;

@@ -154,7 +154,7 @@ export const AssociateEntityToThingResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AssociateEntityToThingResponse",
 }) as any as S.Schema<AssociateEntityToThingResponse>;
 export type DefinitionLanguage = "GRAPHQL" | (string & {});
-export const DefinitionLanguage = /*@__PURE__*/ S.String;
+export const DefinitionLanguage = S.String;
 
 export type DefinitionText = string;
 export interface DefinitionDocument {
@@ -217,7 +217,7 @@ export const Tag = /*@__PURE__*/ S.suspend(() =>
 export type TagList = Tag[];
 export const TagList = /*@__PURE__*/ S.Array(Tag);
 export type DeploymentTarget = "GREENGRASS" | "CLOUD" | (string & {});
-export const DeploymentTarget = /*@__PURE__*/ S.String;
+export const DeploymentTarget = S.String;
 
 export type GroupName = string;
 export type S3BucketName = string;
@@ -269,7 +269,7 @@ export type SystemInstanceDeploymentStatus =
   | "PENDING_DELETE"
   | "DELETED_IN_TARGET"
   | (string & {});
-export const SystemInstanceDeploymentStatus = /*@__PURE__*/ S.String;
+export const SystemInstanceDeploymentStatus = S.String;
 
 export type GreengrassGroupId = string;
 export type GreengrassGroupVersionId = string;
@@ -509,7 +509,7 @@ export type EntityType =
   | "MAPPING"
   | "ENUM"
   | (string & {});
-export const EntityType = /*@__PURE__*/ S.String;
+export const EntityType = S.String;
 
 export interface DissociateEntityFromThingRequest {
   thingName: string;
@@ -647,12 +647,12 @@ export type NamespaceDeletionStatus =
   | "SUCCEEDED"
   | "FAILED"
   | (string & {});
-export const NamespaceDeletionStatus = /*@__PURE__*/ S.String;
+export const NamespaceDeletionStatus = S.String;
 
 export type NamespaceDeletionStatusErrorCodes =
   | "VALIDATION_FAILED"
   | (string & {});
-export const NamespaceDeletionStatusErrorCodes = /*@__PURE__*/ S.String;
+export const NamespaceDeletionStatusErrorCodes = S.String;
 
 export interface GetNamespaceDeletionStatusResponse {
   namespaceArn?: string;
@@ -804,7 +804,7 @@ export type UploadStatus =
   | "SUCCEEDED"
   | "FAILED"
   | (string & {});
-export const UploadStatus = /*@__PURE__*/ S.String;
+export const UploadStatus = S.String;
 
 export type StringList = string[];
 export const StringList = /*@__PURE__*/ S.Array(S.String);
@@ -867,7 +867,7 @@ export type FlowExecutionEventType =
   | "THING_ACTION_TASK_SUCCEEDED"
   | "ACKNOWLEDGE_TASK_MESSAGE"
   | (string & {});
-export const FlowExecutionEventType = /*@__PURE__*/ S.String;
+export const FlowExecutionEventType = S.String;
 
 export type FlowExecutionMessagePayload = string;
 export interface FlowExecutionMessage {
@@ -935,7 +935,7 @@ export type EntityFilterName =
   | "SEMANTIC_TYPE_PATH"
   | "REFERENCED_ENTITY_ID"
   | (string & {});
-export const EntityFilterName = /*@__PURE__*/ S.String;
+export const EntityFilterName = S.String;
 
 export type EntityFilterValue = string;
 export type EntityFilterValues = string[];
@@ -1012,7 +1012,7 @@ export type FlowExecutionStatus =
   | "SUCCEEDED"
   | "FAILED"
   | (string & {});
-export const FlowExecutionStatus = /*@__PURE__*/ S.String;
+export const FlowExecutionStatus = S.String;
 
 export interface FlowExecutionSummary {
   flowExecutionId?: string;
@@ -1050,7 +1050,7 @@ export const SearchFlowExecutionsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SearchFlowExecutionsResponse",
 }) as any as S.Schema<SearchFlowExecutionsResponse>;
 export type FlowTemplateFilterName = "DEVICE_MODEL_ID" | (string & {});
-export const FlowTemplateFilterName = /*@__PURE__*/ S.String;
+export const FlowTemplateFilterName = S.String;
 
 export type FlowTemplateFilterValue = string;
 export type FlowTemplateFilterValues = string[];
@@ -1099,7 +1099,7 @@ export type SystemInstanceFilterName =
   | "STATUS"
   | "GREENGRASS_GROUP_NAME"
   | (string & {});
-export const SystemInstanceFilterName = /*@__PURE__*/ S.String;
+export const SystemInstanceFilterName = S.String;
 
 export type SystemInstanceFilterValue = string;
 export type SystemInstanceFilterValues = string[];
@@ -1152,7 +1152,7 @@ export const SearchSystemInstancesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SearchSystemInstancesResponse",
 }) as any as S.Schema<SearchSystemInstancesResponse>;
 export type SystemTemplateFilterName = "FLOW_TEMPLATE_ID" | (string & {});
-export const SystemTemplateFilterName = /*@__PURE__*/ S.String;
+export const SystemTemplateFilterName = S.String;
 
 export type SystemTemplateFilterValue = string;
 export type SystemTemplateFilterValues = string[];

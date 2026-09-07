@@ -255,7 +255,7 @@ export type DatasetStatus =
   | "UPDATE_FAILED"
   | "DELETE_FAILED"
   | (string & {});
-export const DatasetStatus = /*@__PURE__*/ S.String;
+export const DatasetStatus = S.String;
 
 export type ExampleId = string;
 export type ExampleIdList = string[];
@@ -293,7 +293,7 @@ export const Dimensions = /*@__PURE__*/ S.Record(
   S.String.pipe(S.optional),
 );
 export type Period = "second" | "minute" | (string & {});
-export const Period = /*@__PURE__*/ S.String;
+export const Period = S.String;
 
 export interface RateConfig {
   rate: number;
@@ -370,7 +370,7 @@ export type GatewayRateLimitStatus =
   | "UPDATING"
   | "DELETING"
   | (string & {});
-export const GatewayRateLimitStatus = /*@__PURE__*/ S.String;
+export const GatewayRateLimitStatus = S.String;
 
 export interface GatewayRateLimitDetail {
   rateLimitId: string;
@@ -438,7 +438,7 @@ export type AgentManagedRuntimeType =
   | "PYTHON_3_14"
   | "NODE_22"
   | (string & {});
-export const AgentManagedRuntimeType = /*@__PURE__*/ S.String;
+export const AgentManagedRuntimeType = S.String;
 
 export type EntryPoint = string;
 export type EntryPoints = string[];
@@ -469,7 +469,7 @@ export const AgentRuntimeArtifact = /*@__PURE__*/ S.Union([
 ]);
 export type RoleArn = string;
 export type NetworkMode = "PUBLIC" | "VPC" | (string & {});
-export const NetworkMode = /*@__PURE__*/ S.String;
+export const NetworkMode = S.String;
 
 export type SecurityGroupId = string;
 export type SecurityGroups = string[];
@@ -522,7 +522,7 @@ export type InboundTokenClaimValueType =
   | "STRING"
   | "STRING_ARRAY"
   | (string & {});
-export const InboundTokenClaimValueType = /*@__PURE__*/ S.String;
+export const InboundTokenClaimValueType = S.String;
 
 export type MatchValueString = string;
 export type MatchValueStringList = string[];
@@ -539,7 +539,7 @@ export type ClaimMatchOperatorType =
   | "CONTAINS"
   | "CONTAINS_ANY"
   | (string & {});
-export const ClaimMatchOperatorType = /*@__PURE__*/ S.String;
+export const ClaimMatchOperatorType = S.String;
 
 export interface AuthorizingClaimMatchValueType {
   claimMatchValue: ClaimMatchValueType;
@@ -582,7 +582,7 @@ export type VpcIdentifier = string;
 export type SubnetIds = string[];
 export const SubnetIds = /*@__PURE__*/ S.Array(S.String);
 export type EndpointIpAddressType = "IPV4" | "IPV6" | (string & {});
-export const EndpointIpAddressType = /*@__PURE__*/ S.String;
+export const EndpointIpAddressType = S.String;
 
 export type SecurityGroupIdentifier = string;
 export type SecurityGroupIds = string[];
@@ -709,7 +709,7 @@ export const RequestHeaderConfiguration = /*@__PURE__*/ S.Union([
   S.Struct({ requestHeaderAllowlist: RequestHeaderAllowlist }),
 ]);
 export type ServerProtocol = "MCP" | "HTTP" | "A2A" | "AGUI" | (string & {});
-export const ServerProtocol = /*@__PURE__*/ S.String;
+export const ServerProtocol = S.String;
 
 export interface ProtocolConfiguration {
   serverProtocol: ServerProtocol;
@@ -886,7 +886,7 @@ export type AgentRuntimeStatus =
   | "READY"
   | "DELETING"
   | (string & {});
-export const AgentRuntimeStatus = /*@__PURE__*/ S.String;
+export const AgentRuntimeStatus = S.String;
 
 export interface CreateAgentRuntimeResponse {
   agentRuntimeArn: string;
@@ -951,7 +951,7 @@ export type AgentRuntimeEndpointStatus =
   | "READY"
   | "DELETING"
   | (string & {});
-export const AgentRuntimeEndpointStatus = /*@__PURE__*/ S.String;
+export const AgentRuntimeEndpointStatus = S.String;
 
 export interface CreateAgentRuntimeEndpointResponse {
   targetVersion: string;
@@ -989,7 +989,7 @@ export const SecretReference = /*@__PURE__*/ S.suspend(() =>
   identifier: "SecretReference",
 }) as any as S.Schema<SecretReference>;
 export type SecretSourceType = "MANAGED" | "EXTERNAL" | (string & {});
-export const SecretSourceType = /*@__PURE__*/ S.String;
+export const SecretSourceType = S.String;
 
 export interface CreateApiKeyCredentialProviderRequest {
   name: string;
@@ -1051,7 +1051,7 @@ export const CreateApiKeyCredentialProviderResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateApiKeyCredentialProviderResponse>;
 export type SandboxName = string;
 export type BrowserNetworkMode = "PUBLIC" | "VPC" | (string & {});
-export const BrowserNetworkMode = /*@__PURE__*/ S.String;
+export const BrowserNetworkMode = S.String;
 
 export interface BrowserNetworkConfiguration {
   networkMode: BrowserNetworkMode;
@@ -1093,7 +1093,7 @@ export type BrowserEnterprisePolicyType =
   | "MANAGED"
   | "RECOMMENDED"
   | (string & {});
-export const BrowserEnterprisePolicyType = /*@__PURE__*/ S.String;
+export const BrowserEnterprisePolicyType = S.String;
 
 export interface BrowserEnterprisePolicy {
   location: ResourceLocation;
@@ -1222,7 +1222,7 @@ export type BrowserStatus =
   | "DELETE_FAILED"
   | "DELETED"
   | (string & {});
-export const BrowserStatus = /*@__PURE__*/ S.String;
+export const BrowserStatus = S.String;
 
 export interface CreateBrowserResponse {
   browserId: string;
@@ -1274,7 +1274,7 @@ export type BrowserProfileStatus =
   | "DELETED"
   | "SAVING"
   | (string & {});
-export const BrowserProfileStatus = /*@__PURE__*/ S.String;
+export const BrowserProfileStatus = S.String;
 
 export interface CreateBrowserProfileResponse {
   profileId: string;
@@ -1302,7 +1302,7 @@ export const PermissionsConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "PermissionsConfiguration",
 }) as any as S.Schema<PermissionsConfiguration>;
 export type OperatingSystem = "LINUX_X86_64" | "LINUX_ARM64" | (string & {});
-export const OperatingSystem = /*@__PURE__*/ S.String;
+export const OperatingSystem = S.String;
 
 export type EC2InstanceType = string;
 export type InstanceTypeList = string[];
@@ -1326,7 +1326,7 @@ export type EbsVolumeType =
   | "st1"
   | "gp3"
   | (string & {});
-export const EbsVolumeType = /*@__PURE__*/ S.String;
+export const EbsVolumeType = S.String;
 
 export type VolumeIops = number;
 export type VolumeThroughput = number;
@@ -1380,7 +1380,7 @@ export const EphemeralBlockDeviceMappingList = /*@__PURE__*/ S.Array(
   EphemeralBlockDeviceMapping,
 );
 export type Monitoring = "BASIC" | "DETAILED" | (string & {});
-export const Monitoring = /*@__PURE__*/ S.String;
+export const Monitoring = S.String;
 
 export type LicenseConfigurationArn = string;
 export interface LicenseSpecification {
@@ -1399,7 +1399,7 @@ export type CapacityReservationPreference =
   | "open"
   | "none"
   | (string & {});
-export const CapacityReservationPreference = /*@__PURE__*/ S.String;
+export const CapacityReservationPreference = S.String;
 
 export type CapacityReservationId = string;
 export type CapacityReservationResourceGroupArn = string;
@@ -1599,7 +1599,7 @@ export type CapacityProviderStatus =
   | "DELETING"
   | "DELETE_FAILED"
   | (string & {});
-export const CapacityProviderStatus = /*@__PURE__*/ S.String;
+export const CapacityProviderStatus = S.String;
 
 export interface CreateCapacityProviderOutput {
   capacityProviderId: string;
@@ -1622,7 +1622,7 @@ export type CodeInterpreterNetworkMode =
   | "SANDBOX"
   | "VPC"
   | (string & {});
-export const CodeInterpreterNetworkMode = /*@__PURE__*/ S.String;
+export const CodeInterpreterNetworkMode = S.String;
 
 export interface CodeInterpreterNetworkConfiguration {
   networkMode: CodeInterpreterNetworkMode;
@@ -1679,7 +1679,7 @@ export type CodeInterpreterStatus =
   | "DELETE_FAILED"
   | "DELETED"
   | (string & {});
-export const CodeInterpreterStatus = /*@__PURE__*/ S.String;
+export const CodeInterpreterStatus = S.String;
 
 export interface CreateCodeInterpreterResponse {
   codeInterpreterId: string;
@@ -1786,7 +1786,7 @@ export type DatasetSchemaType =
   | "AGENTCORE_EVALUATION_SIMULATED_V1"
   | "THIRD_PARTY_EVALUATION_V1"
   | (string & {});
-export const DatasetSchemaType = /*@__PURE__*/ S.String;
+export const DatasetSchemaType = S.String;
 
 export interface CreateDatasetRequest {
   clientToken?: string;
@@ -2047,7 +2047,7 @@ export const EvaluatorConfig = /*@__PURE__*/ S.Union([
   S.Struct({ derived: DerivedEvaluatorConfig }),
 ]);
 export type EvaluatorLevel = "TOOL_CALL" | "TRACE" | "SESSION" | (string & {});
-export const EvaluatorLevel = /*@__PURE__*/ S.String;
+export const EvaluatorLevel = S.String;
 
 export interface CreateEvaluatorRequest {
   clientToken?: string;
@@ -2089,7 +2089,7 @@ export type EvaluatorStatus =
   | "UPDATE_FAILED"
   | "DELETING"
   | (string & {});
-export const EvaluatorStatus = /*@__PURE__*/ S.String;
+export const EvaluatorStatus = S.String;
 
 export interface CreateEvaluatorResponse {
   evaluatorArn: string;
@@ -2110,14 +2110,14 @@ export const CreateEvaluatorResponse = /*@__PURE__*/ S.suspend(() =>
 export type GatewayName = string;
 export type GatewayDescription = string | redacted.Redacted<string>;
 export type GatewayProtocolType = "MCP" | (string & {});
-export const GatewayProtocolType = /*@__PURE__*/ S.String;
+export const GatewayProtocolType = S.String;
 
 export type McpVersion = string;
 export type McpSupportedVersions = string[];
 export const McpSupportedVersions = /*@__PURE__*/ S.Array(S.String);
 export type McpInstructions = string | redacted.Redacted<string>;
 export type SearchType = "SEMANTIC" | (string & {});
-export const SearchType = /*@__PURE__*/ S.String;
+export const SearchType = S.String;
 
 export interface SessionConfiguration {
   sessionTimeoutInSeconds?: number;
@@ -2163,7 +2163,7 @@ export type AuthorizerType =
   | "NONE"
   | "AUTHENTICATE_ONLY"
   | (string & {});
-export const AuthorizerType = /*@__PURE__*/ S.String;
+export const AuthorizerType = S.String;
 
 export type LambdaFunctionArn = string;
 export interface LambdaInterceptorConfiguration {
@@ -2181,14 +2181,14 @@ export const InterceptorConfiguration = /*@__PURE__*/ S.Union([
   S.Struct({ lambda: LambdaInterceptorConfiguration }),
 ]);
 export type GatewayInterceptionPoint = "REQUEST" | "RESPONSE" | (string & {});
-export const GatewayInterceptionPoint = /*@__PURE__*/ S.String;
+export const GatewayInterceptionPoint = S.String;
 
 export type GatewayInterceptionPoints = GatewayInterceptionPoint[];
 export const GatewayInterceptionPoints = /*@__PURE__*/ S.Array(
   GatewayInterceptionPoint,
 );
 export type InterceptorPayloadExclusion = "RESPONSE_BODY" | (string & {});
-export const InterceptorPayloadExclusion = /*@__PURE__*/ S.String;
+export const InterceptorPayloadExclusion = S.String;
 
 export type InterceptorPayloadExclusionSelector = {
   field: InterceptorPayloadExclusion;
@@ -2242,7 +2242,7 @@ export const GatewayInterceptorConfigurations = /*@__PURE__*/ S.Array(
 );
 export type GatewayPolicyEngineArn = string;
 export type GatewayPolicyEngineMode = "LOG_ONLY" | "ENFORCE" | (string & {});
-export const GatewayPolicyEngineMode = /*@__PURE__*/ S.String;
+export const GatewayPolicyEngineMode = S.String;
 
 export interface GatewayPolicyEngineConfiguration {
   arn: string;
@@ -2254,7 +2254,7 @@ export const GatewayPolicyEngineConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "GatewayPolicyEngineConfiguration",
 }) as any as S.Schema<GatewayPolicyEngineConfiguration>;
 export type ExceptionLevel = "DEBUG" | (string & {});
-export const ExceptionLevel = /*@__PURE__*/ S.String;
+export const ExceptionLevel = S.String;
 
 export interface CreateGatewayRequest {
   name: string;
@@ -2310,7 +2310,7 @@ export type GatewayStatus =
   | "READY"
   | "FAILED"
   | (string & {});
-export const GatewayStatus = /*@__PURE__*/ S.String;
+export const GatewayStatus = S.String;
 
 export type StatusReason = string;
 export type StatusReasons = string[];
@@ -2333,7 +2333,7 @@ export const CustomTransformConfiguration = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CustomTransformConfiguration>;
 export type WebAclArn = string;
 export type WafFailureMode = "FAIL_CLOSE" | "FAIL_OPEN" | (string & {});
-export const WafFailureMode = /*@__PURE__*/ S.String;
+export const WafFailureMode = S.String;
 
 export interface WafConfiguration {
   failureMode?: WafFailureMode;
@@ -2457,7 +2457,7 @@ export type PrincipalMatchOperator =
   | "StringEquals"
   | "StringLike"
   | (string & {});
-export const PrincipalMatchOperator = /*@__PURE__*/ S.String;
+export const PrincipalMatchOperator = S.String;
 
 export interface IamPrincipal {
   arn: string;
@@ -2645,7 +2645,7 @@ export type GatewayRuleStatus =
   | "UPDATING"
   | "DELETING"
   | (string & {});
-export const GatewayRuleStatus = /*@__PURE__*/ S.String;
+export const GatewayRuleStatus = S.String;
 
 export interface SystemManagedBlock {
   managedBy: string;
@@ -2712,7 +2712,7 @@ export type SchemaType =
   | "boolean"
   | "integer"
   | (string & {});
-export const SchemaType = /*@__PURE__*/ S.String;
+export const SchemaType = S.String;
 
 export type SchemaProperties = { [key: string]: SchemaDefinition | undefined };
 export const SchemaProperties = /*@__PURE__*/ S.Record(
@@ -2789,7 +2789,7 @@ export const McpToolSchemaConfiguration = /*@__PURE__*/ S.Union([
   S.Struct({ inlinePayload: SensitiveString }),
 ]);
 export type ListingMode = "DEFAULT" | "DYNAMIC" | (string & {});
-export const ListingMode = /*@__PURE__*/ S.String;
+export const ListingMode = S.String;
 
 export type TargetResourcePriority = number;
 export interface McpServerTargetConfiguration {
@@ -2817,7 +2817,7 @@ export type RestApiMethod =
   | "PUT"
   | "POST"
   | (string & {});
-export const RestApiMethod = /*@__PURE__*/ S.String;
+export const RestApiMethod = S.String;
 
 export interface ApiGatewayToolOverride {
   name: string;
@@ -3032,7 +3032,7 @@ export type PassthroughProtocolType =
   | "INFERENCE"
   | "CUSTOM"
   | (string & {});
-export const PassthroughProtocolType = /*@__PURE__*/ S.String;
+export const PassthroughProtocolType = S.String;
 
 export type StickinessTimeout = number;
 export type CompositeIdentifierEntry = string;
@@ -3065,7 +3065,7 @@ export type StaticQueryParameterConflictResolution =
   | "CLIENT_OVERRIDE"
   | "STATIC_OVERRIDE"
   | (string & {});
-export const StaticQueryParameterConflictResolution = /*@__PURE__*/ S.String;
+export const StaticQueryParameterConflictResolution = S.String;
 
 export interface PassthroughTargetConfiguration {
   endpoint: string;
@@ -3236,7 +3236,7 @@ export type CredentialProviderType =
   | "CALLER_IAM_CREDENTIALS"
   | "JWT_PASSTHROUGH"
   | (string & {});
-export const CredentialProviderType = /*@__PURE__*/ S.String;
+export const CredentialProviderType = S.String;
 
 export type OAuthCredentialProviderArn = string;
 export type OAuthScope = string;
@@ -3256,7 +3256,7 @@ export type OAuthGrantType =
   | "AUTHORIZATION_CODE"
   | "TOKEN_EXCHANGE"
   | (string & {});
-export const OAuthGrantType = /*@__PURE__*/ S.String;
+export const OAuthGrantType = S.String;
 
 export type OAuthDefaultReturnUrl = string;
 export interface OAuthCredentialProvider {
@@ -3286,7 +3286,7 @@ export type ApiKeyCredentialLocation =
   | "HEADER"
   | "QUERY_PARAMETER"
   | (string & {});
-export const ApiKeyCredentialLocation = /*@__PURE__*/ S.String;
+export const ApiKeyCredentialLocation = S.String;
 
 export interface GatewayApiKeyCredentialProvider {
   providerArn: string;
@@ -3422,7 +3422,7 @@ export type TargetStatus =
   | "UPDATE_PENDING_AUTH"
   | "SYNCHRONIZE_PENDING_AUTH"
   | (string & {});
-export const TargetStatus = /*@__PURE__*/ S.String;
+export const TargetStatus = S.String;
 
 export type DomainName = string;
 export type ResourceGatewayArn = string;
@@ -3459,7 +3459,7 @@ export const AuthorizationData = /*@__PURE__*/ S.Union([
   S.Struct({ oauth2: OAuth2AuthorizationData }),
 ]);
 export type TargetProtocolType = "MCP" | "HTTP" | (string & {});
-export const TargetProtocolType = /*@__PURE__*/ S.String;
+export const TargetProtocolType = S.String;
 
 export interface CreateGatewayTargetResponse {
   gatewayArn: string;
@@ -3543,7 +3543,7 @@ export type HarnessBedrockApiFormat =
   | "responses"
   | "chat_completions"
   | (string & {});
-export const HarnessBedrockApiFormat = /*@__PURE__*/ S.String;
+export const HarnessBedrockApiFormat = S.String;
 
 export interface HarnessBedrockModelConfig {
   modelId: string;
@@ -3570,7 +3570,7 @@ export type HarnessOpenAiApiFormat =
   | "chat_completions"
   | "responses"
   | (string & {});
-export const HarnessOpenAiApiFormat = /*@__PURE__*/ S.String;
+export const HarnessOpenAiApiFormat = S.String;
 
 export interface HarnessOpenAiModelConfig {
   modelId: string;
@@ -3689,7 +3689,7 @@ export type HarnessToolType =
   | "inline_function"
   | "agentcore_code_interpreter"
   | (string & {});
-export const HarnessToolType = /*@__PURE__*/ S.String;
+export const HarnessToolType = S.String;
 
 export type HarnessToolName = string;
 export type HarnessRemoteMcpUrl = string | redacted.Redacted<string>;
@@ -3930,7 +3930,7 @@ export type HarnessManagedMemoryStrategyType =
   | "USER_PREFERENCE"
   | "EPISODIC"
   | (string & {});
-export const HarnessManagedMemoryStrategyType = /*@__PURE__*/ S.String;
+export const HarnessManagedMemoryStrategyType = S.String;
 
 export type HarnessManagedMemoryStrategyList =
   HarnessManagedMemoryStrategyType[];
@@ -3987,7 +3987,7 @@ export type HarnessTruncationStrategy =
   | "summarization"
   | "none"
   | (string & {});
-export const HarnessTruncationStrategy = /*@__PURE__*/ S.String;
+export const HarnessTruncationStrategy = S.String;
 
 export interface HarnessSlidingWindowConfiguration {
   messagesCount?: number;
@@ -4094,7 +4094,7 @@ export type HarnessStatus =
   | "DELETING"
   | "DELETE_FAILED"
   | (string & {});
-export const HarnessStatus = /*@__PURE__*/ S.String;
+export const HarnessStatus = S.String;
 
 export type HarnessVersion = string;
 export interface HarnessAgentCoreRuntimeEnvironment {
@@ -4224,7 +4224,7 @@ export type HarnessEndpointStatus =
   | "DELETING"
   | "DELETE_FAILED"
   | (string & {});
-export const HarnessEndpointStatus = /*@__PURE__*/ S.String;
+export const HarnessEndpointStatus = S.String;
 
 export interface HarnessEndpoint {
   harnessId: string;
@@ -4275,13 +4275,13 @@ export type MetadataValueType =
   | "STRINGLIST"
   | "NUMBER"
   | (string & {});
-export const MetadataValueType = /*@__PURE__*/ S.String;
+export const MetadataValueType = S.String;
 
 export type ExtractionType =
   | "LLM_INFERRED"
   | "STRICTLY_CONSISTENT"
   | (string & {});
-export const ExtractionType = /*@__PURE__*/ S.String;
+export const ExtractionType = S.String;
 
 export type LlmExtractionInstruction = string | redacted.Redacted<string>;
 export type Definition = string | redacted.Redacted<string>;
@@ -4838,10 +4838,10 @@ export const NamespaceKeyEntry = /*@__PURE__*/ S.suspend(() =>
 export type NamespaceKeysList = NamespaceKeyEntry[];
 export const NamespaceKeysList = /*@__PURE__*/ S.Array(NamespaceKeyEntry);
 export type ContentType = "MEMORY_RECORDS" | (string & {});
-export const ContentType = /*@__PURE__*/ S.String;
+export const ContentType = S.String;
 
 export type ContentLevel = "METADATA_ONLY" | "FULL_CONTENT" | (string & {});
-export const ContentLevel = /*@__PURE__*/ S.String;
+export const ContentLevel = S.String;
 
 export interface ContentConfiguration {
   type: ContentType;
@@ -4930,7 +4930,7 @@ export type MemoryStatus =
   | "DELETING"
   | "UPDATING"
   | (string & {});
-export const MemoryStatus = /*@__PURE__*/ S.String;
+export const MemoryStatus = S.String;
 
 export type MemoryStrategyId = string;
 export type OverrideType =
@@ -4940,7 +4940,7 @@ export type OverrideType =
   | "SELF_MANAGED"
   | "EPISODIC_OVERRIDE"
   | (string & {});
-export const OverrideType = /*@__PURE__*/ S.String;
+export const OverrideType = S.String;
 
 export interface SemanticExtractionOverride {
   appendToPrompt: string | redacted.Redacted<string>;
@@ -5223,7 +5223,7 @@ export type MemoryStrategyType =
   | "CUSTOM"
   | "EPISODIC"
   | (string & {});
-export const MemoryStrategyType = /*@__PURE__*/ S.String;
+export const MemoryStrategyType = S.String;
 
 export type MemoryStrategyStatus =
   | "CREATING"
@@ -5231,7 +5231,7 @@ export type MemoryStrategyStatus =
   | "DELETING"
   | "FAILED"
   | (string & {});
-export const MemoryStrategyStatus = /*@__PURE__*/ S.String;
+export const MemoryStrategyStatus = S.String;
 
 export interface MemoryStrategy {
   strategyId: string;
@@ -5336,7 +5336,7 @@ export type CredentialProviderVendorType =
   | "Auth0Oauth2"
   | "CognitoOauth2"
   | (string & {});
-export const CredentialProviderVendorType = /*@__PURE__*/ S.String;
+export const CredentialProviderVendorType = S.String;
 
 export type DiscoveryUrlType = string;
 export type IssuerUrlType = string;
@@ -5382,14 +5382,14 @@ export type OnBehalfOfTokenExchangeGrantTypeType =
   | "TOKEN_EXCHANGE"
   | "JWT_AUTHORIZATION_GRANT"
   | (string & {});
-export const OnBehalfOfTokenExchangeGrantTypeType = /*@__PURE__*/ S.String;
+export const OnBehalfOfTokenExchangeGrantTypeType = S.String;
 
 export type ActorTokenContentType =
   | "NONE"
   | "M2M"
   | "AWS_IAM_ID_TOKEN_JWT"
   | (string & {});
-export const ActorTokenContentType = /*@__PURE__*/ S.String;
+export const ActorTokenContentType = S.String;
 
 export type ScopeType = string;
 export type ScopesListType = string[];
@@ -5424,7 +5424,7 @@ export type ClientAuthenticationMethodType =
   | "AWS_IAM_ID_TOKEN_JWT"
   | "PRIVATE_KEY_JWT"
   | (string & {});
-export const ClientAuthenticationMethodType = /*@__PURE__*/ S.String;
+export const ClientAuthenticationMethodType = S.String;
 
 export interface KmsKeySourceType {
   kmsKeyArn: string;
@@ -5439,7 +5439,7 @@ export const PrivateKeySource = /*@__PURE__*/ S.Union([
   S.Struct({ kmsKeySource: KmsKeySourceType }),
 ]);
 export type SigningAlgorithm = "RS256" | "PS256" | "ES256" | (string & {});
-export const SigningAlgorithm = /*@__PURE__*/ S.String;
+export const SigningAlgorithm = S.String;
 
 export type AdditionalClaimName = string;
 export type AdditionalClaimValue = string | redacted.Redacted<string>;
@@ -6015,7 +6015,7 @@ export type Status =
   | "DELETING"
   | "DELETE_FAILED"
   | (string & {});
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 export interface CreateOauth2CredentialProviderResponse {
   clientSecretArn: Secret;
@@ -6061,7 +6061,7 @@ export type FilterOperator =
   | "Contains"
   | "NotContains"
   | (string & {});
-export const FilterOperator = /*@__PURE__*/ S.String;
+export const FilterOperator = S.String;
 
 export type FilterValue =
   | { stringValue: string; doubleValue?: never; booleanValue?: never }
@@ -6142,7 +6142,7 @@ export type ClusteringFrequency =
   | "WEEKLY"
   | "MONTHLY"
   | (string & {});
-export const ClusteringFrequency = /*@__PURE__*/ S.String;
+export const ClusteringFrequency = S.String;
 
 export type ClusteringFrequencyList = ClusteringFrequency[];
 export const ClusteringFrequencyList =
@@ -6219,13 +6219,13 @@ export type OnlineEvaluationConfigStatus =
   | "DELETING"
   | "ERROR"
   | (string & {});
-export const OnlineEvaluationConfigStatus = /*@__PURE__*/ S.String;
+export const OnlineEvaluationConfigStatus = S.String;
 
 export type OnlineEvaluationExecutionStatus =
   | "ENABLED"
   | "DISABLED"
   | (string & {});
-export const OnlineEvaluationExecutionStatus = /*@__PURE__*/ S.String;
+export const OnlineEvaluationExecutionStatus = S.String;
 
 export interface CreateOnlineEvaluationConfigResponse {
   onlineEvaluationConfigArn: string;
@@ -6257,7 +6257,7 @@ export type PaymentConnectorType =
   | "CoinbaseCDP"
   | "StripePrivy"
   | (string & {});
-export const PaymentConnectorType = /*@__PURE__*/ S.String;
+export const PaymentConnectorType = S.String;
 
 export type PaymentCredentialProviderArn = string;
 export interface PaymentCredentialProviderConfiguration {
@@ -6287,7 +6287,7 @@ export type PaymentConnectorProvisionMode =
   | "MANUAL"
   | "QUICK_CREATE"
   | (string & {});
-export const PaymentConnectorProvisionMode = /*@__PURE__*/ S.String;
+export const PaymentConnectorProvisionMode = S.String;
 
 export interface CreatePaymentConnectorRequest {
   paymentManagerId: string;
@@ -6338,7 +6338,7 @@ export type PaymentConnectorStatus =
   | "AUTHENTICATION_EXPIRED"
   | "AUTHENTICATION_FAILED"
   | (string & {});
-export const PaymentConnectorStatus = /*@__PURE__*/ S.String;
+export const PaymentConnectorStatus = S.String;
 
 export type PaymentConnectorAuthorizationUrl = string;
 export interface CreatePaymentConnectorResponse {
@@ -6369,7 +6369,7 @@ export type PaymentCredentialProviderVendorType =
   | "CoinbaseCDP"
   | "StripePrivy"
   | (string & {});
-export const PaymentCredentialProviderVendorType = /*@__PURE__*/ S.String;
+export const PaymentCredentialProviderVendorType = S.String;
 
 export type CoinbaseCdpApiKeyIdType = string;
 export type DefaultCoinbaseCdpApiKeySecretType =
@@ -6553,7 +6553,7 @@ export const CreatePaymentCredentialProviderResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreatePaymentCredentialProviderResponse>;
 export type PaymentManagerName = string;
 export type PaymentsAuthorizerType = "CUSTOM_JWT" | "AWS_IAM" | (string & {});
-export const PaymentsAuthorizerType = /*@__PURE__*/ S.String;
+export const PaymentsAuthorizerType = S.String;
 
 export interface CreatePaymentManagerRequest {
   name: string;
@@ -6598,7 +6598,7 @@ export type PaymentManagerStatus =
   | "UPDATE_FAILED"
   | "DELETE_FAILED"
   | (string & {});
-export const PaymentManagerStatus = /*@__PURE__*/ S.String;
+export const PaymentManagerStatus = S.String;
 
 export interface CreatePaymentManagerResponse {
   paymentManagerArn: string;
@@ -6669,10 +6669,10 @@ export type PolicyValidationMode =
   | "FAIL_ON_ANY_FINDINGS"
   | "IGNORE_ALL_FINDINGS"
   | (string & {});
-export const PolicyValidationMode = /*@__PURE__*/ S.String;
+export const PolicyValidationMode = S.String;
 
 export type EnforcementMode = "ACTIVE" | "LOG_ONLY" | (string & {});
-export const EnforcementMode = /*@__PURE__*/ S.String;
+export const EnforcementMode = S.String;
 
 export interface CreatePolicyRequest {
   name: string;
@@ -6718,7 +6718,7 @@ export type PolicyStatus =
   | "UPDATE_FAILED"
   | "DELETE_FAILED"
   | (string & {});
-export const PolicyStatus = /*@__PURE__*/ S.String;
+export const PolicyStatus = S.String;
 
 export type PolicyStatusReasons = string[];
 export const PolicyStatusReasons = /*@__PURE__*/ S.Array(S.String);
@@ -6790,7 +6790,7 @@ export type PolicyEngineStatus =
   | "UPDATE_FAILED"
   | "DELETE_FAILED"
   | (string & {});
-export const PolicyEngineStatus = /*@__PURE__*/ S.String;
+export const PolicyEngineStatus = S.String;
 
 export interface CreatePolicyEngineResponse {
   policyEngineId: string;
@@ -6820,7 +6820,7 @@ export const CreatePolicyEngineResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreatePolicyEngineResponse>;
 export type RegistryName = string;
 export type RegistryAuthorizerType = "CUSTOM_JWT" | "AWS_IAM" | (string & {});
-export const RegistryAuthorizerType = /*@__PURE__*/ S.String;
+export const RegistryAuthorizerType = S.String;
 
 export interface ApprovalConfiguration {
   autoApproval?: boolean;
@@ -6876,7 +6876,7 @@ export type DescriptorType =
   | "CUSTOM"
   | "AGENT_SKILLS"
   | (string & {});
-export const DescriptorType = /*@__PURE__*/ S.String;
+export const DescriptorType = S.String;
 
 export type SchemaVersion = string;
 export type InlineContent = string;
@@ -6988,18 +6988,18 @@ export const Descriptors = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Descriptors" }) as any as S.Schema<Descriptors>;
 export type RegistryRecordVersion = string;
 export type SynchronizationType = "URL" | (string & {});
-export const SynchronizationType = /*@__PURE__*/ S.String;
+export const SynchronizationType = S.String;
 
 export type McpServerUrl = string;
 export type RegistryRecordCredentialProviderType =
   | "OAUTH"
   | "IAM"
   | (string & {});
-export const RegistryRecordCredentialProviderType = /*@__PURE__*/ S.String;
+export const RegistryRecordCredentialProviderType = S.String;
 
 export type CredentialProviderArn = string;
 export type RegistryRecordOAuthGrantType = "CLIENT_CREDENTIALS" | (string & {});
-export const RegistryRecordOAuthGrantType = /*@__PURE__*/ S.String;
+export const RegistryRecordOAuthGrantType = S.String;
 
 export type ScopeList = string[];
 export const ScopeList = /*@__PURE__*/ S.Array(S.String);
@@ -7141,7 +7141,7 @@ export type RegistryRecordStatus =
   | "CREATE_FAILED"
   | "UPDATE_FAILED"
   | (string & {});
-export const RegistryRecordStatus = /*@__PURE__*/ S.String;
+export const RegistryRecordStatus = S.String;
 
 export interface CreateRegistryRecordResponse {
   recordArn: string;
@@ -7492,7 +7492,7 @@ export type ConfigurationBundleStatus =
   | "DELETING"
   | "DELETE_FAILED"
   | (string & {});
-export const ConfigurationBundleStatus = /*@__PURE__*/ S.String;
+export const ConfigurationBundleStatus = S.String;
 
 export interface DeleteConfigurationBundleResponse {
   bundleId: string;
@@ -8158,7 +8158,7 @@ export type RegistryStatus =
   | "DELETING"
   | "DELETE_FAILED"
   | (string & {});
-export const RegistryStatus = /*@__PURE__*/ S.String;
+export const RegistryStatus = S.String;
 
 export interface DeleteRegistryResponse {
   status: RegistryStatus;
@@ -8562,7 +8562,7 @@ export type CapacityProviderStatusCode =
   | "THROTTLED"
   | "INTERNAL_SERVER_EXCEPTION"
   | (string & {});
-export const CapacityProviderStatusCode = /*@__PURE__*/ S.String;
+export const CapacityProviderStatusCode = S.String;
 
 export interface GetCapacityProviderOutput {
   capacityProviderId: string;
@@ -8788,7 +8788,7 @@ export const GetDatasetRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDatasetRequest",
 }) as any as S.Schema<GetDatasetRequest>;
 export type DraftStatus = "MODIFIED" | "UNMODIFIED" | (string & {});
-export const DraftStatus = /*@__PURE__*/ S.String;
+export const DraftStatus = S.String;
 
 export type DownloadUrl = string | redacted.Redacted<string>;
 export interface GetDatasetResponse {
@@ -8834,7 +8834,7 @@ export const GetDatasetResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDatasetResponse",
 }) as any as S.Schema<GetDatasetResponse>;
 export type IncludedData = "ALL_DATA" | "METADATA_ONLY" | (string & {});
-export const IncludedData = /*@__PURE__*/ S.String;
+export const IncludedData = S.String;
 
 export interface GetEvaluatorRequest {
   evaluatorId: string;
@@ -8865,7 +8865,7 @@ export type EvaluatorType =
   | "CustomCode"
   | "CustomDerived"
   | (string & {});
-export const EvaluatorType = /*@__PURE__*/ S.String;
+export const EvaluatorType = S.String;
 
 export type Provider =
   | "AWS"
@@ -8873,7 +8873,7 @@ export type Provider =
   | "AutoEval"
   | "Custom"
   | (string & {});
-export const Provider = /*@__PURE__*/ S.String;
+export const Provider = S.String;
 
 export interface GetEvaluatorResponse {
   evaluatorArn: string;
@@ -9212,7 +9212,7 @@ export const GetHarnessEndpointResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetHarnessEndpointResponse",
 }) as any as S.Schema<GetHarnessEndpointResponse>;
 export type MemoryView = "full" | "without_decryption" | (string & {});
-export const MemoryView = /*@__PURE__*/ S.String;
+export const MemoryView = S.String;
 
 export interface GetMemoryInput {
   memoryId: string;
@@ -9680,7 +9680,7 @@ export type PolicyGenerationStatus =
   | "GENERATE_FAILED"
   | "DELETE_FAILED"
   | (string & {});
-export const PolicyGenerationStatus = /*@__PURE__*/ S.String;
+export const PolicyGenerationStatus = S.String;
 
 export interface GetPolicyGenerationResponse {
   policyEngineId: string;
@@ -9965,7 +9965,7 @@ export type KeyType =
   | "CustomerManagedKey"
   | "ServiceManagedKey"
   | (string & {});
-export const KeyType = /*@__PURE__*/ S.String;
+export const KeyType = S.String;
 
 export interface KmsConfiguration {
   keyType: KeyType;
@@ -10368,7 +10368,7 @@ export const ListBrowserProfilesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListBrowserProfilesResponse",
 }) as any as S.Schema<ListBrowserProfilesResponse>;
 export type ResourceType = "SYSTEM" | "CUSTOM" | (string & {});
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 export interface ListBrowsersRequest {
   maxResults?: number;
@@ -11096,7 +11096,7 @@ export type TargetType =
   | "PROVIDER"
   | "HTTP_CONNECTOR"
   | (string & {});
-export const TargetType = /*@__PURE__*/ S.String;
+export const TargetType = S.String;
 
 export interface TargetSummary {
   targetId: string;
@@ -11873,7 +11873,7 @@ export type FindingType =
   | "DENY_ALL"
   | "DENY_NONE"
   | (string & {});
-export const FindingType = /*@__PURE__*/ S.String;
+export const FindingType = S.String;
 
 export interface Finding {
   type?: FindingType;
@@ -14459,7 +14459,7 @@ export type ValidationExceptionReason =
   | "EventInOtherSession"
   | "ResourceConflict"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   name: string;

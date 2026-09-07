@@ -202,19 +202,19 @@ export type PostgreSqlSchemaValidationEnum =
   | "NONE"
   | "STRICT"
   | "COMPATIBLE";
-export const PostgreSqlSchemaValidationEnum = /*@__PURE__*/ S.String;
+export const PostgreSqlSchemaValidationEnum = S.String;
 
 export type PostgreSqlSchemaMigrationEnum =
   | "SQL_SCHEMA_MIGRATION_UNSPECIFIED"
   | "MIGRATE_COMPATIBLE";
-export const PostgreSqlSchemaMigrationEnum = /*@__PURE__*/ S.String;
+export const PostgreSqlSchemaMigrationEnum = S.String;
 
 export type CloudSqlInstanceEditionEnum =
   | "EDITION_UNSPECIFIED"
   | "EDITION_ENTERPRISE"
   | "EDITION_ENTERPRISE_PLUS"
   | "EDITION_DEVELOPER";
-export const CloudSqlInstanceEditionEnum = /*@__PURE__*/ S.String;
+export const CloudSqlInstanceEditionEnum = S.String;
 
 /** Settings for CloudSQL instance configuration. */
 export interface CloudSqlInstance {
@@ -753,7 +753,7 @@ export type GraphqlErrorExtensionsWarningLevelEnum =
   | "INTERACTIVE_ACK"
   | "REQUIRE_ACK"
   | "REQUIRE_FORCE";
-export const GraphqlErrorExtensionsWarningLevelEnum = /*@__PURE__*/ S.String;
+export const GraphqlErrorExtensionsWarningLevelEnum = S.String;
 
 export type GraphqlErrorExtensionsCodeEnum =
   | "OK"
@@ -773,7 +773,7 @@ export type GraphqlErrorExtensionsCodeEnum =
   | "INTERNAL"
   | "UNAVAILABLE"
   | "DATA_LOSS";
-export const GraphqlErrorExtensionsCodeEnum = /*@__PURE__*/ S.String;
+export const GraphqlErrorExtensionsCodeEnum = S.String;
 
 /** Workaround provides suggestions to address errors and warnings. */
 export interface Workaround {
@@ -1090,7 +1090,7 @@ export type GenerationStatusStateEnum =
   | "ANALYZING_CODE"
   | "GENERATING_CODE"
   | "COMPLETED";
-export const GenerationStatusStateEnum = /*@__PURE__*/ S.String;
+export const GenerationStatusStateEnum = S.String;
 
 /** Represents the progress of the server side generation request. */
 export interface GenerationStatus {

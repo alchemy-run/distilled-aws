@@ -47,7 +47,7 @@ export type CreateRequestStatus =
   | "waiting"
   | "requested"
   | "pending";
-export const CreateRequestStatus = /*@__PURE__*/ S.String;
+export const CreateRequestStatus = S.String;
 
 /** **Required if you provide `completed_at` or a `status` of `completed`**. The final conclusion of the check. **Note:** Providing `conclusion` will automatically set the `status` parameter to `completed`. You cannot change a check run conclusion to `stale`, only GitHub can set this. */
 export type CreateRequestConclusion =
@@ -59,15 +59,14 @@ export type CreateRequestConclusion =
   | "skipped"
   | "stale"
   | "timed_out";
-export const CreateRequestConclusion = /*@__PURE__*/ S.String;
+export const CreateRequestConclusion = S.String;
 
 /** The level of the annotation. */
 export type CreateRequestOutputAnnotationsItemAnnotationLevel =
   | "notice"
   | "warning"
   | "failure";
-export const CreateRequestOutputAnnotationsItemAnnotationLevel =
-  /*@__PURE__*/ S.String;
+export const CreateRequestOutputAnnotationsItemAnnotationLevel = S.String;
 
 export interface CreateRequestOutputAnnotationsItem {
   /** The path of the file to add an annotation to. For example, `assets/css/main.css`. */
@@ -245,7 +244,7 @@ export type CheckRunStatus =
   | "waiting"
   | "requested"
   | "pending";
-export const CheckRunStatus = /*@__PURE__*/ S.String;
+export const CheckRunStatus = S.String;
 
 export type CheckRunConclusion =
   | "success"
@@ -255,7 +254,7 @@ export type CheckRunConclusion =
   | "skipped"
   | "timed_out"
   | "action_required";
-export const CheckRunConclusion = /*@__PURE__*/ S.String;
+export const CheckRunConclusion = S.String;
 
 export interface CheckRunOutput {
   title: string | null;
@@ -372,7 +371,7 @@ export const Enterprise = /*@__PURE__*/ S.suspend(() =>
 
 export type NullableIntegrationOwner = SimpleUser | Enterprise;
 export const NullableIntegrationOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NullableIntegrationOwner>;
+  S.Unknown as any as S.Schema<NullableIntegrationOwner>;
 
 /** The set of permissions for the GitHub app */
 export interface NullableIntegrationPermissions {
@@ -627,7 +626,7 @@ export type CheckSuiteStatus =
   | "waiting"
   | "requested"
   | "pending";
-export const CheckSuiteStatus = /*@__PURE__*/ S.String;
+export const CheckSuiteStatus = S.String;
 
 export type CheckSuiteConclusion =
   | "success"
@@ -639,7 +638,7 @@ export type CheckSuiteConclusion =
   | "action_required"
   | "startup_failure"
   | "stale";
-export const CheckSuiteConclusion = /*@__PURE__*/ S.String;
+export const CheckSuiteConclusion = S.String;
 
 export type CheckSuitePullRequestsList = Array<PullRequestMinimal>;
 export const CheckSuitePullRequestsList = /*@__PURE__*/ S.Array(
@@ -655,8 +654,7 @@ export const MinimalRepositoryTopicsList = /*@__PURE__*/ S.Array(
 export type MinimalRepositoryPullRequestCreationPolicy =
   | "all"
   | "collaborators_only";
-export const MinimalRepositoryPullRequestCreationPolicy =
-  /*@__PURE__*/ S.String;
+export const MinimalRepositoryPullRequestCreationPolicy = S.String;
 
 export interface MinimalRepositoryPermissions {
   admin?: boolean;
@@ -715,7 +713,7 @@ export const MinimalRepositoryLicense = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MinimalRepositoryLicense>;
 
 export type SecurityAndAnalysisAdvancedSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisAdvancedSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisAdvancedSecurityStatus = S.String;
 
 /** Enable or disable GitHub Advanced Security for the repository. For standalone Code Scanning or Secret Protection products, this parameter cannot be used. */
 export interface SecurityAndAnalysisAdvancedSecurity {
@@ -730,7 +728,7 @@ export const SecurityAndAnalysisAdvancedSecurity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecurityAndAnalysisAdvancedSecurity>;
 
 export type SecurityAndAnalysisCodeSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisCodeSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisCodeSecurityStatus = S.String;
 
 export interface SecurityAndAnalysisCodeSecurity {
   status?: SecurityAndAnalysisCodeSecurityStatus;
@@ -747,8 +745,7 @@ export const SecurityAndAnalysisCodeSecurity = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisDependabotSecurityUpdatesStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisDependabotSecurityUpdatesStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisDependabotSecurityUpdatesStatus = S.String;
 
 /** Enable or disable Dependabot security updates for the repository. */
 export interface SecurityAndAnalysisDependabotSecurityUpdates {
@@ -765,7 +762,7 @@ export const SecurityAndAnalysisDependabotSecurityUpdates =
   }) as any as S.Schema<SecurityAndAnalysisDependabotSecurityUpdates>;
 
 export type SecurityAndAnalysisSecretScanningStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisSecretScanningStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanning {
   status?: SecurityAndAnalysisSecretScanningStatus;
@@ -781,8 +778,7 @@ export const SecurityAndAnalysisSecretScanning = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisSecretScanningPushProtectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningPushProtectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningPushProtectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningPushProtection {
   status?: SecurityAndAnalysisSecretScanningPushProtectionStatus;
@@ -800,7 +796,7 @@ export type SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningNonProviderPatterns {
   status?: SecurityAndAnalysisSecretScanningNonProviderPatternsStatus;
@@ -819,8 +815,7 @@ export const SecurityAndAnalysisSecretScanningNonProviderPatterns =
 export type SecurityAndAnalysisSecretScanningAiDetectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningAiDetectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningAiDetectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningAiDetection {
   status?: SecurityAndAnalysisSecretScanningAiDetectionStatus;
@@ -838,7 +833,7 @@ export type SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedAlertDismissal {
   status?: SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus;
@@ -857,8 +852,7 @@ export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissal =
 export type SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypass {
   status?: SecurityAndAnalysisSecretScanningDelegatedBypassStatus;
@@ -879,14 +873,14 @@ export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem
   | "TEAM"
   | "ROLE";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The bypass mode for the reviewer */
 export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
   | "ALWAYS"
   | "EXEMPT";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem {
   /** The ID of the team or role selected as a bypass reviewer */
@@ -1408,10 +1402,10 @@ export const ListAnnotationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListAnnotationsResponse>;
 
 export type ListForRefRequestStatus = "queued" | "in_progress" | "completed";
-export const ListForRefRequestStatus = /*@__PURE__*/ S.String;
+export const ListForRefRequestStatus = S.String;
 
 export type ListForRefRequestFilter = "latest" | "all";
-export const ListForRefRequestFilter = /*@__PURE__*/ S.String;
+export const ListForRefRequestFilter = S.String;
 
 export interface ListForRefRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -1473,10 +1467,10 @@ export const ListForRefResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListForRefResponse>;
 
 export type ListForSuiteRequestStatus = "queued" | "in_progress" | "completed";
-export const ListForSuiteRequestStatus = /*@__PURE__*/ S.String;
+export const ListForSuiteRequestStatus = S.String;
 
 export type ListForSuiteRequestFilter = "latest" | "all";
-export const ListForSuiteRequestFilter = /*@__PURE__*/ S.String;
+export const ListForSuiteRequestFilter = S.String;
 
 export interface ListForSuiteRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -1757,7 +1751,7 @@ export type UpdateRequestStatus =
   | "waiting"
   | "requested"
   | "pending";
-export const UpdateRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateRequestStatus = S.String;
 
 /** **Required if you provide `completed_at` or a `status` of `completed`**. The final conclusion of the check. **Note:** Providing `conclusion` will automatically set the `status` parameter to `completed`. You cannot change a check run conclusion to `stale`, only GitHub can set this. */
 export type UpdateRequestConclusion =
@@ -1769,15 +1763,14 @@ export type UpdateRequestConclusion =
   | "skipped"
   | "stale"
   | "timed_out";
-export const UpdateRequestConclusion = /*@__PURE__*/ S.String;
+export const UpdateRequestConclusion = S.String;
 
 /** The level of the annotation. */
 export type UpdateRequestOutputAnnotationsItemAnnotationLevel =
   | "notice"
   | "warning"
   | "failure";
-export const UpdateRequestOutputAnnotationsItemAnnotationLevel =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestOutputAnnotationsItemAnnotationLevel = S.String;
 
 export interface UpdateRequestOutputAnnotationsItem {
   /** The path of the file to add an annotation to. For example, `assets/css/main.css`. */

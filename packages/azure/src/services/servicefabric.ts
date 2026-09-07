@@ -27,7 +27,7 @@ export type ManagedIdentityType =
   | "UserAssigned"
   | "SystemAssigned, UserAssigned"
   | "None";
-export const ManagedIdentityType = /*@__PURE__*/ S.String;
+export const ManagedIdentityType = S.String;
 
 export interface UserAssignedIdentityInput {}
 export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
@@ -70,8 +70,7 @@ export const ApplicationParameterList = /*@__PURE__*/ S.Record(
 export type ArmRollingUpgradeMonitoringPolicyFailureAction =
   | "Rollback"
   | "Manual";
-export const ArmRollingUpgradeMonitoringPolicyFailureAction =
-  /*@__PURE__*/ S.String;
+export const ArmRollingUpgradeMonitoringPolicyFailureAction = S.String;
 
 /** The policy used for monitoring the application upgrade */
 export interface ArmRollingUpgradeMonitoringPolicy {
@@ -154,7 +153,7 @@ export type RollingUpgradeMode =
   | "UnmonitoredAuto"
   | "UnmonitoredManual"
   | "Monitored";
-export const RollingUpgradeMode = /*@__PURE__*/ S.String;
+export const RollingUpgradeMode = S.String;
 
 /** Describes the policy for a monitored application upgrade. */
 export interface ApplicationUpgradePolicy {
@@ -530,7 +529,7 @@ export type AddOnFeatures =
   | "DnsService"
   | "BackupRestoreService"
   | "ResourceMonitorService";
-export const AddOnFeatures = /*@__PURE__*/ S.String;
+export const AddOnFeatures = S.String;
 
 /** The list of add-on features to enable in the cluster. */
 export type ClusterPropertiesInputAddOnFeaturesList = Array<
@@ -569,7 +568,7 @@ export type StoreName =
   | "Root"
   | "TrustedPeople"
   | "TrustedPublisher";
-export const StoreName = /*@__PURE__*/ S.String;
+export const StoreName = S.String;
 
 /** Describes the certificate details. */
 export interface CertificateDescription {
@@ -773,7 +772,7 @@ export const NodeTypeDescriptionCapacitiesMap = /*@__PURE__*/ S.Record(
 
 /** The durability level of the node type. Learn about [DurabilityLevel](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-capacity). - Bronze - No privileges. This is the default. - Silver - The infrastructure jobs can be paused for a duration of 10 minutes per UD. - Gold - The infrastructure jobs can be paused for a duration of 2 hours per UD. Gold durability can be enabled only on full node VM skus like D15_V2, G5 etc. */
 export type DurabilityLevel = "Bronze" | "Silver" | "Gold";
-export const DurabilityLevel = /*@__PURE__*/ S.String;
+export const DurabilityLevel = S.String;
 
 /** Port range details */
 export interface EndpointRangeDescription {
@@ -852,7 +851,7 @@ export type ReliabilityLevel =
   | "Silver"
   | "Gold"
   | "Platinum";
-export const ReliabilityLevel = /*@__PURE__*/ S.String;
+export const ReliabilityLevel = S.String;
 
 /** Represents the health policy used to evaluate the health of services belonging to a service type. */
 export interface ServiceTypeHealthPolicy {
@@ -1030,7 +1029,7 @@ export const ClusterUpgradePolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** The upgrade mode of the cluster when new Service Fabric runtime version is available. */
 export type UpgradeMode = "Automatic" | "Manual";
-export const UpgradeMode = /*@__PURE__*/ S.String;
+export const UpgradeMode = S.String;
 
 export interface ApplicationTypeVersionsCleanupPolicy {
   /** Number of unused versions per application type to keep. */
@@ -1047,29 +1046,29 @@ export const ApplicationTypeVersionsCleanupPolicy = /*@__PURE__*/ S.suspend(
 
 /** This property controls the logical grouping of VMs in upgrade domains (UDs). This property can't be modified if a node type with multiple Availability Zones is already present in the cluster. */
 export type SfZonalUpgradeMode = "Parallel" | "Hierarchical";
-export const SfZonalUpgradeMode = /*@__PURE__*/ S.String;
+export const SfZonalUpgradeMode = S.String;
 
 /** This property defines the upgrade mode for the virtual machine scale set, it is mandatory if a node type with multiple Availability Zones is added. */
 export type VmssZonalUpgradeMode = "Parallel" | "Hierarchical";
-export const VmssZonalUpgradeMode = /*@__PURE__*/ S.String;
+export const VmssZonalUpgradeMode = S.String;
 
 /** Indicates when new cluster runtime version upgrades will be applied after they are released. By default is Wave0. */
 export type ClusterUpgradeCadence = "Wave0" | "Wave1" | "Wave2";
-export const ClusterUpgradeCadence = /*@__PURE__*/ S.String;
+export const ClusterUpgradeCadence = S.String;
 
 /** The category of notification. */
 export type NotificationNotificationCategory = "WaveProgress";
-export const NotificationNotificationCategory = /*@__PURE__*/ S.String;
+export const NotificationNotificationCategory = S.String;
 
 /** The level of notification. */
 export type NotificationNotificationLevel = "Critical" | "All";
-export const NotificationNotificationLevel = /*@__PURE__*/ S.String;
+export const NotificationNotificationLevel = S.String;
 
 /** The notification channel indicates the type of receivers subscribed to the notification, either user or subscription. */
 export type NotificationTargetNotificationChannel =
   | "EmailUser"
   | "EmailSubscription";
-export const NotificationTargetNotificationChannel = /*@__PURE__*/ S.String;
+export const NotificationTargetNotificationChannel = S.String;
 
 /** List of targets that subscribe to the notification. */
 export type NotificationTargetReceiversList = Array<string>;
@@ -1271,7 +1270,7 @@ export const ClusterPropertiesAddOnFeaturesList = /*@__PURE__*/ S.Array(
 
 /** Cluster operating system, the default will be Windows */
 export type ClusterEnvironment = "Windows" | "Linux";
-export const ClusterEnvironment = /*@__PURE__*/ S.String;
+export const ClusterEnvironment = S.String;
 
 /** The detail of the Service Fabric runtime version result */
 export interface ClusterVersionDetails {
@@ -1328,7 +1327,7 @@ export type ClusterState =
   | "UpgradeServiceUnreachable"
   | "AutoScale"
   | "Ready";
-export const ClusterState = /*@__PURE__*/ S.String;
+export const ClusterState = S.String;
 
 /** The list of custom fabric settings to configure the cluster. */
 export type ClusterPropertiesFabricSettingsList =
@@ -1349,7 +1348,7 @@ export type ClusterPropertiesProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const ClusterPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const ClusterPropertiesProvisioningState = S.String;
 
 /** Indicates a list of notification channels for cluster events. */
 export type ClusterPropertiesNotificationsList = Array<Notification>;
@@ -2138,8 +2137,7 @@ export const ClusterCodeVersionsListResult = /*@__PURE__*/ S.suspend(() =>
 export type GetClusterVersionByEnvironmentRequestEnvironment =
   | "Windows"
   | "Linux";
-export const GetClusterVersionByEnvironmentRequestEnvironment =
-  /*@__PURE__*/ S.String;
+export const GetClusterVersionByEnvironmentRequestEnvironment = S.String;
 
 export interface GetClusterVersionByEnvironmentRequest {
   /** The customer subscription identifier. */
@@ -2216,7 +2214,7 @@ export type ServiceCorrelationScheme =
   | "Affinity"
   | "AlignedAffinity"
   | "NonAlignedAffinity";
-export const ServiceCorrelationScheme = /*@__PURE__*/ S.String;
+export const ServiceCorrelationScheme = S.String;
 
 /** Creates a particular correlation between services. */
 export interface ServiceCorrelationDescription {
@@ -2242,7 +2240,7 @@ export const CorrelationSchemeList = /*@__PURE__*/ S.Array(
 
 /** Determines the metric weight relative to the other metrics that are configured for this service. During runtime, if two metrics end up in conflict, the Cluster Resource Manager prefers the metric with the higher weight. */
 export type ServiceLoadMetricWeight = "Zero" | "Low" | "Medium" | "High";
-export const ServiceLoadMetricWeight = /*@__PURE__*/ S.String;
+export const ServiceLoadMetricWeight = S.String;
 
 /** Specifies a metric to load balance a service during runtime. */
 export interface ServiceLoadMetricDescription {
@@ -2283,7 +2281,7 @@ export type ServicePlacementPolicyType =
   | "PreferredPrimaryDomain"
   | "RequiredDomainDistribution"
   | "NonPartiallyPlaceService";
-export const ServicePlacementPolicyType = /*@__PURE__*/ S.String;
+export const ServicePlacementPolicyType = S.String;
 
 /** Describes the policy to be used for placement of a Service Fabric service. */
 export interface ServicePlacementPolicyDescription {
@@ -2306,11 +2304,11 @@ export const ServicePlacementPoliciesList = /*@__PURE__*/ S.Array(
 
 /** Specifies the move cost for the service. */
 export type MoveCost = "Zero" | "Low" | "Medium" | "High";
-export const MoveCost = /*@__PURE__*/ S.String;
+export const MoveCost = S.String;
 
 /** The kind of service (Stateless or Stateful). */
 export type ServiceKind = "Invalid" | "Stateless" | "Stateful";
-export const ServiceKind = /*@__PURE__*/ S.String;
+export const ServiceKind = S.String;
 
 /** Enumerates the ways that a service can be partitioned. */
 export type PartitionScheme =
@@ -2318,7 +2316,7 @@ export type PartitionScheme =
   | "Singleton"
   | "UniformInt64Range"
   | "Named";
-export const PartitionScheme = /*@__PURE__*/ S.String;
+export const PartitionScheme = S.String;
 
 /** Describes how the service is partitioned. */
 export interface PartitionSchemeDescription {
@@ -2337,8 +2335,7 @@ export const PartitionSchemeDescription = /*@__PURE__*/ S.suspend(() =>
 export type ServiceResourcePropertiesServicePackageActivationMode =
   | "SharedProcess"
   | "ExclusiveProcess";
-export const ServiceResourcePropertiesServicePackageActivationMode =
-  /*@__PURE__*/ S.String;
+export const ServiceResourcePropertiesServicePackageActivationMode = S.String;
 
 /** The service resource properties. */
 export interface ServiceResourceProperties {
@@ -2823,8 +2820,7 @@ export const UpgradableVersionPathResult = /*@__PURE__*/ S.suspend(() =>
 export type ListClusterVersionByEnvironmentRequestEnvironment =
   | "Windows"
   | "Linux";
-export const ListClusterVersionByEnvironmentRequestEnvironment =
-  /*@__PURE__*/ S.String;
+export const ListClusterVersionByEnvironmentRequestEnvironment = S.String;
 
 export interface ListClusterVersionByEnvironmentRequest {
   /** The customer subscription identifier. */
@@ -3062,7 +3058,7 @@ export type ServiceResourcePropertiesInputServicePackageActivationMode =
   | "SharedProcess"
   | "ExclusiveProcess";
 export const ServiceResourcePropertiesInputServicePackageActivationMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The service resource properties. */
 export interface ServiceResourcePropertiesInput {

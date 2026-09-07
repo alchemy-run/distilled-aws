@@ -319,7 +319,7 @@ export const BatchGetQueryExecutionInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "BatchGetQueryExecutionInput",
 }) as any as S.Schema<BatchGetQueryExecutionInput>;
 export type StatementType = "DDL" | "DML" | "UTILITY" | (string & {});
-export const StatementType = /*@__PURE__*/ S.String;
+export const StatementType = S.String;
 
 export type KmsKey = string;
 export interface ManagedQueryResultsEncryptionConfiguration {
@@ -345,7 +345,7 @@ export const ManagedQueryResultsConfiguration = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ManagedQueryResultsConfiguration>;
 export type ResultOutputLocation = string;
 export type EncryptionOption = "SSE_S3" | "SSE_KMS" | "CSE_KMS" | (string & {});
-export const EncryptionOption = /*@__PURE__*/ S.String;
+export const EncryptionOption = S.String;
 
 export interface EncryptionConfiguration {
   EncryptionOption: EncryptionOption;
@@ -361,7 +361,7 @@ export const EncryptionConfiguration = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EncryptionConfiguration>;
 export type AwsAccountId = string;
 export type S3AclOption = "BUCKET_OWNER_FULL_CONTROL" | (string & {});
-export const S3AclOption = /*@__PURE__*/ S.String;
+export const S3AclOption = S.String;
 
 export interface AclConfiguration {
   S3AclOption: S3AclOption;
@@ -424,7 +424,7 @@ export type QueryExecutionState =
   | "FAILED"
   | "CANCELLED"
   | (string & {});
-export const QueryExecutionState = /*@__PURE__*/ S.String;
+export const QueryExecutionState = S.String;
 
 export type ErrorCategory = number;
 export type ErrorType = number;
@@ -516,7 +516,7 @@ export type ExecutionParameters = string[];
 export const ExecutionParameters = /*@__PURE__*/ S.Array(S.String);
 export type BoxedBoolean = boolean;
 export type AuthenticationType = "DIRECTORY_IDENTITY" | (string & {});
-export const AuthenticationType = /*@__PURE__*/ S.String;
+export const AuthenticationType = S.String;
 
 export interface QueryResultsS3AccessGrantsConfiguration {
   EnableS3AccessGrants: boolean;
@@ -660,7 +660,7 @@ export type DataCatalogType =
   | "HIVE"
   | "FEDERATED"
   | (string & {});
-export const DataCatalogType = /*@__PURE__*/ S.String;
+export const DataCatalogType = S.String;
 
 export type KeyString = string;
 export type ParametersMapValue = string;
@@ -700,7 +700,7 @@ export type DataCatalogStatus =
   | "DELETE_COMPLETE"
   | "DELETE_FAILED"
   | (string & {});
-export const DataCatalogStatus = /*@__PURE__*/ S.String;
+export const DataCatalogStatus = S.String;
 
 export type ConnectionType =
   | "DYNAMODB"
@@ -724,7 +724,7 @@ export type ConnectionType =
   | "DATALAKEGEN2"
   | "DB2AS400"
   | (string & {});
-export const ConnectionType = /*@__PURE__*/ S.String;
+export const ConnectionType = S.String;
 
 export interface DataCatalog {
   Name: string;
@@ -1169,7 +1169,7 @@ export const ExportNotebookInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExportNotebookInput",
 }) as any as S.Schema<ExportNotebookInput>;
 export type NotebookType = "IPYNB" | (string & {});
-export const NotebookType = /*@__PURE__*/ S.String;
+export const NotebookType = S.String;
 
 export interface NotebookMetadata {
   NotebookId?: string;
@@ -1228,7 +1228,7 @@ export type CalculationExecutionState =
   | "COMPLETED"
   | "FAILED"
   | (string & {});
-export const CalculationExecutionState = /*@__PURE__*/ S.String;
+export const CalculationExecutionState = S.String;
 
 export interface CalculationStatus {
   SubmissionDateTime?: Date;
@@ -1409,7 +1409,7 @@ export type CapacityReservationStatus =
   | "FAILED"
   | "UPDATE_PENDING"
   | (string & {});
-export const CapacityReservationStatus = /*@__PURE__*/ S.String;
+export const CapacityReservationStatus = S.String;
 
 export type AllocatedDpusInteger = number;
 export type CapacityAllocationStatus =
@@ -1417,7 +1417,7 @@ export type CapacityAllocationStatus =
   | "SUCCEEDED"
   | "FAILED"
   | (string & {});
-export const CapacityAllocationStatus = /*@__PURE__*/ S.String;
+export const CapacityAllocationStatus = S.String;
 
 export interface CapacityAllocation {
   Status: CapacityAllocationStatus;
@@ -1600,7 +1600,7 @@ export const GetQueryExecutionOutput = /*@__PURE__*/ S.suspend(() =>
 export type Token = string;
 export type MaxQueryResults = number;
 export type QueryResultType = "DATA_MANIFEST" | "DATA_ROWS" | (string & {});
-export const QueryResultType = /*@__PURE__*/ S.String;
+export const QueryResultType = S.String;
 
 export interface GetQueryResultsInput {
   QueryExecutionId: string;
@@ -1642,7 +1642,7 @@ export type ColumnNullable =
   | "NULLABLE"
   | "UNKNOWN"
   | (string & {});
-export const ColumnNullable = /*@__PURE__*/ S.String;
+export const ColumnNullable = S.String;
 
 export interface ColumnInfo {
   CatalogName?: string;
@@ -1894,7 +1894,7 @@ export type SessionState =
   | "DEGRADED"
   | "FAILED"
   | (string & {});
-export const SessionState = /*@__PURE__*/ S.String;
+export const SessionState = S.String;
 
 export interface SessionStatus {
   StartDateTime?: Date;
@@ -2074,7 +2074,7 @@ export const GetWorkGroupInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetWorkGroupInput",
 }) as any as S.Schema<GetWorkGroupInput>;
 export type WorkGroupState = "ENABLED" | "DISABLED" | (string & {});
-export const WorkGroupState = /*@__PURE__*/ S.String;
+export const WorkGroupState = S.String;
 
 export type IdentityCenterApplicationArn = string;
 export interface WorkGroup {
@@ -2374,7 +2374,7 @@ export type ExecutorState =
   | "TERMINATED"
   | "FAILED"
   | (string & {});
-export const ExecutorState = /*@__PURE__*/ S.String;
+export const ExecutorState = S.String;
 
 export type MaxListExecutorsCount = number;
 export interface ListExecutorsRequest {
@@ -2397,7 +2397,7 @@ export const ListExecutorsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListExecutorsRequest>;
 export type ExecutorId = string;
 export type ExecutorType = "COORDINATOR" | "GATEWAY" | "WORKER" | (string & {});
-export const ExecutorType = /*@__PURE__*/ S.String;
+export const ExecutorType = S.String;
 
 export interface ExecutorsSummary {
   ExecutorId: string;
@@ -3262,7 +3262,7 @@ export const UpdateWorkGroupOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateWorkGroupOutput",
 }) as any as S.Schema<UpdateWorkGroupOutput>;
 export type ThrottleReason = "CONCURRENT_QUERY_LIMIT_EXCEEDED" | (string & {});
-export const ThrottleReason = /*@__PURE__*/ S.String;
+export const ThrottleReason = S.String;
 
 export type BatchGetNamedQueryError =
   | InternalServerException

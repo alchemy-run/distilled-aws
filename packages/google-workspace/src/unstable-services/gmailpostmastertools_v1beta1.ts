@@ -62,7 +62,7 @@ export type DomainPermissionEnum =
   | "OWNER"
   | "READER"
   | "NONE";
-export const DomainPermissionEnum = /*@__PURE__*/ S.String;
+export const DomainPermissionEnum = S.String;
 
 /** A registered domain resource in the Postmaster API. */
 export interface Domain {
@@ -105,7 +105,7 @@ export type IpReputationReputationEnum =
   | "MEDIUM"
   | "LOW"
   | "BAD";
-export const IpReputationReputationEnum = /*@__PURE__*/ S.String;
+export const IpReputationReputationEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -143,13 +143,13 @@ export type TrafficStatsDomainReputationEnum =
   | "MEDIUM"
   | "LOW"
   | "BAD";
-export const TrafficStatsDomainReputationEnum = /*@__PURE__*/ S.String;
+export const TrafficStatsDomainReputationEnum = S.String;
 
 export type DeliveryErrorErrorClassEnum =
   | "DELIVERY_ERROR_CLASS_UNSPECIFIED"
   | "PERMANENT_ERROR"
   | "TEMPORARY_ERROR";
-export const DeliveryErrorErrorClassEnum = /*@__PURE__*/ S.String;
+export const DeliveryErrorErrorClassEnum = S.String;
 
 export type DeliveryErrorErrorTypeEnum =
   | "DELIVERY_ERROR_TYPE_UNSPECIFIED"
@@ -163,7 +163,7 @@ export type DeliveryErrorErrorTypeEnum =
   | "IP_IN_RBL"
   | "DOMAIN_IN_RBL"
   | "BAD_PTR_RECORD";
-export const DeliveryErrorErrorTypeEnum = /*@__PURE__*/ S.String;
+export const DeliveryErrorErrorTypeEnum = S.String;
 
 /** Metric on a particular delivery error type. */
 export interface DeliveryError {

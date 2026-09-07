@@ -84,8 +84,7 @@ export type AccountsCreateAndUpdateResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AccountsCreateAndUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const AccountsCreateAndUpdateResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type AccountsCreateAndUpdateResponseSystemDataLastModifiedByType =
@@ -94,7 +93,7 @@ export type AccountsCreateAndUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const AccountsCreateAndUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface AccountsCreateAndUpdateResponseSystemData {
@@ -129,7 +128,7 @@ export type AccountsCreateAndUpdateResponsePropertiesProvisioningState =
   | "Failed"
   | "Canceled";
 export const AccountsCreateAndUpdateResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Property bag from billing account */
 export interface AccountsCreateAndUpdateResponseProperties {
@@ -253,7 +252,7 @@ export type GetAccountResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetAccountResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const GetAccountResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetAccountResponseSystemDataLastModifiedByType =
@@ -261,8 +260,7 @@ export type GetAccountResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetAccountResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetAccountResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetAccountResponseSystemData {
@@ -293,8 +291,7 @@ export type GetAccountResponsePropertiesProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const GetAccountResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const GetAccountResponsePropertiesProvisioningState = S.String;
 
 /** Property bag from billing account */
 export interface GetAccountResponseProperties {
@@ -382,7 +379,7 @@ export type AccountResourceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AccountResourceSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const AccountResourceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type AccountResourceSystemDataLastModifiedByType =
@@ -390,8 +387,7 @@ export type AccountResourceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AccountResourceSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const AccountResourceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface AccountResourceSystemData {
@@ -420,8 +416,7 @@ export type AccountResourcePropertiesProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const AccountResourcePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AccountResourcePropertiesProvisioningState = S.String;
 
 /** Property bag from billing account */
 export interface AccountResourceProperties {
@@ -552,11 +547,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -652,8 +647,7 @@ export type UpdateAccountResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateAccountResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateAccountResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateAccountResponseSystemDataLastModifiedByType =
@@ -661,8 +655,7 @@ export type UpdateAccountResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateAccountResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateAccountResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateAccountResponseSystemData {
@@ -693,8 +686,7 @@ export type UpdateAccountResponsePropertiesProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const UpdateAccountResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const UpdateAccountResponsePropertiesProvisioningState = S.String;
 
 /** Property bag from billing account */
 export interface UpdateAccountResponseProperties {

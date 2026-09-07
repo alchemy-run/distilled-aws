@@ -66,7 +66,7 @@ export class NotFound
   ) {}
 
 export type TagActionActionEnum = "ACTION_UNSPECIFIED" | "ADD" | "REMOVE";
-export const TagActionActionEnum = /*@__PURE__*/ S.String;
+export const TagActionActionEnum = S.String;
 
 /** Message for edit tag action */
 export interface TagAction {
@@ -155,7 +155,7 @@ export type ApiObservationStyleEnum =
   | "REST"
   | "GRPC"
   | "GRAPHQL";
-export const ApiObservationStyleEnum = /*@__PURE__*/ S.String;
+export const ApiObservationStyleEnum = S.String;
 
 /** Message describing ApiObservation object */
 export interface ApiObservation {
@@ -259,7 +259,7 @@ export type ObservationJobStateEnum =
   | "DISABLED"
   | "DELETING"
   | "ERROR";
-export const ObservationJobStateEnum = /*@__PURE__*/ S.String;
+export const ObservationJobStateEnum = S.String;
 
 /** Message describing ObservationJob object */
 export interface ObservationJob {
@@ -369,7 +369,7 @@ export type ObservationSourceStateEnum =
   | "CREATED"
   | "DELETING"
   | "ERROR";
-export const ObservationSourceStateEnum = /*@__PURE__*/ S.String;
+export const ObservationSourceStateEnum = S.String;
 
 /** Network information for setting up a PSC connection. */
 export interface GclbObservationSourcePscNetworkConfig {
@@ -723,7 +723,7 @@ export type HttpOperationHeaderDataTypeEnum =
   | "FLOAT"
   | "STRING"
   | "UUID";
-export const HttpOperationHeaderDataTypeEnum = /*@__PURE__*/ S.String;
+export const HttpOperationHeaderDataTypeEnum = S.String;
 
 /** An aggregation of HTTP header occurrences. */
 export interface HttpOperationHeader {
@@ -776,7 +776,7 @@ export type HttpOperationMethodEnum =
   | "TRACE"
   | "OPTIONS"
   | "CONNECT";
-export const HttpOperationMethodEnum = /*@__PURE__*/ S.String;
+export const HttpOperationMethodEnum = S.String;
 
 export type HttpOperationQueryParamDataTypeEnum =
   | "DATA_TYPE_UNSPECIFIED"
@@ -785,7 +785,7 @@ export type HttpOperationQueryParamDataTypeEnum =
   | "FLOAT"
   | "STRING"
   | "UUID";
-export const HttpOperationQueryParamDataTypeEnum = /*@__PURE__*/ S.String;
+export const HttpOperationQueryParamDataTypeEnum = S.String;
 
 /** An aggregation of HTTP query parameter occurrences. */
 export interface HttpOperationQueryParam {
@@ -821,7 +821,7 @@ export type HttpOperationPathParamDataTypeEnum =
   | "FLOAT"
   | "STRING"
   | "UUID";
-export const HttpOperationPathParamDataTypeEnum = /*@__PURE__*/ S.String;
+export const HttpOperationPathParamDataTypeEnum = S.String;
 
 /** HTTP Path parameter. */
 export interface HttpOperationPathParam {

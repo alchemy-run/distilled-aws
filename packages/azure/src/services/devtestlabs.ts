@@ -15,7 +15,7 @@ export type { AzureOpError, AzureOpContext };
 
 /** The storage type for the disk (i.e. Standard, Premium). */
 export type StorageType = "Standard" | "Premium" | "StandardSSD";
-export const StorageType = /*@__PURE__*/ S.String;
+export const StorageType = S.String;
 
 /** Properties to attach new disk to the Virtual Machine. */
 export interface AttachNewDataDiskOptions {
@@ -38,7 +38,7 @@ export const AttachNewDataDiskOptions = /*@__PURE__*/ S.suspend(() =>
 
 /** Caching option for a data disk (i.e. None, ReadOnly, ReadWrite). */
 export type HostCachingOptions = "None" | "ReadOnly" | "ReadWrite";
-export const HostCachingOptions = /*@__PURE__*/ S.String;
+export const HostCachingOptions = S.String;
 
 export interface AddVirtualMachineDataDiskRequest {
   /** The ID of the target subscription. */
@@ -186,11 +186,11 @@ export const ApplyVirtualMachineArtifactsResponse = /*@__PURE__*/ S.suspend(
 
 /** The artifact source's type. */
 export type SourceControlType = "VsoGit" | "GitHub" | "StorageAccount";
-export const SourceControlType = /*@__PURE__*/ S.String;
+export const SourceControlType = S.String;
 
 /** Indicates if the artifact source is enabled (values: Enabled, Disabled). */
 export type EnableStatus = "Enabled" | "Disabled";
-export const EnableStatus = /*@__PURE__*/ S.String;
+export const EnableStatus = S.String;
 
 /** Properties of an artifact source. */
 export interface ArtifactSourcePropertiesInput {
@@ -280,7 +280,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -288,7 +288,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -545,7 +545,7 @@ export const ClaimVirtualMachinesUnResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Target cost status */
 export type TargetCostStatus = "Enabled" | "Disabled";
-export const TargetCostStatus = /*@__PURE__*/ S.String;
+export const TargetCostStatus = S.String;
 
 /** Properties of a percentage cost threshold. */
 export interface PercentageCostThresholdProperties {
@@ -562,7 +562,7 @@ export const PercentageCostThresholdProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether this threshold will be displayed on cost charts. */
 export type CostThresholdStatus = "Enabled" | "Disabled";
-export const CostThresholdStatus = /*@__PURE__*/ S.String;
+export const CostThresholdStatus = S.String;
 
 /** Properties of a cost threshold item. */
 export interface CostThresholdProperties {
@@ -598,7 +598,7 @@ export const TargetCostPropertiesCostThresholdsList = /*@__PURE__*/ S.Array(
 
 /** Reporting cycle type. */
 export type ReportingCycleType = "CalendarMonth" | "Custom";
-export const ReportingCycleType = /*@__PURE__*/ S.String;
+export const ReportingCycleType = S.String;
 
 /** Properties of a cost target. */
 export interface TargetCostProperties {
@@ -714,7 +714,7 @@ export const LabCostSummaryProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the cost. */
 export type CostType = "Unavailable" | "Reported" | "Projected";
-export const CostType = /*@__PURE__*/ S.String;
+export const CostType = S.String;
 
 /** The properties of a lab cost item. */
 export interface LabCostDetailsProperties {
@@ -913,7 +913,7 @@ export const GalleryImageReference = /*@__PURE__*/ S.suspend(() =>
 
 /** The transport protocol for the endpoint. */
 export type TransportProtocol = "Tcp" | "Udp";
-export const TransportProtocol = /*@__PURE__*/ S.String;
+export const TransportProtocol = S.String;
 
 /** A rule for NAT - exposing a VM's port (backendPort) on the public IP address using a load balancer. */
 export interface InboundNatRule {
@@ -1023,7 +1023,7 @@ export const LabVirtualMachineCreationParameterPropertiesInputDataDiskParameters
 
 /** The status of the schedule (i.e. Enabled, Disabled) */
 export type ScheduleCreationParameterPropertiesStatus = "Enabled" | "Disabled";
-export const ScheduleCreationParameterPropertiesStatus = /*@__PURE__*/ S.String;
+export const ScheduleCreationParameterPropertiesStatus = S.String;
 
 /** The days of the week for which the schedule is set (e.g. Sunday, Monday, Tuesday, etc.). */
 export type WeekDetailsWeekdaysList = Array<string>;
@@ -1069,7 +1069,7 @@ export const HourDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** If notifications are enabled for this schedule (i.e. Enabled, Disabled). */
 export type NotificationSettingsStatus = "Enabled" | "Disabled";
-export const NotificationSettingsStatus = /*@__PURE__*/ S.String;
+export const NotificationSettingsStatus = S.String;
 
 /** Notification settings for a schedule. */
 export interface NotificationSettings {
@@ -1310,7 +1310,7 @@ export type WindowsOsState =
   | "NonSysprepped"
   | "SysprepRequested"
   | "SysprepApplied";
-export const WindowsOsState = /*@__PURE__*/ S.String;
+export const WindowsOsState = S.String;
 
 /** Information about a Windows OS. */
 export interface WindowsOsInfo {
@@ -1328,7 +1328,7 @@ export type LinuxOsState =
   | "NonDeprovisioned"
   | "DeprovisionRequested"
   | "DeprovisionApplied";
-export const LinuxOsState = /*@__PURE__*/ S.String;
+export const LinuxOsState = S.String;
 
 /** Information about a Linux OS. */
 export interface LinuxOsInfo {
@@ -1362,7 +1362,7 @@ export const CustomImagePropertiesFromVm = /*@__PURE__*/ S.suspend(() =>
 
 /** The OS type of the custom image (i.e. Windows, Linux) */
 export type CustomImageOsType = "Windows" | "Linux" | "None";
-export const CustomImageOsType = /*@__PURE__*/ S.String;
+export const CustomImageOsType = S.String;
 
 /** Properties for creating a custom image from a VHD. */
 export interface CustomImagePropertiesCustom {
@@ -3229,7 +3229,7 @@ export const GenerateArtifactArmTemplateRequestParametersList =
 
 /** Options for uploading the files for the artifact. UploadFilesAndGenerateSasTokens is the default value. */
 export type FileUploadOptions = "UploadFilesAndGenerateSasTokens" | "None";
-export const FileUploadOptions = /*@__PURE__*/ S.String;
+export const FileUploadOptions = S.String;
 
 export interface GenerateArtifactArmTemplateRequest {
   /** The ID of the target subscription. */
@@ -4020,7 +4020,7 @@ export const GetGlobalScheduleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the schedule (i.e. Enabled, Disabled) */
 export type SchedulePropertiesStatus = "Enabled" | "Disabled";
-export const SchedulePropertiesStatus = /*@__PURE__*/ S.String;
+export const SchedulePropertiesStatus = S.String;
 
 /** Properties of a schedule. */
 export interface ScheduleProperties {
@@ -4135,7 +4135,7 @@ export type LabPropertiesLabStorageType =
   | "Standard"
   | "Premium"
   | "StandardSSD";
-export const LabPropertiesLabStorageType = /*@__PURE__*/ S.String;
+export const LabPropertiesLabStorageType = S.String;
 
 /** The ordered list of artifact resource IDs that should be applied on all Linux VM creations by default, prior to the artifacts specified by the user. */
 export type LabPropertiesMandatoryArtifactsResourceIdsLinuxList = Array<string>;
@@ -4154,11 +4154,11 @@ export const LabPropertiesMandatoryArtifactsResourceIdsWindowsList =
 
 /** The setting to enable usage of premium data disks. When its value is 'Enabled', creation of standard or premium data disks is allowed. When its value is 'Disabled', only creation of standard data disks is allowed. */
 export type PremiumDataDisk = "Disabled" | "Enabled";
-export const PremiumDataDisk = /*@__PURE__*/ S.String;
+export const PremiumDataDisk = S.String;
 
 /** The access rights to be granted to the user when provisioning an environment */
 export type EnvironmentPermission = "Reader" | "Contributor";
-export const EnvironmentPermission = /*@__PURE__*/ S.String;
+export const EnvironmentPermission = S.String;
 
 /** Properties of a lab's announcement banner */
 export interface LabAnnouncementProperties {
@@ -4356,7 +4356,7 @@ export const GetNotificationChannelRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The event type for which this notification is enabled (i.e. AutoShutdown, Cost) */
 export type NotificationChannelEventType = "AutoShutdown" | "Cost";
-export const NotificationChannelEventType = /*@__PURE__*/ S.String;
+export const NotificationChannelEventType = S.String;
 
 /** An event to be notified for. */
 export interface Event {
@@ -4522,7 +4522,7 @@ export type HttpStatusCode =
   | "ServiceUnavailable"
   | "GatewayTimeout"
   | "HttpVersionNotSupported";
-export const HttpStatusCode = /*@__PURE__*/ S.String;
+export const HttpStatusCode = S.String;
 
 /** Error details for the operation in case of a failure. */
 export interface OperationError {
@@ -4593,7 +4593,7 @@ export const GetPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the policy. */
 export type PolicyStatus = "Enabled" | "Disabled";
-export const PolicyStatus = /*@__PURE__*/ S.String;
+export const PolicyStatus = S.String;
 
 /** The fact name of the policy (e.g. LabVmCount, LabVmSize, MaxVmsAllowedPerLab, etc. */
 export type PolicyFactName =
@@ -4607,11 +4607,11 @@ export type PolicyFactName =
   | "LabTargetCost"
   | "EnvironmentTemplate"
   | "ScheduleEditPermission";
-export const PolicyFactName = /*@__PURE__*/ S.String;
+export const PolicyFactName = S.String;
 
 /** The evaluator type of the policy (i.e. AllowedValuesPolicy, MaxValuePolicy). */
 export type PolicyEvaluatorType = "AllowedValuesPolicy" | "MaxValuePolicy";
-export const PolicyEvaluatorType = /*@__PURE__*/ S.String;
+export const PolicyEvaluatorType = S.String;
 
 /** Properties of a Policy. */
 export interface PolicyProperties {
@@ -5152,7 +5152,7 @@ export type ManagedIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedIdentityType = /*@__PURE__*/ S.String;
+export const ManagedIdentityType = S.String;
 
 /** Properties of a managed identity */
 export interface IdentityProperties {
@@ -5487,7 +5487,7 @@ export type VirtualMachineCreationSource =
   | "FromCustomImage"
   | "FromGalleryImage"
   | "FromSharedGalleryImage";
-export const VirtualMachineCreationSource = /*@__PURE__*/ S.String;
+export const VirtualMachineCreationSource = S.String;
 
 /** New or existing data disks to attach to the virtual machine after creation */
 export type LabVirtualMachinePropertiesDataDiskParametersList =
@@ -5809,7 +5809,7 @@ export const GetVirtualNetworkRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The permission policy of the subnet for allowing public IP addresses (i.e. Allow, Deny)). */
 export type UsagePermissionType = "Default" | "Deny" | "Allow";
-export const UsagePermissionType = /*@__PURE__*/ S.String;
+export const UsagePermissionType = S.String;
 
 /** Subnet information. */
 export interface Subnet {
@@ -6003,7 +6003,7 @@ export const GetVirtualNetworkResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the schedule (i.e. Enabled, Disabled) */
 export type SchedulePropertiesInputStatus = "Enabled" | "Disabled";
-export const SchedulePropertiesInputStatus = /*@__PURE__*/ S.String;
+export const SchedulePropertiesInputStatus = S.String;
 
 /** Properties of a schedule. */
 export interface SchedulePropertiesInput {
@@ -6206,7 +6206,7 @@ export type LabPropertiesInputLabStorageType =
   | "Standard"
   | "Premium"
   | "StandardSSD";
-export const LabPropertiesInputLabStorageType = /*@__PURE__*/ S.String;
+export const LabPropertiesInputLabStorageType = S.String;
 
 /** The ordered list of artifact resource IDs that should be applied on all Linux VM creations by default, prior to the artifacts specified by the user. */
 export type LabPropertiesInputMandatoryArtifactsResourceIdsLinuxList =
@@ -7714,11 +7714,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {

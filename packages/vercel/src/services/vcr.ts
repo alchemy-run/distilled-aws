@@ -595,10 +595,10 @@ export type VcrImageLayerCase0Operation =
   | "USER"
   | "VOLUME"
   | "WORKDIR";
-export const VcrImageLayerCase0Operation = /*@__PURE__*/ S.String;
+export const VcrImageLayerCase0Operation = S.String;
 
 export type VcrImageLayerCase0Type = "FROM";
-export const VcrImageLayerCase0Type = /*@__PURE__*/ S.String;
+export const VcrImageLayerCase0Type = S.String;
 
 export type VcrImageLayerCase0CollapsedDigestsList = Array<string>;
 export const VcrImageLayerCase0CollapsedDigestsList = /*@__PURE__*/ S.Array(
@@ -651,10 +651,10 @@ export type VcrImageLayerCase1Operation =
   | "USER"
   | "VOLUME"
   | "WORKDIR";
-export const VcrImageLayerCase1Operation = /*@__PURE__*/ S.String;
+export const VcrImageLayerCase1Operation = S.String;
 
 export type VcrImageLayerCase1Type = "RUN";
-export const VcrImageLayerCase1Type = /*@__PURE__*/ S.String;
+export const VcrImageLayerCase1Type = S.String;
 
 export interface VcrImageLayerCase1 {
   createdBy: string | null;
@@ -698,10 +698,10 @@ export type VcrImageLayerCase2Operation =
   | "USER"
   | "VOLUME"
   | "WORKDIR";
-export const VcrImageLayerCase2Operation = /*@__PURE__*/ S.String;
+export const VcrImageLayerCase2Operation = S.String;
 
 export type VcrImageLayerCase2Type = "ENV";
-export const VcrImageLayerCase2Type = /*@__PURE__*/ S.String;
+export const VcrImageLayerCase2Type = S.String;
 
 export interface VcrImageLayerCase2 {
   createdBy: string | null;
@@ -745,7 +745,7 @@ export type VcrImageLayerCase3Operation =
   | "USER"
   | "VOLUME"
   | "WORKDIR";
-export const VcrImageLayerCase3Operation = /*@__PURE__*/ S.String;
+export const VcrImageLayerCase3Operation = S.String;
 
 export type VcrImageLayerCase3Type =
   | "ADD"
@@ -763,7 +763,7 @@ export type VcrImageLayerCase3Type =
   | "USER"
   | "VOLUME"
   | "WORKDIR";
-export const VcrImageLayerCase3Type = /*@__PURE__*/ S.String;
+export const VcrImageLayerCase3Type = S.String;
 
 export interface VcrImageLayerCase3 {
   createdBy: string | null;
@@ -792,8 +792,7 @@ export type VcrImageLayer =
   | VcrImageLayerCase1
   | VcrImageLayerCase2
   | VcrImageLayerCase3;
-export const VcrImageLayer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<VcrImageLayer>;
+export const VcrImageLayer = S.Unknown as any as S.Schema<VcrImageLayer>;
 
 export type VcrImageDetailLayersList = Array<VcrImageLayer>;
 export const VcrImageDetailLayersList = /*@__PURE__*/ S.Array(
@@ -808,11 +807,11 @@ export const VcrImageDetailTagsList = /*@__PURE__*/ S.Array(
 
 /** Whether the manifest is a multi-platform image index, a single-platform image manifest or an attestation. */
 export type VcrImageDetailKind = "attestation" | "index" | "manifest";
-export const VcrImageDetailKind = /*@__PURE__*/ S.String;
+export const VcrImageDetailKind = S.String;
 
 /** VHS-readiness status, or `null` for a multi-platform index. */
 export type VcrImageDetailStatus = "preparing" | "ready" | "unoptimized";
-export const VcrImageDetailStatus = /*@__PURE__*/ S.String;
+export const VcrImageDetailStatus = S.String;
 
 /** A single image with its tags, status and resolved Dockerfile layer history. */
 export interface VcrImageDetail {
@@ -897,11 +896,11 @@ export const GetRepositoryTagRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the manifest is a multi-platform image index, a single-platform image manifest or an attestation. */
 export type VcrTagKind = "attestation" | "index" | "manifest";
-export const VcrTagKind = /*@__PURE__*/ S.String;
+export const VcrTagKind = S.String;
 
 /** VHS-readiness status, or `null` for a multi-platform index. */
 export type VcrTagStatus = "preparing" | "ready" | "unoptimized";
-export const VcrTagStatus = /*@__PURE__*/ S.String;
+export const VcrTagStatus = S.String;
 
 /** A tag pointing at an image in a Vercel Container Registry repository, enriched with the backing image's metadata and VHS-readiness status. */
 export interface VcrTag {
@@ -1164,11 +1163,11 @@ export const VcrImageListItemTagsList = /*@__PURE__*/ S.Array(
 
 /** Whether the manifest is a multi-platform image index, a single-platform image manifest or an attestation. */
 export type VcrImageListItemKind = "attestation" | "index" | "manifest";
-export const VcrImageListItemKind = /*@__PURE__*/ S.String;
+export const VcrImageListItemKind = S.String;
 
 /** VHS-readiness status, or `null` for a multi-platform index. */
 export type VcrImageListItemStatus = "preparing" | "ready" | "unoptimized";
-export const VcrImageListItemStatus = /*@__PURE__*/ S.String;
+export const VcrImageListItemStatus = S.String;
 
 /** An image enriched with its tags and VHS-readiness status, as returned when listing a repository's images. */
 export interface VcrImageListItem {
@@ -1284,11 +1283,11 @@ export const VcrRepositoryPermissionList = /*@__PURE__*/ S.suspend(() =>
 
 /** Field to sort the non-pinned tags by. */
 export type ListRepositoryTagsRequestSortBy = "updatedAt" | "tag";
-export const ListRepositoryTagsRequestSortBy = /*@__PURE__*/ S.String;
+export const ListRepositoryTagsRequestSortBy = S.String;
 
 /** Sort direction. Defaults to desc. */
 export type ListRepositoryTagsRequestSortOrder = "asc" | "desc";
-export const ListRepositoryTagsRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListRepositoryTagsRequestSortOrder = S.String;
 
 export interface ListRepositoryTagsRequest {
   idOrName: string;
@@ -1329,13 +1328,13 @@ export type ListRepositoryTagsResponseTagsItemKind =
   | "attestation"
   | "index"
   | "manifest";
-export const ListRepositoryTagsResponseTagsItemKind = /*@__PURE__*/ S.String;
+export const ListRepositoryTagsResponseTagsItemKind = S.String;
 
 export type ListRepositoryTagsResponseTagsItemStatus =
   | "preparing"
   | "ready"
   | "unoptimized";
-export const ListRepositoryTagsResponseTagsItemStatus = /*@__PURE__*/ S.String;
+export const ListRepositoryTagsResponseTagsItemStatus = S.String;
 
 export interface ListRepositoryTagsResponseTagsItem {
   tag: string;

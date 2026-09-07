@@ -72,8 +72,7 @@ export type LookupCurrentConditionsRequestExtraComputationsItemEnum =
   | "POLLUTANT_ADDITIONAL_INFO"
   | "DOMINANT_POLLUTANT_CONCENTRATION"
   | "POLLUTANT_CONCENTRATION";
-export const LookupCurrentConditionsRequestExtraComputationsItemEnum =
-  /*@__PURE__*/ S.String;
+export const LookupCurrentConditionsRequestExtraComputationsItemEnum = S.String;
 
 export type LookupCurrentConditionsRequestExtraComputationsItemEnumList = Array<
   LookupCurrentConditionsRequestExtraComputationsItemEnum | (string & {})
@@ -121,8 +120,7 @@ export type LookupCurrentConditionsRequestUaqiColorPaletteEnum =
   | "RED_GREEN"
   | "INDIGO_PERSIAN_DARK"
   | "INDIGO_PERSIAN_LIGHT";
-export const LookupCurrentConditionsRequestUaqiColorPaletteEnum =
-  /*@__PURE__*/ S.String;
+export const LookupCurrentConditionsRequestUaqiColorPaletteEnum = S.String;
 
 /** The request definition of the air quality current conditions. */
 export interface LookupCurrentConditionsRequest {
@@ -194,7 +192,7 @@ export type ConcentrationUnitsEnum =
   | "UNIT_UNSPECIFIED"
   | "PARTS_PER_BILLION"
   | "MICROGRAMS_PER_CUBIC_METER";
-export const ConcentrationUnitsEnum = /*@__PURE__*/ S.String;
+export const ConcentrationUnitsEnum = S.String;
 
 /** The concentration of a given pollutant in the air. */
 export interface Concentration {
@@ -354,7 +352,7 @@ export type LookupForecastRequestUaqiColorPaletteEnum =
   | "RED_GREEN"
   | "INDIGO_PERSIAN_DARK"
   | "INDIGO_PERSIAN_LIGHT";
-export const LookupForecastRequestUaqiColorPaletteEnum = /*@__PURE__*/ S.String;
+export const LookupForecastRequestUaqiColorPaletteEnum = S.String;
 
 export type LookupForecastRequestExtraComputationsItemEnum =
   | "EXTRA_COMPUTATION_UNSPECIFIED"
@@ -363,8 +361,7 @@ export type LookupForecastRequestExtraComputationsItemEnum =
   | "POLLUTANT_ADDITIONAL_INFO"
   | "DOMINANT_POLLUTANT_CONCENTRATION"
   | "POLLUTANT_CONCENTRATION";
-export const LookupForecastRequestExtraComputationsItemEnum =
-  /*@__PURE__*/ S.String;
+export const LookupForecastRequestExtraComputationsItemEnum = S.String;
 
 export type LookupForecastRequestExtraComputationsItemEnumList = Array<
   LookupForecastRequestExtraComputationsItemEnum | (string & {})
@@ -502,8 +499,7 @@ export type LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum =
   | "CAN_EC"
   | "FRA_ATMO"
   | "US_AQI";
-export const LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum =
-  /*@__PURE__*/ S.String;
+export const LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum = S.String;
 
 export interface LookupHeatmapTileMapTypesHeatmapTilesRequest {
   /** Required. Defines the east-west point in the requested tile. */
@@ -566,7 +562,7 @@ export type LookupHistoryRequestUaqiColorPaletteEnum =
   | "RED_GREEN"
   | "INDIGO_PERSIAN_DARK"
   | "INDIGO_PERSIAN_LIGHT";
-export const LookupHistoryRequestUaqiColorPaletteEnum = /*@__PURE__*/ S.String;
+export const LookupHistoryRequestUaqiColorPaletteEnum = S.String;
 
 export type LookupHistoryRequestExtraComputationsItemEnum =
   | "EXTRA_COMPUTATION_UNSPECIFIED"
@@ -575,8 +571,7 @@ export type LookupHistoryRequestExtraComputationsItemEnum =
   | "POLLUTANT_ADDITIONAL_INFO"
   | "DOMINANT_POLLUTANT_CONCENTRATION"
   | "POLLUTANT_CONCENTRATION";
-export const LookupHistoryRequestExtraComputationsItemEnum =
-  /*@__PURE__*/ S.String;
+export const LookupHistoryRequestExtraComputationsItemEnum = S.String;
 
 export type LookupHistoryRequestExtraComputationsItemEnumList = Array<
   LookupHistoryRequestExtraComputationsItemEnum | (string & {})

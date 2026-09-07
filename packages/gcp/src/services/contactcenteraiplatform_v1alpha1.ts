@@ -149,7 +149,7 @@ export type InstanceConfigInstanceSizeEnum =
   | "SANDBOX_SMALL"
   | "TRIAL_SMALL"
   | "TIME_LIMITED_TRIAL_SMALL";
-export const InstanceConfigInstanceSizeEnum = /*@__PURE__*/ S.String;
+export const InstanceConfigInstanceSizeEnum = S.String;
 
 /** Message storing the instance configuration. */
 export interface InstanceConfig {
@@ -171,7 +171,7 @@ export type WeeklyScheduleDaysItemEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const WeeklyScheduleDaysItemEnum = /*@__PURE__*/ S.String;
+export const WeeklyScheduleDaysItemEnum = S.String;
 
 export type WeeklyScheduleDaysItemEnumList = Array<
   WeeklyScheduleDaysItemEnum | (string & {})
@@ -255,7 +255,7 @@ export type ContactCenterStateEnum =
   | "STATE_DEGRADED"
   | "STATE_REPAIRING"
   | "STATE_EXPIRING";
-export const ContactCenterStateEnum = /*@__PURE__*/ S.String;
+export const ContactCenterStateEnum = S.String;
 
 /** LINT.IfChange First Channel to receive the updates. Meant to dev/test instances */
 export type Early = CancelOperationRequest;
@@ -291,7 +291,7 @@ export type SAMLParamsAuthenticationContextsItemEnum =
   | "SECURE_REMOTE_PASSWORD"
   | "SSL_TLS_CERTIFICATE_BASED"
   | "TIME_SYNC_TOKEN";
-export const SAMLParamsAuthenticationContextsItemEnum = /*@__PURE__*/ S.String;
+export const SAMLParamsAuthenticationContextsItemEnum = S.String;
 
 export type SAMLParamsAuthenticationContextsItemEnumList = Array<
   SAMLParamsAuthenticationContextsItemEnum | (string & {})
@@ -784,7 +784,7 @@ export type SolverConfigScheduleTypeEnum =
   | "SINGLE_SHIFT"
   | "WEEKLY_WITH_FIXED_EVENTS"
   | "WEEKLY_WITH_VARIABLE_EVENTS";
-export const SolverConfigScheduleTypeEnum = /*@__PURE__*/ S.String;
+export const SolverConfigScheduleTypeEnum = S.String;
 
 /** Specifies additional parameters for the solver generating shifts. */
 export interface SolverConfig {
@@ -1229,7 +1229,7 @@ export type QuotaContactCenterInstanceSizeEnum =
   | "SANDBOX_SMALL"
   | "TRIAL_SMALL"
   | "TIME_LIMITED_TRIAL_SMALL";
-export const QuotaContactCenterInstanceSizeEnum = /*@__PURE__*/ S.String;
+export const QuotaContactCenterInstanceSizeEnum = S.String;
 
 /** Quota details. */
 export interface Quota {

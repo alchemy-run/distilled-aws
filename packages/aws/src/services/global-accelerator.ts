@@ -295,7 +295,7 @@ export const AddEndpointsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddEndpointsRequest",
 }) as any as S.Schema<AddEndpointsRequest>;
 export type HealthState = "INITIAL" | "HEALTHY" | "UNHEALTHY" | (string & {});
-export const HealthState = /*@__PURE__*/ S.String;
+export const HealthState = S.String;
 
 export interface EndpointDescription {
   EndpointId?: string;
@@ -352,7 +352,7 @@ export type ByoipCidrState =
   | "FAILED_WITHDRAW"
   | "FAILED_DEPROVISION"
   | (string & {});
-export const ByoipCidrState = /*@__PURE__*/ S.String;
+export const ByoipCidrState = S.String;
 
 export interface ByoipCidrEvent {
   Message?: string;
@@ -419,7 +419,7 @@ export const AllowCustomRoutingTrafficResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AllowCustomRoutingTrafficResponse",
 }) as any as S.Schema<AllowCustomRoutingTrafficResponse>;
 export type IpAddressType = "IPV4" | "DUAL_STACK" | (string & {});
-export const IpAddressType = /*@__PURE__*/ S.String;
+export const IpAddressType = S.String;
 
 export type IpAddresses = string[];
 export const IpAddresses = /*@__PURE__*/ S.Array(S.String);
@@ -458,7 +458,7 @@ export const CreateAcceleratorRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateAcceleratorRequest",
 }) as any as S.Schema<CreateAcceleratorRequest>;
 export type IpAddressFamily = "IPv4" | "IPv6" | (string & {});
-export const IpAddressFamily = /*@__PURE__*/ S.String;
+export const IpAddressFamily = S.String;
 
 export interface IpSet {
   IpFamily?: string;
@@ -475,7 +475,7 @@ export const IpSet = /*@__PURE__*/ S.suspend(() =>
 export type IpSets = IpSet[];
 export const IpSets = /*@__PURE__*/ S.Array(IpSet);
 export type AcceleratorStatus = "DEPLOYED" | "IN_PROGRESS" | (string & {});
-export const AcceleratorStatus = /*@__PURE__*/ S.String;
+export const AcceleratorStatus = S.String;
 
 export interface AcceleratorEvent {
   Message?: string;
@@ -622,7 +622,7 @@ export type CustomRoutingAcceleratorStatus =
   | "DEPLOYED"
   | "IN_PROGRESS"
   | (string & {});
-export const CustomRoutingAcceleratorStatus = /*@__PURE__*/ S.String;
+export const CustomRoutingAcceleratorStatus = S.String;
 
 export interface CustomRoutingAccelerator {
   AcceleratorArn?: string;
@@ -661,7 +661,7 @@ export const CreateCustomRoutingAcceleratorResponse = /*@__PURE__*/ S.suspend(
   identifier: "CreateCustomRoutingAcceleratorResponse",
 }) as any as S.Schema<CreateCustomRoutingAcceleratorResponse>;
 export type CustomRoutingProtocol = "TCP" | "UDP" | (string & {});
-export const CustomRoutingProtocol = /*@__PURE__*/ S.String;
+export const CustomRoutingProtocol = S.String;
 
 export type CustomRoutingProtocols = CustomRoutingProtocol[];
 export const CustomRoutingProtocols = /*@__PURE__*/ S.Array(
@@ -707,7 +707,7 @@ export const CreateCustomRoutingEndpointGroupRequest = /*@__PURE__*/ S.suspend(
   identifier: "CreateCustomRoutingEndpointGroupRequest",
 }) as any as S.Schema<CreateCustomRoutingEndpointGroupRequest>;
 export type Protocol = "TCP" | "UDP" | (string & {});
-export const Protocol = /*@__PURE__*/ S.String;
+export const Protocol = S.String;
 
 export type Protocols = Protocol[];
 export const Protocols = /*@__PURE__*/ S.Array(Protocol);
@@ -802,7 +802,7 @@ export const CreateCustomRoutingListenerResponse = /*@__PURE__*/ S.suspend(() =>
 export type TrafficDialPercentage = number;
 export type HealthCheckPort = number;
 export type HealthCheckProtocol = "TCP" | "HTTP" | "HTTPS" | (string & {});
-export const HealthCheckProtocol = /*@__PURE__*/ S.String;
+export const HealthCheckProtocol = S.String;
 
 export type HealthCheckPath = string;
 export type HealthCheckIntervalSeconds = number;
@@ -886,7 +886,7 @@ export const CreateEndpointGroupResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateEndpointGroupResponse",
 }) as any as S.Schema<CreateEndpointGroupResponse>;
 export type ClientAffinity = "NONE" | "SOURCE_IP" | (string & {});
-export const ClientAffinity = /*@__PURE__*/ S.String;
+export const ClientAffinity = S.String;
 
 export interface CreateListenerRequest {
   AcceleratorArn: string;
@@ -1569,7 +1569,7 @@ export type CustomRoutingDestinationTrafficState =
   | "ALLOW"
   | "DENY"
   | (string & {});
-export const CustomRoutingDestinationTrafficState = /*@__PURE__*/ S.String;
+export const CustomRoutingDestinationTrafficState = S.String;
 
 export interface PortMapping {
   AcceleratorPort?: number;

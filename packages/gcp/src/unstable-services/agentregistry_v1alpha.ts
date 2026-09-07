@@ -262,7 +262,7 @@ export type AgentSpecTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "NO_SPEC"
   | "A2A_AGENT_CARD";
-export const AgentSpecTypeEnum = /*@__PURE__*/ S.String;
+export const AgentSpecTypeEnum = S.String;
 
 /** The spec of the agent. */
 export interface AgentSpec {
@@ -282,7 +282,7 @@ export type McpServerSpecTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "NO_SPEC"
   | "TOOL_SPEC";
-export const McpServerSpecTypeEnum = /*@__PURE__*/ S.String;
+export const McpServerSpecTypeEnum = S.String;
 
 /** The spec of the MCP Server. */
 export interface McpServerSpec {
@@ -303,7 +303,7 @@ export type InterfaceProtocolBindingEnum =
   | "JSONRPC"
   | "GRPC"
   | "HTTP_JSON";
-export const InterfaceProtocolBindingEnum = /*@__PURE__*/ S.String;
+export const InterfaceProtocolBindingEnum = S.String;
 
 /** Represents the connection details for an Agent or MCP Server. */
 export interface Interface {
@@ -325,7 +325,7 @@ export const InterfaceList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<InterfaceList>;
 
 export type EndpointSpecTypeEnum = "TYPE_UNSPECIFIED" | "NO_SPEC";
-export const EndpointSpecTypeEnum = /*@__PURE__*/ S.String;
+export const EndpointSpecTypeEnum = S.String;
 
 /** The spec of the endpoint. */
 export interface EndpointSpec {
@@ -426,7 +426,7 @@ export type SkillRevisionStateEnum =
   | "ACTIVE"
   | "FAILED"
   | "DELETING";
-export const SkillRevisionStateEnum = /*@__PURE__*/ S.String;
+export const SkillRevisionStateEnum = S.String;
 
 /** Specifications for Cloud Storage objects. */
 export interface GcsSource {
@@ -513,10 +513,10 @@ export type SkillTargetStateEnum =
   | "TARGET_STATE_DISABLED"
   | "TARGET_STATE_DEPRECATED"
   | "TARGET_STATE_DECOMMISSIONED";
-export const SkillTargetStateEnum = /*@__PURE__*/ S.String;
+export const SkillTargetStateEnum = S.String;
 
 export type SkillTypeEnum = "TYPE_UNSPECIFIED" | "SIMPLE";
-export const SkillTypeEnum = /*@__PURE__*/ S.String;
+export const SkillTypeEnum = S.String;
 
 export type SkillStateEnum =
   | "STATE_UNSPECIFIED"
@@ -527,7 +527,7 @@ export type SkillStateEnum =
   | "STATE_DEPRECATED"
   | "STATE_DECOMMISSIONED"
   | "STATE_DELETING";
-export const SkillStateEnum = /*@__PURE__*/ S.String;
+export const SkillStateEnum = S.String;
 
 /** Represents an Executable Agent Skill or a Composite Tool Suite (Bundle). Sibling resource with Agent and McpServer under agentregistry.googleapis.com. */
 export interface Skill {
@@ -857,7 +857,7 @@ export const GetProjectsLocationsAgentsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProjectsLocationsAgentsRequest>;
 
 export type CardTypeEnum = "TYPE_UNSPECIFIED" | "A2A_AGENT_CARD";
-export const CardTypeEnum = /*@__PURE__*/ S.String;
+export const CardTypeEnum = S.String;
 
 /** Full Agent Card payload, often obtained from the A2A Agent Card. */
 export interface Card {
@@ -874,7 +874,7 @@ export const Card = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Card" }) as any as S.Schema<Card>;
 
 export type ProtocolTypeEnum = "TYPE_UNSPECIFIED" | "A2A_AGENT" | "CUSTOM";
-export const ProtocolTypeEnum = /*@__PURE__*/ S.String;
+export const ProtocolTypeEnum = S.String;
 
 /** Represents the protocol of an Agent. */
 export interface Protocol {
@@ -1190,7 +1190,7 @@ export type PublisherPublisherTierEnum =
   | "FIRST_PARTY"
   | "THIRD_PARTY"
   | "PRIVATE";
-export const PublisherPublisherTierEnum = /*@__PURE__*/ S.String;
+export const PublisherPublisherTierEnum = S.String;
 
 /** Represents a verified Publisher of Skills. Prepopulated publishers include `publishers/cloud.google.com` and `publishers/workspace.google.com`. */
 export interface Publisher {
@@ -1974,8 +1974,7 @@ export type SearchProjectsLocationsSkillsSearchTypeEnum =
   | "SEARCH_TYPE_UNSPECIFIED"
   | "KEYWORD"
   | "SEMANTIC";
-export const SearchProjectsLocationsSkillsSearchTypeEnum =
-  /*@__PURE__*/ S.String;
+export const SearchProjectsLocationsSkillsSearchTypeEnum = S.String;
 
 export interface SearchProjectsLocationsSkillsRequest {
   /** Required. Parent value for SearchSkillsRequest. Format: `projects/{project}/locations/{location}`. */

@@ -50,7 +50,7 @@ export class UnprocessableEntity
 
 /** The different use cases for generating an account link. */
 export type AccountLinkUseCases = "account_onboarding" | "payouts_portal";
-export const AccountLinkUseCases = /*@__PURE__*/ S.String;
+export const AccountLinkUseCases = S.String;
 
 export interface CreateAccountLinkRequest {
   /** The unique identifier of the company to generate the link for, starting with 'biz_'. Must be a sub-merchant of the API key's company. */

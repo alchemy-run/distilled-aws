@@ -55,15 +55,13 @@ export type CreateApiKeysRequestAiGatewayQuotaRefreshPeriod =
   | "weekly"
   | "monthly"
   | "none";
-export const CreateApiKeysRequestAiGatewayQuotaRefreshPeriod =
-  /*@__PURE__*/ S.String;
+export const CreateApiKeysRequestAiGatewayQuotaRefreshPeriod = S.String;
 
 export type CreateApiKeysRequestAiGatewayQuotaAlertThresholdsItem =
   | 50
   | 75
   | 100;
-export const CreateApiKeysRequestAiGatewayQuotaAlertThresholdsItem =
-  /*@__PURE__*/ S.Number;
+export const CreateApiKeysRequestAiGatewayQuotaAlertThresholdsItem = S.Number;
 
 /** Spend percentages (a subset of [50, 75, 100]) at which to send a spend alert. */
 export type CreateApiKeysRequestAiGatewayQuotaAlertThresholdsList = Array<
@@ -272,7 +270,7 @@ export const CreateAuthTokenRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateAuthTokenRequest>;
 
 export type AuthTokenScopesItemCase0Type = "user";
-export const AuthTokenScopesItemCase0Type = /*@__PURE__*/ S.String;
+export const AuthTokenScopesItemCase0Type = S.String;
 
 /** Possible step-up auth origins */
 export type AuthTokenScopesItemCase0SudoOrigin =
@@ -281,7 +279,7 @@ export type AuthTokenScopesItemCase0SudoOrigin =
   | "recovery-code"
   | "totp"
   | "webauthn";
-export const AuthTokenScopesItemCase0SudoOrigin = /*@__PURE__*/ S.String;
+export const AuthTokenScopesItemCase0SudoOrigin = S.String;
 
 export interface AuthTokenScopesItemCase0Sudo {
   /** Possible step-up auth origins */
@@ -317,7 +315,7 @@ export type AuthTokenScopesItemCase0Origin =
   | "saml"
   | "sms"
   | "token-exchange-oidc";
-export const AuthTokenScopesItemCase0Origin = /*@__PURE__*/ S.String;
+export const AuthTokenScopesItemCase0Origin = S.String;
 
 /** The access scopes granted to the token. */
 export interface AuthTokenScopesItemCase0 {
@@ -340,7 +338,7 @@ export const AuthTokenScopesItemCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AuthTokenScopesItemCase0>;
 
 export type AuthTokenScopesItemCase1Type = "team";
-export const AuthTokenScopesItemCase1Type = /*@__PURE__*/ S.String;
+export const AuthTokenScopesItemCase1Type = S.String;
 
 export type AuthTokenScopesItemCase1Origin =
   | "app"
@@ -360,7 +358,7 @@ export type AuthTokenScopesItemCase1Origin =
   | "saml"
   | "sms"
   | "token-exchange-oidc";
-export const AuthTokenScopesItemCase1Origin = /*@__PURE__*/ S.String;
+export const AuthTokenScopesItemCase1Origin = S.String;
 
 /** The access scopes granted to the token. */
 export interface AuthTokenScopesItemCase1 {
@@ -386,7 +384,7 @@ export type AuthTokenScopesItem =
   | AuthTokenScopesItemCase0
   | AuthTokenScopesItemCase1;
 export const AuthTokenScopesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AuthTokenScopesItem>;
+  S.Unknown as any as S.Schema<AuthTokenScopesItem>;
 
 /** The access scopes granted to the token. */
 export type AuthTokenScopesList = Array<AuthTokenScopesItem>;
@@ -483,7 +481,7 @@ export const DeleteAuthTokenResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The grant type, when using x-www-form-urlencoded content type */
 export type ExchangeSsoTokenRequestBodyCase0GrantType = "authorization_code";
-export const ExchangeSsoTokenRequestBodyCase0GrantType = /*@__PURE__*/ S.String;
+export const ExchangeSsoTokenRequestBodyCase0GrantType = S.String;
 
 export interface ExchangeSsoTokenRequestBodyCase0 {
   /** The sensitive code received from Vercel */
@@ -514,7 +512,7 @@ export const ExchangeSsoTokenRequestBodyCase0 = /*@__PURE__*/ S.suspend(() =>
 
 /** The grant type, when using x-www-form-urlencoded content type */
 export type ExchangeSsoTokenRequestBodyCase1GrantType = "refresh_token";
-export const ExchangeSsoTokenRequestBodyCase1GrantType = /*@__PURE__*/ S.String;
+export const ExchangeSsoTokenRequestBodyCase1GrantType = S.String;
 
 export interface ExchangeSsoTokenRequestBodyCase1 {
   /** The refresh token received from previous token exchange */
@@ -541,7 +539,7 @@ export type ExchangeSsoTokenRequestBody =
   | ExchangeSsoTokenRequestBodyCase0
   | ExchangeSsoTokenRequestBodyCase1;
 export const ExchangeSsoTokenRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExchangeSsoTokenRequestBody>;
+  S.Unknown as any as S.Schema<ExchangeSsoTokenRequestBody>;
 
 export interface ExchangeSsoTokenRequest {
   body: ExchangeSsoTokenRequestBody;
@@ -598,7 +596,7 @@ export type ExchangeSsoTokenResponseBody =
   | ExchangeSsoTokenResponseBodyCase0
   | ExchangeSsoTokenResponseBodyCase1;
 export const ExchangeSsoTokenResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExchangeSsoTokenResponseBody>;
+  S.Unknown as any as S.Schema<ExchangeSsoTokenResponseBody>;
 
 export type ExchangeSsoTokenResponse = ExchangeSsoTokenResponseBody;
 export const ExchangeSsoTokenResponse = /*@__PURE__*/ S.suspend(() =>
@@ -714,7 +712,7 @@ export type ListAuthTokensResponseBody =
   | ListAuthTokensResponseBodyCase0
   | ListAuthTokensResponseBodyCase1;
 export const ListAuthTokensResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListAuthTokensResponseBody>;
+  S.Unknown as any as S.Schema<ListAuthTokensResponseBody>;
 
 export type ListAuthTokensResponse = ListAuthTokensResponseBody;
 export const ListAuthTokensResponse = /*@__PURE__*/ S.suspend(() =>

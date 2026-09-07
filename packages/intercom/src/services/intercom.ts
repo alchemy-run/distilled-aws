@@ -78,7 +78,7 @@ export const ArchiveContactRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** always contact */
 export type ArchiveContactResponseType = "contact";
-export const ArchiveContactResponseType = /*@__PURE__*/ S.String;
+export const ArchiveContactResponseType = S.String;
 
 export interface ArchiveContactResponse {
   /** always contact */
@@ -124,7 +124,7 @@ export const AttachContactToACompanyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Value is `company` */
 export type CompanyType = "company";
-export const CompanyType = /*@__PURE__*/ S.String;
+export const CompanyType = S.String;
 
 export interface CompanyPlan {
   /** Value is always "plan" */
@@ -151,7 +151,7 @@ export const CompanyCustomAttributesMap = /*@__PURE__*/ S.Record(
 
 /** The type of the object */
 export type CompanyTagsType = "tag.list";
-export const CompanyTagsType = /*@__PURE__*/ S.String;
+export const CompanyTagsType = S.String;
 
 /** A tag allows you to label your contacts, companies, and conversations and list them using that tag. */
 export interface TagBasic {
@@ -190,15 +190,15 @@ export const CompanyTags = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object */
 export type CompanySegmentsType = "segment.list";
-export const CompanySegmentsType = /*@__PURE__*/ S.String;
+export const CompanySegmentsType = S.String;
 
 /** The type of object. */
 export type SegmentType = "segment";
-export const SegmentType = /*@__PURE__*/ S.String;
+export const SegmentType = S.String;
 
 /** Type of the contact: contact (lead) or user. */
 export type SegmentPersonType = "contact" | "user";
-export const SegmentPersonType = /*@__PURE__*/ S.String;
+export const SegmentPersonType = S.String;
 
 /** A segment is a group of your contacts defined by the rules that you set. */
 export interface Segment {
@@ -251,7 +251,7 @@ export const CompanySegments = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object */
 export type CompanyNotesType = "note.list";
-export const CompanyNotesType = /*@__PURE__*/ S.String;
+export const CompanyNotesType = S.String;
 
 /** Represents the company that the note was created about. */
 export interface CompanyNoteCompany {
@@ -519,8 +519,7 @@ export type CustomerRequest =
   | CustomerRequestCase0
   | CustomerRequestCase1
   | CustomerRequestCase2;
-export const CustomerRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerRequest>;
+export const CustomerRequest = S.Unknown as any as S.Schema<CustomerRequest>;
 
 export interface AttachContactToConversationRequestCustomerCase0 {
   /** The identifier for the contact as given by Intercom. */
@@ -572,7 +571,7 @@ export type AttachContactToConversationRequestCustomer =
   | AttachContactToConversationRequestCustomerCase1
   | AttachContactToConversationRequestCustomerCase2;
 export const AttachContactToConversationRequestCustomer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AttachContactToConversationRequestCustomer>;
+  S.Unknown as any as S.Schema<AttachContactToConversationRequestCustomer>;
 
 export interface AttachContactToConversationRequest {
   /** The identifier for the conversation as given by Intercom. */
@@ -599,7 +598,7 @@ export const AttachContactToConversationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Can be set to "open", "closed" or "snoozed". */
 export type ConversationState = "open" | "closed" | "snoozed";
-export const ConversationState = /*@__PURE__*/ S.String;
+export const ConversationState = S.String;
 
 /** The priority level of the conversation. Returns one of none, low, medium, high, or urgent. */
 export type ConversationPriority =
@@ -608,11 +607,11 @@ export type ConversationPriority =
   | "medium"
   | "high"
   | "urgent";
-export const ConversationPriority = /*@__PURE__*/ S.String;
+export const ConversationPriority = S.String;
 
 /** The type of the object */
 export type TagsType = "tag.list";
-export const TagsType = /*@__PURE__*/ S.String;
+export const TagsType = S.String;
 
 /** reference to another object */
 export interface Reference {
@@ -671,7 +670,7 @@ export const Tags = /*@__PURE__*/ S.suspend(() =>
 
 /** always contact */
 export type ContactReferenceType = "contact";
-export const ContactReferenceType = /*@__PURE__*/ S.String;
+export const ContactReferenceType = S.String;
 
 /** reference to contact object */
 export interface ContactReference {
@@ -918,7 +917,7 @@ export const ConversationSource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConversationSource>;
 
 export type ConversationContactsType = "contact.list";
-export const ConversationContactsType = /*@__PURE__*/ S.String;
+export const ConversationContactsType = S.String;
 
 /** The list of contacts (users or leads) involved in this conversation. This will only contain one customer unless more were added via the group conversation feature. */
 export type ConversationContactsContactsList = Array<ContactReference>;
@@ -964,7 +963,7 @@ export const ConversationTeammates = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConversationTeammates>;
 
 export type Datetime = string | number;
-export const Datetime = /*@__PURE__*/ S.Unknown as any as S.Schema<Datetime>;
+export const Datetime = S.Unknown as any as S.Schema<Datetime>;
 
 /** The custom attributes you have set on the custom object instance. */
 export type CustomObjectInstanceCustomAttributesMap = {
@@ -1036,7 +1035,7 @@ export type CustomAttributesValue =
   | Datetime
   | CustomObjectInstanceList;
 export const CustomAttributesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomAttributesValue>;
+  S.Unknown as any as S.Schema<CustomAttributesValue>;
 
 /** An object containing the different custom attributes associated to the conversation as key-value pairs. For relationship attributes the value will be a list of custom object instance models. System-defined attributes such as "CX Score rating" and "CX Score explanation" may also be included. */
 export type CustomAttributes = {
@@ -1065,7 +1064,7 @@ export const ConversationFirstContactReply = /*@__PURE__*/ S.suspend(() =>
 
 /** SLA statuses: - `hit`: If there’s at least one hit event in the underlying sla_events table, and no “missed” or “canceled” events for the conversation. - `missed`: If there are any missed sla_events for the conversation and no canceled events. If there’s even a single missed sla event, the status will always be missed. A missed status is not applied when the SLA expires, only the next time a teammate replies. - `active`: An SLA has been applied to a conversation, but has not yet been fulfilled. SLA status is active only if there are no “hit, “missed”, or “canceled” events. */
 export type SlaAppliedSlaStatus = "hit" | "missed" | "cancelled" | "active";
-export const SlaAppliedSlaStatus = /*@__PURE__*/ S.String;
+export const SlaAppliedSlaStatus = S.String;
 
 /** The SLA Applied object contains the details for which SLA has been applied to this conversation. Important: if there are any canceled sla_events for the conversation - meaning an SLA has been manually removed from a conversation, the sla_status will always be returned as null. */
 export interface SlaApplied {
@@ -1202,7 +1201,7 @@ export const ConversationStatistics = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConversationStatistics>;
 
 export type ConversationPartsType = "conversation_part.list";
-export const ConversationPartsType = /*@__PURE__*/ S.String;
+export const ConversationPartsType = S.String;
 
 /** The object who initiated the conversation, which can be a Contact, Admin or Team. Bots and campaigns send messages on behalf of Admins or Teams. For Twitter, this will be blank. */
 export interface ConversationPartAuthor {
@@ -1314,7 +1313,7 @@ export const ConversationPartMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates the current state of conversation when the conversation part was created. */
 export type ConversationPartState = "open" | "closed" | "snoozed";
-export const ConversationPartState = /*@__PURE__*/ S.String;
+export const ConversationPartState = S.String;
 
 /** A list of tags objects associated with the conversation part. */
 export type ConversationPartTagsList = Array<TagBasic>;
@@ -1474,7 +1473,7 @@ export const CustomActionStarted = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the action */
 export type CustomActionFinishedActionResult = "success" | "failed";
-export const CustomActionFinishedActionResult = /*@__PURE__*/ S.String;
+export const CustomActionFinishedActionResult = S.String;
 
 export interface CustomActionFinishedAction {
   /** Name of the action */
@@ -1551,8 +1550,7 @@ export type EventDetails =
   | CustomActionStarted
   | CustomActionFinished
   | OperatorWorkflowEvent;
-export const EventDetails =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventDetails>;
+export const EventDetails = S.Unknown as any as S.Schema<EventDetails>;
 
 /** A Conversation Part represents a message in the conversation. */
 export interface ConversationPart {
@@ -1639,11 +1637,11 @@ export const ConversationParts = /*@__PURE__*/ S.suspend(() =>
 
 /** Always list. */
 export type LinkedObjectListType = "list";
-export const LinkedObjectListType = /*@__PURE__*/ S.String;
+export const LinkedObjectListType = S.String;
 
 /** ticket or conversation */
 export type LinkedObjectType = "ticket" | "conversation";
-export const LinkedObjectType = /*@__PURE__*/ S.String;
+export const LinkedObjectType = S.String;
 
 /** A linked conversation or ticket. */
 export interface LinkedObject {
@@ -1697,14 +1695,14 @@ export type AiAgentSourceType =
   | "workflow"
   | "workflow_preview"
   | "fin_preview";
-export const AiAgentSourceType = /*@__PURE__*/ S.String;
+export const AiAgentSourceType = S.String;
 
 /** The type of the last answer delivered by AI Agent. If no answer was delivered then this will return `null` */
 export type AiAgentLastAnswerType = "ai_answer" | "custom_answer";
-export const AiAgentLastAnswerType = /*@__PURE__*/ S.String;
+export const AiAgentLastAnswerType = S.String;
 
 export type ContentSourcesListType = "content_source.list";
-export const ContentSourcesListType = /*@__PURE__*/ S.String;
+export const ContentSourcesListType = S.String;
 
 /** The type of the content source. */
 export type ContentSourceContentType =
@@ -1713,7 +1711,7 @@ export type ContentSourceContentType =
   | "external_content"
   | "content_snippet"
   | "workflow_connector_action";
-export const ContentSourceContentType = /*@__PURE__*/ S.String;
+export const ContentSourceContentType = S.String;
 
 /** The content source used by AI Agent in the conversation. */
 export interface ContentSource {
@@ -1799,7 +1797,7 @@ export type SalesAgentOutcome =
   | "product_discovery"
   | "escalated_to_support"
   | "spam";
-export const SalesAgentOutcome = /*@__PURE__*/ S.String;
+export const SalesAgentOutcome = S.String;
 
 /** A flat key-value map of memory fields collected by the sales agent during the conversation. */
 export type SalesAgentCollectedDataMap = { [key: string]: string | undefined };
@@ -1901,7 +1899,7 @@ export const ConversationMonitorEvaluationsList = /*@__PURE__*/ S.Array(
 
 /** The kind of reviewee. `ai` if the conversation was handled by Fin or scored without a specific teammate; `admin` if a specific teammate was reviewed. */
 export type ConversationScorecardReviewedTeammateType = "ai" | "admin";
-export const ConversationScorecardReviewedTeammateType = /*@__PURE__*/ S.String;
+export const ConversationScorecardReviewedTeammateType = S.String;
 
 /** The teammate (or AI agent) whose handling of the conversation was reviewed by this scorecard. */
 export interface ConversationScorecardReviewedTeammate {
@@ -2144,7 +2142,7 @@ export const AttachSubscriptionTypeToContactRequest = /*@__PURE__*/ S.suspend(
 
 /** The state of the subscription type. */
 export type SubscriptionTypeState = "live" | "draft" | "archived";
-export const SubscriptionTypeState = /*@__PURE__*/ S.String;
+export const SubscriptionTypeState = S.String;
 
 /** A translation object contains the localised details of a subscription type. */
 export interface Translation {
@@ -2171,10 +2169,10 @@ export const SubscriptionTypeTranslationsList = /*@__PURE__*/ S.Array(
 
 /** Describes the type of consent. */
 export type SubscriptionTypeConsentType = "opt_out" | "opt_in";
-export const SubscriptionTypeConsentType = /*@__PURE__*/ S.String;
+export const SubscriptionTypeConsentType = S.String;
 
 export type SubscriptionTypeContentTypesItem = "email" | "sms_message";
-export const SubscriptionTypeContentTypesItem = /*@__PURE__*/ S.String;
+export const SubscriptionTypeContentTypesItem = S.String;
 
 /** The message types that this subscription supports - can contain `email` or `sms_message`. */
 export type SubscriptionTypeContentTypesList =
@@ -2358,7 +2356,7 @@ export const BlockContactRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** always contact */
 export type BlockContactResponseType = "contact";
-export const BlockContactResponseType = /*@__PURE__*/ S.String;
+export const BlockContactResponseType = S.String;
 
 export interface BlockContactResponse {
   /** always contact */
@@ -2389,7 +2387,7 @@ export type BulkContentActionsRequestAction =
   | "set_availability"
   | "set_audience"
   | "update_tags";
-export const BulkContentActionsRequestAction = /*@__PURE__*/ S.String;
+export const BulkContentActionsRequestAction = S.String;
 
 export type BulkContentActionsRequestContentIdsItemType =
   | "article"
@@ -2398,8 +2396,7 @@ export type BulkContentActionsRequestContentIdsItemType =
   | "external_content"
   | "file_source_content"
   | "internal_article";
-export const BulkContentActionsRequestContentIdsItemType =
-  /*@__PURE__*/ S.String;
+export const BulkContentActionsRequestContentIdsItemType = S.String;
 
 export interface BulkContentActionsRequestContentIdsItem {
   type: BulkContentActionsRequestContentIdsItemType | (string & {});
@@ -2566,7 +2563,7 @@ export type DataExportStatus =
   | "completed"
   | "no_data"
   | "canceled";
-export const DataExportStatus = /*@__PURE__*/ S.String;
+export const DataExportStatus = S.String;
 
 /** The data export API is used to export message delivery and engagement statistics for outbound content (Emails, Posts, Custom Bots, Surveys, Tours, Series, and more) sent in a given timeframe. The exported data includes who received each message, when they received it, and how they engaged with it (opens, clicks, replies, completions, dismissals, unsubscribes, and bounces). */
 export interface DataExport {
@@ -2617,11 +2614,11 @@ export const ChangeTicketTypeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Always ticket */
 export type TicketType = "ticket";
-export const TicketType = /*@__PURE__*/ S.String;
+export const TicketType = S.String;
 
 /** Category of the Ticket. */
 export type TicketCategory = "Customer" | "Back-office" | "Tracker";
-export const TicketCategory = /*@__PURE__*/ S.String;
+export const TicketCategory = S.String;
 
 export type TicketCustomAttributesValueCase3List = Array<unknown>;
 export const TicketCustomAttributesValueCase3List = /*@__PURE__*/ S.Array(
@@ -2663,7 +2660,7 @@ export type TicketCustomAttributesValue =
   | TicketCustomAttributesValueCase3List
   | FileAttribute;
 export const TicketCustomAttributesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketCustomAttributesValue>;
+  S.Unknown as any as S.Schema<TicketCustomAttributesValue>;
 
 /** An object containing the different attributes associated to the ticket as key-value pairs. For the default title and description attributes, the keys are `_default_title_` and `_default_description_`. */
 export type TicketCustomAttributes = {
@@ -2680,7 +2677,7 @@ export type TicketStateCategory =
   | "in_progress"
   | "waiting_on_customer"
   | "resolved";
-export const TicketStateCategory = /*@__PURE__*/ S.String;
+export const TicketStateCategory = S.String;
 
 /** A ticket state, used to define the state of a ticket. */
 export interface TicketState {
@@ -2707,7 +2704,7 @@ export const TicketState = /*@__PURE__*/ S.suspend(() =>
 
 /** Category of the Ticket Type. */
 export type TicketTypeCategory = "Customer" | "Back-office" | "Tracker";
-export const TicketTypeCategory = /*@__PURE__*/ S.String;
+export const TicketTypeCategory = S.String;
 
 /** Ticket type attribute, used to define each data field to be captured in a ticket. */
 export interface TicketTypeAttribute {
@@ -2863,7 +2860,7 @@ export const TicketType2 = /*@__PURE__*/ S.suspend(() =>
 
 /** always contact.list */
 export type TicketContactsType = "contact.list";
-export const TicketContactsType = /*@__PURE__*/ S.String;
+export const TicketContactsType = S.String;
 
 /** The list of contacts affected by this ticket. */
 export type TicketContactsContactsList = Array<ContactReference>;
@@ -2886,7 +2883,7 @@ export const TicketContacts = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "TicketContacts" }) as any as S.Schema<TicketContacts>;
 
 export type TicketPartsType = "ticket_part.list";
-export const TicketPartsType = /*@__PURE__*/ S.String;
+export const TicketPartsType = S.String;
 
 /** The previous state of the ticket. */
 export type TicketPartPreviousTicketState =
@@ -2894,7 +2891,7 @@ export type TicketPartPreviousTicketState =
   | "in_progress"
   | "waiting_on_customer"
   | "resolved";
-export const TicketPartPreviousTicketState = /*@__PURE__*/ S.String;
+export const TicketPartPreviousTicketState = S.String;
 
 /** The state of the ticket. */
 export type TicketPartTicketState =
@@ -2902,11 +2899,11 @@ export type TicketPartTicketState =
   | "in_progress"
   | "waiting_on_customer"
   | "resolved";
-export const TicketPartTicketState = /*@__PURE__*/ S.String;
+export const TicketPartTicketState = S.String;
 
 /** The type of the author */
 export type TicketPartAuthorType = "admin" | "bot" | "team" | "user";
-export const TicketPartAuthorType = /*@__PURE__*/ S.String;
+export const TicketPartAuthorType = S.String;
 
 /** The author that wrote or triggered the part. Can be a bot, admin, team or user. */
 export interface TicketPartAuthor {
@@ -2938,8 +2935,7 @@ export const TicketPartAttachmentsList = /*@__PURE__*/ S.Array(
 
 /** The type of the object. Always 'attribute'. */
 export type TicketPartUpdatedAttributeDataAttributeType = "attribute";
-export const TicketPartUpdatedAttributeDataAttributeType =
-  /*@__PURE__*/ S.String;
+export const TicketPartUpdatedAttributeDataAttributeType = S.String;
 
 /** Information about the attribute that was updated. */
 export interface TicketPartUpdatedAttributeDataAttribute {
@@ -2963,7 +2959,7 @@ export const TicketPartUpdatedAttributeDataAttribute = /*@__PURE__*/ S.suspend(
 
 /** The type of the object. Always 'value'. */
 export type TicketPartUpdatedAttributeDataValueType = "value";
-export const TicketPartUpdatedAttributeDataValueType = /*@__PURE__*/ S.String;
+export const TicketPartUpdatedAttributeDataValueType = S.String;
 
 /** Array of file IDs for file attributes. */
 export type TicketPartUpdatedAttributeDataValueIdCase1List = Array<number>;
@@ -2976,7 +2972,7 @@ export type TicketPartUpdatedAttributeDataValueId =
   | string
   | TicketPartUpdatedAttributeDataValueIdCase1List;
 export const TicketPartUpdatedAttributeDataValueId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketPartUpdatedAttributeDataValueId>;
+  S.Unknown as any as S.Schema<TicketPartUpdatedAttributeDataValueId>;
 
 /** Array of file names for file attributes. */
 export type TicketPartUpdatedAttributeDataValueLabelCase1List = Array<string>;
@@ -2989,7 +2985,7 @@ export type TicketPartUpdatedAttributeDataValueLabel =
   | string
   | TicketPartUpdatedAttributeDataValueLabelCase1List;
 export const TicketPartUpdatedAttributeDataValueLabel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketPartUpdatedAttributeDataValueLabel>;
+  S.Unknown as any as S.Schema<TicketPartUpdatedAttributeDataValueLabel>;
 
 /** The new value of the attribute. */
 export interface TicketPartUpdatedAttributeDataValue {
@@ -3311,7 +3307,7 @@ export type TicketRequestCustomAttributesValue =
   | boolean
   | TicketRequestCustomAttributesValueCase3List;
 export const TicketRequestCustomAttributesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketRequestCustomAttributesValue>;
+  S.Unknown as any as S.Schema<TicketRequestCustomAttributesValue>;
 
 /** The attributes set on the ticket. When setting the default title and description attributes, the attribute keys that should be used are `_default_title_` and `_default_description_`. When setting ticket type attributes of the list attribute type, the key should be the attribute name and the value of the attribute should be the list item id, obtainable by [listing the ticket type](ref:get_ticket-types). For example, if the ticket type has an attribute called `priority` of type `list`, the key should be `priority` and the value of the attribute should be the guid of the list item (e.g. `de1825a0-0164-4070-8ca6-13e22462fa7e`). */
 export type TicketRequestCustomAttributes = {
@@ -3452,7 +3448,7 @@ export const ContactNotes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object. Always company. */
 export type CompanyDataType = "company";
-export const CompanyDataType = /*@__PURE__*/ S.String;
+export const CompanyDataType = S.String;
 
 /** An object containing data about the companies that a contact is associated with. */
 export interface CompanyData {
@@ -3559,7 +3555,7 @@ export const ContactSocialProfiles = /*@__PURE__*/ S.suspend(() =>
 
 /** The role of the contact that was merged in. */
 export type MergeHistoryItemSourceContactRole = "lead" | "user";
-export const MergeHistoryItemSourceContactRole = /*@__PURE__*/ S.String;
+export const MergeHistoryItemSourceContactRole = S.String;
 
 /** A record of a contact that was merged into another contact. */
 export interface MergeHistoryItem {
@@ -3731,19 +3727,19 @@ export const Contact = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the article will be `published` or will be a `draft`. Defaults to draft. For multilingual articles, this will be the state of the default language's content. */
 export type CreateArticleRequestState = "published" | "draft";
-export const CreateArticleRequestState = /*@__PURE__*/ S.String;
+export const CreateArticleRequestState = S.String;
 
 /** The type of object - article_translated_content. */
 export type ArticleTranslatedContentInputType = "article_translated_content";
-export const ArticleTranslatedContentInputType = /*@__PURE__*/ S.String;
+export const ArticleTranslatedContentInputType = S.String;
 
 /** The type of object - `article_content` . */
 export type ArticleContentInputType = "article_content";
-export const ArticleContentInputType = /*@__PURE__*/ S.String;
+export const ArticleContentInputType = S.String;
 
 /** Whether the article is `published` or is a `draft` . */
 export type ArticleContentInputState = "published" | "draft";
-export const ArticleContentInputState = /*@__PURE__*/ S.String;
+export const ArticleContentInputState = S.String;
 
 /** The list of audience IDs this article content is targeted to for Fin AI Agent. On multilingual help centers this field appears per-locale inside `translated_content`. On single-language help centers it appears at the article root level. Empty array means no audience targeting is set. */
 export type ArticleContentInputAudienceIdsList = Array<number>;
@@ -3994,11 +3990,11 @@ export const CreateArticleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object - `article`. */
 export type CreateArticleResponseType = "article";
-export const CreateArticleResponseType = /*@__PURE__*/ S.String;
+export const CreateArticleResponseType = S.String;
 
 /** Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content. */
 export type CreateArticleResponseState = "published" | "draft";
-export const CreateArticleResponseState = /*@__PURE__*/ S.String;
+export const CreateArticleResponseState = S.String;
 
 /** The ids of the article's parent collections or sections. An article without this field stands alone. */
 export type CreateArticleResponseParentIdsList = Array<number>;
@@ -4014,19 +4010,19 @@ export type CreateArticleResponseHelpCenterAudience =
   | "all_leads"
   | "all_visitors_and_leads"
   | "restricted";
-export const CreateArticleResponseHelpCenterAudience = /*@__PURE__*/ S.String;
+export const CreateArticleResponseHelpCenterAudience = S.String;
 
 /** The type of object - article_translated_content. */
 export type ArticleTranslatedContentType = "article_translated_content";
-export const ArticleTranslatedContentType = /*@__PURE__*/ S.String;
+export const ArticleTranslatedContentType = S.String;
 
 /** The type of object - `article_content` . */
 export type ArticleContentType = "article_content";
-export const ArticleContentType = /*@__PURE__*/ S.String;
+export const ArticleContentType = S.String;
 
 /** Whether the article is `published` or is a `draft` . */
 export type ArticleContentState = "published" | "draft";
-export const ArticleContentState = /*@__PURE__*/ S.String;
+export const ArticleContentState = S.String;
 
 /** The list of audience IDs this article content is targeted to for Fin AI Agent. On multilingual help centers this field appears per-locale inside `translated_content`. On single-language help centers it appears at the article root level. Empty array means no audience targeting is set. */
 export type ArticleContentAudienceIdsList = Array<number>;
@@ -4222,7 +4218,7 @@ export const ArticleTranslatedContent = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object - `article_statistics`. */
 export type ArticleStatisticsType = "article_statistics";
-export const ArticleStatisticsType = /*@__PURE__*/ S.String;
+export const ArticleStatisticsType = S.String;
 
 /** The statistics of an article. */
 export interface ArticleStatistics {
@@ -4408,7 +4404,7 @@ export const CreateAudienceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object. */
 export type AudienceType = "audience";
-export const AudienceType = /*@__PURE__*/ S.String;
+export const AudienceType = S.String;
 
 /** The predicates that define which contacts belong to the audience. */
 export type AudiencePredicatesList = Array<Predicate>;
@@ -4453,11 +4449,11 @@ export const Audience = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object - group_translated_content. */
 export type GroupTranslatedContentType = "group_translated_content";
-export const GroupTranslatedContentType = /*@__PURE__*/ S.String;
+export const GroupTranslatedContentType = S.String;
 
 /** The type of object - `group_content` . */
 export type GroupContentType = "group_content";
-export const GroupContentType = /*@__PURE__*/ S.String;
+export const GroupContentType = S.String;
 
 /** The Content of a Group. */
 export interface GroupContent {
@@ -4900,12 +4896,11 @@ export const CreateContactResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** If you intend to create or update External Pages via the API, this should be set to `api`. */
 export type CreateContentImportSourceRequestSyncBehavior = "api";
-export const CreateContentImportSourceRequestSyncBehavior =
-  /*@__PURE__*/ S.String;
+export const CreateContentImportSourceRequestSyncBehavior = S.String;
 
 /** The status of the content import source. */
 export type CreateContentImportSourceRequestStatus = "active" | "deactivated";
-export const CreateContentImportSourceRequestStatus = /*@__PURE__*/ S.String;
+export const CreateContentImportSourceRequestStatus = S.String;
 
 export type CreateContentImportSourceRequestAudienceIdsCase1List =
   Array<number>;
@@ -4919,7 +4914,7 @@ export type CreateContentImportSourceRequestAudienceIds =
   | number
   | CreateContentImportSourceRequestAudienceIdsCase1List;
 export const CreateContentImportSourceRequestAudienceIds =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateContentImportSourceRequestAudienceIds>;
+  S.Unknown as any as S.Schema<CreateContentImportSourceRequestAudienceIds>;
 
 export interface CreateContentImportSourceRequest {
   /** If you intend to create or update External Pages via the API, this should be set to `api`. */
@@ -4948,15 +4943,15 @@ export const CreateContentImportSourceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Always external_page */
 export type ContentImportSourceType = "content_import_source";
-export const ContentImportSourceType = /*@__PURE__*/ S.String;
+export const ContentImportSourceType = S.String;
 
 /** If you intend to create or update External Pages via the API, this should be set to `api`. */
 export type ContentImportSourceSyncBehavior = "api" | "automatic" | "manual";
-export const ContentImportSourceSyncBehavior = /*@__PURE__*/ S.String;
+export const ContentImportSourceSyncBehavior = S.String;
 
 /** The status of the content import source. */
 export type ContentImportSourceStatus = "active" | "deactivated";
-export const ContentImportSourceStatus = /*@__PURE__*/ S.String;
+export const ContentImportSourceStatus = S.String;
 
 /** The unique identifiers for the audiences associated with this content import source. */
 export type ContentImportSourceAudienceIdsList = Array<number>;
@@ -5112,7 +5107,7 @@ export const ContentSnippet = /*@__PURE__*/ S.suspend(() =>
 
 /** The role associated to the contact - user or lead. */
 export type CreateConversationRequestFromType = "lead" | "user" | "contact";
-export const CreateConversationRequestFromType = /*@__PURE__*/ S.String;
+export const CreateConversationRequestFromType = S.String;
 
 export interface CreateConversationRequestFrom {
   /** The role associated to the contact - user or lead. */
@@ -5168,7 +5163,7 @@ export type CreateConversationResponseMessageType =
   | "inapp"
   | "facebook"
   | "twitter";
-export const CreateConversationResponseMessageType = /*@__PURE__*/ S.String;
+export const CreateConversationResponseMessageType = S.String;
 
 export interface CreateConversationResponse {
   /** The type of the message */
@@ -5210,8 +5205,7 @@ export type CreateConversationAttributeStringRequestDataType =
   | "datetime"
   | "relationship"
   | "files";
-export const CreateConversationAttributeStringRequestDataType =
-  /*@__PURE__*/ S.String;
+export const CreateConversationAttributeStringRequestDataType = S.String;
 
 /** Team IDs that can see this attribute. Empty array means all teams. */
 export type CreateConversationAttributeStringRequestVisibleToTeamIdsList =
@@ -5261,8 +5255,7 @@ export type CreateConversationAttributeIntegerRequestDataType =
   | "datetime"
   | "relationship"
   | "files";
-export const CreateConversationAttributeIntegerRequestDataType =
-  /*@__PURE__*/ S.String;
+export const CreateConversationAttributeIntegerRequestDataType = S.String;
 
 /** Team IDs that can see this attribute. Empty array means all teams. */
 export type CreateConversationAttributeIntegerRequestVisibleToTeamIdsList =
@@ -5309,8 +5302,7 @@ export type CreateConversationAttributeListRequestDataType =
   | "datetime"
   | "relationship"
   | "files";
-export const CreateConversationAttributeListRequestDataType =
-  /*@__PURE__*/ S.String;
+export const CreateConversationAttributeListRequestDataType = S.String;
 
 /** Team IDs that can see this attribute. Empty array means all teams. */
 export type CreateConversationAttributeListRequestVisibleToTeamIdsList =
@@ -5382,8 +5374,7 @@ export type CreateConversationAttributeDecimalRequestDataType =
   | "datetime"
   | "relationship"
   | "files";
-export const CreateConversationAttributeDecimalRequestDataType =
-  /*@__PURE__*/ S.String;
+export const CreateConversationAttributeDecimalRequestDataType = S.String;
 
 /** Team IDs that can see this attribute. Empty array means all teams. */
 export type CreateConversationAttributeDecimalRequestVisibleToTeamIdsList =
@@ -5430,8 +5421,7 @@ export type CreateConversationAttributeBooleanRequestDataType =
   | "datetime"
   | "relationship"
   | "files";
-export const CreateConversationAttributeBooleanRequestDataType =
-  /*@__PURE__*/ S.String;
+export const CreateConversationAttributeBooleanRequestDataType = S.String;
 
 /** Team IDs that can see this attribute. Empty array means all teams. */
 export type CreateConversationAttributeBooleanRequestVisibleToTeamIdsList =
@@ -5478,8 +5468,7 @@ export type CreateConversationAttributeDatetimeRequestDataType =
   | "datetime"
   | "relationship"
   | "files";
-export const CreateConversationAttributeDatetimeRequestDataType =
-  /*@__PURE__*/ S.String;
+export const CreateConversationAttributeDatetimeRequestDataType = S.String;
 
 /** Team IDs that can see this attribute. Empty array means all teams. */
 export type CreateConversationAttributeDatetimeRequestVisibleToTeamIdsList =
@@ -5526,8 +5515,7 @@ export type CreateConversationAttributeRelationshipRequestDataType =
   | "datetime"
   | "relationship"
   | "files";
-export const CreateConversationAttributeRelationshipRequestDataType =
-  /*@__PURE__*/ S.String;
+export const CreateConversationAttributeRelationshipRequestDataType = S.String;
 
 /** Team IDs that can see this attribute. Empty array means all teams. */
 export type CreateConversationAttributeRelationshipRequestVisibleToTeamIdsList =
@@ -5542,7 +5530,7 @@ export type CreateConversationAttributeRelationshipRequestReferenceType =
   | "one"
   | "many";
 export const CreateConversationAttributeRelationshipRequestReferenceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference configuration for related objects. */
 export interface CreateConversationAttributeRelationshipRequestReference {
@@ -5607,8 +5595,7 @@ export type CreateConversationAttributeFilesRequestDataType =
   | "datetime"
   | "relationship"
   | "files";
-export const CreateConversationAttributeFilesRequestDataType =
-  /*@__PURE__*/ S.String;
+export const CreateConversationAttributeFilesRequestDataType = S.String;
 
 /** Team IDs that can see this attribute. Empty array means all teams. */
 export type CreateConversationAttributeFilesRequestVisibleToTeamIdsList =
@@ -5656,7 +5643,7 @@ export type CreateConversationAttributeRequest =
   | CreateConversationAttributeRelationshipRequest
   | CreateConversationAttributeFilesRequest;
 export const CreateConversationAttributeRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateConversationAttributeRequest>;
+  S.Unknown as any as S.Schema<CreateConversationAttributeRequest>;
 
 export interface CreateConversationAttributeRequest2 {
   body: CreateConversationAttributeRequest;
@@ -5673,7 +5660,7 @@ export const CreateConversationAttributeRequest2 = /*@__PURE__*/ S.suspend(() =>
 
 /** Value is `conversation_attribute`. */
 export type ConversationAttributeStringTypeType = "conversation_attribute";
-export const ConversationAttributeStringTypeType = /*@__PURE__*/ S.String;
+export const ConversationAttributeStringTypeType = S.String;
 
 /** The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files. */
 export type ConversationAttributeStringTypeDataType =
@@ -5685,7 +5672,7 @@ export type ConversationAttributeStringTypeDataType =
   | "datetime"
   | "relationship"
   | "files";
-export const ConversationAttributeStringTypeDataType = /*@__PURE__*/ S.String;
+export const ConversationAttributeStringTypeDataType = S.String;
 
 /** Team IDs that can see this attribute. Empty array means all teams. */
 export type ConversationAttributeStringTypeVisibleToTeamIdsList = Array<string>;
@@ -5743,7 +5730,7 @@ export const ConversationAttributeStringType = /*@__PURE__*/ S.suspend(() =>
 
 /** Value is `conversation_attribute`. */
 export type ConversationAttributeIntegerTypeType = "conversation_attribute";
-export const ConversationAttributeIntegerTypeType = /*@__PURE__*/ S.String;
+export const ConversationAttributeIntegerTypeType = S.String;
 
 /** The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files. */
 export type ConversationAttributeIntegerTypeDataType =
@@ -5755,7 +5742,7 @@ export type ConversationAttributeIntegerTypeDataType =
   | "datetime"
   | "relationship"
   | "files";
-export const ConversationAttributeIntegerTypeDataType = /*@__PURE__*/ S.String;
+export const ConversationAttributeIntegerTypeDataType = S.String;
 
 /** Team IDs that can see this attribute. Empty array means all teams. */
 export type ConversationAttributeIntegerTypeVisibleToTeamIdsList =
@@ -5811,7 +5798,7 @@ export const ConversationAttributeIntegerType = /*@__PURE__*/ S.suspend(() =>
 
 /** Value is `conversation_attribute`. */
 export type ConversationAttributeListTypeType = "conversation_attribute";
-export const ConversationAttributeListTypeType = /*@__PURE__*/ S.String;
+export const ConversationAttributeListTypeType = S.String;
 
 /** The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files. */
 export type ConversationAttributeListTypeDataType =
@@ -5823,7 +5810,7 @@ export type ConversationAttributeListTypeDataType =
   | "datetime"
   | "relationship"
   | "files";
-export const ConversationAttributeListTypeDataType = /*@__PURE__*/ S.String;
+export const ConversationAttributeListTypeDataType = S.String;
 
 /** Team IDs that can see this attribute. Empty array means all teams. */
 export type ConversationAttributeListTypeVisibleToTeamIdsList = Array<string>;
@@ -5907,7 +5894,7 @@ export const ConversationAttributeListType2 = /*@__PURE__*/ S.suspend(() =>
 
 /** Value is `conversation_attribute`. */
 export type ConversationAttributeDecimalTypeType = "conversation_attribute";
-export const ConversationAttributeDecimalTypeType = /*@__PURE__*/ S.String;
+export const ConversationAttributeDecimalTypeType = S.String;
 
 /** The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files. */
 export type ConversationAttributeDecimalTypeDataType =
@@ -5919,7 +5906,7 @@ export type ConversationAttributeDecimalTypeDataType =
   | "datetime"
   | "relationship"
   | "files";
-export const ConversationAttributeDecimalTypeDataType = /*@__PURE__*/ S.String;
+export const ConversationAttributeDecimalTypeDataType = S.String;
 
 /** Team IDs that can see this attribute. Empty array means all teams. */
 export type ConversationAttributeDecimalTypeVisibleToTeamIdsList =
@@ -5975,7 +5962,7 @@ export const ConversationAttributeDecimalType = /*@__PURE__*/ S.suspend(() =>
 
 /** Value is `conversation_attribute`. */
 export type ConversationAttributeBooleanTypeType = "conversation_attribute";
-export const ConversationAttributeBooleanTypeType = /*@__PURE__*/ S.String;
+export const ConversationAttributeBooleanTypeType = S.String;
 
 /** The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files. */
 export type ConversationAttributeBooleanTypeDataType =
@@ -5987,7 +5974,7 @@ export type ConversationAttributeBooleanTypeDataType =
   | "datetime"
   | "relationship"
   | "files";
-export const ConversationAttributeBooleanTypeDataType = /*@__PURE__*/ S.String;
+export const ConversationAttributeBooleanTypeDataType = S.String;
 
 /** Team IDs that can see this attribute. Empty array means all teams. */
 export type ConversationAttributeBooleanTypeVisibleToTeamIdsList =
@@ -6043,7 +6030,7 @@ export const ConversationAttributeBooleanType = /*@__PURE__*/ S.suspend(() =>
 
 /** Value is `conversation_attribute`. */
 export type ConversationAttributeDatetimeTypeType = "conversation_attribute";
-export const ConversationAttributeDatetimeTypeType = /*@__PURE__*/ S.String;
+export const ConversationAttributeDatetimeTypeType = S.String;
 
 /** The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files. */
 export type ConversationAttributeDatetimeTypeDataType =
@@ -6055,7 +6042,7 @@ export type ConversationAttributeDatetimeTypeDataType =
   | "datetime"
   | "relationship"
   | "files";
-export const ConversationAttributeDatetimeTypeDataType = /*@__PURE__*/ S.String;
+export const ConversationAttributeDatetimeTypeDataType = S.String;
 
 /** Team IDs that can see this attribute. Empty array means all teams. */
 export type ConversationAttributeDatetimeTypeVisibleToTeamIdsList =
@@ -6112,7 +6099,7 @@ export const ConversationAttributeDatetimeType = /*@__PURE__*/ S.suspend(() =>
 /** Value is `conversation_attribute`. */
 export type ConversationAttributeRelationshipTypeType =
   "conversation_attribute";
-export const ConversationAttributeRelationshipTypeType = /*@__PURE__*/ S.String;
+export const ConversationAttributeRelationshipTypeType = S.String;
 
 /** The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files. */
 export type ConversationAttributeRelationshipTypeDataType =
@@ -6124,8 +6111,7 @@ export type ConversationAttributeRelationshipTypeDataType =
   | "datetime"
   | "relationship"
   | "files";
-export const ConversationAttributeRelationshipTypeDataType =
-  /*@__PURE__*/ S.String;
+export const ConversationAttributeRelationshipTypeDataType = S.String;
 
 /** Team IDs that can see this attribute. Empty array means all teams. */
 export type ConversationAttributeRelationshipTypeVisibleToTeamIdsList =
@@ -6137,8 +6123,7 @@ export const ConversationAttributeRelationshipTypeVisibleToTeamIdsList =
 
 /** The cardinality of the relationship: `one` or `many`. */
 export type ConversationAttributeRelationshipTypeReferenceType = "one" | "many";
-export const ConversationAttributeRelationshipTypeReferenceType =
-  /*@__PURE__*/ S.String;
+export const ConversationAttributeRelationshipTypeReferenceType = S.String;
 
 /** Reference configuration for related objects. */
 export interface ConversationAttributeRelationshipTypeReference {
@@ -6207,7 +6192,7 @@ export const ConversationAttributeRelationshipType = /*@__PURE__*/ S.suspend(
 
 /** Value is `conversation_attribute`. */
 export type ConversationAttributeFilesTypeType = "conversation_attribute";
-export const ConversationAttributeFilesTypeType = /*@__PURE__*/ S.String;
+export const ConversationAttributeFilesTypeType = S.String;
 
 /** The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files. */
 export type ConversationAttributeFilesTypeDataType =
@@ -6219,7 +6204,7 @@ export type ConversationAttributeFilesTypeDataType =
   | "datetime"
   | "relationship"
   | "files";
-export const ConversationAttributeFilesTypeDataType = /*@__PURE__*/ S.String;
+export const ConversationAttributeFilesTypeDataType = S.String;
 
 /** Team IDs that can see this attribute. Empty array means all teams. */
 export type ConversationAttributeFilesTypeVisibleToTeamIdsList = Array<string>;
@@ -6283,7 +6268,7 @@ export type ConversationAttribute =
   | ConversationAttributeRelationshipType
   | ConversationAttributeFilesType;
 export const ConversationAttribute =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversationAttribute>;
+  S.Unknown as any as S.Schema<ConversationAttribute>;
 
 export type CreateConversationAttributeResponse = ConversationAttribute;
 export const CreateConversationAttributeResponse = /*@__PURE__*/ S.suspend(() =>
@@ -6366,7 +6351,7 @@ export const CreateCustomObjectInstancesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The model that the data attribute belongs to. */
 export type CreateDataAttributeRequestModel = "contact" | "company";
-export const CreateDataAttributeRequestModel = /*@__PURE__*/ S.String;
+export const CreateDataAttributeRequestModel = S.String;
 
 export interface CreateDataAttributeRequest {
   /** The name of the data attribute. */
@@ -6391,11 +6376,11 @@ export const CreateDataAttributeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Value is `data_attribute`. */
 export type DataAttributeType = "data_attribute";
-export const DataAttributeType = /*@__PURE__*/ S.String;
+export const DataAttributeType = S.String;
 
 /** Value is `contact` for user/lead attributes and `company` for company attributes. */
 export type DataAttributeModel = "contact" | "company";
-export const DataAttributeModel = /*@__PURE__*/ S.String;
+export const DataAttributeModel = S.String;
 
 /** The data type of the attribute. */
 export type DataAttributeDataType =
@@ -6404,7 +6389,7 @@ export type DataAttributeDataType =
   | "float"
   | "boolean"
   | "date";
-export const DataAttributeDataType = /*@__PURE__*/ S.String;
+export const DataAttributeDataType = S.String;
 
 /** List of predefined options for attribute value. */
 export type DataAttributeOptionsList = Array<string>;
@@ -6478,13 +6463,13 @@ export type CreateDataConnectorRequestHttpMethod =
   | "put"
   | "delete"
   | "patch";
-export const CreateDataConnectorRequestHttpMethod = /*@__PURE__*/ S.String;
+export const CreateDataConnectorRequestHttpMethod = S.String;
 
 export type CreateDataConnectorRequestAudiencesItem =
   | "leads"
   | "users"
   | "visitors";
-export const CreateDataConnectorRequestAudiencesItem = /*@__PURE__*/ S.String;
+export const CreateDataConnectorRequestAudiencesItem = S.String;
 
 /** The user types this connector is available for. */
 export type CreateDataConnectorRequestAudiencesList = Array<
@@ -6523,8 +6508,7 @@ export type CreateDataConnectorRequestDataInputsItemType =
   | "integer"
   | "decimal"
   | "boolean";
-export const CreateDataConnectorRequestDataInputsItemType =
-  /*@__PURE__*/ S.String;
+export const CreateDataConnectorRequestDataInputsItemType = S.String;
 
 export interface CreateDataConnectorRequestDataInputsItem {
   /** The parameter name. */
@@ -6617,11 +6601,11 @@ export const CreateDataConnectorRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object - `data_connector`. */
 export type DataConnectorDetailType = "data_connector";
-export const DataConnectorDetailType = /*@__PURE__*/ S.String;
+export const DataConnectorDetailType = S.String;
 
 /** The current state of the data connector. */
 export type DataConnectorDetailState = "draft" | "live";
-export const DataConnectorDetailState = /*@__PURE__*/ S.String;
+export const DataConnectorDetailState = S.String;
 
 export interface DataConnectorDetailHeadersItem {
   /** The header name. */
@@ -6652,10 +6636,10 @@ export type DataConnectorDetailHttpMethod =
   | "put"
   | "delete"
   | "patch";
-export const DataConnectorDetailHttpMethod = /*@__PURE__*/ S.String;
+export const DataConnectorDetailHttpMethod = S.String;
 
 export type DataConnectorDetailAudiencesItem = "users" | "leads" | "visitors";
-export const DataConnectorDetailAudiencesItem = /*@__PURE__*/ S.String;
+export const DataConnectorDetailAudiencesItem = S.String;
 
 /** The audience types this connector targets. */
 export type DataConnectorDetailAudiencesList =
@@ -6666,21 +6650,20 @@ export const DataConnectorDetailAudiencesList = /*@__PURE__*/ S.Array(
 
 /** How the connector executes. */
 export type DataConnectorDetailExecutionType = "server_side" | "client_side";
-export const DataConnectorDetailExecutionType = /*@__PURE__*/ S.String;
+export const DataConnectorDetailExecutionType = S.String;
 
 /** The expected response format from the connector. */
 export type DataConnectorDetailConfigurationResponseType =
   | "test_response_type"
   | "mock_response_type";
-export const DataConnectorDetailConfigurationResponseType =
-  /*@__PURE__*/ S.String;
+export const DataConnectorDetailConfigurationResponseType = S.String;
 
 /** The type of data transformation applied to the response. */
 export type DataConnectorDetailDataTransformationType =
   | "full_access"
   | "redacted_access"
   | "code_block_transformation";
-export const DataConnectorDetailDataTransformationType = /*@__PURE__*/ S.String;
+export const DataConnectorDetailDataTransformationType = S.String;
 
 /** The data type of the input. */
 export type DataConnectorDetailDataInputsItemType =
@@ -6688,7 +6671,7 @@ export type DataConnectorDetailDataInputsItemType =
   | "integer"
   | "decimal"
   | "boolean";
-export const DataConnectorDetailDataInputsItemType = /*@__PURE__*/ S.String;
+export const DataConnectorDetailDataInputsItemType = S.String;
 
 export interface DataConnectorDetailDataInputsItem {
   /** The name of the input parameter. */
@@ -6729,7 +6712,7 @@ export type DataConnectorDetailResponseFieldsItemType =
   | "decimal"
   | "datetime"
   | "boolean";
-export const DataConnectorDetailResponseFieldsItemType = /*@__PURE__*/ S.String;
+export const DataConnectorDetailResponseFieldsItemType = S.String;
 
 export interface DataConnectorDetailResponseFieldsItem {
   /** The JSON path of the response field. */
@@ -6763,14 +6746,13 @@ export const DataConnectorDetailResponseFieldsList = /*@__PURE__*/ S.Array(
 export type DataConnectorDetailObjectMappingsItemIntercomObjectType =
   | "conversation"
   | "user";
-export const DataConnectorDetailObjectMappingsItemIntercomObjectType =
-  /*@__PURE__*/ S.String;
+export const DataConnectorDetailObjectMappingsItemIntercomObjectType = S.String;
 
 export type DataConnectorDetailObjectMappingsItemAttributeMappingsItemMappingType =
   | "primitive_mapping"
   | "context_mapping";
 export const DataConnectorDetailObjectMappingsItemAttributeMappingsItemMappingType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DataConnectorDetailObjectMappingsItemAttributeMappingsItem {
   response_attribute_path?: string;
@@ -6801,7 +6783,7 @@ export type DataConnectorDetailObjectMappingsItemReferenceMappingsItemIntercomOb
   | "conversation"
   | "user";
 export const DataConnectorDetailObjectMappingsItemReferenceMappingsItemIntercomObjectType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DataConnectorDetailObjectMappingsItemReferenceMappingsItem {
   intercom_object_type?: DataConnectorDetailObjectMappingsItemReferenceMappingsItemIntercomObjectType;
@@ -7070,7 +7052,7 @@ export const CreateExportReportingDataEnqueueResponse = /*@__PURE__*/ S.suspend(
 
 /** Always en */
 export type CreateExternalPageRequestLocale = "en";
-export const CreateExternalPageRequestLocale = /*@__PURE__*/ S.String;
+export const CreateExternalPageRequestLocale = S.String;
 
 export interface CreateExternalPageRequest {
   /** The title of the external page. */
@@ -7107,11 +7089,11 @@ export const CreateExternalPageRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Always external_page */
 export type ExternalPageType = "external_page";
-export const ExternalPageType = /*@__PURE__*/ S.String;
+export const ExternalPageType = S.String;
 
 /** Always en */
 export type ExternalPageLocale = "en";
-export const ExternalPageLocale = /*@__PURE__*/ S.String;
+export const ExternalPageLocale = S.String;
 
 /** External pages that you have added to your Fin Content Library. */
 export interface ExternalPage {
@@ -7170,7 +7152,7 @@ export const ExternalPage = /*@__PURE__*/ S.suspend(() =>
 export type CreateHelpCenterRedirectRequestTargetType =
   | "article"
   | "collection";
-export const CreateHelpCenterRedirectRequestTargetType = /*@__PURE__*/ S.String;
+export const CreateHelpCenterRedirectRequestTargetType = S.String;
 
 export interface CreateHelpCenterRedirectRequest {
   /** The unique identifier for the help center. */
@@ -7204,11 +7186,11 @@ export const CreateHelpCenterRedirectRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object - `help_center_redirect`. */
 export type HelpCenterRedirectType = "help_center_redirect";
-export const HelpCenterRedirectType = /*@__PURE__*/ S.String;
+export const HelpCenterRedirectType = S.String;
 
 /** The type of the redirect target. */
 export type HelpCenterRedirectTargetType = "article" | "collection";
-export const HelpCenterRedirectTargetType = /*@__PURE__*/ S.String;
+export const HelpCenterRedirectTargetType = S.String;
 
 /** A redirect maps a source URL (`from_url`) to an article or collection within a help center, so that links to old or external URLs resolve to live content. */
 export interface HelpCenterRedirect {
@@ -7294,7 +7276,7 @@ export const CreateInternalArticleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object - `internal_article`. */
 export type CreateInternalArticleResponseType = "internal_article";
-export const CreateInternalArticleResponseType = /*@__PURE__*/ S.String;
+export const CreateInternalArticleResponseType = S.String;
 
 /** The list of audience IDs this internal article is targeted to for Fin AI Agent. Empty array means no audience targeting is set. */
 export type CreateInternalArticleResponseAudienceIdsList = Array<number>;
@@ -7358,11 +7340,11 @@ export const CreateInternalArticleResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of message being created. Values: `in_app`, `email` or `whatsapp`. */
 export type CreateMessageRequestMessageType = "in_app" | "email" | "whatsapp";
-export const CreateMessageRequestMessageType = /*@__PURE__*/ S.String;
+export const CreateMessageRequestMessageType = S.String;
 
 /** Always `admin`. */
 export type CreateMessageRequestFromType = "admin";
-export const CreateMessageRequestFromType = /*@__PURE__*/ S.String;
+export const CreateMessageRequestFromType = S.String;
 
 /** The sender of the message. If not provided, the default sender will be used. */
 export interface CreateMessageRequestFrom {
@@ -7382,7 +7364,7 @@ export const CreateMessageRequestFrom = /*@__PURE__*/ S.suspend(() =>
 
 /** The role associated to the contact - `user` or `lead`. */
 export type RecipientType = "user" | "lead";
-export const RecipientType = /*@__PURE__*/ S.String;
+export const RecipientType = S.String;
 
 /** A recipient of a message */
 export interface Recipient {
@@ -7408,7 +7390,7 @@ export type CreateMessageRequestTo =
   | Recipient
   | CreateMessageRequestToCase1List;
 export const CreateMessageRequestTo =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateMessageRequestTo>;
+  S.Unknown as any as S.Schema<CreateMessageRequestTo>;
 
 /** The CC recipients of the message. */
 export type CreateMessageRequestCcCase1List = Array<Recipient>;
@@ -7420,7 +7402,7 @@ export type CreateMessageRequestCc =
   | Recipient
   | CreateMessageRequestCcCase1List;
 export const CreateMessageRequestCc =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateMessageRequestCc>;
+  S.Unknown as any as S.Schema<CreateMessageRequestCc>;
 
 /** The BCC recipients of the message. */
 export type CreateMessageRequestBccCase1List = Array<Recipient>;
@@ -7432,7 +7414,7 @@ export type CreateMessageRequestBcc =
   | Recipient
   | CreateMessageRequestBccCase1List;
 export const CreateMessageRequestBcc =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateMessageRequestBcc>;
+  S.Unknown as any as S.Schema<CreateMessageRequestBcc>;
 
 export interface CreateMessageRequest {
   /** The kind of message being created. Values: `in_app`, `email` or `whatsapp`. */
@@ -7472,7 +7454,7 @@ export const CreateMessageRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of message that was sent. Can be email, inapp, facebook or twitter. */
 export type MessageMessageType = "email" | "inapp" | "facebook" | "twitter";
-export const MessageMessageType = /*@__PURE__*/ S.String;
+export const MessageMessageType = S.String;
 
 /** Message are how you reach out to contacts in Intercom. They are created when an admin sends an outbound message to a contact. */
 export interface Message {
@@ -7505,7 +7487,7 @@ export const Message = /*@__PURE__*/ S.suspend(() =>
 
 /** News items will not be visible to your users in the assigned newsfeeds until they are set live. */
 export type CreateNewsItemRequestState = "draft" | "live";
-export const CreateNewsItemRequestState = /*@__PURE__*/ S.String;
+export const CreateNewsItemRequestState = S.String;
 
 /** Label names displayed to users to categorize the news item. */
 export type CreateNewsItemRequestLabelsList = Array<string>;
@@ -7580,11 +7562,11 @@ export const CreateNewsItemRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object. */
 export type NewsItemType = "news-item";
-export const NewsItemType = /*@__PURE__*/ S.String;
+export const NewsItemType = S.String;
 
 /** News items will not be visible to your users in the assigned newsfeeds until they are set live. */
 export type NewsItemState = "draft" | "live";
-export const NewsItemState = /*@__PURE__*/ S.String;
+export const NewsItemState = S.String;
 
 /** A list of newsfeed_assignments to assign to the specified newsfeed. */
 export type NewsItemNewsfeedAssignmentsList = Array<NewsfeedAssignment>;
@@ -7678,8 +7660,7 @@ export const CreateNoteRequest = /*@__PURE__*/ S.suspend(() =>
 export type CreateOfficeHoursExceptionRequestExceptionType =
   | "closed"
   | "custom_hours";
-export const CreateOfficeHoursExceptionRequestExceptionType =
-  /*@__PURE__*/ S.String;
+export const CreateOfficeHoursExceptionRequestExceptionType = S.String;
 
 /** A single open interval. For schedules, `start_minute` and `end_minute` are minute offsets from the start of the week (Monday 00:00 = 0), in the range 0 to 10080. For exceptions, they are minute offsets from midnight on `exception_date`, in the range 0 to 1440. */
 export interface OfficeHoursTimeIntervalInput {
@@ -7744,7 +7725,7 @@ export const CreateOfficeHoursExceptionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** `closed` means the workspace is closed all day; `custom_hours` replaces the regular hours with `time_intervals`. */
 export type OfficeHoursExceptionExceptionType = "closed" | "custom_hours";
-export const OfficeHoursExceptionExceptionType = /*@__PURE__*/ S.String;
+export const OfficeHoursExceptionExceptionType = S.String;
 
 /** A single open interval. For schedules, `start_minute` and `end_minute` are minute offsets from the start of the week (Monday 00:00 = 0), in the range 0 to 10080. For exceptions, they are minute offsets from midnight on `exception_date`, in the range 0 to 1440. */
 export interface OfficeHoursTimeInterval {
@@ -7947,7 +7928,7 @@ export const CreatePhoneSwitchRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreatePhoneSwitchRequest>;
 
 export type PhoneSwitchType = "phone_call_redirect";
-export const PhoneSwitchType = /*@__PURE__*/ S.String;
+export const PhoneSwitchType = S.String;
 
 /** Phone Switch Response */
 export interface PhoneSwitch {
@@ -8096,7 +8077,7 @@ export type CreateTagRequestBody =
   | UntagCompanyRequest
   | TagMultipleUsersRequest;
 export const CreateTagRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateTagRequestBody>;
+  S.Unknown as any as S.Schema<CreateTagRequestBody>;
 
 export interface CreateTagRequest {
   body?: CreateTagRequestBody;
@@ -8220,7 +8201,7 @@ export type CreateTicketRequestContactsItem =
   | CreateTicketRequestContactsItemCase1
   | CreateTicketRequestContactsItemCase2;
 export const CreateTicketRequestContactsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateTicketRequestContactsItem>;
+  S.Unknown as any as S.Schema<CreateTicketRequestContactsItem>;
 
 /** The list of contacts (users or leads) affected by this ticket. Currently only one is allowed */
 export type CreateTicketRequestContactsList =
@@ -8280,7 +8261,7 @@ export type CreateTicketTypeRequestCategory =
   | "Customer"
   | "Back-office"
   | "Tracker";
-export const CreateTicketTypeRequestCategory = /*@__PURE__*/ S.String;
+export const CreateTicketTypeRequestCategory = S.String;
 
 export interface CreateTicketTypeRequest {
   /** The name of the ticket type. */
@@ -8315,7 +8296,7 @@ export type CreateTicketTypeAttributeRequestDataType =
   | "boolean"
   | "datetime"
   | "files";
-export const CreateTicketTypeAttributeRequestDataType = /*@__PURE__*/ S.String;
+export const CreateTicketTypeAttributeRequestDataType = S.String;
 
 export interface CreateTicketTypeAttributeRequest {
   /** The unique identifier for the ticket type which is given by Intercom. */
@@ -8426,7 +8407,7 @@ export const DeleteArticleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object which was deleted. - article */
 export type DeletedArticleObjectObject = "article";
-export const DeletedArticleObjectObject = /*@__PURE__*/ S.String;
+export const DeletedArticleObjectObject = S.String;
 
 /** Response returned when an object is deleted */
 export interface DeletedArticleObject {
@@ -8486,7 +8467,7 @@ export const DeleteCollectionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object which was deleted. - `collection` */
 export type DeletedCollectionObjectObject = "collection";
-export const DeletedCollectionObjectObject = /*@__PURE__*/ S.String;
+export const DeletedCollectionObjectObject = S.String;
 
 /** Response returned when an object is deleted */
 export interface DeletedCollectionObject {
@@ -8523,7 +8504,7 @@ export const DeleteCompanyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object which was deleted. - `company` */
 export type DeletedCompanyObjectObject = "company";
-export const DeletedCompanyObjectObject = /*@__PURE__*/ S.String;
+export const DeletedCompanyObjectObject = S.String;
 
 /** Response returned when an object is deleted */
 export interface DeletedCompanyObject {
@@ -8560,7 +8541,7 @@ export const DeleteContactRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** always contact */
 export type DeleteContactResponseType = "contact";
-export const DeleteContactResponseType = /*@__PURE__*/ S.String;
+export const DeleteContactResponseType = S.String;
 
 export interface DeleteContactResponse {
   /** always contact */
@@ -8652,7 +8633,7 @@ export const DeleteConversationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** always conversation */
 export type ConversationDeletedObject = "conversation";
-export const ConversationDeletedObject = /*@__PURE__*/ S.String;
+export const ConversationDeletedObject = S.String;
 
 /** deleted conversation object */
 export interface ConversationDeleted {
@@ -8821,7 +8802,7 @@ export const DeleteDataConnectorRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object which was deleted. */
 export type DeletedDataConnectorObjectObject = "data_connector";
-export const DeletedDataConnectorObjectObject = /*@__PURE__*/ S.String;
+export const DeletedDataConnectorObjectObject = S.String;
 
 /** Response returned when a data connector is deleted. */
 export interface DeletedDataConnectorObject {
@@ -8883,7 +8864,7 @@ export const DeleteHelpCenterRedirectRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object which was deleted. - `help_center_redirect` */
 export type DeletedHelpCenterRedirectObjectObject = "help_center_redirect";
-export const DeletedHelpCenterRedirectObjectObject = /*@__PURE__*/ S.String;
+export const DeletedHelpCenterRedirectObjectObject = S.String;
 
 /** Response returned when a redirect is deleted. */
 export interface DeletedHelpCenterRedirectObject {
@@ -8924,7 +8905,7 @@ export const DeleteInternalArticleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object which was deleted. - internal_article */
 export type DeletedInternalArticleObjectObject = "internal_article";
-export const DeletedInternalArticleObjectObject = /*@__PURE__*/ S.String;
+export const DeletedInternalArticleObjectObject = S.String;
 
 /** Response returned when an object is deleted */
 export interface DeletedInternalArticleObject {
@@ -8965,7 +8946,7 @@ export const DeleteNewsItemRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object which was deleted - news-item. */
 export type DeletedObjectObject = "news-item";
-export const DeletedObjectObject = /*@__PURE__*/ S.String;
+export const DeletedObjectObject = S.String;
 
 /** Response returned when an object is deleted */
 export interface DeletedObject {
@@ -9086,7 +9067,7 @@ export const DeleteTicketRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** always ticket */
 export type TicketDeletedObject = "ticket";
-export const TicketDeletedObject = /*@__PURE__*/ S.String;
+export const TicketDeletedObject = S.String;
 
 /** deleted ticket object */
 export interface TicketDeleted {
@@ -9388,7 +9369,7 @@ export type EnqueueCreateTicketRequestContactsItem =
   | CreateTicketRequestContactsItemCase1
   | CreateTicketRequestContactsItemCase2;
 export const EnqueueCreateTicketRequestContactsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnqueueCreateTicketRequestContactsItem>;
+  S.Unknown as any as S.Schema<EnqueueCreateTicketRequestContactsItem>;
 
 /** The list of contacts (users or leads) affected by this ticket. Currently only one is allowed */
 export type EnqueueCreateTicketRequestContactsList =
@@ -9435,11 +9416,11 @@ export const EnqueueCreateTicketRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object */
 export type JobsType = "job";
-export const JobsType = /*@__PURE__*/ S.String;
+export const JobsType = S.String;
 
 /** The status of the job execution. */
 export type JobsStatus = "pending" | "success" | "failed";
-export const JobsStatus = /*@__PURE__*/ S.String;
+export const JobsStatus = S.String;
 
 /** Jobs are tasks that are processed asynchronously by the Intercom system after being enqueued via the API. This allows for efficient handling of operations that may take time to complete, such as data imports or exports. You can check the status of your jobs to monitor their progress and ensure they are completed successfully. */
 export interface Jobs {
@@ -9484,7 +9465,7 @@ export const ExportWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The current state of the workflow. */
 export type WorkflowExportWorkflowState = "live" | "draft" | "paused";
-export const WorkflowExportWorkflowState = /*@__PURE__*/ S.String;
+export const WorkflowExportWorkflowState = S.String;
 
 /** The channels this workflow targets. */
 export type WorkflowExportWorkflowTargetChannelsList = Array<string>;
@@ -9627,11 +9608,11 @@ export const GetArticleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object - `article`. */
 export type GetArticleResponseType = "article";
-export const GetArticleResponseType = /*@__PURE__*/ S.String;
+export const GetArticleResponseType = S.String;
 
 /** Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content. */
 export type GetArticleResponseState = "published" | "draft";
-export const GetArticleResponseState = /*@__PURE__*/ S.String;
+export const GetArticleResponseState = S.String;
 
 /** The ids of the article's parent collections or sections. An article without this field stands alone. */
 export type GetArticleResponseParentIdsList = Array<number>;
@@ -9647,7 +9628,7 @@ export type GetArticleResponseHelpCenterAudience =
   | "all_leads"
   | "all_visitors_and_leads"
   | "restricted";
-export const GetArticleResponseHelpCenterAudience = /*@__PURE__*/ S.String;
+export const GetArticleResponseHelpCenterAudience = S.String;
 
 export interface GetArticleResponse {
   /** The type of object - `article`. */
@@ -9755,11 +9736,11 @@ export const GetArticleDraftRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object - `article`. */
 export type GetArticleDraftResponseType = "article";
-export const GetArticleDraftResponseType = /*@__PURE__*/ S.String;
+export const GetArticleDraftResponseType = S.String;
 
 /** Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content. */
 export type GetArticleDraftResponseState = "published" | "draft";
-export const GetArticleDraftResponseState = /*@__PURE__*/ S.String;
+export const GetArticleDraftResponseState = S.String;
 
 /** The ids of the article's parent collections or sections. An article without this field stands alone. */
 export type GetArticleDraftResponseParentIdsList = Array<number>;
@@ -9775,7 +9756,7 @@ export type GetArticleDraftResponseHelpCenterAudience =
   | "all_leads"
   | "all_visitors_and_leads"
   | "restricted";
-export const GetArticleDraftResponseHelpCenterAudience = /*@__PURE__*/ S.String;
+export const GetArticleDraftResponseHelpCenterAudience = S.String;
 
 export interface GetArticleDraftResponse {
   /** The type of object - `article`. */
@@ -9895,11 +9876,11 @@ export const GetArticleVersionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Always has the value `article_version`. */
 export type ArticleVersionType = "article_version";
-export const ArticleVersionType = /*@__PURE__*/ S.String;
+export const ArticleVersionType = S.String;
 
 /** Whether this version is the currently published version of the article (`published`) or an earlier non-live version (`draft`). */
 export type ArticleVersionState = "published" | "draft";
-export const ArticleVersionState = /*@__PURE__*/ S.String;
+export const ArticleVersionState = S.String;
 
 /** A historical version of an article, including its content. */
 export interface ArticleVersion {
@@ -10166,11 +10147,11 @@ export const GetCompanyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object - `list`. */
 export type CompanyListType = "list";
-export const CompanyListType = /*@__PURE__*/ S.String;
+export const CompanyListType = S.String;
 
 /** the type of object `pages`. */
 export type CursorPagesType = "pages";
-export const CursorPagesType = /*@__PURE__*/ S.String;
+export const CursorPagesType = S.String;
 
 export interface StartingAfterPaging {
   /** The number of results to fetch per page. */
@@ -10677,7 +10658,7 @@ export const GetCustomObjectInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCustomObjectInstanceRequest>;
 
 export type GetDataConnectorRequestStateVersion = "draft" | "live";
-export const GetDataConnectorRequestStateVersion = /*@__PURE__*/ S.String;
+export const GetDataConnectorRequestStateVersion = S.String;
 
 export interface GetDataConnectorRequest {
   /** The unique identifier of the data connector. */
@@ -10720,7 +10701,7 @@ export const GetDataConnectorExecutionResultRequest = /*@__PURE__*/ S.suspend(
 
 /** The type of object - `data_connector.execution`. */
 export type DataConnectorExecutionResultType = "data_connector.execution";
-export const DataConnectorExecutionResultType = /*@__PURE__*/ S.String;
+export const DataConnectorExecutionResultType = S.String;
 
 /** The HTTP method used for the request. */
 export type DataConnectorExecutionResultHttpMethod =
@@ -10729,7 +10710,7 @@ export type DataConnectorExecutionResultHttpMethod =
   | "put"
   | "delete"
   | "patch";
-export const DataConnectorExecutionResultHttpMethod = /*@__PURE__*/ S.String;
+export const DataConnectorExecutionResultHttpMethod = S.String;
 
 /** The type of error that occurred, if any. */
 export type DataConnectorExecutionResultErrorType =
@@ -10744,7 +10725,7 @@ export type DataConnectorExecutionResultErrorType =
   | "non_fin_standalone_action_identity_verification_error"
   | "request_validation_error"
   | "client_side_action_error";
-export const DataConnectorExecutionResultErrorType = /*@__PURE__*/ S.String;
+export const DataConnectorExecutionResultErrorType = S.String;
 
 /** The type of source that triggered this execution. */
 export type DataConnectorExecutionResultSourceType =
@@ -10757,7 +10738,7 @@ export type DataConnectorExecutionResultSourceType =
   | "triggerable_custom_bot"
   | "inbox"
   | "fin";
-export const DataConnectorExecutionResultSourceType = /*@__PURE__*/ S.String;
+export const DataConnectorExecutionResultSourceType = S.String;
 
 /** An execution result from a data connector HTTP request. */
 export interface DataConnectorExecutionResult {
@@ -11073,7 +11054,7 @@ export const GetInternalArticleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object - `internal_article`. */
 export type GetInternalArticleResponseType = "internal_article";
-export const GetInternalArticleResponseType = /*@__PURE__*/ S.String;
+export const GetInternalArticleResponseType = S.String;
 
 /** The list of audience IDs this internal article is targeted to for Fin AI Agent. Empty array means no audience targeting is set. */
 export type GetInternalArticleResponseAudienceIdsList = Array<number>;
@@ -11178,11 +11159,11 @@ export const GetMacroRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Always has the value `macro`. */
 export type MacroType = "macro";
-export const MacroType = /*@__PURE__*/ S.String;
+export const MacroType = S.String;
 
 /** Who can view this macro. */
 export type MacroVisibleTo = "everyone" | "specific_teams";
-export const MacroVisibleTo = /*@__PURE__*/ S.String;
+export const MacroVisibleTo = S.String;
 
 /** The team IDs that can view this macro when visible_to is set to specific_teams. */
 export type MacroVisibleToTeamIdsList = Array<string>;
@@ -11191,7 +11172,7 @@ export const MacroVisibleToTeamIdsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<MacroVisibleToTeamIdsList>;
 
 export type MacroAvailableOnItem = "inbox" | "messenger";
-export const MacroAvailableOnItem = /*@__PURE__*/ S.String;
+export const MacroAvailableOnItem = S.String;
 
 /** Where the macro is available for use. */
 export type MacroAvailableOnList = Array<MacroAvailableOnItem>;
@@ -11253,7 +11234,7 @@ export const GetNewsfeedRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object. */
 export type NewsfeedType = "newsfeed";
-export const NewsfeedType = /*@__PURE__*/ S.String;
+export const NewsfeedType = S.String;
 
 /** A newsfeed is a collection of news items, targeted to a specific audience. Newsfeeds currently cannot be edited through the API, please refer to [this article](https://www.intercom.com/help/en/articles/6362267-getting-started-with-news) to set up your newsfeeds in Intercom. */
 export interface Newsfeed {
@@ -11537,7 +11518,7 @@ export const VisitorAvatar = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object */
 export type VisitorCompaniesType = "company.list";
-export const VisitorCompaniesType = /*@__PURE__*/ S.String;
+export const VisitorCompaniesType = S.String;
 
 export type VisitorCompaniesCompaniesList = Array<Company>;
 export const VisitorCompaniesCompaniesList = /*@__PURE__*/ S.Array(
@@ -11592,7 +11573,7 @@ export const VisitorLocationData = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object */
 export type VisitorSocialProfilesType = "social_profile.list";
-export const VisitorSocialProfilesType = /*@__PURE__*/ S.String;
+export const VisitorSocialProfilesType = S.String;
 
 export type VisitorSocialProfilesSocialProfilesList = Array<string>;
 export const VisitorSocialProfilesSocialProfilesList = /*@__PURE__*/ S.Array(
@@ -11615,11 +11596,11 @@ export const VisitorSocialProfiles = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object */
 export type VisitorTagsType = "tag.list";
-export const VisitorTagsType = /*@__PURE__*/ S.String;
+export const VisitorTagsType = S.String;
 
 /** The type of the object */
 export type VisitorTagsTagsItemType = "tag";
-export const VisitorTagsTagsItemType = /*@__PURE__*/ S.String;
+export const VisitorTagsTagsItemType = S.String;
 
 export interface VisitorTagsTagsItem {
   /** The type of the object */
@@ -11658,7 +11639,7 @@ export const VisitorTags = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object */
 export type VisitorSegmentsType = "segment.list";
-export const VisitorSegmentsType = /*@__PURE__*/ S.String;
+export const VisitorSegmentsType = S.String;
 
 export type VisitorSegmentsSegmentsList = Array<string>;
 export const VisitorSegmentsSegmentsList = /*@__PURE__*/ S.Array(
@@ -11807,7 +11788,7 @@ export type WhatsappMessageStatusStatus =
   | "delivered"
   | "read"
   | "failed";
-export const WhatsappMessageStatusStatus = /*@__PURE__*/ S.String;
+export const WhatsappMessageStatusStatus = S.String;
 
 /** Error details, present only when status is "failed" */
 export interface WhatsappMessageStatusError {
@@ -11878,10 +11859,10 @@ export const GetWhatsAppMessageStatusRequest2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetWhatsAppMessageStatusRequest2>;
 
 export type WhatsappMessageStatusListType = "list";
-export const WhatsappMessageStatusListType = /*@__PURE__*/ S.String;
+export const WhatsappMessageStatusListType = S.String;
 
 export type WhatsappMessageStatusListPagesType = "pages";
-export const WhatsappMessageStatusListPagesType = /*@__PURE__*/ S.String;
+export const WhatsappMessageStatusListPagesType = S.String;
 
 /** Information for fetching next page (null if no more pages) */
 export interface WhatsappMessageStatusListPagesNext {
@@ -11922,11 +11903,11 @@ export type WhatsappMessageStatusListEventsItemStatus =
   | "delivered"
   | "read"
   | "failed";
-export const WhatsappMessageStatusListEventsItemStatus = /*@__PURE__*/ S.String;
+export const WhatsappMessageStatusListEventsItemStatus = S.String;
 
 /** Event type */
 export type WhatsappMessageStatusListEventsItemType = "broadcast_outbound";
-export const WhatsappMessageStatusListEventsItemType = /*@__PURE__*/ S.String;
+export const WhatsappMessageStatusListEventsItemType = S.String;
 
 export interface WhatsappMessageStatusListEventsItem {
   /** Event ID */
@@ -12123,7 +12104,7 @@ export const LinkConversationToTicketRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LinkConversationToTicketRequest>;
 
 export type LisDataAttributesRequestModel = "contact" | "company";
-export const LisDataAttributesRequestModel = /*@__PURE__*/ S.String;
+export const LisDataAttributesRequestModel = S.String;
 
 export interface LisDataAttributesRequest {
   /** Specify the data attribute model to return. For conversation attributes, use GET /conversations/attributes instead. */
@@ -12142,7 +12123,7 @@ export const LisDataAttributesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object */
 export type DataAttributeListType = "list";
-export const DataAttributeListType = /*@__PURE__*/ S.String;
+export const DataAttributeListType = S.String;
 
 /** A list of data attributes */
 export type DataAttributeListDataList = Array<DataAttribute>;
@@ -12204,7 +12185,7 @@ export type LisDataEventsRequestFilter =
   | LisDataEventsRequestFilterCase1
   | LisDataEventsRequestFilterCase2;
 export const LisDataEventsRequestFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LisDataEventsRequestFilter>;
+  S.Unknown as any as S.Schema<LisDataEventsRequestFilter>;
 
 export interface LisDataEventsRequest {
   filter: LisDataEventsRequestFilter;
@@ -12225,7 +12206,7 @@ export const LisDataEventsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object */
 export type DataEventSummaryType = "event.summary";
-export const DataEventSummaryType = /*@__PURE__*/ S.String;
+export const DataEventSummaryType = S.String;
 
 /** This will return a summary of a data event for the App. */
 export interface DataEventSummaryItem {
@@ -12598,7 +12579,7 @@ export type ActivityLogActivityType =
   | "welcome_message_change"
   | "workspace_deletion_request"
   | "hide_csat_from_agents_setting_change";
-export const ActivityLogActivityType = /*@__PURE__*/ S.String;
+export const ActivityLogActivityType = S.String;
 
 /** Activities performed by Admins. */
 export interface ActivityLog {
@@ -12691,7 +12672,7 @@ export const ListAllCollectionsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object - `list`. */
 export type CollectionListType = "list";
-export const CollectionListType = /*@__PURE__*/ S.String;
+export const CollectionListType = S.String;
 
 /** An array of collection objects */
 export type CollectionListDataList = Array<Collection>;
@@ -12745,15 +12726,15 @@ export const ListArticlesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object - `list`. */
 export type ArticleListType = "list";
-export const ArticleListType = /*@__PURE__*/ S.String;
+export const ArticleListType = S.String;
 
 /** The type of object - `article`. */
 export type ArticleListItemType = "article";
-export const ArticleListItemType = /*@__PURE__*/ S.String;
+export const ArticleListItemType = S.String;
 
 /** Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content. */
 export type ArticleListItemState = "published" | "draft";
-export const ArticleListItemState = /*@__PURE__*/ S.String;
+export const ArticleListItemState = S.String;
 
 /** The ids of the article's parent collections or sections. An article without this field stands alone. */
 export type ArticleListItemParentIdsList = Array<number>;
@@ -12769,7 +12750,7 @@ export type ArticleListItemHelpCenterAudience =
   | "all_leads"
   | "all_visitors_and_leads"
   | "restricted";
-export const ArticleListItemHelpCenterAudience = /*@__PURE__*/ S.String;
+export const ArticleListItemHelpCenterAudience = S.String;
 
 /** The data returned about your articles when you list them. */
 export interface ArticleListItem {
@@ -12916,15 +12897,15 @@ export const ListArticleVersionsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object - `list`. */
 export type ArticleVersionListType = "list";
-export const ArticleVersionListType = /*@__PURE__*/ S.String;
+export const ArticleVersionListType = S.String;
 
 /** String representing the object's type. Always has the value `article_version`. */
 export type ArticleVersionSummaryType = "article_version";
-export const ArticleVersionSummaryType = /*@__PURE__*/ S.String;
+export const ArticleVersionSummaryType = S.String;
 
 /** Whether this version is the currently published version of the article (`published`) or an earlier non-live version (`draft`). */
 export type ArticleVersionSummaryState = "published" | "draft";
-export const ArticleVersionSummaryState = /*@__PURE__*/ S.String;
+export const ArticleVersionSummaryState = S.String;
 
 /** A metadata summary of an article version, as returned by the version-history list endpoint. Omits the version's body content - fetch a single version to retrieve its `body` and `body_markdown`. */
 export interface ArticleVersionSummary {
@@ -13016,7 +12997,7 @@ export const ListAttachedContactsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object - `list` */
 export type CompanyAttachedContactsType = "list";
-export const CompanyAttachedContactsType = /*@__PURE__*/ S.String;
+export const CompanyAttachedContactsType = S.String;
 
 /** An array containing Contact Objects */
 export type CompanyAttachedContactsDataList = Array<Contact>;
@@ -13066,7 +13047,7 @@ export const ListAttachedSegmentsForCompaniesRequest = /*@__PURE__*/ S.suspend(
 
 /** The type of object - `list` */
 export type CompanyAttachedSegmentsType = "list";
-export const CompanyAttachedSegmentsType = /*@__PURE__*/ S.String;
+export const CompanyAttachedSegmentsType = S.String;
 
 /** An array containing Segment Objects */
 export type CompanyAttachedSegmentsDataList = Array<Segment>;
@@ -13107,7 +13088,7 @@ export const ListAudiencesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object. */
 export type AudienceListType = "list";
-export const AudienceListType = /*@__PURE__*/ S.String;
+export const AudienceListType = S.String;
 
 /** A list of audience objects. */
 export type AudienceListDataList = Array<Audience>;
@@ -13152,7 +13133,7 @@ export const ListAwayStatusReasonsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object */
 export type AwayStatusReasonListType = "list";
-export const AwayStatusReasonListType = /*@__PURE__*/ S.String;
+export const AwayStatusReasonListType = S.String;
 
 export interface AwayStatusReason {
   type?: string;
@@ -13418,7 +13399,7 @@ export const ListCompaniesForAContactRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object */
 export type ContactAttachedCompaniesType = "list";
-export const ContactAttachedCompaniesType = /*@__PURE__*/ S.String;
+export const ContactAttachedCompaniesType = S.String;
 
 /** An array containing Company Objects */
 export type ContactAttachedCompaniesCompaniesList = Array<Company>;
@@ -13427,7 +13408,7 @@ export const ContactAttachedCompaniesCompaniesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ContactAttachedCompaniesCompaniesList>;
 
 export type PagesLinkType = "pages";
-export const PagesLinkType = /*@__PURE__*/ S.String;
+export const PagesLinkType = S.String;
 
 /** The majority of list resources in the API are paginated to allow clients to traverse data over multiple requests. Their responses are likely to contain a pages object that hosts pagination links which a client can use to paginate through the data without having to construct a query. The link relations for the pages field are as follows. */
 export interface PagesLink {
@@ -13635,7 +13616,7 @@ export const BannerList = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "BannerList" }) as any as S.Schema<BannerList>;
 
 export type ListContactMergeHistoryRequestOrder = "asc" | "desc";
-export const ListContactMergeHistoryRequestOrder = /*@__PURE__*/ S.String;
+export const ListContactMergeHistoryRequestOrder = S.String;
 
 export interface ListContactMergeHistoryRequest {
   /** The id of the contact to fetch merge history for. */
@@ -13662,7 +13643,7 @@ export const ListContactMergeHistoryRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object. */
 export type MergeHistoryListType = "list";
-export const MergeHistoryListType = /*@__PURE__*/ S.String;
+export const MergeHistoryListType = S.String;
 
 /** An array of merge history entries. */
 export type MergeHistoryListDataList = Array<MergeHistoryItem>;
@@ -13706,7 +13687,7 @@ export const ListContactsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Always list */
 export type ContactListType = "list";
-export const ContactListType = /*@__PURE__*/ S.String;
+export const ContactListType = S.String;
 
 /** The list of contact objects */
 export type ContactListDataList = Array<Contact>;
@@ -13744,7 +13725,7 @@ export const ListContentImportSourcesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object - `list`. */
 export type ContentImportSourcesListType = "list";
-export const ContentImportSourcesListType = /*@__PURE__*/ S.String;
+export const ContentImportSourcesListType = S.String;
 
 /** An array of Content Import Source objects */
 export type ContentImportSourcesListDataList = Array<ContentImportSource>;
@@ -13789,7 +13770,7 @@ export const ListContentSnippetsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListContentSnippetsRequest>;
 
 export type ContentSnippetListType = "list";
-export const ContentSnippetListType = /*@__PURE__*/ S.String;
+export const ContentSnippetListType = S.String;
 
 /** An array of content snippet objects. */
 export type ContentSnippetListDataList = Array<ContentSnippet>;
@@ -13840,7 +13821,7 @@ export const ListConversationAttributesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object. */
 export type ConversationAttributeListType = "list";
-export const ConversationAttributeListType = /*@__PURE__*/ S.String;
+export const ConversationAttributeListType = S.String;
 
 /** A list of conversation attributes. */
 export type ConversationAttributeListDataList = Array<ConversationAttribute>;
@@ -13881,11 +13862,11 @@ export const ListConversationsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Always conversation.list */
 export type ConversationListType = "conversation.list";
-export const ConversationListType = /*@__PURE__*/ S.String;
+export const ConversationListType = S.String;
 
 /** Can be set to "open", "closed" or "snoozed". */
 export type ConversationListItemState = "open" | "closed" | "snoozed";
-export const ConversationListItemState = /*@__PURE__*/ S.String;
+export const ConversationListItemState = S.String;
 
 /** The priority level of the conversation. Returns one of none, low, medium, high, or urgent. */
 export type ConversationListItemPriority =
@@ -13894,7 +13875,7 @@ export type ConversationListItemPriority =
   | "medium"
   | "high"
   | "urgent";
-export const ConversationListItemPriority = /*@__PURE__*/ S.String;
+export const ConversationListItemPriority = S.String;
 
 /** References linking this conversation to records in an external helpdesk or CRM system. Populated for Fin Standalone workspaces synced from an external platform; an empty array otherwise. Sorted alphabetically by `type` and capped at 20 entries. */
 export type ConversationListItemExternalReferencesList =
@@ -14072,7 +14053,7 @@ export const ListCustomObjectInstancesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object - `list`. */
 export type CustomObjectInstancesPaginatedListType = "list";
-export const CustomObjectInstancesPaginatedListType = /*@__PURE__*/ S.String;
+export const CustomObjectInstancesPaginatedListType = S.String;
 
 /** An array of Custom Object Instance objects. */
 export type CustomObjectInstancesPaginatedListDataList =
@@ -14103,8 +14084,7 @@ export const CustomObjectInstancesPaginatedList = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CustomObjectInstancesPaginatedList>;
 
 export type ListDataConnectorExecutionResultsRequestSuccess = "true" | "false";
-export const ListDataConnectorExecutionResultsRequestSuccess =
-  /*@__PURE__*/ S.String;
+export const ListDataConnectorExecutionResultsRequestSuccess = S.String;
 
 export type ListDataConnectorExecutionResultsRequestErrorType =
   | "request_configuration_error"
@@ -14118,14 +14098,12 @@ export type ListDataConnectorExecutionResultsRequestErrorType =
   | "non_fin_standalone_action_identity_verification_error"
   | "request_validation_error"
   | "client_side_action_error";
-export const ListDataConnectorExecutionResultsRequestErrorType =
-  /*@__PURE__*/ S.String;
+export const ListDataConnectorExecutionResultsRequestErrorType = S.String;
 
 export type ListDataConnectorExecutionResultsRequestIncludeBodies =
   | "true"
   | "false";
-export const ListDataConnectorExecutionResultsRequestIncludeBodies =
-  /*@__PURE__*/ S.String;
+export const ListDataConnectorExecutionResultsRequestIncludeBodies = S.String;
 
 export interface ListDataConnectorExecutionResultsRequest {
   /** The unique identifier for the data connector. */
@@ -14179,7 +14157,7 @@ export const ListDataConnectorExecutionResultsRequest = /*@__PURE__*/ S.suspend(
 
 /** The type of object - `list`. */
 export type DataConnectorExecutionResultListType = "list";
-export const DataConnectorExecutionResultListType = /*@__PURE__*/ S.String;
+export const DataConnectorExecutionResultListType = S.String;
 
 /** An array of execution result objects. */
 export type DataConnectorExecutionResultListDataList =
@@ -14189,7 +14167,7 @@ export const DataConnectorExecutionResultListDataList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DataConnectorExecutionResultListDataList>;
 
 export type DataConnectorExecutionResultListPagesType = "pages";
-export const DataConnectorExecutionResultListPagesType = /*@__PURE__*/ S.String;
+export const DataConnectorExecutionResultListPagesType = S.String;
 
 /** Cursor for the next page of results. */
 export interface DataConnectorExecutionResultListPagesNext {
@@ -14260,15 +14238,15 @@ export const ListDataConnectorsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object - `list`. */
 export type DataConnectorListType = "list";
-export const DataConnectorListType = /*@__PURE__*/ S.String;
+export const DataConnectorListType = S.String;
 
 /** The type of object - `data_connector`. */
 export type DataConnectorType = "data_connector";
-export const DataConnectorType = /*@__PURE__*/ S.String;
+export const DataConnectorType = S.String;
 
 /** The current state of the data connector. */
 export type DataConnectorState = "draft" | "live";
-export const DataConnectorState = /*@__PURE__*/ S.String;
+export const DataConnectorState = S.String;
 
 /** The HTTP method used by the data connector. */
 export type DataConnectorHttpMethod =
@@ -14277,7 +14255,7 @@ export type DataConnectorHttpMethod =
   | "put"
   | "delete"
   | "patch";
-export const DataConnectorHttpMethod = /*@__PURE__*/ S.String;
+export const DataConnectorHttpMethod = S.String;
 
 /** A data connector allows you to make HTTP requests to external APIs from Intercom workflows and AI agents. */
 export interface DataConnector {
@@ -14330,7 +14308,7 @@ export const DataConnectorListDataList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DataConnectorListDataList>;
 
 export type DataConnectorListPagesType = "pages";
-export const DataConnectorListPagesType = /*@__PURE__*/ S.String;
+export const DataConnectorListPagesType = S.String;
 
 /** Cursor for the next page of results. */
 export type DataConnectorListPagesNext =
@@ -14562,7 +14540,7 @@ export const ListExternalPagesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object - `list`. */
 export type ExternalPagesListType = "list";
-export const ExternalPagesListType = /*@__PURE__*/ S.String;
+export const ExternalPagesListType = S.String;
 
 /** An array of External Page objects */
 export type ExternalPagesListDataList = Array<ExternalPage>;
@@ -14611,7 +14589,7 @@ export const ListHandlingEventsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of teammate */
 export type TeammateReferenceType = "admin" | "team" | "bot";
-export const TeammateReferenceType = /*@__PURE__*/ S.String;
+export const TeammateReferenceType = S.String;
 
 /** A reference to a teammate */
 export interface TeammateReference {
@@ -14637,7 +14615,7 @@ export const TeammateReference = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of handling event */
 export type HandlingEventType = "paused" | "resumed";
-export const HandlingEventType = /*@__PURE__*/ S.String;
+export const HandlingEventType = S.String;
 
 /** A pause or resume event for a conversation */
 export interface HandlingEvent {
@@ -14703,7 +14681,7 @@ export const ListHelpCenterRedirectsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object - `list`. */
 export type HelpCenterRedirectListType = "list";
-export const HelpCenterRedirectListType = /*@__PURE__*/ S.String;
+export const HelpCenterRedirectListType = S.String;
 
 /** An array of help center redirect objects. */
 export type HelpCenterRedirectListDataList = Array<HelpCenterRedirect>;
@@ -14743,7 +14721,7 @@ export const ListHelpCentersRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object - `list`. */
 export type HelpCenterListType = "list";
-export const HelpCenterListType = /*@__PURE__*/ S.String;
+export const HelpCenterListType = S.String;
 
 /** An array of Help Center objects */
 export type HelpCenterListDataList = Array<HelpCenter>;
@@ -14776,11 +14754,11 @@ export const ListInternalArticlesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object - `list`. */
 export type InternalArticleListType = "list";
-export const InternalArticleListType = /*@__PURE__*/ S.String;
+export const InternalArticleListType = S.String;
 
 /** The type of object - `internal_article`. */
 export type InternalArticleListItemType = "internal_article";
-export const InternalArticleListItemType = /*@__PURE__*/ S.String;
+export const InternalArticleListItemType = S.String;
 
 /** The list of audience IDs this internal article is targeted to for Fin AI Agent. Empty array means no audience targeting is set. */
 export type InternalArticleListItemAudienceIdsList = Array<number>;
@@ -14887,11 +14865,11 @@ export const ListLiveNewsfeedItemsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object */
 export type PaginatedResponseType = "list" | "conversation.list";
-export const PaginatedResponseType = /*@__PURE__*/ S.String;
+export const PaginatedResponseType = S.String;
 
 export type PaginatedResponseDataItem = NewsItem | Newsfeed;
 export const PaginatedResponseDataItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaginatedResponseDataItem>;
+  S.Unknown as any as S.Schema<PaginatedResponseDataItem>;
 
 /** An array of Objects */
 export type PaginatedResponseDataList = Array<PaginatedResponseDataItem>;
@@ -14940,7 +14918,7 @@ export const ListMacrosRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Always list */
 export type MacroListType = "list";
-export const MacroListType = /*@__PURE__*/ S.String;
+export const MacroListType = S.String;
 
 /** The list of macro objects */
 export type MacroListDataList = Array<Macro>;
@@ -14950,7 +14928,7 @@ export const MacroListDataList = /*@__PURE__*/ S.Array(
 
 /** The type of pagination */
 export type MacroListPagesType = "pages";
-export const MacroListPagesType = /*@__PURE__*/ S.String;
+export const MacroListPagesType = S.String;
 
 /** Cursor for the next page */
 export interface MacroListPagesNext {
@@ -15116,7 +15094,7 @@ export const ListSegmentsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object */
 export type SegmentListType = "segment.list";
-export const SegmentListType = /*@__PURE__*/ S.String;
+export const SegmentListType = S.String;
 
 /** A list of Segment objects */
 export type SegmentListSegmentsList = Array<Segment>;
@@ -15161,7 +15139,7 @@ export const ListSegmentsForAContactRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object */
 export type ContactSegmentsType = "list";
-export const ContactSegmentsType = /*@__PURE__*/ S.String;
+export const ContactSegmentsType = S.String;
 
 /** Segment objects associated with the contact. */
 export type ContactSegmentsDataList = Array<Segment>;
@@ -15211,7 +15189,7 @@ export const ListSideConversationsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the response object. */
 export type SideConversationListType = "side_conversation.list";
-export const SideConversationListType = /*@__PURE__*/ S.String;
+export const SideConversationListType = S.String;
 
 /** The conversation parts (messages) in this side conversation. */
 export type SideConversationSummaryConversationPartsList =
@@ -15250,7 +15228,7 @@ export const SideConversationListSideConversationsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SideConversationListSideConversationsList>;
 
 export type SideConversationListPagesType = "pages";
-export const SideConversationListPagesType = /*@__PURE__*/ S.String;
+export const SideConversationListPagesType = S.String;
 
 /** Pagination metadata. */
 export interface SideConversationListPages {
@@ -15315,7 +15293,7 @@ export const ListSubscriptionsForAContactRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object */
 export type SubscriptionTypeListType = "list";
-export const SubscriptionTypeListType = /*@__PURE__*/ S.String;
+export const SubscriptionTypeListType = S.String;
 
 /** A list of subscription type objects associated with the workspace . */
 export type SubscriptionTypeListDataList = Array<SubscriptionType>;
@@ -15357,7 +15335,7 @@ export const ListTagsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object */
 export type TagListType = "list";
-export const TagListType = /*@__PURE__*/ S.String;
+export const TagListType = S.String;
 
 /** A list of tags objects associated with the workspace . */
 export type TagListDataList = Array<Tag>;
@@ -15402,7 +15380,7 @@ export const ListTeamsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object */
 export type TeamListType = "team.list";
-export const TeamListType = /*@__PURE__*/ S.String;
+export const TeamListType = S.String;
 
 /** A list of team objects */
 export type TeamListTeamsList = Array<Team>;
@@ -15439,7 +15417,7 @@ export type TicketStateDetailedCategory =
   | "in_progress"
   | "waiting_on_customer"
   | "resolved";
-export const TicketStateDetailedCategory = /*@__PURE__*/ S.String;
+export const TicketStateDetailedCategory = S.String;
 
 /** A list of ticket type attributes associated with a given ticket type. */
 export type TicketStateDetailedTicketTypesDataList = Array<TicketType2>;
@@ -15544,10 +15522,10 @@ export const TicketTypeList = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "TicketTypeList" }) as any as S.Schema<TicketTypeList>;
 
 export type CloseConversationRequestMessageType = "close";
-export const CloseConversationRequestMessageType = /*@__PURE__*/ S.String;
+export const CloseConversationRequestMessageType = S.String;
 
 export type CloseConversationRequestType = "admin";
-export const CloseConversationRequestType = /*@__PURE__*/ S.String;
+export const CloseConversationRequestType = S.String;
 
 /** Payload of the request to close a conversation */
 export interface CloseConversationRequest {
@@ -15570,7 +15548,7 @@ export const CloseConversationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CloseConversationRequest>;
 
 export type SnoozeConversationRequestMessageType = "snoozed";
-export const SnoozeConversationRequestMessageType = /*@__PURE__*/ S.String;
+export const SnoozeConversationRequestMessageType = S.String;
 
 /** Payload of the request to snooze a conversation */
 export interface SnoozeConversationRequest {
@@ -15591,7 +15569,7 @@ export const SnoozeConversationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SnoozeConversationRequest>;
 
 export type OpenConversationRequestMessageType = "open";
-export const OpenConversationRequestMessageType = /*@__PURE__*/ S.String;
+export const OpenConversationRequestMessageType = S.String;
 
 /** Payload of the request to open a conversation */
 export interface OpenConversationRequest {
@@ -15609,10 +15587,10 @@ export const OpenConversationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OpenConversationRequest>;
 
 export type AssignConversationRequestMessageType = "assignment";
-export const AssignConversationRequestMessageType = /*@__PURE__*/ S.String;
+export const AssignConversationRequestMessageType = S.String;
 
 export type AssignConversationRequestType = "admin" | "team";
-export const AssignConversationRequestType = /*@__PURE__*/ S.String;
+export const AssignConversationRequestType = S.String;
 
 /** Payload of the request to assign a conversation */
 export interface AssignConversationRequest {
@@ -15643,7 +15621,7 @@ export type ManageConversationRequestBody =
   | OpenConversationRequest
   | AssignConversationRequest;
 export const ManageConversationRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ManageConversationRequestBody>;
+  S.Unknown as any as S.Schema<ManageConversationRequestBody>;
 
 export interface ManageConversationRequest {
   /** The identifier for the conversation as given by Intercom. */
@@ -15881,11 +15859,11 @@ export const PublishArticleDraftRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object - `article`. */
 export type PublishArticleDraftResponseType = "article";
-export const PublishArticleDraftResponseType = /*@__PURE__*/ S.String;
+export const PublishArticleDraftResponseType = S.String;
 
 /** Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content. */
 export type PublishArticleDraftResponseState = "published" | "draft";
-export const PublishArticleDraftResponseState = /*@__PURE__*/ S.String;
+export const PublishArticleDraftResponseState = S.String;
 
 /** The ids of the article's parent collections or sections. An article without this field stands alone. */
 export type PublishArticleDraftResponseParentIdsList = Array<number>;
@@ -15901,8 +15879,7 @@ export type PublishArticleDraftResponseHelpCenterAudience =
   | "all_leads"
   | "all_visitors_and_leads"
   | "restricted";
-export const PublishArticleDraftResponseHelpCenterAudience =
-  /*@__PURE__*/ S.String;
+export const PublishArticleDraftResponseHelpCenterAudience = S.String;
 
 export interface PublishArticleDraftResponse {
   /** The type of object - `article`. */
@@ -15998,7 +15975,7 @@ export const PublishArticleDraftResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of resource being redacted. */
 export type RedactConversationRequestCase0Type = "conversation_part";
-export const RedactConversationRequestCase0Type = /*@__PURE__*/ S.String;
+export const RedactConversationRequestCase0Type = S.String;
 
 /** Payload of the request to redact a conversation part */
 export interface RedactConversationRequestCase0 {
@@ -16021,7 +15998,7 @@ export const RedactConversationRequestCase0 = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of resource being redacted. */
 export type RedactConversationRequestCase1Type = "source";
-export const RedactConversationRequestCase1Type = /*@__PURE__*/ S.String;
+export const RedactConversationRequestCase1Type = S.String;
 
 /** Payload of the request to redact a conversation source */
 export interface RedactConversationRequestCase1 {
@@ -16046,7 +16023,7 @@ export type RedactConversationRequest =
   | RedactConversationRequestCase0
   | RedactConversationRequestCase1;
 export const RedactConversationRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RedactConversationRequest>;
+  S.Unknown as any as S.Schema<RedactConversationRequest>;
 
 export interface RedactConversationRequest2 {
   body?: RedactConversationRequest;
@@ -16064,7 +16041,7 @@ export type RegisterFinVoiceCallRequestSource =
   | "five9"
   | "zoom_phone"
   | "aws_connect";
-export const RegisterFinVoiceCallRequestSource = /*@__PURE__*/ S.String;
+export const RegisterFinVoiceCallRequestSource = S.String;
 
 export interface RegisterFinVoiceCallRequest {
   /** Phone number in E.164 format for the call */
@@ -16088,11 +16065,10 @@ export const RegisterFinVoiceCallRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RegisterFinVoiceCallRequest>;
 
 export type ContactReplyIntercomUserIdRequestMessageType = "comment";
-export const ContactReplyIntercomUserIdRequestMessageType =
-  /*@__PURE__*/ S.String;
+export const ContactReplyIntercomUserIdRequestMessageType = S.String;
 
 export type ContactReplyIntercomUserIdRequestType = "user";
-export const ContactReplyIntercomUserIdRequestType = /*@__PURE__*/ S.String;
+export const ContactReplyIntercomUserIdRequestType = S.String;
 
 /** A list of image URLs that will be added as attachments. You can include up to 10 URLs. */
 export type ContactReplyIntercomUserIdRequestAttachmentUrlsList = Array<string>;
@@ -16191,10 +16167,10 @@ export const ContactReplyIntercomUserIdRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ContactReplyIntercomUserIdRequest>;
 
 export type ContactReplyEmailRequestMessageType = "comment";
-export const ContactReplyEmailRequestMessageType = /*@__PURE__*/ S.String;
+export const ContactReplyEmailRequestMessageType = S.String;
 
 export type ContactReplyEmailRequestType = "user";
-export const ContactReplyEmailRequestType = /*@__PURE__*/ S.String;
+export const ContactReplyEmailRequestType = S.String;
 
 /** A list of image URLs that will be added as attachments. You can include up to 10 URLs. */
 export type ContactReplyEmailRequestAttachmentUrlsList = Array<string>;
@@ -16255,10 +16231,10 @@ export const ContactReplyEmailRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ContactReplyEmailRequest>;
 
 export type ContactReplyUserIdRequestMessageType = "comment";
-export const ContactReplyUserIdRequestMessageType = /*@__PURE__*/ S.String;
+export const ContactReplyUserIdRequestMessageType = S.String;
 
 export type ContactReplyUserIdRequestType = "user";
-export const ContactReplyUserIdRequestType = /*@__PURE__*/ S.String;
+export const ContactReplyUserIdRequestType = S.String;
 
 /** A list of image URLs that will be added as attachments. You can include up to 10 URLs. */
 export type ContactReplyUserIdRequestAttachmentUrlsList = Array<string>;
@@ -16324,16 +16300,16 @@ export type ContactReplyConversationRequest =
   | ContactReplyEmailRequest
   | ContactReplyUserIdRequest;
 export const ContactReplyConversationRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ContactReplyConversationRequest>;
+  S.Unknown as any as S.Schema<ContactReplyConversationRequest>;
 
 export type AdminReplyConversationRequestMessageType =
   | "comment"
   | "note"
   | "quick_reply";
-export const AdminReplyConversationRequestMessageType = /*@__PURE__*/ S.String;
+export const AdminReplyConversationRequestMessageType = S.String;
 
 export type AdminReplyConversationRequestType = "admin";
-export const AdminReplyConversationRequestType = /*@__PURE__*/ S.String;
+export const AdminReplyConversationRequestType = S.String;
 
 export interface QuickReplyOption {
   /** The text to display in this quick reply option. */
@@ -16416,7 +16392,7 @@ export type ReplyConversationRequest =
   | ContactReplyConversationRequest
   | AdminReplyConversationRequest;
 export const ReplyConversationRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReplyConversationRequest>;
+  S.Unknown as any as S.Schema<ReplyConversationRequest>;
 
 export interface ReplyConversationRequest2 {
   /** The Intercom provisioned identifier for the conversation or the string "last" to reply to the last part of the conversation */
@@ -16456,11 +16432,11 @@ export const ReplyTicketRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Always ticket_part */
 export type TicketReplyType = "ticket_part";
-export const TicketReplyType = /*@__PURE__*/ S.String;
+export const TicketReplyType = S.String;
 
 /** Type of the part */
 export type TicketReplyPartType = "note" | "comment" | "quick_reply";
-export const TicketReplyPartType = /*@__PURE__*/ S.String;
+export const TicketReplyPartType = S.String;
 
 /** A list of attachments for the part. */
 export type TicketReplyAttachmentsList = Array<PartAttachment>;
@@ -16504,7 +16480,7 @@ export const TicketReply = /*@__PURE__*/ S.suspend(() =>
 
 /** The author that created the message. */
 export type FinAgentMessageAuthor = "user" | "agent" | "fin";
-export const FinAgentMessageAuthor = /*@__PURE__*/ S.String;
+export const FinAgentMessageAuthor = S.String;
 
 /** A message exchanged within a Fin Agent conversation. */
 export interface FinAgentMessage {
@@ -16557,7 +16533,7 @@ export const FinAgentUser = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of attachment. */
 export type FinAgentAttachmentType = "url" | "file";
-export const FinAgentAttachmentType = /*@__PURE__*/ S.String;
+export const FinAgentAttachmentType = S.String;
 
 /** An attachment object representing a file or URL attachment included with a message. Attachments can be used to provide additional context to Fin. Maximum of 10 attachments per request. */
 export interface FinAgentAttachment {
@@ -16617,7 +16593,7 @@ export type ReplyToFinResponseStatus =
   | "escalated"
   | "resolved"
   | "complete";
-export const ReplyToFinResponseStatus = /*@__PURE__*/ S.String;
+export const ReplyToFinResponseStatus = S.String;
 
 /** Map of user attribute names to error messages. */
 export type FinAgentAttributeErrorsUserAttributesMap = {
@@ -16719,7 +16695,7 @@ export const ScrollOverAllCompaniesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object - `list` */
 export type CompanyScrollType = "list";
-export const CompanyScrollType = /*@__PURE__*/ S.String;
+export const CompanyScrollType = S.String;
 
 export type CompanyScrollDataList = Array<Company>;
 export const CompanyScrollDataList = /*@__PURE__*/ S.Array(
@@ -16802,15 +16778,15 @@ export const SearchArticlesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object - `list`. */
 export type ArticleSearchResponseType = "list";
-export const ArticleSearchResponseType = /*@__PURE__*/ S.String;
+export const ArticleSearchResponseType = S.String;
 
 /** The type of object - `article`. */
 export type ArticleType = "article";
-export const ArticleType = /*@__PURE__*/ S.String;
+export const ArticleType = S.String;
 
 /** Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content. */
 export type ArticleState = "published" | "draft";
-export const ArticleState = /*@__PURE__*/ S.String;
+export const ArticleState = S.String;
 
 /** The ids of the article's parent collections or sections. An article without this field stands alone. */
 export type ArticleParentIdsList = Array<number>;
@@ -16826,7 +16802,7 @@ export type ArticleHelpCenterAudience =
   | "all_leads"
   | "all_visitors_and_leads"
   | "restricted";
-export const ArticleHelpCenterAudience = /*@__PURE__*/ S.String;
+export const ArticleHelpCenterAudience = S.String;
 
 /** The Articles API is a central place to gather all information and take actions on your articles. Articles can live within collections and sections, or alternatively they can stand alone. */
 export interface Article {
@@ -16927,8 +16903,7 @@ export const ArticleSearchResponseDataArticlesList = /*@__PURE__*/ S.Array(
 export type ArticleSearchHighlightsHighlightedTitleItemType =
   | "highlight"
   | "plain";
-export const ArticleSearchHighlightsHighlightedTitleItemType =
-  /*@__PURE__*/ S.String;
+export const ArticleSearchHighlightsHighlightedTitleItemType = S.String;
 
 /** A highlighted article title. */
 export interface ArticleSearchHighlightsHighlightedTitleItem {
@@ -16959,8 +16934,7 @@ export const ArticleSearchHighlightsHighlightedTitleList =
 export type ArticleSearchHighlightsHighlightedSummaryItemItemType =
   | "highlight"
   | "plain";
-export const ArticleSearchHighlightsHighlightedSummaryItemItemType =
-  /*@__PURE__*/ S.String;
+export const ArticleSearchHighlightsHighlightedSummaryItemItemType = S.String;
 
 /** An instance of highlighted summary text. */
 export interface ArticleSearchHighlightsHighlightedSummaryItemItem {
@@ -17074,11 +17048,11 @@ export type SingleFilterSearchRequestOperator =
   | "!~"
   | "^"
   | "$";
-export const SingleFilterSearchRequestOperator = /*@__PURE__*/ S.String;
+export const SingleFilterSearchRequestOperator = S.String;
 
 export type SingleFilterSearchRequestValueCase3Item = string | number;
 export const SingleFilterSearchRequestValueCase3Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SingleFilterSearchRequestValueCase3Item>;
+  S.Unknown as any as S.Schema<SingleFilterSearchRequestValueCase3Item>;
 
 export type SingleFilterSearchRequestValueCase3List =
   Array<SingleFilterSearchRequestValueCase3Item>;
@@ -17093,7 +17067,7 @@ export type SingleFilterSearchRequestValue =
   | boolean
   | SingleFilterSearchRequestValueCase3List;
 export const SingleFilterSearchRequestValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SingleFilterSearchRequestValue>;
+  S.Unknown as any as S.Schema<SingleFilterSearchRequestValue>;
 
 /** Search using Intercoms Search APIs with a single filter. */
 export interface SingleFilterSearchRequest {
@@ -17116,7 +17090,7 @@ export const SingleFilterSearchRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** An operator to allow boolean inspection between multiple fields. */
 export type MultipleFilterSearchRequestOperator = "AND" | "OR";
-export const MultipleFilterSearchRequestOperator = /*@__PURE__*/ S.String;
+export const MultipleFilterSearchRequestOperator = S.String;
 
 /** Add mutiple filters. */
 export type MultipleFilterSearchRequestValueCase0List =
@@ -17136,7 +17110,7 @@ export type MultipleFilterSearchRequestValue =
   | MultipleFilterSearchRequestValueCase0List
   | MultipleFilterSearchRequestValueCase1List;
 export const MultipleFilterSearchRequestValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MultipleFilterSearchRequestValue>;
+  S.Unknown as any as S.Schema<MultipleFilterSearchRequestValue>;
 
 /** Search using Intercoms Search APIs with more than one filter. */
 export interface MultipleFilterSearchRequest {
@@ -17157,11 +17131,11 @@ export type SearchContactsRequestQuery =
   | SingleFilterSearchRequest
   | MultipleFilterSearchRequest;
 export const SearchContactsRequestQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchContactsRequestQuery>;
+  S.Unknown as any as S.Schema<SearchContactsRequestQuery>;
 
 /** The order to sort the results in. Defaults to `descending` when omitted. Values other than `ascending` or `descending` return a `400` error with code `invalid_sort_order`. */
 export type SearchContactsRequestSortOrder = "ascending" | "descending";
-export const SearchContactsRequestSortOrder = /*@__PURE__*/ S.String;
+export const SearchContactsRequestSortOrder = S.String;
 
 /** An optional object to sort the results by. */
 export interface SearchContactsRequestSort {
@@ -17199,7 +17173,7 @@ export const SearchContactsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SearchContactsRequest>;
 
 export type SearchContentRequestStatesItem = "published" | "draft";
-export const SearchContentRequestStatesItem = /*@__PURE__*/ S.String;
+export const SearchContentRequestStatesItem = S.String;
 
 export type SearchContentRequestStatesList = Array<
   SearchContentRequestStatesItem | (string & {})
@@ -17219,7 +17193,7 @@ export const SearchContentRequestTagIdsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SearchContentRequestTagIdsList>;
 
 export type SearchContentRequestTagOperator = "IN" | "NIN";
-export const SearchContentRequestTagOperator = /*@__PURE__*/ S.String;
+export const SearchContentRequestTagOperator = S.String;
 
 export type SearchContentRequestAnyTagIdsList = Array<number>;
 export const SearchContentRequestAnyTagIdsList = /*@__PURE__*/ S.Array(
@@ -17232,7 +17206,7 @@ export const SearchContentRequestFolderIdsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SearchContentRequestFolderIdsList>;
 
 export type SearchContentRequestFolderEntityType = "folder";
-export const SearchContentRequestFolderEntityType = /*@__PURE__*/ S.String;
+export const SearchContentRequestFolderEntityType = S.String;
 
 export type SearchContentRequestContentTypesItem =
   | "snippet"
@@ -17240,7 +17214,7 @@ export type SearchContentRequestContentTypesItem =
   | "file_source_content"
   | "internal_article"
   | "article";
-export const SearchContentRequestContentTypesItem = /*@__PURE__*/ S.String;
+export const SearchContentRequestContentTypesItem = S.String;
 
 export type SearchContentRequestContentTypesList = Array<
   SearchContentRequestContentTypesItem | (string & {})
@@ -17250,13 +17224,13 @@ export const SearchContentRequestContentTypesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SearchContentRequestContentTypesList>;
 
 export type SearchContentRequestCopilotState = "on" | "off";
-export const SearchContentRequestCopilotState = /*@__PURE__*/ S.String;
+export const SearchContentRequestCopilotState = S.String;
 
 export type SearchContentRequestFinServiceState = "on" | "off";
-export const SearchContentRequestFinServiceState = /*@__PURE__*/ S.String;
+export const SearchContentRequestFinServiceState = S.String;
 
 export type SearchContentRequestFinSalesState = "on" | "off";
-export const SearchContentRequestFinSalesState = /*@__PURE__*/ S.String;
+export const SearchContentRequestFinSalesState = S.String;
 
 export type SearchContentRequestCreatedByIdsList = Array<number>;
 export const SearchContentRequestCreatedByIdsList = /*@__PURE__*/ S.Array(
@@ -17351,10 +17325,10 @@ export const SearchContentRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Always `list`. */
 export type ContentSearchResponseType = "list";
-export const ContentSearchResponseType = /*@__PURE__*/ S.String;
+export const ContentSearchResponseType = S.String;
 
 export type ContentSearchResponsePagesType = "pages";
-export const ContentSearchResponsePagesType = /*@__PURE__*/ S.String;
+export const ContentSearchResponsePagesType = S.String;
 
 /** Pagination metadata, including links to neighbouring pages. */
 export interface ContentSearchResponsePages {
@@ -17389,7 +17363,7 @@ export type ContentSearchDefaultItemType =
   | "external_content"
   | "file_source_content"
   | "internal_article";
-export const ContentSearchDefaultItemType = /*@__PURE__*/ S.String;
+export const ContentSearchDefaultItemType = S.String;
 
 /** The flat result shape returned from Knowledge Hub search for content snippets, external pages, uploaded files, and internal articles. */
 export interface ContentSearchDefaultItem {
@@ -17412,11 +17386,11 @@ export const ContentSearchDefaultItem = /*@__PURE__*/ S.suspend(() =>
 
 /** Always `article`. */
 export type ContentSearchArticleItemType = "article";
-export const ContentSearchArticleItemType = /*@__PURE__*/ S.String;
+export const ContentSearchArticleItemType = S.String;
 
 /** Always `article_content`. */
 export type ContentSearchArticleContentItemType = "article_content";
-export const ContentSearchArticleContentItemType = /*@__PURE__*/ S.String;
+export const ContentSearchArticleContentItemType = S.String;
 
 /** A single locale variant of a help center article returned from Knowledge Hub search. */
 export interface ContentSearchArticleContentItem {
@@ -17474,7 +17448,7 @@ export type ContentSearchResult =
   | ContentSearchDefaultItem
   | ContentSearchArticleItem;
 export const ContentSearchResult =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ContentSearchResult>;
+  S.Unknown as any as S.Schema<ContentSearchResult>;
 
 /** The list of matched content items. Each item's `type` field determines its shape. */
 export type ContentSearchResponseDataList = Array<ContentSearchResult>;
@@ -17508,7 +17482,7 @@ export type SearchConversationsRequestQuery =
   | SingleFilterSearchRequest
   | MultipleFilterSearchRequest;
 export const SearchConversationsRequestQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchConversationsRequestQuery>;
+  S.Unknown as any as S.Schema<SearchConversationsRequestQuery>;
 
 export interface SearchConversationsRequest {
   /** If set to true, the response will include a `monitor_evaluations` array on each conversation with any QA monitor results that flagged it. */
@@ -17545,7 +17519,7 @@ export const SearchInternalArticlesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object - `list`. */
 export type InternalArticleSearchResponseType = "list";
-export const InternalArticleSearchResponseType = /*@__PURE__*/ S.String;
+export const InternalArticleSearchResponseType = S.String;
 
 /** An array of Internal Article objects */
 export type InternalArticleSearchResponseDataInternalArticlesList =
@@ -17595,7 +17569,7 @@ export type SearchTicketsRequestQuery =
   | SingleFilterSearchRequest
   | MultipleFilterSearchRequest;
 export const SearchTicketsRequestQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchTicketsRequestQuery>;
+  S.Unknown as any as S.Schema<SearchTicketsRequestQuery>;
 
 export interface SearchTicketsRequest {
   query: SearchTicketsRequestQuery;
@@ -17612,7 +17586,7 @@ export const SearchTicketsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Always ticket.list */
 export type TicketListType = "ticket.list";
-export const TicketListType = /*@__PURE__*/ S.String;
+export const TicketListType = S.String;
 
 /** The list of ticket objects */
 export type TicketListTicketsList = Array<Ticket>;
@@ -17662,7 +17636,7 @@ export const SetAwayAdminRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the article will be `published` or will be a `draft`. Omitting this field leaves the publish state unchanged, so a draft stays a draft and an edit to a published article goes live immediately unless that article already has a pending draft or a scheduled publish time is set in the same request. The `PUT /articles/{id}/draft` endpoint ignores this field and always stages a draft. For multilingual articles, this will be the state of the default language's content. */
 export type StageArticleDraftRequestState = "published" | "draft";
-export const StageArticleDraftRequestState = /*@__PURE__*/ S.String;
+export const StageArticleDraftRequestState = S.String;
 
 /** The list of audience IDs to assign to this article for Fin AI Agent targeting. Sending a top-level `audience_ids` broadcasts the same set to every locale. Sending `audience_ids: []` clears all audience memberships from every locale. For per-locale targeting, use `translated_content.<locale>.audience_ids` instead. Sending both top-level and per-locale in the same request causes top-level to win. Unknown audience IDs return a 404 error. No partial commit occurs. */
 export type StageArticleDraftRequestAudienceIdsList = Array<number>;
@@ -17728,11 +17702,11 @@ export const StageArticleDraftRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object - `article`. */
 export type StageArticleDraftResponseType = "article";
-export const StageArticleDraftResponseType = /*@__PURE__*/ S.String;
+export const StageArticleDraftResponseType = S.String;
 
 /** Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content. */
 export type StageArticleDraftResponseState = "published" | "draft";
-export const StageArticleDraftResponseState = /*@__PURE__*/ S.String;
+export const StageArticleDraftResponseState = S.String;
 
 /** The ids of the article's parent collections or sections. An article without this field stands alone. */
 export type StageArticleDraftResponseParentIdsList = Array<number>;
@@ -17748,8 +17722,7 @@ export type StageArticleDraftResponseHelpCenterAudience =
   | "all_leads"
   | "all_visitors_and_leads"
   | "restricted";
-export const StageArticleDraftResponseHelpCenterAudience =
-  /*@__PURE__*/ S.String;
+export const StageArticleDraftResponseHelpCenterAudience = S.String;
 
 export interface StageArticleDraftResponse {
   /** The type of object - `article`. */
@@ -17910,7 +17883,7 @@ export type StartFinConversationResponseStatus =
   | "escalated"
   | "resolved"
   | "complete";
-export const StartFinConversationResponseStatus = /*@__PURE__*/ S.String;
+export const StartFinConversationResponseStatus = S.String;
 
 export interface StartFinConversationResponse {
   /** The ID of the conversation. */
@@ -17945,7 +17918,7 @@ export type SubmitFinCsatRequestRating =
   | "ok"
   | "good"
   | "amazing";
-export const SubmitFinCsatRequestRating = /*@__PURE__*/ S.String;
+export const SubmitFinCsatRequestRating = S.String;
 
 export interface SubmitFinCsatRequest {
   /** Your external conversation ID — the same ID you started the conversation with, and the one echoed on the `csat_requested` event. */
@@ -17972,11 +17945,11 @@ export type SubmitFinCsatResponseRating =
   | "ok"
   | "good"
   | "amazing";
-export const SubmitFinCsatResponseRating = /*@__PURE__*/ S.String;
+export const SubmitFinCsatResponseRating = S.String;
 
 /** The result of the submission. */
 export type SubmitFinCsatResponseStatus = "rated";
-export const SubmitFinCsatResponseStatus = /*@__PURE__*/ S.String;
+export const SubmitFinCsatResponseStatus = S.String;
 
 export interface SubmitFinCsatResponse {
   /** The external ID of the rated conversation. */
@@ -18016,7 +17989,7 @@ export const UnarchiveContactRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** always contact */
 export type UnarchiveContactResponseType = "contact";
-export const UnarchiveContactResponseType = /*@__PURE__*/ S.String;
+export const UnarchiveContactResponseType = S.String;
 
 export interface UnarchiveContactResponse {
   /** always contact */
@@ -18062,7 +18035,7 @@ export const UnlinkConversationFromTicketRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the article will be `published` or will be a `draft`. Omitting this field leaves the publish state unchanged, so a draft stays a draft and an edit to a published article goes live immediately unless that article already has a pending draft or a scheduled publish time is set in the same request. The `PUT /articles/{id}/draft` endpoint ignores this field and always stages a draft. For multilingual articles, this will be the state of the default language's content. */
 export type UpdateArticleRequestState = "published" | "draft";
-export const UpdateArticleRequestState = /*@__PURE__*/ S.String;
+export const UpdateArticleRequestState = S.String;
 
 /** The list of audience IDs to assign to this article for Fin AI Agent targeting. Sending a top-level `audience_ids` broadcasts the same set to every locale. Sending `audience_ids: []` clears all audience memberships from every locale. For per-locale targeting, use `translated_content.<locale>.audience_ids` instead. Sending both top-level and per-locale in the same request causes top-level to win. Unknown audience IDs return a 404 error. No partial commit occurs. */
 export type UpdateArticleRequestAudienceIdsList = Array<number>;
@@ -18128,11 +18101,11 @@ export const UpdateArticleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object - `article`. */
 export type UpdateArticleResponseType = "article";
-export const UpdateArticleResponseType = /*@__PURE__*/ S.String;
+export const UpdateArticleResponseType = S.String;
 
 /** Whether the article is `published` or is a `draft`. For multilingual articles, this will be the state of the default language's content. */
 export type UpdateArticleResponseState = "published" | "draft";
-export const UpdateArticleResponseState = /*@__PURE__*/ S.String;
+export const UpdateArticleResponseState = S.String;
 
 /** The ids of the article's parent collections or sections. An article without this field stands alone. */
 export type UpdateArticleResponseParentIdsList = Array<number>;
@@ -18148,7 +18121,7 @@ export type UpdateArticleResponseHelpCenterAudience =
   | "all_leads"
   | "all_visitors_and_leads"
   | "restricted";
-export const UpdateArticleResponseHelpCenterAudience = /*@__PURE__*/ S.String;
+export const UpdateArticleResponseHelpCenterAudience = S.String;
 
 export interface UpdateArticleResponse {
   /** The type of object - `article`. */
@@ -18567,12 +18540,11 @@ export type UpdateContentImportSourceRequestSyncBehavior =
   | "api"
   | "automated"
   | "manual";
-export const UpdateContentImportSourceRequestSyncBehavior =
-  /*@__PURE__*/ S.String;
+export const UpdateContentImportSourceRequestSyncBehavior = S.String;
 
 /** The status of the content import source. */
 export type UpdateContentImportSourceRequestStatus = "active" | "deactivated";
-export const UpdateContentImportSourceRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateContentImportSourceRequestStatus = S.String;
 
 export type UpdateContentImportSourceRequestAudienceIdsCase1List =
   Array<number>;
@@ -18586,7 +18558,7 @@ export type UpdateContentImportSourceRequestAudienceIds =
   | number
   | UpdateContentImportSourceRequestAudienceIdsCase1List;
 export const UpdateContentImportSourceRequestAudienceIds =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateContentImportSourceRequestAudienceIds>;
+  S.Unknown as any as S.Schema<UpdateContentImportSourceRequestAudienceIds>;
 
 export interface UpdateContentImportSourceRequest {
   /** The unique identifier for the content import source which is given by Intercom. */
@@ -18715,8 +18687,7 @@ export const UpdateConversationAttributeRequestVisibleToTeamIdsList =
 
 /** The cardinality of the relationship: `one` or `many`. */
 export type UpdateConversationAttributeRequestReferenceType = "one" | "many";
-export const UpdateConversationAttributeRequestReferenceType =
-  /*@__PURE__*/ S.String;
+export const UpdateConversationAttributeRequestReferenceType = S.String;
 
 /** (Relationship data type only) Reference configuration for related objects. */
 export interface UpdateConversationAttributeRequestReference {
@@ -18838,7 +18809,7 @@ export const UpdateDataAttributeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The desired state of the connector. */
 export type UpdateDataConnectorRequestState = "draft" | "live";
-export const UpdateDataConnectorRequestState = /*@__PURE__*/ S.String;
+export const UpdateDataConnectorRequestState = S.String;
 
 /** The HTTP method used by the data connector. */
 export type UpdateDataConnectorRequestHttpMethod =
@@ -18847,13 +18818,13 @@ export type UpdateDataConnectorRequestHttpMethod =
   | "put"
   | "delete"
   | "patch";
-export const UpdateDataConnectorRequestHttpMethod = /*@__PURE__*/ S.String;
+export const UpdateDataConnectorRequestHttpMethod = S.String;
 
 export type UpdateDataConnectorRequestAudiencesItem =
   | "leads"
   | "users"
   | "visitors";
-export const UpdateDataConnectorRequestAudiencesItem = /*@__PURE__*/ S.String;
+export const UpdateDataConnectorRequestAudiencesItem = S.String;
 
 /** The audience types this connector targets. */
 export type UpdateDataConnectorRequestAudiencesList = Array<
@@ -18881,8 +18852,7 @@ export type UpdateDataConnectorRequestDataInputsItemType =
   | "integer"
   | "decimal"
   | "boolean";
-export const UpdateDataConnectorRequestDataInputsItemType =
-  /*@__PURE__*/ S.String;
+export const UpdateDataConnectorRequestDataInputsItemType = S.String;
 
 export interface UpdateDataConnectorRequestDataInputsItem {
   /** The name of the input parameter. */
@@ -18981,7 +18951,7 @@ export const UpdateDataConnectorRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Always en */
 export type UpdateExternalPageRequestLocale = "en";
-export const UpdateExternalPageRequestLocale = /*@__PURE__*/ S.String;
+export const UpdateExternalPageRequestLocale = S.String;
 
 export interface UpdateExternalPageRequest {
   /** The unique identifier for the external page which is given by Intercom. */
@@ -19074,7 +19044,7 @@ export const UpdateInternalArticleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of object - `internal_article`. */
 export type UpdateInternalArticleResponseType = "internal_article";
-export const UpdateInternalArticleResponseType = /*@__PURE__*/ S.String;
+export const UpdateInternalArticleResponseType = S.String;
 
 /** The list of audience IDs this internal article is targeted to for Fin AI Agent. Empty array means no audience targeting is set. */
 export type UpdateInternalArticleResponseAudienceIdsList = Array<number>;
@@ -19162,7 +19132,7 @@ export const UpdateIpAllowlistRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** News items will not be visible to your users in the assigned newsfeeds until they are set live. */
 export type UpdateNewsItemRequestState = "draft" | "live";
-export const UpdateNewsItemRequestState = /*@__PURE__*/ S.String;
+export const UpdateNewsItemRequestState = S.String;
 
 /** Label names displayed to users to categorize the news item. */
 export type UpdateNewsItemRequestLabelsList = Array<string>;
@@ -19232,8 +19202,7 @@ export const UpdateNewsItemRequest = /*@__PURE__*/ S.suspend(() =>
 export type UpdateOfficeHoursExceptionRequestExceptionType =
   | "closed"
   | "custom_hours";
-export const UpdateOfficeHoursExceptionRequestExceptionType =
-  /*@__PURE__*/ S.String;
+export const UpdateOfficeHoursExceptionRequestExceptionType = S.String;
 
 /** The open intervals for the exception date. Required for `custom_hours`; omit for `closed`. */
 export type UpdateOfficeHoursExceptionRequestTimeIntervalsList =
@@ -19360,7 +19329,7 @@ export type UpdateTicketTypeRequestCategory =
   | "Customer"
   | "Back-office"
   | "Tracker";
-export const UpdateTicketTypeRequestCategory = /*@__PURE__*/ S.String;
+export const UpdateTicketTypeRequestCategory = S.String;
 
 export interface UpdateTicketTypeRequest {
   /** The unique identifier for the ticket type which is given by Intercom. */

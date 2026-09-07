@@ -143,7 +143,7 @@ export const Configv1CreateBucketResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Type values must match entitiespb.Collection.CollectionType. */
 export type Configv1CollectionReferenceType = "SIMPLE" | "SERVICE";
-export const Configv1CollectionReferenceType = /*@__PURE__*/ S.String;
+export const Configv1CollectionReferenceType = S.String;
 
 export interface Configv1CollectionReference {
   type?: Configv1CollectionReferenceType | (string & {});
@@ -431,7 +431,7 @@ export const Configv1CreateDashboardResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<Configv1CreateDashboardResponse>;
 
 export type DatasetDatasetType = "TRACES" | "LOGS";
-export const DatasetDatasetType = /*@__PURE__*/ S.String;
+export const DatasetDatasetType = S.String;
 
 export interface TraceSearchFilterDurationFilter {
   /** Minimum duration, in seconds, required for a span or trace to match. */
@@ -474,7 +474,7 @@ export const TraceSearchFilterTraceFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TraceSearchFilterTraceFilter>;
 
 export type SpanFilterSpanFilterMatchType = "INCLUDE" | "EXCLUDE";
-export const SpanFilterSpanFilterMatchType = /*@__PURE__*/ S.String;
+export const SpanFilterSpanFilterMatchType = S.String;
 
 export type StringFilterStringFilterMatchType =
   | "EXACT"
@@ -483,7 +483,7 @@ export type StringFilterStringFilterMatchType =
   | "REGEX_NEGATION"
   | "IN"
   | "NOT_IN";
-export const StringFilterStringFilterMatchType = /*@__PURE__*/ S.String;
+export const StringFilterStringFilterMatchType = S.String;
 
 /** Values the filter tests against when using `IN` or `NOT_IN` match type. */
 export type TraceSearchFilterStringFilterInValuesList = Array<string>;
@@ -515,7 +515,7 @@ export type NumericFilterComparisonType =
   | "GREATER_THAN_OR_EQUAL"
   | "LESS_THAN"
   | "LESS_THAN_OR_EQUAL";
-export const NumericFilterComparisonType = /*@__PURE__*/ S.String;
+export const NumericFilterComparisonType = S.String;
 
 export interface TraceSearchFilterNumericFilter {
   comparison?: NumericFilterComparisonType | (string & {});
@@ -890,7 +890,7 @@ export const DerivedLabelMetricLabel = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DerivedLabelMetricLabel>;
 
 export type Configv1DerivedLabelLabelPolicy = "KEEP" | "OVERRIDE";
-export const Configv1DerivedLabelLabelPolicy = /*@__PURE__*/ S.String;
+export const Configv1DerivedLabelLabelPolicy = S.String;
 
 export interface Configv1DerivedLabelInput {
   /** Required. Name of the DerivedLabel. You can modify this value after the DerivedLabel is created. */
@@ -976,8 +976,7 @@ export const Configv1CreateDerivedLabelResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<Configv1CreateDerivedLabelResponse>;
 
 export type Configv1DerivedMetricLabelMatcherMatcherType = "EXACT";
-export const Configv1DerivedMetricLabelMatcherMatcherType =
-  /*@__PURE__*/ S.String;
+export const Configv1DerivedMetricLabelMatcherMatcherType = S.String;
 
 export interface Configv1DerivedMetricLabelMatcher {
   type?: Configv1DerivedMetricLabelMatcherMatcherType | (string & {});
@@ -1164,7 +1163,7 @@ export const Configv1CreateDerivedMetricResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<Configv1CreateDerivedMetricResponse>;
 
 export type Configv1DropRuleMode = "ENABLED" | "DISABLED";
-export const Configv1DropRuleMode = /*@__PURE__*/ S.String;
+export const Configv1DropRuleMode = S.String;
 
 /** Defines the conditions that determine whether to drop a metric. Drop rules can have multiple filter conditions on different labels, making it possible to drop a subset of the series matching a particular metric name. */
 export type Configv1DropRuleInputFiltersList = Array<Configv1LabelFilter>;
@@ -1733,7 +1732,7 @@ export type LogScaleActionActionType =
   | "VICTOR_OPS"
   | "WEBHOOK"
   | "UPLOAD_FILE";
-export const LogScaleActionActionType = /*@__PURE__*/ S.String;
+export const LogScaleActionActionType = S.String;
 
 /** List of email addresses to send an email to. */
 export type LogScaleActionEmailActionRecipientsList = Array<string>;
@@ -1796,7 +1795,7 @@ export const LogScaleActionOpsGenieAction = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LogScaleActionOpsGenieAction>;
 
 export type PagerDutyActionSeverity = "CRITICAL" | "ERROR" | "WARNING" | "INFO";
-export const PagerDutyActionSeverity = /*@__PURE__*/ S.String;
+export const PagerDutyActionSeverity = S.String;
 
 export interface LogScaleActionPagerDutyAction {
   severity?: PagerDutyActionSeverity | (string & {});
@@ -1907,7 +1906,7 @@ export type WebhookActionHTTPMethod =
   | "DELETE"
   | "HEAD"
   | "OPTIONS";
-export const WebhookActionHTTPMethod = /*@__PURE__*/ S.String;
+export const WebhookActionHTTPMethod = S.String;
 
 /** Headers of the HTTP or HTTPS request. */
 export type LogScaleActionWebhookActionHeadersMap = {
@@ -2084,7 +2083,7 @@ export const Configv1LogScaleAlertInputTagsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<Configv1LogScaleAlertInputTagsList>;
 
 export type LogScaleAlertAlertType = "STANDARD" | "FILTER";
-export const LogScaleAlertAlertType = /*@__PURE__*/ S.String;
+export const LogScaleAlertAlertType = S.String;
 
 export interface Configv1LogScaleAlertInput {
   /** Unique identifier of the LogScaleAlert. If a `slug` isn't provided, one will be generated based of the `name` field. You can't modify this field after the LogScaleAlert is created. */
@@ -2267,7 +2266,7 @@ export type Configv1AggregationType =
   | "P75"
   | "COUNT_SAMPLES"
   | "HISTOGRAM";
-export const Configv1AggregationType = /*@__PURE__*/ S.String;
+export const Configv1AggregationType = S.String;
 
 export interface Configv1MappingRuleStoragePolicy {
   /** Required resolution of the aggregated metrics. */
@@ -2305,7 +2304,7 @@ export const MappingRuleAggregationPolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** - ENABLED: ENABLED rules are applied. Rules default to ENABLED. - PREVIEW: PREVIEW rules are not applied, but shaping impact stats for them rule are recorded. */
 export type Configv1MappingRuleMode = "ENABLED" | "PREVIEW";
-export const Configv1MappingRuleMode = /*@__PURE__*/ S.String;
+export const Configv1MappingRuleMode = S.String;
 
 export interface Configv1MappingRuleInput {
   /** Unique identifier of the MappingRule. If a `slug` isn't provided, one will be generated based of the `name` field. You can't modify this field after the MappingRule is created. */
@@ -2451,7 +2450,7 @@ export type ConditionOp =
   | "NEQ"
   | "EXISTS"
   | "NOT_EXISTS";
-export const ConditionOp = /*@__PURE__*/ S.String;
+export const ConditionOp = S.String;
 
 export interface MonitorCondition {
   op?: ConditionOp | (string & {});
@@ -2505,7 +2504,7 @@ export const SeriesConditionsSeverityConditions = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SeriesConditionsSeverityConditions>;
 
 export type Configv1LabelMatcherMatcherType = "EXACT" | "REGEX";
-export const Configv1LabelMatcherMatcherType = /*@__PURE__*/ S.String;
+export const Configv1LabelMatcherMatcherType = S.String;
 
 export interface Configv1LabelMatcher {
   type?: Configv1LabelMatcherMatcherType | (string & {});
@@ -2571,7 +2570,7 @@ export const MonitorSeriesConditions = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MonitorSeriesConditions>;
 
 export type ScheduleDayActive = "ALL_DAY" | "ONLY_DURING_RANGES" | "NEVER";
-export const ScheduleDayActive = /*@__PURE__*/ S.String;
+export const ScheduleDayActive = S.String;
 
 export interface ScheduleDayTimeRange {
   /** Start time in the in format `"<hour>:<minute>"`. For example, `"15:30"`. */
@@ -2799,7 +2798,7 @@ export type Configv1MutingRuleLabelMatcherMatcherType =
   | "REGEX"
   | "NOT_EXACT"
   | "NOT_REGEXP";
-export const Configv1MutingRuleLabelMatcherMatcherType = /*@__PURE__*/ S.String;
+export const Configv1MutingRuleLabelMatcherMatcherType = S.String;
 
 export interface Configv1MutingRuleLabelMatcher {
   type?: Configv1MutingRuleLabelMatcherMatcherType | (string & {});
@@ -3416,7 +3415,7 @@ export type ResponderResponderType =
   | "USER"
   | "ESCALATION"
   | "SCHEDULE";
-export const ResponderResponderType = /*@__PURE__*/ S.String;
+export const ResponderResponderType = S.String;
 
 export interface OpsGenieConfigResponder {
   /** ID of the responder. Cannot be set if name or username are set. */
@@ -3628,12 +3627,12 @@ export const Configv1CreateNotifierResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<Configv1CreateNotifierResponse>;
 
 export type ResourceAttributesFlattenMode = "MERGE" | "OVERWRITE" | "IGNORE";
-export const ResourceAttributesFlattenMode = /*@__PURE__*/ S.String;
+export const ResourceAttributesFlattenMode = S.String;
 
 export type ResourceAttributesFilterMode =
   | "APPEND_DEFAULT_EXCLUDE_KEYS"
   | "CUSTOM_EXCLUDE_KEYS";
-export const ResourceAttributesFilterMode = /*@__PURE__*/ S.String;
+export const ResourceAttributesFilterMode = S.String;
 
 /** Do not copy any resource attribute whose key exactly matches one of the strings in this list. */
 export type OtelMetricsIngestionResourceAttributesExcludeKeysList =
@@ -3854,7 +3853,7 @@ export type ResourcePoolsLicense =
   | "PERSISTED_CARDINALITY_HISTOGRAM"
   | "MATCHED_WRITES_STANDARD"
   | "MATCHED_WRITES_HISTOGRAM";
-export const ResourcePoolsLicense = /*@__PURE__*/ S.String;
+export const ResourcePoolsLicense = S.String;
 
 export interface AllocationFixedValue {
   license?: ResourcePoolsLicense | (string & {});
@@ -4113,7 +4112,7 @@ export type RollupRuleMetricType =
   | "CUMULATIVE_COUNTER"
   | "DELTA_COUNTER"
   | "DELTA_EXPONENTIAL_HISTOGRAM";
-export const RollupRuleMetricType = /*@__PURE__*/ S.String;
+export const RollupRuleMetricType = S.String;
 
 export type Configv1RollupRuleStoragePolicy = Configv1MappingRuleStoragePolicy;
 export const Configv1RollupRuleStoragePolicy = Configv1MappingRuleStoragePolicy;
@@ -4147,7 +4146,7 @@ export const Configv1RollupRuleLabelPolicy = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<Configv1RollupRuleLabelPolicy>;
 
 export type Configv1RollupRuleMode = "ENABLED" | "PREVIEW";
-export const Configv1RollupRuleMode = /*@__PURE__*/ S.String;
+export const Configv1RollupRuleMode = S.String;
 
 export interface GraphiteLabelPolicyReplace {
   /** Required name of the label whose value should be replaced. Only `__gX__` labels are allowed (aka positional Graphite labels). */
@@ -4323,7 +4322,7 @@ export const Configv1CreateRollupRuleResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<Configv1CreateRollupRuleResponse>;
 
 export type MetricsRestrictionPermission = "READ" | "WRITE" | "READ_WRITE";
-export const MetricsRestrictionPermission = /*@__PURE__*/ S.String;
+export const MetricsRestrictionPermission = S.String;
 
 /** Optional labels which further restricts the service account to only read or write metrics with the given label names and values. */
 export type ServiceAccountMetricsRestrictionLabelsMap = {
@@ -4470,7 +4469,7 @@ export const SLICustomIndicatorConfig = /*@__PURE__*/ S.suspend(() =>
 export type SLITimeSliceSize =
   | "TIMESLICE_SIZE_ONE_MINUTE"
   | "TIMESLICE_SIZE_FIVE_MINUTES";
-export const SLITimeSliceSize = /*@__PURE__*/ S.String;
+export const SLITimeSliceSize = S.String;
 
 export interface SLITimeSliceCondition {
   op?: ConditionOp | (string & {});
@@ -4513,7 +4512,7 @@ export type CommonPromQLMatcherType =
   | "MatchRegexp"
   | "MatchNotEqual"
   | "MatchNotRegexp";
-export const CommonPromQLMatcherType = /*@__PURE__*/ S.String;
+export const CommonPromQLMatcherType = S.String;
 
 export interface CommonPromQLMatcher {
   type?: CommonPromQLMatcherType | (string & {});
@@ -4820,7 +4819,7 @@ export const Configv1CreateTeamResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** - LOW_VALUE: Match indicates a low value trace. With multiple low value matches sample at the lowest rate. - HIGH_VALUE: Match indicates a high value trace. With multiple high value matches sample at the highest rate. */
 export type TraceBehaviorSamplingType = "LOW_VALUE" | "HIGH_VALUE";
-export const TraceBehaviorSamplingType = /*@__PURE__*/ S.String;
+export const TraceBehaviorSamplingType = S.String;
 
 export interface TraceBehaviorErrorSampleOptions {
   /** Sample rate for traces with errors. */
@@ -5468,7 +5467,7 @@ export const Configv1TraceMetricsRuleInputHistogramBucketsSecsList =
 
 /** - SERVICE: Group by service. - OPERATION: Group by operation. - TAG: Group by span tag. */
 export type GroupByKeyGroupByKeyType = "SERVICE" | "OPERATION" | "TAG";
-export const GroupByKeyGroupByKeyType = /*@__PURE__*/ S.String;
+export const GroupByKeyGroupByKeyType = S.String;
 
 /** GroupByKey describes a key to group by. */
 export interface GroupByGroupByKey {
@@ -5784,10 +5783,10 @@ export type Configv1ResourceType =
   | "RECORDING_RULE"
   | "MAPPING_RULE"
   | "ROLLUP_RULE";
-export const Configv1ResourceType = /*@__PURE__*/ S.String;
+export const Configv1ResourceType = S.String;
 
 export type ResourceChangeAction = "CREATED" | "UPDATED" | "DELETED" | "NOOP";
-export const ResourceChangeAction = /*@__PURE__*/ S.String;
+export const ResourceChangeAction = S.String;
 
 export interface ResourceChange {
   resource?: Configv1ResourceType;
@@ -6814,7 +6813,7 @@ export const ListDatasetsRequestNamesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListDatasetsRequestNamesList>;
 
 export type ListDatasetsRequestType = "TRACES" | "LOGS";
-export const ListDatasetsRequestType = /*@__PURE__*/ S.String;
+export const ListDatasetsRequestType = S.String;
 
 export interface ListDatasetsRequest {
   /** Page size preference (i.e. how many items are returned in the next page). If zero, the server will use a default. Regardless of what size is given, clients must never assume how many items will be returned. */
@@ -7428,7 +7427,7 @@ export const ListMutingRulesRequestNamesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListMutingRulesRequestNamesList>;
 
 export type ListMutingRulesRequestStatesItem = "PENDING" | "ACTIVE" | "EXPIRED";
-export const ListMutingRulesRequestStatesItem = /*@__PURE__*/ S.String;
+export const ListMutingRulesRequestStatesItem = S.String;
 
 export type ListMutingRulesRequestStatesList = Array<
   ListMutingRulesRequestStatesItem | (string & {})

@@ -153,7 +153,7 @@ export type BinaryAuthorizationEvaluationModeEnum =
   | "EVALUATION_MODE_UNSPECIFIED"
   | "DISABLED"
   | "PROJECT_SINGLETON_POLICY_ENFORCE";
-export const BinaryAuthorizationEvaluationModeEnum = /*@__PURE__*/ S.String;
+export const BinaryAuthorizationEvaluationModeEnum = S.String;
 
 /** Configuration for Binary Authorization. */
 export interface BinaryAuthorization {
@@ -299,7 +299,7 @@ export type ResourceConditionStateEnum =
   | "STATE_TRUE"
   | "STATE_FALSE"
   | "STATE_UNKNOWN";
-export const ResourceConditionStateEnum = /*@__PURE__*/ S.String;
+export const ResourceConditionStateEnum = S.String;
 
 /** ResourceCondition provides a standard mechanism for higher-level status reporting from controller. */
 export interface ResourceCondition {
@@ -389,7 +389,7 @@ export type BareMetalAdminClusterStateEnum =
   | "STOPPING"
   | "ERROR"
   | "DEGRADED";
-export const BareMetalAdminClusterStateEnum = /*@__PURE__*/ S.String;
+export const BareMetalAdminClusterStateEnum = S.String;
 
 /** BareMetalAdminPortConfig is the specification of load balancer ports. */
 export interface BareMetalAdminPortConfig {
@@ -435,7 +435,7 @@ export type NodeTaintEffectEnum =
   | "NO_SCHEDULE"
   | "PREFER_NO_SCHEDULE"
   | "NO_EXECUTE";
-export const NodeTaintEffectEnum = /*@__PURE__*/ S.String;
+export const NodeTaintEffectEnum = S.String;
 
 /** NodeTaint applied to every Kubernetes node in a node pool. Kubernetes taints can be used together with tolerations to control how workloads are scheduled to your nodes. Node taints are permanent. */
 export interface NodeTaint {
@@ -462,8 +462,7 @@ export const NodeTaintList = /*@__PURE__*/ S.Array(
 export type BareMetalNodePoolConfigOperatingSystemEnum =
   | "OPERATING_SYSTEM_UNSPECIFIED"
   | "LINUX";
-export const BareMetalNodePoolConfigOperatingSystemEnum =
-  /*@__PURE__*/ S.String;
+export const BareMetalNodePoolConfigOperatingSystemEnum = S.String;
 
 /** BareMetalNodeConfig lists machine addresses to access Nodes. */
 export interface BareMetalNodeConfig {
@@ -828,7 +827,7 @@ export type ValidationCheckScenarioEnum =
   | "SCENARIO_UNSPECIFIED"
   | "CREATE"
   | "UPDATE";
-export const ValidationCheckScenarioEnum = /*@__PURE__*/ S.String;
+export const ValidationCheckScenarioEnum = S.String;
 
 export type ValidationCheckResultStateEnum =
   | "STATE_UNKNOWN"
@@ -836,7 +835,7 @@ export type ValidationCheckResultStateEnum =
   | "STATE_SKIPPED"
   | "STATE_FATAL"
   | "STATE_WARNING";
-export const ValidationCheckResultStateEnum = /*@__PURE__*/ S.String;
+export const ValidationCheckResultStateEnum = S.String;
 
 /** ValidationCheckResult defines the details about the validation check. */
 export interface ValidationCheckResult {
@@ -885,7 +884,7 @@ export type ValidationCheckOptionEnum =
   | "OPTIONS_UNSPECIFIED"
   | "SKIP_VALIDATION_CHECK_BLOCKING"
   | "SKIP_VALIDATION_ALL";
-export const ValidationCheckOptionEnum = /*@__PURE__*/ S.String;
+export const ValidationCheckOptionEnum = S.String;
 
 /** ValidationCheck represents the result of preflight check. */
 export interface ValidationCheck {
@@ -1106,13 +1105,12 @@ export type BareMetalClusterStateEnum =
   | "STOPPING"
   | "ERROR"
   | "DEGRADED";
-export const BareMetalClusterStateEnum = /*@__PURE__*/ S.String;
+export const BareMetalClusterStateEnum = S.String;
 
 export type BareMetalWorkloadNodeConfigContainerRuntimeEnum =
   | "CONTAINER_RUNTIME_UNSPECIFIED"
   | "CONTAINERD";
-export const BareMetalWorkloadNodeConfigContainerRuntimeEnum =
-  /*@__PURE__*/ S.String;
+export const BareMetalWorkloadNodeConfigContainerRuntimeEnum = S.String;
 
 /** Specifies the workload node configurations. */
 export interface BareMetalWorkloadNodeConfig {
@@ -1519,7 +1517,7 @@ export type BareMetalClusterUpgradePolicyPolicyEnum =
   | "NODE_POOL_POLICY_UNSPECIFIED"
   | "SERIAL"
   | "CONCURRENT";
-export const BareMetalClusterUpgradePolicyPolicyEnum = /*@__PURE__*/ S.String;
+export const BareMetalClusterUpgradePolicyPolicyEnum = S.String;
 
 /** BareMetalClusterUpgradePolicy defines the cluster upgrade policy. */
 export interface BareMetalClusterUpgradePolicy {
@@ -1714,7 +1712,7 @@ export type BareMetalNodePoolStateEnum =
   | "STOPPING"
   | "ERROR"
   | "DEGRADED";
-export const BareMetalNodePoolStateEnum = /*@__PURE__*/ S.String;
+export const BareMetalNodePoolStateEnum = S.String;
 
 /** Resource that represents a bare metal node pool. */
 export interface BareMetalNodePool {
@@ -2266,7 +2264,7 @@ export type VmwareAdminClusterStateEnum =
   | "STOPPING"
   | "ERROR"
   | "DEGRADED";
-export const VmwareAdminClusterStateEnum = /*@__PURE__*/ S.String;
+export const VmwareAdminClusterStateEnum = S.String;
 
 /** Resource that represents a VMware admin cluster. */
 export interface VmwareAdminCluster {
@@ -2655,7 +2653,7 @@ export type VmwareClusterStateEnum =
   | "STOPPING"
   | "ERROR"
   | "DEGRADED";
-export const VmwareClusterStateEnum = /*@__PURE__*/ S.String;
+export const VmwareClusterStateEnum = S.String;
 
 /** Specifies control plane V2 config. */
 export interface VmwareControlPlaneV2Config {
@@ -2959,7 +2957,7 @@ export type VmwareNodePoolStateEnum =
   | "STOPPING"
   | "ERROR"
   | "DEGRADED";
-export const VmwareNodePoolStateEnum = /*@__PURE__*/ S.String;
+export const VmwareNodePoolStateEnum = S.String;
 
 /** Resource VmwareNodePool represents a VMware node pool. ## */
 export interface VmwareNodePool {
@@ -3665,8 +3663,7 @@ export type GetProjectsLocationsBareMetalAdminClustersViewEnum =
   | "CLUSTER_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsBareMetalAdminClustersViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsBareMetalAdminClustersViewEnum = S.String;
 
 export interface GetProjectsLocationsBareMetalAdminClustersRequest {
   /** View for bare metal admin cluster. When `BASIC` is specified, only the cluster resource name and membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete cluster configuration details. */
@@ -3718,8 +3715,7 @@ export type GetProjectsLocationsBareMetalClustersViewEnum =
   | "CLUSTER_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsBareMetalClustersViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsBareMetalClustersViewEnum = S.String;
 
 export interface GetProjectsLocationsBareMetalClustersRequest {
   /** Required. Name of the bare metal user cluster to get. Format: "projects/{project}/locations/{location}/bareMetalClusters/{bare_metal_cluster}" */
@@ -3753,7 +3749,7 @@ export type GetProjectsLocationsBareMetalClustersBareMetalNodePoolsViewEnum =
   | "BASIC"
   | "FULL";
 export const GetProjectsLocationsBareMetalClustersBareMetalNodePoolsViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectsLocationsBareMetalClustersBareMetalNodePoolsRequest {
   /** View for bare metal node pool. When `BASIC` is specified, only the node pool resource name is returned. The default/unset value `NODE_POOL_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete node pool configuration details. */
@@ -3846,8 +3842,7 @@ export type GetProjectsLocationsVmwareAdminClustersViewEnum =
   | "CLUSTER_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsVmwareAdminClustersViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsVmwareAdminClustersViewEnum = S.String;
 
 export interface GetProjectsLocationsVmwareAdminClustersRequest {
   /** View for VMware admin cluster. When `BASIC` is specified, only the cluster resource name and membership are returned. The default/unset value `CLUSTER_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete cluster configuration details. */
@@ -3899,8 +3894,7 @@ export type GetProjectsLocationsVmwareClustersViewEnum =
   | "CLUSTER_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsVmwareClustersViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsVmwareClustersViewEnum = S.String;
 
 export interface GetProjectsLocationsVmwareClustersRequest {
   /** Optional. If true, return Vmware Cluster including the one that only exists in RMS. */
@@ -3953,7 +3947,7 @@ export type GetProjectsLocationsVmwareClustersVmwareNodePoolsViewEnum =
   | "BASIC"
   | "FULL";
 export const GetProjectsLocationsVmwareClustersVmwareNodePoolsViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectsLocationsVmwareClustersVmwareNodePoolsRequest {
   /** View for VMware node pool. When `BASIC` is specified, only the node pool resource name is returned. The default/unset value `NODE_POOL_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete node pool configuration details. */
@@ -4058,8 +4052,7 @@ export type ListProjectsLocationsBareMetalAdminClustersViewEnum =
   | "CLUSTER_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListProjectsLocationsBareMetalAdminClustersViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsBareMetalAdminClustersViewEnum = S.String;
 
 export interface ListProjectsLocationsBareMetalAdminClustersRequest {
   /** Requested page size. Server may return fewer items than requested. If unspecified, at most 50 clusters will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. */
@@ -4177,8 +4170,7 @@ export type ListProjectsLocationsBareMetalClustersViewEnum =
   | "CLUSTER_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListProjectsLocationsBareMetalClustersViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsBareMetalClustersViewEnum = S.String;
 
 export interface ListProjectsLocationsBareMetalClustersRequest {
   /** A token identifying a page of results the server should return. */
@@ -4245,7 +4237,7 @@ export type ListProjectsLocationsBareMetalClustersBareMetalNodePoolsViewEnum =
   | "BASIC"
   | "FULL";
 export const ListProjectsLocationsBareMetalClustersBareMetalNodePoolsViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListProjectsLocationsBareMetalClustersBareMetalNodePoolsRequest {
   /** View for bare metal node pools. When `BASIC` is specified, only the node pool resource name is returned. The default/unset value `NODE_POOL_VIEW_UNSPECIFIED` is the same as `FULL', which returns the complete node pool configuration details. */
@@ -4404,8 +4396,7 @@ export type ListProjectsLocationsVmwareAdminClustersViewEnum =
   | "CLUSTER_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListProjectsLocationsVmwareAdminClustersViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsVmwareAdminClustersViewEnum = S.String;
 
 export interface ListProjectsLocationsVmwareAdminClustersRequest {
   /** A token identifying a page of results the server should return. */
@@ -4499,8 +4490,7 @@ export type ListProjectsLocationsVmwareClustersViewEnum =
   | "CLUSTER_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListProjectsLocationsVmwareClustersViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsVmwareClustersViewEnum = S.String;
 
 export interface ListProjectsLocationsVmwareClustersRequest {
   /** A resource filtering expression following https://google.aip.dev/160. When non-empty, only resource's whose attributes field matches the filter are returned. */
@@ -4598,7 +4588,7 @@ export type ListProjectsLocationsVmwareClustersVmwareNodePoolsViewEnum =
   | "BASIC"
   | "FULL";
 export const ListProjectsLocationsVmwareClustersVmwareNodePoolsViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListProjectsLocationsVmwareClustersVmwareNodePoolsRequest {
   /** Required. The parent, which owns this collection of node pools. Format: projects/{project}/locations/{location}/vmwareClusters/{vmwareCluster} */

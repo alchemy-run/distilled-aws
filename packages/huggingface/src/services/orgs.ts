@@ -18,7 +18,7 @@ export type ChangeMemberRoleRequestRole =
   | "contributor"
   | "read"
   | "no_access";
-export const ChangeMemberRoleRequestRole = /*@__PURE__*/ S.String;
+export const ChangeMemberRoleRequestRole = S.String;
 
 export type ChangeMemberRoleRequestResourceGroupsItemRole =
   | "admin"
@@ -26,8 +26,7 @@ export type ChangeMemberRoleRequestResourceGroupsItemRole =
   | "contributor"
   | "read"
   | "no_access";
-export const ChangeMemberRoleRequestResourceGroupsItemRole =
-  /*@__PURE__*/ S.String;
+export const ChangeMemberRoleRequestResourceGroupsItemRole = S.String;
 
 export interface ChangeMemberRoleRequestResourceGroupsItem {
   id: string;
@@ -217,7 +216,7 @@ export type ExportAuditLogResponseBodyItemType =
   | "org.service_account.token.rotate"
   | "org.service_account.token.update"
   | "oauth.token";
-export const ExportAuditLogResponseBodyItemType = /*@__PURE__*/ S.String;
+export const ExportAuditLogResponseBodyItemType = S.String;
 
 export interface ExportAuditLogResponseBodyItemLocation {
   formatted: string;
@@ -236,7 +235,7 @@ export const ExportAuditLogResponseBodyItemLocation = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ExportAuditLogResponseBodyItemLocation>;
 
 export type ExportAuditLogResponseBodyItemAuthorType = "user" | "system";
-export const ExportAuditLogResponseBodyItemAuthorType = /*@__PURE__*/ S.String;
+export const ExportAuditLogResponseBodyItemAuthorType = S.String;
 
 export interface ExportAuditLogResponseBodyItemAuthor {
   _id: string;
@@ -262,7 +261,7 @@ export type ExportAuditLogResponseBodyItemTokenRole =
   | "read"
   | "write"
   | "fineGrained";
-export const ExportAuditLogResponseBodyItemTokenRole = /*@__PURE__*/ S.String;
+export const ExportAuditLogResponseBodyItemTokenRole = S.String;
 
 export interface ExportAuditLogResponseBodyItemToken {
   type: unknown;
@@ -389,7 +388,7 @@ export const GetNetworkSecuritySettingsRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type GetNetworkSecuritySettingsResponseEnforceAuth = boolean | unknown;
 export const GetNetworkSecuritySettingsResponseEnforceAuth =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetNetworkSecuritySettingsResponseEnforceAuth>;
+  S.Unknown as any as S.Schema<GetNetworkSecuritySettingsResponseEnforceAuth>;
 
 export type GetNetworkSecuritySettingsResponseIpRangesList = Array<string>;
 export const GetNetworkSecuritySettingsResponseIpRangesList =
@@ -404,13 +403,13 @@ export type GetNetworkSecuritySettingsResponseBlockedContentsItemResourceCase0 =
   | "bucket"
   | "kernel";
 export const GetNetworkSecuritySettingsResponseBlockedContentsItemResourceCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetNetworkSecuritySettingsResponseBlockedContentsItemResource =
   | GetNetworkSecuritySettingsResponseBlockedContentsItemResourceCase0
   | unknown;
 export const GetNetworkSecuritySettingsResponseBlockedContentsItemResource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetNetworkSecuritySettingsResponseBlockedContentsItemResource>;
+  S.Unknown as any as S.Schema<GetNetworkSecuritySettingsResponseBlockedContentsItemResource>;
 
 export interface GetNetworkSecuritySettingsResponseBlockedContentsItem {
   resource: GetNetworkSecuritySettingsResponseBlockedContentsItemResource;
@@ -440,13 +439,13 @@ export type GetNetworkSecuritySettingsResponseAllowedContentsItemResourceCase0 =
   | "bucket"
   | "kernel";
 export const GetNetworkSecuritySettingsResponseAllowedContentsItemResourceCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetNetworkSecuritySettingsResponseAllowedContentsItemResource =
   | GetNetworkSecuritySettingsResponseAllowedContentsItemResourceCase0
   | unknown;
 export const GetNetworkSecuritySettingsResponseAllowedContentsItemResource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetNetworkSecuritySettingsResponseAllowedContentsItemResource>;
+  S.Unknown as any as S.Schema<GetNetworkSecuritySettingsResponseAllowedContentsItemResource>;
 
 export interface GetNetworkSecuritySettingsResponseAllowedContentsItem {
   resource: GetNetworkSecuritySettingsResponseAllowedContentsItemResource;
@@ -523,8 +522,7 @@ export type GetOrganizationMembersResponseBodyItemRole =
   | "contributor"
   | "read"
   | "no_access";
-export const GetOrganizationMembersResponseBodyItemRole =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationMembersResponseBodyItemRole = S.String;
 
 export type GetOrganizationMembersResponseBodyItemResourceGroupsItemRole =
   | "admin"
@@ -533,7 +531,7 @@ export type GetOrganizationMembersResponseBodyItemResourceGroupsItemRole =
   | "read"
   | "no_access";
 export const GetOrganizationMembersResponseBodyItemResourceGroupsItemRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationMembersResponseBodyItemResourceGroupsItem {
   name: string;
@@ -766,7 +764,7 @@ export type GetOrgUsageResponseUsageValueItemProduct =
   | "endpoints/gcp/v5e/1x1"
   | "endpoints/gcp/v5e/2x2"
   | "endpoints/gcp/v5e/2x4";
-export const GetOrgUsageResponseUsageValueItemProduct = /*@__PURE__*/ S.String;
+export const GetOrgUsageResponseUsageValueItemProduct = S.String;
 
 export interface GetOrgUsageResponseUsageValueItem {
   entityId: string;
@@ -816,7 +814,7 @@ export const GetOrgUsageResponseUsageMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<GetOrgUsageResponseUsageMap>;
 
 export type GetOrgUsageResponsePeriodEntityType = "user" | "org";
-export const GetOrgUsageResponsePeriodEntityType = /*@__PURE__*/ S.String;
+export const GetOrgUsageResponsePeriodEntityType = S.String;
 
 export type GetOrgUsageResponsePeriodInvoiceCase0Status =
   | "draft"
@@ -825,14 +823,12 @@ export type GetOrgUsageResponsePeriodInvoiceCase0Status =
   | "uncollectible"
   | "void"
   | "unpaid";
-export const GetOrgUsageResponsePeriodInvoiceCase0Status =
-  /*@__PURE__*/ S.String;
+export const GetOrgUsageResponsePeriodInvoiceCase0Status = S.String;
 
 export type GetOrgUsageResponsePeriodInvoiceCase0CollectionMethod =
   | "charge_automatically"
   | "send_invoice";
-export const GetOrgUsageResponsePeriodInvoiceCase0CollectionMethod =
-  /*@__PURE__*/ S.String;
+export const GetOrgUsageResponsePeriodInvoiceCase0CollectionMethod = S.String;
 
 export interface GetOrgUsageResponsePeriodInvoiceCase0 {
   type: unknown;
@@ -878,12 +874,11 @@ export type GetOrgUsageResponsePeriodInvoice =
   | GetOrgUsageResponsePeriodInvoiceCase0
   | GetOrgUsageResponsePeriodInvoiceCase1;
 export const GetOrgUsageResponsePeriodInvoice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrgUsageResponsePeriodInvoice>;
+  S.Unknown as any as S.Schema<GetOrgUsageResponsePeriodInvoice>;
 
 export type GetOrgUsageResponsePeriodChargesItemBilledThrough =
   "stripe-payment-intent";
-export const GetOrgUsageResponsePeriodChargesItemBilledThrough =
-  /*@__PURE__*/ S.String;
+export const GetOrgUsageResponsePeriodChargesItemBilledThrough = S.String;
 
 export type GetOrgUsageResponsePeriodChargesItemPaymentIntentStatus =
   | "canceled"
@@ -893,8 +888,7 @@ export type GetOrgUsageResponsePeriodChargesItemPaymentIntentStatus =
   | "requires_confirmation"
   | "requires_payment_method"
   | "succeeded";
-export const GetOrgUsageResponsePeriodChargesItemPaymentIntentStatus =
-  /*@__PURE__*/ S.String;
+export const GetOrgUsageResponsePeriodChargesItemPaymentIntentStatus = S.String;
 
 export interface GetOrgUsageResponsePeriodChargesItem {
   _id: string;
@@ -1308,8 +1302,7 @@ export type ListMemberAccessTokensResponseBodyItemRole =
   | "read"
   | "write"
   | "fineGrained";
-export const ListMemberAccessTokensResponseBodyItemRole =
-  /*@__PURE__*/ S.String;
+export const ListMemberAccessTokensResponseBodyItemRole = S.String;
 
 /** Organization member the token belongs to */
 export interface ListMemberAccessTokensResponseBodyItemOwner {
@@ -1338,7 +1331,7 @@ export type ListMemberAccessTokensResponseBodyItemAuthorizationStatus =
   | "revoked"
   | "denied";
 export const ListMemberAccessTokensResponseBodyItemAuthorizationStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** User who granted the token its access. Absent when `authorizedAt` is, and when that account has since been deleted */
 export interface ListMemberAccessTokensResponseBodyItemAuthorizationAuthorizer {
@@ -1394,7 +1387,7 @@ export type ListMemberAccessTokensResponseBodyItemFineGrainedScopedItemEntityTyp
   | "resource-group"
   | "oauth-app";
 export const ListMemberAccessTokensResponseBodyItemFineGrainedScopedItemEntityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Entity the permissions apply to the organization itself, or one of its repositories */
 export interface ListMemberAccessTokensResponseBodyItemFineGrainedScopedItemEntity {
@@ -1495,7 +1488,7 @@ export type ListMemberAccessTokensResponseBodyItemFineGrainedScopedItemPermissio
   | "job.read"
   | "job.write";
 export const ListMemberAccessTokensResponseBodyItemFineGrainedScopedItemPermissionsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Permissions the token holds on the entity */
 export type ListMemberAccessTokensResponseBodyItemFineGrainedScopedItemPermissionsList =
@@ -1605,16 +1598,15 @@ export type ListOrganizationRepositoriesRequestType =
   | "space"
   | "bucket"
   | "kernel";
-export const ListOrganizationRepositoriesRequestType = /*@__PURE__*/ S.String;
+export const ListOrganizationRepositoriesRequestType = S.String;
 
 /** Sort field (default: storage) */
 export type ListOrganizationRepositoriesRequestSort = "storage" | "updatedAt";
-export const ListOrganizationRepositoriesRequestSort = /*@__PURE__*/ S.String;
+export const ListOrganizationRepositoriesRequestSort = S.String;
 
 /** Sort direction (default: desc) */
 export type ListOrganizationRepositoriesRequestDirection = "asc" | "desc";
-export const ListOrganizationRepositoriesRequestDirection =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationRepositoriesRequestDirection = S.String;
 
 export interface ListOrganizationRepositoriesRequest {
   name: string;
@@ -1651,15 +1643,13 @@ export type ListOrganizationRepositoriesResponseBodyItemType =
   | "space"
   | "bucket"
   | "kernel";
-export const ListOrganizationRepositoriesResponseBodyItemType =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationRepositoriesResponseBodyItemType = S.String;
 
 export type ListOrganizationRepositoriesResponseBodyItemVisibility =
   | "public"
   | "private"
   | "protected";
-export const ListOrganizationRepositoriesResponseBodyItemVisibility =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationRepositoriesResponseBodyItemVisibility = S.String;
 
 export interface ListOrganizationRepositoriesResponseBodyItem {
   id: string;
@@ -1754,7 +1744,7 @@ export type RotateSsoCredentialsRequestBody =
   | RotateSsoCredentialsRequestBodyCase0
   | RotateSsoCredentialsRequestBodyCase1;
 export const RotateSsoCredentialsRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RotateSsoCredentialsRequestBody>;
+  S.Unknown as any as S.Schema<RotateSsoCredentialsRequestBody>;
 
 export interface RotateSsoCredentialsRequest {
   name: string;
@@ -1818,13 +1808,13 @@ export type UpdateNetworkSecurityRequestBlockedContentsItemResourceCase0 =
   | "bucket"
   | "kernel";
 export const UpdateNetworkSecurityRequestBlockedContentsItemResourceCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateNetworkSecurityRequestBlockedContentsItemResource =
   | UpdateNetworkSecurityRequestBlockedContentsItemResourceCase0
   | unknown;
 export const UpdateNetworkSecurityRequestBlockedContentsItemResource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateNetworkSecurityRequestBlockedContentsItemResource>;
+  S.Unknown as any as S.Schema<UpdateNetworkSecurityRequestBlockedContentsItemResource>;
 
 export interface UpdateNetworkSecurityRequestBlockedContentsItem {
   resource: UpdateNetworkSecurityRequestBlockedContentsItemResource;
@@ -1854,13 +1844,13 @@ export type UpdateNetworkSecurityRequestAllowedContentsItemResourceCase0 =
   | "bucket"
   | "kernel";
 export const UpdateNetworkSecurityRequestAllowedContentsItemResourceCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateNetworkSecurityRequestAllowedContentsItemResource =
   | UpdateNetworkSecurityRequestAllowedContentsItemResourceCase0
   | unknown;
 export const UpdateNetworkSecurityRequestAllowedContentsItemResource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateNetworkSecurityRequestAllowedContentsItemResource>;
+  S.Unknown as any as S.Schema<UpdateNetworkSecurityRequestAllowedContentsItemResource>;
 
 export interface UpdateNetworkSecurityRequestAllowedContentsItem {
   resource: UpdateNetworkSecurityRequestAllowedContentsItemResource;
@@ -1920,7 +1910,7 @@ export const UpdateNetworkSecurityRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateNetworkSecurityResponseEnforceAuth = boolean | unknown;
 export const UpdateNetworkSecurityResponseEnforceAuth =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateNetworkSecurityResponseEnforceAuth>;
+  S.Unknown as any as S.Schema<UpdateNetworkSecurityResponseEnforceAuth>;
 
 export type UpdateNetworkSecurityResponseIpRangesList = Array<string>;
 export const UpdateNetworkSecurityResponseIpRangesList = /*@__PURE__*/ S.Array(
@@ -1934,13 +1924,13 @@ export type UpdateNetworkSecurityResponseBlockedContentsItemResourceCase0 =
   | "bucket"
   | "kernel";
 export const UpdateNetworkSecurityResponseBlockedContentsItemResourceCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateNetworkSecurityResponseBlockedContentsItemResource =
   | UpdateNetworkSecurityResponseBlockedContentsItemResourceCase0
   | unknown;
 export const UpdateNetworkSecurityResponseBlockedContentsItemResource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateNetworkSecurityResponseBlockedContentsItemResource>;
+  S.Unknown as any as S.Schema<UpdateNetworkSecurityResponseBlockedContentsItemResource>;
 
 export interface UpdateNetworkSecurityResponseBlockedContentsItem {
   resource: UpdateNetworkSecurityResponseBlockedContentsItemResource;
@@ -1970,13 +1960,13 @@ export type UpdateNetworkSecurityResponseAllowedContentsItemResourceCase0 =
   | "bucket"
   | "kernel";
 export const UpdateNetworkSecurityResponseAllowedContentsItemResourceCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateNetworkSecurityResponseAllowedContentsItemResource =
   | UpdateNetworkSecurityResponseAllowedContentsItemResourceCase0
   | unknown;
 export const UpdateNetworkSecurityResponseAllowedContentsItemResource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateNetworkSecurityResponseAllowedContentsItemResource>;
+  S.Unknown as any as S.Schema<UpdateNetworkSecurityResponseAllowedContentsItemResource>;
 
 export interface UpdateNetworkSecurityResponseAllowedContentsItem {
   resource: UpdateNetworkSecurityResponseAllowedContentsItemResource;

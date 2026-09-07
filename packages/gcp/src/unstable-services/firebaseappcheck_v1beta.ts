@@ -243,7 +243,7 @@ export type GoogleFirebaseAppcheckV1betaPlayIntegrityConfigDeviceIntegrityMinDev
   | "MEETS_DEVICE_INTEGRITY"
   | "MEETS_STRONG_INTEGRITY";
 export const GoogleFirebaseAppcheckV1betaPlayIntegrityConfigDeviceIntegrityMinDeviceRecognitionLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A settings object specifying device integrity requirements for Android devices running your app. These settings correspond to requirements on the [**device integrity** field](https://developer.android.com/google/play/integrity/verdicts#device-integrity-field) obtained from the Play Integrity API. See the [default responses table](https://developer.android.com/google/play/integrity/setup#default) for a quick summary. Warning: There are also [conditional](https://developer.android.com/google/play/integrity/setup#conditional) as well as [optional](https://developer.android.com/google/play/integrity/setup#optional_device_information) responses that you can receive, but requires additional explicit opt-in from you. The App Check API is **not** responsible for any such opt-ins. The default values for these settings work for most apps, and are recommended. */
 export interface GoogleFirebaseAppcheckV1betaPlayIntegrityConfigDeviceIntegrity {
@@ -561,15 +561,13 @@ export type GoogleFirebaseAppcheckV1betaServiceReplayProtectionEnum =
   | "OFF"
   | "UNENFORCED"
   | "ENFORCED";
-export const GoogleFirebaseAppcheckV1betaServiceReplayProtectionEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirebaseAppcheckV1betaServiceReplayProtectionEnum = S.String;
 
 export type GoogleFirebaseAppcheckV1betaServiceEnforcementModeEnum =
   | "OFF"
   | "UNENFORCED"
   | "ENFORCED";
-export const GoogleFirebaseAppcheckV1betaServiceEnforcementModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirebaseAppcheckV1betaServiceEnforcementModeEnum = S.String;
 
 /** The enforcement configuration for a Firebase service supported by App Check. */
 export interface GoogleFirebaseAppcheckV1betaService {
@@ -695,7 +693,7 @@ export type GoogleFirebaseAppcheckV1betaResourcePolicyEnforcementModeEnum =
   | "UNENFORCED"
   | "ENFORCED";
 export const GoogleFirebaseAppcheckV1betaResourcePolicyEnforcementModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** App Check enforcement policy for a specific resource of a Google service supported by App Check. Note that this policy will override the service-level configuration. */
 export interface GoogleFirebaseAppcheckV1betaResourcePolicy {

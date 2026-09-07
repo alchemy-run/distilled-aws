@@ -1119,13 +1119,12 @@ export type GatewayCertificatesActivateResponseBindingStatus =
   | "available"
   | "pending_deletion"
   | "inactive";
-export const GatewayCertificatesActivateResponseBindingStatus =
-  /*@__PURE__*/ S.String;
+export const GatewayCertificatesActivateResponseBindingStatus = S.String;
 
 export type GatewayCertificatesActivateResponseType =
   | "custom"
   | "gateway_managed";
-export const GatewayCertificatesActivateResponseType = /*@__PURE__*/ S.String;
+export const GatewayCertificatesActivateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface ActivateGatewayCertificateResponse {
@@ -1314,7 +1313,7 @@ export const BulkPatchDlpEmailRulesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BulkPatchDlpEmailRulesRequest>;
 
 export type DlpEmailRulesBulkEditResponseActionAction = "Block";
-export const DlpEmailRulesBulkEditResponseActionAction = /*@__PURE__*/ S.String;
+export const DlpEmailRulesBulkEditResponseActionAction = S.String;
 
 export interface DlpEmailRulesBulkEditResponseAction {
   action: DlpEmailRulesBulkEditResponseActionAction;
@@ -1334,15 +1333,13 @@ export type DlpEmailRulesBulkEditResponseConditionsItemOperator =
   | "NotInList"
   | "MatchRegex"
   | "NotMatchRegex";
-export const DlpEmailRulesBulkEditResponseConditionsItemOperator =
-  /*@__PURE__*/ S.String;
+export const DlpEmailRulesBulkEditResponseConditionsItemOperator = S.String;
 
 export type DlpEmailRulesBulkEditResponseConditionsItemSelector =
   | "Recipients"
   | "Sender"
   | "DLPProfiles";
-export const DlpEmailRulesBulkEditResponseConditionsItemSelector =
-  /*@__PURE__*/ S.String;
+export const DlpEmailRulesBulkEditResponseConditionsItemSelector = S.String;
 
 export type DlpEmailRulesBulkEditResponseConditionsItemValueCase0List =
   Array<string>;
@@ -1709,7 +1706,7 @@ export type AccessAiControlsMcpPortalsCreateResponseServersItemAuthType =
   | "bearer"
   | "unauthenticated";
 export const AccessAiControlsMcpPortalsCreateResponseServersItemAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessAiControlsMcpPortalsCreateResponseServersItemPromptsItemMap =
   { [key: string]: unknown | undefined };
@@ -1948,8 +1945,7 @@ export type AccessAiControlsMcpServersCreateRequestAuthType =
   | "oauth"
   | "bearer"
   | "unauthenticated";
-export const AccessAiControlsMcpServersCreateRequestAuthType =
-  /*@__PURE__*/ S.String;
+export const AccessAiControlsMcpServersCreateRequestAuthType = S.String;
 
 export type AccessAiControlsMcpServersCreateRequestUpdatedPromptsItem =
   AccessAiControlsMcpPortalsCreateRequestServersItemUpdatedPromptsItem;
@@ -2036,8 +2032,7 @@ export type AccessAiControlsMcpServersCreateResponseAuthType =
   | "oauth"
   | "bearer"
   | "unauthenticated";
-export const AccessAiControlsMcpServersCreateResponseAuthType =
-  /*@__PURE__*/ S.String;
+export const AccessAiControlsMcpServersCreateResponseAuthType = S.String;
 
 export type AccessAiControlsMcpServersCreateResponsePromptsItemMap = {
   [key: string]: unknown | undefined;
@@ -2270,7 +2265,7 @@ export type AccessApplicationsCreateRequestTypeSelfHostedApplication =
   | "mcp_portal"
   | "proxy_endpoint";
 export const AccessApplicationsCreateRequestTypeSelfHostedApplication =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestTypeBrowserSSHApplication =
   | "self_hosted"
@@ -2288,7 +2283,7 @@ export type AccessApplicationsCreateRequestTypeBrowserSSHApplication =
   | "mcp_portal"
   | "proxy_endpoint";
 export const AccessApplicationsCreateRequestTypeBrowserSSHApplication =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestType =
   | AccessApplicationsCreateRequestTypeSelfHostedApplication
@@ -2323,7 +2318,7 @@ export type AccessApplicationsCreateRequestCorsHeadersSelfHostedApplicationAllow
   | "TRACE"
   | "PATCH";
 export const AccessApplicationsCreateRequestCorsHeadersSelfHostedApplicationAllowedMethodsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestCorsHeadersSelfHostedApplicationAllowedMethodsList =
   Array<
@@ -2398,7 +2393,7 @@ export const AccessApplicationsCreateRequestCustomPagesList =
 export type AccessApplicationsCreateRequestDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsCreateRequestDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestDestinationsItemPublicDestination {
   type?:
@@ -2424,12 +2419,12 @@ export type AccessApplicationsCreateRequestDestinationsItemPrivateDestinationL4P
   | "tcp"
   | "udp";
 export const AccessApplicationsCreateRequestDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsCreateRequestDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -2472,7 +2467,7 @@ export const AccessApplicationsCreateRequestDestinationsItemPrivateDestination =
 export type AccessApplicationsCreateRequestDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsCreateRequestDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -2497,7 +2492,7 @@ export const AccessApplicationsCreateRequestDestinationsItemViaMcpServerPortalDe
 export type AccessApplicationsCreateRequestDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsCreateRequestDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestDestinationsItemWorkerDestination {
   type: AccessApplicationsCreateRequestDestinationsItemWorkerDestinationType;
@@ -2518,7 +2513,7 @@ export const AccessApplicationsCreateRequestDestinationsItemWorkerDestination =
 export type AccessApplicationsCreateRequestDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsCreateRequestDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsCreateRequestDestinationsItemPreviewWorkerDestinationType;
@@ -2539,7 +2534,7 @@ export const AccessApplicationsCreateRequestDestinationsItemPreviewWorkerDestina
 export type AccessApplicationsCreateRequestDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsCreateRequestDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestDestinationsItemAllWorkersDestination {
   type: AccessApplicationsCreateRequestDestinationsItemAllWorkersDestinationType;
@@ -2557,7 +2552,7 @@ export const AccessApplicationsCreateRequestDestinationsItemAllWorkersDestinatio
 export type AccessApplicationsCreateRequestDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsCreateRequestDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsCreateRequestDestinationsItemAllPreviewWorkersDestinationType;
@@ -2605,7 +2600,7 @@ export type AccessApplicationsCreateRequestMfaConfigAllowedAuthenticatorsItem =
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateRequestMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestMfaConfigAllowedAuthenticatorsList =
   Array<
@@ -2777,7 +2772,7 @@ export const AccessApplicationsCreateRequestPoliciesSelfHostedApplicationItemCas
 export type AccessApplicationsCreateRequestPoliciesSelfHostedApplicationItemCase2ConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsCreateRequestPoliciesSelfHostedApplicationItemCase2ConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestPoliciesSelfHostedApplicationItemCase2ConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<
@@ -2792,7 +2787,7 @@ export const AccessApplicationsCreateRequestPoliciesSelfHostedApplicationItemCas
 export type AccessApplicationsCreateRequestPoliciesSelfHostedApplicationItemCase2ConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsCreateRequestPoliciesSelfHostedApplicationItemCase2ConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestPoliciesSelfHostedApplicationItemCase2ConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<
@@ -2850,7 +2845,7 @@ export type AccessApplicationsCreateRequestPoliciesSelfHostedApplicationItemCase
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateRequestPoliciesSelfHostedApplicationItemCase2MfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestPoliciesSelfHostedApplicationItemCase2MfaConfigAllowedAuthenticatorsList =
   Array<
@@ -2950,7 +2945,7 @@ export type AccessPoliciesCreateRequestDecision =
   | "deny"
   | "non_identity"
   | "bypass";
-export const AccessPoliciesCreateRequestDecision = /*@__PURE__*/ S.String;
+export const AccessPoliciesCreateRequestDecision = S.String;
 
 export interface AccessPoliciesCreateRequestIncludeItemGroupRuleGroup {
   /** The ID of a previously created Access group. */
@@ -3604,7 +3599,7 @@ export type AccessPoliciesCreateRequestIncludeItemAccessUserRiskScoreRuleUserRis
   | "high"
   | "unscored";
 export const AccessPoliciesCreateRequestIncludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesCreateRequestIncludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<
@@ -4458,7 +4453,7 @@ export type AccessApplicationsCreateRequestPoliciesInfrastructureApplicationItem
   | "non_identity"
   | "bypass";
 export const AccessApplicationsCreateRequestPoliciesInfrastructureApplicationItemDecision =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestPoliciesInfrastructureApplicationItemIncludeItemGroupRuleGroup =
   AccessPoliciesCreateRequestIncludeItemGroupRuleGroup;
@@ -4691,7 +4686,7 @@ export type AccessApplicationsCreateRequestPoliciesInfrastructureApplicationItem
   | "high"
   | "unscored";
 export const AccessApplicationsCreateRequestPoliciesInfrastructureApplicationItemIncludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestPoliciesInfrastructureApplicationItemIncludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<
@@ -5052,7 +5047,7 @@ export const AccessApplicationsCreateRequestPoliciesInfrastructureApplicationIte
 export type AccessApplicationsCreateRequestPoliciesInfrastructureApplicationItemMfaConfigAllowedAuthenticatorsItem =
   "piv_key";
 export const AccessApplicationsCreateRequestPoliciesInfrastructureApplicationItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestPoliciesInfrastructureApplicationItemMfaConfigAllowedAuthenticatorsList =
   Array<
@@ -5348,7 +5343,7 @@ export const AccessApplicationsCreateForAccountRequestPolicies =
 export type AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationHTTPBasicScheme =
   "httpbasic";
 export const AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationHTTPBasicScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationHTTPBasic {
   /** Password used to authenticate with the remote SCIM service. */
@@ -5374,7 +5369,7 @@ export const AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthe
 export type AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationOAuthBearerTokenScheme =
   "oauthbearertoken";
 export const AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationOAuthBearerTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationOAuthBearerToken {
   /** Token used to authenticate with the remote SCIM service. */
@@ -5397,7 +5392,7 @@ export const AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthe
 export type AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationOauth2Scheme =
   "oauth2";
 export const AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationOauth2Scheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationOauth2ScopesList =
   Array<string>;
@@ -5441,7 +5436,7 @@ export const AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthe
 export type AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -5516,7 +5511,7 @@ export const AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthe
 export type AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestScimConfigSelfHostedApplicationAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -5609,7 +5604,7 @@ export type AccessApplicationsCreateRequestScimConfigSelfHostedApplicationMappin
   | "strict"
   | "passthrough";
 export const AccessApplicationsCreateRequestScimConfigSelfHostedApplicationMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestScimConfigSelfHostedApplicationMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -5706,7 +5701,7 @@ export const AccessApplicationsCreateRequestScimConfigSaaSApplicationAuthenticat
 export type AccessApplicationsCreateRequestScimConfigSaaSApplicationAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateRequestScimConfigSaaSApplicationAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestScimConfigSaaSApplicationAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -5747,7 +5742,7 @@ export const AccessApplicationsCreateRequestScimConfigSaaSApplicationAuthenticat
 export type AccessApplicationsCreateRequestScimConfigSaaSApplicationAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateRequestScimConfigSaaSApplicationAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestScimConfigSaaSApplicationAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -5813,7 +5808,7 @@ export type AccessApplicationsCreateRequestScimConfigSaaSApplicationMappingsItem
   | "strict"
   | "passthrough";
 export const AccessApplicationsCreateRequestScimConfigSaaSApplicationMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestScimConfigSaaSApplicationMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -5930,14 +5925,14 @@ export type AccessApplicationsCreateRequestSaasAppSAMLSaaSAppAuthType =
   | "saml"
   | "oidc";
 export const AccessApplicationsCreateRequestSaasAppSAMLSaaSAppAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestSaasAppSAMLSaaSAppCustomAttributesItemNameFormat =
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:basic"
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:uri";
 export const AccessApplicationsCreateRequestSaasAppSAMLSaaSAppCustomAttributesItemNameFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestSaasAppSAMLSaaSAppCustomAttributesItemSourceNameByIdpItem {
   /** The UID of the IdP. */
@@ -6028,7 +6023,7 @@ export type AccessApplicationsCreateRequestSaasAppSAMLSaaSAppNameIdFormat =
   | "id"
   | "email";
 export const AccessApplicationsCreateRequestSaasAppSAMLSaaSAppNameIdFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateRequestSaasAppSAMLSaaSApp {
   /** Optional identifier indicating the authentication protocol used for the saas app. Required for OIDC. Default if unset is "saml" */
@@ -6100,7 +6095,7 @@ export type AccessApplicationsCreateRequestSaasAppOIDCSaaSAppAuthType =
   | "saml"
   | "oidc";
 export const AccessApplicationsCreateRequestSaasAppOIDCSaaSAppAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestSaasAppOIDCSaaSAppCustomClaimsItemScope =
   | "groups"
@@ -6108,7 +6103,7 @@ export type AccessApplicationsCreateRequestSaasAppOIDCSaaSAppCustomClaimsItemSco
   | "email"
   | "openid";
 export const AccessApplicationsCreateRequestSaasAppOIDCSaaSAppCustomClaimsItemScope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestSaasAppOIDCSaaSAppCustomClaimsItemSourceNameByIdpMap =
   { [key: string]: string | undefined };
@@ -6181,7 +6176,7 @@ export type AccessApplicationsCreateRequestSaasAppOIDCSaaSAppGrantTypesItem =
   | "hybrid"
   | "implicit";
 export const AccessApplicationsCreateRequestSaasAppOIDCSaaSAppGrantTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestSaasAppOIDCSaaSAppGrantTypesList =
   Array<
@@ -6243,7 +6238,7 @@ export type AccessApplicationsCreateRequestSaasAppOIDCSaaSAppScopesItem =
   | "email"
   | "profile";
 export const AccessApplicationsCreateRequestSaasAppOIDCSaaSAppScopesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestSaasAppOIDCSaaSAppScopesList = Array<
   AccessApplicationsCreateRequestSaasAppOIDCSaaSAppScopesItem | (string & {})
@@ -6423,7 +6418,7 @@ export const AccessApplicationsCreateRequestLandingPageDesign =
 export type AccessApplicationsCreateRequestTargetCriteriaInfrastructureApplicationItemProtocol =
   "SSH";
 export const AccessApplicationsCreateRequestTargetCriteriaInfrastructureApplicationItemProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestTargetCriteriaInfrastructureApplicationItemTargetAttributesValueList =
   Array<string>;
@@ -6480,7 +6475,7 @@ export const AccessApplicationsCreateRequestTargetCriteriaInfrastructureApplicat
 export type AccessApplicationsCreateRequestTargetCriteriaBrowserRDPApplicationItemProtocol =
   "RDP";
 export const AccessApplicationsCreateRequestTargetCriteriaBrowserRDPApplicationItemProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateRequestTargetCriteriaBrowserRDPApplicationItemTargetAttributesValueList =
   Array<string>;
@@ -6761,8 +6756,7 @@ export type AccessApplicationsCreateResultSelfHostedApplicationType =
   | "mcp"
   | "mcp_portal"
   | "proxy_endpoint";
-export const AccessApplicationsCreateResultSelfHostedApplicationType =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsCreateResultSelfHostedApplicationType = S.String;
 
 export type AccessApplicationsCreateResultSelfHostedApplicationAllowedIdpsList =
   Array<unknown>;
@@ -6789,7 +6783,7 @@ export type AccessApplicationsCreateResultSelfHostedApplicationCorsHeadersAllowe
   | "TRACE"
   | "PATCH";
 export const AccessApplicationsCreateResultSelfHostedApplicationCorsHeadersAllowedMethodsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSelfHostedApplicationCorsHeadersAllowedMethodsList =
   Array<AccessApplicationsCreateResultSelfHostedApplicationCorsHeadersAllowedMethodsItem>;
@@ -6870,7 +6864,7 @@ export const AccessApplicationsCreateResultSelfHostedApplicationCustomPagesList 
 export type AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemPublicDestinationType | null;
@@ -6896,12 +6890,12 @@ export type AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemP
   | "tcp"
   | "udp";
 export const AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -6942,7 +6936,7 @@ export const AccessApplicationsCreateResultSelfHostedApplicationDestinationsItem
 export type AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -6967,7 +6961,7 @@ export const AccessApplicationsCreateResultSelfHostedApplicationDestinationsItem
 export type AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemWorkerDestinationType;
@@ -6988,7 +6982,7 @@ export const AccessApplicationsCreateResultSelfHostedApplicationDestinationsItem
 export type AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -7009,7 +7003,7 @@ export const AccessApplicationsCreateResultSelfHostedApplicationDestinationsItem
 export type AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemAllWorkersDestinationType;
@@ -7027,7 +7021,7 @@ export const AccessApplicationsCreateResultSelfHostedApplicationDestinationsItem
 export type AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsCreateResultSelfHostedApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -7075,7 +7069,7 @@ export type AccessApplicationsCreateResultSelfHostedApplicationMfaConfigAllowedA
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateResultSelfHostedApplicationMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSelfHostedApplicationMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultSelfHostedApplicationMfaConfigAllowedAuthenticatorsItem>;
@@ -7239,7 +7233,7 @@ export const AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemAppr
 export type AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -7251,7 +7245,7 @@ export const AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemConn
 export type AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -7309,7 +7303,7 @@ export type AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemDecis
   | "non_identity"
   | "bypass";
 export const AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemDecision =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemExcludeItemGroupRuleGroup =
   AccessPoliciesCreateRequestIncludeItemGroupRuleGroup;
@@ -7568,7 +7562,7 @@ export type AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemExclu
   | "high"
   | "unscored";
 export const AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem>;
@@ -8129,7 +8123,7 @@ export type AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemMfaCo
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultSelfHostedApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -8468,7 +8462,7 @@ export const AccessApplicationsCreateResultSelfHostedApplicationPoliciesList =
 export type AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationHTTPBasicScheme =
   "httpbasic";
 export const AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationHTTPBasicScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationHTTPBasic {
   /** Password used to authenticate with the remote SCIM service. */
@@ -8494,7 +8488,7 @@ export const AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthen
 export type AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOAuthBearerTokenScheme =
   "oauthbearertoken";
 export const AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOAuthBearerTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOAuthBearerToken {
   /** Token used to authenticate with the remote SCIM service. */
@@ -8517,7 +8511,7 @@ export const AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthen
 export type AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOauth2Scheme =
   "oauth2";
 export const AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOauth2Scheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOauth2ScopesList =
   Array<string>;
@@ -8563,7 +8557,7 @@ export const AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthen
 export type AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -8642,7 +8636,7 @@ export const AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthen
 export type AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -8735,7 +8729,7 @@ export type AccessApplicationsCreateResultSelfHostedApplicationScimConfigMapping
   | "strict"
   | "passthrough";
 export const AccessApplicationsCreateResultSelfHostedApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSelfHostedApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -9074,7 +9068,7 @@ export const AccessApplicationsCreateResultSaaSApplicationPoliciesItemApprovalGr
 export type AccessApplicationsCreateResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsCreateResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsCreateResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -9086,7 +9080,7 @@ export const AccessApplicationsCreateResultSaaSApplicationPoliciesItemConnection
 export type AccessApplicationsCreateResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsCreateResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsCreateResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -9535,7 +9529,7 @@ export type AccessApplicationsCreateResultSaaSApplicationPoliciesItemMfaConfigAl
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateResultSaaSApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSaaSApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultSaaSApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -9874,14 +9868,14 @@ export type AccessApplicationsCreateResultSaaSApplicationSaasAppSAMLSaaSAppAuthT
   | "saml"
   | "oidc";
 export const AccessApplicationsCreateResultSaaSApplicationSaasAppSAMLSaaSAppAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSaaSApplicationSaasAppSAMLSaaSAppCustomAttributesItemNameFormat =
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:basic"
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:uri";
 export const AccessApplicationsCreateResultSaaSApplicationSaasAppSAMLSaaSAppCustomAttributesItemNameFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSaaSApplicationSaasAppSAMLSaaSAppCustomAttributesItemSourceNameByIdpItem {
   /** The UID of the IdP. */
@@ -9974,7 +9968,7 @@ export type AccessApplicationsCreateResultSaaSApplicationSaasAppSAMLSaaSAppNameI
   | "id"
   | "email";
 export const AccessApplicationsCreateResultSaaSApplicationSaasAppSAMLSaaSAppNameIdFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSaaSApplicationSaasAppSAMLSaaSApp {
   /** Optional identifier indicating the authentication protocol used for the saas app. Required for OIDC. Default if unset is "saml" */
@@ -10043,7 +10037,7 @@ export type AccessApplicationsCreateResultSaaSApplicationSaasAppOIDCSaaSAppAuthT
   | "saml"
   | "oidc";
 export const AccessApplicationsCreateResultSaaSApplicationSaasAppOIDCSaaSAppAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSaaSApplicationSaasAppOIDCSaaSAppCustomClaimsItemScope =
   | "groups"
@@ -10051,7 +10045,7 @@ export type AccessApplicationsCreateResultSaaSApplicationSaasAppOIDCSaaSAppCusto
   | "email"
   | "openid";
 export const AccessApplicationsCreateResultSaaSApplicationSaasAppOIDCSaaSAppCustomClaimsItemScope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSaaSApplicationSaasAppOIDCSaaSAppCustomClaimsItemSourceNameByIdpMap =
   { [key: string]: string | undefined };
@@ -10126,7 +10120,7 @@ export type AccessApplicationsCreateResultSaaSApplicationSaasAppOIDCSaaSAppGrant
   | "hybrid"
   | "implicit";
 export const AccessApplicationsCreateResultSaaSApplicationSaasAppOIDCSaaSAppGrantTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSaaSApplicationSaasAppOIDCSaaSAppGrantTypesList =
   Array<AccessApplicationsCreateResultSaaSApplicationSaasAppOIDCSaaSAppGrantTypesItem>;
@@ -10187,7 +10181,7 @@ export type AccessApplicationsCreateResultSaaSApplicationSaasAppOIDCSaaSAppScope
   | "email"
   | "profile";
 export const AccessApplicationsCreateResultSaaSApplicationSaasAppOIDCSaaSAppScopesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultSaaSApplicationSaasAppOIDCSaaSAppScopesList =
   Array<AccessApplicationsCreateResultSaaSApplicationSaasAppOIDCSaaSAppScopesItem>;
@@ -10340,7 +10334,7 @@ export const AccessApplicationsCreateResultSaaSApplicationScimConfigAuthenticati
 export type AccessApplicationsCreateResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -10381,7 +10375,7 @@ export const AccessApplicationsCreateResultSaaSApplicationScimConfigAuthenticati
 export type AccessApplicationsCreateResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -10447,7 +10441,7 @@ export type AccessApplicationsCreateResultSaaSApplicationScimConfigMappingsItemS
   | "strict"
   | "passthrough";
 export const AccessApplicationsCreateResultSaaSApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultSaaSApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -10624,8 +10618,7 @@ export type AccessApplicationsCreateResultBrowserSSHApplicationType =
   | "mcp"
   | "mcp_portal"
   | "proxy_endpoint";
-export const AccessApplicationsCreateResultBrowserSSHApplicationType =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsCreateResultBrowserSSHApplicationType = S.String;
 
 export type AccessApplicationsCreateResultBrowserSSHApplicationAllowedIdpsList =
   Array<unknown>;
@@ -10644,7 +10637,7 @@ export const AccessApplicationsCreateResultBrowserSSHApplicationCustomPagesList 
 export type AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemPublicDestinationType | null;
@@ -10670,12 +10663,12 @@ export type AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemP
   | "tcp"
   | "udp";
 export const AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -10716,7 +10709,7 @@ export const AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItem
 export type AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -10741,7 +10734,7 @@ export const AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItem
 export type AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemWorkerDestinationType;
@@ -10762,7 +10755,7 @@ export const AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItem
 export type AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -10783,7 +10776,7 @@ export const AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItem
 export type AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemAllWorkersDestinationType;
@@ -10801,7 +10794,7 @@ export const AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItem
 export type AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsCreateResultBrowserSSHApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -10849,7 +10842,7 @@ export type AccessApplicationsCreateResultBrowserSSHApplicationMfaConfigAllowedA
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateResultBrowserSSHApplicationMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserSSHApplicationMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultBrowserSSHApplicationMfaConfigAllowedAuthenticatorsItem>;
@@ -10997,7 +10990,7 @@ export const AccessApplicationsCreateResultBrowserSSHApplicationPoliciesItemAppr
 export type AccessApplicationsCreateResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsCreateResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsCreateResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -11009,7 +11002,7 @@ export const AccessApplicationsCreateResultBrowserSSHApplicationPoliciesItemConn
 export type AccessApplicationsCreateResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsCreateResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsCreateResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -11458,7 +11451,7 @@ export type AccessApplicationsCreateResultBrowserSSHApplicationPoliciesItemMfaCo
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateResultBrowserSSHApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserSSHApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultBrowserSSHApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -11812,7 +11805,7 @@ export const AccessApplicationsCreateResultBrowserSSHApplicationScimConfigAuthen
 export type AccessApplicationsCreateResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -11853,7 +11846,7 @@ export const AccessApplicationsCreateResultBrowserSSHApplicationScimConfigAuthen
 export type AccessApplicationsCreateResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -11919,7 +11912,7 @@ export type AccessApplicationsCreateResultBrowserSSHApplicationScimConfigMapping
   | "strict"
   | "passthrough";
 export const AccessApplicationsCreateResultBrowserSSHApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserSSHApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -12212,8 +12205,7 @@ export type AccessApplicationsCreateResultBrowserVNCApplicationType =
   | "mcp"
   | "mcp_portal"
   | "proxy_endpoint";
-export const AccessApplicationsCreateResultBrowserVNCApplicationType =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsCreateResultBrowserVNCApplicationType = S.String;
 
 export type AccessApplicationsCreateResultBrowserVNCApplicationAllowedIdpsList =
   Array<unknown>;
@@ -12232,7 +12224,7 @@ export const AccessApplicationsCreateResultBrowserVNCApplicationCustomPagesList 
 export type AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemPublicDestinationType | null;
@@ -12258,12 +12250,12 @@ export type AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemP
   | "tcp"
   | "udp";
 export const AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -12304,7 +12296,7 @@ export const AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItem
 export type AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -12329,7 +12321,7 @@ export const AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItem
 export type AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemWorkerDestinationType;
@@ -12350,7 +12342,7 @@ export const AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItem
 export type AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -12371,7 +12363,7 @@ export const AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItem
 export type AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemAllWorkersDestinationType;
@@ -12389,7 +12381,7 @@ export const AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItem
 export type AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsCreateResultBrowserVNCApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -12437,7 +12429,7 @@ export type AccessApplicationsCreateResultBrowserVNCApplicationMfaConfigAllowedA
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateResultBrowserVNCApplicationMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserVNCApplicationMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultBrowserVNCApplicationMfaConfigAllowedAuthenticatorsItem>;
@@ -12585,7 +12577,7 @@ export const AccessApplicationsCreateResultBrowserVNCApplicationPoliciesItemAppr
 export type AccessApplicationsCreateResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsCreateResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsCreateResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -12597,7 +12589,7 @@ export const AccessApplicationsCreateResultBrowserVNCApplicationPoliciesItemConn
 export type AccessApplicationsCreateResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsCreateResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsCreateResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -13046,7 +13038,7 @@ export type AccessApplicationsCreateResultBrowserVNCApplicationPoliciesItemMfaCo
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateResultBrowserVNCApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserVNCApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultBrowserVNCApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -13400,7 +13392,7 @@ export const AccessApplicationsCreateResultBrowserVNCApplicationScimConfigAuthen
 export type AccessApplicationsCreateResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -13441,7 +13433,7 @@ export const AccessApplicationsCreateResultBrowserVNCApplicationScimConfigAuthen
 export type AccessApplicationsCreateResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -13507,7 +13499,7 @@ export type AccessApplicationsCreateResultBrowserVNCApplicationScimConfigMapping
   | "strict"
   | "passthrough";
 export const AccessApplicationsCreateResultBrowserVNCApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserVNCApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -13801,7 +13793,7 @@ export type AccessApplicationsCreateResultAppLauncherApplicationType =
   | "mcp_portal"
   | "proxy_endpoint";
 export const AccessApplicationsCreateResultAppLauncherApplicationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultAppLauncherApplicationAllowedIdpsList =
   Array<unknown>;
@@ -13900,7 +13892,7 @@ export const AccessApplicationsCreateResultAppLauncherApplicationPoliciesItemApp
 export type AccessApplicationsCreateResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsCreateResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsCreateResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -13912,7 +13904,7 @@ export const AccessApplicationsCreateResultAppLauncherApplicationPoliciesItemCon
 export type AccessApplicationsCreateResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsCreateResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsCreateResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -14361,7 +14353,7 @@ export type AccessApplicationsCreateResultAppLauncherApplicationPoliciesItemMfaC
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateResultAppLauncherApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultAppLauncherApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultAppLauncherApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -14851,7 +14843,7 @@ export const AccessApplicationsCreateResultDeviceEnrollmentPermissionsApplicatio
 export type AccessApplicationsCreateResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsCreateResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsCreateResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -14863,7 +14855,7 @@ export const AccessApplicationsCreateResultDeviceEnrollmentPermissionsApplicatio
 export type AccessApplicationsCreateResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsCreateResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsCreateResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -15312,7 +15304,7 @@ export type AccessApplicationsCreateResultDeviceEnrollmentPermissionsApplication
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateResultDeviceEnrollmentPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultDeviceEnrollmentPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultDeviceEnrollmentPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -15771,7 +15763,7 @@ export const AccessApplicationsCreateResultBrowserIsolationPermissionsApplicatio
 export type AccessApplicationsCreateResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsCreateResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsCreateResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -15783,7 +15775,7 @@ export const AccessApplicationsCreateResultBrowserIsolationPermissionsApplicatio
 export type AccessApplicationsCreateResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsCreateResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsCreateResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -16232,7 +16224,7 @@ export type AccessApplicationsCreateResultBrowserIsolationPermissionsApplication
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateResultBrowserIsolationPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserIsolationPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultBrowserIsolationPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -16691,7 +16683,7 @@ export const AccessApplicationsCreateResultGatewayIdentityProxyEndpointApplicati
 export type AccessApplicationsCreateResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsCreateResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsCreateResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -16703,7 +16695,7 @@ export const AccessApplicationsCreateResultGatewayIdentityProxyEndpointApplicati
 export type AccessApplicationsCreateResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsCreateResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsCreateResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -17152,7 +17144,7 @@ export type AccessApplicationsCreateResultGatewayIdentityProxyEndpointApplicatio
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateResultGatewayIdentityProxyEndpointApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultGatewayIdentityProxyEndpointApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultGatewayIdentityProxyEndpointApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -17597,7 +17589,7 @@ export const AccessApplicationsCreateResultBookmarkApplicationPoliciesItemApprov
 export type AccessApplicationsCreateResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsCreateResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsCreateResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -17609,7 +17601,7 @@ export const AccessApplicationsCreateResultBookmarkApplicationPoliciesItemConnec
 export type AccessApplicationsCreateResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsCreateResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsCreateResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -18058,7 +18050,7 @@ export type AccessApplicationsCreateResultBookmarkApplicationPoliciesItemMfaConf
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateResultBookmarkApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBookmarkApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultBookmarkApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -18447,7 +18439,7 @@ export const AccessApplicationsCreateResultBookmarkApplication =
 export type AccessApplicationsCreateResultInfrastructureApplicationTargetCriteriaItemProtocol =
   "SSH";
 export const AccessApplicationsCreateResultInfrastructureApplicationTargetCriteriaItemProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultInfrastructureApplicationTargetCriteriaItemTargetAttributesValueList =
   Array<string>;
@@ -18939,7 +18931,7 @@ export const AccessApplicationsCreateResultInfrastructureApplicationPoliciesItem
 export type AccessApplicationsCreateResultInfrastructureApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
   "piv_key";
 export const AccessApplicationsCreateResultInfrastructureApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultInfrastructureApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultInfrastructureApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -19276,7 +19268,7 @@ export const AccessApplicationsCreateResultInfrastructureApplication =
 export type AccessApplicationsCreateResultBrowserRDPApplicationTargetCriteriaItemProtocol =
   "RDP";
 export const AccessApplicationsCreateResultBrowserRDPApplicationTargetCriteriaItemProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserRDPApplicationTargetCriteriaItemTargetAttributesValueList =
   Array<string>;
@@ -19345,7 +19337,7 @@ export const AccessApplicationsCreateResultBrowserRDPApplicationCustomPagesList 
 export type AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemPublicDestinationType | null;
@@ -19371,12 +19363,12 @@ export type AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemP
   | "tcp"
   | "udp";
 export const AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -19417,7 +19409,7 @@ export const AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItem
 export type AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -19442,7 +19434,7 @@ export const AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItem
 export type AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemWorkerDestinationType;
@@ -19463,7 +19455,7 @@ export const AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItem
 export type AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -19484,7 +19476,7 @@ export const AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItem
 export type AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemAllWorkersDestinationType;
@@ -19502,7 +19494,7 @@ export const AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItem
 export type AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsCreateResultBrowserRDPApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -19550,7 +19542,7 @@ export type AccessApplicationsCreateResultBrowserRDPApplicationMfaConfigAllowedA
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateResultBrowserRDPApplicationMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserRDPApplicationMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultBrowserRDPApplicationMfaConfigAllowedAuthenticatorsItem>;
@@ -19698,7 +19690,7 @@ export const AccessApplicationsCreateResultBrowserRDPApplicationPoliciesItemAppr
 export type AccessApplicationsCreateResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsCreateResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsCreateResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -19710,7 +19702,7 @@ export const AccessApplicationsCreateResultBrowserRDPApplicationPoliciesItemConn
 export type AccessApplicationsCreateResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsCreateResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsCreateResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -20159,7 +20151,7 @@ export type AccessApplicationsCreateResultBrowserRDPApplicationPoliciesItemMfaCo
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateResultBrowserRDPApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultBrowserRDPApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultBrowserRDPApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -20513,7 +20505,7 @@ export const AccessApplicationsCreateResultBrowserRDPApplicationScimConfigAuthen
 export type AccessApplicationsCreateResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -20554,7 +20546,7 @@ export const AccessApplicationsCreateResultBrowserRDPApplicationScimConfigAuthen
 export type AccessApplicationsCreateResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -20620,7 +20612,7 @@ export type AccessApplicationsCreateResultBrowserRDPApplicationScimConfigMapping
   | "strict"
   | "passthrough";
 export const AccessApplicationsCreateResultBrowserRDPApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultBrowserRDPApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -20920,7 +20912,7 @@ export const AccessApplicationsCreateResultMcpServerApplicationCustomPagesList =
 export type AccessApplicationsCreateResultMcpServerApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsCreateResultMcpServerApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsCreateResultMcpServerApplicationDestinationsItemPublicDestinationType | null;
@@ -20946,12 +20938,12 @@ export type AccessApplicationsCreateResultMcpServerApplicationDestinationsItemPr
   | "tcp"
   | "udp";
 export const AccessApplicationsCreateResultMcpServerApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultMcpServerApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsCreateResultMcpServerApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -20992,7 +20984,7 @@ export const AccessApplicationsCreateResultMcpServerApplicationDestinationsItemP
 export type AccessApplicationsCreateResultMcpServerApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsCreateResultMcpServerApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -21017,7 +21009,7 @@ export const AccessApplicationsCreateResultMcpServerApplicationDestinationsItemV
 export type AccessApplicationsCreateResultMcpServerApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsCreateResultMcpServerApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsCreateResultMcpServerApplicationDestinationsItemWorkerDestinationType;
@@ -21038,7 +21030,7 @@ export const AccessApplicationsCreateResultMcpServerApplicationDestinationsItemW
 export type AccessApplicationsCreateResultMcpServerApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsCreateResultMcpServerApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsCreateResultMcpServerApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -21059,7 +21051,7 @@ export const AccessApplicationsCreateResultMcpServerApplicationDestinationsItemP
 export type AccessApplicationsCreateResultMcpServerApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsCreateResultMcpServerApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsCreateResultMcpServerApplicationDestinationsItemAllWorkersDestinationType;
@@ -21077,7 +21069,7 @@ export const AccessApplicationsCreateResultMcpServerApplicationDestinationsItemA
 export type AccessApplicationsCreateResultMcpServerApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsCreateResultMcpServerApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsCreateResultMcpServerApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -21234,7 +21226,7 @@ export const AccessApplicationsCreateResultMcpServerApplicationPoliciesItemAppro
 export type AccessApplicationsCreateResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsCreateResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsCreateResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -21246,7 +21238,7 @@ export const AccessApplicationsCreateResultMcpServerApplicationPoliciesItemConne
 export type AccessApplicationsCreateResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsCreateResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsCreateResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -21695,7 +21687,7 @@ export type AccessApplicationsCreateResultMcpServerApplicationPoliciesItemMfaCon
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateResultMcpServerApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultMcpServerApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultMcpServerApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -22049,7 +22041,7 @@ export const AccessApplicationsCreateResultMcpServerApplicationScimConfigAuthent
 export type AccessApplicationsCreateResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -22090,7 +22082,7 @@ export const AccessApplicationsCreateResultMcpServerApplicationScimConfigAuthent
 export type AccessApplicationsCreateResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -22156,7 +22148,7 @@ export type AccessApplicationsCreateResultMcpServerApplicationScimConfigMappings
   | "strict"
   | "passthrough";
 export const AccessApplicationsCreateResultMcpServerApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -22378,7 +22370,7 @@ export const AccessApplicationsCreateResultMcpServerPortalApplicationCustomPages
 export type AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemPublicDestinationType | null;
@@ -22404,12 +22396,12 @@ export type AccessApplicationsCreateResultMcpServerPortalApplicationDestinations
   | "tcp"
   | "udp";
 export const AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -22450,7 +22442,7 @@ export const AccessApplicationsCreateResultMcpServerPortalApplicationDestination
 export type AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -22475,7 +22467,7 @@ export const AccessApplicationsCreateResultMcpServerPortalApplicationDestination
 export type AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemWorkerDestinationType;
@@ -22496,7 +22488,7 @@ export const AccessApplicationsCreateResultMcpServerPortalApplicationDestination
 export type AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -22517,7 +22509,7 @@ export const AccessApplicationsCreateResultMcpServerPortalApplicationDestination
 export type AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemAllWorkersDestinationType;
@@ -22535,7 +22527,7 @@ export const AccessApplicationsCreateResultMcpServerPortalApplicationDestination
 export type AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsCreateResultMcpServerPortalApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -22692,7 +22684,7 @@ export const AccessApplicationsCreateResultMcpServerPortalApplicationPoliciesIte
 export type AccessApplicationsCreateResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsCreateResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsCreateResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -22704,7 +22696,7 @@ export const AccessApplicationsCreateResultMcpServerPortalApplicationPoliciesIte
 export type AccessApplicationsCreateResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsCreateResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsCreateResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -23153,7 +23145,7 @@ export type AccessApplicationsCreateResultMcpServerPortalApplicationPoliciesItem
   | "biometrics"
   | "security_key";
 export const AccessApplicationsCreateResultMcpServerPortalApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsCreateResultMcpServerPortalApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsCreateResultMcpServerPortalApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -23507,7 +23499,7 @@ export const AccessApplicationsCreateResultMcpServerPortalApplicationScimConfigA
 export type AccessApplicationsCreateResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -23548,7 +23540,7 @@ export const AccessApplicationsCreateResultMcpServerPortalApplicationScimConfigA
 export type AccessApplicationsCreateResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsCreateResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -23614,7 +23606,7 @@ export type AccessApplicationsCreateResultMcpServerPortalApplicationScimConfigMa
   | "strict"
   | "passthrough";
 export const AccessApplicationsCreateResultMcpServerPortalApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsCreateResultMcpServerPortalApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -24434,7 +24426,7 @@ export const AccessApplicationsPoliciesCreateRequestApprovalGroupsList =
 export type AccessApplicationsPoliciesCreateRequestConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsPoliciesCreateRequestConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesCreateRequestConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<
@@ -24449,7 +24441,7 @@ export const AccessApplicationsPoliciesCreateRequestConnectionRulesRdpAllowedCli
 export type AccessApplicationsPoliciesCreateRequestConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsPoliciesCreateRequestConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesCreateRequestConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<
@@ -24505,7 +24497,7 @@ export type AccessApplicationsPoliciesCreateRequestMfaConfigAllowedAuthenticator
   | "biometrics"
   | "security_key";
 export const AccessApplicationsPoliciesCreateRequestMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesCreateRequestMfaConfigAllowedAuthenticatorsList =
   Array<
@@ -24651,7 +24643,7 @@ export const AccessApplicationsPoliciesCreateResponseApprovalGroupsList =
 export type AccessApplicationsPoliciesCreateResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsPoliciesCreateResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesCreateResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsPoliciesCreateResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -24663,7 +24655,7 @@ export const AccessApplicationsPoliciesCreateResponseConnectionRulesRdpAllowedCl
 export type AccessApplicationsPoliciesCreateResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsPoliciesCreateResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesCreateResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsPoliciesCreateResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -24716,8 +24708,7 @@ export type AccessApplicationsPoliciesCreateResponseDecision =
   | "deny"
   | "non_identity"
   | "bypass";
-export const AccessApplicationsPoliciesCreateResponseDecision =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsPoliciesCreateResponseDecision = S.String;
 
 export type AccessApplicationsPoliciesCreateResponseExcludeItemGroupRuleGroup =
   AccessPoliciesCreateRequestIncludeItemGroupRuleGroup;
@@ -24950,7 +24941,7 @@ export type AccessApplicationsPoliciesCreateResponseExcludeItemAccessUserRiskSco
   | "high"
   | "unscored";
 export const AccessApplicationsPoliciesCreateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesCreateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<AccessApplicationsPoliciesCreateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem>;
@@ -25269,7 +25260,7 @@ export type AccessApplicationsPoliciesCreateResponseMfaConfigAllowedAuthenticato
   | "biometrics"
   | "security_key";
 export const AccessApplicationsPoliciesCreateResponseMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesCreateResponseMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsPoliciesCreateResponseMfaConfigAllowedAuthenticatorsItem>;
@@ -25664,7 +25655,7 @@ export type AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0Decision 
   | "non_identity"
   | "bypass";
 export const AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0Decision =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0IncludeItemGroupRuleGroup =
   AccessPoliciesCreateRequestIncludeItemGroupRuleGroup;
@@ -25897,7 +25888,7 @@ export type AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0IncludeIt
   | "high"
   | "unscored";
 export const AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0IncludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0IncludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<
@@ -26059,7 +26050,7 @@ export const AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0Approval
 export type AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0ConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0ConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0ConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<
@@ -26074,7 +26065,7 @@ export const AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0Connecti
 export type AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0ConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0ConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0ConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<
@@ -26328,7 +26319,7 @@ export type AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0MfaConfig
   | "biometrics"
   | "security_key";
 export const AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0MfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPolicyTestsCreateRequestPoliciesItemCase0MfaConfigAllowedAuthenticatorsList =
   Array<
@@ -26693,8 +26684,7 @@ export const CreateAccessApplicationPolicyTestRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateAccessApplicationPolicyTestRequest>;
 
 export type AccessApplicationsPolicyTestsCreateResponseStatus = "success";
-export const AccessApplicationsPolicyTestsCreateResponseStatus =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsPolicyTestsCreateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateAccessApplicationPolicyTestResponse {
@@ -26891,7 +26881,7 @@ export const CreateAccessCertificateForZoneRequest = /*@__PURE__*/ S.suspend(
 export type AccessCustomPagesCreateRequestType =
   | "identity_denied"
   | "forbidden";
-export const AccessCustomPagesCreateRequestType = /*@__PURE__*/ S.String;
+export const AccessCustomPagesCreateRequestType = S.String;
 
 export interface CreateAccessCustomPageRequest {
   /** Identifier. */
@@ -26925,7 +26915,7 @@ export const CreateAccessCustomPageRequest = /*@__PURE__*/ S.suspend(() =>
 export type AccessCustomPagesCreateResponseType =
   | "identity_denied"
   | "forbidden";
-export const AccessCustomPagesCreateResponseType = /*@__PURE__*/ S.String;
+export const AccessCustomPagesCreateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateAccessCustomPageResponse {
@@ -27213,7 +27203,7 @@ export type AccessGroupsCreateRequestIncludeItemAccessUserRiskScoreRuleUserRiskS
   | "high"
   | "unscored";
 export const AccessGroupsCreateRequestIncludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessGroupsCreateRequestIncludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<
@@ -27598,7 +27588,7 @@ export type AccessGroupsCreateResponseExcludeItemAccessUserRiskScoreRuleUserRisk
   | "high"
   | "unscored";
 export const AccessGroupsCreateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessGroupsCreateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<AccessGroupsCreateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem>;
@@ -28294,7 +28284,7 @@ export const CreateAccessInfrastructureTargetResponse = /*@__PURE__*/ S.suspend(
 export type AccessPoliciesCreateRequestConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessPoliciesCreateRequestConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesCreateRequestConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<
@@ -28309,7 +28299,7 @@ export const AccessPoliciesCreateRequestConnectionRulesRdpAllowedClipboardLocalT
 export type AccessPoliciesCreateRequestConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessPoliciesCreateRequestConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesCreateRequestConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<
@@ -28363,7 +28353,7 @@ export type AccessPoliciesCreateRequestMfaConfigAllowedAuthenticatorsItem =
   | "biometrics"
   | "security_key";
 export const AccessPoliciesCreateRequestMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesCreateRequestMfaConfigAllowedAuthenticatorsList =
   Array<
@@ -28513,7 +28503,7 @@ export const AccessPoliciesCreateResponseApprovalGroupsList =
 export type AccessPoliciesCreateResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessPoliciesCreateResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesCreateResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessPoliciesCreateResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -28525,7 +28515,7 @@ export const AccessPoliciesCreateResponseConnectionRulesRdpAllowedClipboardLocal
 export type AccessPoliciesCreateResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessPoliciesCreateResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesCreateResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessPoliciesCreateResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -28576,7 +28566,7 @@ export type AccessPoliciesCreateResponseDecision =
   | "deny"
   | "non_identity"
   | "bypass";
-export const AccessPoliciesCreateResponseDecision = /*@__PURE__*/ S.String;
+export const AccessPoliciesCreateResponseDecision = S.String;
 
 export type AccessPoliciesCreateResponseExcludeItemGroupRuleGroup =
   AccessPoliciesCreateRequestIncludeItemGroupRuleGroup;
@@ -28809,7 +28799,7 @@ export type AccessPoliciesCreateResponseExcludeItemAccessUserRiskScoreRuleUserRi
   | "high"
   | "unscored";
 export const AccessPoliciesCreateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesCreateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<AccessPoliciesCreateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem>;
@@ -29126,7 +29116,7 @@ export type AccessPoliciesCreateResponseMfaConfigAllowedAuthenticatorsItem =
   | "biometrics"
   | "security_key";
 export const AccessPoliciesCreateResponseMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesCreateResponseMfaConfigAllowedAuthenticatorsList =
   Array<AccessPoliciesCreateResponseMfaConfigAllowedAuthenticatorsItem>;
@@ -29650,7 +29640,7 @@ export type CreateCasbIntegrationRequestApplication =
   | "MICROSOFT_INTERNAL"
   | "SALESFORCE"
   | "SLACK";
-export const CreateCasbIntegrationRequestApplication = /*@__PURE__*/ S.String;
+export const CreateCasbIntegrationRequestApplication = S.String;
 
 export type CreateCasbIntegrationRequestCredentialsMap = {
   [key: string]: unknown | undefined;
@@ -29677,7 +29667,7 @@ export type CreateCasbIntegrationRequestUseCasesItem =
   | "casb"
   | "ces"
   | "auto_remediation";
-export const CreateCasbIntegrationRequestUseCasesItem = /*@__PURE__*/ S.String;
+export const CreateCasbIntegrationRequestUseCasesItem = S.String;
 
 export type CreateCasbIntegrationRequestUseCasesList = Array<
   CreateCasbIntegrationRequestUseCasesItem | (string & {})
@@ -29988,10 +29978,10 @@ export const CreateDeviceDeploymentGroupResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDeviceDeploymentGroupResponse>;
 
 export type DevicesDexTestsCreateRequestDataKind = "http" | "traceroute";
-export const DevicesDexTestsCreateRequestDataKind = /*@__PURE__*/ S.String;
+export const DevicesDexTestsCreateRequestDataKind = S.String;
 
 export type DevicesDexTestsCreateRequestDataMethod = "GET";
-export const DevicesDexTestsCreateRequestDataMethod = /*@__PURE__*/ S.String;
+export const DevicesDexTestsCreateRequestDataMethod = S.String;
 
 export interface DevicesDexTestsCreateRequestData {
   /** The desired endpoint to test. */
@@ -30082,10 +30072,10 @@ export const CreateDeviceDexTestRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDeviceDexTestRequest>;
 
 export type DevicesDexTestsCreateResponseDataKind = "http" | "traceroute";
-export const DevicesDexTestsCreateResponseDataKind = /*@__PURE__*/ S.String;
+export const DevicesDexTestsCreateResponseDataKind = S.String;
 
 export type DevicesDexTestsCreateResponseDataMethod = "GET";
-export const DevicesDexTestsCreateResponseDataMethod = /*@__PURE__*/ S.String;
+export const DevicesDexTestsCreateResponseDataMethod = S.String;
 
 export interface DevicesDexTestsCreateResponseData {
   /** The desired endpoint to test. */
@@ -30258,7 +30248,7 @@ export const DevicesNetworksCreateRequestConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DevicesNetworksCreateRequestConfig>;
 
 export type DevicesNetworksCreateRequestType = "tls";
-export const DevicesNetworksCreateRequestType = /*@__PURE__*/ S.String;
+export const DevicesNetworksCreateRequestType = S.String;
 
 export interface CreateDeviceNetworkRequest {
   accountId: string;
@@ -30304,7 +30294,7 @@ export const DevicesNetworksCreateResponseConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DevicesNetworksCreateResponseConfig>;
 
 export type DevicesNetworksCreateResponseType = "tls";
-export const DevicesNetworksCreateResponseType = /*@__PURE__*/ S.String;
+export const DevicesNetworksCreateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateDeviceNetworkResponse {
@@ -31110,14 +31100,14 @@ export type DevicesPostureCreateRequestType =
   | "workspace_one"
   | "sentinelone_s2s"
   | "custom_s2s";
-export const DevicesPostureCreateRequestType = /*@__PURE__*/ S.String;
+export const DevicesPostureCreateRequestType = S.String;
 
 export type DevicesPostureCreateRequestInputFileInputOperatingSystem =
   | "windows"
   | "linux"
   | "mac";
 export const DevicesPostureCreateRequestInputFileInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateRequestInputFileInput {
   /** Operating system. */
@@ -31154,7 +31144,7 @@ export type DevicesPostureCreateRequestInputUniqueClientIDInputOperatingSystem =
   | "ios"
   | "chromeos";
 export const DevicesPostureCreateRequestInputUniqueClientIDInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateRequestInputUniqueClientIDInput {
   /** List ID. */
@@ -31180,7 +31170,7 @@ export const DevicesPostureCreateRequestInputUniqueClientIDInput =
 export type DevicesPostureCreateRequestInputDomainJoinedInputOperatingSystem =
   "windows";
 export const DevicesPostureCreateRequestInputDomainJoinedInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateRequestInputDomainJoinedInput {
   /** Operating System. */
@@ -31204,7 +31194,7 @@ export const DevicesPostureCreateRequestInputDomainJoinedInput =
 export type DevicesPostureCreateRequestInputOSVersionInputOperatingSystem =
   "windows";
 export const DevicesPostureCreateRequestInputOSVersionInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureCreateRequestInputOSVersionInputOperator =
   | "<"
@@ -31212,8 +31202,7 @@ export type DevicesPostureCreateRequestInputOSVersionInputOperator =
   | ">"
   | ">="
   | "==";
-export const DevicesPostureCreateRequestInputOSVersionInputOperator =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureCreateRequestInputOSVersionInputOperator = S.String;
 
 export interface DevicesPostureCreateRequestInputOSVersionInput {
   /** Operating System. */
@@ -31252,7 +31241,7 @@ export type DevicesPostureCreateRequestInputFirewallInputOperatingSystem =
   | "windows"
   | "mac";
 export const DevicesPostureCreateRequestInputFirewallInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateRequestInputFirewallInput {
   /** Enabled. */
@@ -31280,7 +31269,7 @@ export type DevicesPostureCreateRequestInputSentineloneInputOperatingSystem =
   | "linux"
   | "mac";
 export const DevicesPostureCreateRequestInputSentineloneInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateRequestInputSentineloneInput {
   /** Operating system. */
@@ -31314,7 +31303,7 @@ export type DevicesPostureCreateRequestInputTeamsDevicesCarbonblackInputRequestO
   | "linux"
   | "mac";
 export const DevicesPostureCreateRequestInputTeamsDevicesCarbonblackInputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateRequestInputTeamsDevicesCarbonblackInputRequest {
   /** Operating system. */
@@ -31388,7 +31377,7 @@ export type DevicesPostureCreateRequestInputTeamsDevicesApplicationInputRequestO
   | "linux"
   | "mac";
 export const DevicesPostureCreateRequestInputTeamsDevicesApplicationInputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateRequestInputTeamsDevicesApplicationInputRequest {
   /** Operating system. */
@@ -31439,13 +31428,13 @@ export type DevicesPostureCreateRequestInputTeamsDevicesClientCertificateV2Input
   | "linux"
   | "mac";
 export const DevicesPostureCreateRequestInputTeamsDevicesClientCertificateV2InputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureCreateRequestInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageItem =
   | "clientAuth"
   | "emailProtection";
 export const DevicesPostureCreateRequestInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureCreateRequestInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageList =
   Array<
@@ -31468,7 +31457,7 @@ export type DevicesPostureCreateRequestInputTeamsDevicesClientCertificateV2Input
   | "system"
   | "user";
 export const DevicesPostureCreateRequestInputTeamsDevicesClientCertificateV2InputRequestLocationsTrustStoresItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureCreateRequestInputTeamsDevicesClientCertificateV2InputRequestLocationsTrustStoresList =
   Array<
@@ -31575,7 +31564,7 @@ export type DevicesPostureCreateRequestInputWorkspaceOneInputComplianceStatus =
   | "noncompliant"
   | "unknown";
 export const DevicesPostureCreateRequestInputWorkspaceOneInputComplianceStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateRequestInputWorkspaceOneInput {
   /** Compliance Status. */
@@ -31605,14 +31594,13 @@ export type DevicesPostureCreateRequestInputCrowdstrikeInputOperator =
   | ">="
   | "==";
 export const DevicesPostureCreateRequestInputCrowdstrikeInputOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureCreateRequestInputCrowdstrikeInputState =
   | "online"
   | "offline"
   | "unknown";
-export const DevicesPostureCreateRequestInputCrowdstrikeInputState =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureCreateRequestInputCrowdstrikeInputState = S.String;
 
 export type DevicesPostureCreateRequestInputCrowdstrikeInputVersionOperator =
   | "<"
@@ -31621,7 +31609,7 @@ export type DevicesPostureCreateRequestInputCrowdstrikeInputVersionOperator =
   | ">="
   | "==";
 export const DevicesPostureCreateRequestInputCrowdstrikeInputVersionOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateRequestInputCrowdstrikeInput {
   /** Posture Integration ID. */
@@ -31676,7 +31664,7 @@ export type DevicesPostureCreateRequestInputIntuneInputComplianceStatus =
   | "ingraceperiod"
   | "error";
 export const DevicesPostureCreateRequestInputIntuneInputComplianceStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateRequestInputIntuneInput {
   /** Compliance Status. */
@@ -31705,7 +31693,7 @@ export type DevicesPostureCreateRequestInputKolideInputAuthStateItem =
   | "Will Block"
   | "Blocked";
 export const DevicesPostureCreateRequestInputKolideInputAuthStateItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureCreateRequestInputKolideInputAuthStateList = Array<
   DevicesPostureCreateRequestInputKolideInputAuthStateItem | (string & {})
@@ -31722,7 +31710,7 @@ export type DevicesPostureCreateRequestInputKolideInputCountOperator =
   | ">="
   | "==";
 export const DevicesPostureCreateRequestInputKolideInputCountOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateRequestInputKolideInput {
   /** Posture Integration ID. */
@@ -31760,16 +31748,14 @@ export type DevicesPostureCreateRequestInputTaniumInputOperator =
   | ">"
   | ">="
   | "==";
-export const DevicesPostureCreateRequestInputTaniumInputOperator =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureCreateRequestInputTaniumInputOperator = S.String;
 
 export type DevicesPostureCreateRequestInputTaniumInputRiskLevel =
   | "low"
   | "medium"
   | "high"
   | "critical";
-export const DevicesPostureCreateRequestInputTaniumInputRiskLevel =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureCreateRequestInputTaniumInputRiskLevel = S.String;
 
 export type DevicesPostureCreateRequestInputTaniumInputScoreOperator =
   | "<"
@@ -31778,7 +31764,7 @@ export type DevicesPostureCreateRequestInputTaniumInputScoreOperator =
   | ">="
   | "==";
 export const DevicesPostureCreateRequestInputTaniumInputScoreOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateRequestInputTaniumInput {
   /** Posture Integration ID. */
@@ -31826,7 +31812,7 @@ export type DevicesPostureCreateRequestInputSentineloneS2sInputNetworkStatus =
   | "disconnecting"
   | "connecting";
 export const DevicesPostureCreateRequestInputSentineloneS2sInputNetworkStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureCreateRequestInputSentineloneS2sInputOperationalState =
   | "na"
@@ -31837,7 +31823,7 @@ export type DevicesPostureCreateRequestInputSentineloneS2sInputOperationalState 
   | "disabled_error"
   | "db_corruption";
 export const DevicesPostureCreateRequestInputSentineloneS2sInputOperationalState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureCreateRequestInputSentineloneS2sInputOperator =
   | "<"
@@ -31846,7 +31832,7 @@ export type DevicesPostureCreateRequestInputSentineloneS2sInputOperator =
   | ">="
   | "==";
 export const DevicesPostureCreateRequestInputSentineloneS2sInputOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateRequestInputSentineloneS2sInput {
   /** Posture Integration ID. */
@@ -31902,7 +31888,7 @@ export type DevicesPostureCreateRequestInputTeamsDevicesCustomS2sInputRequestOpe
   | ">="
   | "==";
 export const DevicesPostureCreateRequestInputTeamsDevicesCustomS2sInputRequestOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateRequestInputTeamsDevicesCustomS2sInputRequest {
   /** Posture Integration ID. */
@@ -32020,8 +32006,7 @@ export type DevicesPostureCreateRequestMatchItemPlatform =
   | "android"
   | "ios"
   | "chromeos";
-export const DevicesPostureCreateRequestMatchItemPlatform =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureCreateRequestMatchItemPlatform = S.String;
 
 export interface DevicesPostureCreateRequestMatchItem {
   platform?: DevicesPostureCreateRequestMatchItemPlatform | (string & {});
@@ -32086,7 +32071,7 @@ export type DevicesPostureCreateResponseInputFileInputOperatingSystem =
   | "linux"
   | "mac";
 export const DevicesPostureCreateResponseInputFileInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateResponseInputFileInput {
   /** Operating system. */
@@ -32121,7 +32106,7 @@ export type DevicesPostureCreateResponseInputUniqueClientIDInputOperatingSystem 
   | "ios"
   | "chromeos";
 export const DevicesPostureCreateResponseInputUniqueClientIDInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateResponseInputUniqueClientIDInput {
   /** List ID. */
@@ -32145,7 +32130,7 @@ export const DevicesPostureCreateResponseInputUniqueClientIDInput =
 export type DevicesPostureCreateResponseInputDomainJoinedInputOperatingSystem =
   "windows";
 export const DevicesPostureCreateResponseInputDomainJoinedInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateResponseInputDomainJoinedInput {
   /** Operating System. */
@@ -32169,7 +32154,7 @@ export const DevicesPostureCreateResponseInputDomainJoinedInput =
 export type DevicesPostureCreateResponseInputOSVersionInputOperatingSystem =
   "windows";
 export const DevicesPostureCreateResponseInputOSVersionInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureCreateResponseInputOSVersionInputOperator =
   | "<"
@@ -32177,8 +32162,7 @@ export type DevicesPostureCreateResponseInputOSVersionInputOperator =
   | ">"
   | ">="
   | "==";
-export const DevicesPostureCreateResponseInputOSVersionInputOperator =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureCreateResponseInputOSVersionInputOperator = S.String;
 
 export interface DevicesPostureCreateResponseInputOSVersionInput {
   /** Operating System. */
@@ -32221,7 +32205,7 @@ export type DevicesPostureCreateResponseInputFirewallInputOperatingSystem =
   | "windows"
   | "mac";
 export const DevicesPostureCreateResponseInputFirewallInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateResponseInputFirewallInput {
   /** Enabled. */
@@ -32247,7 +32231,7 @@ export type DevicesPostureCreateResponseInputSentineloneInputOperatingSystem =
   | "linux"
   | "mac";
 export const DevicesPostureCreateResponseInputSentineloneInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateResponseInputSentineloneInput {
   /** Operating system. */
@@ -32279,7 +32263,7 @@ export type DevicesPostureCreateResponseInputTeamsDevicesCarbonblackInputRequest
   | "linux"
   | "mac";
 export const DevicesPostureCreateResponseInputTeamsDevicesCarbonblackInputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateResponseInputTeamsDevicesCarbonblackInputRequest {
   /** Operating system. */
@@ -32344,7 +32328,7 @@ export type DevicesPostureCreateResponseInputTeamsDevicesApplicationInputRequest
   | "linux"
   | "mac";
 export const DevicesPostureCreateResponseInputTeamsDevicesApplicationInputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateResponseInputTeamsDevicesApplicationInputRequest {
   /** Operating system. */
@@ -32382,13 +32366,13 @@ export type DevicesPostureCreateResponseInputTeamsDevicesClientCertificateV2Inpu
   | "linux"
   | "mac";
 export const DevicesPostureCreateResponseInputTeamsDevicesClientCertificateV2InputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureCreateResponseInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageItem =
   | "clientAuth"
   | "emailProtection";
 export const DevicesPostureCreateResponseInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureCreateResponseInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageList =
   Array<DevicesPostureCreateResponseInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageItem>;
@@ -32408,7 +32392,7 @@ export type DevicesPostureCreateResponseInputTeamsDevicesClientCertificateV2Inpu
   | "system"
   | "user";
 export const DevicesPostureCreateResponseInputTeamsDevicesClientCertificateV2InputRequestLocationsTrustStoresItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureCreateResponseInputTeamsDevicesClientCertificateV2InputRequestLocationsTrustStoresList =
   Array<DevicesPostureCreateResponseInputTeamsDevicesClientCertificateV2InputRequestLocationsTrustStoresItem>;
@@ -32516,7 +32500,7 @@ export type DevicesPostureCreateResponseInputWorkspaceOneInputComplianceStatus =
   | "noncompliant"
   | "unknown";
 export const DevicesPostureCreateResponseInputWorkspaceOneInputComplianceStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateResponseInputWorkspaceOneInput {
   /** Compliance Status. */
@@ -32544,14 +32528,13 @@ export type DevicesPostureCreateResponseInputCrowdstrikeInputOperator =
   | ">="
   | "==";
 export const DevicesPostureCreateResponseInputCrowdstrikeInputOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureCreateResponseInputCrowdstrikeInputState =
   | "online"
   | "offline"
   | "unknown";
-export const DevicesPostureCreateResponseInputCrowdstrikeInputState =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureCreateResponseInputCrowdstrikeInputState = S.String;
 
 export type DevicesPostureCreateResponseInputCrowdstrikeInputVersionOperator =
   | "<"
@@ -32560,7 +32543,7 @@ export type DevicesPostureCreateResponseInputCrowdstrikeInputVersionOperator =
   | ">="
   | "==";
 export const DevicesPostureCreateResponseInputCrowdstrikeInputVersionOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateResponseInputCrowdstrikeInput {
   /** Posture Integration ID. */
@@ -32617,7 +32600,7 @@ export type DevicesPostureCreateResponseInputIntuneInputComplianceStatus =
   | "ingraceperiod"
   | "error";
 export const DevicesPostureCreateResponseInputIntuneInputComplianceStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateResponseInputIntuneInput {
   /** Compliance Status. */
@@ -32644,7 +32627,7 @@ export type DevicesPostureCreateResponseInputKolideInputAuthStateItem =
   | "Will Block"
   | "Blocked";
 export const DevicesPostureCreateResponseInputKolideInputAuthStateItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureCreateResponseInputKolideInputAuthStateList =
   Array<DevicesPostureCreateResponseInputKolideInputAuthStateItem>;
@@ -32660,7 +32643,7 @@ export type DevicesPostureCreateResponseInputKolideInputCountOperator =
   | ">="
   | "==";
 export const DevicesPostureCreateResponseInputKolideInputCountOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateResponseInputKolideInput {
   /** Posture Integration ID. */
@@ -32696,16 +32679,14 @@ export type DevicesPostureCreateResponseInputTaniumInputOperator =
   | ">"
   | ">="
   | "==";
-export const DevicesPostureCreateResponseInputTaniumInputOperator =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureCreateResponseInputTaniumInputOperator = S.String;
 
 export type DevicesPostureCreateResponseInputTaniumInputRiskLevel =
   | "low"
   | "medium"
   | "high"
   | "critical";
-export const DevicesPostureCreateResponseInputTaniumInputRiskLevel =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureCreateResponseInputTaniumInputRiskLevel = S.String;
 
 export type DevicesPostureCreateResponseInputTaniumInputScoreOperator =
   | "<"
@@ -32714,7 +32695,7 @@ export type DevicesPostureCreateResponseInputTaniumInputScoreOperator =
   | ">="
   | "==";
 export const DevicesPostureCreateResponseInputTaniumInputScoreOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateResponseInputTaniumInput {
   /** Posture Integration ID. */
@@ -32758,7 +32739,7 @@ export type DevicesPostureCreateResponseInputSentineloneS2sInputNetworkStatus =
   | "disconnecting"
   | "connecting";
 export const DevicesPostureCreateResponseInputSentineloneS2sInputNetworkStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureCreateResponseInputSentineloneS2sInputOperationalState =
   | "na"
@@ -32769,7 +32750,7 @@ export type DevicesPostureCreateResponseInputSentineloneS2sInputOperationalState
   | "disabled_error"
   | "db_corruption";
 export const DevicesPostureCreateResponseInputSentineloneS2sInputOperationalState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureCreateResponseInputSentineloneS2sInputOperator =
   | "<"
@@ -32778,7 +32759,7 @@ export type DevicesPostureCreateResponseInputSentineloneS2sInputOperator =
   | ">="
   | "==";
 export const DevicesPostureCreateResponseInputSentineloneS2sInputOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateResponseInputSentineloneS2sInput {
   /** Posture Integration ID. */
@@ -32830,7 +32811,7 @@ export type DevicesPostureCreateResponseInputTeamsDevicesCustomS2sInputRequestOp
   | ">="
   | "==";
 export const DevicesPostureCreateResponseInputTeamsDevicesCustomS2sInputRequestOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureCreateResponseInputTeamsDevicesCustomS2sInputRequest {
   /** Posture Integration ID. */
@@ -32946,8 +32927,7 @@ export type DevicesPostureCreateResponseMatchItemPlatform =
   | "android"
   | "ios"
   | "chromeos";
-export const DevicesPostureCreateResponseMatchItemPlatform =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureCreateResponseMatchItemPlatform = S.String;
 
 export interface DevicesPostureCreateResponseMatchItem {
   platform?: DevicesPostureCreateResponseMatchItemPlatform | null;
@@ -32993,7 +32973,7 @@ export type DevicesPostureCreateResponseType =
   | "workspace_one"
   | "sentinelone_s2s"
   | "custom_s2s";
-export const DevicesPostureCreateResponseType = /*@__PURE__*/ S.String;
+export const DevicesPostureCreateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateDevicePostureResponse {
@@ -33047,8 +33027,7 @@ export type DevicesPostureIntegrationsCreateRequestType =
   | "tanium_s2s"
   | "sentinelone_s2s"
   | "custom_s2s";
-export const DevicesPostureIntegrationsCreateRequestType =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureIntegrationsCreateRequestType = S.String;
 
 export interface CreateDevicePostureIntegrationRequest {
   accountId: string;
@@ -33110,8 +33089,7 @@ export type DevicesPostureIntegrationsCreateResponseType =
   | "tanium_s2s"
   | "sentinelone_s2s"
   | "custom_s2s";
-export const DevicesPostureIntegrationsCreateResponseType =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureIntegrationsCreateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateDevicePostureIntegrationResponse {
@@ -33256,7 +33234,7 @@ export type DexCommandsCreateRequestCommandsItemType =
   | "pcap"
   | "speed-test"
   | "warp-diag";
-export const DexCommandsCreateRequestCommandsItemType = /*@__PURE__*/ S.String;
+export const DexCommandsCreateRequestCommandsItemType = S.String;
 
 export interface DexCommandsCreateRequestCommandsItemArgsWARPDiagArgs {
   /** Test an IP address from all included or excluded ranges. Essentially the same as running 'route get <ip>' and collecting the results. This option may increase the time taken to collect the warp-diag. */
@@ -33294,7 +33272,7 @@ export type DexCommandsCreateRequestCommandsItemArgsSpeedTestArgsInterfacesItem 
   | "default"
   | "tunnel";
 export const DexCommandsCreateRequestCommandsItemArgsSpeedTestArgsInterfacesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DexCommandsCreateRequestCommandsItemArgsSpeedTestArgsInterfacesList =
   Array<
@@ -33402,8 +33380,7 @@ export type DexCommandsCreateResponseCommandsItemStatus =
   | "PENDING_UPLOAD"
   | "SUCCESS"
   | "FAILED";
-export const DexCommandsCreateResponseCommandsItemStatus =
-  /*@__PURE__*/ S.String;
+export const DexCommandsCreateResponseCommandsItemStatus = S.String;
 
 export interface DexCommandsCreateResponseCommandsItem {
   /** Unique identifier for the command */
@@ -33485,12 +33462,10 @@ export const CreateDexRuleRequest = /*@__PURE__*/ S.suspend(() =>
 export type DexRulesCreateResponseTargetedTestsItemDataKind =
   | "http"
   | "traceroute";
-export const DexRulesCreateResponseTargetedTestsItemDataKind =
-  /*@__PURE__*/ S.String;
+export const DexRulesCreateResponseTargetedTestsItemDataKind = S.String;
 
 export type DexRulesCreateResponseTargetedTestsItemDataMethod = "GET";
-export const DexRulesCreateResponseTargetedTestsItemDataMethod =
-  /*@__PURE__*/ S.String;
+export const DexRulesCreateResponseTargetedTestsItemDataMethod = S.String;
 
 export interface DexRulesCreateResponseTargetedTestsItemData {
   /** The desired endpoint to test. */
@@ -33568,8 +33543,7 @@ export const CreateDexRuleResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDexRuleResponse>;
 
 export type CreateDlpCustomEntryRequestPatternValidation = "luhn";
-export const CreateDlpCustomEntryRequestPatternValidation =
-  /*@__PURE__*/ S.String;
+export const CreateDlpCustomEntryRequestPatternValidation = S.String;
 
 export interface CreateDlpCustomEntryRequestPattern {
   regex: string;
@@ -33614,8 +33588,7 @@ export const CreateDlpCustomEntryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDlpCustomEntryRequest>;
 
 export type CreateDlpCustomEntryResponsePatternValidation = "luhn";
-export const CreateDlpCustomEntryResponsePatternValidation =
-  /*@__PURE__*/ S.String;
+export const CreateDlpCustomEntryResponsePatternValidation = S.String;
 
 export interface CreateDlpCustomEntryResponsePattern {
   regex: string;
@@ -33857,8 +33830,7 @@ export type DlpDatasetsCreateResponseDatasetColumnsItemUploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsCreateResponseDatasetColumnsItemUploadStatus =
-  /*@__PURE__*/ S.String;
+export const DlpDatasetsCreateResponseDatasetColumnsItemUploadStatus = S.String;
 
 export interface DlpDatasetsCreateResponseDatasetColumnsItem {
   entryId: string;
@@ -33895,7 +33867,7 @@ export type DlpDatasetsCreateResponseDatasetStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsCreateResponseDatasetStatus = /*@__PURE__*/ S.String;
+export const DlpDatasetsCreateResponseDatasetStatus = S.String;
 
 export type DlpDatasetsCreateResponseDatasetUploadsItemStatus =
   | "empty"
@@ -33904,8 +33876,7 @@ export type DlpDatasetsCreateResponseDatasetUploadsItemStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsCreateResponseDatasetUploadsItemStatus =
-  /*@__PURE__*/ S.String;
+export const DlpDatasetsCreateResponseDatasetUploadsItemStatus = S.String;
 
 export interface DlpDatasetsCreateResponseDatasetUploadsItem {
   numCells: number;
@@ -34018,8 +33989,7 @@ export type DlpDatasetsUploadCreateResponseColumnsItemUploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsUploadCreateResponseColumnsItemUploadStatus =
-  /*@__PURE__*/ S.String;
+export const DlpDatasetsUploadCreateResponseColumnsItemUploadStatus = S.String;
 
 export interface DlpDatasetsUploadCreateResponseColumnsItem {
   entryId: string;
@@ -34152,8 +34122,7 @@ export type DlpDatasetsVersionsCreateResultItemUploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsVersionsCreateResultItemUploadStatus =
-  /*@__PURE__*/ S.String;
+export const DlpDatasetsVersionsCreateResultItemUploadStatus = S.String;
 
 export interface DlpDatasetsVersionsCreateResultItem {
   entryId: string;
@@ -34227,8 +34196,7 @@ export type DlpDatasetsVersionsEntriesCreateResponseUploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsVersionsEntriesCreateResponseUploadStatus =
-  /*@__PURE__*/ S.String;
+export const DlpDatasetsVersionsEntriesCreateResponseUploadStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateDlpDatasetVersionEntryResponse {
@@ -34406,7 +34374,7 @@ export const DlpEmailAccountMappingCreateRequestAuthRequirementsCase0AllowedMicr
 export type DlpEmailAccountMappingCreateRequestAuthRequirementsCase0Type =
   "Org";
 export const DlpEmailAccountMappingCreateRequestAuthRequirementsCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpEmailAccountMappingCreateRequestAuthRequirementsCase0 {
   allowedMicrosoftOrganizations: DlpEmailAccountMappingCreateRequestAuthRequirementsCase0AllowedMicrosoftOrganizationsList;
@@ -34428,7 +34396,7 @@ export const DlpEmailAccountMappingCreateRequestAuthRequirementsCase0 =
 export type DlpEmailAccountMappingCreateRequestAuthRequirementsTypeType =
   "NoAuth";
 export const DlpEmailAccountMappingCreateRequestAuthRequirementsTypeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpEmailAccountMappingCreateRequestAuthRequirementsType {
   type: DlpEmailAccountMappingCreateRequestAuthRequirementsTypeType;
@@ -34483,7 +34451,7 @@ export const DlpEmailAccountMappingCreateResponseAuthRequirementsCase0AllowedMic
 export type DlpEmailAccountMappingCreateResponseAuthRequirementsCase0Type =
   "Org";
 export const DlpEmailAccountMappingCreateResponseAuthRequirementsCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpEmailAccountMappingCreateResponseAuthRequirementsCase0 {
   allowedMicrosoftOrganizations: DlpEmailAccountMappingCreateResponseAuthRequirementsCase0AllowedMicrosoftOrganizationsList;
@@ -34505,7 +34473,7 @@ export const DlpEmailAccountMappingCreateResponseAuthRequirementsCase0 =
 export type DlpEmailAccountMappingCreateResponseAuthRequirementsTypeType =
   "NoAuth";
 export const DlpEmailAccountMappingCreateResponseAuthRequirementsTypeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpEmailAccountMappingCreateResponseAuthRequirementsType {
   type: DlpEmailAccountMappingCreateResponseAuthRequirementsTypeType;
@@ -34546,7 +34514,7 @@ export const CreateDlpEmailAccountMappingResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateDlpEmailAccountMappingResponse>;
 
 export type DlpEmailRulesCreateRequestActionAction = "Block";
-export const DlpEmailRulesCreateRequestActionAction = /*@__PURE__*/ S.String;
+export const DlpEmailRulesCreateRequestActionAction = S.String;
 
 export interface DlpEmailRulesCreateRequestAction {
   action: DlpEmailRulesCreateRequestActionAction | (string & {});
@@ -34566,15 +34534,13 @@ export type DlpEmailRulesCreateRequestConditionsItemOperator =
   | "NotInList"
   | "MatchRegex"
   | "NotMatchRegex";
-export const DlpEmailRulesCreateRequestConditionsItemOperator =
-  /*@__PURE__*/ S.String;
+export const DlpEmailRulesCreateRequestConditionsItemOperator = S.String;
 
 export type DlpEmailRulesCreateRequestConditionsItemSelector =
   | "Recipients"
   | "Sender"
   | "DLPProfiles";
-export const DlpEmailRulesCreateRequestConditionsItemSelector =
-  /*@__PURE__*/ S.String;
+export const DlpEmailRulesCreateRequestConditionsItemSelector = S.String;
 
 export type DlpEmailRulesCreateRequestConditionsItemValueCase0List =
   Array<string>;
@@ -34642,7 +34608,7 @@ export const CreateDlpEmailRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDlpEmailRuleRequest>;
 
 export type DlpEmailRulesCreateResponseActionAction = "Block";
-export const DlpEmailRulesCreateResponseActionAction = /*@__PURE__*/ S.String;
+export const DlpEmailRulesCreateResponseActionAction = S.String;
 
 export interface DlpEmailRulesCreateResponseAction {
   action: DlpEmailRulesCreateResponseActionAction;
@@ -34662,15 +34628,13 @@ export type DlpEmailRulesCreateResponseConditionsItemOperator =
   | "NotInList"
   | "MatchRegex"
   | "NotMatchRegex";
-export const DlpEmailRulesCreateResponseConditionsItemOperator =
-  /*@__PURE__*/ S.String;
+export const DlpEmailRulesCreateResponseConditionsItemOperator = S.String;
 
 export type DlpEmailRulesCreateResponseConditionsItemSelector =
   | "Recipients"
   | "Sender"
   | "DLPProfiles";
-export const DlpEmailRulesCreateResponseConditionsItemSelector =
-  /*@__PURE__*/ S.String;
+export const DlpEmailRulesCreateResponseConditionsItemSelector = S.String;
 
 export type DlpEmailRulesCreateResponseConditionsItemValueCase0List =
   Array<string>;
@@ -34737,7 +34701,7 @@ export const CreateDlpEmailRuleResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDlpEmailRuleResponse>;
 
 export type DlpEntriesCreateRequestPatternValidation = "luhn";
-export const DlpEntriesCreateRequestPatternValidation = /*@__PURE__*/ S.String;
+export const DlpEntriesCreateRequestPatternValidation = S.String;
 
 export interface DlpEntriesCreateRequestPattern {
   regex: string;
@@ -34782,7 +34746,7 @@ export const CreateDlpEntryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDlpEntryRequest>;
 
 export type DlpEntriesCreateResponsePatternValidation = "luhn";
-export const DlpEntriesCreateResponsePatternValidation = /*@__PURE__*/ S.String;
+export const DlpEntriesCreateResponsePatternValidation = S.String;
 
 export interface DlpEntriesCreateResponsePattern {
   regex: string;
@@ -34916,12 +34880,10 @@ export const DlpEntriesPredefinedCreateResponseConfidence =
 export type DlpEntriesPredefinedCreateResponseVariantCase0TopicType =
   | "Intent"
   | "Content";
-export const DlpEntriesPredefinedCreateResponseVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesPredefinedCreateResponseVariantCase0TopicType = S.String;
 
 export type DlpEntriesPredefinedCreateResponseVariantCase0Type = "PromptTopic";
-export const DlpEntriesPredefinedCreateResponseVariantCase0Type =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesPredefinedCreateResponseVariantCase0Type = S.String;
 
 export interface DlpEntriesPredefinedCreateResponseVariantCase0 {
   topicType: DlpEntriesPredefinedCreateResponseVariantCase0TopicType;
@@ -34943,8 +34905,7 @@ export const DlpEntriesPredefinedCreateResponseVariantCase0 =
   }) as any as S.Schema<DlpEntriesPredefinedCreateResponseVariantCase0>;
 
 export type DlpEntriesPredefinedCreateResponseVariantCase1Type = "General";
-export const DlpEntriesPredefinedCreateResponseVariantCase1Type =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesPredefinedCreateResponseVariantCase1Type = S.String;
 
 export interface DlpEntriesPredefinedCreateResponseVariantCase1 {
   type: DlpEntriesPredefinedCreateResponseVariantCase1Type;
@@ -35038,7 +34999,7 @@ export const DlpProfilesCustomCreateRequestDataTagsList = /*@__PURE__*/ S.Array(
 export type DlpProfilesCustomCreateRequestEntriesItemDLPNewCustomEntryPatternValidation =
   "luhn";
 export const DlpProfilesCustomCreateRequestEntriesItemDLPNewCustomEntryPatternValidation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateRequestEntriesItemDLPNewCustomEntryPattern {
   regex: string;
@@ -35223,8 +35184,7 @@ export const CreateDlpProfileCustomRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDlpProfileCustomRequest>;
 
 export type DlpProfilesCustomCreateResultCustomProfileType = "custom";
-export const DlpProfilesCustomCreateResultCustomProfileType =
-  /*@__PURE__*/ S.String;
+export const DlpProfilesCustomCreateResultCustomProfileType = S.String;
 
 export type DlpProfilesCustomCreateResultCustomProfileConfidenceThreshold =
   | "low"
@@ -35232,7 +35192,7 @@ export type DlpProfilesCustomCreateResultCustomProfileConfidenceThreshold =
   | "high"
   | "very_high";
 export const DlpProfilesCustomCreateResultCustomProfileConfidenceThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomCreateResultCustomProfileContextAwarenessSkip =
   DlpProfilesCustomCreateRequestContextAwarenessSkip;
@@ -35261,7 +35221,7 @@ export const DlpProfilesCustomCreateResultCustomProfileDataTagsList =
 export type DlpProfilesCustomCreateResultCustomProfileEntriesItemCustomEntryPatternValidation =
   "luhn";
 export const DlpProfilesCustomCreateResultCustomProfileEntriesItemCustomEntryPatternValidation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileEntriesItemCustomEntryPattern {
   regex: string;
@@ -35285,7 +35245,7 @@ export const DlpProfilesCustomCreateResultCustomProfileEntriesItemCustomEntryPat
 export type DlpProfilesCustomCreateResultCustomProfileEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesCustomCreateResultCustomProfileEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileEntriesItemCustomEntry {
   id: string;
@@ -35320,7 +35280,7 @@ export const DlpProfilesCustomCreateResultCustomProfileEntriesItemCustomEntry =
 export type DlpProfilesCustomCreateResultCustomProfileEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesCustomCreateResultCustomProfileEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -35356,18 +35316,18 @@ export const DlpProfilesCustomCreateResultCustomProfileEntriesItemPredefinedEntr
 export type DlpProfilesCustomCreateResultCustomProfileEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesCustomCreateResultCustomProfileEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomCreateResultCustomProfileEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesCustomCreateResultCustomProfileEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomCreateResultCustomProfileEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesCustomCreateResultCustomProfileEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesCustomCreateResultCustomProfileEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -35393,7 +35353,7 @@ export const DlpProfilesCustomCreateResultCustomProfileEntriesItemPredefinedEntr
 export type DlpProfilesCustomCreateResultCustomProfileEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesCustomCreateResultCustomProfileEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesCustomCreateResultCustomProfileEntriesItemPredefinedEntryVariantCase1Type;
@@ -35455,7 +35415,7 @@ export const DlpProfilesCustomCreateResultCustomProfileEntriesItemPredefinedEntr
 export type DlpProfilesCustomCreateResultCustomProfileEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesCustomCreateResultCustomProfileEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileEntriesItemIntegrationEntry {
   id: string;
@@ -35485,7 +35445,7 @@ export const DlpProfilesCustomCreateResultCustomProfileEntriesItemIntegrationEnt
 export type DlpProfilesCustomCreateResultCustomProfileEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesCustomCreateResultCustomProfileEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileEntriesItemExactDataEntry {
   id: string;
@@ -35521,7 +35481,7 @@ export const DlpProfilesCustomCreateResultCustomProfileEntriesItemExactDataEntry
 export type DlpProfilesCustomCreateResultCustomProfileEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesCustomCreateResultCustomProfileEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -35552,7 +35512,7 @@ export const DlpProfilesCustomCreateResultCustomProfileEntriesItemDocumentFinger
 export type DlpProfilesCustomCreateResultCustomProfileEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesCustomCreateResultCustomProfileEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileEntriesItemWordListEntry {
   id: string;
@@ -35669,7 +35629,7 @@ export const DlpProfilesCustomCreateResultCustomProfileSensitivityLevelsList =
 export type DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemCustomEntry {
   id: string;
@@ -35704,7 +35664,7 @@ export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemCustomEn
 export type DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -35740,18 +35700,18 @@ export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemPredefin
 export type DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -35777,7 +35737,7 @@ export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemPredefin
 export type DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase1Type;
@@ -35839,7 +35799,7 @@ export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemPredefin
 export type DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemIntegrationEntry {
   id: string;
@@ -35869,7 +35829,7 @@ export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemIntegrat
 export type DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemExactDataEntry {
   id: string;
@@ -35905,7 +35865,7 @@ export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemExactDat
 export type DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -35936,7 +35896,7 @@ export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemDocument
 export type DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultCustomProfileSharedEntriesItemWordListEntry {
   id: string;
@@ -36121,7 +36081,7 @@ export const DlpProfilesCustomCreateResultCustomProfile =
 export type DlpProfilesCustomCreateResultPredefinedProfileEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultPredefinedProfileEntriesItemCustomEntry {
   id: string;
@@ -36156,7 +36116,7 @@ export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemCustomEntr
 export type DlpProfilesCustomCreateResultPredefinedProfileEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultPredefinedProfileEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -36192,18 +36152,18 @@ export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemPredefined
 export type DlpProfilesCustomCreateResultPredefinedProfileEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomCreateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomCreateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesCustomCreateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -36229,7 +36189,7 @@ export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemPredefined
 export type DlpProfilesCustomCreateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesCustomCreateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase1Type;
@@ -36291,7 +36251,7 @@ export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemPredefined
 export type DlpProfilesCustomCreateResultPredefinedProfileEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultPredefinedProfileEntriesItemIntegrationEntry {
   id: string;
@@ -36321,7 +36281,7 @@ export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemIntegratio
 export type DlpProfilesCustomCreateResultPredefinedProfileEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultPredefinedProfileEntriesItemExactDataEntry {
   id: string;
@@ -36357,7 +36317,7 @@ export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemExactDataE
 export type DlpProfilesCustomCreateResultPredefinedProfileEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultPredefinedProfileEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -36388,7 +36348,7 @@ export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemDocumentFi
 export type DlpProfilesCustomCreateResultPredefinedProfileEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesCustomCreateResultPredefinedProfileEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultPredefinedProfileEntriesItemWordListEntry {
   id: string;
@@ -36491,8 +36451,7 @@ export const DlpProfilesCustomCreateResultPredefinedProfileEntriesList =
   ) as any as S.Schema<DlpProfilesCustomCreateResultPredefinedProfileEntriesList>;
 
 export type DlpProfilesCustomCreateResultPredefinedProfileType = "predefined";
-export const DlpProfilesCustomCreateResultPredefinedProfileType =
-  /*@__PURE__*/ S.String;
+export const DlpProfilesCustomCreateResultPredefinedProfileType = S.String;
 
 export type DlpProfilesCustomCreateResultPredefinedProfileConfidenceThreshold =
   | "low"
@@ -36500,7 +36459,7 @@ export type DlpProfilesCustomCreateResultPredefinedProfileConfidenceThreshold =
   | "high"
   | "very_high";
 export const DlpProfilesCustomCreateResultPredefinedProfileConfidenceThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultPredefinedProfile {
   /** The id of the predefined profile (uuid). */
@@ -36549,7 +36508,7 @@ export const DlpProfilesCustomCreateResultPredefinedProfile =
 export type DlpProfilesCustomCreateResultIntegrationProfileEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfileEntriesItemCustomEntry {
   id: string;
@@ -36584,7 +36543,7 @@ export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemCustomEnt
 export type DlpProfilesCustomCreateResultIntegrationProfileEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfileEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -36620,18 +36579,18 @@ export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemPredefine
 export type DlpProfilesCustomCreateResultIntegrationProfileEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomCreateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomCreateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesCustomCreateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -36657,7 +36616,7 @@ export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemPredefine
 export type DlpProfilesCustomCreateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesCustomCreateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase1Type;
@@ -36719,7 +36678,7 @@ export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemPredefine
 export type DlpProfilesCustomCreateResultIntegrationProfileEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfileEntriesItemIntegrationEntry {
   id: string;
@@ -36749,7 +36708,7 @@ export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemIntegrati
 export type DlpProfilesCustomCreateResultIntegrationProfileEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfileEntriesItemExactDataEntry {
   id: string;
@@ -36785,7 +36744,7 @@ export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemExactData
 export type DlpProfilesCustomCreateResultIntegrationProfileEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfileEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -36816,7 +36775,7 @@ export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemDocumentF
 export type DlpProfilesCustomCreateResultIntegrationProfileEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesCustomCreateResultIntegrationProfileEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfileEntriesItemWordListEntry {
   id: string;
@@ -36921,7 +36880,7 @@ export const DlpProfilesCustomCreateResultIntegrationProfileEntriesList =
 export type DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemCustomEntry {
   id: string;
@@ -36956,7 +36915,7 @@ export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemCus
 export type DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -36992,18 +36951,18 @@ export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemPre
 export type DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -37029,7 +36988,7 @@ export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemPre
 export type DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1Type;
@@ -37091,7 +37050,7 @@ export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemPre
 export type DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemIntegrationEntry {
   id: string;
@@ -37121,7 +37080,7 @@ export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemInt
 export type DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemExactDataEntry {
   id: string;
@@ -37157,7 +37116,7 @@ export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemExa
 export type DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -37188,7 +37147,7 @@ export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemDoc
 export type DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesItemWordListEntry {
   id: string;
@@ -37291,8 +37250,7 @@ export const DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesList =
   ) as any as S.Schema<DlpProfilesCustomCreateResultIntegrationProfileSharedEntriesList>;
 
 export type DlpProfilesCustomCreateResultIntegrationProfileType = "integration";
-export const DlpProfilesCustomCreateResultIntegrationProfileType =
-  /*@__PURE__*/ S.String;
+export const DlpProfilesCustomCreateResultIntegrationProfileType = S.String;
 
 export interface DlpProfilesCustomCreateResultIntegrationProfile {
   id: string;
@@ -37573,13 +37531,12 @@ export type GatewayCertificatesCreateResponseBindingStatus =
   | "available"
   | "pending_deletion"
   | "inactive";
-export const GatewayCertificatesCreateResponseBindingStatus =
-  /*@__PURE__*/ S.String;
+export const GatewayCertificatesCreateResponseBindingStatus = S.String;
 
 export type GatewayCertificatesCreateResponseType =
   | "custom"
   | "gateway_managed";
-export const GatewayCertificatesCreateResponseType = /*@__PURE__*/ S.String;
+export const GatewayCertificatesCreateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateGatewayCertificateResponse {
@@ -37637,7 +37594,7 @@ export type GatewayListsCreateRequestType =
   | "LOCATION"
   | "DEVICE"
   | "AAGUID";
-export const GatewayListsCreateRequestType = /*@__PURE__*/ S.String;
+export const GatewayListsCreateRequestType = S.String;
 
 export interface GatewayListsCreateRequestItemsItem {
   /** Provide the list item description (optional). */
@@ -37724,7 +37681,7 @@ export type GatewayListsCreateResponseType =
   | "LOCATION"
   | "DEVICE"
   | "AAGUID";
-export const GatewayListsCreateResponseType = /*@__PURE__*/ S.String;
+export const GatewayListsCreateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateGatewayListResponse {
@@ -37899,7 +37856,7 @@ export type GatewayLocationsCreateRequestMaxTtlMode =
   | "inherit"
   | "override"
   | "disabled";
-export const GatewayLocationsCreateRequestMaxTtlMode = /*@__PURE__*/ S.String;
+export const GatewayLocationsCreateRequestMaxTtlMode = S.String;
 
 export interface GatewayLocationsCreateRequestMaxTtl {
   /** `inherit` uses the account `max_ttl_secs`. `override` uses this location's `ttl_secs`. `disabled` leaves returned TTLs unchanged. */
@@ -38109,7 +38066,7 @@ export type GatewayLocationsCreateResponseMaxTtlMode =
   | "inherit"
   | "override"
   | "disabled";
-export const GatewayLocationsCreateResponseMaxTtlMode = /*@__PURE__*/ S.String;
+export const GatewayLocationsCreateResponseMaxTtlMode = S.String;
 
 export interface GatewayLocationsCreateResponseMaxTtl {
   /** `inherit` uses the account `max_ttl_secs`. `override` uses this location's `ttl_secs`. `disabled` leaves returned TTLs unchanged. */
@@ -38265,7 +38222,7 @@ export const CreateGatewayPacfileResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateGatewayPacfileResponse>;
 
 export type GatewayProxyEndpointsCreateRequestKind = "ip" | "identity";
-export const GatewayProxyEndpointsCreateRequestKind = /*@__PURE__*/ S.String;
+export const GatewayProxyEndpointsCreateRequestKind = S.String;
 
 export type CreateGatewayProxyEndpointRequestIpsList = Array<string>;
 export const CreateGatewayProxyEndpointRequestIpsList = /*@__PURE__*/ S.Array(
@@ -38306,7 +38263,7 @@ export const GatewayProxyEndpointsCreateResultIPIpsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GatewayProxyEndpointsCreateResultIPIpsList>;
 
 export type GatewayProxyEndpointsCreateResultIPKind = "ip";
-export const GatewayProxyEndpointsCreateResultIPKind = /*@__PURE__*/ S.String;
+export const GatewayProxyEndpointsCreateResultIPKind = S.String;
 
 export interface GatewayProxyEndpointsCreateResultIP {
   /** Specify the list of CIDRs to restrict ingress connections. */
@@ -38336,8 +38293,7 @@ export const GatewayProxyEndpointsCreateResultIP = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GatewayProxyEndpointsCreateResultIP>;
 
 export type GatewayProxyEndpointsCreateResultIdentityKind = "identity";
-export const GatewayProxyEndpointsCreateResultIdentityKind =
-  /*@__PURE__*/ S.String;
+export const GatewayProxyEndpointsCreateResultIdentityKind = S.String;
 
 export interface GatewayProxyEndpointsCreateResultIdentity {
   /** The proxy endpoint kind */
@@ -38402,7 +38358,7 @@ export type GatewayRulesCreateRequestAction =
   | "resolve"
   | "quarantine"
   | "redirect";
-export const GatewayRulesCreateRequestAction = /*@__PURE__*/ S.String;
+export const GatewayRulesCreateRequestAction = S.String;
 
 export interface GatewayRulesCreateRequestExpiration {
   /** Show the timestamp when the policy expires and stops applying. The value must follow RFC 3339 and include a UTC offset. The system accepts non-zero offsets but converts them to the equivalent UTC+00:00 value and returns timestamps with a trailing Z. Expiration policies ignore client timezones and expire globally at the specified expires_at time. */
@@ -38428,7 +38384,7 @@ export type GatewayRulesCreateRequestFiltersItem =
   | "l4"
   | "egress"
   | "dns_resolver";
-export const GatewayRulesCreateRequestFiltersItem = /*@__PURE__*/ S.String;
+export const GatewayRulesCreateRequestFiltersItem = S.String;
 
 export type GatewayRulesCreateRequestFiltersList = Array<
   GatewayRulesCreateRequestFiltersItem | (string & {})
@@ -38473,45 +38429,45 @@ export type GatewayRulesCreateRequestRuleSettingsBisoAdminControlsCopy =
   | "disabled"
   | "remote_only";
 export const GatewayRulesCreateRequestRuleSettingsBisoAdminControlsCopy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesCreateRequestRuleSettingsBisoAdminControlsDownload =
   | "enabled"
   | "disabled"
   | "remote_only";
 export const GatewayRulesCreateRequestRuleSettingsBisoAdminControlsDownload =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesCreateRequestRuleSettingsBisoAdminControlsKeyboard =
   | "enabled"
   | "disabled";
 export const GatewayRulesCreateRequestRuleSettingsBisoAdminControlsKeyboard =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesCreateRequestRuleSettingsBisoAdminControlsPaste =
   | "enabled"
   | "disabled"
   | "remote_only";
 export const GatewayRulesCreateRequestRuleSettingsBisoAdminControlsPaste =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesCreateRequestRuleSettingsBisoAdminControlsPrinting =
   | "enabled"
   | "disabled";
 export const GatewayRulesCreateRequestRuleSettingsBisoAdminControlsPrinting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesCreateRequestRuleSettingsBisoAdminControlsUpload =
   | "enabled"
   | "disabled";
 export const GatewayRulesCreateRequestRuleSettingsBisoAdminControlsUpload =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesCreateRequestRuleSettingsBisoAdminControlsVersion =
   | "v1"
   | "v2";
 export const GatewayRulesCreateRequestRuleSettingsBisoAdminControlsVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesCreateRequestRuleSettingsBisoAdminControls {
   /** Configure copy behavior. If set to remote_only, users cannot copy isolated content from the remote browser to the local clipboard. If this field is absent, copying remains enabled. Applies only when version == "v2". */
@@ -38807,7 +38763,7 @@ export type GatewayRulesCreateRequestRuleSettingsQuarantineFileTypesItem =
   | "zip"
   | "rar";
 export const GatewayRulesCreateRequestRuleSettingsQuarantineFileTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesCreateRequestRuleSettingsQuarantineFileTypesList =
   Array<
@@ -38860,7 +38816,7 @@ export type GatewayRulesCreateRequestRuleSettingsResolveDnsInternallyFallback =
   | "none"
   | "public_dns";
 export const GatewayRulesCreateRequestRuleSettingsResolveDnsInternallyFallback =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesCreateRequestRuleSettingsResolveDnsInternally {
   /** Specify the fallback behavior to apply when the internal DNS response code differs from 'NOERROR' or when the response data contains only CNAME records for 'A' or 'AAAA' queries. */
@@ -38887,7 +38843,7 @@ export type GatewayRulesCreateRequestRuleSettingsUntrustedCertAction =
   | "block"
   | "error";
 export const GatewayRulesCreateRequestRuleSettingsUntrustedCertAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesCreateRequestRuleSettingsUntrustedCert {
   /** Defines the action performed when an untrusted certificate seen. The default action an error with HTTP code 526. */
@@ -39161,7 +39117,7 @@ export type GatewayRulesCreateResponseAction =
   | "resolve"
   | "quarantine"
   | "redirect";
-export const GatewayRulesCreateResponseAction = /*@__PURE__*/ S.String;
+export const GatewayRulesCreateResponseAction = S.String;
 
 export type GatewayRulesCreateResponseFiltersItem =
   | "http"
@@ -39169,7 +39125,7 @@ export type GatewayRulesCreateResponseFiltersItem =
   | "l4"
   | "egress"
   | "dns_resolver";
-export const GatewayRulesCreateResponseFiltersItem = /*@__PURE__*/ S.String;
+export const GatewayRulesCreateResponseFiltersItem = S.String;
 
 export type GatewayRulesCreateResponseFiltersList =
   Array<GatewayRulesCreateResponseFiltersItem>;
@@ -39234,45 +39190,45 @@ export type GatewayRulesCreateResponseRuleSettingsBisoAdminControlsCopy =
   | "disabled"
   | "remote_only";
 export const GatewayRulesCreateResponseRuleSettingsBisoAdminControlsCopy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesCreateResponseRuleSettingsBisoAdminControlsDownload =
   | "enabled"
   | "disabled"
   | "remote_only";
 export const GatewayRulesCreateResponseRuleSettingsBisoAdminControlsDownload =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesCreateResponseRuleSettingsBisoAdminControlsKeyboard =
   | "enabled"
   | "disabled";
 export const GatewayRulesCreateResponseRuleSettingsBisoAdminControlsKeyboard =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesCreateResponseRuleSettingsBisoAdminControlsPaste =
   | "enabled"
   | "disabled"
   | "remote_only";
 export const GatewayRulesCreateResponseRuleSettingsBisoAdminControlsPaste =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesCreateResponseRuleSettingsBisoAdminControlsPrinting =
   | "enabled"
   | "disabled";
 export const GatewayRulesCreateResponseRuleSettingsBisoAdminControlsPrinting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesCreateResponseRuleSettingsBisoAdminControlsUpload =
   | "enabled"
   | "disabled";
 export const GatewayRulesCreateResponseRuleSettingsBisoAdminControlsUpload =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesCreateResponseRuleSettingsBisoAdminControlsVersion =
   | "v1"
   | "v2";
 export const GatewayRulesCreateResponseRuleSettingsBisoAdminControlsVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesCreateResponseRuleSettingsBisoAdminControls {
   /** Configure copy behavior. If set to remote_only, users cannot copy isolated content from the remote browser to the local clipboard. If this field is absent, copying remains enabled. Applies only when version == "v2". */
@@ -39568,7 +39524,7 @@ export type GatewayRulesCreateResponseRuleSettingsQuarantineFileTypesItem =
   | "zip"
   | "rar";
 export const GatewayRulesCreateResponseRuleSettingsQuarantineFileTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesCreateResponseRuleSettingsQuarantineFileTypesList =
   Array<GatewayRulesCreateResponseRuleSettingsQuarantineFileTypesItem>;
@@ -39621,7 +39577,7 @@ export type GatewayRulesCreateResponseRuleSettingsResolveDnsInternallyFallback =
   | "none"
   | "public_dns";
 export const GatewayRulesCreateResponseRuleSettingsResolveDnsInternallyFallback =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesCreateResponseRuleSettingsResolveDnsInternally {
   /** Specify the fallback behavior to apply when the internal DNS response code differs from 'NOERROR' or when the response data contains only CNAME records for 'A' or 'AAAA' queries. */
@@ -39648,7 +39604,7 @@ export type GatewayRulesCreateResponseRuleSettingsUntrustedCertAction =
   | "block"
   | "error";
 export const GatewayRulesCreateResponseRuleSettingsUntrustedCertAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesCreateResponseRuleSettingsUntrustedCert {
   /** Defines the action performed when an untrusted certificate seen. The default action an error with HTTP code 526. */
@@ -39952,8 +39908,7 @@ export type IdentityProvidersCreateRequestConfigAzureADPrompt =
   | "login"
   | "select_account"
   | "none";
-export const IdentityProvidersCreateRequestConfigAzureADPrompt =
-  /*@__PURE__*/ S.String;
+export const IdentityProvidersCreateRequestConfigAzureADPrompt = S.String;
 
 export interface IdentityProvidersCreateRequestConfigAzureAD {
   /** Custom claims */
@@ -40479,7 +40434,7 @@ export type IdentityProvidersCreateRequestTypeAzureAD =
   | "pingone"
   | "yandex"
   | "cloudflare";
-export const IdentityProvidersCreateRequestTypeAzureAD = /*@__PURE__*/ S.String;
+export const IdentityProvidersCreateRequestTypeAzureAD = S.String;
 
 export interface IdentityProvidersCreateRequestSamlCertificateSetCurrentCertificate {
   /** Indicates whether this is the currently active certificate */
@@ -40540,7 +40495,7 @@ export type IdentityProvidersCreateRequestScimConfigAzureADIdentityUpdateBehavio
   | "reauth"
   | "no_action";
 export const IdentityProvidersCreateRequestScimConfigAzureADIdentityUpdateBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IdentityProvidersCreateRequestScimConfigAzureAD {
   /** A flag to enable or disable SCIM for the identity provider. */
@@ -40642,8 +40597,7 @@ export type IdentityProvidersCreateResultAzureADConfigPrompt =
   | "login"
   | "select_account"
   | "none";
-export const IdentityProvidersCreateResultAzureADConfigPrompt =
-  /*@__PURE__*/ S.String;
+export const IdentityProvidersCreateResultAzureADConfigPrompt = S.String;
 
 export interface IdentityProvidersCreateResultAzureADConfig {
   /** Custom claims */
@@ -40707,7 +40661,7 @@ export type IdentityProvidersCreateResultAzureADType =
   | "pingone"
   | "yandex"
   | "cloudflare";
-export const IdentityProvidersCreateResultAzureADType = /*@__PURE__*/ S.String;
+export const IdentityProvidersCreateResultAzureADType = S.String;
 
 export type IdentityProvidersCreateResultAzureADSamlCertificateSetCurrentCertificate =
   IdentityProvidersCreateRequestSamlCertificateSetCurrentCertificate;
@@ -40750,7 +40704,7 @@ export type IdentityProvidersCreateResultAzureADScimConfigIdentityUpdateBehavior
   | "reauth"
   | "no_action";
 export const IdentityProvidersCreateResultAzureADScimConfigIdentityUpdateBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IdentityProvidersCreateResultAzureADScimConfig {
   /** A flag to enable or disable SCIM for the identity provider. */
@@ -42240,8 +42194,7 @@ export type NetworksHostnameRoutesCreateResponseTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const NetworksHostnameRoutesCreateResponseTunType =
-  /*@__PURE__*/ S.String;
+export const NetworksHostnameRoutesCreateResponseTunType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateNetworkHostnameRouteResponse {
@@ -42446,8 +42399,7 @@ export const CreateNetworkSubnetWarpRequest = /*@__PURE__*/ S.suspend(() =>
 export type NetworksSubnetsWarpCreateResponseSubnetType =
   | "cloudflare_source"
   | "warp";
-export const NetworksSubnetsWarpCreateResponseSubnetType =
-  /*@__PURE__*/ S.String;
+export const NetworksSubnetsWarpCreateResponseSubnetType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateNetworkSubnetWarpResponse {
@@ -42587,7 +42539,7 @@ export type OrganizationsCreateRequestMfaConfigAllowedAuthenticatorsItem =
   | "security_key"
   | "piv_key";
 export const OrganizationsCreateRequestMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationsCreateRequestMfaConfigAllowedAuthenticatorsList =
   Array<
@@ -42630,7 +42582,7 @@ export type OrganizationsCreateRequestMfaPivKeyRequirementsPinPolicy =
   | "once"
   | "always";
 export const OrganizationsCreateRequestMfaPivKeyRequirementsPinPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationsCreateRequestMfaPivKeyRequirementsSshKeySizeItem =
   | 256
@@ -42640,7 +42592,7 @@ export type OrganizationsCreateRequestMfaPivKeyRequirementsSshKeySizeItem =
   | 3072
   | 4096;
 export const OrganizationsCreateRequestMfaPivKeyRequirementsSshKeySizeItem =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export type OrganizationsCreateRequestMfaPivKeyRequirementsSshKeySizeList =
   Array<
@@ -42657,7 +42609,7 @@ export type OrganizationsCreateRequestMfaPivKeyRequirementsSshKeyTypeItem =
   | "ed25519"
   | "rsa";
 export const OrganizationsCreateRequestMfaPivKeyRequirementsSshKeyTypeItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationsCreateRequestMfaPivKeyRequirementsSshKeyTypeList =
   Array<
@@ -42674,7 +42626,7 @@ export type OrganizationsCreateRequestMfaPivKeyRequirementsTouchPolicy =
   | "always"
   | "cached";
 export const OrganizationsCreateRequestMfaPivKeyRequirementsTouchPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface OrganizationsCreateRequestMfaPivKeyRequirements {
   /** Defines when a PIN is required to use the SSH key. Valid values: `never` (no PIN required), `once` (PIN required once per session), `always` (PIN required for each use). */
@@ -42871,7 +42823,7 @@ export type OrganizationsCreateResponseMfaConfigAllowedAuthenticatorsItem =
   | "security_key"
   | "piv_key";
 export const OrganizationsCreateResponseMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationsCreateResponseMfaConfigAllowedAuthenticatorsList =
   Array<OrganizationsCreateResponseMfaConfigAllowedAuthenticatorsItem>;
@@ -42917,7 +42869,7 @@ export type OrganizationsCreateResponseMfaPivKeyRequirementsPinPolicy =
   | "once"
   | "always";
 export const OrganizationsCreateResponseMfaPivKeyRequirementsPinPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationsCreateResponseMfaPivKeyRequirementsSshKeySizeItem =
   | 256
@@ -42927,7 +42879,7 @@ export type OrganizationsCreateResponseMfaPivKeyRequirementsSshKeySizeItem =
   | 3072
   | 4096;
 export const OrganizationsCreateResponseMfaPivKeyRequirementsSshKeySizeItem =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export type OrganizationsCreateResponseMfaPivKeyRequirementsSshKeySizeList =
   Array<OrganizationsCreateResponseMfaPivKeyRequirementsSshKeySizeItem>;
@@ -42941,7 +42893,7 @@ export type OrganizationsCreateResponseMfaPivKeyRequirementsSshKeyTypeItem =
   | "ed25519"
   | "rsa";
 export const OrganizationsCreateResponseMfaPivKeyRequirementsSshKeyTypeItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationsCreateResponseMfaPivKeyRequirementsSshKeyTypeList =
   Array<OrganizationsCreateResponseMfaPivKeyRequirementsSshKeyTypeItem>;
@@ -42955,7 +42907,7 @@ export type OrganizationsCreateResponseMfaPivKeyRequirementsTouchPolicy =
   | "always"
   | "cached";
 export const OrganizationsCreateResponseMfaPivKeyRequirementsTouchPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface OrganizationsCreateResponseMfaPivKeyRequirements {
   /** Defines when a PIN is required to use the SSH key. Valid values: `never` (no PIN required), `once` (PIN required once per session), `always` (PIN required for each use). */
@@ -43183,8 +43135,7 @@ export const CreateOrganizationForZoneRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateOrganizationForZoneRequest>;
 
 export type RiskScoringIntegrationsCreateRequestIntegrationType = "Okta";
-export const RiskScoringIntegrationsCreateRequestIntegrationType =
-  /*@__PURE__*/ S.String;
+export const RiskScoringIntegrationsCreateRequestIntegrationType = S.String;
 
 export interface CreateRiskScoringIntegrationRequest {
   accountId: string;
@@ -43218,8 +43169,7 @@ export const CreateRiskScoringIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRiskScoringIntegrationRequest>;
 
 export type RiskScoringIntegrationsCreateResponseIntegrationType = "Okta";
-export const RiskScoringIntegrationsCreateResponseIntegrationType =
-  /*@__PURE__*/ S.String;
+export const RiskScoringIntegrationsCreateResponseIntegrationType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateRiskScoringIntegrationResponse {
@@ -43259,7 +43209,7 @@ export const CreateRiskScoringIntegrationResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateRiskScoringIntegrationResponse>;
 
 export type TunnelsCloudflaredCreateRequestConfigSrc = "local" | "cloudflare";
-export const TunnelsCloudflaredCreateRequestConfigSrc = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredCreateRequestConfigSrc = S.String;
 
 export interface CreateTunnelCloudflaredRequest {
   /** Cloudflare account ID */
@@ -43293,7 +43243,7 @@ export const CreateTunnelCloudflaredRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateTunnelCloudflaredRequest>;
 
 export type TunnelsCloudflaredCreateResponseConfigSrc = "local" | "cloudflare";
-export const TunnelsCloudflaredCreateResponseConfigSrc = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredCreateResponseConfigSrc = S.String;
 
 export interface TunnelsCloudflaredCreateResponseConnectionsItem {
   /** UUID of the Cloudflare Tunnel connection. */
@@ -43345,7 +43295,7 @@ export type TunnelsCloudflaredCreateResponseStatus =
   | "degraded"
   | "healthy"
   | "down";
-export const TunnelsCloudflaredCreateResponseStatus = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredCreateResponseStatus = S.String;
 
 export type TunnelsCloudflaredCreateResponseTunType =
   | "cfd_tunnel"
@@ -43355,7 +43305,7 @@ export type TunnelsCloudflaredCreateResponseTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const TunnelsCloudflaredCreateResponseTunType = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredCreateResponseTunType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateTunnelCloudflaredResponse {
@@ -43421,8 +43371,7 @@ export const CreateTunnelCloudflaredResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateTunnelCloudflaredResponse>;
 
 export type TunnelsCloudflaredManagementCreateRequestResourcesItem = "logs";
-export const TunnelsCloudflaredManagementCreateRequestResourcesItem =
-  /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredManagementCreateRequestResourcesItem = S.String;
 
 export type TunnelsCloudflaredManagementCreateRequestResourcesList = Array<
   TunnelsCloudflaredManagementCreateRequestResourcesItem | (string & {})
@@ -43509,7 +43458,7 @@ export type TunnelsWarpConnectorCreateResponseStatus =
   | "degraded"
   | "healthy"
   | "down";
-export const TunnelsWarpConnectorCreateResponseStatus = /*@__PURE__*/ S.String;
+export const TunnelsWarpConnectorCreateResponseStatus = S.String;
 
 export type TunnelsWarpConnectorCreateResponseTunType =
   | "cfd_tunnel"
@@ -43519,7 +43468,7 @@ export type TunnelsWarpConnectorCreateResponseTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const TunnelsWarpConnectorCreateResponseTunType = /*@__PURE__*/ S.String;
+export const TunnelsWarpConnectorCreateResponseTunType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateTunnelWarpConnectorResponse {
@@ -43601,13 +43550,12 @@ export type GatewayCertificatesDeactivateResponseBindingStatus =
   | "available"
   | "pending_deletion"
   | "inactive";
-export const GatewayCertificatesDeactivateResponseBindingStatus =
-  /*@__PURE__*/ S.String;
+export const GatewayCertificatesDeactivateResponseBindingStatus = S.String;
 
 export type GatewayCertificatesDeactivateResponseType =
   | "custom"
   | "gateway_managed";
-export const GatewayCertificatesDeactivateResponseType = /*@__PURE__*/ S.String;
+export const GatewayCertificatesDeactivateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeactivateGatewayCertificateResponse {
@@ -43744,8 +43692,7 @@ export type AccessAiControlsMcpServersDeleteResponseAuthType =
   | "oauth"
   | "bearer"
   | "unauthenticated";
-export const AccessAiControlsMcpServersDeleteResponseAuthType =
-  /*@__PURE__*/ S.String;
+export const AccessAiControlsMcpServersDeleteResponseAuthType = S.String;
 
 export type AccessAiControlsMcpServersDeleteResponsePromptsItemMap = {
   [key: string]: unknown | undefined;
@@ -44658,12 +44605,10 @@ export const DeleteDeviceDexTestRequest = /*@__PURE__*/ S.suspend(() =>
 export type DevicesDexTestsDeleteResponseDexTestsItemDataKind =
   | "http"
   | "traceroute";
-export const DevicesDexTestsDeleteResponseDexTestsItemDataKind =
-  /*@__PURE__*/ S.String;
+export const DevicesDexTestsDeleteResponseDexTestsItemDataKind = S.String;
 
 export type DevicesDexTestsDeleteResponseDexTestsItemDataMethod = "GET";
-export const DevicesDexTestsDeleteResponseDexTestsItemDataMethod =
-  /*@__PURE__*/ S.String;
+export const DevicesDexTestsDeleteResponseDexTestsItemDataMethod = S.String;
 
 export interface DevicesDexTestsDeleteResponseDexTestsItemData {
   /** The desired endpoint to test. */
@@ -44819,7 +44764,7 @@ export const DevicesNetworksDeleteResultItemConfig =
   DevicesNetworksCreateResponseConfig;
 
 export type DevicesNetworksDeleteResultItemType = "tls";
-export const DevicesNetworksDeleteResultItemType = /*@__PURE__*/ S.String;
+export const DevicesNetworksDeleteResultItemType = S.String;
 
 export interface DevicesNetworksDeleteResultItem {
   /** The configuration object containing information for the WARP client to detect the managed network. */
@@ -45643,7 +45588,7 @@ export const DeleteDlpEmailRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteDlpEmailRuleRequest>;
 
 export type DlpEmailRulesDeleteResponseActionAction = "Block";
-export const DlpEmailRulesDeleteResponseActionAction = /*@__PURE__*/ S.String;
+export const DlpEmailRulesDeleteResponseActionAction = S.String;
 
 export interface DlpEmailRulesDeleteResponseAction {
   action: DlpEmailRulesDeleteResponseActionAction;
@@ -45663,15 +45608,13 @@ export type DlpEmailRulesDeleteResponseConditionsItemOperator =
   | "NotInList"
   | "MatchRegex"
   | "NotMatchRegex";
-export const DlpEmailRulesDeleteResponseConditionsItemOperator =
-  /*@__PURE__*/ S.String;
+export const DlpEmailRulesDeleteResponseConditionsItemOperator = S.String;
 
 export type DlpEmailRulesDeleteResponseConditionsItemSelector =
   | "Recipients"
   | "Sender"
   | "DLPProfiles";
-export const DlpEmailRulesDeleteResponseConditionsItemSelector =
-  /*@__PURE__*/ S.String;
+export const DlpEmailRulesDeleteResponseConditionsItemSelector = S.String;
 
 export type DlpEmailRulesDeleteResponseConditionsItemValueCase0List =
   Array<string>;
@@ -45961,8 +45904,7 @@ export type DlpSettingsDeleteResponsePayloadLoggingMaskingLevel =
   | "partial"
   | "clear"
   | "default";
-export const DlpSettingsDeleteResponsePayloadLoggingMaskingLevel =
-  /*@__PURE__*/ S.String;
+export const DlpSettingsDeleteResponsePayloadLoggingMaskingLevel = S.String;
 
 export interface DlpSettingsDeleteResponsePayloadLogging {
   updatedAt: string;
@@ -46033,13 +45975,12 @@ export type GatewayCertificatesDeleteResponseBindingStatus =
   | "available"
   | "pending_deletion"
   | "inactive";
-export const GatewayCertificatesDeleteResponseBindingStatus =
-  /*@__PURE__*/ S.String;
+export const GatewayCertificatesDeleteResponseBindingStatus = S.String;
 
 export type GatewayCertificatesDeleteResponseType =
   | "custom"
   | "gateway_managed";
-export const GatewayCertificatesDeleteResponseType = /*@__PURE__*/ S.String;
+export const GatewayCertificatesDeleteResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeleteGatewayCertificateResponse {
@@ -46321,8 +46262,7 @@ export type NetworksHostnameRoutesDeleteResponseTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const NetworksHostnameRoutesDeleteResponseTunType =
-  /*@__PURE__*/ S.String;
+export const NetworksHostnameRoutesDeleteResponseTunType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeleteNetworkHostnameRouteResponse {
@@ -46426,8 +46366,7 @@ export type NetworksRoutesNetworksDeleteRequestTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const NetworksRoutesNetworksDeleteRequestTunType =
-  /*@__PURE__*/ S.String;
+export const NetworksRoutesNetworksDeleteRequestTunType = S.String;
 
 export interface DeleteNetworkRouteNetworkRequest {
   /** Cloudflare account ID */
@@ -46522,8 +46461,7 @@ export const DeleteNetworkSubnetWarpRequest = /*@__PURE__*/ S.suspend(() =>
 export type NetworksSubnetsWarpDeleteResponseSubnetType =
   | "cloudflare_source"
   | "warp";
-export const NetworksSubnetsWarpDeleteResponseSubnetType =
-  /*@__PURE__*/ S.String;
+export const NetworksSubnetsWarpDeleteResponseSubnetType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeleteNetworkSubnetWarpResponse {
@@ -46669,7 +46607,7 @@ export const DeleteTunnelCloudflaredRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteTunnelCloudflaredRequest>;
 
 export type TunnelsCloudflaredDeleteResponseConfigSrc = "local" | "cloudflare";
-export const TunnelsCloudflaredDeleteResponseConfigSrc = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredDeleteResponseConfigSrc = S.String;
 
 export type TunnelsCloudflaredDeleteResponseConnectionsItem =
   TunnelsCloudflaredCreateResponseConnectionsItem;
@@ -46688,7 +46626,7 @@ export type TunnelsCloudflaredDeleteResponseStatus =
   | "degraded"
   | "healthy"
   | "down";
-export const TunnelsCloudflaredDeleteResponseStatus = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredDeleteResponseStatus = S.String;
 
 export type TunnelsCloudflaredDeleteResponseTunType =
   | "cfd_tunnel"
@@ -46698,7 +46636,7 @@ export type TunnelsCloudflaredDeleteResponseTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const TunnelsCloudflaredDeleteResponseTunType = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredDeleteResponseTunType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeleteTunnelCloudflaredResponse {
@@ -46838,7 +46776,7 @@ export type TunnelsWarpConnectorDeleteResponseStatus =
   | "degraded"
   | "healthy"
   | "down";
-export const TunnelsWarpConnectorDeleteResponseStatus = /*@__PURE__*/ S.String;
+export const TunnelsWarpConnectorDeleteResponseStatus = S.String;
 
 export type TunnelsWarpConnectorDeleteResponseTunType =
   | "cfd_tunnel"
@@ -46848,7 +46786,7 @@ export type TunnelsWarpConnectorDeleteResponseTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const TunnelsWarpConnectorDeleteResponseTunType = /*@__PURE__*/ S.String;
+export const TunnelsWarpConnectorDeleteResponseTunType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeleteTunnelWarpConnectorResponse {
@@ -46933,8 +46871,7 @@ export type DlpDatasetsUploadEditResponseColumnsItemUploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsUploadEditResponseColumnsItemUploadStatus =
-  /*@__PURE__*/ S.String;
+export const DlpDatasetsUploadEditResponseColumnsItemUploadStatus = S.String;
 
 export interface DlpDatasetsUploadEditResponseColumnsItem {
   entryId: string;
@@ -46969,7 +46906,7 @@ export type DlpDatasetsUploadEditResponseStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsUploadEditResponseStatus = /*@__PURE__*/ S.String;
+export const DlpDatasetsUploadEditResponseStatus = S.String;
 
 export type DlpDatasetsUploadEditResponseUploadsItemStatus =
   | "empty"
@@ -46978,8 +46915,7 @@ export type DlpDatasetsUploadEditResponseUploadsItemStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsUploadEditResponseUploadsItemStatus =
-  /*@__PURE__*/ S.String;
+export const DlpDatasetsUploadEditResponseUploadsItemStatus = S.String;
 
 export interface DlpDatasetsUploadEditResponseUploadsItem {
   numCells: number;
@@ -47147,8 +47083,7 @@ export type AccessApplicationsGetResultSelfHostedApplicationType =
   | "mcp"
   | "mcp_portal"
   | "proxy_endpoint";
-export const AccessApplicationsGetResultSelfHostedApplicationType =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsGetResultSelfHostedApplicationType = S.String;
 
 export type AccessApplicationsGetResultSelfHostedApplicationAllowedIdpsList =
   Array<unknown>;
@@ -47175,7 +47110,7 @@ export type AccessApplicationsGetResultSelfHostedApplicationCorsHeadersAllowedMe
   | "TRACE"
   | "PATCH";
 export const AccessApplicationsGetResultSelfHostedApplicationCorsHeadersAllowedMethodsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSelfHostedApplicationCorsHeadersAllowedMethodsList =
   Array<AccessApplicationsGetResultSelfHostedApplicationCorsHeadersAllowedMethodsItem>;
@@ -47255,7 +47190,7 @@ export const AccessApplicationsGetResultSelfHostedApplicationCustomPagesList =
 export type AccessApplicationsGetResultSelfHostedApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsGetResultSelfHostedApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultSelfHostedApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsGetResultSelfHostedApplicationDestinationsItemPublicDestinationType | null;
@@ -47281,12 +47216,12 @@ export type AccessApplicationsGetResultSelfHostedApplicationDestinationsItemPriv
   | "tcp"
   | "udp";
 export const AccessApplicationsGetResultSelfHostedApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSelfHostedApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsGetResultSelfHostedApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultSelfHostedApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -47327,7 +47262,7 @@ export const AccessApplicationsGetResultSelfHostedApplicationDestinationsItemPri
 export type AccessApplicationsGetResultSelfHostedApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsGetResultSelfHostedApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultSelfHostedApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -47352,7 +47287,7 @@ export const AccessApplicationsGetResultSelfHostedApplicationDestinationsItemVia
 export type AccessApplicationsGetResultSelfHostedApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsGetResultSelfHostedApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultSelfHostedApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsGetResultSelfHostedApplicationDestinationsItemWorkerDestinationType;
@@ -47373,7 +47308,7 @@ export const AccessApplicationsGetResultSelfHostedApplicationDestinationsItemWor
 export type AccessApplicationsGetResultSelfHostedApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsGetResultSelfHostedApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultSelfHostedApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsGetResultSelfHostedApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -47394,7 +47329,7 @@ export const AccessApplicationsGetResultSelfHostedApplicationDestinationsItemPre
 export type AccessApplicationsGetResultSelfHostedApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsGetResultSelfHostedApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultSelfHostedApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsGetResultSelfHostedApplicationDestinationsItemAllWorkersDestinationType;
@@ -47412,7 +47347,7 @@ export const AccessApplicationsGetResultSelfHostedApplicationDestinationsItemAll
 export type AccessApplicationsGetResultSelfHostedApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsGetResultSelfHostedApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultSelfHostedApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsGetResultSelfHostedApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -47460,7 +47395,7 @@ export type AccessApplicationsGetResultSelfHostedApplicationMfaConfigAllowedAuth
   | "biometrics"
   | "security_key";
 export const AccessApplicationsGetResultSelfHostedApplicationMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSelfHostedApplicationMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultSelfHostedApplicationMfaConfigAllowedAuthenticatorsItem>;
@@ -47608,7 +47543,7 @@ export const AccessApplicationsGetResultSelfHostedApplicationPoliciesItemApprova
 export type AccessApplicationsGetResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsGetResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsGetResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -47620,7 +47555,7 @@ export const AccessApplicationsGetResultSelfHostedApplicationPoliciesItemConnect
 export type AccessApplicationsGetResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsGetResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsGetResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -47678,7 +47613,7 @@ export type AccessApplicationsGetResultSelfHostedApplicationPoliciesItemDecision
   | "non_identity"
   | "bypass";
 export const AccessApplicationsGetResultSelfHostedApplicationPoliciesItemDecision =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSelfHostedApplicationPoliciesItemExcludeItemGroupRuleGroup =
   AccessPoliciesCreateRequestIncludeItemGroupRuleGroup;
@@ -47911,7 +47846,7 @@ export type AccessApplicationsGetResultSelfHostedApplicationPoliciesItemExcludeI
   | "high"
   | "unscored";
 export const AccessApplicationsGetResultSelfHostedApplicationPoliciesItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSelfHostedApplicationPoliciesItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<AccessApplicationsGetResultSelfHostedApplicationPoliciesItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem>;
@@ -48230,7 +48165,7 @@ export type AccessApplicationsGetResultSelfHostedApplicationPoliciesItemMfaConfi
   | "biometrics"
   | "security_key";
 export const AccessApplicationsGetResultSelfHostedApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSelfHostedApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultSelfHostedApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -48568,7 +48503,7 @@ export const AccessApplicationsGetResultSelfHostedApplicationPoliciesList =
 export type AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationHTTPBasicScheme =
   "httpbasic";
 export const AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationHTTPBasicScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationHTTPBasic {
   /** Password used to authenticate with the remote SCIM service. */
@@ -48594,7 +48529,7 @@ export const AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthentic
 export type AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOAuthBearerTokenScheme =
   "oauthbearertoken";
 export const AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOAuthBearerTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOAuthBearerToken {
   /** Token used to authenticate with the remote SCIM service. */
@@ -48617,7 +48552,7 @@ export const AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthentic
 export type AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOauth2Scheme =
   "oauth2";
 export const AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOauth2Scheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOauth2ScopesList =
   Array<string>;
@@ -48663,7 +48598,7 @@ export const AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthentic
 export type AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -48704,7 +48639,7 @@ export const AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthentic
 export type AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -48782,7 +48717,7 @@ export type AccessApplicationsGetResultSelfHostedApplicationScimConfigMappingsIt
   | "strict"
   | "passthrough";
 export const AccessApplicationsGetResultSelfHostedApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultSelfHostedApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -49119,7 +49054,7 @@ export const AccessApplicationsGetResultSaaSApplicationPoliciesItemApprovalGroup
 export type AccessApplicationsGetResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsGetResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsGetResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -49131,7 +49066,7 @@ export const AccessApplicationsGetResultSaaSApplicationPoliciesItemConnectionRul
 export type AccessApplicationsGetResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsGetResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsGetResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -49580,7 +49515,7 @@ export type AccessApplicationsGetResultSaaSApplicationPoliciesItemMfaConfigAllow
   | "biometrics"
   | "security_key";
 export const AccessApplicationsGetResultSaaSApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSaaSApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultSaaSApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -49919,14 +49854,14 @@ export type AccessApplicationsGetResultSaaSApplicationSaasAppSAMLSaaSAppAuthType
   | "saml"
   | "oidc";
 export const AccessApplicationsGetResultSaaSApplicationSaasAppSAMLSaaSAppAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSaaSApplicationSaasAppSAMLSaaSAppCustomAttributesItemNameFormat =
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:basic"
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:uri";
 export const AccessApplicationsGetResultSaaSApplicationSaasAppSAMLSaaSAppCustomAttributesItemNameFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSaaSApplicationSaasAppSAMLSaaSAppCustomAttributesItemSourceNameByIdpItem =
   AccessApplicationsCreateResultSaaSApplicationSaasAppSAMLSaaSAppCustomAttributesItemSourceNameByIdpItem;
@@ -50007,7 +49942,7 @@ export type AccessApplicationsGetResultSaaSApplicationSaasAppSAMLSaaSAppNameIdFo
   | "id"
   | "email";
 export const AccessApplicationsGetResultSaaSApplicationSaasAppSAMLSaaSAppNameIdFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultSaaSApplicationSaasAppSAMLSaaSApp {
   /** Optional identifier indicating the authentication protocol used for the saas app. Required for OIDC. Default if unset is "saml" */
@@ -50075,7 +50010,7 @@ export type AccessApplicationsGetResultSaaSApplicationSaasAppOIDCSaaSAppAuthType
   | "saml"
   | "oidc";
 export const AccessApplicationsGetResultSaaSApplicationSaasAppOIDCSaaSAppAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSaaSApplicationSaasAppOIDCSaaSAppCustomClaimsItemScope =
   | "groups"
@@ -50083,7 +50018,7 @@ export type AccessApplicationsGetResultSaaSApplicationSaasAppOIDCSaaSAppCustomCl
   | "email"
   | "openid";
 export const AccessApplicationsGetResultSaaSApplicationSaasAppOIDCSaaSAppCustomClaimsItemScope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSaaSApplicationSaasAppOIDCSaaSAppCustomClaimsItemSourceNameByIdpMap =
   { [key: string]: string | undefined };
@@ -50158,7 +50093,7 @@ export type AccessApplicationsGetResultSaaSApplicationSaasAppOIDCSaaSAppGrantTyp
   | "hybrid"
   | "implicit";
 export const AccessApplicationsGetResultSaaSApplicationSaasAppOIDCSaaSAppGrantTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSaaSApplicationSaasAppOIDCSaaSAppGrantTypesList =
   Array<AccessApplicationsGetResultSaaSApplicationSaasAppOIDCSaaSAppGrantTypesItem>;
@@ -50190,7 +50125,7 @@ export type AccessApplicationsGetResultSaaSApplicationSaasAppOIDCSaaSAppScopesIt
   | "email"
   | "profile";
 export const AccessApplicationsGetResultSaaSApplicationSaasAppOIDCSaaSAppScopesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultSaaSApplicationSaasAppOIDCSaaSAppScopesList =
   Array<AccessApplicationsGetResultSaaSApplicationSaasAppOIDCSaaSAppScopesItem>;
@@ -50342,7 +50277,7 @@ export const AccessApplicationsGetResultSaaSApplicationScimConfigAuthenticationS
 export type AccessApplicationsGetResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsGetResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -50383,7 +50318,7 @@ export const AccessApplicationsGetResultSaaSApplicationScimConfigAuthenticationA
 export type AccessApplicationsGetResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsGetResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -50449,7 +50384,7 @@ export type AccessApplicationsGetResultSaaSApplicationScimConfigMappingsItemStri
   | "strict"
   | "passthrough";
 export const AccessApplicationsGetResultSaaSApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultSaaSApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -50625,8 +50560,7 @@ export type AccessApplicationsGetResultBrowserSSHApplicationType =
   | "mcp"
   | "mcp_portal"
   | "proxy_endpoint";
-export const AccessApplicationsGetResultBrowserSSHApplicationType =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsGetResultBrowserSSHApplicationType = S.String;
 
 export type AccessApplicationsGetResultBrowserSSHApplicationAllowedIdpsList =
   Array<unknown>;
@@ -50645,7 +50579,7 @@ export const AccessApplicationsGetResultBrowserSSHApplicationCustomPagesList =
 export type AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemPublicDestinationType | null;
@@ -50671,12 +50605,12 @@ export type AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemPriv
   | "tcp"
   | "udp";
 export const AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -50717,7 +50651,7 @@ export const AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemPri
 export type AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -50742,7 +50676,7 @@ export const AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemVia
 export type AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemWorkerDestinationType;
@@ -50763,7 +50697,7 @@ export const AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemWor
 export type AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -50784,7 +50718,7 @@ export const AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemPre
 export type AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemAllWorkersDestinationType;
@@ -50802,7 +50736,7 @@ export const AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemAll
 export type AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsGetResultBrowserSSHApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -50850,7 +50784,7 @@ export type AccessApplicationsGetResultBrowserSSHApplicationMfaConfigAllowedAuth
   | "biometrics"
   | "security_key";
 export const AccessApplicationsGetResultBrowserSSHApplicationMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserSSHApplicationMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultBrowserSSHApplicationMfaConfigAllowedAuthenticatorsItem>;
@@ -50998,7 +50932,7 @@ export const AccessApplicationsGetResultBrowserSSHApplicationPoliciesItemApprova
 export type AccessApplicationsGetResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsGetResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsGetResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -51010,7 +50944,7 @@ export const AccessApplicationsGetResultBrowserSSHApplicationPoliciesItemConnect
 export type AccessApplicationsGetResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsGetResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsGetResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -51459,7 +51393,7 @@ export type AccessApplicationsGetResultBrowserSSHApplicationPoliciesItemMfaConfi
   | "biometrics"
   | "security_key";
 export const AccessApplicationsGetResultBrowserSSHApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserSSHApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultBrowserSSHApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -51812,7 +51746,7 @@ export const AccessApplicationsGetResultBrowserSSHApplicationScimConfigAuthentic
 export type AccessApplicationsGetResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsGetResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -51853,7 +51787,7 @@ export const AccessApplicationsGetResultBrowserSSHApplicationScimConfigAuthentic
 export type AccessApplicationsGetResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsGetResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -51919,7 +51853,7 @@ export type AccessApplicationsGetResultBrowserSSHApplicationScimConfigMappingsIt
   | "strict"
   | "passthrough";
 export const AccessApplicationsGetResultBrowserSSHApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserSSHApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -52210,8 +52144,7 @@ export type AccessApplicationsGetResultBrowserVNCApplicationType =
   | "mcp"
   | "mcp_portal"
   | "proxy_endpoint";
-export const AccessApplicationsGetResultBrowserVNCApplicationType =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsGetResultBrowserVNCApplicationType = S.String;
 
 export type AccessApplicationsGetResultBrowserVNCApplicationAllowedIdpsList =
   Array<unknown>;
@@ -52230,7 +52163,7 @@ export const AccessApplicationsGetResultBrowserVNCApplicationCustomPagesList =
 export type AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemPublicDestinationType | null;
@@ -52256,12 +52189,12 @@ export type AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemPriv
   | "tcp"
   | "udp";
 export const AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -52302,7 +52235,7 @@ export const AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemPri
 export type AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -52327,7 +52260,7 @@ export const AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemVia
 export type AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemWorkerDestinationType;
@@ -52348,7 +52281,7 @@ export const AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemWor
 export type AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -52369,7 +52302,7 @@ export const AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemPre
 export type AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemAllWorkersDestinationType;
@@ -52387,7 +52320,7 @@ export const AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemAll
 export type AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsGetResultBrowserVNCApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -52435,7 +52368,7 @@ export type AccessApplicationsGetResultBrowserVNCApplicationMfaConfigAllowedAuth
   | "biometrics"
   | "security_key";
 export const AccessApplicationsGetResultBrowserVNCApplicationMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserVNCApplicationMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultBrowserVNCApplicationMfaConfigAllowedAuthenticatorsItem>;
@@ -52583,7 +52516,7 @@ export const AccessApplicationsGetResultBrowserVNCApplicationPoliciesItemApprova
 export type AccessApplicationsGetResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsGetResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsGetResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -52595,7 +52528,7 @@ export const AccessApplicationsGetResultBrowserVNCApplicationPoliciesItemConnect
 export type AccessApplicationsGetResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsGetResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsGetResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -53044,7 +52977,7 @@ export type AccessApplicationsGetResultBrowserVNCApplicationPoliciesItemMfaConfi
   | "biometrics"
   | "security_key";
 export const AccessApplicationsGetResultBrowserVNCApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserVNCApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultBrowserVNCApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -53397,7 +53330,7 @@ export const AccessApplicationsGetResultBrowserVNCApplicationScimConfigAuthentic
 export type AccessApplicationsGetResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsGetResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -53438,7 +53371,7 @@ export const AccessApplicationsGetResultBrowserVNCApplicationScimConfigAuthentic
 export type AccessApplicationsGetResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsGetResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -53504,7 +53437,7 @@ export type AccessApplicationsGetResultBrowserVNCApplicationScimConfigMappingsIt
   | "strict"
   | "passthrough";
 export const AccessApplicationsGetResultBrowserVNCApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserVNCApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -53795,8 +53728,7 @@ export type AccessApplicationsGetResultAppLauncherApplicationType =
   | "mcp"
   | "mcp_portal"
   | "proxy_endpoint";
-export const AccessApplicationsGetResultAppLauncherApplicationType =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsGetResultAppLauncherApplicationType = S.String;
 
 export type AccessApplicationsGetResultAppLauncherApplicationAllowedIdpsList =
   Array<unknown>;
@@ -53872,7 +53804,7 @@ export const AccessApplicationsGetResultAppLauncherApplicationPoliciesItemApprov
 export type AccessApplicationsGetResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsGetResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsGetResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -53884,7 +53816,7 @@ export const AccessApplicationsGetResultAppLauncherApplicationPoliciesItemConnec
 export type AccessApplicationsGetResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsGetResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsGetResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -54333,7 +54265,7 @@ export type AccessApplicationsGetResultAppLauncherApplicationPoliciesItemMfaConf
   | "biometrics"
   | "security_key";
 export const AccessApplicationsGetResultAppLauncherApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultAppLauncherApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultAppLauncherApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -54820,7 +54752,7 @@ export const AccessApplicationsGetResultDeviceEnrollmentPermissionsApplicationPo
 export type AccessApplicationsGetResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsGetResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsGetResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -54832,7 +54764,7 @@ export const AccessApplicationsGetResultDeviceEnrollmentPermissionsApplicationPo
 export type AccessApplicationsGetResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsGetResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsGetResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -55281,7 +55213,7 @@ export type AccessApplicationsGetResultDeviceEnrollmentPermissionsApplicationPol
   | "biometrics"
   | "security_key";
 export const AccessApplicationsGetResultDeviceEnrollmentPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultDeviceEnrollmentPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultDeviceEnrollmentPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -55740,7 +55672,7 @@ export const AccessApplicationsGetResultBrowserIsolationPermissionsApplicationPo
 export type AccessApplicationsGetResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsGetResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsGetResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -55752,7 +55684,7 @@ export const AccessApplicationsGetResultBrowserIsolationPermissionsApplicationPo
 export type AccessApplicationsGetResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsGetResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsGetResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -56201,7 +56133,7 @@ export type AccessApplicationsGetResultBrowserIsolationPermissionsApplicationPol
   | "biometrics"
   | "security_key";
 export const AccessApplicationsGetResultBrowserIsolationPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserIsolationPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultBrowserIsolationPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -56660,7 +56592,7 @@ export const AccessApplicationsGetResultGatewayIdentityProxyEndpointApplicationP
 export type AccessApplicationsGetResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsGetResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsGetResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -56672,7 +56604,7 @@ export const AccessApplicationsGetResultGatewayIdentityProxyEndpointApplicationP
 export type AccessApplicationsGetResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsGetResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsGetResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -57121,7 +57053,7 @@ export type AccessApplicationsGetResultGatewayIdentityProxyEndpointApplicationPo
   | "biometrics"
   | "security_key";
 export const AccessApplicationsGetResultGatewayIdentityProxyEndpointApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultGatewayIdentityProxyEndpointApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultGatewayIdentityProxyEndpointApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -57566,7 +57498,7 @@ export const AccessApplicationsGetResultBookmarkApplicationPoliciesItemApprovalG
 export type AccessApplicationsGetResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsGetResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsGetResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -57578,7 +57510,7 @@ export const AccessApplicationsGetResultBookmarkApplicationPoliciesItemConnectio
 export type AccessApplicationsGetResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsGetResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsGetResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -58027,7 +57959,7 @@ export type AccessApplicationsGetResultBookmarkApplicationPoliciesItemMfaConfigA
   | "biometrics"
   | "security_key";
 export const AccessApplicationsGetResultBookmarkApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBookmarkApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultBookmarkApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -58416,7 +58348,7 @@ export const AccessApplicationsGetResultBookmarkApplication =
 export type AccessApplicationsGetResultInfrastructureApplicationTargetCriteriaItemProtocol =
   "SSH";
 export const AccessApplicationsGetResultInfrastructureApplicationTargetCriteriaItemProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultInfrastructureApplicationTargetCriteriaItemTargetAttributesValueList =
   Array<string>;
@@ -58908,7 +58840,7 @@ export const AccessApplicationsGetResultInfrastructureApplicationPoliciesItemInc
 export type AccessApplicationsGetResultInfrastructureApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
   "piv_key";
 export const AccessApplicationsGetResultInfrastructureApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultInfrastructureApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultInfrastructureApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -59245,7 +59177,7 @@ export const AccessApplicationsGetResultInfrastructureApplication =
 export type AccessApplicationsGetResultBrowserRDPApplicationTargetCriteriaItemProtocol =
   "RDP";
 export const AccessApplicationsGetResultBrowserRDPApplicationTargetCriteriaItemProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserRDPApplicationTargetCriteriaItemTargetAttributesValueList =
   Array<string>;
@@ -59314,7 +59246,7 @@ export const AccessApplicationsGetResultBrowserRDPApplicationCustomPagesList =
 export type AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemPublicDestinationType | null;
@@ -59340,12 +59272,12 @@ export type AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemPriv
   | "tcp"
   | "udp";
 export const AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -59386,7 +59318,7 @@ export const AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemPri
 export type AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -59411,7 +59343,7 @@ export const AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemVia
 export type AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemWorkerDestinationType;
@@ -59432,7 +59364,7 @@ export const AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemWor
 export type AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -59453,7 +59385,7 @@ export const AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemPre
 export type AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemAllWorkersDestinationType;
@@ -59471,7 +59403,7 @@ export const AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemAll
 export type AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsGetResultBrowserRDPApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -59519,7 +59451,7 @@ export type AccessApplicationsGetResultBrowserRDPApplicationMfaConfigAllowedAuth
   | "biometrics"
   | "security_key";
 export const AccessApplicationsGetResultBrowserRDPApplicationMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserRDPApplicationMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultBrowserRDPApplicationMfaConfigAllowedAuthenticatorsItem>;
@@ -59667,7 +59599,7 @@ export const AccessApplicationsGetResultBrowserRDPApplicationPoliciesItemApprova
 export type AccessApplicationsGetResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsGetResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsGetResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -59679,7 +59611,7 @@ export const AccessApplicationsGetResultBrowserRDPApplicationPoliciesItemConnect
 export type AccessApplicationsGetResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsGetResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsGetResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -60128,7 +60060,7 @@ export type AccessApplicationsGetResultBrowserRDPApplicationPoliciesItemMfaConfi
   | "biometrics"
   | "security_key";
 export const AccessApplicationsGetResultBrowserRDPApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultBrowserRDPApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultBrowserRDPApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -60481,7 +60413,7 @@ export const AccessApplicationsGetResultBrowserRDPApplicationScimConfigAuthentic
 export type AccessApplicationsGetResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsGetResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -60522,7 +60454,7 @@ export const AccessApplicationsGetResultBrowserRDPApplicationScimConfigAuthentic
 export type AccessApplicationsGetResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsGetResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -60588,7 +60520,7 @@ export type AccessApplicationsGetResultBrowserRDPApplicationScimConfigMappingsIt
   | "strict"
   | "passthrough";
 export const AccessApplicationsGetResultBrowserRDPApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultBrowserRDPApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -60886,7 +60818,7 @@ export const AccessApplicationsGetResultMcpServerApplicationCustomPagesList =
 export type AccessApplicationsGetResultMcpServerApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsGetResultMcpServerApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsGetResultMcpServerApplicationDestinationsItemPublicDestinationType | null;
@@ -60912,12 +60844,12 @@ export type AccessApplicationsGetResultMcpServerApplicationDestinationsItemPriva
   | "tcp"
   | "udp";
 export const AccessApplicationsGetResultMcpServerApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultMcpServerApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsGetResultMcpServerApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -60958,7 +60890,7 @@ export const AccessApplicationsGetResultMcpServerApplicationDestinationsItemPriv
 export type AccessApplicationsGetResultMcpServerApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsGetResultMcpServerApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -60983,7 +60915,7 @@ export const AccessApplicationsGetResultMcpServerApplicationDestinationsItemViaM
 export type AccessApplicationsGetResultMcpServerApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsGetResultMcpServerApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsGetResultMcpServerApplicationDestinationsItemWorkerDestinationType;
@@ -61004,7 +60936,7 @@ export const AccessApplicationsGetResultMcpServerApplicationDestinationsItemWork
 export type AccessApplicationsGetResultMcpServerApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsGetResultMcpServerApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsGetResultMcpServerApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -61025,7 +60957,7 @@ export const AccessApplicationsGetResultMcpServerApplicationDestinationsItemPrev
 export type AccessApplicationsGetResultMcpServerApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsGetResultMcpServerApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsGetResultMcpServerApplicationDestinationsItemAllWorkersDestinationType;
@@ -61043,7 +60975,7 @@ export const AccessApplicationsGetResultMcpServerApplicationDestinationsItemAllW
 export type AccessApplicationsGetResultMcpServerApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsGetResultMcpServerApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsGetResultMcpServerApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -61200,7 +61132,7 @@ export const AccessApplicationsGetResultMcpServerApplicationPoliciesItemApproval
 export type AccessApplicationsGetResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsGetResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsGetResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -61212,7 +61144,7 @@ export const AccessApplicationsGetResultMcpServerApplicationPoliciesItemConnecti
 export type AccessApplicationsGetResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsGetResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsGetResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -61661,7 +61593,7 @@ export type AccessApplicationsGetResultMcpServerApplicationPoliciesItemMfaConfig
   | "biometrics"
   | "security_key";
 export const AccessApplicationsGetResultMcpServerApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultMcpServerApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultMcpServerApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -62014,7 +61946,7 @@ export const AccessApplicationsGetResultMcpServerApplicationScimConfigAuthentica
 export type AccessApplicationsGetResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsGetResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -62055,7 +61987,7 @@ export const AccessApplicationsGetResultMcpServerApplicationScimConfigAuthentica
 export type AccessApplicationsGetResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsGetResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -62121,7 +62053,7 @@ export type AccessApplicationsGetResultMcpServerApplicationScimConfigMappingsIte
   | "strict"
   | "passthrough";
 export const AccessApplicationsGetResultMcpServerApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -62341,7 +62273,7 @@ export const AccessApplicationsGetResultMcpServerPortalApplicationCustomPagesLis
 export type AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemPublicDestinationType | null;
@@ -62367,12 +62299,12 @@ export type AccessApplicationsGetResultMcpServerPortalApplicationDestinationsIte
   | "tcp"
   | "udp";
 export const AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -62413,7 +62345,7 @@ export const AccessApplicationsGetResultMcpServerPortalApplicationDestinationsIt
 export type AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -62438,7 +62370,7 @@ export const AccessApplicationsGetResultMcpServerPortalApplicationDestinationsIt
 export type AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemWorkerDestinationType;
@@ -62459,7 +62391,7 @@ export const AccessApplicationsGetResultMcpServerPortalApplicationDestinationsIt
 export type AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -62480,7 +62412,7 @@ export const AccessApplicationsGetResultMcpServerPortalApplicationDestinationsIt
 export type AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemAllWorkersDestinationType;
@@ -62498,7 +62430,7 @@ export const AccessApplicationsGetResultMcpServerPortalApplicationDestinationsIt
 export type AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsGetResultMcpServerPortalApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -62655,7 +62587,7 @@ export const AccessApplicationsGetResultMcpServerPortalApplicationPoliciesItemAp
 export type AccessApplicationsGetResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsGetResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsGetResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -62667,7 +62599,7 @@ export const AccessApplicationsGetResultMcpServerPortalApplicationPoliciesItemCo
 export type AccessApplicationsGetResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsGetResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsGetResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -63116,7 +63048,7 @@ export type AccessApplicationsGetResultMcpServerPortalApplicationPoliciesItemMfa
   | "biometrics"
   | "security_key";
 export const AccessApplicationsGetResultMcpServerPortalApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsGetResultMcpServerPortalApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsGetResultMcpServerPortalApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -63470,7 +63402,7 @@ export const AccessApplicationsGetResultMcpServerPortalApplicationScimConfigAuth
 export type AccessApplicationsGetResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsGetResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -63511,7 +63443,7 @@ export const AccessApplicationsGetResultMcpServerPortalApplicationScimConfigAuth
 export type AccessApplicationsGetResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsGetResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -63577,7 +63509,7 @@ export type AccessApplicationsGetResultMcpServerPortalApplicationScimConfigMappi
   | "strict"
   | "passthrough";
 export const AccessApplicationsGetResultMcpServerPortalApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsGetResultMcpServerPortalApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -64188,7 +64120,7 @@ export const AccessApplicationsPoliciesGetResponseApprovalGroupsList =
 export type AccessApplicationsPoliciesGetResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsPoliciesGetResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesGetResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsPoliciesGetResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -64200,7 +64132,7 @@ export const AccessApplicationsPoliciesGetResponseConnectionRulesRdpAllowedClipb
 export type AccessApplicationsPoliciesGetResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsPoliciesGetResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesGetResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsPoliciesGetResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -64253,8 +64185,7 @@ export type AccessApplicationsPoliciesGetResponseDecision =
   | "deny"
   | "non_identity"
   | "bypass";
-export const AccessApplicationsPoliciesGetResponseDecision =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsPoliciesGetResponseDecision = S.String;
 
 export type AccessApplicationsPoliciesGetResponseExcludeItemGroupRuleGroup =
   AccessPoliciesCreateRequestIncludeItemGroupRuleGroup;
@@ -64487,7 +64418,7 @@ export type AccessApplicationsPoliciesGetResponseExcludeItemAccessUserRiskScoreR
   | "high"
   | "unscored";
 export const AccessApplicationsPoliciesGetResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesGetResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<AccessApplicationsPoliciesGetResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem>;
@@ -64806,7 +64737,7 @@ export type AccessApplicationsPoliciesGetResponseMfaConfigAllowedAuthenticatorsI
   | "biometrics"
   | "security_key";
 export const AccessApplicationsPoliciesGetResponseMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesGetResponseMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsPoliciesGetResponseMfaConfigAllowedAuthenticatorsItem>;
@@ -65181,8 +65112,7 @@ export type AccessApplicationsPolicyTestsGetResponseStatus =
   | "processing"
   | "exceeded time"
   | "complete";
-export const AccessApplicationsPolicyTestsGetResponseStatus =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsPolicyTestsGetResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetAccessApplicationPolicyTestResponse {
@@ -65480,7 +65410,7 @@ export const GetAccessCustomPageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccessCustomPageRequest>;
 
 export type AccessCustomPagesGetResponseType = "identity_denied" | "forbidden";
-export const AccessCustomPagesGetResponseType = /*@__PURE__*/ S.String;
+export const AccessCustomPagesGetResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetAccessCustomPageResponse {
@@ -65758,7 +65688,7 @@ export type AccessGroupsGetResponseExcludeItemAccessUserRiskScoreRuleUserRiskSco
   | "high"
   | "unscored";
 export const AccessGroupsGetResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessGroupsGetResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<AccessGroupsGetResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem>;
@@ -66526,7 +66456,7 @@ export const AccessPoliciesGetResponseApprovalGroupsList =
 export type AccessPoliciesGetResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessPoliciesGetResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesGetResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessPoliciesGetResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -66538,7 +66468,7 @@ export const AccessPoliciesGetResponseConnectionRulesRdpAllowedClipboardLocalToR
 export type AccessPoliciesGetResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessPoliciesGetResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesGetResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessPoliciesGetResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -66589,7 +66519,7 @@ export type AccessPoliciesGetResponseDecision =
   | "deny"
   | "non_identity"
   | "bypass";
-export const AccessPoliciesGetResponseDecision = /*@__PURE__*/ S.String;
+export const AccessPoliciesGetResponseDecision = S.String;
 
 export type AccessPoliciesGetResponseExcludeItemGroupRuleGroup =
   AccessPoliciesCreateRequestIncludeItemGroupRuleGroup;
@@ -66822,7 +66752,7 @@ export type AccessPoliciesGetResponseExcludeItemAccessUserRiskScoreRuleUserRiskS
   | "high"
   | "unscored";
 export const AccessPoliciesGetResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesGetResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<AccessPoliciesGetResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem>;
@@ -67138,7 +67068,7 @@ export type AccessPoliciesGetResponseMfaConfigAllowedAuthenticatorsItem =
   | "biometrics"
   | "security_key";
 export const AccessPoliciesGetResponseMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesGetResponseMfaConfigAllowedAuthenticatorsList =
   Array<AccessPoliciesGetResponseMfaConfigAllowedAuthenticatorsItem>;
@@ -68059,7 +67989,7 @@ export type GetCasbApplicationRequestSlug =
   | "MICROSOFT_INTERNAL"
   | "SALESFORCE"
   | "SLACK";
-export const GetCasbApplicationRequestSlug = /*@__PURE__*/ S.String;
+export const GetCasbApplicationRequestSlug = S.String;
 
 export interface GetCasbApplicationRequest {
   accountId: string;
@@ -68126,7 +68056,7 @@ export type GetCasbApplicationResponseSlug =
   | "MICROSOFT_INTERNAL"
   | "SALESFORCE"
   | "SLACK";
-export const GetCasbApplicationResponseSlug = /*@__PURE__*/ S.String;
+export const GetCasbApplicationResponseSlug = S.String;
 
 export type GetCasbApplicationResponseUseCasesItemBaseScopesItemSeverity =
   | "low"
@@ -68134,7 +68064,7 @@ export type GetCasbApplicationResponseUseCasesItemBaseScopesItemSeverity =
   | "high"
   | "critical";
 export const GetCasbApplicationResponseUseCasesItemBaseScopesItemSeverity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCasbApplicationResponseUseCasesItemBaseScopesItem {
   /** Human-readable permission name. */
@@ -68168,7 +68098,7 @@ export type GetCasbApplicationResponseUseCasesItemFeaturesItemScopesItemSeverity
   | "high"
   | "critical";
 export const GetCasbApplicationResponseUseCasesItemFeaturesItemScopesItemSeverity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCasbApplicationResponseUseCasesItemFeaturesItemScopesItem {
   /** Human-readable permission name. */
@@ -68857,10 +68787,10 @@ export const GetDeviceDexTestRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDeviceDexTestRequest>;
 
 export type DevicesDexTestsGetResponseDataKind = "http" | "traceroute";
-export const DevicesDexTestsGetResponseDataKind = /*@__PURE__*/ S.String;
+export const DevicesDexTestsGetResponseDataKind = S.String;
 
 export type DevicesDexTestsGetResponseDataMethod = "GET";
-export const DevicesDexTestsGetResponseDataMethod = /*@__PURE__*/ S.String;
+export const DevicesDexTestsGetResponseDataMethod = S.String;
 
 export interface DevicesDexTestsGetResponseData {
   /** The desired endpoint to test. */
@@ -69431,7 +69361,7 @@ export const DevicesNetworksGetResponseConfig =
   DevicesNetworksCreateResponseConfig;
 
 export type DevicesNetworksGetResponseType = "tls";
-export const DevicesNetworksGetResponseType = /*@__PURE__*/ S.String;
+export const DevicesNetworksGetResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetDeviceNetworkResponse {
@@ -70653,8 +70583,7 @@ export type DevicesPostureGetResponseInputFileInputOperatingSystem =
   | "windows"
   | "linux"
   | "mac";
-export const DevicesPostureGetResponseInputFileInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureGetResponseInputFileInputOperatingSystem = S.String;
 
 export interface DevicesPostureGetResponseInputFileInput {
   /** Operating system. */
@@ -70689,7 +70618,7 @@ export type DevicesPostureGetResponseInputUniqueClientIDInputOperatingSystem =
   | "ios"
   | "chromeos";
 export const DevicesPostureGetResponseInputUniqueClientIDInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureGetResponseInputUniqueClientIDInput {
   /** List ID. */
@@ -70713,7 +70642,7 @@ export const DevicesPostureGetResponseInputUniqueClientIDInput =
 export type DevicesPostureGetResponseInputDomainJoinedInputOperatingSystem =
   "windows";
 export const DevicesPostureGetResponseInputDomainJoinedInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureGetResponseInputDomainJoinedInput {
   /** Operating System. */
@@ -70737,7 +70666,7 @@ export const DevicesPostureGetResponseInputDomainJoinedInput =
 export type DevicesPostureGetResponseInputOSVersionInputOperatingSystem =
   "windows";
 export const DevicesPostureGetResponseInputOSVersionInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureGetResponseInputOSVersionInputOperator =
   | "<"
@@ -70745,8 +70674,7 @@ export type DevicesPostureGetResponseInputOSVersionInputOperator =
   | ">"
   | ">="
   | "==";
-export const DevicesPostureGetResponseInputOSVersionInputOperator =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureGetResponseInputOSVersionInputOperator = S.String;
 
 export interface DevicesPostureGetResponseInputOSVersionInput {
   /** Operating System. */
@@ -70789,7 +70717,7 @@ export type DevicesPostureGetResponseInputFirewallInputOperatingSystem =
   | "windows"
   | "mac";
 export const DevicesPostureGetResponseInputFirewallInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureGetResponseInputFirewallInput {
   /** Enabled. */
@@ -70815,7 +70743,7 @@ export type DevicesPostureGetResponseInputSentineloneInputOperatingSystem =
   | "linux"
   | "mac";
 export const DevicesPostureGetResponseInputSentineloneInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureGetResponseInputSentineloneInput {
   /** Operating system. */
@@ -70847,7 +70775,7 @@ export type DevicesPostureGetResponseInputTeamsDevicesCarbonblackInputRequestOpe
   | "linux"
   | "mac";
 export const DevicesPostureGetResponseInputTeamsDevicesCarbonblackInputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureGetResponseInputTeamsDevicesCarbonblackInputRequest {
   /** Operating system. */
@@ -70912,7 +70840,7 @@ export type DevicesPostureGetResponseInputTeamsDevicesApplicationInputRequestOpe
   | "linux"
   | "mac";
 export const DevicesPostureGetResponseInputTeamsDevicesApplicationInputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureGetResponseInputTeamsDevicesApplicationInputRequest {
   /** Operating system. */
@@ -70950,13 +70878,13 @@ export type DevicesPostureGetResponseInputTeamsDevicesClientCertificateV2InputRe
   | "linux"
   | "mac";
 export const DevicesPostureGetResponseInputTeamsDevicesClientCertificateV2InputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureGetResponseInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageItem =
   | "clientAuth"
   | "emailProtection";
 export const DevicesPostureGetResponseInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureGetResponseInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageList =
   Array<DevicesPostureGetResponseInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageItem>;
@@ -70976,7 +70904,7 @@ export type DevicesPostureGetResponseInputTeamsDevicesClientCertificateV2InputRe
   | "system"
   | "user";
 export const DevicesPostureGetResponseInputTeamsDevicesClientCertificateV2InputRequestLocationsTrustStoresItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureGetResponseInputTeamsDevicesClientCertificateV2InputRequestLocationsTrustStoresList =
   Array<DevicesPostureGetResponseInputTeamsDevicesClientCertificateV2InputRequestLocationsTrustStoresItem>;
@@ -71073,7 +71001,7 @@ export type DevicesPostureGetResponseInputWorkspaceOneInputComplianceStatus =
   | "noncompliant"
   | "unknown";
 export const DevicesPostureGetResponseInputWorkspaceOneInputComplianceStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureGetResponseInputWorkspaceOneInput {
   /** Compliance Status. */
@@ -71100,15 +71028,13 @@ export type DevicesPostureGetResponseInputCrowdstrikeInputOperator =
   | ">"
   | ">="
   | "==";
-export const DevicesPostureGetResponseInputCrowdstrikeInputOperator =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureGetResponseInputCrowdstrikeInputOperator = S.String;
 
 export type DevicesPostureGetResponseInputCrowdstrikeInputState =
   | "online"
   | "offline"
   | "unknown";
-export const DevicesPostureGetResponseInputCrowdstrikeInputState =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureGetResponseInputCrowdstrikeInputState = S.String;
 
 export type DevicesPostureGetResponseInputCrowdstrikeInputVersionOperator =
   | "<"
@@ -71117,7 +71043,7 @@ export type DevicesPostureGetResponseInputCrowdstrikeInputVersionOperator =
   | ">="
   | "==";
 export const DevicesPostureGetResponseInputCrowdstrikeInputVersionOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureGetResponseInputCrowdstrikeInput {
   /** Posture Integration ID. */
@@ -71172,7 +71098,7 @@ export type DevicesPostureGetResponseInputIntuneInputComplianceStatus =
   | "ingraceperiod"
   | "error";
 export const DevicesPostureGetResponseInputIntuneInputComplianceStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureGetResponseInputIntuneInput {
   /** Compliance Status. */
@@ -71198,8 +71124,7 @@ export type DevicesPostureGetResponseInputKolideInputAuthStateItem =
   | "Notified"
   | "Will Block"
   | "Blocked";
-export const DevicesPostureGetResponseInputKolideInputAuthStateItem =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureGetResponseInputKolideInputAuthStateItem = S.String;
 
 export type DevicesPostureGetResponseInputKolideInputAuthStateList =
   Array<DevicesPostureGetResponseInputKolideInputAuthStateItem>;
@@ -71214,8 +71139,7 @@ export type DevicesPostureGetResponseInputKolideInputCountOperator =
   | ">"
   | ">="
   | "==";
-export const DevicesPostureGetResponseInputKolideInputCountOperator =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureGetResponseInputKolideInputCountOperator = S.String;
 
 export interface DevicesPostureGetResponseInputKolideInput {
   /** Posture Integration ID. */
@@ -71251,16 +71175,14 @@ export type DevicesPostureGetResponseInputTaniumInputOperator =
   | ">"
   | ">="
   | "==";
-export const DevicesPostureGetResponseInputTaniumInputOperator =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureGetResponseInputTaniumInputOperator = S.String;
 
 export type DevicesPostureGetResponseInputTaniumInputRiskLevel =
   | "low"
   | "medium"
   | "high"
   | "critical";
-export const DevicesPostureGetResponseInputTaniumInputRiskLevel =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureGetResponseInputTaniumInputRiskLevel = S.String;
 
 export type DevicesPostureGetResponseInputTaniumInputScoreOperator =
   | "<"
@@ -71268,8 +71190,7 @@ export type DevicesPostureGetResponseInputTaniumInputScoreOperator =
   | ">"
   | ">="
   | "==";
-export const DevicesPostureGetResponseInputTaniumInputScoreOperator =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureGetResponseInputTaniumInputScoreOperator = S.String;
 
 export interface DevicesPostureGetResponseInputTaniumInput {
   /** Posture Integration ID. */
@@ -71313,7 +71234,7 @@ export type DevicesPostureGetResponseInputSentineloneS2sInputNetworkStatus =
   | "disconnecting"
   | "connecting";
 export const DevicesPostureGetResponseInputSentineloneS2sInputNetworkStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureGetResponseInputSentineloneS2sInputOperationalState =
   | "na"
@@ -71324,7 +71245,7 @@ export type DevicesPostureGetResponseInputSentineloneS2sInputOperationalState =
   | "disabled_error"
   | "db_corruption";
 export const DevicesPostureGetResponseInputSentineloneS2sInputOperationalState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureGetResponseInputSentineloneS2sInputOperator =
   | "<"
@@ -71333,7 +71254,7 @@ export type DevicesPostureGetResponseInputSentineloneS2sInputOperator =
   | ">="
   | "==";
 export const DevicesPostureGetResponseInputSentineloneS2sInputOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureGetResponseInputSentineloneS2sInput {
   /** Posture Integration ID. */
@@ -71385,7 +71306,7 @@ export type DevicesPostureGetResponseInputTeamsDevicesCustomS2sInputRequestOpera
   | ">="
   | "==";
 export const DevicesPostureGetResponseInputTeamsDevicesCustomS2sInputRequestOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureGetResponseInputTeamsDevicesCustomS2sInputRequest {
   /** Posture Integration ID. */
@@ -71501,8 +71422,7 @@ export type DevicesPostureGetResponseMatchItemPlatform =
   | "android"
   | "ios"
   | "chromeos";
-export const DevicesPostureGetResponseMatchItemPlatform =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureGetResponseMatchItemPlatform = S.String;
 
 export interface DevicesPostureGetResponseMatchItem {
   platform?: DevicesPostureGetResponseMatchItemPlatform | null;
@@ -71545,7 +71465,7 @@ export type DevicesPostureGetResponseType =
   | "workspace_one"
   | "sentinelone_s2s"
   | "custom_s2s";
-export const DevicesPostureGetResponseType = /*@__PURE__*/ S.String;
+export const DevicesPostureGetResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetDevicePostureResponse {
@@ -71617,7 +71537,7 @@ export type DevicesPostureIntegrationsGetResponseType =
   | "tanium_s2s"
   | "sentinelone_s2s"
   | "custom_s2s";
-export const DevicesPostureIntegrationsGetResponseType = /*@__PURE__*/ S.String;
+export const DevicesPostureIntegrationsGetResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetDevicePostureIntegrationResponse {
@@ -71935,7 +71855,7 @@ export const GetDexCommandQuotaResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDexCommandQuotaResponse>;
 
 export type DexHttpTestsGetRequestInterval = "minute" | "hour";
-export const DexHttpTestsGetRequestInterval = /*@__PURE__*/ S.String;
+export const DexHttpTestsGetRequestInterval = S.String;
 
 export type DexHttpTestsGetRequestDeviceIdList = Array<string>;
 export const DexHttpTestsGetRequestDeviceIdList = /*@__PURE__*/ S.Array(
@@ -72183,7 +72103,7 @@ export const DexHttpTestsGetResponseHttpStatsByColoList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DexHttpTestsGetResponseHttpStatsByColoList>;
 
 export type DexHttpTestsGetResponseKind = "http";
-export const DexHttpTestsGetResponseKind = /*@__PURE__*/ S.String;
+export const DexHttpTestsGetResponseKind = S.String;
 
 export interface DexHttpTestsGetResponseTargetPoliciesItem {
   /** API Resource UUID tag. */
@@ -72360,12 +72280,10 @@ export const GetDexRuleRequest = /*@__PURE__*/ S.suspend(() =>
 export type DexRulesGetResponseTargetedTestsItemDataKind =
   | "http"
   | "traceroute";
-export const DexRulesGetResponseTargetedTestsItemDataKind =
-  /*@__PURE__*/ S.String;
+export const DexRulesGetResponseTargetedTestsItemDataKind = S.String;
 
 export type DexRulesGetResponseTargetedTestsItemDataMethod = "GET";
-export const DexRulesGetResponseTargetedTestsItemDataMethod =
-  /*@__PURE__*/ S.String;
+export const DexRulesGetResponseTargetedTestsItemDataMethod = S.String;
 
 export interface DexRulesGetResponseTargetedTestsItemData {
   /** The desired endpoint to test. */
@@ -72443,7 +72361,7 @@ export const GetDexRuleResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDexRuleResponse>;
 
 export type DexTracerouteTestsGetRequestInterval = "minute" | "hour";
-export const DexTracerouteTestsGetRequestInterval = /*@__PURE__*/ S.String;
+export const DexTracerouteTestsGetRequestInterval = S.String;
 
 export type DexTracerouteTestsGetRequestDeviceIdList = Array<string>;
 export const DexTracerouteTestsGetRequestDeviceIdList = /*@__PURE__*/ S.Array(
@@ -72491,7 +72409,7 @@ export const GetDexTracerouteTestRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDexTracerouteTestRequest>;
 
 export type DexTracerouteTestsGetResponseKind = "traceroute";
-export const DexTracerouteTestsGetResponseKind = /*@__PURE__*/ S.String;
+export const DexTracerouteTestsGetResponseKind = S.String;
 
 export type DexTracerouteTestsGetResponseTargetPoliciesItem =
   DexHttpTestsGetResponseTargetPoliciesItem;
@@ -72813,7 +72731,7 @@ export type DexTracerouteTestResultsNetworkPathGetResponseHopsItemMile =
   | "client-to-cf-ingress"
   | "client-to-isp";
 export const DexTracerouteTestResultsNetworkPathGetResponseHopsItemMile =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DexTracerouteTestResultsNetworkPathGetResponseHopsItem {
   ttl: number;
@@ -72861,7 +72779,7 @@ export type DexTracerouteTestResultsNetworkPathGetResponseExecutionContext =
   | "OUT_OF_TUNNEL"
   | "IN_TUNNEL";
 export const DexTracerouteTestResultsNetworkPathGetResponseExecutionContext =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetDexTracerouteTestResultNetworkPathResponse {
@@ -72905,13 +72823,13 @@ export const GetDexTracerouteTestResultNetworkPathResponse =
   }) as any as S.Schema<GetDexTracerouteTestResultNetworkPathResponse>;
 
 export type DexWarpChangeEventsGetRequestSortOrder = "ASC" | "DESC";
-export const DexWarpChangeEventsGetRequestSortOrder = /*@__PURE__*/ S.String;
+export const DexWarpChangeEventsGetRequestSortOrder = S.String;
 
 export type DexWarpChangeEventsGetRequestToggle = "on" | "off";
-export const DexWarpChangeEventsGetRequestToggle = /*@__PURE__*/ S.String;
+export const DexWarpChangeEventsGetRequestToggle = S.String;
 
 export type DexWarpChangeEventsGetRequestType = "config" | "toggle";
-export const DexWarpChangeEventsGetRequestType = /*@__PURE__*/ S.String;
+export const DexWarpChangeEventsGetRequestType = S.String;
 
 export interface GetDexWarpChangeEventRequest {
   /** Unique identifier linked to an account. */
@@ -72966,7 +72884,7 @@ export type DexWarpChangeEventsGetResultItemDigitalExperienceMonitoringWARPToggl
   | "on"
   | "off";
 export const DexWarpChangeEventsGetResultItemDigitalExperienceMonitoringWARPToggleChangeEventToggle =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DexWarpChangeEventsGetResultItemDigitalExperienceMonitoringWARPToggleChangeEvent {
   /** The account name. */
@@ -73165,8 +73083,7 @@ export const GetDlpCustomEntryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpCustomEntryRequest>;
 
 export type GetDlpCustomEntryResultCase0PatternValidation = "luhn";
-export const GetDlpCustomEntryResultCase0PatternValidation =
-  /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase0PatternValidation = S.String;
 
 export interface GetDlpCustomEntryResultCase0Pattern {
   regex: string;
@@ -73184,7 +73101,7 @@ export const GetDlpCustomEntryResultCase0Pattern = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpCustomEntryResultCase0Pattern>;
 
 export type GetDlpCustomEntryResultCase0Type = "custom";
-export const GetDlpCustomEntryResultCase0Type = /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase0Type = S.String;
 
 export interface GetDlpCustomEntryResultCase0ProfilesItem {
   id: string;
@@ -73213,7 +73130,7 @@ export type GetDlpCustomEntryResultCase0UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpCustomEntryResultCase0UploadStatus = /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase0UploadStatus = S.String;
 
 export interface GetDlpCustomEntryResultCase0 {
   id: string;
@@ -73251,7 +73168,7 @@ export const GetDlpCustomEntryResultCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpCustomEntryResultCase0>;
 
 export type GetDlpCustomEntryResultCase1Type = "custom_prompt_topic";
-export const GetDlpCustomEntryResultCase1Type = /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase1Type = S.String;
 
 export type GetDlpCustomEntryResultCase1ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -73271,7 +73188,7 @@ export type GetDlpCustomEntryResultCase1UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpCustomEntryResultCase1UploadStatus = /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase1UploadStatus = S.String;
 
 export interface GetDlpCustomEntryResultCase1 {
   id: string;
@@ -73311,7 +73228,7 @@ export const GetDlpCustomEntryResultCase2Confidence =
   DlpEntriesPredefinedCreateResponseConfidence;
 
 export type GetDlpCustomEntryResultCase2Type = "predefined";
-export const GetDlpCustomEntryResultCase2Type = /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase2Type = S.String;
 
 export type GetDlpCustomEntryResultCase2ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -73331,17 +73248,15 @@ export type GetDlpCustomEntryResultCase2UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpCustomEntryResultCase2UploadStatus = /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase2UploadStatus = S.String;
 
 export type GetDlpCustomEntryResultCase2VariantCase0TopicType =
   | "Intent"
   | "Content";
-export const GetDlpCustomEntryResultCase2VariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase2VariantCase0TopicType = S.String;
 
 export type GetDlpCustomEntryResultCase2VariantCase0Type = "PromptTopic";
-export const GetDlpCustomEntryResultCase2VariantCase0Type =
-  /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase2VariantCase0Type = S.String;
 
 export interface GetDlpCustomEntryResultCase2VariantCase0 {
   topicType: GetDlpCustomEntryResultCase2VariantCase0TopicType;
@@ -73363,8 +73278,7 @@ export const GetDlpCustomEntryResultCase2VariantCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetDlpCustomEntryResultCase2VariantCase0>;
 
 export type GetDlpCustomEntryResultCase2VariantCase1Type = "General";
-export const GetDlpCustomEntryResultCase2VariantCase1Type =
-  /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase2VariantCase1Type = S.String;
 
 export interface GetDlpCustomEntryResultCase2VariantCase1 {
   type: GetDlpCustomEntryResultCase2VariantCase1Type;
@@ -73424,7 +73338,7 @@ export const GetDlpCustomEntryResultCase2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpCustomEntryResultCase2>;
 
 export type GetDlpCustomEntryResultCase3Type = "integration";
-export const GetDlpCustomEntryResultCase3Type = /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase3Type = S.String;
 
 export type GetDlpCustomEntryResultCase3ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -73444,7 +73358,7 @@ export type GetDlpCustomEntryResultCase3UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpCustomEntryResultCase3UploadStatus = /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase3UploadStatus = S.String;
 
 export interface GetDlpCustomEntryResultCase3 {
   id: string;
@@ -73478,7 +73392,7 @@ export const GetDlpCustomEntryResultCase3 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpCustomEntryResultCase3>;
 
 export type GetDlpCustomEntryResultCase4Type = "exact_data";
-export const GetDlpCustomEntryResultCase4Type = /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase4Type = S.String;
 
 export type GetDlpCustomEntryResultCase4ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -73498,7 +73412,7 @@ export type GetDlpCustomEntryResultCase4UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpCustomEntryResultCase4UploadStatus = /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase4UploadStatus = S.String;
 
 export interface GetDlpCustomEntryResultCase4 {
   id: string;
@@ -73538,7 +73452,7 @@ export const GetDlpCustomEntryResultCase4 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpCustomEntryResultCase4>;
 
 export type GetDlpCustomEntryResultCase5Type = "document_fingerprint";
-export const GetDlpCustomEntryResultCase5Type = /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase5Type = S.String;
 
 export type GetDlpCustomEntryResultCase5ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -73558,7 +73472,7 @@ export type GetDlpCustomEntryResultCase5UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpCustomEntryResultCase5UploadStatus = /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase5UploadStatus = S.String;
 
 export interface GetDlpCustomEntryResultCase5 {
   id: string;
@@ -73593,7 +73507,7 @@ export const GetDlpCustomEntryResultCase5 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpCustomEntryResultCase5>;
 
 export type GetDlpCustomEntryResultCase6Type = "word_list";
-export const GetDlpCustomEntryResultCase6Type = /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase6Type = S.String;
 
 export type GetDlpCustomEntryResultCase6ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -73613,7 +73527,7 @@ export type GetDlpCustomEntryResultCase6UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpCustomEntryResultCase6UploadStatus = /*@__PURE__*/ S.String;
+export const GetDlpCustomEntryResultCase6UploadStatus = S.String;
 
 export interface GetDlpCustomEntryResultCase6 {
   id: string;
@@ -73894,8 +73808,7 @@ export type DlpDatasetsGetResponseColumnsItemUploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsGetResponseColumnsItemUploadStatus =
-  /*@__PURE__*/ S.String;
+export const DlpDatasetsGetResponseColumnsItemUploadStatus = S.String;
 
 export interface DlpDatasetsGetResponseColumnsItem {
   entryId: string;
@@ -73929,7 +73842,7 @@ export type DlpDatasetsGetResponseStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsGetResponseStatus = /*@__PURE__*/ S.String;
+export const DlpDatasetsGetResponseStatus = S.String;
 
 export type DlpDatasetsGetResponseUploadsItemStatus =
   | "empty"
@@ -73938,7 +73851,7 @@ export type DlpDatasetsGetResponseUploadsItemStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsGetResponseUploadsItemStatus = /*@__PURE__*/ S.String;
+export const DlpDatasetsGetResponseUploadsItemStatus = S.String;
 
 export interface DlpDatasetsGetResponseUploadsItem {
   numCells: number;
@@ -74127,7 +74040,7 @@ export const DlpEmailAccountMappingGetResponseAuthRequirementsCase0AllowedMicros
 
 export type DlpEmailAccountMappingGetResponseAuthRequirementsCase0Type = "Org";
 export const DlpEmailAccountMappingGetResponseAuthRequirementsCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpEmailAccountMappingGetResponseAuthRequirementsCase0 {
   allowedMicrosoftOrganizations: DlpEmailAccountMappingGetResponseAuthRequirementsCase0AllowedMicrosoftOrganizationsList;
@@ -74149,7 +74062,7 @@ export const DlpEmailAccountMappingGetResponseAuthRequirementsCase0 =
 export type DlpEmailAccountMappingGetResponseAuthRequirementsTypeType =
   "NoAuth";
 export const DlpEmailAccountMappingGetResponseAuthRequirementsTypeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpEmailAccountMappingGetResponseAuthRequirementsType {
   type: DlpEmailAccountMappingGetResponseAuthRequirementsTypeType;
@@ -74209,7 +74122,7 @@ export const GetDlpEmailRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpEmailRuleRequest>;
 
 export type DlpEmailRulesGetResponseActionAction = "Block";
-export const DlpEmailRulesGetResponseActionAction = /*@__PURE__*/ S.String;
+export const DlpEmailRulesGetResponseActionAction = S.String;
 
 export interface DlpEmailRulesGetResponseAction {
   action: DlpEmailRulesGetResponseActionAction;
@@ -74229,15 +74142,13 @@ export type DlpEmailRulesGetResponseConditionsItemOperator =
   | "NotInList"
   | "MatchRegex"
   | "NotMatchRegex";
-export const DlpEmailRulesGetResponseConditionsItemOperator =
-  /*@__PURE__*/ S.String;
+export const DlpEmailRulesGetResponseConditionsItemOperator = S.String;
 
 export type DlpEmailRulesGetResponseConditionsItemSelector =
   | "Recipients"
   | "Sender"
   | "DLPProfiles";
-export const DlpEmailRulesGetResponseConditionsItemSelector =
-  /*@__PURE__*/ S.String;
+export const DlpEmailRulesGetResponseConditionsItemSelector = S.String;
 
 export type DlpEmailRulesGetResponseConditionsItemValueCase0List =
   Array<string>;
@@ -74325,8 +74236,7 @@ export const GetDlpEntriesIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpEntriesIntegrationRequest>;
 
 export type GetDlpEntriesIntegrationResultCase0PatternValidation = "luhn";
-export const GetDlpEntriesIntegrationResultCase0PatternValidation =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase0PatternValidation = S.String;
 
 export interface GetDlpEntriesIntegrationResultCase0Pattern {
   regex: string;
@@ -74345,7 +74255,7 @@ export const GetDlpEntriesIntegrationResultCase0Pattern =
   }) as any as S.Schema<GetDlpEntriesIntegrationResultCase0Pattern>;
 
 export type GetDlpEntriesIntegrationResultCase0Type = "custom";
-export const GetDlpEntriesIntegrationResultCase0Type = /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase0Type = S.String;
 
 export type GetDlpEntriesIntegrationResultCase0ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -74366,8 +74276,7 @@ export type GetDlpEntriesIntegrationResultCase0UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpEntriesIntegrationResultCase0UploadStatus =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase0UploadStatus = S.String;
 
 export interface GetDlpEntriesIntegrationResultCase0 {
   id: string;
@@ -74407,7 +74316,7 @@ export const GetDlpEntriesIntegrationResultCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpEntriesIntegrationResultCase0>;
 
 export type GetDlpEntriesIntegrationResultCase1Type = "custom_prompt_topic";
-export const GetDlpEntriesIntegrationResultCase1Type = /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase1Type = S.String;
 
 export type GetDlpEntriesIntegrationResultCase1ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -74428,8 +74337,7 @@ export type GetDlpEntriesIntegrationResultCase1UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpEntriesIntegrationResultCase1UploadStatus =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase1UploadStatus = S.String;
 
 export interface GetDlpEntriesIntegrationResultCase1 {
   id: string;
@@ -74471,7 +74379,7 @@ export const GetDlpEntriesIntegrationResultCase2Confidence =
   DlpEntriesPredefinedCreateResponseConfidence;
 
 export type GetDlpEntriesIntegrationResultCase2Type = "predefined";
-export const GetDlpEntriesIntegrationResultCase2Type = /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase2Type = S.String;
 
 export type GetDlpEntriesIntegrationResultCase2ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -74492,18 +74400,16 @@ export type GetDlpEntriesIntegrationResultCase2UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpEntriesIntegrationResultCase2UploadStatus =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase2UploadStatus = S.String;
 
 export type GetDlpEntriesIntegrationResultCase2VariantCase0TopicType =
   | "Intent"
   | "Content";
 export const GetDlpEntriesIntegrationResultCase2VariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDlpEntriesIntegrationResultCase2VariantCase0Type = "PromptTopic";
-export const GetDlpEntriesIntegrationResultCase2VariantCase0Type =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase2VariantCase0Type = S.String;
 
 export interface GetDlpEntriesIntegrationResultCase2VariantCase0 {
   topicType: GetDlpEntriesIntegrationResultCase2VariantCase0TopicType;
@@ -74525,8 +74431,7 @@ export const GetDlpEntriesIntegrationResultCase2VariantCase0 =
   }) as any as S.Schema<GetDlpEntriesIntegrationResultCase2VariantCase0>;
 
 export type GetDlpEntriesIntegrationResultCase2VariantCase1Type = "General";
-export const GetDlpEntriesIntegrationResultCase2VariantCase1Type =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase2VariantCase1Type = S.String;
 
 export interface GetDlpEntriesIntegrationResultCase2VariantCase1 {
   type: GetDlpEntriesIntegrationResultCase2VariantCase1Type;
@@ -74589,7 +74494,7 @@ export const GetDlpEntriesIntegrationResultCase2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpEntriesIntegrationResultCase2>;
 
 export type GetDlpEntriesIntegrationResultCase3Type = "integration";
-export const GetDlpEntriesIntegrationResultCase3Type = /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase3Type = S.String;
 
 export type GetDlpEntriesIntegrationResultCase3ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -74610,8 +74515,7 @@ export type GetDlpEntriesIntegrationResultCase3UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpEntriesIntegrationResultCase3UploadStatus =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase3UploadStatus = S.String;
 
 export interface GetDlpEntriesIntegrationResultCase3 {
   id: string;
@@ -74647,7 +74551,7 @@ export const GetDlpEntriesIntegrationResultCase3 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpEntriesIntegrationResultCase3>;
 
 export type GetDlpEntriesIntegrationResultCase4Type = "exact_data";
-export const GetDlpEntriesIntegrationResultCase4Type = /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase4Type = S.String;
 
 export type GetDlpEntriesIntegrationResultCase4ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -74668,8 +74572,7 @@ export type GetDlpEntriesIntegrationResultCase4UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpEntriesIntegrationResultCase4UploadStatus =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase4UploadStatus = S.String;
 
 export interface GetDlpEntriesIntegrationResultCase4 {
   id: string;
@@ -74711,7 +74614,7 @@ export const GetDlpEntriesIntegrationResultCase4 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpEntriesIntegrationResultCase4>;
 
 export type GetDlpEntriesIntegrationResultCase5Type = "document_fingerprint";
-export const GetDlpEntriesIntegrationResultCase5Type = /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase5Type = S.String;
 
 export type GetDlpEntriesIntegrationResultCase5ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -74732,8 +74635,7 @@ export type GetDlpEntriesIntegrationResultCase5UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpEntriesIntegrationResultCase5UploadStatus =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase5UploadStatus = S.String;
 
 export interface GetDlpEntriesIntegrationResultCase5 {
   id: string;
@@ -74770,7 +74672,7 @@ export const GetDlpEntriesIntegrationResultCase5 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpEntriesIntegrationResultCase5>;
 
 export type GetDlpEntriesIntegrationResultCase6Type = "word_list";
-export const GetDlpEntriesIntegrationResultCase6Type = /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase6Type = S.String;
 
 export type GetDlpEntriesIntegrationResultCase6ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -74791,8 +74693,7 @@ export type GetDlpEntriesIntegrationResultCase6UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpEntriesIntegrationResultCase6UploadStatus =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesIntegrationResultCase6UploadStatus = S.String;
 
 export interface GetDlpEntriesIntegrationResultCase6 {
   id: string;
@@ -74956,8 +74857,7 @@ export const GetDlpEntriesPredefinedRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpEntriesPredefinedRequest>;
 
 export type GetDlpEntriesPredefinedResultCase0PatternValidation = "luhn";
-export const GetDlpEntriesPredefinedResultCase0PatternValidation =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase0PatternValidation = S.String;
 
 export interface GetDlpEntriesPredefinedResultCase0Pattern {
   regex: string;
@@ -74976,7 +74876,7 @@ export const GetDlpEntriesPredefinedResultCase0Pattern =
   }) as any as S.Schema<GetDlpEntriesPredefinedResultCase0Pattern>;
 
 export type GetDlpEntriesPredefinedResultCase0Type = "custom";
-export const GetDlpEntriesPredefinedResultCase0Type = /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase0Type = S.String;
 
 export type GetDlpEntriesPredefinedResultCase0ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -74997,8 +74897,7 @@ export type GetDlpEntriesPredefinedResultCase0UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpEntriesPredefinedResultCase0UploadStatus =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase0UploadStatus = S.String;
 
 export interface GetDlpEntriesPredefinedResultCase0 {
   id: string;
@@ -75038,7 +74937,7 @@ export const GetDlpEntriesPredefinedResultCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpEntriesPredefinedResultCase0>;
 
 export type GetDlpEntriesPredefinedResultCase1Type = "custom_prompt_topic";
-export const GetDlpEntriesPredefinedResultCase1Type = /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase1Type = S.String;
 
 export type GetDlpEntriesPredefinedResultCase1ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -75059,8 +74958,7 @@ export type GetDlpEntriesPredefinedResultCase1UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpEntriesPredefinedResultCase1UploadStatus =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase1UploadStatus = S.String;
 
 export interface GetDlpEntriesPredefinedResultCase1 {
   id: string;
@@ -75102,7 +75000,7 @@ export const GetDlpEntriesPredefinedResultCase2Confidence =
   DlpEntriesPredefinedCreateResponseConfidence;
 
 export type GetDlpEntriesPredefinedResultCase2Type = "predefined";
-export const GetDlpEntriesPredefinedResultCase2Type = /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase2Type = S.String;
 
 export type GetDlpEntriesPredefinedResultCase2ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -75123,18 +75021,15 @@ export type GetDlpEntriesPredefinedResultCase2UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpEntriesPredefinedResultCase2UploadStatus =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase2UploadStatus = S.String;
 
 export type GetDlpEntriesPredefinedResultCase2VariantCase0TopicType =
   | "Intent"
   | "Content";
-export const GetDlpEntriesPredefinedResultCase2VariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase2VariantCase0TopicType = S.String;
 
 export type GetDlpEntriesPredefinedResultCase2VariantCase0Type = "PromptTopic";
-export const GetDlpEntriesPredefinedResultCase2VariantCase0Type =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase2VariantCase0Type = S.String;
 
 export interface GetDlpEntriesPredefinedResultCase2VariantCase0 {
   topicType: GetDlpEntriesPredefinedResultCase2VariantCase0TopicType;
@@ -75156,8 +75051,7 @@ export const GetDlpEntriesPredefinedResultCase2VariantCase0 =
   }) as any as S.Schema<GetDlpEntriesPredefinedResultCase2VariantCase0>;
 
 export type GetDlpEntriesPredefinedResultCase2VariantCase1Type = "General";
-export const GetDlpEntriesPredefinedResultCase2VariantCase1Type =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase2VariantCase1Type = S.String;
 
 export interface GetDlpEntriesPredefinedResultCase2VariantCase1 {
   type: GetDlpEntriesPredefinedResultCase2VariantCase1Type;
@@ -75220,7 +75114,7 @@ export const GetDlpEntriesPredefinedResultCase2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpEntriesPredefinedResultCase2>;
 
 export type GetDlpEntriesPredefinedResultCase3Type = "integration";
-export const GetDlpEntriesPredefinedResultCase3Type = /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase3Type = S.String;
 
 export type GetDlpEntriesPredefinedResultCase3ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -75241,8 +75135,7 @@ export type GetDlpEntriesPredefinedResultCase3UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpEntriesPredefinedResultCase3UploadStatus =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase3UploadStatus = S.String;
 
 export interface GetDlpEntriesPredefinedResultCase3 {
   id: string;
@@ -75278,7 +75171,7 @@ export const GetDlpEntriesPredefinedResultCase3 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpEntriesPredefinedResultCase3>;
 
 export type GetDlpEntriesPredefinedResultCase4Type = "exact_data";
-export const GetDlpEntriesPredefinedResultCase4Type = /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase4Type = S.String;
 
 export type GetDlpEntriesPredefinedResultCase4ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -75299,8 +75192,7 @@ export type GetDlpEntriesPredefinedResultCase4UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpEntriesPredefinedResultCase4UploadStatus =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase4UploadStatus = S.String;
 
 export interface GetDlpEntriesPredefinedResultCase4 {
   id: string;
@@ -75342,7 +75234,7 @@ export const GetDlpEntriesPredefinedResultCase4 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpEntriesPredefinedResultCase4>;
 
 export type GetDlpEntriesPredefinedResultCase5Type = "document_fingerprint";
-export const GetDlpEntriesPredefinedResultCase5Type = /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase5Type = S.String;
 
 export type GetDlpEntriesPredefinedResultCase5ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -75363,8 +75255,7 @@ export type GetDlpEntriesPredefinedResultCase5UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpEntriesPredefinedResultCase5UploadStatus =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase5UploadStatus = S.String;
 
 export interface GetDlpEntriesPredefinedResultCase5 {
   id: string;
@@ -75401,7 +75292,7 @@ export const GetDlpEntriesPredefinedResultCase5 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpEntriesPredefinedResultCase5>;
 
 export type GetDlpEntriesPredefinedResultCase6Type = "word_list";
-export const GetDlpEntriesPredefinedResultCase6Type = /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase6Type = S.String;
 
 export type GetDlpEntriesPredefinedResultCase6ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -75422,8 +75313,7 @@ export type GetDlpEntriesPredefinedResultCase6UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const GetDlpEntriesPredefinedResultCase6UploadStatus =
-  /*@__PURE__*/ S.String;
+export const GetDlpEntriesPredefinedResultCase6UploadStatus = S.String;
 
 export interface GetDlpEntriesPredefinedResultCase6 {
   id: string;
@@ -75587,7 +75477,7 @@ export const GetDlpEntryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpEntryRequest>;
 
 export type DlpEntriesGetResultCase0PatternValidation = "luhn";
-export const DlpEntriesGetResultCase0PatternValidation = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase0PatternValidation = S.String;
 
 export interface DlpEntriesGetResultCase0Pattern {
   regex: string;
@@ -75603,7 +75493,7 @@ export const DlpEntriesGetResultCase0Pattern = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DlpEntriesGetResultCase0Pattern>;
 
 export type DlpEntriesGetResultCase0Type = "custom";
-export const DlpEntriesGetResultCase0Type = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase0Type = S.String;
 
 export type DlpEntriesGetResultCase0ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -75623,7 +75513,7 @@ export type DlpEntriesGetResultCase0UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpEntriesGetResultCase0UploadStatus = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase0UploadStatus = S.String;
 
 export interface DlpEntriesGetResultCase0 {
   id: string;
@@ -75661,7 +75551,7 @@ export const DlpEntriesGetResultCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DlpEntriesGetResultCase0>;
 
 export type DlpEntriesGetResultCase1Type = "custom_prompt_topic";
-export const DlpEntriesGetResultCase1Type = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase1Type = S.String;
 
 export type DlpEntriesGetResultCase1ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -75681,7 +75571,7 @@ export type DlpEntriesGetResultCase1UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpEntriesGetResultCase1UploadStatus = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase1UploadStatus = S.String;
 
 export interface DlpEntriesGetResultCase1 {
   id: string;
@@ -75721,7 +75611,7 @@ export const DlpEntriesGetResultCase2Confidence =
   DlpEntriesPredefinedCreateResponseConfidence;
 
 export type DlpEntriesGetResultCase2Type = "predefined";
-export const DlpEntriesGetResultCase2Type = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase2Type = S.String;
 
 export type DlpEntriesGetResultCase2ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -75741,16 +75631,15 @@ export type DlpEntriesGetResultCase2UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpEntriesGetResultCase2UploadStatus = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase2UploadStatus = S.String;
 
 export type DlpEntriesGetResultCase2VariantCase0TopicType =
   | "Intent"
   | "Content";
-export const DlpEntriesGetResultCase2VariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase2VariantCase0TopicType = S.String;
 
 export type DlpEntriesGetResultCase2VariantCase0Type = "PromptTopic";
-export const DlpEntriesGetResultCase2VariantCase0Type = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase2VariantCase0Type = S.String;
 
 export interface DlpEntriesGetResultCase2VariantCase0 {
   topicType: DlpEntriesGetResultCase2VariantCase0TopicType;
@@ -75772,7 +75661,7 @@ export const DlpEntriesGetResultCase2VariantCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DlpEntriesGetResultCase2VariantCase0>;
 
 export type DlpEntriesGetResultCase2VariantCase1Type = "General";
-export const DlpEntriesGetResultCase2VariantCase1Type = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase2VariantCase1Type = S.String;
 
 export interface DlpEntriesGetResultCase2VariantCase1 {
   type: DlpEntriesGetResultCase2VariantCase1Type;
@@ -75832,7 +75721,7 @@ export const DlpEntriesGetResultCase2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DlpEntriesGetResultCase2>;
 
 export type DlpEntriesGetResultCase3Type = "integration";
-export const DlpEntriesGetResultCase3Type = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase3Type = S.String;
 
 export type DlpEntriesGetResultCase3ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -75852,7 +75741,7 @@ export type DlpEntriesGetResultCase3UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpEntriesGetResultCase3UploadStatus = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase3UploadStatus = S.String;
 
 export interface DlpEntriesGetResultCase3 {
   id: string;
@@ -75886,7 +75775,7 @@ export const DlpEntriesGetResultCase3 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DlpEntriesGetResultCase3>;
 
 export type DlpEntriesGetResultCase4Type = "exact_data";
-export const DlpEntriesGetResultCase4Type = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase4Type = S.String;
 
 export type DlpEntriesGetResultCase4ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -75906,7 +75795,7 @@ export type DlpEntriesGetResultCase4UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpEntriesGetResultCase4UploadStatus = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase4UploadStatus = S.String;
 
 export interface DlpEntriesGetResultCase4 {
   id: string;
@@ -75946,7 +75835,7 @@ export const DlpEntriesGetResultCase4 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DlpEntriesGetResultCase4>;
 
 export type DlpEntriesGetResultCase5Type = "document_fingerprint";
-export const DlpEntriesGetResultCase5Type = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase5Type = S.String;
 
 export type DlpEntriesGetResultCase5ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -75966,7 +75855,7 @@ export type DlpEntriesGetResultCase5UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpEntriesGetResultCase5UploadStatus = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase5UploadStatus = S.String;
 
 export interface DlpEntriesGetResultCase5 {
   id: string;
@@ -76001,7 +75890,7 @@ export const DlpEntriesGetResultCase5 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DlpEntriesGetResultCase5>;
 
 export type DlpEntriesGetResultCase6Type = "word_list";
-export const DlpEntriesGetResultCase6Type = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase6Type = S.String;
 
 export type DlpEntriesGetResultCase6ProfilesItem =
   GetDlpCustomEntryResultCase0ProfilesItem;
@@ -76021,7 +75910,7 @@ export type DlpEntriesGetResultCase6UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpEntriesGetResultCase6UploadStatus = /*@__PURE__*/ S.String;
+export const DlpEntriesGetResultCase6UploadStatus = S.String;
 
 export interface DlpEntriesGetResultCase6 {
   id: string;
@@ -76185,7 +76074,7 @@ export type DlpPayloadLogsGetResponseMaskingLevel =
   | "partial"
   | "clear"
   | "default";
-export const DlpPayloadLogsGetResponseMaskingLevel = /*@__PURE__*/ S.String;
+export const DlpPayloadLogsGetResponseMaskingLevel = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetDlpPayloadLogResponse {
@@ -76231,15 +76120,14 @@ export const GetDlpProfileRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpProfileRequest>;
 
 export type DlpProfilesGetResultCustomProfileType = "custom";
-export const DlpProfilesGetResultCustomProfileType = /*@__PURE__*/ S.String;
+export const DlpProfilesGetResultCustomProfileType = S.String;
 
 export type DlpProfilesGetResultCustomProfileConfidenceThreshold =
   | "low"
   | "medium"
   | "high"
   | "very_high";
-export const DlpProfilesGetResultCustomProfileConfidenceThreshold =
-  /*@__PURE__*/ S.String;
+export const DlpProfilesGetResultCustomProfileConfidenceThreshold = S.String;
 
 export type DlpProfilesGetResultCustomProfileContextAwarenessSkip =
   DlpProfilesCustomCreateRequestContextAwarenessSkip;
@@ -76266,7 +76154,7 @@ export const DlpProfilesGetResultCustomProfileDataTagsList =
 export type DlpProfilesGetResultCustomProfileEntriesItemCustomEntryPatternValidation =
   "luhn";
 export const DlpProfilesGetResultCustomProfileEntriesItemCustomEntryPatternValidation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileEntriesItemCustomEntryPattern {
   regex: string;
@@ -76290,7 +76178,7 @@ export const DlpProfilesGetResultCustomProfileEntriesItemCustomEntryPattern =
 export type DlpProfilesGetResultCustomProfileEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesGetResultCustomProfileEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileEntriesItemCustomEntry {
   id: string;
@@ -76323,7 +76211,7 @@ export const DlpProfilesGetResultCustomProfileEntriesItemCustomEntry =
 export type DlpProfilesGetResultCustomProfileEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesGetResultCustomProfileEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -76359,18 +76247,18 @@ export const DlpProfilesGetResultCustomProfileEntriesItemPredefinedEntryConfiden
 export type DlpProfilesGetResultCustomProfileEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesGetResultCustomProfileEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesGetResultCustomProfileEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesGetResultCustomProfileEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesGetResultCustomProfileEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesGetResultCustomProfileEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesGetResultCustomProfileEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -76396,7 +76284,7 @@ export const DlpProfilesGetResultCustomProfileEntriesItemPredefinedEntryVariantC
 export type DlpProfilesGetResultCustomProfileEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesGetResultCustomProfileEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesGetResultCustomProfileEntriesItemPredefinedEntryVariantCase1Type;
@@ -76457,7 +76345,7 @@ export const DlpProfilesGetResultCustomProfileEntriesItemPredefinedEntry =
 export type DlpProfilesGetResultCustomProfileEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesGetResultCustomProfileEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileEntriesItemIntegrationEntry {
   id: string;
@@ -76486,7 +76374,7 @@ export const DlpProfilesGetResultCustomProfileEntriesItemIntegrationEntry =
 export type DlpProfilesGetResultCustomProfileEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesGetResultCustomProfileEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileEntriesItemExactDataEntry {
   id: string;
@@ -76521,7 +76409,7 @@ export const DlpProfilesGetResultCustomProfileEntriesItemExactDataEntry =
 export type DlpProfilesGetResultCustomProfileEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesGetResultCustomProfileEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -76552,7 +76440,7 @@ export const DlpProfilesGetResultCustomProfileEntriesItemDocumentFingerprintEntr
 export type DlpProfilesGetResultCustomProfileEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesGetResultCustomProfileEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileEntriesItemWordListEntry {
   id: string;
@@ -76668,7 +76556,7 @@ export const DlpProfilesGetResultCustomProfileSensitivityLevelsList =
 export type DlpProfilesGetResultCustomProfileSharedEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesGetResultCustomProfileSharedEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileSharedEntriesItemCustomEntry {
   id: string;
@@ -76701,7 +76589,7 @@ export const DlpProfilesGetResultCustomProfileSharedEntriesItemCustomEntry =
 export type DlpProfilesGetResultCustomProfileSharedEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesGetResultCustomProfileSharedEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileSharedEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -76737,18 +76625,18 @@ export const DlpProfilesGetResultCustomProfileSharedEntriesItemPredefinedEntryCo
 export type DlpProfilesGetResultCustomProfileSharedEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesGetResultCustomProfileSharedEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -76774,7 +76662,7 @@ export const DlpProfilesGetResultCustomProfileSharedEntriesItemPredefinedEntryVa
 export type DlpProfilesGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase1Type;
@@ -76836,7 +76724,7 @@ export const DlpProfilesGetResultCustomProfileSharedEntriesItemPredefinedEntry =
 export type DlpProfilesGetResultCustomProfileSharedEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesGetResultCustomProfileSharedEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileSharedEntriesItemIntegrationEntry {
   id: string;
@@ -76866,7 +76754,7 @@ export const DlpProfilesGetResultCustomProfileSharedEntriesItemIntegrationEntry 
 export type DlpProfilesGetResultCustomProfileSharedEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesGetResultCustomProfileSharedEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileSharedEntriesItemExactDataEntry {
   id: string;
@@ -76902,7 +76790,7 @@ export const DlpProfilesGetResultCustomProfileSharedEntriesItemExactDataEntry =
 export type DlpProfilesGetResultCustomProfileSharedEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesGetResultCustomProfileSharedEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileSharedEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -76933,7 +76821,7 @@ export const DlpProfilesGetResultCustomProfileSharedEntriesItemDocumentFingerpri
 export type DlpProfilesGetResultCustomProfileSharedEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesGetResultCustomProfileSharedEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultCustomProfileSharedEntriesItemWordListEntry {
   id: string;
@@ -77115,7 +77003,7 @@ export const DlpProfilesGetResultCustomProfile = /*@__PURE__*/ S.suspend(() =>
 export type DlpProfilesGetResultPredefinedProfileEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesGetResultPredefinedProfileEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultPredefinedProfileEntriesItemCustomEntry {
   id: string;
@@ -77148,7 +77036,7 @@ export const DlpProfilesGetResultPredefinedProfileEntriesItemCustomEntry =
 export type DlpProfilesGetResultPredefinedProfileEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesGetResultPredefinedProfileEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultPredefinedProfileEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -77184,18 +77072,18 @@ export const DlpProfilesGetResultPredefinedProfileEntriesItemPredefinedEntryConf
 export type DlpProfilesGetResultPredefinedProfileEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesGetResultPredefinedProfileEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -77221,7 +77109,7 @@ export const DlpProfilesGetResultPredefinedProfileEntriesItemPredefinedEntryVari
 export type DlpProfilesGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase1Type;
@@ -77283,7 +77171,7 @@ export const DlpProfilesGetResultPredefinedProfileEntriesItemPredefinedEntry =
 export type DlpProfilesGetResultPredefinedProfileEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesGetResultPredefinedProfileEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultPredefinedProfileEntriesItemIntegrationEntry {
   id: string;
@@ -77313,7 +77201,7 @@ export const DlpProfilesGetResultPredefinedProfileEntriesItemIntegrationEntry =
 export type DlpProfilesGetResultPredefinedProfileEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesGetResultPredefinedProfileEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultPredefinedProfileEntriesItemExactDataEntry {
   id: string;
@@ -77349,7 +77237,7 @@ export const DlpProfilesGetResultPredefinedProfileEntriesItemExactDataEntry =
 export type DlpProfilesGetResultPredefinedProfileEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesGetResultPredefinedProfileEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultPredefinedProfileEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -77380,7 +77268,7 @@ export const DlpProfilesGetResultPredefinedProfileEntriesItemDocumentFingerprint
 export type DlpProfilesGetResultPredefinedProfileEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesGetResultPredefinedProfileEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultPredefinedProfileEntriesItemWordListEntry {
   id: string;
@@ -77482,7 +77370,7 @@ export const DlpProfilesGetResultPredefinedProfileEntriesList =
   ) as any as S.Schema<DlpProfilesGetResultPredefinedProfileEntriesList>;
 
 export type DlpProfilesGetResultPredefinedProfileType = "predefined";
-export const DlpProfilesGetResultPredefinedProfileType = /*@__PURE__*/ S.String;
+export const DlpProfilesGetResultPredefinedProfileType = S.String;
 
 export type DlpProfilesGetResultPredefinedProfileConfidenceThreshold =
   | "low"
@@ -77490,7 +77378,7 @@ export type DlpProfilesGetResultPredefinedProfileConfidenceThreshold =
   | "high"
   | "very_high";
 export const DlpProfilesGetResultPredefinedProfileConfidenceThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultPredefinedProfile {
   /** The id of the predefined profile (uuid). */
@@ -77539,7 +77427,7 @@ export const DlpProfilesGetResultPredefinedProfile = /*@__PURE__*/ S.suspend(
 export type DlpProfilesGetResultIntegrationProfileEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesGetResultIntegrationProfileEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultIntegrationProfileEntriesItemCustomEntry {
   id: string;
@@ -77572,7 +77460,7 @@ export const DlpProfilesGetResultIntegrationProfileEntriesItemCustomEntry =
 export type DlpProfilesGetResultIntegrationProfileEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesGetResultIntegrationProfileEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultIntegrationProfileEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -77608,18 +77496,18 @@ export const DlpProfilesGetResultIntegrationProfileEntriesItemPredefinedEntryCon
 export type DlpProfilesGetResultIntegrationProfileEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesGetResultIntegrationProfileEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -77645,7 +77533,7 @@ export const DlpProfilesGetResultIntegrationProfileEntriesItemPredefinedEntryVar
 export type DlpProfilesGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase1Type;
@@ -77707,7 +77595,7 @@ export const DlpProfilesGetResultIntegrationProfileEntriesItemPredefinedEntry =
 export type DlpProfilesGetResultIntegrationProfileEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesGetResultIntegrationProfileEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultIntegrationProfileEntriesItemIntegrationEntry {
   id: string;
@@ -77737,7 +77625,7 @@ export const DlpProfilesGetResultIntegrationProfileEntriesItemIntegrationEntry =
 export type DlpProfilesGetResultIntegrationProfileEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesGetResultIntegrationProfileEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultIntegrationProfileEntriesItemExactDataEntry {
   id: string;
@@ -77773,7 +77661,7 @@ export const DlpProfilesGetResultIntegrationProfileEntriesItemExactDataEntry =
 export type DlpProfilesGetResultIntegrationProfileEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesGetResultIntegrationProfileEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultIntegrationProfileEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -77804,7 +77692,7 @@ export const DlpProfilesGetResultIntegrationProfileEntriesItemDocumentFingerprin
 export type DlpProfilesGetResultIntegrationProfileEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesGetResultIntegrationProfileEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultIntegrationProfileEntriesItemWordListEntry {
   id: string;
@@ -77909,7 +77797,7 @@ export const DlpProfilesGetResultIntegrationProfileEntriesList =
 export type DlpProfilesGetResultIntegrationProfileSharedEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultIntegrationProfileSharedEntriesItemCustomEntry {
   id: string;
@@ -77943,7 +77831,7 @@ export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemCustomEntry 
 export type DlpProfilesGetResultIntegrationProfileSharedEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultIntegrationProfileSharedEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -77979,18 +77867,18 @@ export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemPredefinedEn
 export type DlpProfilesGetResultIntegrationProfileSharedEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -78016,7 +77904,7 @@ export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemPredefinedEn
 export type DlpProfilesGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1Type;
@@ -78078,7 +77966,7 @@ export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemPredefinedEn
 export type DlpProfilesGetResultIntegrationProfileSharedEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultIntegrationProfileSharedEntriesItemIntegrationEntry {
   id: string;
@@ -78108,7 +77996,7 @@ export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemIntegrationE
 export type DlpProfilesGetResultIntegrationProfileSharedEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultIntegrationProfileSharedEntriesItemExactDataEntry {
   id: string;
@@ -78144,7 +78032,7 @@ export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemExactDataEnt
 export type DlpProfilesGetResultIntegrationProfileSharedEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultIntegrationProfileSharedEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -78175,7 +78063,7 @@ export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemDocumentFing
 export type DlpProfilesGetResultIntegrationProfileSharedEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesGetResultIntegrationProfileSharedEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesGetResultIntegrationProfileSharedEntriesItemWordListEntry {
   id: string;
@@ -78278,8 +78166,7 @@ export const DlpProfilesGetResultIntegrationProfileSharedEntriesList =
   ) as any as S.Schema<DlpProfilesGetResultIntegrationProfileSharedEntriesList>;
 
 export type DlpProfilesGetResultIntegrationProfileType = "integration";
-export const DlpProfilesGetResultIntegrationProfileType =
-  /*@__PURE__*/ S.String;
+export const DlpProfilesGetResultIntegrationProfileType = S.String;
 
 export interface DlpProfilesGetResultIntegrationProfile {
   id: string;
@@ -78392,8 +78279,7 @@ export const GetDlpProfileCustomRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDlpProfileCustomRequest>;
 
 export type DlpProfilesCustomGetResultCustomProfileType = "custom";
-export const DlpProfilesCustomGetResultCustomProfileType =
-  /*@__PURE__*/ S.String;
+export const DlpProfilesCustomGetResultCustomProfileType = S.String;
 
 export type DlpProfilesCustomGetResultCustomProfileConfidenceThreshold =
   | "low"
@@ -78401,7 +78287,7 @@ export type DlpProfilesCustomGetResultCustomProfileConfidenceThreshold =
   | "high"
   | "very_high";
 export const DlpProfilesCustomGetResultCustomProfileConfidenceThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomGetResultCustomProfileContextAwarenessSkip =
   DlpProfilesCustomCreateRequestContextAwarenessSkip;
@@ -78429,7 +78315,7 @@ export const DlpProfilesCustomGetResultCustomProfileDataTagsList =
 export type DlpProfilesCustomGetResultCustomProfileEntriesItemCustomEntryPatternValidation =
   "luhn";
 export const DlpProfilesCustomGetResultCustomProfileEntriesItemCustomEntryPatternValidation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileEntriesItemCustomEntryPattern {
   regex: string;
@@ -78453,7 +78339,7 @@ export const DlpProfilesCustomGetResultCustomProfileEntriesItemCustomEntryPatter
 export type DlpProfilesCustomGetResultCustomProfileEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesCustomGetResultCustomProfileEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileEntriesItemCustomEntry {
   id: string;
@@ -78487,7 +78373,7 @@ export const DlpProfilesCustomGetResultCustomProfileEntriesItemCustomEntry =
 export type DlpProfilesCustomGetResultCustomProfileEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesCustomGetResultCustomProfileEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -78523,18 +78409,18 @@ export const DlpProfilesCustomGetResultCustomProfileEntriesItemPredefinedEntryCo
 export type DlpProfilesCustomGetResultCustomProfileEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesCustomGetResultCustomProfileEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomGetResultCustomProfileEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesCustomGetResultCustomProfileEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomGetResultCustomProfileEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesCustomGetResultCustomProfileEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesCustomGetResultCustomProfileEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -78560,7 +78446,7 @@ export const DlpProfilesCustomGetResultCustomProfileEntriesItemPredefinedEntryVa
 export type DlpProfilesCustomGetResultCustomProfileEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesCustomGetResultCustomProfileEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesCustomGetResultCustomProfileEntriesItemPredefinedEntryVariantCase1Type;
@@ -78622,7 +78508,7 @@ export const DlpProfilesCustomGetResultCustomProfileEntriesItemPredefinedEntry =
 export type DlpProfilesCustomGetResultCustomProfileEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesCustomGetResultCustomProfileEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileEntriesItemIntegrationEntry {
   id: string;
@@ -78652,7 +78538,7 @@ export const DlpProfilesCustomGetResultCustomProfileEntriesItemIntegrationEntry 
 export type DlpProfilesCustomGetResultCustomProfileEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesCustomGetResultCustomProfileEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileEntriesItemExactDataEntry {
   id: string;
@@ -78688,7 +78574,7 @@ export const DlpProfilesCustomGetResultCustomProfileEntriesItemExactDataEntry =
 export type DlpProfilesCustomGetResultCustomProfileEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesCustomGetResultCustomProfileEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -78719,7 +78605,7 @@ export const DlpProfilesCustomGetResultCustomProfileEntriesItemDocumentFingerpri
 export type DlpProfilesCustomGetResultCustomProfileEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesCustomGetResultCustomProfileEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileEntriesItemWordListEntry {
   id: string;
@@ -78836,7 +78722,7 @@ export const DlpProfilesCustomGetResultCustomProfileSensitivityLevelsList =
 export type DlpProfilesCustomGetResultCustomProfileSharedEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileSharedEntriesItemCustomEntry {
   id: string;
@@ -78871,7 +78757,7 @@ export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemCustomEntry
 export type DlpProfilesCustomGetResultCustomProfileSharedEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileSharedEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -78907,18 +78793,18 @@ export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemPredefinedE
 export type DlpProfilesCustomGetResultCustomProfileSharedEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesCustomGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -78944,7 +78830,7 @@ export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemPredefinedE
 export type DlpProfilesCustomGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesCustomGetResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase1Type;
@@ -79006,7 +78892,7 @@ export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemPredefinedE
 export type DlpProfilesCustomGetResultCustomProfileSharedEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileSharedEntriesItemIntegrationEntry {
   id: string;
@@ -79036,7 +78922,7 @@ export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemIntegration
 export type DlpProfilesCustomGetResultCustomProfileSharedEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileSharedEntriesItemExactDataEntry {
   id: string;
@@ -79072,7 +78958,7 @@ export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemExactDataEn
 export type DlpProfilesCustomGetResultCustomProfileSharedEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileSharedEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -79103,7 +78989,7 @@ export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemDocumentFin
 export type DlpProfilesCustomGetResultCustomProfileSharedEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesCustomGetResultCustomProfileSharedEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultCustomProfileSharedEntriesItemWordListEntry {
   id: string;
@@ -79288,7 +79174,7 @@ export const DlpProfilesCustomGetResultCustomProfile = /*@__PURE__*/ S.suspend(
 export type DlpProfilesCustomGetResultPredefinedProfileEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultPredefinedProfileEntriesItemCustomEntry {
   id: string;
@@ -79323,7 +79209,7 @@ export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemCustomEntry =
 export type DlpProfilesCustomGetResultPredefinedProfileEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultPredefinedProfileEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -79359,18 +79245,18 @@ export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemPredefinedEnt
 export type DlpProfilesCustomGetResultPredefinedProfileEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesCustomGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -79396,7 +79282,7 @@ export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemPredefinedEnt
 export type DlpProfilesCustomGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesCustomGetResultPredefinedProfileEntriesItemPredefinedEntryVariantCase1Type;
@@ -79458,7 +79344,7 @@ export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemPredefinedEnt
 export type DlpProfilesCustomGetResultPredefinedProfileEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultPredefinedProfileEntriesItemIntegrationEntry {
   id: string;
@@ -79488,7 +79374,7 @@ export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemIntegrationEn
 export type DlpProfilesCustomGetResultPredefinedProfileEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultPredefinedProfileEntriesItemExactDataEntry {
   id: string;
@@ -79524,7 +79410,7 @@ export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemExactDataEntr
 export type DlpProfilesCustomGetResultPredefinedProfileEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultPredefinedProfileEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -79555,7 +79441,7 @@ export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemDocumentFinge
 export type DlpProfilesCustomGetResultPredefinedProfileEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesCustomGetResultPredefinedProfileEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultPredefinedProfileEntriesItemWordListEntry {
   id: string;
@@ -79658,8 +79544,7 @@ export const DlpProfilesCustomGetResultPredefinedProfileEntriesList =
   ) as any as S.Schema<DlpProfilesCustomGetResultPredefinedProfileEntriesList>;
 
 export type DlpProfilesCustomGetResultPredefinedProfileType = "predefined";
-export const DlpProfilesCustomGetResultPredefinedProfileType =
-  /*@__PURE__*/ S.String;
+export const DlpProfilesCustomGetResultPredefinedProfileType = S.String;
 
 export type DlpProfilesCustomGetResultPredefinedProfileConfidenceThreshold =
   | "low"
@@ -79667,7 +79552,7 @@ export type DlpProfilesCustomGetResultPredefinedProfileConfidenceThreshold =
   | "high"
   | "very_high";
 export const DlpProfilesCustomGetResultPredefinedProfileConfidenceThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultPredefinedProfile {
   /** The id of the predefined profile (uuid). */
@@ -79716,7 +79601,7 @@ export const DlpProfilesCustomGetResultPredefinedProfile =
 export type DlpProfilesCustomGetResultIntegrationProfileEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfileEntriesItemCustomEntry {
   id: string;
@@ -79751,7 +79636,7 @@ export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemCustomEntry 
 export type DlpProfilesCustomGetResultIntegrationProfileEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfileEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -79787,18 +79672,18 @@ export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemPredefinedEn
 export type DlpProfilesCustomGetResultIntegrationProfileEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesCustomGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -79824,7 +79709,7 @@ export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemPredefinedEn
 export type DlpProfilesCustomGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesCustomGetResultIntegrationProfileEntriesItemPredefinedEntryVariantCase1Type;
@@ -79886,7 +79771,7 @@ export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemPredefinedEn
 export type DlpProfilesCustomGetResultIntegrationProfileEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfileEntriesItemIntegrationEntry {
   id: string;
@@ -79916,7 +79801,7 @@ export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemIntegrationE
 export type DlpProfilesCustomGetResultIntegrationProfileEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfileEntriesItemExactDataEntry {
   id: string;
@@ -79952,7 +79837,7 @@ export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemExactDataEnt
 export type DlpProfilesCustomGetResultIntegrationProfileEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfileEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -79983,7 +79868,7 @@ export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemDocumentFing
 export type DlpProfilesCustomGetResultIntegrationProfileEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesCustomGetResultIntegrationProfileEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfileEntriesItemWordListEntry {
   id: string;
@@ -80088,7 +79973,7 @@ export const DlpProfilesCustomGetResultIntegrationProfileEntriesList =
 export type DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemCustomEntry {
   id: string;
@@ -80123,7 +80008,7 @@ export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemCustom
 export type DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -80159,18 +80044,18 @@ export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemPredef
 export type DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -80196,7 +80081,7 @@ export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemPredef
 export type DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1Type;
@@ -80258,7 +80143,7 @@ export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemPredef
 export type DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemIntegrationEntry {
   id: string;
@@ -80288,7 +80173,7 @@ export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemIntegr
 export type DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemExactDataEntry {
   id: string;
@@ -80324,7 +80209,7 @@ export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemExactD
 export type DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -80355,7 +80240,7 @@ export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemDocume
 export type DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfileSharedEntriesItemWordListEntry {
   id: string;
@@ -80458,8 +80343,7 @@ export const DlpProfilesCustomGetResultIntegrationProfileSharedEntriesList =
   ) as any as S.Schema<DlpProfilesCustomGetResultIntegrationProfileSharedEntriesList>;
 
 export type DlpProfilesCustomGetResultIntegrationProfileType = "integration";
-export const DlpProfilesCustomGetResultIntegrationProfileType =
-  /*@__PURE__*/ S.String;
+export const DlpProfilesCustomGetResultIntegrationProfileType = S.String;
 
 export interface DlpProfilesCustomGetResultIntegrationProfile {
   id: string;
@@ -80580,7 +80464,7 @@ export const DlpProfilesPredefinedGetResponseEnabledEntriesList =
 export type DlpProfilesPredefinedGetResponseEntriesItemCustomEntryPatternValidation =
   "luhn";
 export const DlpProfilesPredefinedGetResponseEntriesItemCustomEntryPatternValidation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedGetResponseEntriesItemCustomEntryPattern {
   regex: string;
@@ -80603,7 +80487,7 @@ export const DlpProfilesPredefinedGetResponseEntriesItemCustomEntryPattern =
 export type DlpProfilesPredefinedGetResponseEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesPredefinedGetResponseEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedGetResponseEntriesItemCustomEntry {
   id: string;
@@ -80636,7 +80520,7 @@ export const DlpProfilesPredefinedGetResponseEntriesItemCustomEntry =
 export type DlpProfilesPredefinedGetResponseEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesPredefinedGetResponseEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedGetResponseEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -80672,18 +80556,18 @@ export const DlpProfilesPredefinedGetResponseEntriesItemPredefinedEntryConfidenc
 export type DlpProfilesPredefinedGetResponseEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesPredefinedGetResponseEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesPredefinedGetResponseEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesPredefinedGetResponseEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesPredefinedGetResponseEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesPredefinedGetResponseEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedGetResponseEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesPredefinedGetResponseEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -80709,7 +80593,7 @@ export const DlpProfilesPredefinedGetResponseEntriesItemPredefinedEntryVariantCa
 export type DlpProfilesPredefinedGetResponseEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesPredefinedGetResponseEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedGetResponseEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesPredefinedGetResponseEntriesItemPredefinedEntryVariantCase1Type;
@@ -80770,7 +80654,7 @@ export const DlpProfilesPredefinedGetResponseEntriesItemPredefinedEntry =
 export type DlpProfilesPredefinedGetResponseEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesPredefinedGetResponseEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedGetResponseEntriesItemIntegrationEntry {
   id: string;
@@ -80799,7 +80683,7 @@ export const DlpProfilesPredefinedGetResponseEntriesItemIntegrationEntry =
 export type DlpProfilesPredefinedGetResponseEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesPredefinedGetResponseEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedGetResponseEntriesItemExactDataEntry {
   id: string;
@@ -80834,7 +80718,7 @@ export const DlpProfilesPredefinedGetResponseEntriesItemExactDataEntry =
 export type DlpProfilesPredefinedGetResponseEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesPredefinedGetResponseEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedGetResponseEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -80865,7 +80749,7 @@ export const DlpProfilesPredefinedGetResponseEntriesItemDocumentFingerprintEntry
 export type DlpProfilesPredefinedGetResponseEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesPredefinedGetResponseEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedGetResponseEntriesItemWordListEntry {
   id: string;
@@ -81170,8 +81054,7 @@ export type DlpSettingsGetResponsePayloadLoggingMaskingLevel =
   | "partial"
   | "clear"
   | "default";
-export const DlpSettingsGetResponsePayloadLoggingMaskingLevel =
-  /*@__PURE__*/ S.String;
+export const DlpSettingsGetResponsePayloadLoggingMaskingLevel = S.String;
 
 export interface DlpSettingsGetResponsePayloadLogging {
   updatedAt: string;
@@ -81281,11 +81164,10 @@ export type GatewayCertificatesGetResponseBindingStatus =
   | "available"
   | "pending_deletion"
   | "inactive";
-export const GatewayCertificatesGetResponseBindingStatus =
-  /*@__PURE__*/ S.String;
+export const GatewayCertificatesGetResponseBindingStatus = S.String;
 
 export type GatewayCertificatesGetResponseType = "custom" | "gateway_managed";
-export const GatewayCertificatesGetResponseType = /*@__PURE__*/ S.String;
+export const GatewayCertificatesGetResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetGatewayCertificateResponse {
@@ -81424,8 +81306,7 @@ export type GatewayConfigurationsGetResponseSettingsBlockPageMode =
   | ""
   | "customized_block_page"
   | "redirect_uri";
-export const GatewayConfigurationsGetResponseSettingsBlockPageMode =
-  /*@__PURE__*/ S.String;
+export const GatewayConfigurationsGetResponseSettingsBlockPageMode = S.String;
 
 export interface GatewayConfigurationsGetResponseSettingsBlockPage {
   /** Specify the block page background color in `#rrggbb` format when the mode is customized_block_page. */
@@ -81500,7 +81381,7 @@ export type GatewayConfigurationsGetResponseSettingsBodyScanningInspectionMode =
   | "deep"
   | "shallow";
 export const GatewayConfigurationsGetResponseSettingsBodyScanningInspectionMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayConfigurationsGetResponseSettingsBodyScanning {
   /** Specify the inspection mode as either `deep` or `shallow`. */
@@ -81628,8 +81509,7 @@ export const GatewayConfigurationsGetResponseSettingsHostSelector =
 export type GatewayConfigurationsGetResponseSettingsInspectionMode =
   | "static"
   | "dynamic";
-export const GatewayConfigurationsGetResponseSettingsInspectionMode =
-  /*@__PURE__*/ S.String;
+export const GatewayConfigurationsGetResponseSettingsInspectionMode = S.String;
 
 export interface GatewayConfigurationsGetResponseSettingsInspection {
   /** Define the proxy inspection mode. 1. static: Gateway applies static inspection to HTTP on TCP(80). With TLS decryption on, Gateway inspects HTTPS traffic on TCP(443) and UDP(443). 2. dynamic: Gateway applies protocol detection to inspect HTTP and HTTPS traffic on any port. TLS decryption must remain on to inspect HTTPS traffic. */
@@ -81663,7 +81543,7 @@ export type GatewayConfigurationsGetResponseSettingsSandboxFallbackAction =
   | "allow"
   | "block";
 export const GatewayConfigurationsGetResponseSettingsSandboxFallbackAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayConfigurationsGetResponseSettingsSandbox {
   /** Specify whether to enable the sandbox. */
@@ -81886,7 +81766,7 @@ export type GatewayListsGetResponseType =
   | "LOCATION"
   | "DEVICE"
   | "AAGUID";
-export const GatewayListsGetResponseType = /*@__PURE__*/ S.String;
+export const GatewayListsGetResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetGatewayListResponse {
@@ -82063,7 +81943,7 @@ export type GatewayLocationsGetResponseMaxTtlMode =
   | "inherit"
   | "override"
   | "disabled";
-export const GatewayLocationsGetResponseMaxTtlMode = /*@__PURE__*/ S.String;
+export const GatewayLocationsGetResponseMaxTtlMode = S.String;
 
 export interface GatewayLocationsGetResponseMaxTtl {
   /** `inherit` uses the account `max_ttl_secs`. `override` uses this location's `ttl_secs`. `disabled` leaves returned TTLs unchanged. */
@@ -82320,7 +82200,7 @@ export const GatewayProxyEndpointsGetResultIPIpsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GatewayProxyEndpointsGetResultIPIpsList>;
 
 export type GatewayProxyEndpointsGetResultIPKind = "ip";
-export const GatewayProxyEndpointsGetResultIPKind = /*@__PURE__*/ S.String;
+export const GatewayProxyEndpointsGetResultIPKind = S.String;
 
 export interface GatewayProxyEndpointsGetResultIP {
   /** Specify the list of CIDRs to restrict ingress connections. */
@@ -82350,8 +82230,7 @@ export const GatewayProxyEndpointsGetResultIP = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GatewayProxyEndpointsGetResultIP>;
 
 export type GatewayProxyEndpointsGetResultIdentityKind = "identity";
-export const GatewayProxyEndpointsGetResultIdentityKind =
-  /*@__PURE__*/ S.String;
+export const GatewayProxyEndpointsGetResultIdentityKind = S.String;
 
 export interface GatewayProxyEndpointsGetResultIdentity {
   /** The proxy endpoint kind */
@@ -82437,7 +82316,7 @@ export type GatewayRulesGetResponseAction =
   | "resolve"
   | "quarantine"
   | "redirect";
-export const GatewayRulesGetResponseAction = /*@__PURE__*/ S.String;
+export const GatewayRulesGetResponseAction = S.String;
 
 export type GatewayRulesGetResponseFiltersItem =
   | "http"
@@ -82445,7 +82324,7 @@ export type GatewayRulesGetResponseFiltersItem =
   | "l4"
   | "egress"
   | "dns_resolver";
-export const GatewayRulesGetResponseFiltersItem = /*@__PURE__*/ S.String;
+export const GatewayRulesGetResponseFiltersItem = S.String;
 
 export type GatewayRulesGetResponseFiltersList =
   Array<GatewayRulesGetResponseFiltersItem>;
@@ -82486,45 +82365,45 @@ export type GatewayRulesGetResponseRuleSettingsBisoAdminControlsCopy =
   | "disabled"
   | "remote_only";
 export const GatewayRulesGetResponseRuleSettingsBisoAdminControlsCopy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesGetResponseRuleSettingsBisoAdminControlsDownload =
   | "enabled"
   | "disabled"
   | "remote_only";
 export const GatewayRulesGetResponseRuleSettingsBisoAdminControlsDownload =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesGetResponseRuleSettingsBisoAdminControlsKeyboard =
   | "enabled"
   | "disabled";
 export const GatewayRulesGetResponseRuleSettingsBisoAdminControlsKeyboard =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesGetResponseRuleSettingsBisoAdminControlsPaste =
   | "enabled"
   | "disabled"
   | "remote_only";
 export const GatewayRulesGetResponseRuleSettingsBisoAdminControlsPaste =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesGetResponseRuleSettingsBisoAdminControlsPrinting =
   | "enabled"
   | "disabled";
 export const GatewayRulesGetResponseRuleSettingsBisoAdminControlsPrinting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesGetResponseRuleSettingsBisoAdminControlsUpload =
   | "enabled"
   | "disabled";
 export const GatewayRulesGetResponseRuleSettingsBisoAdminControlsUpload =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesGetResponseRuleSettingsBisoAdminControlsVersion =
   | "v1"
   | "v2";
 export const GatewayRulesGetResponseRuleSettingsBisoAdminControlsVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesGetResponseRuleSettingsBisoAdminControls {
   /** Configure copy behavior. If set to remote_only, users cannot copy isolated content from the remote browser to the local clipboard. If this field is absent, copying remains enabled. Applies only when version == "v2". */
@@ -82687,7 +82566,7 @@ export type GatewayRulesGetResponseRuleSettingsQuarantineFileTypesItem =
   | "zip"
   | "rar";
 export const GatewayRulesGetResponseRuleSettingsQuarantineFileTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesGetResponseRuleSettingsQuarantineFileTypesList =
   Array<GatewayRulesGetResponseRuleSettingsQuarantineFileTypesItem>;
@@ -82722,7 +82601,7 @@ export type GatewayRulesGetResponseRuleSettingsResolveDnsInternallyFallback =
   | "none"
   | "public_dns";
 export const GatewayRulesGetResponseRuleSettingsResolveDnsInternallyFallback =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesGetResponseRuleSettingsResolveDnsInternally {
   /** Specify the fallback behavior to apply when the internal DNS response code differs from 'NOERROR' or when the response data contains only CNAME records for 'A' or 'AAAA' queries. */
@@ -82748,8 +82627,7 @@ export type GatewayRulesGetResponseRuleSettingsUntrustedCertAction =
   | "pass_through"
   | "block"
   | "error";
-export const GatewayRulesGetResponseRuleSettingsUntrustedCertAction =
-  /*@__PURE__*/ S.String;
+export const GatewayRulesGetResponseRuleSettingsUntrustedCertAction = S.String;
 
 export interface GatewayRulesGetResponseRuleSettingsUntrustedCert {
   /** Defines the action performed when an untrusted certificate seen. The default action an error with HTTP code 526. */
@@ -83041,8 +82919,7 @@ export type IdentityProvidersGetResultAzureADConfigPrompt =
   | "login"
   | "select_account"
   | "none";
-export const IdentityProvidersGetResultAzureADConfigPrompt =
-  /*@__PURE__*/ S.String;
+export const IdentityProvidersGetResultAzureADConfigPrompt = S.String;
 
 export interface IdentityProvidersGetResultAzureADConfig {
   /** Custom claims */
@@ -83106,7 +82983,7 @@ export type IdentityProvidersGetResultAzureADType =
   | "pingone"
   | "yandex"
   | "cloudflare";
-export const IdentityProvidersGetResultAzureADType = /*@__PURE__*/ S.String;
+export const IdentityProvidersGetResultAzureADType = S.String;
 
 export type IdentityProvidersGetResultAzureADSamlCertificateSetCurrentCertificate =
   IdentityProvidersCreateRequestSamlCertificateSetCurrentCertificate;
@@ -83123,7 +83000,7 @@ export type IdentityProvidersGetResultAzureADScimConfigIdentityUpdateBehavior =
   | "reauth"
   | "no_action";
 export const IdentityProvidersGetResultAzureADScimConfigIdentityUpdateBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IdentityProvidersGetResultAzureADScimConfig {
   /** A flag to enable or disable SCIM for the identity provider. */
@@ -84467,7 +84344,7 @@ export type NetworksHostnameRoutesGetResponseTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const NetworksHostnameRoutesGetResponseTunType = /*@__PURE__*/ S.String;
+export const NetworksHostnameRoutesGetResponseTunType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetNetworkHostnameRouteResponse {
@@ -84601,7 +84478,7 @@ export type NetworksRoutesIpsGetResponseTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const NetworksRoutesIpsGetResponseTunType = /*@__PURE__*/ S.String;
+export const NetworksRoutesIpsGetResponseTunType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetNetworkRouteIpResponse {
@@ -84675,7 +84552,7 @@ export const GetNetworkSubnetWarpRequest = /*@__PURE__*/ S.suspend(() =>
 export type NetworksSubnetsWarpGetResponseSubnetType =
   | "cloudflare_source"
   | "warp";
-export const NetworksSubnetsWarpGetResponseSubnetType = /*@__PURE__*/ S.String;
+export const NetworksSubnetsWarpGetResponseSubnetType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetNetworkSubnetWarpResponse {
@@ -84899,8 +84776,7 @@ export type ResourceLibraryApplicationsGetResponseSupportedItem =
   | "GATEWAY"
   | "ACCESS"
   | "CASB";
-export const ResourceLibraryApplicationsGetResponseSupportedItem =
-  /*@__PURE__*/ S.String;
+export const ResourceLibraryApplicationsGetResponseSupportedItem = S.String;
 
 export type ResourceLibraryApplicationsGetResponseSupportedList =
   Array<ResourceLibraryApplicationsGetResponseSupportedItem>;
@@ -85056,7 +84932,7 @@ export type RiskScoringGetResponseEventsItemRiskLevel =
   | "low"
   | "medium"
   | "high";
-export const RiskScoringGetResponseEventsItemRiskLevel = /*@__PURE__*/ S.String;
+export const RiskScoringGetResponseEventsItemRiskLevel = S.String;
 
 export interface RiskScoringGetResponseEventsItem {
   id: string;
@@ -85086,7 +84962,7 @@ export const RiskScoringGetResponseEventsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RiskScoringGetResponseEventsList>;
 
 export type RiskScoringGetResponseRiskLevel = "low" | "medium" | "high";
-export const RiskScoringGetResponseRiskLevel = /*@__PURE__*/ S.String;
+export const RiskScoringGetResponseRiskLevel = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetRiskScoringResponse {
@@ -85135,8 +85011,7 @@ export type RiskScoringBehavioursGetResponseBehaviorsValueRiskLevel =
   | "low"
   | "medium"
   | "high";
-export const RiskScoringBehavioursGetResponseBehaviorsValueRiskLevel =
-  /*@__PURE__*/ S.String;
+export const RiskScoringBehavioursGetResponseBehaviorsValueRiskLevel = S.String;
 
 export interface RiskScoringBehavioursGetResponseBehaviorsValue {
   description: string;
@@ -85201,8 +85076,7 @@ export const GetRiskScoringIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetRiskScoringIntegrationRequest>;
 
 export type RiskScoringIntegrationsGetResponseIntegrationType = "Okta";
-export const RiskScoringIntegrationsGetResponseIntegrationType =
-  /*@__PURE__*/ S.String;
+export const RiskScoringIntegrationsGetResponseIntegrationType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetRiskScoringIntegrationResponse {
@@ -85264,7 +85138,7 @@ export const GetRiskScoringIntegrationReferenceRequest =
 export type RiskScoringIntegrationsReferencesGetResponseIntegrationType =
   "Okta";
 export const RiskScoringIntegrationsReferencesGetResponseIntegrationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetRiskScoringIntegrationReferenceResponse {
@@ -85326,8 +85200,7 @@ export type RiskScoringSummaryGetResponseUsersItemMaxRiskLevel =
   | "low"
   | "medium"
   | "high";
-export const RiskScoringSummaryGetResponseUsersItemMaxRiskLevel =
-  /*@__PURE__*/ S.String;
+export const RiskScoringSummaryGetResponseUsersItemMaxRiskLevel = S.String;
 
 export interface RiskScoringSummaryGetResponseUsersItem {
   email: string;
@@ -85395,7 +85268,7 @@ export const GetTunnelCloudflaredRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetTunnelCloudflaredRequest>;
 
 export type TunnelsCloudflaredGetResponseConfigSrc = "local" | "cloudflare";
-export const TunnelsCloudflaredGetResponseConfigSrc = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredGetResponseConfigSrc = S.String;
 
 export type TunnelsCloudflaredGetResponseConnectionsItem =
   TunnelsCloudflaredCreateResponseConnectionsItem;
@@ -85414,7 +85287,7 @@ export type TunnelsCloudflaredGetResponseStatus =
   | "degraded"
   | "healthy"
   | "down";
-export const TunnelsCloudflaredGetResponseStatus = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredGetResponseStatus = S.String;
 
 export type TunnelsCloudflaredGetResponseTunType =
   | "cfd_tunnel"
@@ -85424,7 +85297,7 @@ export type TunnelsCloudflaredGetResponseTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const TunnelsCloudflaredGetResponseTunType = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredGetResponseTunType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetTunnelCloudflaredResponse {
@@ -85743,8 +85616,7 @@ export const TunnelsCloudflaredConfigurationsGetResponseConfig =
 export type TunnelsCloudflaredConfigurationsGetResponseSource =
   | "local"
   | "cloudflare";
-export const TunnelsCloudflaredConfigurationsGetResponseSource =
-  /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredConfigurationsGetResponseSource = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetTunnelCloudflaredConfigurationResponse {
@@ -86035,7 +85907,7 @@ export type TunnelsWarpConnectorGetResponseStatus =
   | "degraded"
   | "healthy"
   | "down";
-export const TunnelsWarpConnectorGetResponseStatus = /*@__PURE__*/ S.String;
+export const TunnelsWarpConnectorGetResponseStatus = S.String;
 
 export type TunnelsWarpConnectorGetResponseTunType =
   | "cfd_tunnel"
@@ -86045,7 +85917,7 @@ export type TunnelsWarpConnectorGetResponseTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const TunnelsWarpConnectorGetResponseTunType = /*@__PURE__*/ S.String;
+export const TunnelsWarpConnectorGetResponseTunType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetTunnelWarpConnectorResponse {
@@ -86127,8 +85999,7 @@ export type TunnelsWarpConnectorConfigurationsGetResponseHaMode =
   | "disabled"
   | "aws"
   | "local";
-export const TunnelsWarpConnectorConfigurationsGetResponseHaMode =
-  /*@__PURE__*/ S.String;
+export const TunnelsWarpConnectorConfigurationsGetResponseHaMode = S.String;
 
 export interface TunnelsWarpConnectorConfigurationsGetResponseConfigTunnelMeshAwsConfig {
   /** Floating Network Resource ID — the secondary ENI that is moved between nodes on failover. */
@@ -86311,8 +86182,7 @@ export type TunnelsWarpConnectorConnectionsGetResultItemHaStatus =
   | "offline"
   | "passive"
   | "active";
-export const TunnelsWarpConnectorConnectionsGetResultItemHaStatus =
-  /*@__PURE__*/ S.String;
+export const TunnelsWarpConnectorConnectionsGetResultItemHaStatus = S.String;
 
 export interface TunnelsWarpConnectorConnectionsGetResultItem {
   /** UUID of the Cloudflare Tunnel connector. */
@@ -86428,8 +86298,7 @@ export type TunnelsWarpConnectorConnectorsGetResponseHaStatus =
   | "offline"
   | "passive"
   | "active";
-export const TunnelsWarpConnectorConnectorsGetResponseHaStatus =
-  /*@__PURE__*/ S.String;
+export const TunnelsWarpConnectorConnectorsGetResponseHaStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetTunnelWarpConnectorConnectorResponse {
@@ -86533,7 +86402,7 @@ export type AccessAiControlsMcpPortalsListResultItemServersItemAuthType =
   | "bearer"
   | "unauthenticated";
 export const AccessAiControlsMcpPortalsListResultItemServersItemAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessAiControlsMcpPortalsListResultItemServersItemPromptsItemMap =
   { [key: string]: unknown | undefined };
@@ -86779,8 +86648,7 @@ export type AccessAiControlsMcpServersListResultItemAuthType =
   | "oauth"
   | "bearer"
   | "unauthenticated";
-export const AccessAiControlsMcpServersListResultItemAuthType =
-  /*@__PURE__*/ S.String;
+export const AccessAiControlsMcpServersListResultItemAuthType = S.String;
 
 export type AccessAiControlsMcpServersListResultItemPromptsItemMap = {
   [key: string]: unknown | undefined;
@@ -87105,7 +86973,7 @@ export const AccessApplicationsPoliciesListResultItemApprovalGroupsList =
 export type AccessApplicationsPoliciesListResultItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsPoliciesListResultItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesListResultItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsPoliciesListResultItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -87117,7 +86985,7 @@ export const AccessApplicationsPoliciesListResultItemConnectionRulesRdpAllowedCl
 export type AccessApplicationsPoliciesListResultItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsPoliciesListResultItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesListResultItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsPoliciesListResultItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -87170,8 +87038,7 @@ export type AccessApplicationsPoliciesListResultItemDecision =
   | "deny"
   | "non_identity"
   | "bypass";
-export const AccessApplicationsPoliciesListResultItemDecision =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsPoliciesListResultItemDecision = S.String;
 
 export type AccessApplicationsPoliciesListResultItemExcludeItemGroupRuleGroup =
   AccessPoliciesCreateRequestIncludeItemGroupRuleGroup;
@@ -87404,7 +87271,7 @@ export type AccessApplicationsPoliciesListResultItemExcludeItemAccessUserRiskSco
   | "high"
   | "unscored";
 export const AccessApplicationsPoliciesListResultItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesListResultItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<AccessApplicationsPoliciesListResultItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem>;
@@ -87723,7 +87590,7 @@ export type AccessApplicationsPoliciesListResultItemMfaConfigAllowedAuthenticato
   | "biometrics"
   | "security_key";
 export const AccessApplicationsPoliciesListResultItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesListResultItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsPoliciesListResultItemMfaConfigAllowedAuthenticatorsItem>;
@@ -88100,8 +87967,7 @@ export type AccessApplicationsPolicyTestsUsersListRequestStatus =
   | "success"
   | "fail"
   | "error";
-export const AccessApplicationsPolicyTestsUsersListRequestStatus =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsPolicyTestsUsersListRequestStatus = S.String;
 
 export interface ListAccessApplicationPolicyTestUsersRequest {
   /** Identifier. */
@@ -88141,8 +88007,7 @@ export type AccessApplicationsPolicyTestsUsersListResultItemStatus =
   | "approved"
   | "blocked"
   | "error";
-export const AccessApplicationsPolicyTestsUsersListResultItemStatus =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsPolicyTestsUsersListResultItemStatus = S.String;
 
 export interface AccessApplicationsPolicyTestsUsersListResultItem {
   /** UUID. */
@@ -88254,7 +88119,7 @@ export type AccessApplicationsListResultItemSelfHostedApplicationType =
   | "mcp_portal"
   | "proxy_endpoint";
 export const AccessApplicationsListResultItemSelfHostedApplicationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSelfHostedApplicationAllowedIdpsList =
   Array<unknown>;
@@ -88281,7 +88146,7 @@ export type AccessApplicationsListResultItemSelfHostedApplicationCorsHeadersAllo
   | "TRACE"
   | "PATCH";
 export const AccessApplicationsListResultItemSelfHostedApplicationCorsHeadersAllowedMethodsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSelfHostedApplicationCorsHeadersAllowedMethodsList =
   Array<AccessApplicationsListResultItemSelfHostedApplicationCorsHeadersAllowedMethodsItem>;
@@ -88362,7 +88227,7 @@ export const AccessApplicationsListResultItemSelfHostedApplicationCustomPagesLis
 export type AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemPublicDestinationType | null;
@@ -88388,12 +88253,12 @@ export type AccessApplicationsListResultItemSelfHostedApplicationDestinationsIte
   | "tcp"
   | "udp";
 export const AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -88434,7 +88299,7 @@ export const AccessApplicationsListResultItemSelfHostedApplicationDestinationsIt
 export type AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -88459,7 +88324,7 @@ export const AccessApplicationsListResultItemSelfHostedApplicationDestinationsIt
 export type AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemWorkerDestinationType;
@@ -88480,7 +88345,7 @@ export const AccessApplicationsListResultItemSelfHostedApplicationDestinationsIt
 export type AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -88501,7 +88366,7 @@ export const AccessApplicationsListResultItemSelfHostedApplicationDestinationsIt
 export type AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemAllWorkersDestinationType;
@@ -88519,7 +88384,7 @@ export const AccessApplicationsListResultItemSelfHostedApplicationDestinationsIt
 export type AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsListResultItemSelfHostedApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -88567,7 +88432,7 @@ export type AccessApplicationsListResultItemSelfHostedApplicationMfaConfigAllowe
   | "biometrics"
   | "security_key";
 export const AccessApplicationsListResultItemSelfHostedApplicationMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSelfHostedApplicationMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemSelfHostedApplicationMfaConfigAllowedAuthenticatorsItem>;
@@ -88716,7 +88581,7 @@ export const AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemAp
 export type AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -88728,7 +88593,7 @@ export const AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemCo
 export type AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -88786,7 +88651,7 @@ export type AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemDec
   | "non_identity"
   | "bypass";
 export const AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemDecision =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemExcludeItemGroupRuleGroup =
   AccessPoliciesCreateRequestIncludeItemGroupRuleGroup;
@@ -89019,7 +88884,7 @@ export type AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemExc
   | "high"
   | "unscored";
 export const AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem>;
@@ -89338,7 +89203,7 @@ export type AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemMfa
   | "biometrics"
   | "security_key";
 export const AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemSelfHostedApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -89677,7 +89542,7 @@ export const AccessApplicationsListResultItemSelfHostedApplicationPoliciesList =
 export type AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationHTTPBasicScheme =
   "httpbasic";
 export const AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationHTTPBasicScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationHTTPBasic {
   /** Password used to authenticate with the remote SCIM service. */
@@ -89703,7 +89568,7 @@ export const AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuth
 export type AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOAuthBearerTokenScheme =
   "oauthbearertoken";
 export const AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOAuthBearerTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOAuthBearerToken {
   /** Token used to authenticate with the remote SCIM service. */
@@ -89726,7 +89591,7 @@ export const AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuth
 export type AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOauth2Scheme =
   "oauth2";
 export const AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOauth2Scheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOauth2ScopesList =
   Array<string>;
@@ -89772,7 +89637,7 @@ export const AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuth
 export type AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -89813,7 +89678,7 @@ export const AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuth
 export type AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -89891,7 +89756,7 @@ export type AccessApplicationsListResultItemSelfHostedApplicationScimConfigMappi
   | "strict"
   | "passthrough";
 export const AccessApplicationsListResultItemSelfHostedApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemSelfHostedApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -90231,7 +90096,7 @@ export const AccessApplicationsListResultItemSaaSApplicationPoliciesItemApproval
 export type AccessApplicationsListResultItemSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsListResultItemSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsListResultItemSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -90243,7 +90108,7 @@ export const AccessApplicationsListResultItemSaaSApplicationPoliciesItemConnecti
 export type AccessApplicationsListResultItemSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsListResultItemSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsListResultItemSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -90692,7 +90557,7 @@ export type AccessApplicationsListResultItemSaaSApplicationPoliciesItemMfaConfig
   | "biometrics"
   | "security_key";
 export const AccessApplicationsListResultItemSaaSApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSaaSApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemSaaSApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -91031,14 +90896,14 @@ export type AccessApplicationsListResultItemSaaSApplicationSaasAppSAMLSaaSAppAut
   | "saml"
   | "oidc";
 export const AccessApplicationsListResultItemSaaSApplicationSaasAppSAMLSaaSAppAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSaaSApplicationSaasAppSAMLSaaSAppCustomAttributesItemNameFormat =
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:basic"
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:uri";
 export const AccessApplicationsListResultItemSaaSApplicationSaasAppSAMLSaaSAppCustomAttributesItemNameFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSaaSApplicationSaasAppSAMLSaaSAppCustomAttributesItemSourceNameByIdpItem =
   AccessApplicationsCreateResultSaaSApplicationSaasAppSAMLSaaSAppCustomAttributesItemSourceNameByIdpItem;
@@ -91119,7 +90984,7 @@ export type AccessApplicationsListResultItemSaaSApplicationSaasAppSAMLSaaSAppNam
   | "id"
   | "email";
 export const AccessApplicationsListResultItemSaaSApplicationSaasAppSAMLSaaSAppNameIdFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemSaaSApplicationSaasAppSAMLSaaSApp {
   /** Optional identifier indicating the authentication protocol used for the saas app. Required for OIDC. Default if unset is "saml" */
@@ -91188,7 +91053,7 @@ export type AccessApplicationsListResultItemSaaSApplicationSaasAppOIDCSaaSAppAut
   | "saml"
   | "oidc";
 export const AccessApplicationsListResultItemSaaSApplicationSaasAppOIDCSaaSAppAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSaaSApplicationSaasAppOIDCSaaSAppCustomClaimsItemScope =
   | "groups"
@@ -91196,7 +91061,7 @@ export type AccessApplicationsListResultItemSaaSApplicationSaasAppOIDCSaaSAppCus
   | "email"
   | "openid";
 export const AccessApplicationsListResultItemSaaSApplicationSaasAppOIDCSaaSAppCustomClaimsItemScope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSaaSApplicationSaasAppOIDCSaaSAppCustomClaimsItemSourceNameByIdpMap =
   { [key: string]: string | undefined };
@@ -91271,7 +91136,7 @@ export type AccessApplicationsListResultItemSaaSApplicationSaasAppOIDCSaaSAppGra
   | "hybrid"
   | "implicit";
 export const AccessApplicationsListResultItemSaaSApplicationSaasAppOIDCSaaSAppGrantTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSaaSApplicationSaasAppOIDCSaaSAppGrantTypesList =
   Array<AccessApplicationsListResultItemSaaSApplicationSaasAppOIDCSaaSAppGrantTypesItem>;
@@ -91303,7 +91168,7 @@ export type AccessApplicationsListResultItemSaaSApplicationSaasAppOIDCSaaSAppSco
   | "email"
   | "profile";
 export const AccessApplicationsListResultItemSaaSApplicationSaasAppOIDCSaaSAppScopesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemSaaSApplicationSaasAppOIDCSaaSAppScopesList =
   Array<AccessApplicationsListResultItemSaaSApplicationSaasAppOIDCSaaSAppScopesItem>;
@@ -91456,7 +91321,7 @@ export const AccessApplicationsListResultItemSaaSApplicationScimConfigAuthentica
 export type AccessApplicationsListResultItemSaaSApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsListResultItemSaaSApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemSaaSApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -91497,7 +91362,7 @@ export const AccessApplicationsListResultItemSaaSApplicationScimConfigAuthentica
 export type AccessApplicationsListResultItemSaaSApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsListResultItemSaaSApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemSaaSApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -91563,7 +91428,7 @@ export type AccessApplicationsListResultItemSaaSApplicationScimConfigMappingsIte
   | "strict"
   | "passthrough";
 export const AccessApplicationsListResultItemSaaSApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemSaaSApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -91741,7 +91606,7 @@ export type AccessApplicationsListResultItemBrowserSSHApplicationType =
   | "mcp_portal"
   | "proxy_endpoint";
 export const AccessApplicationsListResultItemBrowserSSHApplicationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserSSHApplicationAllowedIdpsList =
   Array<unknown>;
@@ -91760,7 +91625,7 @@ export const AccessApplicationsListResultItemBrowserSSHApplicationCustomPagesLis
 export type AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemPublicDestinationType | null;
@@ -91786,12 +91651,12 @@ export type AccessApplicationsListResultItemBrowserSSHApplicationDestinationsIte
   | "tcp"
   | "udp";
 export const AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -91832,7 +91697,7 @@ export const AccessApplicationsListResultItemBrowserSSHApplicationDestinationsIt
 export type AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -91857,7 +91722,7 @@ export const AccessApplicationsListResultItemBrowserSSHApplicationDestinationsIt
 export type AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemWorkerDestinationType;
@@ -91878,7 +91743,7 @@ export const AccessApplicationsListResultItemBrowserSSHApplicationDestinationsIt
 export type AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -91899,7 +91764,7 @@ export const AccessApplicationsListResultItemBrowserSSHApplicationDestinationsIt
 export type AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemAllWorkersDestinationType;
@@ -91917,7 +91782,7 @@ export const AccessApplicationsListResultItemBrowserSSHApplicationDestinationsIt
 export type AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsListResultItemBrowserSSHApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -91965,7 +91830,7 @@ export type AccessApplicationsListResultItemBrowserSSHApplicationMfaConfigAllowe
   | "biometrics"
   | "security_key";
 export const AccessApplicationsListResultItemBrowserSSHApplicationMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserSSHApplicationMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemBrowserSSHApplicationMfaConfigAllowedAuthenticatorsItem>;
@@ -92114,7 +91979,7 @@ export const AccessApplicationsListResultItemBrowserSSHApplicationPoliciesItemAp
 export type AccessApplicationsListResultItemBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsListResultItemBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsListResultItemBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -92126,7 +91991,7 @@ export const AccessApplicationsListResultItemBrowserSSHApplicationPoliciesItemCo
 export type AccessApplicationsListResultItemBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsListResultItemBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsListResultItemBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -92575,7 +92440,7 @@ export type AccessApplicationsListResultItemBrowserSSHApplicationPoliciesItemMfa
   | "biometrics"
   | "security_key";
 export const AccessApplicationsListResultItemBrowserSSHApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserSSHApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemBrowserSSHApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -92929,7 +92794,7 @@ export const AccessApplicationsListResultItemBrowserSSHApplicationScimConfigAuth
 export type AccessApplicationsListResultItemBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsListResultItemBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -92970,7 +92835,7 @@ export const AccessApplicationsListResultItemBrowserSSHApplicationScimConfigAuth
 export type AccessApplicationsListResultItemBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsListResultItemBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -93036,7 +92901,7 @@ export type AccessApplicationsListResultItemBrowserSSHApplicationScimConfigMappi
   | "strict"
   | "passthrough";
 export const AccessApplicationsListResultItemBrowserSSHApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserSSHApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -93331,7 +93196,7 @@ export type AccessApplicationsListResultItemBrowserVNCApplicationType =
   | "mcp_portal"
   | "proxy_endpoint";
 export const AccessApplicationsListResultItemBrowserVNCApplicationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserVNCApplicationAllowedIdpsList =
   Array<unknown>;
@@ -93350,7 +93215,7 @@ export const AccessApplicationsListResultItemBrowserVNCApplicationCustomPagesLis
 export type AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemPublicDestinationType | null;
@@ -93376,12 +93241,12 @@ export type AccessApplicationsListResultItemBrowserVNCApplicationDestinationsIte
   | "tcp"
   | "udp";
 export const AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -93422,7 +93287,7 @@ export const AccessApplicationsListResultItemBrowserVNCApplicationDestinationsIt
 export type AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -93447,7 +93312,7 @@ export const AccessApplicationsListResultItemBrowserVNCApplicationDestinationsIt
 export type AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemWorkerDestinationType;
@@ -93468,7 +93333,7 @@ export const AccessApplicationsListResultItemBrowserVNCApplicationDestinationsIt
 export type AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -93489,7 +93354,7 @@ export const AccessApplicationsListResultItemBrowserVNCApplicationDestinationsIt
 export type AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemAllWorkersDestinationType;
@@ -93507,7 +93372,7 @@ export const AccessApplicationsListResultItemBrowserVNCApplicationDestinationsIt
 export type AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsListResultItemBrowserVNCApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -93555,7 +93420,7 @@ export type AccessApplicationsListResultItemBrowserVNCApplicationMfaConfigAllowe
   | "biometrics"
   | "security_key";
 export const AccessApplicationsListResultItemBrowserVNCApplicationMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserVNCApplicationMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemBrowserVNCApplicationMfaConfigAllowedAuthenticatorsItem>;
@@ -93704,7 +93569,7 @@ export const AccessApplicationsListResultItemBrowserVNCApplicationPoliciesItemAp
 export type AccessApplicationsListResultItemBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsListResultItemBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsListResultItemBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -93716,7 +93581,7 @@ export const AccessApplicationsListResultItemBrowserVNCApplicationPoliciesItemCo
 export type AccessApplicationsListResultItemBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsListResultItemBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsListResultItemBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -94165,7 +94030,7 @@ export type AccessApplicationsListResultItemBrowserVNCApplicationPoliciesItemMfa
   | "biometrics"
   | "security_key";
 export const AccessApplicationsListResultItemBrowserVNCApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserVNCApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemBrowserVNCApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -94519,7 +94384,7 @@ export const AccessApplicationsListResultItemBrowserVNCApplicationScimConfigAuth
 export type AccessApplicationsListResultItemBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsListResultItemBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -94560,7 +94425,7 @@ export const AccessApplicationsListResultItemBrowserVNCApplicationScimConfigAuth
 export type AccessApplicationsListResultItemBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsListResultItemBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -94626,7 +94491,7 @@ export type AccessApplicationsListResultItemBrowserVNCApplicationScimConfigMappi
   | "strict"
   | "passthrough";
 export const AccessApplicationsListResultItemBrowserVNCApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserVNCApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -94921,7 +94786,7 @@ export type AccessApplicationsListResultItemAppLauncherApplicationType =
   | "mcp_portal"
   | "proxy_endpoint";
 export const AccessApplicationsListResultItemAppLauncherApplicationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemAppLauncherApplicationAllowedIdpsList =
   Array<unknown>;
@@ -94997,7 +94862,7 @@ export const AccessApplicationsListResultItemAppLauncherApplicationPoliciesItemA
 export type AccessApplicationsListResultItemAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsListResultItemAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsListResultItemAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -95009,7 +94874,7 @@ export const AccessApplicationsListResultItemAppLauncherApplicationPoliciesItemC
 export type AccessApplicationsListResultItemAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsListResultItemAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsListResultItemAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -95458,7 +95323,7 @@ export type AccessApplicationsListResultItemAppLauncherApplicationPoliciesItemMf
   | "biometrics"
   | "security_key";
 export const AccessApplicationsListResultItemAppLauncherApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemAppLauncherApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemAppLauncherApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -95948,7 +95813,7 @@ export const AccessApplicationsListResultItemDeviceEnrollmentPermissionsApplicat
 export type AccessApplicationsListResultItemDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsListResultItemDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsListResultItemDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -95960,7 +95825,7 @@ export const AccessApplicationsListResultItemDeviceEnrollmentPermissionsApplicat
 export type AccessApplicationsListResultItemDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsListResultItemDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsListResultItemDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -96409,7 +96274,7 @@ export type AccessApplicationsListResultItemDeviceEnrollmentPermissionsApplicati
   | "biometrics"
   | "security_key";
 export const AccessApplicationsListResultItemDeviceEnrollmentPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemDeviceEnrollmentPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemDeviceEnrollmentPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -96868,7 +96733,7 @@ export const AccessApplicationsListResultItemBrowserIsolationPermissionsApplicat
 export type AccessApplicationsListResultItemBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsListResultItemBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsListResultItemBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -96880,7 +96745,7 @@ export const AccessApplicationsListResultItemBrowserIsolationPermissionsApplicat
 export type AccessApplicationsListResultItemBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsListResultItemBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsListResultItemBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -97329,7 +97194,7 @@ export type AccessApplicationsListResultItemBrowserIsolationPermissionsApplicati
   | "biometrics"
   | "security_key";
 export const AccessApplicationsListResultItemBrowserIsolationPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserIsolationPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemBrowserIsolationPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -97788,7 +97653,7 @@ export const AccessApplicationsListResultItemGatewayIdentityProxyEndpointApplica
 export type AccessApplicationsListResultItemGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsListResultItemGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsListResultItemGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -97800,7 +97665,7 @@ export const AccessApplicationsListResultItemGatewayIdentityProxyEndpointApplica
 export type AccessApplicationsListResultItemGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsListResultItemGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsListResultItemGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -98249,7 +98114,7 @@ export type AccessApplicationsListResultItemGatewayIdentityProxyEndpointApplicat
   | "biometrics"
   | "security_key";
 export const AccessApplicationsListResultItemGatewayIdentityProxyEndpointApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemGatewayIdentityProxyEndpointApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemGatewayIdentityProxyEndpointApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -98694,7 +98559,7 @@ export const AccessApplicationsListResultItemBookmarkApplicationPoliciesItemAppr
 export type AccessApplicationsListResultItemBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsListResultItemBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsListResultItemBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -98706,7 +98571,7 @@ export const AccessApplicationsListResultItemBookmarkApplicationPoliciesItemConn
 export type AccessApplicationsListResultItemBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsListResultItemBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsListResultItemBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -99155,7 +99020,7 @@ export type AccessApplicationsListResultItemBookmarkApplicationPoliciesItemMfaCo
   | "biometrics"
   | "security_key";
 export const AccessApplicationsListResultItemBookmarkApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBookmarkApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemBookmarkApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -99547,7 +99412,7 @@ export const AccessApplicationsListResultItemBookmarkApplication =
 export type AccessApplicationsListResultItemInfrastructureApplicationTargetCriteriaItemProtocol =
   "SSH";
 export const AccessApplicationsListResultItemInfrastructureApplicationTargetCriteriaItemProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemInfrastructureApplicationTargetCriteriaItemTargetAttributesValueList =
   Array<string>;
@@ -100039,7 +99904,7 @@ export const AccessApplicationsListResultItemInfrastructureApplicationPoliciesIt
 export type AccessApplicationsListResultItemInfrastructureApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
   "piv_key";
 export const AccessApplicationsListResultItemInfrastructureApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemInfrastructureApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemInfrastructureApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -100376,7 +100241,7 @@ export const AccessApplicationsListResultItemInfrastructureApplication =
 export type AccessApplicationsListResultItemBrowserRDPApplicationTargetCriteriaItemProtocol =
   "RDP";
 export const AccessApplicationsListResultItemBrowserRDPApplicationTargetCriteriaItemProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserRDPApplicationTargetCriteriaItemTargetAttributesValueList =
   Array<string>;
@@ -100445,7 +100310,7 @@ export const AccessApplicationsListResultItemBrowserRDPApplicationCustomPagesLis
 export type AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemPublicDestinationType | null;
@@ -100471,12 +100336,12 @@ export type AccessApplicationsListResultItemBrowserRDPApplicationDestinationsIte
   | "tcp"
   | "udp";
 export const AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -100517,7 +100382,7 @@ export const AccessApplicationsListResultItemBrowserRDPApplicationDestinationsIt
 export type AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -100542,7 +100407,7 @@ export const AccessApplicationsListResultItemBrowserRDPApplicationDestinationsIt
 export type AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemWorkerDestinationType;
@@ -100563,7 +100428,7 @@ export const AccessApplicationsListResultItemBrowserRDPApplicationDestinationsIt
 export type AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -100584,7 +100449,7 @@ export const AccessApplicationsListResultItemBrowserRDPApplicationDestinationsIt
 export type AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemAllWorkersDestinationType;
@@ -100602,7 +100467,7 @@ export const AccessApplicationsListResultItemBrowserRDPApplicationDestinationsIt
 export type AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsListResultItemBrowserRDPApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -100650,7 +100515,7 @@ export type AccessApplicationsListResultItemBrowserRDPApplicationMfaConfigAllowe
   | "biometrics"
   | "security_key";
 export const AccessApplicationsListResultItemBrowserRDPApplicationMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserRDPApplicationMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemBrowserRDPApplicationMfaConfigAllowedAuthenticatorsItem>;
@@ -100799,7 +100664,7 @@ export const AccessApplicationsListResultItemBrowserRDPApplicationPoliciesItemAp
 export type AccessApplicationsListResultItemBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsListResultItemBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsListResultItemBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -100811,7 +100676,7 @@ export const AccessApplicationsListResultItemBrowserRDPApplicationPoliciesItemCo
 export type AccessApplicationsListResultItemBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsListResultItemBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsListResultItemBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -101260,7 +101125,7 @@ export type AccessApplicationsListResultItemBrowserRDPApplicationPoliciesItemMfa
   | "biometrics"
   | "security_key";
 export const AccessApplicationsListResultItemBrowserRDPApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemBrowserRDPApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemBrowserRDPApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -101614,7 +101479,7 @@ export const AccessApplicationsListResultItemBrowserRDPApplicationScimConfigAuth
 export type AccessApplicationsListResultItemBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsListResultItemBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -101655,7 +101520,7 @@ export const AccessApplicationsListResultItemBrowserRDPApplicationScimConfigAuth
 export type AccessApplicationsListResultItemBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsListResultItemBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -101721,7 +101586,7 @@ export type AccessApplicationsListResultItemBrowserRDPApplicationScimConfigMappi
   | "strict"
   | "passthrough";
 export const AccessApplicationsListResultItemBrowserRDPApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemBrowserRDPApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -102022,7 +101887,7 @@ export const AccessApplicationsListResultItemMcpServerApplicationCustomPagesList
 export type AccessApplicationsListResultItemMcpServerApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsListResultItemMcpServerApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsListResultItemMcpServerApplicationDestinationsItemPublicDestinationType | null;
@@ -102048,12 +101913,12 @@ export type AccessApplicationsListResultItemMcpServerApplicationDestinationsItem
   | "tcp"
   | "udp";
 export const AccessApplicationsListResultItemMcpServerApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemMcpServerApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsListResultItemMcpServerApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -102094,7 +101959,7 @@ export const AccessApplicationsListResultItemMcpServerApplicationDestinationsIte
 export type AccessApplicationsListResultItemMcpServerApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsListResultItemMcpServerApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -102119,7 +101984,7 @@ export const AccessApplicationsListResultItemMcpServerApplicationDestinationsIte
 export type AccessApplicationsListResultItemMcpServerApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsListResultItemMcpServerApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsListResultItemMcpServerApplicationDestinationsItemWorkerDestinationType;
@@ -102140,7 +102005,7 @@ export const AccessApplicationsListResultItemMcpServerApplicationDestinationsIte
 export type AccessApplicationsListResultItemMcpServerApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsListResultItemMcpServerApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsListResultItemMcpServerApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -102161,7 +102026,7 @@ export const AccessApplicationsListResultItemMcpServerApplicationDestinationsIte
 export type AccessApplicationsListResultItemMcpServerApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsListResultItemMcpServerApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsListResultItemMcpServerApplicationDestinationsItemAllWorkersDestinationType;
@@ -102179,7 +102044,7 @@ export const AccessApplicationsListResultItemMcpServerApplicationDestinationsIte
 export type AccessApplicationsListResultItemMcpServerApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsListResultItemMcpServerApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsListResultItemMcpServerApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -102336,7 +102201,7 @@ export const AccessApplicationsListResultItemMcpServerApplicationPoliciesItemApp
 export type AccessApplicationsListResultItemMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsListResultItemMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsListResultItemMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -102348,7 +102213,7 @@ export const AccessApplicationsListResultItemMcpServerApplicationPoliciesItemCon
 export type AccessApplicationsListResultItemMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsListResultItemMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsListResultItemMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -102797,7 +102662,7 @@ export type AccessApplicationsListResultItemMcpServerApplicationPoliciesItemMfaC
   | "biometrics"
   | "security_key";
 export const AccessApplicationsListResultItemMcpServerApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemMcpServerApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemMcpServerApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -103151,7 +103016,7 @@ export const AccessApplicationsListResultItemMcpServerApplicationScimConfigAuthe
 export type AccessApplicationsListResultItemMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsListResultItemMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -103192,7 +103057,7 @@ export const AccessApplicationsListResultItemMcpServerApplicationScimConfigAuthe
 export type AccessApplicationsListResultItemMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsListResultItemMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -103258,7 +103123,7 @@ export type AccessApplicationsListResultItemMcpServerApplicationScimConfigMappin
   | "strict"
   | "passthrough";
 export const AccessApplicationsListResultItemMcpServerApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -103481,7 +103346,7 @@ export const AccessApplicationsListResultItemMcpServerPortalApplicationCustomPag
 export type AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemPublicDestinationType | null;
@@ -103507,12 +103372,12 @@ export type AccessApplicationsListResultItemMcpServerPortalApplicationDestinatio
   | "tcp"
   | "udp";
 export const AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -103553,7 +103418,7 @@ export const AccessApplicationsListResultItemMcpServerPortalApplicationDestinati
 export type AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -103578,7 +103443,7 @@ export const AccessApplicationsListResultItemMcpServerPortalApplicationDestinati
 export type AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemWorkerDestinationType;
@@ -103599,7 +103464,7 @@ export const AccessApplicationsListResultItemMcpServerPortalApplicationDestinati
 export type AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -103620,7 +103485,7 @@ export const AccessApplicationsListResultItemMcpServerPortalApplicationDestinati
 export type AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemAllWorkersDestinationType;
@@ -103638,7 +103503,7 @@ export const AccessApplicationsListResultItemMcpServerPortalApplicationDestinati
 export type AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsListResultItemMcpServerPortalApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -103795,7 +103660,7 @@ export const AccessApplicationsListResultItemMcpServerPortalApplicationPoliciesI
 export type AccessApplicationsListResultItemMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsListResultItemMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsListResultItemMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -103807,7 +103672,7 @@ export const AccessApplicationsListResultItemMcpServerPortalApplicationPoliciesI
 export type AccessApplicationsListResultItemMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsListResultItemMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsListResultItemMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -104256,7 +104121,7 @@ export type AccessApplicationsListResultItemMcpServerPortalApplicationPoliciesIt
   | "biometrics"
   | "security_key";
 export const AccessApplicationsListResultItemMcpServerPortalApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsListResultItemMcpServerPortalApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsListResultItemMcpServerPortalApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -104610,7 +104475,7 @@ export const AccessApplicationsListResultItemMcpServerPortalApplicationScimConfi
 export type AccessApplicationsListResultItemMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsListResultItemMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -104651,7 +104516,7 @@ export const AccessApplicationsListResultItemMcpServerPortalApplicationScimConfi
 export type AccessApplicationsListResultItemMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsListResultItemMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -104717,7 +104582,7 @@ export type AccessApplicationsListResultItemMcpServerPortalApplicationScimConfig
   | "strict"
   | "passthrough";
 export const AccessApplicationsListResultItemMcpServerPortalApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsListResultItemMcpServerPortalApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -105643,7 +105508,7 @@ export const ListAccessCustomPagesRequest = /*@__PURE__*/ S.suspend(() =>
 export type AccessCustomPagesListResultItemType =
   | "identity_denied"
   | "forbidden";
-export const AccessCustomPagesListResultItemType = /*@__PURE__*/ S.String;
+export const AccessCustomPagesListResultItemType = S.String;
 
 export interface AccessCustomPagesListResultItem {
   /** Custom page name. */
@@ -106003,7 +105868,7 @@ export type AccessGroupsListResultItemExcludeItemAccessUserRiskScoreRuleUserRisk
   | "high"
   | "unscored";
 export const AccessGroupsListResultItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessGroupsListResultItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<AccessGroupsListResultItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem>;
@@ -106644,8 +106509,7 @@ export const ListAccessIdpFederationGrantsResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListAccessIdpFederationGrantsResponse>;
 
 export type AccessInfrastructureTargetsListRequestDirection = "asc" | "desc";
-export const AccessInfrastructureTargetsListRequestDirection =
-  /*@__PURE__*/ S.String;
+export const AccessInfrastructureTargetsListRequestDirection = S.String;
 
 export type AccessInfrastructureTargetsListRequestIpsList = Array<string>;
 export const AccessInfrastructureTargetsListRequestIpsList =
@@ -106656,8 +106520,7 @@ export const AccessInfrastructureTargetsListRequestIpsList =
 export type AccessInfrastructureTargetsListRequestOrder =
   | "hostname"
   | "created_at";
-export const AccessInfrastructureTargetsListRequestOrder =
-  /*@__PURE__*/ S.String;
+export const AccessInfrastructureTargetsListRequestOrder = S.String;
 
 export type AccessInfrastructureTargetsListRequestTargetIdsList = Array<string>;
 export const AccessInfrastructureTargetsListRequestTargetIdsList =
@@ -106803,46 +106666,37 @@ export const ListAccessInfrastructureTargetsResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListAccessInfrastructureTargetsResponse>;
 
 export type AccessLogsAccessRequestsListRequestAllowedOp = "eq" | "neq";
-export const AccessLogsAccessRequestsListRequestAllowedOp =
-  /*@__PURE__*/ S.String;
+export const AccessLogsAccessRequestsListRequestAllowedOp = S.String;
 
 export type AccessLogsAccessRequestsListRequestAppTypeOp = "eq" | "neq";
-export const AccessLogsAccessRequestsListRequestAppTypeOp =
-  /*@__PURE__*/ S.String;
+export const AccessLogsAccessRequestsListRequestAppTypeOp = S.String;
 
 export type AccessLogsAccessRequestsListRequestAppUidOp = "eq" | "neq";
-export const AccessLogsAccessRequestsListRequestAppUidOp =
-  /*@__PURE__*/ S.String;
+export const AccessLogsAccessRequestsListRequestAppUidOp = S.String;
 
 export type AccessLogsAccessRequestsListRequestCountryCodeOp = "eq" | "neq";
-export const AccessLogsAccessRequestsListRequestCountryCodeOp =
-  /*@__PURE__*/ S.String;
+export const AccessLogsAccessRequestsListRequestCountryCodeOp = S.String;
 
 export type AccessLogsAccessRequestsListRequestDirection = "desc" | "asc";
-export const AccessLogsAccessRequestsListRequestDirection =
-  /*@__PURE__*/ S.String;
+export const AccessLogsAccessRequestsListRequestDirection = S.String;
 
 export type AccessLogsAccessRequestsListRequestEmailOp =
   | "eq"
   | "neq"
   | "contains";
-export const AccessLogsAccessRequestsListRequestEmailOp =
-  /*@__PURE__*/ S.String;
+export const AccessLogsAccessRequestsListRequestEmailOp = S.String;
 
 export type AccessLogsAccessRequestsListRequestIdpOp = "eq" | "neq";
-export const AccessLogsAccessRequestsListRequestIdpOp = /*@__PURE__*/ S.String;
+export const AccessLogsAccessRequestsListRequestIdpOp = S.String;
 
 export type AccessLogsAccessRequestsListRequestNonIdentityOp = "eq" | "neq";
-export const AccessLogsAccessRequestsListRequestNonIdentityOp =
-  /*@__PURE__*/ S.String;
+export const AccessLogsAccessRequestsListRequestNonIdentityOp = S.String;
 
 export type AccessLogsAccessRequestsListRequestRayIdOp = "eq" | "neq";
-export const AccessLogsAccessRequestsListRequestRayIdOp =
-  /*@__PURE__*/ S.String;
+export const AccessLogsAccessRequestsListRequestRayIdOp = S.String;
 
 export type AccessLogsAccessRequestsListRequestUserIdOp = "eq" | "neq";
-export const AccessLogsAccessRequestsListRequestUserIdOp =
-  /*@__PURE__*/ S.String;
+export const AccessLogsAccessRequestsListRequestUserIdOp = S.String;
 
 export interface ListAccessLogAccessRequestsRequest {
   /** Identifier. */
@@ -107012,7 +106866,7 @@ export const AccessLogsScimUpdatesListRequestCfResourceIdList =
   ) as any as S.Schema<AccessLogsScimUpdatesListRequestCfResourceIdList>;
 
 export type AccessLogsScimUpdatesListRequestDirection = "desc" | "asc";
-export const AccessLogsScimUpdatesListRequestDirection = /*@__PURE__*/ S.String;
+export const AccessLogsScimUpdatesListRequestDirection = S.String;
 
 export type AccessLogsScimUpdatesListRequestIdpResourceIdList = Array<string>;
 export const AccessLogsScimUpdatesListRequestIdpResourceIdList =
@@ -107025,8 +106879,7 @@ export type AccessLogsScimUpdatesListRequestRequestMethod =
   | "PATCH"
   | "POST"
   | "PUT";
-export const AccessLogsScimUpdatesListRequestRequestMethod =
-  /*@__PURE__*/ S.String;
+export const AccessLogsScimUpdatesListRequestRequestMethod = S.String;
 
 export type AccessLogsScimUpdatesListRequestRequestMethodList = Array<
   AccessLogsScimUpdatesListRequestRequestMethod | (string & {})
@@ -107044,8 +106897,7 @@ export const AccessLogsScimUpdatesListRequestResourceGroupNameList =
   ) as any as S.Schema<AccessLogsScimUpdatesListRequestResourceGroupNameList>;
 
 export type AccessLogsScimUpdatesListRequestResourceType = "USER" | "GROUP";
-export const AccessLogsScimUpdatesListRequestResourceType =
-  /*@__PURE__*/ S.String;
+export const AccessLogsScimUpdatesListRequestResourceType = S.String;
 
 export type AccessLogsScimUpdatesListRequestResourceTypeList = Array<
   AccessLogsScimUpdatesListRequestResourceType | (string & {})
@@ -107063,7 +106915,7 @@ export const AccessLogsScimUpdatesListRequestResourceUserEmailList =
   ) as any as S.Schema<AccessLogsScimUpdatesListRequestResourceUserEmailList>;
 
 export type AccessLogsScimUpdatesListRequestStatus = "FAILURE" | "SUCCESS";
-export const AccessLogsScimUpdatesListRequestStatus = /*@__PURE__*/ S.String;
+export const AccessLogsScimUpdatesListRequestStatus = S.String;
 
 export type AccessLogsScimUpdatesListRequestStatusList = Array<
   AccessLogsScimUpdatesListRequestStatus | (string & {})
@@ -107302,7 +107154,7 @@ export const AccessPoliciesListResultItemApprovalGroupsList =
 export type AccessPoliciesListResultItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessPoliciesListResultItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesListResultItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessPoliciesListResultItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -107314,7 +107166,7 @@ export const AccessPoliciesListResultItemConnectionRulesRdpAllowedClipboardLocal
 export type AccessPoliciesListResultItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessPoliciesListResultItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesListResultItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessPoliciesListResultItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -107365,7 +107217,7 @@ export type AccessPoliciesListResultItemDecision =
   | "deny"
   | "non_identity"
   | "bypass";
-export const AccessPoliciesListResultItemDecision = /*@__PURE__*/ S.String;
+export const AccessPoliciesListResultItemDecision = S.String;
 
 export type AccessPoliciesListResultItemExcludeItemGroupRuleGroup =
   AccessPoliciesCreateRequestIncludeItemGroupRuleGroup;
@@ -107598,7 +107450,7 @@ export type AccessPoliciesListResultItemExcludeItemAccessUserRiskScoreRuleUserRi
   | "high"
   | "unscored";
 export const AccessPoliciesListResultItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesListResultItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<AccessPoliciesListResultItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem>;
@@ -107915,7 +107767,7 @@ export type AccessPoliciesListResultItemMfaConfigAllowedAuthenticatorsItem =
   | "biometrics"
   | "security_key";
 export const AccessPoliciesListResultItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesListResultItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessPoliciesListResultItemMfaConfigAllowedAuthenticatorsItem>;
@@ -108821,8 +108673,7 @@ export type ListCasbApplicationsResponsePermissionsItemSeverity =
   | "medium"
   | "high"
   | "critical";
-export const ListCasbApplicationsResponsePermissionsItemSeverity =
-  /*@__PURE__*/ S.String;
+export const ListCasbApplicationsResponsePermissionsItemSeverity = S.String;
 
 export interface ListCasbApplicationsResponsePermissionsItem {
   /** Human-readable permission name. */
@@ -108856,7 +108707,7 @@ export type ListCasbApplicationsResponseSlug =
   | "MICROSOFT_INTERNAL"
   | "SALESFORCE"
   | "SLACK";
-export const ListCasbApplicationsResponseSlug = /*@__PURE__*/ S.String;
+export const ListCasbApplicationsResponseSlug = S.String;
 
 export type ListCasbApplicationsResponseSupportedEnvironmentsList =
   Array<string>;
@@ -108937,8 +108788,7 @@ export const ListCasbApplicationsResponse = /*@__PURE__*/ S.suspend(() =>
 export type ListCasbApplicationsSetupFlowsRequestEnvironment =
   | "fedramp"
   | "standard";
-export const ListCasbApplicationsSetupFlowsRequestEnvironment =
-  /*@__PURE__*/ S.String;
+export const ListCasbApplicationsSetupFlowsRequestEnvironment = S.String;
 
 export interface ListCasbApplicationsSetupFlowsRequest {
   accountId: string;
@@ -108977,14 +108827,13 @@ export type ListCasbApplicationsSetupFlowsResponseStepsItemType =
   | "instruction"
   | "form_input"
   | "oauth_redirect";
-export const ListCasbApplicationsSetupFlowsResponseStepsItemType =
-  /*@__PURE__*/ S.String;
+export const ListCasbApplicationsSetupFlowsResponseStepsItemType = S.String;
 
 export type ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentItemType =
   | "copy_block"
   | "external_link";
 export const ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentItem {
   /** Display label. */
@@ -109029,7 +108878,7 @@ export type ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItemType =
   | "email"
   | "file_upload";
 export const ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItem {
   /** Human-readable field label. */
@@ -109218,21 +109067,21 @@ export const ListCasbApplicationsSetupFlowsResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListCasbApplicationsSetupFlowsResponse>;
 
 export type ListCasbIntegrationsRequestDirection = "asc" | "desc";
-export const ListCasbIntegrationsRequestDirection = /*@__PURE__*/ S.String;
+export const ListCasbIntegrationsRequestDirection = S.String;
 
 export type ListCasbIntegrationsRequestOrder =
   | "application"
   | "created"
   | "name"
   | "status";
-export const ListCasbIntegrationsRequestOrder = /*@__PURE__*/ S.String;
+export const ListCasbIntegrationsRequestOrder = S.String;
 
 export type ListCasbIntegrationsRequestStatus =
   | "Healthy"
   | "Initializing"
   | "Offline"
   | "Unhealthy";
-export const ListCasbIntegrationsRequestStatus = /*@__PURE__*/ S.String;
+export const ListCasbIntegrationsRequestStatus = S.String;
 
 export interface ListCasbIntegrationsRequest {
   accountId: string;
@@ -109395,8 +109244,7 @@ export type DevicesDevicesListRequestActiveRegistrations =
   | "include"
   | "only"
   | "exclude";
-export const DevicesDevicesListRequestActiveRegistrations =
-  /*@__PURE__*/ S.String;
+export const DevicesDevicesListRequestActiveRegistrations = S.String;
 
 export interface DevicesDevicesListRequestLastSeenUser {
   /** Filter by the last seen user's email. */
@@ -109419,10 +109267,10 @@ export type DevicesDevicesListRequestSortBy =
   | "last_seen_at"
   | "active_registrations"
   | "created_at";
-export const DevicesDevicesListRequestSortBy = /*@__PURE__*/ S.String;
+export const DevicesDevicesListRequestSortBy = S.String;
 
 export type DevicesDevicesListRequestSortOrder = "asc" | "desc";
-export const DevicesDevicesListRequestSortOrder = /*@__PURE__*/ S.String;
+export const DevicesDevicesListRequestSortOrder = S.String;
 
 export interface ListDeviceDevicesRequest {
   accountId: string;
@@ -109600,7 +109448,7 @@ export const ListDeviceDevicesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDeviceDevicesResponse>;
 
 export type DevicesDexTestsListRequestKind = "http" | "traceroute";
-export const DevicesDexTestsListRequestKind = /*@__PURE__*/ S.String;
+export const DevicesDexTestsListRequestKind = S.String;
 
 export interface ListDeviceDexTestsRequest {
   /** Unique identifier linked to an account. */
@@ -109635,10 +109483,10 @@ export const ListDeviceDexTestsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDeviceDexTestsRequest>;
 
 export type DevicesDexTestsListResultItemDataKind = "http" | "traceroute";
-export const DevicesDexTestsListResultItemDataKind = /*@__PURE__*/ S.String;
+export const DevicesDexTestsListResultItemDataKind = S.String;
 
 export type DevicesDexTestsListResultItemDataMethod = "GET";
-export const DevicesDexTestsListResultItemDataMethod = /*@__PURE__*/ S.String;
+export const DevicesDexTestsListResultItemDataMethod = S.String;
 
 export interface DevicesDexTestsListResultItemData {
   /** The desired endpoint to test. */
@@ -109834,7 +109682,7 @@ export const DevicesNetworksListResultItemConfig =
   DevicesNetworksCreateResponseConfig;
 
 export type DevicesNetworksListResultItemType = "tls";
-export const DevicesNetworksListResultItemType = /*@__PURE__*/ S.String;
+export const DevicesNetworksListResultItemType = S.String;
 
 export interface DevicesNetworksListResultItem {
   /** The configuration object containing information for the WARP client to detect the managed network. */
@@ -110335,8 +110183,7 @@ export type DevicesPostureIntegrationsListResultItemType =
   | "tanium_s2s"
   | "sentinelone_s2s"
   | "custom_s2s";
-export const DevicesPostureIntegrationsListResultItemType =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureIntegrationsListResultItemType = S.String;
 
 export interface DevicesPostureIntegrationsListResultItem {
   /** API UUID. */
@@ -110413,7 +110260,7 @@ export type DevicesPostureListResultItemInputFileInputOperatingSystem =
   | "linux"
   | "mac";
 export const DevicesPostureListResultItemInputFileInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureListResultItemInputFileInput {
   /** Operating system. */
@@ -110448,7 +110295,7 @@ export type DevicesPostureListResultItemInputUniqueClientIDInputOperatingSystem 
   | "ios"
   | "chromeos";
 export const DevicesPostureListResultItemInputUniqueClientIDInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureListResultItemInputUniqueClientIDInput {
   /** List ID. */
@@ -110472,7 +110319,7 @@ export const DevicesPostureListResultItemInputUniqueClientIDInput =
 export type DevicesPostureListResultItemInputDomainJoinedInputOperatingSystem =
   "windows";
 export const DevicesPostureListResultItemInputDomainJoinedInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureListResultItemInputDomainJoinedInput {
   /** Operating System. */
@@ -110496,7 +110343,7 @@ export const DevicesPostureListResultItemInputDomainJoinedInput =
 export type DevicesPostureListResultItemInputOSVersionInputOperatingSystem =
   "windows";
 export const DevicesPostureListResultItemInputOSVersionInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureListResultItemInputOSVersionInputOperator =
   | "<"
@@ -110504,8 +110351,7 @@ export type DevicesPostureListResultItemInputOSVersionInputOperator =
   | ">"
   | ">="
   | "==";
-export const DevicesPostureListResultItemInputOSVersionInputOperator =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureListResultItemInputOSVersionInputOperator = S.String;
 
 export interface DevicesPostureListResultItemInputOSVersionInput {
   /** Operating System. */
@@ -110548,7 +110394,7 @@ export type DevicesPostureListResultItemInputFirewallInputOperatingSystem =
   | "windows"
   | "mac";
 export const DevicesPostureListResultItemInputFirewallInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureListResultItemInputFirewallInput {
   /** Enabled. */
@@ -110574,7 +110420,7 @@ export type DevicesPostureListResultItemInputSentineloneInputOperatingSystem =
   | "linux"
   | "mac";
 export const DevicesPostureListResultItemInputSentineloneInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureListResultItemInputSentineloneInput {
   /** Operating system. */
@@ -110606,7 +110452,7 @@ export type DevicesPostureListResultItemInputTeamsDevicesCarbonblackInputRequest
   | "linux"
   | "mac";
 export const DevicesPostureListResultItemInputTeamsDevicesCarbonblackInputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureListResultItemInputTeamsDevicesCarbonblackInputRequest {
   /** Operating system. */
@@ -110671,7 +110517,7 @@ export type DevicesPostureListResultItemInputTeamsDevicesApplicationInputRequest
   | "linux"
   | "mac";
 export const DevicesPostureListResultItemInputTeamsDevicesApplicationInputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureListResultItemInputTeamsDevicesApplicationInputRequest {
   /** Operating system. */
@@ -110709,13 +110555,13 @@ export type DevicesPostureListResultItemInputTeamsDevicesClientCertificateV2Inpu
   | "linux"
   | "mac";
 export const DevicesPostureListResultItemInputTeamsDevicesClientCertificateV2InputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureListResultItemInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageItem =
   | "clientAuth"
   | "emailProtection";
 export const DevicesPostureListResultItemInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureListResultItemInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageList =
   Array<DevicesPostureListResultItemInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageItem>;
@@ -110735,7 +110581,7 @@ export type DevicesPostureListResultItemInputTeamsDevicesClientCertificateV2Inpu
   | "system"
   | "user";
 export const DevicesPostureListResultItemInputTeamsDevicesClientCertificateV2InputRequestLocationsTrustStoresItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureListResultItemInputTeamsDevicesClientCertificateV2InputRequestLocationsTrustStoresList =
   Array<DevicesPostureListResultItemInputTeamsDevicesClientCertificateV2InputRequestLocationsTrustStoresItem>;
@@ -110832,7 +110678,7 @@ export type DevicesPostureListResultItemInputWorkspaceOneInputComplianceStatus =
   | "noncompliant"
   | "unknown";
 export const DevicesPostureListResultItemInputWorkspaceOneInputComplianceStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureListResultItemInputWorkspaceOneInput {
   /** Compliance Status. */
@@ -110860,14 +110706,13 @@ export type DevicesPostureListResultItemInputCrowdstrikeInputOperator =
   | ">="
   | "==";
 export const DevicesPostureListResultItemInputCrowdstrikeInputOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureListResultItemInputCrowdstrikeInputState =
   | "online"
   | "offline"
   | "unknown";
-export const DevicesPostureListResultItemInputCrowdstrikeInputState =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureListResultItemInputCrowdstrikeInputState = S.String;
 
 export type DevicesPostureListResultItemInputCrowdstrikeInputVersionOperator =
   | "<"
@@ -110876,7 +110721,7 @@ export type DevicesPostureListResultItemInputCrowdstrikeInputVersionOperator =
   | ">="
   | "==";
 export const DevicesPostureListResultItemInputCrowdstrikeInputVersionOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureListResultItemInputCrowdstrikeInput {
   /** Posture Integration ID. */
@@ -110933,7 +110778,7 @@ export type DevicesPostureListResultItemInputIntuneInputComplianceStatus =
   | "ingraceperiod"
   | "error";
 export const DevicesPostureListResultItemInputIntuneInputComplianceStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureListResultItemInputIntuneInput {
   /** Compliance Status. */
@@ -110960,7 +110805,7 @@ export type DevicesPostureListResultItemInputKolideInputAuthStateItem =
   | "Will Block"
   | "Blocked";
 export const DevicesPostureListResultItemInputKolideInputAuthStateItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureListResultItemInputKolideInputAuthStateList =
   Array<DevicesPostureListResultItemInputKolideInputAuthStateItem>;
@@ -110976,7 +110821,7 @@ export type DevicesPostureListResultItemInputKolideInputCountOperator =
   | ">="
   | "==";
 export const DevicesPostureListResultItemInputKolideInputCountOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureListResultItemInputKolideInput {
   /** Posture Integration ID. */
@@ -111012,16 +110857,14 @@ export type DevicesPostureListResultItemInputTaniumInputOperator =
   | ">"
   | ">="
   | "==";
-export const DevicesPostureListResultItemInputTaniumInputOperator =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureListResultItemInputTaniumInputOperator = S.String;
 
 export type DevicesPostureListResultItemInputTaniumInputRiskLevel =
   | "low"
   | "medium"
   | "high"
   | "critical";
-export const DevicesPostureListResultItemInputTaniumInputRiskLevel =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureListResultItemInputTaniumInputRiskLevel = S.String;
 
 export type DevicesPostureListResultItemInputTaniumInputScoreOperator =
   | "<"
@@ -111030,7 +110873,7 @@ export type DevicesPostureListResultItemInputTaniumInputScoreOperator =
   | ">="
   | "==";
 export const DevicesPostureListResultItemInputTaniumInputScoreOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureListResultItemInputTaniumInput {
   /** Posture Integration ID. */
@@ -111074,7 +110917,7 @@ export type DevicesPostureListResultItemInputSentineloneS2sInputNetworkStatus =
   | "disconnecting"
   | "connecting";
 export const DevicesPostureListResultItemInputSentineloneS2sInputNetworkStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureListResultItemInputSentineloneS2sInputOperationalState =
   | "na"
@@ -111085,7 +110928,7 @@ export type DevicesPostureListResultItemInputSentineloneS2sInputOperationalState
   | "disabled_error"
   | "db_corruption";
 export const DevicesPostureListResultItemInputSentineloneS2sInputOperationalState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureListResultItemInputSentineloneS2sInputOperator =
   | "<"
@@ -111094,7 +110937,7 @@ export type DevicesPostureListResultItemInputSentineloneS2sInputOperator =
   | ">="
   | "==";
 export const DevicesPostureListResultItemInputSentineloneS2sInputOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureListResultItemInputSentineloneS2sInput {
   /** Posture Integration ID. */
@@ -111146,7 +110989,7 @@ export type DevicesPostureListResultItemInputTeamsDevicesCustomS2sInputRequestOp
   | ">="
   | "==";
 export const DevicesPostureListResultItemInputTeamsDevicesCustomS2sInputRequestOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureListResultItemInputTeamsDevicesCustomS2sInputRequest {
   /** Posture Integration ID. */
@@ -111262,8 +111105,7 @@ export type DevicesPostureListResultItemMatchItemPlatform =
   | "android"
   | "ios"
   | "chromeos";
-export const DevicesPostureListResultItemMatchItemPlatform =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureListResultItemMatchItemPlatform = S.String;
 
 export interface DevicesPostureListResultItemMatchItem {
   platform?: DevicesPostureListResultItemMatchItemPlatform | null;
@@ -111309,7 +111151,7 @@ export type DevicesPostureListResultItemType =
   | "workspace_one"
   | "sentinelone_s2s"
   | "custom_s2s";
-export const DevicesPostureListResultItemType = /*@__PURE__*/ S.String;
+export const DevicesPostureListResultItemType = S.String;
 
 export interface DevicesPostureListResultItem {
   /** API UUID. */
@@ -111388,16 +111230,16 @@ export type DevicesRegistrationsListRequestSortBy =
   | "user.email"
   | "last_seen_at"
   | "created_at";
-export const DevicesRegistrationsListRequestSortBy = /*@__PURE__*/ S.String;
+export const DevicesRegistrationsListRequestSortBy = S.String;
 
 export type DevicesRegistrationsListRequestSortOrder = "asc" | "desc";
-export const DevicesRegistrationsListRequestSortOrder = /*@__PURE__*/ S.String;
+export const DevicesRegistrationsListRequestSortOrder = S.String;
 
 export type DevicesRegistrationsListRequestStatus =
   | "active"
   | "all"
   | "revoked";
-export const DevicesRegistrationsListRequestStatus = /*@__PURE__*/ S.String;
+export const DevicesRegistrationsListRequestStatus = S.String;
 
 export type DevicesRegistrationsListRequestUserIdList = Array<string>;
 export const DevicesRegistrationsListRequestUserIdList = /*@__PURE__*/ S.Array(
@@ -111589,7 +111431,7 @@ export type DevicesListResultItemDeviceType =
   | "android"
   | "ios"
   | "chromeos";
-export const DevicesListResultItemDeviceType = /*@__PURE__*/ S.String;
+export const DevicesListResultItemDeviceType = S.String;
 
 export type DevicesListResultItemUser = DevicesGetResponseUser;
 export const DevicesListResultItemUser = DevicesGetResponseUser;
@@ -111690,7 +111532,7 @@ export const ListDevicesResponse = /*@__PURE__*/ S.suspend(() =>
 export type DexColosListRequestSortBy =
   | "fleet-status-usage"
   | "application-tests-usage";
-export const DexColosListRequestSortBy = /*@__PURE__*/ S.String;
+export const DexColosListRequestSortBy = S.String;
 
 export interface ListDexColosRequest {
   /** Unique identifier linked to an account. */
@@ -111850,14 +111692,14 @@ export type DexCommandsListRequestCommandType =
   | "pcap"
   | "speed-test"
   | "warp-diag";
-export const DexCommandsListRequestCommandType = /*@__PURE__*/ S.String;
+export const DexCommandsListRequestCommandType = S.String;
 
 export type DexCommandsListRequestStatus =
   | "PENDING_EXEC"
   | "PENDING_UPLOAD"
   | "SUCCESS"
   | "FAILED";
-export const DexCommandsListRequestStatus = /*@__PURE__*/ S.String;
+export const DexCommandsListRequestStatus = S.String;
 
 export interface ListDexCommandsRequest {
   /** Unique identifier linked to an account. */
@@ -111956,10 +111798,10 @@ export const ListDexCommandsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDexCommandsResponse>;
 
 export type DexDevicesIspsListRequestSortBy = "time_start";
-export const DexDevicesIspsListRequestSortBy = /*@__PURE__*/ S.String;
+export const DexDevicesIspsListRequestSortBy = S.String;
 
 export type DexDevicesIspsListRequestSortOrder = "ASC" | "DESC";
-export const DexDevicesIspsListRequestSortOrder = /*@__PURE__*/ S.String;
+export const DexDevicesIspsListRequestSortOrder = S.String;
 
 export interface ListDexDeviceIspsRequest {
   /** Unique identifier linked to an account. */
@@ -112111,13 +111953,13 @@ export type DexFleetStatusDevicesListRequestSortBy =
   | "status"
   | "timestamp"
   | "version";
-export const DexFleetStatusDevicesListRequestSortBy = /*@__PURE__*/ S.String;
+export const DexFleetStatusDevicesListRequestSortBy = S.String;
 
 export type DexFleetStatusDevicesListRequestSource =
   | "last_seen"
   | "hourly"
   | "raw";
-export const DexFleetStatusDevicesListRequestSource = /*@__PURE__*/ S.String;
+export const DexFleetStatusDevicesListRequestSource = S.String;
 
 export interface ListDexFleetStatusDevicesRequest {
   /** Unique identifier linked to an account. */
@@ -112459,10 +112301,10 @@ export const ListDexFleetStatusDevicesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDexFleetStatusDevicesResponse>;
 
 export type DexRulesListRequestSortBy = "name" | "created_at" | "updated_at";
-export const DexRulesListRequestSortBy = /*@__PURE__*/ S.String;
+export const DexRulesListRequestSortBy = S.String;
 
 export type DexRulesListRequestSortOrder = "ASC" | "DESC";
-export const DexRulesListRequestSortOrder = /*@__PURE__*/ S.String;
+export const DexRulesListRequestSortOrder = S.String;
 
 export interface ListDexRulesRequest {
   /** Unique identifier linked to an account. */
@@ -112504,12 +112346,11 @@ export const ListDexRulesRequest = /*@__PURE__*/ S.suspend(() =>
 export type DexRulesListResponseRulesItemTargetedTestsItemDataKind =
   | "http"
   | "traceroute";
-export const DexRulesListResponseRulesItemTargetedTestsItemDataKind =
-  /*@__PURE__*/ S.String;
+export const DexRulesListResponseRulesItemTargetedTestsItemDataKind = S.String;
 
 export type DexRulesListResponseRulesItemTargetedTestsItemDataMethod = "GET";
 export const DexRulesListResponseRulesItemTargetedTestsItemDataMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DexRulesListResponseRulesItemTargetedTestsItemData {
   /** The desired endpoint to test. */
@@ -112610,7 +112451,7 @@ export const DexTestsListRequestDeviceIdList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DexTestsListRequestDeviceIdList>;
 
 export type DexTestsListRequestKind = "http" | "traceroute";
-export const DexTestsListRequestKind = /*@__PURE__*/ S.String;
+export const DexTestsListRequestKind = S.String;
 
 export interface ListDexTestsRequest {
   /** Unique identifier linked to an account. */
@@ -112672,14 +112513,14 @@ export const DexTestsListResponseOverviewMetrics = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DexTestsListResponseOverviewMetrics>;
 
 export type DexTestsListResponseTestsItemKind = "http" | "traceroute";
-export const DexTestsListResponseTestsItemKind = /*@__PURE__*/ S.String;
+export const DexTestsListResponseTestsItemKind = S.String;
 
 export type DexTestsListResponseTestsItemHttpResultsResourceFetchTimeHistoryItemTimePeriodUnits =
   | "hours"
   | "days"
   | "testRuns";
 export const DexTestsListResponseTestsItemHttpResultsResourceFetchTimeHistoryItemTimePeriodUnits =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DexTestsListResponseTestsItemHttpResultsResourceFetchTimeHistoryItemTimePeriod {
   units: DexTestsListResponseTestsItemHttpResultsResourceFetchTimeHistoryItemTimePeriodUnits;
@@ -113201,8 +113042,7 @@ export const ListDlpCustomEntriesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDlpCustomEntriesRequest>;
 
 export type ListDlpCustomEntriesResultItemCase0PatternValidation = "luhn";
-export const ListDlpCustomEntriesResultItemCase0PatternValidation =
-  /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase0PatternValidation = S.String;
 
 export interface ListDlpCustomEntriesResultItemCase0Pattern {
   regex: string;
@@ -113221,7 +113061,7 @@ export const ListDlpCustomEntriesResultItemCase0Pattern =
   }) as any as S.Schema<ListDlpCustomEntriesResultItemCase0Pattern>;
 
 export type ListDlpCustomEntriesResultItemCase0Type = "custom";
-export const ListDlpCustomEntriesResultItemCase0Type = /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase0Type = S.String;
 
 export type ListDlpCustomEntriesResultItemCase0UploadStatus =
   | "empty"
@@ -113230,8 +113070,7 @@ export type ListDlpCustomEntriesResultItemCase0UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpCustomEntriesResultItemCase0UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase0UploadStatus = S.String;
 
 export interface ListDlpCustomEntriesResultItemCase0 {
   id: string;
@@ -113267,7 +113106,7 @@ export const ListDlpCustomEntriesResultItemCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDlpCustomEntriesResultItemCase0>;
 
 export type ListDlpCustomEntriesResultItemCase1Type = "custom_prompt_topic";
-export const ListDlpCustomEntriesResultItemCase1Type = /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase1Type = S.String;
 
 export type ListDlpCustomEntriesResultItemCase1UploadStatus =
   | "empty"
@@ -113276,8 +113115,7 @@ export type ListDlpCustomEntriesResultItemCase1UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpCustomEntriesResultItemCase1UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase1UploadStatus = S.String;
 
 export interface ListDlpCustomEntriesResultItemCase1 {
   id: string;
@@ -113315,7 +113153,7 @@ export const ListDlpCustomEntriesResultItemCase2Confidence =
   DlpEntriesPredefinedCreateResponseConfidence;
 
 export type ListDlpCustomEntriesResultItemCase2Type = "predefined";
-export const ListDlpCustomEntriesResultItemCase2Type = /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase2Type = S.String;
 
 export type ListDlpCustomEntriesResultItemCase2UploadStatus =
   | "empty"
@@ -113324,18 +113162,16 @@ export type ListDlpCustomEntriesResultItemCase2UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpCustomEntriesResultItemCase2UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase2UploadStatus = S.String;
 
 export type ListDlpCustomEntriesResultItemCase2VariantCase0TopicType =
   | "Intent"
   | "Content";
 export const ListDlpCustomEntriesResultItemCase2VariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListDlpCustomEntriesResultItemCase2VariantCase0Type = "PromptTopic";
-export const ListDlpCustomEntriesResultItemCase2VariantCase0Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase2VariantCase0Type = S.String;
 
 export interface ListDlpCustomEntriesResultItemCase2VariantCase0 {
   topicType: ListDlpCustomEntriesResultItemCase2VariantCase0TopicType;
@@ -113357,8 +113193,7 @@ export const ListDlpCustomEntriesResultItemCase2VariantCase0 =
   }) as any as S.Schema<ListDlpCustomEntriesResultItemCase2VariantCase0>;
 
 export type ListDlpCustomEntriesResultItemCase2VariantCase1Type = "General";
-export const ListDlpCustomEntriesResultItemCase2VariantCase1Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase2VariantCase1Type = S.String;
 
 export interface ListDlpCustomEntriesResultItemCase2VariantCase1 {
   type: ListDlpCustomEntriesResultItemCase2VariantCase1Type;
@@ -113417,7 +113252,7 @@ export const ListDlpCustomEntriesResultItemCase2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDlpCustomEntriesResultItemCase2>;
 
 export type ListDlpCustomEntriesResultItemCase3Type = "integration";
-export const ListDlpCustomEntriesResultItemCase3Type = /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase3Type = S.String;
 
 export type ListDlpCustomEntriesResultItemCase3UploadStatus =
   | "empty"
@@ -113426,8 +113261,7 @@ export type ListDlpCustomEntriesResultItemCase3UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpCustomEntriesResultItemCase3UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase3UploadStatus = S.String;
 
 export interface ListDlpCustomEntriesResultItemCase3 {
   id: string;
@@ -113459,7 +113293,7 @@ export const ListDlpCustomEntriesResultItemCase3 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDlpCustomEntriesResultItemCase3>;
 
 export type ListDlpCustomEntriesResultItemCase4Type = "exact_data";
-export const ListDlpCustomEntriesResultItemCase4Type = /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase4Type = S.String;
 
 export type ListDlpCustomEntriesResultItemCase4UploadStatus =
   | "empty"
@@ -113468,8 +113302,7 @@ export type ListDlpCustomEntriesResultItemCase4UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpCustomEntriesResultItemCase4UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase4UploadStatus = S.String;
 
 export interface ListDlpCustomEntriesResultItemCase4 {
   id: string;
@@ -113507,7 +113340,7 @@ export const ListDlpCustomEntriesResultItemCase4 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDlpCustomEntriesResultItemCase4>;
 
 export type ListDlpCustomEntriesResultItemCase5Type = "document_fingerprint";
-export const ListDlpCustomEntriesResultItemCase5Type = /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase5Type = S.String;
 
 export type ListDlpCustomEntriesResultItemCase5UploadStatus =
   | "empty"
@@ -113516,8 +113349,7 @@ export type ListDlpCustomEntriesResultItemCase5UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpCustomEntriesResultItemCase5UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase5UploadStatus = S.String;
 
 export interface ListDlpCustomEntriesResultItemCase5 {
   id: string;
@@ -113550,7 +113382,7 @@ export const ListDlpCustomEntriesResultItemCase5 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDlpCustomEntriesResultItemCase5>;
 
 export type ListDlpCustomEntriesResultItemCase6Type = "word_list";
-export const ListDlpCustomEntriesResultItemCase6Type = /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase6Type = S.String;
 
 export type ListDlpCustomEntriesResultItemCase6UploadStatus =
   | "empty"
@@ -113559,8 +113391,7 @@ export type ListDlpCustomEntriesResultItemCase6UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpCustomEntriesResultItemCase6UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpCustomEntriesResultItemCase6UploadStatus = S.String;
 
 export interface ListDlpCustomEntriesResultItemCase6 {
   id: string;
@@ -113878,8 +113709,7 @@ export type DlpDatasetsListResponseColumnsItemUploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsListResponseColumnsItemUploadStatus =
-  /*@__PURE__*/ S.String;
+export const DlpDatasetsListResponseColumnsItemUploadStatus = S.String;
 
 export interface DlpDatasetsListResponseColumnsItem {
   entryId: string;
@@ -113913,7 +113743,7 @@ export type DlpDatasetsListResponseStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsListResponseStatus = /*@__PURE__*/ S.String;
+export const DlpDatasetsListResponseStatus = S.String;
 
 export type DlpDatasetsListResponseUploadsItemStatus =
   | "empty"
@@ -113922,7 +113752,7 @@ export type DlpDatasetsListResponseUploadsItemStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsListResponseUploadsItemStatus = /*@__PURE__*/ S.String;
+export const DlpDatasetsListResponseUploadsItemStatus = S.String;
 
 export interface DlpDatasetsListResponseUploadsItem {
   numCells: number;
@@ -114128,7 +113958,7 @@ export const ListDlpEmailRulesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDlpEmailRulesRequest>;
 
 export type DlpEmailRulesListResultItemActionAction = "Block";
-export const DlpEmailRulesListResultItemActionAction = /*@__PURE__*/ S.String;
+export const DlpEmailRulesListResultItemActionAction = S.String;
 
 export interface DlpEmailRulesListResultItemAction {
   action: DlpEmailRulesListResultItemActionAction;
@@ -114148,15 +113978,13 @@ export type DlpEmailRulesListResultItemConditionsItemOperator =
   | "NotInList"
   | "MatchRegex"
   | "NotMatchRegex";
-export const DlpEmailRulesListResultItemConditionsItemOperator =
-  /*@__PURE__*/ S.String;
+export const DlpEmailRulesListResultItemConditionsItemOperator = S.String;
 
 export type DlpEmailRulesListResultItemConditionsItemSelector =
   | "Recipients"
   | "Sender"
   | "DLPProfiles";
-export const DlpEmailRulesListResultItemConditionsItemSelector =
-  /*@__PURE__*/ S.String;
+export const DlpEmailRulesListResultItemConditionsItemSelector = S.String;
 
 export type DlpEmailRulesListResultItemConditionsItemValueCase0List =
   Array<string>;
@@ -114261,8 +114089,7 @@ export const ListDlpEntriesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDlpEntriesRequest>;
 
 export type DlpEntriesListResultItemCase0PatternValidation = "luhn";
-export const DlpEntriesListResultItemCase0PatternValidation =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase0PatternValidation = S.String;
 
 export interface DlpEntriesListResultItemCase0Pattern {
   regex: string;
@@ -114281,7 +114108,7 @@ export const DlpEntriesListResultItemCase0Pattern = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DlpEntriesListResultItemCase0Pattern>;
 
 export type DlpEntriesListResultItemCase0Type = "custom";
-export const DlpEntriesListResultItemCase0Type = /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase0Type = S.String;
 
 export type DlpEntriesListResultItemCase0UploadStatus =
   | "empty"
@@ -114290,7 +114117,7 @@ export type DlpEntriesListResultItemCase0UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpEntriesListResultItemCase0UploadStatus = /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase0UploadStatus = S.String;
 
 export interface DlpEntriesListResultItemCase0 {
   id: string;
@@ -114326,7 +114153,7 @@ export const DlpEntriesListResultItemCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DlpEntriesListResultItemCase0>;
 
 export type DlpEntriesListResultItemCase1Type = "custom_prompt_topic";
-export const DlpEntriesListResultItemCase1Type = /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase1Type = S.String;
 
 export type DlpEntriesListResultItemCase1UploadStatus =
   | "empty"
@@ -114335,7 +114162,7 @@ export type DlpEntriesListResultItemCase1UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpEntriesListResultItemCase1UploadStatus = /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase1UploadStatus = S.String;
 
 export interface DlpEntriesListResultItemCase1 {
   id: string;
@@ -114373,7 +114200,7 @@ export const DlpEntriesListResultItemCase2Confidence =
   DlpEntriesPredefinedCreateResponseConfidence;
 
 export type DlpEntriesListResultItemCase2Type = "predefined";
-export const DlpEntriesListResultItemCase2Type = /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase2Type = S.String;
 
 export type DlpEntriesListResultItemCase2UploadStatus =
   | "empty"
@@ -114382,17 +114209,15 @@ export type DlpEntriesListResultItemCase2UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpEntriesListResultItemCase2UploadStatus = /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase2UploadStatus = S.String;
 
 export type DlpEntriesListResultItemCase2VariantCase0TopicType =
   | "Intent"
   | "Content";
-export const DlpEntriesListResultItemCase2VariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase2VariantCase0TopicType = S.String;
 
 export type DlpEntriesListResultItemCase2VariantCase0Type = "PromptTopic";
-export const DlpEntriesListResultItemCase2VariantCase0Type =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase2VariantCase0Type = S.String;
 
 export interface DlpEntriesListResultItemCase2VariantCase0 {
   topicType: DlpEntriesListResultItemCase2VariantCase0TopicType;
@@ -114414,8 +114239,7 @@ export const DlpEntriesListResultItemCase2VariantCase0 =
   }) as any as S.Schema<DlpEntriesListResultItemCase2VariantCase0>;
 
 export type DlpEntriesListResultItemCase2VariantCase1Type = "General";
-export const DlpEntriesListResultItemCase2VariantCase1Type =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase2VariantCase1Type = S.String;
 
 export interface DlpEntriesListResultItemCase2VariantCase1 {
   type: DlpEntriesListResultItemCase2VariantCase1Type;
@@ -114474,7 +114298,7 @@ export const DlpEntriesListResultItemCase2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DlpEntriesListResultItemCase2>;
 
 export type DlpEntriesListResultItemCase3Type = "integration";
-export const DlpEntriesListResultItemCase3Type = /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase3Type = S.String;
 
 export type DlpEntriesListResultItemCase3UploadStatus =
   | "empty"
@@ -114483,7 +114307,7 @@ export type DlpEntriesListResultItemCase3UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpEntriesListResultItemCase3UploadStatus = /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase3UploadStatus = S.String;
 
 export interface DlpEntriesListResultItemCase3 {
   id: string;
@@ -114515,7 +114339,7 @@ export const DlpEntriesListResultItemCase3 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DlpEntriesListResultItemCase3>;
 
 export type DlpEntriesListResultItemCase4Type = "exact_data";
-export const DlpEntriesListResultItemCase4Type = /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase4Type = S.String;
 
 export type DlpEntriesListResultItemCase4UploadStatus =
   | "empty"
@@ -114524,7 +114348,7 @@ export type DlpEntriesListResultItemCase4UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpEntriesListResultItemCase4UploadStatus = /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase4UploadStatus = S.String;
 
 export interface DlpEntriesListResultItemCase4 {
   id: string;
@@ -114562,7 +114386,7 @@ export const DlpEntriesListResultItemCase4 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DlpEntriesListResultItemCase4>;
 
 export type DlpEntriesListResultItemCase5Type = "document_fingerprint";
-export const DlpEntriesListResultItemCase5Type = /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase5Type = S.String;
 
 export type DlpEntriesListResultItemCase5UploadStatus =
   | "empty"
@@ -114571,7 +114395,7 @@ export type DlpEntriesListResultItemCase5UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpEntriesListResultItemCase5UploadStatus = /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase5UploadStatus = S.String;
 
 export interface DlpEntriesListResultItemCase5 {
   id: string;
@@ -114604,7 +114428,7 @@ export const DlpEntriesListResultItemCase5 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DlpEntriesListResultItemCase5>;
 
 export type DlpEntriesListResultItemCase6Type = "word_list";
-export const DlpEntriesListResultItemCase6Type = /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase6Type = S.String;
 
 export type DlpEntriesListResultItemCase6UploadStatus =
   | "empty"
@@ -114613,7 +114437,7 @@ export type DlpEntriesListResultItemCase6UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpEntriesListResultItemCase6UploadStatus = /*@__PURE__*/ S.String;
+export const DlpEntriesListResultItemCase6UploadStatus = S.String;
 
 export interface DlpEntriesListResultItemCase6 {
   id: string;
@@ -114775,7 +114599,7 @@ export const ListDlpEntriesIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type ListDlpEntriesIntegrationResultItemCase0PatternValidation = "luhn";
 export const ListDlpEntriesIntegrationResultItemCase0PatternValidation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListDlpEntriesIntegrationResultItemCase0Pattern {
   regex: string;
@@ -114794,8 +114618,7 @@ export const ListDlpEntriesIntegrationResultItemCase0Pattern =
   }) as any as S.Schema<ListDlpEntriesIntegrationResultItemCase0Pattern>;
 
 export type ListDlpEntriesIntegrationResultItemCase0Type = "custom";
-export const ListDlpEntriesIntegrationResultItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesIntegrationResultItemCase0Type = S.String;
 
 export type ListDlpEntriesIntegrationResultItemCase0UploadStatus =
   | "empty"
@@ -114804,8 +114627,7 @@ export type ListDlpEntriesIntegrationResultItemCase0UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpEntriesIntegrationResultItemCase0UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesIntegrationResultItemCase0UploadStatus = S.String;
 
 export interface ListDlpEntriesIntegrationResultItemCase0 {
   id: string;
@@ -114843,8 +114665,7 @@ export const ListDlpEntriesIntegrationResultItemCase0 = /*@__PURE__*/ S.suspend(
 
 export type ListDlpEntriesIntegrationResultItemCase1Type =
   "custom_prompt_topic";
-export const ListDlpEntriesIntegrationResultItemCase1Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesIntegrationResultItemCase1Type = S.String;
 
 export type ListDlpEntriesIntegrationResultItemCase1UploadStatus =
   | "empty"
@@ -114853,8 +114674,7 @@ export type ListDlpEntriesIntegrationResultItemCase1UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpEntriesIntegrationResultItemCase1UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesIntegrationResultItemCase1UploadStatus = S.String;
 
 export interface ListDlpEntriesIntegrationResultItemCase1 {
   id: string;
@@ -114893,8 +114713,7 @@ export const ListDlpEntriesIntegrationResultItemCase2Confidence =
   DlpEntriesPredefinedCreateResponseConfidence;
 
 export type ListDlpEntriesIntegrationResultItemCase2Type = "predefined";
-export const ListDlpEntriesIntegrationResultItemCase2Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesIntegrationResultItemCase2Type = S.String;
 
 export type ListDlpEntriesIntegrationResultItemCase2UploadStatus =
   | "empty"
@@ -114903,19 +114722,18 @@ export type ListDlpEntriesIntegrationResultItemCase2UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpEntriesIntegrationResultItemCase2UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesIntegrationResultItemCase2UploadStatus = S.String;
 
 export type ListDlpEntriesIntegrationResultItemCase2VariantCase0TopicType =
   | "Intent"
   | "Content";
 export const ListDlpEntriesIntegrationResultItemCase2VariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListDlpEntriesIntegrationResultItemCase2VariantCase0Type =
   "PromptTopic";
 export const ListDlpEntriesIntegrationResultItemCase2VariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListDlpEntriesIntegrationResultItemCase2VariantCase0 {
   topicType: ListDlpEntriesIntegrationResultItemCase2VariantCase0TopicType;
@@ -114940,7 +114758,7 @@ export const ListDlpEntriesIntegrationResultItemCase2VariantCase0 =
 export type ListDlpEntriesIntegrationResultItemCase2VariantCase1Type =
   "General";
 export const ListDlpEntriesIntegrationResultItemCase2VariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListDlpEntriesIntegrationResultItemCase2VariantCase1 {
   type: ListDlpEntriesIntegrationResultItemCase2VariantCase1Type;
@@ -115002,8 +114820,7 @@ export const ListDlpEntriesIntegrationResultItemCase2 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListDlpEntriesIntegrationResultItemCase2>;
 
 export type ListDlpEntriesIntegrationResultItemCase3Type = "integration";
-export const ListDlpEntriesIntegrationResultItemCase3Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesIntegrationResultItemCase3Type = S.String;
 
 export type ListDlpEntriesIntegrationResultItemCase3UploadStatus =
   | "empty"
@@ -115012,8 +114829,7 @@ export type ListDlpEntriesIntegrationResultItemCase3UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpEntriesIntegrationResultItemCase3UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesIntegrationResultItemCase3UploadStatus = S.String;
 
 export interface ListDlpEntriesIntegrationResultItemCase3 {
   id: string;
@@ -115046,8 +114862,7 @@ export const ListDlpEntriesIntegrationResultItemCase3 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListDlpEntriesIntegrationResultItemCase3>;
 
 export type ListDlpEntriesIntegrationResultItemCase4Type = "exact_data";
-export const ListDlpEntriesIntegrationResultItemCase4Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesIntegrationResultItemCase4Type = S.String;
 
 export type ListDlpEntriesIntegrationResultItemCase4UploadStatus =
   | "empty"
@@ -115056,8 +114871,7 @@ export type ListDlpEntriesIntegrationResultItemCase4UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpEntriesIntegrationResultItemCase4UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesIntegrationResultItemCase4UploadStatus = S.String;
 
 export interface ListDlpEntriesIntegrationResultItemCase4 {
   id: string;
@@ -115097,8 +114911,7 @@ export const ListDlpEntriesIntegrationResultItemCase4 = /*@__PURE__*/ S.suspend(
 
 export type ListDlpEntriesIntegrationResultItemCase5Type =
   "document_fingerprint";
-export const ListDlpEntriesIntegrationResultItemCase5Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesIntegrationResultItemCase5Type = S.String;
 
 export type ListDlpEntriesIntegrationResultItemCase5UploadStatus =
   | "empty"
@@ -115107,8 +114920,7 @@ export type ListDlpEntriesIntegrationResultItemCase5UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpEntriesIntegrationResultItemCase5UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesIntegrationResultItemCase5UploadStatus = S.String;
 
 export interface ListDlpEntriesIntegrationResultItemCase5 {
   id: string;
@@ -115142,8 +114954,7 @@ export const ListDlpEntriesIntegrationResultItemCase5 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListDlpEntriesIntegrationResultItemCase5>;
 
 export type ListDlpEntriesIntegrationResultItemCase6Type = "word_list";
-export const ListDlpEntriesIntegrationResultItemCase6Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesIntegrationResultItemCase6Type = S.String;
 
 export type ListDlpEntriesIntegrationResultItemCase6UploadStatus =
   | "empty"
@@ -115152,8 +114963,7 @@ export type ListDlpEntriesIntegrationResultItemCase6UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpEntriesIntegrationResultItemCase6UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesIntegrationResultItemCase6UploadStatus = S.String;
 
 export interface ListDlpEntriesIntegrationResultItemCase6 {
   id: string;
@@ -115317,7 +115127,7 @@ export const ListDlpEntriesPredefinedRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type ListDlpEntriesPredefinedResultItemCase0PatternValidation = "luhn";
 export const ListDlpEntriesPredefinedResultItemCase0PatternValidation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListDlpEntriesPredefinedResultItemCase0Pattern {
   regex: string;
@@ -115336,8 +115146,7 @@ export const ListDlpEntriesPredefinedResultItemCase0Pattern =
   }) as any as S.Schema<ListDlpEntriesPredefinedResultItemCase0Pattern>;
 
 export type ListDlpEntriesPredefinedResultItemCase0Type = "custom";
-export const ListDlpEntriesPredefinedResultItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesPredefinedResultItemCase0Type = S.String;
 
 export type ListDlpEntriesPredefinedResultItemCase0UploadStatus =
   | "empty"
@@ -115346,8 +115155,7 @@ export type ListDlpEntriesPredefinedResultItemCase0UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpEntriesPredefinedResultItemCase0UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesPredefinedResultItemCase0UploadStatus = S.String;
 
 export interface ListDlpEntriesPredefinedResultItemCase0 {
   id: string;
@@ -115384,8 +115192,7 @@ export const ListDlpEntriesPredefinedResultItemCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListDlpEntriesPredefinedResultItemCase0>;
 
 export type ListDlpEntriesPredefinedResultItemCase1Type = "custom_prompt_topic";
-export const ListDlpEntriesPredefinedResultItemCase1Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesPredefinedResultItemCase1Type = S.String;
 
 export type ListDlpEntriesPredefinedResultItemCase1UploadStatus =
   | "empty"
@@ -115394,8 +115201,7 @@ export type ListDlpEntriesPredefinedResultItemCase1UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpEntriesPredefinedResultItemCase1UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesPredefinedResultItemCase1UploadStatus = S.String;
 
 export interface ListDlpEntriesPredefinedResultItemCase1 {
   id: string;
@@ -115434,8 +115240,7 @@ export const ListDlpEntriesPredefinedResultItemCase2Confidence =
   DlpEntriesPredefinedCreateResponseConfidence;
 
 export type ListDlpEntriesPredefinedResultItemCase2Type = "predefined";
-export const ListDlpEntriesPredefinedResultItemCase2Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesPredefinedResultItemCase2Type = S.String;
 
 export type ListDlpEntriesPredefinedResultItemCase2UploadStatus =
   | "empty"
@@ -115444,19 +115249,17 @@ export type ListDlpEntriesPredefinedResultItemCase2UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpEntriesPredefinedResultItemCase2UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesPredefinedResultItemCase2UploadStatus = S.String;
 
 export type ListDlpEntriesPredefinedResultItemCase2VariantCase0TopicType =
   | "Intent"
   | "Content";
 export const ListDlpEntriesPredefinedResultItemCase2VariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListDlpEntriesPredefinedResultItemCase2VariantCase0Type =
   "PromptTopic";
-export const ListDlpEntriesPredefinedResultItemCase2VariantCase0Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesPredefinedResultItemCase2VariantCase0Type = S.String;
 
 export interface ListDlpEntriesPredefinedResultItemCase2VariantCase0 {
   topicType: ListDlpEntriesPredefinedResultItemCase2VariantCase0TopicType;
@@ -115479,8 +115282,7 @@ export const ListDlpEntriesPredefinedResultItemCase2VariantCase0 =
   }) as any as S.Schema<ListDlpEntriesPredefinedResultItemCase2VariantCase0>;
 
 export type ListDlpEntriesPredefinedResultItemCase2VariantCase1Type = "General";
-export const ListDlpEntriesPredefinedResultItemCase2VariantCase1Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesPredefinedResultItemCase2VariantCase1Type = S.String;
 
 export interface ListDlpEntriesPredefinedResultItemCase2VariantCase1 {
   type: ListDlpEntriesPredefinedResultItemCase2VariantCase1Type;
@@ -115542,8 +115344,7 @@ export const ListDlpEntriesPredefinedResultItemCase2 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListDlpEntriesPredefinedResultItemCase2>;
 
 export type ListDlpEntriesPredefinedResultItemCase3Type = "integration";
-export const ListDlpEntriesPredefinedResultItemCase3Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesPredefinedResultItemCase3Type = S.String;
 
 export type ListDlpEntriesPredefinedResultItemCase3UploadStatus =
   | "empty"
@@ -115552,8 +115353,7 @@ export type ListDlpEntriesPredefinedResultItemCase3UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpEntriesPredefinedResultItemCase3UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesPredefinedResultItemCase3UploadStatus = S.String;
 
 export interface ListDlpEntriesPredefinedResultItemCase3 {
   id: string;
@@ -115586,8 +115386,7 @@ export const ListDlpEntriesPredefinedResultItemCase3 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListDlpEntriesPredefinedResultItemCase3>;
 
 export type ListDlpEntriesPredefinedResultItemCase4Type = "exact_data";
-export const ListDlpEntriesPredefinedResultItemCase4Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesPredefinedResultItemCase4Type = S.String;
 
 export type ListDlpEntriesPredefinedResultItemCase4UploadStatus =
   | "empty"
@@ -115596,8 +115395,7 @@ export type ListDlpEntriesPredefinedResultItemCase4UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpEntriesPredefinedResultItemCase4UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesPredefinedResultItemCase4UploadStatus = S.String;
 
 export interface ListDlpEntriesPredefinedResultItemCase4 {
   id: string;
@@ -115637,8 +115435,7 @@ export const ListDlpEntriesPredefinedResultItemCase4 = /*@__PURE__*/ S.suspend(
 
 export type ListDlpEntriesPredefinedResultItemCase5Type =
   "document_fingerprint";
-export const ListDlpEntriesPredefinedResultItemCase5Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesPredefinedResultItemCase5Type = S.String;
 
 export type ListDlpEntriesPredefinedResultItemCase5UploadStatus =
   | "empty"
@@ -115647,8 +115444,7 @@ export type ListDlpEntriesPredefinedResultItemCase5UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpEntriesPredefinedResultItemCase5UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesPredefinedResultItemCase5UploadStatus = S.String;
 
 export interface ListDlpEntriesPredefinedResultItemCase5 {
   id: string;
@@ -115682,8 +115478,7 @@ export const ListDlpEntriesPredefinedResultItemCase5 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListDlpEntriesPredefinedResultItemCase5>;
 
 export type ListDlpEntriesPredefinedResultItemCase6Type = "word_list";
-export const ListDlpEntriesPredefinedResultItemCase6Type =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesPredefinedResultItemCase6Type = S.String;
 
 export type ListDlpEntriesPredefinedResultItemCase6UploadStatus =
   | "empty"
@@ -115692,8 +115487,7 @@ export type ListDlpEntriesPredefinedResultItemCase6UploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const ListDlpEntriesPredefinedResultItemCase6UploadStatus =
-  /*@__PURE__*/ S.String;
+export const ListDlpEntriesPredefinedResultItemCase6UploadStatus = S.String;
 
 export interface ListDlpEntriesPredefinedResultItemCase6 {
   id: string;
@@ -115908,8 +115702,7 @@ export const ListDlpProfilesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDlpProfilesRequest>;
 
 export type DlpProfilesListResultItemCustomProfileType = "custom";
-export const DlpProfilesListResultItemCustomProfileType =
-  /*@__PURE__*/ S.String;
+export const DlpProfilesListResultItemCustomProfileType = S.String;
 
 export type DlpProfilesListResultItemCustomProfileConfidenceThreshold =
   | "low"
@@ -115917,7 +115710,7 @@ export type DlpProfilesListResultItemCustomProfileConfidenceThreshold =
   | "high"
   | "very_high";
 export const DlpProfilesListResultItemCustomProfileConfidenceThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesListResultItemCustomProfileContextAwarenessSkip =
   DlpProfilesCustomCreateRequestContextAwarenessSkip;
@@ -115945,7 +115738,7 @@ export const DlpProfilesListResultItemCustomProfileDataTagsList =
 export type DlpProfilesListResultItemCustomProfileEntriesItemCustomEntryPatternValidation =
   "luhn";
 export const DlpProfilesListResultItemCustomProfileEntriesItemCustomEntryPatternValidation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileEntriesItemCustomEntryPattern {
   regex: string;
@@ -115969,7 +115762,7 @@ export const DlpProfilesListResultItemCustomProfileEntriesItemCustomEntryPattern
 export type DlpProfilesListResultItemCustomProfileEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesListResultItemCustomProfileEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileEntriesItemCustomEntry {
   id: string;
@@ -116003,7 +115796,7 @@ export const DlpProfilesListResultItemCustomProfileEntriesItemCustomEntry =
 export type DlpProfilesListResultItemCustomProfileEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesListResultItemCustomProfileEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -116039,18 +115832,18 @@ export const DlpProfilesListResultItemCustomProfileEntriesItemPredefinedEntryCon
 export type DlpProfilesListResultItemCustomProfileEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesListResultItemCustomProfileEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesListResultItemCustomProfileEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesListResultItemCustomProfileEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesListResultItemCustomProfileEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesListResultItemCustomProfileEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesListResultItemCustomProfileEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -116076,7 +115869,7 @@ export const DlpProfilesListResultItemCustomProfileEntriesItemPredefinedEntryVar
 export type DlpProfilesListResultItemCustomProfileEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesListResultItemCustomProfileEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesListResultItemCustomProfileEntriesItemPredefinedEntryVariantCase1Type;
@@ -116138,7 +115931,7 @@ export const DlpProfilesListResultItemCustomProfileEntriesItemPredefinedEntry =
 export type DlpProfilesListResultItemCustomProfileEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesListResultItemCustomProfileEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileEntriesItemIntegrationEntry {
   id: string;
@@ -116168,7 +115961,7 @@ export const DlpProfilesListResultItemCustomProfileEntriesItemIntegrationEntry =
 export type DlpProfilesListResultItemCustomProfileEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesListResultItemCustomProfileEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileEntriesItemExactDataEntry {
   id: string;
@@ -116204,7 +115997,7 @@ export const DlpProfilesListResultItemCustomProfileEntriesItemExactDataEntry =
 export type DlpProfilesListResultItemCustomProfileEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesListResultItemCustomProfileEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -116235,7 +116028,7 @@ export const DlpProfilesListResultItemCustomProfileEntriesItemDocumentFingerprin
 export type DlpProfilesListResultItemCustomProfileEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesListResultItemCustomProfileEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileEntriesItemWordListEntry {
   id: string;
@@ -116352,7 +116145,7 @@ export const DlpProfilesListResultItemCustomProfileSensitivityLevelsList =
 export type DlpProfilesListResultItemCustomProfileSharedEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesListResultItemCustomProfileSharedEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileSharedEntriesItemCustomEntry {
   id: string;
@@ -116387,7 +116180,7 @@ export const DlpProfilesListResultItemCustomProfileSharedEntriesItemCustomEntry 
 export type DlpProfilesListResultItemCustomProfileSharedEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesListResultItemCustomProfileSharedEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileSharedEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -116423,18 +116216,18 @@ export const DlpProfilesListResultItemCustomProfileSharedEntriesItemPredefinedEn
 export type DlpProfilesListResultItemCustomProfileSharedEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesListResultItemCustomProfileSharedEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesListResultItemCustomProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesListResultItemCustomProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesListResultItemCustomProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesListResultItemCustomProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileSharedEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesListResultItemCustomProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -116460,7 +116253,7 @@ export const DlpProfilesListResultItemCustomProfileSharedEntriesItemPredefinedEn
 export type DlpProfilesListResultItemCustomProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesListResultItemCustomProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileSharedEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesListResultItemCustomProfileSharedEntriesItemPredefinedEntryVariantCase1Type;
@@ -116522,7 +116315,7 @@ export const DlpProfilesListResultItemCustomProfileSharedEntriesItemPredefinedEn
 export type DlpProfilesListResultItemCustomProfileSharedEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesListResultItemCustomProfileSharedEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileSharedEntriesItemIntegrationEntry {
   id: string;
@@ -116552,7 +116345,7 @@ export const DlpProfilesListResultItemCustomProfileSharedEntriesItemIntegrationE
 export type DlpProfilesListResultItemCustomProfileSharedEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesListResultItemCustomProfileSharedEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileSharedEntriesItemExactDataEntry {
   id: string;
@@ -116588,7 +116381,7 @@ export const DlpProfilesListResultItemCustomProfileSharedEntriesItemExactDataEnt
 export type DlpProfilesListResultItemCustomProfileSharedEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesListResultItemCustomProfileSharedEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileSharedEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -116619,7 +116412,7 @@ export const DlpProfilesListResultItemCustomProfileSharedEntriesItemDocumentFing
 export type DlpProfilesListResultItemCustomProfileSharedEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesListResultItemCustomProfileSharedEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemCustomProfileSharedEntriesItemWordListEntry {
   id: string;
@@ -116804,7 +116597,7 @@ export const DlpProfilesListResultItemCustomProfile = /*@__PURE__*/ S.suspend(
 export type DlpProfilesListResultItemPredefinedProfileEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesListResultItemPredefinedProfileEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemPredefinedProfileEntriesItemCustomEntry {
   id: string;
@@ -116839,7 +116632,7 @@ export const DlpProfilesListResultItemPredefinedProfileEntriesItemCustomEntry =
 export type DlpProfilesListResultItemPredefinedProfileEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesListResultItemPredefinedProfileEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemPredefinedProfileEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -116875,18 +116668,18 @@ export const DlpProfilesListResultItemPredefinedProfileEntriesItemPredefinedEntr
 export type DlpProfilesListResultItemPredefinedProfileEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesListResultItemPredefinedProfileEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesListResultItemPredefinedProfileEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesListResultItemPredefinedProfileEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesListResultItemPredefinedProfileEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesListResultItemPredefinedProfileEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemPredefinedProfileEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesListResultItemPredefinedProfileEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -116912,7 +116705,7 @@ export const DlpProfilesListResultItemPredefinedProfileEntriesItemPredefinedEntr
 export type DlpProfilesListResultItemPredefinedProfileEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesListResultItemPredefinedProfileEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemPredefinedProfileEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesListResultItemPredefinedProfileEntriesItemPredefinedEntryVariantCase1Type;
@@ -116974,7 +116767,7 @@ export const DlpProfilesListResultItemPredefinedProfileEntriesItemPredefinedEntr
 export type DlpProfilesListResultItemPredefinedProfileEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesListResultItemPredefinedProfileEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemPredefinedProfileEntriesItemIntegrationEntry {
   id: string;
@@ -117004,7 +116797,7 @@ export const DlpProfilesListResultItemPredefinedProfileEntriesItemIntegrationEnt
 export type DlpProfilesListResultItemPredefinedProfileEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesListResultItemPredefinedProfileEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemPredefinedProfileEntriesItemExactDataEntry {
   id: string;
@@ -117040,7 +116833,7 @@ export const DlpProfilesListResultItemPredefinedProfileEntriesItemExactDataEntry
 export type DlpProfilesListResultItemPredefinedProfileEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesListResultItemPredefinedProfileEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemPredefinedProfileEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -117071,7 +116864,7 @@ export const DlpProfilesListResultItemPredefinedProfileEntriesItemDocumentFinger
 export type DlpProfilesListResultItemPredefinedProfileEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesListResultItemPredefinedProfileEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemPredefinedProfileEntriesItemWordListEntry {
   id: string;
@@ -117174,8 +116967,7 @@ export const DlpProfilesListResultItemPredefinedProfileEntriesList =
   ) as any as S.Schema<DlpProfilesListResultItemPredefinedProfileEntriesList>;
 
 export type DlpProfilesListResultItemPredefinedProfileType = "predefined";
-export const DlpProfilesListResultItemPredefinedProfileType =
-  /*@__PURE__*/ S.String;
+export const DlpProfilesListResultItemPredefinedProfileType = S.String;
 
 export type DlpProfilesListResultItemPredefinedProfileConfidenceThreshold =
   | "low"
@@ -117183,7 +116975,7 @@ export type DlpProfilesListResultItemPredefinedProfileConfidenceThreshold =
   | "high"
   | "very_high";
 export const DlpProfilesListResultItemPredefinedProfileConfidenceThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemPredefinedProfile {
   /** The id of the predefined profile (uuid). */
@@ -117232,7 +117024,7 @@ export const DlpProfilesListResultItemPredefinedProfile =
 export type DlpProfilesListResultItemIntegrationProfileEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesListResultItemIntegrationProfileEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfileEntriesItemCustomEntry {
   id: string;
@@ -117267,7 +117059,7 @@ export const DlpProfilesListResultItemIntegrationProfileEntriesItemCustomEntry =
 export type DlpProfilesListResultItemIntegrationProfileEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesListResultItemIntegrationProfileEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfileEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -117303,18 +117095,18 @@ export const DlpProfilesListResultItemIntegrationProfileEntriesItemPredefinedEnt
 export type DlpProfilesListResultItemIntegrationProfileEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesListResultItemIntegrationProfileEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesListResultItemIntegrationProfileEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesListResultItemIntegrationProfileEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesListResultItemIntegrationProfileEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesListResultItemIntegrationProfileEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfileEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesListResultItemIntegrationProfileEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -117340,7 +117132,7 @@ export const DlpProfilesListResultItemIntegrationProfileEntriesItemPredefinedEnt
 export type DlpProfilesListResultItemIntegrationProfileEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesListResultItemIntegrationProfileEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfileEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesListResultItemIntegrationProfileEntriesItemPredefinedEntryVariantCase1Type;
@@ -117402,7 +117194,7 @@ export const DlpProfilesListResultItemIntegrationProfileEntriesItemPredefinedEnt
 export type DlpProfilesListResultItemIntegrationProfileEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesListResultItemIntegrationProfileEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfileEntriesItemIntegrationEntry {
   id: string;
@@ -117432,7 +117224,7 @@ export const DlpProfilesListResultItemIntegrationProfileEntriesItemIntegrationEn
 export type DlpProfilesListResultItemIntegrationProfileEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesListResultItemIntegrationProfileEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfileEntriesItemExactDataEntry {
   id: string;
@@ -117468,7 +117260,7 @@ export const DlpProfilesListResultItemIntegrationProfileEntriesItemExactDataEntr
 export type DlpProfilesListResultItemIntegrationProfileEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesListResultItemIntegrationProfileEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfileEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -117499,7 +117291,7 @@ export const DlpProfilesListResultItemIntegrationProfileEntriesItemDocumentFinge
 export type DlpProfilesListResultItemIntegrationProfileEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesListResultItemIntegrationProfileEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfileEntriesItemWordListEntry {
   id: string;
@@ -117604,7 +117396,7 @@ export const DlpProfilesListResultItemIntegrationProfileEntriesList =
 export type DlpProfilesListResultItemIntegrationProfileSharedEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfileSharedEntriesItemCustomEntry {
   id: string;
@@ -117639,7 +117431,7 @@ export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemCustomE
 export type DlpProfilesListResultItemIntegrationProfileSharedEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfileSharedEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -117675,18 +117467,18 @@ export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemPredefi
 export type DlpProfilesListResultItemIntegrationProfileSharedEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesListResultItemIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesListResultItemIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesListResultItemIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -117712,7 +117504,7 @@ export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemPredefi
 export type DlpProfilesListResultItemIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesListResultItemIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1Type;
@@ -117774,7 +117566,7 @@ export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemPredefi
 export type DlpProfilesListResultItemIntegrationProfileSharedEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfileSharedEntriesItemIntegrationEntry {
   id: string;
@@ -117804,7 +117596,7 @@ export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemIntegra
 export type DlpProfilesListResultItemIntegrationProfileSharedEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfileSharedEntriesItemExactDataEntry {
   id: string;
@@ -117840,7 +117632,7 @@ export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemExactDa
 export type DlpProfilesListResultItemIntegrationProfileSharedEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfileSharedEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -117871,7 +117663,7 @@ export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemDocumen
 export type DlpProfilesListResultItemIntegrationProfileSharedEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesListResultItemIntegrationProfileSharedEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfileSharedEntriesItemWordListEntry {
   id: string;
@@ -117974,8 +117766,7 @@ export const DlpProfilesListResultItemIntegrationProfileSharedEntriesList =
   ) as any as S.Schema<DlpProfilesListResultItemIntegrationProfileSharedEntriesList>;
 
 export type DlpProfilesListResultItemIntegrationProfileType = "integration";
-export const DlpProfilesListResultItemIntegrationProfileType =
-  /*@__PURE__*/ S.String;
+export const DlpProfilesListResultItemIntegrationProfileType = S.String;
 
 export interface DlpProfilesListResultItemIntegrationProfile {
   id: string;
@@ -118323,7 +118114,7 @@ export type GatewayCategoriesListResultItemClass =
   | "blocked"
   | "removalPending"
   | "noBlock";
-export const GatewayCategoriesListResultItemClass = /*@__PURE__*/ S.String;
+export const GatewayCategoriesListResultItemClass = S.String;
 
 export type GatewayCategoriesListResultItemSubcategoriesItemClass =
   | "free"
@@ -118331,8 +118122,7 @@ export type GatewayCategoriesListResultItemSubcategoriesItemClass =
   | "blocked"
   | "removalPending"
   | "noBlock";
-export const GatewayCategoriesListResultItemSubcategoriesItemClass =
-  /*@__PURE__*/ S.String;
+export const GatewayCategoriesListResultItemSubcategoriesItemClass = S.String;
 
 export interface GatewayCategoriesListResultItemSubcategoriesItem {
   /** Identify this category. Only one category per ID. */
@@ -118442,13 +118232,12 @@ export type GatewayCertificatesListResultItemBindingStatus =
   | "available"
   | "pending_deletion"
   | "inactive";
-export const GatewayCertificatesListResultItemBindingStatus =
-  /*@__PURE__*/ S.String;
+export const GatewayCertificatesListResultItemBindingStatus = S.String;
 
 export type GatewayCertificatesListResultItemType =
   | "custom"
   | "gateway_managed";
-export const GatewayCertificatesListResultItemType = /*@__PURE__*/ S.String;
+export const GatewayCertificatesListResultItemType = S.String;
 
 export interface GatewayCertificatesListResultItem {
   /** Identify the certificate with a UUID. */
@@ -118574,7 +118363,7 @@ export type GatewayListsListRequestType =
   | "LOCATION"
   | "DEVICE"
   | "AAGUID";
-export const GatewayListsListRequestType = /*@__PURE__*/ S.String;
+export const GatewayListsListRequestType = S.String;
 
 export interface ListGatewayListsRequest {
   accountId: string;
@@ -118619,7 +118408,7 @@ export type GatewayListsListResultItemType =
   | "LOCATION"
   | "DEVICE"
   | "AAGUID";
-export const GatewayListsListResultItemType = /*@__PURE__*/ S.String;
+export const GatewayListsListResultItemType = S.String;
 
 export interface GatewayListsListResultItem {
   /** Identify the API resource with a UUID. */
@@ -118813,7 +118602,7 @@ export type GatewayLocationsListResultItemMaxTtlMode =
   | "inherit"
   | "override"
   | "disabled";
-export const GatewayLocationsListResultItemMaxTtlMode = /*@__PURE__*/ S.String;
+export const GatewayLocationsListResultItemMaxTtlMode = S.String;
 
 export interface GatewayLocationsListResultItemMaxTtl {
   /** `inherit` uses the account `max_ttl_secs`. `override` uses this location's `ttl_secs`. `disabled` leaves returned TTLs unchanged. */
@@ -119019,7 +118808,7 @@ export const GatewayProxyEndpointsListResultItemIPIpsList =
   ) as any as S.Schema<GatewayProxyEndpointsListResultItemIPIpsList>;
 
 export type GatewayProxyEndpointsListResultItemIPKind = "ip";
-export const GatewayProxyEndpointsListResultItemIPKind = /*@__PURE__*/ S.String;
+export const GatewayProxyEndpointsListResultItemIPKind = S.String;
 
 export interface GatewayProxyEndpointsListResultItemIP {
   /** Specify the list of CIDRs to restrict ingress connections. */
@@ -119050,8 +118839,7 @@ export const GatewayProxyEndpointsListResultItemIP = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GatewayProxyEndpointsListResultItemIP>;
 
 export type GatewayProxyEndpointsListResultItemIdentityKind = "identity";
-export const GatewayProxyEndpointsListResultItemIdentityKind =
-  /*@__PURE__*/ S.String;
+export const GatewayProxyEndpointsListResultItemIdentityKind = S.String;
 
 export interface GatewayProxyEndpointsListResultItemIdentity {
   /** The proxy endpoint kind */
@@ -119145,7 +118933,7 @@ export type GatewayRulesListResultItemAction =
   | "resolve"
   | "quarantine"
   | "redirect";
-export const GatewayRulesListResultItemAction = /*@__PURE__*/ S.String;
+export const GatewayRulesListResultItemAction = S.String;
 
 export type GatewayRulesListResultItemFiltersItem =
   | "http"
@@ -119153,7 +118941,7 @@ export type GatewayRulesListResultItemFiltersItem =
   | "l4"
   | "egress"
   | "dns_resolver";
-export const GatewayRulesListResultItemFiltersItem = /*@__PURE__*/ S.String;
+export const GatewayRulesListResultItemFiltersItem = S.String;
 
 export type GatewayRulesListResultItemFiltersList =
   Array<GatewayRulesListResultItemFiltersItem>;
@@ -119194,45 +118982,45 @@ export type GatewayRulesListResultItemRuleSettingsBisoAdminControlsCopy =
   | "disabled"
   | "remote_only";
 export const GatewayRulesListResultItemRuleSettingsBisoAdminControlsCopy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesListResultItemRuleSettingsBisoAdminControlsDownload =
   | "enabled"
   | "disabled"
   | "remote_only";
 export const GatewayRulesListResultItemRuleSettingsBisoAdminControlsDownload =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesListResultItemRuleSettingsBisoAdminControlsKeyboard =
   | "enabled"
   | "disabled";
 export const GatewayRulesListResultItemRuleSettingsBisoAdminControlsKeyboard =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesListResultItemRuleSettingsBisoAdminControlsPaste =
   | "enabled"
   | "disabled"
   | "remote_only";
 export const GatewayRulesListResultItemRuleSettingsBisoAdminControlsPaste =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesListResultItemRuleSettingsBisoAdminControlsPrinting =
   | "enabled"
   | "disabled";
 export const GatewayRulesListResultItemRuleSettingsBisoAdminControlsPrinting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesListResultItemRuleSettingsBisoAdminControlsUpload =
   | "enabled"
   | "disabled";
 export const GatewayRulesListResultItemRuleSettingsBisoAdminControlsUpload =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesListResultItemRuleSettingsBisoAdminControlsVersion =
   | "v1"
   | "v2";
 export const GatewayRulesListResultItemRuleSettingsBisoAdminControlsVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesListResultItemRuleSettingsBisoAdminControls {
   /** Configure copy behavior. If set to remote_only, users cannot copy isolated content from the remote browser to the local clipboard. If this field is absent, copying remains enabled. Applies only when version == "v2". */
@@ -119404,7 +119192,7 @@ export type GatewayRulesListResultItemRuleSettingsQuarantineFileTypesItem =
   | "zip"
   | "rar";
 export const GatewayRulesListResultItemRuleSettingsQuarantineFileTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesListResultItemRuleSettingsQuarantineFileTypesList =
   Array<GatewayRulesListResultItemRuleSettingsQuarantineFileTypesItem>;
@@ -119439,7 +119227,7 @@ export type GatewayRulesListResultItemRuleSettingsResolveDnsInternallyFallback =
   | "none"
   | "public_dns";
 export const GatewayRulesListResultItemRuleSettingsResolveDnsInternallyFallback =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesListResultItemRuleSettingsResolveDnsInternally {
   /** Specify the fallback behavior to apply when the internal DNS response code differs from 'NOERROR' or when the response data contains only CNAME records for 'A' or 'AAAA' queries. */
@@ -119466,7 +119254,7 @@ export type GatewayRulesListResultItemRuleSettingsUntrustedCertAction =
   | "block"
   | "error";
 export const GatewayRulesListResultItemRuleSettingsUntrustedCertAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesListResultItemRuleSettingsUntrustedCert {
   /** Defines the action performed when an untrusted certificate seen. The default action an error with HTTP code 526. */
@@ -120126,8 +119914,7 @@ export type IdentityProvidersListResultItemAzureADConfigPrompt =
   | "login"
   | "select_account"
   | "none";
-export const IdentityProvidersListResultItemAzureADConfigPrompt =
-  /*@__PURE__*/ S.String;
+export const IdentityProvidersListResultItemAzureADConfigPrompt = S.String;
 
 export interface IdentityProvidersListResultItemAzureADConfig {
   /** Custom claims */
@@ -120191,8 +119978,7 @@ export type IdentityProvidersListResultItemAzureADType =
   | "pingone"
   | "yandex"
   | "cloudflare";
-export const IdentityProvidersListResultItemAzureADType =
-  /*@__PURE__*/ S.String;
+export const IdentityProvidersListResultItemAzureADType = S.String;
 
 export type IdentityProvidersListResultItemAzureADSamlCertificateSetCurrentCertificate =
   IdentityProvidersCreateRequestSamlCertificateSetCurrentCertificate;
@@ -120209,7 +119995,7 @@ export type IdentityProvidersListResultItemAzureADScimConfigIdentityUpdateBehavi
   | "reauth"
   | "no_action";
 export const IdentityProvidersListResultItemAzureADScimConfigIdentityUpdateBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IdentityProvidersListResultItemAzureADScimConfig {
   /** A flag to enable or disable SCIM for the identity provider. */
@@ -121594,8 +121380,7 @@ export type NetworksHostnameRoutesListResultItemTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const NetworksHostnameRoutesListResultItemTunType =
-  /*@__PURE__*/ S.String;
+export const NetworksHostnameRoutesListResultItemTunType = S.String;
 
 export interface NetworksHostnameRoutesListResultItem {
   /** The hostname route ID. */
@@ -121664,7 +121449,7 @@ export type NetworksRoutesListRequestTunTypes =
   | "ip_sec"
   | "gre"
   | "cni";
-export const NetworksRoutesListRequestTunTypes = /*@__PURE__*/ S.String;
+export const NetworksRoutesListRequestTunTypes = S.String;
 
 export type NetworksRoutesListRequestTunTypesList = Array<
   NetworksRoutesListRequestTunTypes | (string & {})
@@ -121736,7 +121521,7 @@ export type NetworksRoutesListResultItemTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const NetworksRoutesListResultItemTunType = /*@__PURE__*/ S.String;
+export const NetworksRoutesListResultItemTunType = S.String;
 
 export interface NetworksRoutesListResultItem {
   /** UUID of the route. */
@@ -121804,15 +121589,15 @@ export const ListNetworkRoutesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListNetworkRoutesResponse>;
 
 export type NetworksSubnetsListRequestAddressFamily = "v4" | "v6";
-export const NetworksSubnetsListRequestAddressFamily = /*@__PURE__*/ S.String;
+export const NetworksSubnetsListRequestAddressFamily = S.String;
 
 export type NetworksSubnetsListRequestSortOrder = "asc" | "desc";
-export const NetworksSubnetsListRequestSortOrder = /*@__PURE__*/ S.String;
+export const NetworksSubnetsListRequestSortOrder = S.String;
 
 export type NetworksSubnetsListRequestSubnetTypes =
   | "cloudflare_source"
   | "warp";
-export const NetworksSubnetsListRequestSubnetTypes = /*@__PURE__*/ S.String;
+export const NetworksSubnetsListRequestSubnetTypes = S.String;
 
 export interface ListNetworkSubnetsRequest {
   /** Cloudflare account ID */
@@ -121876,7 +121661,7 @@ export const ListNetworkSubnetsRequest = /*@__PURE__*/ S.suspend(() =>
 export type NetworksSubnetsListResultItemSubnetType =
   | "cloudflare_source"
   | "warp";
-export const NetworksSubnetsListResultItemSubnetType = /*@__PURE__*/ S.String;
+export const NetworksSubnetsListResultItemSubnetType = S.String;
 
 export interface NetworksSubnetsListResultItem {
   /** The UUID of the subnet. */
@@ -122065,7 +121850,7 @@ export type OrganizationsListResponseMfaConfigAllowedAuthenticatorsItem =
   | "security_key"
   | "piv_key";
 export const OrganizationsListResponseMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationsListResponseMfaConfigAllowedAuthenticatorsList =
   Array<OrganizationsListResponseMfaConfigAllowedAuthenticatorsItem>;
@@ -122109,8 +121894,7 @@ export type OrganizationsListResponseMfaPivKeyRequirementsPinPolicy =
   | "never"
   | "once"
   | "always";
-export const OrganizationsListResponseMfaPivKeyRequirementsPinPolicy =
-  /*@__PURE__*/ S.String;
+export const OrganizationsListResponseMfaPivKeyRequirementsPinPolicy = S.String;
 
 export type OrganizationsListResponseMfaPivKeyRequirementsSshKeySizeItem =
   | 256
@@ -122120,7 +121904,7 @@ export type OrganizationsListResponseMfaPivKeyRequirementsSshKeySizeItem =
   | 3072
   | 4096;
 export const OrganizationsListResponseMfaPivKeyRequirementsSshKeySizeItem =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export type OrganizationsListResponseMfaPivKeyRequirementsSshKeySizeList =
   Array<OrganizationsListResponseMfaPivKeyRequirementsSshKeySizeItem>;
@@ -122134,7 +121918,7 @@ export type OrganizationsListResponseMfaPivKeyRequirementsSshKeyTypeItem =
   | "ed25519"
   | "rsa";
 export const OrganizationsListResponseMfaPivKeyRequirementsSshKeyTypeItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationsListResponseMfaPivKeyRequirementsSshKeyTypeList =
   Array<OrganizationsListResponseMfaPivKeyRequirementsSshKeyTypeItem>;
@@ -122148,7 +121932,7 @@ export type OrganizationsListResponseMfaPivKeyRequirementsTouchPolicy =
   | "always"
   | "cached";
 export const OrganizationsListResponseMfaPivKeyRequirementsTouchPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface OrganizationsListResponseMfaPivKeyRequirements {
   /** Defines when a PIN is required to use the SSH key. Valid values: `never` (no PIN required), `once` (PIN required once per session), `always` (PIN required for each use). */
@@ -122372,8 +122156,7 @@ export type ResourceLibraryApplicationsListResultItemSupportedItem =
   | "GATEWAY"
   | "ACCESS"
   | "CASB";
-export const ResourceLibraryApplicationsListResultItemSupportedItem =
-  /*@__PURE__*/ S.String;
+export const ResourceLibraryApplicationsListResultItemSupportedItem = S.String;
 
 export type ResourceLibraryApplicationsListResultItemSupportedList =
   Array<ResourceLibraryApplicationsListResultItemSupportedItem>;
@@ -122574,8 +122357,7 @@ export const ListRiskScoringIntegrationsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListRiskScoringIntegrationsRequest>;
 
 export type RiskScoringIntegrationsListResultItemIntegrationType = "Okta";
-export const RiskScoringIntegrationsListResultItemIntegrationType =
-  /*@__PURE__*/ S.String;
+export const RiskScoringIntegrationsListResultItemIntegrationType = S.String;
 
 export interface RiskScoringIntegrationsListResultItem {
   /** The id of the integration, a UUIDv4. */
@@ -122670,7 +122452,7 @@ export type GatewayRulesListTenantResultItemAction =
   | "resolve"
   | "quarantine"
   | "redirect";
-export const GatewayRulesListTenantResultItemAction = /*@__PURE__*/ S.String;
+export const GatewayRulesListTenantResultItemAction = S.String;
 
 export type GatewayRulesListTenantResultItemFiltersItem =
   | "http"
@@ -122678,8 +122460,7 @@ export type GatewayRulesListTenantResultItemFiltersItem =
   | "l4"
   | "egress"
   | "dns_resolver";
-export const GatewayRulesListTenantResultItemFiltersItem =
-  /*@__PURE__*/ S.String;
+export const GatewayRulesListTenantResultItemFiltersItem = S.String;
 
 export type GatewayRulesListTenantResultItemFiltersList =
   Array<GatewayRulesListTenantResultItemFiltersItem>;
@@ -122721,45 +122502,45 @@ export type GatewayRulesListTenantResultItemRuleSettingsBisoAdminControlsCopy =
   | "disabled"
   | "remote_only";
 export const GatewayRulesListTenantResultItemRuleSettingsBisoAdminControlsCopy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesListTenantResultItemRuleSettingsBisoAdminControlsDownload =
   | "enabled"
   | "disabled"
   | "remote_only";
 export const GatewayRulesListTenantResultItemRuleSettingsBisoAdminControlsDownload =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesListTenantResultItemRuleSettingsBisoAdminControlsKeyboard =
   | "enabled"
   | "disabled";
 export const GatewayRulesListTenantResultItemRuleSettingsBisoAdminControlsKeyboard =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesListTenantResultItemRuleSettingsBisoAdminControlsPaste =
   | "enabled"
   | "disabled"
   | "remote_only";
 export const GatewayRulesListTenantResultItemRuleSettingsBisoAdminControlsPaste =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesListTenantResultItemRuleSettingsBisoAdminControlsPrinting =
   | "enabled"
   | "disabled";
 export const GatewayRulesListTenantResultItemRuleSettingsBisoAdminControlsPrinting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesListTenantResultItemRuleSettingsBisoAdminControlsUpload =
   | "enabled"
   | "disabled";
 export const GatewayRulesListTenantResultItemRuleSettingsBisoAdminControlsUpload =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesListTenantResultItemRuleSettingsBisoAdminControlsVersion =
   | "v1"
   | "v2";
 export const GatewayRulesListTenantResultItemRuleSettingsBisoAdminControlsVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesListTenantResultItemRuleSettingsBisoAdminControls {
   /** Configure copy behavior. If set to remote_only, users cannot copy isolated content from the remote browser to the local clipboard. If this field is absent, copying remains enabled. Applies only when version == "v2". */
@@ -122941,7 +122722,7 @@ export type GatewayRulesListTenantResultItemRuleSettingsQuarantineFileTypesItem 
   | "zip"
   | "rar";
 export const GatewayRulesListTenantResultItemRuleSettingsQuarantineFileTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesListTenantResultItemRuleSettingsQuarantineFileTypesList =
   Array<GatewayRulesListTenantResultItemRuleSettingsQuarantineFileTypesItem>;
@@ -122976,7 +122757,7 @@ export type GatewayRulesListTenantResultItemRuleSettingsResolveDnsInternallyFall
   | "none"
   | "public_dns";
 export const GatewayRulesListTenantResultItemRuleSettingsResolveDnsInternallyFallback =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesListTenantResultItemRuleSettingsResolveDnsInternally {
   /** Specify the fallback behavior to apply when the internal DNS response code differs from 'NOERROR' or when the response data contains only CNAME records for 'A' or 'AAAA' queries. */
@@ -123004,7 +122785,7 @@ export type GatewayRulesListTenantResultItemRuleSettingsUntrustedCertAction =
   | "block"
   | "error";
 export const GatewayRulesListTenantResultItemRuleSettingsUntrustedCertAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesListTenantResultItemRuleSettingsUntrustedCert {
   /** Defines the action performed when an untrusted certificate seen. The default action an error with HTTP code 526. */
@@ -123296,7 +123077,7 @@ export type TunnelsCloudflaredListRequestStatus =
   | "degraded"
   | "healthy"
   | "down";
-export const TunnelsCloudflaredListRequestStatus = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredListRequestStatus = S.String;
 
 export interface ListTunnelCloudflaredsRequest {
   /** Cloudflare account ID */
@@ -123348,7 +123129,7 @@ export const ListTunnelCloudflaredsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTunnelCloudflaredsRequest>;
 
 export type TunnelsCloudflaredListResultItemConfigSrc = "local" | "cloudflare";
-export const TunnelsCloudflaredListResultItemConfigSrc = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredListResultItemConfigSrc = S.String;
 
 export type TunnelsCloudflaredListResultItemConnectionsItem =
   TunnelsCloudflaredCreateResponseConnectionsItem;
@@ -123367,7 +123148,7 @@ export type TunnelsCloudflaredListResultItemStatus =
   | "degraded"
   | "healthy"
   | "down";
-export const TunnelsCloudflaredListResultItemStatus = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredListResultItemStatus = S.String;
 
 export type TunnelsCloudflaredListResultItemTunType =
   | "cfd_tunnel"
@@ -123377,7 +123158,7 @@ export type TunnelsCloudflaredListResultItemTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const TunnelsCloudflaredListResultItemTunType = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredListResultItemTunType = S.String;
 
 export interface TunnelsCloudflaredListResultItem {
   /** UUID of the tunnel. */
@@ -123467,7 +123248,7 @@ export type TunnelsListRequestStatus =
   | "degraded"
   | "healthy"
   | "down";
-export const TunnelsListRequestStatus = /*@__PURE__*/ S.String;
+export const TunnelsListRequestStatus = S.String;
 
 export type TunnelsListRequestTunTypes =
   | "cfd_tunnel"
@@ -123477,7 +123258,7 @@ export type TunnelsListRequestTunTypes =
   | "ip_sec"
   | "gre"
   | "cni";
-export const TunnelsListRequestTunTypes = /*@__PURE__*/ S.String;
+export const TunnelsListRequestTunTypes = S.String;
 
 export type TunnelsListRequestTunTypesList = Array<
   TunnelsListRequestTunTypes | (string & {})
@@ -123543,8 +123324,7 @@ export const ListTunnelsRequest = /*@__PURE__*/ S.suspend(() =>
 export type TunnelsListResultItemCloudflareTunnelConfigSrc =
   | "local"
   | "cloudflare";
-export const TunnelsListResultItemCloudflareTunnelConfigSrc =
-  /*@__PURE__*/ S.String;
+export const TunnelsListResultItemCloudflareTunnelConfigSrc = S.String;
 
 export type TunnelsListResultItemCloudflareTunnelConnectionsItem =
   TunnelsCloudflaredCreateResponseConnectionsItem;
@@ -123563,8 +123343,7 @@ export type TunnelsListResultItemCloudflareTunnelStatus =
   | "degraded"
   | "healthy"
   | "down";
-export const TunnelsListResultItemCloudflareTunnelStatus =
-  /*@__PURE__*/ S.String;
+export const TunnelsListResultItemCloudflareTunnelStatus = S.String;
 
 export type TunnelsListResultItemCloudflareTunnelTunType =
   | "cfd_tunnel"
@@ -123574,8 +123353,7 @@ export type TunnelsListResultItemCloudflareTunnelTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const TunnelsListResultItemCloudflareTunnelTunType =
-  /*@__PURE__*/ S.String;
+export const TunnelsListResultItemCloudflareTunnelTunType = S.String;
 
 export interface TunnelsListResultItemCloudflareTunnel {
   /** UUID of the tunnel. */
@@ -123659,8 +123437,7 @@ export type TunnelsListResultItemTunnelWARPConnectorTunnelStatus =
   | "degraded"
   | "healthy"
   | "down";
-export const TunnelsListResultItemTunnelWARPConnectorTunnelStatus =
-  /*@__PURE__*/ S.String;
+export const TunnelsListResultItemTunnelWARPConnectorTunnelStatus = S.String;
 
 export type TunnelsListResultItemTunnelWARPConnectorTunnelTunType =
   | "cfd_tunnel"
@@ -123670,8 +123447,7 @@ export type TunnelsListResultItemTunnelWARPConnectorTunnelTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const TunnelsListResultItemTunnelWARPConnectorTunnelTunType =
-  /*@__PURE__*/ S.String;
+export const TunnelsListResultItemTunnelWARPConnectorTunnelTunType = S.String;
 
 export interface TunnelsListResultItemTunnelWARPConnectorTunnel {
   /** UUID of the tunnel. */
@@ -123789,7 +123565,7 @@ export type TunnelsWarpConnectorListRequestStatus =
   | "degraded"
   | "healthy"
   | "down";
-export const TunnelsWarpConnectorListRequestStatus = /*@__PURE__*/ S.String;
+export const TunnelsWarpConnectorListRequestStatus = S.String;
 
 export interface ListTunnelWarpConnectorsRequest {
   /** Cloudflare account ID */
@@ -123857,7 +123633,7 @@ export type TunnelsWarpConnectorListResultItemStatus =
   | "degraded"
   | "healthy"
   | "down";
-export const TunnelsWarpConnectorListResultItemStatus = /*@__PURE__*/ S.String;
+export const TunnelsWarpConnectorListResultItemStatus = S.String;
 
 export type TunnelsWarpConnectorListResultItemTunType =
   | "cfd_tunnel"
@@ -123867,7 +123643,7 @@ export type TunnelsWarpConnectorListResultItemTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const TunnelsWarpConnectorListResultItemTunType = /*@__PURE__*/ S.String;
+export const TunnelsWarpConnectorListResultItemTunType = S.String;
 
 export interface TunnelsWarpConnectorListResultItem {
   /** UUID of the tunnel. */
@@ -125706,7 +125482,7 @@ export type DevicesPostureIntegrationsEditRequestType =
   | "tanium_s2s"
   | "sentinelone_s2s"
   | "custom_s2s";
-export const DevicesPostureIntegrationsEditRequestType = /*@__PURE__*/ S.String;
+export const DevicesPostureIntegrationsEditRequestType = S.String;
 
 export interface PatchDevicePostureIntegrationRequest {
   accountId: string;
@@ -125757,8 +125533,7 @@ export type DevicesPostureIntegrationsEditResponseType =
   | "tanium_s2s"
   | "sentinelone_s2s"
   | "custom_s2s";
-export const DevicesPostureIntegrationsEditResponseType =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureIntegrationsEditResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchDevicePostureIntegrationResponse {
@@ -125937,12 +125712,10 @@ export const PatchDexRuleRequest = /*@__PURE__*/ S.suspend(() =>
 export type DexRulesUpdateResponseTargetedTestsItemDataKind =
   | "http"
   | "traceroute";
-export const DexRulesUpdateResponseTargetedTestsItemDataKind =
-  /*@__PURE__*/ S.String;
+export const DexRulesUpdateResponseTargetedTestsItemDataKind = S.String;
 
 export type DexRulesUpdateResponseTargetedTestsItemDataMethod = "GET";
-export const DexRulesUpdateResponseTargetedTestsItemDataMethod =
-  /*@__PURE__*/ S.String;
+export const DexRulesUpdateResponseTargetedTestsItemDataMethod = S.String;
 
 export interface DexRulesUpdateResponseTargetedTestsItemData {
   /** The desired endpoint to test. */
@@ -126024,8 +125797,7 @@ export type DlpSettingsEditRequestPayloadLoggingMaskingLevel =
   | "partial"
   | "clear"
   | "default";
-export const DlpSettingsEditRequestPayloadLoggingMaskingLevel =
-  /*@__PURE__*/ S.String;
+export const DlpSettingsEditRequestPayloadLoggingMaskingLevel = S.String;
 
 export interface DlpSettingsEditRequestPayloadLogging {
   /** Masking level for payload logs. */
@@ -126086,8 +125858,7 @@ export type DlpSettingsEditResponsePayloadLoggingMaskingLevel =
   | "partial"
   | "clear"
   | "default";
-export const DlpSettingsEditResponsePayloadLoggingMaskingLevel =
-  /*@__PURE__*/ S.String;
+export const DlpSettingsEditResponsePayloadLoggingMaskingLevel = S.String;
 
 export interface DlpSettingsEditResponsePayloadLogging {
   updatedAt: string;
@@ -126201,8 +125972,7 @@ export type GatewayConfigurationsEditRequestSettingsBlockPageMode =
   | ""
   | "customized_block_page"
   | "redirect_uri";
-export const GatewayConfigurationsEditRequestSettingsBlockPageMode =
-  /*@__PURE__*/ S.String;
+export const GatewayConfigurationsEditRequestSettingsBlockPageMode = S.String;
 
 export interface GatewayConfigurationsEditRequestSettingsBlockPage {
   /** Specify the block page background color in `#rrggbb` format when the mode is customized_block_page. */
@@ -126263,7 +126033,7 @@ export type GatewayConfigurationsEditRequestSettingsBodyScanningInspectionMode =
   | "deep"
   | "shallow";
 export const GatewayConfigurationsEditRequestSettingsBodyScanningInspectionMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayConfigurationsEditRequestSettingsBodyScanning {
   /** Specify the inspection mode as either `deep` or `shallow`. */
@@ -126381,8 +126151,7 @@ export const GatewayConfigurationsEditRequestSettingsHostSelector =
 export type GatewayConfigurationsEditRequestSettingsInspectionMode =
   | "static"
   | "dynamic";
-export const GatewayConfigurationsEditRequestSettingsInspectionMode =
-  /*@__PURE__*/ S.String;
+export const GatewayConfigurationsEditRequestSettingsInspectionMode = S.String;
 
 export interface GatewayConfigurationsEditRequestSettingsInspection {
   /** Define the proxy inspection mode. 1. static: Gateway applies static inspection to HTTP on TCP(80). With TLS decryption on, Gateway inspects HTTPS traffic on TCP(443) and UDP(443). 2. dynamic: Gateway applies protocol detection to inspect HTTP and HTTPS traffic on any port. TLS decryption must remain on to inspect HTTPS traffic. */
@@ -126414,7 +126183,7 @@ export type GatewayConfigurationsEditRequestSettingsSandboxFallbackAction =
   | "allow"
   | "block";
 export const GatewayConfigurationsEditRequestSettingsSandboxFallbackAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayConfigurationsEditRequestSettingsSandbox {
   /** Specify whether to enable the sandbox. */
@@ -126587,8 +126356,7 @@ export type GatewayConfigurationsEditResponseSettingsBlockPageMode =
   | ""
   | "customized_block_page"
   | "redirect_uri";
-export const GatewayConfigurationsEditResponseSettingsBlockPageMode =
-  /*@__PURE__*/ S.String;
+export const GatewayConfigurationsEditResponseSettingsBlockPageMode = S.String;
 
 export interface GatewayConfigurationsEditResponseSettingsBlockPage {
   /** Specify the block page background color in `#rrggbb` format when the mode is customized_block_page. */
@@ -126663,7 +126431,7 @@ export type GatewayConfigurationsEditResponseSettingsBodyScanningInspectionMode 
   | "deep"
   | "shallow";
 export const GatewayConfigurationsEditResponseSettingsBodyScanningInspectionMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayConfigurationsEditResponseSettingsBodyScanning {
   /** Specify the inspection mode as either `deep` or `shallow`. */
@@ -126715,8 +126483,7 @@ export const GatewayConfigurationsEditResponseSettingsHostSelector =
 export type GatewayConfigurationsEditResponseSettingsInspectionMode =
   | "static"
   | "dynamic";
-export const GatewayConfigurationsEditResponseSettingsInspectionMode =
-  /*@__PURE__*/ S.String;
+export const GatewayConfigurationsEditResponseSettingsInspectionMode = S.String;
 
 export interface GatewayConfigurationsEditResponseSettingsInspection {
   /** Define the proxy inspection mode. 1. static: Gateway applies static inspection to HTTP on TCP(80). With TLS decryption on, Gateway inspects HTTPS traffic on TCP(443) and UDP(443). 2. dynamic: Gateway applies protocol detection to inspect HTTP and HTTPS traffic on any port. TLS decryption must remain on to inspect HTTPS traffic. */
@@ -126742,7 +126509,7 @@ export type GatewayConfigurationsEditResponseSettingsSandboxFallbackAction =
   | "allow"
   | "block";
 export const GatewayConfigurationsEditResponseSettingsSandboxFallbackAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayConfigurationsEditResponseSettingsSandbox {
   /** Specify whether to enable the sandbox. */
@@ -126950,7 +126717,7 @@ export type GatewayListsEditResponseType =
   | "LOCATION"
   | "DEVICE"
   | "AAGUID";
-export const GatewayListsEditResponseType = /*@__PURE__*/ S.String;
+export const GatewayListsEditResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchGatewayListResponse {
@@ -127022,7 +126789,7 @@ export const GatewayProxyEndpointsEditResultIPIpsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GatewayProxyEndpointsEditResultIPIpsList>;
 
 export type GatewayProxyEndpointsEditResultIPKind = "ip";
-export const GatewayProxyEndpointsEditResultIPKind = /*@__PURE__*/ S.String;
+export const GatewayProxyEndpointsEditResultIPKind = S.String;
 
 export interface GatewayProxyEndpointsEditResultIP {
   /** Specify the list of CIDRs to restrict ingress connections. */
@@ -127052,8 +126819,7 @@ export const GatewayProxyEndpointsEditResultIP = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GatewayProxyEndpointsEditResultIP>;
 
 export type GatewayProxyEndpointsEditResultIdentityKind = "identity";
-export const GatewayProxyEndpointsEditResultIdentityKind =
-  /*@__PURE__*/ S.String;
+export const GatewayProxyEndpointsEditResultIdentityKind = S.String;
 
 export interface GatewayProxyEndpointsEditResultIdentity {
   /** The proxy endpoint kind */
@@ -127140,7 +126906,7 @@ export type NetworksHostnameRoutesEditResponseTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const NetworksHostnameRoutesEditResponseTunType = /*@__PURE__*/ S.String;
+export const NetworksHostnameRoutesEditResponseTunType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchNetworkHostnameRouteResponse {
@@ -127308,7 +127074,7 @@ export type NetworksSubnetsCloudflareSourceUpdateRequestAddressFamily =
   | "v4"
   | "v6";
 export const NetworksSubnetsCloudflareSourceUpdateRequestAddressFamily =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PatchNetworkSubnetCloudflareSourceRequest {
   /** Cloudflare account ID */
@@ -127351,8 +127117,7 @@ export const PatchNetworkSubnetCloudflareSourceRequest =
 export type NetworksSubnetsCloudflareSourceUpdateResponseSubnetType =
   | "cloudflare_source"
   | "warp";
-export const NetworksSubnetsCloudflareSourceUpdateResponseSubnetType =
-  /*@__PURE__*/ S.String;
+export const NetworksSubnetsCloudflareSourceUpdateResponseSubnetType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchNetworkSubnetCloudflareSourceResponse {
@@ -127433,7 +127198,7 @@ export const PatchNetworkSubnetWarpRequest = /*@__PURE__*/ S.suspend(() =>
 export type NetworksSubnetsWarpEditResponseSubnetType =
   | "cloudflare_source"
   | "warp";
-export const NetworksSubnetsWarpEditResponseSubnetType = /*@__PURE__*/ S.String;
+export const NetworksSubnetsWarpEditResponseSubnetType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchNetworkSubnetWarpResponse {
@@ -127652,7 +127417,7 @@ export const PatchTunnelCloudflaredRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchTunnelCloudflaredRequest>;
 
 export type TunnelsCloudflaredEditResponseConfigSrc = "local" | "cloudflare";
-export const TunnelsCloudflaredEditResponseConfigSrc = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredEditResponseConfigSrc = S.String;
 
 export type TunnelsCloudflaredEditResponseConnectionsItem =
   TunnelsCloudflaredCreateResponseConnectionsItem;
@@ -127671,7 +127436,7 @@ export type TunnelsCloudflaredEditResponseStatus =
   | "degraded"
   | "healthy"
   | "down";
-export const TunnelsCloudflaredEditResponseStatus = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredEditResponseStatus = S.String;
 
 export type TunnelsCloudflaredEditResponseTunType =
   | "cfd_tunnel"
@@ -127681,7 +127446,7 @@ export type TunnelsCloudflaredEditResponseTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const TunnelsCloudflaredEditResponseTunType = /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredEditResponseTunType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchTunnelCloudflaredResponse {
@@ -127790,7 +127555,7 @@ export type TunnelsWarpConnectorEditResponseStatus =
   | "degraded"
   | "healthy"
   | "down";
-export const TunnelsWarpConnectorEditResponseStatus = /*@__PURE__*/ S.String;
+export const TunnelsWarpConnectorEditResponseStatus = S.String;
 
 export type TunnelsWarpConnectorEditResponseTunType =
   | "cfd_tunnel"
@@ -127800,7 +127565,7 @@ export type TunnelsWarpConnectorEditResponseTunType =
   | "ip_sec"
   | "gre"
   | "cni";
-export const TunnelsWarpConnectorEditResponseTunType = /*@__PURE__*/ S.String;
+export const TunnelsWarpConnectorEditResponseTunType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchTunnelWarpConnectorResponse {
@@ -128971,7 +128736,7 @@ export type DlpPayloadLogsUpdateRequestMaskingLevel =
   | "partial"
   | "clear"
   | "default";
-export const DlpPayloadLogsUpdateRequestMaskingLevel = /*@__PURE__*/ S.String;
+export const DlpPayloadLogsUpdateRequestMaskingLevel = S.String;
 
 export interface PutDlpPayloadLogRequest {
   accountId: string;
@@ -129005,7 +128770,7 @@ export type DlpPayloadLogsUpdateResponseMaskingLevel =
   | "partial"
   | "clear"
   | "default";
-export const DlpPayloadLogsUpdateResponseMaskingLevel = /*@__PURE__*/ S.String;
+export const DlpPayloadLogsUpdateResponseMaskingLevel = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PutDlpPayloadLogResponse {
@@ -129106,7 +128871,7 @@ export const DlpProfilesPredefinedUpdateResponseEnabledEntriesList =
 export type DlpProfilesPredefinedUpdateResponseEntriesItemCustomEntryPatternValidation =
   "luhn";
 export const DlpProfilesPredefinedUpdateResponseEntriesItemCustomEntryPatternValidation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedUpdateResponseEntriesItemCustomEntryPattern {
   regex: string;
@@ -129130,7 +128895,7 @@ export const DlpProfilesPredefinedUpdateResponseEntriesItemCustomEntryPattern =
 export type DlpProfilesPredefinedUpdateResponseEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesPredefinedUpdateResponseEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedUpdateResponseEntriesItemCustomEntry {
   id: string;
@@ -129163,7 +128928,7 @@ export const DlpProfilesPredefinedUpdateResponseEntriesItemCustomEntry =
 export type DlpProfilesPredefinedUpdateResponseEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesPredefinedUpdateResponseEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedUpdateResponseEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -129199,18 +128964,18 @@ export const DlpProfilesPredefinedUpdateResponseEntriesItemPredefinedEntryConfid
 export type DlpProfilesPredefinedUpdateResponseEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesPredefinedUpdateResponseEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesPredefinedUpdateResponseEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesPredefinedUpdateResponseEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesPredefinedUpdateResponseEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesPredefinedUpdateResponseEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedUpdateResponseEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesPredefinedUpdateResponseEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -129236,7 +129001,7 @@ export const DlpProfilesPredefinedUpdateResponseEntriesItemPredefinedEntryVarian
 export type DlpProfilesPredefinedUpdateResponseEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesPredefinedUpdateResponseEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedUpdateResponseEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesPredefinedUpdateResponseEntriesItemPredefinedEntryVariantCase1Type;
@@ -129297,7 +129062,7 @@ export const DlpProfilesPredefinedUpdateResponseEntriesItemPredefinedEntry =
 export type DlpProfilesPredefinedUpdateResponseEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesPredefinedUpdateResponseEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedUpdateResponseEntriesItemIntegrationEntry {
   id: string;
@@ -129327,7 +129092,7 @@ export const DlpProfilesPredefinedUpdateResponseEntriesItemIntegrationEntry =
 export type DlpProfilesPredefinedUpdateResponseEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesPredefinedUpdateResponseEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedUpdateResponseEntriesItemExactDataEntry {
   id: string;
@@ -129362,7 +129127,7 @@ export const DlpProfilesPredefinedUpdateResponseEntriesItemExactDataEntry =
 export type DlpProfilesPredefinedUpdateResponseEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesPredefinedUpdateResponseEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedUpdateResponseEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -129393,7 +129158,7 @@ export const DlpProfilesPredefinedUpdateResponseEntriesItemDocumentFingerprintEn
 export type DlpProfilesPredefinedUpdateResponseEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesPredefinedUpdateResponseEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesPredefinedUpdateResponseEntriesItemWordListEntry {
   id: string;
@@ -129591,8 +129356,7 @@ export type DlpSettingsUpdateRequestPayloadLoggingMaskingLevel =
   | "partial"
   | "clear"
   | "default";
-export const DlpSettingsUpdateRequestPayloadLoggingMaskingLevel =
-  /*@__PURE__*/ S.String;
+export const DlpSettingsUpdateRequestPayloadLoggingMaskingLevel = S.String;
 
 export interface DlpSettingsUpdateRequestPayloadLogging {
   /** Masking level for payload logs. */
@@ -129653,8 +129417,7 @@ export type DlpSettingsUpdateResponsePayloadLoggingMaskingLevel =
   | "partial"
   | "clear"
   | "default";
-export const DlpSettingsUpdateResponsePayloadLoggingMaskingLevel =
-  /*@__PURE__*/ S.String;
+export const DlpSettingsUpdateResponsePayloadLoggingMaskingLevel = S.String;
 
 export interface DlpSettingsUpdateResponsePayloadLogging {
   updatedAt: string;
@@ -129759,8 +129522,7 @@ export type GatewayConfigurationsUpdateRequestSettingsBlockPageMode =
   | ""
   | "customized_block_page"
   | "redirect_uri";
-export const GatewayConfigurationsUpdateRequestSettingsBlockPageMode =
-  /*@__PURE__*/ S.String;
+export const GatewayConfigurationsUpdateRequestSettingsBlockPageMode = S.String;
 
 export interface GatewayConfigurationsUpdateRequestSettingsBlockPage {
   /** Specify the block page background color in `#rrggbb` format when the mode is customized_block_page. */
@@ -129823,7 +129585,7 @@ export type GatewayConfigurationsUpdateRequestSettingsBodyScanningInspectionMode
   | "deep"
   | "shallow";
 export const GatewayConfigurationsUpdateRequestSettingsBodyScanningInspectionMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayConfigurationsUpdateRequestSettingsBodyScanning {
   /** Specify the inspection mode as either `deep` or `shallow`. */
@@ -129878,7 +129640,7 @@ export type GatewayConfigurationsUpdateRequestSettingsInspectionMode =
   | "static"
   | "dynamic";
 export const GatewayConfigurationsUpdateRequestSettingsInspectionMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayConfigurationsUpdateRequestSettingsInspection {
   /** Define the proxy inspection mode. 1. static: Gateway applies static inspection to HTTP on TCP(80). With TLS decryption on, Gateway inspects HTTPS traffic on TCP(443) and UDP(443). 2. dynamic: Gateway applies protocol detection to inspect HTTP and HTTPS traffic on any port. TLS decryption must remain on to inspect HTTPS traffic. */
@@ -129906,7 +129668,7 @@ export type GatewayConfigurationsUpdateRequestSettingsSandboxFallbackAction =
   | "allow"
   | "block";
 export const GatewayConfigurationsUpdateRequestSettingsSandboxFallbackAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayConfigurationsUpdateRequestSettingsSandbox {
   /** Specify whether to enable the sandbox. */
@@ -130072,7 +129834,7 @@ export type GatewayConfigurationsUpdateResponseSettingsBlockPageMode =
   | "customized_block_page"
   | "redirect_uri";
 export const GatewayConfigurationsUpdateResponseSettingsBlockPageMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayConfigurationsUpdateResponseSettingsBlockPage {
   /** Specify the block page background color in `#rrggbb` format when the mode is customized_block_page. */
@@ -130147,7 +129909,7 @@ export type GatewayConfigurationsUpdateResponseSettingsBodyScanningInspectionMod
   | "deep"
   | "shallow";
 export const GatewayConfigurationsUpdateResponseSettingsBodyScanningInspectionMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayConfigurationsUpdateResponseSettingsBodyScanning {
   /** Specify the inspection mode as either `deep` or `shallow`. */
@@ -130200,7 +129962,7 @@ export type GatewayConfigurationsUpdateResponseSettingsInspectionMode =
   | "static"
   | "dynamic";
 export const GatewayConfigurationsUpdateResponseSettingsInspectionMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayConfigurationsUpdateResponseSettingsInspection {
   /** Define the proxy inspection mode. 1. static: Gateway applies static inspection to HTTP on TCP(80). With TLS decryption on, Gateway inspects HTTPS traffic on TCP(443) and UDP(443). 2. dynamic: Gateway applies protocol detection to inspect HTTP and HTTPS traffic on any port. TLS decryption must remain on to inspect HTTPS traffic. */
@@ -130226,7 +129988,7 @@ export type GatewayConfigurationsUpdateResponseSettingsSandboxFallbackAction =
   | "allow"
   | "block";
 export const GatewayConfigurationsUpdateResponseSettingsSandboxFallbackAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayConfigurationsUpdateResponseSettingsSandbox {
   /** Specify whether to enable the sandbox. */
@@ -130543,7 +130305,7 @@ export type RiskScoringBehavioursUpdateRequestBehaviorsValueRiskLevel =
   | "medium"
   | "high";
 export const RiskScoringBehavioursUpdateRequestBehaviorsValueRiskLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RiskScoringBehavioursUpdateRequestBehaviorsValue {
   enabled: boolean;
@@ -130598,7 +130360,7 @@ export type RiskScoringBehavioursUpdateResponseBehaviorsValueRiskLevel =
   | "medium"
   | "high";
 export const RiskScoringBehavioursUpdateResponseBehaviorsValueRiskLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RiskScoringBehavioursUpdateResponseBehaviorsValue {
   enabled: boolean;
@@ -131122,8 +130884,7 @@ export const TunnelsCloudflaredConfigurationsUpdateResponseConfig =
 export type TunnelsCloudflaredConfigurationsUpdateResponseSource =
   | "local"
   | "cloudflare";
-export const TunnelsCloudflaredConfigurationsUpdateResponseSource =
-  /*@__PURE__*/ S.String;
+export const TunnelsCloudflaredConfigurationsUpdateResponseSource = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PutTunnelCloudflaredConfigurationResponse {
@@ -131162,8 +130923,7 @@ export type TunnelsWarpConnectorConfigurationsUpdateRequestHaMode =
   | "disabled"
   | "aws"
   | "local";
-export const TunnelsWarpConnectorConfigurationsUpdateRequestHaMode =
-  /*@__PURE__*/ S.String;
+export const TunnelsWarpConnectorConfigurationsUpdateRequestHaMode = S.String;
 
 export interface PutTunnelWarpConnectorConfigurationRequest {
   /** Identifier. */
@@ -131202,8 +130962,7 @@ export type TunnelsWarpConnectorConfigurationsUpdateResponseHaMode =
   | "disabled"
   | "aws"
   | "local";
-export const TunnelsWarpConnectorConfigurationsUpdateResponseHaMode =
-  /*@__PURE__*/ S.String;
+export const TunnelsWarpConnectorConfigurationsUpdateResponseHaMode = S.String;
 
 export type TunnelsWarpConnectorConfigurationsUpdateResponseConfigTunnelMeshAwsConfig =
   TunnelsWarpConnectorConfigurationsGetResponseConfigTunnelMeshAwsConfig;
@@ -131358,7 +131117,7 @@ export type AccessAiControlsMcpPortalsReadResponseServersItemAuthType =
   | "bearer"
   | "unauthenticated";
 export const AccessAiControlsMcpPortalsReadResponseServersItemAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessAiControlsMcpPortalsReadResponseServersItemPromptsItemMap = {
   [key: string]: unknown | undefined;
@@ -131576,8 +131335,7 @@ export type AccessAiControlsMcpServersReadResponseAuthType =
   | "oauth"
   | "bearer"
   | "unauthenticated";
-export const AccessAiControlsMcpServersReadResponseAuthType =
-  /*@__PURE__*/ S.String;
+export const AccessAiControlsMcpServersReadResponseAuthType = S.String;
 
 export type AccessAiControlsMcpServersReadResponsePromptsItemMap = {
   [key: string]: unknown | undefined;
@@ -131800,7 +131558,7 @@ export type GatewayRulesResetExpirationResponseAction =
   | "resolve"
   | "quarantine"
   | "redirect";
-export const GatewayRulesResetExpirationResponseAction = /*@__PURE__*/ S.String;
+export const GatewayRulesResetExpirationResponseAction = S.String;
 
 export type GatewayRulesResetExpirationResponseFiltersItem =
   | "http"
@@ -131808,8 +131566,7 @@ export type GatewayRulesResetExpirationResponseFiltersItem =
   | "l4"
   | "egress"
   | "dns_resolver";
-export const GatewayRulesResetExpirationResponseFiltersItem =
-  /*@__PURE__*/ S.String;
+export const GatewayRulesResetExpirationResponseFiltersItem = S.String;
 
 export type GatewayRulesResetExpirationResponseFiltersList =
   Array<GatewayRulesResetExpirationResponseFiltersItem>;
@@ -131851,45 +131608,45 @@ export type GatewayRulesResetExpirationResponseRuleSettingsBisoAdminControlsCopy
   | "disabled"
   | "remote_only";
 export const GatewayRulesResetExpirationResponseRuleSettingsBisoAdminControlsCopy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesResetExpirationResponseRuleSettingsBisoAdminControlsDownload =
   | "enabled"
   | "disabled"
   | "remote_only";
 export const GatewayRulesResetExpirationResponseRuleSettingsBisoAdminControlsDownload =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesResetExpirationResponseRuleSettingsBisoAdminControlsKeyboard =
   | "enabled"
   | "disabled";
 export const GatewayRulesResetExpirationResponseRuleSettingsBisoAdminControlsKeyboard =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesResetExpirationResponseRuleSettingsBisoAdminControlsPaste =
   | "enabled"
   | "disabled"
   | "remote_only";
 export const GatewayRulesResetExpirationResponseRuleSettingsBisoAdminControlsPaste =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesResetExpirationResponseRuleSettingsBisoAdminControlsPrinting =
   | "enabled"
   | "disabled";
 export const GatewayRulesResetExpirationResponseRuleSettingsBisoAdminControlsPrinting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesResetExpirationResponseRuleSettingsBisoAdminControlsUpload =
   | "enabled"
   | "disabled";
 export const GatewayRulesResetExpirationResponseRuleSettingsBisoAdminControlsUpload =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesResetExpirationResponseRuleSettingsBisoAdminControlsVersion =
   | "v1"
   | "v2";
 export const GatewayRulesResetExpirationResponseRuleSettingsBisoAdminControlsVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesResetExpirationResponseRuleSettingsBisoAdminControls {
   /** Configure copy behavior. If set to remote_only, users cannot copy isolated content from the remote browser to the local clipboard. If this field is absent, copying remains enabled. Applies only when version == "v2". */
@@ -132072,7 +131829,7 @@ export type GatewayRulesResetExpirationResponseRuleSettingsQuarantineFileTypesIt
   | "zip"
   | "rar";
 export const GatewayRulesResetExpirationResponseRuleSettingsQuarantineFileTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesResetExpirationResponseRuleSettingsQuarantineFileTypesList =
   Array<GatewayRulesResetExpirationResponseRuleSettingsQuarantineFileTypesItem>;
@@ -132107,7 +131864,7 @@ export type GatewayRulesResetExpirationResponseRuleSettingsResolveDnsInternallyF
   | "none"
   | "public_dns";
 export const GatewayRulesResetExpirationResponseRuleSettingsResolveDnsInternallyFallback =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesResetExpirationResponseRuleSettingsResolveDnsInternally {
   /** Specify the fallback behavior to apply when the internal DNS response code differs from 'NOERROR' or when the response data contains only CNAME records for 'A' or 'AAAA' queries. */
@@ -132135,7 +131892,7 @@ export type GatewayRulesResetExpirationResponseRuleSettingsUntrustedCertAction =
   | "block"
   | "error";
 export const GatewayRulesResetExpirationResponseRuleSettingsUntrustedCertAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesResetExpirationResponseRuleSettingsUntrustedCert {
   /** Defines the action performed when an untrusted certificate seen. The default action an error with HTTP code 526. */
@@ -133035,8 +132792,7 @@ export const SyncAccessAiControlMcpServerResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<SyncAccessAiControlMcpServerResponse>;
 
 export type DexTracerouteTestsNetworkPathRequestInterval = "minute" | "hour";
-export const DexTracerouteTestsNetworkPathRequestInterval =
-  /*@__PURE__*/ S.String;
+export const DexTracerouteTestsNetworkPathRequestInterval = S.String;
 
 export interface TestNetworkPathDexTracerouteRequest {
   /** Unique identifier linked to an account. */
@@ -133074,7 +132830,7 @@ export const TestNetworkPathDexTracerouteRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TestNetworkPathDexTracerouteRequest>;
 
 export type DexTracerouteTestsNetworkPathResponseKind = "traceroute";
-export const DexTracerouteTestsNetworkPathResponseKind = /*@__PURE__*/ S.String;
+export const DexTracerouteTestsNetworkPathResponseKind = S.String;
 
 export interface DexTracerouteTestsNetworkPathResponseNetworkPathSlotsItem {
   /** API Resource UUID tag. */
@@ -133113,7 +132869,7 @@ export const DexTracerouteTestsNetworkPathResponseNetworkPathSlotsList =
 export type DexTracerouteTestsNetworkPathResponseNetworkPathSamplingUnit =
   "hours";
 export const DexTracerouteTestsNetworkPathResponseNetworkPathSamplingUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DexTracerouteTestsNetworkPathResponseNetworkPathSampling {
   unit: DexTracerouteTestsNetworkPathResponseNetworkPathSamplingUnit;
@@ -133386,7 +133142,7 @@ export type AccessAiControlsMcpPortalsUpdateResponseServersItemAuthType =
   | "bearer"
   | "unauthenticated";
 export const AccessAiControlsMcpPortalsUpdateResponseServersItemAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessAiControlsMcpPortalsUpdateResponseServersItemPromptsItemMap =
   { [key: string]: unknown | undefined };
@@ -133657,8 +133413,7 @@ export type AccessAiControlsMcpServersUpdateResponseAuthType =
   | "oauth"
   | "bearer"
   | "unauthenticated";
-export const AccessAiControlsMcpServersUpdateResponseAuthType =
-  /*@__PURE__*/ S.String;
+export const AccessAiControlsMcpServersUpdateResponseAuthType = S.String;
 
 export type AccessAiControlsMcpServersUpdateResponsePromptsItemMap = {
   [key: string]: unknown | undefined;
@@ -133811,7 +133566,7 @@ export type AccessApplicationsUpdateRequestTypeSelfHostedApplication =
   | "mcp_portal"
   | "proxy_endpoint";
 export const AccessApplicationsUpdateRequestTypeSelfHostedApplication =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestTypeBrowserSSHApplication =
   | "self_hosted"
@@ -133829,7 +133584,7 @@ export type AccessApplicationsUpdateRequestTypeBrowserSSHApplication =
   | "mcp_portal"
   | "proxy_endpoint";
 export const AccessApplicationsUpdateRequestTypeBrowserSSHApplication =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestType =
   | AccessApplicationsUpdateRequestTypeSelfHostedApplication
@@ -133864,7 +133619,7 @@ export type AccessApplicationsUpdateRequestCorsHeadersSelfHostedApplicationAllow
   | "TRACE"
   | "PATCH";
 export const AccessApplicationsUpdateRequestCorsHeadersSelfHostedApplicationAllowedMethodsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestCorsHeadersSelfHostedApplicationAllowedMethodsList =
   Array<
@@ -133939,7 +133694,7 @@ export const AccessApplicationsUpdateRequestCustomPagesList =
 export type AccessApplicationsUpdateRequestDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsUpdateRequestDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateRequestDestinationsItemPublicDestination {
   type?:
@@ -133965,12 +133720,12 @@ export type AccessApplicationsUpdateRequestDestinationsItemPrivateDestinationL4P
   | "tcp"
   | "udp";
 export const AccessApplicationsUpdateRequestDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsUpdateRequestDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateRequestDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -134013,7 +133768,7 @@ export const AccessApplicationsUpdateRequestDestinationsItemPrivateDestination =
 export type AccessApplicationsUpdateRequestDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsUpdateRequestDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateRequestDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -134038,7 +133793,7 @@ export const AccessApplicationsUpdateRequestDestinationsItemViaMcpServerPortalDe
 export type AccessApplicationsUpdateRequestDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsUpdateRequestDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateRequestDestinationsItemWorkerDestination {
   type: AccessApplicationsUpdateRequestDestinationsItemWorkerDestinationType;
@@ -134059,7 +133814,7 @@ export const AccessApplicationsUpdateRequestDestinationsItemWorkerDestination =
 export type AccessApplicationsUpdateRequestDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsUpdateRequestDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateRequestDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsUpdateRequestDestinationsItemPreviewWorkerDestinationType;
@@ -134080,7 +133835,7 @@ export const AccessApplicationsUpdateRequestDestinationsItemPreviewWorkerDestina
 export type AccessApplicationsUpdateRequestDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsUpdateRequestDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateRequestDestinationsItemAllWorkersDestination {
   type: AccessApplicationsUpdateRequestDestinationsItemAllWorkersDestinationType;
@@ -134098,7 +133853,7 @@ export const AccessApplicationsUpdateRequestDestinationsItemAllWorkersDestinatio
 export type AccessApplicationsUpdateRequestDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsUpdateRequestDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateRequestDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsUpdateRequestDestinationsItemAllPreviewWorkersDestinationType;
@@ -134146,7 +133901,7 @@ export type AccessApplicationsUpdateRequestMfaConfigAllowedAuthenticatorsItem =
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateRequestMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestMfaConfigAllowedAuthenticatorsList =
   Array<
@@ -134293,7 +134048,7 @@ export const AccessApplicationsUpdateRequestPoliciesSelfHostedApplicationItemCas
 export type AccessApplicationsUpdateRequestPoliciesSelfHostedApplicationItemCase2ConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsUpdateRequestPoliciesSelfHostedApplicationItemCase2ConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestPoliciesSelfHostedApplicationItemCase2ConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<
@@ -134308,7 +134063,7 @@ export const AccessApplicationsUpdateRequestPoliciesSelfHostedApplicationItemCas
 export type AccessApplicationsUpdateRequestPoliciesSelfHostedApplicationItemCase2ConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsUpdateRequestPoliciesSelfHostedApplicationItemCase2ConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestPoliciesSelfHostedApplicationItemCase2ConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<
@@ -134366,7 +134121,7 @@ export type AccessApplicationsUpdateRequestPoliciesSelfHostedApplicationItemCase
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateRequestPoliciesSelfHostedApplicationItemCase2MfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestPoliciesSelfHostedApplicationItemCase2MfaConfigAllowedAuthenticatorsList =
   Array<
@@ -134514,7 +134269,7 @@ export type AccessApplicationsUpdateRequestPoliciesInfrastructureApplicationItem
   | "non_identity"
   | "bypass";
 export const AccessApplicationsUpdateRequestPoliciesInfrastructureApplicationItemDecision =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestPoliciesInfrastructureApplicationItemIncludeItemGroupRuleGroup =
   AccessPoliciesCreateRequestIncludeItemGroupRuleGroup;
@@ -134747,7 +134502,7 @@ export type AccessApplicationsUpdateRequestPoliciesInfrastructureApplicationItem
   | "high"
   | "unscored";
 export const AccessApplicationsUpdateRequestPoliciesInfrastructureApplicationItemIncludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestPoliciesInfrastructureApplicationItemIncludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<
@@ -135108,7 +134863,7 @@ export const AccessApplicationsUpdateRequestPoliciesInfrastructureApplicationIte
 export type AccessApplicationsUpdateRequestPoliciesInfrastructureApplicationItemMfaConfigAllowedAuthenticatorsItem =
   "piv_key";
 export const AccessApplicationsUpdateRequestPoliciesInfrastructureApplicationItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestPoliciesInfrastructureApplicationItemMfaConfigAllowedAuthenticatorsList =
   Array<
@@ -135404,7 +135159,7 @@ export const AccessApplicationsUpdateForAccountRequestPolicies =
 export type AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationHTTPBasicScheme =
   "httpbasic";
 export const AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationHTTPBasicScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationHTTPBasic {
   /** Password used to authenticate with the remote SCIM service. */
@@ -135430,7 +135185,7 @@ export const AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthe
 export type AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationOAuthBearerTokenScheme =
   "oauthbearertoken";
 export const AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationOAuthBearerTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationOAuthBearerToken {
   /** Token used to authenticate with the remote SCIM service. */
@@ -135453,7 +135208,7 @@ export const AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthe
 export type AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationOauth2Scheme =
   "oauth2";
 export const AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationOauth2Scheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthenticationSCIMConfigAuthenticationOauth2ScopesList =
   Array<string>;
@@ -135497,7 +135252,7 @@ export const AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthe
 export type AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -135538,7 +135293,7 @@ export const AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthe
 export type AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -135616,7 +135371,7 @@ export type AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationMappin
   | "strict"
   | "passthrough";
 export const AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateRequestScimConfigSelfHostedApplicationMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -135713,7 +135468,7 @@ export const AccessApplicationsUpdateRequestScimConfigSaaSApplicationAuthenticat
 export type AccessApplicationsUpdateRequestScimConfigSaaSApplicationAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateRequestScimConfigSaaSApplicationAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateRequestScimConfigSaaSApplicationAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -135754,7 +135509,7 @@ export const AccessApplicationsUpdateRequestScimConfigSaaSApplicationAuthenticat
 export type AccessApplicationsUpdateRequestScimConfigSaaSApplicationAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateRequestScimConfigSaaSApplicationAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateRequestScimConfigSaaSApplicationAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -135820,7 +135575,7 @@ export type AccessApplicationsUpdateRequestScimConfigSaaSApplicationMappingsItem
   | "strict"
   | "passthrough";
 export const AccessApplicationsUpdateRequestScimConfigSaaSApplicationMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateRequestScimConfigSaaSApplicationMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -135937,14 +135692,14 @@ export type AccessApplicationsUpdateRequestSaasAppSAMLSaaSAppAuthType =
   | "saml"
   | "oidc";
 export const AccessApplicationsUpdateRequestSaasAppSAMLSaaSAppAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestSaasAppSAMLSaaSAppCustomAttributesItemNameFormat =
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:basic"
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:uri";
 export const AccessApplicationsUpdateRequestSaasAppSAMLSaaSAppCustomAttributesItemNameFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestSaasAppSAMLSaaSAppCustomAttributesItemSourceNameByIdpItem =
   AccessApplicationsCreateRequestSaasAppSAMLSaaSAppCustomAttributesItemSourceNameByIdpItem;
@@ -136023,7 +135778,7 @@ export type AccessApplicationsUpdateRequestSaasAppSAMLSaaSAppNameIdFormat =
   | "id"
   | "email";
 export const AccessApplicationsUpdateRequestSaasAppSAMLSaaSAppNameIdFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateRequestSaasAppSAMLSaaSApp {
   /** Optional identifier indicating the authentication protocol used for the saas app. Required for OIDC. Default if unset is "saml" */
@@ -136095,7 +135850,7 @@ export type AccessApplicationsUpdateRequestSaasAppOIDCSaaSAppAuthType =
   | "saml"
   | "oidc";
 export const AccessApplicationsUpdateRequestSaasAppOIDCSaaSAppAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestSaasAppOIDCSaaSAppCustomClaimsItemScope =
   | "groups"
@@ -136103,7 +135858,7 @@ export type AccessApplicationsUpdateRequestSaasAppOIDCSaaSAppCustomClaimsItemSco
   | "email"
   | "openid";
 export const AccessApplicationsUpdateRequestSaasAppOIDCSaaSAppCustomClaimsItemScope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestSaasAppOIDCSaaSAppCustomClaimsItemSourceNameByIdpMap =
   { [key: string]: string | undefined };
@@ -136176,7 +135931,7 @@ export type AccessApplicationsUpdateRequestSaasAppOIDCSaaSAppGrantTypesItem =
   | "hybrid"
   | "implicit";
 export const AccessApplicationsUpdateRequestSaasAppOIDCSaaSAppGrantTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestSaasAppOIDCSaaSAppGrantTypesList =
   Array<
@@ -136211,7 +135966,7 @@ export type AccessApplicationsUpdateRequestSaasAppOIDCSaaSAppScopesItem =
   | "email"
   | "profile";
 export const AccessApplicationsUpdateRequestSaasAppOIDCSaaSAppScopesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestSaasAppOIDCSaaSAppScopesList = Array<
   AccessApplicationsUpdateRequestSaasAppOIDCSaaSAppScopesItem | (string & {})
@@ -136360,7 +136115,7 @@ export const AccessApplicationsUpdateRequestLandingPageDesign =
 export type AccessApplicationsUpdateRequestTargetCriteriaInfrastructureApplicationItemProtocol =
   "SSH";
 export const AccessApplicationsUpdateRequestTargetCriteriaInfrastructureApplicationItemProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestTargetCriteriaInfrastructureApplicationItemTargetAttributesValueList =
   Array<string>;
@@ -136417,7 +136172,7 @@ export const AccessApplicationsUpdateRequestTargetCriteriaInfrastructureApplicat
 export type AccessApplicationsUpdateRequestTargetCriteriaBrowserRDPApplicationItemProtocol =
   "RDP";
 export const AccessApplicationsUpdateRequestTargetCriteriaBrowserRDPApplicationItemProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateRequestTargetCriteriaBrowserRDPApplicationItemTargetAttributesValueList =
   Array<string>;
@@ -136701,8 +136456,7 @@ export type AccessApplicationsUpdateResultSelfHostedApplicationType =
   | "mcp"
   | "mcp_portal"
   | "proxy_endpoint";
-export const AccessApplicationsUpdateResultSelfHostedApplicationType =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsUpdateResultSelfHostedApplicationType = S.String;
 
 export type AccessApplicationsUpdateResultSelfHostedApplicationAllowedIdpsList =
   Array<unknown>;
@@ -136729,7 +136483,7 @@ export type AccessApplicationsUpdateResultSelfHostedApplicationCorsHeadersAllowe
   | "TRACE"
   | "PATCH";
 export const AccessApplicationsUpdateResultSelfHostedApplicationCorsHeadersAllowedMethodsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSelfHostedApplicationCorsHeadersAllowedMethodsList =
   Array<AccessApplicationsUpdateResultSelfHostedApplicationCorsHeadersAllowedMethodsItem>;
@@ -136810,7 +136564,7 @@ export const AccessApplicationsUpdateResultSelfHostedApplicationCustomPagesList 
 export type AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemPublicDestinationType | null;
@@ -136836,12 +136590,12 @@ export type AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemP
   | "tcp"
   | "udp";
 export const AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -136882,7 +136636,7 @@ export const AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItem
 export type AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -136907,7 +136661,7 @@ export const AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItem
 export type AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemWorkerDestinationType;
@@ -136928,7 +136682,7 @@ export const AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItem
 export type AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -136949,7 +136703,7 @@ export const AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItem
 export type AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemAllWorkersDestinationType;
@@ -136967,7 +136721,7 @@ export const AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItem
 export type AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsUpdateResultSelfHostedApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -137015,7 +136769,7 @@ export type AccessApplicationsUpdateResultSelfHostedApplicationMfaConfigAllowedA
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateResultSelfHostedApplicationMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSelfHostedApplicationMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultSelfHostedApplicationMfaConfigAllowedAuthenticatorsItem>;
@@ -137163,7 +136917,7 @@ export const AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemAppr
 export type AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -137175,7 +136929,7 @@ export const AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemConn
 export type AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -137233,7 +136987,7 @@ export type AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemDecis
   | "non_identity"
   | "bypass";
 export const AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemDecision =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemExcludeItemGroupRuleGroup =
   AccessPoliciesCreateRequestIncludeItemGroupRuleGroup;
@@ -137466,7 +137220,7 @@ export type AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemExclu
   | "high"
   | "unscored";
 export const AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem>;
@@ -137785,7 +137539,7 @@ export type AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemMfaCo
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultSelfHostedApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -138124,7 +137878,7 @@ export const AccessApplicationsUpdateResultSelfHostedApplicationPoliciesList =
 export type AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationHTTPBasicScheme =
   "httpbasic";
 export const AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationHTTPBasicScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationHTTPBasic {
   /** Password used to authenticate with the remote SCIM service. */
@@ -138150,7 +137904,7 @@ export const AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthen
 export type AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOAuthBearerTokenScheme =
   "oauthbearertoken";
 export const AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOAuthBearerTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOAuthBearerToken {
   /** Token used to authenticate with the remote SCIM service. */
@@ -138173,7 +137927,7 @@ export const AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthen
 export type AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOauth2Scheme =
   "oauth2";
 export const AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOauth2Scheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthenticationSCIMConfigAuthenticationOauth2ScopesList =
   Array<string>;
@@ -138219,7 +137973,7 @@ export const AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthen
 export type AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -138260,7 +138014,7 @@ export const AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthen
 export type AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultSelfHostedApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -138338,7 +138092,7 @@ export type AccessApplicationsUpdateResultSelfHostedApplicationScimConfigMapping
   | "strict"
   | "passthrough";
 export const AccessApplicationsUpdateResultSelfHostedApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultSelfHostedApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -138677,7 +138431,7 @@ export const AccessApplicationsUpdateResultSaaSApplicationPoliciesItemApprovalGr
 export type AccessApplicationsUpdateResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsUpdateResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -138689,7 +138443,7 @@ export const AccessApplicationsUpdateResultSaaSApplicationPoliciesItemConnection
 export type AccessApplicationsUpdateResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsUpdateResultSaaSApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -139138,7 +138892,7 @@ export type AccessApplicationsUpdateResultSaaSApplicationPoliciesItemMfaConfigAl
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateResultSaaSApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSaaSApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultSaaSApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -139477,14 +139231,14 @@ export type AccessApplicationsUpdateResultSaaSApplicationSaasAppSAMLSaaSAppAuthT
   | "saml"
   | "oidc";
 export const AccessApplicationsUpdateResultSaaSApplicationSaasAppSAMLSaaSAppAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSaaSApplicationSaasAppSAMLSaaSAppCustomAttributesItemNameFormat =
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:basic"
   | "urn:oasis:names:tc:SAML:2.0:attrname-format:uri";
 export const AccessApplicationsUpdateResultSaaSApplicationSaasAppSAMLSaaSAppCustomAttributesItemNameFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSaaSApplicationSaasAppSAMLSaaSAppCustomAttributesItemSourceNameByIdpItem =
   AccessApplicationsCreateResultSaaSApplicationSaasAppSAMLSaaSAppCustomAttributesItemSourceNameByIdpItem;
@@ -139565,7 +139319,7 @@ export type AccessApplicationsUpdateResultSaaSApplicationSaasAppSAMLSaaSAppNameI
   | "id"
   | "email";
 export const AccessApplicationsUpdateResultSaaSApplicationSaasAppSAMLSaaSAppNameIdFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultSaaSApplicationSaasAppSAMLSaaSApp {
   /** Optional identifier indicating the authentication protocol used for the saas app. Required for OIDC. Default if unset is "saml" */
@@ -139634,7 +139388,7 @@ export type AccessApplicationsUpdateResultSaaSApplicationSaasAppOIDCSaaSAppAuthT
   | "saml"
   | "oidc";
 export const AccessApplicationsUpdateResultSaaSApplicationSaasAppOIDCSaaSAppAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSaaSApplicationSaasAppOIDCSaaSAppCustomClaimsItemScope =
   | "groups"
@@ -139642,7 +139396,7 @@ export type AccessApplicationsUpdateResultSaaSApplicationSaasAppOIDCSaaSAppCusto
   | "email"
   | "openid";
 export const AccessApplicationsUpdateResultSaaSApplicationSaasAppOIDCSaaSAppCustomClaimsItemScope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSaaSApplicationSaasAppOIDCSaaSAppCustomClaimsItemSourceNameByIdpMap =
   { [key: string]: string | undefined };
@@ -139717,7 +139471,7 @@ export type AccessApplicationsUpdateResultSaaSApplicationSaasAppOIDCSaaSAppGrant
   | "hybrid"
   | "implicit";
 export const AccessApplicationsUpdateResultSaaSApplicationSaasAppOIDCSaaSAppGrantTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSaaSApplicationSaasAppOIDCSaaSAppGrantTypesList =
   Array<AccessApplicationsUpdateResultSaaSApplicationSaasAppOIDCSaaSAppGrantTypesItem>;
@@ -139749,7 +139503,7 @@ export type AccessApplicationsUpdateResultSaaSApplicationSaasAppOIDCSaaSAppScope
   | "email"
   | "profile";
 export const AccessApplicationsUpdateResultSaaSApplicationSaasAppOIDCSaaSAppScopesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultSaaSApplicationSaasAppOIDCSaaSAppScopesList =
   Array<AccessApplicationsUpdateResultSaaSApplicationSaasAppOIDCSaaSAppScopesItem>;
@@ -139902,7 +139656,7 @@ export const AccessApplicationsUpdateResultSaaSApplicationScimConfigAuthenticati
 export type AccessApplicationsUpdateResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -139943,7 +139697,7 @@ export const AccessApplicationsUpdateResultSaaSApplicationScimConfigAuthenticati
 export type AccessApplicationsUpdateResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultSaaSApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -140009,7 +139763,7 @@ export type AccessApplicationsUpdateResultSaaSApplicationScimConfigMappingsItemS
   | "strict"
   | "passthrough";
 export const AccessApplicationsUpdateResultSaaSApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultSaaSApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -140186,8 +139940,7 @@ export type AccessApplicationsUpdateResultBrowserSSHApplicationType =
   | "mcp"
   | "mcp_portal"
   | "proxy_endpoint";
-export const AccessApplicationsUpdateResultBrowserSSHApplicationType =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsUpdateResultBrowserSSHApplicationType = S.String;
 
 export type AccessApplicationsUpdateResultBrowserSSHApplicationAllowedIdpsList =
   Array<unknown>;
@@ -140206,7 +139959,7 @@ export const AccessApplicationsUpdateResultBrowserSSHApplicationCustomPagesList 
 export type AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemPublicDestinationType | null;
@@ -140232,12 +139985,12 @@ export type AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemP
   | "tcp"
   | "udp";
 export const AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -140278,7 +140031,7 @@ export const AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItem
 export type AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -140303,7 +140056,7 @@ export const AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItem
 export type AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemWorkerDestinationType;
@@ -140324,7 +140077,7 @@ export const AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItem
 export type AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -140345,7 +140098,7 @@ export const AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItem
 export type AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemAllWorkersDestinationType;
@@ -140363,7 +140116,7 @@ export const AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItem
 export type AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsUpdateResultBrowserSSHApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -140411,7 +140164,7 @@ export type AccessApplicationsUpdateResultBrowserSSHApplicationMfaConfigAllowedA
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateResultBrowserSSHApplicationMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserSSHApplicationMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultBrowserSSHApplicationMfaConfigAllowedAuthenticatorsItem>;
@@ -140559,7 +140312,7 @@ export const AccessApplicationsUpdateResultBrowserSSHApplicationPoliciesItemAppr
 export type AccessApplicationsUpdateResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsUpdateResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -140571,7 +140324,7 @@ export const AccessApplicationsUpdateResultBrowserSSHApplicationPoliciesItemConn
 export type AccessApplicationsUpdateResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsUpdateResultBrowserSSHApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -141020,7 +140773,7 @@ export type AccessApplicationsUpdateResultBrowserSSHApplicationPoliciesItemMfaCo
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateResultBrowserSSHApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserSSHApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultBrowserSSHApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -141374,7 +141127,7 @@ export const AccessApplicationsUpdateResultBrowserSSHApplicationScimConfigAuthen
 export type AccessApplicationsUpdateResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -141415,7 +141168,7 @@ export const AccessApplicationsUpdateResultBrowserSSHApplicationScimConfigAuthen
 export type AccessApplicationsUpdateResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserSSHApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -141481,7 +141234,7 @@ export type AccessApplicationsUpdateResultBrowserSSHApplicationScimConfigMapping
   | "strict"
   | "passthrough";
 export const AccessApplicationsUpdateResultBrowserSSHApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserSSHApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -141774,8 +141527,7 @@ export type AccessApplicationsUpdateResultBrowserVNCApplicationType =
   | "mcp"
   | "mcp_portal"
   | "proxy_endpoint";
-export const AccessApplicationsUpdateResultBrowserVNCApplicationType =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsUpdateResultBrowserVNCApplicationType = S.String;
 
 export type AccessApplicationsUpdateResultBrowserVNCApplicationAllowedIdpsList =
   Array<unknown>;
@@ -141794,7 +141546,7 @@ export const AccessApplicationsUpdateResultBrowserVNCApplicationCustomPagesList 
 export type AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemPublicDestinationType | null;
@@ -141820,12 +141572,12 @@ export type AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemP
   | "tcp"
   | "udp";
 export const AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -141866,7 +141618,7 @@ export const AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItem
 export type AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -141891,7 +141643,7 @@ export const AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItem
 export type AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemWorkerDestinationType;
@@ -141912,7 +141664,7 @@ export const AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItem
 export type AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -141933,7 +141685,7 @@ export const AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItem
 export type AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemAllWorkersDestinationType;
@@ -141951,7 +141703,7 @@ export const AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItem
 export type AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsUpdateResultBrowserVNCApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -141999,7 +141751,7 @@ export type AccessApplicationsUpdateResultBrowserVNCApplicationMfaConfigAllowedA
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateResultBrowserVNCApplicationMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserVNCApplicationMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultBrowserVNCApplicationMfaConfigAllowedAuthenticatorsItem>;
@@ -142147,7 +141899,7 @@ export const AccessApplicationsUpdateResultBrowserVNCApplicationPoliciesItemAppr
 export type AccessApplicationsUpdateResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsUpdateResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -142159,7 +141911,7 @@ export const AccessApplicationsUpdateResultBrowserVNCApplicationPoliciesItemConn
 export type AccessApplicationsUpdateResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsUpdateResultBrowserVNCApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -142608,7 +142360,7 @@ export type AccessApplicationsUpdateResultBrowserVNCApplicationPoliciesItemMfaCo
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateResultBrowserVNCApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserVNCApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultBrowserVNCApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -142962,7 +142714,7 @@ export const AccessApplicationsUpdateResultBrowserVNCApplicationScimConfigAuthen
 export type AccessApplicationsUpdateResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -143003,7 +142755,7 @@ export const AccessApplicationsUpdateResultBrowserVNCApplicationScimConfigAuthen
 export type AccessApplicationsUpdateResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserVNCApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -143069,7 +142821,7 @@ export type AccessApplicationsUpdateResultBrowserVNCApplicationScimConfigMapping
   | "strict"
   | "passthrough";
 export const AccessApplicationsUpdateResultBrowserVNCApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserVNCApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -143363,7 +143115,7 @@ export type AccessApplicationsUpdateResultAppLauncherApplicationType =
   | "mcp_portal"
   | "proxy_endpoint";
 export const AccessApplicationsUpdateResultAppLauncherApplicationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultAppLauncherApplicationAllowedIdpsList =
   Array<unknown>;
@@ -143439,7 +143191,7 @@ export const AccessApplicationsUpdateResultAppLauncherApplicationPoliciesItemApp
 export type AccessApplicationsUpdateResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsUpdateResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -143451,7 +143203,7 @@ export const AccessApplicationsUpdateResultAppLauncherApplicationPoliciesItemCon
 export type AccessApplicationsUpdateResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsUpdateResultAppLauncherApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -143900,7 +143652,7 @@ export type AccessApplicationsUpdateResultAppLauncherApplicationPoliciesItemMfaC
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateResultAppLauncherApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultAppLauncherApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultAppLauncherApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -144390,7 +144142,7 @@ export const AccessApplicationsUpdateResultDeviceEnrollmentPermissionsApplicatio
 export type AccessApplicationsUpdateResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsUpdateResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -144402,7 +144154,7 @@ export const AccessApplicationsUpdateResultDeviceEnrollmentPermissionsApplicatio
 export type AccessApplicationsUpdateResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsUpdateResultDeviceEnrollmentPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -144851,7 +144603,7 @@ export type AccessApplicationsUpdateResultDeviceEnrollmentPermissionsApplication
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateResultDeviceEnrollmentPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultDeviceEnrollmentPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultDeviceEnrollmentPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -145310,7 +145062,7 @@ export const AccessApplicationsUpdateResultBrowserIsolationPermissionsApplicatio
 export type AccessApplicationsUpdateResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsUpdateResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -145322,7 +145074,7 @@ export const AccessApplicationsUpdateResultBrowserIsolationPermissionsApplicatio
 export type AccessApplicationsUpdateResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsUpdateResultBrowserIsolationPermissionsApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -145771,7 +145523,7 @@ export type AccessApplicationsUpdateResultBrowserIsolationPermissionsApplication
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateResultBrowserIsolationPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserIsolationPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultBrowserIsolationPermissionsApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -146230,7 +145982,7 @@ export const AccessApplicationsUpdateResultGatewayIdentityProxyEndpointApplicati
 export type AccessApplicationsUpdateResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsUpdateResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -146242,7 +145994,7 @@ export const AccessApplicationsUpdateResultGatewayIdentityProxyEndpointApplicati
 export type AccessApplicationsUpdateResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsUpdateResultGatewayIdentityProxyEndpointApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -146691,7 +146443,7 @@ export type AccessApplicationsUpdateResultGatewayIdentityProxyEndpointApplicatio
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateResultGatewayIdentityProxyEndpointApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultGatewayIdentityProxyEndpointApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultGatewayIdentityProxyEndpointApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -147136,7 +146888,7 @@ export const AccessApplicationsUpdateResultBookmarkApplicationPoliciesItemApprov
 export type AccessApplicationsUpdateResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsUpdateResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -147148,7 +146900,7 @@ export const AccessApplicationsUpdateResultBookmarkApplicationPoliciesItemConnec
 export type AccessApplicationsUpdateResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsUpdateResultBookmarkApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -147597,7 +147349,7 @@ export type AccessApplicationsUpdateResultBookmarkApplicationPoliciesItemMfaConf
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateResultBookmarkApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBookmarkApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultBookmarkApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -147986,7 +147738,7 @@ export const AccessApplicationsUpdateResultBookmarkApplication =
 export type AccessApplicationsUpdateResultInfrastructureApplicationTargetCriteriaItemProtocol =
   "SSH";
 export const AccessApplicationsUpdateResultInfrastructureApplicationTargetCriteriaItemProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultInfrastructureApplicationTargetCriteriaItemTargetAttributesValueList =
   Array<string>;
@@ -148478,7 +148230,7 @@ export const AccessApplicationsUpdateResultInfrastructureApplicationPoliciesItem
 export type AccessApplicationsUpdateResultInfrastructureApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
   "piv_key";
 export const AccessApplicationsUpdateResultInfrastructureApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultInfrastructureApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultInfrastructureApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -148815,7 +148567,7 @@ export const AccessApplicationsUpdateResultInfrastructureApplication =
 export type AccessApplicationsUpdateResultBrowserRDPApplicationTargetCriteriaItemProtocol =
   "RDP";
 export const AccessApplicationsUpdateResultBrowserRDPApplicationTargetCriteriaItemProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserRDPApplicationTargetCriteriaItemTargetAttributesValueList =
   Array<string>;
@@ -148884,7 +148636,7 @@ export const AccessApplicationsUpdateResultBrowserRDPApplicationCustomPagesList 
 export type AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemPublicDestinationType | null;
@@ -148910,12 +148662,12 @@ export type AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemP
   | "tcp"
   | "udp";
 export const AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -148956,7 +148708,7 @@ export const AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItem
 export type AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -148981,7 +148733,7 @@ export const AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItem
 export type AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemWorkerDestinationType;
@@ -149002,7 +148754,7 @@ export const AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItem
 export type AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -149023,7 +148775,7 @@ export const AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItem
 export type AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemAllWorkersDestinationType;
@@ -149041,7 +148793,7 @@ export const AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItem
 export type AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsUpdateResultBrowserRDPApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -149089,7 +148841,7 @@ export type AccessApplicationsUpdateResultBrowserRDPApplicationMfaConfigAllowedA
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateResultBrowserRDPApplicationMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserRDPApplicationMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultBrowserRDPApplicationMfaConfigAllowedAuthenticatorsItem>;
@@ -149237,7 +148989,7 @@ export const AccessApplicationsUpdateResultBrowserRDPApplicationPoliciesItemAppr
 export type AccessApplicationsUpdateResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsUpdateResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -149249,7 +149001,7 @@ export const AccessApplicationsUpdateResultBrowserRDPApplicationPoliciesItemConn
 export type AccessApplicationsUpdateResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsUpdateResultBrowserRDPApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -149698,7 +149450,7 @@ export type AccessApplicationsUpdateResultBrowserRDPApplicationPoliciesItemMfaCo
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateResultBrowserRDPApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultBrowserRDPApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultBrowserRDPApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -150052,7 +149804,7 @@ export const AccessApplicationsUpdateResultBrowserRDPApplicationScimConfigAuthen
 export type AccessApplicationsUpdateResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -150093,7 +149845,7 @@ export const AccessApplicationsUpdateResultBrowserRDPApplicationScimConfigAuthen
 export type AccessApplicationsUpdateResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserRDPApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -150159,7 +149911,7 @@ export type AccessApplicationsUpdateResultBrowserRDPApplicationScimConfigMapping
   | "strict"
   | "passthrough";
 export const AccessApplicationsUpdateResultBrowserRDPApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultBrowserRDPApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -150459,7 +150211,7 @@ export const AccessApplicationsUpdateResultMcpServerApplicationCustomPagesList =
 export type AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemPublicDestinationType | null;
@@ -150485,12 +150237,12 @@ export type AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemPr
   | "tcp"
   | "udp";
 export const AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -150531,7 +150283,7 @@ export const AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemP
 export type AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -150556,7 +150308,7 @@ export const AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemV
 export type AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemWorkerDestinationType;
@@ -150577,7 +150329,7 @@ export const AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemW
 export type AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -150598,7 +150350,7 @@ export const AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemP
 export type AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemAllWorkersDestinationType;
@@ -150616,7 +150368,7 @@ export const AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemA
 export type AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsUpdateResultMcpServerApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -150773,7 +150525,7 @@ export const AccessApplicationsUpdateResultMcpServerApplicationPoliciesItemAppro
 export type AccessApplicationsUpdateResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsUpdateResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -150785,7 +150537,7 @@ export const AccessApplicationsUpdateResultMcpServerApplicationPoliciesItemConne
 export type AccessApplicationsUpdateResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsUpdateResultMcpServerApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -151234,7 +150986,7 @@ export type AccessApplicationsUpdateResultMcpServerApplicationPoliciesItemMfaCon
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateResultMcpServerApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultMcpServerApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultMcpServerApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -151588,7 +151340,7 @@ export const AccessApplicationsUpdateResultMcpServerApplicationScimConfigAuthent
 export type AccessApplicationsUpdateResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -151629,7 +151381,7 @@ export const AccessApplicationsUpdateResultMcpServerApplicationScimConfigAuthent
 export type AccessApplicationsUpdateResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -151695,7 +151447,7 @@ export type AccessApplicationsUpdateResultMcpServerApplicationScimConfigMappings
   | "strict"
   | "passthrough";
 export const AccessApplicationsUpdateResultMcpServerApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -151917,7 +151669,7 @@ export const AccessApplicationsUpdateResultMcpServerPortalApplicationCustomPages
 export type AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemPublicDestinationType =
   "public";
 export const AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemPublicDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemPublicDestination {
   type?: AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemPublicDestinationType | null;
@@ -151943,12 +151695,12 @@ export type AccessApplicationsUpdateResultMcpServerPortalApplicationDestinations
   | "tcp"
   | "udp";
 export const AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemPrivateDestinationL4Protocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemPrivateDestinationType =
   "private";
 export const AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemPrivateDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemPrivateDestination {
   /** The CIDR range of the destination. Single IPs will be computed as /32. */
@@ -151989,7 +151741,7 @@ export const AccessApplicationsUpdateResultMcpServerPortalApplicationDestination
 export type AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemViaMcpServerPortalDestinationType =
   "via_mcp_server_portal";
 export const AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemViaMcpServerPortalDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemViaMcpServerPortalDestination {
   /** The MCP server id configured in ai-controls. */
@@ -152014,7 +151766,7 @@ export const AccessApplicationsUpdateResultMcpServerPortalApplicationDestination
 export type AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemWorkerDestinationType =
   "worker";
 export const AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemWorkerDestination {
   type: AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemWorkerDestinationType;
@@ -152035,7 +151787,7 @@ export const AccessApplicationsUpdateResultMcpServerPortalApplicationDestination
 export type AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemPreviewWorkerDestinationType =
   "preview_worker";
 export const AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemPreviewWorkerDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemPreviewWorkerDestination {
   type: AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemPreviewWorkerDestinationType;
@@ -152056,7 +151808,7 @@ export const AccessApplicationsUpdateResultMcpServerPortalApplicationDestination
 export type AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemAllWorkersDestinationType =
   "all_workers";
 export const AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemAllWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemAllWorkersDestination {
   type: AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemAllWorkersDestinationType;
@@ -152074,7 +151826,7 @@ export const AccessApplicationsUpdateResultMcpServerPortalApplicationDestination
 export type AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemAllPreviewWorkersDestinationType =
   "all_preview_workers";
 export const AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemAllPreviewWorkersDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemAllPreviewWorkersDestination {
   type: AccessApplicationsUpdateResultMcpServerPortalApplicationDestinationsItemAllPreviewWorkersDestinationType;
@@ -152231,7 +151983,7 @@ export const AccessApplicationsUpdateResultMcpServerPortalApplicationPoliciesIte
 export type AccessApplicationsUpdateResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsUpdateResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -152243,7 +151995,7 @@ export const AccessApplicationsUpdateResultMcpServerPortalApplicationPoliciesIte
 export type AccessApplicationsUpdateResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsUpdateResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsUpdateResultMcpServerPortalApplicationPoliciesItemConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -152692,7 +152444,7 @@ export type AccessApplicationsUpdateResultMcpServerPortalApplicationPoliciesItem
   | "biometrics"
   | "security_key";
 export const AccessApplicationsUpdateResultMcpServerPortalApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsUpdateResultMcpServerPortalApplicationPoliciesItemMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsUpdateResultMcpServerPortalApplicationPoliciesItemMfaConfigAllowedAuthenticatorsItem>;
@@ -153046,7 +152798,7 @@ export const AccessApplicationsUpdateResultMcpServerPortalApplicationScimConfigA
 export type AccessApplicationsUpdateResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -153087,7 +152839,7 @@ export const AccessApplicationsUpdateResultMcpServerPortalApplicationScimConfigA
 export type AccessApplicationsUpdateResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
   "access_service_token";
 export const AccessApplicationsUpdateResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceTokenScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerPortalApplicationScimConfigAuthenticationAccessSCIMConfigMultiAuthenticationItemAccessSCIMConfigAuthenticationAccessServiceToken {
   /** Client ID of the Access service token used to authenticate with the remote service. */
@@ -153153,7 +152905,7 @@ export type AccessApplicationsUpdateResultMcpServerPortalApplicationScimConfigMa
   | "strict"
   | "passthrough";
 export const AccessApplicationsUpdateResultMcpServerPortalApplicationScimConfigMappingsItemStrictness =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AccessApplicationsUpdateResultMcpServerPortalApplicationScimConfigMappingsItem {
   /** Which SCIM resource type this mapping applies to. */
@@ -153976,7 +153728,7 @@ export const AccessApplicationsPoliciesUpdateRequestApprovalGroupsList =
 export type AccessApplicationsPoliciesUpdateRequestConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsPoliciesUpdateRequestConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesUpdateRequestConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<
@@ -153991,7 +153743,7 @@ export const AccessApplicationsPoliciesUpdateRequestConnectionRulesRdpAllowedCli
 export type AccessApplicationsPoliciesUpdateRequestConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsPoliciesUpdateRequestConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesUpdateRequestConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<
@@ -154047,7 +153799,7 @@ export type AccessApplicationsPoliciesUpdateRequestMfaConfigAllowedAuthenticator
   | "biometrics"
   | "security_key";
 export const AccessApplicationsPoliciesUpdateRequestMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesUpdateRequestMfaConfigAllowedAuthenticatorsList =
   Array<
@@ -154196,7 +153948,7 @@ export const AccessApplicationsPoliciesUpdateResponseApprovalGroupsList =
 export type AccessApplicationsPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessApplicationsPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessApplicationsPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -154208,7 +153960,7 @@ export const AccessApplicationsPoliciesUpdateResponseConnectionRulesRdpAllowedCl
 export type AccessApplicationsPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessApplicationsPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessApplicationsPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -154261,8 +154013,7 @@ export type AccessApplicationsPoliciesUpdateResponseDecision =
   | "deny"
   | "non_identity"
   | "bypass";
-export const AccessApplicationsPoliciesUpdateResponseDecision =
-  /*@__PURE__*/ S.String;
+export const AccessApplicationsPoliciesUpdateResponseDecision = S.String;
 
 export type AccessApplicationsPoliciesUpdateResponseExcludeItemGroupRuleGroup =
   AccessPoliciesCreateRequestIncludeItemGroupRuleGroup;
@@ -154495,7 +154246,7 @@ export type AccessApplicationsPoliciesUpdateResponseExcludeItemAccessUserRiskSco
   | "high"
   | "unscored";
 export const AccessApplicationsPoliciesUpdateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesUpdateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<AccessApplicationsPoliciesUpdateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem>;
@@ -154814,7 +154565,7 @@ export type AccessApplicationsPoliciesUpdateResponseMfaConfigAllowedAuthenticato
   | "biometrics"
   | "security_key";
 export const AccessApplicationsPoliciesUpdateResponseMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessApplicationsPoliciesUpdateResponseMfaConfigAllowedAuthenticatorsList =
   Array<AccessApplicationsPoliciesUpdateResponseMfaConfigAllowedAuthenticatorsItem>;
@@ -155380,7 +155131,7 @@ export const UpdateAccessCertificateForZoneRequest = /*@__PURE__*/ S.suspend(
 export type AccessCustomPagesUpdateRequestType =
   | "identity_denied"
   | "forbidden";
-export const AccessCustomPagesUpdateRequestType = /*@__PURE__*/ S.String;
+export const AccessCustomPagesUpdateRequestType = S.String;
 
 export interface UpdateAccessCustomPageRequest {
   /** Identifier. */
@@ -155417,7 +155168,7 @@ export const UpdateAccessCustomPageRequest = /*@__PURE__*/ S.suspend(() =>
 export type AccessCustomPagesUpdateResponseType =
   | "identity_denied"
   | "forbidden";
-export const AccessCustomPagesUpdateResponseType = /*@__PURE__*/ S.String;
+export const AccessCustomPagesUpdateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateAccessCustomPageResponse {
@@ -155669,7 +155420,7 @@ export type AccessGroupsUpdateRequestIncludeItemAccessUserRiskScoreRuleUserRiskS
   | "high"
   | "unscored";
 export const AccessGroupsUpdateRequestIncludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessGroupsUpdateRequestIncludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<
@@ -156057,7 +155808,7 @@ export type AccessGroupsUpdateResponseExcludeItemAccessUserRiskScoreRuleUserRisk
   | "high"
   | "unscored";
 export const AccessGroupsUpdateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessGroupsUpdateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<AccessGroupsUpdateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem>;
@@ -156720,7 +156471,7 @@ export type AccessPoliciesUpdateRequestDecision =
   | "deny"
   | "non_identity"
   | "bypass";
-export const AccessPoliciesUpdateRequestDecision = /*@__PURE__*/ S.String;
+export const AccessPoliciesUpdateRequestDecision = S.String;
 
 export type AccessPoliciesUpdateRequestIncludeItemGroupRuleGroup =
   AccessPoliciesCreateRequestIncludeItemGroupRuleGroup;
@@ -156953,7 +156704,7 @@ export type AccessPoliciesUpdateRequestIncludeItemAccessUserRiskScoreRuleUserRis
   | "high"
   | "unscored";
 export const AccessPoliciesUpdateRequestIncludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesUpdateRequestIncludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<
@@ -157112,7 +156863,7 @@ export const AccessPoliciesUpdateRequestApprovalGroupsList =
 export type AccessPoliciesUpdateRequestConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessPoliciesUpdateRequestConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesUpdateRequestConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<
@@ -157127,7 +156878,7 @@ export const AccessPoliciesUpdateRequestConnectionRulesRdpAllowedClipboardLocalT
 export type AccessPoliciesUpdateRequestConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessPoliciesUpdateRequestConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesUpdateRequestConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<
@@ -157181,7 +156932,7 @@ export type AccessPoliciesUpdateRequestMfaConfigAllowedAuthenticatorsItem =
   | "biometrics"
   | "security_key";
 export const AccessPoliciesUpdateRequestMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesUpdateRequestMfaConfigAllowedAuthenticatorsList =
   Array<
@@ -157334,7 +157085,7 @@ export const AccessPoliciesUpdateResponseApprovalGroupsList =
 export type AccessPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
   "text";
 export const AccessPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsList =
   Array<AccessPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardLocalToRemoteFormatsItem>;
@@ -157346,7 +157097,7 @@ export const AccessPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardLocal
 export type AccessPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
   "text";
 export const AccessPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsList =
   Array<AccessPoliciesUpdateResponseConnectionRulesRdpAllowedClipboardRemoteToLocalFormatsItem>;
@@ -157397,7 +157148,7 @@ export type AccessPoliciesUpdateResponseDecision =
   | "deny"
   | "non_identity"
   | "bypass";
-export const AccessPoliciesUpdateResponseDecision = /*@__PURE__*/ S.String;
+export const AccessPoliciesUpdateResponseDecision = S.String;
 
 export type AccessPoliciesUpdateResponseExcludeItemGroupRuleGroup =
   AccessPoliciesCreateRequestIncludeItemGroupRuleGroup;
@@ -157630,7 +157381,7 @@ export type AccessPoliciesUpdateResponseExcludeItemAccessUserRiskScoreRuleUserRi
   | "high"
   | "unscored";
 export const AccessPoliciesUpdateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesUpdateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreList =
   Array<AccessPoliciesUpdateResponseExcludeItemAccessUserRiskScoreRuleUserRiskScoreUserRiskScoreItem>;
@@ -157947,7 +157698,7 @@ export type AccessPoliciesUpdateResponseMfaConfigAllowedAuthenticatorsItem =
   | "biometrics"
   | "security_key";
 export const AccessPoliciesUpdateResponseMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AccessPoliciesUpdateResponseMfaConfigAllowedAuthenticatorsList =
   Array<AccessPoliciesUpdateResponseMfaConfigAllowedAuthenticatorsItem>;
@@ -158501,7 +158252,7 @@ export type UpdateCasbIntegrationRequestUseCasesItem =
   | "casb"
   | "ces"
   | "auto_remediation";
-export const UpdateCasbIntegrationRequestUseCasesItem = /*@__PURE__*/ S.String;
+export const UpdateCasbIntegrationRequestUseCasesItem = S.String;
 
 export type UpdateCasbIntegrationRequestUseCasesList = Array<
   UpdateCasbIntegrationRequestUseCasesItem | (string & {})
@@ -158693,10 +158444,10 @@ export const UpdateCasbIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCasbIntegrationResponse>;
 
 export type DevicesDexTestsUpdateRequestDataKind = "http" | "traceroute";
-export const DevicesDexTestsUpdateRequestDataKind = /*@__PURE__*/ S.String;
+export const DevicesDexTestsUpdateRequestDataKind = S.String;
 
 export type DevicesDexTestsUpdateRequestDataMethod = "GET";
-export const DevicesDexTestsUpdateRequestDataMethod = /*@__PURE__*/ S.String;
+export const DevicesDexTestsUpdateRequestDataMethod = S.String;
 
 export interface DevicesDexTestsUpdateRequestData {
   /** The desired endpoint to test. */
@@ -158776,10 +158527,10 @@ export const UpdateDeviceDexTestRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDeviceDexTestRequest>;
 
 export type DevicesDexTestsUpdateResponseDataKind = "http" | "traceroute";
-export const DevicesDexTestsUpdateResponseDataKind = /*@__PURE__*/ S.String;
+export const DevicesDexTestsUpdateResponseDataKind = S.String;
 
 export type DevicesDexTestsUpdateResponseDataMethod = "GET";
-export const DevicesDexTestsUpdateResponseDataMethod = /*@__PURE__*/ S.String;
+export const DevicesDexTestsUpdateResponseDataMethod = S.String;
 
 export interface DevicesDexTestsUpdateResponseData {
   /** The desired endpoint to test. */
@@ -158854,7 +158605,7 @@ export const DevicesNetworksUpdateRequestConfig =
   DevicesNetworksCreateRequestConfig;
 
 export type DevicesNetworksUpdateRequestType = "tls";
-export const DevicesNetworksUpdateRequestType = /*@__PURE__*/ S.String;
+export const DevicesNetworksUpdateRequestType = S.String;
 
 export interface UpdateDeviceNetworkRequest {
   accountId: string;
@@ -158893,7 +158644,7 @@ export const DevicesNetworksUpdateResponseConfig =
   DevicesNetworksCreateResponseConfig;
 
 export type DevicesNetworksUpdateResponseType = "tls";
-export const DevicesNetworksUpdateResponseType = /*@__PURE__*/ S.String;
+export const DevicesNetworksUpdateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateDeviceNetworkResponse {
@@ -158941,14 +158692,14 @@ export type DevicesPostureUpdateRequestType =
   | "workspace_one"
   | "sentinelone_s2s"
   | "custom_s2s";
-export const DevicesPostureUpdateRequestType = /*@__PURE__*/ S.String;
+export const DevicesPostureUpdateRequestType = S.String;
 
 export type DevicesPostureUpdateRequestInputFileInputOperatingSystem =
   | "windows"
   | "linux"
   | "mac";
 export const DevicesPostureUpdateRequestInputFileInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateRequestInputFileInput {
   /** Operating system. */
@@ -158985,7 +158736,7 @@ export type DevicesPostureUpdateRequestInputUniqueClientIDInputOperatingSystem =
   | "ios"
   | "chromeos";
 export const DevicesPostureUpdateRequestInputUniqueClientIDInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateRequestInputUniqueClientIDInput {
   /** List ID. */
@@ -159011,7 +158762,7 @@ export const DevicesPostureUpdateRequestInputUniqueClientIDInput =
 export type DevicesPostureUpdateRequestInputDomainJoinedInputOperatingSystem =
   "windows";
 export const DevicesPostureUpdateRequestInputDomainJoinedInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateRequestInputDomainJoinedInput {
   /** Operating System. */
@@ -159035,7 +158786,7 @@ export const DevicesPostureUpdateRequestInputDomainJoinedInput =
 export type DevicesPostureUpdateRequestInputOSVersionInputOperatingSystem =
   "windows";
 export const DevicesPostureUpdateRequestInputOSVersionInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureUpdateRequestInputOSVersionInputOperator =
   | "<"
@@ -159043,8 +158794,7 @@ export type DevicesPostureUpdateRequestInputOSVersionInputOperator =
   | ">"
   | ">="
   | "==";
-export const DevicesPostureUpdateRequestInputOSVersionInputOperator =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureUpdateRequestInputOSVersionInputOperator = S.String;
 
 export interface DevicesPostureUpdateRequestInputOSVersionInput {
   /** Operating System. */
@@ -159083,7 +158833,7 @@ export type DevicesPostureUpdateRequestInputFirewallInputOperatingSystem =
   | "windows"
   | "mac";
 export const DevicesPostureUpdateRequestInputFirewallInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateRequestInputFirewallInput {
   /** Enabled. */
@@ -159111,7 +158861,7 @@ export type DevicesPostureUpdateRequestInputSentineloneInputOperatingSystem =
   | "linux"
   | "mac";
 export const DevicesPostureUpdateRequestInputSentineloneInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateRequestInputSentineloneInput {
   /** Operating system. */
@@ -159145,7 +158895,7 @@ export type DevicesPostureUpdateRequestInputTeamsDevicesCarbonblackInputRequestO
   | "linux"
   | "mac";
 export const DevicesPostureUpdateRequestInputTeamsDevicesCarbonblackInputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateRequestInputTeamsDevicesCarbonblackInputRequest {
   /** Operating system. */
@@ -159210,7 +158960,7 @@ export type DevicesPostureUpdateRequestInputTeamsDevicesApplicationInputRequestO
   | "linux"
   | "mac";
 export const DevicesPostureUpdateRequestInputTeamsDevicesApplicationInputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateRequestInputTeamsDevicesApplicationInputRequest {
   /** Operating system. */
@@ -159250,13 +159000,13 @@ export type DevicesPostureUpdateRequestInputTeamsDevicesClientCertificateV2Input
   | "linux"
   | "mac";
 export const DevicesPostureUpdateRequestInputTeamsDevicesClientCertificateV2InputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureUpdateRequestInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageItem =
   | "clientAuth"
   | "emailProtection";
 export const DevicesPostureUpdateRequestInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureUpdateRequestInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageList =
   Array<
@@ -159279,7 +159029,7 @@ export type DevicesPostureUpdateRequestInputTeamsDevicesClientCertificateV2Input
   | "system"
   | "user";
 export const DevicesPostureUpdateRequestInputTeamsDevicesClientCertificateV2InputRequestLocationsTrustStoresItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureUpdateRequestInputTeamsDevicesClientCertificateV2InputRequestLocationsTrustStoresList =
   Array<
@@ -159377,7 +159127,7 @@ export type DevicesPostureUpdateRequestInputWorkspaceOneInputComplianceStatus =
   | "noncompliant"
   | "unknown";
 export const DevicesPostureUpdateRequestInputWorkspaceOneInputComplianceStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateRequestInputWorkspaceOneInput {
   /** Compliance Status. */
@@ -159407,14 +159157,13 @@ export type DevicesPostureUpdateRequestInputCrowdstrikeInputOperator =
   | ">="
   | "==";
 export const DevicesPostureUpdateRequestInputCrowdstrikeInputOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureUpdateRequestInputCrowdstrikeInputState =
   | "online"
   | "offline"
   | "unknown";
-export const DevicesPostureUpdateRequestInputCrowdstrikeInputState =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureUpdateRequestInputCrowdstrikeInputState = S.String;
 
 export type DevicesPostureUpdateRequestInputCrowdstrikeInputVersionOperator =
   | "<"
@@ -159423,7 +159172,7 @@ export type DevicesPostureUpdateRequestInputCrowdstrikeInputVersionOperator =
   | ">="
   | "==";
 export const DevicesPostureUpdateRequestInputCrowdstrikeInputVersionOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateRequestInputCrowdstrikeInput {
   /** Posture Integration ID. */
@@ -159478,7 +159227,7 @@ export type DevicesPostureUpdateRequestInputIntuneInputComplianceStatus =
   | "ingraceperiod"
   | "error";
 export const DevicesPostureUpdateRequestInputIntuneInputComplianceStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateRequestInputIntuneInput {
   /** Compliance Status. */
@@ -159507,7 +159256,7 @@ export type DevicesPostureUpdateRequestInputKolideInputAuthStateItem =
   | "Will Block"
   | "Blocked";
 export const DevicesPostureUpdateRequestInputKolideInputAuthStateItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureUpdateRequestInputKolideInputAuthStateList = Array<
   DevicesPostureUpdateRequestInputKolideInputAuthStateItem | (string & {})
@@ -159524,7 +159273,7 @@ export type DevicesPostureUpdateRequestInputKolideInputCountOperator =
   | ">="
   | "==";
 export const DevicesPostureUpdateRequestInputKolideInputCountOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateRequestInputKolideInput {
   /** Posture Integration ID. */
@@ -159562,16 +159311,14 @@ export type DevicesPostureUpdateRequestInputTaniumInputOperator =
   | ">"
   | ">="
   | "==";
-export const DevicesPostureUpdateRequestInputTaniumInputOperator =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureUpdateRequestInputTaniumInputOperator = S.String;
 
 export type DevicesPostureUpdateRequestInputTaniumInputRiskLevel =
   | "low"
   | "medium"
   | "high"
   | "critical";
-export const DevicesPostureUpdateRequestInputTaniumInputRiskLevel =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureUpdateRequestInputTaniumInputRiskLevel = S.String;
 
 export type DevicesPostureUpdateRequestInputTaniumInputScoreOperator =
   | "<"
@@ -159580,7 +159327,7 @@ export type DevicesPostureUpdateRequestInputTaniumInputScoreOperator =
   | ">="
   | "==";
 export const DevicesPostureUpdateRequestInputTaniumInputScoreOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateRequestInputTaniumInput {
   /** Posture Integration ID. */
@@ -159628,7 +159375,7 @@ export type DevicesPostureUpdateRequestInputSentineloneS2sInputNetworkStatus =
   | "disconnecting"
   | "connecting";
 export const DevicesPostureUpdateRequestInputSentineloneS2sInputNetworkStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureUpdateRequestInputSentineloneS2sInputOperationalState =
   | "na"
@@ -159639,7 +159386,7 @@ export type DevicesPostureUpdateRequestInputSentineloneS2sInputOperationalState 
   | "disabled_error"
   | "db_corruption";
 export const DevicesPostureUpdateRequestInputSentineloneS2sInputOperationalState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureUpdateRequestInputSentineloneS2sInputOperator =
   | "<"
@@ -159648,7 +159395,7 @@ export type DevicesPostureUpdateRequestInputSentineloneS2sInputOperator =
   | ">="
   | "==";
 export const DevicesPostureUpdateRequestInputSentineloneS2sInputOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateRequestInputSentineloneS2sInput {
   /** Posture Integration ID. */
@@ -159704,7 +159451,7 @@ export type DevicesPostureUpdateRequestInputTeamsDevicesCustomS2sInputRequestOpe
   | ">="
   | "==";
 export const DevicesPostureUpdateRequestInputTeamsDevicesCustomS2sInputRequestOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateRequestInputTeamsDevicesCustomS2sInputRequest {
   /** Posture Integration ID. */
@@ -159822,8 +159569,7 @@ export type DevicesPostureUpdateRequestMatchItemPlatform =
   | "android"
   | "ios"
   | "chromeos";
-export const DevicesPostureUpdateRequestMatchItemPlatform =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureUpdateRequestMatchItemPlatform = S.String;
 
 export interface DevicesPostureUpdateRequestMatchItem {
   platform?: DevicesPostureUpdateRequestMatchItemPlatform | (string & {});
@@ -159891,7 +159637,7 @@ export type DevicesPostureUpdateResponseInputFileInputOperatingSystem =
   | "linux"
   | "mac";
 export const DevicesPostureUpdateResponseInputFileInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateResponseInputFileInput {
   /** Operating system. */
@@ -159926,7 +159672,7 @@ export type DevicesPostureUpdateResponseInputUniqueClientIDInputOperatingSystem 
   | "ios"
   | "chromeos";
 export const DevicesPostureUpdateResponseInputUniqueClientIDInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateResponseInputUniqueClientIDInput {
   /** List ID. */
@@ -159950,7 +159696,7 @@ export const DevicesPostureUpdateResponseInputUniqueClientIDInput =
 export type DevicesPostureUpdateResponseInputDomainJoinedInputOperatingSystem =
   "windows";
 export const DevicesPostureUpdateResponseInputDomainJoinedInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateResponseInputDomainJoinedInput {
   /** Operating System. */
@@ -159974,7 +159720,7 @@ export const DevicesPostureUpdateResponseInputDomainJoinedInput =
 export type DevicesPostureUpdateResponseInputOSVersionInputOperatingSystem =
   "windows";
 export const DevicesPostureUpdateResponseInputOSVersionInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureUpdateResponseInputOSVersionInputOperator =
   | "<"
@@ -159982,8 +159728,7 @@ export type DevicesPostureUpdateResponseInputOSVersionInputOperator =
   | ">"
   | ">="
   | "==";
-export const DevicesPostureUpdateResponseInputOSVersionInputOperator =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureUpdateResponseInputOSVersionInputOperator = S.String;
 
 export interface DevicesPostureUpdateResponseInputOSVersionInput {
   /** Operating System. */
@@ -160026,7 +159771,7 @@ export type DevicesPostureUpdateResponseInputFirewallInputOperatingSystem =
   | "windows"
   | "mac";
 export const DevicesPostureUpdateResponseInputFirewallInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateResponseInputFirewallInput {
   /** Enabled. */
@@ -160052,7 +159797,7 @@ export type DevicesPostureUpdateResponseInputSentineloneInputOperatingSystem =
   | "linux"
   | "mac";
 export const DevicesPostureUpdateResponseInputSentineloneInputOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateResponseInputSentineloneInput {
   /** Operating system. */
@@ -160084,7 +159829,7 @@ export type DevicesPostureUpdateResponseInputTeamsDevicesCarbonblackInputRequest
   | "linux"
   | "mac";
 export const DevicesPostureUpdateResponseInputTeamsDevicesCarbonblackInputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateResponseInputTeamsDevicesCarbonblackInputRequest {
   /** Operating system. */
@@ -160149,7 +159894,7 @@ export type DevicesPostureUpdateResponseInputTeamsDevicesApplicationInputRequest
   | "linux"
   | "mac";
 export const DevicesPostureUpdateResponseInputTeamsDevicesApplicationInputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateResponseInputTeamsDevicesApplicationInputRequest {
   /** Operating system. */
@@ -160187,13 +159932,13 @@ export type DevicesPostureUpdateResponseInputTeamsDevicesClientCertificateV2Inpu
   | "linux"
   | "mac";
 export const DevicesPostureUpdateResponseInputTeamsDevicesClientCertificateV2InputRequestOperatingSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureUpdateResponseInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageItem =
   | "clientAuth"
   | "emailProtection";
 export const DevicesPostureUpdateResponseInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureUpdateResponseInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageList =
   Array<DevicesPostureUpdateResponseInputTeamsDevicesClientCertificateV2InputRequestExtendedKeyUsageItem>;
@@ -160213,7 +159958,7 @@ export type DevicesPostureUpdateResponseInputTeamsDevicesClientCertificateV2Inpu
   | "system"
   | "user";
 export const DevicesPostureUpdateResponseInputTeamsDevicesClientCertificateV2InputRequestLocationsTrustStoresItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureUpdateResponseInputTeamsDevicesClientCertificateV2InputRequestLocationsTrustStoresList =
   Array<DevicesPostureUpdateResponseInputTeamsDevicesClientCertificateV2InputRequestLocationsTrustStoresItem>;
@@ -160310,7 +160055,7 @@ export type DevicesPostureUpdateResponseInputWorkspaceOneInputComplianceStatus =
   | "noncompliant"
   | "unknown";
 export const DevicesPostureUpdateResponseInputWorkspaceOneInputComplianceStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateResponseInputWorkspaceOneInput {
   /** Compliance Status. */
@@ -160338,14 +160083,13 @@ export type DevicesPostureUpdateResponseInputCrowdstrikeInputOperator =
   | ">="
   | "==";
 export const DevicesPostureUpdateResponseInputCrowdstrikeInputOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureUpdateResponseInputCrowdstrikeInputState =
   | "online"
   | "offline"
   | "unknown";
-export const DevicesPostureUpdateResponseInputCrowdstrikeInputState =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureUpdateResponseInputCrowdstrikeInputState = S.String;
 
 export type DevicesPostureUpdateResponseInputCrowdstrikeInputVersionOperator =
   | "<"
@@ -160354,7 +160098,7 @@ export type DevicesPostureUpdateResponseInputCrowdstrikeInputVersionOperator =
   | ">="
   | "==";
 export const DevicesPostureUpdateResponseInputCrowdstrikeInputVersionOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateResponseInputCrowdstrikeInput {
   /** Posture Integration ID. */
@@ -160411,7 +160155,7 @@ export type DevicesPostureUpdateResponseInputIntuneInputComplianceStatus =
   | "ingraceperiod"
   | "error";
 export const DevicesPostureUpdateResponseInputIntuneInputComplianceStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateResponseInputIntuneInput {
   /** Compliance Status. */
@@ -160438,7 +160182,7 @@ export type DevicesPostureUpdateResponseInputKolideInputAuthStateItem =
   | "Will Block"
   | "Blocked";
 export const DevicesPostureUpdateResponseInputKolideInputAuthStateItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureUpdateResponseInputKolideInputAuthStateList =
   Array<DevicesPostureUpdateResponseInputKolideInputAuthStateItem>;
@@ -160454,7 +160198,7 @@ export type DevicesPostureUpdateResponseInputKolideInputCountOperator =
   | ">="
   | "==";
 export const DevicesPostureUpdateResponseInputKolideInputCountOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateResponseInputKolideInput {
   /** Posture Integration ID. */
@@ -160490,16 +160234,14 @@ export type DevicesPostureUpdateResponseInputTaniumInputOperator =
   | ">"
   | ">="
   | "==";
-export const DevicesPostureUpdateResponseInputTaniumInputOperator =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureUpdateResponseInputTaniumInputOperator = S.String;
 
 export type DevicesPostureUpdateResponseInputTaniumInputRiskLevel =
   | "low"
   | "medium"
   | "high"
   | "critical";
-export const DevicesPostureUpdateResponseInputTaniumInputRiskLevel =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureUpdateResponseInputTaniumInputRiskLevel = S.String;
 
 export type DevicesPostureUpdateResponseInputTaniumInputScoreOperator =
   | "<"
@@ -160508,7 +160250,7 @@ export type DevicesPostureUpdateResponseInputTaniumInputScoreOperator =
   | ">="
   | "==";
 export const DevicesPostureUpdateResponseInputTaniumInputScoreOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateResponseInputTaniumInput {
   /** Posture Integration ID. */
@@ -160552,7 +160294,7 @@ export type DevicesPostureUpdateResponseInputSentineloneS2sInputNetworkStatus =
   | "disconnecting"
   | "connecting";
 export const DevicesPostureUpdateResponseInputSentineloneS2sInputNetworkStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureUpdateResponseInputSentineloneS2sInputOperationalState =
   | "na"
@@ -160563,7 +160305,7 @@ export type DevicesPostureUpdateResponseInputSentineloneS2sInputOperationalState
   | "disabled_error"
   | "db_corruption";
 export const DevicesPostureUpdateResponseInputSentineloneS2sInputOperationalState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DevicesPostureUpdateResponseInputSentineloneS2sInputOperator =
   | "<"
@@ -160572,7 +160314,7 @@ export type DevicesPostureUpdateResponseInputSentineloneS2sInputOperator =
   | ">="
   | "==";
 export const DevicesPostureUpdateResponseInputSentineloneS2sInputOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateResponseInputSentineloneS2sInput {
   /** Posture Integration ID. */
@@ -160624,7 +160366,7 @@ export type DevicesPostureUpdateResponseInputTeamsDevicesCustomS2sInputRequestOp
   | ">="
   | "==";
 export const DevicesPostureUpdateResponseInputTeamsDevicesCustomS2sInputRequestOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DevicesPostureUpdateResponseInputTeamsDevicesCustomS2sInputRequest {
   /** Posture Integration ID. */
@@ -160740,8 +160482,7 @@ export type DevicesPostureUpdateResponseMatchItemPlatform =
   | "android"
   | "ios"
   | "chromeos";
-export const DevicesPostureUpdateResponseMatchItemPlatform =
-  /*@__PURE__*/ S.String;
+export const DevicesPostureUpdateResponseMatchItemPlatform = S.String;
 
 export interface DevicesPostureUpdateResponseMatchItem {
   platform?: DevicesPostureUpdateResponseMatchItemPlatform | null;
@@ -160787,7 +160528,7 @@ export type DevicesPostureUpdateResponseType =
   | "workspace_one"
   | "sentinelone_s2s"
   | "custom_s2s";
-export const DevicesPostureUpdateResponseType = /*@__PURE__*/ S.String;
+export const DevicesPostureUpdateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateDevicePostureResponse {
@@ -161016,8 +160757,7 @@ export type DlpDatasetsUpdateResponseColumnsItemUploadStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsUpdateResponseColumnsItemUploadStatus =
-  /*@__PURE__*/ S.String;
+export const DlpDatasetsUpdateResponseColumnsItemUploadStatus = S.String;
 
 export interface DlpDatasetsUpdateResponseColumnsItem {
   entryId: string;
@@ -161052,7 +160792,7 @@ export type DlpDatasetsUpdateResponseStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsUpdateResponseStatus = /*@__PURE__*/ S.String;
+export const DlpDatasetsUpdateResponseStatus = S.String;
 
 export type DlpDatasetsUpdateResponseUploadsItemStatus =
   | "empty"
@@ -161061,8 +160801,7 @@ export type DlpDatasetsUpdateResponseUploadsItemStatus =
   | "processing"
   | "failed"
   | "complete";
-export const DlpDatasetsUpdateResponseUploadsItemStatus =
-  /*@__PURE__*/ S.String;
+export const DlpDatasetsUpdateResponseUploadsItemStatus = S.String;
 
 export interface DlpDatasetsUpdateResponseUploadsItem {
   numCells: number;
@@ -161260,7 +160999,7 @@ export const UpdateDlpDataTagCategoryDataTagResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateDlpDataTagCategoryDataTagResponse>;
 
 export type DlpEmailRulesUpdateRequestActionAction = "Block";
-export const DlpEmailRulesUpdateRequestActionAction = /*@__PURE__*/ S.String;
+export const DlpEmailRulesUpdateRequestActionAction = S.String;
 
 export interface DlpEmailRulesUpdateRequestAction {
   action: DlpEmailRulesUpdateRequestActionAction | (string & {});
@@ -161280,15 +161019,13 @@ export type DlpEmailRulesUpdateRequestConditionsItemOperator =
   | "NotInList"
   | "MatchRegex"
   | "NotMatchRegex";
-export const DlpEmailRulesUpdateRequestConditionsItemOperator =
-  /*@__PURE__*/ S.String;
+export const DlpEmailRulesUpdateRequestConditionsItemOperator = S.String;
 
 export type DlpEmailRulesUpdateRequestConditionsItemSelector =
   | "Recipients"
   | "Sender"
   | "DLPProfiles";
-export const DlpEmailRulesUpdateRequestConditionsItemSelector =
-  /*@__PURE__*/ S.String;
+export const DlpEmailRulesUpdateRequestConditionsItemSelector = S.String;
 
 export type DlpEmailRulesUpdateRequestConditionsItemValueCase0List =
   Array<string>;
@@ -161358,7 +161095,7 @@ export const UpdateDlpEmailRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDlpEmailRuleRequest>;
 
 export type DlpEmailRulesUpdateResponseActionAction = "Block";
-export const DlpEmailRulesUpdateResponseActionAction = /*@__PURE__*/ S.String;
+export const DlpEmailRulesUpdateResponseActionAction = S.String;
 
 export interface DlpEmailRulesUpdateResponseAction {
   action: DlpEmailRulesUpdateResponseActionAction;
@@ -161378,15 +161115,13 @@ export type DlpEmailRulesUpdateResponseConditionsItemOperator =
   | "NotInList"
   | "MatchRegex"
   | "NotMatchRegex";
-export const DlpEmailRulesUpdateResponseConditionsItemOperator =
-  /*@__PURE__*/ S.String;
+export const DlpEmailRulesUpdateResponseConditionsItemOperator = S.String;
 
 export type DlpEmailRulesUpdateResponseConditionsItemSelector =
   | "Recipients"
   | "Sender"
   | "DLPProfiles";
-export const DlpEmailRulesUpdateResponseConditionsItemSelector =
-  /*@__PURE__*/ S.String;
+export const DlpEmailRulesUpdateResponseConditionsItemSelector = S.String;
 
 export type DlpEmailRulesUpdateResponseConditionsItemValueCase0List =
   Array<string>;
@@ -161453,7 +161188,7 @@ export const UpdateDlpEmailRuleResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDlpEmailRuleResponse>;
 
 export type DlpEntriesUpdateRequestPatternValidation = "luhn";
-export const DlpEntriesUpdateRequestPatternValidation = /*@__PURE__*/ S.String;
+export const DlpEntriesUpdateRequestPatternValidation = S.String;
 
 export interface DlpEntriesUpdateRequestPattern {
   regex: string;
@@ -161472,7 +161207,7 @@ export type DlpEntriesUpdateRequestType =
   | "custom"
   | "predefined"
   | "integration";
-export const DlpEntriesUpdateRequestType = /*@__PURE__*/ S.String;
+export const DlpEntriesUpdateRequestType = S.String;
 
 export interface UpdateDlpEntryRequest {
   accountId: string;
@@ -161506,8 +161241,7 @@ export const UpdateDlpEntryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDlpEntryRequest>;
 
 export type DlpEntriesUpdateResultCustomEntryPatternValidation = "luhn";
-export const DlpEntriesUpdateResultCustomEntryPatternValidation =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesUpdateResultCustomEntryPatternValidation = S.String;
 
 export interface DlpEntriesUpdateResultCustomEntryPattern {
   regex: string;
@@ -161526,7 +161260,7 @@ export const DlpEntriesUpdateResultCustomEntryPattern = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DlpEntriesUpdateResultCustomEntryPattern>;
 
 export type DlpEntriesUpdateResultCustomEntryType = "custom";
-export const DlpEntriesUpdateResultCustomEntryType = /*@__PURE__*/ S.String;
+export const DlpEntriesUpdateResultCustomEntryType = S.String;
 
 export interface DlpEntriesUpdateResultCustomEntry {
   id: string;
@@ -161557,8 +161291,7 @@ export const DlpEntriesUpdateResultCustomEntry = /*@__PURE__*/ S.suspend(() =>
 
 export type DlpEntriesUpdateResultCustomPromptTopicEntryType =
   "custom_prompt_topic";
-export const DlpEntriesUpdateResultCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesUpdateResultCustomPromptTopicEntryType = S.String;
 
 export interface DlpEntriesUpdateResultCustomPromptTopicEntry {
   id: string;
@@ -161591,18 +161324,17 @@ export const DlpEntriesUpdateResultPredefinedEntryConfidence =
   DlpEntriesPredefinedCreateResponseConfidence;
 
 export type DlpEntriesUpdateResultPredefinedEntryType = "predefined";
-export const DlpEntriesUpdateResultPredefinedEntryType = /*@__PURE__*/ S.String;
+export const DlpEntriesUpdateResultPredefinedEntryType = S.String;
 
 export type DlpEntriesUpdateResultPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpEntriesUpdateResultPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpEntriesUpdateResultPredefinedEntryVariantCase0Type =
   "PromptTopic";
-export const DlpEntriesUpdateResultPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesUpdateResultPredefinedEntryVariantCase0Type = S.String;
 
 export interface DlpEntriesUpdateResultPredefinedEntryVariantCase0 {
   topicType: DlpEntriesUpdateResultPredefinedEntryVariantCase0TopicType;
@@ -161625,8 +161357,7 @@ export const DlpEntriesUpdateResultPredefinedEntryVariantCase0 =
   }) as any as S.Schema<DlpEntriesUpdateResultPredefinedEntryVariantCase0>;
 
 export type DlpEntriesUpdateResultPredefinedEntryVariantCase1Type = "General";
-export const DlpEntriesUpdateResultPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesUpdateResultPredefinedEntryVariantCase1Type = S.String;
 
 export interface DlpEntriesUpdateResultPredefinedEntryVariantCase1 {
   type: DlpEntriesUpdateResultPredefinedEntryVariantCase1Type;
@@ -161682,8 +161413,7 @@ export const DlpEntriesUpdateResultPredefinedEntry = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DlpEntriesUpdateResultPredefinedEntry>;
 
 export type DlpEntriesUpdateResultIntegrationEntryType = "integration";
-export const DlpEntriesUpdateResultIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesUpdateResultIntegrationEntryType = S.String;
 
 export interface DlpEntriesUpdateResultIntegrationEntry {
   id: string;
@@ -161710,7 +161440,7 @@ export const DlpEntriesUpdateResultIntegrationEntry = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DlpEntriesUpdateResultIntegrationEntry>;
 
 export type DlpEntriesUpdateResultExactDataEntryType = "exact_data";
-export const DlpEntriesUpdateResultExactDataEntryType = /*@__PURE__*/ S.String;
+export const DlpEntriesUpdateResultExactDataEntryType = S.String;
 
 export interface DlpEntriesUpdateResultExactDataEntry {
   id: string;
@@ -161744,8 +161474,7 @@ export const DlpEntriesUpdateResultExactDataEntry = /*@__PURE__*/ S.suspend(
 
 export type DlpEntriesUpdateResultDocumentFingerprintEntryType =
   "document_fingerprint";
-export const DlpEntriesUpdateResultDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesUpdateResultDocumentFingerprintEntryType = S.String;
 
 export interface DlpEntriesUpdateResultDocumentFingerprintEntry {
   id: string;
@@ -161773,7 +161502,7 @@ export const DlpEntriesUpdateResultDocumentFingerprintEntry =
   }) as any as S.Schema<DlpEntriesUpdateResultDocumentFingerprintEntry>;
 
 export type DlpEntriesUpdateResultWordListEntryType = "word_list";
-export const DlpEntriesUpdateResultWordListEntryType = /*@__PURE__*/ S.String;
+export const DlpEntriesUpdateResultWordListEntryType = S.String;
 
 export interface DlpEntriesUpdateResultWordListEntry {
   id: string;
@@ -161860,8 +161589,7 @@ export const UpdateDlpEntryResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDlpEntryResponse>;
 
 export type DlpEntriesCustomUpdateRequestPatternValidation = "luhn";
-export const DlpEntriesCustomUpdateRequestPatternValidation =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesCustomUpdateRequestPatternValidation = S.String;
 
 export interface DlpEntriesCustomUpdateRequestPattern {
   regex: string;
@@ -161907,8 +161635,7 @@ export const UpdateDlpEntryCustomRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDlpEntryCustomRequest>;
 
 export type DlpEntriesCustomUpdateResponsePatternValidation = "luhn";
-export const DlpEntriesCustomUpdateResponsePatternValidation =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesCustomUpdateResponsePatternValidation = S.String;
 
 export interface DlpEntriesCustomUpdateResponsePattern {
   regex: string;
@@ -162028,12 +161755,10 @@ export const DlpEntriesPredefinedUpdateResponseConfidence =
 export type DlpEntriesPredefinedUpdateResponseVariantCase0TopicType =
   | "Intent"
   | "Content";
-export const DlpEntriesPredefinedUpdateResponseVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesPredefinedUpdateResponseVariantCase0TopicType = S.String;
 
 export type DlpEntriesPredefinedUpdateResponseVariantCase0Type = "PromptTopic";
-export const DlpEntriesPredefinedUpdateResponseVariantCase0Type =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesPredefinedUpdateResponseVariantCase0Type = S.String;
 
 export interface DlpEntriesPredefinedUpdateResponseVariantCase0 {
   topicType: DlpEntriesPredefinedUpdateResponseVariantCase0TopicType;
@@ -162055,8 +161780,7 @@ export const DlpEntriesPredefinedUpdateResponseVariantCase0 =
   }) as any as S.Schema<DlpEntriesPredefinedUpdateResponseVariantCase0>;
 
 export type DlpEntriesPredefinedUpdateResponseVariantCase1Type = "General";
-export const DlpEntriesPredefinedUpdateResponseVariantCase1Type =
-  /*@__PURE__*/ S.String;
+export const DlpEntriesPredefinedUpdateResponseVariantCase1Type = S.String;
 
 export interface DlpEntriesPredefinedUpdateResponseVariantCase1 {
   type: DlpEntriesPredefinedUpdateResponseVariantCase1Type;
@@ -162131,7 +161855,7 @@ export const DlpProfilesCustomUpdateRequestDataTagsList = /*@__PURE__*/ S.Array(
 export type DlpProfilesCustomUpdateRequestEntriesItemDLPNewCustomEntryWithIDPatternValidation =
   "luhn";
 export const DlpProfilesCustomUpdateRequestEntriesItemDLPNewCustomEntryWithIDPatternValidation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateRequestEntriesItemDLPNewCustomEntryWithIDPattern {
   regex: string;
@@ -162307,8 +162031,7 @@ export const UpdateDlpProfileCustomRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDlpProfileCustomRequest>;
 
 export type DlpProfilesCustomUpdateResultCustomProfileType = "custom";
-export const DlpProfilesCustomUpdateResultCustomProfileType =
-  /*@__PURE__*/ S.String;
+export const DlpProfilesCustomUpdateResultCustomProfileType = S.String;
 
 export type DlpProfilesCustomUpdateResultCustomProfileConfidenceThreshold =
   | "low"
@@ -162316,7 +162039,7 @@ export type DlpProfilesCustomUpdateResultCustomProfileConfidenceThreshold =
   | "high"
   | "very_high";
 export const DlpProfilesCustomUpdateResultCustomProfileConfidenceThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomUpdateResultCustomProfileContextAwarenessSkip =
   DlpProfilesCustomCreateRequestContextAwarenessSkip;
@@ -162345,7 +162068,7 @@ export const DlpProfilesCustomUpdateResultCustomProfileDataTagsList =
 export type DlpProfilesCustomUpdateResultCustomProfileEntriesItemCustomEntryPatternValidation =
   "luhn";
 export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemCustomEntryPatternValidation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileEntriesItemCustomEntryPattern {
   regex: string;
@@ -162369,7 +162092,7 @@ export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemCustomEntryPat
 export type DlpProfilesCustomUpdateResultCustomProfileEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileEntriesItemCustomEntry {
   id: string;
@@ -162404,7 +162127,7 @@ export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemCustomEntry =
 export type DlpProfilesCustomUpdateResultCustomProfileEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -162440,18 +162163,18 @@ export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemPredefinedEntr
 export type DlpProfilesCustomUpdateResultCustomProfileEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomUpdateResultCustomProfileEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomUpdateResultCustomProfileEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesCustomUpdateResultCustomProfileEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -162477,7 +162200,7 @@ export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemPredefinedEntr
 export type DlpProfilesCustomUpdateResultCustomProfileEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesCustomUpdateResultCustomProfileEntriesItemPredefinedEntryVariantCase1Type;
@@ -162539,7 +162262,7 @@ export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemPredefinedEntr
 export type DlpProfilesCustomUpdateResultCustomProfileEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileEntriesItemIntegrationEntry {
   id: string;
@@ -162569,7 +162292,7 @@ export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemIntegrationEnt
 export type DlpProfilesCustomUpdateResultCustomProfileEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileEntriesItemExactDataEntry {
   id: string;
@@ -162605,7 +162328,7 @@ export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemExactDataEntry
 export type DlpProfilesCustomUpdateResultCustomProfileEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -162636,7 +162359,7 @@ export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemDocumentFinger
 export type DlpProfilesCustomUpdateResultCustomProfileEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesCustomUpdateResultCustomProfileEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileEntriesItemWordListEntry {
   id: string;
@@ -162753,7 +162476,7 @@ export const DlpProfilesCustomUpdateResultCustomProfileSensitivityLevelsList =
 export type DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemCustomEntry {
   id: string;
@@ -162788,7 +162511,7 @@ export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemCustomEn
 export type DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -162824,18 +162547,18 @@ export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemPredefin
 export type DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -162861,7 +162584,7 @@ export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemPredefin
 export type DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemPredefinedEntryVariantCase1Type;
@@ -162923,7 +162646,7 @@ export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemPredefin
 export type DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemIntegrationEntry {
   id: string;
@@ -162953,7 +162676,7 @@ export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemIntegrat
 export type DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemExactDataEntry {
   id: string;
@@ -162989,7 +162712,7 @@ export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemExactDat
 export type DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -163020,7 +162743,7 @@ export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemDocument
 export type DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultCustomProfileSharedEntriesItemWordListEntry {
   id: string;
@@ -163205,7 +162928,7 @@ export const DlpProfilesCustomUpdateResultCustomProfile =
 export type DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemCustomEntry {
   id: string;
@@ -163240,7 +162963,7 @@ export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemCustomEntr
 export type DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -163276,18 +162999,18 @@ export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemPredefined
 export type DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -163313,7 +163036,7 @@ export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemPredefined
 export type DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemPredefinedEntryVariantCase1Type;
@@ -163375,7 +163098,7 @@ export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemPredefined
 export type DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemIntegrationEntry {
   id: string;
@@ -163405,7 +163128,7 @@ export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemIntegratio
 export type DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemExactDataEntry {
   id: string;
@@ -163441,7 +163164,7 @@ export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemExactDataE
 export type DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -163472,7 +163195,7 @@ export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemDocumentFi
 export type DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultPredefinedProfileEntriesItemWordListEntry {
   id: string;
@@ -163575,8 +163298,7 @@ export const DlpProfilesCustomUpdateResultPredefinedProfileEntriesList =
   ) as any as S.Schema<DlpProfilesCustomUpdateResultPredefinedProfileEntriesList>;
 
 export type DlpProfilesCustomUpdateResultPredefinedProfileType = "predefined";
-export const DlpProfilesCustomUpdateResultPredefinedProfileType =
-  /*@__PURE__*/ S.String;
+export const DlpProfilesCustomUpdateResultPredefinedProfileType = S.String;
 
 export type DlpProfilesCustomUpdateResultPredefinedProfileConfidenceThreshold =
   | "low"
@@ -163584,7 +163306,7 @@ export type DlpProfilesCustomUpdateResultPredefinedProfileConfidenceThreshold =
   | "high"
   | "very_high";
 export const DlpProfilesCustomUpdateResultPredefinedProfileConfidenceThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultPredefinedProfile {
   /** The id of the predefined profile (uuid). */
@@ -163633,7 +163355,7 @@ export const DlpProfilesCustomUpdateResultPredefinedProfile =
 export type DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemCustomEntry {
   id: string;
@@ -163668,7 +163390,7 @@ export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemCustomEnt
 export type DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -163704,18 +163426,18 @@ export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemPredefine
 export type DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -163741,7 +163463,7 @@ export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemPredefine
 export type DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemPredefinedEntryVariantCase1Type;
@@ -163803,7 +163525,7 @@ export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemPredefine
 export type DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemIntegrationEntry {
   id: string;
@@ -163833,7 +163555,7 @@ export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemIntegrati
 export type DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemExactDataEntry {
   id: string;
@@ -163869,7 +163591,7 @@ export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemExactData
 export type DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -163900,7 +163622,7 @@ export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemDocumentF
 export type DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfileEntriesItemWordListEntry {
   id: string;
@@ -164005,7 +163727,7 @@ export const DlpProfilesCustomUpdateResultIntegrationProfileEntriesList =
 export type DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemCustomEntryType =
   "custom";
 export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemCustomEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemCustomEntry {
   id: string;
@@ -164040,7 +163762,7 @@ export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemCus
 export type DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemCustomPromptTopicEntryType =
   "custom_prompt_topic";
 export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemCustomPromptTopicEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemCustomPromptTopicEntry {
   id: string;
@@ -164076,18 +163798,18 @@ export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemPre
 export type DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemPredefinedEntryType =
   "predefined";
 export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemPredefinedEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
   | "Intent"
   | "Content";
 export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
   "PromptTopic";
 export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0 {
   topicType: DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase0TopicType;
@@ -164113,7 +163835,7 @@ export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemPre
 export type DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
   "General";
 export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1 {
   type: DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemPredefinedEntryVariantCase1Type;
@@ -164175,7 +163897,7 @@ export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemPre
 export type DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemIntegrationEntryType =
   "integration";
 export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemIntegrationEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemIntegrationEntry {
   id: string;
@@ -164205,7 +163927,7 @@ export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemInt
 export type DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemExactDataEntryType =
   "exact_data";
 export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemExactDataEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemExactDataEntry {
   id: string;
@@ -164241,7 +163963,7 @@ export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemExa
 export type DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemDocumentFingerprintEntryType =
   "document_fingerprint";
 export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemDocumentFingerprintEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemDocumentFingerprintEntry {
   id: string;
@@ -164272,7 +163994,7 @@ export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemDoc
 export type DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemWordListEntryType =
   "word_list";
 export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemWordListEntryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesItemWordListEntry {
   id: string;
@@ -164375,8 +164097,7 @@ export const DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesList =
   ) as any as S.Schema<DlpProfilesCustomUpdateResultIntegrationProfileSharedEntriesList>;
 
 export type DlpProfilesCustomUpdateResultIntegrationProfileType = "integration";
-export const DlpProfilesCustomUpdateResultIntegrationProfileType =
-  /*@__PURE__*/ S.String;
+export const DlpProfilesCustomUpdateResultIntegrationProfileType = S.String;
 
 export interface DlpProfilesCustomUpdateResultIntegrationProfile {
   id: string;
@@ -164667,7 +164388,7 @@ export type GatewayListsUpdateResponseType =
   | "LOCATION"
   | "DEVICE"
   | "AAGUID";
-export const GatewayListsUpdateResponseType = /*@__PURE__*/ S.String;
+export const GatewayListsUpdateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateGatewayListResponse {
@@ -164821,7 +164542,7 @@ export type GatewayLocationsUpdateRequestMaxTtlMode =
   | "inherit"
   | "override"
   | "disabled";
-export const GatewayLocationsUpdateRequestMaxTtlMode = /*@__PURE__*/ S.String;
+export const GatewayLocationsUpdateRequestMaxTtlMode = S.String;
 
 export interface GatewayLocationsUpdateRequestMaxTtl {
   /** `inherit` uses the account `max_ttl_secs`. `override` uses this location's `ttl_secs`. `disabled` leaves returned TTLs unchanged. */
@@ -165017,7 +164738,7 @@ export type GatewayLocationsUpdateResponseMaxTtlMode =
   | "inherit"
   | "override"
   | "disabled";
-export const GatewayLocationsUpdateResponseMaxTtlMode = /*@__PURE__*/ S.String;
+export const GatewayLocationsUpdateResponseMaxTtlMode = S.String;
 
 export interface GatewayLocationsUpdateResponseMaxTtl {
   /** `inherit` uses the account `max_ttl_secs`. `override` uses this location's `ttl_secs`. `disabled` leaves returned TTLs unchanged. */
@@ -165188,7 +164909,7 @@ export type GatewayRulesUpdateRequestAction =
   | "resolve"
   | "quarantine"
   | "redirect";
-export const GatewayRulesUpdateRequestAction = /*@__PURE__*/ S.String;
+export const GatewayRulesUpdateRequestAction = S.String;
 
 export type GatewayRulesUpdateRequestExpiration =
   GatewayRulesCreateRequestExpiration;
@@ -165201,7 +164922,7 @@ export type GatewayRulesUpdateRequestFiltersItem =
   | "l4"
   | "egress"
   | "dns_resolver";
-export const GatewayRulesUpdateRequestFiltersItem = /*@__PURE__*/ S.String;
+export const GatewayRulesUpdateRequestFiltersItem = S.String;
 
 export type GatewayRulesUpdateRequestFiltersList = Array<
   GatewayRulesUpdateRequestFiltersItem | (string & {})
@@ -165238,45 +164959,45 @@ export type GatewayRulesUpdateRequestRuleSettingsBisoAdminControlsCopy =
   | "disabled"
   | "remote_only";
 export const GatewayRulesUpdateRequestRuleSettingsBisoAdminControlsCopy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesUpdateRequestRuleSettingsBisoAdminControlsDownload =
   | "enabled"
   | "disabled"
   | "remote_only";
 export const GatewayRulesUpdateRequestRuleSettingsBisoAdminControlsDownload =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesUpdateRequestRuleSettingsBisoAdminControlsKeyboard =
   | "enabled"
   | "disabled";
 export const GatewayRulesUpdateRequestRuleSettingsBisoAdminControlsKeyboard =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesUpdateRequestRuleSettingsBisoAdminControlsPaste =
   | "enabled"
   | "disabled"
   | "remote_only";
 export const GatewayRulesUpdateRequestRuleSettingsBisoAdminControlsPaste =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesUpdateRequestRuleSettingsBisoAdminControlsPrinting =
   | "enabled"
   | "disabled";
 export const GatewayRulesUpdateRequestRuleSettingsBisoAdminControlsPrinting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesUpdateRequestRuleSettingsBisoAdminControlsUpload =
   | "enabled"
   | "disabled";
 export const GatewayRulesUpdateRequestRuleSettingsBisoAdminControlsUpload =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesUpdateRequestRuleSettingsBisoAdminControlsVersion =
   | "v1"
   | "v2";
 export const GatewayRulesUpdateRequestRuleSettingsBisoAdminControlsVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesUpdateRequestRuleSettingsBisoAdminControls {
   /** Configure copy behavior. If set to remote_only, users cannot copy isolated content from the remote browser to the local clipboard. If this field is absent, copying remains enabled. Applies only when version == "v2". */
@@ -165454,7 +165175,7 @@ export type GatewayRulesUpdateRequestRuleSettingsQuarantineFileTypesItem =
   | "zip"
   | "rar";
 export const GatewayRulesUpdateRequestRuleSettingsQuarantineFileTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesUpdateRequestRuleSettingsQuarantineFileTypesList =
   Array<
@@ -165491,7 +165212,7 @@ export type GatewayRulesUpdateRequestRuleSettingsResolveDnsInternallyFallback =
   | "none"
   | "public_dns";
 export const GatewayRulesUpdateRequestRuleSettingsResolveDnsInternallyFallback =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesUpdateRequestRuleSettingsResolveDnsInternally {
   /** Specify the fallback behavior to apply when the internal DNS response code differs from 'NOERROR' or when the response data contains only CNAME records for 'A' or 'AAAA' queries. */
@@ -165518,7 +165239,7 @@ export type GatewayRulesUpdateRequestRuleSettingsUntrustedCertAction =
   | "block"
   | "error";
 export const GatewayRulesUpdateRequestRuleSettingsUntrustedCertAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesUpdateRequestRuleSettingsUntrustedCert {
   /** Defines the action performed when an untrusted certificate seen. The default action an error with HTTP code 526. */
@@ -165767,7 +165488,7 @@ export type GatewayRulesUpdateResponseAction =
   | "resolve"
   | "quarantine"
   | "redirect";
-export const GatewayRulesUpdateResponseAction = /*@__PURE__*/ S.String;
+export const GatewayRulesUpdateResponseAction = S.String;
 
 export type GatewayRulesUpdateResponseFiltersItem =
   | "http"
@@ -165775,7 +165496,7 @@ export type GatewayRulesUpdateResponseFiltersItem =
   | "l4"
   | "egress"
   | "dns_resolver";
-export const GatewayRulesUpdateResponseFiltersItem = /*@__PURE__*/ S.String;
+export const GatewayRulesUpdateResponseFiltersItem = S.String;
 
 export type GatewayRulesUpdateResponseFiltersList =
   Array<GatewayRulesUpdateResponseFiltersItem>;
@@ -165816,45 +165537,45 @@ export type GatewayRulesUpdateResponseRuleSettingsBisoAdminControlsCopy =
   | "disabled"
   | "remote_only";
 export const GatewayRulesUpdateResponseRuleSettingsBisoAdminControlsCopy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesUpdateResponseRuleSettingsBisoAdminControlsDownload =
   | "enabled"
   | "disabled"
   | "remote_only";
 export const GatewayRulesUpdateResponseRuleSettingsBisoAdminControlsDownload =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesUpdateResponseRuleSettingsBisoAdminControlsKeyboard =
   | "enabled"
   | "disabled";
 export const GatewayRulesUpdateResponseRuleSettingsBisoAdminControlsKeyboard =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesUpdateResponseRuleSettingsBisoAdminControlsPaste =
   | "enabled"
   | "disabled"
   | "remote_only";
 export const GatewayRulesUpdateResponseRuleSettingsBisoAdminControlsPaste =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesUpdateResponseRuleSettingsBisoAdminControlsPrinting =
   | "enabled"
   | "disabled";
 export const GatewayRulesUpdateResponseRuleSettingsBisoAdminControlsPrinting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesUpdateResponseRuleSettingsBisoAdminControlsUpload =
   | "enabled"
   | "disabled";
 export const GatewayRulesUpdateResponseRuleSettingsBisoAdminControlsUpload =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesUpdateResponseRuleSettingsBisoAdminControlsVersion =
   | "v1"
   | "v2";
 export const GatewayRulesUpdateResponseRuleSettingsBisoAdminControlsVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesUpdateResponseRuleSettingsBisoAdminControls {
   /** Configure copy behavior. If set to remote_only, users cannot copy isolated content from the remote browser to the local clipboard. If this field is absent, copying remains enabled. Applies only when version == "v2". */
@@ -166026,7 +165747,7 @@ export type GatewayRulesUpdateResponseRuleSettingsQuarantineFileTypesItem =
   | "zip"
   | "rar";
 export const GatewayRulesUpdateResponseRuleSettingsQuarantineFileTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GatewayRulesUpdateResponseRuleSettingsQuarantineFileTypesList =
   Array<GatewayRulesUpdateResponseRuleSettingsQuarantineFileTypesItem>;
@@ -166061,7 +165782,7 @@ export type GatewayRulesUpdateResponseRuleSettingsResolveDnsInternallyFallback =
   | "none"
   | "public_dns";
 export const GatewayRulesUpdateResponseRuleSettingsResolveDnsInternallyFallback =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesUpdateResponseRuleSettingsResolveDnsInternally {
   /** Specify the fallback behavior to apply when the internal DNS response code differs from 'NOERROR' or when the response data contains only CNAME records for 'A' or 'AAAA' queries. */
@@ -166088,7 +165809,7 @@ export type GatewayRulesUpdateResponseRuleSettingsUntrustedCertAction =
   | "block"
   | "error";
 export const GatewayRulesUpdateResponseRuleSettingsUntrustedCertAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GatewayRulesUpdateResponseRuleSettingsUntrustedCert {
   /** Defines the action performed when an untrusted certificate seen. The default action an error with HTTP code 526. */
@@ -166364,8 +166085,7 @@ export type IdentityProvidersUpdateRequestConfigAzureADPrompt =
   | "login"
   | "select_account"
   | "none";
-export const IdentityProvidersUpdateRequestConfigAzureADPrompt =
-  /*@__PURE__*/ S.String;
+export const IdentityProvidersUpdateRequestConfigAzureADPrompt = S.String;
 
 export interface IdentityProvidersUpdateRequestConfigAzureAD {
   /** Custom claims */
@@ -166849,7 +166569,7 @@ export type IdentityProvidersUpdateRequestTypeAzureAD =
   | "pingone"
   | "yandex"
   | "cloudflare";
-export const IdentityProvidersUpdateRequestTypeAzureAD = /*@__PURE__*/ S.String;
+export const IdentityProvidersUpdateRequestTypeAzureAD = S.String;
 
 export type IdentityProvidersUpdateRequestSamlCertificateSetCurrentCertificate =
   IdentityProvidersCreateRequestSamlCertificateSetCurrentCertificate;
@@ -166866,7 +166586,7 @@ export type IdentityProvidersUpdateRequestScimConfigAzureADIdentityUpdateBehavio
   | "reauth"
   | "no_action";
 export const IdentityProvidersUpdateRequestScimConfigAzureADIdentityUpdateBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IdentityProvidersUpdateRequestScimConfigAzureAD {
   /** A flag to enable or disable SCIM for the identity provider. */
@@ -166971,8 +166691,7 @@ export type IdentityProvidersUpdateResultAzureADConfigPrompt =
   | "login"
   | "select_account"
   | "none";
-export const IdentityProvidersUpdateResultAzureADConfigPrompt =
-  /*@__PURE__*/ S.String;
+export const IdentityProvidersUpdateResultAzureADConfigPrompt = S.String;
 
 export interface IdentityProvidersUpdateResultAzureADConfig {
   /** Custom claims */
@@ -167036,7 +166755,7 @@ export type IdentityProvidersUpdateResultAzureADType =
   | "pingone"
   | "yandex"
   | "cloudflare";
-export const IdentityProvidersUpdateResultAzureADType = /*@__PURE__*/ S.String;
+export const IdentityProvidersUpdateResultAzureADType = S.String;
 
 export type IdentityProvidersUpdateResultAzureADSamlCertificateSetCurrentCertificate =
   IdentityProvidersCreateRequestSamlCertificateSetCurrentCertificate;
@@ -167053,7 +166772,7 @@ export type IdentityProvidersUpdateResultAzureADScimConfigIdentityUpdateBehavior
   | "reauth"
   | "no_action";
 export const IdentityProvidersUpdateResultAzureADScimConfigIdentityUpdateBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IdentityProvidersUpdateResultAzureADScimConfig {
   /** A flag to enable or disable SCIM for the identity provider. */
@@ -168436,7 +168155,7 @@ export type OrganizationsUpdateRequestMfaConfigAllowedAuthenticatorsItem =
   | "security_key"
   | "piv_key";
 export const OrganizationsUpdateRequestMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationsUpdateRequestMfaConfigAllowedAuthenticatorsList =
   Array<
@@ -168479,7 +168198,7 @@ export type OrganizationsUpdateRequestMfaPivKeyRequirementsPinPolicy =
   | "once"
   | "always";
 export const OrganizationsUpdateRequestMfaPivKeyRequirementsPinPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationsUpdateRequestMfaPivKeyRequirementsSshKeySizeItem =
   | 256
@@ -168489,7 +168208,7 @@ export type OrganizationsUpdateRequestMfaPivKeyRequirementsSshKeySizeItem =
   | 3072
   | 4096;
 export const OrganizationsUpdateRequestMfaPivKeyRequirementsSshKeySizeItem =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export type OrganizationsUpdateRequestMfaPivKeyRequirementsSshKeySizeList =
   Array<
@@ -168506,7 +168225,7 @@ export type OrganizationsUpdateRequestMfaPivKeyRequirementsSshKeyTypeItem =
   | "ed25519"
   | "rsa";
 export const OrganizationsUpdateRequestMfaPivKeyRequirementsSshKeyTypeItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationsUpdateRequestMfaPivKeyRequirementsSshKeyTypeList =
   Array<
@@ -168523,7 +168242,7 @@ export type OrganizationsUpdateRequestMfaPivKeyRequirementsTouchPolicy =
   | "always"
   | "cached";
 export const OrganizationsUpdateRequestMfaPivKeyRequirementsTouchPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface OrganizationsUpdateRequestMfaPivKeyRequirements {
   /** Defines when a PIN is required to use the SSH key. Valid values: `never` (no PIN required), `once` (PIN required once per session), `always` (PIN required for each use). */
@@ -168689,7 +168408,7 @@ export type OrganizationsUpdateResponseMfaConfigAllowedAuthenticatorsItem =
   | "security_key"
   | "piv_key";
 export const OrganizationsUpdateResponseMfaConfigAllowedAuthenticatorsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationsUpdateResponseMfaConfigAllowedAuthenticatorsList =
   Array<OrganizationsUpdateResponseMfaConfigAllowedAuthenticatorsItem>;
@@ -168735,7 +168454,7 @@ export type OrganizationsUpdateResponseMfaPivKeyRequirementsPinPolicy =
   | "once"
   | "always";
 export const OrganizationsUpdateResponseMfaPivKeyRequirementsPinPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationsUpdateResponseMfaPivKeyRequirementsSshKeySizeItem =
   | 256
@@ -168745,7 +168464,7 @@ export type OrganizationsUpdateResponseMfaPivKeyRequirementsSshKeySizeItem =
   | 3072
   | 4096;
 export const OrganizationsUpdateResponseMfaPivKeyRequirementsSshKeySizeItem =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export type OrganizationsUpdateResponseMfaPivKeyRequirementsSshKeySizeList =
   Array<OrganizationsUpdateResponseMfaPivKeyRequirementsSshKeySizeItem>;
@@ -168759,7 +168478,7 @@ export type OrganizationsUpdateResponseMfaPivKeyRequirementsSshKeyTypeItem =
   | "ed25519"
   | "rsa";
 export const OrganizationsUpdateResponseMfaPivKeyRequirementsSshKeyTypeItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationsUpdateResponseMfaPivKeyRequirementsSshKeyTypeList =
   Array<OrganizationsUpdateResponseMfaPivKeyRequirementsSshKeyTypeItem>;
@@ -168773,7 +168492,7 @@ export type OrganizationsUpdateResponseMfaPivKeyRequirementsTouchPolicy =
   | "always"
   | "cached";
 export const OrganizationsUpdateResponseMfaPivKeyRequirementsTouchPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface OrganizationsUpdateResponseMfaPivKeyRequirements {
   /** Defines when a PIN is required to use the SSH key. Valid values: `never` (no PIN required), `once` (PIN required once per session), `always` (PIN required for each use). */
@@ -169035,8 +168754,7 @@ export const UpdateRiskScoringIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRiskScoringIntegrationRequest>;
 
 export type RiskScoringIntegrationsUpdateResponseIntegrationType = "Okta";
-export const RiskScoringIntegrationsUpdateResponseIntegrationType =
-  /*@__PURE__*/ S.String;
+export const RiskScoringIntegrationsUpdateResponseIntegrationType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateRiskScoringIntegrationResponse {

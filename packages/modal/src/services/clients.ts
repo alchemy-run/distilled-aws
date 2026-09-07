@@ -30,7 +30,7 @@ export type WarningWarningType =
   | "WARNING_TYPE_CLIENT_DEPRECATION"
   | "WARNING_TYPE_RESOURCE_LIMIT"
   | "WARNING_TYPE_FUNCTION_CONFIGURATION";
-export const WarningWarningType = /*@__PURE__*/ S.String;
+export const WarningWarningType = S.String;
 
 export interface Warning {
   type?: WarningWarningType;

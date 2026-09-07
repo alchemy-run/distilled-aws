@@ -72,7 +72,7 @@ export const CreateAiChatRequestMessageAttachmentsList = /*@__PURE__*/ S.Array(
 
 /** The source of an AI chat message */
 export type AiChatMessageSourceTypes = "manual" | "suggestion" | "link";
-export const AiChatMessageSourceTypes = /*@__PURE__*/ S.String;
+export const AiChatMessageSourceTypes = S.String;
 
 export interface CreateAiChatRequest {
   /** The unique identifier of the company to set as context for the AI chat (e.g., "biz_XXXXX"). */
@@ -105,7 +105,7 @@ export const CreateAiChatRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The notification preference for an AI chat */
 export type AiChatNotificationPreferences = "all" | "none";
-export const AiChatNotificationPreferences = /*@__PURE__*/ S.String;
+export const AiChatNotificationPreferences = S.String;
 
 /** The user who owns this AI chat conversation. */
 export interface AiChatUser {

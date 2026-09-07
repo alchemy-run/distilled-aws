@@ -78,7 +78,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -86,7 +86,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -176,7 +176,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
@@ -225,8 +225,7 @@ export const WorkbookResourceIdentity = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of workbook. Only valid value is shared. */
 export type ApplicationInsightsCommonTypesWorkbookSharedTypeKind = "shared";
-export const ApplicationInsightsCommonTypesWorkbookSharedTypeKind =
-  /*@__PURE__*/ S.String;
+export const ApplicationInsightsCommonTypesWorkbookSharedTypeKind = S.String;
 
 export interface GetWorkbookResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -348,8 +347,7 @@ export type ListWorkbookByResourceGroupRequestCategory =
   | "TSG"
   | "performance"
   | "retention";
-export const ListWorkbookByResourceGroupRequestCategory =
-  /*@__PURE__*/ S.String;
+export const ListWorkbookByResourceGroupRequestCategory = S.String;
 
 export type ListWorkbookByResourceGroupRequestTagsList = Array<string>;
 export const ListWorkbookByResourceGroupRequestTagsList = /*@__PURE__*/ S.Array(
@@ -464,7 +462,7 @@ export type ListWorkbookBySubscriptionRequestCategory =
   | "TSG"
   | "performance"
   | "retention";
-export const ListWorkbookBySubscriptionRequestCategory = /*@__PURE__*/ S.String;
+export const ListWorkbookBySubscriptionRequestCategory = S.String;
 
 export type ListWorkbookBySubscriptionRequestTagsList = Array<string>;
 export const ListWorkbookBySubscriptionRequestTagsList = /*@__PURE__*/ S.Array(
@@ -526,7 +524,7 @@ export const ListWorkbooksRevisionsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of workbook. Only valid value is shared. */
 export type WorkbookUpdateSharedTypeKind = "shared";
-export const WorkbookUpdateSharedTypeKind = /*@__PURE__*/ S.String;
+export const WorkbookUpdateSharedTypeKind = S.String;
 
 /** Resource tags. */
 export type UpdateWorkbookRequestTagsMap = {

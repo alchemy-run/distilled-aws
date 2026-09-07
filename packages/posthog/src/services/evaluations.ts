@@ -13,7 +13,7 @@ export type { PosthogOpError, PosthogOpContext };
 
 /** * `llm_judge` - LLM as a judge * `hog` - Hog * `sentiment` - Sentiment analysis */
 export type EvaluationTypeEnum = "llm_judge" | "hog" | "sentiment";
-export const EvaluationTypeEnum = /*@__PURE__*/ S.String;
+export const EvaluationTypeEnum = S.String;
 
 export interface CreateEvaluationRequestEvaluationConfigCase0 {
   /** Evaluation criteria for the LLM judge. Describe what makes a good vs bad response. */
@@ -44,8 +44,7 @@ export const CreateEvaluationRequestEvaluationConfigCase1 =
 /** Classify sentiment from user messages in the generation input. The classifier is trained on English, so labels are unreliable for other languages; use an 'llm_judge' evaluation for multilingual agents. */
 export type CreateEvaluationRequestEvaluationConfigCase2Source =
   "user_messages";
-export const CreateEvaluationRequestEvaluationConfigCase2Source =
-  /*@__PURE__*/ S.String;
+export const CreateEvaluationRequestEvaluationConfigCase2Source = S.String;
 
 export interface CreateEvaluationRequestEvaluationConfigCase2 {
   /** Classify sentiment from user messages in the generation input. The classifier is trained on English, so labels are unreliable for other languages; use an 'llm_judge' evaluation for multilingual agents. */
@@ -66,11 +65,11 @@ export type CreateEvaluationRequestEvaluationConfig =
   | CreateEvaluationRequestEvaluationConfigCase1
   | CreateEvaluationRequestEvaluationConfigCase2;
 export const CreateEvaluationRequestEvaluationConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEvaluationRequestEvaluationConfig>;
+  S.Unknown as any as S.Schema<CreateEvaluationRequestEvaluationConfig>;
 
 /** * `boolean` - Boolean (Pass/Fail) * `sentiment` - Sentiment */
 export type OutputTypeEnum = "boolean" | "sentiment";
-export const OutputTypeEnum = /*@__PURE__*/ S.String;
+export const OutputTypeEnum = S.String;
 
 /** Output config. For 'boolean' output_type: {allows_na} to permit N/A results. */
 export interface CreateEvaluationRequestOutputConfig {
@@ -127,12 +126,11 @@ export const CreateEvaluationRequestConditionsList = /*@__PURE__*/ S.Array(
 
 /** * `generation` - Generation * `trace` - Trace * `session` - Session */
 export type EvaluationTargetEnum = "generation" | "trace" | "session";
-export const EvaluationTargetEnum = /*@__PURE__*/ S.String;
+export const EvaluationTargetEnum = S.String;
 
 /** Wait a fixed window after the first matching generation, then evaluate. */
 export type CreateEvaluationRequestTargetConfigCase0Strategy = "fixed_window";
-export const CreateEvaluationRequestTargetConfigCase0Strategy =
-  /*@__PURE__*/ S.String;
+export const CreateEvaluationRequestTargetConfigCase0Strategy = S.String;
 
 export interface CreateEvaluationRequestTargetConfigCase0 {
   /** Wait a fixed window after the first matching generation, then evaluate. */
@@ -152,8 +150,7 @@ export const CreateEvaluationRequestTargetConfigCase0 = /*@__PURE__*/ S.suspend(
 
 /** Evaluate once the unit has had no new activity for the quiet period. */
 export type CreateEvaluationRequestTargetConfigCase1Strategy = "inactivity";
-export const CreateEvaluationRequestTargetConfigCase1Strategy =
-  /*@__PURE__*/ S.String;
+export const CreateEvaluationRequestTargetConfigCase1Strategy = S.String;
 
 export interface CreateEvaluationRequestTargetConfigCase1 {
   /** Evaluate once the unit has had no new activity for the quiet period. */
@@ -179,7 +176,7 @@ export type CreateEvaluationRequestTargetConfig =
   | CreateEvaluationRequestTargetConfigCase0
   | CreateEvaluationRequestTargetConfigCase1;
 export const CreateEvaluationRequestTargetConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEvaluationRequestTargetConfig>;
+  S.Unknown as any as S.Schema<CreateEvaluationRequestTargetConfig>;
 
 /** * `openai` - Openai * `anthropic` - Anthropic * `gemini` - Gemini * `openrouter` - Openrouter * `fireworks` - Fireworks * `azure_openai` - Azure OpenAI * `together_ai` - Together AI * `minimax` - MiniMax * `zeabur` - Zeabur AI Hub */
 export type LLMProviderEnum =
@@ -192,7 +189,7 @@ export type LLMProviderEnum =
   | "together_ai"
   | "minimax"
   | "zeabur";
-export const LLMProviderEnum = /*@__PURE__*/ S.String;
+export const LLMProviderEnum = S.String;
 
 /** Nested serializer for model configuration. */
 export interface ModelConfigurationInput {
@@ -270,7 +267,7 @@ export const CreateEvaluationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `active` - Active * `paused` - Paused * `error` - Error */
 export type EvaluationStatusEnum = "active" | "paused" | "error";
-export const EvaluationStatusEnum = /*@__PURE__*/ S.String;
+export const EvaluationStatusEnum = S.String;
 
 /** * `provider_key_required` - No provider API key configured * `provider_key_deleted` - Provider API key was deleted * `no_default_model` - No default model available for the selected provider * `provider_key_invalid` - Provider API key is invalid * `provider_key_permission_denied` - Provider API key lacks model access * `provider_key_quota_exceeded` - Provider API key quota exceeded * `provider_key_rate_limited` - Provider API key is rate limited * `model_not_found` - Model not found * `hog_error` - Hog evaluation code failed */
 export type EvaluationStatusReasonEnum =
@@ -283,7 +280,7 @@ export type EvaluationStatusReasonEnum =
   | "provider_key_rate_limited"
   | "model_not_found"
   | "hog_error";
-export const EvaluationStatusReasonEnum = /*@__PURE__*/ S.String;
+export const EvaluationStatusReasonEnum = S.String;
 
 export type EvaluationEvaluationConfigCase0 =
   CreateEvaluationRequestEvaluationConfigCase0;
@@ -297,7 +294,7 @@ export const EvaluationEvaluationConfigCase1 =
 
 /** Classify sentiment from user messages in the generation input. The classifier is trained on English, so labels are unreliable for other languages; use an 'llm_judge' evaluation for multilingual agents. */
 export type EvaluationEvaluationConfigCase2Source = "user_messages";
-export const EvaluationEvaluationConfigCase2Source = /*@__PURE__*/ S.String;
+export const EvaluationEvaluationConfigCase2Source = S.String;
 
 export interface EvaluationEvaluationConfigCase2 {
   /** Classify sentiment from user messages in the generation input. The classifier is trained on English, so labels are unreliable for other languages; use an 'llm_judge' evaluation for multilingual agents. */
@@ -317,7 +314,7 @@ export type EvaluationEvaluationConfig =
   | CreateEvaluationRequestEvaluationConfigCase1
   | EvaluationEvaluationConfigCase2;
 export const EvaluationEvaluationConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EvaluationEvaluationConfig>;
+  S.Unknown as any as S.Schema<EvaluationEvaluationConfig>;
 
 /** Output config. For 'boolean' output_type: {allows_na} to permit N/A results. */
 export type EvaluationOutputConfig = CreateEvaluationRequestOutputConfig;
@@ -331,7 +328,7 @@ export const EvaluationConditionsList = /*@__PURE__*/ S.Array(
 
 /** Wait a fixed window after the first matching generation, then evaluate. */
 export type EvaluationTargetConfigCase0Strategy = "fixed_window";
-export const EvaluationTargetConfigCase0Strategy = /*@__PURE__*/ S.String;
+export const EvaluationTargetConfigCase0Strategy = S.String;
 
 export interface EvaluationTargetConfigCase0 {
   /** Wait a fixed window after the first matching generation, then evaluate. */
@@ -350,7 +347,7 @@ export const EvaluationTargetConfigCase0 = /*@__PURE__*/ S.suspend(() =>
 
 /** Evaluate once the unit has had no new activity for the quiet period. */
 export type EvaluationTargetConfigCase1Strategy = "inactivity";
-export const EvaluationTargetConfigCase1Strategy = /*@__PURE__*/ S.String;
+export const EvaluationTargetConfigCase1Strategy = S.String;
 
 export interface EvaluationTargetConfigCase1 {
   /** Evaluate once the unit has had no new activity for the quiet period. */
@@ -375,7 +372,7 @@ export type EvaluationTargetConfig =
   | EvaluationTargetConfigCase0
   | EvaluationTargetConfigCase1;
 export const EvaluationTargetConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EvaluationTargetConfig>;
+  S.Unknown as any as S.Schema<EvaluationTargetConfig>;
 
 /** Nested serializer for model configuration. */
 export interface ModelConfiguration {
@@ -413,14 +410,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -689,7 +686,7 @@ export type ListEvaluationsRequestEvaluationType =
   | "hog"
   | "llm_judge"
   | "sentiment";
-export const ListEvaluationsRequestEvaluationType = /*@__PURE__*/ S.String;
+export const ListEvaluationsRequestEvaluationType = S.String;
 
 export type ListEvaluationsRequestIdInList = Array<string>;
 export const ListEvaluationsRequestIdInList = /*@__PURE__*/ S.Array(
@@ -703,7 +700,7 @@ export type ListEvaluationsRequestOrderByItem =
   | "created_at"
   | "name"
   | "updated_at";
-export const ListEvaluationsRequestOrderByItem = /*@__PURE__*/ S.String;
+export const ListEvaluationsRequestOrderByItem = S.String;
 
 export type ListEvaluationsRequestOrderByList = Array<
   ListEvaluationsRequestOrderByItem | (string & {})
@@ -794,8 +791,7 @@ export const UpdateEvaluationRequestEvaluationConfigCase1 =
 /** Classify sentiment from user messages in the generation input. The classifier is trained on English, so labels are unreliable for other languages; use an 'llm_judge' evaluation for multilingual agents. */
 export type UpdateEvaluationRequestEvaluationConfigCase2Source =
   "user_messages";
-export const UpdateEvaluationRequestEvaluationConfigCase2Source =
-  /*@__PURE__*/ S.String;
+export const UpdateEvaluationRequestEvaluationConfigCase2Source = S.String;
 
 export interface UpdateEvaluationRequestEvaluationConfigCase2 {
   /** Classify sentiment from user messages in the generation input. The classifier is trained on English, so labels are unreliable for other languages; use an 'llm_judge' evaluation for multilingual agents. */
@@ -816,7 +812,7 @@ export type UpdateEvaluationRequestEvaluationConfig =
   | CreateEvaluationRequestEvaluationConfigCase1
   | UpdateEvaluationRequestEvaluationConfigCase2;
 export const UpdateEvaluationRequestEvaluationConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateEvaluationRequestEvaluationConfig>;
+  S.Unknown as any as S.Schema<UpdateEvaluationRequestEvaluationConfig>;
 
 /** Output config. For 'boolean' output_type: {allows_na} to permit N/A results. */
 export type UpdateEvaluationRequestOutputConfig =
@@ -832,8 +828,7 @@ export const UpdateEvaluationRequestConditionsList = /*@__PURE__*/ S.Array(
 
 /** Wait a fixed window after the first matching generation, then evaluate. */
 export type UpdateEvaluationRequestTargetConfigCase0Strategy = "fixed_window";
-export const UpdateEvaluationRequestTargetConfigCase0Strategy =
-  /*@__PURE__*/ S.String;
+export const UpdateEvaluationRequestTargetConfigCase0Strategy = S.String;
 
 export interface UpdateEvaluationRequestTargetConfigCase0 {
   /** Wait a fixed window after the first matching generation, then evaluate. */
@@ -853,8 +848,7 @@ export const UpdateEvaluationRequestTargetConfigCase0 = /*@__PURE__*/ S.suspend(
 
 /** Evaluate once the unit has had no new activity for the quiet period. */
 export type UpdateEvaluationRequestTargetConfigCase1Strategy = "inactivity";
-export const UpdateEvaluationRequestTargetConfigCase1Strategy =
-  /*@__PURE__*/ S.String;
+export const UpdateEvaluationRequestTargetConfigCase1Strategy = S.String;
 
 export interface UpdateEvaluationRequestTargetConfigCase1 {
   /** Evaluate once the unit has had no new activity for the quiet period. */
@@ -880,7 +874,7 @@ export type UpdateEvaluationRequestTargetConfig =
   | UpdateEvaluationRequestTargetConfigCase0
   | UpdateEvaluationRequestTargetConfigCase1;
 export const UpdateEvaluationRequestTargetConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateEvaluationRequestTargetConfig>;
+  S.Unknown as any as S.Schema<UpdateEvaluationRequestTargetConfig>;
 
 export interface UpdateEvaluationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -956,7 +950,7 @@ export const UpdateEvaluationsPartialRequestEvaluationConfigCase1 =
 export type UpdateEvaluationsPartialRequestEvaluationConfigCase2Source =
   "user_messages";
 export const UpdateEvaluationsPartialRequestEvaluationConfigCase2Source =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateEvaluationsPartialRequestEvaluationConfigCase2 {
   /** Classify sentiment from user messages in the generation input. The classifier is trained on English, so labels are unreliable for other languages; use an 'llm_judge' evaluation for multilingual agents. */
@@ -981,7 +975,7 @@ export type UpdateEvaluationsPartialRequestEvaluationConfig =
   | CreateEvaluationRequestEvaluationConfigCase1
   | UpdateEvaluationsPartialRequestEvaluationConfigCase2;
 export const UpdateEvaluationsPartialRequestEvaluationConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateEvaluationsPartialRequestEvaluationConfig>;
+  S.Unknown as any as S.Schema<UpdateEvaluationsPartialRequestEvaluationConfig>;
 
 /** Output config. For 'boolean' output_type: {allows_na} to permit N/A results. */
 export type UpdateEvaluationsPartialRequestOutputConfig =
@@ -1001,7 +995,7 @@ export const UpdateEvaluationsPartialRequestConditionsList =
 export type UpdateEvaluationsPartialRequestTargetConfigCase0Strategy =
   "fixed_window";
 export const UpdateEvaluationsPartialRequestTargetConfigCase0Strategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateEvaluationsPartialRequestTargetConfigCase0 {
   /** Wait a fixed window after the first matching generation, then evaluate. */
@@ -1023,7 +1017,7 @@ export const UpdateEvaluationsPartialRequestTargetConfigCase0 =
 export type UpdateEvaluationsPartialRequestTargetConfigCase1Strategy =
   "inactivity";
 export const UpdateEvaluationsPartialRequestTargetConfigCase1Strategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateEvaluationsPartialRequestTargetConfigCase1 {
   /** Evaluate once the unit has had no new activity for the quiet period. */
@@ -1049,7 +1043,7 @@ export type UpdateEvaluationsPartialRequestTargetConfig =
   | UpdateEvaluationsPartialRequestTargetConfigCase0
   | UpdateEvaluationsPartialRequestTargetConfigCase1;
 export const UpdateEvaluationsPartialRequestTargetConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateEvaluationsPartialRequestTargetConfig>;
+  S.Unknown as any as S.Schema<UpdateEvaluationsPartialRequestTargetConfig>;
 
 export interface UpdateEvaluationsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

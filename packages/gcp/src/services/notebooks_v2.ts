@@ -214,20 +214,20 @@ export type InstanceStateEnum =
   | "INITIALIZING"
   | "SUSPENDING"
   | "SUSPENDED";
-export const InstanceStateEnum = /*@__PURE__*/ S.String;
+export const InstanceStateEnum = S.String;
 
 export type UpgradeHistoryEntryStateEnum =
   | "STATE_UNSPECIFIED"
   | "STARTED"
   | "SUCCEEDED"
   | "FAILED";
-export const UpgradeHistoryEntryStateEnum = /*@__PURE__*/ S.String;
+export const UpgradeHistoryEntryStateEnum = S.String;
 
 export type UpgradeHistoryEntryActionEnum =
   | "ACTION_UNSPECIFIED"
   | "UPGRADE"
   | "ROLLBACK";
-export const UpgradeHistoryEntryActionEnum = /*@__PURE__*/ S.String;
+export const UpgradeHistoryEntryActionEnum = S.String;
 
 /** The entry of VM image upgrade history. */
 export interface UpgradeHistoryEntry {
@@ -318,7 +318,7 @@ export type AcceleratorConfigTypeEnum =
   | "NVIDIA_TESLA_P4_VWS"
   | "NVIDIA_B200"
   | "NVIDIA_RTX6000";
-export const AcceleratorConfigTypeEnum = /*@__PURE__*/ S.String;
+export const AcceleratorConfigTypeEnum = S.String;
 
 /** An accelerator configuration for a VM instance Definition of a hardware accelerator. Note that there is no check on `type` and `core_count` combinations. TPUs are not supported. See [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a valid combination. */
 export interface AcceleratorConfig {
@@ -352,13 +352,13 @@ export type BootDiskDiskTypeEnum =
   | "HYPERDISK_THROUGHPUT"
   | "HYPERDISK_BALANCED_HIGH_AVAILABILITY"
   | "HYPERDISK_ML";
-export const BootDiskDiskTypeEnum = /*@__PURE__*/ S.String;
+export const BootDiskDiskTypeEnum = S.String;
 
 export type BootDiskDiskEncryptionEnum =
   | "DISK_ENCRYPTION_UNSPECIFIED"
   | "GMEK"
   | "CMEK";
-export const BootDiskDiskEncryptionEnum = /*@__PURE__*/ S.String;
+export const BootDiskDiskEncryptionEnum = S.String;
 
 /** The definition of a boot disk. */
 export interface BootDisk {
@@ -389,7 +389,7 @@ export type DataDiskDiskEncryptionEnum =
   | "DISK_ENCRYPTION_UNSPECIFIED"
   | "GMEK"
   | "CMEK";
-export const DataDiskDiskEncryptionEnum = /*@__PURE__*/ S.String;
+export const DataDiskDiskEncryptionEnum = S.String;
 
 export type DataDiskDiskTypeEnum =
   | "DISK_TYPE_UNSPECIFIED"
@@ -402,7 +402,7 @@ export type DataDiskDiskTypeEnum =
   | "HYPERDISK_THROUGHPUT"
   | "HYPERDISK_BALANCED_HIGH_AVAILABILITY"
   | "HYPERDISK_ML";
-export const DataDiskDiskTypeEnum = /*@__PURE__*/ S.String;
+export const DataDiskDiskTypeEnum = S.String;
 
 /** An instance-attached disk resource. */
 export interface DataDisk {
@@ -454,8 +454,7 @@ export const ShieldedInstanceConfig = /*@__PURE__*/ S.suspend(() =>
 export type ConfidentialInstanceConfigConfidentialInstanceTypeEnum =
   | "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED"
   | "SEV";
-export const ConfidentialInstanceConfigConfidentialInstanceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ConfidentialInstanceConfigConfidentialInstanceTypeEnum = S.String;
 
 /** A set of Confidential Instance options. */
 export interface ConfidentialInstanceConfig {
@@ -518,8 +517,7 @@ export type ReservationAffinityConsumeReservationTypeEnum =
   | "RESERVATION_NONE"
   | "RESERVATION_ANY"
   | "RESERVATION_SPECIFIC";
-export const ReservationAffinityConsumeReservationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ReservationAffinityConsumeReservationTypeEnum = S.String;
 
 /** A reservation that an instance can consume from. */
 export interface ReservationAffinity {
@@ -548,7 +546,7 @@ export type NetworkInterfaceNicTypeEnum =
   | "NIC_TYPE_UNSPECIFIED"
   | "VIRTIO_NET"
   | "GVNIC";
-export const NetworkInterfaceNicTypeEnum = /*@__PURE__*/ S.String;
+export const NetworkInterfaceNicTypeEnum = S.String;
 
 /** An access configuration attached to an instance's network interface. */
 export interface AccessConfig {
@@ -661,7 +659,7 @@ export type InstanceHealthStateEnum =
   | "UNHEALTHY"
   | "AGENT_NOT_INSTALLED"
   | "AGENT_NOT_RUNNING";
-export const InstanceHealthStateEnum = /*@__PURE__*/ S.String;
+export const InstanceHealthStateEnum = S.String;
 
 /** The definition of a notebook instance. */
 export interface Instance {
@@ -1418,7 +1416,7 @@ export type EventTypeEnum =
   | "HEALTH"
   | "MAINTENANCE"
   | "METADATA_CHANGE";
-export const EventTypeEnum = /*@__PURE__*/ S.String;
+export const EventTypeEnum = S.String;
 
 /** The definition of an Event for a managed / semi-managed notebook instance. */
 export interface Event {

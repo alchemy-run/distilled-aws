@@ -269,8 +269,7 @@ export type DevicePolicyAllowedEncryptionStatusesItemEnum =
   | "ENCRYPTION_UNSUPPORTED"
   | "UNENCRYPTED"
   | "ENCRYPTED";
-export const DevicePolicyAllowedEncryptionStatusesItemEnum =
-  /*@__PURE__*/ S.String;
+export const DevicePolicyAllowedEncryptionStatusesItemEnum = S.String;
 
 export type DevicePolicyAllowedEncryptionStatusesItemEnumList = Array<
   DevicePolicyAllowedEncryptionStatusesItemEnum | (string & {})
@@ -285,8 +284,7 @@ export type DevicePolicyAllowedDeviceManagementLevelsItemEnum =
   | "NONE"
   | "BASIC"
   | "COMPLETE";
-export const DevicePolicyAllowedDeviceManagementLevelsItemEnum =
-  /*@__PURE__*/ S.String;
+export const DevicePolicyAllowedDeviceManagementLevelsItemEnum = S.String;
 
 export type DevicePolicyAllowedDeviceManagementLevelsItemEnumList = Array<
   DevicePolicyAllowedDeviceManagementLevelsItemEnum | (string & {})
@@ -304,7 +302,7 @@ export type OsConstraintOsTypeEnum =
   | "DESKTOP_CHROME_OS"
   | "ANDROID"
   | "IOS";
-export const OsConstraintOsTypeEnum = /*@__PURE__*/ S.String;
+export const OsConstraintOsTypeEnum = S.String;
 
 /** A restriction on the OS type and version of devices making requests. */
 export interface OsConstraint {
@@ -393,7 +391,7 @@ export const ConditionList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ConditionList>;
 
 export type BasicLevelCombiningFunctionEnum = "AND" | "OR";
-export const BasicLevelCombiningFunctionEnum = /*@__PURE__*/ S.String;
+export const BasicLevelCombiningFunctionEnum = S.String;
 
 /** `BasicLevel` is an `AccessLevel` using a set of recommended features. */
 export interface BasicLevel {
@@ -489,19 +487,18 @@ export type AuthorizedOrgsDescAssetTypeEnum =
   | "ASSET_TYPE_UNSPECIFIED"
   | "ASSET_TYPE_DEVICE"
   | "ASSET_TYPE_CREDENTIAL_STRENGTH";
-export const AuthorizedOrgsDescAssetTypeEnum = /*@__PURE__*/ S.String;
+export const AuthorizedOrgsDescAssetTypeEnum = S.String;
 
 export type AuthorizedOrgsDescAuthorizationDirectionEnum =
   | "AUTHORIZATION_DIRECTION_UNSPECIFIED"
   | "AUTHORIZATION_DIRECTION_TO"
   | "AUTHORIZATION_DIRECTION_FROM";
-export const AuthorizedOrgsDescAuthorizationDirectionEnum =
-  /*@__PURE__*/ S.String;
+export const AuthorizedOrgsDescAuthorizationDirectionEnum = S.String;
 
 export type AuthorizedOrgsDescAuthorizationTypeEnum =
   | "AUTHORIZATION_TYPE_UNSPECIFIED"
   | "AUTHORIZATION_TYPE_TRUST";
-export const AuthorizedOrgsDescAuthorizationTypeEnum = /*@__PURE__*/ S.String;
+export const AuthorizedOrgsDescAuthorizationTypeEnum = S.String;
 
 /** `AuthorizedOrgsDesc` contains data for an organization's authorization policy. */
 export interface AuthorizedOrgsDesc {
@@ -558,7 +555,7 @@ export type VpcAccessibleServicesServicePatternsEnforcementScopesItemEnum =
   | "SERVICE_PATTERNS_ENFORCEMENT_SCOPE_UNSPECIFIED"
   | "GOOGLE_APIS_VIA_PRIVATE_PATH";
 export const VpcAccessibleServicesServicePatternsEnforcementScopesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VpcAccessibleServicesServicePatternsEnforcementScopesItemEnumList =
   Array<
@@ -653,7 +650,7 @@ export type IngressFromIdentityTypeEnum =
   | "ANY_IDENTITY"
   | "ANY_USER_ACCOUNT"
   | "ANY_SERVICE_ACCOUNT";
-export const IngressFromIdentityTypeEnum = /*@__PURE__*/ S.String;
+export const IngressFromIdentityTypeEnum = S.String;
 
 /** Specifies the Private Service Connect endpoint that an API call refers to. */
 export interface PrivateServiceConnectEndpoint {
@@ -808,7 +805,7 @@ export type EgressFromSourceRestrictionEnum =
   | "SOURCE_RESTRICTION_UNSPECIFIED"
   | "SOURCE_RESTRICTION_ENABLED"
   | "SOURCE_RESTRICTION_DISABLED";
-export const EgressFromSourceRestrictionEnum = /*@__PURE__*/ S.String;
+export const EgressFromSourceRestrictionEnum = S.String;
 
 /** The source that EgressPolicy authorizes access from inside the ServicePerimeter to somewhere outside the ServicePerimeter boundaries. */
 export interface EgressSource {
@@ -837,7 +834,7 @@ export type EgressFromIdentityTypeEnum =
   | "ANY_IDENTITY"
   | "ANY_USER_ACCOUNT"
   | "ANY_SERVICE_ACCOUNT";
-export const EgressFromIdentityTypeEnum = /*@__PURE__*/ S.String;
+export const EgressFromIdentityTypeEnum = S.String;
 
 /** Defines the conditions under which an EgressPolicy matches a request. Conditions based on information about the source of the request. Note that if the destination of the request is also protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed. */
 export interface EgressFrom {
@@ -912,7 +909,7 @@ export const ServicePerimeterConfig = /*@__PURE__*/ S.suspend(() =>
 export type ServicePerimeterPerimeterTypeEnum =
   | "PERIMETER_TYPE_REGULAR"
   | "PERIMETER_TYPE_BRIDGE";
-export const ServicePerimeterPerimeterTypeEnum = /*@__PURE__*/ S.String;
+export const ServicePerimeterPerimeterTypeEnum = S.String;
 
 /** `ServicePerimeter` describes a set of Google Cloud resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single Google Cloud project or VPC network can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only Google Cloud projects as members, a single Google Cloud project may belong to multiple Service Perimeter Bridges. */
 export interface ServicePerimeter {
@@ -1025,7 +1022,7 @@ export type SessionSettingsSessionReauthMethodEnum =
   | "LOGIN"
   | "SECURITY_KEY"
   | "PASSWORD";
-export const SessionSettingsSessionReauthMethodEnum = /*@__PURE__*/ S.String;
+export const SessionSettingsSessionReauthMethodEnum = S.String;
 
 /** Stores settings related to Google Cloud Session Length including session duration, the type of challenge (i.e. method) they should face when their session expires, and other related settings. */
 export interface SessionSettings {
@@ -1294,8 +1291,7 @@ export type GetAccessPoliciesAccessLevelsAccessLevelFormatEnum =
   | "LEVEL_FORMAT_UNSPECIFIED"
   | "AS_DEFINED"
   | "CEL";
-export const GetAccessPoliciesAccessLevelsAccessLevelFormatEnum =
-  /*@__PURE__*/ S.String;
+export const GetAccessPoliciesAccessLevelsAccessLevelFormatEnum = S.String;
 
 export interface GetAccessPoliciesAccessLevelsRequest {
   /** Whether to return `BasicLevels` in the Cloud Common Expression Language rather than as `BasicLevels`. Defaults to AS_DEFINED, where Access Levels are returned as `BasicLevels` or `CustomLevels` based on how they were created. If set to CEL, all Access Levels are returned as `CustomLevels`. In the CEL case, `BasicLevels` are translated to equivalent `CustomLevels`. */
@@ -1347,7 +1343,7 @@ export type GetAccessPoliciesServicePerimetersDeletedPrincipalSyntaxEnum =
   | "DELETED_PRINCIPAL_SYNTAX_SUPPORT_DISABLED"
   | "DELETED_PRINCIPAL_SYNTAX_SUPPORT_ENABLED";
 export const GetAccessPoliciesServicePerimetersDeletedPrincipalSyntaxEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAccessPoliciesServicePerimetersRequest {
   /** Required. Resource name for the Service Perimeter. Format: `accessPolicies/{policy_id}/servicePerimeters/{service_perimeters_id}` */
@@ -1451,7 +1447,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -1575,14 +1571,14 @@ export type SupportedServiceSupportStageEnum =
   | "BETA"
   | "GA"
   | "DEPRECATED";
-export const SupportedServiceSupportStageEnum = /*@__PURE__*/ S.String;
+export const SupportedServiceSupportStageEnum = S.String;
 
 export type SupportedServiceServiceSupportStageEnum =
   | "SERVICE_SUPPORT_STAGE_UNSPECIFIED"
   | "GA"
   | "PREVIEW"
   | "DEPRECATED";
-export const SupportedServiceServiceSupportStageEnum = /*@__PURE__*/ S.String;
+export const SupportedServiceServiceSupportStageEnum = S.String;
 
 /** `SupportedService` specifies the VPC Service Controls and its properties. */
 export interface SupportedService {
@@ -1664,8 +1660,7 @@ export type ListAccessPoliciesAccessLevelsAccessLevelFormatEnum =
   | "LEVEL_FORMAT_UNSPECIFIED"
   | "AS_DEFINED"
   | "CEL";
-export const ListAccessPoliciesAccessLevelsAccessLevelFormatEnum =
-  /*@__PURE__*/ S.String;
+export const ListAccessPoliciesAccessLevelsAccessLevelFormatEnum = S.String;
 
 export interface ListAccessPoliciesAccessLevelsRequest {
   /** Number of Access Levels to include in the list. Default 100. */
@@ -1771,7 +1766,7 @@ export type ListAccessPoliciesServicePerimetersDeletedPrincipalSyntaxEnum =
   | "DELETED_PRINCIPAL_SYNTAX_SUPPORT_DISABLED"
   | "DELETED_PRINCIPAL_SYNTAX_SUPPORT_ENABLED";
 export const ListAccessPoliciesServicePerimetersDeletedPrincipalSyntaxEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListAccessPoliciesServicePerimetersRequest {
   /** Required. Resource name for the access policy to list Service Perimeters from. Format: `accessPolicies/{policy_id}` */
@@ -2150,7 +2145,7 @@ export type PatchAccessPoliciesServicePerimetersDeletedPrincipalSyntaxEnum =
   | "DELETED_PRINCIPAL_SYNTAX_SUPPORT_DISABLED"
   | "DELETED_PRINCIPAL_SYNTAX_SUPPORT_ENABLED";
 export const PatchAccessPoliciesServicePerimetersDeletedPrincipalSyntaxEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PatchAccessPoliciesServicePerimetersRequest {
   /** Required. Mask to control which fields get updated. Must be non-empty. */

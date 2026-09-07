@@ -209,7 +209,7 @@ export type SupportPermitStatus =
   | "INACTIVE"
   | "DELETING"
   | (string & {});
-export const SupportPermitStatus = /*@__PURE__*/ S.String;
+export const SupportPermitStatus = S.String;
 
 export interface CreateSupportPermitOutput {
   name: string;
@@ -442,7 +442,7 @@ export type SupportPermitRequestStatus =
   | "REJECTED"
   | "CANCELLED"
   | (string & {});
-export const SupportPermitRequestStatus = /*@__PURE__*/ S.String;
+export const SupportPermitRequestStatus = S.String;
 
 export interface SupportPermitRequest {
   requestArn: string;

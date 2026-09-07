@@ -42,7 +42,7 @@ export type AddNetworkRouteResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const AddNetworkRouteResponseActionStatus = /*@__PURE__*/ S.String;
+export const AddNetworkRouteResponseActionStatus = S.String;
 
 export interface AddNetworkRouteResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -129,7 +129,7 @@ export const AddNetworkRouteResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of subnet. */
 export type AddNetworkSubnetRequestType = "cloud" | "server" | "vswitch";
-export const AddNetworkSubnetRequestType = /*@__PURE__*/ S.String;
+export const AddNetworkSubnetRequestType = S.String;
 
 export interface AddNetworkSubnetRequest {
   /** ID of the Network. */
@@ -166,7 +166,7 @@ export type AddNetworkSubnetResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const AddNetworkSubnetResponseActionStatus = /*@__PURE__*/ S.String;
+export const AddNetworkSubnetResponseActionStatus = S.String;
 
 export type AddNetworkSubnetResponseActionResourcesItem =
   AddNetworkRouteResponseActionResourcesItem;
@@ -257,7 +257,7 @@ export type ChangeNetworkIpRangeResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeNetworkIpRangeResponseActionStatus = /*@__PURE__*/ S.String;
+export const ChangeNetworkIpRangeResponseActionStatus = S.String;
 
 export type ChangeNetworkIpRangeResponseActionResourcesItem =
   AddNetworkRouteResponseActionResourcesItem;
@@ -348,8 +348,7 @@ export type ChangeNetworkProtectionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeNetworkProtectionResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const ChangeNetworkProtectionResponseActionStatus = S.String;
 
 export type ChangeNetworkProtectionResponseActionResourcesItem =
   AddNetworkRouteResponseActionResourcesItem;
@@ -444,7 +443,7 @@ export type DeleteNetworkRouteResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const DeleteNetworkRouteResponseActionStatus = /*@__PURE__*/ S.String;
+export const DeleteNetworkRouteResponseActionStatus = S.String;
 
 export type DeleteNetworkRouteResponseActionResourcesItem =
   AddNetworkRouteResponseActionResourcesItem;
@@ -535,7 +534,7 @@ export type DeleteNetworkSubnetResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const DeleteNetworkSubnetResponseActionStatus = /*@__PURE__*/ S.String;
+export const DeleteNetworkSubnetResponseActionStatus = S.String;
 
 export type DeleteNetworkSubnetResponseActionResourcesItem =
   AddNetworkRouteResponseActionResourcesItem;
@@ -617,7 +616,7 @@ export type GetNetworksActionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const GetNetworksActionResponseActionStatus = /*@__PURE__*/ S.String;
+export const GetNetworksActionResponseActionStatus = S.String;
 
 export type GetNetworksActionResponseActionResourcesItem =
   AddNetworkRouteResponseActionResourcesItem;
@@ -698,7 +697,7 @@ export type ListNetworkActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListNetworkActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListNetworkActionsRequestSortItem = S.String;
 
 export type ListNetworkActionsRequestSortList = Array<
   ListNetworkActionsRequestSortItem | (string & {})
@@ -712,7 +711,7 @@ export type ListNetworkActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListNetworkActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListNetworkActionsRequestStatusItem = S.String;
 
 export type ListNetworkActionsRequestStatusList = Array<
   ListNetworkActionsRequestStatusItem | (string & {})
@@ -750,8 +749,7 @@ export type ListNetworkActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListNetworkActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListNetworkActionsResponseActionsItemStatus = S.String;
 
 export type ListNetworkActionsResponseActionsItemResourcesItem =
   AddNetworkRouteResponseActionResourcesItem;
@@ -887,7 +885,7 @@ export type ListNetworksActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListNetworksActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListNetworksActionsRequestSortItem = S.String;
 
 export type ListNetworksActionsRequestSortList = Array<
   ListNetworksActionsRequestSortItem | (string & {})
@@ -901,7 +899,7 @@ export type ListNetworksActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListNetworksActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListNetworksActionsRequestStatusItem = S.String;
 
 export type ListNetworksActionsRequestStatusList = Array<
   ListNetworksActionsRequestStatusItem | (string & {})
@@ -939,8 +937,7 @@ export type ListNetworksActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListNetworksActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListNetworksActionsResponseActionsItemStatus = S.String;
 
 export type ListNetworksActionsResponseActionsItemResourcesItem =
   AddNetworkRouteResponseActionResourcesItem;

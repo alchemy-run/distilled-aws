@@ -15,8 +15,7 @@ export type { GithubOpError, GithubOpContext };
 export type CreateNetworkConfigurationForOrgRequestComputeService =
   | "none"
   | "actions";
-export const CreateNetworkConfigurationForOrgRequestComputeService =
-  /*@__PURE__*/ S.String;
+export const CreateNetworkConfigurationForOrgRequestComputeService = S.String;
 
 /** A list of identifiers of the network settings resources to use for the network configuration. Exactly one resource identifier must be specified in the list. */
 export type CreateNetworkConfigurationForOrgRequestNetworkSettingsIdsList =
@@ -80,7 +79,7 @@ export type NetworkConfigurationComputeService =
   | "none"
   | "actions"
   | "codespaces";
-export const NetworkConfigurationComputeService = /*@__PURE__*/ S.String;
+export const NetworkConfigurationComputeService = S.String;
 
 /** The unique identifier of each network settings in the configuration. */
 export type NetworkConfigurationNetworkSettingsIdsList = Array<string>;
@@ -277,8 +276,7 @@ export const ListNetworkConfigurationsForOrgResponse = /*@__PURE__*/ S.suspend(
 export type UpdateNetworkConfigurationForOrgRequestComputeService =
   | "none"
   | "actions";
-export const UpdateNetworkConfigurationForOrgRequestComputeService =
-  /*@__PURE__*/ S.String;
+export const UpdateNetworkConfigurationForOrgRequestComputeService = S.String;
 
 /** A list of identifiers of the network settings resources to use for the network configuration. Exactly one resource identifier must be specified in the list. */
 export type UpdateNetworkConfigurationForOrgRequestNetworkSettingsIdsList =

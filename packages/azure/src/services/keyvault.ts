@@ -37,7 +37,7 @@ export const CheckManagedHsmMhsmNameAvailabilityRequest =
 
 /** The reason that a vault name could not be used. The Reason element is only returned if NameAvailable is false. */
 export type Reason = "AccountNameInvalid" | "AlreadyExists";
-export const Reason = /*@__PURE__*/ S.String;
+export const Reason = S.String;
 
 /** The CheckMhsmNameAvailability operation response. */
 export interface CheckMhsmNameAvailabilityResult {
@@ -60,7 +60,7 @@ export const CheckMhsmNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of resource, Microsoft.KeyVault/vaults */
 export type CheckVaultNameAvailabilityRequestType = "Microsoft.KeyVault/vaults";
-export const CheckVaultNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+export const CheckVaultNameAvailabilityRequestType = S.String;
 
 export interface CheckVaultNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -139,7 +139,7 @@ export const KeyAttributesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the key. For valid values, see JsonWebKeyType. */
 export type JsonWebKeyType = "EC" | "EC-HSM" | "RSA" | "RSA-HSM";
-export const JsonWebKeyType = /*@__PURE__*/ S.String;
+export const JsonWebKeyType = S.String;
 
 /** The permitted JSON web key operations of the key. For more information, see JsonWebKeyOperation. */
 export type JsonWebKeyOperation =
@@ -151,7 +151,7 @@ export type JsonWebKeyOperation =
   | "unwrapKey"
   | "import"
   | "release";
-export const JsonWebKeyOperation = /*@__PURE__*/ S.String;
+export const JsonWebKeyOperation = S.String;
 
 export type KeyPropertiesInputKeyOpsList = Array<
   JsonWebKeyOperation | (string & {})
@@ -162,7 +162,7 @@ export const KeyPropertiesInputKeyOpsList = /*@__PURE__*/ S.Array(
 
 /** The elliptic curve name. For valid values, see JsonWebKeyCurveName. Default for EC and EC-HSM keys is P-256 */
 export type JsonWebKeyCurveName = "P-256" | "P-384" | "P-521" | "P-256K";
-export const JsonWebKeyCurveName = /*@__PURE__*/ S.String;
+export const JsonWebKeyCurveName = S.String;
 
 export interface KeyRotationPolicyAttributesInput {
   /** The expiration time for the new key version. It should be in ISO8601 format. Eg: 'P90D', 'P1Y'. */
@@ -191,7 +191,7 @@ export const Trigger = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of action. */
 export type KeyRotationPolicyActionType = "rotate" | "notify";
-export const KeyRotationPolicyActionType = /*@__PURE__*/ S.String;
+export const KeyRotationPolicyActionType = S.String;
 
 export interface Action {
   /** The type of action. */
@@ -322,7 +322,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -330,7 +330,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -364,7 +364,7 @@ export type DeletionRecoveryLevel =
   | "Recoverable+Purgeable"
   | "Recoverable"
   | "Recoverable+ProtectedSubscription";
-export const DeletionRecoveryLevel = /*@__PURE__*/ S.String;
+export const DeletionRecoveryLevel = S.String;
 
 /** The object attributes managed by the Azure Key Vault service. */
 export interface KeyAttributes {
@@ -827,11 +827,11 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Approved"
   | "Rejected"
   | "Disconnected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A message indicating if changes on the service provider require any updates on the consumer. */
 export type ActionsRequired = "None";
-export const ActionsRequired = /*@__PURE__*/ S.String;
+export const ActionsRequired = S.String;
 
 /** An object that represents the approval state of the private link connection. */
 export interface MHSMPrivateLinkServiceConnectionState {
@@ -861,8 +861,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Deleting"
   | "Failed"
   | "Disconnected";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Properties of the private endpoint connection resource. */
 export interface MHSMPrivateEndpointConnectionProperties {
@@ -888,7 +887,7 @@ export const MHSMPrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(
 
 /** SKU Family of the managed HSM Pool */
 export type ManagedHsmSkuFamily = "B" | "C";
-export const ManagedHsmSkuFamily = /*@__PURE__*/ S.String;
+export const ManagedHsmSkuFamily = S.String;
 
 /** SKU of the managed HSM Pool */
 export type ManagedHsmSkuName =
@@ -897,7 +896,7 @@ export type ManagedHsmSkuName =
   | "Custom_B6"
   | "Custom_C42"
   | "Custom_C10";
-export const ManagedHsmSkuName = /*@__PURE__*/ S.String;
+export const ManagedHsmSkuName = S.String;
 
 /** SKU details */
 export interface ManagedHsmSku {
@@ -919,7 +918,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
@@ -1303,7 +1302,7 @@ export const ManagedHsmPropertiesInitialAdminObjectIdsList =
 
 /** The vault's create mode to indicate whether the vault need to be recovered or not. */
 export type CreateMode = "recover" | "default";
-export const CreateMode = /*@__PURE__*/ S.String;
+export const CreateMode = S.String;
 
 /** Provisioning state. */
 export type ProvisioningState =
@@ -1315,15 +1314,15 @@ export type ProvisioningState =
   | "Activated"
   | "SecurityDomainRestore"
   | "Restoring";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Tells what traffic can bypass network rules. This can be 'AzureServices' or 'None'. If not specified the default is 'AzureServices'. */
 export type NetworkRuleBypassOptions = "AzureServices" | "None";
-export const NetworkRuleBypassOptions = /*@__PURE__*/ S.String;
+export const NetworkRuleBypassOptions = S.String;
 
 /** The default action when no rule from ipRules and from virtualNetworkRules match. This is only used after the bypass property has been evaluated. */
 export type NetworkRuleAction = "Allow" | "Deny";
-export const NetworkRuleAction = /*@__PURE__*/ S.String;
+export const NetworkRuleAction = S.String;
 
 /** A rule governing the accessibility of a managed HSM pool from a specific IP address or IP range. */
 export interface MHSMIPRule {
@@ -1414,7 +1413,7 @@ export type GeoReplicationRegionProvisioningState =
   | "Failed"
   | "Deleting"
   | "Cleanup";
-export const GeoReplicationRegionProvisioningState = /*@__PURE__*/ S.String;
+export const GeoReplicationRegionProvisioningState = S.String;
 
 /** A region that this managed HSM Pool has been extended to. */
 export interface MHSMGeoReplicatedRegion {
@@ -1470,11 +1469,11 @@ export const ManagedHsmPropertiesPrivateEndpointConnectionsList =
 
 /** Control permission to the managed HSM from public networks. */
 export type ManagedHsmPropertiesPublicNetworkAccess = "Enabled" | "Disabled";
-export const ManagedHsmPropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const ManagedHsmPropertiesPublicNetworkAccess = S.String;
 
 /** Activation Status */
 export type ActivationStatus = "Active" | "NotActivated" | "Unknown" | "Failed";
-export const ActivationStatus = /*@__PURE__*/ S.String;
+export const ActivationStatus = S.String;
 
 /** The security domain properties of the managed hsm. */
 export interface ManagedHSMSecurityDomainProperties {
@@ -2116,11 +2115,11 @@ export const GetVaultRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** SKU family name */
 export type SkuFamily = "A";
-export const SkuFamily = /*@__PURE__*/ S.String;
+export const SkuFamily = S.String;
 
 /** SKU name to specify whether the key vault is a standard vault or a premium vault. */
 export type SkuName = "standard" | "premium";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** SKU details */
 export interface Sku {
@@ -2158,7 +2157,7 @@ export type KeyPermissions =
   | "rotate"
   | "getrotationpolicy"
   | "setrotationpolicy";
-export const KeyPermissions = /*@__PURE__*/ S.String;
+export const KeyPermissions = S.String;
 
 /** Permissions to keys */
 export type PermissionsKeysList = Array<KeyPermissions | (string & {})>;
@@ -2176,7 +2175,7 @@ export type SecretPermissions =
   | "restore"
   | "recover"
   | "purge";
-export const SecretPermissions = /*@__PURE__*/ S.String;
+export const SecretPermissions = S.String;
 
 /** Permissions to secrets */
 export type PermissionsSecretsList = Array<SecretPermissions | (string & {})>;
@@ -2202,7 +2201,7 @@ export type CertificatePermissions =
   | "purge"
   | "backup"
   | "restore";
-export const CertificatePermissions = /*@__PURE__*/ S.String;
+export const CertificatePermissions = S.String;
 
 /** Permissions to certificates */
 export type PermissionsCertificatesList = Array<
@@ -2228,7 +2227,7 @@ export type StoragePermissions =
   | "listsas"
   | "getsas"
   | "deletesas";
-export const StoragePermissions = /*@__PURE__*/ S.String;
+export const StoragePermissions = S.String;
 
 /** Permissions to storage accounts */
 export type PermissionsStorageList = Array<StoragePermissions | (string & {})>;
@@ -2338,7 +2337,7 @@ export const NetworkRuleSet = /*@__PURE__*/ S.suspend(() =>
 
 /** Provisioning state of the vault. */
 export type VaultProvisioningState = "Succeeded" | "RegisteringDns";
-export const VaultProvisioningState = /*@__PURE__*/ S.String;
+export const VaultProvisioningState = S.String;
 
 /** Private endpoint connection item. */
 export type PrivateEndpointConnectionItem = MHSMPrivateEndpointConnectionItem;
@@ -3930,7 +3929,7 @@ export const DeletedVaultListResult = /*@__PURE__*/ S.suspend(() =>
 
 export type ListVaultsRequestFilter =
   "resourceType eq 'Microsoft.KeyVault/vaults'";
-export const ListVaultsRequestFilter = /*@__PURE__*/ S.String;
+export const ListVaultsRequestFilter = S.String;
 
 export interface ListVaultsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4050,8 +4049,7 @@ export const ManagedHsmPropertiesInputRegionsList = /*@__PURE__*/ S.Array(
 export type ManagedHsmPropertiesInputPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const ManagedHsmPropertiesInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const ManagedHsmPropertiesInputPublicNetworkAccess = S.String;
 
 /** Properties of the managed HSM Pool */
 export interface ManagedHsmPropertiesInput {
@@ -4979,8 +4977,7 @@ export type UpdateVaultAccessPolicyRequestOperationKind =
   | "add"
   | "replace"
   | "remove";
-export const UpdateVaultAccessPolicyRequestOperationKind =
-  /*@__PURE__*/ S.String;
+export const UpdateVaultAccessPolicyRequestOperationKind = S.String;
 
 /** An array of 0 to 16 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. */
 export type VaultAccessPolicyPropertiesAccessPoliciesList =

@@ -169,7 +169,7 @@ export const DeleteCalendarsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteCalendarsResponse>;
 
 export type DeleteEventsSendUpdatesEnum = "all" | "externalOnly" | "none";
-export const DeleteEventsSendUpdatesEnum = /*@__PURE__*/ S.String;
+export const DeleteEventsSendUpdatesEnum = S.String;
 
 export interface DeleteEventsRequest {
   /** Guests who should receive notifications about the deletion of the event. */
@@ -1330,7 +1330,7 @@ export const InsertCalendarsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InsertCalendarsRequest>;
 
 export type InsertEventsSendUpdatesEnum = "all" | "externalOnly" | "none";
-export const InsertEventsSendUpdatesEnum = /*@__PURE__*/ S.String;
+export const InsertEventsSendUpdatesEnum = S.String;
 
 export interface InsertEventsRequest {
   /** Version number of the event label feature supported by the API client. Version 0 assumes no event label support and processes the colorId field for color management. Version 1 enables support for event labels, and processes the eventLabelId in the event's body. In this case, the colorId field is ignored. The default is 0. */
@@ -1525,7 +1525,7 @@ export type ListCalendarListMinAccessRoleEnum =
   | "reader"
   | "writer"
   | "writerWithoutPrivateAccess";
-export const ListCalendarListMinAccessRoleEnum = /*@__PURE__*/ S.String;
+export const ListCalendarListMinAccessRoleEnum = S.String;
 
 export interface ListCalendarListRequest {
   /** Whether to show only entries for calendars from the organization. This parameter is only applicable to Google Workspace users. Optional. The default is False. */
@@ -1599,7 +1599,7 @@ export type ListEventsEventTypesEnum =
   | "fromGmail"
   | "outOfOffice"
   | "workingLocation";
-export const ListEventsEventTypesEnum = /*@__PURE__*/ S.String;
+export const ListEventsEventTypesEnum = S.String;
 
 export type ListEventsEventTypesEnumList = Array<
   ListEventsEventTypesEnum | (string & {})
@@ -1609,7 +1609,7 @@ export const ListEventsEventTypesEnumList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListEventsEventTypesEnumList>;
 
 export type ListEventsOrderByEnum = "startTime" | "updated";
-export const ListEventsOrderByEnum = /*@__PURE__*/ S.String;
+export const ListEventsOrderByEnum = S.String;
 
 export interface ListEventsRequest {
   /** Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints. */
@@ -1735,7 +1735,7 @@ export const Settings = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Settings" }) as any as S.Schema<Settings>;
 
 export type MoveEventsSendUpdatesEnum = "all" | "externalOnly" | "none";
-export const MoveEventsSendUpdatesEnum = /*@__PURE__*/ S.String;
+export const MoveEventsSendUpdatesEnum = S.String;
 
 export interface MoveEventsRequest {
   /** Deprecated. Please use sendUpdates instead. Whether to send notifications about the change of the event's organizer. Note that some emails might still be sent even if you set the value to false. The default is false. */
@@ -1840,7 +1840,7 @@ export const PatchCalendarsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchCalendarsRequest>;
 
 export type PatchEventsSendUpdatesEnum = "all" | "externalOnly" | "none";
-export const PatchEventsSendUpdatesEnum = /*@__PURE__*/ S.String;
+export const PatchEventsSendUpdatesEnum = S.String;
 
 export interface PatchEventsRequest {
   /** Version number of the event label feature supported by the API client. Version 0 assumes no event label support and processes the colorId field for color management. Version 1 enables support for event labels, and processes the eventLabelId in the event's body. In this case, the colorId field is ignored. The default is 0. */
@@ -2052,7 +2052,7 @@ export const FreeBusyResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FreeBusyResponse>;
 
 export type QuickAddEventsSendUpdatesEnum = "all" | "externalOnly" | "none";
-export const QuickAddEventsSendUpdatesEnum = /*@__PURE__*/ S.String;
+export const QuickAddEventsSendUpdatesEnum = S.String;
 
 export interface QuickAddEventsRequest {
   /** The text describing the event to be created. */
@@ -2247,7 +2247,7 @@ export const UpdateCalendarsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCalendarsRequest>;
 
 export type UpdateEventsSendUpdatesEnum = "all" | "externalOnly" | "none";
-export const UpdateEventsSendUpdatesEnum = /*@__PURE__*/ S.String;
+export const UpdateEventsSendUpdatesEnum = S.String;
 
 export interface UpdateEventsRequest {
   /** Whether API client performing operation supports event attachments. Optional. The default is False. */
@@ -2333,7 +2333,7 @@ export type WatchCalendarListMinAccessRoleEnum =
   | "reader"
   | "writer"
   | "writerWithoutPrivateAccess";
-export const WatchCalendarListMinAccessRoleEnum = /*@__PURE__*/ S.String;
+export const WatchCalendarListMinAccessRoleEnum = S.String;
 
 export interface WatchCalendarListRequest {
   /** The minimum access role for the user in the returned entries. Optional. The default is no restriction. */
@@ -2383,7 +2383,7 @@ export type WatchEventsEventTypesEnum =
   | "fromGmail"
   | "outOfOffice"
   | "workingLocation";
-export const WatchEventsEventTypesEnum = /*@__PURE__*/ S.String;
+export const WatchEventsEventTypesEnum = S.String;
 
 export type WatchEventsEventTypesEnumList = Array<
   WatchEventsEventTypesEnum | (string & {})
@@ -2393,7 +2393,7 @@ export const WatchEventsEventTypesEnumList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<WatchEventsEventTypesEnumList>;
 
 export type WatchEventsOrderByEnum = "startTime" | "updated";
-export const WatchEventsOrderByEnum = /*@__PURE__*/ S.String;
+export const WatchEventsOrderByEnum = S.String;
 
 export interface WatchEventsRequest {
   /** Whether to include hidden invitations in the result. Optional. The default is False. */

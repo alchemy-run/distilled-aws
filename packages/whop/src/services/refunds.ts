@@ -153,7 +153,7 @@ export type Currencies =
   | "awg"
   | "whop_usd"
   | "xau";
-export const Currencies = /*@__PURE__*/ S.String;
+export const Currencies = S.String;
 
 /** The reason why a specific payment was billed */
 export type BillingReasons =
@@ -163,7 +163,7 @@ export type BillingReasons =
   | "one_time"
   | "manual"
   | "subscription";
-export const BillingReasons = /*@__PURE__*/ S.String;
+export const BillingReasons = S.String;
 
 /** Possible card brands that a payment token can have */
 export type CardBrands =
@@ -213,7 +213,7 @@ export type CardBrands =
   | "pulse"
   | "star"
   | "unknown";
-export const CardBrands = /*@__PURE__*/ S.String;
+export const CardBrands = S.String;
 
 /** The member attached to this payment. */
 export interface RefundPaymentMember {
@@ -242,7 +242,7 @@ export type MembershipStatus =
   | "unresolved"
   | "drafted"
   | "canceling";
-export const MembershipStatus = /*@__PURE__*/ S.String;
+export const MembershipStatus = S.String;
 
 /** The membership attached to this payment. */
 export interface RefundPaymentMembership {
@@ -386,7 +386,7 @@ export type PaymentMethodTypes =
   | "zip"
   | "coinflow"
   | "unknown";
-export const PaymentMethodTypes = /*@__PURE__*/ S.String;
+export const PaymentMethodTypes = S.String;
 
 /** Custom key-value pairs stored on the plan. Included in webhook payloads for payment and membership events. Max 50 keys, 100 chars per key, 500 chars per string value. The reserved keys `custom_cta` and `custom_cta_url`, when set, override the product's checkout call to action for this plan. */
 export type RefundPaymentPlanMetadataMap = {
@@ -444,7 +444,7 @@ export type ReceiptTaxBehaviors =
   | "inclusive"
   | "unspecified"
   | "unable_to_collect";
-export const ReceiptTaxBehaviors = /*@__PURE__*/ S.String;
+export const ReceiptTaxBehaviors = S.String;
 
 /** The user that made this payment. */
 export interface RefundPaymentUser {
@@ -558,18 +558,18 @@ export type PaymentProviders =
   | "dlocal"
   | "masspay"
   | "braintree";
-export const PaymentProviders = /*@__PURE__*/ S.String;
+export const PaymentProviders = S.String;
 
 /** The status of the refund reference. */
 export type RefundReferenceStatuses = "available" | "pending" | "unavailable";
-export const RefundReferenceStatuses = /*@__PURE__*/ S.String;
+export const RefundReferenceStatuses = S.String;
 
 /** The type of refund reference that was made available by the payment provider. */
 export type RefundReferenceTypes =
   | "acquirer_reference_number"
   | "retrieval_reference_number"
   | "system_trace_audit_number";
-export const RefundReferenceTypes = /*@__PURE__*/ S.String;
+export const RefundReferenceTypes = S.String;
 
 /** The different statuses for a Refund object */
 export type RefundStatuses =
@@ -578,7 +578,7 @@ export type RefundStatuses =
   | "succeeded"
   | "failed"
   | "canceled";
-export const RefundStatuses = /*@__PURE__*/ S.String;
+export const RefundStatuses = S.String;
 
 /** A refund represents a full or partial reversal of a payment, including the amount, status, and payment provider. */
 export interface Refund {
@@ -623,7 +623,7 @@ export const Refund = /*@__PURE__*/ S.suspend(() =>
 
 /** The direction of the sort. */
 export type Direction = "asc" | "desc";
-export const Direction = /*@__PURE__*/ S.String;
+export const Direction = S.String;
 
 export interface ListRefundRequest {
   after?: string;

@@ -12,7 +12,7 @@ import * as Retry from "../retry.ts";
 export type { HuggingFaceOpError, HuggingFaceOpContext };
 
 export type CheckEndpointAccessRequestPerms = "read" | "write" | "infer";
-export const CheckEndpointAccessRequestPerms = /*@__PURE__*/ S.String;
+export const CheckEndpointAccessRequestPerms = S.String;
 
 export interface CheckEndpointAccessRequest {
   namespace: string;
@@ -92,7 +92,7 @@ export const CheckEndpointAccessResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CheckEndpointAccessResponse>;
 
 export type CheckNamespaceAccessRequestPerms = "read" | "write" | "infer";
-export const CheckNamespaceAccessRequestPerms = /*@__PURE__*/ S.String;
+export const CheckNamespaceAccessRequestPerms = S.String;
 
 export interface CheckNamespaceAccessRequest {
   namespace: string;

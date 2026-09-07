@@ -74,8 +74,7 @@ export const CreateOidcCustomPropertyInclusionForEnterpriseRequest =
 export type OidcCustomPropertyInclusionInclusionSource =
   | "organization"
   | "enterprise";
-export const OidcCustomPropertyInclusionInclusionSource =
-  /*@__PURE__*/ S.String;
+export const OidcCustomPropertyInclusionInclusionSource = S.String;
 
 /** An OIDC custom property inclusion for repository properties */
 export interface OidcCustomPropertyInclusion {

@@ -22,7 +22,7 @@ export const CreateMonitorRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Flag specifying if the resource monitoring is enabled or disabled. */
 export type MonitorPropertiesInputMonitoringStatus = "Enabled" | "Disabled";
-export const MonitorPropertiesInputMonitoringStatus = /*@__PURE__*/ S.String;
+export const MonitorPropertiesInputMonitoringStatus = S.String;
 
 /** Specify the Datadog organization name. In the case of linking to existing organizations, Id, ApiKey, and Applicationkey is required as well. */
 export interface DatadogOrganizationProperties {
@@ -112,7 +112,7 @@ export const ResourceSku = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the identity type of the Datadog Monitor. At this time the only allowed value is 'SystemAssigned'. */
 export type ManagedIdentityTypes = "SystemAssigned" | "UserAssigned";
-export const ManagedIdentityTypes = /*@__PURE__*/ S.String;
+export const ManagedIdentityTypes = S.String;
 
 export interface IdentityPropertiesInput {
   /** Specifies the identity type of the Datadog Monitor. At this time the only allowed value is 'SystemAssigned'. */
@@ -170,7 +170,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -178,7 +178,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -225,11 +225,11 @@ export type ProvisioningState =
   | "Canceled"
   | "Deleted"
   | "NotSpecified";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Flag specifying if the resource monitoring is enabled or disabled. */
 export type MonitorPropertiesMonitoringStatus = "Enabled" | "Disabled";
-export const MonitorPropertiesMonitoringStatus = /*@__PURE__*/ S.String;
+export const MonitorPropertiesMonitoringStatus = S.String;
 
 /** Flag specifying the Marketplace Subscription Status of the resource. If payment is not made in time, the resource will go in Suspended state. */
 export type MarketplaceSubscriptionStatus =
@@ -237,10 +237,10 @@ export type MarketplaceSubscriptionStatus =
   | "Active"
   | "Suspended"
   | "Unsubscribed";
-export const MarketplaceSubscriptionStatus = /*@__PURE__*/ S.String;
+export const MarketplaceSubscriptionStatus = S.String;
 
 export type LiftrResourceCategories = "Unknown" | "MonitorLogs";
-export const LiftrResourceCategories = /*@__PURE__*/ S.String;
+export const LiftrResourceCategories = S.String;
 
 /** Properties specific to the monitor resource. */
 export interface MonitorProperties {
@@ -671,15 +671,15 @@ export type Operation =
   | "DeleteBegin"
   | "DeleteComplete"
   | "Active";
-export const Operation = /*@__PURE__*/ S.String;
+export const Operation = S.String;
 
 /** The state of monitoring. */
 export type Status = "InProgress" | "Active" | "Failed" | "Deleting";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** Valid actions for a filtering tag. Exclusion takes priority over inclusion. */
 export type TagAction = "Include" | "Exclude";
-export const TagAction = /*@__PURE__*/ S.String;
+export const TagAction = S.String;
 
 /** The definition of a filtering tag. Filtering tags are used for capturing resources and include/exclude them from being monitored. */
 export interface FilteringTag {
@@ -890,7 +890,7 @@ export const GetSingleSignOnConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Various states of the SSO resource */
 export type SingleSignOnStates = "Initial" | "Enable" | "Disable" | "Existing";
-export const SingleSignOnStates = /*@__PURE__*/ S.String;
+export const SingleSignOnStates = S.String;
 
 export interface DatadogSingleSignOnProperties {
   provisioningState?: ProvisioningState;
@@ -1093,8 +1093,7 @@ export type DatadogAgreementResourceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DatadogAgreementResourceSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const DatadogAgreementResourceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type DatadogAgreementResourceSystemDataLastModifiedByType =
@@ -1102,8 +1101,7 @@ export type DatadogAgreementResourceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DatadogAgreementResourceSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const DatadogAgreementResourceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface DatadogAgreementResourceSystemData {
@@ -2227,7 +2225,7 @@ export const TagRulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Flag specifying if the resource monitoring is enabled or disabled. */
 export type MonitorUpdatePropertiesMonitoringStatus = "Enabled" | "Disabled";
-export const MonitorUpdatePropertiesMonitoringStatus = /*@__PURE__*/ S.String;
+export const MonitorUpdatePropertiesMonitoringStatus = S.String;
 
 /** The set of properties that can be update in a PATCH request to a monitor resource. */
 export interface MonitorUpdateProperties {

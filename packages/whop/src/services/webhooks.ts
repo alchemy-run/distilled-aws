@@ -175,7 +175,7 @@ export type CreateWebhookRequestEventsItem =
   | "app_payment.failed"
   | "app_payment.pending"
   | "app_membership.cancel_at_period_end_changed";
-export const CreateWebhookRequestEventsItem = /*@__PURE__*/ S.String;
+export const CreateWebhookRequestEventsItem = S.String;
 
 /** The events to send the webhook for, in dot form (for example `payment.succeeded`). */
 export type CreateWebhookRequestEventsList = Array<
@@ -217,11 +217,11 @@ export const CreateWebhookRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The API version used to format payloads sent to this webhook endpoint. */
 export type WebhookApiVersion = "v1" | "v2" | "v5";
-export const WebhookApiVersion = /*@__PURE__*/ S.String;
+export const WebhookApiVersion = S.String;
 
 /** Why Whop disabled this webhook. `delivery_failures` means every delivery failed for 3 days straight. `null` when `disabled_at` is `null`. */
 export type WebhookDisabledReason = "delivery_failures";
-export const WebhookDisabledReason = /*@__PURE__*/ S.String;
+export const WebhookDisabledReason = S.String;
 
 /** Event types this webhook is subscribed to, in dot form (for example `payment.succeeded`). */
 export type WebhookEventsItem =
@@ -318,7 +318,7 @@ export type WebhookEventsItem =
   | "app_payment.failed"
   | "app_payment.pending"
   | "app_membership.cancel_at_period_end_changed";
-export const WebhookEventsItem = /*@__PURE__*/ S.String;
+export const WebhookEventsItem = S.String;
 
 export type WebhookEventsList = Array<WebhookEventsItem>;
 export const WebhookEventsList = /*@__PURE__*/ S.Array(
@@ -420,7 +420,7 @@ export type WebhookTestableEventsItem =
   | "app_payment.failed"
   | "app_payment.pending"
   | "app_membership.cancel_at_period_end_changed";
-export const WebhookTestableEventsItem = /*@__PURE__*/ S.String;
+export const WebhookTestableEventsItem = S.String;
 
 export type WebhookTestableEventsList = Array<WebhookTestableEventsItem>;
 export const WebhookTestableEventsList = /*@__PURE__*/ S.Array(
@@ -761,11 +761,11 @@ export const ListWebhooksRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The API version used to format payloads sent to this webhook endpoint. */
 export type WebhookListItemApiVersion = "v1" | "v2" | "v5";
-export const WebhookListItemApiVersion = /*@__PURE__*/ S.String;
+export const WebhookListItemApiVersion = S.String;
 
 /** Why Whop disabled this webhook. `delivery_failures` means every delivery failed for 3 days straight. `null` when `disabled_at` is `null`. */
 export type WebhookListItemDisabledReason = "delivery_failures";
-export const WebhookListItemDisabledReason = /*@__PURE__*/ S.String;
+export const WebhookListItemDisabledReason = S.String;
 
 /** Event types this webhook is subscribed to, in dot form (for example `payment.succeeded`). */
 export type WebhookListItemEventsItem =
@@ -862,7 +862,7 @@ export type WebhookListItemEventsItem =
   | "app_payment.failed"
   | "app_payment.pending"
   | "app_membership.cancel_at_period_end_changed";
-export const WebhookListItemEventsItem = /*@__PURE__*/ S.String;
+export const WebhookListItemEventsItem = S.String;
 
 export type WebhookListItemEventsList = Array<WebhookListItemEventsItem>;
 export const WebhookListItemEventsList = /*@__PURE__*/ S.Array(
@@ -1190,7 +1190,7 @@ export type UpdateWebhookRequestEventsItem =
   | "app_payment.failed"
   | "app_payment.pending"
   | "app_membership.cancel_at_period_end_changed";
-export const UpdateWebhookRequestEventsItem = /*@__PURE__*/ S.String;
+export const UpdateWebhookRequestEventsItem = S.String;
 
 /** The events to send the webhook for, in dot form (for example `payment.succeeded`). */
 export type UpdateWebhookRequestEventsList = Array<

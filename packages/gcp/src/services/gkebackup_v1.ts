@@ -391,7 +391,7 @@ export type DayOfWeekListDaysOfWeekItemEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const DayOfWeekListDaysOfWeekItemEnum = /*@__PURE__*/ S.String;
+export const DayOfWeekListDaysOfWeekItemEnum = S.String;
 
 export type DayOfWeekListDaysOfWeekItemEnumList = Array<
   DayOfWeekListDaysOfWeekItemEnum | (string & {})
@@ -502,7 +502,7 @@ export type BackupPlanStateEnum =
   | "FAILED"
   | "DEACTIVATED"
   | "DELETING";
-export const BackupPlanStateEnum = /*@__PURE__*/ S.String;
+export const BackupPlanStateEnum = S.String;
 
 /** Defines the configuration and scheduling for a "line" of Backups. */
 export interface BackupPlan {
@@ -620,7 +620,7 @@ export type BackupStateEnum =
   | "SUCCEEDED"
   | "FAILED"
   | "DELETING";
-export const BackupStateEnum = /*@__PURE__*/ S.String;
+export const BackupStateEnum = S.String;
 
 /** Information about the GKE cluster from which this Backup was created. */
 export interface ClusterMetadata {
@@ -845,14 +845,14 @@ export type RestorePlanStateEnum =
   | "READY"
   | "FAILED"
   | "DELETING";
-export const RestorePlanStateEnum = /*@__PURE__*/ S.String;
+export const RestorePlanStateEnum = S.String;
 
 export type RestoreConfigVolumeDataRestorePolicyEnum =
   | "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED"
   | "RESTORE_VOLUME_DATA_FROM_BACKUP"
   | "REUSE_VOLUME_HANDLE_FROM_BACKUP"
   | "NO_VOLUME_DATA_RESTORATION";
-export const RestoreConfigVolumeDataRestorePolicyEnum = /*@__PURE__*/ S.String;
+export const RestoreConfigVolumeDataRestorePolicyEnum = S.String;
 
 export type RestoreConfigNamespacedResourceRestoreModeEnum =
   | "NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED"
@@ -861,15 +861,13 @@ export type RestoreConfigNamespacedResourceRestoreModeEnum =
   | "MERGE_SKIP_ON_CONFLICT"
   | "MERGE_REPLACE_VOLUME_ON_CONFLICT"
   | "MERGE_REPLACE_ON_CONFLICT";
-export const RestoreConfigNamespacedResourceRestoreModeEnum =
-  /*@__PURE__*/ S.String;
+export const RestoreConfigNamespacedResourceRestoreModeEnum = S.String;
 
 export type RestoreConfigClusterResourceConflictPolicyEnum =
   | "CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED"
   | "USE_EXISTING_VERSION"
   | "USE_BACKUP_VERSION";
-export const RestoreConfigClusterResourceConflictPolicyEnum =
-  /*@__PURE__*/ S.String;
+export const RestoreConfigClusterResourceConflictPolicyEnum = S.String;
 
 /** This is a direct map to the Kubernetes GroupKind type [GroupKind](https://godoc.org/k8s.io/apimachinery/pkg/runtime/schema#GroupKind) and is used for identifying specific "types" of resources to restore. */
 export interface GroupKind {
@@ -947,15 +945,14 @@ export const ClusterResourceRestoreScope = /*@__PURE__*/ S.suspend(() =>
 export type VolumeDataRestorePolicyBindingVolumeTypeEnum =
   | "VOLUME_TYPE_UNSPECIFIED"
   | "GCE_PERSISTENT_DISK";
-export const VolumeDataRestorePolicyBindingVolumeTypeEnum =
-  /*@__PURE__*/ S.String;
+export const VolumeDataRestorePolicyBindingVolumeTypeEnum = S.String;
 
 export type VolumeDataRestorePolicyBindingPolicyEnum =
   | "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED"
   | "RESTORE_VOLUME_DATA_FROM_BACKUP"
   | "REUSE_VOLUME_HANDLE_FROM_BACKUP"
   | "NO_VOLUME_DATA_RESTORATION";
-export const VolumeDataRestorePolicyBindingPolicyEnum = /*@__PURE__*/ S.String;
+export const VolumeDataRestorePolicyBindingPolicyEnum = S.String;
 
 /** Binds resources in the scope to the given VolumeDataRestorePolicy. */
 export interface VolumeDataRestorePolicyBinding {
@@ -1034,7 +1031,7 @@ export type TransformationRuleActionOpEnum =
   | "ADD"
   | "TEST"
   | "REPLACE";
-export const TransformationRuleActionOpEnum = /*@__PURE__*/ S.String;
+export const TransformationRuleActionOpEnum = S.String;
 
 /** TransformationRuleAction defines a TransformationRule action based on the JSON Patch RFC (https://www.rfc-editor.org/rfc/rfc6902) */
 export interface TransformationRuleAction {
@@ -1228,14 +1225,14 @@ export type RestoreStateEnum =
   | "FAILED"
   | "DELETING"
   | "VALIDATING";
-export const RestoreStateEnum = /*@__PURE__*/ S.String;
+export const RestoreStateEnum = S.String;
 
 export type VolumeDataRestorePolicyOverridePolicyEnum =
   | "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED"
   | "RESTORE_VOLUME_DATA_FROM_BACKUP"
   | "REUSE_VOLUME_HANDLE_FROM_BACKUP"
   | "NO_VOLUME_DATA_RESTORATION";
-export const VolumeDataRestorePolicyOverridePolicyEnum = /*@__PURE__*/ S.String;
+export const VolumeDataRestorePolicyOverridePolicyEnum = S.String;
 
 /** Defines an override to apply a VolumeDataRestorePolicy for scoped resources. */
 export interface VolumeDataRestorePolicyOverride {
@@ -1660,7 +1657,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -1935,7 +1932,7 @@ export type BackupPlanDetailsStateEnum =
   | "FAILED"
   | "DEACTIVATED"
   | "DELETING";
-export const BackupPlanDetailsStateEnum = /*@__PURE__*/ S.String;
+export const BackupPlanDetailsStateEnum = S.String;
 
 /** BackupConfigDetails defines the configuration of Backups created via this BackupPlan. */
 export interface BackupConfigDetails {
@@ -2099,12 +2096,12 @@ export type VolumeBackupStateEnum =
   | "FAILED"
   | "DELETING"
   | "CLEANED_UP";
-export const VolumeBackupStateEnum = /*@__PURE__*/ S.String;
+export const VolumeBackupStateEnum = S.String;
 
 export type VolumeBackupFormatEnum =
   | "VOLUME_BACKUP_FORMAT_UNSPECIFIED"
   | "GCE_PERSISTENT_DISK";
-export const VolumeBackupFormatEnum = /*@__PURE__*/ S.String;
+export const VolumeBackupFormatEnum = S.String;
 
 /** Represents the backup of a specific persistent volume as a component of a Backup - both the record of the operation and a pointer to the underlying storage-specific artifacts. */
 export interface VolumeBackup {
@@ -2311,12 +2308,12 @@ export type VolumeRestoreStateEnum =
   | "SUCCEEDED"
   | "FAILED"
   | "DELETING";
-export const VolumeRestoreStateEnum = /*@__PURE__*/ S.String;
+export const VolumeRestoreStateEnum = S.String;
 
 export type VolumeRestoreVolumeTypeEnum =
   | "VOLUME_TYPE_UNSPECIFIED"
   | "GCE_PERSISTENT_DISK";
-export const VolumeRestoreVolumeTypeEnum = /*@__PURE__*/ S.String;
+export const VolumeRestoreVolumeTypeEnum = S.String;
 
 /** Represents the operation of restoring a volume from a VolumeBackup. */
 export interface VolumeRestore {

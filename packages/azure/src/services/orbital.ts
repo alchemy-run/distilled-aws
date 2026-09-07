@@ -30,15 +30,14 @@ export type ProvisioningStateInput =
   | "canceled"
   | "updating"
   | "deleting";
-export const ProvisioningStateInput = /*@__PURE__*/ S.String;
+export const ProvisioningStateInput = S.String;
 
 /** Auto-tracking configuration. */
 export type ContactProfilesPropertiesInputAutoTrackingConfiguration =
   | "disabled"
   | "xBand"
   | "sBand";
-export const ContactProfilesPropertiesInputAutoTrackingConfiguration =
-  /*@__PURE__*/ S.String;
+export const ContactProfilesPropertiesInputAutoTrackingConfiguration = S.String;
 
 /** Network configuration of customer virtual network. */
 export interface ContactProfilesPropertiesInputNetworkConfiguration {
@@ -85,15 +84,15 @@ export type ContactProfileLinkPolarization =
   | "LHCP"
   | "linearVertical"
   | "linearHorizontal";
-export const ContactProfileLinkPolarization = /*@__PURE__*/ S.String;
+export const ContactProfileLinkPolarization = S.String;
 
 /** Direction (Uplink or Downlink). */
 export type ContactProfileLinkDirection = "Uplink" | "Downlink";
-export const ContactProfileLinkDirection = /*@__PURE__*/ S.String;
+export const ContactProfileLinkDirection = S.String;
 
 /** Protocol either UDP or TCP. */
 export type EndPointProtocol = "TCP" | "UDP";
-export const EndPointProtocol = /*@__PURE__*/ S.String;
+export const EndPointProtocol = S.String;
 
 /** Customer end point to store and retrieve data during a contact with the spacecraft. */
 export interface EndPoint {
@@ -269,7 +268,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -277,7 +276,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -323,15 +322,14 @@ export type ProvisioningState =
   | "canceled"
   | "updating"
   | "deleting";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Auto-tracking configuration. */
 export type ContactProfilesPropertiesAutoTrackingConfiguration =
   | "disabled"
   | "xBand"
   | "sBand";
-export const ContactProfilesPropertiesAutoTrackingConfiguration =
-  /*@__PURE__*/ S.String;
+export const ContactProfilesPropertiesAutoTrackingConfiguration = S.String;
 
 /** Network configuration of customer virtual network. */
 export type ContactProfilesPropertiesNetworkConfiguration =
@@ -497,7 +495,7 @@ export type ContactsPropertiesStatus =
   | "succeeded"
   | "failed"
   | "providerCancelled";
-export const ContactsPropertiesStatus = /*@__PURE__*/ S.String;
+export const ContactsPropertiesStatus = S.String;
 
 /** List of Source IP */
 export type ContactsPropertiesAntennaConfigurationSourceIpsList = Array<string>;
@@ -1112,7 +1110,7 @@ export const GetGroundStationResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Capability of the Ground Station. */
 export type Capability = "EarthObservation" | "Communication";
-export const Capability = /*@__PURE__*/ S.String;
+export const Capability = S.String;
 
 /** Ground station capabilities. */
 export type GroundStationsPropertiesCapabilitiesList = Array<Capability>;
@@ -1122,7 +1120,7 @@ export const GroundStationsPropertiesCapabilitiesList = /*@__PURE__*/ S.Array(
 
 /** Release Status of a ground station. */
 export type GroundStationsPropertiesReleaseMode = "Preview" | "GA";
-export const GroundStationsPropertiesReleaseMode = /*@__PURE__*/ S.String;
+export const GroundStationsPropertiesReleaseMode = S.String;
 
 /** List of ground station resource properties. */
 export interface GroundStationsProperties {
@@ -1230,7 +1228,7 @@ export type ProvisioningState_2 =
   | "Canceled"
   | "Updating"
   | "Deleting";
-export const ProvisioningState_2 = /*@__PURE__*/ S.String;
+export const ProvisioningState_2 = S.String;
 
 /** The name of the partner router that cross-connects with the Orbital Edge Router at the edge site. */
 export interface L2ConnectionsPropertiesEdgeSitePartnerRouter {
@@ -1349,7 +1347,7 @@ export const GetOperationsResultRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of operation. */
 export type Status = "Succeeded" | "Canceled" | "Failed" | "Running";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** A list of results when the operation returns multiple results. */
 export type OperationResultValueList = Array<unknown>;
@@ -1446,7 +1444,7 @@ export const GetSpacecraftResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Direction (Uplink or Downlink). */
 export type SpacecraftLinkDirection = "Uplink" | "Downlink";
-export const SpacecraftLinkDirection = /*@__PURE__*/ S.String;
+export const SpacecraftLinkDirection = S.String;
 
 /** Polarization. e.g. (RHCP, LHCP). */
 export type SpacecraftLinkPolarization =
@@ -1454,7 +1452,7 @@ export type SpacecraftLinkPolarization =
   | "LHCP"
   | "linearVertical"
   | "linearHorizontal";
-export const SpacecraftLinkPolarization = /*@__PURE__*/ S.String;
+export const SpacecraftLinkPolarization = S.String;
 
 /** Authorized groundstation. */
 export interface AuthorizedGroundstation {
@@ -1817,8 +1815,7 @@ export const L2ConnectionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 export type ListAvailableGroundStationByCapabilityRequestCapability =
   | "EarthObservation"
   | "Communication";
-export const ListAvailableGroundStationByCapabilityRequestCapability =
-  /*@__PURE__*/ S.String;
+export const ListAvailableGroundStationByCapabilityRequestCapability = S.String;
 
 export interface ListAvailableGroundStationByCapabilityRequest {
   /** The ID of the target subscription. */
@@ -1849,8 +1846,7 @@ export const ListAvailableGroundStationByCapabilityRequest =
 
 /** Release Status of a ground station. */
 export type AvailableGroundStationPropertiesReleaseMode = "Preview" | "GA";
-export const AvailableGroundStationPropertiesReleaseMode =
-  /*@__PURE__*/ S.String;
+export const AvailableGroundStationPropertiesReleaseMode = S.String;
 
 /** Properties object for Available groundstation. */
 export interface AvailableGroundStationProperties {
@@ -2316,7 +2312,7 @@ export const LocationData = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the global communications site. groundStations can only use sites of type GroundStation, and edgeSites can only use sites of type Edge. */
 export type GlobalCommunicationsSiteType = "Edge" | "GroundStation";
-export const GlobalCommunicationsSiteType = /*@__PURE__*/ S.String;
+export const GlobalCommunicationsSiteType = S.String;
 
 /** One of the partner routers within a global communications site. */
 export interface PartnerRouter {
@@ -2686,11 +2682,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -2968,7 +2964,7 @@ export const SpacecraftsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Direction (Uplink or Downlink). */
 export type SpacecraftLinkInputDirection = "Uplink" | "Downlink";
-export const SpacecraftLinkInputDirection = /*@__PURE__*/ S.String;
+export const SpacecraftLinkInputDirection = S.String;
 
 /** Polarization. e.g. (RHCP, LHCP). */
 export type SpacecraftLinkInputPolarization =
@@ -2976,7 +2972,7 @@ export type SpacecraftLinkInputPolarization =
   | "LHCP"
   | "linearVertical"
   | "linearHorizontal";
-export const SpacecraftLinkInputPolarization = /*@__PURE__*/ S.String;
+export const SpacecraftLinkInputPolarization = S.String;
 
 /** List of authorized spacecraft links per ground station and the expiration date of the authorization. */
 export interface SpacecraftLinkInput {

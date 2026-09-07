@@ -19,7 +19,7 @@ export type ServiceTerminationFutureUseEnum =
   | "SUBSCRIBE_AN_OTHER_SERVICE"
   | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
   | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationFutureUseEnum = S.String;
 
 /** All reasons you can provide for a service termination */
 export type ServiceTerminationReasonEnum =
@@ -37,7 +37,7 @@ export type ServiceTerminationReasonEnum =
   | "TOO_EXPENSIVE"
   | "TOO_HARD_TO_USE"
   | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationReasonEnum = S.String;
 
 export interface ConfirmSslGatewayTerminationRequest {
   /** The internal name of your SSL Gateway */
@@ -147,7 +147,7 @@ export type SslGatewayDomainStateEnum =
   | "http-only"
   | "internal"
   | "ok";
-export const SslGatewayDomainStateEnum = /*@__PURE__*/ S.String;
+export const SslGatewayDomainStateEnum = S.String;
 
 /** Domain attached to an SSL Gateway */
 export interface SslGatewayDomain {
@@ -200,7 +200,7 @@ export type SslGatewayServerStateEnum =
   | "internal"
   | "ok"
   | "updating";
-export const SslGatewayServerStateEnum = /*@__PURE__*/ S.String;
+export const SslGatewayServerStateEnum = S.String;
 
 /** Server attached to an SSL Gateway */
 export interface SslGatewayServer {
@@ -336,14 +336,14 @@ export type SslGatewayOfferEnum =
   | "enterprise"
   | "free"
   | "internal";
-export const SslGatewayOfferEnum = /*@__PURE__*/ S.String;
+export const SslGatewayOfferEnum = S.String;
 
 /** Possible values for ssl ciphers */
 export type SslGatewaySslConfigurationEnum =
   | "intermediate"
   | "internal"
   | "modern";
-export const SslGatewaySslConfigurationEnum = /*@__PURE__*/ S.String;
+export const SslGatewaySslConfigurationEnum = S.String;
 
 /** Possible values for SSL Gateway state */
 export type SslGatewayStateEnum =
@@ -355,7 +355,7 @@ export type SslGatewayStateEnum =
   | "ok"
   | "suspended"
   | "upgrading";
-export const SslGatewayStateEnum = /*@__PURE__*/ S.String;
+export const SslGatewayStateEnum = S.String;
 
 /** Zones of your SSL Gateway */
 export type SslGatewaySslGatewayWithIAMZonesList = Array<string>;
@@ -521,7 +521,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 export type ServiceStateEnum =
   | "autorenewInProgress"
@@ -530,7 +530,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -607,7 +607,7 @@ export type SslGatewayTaskActionEnum =
   | "updateServer"
   | "updateService"
   | "upgrade";
-export const SslGatewayTaskActionEnum = /*@__PURE__*/ S.String;
+export const SslGatewayTaskActionEnum = S.String;
 
 /** Possible task status */
 export type SslGatewayTaskStatusEnum =
@@ -618,7 +618,7 @@ export type SslGatewayTaskStatusEnum =
   | "error"
   | "paused"
   | "todo";
-export const SslGatewayTaskStatusEnum = /*@__PURE__*/ S.String;
+export const SslGatewayTaskStatusEnum = S.String;
 
 /** SSL Gateway tasks */
 export interface SslGatewayTask {

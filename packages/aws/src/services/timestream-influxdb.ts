@@ -180,7 +180,7 @@ export type DbBackupStatus =
   | "DELETING"
   | "DELETED"
   | (string & {});
-export const DbBackupStatus = /*@__PURE__*/ S.String;
+export const DbBackupStatus = S.String;
 
 export type DbBackupType =
   | "HOURLY"
@@ -191,21 +191,21 @@ export type DbBackupType =
   | "ON_DEMAND"
   | "CONTINUOUS"
   | (string & {});
-export const DbBackupType = /*@__PURE__*/ S.String;
+export const DbBackupType = S.String;
 
 export type EngineType =
   | "INFLUXDB_V2"
   | "INFLUXDB_V3_CORE"
   | "INFLUXDB_V3_ENTERPRISE"
   | (string & {});
-export const EngineType = /*@__PURE__*/ S.String;
+export const EngineType = S.String;
 
 export type ResourceDeploymentType =
   | "SINGLE_AZ"
   | "WITH_MULTIAZ_STANDBY"
   | "MULTI_NODE_READ_REPLICAS"
   | (string & {});
-export const ResourceDeploymentType = /*@__PURE__*/ S.String;
+export const ResourceDeploymentType = S.String;
 
 export type KmsKeyId = string;
 export interface ClusterConfiguration {
@@ -234,7 +234,7 @@ export type DbInstanceType =
   | "db.influx.16xlarge"
   | "db.influx.24xlarge"
   | (string & {});
-export const DbInstanceType = /*@__PURE__*/ S.String;
+export const DbInstanceType = S.String;
 
 export interface S3Configuration {
   bucketName: string;
@@ -254,14 +254,14 @@ export const LogDeliveryConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "LogDeliveryConfiguration",
 }) as any as S.Schema<LogDeliveryConfiguration>;
 export type FailoverMode = "AUTOMATIC" | "NO_FAILOVER" | (string & {});
-export const FailoverMode = /*@__PURE__*/ S.String;
+export const FailoverMode = S.String;
 
 export type DbStorageType =
   | "InfluxIOIncludedT1"
   | "InfluxIOIncludedT2"
   | "InfluxIOIncludedT3"
   | (string & {});
-export const DbStorageType = /*@__PURE__*/ S.String;
+export const DbStorageType = S.String;
 
 export type AllocatedStorage = number;
 export type VpcSubnetId = string;
@@ -271,7 +271,7 @@ export type VpcSecurityGroupId = string;
 export type VpcSecurityGroupIdList = string[];
 export const VpcSecurityGroupIdList = /*@__PURE__*/ S.Array(S.String);
 export type NetworkType = "IPV4" | "DUAL" | (string & {});
-export const NetworkType = /*@__PURE__*/ S.String;
+export const NetworkType = S.String;
 
 export type IanaTimezone = string;
 export type MaintenanceWindow = string;
@@ -352,7 +352,7 @@ export type Bucket = string;
 export type Port = number;
 export type DbParameterGroupIdentifier = string;
 export type ClusterDeploymentType = "MULTI_NODE_READ_REPLICAS" | (string & {});
-export const ClusterDeploymentType = /*@__PURE__*/ S.String;
+export const ClusterDeploymentType = S.String;
 
 export type AutomatedDbBackupType =
   | "HOURLY"
@@ -362,7 +362,7 @@ export type AutomatedDbBackupType =
   | "CUSTOM_SCHEDULE"
   | "CONTINUOUS"
   | (string & {});
-export const AutomatedDbBackupType = /*@__PURE__*/ S.String;
+export const AutomatedDbBackupType = S.String;
 
 export type AutomatedBackupRetentionDays = number;
 export type AwsCronSchedule = string;
@@ -454,7 +454,7 @@ export type ClusterStatus =
   | "RESTORING"
   | "RESTORE_FAILED"
   | (string & {});
-export const ClusterStatus = /*@__PURE__*/ S.String;
+export const ClusterStatus = S.String;
 
 export interface CreateDbClusterOutput {
   dbClusterId?: string;
@@ -473,7 +473,7 @@ export type DeploymentType =
   | "SINGLE_AZ"
   | "WITH_MULTIAZ_STANDBY"
   | (string & {});
-export const DeploymentType = /*@__PURE__*/ S.String;
+export const DeploymentType = S.String;
 
 export interface CreateDbInstanceInput {
   name: string;
@@ -542,7 +542,7 @@ export type Status =
   | "RESTORING"
   | "RESTORE_FAILED"
   | (string & {});
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 export type InstanceMode =
   | "PRIMARY"
@@ -553,7 +553,7 @@ export type InstanceMode =
   | "COMPACT"
   | "PROCESS"
   | (string & {});
-export const InstanceMode = /*@__PURE__*/ S.String;
+export const InstanceMode = S.String;
 
 export type InstanceModeList = InstanceMode[];
 export const InstanceModeList = /*@__PURE__*/ S.Array(InstanceMode);
@@ -649,10 +649,10 @@ export const CreateDbInstanceOutput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDbInstanceOutput>;
 export type DbParameterGroupName = string;
 export type LogLevel = "debug" | "info" | "error" | (string & {});
-export const LogLevel = /*@__PURE__*/ S.String;
+export const LogLevel = S.String;
 
 export type TracingType = "log" | "jaeger" | "disabled" | (string & {});
-export const TracingType = /*@__PURE__*/ S.String;
+export const TracingType = S.String;
 
 export type DurationType =
   | "hours"
@@ -661,7 +661,7 @@ export type DurationType =
   | "milliseconds"
   | "days"
   | (string & {});
-export const DurationType = /*@__PURE__*/ S.String;
+export const DurationType = S.String;
 
 export interface Duration {
   durationType: DurationType;
@@ -747,13 +747,13 @@ export const InfluxDBv2Parameters = /*@__PURE__*/ S.suspend(() =>
   identifier: "InfluxDBv2Parameters",
 }) as any as S.Schema<InfluxDBv2Parameters>;
 export type LogFormats = "full" | (string & {});
-export const LogFormats = /*@__PURE__*/ S.String;
+export const LogFormats = S.String;
 
 export type DataFusionRuntimeType =
   | "multi-thread"
   | "multi-thread-alt"
   | (string & {});
-export const DataFusionRuntimeType = /*@__PURE__*/ S.String;
+export const DataFusionRuntimeType = S.String;
 
 export type PercentOrAbsoluteLong =
   | { percent: string; absolute?: never }
@@ -1861,7 +1861,7 @@ export const RebootDbInstanceOutput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RebootDbInstanceOutput>;
 export type DbResourceName = string;
 export type RestoreMode = "NEW_RESOURCE" | "REPLACE_EXISTING" | (string & {});
-export const RestoreMode = /*@__PURE__*/ S.String;
+export const RestoreMode = S.String;
 
 export interface RestoreFromDbBackupInput {
   name: string;
@@ -1906,10 +1906,10 @@ export const RestoreFromDbBackupInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "RestoreFromDbBackupInput",
 }) as any as S.Schema<RestoreFromDbBackupInput>;
 export type RestoreStatus = "RESTORING" | (string & {});
-export const RestoreStatus = /*@__PURE__*/ S.String;
+export const RestoreStatus = S.String;
 
 export type ResourceType = "DB_INSTANCE" | "DB_CLUSTER" | (string & {});
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 export interface RestoreFromDbBackupOutput {
   restoredDbResourceId?: string;
@@ -2102,7 +2102,7 @@ export type ValidationExceptionReason =
   | "FIELD_VALIDATION_FAILED"
   | "OTHER"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export type CreateDbBackupError =
   | AccessDeniedException

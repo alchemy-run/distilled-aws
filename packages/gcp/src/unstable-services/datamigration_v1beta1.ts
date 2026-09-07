@@ -138,7 +138,7 @@ export type ConnectionProfileStateEnum =
   | "DELETING"
   | "DELETED"
   | "FAILED";
-export const ConnectionProfileStateEnum = /*@__PURE__*/ S.String;
+export const ConnectionProfileStateEnum = S.String;
 
 /** An entry for an Access Control list. */
 export interface SqlAclEntry {
@@ -190,13 +190,13 @@ export type CloudSqlSettingsDatabaseVersionEnum =
   | "MYSQL_5_6"
   | "MYSQL_5_7"
   | "MYSQL_8_0";
-export const CloudSqlSettingsDatabaseVersionEnum = /*@__PURE__*/ S.String;
+export const CloudSqlSettingsDatabaseVersionEnum = S.String;
 
 export type CloudSqlSettingsActivationPolicyEnum =
   | "SQL_ACTIVATION_POLICY_UNSPECIFIED"
   | "ALWAYS"
   | "NEVER";
-export const CloudSqlSettingsActivationPolicyEnum = /*@__PURE__*/ S.String;
+export const CloudSqlSettingsActivationPolicyEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -208,7 +208,7 @@ export type CloudSqlSettingsDataDiskTypeEnum =
   | "SQL_DATA_DISK_TYPE_UNSPECIFIED"
   | "PD_SSD"
   | "PD_HDD";
-export const CloudSqlSettingsDataDiskTypeEnum = /*@__PURE__*/ S.String;
+export const CloudSqlSettingsDataDiskTypeEnum = S.String;
 
 /** Settings for creating a Cloud SQL database instance. */
 export interface CloudSqlSettings {
@@ -288,13 +288,13 @@ export type ConnectionProfileProviderEnum =
   | "DATABASE_PROVIDER_UNSPECIFIED"
   | "CLOUDSQL"
   | "RDS";
-export const ConnectionProfileProviderEnum = /*@__PURE__*/ S.String;
+export const ConnectionProfileProviderEnum = S.String;
 
 export type SslConfigTypeEnum =
   | "SSL_TYPE_UNSPECIFIED"
   | "SERVER_ONLY"
   | "SERVER_CLIENT";
-export const SslConfigTypeEnum = /*@__PURE__*/ S.String;
+export const SslConfigTypeEnum = S.String;
 
 /** SSL configuration information. */
 export interface SslConfig {
@@ -490,7 +490,7 @@ export type MigrationJobStateEnum =
   | "STARTING"
   | "RESTARTING"
   | "RESUMING";
-export const MigrationJobStateEnum = /*@__PURE__*/ S.String;
+export const MigrationJobStateEnum = S.String;
 
 export type MigrationJobPhaseEnum =
   | "PHASE_UNSPECIFIED"
@@ -499,13 +499,13 @@ export type MigrationJobPhaseEnum =
   | "PROMOTE_IN_PROGRESS"
   | "WAITING_FOR_SOURCE_WRITES_TO_STOP"
   | "PREPARING_THE_DUMP";
-export const MigrationJobPhaseEnum = /*@__PURE__*/ S.String;
+export const MigrationJobPhaseEnum = S.String;
 
 export type MigrationJobTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "ONE_TIME"
   | "CONTINUOUS";
-export const MigrationJobTypeEnum = /*@__PURE__*/ S.String;
+export const MigrationJobTypeEnum = S.String;
 
 /** The source database will allow incoming connections from the destination database's public IP. You can retrieve the Cloud SQL instance's public IP from the Cloud SQL console or using Cloud SQL APIs. No additional configuration is required. */
 export type StaticIpConnectivity = CancelOperationRequest;
@@ -515,10 +515,10 @@ export type DatabaseTypeProviderEnum =
   | "DATABASE_PROVIDER_UNSPECIFIED"
   | "CLOUDSQL"
   | "RDS";
-export const DatabaseTypeProviderEnum = /*@__PURE__*/ S.String;
+export const DatabaseTypeProviderEnum = S.String;
 
 export type DatabaseTypeEngineEnum = "DATABASE_ENGINE_UNSPECIFIED" | "MYSQL";
-export const DatabaseTypeEngineEnum = /*@__PURE__*/ S.String;
+export const DatabaseTypeEngineEnum = S.String;
 
 /** A message defining the database engine and provider. */
 export interface DatabaseType {
@@ -857,7 +857,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {

@@ -30,7 +30,7 @@ export type StorageTaskOperationName =
   | "SetBlobExpiry"
   | "DeleteBlob"
   | "UndeleteBlob";
-export const StorageTaskOperationName = /*@__PURE__*/ S.String;
+export const StorageTaskOperationName = S.String;
 
 /** Key-value parameters for the operation. */
 export type StorageTaskOperationParametersMap = {
@@ -43,11 +43,11 @@ export const StorageTaskOperationParametersMap = /*@__PURE__*/ S.Record(
 
 /** Action to be taken when the operation is successful for a object. */
 export type OnSuccess = "continue";
-export const OnSuccess = /*@__PURE__*/ S.String;
+export const OnSuccess = S.String;
 
 /** Action to be taken when the operation fails for a object. */
 export type OnFailure = "break";
-export const OnFailure = /*@__PURE__*/ S.String;
+export const OnFailure = S.String;
 
 /** Represents an operation to be performed on the object */
 export interface StorageTaskOperation {
@@ -149,7 +149,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentityInput {}
@@ -225,7 +225,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -233,7 +233,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -280,7 +280,7 @@ export type ProvisioningState =
   | "Deleting"
   | "Canceled"
   | "Failed";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Properties of the storage task. */
 export interface StorageTaskProperties {
@@ -529,11 +529,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -784,11 +784,11 @@ export const ListStorageTasksReportRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Represents the status of the execution. */
 export type RunStatusEnum = "InProgress" | "Finished";
-export const RunStatusEnum = /*@__PURE__*/ S.String;
+export const RunStatusEnum = S.String;
 
 /** Represents the overall result of the execution for the run instance */
 export type RunResult = "Succeeded" | "Failed";
-export const RunResult = /*@__PURE__*/ S.String;
+export const RunResult = S.String;
 
 /** Storage task execution report for a run instance. */
 export interface StorageTaskReportProperties {

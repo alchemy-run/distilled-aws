@@ -204,7 +204,7 @@ export type ContactHandlingScope =
   | "CROSS_CONTACTS"
   | "PER_CONTACT"
   | (string & {});
-export const ContactHandlingScope = /*@__PURE__*/ S.String;
+export const ContactHandlingScope = S.String;
 
 export interface ContactHandling {
   Scope?: ContactHandlingScope;
@@ -240,7 +240,7 @@ export type ApplicationType =
   | "SERVICE"
   | "MCP_SERVER"
   | (string & {});
-export const ApplicationType = /*@__PURE__*/ S.String;
+export const ApplicationType = S.String;
 
 export interface CreateApplicationRequest {
   Name: string;
@@ -420,7 +420,7 @@ export const ClientAssociationMetadata = /*@__PURE__*/ S.Record(
   S.String.pipe(S.optional),
 );
 export type ExecutionMode = "ON_DEMAND" | "SCHEDULED" | (string & {});
-export const ExecutionMode = /*@__PURE__*/ S.String;
+export const ExecutionMode = S.String;
 
 export interface OnDemandConfiguration {
   StartTime: string;
@@ -921,7 +921,7 @@ export type ExecutionStatus =
   | "IN_PROGRESS"
   | "FAILED"
   | (string & {});
-export const ExecutionStatus = /*@__PURE__*/ S.String;
+export const ExecutionStatus = S.String;
 
 export interface LastExecutionStatus {
   ExecutionStatus?: ExecutionStatus;

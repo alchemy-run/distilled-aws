@@ -96,7 +96,7 @@ export const CreateAccountRequestTagsList = /*@__PURE__*/ S.Array(
 
 /** * `daily` - daily * `weekly` - weekly * `monthly` - monthly */
 export type SlackSummaryCadenceEnum = "daily" | "weekly" | "monthly";
-export const SlackSummaryCadenceEnum = /*@__PURE__*/ S.String;
+export const SlackSummaryCadenceEnum = S.String;
 
 export interface CreateAccountRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -261,7 +261,7 @@ export type ListAccountsRequestOrdering =
   | "created_at"
   | "name"
   | "updated_at";
-export const ListAccountsRequestOrdering = /*@__PURE__*/ S.String;
+export const ListAccountsRequestOrdering = S.String;
 
 export interface ListAccountsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -388,7 +388,7 @@ export const AccountEmailThreadMessageCcRecipientsList = /*@__PURE__*/ S.Array(
 
 /** * `inbound` - Inbound * `outbound` - Outbound */
 export type EmailThreadMessageDirectionEnum = "inbound" | "outbound";
-export const EmailThreadMessageDirectionEnum = /*@__PURE__*/ S.String;
+export const EmailThreadMessageDirectionEnum = S.String;
 
 export interface AccountEmailThreadMessage {
   /** UUID of the captured email message. */
@@ -516,7 +516,7 @@ export const ConversationMessageSummary = /*@__PURE__*/ S.suspend(() =>
 
 /** * `internal` - Internal * `customer` - Customer */
 export type EmailThreadParticipantKindEnum = "internal" | "customer";
-export const EmailThreadParticipantKindEnum = /*@__PURE__*/ S.String;
+export const EmailThreadParticipantKindEnum = S.String;
 
 export interface AccountEmailThreadParticipant {
   /** Email address of the thread participant. */

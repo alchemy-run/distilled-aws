@@ -114,7 +114,7 @@ export type RecipientsCreateResponseAssociationStatus =
   | "associated"
   | "disassociating"
   | "disassociated";
-export const RecipientsCreateResponseAssociationStatus = /*@__PURE__*/ S.String;
+export const RecipientsCreateResponseAssociationStatus = S.String;
 
 export interface RecipientsCreateResponseResourcesItem {
   /** Share Recipient error message. */
@@ -180,7 +180,7 @@ export type ResourcesCreateRequestResourceType =
   | "gateway-block-page-settings"
   | "gateway-extended-email-matching"
   | "idp-federation-grant";
-export const ResourcesCreateRequestResourceType = /*@__PURE__*/ S.String;
+export const ResourcesCreateRequestResourceType = S.String;
 
 export interface CreateResourceRequest {
   /** Account identifier. */
@@ -226,10 +226,10 @@ export type ResourcesCreateResponseResourceType =
   | "gateway-block-page-settings"
   | "gateway-extended-email-matching"
   | "idp-federation-grant";
-export const ResourcesCreateResponseResourceType = /*@__PURE__*/ S.String;
+export const ResourcesCreateResponseResourceType = S.String;
 
 export type ResourcesCreateResponseStatus = "active" | "deleting" | "deleted";
-export const ResourcesCreateResponseStatus = /*@__PURE__*/ S.String;
+export const ResourcesCreateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateResourceResponse {
@@ -302,7 +302,7 @@ export type CreateRequestResourcesItemResourceType =
   | "gateway-block-page-settings"
   | "gateway-extended-email-matching"
   | "idp-federation-grant";
-export const CreateRequestResourcesItemResourceType = /*@__PURE__*/ S.String;
+export const CreateRequestResourcesItemResourceType = S.String;
 
 export interface CreateRequestResourcesItem {
   /** Resource Metadata. */
@@ -360,13 +360,13 @@ export const CreateResourceSharingRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateResourceSharingRequest>;
 
 export type CreateResponseStatus = "active" | "deleting" | "deleted";
-export const CreateResponseStatus = /*@__PURE__*/ S.String;
+export const CreateResponseStatus = S.String;
 
 export type CreateResponseTargetType = "account" | "organization";
-export const CreateResponseTargetType = /*@__PURE__*/ S.String;
+export const CreateResponseTargetType = S.String;
 
 export type CreateResponseKind = "sent" | "received";
-export const CreateResponseKind = /*@__PURE__*/ S.String;
+export const CreateResponseKind = S.String;
 
 export type CreateResponseResourcesItemResourceType =
   | "custom-ruleset"
@@ -375,13 +375,13 @@ export type CreateResponseResourcesItemResourceType =
   | "gateway-block-page-settings"
   | "gateway-extended-email-matching"
   | "idp-federation-grant";
-export const CreateResponseResourcesItemResourceType = /*@__PURE__*/ S.String;
+export const CreateResponseResourcesItemResourceType = S.String;
 
 export type CreateResponseResourcesItemStatus =
   | "active"
   | "deleting"
   | "deleted";
-export const CreateResponseResourcesItemStatus = /*@__PURE__*/ S.String;
+export const CreateResponseResourcesItemStatus = S.String;
 
 export interface CreateResponseResourcesItem {
   /** Share Resource identifier. */
@@ -517,7 +517,7 @@ export type RecipientsDeleteResponseAssociationStatus =
   | "associated"
   | "disassociating"
   | "disassociated";
-export const RecipientsDeleteResponseAssociationStatus = /*@__PURE__*/ S.String;
+export const RecipientsDeleteResponseAssociationStatus = S.String;
 
 export type RecipientsDeleteResponseResourcesItem =
   RecipientsCreateResponseResourcesItem;
@@ -592,10 +592,10 @@ export type ResourcesDeleteResponseResourceType =
   | "gateway-block-page-settings"
   | "gateway-extended-email-matching"
   | "idp-federation-grant";
-export const ResourcesDeleteResponseResourceType = /*@__PURE__*/ S.String;
+export const ResourcesDeleteResponseResourceType = S.String;
 
 export type ResourcesDeleteResponseStatus = "active" | "deleting" | "deleted";
-export const ResourcesDeleteResponseStatus = /*@__PURE__*/ S.String;
+export const ResourcesDeleteResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeleteResourceResponse {
@@ -660,13 +660,13 @@ export const DeleteResourceSharingRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteResourceSharingRequest>;
 
 export type DeleteResponseStatus = "active" | "deleting" | "deleted";
-export const DeleteResponseStatus = /*@__PURE__*/ S.String;
+export const DeleteResponseStatus = S.String;
 
 export type DeleteResponseTargetType = "account" | "organization";
-export const DeleteResponseTargetType = /*@__PURE__*/ S.String;
+export const DeleteResponseTargetType = S.String;
 
 export type DeleteResponseKind = "sent" | "received";
-export const DeleteResponseKind = /*@__PURE__*/ S.String;
+export const DeleteResponseKind = S.String;
 
 export type DeleteResponseResourcesItemResourceType =
   | "custom-ruleset"
@@ -675,13 +675,13 @@ export type DeleteResponseResourcesItemResourceType =
   | "gateway-block-page-settings"
   | "gateway-extended-email-matching"
   | "idp-federation-grant";
-export const DeleteResponseResourcesItemResourceType = /*@__PURE__*/ S.String;
+export const DeleteResponseResourcesItemResourceType = S.String;
 
 export type DeleteResponseResourcesItemStatus =
   | "active"
   | "deleting"
   | "deleted";
-export const DeleteResponseResourcesItemStatus = /*@__PURE__*/ S.String;
+export const DeleteResponseResourcesItemStatus = S.String;
 
 export interface DeleteResponseResourcesItem {
   /** Share Resource identifier. */
@@ -820,7 +820,7 @@ export type RecipientsGetResponseAssociationStatus =
   | "associated"
   | "disassociating"
   | "disassociated";
-export const RecipientsGetResponseAssociationStatus = /*@__PURE__*/ S.String;
+export const RecipientsGetResponseAssociationStatus = S.String;
 
 export type RecipientsGetResponseResourcesItem =
   RecipientsCreateResponseResourcesItem;
@@ -895,10 +895,10 @@ export type ResourcesGetResponseResourceType =
   | "gateway-block-page-settings"
   | "gateway-extended-email-matching"
   | "idp-federation-grant";
-export const ResourcesGetResponseResourceType = /*@__PURE__*/ S.String;
+export const ResourcesGetResponseResourceType = S.String;
 
 export type ResourcesGetResponseStatus = "active" | "deleting" | "deleted";
-export const ResourcesGetResponseStatus = /*@__PURE__*/ S.String;
+export const ResourcesGetResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetResourceResponse {
@@ -971,13 +971,13 @@ export const GetResourceSharingRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResourceSharingRequest>;
 
 export type GetResponseStatus = "active" | "deleting" | "deleted";
-export const GetResponseStatus = /*@__PURE__*/ S.String;
+export const GetResponseStatus = S.String;
 
 export type GetResponseTargetType = "account" | "organization";
-export const GetResponseTargetType = /*@__PURE__*/ S.String;
+export const GetResponseTargetType = S.String;
 
 export type GetResponseKind = "sent" | "received";
-export const GetResponseKind = /*@__PURE__*/ S.String;
+export const GetResponseKind = S.String;
 
 export type GetResponseResourcesItemResourceType =
   | "custom-ruleset"
@@ -986,10 +986,10 @@ export type GetResponseResourcesItemResourceType =
   | "gateway-block-page-settings"
   | "gateway-extended-email-matching"
   | "idp-federation-grant";
-export const GetResponseResourcesItemResourceType = /*@__PURE__*/ S.String;
+export const GetResponseResourcesItemResourceType = S.String;
 
 export type GetResponseResourcesItemStatus = "active" | "deleting" | "deleted";
-export const GetResponseResourcesItemStatus = /*@__PURE__*/ S.String;
+export const GetResponseResourcesItemStatus = S.String;
 
 export interface GetResponseResourcesItem {
   /** Share Resource identifier. */
@@ -1131,7 +1131,7 @@ export type RecipientsListResultItemAssociationStatus =
   | "associated"
   | "disassociating"
   | "disassociated";
-export const RecipientsListResultItemAssociationStatus = /*@__PURE__*/ S.String;
+export const RecipientsListResultItemAssociationStatus = S.String;
 
 export type RecipientsListResultItemResourcesItem =
   RecipientsCreateResponseResourcesItem;
@@ -1199,10 +1199,10 @@ export type ResourcesListRequestResourceType =
   | "gateway-block-page-settings"
   | "gateway-extended-email-matching"
   | "idp-federation-grant";
-export const ResourcesListRequestResourceType = /*@__PURE__*/ S.String;
+export const ResourcesListRequestResourceType = S.String;
 
 export type ResourcesListRequestStatus = "active" | "deleting" | "deleted";
-export const ResourcesListRequestStatus = /*@__PURE__*/ S.String;
+export const ResourcesListRequestStatus = S.String;
 
 export interface ListResourcesRequest {
   /** Account identifier. */
@@ -1248,10 +1248,10 @@ export type ResourcesListResultItemResourceType =
   | "gateway-block-page-settings"
   | "gateway-extended-email-matching"
   | "idp-federation-grant";
-export const ResourcesListResultItemResourceType = /*@__PURE__*/ S.String;
+export const ResourcesListResultItemResourceType = S.String;
 
 export type ResourcesListResultItemStatus = "active" | "deleting" | "deleted";
-export const ResourcesListResultItemStatus = /*@__PURE__*/ S.String;
+export const ResourcesListResultItemStatus = S.String;
 
 export interface ResourcesListResultItem {
   /** Share Resource identifier. */
@@ -1312,13 +1312,13 @@ export const ListResourcesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListResourcesResponse>;
 
 export type ListRequestDirection = "asc" | "desc";
-export const ListRequestDirection = /*@__PURE__*/ S.String;
+export const ListRequestDirection = S.String;
 
 export type ListRequestKind = "sent" | "received";
-export const ListRequestKind = /*@__PURE__*/ S.String;
+export const ListRequestKind = S.String;
 
 export type ListRequestOrder = "name" | "created";
-export const ListRequestOrder = /*@__PURE__*/ S.String;
+export const ListRequestOrder = S.String;
 
 export type ListRequestResourceTypes =
   | "custom-ruleset"
@@ -1327,7 +1327,7 @@ export type ListRequestResourceTypes =
   | "gateway-block-page-settings"
   | "gateway-extended-email-matching"
   | "idp-federation-grant";
-export const ListRequestResourceTypes = /*@__PURE__*/ S.String;
+export const ListRequestResourceTypes = S.String;
 
 export type ListRequestResourceTypesList = Array<
   ListRequestResourceTypes | (string & {})
@@ -1337,7 +1337,7 @@ export const ListRequestResourceTypesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListRequestResourceTypesList>;
 
 export type ListRequestStatus = "active" | "deleting" | "deleted";
-export const ListRequestStatus = /*@__PURE__*/ S.String;
+export const ListRequestStatus = S.String;
 
 export type ListRequestTagList = Array<string>;
 export const ListRequestTagList = /*@__PURE__*/ S.Array(
@@ -1345,7 +1345,7 @@ export const ListRequestTagList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListRequestTagList>;
 
 export type ListRequestTargetType = "account" | "organization";
-export const ListRequestTargetType = /*@__PURE__*/ S.String;
+export const ListRequestTargetType = S.String;
 
 export interface ListResourceSharingsRequest {
   /** Account identifier. */
@@ -1405,13 +1405,13 @@ export const ListResourceSharingsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListResourceSharingsRequest>;
 
 export type ListResultItemStatus = "active" | "deleting" | "deleted";
-export const ListResultItemStatus = /*@__PURE__*/ S.String;
+export const ListResultItemStatus = S.String;
 
 export type ListResultItemTargetType = "account" | "organization";
-export const ListResultItemTargetType = /*@__PURE__*/ S.String;
+export const ListResultItemTargetType = S.String;
 
 export type ListResultItemKind = "sent" | "received";
-export const ListResultItemKind = /*@__PURE__*/ S.String;
+export const ListResultItemKind = S.String;
 
 export type ListResultItemResourcesItemResourceType =
   | "custom-ruleset"
@@ -1420,13 +1420,13 @@ export type ListResultItemResourcesItemResourceType =
   | "gateway-block-page-settings"
   | "gateway-extended-email-matching"
   | "idp-federation-grant";
-export const ListResultItemResourcesItemResourceType = /*@__PURE__*/ S.String;
+export const ListResultItemResourcesItemResourceType = S.String;
 
 export type ListResultItemResourcesItemStatus =
   | "active"
   | "deleting"
   | "deleted";
-export const ListResultItemResourcesItemStatus = /*@__PURE__*/ S.String;
+export const ListResultItemResourcesItemStatus = S.String;
 
 export interface ListResultItemResourcesItem {
   /** Share Resource identifier. */
@@ -1584,10 +1584,10 @@ export type ResourcesUpdateResponseResourceType =
   | "gateway-block-page-settings"
   | "gateway-extended-email-matching"
   | "idp-federation-grant";
-export const ResourcesUpdateResponseResourceType = /*@__PURE__*/ S.String;
+export const ResourcesUpdateResponseResourceType = S.String;
 
 export type ResourcesUpdateResponseStatus = "active" | "deleting" | "deleted";
-export const ResourcesUpdateResponseStatus = /*@__PURE__*/ S.String;
+export const ResourcesUpdateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateResourceResponse {
@@ -1655,13 +1655,13 @@ export const UpdateResourceSharingRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateResourceSharingRequest>;
 
 export type UpdateResponseStatus = "active" | "deleting" | "deleted";
-export const UpdateResponseStatus = /*@__PURE__*/ S.String;
+export const UpdateResponseStatus = S.String;
 
 export type UpdateResponseTargetType = "account" | "organization";
-export const UpdateResponseTargetType = /*@__PURE__*/ S.String;
+export const UpdateResponseTargetType = S.String;
 
 export type UpdateResponseKind = "sent" | "received";
-export const UpdateResponseKind = /*@__PURE__*/ S.String;
+export const UpdateResponseKind = S.String;
 
 export type UpdateResponseResourcesItemResourceType =
   | "custom-ruleset"
@@ -1670,13 +1670,13 @@ export type UpdateResponseResourcesItemResourceType =
   | "gateway-block-page-settings"
   | "gateway-extended-email-matching"
   | "idp-federation-grant";
-export const UpdateResponseResourcesItemResourceType = /*@__PURE__*/ S.String;
+export const UpdateResponseResourcesItemResourceType = S.String;
 
 export type UpdateResponseResourcesItemStatus =
   | "active"
   | "deleting"
   | "deleted";
-export const UpdateResponseResourcesItemStatus = /*@__PURE__*/ S.String;
+export const UpdateResponseResourcesItemStatus = S.String;
 
 export interface UpdateResponseResourcesItem {
   /** Share Resource identifier. */

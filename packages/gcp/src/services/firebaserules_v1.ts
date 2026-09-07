@@ -245,8 +245,7 @@ export type GetExecutableProjectsReleasesExecutableVersionEnum =
   | "RELEASE_EXECUTABLE_VERSION_UNSPECIFIED"
   | "FIREBASE_RULES_EXECUTABLE_V1"
   | "FIREBASE_RULES_EXECUTABLE_V2";
-export const GetExecutableProjectsReleasesExecutableVersionEnum =
-  /*@__PURE__*/ S.String;
+export const GetExecutableProjectsReleasesExecutableVersionEnum = S.String;
 
 export interface GetExecutableProjectsReleasesRequest {
   /** Required. Resource name of the `Release`. Format: `projects/{project_id}/releases/{release_id}` */
@@ -278,14 +277,13 @@ export type GetReleaseExecutableResponseLanguageEnum =
   | "LANGUAGE_UNSPECIFIED"
   | "FIREBASE_RULES"
   | "EVENT_FLOW_TRIGGERS";
-export const GetReleaseExecutableResponseLanguageEnum = /*@__PURE__*/ S.String;
+export const GetReleaseExecutableResponseLanguageEnum = S.String;
 
 export type GetReleaseExecutableResponseExecutableVersionEnum =
   | "RELEASE_EXECUTABLE_VERSION_UNSPECIFIED"
   | "FIREBASE_RULES_EXECUTABLE_V1"
   | "FIREBASE_RULES_EXECUTABLE_V2";
-export const GetReleaseExecutableResponseExecutableVersionEnum =
-  /*@__PURE__*/ S.String;
+export const GetReleaseExecutableResponseExecutableVersionEnum = S.String;
 
 /** The response for FirebaseRulesService.GetReleaseExecutable */
 export interface GetReleaseExecutableResponse {
@@ -491,19 +489,19 @@ export type TestCaseExpressionReportLevelEnum =
   | "NONE"
   | "FULL"
   | "VISITED";
-export const TestCaseExpressionReportLevelEnum = /*@__PURE__*/ S.String;
+export const TestCaseExpressionReportLevelEnum = S.String;
 
 export type TestCaseExpectationEnum =
   | "EXPECTATION_UNSPECIFIED"
   | "ALLOW"
   | "DENY";
-export const TestCaseExpectationEnum = /*@__PURE__*/ S.String;
+export const TestCaseExpectationEnum = S.String;
 
 export type TestCasePathEncodingEnum =
   | "ENCODING_UNSPECIFIED"
   | "URL_ENCODED"
   | "PLAIN";
-export const TestCasePathEncodingEnum = /*@__PURE__*/ S.String;
+export const TestCasePathEncodingEnum = S.String;
 
 /** Possible result values from the function mock invocation. */
 export interface Result {
@@ -638,7 +636,7 @@ export const TestProjectsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TestProjectsRequest>;
 
 export type TestResultStateEnum = "STATE_UNSPECIFIED" | "SUCCESS" | "FAILURE";
-export const TestResultStateEnum = /*@__PURE__*/ S.String;
+export const TestResultStateEnum = S.String;
 
 /** Position in the `Source` content including its line, column number, and an index of the `File` in the `Source` message. Used for debug purposes. */
 export interface SourcePosition {
@@ -787,7 +785,7 @@ export type IssueSeverityEnum =
   | "DEPRECATION"
   | "WARNING"
   | "ERROR";
-export const IssueSeverityEnum = /*@__PURE__*/ S.String;
+export const IssueSeverityEnum = S.String;
 
 /** Issues include warnings, errors, and deprecation notices. */
 export interface Issue {

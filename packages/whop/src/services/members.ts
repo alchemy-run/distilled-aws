@@ -54,11 +54,11 @@ export const GetMemberRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** What the member can reach on the account: `customer` for paying members, `admin` for team members, `no_access` once every grant has lapsed. */
 export type MemberAccessLevel = "no_access" | "admin" | "customer";
-export const MemberAccessLevel = /*@__PURE__*/ S.String;
+export const MemberAccessLevel = S.String;
 
 /** `joined` while the member is part of the account, `left` after they leave. */
 export type MemberStatus = "joined" | "left";
-export const MemberStatus = /*@__PURE__*/ S.String;
+export const MemberStatus = S.String;
 
 export interface UserProfilePicture {
   /** Avatar image URL. Always present — a generated placeholder when the user set no picture. */
@@ -213,20 +213,20 @@ export const ListMemberLogsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListMemberLogsResponse>;
 
 export type ListMembersRequestAccessLevel = "no_access" | "admin" | "customer";
-export const ListMembersRequestAccessLevel = /*@__PURE__*/ S.String;
+export const ListMembersRequestAccessLevel = S.String;
 
 export type ListMembersRequestStatus = "joined" | "left";
-export const ListMembersRequestStatus = /*@__PURE__*/ S.String;
+export const ListMembersRequestStatus = S.String;
 
 export type ListMembersRequestOrder =
   | "created_at"
   | "joined_at"
   | "last_accessed_at"
   | "usd_total_spent";
-export const ListMembersRequestOrder = /*@__PURE__*/ S.String;
+export const ListMembersRequestOrder = S.String;
 
 export type ListMembersRequestDirection = "asc" | "desc";
-export const ListMembersRequestDirection = /*@__PURE__*/ S.String;
+export const ListMembersRequestDirection = S.String;
 
 export interface ListMembersRequest {
   /** The account to list members for (`biz_` tag). Defaults to the account the credential acts as. */

@@ -273,7 +273,7 @@ export const Client_statusDiscoveryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<Client_statusDiscoveryRequest>;
 
 export type SocketAddressProtocolEnum = "TCP" | "UDP";
-export const SocketAddressProtocolEnum = /*@__PURE__*/ S.String;
+export const SocketAddressProtocolEnum = S.String;
 
 /** [#next-free-field: 7] */
 export interface SocketAddress {
@@ -521,7 +521,7 @@ export type PerXdsConfigStatusEnum =
   | "NOT_SENT"
   | "STALE"
   | "ERROR";
-export const PerXdsConfigStatusEnum = /*@__PURE__*/ S.String;
+export const PerXdsConfigStatusEnum = S.String;
 
 /** Describes a statically loaded cluster. */
 export interface StaticCluster {

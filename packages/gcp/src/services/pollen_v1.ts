@@ -97,7 +97,7 @@ export type PollenTypeInfoCodeEnum =
   | "GRASS"
   | "TREE"
   | "WEED";
-export const PollenTypeInfoCodeEnum = /*@__PURE__*/ S.String;
+export const PollenTypeInfoCodeEnum = S.String;
 
 /** Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to and from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't have information about the absolute color space that should be used to interpret the RGB value—for example, sRGB, Adobe RGB, DCI-P3, and BT.2020. By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most `1e-5`. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); }; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); } resultBuilder.push(hexString); return resultBuilder.join(''); }; // ... */
 export interface Color {
@@ -120,7 +120,7 @@ export const Color = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Color" }) as any as S.Schema<Color>;
 
 export type IndexInfoCodeEnum = "INDEX_UNSPECIFIED" | "UPI";
-export const IndexInfoCodeEnum = /*@__PURE__*/ S.String;
+export const IndexInfoCodeEnum = S.String;
 
 /** This object contains data representing specific pollen index value, category and description. */
 export interface IndexInfo {
@@ -186,7 +186,7 @@ export type PlantDescriptionTypeEnum =
   | "GRASS"
   | "TREE"
   | "WEED";
-export const PlantDescriptionTypeEnum = /*@__PURE__*/ S.String;
+export const PlantDescriptionTypeEnum = S.String;
 
 /** Contains general information about plants, including details on their seasonality, special shapes and colors, information about allergic cross-reactions, and plant photos. */
 export interface PlantDescription {
@@ -241,7 +241,7 @@ export type PlantInfoCodeEnum =
   | "MUGWORT"
   | "JAPANESE_CEDAR"
   | "JAPANESE_CYPRESS";
-export const PlantInfoCodeEnum = /*@__PURE__*/ S.String;
+export const PlantInfoCodeEnum = S.String;
 
 /** This object contains the daily information on specific plant. */
 export interface PlantInfo {
@@ -316,8 +316,7 @@ export type LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum =
   | "TREE_UPI"
   | "GRASS_UPI"
   | "WEED_UPI";
-export const LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum =
-  /*@__PURE__*/ S.String;
+export const LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum = S.String;
 
 export interface LookupHeatmapTileMapTypesHeatmapTilesRequest {
   /** Required. The map's zoom level. Defines how large or small the contents of a map appear in a map view. * Zoom level 0 is the entire world in a single tile. * Zoom level 1 is the entire world in 4 tiles. * Zoom level 2 is the entire world in 16 tiles. * Zoom level 16 is the entire world in 65,536 tiles. Allowed values: 0-16 */

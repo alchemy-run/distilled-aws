@@ -13,7 +13,7 @@ export type { PosthogOpError, PosthogOpContext };
 
 /** * `disabled` - Disabled * `dry_run` - Dry Run * `live` - Live */
 export type EventFilterModeEnum = "disabled" | "dry_run" | "live";
-export const EventFilterModeEnum = /*@__PURE__*/ S.String;
+export const EventFilterModeEnum = S.String;
 
 export interface CreateEventFilterRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

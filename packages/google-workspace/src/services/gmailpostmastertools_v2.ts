@@ -69,8 +69,7 @@ export type QueryDomainStatsRequestAggregationGranularityEnum =
   | "AGGREGATION_GRANULARITY_UNSPECIFIED"
   | "DAILY"
   | "OVERALL";
-export const QueryDomainStatsRequestAggregationGranularityEnum =
-  /*@__PURE__*/ S.String;
+export const QueryDomainStatsRequestAggregationGranularityEnum = S.String;
 
 export type BaseMetricStandardMetricEnum =
   | "STANDARD_METRIC_UNSPECIFIED"
@@ -82,7 +81,7 @@ export type BaseMetricStandardMetricEnum =
   | "TLS_ENCRYPTION_RATE"
   | "DELIVERY_ERROR_COUNT"
   | "DELIVERY_ERROR_RATE";
-export const BaseMetricStandardMetricEnum = /*@__PURE__*/ S.String;
+export const BaseMetricStandardMetricEnum = S.String;
 
 /** Specifies the base metric to query, which can be a predefined standard metric or a user-defined custom metric (if supported in the future). */
 export interface BaseMetric {
@@ -444,7 +443,7 @@ export type DomainVerificationStateEnum =
   | "VERIFICATION_STATE_UNSPECIFIED"
   | "UNVERIFIED"
   | "VERIFIED";
-export const DomainVerificationStateEnum = /*@__PURE__*/ S.String;
+export const DomainVerificationStateEnum = S.String;
 
 export type DomainPermissionEnum =
   | "PERMISSION_UNSPECIFIED"
@@ -452,7 +451,7 @@ export type DomainPermissionEnum =
   | "ADMIN"
   | "OWNER"
   | "NONE";
-export const DomainPermissionEnum = /*@__PURE__*/ S.String;
+export const DomainPermissionEnum = S.String;
 
 /** Information about a domain registered by the user. */
 export interface Domain {
@@ -483,7 +482,7 @@ export type CreateUserRequestPermissionEnum =
   | "ADMIN"
   | "OWNER"
   | "NONE";
-export const CreateUserRequestPermissionEnum = /*@__PURE__*/ S.String;
+export const CreateUserRequestPermissionEnum = S.String;
 
 /** [Developer Preview](https://developers.google.com/workspace/preview): Request message for CreateUser. */
 export interface CreateUserRequest {
@@ -528,7 +527,7 @@ export type UserPermissionEnum =
   | "ADMIN"
   | "OWNER"
   | "NONE";
-export const UserPermissionEnum = /*@__PURE__*/ S.String;
+export const UserPermissionEnum = S.String;
 
 /** [Developer Preview](https://developers.google.com/workspace/preview): Information about a user's access to a domain. */
 export interface User {
@@ -617,7 +616,7 @@ export type ComplianceStatusStatusEnum =
   | "STATE_UNSPECIFIED"
   | "COMPLIANT"
   | "NEEDS_WORK";
-export const ComplianceStatusStatusEnum = /*@__PURE__*/ S.String;
+export const ComplianceStatusStatusEnum = S.String;
 
 /** The status of a sender compliance requirement. */
 export interface ComplianceStatus {
@@ -641,7 +640,7 @@ export type DeliverabilityStatusVerdictReasonEnum =
   | "USER_FEEDBACK_NEGATIVE"
   | "USER_FEEDBACK_LOW"
   | "USER_FEEDBACK_POSITIVE";
-export const DeliverabilityStatusVerdictReasonEnum = /*@__PURE__*/ S.String;
+export const DeliverabilityStatusVerdictReasonEnum = S.String;
 
 /** [Developer Preview](https://developers.google.com/workspace/preview): Verdict of domain deliverability status. */
 export interface DeliverabilityStatusVerdict {
@@ -664,7 +663,7 @@ export type HonorUnsubscribeVerdictReasonEnum =
   | "NOT_HONORING"
   | "NOT_HONORING_TOO_FEW_CAMPAIGNS"
   | "NOT_HONORING_TOO_MANY_CAMPAIGNS";
-export const HonorUnsubscribeVerdictReasonEnum = /*@__PURE__*/ S.String;
+export const HonorUnsubscribeVerdictReasonEnum = S.String;
 
 /** Compliance verdict for whether a sender meets the unsubscribe honoring compliance requirement. */
 export interface HonorUnsubscribeVerdict {
@@ -687,7 +686,7 @@ export type OneClickUnsubscribeVerdictReasonEnum =
   | "NO_UNSUB_GENERAL"
   | "NO_UNSUB_SPAM_REPORTS"
   | "NO_UNSUB_PROMO_SPAM_REPORTS";
-export const OneClickUnsubscribeVerdictReasonEnum = /*@__PURE__*/ S.String;
+export const OneClickUnsubscribeVerdictReasonEnum = S.String;
 
 /** Compliance verdict for whether a sender meets the one-click unsubscribe compliance requirement. */
 export interface OneClickUnsubscribeVerdict {
@@ -718,7 +717,7 @@ export type ComplianceRowDataRequirementEnum =
   | "USER_REPORTED_SPAM_RATE"
   | "ONE_CLICK_UNSUBSCRIBE"
   | "HONOR_UNSUBSCRIBE";
-export const ComplianceRowDataRequirementEnum = /*@__PURE__*/ S.String;
+export const ComplianceRowDataRequirementEnum = S.String;
 
 /** Data for a single row of the compliance status table. */
 export interface ComplianceRowData {
@@ -825,8 +824,7 @@ export type GetVerificationTokenDomainsVerificationMethodEnum =
   | "DOMAIN_VERIFICATION_METHOD_UNSPECIFIED"
   | "TXT"
   | "CNAME";
-export const GetVerificationTokenDomainsVerificationMethodEnum =
-  /*@__PURE__*/ S.String;
+export const GetVerificationTokenDomainsVerificationMethodEnum = S.String;
 
 export interface GetVerificationTokenDomainsRequest {
   /** Required. The resource name of the verification token to retrieve. Format: `domains/{domain}/verificationToken` */
@@ -857,8 +855,7 @@ export type DomainVerificationTokenVerificationMethodEnum =
   | "DOMAIN_VERIFICATION_METHOD_UNSPECIFIED"
   | "TXT"
   | "CNAME";
-export const DomainVerificationTokenVerificationMethodEnum =
-  /*@__PURE__*/ S.String;
+export const DomainVerificationTokenVerificationMethodEnum = S.String;
 
 /** [Developer Preview](https://developers.google.com/workspace/preview): The DNS token a user can use to verify ownership of a domain. */
 export interface DomainVerificationToken {
@@ -1017,7 +1014,7 @@ export type VerifyDomainRequestVerificationMethodEnum =
   | "DOMAIN_VERIFICATION_METHOD_UNSPECIFIED"
   | "TXT"
   | "CNAME";
-export const VerifyDomainRequestVerificationMethodEnum = /*@__PURE__*/ S.String;
+export const VerifyDomainRequestVerificationMethodEnum = S.String;
 
 /** [Developer Preview](https://developers.google.com/workspace/preview): Request message for VerifyDomain. */
 export interface VerifyDomainRequest {

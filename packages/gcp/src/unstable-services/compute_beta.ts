@@ -156,7 +156,7 @@ export type SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfoSt
   | "PROPAGATING"
   | "UNSPECIFIED";
 export const SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfoStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DocumentMap = { [key: string]: unknown | undefined };
 export const DocumentMap = /*@__PURE__*/ S.Record(
@@ -241,14 +241,13 @@ export type GetHealthOperationMetadataHealthInfoAvailabilitySloStatusEnum =
   | "AVAILABILITY_SLO_STATUS_SLO_UNKNOWN"
   | "AVAILABILITY_SLO_STATUS_UNSPECIFIED";
 export const GetHealthOperationMetadataHealthInfoAvailabilitySloStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetHealthOperationMetadataHealthInfoHealthStatusEnum =
   | "HEALTH_STATUS_HEALTHY"
   | "HEALTH_STATUS_UNHEALTHY"
   | "HEALTH_STATUS_UNSPECIFIED";
-export const GetHealthOperationMetadataHealthInfoHealthStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GetHealthOperationMetadataHealthInfoHealthStatusEnum = S.String;
 
 export type GetHealthOperationMetadataHealthInfoRepairCategoryEnum =
   | "REPAIR_CATEGORY_CRITICAL_FAILURE"
@@ -256,16 +255,14 @@ export type GetHealthOperationMetadataHealthInfoRepairCategoryEnum =
   | "REPAIR_CATEGORY_PLANNED_MAINTENANCE"
   | "REPAIR_CATEGORY_UNSPECIFIED"
   | "REPAIR_CATEGORY_USER_REPORTED_FAULT";
-export const GetHealthOperationMetadataHealthInfoRepairCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const GetHealthOperationMetadataHealthInfoRepairCategoryEnum = S.String;
 
 export type GetHealthOperationMetadataHealthInfoUnhealthyReasonEnum =
   | "UNHEALTHY_REASON_PENDING_USER_APPROVAL"
   | "UNHEALTHY_REASON_REPAIRING"
   | "UNHEALTHY_REASON_UNSCHEDULABLE"
   | "UNHEALTHY_REASON_UNSPECIFIED";
-export const GetHealthOperationMetadataHealthInfoUnhealthyReasonEnum =
-  /*@__PURE__*/ S.String;
+export const GetHealthOperationMetadataHealthInfoUnhealthyReasonEnum = S.String;
 
 /** Health information. */
 export interface GetHealthOperationMetadataHealthInfo {
@@ -315,7 +312,7 @@ export const GetHealthOperationMetadata = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetHealthOperationMetadata>;
 
 export type OperationStatusEnum = "DONE" | "PENDING" | "RUNNING";
-export const OperationStatusEnum = /*@__PURE__*/ S.String;
+export const OperationStatusEnum = S.String;
 
 export type OperationWarningsItemCodeEnum =
   | "CLEANUP_FAILED"
@@ -347,7 +344,7 @@ export type OperationWarningsItemCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const OperationWarningsItemCodeEnum = /*@__PURE__*/ S.String;
+export const OperationWarningsItemCodeEnum = S.String;
 
 export interface OperationWarningsItemDataItem {
   /** [Output Only] A warning data value corresponding to the key. */
@@ -398,7 +395,7 @@ export type BulkInsertOperationStatusStatusEnum =
   | "DONE"
   | "ROLLING_BACK"
   | "STATUS_UNSPECIFIED";
-export const BulkInsertOperationStatusStatusEnum = /*@__PURE__*/ S.String;
+export const BulkInsertOperationStatusStatusEnum = S.String;
 
 export interface BulkInsertOperationStatus {
   /** [Output Only] Count of VMs successfully created so far. */
@@ -448,7 +445,7 @@ export const InstancesBulkInsertOperationMetadata = /*@__PURE__*/ S.suspend(
 export type QuotaExceededInfoRolloutStatusEnum =
   | "IN_PROGRESS"
   | "ROLLOUT_STATUS_UNSPECIFIED";
-export const QuotaExceededInfoRolloutStatusEnum = /*@__PURE__*/ S.String;
+export const QuotaExceededInfoRolloutStatusEnum = S.String;
 
 /** Additional details for quota exceeded error for resource quota. */
 export interface QuotaExceededInfo {
@@ -739,14 +736,14 @@ export const AbandonInstancesRegionInstanceGroupManagersRequest =
   }) as any as S.Schema<AbandonInstancesRegionInstanceGroupManagersRequest>;
 
 export type AccessConfigTypeEnum = "DIRECT_IPV6" | "ONE_TO_ONE_NAT";
-export const AccessConfigTypeEnum = /*@__PURE__*/ S.String;
+export const AccessConfigTypeEnum = S.String;
 
 export type AccessConfigNetworkTierEnum =
   | "FIXED_STANDARD"
   | "PREMIUM"
   | "STANDARD"
   | "STANDARD_OVERRIDES_FIXED_STANDARD";
-export const AccessConfigNetworkTierEnum = /*@__PURE__*/ S.String;
+export const AccessConfigNetworkTierEnum = S.String;
 
 /** An access configuration attached to an instance's network interface. Only one access config per instance is supported. */
 export interface AccessConfig {
@@ -1218,12 +1215,12 @@ export type NetworkInterfaceNicTypeEnum =
   | "MRDMA"
   | "UNSPECIFIED_NIC_TYPE"
   | "VIRTIO_NET";
-export const NetworkInterfaceNicTypeEnum = /*@__PURE__*/ S.String;
+export const NetworkInterfaceNicTypeEnum = S.String;
 
 export type NetworkInterfaceIgmpQueryEnum =
   | "IGMP_QUERY_DISABLED"
   | "IGMP_QUERY_V2";
-export const NetworkInterfaceIgmpQueryEnum = /*@__PURE__*/ S.String;
+export const NetworkInterfaceIgmpQueryEnum = S.String;
 
 /** An alias IP range attached to an instance's network interface. */
 export interface AliasIpRange {
@@ -1248,10 +1245,10 @@ export type NetworkInterfaceStackTypeEnum =
   | "IPV4_IPV6"
   | "IPV4_ONLY"
   | "IPV6_ONLY";
-export const NetworkInterfaceStackTypeEnum = /*@__PURE__*/ S.String;
+export const NetworkInterfaceStackTypeEnum = S.String;
 
 export type NetworkInterfaceIpv6AccessTypeEnum = "EXTERNAL" | "INTERNAL";
-export const NetworkInterfaceIpv6AccessTypeEnum = /*@__PURE__*/ S.String;
+export const NetworkInterfaceIpv6AccessTypeEnum = S.String;
 
 /** A network interface resource attached to an instance. */
 export interface NetworkInterface {
@@ -1405,7 +1402,7 @@ export const AddNodesNodeGroupsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AddNodesNodeGroupsRequest>;
 
 export type FirewallPolicyRuleSecureTagStateEnum = "EFFECTIVE" | "INEFFECTIVE";
-export const FirewallPolicyRuleSecureTagStateEnum = /*@__PURE__*/ S.String;
+export const FirewallPolicyRuleSecureTagStateEnum = S.String;
 
 export interface FirewallPolicyRuleSecureTag {
   /** Output only. [Output Only] State of the secure tag, either `EFFECTIVE` or `INEFFECTIVE`. A secure tag is `INEFFECTIVE` when it is deleted or its network is deleted. */
@@ -1434,8 +1431,7 @@ export type FirewallPolicyRuleMatcherSrcNetworkScopeEnum =
   | "NON_INTERNET"
   | "UNSPECIFIED"
   | "VPC_NETWORKS";
-export const FirewallPolicyRuleMatcherSrcNetworkScopeEnum =
-  /*@__PURE__*/ S.String;
+export const FirewallPolicyRuleMatcherSrcNetworkScopeEnum = S.String;
 
 export type FirewallPolicyRuleMatcherDestNetworkScopeEnum =
   | "INTERNET"
@@ -1443,8 +1439,7 @@ export type FirewallPolicyRuleMatcherDestNetworkScopeEnum =
   | "NON_INTERNET"
   | "UNSPECIFIED"
   | "VPC_NETWORKS";
-export const FirewallPolicyRuleMatcherDestNetworkScopeEnum =
-  /*@__PURE__*/ S.String;
+export const FirewallPolicyRuleMatcherDestNetworkScopeEnum = S.String;
 
 export interface FirewallPolicyRuleMatcherLayer4Config {
   /** The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp,udp, icmp, esp,ah, ipip, sctp), or the IP protocol number. */
@@ -1474,8 +1469,7 @@ export type FirewallPolicyRuleMatcherSrcNetworkTypeEnum =
   | "NON_INTERNET"
   | "UNSPECIFIED"
   | "VPC_NETWORKS";
-export const FirewallPolicyRuleMatcherSrcNetworkTypeEnum =
-  /*@__PURE__*/ S.String;
+export const FirewallPolicyRuleMatcherSrcNetworkTypeEnum = S.String;
 
 export type FirewallPolicyRuleMatcherDestNetworkContextEnum =
   | "INTERNET"
@@ -1483,8 +1477,7 @@ export type FirewallPolicyRuleMatcherDestNetworkContextEnum =
   | "NON_INTERNET"
   | "UNSPECIFIED"
   | "VPC_NETWORKS";
-export const FirewallPolicyRuleMatcherDestNetworkContextEnum =
-  /*@__PURE__*/ S.String;
+export const FirewallPolicyRuleMatcherDestNetworkContextEnum = S.String;
 
 export type FirewallPolicyRuleMatcherSrcNetworkContextEnum =
   | "INTERNET"
@@ -1492,8 +1485,7 @@ export type FirewallPolicyRuleMatcherSrcNetworkContextEnum =
   | "NON_INTERNET"
   | "UNSPECIFIED"
   | "VPC_NETWORKS";
-export const FirewallPolicyRuleMatcherSrcNetworkContextEnum =
-  /*@__PURE__*/ S.String;
+export const FirewallPolicyRuleMatcherSrcNetworkContextEnum = S.String;
 
 export type FirewallPolicyRuleMatcherDestNetworkTypeEnum =
   | "INTERNET"
@@ -1501,8 +1493,7 @@ export type FirewallPolicyRuleMatcherDestNetworkTypeEnum =
   | "NON_INTERNET"
   | "UNSPECIFIED"
   | "VPC_NETWORKS";
-export const FirewallPolicyRuleMatcherDestNetworkTypeEnum =
-  /*@__PURE__*/ S.String;
+export const FirewallPolicyRuleMatcherDestNetworkTypeEnum = S.String;
 
 /** Represents a match condition that incoming traffic is evaluated against. Exactly one field must be specified. */
 export interface FirewallPolicyRuleMatcher {
@@ -1586,12 +1577,12 @@ export const FirewallPolicyRuleMatcher = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FirewallPolicyRuleMatcher>;
 
 export type FirewallPolicyRuleDirectionEnum = "EGRESS" | "INGRESS";
-export const FirewallPolicyRuleDirectionEnum = /*@__PURE__*/ S.String;
+export const FirewallPolicyRuleDirectionEnum = S.String;
 
 export type FirewallPolicyRuleTargetTypeEnum =
   | "INSTANCES"
   | "INTERNAL_MANAGED_LB";
-export const FirewallPolicyRuleTargetTypeEnum = /*@__PURE__*/ S.String;
+export const FirewallPolicyRuleTargetTypeEnum = S.String;
 
 /** Represents a rule that describes one or more match conditions along with the action to be taken when traffic matches this condition (allow or deny). */
 export interface FirewallPolicyRule {
@@ -1717,26 +1708,25 @@ export type NetworkPeeringUpdateStrategyEnum =
   | "CONSENSUS"
   | "INDEPENDENT"
   | "UNSPECIFIED";
-export const NetworkPeeringUpdateStrategyEnum = /*@__PURE__*/ S.String;
+export const NetworkPeeringUpdateStrategyEnum = S.String;
 
 export type NetworkPeeringStackTypeEnum = "IPV4_IPV6" | "IPV4_ONLY";
-export const NetworkPeeringStackTypeEnum = /*@__PURE__*/ S.String;
+export const NetworkPeeringStackTypeEnum = S.String;
 
 export type NetworkPeeringStateEnum = "ACTIVE" | "INACTIVE";
-export const NetworkPeeringStateEnum = /*@__PURE__*/ S.String;
+export const NetworkPeeringStateEnum = S.String;
 
 export type NetworkPeeringConnectionStatusUpdateStrategyEnum =
   | "CONSENSUS"
   | "INDEPENDENT"
   | "UNSPECIFIED";
-export const NetworkPeeringConnectionStatusUpdateStrategyEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkPeeringConnectionStatusUpdateStrategyEnum = S.String;
 
 export type NetworkPeeringConnectionStatusTrafficConfigurationStackTypeEnum =
   | "IPV4_IPV6"
   | "IPV4_ONLY";
 export const NetworkPeeringConnectionStatusTrafficConfigurationStackTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NetworkPeeringConnectionStatusTrafficConfiguration {
   /** Which IP version(s) of traffic and routes are being imported or exported between peer networks. */
@@ -1775,7 +1765,7 @@ export type NetworkPeeringConnectionStatusConsensusStateDeleteStatusEnum =
   | "PEER_CANCEL_REQUESTED"
   | "PEER_DELETE_REQUESTED";
 export const NetworkPeeringConnectionStatusConsensusStateDeleteStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NetworkPeeringConnectionStatusConsensusStateUpdateStatusEnum =
   | "IN_SYNC"
@@ -1783,7 +1773,7 @@ export type NetworkPeeringConnectionStatusConsensusStateUpdateStatusEnum =
   | "PENDING_PEER_ACKNOWLEDGEMENT"
   | "UPDATE_STATUS_UNSPECIFIED";
 export const NetworkPeeringConnectionStatusConsensusStateUpdateStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The status of update/delete for a consensus peering connection. Only set when connection_status.update_strategy isCONSENSUS or a network peering is proposing to update the strategy to CONSENSUS. */
 export interface NetworkPeeringConnectionStatusConsensusState {
@@ -2196,8 +2186,7 @@ export const SecurityPolicyRuleMatcherExprOptions = /*@__PURE__*/ S.suspend(
 export type SecurityPolicyRuleMatcherVersionedExprEnum =
   | "FIREWALL"
   | "SRC_IPS_V1";
-export const SecurityPolicyRuleMatcherVersionedExprEnum =
-  /*@__PURE__*/ S.String;
+export const SecurityPolicyRuleMatcherVersionedExprEnum = S.String;
 
 /** Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information. */
 export interface Expr {
@@ -2281,7 +2270,7 @@ export const SecurityPolicyRuleHttpHeaderAction = /*@__PURE__*/ S.suspend(() =>
 export type SecurityPolicyRuleRedirectOptionsTypeEnum =
   | "EXTERNAL_302"
   | "GOOGLE_RECAPTCHA";
-export const SecurityPolicyRuleRedirectOptionsTypeEnum = /*@__PURE__*/ S.String;
+export const SecurityPolicyRuleRedirectOptionsTypeEnum = S.String;
 
 export interface SecurityPolicyRuleRedirectOptions {
   /** Type of the redirect action. Possible values are: - GOOGLE_RECAPTCHA: redirect to reCAPTCHA for manual challenge assessment. - EXTERNAL_302: redirect to a different URL via a 302 response. */
@@ -2305,7 +2294,7 @@ export type SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParamsOpEnum =
   | "EQUALS_ANY"
   | "STARTS_WITH";
 export const SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParamsOpEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams {
   /** The match operator for the field. */
@@ -2462,7 +2451,7 @@ export const SecurityPolicyRuleNetworkMatcher = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecurityPolicyRuleNetworkMatcher>;
 
 export type SecurityPolicyRuleDirectionEnum = "EGRESS" | "INGRESS";
-export const SecurityPolicyRuleDirectionEnum = /*@__PURE__*/ S.String;
+export const SecurityPolicyRuleDirectionEnum = S.String;
 
 export type SecurityPolicyRuleRateLimitOptionsEnforceOnKeyEnum =
   | "ALL"
@@ -2478,8 +2467,7 @@ export type SecurityPolicyRuleRateLimitOptionsEnforceOnKeyEnum =
   | "TLS_JA4_FINGERPRINT"
   | "USER_IP"
   | "XFF_IP";
-export const SecurityPolicyRuleRateLimitOptionsEnforceOnKeyEnum =
-  /*@__PURE__*/ S.String;
+export const SecurityPolicyRuleRateLimitOptionsEnforceOnKeyEnum = S.String;
 
 export type SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfigEnforceOnKeyTypeEnum =
   | "ALL"
@@ -2496,7 +2484,7 @@ export type SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfigEnforceOnKeyType
   | "USER_IP"
   | "XFF_IP";
 export const SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfigEnforceOnKeyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig {
   /** Determines the key to enforce the rate_limit_threshold on. Possible values are: - ALL: A single rate limit threshold is applied to all the requests matching this rule. This is the default value if "enforceOnKeyConfigs" is not configured. - IP: The source IP address of the request is the key. Each IP has this limit enforced separately. - HTTP_HEADER: The value of the HTTP header whose name is configured under "enforceOnKeyName". The key value is truncated to the first 128 bytes of the header value. If no such header is present in the request, the key type defaults toALL. - XFF_IP: The first IP address (i.e. the originating client IP address) specified in the list of IPs under X-Forwarded-For HTTP header. If no such header is present or the value is not a valid IP, the key defaults to the source IP address of the request i.e. key type IP. - HTTP_COOKIE: The value of the HTTP cookie whose name is configured under "enforceOnKeyName". The key value is truncated to the first 128 bytes of the cookie value. If no such cookie is present in the request, the key type defaults toALL. - HTTP_PATH: The URL path of the HTTP request. The key value is truncated to the first 128 bytes. - SNI: Server name indication in the TLS session of the HTTPS request. The key value is truncated to the first 128 bytes. The key type defaults to ALL on a HTTP session. - REGION_CODE: The country/region from which the request originates. - TLS_JA3_FINGERPRINT: JA3 TLS/SSL fingerprint if the client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the key type defaults to ALL. - USER_IP: The IP address of the originating client, which is resolved based on "userIpRequestHeaders" configured with the security policy. If there is no "userIpRequestHeaders" configuration or an IP address cannot be resolved from it, the key type defaults toIP. - ASN: The autonomous system number of the originating client. If not available, the key type defaults toALL. - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the key type defaults to ALL. */
@@ -2841,7 +2829,7 @@ export type NetworkPolicyTrafficClassificationRuleSecureTagStateEnum =
   | "INEFFECTIVE"
   | "STATE_UNSPECIFIED";
 export const NetworkPolicyTrafficClassificationRuleSecureTagStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NetworkPolicyTrafficClassificationRuleSecureTag {
   /** Output only. [Output Only] State of the secure tag, either `EFFECTIVE` or `INEFFECTIVE`. A secure tag is `INEFFECTIVE` when it is deleted or its network is deleted. */
@@ -2923,13 +2911,13 @@ export type NetworkPolicyTrafficClassificationRuleActionTrafficClassEnum =
   | "TC5"
   | "TC6";
 export const NetworkPolicyTrafficClassificationRuleActionTrafficClassEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NetworkPolicyTrafficClassificationRuleActionDscpModeEnum =
   | "AUTO"
   | "CUSTOM";
 export const NetworkPolicyTrafficClassificationRuleActionDscpModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NetworkPolicyTrafficClassificationRuleAction {
   /** Always "apply_traffic_classification" for traffic classification rules. */
@@ -3040,10 +3028,10 @@ export const AddTrafficClassificationRuleRegionNetworkPoliciesRequest =
 export type PreservedStatePreservedDiskAutoDeleteEnum =
   | "NEVER"
   | "ON_PERMANENT_INSTANCE_DELETION";
-export const PreservedStatePreservedDiskAutoDeleteEnum = /*@__PURE__*/ S.String;
+export const PreservedStatePreservedDiskAutoDeleteEnum = S.String;
 
 export type PreservedStatePreservedDiskModeEnum = "READ_ONLY" | "READ_WRITE";
-export const PreservedStatePreservedDiskModeEnum = /*@__PURE__*/ S.String;
+export const PreservedStatePreservedDiskModeEnum = S.String;
 
 export interface PreservedStatePreservedDisk {
   /** The URL of the disk resource that is stateful and should be attached to the VM instance. */
@@ -3074,8 +3062,7 @@ export const PreservedStatePreservedDiskMap = /*@__PURE__*/ S.Record(
 export type PreservedStatePreservedNetworkIpAutoDeleteEnum =
   | "NEVER"
   | "ON_PERMANENT_INSTANCE_DELETION";
-export const PreservedStatePreservedNetworkIpAutoDeleteEnum =
-  /*@__PURE__*/ S.String;
+export const PreservedStatePreservedNetworkIpAutoDeleteEnum = S.String;
 
 export interface PreservedStatePreservedNetworkIpIpAddress {
   /** An IPv4 internal network address to assign to the instance for this network interface. */
@@ -3143,7 +3130,7 @@ export type PerInstanceConfigStatusEnum =
   | "NONE"
   | "UNAPPLIED"
   | "UNAPPLIED_DELETION";
-export const PerInstanceConfigStatusEnum = /*@__PURE__*/ S.String;
+export const PerInstanceConfigStatusEnum = S.String;
 
 export interface PerInstanceConfig {
   /** The intended preserved state for the given instance. Does not contain preserved state generated from a stateful policy. */
@@ -3316,7 +3303,7 @@ export type DeprecationStatusStateEnum =
   | "DELETED"
   | "DEPRECATED"
   | "OBSOLETE";
-export const DeprecationStatusStateEnum = /*@__PURE__*/ S.String;
+export const DeprecationStatusStateEnum = S.String;
 
 /** A rollout policy configuration. */
 export interface RolloutPolicy {
@@ -3455,7 +3442,7 @@ export type AcceleratorTypesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const AcceleratorTypesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const AcceleratorTypesScopedListWarningCodeEnum = S.String;
 
 export interface AcceleratorTypesScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -3540,8 +3527,7 @@ export type AcceleratorTypeAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const AcceleratorTypeAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const AcceleratorTypeAggregatedListWarningCodeEnum = S.String;
 
 export interface AcceleratorTypeAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -3632,10 +3618,10 @@ export const AggregatedListAddressesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AggregatedListAddressesRequest>;
 
 export type AddressStatusEnum = "IN_USE" | "RESERVED" | "RESERVING";
-export const AddressStatusEnum = /*@__PURE__*/ S.String;
+export const AddressStatusEnum = S.String;
 
 export type AddressIpVersionEnum = "IPV4" | "IPV6" | "UNSPECIFIED_VERSION";
-export const AddressIpVersionEnum = /*@__PURE__*/ S.String;
+export const AddressIpVersionEnum = S.String;
 
 export type AddressPurposeEnum =
   | "DNS_RESOLVER"
@@ -3649,23 +3635,23 @@ export type AddressPurposeEnum =
   | "SHARED_LOADBALANCER_VIP"
   | "SYSTEM_MANAGED"
   | "VPC_PEERING";
-export const AddressPurposeEnum = /*@__PURE__*/ S.String;
+export const AddressPurposeEnum = S.String;
 
 export type AddressAddressTypeEnum =
   | "EXTERNAL"
   | "INTERNAL"
   | "UNSPECIFIED_TYPE";
-export const AddressAddressTypeEnum = /*@__PURE__*/ S.String;
+export const AddressAddressTypeEnum = S.String;
 
 export type AddressIpv6EndpointTypeEnum = "NETLB" | "VM";
-export const AddressIpv6EndpointTypeEnum = /*@__PURE__*/ S.String;
+export const AddressIpv6EndpointTypeEnum = S.String;
 
 export type AddressNetworkTierEnum =
   | "FIXED_STANDARD"
   | "PREMIUM"
   | "STANDARD"
   | "STANDARD_OVERRIDES_FIXED_STANDARD";
-export const AddressNetworkTierEnum = /*@__PURE__*/ S.String;
+export const AddressNetworkTierEnum = S.String;
 
 /** Represents an IP Address resource. Google Compute Engine has two IP Address resources: * [Global (external and internal)](https://cloud.google.com/compute/docs/reference/rest/beta/globalAddresses) * [Regional (external and internal)](https://cloud.google.com/compute/docs/reference/rest/beta/addresses) For more information, see Reserving a static external IP address. */
 export interface Address {
@@ -3784,7 +3770,7 @@ export type AddressesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const AddressesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const AddressesScopedListWarningCodeEnum = S.String;
 
 export interface AddressesScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -3857,7 +3843,7 @@ export type AddressAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const AddressAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const AddressAggregatedListWarningCodeEnum = S.String;
 
 export type AddressAggregatedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -3999,7 +3985,7 @@ export type AutoscalerAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const AutoscalerAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const AutoscalerAggregatedListWarningCodeEnum = S.String;
 
 export interface AutoscalerAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -4060,7 +4046,7 @@ export type AutoscalersScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const AutoscalersScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const AutoscalersScopedListWarningCodeEnum = S.String;
 
 export interface AutoscalersScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -4135,14 +4121,14 @@ export type AutoscalingPolicyModeEnum =
   | "ON"
   | "ONLY_SCALE_OUT"
   | "ONLY_UP";
-export const AutoscalingPolicyModeEnum = /*@__PURE__*/ S.String;
+export const AutoscalingPolicyModeEnum = S.String;
 
 export type AutoscalingPolicyCustomMetricUtilizationUtilizationTargetTypeEnum =
   | "DELTA_PER_MINUTE"
   | "DELTA_PER_SECOND"
   | "GAUGE";
 export const AutoscalingPolicyCustomMetricUtilizationUtilizationTargetTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Custom utilization metric policy. */
 export interface AutoscalingPolicyCustomMetricUtilization {
@@ -4234,8 +4220,7 @@ export type AutoscalingPolicyCpuUtilizationPredictiveMethodEnum =
   | "NONE"
   | "OPTIMIZE_AVAILABILITY"
   | "PREDICTIVE_METHOD_UNSPECIFIED";
-export const AutoscalingPolicyCpuUtilizationPredictiveMethodEnum =
-  /*@__PURE__*/ S.String;
+export const AutoscalingPolicyCpuUtilizationPredictiveMethodEnum = S.String;
 
 /** CPU utilization policy. */
 export interface AutoscalingPolicyCpuUtilization {
@@ -4323,7 +4308,7 @@ export type AutoscalerStatusDetailsTypeEnum =
   | "UNKNOWN"
   | "UNSUPPORTED_MAX_RATE_LOAD_BALANCING_CONFIGURATION"
   | "ZONE_RESOURCE_STOCKOUT";
-export const AutoscalerStatusDetailsTypeEnum = /*@__PURE__*/ S.String;
+export const AutoscalerStatusDetailsTypeEnum = S.String;
 
 export interface AutoscalerStatusDetails {
   /** The type of error, warning, or notice returned. Current set of possible values: - ALL_INSTANCES_UNHEALTHY (WARNING): All instances in the instance group are unhealthy (not in RUNNING state). - BACKEND_SERVICE_DOES_NOT_EXIST (ERROR): There is no backend service attached to the instance group. - CAPPED_AT_MAX_NUM_REPLICAS (WARNING): Autoscaler recommends a size greater than maxNumReplicas. - CUSTOM_METRIC_DATA_POINTS_TOO_SPARSE (WARNING): The custom metric samples are not exported often enough to be a credible base for autoscaling. - CUSTOM_METRIC_INVALID (ERROR): The custom metric that was specified does not exist or does not have the necessary labels. - MIN_EQUALS_MAX (WARNING): The minNumReplicas is equal to maxNumReplicas. This means the autoscaler cannot add or remove instances from the instance group. - MISSING_CUSTOM_METRIC_DATA_POINTS (WARNING): The autoscaler did not receive any data from the custom metric configured for autoscaling. - MISSING_LOAD_BALANCING_DATA_POINTS (WARNING): The autoscaler is configured to scale based on a load balancing signal but the instance group has not received any requests from the load balancer. - MODE_OFF (WARNING): Autoscaling is turned off. The number of instances in the group won't change automatically. The autoscaling configuration is preserved. - MODE_ONLY_UP (WARNING): Autoscaling is in the "Autoscale only out" mode. The autoscaler can add instances but not remove any. - MORE_THAN_ONE_BACKEND_SERVICE (ERROR): The instance group cannot be autoscaled because it has more than one backend service attached to it. - NOT_ENOUGH_QUOTA_AVAILABLE (ERROR): There is insufficient quota for the necessary resources, such as CPU or number of instances. - REGION_RESOURCE_STOCKOUT (ERROR): Shown only for regional autoscalers: there is a resource stockout in the chosen region. - SCALING_TARGET_DOES_NOT_EXIST (ERROR): The target to be scaled does not exist. - UNSUPPORTED_MAX_RATE_LOAD_BALANCING_CONFIGURATION (ERROR): Autoscaling does not work with an HTTP/S load balancer that has been configured for maxRate. - ZONE_RESOURCE_STOCKOUT (ERROR): For zonal autoscalers: there is a resource stockout in the chosen zone. For regional autoscalers: in at least one of the zones you're using there is a resource stockout. New values might be added in the future. Some of the values might not be available in all API versions. */
@@ -4346,14 +4331,14 @@ export const AutoscalerStatusDetailsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<AutoscalerStatusDetailsList>;
 
 export type AutoscalerStatusEnum = "ACTIVE" | "DELETING" | "ERROR" | "PENDING";
-export const AutoscalerStatusEnum = /*@__PURE__*/ S.String;
+export const AutoscalerStatusEnum = S.String;
 
 export type ScalingScheduleStatusStateEnum =
   | "ACTIVE"
   | "DISABLED"
   | "OBSOLETE"
   | "READY";
-export const ScalingScheduleStatusStateEnum = /*@__PURE__*/ S.String;
+export const ScalingScheduleStatusStateEnum = S.String;
 
 export interface ScalingScheduleStatus {
   /** [Output Only] The next time the scaling schedule is to become active. Note: this is a timestamp when a schedule is planned to run, but the actual time might be slightly different. The timestamp is in RFC3339 text format. */
@@ -4570,7 +4555,7 @@ export type BackendBucketsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const BackendBucketsScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const BackendBucketsScopedListWarningCodeEnum = S.String;
 
 export interface BackendBucketsScopedListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -4593,17 +4578,17 @@ export const BackendBucketsScopedListWarning = /*@__PURE__*/ S.suspend(() =>
 export type BackendBucketLoadBalancingSchemeEnum =
   | "EXTERNAL_MANAGED"
   | "INTERNAL_MANAGED";
-export const BackendBucketLoadBalancingSchemeEnum = /*@__PURE__*/ S.String;
+export const BackendBucketLoadBalancingSchemeEnum = S.String;
 
 export type BackendBucketCompressionModeEnum = "AUTOMATIC" | "DISABLED";
-export const BackendBucketCompressionModeEnum = /*@__PURE__*/ S.String;
+export const BackendBucketCompressionModeEnum = S.String;
 
 export type BackendBucketCdnPolicyCacheModeEnum =
   | "CACHE_ALL_STATIC"
   | "FORCE_CACHE_ALL"
   | "INVALID_CACHE_MODE"
   | "USE_ORIGIN_HEADERS";
-export const BackendBucketCdnPolicyCacheModeEnum = /*@__PURE__*/ S.String;
+export const BackendBucketCdnPolicyCacheModeEnum = S.String;
 
 /** Message containing what to include in the cache key for a request for Cloud CDN. */
 export interface BackendBucketCdnPolicyCacheKeyPolicy {
@@ -4873,8 +4858,7 @@ export type BackendBucketAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const BackendBucketAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const BackendBucketAggregatedListWarningCodeEnum = S.String;
 
 export interface BackendBucketAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -4991,8 +4975,7 @@ export type BackendServiceAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const BackendServiceAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const BackendServiceAggregatedListWarningCodeEnum = S.String;
 
 export type BackendServiceAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -5054,7 +5037,7 @@ export type BackendServicesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const BackendServicesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const BackendServicesScopedListWarningCodeEnum = S.String;
 
 export type BackendServicesScopedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -5165,7 +5148,7 @@ export type BackendServiceNetworkPassThroughLbTrafficPolicyZonalAffinitySpillove
   | "ZONAL_AFFINITY_SPILL_CROSS_ZONE"
   | "ZONAL_AFFINITY_STAY_WITHIN_ZONE";
 export const BackendServiceNetworkPassThroughLbTrafficPolicyZonalAffinitySpilloverEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BackendServiceNetworkPassThroughLbTrafficPolicyZonalAffinity {
   /** This field indicates whether zonal affinity is enabled or not. The possible values are: - ZONAL_AFFINITY_DISABLED: Default Value. Zonal Affinity is disabled. The load balancer distributes new connections to all healthy backend endpoints across all zones. - ZONAL_AFFINITY_STAY_WITHIN_ZONE: Zonal Affinity is enabled. The load balancer distributes new connections to all healthy backend endpoints in the local zone only. If there are no healthy backend endpoints in the local zone, the load balancer distributes new connections to all backend endpoints in the local zone. - ZONAL_AFFINITY_SPILL_CROSS_ZONE: Zonal Affinity is enabled. The load balancer distributes new connections to all healthy backend endpoints in the local zone only. If there aren't enough healthy backend endpoints in the local zone, the load balancer distributes new connections to all healthy backend endpoints across all zones. */
@@ -5231,7 +5214,7 @@ export type BackendServiceCdnPolicyCacheModeEnum =
   | "FORCE_CACHE_ALL"
   | "INVALID_CACHE_MODE"
   | "USE_ORIGIN_HEADERS";
-export const BackendServiceCdnPolicyCacheModeEnum = /*@__PURE__*/ S.String;
+export const BackendServiceCdnPolicyCacheModeEnum = S.String;
 
 /** Bypass the cache when the specified request headers are present, e.g. Pragma or Authorization headers. Values are case insensitive. The presence of such a header overrides the cache_mode setting. */
 export type BackendServiceCdnPolicyBypassCacheOnRequestHeader =
@@ -5329,7 +5312,7 @@ export type BackendPreferenceEnum =
   | "DEFAULT"
   | "PREFERENCE_UNSPECIFIED"
   | "PREFERRED";
-export const BackendPreferenceEnum = /*@__PURE__*/ S.String;
+export const BackendPreferenceEnum = S.String;
 
 /** Custom Metrics are used for CUSTOM_METRICS balancing_mode. */
 export interface BackendCustomMetric {
@@ -5361,13 +5344,13 @@ export type BackendBalancingModeEnum =
   | "IN_FLIGHT"
   | "RATE"
   | "UTILIZATION";
-export const BackendBalancingModeEnum = /*@__PURE__*/ S.String;
+export const BackendBalancingModeEnum = S.String;
 
 export type BackendTrafficDurationEnum =
   | "LONG"
   | "SHORT"
   | "TRAFFIC_DURATION_UNSPECIFIED";
-export const BackendTrafficDurationEnum = /*@__PURE__*/ S.String;
+export const BackendTrafficDurationEnum = S.String;
 
 /** A message containing information about the resource or system that manages the backend. */
 export interface BackendBackendOrchestrationInfo {
@@ -5458,7 +5441,7 @@ export type BackendServiceDynamicForwardingForwardProxyProxyModeEnum =
   | "CLOUD_RUN"
   | "DIRECT_FORWARDING";
 export const BackendServiceDynamicForwardingForwardProxyProxyModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines Dynamic Forwarding Proxy configuration. */
 export interface BackendServiceDynamicForwardingForwardProxy {
@@ -5536,7 +5519,7 @@ export type BackendServiceLogConfigOptionalModeEnum =
   | "CUSTOM"
   | "EXCLUDE_ALL_OPTIONAL"
   | "INCLUDE_ALL_OPTIONAL";
-export const BackendServiceLogConfigOptionalModeEnum = /*@__PURE__*/ S.String;
+export const BackendServiceLogConfigOptionalModeEnum = S.String;
 
 /** The available logging options for the load balancer traffic served by this backend service. */
 export interface BackendServiceLogConfig {
@@ -5578,7 +5561,7 @@ export type BackendServiceLoadBalancingSchemeEnum =
   | "INTERNAL_MANAGED"
   | "INTERNAL_SELF_MANAGED"
   | "INVALID_LOAD_BALANCING_SCHEME";
-export const BackendServiceLoadBalancingSchemeEnum = /*@__PURE__*/ S.String;
+export const BackendServiceLoadBalancingSchemeEnum = S.String;
 
 /** The information about the HTTP Cookie on which the hash function is based for load balancing policies that use a consistent hash. */
 export interface ConsistentHashLoadBalancerSettingsHttpCookie {
@@ -5684,7 +5667,7 @@ export const SecuritySettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecuritySettings>;
 
 export type BackendServiceCompressionModeEnum = "AUTOMATIC" | "DISABLED";
-export const BackendServiceCompressionModeEnum = /*@__PURE__*/ S.String;
+export const BackendServiceCompressionModeEnum = S.String;
 
 /** Settings controlling the volume of requests, connections and retries to this backend service. */
 export interface CircuitBreakers {
@@ -5728,7 +5711,7 @@ export const BackendServiceOrchestrationInfo = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BackendServiceOrchestrationInfo>;
 
 export type SubsettingPolicyEnum = "CONSISTENT_HASH_SUBSETTING" | "NONE";
-export const SubsettingPolicyEnum = /*@__PURE__*/ S.String;
+export const SubsettingPolicyEnum = S.String;
 
 /** Subsetting configuration for this BackendService. Currently this is applicable only for Internal TCP/UDP load balancing, Internal HTTP(S) load balancing and Traffic Director. */
 export interface Subsetting {
@@ -5753,7 +5736,7 @@ export type BackendServiceSessionAffinityEnum =
   | "HTTP_COOKIE"
   | "NONE"
   | "STRONG_COOKIE_AFFINITY";
-export const BackendServiceSessionAffinityEnum = /*@__PURE__*/ S.String;
+export const BackendServiceSessionAffinityEnum = S.String;
 
 /** Custom Metrics are used for WEIGHTED_ROUND_ROBIN locality_lb_policy. */
 export interface BackendServiceCustomMetric {
@@ -5787,7 +5770,7 @@ export type BackendServiceLocalityLbPolicyEnum =
   | "WEIGHTED_GCP_RENDEZVOUS"
   | "WEIGHTED_MAGLEV"
   | "WEIGHTED_ROUND_ROBIN";
-export const BackendServiceLocalityLbPolicyEnum = /*@__PURE__*/ S.String;
+export const BackendServiceLocalityLbPolicyEnum = S.String;
 
 /** A Subject Alternative Name that the load balancer matches against the SAN field in the TLS certificate provided by the backend, specified as either a DNS name or a URI, in accordance with RFC 5280 4.2.1.6 */
 export interface BackendServiceTlsSettingsSubjectAltName {
@@ -5838,11 +5821,10 @@ export type BackendServiceExternalManagedMigrationStateEnum =
   | "PREPARE"
   | "TEST_ALL_TRAFFIC"
   | "TEST_BY_PERCENTAGE";
-export const BackendServiceExternalManagedMigrationStateEnum =
-  /*@__PURE__*/ S.String;
+export const BackendServiceExternalManagedMigrationStateEnum = S.String;
 
 export type BackendServiceHAPolicyFastIPMoveEnum = "DISABLED" | "GARP_RA";
-export const BackendServiceHAPolicyFastIPMoveEnum = /*@__PURE__*/ S.String;
+export const BackendServiceHAPolicyFastIPMoveEnum = S.String;
 
 export interface BackendServiceHAPolicyLeaderNetworkEndpoint {
   /** The name of the VM instance of the leader network endpoint. The instance must already be attached to the NEG specified in the haPolicy.leader.backendGroup. The name must be 1-63 characters long, and comply with RFC1035. Authorization requires the following IAM permission on the specified resource instance: compute.instances.use */
@@ -5929,7 +5911,7 @@ export type BackendServiceProtocolEnum =
   | "TCP"
   | "UDP"
   | "UNSPECIFIED";
-export const BackendServiceProtocolEnum = /*@__PURE__*/ S.String;
+export const BackendServiceProtocolEnum = S.String;
 
 /** Additional Backend Service parameters. */
 export type BackendServiceParams = BackendBucketParams;
@@ -5940,14 +5922,13 @@ export type BackendServiceConnectionTrackingPolicyConnectionPersistenceOnUnhealt
   | "DEFAULT_FOR_PROTOCOL"
   | "NEVER_PERSIST";
 export const BackendServiceConnectionTrackingPolicyConnectionPersistenceOnUnhealthyBackendsEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BackendServiceConnectionTrackingPolicyTrackingModeEnum =
   | "INVALID_TRACKING_MODE"
   | "PER_CONNECTION"
   | "PER_SESSION";
-export const BackendServiceConnectionTrackingPolicyTrackingModeEnum =
-  /*@__PURE__*/ S.String;
+export const BackendServiceConnectionTrackingPolicyTrackingModeEnum = S.String;
 
 /** Connection Tracking configuration for this BackendService. */
 export interface BackendServiceConnectionTrackingPolicy {
@@ -5991,8 +5972,7 @@ export type BackendServiceIpAddressSelectionPolicyEnum =
   | "IPV6_ONLY"
   | "IP_ADDRESS_SELECTION_POLICY_UNSPECIFIED"
   | "PREFER_IPV6";
-export const BackendServiceIpAddressSelectionPolicyEnum =
-  /*@__PURE__*/ S.String;
+export const BackendServiceIpAddressSelectionPolicyEnum = S.String;
 
 /** The configuration for a custom policy implemented by the user and deployed with the client. */
 export interface BackendServiceLocalityLoadBalancingPolicyConfigCustomPolicy {
@@ -6023,7 +6003,7 @@ export type BackendServiceLocalityLoadBalancingPolicyConfigPolicyNameEnum =
   | "WEIGHTED_MAGLEV"
   | "WEIGHTED_ROUND_ROBIN";
 export const BackendServiceLocalityLoadBalancingPolicyConfigPolicyNameEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration for a built-in load balancing policy. */
 export interface BackendServiceLocalityLoadBalancingPolicyConfigPolicy {
@@ -6348,7 +6328,7 @@ export const AggregatedListDisksRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AggregatedListDisksRequest>;
 
 export type DiskStorageTypeEnum = "HDD" | "SSD";
-export const DiskStorageTypeEnum = /*@__PURE__*/ S.String;
+export const DiskStorageTypeEnum = S.String;
 
 export interface CustomerEncryptionKey {
   /** The name of the encryption key that is stored in Google Cloud KMS. For example: "kmsKeyName": "projects/kms_project_id/locations/region/keyRings/ key_region/cryptoKeys/key The fully-qualifed key name may be returned for resource GET requests. For example: "kmsKeyName": "projects/kms_project_id/locations/region/keyRings/ key_region/cryptoKeys/key /cryptoKeyVersions/1 */
@@ -6381,7 +6361,7 @@ export type DiskStatusEnum =
   | "READY"
   | "RESTORING"
   | "UNAVAILABLE";
-export const DiskStatusEnum = /*@__PURE__*/ S.String;
+export const DiskStatusEnum = S.String;
 
 export interface DiskAsyncReplication {
   /** Output only. [Output Only] The unique ID of the other disk asynchronously replicated to or from the current disk. This value identifies the exact disk that was used to create this replication. For example, if you started replicating the persistent disk from a disk that was later deleted and recreated under the same name, the disk ID would identify the exact version of the disk that was used. */
@@ -6441,7 +6421,7 @@ export type GuestOsFeatureTypeEnum =
   | "UEFI_COMPATIBLE"
   | "VIRTIO_SCSI_MULTIQUEUE"
   | "WINDOWS";
-export const GuestOsFeatureTypeEnum = /*@__PURE__*/ S.String;
+export const GuestOsFeatureTypeEnum = S.String;
 
 /** Guest OS features. */
 export interface GuestOsFeature {
@@ -6463,16 +6443,16 @@ export type DiskArchitectureEnum =
   | "ARCHITECTURE_UNSPECIFIED"
   | "ARM64"
   | "X86_64";
-export const DiskArchitectureEnum = /*@__PURE__*/ S.String;
+export const DiskArchitectureEnum = S.String;
 
 export type DiskInterfaceEnum = "NVME" | "SCSI" | "UNSPECIFIED";
-export const DiskInterfaceEnum = /*@__PURE__*/ S.String;
+export const DiskInterfaceEnum = S.String;
 
 export type DiskAccessModeEnum =
   | "READ_ONLY_MANY"
   | "READ_WRITE_MANY"
   | "READ_WRITE_SINGLE";
-export const DiskAccessModeEnum = /*@__PURE__*/ S.String;
+export const DiskAccessModeEnum = S.String;
 
 export type DiskResourceStatusAsyncReplicationStatusStateEnum =
   | "ACTIVE"
@@ -6481,8 +6461,7 @@ export type DiskResourceStatusAsyncReplicationStatusStateEnum =
   | "STATE_UNSPECIFIED"
   | "STOPPED"
   | "STOPPING";
-export const DiskResourceStatusAsyncReplicationStatusStateEnum =
-  /*@__PURE__*/ S.String;
+export const DiskResourceStatusAsyncReplicationStatusStateEnum = S.String;
 
 export interface DiskResourceStatusAsyncReplicationStatus {
   state?: DiskResourceStatusAsyncReplicationStatusStateEnum | (string & {});
@@ -6761,7 +6740,7 @@ export type DisksScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const DisksScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const DisksScopedListWarningCodeEnum = S.String;
 
 export interface DisksScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -6832,7 +6811,7 @@ export type DiskAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const DiskAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const DiskAggregatedListWarningCodeEnum = S.String;
 
 export type DiskAggregatedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -6973,7 +6952,7 @@ export type DiskTypeAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const DiskTypeAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const DiskTypeAggregatedListWarningCodeEnum = S.String;
 
 export interface DiskTypeAggregatedListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -7069,7 +7048,7 @@ export type DiskTypesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const DiskTypesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const DiskTypesScopedListWarningCodeEnum = S.String;
 
 export type DiskTypesScopedListWarningDataItem = OperationWarningsItemDataItem;
 export const DiskTypesScopedListWarningDataItem = OperationWarningsItemDataItem;
@@ -7221,8 +7200,7 @@ export type ForwardingRuleAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ForwardingRuleAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const ForwardingRuleAggregatedListWarningCodeEnum = S.String;
 
 export type ForwardingRuleAggregatedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -7284,7 +7262,7 @@ export type ForwardingRulesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ForwardingRulesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const ForwardingRulesScopedListWarningCodeEnum = S.String;
 
 export type ForwardingRulesScopedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -7323,7 +7301,7 @@ export type ForwardingRulePscConnectionStatusEnum =
   | "PENDING"
   | "REJECTED"
   | "STATUS_UNSPECIFIED";
-export const ForwardingRulePscConnectionStatusEnum = /*@__PURE__*/ S.String;
+export const ForwardingRulePscConnectionStatusEnum = S.String;
 
 /** Reference to an extension resource that is attached to this ForwardingRule. */
 export interface ForwardingRuleAttachedExtension {
@@ -7348,7 +7326,7 @@ export type ForwardingRuleIpVersionEnum =
   | "IPV4"
   | "IPV6"
   | "UNSPECIFIED_VERSION";
-export const ForwardingRuleIpVersionEnum = /*@__PURE__*/ S.String;
+export const ForwardingRuleIpVersionEnum = S.String;
 
 export type ForwardingRuleIPProtocolEnum =
   | "AH"
@@ -7358,20 +7336,20 @@ export type ForwardingRuleIPProtocolEnum =
   | "SCTP"
   | "TCP"
   | "UDP";
-export const ForwardingRuleIPProtocolEnum = /*@__PURE__*/ S.String;
+export const ForwardingRuleIPProtocolEnum = S.String;
 
 export type ForwardingRuleExternalManagedBackendBucketMigrationStateEnum =
   | "PREPARE"
   | "TEST_ALL_TRAFFIC"
   | "TEST_BY_PERCENTAGE";
 export const ForwardingRuleExternalManagedBackendBucketMigrationStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type MetadataFilterFilterMatchCriteriaEnum =
   | "MATCH_ALL"
   | "MATCH_ANY"
   | "NOT_SET";
-export const MetadataFilterFilterMatchCriteriaEnum = /*@__PURE__*/ S.String;
+export const MetadataFilterFilterMatchCriteriaEnum = S.String;
 
 /** MetadataFilter label name value pairs that are expected to match corresponding labels presented as metadata to the load balancer. */
 export interface MetadataFilterLabelMatch {
@@ -7421,7 +7399,7 @@ export type ForwardingRuleLoadBalancingSchemeEnum =
   | "INTERNAL_MANAGED"
   | "INTERNAL_SELF_MANAGED"
   | "INVALID";
-export const ForwardingRuleLoadBalancingSchemeEnum = /*@__PURE__*/ S.String;
+export const ForwardingRuleLoadBalancingSchemeEnum = S.String;
 
 /** Describes the auto-registration of the forwarding rule to Service Directory. The region and project of the Service Directory resource generated from this registration will be the same as this forwarding rule. */
 export interface ForwardingRuleServiceDirectoryRegistration {
@@ -7454,14 +7432,14 @@ export type ForwardingRuleAvailabilityGroupEnum =
   | "AVAILABILITY_GROUP0"
   | "AVAILABILITY_GROUP1"
   | "AVAILABILITY_GROUP_UNSPECIFIED";
-export const ForwardingRuleAvailabilityGroupEnum = /*@__PURE__*/ S.String;
+export const ForwardingRuleAvailabilityGroupEnum = S.String;
 
 export type ForwardingRuleNetworkTierEnum =
   | "FIXED_STANDARD"
   | "PREMIUM"
   | "STANDARD"
   | "STANDARD_OVERRIDES_FIXED_STANDARD";
-export const ForwardingRuleNetworkTierEnum = /*@__PURE__*/ S.String;
+export const ForwardingRuleNetworkTierEnum = S.String;
 
 /** Represents a Forwarding Rule resource. Forwarding rule resources in Google Cloud can be either regional or global in scope: * [Global](https://cloud.google.com/compute/docs/reference/rest/beta/globalForwardingRules) * [Regional](https://cloud.google.com/compute/docs/reference/rest/beta/forwardingRules) A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules can also reference target instances and Cloud VPN Classic gateways (targetVpnGateway). For more information, read Forwarding rule concepts and Using protocol forwarding. */
 export interface ForwardingRule {
@@ -7747,8 +7725,7 @@ export type FutureReservationsAggregatedListResponseWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const FutureReservationsAggregatedListResponseWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const FutureReservationsAggregatedListResponseWarningCodeEnum = S.String;
 
 export interface FutureReservationsAggregatedListResponseWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -7775,7 +7752,7 @@ export type AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDi
   | "NVME"
   | "SCSI";
 export const AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDiskInterfaceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk {
   /** Specifies the size of the disk in base-2 GB. */
@@ -7810,7 +7787,7 @@ export type AllocationSpecificSKUAllocationReservedInstancePropertiesMaintenance
   | "PERIODIC"
   | "RECURRENT";
 export const AllocationSpecificSKUAllocationReservedInstancePropertiesMaintenanceIntervalEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A specification of the type and number of accelerator cards attached to the instance. */
 export interface AcceleratorConfig {
@@ -7926,7 +7903,7 @@ export type ReservationAdvancedDeploymentControlReservationOperationalModeEnum =
   | "HIGHLY_AVAILABLE_CAPACITY"
   | "RESERVATION_OPERATIONAL_MODE_UNSPECIFIED";
 export const ReservationAdvancedDeploymentControlReservationOperationalModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Advance control for cluster management, applicable only to DENSE deployment type reservations. */
 export interface ReservationAdvancedDeploymentControl {
@@ -7951,8 +7928,7 @@ export type FutureReservationStatusAmendmentStatusEnum =
   | "AMENDMENT_DECLINED"
   | "AMENDMENT_IN_REVIEW"
   | "AMENDMENT_STATUS_UNSPECIFIED";
-export const FutureReservationStatusAmendmentStatusEnum =
-  /*@__PURE__*/ S.String;
+export const FutureReservationStatusAmendmentStatusEnum = S.String;
 
 /** Storage pool provisioned capacities for each SKU type. */
 export interface FutureReservationStoragePoolProvisionedCapacity {
@@ -8002,8 +7978,7 @@ export type FutureReservationStatusProcurementStatusEnum =
   | "PROCUREMENT_STATUS_UNSPECIFIED"
   | "PROCURING"
   | "PROVISIONING";
-export const FutureReservationStatusProcurementStatusEnum =
-  /*@__PURE__*/ S.String;
+export const FutureReservationStatusProcurementStatusEnum = S.String;
 
 /** [Output Only] Represents the existing matching usage for the future reservation. */
 export interface FutureReservationStatusExistingMatchingUsageInfo {
@@ -8037,7 +8012,7 @@ export type FutureReservationStatusLastKnownGoodStateProcurementStatusEnum =
   | "PROCURING"
   | "PROVISIONING";
 export const FutureReservationStatusLastKnownGoodStateProcurementStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Config for each folder in the share settings. */
 export interface ShareSettingsFolderConfig {
@@ -8066,7 +8041,7 @@ export type ShareSettingsShareTypeEnum =
   | "ORGANIZATION"
   | "SHARE_TYPE_UNSPECIFIED"
   | "SPECIFIC_PROJECTS";
-export const ShareSettingsShareTypeEnum = /*@__PURE__*/ S.String;
+export const ShareSettingsShareTypeEnum = S.String;
 
 /** Config for each project in the share settings. */
 export interface ShareSettingsProjectConfig {
@@ -8263,38 +8238,37 @@ export type FutureReservationPlanningStatusEnum =
   | "DRAFT"
   | "PLANNING_STATUS_UNSPECIFIED"
   | "SUBMITTED";
-export const FutureReservationPlanningStatusEnum = /*@__PURE__*/ S.String;
+export const FutureReservationPlanningStatusEnum = S.String;
 
 export type FutureReservationProtectionTierEnum =
   | "CAPACITY_OPTIMIZED"
   | "PROTECTION_TIER_UNSPECIFIED"
   | "STANDARD";
-export const FutureReservationProtectionTierEnum = /*@__PURE__*/ S.String;
+export const FutureReservationProtectionTierEnum = S.String;
 
 export type FutureReservationReservationModeEnum =
   | "CALENDAR"
   | "DEFAULT"
   | "RESERVATION_MODE_UNSPECIFIED";
-export const FutureReservationReservationModeEnum = /*@__PURE__*/ S.String;
+export const FutureReservationReservationModeEnum = S.String;
 
 export type FutureReservationSchedulingTypeEnum =
   | "GROUPED"
   | "GROUP_MAINTENANCE_TYPE_UNSPECIFIED"
   | "INDEPENDENT";
-export const FutureReservationSchedulingTypeEnum = /*@__PURE__*/ S.String;
+export const FutureReservationSchedulingTypeEnum = S.String;
 
 export type FutureReservationCommitmentInfoCommitmentPlanEnum =
   | "INVALID"
   | "THIRTY_SIX_MONTH"
   | "TWELVE_MONTH";
-export const FutureReservationCommitmentInfoCommitmentPlanEnum =
-  /*@__PURE__*/ S.String;
+export const FutureReservationCommitmentInfoCommitmentPlanEnum = S.String;
 
 export type FutureReservationCommitmentInfoPreviousCommitmentTermsEnum =
   | "EXTEND"
   | "PREVIOUSCOMMITMENTTERM_UNSPECIFIED";
 export const FutureReservationCommitmentInfoPreviousCommitmentTermsEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface FutureReservationCommitmentInfo {
   /** Indicates if a Commitment needs to be created as part of FR delivery. If this field is not present, then no commitment needs to be created. */
@@ -8331,8 +8305,7 @@ export type AllocationAggregateReservationVmFamilyEnum =
   | "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P"
   | "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P"
   | "VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7X";
-export const AllocationAggregateReservationVmFamilyEnum =
-  /*@__PURE__*/ S.String;
+export const AllocationAggregateReservationVmFamilyEnum = S.String;
 
 export interface AllocationAggregateReservationReservedResourceInfoAccelerator {
   /** Number of accelerators of specified type. */
@@ -8376,8 +8349,7 @@ export type AllocationAggregateReservationWorkloadTypeEnum =
   | "BATCH"
   | "SERVING"
   | "UNSPECIFIED";
-export const AllocationAggregateReservationWorkloadTypeEnum =
-  /*@__PURE__*/ S.String;
+export const AllocationAggregateReservationWorkloadTypeEnum = S.String;
 
 /** This reservation type is specified by total resource amounts (e.g. total count of CPUs) and can account for multiple instance SKUs. In other words, one can create instances of varying shapes against this reservation. */
 export interface AllocationAggregateReservation {
@@ -8418,14 +8390,13 @@ export type FutureReservationConfidentialComputeTypeEnum =
   | "CONFIDENTIAL_COMPUTE_TYPE_BMSAI"
   | "CONFIDENTIAL_COMPUTE_TYPE_TDX"
   | "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED";
-export const FutureReservationConfidentialComputeTypeEnum =
-  /*@__PURE__*/ S.String;
+export const FutureReservationConfidentialComputeTypeEnum = S.String;
 
 export type FutureReservationDeploymentTypeEnum =
   | "DENSE"
   | "DEPLOYMENT_TYPE_UNSPECIFIED"
   | "FLEXIBLE";
-export const FutureReservationDeploymentTypeEnum = /*@__PURE__*/ S.String;
+export const FutureReservationDeploymentTypeEnum = S.String;
 
 export interface FutureReservation {
   /** Future Reservation configuration to indicate instance properties and total count. */
@@ -8579,8 +8550,7 @@ export type FutureReservationsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const FutureReservationsScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const FutureReservationsScopedListWarningCodeEnum = S.String;
 
 export interface FutureReservationsScopedListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -8727,7 +8697,7 @@ export type OperationAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const OperationAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const OperationAggregatedListWarningCodeEnum = S.String;
 
 export type OperationAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -8798,7 +8768,7 @@ export type OperationsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const OperationsScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const OperationsScopedListWarningCodeEnum = S.String;
 
 export interface OperationsScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -8958,8 +8928,7 @@ export type VmExtensionPolicyAggregatedListResponseWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const VmExtensionPolicyAggregatedListResponseWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const VmExtensionPolicyAggregatedListResponseWarningCodeEnum = S.String;
 
 export interface VmExtensionPolicyAggregatedListResponseWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -9012,8 +8981,7 @@ export type VmExtensionPoliciesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const VmExtensionPoliciesScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const VmExtensionPoliciesScopedListWarningCodeEnum = S.String;
 
 export type VmExtensionPoliciesScopedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -9074,7 +9042,7 @@ export type VmExtensionPolicyStateEnum =
   | "ACTIVE"
   | "DELETING"
   | "STATE_UNSPECIFIED";
-export const VmExtensionPolicyStateEnum = /*@__PURE__*/ S.String;
+export const VmExtensionPolicyStateEnum = S.String;
 
 /** A LabelSelector is applied to a VM only if it matches all the specified labels. */
 export interface VmExtensionPolicyLabelSelector {
@@ -9303,7 +9271,7 @@ export type HealthChecksAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const HealthChecksAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const HealthChecksAggregatedListWarningCodeEnum = S.String;
 
 export interface HealthChecksAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -9327,7 +9295,7 @@ export type GRPCHealthCheckPortSpecificationEnum =
   | "USE_FIXED_PORT"
   | "USE_NAMED_PORT"
   | "USE_SERVING_PORT";
-export const GRPCHealthCheckPortSpecificationEnum = /*@__PURE__*/ S.String;
+export const GRPCHealthCheckPortSpecificationEnum = S.String;
 
 export interface GRPCHealthCheck {
   /** Not supported. */
@@ -9354,10 +9322,10 @@ export type HTTPHealthCheckPortSpecificationEnum =
   | "USE_FIXED_PORT"
   | "USE_NAMED_PORT"
   | "USE_SERVING_PORT";
-export const HTTPHealthCheckPortSpecificationEnum = /*@__PURE__*/ S.String;
+export const HTTPHealthCheckPortSpecificationEnum = S.String;
 
 export type HTTPHealthCheckProxyHeaderEnum = "NONE" | "PROXY_V1";
-export const HTTPHealthCheckProxyHeaderEnum = /*@__PURE__*/ S.String;
+export const HTTPHealthCheckProxyHeaderEnum = S.String;
 
 export interface HTTPHealthCheck {
   /** Not supported. */
@@ -9393,10 +9361,10 @@ export type TCPHealthCheckPortSpecificationEnum =
   | "USE_FIXED_PORT"
   | "USE_NAMED_PORT"
   | "USE_SERVING_PORT";
-export const TCPHealthCheckPortSpecificationEnum = /*@__PURE__*/ S.String;
+export const TCPHealthCheckPortSpecificationEnum = S.String;
 
 export type TCPHealthCheckProxyHeaderEnum = "NONE" | "PROXY_V1";
-export const TCPHealthCheckProxyHeaderEnum = /*@__PURE__*/ S.String;
+export const TCPHealthCheckProxyHeaderEnum = S.String;
 
 export interface TCPHealthCheck {
   /** Specifies how a port is selected for health checking. Can be one of the following values: USE_FIXED_PORT: Specifies a port number explicitly using theport field in the health check. Supported by backend services for passthrough load balancers and backend services for proxy load balancers. Not supported by target pools. The health check supports all backends supported by the backend service provided the backend can be health checked. For example, GCE_VM_IP network endpoint groups, GCE_VM_IP_PORT network endpoint groups, and instance group backends. USE_NAMED_PORT: Not supported. USE_SERVING_PORT: Provides an indirect method of specifying the health check port by referring to the backend service. Only supported by backend services for proxy load balancers. Not supported by target pools. Not supported by backend services for passthrough load balancers. Supports all backends that can be health checked; for example,GCE_VM_IP_PORT network endpoint groups and instance group backends. For GCE_VM_IP_PORT network endpoint group backends, the health check uses the port number specified for each endpoint in the network endpoint group. For instance group backends, the health check uses the port number determined by looking up the backend service's named port in the instance group's list of named ports. */
@@ -9424,13 +9392,13 @@ export const TCPHealthCheck = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "TCPHealthCheck" }) as any as S.Schema<TCPHealthCheck>;
 
 export type HTTP2HealthCheckProxyHeaderEnum = "NONE" | "PROXY_V1";
-export const HTTP2HealthCheckProxyHeaderEnum = /*@__PURE__*/ S.String;
+export const HTTP2HealthCheckProxyHeaderEnum = S.String;
 
 export type HTTP2HealthCheckPortSpecificationEnum =
   | "USE_FIXED_PORT"
   | "USE_NAMED_PORT"
   | "USE_SERVING_PORT";
-export const HTTP2HealthCheckPortSpecificationEnum = /*@__PURE__*/ S.String;
+export const HTTP2HealthCheckPortSpecificationEnum = S.String;
 
 export interface HTTP2HealthCheck {
   /** The request path of the HTTP/2 health check request. The default value is/. Must comply withRFC3986. */
@@ -9476,13 +9444,13 @@ export const HealthCheckLogConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<HealthCheckLogConfig>;
 
 export type SSLHealthCheckProxyHeaderEnum = "NONE" | "PROXY_V1";
-export const SSLHealthCheckProxyHeaderEnum = /*@__PURE__*/ S.String;
+export const SSLHealthCheckProxyHeaderEnum = S.String;
 
 export type SSLHealthCheckPortSpecificationEnum =
   | "USE_FIXED_PORT"
   | "USE_NAMED_PORT"
   | "USE_SERVING_PORT";
-export const SSLHealthCheckPortSpecificationEnum = /*@__PURE__*/ S.String;
+export const SSLHealthCheckPortSpecificationEnum = S.String;
 
 export interface SSLHealthCheck {
   /** The TCP port number to which the health check prober sends packets. The default value is 443. Valid values are 1 through65535. */
@@ -9513,10 +9481,10 @@ export type HTTPSHealthCheckPortSpecificationEnum =
   | "USE_FIXED_PORT"
   | "USE_NAMED_PORT"
   | "USE_SERVING_PORT";
-export const HTTPSHealthCheckPortSpecificationEnum = /*@__PURE__*/ S.String;
+export const HTTPSHealthCheckPortSpecificationEnum = S.String;
 
 export type HTTPSHealthCheckProxyHeaderEnum = "NONE" | "PROXY_V1";
-export const HTTPSHealthCheckProxyHeaderEnum = /*@__PURE__*/ S.String;
+export const HTTPSHealthCheckProxyHeaderEnum = S.String;
 
 export interface HTTPSHealthCheck {
   /** Not supported. */
@@ -9557,13 +9525,13 @@ export type HealthCheckTypeEnum =
   | "INVALID"
   | "SSL"
   | "TCP";
-export const HealthCheckTypeEnum = /*@__PURE__*/ S.String;
+export const HealthCheckTypeEnum = S.String;
 
 export type GRPCTLSHealthCheckPortSpecificationEnum =
   | "USE_FIXED_PORT"
   | "USE_NAMED_PORT"
   | "USE_SERVING_PORT";
-export const GRPCTLSHealthCheckPortSpecificationEnum = /*@__PURE__*/ S.String;
+export const GRPCTLSHealthCheckPortSpecificationEnum = S.String;
 
 export interface GRPCTLSHealthCheck {
   /** Specifies how a port is selected for health checking. Can be one of the following values: USE_FIXED_PORT: Specifies a port number explicitly using theport field in the health check. Supported by backend services for passthrough load balancers and backend services for proxy load balancers. Not supported by target pools. The health check supports all backends supported by the backend service provided the backend can be health checked. For example, GCE_VM_IP network endpoint groups, GCE_VM_IP_PORT network endpoint groups, and instance group backends. USE_NAMED_PORT: Not supported. USE_SERVING_PORT: Provides an indirect method of specifying the health check port by referring to the backend service. Only supported by backend services for proxy load balancers. Not supported by target pools. Not supported by backend services for passthrough load balancers. Supports all backends that can be health checked; for example,GCE_VM_IP_PORT network endpoint groups and instance group backends. For GCE_VM_IP_PORT network endpoint group backends, the health check uses the port number specified for each endpoint in the network endpoint group. For instance group backends, the health check uses the port number determined by looking up the backend service's named port in the instance group's list of named ports. */
@@ -9682,7 +9650,7 @@ export type HealthChecksScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const HealthChecksScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const HealthChecksScopedListWarningCodeEnum = S.String;
 
 export type HealthChecksScopedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -9836,8 +9804,7 @@ export type InstanceGroupManagersScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstanceGroupManagersScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const InstanceGroupManagersScopedListWarningCodeEnum = S.String;
 
 export type InstanceGroupManagersScopedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -9873,11 +9840,10 @@ export const InstanceGroupManagersScopedListWarning = /*@__PURE__*/ S.suspend(
 export type InstanceGroupManagerListManagedInstancesResultsEnum =
   | "PAGELESS"
   | "PAGINATED";
-export const InstanceGroupManagerListManagedInstancesResultsEnum =
-  /*@__PURE__*/ S.String;
+export const InstanceGroupManagerListManagedInstancesResultsEnum = S.String;
 
 export type InstanceGroupManagerFailoverActionEnum = "NO_FAILOVER" | "UNKNOWN";
-export const InstanceGroupManagerFailoverActionEnum = /*@__PURE__*/ S.String;
+export const InstanceGroupManagerFailoverActionEnum = S.String;
 
 export interface InstanceGroupManagerActionsSummary {
   /** Output only. The number of instances that the managed instance group will attempt to create. The group attempts to create each instance only once. If the group fails to create any of these instances, it decreases the group's targetSize value accordingly. */
@@ -9936,7 +9902,7 @@ export const InstanceGroupManagerActionsSummary = /*@__PURE__*/ S.suspend(() =>
 export type InstanceGroupManagerStandbyPolicyModeEnum =
   | "MANUAL"
   | "SCALE_OUT_POOL";
-export const InstanceGroupManagerStandbyPolicyModeEnum = /*@__PURE__*/ S.String;
+export const InstanceGroupManagerStandbyPolicyModeEnum = S.String;
 
 export interface InstanceGroupManagerStandbyPolicy {
   /** Defines how a MIG resumes or starts VMs from a standby pool when the group scales out. The default mode is `MANUAL`. */
@@ -9985,19 +9951,18 @@ export const InstanceGroupManagerAllInstancesConfig = /*@__PURE__*/ S.suspend(
 export type InstanceGroupManagerUpdatePolicyTypeEnum =
   | "OPPORTUNISTIC"
   | "PROACTIVE";
-export const InstanceGroupManagerUpdatePolicyTypeEnum = /*@__PURE__*/ S.String;
+export const InstanceGroupManagerUpdatePolicyTypeEnum = S.String;
 
 export type InstanceGroupManagerUpdatePolicyReplacementMethodEnum =
   | "RECREATE"
   | "SUBSTITUTE";
-export const InstanceGroupManagerUpdatePolicyReplacementMethodEnum =
-  /*@__PURE__*/ S.String;
+export const InstanceGroupManagerUpdatePolicyReplacementMethodEnum = S.String;
 
 export type InstanceGroupManagerUpdatePolicyInstanceRedistributionTypeEnum =
   | "NONE"
   | "PROACTIVE";
 export const InstanceGroupManagerUpdatePolicyInstanceRedistributionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InstanceGroupManagerUpdatePolicyMostDisruptiveAllowedActionEnum =
   | "NONE"
@@ -10006,7 +9971,7 @@ export type InstanceGroupManagerUpdatePolicyMostDisruptiveAllowedActionEnum =
   | "RESTART"
   | "RESTART_IN_PLACE";
 export const InstanceGroupManagerUpdatePolicyMostDisruptiveAllowedActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InstanceGroupManagerUpdatePolicyAllowedActionsItemEnum =
   | "NONE"
@@ -10014,8 +9979,7 @@ export type InstanceGroupManagerUpdatePolicyAllowedActionsItemEnum =
   | "REPLACE"
   | "RESTART"
   | "RESTART_IN_PLACE";
-export const InstanceGroupManagerUpdatePolicyAllowedActionsItemEnum =
-  /*@__PURE__*/ S.String;
+export const InstanceGroupManagerUpdatePolicyAllowedActionsItemEnum = S.String;
 
 export type InstanceGroupManagerUpdatePolicyAllowedActionsItemEnumList = Array<
   InstanceGroupManagerUpdatePolicyAllowedActionsItemEnum | (string & {})
@@ -10031,8 +9995,7 @@ export type InstanceGroupManagerUpdatePolicyMinimalActionEnum =
   | "REPLACE"
   | "RESTART"
   | "RESTART_IN_PLACE";
-export const InstanceGroupManagerUpdatePolicyMinimalActionEnum =
-  /*@__PURE__*/ S.String;
+export const InstanceGroupManagerUpdatePolicyMinimalActionEnum = S.String;
 
 export interface InstanceGroupManagerUpdatePolicy {
   /** The type of update process. You can specify either PROACTIVE so that the MIG automatically updates VMs to the latest configurations orOPPORTUNISTIC so that you can select the VMs that you want to update. */
@@ -10093,26 +10056,26 @@ export type InstanceGroupManagerInstanceLifecyclePolicyDefaultActionOnFailureEnu
   | "DO_NOTHING"
   | "REPAIR";
 export const InstanceGroupManagerInstanceLifecyclePolicyDefaultActionOnFailureEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InstanceGroupManagerInstanceLifecyclePolicyForceUpdateOnRepairEnum =
   | "NO"
   | "YES";
 export const InstanceGroupManagerInstanceLifecyclePolicyForceUpdateOnRepairEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InstanceGroupManagerInstanceLifecyclePolicyOnFailedHealthCheckEnum =
   | "DEFAULT_ACTION"
   | "DO_NOTHING"
   | "REPAIR";
 export const InstanceGroupManagerInstanceLifecyclePolicyOnFailedHealthCheckEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InstanceGroupManagerInstanceLifecyclePolicyOnRepairAllowChangingZoneEnum =
   | "NO"
   | "YES";
 export const InstanceGroupManagerInstanceLifecyclePolicyOnRepairAllowChangingZoneEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for VM repairs in the MIG. */
 export interface InstanceGroupManagerInstanceLifecyclePolicyOnRepair {
@@ -10190,7 +10153,7 @@ export type DistributionPolicyTargetShapeEnum =
   | "ANY_SINGLE_ZONE"
   | "BALANCED"
   | "EVEN";
-export const DistributionPolicyTargetShapeEnum = /*@__PURE__*/ S.String;
+export const DistributionPolicyTargetShapeEnum = S.String;
 
 export interface DistributionPolicyZoneConfiguration {
   /** The URL of thezone. The zone must exist in the region where the managed instance group is located. */
@@ -10229,8 +10192,7 @@ export type InstanceGroupManagerTargetSizePolicyModeEnum =
   | "BULK"
   | "INDIVIDUAL"
   | "UNSPECIFIED_MODE";
-export const InstanceGroupManagerTargetSizePolicyModeEnum =
-  /*@__PURE__*/ S.String;
+export const InstanceGroupManagerTargetSizePolicyModeEnum = S.String;
 
 export interface InstanceGroupManagerTargetSizePolicy {
   /** The mode of target size policy based on which the MIG creates its VMs individually or all at once. */
@@ -10307,8 +10269,7 @@ export const InstanceGroupManagerParams = /*@__PURE__*/ S.suspend(() =>
 export type StatefulPolicyPreservedStateNetworkIpAutoDeleteEnum =
   | "NEVER"
   | "ON_PERMANENT_INSTANCE_DELETION";
-export const StatefulPolicyPreservedStateNetworkIpAutoDeleteEnum =
-  /*@__PURE__*/ S.String;
+export const StatefulPolicyPreservedStateNetworkIpAutoDeleteEnum = S.String;
 
 export interface StatefulPolicyPreservedStateNetworkIp {
   /** These stateful IPs will never be released during autohealing, update or VM instance recreate operations. This flag is used to configure if the IP reservation should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted. */
@@ -10338,8 +10299,7 @@ export const StatefulPolicyPreservedStateNetworkIpMap = /*@__PURE__*/ S.Record(
 export type StatefulPolicyPreservedStateDiskDeviceAutoDeleteEnum =
   | "NEVER"
   | "ON_PERMANENT_INSTANCE_DELETION";
-export const StatefulPolicyPreservedStateDiskDeviceAutoDeleteEnum =
-  /*@__PURE__*/ S.String;
+export const StatefulPolicyPreservedStateDiskDeviceAutoDeleteEnum = S.String;
 
 export interface StatefulPolicyPreservedStateDiskDevice {
   /** These stateful disks will never be deleted during autohealing, update or VM instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted. Note: disks attached inREAD_ONLY mode cannot be auto-deleted. */
@@ -10630,8 +10590,7 @@ export type InstanceGroupManagerStatusAcceleratorTopologyStateEnum =
   | "FAILED"
   | "INCOMPLETE"
   | "REACTIVATING";
-export const InstanceGroupManagerStatusAcceleratorTopologyStateEnum =
-  /*@__PURE__*/ S.String;
+export const InstanceGroupManagerStatusAcceleratorTopologyStateEnum = S.String;
 
 export interface InstanceGroupManagerStatusAcceleratorTopology {
   /** Output only. The result of the latest accelerator topology state check. */
@@ -10801,21 +10760,19 @@ export const InstanceGroupManagerStatus = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InstanceGroupManagerStatus>;
 
 export type AttachedDiskInterfaceEnum = "NVME" | "SCSI";
-export const AttachedDiskInterfaceEnum = /*@__PURE__*/ S.String;
+export const AttachedDiskInterfaceEnum = S.String;
 
 export type AttachedDiskInitializeParamsArchitectureEnum =
   | "ARCHITECTURE_UNSPECIFIED"
   | "ARM64"
   | "X86_64";
-export const AttachedDiskInitializeParamsArchitectureEnum =
-  /*@__PURE__*/ S.String;
+export const AttachedDiskInitializeParamsArchitectureEnum = S.String;
 
 export type AttachedDiskInitializeParamsOnUpdateActionEnum =
   | "RECREATE_DISK"
   | "RECREATE_DISK_IF_SOURCE_CHANGED"
   | "USE_EXISTING_DISK";
-export const AttachedDiskInitializeParamsOnUpdateActionEnum =
-  /*@__PURE__*/ S.String;
+export const AttachedDiskInitializeParamsOnUpdateActionEnum = S.String;
 
 /** [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance. This field is persisted and returned for instanceTemplate and not returned in the context of instance. This property is mutually exclusive with the source property; you can only define one or the other, but not both. */
 export interface AttachedDiskInitializeParams {
@@ -10896,7 +10853,7 @@ export const AttachedDiskInitializeParams = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AttachedDiskInitializeParams>;
 
 export type FileContentBufferFileTypeEnum = "BIN" | "UNDEFINED" | "X509";
-export const FileContentBufferFileTypeEnum = /*@__PURE__*/ S.String;
+export const FileContentBufferFileTypeEnum = S.String;
 
 export interface FileContentBuffer {
   /** The raw content in the secure keys file. */
@@ -10944,18 +10901,18 @@ export type AttachedDiskArchitectureEnum =
   | "ARCHITECTURE_UNSPECIFIED"
   | "ARM64"
   | "X86_64";
-export const AttachedDiskArchitectureEnum = /*@__PURE__*/ S.String;
+export const AttachedDiskArchitectureEnum = S.String;
 
 export type AttachedDiskSavedStateEnum =
   | "DISK_SAVED_STATE_UNSPECIFIED"
   | "PRESERVED";
-export const AttachedDiskSavedStateEnum = /*@__PURE__*/ S.String;
+export const AttachedDiskSavedStateEnum = S.String;
 
 export type AttachedDiskTypeEnum = "PERSISTENT" | "SCRATCH";
-export const AttachedDiskTypeEnum = /*@__PURE__*/ S.String;
+export const AttachedDiskTypeEnum = S.String;
 
 export type AttachedDiskModeEnum = "READ_ONLY" | "READ_WRITE";
-export const AttachedDiskModeEnum = /*@__PURE__*/ S.String;
+export const AttachedDiskModeEnum = S.String;
 
 /** An instance-attached disk resource. */
 export interface AttachedDisk {
@@ -11311,8 +11268,7 @@ export type InstanceGroupManagerAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstanceGroupManagerAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const InstanceGroupManagerAggregatedListWarningCodeEnum = S.String;
 
 export interface InstanceGroupManagerAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -11496,7 +11452,7 @@ export type InstanceGroupsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstanceGroupsScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const InstanceGroupsScopedListWarningCodeEnum = S.String;
 
 export interface InstanceGroupsScopedListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -11569,8 +11525,7 @@ export type InstanceGroupAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstanceGroupAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const InstanceGroupAggregatedListWarningCodeEnum = S.String;
 
 export type InstanceGroupAggregatedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -11701,7 +11656,7 @@ export type InstanceAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstanceAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const InstanceAggregatedListWarningCodeEnum = S.String;
 
 export type InstanceAggregatedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -11750,8 +11705,7 @@ export type UpcomingMaintenanceMaintenanceReasonsItemEnum =
   | "MAINTENANCE_REASON_UNKNOWN"
   | "PLANNED_NETWORK_UPDATE"
   | "PLANNED_UPDATE";
-export const UpcomingMaintenanceMaintenanceReasonsItemEnum =
-  /*@__PURE__*/ S.String;
+export const UpcomingMaintenanceMaintenanceReasonsItemEnum = S.String;
 
 export type UpcomingMaintenanceMaintenanceReasonsItemEnumList = Array<
   UpcomingMaintenanceMaintenanceReasonsItemEnum | (string & {})
@@ -11765,14 +11719,14 @@ export type UpcomingMaintenanceMaintenanceStatusEnum =
   | "ONGOING"
   | "PENDING"
   | "UNKNOWN";
-export const UpcomingMaintenanceMaintenanceStatusEnum = /*@__PURE__*/ S.String;
+export const UpcomingMaintenanceMaintenanceStatusEnum = S.String;
 
 export type UpcomingMaintenanceTypeEnum =
   | "MULTIPLE"
   | "SCHEDULED"
   | "UNKNOWN_TYPE"
   | "UNSCHEDULED";
-export const UpcomingMaintenanceTypeEnum = /*@__PURE__*/ S.String;
+export const UpcomingMaintenanceTypeEnum = S.String;
 
 /** Upcoming Maintenance notification information. */
 export interface UpcomingMaintenance {
@@ -11888,14 +11842,12 @@ export const ResourceStatusScheduling = /*@__PURE__*/ S.suspend(() =>
 export type ResourceStatusShutdownDetailsStopStateEnum =
   | "PENDING_STOP"
   | "STOPPING";
-export const ResourceStatusShutdownDetailsStopStateEnum =
-  /*@__PURE__*/ S.String;
+export const ResourceStatusShutdownDetailsStopStateEnum = S.String;
 
 export type ResourceStatusShutdownDetailsTargetStateEnum =
   | "DELETED"
   | "STOPPED";
-export const ResourceStatusShutdownDetailsTargetStateEnum =
-  /*@__PURE__*/ S.String;
+export const ResourceStatusShutdownDetailsTargetStateEnum = S.String;
 
 /** Specifies if the instance is in `PENDING_STOP` state or there is a programmed stop scheduled. */
 export interface ResourceStatusShutdownDetails {
@@ -11998,21 +11950,20 @@ export type InstanceLocalSsdEncryptionModeEnum =
   | "EPHEMERAL_KEY_ENCRYPTION"
   | "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED"
   | "STANDARD_ENCRYPTION";
-export const InstanceLocalSsdEncryptionModeEnum = /*@__PURE__*/ S.String;
+export const InstanceLocalSsdEncryptionModeEnum = S.String;
 
 export type InstancePrivateIpv6GoogleAccessEnum =
   | "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE"
   | "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE"
   | "INHERIT_FROM_SUBNETWORK";
-export const InstancePrivateIpv6GoogleAccessEnum = /*@__PURE__*/ S.String;
+export const InstancePrivateIpv6GoogleAccessEnum = S.String;
 
 export type AdvancedMachineFeaturesPerformanceMonitoringUnitEnum =
   | "ARCHITECTURAL"
   | "ENHANCED"
   | "PERFORMANCE_MONITORING_UNIT_UNSPECIFIED"
   | "STANDARD";
-export const AdvancedMachineFeaturesPerformanceMonitoringUnitEnum =
-  /*@__PURE__*/ S.String;
+export const AdvancedMachineFeaturesPerformanceMonitoringUnitEnum = S.String;
 
 /** Specifies options for controlling advanced machine features. Options that would traditionally be configured in a BIOS belong here. Features that require operating system support may have corresponding entries in the GuestOsFeatures of anImage (e.g., whether or not the OS in theImage supports nested virtualization being enabled or disabled). */
 export interface AdvancedMachineFeatures {
@@ -12080,7 +12031,7 @@ export type InstanceKeyRevocationActionTypeEnum =
   | "KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED"
   | "NONE"
   | "STOP";
-export const InstanceKeyRevocationActionTypeEnum = /*@__PURE__*/ S.String;
+export const InstanceKeyRevocationActionTypeEnum = S.String;
 
 /** The policy describes the baseline against which Instance boot integrity is measured. */
 export interface ShieldedInstanceIntegrityPolicy {
@@ -12115,8 +12066,7 @@ export type ConfidentialInstanceConfigConfidentialInstanceTypeEnum =
   | "SEV"
   | "SEV_SNP"
   | "TDX";
-export const ConfidentialInstanceConfigConfidentialInstanceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ConfidentialInstanceConfigConfidentialInstanceTypeEnum = S.String;
 
 /** A set of Confidential Instance options. */
 export interface ConfidentialInstanceConfig {
@@ -12146,8 +12096,7 @@ export type ReservationAffinityConsumeReservationTypeEnum =
   | "SPECIFIC_THEN_ANY_RESERVATION"
   | "SPECIFIC_THEN_NO_RESERVATION"
   | "UNSPECIFIED";
-export const ReservationAffinityConsumeReservationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ReservationAffinityConsumeReservationTypeEnum = S.String;
 
 /** Specifies the reservations that this instance can consume from. */
 export interface ReservationAffinity {
@@ -12232,26 +12181,26 @@ export type SchedulingInstanceTerminationActionEnum =
   | "DELETE"
   | "INSTANCE_TERMINATION_ACTION_UNSPECIFIED"
   | "STOP";
-export const SchedulingInstanceTerminationActionEnum = /*@__PURE__*/ S.String;
+export const SchedulingInstanceTerminationActionEnum = S.String;
 
 export type SchedulingMaintenanceIntervalEnum =
   | "AS_NEEDED"
   | "PERIODIC"
   | "RECURRENT";
-export const SchedulingMaintenanceIntervalEnum = /*@__PURE__*/ S.String;
+export const SchedulingMaintenanceIntervalEnum = S.String;
 
 export type SchedulingProvisioningModelEnum =
   | "FLEX_START"
   | "RESERVATION_BOUND"
   | "SPOT"
   | "STANDARD";
-export const SchedulingProvisioningModelEnum = /*@__PURE__*/ S.String;
+export const SchedulingProvisioningModelEnum = S.String;
 
 export type SchedulingNodeAffinityOperatorEnum =
   | "IN"
   | "NOT_IN"
   | "OPERATOR_UNSPECIFIED";
-export const SchedulingNodeAffinityOperatorEnum = /*@__PURE__*/ S.String;
+export const SchedulingNodeAffinityOperatorEnum = S.String;
 
 /** Node Affinity: the configuration of desired nodes onto which this Instance could be scheduled. */
 export interface SchedulingNodeAffinity {
@@ -12291,7 +12240,7 @@ export const SchedulingOnInstanceStopAction = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SchedulingOnInstanceStopAction>;
 
 export type SchedulingOnHostMaintenanceEnum = "MIGRATE" | "TERMINATE";
-export const SchedulingOnHostMaintenanceEnum = /*@__PURE__*/ S.String;
+export const SchedulingOnHostMaintenanceEnum = S.String;
 
 /** The configuration for gracefully shutting down the instance. */
 export interface SchedulingGracefulShutdown {
@@ -12417,7 +12366,7 @@ export type InstancePostKeyRevocationActionTypeEnum =
   | "NOOP"
   | "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED"
   | "SHUTDOWN";
-export const InstancePostKeyRevocationActionTypeEnum = /*@__PURE__*/ S.String;
+export const InstancePostKeyRevocationActionTypeEnum = S.String;
 
 /** A set of Shielded VM options. */
 export interface ShieldedVmConfig {
@@ -12471,13 +12420,12 @@ export type InstanceStatusEnum =
   | "SUSPENDED"
   | "SUSPENDING"
   | "TERMINATED";
-export const InstanceStatusEnum = /*@__PURE__*/ S.String;
+export const InstanceStatusEnum = S.String;
 
 export type NetworkPerformanceConfigTotalEgressBandwidthTierEnum =
   | "DEFAULT"
   | "TIER_1";
-export const NetworkPerformanceConfigTotalEgressBandwidthTierEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkPerformanceConfigTotalEgressBandwidthTierEnum = S.String;
 
 export interface NetworkPerformanceConfig {
   totalEgressBandwidthTier?:
@@ -12708,7 +12656,7 @@ export type InstancesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstancesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const InstancesScopedListWarningCodeEnum = S.String;
 
 export interface InstancesScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -12851,8 +12799,7 @@ export type InstanceTemplateAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstanceTemplateAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const InstanceTemplateAggregatedListWarningCodeEnum = S.String;
 
 export type InstanceTemplateAggregatedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -12889,29 +12836,25 @@ export type InstancePropertiesLocalSsdEncryptionModeEnum =
   | "EPHEMERAL_KEY_ENCRYPTION"
   | "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED"
   | "STANDARD_ENCRYPTION";
-export const InstancePropertiesLocalSsdEncryptionModeEnum =
-  /*@__PURE__*/ S.String;
+export const InstancePropertiesLocalSsdEncryptionModeEnum = S.String;
 
 export type InstancePropertiesPostKeyRevocationActionTypeEnum =
   | "NOOP"
   | "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED"
   | "SHUTDOWN";
-export const InstancePropertiesPostKeyRevocationActionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const InstancePropertiesPostKeyRevocationActionTypeEnum = S.String;
 
 export type InstancePropertiesKeyRevocationActionTypeEnum =
   | "KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED"
   | "NONE"
   | "STOP";
-export const InstancePropertiesKeyRevocationActionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const InstancePropertiesKeyRevocationActionTypeEnum = S.String;
 
 export type InstancePropertiesPrivateIpv6GoogleAccessEnum =
   | "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE"
   | "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE"
   | "INHERIT_FROM_SUBNETWORK";
-export const InstancePropertiesPrivateIpv6GoogleAccessEnum =
-  /*@__PURE__*/ S.String;
+export const InstancePropertiesPrivateIpv6GoogleAccessEnum = S.String;
 
 export interface InstanceProperties {
   /** Specifies the reservations that instances can consume from. Note that for MachineImage, this is not supported yet. */
@@ -13026,8 +12969,7 @@ export type DiskInstantiationConfigInstantiateFromEnum =
   | "DO_NOT_INCLUDE"
   | "SOURCE_IMAGE"
   | "SOURCE_IMAGE_FAMILY";
-export const DiskInstantiationConfigInstantiateFromEnum =
-  /*@__PURE__*/ S.String;
+export const DiskInstantiationConfigInstantiateFromEnum = S.String;
 
 /** A specification of the desired way to instantiate a disk in the instance template when its created from a source instance. */
 export interface DiskInstantiationConfig {
@@ -13156,8 +13098,7 @@ export type InstanceTemplatesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstanceTemplatesScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const InstanceTemplatesScopedListWarningCodeEnum = S.String;
 
 export interface InstanceTemplatesScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -13286,7 +13227,7 @@ export type InstantSnapshotStatusEnum =
   | "FAILED"
   | "READY"
   | "UNAVAILABLE";
-export const InstantSnapshotStatusEnum = /*@__PURE__*/ S.String;
+export const InstantSnapshotStatusEnum = S.String;
 
 /** Additional instant snapshot params. */
 export interface InstantSnapshotParams {
@@ -13305,7 +13246,7 @@ export type InstantSnapshotArchitectureEnum =
   | "ARCHITECTURE_UNSPECIFIED"
   | "ARM64"
   | "X86_64";
-export const InstantSnapshotArchitectureEnum = /*@__PURE__*/ S.String;
+export const InstantSnapshotArchitectureEnum = S.String;
 
 /** Represents a InstantSnapshot resource. You can use instant snapshots to create disk rollback points quickly.. */
 export interface InstantSnapshot {
@@ -13430,7 +13371,7 @@ export type InstantSnapshotsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstantSnapshotsScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const InstantSnapshotsScopedListWarningCodeEnum = S.String;
 
 export interface InstantSnapshotsScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -13503,8 +13444,7 @@ export type InstantSnapshotAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstantSnapshotAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const InstantSnapshotAggregatedListWarningCodeEnum = S.String;
 
 export type InstantSnapshotAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -13649,8 +13589,7 @@ export type InterconnectAttachmentAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InterconnectAttachmentAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectAttachmentAggregatedListWarningCodeEnum = S.String;
 
 export interface InterconnectAttachmentAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -13701,8 +13640,7 @@ export type InterconnectAttachmentsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InterconnectAttachmentsScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectAttachmentsScopedListWarningCodeEnum = S.String;
 
 export type InterconnectAttachmentsScopedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -13738,11 +13676,10 @@ export const InterconnectAttachmentsScopedListWarning = /*@__PURE__*/ S.suspend(
 export type InterconnectAttachmentOperationalStatusEnum =
   | "OS_ACTIVE"
   | "OS_UNPROVISIONED";
-export const InterconnectAttachmentOperationalStatusEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectAttachmentOperationalStatusEnum = S.String;
 
 export type InterconnectAttachmentEncryptionEnum = "IPSEC" | "NONE";
-export const InterconnectAttachmentEncryptionEnum = /*@__PURE__*/ S.String;
+export const InterconnectAttachmentEncryptionEnum = S.String;
 
 /** The inner VLAN-to-Appliance mapping. */
 export interface InterconnectAttachmentL2ForwardingApplianceMappingInnerVlanToApplianceMapping {
@@ -13846,7 +13783,7 @@ export type InterconnectAttachmentTypeEnum =
   | "L2_DEDICATED"
   | "PARTNER"
   | "PARTNER_PROVIDER";
-export const InterconnectAttachmentTypeEnum = /*@__PURE__*/ S.String;
+export const InterconnectAttachmentTypeEnum = S.String;
 
 export type InterconnectAttachmentBandwidthEnum =
   | "BPS_100G"
@@ -13863,7 +13800,7 @@ export type InterconnectAttachmentBandwidthEnum =
   | "BPS_50G"
   | "BPS_50M"
   | "BPS_5G";
-export const InterconnectAttachmentBandwidthEnum = /*@__PURE__*/ S.String;
+export const InterconnectAttachmentBandwidthEnum = S.String;
 
 /** Informational metadata about Partner attachments from Partners to display to customers. These fields are propagated from PARTNER_PROVIDER attachments to their corresponding PARTNER attachments. */
 export interface InterconnectAttachmentPartnerMetadata {
@@ -13889,8 +13826,7 @@ export type InterconnectAttachmentEdgeAvailabilityDomainEnum =
   | "AVAILABILITY_DOMAIN_1"
   | "AVAILABILITY_DOMAIN_2"
   | "AVAILABILITY_DOMAIN_ANY";
-export const InterconnectAttachmentEdgeAvailabilityDomainEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectAttachmentEdgeAvailabilityDomainEnum = S.String;
 
 /** Information for an interconnect attachment when this belongs to an interconnect of type DEDICATED. */
 export interface InterconnectAttachmentPrivateInfo {
@@ -13913,10 +13849,10 @@ export type InterconnectAttachmentStateEnum =
   | "PENDING_PARTNER"
   | "STATE_UNSPECIFIED"
   | "UNPROVISIONED";
-export const InterconnectAttachmentStateEnum = /*@__PURE__*/ S.String;
+export const InterconnectAttachmentStateEnum = S.String;
 
 export type InterconnectAttachmentStackTypeEnum = "IPV4_IPV6" | "IPV4_ONLY";
-export const InterconnectAttachmentStackTypeEnum = /*@__PURE__*/ S.String;
+export const InterconnectAttachmentStackTypeEnum = S.String;
 
 export interface InterconnectAttachmentConfigurationConstraintsBgpPeerASNRange {
   max?: number;
@@ -13944,7 +13880,7 @@ export type InterconnectAttachmentConfigurationConstraintsBgpMd5Enum =
   | "MD5_REQUIRED"
   | "MD5_UNSUPPORTED";
 export const InterconnectAttachmentConfigurationConstraintsBgpMd5Enum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InterconnectAttachmentConfigurationConstraints {
   /** Output only. [Output Only] List of ASN ranges that the remote location is known to support. Formatted as an array of inclusive ranges {min: min-value, max: max-value}. For example, [{min: 123, max: 123}, {min: 64512, max: 65534}] allows the peer ASN to be 123 or anything in the range 64512-65534. This field is only advisory. Although the API accepts other ranges, these are the ranges that we recommend. */
@@ -14280,7 +14216,7 @@ export type MachineTypeAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const MachineTypeAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const MachineTypeAggregatedListWarningCodeEnum = S.String;
 
 export interface MachineTypeAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -14319,7 +14255,7 @@ export type MachineTypeArchitectureEnum =
   | "ARCHITECTURE_UNSPECIFIED"
   | "ARM64"
   | "X86_64";
-export const MachineTypeArchitectureEnum = /*@__PURE__*/ S.String;
+export const MachineTypeArchitectureEnum = S.String;
 
 export interface MachineTypeAcceleratorsItem {
   /** Number of accelerator cards exposed to the guest. */
@@ -14433,7 +14369,7 @@ export type MachineTypesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const MachineTypesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const MachineTypesScopedListWarningCodeEnum = S.String;
 
 export type MachineTypesScopedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -14587,8 +14523,7 @@ export type NetworkAttachmentAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NetworkAttachmentAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkAttachmentAggregatedListWarningCodeEnum = S.String;
 
 export type NetworkAttachmentAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -14628,8 +14563,7 @@ export type NetworkAttachmentConnectedEndpointStatusEnum =
   | "PENDING"
   | "REJECTED"
   | "STATUS_UNSPECIFIED";
-export const NetworkAttachmentConnectedEndpointStatusEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkAttachmentConnectedEndpointStatusEnum = S.String;
 
 /** [Output Only] A connection connected to this network attachment. */
 export interface NetworkAttachmentConnectedEndpoint {
@@ -14675,7 +14609,7 @@ export type NetworkAttachmentConnectionPreferenceEnum =
   | "ACCEPT_AUTOMATIC"
   | "ACCEPT_MANUAL"
   | "INVALID";
-export const NetworkAttachmentConnectionPreferenceEnum = /*@__PURE__*/ S.String;
+export const NetworkAttachmentConnectionPreferenceEnum = S.String;
 
 /** NetworkAttachments A network attachment resource ... */
 export interface NetworkAttachment {
@@ -14768,8 +14702,7 @@ export type NetworkAttachmentsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NetworkAttachmentsScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkAttachmentsScopedListWarningCodeEnum = S.String;
 
 export type NetworkAttachmentsScopedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -14921,8 +14854,7 @@ export type NetworkEdgeSecurityServiceAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NetworkEdgeSecurityServiceAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkEdgeSecurityServiceAggregatedListWarningCodeEnum = S.String;
 
 export type NetworkEdgeSecurityServiceAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -14999,8 +14931,7 @@ export type NetworkEdgeSecurityServicesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NetworkEdgeSecurityServicesScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkEdgeSecurityServicesScopedListWarningCodeEnum = S.String;
 
 export interface NetworkEdgeSecurityServicesScopedListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -15195,8 +15126,7 @@ export type NetworkEndpointGroupPscDataPscConnectionStatusEnum =
   | "PENDING"
   | "REJECTED"
   | "STATUS_UNSPECIFIED";
-export const NetworkEndpointGroupPscDataPscConnectionStatusEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkEndpointGroupPscDataPscConnectionStatusEnum = S.String;
 
 /** All data that is specifically relevant to only network endpoint groups of type PRIVATE_SERVICE_CONNECT. */
 export interface NetworkEndpointGroupPscData {
@@ -15234,8 +15164,7 @@ export type NetworkEndpointGroupNetworkEndpointTypeEnum =
   | "NON_GCP_PRIVATE_IP_PORT"
   | "PRIVATE_SERVICE_CONNECT"
   | "SERVERLESS";
-export const NetworkEndpointGroupNetworkEndpointTypeEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkEndpointGroupNetworkEndpointTypeEnum = S.String;
 
 /** Configuration for an App Engine network endpoint group (NEG). The service is optional, may be provided explicitly or in the URL mask. The version is optional and can only be provided explicitly or in the URL mask when service is present. Note: App Engine service must be in the same project and located in the same region as the Serverless NEG. */
 export interface NetworkEndpointGroupAppEngine {
@@ -15426,8 +15355,7 @@ export type NetworkEndpointGroupsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NetworkEndpointGroupsScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkEndpointGroupsScopedListWarningCodeEnum = S.String;
 
 export type NetworkEndpointGroupsScopedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -15525,8 +15453,7 @@ export type NetworkEndpointGroupAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NetworkEndpointGroupAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkEndpointGroupAggregatedListWarningCodeEnum = S.String;
 
 export interface NetworkEndpointGroupAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -15627,7 +15554,7 @@ export type FirewallPolicyPolicyTypeEnum =
   | "RDMA_ROCE_POLICY"
   | "ULL_POLICY"
   | "VPC_POLICY";
-export const FirewallPolicyPolicyTypeEnum = /*@__PURE__*/ S.String;
+export const FirewallPolicyPolicyTypeEnum = S.String;
 
 export type FirewallPolicyAssociationList = Array<FirewallPolicyAssociation>;
 export const FirewallPolicyAssociationList = /*@__PURE__*/ S.Array(
@@ -15635,7 +15562,7 @@ export const FirewallPolicyAssociationList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FirewallPolicyAssociationList>;
 
 export type FirewallPolicyPolicySourceEnum = "SYSTEM" | "USER_DEFINED";
-export const FirewallPolicyPolicySourceEnum = /*@__PURE__*/ S.String;
+export const FirewallPolicyPolicySourceEnum = S.String;
 
 /** Represents a Firewall Policy resource. */
 export interface FirewallPolicy {
@@ -15734,7 +15661,7 @@ export type FirewallPoliciesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const FirewallPoliciesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const FirewallPoliciesScopedListWarningCodeEnum = S.String;
 
 export type FirewallPoliciesScopedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -15831,8 +15758,7 @@ export type NetworkFirewallPolicyAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NetworkFirewallPolicyAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkFirewallPolicyAggregatedListWarningCodeEnum = S.String;
 
 export interface NetworkFirewallPolicyAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -15952,7 +15878,7 @@ export type NodeGroupAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NodeGroupAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const NodeGroupAggregatedListWarningCodeEnum = S.String;
 
 export type NodeGroupAggregatedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -15984,21 +15910,21 @@ export const NodeGroupAggregatedListWarning = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NodeGroupAggregatedListWarning>;
 
 export type NodeGroupStatusEnum = "CREATING" | "DELETING" | "INVALID" | "READY";
-export const NodeGroupStatusEnum = /*@__PURE__*/ S.String;
+export const NodeGroupStatusEnum = S.String;
 
 export type NodeGroupMaintenancePolicyEnum =
   | "DEFAULT"
   | "MAINTENANCE_POLICY_UNSPECIFIED"
   | "MIGRATE_WITHIN_NODE_GROUP"
   | "RESTART_IN_PLACE";
-export const NodeGroupMaintenancePolicyEnum = /*@__PURE__*/ S.String;
+export const NodeGroupMaintenancePolicyEnum = S.String;
 
 export type NodeGroupAutoscalingPolicyModeEnum =
   | "MODE_UNSPECIFIED"
   | "OFF"
   | "ON"
   | "ONLY_SCALE_OUT";
-export const NodeGroupAutoscalingPolicyModeEnum = /*@__PURE__*/ S.String;
+export const NodeGroupAutoscalingPolicyModeEnum = S.String;
 
 export interface NodeGroupAutoscalingPolicy {
   /** The minimum number of nodes that the group should have. */
@@ -16022,7 +15948,7 @@ export type NodeGroupMaintenanceIntervalEnum =
   | "AS_NEEDED"
   | "PERIODIC"
   | "RECURRENT";
-export const NodeGroupMaintenanceIntervalEnum = /*@__PURE__*/ S.String;
+export const NodeGroupMaintenanceIntervalEnum = S.String;
 
 /** Time window specified for daily maintenance operations. GCE's internal maintenance will be performed within this window. */
 export interface NodeGroupMaintenanceWindow {
@@ -16142,7 +16068,7 @@ export type NodeGroupsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NodeGroupsScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const NodeGroupsScopedListWarningCodeEnum = S.String;
 
 export interface NodeGroupsScopedListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -16258,7 +16184,7 @@ export type ServerBindingTypeEnum =
   | "RESTART_NODE_ON_ANY_SERVER"
   | "RESTART_NODE_ON_MINIMAL_SERVERS"
   | "SERVER_BINDING_TYPE_UNSPECIFIED";
-export const ServerBindingTypeEnum = /*@__PURE__*/ S.String;
+export const ServerBindingTypeEnum = S.String;
 
 export interface ServerBinding {
   type?: ServerBindingTypeEnum | (string & {});
@@ -16309,14 +16235,14 @@ export type NodeTemplateCpuOvercommitTypeEnum =
   | "CPU_OVERCOMMIT_TYPE_UNSPECIFIED"
   | "ENABLED"
   | "NONE";
-export const NodeTemplateCpuOvercommitTypeEnum = /*@__PURE__*/ S.String;
+export const NodeTemplateCpuOvercommitTypeEnum = S.String;
 
 export type NodeTemplateStatusEnum =
   | "CREATING"
   | "DELETING"
   | "INVALID"
   | "READY";
-export const NodeTemplateStatusEnum = /*@__PURE__*/ S.String;
+export const NodeTemplateStatusEnum = S.String;
 
 /** Represent a sole-tenant Node Template resource. You can use a template to define properties for nodes in a node group. For more information, readCreating node groups and instances. */
 export interface NodeTemplate {
@@ -16407,7 +16333,7 @@ export type NodeTemplatesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NodeTemplatesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const NodeTemplatesScopedListWarningCodeEnum = S.String;
 
 export type NodeTemplatesScopedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -16491,7 +16417,7 @@ export type NodeTemplateAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NodeTemplateAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const NodeTemplateAggregatedListWarningCodeEnum = S.String;
 
 export type NodeTemplateAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -16622,7 +16548,7 @@ export type NodeTypeAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NodeTypeAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const NodeTypeAggregatedListWarningCodeEnum = S.String;
 
 export type NodeTypeAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -16692,7 +16618,7 @@ export type NodeTypesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NodeTypesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const NodeTypesScopedListWarningCodeEnum = S.String;
 
 export interface NodeTypesScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -16899,7 +16825,7 @@ export type PacketMirroringsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const PacketMirroringsScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const PacketMirroringsScopedListWarningCodeEnum = S.String;
 
 export interface PacketMirroringsScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -16950,7 +16876,7 @@ export const PacketMirroringNetworkInfo = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PacketMirroringNetworkInfo>;
 
 export type PacketMirroringFilterDirectionEnum = "BOTH" | "EGRESS" | "INGRESS";
-export const PacketMirroringFilterDirectionEnum = /*@__PURE__*/ S.String;
+export const PacketMirroringFilterDirectionEnum = S.String;
 
 export interface PacketMirroringFilter {
   /** Direction of traffic to mirror, either INGRESS, EGRESS, or BOTH. The default is BOTH. */
@@ -17035,7 +16961,7 @@ export const PacketMirroringMirroredResourceInfo = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PacketMirroringMirroredResourceInfo>;
 
 export type PacketMirroringEnableEnum = "FALSE" | "TRUE";
-export const PacketMirroringEnableEnum = /*@__PURE__*/ S.String;
+export const PacketMirroringEnableEnum = S.String;
 
 /** Represents a Packet Mirroring resource. Packet Mirroring clones the traffic of specified instances in your Virtual Private Cloud (VPC) network and forwards it to a collector destination, such as an instance group of an internal TCP/UDP load balancer, for analysis or examination. For more information about setting up Packet Mirroring, seeUsing Packet Mirroring. */
 export interface PacketMirroring {
@@ -17156,8 +17082,7 @@ export type PacketMirroringAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const PacketMirroringAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const PacketMirroringAggregatedListWarningCodeEnum = S.String;
 
 export interface PacketMirroringAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -17279,8 +17204,7 @@ export type PublicDelegatedPrefixesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const PublicDelegatedPrefixesScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const PublicDelegatedPrefixesScopedListWarningCodeEnum = S.String;
 
 export type PublicDelegatedPrefixesScopedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -17317,10 +17241,10 @@ export type PublicDelegatedPrefixPurposeEnum =
   | "APPLICATION_AND_PROXY_LOAD_BALANCERS"
   | "PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0"
   | "PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1";
-export const PublicDelegatedPrefixPurposeEnum = /*@__PURE__*/ S.String;
+export const PublicDelegatedPrefixPurposeEnum = S.String;
 
 export type PublicDelegatedPrefixIpv6AccessTypeEnum = "EXTERNAL" | "INTERNAL";
-export const PublicDelegatedPrefixIpv6AccessTypeEnum = /*@__PURE__*/ S.String;
+export const PublicDelegatedPrefixIpv6AccessTypeEnum = S.String;
 
 export type PublicDelegatedPrefixStatusEnum =
   | "ACTIVE"
@@ -17330,34 +17254,32 @@ export type PublicDelegatedPrefixStatusEnum =
   | "DELETING"
   | "INITIALIZING"
   | "READY_TO_ANNOUNCE";
-export const PublicDelegatedPrefixStatusEnum = /*@__PURE__*/ S.String;
+export const PublicDelegatedPrefixStatusEnum = S.String;
 
 export type PublicDelegatedPrefixPublicDelegatedSubPrefixPurposeEnum =
   | "APPLICATION_AND_PROXY_LOAD_BALANCERS"
   | "PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0"
   | "PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1";
 export const PublicDelegatedPrefixPublicDelegatedSubPrefixPurposeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PublicDelegatedPrefixPublicDelegatedSubPrefixIpv6AccessTypeEnum =
   | "EXTERNAL"
   | "INTERNAL";
 export const PublicDelegatedPrefixPublicDelegatedSubPrefixIpv6AccessTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PublicDelegatedPrefixPublicDelegatedSubPrefixStatusEnum =
   | "ACTIVE"
   | "INACTIVE";
-export const PublicDelegatedPrefixPublicDelegatedSubPrefixStatusEnum =
-  /*@__PURE__*/ S.String;
+export const PublicDelegatedPrefixPublicDelegatedSubPrefixStatusEnum = S.String;
 
 export type PublicDelegatedPrefixPublicDelegatedSubPrefixModeEnum =
   | "DELEGATION"
   | "EXTERNAL_IPV6_FORWARDING_RULE_CREATION"
   | "EXTERNAL_IPV6_SUBNETWORK_CREATION"
   | "INTERNAL_IPV6_SUBNETWORK_CREATION";
-export const PublicDelegatedPrefixPublicDelegatedSubPrefixModeEnum =
-  /*@__PURE__*/ S.String;
+export const PublicDelegatedPrefixPublicDelegatedSubPrefixModeEnum = S.String;
 
 /** Represents a sub PublicDelegatedPrefix. */
 export interface PublicDelegatedPrefixPublicDelegatedSubPrefix {
@@ -17430,17 +17352,17 @@ export type PublicDelegatedPrefixNetworkTierEnum =
   | "PREMIUM"
   | "STANDARD"
   | "STANDARD_OVERRIDES_FIXED_STANDARD";
-export const PublicDelegatedPrefixNetworkTierEnum = /*@__PURE__*/ S.String;
+export const PublicDelegatedPrefixNetworkTierEnum = S.String;
 
 export type PublicDelegatedPrefixByoipApiVersionEnum = "V1" | "V2";
-export const PublicDelegatedPrefixByoipApiVersionEnum = /*@__PURE__*/ S.String;
+export const PublicDelegatedPrefixByoipApiVersionEnum = S.String;
 
 export type PublicDelegatedPrefixModeEnum =
   | "DELEGATION"
   | "EXTERNAL_IPV6_FORWARDING_RULE_CREATION"
   | "EXTERNAL_IPV6_SUBNETWORK_CREATION"
   | "INTERNAL_IPV6_SUBNETWORK_CREATION";
-export const PublicDelegatedPrefixModeEnum = /*@__PURE__*/ S.String;
+export const PublicDelegatedPrefixModeEnum = S.String;
 
 /** A PublicDelegatedPrefix resource represents an IP block within a PublicAdvertisedPrefix that is configured within a single cloud scope (global or region). IPs in the block can be allocated to resources within that scope. Public delegated prefixes may be further broken up into smaller IP blocks in the same scope as the parent block. */
 export interface PublicDelegatedPrefix {
@@ -17572,8 +17494,7 @@ export type PublicDelegatedPrefixAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const PublicDelegatedPrefixAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const PublicDelegatedPrefixAggregatedListWarningCodeEnum = S.String;
 
 export type PublicDelegatedPrefixAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -17721,7 +17642,7 @@ export type CommitmentTypeEnum =
   | "NETWORK_OPTIMIZED_U4S"
   | "STORAGE_OPTIMIZED_Z3"
   | "TYPE_UNSPECIFIED";
-export const CommitmentTypeEnum = /*@__PURE__*/ S.String;
+export const CommitmentTypeEnum = S.String;
 
 /** Commitment for a particular license resource. */
 export interface LicenseResourceCommitment {
@@ -17746,16 +17667,14 @@ export type PersistentDiskResourceCommitmentProductTypeEnum =
   | "HYPERDISK_EXAPOOL_BALANCED"
   | "HYPERDISK_EXAPOOL_THROUGHPUT"
   | "PRODUCT_TYPE_UNSPECIFIED";
-export const PersistentDiskResourceCommitmentProductTypeEnum =
-  /*@__PURE__*/ S.String;
+export const PersistentDiskResourceCommitmentProductTypeEnum = S.String;
 
 export type PersistentDiskResourceCommitmentDimensionTypeEnum =
   | "CAPACITY_OPTIMIZED"
   | "DIMENSION_TYPE_UNSPECIFIED"
   | "READ_OPTIMIZED"
   | "WRITE_OPTIMIZED";
-export const PersistentDiskResourceCommitmentDimensionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const PersistentDiskResourceCommitmentDimensionTypeEnum = S.String;
 
 /** Commitment for a particular persistent disk resource. */
 export interface PersistentDiskResourceCommitment {
@@ -17790,14 +17709,14 @@ export type CommitmentPlanEnum =
   | "INVALID"
   | "THIRTY_SIX_MONTH"
   | "TWELVE_MONTH";
-export const CommitmentPlanEnum = /*@__PURE__*/ S.String;
+export const CommitmentPlanEnum = S.String;
 
 export type CommitmentCategoryEnum =
   | "CATEGORY_UNSPECIFIED"
   | "LICENSE"
   | "MACHINE"
   | "PERSISTENT_DISK";
-export const CommitmentCategoryEnum = /*@__PURE__*/ S.String;
+export const CommitmentCategoryEnum = S.String;
 
 export type CommitmentStatusEnum =
   | "ACTIVE"
@@ -17805,7 +17724,7 @@ export type CommitmentStatusEnum =
   | "CREATING"
   | "EXPIRED"
   | "NOT_YET_ACTIVE";
-export const CommitmentStatusEnum = /*@__PURE__*/ S.String;
+export const CommitmentStatusEnum = S.String;
 
 /** [Output Only] Contains output only fields. */
 export interface CommitmentResourceStatus {
@@ -17839,7 +17758,7 @@ export type ResourceCommitmentTypeEnum =
   | "MEMORY"
   | "UNSPECIFIED"
   | "VCPU";
-export const ResourceCommitmentTypeEnum = /*@__PURE__*/ S.String;
+export const ResourceCommitmentTypeEnum = S.String;
 
 /** Commitment for a particular hardware resource (a commitment is composed of one or more of these). */
 export interface ResourceCommitment {
@@ -17869,7 +17788,7 @@ export type ReservationEarlyAccessMaintenanceEnum =
   | "NO_EARLY_ACCESS"
   | "WAVE1"
   | "WAVE2";
-export const ReservationEarlyAccessMaintenanceEnum = /*@__PURE__*/ S.String;
+export const ReservationEarlyAccessMaintenanceEnum = S.String;
 
 /** Additional reservation params. */
 export interface ReservationParams {
@@ -17888,7 +17807,7 @@ export type GroupMaintenanceInfoSchedulingTypeEnum =
   | "GROUPED"
   | "GROUP_MAINTENANCE_TYPE_UNSPECIFIED"
   | "INDEPENDENT";
-export const GroupMaintenanceInfoSchedulingTypeEnum = /*@__PURE__*/ S.String;
+export const GroupMaintenanceInfoSchedulingTypeEnum = S.String;
 
 /** Maintenance Info for ReservationBlocks. */
 export interface GroupMaintenanceInfo {
@@ -17945,8 +17864,7 @@ export type AllocationResourceStatusHealthInfoHealthStatusEnum =
   | "DEGRADED"
   | "HEALTHY"
   | "HEALTH_STATUS_UNSPECIFIED";
-export const AllocationResourceStatusHealthInfoHealthStatusEnum =
-  /*@__PURE__*/ S.String;
+export const AllocationResourceStatusHealthInfoHealthStatusEnum = S.String;
 
 /** Health information for the reservation. */
 export interface AllocationResourceStatusHealthInfo {
@@ -18026,7 +17944,7 @@ export type ReservationProtectionTierEnum =
   | "CAPACITY_OPTIMIZED"
   | "PROTECTION_TIER_UNSPECIFIED"
   | "STANDARD";
-export const ReservationProtectionTierEnum = /*@__PURE__*/ S.String;
+export const ReservationProtectionTierEnum = S.String;
 
 export type ReservationStatusEnum =
   | "CREATING"
@@ -18034,14 +17952,13 @@ export type ReservationStatusEnum =
   | "INVALID"
   | "READY"
   | "UPDATING";
-export const ReservationStatusEnum = /*@__PURE__*/ S.String;
+export const ReservationStatusEnum = S.String;
 
 export type AllocationReservationSharingPolicyServiceShareTypeEnum =
   | "ALLOW_ALL"
   | "DISALLOW_ALL"
   | "SERVICE_SHARE_TYPE_UNSPECIFIED";
-export const AllocationReservationSharingPolicyServiceShareTypeEnum =
-  /*@__PURE__*/ S.String;
+export const AllocationReservationSharingPolicyServiceShareTypeEnum = S.String;
 
 export interface AllocationReservationSharingPolicy {
   /** Sharing config for all Google Cloud services. */
@@ -18063,25 +17980,25 @@ export type ReservationConfidentialComputeTypeEnum =
   | "CONFIDENTIAL_COMPUTE_TYPE_BMSAI"
   | "CONFIDENTIAL_COMPUTE_TYPE_TDX"
   | "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED";
-export const ReservationConfidentialComputeTypeEnum = /*@__PURE__*/ S.String;
+export const ReservationConfidentialComputeTypeEnum = S.String;
 
 export type ReservationSchedulingTypeEnum =
   | "GROUPED"
   | "GROUP_MAINTENANCE_TYPE_UNSPECIFIED"
   | "INDEPENDENT";
-export const ReservationSchedulingTypeEnum = /*@__PURE__*/ S.String;
+export const ReservationSchedulingTypeEnum = S.String;
 
 export type ReservationReservationModeEnum =
   | "CALENDAR"
   | "DEFAULT"
   | "RESERVATION_MODE_UNSPECIFIED";
-export const ReservationReservationModeEnum = /*@__PURE__*/ S.String;
+export const ReservationReservationModeEnum = S.String;
 
 export type ReservationDeploymentTypeEnum =
   | "DENSE"
   | "DEPLOYMENT_TYPE_UNSPECIFIED"
   | "FLEXIBLE";
-export const ReservationDeploymentTypeEnum = /*@__PURE__*/ S.String;
+export const ReservationDeploymentTypeEnum = S.String;
 
 /** Represents a reservation resource. A reservation ensures that capacity is held in a specific zone even if the reserved VMs are not running. For more information, read Reserving zonal resources. */
 export interface Reservation {
@@ -18303,7 +18220,7 @@ export type CommitmentsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const CommitmentsScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const CommitmentsScopedListWarningCodeEnum = S.String;
 
 export type CommitmentsScopedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -18387,7 +18304,7 @@ export type CommitmentAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const CommitmentAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const CommitmentAggregatedListWarningCodeEnum = S.String;
 
 export type CommitmentAggregatedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -18519,8 +18436,7 @@ export type CompositeHealthCheckAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const CompositeHealthCheckAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const CompositeHealthCheckAggregatedListWarningCodeEnum = S.String;
 
 export type CompositeHealthCheckAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -18631,8 +18547,7 @@ export type CompositeHealthChecksScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const CompositeHealthChecksScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const CompositeHealthChecksScopedListWarningCodeEnum = S.String;
 
 export type CompositeHealthChecksScopedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -18801,8 +18716,7 @@ export type HealthAggregationPoliciesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const HealthAggregationPoliciesScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const HealthAggregationPoliciesScopedListWarningCodeEnum = S.String;
 
 export interface HealthAggregationPoliciesScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -18826,7 +18740,7 @@ export const HealthAggregationPoliciesScopedListWarning =
 export type HealthAggregationPolicyPolicyTypeEnum =
   | "BACKEND_SERVICE_POLICY"
   | "DNS_PUBLIC_IP_POLICY";
-export const HealthAggregationPolicyPolicyTypeEnum = /*@__PURE__*/ S.String;
+export const HealthAggregationPolicyPolicyTypeEnum = S.String;
 
 /** Represents a health aggregation policy. A health aggregation policy resource defines a policy to aggregate health. For more information, see Health checks overview. */
 export interface HealthAggregationPolicy {
@@ -18932,8 +18846,7 @@ export type HealthAggregationPolicyAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const HealthAggregationPolicyAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const HealthAggregationPolicyAggregatedListWarningCodeEnum = S.String;
 
 export type HealthAggregationPolicyAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -19070,8 +18983,7 @@ export type HealthCheckServiceAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const HealthCheckServiceAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const HealthCheckServiceAggregatedListWarningCodeEnum = S.String;
 
 export type HealthCheckServiceAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -19107,14 +19019,12 @@ export const HealthCheckServiceAggregatedListWarning = /*@__PURE__*/ S.suspend(
 export type HealthCheckServiceHealthStatusAggregationStrategyEnum =
   | "AND"
   | "NO_AGGREGATION";
-export const HealthCheckServiceHealthStatusAggregationStrategyEnum =
-  /*@__PURE__*/ S.String;
+export const HealthCheckServiceHealthStatusAggregationStrategyEnum = S.String;
 
 export type HealthCheckServiceHealthStatusAggregationPolicyEnum =
   | "AND"
   | "NO_AGGREGATION";
-export const HealthCheckServiceHealthStatusAggregationPolicyEnum =
-  /*@__PURE__*/ S.String;
+export const HealthCheckServiceHealthStatusAggregationPolicyEnum = S.String;
 
 /** Represents a Health-Check as a Service resource. */
 export interface HealthCheckService {
@@ -19220,8 +19130,7 @@ export type HealthCheckServicesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const HealthCheckServicesScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const HealthCheckServicesScopedListWarningCodeEnum = S.String;
 
 export interface HealthCheckServicesScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -19366,7 +19275,7 @@ export type HealthSourceAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const HealthSourceAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const HealthSourceAggregatedListWarningCodeEnum = S.String;
 
 export type HealthSourceAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -19399,7 +19308,7 @@ export const HealthSourceAggregatedListWarning = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<HealthSourceAggregatedListWarning>;
 
 export type HealthSourceSourceTypeEnum = "BACKEND_SERVICE";
-export const HealthSourceSourceTypeEnum = /*@__PURE__*/ S.String;
+export const HealthSourceSourceTypeEnum = S.String;
 
 /** Represents a health source. A health source resource specifies the source resources and the health aggregation policy applied to the source resources to determine the aggregated health status. */
 export interface HealthSource {
@@ -19491,7 +19400,7 @@ export type HealthSourcesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const HealthSourcesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const HealthSourcesScopedListWarningCodeEnum = S.String;
 
 export interface HealthSourcesScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -19635,7 +19544,7 @@ export type NetworkPoliciesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NetworkPoliciesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const NetworkPoliciesScopedListWarningCodeEnum = S.String;
 
 export type NetworkPoliciesScopedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -19791,8 +19700,7 @@ export type NetworkPolicyAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NetworkPolicyAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkPolicyAggregatedListWarningCodeEnum = S.String;
 
 export interface NetworkPolicyAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -19924,8 +19832,7 @@ export type NotificationEndpointAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NotificationEndpointAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const NotificationEndpointAggregatedListWarningCodeEnum = S.String;
 
 export interface NotificationEndpointAggregatedListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -19976,8 +19883,7 @@ export type NotificationEndpointsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NotificationEndpointsScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const NotificationEndpointsScopedListWarningCodeEnum = S.String;
 
 export type NotificationEndpointsScopedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -20208,7 +20114,7 @@ export type ReservationsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ReservationsScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const ReservationsScopedListWarningCodeEnum = S.String;
 
 export interface ReservationsScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -20281,7 +20187,7 @@ export type ReservationAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ReservationAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const ReservationAggregatedListWarningCodeEnum = S.String;
 
 export type ReservationAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -20426,8 +20332,7 @@ export type ResourcePolicyAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ResourcePolicyAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const ResourcePolicyAggregatedListWarningCodeEnum = S.String;
 
 export interface ResourcePolicyAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -20450,20 +20355,18 @@ export const ResourcePolicyAggregatedListWarning = /*@__PURE__*/ S.suspend(() =>
 export type ResourcePolicyWorkloadPolicyTypeEnum =
   | "HIGH_AVAILABILITY"
   | "HIGH_THROUGHPUT";
-export const ResourcePolicyWorkloadPolicyTypeEnum = /*@__PURE__*/ S.String;
+export const ResourcePolicyWorkloadPolicyTypeEnum = S.String;
 
 export type ResourcePolicyWorkloadPolicyAcceleratorTopologyModeEnum =
   | "AUTO_CONNECT"
   | "PROVISION_ONLY";
-export const ResourcePolicyWorkloadPolicyAcceleratorTopologyModeEnum =
-  /*@__PURE__*/ S.String;
+export const ResourcePolicyWorkloadPolicyAcceleratorTopologyModeEnum = S.String;
 
 export type ResourcePolicyWorkloadPolicyMaxTopologyDistanceEnum =
   | "BLOCK"
   | "CLUSTER"
   | "SUBBLOCK";
-export const ResourcePolicyWorkloadPolicyMaxTopologyDistanceEnum =
-  /*@__PURE__*/ S.String;
+export const ResourcePolicyWorkloadPolicyMaxTopologyDistanceEnum = S.String;
 
 /** Represents the workload policy. */
 export interface ResourcePolicyWorkloadPolicy {
@@ -20542,7 +20445,7 @@ export type ResourcePolicyWeeklyCycleDayOfWeekDayEnum =
   | "THURSDAY"
   | "TUESDAY"
   | "WEDNESDAY";
-export const ResourcePolicyWeeklyCycleDayOfWeekDayEnum = /*@__PURE__*/ S.String;
+export const ResourcePolicyWeeklyCycleDayOfWeekDayEnum = S.String;
 
 export interface ResourcePolicyWeeklyCycleDayOfWeek {
   /** Output only. [Output only] Duration of the time window, automatically chosen to be smallest possible in the given scenario. */
@@ -20603,7 +20506,7 @@ export type ResourcePolicySnapshotSchedulePolicyRetentionPolicyOnSourceDiskDelet
   | "KEEP_AUTO_SNAPSHOTS"
   | "UNSPECIFIED_ON_SOURCE_DISK_DELETE";
 export const ResourcePolicySnapshotSchedulePolicyRetentionPolicyOnSourceDiskDeleteEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Policy for retention of scheduled snapshots. */
 export interface ResourcePolicySnapshotSchedulePolicyRetentionPolicy {
@@ -20753,7 +20656,7 @@ export type ResourcePolicyStatusEnum =
   | "EXPIRED"
   | "INVALID"
   | "READY";
-export const ResourcePolicyStatusEnum = /*@__PURE__*/ S.String;
+export const ResourcePolicyStatusEnum = S.String;
 
 /** Resource policy for disk consistency groups. */
 export interface ResourcePolicyDiskConsistencyGroupPolicy {}
@@ -20767,13 +20670,12 @@ export type ResourcePolicyGroupPlacementPolicyAcceleratorTopologyModeEnum =
   | "AUTO_CONNECT"
   | "PROVISION_ONLY";
 export const ResourcePolicyGroupPlacementPolicyAcceleratorTopologyModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ResourcePolicyGroupPlacementPolicyCollocationEnum =
   | "COLLOCATED"
   | "UNSPECIFIED_COLLOCATION";
-export const ResourcePolicyGroupPlacementPolicyCollocationEnum =
-  /*@__PURE__*/ S.String;
+export const ResourcePolicyGroupPlacementPolicyCollocationEnum = S.String;
 
 /** A GroupPlacementPolicy specifies resource placement configuration. It specifies the failure bucket separation */
 export interface ResourcePolicyGroupPlacementPolicy {
@@ -20900,7 +20802,7 @@ export type ResourcePoliciesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ResourcePoliciesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const ResourcePoliciesScopedListWarningCodeEnum = S.String;
 
 export type ResourcePoliciesScopedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -21057,7 +20959,7 @@ export type RoutersScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RoutersScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const RoutersScopedListWarningCodeEnum = S.String;
 
 export type RoutersScopedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -21089,12 +20991,12 @@ export const RoutersScopedListWarning = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RoutersScopedListWarning>;
 
 export type RouterInterfaceIpVersionEnum = "IPV4" | "IPV6";
-export const RouterInterfaceIpVersionEnum = /*@__PURE__*/ S.String;
+export const RouterInterfaceIpVersionEnum = S.String;
 
 export type RouterInterfaceManagementTypeEnum =
   | "MANAGED_BY_ATTACHMENT"
   | "MANAGED_BY_USER";
-export const RouterInterfaceManagementTypeEnum = /*@__PURE__*/ S.String;
+export const RouterInterfaceManagementTypeEnum = S.String;
 
 export interface RouterInterface {
   /** The regional private internal IP address that is used to establish BGP sessions to a VM instance acting as a third-party Router Appliance, such as a Next Gen Firewall, a Virtual Router, or an SD-WAN VM. */
@@ -21159,10 +21061,10 @@ export const RouterAdvertisedIpRangeList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RouterAdvertisedIpRangeList>;
 
 export type RouterBgpAdvertiseModeEnum = "CUSTOM" | "DEFAULT";
-export const RouterBgpAdvertiseModeEnum = /*@__PURE__*/ S.String;
+export const RouterBgpAdvertiseModeEnum = S.String;
 
 export type RouterBgpAdvertisedGroupsItemEnum = "ALL_SUBNETS";
-export const RouterBgpAdvertisedGroupsItemEnum = /*@__PURE__*/ S.String;
+export const RouterBgpAdvertisedGroupsItemEnum = S.String;
 
 export type RouterBgpAdvertisedGroupsItemEnumList = Array<
   RouterBgpAdvertisedGroupsItemEnum | (string & {})
@@ -21217,23 +21119,22 @@ export const RouterMd5AuthenticationKeyList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RouterMd5AuthenticationKeyList>;
 
 export type RouterNatNatIpAllocateOptionEnum = "AUTO_ONLY" | "MANUAL_ONLY";
-export const RouterNatNatIpAllocateOptionEnum = /*@__PURE__*/ S.String;
+export const RouterNatNatIpAllocateOptionEnum = S.String;
 
 export type RouterNatAutoNetworkTierEnum =
   | "FIXED_STANDARD"
   | "PREMIUM"
   | "STANDARD"
   | "STANDARD_OVERRIDES_FIXED_STANDARD";
-export const RouterNatAutoNetworkTierEnum = /*@__PURE__*/ S.String;
+export const RouterNatAutoNetworkTierEnum = S.String;
 
 export type RouterNatTypeEnum = "PRIVATE" | "PUBLIC";
-export const RouterNatTypeEnum = /*@__PURE__*/ S.String;
+export const RouterNatTypeEnum = S.String;
 
 export type RouterNatSourceSubnetworkIpRangesToNat64Enum =
   | "ALL_IPV6_SUBNETWORKS"
   | "LIST_OF_IPV6_SUBNETWORKS";
-export const RouterNatSourceSubnetworkIpRangesToNat64Enum =
-  /*@__PURE__*/ S.String;
+export const RouterNatSourceSubnetworkIpRangesToNat64Enum = S.String;
 
 /** Specifies a subnetwork to enable NAT64. */
 export interface RouterNatSubnetworkToNat64 {
@@ -21257,7 +21158,7 @@ export type RouterNatEndpointTypesItemEnum =
   | "ENDPOINT_TYPE_MANAGED_PROXY_LB"
   | "ENDPOINT_TYPE_SWG"
   | "ENDPOINT_TYPE_VM";
-export const RouterNatEndpointTypesItemEnum = /*@__PURE__*/ S.String;
+export const RouterNatEndpointTypesItemEnum = S.String;
 
 export type RouterNatEndpointTypesItemEnumList = Array<
   RouterNatEndpointTypesItemEnum | (string & {})
@@ -21270,15 +21171,13 @@ export type RouterNatSourceSubnetworkIpRangesToNatEnum =
   | "ALL_SUBNETWORKS_ALL_IP_RANGES"
   | "ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES"
   | "LIST_OF_SUBNETWORKS";
-export const RouterNatSourceSubnetworkIpRangesToNatEnum =
-  /*@__PURE__*/ S.String;
+export const RouterNatSourceSubnetworkIpRangesToNatEnum = S.String;
 
 export type RouterNatSubnetworkToNatSourceIpRangesToNatItemEnum =
   | "ALL_IP_RANGES"
   | "LIST_OF_SECONDARY_IP_RANGES"
   | "PRIMARY_IP_RANGE";
-export const RouterNatSubnetworkToNatSourceIpRangesToNatItemEnum =
-  /*@__PURE__*/ S.String;
+export const RouterNatSubnetworkToNatSourceIpRangesToNatItemEnum = S.String;
 
 export type RouterNatSubnetworkToNatSourceIpRangesToNatItemEnumList = Array<
   RouterNatSubnetworkToNatSourceIpRangesToNatItemEnum | (string & {})
@@ -21318,7 +21217,7 @@ export type RouterNatLogConfigFilterEnum =
   | "ALL"
   | "ERRORS_ONLY"
   | "TRANSLATIONS_ONLY";
-export const RouterNatLogConfigFilterEnum = /*@__PURE__*/ S.String;
+export const RouterNatLogConfigFilterEnum = S.String;
 
 /** Configuration of logging on a NAT. */
 export interface RouterNatLogConfig {
@@ -21482,7 +21381,7 @@ export const RouterParams = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "RouterParams" }) as any as S.Schema<RouterParams>;
 
 export type RouterBgpPeerEnableEnum = "FALSE" | "TRUE";
-export const RouterBgpPeerEnableEnum = /*@__PURE__*/ S.String;
+export const RouterBgpPeerEnableEnum = S.String;
 
 export interface RouterBgpPeerCustomLearnedIpRange {
   /** The custom learned route IP address range. Must be a valid CIDR-formatted prefix. If an IP address is provided without a subnet mask, it is interpreted as, for IPv4, a `/32` singular IP address range, and, for IPv6, `/128`. */
@@ -21505,10 +21404,10 @@ export const RouterBgpPeerCustomLearnedIpRangeList = /*@__PURE__*/ S.Array(
 export type RouterBgpPeerManagementTypeEnum =
   | "MANAGED_BY_ATTACHMENT"
   | "MANAGED_BY_USER";
-export const RouterBgpPeerManagementTypeEnum = /*@__PURE__*/ S.String;
+export const RouterBgpPeerManagementTypeEnum = S.String;
 
 export type RouterBgpPeerAdvertisedGroupsItemEnum = "ALL_SUBNETS";
-export const RouterBgpPeerAdvertisedGroupsItemEnum = /*@__PURE__*/ S.String;
+export const RouterBgpPeerAdvertisedGroupsItemEnum = S.String;
 
 export type RouterBgpPeerAdvertisedGroupsItemEnumList = Array<
   RouterBgpPeerAdvertisedGroupsItemEnum | (string & {})
@@ -21521,8 +21420,7 @@ export type RouterBgpPeerBfdSessionInitializationModeEnum =
   | "ACTIVE"
   | "DISABLED"
   | "PASSIVE";
-export const RouterBgpPeerBfdSessionInitializationModeEnum =
-  /*@__PURE__*/ S.String;
+export const RouterBgpPeerBfdSessionInitializationModeEnum = S.String;
 
 export interface RouterBgpPeerBfd {
   /** The minimum interval, in milliseconds, between BFD control packets transmitted to the peer router. The actual value is negotiated between the two routers and is equal to the greater of this value and the corresponding receive interval of the other router. If set, this value must be between 1000 and 30000. The default is 1000. */
@@ -21550,7 +21448,7 @@ export const RouterBgpPeerBfd = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RouterBgpPeerBfd>;
 
 export type RouterBgpPeerAdvertiseModeEnum = "CUSTOM" | "DEFAULT";
-export const RouterBgpPeerAdvertiseModeEnum = /*@__PURE__*/ S.String;
+export const RouterBgpPeerAdvertiseModeEnum = S.String;
 
 export interface RouterBgpPeer {
   /** The user-defined custom learned route priority for a BGP session. This value is applied to all custom learned route ranges for the session. You can choose a value from `0` to `65335`. If you don't provide a value, Google Cloud assigns a priority of `100` to the ranges. */
@@ -21760,7 +21658,7 @@ export type RouterAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RouterAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const RouterAggregatedListWarningCodeEnum = S.String;
 
 export interface RouterAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -21881,8 +21779,7 @@ export type SecurityPoliciesAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SecurityPoliciesAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const SecurityPoliciesAggregatedListWarningCodeEnum = S.String;
 
 export type SecurityPoliciesAggregatedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -21957,7 +21854,7 @@ export type SecurityPoliciesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SecurityPoliciesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const SecurityPoliciesScopedListWarningCodeEnum = S.String;
 
 export interface SecurityPoliciesScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -21995,7 +21892,7 @@ export type SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresho
   | "HTTP_PATH"
   | "UNSPECIFIED_TYPE";
 export const SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfigTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configurations to specifc granular traffic units processed by Adaptive Protection. */
 export interface SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig {
@@ -22073,7 +21970,7 @@ export type SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigRuleVis
   | "PREMIUM"
   | "STANDARD";
 export const SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigRuleVisibilityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration options for L7 DDoS detection. This field is only supported in Global Security Policies of type CLOUD_ARMOR. */
 export interface SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig {
@@ -22145,7 +22042,7 @@ export type SecurityPolicyUserDefinedFieldBaseEnum =
   | "IPV6"
   | "TCP"
   | "UDP";
-export const SecurityPolicyUserDefinedFieldBaseEnum = /*@__PURE__*/ S.String;
+export const SecurityPolicyUserDefinedFieldBaseEnum = S.String;
 
 export interface SecurityPolicyUserDefinedField {
   /** The base relative to which 'offset' is measured. Possible values are: - IPV4: Points to the beginning of the IPv4 header. - IPV6: Points to the beginning of the IPv6 header. - TCP: Points to the beginning of the TCP header, skipping over any IPv4 options or IPv6 extension headers. Not present for non-first fragments. - UDP: Points to the beginning of the UDP header, skipping over any IPv4 options or IPv6 extension headers. Not present for non-first fragments. required */
@@ -22183,7 +22080,7 @@ export type SecurityPolicyTypeEnum =
   | "CLOUD_ARMOR_INTERNAL_SERVICE"
   | "CLOUD_ARMOR_NETWORK"
   | "FIREWALL";
-export const SecurityPolicyTypeEnum = /*@__PURE__*/ S.String;
+export const SecurityPolicyTypeEnum = S.String;
 
 export type SecurityPolicyAssociationList = Array<SecurityPolicyAssociation>;
 export const SecurityPolicyAssociationList = /*@__PURE__*/ S.Array(
@@ -22197,14 +22094,13 @@ export type SecurityPolicyDdosProtectionConfigDdosAdaptiveProtectionEnum =
   | "PREVIEW"
   | "UNSPECIFIED_ADAPTIVE_PROTECTION";
 export const SecurityPolicyDdosProtectionConfigDdosAdaptiveProtectionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type SecurityPolicyDdosProtectionConfigDdosProtectionEnum =
   | "ADVANCED"
   | "ADVANCED_PREVIEW"
   | "STANDARD";
-export const SecurityPolicyDdosProtectionConfigDdosProtectionEnum =
-  /*@__PURE__*/ S.String;
+export const SecurityPolicyDdosProtectionConfigDdosProtectionEnum = S.String;
 
 export interface SecurityPolicyDdosProtectionConfig {
   /** DDoS Protection for Network Load Balancers (and VMs with public IPs) builds DDoS mitigations that minimize collateral damage. It quantifies this as the fraction of a non-abuse baseline that's inadvertently blocked. Rules whose collateral damage exceeds ddosImpactedBaselineThreshold will not be deployed. Using a lower value will prioritize keeping collateral damage low, possibly at the cost of its effectiveness in rate limiting some or all of the attack. It should typically be unset, so Advanced DDoS (and Adaptive Protection) uses the best mitigation it can find. Setting the threshold is advised if there are logs for false positive detections with high collateral damage, and will cause Advanced DDoS to attempt to find a less aggressive rule that satisfies the constraint. If a suitable rule cannot be found, the system falls back to either no mitigation for smaller attacks or broader network throttles for larger ones. */
@@ -22251,15 +22147,13 @@ export const SecurityPolicyAdvancedOptionsConfigJsonCustomConfig =
 export type SecurityPolicyAdvancedOptionsConfigLogLevelEnum =
   | "NORMAL"
   | "VERBOSE";
-export const SecurityPolicyAdvancedOptionsConfigLogLevelEnum =
-  /*@__PURE__*/ S.String;
+export const SecurityPolicyAdvancedOptionsConfigLogLevelEnum = S.String;
 
 export type SecurityPolicyAdvancedOptionsConfigJsonParsingEnum =
   | "DISABLED"
   | "STANDARD"
   | "STANDARD_WITH_GRAPHQL";
-export const SecurityPolicyAdvancedOptionsConfigJsonParsingEnum =
-  /*@__PURE__*/ S.String;
+export const SecurityPolicyAdvancedOptionsConfigJsonParsingEnum = S.String;
 
 export interface SecurityPolicyAdvancedOptionsConfig {
   /** The maximum request size chosen by the customer with Waf enabled. Values supported are "8KB", "16KB, "32KB", "48KB" and "64KB". Values are case insensitive. */
@@ -22508,8 +22402,7 @@ export type ServiceAttachmentConnectedEndpointStatusEnum =
   | "PENDING"
   | "REJECTED"
   | "STATUS_UNSPECIFIED";
-export const ServiceAttachmentConnectedEndpointStatusEnum =
-  /*@__PURE__*/ S.String;
+export const ServiceAttachmentConnectedEndpointStatusEnum = S.String;
 
 /** [Output Only] A connection connected to this service attachment. */
 export interface ServiceAttachmentConnectedEndpoint {
@@ -22552,20 +22445,19 @@ export type ServiceAttachmentConnectionPreferenceEnum =
   | "ACCEPT_AUTOMATIC"
   | "ACCEPT_MANUAL"
   | "CONNECTION_PREFERENCE_UNSPECIFIED";
-export const ServiceAttachmentConnectionPreferenceEnum = /*@__PURE__*/ S.String;
+export const ServiceAttachmentConnectionPreferenceEnum = S.String;
 
 export type ServiceAttachmentTunnelingConfigEncapsulationProfileEnum =
   | "GENEVE_SECURITY_V1"
   | "UNSPECIFIED_ENCAPSULATION_PROFILE";
 export const ServiceAttachmentTunnelingConfigEncapsulationProfileEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ServiceAttachmentTunnelingConfigRoutingModeEnum =
   | "PACKET_INJECTION"
   | "STANDARD_ROUTING"
   | "UNSPECIFIED_ROUTING_MODE";
-export const ServiceAttachmentTunnelingConfigRoutingModeEnum =
-  /*@__PURE__*/ S.String;
+export const ServiceAttachmentTunnelingConfigRoutingModeEnum = S.String;
 
 /** Use to configure this PSC connection in tunneling mode. In tunneling mode traffic from consumer to producer will be encapsulated as it crosses the VPC boundary and traffic from producer to consumer will be decapsulated in the same manner. */
 export interface ServiceAttachmentTunnelingConfig {
@@ -22703,8 +22595,7 @@ export type ServiceAttachmentsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ServiceAttachmentsScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const ServiceAttachmentsScopedListWarningCodeEnum = S.String;
 
 export type ServiceAttachmentsScopedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -22801,8 +22692,7 @@ export type ServiceAttachmentAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ServiceAttachmentAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const ServiceAttachmentAggregatedListWarningCodeEnum = S.String;
 
 export interface ServiceAttachmentAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -22934,7 +22824,7 @@ export type SnapshotsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SnapshotsScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const SnapshotsScopedListWarningCodeEnum = S.String;
 
 export interface SnapshotsScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -22958,7 +22848,7 @@ export type SnapshotArchitectureEnum =
   | "ARCHITECTURE_UNSPECIFIED"
   | "ARM64"
   | "X86_64";
-export const SnapshotArchitectureEnum = /*@__PURE__*/ S.String;
+export const SnapshotArchitectureEnum = S.String;
 
 /** Additional snapshot params. */
 export interface SnapshotParams {
@@ -22972,7 +22862,7 @@ export const SnapshotParams = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SnapshotParams" }) as any as S.Schema<SnapshotParams>;
 
 export type SnapshotStorageBytesStatusEnum = "UPDATING" | "UP_TO_DATE";
-export const SnapshotStorageBytesStatusEnum = /*@__PURE__*/ S.String;
+export const SnapshotStorageBytesStatusEnum = S.String;
 
 export type SnapshotStatusEnum =
   | "CREATING"
@@ -22980,10 +22870,10 @@ export type SnapshotStatusEnum =
   | "FAILED"
   | "READY"
   | "UPLOADING";
-export const SnapshotStatusEnum = /*@__PURE__*/ S.String;
+export const SnapshotStatusEnum = S.String;
 
 export type SnapshotSnapshotTypeEnum = "ARCHIVE" | "STANDARD";
-export const SnapshotSnapshotTypeEnum = /*@__PURE__*/ S.String;
+export const SnapshotSnapshotTypeEnum = S.String;
 
 /** Represents a Persistent Disk Snapshot resource. You can use snapshots to back up data on a regular interval. For more information, read Creating persistent disk snapshots. */
 export interface Snapshot {
@@ -23174,7 +23064,7 @@ export type SnapshotAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SnapshotAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const SnapshotAggregatedListWarningCodeEnum = S.String;
 
 export type SnapshotAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -23307,8 +23197,7 @@ export type SslCertificateAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SslCertificateAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const SslCertificateAggregatedListWarningCodeEnum = S.String;
 
 export type SslCertificateAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -23347,8 +23236,7 @@ export type SslCertificateManagedSslCertificateStatusEnum =
   | "PROVISIONING_FAILED"
   | "PROVISIONING_FAILED_PERMANENTLY"
   | "RENEWAL_FAILED";
-export const SslCertificateManagedSslCertificateStatusEnum =
-  /*@__PURE__*/ S.String;
+export const SslCertificateManagedSslCertificateStatusEnum = S.String;
 
 export type SslCertificateManagedSslCertificateDomainStatusValueEnum =
   | "ACTIVE"
@@ -23359,7 +23247,7 @@ export type SslCertificateManagedSslCertificateDomainStatusValueEnum =
   | "FAILED_RATE_LIMITED"
   | "PROVISIONING";
 export const SslCertificateManagedSslCertificateDomainStatusValueEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type SslCertificateManagedSslCertificateDomainStatusValueEnumMap = {
   [key: string]:
@@ -23398,7 +23286,7 @@ export type SslCertificateTypeEnum =
   | "MANAGED"
   | "SELF_MANAGED"
   | "TYPE_UNSPECIFIED";
-export const SslCertificateTypeEnum = /*@__PURE__*/ S.String;
+export const SslCertificateTypeEnum = S.String;
 
 /** Configuration and status of a self-managed SSL certificate. */
 export interface SslCertificateSelfManagedSslCertificate {
@@ -23502,7 +23390,7 @@ export type SslCertificatesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SslCertificatesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const SslCertificatesScopedListWarningCodeEnum = S.String;
 
 export type SslCertificatesScopedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -23668,7 +23556,7 @@ export type SslPoliciesAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SslPoliciesAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const SslPoliciesAggregatedListWarningCodeEnum = S.String;
 
 export interface SslPoliciesAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -23718,7 +23606,7 @@ export type SslPoliciesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SslPoliciesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const SslPoliciesScopedListWarningCodeEnum = S.String;
 
 export type SslPoliciesScopedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -23779,7 +23667,7 @@ export type SslPolicyWarningsItemCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SslPolicyWarningsItemCodeEnum = /*@__PURE__*/ S.String;
+export const SslPolicyWarningsItemCodeEnum = S.String;
 
 export type SslPolicyWarningsItemDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -23821,20 +23709,20 @@ export type SslPolicyProfileEnum =
   | "FIPS_202205"
   | "MODERN"
   | "RESTRICTED";
-export const SslPolicyProfileEnum = /*@__PURE__*/ S.String;
+export const SslPolicyProfileEnum = S.String;
 
 export type SslPolicyPostQuantumKeyExchangeEnum =
   | "DEFAULT"
   | "DEFERRED"
   | "ENABLED";
-export const SslPolicyPostQuantumKeyExchangeEnum = /*@__PURE__*/ S.String;
+export const SslPolicyPostQuantumKeyExchangeEnum = S.String;
 
 export type SslPolicyMinTlsVersionEnum =
   | "TLS_1_0"
   | "TLS_1_1"
   | "TLS_1_2"
   | "TLS_1_3";
-export const SslPolicyMinTlsVersionEnum = /*@__PURE__*/ S.String;
+export const SslPolicyMinTlsVersionEnum = S.String;
 
 /** Represents an SSL Policy resource. Use SSL policies to control SSL features, such as versions and cipher suites, that are offered by Application Load Balancers and proxy Network Load Balancers. For more information, read SSL policies overview. */
 export interface SslPolicy {
@@ -24026,7 +23914,7 @@ export type StoragePoolsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const StoragePoolsScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const StoragePoolsScopedListWarningCodeEnum = S.String;
 
 export interface StoragePoolsScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -24075,14 +23963,13 @@ export type StoragePoolCapacityProvisioningTypeEnum =
   | "ADVANCED"
   | "STANDARD"
   | "UNSPECIFIED";
-export const StoragePoolCapacityProvisioningTypeEnum = /*@__PURE__*/ S.String;
+export const StoragePoolCapacityProvisioningTypeEnum = S.String;
 
 export type StoragePoolPerformanceProvisioningTypeEnum =
   | "ADVANCED"
   | "STANDARD"
   | "UNSPECIFIED";
-export const StoragePoolPerformanceProvisioningTypeEnum =
-  /*@__PURE__*/ S.String;
+export const StoragePoolPerformanceProvisioningTypeEnum = S.String;
 
 /** [Output Only] Contains output only fields. */
 export interface StoragePoolResourceStatus {
@@ -24137,7 +24024,7 @@ export const StoragePoolResourceStatus = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StoragePoolResourceStatus>;
 
 export type StoragePoolStateEnum = "CREATING" | "DELETING" | "FAILED" | "READY";
-export const StoragePoolStateEnum = /*@__PURE__*/ S.String;
+export const StoragePoolStateEnum = S.String;
 
 /** Additional storage pool params. */
 export interface StoragePoolParams {
@@ -24306,7 +24193,7 @@ export type StoragePoolAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const StoragePoolAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const StoragePoolAggregatedListWarningCodeEnum = S.String;
 
 export interface StoragePoolAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -24428,8 +24315,7 @@ export type StoragePoolTypeAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const StoragePoolTypeAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const StoragePoolTypeAggregatedListWarningCodeEnum = S.String;
 
 export type StoragePoolTypeAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -24504,7 +24390,7 @@ export type StoragePoolTypesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const StoragePoolTypesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const StoragePoolTypesScopedListWarningCodeEnum = S.String;
 
 export interface StoragePoolTypesScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -24640,7 +24526,7 @@ export const StoragePoolTypeAggregatedList = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StoragePoolTypeAggregatedList>;
 
 export type AggregatedListSubnetworksViewsEnum = "DEFAULT" | "WITH_UTILIZATION";
-export const AggregatedListSubnetworksViewsEnum = /*@__PURE__*/ S.String;
+export const AggregatedListSubnetworksViewsEnum = S.String;
 
 export type AggregatedListSubnetworksViewsEnumList = Array<
   AggregatedListSubnetworksViewsEnum | (string & {})
@@ -24733,7 +24619,7 @@ export type SubnetworkAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SubnetworkAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const SubnetworkAggregatedListWarningCodeEnum = S.String;
 
 export interface SubnetworkAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -24754,17 +24640,17 @@ export const SubnetworkAggregatedListWarning = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SubnetworkAggregatedListWarning>;
 
 export type SubnetworkRoleEnum = "ACTIVE" | "BACKUP";
-export const SubnetworkRoleEnum = /*@__PURE__*/ S.String;
+export const SubnetworkRoleEnum = S.String;
 
 export type SubnetworkStateEnum = "DRAINING" | "READY";
-export const SubnetworkStateEnum = /*@__PURE__*/ S.String;
+export const SubnetworkStateEnum = S.String;
 
 export type SubnetworkIpv6NetworkTierEnum =
   | "FIXED_STANDARD"
   | "PREMIUM"
   | "STANDARD"
   | "STANDARD_OVERRIDES_FIXED_STANDARD";
-export const SubnetworkIpv6NetworkTierEnum = /*@__PURE__*/ S.String;
+export const SubnetworkIpv6NetworkTierEnum = S.String;
 
 export type SubnetworkLogConfigAggregationIntervalEnum =
   | "INTERVAL_10_MIN"
@@ -24773,14 +24659,13 @@ export type SubnetworkLogConfigAggregationIntervalEnum =
   | "INTERVAL_30_SEC"
   | "INTERVAL_5_MIN"
   | "INTERVAL_5_SEC";
-export const SubnetworkLogConfigAggregationIntervalEnum =
-  /*@__PURE__*/ S.String;
+export const SubnetworkLogConfigAggregationIntervalEnum = S.String;
 
 export type SubnetworkLogConfigMetadataEnum =
   | "CUSTOM_METADATA"
   | "EXCLUDE_ALL_METADATA"
   | "INCLUDE_ALL_METADATA";
-export const SubnetworkLogConfigMetadataEnum = /*@__PURE__*/ S.String;
+export const SubnetworkLogConfigMetadataEnum = S.String;
 
 /** The available logging options for this subnetwork. */
 export interface SubnetworkLogConfig {
@@ -24813,7 +24698,7 @@ export const SubnetworkLogConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SubnetworkLogConfig>;
 
 export type SubnetworkIpv6GceEndpointEnum = "VM_AND_FR" | "VM_ONLY";
-export const SubnetworkIpv6GceEndpointEnum = /*@__PURE__*/ S.String;
+export const SubnetworkIpv6GceEndpointEnum = S.String;
 
 export type SubnetworkPurposeEnum =
   | "CUSTOM_HARDWARE_LINK"
@@ -24825,19 +24710,19 @@ export type SubnetworkPurposeEnum =
   | "PRIVATE_RFC_1918"
   | "PRIVATE_SERVICE_CONNECT"
   | "REGIONAL_MANAGED_PROXY";
-export const SubnetworkPurposeEnum = /*@__PURE__*/ S.String;
+export const SubnetworkPurposeEnum = S.String;
 
 export type SubnetworkPrivateIpv6GoogleAccessEnum =
   | "DISABLE_GOOGLE_ACCESS"
   | "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE"
   | "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE";
-export const SubnetworkPrivateIpv6GoogleAccessEnum = /*@__PURE__*/ S.String;
+export const SubnetworkPrivateIpv6GoogleAccessEnum = S.String;
 
 export type SubnetworkSecondaryRangeIpVersionEnum =
   | "IPV4"
   | "IPV6"
   | "IP_VERSION_UNSPECIFIED";
-export const SubnetworkSecondaryRangeIpVersionEnum = /*@__PURE__*/ S.String;
+export const SubnetworkSecondaryRangeIpVersionEnum = S.String;
 
 /** Represents a secondary IP range of a subnetwork. */
 export interface SubnetworkSecondaryRange {
@@ -24877,10 +24762,10 @@ export type SubnetworkResolveSubnetMaskEnum =
   | "ARP_BROADCAST_PRIMARY_RANGE"
   | "ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING"
   | "ARP_PRIMARY_RANGE";
-export const SubnetworkResolveSubnetMaskEnum = /*@__PURE__*/ S.String;
+export const SubnetworkResolveSubnetMaskEnum = S.String;
 
 export type SubnetworkIpv6AccessTypeEnum = "EXTERNAL" | "INTERNAL";
-export const SubnetworkIpv6AccessTypeEnum = /*@__PURE__*/ S.String;
+export const SubnetworkIpv6AccessTypeEnum = S.String;
 
 /** The IPV6 utilization of a single IP range. */
 export interface SubnetworkUtilizationDetailsIPV6Utilization {
@@ -24953,7 +24838,7 @@ export const SubnetworkUtilizationDetails = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SubnetworkUtilizationDetails>;
 
 export type SubnetworkStackTypeEnum = "IPV4_IPV6" | "IPV4_ONLY" | "IPV6_ONLY";
-export const SubnetworkStackTypeEnum = /*@__PURE__*/ S.String;
+export const SubnetworkStackTypeEnum = S.String;
 
 /** Represents a Subnetwork resource. A subnetwork (also known as a subnet) is a logical partition of a Virtual Private Cloud network with one primary IP range and zero or more secondary IP ranges. For more information, read Virtual Private Cloud (VPC) Network. */
 export interface Subnetwork {
@@ -25112,7 +24997,7 @@ export type SubnetworksScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SubnetworksScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const SubnetworksScopedListWarningCodeEnum = S.String;
 
 export interface SubnetworksScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -25318,8 +25203,7 @@ export type TargetHttpProxiesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetHttpProxiesScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const TargetHttpProxiesScopedListWarningCodeEnum = S.String;
 
 export interface TargetHttpProxiesScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -25404,8 +25288,7 @@ export type TargetHttpProxyAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetHttpProxyAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const TargetHttpProxyAggregatedListWarningCodeEnum = S.String;
 
 export interface TargetHttpProxyAggregatedListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -25526,8 +25409,7 @@ export type TargetHttpsProxyAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetHttpsProxyAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const TargetHttpsProxyAggregatedListWarningCodeEnum = S.String;
 
 export type TargetHttpsProxyAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -25561,14 +25443,14 @@ export const TargetHttpsProxyAggregatedListWarning = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TargetHttpsProxyAggregatedListWarning>;
 
 export type TargetHttpsProxyQuicOverrideEnum = "DISABLE" | "ENABLE" | "NONE";
-export const TargetHttpsProxyQuicOverrideEnum = /*@__PURE__*/ S.String;
+export const TargetHttpsProxyQuicOverrideEnum = S.String;
 
 export type TargetHttpsProxyTlsEarlyDataEnum =
   | "DISABLED"
   | "PERMISSIVE"
   | "STRICT"
   | "UNRESTRICTED";
-export const TargetHttpsProxyTlsEarlyDataEnum = /*@__PURE__*/ S.String;
+export const TargetHttpsProxyTlsEarlyDataEnum = S.String;
 
 /** Represents a Target HTTPS Proxy resource. Google Compute Engine has two Target HTTPS Proxy resources: * [Global](/compute/docs/reference/rest/beta/targetHttpsProxies) * [Regional](/compute/docs/reference/rest/beta/regionTargetHttpsProxies) A target HTTPS proxy is a component of Google Cloud HTTPS load balancers. * targetHttpsProxies are used by global external Application Load Balancers, classic Application Load Balancers, cross-region internal Application Load Balancers, and Traffic Director. * regionTargetHttpsProxies are used by regional internal Application Load Balancers and regional external Application Load Balancers. Forwarding rules reference a target HTTPS proxy, and the target proxy then references a URL map. For more information, readUsing Target Proxies and Forwarding rule concepts. */
 export interface TargetHttpsProxy {
@@ -25678,8 +25560,7 @@ export type TargetHttpsProxiesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetHttpsProxiesScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const TargetHttpsProxiesScopedListWarningCodeEnum = S.String;
 
 export type TargetHttpsProxiesScopedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -25846,8 +25727,7 @@ export type TargetInstanceAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetInstanceAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const TargetInstanceAggregatedListWarningCodeEnum = S.String;
 
 export interface TargetInstanceAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -25868,7 +25748,7 @@ export const TargetInstanceAggregatedListWarning = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TargetInstanceAggregatedListWarning>;
 
 export type TargetInstanceNatPolicyEnum = "NO_NAT";
-export const TargetInstanceNatPolicyEnum = /*@__PURE__*/ S.String;
+export const TargetInstanceNatPolicyEnum = S.String;
 
 /** Represents a Target Instance resource. You can use a target instance to handle traffic for one or more forwarding rules, which is ideal for forwarding protocol traffic that is managed by a single source. For example, ESP, AH, TCP, or UDP. For more information, readTarget instances. */
 export interface TargetInstance {
@@ -25946,7 +25826,7 @@ export type TargetInstancesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetInstancesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const TargetInstancesScopedListWarningCodeEnum = S.String;
 
 export type TargetInstancesScopedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -26112,7 +25992,7 @@ export type TargetPoolAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetPoolAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const TargetPoolAggregatedListWarningCodeEnum = S.String;
 
 export interface TargetPoolAggregatedListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -26173,7 +26053,7 @@ export type TargetPoolsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetPoolsScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const TargetPoolsScopedListWarningCodeEnum = S.String;
 
 export interface TargetPoolsScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -26203,7 +26083,7 @@ export type TargetPoolSessionAffinityEnum =
   | "HTTP_COOKIE"
   | "NONE"
   | "STRONG_COOKIE_AFFINITY";
-export const TargetPoolSessionAffinityEnum = /*@__PURE__*/ S.String;
+export const TargetPoolSessionAffinityEnum = S.String;
 
 /** Represents a Target Pool resource. Target pools are used with external passthrough Network Load Balancers. A target pool references member instances, an associated legacy HttpHealthCheck resource, and, optionally, a backup target pool. For more information, readUsing target pools. */
 export interface TargetPool {
@@ -26355,10 +26235,10 @@ export type TargetTcpProxyLoadBalancingSchemeEnum =
   | "EXTERNAL_MANAGED"
   | "INTERNAL_MANAGED"
   | "LOAD_BALANCING_SCHEME_UNSPECIFIED";
-export const TargetTcpProxyLoadBalancingSchemeEnum = /*@__PURE__*/ S.String;
+export const TargetTcpProxyLoadBalancingSchemeEnum = S.String;
 
 export type TargetTcpProxyProxyHeaderEnum = "NONE" | "PROXY_V1";
-export const TargetTcpProxyProxyHeaderEnum = /*@__PURE__*/ S.String;
+export const TargetTcpProxyProxyHeaderEnum = S.String;
 
 /** Represents a Target TCP Proxy resource. A target TCP proxy is a component of a Proxy Network Load Balancer. The forwarding rule references the target TCP proxy, and the target proxy then references a backend service. For more information, readProxy Network Load Balancer overview. */
 export interface TargetTcpProxy {
@@ -26448,7 +26328,7 @@ export type TargetTcpProxiesScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetTcpProxiesScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const TargetTcpProxiesScopedListWarningCodeEnum = S.String;
 
 export interface TargetTcpProxiesScopedListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -26533,8 +26413,7 @@ export type TargetTcpProxyAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetTcpProxyAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const TargetTcpProxyAggregatedListWarningCodeEnum = S.String;
 
 export interface TargetTcpProxyAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -26654,8 +26533,7 @@ export type TargetVpnGatewayAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetVpnGatewayAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const TargetVpnGatewayAggregatedListWarningCodeEnum = S.String;
 
 export type TargetVpnGatewayAggregatedListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -26693,7 +26571,7 @@ export type TargetVpnGatewayStatusEnum =
   | "DELETING"
   | "FAILED"
   | "READY";
-export const TargetVpnGatewayStatusEnum = /*@__PURE__*/ S.String;
+export const TargetVpnGatewayStatusEnum = S.String;
 
 export type TargetVpnGatewayParams = InterconnectAttachmentParams;
 export const TargetVpnGatewayParams = InterconnectAttachmentParams;
@@ -26797,8 +26675,7 @@ export type TargetVpnGatewaysScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetVpnGatewaysScopedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const TargetVpnGatewaysScopedListWarningCodeEnum = S.String;
 
 export interface TargetVpnGatewaysScopedListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -26951,7 +26828,7 @@ export type UrlMapsAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const UrlMapsAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const UrlMapsAggregatedListWarningCodeEnum = S.String;
 
 export interface UrlMapsAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -27078,8 +26955,7 @@ export type HttpRedirectActionRedirectResponseCodeEnum =
   | "PERMANENT_REDIRECT"
   | "SEE_OTHER"
   | "TEMPORARY_REDIRECT";
-export const HttpRedirectActionRedirectResponseCodeEnum =
-  /*@__PURE__*/ S.String;
+export const HttpRedirectActionRedirectResponseCodeEnum = S.String;
 
 /** Specifies settings for an HTTP redirect. */
 export interface HttpRedirectAction {
@@ -27426,8 +27302,7 @@ export type ImageOptimizationPolicyQueryParameterInterpretationEnum =
   | "DISABLED"
   | "ENABLED"
   | "QUERY_PARAMETER_INTERPRETATION_UNSPECIFIED";
-export const ImageOptimizationPolicyQueryParameterInterpretationEnum =
-  /*@__PURE__*/ S.String;
+export const ImageOptimizationPolicyQueryParameterInterpretationEnum = S.String;
 
 /** The configuration for Cloud CDN's image optimization feature. This feature dynamically processes and delivers images from the network edge. Image Optimization is only available for Global External Application Load Balancers. Either Cloud CDN must be enabled on the backend service or backend bucket serving the route, or cache policy must be configured on the same route. */
 export interface ImageOptimizationPolicy {
@@ -27506,7 +27381,7 @@ export type CachePolicyCacheModeEnum =
   | "CACHE_ALL_STATIC"
   | "FORCE_CACHE_ALL"
   | "USE_ORIGIN_HEADERS";
-export const CachePolicyCacheModeEnum = /*@__PURE__*/ S.String;
+export const CachePolicyCacheModeEnum = S.String;
 
 /** Message containing what to include in the cache key for a request for Cache Policy defined on Route Action. */
 export interface CachePolicyCacheKeyPolicy {
@@ -27897,7 +27772,7 @@ export type UrlMapsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const UrlMapsScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const UrlMapsScopedListWarningCodeEnum = S.String;
 
 export interface UrlMapsScopedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -28051,7 +27926,7 @@ export type VpnGatewayAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const VpnGatewayAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const VpnGatewayAggregatedListWarningCodeEnum = S.String;
 
 export interface VpnGatewayAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -28101,7 +27976,7 @@ export type VpnGatewaysScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const VpnGatewaysScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const VpnGatewaysScopedListWarningCodeEnum = S.String;
 
 export type VpnGatewaysScopedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -28164,10 +28039,10 @@ export type VpnGatewayParams = InterconnectAttachmentParams;
 export const VpnGatewayParams = InterconnectAttachmentParams;
 
 export type VpnGatewayGatewayIpVersionEnum = "IPV4" | "IPV6";
-export const VpnGatewayGatewayIpVersionEnum = /*@__PURE__*/ S.String;
+export const VpnGatewayGatewayIpVersionEnum = S.String;
 
 export type VpnGatewayStackTypeEnum = "IPV4_IPV6" | "IPV4_ONLY" | "IPV6_ONLY";
-export const VpnGatewayStackTypeEnum = /*@__PURE__*/ S.String;
+export const VpnGatewayStackTypeEnum = S.String;
 
 /** Represents a HA VPN gateway. HA VPN is a high-availability (HA) Cloud VPN solution that lets you securely connect your on-premises network to your Google Cloud Virtual Private Cloud network through an IPsec VPN connection in a single region. For more information about Cloud HA VPN solutions, see Cloud VPN topologies . */
 export interface VpnGateway {
@@ -28362,7 +28237,7 @@ export const VpnTunnelCipherSuite = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VpnTunnelCipherSuite>;
 
 export type VpnTunnelCapacityTierEnum = "DEFAULT" | "HIGH";
-export const VpnTunnelCapacityTierEnum = /*@__PURE__*/ S.String;
+export const VpnTunnelCapacityTierEnum = S.String;
 
 export type VpnTunnelParams = InterconnectAttachmentParams;
 export const VpnTunnelParams = InterconnectAttachmentParams;
@@ -28381,7 +28256,7 @@ export type VpnTunnelStatusEnum =
   | "REJECTED"
   | "STOPPED"
   | "WAITING_FOR_FULL_CONFIG";
-export const VpnTunnelStatusEnum = /*@__PURE__*/ S.String;
+export const VpnTunnelStatusEnum = S.String;
 
 /** Represents a Cloud VPN Tunnel resource. For more information about VPN, read the the Cloud VPN Overview. */
 export interface VpnTunnel {
@@ -28507,7 +28382,7 @@ export type VpnTunnelsScopedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const VpnTunnelsScopedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const VpnTunnelsScopedListWarningCodeEnum = S.String;
 
 export type VpnTunnelsScopedListWarningDataItem = OperationWarningsItemDataItem;
 export const VpnTunnelsScopedListWarningDataItem =
@@ -28590,7 +28465,7 @@ export type VpnTunnelAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const VpnTunnelAggregatedListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const VpnTunnelAggregatedListWarningCodeEnum = S.String;
 
 export type VpnTunnelAggregatedListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -28711,7 +28586,7 @@ export type InstanceGroupManagersApplyUpdatesRequestMostDisruptiveAllowedActionE
   | "RESTART"
   | "RESTART_IN_PLACE";
 export const InstanceGroupManagersApplyUpdatesRequestMostDisruptiveAllowedActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InstanceGroupManagersApplyUpdatesRequestAllowedActionsItemEnum =
   | "NONE"
@@ -28720,7 +28595,7 @@ export type InstanceGroupManagersApplyUpdatesRequestAllowedActionsItemEnum =
   | "RESTART"
   | "RESTART_IN_PLACE";
 export const InstanceGroupManagersApplyUpdatesRequestAllowedActionsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InstanceGroupManagersApplyUpdatesRequestAllowedActionsItemEnumList =
   Array<
@@ -28739,7 +28614,7 @@ export type InstanceGroupManagersApplyUpdatesRequestMinimalActionEnum =
   | "RESTART"
   | "RESTART_IN_PLACE";
 export const InstanceGroupManagersApplyUpdatesRequestMinimalActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** InstanceGroupManagers.applyUpdatesToInstances */
 export interface InstanceGroupManagersApplyUpdatesRequest {
@@ -28814,7 +28689,7 @@ export type RegionInstanceGroupManagersApplyUpdatesRequestMostDisruptiveAllowedA
   | "RESTART"
   | "RESTART_IN_PLACE";
 export const RegionInstanceGroupManagersApplyUpdatesRequestMostDisruptiveAllowedActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RegionInstanceGroupManagersApplyUpdatesRequestMinimalActionEnum =
   | "NONE"
@@ -28823,7 +28698,7 @@ export type RegionInstanceGroupManagersApplyUpdatesRequestMinimalActionEnum =
   | "RESTART"
   | "RESTART_IN_PLACE";
 export const RegionInstanceGroupManagersApplyUpdatesRequestMinimalActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RegionInstanceGroupManagersApplyUpdatesRequestAllowedActionsItemEnum =
   | "NONE"
@@ -28832,7 +28707,7 @@ export type RegionInstanceGroupManagersApplyUpdatesRequestAllowedActionsItemEnum
   | "RESTART"
   | "RESTART_IN_PLACE";
 export const RegionInstanceGroupManagersApplyUpdatesRequestAllowedActionsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RegionInstanceGroupManagersApplyUpdatesRequestAllowedActionsItemEnumList =
   Array<
@@ -29178,7 +29053,7 @@ export type LocationPolicyLocationPreferenceEnum =
   | "ALLOW"
   | "DENY"
   | "PREFERENCE_UNSPECIFIED";
-export const LocationPolicyLocationPreferenceEnum = /*@__PURE__*/ S.String;
+export const LocationPolicyLocationPreferenceEnum = S.String;
 
 /** Per-zone constraints on location policy for this zone. */
 export interface LocationPolicyLocationConstraints {
@@ -29238,7 +29113,7 @@ export type LocationPolicyTargetShapeEnum =
   | "ANY"
   | "ANY_SINGLE_ZONE"
   | "BALANCED";
-export const LocationPolicyTargetShapeEnum = /*@__PURE__*/ S.String;
+export const LocationPolicyTargetShapeEnum = S.String;
 
 /** Configuration for location policy among multiple possible locations (e.g. preferences for zone selection among zones in a single region). */
 export interface LocationPolicy {
@@ -29534,8 +29409,7 @@ export type FutureResourcesSpecLocationPolicyLocationPreferenceEnum =
   | "ALLOW"
   | "DENY"
   | "PREFERENCE_UNSPECIFIED";
-export const FutureResourcesSpecLocationPolicyLocationPreferenceEnum =
-  /*@__PURE__*/ S.String;
+export const FutureResourcesSpecLocationPolicyLocationPreferenceEnum = S.String;
 
 /** Preference for a single specified location. */
 export interface FutureResourcesSpecLocationPolicyLocation {
@@ -29580,8 +29454,7 @@ export const FutureResourcesSpecLocationPolicy = /*@__PURE__*/ S.suspend(() =>
 export type FutureResourcesSpecLocalSsdPartitionDiskInterfaceEnum =
   | "NVME"
   | "SCSI";
-export const FutureResourcesSpecLocalSsdPartitionDiskInterfaceEnum =
-  /*@__PURE__*/ S.String;
+export const FutureResourcesSpecLocalSsdPartitionDiskInterfaceEnum = S.String;
 
 export interface FutureResourcesSpecLocalSsdPartition {
   /** Disk interface. Defaults to SCSI. */
@@ -29637,15 +29510,13 @@ export type FutureResourcesSpecAggregateResourcesVmFamilyEnum =
   | "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P"
   | "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P"
   | "VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7X";
-export const FutureResourcesSpecAggregateResourcesVmFamilyEnum =
-  /*@__PURE__*/ S.String;
+export const FutureResourcesSpecAggregateResourcesVmFamilyEnum = S.String;
 
 export type FutureResourcesSpecAggregateResourcesWorkloadTypeEnum =
   | "BATCH"
   | "SERVING"
   | "UNSPECIFIED";
-export const FutureResourcesSpecAggregateResourcesWorkloadTypeEnum =
-  /*@__PURE__*/ S.String;
+export const FutureResourcesSpecAggregateResourcesWorkloadTypeEnum = S.String;
 
 export interface FutureResourcesSpecAggregateResources {
   /** Size of the request, in accelerator (chip) count. */
@@ -29688,7 +29559,7 @@ export type FutureResourcesSpecDeploymentTypeEnum =
   | "DENSE"
   | "DEPLOYMENT_TYPE_UNSPECIFIED"
   | "FLEXIBLE";
-export const FutureResourcesSpecDeploymentTypeEnum = /*@__PURE__*/ S.String;
+export const FutureResourcesSpecDeploymentTypeEnum = S.String;
 
 /** Specification of resources to be created at some time in the future within an optionally specified set of locations, and within the specified time range. */
 export interface FutureResourcesSpec {
@@ -29760,8 +29631,7 @@ export const CalendarModeAdviceRequest_ = /*@__PURE__*/ S.suspend(() =>
 export type FutureResourcesRecommendationRecommendationTypeEnum =
   | "FUTURE_RESERVATION"
   | "RECOMMENDATION_TYPE_UNSPECIFIED";
-export const FutureResourcesRecommendationRecommendationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const FutureResourcesRecommendationRecommendationTypeEnum = S.String;
 
 export type FutureResourcesRecommendationOtherLocationStatusEnum =
   | "CONDITIONS_NOT_MET"
@@ -29769,8 +29639,7 @@ export type FutureResourcesRecommendationOtherLocationStatusEnum =
   | "NO_CAPACITY"
   | "OTHER_LOCATION_STATUS_UNDEFINED"
   | "RECOMMENDED";
-export const FutureResourcesRecommendationOtherLocationStatusEnum =
-  /*@__PURE__*/ S.String;
+export const FutureResourcesRecommendationOtherLocationStatusEnum = S.String;
 
 /** Information about recommendation status for locations that were allowed but not used by the response. */
 export interface FutureResourcesRecommendationOtherLocation {
@@ -30055,7 +29924,7 @@ export type CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelectionAttac
   | "DISK_TYPE_UNSPECIFIED"
   | "SCRATCH";
 export const CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelectionAttachedDiskTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Attached disk configuration. */
 export interface CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelectionAttachedDisk {
@@ -30140,7 +30009,7 @@ export type CapacityAdviceRequestInstancePropertiesSchedulingProvisioningModelEn
   | "SPOT"
   | "STANDARD";
 export const CapacityAdviceRequestInstancePropertiesSchedulingProvisioningModelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines the instance scheduling options. */
 export interface CapacityAdviceRequestInstancePropertiesScheduling {
@@ -30179,8 +30048,7 @@ export type CapacityAdviceRequestDistributionPolicyTargetShapeEnum =
   | "ANY_SINGLE_ZONE"
   | "BALANCED"
   | "TARGET_SHAPE_UNSPECIFIED";
-export const CapacityAdviceRequestDistributionPolicyTargetShapeEnum =
-  /*@__PURE__*/ S.String;
+export const CapacityAdviceRequestDistributionPolicyTargetShapeEnum = S.String;
 
 /** Zone configuration for the distribution policy. */
 export interface CapacityAdviceRequestDistributionPolicyZoneConfiguration {
@@ -30280,7 +30148,7 @@ export type CapacityAdviceResponseRecommendationShardProvisioningModelEnum =
   | "SPOT"
   | "STANDARD";
 export const CapacityAdviceResponseRecommendationShardProvisioningModelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Shards represent blocks of uniform capacity in recommendations. Each shard is for a single zone and a single machine shape. Each shard defines a size expressed as the number of VMs. */
 export interface CapacityAdviceResponseRecommendationShard {
@@ -30373,7 +30241,7 @@ export type CapacityHistoryRequestInstancePropertiesSchedulingProvisioningModelE
   | "SPOT"
   | "STANDARD";
 export const CapacityHistoryRequestInstancePropertiesSchedulingProvisioningModelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Scheduling options. */
 export interface CapacityHistoryRequestInstancePropertiesScheduling {
@@ -30430,7 +30298,7 @@ export type CapacityHistoryRequestTypesItemEnum =
   | "HISTORY_TYPE_UNSPECIFIED"
   | "PREEMPTION"
   | "PRICE";
-export const CapacityHistoryRequestTypesItemEnum = /*@__PURE__*/ S.String;
+export const CapacityHistoryRequestTypesItemEnum = S.String;
 
 export type CapacityHistoryRequestTypesItemEnumList = Array<
   CapacityHistoryRequestTypesItemEnum | (string & {})
@@ -30669,7 +30537,7 @@ export type InstanceGroupManagersConfigureAcceleratorTopologiesRequestAccelerato
   | "ACTIVATE"
   | "DEACTIVATE";
 export const InstanceGroupManagersConfigureAcceleratorTopologiesRequestAcceleratorTopologyConfigurationActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for a single accelerator topology. */
 export interface InstanceGroupManagersConfigureAcceleratorTopologiesRequestAcceleratorTopologyConfiguration {
@@ -30709,7 +30577,7 @@ export type InstanceGroupManagersConfigureAcceleratorTopologiesRequestAccelerato
   | "ACTIVATE"
   | "DEACTIVATE";
 export const InstanceGroupManagersConfigureAcceleratorTopologiesRequestAcceleratorTopologyActionsValueEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InstanceGroupManagersConfigureAcceleratorTopologiesRequestAcceleratorTopologyActionsValueEnumMap =
   {
@@ -30896,14 +30764,14 @@ export type InterconnectGroupsCreateMembersIntentMismatchBehaviorEnum =
   | "REJECT"
   | "UNSPECIFIED";
 export const InterconnectGroupsCreateMembersIntentMismatchBehaviorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InterconnectGroupsCreateMembersInterconnectInputRequestedFeaturesItemEnum =
   | "IF_CROSS_SITE_NETWORK"
   | "IF_L2_FORWARDING"
   | "IF_MACSEC";
 export const InterconnectGroupsCreateMembersInterconnectInputRequestedFeaturesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InterconnectGroupsCreateMembersInterconnectInputRequestedFeaturesItemEnumList =
   Array<
@@ -30920,14 +30788,14 @@ export type InterconnectGroupsCreateMembersInterconnectInputLinkTypeEnum =
   | "LINK_TYPE_ETHERNET_10G_LR"
   | "LINK_TYPE_ETHERNET_400G_LR4";
 export const InterconnectGroupsCreateMembersInterconnectInputLinkTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InterconnectGroupsCreateMembersInterconnectInputInterconnectTypeEnum =
   | "DEDICATED"
   | "IT_PRIVATE"
   | "PARTNER";
 export const InterconnectGroupsCreateMembersInterconnectInputInterconnectTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InterconnectGroupsCreateMembersInterconnectInput {
   /** Target number of physical links in the link bundle, as requested by the customer. */
@@ -31611,7 +31479,7 @@ export type GlobalVmExtensionPolicyRolloutOperationRolloutInputPredefinedRollout
   | "ROLLOUT_PLAN_UNSPECIFIED"
   | "SLOW_ROLLOUT";
 export const GlobalVmExtensionPolicyRolloutOperationRolloutInputPredefinedRolloutPlanEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GlobalVmExtensionPolicyRolloutOperationRolloutInput {
   /** Optional. The name of the rollout plan. Ex. projects//locations/global/rolloutPlans/. */
@@ -34540,7 +34408,7 @@ export const DisableXpnHostProjectsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DisableXpnHostProjectsRequest>;
 
 export type XpnResourceIdTypeEnum = "PROJECT" | "XPN_RESOURCE_TYPE_UNSPECIFIED";
-export const XpnResourceIdTypeEnum = /*@__PURE__*/ S.String;
+export const XpnResourceIdTypeEnum = S.String;
 
 /** Service resource (a.k.a service project) ID. */
 export interface XpnResourceId {
@@ -34910,14 +34778,14 @@ export type InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAccele
   | "ALL_HEALTHY"
   | "UNHEALTHY_OR_MISSING";
 export const InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyInfoInstancesHealthEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyInfoAcceleratorTopologyHealthEnum =
   | "DEGRADED"
   | "HEALTHY"
   | "UNHEALTHY";
 export const InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyInfoAcceleratorTopologyHealthEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyStateErrorErrorsItemErrorDetailsItem {
   /** Links and information to help the user resolve the error. */
@@ -35006,7 +34874,7 @@ export type InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAccele
   | "INACTIVE"
   | "INCOMPLETE";
 export const InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyStateCurrentStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specifies the topology state */
 export interface InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyState {
@@ -35214,7 +35082,7 @@ export type DhcpOptionsConfigAssociationStateEnum =
   | "ACTIVE"
   | "ORPHANED"
   | "STATE_UNSPECIFIED";
-export const DhcpOptionsConfigAssociationStateEnum = /*@__PURE__*/ S.String;
+export const DhcpOptionsConfigAssociationStateEnum = S.String;
 
 /** Association represents the relationship between a DHCP options config and a network. Association represents the relationship between a DHCP options config and a network. */
 export interface DhcpOptionsConfigAssociation {
@@ -35353,8 +35221,7 @@ export const InterconnectDiagnosticsARPEntryList = /*@__PURE__*/ S.Array(
 export type InterconnectDiagnosticsLinkStatusOperationalStatusEnum =
   | "LINK_OPERATIONAL_STATUS_DOWN"
   | "LINK_OPERATIONAL_STATUS_UP";
-export const InterconnectDiagnosticsLinkStatusOperationalStatusEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectDiagnosticsLinkStatusOperationalStatusEnum = S.String;
 
 /** Describes the status of MACsec encryption on the link. */
 export interface InterconnectDiagnosticsMacsecStatus {
@@ -35375,8 +35242,7 @@ export const InterconnectDiagnosticsMacsecStatus = /*@__PURE__*/ S.suspend(() =>
 export type InterconnectDiagnosticsLinkLACPStatusStateEnum =
   | "ACTIVE"
   | "DETACHED";
-export const InterconnectDiagnosticsLinkLACPStatusStateEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectDiagnosticsLinkLACPStatusStateEnum = S.String;
 
 export interface InterconnectDiagnosticsLinkLACPStatus {
   /** The state of a LACP link, which can take one of the following values: - ACTIVE: The link is configured and active within the bundle. - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty. */
@@ -35403,8 +35269,7 @@ export type InterconnectDiagnosticsLinkOpticalPowerStateEnum =
   | "LOW_ALARM"
   | "LOW_WARNING"
   | "OK";
-export const InterconnectDiagnosticsLinkOpticalPowerStateEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectDiagnosticsLinkOpticalPowerStateEnum = S.String;
 
 export interface InterconnectDiagnosticsLinkOpticalPower {
   /** Value of the current receiving or transmitting optical power, read in dBm. Take a known good optical value, give it a 10% margin and trigger warnings relative to that value. In general, a -7dBm warning and a -11dBm alarm are good optical value estimates for most links. */
@@ -35467,14 +35332,12 @@ export const InterconnectDiagnosticsLinkStatusList = /*@__PURE__*/ S.Array(
 export type InterconnectDiagnosticsBundleOperationalStatusEnum =
   | "BUNDLE_OPERATIONAL_STATUS_DOWN"
   | "BUNDLE_OPERATIONAL_STATUS_UP";
-export const InterconnectDiagnosticsBundleOperationalStatusEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectDiagnosticsBundleOperationalStatusEnum = S.String;
 
 export type InterconnectDiagnosticsBundleAggregationTypeEnum =
   | "BUNDLE_AGGREGATION_TYPE_LACP"
   | "BUNDLE_AGGREGATION_TYPE_STATIC";
-export const InterconnectDiagnosticsBundleAggregationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectDiagnosticsBundleAggregationTypeEnum = S.String;
 
 /** Diagnostics information about the Interconnect connection, which contains detailed and current technical information about Google's side of the connection. */
 export interface InterconnectDiagnostics {
@@ -35589,7 +35452,7 @@ export type DiskSettingsAccessLocationPolicyEnum =
   | "ALL_REGIONS"
   | "POLICY_UNSPECIFIED"
   | "SPECIFIC_REGIONS";
-export const DiskSettingsAccessLocationPolicyEnum = /*@__PURE__*/ S.String;
+export const DiskSettingsAccessLocationPolicyEnum = S.String;
 
 /** AccessLocation is only used for regional snapshot. It contains which regions are allowed to create a regional snapshot from disks located in the given region/zone. It includes key-value pairs designed to store the following structure. The keys should match their corresponding values, which must be provided: access_location: { locations { us-central1 { region: "us-central1" }, asia-west2 { region: "asia-west2" } } } */
 export interface DiskSettingsAccessLocation {
@@ -35704,7 +35567,7 @@ export type InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicyTypeEnu
   | "SYSTEM_REGIONAL"
   | "UNSPECIFIED";
 export const InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy {
   /** Output only. [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY. */
@@ -35747,7 +35610,7 @@ export const InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicyList =
   ) as any as S.Schema<InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicyList>;
 
 export type FirewallDirectionEnum = "EGRESS" | "INGRESS";
-export const FirewallDirectionEnum = /*@__PURE__*/ S.String;
+export const FirewallDirectionEnum = S.String;
 
 export interface FirewallDeniedItem {
   /** The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp,icmp, esp, ah, ipip,sctp) or the IP protocol number. */
@@ -35780,7 +35643,7 @@ export const FirewallAllowedItemList = /*@__PURE__*/ S.Array(
 export type FirewallLogConfigMetadataEnum =
   | "EXCLUDE_ALL_METADATA"
   | "INCLUDE_ALL_METADATA";
-export const FirewallLogConfigMetadataEnum = /*@__PURE__*/ S.String;
+export const FirewallLogConfigMetadataEnum = S.String;
 
 /** The available logging options for a firewall rule. */
 export interface FirewallLogConfig {
@@ -35929,7 +35792,7 @@ export type NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicyTypeEnum
   | "SYSTEM"
   | "UNSPECIFIED";
 export const NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy {
   /** Output only. [Output Only] Deprecated, please use short name instead. The display name of the firewall policy. */
@@ -36052,7 +35915,7 @@ export type RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveF
   | "SYSTEM_REGIONAL"
   | "UNSPECIFIED";
 export const RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy {
   /** Output only. [Output only] The packet mirroring rules that apply to the network. */
@@ -36205,7 +36068,7 @@ export type ExternalVpnGatewayRedundancyTypeEnum =
   | "FOUR_IPS_REDUNDANCY"
   | "SINGLE_IP_INTERNALLY_REDUNDANT"
   | "TWO_IPS_REDUNDANCY";
-export const ExternalVpnGatewayRedundancyTypeEnum = /*@__PURE__*/ S.String;
+export const ExternalVpnGatewayRedundancyTypeEnum = S.String;
 
 /** The interface for the external VPN gateway. */
 export interface ExternalVpnGatewayInterface {
@@ -36318,7 +36181,7 @@ export const GetFirewallsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFirewallsRequest>;
 
 export type GetForwardingRulesViewEnum = "BASIC" | "FULL";
-export const GetForwardingRulesViewEnum = /*@__PURE__*/ S.String;
+export const GetForwardingRulesViewEnum = S.String;
 
 export interface GetForwardingRulesRequest {
   /** Project ID for this request. */
@@ -36368,7 +36231,7 @@ export const GetFromFamilyImagesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFromFamilyImagesRequest>;
 
 export type ImageStatusEnum = "DELETING" | "FAILED" | "PENDING" | "READY";
-export const ImageStatusEnum = /*@__PURE__*/ S.String;
+export const ImageStatusEnum = S.String;
 
 /** Additional image params. */
 export interface ImageParams {
@@ -36382,7 +36245,7 @@ export const ImageParams = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ImageParams" }) as any as S.Schema<ImageParams>;
 
 export type ImageRawDiskContainerTypeEnum = "TAR";
-export const ImageRawDiskContainerTypeEnum = /*@__PURE__*/ S.String;
+export const ImageRawDiskContainerTypeEnum = S.String;
 
 export interface ImageRawDisk {
   /** The format used to encode and transmit the block device, which should beTAR. This is just a container and transmission format and not a runtime format. Provided by the client when the disk image is created. */
@@ -36404,10 +36267,10 @@ export type ImageArchitectureEnum =
   | "ARCHITECTURE_UNSPECIFIED"
   | "ARM64"
   | "X86_64";
-export const ImageArchitectureEnum = /*@__PURE__*/ S.String;
+export const ImageArchitectureEnum = S.String;
 
 export type ImageSourceTypeEnum = "RAW";
-export const ImageSourceTypeEnum = /*@__PURE__*/ S.String;
+export const ImageSourceTypeEnum = S.String;
 
 /** Represents an Image resource. You can use images to create boot disks for your VM instances. For more information, read Images. */
 export interface Image {
@@ -36574,7 +36437,7 @@ export const GetGlobalAddressesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetGlobalAddressesRequest>;
 
 export type GetGlobalForwardingRulesViewEnum = "BASIC" | "FULL";
-export const GetGlobalForwardingRulesViewEnum = /*@__PURE__*/ S.String;
+export const GetGlobalForwardingRulesViewEnum = S.String;
 
 export interface GetGlobalForwardingRulesRequest {
   /** Project ID for this request. */
@@ -36620,7 +36483,7 @@ export type GlobalFrontendSettingsBundleTypeEnum =
   | "BUNDLE_TYPE_UNSPECIFIED"
   | "GLOBAL_FRONT_END"
   | "INDIVIDUAL";
-export const GlobalFrontendSettingsBundleTypeEnum = /*@__PURE__*/ S.String;
+export const GlobalFrontendSettingsBundleTypeEnum = S.String;
 
 /** Represents the Global Frontend Bundle settings for a single project. */
 export interface GlobalFrontendSettings {
@@ -36764,8 +36627,7 @@ export const GetGlobalVmExtensionPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
 export type GlobalVmExtensionPolicyScopedResourceStatusEnum =
   | "SCOPED_RESOURCE_STATUS_DELETING"
   | "SCOPED_RESOURCE_STATUS_UNSPECIFIED";
-export const GlobalVmExtensionPolicyScopedResourceStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GlobalVmExtensionPolicyScopedResourceStatusEnum = S.String;
 
 /** Policy for a single extension. */
 export interface GlobalVmExtensionPolicyExtensionPolicy {
@@ -36801,7 +36663,7 @@ export type GlobalVmExtensionPolicyRolloutOperationRolloutStatusRolloutMetadataS
   | "STATE_UNKNOWN"
   | "STATE_UNSPECIFIED";
 export const GlobalVmExtensionPolicyRolloutOperationRolloutStatusRolloutMetadataStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GlobalVmExtensionPolicyRolloutOperationRolloutStatusRolloutMetadataLocationRolloutStatusStateEnum =
   | "LOCATION_ROLLOUT_STATE_COMPLETED"
@@ -36810,7 +36672,7 @@ export type GlobalVmExtensionPolicyRolloutOperationRolloutStatusRolloutMetadataL
   | "LOCATION_ROLLOUT_STATE_SKIPPED"
   | "LOCATION_ROLLOUT_STATE_UNSPECIFIED";
 export const GlobalVmExtensionPolicyRolloutOperationRolloutStatusRolloutMetadataLocationRolloutStatusStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GlobalVmExtensionPolicyRolloutOperationRolloutStatusRolloutMetadataLocationRolloutStatus {
   /** Output only. [Output Only] The state of the location rollout. */
@@ -37141,13 +37003,13 @@ export type HealthStatusWeightErrorEnum =
   | "MISSING_WEIGHT"
   | "UNAVAILABLE_WEIGHT"
   | "WEIGHT_NONE";
-export const HealthStatusWeightErrorEnum = /*@__PURE__*/ S.String;
+export const HealthStatusWeightErrorEnum = S.String;
 
 export type HealthStatusHealthStateEnum = "HEALTHY" | "UNHEALTHY";
-export const HealthStatusHealthStateEnum = /*@__PURE__*/ S.String;
+export const HealthStatusHealthStateEnum = S.String;
 
 export type HealthStatusIpv6HealthStateEnum = "HEALTHY" | "UNHEALTHY";
-export const HealthStatusIpv6HealthStateEnum = /*@__PURE__*/ S.String;
+export const HealthStatusIpv6HealthStateEnum = S.String;
 
 export interface HealthStatus {
   /** The named port of the instance group, not necessarily the port that is health-checked. */
@@ -37287,7 +37149,7 @@ export type CompositeHealthChecksGetHealthResponseHealthSourceHealthHealthStateE
   | "UNHEALTHY"
   | "UNKNOWN";
 export const CompositeHealthChecksGetHealthResponseHealthSourceHealthHealthStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CompositeHealthChecksGetHealthResponseHealthSourceHealth {
   /** Health state of the associated HealthSource resource. */
@@ -37318,7 +37180,7 @@ export type CompositeHealthCheckHealthHealthStateEnum =
   | "HEALTHY"
   | "UNHEALTHY"
   | "UNKNOWN";
-export const CompositeHealthCheckHealthHealthStateEnum = /*@__PURE__*/ S.String;
+export const CompositeHealthCheckHealthHealthStateEnum = S.String;
 
 /** Response message for RegionCompositeHealthChecks.GetHealth */
 export interface CompositeHealthCheckHealth {
@@ -37369,7 +37231,7 @@ export type HealthSourceHealthHealthStateEnum =
   | "HEALTHY"
   | "UNHEALTHY"
   | "UNKNOWN";
-export const HealthSourceHealthHealthStateEnum = /*@__PURE__*/ S.String;
+export const HealthSourceHealthHealthStateEnum = S.String;
 
 export interface HealthSourcesGetHealthResponseSourceInfoBackendInfo {
   /** Fully qualified URL of an instance group or network endpoint group behind the source backend service. */
@@ -37582,7 +37444,7 @@ export type HostStateEnum =
   | "DELETING"
   | "STATE_UNSPECIFIED"
   | "UNAVAILABLE";
-export const HostStateEnum = /*@__PURE__*/ S.String;
+export const HostStateEnum = S.String;
 
 /** Represents a host resource. */
 export interface Host {
@@ -37816,7 +37678,7 @@ export type AuditLogConfigLogTypeEnum =
   | "DATA_READ"
   | "DATA_WRITE"
   | "LOG_TYPE_UNSPECIFIED";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -39086,8 +38948,7 @@ export type InstanceGroupManagerResizeRequestStateEnum =
   | "PROVISIONING"
   | "STATE_UNSPECIFIED"
   | "SUCCEEDED";
-export const InstanceGroupManagerResizeRequestStateEnum =
-  /*@__PURE__*/ S.String;
+export const InstanceGroupManagerResizeRequestStateEnum = S.String;
 
 /** InstanceGroupManagerResizeRequest represents a request to create a number of VMs: either immediately or by queuing the request for the specified time. This resize request is nested under InstanceGroupManager and the VMs created by this request are added to the owning InstanceGroupManager. */
 export interface InstanceGroupManagerResizeRequest {
@@ -39196,7 +39057,7 @@ export type GetInstancesViewEnum =
   | "BASIC"
   | "FULL"
   | "INSTANCE_VIEW_UNSPECIFIED";
-export const GetInstancesViewEnum = /*@__PURE__*/ S.String;
+export const GetInstancesViewEnum = S.String;
 
 export interface GetInstancesRequest {
   /** Name of the instance resource to return. */
@@ -39287,7 +39148,7 @@ export type GetInstanceTemplatesViewEnum =
   | "BASIC"
   | "FULL"
   | "INSTANCE_VIEW_UNSPECIFIED";
-export const GetInstanceTemplatesViewEnum = /*@__PURE__*/ S.String;
+export const GetInstanceTemplatesViewEnum = S.String;
 
 export interface GetInstanceTemplatesRequest {
   /** Project ID for this request. */
@@ -39344,7 +39205,7 @@ export type InstantSnapshotGroupStatusEnum =
   | "INVALID"
   | "READY"
   | "UNKNOWN";
-export const InstantSnapshotGroupStatusEnum = /*@__PURE__*/ S.String;
+export const InstantSnapshotGroupStatusEnum = S.String;
 
 export interface InstantSnapshotGroupSourceInfo {
   consistencyGroupId?: string;
@@ -39470,7 +39331,7 @@ export type InterconnectAttachmentGroupConfiguredAvailabilitySLAEffectiveSlaEnum
   | "PRODUCTION_CRITICAL"
   | "PRODUCTION_NON_CRITICAL";
 export const InterconnectAttachmentGroupConfiguredAvailabilitySLAEffectiveSlaEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockersBlockerTypeEnum =
   | "BLOCKER_TYPE_UNSPECIFIED"
@@ -39481,7 +39342,7 @@ export type InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlock
   | "NO_ATTACHMENTS_IN_METRO_AND_ZONE"
   | "OTHER";
 export const InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockersBlockerTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** [Output Only] Reasons why configuration.availabilitySLA.sla differs from intent.availabilitySLA. This list is empty if and only if those are the same. */
 export interface InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers {
@@ -39704,8 +39565,7 @@ export type InterconnectAttachmentGroupIntentAvailabilitySlaEnum =
   | "NO_SLA"
   | "PRODUCTION_CRITICAL"
   | "PRODUCTION_NON_CRITICAL";
-export const InterconnectAttachmentGroupIntentAvailabilitySlaEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectAttachmentGroupIntentAvailabilitySlaEnum = S.String;
 
 /** The user's intent for this AttachmentGroup. This is the only required field besides the name that must be specified on group creation. */
 export interface InterconnectAttachmentGroupIntent {
@@ -39924,7 +39784,7 @@ export type InterconnectGroupConfiguredTopologyCapabilitySupportedSlaEnum =
   | "PRODUCTION_NON_CRITICAL"
   | "UNSPECIFIED";
 export const InterconnectGroupConfiguredTopologyCapabilitySupportedSlaEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockersBlockerTypeEnum =
   | "INCOMPATIBLE_METROS"
@@ -39934,7 +39794,7 @@ export type InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlock
   | "OTHER"
   | "UNSPECIFIED";
 export const InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockersBlockerTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** [Output Only] Reasons why configuration.topologyCapability.sla differs from intent.topologyCapability. This list is empty if and only if those are the same. */
 export interface InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers {
@@ -40019,8 +39879,7 @@ export type InterconnectGroupIntentTopologyCapabilityEnum =
   | "PRODUCTION_CRITICAL"
   | "PRODUCTION_NON_CRITICAL"
   | "UNSPECIFIED";
-export const InterconnectGroupIntentTopologyCapabilityEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectGroupIntentTopologyCapabilityEnum = S.String;
 
 /** The user's intent for this group. This is the only required field besides the name that must be specified on group creation. */
 export interface InterconnectGroupIntent {
@@ -40103,8 +39962,7 @@ export type InterconnectLocationAvailableLinkTypesItemEnum =
   | "LINK_TYPE_ETHERNET_100G_LR"
   | "LINK_TYPE_ETHERNET_10G_LR"
   | "LINK_TYPE_ETHERNET_400G_LR4";
-export const InterconnectLocationAvailableLinkTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectLocationAvailableLinkTypesItemEnum = S.String;
 
 export type InterconnectLocationAvailableLinkTypesItemEnumList =
   Array<InterconnectLocationAvailableLinkTypesItemEnum>;
@@ -40118,8 +39976,7 @@ export type InterconnectLocationRegionInfoLocationPresenceEnum =
   | "LOCAL_REGION"
   | "LP_GLOBAL"
   | "LP_LOCAL_REGION";
-export const InterconnectLocationRegionInfoLocationPresenceEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectLocationRegionInfoLocationPresenceEnum = S.String;
 
 /** Information about any potential InterconnectAttachments between an Interconnect at a specific InterconnectLocation, and a specific Cloud Region. */
 export interface InterconnectLocationRegionInfo {
@@ -40179,14 +40036,13 @@ export const InterconnectLocationCrossSiteInterconnectInfoList =
   ) as any as S.Schema<InterconnectLocationCrossSiteInterconnectInfoList>;
 
 export type InterconnectLocationStatusEnum = "AVAILABLE" | "CLOSED";
-export const InterconnectLocationStatusEnum = /*@__PURE__*/ S.String;
+export const InterconnectLocationStatusEnum = S.String;
 
 export type InterconnectLocationAvailableFeaturesItemEnum =
   | "IF_CROSS_SITE_NETWORK"
   | "IF_L2_FORWARDING"
   | "IF_MACSEC";
-export const InterconnectLocationAvailableFeaturesItemEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectLocationAvailableFeaturesItemEnum = S.String;
 
 export type InterconnectLocationAvailableFeaturesItemEnumList =
   Array<InterconnectLocationAvailableFeaturesItemEnum>;
@@ -40206,7 +40062,7 @@ export type InterconnectLocationContinentEnum =
   | "EUROPE"
   | "NORTH_AMERICA"
   | "SOUTH_AMERICA";
-export const InterconnectLocationContinentEnum = /*@__PURE__*/ S.String;
+export const InterconnectLocationContinentEnum = S.String;
 
 /** Represents an Interconnect Attachment (VLAN) Location resource. You can use this resource to find location details about an Interconnect attachment (VLAN). For more information about interconnect attachments, read Creating VLAN Attachments. */
 export interface InterconnectLocation {
@@ -40309,8 +40165,7 @@ export const GetInterconnectRemoteLocationsRequest = /*@__PURE__*/ S.suspend(
 export type InterconnectRemoteLocationConstraintsPortPairVlanEnum =
   | "PORT_PAIR_MATCHING_VLAN"
   | "PORT_PAIR_UNCONSTRAINED_VLAN";
-export const InterconnectRemoteLocationConstraintsPortPairVlanEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectRemoteLocationConstraintsPortPairVlanEnum = S.String;
 
 export interface InterconnectRemoteLocationConstraintsSubnetLengthRange {
   min?: number;
@@ -40330,7 +40185,7 @@ export type InterconnectRemoteLocationConstraintsPortPairRemoteLocationEnum =
   | "PORT_PAIR_MATCHING_REMOTE_LOCATION"
   | "PORT_PAIR_UNCONSTRAINED_REMOTE_LOCATION";
 export const InterconnectRemoteLocationConstraintsPortPairRemoteLocationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InterconnectRemoteLocationConstraints {
   /** Output only. [Output Only] Port pair VLAN constraints, which can take one of the following values: PORT_PAIR_UNCONSTRAINED_VLAN, PORT_PAIR_MATCHING_VLAN */
@@ -40358,12 +40213,12 @@ export const InterconnectRemoteLocationConstraints = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<InterconnectRemoteLocationConstraints>;
 
 export type InterconnectRemoteLocationStatusEnum = "AVAILABLE" | "CLOSED";
-export const InterconnectRemoteLocationStatusEnum = /*@__PURE__*/ S.String;
+export const InterconnectRemoteLocationStatusEnum = S.String;
 
 export type InterconnectRemoteLocationLacpEnum =
   | "LACP_SUPPORTED"
   | "LACP_UNSUPPORTED";
-export const InterconnectRemoteLocationLacpEnum = /*@__PURE__*/ S.String;
+export const InterconnectRemoteLocationLacpEnum = S.String;
 
 export type InterconnectRemoteLocationContinentEnum =
   | "AFRICA"
@@ -40371,7 +40226,7 @@ export type InterconnectRemoteLocationContinentEnum =
   | "EUROPE"
   | "NORTH_AMERICA"
   | "SOUTH_AMERICA";
-export const InterconnectRemoteLocationContinentEnum = /*@__PURE__*/ S.String;
+export const InterconnectRemoteLocationContinentEnum = S.String;
 
 export interface InterconnectRemoteLocationPermittedConnections {
   /** Output only. [Output Only] URL of an Interconnect location that is permitted to connect to this Interconnect remote location. */
@@ -40557,18 +40412,17 @@ export type InterconnectLinkTypeEnum =
   | "LINK_TYPE_ETHERNET_100G_LR"
   | "LINK_TYPE_ETHERNET_10G_LR"
   | "LINK_TYPE_ETHERNET_400G_LR4";
-export const InterconnectLinkTypeEnum = /*@__PURE__*/ S.String;
+export const InterconnectLinkTypeEnum = S.String;
 
 export type InterconnectOutageNotificationSourceEnum = "GOOGLE" | "NSRC_GOOGLE";
-export const InterconnectOutageNotificationSourceEnum = /*@__PURE__*/ S.String;
+export const InterconnectOutageNotificationSourceEnum = S.String;
 
 export type InterconnectOutageNotificationIssueTypeEnum =
   | "IT_OUTAGE"
   | "IT_PARTIAL_OUTAGE"
   | "OUTAGE"
   | "PARTIAL_OUTAGE";
-export const InterconnectOutageNotificationIssueTypeEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectOutageNotificationIssueTypeEnum = S.String;
 
 export type InterconnectOutageNotificationStateEnum =
   | "ACTIVE"
@@ -40576,7 +40430,7 @@ export type InterconnectOutageNotificationStateEnum =
   | "COMPLETED"
   | "NS_ACTIVE"
   | "NS_CANCELED";
-export const InterconnectOutageNotificationStateEnum = /*@__PURE__*/ S.String;
+export const InterconnectOutageNotificationStateEnum = S.String;
 
 /** Description of a planned outage on this Interconnect. */
 export interface InterconnectOutageNotification {
@@ -40622,7 +40476,7 @@ export type InterconnectAvailableFeaturesItemEnum =
   | "IF_CROSS_SITE_NETWORK"
   | "IF_L2_FORWARDING"
   | "IF_MACSEC";
-export const InterconnectAvailableFeaturesItemEnum = /*@__PURE__*/ S.String;
+export const InterconnectAvailableFeaturesItemEnum = S.String;
 
 export type InterconnectAvailableFeaturesItemEnumList = Array<
   InterconnectAvailableFeaturesItemEnum | (string & {})
@@ -40635,7 +40489,7 @@ export type InterconnectInterconnectTypeEnum =
   | "DEDICATED"
   | "IT_PRIVATE"
   | "PARTNER";
-export const InterconnectInterconnectTypeEnum = /*@__PURE__*/ S.String;
+export const InterconnectInterconnectTypeEnum = S.String;
 
 /** Additional interconnect parameters. */
 export type InterconnectParams = InterconnectAttachmentParams;
@@ -40645,7 +40499,7 @@ export type InterconnectRequestedFeaturesItemEnum =
   | "IF_CROSS_SITE_NETWORK"
   | "IF_L2_FORWARDING"
   | "IF_MACSEC";
-export const InterconnectRequestedFeaturesItemEnum = /*@__PURE__*/ S.String;
+export const InterconnectRequestedFeaturesItemEnum = S.String;
 
 export type InterconnectRequestedFeaturesItemEnumList = Array<
   InterconnectRequestedFeaturesItemEnum | (string & {})
@@ -40655,15 +40509,15 @@ export const InterconnectRequestedFeaturesItemEnumList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<InterconnectRequestedFeaturesItemEnumList>;
 
 export type InterconnectStateEnum = "ACTIVE" | "UNPROVISIONED";
-export const InterconnectStateEnum = /*@__PURE__*/ S.String;
+export const InterconnectStateEnum = S.String;
 
 export type InterconnectSubzoneEnum = "SUBZONE_A" | "SUBZONE_B";
-export const InterconnectSubzoneEnum = /*@__PURE__*/ S.String;
+export const InterconnectSubzoneEnum = S.String;
 
 export type InterconnectOperationalStatusEnum =
   | "OS_ACTIVE"
   | "OS_UNPROVISIONED";
-export const InterconnectOperationalStatusEnum = /*@__PURE__*/ S.String;
+export const InterconnectOperationalStatusEnum = S.String;
 
 export type InterconnectApplicationAwareInterconnectBandwidthPercentageTrafficClassEnum =
   | "TC1"
@@ -40673,7 +40527,7 @@ export type InterconnectApplicationAwareInterconnectBandwidthPercentageTrafficCl
   | "TC5"
   | "TC6";
 export const InterconnectApplicationAwareInterconnectBandwidthPercentageTrafficClassEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specify bandwidth percentages [1-100] for various traffic classes in BandwidthPercentagePolicy. The sum of all percentages must equal 100. All traffic classes must have a percentage value specified. */
 export interface InterconnectApplicationAwareInterconnectBandwidthPercentage {
@@ -40923,7 +40777,7 @@ export type LicenseCodeStateEnum =
   | "RESTRICTED"
   | "STATE_UNSPECIFIED"
   | "TERMINATED";
-export const LicenseCodeStateEnum = /*@__PURE__*/ S.String;
+export const LicenseCodeStateEnum = S.String;
 
 /** Represents a License Code resource. A License Code is a unique identifier used to represent alicense resource. *Caution* This resource is intended for use only by third-party partners who are creatingCloud Marketplace images. */
 export interface LicenseCode {
@@ -41133,13 +40987,13 @@ export const GetMachineImagesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetMachineImagesRequest>;
 
 export type SavedDiskStorageBytesStatusEnum = "UPDATING" | "UP_TO_DATE";
-export const SavedDiskStorageBytesStatusEnum = /*@__PURE__*/ S.String;
+export const SavedDiskStorageBytesStatusEnum = S.String;
 
 export type SavedDiskArchitectureEnum =
   | "ARCHITECTURE_UNSPECIFIED"
   | "ARM64"
   | "X86_64";
-export const SavedDiskArchitectureEnum = /*@__PURE__*/ S.String;
+export const SavedDiskArchitectureEnum = S.String;
 
 /** An instance-attached disk resource. */
 export interface SavedDisk {
@@ -41173,27 +41027,25 @@ export type SourceInstancePropertiesPostKeyRevocationActionTypeEnum =
   | "NOOP"
   | "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED"
   | "SHUTDOWN";
-export const SourceInstancePropertiesPostKeyRevocationActionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const SourceInstancePropertiesPostKeyRevocationActionTypeEnum = S.String;
 
 export type SourceInstancePropertiesKeyRevocationActionTypeEnum =
   | "KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED"
   | "NONE"
   | "STOP";
-export const SourceInstancePropertiesKeyRevocationActionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const SourceInstancePropertiesKeyRevocationActionTypeEnum = S.String;
 
 export type SavedAttachedDiskModeEnum = "READ_ONLY" | "READ_WRITE";
-export const SavedAttachedDiskModeEnum = /*@__PURE__*/ S.String;
+export const SavedAttachedDiskModeEnum = S.String;
 
 export type SavedAttachedDiskTypeEnum = "PERSISTENT" | "SCRATCH";
-export const SavedAttachedDiskTypeEnum = /*@__PURE__*/ S.String;
+export const SavedAttachedDiskTypeEnum = S.String;
 
 export type SavedAttachedDiskInterfaceEnum = "NVME" | "SCSI";
-export const SavedAttachedDiskInterfaceEnum = /*@__PURE__*/ S.String;
+export const SavedAttachedDiskInterfaceEnum = S.String;
 
 export type SavedAttachedDiskStorageBytesStatusEnum = "UPDATING" | "UP_TO_DATE";
-export const SavedAttachedDiskStorageBytesStatusEnum = /*@__PURE__*/ S.String;
+export const SavedAttachedDiskStorageBytesStatusEnum = S.String;
 
 /** DEPRECATED: Please use compute#savedDisk instead. An instance-attached disk resource. */
 export interface SavedAttachedDisk {
@@ -41366,7 +41218,7 @@ export type MachineImageStatusEnum =
   | "INVALID"
   | "READY"
   | "UPLOADING";
-export const MachineImageStatusEnum = /*@__PURE__*/ S.String;
+export const MachineImageStatusEnum = S.String;
 
 /** Represents a machine image resource. A machine image is a Compute Engine resource that stores all the configuration, metadata, permissions, and data from one or more disks required to create a Virtual machine (VM) instance. For more information, seeMachine images. */
 export interface MachineImage {
@@ -41625,7 +41477,7 @@ export const GetNamedSetRoutersRequest = /*@__PURE__*/ S.suspend(() =>
 export type NamedSetTypeEnum =
   | "NAMED_SET_TYPE_COMMUNITY"
   | "NAMED_SET_TYPE_PREFIX";
-export const NamedSetTypeEnum = /*@__PURE__*/ S.String;
+export const NamedSetTypeEnum = S.String;
 
 export type ExprList = Array<Expr>;
 export const ExprList = /*@__PURE__*/ S.Array(
@@ -41696,10 +41548,10 @@ export const GetNatIpInfoRoutersRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNatIpInfoRoutersRequest>;
 
 export type NatIpInfoNatIpInfoMappingUsageEnum = "IN_USE" | "UNUSED";
-export const NatIpInfoNatIpInfoMappingUsageEnum = /*@__PURE__*/ S.String;
+export const NatIpInfoNatIpInfoMappingUsageEnum = S.String;
 
 export type NatIpInfoNatIpInfoMappingModeEnum = "AUTO" | "MANUAL";
-export const NatIpInfoNatIpInfoMappingModeEnum = /*@__PURE__*/ S.String;
+export const NatIpInfoNatIpInfoMappingModeEnum = S.String;
 
 /** Contains information of a NAT IP. */
 export interface NatIpInfoNatIpInfoMapping {
@@ -41936,7 +41788,7 @@ export type VmEndpointNatMappingsListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const VmEndpointNatMappingsListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const VmEndpointNatMappingsListWarningCodeEnum = S.String;
 
 export interface VmEndpointNatMappingsListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -42100,21 +41952,21 @@ export const GetNetworkProfilesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNetworkProfilesRequest>;
 
 export type NetworkProfileProfileTypeNetworkTypeEnum = "RDMA" | "ULL" | "VPC";
-export const NetworkProfileProfileTypeNetworkTypeEnum = /*@__PURE__*/ S.String;
+export const NetworkProfileProfileTypeNetworkTypeEnum = S.String;
 
 export type NetworkProfileProfileTypeUllSubtypeEnum =
   | "OPERATOR"
   | "PARTICIPANT";
-export const NetworkProfileProfileTypeUllSubtypeEnum = /*@__PURE__*/ S.String;
+export const NetworkProfileProfileTypeUllSubtypeEnum = S.String;
 
 export type NetworkProfileProfileTypeRdmaSubtypeEnum =
   | "FALCON"
   | "ROCE"
   | "ROCE_METAL";
-export const NetworkProfileProfileTypeRdmaSubtypeEnum = /*@__PURE__*/ S.String;
+export const NetworkProfileProfileTypeRdmaSubtypeEnum = S.String;
 
 export type NetworkProfileProfileTypeVpcSubtypeEnum = "REGIONAL";
-export const NetworkProfileProfileTypeVpcSubtypeEnum = /*@__PURE__*/ S.String;
+export const NetworkProfileProfileTypeVpcSubtypeEnum = S.String;
 
 export interface NetworkProfileProfileType {
   networkType?: NetworkProfileProfileTypeNetworkTypeEnum;
@@ -42136,44 +41988,38 @@ export const NetworkProfileProfileType = /*@__PURE__*/ S.suspend(() =>
 export type NetworkProfileNetworkFeaturesAllowSubInterfacesEnum =
   | "SUBINTERFACES_ALLOWED"
   | "SUBINTERFACES_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowSubInterfacesEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowSubInterfacesEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowCloudRouterEnum =
   | "CLOUD_ROUTER_ALLOWED"
   | "CLOUD_ROUTER_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowCloudRouterEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowCloudRouterEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowExternalIpAccessEnum =
   | "EXTERNAL_IP_ACCESS_ALLOWED"
   | "EXTERNAL_IP_ACCESS_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowExternalIpAccessEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowExternalIpAccessEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowFirewallPolicyEnum =
   | "FIREWALL_POLICY_ALLOWED"
   | "FIREWALL_POLICY_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowFirewallPolicyEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowFirewallPolicyEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowSubnetworkCreationEnum =
   | "SUBNETWORK_CREATION_ALLOWED"
   | "SUBNETWORK_CREATION_BLOCKED";
 export const NetworkProfileNetworkFeaturesAllowSubnetworkCreationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NetworkProfileNetworkFeaturesAllowCloudNatEnum =
   | "CLOUD_NAT_ALLOWED"
   | "CLOUD_NAT_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowCloudNatEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowCloudNatEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowNetworkMigrationEnum =
   | "NETWORK_MIGRATION_ALLOWED"
   | "NETWORK_MIGRATION_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowNetworkMigrationEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowNetworkMigrationEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAddressPurposesItemEnum =
   | "DNS_RESOLVER"
@@ -42187,8 +42033,7 @@ export type NetworkProfileNetworkFeaturesAddressPurposesItemEnum =
   | "SHARED_LOADBALANCER_VIP"
   | "SYSTEM_MANAGED"
   | "VPC_PEERING";
-export const NetworkProfileNetworkFeaturesAddressPurposesItemEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAddressPurposesItemEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAddressPurposesItemEnumList =
   Array<NetworkProfileNetworkFeaturesAddressPurposesItemEnum>;
@@ -42200,25 +42045,22 @@ export const NetworkProfileNetworkFeaturesAddressPurposesItemEnumList =
 export type NetworkProfileNetworkFeaturesAllowAddressCreationEnum =
   | "ADDRESS_CREATION_ALLOWED"
   | "ADDRESS_CREATION_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowAddressCreationEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowAddressCreationEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowNccEnum =
   | "NCC_ALLOWED"
   | "NCC_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowNccEnum = /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowNccEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowClassDFirewallsEnum =
   | "CLASS_D_FIREWALLS_ALLOWED"
   | "CLASS_D_FIREWALLS_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowClassDFirewallsEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowClassDFirewallsEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowStaticRoutesEnum =
   | "STATIC_ROUTES_ALLOWED"
   | "STATIC_ROUTES_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowStaticRoutesEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowStaticRoutesEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesFirewallPolicyTypesItemEnum =
   | "RDMA_FALCON_POLICY"
@@ -42226,7 +42068,7 @@ export type NetworkProfileNetworkFeaturesFirewallPolicyTypesItemEnum =
   | "ULL_POLICY"
   | "VPC_POLICY";
 export const NetworkProfileNetworkFeaturesFirewallPolicyTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NetworkProfileNetworkFeaturesFirewallPolicyTypesItemEnumList =
   Array<NetworkProfileNetworkFeaturesFirewallPolicyTypesItemEnum>;
@@ -42239,13 +42081,12 @@ export type NetworkProfileNetworkFeaturesAllowSameNetworkUnicastEnum =
   | "SAME_NETWORK_UNICAST_ALLOWED"
   | "SAME_NETWORK_UNICAST_BLOCKED";
 export const NetworkProfileNetworkFeaturesAllowSameNetworkUnicastEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NetworkProfileNetworkFeaturesSubnetPurposesItemEnum =
   | "SUBNET_PURPOSE_CUSTOM_HARDWARE"
   | "SUBNET_PURPOSE_PRIVATE";
-export const NetworkProfileNetworkFeaturesSubnetPurposesItemEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesSubnetPurposesItemEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesSubnetPurposesItemEnumList =
   Array<NetworkProfileNetworkFeaturesSubnetPurposesItemEnum>;
@@ -42257,37 +42098,34 @@ export const NetworkProfileNetworkFeaturesSubnetPurposesItemEnumList =
 export type NetworkProfileNetworkFeaturesAllowVpnEnum =
   | "VPN_ALLOWED"
   | "VPN_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowVpnEnum = /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowVpnEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowMulticastEnum =
   | "MULTICAST_ALLOWED"
   | "MULTICAST_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowMulticastEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowMulticastEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowAliasIpRangesEnum =
   | "ALIAS_IP_RANGES_ALLOWED"
   | "ALIAS_IP_RANGES_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowAliasIpRangesEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowAliasIpRangesEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowLoadBalancingEnum =
   | "LOAD_BALANCING_ALLOWED"
   | "LOAD_BALANCING_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowLoadBalancingEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowLoadBalancingEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowPscEnum =
   | "PSC_ALLOWED"
   | "PSC_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowPscEnum = /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowPscEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesSubnetworkStackTypesItemEnum =
   | "IPV4_IPV6"
   | "IPV4_ONLY"
   | "IPV6_ONLY";
 export const NetworkProfileNetworkFeaturesSubnetworkStackTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NetworkProfileNetworkFeaturesSubnetworkStackTypesItemEnumList =
   Array<NetworkProfileNetworkFeaturesSubnetworkStackTypesItemEnum>;
@@ -42299,7 +42137,7 @@ export const NetworkProfileNetworkFeaturesSubnetworkStackTypesItemEnumList =
 export type NetworkProfileNetworkFeaturesUnicastEnum =
   | "UNICAST_SDN"
   | "UNICAST_ULL";
-export const NetworkProfileNetworkFeaturesUnicastEnum = /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesUnicastEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesInterfaceTypesItemEnum =
   | "GVNIC"
@@ -42308,8 +42146,7 @@ export type NetworkProfileNetworkFeaturesInterfaceTypesItemEnum =
   | "MRDMA"
   | "UNSPECIFIED_NIC_TYPE"
   | "VIRTIO_NET";
-export const NetworkProfileNetworkFeaturesInterfaceTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesInterfaceTypesItemEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesInterfaceTypesItemEnumList =
   Array<NetworkProfileNetworkFeaturesInterfaceTypesItemEnum>;
@@ -42322,56 +42159,50 @@ export type NetworkProfileNetworkFeaturesAllowDefaultNicAttachmentEnum =
   | "DEFAULT_NIC_ATTACHMENT_ALLOWED"
   | "DEFAULT_NIC_ATTACHMENT_BLOCKED";
 export const NetworkProfileNetworkFeaturesAllowDefaultNicAttachmentEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NetworkProfileNetworkFeaturesAllowPrivateGoogleAccessEnum =
   | "PRIVATE_GOOGLE_ACCESS_ALLOWED"
   | "PRIVATE_GOOGLE_ACCESS_BLOCKED";
 export const NetworkProfileNetworkFeaturesAllowPrivateGoogleAccessEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NetworkProfileNetworkFeaturesMulticastEnum =
   | "MULTICAST_SDN"
   | "MULTICAST_ULL";
-export const NetworkProfileNetworkFeaturesMulticastEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesMulticastEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowMultiNicInSameSubnetworkEnum =
   | "MULTI_NIC_IN_SAME_SUBNETWORK_ALLOWED"
   | "MULTI_NIC_IN_SAME_SUBNETWORK_BLOCKED";
 export const NetworkProfileNetworkFeaturesAllowMultiNicInSameSubnetworkEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NetworkProfileNetworkFeaturesAllowVpcFirewallRulesEnum =
   | "VPC_FIREWALL_RULES_ALLOWED"
   | "VPC_FIREWALL_RULES_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowVpcFirewallRulesEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowVpcFirewallRulesEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowIpForwardingEnum =
   | "IP_FORWARDING_ALLOWED"
   | "IP_FORWARDING_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowIpForwardingEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowIpForwardingEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowPacketMirroringEnum =
   | "PACKET_MIRRORING_ALLOWED"
   | "PACKET_MIRRORING_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowPacketMirroringEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowPacketMirroringEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowAutoModeSubnetEnum =
   | "AUTO_MODE_SUBNET_ALLOWED"
   | "AUTO_MODE_SUBNET_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowAutoModeSubnetEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowAutoModeSubnetEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesSubnetStackTypesItemEnum =
   | "SUBNET_STACK_TYPE_IPV4_IPV6"
   | "SUBNET_STACK_TYPE_IPV4_ONLY"
   | "SUBNET_STACK_TYPE_IPV6_ONLY";
-export const NetworkProfileNetworkFeaturesSubnetStackTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesSubnetStackTypesItemEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesSubnetStackTypesItemEnumList =
   Array<NetworkProfileNetworkFeaturesSubnetStackTypesItemEnum>;
@@ -42390,8 +42221,7 @@ export type NetworkProfileNetworkFeaturesSubnetworkPurposesItemEnum =
   | "PRIVATE_RFC_1918"
   | "PRIVATE_SERVICE_CONNECT"
   | "REGIONAL_MANAGED_PROXY";
-export const NetworkProfileNetworkFeaturesSubnetworkPurposesItemEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesSubnetworkPurposesItemEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesSubnetworkPurposesItemEnumList =
   Array<NetworkProfileNetworkFeaturesSubnetworkPurposesItemEnum>;
@@ -42404,7 +42234,7 @@ export type NetworkProfileNetworkFeaturesAllowMultiNicInSameNetworkEnum =
   | "MULTI_NIC_IN_SAME_NETWORK_ALLOWED"
   | "MULTI_NIC_IN_SAME_NETWORK_BLOCKED";
 export const NetworkProfileNetworkFeaturesAllowMultiNicInSameNetworkEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NetworkProfileNetworkFeaturesPredefinedSubnetworkRange {
   /** The naming prefix of the predefined subnetwork. */
@@ -42432,14 +42262,12 @@ export const NetworkProfileNetworkFeaturesPredefinedSubnetworkRangeList =
 export type NetworkProfileNetworkFeaturesAllowInterconnectEnum =
   | "INTERCONNECT_ALLOWED"
   | "INTERCONNECT_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowInterconnectEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowInterconnectEnum = S.String;
 
 export type NetworkProfileNetworkFeaturesAllowVpcPeeringEnum =
   | "VPC_PEERING_ALLOWED"
   | "VPC_PEERING_BLOCKED";
-export const NetworkProfileNetworkFeaturesAllowVpcPeeringEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkFeaturesAllowVpcPeeringEnum = S.String;
 
 export interface NetworkProfileNetworkFeatures {
   /** Specifies whether sub interfaces are allowed. */
@@ -42624,7 +42452,7 @@ export const NetworkProfileNetworkFeatures = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkProfileNetworkFeatures>;
 
 export type NetworkProfileLocationScopeEnum = "REGION" | "ZONE";
-export const NetworkProfileLocationScopeEnum = /*@__PURE__*/ S.String;
+export const NetworkProfileLocationScopeEnum = S.String;
 
 export interface NetworkProfileLocation {
   name?: string;
@@ -42699,25 +42527,22 @@ export const GetNetworksRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNetworksRequest>;
 
 export type NetworkRoutingConfigRoutingModeEnum = "GLOBAL" | "REGIONAL";
-export const NetworkRoutingConfigRoutingModeEnum = /*@__PURE__*/ S.String;
+export const NetworkRoutingConfigRoutingModeEnum = S.String;
 
 export type NetworkRoutingConfigEffectiveBgpInterRegionCostEnum =
   | "ADD_COST_TO_MED"
   | "DEFAULT";
-export const NetworkRoutingConfigEffectiveBgpInterRegionCostEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkRoutingConfigEffectiveBgpInterRegionCostEnum = S.String;
 
 export type NetworkRoutingConfigBgpInterRegionCostEnum =
   | "ADD_COST_TO_MED"
   | "DEFAULT";
-export const NetworkRoutingConfigBgpInterRegionCostEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkRoutingConfigBgpInterRegionCostEnum = S.String;
 
 export type NetworkRoutingConfigBgpBestPathSelectionModeEnum =
   | "LEGACY"
   | "STANDARD";
-export const NetworkRoutingConfigBgpBestPathSelectionModeEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkRoutingConfigBgpBestPathSelectionModeEnum = S.String;
 
 /** A routing configuration attached to a network resource. The message includes the list of routers associated with the network, and a flag indicating the type of routing behavior to enforce network-wide. */
 export interface NetworkRoutingConfig {
@@ -42765,8 +42590,7 @@ export const NetworkPeeringList = /*@__PURE__*/ S.Array(
 export type NetworkNetworkFirewallPolicyEnforcementOrderEnum =
   | "AFTER_CLASSIC_FIREWALL"
   | "BEFORE_CLASSIC_FIREWALL";
-export const NetworkNetworkFirewallPolicyEnforcementOrderEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkNetworkFirewallPolicyEnforcementOrderEnum = S.String;
 
 /** Additional network parameters. */
 export type NetworkParams = BackendBucketParams;
@@ -42943,7 +42767,7 @@ export type InterconnectAttachmentGroupsOperationalStatusAttachmentStatusIsActiv
   | "INACTIVE"
   | "UNSPECIFIED";
 export const InterconnectAttachmentGroupsOperationalStatusAttachmentStatusIsActiveEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InterconnectAttachmentGroupsOperationalStatusAttachmentStatusStatusEnum =
   | "ATTACHMENT_STATUS_UNKNOWN"
@@ -42962,7 +42786,7 @@ export type InterconnectAttachmentGroupsOperationalStatusAttachmentStatusStatusE
   | "ROUTER_CONFIGURATION_BROKEN"
   | "UNPROVISIONED";
 export const InterconnectAttachmentGroupsOperationalStatusAttachmentStatusStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The status of one Attachment in the group. List order is arbitrary. */
 export interface InterconnectAttachmentGroupsOperationalStatusAttachmentStatus {
@@ -43004,7 +42828,7 @@ export type InterconnectAttachmentGroupsOperationalStatusGroupStatusEnum =
   | "FULLY_UP"
   | "UNSPECIFIED";
 export const InterconnectAttachmentGroupsOperationalStatusGroupStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InterconnectAttachmentGroupsOperationalStatus {
   intent?: InterconnectAttachmentGroupIntent;
@@ -43074,15 +42898,14 @@ export type InterconnectGroupsOperationalStatusGroupStatusEnum =
   | "FULLY_DOWN"
   | "FULLY_UP"
   | "GROUPS_STATUS_UNSPECIFIED";
-export const InterconnectGroupsOperationalStatusGroupStatusEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectGroupsOperationalStatusGroupStatusEnum = S.String;
 
 export type InterconnectGroupsOperationalStatusInterconnectStatusIsActiveEnum =
   | "ACTIVE"
   | "INACTIVE"
   | "IS_ACTIVE_UNSPECIFIED";
 export const InterconnectGroupsOperationalStatusInterconnectStatusIsActiveEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The status of one Interconnect in the group. The order is arbitrary. */
 export interface InterconnectGroupsOperationalStatusInterconnectStatus {
@@ -43239,15 +43062,13 @@ export type RolloutPlanWaveOrchestrationOptionsDelayDelimiterEnum =
   | "DELIMITER_BATCH"
   | "DELIMITER_LOCATION"
   | "DELIMITER_UNSPECIFIED";
-export const RolloutPlanWaveOrchestrationOptionsDelayDelimiterEnum =
-  /*@__PURE__*/ S.String;
+export const RolloutPlanWaveOrchestrationOptionsDelayDelimiterEnum = S.String;
 
 export type RolloutPlanWaveOrchestrationOptionsDelayTypeEnum =
   | "TYPE_MINIMUM"
   | "TYPE_OFFSET"
   | "TYPE_UNSPECIFIED";
-export const RolloutPlanWaveOrchestrationOptionsDelayTypeEnum =
-  /*@__PURE__*/ S.String;
+export const RolloutPlanWaveOrchestrationOptionsDelayTypeEnum = S.String;
 
 /** Options to control the delay, if any, between batches of projects. */
 export interface RolloutPlanWaveOrchestrationOptionsDelay {
@@ -43365,7 +43186,7 @@ export type RolloutPlanLocationScopeEnum =
   | "LOCATION_SCOPE_UNSPECIFIED"
   | "REGIONAL"
   | "ZONAL";
-export const RolloutPlanLocationScopeEnum = /*@__PURE__*/ S.String;
+export const RolloutPlanLocationScopeEnum = S.String;
 
 /** RolloutPlan resource. A RolloutPlan is the customer-defined strategy to divide a large-scale change into smaller increments, referred to as "waves". Each wave targets a specific portion of the overall affected area and defines criteria that must be met before progressing to the subsequent wave. */
 export interface RolloutPlan {
@@ -43442,7 +43263,7 @@ export type RolloutStateEnum =
   | "STATE_UNSPECIFIED"
   | "UNINITIALIZED"
   | "WAVE_FAILED";
-export const RolloutStateEnum = /*@__PURE__*/ S.String;
+export const RolloutStateEnum = S.String;
 
 export type RolloutWaveDetailsOrchestratedWaveDetailsLocationStatusStateEnum =
   | "STATE_FAILED"
@@ -43452,7 +43273,7 @@ export type RolloutWaveDetailsOrchestratedWaveDetailsLocationStatusStateEnum =
   | "STATE_SUCCEEDED"
   | "STATE_UNSPECIFIED";
 export const RolloutWaveDetailsOrchestratedWaveDetailsLocationStatusStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents the status of a location in a wave. */
 export interface RolloutWaveDetailsOrchestratedWaveDetailsLocationStatus {
@@ -43858,15 +43679,14 @@ export type PreviewFeatureActivationStatusEnum =
   | "ACTIVATION_STATE_UNSPECIFIED"
   | "DISABLED"
   | "ENABLED";
-export const PreviewFeatureActivationStatusEnum = /*@__PURE__*/ S.String;
+export const PreviewFeatureActivationStatusEnum = S.String;
 
 export type PreviewFeatureStatusReleaseStatusStageEnum =
   | "DEPRECATED"
   | "GA"
   | "PREVIEW"
   | "STAGE_UNSPECIFIED";
-export const PreviewFeatureStatusReleaseStatusStageEnum =
-  /*@__PURE__*/ S.String;
+export const PreviewFeatureStatusReleaseStatusStageEnum = S.String;
 
 /** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
 export interface Compute_Date {
@@ -43924,7 +43744,7 @@ export type PreviewFeatureRolloutOperationRolloutInputPredefinedRolloutPlanEnum 
   | "ROLLOUT_PLAN_TWO_DAY_ROLLOUT"
   | "ROLLOUT_PLAN_UNSPECIFIED";
 export const PreviewFeatureRolloutOperationRolloutInputPredefinedRolloutPlanEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents the input for the rollout operation. */
 export interface PreviewFeatureRolloutOperationRolloutInput {
@@ -44017,14 +43837,14 @@ export type ProjectManagedProtectionTierEnum =
   | "CAMP_PLUS_ANNUAL"
   | "CAMP_PLUS_PAYGO"
   | "CA_STANDARD";
-export const ProjectManagedProtectionTierEnum = /*@__PURE__*/ S.String;
+export const ProjectManagedProtectionTierEnum = S.String;
 
 export type ProjectVmDnsSettingEnum =
   | "GLOBAL_DEFAULT"
   | "UNSPECIFIED_VM_DNS_SETTING"
   | "ZONAL_DEFAULT"
   | "ZONAL_ONLY";
-export const ProjectVmDnsSettingEnum = /*@__PURE__*/ S.String;
+export const ProjectVmDnsSettingEnum = S.String;
 
 export type QuotaMetricEnum =
   | "A2_CPUS"
@@ -44192,7 +44012,7 @@ export type QuotaMetricEnum =
   | "VPN_GATEWAYS"
   | "VPN_TUNNELS"
   | "XPN_SERVICE_PROJECTS";
-export const QuotaMetricEnum = /*@__PURE__*/ S.String;
+export const QuotaMetricEnum = S.String;
 
 /** A quotas entry. */
 export interface Quota {
@@ -44223,12 +44043,12 @@ export type ProjectCloudArmorTierEnum =
   | "CA_ENTERPRISE_ANNUAL"
   | "CA_ENTERPRISE_PAYGO"
   | "CA_STANDARD";
-export const ProjectCloudArmorTierEnum = /*@__PURE__*/ S.String;
+export const ProjectCloudArmorTierEnum = S.String;
 
 export type ProjectXpnProjectStatusEnum =
   | "HOST"
   | "UNSPECIFIED_XPN_PROJECT_STATUS";
-export const ProjectXpnProjectStatusEnum = /*@__PURE__*/ S.String;
+export const ProjectXpnProjectStatusEnum = S.String;
 
 /** The location in Cloud Storage and naming method of the daily usage report. Contains bucket_name and report_name prefix. */
 export interface UsageExportLocation {
@@ -44251,7 +44071,7 @@ export type ProjectDefaultNetworkTierEnum =
   | "PREMIUM"
   | "STANDARD"
   | "STANDARD_OVERRIDES_FIXED_STANDARD";
-export const ProjectDefaultNetworkTierEnum = /*@__PURE__*/ S.String;
+export const ProjectDefaultNetworkTierEnum = S.String;
 
 /** Represents a Project resource. A project is used to organize resources in a Google Cloud Platform environment. For more information, read about the Resource Hierarchy. */
 export interface Project {
@@ -44366,14 +44186,14 @@ export type PublicAdvertisedPrefixPdpScopeEnum =
   | "GLOBAL"
   | "GLOBAL_AND_REGIONAL"
   | "REGIONAL";
-export const PublicAdvertisedPrefixPdpScopeEnum = /*@__PURE__*/ S.String;
+export const PublicAdvertisedPrefixPdpScopeEnum = S.String;
 
 export type PublicAdvertisedPrefixNetworkTierEnum =
   | "FIXED_STANDARD"
   | "PREMIUM"
   | "STANDARD"
   | "STANDARD_OVERRIDES_FIXED_STANDARD";
-export const PublicAdvertisedPrefixNetworkTierEnum = /*@__PURE__*/ S.String;
+export const PublicAdvertisedPrefixNetworkTierEnum = S.String;
 
 /** Represents a CIDR range which can be used to assign addresses. */
 export interface PublicAdvertisedPrefixPublicDelegatedPrefix {
@@ -44409,7 +44229,7 @@ export const PublicAdvertisedPrefixPublicDelegatedPrefixList =
   ) as any as S.Schema<PublicAdvertisedPrefixPublicDelegatedPrefixList>;
 
 export type PublicAdvertisedPrefixIpv6AccessTypeEnum = "EXTERNAL" | "INTERNAL";
-export const PublicAdvertisedPrefixIpv6AccessTypeEnum = /*@__PURE__*/ S.String;
+export const PublicAdvertisedPrefixIpv6AccessTypeEnum = S.String;
 
 export type PublicAdvertisedPrefixStatusEnum =
   | "ANNOUNCED_TO_INTERNET"
@@ -44421,10 +44241,10 @@ export type PublicAdvertisedPrefixStatusEnum =
   | "READY_TO_ANNOUNCE"
   | "REVERSE_DNS_LOOKUP_FAILED"
   | "VALIDATED";
-export const PublicAdvertisedPrefixStatusEnum = /*@__PURE__*/ S.String;
+export const PublicAdvertisedPrefixStatusEnum = S.String;
 
 export type PublicAdvertisedPrefixByoipApiVersionEnum = "V1" | "V2";
-export const PublicAdvertisedPrefixByoipApiVersionEnum = /*@__PURE__*/ S.String;
+export const PublicAdvertisedPrefixByoipApiVersionEnum = S.String;
 
 /** A public advertised prefix represents an aggregated IP prefix or netblock which customers bring to cloud. The IP prefix is a single unit of route advertisement and is announced globally to the internet. */
 export interface PublicAdvertisedPrefix {
@@ -44538,26 +44358,24 @@ export type RecoverableSnapshotStatusEnum =
   | "READY"
   | "RECOVERING"
   | "UNKNOWN";
-export const RecoverableSnapshotStatusEnum = /*@__PURE__*/ S.String;
+export const RecoverableSnapshotStatusEnum = S.String;
 
 export type RecoverableSnapshotOriginalSnapshotArchitectureEnum =
   | "ARCHITECTURE_UNSPECIFIED"
   | "ARM64"
   | "X86_64";
-export const RecoverableSnapshotOriginalSnapshotArchitectureEnum =
-  /*@__PURE__*/ S.String;
+export const RecoverableSnapshotOriginalSnapshotArchitectureEnum = S.String;
 
 export type RecoverableSnapshotOriginalSnapshotStorageBytesStatusEnum =
   | "UPDATING"
   | "UP_TO_DATE";
 export const RecoverableSnapshotOriginalSnapshotStorageBytesStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RecoverableSnapshotOriginalSnapshotSnapshotTypeEnum =
   | "ARCHIVE"
   | "STANDARD";
-export const RecoverableSnapshotOriginalSnapshotSnapshotTypeEnum =
-  /*@__PURE__*/ S.String;
+export const RecoverableSnapshotOriginalSnapshotSnapshotTypeEnum = S.String;
 
 export interface RecoverableSnapshotOriginalSnapshot {
   /** Output only. [Output Only] Server-defined URL for this resource's resource id. */
@@ -45105,7 +44923,7 @@ export type GetRegionInstanceTemplatesViewEnum =
   | "BASIC"
   | "FULL"
   | "INSTANCE_VIEW_UNSPECIFIED";
-export const GetRegionInstanceTemplatesViewEnum = /*@__PURE__*/ S.String;
+export const GetRegionInstanceTemplatesViewEnum = S.String;
 
 export interface GetRegionInstanceTemplatesRequest {
   /** The name of the instance template. */
@@ -45393,7 +45211,7 @@ export type MultiMigStatusAcceleratorTopologyAcceleratorTopologyStateEnum =
   | "FAILED"
   | "INCOMPLETE";
 export const MultiMigStatusAcceleratorTopologyAcceleratorTopologyStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MultiMigStatusAcceleratorTopology {
   /** Output only. [Output Only] The result of the latest accelerator topology state check. */
@@ -45648,7 +45466,7 @@ export type RegionQuotaStatusWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RegionQuotaStatusWarningCodeEnum = /*@__PURE__*/ S.String;
+export const RegionQuotaStatusWarningCodeEnum = S.String;
 
 export type RegionQuotaStatusWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -45680,7 +45498,7 @@ export const RegionQuotaStatusWarning = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RegionQuotaStatusWarning>;
 
 export type RegionStatusEnum = "DOWN" | "UP";
-export const RegionStatusEnum = /*@__PURE__*/ S.String;
+export const RegionStatusEnum = S.String;
 
 /** Represents a Region resource. A region is a geographical area where a resource is located. For more information, readRegions and Zones. */
 export interface Region {
@@ -45827,8 +45645,7 @@ export type SnapshotSettingsStorageLocationSettingsPolicyEnum =
   | "NEAREST_MULTI_REGION"
   | "SPECIFIC_LOCATIONS"
   | "STORAGE_LOCATION_POLICY_UNSPECIFIED";
-export const SnapshotSettingsStorageLocationSettingsPolicyEnum =
-  /*@__PURE__*/ S.String;
+export const SnapshotSettingsStorageLocationSettingsPolicyEnum = S.String;
 
 export interface SnapshotSettingsStorageLocationSettings {
   /** When the policy is SPECIFIC_LOCATIONS, snapshots will be stored in the locations listed in this field. Keys are Cloud Storage bucket locations. Only one location can be specified. */
@@ -45852,7 +45669,7 @@ export type SnapshotSettingsAccessLocationPolicyEnum =
   | "ALL_REGIONS"
   | "POLICY_UNSPECIFIED"
   | "SPECIFIC_REGIONS";
-export const SnapshotSettingsAccessLocationPolicyEnum = /*@__PURE__*/ S.String;
+export const SnapshotSettingsAccessLocationPolicyEnum = S.String;
 
 /** A structure for specifying an allowed target region. */
 export type SnapshotSettingsAccessLocationAccessLocationPreference =
@@ -46094,10 +45911,10 @@ export type RiskDetailsSeverityEnum =
   | "LOW"
   | "MEDIUM"
   | "SEVERITY_UNSPECIFIED";
-export const RiskDetailsSeverityEnum = /*@__PURE__*/ S.String;
+export const RiskDetailsSeverityEnum = S.String;
 
 export type RiskDetailsTypeEnum = "GLOBAL_DNS" | "RISK_TYPE_UNSPECIFIED";
-export const RiskDetailsTypeEnum = /*@__PURE__*/ S.String;
+export const RiskDetailsTypeEnum = S.String;
 
 /** Detailed insights and metrics about a detected reliability risk. */
 export interface RiskDetails {
@@ -46179,7 +45996,7 @@ export type GetReservationBlocksViewEnum =
   | "BASIC"
   | "BLOCK_VIEW_UNSPECIFIED"
   | "FULL";
-export const GetReservationBlocksViewEnum = /*@__PURE__*/ S.String;
+export const GetReservationBlocksViewEnum = S.String;
 
 export interface GetReservationBlocksRequest {
   /** View of the Block. */
@@ -46279,8 +46096,7 @@ export type ReservationBlockHealthInfoHealthStatusEnum =
   | "DEGRADED"
   | "HEALTHY"
   | "HEALTH_STATUS_UNSPECIFIED";
-export const ReservationBlockHealthInfoHealthStatusEnum =
-  /*@__PURE__*/ S.String;
+export const ReservationBlockHealthInfoHealthStatusEnum = S.String;
 
 /** Health information for the reservation block. */
 export interface ReservationBlockHealthInfo {
@@ -46306,7 +46122,7 @@ export type ReservationBlockStatusEnum =
   | "DELETING"
   | "INVALID"
   | "READY";
-export const ReservationBlockStatusEnum = /*@__PURE__*/ S.String;
+export const ReservationBlockStatusEnum = S.String;
 
 /** Represents a reservation block resource. */
 export interface ReservationBlock {
@@ -46473,7 +46289,7 @@ export type ReservationSlotStateEnum =
   | "DELETING"
   | "STATE_UNSPECIFIED"
   | "UNAVAILABLE";
-export const ReservationSlotStateEnum = /*@__PURE__*/ S.String;
+export const ReservationSlotStateEnum = S.String;
 
 /** Represents a reservation slot resource. */
 export interface ReservationSlot {
@@ -46533,7 +46349,7 @@ export type GetReservationSubBlocksViewEnum =
   | "SUB_BLOCK_VIEW_BASIC"
   | "SUB_BLOCK_VIEW_FULL"
   | "SUB_BLOCK_VIEW_UNSPECIFIED";
-export const GetReservationSubBlocksViewEnum = /*@__PURE__*/ S.String;
+export const GetReservationSubBlocksViewEnum = S.String;
 
 export interface GetReservationSubBlocksRequest {
   /** The name of the parent reservation and parent block. In the format of reservations/{reservation_name}/reservationBlocks/{reservation_block_name} */
@@ -46588,7 +46404,7 @@ export type ReservationSubBlockStatusEnum =
   | "DELETING"
   | "INVALID"
   | "READY";
-export const ReservationSubBlockStatusEnum = /*@__PURE__*/ S.String;
+export const ReservationSubBlockStatusEnum = S.String;
 
 export type AcceleratorTopologiesInfoAcceleratorTopologyInfoInfoPerTopologyStateStateEnum =
   | "AVAILABLE"
@@ -46597,7 +46413,7 @@ export type AcceleratorTopologiesInfoAcceleratorTopologyInfoInfoPerTopologyState
   | "TOPOLOGY_STATE_UNSPECIFIED"
   | "UNHEALTHY";
 export const AcceleratorTopologiesInfoAcceleratorTopologyInfoInfoPerTopologyStateStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Info for each topology state. */
 export interface AcceleratorTopologiesInfoAcceleratorTopologyInfoInfoPerTopologyState {
@@ -46671,8 +46487,7 @@ export type ReservationSubBlockHealthInfoHealthStatusEnum =
   | "DEGRADED"
   | "HEALTHY"
   | "HEALTH_STATUS_UNSPECIFIED";
-export const ReservationSubBlockHealthInfoHealthStatusEnum =
-  /*@__PURE__*/ S.String;
+export const ReservationSubBlockHealthInfoHealthStatusEnum = S.String;
 
 /** Health information for the reservation subBlock. */
 export interface ReservationSubBlockHealthInfo {
@@ -46861,7 +46676,7 @@ export const GetRoutePolicyRoutersRequest = /*@__PURE__*/ S.suspend(() =>
 export type RoutePolicyTypeEnum =
   | "ROUTE_POLICY_TYPE_EXPORT"
   | "ROUTE_POLICY_TYPE_IMPORT";
-export const RoutePolicyTypeEnum = /*@__PURE__*/ S.String;
+export const RoutePolicyTypeEnum = S.String;
 
 export interface RoutePolicyPolicyTerm {
   /** CEL expressions to evaluate to modify a route when this term matches. */
@@ -46971,24 +46786,24 @@ export type RouteRouteStatusEnum =
   | "DROPPED"
   | "INACTIVE"
   | "PENDING";
-export const RouteRouteStatusEnum = /*@__PURE__*/ S.String;
+export const RouteRouteStatusEnum = S.String;
 
 /** Additional route parameters. */
 export type RouteParams = BackendBucketParams;
 export const RouteParams = BackendBucketParams;
 
 export type RouteRouteTypeEnum = "BGP" | "STATIC" | "SUBNET" | "TRANSIT";
-export const RouteRouteTypeEnum = /*@__PURE__*/ S.String;
+export const RouteRouteTypeEnum = S.String;
 
 export type RouteNextHopOriginEnum = "EGP" | "IGP" | "INCOMPLETE";
-export const RouteNextHopOriginEnum = /*@__PURE__*/ S.String;
+export const RouteNextHopOriginEnum = S.String;
 
 export type RouteAsPathPathSegmentTypeEnum =
   | "AS_CONFED_SEQUENCE"
   | "AS_CONFED_SET"
   | "AS_SEQUENCE"
   | "AS_SET";
-export const RouteAsPathPathSegmentTypeEnum = /*@__PURE__*/ S.String;
+export const RouteAsPathPathSegmentTypeEnum = S.String;
 
 export interface RouteAsPath {
   /** [Output Only] The type of the AS Path, which can be one of the following values: - 'AS_SET': unordered set of autonomous systems that the route in has traversed - 'AS_SEQUENCE': ordered set of autonomous systems that the route has traversed - 'AS_CONFED_SEQUENCE': ordered set of Member Autonomous Systems in the local confederation that the route has traversed - 'AS_CONFED_SET': unordered set of Member Autonomous Systems in the local confederation that the route has traversed */
@@ -47049,7 +46864,7 @@ export type RouteWarningsItemCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RouteWarningsItemCodeEnum = /*@__PURE__*/ S.String;
+export const RouteWarningsItemCodeEnum = S.String;
 
 export interface RouteWarningsItem {
   /** [Output Only] A human-readable description of the warning code. */
@@ -47169,14 +46984,14 @@ export const RouteList_ = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RouteList_>;
 
 export type RouterStatusBgpPeerStatusStatusEnum = "DOWN" | "UNKNOWN" | "UP";
-export const RouterStatusBgpPeerStatusStatusEnum = /*@__PURE__*/ S.String;
+export const RouterStatusBgpPeerStatusStatusEnum = S.String;
 
 export type RouterStatusBgpPeerStatusStatusReasonEnum =
   | "IPV4_PEER_ON_IPV6_ONLY_CONNECTION"
   | "IPV6_PEER_ON_IPV4_ONLY_CONNECTION"
   | "MD5_AUTH_INTERNAL_PROBLEM"
   | "STATUS_REASON_UNSPECIFIED";
-export const RouterStatusBgpPeerStatusStatusReasonEnum = /*@__PURE__*/ S.String;
+export const RouterStatusBgpPeerStatusStatusReasonEnum = S.String;
 
 export type BfdStatusLocalStateEnum =
   | "ADMIN_DOWN"
@@ -47184,27 +46999,27 @@ export type BfdStatusLocalStateEnum =
   | "INIT"
   | "STATE_UNSPECIFIED"
   | "UP";
-export const BfdStatusLocalStateEnum = /*@__PURE__*/ S.String;
+export const BfdStatusLocalStateEnum = S.String;
 
 export type BfdStatusBfdSessionInitializationModeEnum =
   | "ACTIVE"
   | "DISABLED"
   | "PASSIVE";
-export const BfdStatusBfdSessionInitializationModeEnum = /*@__PURE__*/ S.String;
+export const BfdStatusBfdSessionInitializationModeEnum = S.String;
 
 export type PacketIntervalsDurationEnum =
   | "DURATION_UNSPECIFIED"
   | "HOUR"
   | "MAX"
   | "MINUTE";
-export const PacketIntervalsDurationEnum = /*@__PURE__*/ S.String;
+export const PacketIntervalsDurationEnum = S.String;
 
 export type PacketIntervalsTypeEnum =
   | "LOOPBACK"
   | "RECEIVE"
   | "TRANSMIT"
   | "TYPE_UNSPECIFIED";
-export const PacketIntervalsTypeEnum = /*@__PURE__*/ S.String;
+export const PacketIntervalsTypeEnum = S.String;
 
 /** Next free: 7 */
 export interface PacketIntervals {
@@ -47250,7 +47065,7 @@ export type BfdPacketDiagnosticEnum =
   | "NO_DIAGNOSTIC"
   | "PATH_DOWN"
   | "REVERSE_CONCATENATED_PATH_DOWN";
-export const BfdPacketDiagnosticEnum = /*@__PURE__*/ S.String;
+export const BfdPacketDiagnosticEnum = S.String;
 
 export type BfdPacketStateEnum =
   | "ADMIN_DOWN"
@@ -47258,7 +47073,7 @@ export type BfdPacketStateEnum =
   | "INIT"
   | "STATE_UNSPECIFIED"
   | "UP";
-export const BfdPacketStateEnum = /*@__PURE__*/ S.String;
+export const BfdPacketStateEnum = S.String;
 
 export interface BfdPacket {
   /** The Required Min RX Interval value in the BFD packet. This is specified in section 4.1 ofRFC5880 */
@@ -47326,7 +47141,7 @@ export type BfdStatusLocalDiagnosticEnum =
   | "NO_DIAGNOSTIC"
   | "PATH_DOWN"
   | "REVERSE_CONCATENATED_PATH_DOWN";
-export const BfdStatusLocalDiagnosticEnum = /*@__PURE__*/ S.String;
+export const BfdStatusLocalDiagnosticEnum = S.String;
 
 export interface BfdStatusPacketCounts {
   /** Number of packets received since the beginning of the current BFD session. */
@@ -48040,7 +47855,7 @@ export type SnapshotGroupStatusEnum =
   | "READY"
   | "UNKNOWN"
   | "UPLOADING";
-export const SnapshotGroupStatusEnum = /*@__PURE__*/ S.String;
+export const SnapshotGroupStatusEnum = S.String;
 
 export interface SnapshotGroupSourceInstantSnapshotGroupInfo {
   instantSnapshotGroup?: string;
@@ -48252,13 +48067,13 @@ export const VpnGatewayStatusTunnelList = /*@__PURE__*/ S.Array(
 export type VpnGatewayStatusHighAvailabilityRequirementStateUnsatisfiedReasonEnum =
   "INCOMPLETE_TUNNELS_COVERAGE";
 export const VpnGatewayStatusHighAvailabilityRequirementStateUnsatisfiedReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VpnGatewayStatusHighAvailabilityRequirementStateStateEnum =
   | "CONNECTION_REDUNDANCY_MET"
   | "CONNECTION_REDUNDANCY_NOT_MET";
 export const VpnGatewayStatusHighAvailabilityRequirementStateStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Describes the high availability requirement state for the VPN connection between this Cloud VPN gateway and a peer gateway. */
 export interface VpnGatewayStatusHighAvailabilityRequirementState {
@@ -48381,7 +48196,7 @@ export const GetStoragePoolTypesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetStoragePoolTypesRequest>;
 
 export type GetSubnetworksViewsEnum = "DEFAULT" | "WITH_UTILIZATION";
-export const GetSubnetworksViewsEnum = /*@__PURE__*/ S.String;
+export const GetSubnetworksViewsEnum = S.String;
 
 export type GetSubnetworksViewsEnumList = Array<
   GetSubnetworksViewsEnum | (string & {})
@@ -48590,7 +48405,7 @@ export const GetTargetSslProxiesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetTargetSslProxiesRequest>;
 
 export type TargetSslProxyProxyHeaderEnum = "NONE" | "PROXY_V1";
-export const TargetSslProxyProxyHeaderEnum = /*@__PURE__*/ S.String;
+export const TargetSslProxyProxyHeaderEnum = S.String;
 
 /** Represents a Target SSL Proxy resource. A target SSL proxy is a component of a Proxy Network Load Balancer. The forwarding rule references the target SSL proxy, and the target proxy then references a backend service. For more information, readProxy Network Load Balancer overview. */
 export interface TargetSslProxy {
@@ -48731,8 +48546,7 @@ export type HostsGetVersionRequestSbomSelectionsItemEnum =
   | "SBOM_SELECTION_CURRENT"
   | "SBOM_SELECTION_TARGET"
   | "SBOM_SELECTION_UNSPECIFIED";
-export const HostsGetVersionRequestSbomSelectionsItemEnum =
-  /*@__PURE__*/ S.String;
+export const HostsGetVersionRequestSbomSelectionsItemEnum = S.String;
 
 export type HostsGetVersionRequestSbomSelectionsItemEnumList = Array<
   HostsGetVersionRequestSbomSelectionsItemEnum | (string & {})
@@ -48793,8 +48607,7 @@ export type ReservationSlotsGetVersionRequestSbomSelectionsItemEnum =
   | "SBOM_SELECTION_CURRENT"
   | "SBOM_SELECTION_TARGET"
   | "SBOM_SELECTION_UNSPECIFIED";
-export const ReservationSlotsGetVersionRequestSbomSelectionsItemEnum =
-  /*@__PURE__*/ S.String;
+export const ReservationSlotsGetVersionRequestSbomSelectionsItemEnum = S.String;
 
 export type ReservationSlotsGetVersionRequestSbomSelectionsItemEnumList = Array<
   ReservationSlotsGetVersionRequestSbomSelectionsItemEnum | (string & {})
@@ -48856,7 +48669,7 @@ export type ReservationSubBlocksGetVersionRequestSbomSelectionsItemEnum =
   | "SBOM_SELECTION_TARGET"
   | "SBOM_SELECTION_UNSPECIFIED";
 export const ReservationSubBlocksGetVersionRequestSbomSelectionsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReservationSubBlocksGetVersionRequestSbomSelectionsItemEnumList =
   Array<
@@ -48952,7 +48765,7 @@ export type VmExtensionStateHealthStatusEnum =
   | "STARTING"
   | "STOPPED"
   | "STOPPING";
-export const VmExtensionStateHealthStatusEnum = /*@__PURE__*/ S.String;
+export const VmExtensionStateHealthStatusEnum = S.String;
 
 export type VmExtensionStateEnforcementStateEnum =
   | "APPLYING_CONFIG"
@@ -48966,7 +48779,7 @@ export type VmExtensionStateEnforcementStateEnum =
   | "ROLLED_BACK"
   | "ROLLING_BACK"
   | "SERVICE_DISABLED";
-export const VmExtensionStateEnforcementStateEnum = /*@__PURE__*/ S.String;
+export const VmExtensionStateEnforcementStateEnum = S.String;
 
 /** State of an extension on an instance. */
 export interface VmExtensionState {
@@ -49088,12 +48901,12 @@ export const WireEndpointList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<WireEndpointList>;
 
 export type WirePropertiesFaultResponseEnum = "DISABLE_PORT" | "NONE";
-export const WirePropertiesFaultResponseEnum = /*@__PURE__*/ S.String;
+export const WirePropertiesFaultResponseEnum = S.String;
 
 export type WirePropertiesBandwidthAllocationEnum =
   | "ALLOCATE_PER_WIRE"
   | "SHARED_WITH_WIRE_GROUP";
-export const WirePropertiesBandwidthAllocationEnum = /*@__PURE__*/ S.String;
+export const WirePropertiesBandwidthAllocationEnum = S.String;
 
 /** The properties of a wire. */
 export interface WireProperties {
@@ -49141,7 +48954,7 @@ export type WireGroupPropertiesTypeEnum =
   | "BOX_AND_CROSS"
   | "REDUNDANT"
   | "WIRE";
-export const WireGroupPropertiesTypeEnum = /*@__PURE__*/ S.String;
+export const WireGroupPropertiesTypeEnum = S.String;
 
 /** The properties of a wire group. These properties determine how a group of redundant wires are created and managed. */
 export interface WireGroupProperties {
@@ -49404,8 +49217,7 @@ export const GetZonesRequest = /*@__PURE__*/ S.suspend(() =>
 export type PeriodicPartialMaintenanceScheduleTypeEnum =
   | "MAINTENANCE_TYPE_UNSPECIFIED"
   | "PRIVATE_ZONE_MAINTENANCE";
-export const PeriodicPartialMaintenanceScheduleTypeEnum =
-  /*@__PURE__*/ S.String;
+export const PeriodicPartialMaintenanceScheduleTypeEnum = S.String;
 
 /** Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones). */
 export interface TimeZone {
@@ -49462,8 +49274,7 @@ export type PeriodicPartialMaintenanceScheduleSubTypeEnum =
   | "MAINTENANCE_TYPE_DISRUPTIVE_UPGRADE"
   | "MAINTENANCE_TYPE_STABLE"
   | "MAINTENANCE_TYPE_TRANSITION";
-export const PeriodicPartialMaintenanceScheduleSubTypeEnum =
-  /*@__PURE__*/ S.String;
+export const PeriodicPartialMaintenanceScheduleSubTypeEnum = S.String;
 
 /** The periodic partial maintenance schedule includes 52 weeks worth of maintenance windows. LINT.IfChange(PeriodicPartialMaintenanceSchedule) */
 export interface PeriodicPartialMaintenanceSchedule {
@@ -49508,7 +49319,7 @@ export const ZoneResourceStatus = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ZoneResourceStatus>;
 
 export type ZoneStatusEnum = "DOWN" | "UP";
-export const ZoneStatusEnum = /*@__PURE__*/ S.String;
+export const ZoneStatusEnum = S.String;
 
 /** Represents a Zone resource. A zone is a deployment area. These deployment areas are subsets of a region. For example the zone us-east1-b is located in theus-east1 region. For more information, readRegions and Zones. */
 export interface Zone {
@@ -52386,7 +52197,7 @@ export type AcceleratorTypeListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const AcceleratorTypeListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const AcceleratorTypeListWarningCodeEnum = S.String;
 
 export interface AcceleratorTypeListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -52511,7 +52322,7 @@ export type AddressListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const AddressListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const AddressListWarningCodeEnum = S.String;
 
 export interface AddressListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -52696,7 +52507,7 @@ export type AutoscalerListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const AutoscalerListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const AutoscalerListWarningCodeEnum = S.String;
 
 export type AutoscalerListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -52899,7 +52710,7 @@ export type BackendBucketListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const BackendBucketListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const BackendBucketListWarningCodeEnum = S.String;
 
 export type BackendBucketListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -53032,7 +52843,7 @@ export type BackendServiceListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const BackendServiceListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const BackendServiceListWarningCodeEnum = S.String;
 
 export interface BackendServiceListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -53084,13 +52895,13 @@ export type ListBgpRoutesRoutersRouteTypeEnum =
   | "ADVERTISED"
   | "LEARNED"
   | "UNSPECIFIED_ROUTE_TYPE";
-export const ListBgpRoutesRoutersRouteTypeEnum = /*@__PURE__*/ S.String;
+export const ListBgpRoutesRoutersRouteTypeEnum = S.String;
 
 export type ListBgpRoutesRoutersAddressFamilyEnum =
   | "IPV4"
   | "IPV6"
   | "UNSPECIFIED_IP_VERSION";
-export const ListBgpRoutesRoutersAddressFamilyEnum = /*@__PURE__*/ S.String;
+export const ListBgpRoutesRoutersAddressFamilyEnum = S.String;
 
 export interface ListBgpRoutesRoutersRequest {
   /** Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported. */
@@ -53151,7 +52962,7 @@ export const ListBgpRoutesRoutersRequest = /*@__PURE__*/ S.suspend(() =>
 export type BgpRouteAsPathTypeEnum =
   | "AS_PATH_TYPE_SEQUENCE"
   | "AS_PATH_TYPE_SET";
-export const BgpRouteAsPathTypeEnum = /*@__PURE__*/ S.String;
+export const BgpRouteAsPathTypeEnum = S.String;
 
 export interface BgpRouteAsPath {
   /** Output only. [Output only] ASNs in the path segment. This field is for better support of 32 bit ASNs as the other asns field suffers from overflow when the ASN is larger. When type is SEQUENCE, these are ordered. */
@@ -53195,7 +53006,7 @@ export type BgpRouteOriginEnum =
   | "BGP_ORIGIN_EGP"
   | "BGP_ORIGIN_IGP"
   | "BGP_ORIGIN_INCOMPLETE";
-export const BgpRouteOriginEnum = /*@__PURE__*/ S.String;
+export const BgpRouteOriginEnum = S.String;
 
 export interface BgpRoute {
   /** Output only. [Output only] AS-PATH for the route */
@@ -53265,7 +53076,7 @@ export type RoutersListBgpRoutesWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RoutersListBgpRoutesWarningCodeEnum = /*@__PURE__*/ S.String;
+export const RoutersListBgpRoutesWarningCodeEnum = S.String;
 
 export interface RoutersListBgpRoutesWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -53380,7 +53191,7 @@ export type CrossSiteNetworkListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const CrossSiteNetworkListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const CrossSiteNetworkListWarningCodeEnum = S.String;
 
 export type CrossSiteNetworkListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -53531,7 +53342,7 @@ export type DhcpOptionsConfigListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const DhcpOptionsConfigListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const DhcpOptionsConfigListWarningCodeEnum = S.String;
 
 export interface DhcpOptionsConfigListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -53660,7 +53471,7 @@ export type DiskListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const DiskListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const DiskListWarningCodeEnum = S.String;
 
 export interface DiskListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -53775,7 +53586,7 @@ export type StoragePoolListDisksWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const StoragePoolListDisksWarningCodeEnum = /*@__PURE__*/ S.String;
+export const StoragePoolListDisksWarningCodeEnum = S.String;
 
 export type StoragePoolListDisksWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -53813,7 +53624,7 @@ export type StoragePoolDiskStatusEnum =
   | "READY"
   | "RESTORING"
   | "UNAVAILABLE";
-export const StoragePoolDiskStatusEnum = /*@__PURE__*/ S.String;
+export const StoragePoolDiskStatusEnum = S.String;
 
 export interface StoragePoolDisk {
   /** Output only. [Output Only] Creation timestamp inRFC3339 text format. */
@@ -53960,7 +53771,7 @@ export type DiskTypeListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const DiskTypeListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const DiskTypeListWarningCodeEnum = S.String;
 
 export type DiskTypeListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -54074,7 +53885,7 @@ export type InstanceManagedByIgmErrorInstanceActionDetailsActionEnum =
   | "SUSPENDING"
   | "VERIFYING";
 export const InstanceManagedByIgmErrorInstanceActionDetailsActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ManagedInstanceVersion {
   /** Output only. [Output Only] The intended template of the instance. This field is empty when current_action is one of { DELETING, ABANDONING }. */
@@ -54304,7 +54115,7 @@ export type ExternalVpnGatewayListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ExternalVpnGatewayListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const ExternalVpnGatewayListWarningCodeEnum = S.String;
 
 export interface ExternalVpnGatewayListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -54417,7 +54228,7 @@ export type FirewallPolicyListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const FirewallPolicyListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const FirewallPolicyListWarningCodeEnum = S.String;
 
 export type FirewallPolicyListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -54535,7 +54346,7 @@ export type FirewallListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const FirewallListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const FirewallListWarningCodeEnum = S.String;
 
 export type FirewallListWarningDataItem = OperationWarningsItemDataItem;
 export const FirewallListWarningDataItem = OperationWarningsItemDataItem;
@@ -54667,7 +54478,7 @@ export type ForwardingRuleListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ForwardingRuleListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const ForwardingRuleListWarningCodeEnum = S.String;
 
 export interface ForwardingRuleListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -54793,8 +54604,7 @@ export type FutureReservationsListResponseWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const FutureReservationsListResponseWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const FutureReservationsListResponseWarningCodeEnum = S.String;
 
 export interface FutureReservationsListResponseWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -54977,7 +54787,7 @@ export type NetworkEndpointGroupListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NetworkEndpointGroupListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const NetworkEndpointGroupListWarningCodeEnum = S.String;
 
 export type NetworkEndpointGroupListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -55108,7 +54918,7 @@ export type OperationListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const OperationListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const OperationListWarningCodeEnum = S.String;
 
 export interface OperationListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -55252,7 +55062,7 @@ export type PublicDelegatedPrefixListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const PublicDelegatedPrefixListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const PublicDelegatedPrefixListWarningCodeEnum = S.String;
 
 export type PublicDelegatedPrefixListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -55387,8 +55197,7 @@ export type GlobalVmExtensionPolicyListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const GlobalVmExtensionPolicyListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const GlobalVmExtensionPolicyListWarningCodeEnum = S.String;
 
 export interface GlobalVmExtensionPolicyListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -55509,7 +55318,7 @@ export type HealthCheckListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const HealthCheckListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const HealthCheckListWarningCodeEnum = S.String;
 
 export type HealthCheckListWarningDataItem = OperationWarningsItemDataItem;
 export const HealthCheckListWarningDataItem = OperationWarningsItemDataItem;
@@ -55640,7 +55449,7 @@ export type HostsListResponseWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const HostsListResponseWarningCodeEnum = /*@__PURE__*/ S.String;
+export const HostsListResponseWarningCodeEnum = S.String;
 
 export type HostsListResponseWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -55766,7 +55575,7 @@ export type HttpHealthCheckListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const HttpHealthCheckListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const HttpHealthCheckListWarningCodeEnum = S.String;
 
 export type HttpHealthCheckListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -55909,7 +55718,7 @@ export type HttpsHealthCheckListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const HttpsHealthCheckListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const HttpsHealthCheckListWarningCodeEnum = S.String;
 
 export interface HttpsHealthCheckListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -56036,7 +55845,7 @@ export type ImageListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ImageListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const ImageListWarningCodeEnum = S.String;
 
 export interface ImageListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -56159,7 +55968,7 @@ export type InstanceGroupManagerResizeRequestsListResponseWarningCodeEnum =
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
 export const InstanceGroupManagerResizeRequestsListResponseWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InstanceGroupManagerResizeRequestsListResponseWarningDataItem =
   OperationWarningsItemDataItem;
@@ -56305,7 +56114,7 @@ export type InstanceGroupManagerListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstanceGroupManagerListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const InstanceGroupManagerListWarningCodeEnum = S.String;
 
 export interface InstanceGroupManagerListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -56419,7 +56228,7 @@ export type InstanceGroupListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstanceGroupListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const InstanceGroupListWarningCodeEnum = S.String;
 
 export type InstanceGroupListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -56482,7 +56291,7 @@ export type ListInstancesViewEnum =
   | "BASIC"
   | "FULL"
   | "INSTANCE_VIEW_UNSPECIFIED";
-export const ListInstancesViewEnum = /*@__PURE__*/ S.String;
+export const ListInstancesViewEnum = S.String;
 
 export interface ListInstancesRequest {
   /** View of the instance. */
@@ -56562,7 +56371,7 @@ export type InstanceListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstanceListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const InstanceListWarningCodeEnum = S.String;
 
 export interface InstanceListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -56611,8 +56420,7 @@ export const InstanceList = /*@__PURE__*/ S.suspend(() =>
 export type InstanceGroupsListInstancesRequestInstanceStateEnum =
   | "ALL"
   | "RUNNING";
-export const InstanceGroupsListInstancesRequestInstanceStateEnum =
-  /*@__PURE__*/ S.String;
+export const InstanceGroupsListInstancesRequestInstanceStateEnum = S.String;
 
 export interface InstanceGroupsListInstancesRequest {
   /** A filter for the state of the instances in the instance group. Valid options are ALL or RUNNING. If you do not specify this parameter the list includes all instances regardless of their state. */
@@ -56685,7 +56493,7 @@ export type InstanceWithNamedPortsStatusEnum =
   | "SUSPENDED"
   | "SUSPENDING"
   | "TERMINATED";
-export const InstanceWithNamedPortsStatusEnum = /*@__PURE__*/ S.String;
+export const InstanceWithNamedPortsStatusEnum = S.String;
 
 export interface InstanceWithNamedPorts {
   /** Output only. [Output Only] The status of the instance. */
@@ -56740,8 +56548,7 @@ export type InstanceGroupsListInstancesWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstanceGroupsListInstancesWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const InstanceGroupsListInstancesWarningCodeEnum = S.String;
 
 export type InstanceGroupsListInstancesWarningDataItem =
   OperationWarningsItemDataItem;
@@ -56804,7 +56611,7 @@ export type RegionInstanceGroupsListInstancesRequestInstanceStateEnum =
   | "ALL"
   | "RUNNING";
 export const RegionInstanceGroupsListInstancesRequestInstanceStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RegionInstanceGroupsListInstancesRequest {
   /** Instances in which state should be returned. Valid options are: 'ALL', 'RUNNING'. By default, it lists all instances. */
@@ -56913,8 +56720,7 @@ export type RegionInstanceGroupsListInstancesWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RegionInstanceGroupsListInstancesWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const RegionInstanceGroupsListInstancesWarningCodeEnum = S.String;
 
 export interface RegionInstanceGroupsListInstancesWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -56966,7 +56772,7 @@ export type ListInstanceTemplatesViewEnum =
   | "BASIC"
   | "FULL"
   | "INSTANCE_VIEW_UNSPECIFIED";
-export const ListInstanceTemplatesViewEnum = /*@__PURE__*/ S.String;
+export const ListInstanceTemplatesViewEnum = S.String;
 
 export interface ListInstanceTemplatesRequest {
   /** Project ID for this request. */
@@ -57034,7 +56840,7 @@ export type InstanceTemplateListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstanceTemplateListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const InstanceTemplateListWarningCodeEnum = S.String;
 
 export type InstanceTemplateListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -57171,7 +56977,7 @@ export type ListInstantSnapshotGroupsWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ListInstantSnapshotGroupsWarningCodeEnum = /*@__PURE__*/ S.String;
+export const ListInstantSnapshotGroupsWarningCodeEnum = S.String;
 
 export interface ListInstantSnapshotGroupsWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -57304,7 +57110,7 @@ export type InstantSnapshotListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstantSnapshotListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const InstantSnapshotListWarningCodeEnum = S.String;
 
 export interface InstantSnapshotListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -57434,8 +57240,7 @@ export type InterconnectAttachmentGroupsListResponseWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InterconnectAttachmentGroupsListResponseWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectAttachmentGroupsListResponseWarningCodeEnum = S.String;
 
 export interface InterconnectAttachmentGroupsListResponseWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -57568,7 +57373,7 @@ export type InterconnectAttachmentListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InterconnectAttachmentListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const InterconnectAttachmentListWarningCodeEnum = S.String;
 
 export interface InterconnectAttachmentListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -57679,8 +57484,7 @@ export type InterconnectGroupsListResponseWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InterconnectGroupsListResponseWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectGroupsListResponseWarningCodeEnum = S.String;
 
 export type InterconnectGroupsListResponseWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -57829,7 +57633,7 @@ export type InterconnectLocationListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InterconnectLocationListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const InterconnectLocationListWarningCodeEnum = S.String;
 
 export interface InterconnectLocationListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -57958,8 +57762,7 @@ export type InterconnectRemoteLocationListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InterconnectRemoteLocationListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const InterconnectRemoteLocationListWarningCodeEnum = S.String;
 
 export interface InterconnectRemoteLocationListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -58082,7 +57885,7 @@ export type InterconnectListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InterconnectListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const InterconnectListWarningCodeEnum = S.String;
 
 export interface InterconnectListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -58208,7 +58011,7 @@ export type LicensesListResponseWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const LicensesListResponseWarningCodeEnum = /*@__PURE__*/ S.String;
+export const LicensesListResponseWarningCodeEnum = S.String;
 
 export interface LicensesListResponseWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -58336,7 +58139,7 @@ export type MachineImageListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const MachineImageListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const MachineImageListWarningCodeEnum = S.String;
 
 export interface MachineImageListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -58461,7 +58264,7 @@ export type MachineTypeListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const MachineTypeListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const MachineTypeListWarningCodeEnum = S.String;
 
 export interface MachineTypeListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -58562,7 +58365,7 @@ export type ManagedInstanceInstanceStatusEnum =
   | "SUSPENDED"
   | "SUSPENDING"
   | "TERMINATED";
-export const ManagedInstanceInstanceStatusEnum = /*@__PURE__*/ S.String;
+export const ManagedInstanceInstanceStatusEnum = S.String;
 
 export interface ManagedInstanceShutdownDetails {
   /** Output only. The duration for graceful shutdown. Only applicable when the instance is in `PENDING_STOP` state. */
@@ -58679,7 +58482,7 @@ export type ManagedInstanceCurrentActionEnum =
   | "STOPPING"
   | "SUSPENDING"
   | "VERIFYING";
-export const ManagedInstanceCurrentActionEnum = /*@__PURE__*/ S.String;
+export const ManagedInstanceCurrentActionEnum = S.String;
 
 export type ManagedInstanceTargetStatusEnum =
   | "ABANDONED"
@@ -58688,7 +58491,7 @@ export type ManagedInstanceTargetStatusEnum =
   | "RUNNING"
   | "STOPPED"
   | "SUSPENDED";
-export const ManagedInstanceTargetStatusEnum = /*@__PURE__*/ S.String;
+export const ManagedInstanceTargetStatusEnum = S.String;
 
 export type ManagedInstanceInstanceHealthDetailedHealthStateEnum =
   | "DRAINING"
@@ -58696,8 +58499,7 @@ export type ManagedInstanceInstanceHealthDetailedHealthStateEnum =
   | "TIMEOUT"
   | "UNHEALTHY"
   | "UNKNOWN";
-export const ManagedInstanceInstanceHealthDetailedHealthStateEnum =
-  /*@__PURE__*/ S.String;
+export const ManagedInstanceInstanceHealthDetailedHealthStateEnum = S.String;
 
 export interface ManagedInstanceInstanceHealth {
   /** Output only. [Output Only] The URL for the health check that verifies whether the instance is healthy. */
@@ -58728,7 +58530,7 @@ export type ManagedInstancePropertiesFromFlexibilityPolicyProvisioningModelEnum 
   | "SPOT"
   | "STANDARD";
 export const ManagedInstancePropertiesFromFlexibilityPolicyProvisioningModelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ManagedInstancePropertiesFromFlexibilityPolicy {
   /** Output only. The provisioning model to be used for this instance. */
@@ -58978,7 +58780,7 @@ export type ManagedRulesetListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ManagedRulesetListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const ManagedRulesetListWarningCodeEnum = S.String;
 
 export type ManagedRulesetListWarningDataItem = OperationWarningsItemDataItem;
 export const ManagedRulesetListWarningDataItem = OperationWarningsItemDataItem;
@@ -59098,7 +58900,7 @@ export type RoutersListNamedSetsWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RoutersListNamedSetsWarningCodeEnum = /*@__PURE__*/ S.String;
+export const RoutersListNamedSetsWarningCodeEnum = S.String;
 
 export type RoutersListNamedSetsWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -59232,7 +59034,7 @@ export type NetworkAttachmentListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NetworkAttachmentListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const NetworkAttachmentListWarningCodeEnum = S.String;
 
 export type NetworkAttachmentListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -59390,8 +59192,7 @@ export type HealthStatusForNetworkEndpointHealthStateEnum =
   | "HEALTHY"
   | "UNHEALTHY"
   | "UNKNOWN";
-export const HealthStatusForNetworkEndpointHealthStateEnum =
-  /*@__PURE__*/ S.String;
+export const HealthStatusForNetworkEndpointHealthStateEnum = S.String;
 
 export interface BackendServiceReference {
   backendService?: string;
@@ -59409,8 +59210,7 @@ export type HealthStatusForNetworkEndpointIpv6HealthStateEnum =
   | "HEALTHY"
   | "UNHEALTHY"
   | "UNKNOWN";
-export const HealthStatusForNetworkEndpointIpv6HealthStateEnum =
-  /*@__PURE__*/ S.String;
+export const HealthStatusForNetworkEndpointIpv6HealthStateEnum = S.String;
 
 export interface HealthStatusForNetworkEndpoint {
   /** URL of the health check associated with the health state of the network endpoint. */
@@ -59511,7 +59311,7 @@ export type NetworkEndpointGroupsListNetworkEndpointsWarningCodeEnum =
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
 export const NetworkEndpointGroupsListNetworkEndpointsWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NetworkEndpointGroupsListNetworkEndpointsWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -59585,7 +59385,7 @@ export type NetworkEndpointGroupsListEndpointsRequestHealthStatusEnum =
   | "SHOW"
   | "SKIP";
 export const NetworkEndpointGroupsListEndpointsRequestHealthStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NetworkEndpointGroupsListEndpointsRequest {
   /** Optional list of endpoints to query. This is a more efficient but also limited version of filter parameter. Endpoints in the filter must have ip_address and port fields populated, other fields are not supported. */
@@ -59790,8 +59590,7 @@ export type NetworkProfilesListResponseWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NetworkProfilesListResponseWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkProfilesListResponseWarningCodeEnum = S.String;
 
 export type NetworkProfilesListResponseWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -59929,7 +59728,7 @@ export type NetworkListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NetworkListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const NetworkListWarningCodeEnum = S.String;
 
 export type NetworkListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -60061,7 +59860,7 @@ export type NodeGroupListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NodeGroupListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const NodeGroupListWarningCodeEnum = S.String;
 
 export interface NodeGroupListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -60173,7 +59972,7 @@ export type NodeGroupNodeStatusEnum =
   | "INVALID"
   | "READY"
   | "REPAIRING";
-export const NodeGroupNodeStatusEnum = /*@__PURE__*/ S.String;
+export const NodeGroupNodeStatusEnum = S.String;
 
 export interface InstanceConsumptionData {
   /** Output only. Server-defined URL for the instance. */
@@ -60199,7 +59998,7 @@ export type NodeGroupNodeCpuOvercommitTypeEnum =
   | "CPU_OVERCOMMIT_TYPE_UNSPECIFIED"
   | "ENABLED"
   | "NONE";
-export const NodeGroupNodeCpuOvercommitTypeEnum = /*@__PURE__*/ S.String;
+export const NodeGroupNodeCpuOvercommitTypeEnum = S.String;
 
 export interface NodeGroupNode {
   /** Output only. [Output Only] The information about an upcoming maintenance event. */
@@ -60284,7 +60083,7 @@ export type NodeGroupsListNodesWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NodeGroupsListNodesWarningCodeEnum = /*@__PURE__*/ S.String;
+export const NodeGroupsListNodesWarningCodeEnum = S.String;
 
 export type NodeGroupsListNodesWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -60408,7 +60207,7 @@ export type NodeTemplateListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NodeTemplateListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const NodeTemplateListWarningCodeEnum = S.String;
 
 export type NodeTemplateListWarningDataItem = OperationWarningsItemDataItem;
 export const NodeTemplateListWarningDataItem = OperationWarningsItemDataItem;
@@ -60540,7 +60339,7 @@ export type NodeTypeListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NodeTypeListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const NodeTypeListWarningCodeEnum = S.String;
 
 export interface NodeTypeListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -60649,7 +60448,7 @@ export type RolloutPlansListResponseWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RolloutPlansListResponseWarningCodeEnum = /*@__PURE__*/ S.String;
+export const RolloutPlansListResponseWarningCodeEnum = S.String;
 
 export type RolloutPlansListResponseWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -60796,8 +60595,7 @@ export type OrganizationRolloutsListResponseWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const OrganizationRolloutsListResponseWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const OrganizationRolloutsListResponseWarningCodeEnum = S.String;
 
 export interface OrganizationRolloutsListResponseWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -60911,7 +60709,7 @@ export type SecurityPolicyListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SecurityPolicyListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const SecurityPolicyListWarningCodeEnum = S.String;
 
 export type SecurityPolicyListWarningDataItem = OperationWarningsItemDataItem;
 export const SecurityPolicyListWarningDataItem = OperationWarningsItemDataItem;
@@ -61041,7 +60839,7 @@ export type PacketMirroringListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const PacketMirroringListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const PacketMirroringListWarningCodeEnum = S.String;
 
 export interface PacketMirroringListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -61090,7 +60888,7 @@ export const PacketMirroringList = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PacketMirroringList>;
 
 export type ListPeeringRoutesNetworksDirectionEnum = "INCOMING" | "OUTGOING";
-export const ListPeeringRoutesNetworksDirectionEnum = /*@__PURE__*/ S.String;
+export const ListPeeringRoutesNetworksDirectionEnum = S.String;
 
 export interface ListPeeringRoutesNetworksRequest {
   /** Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code. */
@@ -61143,7 +60941,7 @@ export type ExchangedPeeringRouteTypeEnum =
   | "DYNAMIC_PEERING_ROUTE"
   | "STATIC_PEERING_ROUTE"
   | "SUBNET_PEERING_ROUTE";
-export const ExchangedPeeringRouteTypeEnum = /*@__PURE__*/ S.String;
+export const ExchangedPeeringRouteTypeEnum = S.String;
 
 export interface ExchangedPeeringRoute {
   /** The priority of the peering route. */
@@ -61204,7 +61002,7 @@ export type ExchangedPeeringRoutesListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ExchangedPeeringRoutesListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const ExchangedPeeringRoutesListWarningCodeEnum = S.String;
 
 export type ExchangedPeeringRoutesListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -61346,7 +61144,7 @@ export type InstanceGroupManagersListPerInstanceConfigsRespWarningCodeEnum =
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
 export const InstanceGroupManagersListPerInstanceConfigsRespWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstanceGroupManagersListPerInstanceConfigsRespWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -61463,7 +61261,7 @@ export type RegionInstanceGroupManagersListInstanceConfigsRespWarningCodeEnum =
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
 export const RegionInstanceGroupManagersListInstanceConfigsRespWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RegionInstanceGroupManagersListInstanceConfigsRespWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -61742,7 +61540,7 @@ export type PreviewFeatureListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const PreviewFeatureListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const PreviewFeatureListWarningCodeEnum = S.String;
 
 export interface PreviewFeatureListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -61859,7 +61657,7 @@ export type PublicAdvertisedPrefixListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const PublicAdvertisedPrefixListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const PublicAdvertisedPrefixListWarningCodeEnum = S.String;
 
 export type PublicAdvertisedPrefixListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -62027,7 +61825,7 @@ export type RecoverableSnapshotListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RecoverableSnapshotListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const RecoverableSnapshotListWarningCodeEnum = S.String;
 
 export type RecoverableSnapshotListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -62184,7 +61982,7 @@ export type InstanceListReferrersWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const InstanceListReferrersWarningCodeEnum = /*@__PURE__*/ S.String;
+export const InstanceListReferrersWarningCodeEnum = S.String;
 
 export type InstanceListReferrersWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -62309,7 +62107,7 @@ export type RegionAutoscalerListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RegionAutoscalerListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const RegionAutoscalerListWarningCodeEnum = S.String;
 
 export type RegionAutoscalerListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -62517,7 +62315,7 @@ export type CommitmentListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const CommitmentListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const CommitmentListWarningCodeEnum = S.String;
 
 export interface CommitmentListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -62642,7 +62440,7 @@ export type CompositeHealthCheckListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const CompositeHealthCheckListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const CompositeHealthCheckListWarningCodeEnum = S.String;
 
 export interface CompositeHealthCheckListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -62791,7 +62589,7 @@ export type RegionDiskTypeListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RegionDiskTypeListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const RegionDiskTypeListWarningCodeEnum = S.String;
 
 export type RegionDiskTypeListWarningDataItem = OperationWarningsItemDataItem;
 export const RegionDiskTypeListWarningDataItem = OperationWarningsItemDataItem;
@@ -62926,8 +62724,7 @@ export type HealthAggregationPolicyListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const HealthAggregationPolicyListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const HealthAggregationPolicyListWarningCodeEnum = S.String;
 
 export interface HealthAggregationPolicyListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -63077,7 +62874,7 @@ export type HealthCheckServicesListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const HealthCheckServicesListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const HealthCheckServicesListWarningCodeEnum = S.String;
 
 export type HealthCheckServicesListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -63212,7 +63009,7 @@ export type HealthSourceListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const HealthSourceListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const HealthSourceListWarningCodeEnum = S.String;
 
 export interface HealthSourceListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -63342,7 +63139,7 @@ export type RegionInstanceGroupManagerResizeRequestsListResponseWarningCodeEnum 
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
 export const RegionInstanceGroupManagerResizeRequestsListResponseWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RegionInstanceGroupManagerResizeRequestsListResponseWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -63469,8 +63266,7 @@ export type RegionInstanceGroupManagerListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RegionInstanceGroupManagerListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const RegionInstanceGroupManagerListWarningCodeEnum = S.String;
 
 export type RegionInstanceGroupManagerListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -63597,7 +63393,7 @@ export type RegionInstanceGroupListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RegionInstanceGroupListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const RegionInstanceGroupListWarningCodeEnum = S.String;
 
 export type RegionInstanceGroupListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -63660,7 +63456,7 @@ export type ListRegionInstanceTemplatesViewEnum =
   | "BASIC"
   | "FULL"
   | "INSTANCE_VIEW_UNSPECIFIED";
-export const ListRegionInstanceTemplatesViewEnum = /*@__PURE__*/ S.String;
+export const ListRegionInstanceTemplatesViewEnum = S.String;
 
 export interface ListRegionInstanceTemplatesRequest {
   /** A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based onresource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using GoogleRE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions. */
@@ -63843,7 +63639,7 @@ export type MultiMigMemberListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const MultiMigMemberListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const MultiMigMemberListWarningCodeEnum = S.String;
 
 export type MultiMigMemberListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -63972,7 +63768,7 @@ export type MultiMigsListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const MultiMigsListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const MultiMigsListWarningCodeEnum = S.String;
 
 export type MultiMigsListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -64173,7 +63969,7 @@ export type NetworkPolicyListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NetworkPolicyListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const NetworkPolicyListWarningCodeEnum = S.String;
 
 export type NetworkPolicyListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -64307,7 +64103,7 @@ export type NotificationEndpointListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const NotificationEndpointListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const NotificationEndpointListWarningCodeEnum = S.String;
 
 export interface NotificationEndpointListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -64464,7 +64260,7 @@ export type RegionListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RegionListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const RegionListWarningCodeEnum = S.String;
 
 export interface RegionListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -64626,7 +64422,7 @@ export type SnapshotListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SnapshotListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const SnapshotListWarningCodeEnum = S.String;
 
 export interface SnapshotListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -64747,7 +64543,7 @@ export type SslCertificateListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SslCertificateListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const SslCertificateListWarningCodeEnum = S.String;
 
 export interface SslCertificateListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -64861,7 +64657,7 @@ export type SslPoliciesListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SslPoliciesListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const SslPoliciesListWarningCodeEnum = S.String;
 
 export type SslPoliciesListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -64996,7 +64792,7 @@ export type TargetHttpProxyListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetHttpProxyListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const TargetHttpProxyListWarningCodeEnum = S.String;
 
 export interface TargetHttpProxyListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -65110,7 +64906,7 @@ export type TargetHttpsProxyListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetHttpsProxyListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const TargetHttpsProxyListWarningCodeEnum = S.String;
 
 export type TargetHttpsProxyListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -65235,7 +65031,7 @@ export type TargetTcpProxyListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetTcpProxyListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const TargetTcpProxyListWarningCodeEnum = S.String;
 
 export type TargetTcpProxyListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -65360,7 +65156,7 @@ export type UrlMapListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const UrlMapListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const UrlMapListWarningCodeEnum = S.String;
 
 export type UrlMapListWarningDataItem = OperationWarningsItemDataItem;
 export const UrlMapListWarningDataItem = OperationWarningsItemDataItem;
@@ -65486,7 +65282,7 @@ export type ZoneListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ZoneListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const ZoneListWarningCodeEnum = S.String;
 
 export type ZoneListWarningDataItem = AcceleratorTypesScopedListWarningDataItem;
 export const ZoneListWarningDataItem =
@@ -65622,8 +65418,7 @@ export type ReliabilityRisksListResponseWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ReliabilityRisksListResponseWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const ReliabilityRisksListResponseWarningCodeEnum = S.String;
 
 export interface ReliabilityRisksListResponseWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -65743,8 +65538,7 @@ export type ReservationBlocksListResponseWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ReservationBlocksListResponseWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const ReservationBlocksListResponseWarningCodeEnum = S.String;
 
 export type ReservationBlocksListResponseWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -65876,7 +65670,7 @@ export type ReservationListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ReservationListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const ReservationListWarningCodeEnum = S.String;
 
 export type ReservationListWarningDataItem = OperationWarningsItemDataItem;
 export const ReservationListWarningDataItem = OperationWarningsItemDataItem;
@@ -66013,8 +65807,7 @@ export type ReservationSlotsListResponseWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ReservationSlotsListResponseWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const ReservationSlotsListResponseWarningCodeEnum = S.String;
 
 export interface ReservationSlotsListResponseWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -66136,8 +65929,7 @@ export type ReservationSubBlocksListResponseWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ReservationSubBlocksListResponseWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const ReservationSubBlocksListResponseWarningCodeEnum = S.String;
 
 export type ReservationSubBlocksListResponseWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -66269,7 +66061,7 @@ export type ResourcePolicyListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ResourcePolicyListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const ResourcePolicyListWarningCodeEnum = S.String;
 
 export type ResourcePolicyListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -66425,7 +66217,7 @@ export type RolloutsListResponseWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RolloutsListResponseWarningCodeEnum = /*@__PURE__*/ S.String;
+export const RolloutsListResponseWarningCodeEnum = S.String;
 
 export type RolloutsListResponseWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -66554,7 +66346,7 @@ export type RoutersListRoutePoliciesWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RoutersListRoutePoliciesWarningCodeEnum = /*@__PURE__*/ S.String;
+export const RoutersListRoutePoliciesWarningCodeEnum = S.String;
 
 export type RoutersListRoutePoliciesWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -66698,7 +66490,7 @@ export type RouterListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RouterListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const RouterListWarningCodeEnum = S.String;
 
 export interface RouterListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -66807,7 +66599,7 @@ export type RouteListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const RouteListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const RouteListWarningCodeEnum = S.String;
 
 export type RouteListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -66963,7 +66755,7 @@ export type ServiceAttachmentListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ServiceAttachmentListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const ServiceAttachmentListWarningCodeEnum = S.String;
 
 export type ServiceAttachmentListWarningDataItem =
   OperationWarningsItemDataItem;
@@ -67095,7 +66887,7 @@ export type ListSnapshotGroupsWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ListSnapshotGroupsWarningCodeEnum = /*@__PURE__*/ S.String;
+export const ListSnapshotGroupsWarningCodeEnum = S.String;
 
 export interface ListSnapshotGroupsWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -67327,7 +67119,7 @@ export type StoragePoolListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const StoragePoolListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const StoragePoolListWarningCodeEnum = S.String;
 
 export interface StoragePoolListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -67446,7 +67238,7 @@ export type StoragePoolTypeListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const StoragePoolTypeListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const StoragePoolTypeListWarningCodeEnum = S.String;
 
 export type StoragePoolTypeListWarningDataItem = OperationWarningsItemDataItem;
 export const StoragePoolTypeListWarningDataItem = OperationWarningsItemDataItem;
@@ -67504,7 +67296,7 @@ export const StoragePoolTypeList = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StoragePoolTypeList>;
 
 export type ListSubnetworksViewsEnum = "DEFAULT" | "WITH_UTILIZATION";
-export const ListSubnetworksViewsEnum = /*@__PURE__*/ S.String;
+export const ListSubnetworksViewsEnum = S.String;
 
 export type ListSubnetworksViewsEnumList = Array<
   ListSubnetworksViewsEnum | (string & {})
@@ -67591,7 +67383,7 @@ export type SubnetworkListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SubnetworkListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const SubnetworkListWarningCodeEnum = S.String;
 
 export interface SubnetworkListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -67705,7 +67497,7 @@ export type TargetGrpcProxyListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetGrpcProxyListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const TargetGrpcProxyListWarningCodeEnum = S.String;
 
 export type TargetGrpcProxyListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -67895,7 +67687,7 @@ export type TargetInstanceListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetInstanceListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const TargetInstanceListWarningCodeEnum = S.String;
 
 export type TargetInstanceListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -68031,7 +67823,7 @@ export type TargetPoolListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetPoolListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const TargetPoolListWarningCodeEnum = S.String;
 
 export interface TargetPoolListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -68145,7 +67937,7 @@ export type TargetSslProxyListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetSslProxyListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const TargetSslProxyListWarningCodeEnum = S.String;
 
 export type TargetSslProxyListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -68303,7 +68095,7 @@ export type TargetVpnGatewayListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const TargetVpnGatewayListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const TargetVpnGatewayListWarningCodeEnum = S.String;
 
 export type TargetVpnGatewayListWarningDataItem = OperationWarningsItemDataItem;
 export const TargetVpnGatewayListWarningDataItem =
@@ -68468,7 +68260,7 @@ export type BackendBucketListUsableWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const BackendBucketListUsableWarningCodeEnum = /*@__PURE__*/ S.String;
+export const BackendBucketListUsableWarningCodeEnum = S.String;
 
 export interface BackendBucketListUsableWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -68590,7 +68382,7 @@ export type BackendServiceListUsableWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const BackendServiceListUsableWarningCodeEnum = /*@__PURE__*/ S.String;
+export const BackendServiceListUsableWarningCodeEnum = S.String;
 
 export interface BackendServiceListUsableWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -68778,7 +68570,7 @@ export type SubnetworksScopedWarningWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const SubnetworksScopedWarningWarningCodeEnum = /*@__PURE__*/ S.String;
+export const SubnetworksScopedWarningWarningCodeEnum = S.String;
 
 export type SubnetworksScopedWarningWarningDataItem =
   OperationWarningsItemDataItem;
@@ -68831,13 +68623,13 @@ export const SubnetworksScopedWarningList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SubnetworksScopedWarningList>;
 
 export type UsableSubnetworkIpv6AccessTypeEnum = "EXTERNAL" | "INTERNAL";
-export const UsableSubnetworkIpv6AccessTypeEnum = /*@__PURE__*/ S.String;
+export const UsableSubnetworkIpv6AccessTypeEnum = S.String;
 
 export type UsableSubnetworkStackTypeEnum =
   | "IPV4_IPV6"
   | "IPV4_ONLY"
   | "IPV6_ONLY";
-export const UsableSubnetworkStackTypeEnum = /*@__PURE__*/ S.String;
+export const UsableSubnetworkStackTypeEnum = S.String;
 
 export type UsableSubnetworkPurposeEnum =
   | "CUSTOM_HARDWARE_LINK"
@@ -68849,7 +68641,7 @@ export type UsableSubnetworkPurposeEnum =
   | "PRIVATE_RFC_1918"
   | "PRIVATE_SERVICE_CONNECT"
   | "REGIONAL_MANAGED_PROXY";
-export const UsableSubnetworkPurposeEnum = /*@__PURE__*/ S.String;
+export const UsableSubnetworkPurposeEnum = S.String;
 
 /** Secondary IP range of a usable subnetwork. */
 export interface UsableSubnetworkSecondaryRange {
@@ -68874,7 +68666,7 @@ export const UsableSubnetworkSecondaryRangeList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UsableSubnetworkSecondaryRangeList>;
 
 export type UsableSubnetworkRoleEnum = "ACTIVE" | "BACKUP";
-export const UsableSubnetworkRoleEnum = /*@__PURE__*/ S.String;
+export const UsableSubnetworkRoleEnum = S.String;
 
 /** Subnetwork which the current user has compute.subnetworks.use permission on. */
 export interface UsableSubnetwork {
@@ -68962,8 +68754,7 @@ export type UsableSubnetworksAggregatedListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const UsableSubnetworksAggregatedListWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const UsableSubnetworksAggregatedListWarningCodeEnum = S.String;
 
 export interface UsableSubnetworksAggregatedListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -69092,8 +68883,7 @@ export type ListVmExtensionStatesResponseWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const ListVmExtensionStatesResponseWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const ListVmExtensionStatesResponseWarningCodeEnum = S.String;
 
 export type ListVmExtensionStatesResponseWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -69236,7 +69026,7 @@ export type VpnGatewayListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const VpnGatewayListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const VpnGatewayListWarningCodeEnum = S.String;
 
 export interface VpnGatewayListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -69357,7 +69147,7 @@ export type VpnTunnelListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const VpnTunnelListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const VpnTunnelListWarningCodeEnum = S.String;
 
 export interface VpnTunnelListWarning {
   /** [Output Only] A human-readable description of the warning code. */
@@ -69473,7 +69263,7 @@ export type WireGroupListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const WireGroupListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const WireGroupListWarningCodeEnum = S.String;
 
 export type WireGroupListWarningDataItem = OperationWarningsItemDataItem;
 export const WireGroupListWarningDataItem = OperationWarningsItemDataItem;
@@ -69611,7 +69401,7 @@ export type XpnHostListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const XpnHostListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const XpnHostListWarningCodeEnum = S.String;
 
 export type XpnHostListWarningDataItem =
   AcceleratorTypesScopedListWarningDataItem;
@@ -69818,7 +69608,7 @@ export type VmExtensionPolicyListWarningCodeEnum =
   | "SINGLE_INSTANCE_PROPERTY_TEMPLATE"
   | "UNDECLARED_PROPERTIES"
   | "UNREACHABLE";
-export const VmExtensionPolicyListWarningCodeEnum = /*@__PURE__*/ S.String;
+export const VmExtensionPolicyListWarningCodeEnum = S.String;
 
 export interface VmExtensionPolicyListWarning {
   /** [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" }] */
@@ -72540,7 +72330,7 @@ export type ReservationsBlocksPerformMaintenanceRequestMaintenanceScopeEnum =
   | "RUNNING_VMS"
   | "UNUSED_CAPACITY";
 export const ReservationsBlocksPerformMaintenanceRequestMaintenanceScopeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReservationsBlocksPerformMaintenanceRequest {
   /** Specifies if all, running or unused hosts are in scope for this request. */
@@ -72601,7 +72391,7 @@ export type ReservationsPerformMaintenanceRequestMaintenanceScopeEnum =
   | "RUNNING_VMS"
   | "UNUSED_CAPACITY";
 export const ReservationsPerformMaintenanceRequestMaintenanceScopeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReservationsPerformMaintenanceRequest {
   /** Specifies if all, running or unused hosts are in scope for this request. */
@@ -73515,7 +73305,7 @@ export type ReservationSubBlocksReportFaultyRequestFailureComponentEnum =
   | "MULTIPLE_FAULTY_HOSTS"
   | "NVLINK_SWITCH";
 export const ReservationSubBlocksReportFaultyRequestFailureComponentEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReservationSubBlocksReportFaultyRequestFaultReasonBehaviorEnum =
   | "FAULT_BEHAVIOR_UNSPECIFIED"
@@ -73524,7 +73314,7 @@ export type ReservationSubBlocksReportFaultyRequestFaultReasonBehaviorEnum =
   | "SILENT_DATA_CORRUPTION"
   | "SWITCH_FAILURE";
 export const ReservationSubBlocksReportFaultyRequestFaultReasonBehaviorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason for the fault experienced with the subBlock. */
 export interface ReservationSubBlocksReportFaultyRequestFaultReason {
@@ -73558,7 +73348,7 @@ export type ReservationSubBlocksReportFaultyRequestDisruptionScheduleEnum =
   | "DISRUPTION_SCHEDULE_UNSPECIFIED"
   | "IMMEDIATE";
 export const ReservationSubBlocksReportFaultyRequestDisruptionScheduleEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReservationSubBlocksReportFaultyRequest {
   /** The component that experienced the fault. */
@@ -73630,7 +73420,7 @@ export type InstancesReportHostAsFaultyRequestDisruptionScheduleEnum =
   | "FUTURE"
   | "IMMEDIATE";
 export const InstancesReportHostAsFaultyRequestDisruptionScheduleEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InstancesReportHostAsFaultyRequestFaultReasonBehaviorEnum =
   | "BEHAVIOR_UNSPECIFIED"
@@ -73639,7 +73429,7 @@ export type InstancesReportHostAsFaultyRequestFaultReasonBehaviorEnum =
   | "SILENT_DATA_CORRUPTION"
   | "UNRECOVERABLE_GPU_ERROR";
 export const InstancesReportHostAsFaultyRequestFaultReasonBehaviorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesReportHostAsFaultyRequestFaultReason {
   behavior?:
@@ -74601,8 +74391,7 @@ export type ProjectsSetCloudArmorTierRequestCloudArmorTierEnum =
   | "CA_ENTERPRISE_ANNUAL"
   | "CA_ENTERPRISE_PAYGO"
   | "CA_STANDARD";
-export const ProjectsSetCloudArmorTierRequestCloudArmorTierEnum =
-  /*@__PURE__*/ S.String;
+export const ProjectsSetCloudArmorTierRequestCloudArmorTierEnum = S.String;
 
 export interface ProjectsSetCloudArmorTierRequest {
   /** Managed protection tier to be set. */
@@ -74674,8 +74463,7 @@ export type ProjectsSetDefaultNetworkTierRequestNetworkTierEnum =
   | "PREMIUM"
   | "STANDARD"
   | "STANDARD_OVERRIDES_FIXED_STANDARD";
-export const ProjectsSetDefaultNetworkTierRequestNetworkTierEnum =
-  /*@__PURE__*/ S.String;
+export const ProjectsSetDefaultNetworkTierRequestNetworkTierEnum = S.String;
 
 export interface ProjectsSetDefaultNetworkTierRequest {
   /** Default network tier to be set. */
@@ -76687,7 +76475,7 @@ export type ProjectsSetManagedProtectionTierRequestManagedProtectionTierEnum =
   | "CAMP_PLUS_PAYGO"
   | "CA_STANDARD";
 export const ProjectsSetManagedProtectionTierRequestManagedProtectionTierEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsSetManagedProtectionTierRequest {
   /** Managed protection tier to be set. */
@@ -77034,8 +76822,7 @@ export const SetPrivateIpGoogleAccessSubnetworksRequest =
 export type TargetSslProxiesSetProxyHeaderRequestProxyHeaderEnum =
   | "NONE"
   | "PROXY_V1";
-export const TargetSslProxiesSetProxyHeaderRequestProxyHeaderEnum =
-  /*@__PURE__*/ S.String;
+export const TargetSslProxiesSetProxyHeaderRequestProxyHeaderEnum = S.String;
 
 export interface TargetSslProxiesSetProxyHeaderRequest {
   /** The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed. */
@@ -77087,8 +76874,7 @@ export const SetProxyHeaderTargetSslProxiesRequest = /*@__PURE__*/ S.suspend(
 export type TargetTcpProxiesSetProxyHeaderRequestProxyHeaderEnum =
   | "NONE"
   | "PROXY_V1";
-export const TargetTcpProxiesSetProxyHeaderRequestProxyHeaderEnum =
-  /*@__PURE__*/ S.String;
+export const TargetTcpProxiesSetProxyHeaderRequestProxyHeaderEnum = S.String;
 
 export interface TargetTcpProxiesSetProxyHeaderRequest {
   /** The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed. */
@@ -77142,7 +76928,7 @@ export type TargetHttpsProxiesSetQuicOverrideRequestQuicOverrideEnum =
   | "ENABLE"
   | "NONE";
 export const TargetHttpsProxiesSetQuicOverrideRequestQuicOverrideEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface TargetHttpsProxiesSetQuicOverrideRequest {
   /** QUIC policy for the TargetHttpsProxy resource. */
@@ -81416,15 +81202,14 @@ export type UpdateInstancesMostDisruptiveAllowedActionEnum =
   | "NO_EFFECT"
   | "REFRESH"
   | "RESTART";
-export const UpdateInstancesMostDisruptiveAllowedActionEnum =
-  /*@__PURE__*/ S.String;
+export const UpdateInstancesMostDisruptiveAllowedActionEnum = S.String;
 
 export type UpdateInstancesMinimalActionEnum =
   | "INVALID"
   | "NO_EFFECT"
   | "REFRESH"
   | "RESTART";
-export const UpdateInstancesMinimalActionEnum = /*@__PURE__*/ S.String;
+export const UpdateInstancesMinimalActionEnum = S.String;
 
 export interface UpdateInstancesRequest {
   /** The name of the zone for this request. */
@@ -82526,8 +82311,7 @@ export type UrlMapsValidateRequestLoadBalancingSchemesItemEnum =
   | "EXTERNAL"
   | "EXTERNAL_MANAGED"
   | "LOAD_BALANCING_SCHEME_UNSPECIFIED";
-export const UrlMapsValidateRequestLoadBalancingSchemesItemEnum =
-  /*@__PURE__*/ S.String;
+export const UrlMapsValidateRequestLoadBalancingSchemesItemEnum = S.String;
 
 export type UrlMapsValidateRequestLoadBalancingSchemesItemEnumList = Array<
   UrlMapsValidateRequestLoadBalancingSchemesItemEnum | (string & {})

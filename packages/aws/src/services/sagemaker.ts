@@ -174,7 +174,7 @@ export type AssociationEdgeType =
   | "Produced"
   | "SameAs"
   | (string & {});
-export const AssociationEdgeType = /*@__PURE__*/ S.String;
+export const AssociationEdgeType = S.String;
 
 export interface AddAssociationRequest {
   SourceArn?: string;
@@ -321,7 +321,7 @@ export type VolumeAttachmentStatus =
   | "detached"
   | "busy"
   | (string & {});
-export const VolumeAttachmentStatus = /*@__PURE__*/ S.String;
+export const VolumeAttachmentStatus = S.String;
 
 export type VolumeDeviceName = string;
 export interface AttachClusterNodeVolumeResponse {
@@ -559,7 +559,7 @@ export type ClusterInstanceType =
   | "ml.g7.24xlarge"
   | "ml.g7.48xlarge"
   | (string & {});
-export const ClusterInstanceType = /*@__PURE__*/ S.String;
+export const ClusterInstanceType = S.String;
 
 export type ClusterInstanceTypes = ClusterInstanceType[];
 export const ClusterInstanceTypes = /*@__PURE__*/ S.Array(ClusterInstanceType);
@@ -617,7 +617,7 @@ export type ClusterInstanceStatus =
   | "DeepHealthCheckInProgress"
   | "NotFound"
   | (string & {});
-export const ClusterInstanceStatus = /*@__PURE__*/ S.String;
+export const ClusterInstanceStatus = S.String;
 
 export interface NodeAdditionResult {
   NodeLogicalId: string;
@@ -646,7 +646,7 @@ export type BatchAddClusterNodesErrorCode =
   | "IncompatibleAvailabilityZones"
   | "IncompatibleInstanceTypes"
   | (string & {});
-export const BatchAddClusterNodesErrorCode = /*@__PURE__*/ S.String;
+export const BatchAddClusterNodesErrorCode = S.String;
 
 export type BatchAddFailureCount = number;
 export interface BatchAddClusterNodesError_ {
@@ -718,7 +718,7 @@ export type BatchDeleteClusterNodesErrorCode =
   | "InvalidNodeStatus"
   | "NodeIdInUse"
   | (string & {});
-export const BatchDeleteClusterNodesErrorCode = /*@__PURE__*/ S.String;
+export const BatchDeleteClusterNodesErrorCode = S.String;
 
 export interface BatchDeleteClusterNodesError_ {
   Code?: BatchDeleteClusterNodesErrorCode;
@@ -813,10 +813,10 @@ export type ImageDigest = string;
 export type Url = string;
 export type S3ModelUri = string;
 export type S3ModelDataType = "S3Prefix" | "S3Object" | (string & {});
-export const S3ModelDataType = /*@__PURE__*/ S.String;
+export const S3ModelDataType = S.String;
 
 export type ModelCompressionType = "None" | "Gzip" | (string & {});
-export const ModelCompressionType = /*@__PURE__*/ S.String;
+export const ModelCompressionType = S.String;
 
 export type AcceptEula = boolean;
 export interface ModelAccessConfig {
@@ -905,11 +905,11 @@ export type AdditionalS3DataSourceDataType =
   | "S3Object"
   | "S3Prefix"
   | (string & {});
-export const AdditionalS3DataSourceDataType = /*@__PURE__*/ S.String;
+export const AdditionalS3DataSourceDataType = S.String;
 
 export type S3Uri = string;
 export type CompressionType = "None" | "Gzip" | (string & {});
-export const CompressionType = /*@__PURE__*/ S.String;
+export const CompressionType = S.String;
 
 export interface AdditionalS3DataSource {
   S3DataType?: AdditionalS3DataSourceDataType;
@@ -1097,7 +1097,7 @@ export type TransformInstanceType =
   | "ml.g6.24xlarge"
   | "ml.g6.48xlarge"
   | (string & {});
-export const TransformInstanceType = /*@__PURE__*/ S.String;
+export const TransformInstanceType = S.String;
 
 export type TransformInstanceTypes = TransformInstanceType[];
 export const TransformInstanceTypes = /*@__PURE__*/ S.Array(
@@ -1382,7 +1382,7 @@ export type ProductionVariantInstanceType =
   | "ml.p6e-gb200.36xlarge"
   | "ml.p5.4xlarge"
   | (string & {});
-export const ProductionVariantInstanceType = /*@__PURE__*/ S.String;
+export const ProductionVariantInstanceType = S.String;
 
 export type RealtimeInferenceInstanceTypes = ProductionVariantInstanceType[];
 export const RealtimeInferenceInstanceTypes = /*@__PURE__*/ S.Array(
@@ -1421,20 +1421,20 @@ export type ModelPackageStatus =
   | "Failed"
   | "Deleting"
   | (string & {});
-export const ModelPackageStatus = /*@__PURE__*/ S.String;
+export const ModelPackageStatus = S.String;
 
 export type ModelApprovalStatus =
   | "Approved"
   | "Rejected"
   | "PendingManualApproval"
   | (string & {});
-export const ModelApprovalStatus = /*@__PURE__*/ S.String;
+export const ModelApprovalStatus = S.String;
 
 export type ModelPackageRegistrationType =
   | "Logged"
   | "Registered"
   | (string & {});
-export const ModelPackageRegistrationType = /*@__PURE__*/ S.String;
+export const ModelPackageRegistrationType = S.String;
 
 export interface BatchDescribeModelPackageSummary {
   ModelPackageGroupName?: string;
@@ -1584,7 +1584,7 @@ export type BatchRebootClusterNodesErrorCode =
   | "InstanceIdInUse"
   | "InternalServerError"
   | (string & {});
-export const BatchRebootClusterNodesErrorCode = /*@__PURE__*/ S.String;
+export const BatchRebootClusterNodesErrorCode = S.String;
 
 export interface BatchRebootClusterNodesError_ {
   NodeId?: string;
@@ -1678,7 +1678,7 @@ export type BatchReplaceClusterNodesErrorCode =
   | "InstanceIdInUse"
   | "InternalServerError"
   | (string & {});
-export const BatchReplaceClusterNodesErrorCode = /*@__PURE__*/ S.String;
+export const BatchReplaceClusterNodesErrorCode = S.String;
 
 export interface BatchReplaceClusterNodesError_ {
   NodeId?: string;
@@ -1765,7 +1765,7 @@ export type ActionStatus =
   | "Stopping"
   | "Stopped"
   | (string & {});
-export const ActionStatus = /*@__PURE__*/ S.String;
+export const ActionStatus = S.String;
 
 export type StringParameterValue = string;
 export type LineageEntityParameters = { [key: string]: string | undefined };
@@ -1989,7 +1989,7 @@ export type AIRecommendationMetric =
   | "throughput"
   | "cost"
   | (string & {});
-export const AIRecommendationMetric = /*@__PURE__*/ S.String;
+export const AIRecommendationMetric = S.String;
 
 export interface AIRecommendationConstraint {
   Metric?: AIRecommendationMetric;
@@ -2012,7 +2012,7 @@ export const AIRecommendationPerformanceTarget = /*@__PURE__*/ S.suspend(() =>
   identifier: "AIRecommendationPerformanceTarget",
 }) as any as S.Schema<AIRecommendationPerformanceTarget>;
 export type AIRecommendationInferenceFramework = "LMI" | "VLLM" | (string & {});
-export const AIRecommendationInferenceFramework = /*@__PURE__*/ S.String;
+export const AIRecommendationInferenceFramework = S.String;
 
 export interface AIRecommendationInferenceSpecification {
   Framework?: AIRecommendationInferenceFramework;
@@ -2071,7 +2071,7 @@ export type AIRecommendationInstanceType =
   | "ml.p5en.48xlarge"
   | "ml.p6-b200.48xlarge"
   | (string & {});
-export const AIRecommendationInstanceType = /*@__PURE__*/ S.String;
+export const AIRecommendationInstanceType = S.String;
 
 export type AIRecommendationInstanceTypeList = AIRecommendationInstanceType[];
 export const AIRecommendationInstanceTypeList = /*@__PURE__*/ S.Array(
@@ -2080,7 +2080,7 @@ export const AIRecommendationInstanceTypeList = /*@__PURE__*/ S.Array(
 export type AICapacityReservationPreference =
   | "capacity-reservations-only"
   | (string & {});
-export const AICapacityReservationPreference = /*@__PURE__*/ S.String;
+export const AICapacityReservationPreference = S.String;
 
 export type AIMlReservationArn = string;
 export type AIMlReservationArnList = string[];
@@ -2284,7 +2284,7 @@ export type ParameterType =
   | "Categorical"
   | "FreeText"
   | (string & {});
-export const ParameterType = /*@__PURE__*/ S.String;
+export const ParameterType = S.String;
 
 export type ParameterValue = string;
 export interface IntegerParameterRangeSpecification {
@@ -2517,7 +2517,7 @@ export type TrainingInstanceType =
   | "ml.g7.24xlarge"
   | "ml.g7.48xlarge"
   | (string & {});
-export const TrainingInstanceType = /*@__PURE__*/ S.String;
+export const TrainingInstanceType = S.String;
 
 export type TrainingInstanceTypes = TrainingInstanceType[];
 export const TrainingInstanceTypes =
@@ -2539,7 +2539,7 @@ export type ChannelName = string;
 export type CompressionTypes = CompressionType[];
 export const CompressionTypes = /*@__PURE__*/ S.Array(CompressionType);
 export type TrainingInputMode = "Pipe" | "File" | "FastFile" | (string & {});
-export const TrainingInputMode = /*@__PURE__*/ S.String;
+export const TrainingInputMode = S.String;
 
 export type InputModes = TrainingInputMode[];
 export const InputModes = /*@__PURE__*/ S.Array(TrainingInputMode);
@@ -2570,7 +2570,7 @@ export type HyperParameterTuningJobObjectiveType =
   | "Maximize"
   | "Minimize"
   | (string & {});
-export const HyperParameterTuningJobObjectiveType = /*@__PURE__*/ S.String;
+export const HyperParameterTuningJobObjectiveType = S.String;
 
 export interface HyperParameterTuningJobObjective {
   Type?: HyperParameterTuningJobObjectiveType;
@@ -2629,13 +2629,13 @@ export type S3DataType =
   | "AugmentedManifestFile"
   | "Converse"
   | (string & {});
-export const S3DataType = /*@__PURE__*/ S.String;
+export const S3DataType = S.String;
 
 export type S3DataDistribution =
   | "FullyReplicated"
   | "ShardedByS3Key"
   | (string & {});
-export const S3DataDistribution = /*@__PURE__*/ S.String;
+export const S3DataDistribution = S.String;
 
 export type AttributeName = string;
 export type AttributeNames = string[];
@@ -2672,10 +2672,10 @@ export const S3DataSource = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "S3DataSource" }) as any as S.Schema<S3DataSource>;
 export type FileSystemId = string;
 export type FileSystemAccessMode = "rw" | "ro" | (string & {});
-export const FileSystemAccessMode = /*@__PURE__*/ S.String;
+export const FileSystemAccessMode = S.String;
 
 export type FileSystemType = "EFS" | "FSxLustre" | (string & {});
-export const FileSystemType = /*@__PURE__*/ S.String;
+export const FileSystemType = S.String;
 
 export type DirectoryPath = string;
 export interface FileSystemDataSource {
@@ -2714,7 +2714,7 @@ export const DataSource = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DataSource" }) as any as S.Schema<DataSource>;
 export type RecordWrapper = "None" | "RecordIO" | (string & {});
-export const RecordWrapper = /*@__PURE__*/ S.String;
+export const RecordWrapper = S.String;
 
 export type Seed = number;
 export interface ShuffleConfig {
@@ -2747,7 +2747,7 @@ export type InputDataConfig = Channel[];
 export const InputDataConfig = /*@__PURE__*/ S.Array(Channel);
 export type KmsKeyId = string;
 export type OutputCompressionType = "GZIP" | "NONE" | (string & {});
-export const OutputCompressionType = /*@__PURE__*/ S.String;
+export const OutputCompressionType = S.String;
 
 export interface OutputDataConfig {
   KmsKeyId?: string;
@@ -2871,7 +2871,7 @@ export const TrainingJobDefinition = /*@__PURE__*/ S.suspend(() =>
 export type MaxConcurrentTransforms = number;
 export type MaxPayloadInMB = number;
 export type BatchStrategy = "MultiRecord" | "SingleRecord" | (string & {});
-export const BatchStrategy = /*@__PURE__*/ S.String;
+export const BatchStrategy = S.String;
 
 export type TransformEnvironmentKey = string;
 export type TransformEnvironmentValue = string;
@@ -2903,7 +2903,7 @@ export type SplitType =
   | "RecordIO"
   | "TFRecord"
   | (string & {});
-export const SplitType = /*@__PURE__*/ S.String;
+export const SplitType = S.String;
 
 export interface TransformInput {
   DataSource?: TransformDataSource;
@@ -2921,7 +2921,7 @@ export const TransformInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "TransformInput" }) as any as S.Schema<TransformInput>;
 export type Accept = string;
 export type AssemblyType = "None" | "Line" | (string & {});
-export const AssemblyType = /*@__PURE__*/ S.String;
+export const AssemblyType = S.String;
 
 export interface TransformOutput {
   S3OutputPath?: string;
@@ -3065,7 +3065,7 @@ export type AppType =
   | "RSessionGateway"
   | "Canvas"
   | (string & {});
-export const AppType = /*@__PURE__*/ S.String;
+export const AppType = S.String;
 
 export type AppName = string;
 export type ImageArn = string;
@@ -3249,7 +3249,7 @@ export type AppInstanceType =
   | "ml.g7e.24xlarge"
   | "ml.g7e.48xlarge"
   | (string & {});
-export const AppInstanceType = /*@__PURE__*/ S.String;
+export const AppInstanceType = S.String;
 
 export type StudioLifecycleConfigArn = string;
 export type StudioResourceSpecTrainingPlanArn = string;
@@ -3451,7 +3451,7 @@ export type ArtifactSourceIdType =
   | "S3Version"
   | "Custom"
   | (string & {});
-export const ArtifactSourceIdType = /*@__PURE__*/ S.String;
+export const ArtifactSourceIdType = S.String;
 
 export interface ArtifactSourceType {
   SourceIdType?: ArtifactSourceIdType;
@@ -3528,7 +3528,7 @@ export type AutoMLS3DataType =
   | "S3Prefix"
   | "AugmentedManifestFile"
   | (string & {});
-export const AutoMLS3DataType = /*@__PURE__*/ S.String;
+export const AutoMLS3DataType = S.String;
 
 export interface AutoMLS3DataSource {
   S3DataType?: AutoMLS3DataType;
@@ -3552,7 +3552,7 @@ export const AutoMLDataSource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AutoMLDataSource>;
 export type TargetAttributeName = string;
 export type AutoMLChannelType = "training" | "validation" | (string & {});
-export const AutoMLChannelType = /*@__PURE__*/ S.String;
+export const AutoMLChannelType = S.String;
 
 export type SampleWeightAttributeName = string;
 export interface AutoMLChannel {
@@ -3592,7 +3592,7 @@ export type ProblemType =
   | "MulticlassClassification"
   | "Regression"
   | (string & {});
-export const ProblemType = /*@__PURE__*/ S.String;
+export const ProblemType = S.String;
 
 export type AutoMLMetricEnum =
   | "Accuracy"
@@ -3613,7 +3613,7 @@ export type AutoMLMetricEnum =
   | "WAPE"
   | "AverageWeightedQuantileLoss"
   | (string & {});
-export const AutoMLMetricEnum = /*@__PURE__*/ S.String;
+export const AutoMLMetricEnum = S.String;
 
 export interface AutoMLJobObjective {
   MetricName?: AutoMLMetricEnum;
@@ -3671,7 +3671,7 @@ export type AutoMLAlgorithm =
   | "arima"
   | "ets"
   | (string & {});
-export const AutoMLAlgorithm = /*@__PURE__*/ S.String;
+export const AutoMLAlgorithm = S.String;
 
 export type AutoMLAlgorithms = AutoMLAlgorithm[];
 export const AutoMLAlgorithms = /*@__PURE__*/ S.Array(AutoMLAlgorithm);
@@ -3713,7 +3713,7 @@ export type AutoMLMode =
   | "ENSEMBLING"
   | "HYPERPARAMETER_TUNING"
   | (string & {});
-export const AutoMLMode = /*@__PURE__*/ S.String;
+export const AutoMLMode = S.String;
 
 export interface AutoMLJobConfig {
   CompletionCriteria?: AutoMLJobCompletionCriteria;
@@ -3853,7 +3853,7 @@ export type FillingType =
   | "backfill_value"
   | "futurefill_value"
   | (string & {});
-export const FillingType = /*@__PURE__*/ S.String;
+export const FillingType = S.String;
 
 export type FillingTransformationValue = string;
 export type FillingTransformationMap = { [key in FillingType]?: string };
@@ -3875,7 +3875,7 @@ export type AggregationTransformationValue =
   | "min"
   | "max"
   | (string & {});
-export const AggregationTransformationValue = /*@__PURE__*/ S.String;
+export const AggregationTransformationValue = S.String;
 
 export type AggregationTransformations = {
   [key: string]: AggregationTransformationValue | undefined;
@@ -4219,7 +4219,7 @@ export type DeepHealthCheckType =
   | "InstanceStress"
   | "InstanceConnectivity"
   | (string & {});
-export const DeepHealthCheckType = /*@__PURE__*/ S.String;
+export const DeepHealthCheckType = S.String;
 
 export type OnStartDeepHealthChecks = DeepHealthCheckType[];
 export const OnStartDeepHealthChecks =
@@ -4229,7 +4229,7 @@ export type NodeUnavailabilityType =
   | "INSTANCE_COUNT"
   | "CAPACITY_PERCENTAGE"
   | (string & {});
-export const NodeUnavailabilityType = /*@__PURE__*/ S.String;
+export const NodeUnavailabilityType = S.String;
 
 export type NodeUnavailabilityValue = number;
 export interface CapacitySizeConfig {
@@ -4297,7 +4297,7 @@ export type ClusterPatchingStrategy =
   | "WhenIdle"
   | "WhenAllIdle"
   | (string & {});
-export const ClusterPatchingStrategy = /*@__PURE__*/ S.String;
+export const ClusterPatchingStrategy = S.String;
 
 export interface ClusterPatchSchedule {
   NextPatchDate?: Date;
@@ -4338,7 +4338,7 @@ export type ClusterKubernetesTaintEffect =
   | "PreferNoSchedule"
   | "NoExecute"
   | (string & {});
-export const ClusterKubernetesTaintEffect = /*@__PURE__*/ S.String;
+export const ClusterKubernetesTaintEffect = S.String;
 
 export interface ClusterKubernetesTaint {
   Key: string;
@@ -4375,7 +4375,7 @@ export type ClusterSlurmNodeType =
   | "Login"
   | "Compute"
   | (string & {});
-export const ClusterSlurmNodeType = /*@__PURE__*/ S.String;
+export const ClusterSlurmNodeType = S.String;
 
 export type ClusterPartitionName = string;
 export type ClusterPartitionNames = string[];
@@ -4417,7 +4417,7 @@ export const ClusterCapacityRequirements = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClusterCapacityRequirements",
 }) as any as S.Schema<ClusterCapacityRequirements>;
 export type ClusterInterfaceType = "efa" | "efa-only" | (string & {});
-export const ClusterInterfaceType = /*@__PURE__*/ S.String;
+export const ClusterInterfaceType = S.String;
 
 export interface ClusterNetworkInterface {
   InterfaceType?: ClusterInterfaceType;
@@ -4541,7 +4541,7 @@ export type ClusterFSxLustreDeletionPolicy =
   | "DeleteIfNotUsed"
   | "Keep"
   | (string & {});
-export const ClusterFSxLustreDeletionPolicy = /*@__PURE__*/ S.String;
+export const ClusterFSxLustreDeletionPolicy = S.String;
 
 export interface ClusterSharedEnvironmentConfig {
   FSxLustreDeletionPolicy?: ClusterFSxLustreDeletionPolicy;
@@ -4580,7 +4580,7 @@ export type ClusterSlurmConfigStrategy =
   | "Managed"
   | "Merge"
   | (string & {});
-export const ClusterSlurmConfigStrategy = /*@__PURE__*/ S.String;
+export const ClusterSlurmConfigStrategy = S.String;
 
 export interface ClusterOrchestratorSlurmConfig {
   SlurmConfigStrategy?: ClusterSlurmConfigStrategy;
@@ -4603,10 +4603,10 @@ export const ClusterOrchestrator = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClusterOrchestrator",
 }) as any as S.Schema<ClusterOrchestrator>;
 export type ClusterNodeRecovery = "Automatic" | "None" | (string & {});
-export const ClusterNodeRecovery = /*@__PURE__*/ S.String;
+export const ClusterNodeRecovery = S.String;
 
 export type ClusterConfigMode = "Enable" | "Disable" | (string & {});
-export const ClusterConfigMode = /*@__PURE__*/ S.String;
+export const ClusterConfigMode = S.String;
 
 export type ClusterInstanceMemoryAllocationPercentage = number;
 export interface ClusterTieredStorageConfig {
@@ -4622,13 +4622,13 @@ export const ClusterTieredStorageConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClusterTieredStorageConfig",
 }) as any as S.Schema<ClusterTieredStorageConfig>;
 export type ClusterNodeProvisioningMode = "Continuous" | (string & {});
-export const ClusterNodeProvisioningMode = /*@__PURE__*/ S.String;
+export const ClusterNodeProvisioningMode = S.String;
 
 export type ClusterAutoScalingMode = "Enable" | "Disable" | (string & {});
-export const ClusterAutoScalingMode = /*@__PURE__*/ S.String;
+export const ClusterAutoScalingMode = S.String;
 
 export type ClusterAutoScalerType = "Karpenter" | (string & {});
-export const ClusterAutoScalerType = /*@__PURE__*/ S.String;
+export const ClusterAutoScalerType = S.String;
 
 export interface ClusterAutoScalingConfig {
   Mode: ClusterAutoScalingMode;
@@ -4708,10 +4708,10 @@ export const PriorityClass = /*@__PURE__*/ S.suspend(() =>
 export type PriorityClassList = PriorityClass[];
 export const PriorityClassList = /*@__PURE__*/ S.Array(PriorityClass);
 export type FairShare = "Enabled" | "Disabled" | (string & {});
-export const FairShare = /*@__PURE__*/ S.String;
+export const FairShare = S.String;
 
 export type IdleResourceSharing = "Enabled" | "Disabled" | (string & {});
-export const IdleResourceSharing = /*@__PURE__*/ S.String;
+export const IdleResourceSharing = S.String;
 
 export interface SchedulerConfig {
   PriorityClasses?: PriorityClass[];
@@ -4829,7 +4829,7 @@ export type Framework =
   | "DARKNET"
   | "SKLEARN"
   | (string & {});
-export const Framework = /*@__PURE__*/ S.String;
+export const Framework = S.String;
 
 export type FrameworkVersion = string;
 export interface InputConfig {
@@ -4885,10 +4885,10 @@ export type TargetDevice =
   | "jacinto_tda4vm"
   | "imx8mplus"
   | (string & {});
-export const TargetDevice = /*@__PURE__*/ S.String;
+export const TargetDevice = S.String;
 
 export type TargetPlatformOs = "ANDROID" | "LINUX" | (string & {});
-export const TargetPlatformOs = /*@__PURE__*/ S.String;
+export const TargetPlatformOs = S.String;
 
 export type TargetPlatformArch =
   | "X86_64"
@@ -4897,7 +4897,7 @@ export type TargetPlatformArch =
   | "ARM_EABI"
   | "ARM_EABIHF"
   | (string & {});
-export const TargetPlatformArch = /*@__PURE__*/ S.String;
+export const TargetPlatformArch = S.String;
 
 export type TargetPlatformAccelerator =
   | "INTEL_GRAPHICS"
@@ -4905,7 +4905,7 @@ export type TargetPlatformAccelerator =
   | "NVIDIA"
   | "NNA"
   | (string & {});
-export const TargetPlatformAccelerator = /*@__PURE__*/ S.String;
+export const TargetPlatformAccelerator = S.String;
 
 export interface TargetPlatform {
   Os?: TargetPlatformOs;
@@ -5029,7 +5029,7 @@ export type MIGProfileType =
   | "mig-7g.180gb"
   | "mig-7g.186gb"
   | (string & {});
-export const MIGProfileType = /*@__PURE__*/ S.String;
+export const MIGProfileType = S.String;
 
 export interface AcceleratorPartitionConfig {
   Type?: MIGProfileType;
@@ -5069,7 +5069,7 @@ export type ResourceSharingStrategy =
   | "DontLend"
   | "LendAndBorrow"
   | (string & {});
-export const ResourceSharingStrategy = /*@__PURE__*/ S.String;
+export const ResourceSharingStrategy = S.String;
 
 export type BorrowLimit = number;
 export type AbsoluteBorrowLimitResourceList = ComputeQuotaResourceConfig[];
@@ -5091,7 +5091,7 @@ export const ResourceSharingConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResourceSharingConfig",
 }) as any as S.Schema<ResourceSharingConfig>;
 export type PreemptTeamTasks = "Never" | "LowerPriority" | (string & {});
-export const PreemptTeamTasks = /*@__PURE__*/ S.String;
+export const PreemptTeamTasks = S.String;
 
 export interface ComputeQuotaConfig {
   ComputeQuotaResources?: ComputeQuotaResourceConfig[];
@@ -5122,7 +5122,7 @@ export const ComputeQuotaTarget = /*@__PURE__*/ S.suspend(() =>
   identifier: "ComputeQuotaTarget",
 }) as any as S.Schema<ComputeQuotaTarget>;
 export type ActivationState = "Enabled" | "Disabled" | (string & {});
-export const ActivationState = /*@__PURE__*/ S.String;
+export const ActivationState = S.String;
 
 export interface CreateComputeQuotaRequest {
   Name?: string;
@@ -5290,13 +5290,13 @@ export const DataQualityAppSpecification = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DataQualityAppSpecification>;
 export type ProcessingLocalPath = string;
 export type ProcessingS3InputMode = "Pipe" | "File" | (string & {});
-export const ProcessingS3InputMode = /*@__PURE__*/ S.String;
+export const ProcessingS3InputMode = S.String;
 
 export type ProcessingS3DataDistributionType =
   | "FullyReplicated"
   | "ShardedByS3Key"
   | (string & {});
-export const ProcessingS3DataDistributionType = /*@__PURE__*/ S.String;
+export const ProcessingS3DataDistributionType = S.String;
 
 export type ProbabilityThresholdAttribute = number;
 export type MonitoringTimeOffsetString = string;
@@ -5412,7 +5412,7 @@ export const DataQualityJobInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DataQualityJobInput>;
 export type MonitoringS3Uri = string;
 export type ProcessingS3UploadMode = "Continuous" | "EndOfJob" | (string & {});
-export const ProcessingS3UploadMode = /*@__PURE__*/ S.String;
+export const ProcessingS3UploadMode = S.String;
 
 export interface MonitoringS3Output {
   S3Uri?: string;
@@ -5586,7 +5586,7 @@ export type ProcessingInstanceType =
   | "ml.g7.24xlarge"
   | "ml.g7.48xlarge"
   | (string & {});
-export const ProcessingInstanceType = /*@__PURE__*/ S.String;
+export const ProcessingInstanceType = S.String;
 
 export type ProcessingVolumeSizeInGB = number;
 export interface MonitoringClusterConfig {
@@ -5686,7 +5686,7 @@ export const CreateDataQualityJobDefinitionResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateDataQualityJobDefinitionResponse>;
 export type DeviceFleetDescription = string;
 export type EdgePresetDeploymentType = "GreengrassV2Component" | (string & {});
-export const EdgePresetDeploymentType = /*@__PURE__*/ S.String;
+export const EdgePresetDeploymentType = S.String;
 
 export interface EdgeOutputConfig {
   S3OutputLocation?: string;
@@ -5743,12 +5743,12 @@ export const CreateDeviceFleetResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDeviceFleetResponse>;
 export type DomainName = string;
 export type AuthMode = "SSO" | "IAM" | (string & {});
-export const AuthMode = /*@__PURE__*/ S.String;
+export const AuthMode = S.String;
 
 export type SecurityGroupIds = string[];
 export const SecurityGroupIds = /*@__PURE__*/ S.Array(S.String);
 export type NotebookOutputOption = "Allowed" | "Disabled" | (string & {});
-export const NotebookOutputOption = /*@__PURE__*/ S.String;
+export const NotebookOutputOption = S.String;
 
 export interface SharingSettings {
   NotebookOutputOption?: NotebookOutputOption;
@@ -5831,13 +5831,13 @@ export type RStudioServerProAccessStatus =
   | "ENABLED"
   | "DISABLED"
   | (string & {});
-export const RStudioServerProAccessStatus = /*@__PURE__*/ S.String;
+export const RStudioServerProAccessStatus = S.String;
 
 export type RStudioServerProUserGroup =
   | "R_STUDIO_ADMIN"
   | "R_STUDIO_USER"
   | (string & {});
-export const RStudioServerProUserGroup = /*@__PURE__*/ S.String;
+export const RStudioServerProUserGroup = S.String;
 
 export interface RStudioServerProAppSettings {
   AccessStatus?: RStudioServerProAccessStatus;
@@ -5864,7 +5864,7 @@ export const RSessionAppSettings = /*@__PURE__*/ S.suspend(() =>
   identifier: "RSessionAppSettings",
 }) as any as S.Schema<RSessionAppSettings>;
 export type FeatureStatus = "ENABLED" | "DISABLED" | (string & {});
-export const FeatureStatus = /*@__PURE__*/ S.String;
+export const FeatureStatus = S.String;
 
 export interface TimeSeriesForecastingSettings {
   Status?: FeatureStatus;
@@ -5903,7 +5903,7 @@ export const WorkspaceSettings = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkspaceSettings",
 }) as any as S.Schema<WorkspaceSettings>;
 export type DataSourceName = "SalesforceGenie" | "Snowflake" | (string & {});
-export const DataSourceName = /*@__PURE__*/ S.String;
+export const DataSourceName = S.String;
 
 export interface IdentityProviderOAuthSetting {
   DataSourceName?: DataSourceName;
@@ -5982,7 +5982,7 @@ export const CanvasAppSettings = /*@__PURE__*/ S.suspend(() =>
   identifier: "CanvasAppSettings",
 }) as any as S.Schema<CanvasAppSettings>;
 export type LifecycleManagement = "ENABLED" | "DISABLED" | (string & {});
-export const LifecycleManagement = /*@__PURE__*/ S.String;
+export const LifecycleManagement = S.String;
 
 export type IdleTimeoutInMinutes = number;
 export interface IdleSettings {
@@ -6086,7 +6086,7 @@ export const DefaultSpaceStorageSettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DefaultSpaceStorageSettings>;
 export type LandingUri = string;
 export type StudioWebPortal = "ENABLED" | "DISABLED" | (string & {});
-export const StudioWebPortal = /*@__PURE__*/ S.String;
+export const StudioWebPortal = S.String;
 
 export type Uid = number;
 export type Gid = number;
@@ -6185,7 +6185,7 @@ export type MlTools =
   | "Datasets"
   | "Evaluators"
   | (string & {});
-export const MlTools = /*@__PURE__*/ S.String;
+export const MlTools = S.String;
 
 export type HiddenMlToolsList = MlTools[];
 export const HiddenMlToolsList = /*@__PURE__*/ S.Array(MlTools);
@@ -6194,7 +6194,7 @@ export const HiddenAppTypesList = /*@__PURE__*/ S.Array(AppType);
 export type HiddenInstanceTypesList = AppInstanceType[];
 export const HiddenInstanceTypesList = /*@__PURE__*/ S.Array(AppInstanceType);
 export type SageMakerImageName = "sagemaker_distribution" | (string & {});
-export const SageMakerImageName = /*@__PURE__*/ S.String;
+export const SageMakerImageName = S.String;
 
 export type ImageVersionAliasPattern = string;
 export type VersionAliasesList = string[];
@@ -6218,7 +6218,7 @@ export type ExecutionRoleSessionNameMode =
   | "STATIC"
   | "USER_IDENTITY"
   | (string & {});
-export const ExecutionRoleSessionNameMode = /*@__PURE__*/ S.String;
+export const ExecutionRoleSessionNameMode = S.String;
 
 export interface StudioWebPortalSettings {
   HiddenMlTools?: MlTools[];
@@ -6245,7 +6245,7 @@ export type AutoMountHomeEFS =
   | "Disabled"
   | "DefaultAsDomain"
   | (string & {});
-export const AutoMountHomeEFS = /*@__PURE__*/ S.String;
+export const AutoMountHomeEFS = S.String;
 
 export interface UserSettings {
   ExecutionRole?: string;
@@ -6311,7 +6311,7 @@ export type ExecutionRoleIdentityConfig =
   | "USER_PROFILE_NAME"
   | "DISABLED"
   | (string & {});
-export const ExecutionRoleIdentityConfig = /*@__PURE__*/ S.String;
+export const ExecutionRoleIdentityConfig = S.String;
 
 export interface TrustedIdentityPropagationSettings {
   Status?: FeatureStatus;
@@ -6379,7 +6379,7 @@ export const UnifiedStudioSettings = /*@__PURE__*/ S.suspend(() =>
   identifier: "UnifiedStudioSettings",
 }) as any as S.Schema<UnifiedStudioSettings>;
 export type IPAddressType = "ipv4" | "dualstack" | (string & {});
-export const IPAddressType = /*@__PURE__*/ S.String;
+export const IPAddressType = S.String;
 
 export interface DomainSettings {
   SecurityGroupIds?: string[];
@@ -6410,16 +6410,16 @@ export type AppNetworkAccessType =
   | "PublicInternetOnly"
   | "VpcOnly"
   | (string & {});
-export const AppNetworkAccessType = /*@__PURE__*/ S.String;
+export const AppNetworkAccessType = S.String;
 
 export type AppSecurityGroupManagement = "Service" | "Customer" | (string & {});
-export const AppSecurityGroupManagement = /*@__PURE__*/ S.String;
+export const AppSecurityGroupManagement = S.String;
 
 export type HomeEfsFileSystemCreation = "Enabled" | "Disabled" | (string & {});
-export const HomeEfsFileSystemCreation = /*@__PURE__*/ S.String;
+export const HomeEfsFileSystemCreation = S.String;
 
 export type TagPropagation = "ENABLED" | "DISABLED" | (string & {});
-export const TagPropagation = /*@__PURE__*/ S.String;
+export const TagPropagation = S.String;
 
 export interface DefaultSpaceSettings {
   ExecutionRole?: string;
@@ -6527,7 +6527,7 @@ export type DeviceSubsetType =
   | "SELECTION"
   | "NAMECONTAINS"
   | (string & {});
-export const DeviceSubsetType = /*@__PURE__*/ S.String;
+export const DeviceSubsetType = S.String;
 
 export type Percentage = number;
 export type DeviceName = string;
@@ -6553,7 +6553,7 @@ export type FailureHandlingPolicy =
   | "ROLLBACK_ON_FAILURE"
   | "DO_NOTHING"
   | (string & {});
-export const FailureHandlingPolicy = /*@__PURE__*/ S.String;
+export const FailureHandlingPolicy = S.String;
 
 export interface EdgeDeploymentConfig {
   FailureHandlingPolicy?: FailureHandlingPolicy;
@@ -6691,14 +6691,14 @@ export type TrafficRoutingConfigType =
   | "CANARY"
   | "LINEAR"
   | (string & {});
-export const TrafficRoutingConfigType = /*@__PURE__*/ S.String;
+export const TrafficRoutingConfigType = S.String;
 
 export type WaitIntervalInSeconds = number;
 export type CapacitySizeType =
   | "INSTANCE_COUNT"
   | "CAPACITY_PERCENT"
   | (string & {});
-export const CapacitySizeType = /*@__PURE__*/ S.String;
+export const CapacitySizeType = S.String;
 
 export type CapacitySizeValue = number;
 export interface CapacitySize {
@@ -6849,7 +6849,7 @@ export type ProductionVariantAcceleratorType =
   | "ml.eia2.large"
   | "ml.eia2.xlarge"
   | (string & {});
-export const ProductionVariantAcceleratorType = /*@__PURE__*/ S.String;
+export const ProductionVariantAcceleratorType = S.String;
 
 export interface ProductionVariantCoreDumpConfig {
   DestinationS3Uri?: string;
@@ -6889,7 +6889,7 @@ export type ManagedInstanceScalingStatus =
   | "ENABLED"
   | "DISABLED"
   | (string & {});
-export const ManagedInstanceScalingStatus = /*@__PURE__*/ S.String;
+export const ManagedInstanceScalingStatus = S.String;
 
 export type ManagedInstanceScalingMinInstanceCount = number;
 export type ManagedInstanceScalingMaxInstanceCount = number;
@@ -6897,7 +6897,7 @@ export type ManagedInstanceScalingScaleInStrategy =
   | "IDLE_RELEASE"
   | "CONSOLIDATION"
   | (string & {});
-export const ManagedInstanceScalingScaleInStrategy = /*@__PURE__*/ S.String;
+export const ManagedInstanceScalingScaleInStrategy = S.String;
 
 export type ManagedInstanceScalingMaximumStepSize = number;
 export type ManagedInstanceScalingCooldownInMinutes = number;
@@ -6940,7 +6940,7 @@ export type RoutingStrategy =
   | "RANDOM"
   | "PREFIX_AWARE"
   | (string & {});
-export const RoutingStrategy = /*@__PURE__*/ S.String;
+export const RoutingStrategy = S.String;
 
 export type PrefixAwareRoutingPrefixLength = number;
 export type PrefixAwareRoutingConcurrencyThreshold = number;
@@ -6975,12 +6975,12 @@ export type ProductionVariantInferenceAmiVersion =
   | "al2-ami-sagemaker-inference-neuron-2"
   | "al2023-ami-sagemaker-inference-gpu-4-1"
   | (string & {});
-export const ProductionVariantInferenceAmiVersion = /*@__PURE__*/ S.String;
+export const ProductionVariantInferenceAmiVersion = S.String;
 
 export type CapacityReservationPreference =
   | "capacity-reservations-only"
   | (string & {});
-export const CapacityReservationPreference = /*@__PURE__*/ S.String;
+export const CapacityReservationPreference = S.String;
 
 export type MlReservationArn = string;
 export interface ProductionVariantCapacityReservationConfig {
@@ -7047,7 +7047,7 @@ export const ProductionVariantList = /*@__PURE__*/ S.Array(ProductionVariant);
 export type EnableCapture = boolean;
 export type SamplingPercentage = number;
 export type CaptureMode = "Input" | "Output" | "InputAndOutput" | (string & {});
-export const CaptureMode = /*@__PURE__*/ S.String;
+export const CaptureMode = S.String;
 
 export interface CaptureOption {
   CaptureMode?: CaptureMode;
@@ -7109,7 +7109,7 @@ export type AsyncNotificationTopicTypes =
   | "SUCCESS_NOTIFICATION_TOPIC"
   | "ERROR_NOTIFICATION_TOPIC"
   | (string & {});
-export const AsyncNotificationTopicTypes = /*@__PURE__*/ S.String;
+export const AsyncNotificationTopicTypes = S.String;
 
 export type AsyncNotificationTopicTypeList = AsyncNotificationTopicTypes[];
 export const AsyncNotificationTopicTypeList = /*@__PURE__*/ S.Array(
@@ -7176,7 +7176,7 @@ export type ClarifyFeatureType =
   | "categorical"
   | "text"
   | (string & {});
-export const ClarifyFeatureType = /*@__PURE__*/ S.String;
+export const ClarifyFeatureType = S.String;
 
 export type ClarifyFeatureTypes = ClarifyFeatureType[];
 export const ClarifyFeatureTypes = /*@__PURE__*/ S.Array(ClarifyFeatureType);
@@ -7291,14 +7291,14 @@ export type ClarifyTextLanguage =
   | "lij"
   | "xx"
   | (string & {});
-export const ClarifyTextLanguage = /*@__PURE__*/ S.String;
+export const ClarifyTextLanguage = S.String;
 
 export type ClarifyTextGranularity =
   | "token"
   | "sentence"
   | "paragraph"
   | (string & {});
-export const ClarifyTextGranularity = /*@__PURE__*/ S.String;
+export const ClarifyTextGranularity = S.String;
 
 export interface ClarifyTextConfig {
   Language?: ClarifyTextLanguage;
@@ -7363,7 +7363,7 @@ export type MetricPublishFrequencyInSeconds =
   | 240
   | 300
   | (number & {});
-export const MetricPublishFrequencyInSeconds = /*@__PURE__*/ S.Number;
+export const MetricPublishFrequencyInSeconds = S.Number;
 export interface MetricsConfig {
   EnableEnhancedMetrics?: boolean;
   EnableDetailedObservability?: boolean;
@@ -7467,10 +7467,10 @@ export const CreateExperimentResponse = /*@__PURE__*/ S.suspend(() =>
 export type FeatureGroupName = string;
 export type FeatureName = string;
 export type FeatureType = "Integral" | "Fractional" | "String" | (string & {});
-export const FeatureType = /*@__PURE__*/ S.String;
+export const FeatureType = S.String;
 
 export type CollectionType = "List" | "Set" | "Vector" | (string & {});
-export const CollectionType = /*@__PURE__*/ S.String;
+export const CollectionType = S.String;
 
 export type Dimension = number;
 export interface VectorConfig {
@@ -7516,7 +7516,7 @@ export type TtlDurationUnit =
   | "Days"
   | "Weeks"
   | (string & {});
-export const TtlDurationUnit = /*@__PURE__*/ S.String;
+export const TtlDurationUnit = S.String;
 
 export type TtlDurationValue = number;
 export interface TtlDuration {
@@ -7527,7 +7527,7 @@ export const TtlDuration = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ Unit: S.optional(TtlDurationUnit), Value: S.optional(S.Number) }),
 ).annotate({ identifier: "TtlDuration" }) as any as S.Schema<TtlDuration>;
 export type StorageType = "Standard" | "InMemory" | (string & {});
-export const StorageType = /*@__PURE__*/ S.String;
+export const StorageType = S.String;
 
 export interface OnlineStoreConfig {
   SecurityConfig?: OnlineStoreSecurityConfig;
@@ -7577,7 +7577,7 @@ export const DataCatalogConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataCatalogConfig",
 }) as any as S.Schema<DataCatalogConfig>;
 export type TableFormat = "Default" | "Glue" | "Iceberg" | (string & {});
-export const TableFormat = /*@__PURE__*/ S.String;
+export const TableFormat = S.String;
 
 export interface OfflineStoreConfig {
   S3StorageConfig?: S3StorageConfig;
@@ -7596,7 +7596,7 @@ export const OfflineStoreConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "OfflineStoreConfig",
 }) as any as S.Schema<OfflineStoreConfig>;
 export type ThroughputMode = "OnDemand" | "Provisioned" | (string & {});
-export const ThroughputMode = /*@__PURE__*/ S.String;
+export const ThroughputMode = S.String;
 
 export type CapacityUnit = number;
 export interface ThroughputConfig {
@@ -7666,7 +7666,7 @@ export type AwsManagedHumanLoopRequestSource =
   | "AWS/Rekognition/DetectModerationLabels/Image/V3"
   | "AWS/Textract/AnalyzeDocument/Forms/V1"
   | (string & {});
-export const AwsManagedHumanLoopRequestSource = /*@__PURE__*/ S.String;
+export const AwsManagedHumanLoopRequestSource = S.String;
 
 export interface HumanLoopRequestSource {
   AwsManagedHumanLoopRequestSource?: AwsManagedHumanLoopRequestSource;
@@ -7875,7 +7875,7 @@ export type HubContentType =
   | "DataSet"
   | "JsonDoc"
   | (string & {});
-export const HubContentType = /*@__PURE__*/ S.String;
+export const HubContentType = S.String;
 
 export interface PresignedUrlAccessConfig {
   AcceptEula?: boolean;
@@ -8036,7 +8036,7 @@ export type HyperParameterTuningJobStrategyType =
   | "Hyperband"
   | "Grid"
   | (string & {});
-export const HyperParameterTuningJobStrategyType = /*@__PURE__*/ S.String;
+export const HyperParameterTuningJobStrategyType = S.String;
 
 export type HyperbandStrategyMinResource = number;
 export type HyperbandStrategyMaxResource = number;
@@ -8083,7 +8083,7 @@ export type HyperParameterScalingType =
   | "Logarithmic"
   | "ReverseLogarithmic"
   | (string & {});
-export const HyperParameterScalingType = /*@__PURE__*/ S.String;
+export const HyperParameterScalingType = S.String;
 
 export interface IntegerParameterRange {
   Name?: string;
@@ -8164,7 +8164,7 @@ export const ParameterRanges = /*@__PURE__*/ S.suspend(() =>
   identifier: "ParameterRanges",
 }) as any as S.Schema<ParameterRanges>;
 export type TrainingJobEarlyStoppingType = "Off" | "Auto" | (string & {});
-export const TrainingJobEarlyStoppingType = /*@__PURE__*/ S.String;
+export const TrainingJobEarlyStoppingType = S.String;
 
 export type TargetObjectiveMetricValue = number;
 export type MaxNumberOfTrainingJobsNotImproving = number;
@@ -8177,7 +8177,7 @@ export const BestObjectiveNotImproving = /*@__PURE__*/ S.suspend(() =>
   identifier: "BestObjectiveNotImproving",
 }) as any as S.Schema<BestObjectiveNotImproving>;
 export type CompleteOnConvergence = "Disabled" | "Enabled" | (string & {});
-export const CompleteOnConvergence = /*@__PURE__*/ S.String;
+export const CompleteOnConvergence = S.String;
 
 export interface ConvergenceDetected {
   CompleteOnConvergence?: CompleteOnConvergence;
@@ -8251,7 +8251,7 @@ export const HyperParameterAlgorithmSpecification = /*@__PURE__*/ S.suspend(
 export type HyperParameterTuningAllocationStrategy =
   | "Prioritized"
   | (string & {});
-export const HyperParameterTuningAllocationStrategy = /*@__PURE__*/ S.String;
+export const HyperParameterTuningAllocationStrategy = S.String;
 
 export type VolumeSizeInGB = number;
 export interface HyperParameterTuningInstanceConfig {
@@ -8385,7 +8385,7 @@ export type HyperParameterTuningJobWarmStartType =
   | "IdenticalDataAndAlgorithm"
   | "TransferLearning"
   | (string & {});
-export const HyperParameterTuningJobWarmStartType = /*@__PURE__*/ S.String;
+export const HyperParameterTuningJobWarmStartType = S.String;
 
 export interface HyperParameterTuningJobWarmStartConfig {
   ParentHyperParameterTuningJobs?: ParentHyperParameterTuningJob[];
@@ -8403,7 +8403,7 @@ export const HyperParameterTuningJobWarmStartConfig = /*@__PURE__*/ S.suspend(
   identifier: "HyperParameterTuningJobWarmStartConfig",
 }) as any as S.Schema<HyperParameterTuningJobWarmStartConfig>;
 export type AutotuneMode = "Enabled" | (string & {});
-export const AutotuneMode = /*@__PURE__*/ S.String;
+export const AutotuneMode = S.String;
 
 export interface Autotune {
   Mode?: AutotuneMode;
@@ -8502,19 +8502,19 @@ export type VendorGuidance =
   | "TO_BE_ARCHIVED"
   | "ARCHIVED"
   | (string & {});
-export const VendorGuidance = /*@__PURE__*/ S.String;
+export const VendorGuidance = S.String;
 
 export type JobType =
   | "TRAINING"
   | "INFERENCE"
   | "NOTEBOOK_KERNEL"
   | (string & {});
-export const JobType = /*@__PURE__*/ S.String;
+export const JobType = S.String;
 
 export type MLFramework = string;
 export type ProgrammingLang = string;
 export type Processor = "CPU" | "GPU" | (string & {});
-export const Processor = /*@__PURE__*/ S.String;
+export const Processor = S.String;
 
 export type Horovod = boolean;
 export type ReleaseNotes = string;
@@ -8654,12 +8654,12 @@ export type InferenceComponentPlacementStrategy =
   | "SPREAD"
   | "BINPACK"
   | (string & {});
-export const InferenceComponentPlacementStrategy = /*@__PURE__*/ S.String;
+export const InferenceComponentPlacementStrategy = S.String;
 
 export type AvailabilityZoneBalanceEnforcementMode =
   | "PERMISSIVE"
   | (string & {});
-export const AvailabilityZoneBalanceEnforcementMode = /*@__PURE__*/ S.String;
+export const AvailabilityZoneBalanceEnforcementMode = S.String;
 
 export type AvailabilityZoneBalanceMaxImbalance = number;
 export interface InferenceComponentAvailabilityZoneBalance {
@@ -8772,7 +8772,7 @@ export const CreateInferenceComponentOutput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateInferenceComponentOutput>;
 export type InferenceExperimentName = string;
 export type InferenceExperimentType = "ShadowMode" | (string & {});
-export const InferenceExperimentType = /*@__PURE__*/ S.String;
+export const InferenceExperimentType = S.String;
 
 export interface InferenceExperimentSchedule {
   StartTime?: Date;
@@ -8789,7 +8789,7 @@ export const InferenceExperimentSchedule = /*@__PURE__*/ S.suspend(() =>
 export type InferenceExperimentDescription = string;
 export type ModelVariantName = string;
 export type ModelInfrastructureType = "RealTimeInference" | (string & {});
-export const ModelInfrastructureType = /*@__PURE__*/ S.String;
+export const ModelInfrastructureType = S.String;
 
 export type TaskCount = number;
 export interface RealTimeInferenceConfig {
@@ -8926,11 +8926,11 @@ export const CreateInferenceExperimentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateInferenceExperimentResponse>;
 export type RecommendationJobName = string;
 export type RecommendationJobType = "Default" | "Advanced" | (string & {});
-export const RecommendationJobType = /*@__PURE__*/ S.String;
+export const RecommendationJobType = S.String;
 
 export type JobDurationInSeconds = number;
 export type TrafficType = "PHASES" | "STAIRS" | (string & {});
-export const TrafficType = /*@__PURE__*/ S.String;
+export const TrafficType = S.String;
 
 export type InitialNumberOfUsers = number;
 export type SpawnRate = number;
@@ -9063,7 +9063,7 @@ export type RecommendationJobSupportedEndpointType =
   | "RealTime"
   | "Serverless"
   | (string & {});
-export const RecommendationJobSupportedEndpointType = /*@__PURE__*/ S.String;
+export const RecommendationJobSupportedEndpointType = S.String;
 
 export type RecommendationJobDataInputConfig = string;
 export type RecommendationJobSupportedResponseMIMEType = string;
@@ -9174,7 +9174,7 @@ export const ModelLatencyThresholds = /*@__PURE__*/ S.Array(
   ModelLatencyThreshold,
 );
 export type FlatInvocations = "Continue" | "Stop" | (string & {});
-export const FlatInvocations = /*@__PURE__*/ S.String;
+export const FlatInvocations = S.String;
 
 export interface RecommendationJobStoppingConditions {
   MaxInvocations?: number;
@@ -9257,7 +9257,7 @@ export const CreateInferenceRecommendationsJobResponse =
   }) as any as S.Schema<CreateInferenceRecommendationsJobResponse>;
 export type JobName = string;
 export type JobCategory = "AgentRFT" | "AgentRFTEvaluation" | (string & {});
-export const JobCategory = /*@__PURE__*/ S.String;
+export const JobCategory = S.String;
 
 export type JobSchemaVersion = string;
 export type JobConfigDocument = string;
@@ -9334,7 +9334,7 @@ export type ContentClassifier =
   | "FreeOfPersonallyIdentifiableInformation"
   | "FreeOfAdultContent"
   | (string & {});
-export const ContentClassifier = /*@__PURE__*/ S.String;
+export const ContentClassifier = S.String;
 
 export type ContentClassifiers = ContentClassifier[];
 export const ContentClassifiers = /*@__PURE__*/ S.Array(ContentClassifier);
@@ -9526,11 +9526,11 @@ export type ModelRegistrationMode =
   | "AutoModelRegistrationEnabled"
   | "AutoModelRegistrationDisabled"
   | (string & {});
-export const ModelRegistrationMode = /*@__PURE__*/ S.String;
+export const ModelRegistrationMode = S.String;
 
 export type WeeklyMaintenanceWindowStart = string;
 export type AccountDefaultStatus = "ENABLED" | "DISABLED" | (string & {});
-export const AccountDefaultStatus = /*@__PURE__*/ S.String;
+export const AccountDefaultStatus = S.String;
 
 export type DefaultDomainIdList = string[];
 export const DefaultDomainIdList = /*@__PURE__*/ S.Array(S.String);
@@ -9581,7 +9581,7 @@ export const CreateMlflowAppResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateMlflowAppResponse>;
 export type TrackingServerName = string;
 export type TrackingServerSize = "Small" | "Medium" | "Large" | (string & {});
-export const TrackingServerSize = /*@__PURE__*/ S.String;
+export const TrackingServerSize = S.String;
 
 export type MlflowVersion = string;
 export interface CreateMlflowTrackingServerRequest {
@@ -9632,7 +9632,7 @@ export const CreateMlflowTrackingServerResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateMlflowTrackingServerResponse",
 }) as any as S.Schema<CreateMlflowTrackingServerResponse>;
 export type RepositoryAccessMode = "Platform" | "Vpc" | (string & {});
-export const RepositoryAccessMode = /*@__PURE__*/ S.String;
+export const RepositoryAccessMode = S.String;
 
 export type RepositoryCredentialsProviderArn = string;
 export interface RepositoryAuthConfig {
@@ -9654,11 +9654,11 @@ export const ImageConfig = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ImageConfig" }) as any as S.Schema<ImageConfig>;
 export type ContainerMode = "SingleModel" | "MultiModel" | (string & {});
-export const ContainerMode = /*@__PURE__*/ S.String;
+export const ContainerMode = S.String;
 
 export type VersionedArnOrName = string;
 export type ModelCacheSetting = "Enabled" | "Disabled" | (string & {});
-export const ModelCacheSetting = /*@__PURE__*/ S.String;
+export const ModelCacheSetting = S.String;
 
 export interface MultiModelConfig {
   ModelCacheSetting?: ModelCacheSetting;
@@ -9704,7 +9704,7 @@ export type ContainerDefinitionList = ContainerDefinition[];
 export const ContainerDefinitionList =
   /*@__PURE__*/ S.Array(ContainerDefinition);
 export type InferenceExecutionMode = "Serial" | "Direct" | (string & {});
-export const InferenceExecutionMode = /*@__PURE__*/ S.String;
+export const InferenceExecutionMode = S.String;
 
 export interface InferenceExecutionConfig {
   Mode?: InferenceExecutionMode;
@@ -9865,7 +9865,7 @@ export type ModelCardStatus =
   | "Approved"
   | "Archived"
   | (string & {});
-export const ModelCardStatus = /*@__PURE__*/ S.String;
+export const ModelCardStatus = S.String;
 
 export interface CreateModelCardRequest {
   ModelCardName?: string;
@@ -10273,7 +10273,7 @@ export const AdditionalInferenceSpecifications = /*@__PURE__*/ S.Array(
   AdditionalInferenceSpecificationDefinition,
 );
 export type SkipModelValidation = "All" | "None" | (string & {});
-export const SkipModelValidation = /*@__PURE__*/ S.String;
+export const SkipModelValidation = S.String;
 
 export type ModelPackageSourceUri = string;
 export interface ModelPackageSecurityConfig {
@@ -10310,7 +10310,7 @@ export const ModelLifeCycle = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ModelLifeCycle" }) as any as S.Schema<ModelLifeCycle>;
 export type ManagedStorageType = "Restricted" | (string & {});
-export const ManagedStorageType = /*@__PURE__*/ S.String;
+export const ManagedStorageType = S.String;
 
 export interface CreateModelPackageInput {
   ModelPackageName?: string;
@@ -10450,7 +10450,7 @@ export type MonitoringProblemType =
   | "MulticlassClassification"
   | "Regression"
   | (string & {});
-export const MonitoringProblemType = /*@__PURE__*/ S.String;
+export const MonitoringProblemType = S.String;
 
 export interface ModelQualityAppSpecification {
   ImageUri?: string;
@@ -10639,7 +10639,7 @@ export type MonitoringType =
   | "ModelBias"
   | "ModelExplainability"
   | (string & {});
-export const MonitoringType = /*@__PURE__*/ S.String;
+export const MonitoringType = S.String;
 
 export interface MonitoringScheduleConfig {
   ScheduleConfig?: ScheduleConfig;
@@ -10882,11 +10882,11 @@ export type InstanceType =
   | "ml.g6e.24xlarge"
   | "ml.g6e.48xlarge"
   | (string & {});
-export const InstanceType = /*@__PURE__*/ S.String;
+export const InstanceType = S.String;
 
 export type NotebookInstanceLifecycleConfigName = string;
 export type DirectInternetAccess = "Enabled" | "Disabled" | (string & {});
-export const DirectInternetAccess = /*@__PURE__*/ S.String;
+export const DirectInternetAccess = S.String;
 
 export type NotebookInstanceVolumeSizeInGB = number;
 export type NotebookInstanceAcceleratorType =
@@ -10897,7 +10897,7 @@ export type NotebookInstanceAcceleratorType =
   | "ml.eia2.large"
   | "ml.eia2.xlarge"
   | (string & {});
-export const NotebookInstanceAcceleratorType = /*@__PURE__*/ S.String;
+export const NotebookInstanceAcceleratorType = S.String;
 
 export type NotebookInstanceAcceleratorTypes =
   NotebookInstanceAcceleratorType[];
@@ -10910,7 +10910,7 @@ export const AdditionalCodeRepositoryNamesOrUrls = /*@__PURE__*/ S.Array(
   S.String,
 );
 export type RootAccess = "Enabled" | "Disabled" | (string & {});
-export const RootAccess = /*@__PURE__*/ S.String;
+export const RootAccess = S.String;
 
 export type PlatformIdentifier = string;
 export type MinimumInstanceMetadataServiceVersion = string;
@@ -11137,7 +11137,7 @@ export type OptimizationJobDeploymentInstanceType =
   | "ml.g7.24xlarge"
   | "ml.g7.48xlarge"
   | (string & {});
-export const OptimizationJobDeploymentInstanceType = /*@__PURE__*/ S.String;
+export const OptimizationJobDeploymentInstanceType = S.String;
 
 export type OptimizationJobMaxInstanceCount = number;
 export type OptimizationJobEnvironmentVariables = {
@@ -11185,13 +11185,13 @@ export const ModelShardingConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "ModelShardingConfig",
 }) as any as S.Schema<ModelShardingConfig>;
 export type ModelSpeculativeDecodingTechnique = "EAGLE" | (string & {});
-export const ModelSpeculativeDecodingTechnique = /*@__PURE__*/ S.String;
+export const ModelSpeculativeDecodingTechnique = S.String;
 
 export type ModelSpeculativeDecodingS3DataType =
   | "S3Prefix"
   | "ManifestFile"
   | (string & {});
-export const ModelSpeculativeDecodingS3DataType = /*@__PURE__*/ S.String;
+export const ModelSpeculativeDecodingS3DataType = S.String;
 
 export interface ModelSpeculativeDecodingTrainingDataSource {
   S3Uri?: string;
@@ -11343,7 +11343,7 @@ export type PartnerAppType =
   | "deepchecks-llm-evaluation"
   | "fiddler"
   | (string & {});
-export const PartnerAppType = /*@__PURE__*/ S.String;
+export const PartnerAppType = S.String;
 
 export type WeeklyScheduleTimeFormat = string;
 export interface PartnerAppMaintenanceConfig {
@@ -11402,7 +11402,7 @@ export const IdcConfigInput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ InstanceArn: S.String }),
 ).annotate({ identifier: "IdcConfigInput" }) as any as S.Schema<IdcConfigInput>;
 export type PartnerAppAuthType = "IAM" | "IDC" | (string & {});
-export const PartnerAppAuthType = /*@__PURE__*/ S.String;
+export const PartnerAppAuthType = S.String;
 
 export interface CreatePartnerAppRequest {
   Name?: string;
@@ -11708,10 +11708,10 @@ export const CreatePresignedNotebookInstanceUrlOutput = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreatePresignedNotebookInstanceUrlOutput>;
 export type AppManaged = boolean;
 export type ProcessingS3DataType = "ManifestFile" | "S3Prefix" | (string & {});
-export const ProcessingS3DataType = /*@__PURE__*/ S.String;
+export const ProcessingS3DataType = S.String;
 
 export type ProcessingS3CompressionType = "None" | "Gzip" | (string & {});
-export const ProcessingS3CompressionType = /*@__PURE__*/ S.String;
+export const ProcessingS3CompressionType = S.String;
 
 export interface ProcessingS3Input {
   S3Uri?: string;
@@ -11744,14 +11744,14 @@ export type AthenaResultFormat =
   | "JSON"
   | "TEXTFILE"
   | (string & {});
-export const AthenaResultFormat = /*@__PURE__*/ S.String;
+export const AthenaResultFormat = S.String;
 
 export type AthenaResultCompressionType =
   | "GZIP"
   | "SNAPPY"
   | "ZLIB"
   | (string & {});
-export const AthenaResultCompressionType = /*@__PURE__*/ S.String;
+export const AthenaResultCompressionType = S.String;
 
 export interface AthenaDatasetDefinition {
   Catalog?: string;
@@ -11782,7 +11782,7 @@ export type RedshiftDatabase = string;
 export type RedshiftUserName = string;
 export type RedshiftQueryString = string;
 export type RedshiftResultFormat = "PARQUET" | "CSV" | (string & {});
-export const RedshiftResultFormat = /*@__PURE__*/ S.String;
+export const RedshiftResultFormat = S.String;
 
 export type RedshiftResultCompressionType =
   | "None"
@@ -11791,7 +11791,7 @@ export type RedshiftResultCompressionType =
   | "ZSTD"
   | "SNAPPY"
   | (string & {});
-export const RedshiftResultCompressionType = /*@__PURE__*/ S.String;
+export const RedshiftResultCompressionType = S.String;
 
 export interface RedshiftDatasetDefinition {
   ClusterId?: string;
@@ -11823,10 +11823,10 @@ export type DataDistributionType =
   | "FullyReplicated"
   | "ShardedByS3Key"
   | (string & {});
-export const DataDistributionType = /*@__PURE__*/ S.String;
+export const DataDistributionType = S.String;
 
 export type InputMode = "Pipe" | "File" | (string & {});
-export const InputMode = /*@__PURE__*/ S.String;
+export const InputMode = S.String;
 
 export interface DatasetDefinition {
   AthenaDatasetDefinition?: AthenaDatasetDefinition;
@@ -12291,7 +12291,7 @@ export const OwnershipSettings = /*@__PURE__*/ S.suspend(() =>
   identifier: "OwnershipSettings",
 }) as any as S.Schema<OwnershipSettings>;
 export type SharingType = "Private" | "Shared" | (string & {});
-export const SharingType = /*@__PURE__*/ S.String;
+export const SharingType = S.String;
 
 export interface SpaceSharingSettings {
   SharingType?: SharingType;
@@ -12350,7 +12350,7 @@ export type StudioLifecycleConfigAppType =
   | "CodeEditor"
   | "JupyterLab"
   | (string & {});
-export const StudioLifecycleConfigAppType = /*@__PURE__*/ S.String;
+export const StudioLifecycleConfigAppType = S.String;
 
 export interface CreateStudioLifecycleConfigRequest {
   StudioLifecycleConfigName?: string;
@@ -12394,7 +12394,7 @@ export type TrainingContainerArgument = string;
 export type TrainingContainerArguments = string[];
 export const TrainingContainerArguments = /*@__PURE__*/ S.Array(S.String);
 export type TrainingRepositoryAccessMode = "Platform" | "Vpc" | (string & {});
-export const TrainingRepositoryAccessMode = /*@__PURE__*/ S.String;
+export const TrainingRepositoryAccessMode = S.String;
 
 export type TrainingRepositoryCredentialsProviderArn = string;
 export interface TrainingRepositoryAuthConfig {
@@ -12613,7 +12613,7 @@ export const SessionChainingConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionChainingConfig>;
 export type ServerlessJobBaseModelArn = string;
 export type ServerlessJobType = "FineTuning" | "Evaluation" | (string & {});
-export const ServerlessJobType = /*@__PURE__*/ S.String;
+export const ServerlessJobType = S.String;
 
 export type CustomizationTechnique =
   | "SFT"
@@ -12621,17 +12621,17 @@ export type CustomizationTechnique =
   | "RLVR"
   | "RLAIF"
   | (string & {});
-export const CustomizationTechnique = /*@__PURE__*/ S.String;
+export const CustomizationTechnique = S.String;
 
 export type Peft = "LORA" | (string & {});
-export const Peft = /*@__PURE__*/ S.String;
+export const Peft = S.String;
 
 export type EvaluationType =
   | "LLMAJEvaluation"
   | "CustomScorerEvaluation"
   | "BenchmarkEvaluation"
   | (string & {});
-export const EvaluationType = /*@__PURE__*/ S.String;
+export const EvaluationType = S.String;
 
 export type EvaluatorArn = string;
 export type SequenceLength = string;
@@ -12837,7 +12837,7 @@ export const BatchDataCaptureConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BatchDataCaptureConfig>;
 export type JsonPath = string;
 export type JoinSource = "Input" | "None" | (string & {});
-export const JoinSource = /*@__PURE__*/ S.String;
+export const JoinSource = S.String;
 
 export interface DataProcessing {
   InputFilter?: string;
@@ -12949,7 +12949,7 @@ export type TrialComponentPrimaryStatus =
   | "Stopping"
   | "Stopped"
   | (string & {});
-export const TrialComponentPrimaryStatus = /*@__PURE__*/ S.String;
+export const TrialComponentPrimaryStatus = S.String;
 
 export type TrialComponentStatusMessage = string;
 export interface TrialComponentStatus {
@@ -13166,7 +13166,7 @@ export const WorkforceVpcConfigRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkforceVpcConfigRequest",
 }) as any as S.Schema<WorkforceVpcConfigRequest>;
 export type WorkforceIpAddressType = "ipv4" | "dualstack" | (string & {});
-export const WorkforceIpAddressType = /*@__PURE__*/ S.String;
+export const WorkforceIpAddressType = S.String;
 
 export interface CreateWorkforceRequest {
   CognitoConfig?: CognitoConfig;
@@ -13261,7 +13261,7 @@ export const NotificationConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "NotificationConfiguration",
 }) as any as S.Schema<NotificationConfiguration>;
 export type EnabledOrDisabled = "Enabled" | "Disabled" | (string & {});
-export const EnabledOrDisabled = /*@__PURE__*/ S.String;
+export const EnabledOrDisabled = S.String;
 
 export interface IamPolicyConstraints {
   SourceIp?: EnabledOrDisabled;
@@ -13777,7 +13777,7 @@ export const DeleteDeviceFleetResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteDeviceFleetResponse",
 }) as any as S.Schema<DeleteDeviceFleetResponse>;
 export type RetentionType = "Retain" | "Delete" | (string & {});
-export const RetentionType = /*@__PURE__*/ S.String;
+export const RetentionType = S.String;
 
 export interface RetentionPolicy {
   HomeEfsFileSystem?: RetentionType;
@@ -15079,7 +15079,7 @@ export type AIBenchmarkJobStatus =
   | "Stopping"
   | "Stopped"
   | (string & {});
-export const AIBenchmarkJobStatus = /*@__PURE__*/ S.String;
+export const AIBenchmarkJobStatus = S.String;
 
 export type FailureReason = string;
 export interface AICloudWatchLogs {
@@ -15177,7 +15177,7 @@ export type AIRecommendationJobStatus =
   | "Stopping"
   | "Stopped"
   | (string & {});
-export const AIRecommendationJobStatus = /*@__PURE__*/ S.String;
+export const AIRecommendationJobStatus = S.String;
 
 export interface AIRecommendationOutputResult {
   S3OutputLocation?: string;
@@ -15197,7 +15197,7 @@ export type AIRecommendationOptimizationType =
   | "SpeculativeDecoding"
   | "KernelTuning"
   | (string & {});
-export const AIRecommendationOptimizationType = /*@__PURE__*/ S.String;
+export const AIRecommendationOptimizationType = S.String;
 
 export type AIRecommendationOptimizationConfigMap = {
   [key: string]: string | undefined;
@@ -15484,7 +15484,7 @@ export type AlgorithmStatus =
   | "Failed"
   | "Deleting"
   | (string & {});
-export const AlgorithmStatus = /*@__PURE__*/ S.String;
+export const AlgorithmStatus = S.String;
 
 export type DetailedAlgorithmStatus =
   | "NotStarted"
@@ -15492,7 +15492,7 @@ export type DetailedAlgorithmStatus =
   | "Completed"
   | "Failed"
   | (string & {});
-export const DetailedAlgorithmStatus = /*@__PURE__*/ S.String;
+export const DetailedAlgorithmStatus = S.String;
 
 export interface AlgorithmStatusItem {
   Name?: string;
@@ -15722,7 +15722,7 @@ export type AppStatus =
   | "InService"
   | "Pending"
   | (string & {});
-export const AppStatus = /*@__PURE__*/ S.String;
+export const AppStatus = S.String;
 
 export interface DescribeAppResponse {
   AppArn?: string;
@@ -15899,7 +15899,7 @@ export const AutoMLPartialFailureReasons = /*@__PURE__*/ S.Array(
 );
 export type CandidateName = string;
 export type AutoMLJobObjectiveType = "Maximize" | "Minimize" | (string & {});
-export const AutoMLJobObjectiveType = /*@__PURE__*/ S.String;
+export const AutoMLJobObjectiveType = S.String;
 
 export type MetricValue = number;
 export interface FinalAutoMLJobObjectiveMetric {
@@ -15923,14 +15923,14 @@ export type ObjectiveStatus =
   | "Pending"
   | "Failed"
   | (string & {});
-export const ObjectiveStatus = /*@__PURE__*/ S.String;
+export const ObjectiveStatus = S.String;
 
 export type CandidateStepType =
   | "AWS::SageMaker::TrainingJob"
   | "AWS::SageMaker::TransformJob"
   | "AWS::SageMaker::ProcessingJob"
   | (string & {});
-export const CandidateStepType = /*@__PURE__*/ S.String;
+export const CandidateStepType = S.String;
 
 export type CandidateStepArn = string;
 export type CandidateStepName = string;
@@ -15957,7 +15957,7 @@ export type CandidateStatus =
   | "Stopped"
   | "Stopping"
   | (string & {});
-export const CandidateStatus = /*@__PURE__*/ S.String;
+export const CandidateStatus = S.String;
 
 export interface AutoMLContainerDefinition {
   Image?: string;
@@ -16022,10 +16022,10 @@ export type AutoMLMetricExtendedEnum =
   | "ValidationLoss"
   | "TrainingLoss"
   | (string & {});
-export const AutoMLMetricExtendedEnum = /*@__PURE__*/ S.String;
+export const AutoMLMetricExtendedEnum = S.String;
 
 export type MetricSetSource = "Train" | "Validation" | "Test" | (string & {});
-export const MetricSetSource = /*@__PURE__*/ S.String;
+export const MetricSetSource = S.String;
 
 export interface MetricDatum {
   MetricName?: AutoMLMetricEnum;
@@ -16056,7 +16056,7 @@ export const CandidateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "CandidateProperties",
 }) as any as S.Schema<CandidateProperties>;
 export type AutoMLProcessingUnit = "CPU" | "GPU" | (string & {});
-export const AutoMLProcessingUnit = /*@__PURE__*/ S.String;
+export const AutoMLProcessingUnit = S.String;
 
 export type AutoMLInferenceContainerDefinitions = {
   [key in AutoMLProcessingUnit]?: AutoMLContainerDefinition[];
@@ -16110,7 +16110,7 @@ export type AutoMLJobStatus =
   | "Stopped"
   | "Stopping"
   | (string & {});
-export const AutoMLJobStatus = /*@__PURE__*/ S.String;
+export const AutoMLJobStatus = S.String;
 
 export type AutoMLJobSecondaryStatus =
   | "Starting"
@@ -16133,7 +16133,7 @@ export type AutoMLJobSecondaryStatus =
   | "TrainingModels"
   | "PreTraining"
   | (string & {});
-export const AutoMLJobSecondaryStatus = /*@__PURE__*/ S.String;
+export const AutoMLJobSecondaryStatus = S.String;
 
 export type CandidateDefinitionNotebookLocation = string;
 export type DataExplorationNotebookLocation = string;
@@ -16302,7 +16302,7 @@ export type AutoMLProblemTypeConfigName =
   | "Tabular"
   | "TextGeneration"
   | (string & {});
-export const AutoMLProblemTypeConfigName = /*@__PURE__*/ S.String;
+export const AutoMLProblemTypeConfigName = S.String;
 
 export interface TabularResolvedAttributes {
   ProblemType?: ProblemType;
@@ -16484,7 +16484,7 @@ export type ClusterStatus =
   | "SystemUpdating"
   | "Updating"
   | (string & {});
-export const ClusterStatus = /*@__PURE__*/ S.String;
+export const ClusterStatus = S.String;
 
 export type ClusterNonNegativeInstanceCount = number;
 export interface ClusterInstanceRequirementDetails {
@@ -16526,7 +16526,7 @@ export type InstanceGroupStatus =
   | "SystemUpdating"
   | "Deleting"
   | (string & {});
-export const InstanceGroupStatus = /*@__PURE__*/ S.String;
+export const InstanceGroupStatus = S.String;
 
 export type InstanceGroupTrainingPlanStatus = string;
 export interface ClusterPatchScheduleDetails {
@@ -16561,10 +16561,10 @@ export type ClusterImageVersionStatus =
   | "SecurityUpdateRequired"
   | "EndOfLife"
   | (string & {});
-export const ClusterImageVersionStatus = /*@__PURE__*/ S.String;
+export const ClusterImageVersionStatus = S.String;
 
 export type ActiveClusterOperationName = "Scaling" | (string & {});
-export const ActiveClusterOperationName = /*@__PURE__*/ S.String;
+export const ActiveClusterOperationName = S.String;
 
 export type ActiveClusterOperationCount = number;
 export type ActiveOperations = { [key in ActiveClusterOperationName]?: number };
@@ -16596,7 +16596,7 @@ export type SoftwareUpdateStatus =
   | "RollbackInProgress"
   | "RollbackComplete"
   | (string & {});
-export const SoftwareUpdateStatus = /*@__PURE__*/ S.String;
+export const SoftwareUpdateStatus = S.String;
 
 export interface ClusterSlurmConfigDetails {
   NodeType: ClusterSlurmNodeType;
@@ -16786,7 +16786,7 @@ export type ClusterAutoScalingStatus =
   | "Creating"
   | "Deleting"
   | (string & {});
-export const ClusterAutoScalingStatus = /*@__PURE__*/ S.String;
+export const ClusterAutoScalingStatus = S.String;
 
 export interface ClusterAutoScalingConfigOutput {
   Mode: ClusterAutoScalingMode;
@@ -16968,7 +16968,7 @@ export type ClusterEventResourceType =
   | "InstanceGroup"
   | "Instance"
   | (string & {});
-export const ClusterEventResourceType = /*@__PURE__*/ S.String;
+export const ClusterEventResourceType = S.String;
 
 export type EksRoleAccessEntries = string[];
 export const EksRoleAccessEntries = /*@__PURE__*/ S.Array(S.String);
@@ -16987,7 +16987,7 @@ export const ClusterMetadata = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClusterMetadata",
 }) as any as S.Schema<ClusterMetadata>;
 export type CapacityReservationType = "ODCR" | "CRG" | (string & {});
-export const CapacityReservationType = /*@__PURE__*/ S.String;
+export const CapacityReservationType = S.String;
 
 export interface CapacityReservation {
   Arn?: string;
@@ -17126,7 +17126,7 @@ export const EventDetails = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ EventMetadata: S.optional(EventMetadata) }),
 ).annotate({ identifier: "EventDetails" }) as any as S.Schema<EventDetails>;
 export type ClusterEventLevel = "Info" | "Warn" | "Error" | (string & {});
-export const ClusterEventLevel = /*@__PURE__*/ S.String;
+export const ClusterEventLevel = S.String;
 
 export interface ClusterEventDetail {
   EventId?: string;
@@ -17248,7 +17248,7 @@ export const ClusterKubernetesConfigNodeDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClusterKubernetesConfigNodeDetails",
 }) as any as S.Schema<ClusterKubernetesConfigNodeDetails>;
 export type ClusterCapacityType = "Spot" | "OnDemand" | (string & {});
-export const ClusterCapacityType = /*@__PURE__*/ S.String;
+export const ClusterCapacityType = S.String;
 
 export interface ClusterNodeDetails {
   InstanceGroupName?: string;
@@ -17361,14 +17361,14 @@ export type SchedulerResourceStatus =
   | "DeleteRollbackFailed"
   | "Deleted"
   | (string & {});
-export const SchedulerResourceStatus = /*@__PURE__*/ S.String;
+export const SchedulerResourceStatus = S.String;
 
 export type SchedulerConfigComponent =
   | "PriorityClasses"
   | "FairShare"
   | "IdleResourceSharing"
   | (string & {});
-export const SchedulerConfigComponent = /*@__PURE__*/ S.String;
+export const SchedulerConfigComponent = S.String;
 
 export type StatusDetailsMap = {
   [key in SchedulerConfigComponent]?: SchedulerResourceStatus;
@@ -17486,7 +17486,7 @@ export type CompilationJobStatus =
   | "STOPPING"
   | "STOPPED"
   | (string & {});
-export const CompilationJobStatus = /*@__PURE__*/ S.String;
+export const CompilationJobStatus = S.String;
 
 export type InferenceImage = string;
 export interface ModelArtifacts {
@@ -17939,7 +17939,7 @@ export type DomainStatus =
   | "Update_Failed"
   | "Delete_Failed"
   | (string & {});
-export const DomainStatus = /*@__PURE__*/ S.String;
+export const DomainStatus = S.String;
 
 export interface DescribeDomainResponse {
   DomainArn?: string;
@@ -18101,7 +18101,7 @@ export type StageStatus =
   | "STOPPING"
   | "STOPPED"
   | (string & {});
-export const StageStatus = /*@__PURE__*/ S.String;
+export const StageStatus = S.String;
 
 export interface EdgeDeploymentStatus {
   StageStatus?: StageStatus;
@@ -18221,11 +18221,11 @@ export type EdgePackagingJobStatus =
   | "STOPPING"
   | "STOPPED"
   | (string & {});
-export const EdgePackagingJobStatus = /*@__PURE__*/ S.String;
+export const EdgePackagingJobStatus = S.String;
 
 export type EdgePresetDeploymentArtifact = string;
 export type EdgePresetDeploymentStatus = "COMPLETED" | "FAILED" | (string & {});
-export const EdgePresetDeploymentStatus = /*@__PURE__*/ S.String;
+export const EdgePresetDeploymentStatus = S.String;
 
 export interface EdgePresetDeploymentOutput {
   Type?: EdgePresetDeploymentType;
@@ -18339,7 +18339,7 @@ export type VariantStatus =
   | "ActivatingTraffic"
   | "Baking"
   | (string & {});
-export const VariantStatus = /*@__PURE__*/ S.String;
+export const VariantStatus = S.String;
 
 export type VariantStatusMessage = string;
 export interface ProductionVariantStatus {
@@ -18443,7 +18443,7 @@ export const ProductionVariantSummaryList = /*@__PURE__*/ S.Array(
   ProductionVariantSummary,
 );
 export type CaptureStatus = "Started" | "Stopped" | (string & {});
-export const CaptureStatus = /*@__PURE__*/ S.String;
+export const CaptureStatus = S.String;
 
 export interface DataCaptureConfigSummary {
   EnableCapture?: boolean;
@@ -18474,7 +18474,7 @@ export type EndpointStatus =
   | "Failed"
   | "UpdateRollbackFailed"
   | (string & {});
-export const EndpointStatus = /*@__PURE__*/ S.String;
+export const EndpointStatus = S.String;
 
 export interface PendingProductionVariantSummary {
   VariantName?: string;
@@ -18930,14 +18930,14 @@ export type FeatureGroupStatus =
   | "Deleting"
   | "DeleteFailed"
   | (string & {});
-export const FeatureGroupStatus = /*@__PURE__*/ S.String;
+export const FeatureGroupStatus = S.String;
 
 export type OfflineStoreStatusValue =
   | "Active"
   | "Blocked"
   | "Disabled"
   | (string & {});
-export const OfflineStoreStatusValue = /*@__PURE__*/ S.String;
+export const OfflineStoreStatusValue = S.String;
 
 export type BlockedReason = string;
 export interface OfflineStoreStatus {
@@ -18957,7 +18957,7 @@ export type LastUpdateStatusValue =
   | "Failed"
   | "InProgress"
   | (string & {});
-export const LastUpdateStatusValue = /*@__PURE__*/ S.String;
+export const LastUpdateStatusValue = S.String;
 
 export interface LastUpdateStatus {
   Status?: LastUpdateStatusValue;
@@ -19116,7 +19116,7 @@ export type FlowDefinitionStatus =
   | "Failed"
   | "Deleting"
   | (string & {});
-export const FlowDefinitionStatus = /*@__PURE__*/ S.String;
+export const FlowDefinitionStatus = S.String;
 
 export interface DescribeFlowDefinitionResponse {
   FlowDefinitionArn: string;
@@ -19185,7 +19185,7 @@ export type HubStatus =
   | "UpdateFailed"
   | "DeleteFailed"
   | (string & {});
-export const HubStatus = /*@__PURE__*/ S.String;
+export const HubStatus = S.String;
 
 export interface DescribeHubResponse {
   HubName: string;
@@ -19254,7 +19254,7 @@ export type HubContentSupportStatus =
   | "Deprecated"
   | "Restricted"
   | (string & {});
-export const HubContentSupportStatus = /*@__PURE__*/ S.String;
+export const HubContentSupportStatus = S.String;
 
 export type HubContentSearchKeyword = string;
 export type HubContentSearchKeywordList = string[];
@@ -19285,7 +19285,7 @@ export type HubContentStatus =
   | "PendingImport"
   | "PendingDelete"
   | (string & {});
-export const HubContentStatus = /*@__PURE__*/ S.String;
+export const HubContentStatus = S.String;
 
 export interface DescribeHubContentResponse {
   HubContentName: string;
@@ -19356,7 +19356,7 @@ export const DescribeHumanTaskUiRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeHumanTaskUiRequest",
 }) as any as S.Schema<DescribeHumanTaskUiRequest>;
 export type HumanTaskUiStatus = "Active" | "Deleting" | (string & {});
-export const HumanTaskUiStatus = /*@__PURE__*/ S.String;
+export const HumanTaskUiStatus = S.String;
 
 export type TemplateUrl = string;
 export type TemplateContentSha256 = string;
@@ -19413,7 +19413,7 @@ export type HyperParameterTuningJobStatus =
   | "Deleting"
   | "DeleteFailed"
   | (string & {});
-export const HyperParameterTuningJobStatus = /*@__PURE__*/ S.String;
+export const HyperParameterTuningJobStatus = S.String;
 
 export type TrainingJobStatusCounter = number;
 export interface TrainingJobStatusCounters {
@@ -19457,7 +19457,7 @@ export type TrainingJobStatus =
   | "Stopped"
   | "Deleting"
   | (string & {});
-export const TrainingJobStatus = /*@__PURE__*/ S.String;
+export const TrainingJobStatus = S.String;
 
 export interface FinalHyperParameterTuningJobObjectiveMetric {
   Type?: HyperParameterTuningJobObjectiveType;
@@ -19825,7 +19825,7 @@ export type ImageStatus =
   | "DELETING"
   | "DELETE_FAILED"
   | (string & {});
-export const ImageStatus = /*@__PURE__*/ S.String;
+export const ImageStatus = S.String;
 
 export interface DescribeImageResponse {
   CreationTime?: Date;
@@ -19887,7 +19887,7 @@ export type ImageVersionStatus =
   | "DELETING"
   | "DELETE_FAILED"
   | (string & {});
-export const ImageVersionStatus = /*@__PURE__*/ S.String;
+export const ImageVersionStatus = S.String;
 
 export interface DescribeImageVersionResponse {
   BaseImage?: string;
@@ -20045,13 +20045,13 @@ export type InferenceComponentStatus =
   | "Failed"
   | "Deleting"
   | (string & {});
-export const InferenceComponentStatus = /*@__PURE__*/ S.String;
+export const InferenceComponentStatus = S.String;
 
 export type InferenceComponentCapacitySizeType =
   | "COPY_COUNT"
   | "CAPACITY_PERCENT"
   | (string & {});
-export const InferenceComponentCapacitySizeType = /*@__PURE__*/ S.String;
+export const InferenceComponentCapacitySizeType = S.String;
 
 export interface InferenceComponentCapacitySize {
   Type?: InferenceComponentCapacitySizeType;
@@ -20215,7 +20215,7 @@ export type InferenceExperimentStatus =
   | "Completed"
   | "Cancelled"
   | (string & {});
-export const InferenceExperimentStatus = /*@__PURE__*/ S.String;
+export const InferenceExperimentStatus = S.String;
 
 export type InferenceExperimentStatusReason = string;
 export interface EndpointMetadata {
@@ -20241,7 +20241,7 @@ export type ModelVariantStatus =
   | "Deleting"
   | "Deleted"
   | (string & {});
-export const ModelVariantStatus = /*@__PURE__*/ S.String;
+export const ModelVariantStatus = S.String;
 
 export interface ModelVariantConfigSummary {
   ModelName?: string;
@@ -20353,7 +20353,7 @@ export type RecommendationJobStatus =
   | "DELETING"
   | "DELETED"
   | (string & {});
-export const RecommendationJobStatus = /*@__PURE__*/ S.String;
+export const RecommendationJobStatus = S.String;
 
 export type UtilizationMetric = number;
 export type ModelSetupTime = number;
@@ -20597,7 +20597,7 @@ export type JobStatus =
   | "Deleting"
   | "DeleteFailed"
   | (string & {});
-export const JobStatus = /*@__PURE__*/ S.String;
+export const JobStatus = S.String;
 
 export type JobSecondaryStatus =
   | "Starting"
@@ -20616,7 +20616,7 @@ export type JobSecondaryStatus =
   | "Deleting"
   | "DeleteFailed"
   | (string & {});
-export const JobSecondaryStatus = /*@__PURE__*/ S.String;
+export const JobSecondaryStatus = S.String;
 
 export interface JobSecondaryStatusTransition {
   Status?: JobSecondaryStatus;
@@ -20741,7 +20741,7 @@ export type LabelingJobStatus =
   | "Stopping"
   | "Stopped"
   | (string & {});
-export const LabelingJobStatus = /*@__PURE__*/ S.String;
+export const LabelingJobStatus = S.String;
 
 export type LabelCounter = number;
 export interface LabelCounters {
@@ -20915,14 +20915,14 @@ export type MlflowAppStatus =
   | "DeleteFailed"
   | "Deleted"
   | (string & {});
-export const MlflowAppStatus = /*@__PURE__*/ S.String;
+export const MlflowAppStatus = S.String;
 
 export type MaintenanceStatus =
   | "MaintenanceInProgress"
   | "MaintenanceComplete"
   | "MaintenanceFailed"
   | (string & {});
-export const MaintenanceStatus = /*@__PURE__*/ S.String;
+export const MaintenanceStatus = S.String;
 
 export interface DescribeMlflowAppResponse {
   Arn?: string;
@@ -21003,17 +21003,17 @@ export type TrackingServerStatus =
   | "MaintenanceComplete"
   | "MaintenanceFailed"
   | (string & {});
-export const TrackingServerStatus = /*@__PURE__*/ S.String;
+export const TrackingServerStatus = S.String;
 
 export type TrackingServerMaintenanceStatus =
   | "MaintenanceInProgress"
   | "MaintenanceComplete"
   | "MaintenanceFailed"
   | (string & {});
-export const TrackingServerMaintenanceStatus = /*@__PURE__*/ S.String;
+export const TrackingServerMaintenanceStatus = S.String;
 
 export type IsTrackingServerActive = "Active" | "Inactive" | (string & {});
-export const IsTrackingServerActive = /*@__PURE__*/ S.String;
+export const IsTrackingServerActive = S.String;
 
 export interface DescribeMlflowTrackingServerResponse {
   TrackingServerArn?: string;
@@ -21088,7 +21088,7 @@ export type RecommendationStatus =
   | "FAILED"
   | "NOT_APPLICABLE"
   | (string & {});
-export const RecommendationStatus = /*@__PURE__*/ S.String;
+export const RecommendationStatus = S.String;
 
 export interface RealTimeInferenceRecommendation {
   RecommendationId?: string;
@@ -21317,7 +21317,7 @@ export const DescribeModelBiasJobDefinitionResponse = /*@__PURE__*/ S.suspend(
   identifier: "DescribeModelBiasJobDefinitionResponse",
 }) as any as S.Schema<DescribeModelBiasJobDefinitionResponse>;
 export type IncludedData = "AllData" | "MetadataOnly" | (string & {});
-export const IncludedData = /*@__PURE__*/ S.String;
+export const IncludedData = S.String;
 
 export interface DescribeModelCardRequest {
   ModelCardName?: string;
@@ -21351,7 +21351,7 @@ export type ModelCardProcessingStatus =
   | "DeleteCompleted"
   | "DeleteFailed"
   | (string & {});
-export const ModelCardProcessingStatus = /*@__PURE__*/ S.String;
+export const ModelCardProcessingStatus = S.String;
 
 export interface DescribeModelCardResponse {
   ModelCardArn: string;
@@ -21408,7 +21408,7 @@ export type ModelCardExportJobStatus =
   | "Completed"
   | "Failed"
   | (string & {});
-export const ModelCardExportJobStatus = /*@__PURE__*/ S.String;
+export const ModelCardExportJobStatus = S.String;
 
 export interface ModelCardExportArtifacts {
   S3ExportArtifacts?: string;
@@ -21561,7 +21561,7 @@ export type DetailedModelPackageStatus =
   | "Completed"
   | "Failed"
   | (string & {});
-export const DetailedModelPackageStatus = /*@__PURE__*/ S.String;
+export const DetailedModelPackageStatus = S.String;
 
 export interface ModelPackageStatusItem {
   Name?: string;
@@ -21853,7 +21853,7 @@ export type ModelPackageGroupStatus =
   | "Deleting"
   | "DeleteFailed"
   | (string & {});
-export const ModelPackageGroupStatus = /*@__PURE__*/ S.String;
+export const ModelPackageGroupStatus = S.String;
 
 export interface DescribeModelPackageGroupOutput {
   ModelPackageGroupName: string;
@@ -21984,7 +21984,7 @@ export type ScheduleStatus =
   | "Scheduled"
   | "Stopped"
   | (string & {});
-export const ScheduleStatus = /*@__PURE__*/ S.String;
+export const ScheduleStatus = S.String;
 
 export type ExecutionStatus =
   | "Pending"
@@ -21995,7 +21995,7 @@ export type ExecutionStatus =
   | "Stopping"
   | "Stopped"
   | (string & {});
-export const ExecutionStatus = /*@__PURE__*/ S.String;
+export const ExecutionStatus = S.String;
 
 export interface MonitoringExecutionSummary {
   MonitoringScheduleName?: string;
@@ -22135,7 +22135,7 @@ export type NotebookInstanceStatus =
   | "PendingMaintenance"
   | "InMaintenance"
   | (string & {});
-export const NotebookInstanceStatus = /*@__PURE__*/ S.String;
+export const NotebookInstanceStatus = S.String;
 
 export type NetworkInterfaceId = string;
 export interface DescribeNotebookInstanceOutput {
@@ -22268,7 +22268,7 @@ export type OptimizationJobStatus =
   | "STOPPING"
   | "STOPPED"
   | (string & {});
-export const OptimizationJobStatus = /*@__PURE__*/ S.String;
+export const OptimizationJobStatus = S.String;
 
 export interface OptimizationOutput {
   RecommendedInferenceImage?: string;
@@ -22370,7 +22370,7 @@ export type PartnerAppStatus =
   | "UpdateFailed"
   | "Deleted"
   | (string & {});
-export const PartnerAppStatus = /*@__PURE__*/ S.String;
+export const PartnerAppStatus = S.String;
 
 export interface ErrorInfo {
   Code?: string;
@@ -22481,7 +22481,7 @@ export const DescribePipelineRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribePipelineRequest",
 }) as any as S.Schema<DescribePipelineRequest>;
 export type PipelineStatus = "Active" | "Deleting" | (string & {});
-export const PipelineStatus = /*@__PURE__*/ S.String;
+export const PipelineStatus = S.String;
 
 export type PipelineVersionName = string;
 export type PipelineVersionDescription = string;
@@ -22586,7 +22586,7 @@ export type PipelineExecutionStatus =
   | "Failed"
   | "Succeeded"
   | (string & {});
-export const PipelineExecutionStatus = /*@__PURE__*/ S.String;
+export const PipelineExecutionStatus = S.String;
 
 export type PipelineExecutionDescription = string;
 export interface PipelineExperimentConfig {
@@ -22705,7 +22705,7 @@ export type ProcessingJobStatus =
   | "Stopping"
   | "Stopped"
   | (string & {});
-export const ProcessingJobStatus = /*@__PURE__*/ S.String;
+export const ProcessingJobStatus = S.String;
 
 export type ExitMessage = string;
 export interface DescribeProcessingJobResponse {
@@ -22854,7 +22854,7 @@ export type ProjectStatus =
   | "UpdateCompleted"
   | "UpdateFailed"
   | (string & {});
-export const ProjectStatus = /*@__PURE__*/ S.String;
+export const ProjectStatus = S.String;
 
 export interface CfnStackParameter {
   Key?: string;
@@ -22981,7 +22981,7 @@ export const DescribeReservedCapacityRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeReservedCapacityRequest",
 }) as any as S.Schema<DescribeReservedCapacityRequest>;
 export type ReservedCapacityType = "UltraServer" | "Instance" | (string & {});
-export const ReservedCapacityType = /*@__PURE__*/ S.String;
+export const ReservedCapacityType = S.String;
 
 export type ReservedCapacityStatus =
   | "Pending"
@@ -22990,7 +22990,7 @@ export type ReservedCapacityStatus =
   | "Expired"
   | "Failed"
   | (string & {});
-export const ReservedCapacityStatus = /*@__PURE__*/ S.String;
+export const ReservedCapacityStatus = S.String;
 
 export type AvailabilityZone = string;
 export type ReservedCapacityDurationHours = number;
@@ -23008,7 +23008,7 @@ export type ReservedCapacityInstanceType =
   | "ml.p5.4xlarge"
   | "ml.p6-b300.48xlarge"
   | (string & {});
-export const ReservedCapacityInstanceType = /*@__PURE__*/ S.String;
+export const ReservedCapacityInstanceType = S.String;
 
 export type TotalInstanceCount = number;
 export type AvailableInstanceCount = number;
@@ -23104,7 +23104,7 @@ export type SpaceStatus =
   | "Update_Failed"
   | "Delete_Failed"
   | (string & {});
-export const SpaceStatus = /*@__PURE__*/ S.String;
+export const SpaceStatus = S.String;
 
 export interface DescribeSpaceResponse {
   DomainId?: string;
@@ -23285,7 +23285,7 @@ export type SecondaryStatus =
   | "Restarting"
   | "Pending"
   | (string & {});
-export const SecondaryStatus = /*@__PURE__*/ S.String;
+export const SecondaryStatus = S.String;
 
 export type WarmPoolResourceStatus =
   | "Available"
@@ -23293,7 +23293,7 @@ export type WarmPoolResourceStatus =
   | "Reused"
   | "InUse"
   | (string & {});
-export const WarmPoolResourceStatus = /*@__PURE__*/ S.String;
+export const WarmPoolResourceStatus = S.String;
 
 export type ResourceRetainedBillableTimeInSeconds = number;
 export interface WarmPoolStatus {
@@ -23354,7 +23354,7 @@ export type RuleEvaluationStatus =
   | "Stopping"
   | "Stopped"
   | (string & {});
-export const RuleEvaluationStatus = /*@__PURE__*/ S.String;
+export const RuleEvaluationStatus = S.String;
 
 export type StatusDetails = string;
 export interface DebugRuleEvaluationStatus {
@@ -23406,7 +23406,7 @@ export const ProfilerRuleEvaluationStatuses = /*@__PURE__*/ S.Array(
   ProfilerRuleEvaluationStatus,
 );
 export type ProfilingStatus = "Enabled" | "Disabled" | (string & {});
-export const ProfilingStatus = /*@__PURE__*/ S.String;
+export const ProfilingStatus = S.String;
 
 export type MlflowExperimentId = string;
 export type MlflowRunId = string;
@@ -23633,7 +23633,7 @@ export type TrainingPlanStatus =
   | "Expired"
   | "Failed"
   | (string & {});
-export const TrainingPlanStatus = /*@__PURE__*/ S.String;
+export const TrainingPlanStatus = S.String;
 
 export type TrainingPlanStatusMessage = string;
 export type TrainingPlanDurationHours = number;
@@ -23645,7 +23645,7 @@ export type SageMakerResourceName =
   | "endpoint"
   | "studio-apps"
   | (string & {});
-export const SageMakerResourceName = /*@__PURE__*/ S.String;
+export const SageMakerResourceName = S.String;
 
 export type SageMakerResourceNames = SageMakerResourceName[];
 export const SageMakerResourceNames = /*@__PURE__*/ S.Array(
@@ -23840,7 +23840,7 @@ export type TransformJobStatus =
   | "Stopping"
   | "Stopped"
   | (string & {});
-export const TransformJobStatus = /*@__PURE__*/ S.String;
+export const TransformJobStatus = S.String;
 
 export interface DescribeTransformJobResponse {
   TransformJobName: string;
@@ -24116,7 +24116,7 @@ export type UserProfileStatus =
   | "Update_Failed"
   | "Delete_Failed"
   | (string & {});
-export const UserProfileStatus = /*@__PURE__*/ S.String;
+export const UserProfileStatus = S.String;
 
 export interface DescribeUserProfileResponse {
   DomainId?: string;
@@ -24256,7 +24256,7 @@ export type WorkforceStatus =
   | "Failed"
   | "Active"
   | (string & {});
-export const WorkforceStatus = /*@__PURE__*/ S.String;
+export const WorkforceStatus = S.String;
 
 export type WorkforceFailureReason = string;
 export interface Workforce {
@@ -24709,7 +24709,7 @@ export type SagemakerServicecatalogStatus =
   | "Enabled"
   | "Disabled"
   | (string & {});
-export const SagemakerServicecatalogStatus = /*@__PURE__*/ S.String;
+export const SagemakerServicecatalogStatus = S.String;
 
 export interface GetSagemakerServicecatalogPortfolioStatusOutput {
   Status?: SagemakerServicecatalogStatus;
@@ -24789,7 +24789,7 @@ export type Statistic =
   | "SampleCount"
   | "Sum"
   | (string & {});
-export const Statistic = /*@__PURE__*/ S.String;
+export const Statistic = S.String;
 
 export interface CustomizedMetricSpecification {
   MetricName?: string;
@@ -24895,7 +24895,7 @@ export type ResourceType =
   | "PipelineVersion"
   | "Job"
   | (string & {});
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 export type PropertyNameHint = string;
 export interface PropertyNameQuery {
@@ -25014,10 +25014,10 @@ export const ImportHubContentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImportHubContentResponse",
 }) as any as S.Schema<ImportHubContentResponse>;
 export type SortActionsBy = "Name" | "CreationTime" | (string & {});
-export const SortActionsBy = /*@__PURE__*/ S.String;
+export const SortActionsBy = S.String;
 
 export type SortOrder = "Ascending" | "Descending" | (string & {});
-export const SortOrder = /*@__PURE__*/ S.String;
+export const SortOrder = S.String;
 
 export interface ListActionsRequest {
   SourceUri?: string;
@@ -25097,7 +25097,7 @@ export type ListAIBenchmarkJobsSortBy =
   | "CreationTime"
   | "Status"
   | (string & {});
-export const ListAIBenchmarkJobsSortBy = /*@__PURE__*/ S.String;
+export const ListAIBenchmarkJobsSortBy = S.String;
 
 export interface ListAIBenchmarkJobsRequest {
   MaxResults?: number;
@@ -25183,7 +25183,7 @@ export type ListAIRecommendationJobsSortBy =
   | "CreationTime"
   | "Status"
   | (string & {});
-export const ListAIRecommendationJobsSortBy = /*@__PURE__*/ S.String;
+export const ListAIRecommendationJobsSortBy = S.String;
 
 export interface ListAIRecommendationJobsRequest {
   MaxResults?: number;
@@ -25266,7 +25266,7 @@ export type ListAIWorkloadConfigsSortBy =
   | "Name"
   | "CreationTime"
   | (string & {});
-export const ListAIWorkloadConfigsSortBy = /*@__PURE__*/ S.String;
+export const ListAIWorkloadConfigsSortBy = S.String;
 
 export interface ListAIWorkloadConfigsRequest {
   MaxResults?: number;
@@ -25339,7 +25339,7 @@ export const ListAIWorkloadConfigsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAIWorkloadConfigsResponse",
 }) as any as S.Schema<ListAIWorkloadConfigsResponse>;
 export type AlgorithmSortBy = "Name" | "CreationTime" | (string & {});
-export const AlgorithmSortBy = /*@__PURE__*/ S.String;
+export const AlgorithmSortBy = S.String;
 
 export interface ListAlgorithmsInput {
   CreationTimeAfter?: Date;
@@ -25459,7 +25459,7 @@ export type AppImageConfigSortKey =
   | "LastModifiedTime"
   | "Name"
   | (string & {});
-export const AppImageConfigSortKey = /*@__PURE__*/ S.String;
+export const AppImageConfigSortKey = S.String;
 
 export interface ListAppImageConfigsRequest {
   MaxResults?: number;
@@ -25548,7 +25548,7 @@ export const ListAppImageConfigsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAppImageConfigsResponse",
 }) as any as S.Schema<ListAppImageConfigsResponse>;
 export type AppSortKey = "CreationTime" | (string & {});
-export const AppSortKey = /*@__PURE__*/ S.String;
+export const AppSortKey = S.String;
 
 export interface ListAppsRequest {
   NextToken?: string;
@@ -25618,7 +25618,7 @@ export const ListAppsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAppsResponse",
 }) as any as S.Schema<ListAppsResponse>;
 export type SortArtifactsBy = "CreationTime" | (string & {});
-export const SortArtifactsBy = /*@__PURE__*/ S.String;
+export const SortArtifactsBy = S.String;
 
 export interface ListArtifactsRequest {
   SourceUri?: string;
@@ -25705,7 +25705,7 @@ export type SortAssociationsBy =
   | "DestinationType"
   | "CreationTime"
   | (string & {});
-export const SortAssociationsBy = /*@__PURE__*/ S.String;
+export const SortAssociationsBy = S.String;
 
 export interface ListAssociationsRequest {
   SourceArn?: string;
@@ -25789,10 +25789,10 @@ export const ListAssociationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListAssociationsResponse>;
 export type AutoMLNameContains = string;
 export type AutoMLSortOrder = "Ascending" | "Descending" | (string & {});
-export const AutoMLSortOrder = /*@__PURE__*/ S.String;
+export const AutoMLSortOrder = S.String;
 
 export type AutoMLSortBy = "Name" | "CreationTime" | "Status" | (string & {});
-export const AutoMLSortBy = /*@__PURE__*/ S.String;
+export const AutoMLSortBy = S.String;
 
 export type AutoMLMaxResults = number;
 export interface ListAutoMLJobsRequest {
@@ -25895,7 +25895,7 @@ export type CandidateSortBy =
   | "Status"
   | "FinalObjectiveMetricValue"
   | (string & {});
-export const CandidateSortBy = /*@__PURE__*/ S.String;
+export const CandidateSortBy = S.String;
 
 export type AutoMLMaxResultsForTrials = number;
 export interface ListCandidatesForAutoMLJobRequest {
@@ -25977,7 +25977,7 @@ export const ListCandidatesForAutoMLJobResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCandidatesForAutoMLJobResponse",
 }) as any as S.Schema<ListCandidatesForAutoMLJobResponse>;
 export type EventSortBy = "EventTime" | (string & {});
-export const EventSortBy = /*@__PURE__*/ S.String;
+export const EventSortBy = S.String;
 
 export type ClusterEventMaxResults = number;
 export interface ListClusterEventsRequest {
@@ -26067,7 +26067,7 @@ export const ListClusterEventsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListClusterEventsResponse",
 }) as any as S.Schema<ListClusterEventsResponse>;
 export type ClusterSortBy = "CREATION_TIME" | "NAME" | (string & {});
-export const ClusterSortBy = /*@__PURE__*/ S.String;
+export const ClusterSortBy = S.String;
 
 export type IncludeNodeLogicalIdsBoolean = boolean;
 export interface ListClusterNodesRequest {
@@ -26246,7 +26246,7 @@ export type SortClusterSchedulerConfigBy =
   | "CreationTime"
   | "Status"
   | (string & {});
-export const SortClusterSchedulerConfigBy = /*@__PURE__*/ S.String;
+export const SortClusterSchedulerConfigBy = S.String;
 
 export interface ListClusterSchedulerConfigsRequest {
   CreatedAfter?: Date;
@@ -26340,13 +26340,13 @@ export type CodeRepositorySortBy =
   | "CreationTime"
   | "LastModifiedTime"
   | (string & {});
-export const CodeRepositorySortBy = /*@__PURE__*/ S.String;
+export const CodeRepositorySortBy = S.String;
 
 export type CodeRepositorySortOrder =
   | "Ascending"
   | "Descending"
   | (string & {});
-export const CodeRepositorySortOrder = /*@__PURE__*/ S.String;
+export const CodeRepositorySortOrder = S.String;
 
 export interface ListCodeRepositoriesInput {
   CreationTimeAfter?: Date;
@@ -26439,7 +26439,7 @@ export type ListCompilationJobsSortBy =
   | "CreationTime"
   | "Status"
   | (string & {});
-export const ListCompilationJobsSortBy = /*@__PURE__*/ S.String;
+export const ListCompilationJobsSortBy = S.String;
 
 export interface ListCompilationJobsRequest {
   NextToken?: string;
@@ -26550,7 +26550,7 @@ export type SortQuotaBy =
   | "Status"
   | "ClusterArn"
   | (string & {});
-export const SortQuotaBy = /*@__PURE__*/ S.String;
+export const SortQuotaBy = S.String;
 
 export interface ListComputeQuotasRequest {
   CreatedAfter?: Date;
@@ -26664,7 +26664,7 @@ export const ListComputeQuotasResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListComputeQuotasResponse",
 }) as any as S.Schema<ListComputeQuotasResponse>;
 export type SortContextsBy = "Name" | "CreationTime" | (string & {});
-export const SortContextsBy = /*@__PURE__*/ S.String;
+export const SortContextsBy = S.String;
 
 export interface ListContextsRequest {
   SourceUri?: string;
@@ -26740,7 +26740,7 @@ export type MonitoringJobDefinitionSortKey =
   | "Name"
   | "CreationTime"
   | (string & {});
-export const MonitoringJobDefinitionSortKey = /*@__PURE__*/ S.String;
+export const MonitoringJobDefinitionSortKey = S.String;
 
 export interface ListDataQualityJobDefinitionsRequest {
   EndpointName?: string;
@@ -26826,7 +26826,7 @@ export type ListDeviceFleetsSortBy =
   | "CREATION_TIME"
   | "LAST_MODIFIED_TIME"
   | (string & {});
-export const ListDeviceFleetsSortBy = /*@__PURE__*/ S.String;
+export const ListDeviceFleetsSortBy = S.String;
 
 export interface ListDeviceFleetsRequest {
   NextToken?: string;
@@ -27064,7 +27064,7 @@ export type ListEdgeDeploymentPlansSortBy =
   | "CREATION_TIME"
   | "LAST_MODIFIED_TIME"
   | (string & {});
-export const ListEdgeDeploymentPlansSortBy = /*@__PURE__*/ S.String;
+export const ListEdgeDeploymentPlansSortBy = S.String;
 
 export interface ListEdgeDeploymentPlansRequest {
   NextToken?: string;
@@ -27168,7 +27168,7 @@ export type ListEdgePackagingJobsSortBy =
   | "LAST_MODIFIED_TIME"
   | "STATUS"
   | (string & {});
-export const ListEdgePackagingJobsSortBy = /*@__PURE__*/ S.String;
+export const ListEdgePackagingJobsSortBy = S.String;
 
 export interface ListEdgePackagingJobsRequest {
   NextToken?: string;
@@ -27265,10 +27265,10 @@ export const ListEdgePackagingJobsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListEdgePackagingJobsResponse",
 }) as any as S.Schema<ListEdgePackagingJobsResponse>;
 export type EndpointConfigSortKey = "Name" | "CreationTime" | (string & {});
-export const EndpointConfigSortKey = /*@__PURE__*/ S.String;
+export const EndpointConfigSortKey = S.String;
 
 export type OrderKey = "Ascending" | "Descending" | (string & {});
-export const OrderKey = /*@__PURE__*/ S.String;
+export const OrderKey = S.String;
 
 export type PaginationToken = string;
 export type EndpointConfigNameContains = string;
@@ -27347,7 +27347,7 @@ export type EndpointSortKey =
   | "CreationTime"
   | "Status"
   | (string & {});
-export const EndpointSortKey = /*@__PURE__*/ S.String;
+export const EndpointSortKey = S.String;
 
 export type EndpointNameContains = string;
 export interface ListEndpointsInput {
@@ -27437,7 +27437,7 @@ export const ListEndpointsOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListEndpointsOutput",
 }) as any as S.Schema<ListEndpointsOutput>;
 export type SortExperimentsBy = "Name" | "CreationTime" | (string & {});
-export const SortExperimentsBy = /*@__PURE__*/ S.String;
+export const SortExperimentsBy = S.String;
 
 export interface ListExperimentsRequest {
   CreatedAfter?: Date;
@@ -27509,7 +27509,7 @@ export const ListExperimentsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListExperimentsResponse>;
 export type FeatureGroupNameContains = string;
 export type FeatureGroupSortOrder = "Ascending" | "Descending" | (string & {});
-export const FeatureGroupSortOrder = /*@__PURE__*/ S.String;
+export const FeatureGroupSortOrder = S.String;
 
 export type FeatureGroupSortBy =
   | "Name"
@@ -27517,7 +27517,7 @@ export type FeatureGroupSortBy =
   | "OfflineStoreStatus"
   | "CreationTime"
   | (string & {});
-export const FeatureGroupSortBy = /*@__PURE__*/ S.String;
+export const FeatureGroupSortBy = S.String;
 
 export type FeatureGroupMaxResults = number;
 export interface ListFeatureGroupsRequest {
@@ -27675,7 +27675,7 @@ export type HubContentSortBy =
   | "CreationTime"
   | "HubContentStatus"
   | (string & {});
-export const HubContentSortBy = /*@__PURE__*/ S.String;
+export const HubContentSortBy = S.String;
 
 export interface ListHubContentsRequest {
   HubName?: string;
@@ -27845,7 +27845,7 @@ export type HubSortBy =
   | "HubStatus"
   | "AccountIdOwner"
   | (string & {});
-export const HubSortBy = /*@__PURE__*/ S.String;
+export const HubSortBy = S.String;
 
 export interface ListHubsRequest {
   NameContains?: string;
@@ -28004,7 +28004,7 @@ export type HyperParameterTuningJobSortByOptions =
   | "Status"
   | "CreationTime"
   | (string & {});
-export const HyperParameterTuningJobSortByOptions = /*@__PURE__*/ S.String;
+export const HyperParameterTuningJobSortByOptions = S.String;
 
 export interface ListHyperParameterTuningJobsRequest {
   NextToken?: string;
@@ -28120,10 +28120,10 @@ export type ImageSortBy =
   | "LAST_MODIFIED_TIME"
   | "IMAGE_NAME"
   | (string & {});
-export const ImageSortBy = /*@__PURE__*/ S.String;
+export const ImageSortBy = S.String;
 
 export type ImageSortOrder = "ASCENDING" | "DESCENDING" | (string & {});
-export const ImageSortOrder = /*@__PURE__*/ S.String;
+export const ImageSortOrder = S.String;
 
 export interface ListImagesRequest {
   CreationTimeAfter?: Date;
@@ -28218,10 +28218,10 @@ export type ImageVersionSortBy =
   | "LAST_MODIFIED_TIME"
   | "VERSION"
   | (string & {});
-export const ImageVersionSortBy = /*@__PURE__*/ S.String;
+export const ImageVersionSortBy = S.String;
 
 export type ImageVersionSortOrder = "ASCENDING" | "DESCENDING" | (string & {});
-export const ImageVersionSortOrder = /*@__PURE__*/ S.String;
+export const ImageVersionSortOrder = S.String;
 
 export interface ListImageVersionsRequest {
   CreationTimeAfter?: Date;
@@ -28315,7 +28315,7 @@ export type InferenceComponentSortKey =
   | "CreationTime"
   | "Status"
   | (string & {});
-export const InferenceComponentSortKey = /*@__PURE__*/ S.String;
+export const InferenceComponentSortKey = S.String;
 
 export type InferenceComponentNameContains = string;
 export interface ListInferenceComponentsInput {
@@ -28423,7 +28423,7 @@ export type SortInferenceExperimentsBy =
   | "CreationTime"
   | "Status"
   | (string & {});
-export const SortInferenceExperimentsBy = /*@__PURE__*/ S.String;
+export const SortInferenceExperimentsBy = S.String;
 
 export interface ListInferenceExperimentsRequest {
   NameContains?: string;
@@ -28530,7 +28530,7 @@ export type ListInferenceRecommendationsJobsSortBy =
   | "CreationTime"
   | "Status"
   | (string & {});
-export const ListInferenceRecommendationsJobsSortBy = /*@__PURE__*/ S.String;
+export const ListInferenceRecommendationsJobsSortBy = S.String;
 
 export interface ListInferenceRecommendationsJobsRequest {
   CreationTimeAfter?: Date;
@@ -28646,7 +28646,7 @@ export const ListInferenceRecommendationsJobsResponse = /*@__PURE__*/ S.suspend(
   identifier: "ListInferenceRecommendationsJobsResponse",
 }) as any as S.Schema<ListInferenceRecommendationsJobsResponse>;
 export type RecommendationStepType = "BENCHMARK" | (string & {});
-export const RecommendationStepType = /*@__PURE__*/ S.String;
+export const RecommendationStepType = S.String;
 
 export interface ListInferenceRecommendationsJobStepsRequest {
   JobName?: string;
@@ -28764,7 +28764,7 @@ export const ListInferenceRecommendationsJobStepsResponse =
     identifier: "ListInferenceRecommendationsJobStepsResponse",
   }) as any as S.Schema<ListInferenceRecommendationsJobStepsResponse>;
 export type SortBy = "Name" | "CreationTime" | "Status" | (string & {});
-export const SortBy = /*@__PURE__*/ S.String;
+export const SortBy = S.String;
 
 export interface ListJobsRequest {
   JobCategory?: JobCategory;
@@ -29023,7 +29023,7 @@ export type JobReferenceCodeContains = string;
 export type ListLabelingJobsForWorkteamSortByOptions =
   | "CreationTime"
   | (string & {});
-export const ListLabelingJobsForWorkteamSortByOptions = /*@__PURE__*/ S.String;
+export const ListLabelingJobsForWorkteamSortByOptions = S.String;
 
 export interface ListLabelingJobsForWorkteamRequest {
   WorkteamArn?: string;
@@ -29118,7 +29118,7 @@ export const ListLabelingJobsForWorkteamResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListLabelingJobsForWorkteamResponse",
 }) as any as S.Schema<ListLabelingJobsForWorkteamResponse>;
 export type SortLineageGroupsBy = "Name" | "CreationTime" | (string & {});
-export const SortLineageGroupsBy = /*@__PURE__*/ S.String;
+export const SortLineageGroupsBy = S.String;
 
 export interface ListLineageGroupsRequest {
   CreatedAfter?: Date;
@@ -29189,7 +29189,7 @@ export type SortMlflowAppBy =
   | "CreationTime"
   | "Status"
   | (string & {});
-export const SortMlflowAppBy = /*@__PURE__*/ S.String;
+export const SortMlflowAppBy = S.String;
 
 export interface ListMlflowAppsRequest {
   CreatedAfter?: Date;
@@ -29270,7 +29270,7 @@ export type SortTrackingServerBy =
   | "CreationTime"
   | "Status"
   | (string & {});
-export const SortTrackingServerBy = /*@__PURE__*/ S.String;
+export const SortTrackingServerBy = S.String;
 
 export interface ListMlflowTrackingServersRequest {
   CreatedAfter?: Date;
@@ -29406,13 +29406,13 @@ export type ModelCardExportJobSortBy =
   | "CreationTime"
   | "Status"
   | (string & {});
-export const ModelCardExportJobSortBy = /*@__PURE__*/ S.String;
+export const ModelCardExportJobSortBy = S.String;
 
 export type ModelCardExportJobSortOrder =
   | "Ascending"
   | "Descending"
   | (string & {});
-export const ModelCardExportJobSortOrder = /*@__PURE__*/ S.String;
+export const ModelCardExportJobSortOrder = S.String;
 
 export interface ListModelCardExportJobsRequest {
   ModelCardName?: string;
@@ -29503,10 +29503,10 @@ export const ListModelCardExportJobsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListModelCardExportJobsResponse",
 }) as any as S.Schema<ListModelCardExportJobsResponse>;
 export type ModelCardSortBy = "Name" | "CreationTime" | (string & {});
-export const ModelCardSortBy = /*@__PURE__*/ S.String;
+export const ModelCardSortBy = S.String;
 
 export type ModelCardSortOrder = "Ascending" | "Descending" | (string & {});
-export const ModelCardSortOrder = /*@__PURE__*/ S.String;
+export const ModelCardSortOrder = S.String;
 
 export interface ListModelCardsRequest {
   CreationTimeAfter?: Date;
@@ -29586,7 +29586,7 @@ export const ListModelCardsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListModelCardsResponse",
 }) as any as S.Schema<ListModelCardsResponse>;
 export type ModelCardVersionSortBy = "Version" | (string & {});
-export const ModelCardVersionSortBy = /*@__PURE__*/ S.String;
+export const ModelCardVersionSortBy = S.String;
 
 export interface ListModelCardVersionsRequest {
   CreationTimeAfter?: Date;
@@ -29733,7 +29733,7 @@ export type ModelMetadataFilterType =
   | "Task"
   | "FrameworkVersion"
   | (string & {});
-export const ModelMetadataFilterType = /*@__PURE__*/ S.String;
+export const ModelMetadataFilterType = S.String;
 
 export interface ModelMetadataFilter {
   Name?: ModelMetadataFilterType;
@@ -29821,13 +29821,13 @@ export const ListModelMetadataResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListModelMetadataResponse",
 }) as any as S.Schema<ListModelMetadataResponse>;
 export type ModelPackageGroupSortBy = "Name" | "CreationTime" | (string & {});
-export const ModelPackageGroupSortBy = /*@__PURE__*/ S.String;
+export const ModelPackageGroupSortBy = S.String;
 
 export type CrossAccountFilterOption =
   | "SameAccount"
   | "CrossAccount"
   | (string & {});
-export const CrossAccountFilterOption = /*@__PURE__*/ S.String;
+export const CrossAccountFilterOption = S.String;
 
 export interface ListModelPackageGroupsInput {
   CreationTimeAfter?: Date;
@@ -29913,10 +29913,10 @@ export type ModelPackageType =
   | "Unversioned"
   | "Both"
   | (string & {});
-export const ModelPackageType = /*@__PURE__*/ S.String;
+export const ModelPackageType = S.String;
 
 export type ModelPackageSortBy = "Name" | "CreationTime" | (string & {});
-export const ModelPackageSortBy = /*@__PURE__*/ S.String;
+export const ModelPackageSortBy = S.String;
 
 export interface ListModelPackagesInput {
   CreationTimeAfter?: Date;
@@ -30069,7 +30069,7 @@ export const ListModelQualityJobDefinitionsResponse = /*@__PURE__*/ S.suspend(
   identifier: "ListModelQualityJobDefinitionsResponse",
 }) as any as S.Schema<ListModelQualityJobDefinitionsResponse>;
 export type ModelSortKey = "Name" | "CreationTime" | (string & {});
-export const ModelSortKey = /*@__PURE__*/ S.String;
+export const ModelSortKey = S.String;
 
 export type ModelNameContains = string;
 export interface ListModelsInput {
@@ -30143,10 +30143,10 @@ export type MonitoringAlertHistorySortKey =
   | "CreationTime"
   | "Status"
   | (string & {});
-export const MonitoringAlertHistorySortKey = /*@__PURE__*/ S.String;
+export const MonitoringAlertHistorySortKey = S.String;
 
 export type MonitoringAlertStatus = "InAlert" | "OK" | (string & {});
-export const MonitoringAlertStatus = /*@__PURE__*/ S.String;
+export const MonitoringAlertStatus = S.String;
 
 export interface ListMonitoringAlertHistoryRequest {
   MonitoringScheduleName?: string;
@@ -30322,7 +30322,7 @@ export type MonitoringExecutionSortKey =
   | "ScheduledTime"
   | "Status"
   | (string & {});
-export const MonitoringExecutionSortKey = /*@__PURE__*/ S.String;
+export const MonitoringExecutionSortKey = S.String;
 
 export interface ListMonitoringExecutionsRequest {
   MonitoringScheduleName?: string;
@@ -30411,7 +30411,7 @@ export type MonitoringScheduleSortKey =
   | "CreationTime"
   | "Status"
   | (string & {});
-export const MonitoringScheduleSortKey = /*@__PURE__*/ S.String;
+export const MonitoringScheduleSortKey = S.String;
 
 export interface ListMonitoringSchedulesRequest {
   EndpointName?: string;
@@ -30518,13 +30518,13 @@ export type NotebookInstanceLifecycleConfigSortKey =
   | "CreationTime"
   | "LastModifiedTime"
   | (string & {});
-export const NotebookInstanceLifecycleConfigSortKey = /*@__PURE__*/ S.String;
+export const NotebookInstanceLifecycleConfigSortKey = S.String;
 
 export type NotebookInstanceLifecycleConfigSortOrder =
   | "Ascending"
   | "Descending"
   | (string & {});
-export const NotebookInstanceLifecycleConfigSortOrder = /*@__PURE__*/ S.String;
+export const NotebookInstanceLifecycleConfigSortOrder = S.String;
 
 export type NotebookInstanceLifecycleConfigNameContains = string;
 export interface ListNotebookInstanceLifecycleConfigsInput {
@@ -30619,13 +30619,13 @@ export type NotebookInstanceSortKey =
   | "CreationTime"
   | "Status"
   | (string & {});
-export const NotebookInstanceSortKey = /*@__PURE__*/ S.String;
+export const NotebookInstanceSortKey = S.String;
 
 export type NotebookInstanceSortOrder =
   | "Ascending"
   | "Descending"
   | (string & {});
-export const NotebookInstanceSortOrder = /*@__PURE__*/ S.String;
+export const NotebookInstanceSortOrder = S.String;
 
 export type NotebookInstanceNameContains = string;
 export type CodeRepositoryContains = string;
@@ -30735,7 +30735,7 @@ export type ListOptimizationJobsSortBy =
   | "CreationTime"
   | "Status"
   | (string & {});
-export const ListOptimizationJobsSortBy = /*@__PURE__*/ S.String;
+export const ListOptimizationJobsSortBy = S.String;
 
 export interface ListOptimizationJobsRequest {
   NextToken?: string;
@@ -30903,7 +30903,7 @@ export type SortPipelineExecutionsBy =
   | "CreationTime"
   | "PipelineExecutionArn"
   | (string & {});
-export const SortPipelineExecutionsBy = /*@__PURE__*/ S.String;
+export const SortPipelineExecutionsBy = S.String;
 
 export interface ListPipelineExecutionsRequest {
   PipelineName?: string;
@@ -31011,7 +31011,7 @@ export type StepStatus =
   | "Failed"
   | "Succeeded"
   | (string & {});
-export const StepStatus = /*@__PURE__*/ S.String;
+export const StepStatus = S.String;
 
 export interface CacheHitResult {
   SourcePipelineExecutionArn?: string;
@@ -31068,7 +31068,7 @@ export const RegisterModelStepMetadata = /*@__PURE__*/ S.suspend(() =>
   identifier: "RegisterModelStepMetadata",
 }) as any as S.Schema<RegisterModelStepMetadata>;
 export type ConditionOutcome = "True" | "False" | (string & {});
-export const ConditionOutcome = /*@__PURE__*/ S.String;
+export const ConditionOutcome = S.String;
 
 export interface ConditionStepMetadata {
   Outcome?: ConditionOutcome;
@@ -31485,7 +31485,7 @@ export const ListPipelineParametersForExecutionResponse =
     identifier: "ListPipelineParametersForExecutionResponse",
   }) as any as S.Schema<ListPipelineParametersForExecutionResponse>;
 export type SortPipelinesBy = "Name" | "CreationTime" | (string & {});
-export const SortPipelinesBy = /*@__PURE__*/ S.String;
+export const SortPipelinesBy = S.String;
 
 export interface ListPipelinesRequest {
   PipelineNamePrefix?: string;
@@ -31722,10 +31722,10 @@ export const ListProcessingJobsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListProcessingJobsResponse",
 }) as any as S.Schema<ListProcessingJobsResponse>;
 export type ProjectSortBy = "Name" | "CreationTime" | (string & {});
-export const ProjectSortBy = /*@__PURE__*/ S.String;
+export const ProjectSortBy = S.String;
 
 export type ProjectSortOrder = "Ascending" | "Descending" | (string & {});
-export const ProjectSortOrder = /*@__PURE__*/ S.String;
+export const ProjectSortOrder = S.String;
 
 export interface ListProjectsInput {
   CreationTimeAfter?: Date;
@@ -31806,10 +31806,10 @@ export type ResourceCatalogSortOrder =
   | "Ascending"
   | "Descending"
   | (string & {});
-export const ResourceCatalogSortOrder = /*@__PURE__*/ S.String;
+export const ResourceCatalogSortOrder = S.String;
 
 export type ResourceCatalogSortBy = "CreationTime" | (string & {});
-export const ResourceCatalogSortBy = /*@__PURE__*/ S.String;
+export const ResourceCatalogSortBy = S.String;
 
 export interface ListResourceCatalogsRequest {
   NameContains?: string;
@@ -31885,7 +31885,7 @@ export const ListResourceCatalogsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListResourceCatalogsResponse",
 }) as any as S.Schema<ListResourceCatalogsResponse>;
 export type SpaceSortKey = "CreationTime" | "LastModifiedTime" | (string & {});
-export const SpaceSortKey = /*@__PURE__*/ S.String;
+export const SpaceSortKey = S.String;
 
 export interface ListSpacesRequest {
   NextToken?: string;
@@ -32031,7 +32031,7 @@ export type DeviceDeploymentStatus =
   | "STOPPING"
   | "STOPPED"
   | (string & {});
-export const DeviceDeploymentStatus = /*@__PURE__*/ S.String;
+export const DeviceDeploymentStatus = S.String;
 
 export interface DeviceDeploymentSummary {
   EdgeDeploymentPlanArn?: string;
@@ -32092,7 +32092,7 @@ export type StudioLifecycleConfigSortKey =
   | "LastModifiedTime"
   | "Name"
   | (string & {});
-export const StudioLifecycleConfigSortKey = /*@__PURE__*/ S.String;
+export const StudioLifecycleConfigSortKey = S.String;
 
 export interface ListStudioLifecycleConfigsRequest {
   MaxResults?: number;
@@ -32352,7 +32352,7 @@ export type TrainingJobSortByOptions =
   | "Status"
   | "FinalObjectiveMetricValue"
   | (string & {});
-export const TrainingJobSortByOptions = /*@__PURE__*/ S.String;
+export const TrainingJobSortByOptions = S.String;
 
 export interface ListTrainingJobsForHyperParameterTuningJobRequest {
   HyperParameterTuningJobName?: string;
@@ -32418,13 +32418,13 @@ export type TrainingPlanSortBy =
   | "StartTime"
   | "Status"
   | (string & {});
-export const TrainingPlanSortBy = /*@__PURE__*/ S.String;
+export const TrainingPlanSortBy = S.String;
 
 export type TrainingPlanSortOrder = "Ascending" | "Descending" | (string & {});
-export const TrainingPlanSortOrder = /*@__PURE__*/ S.String;
+export const TrainingPlanSortOrder = S.String;
 
 export type TrainingPlanFilterName = "Status" | (string & {});
-export const TrainingPlanFilterName = /*@__PURE__*/ S.String;
+export const TrainingPlanFilterName = S.String;
 
 export interface TrainingPlanFilter {
   Name?: TrainingPlanFilterName;
@@ -32630,7 +32630,7 @@ export const ListTransformJobsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTransformJobsResponse",
 }) as any as S.Schema<ListTransformJobsResponse>;
 export type SortTrialComponentsBy = "Name" | "CreationTime" | (string & {});
-export const SortTrialComponentsBy = /*@__PURE__*/ S.String;
+export const SortTrialComponentsBy = S.String;
 
 export interface ListTrialComponentsRequest {
   ExperimentName?: string;
@@ -32721,7 +32721,7 @@ export const ListTrialComponentsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTrialComponentsResponse",
 }) as any as S.Schema<ListTrialComponentsResponse>;
 export type SortTrialsBy = "Name" | "CreationTime" | (string & {});
-export const SortTrialsBy = /*@__PURE__*/ S.String;
+export const SortTrialsBy = S.String;
 
 export interface ListTrialsRequest {
   ExperimentName?: string;
@@ -32824,7 +32824,7 @@ export type UltraServerHealthStatus =
   | "Impaired"
   | "Insufficient-Data"
   | (string & {});
-export const UltraServerHealthStatus = /*@__PURE__*/ S.String;
+export const UltraServerHealthStatus = S.String;
 
 export interface UltraServer {
   UltraServerId?: string;
@@ -32879,7 +32879,7 @@ export type UserProfileSortKey =
   | "CreationTime"
   | "LastModifiedTime"
   | (string & {});
-export const UserProfileSortKey = /*@__PURE__*/ S.String;
+export const UserProfileSortKey = S.String;
 
 export interface ListUserProfilesRequest {
   NextToken?: string;
@@ -32946,7 +32946,7 @@ export const ListUserProfilesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListUserProfilesResponse",
 }) as any as S.Schema<ListUserProfilesResponse>;
 export type ListWorkforcesSortByOptions = "Name" | "CreateDate" | (string & {});
-export const ListWorkforcesSortByOptions = /*@__PURE__*/ S.String;
+export const ListWorkforcesSortByOptions = S.String;
 
 export interface ListWorkforcesRequest {
   SortBy?: ListWorkforcesSortByOptions;
@@ -33004,7 +33004,7 @@ export const ListWorkforcesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListWorkforcesResponse",
 }) as any as S.Schema<ListWorkforcesResponse>;
 export type ListWorkteamsSortByOptions = "Name" | "CreateDate" | (string & {});
-export const ListWorkteamsSortByOptions = /*@__PURE__*/ S.String;
+export const ListWorkteamsSortByOptions = S.String;
 
 export interface ListWorkteamsRequest {
   SortBy?: ListWorkteamsSortByOptions;
@@ -33092,7 +33092,7 @@ export const PutModelPackageGroupPolicyOutput = /*@__PURE__*/ S.suspend(() =>
 export type QueryLineageStartArns = string[];
 export const QueryLineageStartArns = /*@__PURE__*/ S.Array(S.String);
 export type Direction = "Both" | "Ascendants" | "Descendants" | (string & {});
-export const Direction = /*@__PURE__*/ S.String;
+export const Direction = S.String;
 
 export type String40 = string;
 export type QueryTypes = string[];
@@ -33103,7 +33103,7 @@ export type LineageType =
   | "Context"
   | "Action"
   | (string & {});
-export const LineageType = /*@__PURE__*/ S.String;
+export const LineageType = S.String;
 
 export type QueryLineageTypes = LineageType[];
 export const QueryLineageTypes = /*@__PURE__*/ S.Array(LineageType);
@@ -33351,7 +33351,7 @@ export type Operator =
   | "NotExists"
   | "In"
   | (string & {});
-export const Operator = /*@__PURE__*/ S.String;
+export const Operator = S.String;
 
 export type FilterValue = string;
 export interface Filter {
@@ -33387,7 +33387,7 @@ export const SearchExpressionList = /*@__PURE__*/ S.Array(
   }),
 ) as any as S.Schema<SearchExpressionList>;
 export type BooleanOperator = "And" | "Or" | (string & {});
-export const BooleanOperator = /*@__PURE__*/ S.String;
+export const BooleanOperator = S.String;
 
 export interface SearchExpression {
   Filters?: Filter[];
@@ -33410,7 +33410,7 @@ export const SearchExpression = /*@__PURE__*/ S.suspend(() =>
   identifier: "SearchExpression",
 }) as any as S.Schema<SearchExpression>;
 export type SearchSortOrder = "Ascending" | "Descending" | (string & {});
-export const SearchSortOrder = /*@__PURE__*/ S.String;
+export const SearchSortOrder = S.String;
 
 export type VisibilityConditionsKey = string;
 export type VisibilityConditionsValue = string;
@@ -34504,7 +34504,7 @@ export const SearchRecord = /*@__PURE__*/ S.suspend(() =>
 export type SearchResultsList = SearchRecord[];
 export const SearchResultsList = /*@__PURE__*/ S.Array(SearchRecord);
 export type Relation = "EqualTo" | "GreaterThanOrEqualTo" | (string & {});
-export const Relation = /*@__PURE__*/ S.String;
+export const Relation = S.String;
 
 export interface TotalHits {
   Value?: number;
@@ -36230,7 +36230,7 @@ export type ModelVariantAction =
   | "Remove"
   | "Promote"
   | (string & {});
-export const ModelVariantAction = /*@__PURE__*/ S.String;
+export const ModelVariantAction = S.String;
 
 export type ModelVariantActionMap = {
   [key: string]: ModelVariantAction | undefined;
@@ -36243,7 +36243,7 @@ export type InferenceExperimentStopDesiredState =
   | "Completed"
   | "Cancelled"
   | (string & {});
-export const InferenceExperimentStopDesiredState = /*@__PURE__*/ S.String;
+export const InferenceExperimentStopDesiredState = S.String;
 
 export interface StopInferenceExperimentRequest {
   Name?: string;
@@ -37079,7 +37079,7 @@ export type VariantPropertyType =
   | "DesiredWeight"
   | "DataCaptureConfig"
   | (string & {});
-export const VariantPropertyType = /*@__PURE__*/ S.String;
+export const VariantPropertyType = S.String;
 
 export interface VariantProperty {
   VariantPropertyType?: VariantPropertyType;

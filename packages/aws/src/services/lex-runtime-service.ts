@@ -253,7 +253,7 @@ export type ConfirmationStatus =
   | "Confirmed"
   | "Denied"
   | (string & {});
-export const ConfirmationStatus = /*@__PURE__*/ S.String;
+export const ConfirmationStatus = S.String;
 
 export type DialogActionType =
   | "ElicitIntent"
@@ -262,14 +262,14 @@ export type DialogActionType =
   | "Close"
   | "Delegate"
   | (string & {});
-export const DialogActionType = /*@__PURE__*/ S.String;
+export const DialogActionType = S.String;
 
 export type FulfillmentState =
   | "Fulfilled"
   | "Failed"
   | "ReadyForFulfillment"
   | (string & {});
-export const FulfillmentState = /*@__PURE__*/ S.String;
+export const FulfillmentState = S.String;
 
 export interface IntentSummary {
   intentName?: string;
@@ -300,7 +300,7 @@ export type MessageFormatType =
   | "SSML"
   | "Composite"
   | (string & {});
-export const MessageFormatType = /*@__PURE__*/ S.String;
+export const MessageFormatType = S.String;
 
 export interface DialogAction {
   type: DialogActionType;
@@ -439,7 +439,7 @@ export type DialogState =
   | "ReadyForFulfillment"
   | "Failed"
   | (string & {});
-export const DialogState = /*@__PURE__*/ S.String;
+export const DialogState = S.String;
 
 export type SensitiveStringUnbounded = string | redacted.Redacted<string>;
 export type BotVersion = string;
@@ -590,7 +590,7 @@ export const SentimentResponse = /*@__PURE__*/ S.suspend(() =>
 export type ContentType =
   | "application/vnd.amazonaws.card.generic"
   | (string & {});
-export const ContentType = /*@__PURE__*/ S.String;
+export const ContentType = S.String;
 
 export type StringWithLength = string;
 export type StringUrlWithLength = string;

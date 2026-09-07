@@ -300,7 +300,7 @@ export const CloneItemsProjectsLocationsAddressGroupsRequest =
   }) as any as S.Schema<CloneItemsProjectsLocationsAddressGroupsRequest>;
 
 export type AddressGroupTypeEnum = "TYPE_UNSPECIFIED" | "IPV4" | "IPV6";
-export const AddressGroupTypeEnum = /*@__PURE__*/ S.String;
+export const AddressGroupTypeEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -312,7 +312,7 @@ export type AddressGroupPurposeItemEnum =
   | "PURPOSE_UNSPECIFIED"
   | "DEFAULT"
   | "CLOUD_ARMOR";
-export const AddressGroupPurposeItemEnum = /*@__PURE__*/ S.String;
+export const AddressGroupPurposeItemEnum = S.String;
 
 export type AddressGroupPurposeItemEnumList = Array<
   AddressGroupPurposeItemEnum | (string & {})
@@ -407,22 +407,21 @@ export type FirewallEndpointWildfireSettingsWildfireRegionEnum =
   | "ISRAEL"
   | "SAUDI_ARABIA"
   | "SPAIN";
-export const FirewallEndpointWildfireSettingsWildfireRegionEnum =
-  /*@__PURE__*/ S.String;
+export const FirewallEndpointWildfireSettingsWildfireRegionEnum = S.String;
 
 export type FirewallEndpointWildfireSettingsWildfireRealtimeLookupTimeoutActionEnum =
   | "WILDFIRE_REALTIME_SIGNATURE_LOOKUP_TIMEOUT_ACTION_UNSPECIFIED"
   | "ALLOW"
   | "DENY";
 export const FirewallEndpointWildfireSettingsWildfireRealtimeLookupTimeoutActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type FirewallEndpointWildfireSettingsWildfireInlineCloudAnalysisSettingsTimeoutActionEnum =
   | "WILDFIRE_INLINE_CLOUD_ANALYSIS_TIMEOUT_ACTION_UNSPECIFIED"
   | "ALLOW"
   | "DENY";
 export const FirewallEndpointWildfireSettingsWildfireInlineCloudAnalysisSettingsTimeoutActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Settings for WildFire inline cloud analysis. */
 export interface FirewallEndpointWildfireSettingsWildfireInlineCloudAnalysisSettings {
@@ -526,8 +525,7 @@ export type FirewallEndpointEndpointSettingsContentCloudRegionEnum =
   | "SOUTH_KOREA"
   | "SAUDI_ARABIA"
   | "ITALY";
-export const FirewallEndpointEndpointSettingsContentCloudRegionEnum =
-  /*@__PURE__*/ S.String;
+export const FirewallEndpointEndpointSettingsContentCloudRegionEnum = S.String;
 
 /** Settings for the endpoint. */
 export interface FirewallEndpointEndpointSettings {
@@ -558,7 +556,7 @@ export type FirewallEndpointStateEnum =
   | "ACTIVE"
   | "DELETING"
   | "INACTIVE";
-export const FirewallEndpointStateEnum = /*@__PURE__*/ S.String;
+export const FirewallEndpointStateEnum = S.String;
 
 /** Message describing Endpoint object. */
 export interface FirewallEndpoint {
@@ -649,15 +647,14 @@ export type WildfireVerdictChangeRequestNewVerdictEnum =
   | "MALWARE"
   | "GRAYWARE"
   | "PHISHING";
-export const WildfireVerdictChangeRequestNewVerdictEnum =
-  /*@__PURE__*/ S.String;
+export const WildfireVerdictChangeRequestNewVerdictEnum = S.String;
 
 export type WildfireVerdictChangeRequestStateEnum =
   | "VERDICT_CHANGE_REQUEST_STATE_UNSPECIFIED"
   | "OPEN"
   | "CLOSED"
   | "PENDING";
-export const WildfireVerdictChangeRequestStateEnum = /*@__PURE__*/ S.String;
+export const WildfireVerdictChangeRequestStateEnum = S.String;
 
 export type WildfireVerdictChangeRequestOldVerdictEnum =
   | "WILDFIRE_SAMPLE_VERDICT_UNKNOWN"
@@ -665,8 +662,7 @@ export type WildfireVerdictChangeRequestOldVerdictEnum =
   | "MALWARE"
   | "GRAYWARE"
   | "PHISHING";
-export const WildfireVerdictChangeRequestOldVerdictEnum =
-  /*@__PURE__*/ S.String;
+export const WildfireVerdictChangeRequestOldVerdictEnum = S.String;
 
 export type WildfireVerdictChangeRequestFinalVerdictEnum =
   | "WILDFIRE_SAMPLE_VERDICT_UNKNOWN"
@@ -674,8 +670,7 @@ export type WildfireVerdictChangeRequestFinalVerdictEnum =
   | "MALWARE"
   | "GRAYWARE"
   | "PHISHING";
-export const WildfireVerdictChangeRequestFinalVerdictEnum =
-  /*@__PURE__*/ S.String;
+export const WildfireVerdictChangeRequestFinalVerdictEnum = S.String;
 
 /** Message for a WildfireVerdictChangeRequest. */
 export interface WildfireVerdictChangeRequest {
@@ -830,13 +825,13 @@ export type SecurityProfileTypeEnum =
   | "CUSTOM_INTERCEPT"
   | "URL_FILTERING"
   | "WILDFIRE_ANALYSIS";
-export const SecurityProfileTypeEnum = /*@__PURE__*/ S.String;
+export const SecurityProfileTypeEnum = S.String;
 
 export type UrlFilterFilteringActionEnum =
   | "URL_FILTERING_ACTION_UNSPECIFIED"
   | "ALLOW"
   | "DENY";
-export const UrlFilterFilteringActionEnum = /*@__PURE__*/ S.String;
+export const UrlFilterFilteringActionEnum = S.String;
 
 /** A URL filter defines an action to take for some URL match. */
 export interface UrlFilter {
@@ -878,28 +873,26 @@ export type WildfireInlineCloudAnalysisRuleDirectionEnum =
   | "UPLOAD"
   | "DOWNLOAD"
   | "BOTH";
-export const WildfireInlineCloudAnalysisRuleDirectionEnum =
-  /*@__PURE__*/ S.String;
+export const WildfireInlineCloudAnalysisRuleDirectionEnum = S.String;
 
 export type WildfireInlineCloudAnalysisRuleActionEnum =
   | "WILDFIRE_INLINE_CLOUD_ANALYSIS_ACTION_UNSPECIFIED"
   | "ALLOW"
   | "DENY"
   | "ALERT";
-export const WildfireInlineCloudAnalysisRuleActionEnum = /*@__PURE__*/ S.String;
+export const WildfireInlineCloudAnalysisRuleActionEnum = S.String;
 
 export type WildfireInlineCloudAnalysisRuleFileSelectionModeEnum =
   | "FILE_SELECTION_MODE_UNSPECIFIED"
   | "ALL_FILE_TYPES"
   | "CUSTOM_FILE_TYPES";
-export const WildfireInlineCloudAnalysisRuleFileSelectionModeEnum =
-  /*@__PURE__*/ S.String;
+export const WildfireInlineCloudAnalysisRuleFileSelectionModeEnum = S.String;
 
 export type WildfireInlineCloudAnalysisRuleCustomFileTypesFileTypesItemEnum =
   | "FILE_TYPE_UNSPECIFIED"
   | "PE";
 export const WildfireInlineCloudAnalysisRuleCustomFileTypesFileTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type WildfireInlineCloudAnalysisRuleCustomFileTypesFileTypesItemEnumList =
   Array<
@@ -968,7 +961,7 @@ export type WildfireOverrideProtocolEnum =
   | "WILDFIRE_HTTP2"
   | "WILDFIRE_HTTP"
   | "WILDFIRE_FTP";
-export const WildfireOverrideProtocolEnum = /*@__PURE__*/ S.String;
+export const WildfireOverrideProtocolEnum = S.String;
 
 export type WildfireOverrideActionEnum =
   | "WILDFIRE_THREAT_ACTION_UNSPECIFIED"
@@ -976,7 +969,7 @@ export type WildfireOverrideActionEnum =
   | "WILDFIRE_ALLOW"
   | "WILDFIRE_ALERT"
   | "WILDFIRE_DENY";
-export const WildfireOverrideActionEnum = /*@__PURE__*/ S.String;
+export const WildfireOverrideActionEnum = S.String;
 
 /** Defines what action to take for WildFire threats per protocol. */
 export interface WildfireOverride {
@@ -1005,7 +998,7 @@ export type WildfireThreatOverrideActionEnum =
   | "WILDFIRE_ALLOW"
   | "WILDFIRE_ALERT"
   | "WILDFIRE_DENY";
-export const WildfireThreatOverrideActionEnum = /*@__PURE__*/ S.String;
+export const WildfireThreatOverrideActionEnum = S.String;
 
 /** Defines what action to take for a specific WildFire threat_id match. */
 export interface WildfireThreatOverride {
@@ -1033,8 +1026,7 @@ export type WildfireInlineMlSettingsInlineMlConfigActionEnum =
   | "DISABLE"
   | "ALERT"
   | "ENABLE";
-export const WildfireInlineMlSettingsInlineMlConfigActionEnum =
-  /*@__PURE__*/ S.String;
+export const WildfireInlineMlSettingsInlineMlConfigActionEnum = S.String;
 
 export type WildfireInlineMlSettingsInlineMlConfigFileTypeEnum =
   | "INLINE_ML_CONFIG_UNSPECIFIED"
@@ -1046,8 +1038,7 @@ export type WildfireInlineMlSettingsInlineMlConfigFileTypeEnum =
   | "SHELL"
   | "OOXML"
   | "MACHO";
-export const WildfireInlineMlSettingsInlineMlConfigFileTypeEnum =
-  /*@__PURE__*/ S.String;
+export const WildfireInlineMlSettingsInlineMlConfigFileTypeEnum = S.String;
 
 /** Configuration for WildFire Inline ML analysis per file type. */
 export interface WildfireInlineMlSettingsInlineMlConfig {
@@ -1121,7 +1112,7 @@ export type WildfireInlineMlOverrideActionEnum =
   | "WILDFIRE_ALLOW"
   | "WILDFIRE_ALERT"
   | "WILDFIRE_DENY";
-export const WildfireInlineMlOverrideActionEnum = /*@__PURE__*/ S.String;
+export const WildfireInlineMlOverrideActionEnum = S.String;
 
 export type WildfireInlineMlOverrideProtocolEnum =
   | "WILDFIRE_PROTOCOL_UNSPECIFIED"
@@ -1132,7 +1123,7 @@ export type WildfireInlineMlOverrideProtocolEnum =
   | "WILDFIRE_HTTP2"
   | "WILDFIRE_HTTP"
   | "WILDFIRE_FTP";
-export const WildfireInlineMlOverrideProtocolEnum = /*@__PURE__*/ S.String;
+export const WildfireInlineMlOverrideProtocolEnum = S.String;
 
 /** Defines what action to take for WildFire Inline ML threats per protocol. */
 export interface WildfireInlineMlOverride {
@@ -1160,14 +1151,13 @@ export type WildfireSubmissionRuleDirectionEnum =
   | "UPLOAD"
   | "DOWNLOAD"
   | "BOTH";
-export const WildfireSubmissionRuleDirectionEnum = /*@__PURE__*/ S.String;
+export const WildfireSubmissionRuleDirectionEnum = S.String;
 
 export type WildfireSubmissionRuleFileSelectionModeEnum =
   | "FILE_SELECTION_MODE_UNSPECIFIED"
   | "ALL_FILE_TYPES"
   | "CUSTOM_FILE_TYPES";
-export const WildfireSubmissionRuleFileSelectionModeEnum =
-  /*@__PURE__*/ S.String;
+export const WildfireSubmissionRuleFileSelectionModeEnum = S.String;
 
 export type WildfireSubmissionRuleCustomFileTypesFileTypesItemEnum =
   | "FILE_TYPE_UNSPECIFIED"
@@ -1181,8 +1171,7 @@ export type WildfireSubmissionRuleCustomFileTypesFileTypesItemEnum =
   | "PDF"
   | "PE"
   | "SCRIPT";
-export const WildfireSubmissionRuleCustomFileTypesFileTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const WildfireSubmissionRuleCustomFileTypesFileTypesItemEnum = S.String;
 
 export type WildfireSubmissionRuleCustomFileTypesFileTypesItemEnumList = Array<
   WildfireSubmissionRuleCustomFileTypesFileTypesItemEnum | (string & {})
@@ -1305,7 +1294,7 @@ export type AntivirusOverrideProtocolEnum =
   | "HTTP2"
   | "HTTP"
   | "FTP";
-export const AntivirusOverrideProtocolEnum = /*@__PURE__*/ S.String;
+export const AntivirusOverrideProtocolEnum = S.String;
 
 export type AntivirusOverrideActionEnum =
   | "THREAT_ACTION_UNSPECIFIED"
@@ -1313,7 +1302,7 @@ export type AntivirusOverrideActionEnum =
   | "ALLOW"
   | "ALERT"
   | "DENY";
-export const AntivirusOverrideActionEnum = /*@__PURE__*/ S.String;
+export const AntivirusOverrideActionEnum = S.String;
 
 /** Defines what action to take for antivirus threats per protocol. */
 export interface AntivirusOverride {
@@ -1343,7 +1332,7 @@ export type ThreatOverrideTypeEnum =
   | "ANTIVIRUS"
   | "SPYWARE"
   | "DNS";
-export const ThreatOverrideTypeEnum = /*@__PURE__*/ S.String;
+export const ThreatOverrideTypeEnum = S.String;
 
 export type ThreatOverrideActionEnum =
   | "THREAT_ACTION_UNSPECIFIED"
@@ -1351,7 +1340,7 @@ export type ThreatOverrideActionEnum =
   | "ALLOW"
   | "ALERT"
   | "DENY";
-export const ThreatOverrideActionEnum = /*@__PURE__*/ S.String;
+export const ThreatOverrideActionEnum = S.String;
 
 /** Defines what action to take for a specific threat_id match. */
 export interface ThreatOverride {
@@ -1381,7 +1370,7 @@ export type SeverityOverrideActionEnum =
   | "ALLOW"
   | "ALERT"
   | "DENY";
-export const SeverityOverrideActionEnum = /*@__PURE__*/ S.String;
+export const SeverityOverrideActionEnum = S.String;
 
 export type SeverityOverrideSeverityEnum =
   | "SEVERITY_UNSPECIFIED"
@@ -1390,7 +1379,7 @@ export type SeverityOverrideSeverityEnum =
   | "MEDIUM"
   | "HIGH"
   | "CRITICAL";
-export const SeverityOverrideSeverityEnum = /*@__PURE__*/ S.String;
+export const SeverityOverrideSeverityEnum = S.String;
 
 /** Defines what action to take for a specific severity match. */
 export interface SeverityOverride {
@@ -1535,7 +1524,7 @@ export type AuthorizationPolicyActionEnum =
   | "ACTION_UNSPECIFIED"
   | "ALLOW"
   | "DENY";
-export const AuthorizationPolicyActionEnum = /*@__PURE__*/ S.String;
+export const AuthorizationPolicyActionEnum = S.String;
 
 /** Specification of traffic source attributes. */
 export interface Source {
@@ -1682,13 +1671,13 @@ export type AuthzPolicyActionEnum =
   | "ALLOW"
   | "DENY"
   | "CUSTOM";
-export const AuthzPolicyActionEnum = /*@__PURE__*/ S.String;
+export const AuthzPolicyActionEnum = S.String;
 
 export type AuthzPolicyPolicyProfileEnum =
   | "POLICY_PROFILE_UNSPECIFIED"
   | "REQUEST_AUTHZ"
   | "CONTENT_AUTHZ";
-export const AuthzPolicyPolicyProfileEnum = /*@__PURE__*/ S.String;
+export const AuthzPolicyPolicyProfileEnum = S.String;
 
 /** Determines how a string value should be matched. */
 export interface AuthzPolicyAuthzRuleStringMatch {
@@ -1726,7 +1715,7 @@ export type AuthzPolicyAuthzRuleToRequestOperationMCPBaseProtocolMethodsOptionEn
   | "SKIP_BASE_PROTOCOL_METHODS"
   | "MATCH_BASE_PROTOCOL_METHODS";
 export const AuthzPolicyAuthzRuleToRequestOperationMCPBaseProtocolMethodsOptionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Describes a set of MCP methods to match against. */
 export interface AuthzPolicyAuthzRuleToRequestOperationMCPMethod {
@@ -1865,8 +1854,7 @@ export type AuthzPolicyAuthzRulePrincipalPrincipalSelectorEnum =
   | "CLIENT_CERT_URI_SAN"
   | "CLIENT_CERT_DNS_NAME_SAN"
   | "CLIENT_CERT_COMMON_NAME";
-export const AuthzPolicyAuthzRulePrincipalPrincipalSelectorEnum =
-  /*@__PURE__*/ S.String;
+export const AuthzPolicyAuthzRulePrincipalPrincipalSelectorEnum = S.String;
 
 /** Describes the properties of a principal to be matched against. */
 export interface AuthzPolicyAuthzRulePrincipal {
@@ -2057,7 +2045,7 @@ export type AuthzPolicyTargetLoadBalancingSchemeEnum =
   | "INTERNAL_MANAGED"
   | "EXTERNAL_MANAGED"
   | "INTERNAL_SELF_MANAGED";
-export const AuthzPolicyTargetLoadBalancingSchemeEnum = /*@__PURE__*/ S.String;
+export const AuthzPolicyTargetLoadBalancingSchemeEnum = S.String;
 
 /** Specifies the set of targets to which this policy should be applied to. */
 export interface AuthzPolicyTarget {
@@ -2150,8 +2138,7 @@ export type BackendAuthenticationConfigWellKnownRootsEnum =
   | "WELL_KNOWN_ROOTS_UNSPECIFIED"
   | "NONE"
   | "PUBLIC_ROOTS";
-export const BackendAuthenticationConfigWellKnownRootsEnum =
-  /*@__PURE__*/ S.String;
+export const BackendAuthenticationConfigWellKnownRootsEnum = S.String;
 
 /** BackendAuthenticationConfig message groups the TrustConfig together with other settings that control how the load balancer authenticates, and expresses its identity to, the backend: * `trustConfig` is the attached TrustConfig. * `wellKnownRoots` indicates whether the load balance should trust backend server certificates that are issued by public certificate authorities, in addition to certificates trusted by the TrustConfig. * `clientCertificate` is a client certificate that the load balancer uses to express its identity to the backend, if the connection to the backend uses mTLS. You can attach the BackendAuthenticationConfig to the load balancer's BackendService directly determining how that BackendService negotiates TLS. */
 export interface BackendAuthenticationConfig {
@@ -2342,7 +2329,7 @@ export const CreateProjectsLocationsClientTlsPoliciesRequest =
   }) as any as S.Schema<CreateProjectsLocationsClientTlsPoliciesRequest>;
 
 export type DnsThreatDetectorProviderEnum = "PROVIDER_UNSPECIFIED" | "INFOBLOX";
-export const DnsThreatDetectorProviderEnum = /*@__PURE__*/ S.String;
+export const DnsThreatDetectorProviderEnum = S.String;
 
 /** A DNS threat detector sends DNS query logs to a _provider_ that then analyzes the logs to identify threat events in the DNS queries. By default, all VPC networks in your projects are included. You can exclude specific networks by supplying `excluded_networks`. */
 export interface DnsThreatDetector {
@@ -2404,7 +2391,7 @@ export type FirewallEndpointAssociationStateEnum =
   | "DELETING"
   | "INACTIVE"
   | "ORPHAN";
-export const FirewallEndpointAssociationStateEnum = /*@__PURE__*/ S.String;
+export const FirewallEndpointAssociationStateEnum = S.String;
 
 /** Message describing Association object */
 export interface FirewallEndpointAssociation {
@@ -2582,7 +2569,7 @@ export type GatewaySecurityPolicyRuleBasicProfileEnum =
   | "BASIC_PROFILE_UNSPECIFIED"
   | "ALLOW"
   | "DENY";
-export const GatewaySecurityPolicyRuleBasicProfileEnum = /*@__PURE__*/ S.String;
+export const GatewaySecurityPolicyRuleBasicProfileEnum = S.String;
 
 /** The GatewaySecurityPolicyRule resource is in a nested collection within a GatewaySecurityPolicy and represents a traffic matching condition and associated action to perform. */
 export interface GatewaySecurityPolicyRule {
@@ -2654,7 +2641,7 @@ export type InterceptDeploymentGroupStateEnum =
   | "ACTIVE"
   | "CREATING"
   | "DELETING";
-export const InterceptDeploymentGroupStateEnum = /*@__PURE__*/ S.String;
+export const InterceptDeploymentGroupStateEnum = S.String;
 
 /** An endpoint group connected to this deployment group. */
 export interface InterceptDeploymentGroupConnectedEndpointGroup {
@@ -2681,7 +2668,7 @@ export type InterceptLocationStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "OUT_OF_SYNC";
-export const InterceptLocationStateEnum = /*@__PURE__*/ S.String;
+export const InterceptLocationStateEnum = S.String;
 
 /** Details about intercept in a specific cloud location. */
 export interface InterceptLocation {
@@ -2711,8 +2698,7 @@ export type InterceptDeploymentGroupDeploymentStateEnum =
   | "DELETING"
   | "OUT_OF_SYNC"
   | "DELETE_FAILED";
-export const InterceptDeploymentGroupDeploymentStateEnum =
-  /*@__PURE__*/ S.String;
+export const InterceptDeploymentGroupDeploymentStateEnum = S.String;
 
 /** A deployment belonging to this deployment group. */
 export interface InterceptDeploymentGroupDeployment {
@@ -2816,7 +2802,7 @@ export type InterceptDeploymentStateEnum =
   | "DELETING"
   | "OUT_OF_SYNC"
   | "DELETE_FAILED";
-export const InterceptDeploymentStateEnum = /*@__PURE__*/ S.String;
+export const InterceptDeploymentStateEnum = S.String;
 
 /** A deployment represents a zonal intercept backend ready to accept GENEVE-encapsulated traffic, e.g. a zonal instance group fronted by an internal passthrough load balancer. Deployments are always part of a global deployment group which represents a global intercept service. */
 export interface InterceptDeployment {
@@ -2888,7 +2874,7 @@ export type InterceptEndpointGroupAssociationLocationDetailsStateEnum =
   | "ACTIVE"
   | "OUT_OF_SYNC";
 export const InterceptEndpointGroupAssociationLocationDetailsStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Contains details about the state of an association in a specific cloud location. */
 export interface InterceptEndpointGroupAssociationLocationDetails {
@@ -2926,8 +2912,7 @@ export type InterceptEndpointGroupAssociationStateEnum =
   | "CLOSED"
   | "OUT_OF_SYNC"
   | "DELETE_FAILED";
-export const InterceptEndpointGroupAssociationStateEnum =
-  /*@__PURE__*/ S.String;
+export const InterceptEndpointGroupAssociationStateEnum = S.String;
 
 /** An endpoint group association represents a link between a network and an endpoint group in the organization. Creating an association creates the networking infrastructure linking the network to the endpoint group, but does not enable intercept by itself. To enable intercept, the user must also create a network firewall policy containing intercept rules and associate it with the network. */
 export interface InterceptEndpointGroupAssociation {
@@ -3011,8 +2996,7 @@ export type InterceptEndpointGroupAssociationDetailsStateEnum =
   | "CLOSED"
   | "OUT_OF_SYNC"
   | "DELETE_FAILED";
-export const InterceptEndpointGroupAssociationDetailsStateEnum =
-  /*@__PURE__*/ S.String;
+export const InterceptEndpointGroupAssociationDetailsStateEnum = S.String;
 
 /** The endpoint group's view of a connected association. */
 export interface InterceptEndpointGroupAssociationDetails {
@@ -3066,7 +3050,7 @@ export type InterceptEndpointGroupStateEnum =
   | "DELETING"
   | "OUT_OF_SYNC"
   | "DELETE_FAILED";
-export const InterceptEndpointGroupStateEnum = /*@__PURE__*/ S.String;
+export const InterceptEndpointGroupStateEnum = S.String;
 
 /** An endpoint group is a consumer frontend for a deployment group (backend). In order to configure intercept for a network, consumers must create: - An association between their network and the endpoint group. - A security profile that points to the endpoint group. - A firewall rule that references the security profile (group). */
 export interface InterceptEndpointGroup {
@@ -3166,8 +3150,7 @@ export type MirroringDeploymentGroupDeploymentStateEnum =
   | "DELETING"
   | "OUT_OF_SYNC"
   | "DELETE_FAILED";
-export const MirroringDeploymentGroupDeploymentStateEnum =
-  /*@__PURE__*/ S.String;
+export const MirroringDeploymentGroupDeploymentStateEnum = S.String;
 
 /** A deployment belonging to this deployment group. */
 export interface MirroringDeploymentGroupDeployment {
@@ -3195,7 +3178,7 @@ export type MirroringLocationStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "OUT_OF_SYNC";
-export const MirroringLocationStateEnum = /*@__PURE__*/ S.String;
+export const MirroringLocationStateEnum = S.String;
 
 /** Details about mirroring in a specific cloud location. */
 export interface MirroringLocation {
@@ -3224,7 +3207,7 @@ export type MirroringDeploymentGroupStateEnum =
   | "CREATING"
   | "DELETING"
   | "CLOSED";
-export const MirroringDeploymentGroupStateEnum = /*@__PURE__*/ S.String;
+export const MirroringDeploymentGroupStateEnum = S.String;
 
 /** A deployment group aggregates many zonal mirroring backends (deployments) into a single global mirroring service. Consumers can connect this service using an endpoint group. */
 export interface MirroringDeploymentGroup {
@@ -3306,7 +3289,7 @@ export type MirroringDeploymentStateEnum =
   | "DELETING"
   | "OUT_OF_SYNC"
   | "DELETE_FAILED";
-export const MirroringDeploymentStateEnum = /*@__PURE__*/ S.String;
+export const MirroringDeploymentStateEnum = S.String;
 
 /** A deployment represents a zonal mirroring backend ready to accept GENEVE-encapsulated replica traffic, e.g. a zonal instance group fronted by an internal passthrough load balancer. Deployments are always part of a global deployment group which represents a global mirroring service. */
 export interface MirroringDeployment {
@@ -3381,15 +3364,14 @@ export type MirroringEndpointGroupAssociationStateEnum =
   | "CLOSED"
   | "OUT_OF_SYNC"
   | "DELETE_FAILED";
-export const MirroringEndpointGroupAssociationStateEnum =
-  /*@__PURE__*/ S.String;
+export const MirroringEndpointGroupAssociationStateEnum = S.String;
 
 export type MirroringEndpointGroupAssociationLocationDetailsStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "OUT_OF_SYNC";
 export const MirroringEndpointGroupAssociationLocationDetailsStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Contains details about the state of an association in a specific cloud location. */
 export interface MirroringEndpointGroupAssociationLocationDetails {
@@ -3501,7 +3483,7 @@ export type MirroringEndpointGroupStateEnum =
   | "DELETING"
   | "OUT_OF_SYNC"
   | "DELETE_FAILED";
-export const MirroringEndpointGroupStateEnum = /*@__PURE__*/ S.String;
+export const MirroringEndpointGroupStateEnum = S.String;
 
 /** The endpoint group's view of a connected deployment group. */
 export interface MirroringEndpointGroupConnectedDeploymentGroup {
@@ -3535,8 +3517,7 @@ export type MirroringEndpointGroupAssociationDetailsStateEnum =
   | "CLOSED"
   | "OUT_OF_SYNC"
   | "DELETE_FAILED";
-export const MirroringEndpointGroupAssociationDetailsStateEnum =
-  /*@__PURE__*/ S.String;
+export const MirroringEndpointGroupAssociationDetailsStateEnum = S.String;
 
 /** The endpoint group's view of a connected association. */
 export interface MirroringEndpointGroupAssociationDetails {
@@ -3566,7 +3547,7 @@ export const MirroringEndpointGroupAssociationDetailsList =
   ) as any as S.Schema<MirroringEndpointGroupAssociationDetailsList>;
 
 export type MirroringEndpointGroupTypeEnum = "TYPE_UNSPECIFIED" | "DIRECT";
-export const MirroringEndpointGroupTypeEnum = /*@__PURE__*/ S.String;
+export const MirroringEndpointGroupTypeEnum = S.String;
 
 /** An endpoint group is a consumer frontend for a deployment group (backend). In order to configure mirroring for a network, consumers must create: - An association between their network and the endpoint group. - A security profile that points to the endpoint group. - A mirroring rule that references the security profile (group). */
 export interface MirroringEndpointGroup {
@@ -3646,7 +3627,7 @@ export type SACAttachmentStateEnum =
   | "PENDING_PARTNER_ATTACHMENT"
   | "PARTNER_ATTACHED"
   | "PARTNER_DETACHED";
-export const SACAttachmentStateEnum = /*@__PURE__*/ S.String;
+export const SACAttachmentStateEnum = S.String;
 
 /** Fields specific to attachments associated with Symantec Cloud SWG. */
 export interface SACAttachmentSACAttachmentSymantecOptions {
@@ -3738,7 +3719,7 @@ export type SACRealmSACRealmSymantecOptionsSymantecConnectionStateEnum =
   | "REQUEST_TO_SYMANTEC_FAILED"
   | "UNAVAILABLE_FOR_HISTORICAL_REQUESTS";
 export const SACRealmSACRealmSymantecOptionsSymantecConnectionStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Fields specific to realms using Symantec Cloud SWG. */
 export interface SACRealmSACRealmSymantecOptions {
@@ -3769,13 +3750,13 @@ export type SACRealmStateEnum =
   | "PARTNER_ATTACHED"
   | "PARTNER_DETACHED"
   | "KEY_EXPIRED";
-export const SACRealmStateEnum = /*@__PURE__*/ S.String;
+export const SACRealmStateEnum = S.String;
 
 export type SACRealmSecurityServiceEnum =
   | "SECURITY_SERVICE_UNSPECIFIED"
   | "PALO_ALTO_PRISMA_ACCESS"
   | "SYMANTEC_CLOUD_SWG";
-export const SACRealmSecurityServiceEnum = /*@__PURE__*/ S.String;
+export const SACRealmSecurityServiceEnum = S.String;
 
 /** Key to be shared with SSE service provider to establish global handshake. */
 export interface SACRealmPairingKey {
@@ -3907,7 +3888,7 @@ export type MTLSPolicyClientValidationModeEnum =
   | "CLIENT_VALIDATION_MODE_UNSPECIFIED"
   | "ALLOW_INVALID_OR_MISSING_CLIENT_CERT"
   | "REJECT_INVALID";
-export const MTLSPolicyClientValidationModeEnum = /*@__PURE__*/ S.String;
+export const MTLSPolicyClientValidationModeEnum = S.String;
 
 /** Specification of the MTLSPolicy. */
 export interface MTLSPolicy {
@@ -3993,7 +3974,7 @@ export type TlsInspectionPolicyMinTlsVersionEnum =
   | "TLS_1_1"
   | "TLS_1_2"
   | "TLS_1_3";
-export const TlsInspectionPolicyMinTlsVersionEnum = /*@__PURE__*/ S.String;
+export const TlsInspectionPolicyMinTlsVersionEnum = S.String;
 
 export type TlsInspectionPolicyTlsFeatureProfileEnum =
   | "PROFILE_UNSPECIFIED"
@@ -4001,7 +3982,7 @@ export type TlsInspectionPolicyTlsFeatureProfileEnum =
   | "PROFILE_MODERN"
   | "PROFILE_RESTRICTED"
   | "PROFILE_CUSTOM";
-export const TlsInspectionPolicyTlsFeatureProfileEnum = /*@__PURE__*/ S.String;
+export const TlsInspectionPolicyTlsFeatureProfileEnum = S.String;
 
 /** The TlsInspectionPolicy resource contains references to CA pools in Certificate Authority Service and associated metadata. */
 export interface TlsInspectionPolicy {
@@ -4847,7 +4828,7 @@ export type GoogleIamV1AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const GoogleIamV1AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleIamV1AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface GoogleIamV1AuditLogConfig {

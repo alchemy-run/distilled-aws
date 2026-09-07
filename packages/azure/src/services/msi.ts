@@ -144,7 +144,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -152,7 +152,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -375,7 +375,7 @@ export const GetUserAssignedIdentityResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Enum to configure regional restrictions on identity assignment, as necessary. */
 export type IsolationScope = "None" | "Regional";
-export const IsolationScope = /*@__PURE__*/ S.String;
+export const IsolationScope = S.String;
 
 /** The properties associated with the user assigned identity. */
 export interface UserAssignedIdentityProperties {

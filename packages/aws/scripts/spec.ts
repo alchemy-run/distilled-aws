@@ -1870,7 +1870,7 @@ export const awsSpec = (
             : "string";
           return [
             `export type ${name} = ${union};`,
-            `export const ${name} = ${PURE}S.String;\n`,
+            `export const ${name} = S.String;\n`,
           ];
         }
 
@@ -1885,7 +1885,7 @@ export const awsSpec = (
             : "number";
           return [
             `export type ${name} = ${intUnion};`,
-            `export const ${name} = ${PURE}S.Number;`,
+            `export const ${name} = S.Number;`,
           ];
         }
 

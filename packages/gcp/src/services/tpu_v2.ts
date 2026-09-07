@@ -143,7 +143,7 @@ export type NodeApiVersionEnum =
   | "V1"
   | "V2_ALPHA1"
   | "V2";
-export const NodeApiVersionEnum = /*@__PURE__*/ S.String;
+export const NodeApiVersionEnum = S.String;
 
 export type NodeStateEnum =
   | "STATE_UNSPECIFIED"
@@ -162,7 +162,7 @@ export type NodeStateEnum =
   | "HIDDEN"
   | "UNHIDING"
   | "UNKNOWN";
-export const NodeStateEnum = /*@__PURE__*/ S.String;
+export const NodeStateEnum = S.String;
 
 export type NodeHealthEnum =
   | "HEALTH_UNSPECIFIED"
@@ -170,7 +170,7 @@ export type NodeHealthEnum =
   | "TIMEOUT"
   | "UNHEALTHY_TENSORFLOW"
   | "UNHEALTHY_MAINTENANCE";
-export const NodeHealthEnum = /*@__PURE__*/ S.String;
+export const NodeHealthEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -259,7 +259,7 @@ export type AttachedDiskModeEnum =
   | "DISK_MODE_UNSPECIFIED"
   | "READ_WRITE"
   | "READ_ONLY";
-export const AttachedDiskModeEnum = /*@__PURE__*/ S.String;
+export const AttachedDiskModeEnum = S.String;
 
 /** A node-attached disk resource. Next ID: 8; */
 export interface AttachedDisk {
@@ -284,13 +284,13 @@ export type UpcomingMaintenanceMaintenanceStatusEnum =
   | "UNKNOWN"
   | "PENDING"
   | "ONGOING";
-export const UpcomingMaintenanceMaintenanceStatusEnum = /*@__PURE__*/ S.String;
+export const UpcomingMaintenanceMaintenanceStatusEnum = S.String;
 
 export type UpcomingMaintenanceTypeEnum =
   | "UNKNOWN_TYPE"
   | "SCHEDULED"
   | "UNSCHEDULED";
-export const UpcomingMaintenanceTypeEnum = /*@__PURE__*/ S.String;
+export const UpcomingMaintenanceTypeEnum = S.String;
 
 /** Upcoming Maintenance notification information. */
 export interface UpcomingMaintenance {
@@ -342,7 +342,7 @@ export type AcceleratorConfigTypeEnum =
   | "V5LITE_POD"
   | "V5P"
   | "V6E";
-export const AcceleratorConfigTypeEnum = /*@__PURE__*/ S.String;
+export const AcceleratorConfigTypeEnum = S.String;
 
 /** A TPU accelerator configuration. */
 export interface AcceleratorConfig {
@@ -368,7 +368,7 @@ export type SymptomSymptomTypeEnum =
   | "MESH_BUILD_FAIL"
   | "HBM_OUT_OF_MEMORY"
   | "PROJECT_ABUSE";
-export const SymptomSymptomTypeEnum = /*@__PURE__*/ S.String;
+export const SymptomSymptomTypeEnum = S.String;
 
 /** A Symptom instance. */
 export interface Symptom {
@@ -636,7 +636,7 @@ export type QueuedResourceStateStateInitiatorEnum =
   | "STATE_INITIATOR_UNSPECIFIED"
   | "USER"
   | "SERVICE";
-export const QueuedResourceStateStateInitiatorEnum = /*@__PURE__*/ S.String;
+export const QueuedResourceStateStateInitiatorEnum = S.String;
 
 /** Further data for the deleting state. */
 export type DeletingData = CreatingData;
@@ -676,7 +676,7 @@ export type QueuedResourceStateStateEnum =
   | "SUSPENDING"
   | "SUSPENDED"
   | "WAITING_FOR_RESOURCES";
-export const QueuedResourceStateStateEnum = /*@__PURE__*/ S.String;
+export const QueuedResourceStateStateEnum = S.String;
 
 /** Further data for the active state. */
 export type ActiveData = CreatingData;

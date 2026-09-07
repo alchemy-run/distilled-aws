@@ -602,7 +602,7 @@ export type GoogleMapsPlacesV1PlaceOpeningHoursSecondaryHoursTypeEnum =
   | "SENIOR_HOURS"
   | "ONLINE_SERVICE_HOURS";
 export const GoogleMapsPlacesV1PlaceOpeningHoursSecondaryHoursTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Structured information for special days that fall within the period that the returned opening hours cover. Special days are days that could impact the business hours of a place, e.g. Christmas day. */
 export interface GoogleMapsPlacesV1PlaceOpeningHoursSpecialDay {
@@ -789,8 +789,7 @@ export type GoogleMapsPlacesV1TransitLineVehicleTypeEnum =
   | "SPECIAL"
   | "HORSE_CARRIAGE"
   | "AIRPLANE";
-export const GoogleMapsPlacesV1TransitLineVehicleTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleMapsPlacesV1TransitLineVehicleTypeEnum = S.String;
 
 /** Represents a single transit line. */
 export interface GoogleMapsPlacesV1TransitLine {
@@ -933,7 +932,7 @@ export type GoogleMapsPlacesV1EVChargeOptionsConnectorAggregationTypeEnum =
   | "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET"
   | "EV_CONNECTOR_TYPE_NACS";
 export const GoogleMapsPlacesV1EVChargeOptionsConnectorAggregationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** EV charging information grouped by [type, max_charge_rate_kw]. Shows EV charge aggregation of connectors that have the same type and max charge rate in kw. */
 export interface GoogleMapsPlacesV1EVChargeOptionsConnectorAggregation {
@@ -1000,7 +999,7 @@ export type GoogleMapsPlacesV1AddressDescriptorLandmarkSpatialRelationshipEnum =
   | "AROUND_THE_CORNER"
   | "BEHIND";
 export const GoogleMapsPlacesV1AddressDescriptorLandmarkSpatialRelationshipEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Basic landmark information and the landmark's relationship with the target location. Landmarks are prominent places that can be used to describe a location. */
 export interface GoogleMapsPlacesV1AddressDescriptorLandmark {
@@ -1048,8 +1047,7 @@ export type GoogleMapsPlacesV1AddressDescriptorAreaContainmentEnum =
   | "WITHIN"
   | "OUTSKIRTS"
   | "NEAR";
-export const GoogleMapsPlacesV1AddressDescriptorAreaContainmentEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleMapsPlacesV1AddressDescriptorAreaContainmentEnum = S.String;
 
 /** Area information and the area's relationship with the target location. Areas includes precise sublocality, neighborhoods, and large compounds that are useful for describing a location. */
 export interface GoogleMapsPlacesV1AddressDescriptorArea {
@@ -1106,7 +1104,7 @@ export type GoogleMapsPlacesV1PlacePriceLevelEnum =
   | "PRICE_LEVEL_MODERATE"
   | "PRICE_LEVEL_EXPENSIVE"
   | "PRICE_LEVEL_VERY_EXPENSIVE";
-export const GoogleMapsPlacesV1PlacePriceLevelEnum = /*@__PURE__*/ S.String;
+export const GoogleMapsPlacesV1PlacePriceLevelEnum = S.String;
 
 /** Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones). */
 export interface GoogleTypeTimeZone {
@@ -1129,8 +1127,7 @@ export type GoogleMapsPlacesV1PlaceNavigationPointUsagesItemEnum =
   | "DROPOFF"
   | "PICKUP"
   | "PARKING";
-export const GoogleMapsPlacesV1PlaceNavigationPointUsagesItemEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleMapsPlacesV1PlaceNavigationPointUsagesItemEnum = S.String;
 
 export type GoogleMapsPlacesV1PlaceNavigationPointUsagesItemEnumList =
   Array<GoogleMapsPlacesV1PlaceNavigationPointUsagesItemEnum>;
@@ -1144,7 +1141,7 @@ export type GoogleMapsPlacesV1PlaceNavigationPointTravelModesItemEnum =
   | "DRIVE"
   | "WALK";
 export const GoogleMapsPlacesV1PlaceNavigationPointTravelModesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleMapsPlacesV1PlaceNavigationPointTravelModesItemEnumList =
   Array<GoogleMapsPlacesV1PlaceNavigationPointTravelModesItemEnum>;
@@ -1211,8 +1208,7 @@ export type GoogleMapsPlacesV1FuelOptionsFuelPriceTypeEnum =
   | "METHANE"
   | "BIO_DIESEL"
   | "TRUCK_DIESEL";
-export const GoogleMapsPlacesV1FuelOptionsFuelPriceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleMapsPlacesV1FuelOptionsFuelPriceTypeEnum = S.String;
 
 /** Fuel price information for a given type. */
 export interface GoogleMapsPlacesV1FuelOptionsFuelPrice {
@@ -1646,13 +1642,12 @@ export type GoogleMapsPlacesV1PlaceBusinessStatusEnum =
   | "CLOSED_TEMPORARILY"
   | "CLOSED_PERMANENTLY"
   | "FUTURE_OPENING";
-export const GoogleMapsPlacesV1PlaceBusinessStatusEnum = /*@__PURE__*/ S.String;
+export const GoogleMapsPlacesV1PlaceBusinessStatusEnum = S.String;
 
 export type GoogleMapsPlacesV1PlaceEntranceTagsItemEnum =
   | "TAG_UNSPECIFIED"
   | "PREFERRED";
-export const GoogleMapsPlacesV1PlaceEntranceTagsItemEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleMapsPlacesV1PlaceEntranceTagsItemEnum = S.String;
 
 export type GoogleMapsPlacesV1PlaceEntranceTagsItemEnumList =
   Array<GoogleMapsPlacesV1PlaceEntranceTagsItemEnum>;
@@ -2002,8 +1997,7 @@ export type GoogleMapsPlacesV1SearchNearbyRequestRankPreferenceEnum =
   | "RANK_PREFERENCE_UNSPECIFIED"
   | "DISTANCE"
   | "POPULARITY";
-export const GoogleMapsPlacesV1SearchNearbyRequestRankPreferenceEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleMapsPlacesV1SearchNearbyRequestRankPreferenceEnum = S.String;
 
 /** Encapsulates a set of optional conditions to satisfy when calculating the routes. */
 export interface GoogleMapsPlacesV1RouteModifiers {
@@ -2033,7 +2027,7 @@ export type GoogleMapsPlacesV1RoutingParametersRoutingPreferenceEnum =
   | "TRAFFIC_AWARE"
   | "TRAFFIC_AWARE_OPTIMAL";
 export const GoogleMapsPlacesV1RoutingParametersRoutingPreferenceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleMapsPlacesV1RoutingParametersTravelModeEnum =
   | "TRAVEL_MODE_UNSPECIFIED"
@@ -2041,8 +2035,7 @@ export type GoogleMapsPlacesV1RoutingParametersTravelModeEnum =
   | "BICYCLE"
   | "WALK"
   | "TWO_WHEELER";
-export const GoogleMapsPlacesV1RoutingParametersTravelModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleMapsPlacesV1RoutingParametersTravelModeEnum = S.String;
 
 /** Parameters to configure the routing calculations to the places in the response, both along a route (where result ranking will be influenced) and for calculating travel times on results. */
 export interface GoogleMapsPlacesV1RoutingParameters {
@@ -2227,8 +2220,7 @@ export type GoogleMapsPlacesV1SearchTextRequestPriceLevelsItemEnum =
   | "PRICE_LEVEL_MODERATE"
   | "PRICE_LEVEL_EXPENSIVE"
   | "PRICE_LEVEL_VERY_EXPENSIVE";
-export const GoogleMapsPlacesV1SearchTextRequestPriceLevelsItemEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleMapsPlacesV1SearchTextRequestPriceLevelsItemEnum = S.String;
 
 export type GoogleMapsPlacesV1SearchTextRequestPriceLevelsItemEnumList = Array<
   GoogleMapsPlacesV1SearchTextRequestPriceLevelsItemEnum | (string & {})
@@ -2268,7 +2260,7 @@ export type GoogleMapsPlacesV1SearchTextRequestEVOptionsConnectorTypesItemEnum =
   | "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET"
   | "EV_CONNECTOR_TYPE_NACS";
 export const GoogleMapsPlacesV1SearchTextRequestEVOptionsConnectorTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleMapsPlacesV1SearchTextRequestEVOptionsConnectorTypesItemEnumList =
   Array<
@@ -2303,8 +2295,7 @@ export type GoogleMapsPlacesV1SearchTextRequestRankPreferenceEnum =
   | "RANK_PREFERENCE_UNSPECIFIED"
   | "DISTANCE"
   | "RELEVANCE";
-export const GoogleMapsPlacesV1SearchTextRequestRankPreferenceEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleMapsPlacesV1SearchTextRequestRankPreferenceEnum = S.String;
 
 /** The region to search. This location serves as a restriction which means results outside given location will not be returned. */
 export interface GoogleMapsPlacesV1SearchTextRequestLocationRestriction {

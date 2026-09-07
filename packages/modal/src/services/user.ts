@@ -17,7 +17,7 @@ export type EnvironmentRole =
   | "ENVIRONMENT_ROLE_VIEWER"
   | "ENVIRONMENT_ROLE_CONTRIBUTOR"
   | "ENVIRONMENT_ROLE_NO_ACCESS";
-export const EnvironmentRole = /*@__PURE__*/ S.String;
+export const EnvironmentRole = S.String;
 
 export interface SetUserGroupEnvironmentRequest {
   environmentId?: string;

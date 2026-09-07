@@ -187,7 +187,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -195,7 +195,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -228,8 +228,7 @@ export type AzureResourceManagerResourceProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const AzureResourceManagerResourceProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AzureResourceManagerResourceProvisioningState = S.String;
 
 /** Properties for the Report resource used only as a proxy for the Report API. */
 export interface ReportProperties {
@@ -307,7 +306,7 @@ export const GetStorageDiscoveryWorkspaceResponseTagsMap =
 
 /** The storage discovery sku */
 export type StorageDiscoveryWorkspacePropertiesSku = "Standard" | "Free";
-export const StorageDiscoveryWorkspacePropertiesSku = /*@__PURE__*/ S.String;
+export const StorageDiscoveryWorkspacePropertiesSku = S.String;
 
 /** The view level storage discovery data estate */
 export type StorageDiscoveryWorkspacePropertiesWorkspaceRootsList =
@@ -319,7 +318,7 @@ export const StorageDiscoveryWorkspacePropertiesWorkspaceRootsList =
 
 /** Storage Discovery Resource Type */
 export type StorageDiscoveryResourceType = "Microsoft.Storage/storageAccounts";
-export const StorageDiscoveryResourceType = /*@__PURE__*/ S.String;
+export const StorageDiscoveryResourceType = S.String;
 
 /** Resource types for the collection */
 export type StorageDiscoveryScopeResourceTypesList = Array<
@@ -470,11 +469,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -731,8 +730,7 @@ export const StorageDiscoveryWorkspacesCreateOrUpdateRequestTagsMap =
 
 /** The storage discovery sku */
 export type StorageDiscoveryWorkspacePropertiesInputSku = "Standard" | "Free";
-export const StorageDiscoveryWorkspacePropertiesInputSku =
-  /*@__PURE__*/ S.String;
+export const StorageDiscoveryWorkspacePropertiesInputSku = S.String;
 
 /** The view level storage discovery data estate */
 export type StorageDiscoveryWorkspacePropertiesInputWorkspaceRootsList =
@@ -898,7 +896,7 @@ export const UpdateStorageDiscoveryWorkspaceRequestTagsMap =
 
 /** Storage Discovery Sku */
 export type StorageDiscoverySku = "Standard" | "Free";
-export const StorageDiscoverySku = /*@__PURE__*/ S.String;
+export const StorageDiscoverySku = S.String;
 
 /** The view level storage discovery data estate */
 export type StorageDiscoveryWorkspacePropertiesUpdateWorkspaceRootsList =

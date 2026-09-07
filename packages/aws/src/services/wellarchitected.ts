@@ -227,7 +227,7 @@ export const AssociateProfilesResponse = /*@__PURE__*/ S.suspend(() =>
 export type AgentProfileArn = string;
 export type SensitiveString = string | redacted.Redacted<string>;
 export type ContextType = "APPLICATION" | (string & {});
-export const ContextType = /*@__PURE__*/ S.String;
+export const ContextType = S.String;
 
 export type ContextAccountIdList = string[];
 export const ContextAccountIdList = /*@__PURE__*/ S.Array(S.String);
@@ -253,7 +253,7 @@ export type ApplicationType =
   | "DESKTOP_APPLICATION"
   | "OTHER"
   | (string & {});
-export const ApplicationType = /*@__PURE__*/ S.String;
+export const ApplicationType = S.String;
 
 export type Criticality =
   | "MISSION_CRITICAL"
@@ -261,7 +261,7 @@ export type Criticality =
   | "NON_CRITICAL"
   | "TEST_DEVELOPMENT"
   | (string & {});
-export const Criticality = /*@__PURE__*/ S.String;
+export const Criticality = S.String;
 
 export interface ContextContent {
   accountIds?: string[];
@@ -367,7 +367,7 @@ export type Pillar =
   | "PERFORMANCE"
   | "OPERATIONAL_EXCELLENCE"
   | (string & {});
-export const Pillar = /*@__PURE__*/ S.String;
+export const Pillar = S.String;
 
 export type Pillars = Pillar[];
 export const Pillars = /*@__PURE__*/ S.Array(Pillar);
@@ -847,7 +847,7 @@ export type WorkloadEnvironment =
   | "PRODUCTION"
   | "PREPRODUCTION"
   | (string & {});
-export const WorkloadEnvironment = /*@__PURE__*/ S.String;
+export const WorkloadEnvironment = S.String;
 
 export type AwsAccountId = string;
 export type WorkloadAccountIds = string[];
@@ -871,13 +871,13 @@ export type TrustedAdvisorIntegrationStatus =
   | "ENABLED"
   | "DISABLED"
   | (string & {});
-export const TrustedAdvisorIntegrationStatus = /*@__PURE__*/ S.String;
+export const TrustedAdvisorIntegrationStatus = S.String;
 
 export type DefinitionType =
   | "WORKLOAD_METADATA"
   | "APP_REGISTRY"
   | (string & {});
-export const DefinitionType = /*@__PURE__*/ S.String;
+export const DefinitionType = S.String;
 
 export type WorkloadResourceDefinition = DefinitionType[];
 export const WorkloadResourceDefinition = /*@__PURE__*/ S.Array(DefinitionType);
@@ -907,10 +907,10 @@ export type WorkloadIssueManagementStatus =
   | "DISABLED"
   | "INHERIT"
   | (string & {});
-export const WorkloadIssueManagementStatus = /*@__PURE__*/ S.String;
+export const WorkloadIssueManagementStatus = S.String;
 
 export type IssueManagementType = "AUTO" | "MANUAL" | (string & {});
-export const IssueManagementType = /*@__PURE__*/ S.String;
+export const IssueManagementType = S.String;
 
 export type JiraProjectKey = string;
 export interface WorkloadJiraConfigurationInput {
@@ -998,7 +998,7 @@ export const CreateWorkloadOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateWorkloadOutput",
 }) as any as S.Schema<CreateWorkloadOutput>;
 export type PermissionType = "READONLY" | "CONTRIBUTOR" | (string & {});
-export const PermissionType = /*@__PURE__*/ S.String;
+export const PermissionType = S.String;
 
 export interface CreateWorkloadShareInput {
   WorkloadId: string;
@@ -1118,7 +1118,7 @@ export const DeleteAgentProfileResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteAgentProfileResponse",
 }) as any as S.Schema<DeleteAgentProfileResponse>;
 export type LensStatusType = "ALL" | "DRAFT" | "PUBLISHED" | (string & {});
-export const LensStatusType = /*@__PURE__*/ S.String;
+export const LensStatusType = S.String;
 
 export interface DeleteLensInput {
   LensAlias: string;
@@ -1603,7 +1603,7 @@ export type RemediationType =
   | "IAC"
   | "MCP"
   | (string & {});
-export const RemediationType = /*@__PURE__*/ S.String;
+export const RemediationType = S.String;
 
 export interface GetAgentRecommendationRequest {
   recommendationArn: string;
@@ -1637,26 +1637,26 @@ export type RecommendationType =
   | "ARCHITECTURE"
   | "APPLICATION"
   | (string & {});
-export const RecommendationType = /*@__PURE__*/ S.String;
+export const RecommendationType = S.String;
 
 export type Priority = "HIGH" | "MEDIUM" | "LOW" | (string & {});
-export const Priority = /*@__PURE__*/ S.String;
+export const Priority = S.String;
 
 export type Effort = "LARGE" | "MEDIUM" | "SMALL" | (string & {});
-export const Effort = /*@__PURE__*/ S.String;
+export const Effort = S.String;
 
 export type RecommendationStatus =
   | "ACTIVE"
   | "SUPPRESSED"
   | "COMPLETED"
   | (string & {});
-export const RecommendationStatus = /*@__PURE__*/ S.String;
+export const RecommendationStatus = S.String;
 
 export type RecommendationState = "OPEN" | "CLOSED" | (string & {});
-export const RecommendationState = /*@__PURE__*/ S.String;
+export const RecommendationState = S.String;
 
 export type ImpactCategory = "HIGH" | "MEDIUM" | "LOW" | (string & {});
-export const ImpactCategory = /*@__PURE__*/ S.String;
+export const ImpactCategory = S.String;
 
 export interface Roi {
   estimate?: string;
@@ -1713,7 +1713,7 @@ export const CrossPillarBenefit = /*@__PURE__*/ S.suspend(() =>
 export type CrossPillarBenefits = CrossPillarBenefit[];
 export const CrossPillarBenefits = /*@__PURE__*/ S.Array(CrossPillarBenefit);
 export type RiskRating = "LOW" | "MEDIUM" | "HIGH" | (string & {});
-export const RiskRating = /*@__PURE__*/ S.String;
+export const RiskRating = S.String;
 
 export interface TradeOff {
   pillar: Pillar;
@@ -1743,7 +1743,7 @@ export type RecommendationSource =
   | "WELL_ARCHITECTED_AGENT"
   | "CUSTOMER_IAC"
   | (string & {});
-export const RecommendationSource = /*@__PURE__*/ S.String;
+export const RecommendationSource = S.String;
 
 export type RecommendationSourceList = RecommendationSource[];
 export const RecommendationSourceList =
@@ -1911,7 +1911,7 @@ export type GenerationStatus =
   | "COMPLETED"
   | "ERROR"
   | (string & {});
-export const GenerationStatus = /*@__PURE__*/ S.String;
+export const GenerationStatus = S.String;
 
 export type GoalIdList = string[];
 export const GoalIdList = /*@__PURE__*/ S.Array(S.String);
@@ -2051,7 +2051,7 @@ export type AdditionalResourceType =
   | "HELPFUL_RESOURCE"
   | "IMPROVEMENT_PLAN"
   | (string & {});
-export const AdditionalResourceType = /*@__PURE__*/ S.String;
+export const AdditionalResourceType = S.String;
 
 export type Urls = ChoiceContent[];
 export const Urls = /*@__PURE__*/ S.Array(ChoiceContent);
@@ -2097,7 +2097,7 @@ export type ChoiceStatus =
   | "NOT_APPLICABLE"
   | "UNSELECTED"
   | (string & {});
-export const ChoiceStatus = /*@__PURE__*/ S.String;
+export const ChoiceStatus = S.String;
 
 export type ChoiceReason =
   | "OUT_OF_SCOPE"
@@ -2106,7 +2106,7 @@ export type ChoiceReason =
   | "OTHER"
   | "NONE"
   | (string & {});
-export const ChoiceReason = /*@__PURE__*/ S.String;
+export const ChoiceReason = S.String;
 
 export type ChoiceNotes = string;
 export interface ChoiceAnswer {
@@ -2133,7 +2133,7 @@ export type Risk =
   | "NONE"
   | "NOT_APPLICABLE"
   | (string & {});
-export const Risk = /*@__PURE__*/ S.String;
+export const Risk = S.String;
 
 export type AnswerReason =
   | "OUT_OF_SCOPE"
@@ -2142,7 +2142,7 @@ export type AnswerReason =
   | "OTHER"
   | "NONE"
   | (string & {});
-export const AnswerReason = /*@__PURE__*/ S.String;
+export const AnswerReason = S.String;
 
 export type JiraIssueUrl = string;
 export interface JiraConfiguration {
@@ -2212,7 +2212,7 @@ export const GetAnswerOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetAnswerOutput",
 }) as any as S.Schema<GetAnswerOutput>;
 export type ReportFormat = "PDF" | "JSON" | (string & {});
-export const ReportFormat = /*@__PURE__*/ S.String;
+export const ReportFormat = S.String;
 
 export type IncludeSharedResources = boolean;
 export type NextToken = string;
@@ -2245,7 +2245,7 @@ export const GetConsolidatedReportInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetConsolidatedReportInput",
 }) as any as S.Schema<GetConsolidatedReportInput>;
 export type MetricType = "WORKLOAD" | (string & {});
-export const MetricType = /*@__PURE__*/ S.String;
+export const MetricType = S.String;
 
 export type Count = number;
 export type RiskCounts = { [key in Risk]?: number };
@@ -2367,19 +2367,19 @@ export const GetGlobalSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetGlobalSettingsRequest",
 }) as any as S.Schema<GetGlobalSettingsRequest>;
 export type OrganizationSharingStatus = "ENABLED" | "DISABLED" | (string & {});
-export const OrganizationSharingStatus = /*@__PURE__*/ S.String;
+export const OrganizationSharingStatus = S.String;
 
 export type DiscoveryIntegrationStatus = "ENABLED" | "DISABLED" | (string & {});
-export const DiscoveryIntegrationStatus = /*@__PURE__*/ S.String;
+export const DiscoveryIntegrationStatus = S.String;
 
 export type IntegrationStatus = "CONFIGURED" | "NOT_CONFIGURED" | (string & {});
-export const IntegrationStatus = /*@__PURE__*/ S.String;
+export const IntegrationStatus = S.String;
 
 export type AccountJiraIssueManagementStatus =
   | "ENABLED"
   | "DISABLED"
   | (string & {});
-export const AccountJiraIssueManagementStatus = /*@__PURE__*/ S.String;
+export const AccountJiraIssueManagementStatus = S.String;
 
 export type Subdomain = string;
 export type StatusMessage = string;
@@ -2499,7 +2499,7 @@ export type LensStatus =
   | "DELETED"
   | "UNSHARED"
   | (string & {});
-export const LensStatus = /*@__PURE__*/ S.String;
+export const LensStatus = S.String;
 
 export type PillarName = string;
 export interface PillarReviewSummary {
@@ -2685,7 +2685,7 @@ export const GetLensVersionDifferenceInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetLensVersionDifferenceInput",
 }) as any as S.Schema<GetLensVersionDifferenceInput>;
 export type DifferenceStatus = "UPDATED" | "NEW" | "DELETED" | (string & {});
-export const DifferenceStatus = /*@__PURE__*/ S.String;
+export const DifferenceStatus = S.String;
 
 export interface QuestionDifference {
   QuestionId?: string;
@@ -2781,7 +2781,7 @@ export type WorkloadImprovementStatus =
   | "COMPLETE"
   | "RISK_ACKNOWLEDGED"
   | (string & {});
-export const WorkloadImprovementStatus = /*@__PURE__*/ S.String;
+export const WorkloadImprovementStatus = S.String;
 
 export interface WorkloadJiraConfigurationOutput {
   IssueManagementStatus?: WorkloadIssueManagementStatus;
@@ -3083,7 +3083,7 @@ export const GetReviewTemplateInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetReviewTemplateInput",
 }) as any as S.Schema<GetReviewTemplateInput>;
 export type Question = "UNANSWERED" | "ANSWERED" | (string & {});
-export const Question = /*@__PURE__*/ S.String;
+export const Question = S.String;
 
 export type QuestionCounts = { [key in Question]?: number };
 export const QuestionCounts = /*@__PURE__*/ S.Record(
@@ -3094,7 +3094,7 @@ export type ReviewTemplateUpdateStatus =
   | "CURRENT"
   | "LENS_NOT_CURRENT"
   | (string & {});
-export const ReviewTemplateUpdateStatus = /*@__PURE__*/ S.String;
+export const ReviewTemplateUpdateStatus = S.String;
 
 export interface ReviewTemplate {
   Description?: string;
@@ -3162,7 +3162,7 @@ export type ReviewTemplateAnswerStatus =
   | "UNANSWERED"
   | "ANSWERED"
   | (string & {});
-export const ReviewTemplateAnswerStatus = /*@__PURE__*/ S.String;
+export const ReviewTemplateAnswerStatus = S.String;
 
 export interface ReviewTemplateAnswer {
   QuestionId?: string;
@@ -3354,7 +3354,7 @@ export type ImportLensStatus =
   | "COMPLETE"
   | "ERROR"
   | (string & {});
-export const ImportLensStatus = /*@__PURE__*/ S.String;
+export const ImportLensStatus = S.String;
 
 export interface ImportLensOutput {
   LensArn?: string;
@@ -3602,7 +3602,7 @@ export type RecommendationItemType =
   | "AWS_RESOURCE"
   | "RECOMMENDATION"
   | (string & {});
-export const RecommendationItemType = /*@__PURE__*/ S.String;
+export const RecommendationItemType = S.String;
 
 export interface ListAgentRecommendationItemsRequest {
   recommendationArn: string;
@@ -3774,7 +3774,7 @@ export const ListAgentRecommendationsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAgentRecommendationsResponse",
 }) as any as S.Schema<ListAgentRecommendationsResponse>;
 export type QuestionPriority = "PRIORITIZED" | "NONE" | (string & {});
-export const QuestionPriority = /*@__PURE__*/ S.String;
+export const QuestionPriority = S.String;
 
 export interface ListAnswersInput {
   WorkloadId: string;
@@ -3829,7 +3829,7 @@ export const ChoiceAnswerSummary = /*@__PURE__*/ S.suspend(() =>
 export type ChoiceAnswerSummaries = ChoiceAnswerSummary[];
 export const ChoiceAnswerSummaries = /*@__PURE__*/ S.Array(ChoiceAnswerSummary);
 export type QuestionType = "PRIORITIZED" | "NON_PRIORITIZED" | (string & {});
-export const QuestionType = /*@__PURE__*/ S.String;
+export const QuestionType = S.String;
 
 export interface AnswerSummary {
   QuestionId?: string;
@@ -3916,7 +3916,7 @@ export type CheckId = string;
 export type CheckName = string;
 export type CheckDescription = string;
 export type CheckProvider = "TRUSTED_ADVISOR" | (string & {});
-export const CheckProvider = /*@__PURE__*/ S.String;
+export const CheckProvider = S.String;
 
 export type CheckStatus =
   | "OKAY"
@@ -3925,7 +3925,7 @@ export type CheckStatus =
   | "NOT_AVAILABLE"
   | "FETCH_FAILED"
   | (string & {});
-export const CheckStatus = /*@__PURE__*/ S.String;
+export const CheckStatus = S.String;
 
 export type FlaggedResources = number;
 export type CheckFailureReason =
@@ -3934,7 +3934,7 @@ export type CheckFailureReason =
   | "UNKNOWN_ERROR"
   | "PREMIUM_SUPPORT_REQUIRED"
   | (string & {});
-export const CheckFailureReason = /*@__PURE__*/ S.String;
+export const CheckFailureReason = S.String;
 
 export interface CheckDetail {
   Id?: string;
@@ -4066,7 +4066,7 @@ export type LensType =
   | "CUSTOM_SHARED"
   | "CUSTOM_SELF"
   | (string & {});
-export const LensType = /*@__PURE__*/ S.String;
+export const LensType = S.String;
 
 export interface ListLensesInput {
   NextToken?: string;
@@ -4313,7 +4313,7 @@ export type ShareStatus =
   | "ASSOCIATED"
   | "FAILED"
   | (string & {});
-export const ShareStatus = /*@__PURE__*/ S.String;
+export const ShareStatus = S.String;
 
 export interface ListLensSharesInput {
   LensAlias: string;
@@ -4490,7 +4490,7 @@ export type NotificationType =
   | "LENS_VERSION_UPGRADED"
   | "LENS_VERSION_DEPRECATED"
   | (string & {});
-export const NotificationType = /*@__PURE__*/ S.String;
+export const NotificationType = S.String;
 
 export interface LensUpgradeSummary {
   WorkloadId?: string;
@@ -4569,7 +4569,7 @@ export type ProfileNotificationType =
   | "PROFILE_ANSWERS_UPDATED"
   | "PROFILE_DELETED"
   | (string & {});
-export const ProfileNotificationType = /*@__PURE__*/ S.String;
+export const ProfileNotificationType = S.String;
 
 export interface ProfileNotificationSummary {
   CurrentProfileVersion?: string;
@@ -4611,7 +4611,7 @@ export const ListProfileNotificationsOutput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListProfileNotificationsOutput>;
 export type ProfileNamePrefix = string;
 export type ProfileOwnerType = "SELF" | "SHARED" | (string & {});
-export const ProfileOwnerType = /*@__PURE__*/ S.String;
+export const ProfileOwnerType = S.String;
 
 export interface ListProfilesInput {
   ProfileNamePrefix?: string;
@@ -4878,7 +4878,7 @@ export type ShareResourceType =
   | "PROFILE"
   | "TEMPLATE"
   | (string & {});
-export const ShareResourceType = /*@__PURE__*/ S.String;
+export const ShareResourceType = S.String;
 
 export type TemplateNamePrefix = string;
 export interface ListShareInvitationsInput {
@@ -5162,7 +5162,7 @@ export type RecommendationFeedbackType =
   | "USEFUL"
   | "NOT_USEFUL"
   | (string & {});
-export const RecommendationFeedbackType = /*@__PURE__*/ S.String;
+export const RecommendationFeedbackType = S.String;
 
 export type FeedbackCategory =
   | "OTHER"
@@ -5171,7 +5171,7 @@ export type FeedbackCategory =
   | "RESOURCE_TYPE_NOT_IMPORTANT"
   | "RECOMMENDATION_INCORRECT"
   | (string & {});
-export const FeedbackCategory = /*@__PURE__*/ S.String;
+export const FeedbackCategory = S.String;
 
 export interface PutAgentRecommendationFeedbackRequest {
   recommendationArn: string;
@@ -5588,7 +5588,7 @@ export const UpdateAnswerOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateAnswerOutput",
 }) as any as S.Schema<UpdateAnswerOutput>;
 export type IntegrationStatusInput = "NOT_CONFIGURED" | (string & {});
-export const IntegrationStatusInput = /*@__PURE__*/ S.String;
+export const IntegrationStatusInput = S.String;
 
 export interface AccountJiraConfigurationInput {
   IssueManagementStatus?: AccountJiraIssueManagementStatus;
@@ -5636,7 +5636,7 @@ export const UpdateGlobalSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateGlobalSettingsResponse",
 }) as any as S.Schema<UpdateGlobalSettingsResponse>;
 export type IntegratingService = "JIRA" | (string & {});
-export const IntegratingService = /*@__PURE__*/ S.String;
+export const IntegratingService = S.String;
 
 export interface UpdateIntegrationInput {
   WorkloadId: string;
@@ -5879,7 +5879,7 @@ export const UpdateReviewTemplateLensReviewOutput = /*@__PURE__*/ S.suspend(
   identifier: "UpdateReviewTemplateLensReviewOutput",
 }) as any as S.Schema<UpdateReviewTemplateLensReviewOutput>;
 export type ShareInvitationAction = "ACCEPT" | "REJECT" | (string & {});
-export const ShareInvitationAction = /*@__PURE__*/ S.String;
+export const ShareInvitationAction = S.String;
 
 export interface UpdateShareInvitationInput {
   ShareInvitationId: string;
@@ -6163,7 +6163,7 @@ export type ValidationExceptionReason =
   | "FIELD_VALIDATION_FAILED"
   | "OTHER"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export type ValidationExceptionFieldName = string;
 export interface ValidationExceptionField {

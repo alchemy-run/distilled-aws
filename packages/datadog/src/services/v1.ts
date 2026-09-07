@@ -469,7 +469,7 @@ export const OrganizationSettingsSaml = /*@__PURE__*/ S.suspend(() =>
 
 /** The access role of the user. Options are **st** (standard user), **adm** (admin user), or **ro** (read-only user). */
 export type AccessRole = "st" | "adm" | "ro" | "ERROR";
-export const AccessRole = /*@__PURE__*/ S.String;
+export const AccessRole = S.String;
 
 /** List of domains where the SAML automated user creation is enabled. */
 export type OrganizationSettingsSamlAutocreateUsersDomainsDomainsList =
@@ -641,7 +641,7 @@ export const OrganizationCreateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of live timeframe. */
 export type DashboardLiveTimeframeType = "live";
-export const DashboardLiveTimeframeType = /*@__PURE__*/ S.String;
+export const DashboardLiveTimeframeType = S.String;
 
 /** Unit of the time span. */
 export type WidgetLiveSpanUnit =
@@ -651,7 +651,7 @@ export type WidgetLiveSpanUnit =
   | "week"
   | "month"
   | "year";
-export const WidgetLiveSpanUnit = /*@__PURE__*/ S.String;
+export const WidgetLiveSpanUnit = S.String;
 
 /** A live dashboard timeframe. */
 export interface DashboardLiveTimeframe {
@@ -672,7 +672,7 @@ export const DashboardLiveTimeframe = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of fixed timeframe. */
 export type DashboardFixedTimeframeType = "fixed";
-export const DashboardFixedTimeframeType = /*@__PURE__*/ S.String;
+export const DashboardFixedTimeframeType = S.String;
 
 /** A fixed dashboard timeframe. */
 export interface DashboardFixedTimeframe {
@@ -697,11 +697,11 @@ export type DashboardDefaultTimeframeSetting =
   | DashboardLiveTimeframe
   | DashboardFixedTimeframe;
 export const DashboardDefaultTimeframeSetting =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DashboardDefaultTimeframeSetting>;
+  S.Unknown as any as S.Schema<DashboardDefaultTimeframeSetting>;
 
 /** Layout type of the dashboard. */
 export type DashboardLayoutType = "ordered" | "free";
-export const DashboardLayoutType = /*@__PURE__*/ S.String;
+export const DashboardLayoutType = S.String;
 
 /** List of handles of users to notify when changes are made to this dashboard. */
 export type CreateDashboardRequestNotifyListList = Array<string>;
@@ -711,7 +711,7 @@ export const CreateDashboardRequestNotifyListList = /*@__PURE__*/ S.Array(
 
 /** Reflow type for a **new dashboard layout** dashboard. Set this only when layout type is 'ordered'. If set to 'fixed', the dashboard expects all widgets to have a layout, and if it's set to 'auto', widgets should not have layouts. */
 export type DashboardReflowType = "auto" | "fixed";
-export const DashboardReflowType = /*@__PURE__*/ S.String;
+export const DashboardReflowType = S.String;
 
 /** A list of role identifiers. Only the author and users associated with at least one of these roles can edit this dashboard. */
 export type CreateDashboardRequestRestrictedRolesList = Array<string>;
@@ -885,7 +885,7 @@ export type WidgetLiveSpan =
   | "month_to_date"
   | "1y"
   | "alert";
-export const WidgetLiveSpan = /*@__PURE__*/ S.String;
+export const WidgetLiveSpan = S.String;
 
 /** Wrapper for live span */
 export interface WidgetLegacyLiveSpan {
@@ -904,7 +904,7 @@ export const WidgetLegacyLiveSpan = /*@__PURE__*/ S.suspend(() =>
 
 /** Type "live" denotes a live span in the new format. */
 export type WidgetNewLiveSpanType = "live";
-export const WidgetNewLiveSpanType = /*@__PURE__*/ S.String;
+export const WidgetNewLiveSpanType = S.String;
 
 /** Used for arbitrary live span times, such as 17 minutes or 6 hours. */
 export interface WidgetNewLiveSpan {
@@ -928,7 +928,7 @@ export const WidgetNewLiveSpan = /*@__PURE__*/ S.suspend(() =>
 
 /** Type "fixed" denotes a fixed span. */
 export type WidgetNewFixedSpanType = "fixed";
-export const WidgetNewFixedSpanType = /*@__PURE__*/ S.String;
+export const WidgetNewFixedSpanType = S.String;
 
 /** Used for fixed span times, such as 'March 1 to March 7'. */
 export interface WidgetNewFixedSpan {
@@ -956,20 +956,19 @@ export type WidgetTime =
   | WidgetLegacyLiveSpan
   | WidgetNewLiveSpan
   | WidgetNewFixedSpan;
-export const WidgetTime =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WidgetTime>;
+export const WidgetTime = S.Unknown as any as S.Schema<WidgetTime>;
 
 /** How to align the text on the widget. */
 export type WidgetTextAlign = "center" | "left" | "right";
-export const WidgetTextAlign = /*@__PURE__*/ S.String;
+export const WidgetTextAlign = S.String;
 
 /** Type of the alert graph widget. */
 export type AlertGraphWidgetDefinitionType = "alert_graph";
-export const AlertGraphWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const AlertGraphWidgetDefinitionType = S.String;
 
 /** Whether to display the Alert Graph as a timeseries or a top list. */
 export type WidgetVizType = "timeseries" | "toplist";
-export const WidgetVizType = /*@__PURE__*/ S.String;
+export const WidgetVizType = S.String;
 
 /** Alert graphs are timeseries graphs showing the current status of any monitor defined on your system. */
 export interface AlertGraphWidgetDefinition {
@@ -1003,7 +1002,7 @@ export const AlertGraphWidgetDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the alert value widget. */
 export type AlertValueWidgetDefinitionType = "alert_value";
-export const AlertValueWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const AlertValueWidgetDefinitionType = S.String;
 
 /** Alert values are query values showing the current value of the metric in any monitor defined on your system. */
 export interface AlertValueWidgetDefinition {
@@ -1088,7 +1087,7 @@ export const LogsQueryCompute = /*@__PURE__*/ S.suspend(() =>
 
 /** Widget sorting methods. */
 export type WidgetSort = "asc" | "desc";
-export const WidgetSort = /*@__PURE__*/ S.String;
+export const WidgetSort = S.String;
 
 /** Define a sorting method. */
 export interface LogQueryDefinitionGroupBySort {
@@ -1176,7 +1175,7 @@ export const LogQueryDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** Comparator to apply. */
 export type WidgetComparator = "=" | ">" | ">=" | "<" | "<=";
-export const WidgetComparator = /*@__PURE__*/ S.String;
+export const WidgetComparator = S.String;
 
 /** Color palette to apply. */
 export type WidgetPalette =
@@ -1199,7 +1198,7 @@ export type WidgetPalette =
   | "black_on_light_yellow"
   | "black_on_light_green"
   | "black_on_light_red";
-export const WidgetPalette = /*@__PURE__*/ S.String;
+export const WidgetPalette = S.String;
 
 /** Define a conditional format for the widget. */
 export interface WidgetConditionalFormat {
@@ -1246,21 +1245,20 @@ export const BarChartWidgetRequestConditionalFormatsList =
 
 /** Define a display mode for the table cell. */
 export type TableWidgetCellDisplayMode = "number" | "bar" | "trend";
-export const TableWidgetCellDisplayMode = /*@__PURE__*/ S.String;
+export const TableWidgetCellDisplayMode = S.String;
 
 /** Trend type for the cell display mode options. */
 export type WidgetFormulaCellDisplayModeOptionsTrendType =
   | "area"
   | "line"
   | "bars";
-export const WidgetFormulaCellDisplayModeOptionsTrendType =
-  /*@__PURE__*/ S.String;
+export const WidgetFormulaCellDisplayModeOptionsTrendType = S.String;
 
 /** Y scale for the cell display mode options. */
 export type WidgetFormulaCellDisplayModeOptionsYScale =
   | "shared"
   | "independent";
-export const WidgetFormulaCellDisplayModeOptionsYScale = /*@__PURE__*/ S.String;
+export const WidgetFormulaCellDisplayModeOptionsYScale = S.String;
 
 /** Cell display mode options for the widget formula. (only if `cell_display_mode` is set to `trend`). */
 export interface WidgetFormulaCellDisplayModeOptions {
@@ -1285,7 +1283,7 @@ export const WidgetFormulaConditionalFormatsList = /*@__PURE__*/ S.Array(
 
 /** Direction of sort. */
 export type QuerySortOrder = "asc" | "desc";
-export const QuerySortOrder = /*@__PURE__*/ S.String;
+export const QuerySortOrder = S.String;
 
 /** Options for limiting results returned. */
 export interface WidgetFormulaLimit {
@@ -1304,7 +1302,7 @@ export const WidgetFormulaLimit = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of unit scale. */
 export type NumberFormatUnitScaleType = "canonical_unit";
-export const NumberFormatUnitScaleType = /*@__PURE__*/ S.String;
+export const NumberFormatUnitScaleType = S.String;
 
 /** Canonical unit. */
 export interface NumberFormatUnitCanonical {
@@ -1326,7 +1324,7 @@ export const NumberFormatUnitCanonical = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of custom unit. */
 export type NumberFormatUnitCustomType = "custom_unit_label";
-export const NumberFormatUnitCustomType = /*@__PURE__*/ S.String;
+export const NumberFormatUnitCustomType = S.String;
 
 /** Custom unit. */
 export interface NumberFormatUnitCustom {
@@ -1347,8 +1345,7 @@ export const NumberFormatUnitCustom = /*@__PURE__*/ S.suspend(() =>
 export type NumberFormatUnit =
   | NumberFormatUnitCanonical
   | NumberFormatUnitCustom;
-export const NumberFormatUnit =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NumberFormatUnit>;
+export const NumberFormatUnit = S.Unknown as any as S.Schema<NumberFormatUnit>;
 
 /** The definition of `NumberFormatUnitScale` object. */
 export interface NumberFormatUnitScale {
@@ -1466,7 +1463,7 @@ export type FormulaAndFunctionMetricAggregation =
   | "area"
   | "l2norm"
   | "percentile";
-export const FormulaAndFunctionMetricAggregation = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionMetricAggregation = S.String;
 
 /** The source organization UUID for cross organization queries. Feature in Private Beta. */
 export type CrossOrgUuids = Array<string>;
@@ -1476,11 +1473,11 @@ export const CrossOrgUuids = /*@__PURE__*/ S.Array(
 
 /** Data source for metrics queries. */
 export type FormulaAndFunctionMetricDataSource = "metrics";
-export const FormulaAndFunctionMetricDataSource = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionMetricDataSource = S.String;
 
 /** Semantic mode for metrics queries. This determines how metrics from different sources are combined or displayed. */
 export type FormulaAndFunctionMetricSemanticMode = "combined" | "native";
-export const FormulaAndFunctionMetricSemanticMode = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionMetricSemanticMode = S.String;
 
 /** A formula and functions metrics query. */
 export interface FormulaAndFunctionMetricQueryDefinition {
@@ -1521,7 +1518,7 @@ export type FormulaAndFunctionEventAggregation =
   | "min"
   | "max"
   | "avg";
-export const FormulaAndFunctionEventAggregation = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionEventAggregation = S.String;
 
 /** Compute options. */
 export interface FormulaAndFunctionEventQueryDefinitionCompute {
@@ -1559,7 +1556,7 @@ export type FormulaAndFunctionEventsDataSource =
   | "on_call_events"
   | "errors"
   | "llm_observability";
-export const FormulaAndFunctionEventsDataSource = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionEventsDataSource = S.String;
 
 /** Options for sorting group by results. */
 export interface FormulaAndFunctionEventQueryGroupBySort {
@@ -1635,7 +1632,7 @@ export type FormulaAndFunctionEventQueryGroupByConfig =
   | FormulaAndFunctionEventQueryGroupByList
   | FormulaAndFunctionEventQueryGroupByFields;
 export const FormulaAndFunctionEventQueryGroupByConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FormulaAndFunctionEventQueryGroupByConfig>;
+  S.Unknown as any as S.Schema<FormulaAndFunctionEventQueryGroupByConfig>;
 
 /** An array of index names to query in the stream. Omit or use `[]` to query all indexes at once. */
 export type FormulaAndFunctionEventQueryDefinitionIndexesList = Array<string>;
@@ -1690,7 +1687,7 @@ export const FormulaAndFunctionEventQueryDefinition = /*@__PURE__*/ S.suspend(
 
 /** Data sources that rely on the process backend. */
 export type FormulaAndFunctionProcessQueryDataSource = "process" | "container";
-export const FormulaAndFunctionProcessQueryDataSource = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionProcessQueryDataSource = S.String;
 
 /** An array of tags to filter by. */
 export type FormulaAndFunctionProcessQueryDefinitionTagFiltersList =
@@ -1742,8 +1739,7 @@ export const FormulaAndFunctionProcessQueryDefinition = /*@__PURE__*/ S.suspend(
 /** Data source for APM dependency stats queries. */
 export type FormulaAndFunctionApmDependencyStatsDataSource =
   "apm_dependency_stats";
-export const FormulaAndFunctionApmDependencyStatsDataSource =
-  /*@__PURE__*/ S.String;
+export const FormulaAndFunctionApmDependencyStatsDataSource = S.String;
 
 /** APM statistic. */
 export type FormulaAndFunctionApmDependencyStatName =
@@ -1754,7 +1750,7 @@ export type FormulaAndFunctionApmDependencyStatName =
   | "pct_exec_time"
   | "pct_of_traces"
   | "total_traces_count";
-export const FormulaAndFunctionApmDependencyStatName = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionApmDependencyStatName = S.String;
 
 /** A formula and functions APM dependency stats query. */
 export interface FormulaAndFunctionApmDependencyStatsQueryDefinition {
@@ -1799,8 +1795,7 @@ export const FormulaAndFunctionApmDependencyStatsQueryDefinition =
 
 /** Data source for APM resource stats queries. */
 export type FormulaAndFunctionApmResourceStatsDataSource = "apm_resource_stats";
-export const FormulaAndFunctionApmResourceStatsDataSource =
-  /*@__PURE__*/ S.String;
+export const FormulaAndFunctionApmResourceStatsDataSource = S.String;
 
 /** Array of fields to group results by. */
 export type FormulaAndFunctionApmResourceStatsQueryDefinitionGroupByList =
@@ -1823,7 +1818,7 @@ export type FormulaAndFunctionApmResourceStatName =
   | "latency_p90"
   | "latency_p95"
   | "latency_p99";
-export const FormulaAndFunctionApmResourceStatName = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionApmResourceStatName = S.String;
 
 /** APM resource stats query using formulas and functions. Deprecated - Use `apm_metrics` query type instead. */
 export interface FormulaAndFunctionApmResourceStatsQueryDefinition {
@@ -1870,7 +1865,7 @@ export const FormulaAndFunctionApmResourceStatsQueryDefinition =
 
 /** Data source for APM metrics queries. */
 export type FormulaAndFunctionApmMetricsDataSource = "apm_metrics";
-export const FormulaAndFunctionApmMetricsDataSource = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionApmMetricsDataSource = S.String;
 
 /** Optional fields to group the query results by. */
 export type FormulaAndFunctionApmMetricsQueryDefinitionGroupByList =
@@ -1895,7 +1890,7 @@ export type FormulaAndFunctionApmMetricsSpanKind =
   | "client"
   | "producer"
   | "internal";
-export const FormulaAndFunctionApmMetricsSpanKind = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionApmMetricsSpanKind = S.String;
 
 /** APM metric stat name. */
 export type FormulaAndFunctionApmMetricStatName =
@@ -1915,7 +1910,7 @@ export type FormulaAndFunctionApmMetricStatName =
   | "hits_per_second"
   | "total_time"
   | "apdex";
-export const FormulaAndFunctionApmMetricStatName = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionApmMetricStatName = S.String;
 
 /** A formula and functions APM metrics query. */
 export interface FormulaAndFunctionApmMetricsQueryDefinition {
@@ -1967,11 +1962,11 @@ export const FormulaAndFunctionApmMetricsQueryDefinition =
 
 /** Data source for SLO measures queries. */
 export type FormulaAndFunctionSLODataSource = "slo";
-export const FormulaAndFunctionSLODataSource = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionSLODataSource = S.String;
 
 /** Group mode to query measures. */
 export type FormulaAndFunctionSLOGroupMode = "overall" | "components";
-export const FormulaAndFunctionSLOGroupMode = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionSLOGroupMode = S.String;
 
 /** SLO measures queries. */
 export type FormulaAndFunctionSLOMeasure =
@@ -1983,14 +1978,14 @@ export type FormulaAndFunctionSLOMeasure =
   | "error_budget_remaining"
   | "burn_rate"
   | "error_budget_burndown";
-export const FormulaAndFunctionSLOMeasure = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionSLOMeasure = S.String;
 
 /** Name of the query for use in formulas. */
 export type FormulaAndFunctionSLOQueryType =
   | "metric"
   | "monitor"
   | "time_slice";
-export const FormulaAndFunctionSLOQueryType = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionSLOQueryType = S.String;
 
 /** A formula and functions metrics query. */
 export interface FormulaAndFunctionSLOQueryDefinition {
@@ -2030,11 +2025,11 @@ export type WidgetAggregator =
   | "min"
   | "sum"
   | "percentile";
-export const WidgetAggregator = /*@__PURE__*/ S.String;
+export const WidgetAggregator = S.String;
 
 /** Data source for Cloud Cost queries. */
 export type FormulaAndFunctionCloudCostDataSource = "cloud_cost";
-export const FormulaAndFunctionCloudCostDataSource = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionCloudCostDataSource = S.String;
 
 /** A formula and functions Cloud Cost query. */
 export interface FormulaAndFunctionCloudCostQueryDefinition {
@@ -2158,7 +2153,7 @@ export type CalendarIntervalType =
   | "quarter"
   | "minute"
   | "hour";
-export const CalendarIntervalType = /*@__PURE__*/ S.String;
+export const CalendarIntervalType = S.String;
 
 /** Calendar interval definition. */
 export interface CalendarInterval {
@@ -2208,8 +2203,7 @@ export const ProductAnalyticsExtendedCompute = /*@__PURE__*/ S.suspend(() =>
 /** Data source for Product Analytics Extended queries. */
 export type FormulaAndFunctionProductAnalyticsExtendedDataSource =
   "product_analytics_extended";
-export const FormulaAndFunctionProductAnalyticsExtendedDataSource =
-  /*@__PURE__*/ S.String;
+export const FormulaAndFunctionProductAnalyticsExtendedDataSource = S.String;
 
 /** Group by configuration for Product Analytics Extended queries. */
 export interface ProductAnalyticsExtendedGroupBy {
@@ -2244,7 +2238,7 @@ export const FormulaAndFunctionProductAnalyticsExtendedQueryDefinitionGroupByLis
 export type FormulaAndFunctionProductAnalyticsExtendedQueryDefinitionIndexesItems =
   "*";
 export const FormulaAndFunctionProductAnalyticsExtendedQueryDefinitionIndexesItems =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Event indexes to query. */
 export type FormulaAndFunctionProductAnalyticsExtendedQueryDefinitionIndexesList =
@@ -2259,7 +2253,7 @@ export const FormulaAndFunctionProductAnalyticsExtendedQueryDefinitionIndexesLis
 
 /** Data source for Product Analytics event queries. */
 export type ProductAnalyticsEventDataSource = "product_analytics";
-export const ProductAnalyticsEventDataSource = /*@__PURE__*/ S.String;
+export const ProductAnalyticsEventDataSource = S.String;
 
 /** Search configuration for Product Analytics event query. */
 export interface ProductAnalyticsEventQuerySearch {
@@ -2325,7 +2319,7 @@ export type UserJourneyFormulaComputeMetric =
   | "__dd.conversion"
   | "__dd.conversion_rate"
   | "__dd.time_to_convert";
-export const UserJourneyFormulaComputeMetric = /*@__PURE__*/ S.String;
+export const UserJourneyFormulaComputeMetric = S.String;
 
 /** Target for user journey search. */
 export interface UserJourneySearchTarget {
@@ -2370,7 +2364,7 @@ export const UserJourneyFormulaCompute = /*@__PURE__*/ S.suspend(() =>
 
 /** Data source for user journey funnel queries. */
 export type ProductAnalyticsFunnelDataSource = "product_analytics_journey";
-export const ProductAnalyticsFunnelDataSource = /*@__PURE__*/ S.String;
+export const ProductAnalyticsFunnelDataSource = S.String;
 
 /** Group by configuration for User Journey formula queries. */
 export interface UserJourneyFormulaGroupBy {
@@ -2550,16 +2544,16 @@ export type EventsAggregationValue =
   | "min"
   | "most_frequent"
   | "sum";
-export const EventsAggregationValue = /*@__PURE__*/ S.String;
+export const EventsAggregationValue = S.String;
 
 /** The type of aggregation that can be performed on events-based queries. */
 export type EventsAggregation = EventsAggregationValue | string;
 export const EventsAggregation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsAggregation>;
+  S.Unknown as any as S.Schema<EventsAggregation>;
 
 /** Metric for retention compute. */
 export type RetentionComputeMetric = "__dd.retention" | "__dd.retention_rate";
-export const RetentionComputeMetric = /*@__PURE__*/ S.String;
+export const RetentionComputeMetric = S.String;
 
 /** Compute configuration for retention queries. */
 export interface RetentionCompute {
@@ -2577,7 +2571,7 @@ export const RetentionCompute = /*@__PURE__*/ S.suspend(() =>
 
 /** Data source for retention queries. */
 export type RetentionDataSource = "product_analytics_retention";
-export const RetentionDataSource = /*@__PURE__*/ S.String;
+export const RetentionDataSource = S.String;
 
 /** Sort configuration for retention group by. */
 export interface RetentionGroupBySort {
@@ -2593,7 +2587,7 @@ export const RetentionGroupBySort = /*@__PURE__*/ S.suspend(() =>
 
 /** Target for retention group by. */
 export type RetentionGroupByTarget = "cohort" | "return_period";
-export const RetentionGroupByTarget = /*@__PURE__*/ S.String;
+export const RetentionGroupByTarget = S.String;
 
 /** Group by configuration for retention queries. */
 export interface RetentionGroupBy {
@@ -2631,7 +2625,7 @@ export const FormulaAndFunctionRetentionQueryDefinitionGroupByList =
 
 /** Type of time interval for cohort criteria. */
 export type RetentionCohortCriteriaTimeIntervalType = "calendar";
-export const RetentionCohortCriteriaTimeIntervalType = /*@__PURE__*/ S.String;
+export const RetentionCohortCriteriaTimeIntervalType = S.String;
 
 /** Time interval for cohort criteria. */
 export interface RetentionCohortCriteriaTimeInterval {
@@ -2678,21 +2672,21 @@ export const RetentionFilters = /*@__PURE__*/ S.suspend(() =>
 
 /** Entity to track for retention. */
 export type RetentionEntity = "@usr.id" | "@account.id";
-export const RetentionEntity = /*@__PURE__*/ S.String;
+export const RetentionEntity = S.String;
 
 /** Condition for counting user return. */
 export type RetentionReturnCondition =
   | "conversion_on"
   | "conversion_on_or_after";
-export const RetentionReturnCondition = /*@__PURE__*/ S.String;
+export const RetentionReturnCondition = S.String;
 
 /** Type of time interval for return criteria. */
 export type RetentionReturnCriteriaTimeIntervalType = "fixed";
-export const RetentionReturnCriteriaTimeIntervalType = /*@__PURE__*/ S.String;
+export const RetentionReturnCriteriaTimeIntervalType = S.String;
 
 /** Unit of time for retention return criteria interval. */
 export type RetentionReturnCriteriaTimeIntervalUnit = "day" | "week" | "month";
-export const RetentionReturnCriteriaTimeIntervalUnit = /*@__PURE__*/ S.String;
+export const RetentionReturnCriteriaTimeIntervalUnit = S.String;
 
 /** Time interval for return criteria. */
 export interface RetentionReturnCriteriaTimeInterval {
@@ -2784,7 +2778,7 @@ export type FormulaAndFunctionQueryDefinition =
   | FormulaAndFunctionUserJourneyQueryDefinition
   | FormulaAndFunctionRetentionQueryDefinition;
 export const FormulaAndFunctionQueryDefinition =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FormulaAndFunctionQueryDefinition>;
+  S.Unknown as any as S.Schema<FormulaAndFunctionQueryDefinition>;
 
 /** List of queries that can be returned directly or used in formulas. */
 export type BarChartWidgetRequestQueriesList =
@@ -2798,11 +2792,11 @@ export type FormulaAndFunctionResponseFormat =
   | "timeseries"
   | "scalar"
   | "event_list";
-export const FormulaAndFunctionResponseFormat = /*@__PURE__*/ S.String;
+export const FormulaAndFunctionResponseFormat = S.String;
 
 /** Set the sort type to formula. */
 export type FormulaType = "formula";
-export const FormulaType = /*@__PURE__*/ S.String;
+export const FormulaType = S.String;
 
 /** The formula to sort the widget by. */
 export interface WidgetFormulaSort {
@@ -2823,7 +2817,7 @@ export const WidgetFormulaSort = /*@__PURE__*/ S.suspend(() =>
 
 /** Set the sort type to group. */
 export type GroupType = "group";
-export const GroupType = /*@__PURE__*/ S.String;
+export const GroupType = S.String;
 
 /** The group to sort the widget by. */
 export interface WidgetGroupSort {
@@ -2845,7 +2839,7 @@ export const WidgetGroupSort = /*@__PURE__*/ S.suspend(() =>
 /** The item to sort the widget by. */
 export type WidgetSortOrderBy = WidgetFormulaSort | WidgetGroupSort;
 export const WidgetSortOrderBy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WidgetSortOrderBy>;
+  S.Unknown as any as S.Schema<WidgetSortOrderBy>;
 
 /** The array of items to sort the widget by in order. */
 export type WidgetSortByOrderByList = Array<WidgetSortOrderBy>;
@@ -2869,15 +2863,15 @@ export const WidgetSortBy = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of lines displayed. */
 export type WidgetLineType = "dashed" | "dotted" | "solid";
-export const WidgetLineType = /*@__PURE__*/ S.String;
+export const WidgetLineType = S.String;
 
 /** Width of line displayed. */
 export type WidgetLineWidth = "normal" | "thick" | "thin";
-export const WidgetLineWidth = /*@__PURE__*/ S.String;
+export const WidgetLineWidth = S.String;
 
 /** How to order series in timeseries visualizations. - `tags`: Order series alphabetically by tag name (default behavior) - `values`: Order series by their current metric values (typically descending) */
 export type WidgetStyleOrderBy = "tags" | "values";
-export const WidgetStyleOrderBy = /*@__PURE__*/ S.String;
+export const WidgetStyleOrderBy = S.String;
 
 /** Define request widget style. */
 export interface WidgetRequestStyle {
@@ -2963,11 +2957,11 @@ export const BarChartWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** Bar chart widget stacked legend behavior. */
 export type BarChartWidgetLegend = "automatic" | "inline" | "none";
-export const BarChartWidgetLegend = /*@__PURE__*/ S.String;
+export const BarChartWidgetLegend = S.String;
 
 /** Bar chart widget stacked display type. */
 export type BarChartWidgetStackedType = "stacked";
-export const BarChartWidgetStackedType = /*@__PURE__*/ S.String;
+export const BarChartWidgetStackedType = S.String;
 
 /** Bar chart widget stacked display options. */
 export interface BarChartWidgetStacked {
@@ -2985,7 +2979,7 @@ export const BarChartWidgetStacked = /*@__PURE__*/ S.suspend(() =>
 
 /** Bar chart widget flat display type. */
 export type BarChartWidgetFlatType = "flat";
-export const BarChartWidgetFlatType = /*@__PURE__*/ S.String;
+export const BarChartWidgetFlatType = S.String;
 
 /** Bar chart widget flat display. */
 export interface BarChartWidgetFlat {
@@ -3002,11 +2996,11 @@ export const BarChartWidgetFlat = /*@__PURE__*/ S.suspend(() =>
 /** Bar chart widget display options. */
 export type BarChartWidgetDisplay = BarChartWidgetStacked | BarChartWidgetFlat;
 export const BarChartWidgetDisplay =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BarChartWidgetDisplay>;
+  S.Unknown as any as S.Schema<BarChartWidgetDisplay>;
 
 /** Bar chart widget scaling definition. */
 export type BarChartWidgetScaling = "absolute" | "relative";
-export const BarChartWidgetScaling = /*@__PURE__*/ S.String;
+export const BarChartWidgetScaling = S.String;
 
 /** Style customization for a bar chart widget. */
 export interface BarChartWidgetStyle {
@@ -3027,7 +3021,7 @@ export const BarChartWidgetStyle = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the bar chart widget. */
 export type BarChartWidgetDefinitionType = "bar_chart";
-export const BarChartWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const BarChartWidgetDefinitionType = S.String;
 
 /** The bar chart visualization displays categorical data using vertical bars, allowing you to compare values across different groups. */
 export interface BarChartWidgetDefinition {
@@ -3070,7 +3064,7 @@ export const ChangeWidgetDefinitionCustomLinksList = /*@__PURE__*/ S.Array(
 
 /** Show the absolute or the relative change. */
 export type WidgetChangeType = "absolute" | "relative";
-export const WidgetChangeType = /*@__PURE__*/ S.String;
+export const WidgetChangeType = S.String;
 
 /** Timeframe used for the change comparison. */
 export type WidgetCompareTo =
@@ -3078,7 +3072,7 @@ export type WidgetCompareTo =
   | "day_before"
   | "week_before"
   | "month_before";
-export const WidgetCompareTo = /*@__PURE__*/ S.String;
+export const WidgetCompareTo = S.String;
 
 /** List of formulas that operate on queries. */
 export type ChangeWidgetRequestFormulasList = Array<WidgetFormula>;
@@ -3088,7 +3082,7 @@ export const ChangeWidgetRequestFormulasList = /*@__PURE__*/ S.Array(
 
 /** What to order by. */
 export type WidgetOrderBy = "change" | "name" | "present" | "past";
-export const WidgetOrderBy = /*@__PURE__*/ S.String;
+export const WidgetOrderBy = S.String;
 
 /** List of queries that can be returned directly or used in formulas. */
 export type ChangeWidgetRequestQueriesList =
@@ -3164,7 +3158,7 @@ export const ChangeWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** Type of the change widget. */
 export type ChangeWidgetDefinitionType = "change";
-export const ChangeWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const ChangeWidgetDefinitionType = S.String;
 
 /** The Change graph shows you the change in a value over the time period chosen. */
 export interface ChangeWidgetDefinition {
@@ -3205,7 +3199,7 @@ export const CheckStatusWidgetDefinitionGroupByList = /*@__PURE__*/ S.Array(
 
 /** The kind of grouping to use. */
 export type WidgetGrouping = "check" | "cluster";
-export const WidgetGrouping = /*@__PURE__*/ S.String;
+export const WidgetGrouping = S.String;
 
 /** List of tags used to filter the groups reporting a cluster check. */
 export type CheckStatusWidgetDefinitionTagsList = Array<string>;
@@ -3215,7 +3209,7 @@ export const CheckStatusWidgetDefinitionTagsList = /*@__PURE__*/ S.Array(
 
 /** Type of the check status widget. */
 export type CheckStatusWidgetDefinitionType = "check_status";
-export const CheckStatusWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const CheckStatusWidgetDefinitionType = S.String;
 
 /** Check status shows the current status or number of results for any check performed. */
 export interface CheckStatusWidgetDefinition {
@@ -3286,7 +3280,7 @@ export const RetentionQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** Request type for retention grid widget. */
 export type RetentionGridRequestType = "retention_grid";
-export const RetentionGridRequestType = /*@__PURE__*/ S.String;
+export const RetentionGridRequestType = S.String;
 
 /** Retention grid widget request. */
 export interface RetentionGridRequest {
@@ -3310,7 +3304,7 @@ export const CohortWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** Type of the Cohort widget. */
 export type CohortWidgetDefinitionType = "cohort";
-export const CohortWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const CohortWidgetDefinitionType = S.String;
 
 /** The cohort widget visualizes user retention over time. */
 export interface CohortWidgetDefinition {
@@ -3402,7 +3396,7 @@ export const ApmStatsQueryDefinitionColumnsList = /*@__PURE__*/ S.Array(
 
 /** The level of detail for the request. */
 export type ApmStatsQueryRowType = "service" | "resource" | "span";
-export const ApmStatsQueryRowType = /*@__PURE__*/ S.String;
+export const ApmStatsQueryRowType = S.String;
 
 /** The APM stats query for table and distributions widgets. */
 export interface ApmStatsQueryDefinition {
@@ -3454,11 +3448,11 @@ export type DistributionWidgetHistogramRequestQuery =
   | FormulaAndFunctionApmResourceStatsQueryDefinition
   | FormulaAndFunctionApmMetricsQueryDefinition;
 export const DistributionWidgetHistogramRequestQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DistributionWidgetHistogramRequestQuery>;
+  S.Unknown as any as S.Schema<DistributionWidgetHistogramRequestQuery>;
 
 /** Request type for distribution of point values for distribution metrics. Query space aggregator must be `histogram:<metric name>` for points distributions. */
 export type WidgetHistogramRequestType = "histogram";
-export const WidgetHistogramRequestType = /*@__PURE__*/ S.String;
+export const WidgetHistogramRequestType = S.String;
 
 /** Widget style definition. */
 export interface WidgetStyle {
@@ -3535,7 +3529,7 @@ export const DistributionWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** Type of the distribution widget. */
 export type DistributionWidgetDefinitionType = "distribution";
-export const DistributionWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const DistributionWidgetDefinitionType = S.String;
 
 /** X Axis controls for the distribution widget. */
 export interface DistributionWidgetXAxis {
@@ -3633,11 +3627,11 @@ export const DistributionWidgetDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** Size to use to display an event. */
 export type WidgetEventSize = "s" | "l";
-export const WidgetEventSize = /*@__PURE__*/ S.String;
+export const WidgetEventSize = S.String;
 
 /** Type of the event stream widget. */
 export type EventStreamWidgetDefinitionType = "event_stream";
-export const EventStreamWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const EventStreamWidgetDefinitionType = S.String;
 
 /** The event stream is a widget version of the stream of events on the Event Stream view. Only available on FREE layout dashboards. */
 export interface EventStreamWidgetDefinition {
@@ -3674,7 +3668,7 @@ export const EventStreamWidgetDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the event timeline widget. */
 export type EventTimelineWidgetDefinitionType = "event_timeline";
-export const EventTimelineWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const EventTimelineWidgetDefinitionType = S.String;
 
 /** The event timeline is a widget version of the timeline that appears at the top of the Event Stream view. Only available on FREE layout dashboards. */
 export interface EventTimelineWidgetDefinition {
@@ -3709,7 +3703,7 @@ export const EventTimelineWidgetDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the free text widget. */
 export type FreeTextWidgetDefinitionType = "free_text";
-export const FreeTextWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const FreeTextWidgetDefinitionType = S.String;
 
 /** Free text is a widget that allows you to add headings to your dashboard. Commonly used to state the overall purpose of the dashboard. */
 export interface FreeTextWidgetDefinition {
@@ -3738,11 +3732,11 @@ export const FreeTextWidgetDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** Display mode for grouped funnel results. */
 export type FunnelGroupedDisplay = "stacked" | "side_by_side";
-export const FunnelGroupedDisplay = /*@__PURE__*/ S.String;
+export const FunnelGroupedDisplay = S.String;
 
 /** Source from which to query items to display in the funnel. */
 export type FunnelSource = "rum";
-export const FunnelSource = /*@__PURE__*/ S.String;
+export const FunnelSource = S.String;
 
 /** The funnel step. */
 export interface FunnelStep {
@@ -3782,7 +3776,7 @@ export const FunnelQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** Widget request type. */
 export type FunnelRequestType = "funnel";
-export const FunnelRequestType = /*@__PURE__*/ S.String;
+export const FunnelRequestType = S.String;
 
 /** Updated funnel widget. */
 export interface FunnelWidgetRequest {
@@ -3806,7 +3800,7 @@ export const FunnelWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** Type of funnel widget. */
 export type FunnelWidgetDefinitionType = "funnel";
-export const FunnelWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const FunnelWidgetDefinitionType = S.String;
 
 /** The funnel visualization displays a funnel of user sessions that maps a sequence of view navigation and user interaction in your application. */
 export interface FunnelWidgetDefinition {
@@ -3868,7 +3862,7 @@ export type FunnelComparisonDurationType =
   | "previous_day"
   | "previous_week"
   | "previous_month";
-export const FunnelComparisonDurationType = /*@__PURE__*/ S.String;
+export const FunnelComparisonDurationType = S.String;
 
 /** Comparison time configuration for funnel widgets. */
 export interface FunnelComparisonDuration {
@@ -3886,13 +3880,13 @@ export const FunnelComparisonDuration = /*@__PURE__*/ S.suspend(() =>
 
 /** Aggregation type for user journey funnel compute. */
 export type ProductAnalyticsFunnelComputeAggregation = "cardinality" | "count";
-export const ProductAnalyticsFunnelComputeAggregation = /*@__PURE__*/ S.String;
+export const ProductAnalyticsFunnelComputeAggregation = S.String;
 
 /** Metric for user journey funnel compute. `__dd.conversion` and `__dd.conversion_rate` accept `count` (unique users/sessions) and `cardinality` (total users/sessions) as aggregations. */
 export type ProductAnalyticsFunnelComputeMetric =
   | "__dd.conversion"
   | "__dd.conversion_rate";
-export const ProductAnalyticsFunnelComputeMetric = /*@__PURE__*/ S.String;
+export const ProductAnalyticsFunnelComputeMetric = S.String;
 
 /** Compute configuration for user journey funnel. */
 export interface ProductAnalyticsFunnelCompute {
@@ -3980,7 +3974,7 @@ export const ProductAnalyticsFunnelQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** Request type for user journey funnel widget. */
 export type ProductAnalyticsFunnelRequestType = "user_journey_funnel";
-export const ProductAnalyticsFunnelRequestType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsFunnelRequestType = S.String;
 
 /** User journey funnel widget request. */
 export interface ProductAnalyticsFunnelRequest {
@@ -4050,7 +4044,7 @@ export const GeomapWidgetDefinitionCustomLinksList = /*@__PURE__*/ S.Array(
 
 /** Widget column width. */
 export type ListStreamColumnWidth = "auto" | "compact" | "full";
-export const ListStreamColumnWidth = /*@__PURE__*/ S.String;
+export const ListStreamColumnWidth = S.String;
 
 /** Widget column. */
 export interface ListStreamColumn {
@@ -4116,7 +4110,7 @@ export type ListStreamComputeAggregation =
   | "earliest"
   | "latest"
   | "most_frequent";
-export const ListStreamComputeAggregation = /*@__PURE__*/ S.String;
+export const ListStreamComputeAggregation = S.String;
 
 /** List of facets and aggregations which to compute. */
 export interface ListStreamComputeItems {
@@ -4158,7 +4152,7 @@ export type ListStreamSource =
   | "security_runtime_stream"
   | "security_signals_stream"
   | "incidents_stream";
-export const ListStreamSource = /*@__PURE__*/ S.String;
+export const ListStreamSource = S.String;
 
 /** List of facets on which to group. */
 export interface ListStreamGroupByItems {
@@ -4187,7 +4181,7 @@ export const ListStreamQueryIndexesList = /*@__PURE__*/ S.Array(
 
 /** Persona filter for the `issue_stream` data source. */
 export type ListStreamIssuePersona = "all" | "browser" | "mobile" | "backend";
-export const ListStreamIssuePersona = /*@__PURE__*/ S.String;
+export const ListStreamIssuePersona = S.String;
 
 /** Which column and order to sort by */
 export interface WidgetFieldSort {
@@ -4210,7 +4204,7 @@ export type ListStreamIssueState =
   | "IGNORED"
   | "ACKNOWLEDGED"
   | "RESOLVED";
-export const ListStreamIssueState = /*@__PURE__*/ S.String;
+export const ListStreamIssueState = S.String;
 
 /** Filter by issue states. Usable only with `issue_stream`. */
 export type ListStreamQueryStatesList = Array<
@@ -4234,7 +4228,7 @@ export const ListStreamQueryTeamHandlesList = /*@__PURE__*/ S.Array(
 
 /** Version of the query for the logs transaction stream widget. When omitted, v1 query behavior is preserved. Set to `sequential_query` to use v2 behavior. **This feature is in Preview.** */
 export type ListStreamQueryVersion = "sequential_query";
-export const ListStreamQueryVersion = /*@__PURE__*/ S.String;
+export const ListStreamQueryVersion = S.String;
 
 /** Updated list stream widget. */
 export interface ListStreamQuery {
@@ -4307,7 +4301,7 @@ export type TableWidgetTextFormatMatchType =
   | "does_not_contain"
   | "starts_with"
   | "ends_with";
-export const TableWidgetTextFormatMatchType = /*@__PURE__*/ S.String;
+export const TableWidgetTextFormatMatchType = S.String;
 
 /** Match rule for the table widget text format. */
 export interface TableWidgetTextFormatMatch {
@@ -4337,11 +4331,11 @@ export type TableWidgetTextFormatPalette =
   | "green_on_white"
   | "custom_bg"
   | "custom_text";
-export const TableWidgetTextFormatPalette = /*@__PURE__*/ S.String;
+export const TableWidgetTextFormatPalette = S.String;
 
 /** Table widget text format replace all type. */
 export type TableWidgetTextFormatReplaceAllType = "all";
-export const TableWidgetTextFormatReplaceAllType = /*@__PURE__*/ S.String;
+export const TableWidgetTextFormatReplaceAllType = S.String;
 
 /** Match All definition. */
 export interface TableWidgetTextFormatReplaceAll {
@@ -4360,7 +4354,7 @@ export const TableWidgetTextFormatReplaceAll = /*@__PURE__*/ S.suspend(() =>
 
 /** Table widget text format replace sub-string type. */
 export type TableWidgetTextFormatReplaceSubstringType = "substring";
-export const TableWidgetTextFormatReplaceSubstringType = /*@__PURE__*/ S.String;
+export const TableWidgetTextFormatReplaceSubstringType = S.String;
 
 /** Match Sub-string definition. */
 export interface TableWidgetTextFormatReplaceSubstring {
@@ -4386,7 +4380,7 @@ export type TableWidgetTextFormatReplace =
   | TableWidgetTextFormatReplaceAll
   | TableWidgetTextFormatReplaceSubstring;
 export const TableWidgetTextFormatReplace =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TableWidgetTextFormatReplace>;
+  S.Unknown as any as S.Schema<TableWidgetTextFormatReplace>;
 
 /** Text format rules. */
 export interface TableWidgetTextFormatRule {
@@ -4486,7 +4480,7 @@ export const GeomapWidgetDefinitionStyle = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the geomap widget. */
 export type GeomapWidgetDefinitionType = "geomap";
-export const GeomapWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const GeomapWidgetDefinitionType = S.String;
 
 /** The view of the world that the map should render. */
 export interface GeomapWidgetDefinitionView {
@@ -4538,11 +4532,11 @@ export const GeomapWidgetDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** Layout type of the group. */
 export type WidgetLayoutType = "ordered";
-export const WidgetLayoutType = /*@__PURE__*/ S.String;
+export const WidgetLayoutType = S.String;
 
 /** Type of the group widget. */
 export type GroupWidgetDefinitionType = "group";
-export const GroupWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const GroupWidgetDefinitionType = S.String;
 
 /** List of widget groups. */
 export type GroupWidgetDefinitionWidgetsList = Array<Widget>;
@@ -4702,7 +4696,7 @@ export const HeatMapWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** Type of the heat map widget. */
 export type HeatMapWidgetDefinitionType = "heatmap";
-export const HeatMapWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const HeatMapWidgetDefinitionType = S.String;
 
 /** X Axis controls for the heat map widget. */
 export interface HeatMapWidgetXAxis {
@@ -4800,7 +4794,7 @@ export const HostMapWidgetDefinitionGroupList = /*@__PURE__*/ S.Array(
 
 /** Which type of node to use in the map. */
 export type WidgetNodeType = "host" | "container";
-export const WidgetNodeType = /*@__PURE__*/ S.String;
+export const WidgetNodeType = S.String;
 
 /** List of conditional formatting rules applied to fill values. */
 export type HostMapWidgetInfrastructureRequestLeafConditionalFormatsList =
@@ -4812,7 +4806,7 @@ export const HostMapWidgetInfrastructureRequestLeafConditionalFormatsList =
 
 /** Visual dimension for the host map widget. Used both by infrastructure-backed formulas and by DDSQL projection columns; `group` is only meaningful for DDSQL projection columns, where repeated entries define the grouping hierarchy. */
 export type HostMapWidgetDimension = "node" | "fill" | "size" | "group";
-export const HostMapWidgetDimension = /*@__PURE__*/ S.String;
+export const HostMapWidgetDimension = S.String;
 
 /** Formula for the infrastructure host map widget that specifies both the expression and the visual dimension it populates. */
 export interface HostMapWidgetFormula {
@@ -4850,7 +4844,7 @@ export const HostMapWidgetScalarRequestQueriesList = /*@__PURE__*/ S.Array(
 
 /** Response format for the scalar formula request. Only `scalar` is supported. */
 export type HostMapWidgetScalarRequestResponseFormat = "scalar";
-export const HostMapWidgetScalarRequestResponseFormat = /*@__PURE__*/ S.String;
+export const HostMapWidgetScalarRequestResponseFormat = S.String;
 
 /** Scalar formula request for the infrastructure host map widget. Each formula specifies which visual dimension it drives. */
 export interface HostMapWidgetScalarRequest {
@@ -4904,13 +4898,12 @@ export const HostMapWidgetInfrastructureRequestLeafGroupByList =
 
 /** Which type of infrastructure entity to visualize in the host map. */
 export type HostMapWidgetNodeType = "host" | "container" | "pod" | "cluster";
-export const HostMapWidgetNodeType = /*@__PURE__*/ S.String;
+export const HostMapWidgetNodeType = S.String;
 
 /** Identifies this as an infrastructure-backed host map request. */
 export type HostMapWidgetInfrastructureRequestRequestType =
   "infrastructure_hostmap";
-export const HostMapWidgetInfrastructureRequestRequestType =
-  /*@__PURE__*/ S.String;
+export const HostMapWidgetInfrastructureRequestRequestType = S.String;
 
 /** Style configuration for the infrastructure host map. */
 export interface HostMapWidgetInfrastructureStyle {
@@ -5122,7 +5115,7 @@ export const HostMapWidgetProjectionDimensionsList = /*@__PURE__*/ S.Array(
 
 /** Type of the host map projection. */
 export type HostMapWidgetProjectionType = "hostmap";
-export const HostMapWidgetProjectionType = /*@__PURE__*/ S.String;
+export const HostMapWidgetProjectionType = S.String;
 
 /** Projection for the DDSQL host map request. Maps dataset columns to map dimensions: `node` identifies the entity, repeated `group` entries define the grouping hierarchy (outermost first), and `fill`/`size` drive the tile color and size. */
 export interface HostMapWidgetProjection {
@@ -5141,11 +5134,11 @@ export const HostMapWidgetProjection = /*@__PURE__*/ S.suspend(() =>
 
 /** Identifies this as a published-dataset list query. */
 export type DatasetListQueryDataSourceType = "dataset";
-export const DatasetListQueryDataSourceType = /*@__PURE__*/ S.String;
+export const DatasetListQueryDataSourceType = S.String;
 
 /** Product page that published the dataset queried by a `DatasetListQuery`. `ddsql_query` is the only provider currently supported for host map widgets. */
 export type PublishedDatasetProvider = "ddsql_query";
-export const PublishedDatasetProvider = /*@__PURE__*/ S.String;
+export const PublishedDatasetProvider = S.String;
 
 /** A single sort directive for a `DatasetListQuery`. */
 export interface DatasetListQuerySortField {
@@ -5210,7 +5203,7 @@ export const DatasetListQuery = /*@__PURE__*/ S.suspend(() =>
 export type HostMapWidgetDefinitionRequestType =
   | "infrastructure_hostmap"
   | "data_projection";
-export const HostMapWidgetDefinitionRequestType = /*@__PURE__*/ S.String;
+export const HostMapWidgetDefinitionRequestType = S.String;
 
 /** Query definition for the host map widget. Supports three mutually exclusive formats distinguished by `request_type`: the deprecated legacy metric-based format (`fill`/`size`, no `request_type`), the infrastructure-backed format (`request_type: infrastructure_hostmap`), and the DDSQL published-dataset format (`request_type: data_projection`). */
 export interface HostMapWidgetDefinitionRequests {
@@ -5297,7 +5290,7 @@ export const HostMapWidgetDefinitionStyle = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the host map widget. */
 export type HostMapWidgetDefinitionType = "hostmap";
-export const HostMapWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const HostMapWidgetDefinitionType = S.String;
 
 /** The host map widget graphs any metric across your hosts using the same visualization available from the main Host Map page. */
 export interface HostMapWidgetDefinition {
@@ -5350,7 +5343,7 @@ export const HostMapWidgetDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the iframe widget. */
 export type IFrameWidgetDefinitionType = "iframe";
-export const IFrameWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const IFrameWidgetDefinitionType = S.String;
 
 /** The iframe widget allows you to embed a portion of any other web page on your dashboard. */
 export interface IFrameWidgetDefinition {
@@ -5369,11 +5362,11 @@ export const IFrameWidgetDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** Horizontal alignment. */
 export type WidgetHorizontalAlign = "center" | "left" | "right";
-export const WidgetHorizontalAlign = /*@__PURE__*/ S.String;
+export const WidgetHorizontalAlign = S.String;
 
 /** Size of the margins around the image. **Note**: `small` and `large` values are deprecated. */
 export type WidgetMargin = "sm" | "md" | "lg" | "small" | "large";
-export const WidgetMargin = /*@__PURE__*/ S.String;
+export const WidgetMargin = S.String;
 
 /** How to size the image on the widget. The values are based on the image `object-fit` CSS properties. **Note**: `zoom`, `fit` and `center` values are deprecated. */
 export type WidgetImageSizing =
@@ -5385,15 +5378,15 @@ export type WidgetImageSizing =
   | "zoom"
   | "fit"
   | "center";
-export const WidgetImageSizing = /*@__PURE__*/ S.String;
+export const WidgetImageSizing = S.String;
 
 /** Type of the image widget. */
 export type ImageWidgetDefinitionType = "image";
-export const ImageWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const ImageWidgetDefinitionType = S.String;
 
 /** Vertical alignment. */
 export type WidgetVerticalAlign = "center" | "top" | "bottom";
-export const WidgetVerticalAlign = /*@__PURE__*/ S.String;
+export const WidgetVerticalAlign = S.String;
 
 /** The image widget allows you to embed an image on your dashboard. An image can be a PNG, JPG, or animated GIF. */
 export interface ImageWidgetDefinition {
@@ -5435,7 +5428,7 @@ export const ListStreamWidgetRequestColumnsList = /*@__PURE__*/ S.Array(
 
 /** Widget response format. */
 export type ListStreamResponseFormat = "event_list";
-export const ListStreamResponseFormat = /*@__PURE__*/ S.String;
+export const ListStreamResponseFormat = S.String;
 
 /** Updated list stream widget. */
 export interface ListStreamWidgetRequest {
@@ -5463,7 +5456,7 @@ export const ListStreamWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** Type of the list stream widget. */
 export type ListStreamWidgetDefinitionType = "list_stream";
-export const ListStreamWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const ListStreamWidgetDefinitionType = S.String;
 
 /** The list stream visualization displays a table of recent events in your application that match a search criteria using user-defined columns. */
 export interface ListStreamWidgetDefinition {
@@ -5512,11 +5505,11 @@ export const LogStreamWidgetDefinitionIndexesList = /*@__PURE__*/ S.Array(
 
 /** Amount of log lines to display */
 export type WidgetMessageDisplay = "inline" | "expanded-md" | "expanded-lg";
-export const WidgetMessageDisplay = /*@__PURE__*/ S.String;
+export const WidgetMessageDisplay = S.String;
 
 /** Type of the log stream widget. */
 export type LogStreamWidgetDefinitionType = "log_stream";
-export const LogStreamWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const LogStreamWidgetDefinitionType = S.String;
 
 /** The Log Stream displays a log flow matching the defined query. */
 export interface LogStreamWidgetDefinition {
@@ -5567,14 +5560,14 @@ export const LogStreamWidgetDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** Which color to use on the widget. */
 export type WidgetColorPreference = "background" | "text";
-export const WidgetColorPreference = /*@__PURE__*/ S.String;
+export const WidgetColorPreference = S.String;
 
 /** What to display on the widget. */
 export type WidgetMonitorSummaryDisplayFormat =
   | "counts"
   | "countsAndList"
   | "list";
-export const WidgetMonitorSummaryDisplayFormat = /*@__PURE__*/ S.String;
+export const WidgetMonitorSummaryDisplayFormat = S.String;
 
 /** Widget sorting methods. */
 export type WidgetMonitorSummarySort =
@@ -5595,15 +5588,15 @@ export type WidgetMonitorSummarySort =
   | "triggered,desc"
   | "priority,asc"
   | "priority,desc";
-export const WidgetMonitorSummarySort = /*@__PURE__*/ S.String;
+export const WidgetMonitorSummarySort = S.String;
 
 /** Which summary type should be used. */
 export type WidgetSummaryType = "monitors" | "groups" | "combined";
-export const WidgetSummaryType = /*@__PURE__*/ S.String;
+export const WidgetSummaryType = S.String;
 
 /** Type of the monitor summary widget. */
 export type MonitorSummaryWidgetDefinitionType = "manage_status";
-export const MonitorSummaryWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const MonitorSummaryWidgetDefinitionType = S.String;
 
 /** The monitor summary widget displays a summary view of all your Datadog monitors, or a subset based on a query. */
 export interface MonitorSummaryWidgetDefinition {
@@ -5656,11 +5649,11 @@ export const MonitorSummaryWidgetDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** Define how you want to align the text on the widget. */
 export type WidgetTickEdge = "bottom" | "left" | "right" | "top";
-export const WidgetTickEdge = /*@__PURE__*/ S.String;
+export const WidgetTickEdge = S.String;
 
 /** Type of the note widget. */
 export type NoteWidgetDefinitionType = "note";
-export const NoteWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const NoteWidgetDefinitionType = S.String;
 
 /** The notes and links widget is similar to free text widget, but allows for more formatting options. */
 export interface NoteWidgetDefinition {
@@ -5762,7 +5755,7 @@ export const PowerpackTemplateVariables = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the powerpack widget. */
 export type PowerpackWidgetDefinitionType = "powerpack";
-export const PowerpackWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const PowerpackWidgetDefinitionType = S.String;
 
 /** The powerpack widget allows you to keep similar graphs together on your timeboard. Each group has a custom header, can hold one to many graphs, and is collapsible. */
 export interface PowerpackWidgetDefinition {
@@ -5801,7 +5794,7 @@ export const PointPlotWidgetDefinitionCustomLinksList = /*@__PURE__*/ S.Array(
 
 /** Type of legend to show for the point plot widget. */
 export type PointPlotWidgetLegendType = "automatic" | "none";
-export const PointPlotWidgetLegendType = /*@__PURE__*/ S.String;
+export const PointPlotWidgetLegendType = S.String;
 
 /** Legend configuration for the point plot widget. */
 export interface PointPlotWidgetLegend {
@@ -5823,7 +5816,7 @@ export const PointPlotWidgetDefinitionMarkersList = /*@__PURE__*/ S.Array(
 
 /** Dimension of the point plot. */
 export type PointPlotDimension = "group" | "time" | "y" | "radius";
-export const PointPlotDimension = /*@__PURE__*/ S.String;
+export const PointPlotDimension = S.String;
 
 /** Dimension mapping for the point plot projection. */
 export interface PointPlotProjectionDimension {
@@ -5858,7 +5851,7 @@ export const PointPlotProjectionExtraColumnsList = /*@__PURE__*/ S.Array(
 
 /** Type of the projection. */
 export type PointPlotProjectionType = "point_plot";
-export const PointPlotProjectionType = /*@__PURE__*/ S.String;
+export const PointPlotProjectionType = S.String;
 
 /** Projection configuration for the point plot widget. */
 export interface PointPlotProjection {
@@ -5908,7 +5901,7 @@ export const DataProjectionQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of a data projection request. */
 export type DataProjectionRequestType = "data_projection";
-export const DataProjectionRequestType = /*@__PURE__*/ S.String;
+export const DataProjectionRequestType = S.String;
 
 /** Request configuration for the point plot widget. */
 export interface PointPlotWidgetRequest {
@@ -5938,7 +5931,7 @@ export const PointPlotWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** Type of the point plot widget. */
 export type PointPlotWidgetDefinitionType = "point_plot";
-export const PointPlotWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const PointPlotWidgetDefinitionType = S.String;
 
 /** The point plot displays individual data points over time. */
 export interface PointPlotWidgetDefinition {
@@ -5989,7 +5982,7 @@ export type QueryValueWidgetComparisonDirectionality =
   | "increase_better"
   | "decrease_better"
   | "neutral";
-export const QueryValueWidgetComparisonDirectionality = /*@__PURE__*/ S.String;
+export const QueryValueWidgetComparisonDirectionality = S.String;
 
 /** Fixed time range for a `custom_timeframe` comparison. */
 export interface ComparisonCustomTimeframe {
@@ -6014,7 +6007,7 @@ export type ComparisonDurationType =
   | "previous_day"
   | "previous_week"
   | "previous_month";
-export const ComparisonDurationType = /*@__PURE__*/ S.String;
+export const ComparisonDurationType = S.String;
 
 /** The comparison period. Use a preset `type` value or set `type` to `custom_timeframe` and provide `custom_timeframe` with explicit millisecond epoch bounds. */
 export interface ComparisonDuration {
@@ -6033,7 +6026,7 @@ export const ComparisonDuration = /*@__PURE__*/ S.suspend(() =>
 
 /** How the delta is expressed: `absolute` (raw difference), `relative` (percentage), or `both`. */
 export type QueryValueWidgetComparisonType = "absolute" | "relative" | "both";
-export const QueryValueWidgetComparisonType = /*@__PURE__*/ S.String;
+export const QueryValueWidgetComparisonType = S.String;
 
 /** A change indicator that compares the current value to a historical period. */
 export interface QueryValueWidgetComparison {
@@ -6140,7 +6133,7 @@ export const QueryValueWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** Timeseries is made using an area or bars. */
 export type TimeseriesBackgroundType = "bars" | "area";
-export const TimeseriesBackgroundType = /*@__PURE__*/ S.String;
+export const TimeseriesBackgroundType = S.String;
 
 /** Set a timeseries on the widget background. */
 export interface TimeseriesBackground {
@@ -6158,7 +6151,7 @@ export const TimeseriesBackground = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the query value widget. */
 export type QueryValueWidgetDefinitionType = "query_value";
-export const QueryValueWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const QueryValueWidgetDefinitionType = S.String;
 
 /** Query values display the current value of a given metric, APM, or log query. */
 export interface QueryValueWidgetDefinition {
@@ -6206,7 +6199,7 @@ export const QueryValueWidgetDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** Request type for retention curve widget. */
 export type RetentionCurveRequestType = "retention_curve";
-export const RetentionCurveRequestType = /*@__PURE__*/ S.String;
+export const RetentionCurveRequestType = S.String;
 
 /** Style configuration for retention curve. */
 export interface RetentionCurveStyle {
@@ -6246,7 +6239,7 @@ export const RetentionCurveWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** Type of the Retention Curve widget. */
 export type RetentionCurveWidgetDefinitionType = "retention_curve";
-export const RetentionCurveWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const RetentionCurveWidgetDefinitionType = S.String;
 
 /** The retention curve widget visualizes user retention rates over time. */
 export interface RetentionCurveWidgetDefinition {
@@ -6308,7 +6301,7 @@ export const RunWorkflowWidgetDefinitionInputsList = /*@__PURE__*/ S.Array(
 
 /** Type of the run workflow widget. */
 export type RunWorkflowWidgetDefinitionType = "run_workflow";
-export const RunWorkflowWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const RunWorkflowWidgetDefinitionType = S.String;
 
 /** Run workflow is widget that allows you to run a workflow from a dashboard. */
 export interface RunWorkflowWidgetDefinition {
@@ -6371,7 +6364,7 @@ export const SLOListWidgetQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** Widget request type. */
 export type SLOListWidgetRequestType = "slo_list";
-export const SLOListWidgetRequestType = /*@__PURE__*/ S.String;
+export const SLOListWidgetRequestType = S.String;
 
 /** Updated SLO List widget. */
 export interface SLOListWidgetRequest {
@@ -6395,7 +6388,7 @@ export const SLOListWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** Type of the SLO List widget. */
 export type SLOListWidgetDefinitionType = "slo_list";
-export const SLOListWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const SLOListWidgetDefinitionType = S.String;
 
 /** Use the SLO List widget to track your SLOs (Service Level Objectives) on dashboards. */
 export interface SLOListWidgetDefinition {
@@ -6433,7 +6426,7 @@ export type WidgetTimeWindows =
   | "month_to_date"
   | "previous_month"
   | "global_time";
-export const WidgetTimeWindows = /*@__PURE__*/ S.String;
+export const WidgetTimeWindows = S.String;
 
 /** Times being monitored. */
 export type SLOWidgetDefinitionTimeWindowsList = Array<
@@ -6445,11 +6438,11 @@ export const SLOWidgetDefinitionTimeWindowsList = /*@__PURE__*/ S.Array(
 
 /** Type of the SLO widget. */
 export type SLOWidgetDefinitionType = "slo";
-export const SLOWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const SLOWidgetDefinitionType = S.String;
 
 /** Define how you want the SLO to be displayed. */
 export type WidgetViewMode = "overall" | "component" | "both";
-export const WidgetViewMode = /*@__PURE__*/ S.String;
+export const WidgetViewMode = S.String;
 
 /** Use the SLO and uptime widget to track your SLOs (Service Level Objectives) and uptime on dashboards. */
 export interface SLOWidgetDefinition {
@@ -6510,7 +6503,7 @@ export const ScatterPlotWidgetDefinitionCustomLinksList = /*@__PURE__*/ S.Array(
 
 /** Dimension of the Scatterplot. */
 export type ScatterplotDimension = "x" | "y" | "radius" | "color";
-export const ScatterplotDimension = /*@__PURE__*/ S.String;
+export const ScatterplotDimension = S.String;
 
 /** Formula to be used in a Scatterplot widget query. */
 export interface ScatterplotWidgetFormula {
@@ -6569,7 +6562,7 @@ export type ScatterplotWidgetAggregator =
   | "max"
   | "min"
   | "sum";
-export const ScatterplotWidgetAggregator = /*@__PURE__*/ S.String;
+export const ScatterplotWidgetAggregator = S.String;
 
 /** Updated scatter plot. */
 export interface ScatterPlotRequest {
@@ -6628,7 +6621,7 @@ export const ScatterPlotWidgetDefinitionRequests = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the scatter plot widget. */
 export type ScatterPlotWidgetDefinitionType = "scatterplot";
-export const ScatterPlotWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const ScatterPlotWidgetDefinitionType = S.String;
 
 /** The scatter plot visualization allows you to graph a chosen scope over two different metrics with their respective aggregation. */
 export interface ScatterPlotWidgetDefinition {
@@ -6669,7 +6662,7 @@ export const ScatterPlotWidgetDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** Product Analytics or RUM data source type. */
 export type SankeyRumDataSource = "rum" | "product_analytics";
-export const SankeyRumDataSource = /*@__PURE__*/ S.String;
+export const SankeyRumDataSource = S.String;
 
 /** Secondary join keys. */
 export type SankeyJoinKeysSecondaryList = Array<string>;
@@ -6693,7 +6686,7 @@ export const SankeyJoinKeys = /*@__PURE__*/ S.suspend(() =>
 
 /** Sankey mode for Product Analytics or RUM queries. */
 export type SankeyRumQueryMode = "source" | "target";
-export const SankeyRumQueryMode = /*@__PURE__*/ S.String;
+export const SankeyRumQueryMode = S.String;
 
 /** Filter applied to occurrence counts when building a Product Analytics audience. */
 export interface ProductAnalyticsAudienceOccurrenceFilter {
@@ -6750,7 +6743,7 @@ export const SankeyRumQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the Sankey widget. */
 export type SankeyWidgetDefinitionType = "sankey";
-export const SankeyWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const SankeyWidgetDefinitionType = S.String;
 
 /** Sankey widget request for Product Analytics or RUM data source. */
 export interface SankeyRumRequest {
@@ -6783,7 +6776,7 @@ export const SankeyNetworkQueryCompute = /*@__PURE__*/ S.suspend(() =>
 
 /** Network data source type. */
 export type SankeyNetworkDataSource = "network_device_flows" | "network";
-export const SankeyNetworkDataSource = /*@__PURE__*/ S.String;
+export const SankeyNetworkDataSource = S.String;
 
 /** Fields to group by. */
 export type SankeyNetworkQueryGroupByList = Array<string>;
@@ -6793,7 +6786,7 @@ export const SankeyNetworkQueryGroupByList = /*@__PURE__*/ S.Array(
 
 /** Sankey mode for network queries. */
 export type SankeyNetworkQueryMode = "target";
-export const SankeyNetworkQueryMode = /*@__PURE__*/ S.String;
+export const SankeyNetworkQueryMode = S.String;
 
 /** Sort configuration for network queries. */
 export interface SankeyNetworkQuerySort {
@@ -6842,7 +6835,7 @@ export const SankeyNetworkQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of request for network Sankey widget. */
 export type SankeyNetworkRequestType = "netflow_sankey";
-export const SankeyNetworkRequestType = /*@__PURE__*/ S.String;
+export const SankeyNetworkRequestType = S.String;
 
 /** Sankey widget request for network data source. */
 export interface SankeyNetworkRequest {
@@ -6861,7 +6854,7 @@ export const SankeyNetworkRequest = /*@__PURE__*/ S.suspend(() =>
 /** Request definition for Sankey widget. */
 export type SankeyWidgetRequest = SankeyRumRequest | SankeyNetworkRequest;
 export const SankeyWidgetRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SankeyWidgetRequest>;
+  S.Unknown as any as S.Schema<SankeyWidgetRequest>;
 
 /** List of Sankey widget requests. */
 export type SankeyWidgetDefinitionRequestsList = Array<SankeyWidgetRequest>;
@@ -6914,7 +6907,7 @@ export const ServiceMapWidgetDefinitionFiltersList = /*@__PURE__*/ S.Array(
 
 /** Type of the service map widget. */
 export type ServiceMapWidgetDefinitionType = "servicemap";
-export const ServiceMapWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const ServiceMapWidgetDefinitionType = S.String;
 
 /** This widget displays a map of a service to all of the services that call it, and all of the services that it calls. */
 export interface ServiceMapWidgetDefinition {
@@ -6953,15 +6946,15 @@ export type WidgetServiceSummaryDisplayFormat =
   | "one_column"
   | "two_column"
   | "three_column";
-export const WidgetServiceSummaryDisplayFormat = /*@__PURE__*/ S.String;
+export const WidgetServiceSummaryDisplayFormat = S.String;
 
 /** Size of the widget. */
 export type WidgetSizeFormat = "small" | "medium" | "large";
-export const WidgetSizeFormat = /*@__PURE__*/ S.String;
+export const WidgetSizeFormat = S.String;
 
 /** Type of the service summary widget. */
 export type ServiceSummaryWidgetDefinitionType = "trace_service";
-export const ServiceSummaryWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const ServiceSummaryWidgetDefinitionType = S.String;
 
 /** The service summary displays the graphs of a chosen service in your dashboard. */
 export interface ServiceSummaryWidgetDefinition {
@@ -7021,7 +7014,7 @@ export const ServiceSummaryWidgetDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** Size of the individual graphs in the split. */
 export type SplitGraphVizSize = "xs" | "sm" | "md" | "lg";
-export const SplitGraphVizSize = /*@__PURE__*/ S.String;
+export const SplitGraphVizSize = S.String;
 
 /** List of custom links. */
 export type SunburstWidgetDefinitionCustomLinksList = Array<WidgetCustomLink>;
@@ -7031,7 +7024,7 @@ export const SunburstWidgetDefinitionCustomLinksList = /*@__PURE__*/ S.Array(
 
 /** Whether or not to show a table legend. */
 export type SunburstWidgetLegendTableType = "table" | "none";
-export const SunburstWidgetLegendTableType = /*@__PURE__*/ S.String;
+export const SunburstWidgetLegendTableType = S.String;
 
 /** Configuration of table-based legend. */
 export interface SunburstWidgetLegendTable {
@@ -7047,7 +7040,7 @@ export const SunburstWidgetLegendTable = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether to show the legend inline or let it be automatically generated. */
 export type SunburstWidgetLegendInlineAutomaticType = "inline" | "automatic";
-export const SunburstWidgetLegendInlineAutomaticType = /*@__PURE__*/ S.String;
+export const SunburstWidgetLegendInlineAutomaticType = S.String;
 
 /** Configuration of inline or automatic legends. */
 export interface SunburstWidgetLegendInlineAutomatic {
@@ -7072,7 +7065,7 @@ export type SunburstWidgetLegend =
   | SunburstWidgetLegendTable
   | SunburstWidgetLegendInlineAutomatic;
 export const SunburstWidgetLegend =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SunburstWidgetLegend>;
+  S.Unknown as any as S.Schema<SunburstWidgetLegend>;
 
 /** List of formulas that operate on queries. */
 export type SunburstWidgetRequestFormulasList = Array<WidgetFormula>;
@@ -7147,7 +7140,7 @@ export const SunburstWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** Type of the Sunburst widget. */
 export type SunburstWidgetDefinitionType = "sunburst";
-export const SunburstWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const SunburstWidgetDefinitionType = S.String;
 
 /** Sunbursts are spot on to highlight how groups contribute to the total of a query. */
 export interface SunburstWidgetDefinition {
@@ -7193,7 +7186,7 @@ export const TableWidgetDefinitionCustomLinksList = /*@__PURE__*/ S.Array(
 
 /** Controls the display of the search bar. */
 export type TableWidgetHasSearchBar = "always" | "never" | "auto";
-export const TableWidgetHasSearchBar = /*@__PURE__*/ S.String;
+export const TableWidgetHasSearchBar = S.String;
 
 /** A list of display modes for each table cell. */
 export type TableWidgetRequestCellDisplayModeList = Array<
@@ -7311,7 +7304,7 @@ export const TableWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** Type of the table widget. */
 export type TableWidgetDefinitionType = "query_table";
-export const TableWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const TableWidgetDefinitionType = S.String;
 
 /** The table visualization is available on dashboards. It displays columns of metrics grouped by tag key. */
 export interface TableWidgetDefinition {
@@ -7365,7 +7358,7 @@ export type TimeseriesWidgetLegendColumn =
   | "sum"
   | "min"
   | "max";
-export const TimeseriesWidgetLegendColumn = /*@__PURE__*/ S.String;
+export const TimeseriesWidgetLegendColumn = S.String;
 
 /** Columns displayed in the legend. */
 export type TimeseriesWidgetDefinitionLegendColumnsList = Array<
@@ -7378,7 +7371,7 @@ export const TimeseriesWidgetDefinitionLegendColumnsList =
 
 /** Layout of the legend. */
 export type TimeseriesWidgetLegendLayout = "auto" | "horizontal" | "vertical";
-export const TimeseriesWidgetLegendLayout = /*@__PURE__*/ S.String;
+export const TimeseriesWidgetLegendLayout = S.String;
 
 /** List of markers. */
 export type TimeseriesWidgetDefinitionMarkersList = Array<WidgetMarker>;
@@ -7388,7 +7381,7 @@ export const TimeseriesWidgetDefinitionMarkersList = /*@__PURE__*/ S.Array(
 
 /** Type of display to use for the request. */
 export type WidgetDisplayType = "area" | "bars" | "line" | "overlay";
-export const WidgetDisplayType = /*@__PURE__*/ S.String;
+export const WidgetDisplayType = S.String;
 
 /** List of formulas that operate on queries. */
 export type TimeseriesWidgetRequestFormulasList = Array<WidgetFormula>;
@@ -7515,7 +7508,7 @@ export const TimeseriesWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** Type of the timeseries widget. */
 export type TimeseriesWidgetDefinitionType = "timeseries";
-export const TimeseriesWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const TimeseriesWidgetDefinitionType = S.String;
 
 /** The timeseries visualization allows you to display the evolution of one or more metrics, log events, or Indexed Spans over time. */
 export interface TimeseriesWidgetDefinition {
@@ -7657,11 +7650,11 @@ export const ToplistWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** Top list widget stacked legend behavior. */
 export type ToplistWidgetLegend = "automatic" | "inline" | "none";
-export const ToplistWidgetLegend = /*@__PURE__*/ S.String;
+export const ToplistWidgetLegend = S.String;
 
 /** Top list widget stacked display type. */
 export type ToplistWidgetStackedType = "stacked";
-export const ToplistWidgetStackedType = /*@__PURE__*/ S.String;
+export const ToplistWidgetStackedType = S.String;
 
 /** Top list widget stacked display options. */
 export interface ToplistWidgetStacked {
@@ -7679,7 +7672,7 @@ export const ToplistWidgetStacked = /*@__PURE__*/ S.suspend(() =>
 
 /** Top list widget flat display type. */
 export type ToplistWidgetFlatType = "flat";
-export const ToplistWidgetFlatType = /*@__PURE__*/ S.String;
+export const ToplistWidgetFlatType = S.String;
 
 /** Top list widget flat display. */
 export interface ToplistWidgetFlat {
@@ -7696,11 +7689,11 @@ export const ToplistWidgetFlat = /*@__PURE__*/ S.suspend(() =>
 /** Top list widget display options. */
 export type ToplistWidgetDisplay = ToplistWidgetStacked | ToplistWidgetFlat;
 export const ToplistWidgetDisplay =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ToplistWidgetDisplay>;
+  S.Unknown as any as S.Schema<ToplistWidgetDisplay>;
 
 /** Top list widget scaling definition. */
 export type ToplistWidgetScaling = "absolute" | "relative";
-export const ToplistWidgetScaling = /*@__PURE__*/ S.String;
+export const ToplistWidgetScaling = S.String;
 
 /** Style customization for a top list widget. */
 export interface ToplistWidgetStyle {
@@ -7721,7 +7714,7 @@ export const ToplistWidgetStyle = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the top list widget. */
 export type ToplistWidgetDefinitionType = "toplist";
-export const ToplistWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const ToplistWidgetDefinitionType = S.String;
 
 /** The top list visualization enables you to display a list of Tag value like hostname or service with the most or least of any metric value, such as highest consumers of CPU, hosts with the least disk space, etc. */
 export interface ToplistWidgetDefinition {
@@ -7758,7 +7751,7 @@ export const ToplistWidgetDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** (deprecated) The attribute formerly used to determine color in the widget. */
 export type TreeMapColorBy = "user";
-export const TreeMapColorBy = /*@__PURE__*/ S.String;
+export const TreeMapColorBy = S.String;
 
 /** List of custom links. */
 export type TreeMapWidgetDefinitionCustomLinksList = Array<WidgetCustomLink>;
@@ -7768,7 +7761,7 @@ export const TreeMapWidgetDefinitionCustomLinksList = /*@__PURE__*/ S.Array(
 
 /** (deprecated) The attribute formerly used to group elements in the widget. */
 export type TreeMapGroupBy = "user" | "family" | "process";
-export const TreeMapGroupBy = /*@__PURE__*/ S.String;
+export const TreeMapGroupBy = S.String;
 
 /** List of formulas that operate on queries. */
 export type TreeMapWidgetRequestFormulasList = Array<WidgetFormula>;
@@ -7816,11 +7809,11 @@ export const TreeMapWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** (deprecated) The attribute formerly used to determine size in the widget. */
 export type TreeMapSizeBy = "pct_cpu" | "pct_mem";
-export const TreeMapSizeBy = /*@__PURE__*/ S.String;
+export const TreeMapSizeBy = S.String;
 
 /** Type of the treemap widget. */
 export type TreeMapWidgetDefinitionType = "treemap";
-export const TreeMapWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const TreeMapWidgetDefinitionType = S.String;
 
 /** The treemap visualization enables you to display hierarchical and nested data. It is well suited for queries that describe part-whole relationships, such as resource usage by availability zone, data center, or team. */
 export interface TreeMapWidgetDefinition {
@@ -7867,7 +7860,7 @@ export type SplitGraphSourceWidgetDefinition =
   | ToplistWidgetDefinition
   | TreeMapWidgetDefinition;
 export const SplitGraphSourceWidgetDefinition =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SplitGraphSourceWidgetDefinition>;
+  S.Unknown as any as S.Schema<SplitGraphSourceWidgetDefinition>;
 
 /** Defines the metric and aggregation used as the sort value. */
 export interface SplitConfigSortCompute {
@@ -7969,7 +7962,7 @@ export const SplitConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the split graph widget */
 export type SplitGraphWidgetDefinitionType = "split_group";
-export const SplitGraphWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const SplitGraphWidgetDefinitionType = S.String;
 
 /** The split graph widget allows you to create repeating units of a graph - one for each value in a group (for example: one per service) */
 export interface SplitGraphWidgetDefinition {
@@ -8007,7 +8000,7 @@ export const TopologyMapWidgetDefinitionDataStreamsCustomLinksList =
 
 /** Name of the data source. */
 export type TopologyQueryDataStreamsDataSource = "data_streams";
-export const TopologyQueryDataStreamsDataSource = /*@__PURE__*/ S.String;
+export const TopologyQueryDataStreamsDataSource = S.String;
 
 /** Your environment and primary tag (or * if enabled for your account). */
 export type TopologyQueryDataStreamsFiltersList = Array<string>;
@@ -8038,7 +8031,7 @@ export const TopologyQueryDataStreams = /*@__PURE__*/ S.suspend(() =>
 
 /** Widget request type. */
 export type TopologyRequestType = "topology";
-export const TopologyRequestType = /*@__PURE__*/ S.String;
+export const TopologyRequestType = S.String;
 
 /** Request that returns nodes and edges from the data streams data source. */
 export interface TopologyRequestDataStreams {
@@ -8064,7 +8057,7 @@ export const TopologyMapWidgetDefinitionDataStreamsRequestsList =
 
 /** Type of the topology map widget. */
 export type TopologyMapWidgetDefinitionType = "topology_map";
-export const TopologyMapWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const TopologyMapWidgetDefinitionType = S.String;
 
 /** Topology map widget backed by the data streams data source. */
 export interface TopologyMapWidgetDefinitionDataStreams {
@@ -8110,7 +8103,7 @@ export const TopologyMapWidgetDefinitionServiceMapCustomLinksList =
 
 /** Name of the data source. */
 export type TopologyQueryServiceMapDataSource = "service_map";
-export const TopologyQueryServiceMapDataSource = /*@__PURE__*/ S.String;
+export const TopologyQueryServiceMapDataSource = S.String;
 
 /** Your environment and primary tag (or * if enabled for your account). */
 export type TopologyQueryServiceMapFiltersList = Array<string>;
@@ -8200,7 +8193,7 @@ export type TopologyMapWidgetDefinition =
   | TopologyMapWidgetDefinitionDataStreams
   | TopologyMapWidgetDefinitionServiceMap;
 export const TopologyMapWidgetDefinition =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TopologyMapWidgetDefinition>;
+  S.Unknown as any as S.Schema<TopologyMapWidgetDefinition>;
 
 /** List of custom links. */
 export type WildcardWidgetDefinitionCustomLinksList = Array<WidgetCustomLink>;
@@ -8215,7 +8208,7 @@ export type WildcardWidgetRequest =
   | ListStreamWidgetRequest
   | DistributionWidgetRequest;
 export const WildcardWidgetRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WildcardWidgetRequest>;
+  S.Unknown as any as S.Schema<WildcardWidgetRequest>;
 
 /** List of data requests for the wildcard widget. */
 export type WildcardWidgetDefinitionRequestsList = Array<WildcardWidgetRequest>;
@@ -8225,7 +8218,7 @@ export const WildcardWidgetDefinitionRequestsList = /*@__PURE__*/ S.Array(
 
 /** Type of specification used by the wildcard widget. */
 export type WildcardWidgetSpecificationType = "vega" | "vega-lite";
-export const WildcardWidgetSpecificationType = /*@__PURE__*/ S.String;
+export const WildcardWidgetSpecificationType = S.String;
 
 /** Vega or Vega-Lite specification for custom visualization rendering. See https://vega.github.io/vega-lite/ for the full grammar reference. */
 export interface WildcardWidgetSpecification {
@@ -8244,7 +8237,7 @@ export const WildcardWidgetSpecification = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the wildcard widget. */
 export type WildcardWidgetDefinitionType = "wildcard";
-export const WildcardWidgetDefinitionType = /*@__PURE__*/ S.String;
+export const WildcardWidgetDefinitionType = S.String;
 
 /** Custom visualization widget using Vega or Vega-Lite specifications. Combines standard Datadog data requests with a Vega or Vega-Lite JSON specification for flexible, custom visualizations. */
 export interface WildcardWidgetDefinition {
@@ -8319,8 +8312,7 @@ export type WidgetDefinition =
   | TopologyMapWidgetDefinition
   | TreeMapWidgetDefinition
   | WildcardWidgetDefinition;
-export const WidgetDefinition =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WidgetDefinition>;
+export const WidgetDefinition = S.Unknown as any as S.Schema<WidgetDefinition>;
 
 /** The layout for a widget on a `free` or **new dashboard layout** dashboard. */
 export interface WidgetLayout {
@@ -8599,11 +8591,11 @@ export type EventAlertType =
   | "user_update"
   | "recommendation"
   | "snapshot";
-export const EventAlertType = /*@__PURE__*/ S.String;
+export const EventAlertType = S.String;
 
 /** The priority of the event. For example, `normal` or `low`. */
 export type EventPriority = "normal" | "low";
-export const EventPriority = /*@__PURE__*/ S.String;
+export const EventPriority = S.String;
 
 /** A list of tags to apply to the event. */
 export type CreateEventRequestTagsList = Array<string>;
@@ -8682,7 +8674,7 @@ export type SyntheticsGlobalVariableParserType =
   | "json_path"
   | "regex"
   | "x_path";
-export const SyntheticsGlobalVariableParserType = /*@__PURE__*/ S.String;
+export const SyntheticsGlobalVariableParserType = S.String;
 
 /** Details of the parser to use for the global variable. */
 export interface SyntheticsVariableParser {
@@ -8705,8 +8697,7 @@ export type SyntheticsGlobalVariableParseTestOptionsType =
   | "http_header"
   | "http_status_code"
   | "local_variable";
-export const SyntheticsGlobalVariableParseTestOptionsType =
-  /*@__PURE__*/ S.String;
+export const SyntheticsGlobalVariableParseTestOptionsType = S.String;
 
 /** Parser options to use for retrieving a Synthetic global variable from a Synthetic test. Used in conjunction with `parse_test_public_id`. */
 export interface SyntheticsGlobalVariableParseTestOptions {
@@ -9095,7 +9086,7 @@ export const LogsGrokParserSamplesList = /*@__PURE__*/ S.Array(
 
 /** Type of logs grok parser. */
 export type LogsGrokParserType = "grok-parser";
-export const LogsGrokParserType = /*@__PURE__*/ S.String;
+export const LogsGrokParserType = S.String;
 
 /** Create custom grok rules to parse the full message or [a specific attribute of your raw event](https://docs.datadoghq.com/logs/log_configuration/parsing/#advanced-settings). For more information, see the [parsing section](https://docs.datadoghq.com/logs/log_configuration/parsing). */
 export interface LogsGrokParser {
@@ -9129,7 +9120,7 @@ export const LogsDateRemapperSourcesList = /*@__PURE__*/ S.Array(
 
 /** Type of logs date remapper. */
 export type LogsDateRemapperType = "date-remapper";
-export const LogsDateRemapperType = /*@__PURE__*/ S.String;
+export const LogsDateRemapperType = S.String;
 
 /** As Datadog receives logs, it timestamps them using the value(s) from any of these default attributes. - `timestamp` - `date` - `_timestamp` - `Timestamp` - `eventTime` - `published_date` If your logs put their dates in an attribute not in this list, use the log date Remapper Processor to define their date attribute as the official log timestamp. The recognized date formats are ISO8601, UNIX (the milliseconds EPOCH format), and RFC3164. **Note:** If your logs don’t contain any of the default attributes and you haven’t defined your own date attribute, Datadog timestamps the logs with the date it received them. If multiple log date remapper processors can be applied to a given log, only the first one (according to the pipelines order) is taken into account. */
 export interface LogsDateRemapper {
@@ -9160,7 +9151,7 @@ export const LogsStatusRemapperSourcesList = /*@__PURE__*/ S.Array(
 
 /** Type of logs status remapper. */
 export type LogsStatusRemapperType = "status-remapper";
-export const LogsStatusRemapperType = /*@__PURE__*/ S.String;
+export const LogsStatusRemapperType = S.String;
 
 /** Use this Processor if you want to assign some attributes as the official status. Each incoming status value is mapped as follows. - Integers from 0 to 7 map to the Syslog severity standards - Strings beginning with `emerg` or f (case-insensitive) map to `emerg` (0) - Strings beginning with `a` (case-insensitive) map to `alert` (1) - Strings beginning with `c` (case-insensitive) map to `critical` (2) - Strings beginning with `err` (case-insensitive) map to `error` (3) - Strings beginning with `w` (case-insensitive) map to `warning` (4) - Strings beginning with `n` (case-insensitive) map to `notice` (5) - Strings beginning with `i` (case-insensitive) map to `info` (6) - Strings beginning with `d`, `trace` or `verbose` (case-insensitive) map to `debug` (7) - Strings beginning with `o` or matching `OK` or `Success` (case-insensitive) map to OK - All others map to `info` (6) **Note:** If multiple log status remapper processors can be applied to a given log, only the first one (according to the pipelines order) is taken into account. */
 export interface LogsStatusRemapper {
@@ -9191,7 +9182,7 @@ export const LogsServiceRemapperSourcesList = /*@__PURE__*/ S.Array(
 
 /** Type of logs service remapper. */
 export type LogsServiceRemapperType = "service-remapper";
-export const LogsServiceRemapperType = /*@__PURE__*/ S.String;
+export const LogsServiceRemapperType = S.String;
 
 /** Use this processor if you want to assign one or more attributes as the official service. **Note:** If multiple service remapper processors can be applied to a given log, only the first one (according to the pipeline order) is taken into account. */
 export interface LogsServiceRemapper {
@@ -9222,7 +9213,7 @@ export const LogsMessageRemapperSourcesList = /*@__PURE__*/ S.Array(
 
 /** Type of logs message remapper. */
 export type LogsMessageRemapperType = "message-remapper";
-export const LogsMessageRemapperType = /*@__PURE__*/ S.String;
+export const LogsMessageRemapperType = S.String;
 
 /** The message is a key attribute in Datadog. It is displayed in the message column of the Log Explorer and you can do full string search on it. Use this Processor to define one or more attributes as the official log message. **Note:** If multiple log message remapper processors can be applied to a given log, only the first one (according to the pipeline order) is taken into account. */
 export interface LogsMessageRemapper {
@@ -9253,11 +9244,11 @@ export const LogsAttributeRemapperSourcesList = /*@__PURE__*/ S.Array(
 
 /** If the `target_type` of the remapper is `attribute`, try to cast the value to a new specific type. If the cast is not possible, the original type is kept. `string`, `integer`, or `double` are the possible types. If the `target_type` is `tag`, this parameter may not be specified. */
 export type TargetFormatType = "auto" | "string" | "integer" | "double";
-export const TargetFormatType = /*@__PURE__*/ S.String;
+export const TargetFormatType = S.String;
 
 /** Type of logs attribute remapper. */
 export type LogsAttributeRemapperType = "attribute-remapper";
-export const LogsAttributeRemapperType = /*@__PURE__*/ S.String;
+export const LogsAttributeRemapperType = S.String;
 
 /** The remapper processor remaps any source attribute(s) or tag to another target attribute or tag. Constraints on the tag/attribute name are explained in the [Tag Best Practice documentation](https://docs.datadoghq.com/logs/guide/log-parsing-best-practice). Some additional constraints are applied as `:` or `,` are not allowed in the target tag/attribute name. */
 export interface LogsAttributeRemapper {
@@ -9305,7 +9296,7 @@ export const LogsURLParserSourcesList = /*@__PURE__*/ S.Array(
 
 /** Type of logs URL parser. */
 export type LogsURLParserType = "url-parser";
-export const LogsURLParserType = /*@__PURE__*/ S.String;
+export const LogsURLParserType = S.String;
 
 /** This processor extracts query parameters and other important parameters from a URL. */
 export interface LogsURLParser {
@@ -9340,7 +9331,7 @@ export const LogsUserAgentParserSourcesList = /*@__PURE__*/ S.Array(
 
 /** Type of logs User-Agent parser. */
 export type LogsUserAgentParserType = "user-agent-parser";
-export const LogsUserAgentParserType = /*@__PURE__*/ S.String;
+export const LogsUserAgentParserType = S.String;
 
 /** The User-Agent parser takes a User-Agent attribute and extracts the OS, browser, device, and other user data. It recognizes major bots like the Google Bot, Yahoo Slurp, and Bing. */
 export interface LogsUserAgentParser {
@@ -9393,7 +9384,7 @@ export const LogsCategoryProcessorCategoriesList = /*@__PURE__*/ S.Array(
 
 /** Type of logs category processor. */
 export type LogsCategoryProcessorType = "category-processor";
-export const LogsCategoryProcessorType = /*@__PURE__*/ S.String;
+export const LogsCategoryProcessorType = S.String;
 
 /** Use the Category Processor to add a new attribute (without spaces or special characters in the new attribute name) to a log matching a provided search query. Use categories to create groups for an analytical view. For example, URL groups, machine groups, environments, and response time buckets. **Notes**: - The syntax of the query is the one of Logs Explorer search bar. The query can be done on any log attribute or tag, whether it is a facet or not. Wildcards can also be used inside your query. - Once the log has matched one of the Processor queries, it stops. Make sure they are properly ordered in case a log could match several queries. - The names of the categories must be unique. - Once defined in the Category Processor, you can map categories to log status using the Log Status Remapper. */
 export interface LogsCategoryProcessor {
@@ -9421,7 +9412,7 @@ export const LogsCategoryProcessor = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of logs arithmetic processor. */
 export type LogsArithmeticProcessorType = "arithmetic-processor";
-export const LogsArithmeticProcessorType = /*@__PURE__*/ S.String;
+export const LogsArithmeticProcessorType = S.String;
 
 /** Use the Arithmetic Processor to add a new attribute (without spaces or special characters in the new attribute name) to a log with the result of the provided formula. This enables you to remap different time attributes with different units into a single attribute, or to compute operations on attributes within the same log. The formula can use parentheses and the basic arithmetic operators `-`, `+`, `*`, `/`. By default, the calculation is skipped if an attribute is missing. Select “Replace missing attribute by 0” to automatically populate missing attribute values with 0 to ensure that the calculation is done. An attribute is missing if it is not found in the log attributes, or if it cannot be converted to a number. *Notes*: - The operator `-` needs to be space split in the formula as it can also be contained in attribute names. - If the target attribute already exists, it is overwritten by the result of the formula. - Results are rounded up to the 9th decimal. For example, if the result of the formula is `0.1234567891`, the actual value stored for the attribute is `0.123456789`. - If you need to scale a unit of measure, see [Scale Filter](https://docs.datadoghq.com/logs/log_configuration/parsing/?tab=filter#matcher-and-filter). */
 export interface LogsArithmeticProcessor {
@@ -9452,7 +9443,7 @@ export const LogsArithmeticProcessor = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of logs string builder processor. */
 export type LogsStringBuilderProcessorType = "string-builder-processor";
-export const LogsStringBuilderProcessorType = /*@__PURE__*/ S.String;
+export const LogsStringBuilderProcessorType = S.String;
 
 /** Use the string builder processor to add a new attribute (without spaces or special characters) to a log with the result of the provided template. This enables aggregation of different attributes or raw strings into a single attribute. The template is defined by both raw text and blocks with the syntax `%{attribute_path}`. **Notes**: - The processor only accepts attributes with values or an array of values in the blocks. - If an attribute cannot be used (object or array of object), it is replaced by an empty string or the entire operation is skipped depending on your selection. - If the target attribute already exists, it is overwritten by the result of the template. - Results of the template cannot exceed 256 characters. */
 export interface LogsStringBuilderProcessor {
@@ -9495,7 +9486,7 @@ export const LogsPipelineProcessorTagsList = /*@__PURE__*/ S.Array(
 
 /** Type of logs pipeline processor. */
 export type LogsPipelineProcessorType = "pipeline";
-export const LogsPipelineProcessorType = /*@__PURE__*/ S.String;
+export const LogsPipelineProcessorType = S.String;
 
 /** Nested Pipelines are pipelines within a pipeline. Use Nested Pipelines to split the processing into two steps. For example, first use a high-level filtering such as team and then a second level of filtering based on the integration, service, or any other tag or attribute. A pipeline can contain Nested Pipelines and Processors whereas a Nested Pipeline can only contain Processors. */
 export interface LogsPipelineProcessor {
@@ -9534,7 +9525,7 @@ export const LogsGeoIPParserSourcesList = /*@__PURE__*/ S.Array(
 
 /** Type of GeoIP parser. */
 export type LogsGeoIPParserType = "geo-ip-parser";
-export const LogsGeoIPParserType = /*@__PURE__*/ S.String;
+export const LogsGeoIPParserType = S.String;
 
 /** The GeoIP parser takes an IP address attribute and extracts if available the Continent, Country, Subdivision, and City information in the target attribute path. */
 export interface LogsGeoIPParser {
@@ -9568,7 +9559,7 @@ export const LogsLookupProcessorLookupTableList = /*@__PURE__*/ S.Array(
 
 /** Type of logs lookup processor. */
 export type LogsLookupProcessorType = "lookup-processor";
-export const LogsLookupProcessorType = /*@__PURE__*/ S.String;
+export const LogsLookupProcessorType = S.String;
 
 /** Use the Lookup Processor to define a mapping between a log attribute and a human readable value saved in the processors mapping table. For example, you can use the Lookup Processor to map an internal service ID into a human readable service name. Alternatively, you could also use it to check if the MAC address that just attempted to connect to the production environment belongs to your list of stolen machines. */
 export interface LogsLookupProcessor {
@@ -9635,7 +9626,7 @@ export const LogsTraceRemapperSourcesList = /*@__PURE__*/ S.Array(
 
 /** Type of logs trace remapper. */
 export type LogsTraceRemapperType = "trace-id-remapper";
-export const LogsTraceRemapperType = /*@__PURE__*/ S.String;
+export const LogsTraceRemapperType = S.String;
 
 /** There are two ways to improve correlation between application traces and logs. 1. Follow the documentation on [how to inject a trace ID in the application logs](https://docs.datadoghq.com/tracing/connect_logs_and_traces) and by default log integrations take care of all the rest of the setup. 2. Use the Trace remapper processor to define a log attribute as its associated trace ID. */
 export interface LogsTraceRemapper {
@@ -9666,7 +9657,7 @@ export const LogsSpanRemapperSourcesList = /*@__PURE__*/ S.Array(
 
 /** Type of logs span remapper. */
 export type LogsSpanRemapperType = "span-id-remapper";
-export const LogsSpanRemapperType = /*@__PURE__*/ S.String;
+export const LogsSpanRemapperType = S.String;
 
 /** There are two ways to define correlation between application spans and logs: 1. Follow the documentation on [how to inject a span ID in the application logs](https://docs.datadoghq.com/tracing/connect_logs_and_traces). Log integrations automatically handle all remaining setup steps by default. 2. Use the span remapper processor to define a log attribute as its associated span ID. */
 export interface LogsSpanRemapper {
@@ -9691,7 +9682,7 @@ export const LogsSpanRemapper = /*@__PURE__*/ S.suspend(() =>
 
 /** Operation type. */
 export type LogsArrayProcessorOperationAppendType = "append";
-export const LogsArrayProcessorOperationAppendType = /*@__PURE__*/ S.String;
+export const LogsArrayProcessorOperationAppendType = S.String;
 
 /** Operation that appends a value to a target array attribute. */
 export interface LogsArrayProcessorOperationAppend {
@@ -9716,7 +9707,7 @@ export const LogsArrayProcessorOperationAppend = /*@__PURE__*/ S.suspend(() =>
 
 /** Operation type. */
 export type LogsArrayProcessorOperationLengthType = "length";
-export const LogsArrayProcessorOperationLengthType = /*@__PURE__*/ S.String;
+export const LogsArrayProcessorOperationLengthType = S.String;
 
 /** Operation that computes the length of a `source` array and stores the result in the `target` attribute. */
 export interface LogsArrayProcessorOperationLength {
@@ -9738,7 +9729,7 @@ export const LogsArrayProcessorOperationLength = /*@__PURE__*/ S.suspend(() =>
 
 /** Operation type. */
 export type LogsArrayProcessorOperationSelectType = "select";
-export const LogsArrayProcessorOperationSelectType = /*@__PURE__*/ S.String;
+export const LogsArrayProcessorOperationSelectType = S.String;
 
 /** Operation that finds an object in a `source` array using a `filter`, and then extracts a specific value into the `target` attribute. */
 export interface LogsArrayProcessorOperationSelect {
@@ -9766,8 +9757,7 @@ export const LogsArrayProcessorOperationSelect = /*@__PURE__*/ S.suspend(() =>
 
 /** Operation type. */
 export type LogsArrayProcessorOperationExtractKeyValueType = "key-value";
-export const LogsArrayProcessorOperationExtractKeyValueType =
-  /*@__PURE__*/ S.String;
+export const LogsArrayProcessorOperationExtractKeyValueType = S.String;
 
 /** Operation that extracts key-value pairs from a `source` array and stores the result in the `target` attribute. */
 export interface LogsArrayProcessorOperationExtractKeyValue {
@@ -9804,11 +9794,11 @@ export type LogsArrayProcessorOperation =
   | LogsArrayProcessorOperationSelect
   | LogsArrayProcessorOperationExtractKeyValue;
 export const LogsArrayProcessorOperation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogsArrayProcessorOperation>;
+  S.Unknown as any as S.Schema<LogsArrayProcessorOperation>;
 
 /** Type of logs array processor. */
 export type LogsArrayProcessorType = "array-processor";
-export const LogsArrayProcessorType = /*@__PURE__*/ S.String;
+export const LogsArrayProcessorType = S.String;
 
 /** A processor for extracting, aggregating, or transforming values from JSON arrays within your logs. Supported operations are: - Select value from matching element - Compute array length - Append a value to an array - Extract key-value pairs from an array */
 export interface LogsArrayProcessor {
@@ -9832,15 +9822,15 @@ export const LogsArrayProcessor = /*@__PURE__*/ S.suspend(() =>
 
 /** The encoding used to represent the binary data. */
 export type LogsDecoderProcessorBinaryToTextEncoding = "base64" | "base16";
-export const LogsDecoderProcessorBinaryToTextEncoding = /*@__PURE__*/ S.String;
+export const LogsDecoderProcessorBinaryToTextEncoding = S.String;
 
 /** The original representation of input string. */
 export type LogsDecoderProcessorInputRepresentation = "utf_8" | "integer";
-export const LogsDecoderProcessorInputRepresentation = /*@__PURE__*/ S.String;
+export const LogsDecoderProcessorInputRepresentation = S.String;
 
 /** Type of logs decoder processor. */
 export type LogsDecoderProcessorType = "decoder-processor";
-export const LogsDecoderProcessorType = /*@__PURE__*/ S.String;
+export const LogsDecoderProcessorType = S.String;
 
 /** The decoder processor decodes any source attribute containing a base64/base16-encoded UTF-8/ASCII string back to its original value, storing the result in a target attribute. */
 export interface LogsDecoderProcessor {
@@ -9880,7 +9870,7 @@ export const LogsSchemaRemapperSourcesList = /*@__PURE__*/ S.Array(
 
 /** Type of logs schema remapper. */
 export type LogsSchemaRemapperType = "schema-remapper";
-export const LogsSchemaRemapperType = /*@__PURE__*/ S.String;
+export const LogsSchemaRemapperType = S.String;
 
 /** The schema remapper maps source log fields to their correct fields. */
 export interface LogsSchemaRemapper {
@@ -9995,7 +9985,7 @@ export const LogsSchemaCategoryMapperTargets = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of logs schema category mapper. */
 export type LogsSchemaCategoryMapperType = "schema-category-mapper";
-export const LogsSchemaCategoryMapperType = /*@__PURE__*/ S.String;
+export const LogsSchemaCategoryMapperType = S.String;
 
 /** Use the Schema Category Mapper to categorize log event into enum fields. In the case of OCSF, they can be used to map sibling fields which are composed of an ID and a name. **Notes**: - The syntax of the query is the one of Logs Explorer search bar. The query can be done on any log attribute or tag, whether it is a facet or not. Wildcards can also be used inside your query. - Categories are executed in order and processing stops at the first match. Make sure categories are properly ordered in case a log could match multiple queries. - Sibling fields always have a numerical ID field and a human-readable string name. - A fallback section handles cases where the name or ID value matches a specific value. If the name matches "Other" or the ID matches 99, the value of the sibling name field will be pulled from a source field from the original log. */
 export interface LogsSchemaCategoryMapper {
@@ -10021,8 +10011,7 @@ export const LogsSchemaCategoryMapper = /*@__PURE__*/ S.suspend(() =>
 
 /** Configuration of the schema processor mapper to use. */
 export type LogsSchemaMapper = LogsSchemaRemapper | LogsSchemaCategoryMapper;
-export const LogsSchemaMapper =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogsSchemaMapper>;
+export const LogsSchemaMapper = S.Unknown as any as S.Schema<LogsSchemaMapper>;
 
 /** The `LogsSchemaProcessor` `mappers`. */
 export type LogsSchemaProcessorMappersList = Array<LogsSchemaMapper>;
@@ -10061,7 +10050,7 @@ export const LogsSchemaData = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of logs schema processor. */
 export type LogsSchemaProcessorType = "schema-processor";
-export const LogsSchemaProcessorType = /*@__PURE__*/ S.String;
+export const LogsSchemaProcessorType = S.String;
 
 /** A processor that has additional validations and checks for a given schema. Currently supported schema types include OCSF. */
 export interface LogsSchemaProcessor {
@@ -10088,7 +10077,7 @@ export const LogsSchemaProcessor = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of logs exclude attribute processor. */
 export type LogsExcludeAttributeProcessorType = "exclude-attribute";
-export const LogsExcludeAttributeProcessorType = /*@__PURE__*/ S.String;
+export const LogsExcludeAttributeProcessorType = S.String;
 
 /** Use this processor to remove an attribute from a log during processing. The processor strips the specified attribute from the log event, which is useful when the attribute contains sensitive data or is no longer needed downstream. */
 export interface LogsExcludeAttributeProcessor {
@@ -10231,7 +10220,7 @@ export type LogsArrayMapSubProcessor =
   | LogsArrayMapStringBuilderSubProcessor
   | LogsArrayMapCategorySubProcessor;
 export const LogsArrayMapSubProcessor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogsArrayMapSubProcessor>;
+  S.Unknown as any as S.Schema<LogsArrayMapSubProcessor>;
 
 /** Sub-processors applied to each element. Allowed types: `attribute-remapper`, `string-builder-processor`, `arithmetic-processor`, `category-processor`. */
 export type LogsArrayMapProcessorProcessorsList =
@@ -10242,7 +10231,7 @@ export const LogsArrayMapProcessorProcessorsList = /*@__PURE__*/ S.Array(
 
 /** Type of logs array-map processor. */
 export type LogsArrayMapProcessorType = "array-map-processor";
-export const LogsArrayMapProcessorType = /*@__PURE__*/ S.String;
+export const LogsArrayMapProcessorType = S.String;
 
 /** The array-map processor transforms each element of a source array by applying sub-processors in order and collecting the results into a target array. Results can be written to a new array, to the source array (in-place), or to an existing target array. Sub-processors can read from `$sourceElem.<field>` (object element field), bare `$sourceElem` (primitive element), or any parent log attribute path. Sub-processors write to `$targetElem.<field>` (object output field) or bare `$targetElem` (primitive output). */
 export interface LogsArrayMapProcessor {
@@ -10298,8 +10287,7 @@ export type LogsProcessor =
   | LogsSchemaProcessor
   | LogsExcludeAttributeProcessor
   | LogsArrayMapProcessor;
-export const LogsProcessor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogsProcessor>;
+export const LogsProcessor = S.Unknown as any as S.Schema<LogsProcessor>;
 
 /** Ordered list of processors in this pipeline. */
 export type CreateLogsPipelineRequestProcessorsList = Array<LogsProcessor>;
@@ -10389,11 +10377,11 @@ export const LogsPipeline = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates the type of asset this entity represents on a monitor. */
 export type MonitorAssetCategory = "runbook";
-export const MonitorAssetCategory = /*@__PURE__*/ S.String;
+export const MonitorAssetCategory = S.String;
 
 /** Type of internal Datadog resource associated with a monitor asset. */
 export type MonitorAssetResourceType = "notebook";
-export const MonitorAssetResourceType = /*@__PURE__*/ S.String;
+export const MonitorAssetResourceType = S.String;
 
 /** Represents key links tied to a monitor to help users take action on alerts. This feature is in Preview and only available to users with the feature enabled. */
 export interface MonitorAsset {
@@ -10424,7 +10412,7 @@ export const CreateMonitorRequestAssetsList = /*@__PURE__*/ S.Array(
 
 /** Indicates whether the monitor is in a draft or published state. `draft`: The monitor appears as Draft and does not send notifications. `published`: The monitor is active and evaluates conditions and notify as configured. This field is in preview. The draft value is only available to customers with the feature enabled. */
 export type MonitorDraftStatus = "draft" | "published";
-export const MonitorDraftStatus = /*@__PURE__*/ S.String;
+export const MonitorDraftStatus = S.String;
 
 /** The scope(s) to which the downtime applies. Must be in `key:value` format. For example, `host:app2`. Provide multiple scopes as a comma-separated list like `env:dev,env:prod`. The resulting downtime applies to sources that matches ALL provided scopes (`env:dev` **AND** `env:prod`). */
 export type MatchingDowntimeInputScopeList = Array<string>;
@@ -10467,7 +10455,7 @@ export type MonitorOptionsNotificationPresets =
   | "hide_query_and_handles"
   | "show_only_snapshot"
   | "hide_handles_and_footer";
-export const MonitorOptionsNotificationPresets = /*@__PURE__*/ S.String;
+export const MonitorOptionsNotificationPresets = S.String;
 
 /** Controls what granularity a monitor alerts on. Only available for monitors with groupings. For instance, a monitor grouped by `cluster`, `namespace`, and `pod` can be configured to only notify on each new `cluster` violating the alert conditions by setting `notify_by` to `["cluster"]`. Tags mentioned in `notify_by` must be a subset of the grouping tags in the query. For example, a query grouped by `cluster` and `namespace` cannot notify on `region`. Setting `notify_by` to `["*"]` configures the monitor to notify as a simple-alert. */
 export type MonitorOptionsInputNotifyByList = Array<string>;
@@ -10481,11 +10469,11 @@ export type OnMissingDataOption =
   | "show_no_data"
   | "show_and_notify_no_data"
   | "resolve";
-export const OnMissingDataOption = /*@__PURE__*/ S.String;
+export const OnMissingDataOption = S.String;
 
 /** The different statuses for which renotification is supported. */
 export type MonitorRenotifyStatusType = "alert" | "warn" | "no data";
-export const MonitorRenotifyStatusType = /*@__PURE__*/ S.String;
+export const MonitorRenotifyStatusType = S.String;
 
 /** The types of monitor statuses for which re-notification messages are sent. Default: **null** if `renotify_interval` is **null**. If `renotify_interval` is set, defaults to renotify on `Alert` and `No Data`. */
 export type MonitorOptionsInputRenotifyStatusesList = Array<
@@ -10648,7 +10636,7 @@ export type MonitorFormulaAndFunctionEventAggregation =
   | "min"
   | "max"
   | "avg";
-export const MonitorFormulaAndFunctionEventAggregation = /*@__PURE__*/ S.String;
+export const MonitorFormulaAndFunctionEventAggregation = S.String;
 
 /** Compute options. */
 export interface MonitorFormulaAndFunctionEventQueryDefinitionCompute {
@@ -10687,7 +10675,7 @@ export type MonitorFormulaAndFunctionEventsDataSource =
   | "database_queries"
   | "network"
   | "network_path";
-export const MonitorFormulaAndFunctionEventsDataSource = /*@__PURE__*/ S.String;
+export const MonitorFormulaAndFunctionEventsDataSource = S.String;
 
 /** Options for sorting group by results. */
 export interface MonitorFormulaAndFunctionEventQueryGroupBySort {
@@ -10792,14 +10780,14 @@ export type MonitorFormulaAndFunctionCostAggregator =
   | "l2norm"
   | "percentile"
   | "stddev";
-export const MonitorFormulaAndFunctionCostAggregator = /*@__PURE__*/ S.String;
+export const MonitorFormulaAndFunctionCostAggregator = S.String;
 
 /** Data source for cost queries. */
 export type MonitorFormulaAndFunctionCostDataSource =
   | "metrics"
   | "cloud_cost"
   | "datadog_usage";
-export const MonitorFormulaAndFunctionCostDataSource = /*@__PURE__*/ S.String;
+export const MonitorFormulaAndFunctionCostDataSource = S.String;
 
 /** A formula and functions cost query. */
 export interface MonitorFormulaAndFunctionCostQueryDefinition {
@@ -10825,8 +10813,7 @@ export const MonitorFormulaAndFunctionCostQueryDefinition =
 /** Data source for data quality queries. */
 export type MonitorFormulaAndFunctionDataQualityDataSource =
   "data_quality_metrics";
-export const MonitorFormulaAndFunctionDataQualityDataSource =
-  /*@__PURE__*/ S.String;
+export const MonitorFormulaAndFunctionDataQualityDataSource = S.String;
 
 /** Optional grouping fields for aggregation. */
 export type MonitorFormulaAndFunctionDataQualityQueryDefinitionGroupByList =
@@ -10849,8 +10836,7 @@ export type MonitorFormulaAndFunctionDataQualityModelTypeOverride =
   | "freshness"
   | "percentage"
   | "any";
-export const MonitorFormulaAndFunctionDataQualityModelTypeOverride =
-  /*@__PURE__*/ S.String;
+export const MonitorFormulaAndFunctionDataQualityModelTypeOverride = S.String;
 
 /** Monitor configuration options for data quality queries. */
 export interface MonitorFormulaAndFunctionDataQualityMonitorOptions {
@@ -10973,8 +10959,7 @@ export const MonitorFormulaAndFunctionReferenceTableQueryDefinitionColumnsList =
 /** Data source for reference table queries. */
 export type MonitorFormulaAndFunctionReferenceTableDataSource =
   "reference_table";
-export const MonitorFormulaAndFunctionReferenceTableDataSource =
-  /*@__PURE__*/ S.String;
+export const MonitorFormulaAndFunctionReferenceTableDataSource = S.String;
 
 /** A reference table query for use in aggregate queries. */
 export interface MonitorFormulaAndFunctionReferenceTableQueryDefinition {
@@ -11008,7 +10993,7 @@ export type MonitorFormulaAndFunctionAggregateAugmentQuery =
   | MonitorFormulaAndFunctionEventQueryDefinition
   | MonitorFormulaAndFunctionReferenceTableQueryDefinition;
 export const MonitorFormulaAndFunctionAggregateAugmentQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MonitorFormulaAndFunctionAggregateAugmentQuery>;
+  S.Unknown as any as S.Schema<MonitorFormulaAndFunctionAggregateAugmentQuery>;
 
 /** Aggregator for metrics queries. */
 export type MonitorFormulaAndFunctionMetricsAggregator =
@@ -11023,16 +11008,14 @@ export type MonitorFormulaAndFunctionMetricsAggregator =
   | "percentile"
   | "stddev"
   | "count_unique";
-export const MonitorFormulaAndFunctionMetricsAggregator =
-  /*@__PURE__*/ S.String;
+export const MonitorFormulaAndFunctionMetricsAggregator = S.String;
 
 /** Data source for metrics queries. */
 export type MonitorFormulaAndFunctionMetricsDataSource =
   | "metrics"
   | "cloud_cost"
   | "datadog_usage";
-export const MonitorFormulaAndFunctionMetricsDataSource =
-  /*@__PURE__*/ S.String;
+export const MonitorFormulaAndFunctionMetricsDataSource = S.String;
 
 /** A formula and functions metrics query for use in aggregate queries. */
 export interface MonitorFormulaAndFunctionMetricsQueryDefinition {
@@ -11060,7 +11043,7 @@ export type MonitorFormulaAndFunctionAggregateBaseQuery =
   | MonitorFormulaAndFunctionEventQueryDefinition
   | MonitorFormulaAndFunctionMetricsQueryDefinition;
 export const MonitorFormulaAndFunctionAggregateBaseQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MonitorFormulaAndFunctionAggregateBaseQuery>;
+  S.Unknown as any as S.Schema<MonitorFormulaAndFunctionAggregateBaseQuery>;
 
 /** Compute options for the query. */
 export type MonitorFormulaAndFunctionAggregateAugmentedQueryDefinitionComputeList =
@@ -11073,8 +11056,7 @@ export const MonitorFormulaAndFunctionAggregateAugmentedQueryDefinitionComputeLi
 /** Data source for aggregate augmented queries. */
 export type MonitorFormulaAndFunctionAggregateAugmentedDataSource =
   "aggregate_augmented_query";
-export const MonitorFormulaAndFunctionAggregateAugmentedDataSource =
-  /*@__PURE__*/ S.String;
+export const MonitorFormulaAndFunctionAggregateAugmentedDataSource = S.String;
 
 /** Group by options for the query. */
 export type MonitorFormulaAndFunctionAggregateAugmentedQueryDefinitionGroupByList =
@@ -11086,8 +11068,7 @@ export const MonitorFormulaAndFunctionAggregateAugmentedQueryDefinitionGroupByLi
 
 /** Join type for aggregate query join conditions. */
 export type MonitorFormulaAndFunctionAggregateQueryJoinType = "inner" | "left";
-export const MonitorFormulaAndFunctionAggregateQueryJoinType =
-  /*@__PURE__*/ S.String;
+export const MonitorFormulaAndFunctionAggregateQueryJoinType = S.String;
 
 /** Join condition for aggregate augmented queries. */
 export interface MonitorFormulaAndFunctionAggregateQueryJoinCondition {
@@ -11149,15 +11130,14 @@ export const MonitorFormulaAndFunctionAggregateFilteredQueryDefinitionComputeLis
 /** Data source for aggregate filtered queries. */
 export type MonitorFormulaAndFunctionAggregateFilteredDataSource =
   "aggregate_filtered_query";
-export const MonitorFormulaAndFunctionAggregateFilteredDataSource =
-  /*@__PURE__*/ S.String;
+export const MonitorFormulaAndFunctionAggregateFilteredDataSource = S.String;
 
 /** Filter query for aggregate filtered queries. Can be an events query or a reference table query. */
 export type MonitorFormulaAndFunctionAggregateFilterQuery =
   | MonitorFormulaAndFunctionEventQueryDefinition
   | MonitorFormulaAndFunctionReferenceTableQueryDefinition;
 export const MonitorFormulaAndFunctionAggregateFilterQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MonitorFormulaAndFunctionAggregateFilterQuery>;
+  S.Unknown as any as S.Schema<MonitorFormulaAndFunctionAggregateFilterQuery>;
 
 /** Filter definition for aggregate filtered queries. */
 export interface MonitorFormulaAndFunctionAggregateQueryFilter {
@@ -11238,7 +11218,7 @@ export type MonitorFormulaAndFunctionQueryDefinition =
   | MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition
   | MonitorFormulaAndFunctionAggregateFilteredQueryDefinition;
 export const MonitorFormulaAndFunctionQueryDefinition =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MonitorFormulaAndFunctionQueryDefinition>;
+  S.Unknown as any as S.Schema<MonitorFormulaAndFunctionQueryDefinition>;
 
 /** List of requests that can be used in the monitor query. **This feature is currently in beta.** */
 export type MonitorOptionsInputVariablesList =
@@ -11378,7 +11358,7 @@ export type MonitorType =
   | "network-path alert"
   | "data-jobs alert"
   | "llm-observability alert";
-export const MonitorType = /*@__PURE__*/ S.String;
+export const MonitorType = S.String;
 
 export interface CreateMonitorRequest {
   /** The list of monitor assets tied to a monitor, which represents key links for users to take action on monitor alerts (for example, runbooks). */
@@ -11491,7 +11471,7 @@ export type MonitorDeviceID =
   | "firefox.laptop_large"
   | "firefox.tablet"
   | "firefox.mobile_small";
-export const MonitorDeviceID = /*@__PURE__*/ S.String;
+export const MonitorDeviceID = S.String;
 
 /** IDs of the device the Synthetics monitor is running on. */
 export type MonitorOptionsDeviceIdsList = Array<MonitorDeviceID>;
@@ -11630,7 +11610,7 @@ export type MonitorOverallStates =
   | "Skipped"
   | "Unknown"
   | "Warn";
-export const MonitorOverallStates = /*@__PURE__*/ S.String;
+export const MonitorOverallStates = S.String;
 
 /** A list of unique role identifiers to define which roles are allowed to edit the monitor. The unique identifiers for all roles can be pulled from the [Roles API](https://docs.datadoghq.com/api/latest/roles/#list-roles) and are located in the `data.id` field. Editing a monitor includes any updates to the monitor configuration, monitor deletion, and muting of the monitor for any amount of time. You can use the [Restriction Policies API](https://docs.datadoghq.com/api/latest/restriction-policies/) to manage write authorization for individual monitors by teams and users, in addition to roles. */
 export type MonitorRestrictedRolesList = Array<string>;
@@ -11752,7 +11732,7 @@ export const Monitor = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the markdown cell. */
 export type NotebookMarkdownCellDefinitionType = "markdown";
-export const NotebookMarkdownCellDefinitionType = /*@__PURE__*/ S.String;
+export const NotebookMarkdownCellDefinitionType = S.String;
 
 /** Text in a notebook is formatted with [Markdown](https://daringfireball.net/projects/markdown/), which enables the use of headings, subheadings, links, images, lists, and code blocks. */
 export interface NotebookMarkdownCellDefinition {
@@ -11783,7 +11763,7 @@ export const NotebookMarkdownCellAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The size of the graph. */
 export type NotebookGraphSize = "xs" | "s" | "m" | "l" | "xl";
-export const NotebookGraphSize = /*@__PURE__*/ S.String;
+export const NotebookGraphSize = S.String;
 
 /** Keys to split on. */
 export type NotebookSplitByKeysList = Array<string>;
@@ -11846,8 +11826,7 @@ export const NotebookAbsoluteTime = /*@__PURE__*/ S.suspend(() =>
 
 /** Timeframe for the notebook cell. When 'null', the notebook global time is used. */
 export type NotebookCellTime = NotebookRelativeTime | NotebookAbsoluteTime;
-export const NotebookCellTime =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NotebookCellTime>;
+export const NotebookCellTime = S.Unknown as any as S.Schema<NotebookCellTime>;
 
 /** The attributes of a notebook `timeseries` cell. */
 export interface NotebookTimeseriesCellAttributes {
@@ -11946,11 +11925,11 @@ export type NotebookCellCreateRequestAttributes =
   | NotebookDistributionCellAttributes
   | NotebookLogStreamCellAttributes;
 export const NotebookCellCreateRequestAttributes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NotebookCellCreateRequestAttributes>;
+  S.Unknown as any as S.Schema<NotebookCellCreateRequestAttributes>;
 
 /** Type of the Notebook Cell resource. */
 export type NotebookCellResourceType = "notebook_cells";
-export const NotebookCellResourceType = /*@__PURE__*/ S.String;
+export const NotebookCellResourceType = S.String;
 
 /** The description of a notebook cell create request. */
 export interface NotebookCellCreateRequest {
@@ -11980,7 +11959,7 @@ export type NotebookMetadataType =
   | "investigation"
   | "documentation"
   | "report";
-export const NotebookMetadataType = /*@__PURE__*/ S.String;
+export const NotebookMetadataType = S.String;
 
 /** Metadata associated with the notebook. */
 export interface NotebookMetadata {
@@ -12002,7 +11981,7 @@ export const NotebookMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** Publication status of the notebook. For now, always "published". */
 export type NotebookStatus = "published";
-export const NotebookStatus = /*@__PURE__*/ S.String;
+export const NotebookStatus = S.String;
 
 /** The list of values that the template variable drop-down is limited to. */
 export type NotebookTemplateVariableAvailableValuesList = Array<string>;
@@ -12089,7 +12068,7 @@ export type NotebookTemplateVariableAvailableValuesQuery =
   | NotebookTemplateVariableAvailableValuesQueryLogRumSpans
   | NotebookTemplateVariableAvailableValuesQueryMetrics;
 export const NotebookTemplateVariableAvailableValuesQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NotebookTemplateVariableAvailableValuesQuery>;
+  S.Unknown as any as S.Schema<NotebookTemplateVariableAvailableValuesQuery>;
 
 /** Mapping of data source names to template variable values. */
 export type NotebookTemplateVariableDataSourceMappingsMap = {
@@ -12160,7 +12139,7 @@ export const NotebookCreateDataAttributesTemplateVariablesList =
 /** Notebook global timeframe. */
 export type NotebookGlobalTime = NotebookRelativeTime | NotebookAbsoluteTime;
 export const NotebookGlobalTime =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NotebookGlobalTime>;
+  S.Unknown as any as S.Schema<NotebookGlobalTime>;
 
 /** The data attributes of a notebook. */
 export interface NotebookCreateDataAttributes {
@@ -12191,7 +12170,7 @@ export const NotebookCreateDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the Notebook resource. */
 export type NotebookResourceType = "notebooks";
-export const NotebookResourceType = /*@__PURE__*/ S.String;
+export const NotebookResourceType = S.String;
 
 /** The data for a notebook create request. */
 export interface NotebookCreateData {
@@ -12262,7 +12241,7 @@ export type NotebookCellResponseAttributes =
   | NotebookDistributionCellAttributes
   | NotebookLogStreamCellAttributes;
 export const NotebookCellResponseAttributes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NotebookCellResponseAttributes>;
+  S.Unknown as any as S.Schema<NotebookCellResponseAttributes>;
 
 /** The description of a notebook cell response. */
 export interface NotebookCellResponse {
@@ -12551,7 +12530,7 @@ export const SyntheticsPrivateLocationCreationResponse =
 
 /** The type of the associated private dashboard. */
 export type DashboardType = "custom_timeboard" | "custom_screenboard";
-export const DashboardType = /*@__PURE__*/ S.String;
+export const DashboardType = S.String;
 
 /** The `SharedDashboard` `embeddable_domains`. */
 export type CreatePublicDashboardRequestEmbeddableDomainsList = Array<string>;
@@ -12570,7 +12549,7 @@ export type DashboardGlobalTimeLiveSpan =
   | "1w"
   | "1mo"
   | "3mo";
-export const DashboardGlobalTimeLiveSpan = /*@__PURE__*/ S.String;
+export const DashboardGlobalTimeLiveSpan = S.String;
 
 /** Object containing the live span selection for the dashboard. */
 export interface DashboardGlobalTime {
@@ -12657,15 +12636,15 @@ export const CreatePublicDashboardRequestShareListList = /*@__PURE__*/ S.Array(
 
 /** Type of sharing access (either open to anyone who has the public URL or invite-only). */
 export type DashboardShareType = "open" | "invite" | "embed";
-export const DashboardShareType = /*@__PURE__*/ S.String;
+export const DashboardShareType = S.String;
 
 /** Active means the dashboard is publicly available. Paused means the dashboard is not publicly available. */
 export type SharedDashboardStatus = "active" | "paused";
-export const SharedDashboardStatus = /*@__PURE__*/ S.String;
+export const SharedDashboardStatus = S.String;
 
 /** The theme of the shared dashboard view. "system" follows your system's default viewing theme. */
 export type ViewingPreferencesTheme = "system" | "light" | "dark";
-export const ViewingPreferencesTheme = /*@__PURE__*/ S.String;
+export const ViewingPreferencesTheme = S.String;
 
 /** The viewing preferences for a shared dashboard. */
 export interface ViewingPreferences {
@@ -12945,7 +12924,7 @@ export const ServiceLevelObjectiveQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** The comparator used to compare the SLI value to the threshold. */
 export type SLOTimeSliceComparator = ">" | ">=" | "<" | "<=";
-export const SLOTimeSliceComparator = /*@__PURE__*/ S.String;
+export const SLOTimeSliceComparator = S.String;
 
 /** A formula that specifies how to combine the results of multiple queries. */
 export interface SLOFormula {
@@ -12989,7 +12968,7 @@ export const SLOTimeSliceQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** The interval used when querying data, which defines the size of a time slice. Two values are allowed: 60 (1 minute) and 300 (5 minutes). If not provided, the value defaults to 300 (5 minutes). */
 export type SLOTimeSliceInterval = 60 | 300;
-export const SLOTimeSliceInterval = /*@__PURE__*/ S.Number;
+export const SLOTimeSliceInterval = S.Number;
 
 /** The time-slice condition, composed of 3 parts: 1. the metric timeseries query, 2. the comparator, and 3. the threshold. Optionally, a fourth part, the query interval, can be provided. */
 export interface SLOTimeSliceCondition {
@@ -13077,7 +13056,7 @@ export type SLOCountDefinition =
   | SLOCountDefinitionWithTotalEventsFormula
   | SLOCountDefinitionWithBadEventsFormula;
 export const SLOCountDefinition =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SLOCountDefinition>;
+  S.Unknown as any as S.Schema<SLOCountDefinition>;
 
 /** A metric SLI specification. */
 export interface SLOCountSpec {
@@ -13091,8 +13070,7 @@ export const SLOCountSpec = /*@__PURE__*/ S.suspend(() =>
 
 /** A generic SLI specification. This is used for time-slice and count-based (metric) SLOs only. */
 export type SLOSliSpec = SLOTimeSliceSpec | SLOCountSpec;
-export const SLOSliSpec =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SLOSliSpec>;
+export const SLOSliSpec = S.Unknown as any as S.Schema<SLOSliSpec>;
 
 /** A list of tags associated with this service level objective. Always included in service level objective responses (but may be empty). Optional in create/update requests. */
 export type CreateSLORequestTagsList = Array<string>;
@@ -13102,7 +13080,7 @@ export const CreateSLORequestTagsList = /*@__PURE__*/ S.Array(
 
 /** The SLO time window options. Note that "custom" is not a valid option for creating or updating SLOs. It is only used when querying SLO history over custom timeframes. */
 export type SLOTimeframe = "7d" | "30d" | "90d" | "custom";
-export const SLOTimeframe = /*@__PURE__*/ S.String;
+export const SLOTimeframe = S.String;
 
 /** SLO thresholds (target and optionally warning) for a single time window. */
 export interface SLOThreshold {
@@ -13134,7 +13112,7 @@ export const CreateSLORequestThresholdsList = /*@__PURE__*/ S.Array(
 
 /** The type of the service level objective. */
 export type SLOType = "metric" | "monitor" | "time_slice";
-export const SLOType = /*@__PURE__*/ S.String;
+export const SLOType = S.String;
 
 export interface CreateSLORequest {
   /** A user-defined description of the service level objective. Always included in service level objective responses (but may be `null`). Optional in create/update requests. */
@@ -13327,7 +13305,7 @@ export type SLOCorrectionCategory =
   | "Outside Business Hours"
   | "Deployment"
   | "Other";
-export const SLOCorrectionCategory = /*@__PURE__*/ S.String;
+export const SLOCorrectionCategory = S.String;
 
 /** The attribute object associated with the SLO correction to be created. Exactly one of `slo_id` or `slo_query` must be provided. */
 export interface SLOCorrectionCreateRequestAttributes {
@@ -13368,7 +13346,7 @@ export const SLOCorrectionCreateRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** SLO correction resource type. */
 export type SLOCorrectionType = "correction";
-export const SLOCorrectionType = /*@__PURE__*/ S.String;
+export const SLOCorrectionType = S.String;
 
 /** The data object associated with the SLO correction to be created. */
 export interface SLOCorrectionCreateData {
@@ -13505,16 +13483,16 @@ export type SyntheticsAssertionOperator =
   | "isInLessThan"
   | "doesNotExist"
   | "isUndefined";
-export const SyntheticsAssertionOperator = /*@__PURE__*/ S.String;
+export const SyntheticsAssertionOperator = S.String;
 
 /** Value used by the operator in assertions. Can be either a number or string. */
 export type SyntheticsAssertionTargetValue = number | string;
 export const SyntheticsAssertionTargetValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SyntheticsAssertionTargetValue>;
+  S.Unknown as any as S.Schema<SyntheticsAssertionTargetValue>;
 
 /** Timings scope for response time assertions. */
 export type SyntheticsAssertionTimingsScope = "all" | "withoutDNS";
-export const SyntheticsAssertionTimingsScope = /*@__PURE__*/ S.String;
+export const SyntheticsAssertionTimingsScope = S.String;
 
 /** Type of the assertion. */
 export type SyntheticsAssertionType =
@@ -13541,7 +13519,7 @@ export type SyntheticsAssertionType =
   | "jitter"
   | "mcpToolNameLength"
   | "mcpToolCount";
-export const SyntheticsAssertionType = /*@__PURE__*/ S.String;
+export const SyntheticsAssertionType = S.String;
 
 /** An assertion which uses a simple target. */
 export interface SyntheticsAssertionTarget {
@@ -13567,11 +13545,11 @@ export const SyntheticsAssertionTarget = /*@__PURE__*/ S.suspend(() =>
 
 /** Assertion operator to apply. */
 export type SyntheticsAssertionBodyHashOperator = "md5" | "sha1" | "sha256";
-export const SyntheticsAssertionBodyHashOperator = /*@__PURE__*/ S.String;
+export const SyntheticsAssertionBodyHashOperator = S.String;
 
 /** Type of the assertion. */
 export type SyntheticsAssertionBodyHashType = "bodyHash";
-export const SyntheticsAssertionBodyHashType = /*@__PURE__*/ S.String;
+export const SyntheticsAssertionBodyHashType = S.String;
 
 /** An assertion which targets body hash. */
 export interface SyntheticsAssertionBodyHashTarget {
@@ -13592,7 +13570,7 @@ export const SyntheticsAssertionBodyHashTarget = /*@__PURE__*/ S.suspend(() =>
 
 /** Assertion operator to apply. */
 export type SyntheticsAssertionJSONPathOperator = "validatesJSONPath";
-export const SyntheticsAssertionJSONPathOperator = /*@__PURE__*/ S.String;
+export const SyntheticsAssertionJSONPathOperator = S.String;
 
 /** Composed target for `validatesJSONPath` operator. */
 export interface SyntheticsAssertionJSONPathTargetTarget {
@@ -13638,11 +13616,11 @@ export const SyntheticsAssertionJSONPathTarget = /*@__PURE__*/ S.suspend(() =>
 
 /** Assertion operator to apply. */
 export type SyntheticsAssertionJSONSchemaOperator = "validatesJSONSchema";
-export const SyntheticsAssertionJSONSchemaOperator = /*@__PURE__*/ S.String;
+export const SyntheticsAssertionJSONSchemaOperator = S.String;
 
 /** The JSON Schema meta-schema version used in the assertion. */
 export type SyntheticsAssertionJSONSchemaMetaSchema = "draft-07" | "draft-06";
-export const SyntheticsAssertionJSONSchemaMetaSchema = /*@__PURE__*/ S.String;
+export const SyntheticsAssertionJSONSchemaMetaSchema = S.String;
 
 /** Composed target for `validatesJSONSchema` operator. */
 export interface SyntheticsAssertionJSONSchemaTargetTarget {
@@ -13678,7 +13656,7 @@ export const SyntheticsAssertionJSONSchemaTarget = /*@__PURE__*/ S.suspend(() =>
 
 /** Assertion operator to apply. */
 export type SyntheticsAssertionXPathOperator = "validatesXPath";
-export const SyntheticsAssertionXPathOperator = /*@__PURE__*/ S.String;
+export const SyntheticsAssertionXPathOperator = S.String;
 
 /** Composed target for `validatesXPath` operator. */
 export interface SyntheticsAssertionXPathTargetTarget {
@@ -13721,7 +13699,7 @@ export const SyntheticsAssertionXPathTarget = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the assertion. */
 export type SyntheticsAssertionJavascriptType = "javascript";
-export const SyntheticsAssertionJavascriptType = /*@__PURE__*/ S.String;
+export const SyntheticsAssertionJavascriptType = S.String;
 
 /** A JavaScript assertion. */
 export interface SyntheticsAssertionJavascript {
@@ -13746,7 +13724,7 @@ export type SyntheticsMCPServerCapability =
   | "prompts"
   | "resources"
   | "tools";
-export const SyntheticsMCPServerCapability = /*@__PURE__*/ S.String;
+export const SyntheticsMCPServerCapability = S.String;
 
 /** List of MCP server capabilities to assert against. */
 export type SyntheticsAssertionMCPServerCapabilitiesTargetTargetList = Array<
@@ -13760,8 +13738,7 @@ export const SyntheticsAssertionMCPServerCapabilitiesTargetTargetList =
 /** Type of the assertion. */
 export type SyntheticsAssertionMCPServerCapabilitiesType =
   "mcpServerCapabilities";
-export const SyntheticsAssertionMCPServerCapabilitiesType =
-  /*@__PURE__*/ S.String;
+export const SyntheticsAssertionMCPServerCapabilitiesType = S.String;
 
 /** An assertion that checks that an MCP server advertises the expected capabilities. */
 export interface SyntheticsAssertionMCPServerCapabilitiesTarget {
@@ -13784,8 +13761,7 @@ export const SyntheticsAssertionMCPServerCapabilitiesTarget =
 /** Type of the assertion. */
 export type SyntheticsAssertionMCPRespectsSpecificationType =
   "mcpRespectsSpecification";
-export const SyntheticsAssertionMCPRespectsSpecificationType =
-  /*@__PURE__*/ S.String;
+export const SyntheticsAssertionMCPRespectsSpecificationType = S.String;
 
 /** An assertion that verifies the MCP server response respects the MCP specification. */
 export interface SyntheticsAssertionMCPRespectsSpecification {
@@ -13811,7 +13787,7 @@ export type SyntheticsAssertion =
   | SyntheticsAssertionMCPServerCapabilitiesTarget
   | SyntheticsAssertionMCPRespectsSpecification;
 export const SyntheticsAssertion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SyntheticsAssertion>;
+  S.Unknown as any as S.Schema<SyntheticsAssertion>;
 
 /** Array of assertions used for the test. Required for single API tests. */
 export type SyntheticsAPITestConfigInputAssertionsList =
@@ -13822,7 +13798,7 @@ export const SyntheticsAPITestConfigInputAssertionsList = /*@__PURE__*/ S.Array(
 
 /** Type of the configuration variable. */
 export type SyntheticsConfigVariableType = "global" | "text" | "email";
-export const SyntheticsConfigVariableType = /*@__PURE__*/ S.String;
+export const SyntheticsConfigVariableType = S.String;
 
 /** Object defining a variable that can be used in your test configuration. */
 export interface SyntheticsConfigVariable {
@@ -13861,7 +13837,7 @@ export const SyntheticsAPITestConfigInputConfigVariablesList =
 
 /** The type of basic authentication to use when performing the test. */
 export type SyntheticsBasicAuthWebType = "web";
-export const SyntheticsBasicAuthWebType = /*@__PURE__*/ S.String;
+export const SyntheticsBasicAuthWebType = S.String;
 
 /** Object to handle basic authentication when performing the test. */
 export interface SyntheticsBasicAuthWeb {
@@ -13883,7 +13859,7 @@ export const SyntheticsBasicAuthWeb = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of authentication to use when performing the test. */
 export type SyntheticsBasicAuthSigv4Type = "sigv4";
-export const SyntheticsBasicAuthSigv4Type = /*@__PURE__*/ S.String;
+export const SyntheticsBasicAuthSigv4Type = S.String;
 
 /** Object to handle `SIGV4` authentication when performing the test. */
 export interface SyntheticsBasicAuthSigv4 {
@@ -13914,7 +13890,7 @@ export const SyntheticsBasicAuthSigv4 = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of authentication to use when performing the test. */
 export type SyntheticsBasicAuthNTLMType = "ntlm";
-export const SyntheticsBasicAuthNTLMType = /*@__PURE__*/ S.String;
+export const SyntheticsBasicAuthNTLMType = S.String;
 
 /** Object to handle `NTLM` authentication when performing the test. */
 export interface SyntheticsBasicAuthNTLM {
@@ -13942,7 +13918,7 @@ export const SyntheticsBasicAuthNTLM = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of basic authentication to use when performing the test. */
 export type SyntheticsBasicAuthDigestType = "digest";
-export const SyntheticsBasicAuthDigestType = /*@__PURE__*/ S.String;
+export const SyntheticsBasicAuthDigestType = S.String;
 
 /** Object to handle digest authentication when performing the test. */
 export interface SyntheticsBasicAuthDigest {
@@ -13964,12 +13940,11 @@ export const SyntheticsBasicAuthDigest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of token to use when performing the authentication. */
 export type SyntheticsBasicAuthOauthTokenApiAuthentication = "header" | "body";
-export const SyntheticsBasicAuthOauthTokenApiAuthentication =
-  /*@__PURE__*/ S.String;
+export const SyntheticsBasicAuthOauthTokenApiAuthentication = S.String;
 
 /** The type of basic authentication to use when performing the test. */
 export type SyntheticsBasicAuthOauthClientType = "oauth-client";
-export const SyntheticsBasicAuthOauthClientType = /*@__PURE__*/ S.String;
+export const SyntheticsBasicAuthOauthClientType = S.String;
 
 /** Object to handle `oauth client` authentication when performing the test. */
 export interface SyntheticsBasicAuthOauthClient {
@@ -14007,7 +13982,7 @@ export const SyntheticsBasicAuthOauthClient = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of basic authentication to use when performing the test. */
 export type SyntheticsBasicAuthOauthROPType = "oauth-rop";
-export const SyntheticsBasicAuthOauthROPType = /*@__PURE__*/ S.String;
+export const SyntheticsBasicAuthOauthROPType = S.String;
 
 /** Object to handle `oauth rop` authentication when performing the test. */
 export interface SyntheticsBasicAuthOauthROP {
@@ -14067,11 +14042,11 @@ export const SyntheticsBasicAuthJWTAddClaims = /*@__PURE__*/ S.suspend(() =>
 
 /** Algorithm to use for the JWT authentication. */
 export type SyntheticsBasicAuthJWTAlgorithm = "HS256" | "RS256" | "ES256";
-export const SyntheticsBasicAuthJWTAlgorithm = /*@__PURE__*/ S.String;
+export const SyntheticsBasicAuthJWTAlgorithm = S.String;
 
 /** The type of authentication to use when performing the test. */
 export type SyntheticsBasicAuthJWTType = "jwt";
-export const SyntheticsBasicAuthJWTType = /*@__PURE__*/ S.String;
+export const SyntheticsBasicAuthJWTType = S.String;
 
 /** Object to handle JWT authentication when performing the test. */
 export interface SyntheticsBasicAuthJWT {
@@ -14114,7 +14089,7 @@ export type SyntheticsBasicAuth =
   | SyntheticsBasicAuthOauthROP
   | SyntheticsBasicAuthJWT;
 export const SyntheticsBasicAuth =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SyntheticsBasicAuth>;
+  S.Unknown as any as S.Schema<SyntheticsBasicAuth>;
 
 /** Type of the request body. */
 export type SyntheticsTestRequestBodyType =
@@ -14126,7 +14101,7 @@ export type SyntheticsTestRequestBodyType =
   | "graphql"
   | "application/octet-stream"
   | "multipart/form-data";
-export const SyntheticsTestRequestBodyType = /*@__PURE__*/ S.String;
+export const SyntheticsTestRequestBodyType = S.String;
 
 /** The type of call to perform. Used by gRPC steps (`healthcheck`, `unary`) and MCP steps (`init`, `tool_list`, `tool_call`). Valid values depend on the parent step's `subtype`. */
 export type SyntheticsTestCallType =
@@ -14135,7 +14110,7 @@ export type SyntheticsTestCallType =
   | "init"
   | "tool_list"
   | "tool_call";
-export const SyntheticsTestCallType = /*@__PURE__*/ S.String;
+export const SyntheticsTestCallType = S.String;
 
 /** Define a request certificate. */
 export interface SyntheticsTestRequestCertificateItem {
@@ -14181,7 +14156,7 @@ export const SyntheticsTestRequestCertificateDomainsList =
 /** DNS server port to use for DNS tests. */
 export type SyntheticsTestRequestDNSServerPort = number | string;
 export const SyntheticsTestRequestDNSServerPort =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SyntheticsTestRequestDNSServerPort>;
+  S.Unknown as any as S.Schema<SyntheticsTestRequestDNSServerPort>;
 
 /** Object describing a file to be used as part of the request in the test. */
 export interface SyntheticsTestRequestBodyFile {
@@ -14239,11 +14214,11 @@ export const SyntheticsTestHeaders = /*@__PURE__*/ S.Record(
 
 /** HTTP version to use for a Synthetic test. */
 export type SyntheticsTestOptionsHTTPVersion = "http1" | "http2" | "any";
-export const SyntheticsTestOptionsHTTPVersion = /*@__PURE__*/ S.String;
+export const SyntheticsTestOptionsHTTPVersion = S.String;
 
 /** The MCP protocol version used by the step. See https://modelcontextprotocol.io/specification. */
 export type SyntheticsMCPProtocolVersion = "2025-06-18";
-export const SyntheticsMCPProtocolVersion = /*@__PURE__*/ S.String;
+export const SyntheticsMCPProtocolVersion = S.String;
 
 /** Metadata to include when performing the gRPC test. */
 export type SyntheticsTestMetadata = { [key: string]: string | undefined };
@@ -14255,7 +14230,7 @@ export const SyntheticsTestMetadata = /*@__PURE__*/ S.Record(
 /** Port to use when performing the test. */
 export type SyntheticsTestRequestPort = number | string;
 export const SyntheticsTestRequestPort =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SyntheticsTestRequestPort>;
+  S.Unknown as any as S.Schema<SyntheticsTestRequestPort>;
 
 /** The proxy to perform the test. */
 export interface SyntheticsTestRequestProxy {
@@ -14409,7 +14384,7 @@ export type SyntheticsLocalVariableParsingOptionsType =
   | "http_body"
   | "http_header"
   | "http_status_code";
-export const SyntheticsLocalVariableParsingOptionsType = /*@__PURE__*/ S.String;
+export const SyntheticsLocalVariableParsingOptionsType = S.String;
 
 /** Parsing options for variables to extract. */
 export interface SyntheticsParsingOptions {
@@ -14469,7 +14444,7 @@ export type SyntheticsAPITestStepSubtype =
   | "icmp"
   | "websocket"
   | "mcp";
-export const SyntheticsAPITestStepSubtype = /*@__PURE__*/ S.String;
+export const SyntheticsAPITestStepSubtype = S.String;
 
 /** The Test step used in a Synthetic multi-step API test. */
 export interface SyntheticsAPITestStepInput {
@@ -14510,7 +14485,7 @@ export const SyntheticsAPITestStepInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The subtype of the Synthetic multi-step API wait step. */
 export type SyntheticsAPIWaitStepSubtype = "wait";
-export const SyntheticsAPIWaitStepSubtype = /*@__PURE__*/ S.String;
+export const SyntheticsAPIWaitStepSubtype = S.String;
 
 /** The Wait step used in a Synthetic multi-step API test. */
 export interface SyntheticsAPIWaitStepInput {
@@ -14532,7 +14507,7 @@ export const SyntheticsAPIWaitStepInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The subtype of the Synthetic multi-step API subtest step. */
 export type SyntheticsAPISubtestStepSubtype = "playSubTest";
-export const SyntheticsAPISubtestStepSubtype = /*@__PURE__*/ S.String;
+export const SyntheticsAPISubtestStepSubtype = S.String;
 
 /** The subtest step used in a Synthetics multi-step API test. */
 export interface SyntheticsAPISubtestStepInput {
@@ -14575,7 +14550,7 @@ export type SyntheticsAPIStepInput =
   | SyntheticsAPIWaitStepInput
   | SyntheticsAPISubtestStepInput;
 export const SyntheticsAPIStepInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SyntheticsAPIStepInput>;
+  S.Unknown as any as S.Schema<SyntheticsAPIStepInput>;
 
 /** When the test subtype is `multi`, the steps of the test. */
 export type SyntheticsAPITestConfigInputStepsList =
@@ -14629,7 +14604,7 @@ export type SyntheticsTestExecutionRule =
   | "blocking"
   | "non_blocking"
   | "skipped";
-export const SyntheticsTestExecutionRule = /*@__PURE__*/ S.String;
+export const SyntheticsTestExecutionRule = S.String;
 
 /** CI/CD options for a Synthetic test. */
 export interface SyntheticsTestCiOptions {
@@ -14659,7 +14634,7 @@ export type SyntheticsTestOptionsMonitorOptionsNotificationPresetName =
   | "show_only_snapshot"
   | "hide_handles_and_footer";
 export const SyntheticsTestOptionsMonitorOptionsNotificationPresetName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Object containing the options for a Synthetic test as a monitor (for example, renotification). */
 export interface SyntheticsTestOptionsMonitorOptions {
@@ -14840,7 +14815,7 @@ export const SyntheticsTestOptions = /*@__PURE__*/ S.suspend(() =>
 
 /** Define whether you want to start (`live`) or pause (`paused`) a Synthetic test. */
 export type SyntheticsTestPauseStatus = "live" | "paused";
-export const SyntheticsTestPauseStatus = /*@__PURE__*/ S.String;
+export const SyntheticsTestPauseStatus = S.String;
 
 /** The subtype of the Synthetic API test, `http`, `ssl`, `tcp`, `dns`, `icmp`, `udp`, `websocket`, `grpc` or `multi`. */
 export type SyntheticsTestDetailsSubType =
@@ -14853,7 +14828,7 @@ export type SyntheticsTestDetailsSubType =
   | "udp"
   | "websocket"
   | "grpc";
-export const SyntheticsTestDetailsSubType = /*@__PURE__*/ S.String;
+export const SyntheticsTestDetailsSubType = S.String;
 
 /** Array of tags attached to the test. */
 export type CreateSyntheticsAPITestRequestTagsList = Array<string>;
@@ -14863,7 +14838,7 @@ export const CreateSyntheticsAPITestRequestTagsList = /*@__PURE__*/ S.Array(
 
 /** Type of the Synthetic test, `api`. */
 export type SyntheticsAPITestType = "api";
-export const SyntheticsAPITestType = /*@__PURE__*/ S.String;
+export const SyntheticsAPITestType = S.String;
 
 export interface CreateSyntheticsAPITestRequest {
   config: SyntheticsAPITestConfigInput;
@@ -15029,7 +15004,7 @@ export type SyntheticsAPIStep =
   | SyntheticsAPIWaitStep
   | SyntheticsAPISubtestStep;
 export const SyntheticsAPIStep =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SyntheticsAPIStep>;
+  S.Unknown as any as S.Schema<SyntheticsAPIStep>;
 
 /** When the test subtype is `multi`, the steps of the test. */
 export type SyntheticsAPITestConfigStepsList = Array<SyntheticsAPIStep>;
@@ -15132,7 +15107,7 @@ export type SyntheticsBrowserVariableType =
   | "email"
   | "global"
   | "text";
-export const SyntheticsBrowserVariableType = /*@__PURE__*/ S.String;
+export const SyntheticsBrowserVariableType = S.String;
 
 /** Object defining a variable that can be used in your browser test. See the [Recording Steps documentation](https://docs.datadoghq.com/synthetics/browser_tests/actions/?tab=testanelementontheactivepage#variables). */
 export interface SyntheticsBrowserVariable {
@@ -15230,7 +15205,7 @@ export type SyntheticsStepType =
   | "typeText"
   | "uploadFiles"
   | "wait";
-export const SyntheticsStepType = /*@__PURE__*/ S.String;
+export const SyntheticsStepType = S.String;
 
 /** The steps used in a Synthetic browser test. */
 export interface SyntheticsStep {
@@ -15284,7 +15259,7 @@ export const CreateSyntheticsBrowserTestRequestTagsList = /*@__PURE__*/ S.Array(
 
 /** Type of the Synthetic test, `browser`. */
 export type SyntheticsBrowserTestType = "browser";
-export const SyntheticsBrowserTestType = /*@__PURE__*/ S.String;
+export const SyntheticsBrowserTestType = S.String;
 
 export interface CreateSyntheticsBrowserTestRequest {
   config: SyntheticsBrowserTestConfig;
@@ -15433,8 +15408,7 @@ export const SyntheticsTestRestrictionPolicyBindingPrincipals =
 export type SyntheticsTestRestrictionPolicyBindingRelation =
   | "editor"
   | "viewer";
-export const SyntheticsTestRestrictionPolicyBindingRelation =
-  /*@__PURE__*/ S.String;
+export const SyntheticsTestRestrictionPolicyBindingRelation = S.String;
 
 /** Objects describing the binding used for a mobile test. */
 export interface SyntheticsTestRestrictionPolicyBinding {
@@ -15468,8 +15442,7 @@ export const SyntheticsMobileTestOptionsDeviceIdsList = /*@__PURE__*/ S.Array(
 export type SyntheticsMobileTestsMobileApplicationReferenceType =
   | "latest"
   | "version";
-export const SyntheticsMobileTestsMobileApplicationReferenceType =
-  /*@__PURE__*/ S.String;
+export const SyntheticsMobileTestsMobileApplicationReferenceType = S.String;
 
 /** Mobile application for mobile synthetics test. */
 export interface SyntheticsMobileTestsMobileApplication {
@@ -15563,7 +15536,7 @@ export type SyntheticsCheckType =
   | "between"
   | "isEmpty"
   | "notIsEmpty";
-export const SyntheticsCheckType = /*@__PURE__*/ S.String;
+export const SyntheticsCheckType = S.String;
 
 /** The direction of the scroll for a `scrollToElement` step type. */
 export type SyntheticsMobileStepParamsDirection =
@@ -15571,12 +15544,11 @@ export type SyntheticsMobileStepParamsDirection =
   | "down"
   | "left"
   | "right";
-export const SyntheticsMobileStepParamsDirection = /*@__PURE__*/ S.String;
+export const SyntheticsMobileStepParamsDirection = S.String;
 
 /** Type of the context that the element is in. */
 export type SyntheticsMobileStepParamsElementContextType = "native" | "web";
-export const SyntheticsMobileStepParamsElementContextType =
-  /*@__PURE__*/ S.String;
+export const SyntheticsMobileStepParamsElementContextType = S.String;
 
 /** Position of the action relative to the element. */
 export interface SyntheticsMobileStepParamsElementRelativePosition {
@@ -15603,7 +15575,7 @@ export type SyntheticsMobileStepParamsElementUserLocatorValuesItemsType =
   | "ios-class-chain"
   | "xpath";
 export const SyntheticsMobileStepParamsElementUserLocatorValuesItemsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A single user locator object. */
 export interface SyntheticsMobileStepParamsElementUserLocatorValuesItems {
@@ -15712,7 +15684,7 @@ export const SyntheticsMobileStepParamsPositions = /*@__PURE__*/ S.Array(
 /** Values used in the step for in multiple step types. */
 export type SyntheticsMobileStepParamsValue = string | number;
 export const SyntheticsMobileStepParamsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SyntheticsMobileStepParamsValue>;
+  S.Unknown as any as S.Schema<SyntheticsMobileStepParamsValue>;
 
 /** Variable object for `extractVariable` step type. */
 export interface SyntheticsMobileStepParamsVariable {
@@ -15792,7 +15764,7 @@ export type SyntheticsMobileStepType =
   | "toggleWiFi"
   | "typeText"
   | "wait";
-export const SyntheticsMobileStepType = /*@__PURE__*/ S.String;
+export const SyntheticsMobileStepType = S.String;
 
 /** The steps used in a Synthetic mobile test. */
 export interface SyntheticsMobileStep {
@@ -15844,7 +15816,7 @@ export const CreateSyntheticsMobileTestRequestTagsList = /*@__PURE__*/ S.Array(
 
 /** Type of the Synthetic test, `mobile`. */
 export type SyntheticsMobileTestType = "mobile";
-export const SyntheticsMobileTestType = /*@__PURE__*/ S.String;
+export const SyntheticsMobileTestType = S.String;
 
 export interface CreateSyntheticsMobileTestRequest {
   config: SyntheticsMobileTestConfig;
@@ -15976,7 +15948,7 @@ export const UserResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Encoding type. Can be given either `json` or `form`. */
 export type WebhooksIntegrationEncoding = "json" | "form";
-export const WebhooksIntegrationEncoding = /*@__PURE__*/ S.String;
+export const WebhooksIntegrationEncoding = S.String;
 
 export interface CreateWebhooksIntegrationRequest {
   /** If `null`, uses no header. If given a JSON payload, these will be headers attached to your webhook. */
@@ -16260,7 +16232,7 @@ export const DashboardListDeleteResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Dashboard resource type. */
 export type DashboardResourceType = "dashboard";
-export const DashboardResourceType = /*@__PURE__*/ S.String;
+export const DashboardResourceType = S.String;
 
 /** Dashboard bulk action request data. */
 export interface DashboardBulkActionData {
@@ -16557,7 +16529,7 @@ export const SharedDashboardInvitesDataObjectAttributesInput =
 
 /** Type for shared dashboard invitation request body. */
 export type DashboardInviteType = "public_dashboard_invitation";
-export const DashboardInviteType = /*@__PURE__*/ S.String;
+export const DashboardInviteType = S.String;
 
 /** Object containing the information for an invitation to a shared dashboard. */
 export interface SharedDashboardInvitesDataObjectInput {
@@ -16586,7 +16558,7 @@ export type SharedDashboardInvitesDataInput =
   | SharedDashboardInvitesDataObjectInput
   | SharedDashboardInvitesDataListInput;
 export const SharedDashboardInvitesDataInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SharedDashboardInvitesDataInput>;
+  S.Unknown as any as S.Schema<SharedDashboardInvitesDataInput>;
 
 export interface DeletePublicDashboardInvitationRequest {
   /** The token of the shared dashboard. */
@@ -16743,7 +16715,7 @@ export const SLOBulkDeleteResponseData = /*@__PURE__*/ S.suspend(() =>
 
 /** The timeframe of the threshold associated with this error or "all" if all thresholds are affected. */
 export type SLOErrorTimeframe = "7d" | "30d" | "90d" | "all";
-export const SLOErrorTimeframe = /*@__PURE__*/ S.String;
+export const SLOErrorTimeframe = S.String;
 
 /** Object describing the error. */
 export interface SLOBulkDeleteError {
@@ -17245,7 +17217,7 @@ export const SyntheticsAPITestResultShortResult = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of your Synthetic monitor. * `O` for not triggered * `1` for triggered * `2` for no data */
 export type SyntheticsTestMonitorStatus = 0 | 1 | 2;
-export const SyntheticsTestMonitorStatus = /*@__PURE__*/ S.Number;
+export const SyntheticsTestMonitorStatus = S.Number;
 
 /** Object with the results of a single Synthetic API test. */
 export interface SyntheticsAPITestResultShort {
@@ -17484,7 +17456,7 @@ export type SyntheticsTestProcessStatus =
   | "scheduled"
   | "finished"
   | "finished_with_error";
-export const SyntheticsTestProcessStatus = /*@__PURE__*/ S.String;
+export const SyntheticsTestProcessStatus = S.String;
 
 /** Error code that can be returned by a Synthetic test. */
 export type SyntheticsApiTestFailureCode =
@@ -17514,7 +17486,7 @@ export type SyntheticsApiTestFailureCode =
   | "WEBSOCKET"
   | "UNKNOWN"
   | "INTERNAL_ERROR";
-export const SyntheticsApiTestFailureCode = /*@__PURE__*/ S.String;
+export const SyntheticsApiTestFailureCode = S.String;
 
 /** The API test failure details. */
 export interface SyntheticsApiTestResultFailure {
@@ -17840,7 +17812,7 @@ export type SyntheticsBrowserTestFailureCode =
   | "UPLOAD_FILES_DIALOG"
   | "UPLOAD_FILES_DYNAMIC_ELEMENT"
   | "UPLOAD_FILES_NAME";
-export const SyntheticsBrowserTestFailureCode = /*@__PURE__*/ S.String;
+export const SyntheticsBrowserTestFailureCode = S.String;
 
 /** The browser test failure details. */
 export interface SyntheticsBrowserTestResultFailure {
@@ -17859,7 +17831,7 @@ export const SyntheticsBrowserTestResultFailure = /*@__PURE__*/ S.suspend(() =>
 
 /** Error type returned by a browser test. */
 export type SyntheticsBrowserErrorType = "network" | "js";
-export const SyntheticsBrowserErrorType = /*@__PURE__*/ S.String;
+export const SyntheticsBrowserErrorType = S.String;
 
 /** Error response object for a browser test. */
 export interface SyntheticsBrowserError {
@@ -17891,7 +17863,7 @@ export const SyntheticsStepDetailBrowserErrorsList = /*@__PURE__*/ S.Array(
 
 /** Navigate between different tabs for your browser test. */
 export type SyntheticsPlayingTab = -1 | 0 | 1 | 2 | 3;
-export const SyntheticsPlayingTab = /*@__PURE__*/ S.Number;
+export const SyntheticsPlayingTab = S.Number;
 
 /** If this step includes a sub-test. [Subtests documentation](https://docs.datadoghq.com/synthetics/browser_tests/advanced_options/#subtests). */
 export type SyntheticsStepDetailSubTestStepDetailsList =
@@ -17928,7 +17900,7 @@ export const SyntheticsStepDetailVitalsMetricsList = /*@__PURE__*/ S.Array(
 
 /** User locator used. */
 export type SyntheticsWarningType = "user_locator";
-export const SyntheticsWarningType = /*@__PURE__*/ S.String;
+export const SyntheticsWarningType = S.String;
 
 /** Object collecting warnings for a given step. */
 export interface SyntheticsStepDetailWarning {
@@ -18411,7 +18383,7 @@ export type HourlyUsageAttributionUsageType =
   | "universal_service_monitoring_usage"
   | "vuln_management_hosts_usage"
   | "workflow_executions_usage";
-export const HourlyUsageAttributionUsageType = /*@__PURE__*/ S.String;
+export const HourlyUsageAttributionUsageType = S.String;
 
 export interface GetHourlyUsageAttributionRequest {
   /** Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage beginning at this hour. */
@@ -19220,11 +19192,11 @@ export type MonthlyUsageAttributionSupportedMetrics =
   | "sca_fargate_usage"
   | "sca_fargate_percentage"
   | "*";
-export const MonthlyUsageAttributionSupportedMetrics = /*@__PURE__*/ S.String;
+export const MonthlyUsageAttributionSupportedMetrics = S.String;
 
 /** The direction to sort by. */
 export type UsageSortDirection = "desc" | "asc";
-export const UsageSortDirection = /*@__PURE__*/ S.String;
+export const UsageSortDirection = S.String;
 
 export interface GetMonthlyUsageAttributionRequest {
   /** Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for usage beginning in this month. Maximum of 15 months ago. */
@@ -19449,7 +19421,7 @@ export type SharedDashboardInvitesData =
   | SharedDashboardInvitesDataObject
   | SharedDashboardInvitesDataList;
 export const SharedDashboardInvitesData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SharedDashboardInvitesData>;
+  S.Unknown as any as S.Schema<SharedDashboardInvitesData>;
 
 /** Object containing the total count of invitations across all pages */
 export interface SharedDashboardInvitesMetaPage {
@@ -20083,7 +20055,7 @@ export const SLOHistoryResponseDataThresholdsMap = /*@__PURE__*/ S.Record(
 
 /** A numeric representation of the type of the service level objective (`0` for monitor, `1` for metric). Always included in service level objective responses. Ignored in create/update requests. */
 export type SLOTypeNumeric = 0 | 1 | 2;
-export const SLOTypeNumeric = /*@__PURE__*/ S.Number;
+export const SLOTypeNumeric = S.Number;
 
 /** An array of service level objective objects. */
 export interface SLOHistoryResponseData {
@@ -20245,7 +20217,7 @@ export const SyntheticsCIBatchMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** Determines whether the batch has passed, failed, or is in progress. */
 export type SyntheticsBatchStatus = "passed" | "skipped" | "failed";
-export const SyntheticsBatchStatus = /*@__PURE__*/ S.String;
+export const SyntheticsBatchStatus = S.String;
 
 /** Type of the Synthetic test. */
 export type SyntheticsTestDetailsType =
@@ -20253,7 +20225,7 @@ export type SyntheticsTestDetailsType =
   | "browser"
   | "mobile"
   | "network";
-export const SyntheticsTestDetailsType = /*@__PURE__*/ S.String;
+export const SyntheticsTestDetailsType = S.String;
 
 /** Object with the results of a Synthetic batch. */
 export interface SyntheticsBatchResult {
@@ -21359,7 +21331,7 @@ export const LogsIndexListResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Time-ascending `asc` or time-descending `desc` results. */
 export type LogsSort = "asc" | "desc";
-export const LogsSort = /*@__PURE__*/ S.String;
+export const LogsSort = S.String;
 
 /** Timeframe to retrieve the log from. */
 export interface LogsListRequestTime {
@@ -21894,7 +21866,7 @@ export type SyntheticsPatchTestOperationName =
   | "move"
   | "copy"
   | "test";
-export const SyntheticsPatchTestOperationName = /*@__PURE__*/ S.String;
+export const SyntheticsPatchTestOperationName = S.String;
 
 /** A single [JSON Patch](https://jsonpatch.com) operation to perform on the test */
 export interface SyntheticsPatchTestOperation {
@@ -22732,7 +22704,7 @@ export const SLORawErrorBudgetRemaining = /*@__PURE__*/ S.suspend(() =>
 
 /** State of the SLO. */
 export type SLOState = "breached" | "warning" | "ok" | "no_data";
-export const SLOState = /*@__PURE__*/ S.String;
+export const SLOState = S.String;
 
 /** Overall status of the SLO by timeframes. */
 export interface SLOOverallStatuses {
@@ -22847,7 +22819,7 @@ export const SearchServiceLevelObjectiveAttributesTeamTagsList =
 
 /** The SLO time window options. */
 export type SearchSLOTimeframe = "7d" | "30d" | "90d";
-export const SearchSLOTimeframe = /*@__PURE__*/ S.String;
+export const SearchSLOTimeframe = S.String;
 
 /** SLO thresholds (target and optionally warning) for a single time window. */
 export interface SearchSLOThreshold {
@@ -23188,7 +23160,7 @@ export const SubmitMetricsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of a service check. Set to `0` for OK, `1` for warning, `2` for critical, and `3` for unknown. */
 export type ServiceCheckStatus = 0 | 1 | 2 | 3;
-export const ServiceCheckStatus = /*@__PURE__*/ S.Number;
+export const ServiceCheckStatus = S.Number;
 
 /** Tags related to a check. */
 export type ServiceCheckTagsList = Array<string>;
@@ -24273,7 +24245,7 @@ export type NotebookCellUpdateRequestAttributes =
   | NotebookDistributionCellAttributes
   | NotebookLogStreamCellAttributes;
 export const NotebookCellUpdateRequestAttributes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NotebookCellUpdateRequestAttributes>;
+  S.Unknown as any as S.Schema<NotebookCellUpdateRequestAttributes>;
 
 /** The description of a notebook cell update request. */
 export interface NotebookCellUpdateRequest {
@@ -24297,7 +24269,7 @@ export type NotebookUpdateCell =
   | NotebookCellCreateRequest
   | NotebookCellUpdateRequest;
 export const NotebookUpdateCell =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NotebookUpdateCell>;
+  S.Unknown as any as S.Schema<NotebookUpdateCell>;
 
 /** List of cells to display in the notebook. */
 export type NotebookUpdateDataAttributesCellsList = Array<NotebookUpdateCell>;

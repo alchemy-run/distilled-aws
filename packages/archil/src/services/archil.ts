@@ -51,7 +51,7 @@ export class NotFound
   ) {}
 
 export type TokenUserType = "token";
-export const TokenUserType = /*@__PURE__*/ S.String;
+export const TokenUserType = S.String;
 
 export interface TokenUser {
   type: TokenUserType;
@@ -71,7 +71,7 @@ export const TokenUser = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "TokenUser" }) as any as S.Schema<TokenUser>;
 
 export type AwsStsUserType = "awssts";
-export const AwsStsUserType = /*@__PURE__*/ S.String;
+export const AwsStsUserType = S.String;
 
 export interface AwsStsUser {
   type: AwsStsUserType;
@@ -86,7 +86,7 @@ export const AwsStsUser = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "AwsStsUser" }) as any as S.Schema<AwsStsUser>;
 
 export type DiskUser = TokenUser | AwsStsUser;
-export const DiskUser = /*@__PURE__*/ S.Unknown as any as S.Schema<DiskUser>;
+export const DiskUser = S.Unknown as any as S.Schema<DiskUser>;
 
 export interface AddDiskUserRequest {
   /** Disk ID (format `dsk-{16 hex chars}`) */
@@ -103,7 +103,7 @@ export const AddDiskUserRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AddDiskUserRequest>;
 
 export type AuthorizedUserType = "token" | "awssts";
-export const AuthorizedUserType = /*@__PURE__*/ S.String;
+export const AuthorizedUserType = S.String;
 
 export interface AuthorizedUser {
   type?: AuthorizedUserType;
@@ -198,7 +198,7 @@ export const ApiResponseTokenCreated = /*@__PURE__*/ S.suspend(() =>
 
 /** Mount type identifier */
 export type S3MountType = "s3";
-export const S3MountType = /*@__PURE__*/ S.String;
+export const S3MountType = S.String;
 
 /** Mount configuration for Amazon S3 buckets */
 export interface S3Mount {
@@ -228,7 +228,7 @@ export const S3Mount = /*@__PURE__*/ S.suspend(() =>
 
 /** Mount type identifier */
 export type GCSMountType = "gcs";
-export const GCSMountType = /*@__PURE__*/ S.String;
+export const GCSMountType = S.String;
 
 /** Mount configuration for Google Cloud Storage buckets */
 export interface GCSMount {
@@ -255,7 +255,7 @@ export const GCSMount = /*@__PURE__*/ S.suspend(() =>
 
 /** Mount type identifier */
 export type R2MountType = "r2";
-export const R2MountType = /*@__PURE__*/ S.String;
+export const R2MountType = S.String;
 
 /** Mount configuration for Cloudflare R2 buckets */
 export interface R2Mount {
@@ -285,7 +285,7 @@ export const R2Mount = /*@__PURE__*/ S.suspend(() =>
 
 /** Mount type identifier */
 export type S3CompatibleMountType = "s3-compatible";
-export const S3CompatibleMountType = /*@__PURE__*/ S.String;
+export const S3CompatibleMountType = S.String;
 
 /** Mount configuration for S3-compatible storage (MinIO, Backblaze B2, etc.) */
 export interface S3CompatibleMount {
@@ -317,7 +317,7 @@ export const S3CompatibleMount = /*@__PURE__*/ S.suspend(() =>
 
 /** Mount type identifier */
 export type AzureBlobMountType = "azure-blob";
-export const AzureBlobMountType = /*@__PURE__*/ S.String;
+export const AzureBlobMountType = S.String;
 
 /** Mount configuration for Azure Blob Storage containers */
 export interface AzureBlobMount {
@@ -357,8 +357,7 @@ export type MountConfig =
   | R2Mount
   | S3CompatibleMount
   | AzureBlobMount;
-export const MountConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MountConfig>;
+export const MountConfig = S.Unknown as any as S.Schema<MountConfig>;
 
 /** Storage mount to attach. Omit for archil-managed storage. */
 export type CreateDiskRequestMountsList = Array<MountConfig>;
@@ -654,7 +653,7 @@ export const ExecMount = /*@__PURE__*/ S.suspend(() =>
 
 export type ExecRequestDisksValue = string | ExecMount;
 export const ExecRequestDisksValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExecRequestDisksValue>;
+  S.Unknown as any as S.Schema<ExecRequestDisksValue>;
 
 /** Map of relative path under `/mnt/archil` to the disk to mount there. At least one entry is required. Relative paths must be non-empty, non-absolute, and contain no `.` or `..` segments. Each value is either a plain disk ID string (mounts the disk's root, read-write) or an object that additionally selects a subdirectory of the disk and/or marks the mount as read-only. */
 export type ExecRequestDisksMap = {
@@ -798,7 +797,7 @@ export type DiskResponseStatus =
   | "deleting"
   | "deleted"
   | "failed";
-export const DiskResponseStatus = /*@__PURE__*/ S.String;
+export const DiskResponseStatus = S.String;
 
 /** Storage backend type */
 export type MountResponseType =
@@ -807,11 +806,11 @@ export type MountResponseType =
   | "r2"
   | "s3-compatible"
   | "azure-blob";
-export const MountResponseType = /*@__PURE__*/ S.String;
+export const MountResponseType = S.String;
 
 /** Access mode */
 export type MountResponseAccessMode = "rw" | "ro";
-export const MountResponseAccessMode = /*@__PURE__*/ S.String;
+export const MountResponseAccessMode = S.String;
 
 /** Mount configuration details (secrets omitted) */
 export interface MountConfigResponse {
@@ -837,11 +836,11 @@ export const MountConfigResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Current connection status */
 export type MountResponseConnectionStatus = "connected" | "disconnected";
-export const MountResponseConnectionStatus = /*@__PURE__*/ S.String;
+export const MountResponseConnectionStatus = S.String;
 
 /** How the mount authenticates to the storage backend */
 export type MountResponseAuthorizationType = "iam" | "accessKeys" | "oauth";
-export const MountResponseAuthorizationType = /*@__PURE__*/ S.String;
+export const MountResponseAuthorizationType = S.String;
 
 export interface MountResponse {
   /** Mount identifier */
@@ -1006,11 +1005,11 @@ export type SandboxState =
   | "failed"
   | "deleting"
   | "deleted";
-export const SandboxState = /*@__PURE__*/ S.String;
+export const SandboxState = S.String;
 
 /** Sandbox CPU architecture. */
 export type SandboxPlatform = "arm64" | "amd64";
-export const SandboxPlatform = /*@__PURE__*/ S.String;
+export const SandboxPlatform = S.String;
 
 export interface SandboxEndpoint {
   port: number;
@@ -1146,7 +1145,7 @@ export type GrepStoppedReason =
   | "max_results"
   | "deadline"
   | "list_failed";
-export const GrepStoppedReason = /*@__PURE__*/ S.String;
+export const GrepStoppedReason = S.String;
 
 export interface GrepDiskResult {
   matches: GrepDiskResultMatchesList;
@@ -1350,7 +1349,7 @@ export const PauseSandboxRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PauseSandboxRequest>;
 
 export type RemoveDiskUserRequestUserType = "token" | "awssts";
-export const RemoveDiskUserRequestUserType = /*@__PURE__*/ S.String;
+export const RemoveDiskUserRequestUserType = S.String;
 
 export interface RemoveDiskUserRequest {
   /** Disk ID (format `dsk-{16 hex chars}`) */

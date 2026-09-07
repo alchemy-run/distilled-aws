@@ -106,7 +106,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -114,7 +114,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -160,7 +160,7 @@ export type ProvisioningState =
   | "Updating"
   | "Deleting"
   | "Accepted";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Catalog properties */
 export interface CatalogProperties {
@@ -480,7 +480,7 @@ export const DeleteProductResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Regional data boundary values. */
 export type RegionalDataBoundary = "None" | "EU";
-export const RegionalDataBoundary = /*@__PURE__*/ S.String;
+export const RegionalDataBoundary = S.String;
 
 /** The properties of image */
 export interface ImagePropertiesInput {
@@ -598,7 +598,7 @@ export type ImageType =
   | "RecoveryManifest"
   | "ManifestSet"
   | "Other";
-export const ImageType = /*@__PURE__*/ S.String;
+export const ImageType = S.String;
 
 /** The properties of image */
 export interface ImageProperties {
@@ -757,15 +757,15 @@ export const DeviceGroupsCountDevicesResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** OS feed type values. */
 export type OSFeedType = "Retail" | "RetailEval";
-export const OSFeedType = /*@__PURE__*/ S.String;
+export const OSFeedType = S.String;
 
 /** Update policy values. */
 export type UpdatePolicy = "UpdateAll" | "No3rdPartyAppUpdates";
-export const UpdatePolicy = /*@__PURE__*/ S.String;
+export const UpdatePolicy = S.String;
 
 /** Allow crash dumps values. */
 export type AllowCrashDumpCollection = "Enabled" | "Disabled";
-export const AllowCrashDumpCollection = /*@__PURE__*/ S.String;
+export const AllowCrashDumpCollection = S.String;
 
 /** The properties of deviceGroup */
 export interface DeviceGroupPropertiesInput {
@@ -988,7 +988,7 @@ export const DevicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Capability image type */
 export type CapabilityType = "ApplicationDevelopment" | "FieldServicing";
-export const CapabilityType = /*@__PURE__*/ S.String;
+export const CapabilityType = S.String;
 
 /** List of capabilities to create */
 export type GenerateDeviceCapabilityImageRequestCapabilitiesList = Array<
@@ -1216,7 +1216,7 @@ export const GetCertificateRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Certificate status values. */
 export type CertificateStatus = "Active" | "Inactive" | "Expired" | "Revoked";
-export const CertificateStatus = /*@__PURE__*/ S.String;
+export const CertificateStatus = S.String;
 
 /** The properties of certificate */
 export interface CertificateProperties {
@@ -2410,11 +2410,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {

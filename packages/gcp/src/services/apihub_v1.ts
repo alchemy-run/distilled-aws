@@ -108,7 +108,7 @@ export type GoogleCloudApihubV1CollectApiDataRequestCollectionTypeEnum =
   | "COLLECTION_TYPE_UPSERT"
   | "COLLECTION_TYPE_DELETE";
 export const GoogleCloudApihubV1CollectApiDataRequestCollectionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The value that can be assigned to the attribute when the data type is enum. */
 export interface GoogleCloudApihubV1AllowedValue {
@@ -253,8 +253,7 @@ export const GoogleCloudApihubV1PluginInstanceActionSource =
 export type GoogleCloudApihubV1SourceMetadataSourceTypeEnum =
   | "SOURCE_TYPE_UNSPECIFIED"
   | "PLUGIN";
-export const GoogleCloudApihubV1SourceMetadataSourceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1SourceMetadataSourceTypeEnum = S.String;
 
 /** SourceMetadata represents the metadata for a resource at the source. */
 export interface GoogleCloudApihubV1SourceMetadata {
@@ -515,8 +514,7 @@ export type GoogleCloudApihubV1OpenApiSpecDetailsFormatEnum =
   | "OPEN_API_SPEC_2_0"
   | "OPEN_API_SPEC_3_0"
   | "OPEN_API_SPEC_3_1";
-export const GoogleCloudApihubV1OpenApiSpecDetailsFormatEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1OpenApiSpecDetailsFormatEnum = S.String;
 
 /** OpenApiSpecDetails contains the details parsed from an OpenAPI spec in addition to the fields mentioned in SpecDetails. */
 export interface GoogleCloudApihubV1OpenApiSpecDetails {
@@ -559,7 +557,7 @@ export type GoogleCloudApihubV1AdditionalSpecContentSpecContentTypeEnum =
   | "BOOSTED_SPEC_CONTENT"
   | "GATEWAY_OPEN_API_SPEC";
 export const GoogleCloudApihubV1AdditionalSpecContentSpecContentTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -624,7 +622,7 @@ export type GoogleCloudApihubV1LintResponseLinterEnum =
   | "LINTER_UNSPECIFIED"
   | "SPECTRAL"
   | "OTHER";
-export const GoogleCloudApihubV1LintResponseLinterEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1LintResponseLinterEnum = S.String;
 
 export type GoogleCloudApihubV1SummaryEntrySeverityEnum =
   | "SEVERITY_UNSPECIFIED"
@@ -632,8 +630,7 @@ export type GoogleCloudApihubV1SummaryEntrySeverityEnum =
   | "SEVERITY_WARNING"
   | "SEVERITY_INFO"
   | "SEVERITY_HINT";
-export const GoogleCloudApihubV1SummaryEntrySeverityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1SummaryEntrySeverityEnum = S.String;
 
 /** Count of issues with a given severity. */
 export interface GoogleCloudApihubV1SummaryEntry {
@@ -661,7 +658,7 @@ export type GoogleCloudApihubV1LintResponseStateEnum =
   | "LINT_STATE_UNSPECIFIED"
   | "LINT_STATE_SUCCESS"
   | "LINT_STATE_ERROR";
-export const GoogleCloudApihubV1LintResponseStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1LintResponseStateEnum = S.String;
 
 export type GoogleCloudApihubV1IssueSeverityEnum =
   | "SEVERITY_UNSPECIFIED"
@@ -669,7 +666,7 @@ export type GoogleCloudApihubV1IssueSeverityEnum =
   | "SEVERITY_WARNING"
   | "SEVERITY_INFO"
   | "SEVERITY_HINT";
-export const GoogleCloudApihubV1IssueSeverityEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1IssueSeverityEnum = S.String;
 
 /** Point within the file (line and character). */
 export interface GoogleCloudApihubV1Point {
@@ -765,7 +762,7 @@ export type GoogleCloudApihubV1SpecParsingModeEnum =
   | "PARSING_MODE_UNSPECIFIED"
   | "RELAXED"
   | "STRICT";
-export const GoogleCloudApihubV1SpecParsingModeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1SpecParsingModeEnum = S.String;
 
 /** Represents a spec associated with an API version in the API Hub. Note that specs of various types can be uploaded, however parsing of details is supported for OpenAPI spec currently. */
 export interface GoogleCloudApihubV1Spec {
@@ -1056,8 +1053,7 @@ export type GoogleCloudApihubV1HttpOperationConfigMethodEnum =
   | "HEAD"
   | "PATCH"
   | "TRACE";
-export const GoogleCloudApihubV1HttpOperationConfigMethodEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1HttpOperationConfigMethodEnum = S.String;
 
 /** Identifies a single API Hub operation by spec resource name + HTTP path + HTTP method. */
 export interface GoogleCloudApihubV1HttpOperationConfig {
@@ -1220,8 +1216,7 @@ export type GoogleCloudApihubV1ConfigEncryptionTypeEnum =
   | "ENCRYPTION_TYPE_UNSPECIFIED"
   | "GMEK"
   | "CMEK";
-export const GoogleCloudApihubV1ConfigEncryptionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1ConfigEncryptionTypeEnum = S.String;
 
 /** The configuration for Agent Registry sync. */
 export interface GoogleCloudApihubV1AgentRegistrySyncConfig {
@@ -1272,8 +1267,7 @@ export type GoogleCloudApihubV1ApiHubInstanceStateEnum =
   | "UPDATING"
   | "DELETING"
   | "FAILED";
-export const GoogleCloudApihubV1ApiHubInstanceStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1ApiHubInstanceStateEnum = S.String;
 
 /** An ApiHubInstance represents the instance resources of the API Hub. Currently, only one ApiHub instance is allowed for each project. */
 export interface GoogleCloudApihubV1ApiHubInstance {
@@ -1478,8 +1472,7 @@ export type GoogleCloudApihubV1HttpOperationMethodEnum =
   | "HEAD"
   | "PATCH"
   | "TRACE";
-export const GoogleCloudApihubV1HttpOperationMethodEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1HttpOperationMethodEnum = S.String;
 
 /** The HTTP Operation. */
 export interface GoogleCloudApihubV1HttpOperation {
@@ -1614,14 +1607,13 @@ export type GoogleCloudApihubV1AttributeScopeEnum =
   | "DEFINITION"
   | "EXTERNAL_API"
   | "PLUGIN";
-export const GoogleCloudApihubV1AttributeScopeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1AttributeScopeEnum = S.String;
 
 export type GoogleCloudApihubV1AttributeDefinitionTypeEnum =
   | "DEFINITION_TYPE_UNSPECIFIED"
   | "SYSTEM_DEFINED"
   | "USER_DEFINED";
-export const GoogleCloudApihubV1AttributeDefinitionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1AttributeDefinitionTypeEnum = S.String;
 
 export type GoogleCloudApihubV1AttributeDataTypeEnum =
   | "DATA_TYPE_UNSPECIFIED"
@@ -1629,7 +1621,7 @@ export type GoogleCloudApihubV1AttributeDataTypeEnum =
   | "JSON"
   | "STRING"
   | "URI";
-export const GoogleCloudApihubV1AttributeDataTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1AttributeDataTypeEnum = S.String;
 
 /** An attribute in the API Hub. An attribute is a name value pair which can be attached to different resources in the API hub based on the scope of the attribute. Attributes can either be pre-defined by the API Hub or created by users. */
 export interface GoogleCloudApihubV1Attribute {
@@ -1737,8 +1729,7 @@ export type GoogleCloudApihubV1CurationLastExecutionStateEnum =
   | "LAST_EXECUTION_STATE_UNSPECIFIED"
   | "SUCCEEDED"
   | "FAILED";
-export const GoogleCloudApihubV1CurationLastExecutionStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1CurationLastExecutionStateEnum = S.String;
 
 /** The plugin instance and associated action that is using the curation. */
 export interface GoogleCloudApihubV1PluginInstanceActionID {
@@ -1768,8 +1759,7 @@ export type GoogleCloudApihubV1CurationLastExecutionErrorCodeEnum =
   | "ERROR_CODE_UNSPECIFIED"
   | "INTERNAL_ERROR"
   | "UNAUTHORIZED";
-export const GoogleCloudApihubV1CurationLastExecutionErrorCodeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1CurationLastExecutionErrorCodeEnum = S.String;
 
 /** A curation resource in the API Hub. */
 export interface GoogleCloudApihubV1Curation {
@@ -1870,8 +1860,7 @@ export type GoogleCloudApihubV1DependencyErrorDetailErrorEnum =
   | "ERROR_UNSPECIFIED"
   | "SUPPLIER_NOT_FOUND"
   | "SUPPLIER_RECREATED";
-export const GoogleCloudApihubV1DependencyErrorDetailErrorEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1DependencyErrorDetailErrorEnum = S.String;
 
 /** Details describing error condition of a dependency. */
 export interface GoogleCloudApihubV1DependencyErrorDetail {
@@ -1893,14 +1882,13 @@ export const GoogleCloudApihubV1DependencyErrorDetail = /*@__PURE__*/ S.suspend(
 export type GoogleCloudApihubV1DependencyDiscoveryModeEnum =
   | "DISCOVERY_MODE_UNSPECIFIED"
   | "MANUAL";
-export const GoogleCloudApihubV1DependencyDiscoveryModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1DependencyDiscoveryModeEnum = S.String;
 
 export type GoogleCloudApihubV1DependencyStateEnum =
   | "STATE_UNSPECIFIED"
   | "PROPOSED"
   | "VALIDATED";
-export const GoogleCloudApihubV1DependencyStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1DependencyStateEnum = S.String;
 
 /** A dependency resource defined in the API hub describes a dependency directed from a consumer to a supplier entity. A dependency can be defined between two Operations or between an Operation and External API. */
 export interface GoogleCloudApihubV1Dependency {
@@ -2107,8 +2095,7 @@ export type GoogleCloudApihubV1PluginPluginCategoryEnum =
   | "PLUGIN_CATEGORY_UNSPECIFIED"
   | "API_GATEWAY"
   | "API_PRODUCER";
-export const GoogleCloudApihubV1PluginPluginCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1PluginPluginCategoryEnum = S.String;
 
 /** Config for Google service account authentication. */
 export interface GoogleCloudApihubV1GoogleServiceAccountConfig {
@@ -2132,7 +2119,7 @@ export type GoogleCloudApihubV1AuthConfigTemplateSupportedAuthTypesItemEnum =
   | "API_KEY"
   | "OAUTH2_CLIENT_CREDENTIALS";
 export const GoogleCloudApihubV1AuthConfigTemplateSupportedAuthTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudApihubV1AuthConfigTemplateSupportedAuthTypesItemEnumList =
   Array<
@@ -2199,8 +2186,7 @@ export type GoogleCloudApihubV1ConfigVariableTemplateValueTypeEnum =
   | "MULTI_SELECT"
   | "MULTI_STRING"
   | "MULTI_INT";
-export const GoogleCloudApihubV1ConfigVariableTemplateValueTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1ConfigVariableTemplateValueTypeEnum = S.String;
 
 /** ConfigVariableTemplate represents a configuration variable template present in a Plugin Config. */
 export interface GoogleCloudApihubV1ConfigVariableTemplate {
@@ -2268,8 +2254,7 @@ export type GoogleCloudApihubV1PluginActionConfigTriggerModeEnum =
   | "API_HUB_ON_DEMAND_TRIGGER"
   | "API_HUB_SCHEDULE_TRIGGER"
   | "NON_API_HUB_MANAGED";
-export const GoogleCloudApihubV1PluginActionConfigTriggerModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1PluginActionConfigTriggerModeEnum = S.String;
 
 /** PluginActionConfig represents the configuration of an action supported by a plugin. */
 export interface GoogleCloudApihubV1PluginActionConfig {
@@ -2308,7 +2293,7 @@ export type GoogleCloudApihubV1PluginStateEnum =
   | "STATE_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED";
-export const GoogleCloudApihubV1PluginStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1PluginStateEnum = S.String;
 
 /** The information related to the service implemented by the plugin developer, used to invoke the plugin's functionality. */
 export interface GoogleCloudApihubV1HostingService {
@@ -2334,14 +2319,13 @@ export type GoogleCloudApihubV1PluginGatewayTypeEnum =
   | "OTHERS"
   | "AWS_API_GATEWAY"
   | "AZURE_API_MANAGEMENT";
-export const GoogleCloudApihubV1PluginGatewayTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1PluginGatewayTypeEnum = S.String;
 
 export type GoogleCloudApihubV1PluginOwnershipTypeEnum =
   | "OWNERSHIP_TYPE_UNSPECIFIED"
   | "SYSTEM_OWNED"
   | "USER_OWNED";
-export const GoogleCloudApihubV1PluginOwnershipTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1PluginOwnershipTypeEnum = S.String;
 
 /** A plugin resource in the API Hub. */
 export interface GoogleCloudApihubV1Plugin {
@@ -2424,8 +2408,7 @@ export type GoogleCloudApihubV1ResourceConfigActionTypeEnum =
   | "ACTION_TYPE_UNSPECIFIED"
   | "SYNC_METADATA"
   | "SYNC_RUNTIME_DATA";
-export const GoogleCloudApihubV1ResourceConfigActionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1ResourceConfigActionTypeEnum = S.String;
 
 /** The configuration of resources created for a given plugin instance action. */
 export interface GoogleCloudApihubV1ResourceConfig {
@@ -2450,8 +2433,7 @@ export type GoogleCloudApihubV1PluginInstanceActionStateEnum =
   | "ENABLING"
   | "DISABLING"
   | "ERROR";
-export const GoogleCloudApihubV1PluginInstanceActionStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1PluginInstanceActionStateEnum = S.String;
 
 /** Custom curation information for this plugin instance. */
 export interface GoogleCloudApihubV1CustomCuration {
@@ -2470,8 +2452,7 @@ export type GoogleCloudApihubV1CurationConfigCurationTypeEnum =
   | "CURATION_TYPE_UNSPECIFIED"
   | "DEFAULT_CURATION_FOR_API_METADATA"
   | "CUSTOM_CURATION_FOR_API_METADATA";
-export const GoogleCloudApihubV1CurationConfigCurationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1CurationConfigCurationTypeEnum = S.String;
 
 /** The curation information for this plugin instance. */
 export interface GoogleCloudApihubV1CurationConfig {
@@ -2496,14 +2477,13 @@ export type GoogleCloudApihubV1ExecutionStatusCurrentExecutionStateEnum =
   | "RUNNING"
   | "NOT_RUNNING";
 export const GoogleCloudApihubV1ExecutionStatusCurrentExecutionStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudApihubV1LastExecutionResultEnum =
   | "RESULT_UNSPECIFIED"
   | "SUCCEEDED"
   | "FAILED";
-export const GoogleCloudApihubV1LastExecutionResultEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1LastExecutionResultEnum = S.String;
 
 /** The result of the last execution of the plugin instance. */
 export interface GoogleCloudApihubV1LastExecution {
@@ -2600,8 +2580,7 @@ export type GoogleCloudApihubV1PluginInstanceStateEnum =
   | "ERROR"
   | "FAILED"
   | "DELETING";
-export const GoogleCloudApihubV1PluginInstanceStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1PluginInstanceStateEnum = S.String;
 
 /** Message representing the source environment details. */
 export interface GoogleCloudApihubV1SourceEnvironment {
@@ -2745,7 +2724,7 @@ export type GoogleCloudApihubV1AuthConfigAuthTypeEnum =
   | "USER_PASSWORD"
   | "API_KEY"
   | "OAUTH2_CLIENT_CREDENTIALS";
-export const GoogleCloudApihubV1AuthConfigAuthTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1AuthConfigAuthTypeEnum = S.String;
 
 /** Parameters to support Oauth 2.0 client credentials grant authentication. See https://tools.ietf.org/html/rfc6749#section-1.3.4 for more details. */
 export interface GoogleCloudApihubV1Oauth2ClientCredentialsConfig {
@@ -2788,8 +2767,7 @@ export type GoogleCloudApihubV1ApiKeyConfigHttpElementLocationEnum =
   | "PATH"
   | "BODY"
   | "COOKIE";
-export const GoogleCloudApihubV1ApiKeyConfigHttpElementLocationEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1ApiKeyConfigHttpElementLocationEnum = S.String;
 
 /** Config for authentication with API key. */
 export interface GoogleCloudApihubV1ApiKeyConfig {
@@ -3430,7 +3408,7 @@ export type FetchAdditionalSpecContentProjectsLocationsApisVersionsSpecsSpecCont
   | "BOOSTED_SPEC_CONTENT"
   | "GATEWAY_OPEN_API_SPEC";
 export const FetchAdditionalSpecContentProjectsLocationsApisVersionsSpecsSpecContentTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface FetchAdditionalSpecContentProjectsLocationsApisVersionsSpecsRequest {
   /** Required. The name of the spec whose contents need to be retrieved. Format: `projects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}` */
@@ -3481,7 +3459,7 @@ export type RetrieveApiViewsProjectsLocationsViewEnum =
   | "API_VIEW_TYPE_UNSPECIFIED"
   | "MCP_SERVER"
   | "MCP_TOOL";
-export const RetrieveApiViewsProjectsLocationsViewEnum = /*@__PURE__*/ S.String;
+export const RetrieveApiViewsProjectsLocationsViewEnum = S.String;
 
 export interface GetApiViewsProjectsLocationsRequest {
   /** Required. The view type to return. */
@@ -3839,13 +3817,13 @@ export type GoogleCloudApihubV1AddonStateEnum =
   | "UPDATING"
   | "ERROR"
   | "INACTIVE";
-export const GoogleCloudApihubV1AddonStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1AddonStateEnum = S.String;
 
 export type GoogleCloudApihubV1AddonDataSourceEnum =
   | "DATA_SOURCE_UNSPECIFIED"
   | "PLUGIN_INSTANCE"
   | "ALL_DATA";
-export const GoogleCloudApihubV1AddonDataSourceEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1AddonDataSourceEnum = S.String;
 
 /** Addon resource. */
 export interface GoogleCloudApihubV1Addon {
@@ -3962,7 +3940,7 @@ export const GetProjectsLocationsApisVersionsDefinitionsRequest =
 export type GoogleCloudApihubV1DefinitionTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "SCHEMA";
-export const GoogleCloudApihubV1DefinitionTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1DefinitionTypeEnum = S.String;
 
 /** The schema details derived from the spec. Currently, this entity is supported for OpenAPI spec only. For OpenAPI spec, this maps to the schema defined in the `definitions` section for OpenAPI 2.0 version and in `components.schemas` section for OpenAPI 3.0 and 3.1 version. */
 export interface GoogleCloudApihubV1Schema {
@@ -4149,7 +4127,7 @@ export type GoogleCloudApihubV1DiscoveredApiObservationSourceTypesItemEnum =
   | "GCP_XLB"
   | "GCP_ILB";
 export const GoogleCloudApihubV1DiscoveredApiObservationSourceTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudApihubV1DiscoveredApiObservationSourceTypesItemEnumList =
   Array<GoogleCloudApihubV1DiscoveredApiObservationSourceTypesItemEnum>;
@@ -4163,8 +4141,7 @@ export type GoogleCloudApihubV1DiscoveredApiObservationStyleEnum =
   | "REST"
   | "GRPC"
   | "GRAPHQL";
-export const GoogleCloudApihubV1DiscoveredApiObservationStyleEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1DiscoveredApiObservationStyleEnum = S.String;
 
 /** Respresents an API Observation observed in one of the sources. */
 export interface GoogleCloudApihubV1DiscoveredApiObservation {
@@ -4246,7 +4223,7 @@ export type GoogleCloudApihubV1DiscoveredApiOperationClassificationEnum =
   | "KNOWN"
   | "UNKNOWN";
 export const GoogleCloudApihubV1DiscoveredApiOperationClassificationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** MatchResult represents the result of matching a discovered API operation with a catalog API operation. */
 export interface GoogleCloudApihubV1MatchResult {
@@ -4274,7 +4251,7 @@ export type GoogleCloudApihubV1PathParamDataTypeEnum =
   | "FLOAT"
   | "STRING"
   | "UUID";
-export const GoogleCloudApihubV1PathParamDataTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1PathParamDataTypeEnum = S.String;
 
 /** HTTP Path parameter. */
 export interface GoogleCloudApihubV1PathParam {
@@ -4305,7 +4282,7 @@ export type GoogleCloudApihubV1QueryParamDataTypeEnum =
   | "FLOAT"
   | "STRING"
   | "UUID";
-export const GoogleCloudApihubV1QueryParamDataTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1QueryParamDataTypeEnum = S.String;
 
 /** An aggregation of HTTP query parameter occurrences. */
 export interface GoogleCloudApihubV1QueryParam {
@@ -4341,7 +4318,7 @@ export type GoogleCloudApihubV1HeaderDataTypeEnum =
   | "FLOAT"
   | "STRING"
   | "UUID";
-export const GoogleCloudApihubV1HeaderDataTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1HeaderDataTypeEnum = S.String;
 
 /** An aggregation of HTTP header occurrences. */
 export interface GoogleCloudApihubV1Header {
@@ -4604,7 +4581,7 @@ export type GoogleCloudApihubV1StyleGuideLinterEnum =
   | "LINTER_UNSPECIFIED"
   | "SPECTRAL"
   | "OTHER";
-export const GoogleCloudApihubV1StyleGuideLinterEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudApihubV1StyleGuideLinterEnum = S.String;
 
 /** Represents a singleton style guide resource to be used for linting Open API specs. */
 export interface GoogleCloudApihubV1StyleGuide {
@@ -5694,14 +5671,14 @@ export type GoogleCloudApihubV1ManagePluginInstanceSourceDataRequestDataTypeEnum
   | "PROXY_BUNDLE"
   | "SHARED_FLOW_BUNDLE";
 export const GoogleCloudApihubV1ManagePluginInstanceSourceDataRequestDataTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudApihubV1ManagePluginInstanceSourceDataRequestActionEnum =
   | "ACTION_UNSPECIFIED"
   | "UPLOAD"
   | "DELETE";
 export const GoogleCloudApihubV1ManagePluginInstanceSourceDataRequestActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The ManagePluginInstanceSourceData method's request. */
 export interface GoogleCloudApihubV1ManagePluginInstanceSourceDataRequest {

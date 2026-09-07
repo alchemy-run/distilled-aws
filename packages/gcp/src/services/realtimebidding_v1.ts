@@ -104,7 +104,7 @@ export type StringTargetingDimensionTargetingModeEnum =
   | "TARGETING_MODE_UNSPECIFIED"
   | "INCLUSIVE"
   | "EXCLUSIVE";
-export const StringTargetingDimensionTargetingModeEnum = /*@__PURE__*/ S.String;
+export const StringTargetingDimensionTargetingModeEnum = S.String;
 
 /** Generic targeting with string values used in app, website and publisher targeting. */
 export interface StringTargetingDimension {
@@ -128,8 +128,7 @@ export type PretargetingConfigIncludedPlatformsItemEnum =
   | "PHONE"
   | "TABLET"
   | "CONNECTED_TV";
-export const PretargetingConfigIncludedPlatformsItemEnum =
-  /*@__PURE__*/ S.String;
+export const PretargetingConfigIncludedPlatformsItemEnum = S.String;
 
 export type PretargetingConfigIncludedPlatformsItemEnumList = Array<
   PretargetingConfigIncludedPlatformsItemEnum | (string & {})
@@ -143,8 +142,7 @@ export type PretargetingConfigAllowedUserTargetingModesItemEnum =
   | "USER_TARGETING_MODE_UNSPECIFIED"
   | "REMARKETING_ADS"
   | "INTEREST_BASED_TARGETING";
-export const PretargetingConfigAllowedUserTargetingModesItemEnum =
-  /*@__PURE__*/ S.String;
+export const PretargetingConfigAllowedUserTargetingModesItemEnum = S.String;
 
 export type PretargetingConfigAllowedUserTargetingModesItemEnumList = Array<
   PretargetingConfigAllowedUserTargetingModesItemEnum | (string & {})
@@ -189,7 +187,7 @@ export type PretargetingConfigIncludedFormatsItemEnum =
   | "HTML"
   | "VAST"
   | "NATIVE";
-export const PretargetingConfigIncludedFormatsItemEnum = /*@__PURE__*/ S.String;
+export const PretargetingConfigIncludedFormatsItemEnum = S.String;
 
 export type PretargetingConfigIncludedFormatsItemEnumList = Array<
   PretargetingConfigIncludedFormatsItemEnum | (string & {})
@@ -206,8 +204,7 @@ export type PretargetingConfigIncludedUserIdTypesItemEnum =
   | "DEVICE_ID"
   | "PUBLISHER_PROVIDED_ID"
   | "PUBLISHER_FIRST_PARTY_ID";
-export const PretargetingConfigIncludedUserIdTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const PretargetingConfigIncludedUserIdTypesItemEnum = S.String;
 
 export type PretargetingConfigIncludedUserIdTypesItemEnumList = Array<
   PretargetingConfigIncludedUserIdTypesItemEnum | (string & {})
@@ -221,8 +218,7 @@ export type PretargetingConfigInterstitialTargetingEnum =
   | "INTERSTITIAL_TARGETING_UNSPECIFIED"
   | "ONLY_INTERSTITIAL_REQUESTS"
   | "ONLY_NON_INTERSTITIAL_REQUESTS";
-export const PretargetingConfigInterstitialTargetingEnum =
-  /*@__PURE__*/ S.String;
+export const PretargetingConfigInterstitialTargetingEnum = S.String;
 
 /** The dimensions of a creative. This applies to only HTML and Native creatives. */
 export interface CreativeDimensions {
@@ -249,14 +245,13 @@ export type PretargetingConfigStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "SUSPENDED";
-export const PretargetingConfigStateEnum = /*@__PURE__*/ S.String;
+export const PretargetingConfigStateEnum = S.String;
 
 export type PretargetingConfigIncludedEnvironmentsItemEnum =
   | "ENVIRONMENT_UNSPECIFIED"
   | "APP"
   | "WEB";
-export const PretargetingConfigIncludedEnvironmentsItemEnum =
-  /*@__PURE__*/ S.String;
+export const PretargetingConfigIncludedEnvironmentsItemEnum = S.String;
 
 export type PretargetingConfigIncludedEnvironmentsItemEnumList = Array<
   PretargetingConfigIncludedEnvironmentsItemEnum | (string & {})
@@ -361,7 +356,7 @@ export type AddTargetedAppsRequestTargetingModeEnum =
   | "TARGETING_MODE_UNSPECIFIED"
   | "INCLUSIVE"
   | "EXCLUSIVE";
-export const AddTargetedAppsRequestTargetingModeEnum = /*@__PURE__*/ S.String;
+export const AddTargetedAppsRequestTargetingModeEnum = S.String;
 
 /** A request to start targeting the provided app IDs in a specific pretargeting configuration. The pretargeting configuration itself specifies how these apps are targeted. in PretargetingConfig.appTargeting.mobileAppTargeting. */
 export interface AddTargetedAppsRequest {
@@ -405,8 +400,7 @@ export type AddTargetedPublishersRequestTargetingModeEnum =
   | "TARGETING_MODE_UNSPECIFIED"
   | "INCLUSIVE"
   | "EXCLUSIVE";
-export const AddTargetedPublishersRequestTargetingModeEnum =
-  /*@__PURE__*/ S.String;
+export const AddTargetedPublishersRequestTargetingModeEnum = S.String;
 
 /** A request to start targeting the provided publishers in a specific pretargeting configuration. The pretargeting configuration itself specifies how these publishers are targeted in PretargetingConfig.publisherTargeting. */
 export interface AddTargetedPublishersRequest {
@@ -450,7 +444,7 @@ export type AddTargetedSitesRequestTargetingModeEnum =
   | "TARGETING_MODE_UNSPECIFIED"
   | "INCLUSIVE"
   | "EXCLUSIVE";
-export const AddTargetedSitesRequestTargetingModeEnum = /*@__PURE__*/ S.String;
+export const AddTargetedSitesRequestTargetingModeEnum = S.String;
 
 /** A request to start targeting the provided sites in a specific pretargeting configuration. The pretargeting configuration itself specifies how these sites are targeted in PretargetingConfig.webTargeting. */
 export interface AddTargetedSitesRequest {
@@ -533,13 +527,13 @@ export type PublisherConnectionBiddingStateEnum =
   | "PENDING"
   | "REJECTED"
   | "APPROVED";
-export const PublisherConnectionBiddingStateEnum = /*@__PURE__*/ S.String;
+export const PublisherConnectionBiddingStateEnum = S.String;
 
 export type PublisherConnectionPublisherPlatformEnum =
   | "PUBLISHER_PLATFORM_UNSPECIFIED"
   | "GOOGLE_AD_MANAGER"
   | "ADMOB";
-export const PublisherConnectionPublisherPlatformEnum = /*@__PURE__*/ S.String;
+export const PublisherConnectionPublisherPlatformEnum = S.String;
 
 /** An Open Bidding exchange's connection to a publisher. This is initiated by the publisher for the bidder to review. If approved by the bidder, this means that the bidder agrees to receive bid requests from the publisher. */
 export interface PublisherConnection {
@@ -691,7 +685,7 @@ export type UrlRestrictionRestrictionTypeEnum =
   | "DOES_NOT_CONTAIN"
   | "DOES_NOT_START_WITH"
   | "DOES_NOT_END_WITH";
-export const UrlRestrictionRestrictionTypeEnum = /*@__PURE__*/ S.String;
+export const UrlRestrictionRestrictionTypeEnum = S.String;
 
 /** Deprecated. This will be removed in October 2023. For more information, see the release notes: https://developers.google.com/authorized-buyers/apis/relnotes#real-time-bidding-api Represents the URL restriction (for the URL captured by the pixel callback) for a user list. */
 export interface UrlRestriction {
@@ -714,7 +708,7 @@ export const UrlRestriction = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UrlRestriction" }) as any as S.Schema<UrlRestriction>;
 
 export type UserListStatusEnum = "STATUS_UNSPECIFIED" | "OPEN" | "CLOSED";
-export const UserListStatusEnum = /*@__PURE__*/ S.String;
+export const UserListStatusEnum = S.String;
 
 /** Represents an Authorized Buyers user list. Authorized Buyers can create/update/list user lists. Once a user list is created in the system, Authorized Buyers can add users to the user list using the bulk uploader API. Alternatively, users can be added by hosting a tag on the advertiser's page. */
 export interface UserList {
@@ -769,7 +763,7 @@ export type CreativeCreativeFormatEnum =
   | "HTML"
   | "VIDEO"
   | "NATIVE";
-export const CreativeCreativeFormatEnum = /*@__PURE__*/ S.String;
+export const CreativeCreativeFormatEnum = S.String;
 
 /** HTML content for a creative. */
 export interface HtmlContent {
@@ -807,7 +801,7 @@ export type MediaFileMimeTypeEnum =
   | "MIME_AUDIO_MP4A"
   | "MIME_AUDIO_MP3"
   | "MIME_AUDIO_OGG";
-export const MediaFileMimeTypeEnum = /*@__PURE__*/ S.String;
+export const MediaFileMimeTypeEnum = S.String;
 
 /** Information about each media file in the VAST. */
 export interface MediaFile {
@@ -834,7 +828,7 @@ export type VideoMetadataVastVersionEnum =
   | "VAST_VERSION_2_0"
   | "VAST_VERSION_3_0"
   | "VAST_VERSION_4_0";
-export const VideoMetadataVastVersionEnum = /*@__PURE__*/ S.String;
+export const VideoMetadataVastVersionEnum = S.String;
 
 /** Video metadata for a creative. */
 export interface VideoMetadata {
@@ -919,7 +913,7 @@ export type CreativeDeclaredAttributesItemEnum =
   | "RENDERING_SIZELESS_ADX"
   | "OMSDK_1_0"
   | "RENDERING_PLAYABLE";
-export const CreativeDeclaredAttributesItemEnum = /*@__PURE__*/ S.String;
+export const CreativeDeclaredAttributesItemEnum = S.String;
 
 export type CreativeDeclaredAttributesItemEnumList = Array<
   CreativeDeclaredAttributesItemEnum | (string & {})
@@ -1000,8 +994,7 @@ export const IntegerList = /*@__PURE__*/ S.Array(
 export type CreativeDeclaredRestrictedCategoriesItemEnum =
   | "RESTRICTED_CATEGORY_UNSPECIFIED"
   | "ALCOHOL";
-export const CreativeDeclaredRestrictedCategoriesItemEnum =
-  /*@__PURE__*/ S.String;
+export const CreativeDeclaredRestrictedCategoriesItemEnum = S.String;
 
 export type CreativeDeclaredRestrictedCategoriesItemEnumList = Array<
   CreativeDeclaredRestrictedCategoriesItemEnum | (string & {})
@@ -1014,7 +1007,7 @@ export const CreativeDeclaredRestrictedCategoriesItemEnumList =
 export type CreativeRestrictedCategoriesItemEnum =
   | "RESTRICTED_CATEGORY_UNSPECIFIED"
   | "ALCOHOL";
-export const CreativeRestrictedCategoriesItemEnum = /*@__PURE__*/ S.String;
+export const CreativeRestrictedCategoriesItemEnum = S.String;
 
 export type CreativeRestrictedCategoriesItemEnumList = Array<
   CreativeRestrictedCategoriesItemEnum | (string & {})
@@ -1082,22 +1075,20 @@ export const HttpCallEvidence = /*@__PURE__*/ S.suspend(() =>
 export type DestinationNotWorkingEvidenceInvalidPageEnum =
   | "INVALID_PAGE_UNSPECIFIED"
   | "EMPTY_OR_ERROR_PAGE";
-export const DestinationNotWorkingEvidenceInvalidPageEnum =
-  /*@__PURE__*/ S.String;
+export const DestinationNotWorkingEvidenceInvalidPageEnum = S.String;
 
 export type DestinationNotWorkingEvidenceUrlRejectedEnum =
   | "URL_REJECTED_UNSPECIFIED"
   | "BAD_REQUEST"
   | "MALFORMED_URL"
   | "URL_REJECTED_UNKNOWN";
-export const DestinationNotWorkingEvidenceUrlRejectedEnum =
-  /*@__PURE__*/ S.String;
+export const DestinationNotWorkingEvidenceUrlRejectedEnum = S.String;
 
 export type DestinationNotWorkingEvidenceDnsErrorEnum =
   | "DNS_ERROR_UNSPECIFIED"
   | "ERROR_DNS"
   | "GOOGLE_CRAWLER_DNS_ISSUE";
-export const DestinationNotWorkingEvidenceDnsErrorEnum = /*@__PURE__*/ S.String;
+export const DestinationNotWorkingEvidenceDnsErrorEnum = S.String;
 
 export type DestinationNotWorkingEvidenceRedirectionErrorEnum =
   | "REDIRECTION_ERROR_UNSPECIFIED"
@@ -1105,15 +1096,14 @@ export type DestinationNotWorkingEvidenceRedirectionErrorEnum =
   | "INVALID_REDIRECT"
   | "EMPTY_REDIRECT"
   | "REDIRECT_ERROR_UNKNOWN";
-export const DestinationNotWorkingEvidenceRedirectionErrorEnum =
-  /*@__PURE__*/ S.String;
+export const DestinationNotWorkingEvidenceRedirectionErrorEnum = S.String;
 
 export type DestinationNotWorkingEvidencePlatformEnum =
   | "PLATFORM_UNSPECIFIED"
   | "PERSONAL_COMPUTER"
   | "ANDROID"
   | "IOS";
-export const DestinationNotWorkingEvidencePlatformEnum = /*@__PURE__*/ S.String;
+export const DestinationNotWorkingEvidencePlatformEnum = S.String;
 
 /** Evidence of the creative's destination URL not functioning properly or having been incorrectly set up. */
 export interface DestinationNotWorkingEvidence {
@@ -1159,7 +1149,7 @@ export type DestinationNotCrawlableEvidenceReasonEnum =
   | "TIMEOUT_ROBOTS"
   | "ROBOTED_DENIED"
   | "UNKNOWN";
-export const DestinationNotCrawlableEvidenceReasonEnum = /*@__PURE__*/ S.String;
+export const DestinationNotCrawlableEvidenceReasonEnum = S.String;
 
 /** Evidence that the creative's destination URL was not crawlable by Google. */
 export interface DestinationNotCrawlableEvidence {
@@ -1334,7 +1324,7 @@ export type PolicyComplianceStatusEnum =
   | "DISAPPROVED"
   | "APPROVED"
   | "CERTIFICATE_REQUIRED";
-export const PolicyComplianceStatusEnum = /*@__PURE__*/ S.String;
+export const PolicyComplianceStatusEnum = S.String;
 
 /** Policy compliance of the creative for a transaction type or a region. */
 export interface PolicyCompliance {
@@ -1411,8 +1401,7 @@ export type CreativeServingDecisionDetectedAttributesItemEnum =
   | "RENDERING_SIZELESS_ADX"
   | "OMSDK_1_0"
   | "RENDERING_PLAYABLE";
-export const CreativeServingDecisionDetectedAttributesItemEnum =
-  /*@__PURE__*/ S.String;
+export const CreativeServingDecisionDetectedAttributesItemEnum = S.String;
 
 export type CreativeServingDecisionDetectedAttributesItemEnumList = Array<
   CreativeServingDecisionDetectedAttributesItemEnum | (string & {})
@@ -1426,8 +1415,7 @@ export type CreativeServingDecisionDetectedCategoriesTaxonomyEnum =
   | "AD_CATEGORY_TAXONOMY_UNSPECIFIED"
   | "GOOGLE_AD_CATEGORY_TAXONOMY"
   | "IAB_CONTENT_1_0";
-export const CreativeServingDecisionDetectedCategoriesTaxonomyEnum =
-  /*@__PURE__*/ S.String;
+export const CreativeServingDecisionDetectedCategoriesTaxonomyEnum = S.String;
 
 /** Top level status and detected attributes of a creative. */
 export interface CreativeServingDecision {
@@ -1701,14 +1689,14 @@ export type EndpointTradingLocationEnum =
   | "US_EAST"
   | "EUROPE"
   | "ASIA";
-export const EndpointTradingLocationEnum = /*@__PURE__*/ S.String;
+export const EndpointTradingLocationEnum = S.String;
 
 export type EndpointBidProtocolEnum =
   | "BID_PROTOCOL_UNSPECIFIED"
   | "GOOGLE_RTB"
   | "OPENRTB_JSON"
   | "OPENRTB_PROTOBUF";
-export const EndpointBidProtocolEnum = /*@__PURE__*/ S.String;
+export const EndpointBidProtocolEnum = S.String;
 
 /** Bidder endpoint that receives bid requests. */
 export interface Endpoint {
@@ -1819,7 +1807,7 @@ export type GetBuyersCreativesViewEnum =
   | "CREATIVE_VIEW_UNSPECIFIED"
   | "SERVING_DECISION_ONLY"
   | "FULL";
-export const GetBuyersCreativesViewEnum = /*@__PURE__*/ S.String;
+export const GetBuyersCreativesViewEnum = S.String;
 
 export interface GetBuyersCreativesRequest {
   /** Required. Name of the creative to retrieve. See creative.name. */
@@ -1956,7 +1944,7 @@ export type ListBiddersCreativesViewEnum =
   | "CREATIVE_VIEW_UNSPECIFIED"
   | "SERVING_DECISION_ONLY"
   | "FULL";
-export const ListBiddersCreativesViewEnum = /*@__PURE__*/ S.String;
+export const ListBiddersCreativesViewEnum = S.String;
 
 export interface ListBiddersCreativesRequest {
   /** Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available through another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive. */
@@ -2193,7 +2181,7 @@ export type ListBuyersCreativesViewEnum =
   | "CREATIVE_VIEW_UNSPECIFIED"
   | "SERVING_DECISION_ONLY"
   | "FULL";
-export const ListBuyersCreativesViewEnum = /*@__PURE__*/ S.String;
+export const ListBuyersCreativesViewEnum = S.String;
 
 export interface ListBuyersCreativesRequest {
   /** Controls the amount of information included in the response. By default only creativeServingDecision is included. To retrieve the entire creative resource (including the declared fields and the creative content) specify the view as "FULL". */

@@ -134,7 +134,7 @@ export class UnknownError
   ) {}
 
 export type DatabaseCreateRequestJurisdiction = "eu" | "fedramp";
-export const DatabaseCreateRequestJurisdiction = /*@__PURE__*/ S.String;
+export const DatabaseCreateRequestJurisdiction = S.String;
 
 export type DatabaseCreateRequestPrimaryLocationHint =
   | "wnam"
@@ -143,10 +143,10 @@ export type DatabaseCreateRequestPrimaryLocationHint =
   | "eeur"
   | "apac"
   | "oc";
-export const DatabaseCreateRequestPrimaryLocationHint = /*@__PURE__*/ S.String;
+export const DatabaseCreateRequestPrimaryLocationHint = S.String;
 
 export type DatabaseCreateRequestReadReplicationMode = "auto" | "disabled";
-export const DatabaseCreateRequestReadReplicationMode = /*@__PURE__*/ S.String;
+export const DatabaseCreateRequestReadReplicationMode = S.String;
 
 export interface DatabaseCreateRequestReadReplication {
   /** The read replication mode for the database. Use 'auto' to create replicas and allow D1 automatically place them around the world, or 'disabled' to not use any database replicas (it can take a few hours for all replicas to be deleted). */
@@ -202,10 +202,10 @@ export const CreateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDatabaseRequest>;
 
 export type DatabaseCreateResponseJurisdiction = "eu" | "fedramp";
-export const DatabaseCreateResponseJurisdiction = /*@__PURE__*/ S.String;
+export const DatabaseCreateResponseJurisdiction = S.String;
 
 export type DatabaseCreateResponseReadReplicationMode = "auto" | "disabled";
-export const DatabaseCreateResponseReadReplicationMode = /*@__PURE__*/ S.String;
+export const DatabaseCreateResponseReadReplicationMode = S.String;
 
 export interface DatabaseCreateResponseReadReplication {
   /** The read replication mode for the database. Mode 'auto' denotes that D1 creates replicas and automatically places them around the world. Mode 'disabled' denotes that no database replicas are used. */
@@ -287,7 +287,7 @@ export const DeleteDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteDatabaseResponse>;
 
 export type DatabaseExportRequestOutputFormat = "polling";
-export const DatabaseExportRequestOutputFormat = /*@__PURE__*/ S.String;
+export const DatabaseExportRequestOutputFormat = S.String;
 
 export type DatabaseExportRequestDumpOptionsTablesList = Array<string>;
 export const DatabaseExportRequestDumpOptionsTablesList = /*@__PURE__*/ S.Array(
@@ -368,10 +368,10 @@ export const DatabaseExportResponseResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DatabaseExportResponseResult>;
 
 export type DatabaseExportResponseStatus = "complete" | "error";
-export const DatabaseExportResponseStatus = /*@__PURE__*/ S.String;
+export const DatabaseExportResponseStatus = S.String;
 
 export type DatabaseExportResponseType = "export";
-export const DatabaseExportResponseType = /*@__PURE__*/ S.String;
+export const DatabaseExportResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface ExportDatabaseResponse {
@@ -452,7 +452,7 @@ export type DatabaseGetRequestFields =
   | "file_size"
   | "running_in_region"
   | "read_replication";
-export const DatabaseGetRequestFields = /*@__PURE__*/ S.String;
+export const DatabaseGetRequestFields = S.String;
 
 export type DatabaseGetRequestFieldsList = Array<
   DatabaseGetRequestFields | (string & {})
@@ -488,10 +488,10 @@ export const GetDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDatabaseRequest>;
 
 export type DatabaseGetResponseJurisdiction = "eu" | "fedramp";
-export const DatabaseGetResponseJurisdiction = /*@__PURE__*/ S.String;
+export const DatabaseGetResponseJurisdiction = S.String;
 
 export type DatabaseGetResponseReadReplicationMode = "auto" | "disabled";
-export const DatabaseGetResponseReadReplicationMode = /*@__PURE__*/ S.String;
+export const DatabaseGetResponseReadReplicationMode = S.String;
 
 export interface DatabaseGetResponseReadReplication {
   /** The read replication mode for the database. Mode 'auto' denotes that D1 creates replicas and automatically places them around the world. Mode 'disabled' denotes that no database replicas are used. */
@@ -542,7 +542,7 @@ export const GetDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDatabaseResponse>;
 
 export type DatabaseImportRequestAction = "init" | "ingest" | "poll";
-export const DatabaseImportRequestAction = /*@__PURE__*/ S.String;
+export const DatabaseImportRequestAction = S.String;
 
 export interface ImportDatabaseRequest {
   /** Account identifier tag. */
@@ -591,8 +591,7 @@ export type DatabaseImportResponseResultMetaServedByRegion =
   | "EEUR"
   | "APAC"
   | "OC";
-export const DatabaseImportResponseResultMetaServedByRegion =
-  /*@__PURE__*/ S.String;
+export const DatabaseImportResponseResultMetaServedByRegion = S.String;
 
 export interface DatabaseImportResponseResultMetaTimings {
   /** The duration of the SQL query execution inside the database. Does not include any network communication. */
@@ -677,10 +676,10 @@ export const DatabaseImportResponseResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DatabaseImportResponseResult>;
 
 export type DatabaseImportResponseStatus = "complete" | "error";
-export const DatabaseImportResponseStatus = /*@__PURE__*/ S.String;
+export const DatabaseImportResponseStatus = S.String;
 
 export type DatabaseImportResponseType = "import";
-export const DatabaseImportResponseType = /*@__PURE__*/ S.String;
+export const DatabaseImportResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface ImportDatabaseResponse {
@@ -746,7 +745,7 @@ export const ListDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDatabasesRequest>;
 
 export type DatabaseListResultItemJurisdiction = "eu" | "fedramp";
-export const DatabaseListResultItemJurisdiction = /*@__PURE__*/ S.String;
+export const DatabaseListResultItemJurisdiction = S.String;
 
 export interface DatabaseListResultItem {
   /** Specifies the timestamp the resource was created as an ISO8601 string. */
@@ -792,7 +791,7 @@ export const ListDatabasesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDatabasesResponse>;
 
 export type DatabaseEditRequestReadReplicationMode = "auto" | "disabled";
-export const DatabaseEditRequestReadReplicationMode = /*@__PURE__*/ S.String;
+export const DatabaseEditRequestReadReplicationMode = S.String;
 
 export interface DatabaseEditRequestReadReplication {
   /** The read replication mode for the database. Use 'auto' to create replicas and allow D1 automatically place them around the world, or 'disabled' to not use any database replicas (it can take a few hours for all replicas to be deleted). */
@@ -835,10 +834,10 @@ export const PatchDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchDatabaseRequest>;
 
 export type DatabaseEditResponseJurisdiction = "eu" | "fedramp";
-export const DatabaseEditResponseJurisdiction = /*@__PURE__*/ S.String;
+export const DatabaseEditResponseJurisdiction = S.String;
 
 export type DatabaseEditResponseReadReplicationMode = "auto" | "disabled";
-export const DatabaseEditResponseReadReplicationMode = /*@__PURE__*/ S.String;
+export const DatabaseEditResponseReadReplicationMode = S.String;
 
 export interface DatabaseEditResponseReadReplication {
   /** The read replication mode for the database. Mode 'auto' denotes that D1 creates replicas and automatically places them around the world. Mode 'disabled' denotes that no database replicas are used. */
@@ -955,7 +954,7 @@ export type DatabaseQueryResultItemMetaServedByRegion =
   | "EEUR"
   | "APAC"
   | "OC";
-export const DatabaseQueryResultItemMetaServedByRegion = /*@__PURE__*/ S.String;
+export const DatabaseQueryResultItemMetaServedByRegion = S.String;
 
 export type DatabaseQueryResultItemMetaTimings =
   DatabaseImportResponseResultMetaTimings;
@@ -1116,7 +1115,7 @@ export type DatabaseRawResultItemMetaServedByRegion =
   | "EEUR"
   | "APAC"
   | "OC";
-export const DatabaseRawResultItemMetaServedByRegion = /*@__PURE__*/ S.String;
+export const DatabaseRawResultItemMetaServedByRegion = S.String;
 
 export type DatabaseRawResultItemMetaTimings =
   DatabaseImportResponseResultMetaTimings;
@@ -1280,7 +1279,7 @@ export const RestoreDatabaseTimeTravelResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RestoreDatabaseTimeTravelResponse>;
 
 export type DatabaseUpdateRequestReadReplicationMode = "auto" | "disabled";
-export const DatabaseUpdateRequestReadReplicationMode = /*@__PURE__*/ S.String;
+export const DatabaseUpdateRequestReadReplicationMode = S.String;
 
 export interface DatabaseUpdateRequestReadReplication {
   /** The read replication mode for the database. Use 'auto' to create replicas and allow D1 automatically place them around the world, or 'disabled' to not use any database replicas (it can take a few hours for all replicas to be deleted). */
@@ -1324,10 +1323,10 @@ export const UpdateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDatabaseRequest>;
 
 export type DatabaseUpdateResponseJurisdiction = "eu" | "fedramp";
-export const DatabaseUpdateResponseJurisdiction = /*@__PURE__*/ S.String;
+export const DatabaseUpdateResponseJurisdiction = S.String;
 
 export type DatabaseUpdateResponseReadReplicationMode = "auto" | "disabled";
-export const DatabaseUpdateResponseReadReplicationMode = /*@__PURE__*/ S.String;
+export const DatabaseUpdateResponseReadReplicationMode = S.String;
 
 export interface DatabaseUpdateResponseReadReplication {
   /** The read replication mode for the database. Mode 'auto' denotes that D1 creates replicas and automatically places them around the world. Mode 'disabled' denotes that no database replicas are used. */

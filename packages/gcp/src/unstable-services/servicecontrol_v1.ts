@@ -283,7 +283,7 @@ export type QuotaOperationQuotaModeEnum =
   | "BEST_EFFORT"
   | "CHECK_ONLY"
   | "ADJUST_ONLY";
-export const QuotaOperationQuotaModeEnum = /*@__PURE__*/ S.String;
+export const QuotaOperationQuotaModeEnum = S.String;
 
 /** Represents information regarding a quota operation. */
 export interface QuotaOperation {
@@ -363,7 +363,7 @@ export type QuotaErrorCodeEnum =
   | "SERVICE_STATUS_UNAVAILABLE"
   | "BILLING_STATUS_UNAVAILABLE"
   | "QUOTA_SYSTEM_UNAVAILABLE";
-export const QuotaErrorCodeEnum = /*@__PURE__*/ S.String;
+export const QuotaErrorCodeEnum = S.String;
 
 /** The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors). */
 export interface Status {
@@ -443,7 +443,7 @@ export const AllocateQuotaResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AllocateQuotaResponse>;
 
 export type OperationImportanceEnum = "LOW" | "HIGH" | "DEBUG" | "PROMOTED";
-export const OperationImportanceEnum = /*@__PURE__*/ S.String;
+export const OperationImportanceEnum = S.String;
 
 export type LogEntrySeverityEnum =
   | "DEFAULT"
@@ -455,7 +455,7 @@ export type LogEntrySeverityEnum =
   | "CRITICAL"
   | "ALERT"
   | "EMERGENCY";
-export const LogEntrySeverityEnum = /*@__PURE__*/ S.String;
+export const LogEntrySeverityEnum = S.String;
 
 /** A common proto for logging HTTP requests. Only contains semantics defined by the HTTP specification. Product-specific logging information MUST be defined in a separate message. */
 export interface HttpRequest {
@@ -604,7 +604,7 @@ export type QuotaPropertiesQuotaModeEnum =
   | "ACQUIRE"
   | "ACQUIRE_BEST_EFFORT"
   | "CHECK";
-export const QuotaPropertiesQuotaModeEnum = /*@__PURE__*/ S.String;
+export const QuotaPropertiesQuotaModeEnum = S.String;
 
 /** Represents the properties needed for quota operations. */
 export interface QuotaProperties {
@@ -642,7 +642,7 @@ export type TraceSpanSpanKindEnum =
   | "CLIENT"
   | "PRODUCER"
   | "CONSUMER";
-export const TraceSpanSpanKindEnum = /*@__PURE__*/ S.String;
+export const TraceSpanSpanKindEnum = S.String;
 
 /** The allowed types for [VALUE] in a `[KEY]:[VALUE]` attribute. */
 export interface AttributeValue {
@@ -844,7 +844,7 @@ export type QuotaInfoQuotaExtractionStateEnum =
   | "QUOTA_EXTRACTION_STATE_UNSPECIFIED"
   | "QUOTA_EXTRACTION_STATE_DARK_LAUNCH"
   | "QUOTA_EXTRACTION_STATE_TRAFFIC_MIGRATION";
-export const QuotaInfoQuotaExtractionStateEnum = /*@__PURE__*/ S.String;
+export const QuotaInfoQuotaExtractionStateEnum = S.String;
 
 export type IntegerMap = { [key: string]: number | undefined };
 export const IntegerMap = /*@__PURE__*/ S.Record(
@@ -910,7 +910,7 @@ export type CheckErrorCodeEnum =
   | "SECURITY_POLICY_BACKEND_UNAVAILABLE"
   | "LOCATION_POLICY_BACKEND_UNAVAILABLE"
   | "INJECTED_ERROR";
-export const CheckErrorCodeEnum = /*@__PURE__*/ S.String;
+export const CheckErrorCodeEnum = S.String;
 
 /** Defines the errors to be returned in google.api.servicecontrol.v1.CheckResponse.check_errors. */
 export interface CheckError {
@@ -943,7 +943,7 @@ export type ConsumerInfoTypeEnum =
   | "FOLDER"
   | "ORGANIZATION"
   | "SERVICE_SPECIFIC";
-export const ConsumerInfoTypeEnum = /*@__PURE__*/ S.String;
+export const ConsumerInfoTypeEnum = S.String;
 
 /** `ConsumerInfo` provides information about the consumer. */
 export interface ConsumerInfo {

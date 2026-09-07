@@ -141,7 +141,7 @@ export type AgentModeEnum =
   | "sandbox"
   | "user_interview"
   | "customer_analytics";
-export const AgentModeEnum = /*@__PURE__*/ S.String;
+export const AgentModeEnum = S.String;
 
 export interface CreateConversationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -259,7 +259,7 @@ export type SandboxAttachedContextItemTypeEnum =
   | "insight"
   | "notebook"
   | "text";
-export const SandboxAttachedContextItemTypeEnum = /*@__PURE__*/ S.String;
+export const SandboxAttachedContextItemTypeEnum = S.String;
 
 /** One typed attachment carried by a sandbox message. DEPRECATED PATH — do not extend. This structured `attached_context` (and its server-side wrap in `context_wrapper.py`) exists only for the legacy Max conversations bridge and is removed with it; the live path wraps context client-side (`products/posthog_ai/frontend/utils/posthogContextBlock.ts`). */
 export interface SandboxAttachedContextItem {
@@ -298,7 +298,7 @@ export type InitialPermissionModeEnum =
   | "plan"
   | "bypassPermissions"
   | "auto";
-export const InitialPermissionModeEnum = /*@__PURE__*/ S.String;
+export const InitialPermissionModeEnum = S.String;
 
 export interface CreateConversationsOpenRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -386,7 +386,7 @@ export const CreateConversationsQueueRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `idle` - Idle * `in_progress` - In progress * `canceling` - Canceling */
 export type ConversationStatusEnum = "idle" | "in_progress" | "canceling";
-export const ConversationStatusEnum = /*@__PURE__*/ S.String;
+export const ConversationStatusEnum = S.String;
 
 /** * `web_analytics` - Web analytics * `product_analytics` - Product analytics * `session_replay` - Session replay * `surveys` - Surveys * `feature_flags` - Feature flags * `experiments` - Experiments * `error_tracking` - Error tracking * `data_warehouse` - Data warehouse * `other` - Other */
 export type ConversationTopicEnum =
@@ -399,7 +399,7 @@ export type ConversationTopicEnum =
   | "error_tracking"
   | "data_warehouse"
   | "other";
-export const ConversationTopicEnum = /*@__PURE__*/ S.String;
+export const ConversationTopicEnum = S.String;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -418,14 +418,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -458,7 +458,7 @@ export type ConversationTypeEnum =
   | "tool_call"
   | "deep_research"
   | "slack";
-export const ConversationTypeEnum = /*@__PURE__*/ S.String;
+export const ConversationTypeEnum = S.String;
 
 export type ConversationMessagesItemMap = {
   [key: string]: unknown | undefined;
@@ -475,7 +475,7 @@ export const ConversationMessagesList = /*@__PURE__*/ S.Array(
 
 /** * `langgraph` - LangGraph * `sandbox` - Sandbox */
 export type ConversationAgentRuntimeEnum = "langgraph" | "sandbox";
-export const ConversationAgentRuntimeEnum = /*@__PURE__*/ S.String;
+export const ConversationAgentRuntimeEnum = S.String;
 
 export type ConversationPendingApprovalsItemMap = {
   [key: string]: unknown | undefined;
@@ -494,7 +494,7 @@ export const ConversationPendingApprovalsList = /*@__PURE__*/ S.Array(
 
 /** * `acp` - ACP * `pi` - Pi */
 export type TaskRuntimeEnum = "acp" | "pi";
-export const TaskRuntimeEnum = /*@__PURE__*/ S.String;
+export const TaskRuntimeEnum = S.String;
 
 export type ConversationTaskJsonSchemaMap = {
   [key: string]: unknown | undefined;

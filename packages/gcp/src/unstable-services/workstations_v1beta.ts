@@ -326,8 +326,7 @@ export type ReservationAffinityConsumeReservationTypeEnum =
   | "NO_RESERVATION"
   | "ANY_RESERVATION"
   | "SPECIFIC_RESERVATION";
-export const ReservationAffinityConsumeReservationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ReservationAffinityConsumeReservationTypeEnum = S.String;
 
 /** ReservationAffinity is the configuration of the desired reservation from which instances can consume resources. */
 export interface ReservationAffinity {
@@ -589,8 +588,7 @@ export type GceRegionalPersistentDiskReclaimPolicyEnum =
   | "RECLAIM_POLICY_UNSPECIFIED"
   | "DELETE"
   | "RETAIN";
-export const GceRegionalPersistentDiskReclaimPolicyEnum =
-  /*@__PURE__*/ S.String;
+export const GceRegionalPersistentDiskReclaimPolicyEnum = S.String;
 
 /** A Persistent Directory backed by a Compute Engine regional persistent disk. The persistent_directories field is repeated, but it may contain only one entry. It creates a [persistent disk](https://cloud.google.com/compute/docs/disks/persistent-disks) that mounts to the workstation VM at `/home` when the session starts and detaches when the session ends. If this field is empty, workstations created with this configuration do not have a persistent home directory. */
 export interface GceRegionalPersistentDisk {
@@ -627,8 +625,7 @@ export type GceHyperdiskBalancedHighAvailabilityReclaimPolicyEnum =
   | "RECLAIM_POLICY_UNSPECIFIED"
   | "DELETE"
   | "RETAIN";
-export const GceHyperdiskBalancedHighAvailabilityReclaimPolicyEnum =
-  /*@__PURE__*/ S.String;
+export const GceHyperdiskBalancedHighAvailabilityReclaimPolicyEnum = S.String;
 
 /** A Persistent Directory backed by a Compute Engine [Hyperdisk Balanced High Availability Disk](https://cloud.google.com/compute/docs/disks/hd-types/hyperdisk-balanced-ha). This is a high-availability block storage solution that offers a balance between performance and cost for most general-purpose workloads. */
 export interface GceHyperdiskBalancedHighAvailability {
@@ -737,7 +734,7 @@ export type WorkstationConfigIdleActionEnum =
   | "IDLE_ACTION_UNSPECIFIED"
   | "STOP"
   | "SUSPEND";
-export const WorkstationConfigIdleActionEnum = /*@__PURE__*/ S.String;
+export const WorkstationConfigIdleActionEnum = S.String;
 
 /** A PortRange defines a range of ports. Both first and last are inclusive. To specify a single port, both first and last should be the same. */
 export interface PortRange {
@@ -949,7 +946,7 @@ export type WorkstationStateEnum =
   | "STATE_STOPPED"
   | "STATE_SUSPENDING"
   | "STATE_SUSPENDED";
-export const WorkstationStateEnum = /*@__PURE__*/ S.String;
+export const WorkstationStateEnum = S.String;
 
 /** A directory to persist across workstation sessions. Updates to this field will only take effect on this workstation after it is restarted. */
 export interface WorkstationPersistentDirectory {
@@ -1267,7 +1264,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {

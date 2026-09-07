@@ -39,7 +39,7 @@ export const CheckServiceDeviceServiceNameAvailabilityRequest =
 export type DeviceServiceNameAvailabilityInfoReason =
   | "Invalid"
   | "AlreadyExists";
-export const DeviceServiceNameAvailabilityInfoReason = /*@__PURE__*/ S.String;
+export const DeviceServiceNameAvailabilityInfoReason = S.String;
 
 /** The properties indicating whether a given Windows IoT Device Service name is available. */
 export interface DeviceServiceNameAvailabilityInfo {

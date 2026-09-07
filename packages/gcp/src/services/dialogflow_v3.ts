@@ -200,7 +200,7 @@ export type CalculateCoverageProjectsLocationsAgentsTestCasesTypeEnum =
   | "PAGE_TRANSITION"
   | "TRANSITION_ROUTE_GROUP";
 export const CalculateCoverageProjectsLocationsAgentsTestCasesTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CalculateCoverageProjectsLocationsAgentsTestCasesRequest {
   type?:
@@ -326,7 +326,7 @@ export type GoogleCloudDialogflowCxV3ResponseMessageResponseTypeEnum =
   | "PARAMETER_PROMPT"
   | "HANDLER_PROMPT";
 export const GoogleCloudDialogflowCxV3ResponseMessageResponseTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3ResponseMessageMixedAudioSegment {
   audio?: string;
@@ -887,7 +887,7 @@ export type GoogleCloudDialogflowCxV3DataStoreConnectionDocumentProcessingModeEn
   | "DOCUMENTS"
   | "CHUNKS";
 export const GoogleCloudDialogflowCxV3DataStoreConnectionDocumentProcessingModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowCxV3DataStoreConnectionDataStoreTypeEnum =
   | "DATA_STORE_TYPE_UNSPECIFIED"
@@ -895,7 +895,7 @@ export type GoogleCloudDialogflowCxV3DataStoreConnectionDataStoreTypeEnum =
   | "UNSTRUCTURED"
   | "STRUCTURED";
 export const GoogleCloudDialogflowCxV3DataStoreConnectionDataStoreTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3DataStoreConnection {
   dataStore?: string;
@@ -1015,8 +1015,7 @@ export type GoogleCloudDialogflowCxV3InlineSchemaTypeEnum =
   | "NUMBER"
   | "BOOLEAN"
   | "ARRAY";
-export const GoogleCloudDialogflowCxV3InlineSchemaTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3InlineSchemaTypeEnum = S.String;
 
 export interface GoogleCloudDialogflowCxV3InlineSchema {
   type?: GoogleCloudDialogflowCxV3InlineSchemaTypeEnum | (string & {});
@@ -1055,8 +1054,7 @@ export type GoogleCloudDialogflowCxV3ParameterDefinitionTypeEnum =
   | "NULL"
   | "OBJECT"
   | "LIST";
-export const GoogleCloudDialogflowCxV3ParameterDefinitionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3ParameterDefinitionTypeEnum = S.String;
 
 export interface GoogleCloudDialogflowCxV3ParameterDefinition {
   typeSchema?: GoogleCloudDialogflowCxV3TypeSchema;
@@ -1087,15 +1085,14 @@ export type GoogleCloudDialogflowCxV3NluSettingsModelTypeEnum =
   | "MODEL_TYPE_UNSPECIFIED"
   | "MODEL_TYPE_STANDARD"
   | "MODEL_TYPE_ADVANCED";
-export const GoogleCloudDialogflowCxV3NluSettingsModelTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3NluSettingsModelTypeEnum = S.String;
 
 export type GoogleCloudDialogflowCxV3NluSettingsModelTrainingModeEnum =
   | "MODEL_TRAINING_MODE_UNSPECIFIED"
   | "MODEL_TRAINING_MODE_AUTOMATIC"
   | "MODEL_TRAINING_MODE_MANUAL";
 export const GoogleCloudDialogflowCxV3NluSettingsModelTrainingModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3NluSettings {
   classificationThreshold?: number;
@@ -1409,7 +1406,7 @@ export type GoogleCloudDialogflowCxV3VoiceSelectionParamsSsmlGenderEnum =
   | "SSML_VOICE_GENDER_FEMALE"
   | "SSML_VOICE_GENDER_NEUTRAL";
 export const GoogleCloudDialogflowCxV3VoiceSelectionParamsSsmlGenderEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3VoiceSelectionParams {
   ssmlGender?:
@@ -1632,7 +1629,7 @@ export type GoogleCloudDialogflowCxV3EntityTypeAutoExpansionModeEnum =
   | "AUTO_EXPANSION_MODE_UNSPECIFIED"
   | "AUTO_EXPANSION_MODE_DEFAULT";
 export const GoogleCloudDialogflowCxV3EntityTypeAutoExpansionModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3EntityTypeExcludedPhrase {
   value?: string;
@@ -1679,8 +1676,7 @@ export type GoogleCloudDialogflowCxV3EntityTypeKindEnum =
   | "KIND_MAP"
   | "KIND_LIST"
   | "KIND_REGEXP";
-export const GoogleCloudDialogflowCxV3EntityTypeKindEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3EntityTypeKindEnum = S.String;
 
 export interface GoogleCloudDialogflowCxV3EntityType {
   name?: string;
@@ -1741,7 +1737,7 @@ export type GoogleCloudDialogflowCxV3WebhookGenericWebServiceWebhookTypeEnum =
   | "STANDARD"
   | "FLEXIBLE";
 export const GoogleCloudDialogflowCxV3WebhookGenericWebServiceWebhookTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3WebhookGenericWebServiceSecretVersionHeaderValue {
   secretVersion?: string;
@@ -1774,7 +1770,7 @@ export type GoogleCloudDialogflowCxV3WebhookGenericWebServiceServiceAgentAuthEnu
   | "ID_TOKEN"
   | "ACCESS_TOKEN";
 export const GoogleCloudDialogflowCxV3WebhookGenericWebServiceServiceAgentAuthEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowCxV3WebhookGenericWebServiceHttpMethodEnum =
   | "HTTP_METHOD_UNSPECIFIED"
@@ -1786,7 +1782,7 @@ export type GoogleCloudDialogflowCxV3WebhookGenericWebServiceHttpMethodEnum =
   | "PATCH"
   | "OPTIONS";
 export const GoogleCloudDialogflowCxV3WebhookGenericWebServiceHttpMethodEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3WebhookGenericWebServiceOAuthConfig {
   clientSecret?: string;
@@ -2028,8 +2024,7 @@ export type GoogleCloudDialogflowCxV3ExperimentStateEnum =
   | "RUNNING"
   | "DONE"
   | "ROLLOUT_FAILED";
-export const GoogleCloudDialogflowCxV3ExperimentStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3ExperimentStateEnum = S.String;
 
 export interface GoogleCloudDialogflowCxV3RolloutConfigRolloutStep {
   displayName?: string;
@@ -2164,7 +2159,7 @@ export type GoogleCloudDialogflowCxV3ExperimentResultMetricCountTypeEnum =
   | "TOTAL_TURN_COUNT"
   | "AVERAGE_TURN_COUNT";
 export const GoogleCloudDialogflowCxV3ExperimentResultMetricCountTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowCxV3ExperimentResultMetricTypeEnum =
   | "METRIC_UNSPECIFIED"
@@ -2173,8 +2168,7 @@ export type GoogleCloudDialogflowCxV3ExperimentResultMetricTypeEnum =
   | "CALLBACK_SESSION_RATE"
   | "ABANDONED_SESSION_RATE"
   | "SESSION_END_RATE";
-export const GoogleCloudDialogflowCxV3ExperimentResultMetricTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3ExperimentResultMetricTypeEnum = S.String;
 
 export interface GoogleCloudDialogflowCxV3ExperimentResultConfidenceInterval {
   confidenceLevel?: number;
@@ -2333,7 +2327,7 @@ export type GoogleCloudDialogflowCxV3SessionEntityTypeEntityOverrideModeEnum =
   | "ENTITY_OVERRIDE_MODE_OVERRIDE"
   | "ENTITY_OVERRIDE_MODE_SUPPLEMENT";
 export const GoogleCloudDialogflowCxV3SessionEntityTypeEntityOverrideModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3SessionEntityType {
   name?: string;
@@ -2456,7 +2450,7 @@ export type GoogleCloudDialogflowCxV3VersionStateEnum =
   | "RUNNING"
   | "SUCCEEDED"
   | "FAILED";
-export const GoogleCloudDialogflowCxV3VersionStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3VersionStateEnum = S.String;
 
 export interface GoogleCloudDialogflowCxV3Version {
   state?: GoogleCloudDialogflowCxV3VersionStateEnum | (string & {});
@@ -2746,8 +2740,7 @@ export type GoogleCloudDialogflowCxV3PlaybookPlaybookTypeEnum =
   | "PLAYBOOK_TYPE_UNSPECIFIED"
   | "TASK"
   | "ROUTINE";
-export const GoogleCloudDialogflowCxV3PlaybookPlaybookTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3PlaybookPlaybookTypeEnum = S.String;
 
 export interface GoogleCloudDialogflowCxV3HandlerEventHandler {
   event?: string;
@@ -2939,8 +2932,7 @@ export type GoogleCloudDialogflowCxV3ExampleConversationStateEnum =
   | "OUTPUT_STATE_FAILED"
   | "OUTPUT_STATE_ESCALATED"
   | "OUTPUT_STATE_PENDING";
-export const GoogleCloudDialogflowCxV3ExampleConversationStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3ExampleConversationStateEnum = S.String;
 
 export type GoogleCloudDialogflowCxV3AgentUtterance =
   GoogleCloudDialogflowCxV3Phrase;
@@ -2973,8 +2965,7 @@ export type GoogleCloudDialogflowCxV3FlowInvocationFlowStateEnum =
   | "OUTPUT_STATE_FAILED"
   | "OUTPUT_STATE_ESCALATED"
   | "OUTPUT_STATE_PENDING";
-export const GoogleCloudDialogflowCxV3FlowInvocationFlowStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3FlowInvocationFlowStateEnum = S.String;
 
 export interface GoogleCloudDialogflowCxV3FlowInvocation {
   flowState?:
@@ -3009,7 +3000,7 @@ export type GoogleCloudDialogflowCxV3PlaybookInvocationPlaybookStateEnum =
   | "OUTPUT_STATE_ESCALATED"
   | "OUTPUT_STATE_PENDING";
 export const GoogleCloudDialogflowCxV3PlaybookInvocationPlaybookStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3PlaybookInvocation {
   displayName?: string;
@@ -3231,7 +3222,7 @@ export type GoogleCloudDialogflowCxV3InputAudioConfigAudioEncodingEnum =
   | "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE"
   | "AUDIO_ENCODING_ALAW";
 export const GoogleCloudDialogflowCxV3InputAudioConfigAudioEncodingEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3BargeInConfig {
   totalDuration?: string;
@@ -3253,7 +3244,7 @@ export type GoogleCloudDialogflowCxV3InputAudioConfigModelVariantEnum =
   | "USE_STANDARD"
   | "USE_ENHANCED";
 export const GoogleCloudDialogflowCxV3InputAudioConfigModelVariantEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3InputAudioConfig {
   singleUtterance?: boolean;
@@ -3423,8 +3414,7 @@ export type GoogleCloudDialogflowCxV3TestRunDifferenceTypeEnum =
   | "PARAMETERS"
   | "UTTERANCE"
   | "FLOW";
-export const GoogleCloudDialogflowCxV3TestRunDifferenceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3TestRunDifferenceTypeEnum = S.String;
 
 export interface GoogleCloudDialogflowCxV3TestRunDifference {
   description?: string;
@@ -3507,8 +3497,7 @@ export type GoogleCloudDialogflowCxV3TestCaseResultTestResultEnum =
   | "TEST_RESULT_UNSPECIFIED"
   | "PASSED"
   | "FAILED";
-export const GoogleCloudDialogflowCxV3TestCaseResultTestResultEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3TestCaseResultTestResultEnum = S.String;
 
 export interface GoogleCloudDialogflowCxV3TestCaseResult {
   environment?: string;
@@ -3640,7 +3629,7 @@ export type GoogleCloudDialogflowCxV3ToolToolTypeEnum =
   | "TOOL_TYPE_UNSPECIFIED"
   | "CUSTOMIZED_TOOL"
   | "BUILTIN_TOOL";
-export const GoogleCloudDialogflowCxV3ToolToolTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3ToolToolTypeEnum = S.String;
 
 export interface GoogleCloudDialogflowCxV3ToolServiceDirectoryConfig {
   service?: string;
@@ -3664,7 +3653,7 @@ export type GoogleCloudDialogflowCxV3ToolAuthenticationApiKeyConfigRequestLocati
   | "HEADER"
   | "QUERY_STRING";
 export const GoogleCloudDialogflowCxV3ToolAuthenticationApiKeyConfigRequestLocationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3ToolAuthenticationApiKeyConfig {
   secretVersionForApiKey?: string;
@@ -3692,7 +3681,7 @@ export type GoogleCloudDialogflowCxV3ToolAuthenticationOAuthConfigOauthGrantType
   | "OAUTH_GRANT_TYPE_UNSPECIFIED"
   | "CLIENT_CREDENTIAL";
 export const GoogleCloudDialogflowCxV3ToolAuthenticationOAuthConfigOauthGrantTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3ToolAuthenticationOAuthConfig {
   scopes?: StringList;
@@ -3725,7 +3714,7 @@ export type GoogleCloudDialogflowCxV3ToolAuthenticationServiceAgentAuthConfigSer
   | "ID_TOKEN"
   | "ACCESS_TOKEN";
 export const GoogleCloudDialogflowCxV3ToolAuthenticationServiceAgentAuthConfigServiceAgentAuthEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3ToolAuthenticationServiceAgentAuthConfig {
   serviceAgentAuth?:
@@ -3976,19 +3965,19 @@ export type GoogleCloudDialogflowCxV3SecuritySettingsRetentionStrategyEnum =
   | "RETENTION_STRATEGY_UNSPECIFIED"
   | "REMOVE_AFTER_CONVERSATION";
 export const GoogleCloudDialogflowCxV3SecuritySettingsRetentionStrategyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowCxV3SecuritySettingsRedactionStrategyEnum =
   | "REDACTION_STRATEGY_UNSPECIFIED"
   | "REDACT_WITH_SERVICE";
 export const GoogleCloudDialogflowCxV3SecuritySettingsRedactionStrategyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowCxV3SecuritySettingsPurgeDataTypesItemEnum =
   | "PURGE_DATA_TYPE_UNSPECIFIED"
   | "DIALOGFLOW_HISTORY";
 export const GoogleCloudDialogflowCxV3SecuritySettingsPurgeDataTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowCxV3SecuritySettingsPurgeDataTypesItemEnumList =
   Array<
@@ -4006,7 +3995,7 @@ export type GoogleCloudDialogflowCxV3SecuritySettingsAudioExportSettingsAudioFor
   | "MP3"
   | "OGG";
 export const GoogleCloudDialogflowCxV3SecuritySettingsAudioExportSettingsAudioFormatEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3SecuritySettingsAudioExportSettings {
   storeTtsAudio?: boolean;
@@ -4049,7 +4038,7 @@ export type GoogleCloudDialogflowCxV3SecuritySettingsRedactionScopeEnum =
   | "REDACTION_SCOPE_UNSPECIFIED"
   | "REDACT_DISK_STORAGE";
 export const GoogleCloudDialogflowCxV3SecuritySettingsRedactionScopeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3SecuritySettings {
   inspectTemplate?: string;
@@ -4548,7 +4537,7 @@ export type GoogleCloudDialogflowCxV3OutputAudioConfigAudioEncodingEnum =
   | "OUTPUT_AUDIO_ENCODING_MULAW"
   | "OUTPUT_AUDIO_ENCODING_ALAW";
 export const GoogleCloudDialogflowCxV3OutputAudioConfigAudioEncodingEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3OutputAudioConfig {
   audioEncoding?:
@@ -4596,14 +4585,14 @@ export type GoogleCloudDialogflowCxV3BoostSpecConditionBoostSpecBoostControlSpec
   | "INTERPOLATION_TYPE_UNSPECIFIED"
   | "LINEAR";
 export const GoogleCloudDialogflowCxV3BoostSpecConditionBoostSpecBoostControlSpecInterpolationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowCxV3BoostSpecConditionBoostSpecBoostControlSpecAttributeTypeEnum =
   | "ATTRIBUTE_TYPE_UNSPECIFIED"
   | "NUMERICAL"
   | "FRESHNESS";
 export const GoogleCloudDialogflowCxV3BoostSpecConditionBoostSpecBoostControlSpecAttributeTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3BoostSpecConditionBoostSpecBoostControlSpecControlPoint {
   boostAmount?: number;
@@ -4807,7 +4796,7 @@ export type GoogleCloudDialogflowCxV3DetectIntentRequestResponseViewEnum =
   | "DETECT_INTENT_RESPONSE_VIEW_BASIC"
   | "DETECT_INTENT_RESPONSE_VIEW_DEFAULT";
 export const GoogleCloudDialogflowCxV3DetectIntentRequestResponseViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3DetectIntentRequest {
   queryInput?: GoogleCloudDialogflowCxV3QueryInput;
@@ -4860,7 +4849,7 @@ export type GoogleCloudDialogflowCxV3DetectIntentResponseResponseTypeEnum =
   | "PARTIAL"
   | "FINAL";
 export const GoogleCloudDialogflowCxV3DetectIntentResponseResponseTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowCxV3MatchMatchTypeEnum =
   | "MATCH_TYPE_UNSPECIFIED"
@@ -4872,8 +4861,7 @@ export type GoogleCloudDialogflowCxV3MatchMatchTypeEnum =
   | "EVENT"
   | "KNOWLEDGE_CONNECTOR"
   | "PLAYBOOK";
-export const GoogleCloudDialogflowCxV3MatchMatchTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3MatchMatchTypeEnum = S.String;
 
 export interface GoogleCloudDialogflowCxV3Match {
   matchType?: GoogleCloudDialogflowCxV3MatchMatchTypeEnum | (string & {});
@@ -4906,7 +4894,7 @@ export type GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSafetySignalsDeci
   | "ACCEPTED_BY_SAFETY_CHECK"
   | "REJECTED_BY_SAFETY_CHECK";
 export const GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSafetySignalsDecisionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSafetySignalsBannedPhraseMatchEnum =
   | "BANNED_PHRASE_MATCH_UNSPECIFIED"
@@ -4914,7 +4902,7 @@ export type GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSafetySignalsBann
   | "BANNED_PHRASE_MATCH_QUERY"
   | "BANNED_PHRASE_MATCH_RESPONSE";
 export const GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSafetySignalsBannedPhraseMatchEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSafetySignals {
   decision?: GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSafetySignalsDecisionEnum;
@@ -5002,7 +4990,7 @@ export type GoogleCloudDialogflowCxV3DataStoreConnectionSignalsGroundingSignalsD
   | "ACCEPTED_BY_GROUNDING"
   | "REJECTED_BY_GROUNDING";
 export const GoogleCloudDialogflowCxV3DataStoreConnectionSignalsGroundingSignalsDecisionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowCxV3DataStoreConnectionSignalsGroundingSignalsScoreEnum =
   | "GROUNDING_SCORE_BUCKET_UNSPECIFIED"
@@ -5012,7 +5000,7 @@ export type GoogleCloudDialogflowCxV3DataStoreConnectionSignalsGroundingSignalsS
   | "HIGH"
   | "VERY_HIGH";
 export const GoogleCloudDialogflowCxV3DataStoreConnectionSignalsGroundingSignalsScoreEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3DataStoreConnectionSignalsGroundingSignals {
   decision?: GoogleCloudDialogflowCxV3DataStoreConnectionSignalsGroundingSignalsDecisionEnum;
@@ -5132,8 +5120,7 @@ export type GoogleCloudDialogflowCxV3TraceBlockEndStateEnum =
   | "OUTPUT_STATE_FAILED"
   | "OUTPUT_STATE_ESCALATED"
   | "OUTPUT_STATE_PENDING";
-export const GoogleCloudDialogflowCxV3TraceBlockEndStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3TraceBlockEndStateEnum = S.String;
 
 export interface GoogleCloudDialogflowCxV3SpeechProcessingMetadata {
   displayName?: string;
@@ -5327,7 +5314,7 @@ export type GoogleCloudDialogflowCxV3ExportAgentRequestDataFormatEnum =
   | "BLOB"
   | "JSON_PACKAGE";
 export const GoogleCloudDialogflowCxV3ExportAgentRequestDataFormatEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3ExportAgentRequestGitDestination {
   commitMessage?: string;
@@ -5397,7 +5384,7 @@ export type GoogleCloudDialogflowCxV3ExportEntityTypesRequestDataFormatEnum =
   | "BLOB"
   | "JSON_PACKAGE";
 export const GoogleCloudDialogflowCxV3ExportEntityTypesRequestDataFormatEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3ExportEntityTypesRequest {
   dataFormat?:
@@ -5489,7 +5476,7 @@ export type GoogleCloudDialogflowCxV3ExportIntentsRequestDataFormatEnum =
   | "JSON"
   | "CSV";
 export const GoogleCloudDialogflowCxV3ExportIntentsRequestDataFormatEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3ExportIntentsRequest {
   dataFormat?:
@@ -5541,7 +5528,7 @@ export type GoogleCloudDialogflowCxV3ExportPlaybookRequestDataFormatEnum =
   | "BLOB"
   | "JSON";
 export const GoogleCloudDialogflowCxV3ExportPlaybookRequestDataFormatEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3ExportPlaybookRequest {
   playbookUri?: string;
@@ -5589,7 +5576,7 @@ export type GoogleCloudDialogflowCxV3ExportTestCasesRequestDataFormatEnum =
   | "BLOB"
   | "JSON";
 export const GoogleCloudDialogflowCxV3ExportTestCasesRequestDataFormatEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3ExportTestCasesRequest {
   gcsUri?: string;
@@ -5821,7 +5808,7 @@ export type GoogleCloudDialogflowCxV3SafetySettingsDefaultBannedPhraseMatchStrat
   | "PARTIAL_MATCH"
   | "WORD_MATCH";
 export const GoogleCloudDialogflowCxV3SafetySettingsDefaultBannedPhraseMatchStrategyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3SafetySettingsPromptSecuritySettings {
   enablePromptSecurity?: boolean;
@@ -5842,7 +5829,7 @@ export type GoogleCloudDialogflowCxV3SafetySettingsRaiSettingsCategoryFilterCate
   | "HARASSMENT"
   | "SEXUALLY_EXPLICIT_CONTENT";
 export const GoogleCloudDialogflowCxV3SafetySettingsRaiSettingsCategoryFilterCategoryEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowCxV3SafetySettingsRaiSettingsCategoryFilterFilterLevelEnum =
   | "SAFETY_FILTER_LEVEL_UNSPECIFIED"
@@ -5851,7 +5838,7 @@ export type GoogleCloudDialogflowCxV3SafetySettingsRaiSettingsCategoryFilterFilt
   | "BLOCK_SOME"
   | "BLOCK_MOST";
 export const GoogleCloudDialogflowCxV3SafetySettingsRaiSettingsCategoryFilterFilterLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3SafetySettingsRaiSettingsCategoryFilter {
   category?:
@@ -6149,8 +6136,7 @@ export type GoogleCloudDialogflowCxV3DeploymentStateEnum =
   | "RUNNING"
   | "SUCCEEDED"
   | "FAILED";
-export const GoogleCloudDialogflowCxV3DeploymentStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3DeploymentStateEnum = S.String;
 
 export interface GoogleCloudDialogflowCxV3Deployment {
   startTime?: string;
@@ -6608,8 +6594,7 @@ export type GoogleCloudDialogflowCxV3ValidationMessageSeverityEnum =
   | "INFO"
   | "WARNING"
   | "ERROR";
-export const GoogleCloudDialogflowCxV3ValidationMessageSeverityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3ValidationMessageSeverityEnum = S.String;
 
 export type GoogleCloudDialogflowCxV3ValidationMessageResourceTypeEnum =
   | "RESOURCE_TYPE_UNSPECIFIED"
@@ -6628,7 +6613,7 @@ export type GoogleCloudDialogflowCxV3ValidationMessageResourceTypeEnum =
   | "TRANSITION_ROUTE_GROUP"
   | "AGENT_TRANSITION_ROUTE_GROUP";
 export const GoogleCloudDialogflowCxV3ValidationMessageResourceTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3ValidationMessage {
   resourceNames?: GoogleCloudDialogflowCxV3ResourceNameList;
@@ -6730,7 +6715,7 @@ export type GoogleCloudDialogflowCxV3ImportEntityTypesRequestMergeOptionEnum =
   | "REPORT_CONFLICT"
   | "KEEP";
 export const GoogleCloudDialogflowCxV3ImportEntityTypesRequestMergeOptionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3InlineSource {
   content?: string;
@@ -6797,7 +6782,7 @@ export type GoogleCloudDialogflowCxV3FlowImportStrategyGlobalImportStrategyEnum 
   | "IMPORT_STRATEGY_MERGE"
   | "IMPORT_STRATEGY_THROW_ERROR";
 export const GoogleCloudDialogflowCxV3FlowImportStrategyGlobalImportStrategyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3FlowImportStrategy {
   globalImportStrategy?:
@@ -6820,7 +6805,7 @@ export type GoogleCloudDialogflowCxV3ImportFlowRequestImportOptionEnum =
   | "KEEP"
   | "FALLBACK";
 export const GoogleCloudDialogflowCxV3ImportFlowRequestImportOptionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3ImportFlowRequest {
   flowImportStrategy?: GoogleCloudDialogflowCxV3FlowImportStrategy;
@@ -6878,7 +6863,7 @@ export type GoogleCloudDialogflowCxV3ImportIntentsRequestMergeOptionEnum =
   | "REPORT_CONFLICT"
   | "KEEP";
 export const GoogleCloudDialogflowCxV3ImportIntentsRequestMergeOptionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3ImportIntentsRequest {
   intentsContent?: GoogleCloudDialogflowCxV3InlineSource;
@@ -6931,7 +6916,7 @@ export type GoogleCloudDialogflowCxV3PlaybookImportStrategyToolImportStrategyEnu
   | "IMPORT_STRATEGY_MERGE"
   | "IMPORT_STRATEGY_THROW_ERROR";
 export const GoogleCloudDialogflowCxV3PlaybookImportStrategyToolImportStrategyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowCxV3PlaybookImportStrategyNestedResourceImportStrategyEnum =
   | "IMPORT_STRATEGY_UNSPECIFIED"
@@ -6941,7 +6926,7 @@ export type GoogleCloudDialogflowCxV3PlaybookImportStrategyNestedResourceImportS
   | "IMPORT_STRATEGY_MERGE"
   | "IMPORT_STRATEGY_THROW_ERROR";
 export const GoogleCloudDialogflowCxV3PlaybookImportStrategyNestedResourceImportStrategyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowCxV3PlaybookImportStrategyMainPlaybookImportStrategyEnum =
   | "IMPORT_STRATEGY_UNSPECIFIED"
@@ -6951,7 +6936,7 @@ export type GoogleCloudDialogflowCxV3PlaybookImportStrategyMainPlaybookImportStr
   | "IMPORT_STRATEGY_MERGE"
   | "IMPORT_STRATEGY_THROW_ERROR";
 export const GoogleCloudDialogflowCxV3PlaybookImportStrategyMainPlaybookImportStrategyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3PlaybookImportStrategy {
   toolImportStrategy?:
@@ -7302,8 +7287,7 @@ export type GoogleCloudDialogflowCxV3ContinuousTestResultResultEnum =
   | "AGGREGATED_TEST_RESULT_UNSPECIFIED"
   | "PASSED"
   | "FAILED";
-export const GoogleCloudDialogflowCxV3ContinuousTestResultResultEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3ContinuousTestResultResultEnum = S.String;
 
 export interface GoogleCloudDialogflowCxV3ContinuousTestResult {
   name?: string;
@@ -7696,8 +7680,7 @@ export type ListProjectsLocationsAgentsIntentsIntentViewEnum =
   | "INTENT_VIEW_UNSPECIFIED"
   | "INTENT_VIEW_PARTIAL"
   | "INTENT_VIEW_FULL";
-export const ListProjectsLocationsAgentsIntentsIntentViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsAgentsIntentsIntentViewEnum = S.String;
 
 export interface ListProjectsLocationsAgentsIntentsRequest {
   pageToken?: string;
@@ -7898,8 +7881,7 @@ export type ListProjectsLocationsAgentsTestCasesViewEnum =
   | "TEST_CASE_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListProjectsLocationsAgentsTestCasesViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsAgentsTestCasesViewEnum = S.String;
 
 export interface ListProjectsLocationsAgentsTestCasesRequest {
   parent: string;
@@ -8865,7 +8847,7 @@ export type GoogleCloudDialogflowCxV3RestoreAgentRequestRestoreOptionEnum =
   | "KEEP"
   | "FALLBACK";
 export const GoogleCloudDialogflowCxV3RestoreAgentRequestRestoreOptionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowCxV3RestoreAgentRequestGitSource {
   trackingBranch?: string;
@@ -9187,8 +9169,7 @@ export type GoogleCloudDialogflowCxV3AnswerFeedbackRatingEnum =
   | "RATING_UNSPECIFIED"
   | "THUMBS_UP"
   | "THUMBS_DOWN";
-export const GoogleCloudDialogflowCxV3AnswerFeedbackRatingEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowCxV3AnswerFeedbackRatingEnum = S.String;
 
 export interface GoogleCloudDialogflowCxV3AnswerFeedbackRatingReason {
   feedback?: string;

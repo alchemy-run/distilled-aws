@@ -67,7 +67,7 @@ export type AuthType =
   | "AAD"
   | "AccessControlService"
   | "AzureActiveDirectory";
-export const AuthType = /*@__PURE__*/ S.String;
+export const AuthType = S.String;
 
 /** Raw certificate data. */
 export interface RawCertificateData {
@@ -273,7 +273,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -281,7 +281,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -502,11 +502,11 @@ export type VaultUpgradeState =
   | "InProgress"
   | "Upgraded"
   | "Failed";
-export const VaultUpgradeState = /*@__PURE__*/ S.String;
+export const VaultUpgradeState = S.String;
 
 /** The way the vault upgrade was triggered. */
 export type TriggerType = "UserTriggered" | "ForcedUpgrade";
-export const TriggerType = /*@__PURE__*/ S.String;
+export const TriggerType = S.String;
 
 /** Details for upgrading vault. */
 export interface UpgradeDetails {
@@ -545,7 +545,7 @@ export const UpgradeDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** Gets or sets provisioning state of the private endpoint connection. */
 export type ProvisioningState = "Succeeded" | "Deleting" | "Failed" | "Pending";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** The Private Endpoint network resource that is linked to the Private Endpoint connection. */
 export interface PrivateEndpoint {
@@ -566,7 +566,7 @@ export type PrivateEndpointConnectionStatus =
   | "Approved"
   | "Rejected"
   | "Disconnected";
-export const PrivateEndpointConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionStatus = S.String;
 
 /** Gets or sets private link service connection state. */
 export interface PrivateLinkServiceConnectionState {
@@ -592,7 +592,7 @@ export type VaultSubResourceType =
   | "AzureBackup"
   | "AzureBackup_secondary"
   | "AzureSiteRecovery";
-export const VaultSubResourceType = /*@__PURE__*/ S.String;
+export const VaultSubResourceType = S.String;
 
 /** Group Ids for the Private Endpoint */
 export type PrivateEndpointConnectionGroupIdsList = Array<VaultSubResourceType>;
@@ -660,7 +660,7 @@ export const VaultPropertiesPrivateEndpointConnectionsList =
 
 /** Private endpoint state for backup. */
 export type VaultPrivateEndpointState = "None" | "Enabled";
-export const VaultPrivateEndpointState = /*@__PURE__*/ S.String;
+export const VaultPrivateEndpointState = S.String;
 
 /** The properties of the Key Vault which hosts CMK */
 export interface CmkKeyVaultProperties {
@@ -691,7 +691,7 @@ export const CmkKekIdentity = /*@__PURE__*/ S.suspend(() =>
 
 /** Enabling/Disabling the Double Encryption state */
 export type InfrastructureEncryptionState = "Enabled" | "Disabled";
-export const InfrastructureEncryptionState = /*@__PURE__*/ S.String;
+export const InfrastructureEncryptionState = S.String;
 
 /** Customer Managed Key details of the resource. */
 export interface VaultPropertiesEncryption {
@@ -749,18 +749,18 @@ export type ResourceMoveState =
   | "Failure"
   | "CriticalFailure"
   | "PartialSuccess";
-export const ResourceMoveState = /*@__PURE__*/ S.String;
+export const ResourceMoveState = S.String;
 
 /** Backup storage version */
 export type BackupStorageVersion = "V1" | "V2" | "Unassigned";
-export const BackupStorageVersion = /*@__PURE__*/ S.String;
+export const BackupStorageVersion = S.String;
 
 /** property to enable or disable resource provider inbound network traffic from public clients */
 export type PublicNetworkAccess = "Enabled" | "Disabled";
-export const PublicNetworkAccess = /*@__PURE__*/ S.String;
+export const PublicNetworkAccess = S.String;
 
 export type AlertsState = "Enabled" | "Disabled";
-export const AlertsState = /*@__PURE__*/ S.String;
+export const AlertsState = S.String;
 
 /** Settings for Azure Monitor based alerts */
 export interface AzureMonitorAlertSettings {
@@ -812,7 +812,7 @@ export type GranularityLevel =
   | "VaultLevel"
   | "ProtectedItemLevel"
   | "ProtectedItemWithParentTag";
-export const GranularityLevel = /*@__PURE__*/ S.String;
+export const GranularityLevel = S.String;
 
 /** Cost Management Settings of the vault */
 export interface CostManagementSettings {
@@ -831,7 +831,7 @@ export type CrossSubscriptionRestoreState =
   | "Enabled"
   | "Disabled"
   | "PermanentlyDisabled";
-export const CrossSubscriptionRestoreState = /*@__PURE__*/ S.String;
+export const CrossSubscriptionRestoreState = S.String;
 
 /** Settings for Cross Subscription Restore Settings */
 export interface CrossSubscriptionRestoreSettings {
@@ -866,11 +866,11 @@ export type StandardTierStorageRedundancy =
   | "LocallyRedundant"
   | "GeoRedundant"
   | "ZoneRedundant";
-export const StandardTierStorageRedundancy = /*@__PURE__*/ S.String;
+export const StandardTierStorageRedundancy = S.String;
 
 /** Flag to show if Cross Region Restore is enabled on the Vault or not */
 export type CrossRegionRestore = "Enabled" | "Disabled";
-export const CrossRegionRestore = /*@__PURE__*/ S.String;
+export const CrossRegionRestore = S.String;
 
 /** The redundancy Settings of a Vault */
 export interface VaultPropertiesRedundancySettings {
@@ -889,11 +889,11 @@ export const VaultPropertiesRedundancySettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VaultPropertiesRedundancySettings>;
 
 export type ImmutabilityState = "Disabled" | "Unlocked" | "Locked";
-export const ImmutabilityState = /*@__PURE__*/ S.String;
+export const ImmutabilityState = S.String;
 
 /** Immutability config type. */
 export type ImmutabilityType = "AsPerPolicy" | "TimeBased";
-export const ImmutabilityType = /*@__PURE__*/ S.String;
+export const ImmutabilityType = S.String;
 
 /** Immutability configuration of vault. */
 export interface ImmutabilityConfiguration {
@@ -927,14 +927,14 @@ export const ImmutabilitySettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ImmutabilitySettings>;
 
 export type SoftDeleteState = "Invalid" | "Enabled" | "Disabled" | "AlwaysON";
-export const SoftDeleteState = /*@__PURE__*/ S.String;
+export const SoftDeleteState = S.String;
 
 export type EnhancedSecurityState =
   | "Invalid"
   | "Enabled"
   | "Disabled"
   | "AlwaysON";
-export const EnhancedSecurityState = /*@__PURE__*/ S.String;
+export const EnhancedSecurityState = S.String;
 
 /** Soft delete Settings of vault */
 export interface SoftDeleteSettings {
@@ -955,14 +955,14 @@ export const SoftDeleteSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** MUA Settings of vault */
 export type MultiUserAuthorization = "Invalid" | "Enabled" | "Disabled";
-export const MultiUserAuthorization = /*@__PURE__*/ S.String;
+export const MultiUserAuthorization = S.String;
 
 export type State = "Invalid" | "Enabled" | "Disabled";
-export const State = /*@__PURE__*/ S.String;
+export const State = S.String;
 
 /** Identity type that should be used for an operation. */
 export type IdentityType = "SystemAssigned" | "UserAssigned";
-export const IdentityType = /*@__PURE__*/ S.String;
+export const IdentityType = S.String;
 
 /** Identity details to be used for an operation */
 export interface AssociatedIdentity {
@@ -1019,11 +1019,11 @@ export const SecuritySettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Secure Score of Recovery Services Vault */
 export type SecureScoreLevel = "None" | "Minimum" | "Adequate" | "Maximum";
-export const SecureScoreLevel = /*@__PURE__*/ S.String;
+export const SecureScoreLevel = S.String;
 
 /** Security levels of Recovery Services Vault for business continuity and disaster recovery */
 export type BCDRSecurityLevel = "Poor" | "Fair" | "Good" | "Excellent";
-export const BCDRSecurityLevel = /*@__PURE__*/ S.String;
+export const BCDRSecurityLevel = S.String;
 
 /** ResourceGuardOperationRequests on which LAC check will be performed */
 export type VaultPropertiesResourceGuardOperationRequestsList = Array<string>;
@@ -1122,7 +1122,7 @@ export type ResourceIdentityType =
   | "None"
   | "UserAssigned"
   | "SystemAssigned, UserAssigned";
-export const ResourceIdentityType = /*@__PURE__*/ S.String;
+export const ResourceIdentityType = S.String;
 
 /** A resource identity that is managed by the user of the service. */
 export interface UserIdentity {
@@ -1169,7 +1169,7 @@ export const IdentityData = /*@__PURE__*/ S.suspend(() =>
 
 /** Name of SKU is RS0 (Recovery Services 0th version) and the tier is standard tier. They do not have affect on backend storage redundancy or any other vault settings. To manage storage redundancy, use the backupstorageconfig */
 export type SkuName = "Standard" | "RS0";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** Identifies the unique system identifier for each Azure resource. */
 export interface Sku {
@@ -1922,7 +1922,7 @@ export type UsagesUnit =
   | "Percent"
   | "CountPerSecond"
   | "BytesPerSecond";
-export const UsagesUnit = /*@__PURE__*/ S.String;
+export const UsagesUnit = S.String;
 
 /** The name of usage. */
 export interface NameInfo {

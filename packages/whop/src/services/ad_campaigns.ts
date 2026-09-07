@@ -45,17 +45,17 @@ export type CreateAdCampaignRequestBidType =
   | "minimum_cost"
   | "average_target"
   | "maximum_target";
-export const CreateAdCampaignRequestBidType = /*@__PURE__*/ S.String;
+export const CreateAdCampaignRequestBidType = S.String;
 
 /** Which level owns the budget: the whole campaign (`ad_campaign`) or each ad group individually (`ad_group`). Defaults to `ad_group`. */
 export type CreateAdCampaignRequestBudgetOptimization =
   | "ad_campaign"
   | "ad_group";
-export const CreateAdCampaignRequestBudgetOptimization = /*@__PURE__*/ S.String;
+export const CreateAdCampaignRequestBudgetOptimization = S.String;
 
 /** Whether the budget is spent per day (`daily`) or over the campaign's full run (`lifetime`). Defaults to `daily`. */
 export type CreateAdCampaignRequestBudgetType = "daily" | "lifetime";
-export const CreateAdCampaignRequestBudgetType = /*@__PURE__*/ S.String;
+export const CreateAdCampaignRequestBudgetType = S.String;
 
 /** The goal the campaign optimizes toward. */
 export type CreateAdCampaignRequestObjective =
@@ -64,19 +64,18 @@ export type CreateAdCampaignRequestObjective =
   | "engagement"
   | "leads"
   | "sales";
-export const CreateAdCampaignRequestObjective = /*@__PURE__*/ S.String;
+export const CreateAdCampaignRequestObjective = S.String;
 
 /** The ad network the campaign runs on. */
 export type CreateAdCampaignRequestPlatform = "meta";
-export const CreateAdCampaignRequestPlatform = /*@__PURE__*/ S.String;
+export const CreateAdCampaignRequestPlatform = S.String;
 
 export type CreateAdCampaignRequestSpecialAdCategoriesItem =
   | "housing"
   | "employment"
   | "financial_products"
   | "politics";
-export const CreateAdCampaignRequestSpecialAdCategoriesItem =
-  /*@__PURE__*/ S.String;
+export const CreateAdCampaignRequestSpecialAdCategoriesItem = S.String;
 
 /** Regulated categories the campaign falls under. Ads in these categories are subject to extra targeting restrictions. */
 export type CreateAdCampaignRequestSpecialAdCategoriesList = Array<
@@ -144,15 +143,15 @@ export type AdCampaignBidType =
   | "minimum_cost"
   | "average_target"
   | "maximum_target";
-export const AdCampaignBidType = /*@__PURE__*/ S.String;
+export const AdCampaignBidType = S.String;
 
 /** Which level owns the budget: the whole campaign (`ad_campaign`) or each ad group individually (`ad_group`). */
 export type AdCampaignBudgetOptimization = "ad_campaign" | "ad_group";
-export const AdCampaignBudgetOptimization = /*@__PURE__*/ S.String;
+export const AdCampaignBudgetOptimization = S.String;
 
 /** Whether `budget_amount` is spent per day (`daily`) or over the campaign's full run (`lifetime`). */
 export type AdCampaignBudgetType = "daily" | "lifetime";
-export const AdCampaignBudgetType = /*@__PURE__*/ S.String;
+export const AdCampaignBudgetType = S.String;
 
 /** Whether the campaign's ads are delivering right now, and if not, why. When several states apply at once, the highest-precedence one is returned. */
 export type AdCampaignDeliveryStatus =
@@ -168,11 +167,11 @@ export type AdCampaignDeliveryStatus =
   | "completed"
   | "ad_groups_off"
   | "active";
-export const AdCampaignDeliveryStatus = /*@__PURE__*/ S.String;
+export const AdCampaignDeliveryStatus = S.String;
 
 /** The type of resource the issue is attached to. */
 export type AdPlatformIssueResourceType = "ad_campaign" | "ad_group" | "ad";
-export const AdPlatformIssueResourceType = /*@__PURE__*/ S.String;
+export const AdPlatformIssueResourceType = S.String;
 
 export interface AdPlatformIssue {
   /** Unique identifier for the issue. */
@@ -207,11 +206,11 @@ export type AdCampaignObjective =
   | "engagement"
   | "leads"
   | "sales";
-export const AdCampaignObjective = /*@__PURE__*/ S.String;
+export const AdCampaignObjective = S.String;
 
 /** The ad network the campaign runs on. */
 export type AdCampaignPlatform = "meta" | "tiktok";
-export const AdCampaignPlatform = /*@__PURE__*/ S.String;
+export const AdCampaignPlatform = S.String;
 
 /** The Whop pixel conversion event whose attributed count represents results — the optimization goal, or the highest-volume attributed event for campaigns that budget per ad group. Null when the goal isn't a Whop-attributed event. */
 export type AdCampaignResultEvent =
@@ -225,7 +224,7 @@ export type AdCampaignResultEvent =
   | "add_to_cart"
   | "custom"
   | "messaging_conversation";
-export const AdCampaignResultEvent = /*@__PURE__*/ S.String;
+export const AdCampaignResultEvent = S.String;
 
 /** Regulated categories the campaign is declared under. Ads in these categories are subject to extra targeting restrictions. Empty when none apply. */
 export type AdCampaignSpecialAdCategoriesItem =
@@ -233,7 +232,7 @@ export type AdCampaignSpecialAdCategoriesItem =
   | "employment"
   | "financial_products"
   | "politics";
-export const AdCampaignSpecialAdCategoriesItem = /*@__PURE__*/ S.String;
+export const AdCampaignSpecialAdCategoriesItem = S.String;
 
 export type AdCampaignSpecialAdCategoriesList =
   Array<AdCampaignSpecialAdCategoriesItem>;
@@ -255,7 +254,7 @@ export type AdCampaignStatus =
   | "importing"
   | "imported"
   | "duplicating";
-export const AdCampaignStatus = /*@__PURE__*/ S.String;
+export const AdCampaignStatus = S.String;
 
 export interface AdCampaign {
   /** USD value attributed to add-to-cart events. Sums the value sent with each event, normalized to USD; events without a value contribute 0. */
@@ -506,7 +505,7 @@ export const DuplicateAdCampaignResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DuplicateAdCampaignResponse>;
 
 export type GetAdCampaignRequestAttributionModel = "last_touch" | "first_touch";
-export const GetAdCampaignRequestAttributionModel = /*@__PURE__*/ S.String;
+export const GetAdCampaignRequestAttributionModel = S.String;
 
 export interface GetAdCampaignRequest {
   /** The ad campaign ID. */
@@ -539,7 +538,7 @@ export type ListAdCampaignsRequestStatus =
   | "active"
   | "paused"
   | "payment_failed";
-export const ListAdCampaignsRequestStatus = /*@__PURE__*/ S.String;
+export const ListAdCampaignsRequestStatus = S.String;
 
 export type ListAdCampaignsRequestOrder =
   | "created_at"
@@ -556,15 +555,15 @@ export type ListAdCampaignsRequestOrder =
   | "cost_per_click"
   | "cost_per_result"
   | "return_on_ad_spend";
-export const ListAdCampaignsRequestOrder = /*@__PURE__*/ S.String;
+export const ListAdCampaignsRequestOrder = S.String;
 
 export type ListAdCampaignsRequestDirection = "asc" | "desc";
-export const ListAdCampaignsRequestDirection = /*@__PURE__*/ S.String;
+export const ListAdCampaignsRequestDirection = S.String;
 
 export type ListAdCampaignsRequestAttributionModel =
   | "last_touch"
   | "first_touch";
-export const ListAdCampaignsRequestAttributionModel = /*@__PURE__*/ S.String;
+export const ListAdCampaignsRequestAttributionModel = S.String;
 
 export interface ListAdCampaignsRequest {
   /** The account the campaigns belong to. Defaults to the account-scoped key's own account. */
@@ -717,25 +716,24 @@ export type UpdateAdCampaignRequestBidType =
   | "minimum_cost"
   | "average_target"
   | "maximum_target";
-export const UpdateAdCampaignRequestBidType = /*@__PURE__*/ S.String;
+export const UpdateAdCampaignRequestBidType = S.String;
 
 /** Which level owns the budget: the whole campaign (`ad_campaign`) or each ad group individually (`ad_group`). Only changeable before the campaign is live on the ad network; switching to `ad_campaign` requires budget_amount in the same request, and switching to `ad_group` clears the campaign budget. */
 export type UpdateAdCampaignRequestBudgetOptimization =
   | "ad_campaign"
   | "ad_group";
-export const UpdateAdCampaignRequestBudgetOptimization = /*@__PURE__*/ S.String;
+export const UpdateAdCampaignRequestBudgetOptimization = S.String;
 
 /** Whether `budget_amount` is spent per day (`daily`) or over the campaign's full run (`lifetime`). Only changeable while the campaign is a draft; send budget_amount in the same request so the amount lands on the new type. */
 export type UpdateAdCampaignRequestBudgetType = "daily" | "lifetime";
-export const UpdateAdCampaignRequestBudgetType = /*@__PURE__*/ S.String;
+export const UpdateAdCampaignRequestBudgetType = S.String;
 
 export type UpdateAdCampaignRequestSpecialAdCategoriesItem =
   | "housing"
   | "employment"
   | "financial_products"
   | "politics";
-export const UpdateAdCampaignRequestSpecialAdCategoriesItem =
-  /*@__PURE__*/ S.String;
+export const UpdateAdCampaignRequestSpecialAdCategoriesItem = S.String;
 
 /** Regulated categories the campaign falls under. Editable on any campaign, draft or launched; pass an empty array to clear. */
 export type UpdateAdCampaignRequestSpecialAdCategoriesList = Array<
@@ -748,7 +746,7 @@ export const UpdateAdCampaignRequestSpecialAdCategoriesList =
 
 /** Set to active to launch a draft campaign (moderates and pushes it live). Live-campaign pause and resume use the pause and unpause actions. */
 export type UpdateAdCampaignRequestStatus = "active";
-export const UpdateAdCampaignRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateAdCampaignRequestStatus = S.String;
 
 export interface UpdateAdCampaignRequest {
   /** The ad campaign ID. */

@@ -69,7 +69,7 @@ export type DeviceIdentifierDeviceTypeEnum =
   | "DEVICE_TYPE_UNSPECIFIED"
   | "DEVICE_TYPE_ANDROID"
   | "DEVICE_TYPE_CHROME_OS";
-export const DeviceIdentifierDeviceTypeEnum = /*@__PURE__*/ S.String;
+export const DeviceIdentifierDeviceTypeEnum = S.String;
 
 /** Encapsulates hardware and product IDs to identify a manufactured device. To understand requirements on identifier sets, read [Identifiers](https://developers.google.com/zero-touch/guides/identifiers). */
 export interface DeviceIdentifier {
@@ -172,7 +172,7 @@ export type PartnerClaimSectionTypeEnum =
   | "SECTION_TYPE_UNSPECIFIED"
   | "SECTION_TYPE_SIM_LOCK"
   | "SECTION_TYPE_ZERO_TOUCH";
-export const PartnerClaimSectionTypeEnum = /*@__PURE__*/ S.String;
+export const PartnerClaimSectionTypeEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -317,7 +317,7 @@ export type ClaimDeviceRequestSectionTypeEnum =
   | "SECTION_TYPE_UNSPECIFIED"
   | "SECTION_TYPE_SIM_LOCK"
   | "SECTION_TYPE_ZERO_TOUCH";
-export const ClaimDeviceRequestSectionTypeEnum = /*@__PURE__*/ S.String;
+export const ClaimDeviceRequestSectionTypeEnum = S.String;
 
 /** Request message to claim a device on behalf of a customer. */
 export interface ClaimDeviceRequest {
@@ -479,7 +479,7 @@ export type CompanyTermsStatusEnum =
   | "TERMS_STATUS_NOT_ACCEPTED"
   | "TERMS_STATUS_ACCEPTED"
   | "TERMS_STATUS_STALE";
-export const CompanyTermsStatusEnum = /*@__PURE__*/ S.String;
+export const CompanyTermsStatusEnum = S.String;
 
 /** A reseller, vendor, or customer in the zero-touch reseller and customer APIs. */
 export interface Company {
@@ -614,13 +614,13 @@ export const FindByIdentifierPartnersDevicesRequest = /*@__PURE__*/ S.suspend(
 export type DeviceClaimAdditionalServiceEnum =
   | "ADDITIONAL_SERVICE_UNSPECIFIED"
   | "DEVICE_PROTECTION";
-export const DeviceClaimAdditionalServiceEnum = /*@__PURE__*/ S.String;
+export const DeviceClaimAdditionalServiceEnum = S.String;
 
 export type DeviceClaimSectionTypeEnum =
   | "SECTION_TYPE_UNSPECIFIED"
   | "SECTION_TYPE_SIM_LOCK"
   | "SECTION_TYPE_ZERO_TOUCH";
-export const DeviceClaimSectionTypeEnum = /*@__PURE__*/ S.String;
+export const DeviceClaimSectionTypeEnum = S.String;
 
 /** A record of a device claimed by a reseller for a customer. Devices claimed for zero-touch enrollment have a claim with the type `SECTION_TYPE_ZERO_TOUCH`. To learn more, read [Claim devices for customers](/zero-touch/guides/how-it-works#claim). */
 export interface DeviceClaim {
@@ -711,7 +711,7 @@ export type FindDevicesByOwnerRequestSectionTypeEnum =
   | "SECTION_TYPE_UNSPECIFIED"
   | "SECTION_TYPE_SIM_LOCK"
   | "SECTION_TYPE_ZERO_TOUCH";
-export const FindDevicesByOwnerRequestSectionTypeEnum = /*@__PURE__*/ S.String;
+export const FindDevicesByOwnerRequestSectionTypeEnum = S.String;
 
 /** Request to find devices by customers. */
 export interface FindDevicesByOwnerRequest {
@@ -890,8 +890,7 @@ export type GetDeviceSimLockStateResponseSimLockStateEnum =
   | "UNLOCKED"
   | "LOCKED_TO_PARTNER"
   | "LOCKED_TO_OTHER_PARTNER";
-export const GetDeviceSimLockStateResponseSimLockStateEnum =
-  /*@__PURE__*/ S.String;
+export const GetDeviceSimLockStateResponseSimLockStateEnum = S.String;
 
 /** Response containing a device's SimLock state. */
 export interface GetDeviceSimLockStateResponse {
@@ -1303,7 +1302,7 @@ export type PartnerUnclaimSectionTypeEnum =
   | "SECTION_TYPE_UNSPECIFIED"
   | "SECTION_TYPE_SIM_LOCK"
   | "SECTION_TYPE_ZERO_TOUCH";
-export const PartnerUnclaimSectionTypeEnum = /*@__PURE__*/ S.String;
+export const PartnerUnclaimSectionTypeEnum = S.String;
 
 /** Identifies one unclaim request. */
 export interface PartnerUnclaim {
@@ -1405,7 +1404,7 @@ export type UnclaimDeviceRequestSectionTypeEnum =
   | "SECTION_TYPE_UNSPECIFIED"
   | "SECTION_TYPE_SIM_LOCK"
   | "SECTION_TYPE_ZERO_TOUCH";
-export const UnclaimDeviceRequestSectionTypeEnum = /*@__PURE__*/ S.String;
+export const UnclaimDeviceRequestSectionTypeEnum = S.String;
 
 /** Request message to unclaim a device. */
 export interface UnclaimDeviceRequest {

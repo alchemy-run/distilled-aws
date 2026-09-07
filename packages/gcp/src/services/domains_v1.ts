@@ -136,7 +136,7 @@ export type ContactSettingsPrivacyEnum =
   | "PUBLIC_CONTACT_DATA"
   | "PRIVATE_CONTACT_DATA"
   | "REDACTED_CONTACT_DATA";
-export const ContactSettingsPrivacyEnum = /*@__PURE__*/ S.String;
+export const ContactSettingsPrivacyEnum = S.String;
 
 /** Defines the contact information associated with a `Registration`. [ICANN](https://icann.org/) requires all domain names to have associated contact information. The `registrant_contact` is considered the domain's legal owner, and often the other contacts are identical. */
 export interface ContactSettings {
@@ -163,8 +163,7 @@ export const ContactSettings = /*@__PURE__*/ S.suspend(() =>
 export type ConfigureContactSettingsRequestContactNoticesItemEnum =
   | "CONTACT_NOTICE_UNSPECIFIED"
   | "PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT";
-export const ConfigureContactSettingsRequestContactNoticesItemEnum =
-  /*@__PURE__*/ S.String;
+export const ConfigureContactSettingsRequestContactNoticesItemEnum = S.String;
 
 export type ConfigureContactSettingsRequestContactNoticesItemEnumList = Array<
   ConfigureContactSettingsRequestContactNoticesItemEnum | (string & {})
@@ -312,7 +311,7 @@ export type DsRecordAlgorithmEnum =
   | "INDIRECT"
   | "PRIVATEDNS"
   | "PRIVATEOID";
-export const DsRecordAlgorithmEnum = /*@__PURE__*/ S.String;
+export const DsRecordAlgorithmEnum = S.String;
 
 export type DsRecordDigestTypeEnum =
   | "DIGEST_TYPE_UNSPECIFIED"
@@ -320,7 +319,7 @@ export type DsRecordDigestTypeEnum =
   | "SHA256"
   | "GOST3411"
   | "SHA384";
-export const DsRecordDigestTypeEnum = /*@__PURE__*/ S.String;
+export const DsRecordDigestTypeEnum = S.String;
 
 /** Defines a Delegation Signer (DS) record, which is needed to enable DNSSEC for a domain. It contains a digest (hash) of a DNSKEY record that must be present in the domain's DNS zone. */
 export interface DsRecord {
@@ -365,7 +364,7 @@ export type GoogleDomainsDnsDsStateEnum =
   | "DS_STATE_UNSPECIFIED"
   | "DS_RECORDS_UNPUBLISHED"
   | "DS_RECORDS_PUBLISHED";
-export const GoogleDomainsDnsDsStateEnum = /*@__PURE__*/ S.String;
+export const GoogleDomainsDnsDsStateEnum = S.String;
 
 /** Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations). Configuration for using the free DNS zone provided by Google Domains as a `Registration`'s `dns_provider`. You cannot configure the DNS zone itself using the API. To configure the DNS zone, go to [Google Domains](https://domains.google/). */
 export interface GoogleDomainsDns {
@@ -451,29 +450,27 @@ export type ManagementSettingsTransferLockStateEnum =
   | "TRANSFER_LOCK_STATE_UNSPECIFIED"
   | "UNLOCKED"
   | "LOCKED";
-export const ManagementSettingsTransferLockStateEnum = /*@__PURE__*/ S.String;
+export const ManagementSettingsTransferLockStateEnum = S.String;
 
 export type ManagementSettingsPreferredRenewalMethodEnum =
   | "RENEWAL_METHOD_UNSPECIFIED"
   | "AUTOMATIC_RENEWAL"
   | "MANUAL_RENEWAL"
   | "RENEWAL_DISABLED";
-export const ManagementSettingsPreferredRenewalMethodEnum =
-  /*@__PURE__*/ S.String;
+export const ManagementSettingsPreferredRenewalMethodEnum = S.String;
 
 export type ManagementSettingsRenewalMethodEnum =
   | "RENEWAL_METHOD_UNSPECIFIED"
   | "AUTOMATIC_RENEWAL"
   | "MANUAL_RENEWAL"
   | "RENEWAL_DISABLED";
-export const ManagementSettingsRenewalMethodEnum = /*@__PURE__*/ S.String;
+export const ManagementSettingsRenewalMethodEnum = S.String;
 
 export type ManagementSettingsEffectiveTransferLockStateEnum =
   | "TRANSFER_LOCK_STATE_UNSPECIFIED"
   | "UNLOCKED"
   | "LOCKED";
-export const ManagementSettingsEffectiveTransferLockStateEnum =
-  /*@__PURE__*/ S.String;
+export const ManagementSettingsEffectiveTransferLockStateEnum = S.String;
 
 /** Defines renewal, billing, and transfer settings for a `Registration`. */
 export interface ManagementSettings {
@@ -659,10 +656,10 @@ export type LoadBalancerTargetLoadBalancerTypeEnum =
   | "GLOBAL_L7ILB"
   | "REGIONAL_L4ILB"
   | "REGIONAL_L7ILB";
-export const LoadBalancerTargetLoadBalancerTypeEnum = /*@__PURE__*/ S.String;
+export const LoadBalancerTargetLoadBalancerTypeEnum = S.String;
 
 export type LoadBalancerTargetIpProtocolEnum = "UNDEFINED" | "TCP" | "UDP";
-export const LoadBalancerTargetIpProtocolEnum = /*@__PURE__*/ S.String;
+export const LoadBalancerTargetIpProtocolEnum = S.String;
 
 /** The configuration for an individual load balancer to health check. */
 export interface LoadBalancerTarget {
@@ -904,7 +901,7 @@ export type DomainForwardingRedirectTypeEnum =
   | "REDIRECT_TYPE_UNSPECIFIED"
   | "TEMPORARY"
   | "PERMANENT";
-export const DomainForwardingRedirectTypeEnum = /*@__PURE__*/ S.String;
+export const DomainForwardingRedirectTypeEnum = S.String;
 
 /** Domain forwarding configuration. */
 export interface DomainForwarding {
@@ -1046,7 +1043,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -1138,7 +1135,7 @@ export type DomainResourceStateEnum =
   | "SUSPENDED"
   | "EXPIRED"
   | "DELETED";
-export const DomainResourceStateEnum = /*@__PURE__*/ S.String;
+export const DomainResourceStateEnum = S.String;
 
 /** Represents an amount of money with its currency type. */
 export interface Money {
@@ -1285,7 +1282,7 @@ export type RegistrationSupportedPrivacyItemEnum =
   | "PUBLIC_CONTACT_DATA"
   | "PRIVATE_CONTACT_DATA"
   | "REDACTED_CONTACT_DATA";
-export const RegistrationSupportedPrivacyItemEnum = /*@__PURE__*/ S.String;
+export const RegistrationSupportedPrivacyItemEnum = S.String;
 
 export type RegistrationSupportedPrivacyItemEnumList = Array<
   RegistrationSupportedPrivacyItemEnum | (string & {})
@@ -1298,7 +1295,7 @@ export type RegistrationDomainPropertiesItemEnum =
   | "DOMAIN_PROPERTY_UNSPECIFIED"
   | "TRANSFER_LOCK_UNSUPPORTED_BY_REGISTRY"
   | "REQUIRE_PUSH_TRANSFER";
-export const RegistrationDomainPropertiesItemEnum = /*@__PURE__*/ S.String;
+export const RegistrationDomainPropertiesItemEnum = S.String;
 
 export type RegistrationDomainPropertiesItemEnumList = Array<
   RegistrationDomainPropertiesItemEnum | (string & {})
@@ -1319,14 +1316,14 @@ export type RegistrationTransferFailureReasonEnum =
   | "INVALID_REGISTRANT_EMAIL_ADDRESS"
   | "DOMAIN_NOT_ELIGIBLE_FOR_TRANSFER"
   | "TRANSFER_ALREADY_PENDING";
-export const RegistrationTransferFailureReasonEnum = /*@__PURE__*/ S.String;
+export const RegistrationTransferFailureReasonEnum = S.String;
 
 export type RegistrationRegisterFailureReasonEnum =
   | "REGISTER_FAILURE_REASON_UNSPECIFIED"
   | "REGISTER_FAILURE_REASON_UNKNOWN"
   | "DOMAIN_NOT_AVAILABLE"
   | "INVALID_CONTACTS";
-export const RegistrationRegisterFailureReasonEnum = /*@__PURE__*/ S.String;
+export const RegistrationRegisterFailureReasonEnum = S.String;
 
 export type RegistrationIssuesItemEnum =
   | "ISSUE_UNSPECIFIED"
@@ -1335,7 +1332,7 @@ export type RegistrationIssuesItemEnum =
   | "PROBLEM_WITH_BILLING"
   | "DNS_NOT_ACTIVATED"
   | "AUTO_RENEWAL_UPDATE_NOT_EFFECTIVE";
-export const RegistrationIssuesItemEnum = /*@__PURE__*/ S.String;
+export const RegistrationIssuesItemEnum = S.String;
 
 export type RegistrationIssuesItemEnumList = Array<
   RegistrationIssuesItemEnum | (string & {})
@@ -1355,7 +1352,7 @@ export type RegistrationStateEnum =
   | "SUSPENDED"
   | "EXPORTED"
   | "EXPIRED";
-export const RegistrationStateEnum = /*@__PURE__*/ S.String;
+export const RegistrationStateEnum = S.String;
 
 /** The `Registration` resource facilitates managing and configuring domain name registrations. There are several ways to create a new `Registration` resource: To create a new `Registration` resource, find a suitable domain name by calling the `SearchDomains` method with a query to see available domain name options. After choosing a name, call `RetrieveRegisterParameters` to ensure availability and obtain information like pricing, which is needed to build a call to `RegisterDomain`. Another way to create a new `Registration` is to transfer an existing domain from another registrar (Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations)). First, go to the current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to `TransferDomain`. Finally, you can create a new `Registration` by importing an existing domain managed with [Google Domains](https://domains.google/) (Deprecated: For more information, see [Cloud Domains feature deprecation](https://cloud.google.com/domains/docs/deprecations/feature-deprecations)). First, call `RetrieveImportableDomains` to list domains to which the calling user has sufficient access. Then call `ImportDomain` on any domain names you want to use with Cloud Domains. */
 export interface Registration {
@@ -1435,7 +1432,7 @@ export const GetRegisterParametersProjectsLocationsRegistrationsRequest =
 export type RegisterParametersDomainNoticesItemEnum =
   | "DOMAIN_NOTICE_UNSPECIFIED"
   | "HSTS_PRELOADED";
-export const RegisterParametersDomainNoticesItemEnum = /*@__PURE__*/ S.String;
+export const RegisterParametersDomainNoticesItemEnum = S.String;
 
 export type RegisterParametersDomainNoticesItemEnumList =
   Array<RegisterParametersDomainNoticesItemEnum>;
@@ -1450,15 +1447,14 @@ export type RegisterParametersAvailabilityEnum =
   | "UNAVAILABLE"
   | "UNSUPPORTED"
   | "UNKNOWN";
-export const RegisterParametersAvailabilityEnum = /*@__PURE__*/ S.String;
+export const RegisterParametersAvailabilityEnum = S.String;
 
 export type RegisterParametersSupportedPrivacyItemEnum =
   | "CONTACT_PRIVACY_UNSPECIFIED"
   | "PUBLIC_CONTACT_DATA"
   | "PRIVATE_CONTACT_DATA"
   | "REDACTED_CONTACT_DATA";
-export const RegisterParametersSupportedPrivacyItemEnum =
-  /*@__PURE__*/ S.String;
+export const RegisterParametersSupportedPrivacyItemEnum = S.String;
 
 export type RegisterParametersSupportedPrivacyItemEnumList =
   Array<RegisterParametersSupportedPrivacyItemEnum>;
@@ -1533,15 +1529,14 @@ export type TransferParametersTransferLockStateEnum =
   | "TRANSFER_LOCK_STATE_UNSPECIFIED"
   | "UNLOCKED"
   | "LOCKED";
-export const TransferParametersTransferLockStateEnum = /*@__PURE__*/ S.String;
+export const TransferParametersTransferLockStateEnum = S.String;
 
 export type TransferParametersSupportedPrivacyItemEnum =
   | "CONTACT_PRIVACY_UNSPECIFIED"
   | "PUBLIC_CONTACT_DATA"
   | "PRIVATE_CONTACT_DATA"
   | "REDACTED_CONTACT_DATA";
-export const TransferParametersSupportedPrivacyItemEnum =
-  /*@__PURE__*/ S.String;
+export const TransferParametersSupportedPrivacyItemEnum = S.String;
 
 export type TransferParametersSupportedPrivacyItemEnumList =
   Array<TransferParametersSupportedPrivacyItemEnum>;
@@ -1858,8 +1853,7 @@ export const PatchProjectsLocationsRegistrationsRequest =
 export type RegisterDomainRequestDomainNoticesItemEnum =
   | "DOMAIN_NOTICE_UNSPECIFIED"
   | "HSTS_PRELOADED";
-export const RegisterDomainRequestDomainNoticesItemEnum =
-  /*@__PURE__*/ S.String;
+export const RegisterDomainRequestDomainNoticesItemEnum = S.String;
 
 export type RegisterDomainRequestDomainNoticesItemEnumList = Array<
   RegisterDomainRequestDomainNoticesItemEnum | (string & {})
@@ -1872,8 +1866,7 @@ export const RegisterDomainRequestDomainNoticesItemEnumList =
 export type RegisterDomainRequestContactNoticesItemEnum =
   | "CONTACT_NOTICE_UNSPECIFIED"
   | "PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT";
-export const RegisterDomainRequestContactNoticesItemEnum =
-  /*@__PURE__*/ S.String;
+export const RegisterDomainRequestContactNoticesItemEnum = S.String;
 
 export type RegisterDomainRequestContactNoticesItemEnumList = Array<
   RegisterDomainRequestContactNoticesItemEnum | (string & {})
@@ -2123,8 +2116,7 @@ export const TestIamPermissionsResponse = /*@__PURE__*/ S.suspend(() =>
 export type TransferDomainRequestContactNoticesItemEnum =
   | "CONTACT_NOTICE_UNSPECIFIED"
   | "PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT";
-export const TransferDomainRequestContactNoticesItemEnum =
-  /*@__PURE__*/ S.String;
+export const TransferDomainRequestContactNoticesItemEnum = S.String;
 
 export type TransferDomainRequestContactNoticesItemEnumList = Array<
   TransferDomainRequestContactNoticesItemEnum | (string & {})

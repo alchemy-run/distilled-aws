@@ -75,7 +75,7 @@ export type CreateSandboxesByNameForkV2RequestNetworkPolicyCase0Mode =
   | "default-allow"
   | "default-deny";
 export const CreateSandboxesByNameForkV2RequestNetworkPolicyCase0Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of domain names the sandbox is allowed to connect to. Only applies when mode is \"custom\". Supports wildcard patterns (e.g., \"*.example.com\" matches all subdomains). */
 export type CreateSandboxesByNameForkV2RequestNetworkPolicyCase0AllowedDomainsList =
@@ -481,7 +481,7 @@ export type CreateSandboxesByNameForkV2RequestNetworkPolicyCase1Allow =
   | CreateSandboxesByNameForkV2RequestNetworkPolicyCase1AllowCase0List
   | CreateSandboxesByNameForkV2RequestNetworkPolicyCase1AllowCase1Map;
 export const CreateSandboxesByNameForkV2RequestNetworkPolicyCase1Allow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesByNameForkV2RequestNetworkPolicyCase1Allow>;
+  S.Unknown as any as S.Schema<CreateSandboxesByNameForkV2RequestNetworkPolicyCase1Allow>;
 
 export type CreateSandboxesByNameForkV2RequestNetworkPolicyCase1SubnetsAllowList =
   Array<string>;
@@ -537,7 +537,7 @@ export type CreateSandboxesByNameForkV2RequestNetworkPolicy =
   | CreateSandboxesByNameForkV2RequestNetworkPolicyCase0
   | CreateSandboxesByNameForkV2RequestNetworkPolicyCase1;
 export const CreateSandboxesByNameForkV2RequestNetworkPolicy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesByNameForkV2RequestNetworkPolicy>;
+  S.Unknown as any as S.Schema<CreateSandboxesByNameForkV2RequestNetworkPolicy>;
 
 /** Resources to define the VM */
 export interface CreateSandboxesByNameForkV2RequestResources {
@@ -576,8 +576,7 @@ export const CreateSandboxesByNameForkV2RequestEnvMap = /*@__PURE__*/ S.Record(
 export type CreateSandboxesByNameForkV2RequestMountsValueMode =
   | "read-only"
   | "read-write";
-export const CreateSandboxesByNameForkV2RequestMountsValueMode =
-  /*@__PURE__*/ S.String;
+export const CreateSandboxesByNameForkV2RequestMountsValueMode = S.String;
 
 export interface CreateSandboxesByNameForkV2RequestMountsValue {
   /** Name of the drive to mount. The drive must already exist. */
@@ -626,7 +625,7 @@ export type CreateSandboxesByNameForkV2RequestRegion =
   | "yul1"
   | "hnd1"
   | "kix1";
-export const CreateSandboxesByNameForkV2RequestRegion = /*@__PURE__*/ S.String;
+export const CreateSandboxesByNameForkV2RequestRegion = S.String;
 
 export type CreateSandboxesByNameForkV2RequestFailoverRegionsItem =
   | "iad1"
@@ -648,8 +647,7 @@ export type CreateSandboxesByNameForkV2RequestFailoverRegionsItem =
   | "yul1"
   | "hnd1"
   | "kix1";
-export const CreateSandboxesByNameForkV2RequestFailoverRegionsItem =
-  /*@__PURE__*/ S.String;
+export const CreateSandboxesByNameForkV2RequestFailoverRegionsItem = S.String;
 
 /** The regions the sandbox falls back to when it cannot be created in `region`. */
 export type CreateSandboxesByNameForkV2RequestFailoverRegionsList = Array<
@@ -665,14 +663,14 @@ export type CreateSandboxesByNameForkV2RequestSnapshotExpiration =
   | unknown
   | number;
 export const CreateSandboxesByNameForkV2RequestSnapshotExpiration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesByNameForkV2RequestSnapshotExpiration>;
+  S.Unknown as any as S.Schema<CreateSandboxesByNameForkV2RequestSnapshotExpiration>;
 
 /** Expiration time in milliseconds for kept snapshots. Falls back to snapshotExpiration. */
 export type CreateSandboxesByNameForkV2RequestKeepLastSnapshotsExpiration =
   | unknown
   | number;
 export const CreateSandboxesByNameForkV2RequestKeepLastSnapshotsExpiration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesByNameForkV2RequestKeepLastSnapshotsExpiration>;
+  S.Unknown as any as S.Schema<CreateSandboxesByNameForkV2RequestKeepLastSnapshotsExpiration>;
 
 /** Protect the N most recent snapshots with different expiration/deletion behavior. */
 export interface CreateSandboxesByNameForkV2RequestKeepLastSnapshots {
@@ -774,7 +772,7 @@ export const CreateSandboxesByNameForkV2Request = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the current sandbox. */
 export type NamedSandboxStatus = "running" | "stopped" | "stopping";
-export const NamedSandboxStatus = /*@__PURE__*/ S.String;
+export const NamedSandboxStatus = S.String;
 
 /** The regions the sandbox fails over to. Empty when it does not fail over. */
 export type NamedSandboxFailoverRegionsItem =
@@ -797,7 +795,7 @@ export type NamedSandboxFailoverRegionsItem =
   | "sin1"
   | "syd1"
   | "yul1";
-export const NamedSandboxFailoverRegionsItem = /*@__PURE__*/ S.String;
+export const NamedSandboxFailoverRegionsItem = S.String;
 
 /** The regions the sandbox fails over to. Empty when it does not fail over. */
 export type NamedSandboxFailoverRegionsList =
@@ -831,7 +829,7 @@ export type NamedSandboxNetworkPolicyMode =
   | "default-allow"
   | "default-deny"
   | "deny-all";
-export const NamedSandboxNetworkPolicyMode = /*@__PURE__*/ S.String;
+export const NamedSandboxNetworkPolicyMode = S.String;
 
 export type NamedSandboxNetworkPolicyAllowedDomainsList = Array<string>;
 export const NamedSandboxNetworkPolicyAllowedDomainsList =
@@ -877,7 +875,7 @@ export const NamedSandboxTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<NamedSandboxTagsMap>;
 
 export type NamedSandboxMountsValueMode = "read-only" | "read-write";
-export const NamedSandboxMountsValueMode = /*@__PURE__*/ S.String;
+export const NamedSandboxMountsValueMode = S.String;
 
 /** Key-value pairs of mount path and drive. */
 export interface NamedSandboxMountsValue {
@@ -997,11 +995,11 @@ export type SessionStatus =
   | "snapshotting"
   | "stopped"
   | "stopping";
-export const SessionStatus = /*@__PURE__*/ S.String;
+export const SessionStatus = S.String;
 
 /** The network policy mode. - 'allow-all': All traffic is allowed. - 'deny-all': All traffic is blocked. - 'custom': Traffic is controlled by explicit allow/deny rules. */
 export type SandboxNetworkPolicyMode = "allow-all" | "custom" | "deny-all";
-export const SandboxNetworkPolicyMode = /*@__PURE__*/ S.String;
+export const SandboxNetworkPolicyMode = S.String;
 
 /** List of domain names the sandbox is allowed to connect to. Supports wildcard patterns (e.g., "*.vercel.com" matches all subdomains). */
 export type SandboxNetworkPolicyAllowedDomainsList = Array<string>;
@@ -1217,7 +1215,7 @@ export type CreateSandboxesByNameForkV3RequestNetworkPolicyCase0Mode =
   | "default-allow"
   | "default-deny";
 export const CreateSandboxesByNameForkV3RequestNetworkPolicyCase0Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of domain names the sandbox is allowed to connect to. Only applies when mode is \"custom\". Supports wildcard patterns (e.g., \"*.example.com\" matches all subdomains). */
 export type CreateSandboxesByNameForkV3RequestNetworkPolicyCase0AllowedDomainsList =
@@ -1595,7 +1593,7 @@ export type CreateSandboxesByNameForkV3RequestNetworkPolicyCase1Allow =
   | CreateSandboxesByNameForkV3RequestNetworkPolicyCase1AllowCase0List
   | CreateSandboxesByNameForkV3RequestNetworkPolicyCase1AllowCase1Map;
 export const CreateSandboxesByNameForkV3RequestNetworkPolicyCase1Allow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesByNameForkV3RequestNetworkPolicyCase1Allow>;
+  S.Unknown as any as S.Schema<CreateSandboxesByNameForkV3RequestNetworkPolicyCase1Allow>;
 
 export type CreateSandboxesByNameForkV3RequestNetworkPolicyCase1SubnetsAllowList =
   Array<string>;
@@ -1651,7 +1649,7 @@ export type CreateSandboxesByNameForkV3RequestNetworkPolicy =
   | CreateSandboxesByNameForkV3RequestNetworkPolicyCase0
   | CreateSandboxesByNameForkV3RequestNetworkPolicyCase1;
 export const CreateSandboxesByNameForkV3RequestNetworkPolicy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesByNameForkV3RequestNetworkPolicy>;
+  S.Unknown as any as S.Schema<CreateSandboxesByNameForkV3RequestNetworkPolicy>;
 
 /** Resources to define the VM */
 export type CreateSandboxesByNameForkV3RequestResources =
@@ -1679,8 +1677,7 @@ export const CreateSandboxesByNameForkV3RequestEnvMap = /*@__PURE__*/ S.Record(
 export type CreateSandboxesByNameForkV3RequestMountsValueMode =
   | "read-only"
   | "read-write";
-export const CreateSandboxesByNameForkV3RequestMountsValueMode =
-  /*@__PURE__*/ S.String;
+export const CreateSandboxesByNameForkV3RequestMountsValueMode = S.String;
 
 export interface CreateSandboxesByNameForkV3RequestMountsValue {
   /** Name of the drive to mount. The drive must already exist. */
@@ -1729,7 +1726,7 @@ export type CreateSandboxesByNameForkV3RequestRegion =
   | "yul1"
   | "hnd1"
   | "kix1";
-export const CreateSandboxesByNameForkV3RequestRegion = /*@__PURE__*/ S.String;
+export const CreateSandboxesByNameForkV3RequestRegion = S.String;
 
 export type CreateSandboxesByNameForkV3RequestFailoverRegionsItem =
   | "iad1"
@@ -1751,8 +1748,7 @@ export type CreateSandboxesByNameForkV3RequestFailoverRegionsItem =
   | "yul1"
   | "hnd1"
   | "kix1";
-export const CreateSandboxesByNameForkV3RequestFailoverRegionsItem =
-  /*@__PURE__*/ S.String;
+export const CreateSandboxesByNameForkV3RequestFailoverRegionsItem = S.String;
 
 /** The regions the sandbox falls back to when it cannot be created in `region`. */
 export type CreateSandboxesByNameForkV3RequestFailoverRegionsList = Array<
@@ -1768,14 +1764,14 @@ export type CreateSandboxesByNameForkV3RequestSnapshotExpiration =
   | unknown
   | number;
 export const CreateSandboxesByNameForkV3RequestSnapshotExpiration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesByNameForkV3RequestSnapshotExpiration>;
+  S.Unknown as any as S.Schema<CreateSandboxesByNameForkV3RequestSnapshotExpiration>;
 
 /** Expiration time in milliseconds for kept snapshots. Falls back to snapshotExpiration. */
 export type CreateSandboxesByNameForkV3RequestKeepLastSnapshotsCase1Expiration =
   | unknown
   | number;
 export const CreateSandboxesByNameForkV3RequestKeepLastSnapshotsCase1Expiration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesByNameForkV3RequestKeepLastSnapshotsCase1Expiration>;
+  S.Unknown as any as S.Schema<CreateSandboxesByNameForkV3RequestKeepLastSnapshotsCase1Expiration>;
 
 export interface CreateSandboxesByNameForkV3RequestKeepLastSnapshotsCase1 {
   /** Number of most recent snapshots to keep. */
@@ -1803,7 +1799,7 @@ export type CreateSandboxesByNameForkV3RequestKeepLastSnapshots =
   | string
   | CreateSandboxesByNameForkV3RequestKeepLastSnapshotsCase1;
 export const CreateSandboxesByNameForkV3RequestKeepLastSnapshots =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesByNameForkV3RequestKeepLastSnapshots>;
+  S.Unknown as any as S.Schema<CreateSandboxesByNameForkV3RequestKeepLastSnapshots>;
 
 /** Key-value tags to associate with the sandbox. Maximum 5 tags. */
 export type CreateSandboxesByNameForkV3RequestTagsMap = {
@@ -1908,7 +1904,7 @@ export type CreateSandboxesSessionsBySessionIdSnapshotV2RequestExpiration =
   | unknown
   | number;
 export const CreateSandboxesSessionsBySessionIdSnapshotV2RequestExpiration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesSessionsBySessionIdSnapshotV2RequestExpiration>;
+  S.Unknown as any as S.Schema<CreateSandboxesSessionsBySessionIdSnapshotV2RequestExpiration>;
 
 export interface CreateSandboxesSessionsBySessionIdSnapshotV2Request {
   /** The unique identifier of the session to snapshot. */
@@ -1948,11 +1944,11 @@ export const SnapshotRegionsList = /*@__PURE__*/ S.Array(
 
 /** The status of the snapshot. */
 export type SnapshotStatus = "created" | "deleted" | "failed";
-export const SnapshotStatus = /*@__PURE__*/ S.String;
+export const SnapshotStatus = S.String;
 
 /** The method used to create the snapshot. */
 export type SnapshotCreationMethod = "automatic" | "manual";
-export const SnapshotCreationMethod = /*@__PURE__*/ S.String;
+export const SnapshotCreationMethod = S.String;
 
 /** This object contains information related to a Snapshot of a Vercel Sandbox session (v2 API). */
 export interface Snapshot {
@@ -2017,7 +2013,7 @@ export type CreateSandboxesSessionsBySessionIdSnapshotV3RequestExpiration =
   | unknown
   | number;
 export const CreateSandboxesSessionsBySessionIdSnapshotV3RequestExpiration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesSessionsBySessionIdSnapshotV3RequestExpiration>;
+  S.Unknown as any as S.Schema<CreateSandboxesSessionsBySessionIdSnapshotV3RequestExpiration>;
 
 export interface CreateSandboxesSessionsBySessionIdSnapshotV3Request {
   /** The unique identifier of the session to snapshot. */
@@ -2070,8 +2066,7 @@ export type CreateSandboxesV2RequestNetworkPolicyCase0Mode =
   | "custom"
   | "default-allow"
   | "default-deny";
-export const CreateSandboxesV2RequestNetworkPolicyCase0Mode =
-  /*@__PURE__*/ S.String;
+export const CreateSandboxesV2RequestNetworkPolicyCase0Mode = S.String;
 
 /** List of domain names the sandbox is allowed to connect to. Only applies when mode is \"custom\". Supports wildcard patterns (e.g., \"*.example.com\" matches all subdomains). */
 export type CreateSandboxesV2RequestNetworkPolicyCase0AllowedDomainsList =
@@ -2444,7 +2439,7 @@ export type CreateSandboxesV2RequestNetworkPolicyCase1Allow =
   | CreateSandboxesV2RequestNetworkPolicyCase1AllowCase0List
   | CreateSandboxesV2RequestNetworkPolicyCase1AllowCase1Map;
 export const CreateSandboxesV2RequestNetworkPolicyCase1Allow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesV2RequestNetworkPolicyCase1Allow>;
+  S.Unknown as any as S.Schema<CreateSandboxesV2RequestNetworkPolicyCase1Allow>;
 
 export type CreateSandboxesV2RequestNetworkPolicyCase1SubnetsAllowList =
   Array<string>;
@@ -2496,7 +2491,7 @@ export type CreateSandboxesV2RequestNetworkPolicy =
   | CreateSandboxesV2RequestNetworkPolicyCase0
   | CreateSandboxesV2RequestNetworkPolicyCase1;
 export const CreateSandboxesV2RequestNetworkPolicy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesV2RequestNetworkPolicy>;
+  S.Unknown as any as S.Schema<CreateSandboxesV2RequestNetworkPolicy>;
 
 /** The runtime environment for the sandbox. Determines the pre-installed language runtimes and tools available. */
 export type CreateSandboxesV2RequestRuntime =
@@ -2504,7 +2499,7 @@ export type CreateSandboxesV2RequestRuntime =
   | "node24"
   | "node26"
   | "python3.13";
-export const CreateSandboxesV2RequestRuntime = /*@__PURE__*/ S.String;
+export const CreateSandboxesV2RequestRuntime = S.String;
 
 /** Resources to define the VM */
 export type CreateSandboxesV2RequestResources =
@@ -2578,7 +2573,7 @@ export type CreateSandboxesV2RequestSource =
   | CreateSandboxesV2RequestSourceCase1
   | CreateSandboxesV2RequestSourceCase2;
 export const CreateSandboxesV2RequestSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesV2RequestSource>;
+  S.Unknown as any as S.Schema<CreateSandboxesV2RequestSource>;
 
 /** List of ports to expose from the sandbox. Each port will be accessible via a unique URL. Maximum of 15 ports can be exposed. */
 export type CreateSandboxesV2RequestPortsList = Array<number>;
@@ -2599,7 +2594,7 @@ export const CreateSandboxesV2RequestEnvMap = /*@__PURE__*/ S.Record(
 export type CreateSandboxesV2RequestMountsValueMode =
   | "read-only"
   | "read-write";
-export const CreateSandboxesV2RequestMountsValueMode = /*@__PURE__*/ S.String;
+export const CreateSandboxesV2RequestMountsValueMode = S.String;
 
 export interface CreateSandboxesV2RequestMountsValue {
   /** Name of the drive to mount. The drive must already exist. */
@@ -2646,7 +2641,7 @@ export type CreateSandboxesV2RequestRegion =
   | "yul1"
   | "hnd1"
   | "kix1";
-export const CreateSandboxesV2RequestRegion = /*@__PURE__*/ S.String;
+export const CreateSandboxesV2RequestRegion = S.String;
 
 export type CreateSandboxesV2RequestFailoverRegionsItem =
   | "iad1"
@@ -2668,8 +2663,7 @@ export type CreateSandboxesV2RequestFailoverRegionsItem =
   | "yul1"
   | "hnd1"
   | "kix1";
-export const CreateSandboxesV2RequestFailoverRegionsItem =
-  /*@__PURE__*/ S.String;
+export const CreateSandboxesV2RequestFailoverRegionsItem = S.String;
 
 /** The regions the sandbox falls back to when it cannot be created in `region`. */
 export type CreateSandboxesV2RequestFailoverRegionsList = Array<
@@ -2683,14 +2677,14 @@ export const CreateSandboxesV2RequestFailoverRegionsList =
 /** Default snapshot expiration time in milliseconds. Set to 0 to disable expiration. When set, this value is used as the default expiration for all snapshots created for this sandbox. */
 export type CreateSandboxesV2RequestSnapshotExpiration = unknown | number;
 export const CreateSandboxesV2RequestSnapshotExpiration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesV2RequestSnapshotExpiration>;
+  S.Unknown as any as S.Schema<CreateSandboxesV2RequestSnapshotExpiration>;
 
 /** Expiration time in milliseconds for kept snapshots. Falls back to snapshotExpiration. */
 export type CreateSandboxesV2RequestKeepLastSnapshotsExpiration =
   | unknown
   | number;
 export const CreateSandboxesV2RequestKeepLastSnapshotsExpiration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesV2RequestKeepLastSnapshotsExpiration>;
+  S.Unknown as any as S.Schema<CreateSandboxesV2RequestKeepLastSnapshotsExpiration>;
 
 /** Protect the N most recent snapshots with different expiration/deletion behavior. */
 export interface CreateSandboxesV2RequestKeepLastSnapshots {
@@ -2815,8 +2809,7 @@ export type CreateSandboxesV3RequestNetworkPolicyCase0Mode =
   | "custom"
   | "default-allow"
   | "default-deny";
-export const CreateSandboxesV3RequestNetworkPolicyCase0Mode =
-  /*@__PURE__*/ S.String;
+export const CreateSandboxesV3RequestNetworkPolicyCase0Mode = S.String;
 
 /** List of domain names the sandbox is allowed to connect to. Only applies when mode is \"custom\". Supports wildcard patterns (e.g., \"*.example.com\" matches all subdomains). */
 export type CreateSandboxesV3RequestNetworkPolicyCase0AllowedDomainsList =
@@ -3189,7 +3182,7 @@ export type CreateSandboxesV3RequestNetworkPolicyCase1Allow =
   | CreateSandboxesV3RequestNetworkPolicyCase1AllowCase0List
   | CreateSandboxesV3RequestNetworkPolicyCase1AllowCase1Map;
 export const CreateSandboxesV3RequestNetworkPolicyCase1Allow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesV3RequestNetworkPolicyCase1Allow>;
+  S.Unknown as any as S.Schema<CreateSandboxesV3RequestNetworkPolicyCase1Allow>;
 
 export type CreateSandboxesV3RequestNetworkPolicyCase1SubnetsAllowList =
   Array<string>;
@@ -3241,7 +3234,7 @@ export type CreateSandboxesV3RequestNetworkPolicy =
   | CreateSandboxesV3RequestNetworkPolicyCase0
   | CreateSandboxesV3RequestNetworkPolicyCase1;
 export const CreateSandboxesV3RequestNetworkPolicy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesV3RequestNetworkPolicy>;
+  S.Unknown as any as S.Schema<CreateSandboxesV3RequestNetworkPolicy>;
 
 /** Resources to define the VM */
 export type CreateSandboxesV3RequestResources =
@@ -3273,7 +3266,7 @@ export type CreateSandboxesV3RequestSource =
   | CreateSandboxesV2RequestSourceCase1
   | CreateSandboxesV2RequestSourceCase2;
 export const CreateSandboxesV3RequestSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesV3RequestSource>;
+  S.Unknown as any as S.Schema<CreateSandboxesV3RequestSource>;
 
 /** List of ports to expose from the sandbox. Each port will be accessible via a unique URL. Maximum of 15 ports can be exposed. */
 export type CreateSandboxesV3RequestPortsList = Array<number>;
@@ -3294,7 +3287,7 @@ export const CreateSandboxesV3RequestEnvMap = /*@__PURE__*/ S.Record(
 export type CreateSandboxesV3RequestMountsValueMode =
   | "read-only"
   | "read-write";
-export const CreateSandboxesV3RequestMountsValueMode = /*@__PURE__*/ S.String;
+export const CreateSandboxesV3RequestMountsValueMode = S.String;
 
 export interface CreateSandboxesV3RequestMountsValue {
   /** Name of the drive to mount. The drive must already exist. */
@@ -3341,7 +3334,7 @@ export type CreateSandboxesV3RequestRegion =
   | "yul1"
   | "hnd1"
   | "kix1";
-export const CreateSandboxesV3RequestRegion = /*@__PURE__*/ S.String;
+export const CreateSandboxesV3RequestRegion = S.String;
 
 export type CreateSandboxesV3RequestFailoverRegionsItem =
   | "iad1"
@@ -3363,8 +3356,7 @@ export type CreateSandboxesV3RequestFailoverRegionsItem =
   | "yul1"
   | "hnd1"
   | "kix1";
-export const CreateSandboxesV3RequestFailoverRegionsItem =
-  /*@__PURE__*/ S.String;
+export const CreateSandboxesV3RequestFailoverRegionsItem = S.String;
 
 /** The regions the sandbox falls back to when it cannot be created in `region`. */
 export type CreateSandboxesV3RequestFailoverRegionsList = Array<
@@ -3378,14 +3370,14 @@ export const CreateSandboxesV3RequestFailoverRegionsList =
 /** Default snapshot expiration time in milliseconds. Set to 0 to disable expiration. When set, this value is used as the default expiration for all snapshots created for this sandbox. */
 export type CreateSandboxesV3RequestSnapshotExpiration = unknown | number;
 export const CreateSandboxesV3RequestSnapshotExpiration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesV3RequestSnapshotExpiration>;
+  S.Unknown as any as S.Schema<CreateSandboxesV3RequestSnapshotExpiration>;
 
 /** Expiration time in milliseconds for kept snapshots. Falls back to snapshotExpiration. */
 export type CreateSandboxesV3RequestKeepLastSnapshotsExpiration =
   | unknown
   | number;
 export const CreateSandboxesV3RequestKeepLastSnapshotsExpiration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesV3RequestKeepLastSnapshotsExpiration>;
+  S.Unknown as any as S.Schema<CreateSandboxesV3RequestKeepLastSnapshotsExpiration>;
 
 /** Protect the N most recent snapshots with different expiration/deletion behavior. */
 export interface CreateSandboxesV3RequestKeepLastSnapshots {
@@ -3507,8 +3499,7 @@ export type CreateSandboxesV4RequestNetworkPolicyCase0Mode =
   | "custom"
   | "default-allow"
   | "default-deny";
-export const CreateSandboxesV4RequestNetworkPolicyCase0Mode =
-  /*@__PURE__*/ S.String;
+export const CreateSandboxesV4RequestNetworkPolicyCase0Mode = S.String;
 
 /** List of domain names the sandbox is allowed to connect to. Only applies when mode is \"custom\". Supports wildcard patterns (e.g., \"*.example.com\" matches all subdomains). */
 export type CreateSandboxesV4RequestNetworkPolicyCase0AllowedDomainsList =
@@ -3881,7 +3872,7 @@ export type CreateSandboxesV4RequestNetworkPolicyCase1Allow =
   | CreateSandboxesV4RequestNetworkPolicyCase1AllowCase0List
   | CreateSandboxesV4RequestNetworkPolicyCase1AllowCase1Map;
 export const CreateSandboxesV4RequestNetworkPolicyCase1Allow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesV4RequestNetworkPolicyCase1Allow>;
+  S.Unknown as any as S.Schema<CreateSandboxesV4RequestNetworkPolicyCase1Allow>;
 
 export type CreateSandboxesV4RequestNetworkPolicyCase1SubnetsAllowList =
   Array<string>;
@@ -3933,7 +3924,7 @@ export type CreateSandboxesV4RequestNetworkPolicy =
   | CreateSandboxesV4RequestNetworkPolicyCase0
   | CreateSandboxesV4RequestNetworkPolicyCase1;
 export const CreateSandboxesV4RequestNetworkPolicy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesV4RequestNetworkPolicy>;
+  S.Unknown as any as S.Schema<CreateSandboxesV4RequestNetworkPolicy>;
 
 /** Resources to define the VM */
 export type CreateSandboxesV4RequestResources =
@@ -3965,7 +3956,7 @@ export type CreateSandboxesV4RequestSource =
   | CreateSandboxesV2RequestSourceCase1
   | CreateSandboxesV2RequestSourceCase2;
 export const CreateSandboxesV4RequestSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesV4RequestSource>;
+  S.Unknown as any as S.Schema<CreateSandboxesV4RequestSource>;
 
 /** List of ports to expose from the sandbox. Each port will be accessible via a unique URL. Maximum of 15 ports can be exposed. */
 export type CreateSandboxesV4RequestPortsList = Array<number>;
@@ -3986,7 +3977,7 @@ export const CreateSandboxesV4RequestEnvMap = /*@__PURE__*/ S.Record(
 export type CreateSandboxesV4RequestMountsValueMode =
   | "read-only"
   | "read-write";
-export const CreateSandboxesV4RequestMountsValueMode = /*@__PURE__*/ S.String;
+export const CreateSandboxesV4RequestMountsValueMode = S.String;
 
 export interface CreateSandboxesV4RequestMountsValue {
   /** Name of the drive to mount. The drive must already exist. */
@@ -4033,7 +4024,7 @@ export type CreateSandboxesV4RequestRegion =
   | "yul1"
   | "hnd1"
   | "kix1";
-export const CreateSandboxesV4RequestRegion = /*@__PURE__*/ S.String;
+export const CreateSandboxesV4RequestRegion = S.String;
 
 export type CreateSandboxesV4RequestFailoverRegionsItem =
   | "iad1"
@@ -4055,8 +4046,7 @@ export type CreateSandboxesV4RequestFailoverRegionsItem =
   | "yul1"
   | "hnd1"
   | "kix1";
-export const CreateSandboxesV4RequestFailoverRegionsItem =
-  /*@__PURE__*/ S.String;
+export const CreateSandboxesV4RequestFailoverRegionsItem = S.String;
 
 /** The regions the sandbox falls back to when it cannot be created in `region`. */
 export type CreateSandboxesV4RequestFailoverRegionsList = Array<
@@ -4070,14 +4060,14 @@ export const CreateSandboxesV4RequestFailoverRegionsList =
 /** Default snapshot expiration time in milliseconds. Defaults to 7 days. Set to 0 to disable expiration. When set, this value is used as the default expiration for all snapshots created for this sandbox. */
 export type CreateSandboxesV4RequestSnapshotExpiration = unknown | number;
 export const CreateSandboxesV4RequestSnapshotExpiration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesV4RequestSnapshotExpiration>;
+  S.Unknown as any as S.Schema<CreateSandboxesV4RequestSnapshotExpiration>;
 
 /** Expiration time in milliseconds for kept snapshots. Falls back to snapshotExpiration. */
 export type CreateSandboxesV4RequestKeepLastSnapshotsCase1Expiration =
   | unknown
   | number;
 export const CreateSandboxesV4RequestKeepLastSnapshotsCase1Expiration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesV4RequestKeepLastSnapshotsCase1Expiration>;
+  S.Unknown as any as S.Schema<CreateSandboxesV4RequestKeepLastSnapshotsCase1Expiration>;
 
 export interface CreateSandboxesV4RequestKeepLastSnapshotsCase1 {
   /** Number of most recent snapshots to keep. */
@@ -4105,7 +4095,7 @@ export type CreateSandboxesV4RequestKeepLastSnapshots =
   | string
   | CreateSandboxesV4RequestKeepLastSnapshotsCase1;
 export const CreateSandboxesV4RequestKeepLastSnapshots =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSandboxesV4RequestKeepLastSnapshots>;
+  S.Unknown as any as S.Schema<CreateSandboxesV4RequestKeepLastSnapshots>;
 
 /** Key-value tags to associate with the sandbox. Maximum 5 tags. */
 export type CreateSandboxesV4RequestTagsMap = {
@@ -4482,7 +4472,7 @@ export type GetOrCreateDriveRequestRegion =
   | "yul1"
   | "hnd1"
   | "kix1";
-export const GetOrCreateDriveRequestRegion = /*@__PURE__*/ S.String;
+export const GetOrCreateDriveRequestRegion = S.String;
 
 export interface GetOrCreateDriveRequest {
   /** Name for the drive. Must be unique per project and URL-safe (alphanumeric, hyphens, underscores). */
@@ -4568,7 +4558,7 @@ export const GetSessionResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** If set to "true", the request will block until the command finishes execution. Useful for synchronously waiting for command completion. */
 export type GetSessionCommandRequestWait = "true" | "false";
-export const GetSessionCommandRequestWait = /*@__PURE__*/ S.String;
+export const GetSessionCommandRequestWait = S.String;
 
 export interface GetSessionCommandRequest {
   /** The unique identifier of the session containing the command. */
@@ -4761,11 +4751,11 @@ export const KillSessionCommandResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Field to sort drives by. */
 export type ListDrivesRequestSortBy = "createdAt" | "updatedAt" | "name";
-export const ListDrivesRequestSortBy = /*@__PURE__*/ S.String;
+export const ListDrivesRequestSortBy = S.String;
 
 /** Sort direction for results. */
 export type ListDrivesRequestSortOrder = "asc" | "desc";
-export const ListDrivesRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListDrivesRequestSortOrder = S.String;
 
 export interface ListDrivesRequest {
   /** The project ID or name associated with the drives. Required unless using a Vercel OIDC token scoped to a project. */
@@ -4873,7 +4863,7 @@ export const ListSessionCommandsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort direction for results by creation time. */
 export type ListSessionsRequestSortOrder = "asc" | "desc";
-export const ListSessionsRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListSessionsRequestSortOrder = S.String;
 
 export interface ListSessionsRequest {
   /** The unique identifier or name of the project to list sessions for. */
@@ -4930,7 +4920,7 @@ export const ListSessionsResponseBodyCase1 = /*@__PURE__*/ S.suspend(() =>
 
 export type ListSessionsResponseBody = unknown | ListSessionsResponseBodyCase1;
 export const ListSessionsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListSessionsResponseBody>;
+  S.Unknown as any as S.Schema<ListSessionsResponseBody>;
 
 export type ListSessionsResponse = ListSessionsResponseBody;
 export const ListSessionsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -4941,7 +4931,7 @@ export const ListSessionsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort direction for results by creation time. */
 export type ListSessionSnapshotsRequestSortOrder = "asc" | "desc";
-export const ListSessionSnapshotsRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListSessionSnapshotsRequestSortOrder = S.String;
 
 export interface ListSessionSnapshotsRequest {
   /** The unique identifier or name of the project to list snapshots for. */
@@ -5003,7 +4993,7 @@ export type ListSessionSnapshotsResponseBody =
   | unknown
   | ListSessionSnapshotsResponseBodyCase1;
 export const ListSessionSnapshotsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListSessionSnapshotsResponseBody>;
+  S.Unknown as any as S.Schema<ListSessionSnapshotsResponseBody>;
 
 export type ListSessionSnapshotsResponse = ListSessionSnapshotsResponseBody;
 export const ListSessionSnapshotsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -5180,7 +5170,7 @@ export type StopSessionResponseBody =
   | StopSessionResponseBodyCase0
   | StopSessionResponseBodyCase1;
 export const StopSessionResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StopSessionResponseBody>;
+  S.Unknown as any as S.Schema<StopSessionResponseBody>;
 
 export type StopSessionResponse = StopSessionResponseBody;
 export const StopSessionResponse = /*@__PURE__*/ S.suspend(() =>
@@ -5201,19 +5191,19 @@ export type UpdateSandboxRequestRuntime =
   | "node24"
   | "node26"
   | "python3.13";
-export const UpdateSandboxRequestRuntime = /*@__PURE__*/ S.String;
+export const UpdateSandboxRequestRuntime = S.String;
 
 /** Default snapshot expiration time in milliseconds. Set to 0 to disable expiration. When set, this value is used as the default expiration for all snapshots created for this sandbox. */
 export type UpdateSandboxRequestSnapshotExpiration = unknown | number;
 export const UpdateSandboxRequestSnapshotExpiration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateSandboxRequestSnapshotExpiration>;
+  S.Unknown as any as S.Schema<UpdateSandboxRequestSnapshotExpiration>;
 
 /** Expiration time in milliseconds for kept snapshots. Falls back to snapshotExpiration. */
 export type UpdateSandboxRequestKeepLastSnapshotsCase1Expiration =
   | unknown
   | number;
 export const UpdateSandboxRequestKeepLastSnapshotsCase1Expiration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateSandboxRequestKeepLastSnapshotsCase1Expiration>;
+  S.Unknown as any as S.Schema<UpdateSandboxRequestKeepLastSnapshotsCase1Expiration>;
 
 export interface UpdateSandboxRequestKeepLastSnapshotsCase1 {
   /** Number of most recent snapshots to keep. */
@@ -5241,7 +5231,7 @@ export type UpdateSandboxRequestKeepLastSnapshots =
   | string
   | UpdateSandboxRequestKeepLastSnapshotsCase1;
 export const UpdateSandboxRequestKeepLastSnapshots =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateSandboxRequestKeepLastSnapshots>;
+  S.Unknown as any as S.Schema<UpdateSandboxRequestKeepLastSnapshots>;
 
 /** The network access policy mode. Use \"allow-all\" to permit all outbound traffic. Use \"deny-all\" to block all outbound traffic. Use \"custom\" to specify explicit allow/deny rules. */
 export type UpdateSandboxRequestNetworkPolicyCase0Mode =
@@ -5250,8 +5240,7 @@ export type UpdateSandboxRequestNetworkPolicyCase0Mode =
   | "custom"
   | "default-allow"
   | "default-deny";
-export const UpdateSandboxRequestNetworkPolicyCase0Mode =
-  /*@__PURE__*/ S.String;
+export const UpdateSandboxRequestNetworkPolicyCase0Mode = S.String;
 
 /** List of domain names the sandbox is allowed to connect to. Only applies when mode is \"custom\". Supports wildcard patterns (e.g., \"*.example.com\" matches all subdomains). */
 export type UpdateSandboxRequestNetworkPolicyCase0AllowedDomainsList =
@@ -5623,7 +5612,7 @@ export type UpdateSandboxRequestNetworkPolicyCase1Allow =
   | UpdateSandboxRequestNetworkPolicyCase1AllowCase0List
   | UpdateSandboxRequestNetworkPolicyCase1AllowCase1Map;
 export const UpdateSandboxRequestNetworkPolicyCase1Allow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateSandboxRequestNetworkPolicyCase1Allow>;
+  S.Unknown as any as S.Schema<UpdateSandboxRequestNetworkPolicyCase1Allow>;
 
 export type UpdateSandboxRequestNetworkPolicyCase1SubnetsAllowList =
   Array<string>;
@@ -5671,7 +5660,7 @@ export type UpdateSandboxRequestNetworkPolicy =
   | UpdateSandboxRequestNetworkPolicyCase0
   | UpdateSandboxRequestNetworkPolicyCase1;
 export const UpdateSandboxRequestNetworkPolicy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateSandboxRequestNetworkPolicy>;
+  S.Unknown as any as S.Schema<UpdateSandboxRequestNetworkPolicy>;
 
 /** The Vercel region in which to create the sandbox. */
 export type UpdateSandboxRequestRegion =
@@ -5694,7 +5683,7 @@ export type UpdateSandboxRequestRegion =
   | "yul1"
   | "hnd1"
   | "kix1";
-export const UpdateSandboxRequestRegion = /*@__PURE__*/ S.String;
+export const UpdateSandboxRequestRegion = S.String;
 
 export type UpdateSandboxRequestFailoverRegionsItem =
   | "iad1"
@@ -5716,7 +5705,7 @@ export type UpdateSandboxRequestFailoverRegionsItem =
   | "yul1"
   | "hnd1"
   | "kix1";
-export const UpdateSandboxRequestFailoverRegionsItem = /*@__PURE__*/ S.String;
+export const UpdateSandboxRequestFailoverRegionsItem = S.String;
 
 /** The regions the sandbox falls back to when it cannot be created in `region`. */
 export type UpdateSandboxRequestFailoverRegionsList = Array<
@@ -5854,7 +5843,7 @@ export type UpdateSandboxResponseBody =
   | UpdateSandboxResponseBodyCase0
   | UpdateSandboxResponseBodyCase1;
 export const UpdateSandboxResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateSandboxResponseBody>;
+  S.Unknown as any as S.Schema<UpdateSandboxResponseBody>;
 
 export type UpdateSandboxResponse = UpdateSandboxResponseBody;
 export const UpdateSandboxResponse = /*@__PURE__*/ S.suspend(() =>
@@ -5870,8 +5859,7 @@ export type UpdateSessionNetworkPolicyRequestBodyCase0Mode =
   | "custom"
   | "default-allow"
   | "default-deny";
-export const UpdateSessionNetworkPolicyRequestBodyCase0Mode =
-  /*@__PURE__*/ S.String;
+export const UpdateSessionNetworkPolicyRequestBodyCase0Mode = S.String;
 
 /** List of domain names the sandbox is allowed to connect to. Only applies when mode is \"custom\". Supports wildcard patterns (e.g., \"*.example.com\" matches all subdomains). */
 export type UpdateSessionNetworkPolicyRequestBodyCase0AllowedDomainsList =
@@ -6244,7 +6232,7 @@ export type UpdateSessionNetworkPolicyRequestBodyCase1Allow =
   | UpdateSessionNetworkPolicyRequestBodyCase1AllowCase0List
   | UpdateSessionNetworkPolicyRequestBodyCase1AllowCase1Map;
 export const UpdateSessionNetworkPolicyRequestBodyCase1Allow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateSessionNetworkPolicyRequestBodyCase1Allow>;
+  S.Unknown as any as S.Schema<UpdateSessionNetworkPolicyRequestBodyCase1Allow>;
 
 export type UpdateSessionNetworkPolicyRequestBodyCase1SubnetsAllowList =
   Array<string>;
@@ -6296,7 +6284,7 @@ export type UpdateSessionNetworkPolicyRequestBody =
   | UpdateSessionNetworkPolicyRequestBodyCase0
   | UpdateSessionNetworkPolicyRequestBodyCase1;
 export const UpdateSessionNetworkPolicyRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateSessionNetworkPolicyRequestBody>;
+  S.Unknown as any as S.Schema<UpdateSessionNetworkPolicyRequestBody>;
 
 export interface UpdateSessionNetworkPolicyRequest {
   /** The unique identifier of the session to update the network policy for. */

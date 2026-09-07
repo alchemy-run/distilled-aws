@@ -66,21 +66,19 @@ export class NotFound
   ) {}
 
 export type SpaceConfigModerationEnum = "MODERATION_UNSPECIFIED" | "OFF" | "ON";
-export const SpaceConfigModerationEnum = /*@__PURE__*/ S.String;
+export const SpaceConfigModerationEnum = S.String;
 
 export type SpaceConfigAttendanceReportGenerationTypeEnum =
   | "ATTENDANCE_REPORT_GENERATION_TYPE_UNSPECIFIED"
   | "GENERATE_REPORT"
   | "DO_NOT_GENERATE";
-export const SpaceConfigAttendanceReportGenerationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const SpaceConfigAttendanceReportGenerationTypeEnum = S.String;
 
 export type TranscriptionConfigAutoTranscriptionGenerationEnum =
   | "AUTO_GENERATION_TYPE_UNSPECIFIED"
   | "ON"
   | "OFF";
-export const TranscriptionConfigAutoTranscriptionGenerationEnum =
-  /*@__PURE__*/ S.String;
+export const TranscriptionConfigAutoTranscriptionGenerationEnum = S.String;
 
 /** Configuration related to transcription in a meeting space. */
 export interface TranscriptionConfig {
@@ -103,8 +101,7 @@ export type SmartNotesConfigAutoSmartNotesGenerationEnum =
   | "AUTO_GENERATION_TYPE_UNSPECIFIED"
   | "ON"
   | "OFF";
-export const SmartNotesConfigAutoSmartNotesGenerationEnum =
-  /*@__PURE__*/ S.String;
+export const SmartNotesConfigAutoSmartNotesGenerationEnum = S.String;
 
 /** Configuration related to smart notes in a meeting space. For more information about smart notes, see ["Take notes for me" in Google Meet](https://support.google.com/meet/answer/14754931). */
 export interface SmartNotesConfig {
@@ -127,8 +124,7 @@ export type RecordingConfigAutoRecordingGenerationEnum =
   | "AUTO_GENERATION_TYPE_UNSPECIFIED"
   | "ON"
   | "OFF";
-export const RecordingConfigAutoRecordingGenerationEnum =
-  /*@__PURE__*/ S.String;
+export const RecordingConfigAutoRecordingGenerationEnum = S.String;
 
 /** Configuration related to recording in a meeting space. */
 export interface RecordingConfig {
@@ -169,40 +165,37 @@ export type SpaceConfigAccessTypeEnum =
   | "OPEN"
   | "TRUSTED"
   | "RESTRICTED";
-export const SpaceConfigAccessTypeEnum = /*@__PURE__*/ S.String;
+export const SpaceConfigAccessTypeEnum = S.String;
 
 export type SpaceConfigEntryPointAccessEnum =
   | "ENTRY_POINT_ACCESS_UNSPECIFIED"
   | "ALL"
   | "CREATOR_APP_ONLY";
-export const SpaceConfigEntryPointAccessEnum = /*@__PURE__*/ S.String;
+export const SpaceConfigEntryPointAccessEnum = S.String;
 
 export type ModerationRestrictionsDefaultJoinAsViewerTypeEnum =
   | "DEFAULT_JOIN_AS_VIEWER_TYPE_UNSPECIFIED"
   | "ON"
   | "OFF";
-export const ModerationRestrictionsDefaultJoinAsViewerTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ModerationRestrictionsDefaultJoinAsViewerTypeEnum = S.String;
 
 export type ModerationRestrictionsChatRestrictionEnum =
   | "RESTRICTION_TYPE_UNSPECIFIED"
   | "HOSTS_ONLY"
   | "NO_RESTRICTION";
-export const ModerationRestrictionsChatRestrictionEnum = /*@__PURE__*/ S.String;
+export const ModerationRestrictionsChatRestrictionEnum = S.String;
 
 export type ModerationRestrictionsReactionRestrictionEnum =
   | "RESTRICTION_TYPE_UNSPECIFIED"
   | "HOSTS_ONLY"
   | "NO_RESTRICTION";
-export const ModerationRestrictionsReactionRestrictionEnum =
-  /*@__PURE__*/ S.String;
+export const ModerationRestrictionsReactionRestrictionEnum = S.String;
 
 export type ModerationRestrictionsPresentRestrictionEnum =
   | "RESTRICTION_TYPE_UNSPECIFIED"
   | "HOSTS_ONLY"
   | "NO_RESTRICTION";
-export const ModerationRestrictionsPresentRestrictionEnum =
-  /*@__PURE__*/ S.String;
+export const ModerationRestrictionsPresentRestrictionEnum = S.String;
 
 /** Defines restrictions for features when the meeting is moderated. */
 export interface ModerationRestrictions {
@@ -595,7 +588,7 @@ export type RecordingStateEnum =
   | "STARTED"
   | "ENDED"
   | "FILE_GENERATED";
-export const RecordingStateEnum = /*@__PURE__*/ S.String;
+export const RecordingStateEnum = S.String;
 
 /** Export location where a recording file is saved in Google Drive. */
 export interface DriveDestination {
@@ -676,7 +669,7 @@ export type SmartNoteStateEnum =
   | "STARTED"
   | "ENDED"
   | "FILE_GENERATED";
-export const SmartNoteStateEnum = /*@__PURE__*/ S.String;
+export const SmartNoteStateEnum = S.String;
 
 /** Metadata for a smart note generated from a conference. It refers to the notes generated from Take Notes with Gemini during the conference. */
 export interface SmartNote {
@@ -725,7 +718,7 @@ export type TranscriptStateEnum =
   | "STARTED"
   | "ENDED"
   | "FILE_GENERATED";
-export const TranscriptStateEnum = /*@__PURE__*/ S.String;
+export const TranscriptStateEnum = S.String;
 
 /** Metadata for a transcript generated from a conference. It refers to the ASR (Automatic Speech Recognition) result of user's speech during the conference. */
 export interface Transcript {

@@ -65,8 +65,7 @@ export type CreateOuContainerResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CreateOuContainerResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const CreateOuContainerResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type CreateOuContainerResponseSystemDataLastModifiedByType =
@@ -74,8 +73,7 @@ export type CreateOuContainerResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CreateOuContainerResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const CreateOuContainerResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CreateOuContainerResponseSystemData {
@@ -302,11 +300,11 @@ export const DomainServicePropertiesInputReplicaSetsList =
 
 /** A flag to determine whether or not Secure LDAP is enabled or disabled. */
 export type LdapsSettingsInputLdaps = "Enabled" | "Disabled";
-export const LdapsSettingsInputLdaps = /*@__PURE__*/ S.String;
+export const LdapsSettingsInputLdaps = S.String;
 
 /** A flag to determine whether or not Secure LDAP access over the internet is enabled or disabled. */
 export type LdapsSettingsInputExternalAccess = "Enabled" | "Disabled";
-export const LdapsSettingsInputExternalAccess = /*@__PURE__*/ S.String;
+export const LdapsSettingsInputExternalAccess = S.String;
 
 /** Secure LDAP Settings */
 export interface LdapsSettingsInput {
@@ -377,45 +375,43 @@ export const ResourceForestSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** A flag to determine whether or not NtlmV1 is enabled or disabled. */
 export type DomainSecuritySettingsNtlmV1 = "Enabled" | "Disabled";
-export const DomainSecuritySettingsNtlmV1 = /*@__PURE__*/ S.String;
+export const DomainSecuritySettingsNtlmV1 = S.String;
 
 /** A flag to determine whether or not TlsV1 is enabled or disabled. */
 export type DomainSecuritySettingsTlsV1 = "Enabled" | "Disabled";
-export const DomainSecuritySettingsTlsV1 = /*@__PURE__*/ S.String;
+export const DomainSecuritySettingsTlsV1 = S.String;
 
 /** A flag to determine whether or not SyncNtlmPasswords is enabled or disabled. */
 export type DomainSecuritySettingsSyncNtlmPasswords = "Enabled" | "Disabled";
-export const DomainSecuritySettingsSyncNtlmPasswords = /*@__PURE__*/ S.String;
+export const DomainSecuritySettingsSyncNtlmPasswords = S.String;
 
 /** A flag to determine whether or not SyncKerberosPasswords is enabled or disabled. */
 export type DomainSecuritySettingsSyncKerberosPasswords =
   | "Enabled"
   | "Disabled";
-export const DomainSecuritySettingsSyncKerberosPasswords =
-  /*@__PURE__*/ S.String;
+export const DomainSecuritySettingsSyncKerberosPasswords = S.String;
 
 /** A flag to determine whether or not SyncOnPremPasswords is enabled or disabled. */
 export type DomainSecuritySettingsSyncOnPremPasswords = "Enabled" | "Disabled";
-export const DomainSecuritySettingsSyncOnPremPasswords = /*@__PURE__*/ S.String;
+export const DomainSecuritySettingsSyncOnPremPasswords = S.String;
 
 /** A flag to determine whether or not KerberosRc4Encryption is enabled or disabled. */
 export type DomainSecuritySettingsKerberosRc4Encryption =
   | "Enabled"
   | "Disabled";
-export const DomainSecuritySettingsKerberosRc4Encryption =
-  /*@__PURE__*/ S.String;
+export const DomainSecuritySettingsKerberosRc4Encryption = S.String;
 
 /** A flag to determine whether or not KerberosArmoring is enabled or disabled. */
 export type DomainSecuritySettingsKerberosArmoring = "Enabled" | "Disabled";
-export const DomainSecuritySettingsKerberosArmoring = /*@__PURE__*/ S.String;
+export const DomainSecuritySettingsKerberosArmoring = S.String;
 
 /** A flag to determine whether or not LdapSigning is enabled or disabled. */
 export type DomainSecuritySettingsLdapSigning = "Enabled" | "Disabled";
-export const DomainSecuritySettingsLdapSigning = /*@__PURE__*/ S.String;
+export const DomainSecuritySettingsLdapSigning = S.String;
 
 /** A flag to determine whether or not ChannelBinding is enabled or disabled. */
 export type DomainSecuritySettingsChannelBinding = "Enabled" | "Disabled";
-export const DomainSecuritySettingsChannelBinding = /*@__PURE__*/ S.String;
+export const DomainSecuritySettingsChannelBinding = S.String;
 
 /** Domain Security Settings */
 export interface DomainSecuritySettings {
@@ -466,19 +462,19 @@ export const DomainSecuritySettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Enabled or Disabled flag to turn on Group-based filtered sync */
 export type DomainServicePropertiesInputFilteredSync = "Enabled" | "Disabled";
-export const DomainServicePropertiesInputFilteredSync = /*@__PURE__*/ S.String;
+export const DomainServicePropertiesInputFilteredSync = S.String;
 
 /** All or CloudOnly, All users in AAD are synced to AAD DS domain or only users actively syncing in the cloud */
 export type DomainServicePropertiesInputSyncScope = "All" | "CloudOnly";
-export const DomainServicePropertiesInputSyncScope = /*@__PURE__*/ S.String;
+export const DomainServicePropertiesInputSyncScope = S.String;
 
 /** Should global admins be notified */
 export type NotificationSettingsNotifyGlobalAdmins = "Enabled" | "Disabled";
-export const NotificationSettingsNotifyGlobalAdmins = /*@__PURE__*/ S.String;
+export const NotificationSettingsNotifyGlobalAdmins = S.String;
 
 /** Should domain controller admins be notified */
 export type NotificationSettingsNotifyDcAdmins = "Enabled" | "Disabled";
-export const NotificationSettingsNotifyDcAdmins = /*@__PURE__*/ S.String;
+export const NotificationSettingsNotifyDcAdmins = S.String;
 
 /** The list of additional recipients */
 export type NotificationSettingsAdditionalRecipientsList = Array<string>;
@@ -516,7 +512,7 @@ export type ConfigDiagnosticsValidatorResultStatus =
   | "Failure"
   | "Warning"
   | "Skipped";
-export const ConfigDiagnosticsValidatorResultStatus = /*@__PURE__*/ S.String;
+export const ConfigDiagnosticsValidatorResultStatus = S.String;
 
 /** List of domain resource property name or values used to compose a rich description. */
 export type ConfigDiagnosticsValidatorResultIssueDescriptionParamsList =
@@ -694,7 +690,7 @@ export type DomainServicesCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const DomainServicesCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type DomainServicesCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -703,7 +699,7 @@ export type DomainServicesCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const DomainServicesCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface DomainServicesCreateOrUpdateResponseSystemData {
@@ -850,11 +846,11 @@ export const DomainServicePropertiesReplicaSetsList = /*@__PURE__*/ S.Array(
 
 /** A flag to determine whether or not Secure LDAP is enabled or disabled. */
 export type LdapsSettingsLdaps = "Enabled" | "Disabled";
-export const LdapsSettingsLdaps = /*@__PURE__*/ S.String;
+export const LdapsSettingsLdaps = S.String;
 
 /** A flag to determine whether or not Secure LDAP access over the internet is enabled or disabled. */
 export type LdapsSettingsExternalAccess = "Enabled" | "Disabled";
-export const LdapsSettingsExternalAccess = /*@__PURE__*/ S.String;
+export const LdapsSettingsExternalAccess = S.String;
 
 /** Secure LDAP Settings */
 export interface LdapsSettings {
@@ -887,11 +883,11 @@ export const LdapsSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Enabled or Disabled flag to turn on Group-based filtered sync */
 export type DomainServicePropertiesFilteredSync = "Enabled" | "Disabled";
-export const DomainServicePropertiesFilteredSync = /*@__PURE__*/ S.String;
+export const DomainServicePropertiesFilteredSync = S.String;
 
 /** All or CloudOnly, All users in AAD are synced to AAD DS domain or only users actively syncing in the cloud */
 export type DomainServicePropertiesSyncScope = "All" | "CloudOnly";
-export const DomainServicePropertiesSyncScope = /*@__PURE__*/ S.String;
+export const DomainServicePropertiesSyncScope = S.String;
 
 /** Migration Progress */
 export interface MigrationProgress {
@@ -1066,8 +1062,7 @@ export type GetDomainServiceResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetDomainServiceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetDomainServiceResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetDomainServiceResponseSystemDataLastModifiedByType =
@@ -1075,8 +1070,7 @@ export type GetDomainServiceResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetDomainServiceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetDomainServiceResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetDomainServiceResponseSystemData {
@@ -1184,8 +1178,7 @@ export type GetOuContainerResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetOuContainerResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetOuContainerResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetOuContainerResponseSystemDataLastModifiedByType =
@@ -1193,8 +1186,7 @@ export type GetOuContainerResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetOuContainerResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetOuContainerResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetOuContainerResponseSystemData {
@@ -1295,7 +1287,7 @@ export type DomainServiceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DomainServiceSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const DomainServiceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type DomainServiceSystemDataLastModifiedByType =
@@ -1303,7 +1295,7 @@ export type DomainServiceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DomainServiceSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const DomainServiceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface DomainServiceSystemData {
@@ -1521,7 +1513,7 @@ export type OuContainerSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const OuContainerSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const OuContainerSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type OuContainerSystemDataLastModifiedByType =
@@ -1529,7 +1521,7 @@ export type OuContainerSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const OuContainerSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const OuContainerSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface OuContainerSystemData {
@@ -1688,8 +1680,7 @@ export type UpdateDomainServiceResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateDomainServiceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateDomainServiceResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateDomainServiceResponseSystemDataLastModifiedByType =
@@ -1697,8 +1688,7 @@ export type UpdateDomainServiceResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateDomainServiceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateDomainServiceResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateDomainServiceResponseSystemData {
@@ -1818,8 +1808,7 @@ export type UpdateOuContainerResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateOuContainerResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateOuContainerResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateOuContainerResponseSystemDataLastModifiedByType =
@@ -1827,8 +1816,7 @@ export type UpdateOuContainerResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateOuContainerResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateOuContainerResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateOuContainerResponseSystemData {

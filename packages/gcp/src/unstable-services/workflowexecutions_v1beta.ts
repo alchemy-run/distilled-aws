@@ -103,13 +103,13 @@ export type ExecutionStateEnum =
   | "CANCELLED"
   | "UNAVAILABLE"
   | "QUEUED";
-export const ExecutionStateEnum = /*@__PURE__*/ S.String;
+export const ExecutionStateEnum = S.String;
 
 export type ExecutionCallLogLevelEnum =
   | "CALL_LOG_LEVEL_UNSPECIFIED"
   | "LOG_ALL_CALLS"
   | "LOG_ERRORS_ONLY";
-export const ExecutionCallLogLevelEnum = /*@__PURE__*/ S.String;
+export const ExecutionCallLogLevelEnum = S.String;
 
 /** Represents a step of the workflow this execution is running. */
 export interface Step {
@@ -276,8 +276,7 @@ export type GetProjectsLocationsWorkflowsExecutionsViewEnum =
   | "EXECUTION_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsWorkflowsExecutionsViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsWorkflowsExecutionsViewEnum = S.String;
 
 export interface GetProjectsLocationsWorkflowsExecutionsRequest {
   /** Required. Name of the execution to be retrieved. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution} */
@@ -307,8 +306,7 @@ export type ListProjectsLocationsWorkflowsExecutionsViewEnum =
   | "EXECUTION_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListProjectsLocationsWorkflowsExecutionsViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsWorkflowsExecutionsViewEnum = S.String;
 
 export interface ListProjectsLocationsWorkflowsExecutionsRequest {
   /** A page token, received from a previous `ListExecutions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExecutions` must match the call that provided the page token. */

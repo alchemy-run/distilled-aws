@@ -160,8 +160,7 @@ export type SubscriberConfigSubscriptionCreatePolicyEnum =
   | "SUBSCRIPTION_CREATE_POLICY_UNSPECIFIED"
   | "AUTOMATIC"
   | "MANUAL";
-export const SubscriberConfigSubscriptionCreatePolicyEnum =
-  /*@__PURE__*/ S.String;
+export const SubscriberConfigSubscriptionCreatePolicyEnum = S.String;
 
 /** Configuration for a subscriber. A notification is sent to a subscription ONLY if the subscriber has a config for the data type. */
 export interface SubscriberConfig {
@@ -312,7 +311,7 @@ export type DataSourceRecordingMethodEnum =
   | "DERIVED"
   | "ACTIVELY_MEASURED"
   | "UNKNOWN";
-export const DataSourceRecordingMethodEnum = /*@__PURE__*/ S.String;
+export const DataSourceRecordingMethodEnum = S.String;
 
 export type DeviceFormFactorEnum =
   | "FORM_FACTOR_UNSPECIFIED"
@@ -325,7 +324,7 @@ export type DeviceFormFactorEnum =
   | "TABLET"
   | "HEAD_MOUNTED"
   | "SMART_DISPLAY";
-export const DeviceFormFactorEnum = /*@__PURE__*/ S.String;
+export const DeviceFormFactorEnum = S.String;
 
 /** Captures metadata about the device that recorded the measurement. */
 export interface Device {
@@ -371,7 +370,7 @@ export type DataSourcePlatformEnum =
   | "NEST"
   | "GOOGLE_WEB_API"
   | "GOOGLE_PARTNER_INTEGRATION";
-export const DataSourcePlatformEnum = /*@__PURE__*/ S.String;
+export const DataSourcePlatformEnum = S.String;
 
 /** Data Source definition to track the origin of data. Each health data point, regardless of the complexity or data model (whether a simple step count or a detailed sleep session) must retain information about its source of origin (e.g. the device or app that collected it). */
 export interface DataSource {
@@ -416,7 +415,7 @@ export type HeartRateZoneHeartRateZoneTypeEnum =
   | "MODERATE"
   | "VIGOROUS"
   | "PEAK";
-export const HeartRateZoneHeartRateZoneTypeEnum = /*@__PURE__*/ S.String;
+export const HeartRateZoneHeartRateZoneTypeEnum = S.String;
 
 /** The heart rate zone. */
 export interface HeartRateZone {
@@ -540,7 +539,7 @@ export type SleepStageTypeEnum =
   | "REM"
   | "ASLEEP"
   | "RESTLESS";
-export const SleepStageTypeEnum = /*@__PURE__*/ S.String;
+export const SleepStageTypeEnum = S.String;
 
 /** Sleep stage segment. */
 export interface SleepStage {
@@ -577,7 +576,7 @@ export const SleepStageList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SleepStageList>;
 
 export type SleepTypeEnum = "SLEEP_TYPE_UNSPECIFIED" | "CLASSIC" | "STAGES";
-export const SleepTypeEnum = /*@__PURE__*/ S.String;
+export const SleepTypeEnum = S.String;
 
 /** Represents a time interval of session data point, which bundles multiple observed metrics together. */
 export interface SessionTimeInterval {
@@ -615,7 +614,7 @@ export type StageSummaryTypeEnum =
   | "REM"
   | "ASLEEP"
   | "RESTLESS";
-export const StageSummaryTypeEnum = /*@__PURE__*/ S.String;
+export const StageSummaryTypeEnum = S.String;
 
 /** Total duration and segment count for a stage. */
 export interface StageSummary {
@@ -676,7 +675,7 @@ export type SleepMetadataStagesStatusEnum =
   | "TIMEOUT"
   | "SUCCEEDED"
   | "PROCESSING_INTERNAL_ERROR";
-export const SleepMetadataStagesStatusEnum = /*@__PURE__*/ S.String;
+export const SleepMetadataStagesStatusEnum = S.String;
 
 /** Additional information about how the sleep was processed. */
 export interface SleepMetadata {
@@ -770,8 +769,7 @@ export type DailyRestingHeartRateMetadataCalculationMethodEnum =
   | "CALCULATION_METHOD_UNSPECIFIED"
   | "WITH_SLEEP"
   | "ONLY_WITH_AWAKE_DATA";
-export const DailyRestingHeartRateMetadataCalculationMethodEnum =
-  /*@__PURE__*/ S.String;
+export const DailyRestingHeartRateMetadataCalculationMethodEnum = S.String;
 
 /** Metadata for the daily resting heart rate. */
 export interface DailyRestingHeartRateMetadata {
@@ -895,7 +893,7 @@ export type SymptomsSymptomsItemEnum =
   | "VAGINAL_DRYNESS"
   | "VAGINAL_ITCHING"
   | "VOMITING";
-export const SymptomsSymptomsItemEnum = /*@__PURE__*/ S.String;
+export const SymptomsSymptomsItemEnum = S.String;
 
 export type SymptomsSymptomsItemEnumList = Array<
   SymptomsSymptomsItemEnum | (string & {})
@@ -928,7 +926,7 @@ export type VolumeQuantityUserProvidedUnitEnum =
   | "MILLILITER"
   | "PINT_IMPERIAL"
   | "PINT_US";
-export const VolumeQuantityUserProvidedUnitEnum = /*@__PURE__*/ S.String;
+export const VolumeQuantityUserProvidedUnitEnum = S.String;
 
 /** Represents the volume quantity. */
 export interface VolumeQuantity {
@@ -999,7 +997,7 @@ export type SwimLengthsDataSwimStrokeTypeEnum =
   | "BACKSTROKE"
   | "BREASTSTROKE"
   | "BUTTERFLY";
-export const SwimLengthsDataSwimStrokeTypeEnum = /*@__PURE__*/ S.String;
+export const SwimLengthsDataSwimStrokeTypeEnum = S.String;
 
 /** Swim lengths data over the time interval. */
 export interface SwimLengthsData {
@@ -1039,8 +1037,7 @@ export type CoreBodyTemperatureMeasurementLocationEnum =
   | "NASOPHARYNGEAL"
   | "WRIST"
   | "VAGINA";
-export const CoreBodyTemperatureMeasurementLocationEnum =
-  /*@__PURE__*/ S.String;
+export const CoreBodyTemperatureMeasurementLocationEnum = S.String;
 
 /** Core body temperature measurement, distinct from peripheral body temperature, reflects the temperature of the body's internal organs. */
 export interface CoreBodyTemperature {
@@ -1101,8 +1098,7 @@ export type ActiveMinutesByActivityLevelActivityLevelEnum =
   | "LIGHT"
   | "MODERATE"
   | "VIGOROUS";
-export const ActiveMinutesByActivityLevelActivityLevelEnum =
-  /*@__PURE__*/ S.String;
+export const ActiveMinutesByActivityLevelActivityLevelEnum = S.String;
 
 /** Active minutes at a given activity level. */
 export interface ActiveMinutesByActivityLevel {
@@ -1201,7 +1197,7 @@ export type EnergyQuantityUserProvidedUnitEnum =
   | "KILOCALORIE"
   | "SMALL_CALORIE"
   | "CALORIE";
-export const EnergyQuantityUserProvidedUnitEnum = /*@__PURE__*/ S.String;
+export const EnergyQuantityUserProvidedUnitEnum = S.String;
 
 /** Represents the energy quantity. */
 export interface EnergyQuantity {
@@ -1227,7 +1223,7 @@ export type WeightQuantityUserProvidedUnitEnum =
   | "MILLIGRAM"
   | "MICROGRAM"
   | "NANOGRAM";
-export const WeightQuantityUserProvidedUnitEnum = /*@__PURE__*/ S.String;
+export const WeightQuantityUserProvidedUnitEnum = S.String;
 
 /** Represents the weight quantity. */
 export interface WeightQuantity {
@@ -1284,7 +1280,7 @@ export type NutrientQuantityNutrientEnum =
   | "VITAMIN_K"
   | "ZINC"
   | "FOLATE";
-export const NutrientQuantityNutrientEnum = /*@__PURE__*/ S.String;
+export const NutrientQuantityNutrientEnum = S.String;
 
 /** Represents the quantity of a nutrient. */
 export interface NutrientQuantity {
@@ -1335,7 +1331,7 @@ export type NutritionLogMealTypeEnum =
   | "AFTER_DINNER"
   | "SNACK"
   | "ANYTIME";
-export const NutritionLogMealTypeEnum = /*@__PURE__*/ S.String;
+export const NutritionLogMealTypeEnum = S.String;
 
 /** Holds information about food logged by a user. There are two ways of creating a nutrition log based on the food type: 1. Identified food: Using the food field, which is a reference to a Food resource. In this case fields `nutrients`, `energy`, `energy_from_fat`, `total_carbohydrate`, `total_fat`, `food_display_name` will be populated based on the referenced food. 2. Anonymous food: Using the `food_display_name` field and setting the `nutrients`, `energy`, `energy_from_fat`, `total_carbohydrate`, `total_fat` fields manually. The identified food is preferred over the anonymous food. Nutrition logs created from anonymous food are not editable. */
 export interface NutritionLog {
@@ -1403,7 +1399,7 @@ export type ElectrocardiogramResultClassificationEnum =
   | "INCONCLUSIVE_LOW_HEART_RATE"
   | "UNREADABLE"
   | "NOT_ANALYZED";
-export const ElectrocardiogramResultClassificationEnum = /*@__PURE__*/ S.String;
+export const ElectrocardiogramResultClassificationEnum = S.String;
 
 /** Software as Medical Device (SaMD) metadata. Used to construct the Unique Device Identifier (UDI). */
 export interface MedicalDeviceInfo {
@@ -1479,7 +1475,7 @@ export type VO2MaxMeasurementMethodEnum =
   | "PREDICTION_SUB_MAX_EXERCISE"
   | "PREDICTION_NON_EXERCISE"
   | "OTHER";
-export const VO2MaxMeasurementMethodEnum = /*@__PURE__*/ S.String;
+export const VO2MaxMeasurementMethodEnum = S.String;
 
 /** VO2 max measurement. */
 export interface VO2Max {
@@ -1788,7 +1784,7 @@ export type ExerciseExerciseTypeEnum =
   | "YOGA_POWER"
   | "YOGA_VINYASA"
   | "ZUMBA";
-export const ExerciseExerciseTypeEnum = /*@__PURE__*/ S.String;
+export const ExerciseExerciseTypeEnum = S.String;
 
 export type SplitSummarySplitTypeEnum =
   | "SPLIT_TYPE_UNSPECIFIED"
@@ -1796,7 +1792,7 @@ export type SplitSummarySplitTypeEnum =
   | "DURATION"
   | "DISTANCE"
   | "CALORIES";
-export const SplitSummarySplitTypeEnum = /*@__PURE__*/ S.String;
+export const SplitSummarySplitTypeEnum = S.String;
 
 /** Represents splits or laps recorded within an exercise. Lap events partition a workout into segments based on criteria like distance, time, or calories. */
 export interface SplitSummary {
@@ -1840,7 +1836,7 @@ export type ExerciseEventExerciseEventTypeEnum =
   | "RESUME"
   | "AUTO_PAUSE"
   | "AUTO_RESUME";
-export const ExerciseEventExerciseEventTypeEnum = /*@__PURE__*/ S.String;
+export const ExerciseEventExerciseEventTypeEnum = S.String;
 
 /** Represents instantaneous events that happen during an exercise, such as start, stop, pause, split. */
 export interface ExerciseEvent {
@@ -1949,7 +1945,7 @@ export type DailyVO2MaxCardioFitnessLevelEnum =
   | "GOOD"
   | "VERY_GOOD"
   | "EXCELLENT";
-export const DailyVO2MaxCardioFitnessLevelEnum = /*@__PURE__*/ S.String;
+export const DailyVO2MaxCardioFitnessLevelEnum = S.String;
 
 /** Contains a daily summary of the user's VO2 max (cardio fitness score), which is the maximum rate of oxygen the body can use during exercise. */
 export interface DailyVO2Max {
@@ -1979,7 +1975,7 @@ export type ActiveZoneMinutesHeartRateZoneEnum =
   | "FAT_BURN"
   | "CARDIO"
   | "PEAK";
-export const ActiveZoneMinutesHeartRateZoneEnum = /*@__PURE__*/ S.String;
+export const ActiveZoneMinutesHeartRateZoneEnum = S.String;
 
 /** Record of active zone minutes in a given time interval. */
 export interface ActiveZoneMinutes {
@@ -2123,13 +2119,13 @@ export type FoodMealTypeEnum =
   | "AFTER_DINNER"
   | "SNACK"
   | "ANYTIME";
-export const FoodMealTypeEnum = /*@__PURE__*/ S.String;
+export const FoodMealTypeEnum = S.String;
 
 export type FoodAccessLevelEnum =
   | "FOOD_ACCESS_LEVEL_UNSPECIFIED"
   | "FOOD_ACCESS_LEVEL_PUBLIC"
   | "FOOD_ACCESS_LEVEL_PRIVATE";
-export const FoodAccessLevelEnum = /*@__PURE__*/ S.String;
+export const FoodAccessLevelEnum = S.String;
 
 /** Represents a food item. */
 export interface Food {
@@ -2259,7 +2255,7 @@ export type BloodGlucoseMeasurementSourceEnum =
   | "SELF_MONITORING_BLOOD_GLUCOSE"
   | "CONTINUOUS_GLUCOSE_MONITORING"
   | "LAB_TEST";
-export const BloodGlucoseMeasurementSourceEnum = /*@__PURE__*/ S.String;
+export const BloodGlucoseMeasurementSourceEnum = S.String;
 
 export type BloodGlucoseMeasurementTimingEnum =
   | "MEASUREMENT_TIMING_UNSPECIFIED"
@@ -2269,7 +2265,7 @@ export type BloodGlucoseMeasurementTimingEnum =
   | "GENERAL"
   | "BEFORE_BED"
   | "OVER_NIGHT";
-export const BloodGlucoseMeasurementTimingEnum = /*@__PURE__*/ S.String;
+export const BloodGlucoseMeasurementTimingEnum = S.String;
 
 export type BloodGlucoseSpecimenEnum =
   | "SPECIMEN_UNSPECIFIED"
@@ -2279,7 +2275,7 @@ export type BloodGlucoseSpecimenEnum =
   | "SERUM"
   | "TEARS"
   | "WHOLE_BLOOD";
-export const BloodGlucoseSpecimenEnum = /*@__PURE__*/ S.String;
+export const BloodGlucoseSpecimenEnum = S.String;
 
 export type BloodGlucoseMealTypeEnum =
   | "MEAL_TYPE_UNSPECIFIED"
@@ -2287,7 +2283,7 @@ export type BloodGlucoseMealTypeEnum =
   | "LUNCH"
   | "DINNER"
   | "SNACK";
-export const BloodGlucoseMealTypeEnum = /*@__PURE__*/ S.String;
+export const BloodGlucoseMealTypeEnum = S.String;
 
 /** Represents a blood glucose level measurement. LINT: LEGACY_NAMES */
 export interface BloodGlucose {
@@ -2325,7 +2321,7 @@ export type OvulationTestResultEnum =
   | "ESTROGEN_SURGE"
   | "POSITIVE"
   | "INDETERMINATE";
-export const OvulationTestResultEnum = /*@__PURE__*/ S.String;
+export const OvulationTestResultEnum = S.String;
 
 /** Ovulation test record. */
 export interface OvulationTest {
@@ -2347,7 +2343,7 @@ export type ActivityLevelActivityLevelTypeEnum =
   | "LIGHTLY_ACTIVE"
   | "MODERATELY_ACTIVE"
   | "VERY_ACTIVE";
-export const ActivityLevelActivityLevelTypeEnum = /*@__PURE__*/ S.String;
+export const ActivityLevelActivityLevelTypeEnum = S.String;
 
 /** Internal type to capture activity level during a certain time interval. */
 export interface ActivityLevel {
@@ -2381,7 +2377,7 @@ export type HeartRateMetadataMotionContextEnum =
   | "MOTION_CONTEXT_UNSPECIFIED"
   | "ACTIVE"
   | "SEDENTARY";
-export const HeartRateMetadataMotionContextEnum = /*@__PURE__*/ S.String;
+export const HeartRateMetadataMotionContextEnum = S.String;
 
 export type HeartRateMetadataSensorLocationEnum =
   | "SENSOR_LOCATION_UNSPECIFIED"
@@ -2391,7 +2387,7 @@ export type HeartRateMetadataSensorLocationEnum =
   | "HAND"
   | "EAR_LOBE"
   | "FOOT";
-export const HeartRateMetadataSensorLocationEnum = /*@__PURE__*/ S.String;
+export const HeartRateMetadataSensorLocationEnum = S.String;
 
 /** Heart rate metadata. */
 export interface HeartRateMetadata {
@@ -2432,7 +2428,7 @@ export type TimeInHeartRateZoneHeartRateZoneTypeEnum =
   | "MODERATE"
   | "VIGOROUS"
   | "PEAK";
-export const TimeInHeartRateZoneHeartRateZoneTypeEnum = /*@__PURE__*/ S.String;
+export const TimeInHeartRateZoneHeartRateZoneTypeEnum = S.String;
 
 /** Time in heart rate zone record. It's an interval spent in specific heart rate zone. */
 export interface TimeInHeartRateZone {
@@ -2550,7 +2546,7 @@ export type MoodsValencesItemEnum =
   | "UNPLEASANT"
   | "BASELINE"
   | "PLEASANT";
-export const MoodsValencesItemEnum = /*@__PURE__*/ S.String;
+export const MoodsValencesItemEnum = S.String;
 
 export type MoodsValencesItemEnumList = Array<
   MoodsValencesItemEnum | (string & {})
@@ -2617,7 +2613,7 @@ export type MoodsMoodsItemEnum =
   | "ACCOMPLISHED"
   | "LOVING"
   | "COMPASSIONATE";
-export const MoodsMoodsItemEnum = /*@__PURE__*/ S.String;
+export const MoodsMoodsItemEnum = S.String;
 
 export type MoodsMoodsItemEnumList = Array<MoodsMoodsItemEnum | (string & {})>;
 export const MoodsMoodsItemEnumList = /*@__PURE__*/ S.Array(
@@ -2874,8 +2870,7 @@ export type CaloriesInHeartRateZoneValueHeartRateZoneEnum =
   | "MODERATE"
   | "VIGOROUS"
   | "PEAK";
-export const CaloriesInHeartRateZoneValueHeartRateZoneEnum =
-  /*@__PURE__*/ S.String;
+export const CaloriesInHeartRateZoneValueHeartRateZoneEnum = S.String;
 
 /** Represents the amount of kilocalories burned in a specific heart rate zone. */
 export interface CaloriesInHeartRateZoneValue {
@@ -2976,7 +2971,7 @@ export type TimeInHeartRateZoneValueHeartRateZoneEnum =
   | "MODERATE"
   | "VIGOROUS"
   | "PEAK";
-export const TimeInHeartRateZoneValueHeartRateZoneEnum = /*@__PURE__*/ S.String;
+export const TimeInHeartRateZoneValueHeartRateZoneEnum = S.String;
 
 /** Represents the total time spent in a specific heart rate zone. */
 export interface TimeInHeartRateZoneValue {
@@ -3036,8 +3031,7 @@ export type ActiveMinutesRollupByActivityLevelActivityLevelEnum =
   | "LIGHT"
   | "MODERATE"
   | "VIGOROUS";
-export const ActiveMinutesRollupByActivityLevelActivityLevelEnum =
-  /*@__PURE__*/ S.String;
+export const ActiveMinutesRollupByActivityLevelActivityLevelEnum = S.String;
 
 /** Active minutes by activity level. */
 export interface ActiveMinutesRollupByActivityLevel {
@@ -3221,8 +3215,7 @@ export type WeightQuantityRollupUserProvidedUnitLastEnum =
   | "MILLIGRAM"
   | "MICROGRAM"
   | "NANOGRAM";
-export const WeightQuantityRollupUserProvidedUnitLastEnum =
-  /*@__PURE__*/ S.String;
+export const WeightQuantityRollupUserProvidedUnitLastEnum = S.String;
 
 /** Rollup for the weight. */
 export interface WeightQuantityRollup {
@@ -3249,8 +3242,7 @@ export type EnergyQuantityRollupUserProvidedUnitLastEnum =
   | "KILOCALORIE"
   | "SMALL_CALORIE"
   | "CALORIE";
-export const EnergyQuantityRollupUserProvidedUnitLastEnum =
-  /*@__PURE__*/ S.String;
+export const EnergyQuantityRollupUserProvidedUnitLastEnum = S.String;
 
 /** Rollup for the energy quantity. */
 export interface EnergyQuantityRollup {
@@ -3311,7 +3303,7 @@ export type NutrientQuantityRollupNutrientEnum =
   | "VITAMIN_K"
   | "ZINC"
   | "FOLATE";
-export const NutrientQuantityRollupNutrientEnum = /*@__PURE__*/ S.String;
+export const NutrientQuantityRollupNutrientEnum = S.String;
 
 /** Nutrient quantity rollup. */
 export interface NutrientQuantityRollup {
@@ -3369,8 +3361,7 @@ export type VolumeQuantityRollupUserProvidedUnitLastEnum =
   | "MILLILITER"
   | "PINT_IMPERIAL"
   | "PINT_US";
-export const VolumeQuantityRollupUserProvidedUnitLastEnum =
-  /*@__PURE__*/ S.String;
+export const VolumeQuantityRollupUserProvidedUnitLastEnum = S.String;
 
 /** Rollup for volume quantity. */
 export interface VolumeQuantityRollup {
@@ -3436,7 +3427,7 @@ export type ActivityLevelRollupByActivityLevelTypeActivityLevelTypeEnum =
   | "MODERATELY_ACTIVE"
   | "VERY_ACTIVE";
 export const ActivityLevelRollupByActivityLevelTypeActivityLevelTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents the total duration in a specific activity level type. */
 export interface ActivityLevelRollupByActivityLevelType {
@@ -3825,59 +3816,59 @@ export type SettingsGlucoseUnitEnum =
   | "GLUCOSE_UNIT_UNSPECIFIED"
   | "GLUCOSE_UNIT_MG_DL"
   | "GLUCOSE_UNIT_MMOL_L";
-export const SettingsGlucoseUnitEnum = /*@__PURE__*/ S.String;
+export const SettingsGlucoseUnitEnum = S.String;
 
 export type SettingsWeightUnitEnum =
   | "WEIGHT_UNIT_UNSPECIFIED"
   | "WEIGHT_UNIT_POUNDS"
   | "WEIGHT_UNIT_STONE"
   | "WEIGHT_UNIT_KILOGRAMS";
-export const SettingsWeightUnitEnum = /*@__PURE__*/ S.String;
+export const SettingsWeightUnitEnum = S.String;
 
 export type SettingsTemperatureUnitEnum =
   | "TEMPERATURE_UNIT_UNSPECIFIED"
   | "TEMPERATURE_UNIT_CELSIUS"
   | "TEMPERATURE_UNIT_FAHRENHEIT";
-export const SettingsTemperatureUnitEnum = /*@__PURE__*/ S.String;
+export const SettingsTemperatureUnitEnum = S.String;
 
 export type SettingsStrideLengthRunningTypeEnum =
   | "STRIDE_LENGTH_TYPE_UNSPECIFIED"
   | "STRIDE_LENGTH_TYPE_DEFAULT"
   | "STRIDE_LENGTH_TYPE_MANUAL"
   | "STRIDE_LENGTH_TYPE_AUTO";
-export const SettingsStrideLengthRunningTypeEnum = /*@__PURE__*/ S.String;
+export const SettingsStrideLengthRunningTypeEnum = S.String;
 
 export type SettingsDistanceUnitEnum =
   | "DISTANCE_UNIT_UNSPECIFIED"
   | "DISTANCE_UNIT_MILES"
   | "DISTANCE_UNIT_KILOMETERS";
-export const SettingsDistanceUnitEnum = /*@__PURE__*/ S.String;
+export const SettingsDistanceUnitEnum = S.String;
 
 export type SettingsSwimUnitEnum =
   | "SWIM_UNIT_UNSPECIFIED"
   | "SWIM_UNIT_METERS"
   | "SWIM_UNIT_YARDS";
-export const SettingsSwimUnitEnum = /*@__PURE__*/ S.String;
+export const SettingsSwimUnitEnum = S.String;
 
 export type SettingsStrideLengthWalkingTypeEnum =
   | "STRIDE_LENGTH_TYPE_UNSPECIFIED"
   | "STRIDE_LENGTH_TYPE_DEFAULT"
   | "STRIDE_LENGTH_TYPE_MANUAL"
   | "STRIDE_LENGTH_TYPE_AUTO";
-export const SettingsStrideLengthWalkingTypeEnum = /*@__PURE__*/ S.String;
+export const SettingsStrideLengthWalkingTypeEnum = S.String;
 
 export type SettingsWaterUnitEnum =
   | "WATER_UNIT_UNSPECIFIED"
   | "WATER_UNIT_ML"
   | "WATER_UNIT_FL_OZ"
   | "WATER_UNIT_CUP";
-export const SettingsWaterUnitEnum = /*@__PURE__*/ S.String;
+export const SettingsWaterUnitEnum = S.String;
 
 export type SettingsHeightUnitEnum =
   | "HEIGHT_UNIT_UNSPECIFIED"
   | "HEIGHT_UNIT_INCHES"
   | "HEIGHT_UNIT_CENTIMETERS";
-export const SettingsHeightUnitEnum = /*@__PURE__*/ S.String;
+export const SettingsHeightUnitEnum = S.String;
 
 /** Settings details. */
 export interface Settings {
@@ -4046,7 +4037,7 @@ export type PairedDeviceDeviceTypeEnum =
   | "DEVICE_TYPE_UNSPECIFIED"
   | "TRACKER"
   | "SCALE";
-export const PairedDeviceDeviceTypeEnum = /*@__PURE__*/ S.String;
+export const PairedDeviceDeviceTypeEnum = S.String;
 
 /** User's Paired 1P Device The PairedDevice details include information about the device type, battery status, battery level, last sync time, device version, mac address, and features. */
 export interface PairedDevice {
@@ -4109,7 +4100,7 @@ export type SubscriberStateEnum =
   | "UNVERIFIED"
   | "ACTIVE"
   | "INACTIVE";
-export const SubscriberStateEnum = /*@__PURE__*/ S.String;
+export const SubscriberStateEnum = S.String;
 
 /** -- Resource Messages -- A subscriber receives notifications from Google Health API. */
 export interface Subscriber {

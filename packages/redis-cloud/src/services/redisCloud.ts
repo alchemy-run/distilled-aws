@@ -179,7 +179,7 @@ export type AddNewRegionToActiveActiveSubscriptionRequestRespVersion =
   | "resp2"
   | "resp3";
 export const AddNewRegionToActiveActiveSubscriptionRequestRespVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AddNewRegionToActiveActiveSubscriptionRequest {
   /** Subscription ID. */
@@ -249,7 +249,7 @@ export type TaskStateUpdateStatus =
   | "processing-in-progress"
   | "processing-completed"
   | "processing-error";
-export const TaskStateUpdateStatus = /*@__PURE__*/ S.String;
+export const TaskStateUpdateStatus = S.String;
 
 export type ProcessorResponseError =
   | "UNAUTHORIZED"
@@ -856,7 +856,7 @@ export type ProcessorResponseError =
   | "COST_REPORT_TAG_KEY_EMPTY"
   | "COST_REPORT_TAG_VALUE_EMPTY"
   | "COST_REPORT_FUTURE_DATES_NOT_ALLOWED";
-export const ProcessorResponseError = /*@__PURE__*/ S.String;
+export const ProcessorResponseError = S.String;
 
 export interface ProcessorResponse {
   resourceId?: number;
@@ -970,7 +970,7 @@ export type CreateActiveActivePrivateLinkRequestType =
   | "iam_role"
   | "iam_user"
   | "service_principal";
-export const CreateActiveActivePrivateLinkRequestType = /*@__PURE__*/ S.String;
+export const CreateActiveActivePrivateLinkRequestType = S.String;
 
 export interface CreateActiveActivePrivateLinkRequest {
   /** Subscription ID. */
@@ -1014,8 +1014,7 @@ export type CreateActiveActivePrivateLinkPrincipalRequestType =
   | "iam_role"
   | "iam_user"
   | "service_principal";
-export const CreateActiveActivePrivateLinkPrincipalRequestType =
-  /*@__PURE__*/ S.String;
+export const CreateActiveActivePrivateLinkPrincipalRequestType = S.String;
 
 export interface CreateActiveActivePrivateLinkPrincipalRequest {
   /** Subscription ID. */
@@ -1176,7 +1175,7 @@ export const CreateActiveActiveVpcPeeringRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Optional. Cloud provider. Default: 'AWS' */
 export type CreateCloudAccountRequestProvider = "AWS" | "GCP";
-export const CreateCloudAccountRequestProvider = /*@__PURE__*/ S.String;
+export const CreateCloudAccountRequestProvider = S.String;
 
 export interface CreateCloudAccountRequest {
   /** Cloud account display name. */
@@ -1217,7 +1216,7 @@ export const CreateCloudAccountResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Output format for the cost report */
 export type CreateCostReportRequestFormat = "json" | "csv";
-export const CreateCostReportRequestFormat = /*@__PURE__*/ S.String;
+export const CreateCostReportRequestFormat = S.String;
 
 /** Array of subscriptionIDs to filter by */
 export type CreateCostReportRequestSubscriptionIdsList = Array<number>;
@@ -1233,7 +1232,7 @@ export const CreateCostReportRequestDatabaseIdsList = /*@__PURE__*/ S.Array(
 
 /** Filter by plan type */
 export type CreateCostReportRequestSubscriptionType = "pro" | "essentials";
-export const CreateCostReportRequestSubscriptionType = /*@__PURE__*/ S.String;
+export const CreateCostReportRequestSubscriptionType = S.String;
 
 /** Array of regions to filter by */
 export type CreateCostReportRequestRegionsList = Array<string>;
@@ -1303,11 +1302,11 @@ export const CreateCostReportResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Optional. Database protocol. Only set to 'memcached' if you have a legacy application. Default: 'redis' */
 export type CreateDatabaseRequestProtocol = "redis" | "memcached";
-export const CreateDatabaseRequestProtocol = /*@__PURE__*/ S.String;
+export const CreateDatabaseRequestProtocol = S.String;
 
 /** Optional. Redis Serialization Protocol version. Must be compatible with Redis version. */
 export type CreateDatabaseRequestRespVersion = "resp2" | "resp3";
-export const CreateDatabaseRequestRespVersion = /*@__PURE__*/ S.String;
+export const CreateDatabaseRequestRespVersion = S.String;
 
 /** Optional. Type and rate of data persistence in persistent storage. Default: 'none' */
 export type CreateDatabaseRequestDataPersistence =
@@ -1317,7 +1316,7 @@ export type CreateDatabaseRequestDataPersistence =
   | "snapshot-every-1-hour"
   | "snapshot-every-6-hours"
   | "snapshot-every-12-hours";
-export const CreateDatabaseRequestDataPersistence = /*@__PURE__*/ S.String;
+export const CreateDatabaseRequestDataPersistence = S.String;
 
 /** Optional. Data eviction policy. Default: 'volatile-lru' */
 export type CreateDatabaseRequestDataEvictionPolicy =
@@ -1331,7 +1330,7 @@ export type CreateDatabaseRequestDataEvictionPolicy =
   | "volatile-random"
   | "volatile-ttl"
   | "noeviction";
-export const CreateDatabaseRequestDataEvictionPolicy = /*@__PURE__*/ S.String;
+export const CreateDatabaseRequestDataEvictionPolicy = S.String;
 
 /** Optional. This database will be a replica of the specified Redis databases provided as one or more URI(s). Example: 'redis://user:password@host:port'. If the URI provided is a Redis Cloud database, only host and port should be provided. Example: ['redis://endpoint1:6379', 'redis://endpoint2:6380']. */
 export type CreateDatabaseRequestReplicaOfList = Array<string>;
@@ -1379,7 +1378,7 @@ export const ReplicaOfSpec = /*@__PURE__*/ S.suspend(() =>
 export type DatabaseThroughputSpecBy =
   | "operations-per-second"
   | "number-of-shards";
-export const DatabaseThroughputSpecBy = /*@__PURE__*/ S.String;
+export const DatabaseThroughputSpecBy = S.String;
 
 /** Optional. Throughput measurement method. */
 export interface DatabaseThroughputSpec {
@@ -1467,7 +1466,7 @@ export type DatabaseAlertSpecName =
   | "syncsource-error"
   | "syncsource-lag"
   | "connections-limit";
-export const DatabaseAlertSpecName = /*@__PURE__*/ S.String;
+export const DatabaseAlertSpecName = S.String;
 
 /** Optional. Changes Redis database alert details. */
 export interface DatabaseAlertSpec {
@@ -1527,7 +1526,7 @@ export type CreateDatabaseRequestShardingType =
   | "default-regex-rules"
   | "custom-regex-rules"
   | "redis-oss-hashing";
-export const CreateDatabaseRequestShardingType = /*@__PURE__*/ S.String;
+export const CreateDatabaseRequestShardingType = S.String;
 
 export interface CreateDatabaseRequest {
   /** Subscription ID. */
@@ -1658,8 +1657,7 @@ export const CreateDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
 export type CreateEndpointsRedirectionRequestEndpointTargetType =
   | "public"
   | "private";
-export const CreateEndpointsRedirectionRequestEndpointTargetType =
-  /*@__PURE__*/ S.String;
+export const CreateEndpointsRedirectionRequestEndpointTargetType = S.String;
 
 export interface CreateEndpointsRedirectionRequest {
   /** ID of the source database to redirect the endpoint from. */
@@ -1697,15 +1695,15 @@ export type EndpointsRedirectionResponseStatus =
   | "completed"
   | "failed"
   | "reverted";
-export const EndpointsRedirectionResponseStatus = /*@__PURE__*/ S.String;
+export const EndpointsRedirectionResponseStatus = S.String;
 
 /** Type of the source endpoint. */
 export type EndpointRedirectionDTOSourceEndpointType = "public" | "private";
-export const EndpointRedirectionDTOSourceEndpointType = /*@__PURE__*/ S.String;
+export const EndpointRedirectionDTOSourceEndpointType = S.String;
 
 /** Type of the target endpoint. */
 export type EndpointRedirectionDTOTargetEndpointType = "public" | "private";
-export const EndpointRedirectionDTOTargetEndpointType = /*@__PURE__*/ S.String;
+export const EndpointRedirectionDTOTargetEndpointType = S.String;
 
 /** Details of a single endpoint redirection. */
 export interface EndpointRedirectionDTO {
@@ -1787,11 +1785,11 @@ export type CreateFixedDatabaseRequestProtocol =
   | "redis"
   | "memcached"
   | "stack";
-export const CreateFixedDatabaseRequestProtocol = /*@__PURE__*/ S.String;
+export const CreateFixedDatabaseRequestProtocol = S.String;
 
 /** Optional. Redis Serialization Protocol version. Must be compatible with Redis version. */
 export type CreateFixedDatabaseRequestRespVersion = "resp2" | "resp3";
-export const CreateFixedDatabaseRequestRespVersion = /*@__PURE__*/ S.String;
+export const CreateFixedDatabaseRequestRespVersion = S.String;
 
 /** Optional. Type and rate of data persistence in persistent storage. Use GET /fixed/plans/{planId} to see if your plan supports data persistence. */
 export type CreateFixedDatabaseRequestDataPersistence =
@@ -1801,7 +1799,7 @@ export type CreateFixedDatabaseRequestDataPersistence =
   | "snapshot-every-1-hour"
   | "snapshot-every-6-hours"
   | "snapshot-every-12-hours";
-export const CreateFixedDatabaseRequestDataPersistence = /*@__PURE__*/ S.String;
+export const CreateFixedDatabaseRequestDataPersistence = S.String;
 
 /** Optional. Data eviction policy. */
 export type CreateFixedDatabaseRequestDataEvictionPolicy =
@@ -1815,8 +1813,7 @@ export type CreateFixedDatabaseRequestDataEvictionPolicy =
   | "volatile-random"
   | "volatile-ttl"
   | "noeviction";
-export const CreateFixedDatabaseRequestDataEvictionPolicy =
-  /*@__PURE__*/ S.String;
+export const CreateFixedDatabaseRequestDataEvictionPolicy = S.String;
 
 /** Optional. List of source IP addresses or subnet masks to allow. If specified, Redis clients will be able to connect to this database only from within the specified source IP addresses ranges. Use GET /fixed/plans/{planId} to see how many CIDR allow rules your plan supports. Example: '['192.168.10.0/32', '192.168.12.0/24']' */
 export type CreateFixedDatabaseRequestSourceIpsList = Array<string>;
@@ -1959,7 +1956,7 @@ export type CreatePrivateLinkRequestType =
   | "iam_role"
   | "iam_user"
   | "service_principal";
-export const CreatePrivateLinkRequestType = /*@__PURE__*/ S.String;
+export const CreatePrivateLinkRequestType = S.String;
 
 export interface CreatePrivateLinkRequest {
   /** Subscription ID. */
@@ -1999,7 +1996,7 @@ export type CreatePrivateLinkPrincipalRequestType =
   | "iam_role"
   | "iam_user"
   | "service_principal";
-export const CreatePrivateLinkPrincipalRequestType = /*@__PURE__*/ S.String;
+export const CreatePrivateLinkPrincipalRequestType = S.String;
 
 export interface CreatePrivateLinkPrincipalRequest {
   /** Subscription ID. */
@@ -2194,24 +2191,24 @@ export const CreateRoleResponse = /*@__PURE__*/ S.suspend(() =>
 export type CreateSubscriptionRequestDeploymentType =
   | "single-region"
   | "active-active";
-export const CreateSubscriptionRequestDeploymentType = /*@__PURE__*/ S.String;
+export const CreateSubscriptionRequestDeploymentType = S.String;
 
 /** Optional. The payment method for the subscription. If set to ‘credit-card’, ‘paymentMethodId’ must be defined. Default: 'credit-card' */
 export type CreateSubscriptionRequestPaymentMethod =
   | "credit-card"
   | "marketplace";
-export const CreateSubscriptionRequestPaymentMethod = /*@__PURE__*/ S.String;
+export const CreateSubscriptionRequestPaymentMethod = S.String;
 
 /** Optional. Memory storage preference: either 'ram' or a combination of 'ram-and-flash' (also known as Auto Tiering). Default: 'ram' */
 export type CreateSubscriptionRequestMemoryStorage = "ram" | "ram-and-flash";
-export const CreateSubscriptionRequestMemoryStorage = /*@__PURE__*/ S.String;
+export const CreateSubscriptionRequestMemoryStorage = S.String;
 
 /** Optional. Persistent storage encryption secures data at rest for database persistence. By default, disk storage is encrypted by keys managed by the cloud provider. Use 'customer-managed-key' if you want to use self-managed persistent storage encryption keys. Default: 'cloud-provider-managed-key' */
 export type CreateSubscriptionRequestPersistentStorageEncryptionType =
   | "cloud-provider-managed-key"
   | "customer-managed-key";
 export const CreateSubscriptionRequestPersistentStorageEncryptionType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Object representing a customer managed key (CMK), along with the region it is associated to. */
 export interface CustomerManagedKey {
@@ -2248,8 +2245,7 @@ export type CustomerManagedKeyPropertiesDeletionGracePeriod =
   | "8-hours"
   | "12-hours"
   | "24-hours";
-export const CustomerManagedKeyPropertiesDeletionGracePeriod =
-  /*@__PURE__*/ S.String;
+export const CustomerManagedKeyPropertiesDeletionGracePeriod = S.String;
 
 /** Optional. Contains information about the keys used for each region. Can be used only with external cloud account */
 export interface CustomerManagedKeyProperties {
@@ -2273,7 +2269,7 @@ export const CustomerManagedKeyProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** Optional. Cloud provider. Default: 'AWS' */
 export type SubscriptionSpecProvider = "AWS" | "GCP";
-export const SubscriptionSpecProvider = /*@__PURE__*/ S.String;
+export const SubscriptionSpecProvider = S.String;
 
 /** Optional. List the zone ID(s) for your preferred availability zone(s) for the cloud provider and region. If ‘multipleAvailabilityZones’ is set to 'true', you must list three availability zones. Otherwise, list one availability zone. */
 export type SubscriptionRegionSpecPreferredAvailabilityZonesList =
@@ -2391,7 +2387,7 @@ export const CreateSubscriptionRequestCloudProvidersList =
 
 /** Optional. Database protocol. Only set to 'memcached' if you have a legacy application. Default: 'redis' */
 export type SubscriptionDatabaseSpecProtocol = "redis" | "memcached";
-export const SubscriptionDatabaseSpecProtocol = /*@__PURE__*/ S.String;
+export const SubscriptionDatabaseSpecProtocol = S.String;
 
 /** Optional. Type and rate of data persistence in persistent storage. Default: 'none' */
 export type SubscriptionDatabaseSpecDataPersistence =
@@ -2401,7 +2397,7 @@ export type SubscriptionDatabaseSpecDataPersistence =
   | "snapshot-every-1-hour"
   | "snapshot-every-6-hours"
   | "snapshot-every-12-hours";
-export const SubscriptionDatabaseSpecDataPersistence = /*@__PURE__*/ S.String;
+export const SubscriptionDatabaseSpecDataPersistence = S.String;
 
 /** Optional. Expected throughput per region for an Active-Active database. Default: 1000 read and write ops/sec for each region */
 export type SubscriptionDatabaseSpecLocalThroughputMeasurementList =
@@ -2419,14 +2415,14 @@ export const SubscriptionDatabaseSpecModulesList = /*@__PURE__*/ S.Array(
 
 /** Optional. Redis Serialization Protocol version. Must be compatible with Redis version. */
 export type SubscriptionDatabaseSpecRespVersion = "resp2" | "resp3";
-export const SubscriptionDatabaseSpecRespVersion = /*@__PURE__*/ S.String;
+export const SubscriptionDatabaseSpecRespVersion = S.String;
 
 /** Optional. Database [Hashing policy](https://redis.io/docs/latest/operate/rc/databases/configuration/clustering/#manage-the-hashing-policy). */
 export type SubscriptionDatabaseSpecShardingType =
   | "default-regex-rules"
   | "custom-regex-rules"
   | "redis-oss-hashing";
-export const SubscriptionDatabaseSpecShardingType = /*@__PURE__*/ S.String;
+export const SubscriptionDatabaseSpecShardingType = S.String;
 
 /** One or more database specification(s) to create in this subscription. */
 export interface SubscriptionDatabaseSpec {
@@ -2562,7 +2558,7 @@ export const CreateSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
 export type CreateSubscription1RequestPaymentMethod =
   | "credit-card"
   | "marketplace";
-export const CreateSubscription1RequestPaymentMethod = /*@__PURE__*/ S.String;
+export const CreateSubscription1RequestPaymentMethod = S.String;
 
 export interface CreateSubscription1Request {
   /** New Essentials subscription name. */
@@ -2974,7 +2970,7 @@ export const DeleteDatabaseByIdRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Optional. Redis Serialization Protocol version. Must be compatible with Redis version. */
 export type DeleteFixedDatabaseByIDRequestRespVersion = "resp2" | "resp3";
-export const DeleteFixedDatabaseByIDRequestRespVersion = /*@__PURE__*/ S.String;
+export const DeleteFixedDatabaseByIDRequestRespVersion = S.String;
 
 /** Optional. Type and rate of data persistence in persistent storage. Use GET /fixed/plans/{planId} to see if your plan supports data persistence. */
 export type DeleteFixedDatabaseByIDRequestDataPersistence =
@@ -2984,8 +2980,7 @@ export type DeleteFixedDatabaseByIDRequestDataPersistence =
   | "snapshot-every-1-hour"
   | "snapshot-every-6-hours"
   | "snapshot-every-12-hours";
-export const DeleteFixedDatabaseByIDRequestDataPersistence =
-  /*@__PURE__*/ S.String;
+export const DeleteFixedDatabaseByIDRequestDataPersistence = S.String;
 
 /** Optional. Turns database replication on or off. */
 export type DeleteFixedDatabaseByIDRequestDataEvictionPolicy =
@@ -2999,8 +2994,7 @@ export type DeleteFixedDatabaseByIDRequestDataEvictionPolicy =
   | "volatile-random"
   | "volatile-ttl"
   | "noeviction";
-export const DeleteFixedDatabaseByIDRequestDataEvictionPolicy =
-  /*@__PURE__*/ S.String;
+export const DeleteFixedDatabaseByIDRequestDataEvictionPolicy = S.String;
 
 /** Optional. List of source IP addresses or subnet masks to allow. If specified, Redis clients will be able to connect to this database only from within the specified source IP addresses ranges. Example: '['192.168.10.0/32', '192.168.12.0/24']' */
 export type DeleteFixedDatabaseByIDRequestSourceIpsList = Array<string>;
@@ -4060,8 +4054,7 @@ export type GetAllFixedSubscriptionsPlansRequestProvider =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const GetAllFixedSubscriptionsPlansRequestProvider =
-  /*@__PURE__*/ S.String;
+export const GetAllFixedSubscriptionsPlansRequestProvider = S.String;
 
 export interface GetAllFixedSubscriptionsPlansRequest {
   /** Returns plans supported by the specified Cloud Provider. */
@@ -4335,7 +4328,7 @@ export const CloudAccountLinksList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CloudAccountLinksList>;
 
 export type CloudAccountProvider = "AWS" | "GCP";
-export const CloudAccountProvider = /*@__PURE__*/ S.String;
+export const CloudAccountProvider = S.String;
 
 /** RedisLabs Cloud Account information */
 export interface CloudAccount {
@@ -4604,7 +4597,7 @@ export type DatabaseVersionUpgradeStatusUpgradeStatus =
   | "in-progress-recovery-pending"
   | "done"
   | "failed";
-export const DatabaseVersionUpgradeStatusUpgradeStatus = /*@__PURE__*/ S.String;
+export const DatabaseVersionUpgradeStatusUpgradeStatus = S.String;
 
 export interface DatabaseVersionUpgradeStatus {
   databaseId?: number;
@@ -5407,10 +5400,10 @@ export const GetSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSubscriptionRequest>;
 
 export type SubscriptionMemoryStorage = "ram" | "ram-and-flash";
-export const SubscriptionMemoryStorage = /*@__PURE__*/ S.String;
+export const SubscriptionMemoryStorage = S.String;
 
 export type SubscriptionPaymentMethodType = "credit-card" | "marketplace";
-export const SubscriptionPaymentMethodType = /*@__PURE__*/ S.String;
+export const SubscriptionPaymentMethodType = S.String;
 
 export type SubscriptionLinksItemMap = { [key: string]: string | undefined };
 export const SubscriptionLinksItemMap = /*@__PURE__*/ S.Record(
@@ -5666,13 +5659,13 @@ export const GetSubscriptionDatabaseByID1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSubscriptionDatabaseByID1Request>;
 
 export type FixedDatabaseProtocol = "redis" | "memcached" | "stack";
-export const FixedDatabaseProtocol = /*@__PURE__*/ S.String;
+export const FixedDatabaseProtocol = S.String;
 
 export type FixedDatabaseRespVersion = "resp2" | "resp3";
-export const FixedDatabaseRespVersion = /*@__PURE__*/ S.String;
+export const FixedDatabaseRespVersion = S.String;
 
 export type FixedDatabaseMemoryStorage = "ram" | "ram-and-flash";
-export const FixedDatabaseMemoryStorage = /*@__PURE__*/ S.String;
+export const FixedDatabaseMemoryStorage = S.String;
 
 export type FixedDatabaseDataPersistence =
   | "none"
@@ -5681,7 +5674,7 @@ export type FixedDatabaseDataPersistence =
   | "snapshot-every-1-hour"
   | "snapshot-every-6-hours"
   | "snapshot-every-12-hours";
-export const FixedDatabaseDataPersistence = /*@__PURE__*/ S.String;
+export const FixedDatabaseDataPersistence = S.String;
 
 export type FixedDatabaseDataEvictionPolicy =
   | "allkeys-lru"
@@ -5694,7 +5687,7 @@ export type FixedDatabaseDataEvictionPolicy =
   | "volatile-random"
   | "volatile-ttl"
   | "noeviction";
-export const FixedDatabaseDataEvictionPolicy = /*@__PURE__*/ S.String;
+export const FixedDatabaseDataEvictionPolicy = S.String;
 
 /** Database dynamic endpoints. This is available in private preview. */
 export interface DynamicEndpoints {
@@ -5913,7 +5906,7 @@ export const GetSubscriptionMaintenanceWindowsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetSubscriptionMaintenanceWindowsRequest>;
 
 export type SubscriptionMaintenanceWindowsMode = "manual" | "automatic";
-export const SubscriptionMaintenanceWindowsMode = /*@__PURE__*/ S.String;
+export const SubscriptionMaintenanceWindowsMode = S.String;
 
 export type MaintenanceWindowDaysList = Array<string>;
 export const MaintenanceWindowDaysList = /*@__PURE__*/ S.Array(
@@ -6081,7 +6074,7 @@ export const ModulesData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ModulesData" }) as any as S.Schema<ModulesData>;
 
 export type GetSupportedRegionsRequestProvider = "AWS" | "GCP";
-export const GetSupportedRegionsRequestProvider = /*@__PURE__*/ S.String;
+export const GetSupportedRegionsRequestProvider = S.String;
 
 export interface GetSupportedRegionsRequest {
   /** Filters results to the specified cloud provider. */
@@ -6096,7 +6089,7 @@ export const GetSupportedRegionsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSupportedRegionsRequest>;
 
 export type RegionProvider = "AWS" | "GCP";
-export const RegionProvider = /*@__PURE__*/ S.String;
+export const RegionProvider = S.String;
 
 /** RedisLabs region information */
 export interface Region {
@@ -6423,7 +6416,7 @@ export type ImportDatabaseRequestSourceType =
   | "aws-s3"
   | "azure-blob-storage"
   | "google-blob-storage";
-export const ImportDatabaseRequestSourceType = /*@__PURE__*/ S.String;
+export const ImportDatabaseRequestSourceType = S.String;
 
 /** One or more paths to source data files or Redis databases, as appropriate to specified source type. */
 export type ImportDatabaseRequestImportFromUriList = Array<string>;
@@ -6466,7 +6459,7 @@ export type ImportDatabase1RequestSourceType =
   | "aws-s3"
   | "azure-blob-storage"
   | "google-blob-storage";
-export const ImportDatabase1RequestSourceType = /*@__PURE__*/ S.String;
+export const ImportDatabase1RequestSourceType = S.String;
 
 /** One or more paths to source data files or Redis databases, as appropriate to specified source type. */
 export type ImportDatabase1RequestImportFromUriList = Array<string>;
@@ -6770,8 +6763,7 @@ export const RevertEndpointsRedirectionRequest = /*@__PURE__*/ S.suspend(() =>
 export type UpdateActiveActivePscServiceEndpointRequestAction =
   | "accept"
   | "reject";
-export const UpdateActiveActivePscServiceEndpointRequestAction =
-  /*@__PURE__*/ S.String;
+export const UpdateActiveActivePscServiceEndpointRequestAction = S.String;
 
 export interface UpdateActiveActivePscServiceEndpointRequest {
   /** Subscription ID. */
@@ -6966,8 +6958,7 @@ export type UpdateCrdbLocalPropertiesRequestGlobalDataPersistence =
   | "snapshot-every-1-hour"
   | "snapshot-every-6-hours"
   | "snapshot-every-12-hours";
-export const UpdateCrdbLocalPropertiesRequestGlobalDataPersistence =
-  /*@__PURE__*/ S.String;
+export const UpdateCrdbLocalPropertiesRequestGlobalDataPersistence = S.String;
 
 /** Optional. List of source IP addresses or subnet masks to whitelist in all regions that don't set local 'sourceIp' settings. If set, Redis clients will be able to connect to this database only from within the specified source IP addresses ranges. Example: ['192.168.10.0/32', '192.168.12.0/24'] */
 export type UpdateCrdbLocalPropertiesRequestGlobalSourceIpList = Array<string>;
@@ -6992,7 +6983,7 @@ export type LocalRegionPropertiesInputDataPersistence =
   | "snapshot-every-1-hour"
   | "snapshot-every-6-hours"
   | "snapshot-every-12-hours";
-export const LocalRegionPropertiesInputDataPersistence = /*@__PURE__*/ S.String;
+export const LocalRegionPropertiesInputDataPersistence = S.String;
 
 /** Optional. List of source IP addresses or subnet masks to whitelist in this region. If set, Redis clients will be able to connect to the database in this region only from within the specified source IP addresses ranges, and 'globalSourceIp' will not apply to this region. Example: ['192.168.10.0/32', '192.168.12.0/24'] */
 export type LocalRegionPropertiesInputSourceIpList = Array<string>;
@@ -7008,7 +6999,7 @@ export const LocalRegionPropertiesInputAlertsList = /*@__PURE__*/ S.Array(
 
 /** Optional. Redis Serialization Protocol version for this region. Must be compatible with Redis version. */
 export type LocalRegionPropertiesInputRespVersion = "resp2" | "resp3";
-export const LocalRegionPropertiesInputRespVersion = /*@__PURE__*/ S.String;
+export const LocalRegionPropertiesInputRespVersion = S.String;
 
 /** Optional. A list of regions and local settings to update. */
 export interface LocalRegionPropertiesInput {
@@ -7065,8 +7056,7 @@ export type UpdateCrdbLocalPropertiesRequestDataEvictionPolicy =
   | "volatile-random"
   | "volatile-ttl"
   | "noeviction";
-export const UpdateCrdbLocalPropertiesRequestDataEvictionPolicy =
-  /*@__PURE__*/ S.String;
+export const UpdateCrdbLocalPropertiesRequestDataEvictionPolicy = S.String;
 
 export interface UpdateCrdbLocalPropertiesRequest {
   /** Subscription ID. */
@@ -7154,7 +7144,7 @@ export const UpdateCrdbLocalPropertiesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Optional. Redis Serialization Protocol version. Must be compatible with Redis version. */
 export type UpdateDatabaseRequestRespVersion = "resp2" | "resp3";
-export const UpdateDatabaseRequestRespVersion = /*@__PURE__*/ S.String;
+export const UpdateDatabaseRequestRespVersion = S.String;
 
 /** Optional. Type and rate of data persistence in persistent storage. */
 export type UpdateDatabaseRequestDataPersistence =
@@ -7164,7 +7154,7 @@ export type UpdateDatabaseRequestDataPersistence =
   | "snapshot-every-1-hour"
   | "snapshot-every-6-hours"
   | "snapshot-every-12-hours";
-export const UpdateDatabaseRequestDataPersistence = /*@__PURE__*/ S.String;
+export const UpdateDatabaseRequestDataPersistence = S.String;
 
 /** Optional. Data eviction policy. */
 export type UpdateDatabaseRequestDataEvictionPolicy =
@@ -7178,7 +7168,7 @@ export type UpdateDatabaseRequestDataEvictionPolicy =
   | "volatile-random"
   | "volatile-ttl"
   | "noeviction";
-export const UpdateDatabaseRequestDataEvictionPolicy = /*@__PURE__*/ S.String;
+export const UpdateDatabaseRequestDataEvictionPolicy = S.String;
 
 /** Optional. Hashing policy Regex rules. Used only if 'shardingType' is 'custom-regex-rules'. */
 export type UpdateDatabaseRequestRegexRulesList = Array<string>;
@@ -7318,7 +7308,7 @@ export const UpdateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Action to perform on the endpoint. */
 export type UpdatePscServiceEndpointRequestAction = "accept" | "reject";
-export const UpdatePscServiceEndpointRequestAction = /*@__PURE__*/ S.String;
+export const UpdatePscServiceEndpointRequestAction = S.String;
 
 export interface UpdatePscServiceEndpointRequest {
   /** Subscription ID. */
@@ -7452,7 +7442,7 @@ export const UpdateSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
 export type UpdateSubscription1RequestPaymentMethod =
   | "credit-card"
   | "marketplace";
-export const UpdateSubscription1RequestPaymentMethod = /*@__PURE__*/ S.String;
+export const UpdateSubscription1RequestPaymentMethod = S.String;
 
 export interface UpdateSubscription1Request {
   subscriptionId: number;
@@ -7543,8 +7533,7 @@ export const UpdateSubscriptionCidrWhiteListResponse = /*@__PURE__*/ S.suspend(
 export type UpdateSubscriptionMaintenanceWindowsRequestMode =
   | "manual"
   | "automatic";
-export const UpdateSubscriptionMaintenanceWindowsRequestMode =
-  /*@__PURE__*/ S.String;
+export const UpdateSubscriptionMaintenanceWindowsRequestMode = S.String;
 
 /** Days where this maintenance window applies. Can contain one or more of: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", or "Sunday". */
 export type MaintenanceWindowSpecDaysList = Array<string>;
@@ -7816,7 +7805,7 @@ export type UpdateUserRequestRole =
   | "Logs Viewer (API use only)"
   | "Manager"
   | "Billing Admin";
-export const UpdateUserRequestRole = /*@__PURE__*/ S.String;
+export const UpdateUserRequestRole = S.String;
 
 export interface UpdateUserRequest {
   /** User ID. */

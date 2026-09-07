@@ -28,7 +28,7 @@ export type AddItemRequestItemType =
   | "model"
   | "dataset"
   | "bucket";
-export const AddItemRequestItemType = /*@__PURE__*/ S.String;
+export const AddItemRequestItemType = S.String;
 
 export interface AddItemRequestItem {
   type: AddItemRequestItemType | (string & {});
@@ -80,8 +80,7 @@ export const AddItemResponseGatingCase1Case1 = /*@__PURE__*/ S.suspend(() =>
 export type AddItemResponseGatingCase1Case2NotificationsMode =
   | "bulk"
   | "real-time";
-export const AddItemResponseGatingCase1Case2NotificationsMode =
-  /*@__PURE__*/ S.String;
+export const AddItemResponseGatingCase1Case2NotificationsMode = S.String;
 
 export interface AddItemResponseGatingCase1Case2Notifications {
   mode: AddItemResponseGatingCase1Case2NotificationsMode;
@@ -115,18 +114,18 @@ export type AddItemResponseGatingCase1 =
   | AddItemResponseGatingCase1Case1
   | AddItemResponseGatingCase1Case2;
 export const AddItemResponseGatingCase1 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddItemResponseGatingCase1>;
+  S.Unknown as any as S.Schema<AddItemResponseGatingCase1>;
 
 export type AddItemResponseGating = unknown | AddItemResponseGatingCase1;
 export const AddItemResponseGating =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddItemResponseGating>;
+  S.Unknown as any as S.Schema<AddItemResponseGating>;
 
 export type AddItemResponseOwnerCase0Plan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const AddItemResponseOwnerCase0Plan = /*@__PURE__*/ S.String;
+export const AddItemResponseOwnerCase0Plan = S.String;
 
 export interface AddItemResponseOwnerCase0 {
   _id: string;
@@ -164,7 +163,7 @@ export type AddItemResponseOwnerCase1PrimaryOrgPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const AddItemResponseOwnerCase1PrimaryOrgPlan = /*@__PURE__*/ S.String;
+export const AddItemResponseOwnerCase1PrimaryOrgPlan = S.String;
 
 export type AddItemResponseOwnerCase1PrimaryOrgUserRole =
   | "admin"
@@ -172,8 +171,7 @@ export type AddItemResponseOwnerCase1PrimaryOrgUserRole =
   | "contributor"
   | "read"
   | "no_access";
-export const AddItemResponseOwnerCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+export const AddItemResponseOwnerCase1PrimaryOrgUserRole = S.String;
 
 export interface AddItemResponseOwnerCase1PrimaryOrg {
   avatarUrl: string;
@@ -243,7 +241,7 @@ export type AddItemResponseOwner =
   | AddItemResponseOwnerCase0
   | AddItemResponseOwnerCase1;
 export const AddItemResponseOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddItemResponseOwner>;
+  S.Unknown as any as S.Schema<AddItemResponseOwner>;
 
 export type AddItemResponseTheme =
   | "orange"
@@ -252,7 +250,7 @@ export type AddItemResponseTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const AddItemResponseTheme = /*@__PURE__*/ S.String;
+export const AddItemResponseTheme = S.String;
 
 export interface AddItemResponseResourceGroup {
   id: string;
@@ -291,8 +289,7 @@ export type AddItemResponseItemsItemDatasetsServerInfoViewer =
   | "preview"
   | "viewer-partial"
   | "viewer";
-export const AddItemResponseItemsItemDatasetsServerInfoViewer =
-  /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemDatasetsServerInfoViewer = S.String;
 
 export type AddItemResponseItemsItemDatasetsServerInfoLibrariesItem =
   | "mlcroissant"
@@ -307,8 +304,7 @@ export type AddItemResponseItemsItemDatasetsServerInfoLibrariesItem =
   | "polars"
   | "duckdb"
   | "datadesigner";
-export const AddItemResponseItemsItemDatasetsServerInfoLibrariesItem =
-  /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemDatasetsServerInfoLibrariesItem = S.String;
 
 export type AddItemResponseItemsItemDatasetsServerInfoLibrariesList =
   Array<AddItemResponseItemsItemDatasetsServerInfoLibrariesItem>;
@@ -328,8 +324,7 @@ export type AddItemResponseItemsItemDatasetsServerInfoFormatsItem =
   | "arrow"
   | "optimized-parquet"
   | "agent-traces";
-export const AddItemResponseItemsItemDatasetsServerInfoFormatsItem =
-  /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemDatasetsServerInfoFormatsItem = S.String;
 
 export type AddItemResponseItemsItemDatasetsServerInfoFormatsList =
   Array<AddItemResponseItemsItemDatasetsServerInfoFormatsItem>;
@@ -349,7 +344,7 @@ export type AddItemResponseItemsItemDatasetsServerInfoModalitiesItem =
   | "timeseries"
   | "video";
 export const AddItemResponseItemsItemDatasetsServerInfoModalitiesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddItemResponseItemsItemDatasetsServerInfoModalitiesList =
   Array<AddItemResponseItemsItemDatasetsServerInfoModalitiesItem>;
@@ -379,13 +374,13 @@ export const AddItemResponseItemsItemDatasetsServerInfo =
   }) as any as S.Schema<AddItemResponseItemsItemDatasetsServerInfo>;
 
 export type AddItemResponseItemsItemGatedCase1 = "auto" | "manual";
-export const AddItemResponseItemsItemGatedCase1 = /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemGatedCase1 = S.String;
 
 export type AddItemResponseItemsItemGated =
   | unknown
   | AddItemResponseItemsItemGatedCase1;
 export const AddItemResponseItemsItemGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddItemResponseItemsItemGated>;
+  S.Unknown as any as S.Schema<AddItemResponseItemsItemGated>;
 
 export type AddItemResponseItemsItemResourceGroup =
   AddItemResponseResourceGroup;
@@ -413,21 +408,21 @@ export type AddItemResponseItemsItemAvailableInferenceProvidersItemProvider =
   | "wavespeed"
   | "zai-org";
 export const AddItemResponseItemsItemAvailableInferenceProvidersItemProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddItemResponseItemsItemAvailableInferenceProvidersItemProviderStatus =
   | "live"
   | "staging"
   | "error";
 export const AddItemResponseItemsItemAvailableInferenceProvidersItemProviderStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddItemResponseItemsItemAvailableInferenceProvidersItemModelStatus =
   | "live"
   | "staging"
   | "error";
 export const AddItemResponseItemsItemAvailableInferenceProvidersItemModelStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddItemResponseItemsItemAvailableInferenceProvidersItemTask =
   | "text-classification"
@@ -489,7 +484,7 @@ export type AddItemResponseItemsItemAvailableInferenceProvidersItemTask =
   | "other"
   | "conversational";
 export const AddItemResponseItemsItemAvailableInferenceProvidersItemTask =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AddItemResponseItemsItemAvailableInferenceProvidersItemFeatures {
   toolCalling?: boolean;
@@ -558,8 +553,7 @@ export type AddItemResponseItemsItemAuthorDataCase0Plan =
   | "enterprise"
   | "plus"
   | "academia";
-export const AddItemResponseItemsItemAuthorDataCase0Plan =
-  /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemAuthorDataCase0Plan = S.String;
 
 export interface AddItemResponseItemsItemAuthorDataCase0 {
   _id: string;
@@ -598,8 +592,7 @@ export type AddItemResponseItemsItemAuthorDataCase1PrimaryOrgPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const AddItemResponseItemsItemAuthorDataCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemAuthorDataCase1PrimaryOrgPlan = S.String;
 
 export type AddItemResponseItemsItemAuthorDataCase1PrimaryOrgUserRole =
   | "admin"
@@ -608,7 +601,7 @@ export type AddItemResponseItemsItemAuthorDataCase1PrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const AddItemResponseItemsItemAuthorDataCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AddItemResponseItemsItemAuthorDataCase1PrimaryOrg {
   avatarUrl: string;
@@ -682,7 +675,7 @@ export type AddItemResponseItemsItemAuthorData =
   | AddItemResponseItemsItemAuthorDataCase0
   | AddItemResponseItemsItemAuthorDataCase1;
 export const AddItemResponseItemsItemAuthorData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddItemResponseItemsItemAuthorData>;
+  S.Unknown as any as S.Schema<AddItemResponseItemsItemAuthorData>;
 
 export type AddItemResponseItemsItemWidgetOutputUrlsList = Array<string>;
 export const AddItemResponseItemsItemWidgetOutputUrlsList =
@@ -695,7 +688,7 @@ export type AddItemResponseItemsItemSdk =
   | "docker"
   | "static"
   | "streamlit";
-export const AddItemResponseItemsItemSdk = /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemSdk = S.String;
 
 export type AddItemResponseItemsItemRuntimeStage =
   | "NO_APP_FILE"
@@ -711,7 +704,7 @@ export type AddItemResponseItemsItemRuntimeStage =
   | "STOPPED"
   | "PAUSED"
   | "SLEEPING";
-export const AddItemResponseItemsItemRuntimeStage = /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemRuntimeStage = S.String;
 
 export type AddItemResponseItemsItemRuntimeHardwareCurrent =
   | "cpu-basic"
@@ -743,8 +736,7 @@ export type AddItemResponseItemsItemRuntimeHardwareCurrent =
   | "rtx-pro-6000x4"
   | "rtx-pro-6000x8"
   | "inf2x6";
-export const AddItemResponseItemsItemRuntimeHardwareCurrent =
-  /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemRuntimeHardwareCurrent = S.String;
 
 export type AddItemResponseItemsItemRuntimeHardwareRequested =
   | "cpu-basic"
@@ -776,8 +768,7 @@ export type AddItemResponseItemsItemRuntimeHardwareRequested =
   | "rtx-pro-6000x4"
   | "rtx-pro-6000x8"
   | "inf2x6";
-export const AddItemResponseItemsItemRuntimeHardwareRequested =
-  /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemRuntimeHardwareRequested = S.String;
 
 export interface AddItemResponseItemsItemRuntimeHardware {
   current: AddItemResponseItemsItemRuntimeHardwareCurrent | null;
@@ -795,7 +786,7 @@ export const AddItemResponseItemsItemRuntimeHardware = /*@__PURE__*/ S.suspend(
 
 export type AddItemResponseItemsItemRuntimeReplicasRequested = number | unknown;
 export const AddItemResponseItemsItemRuntimeReplicasRequested =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddItemResponseItemsItemRuntimeReplicasRequested>;
+  S.Unknown as any as S.Schema<AddItemResponseItemsItemRuntimeReplicasRequested>;
 
 export interface AddItemResponseItemsItemRuntimeReplicas {
   current?: number | null;
@@ -817,8 +808,7 @@ export type AddItemResponseItemsItemRuntimeDomainsItemStage =
   | "PENDING_CHALLENGE"
   | "EXPIRED_CHALLENGE"
   | "MISCONFIGURED";
-export const AddItemResponseItemsItemRuntimeDomainsItemStage =
-  /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemRuntimeDomainsItemStage = S.String;
 
 export interface AddItemResponseItemsItemRuntimeDomainsItem {
   domain: string;
@@ -903,8 +893,7 @@ export type AddItemResponseItemsItemOriginRepoAuthorCase0Plan =
   | "enterprise"
   | "plus"
   | "academia";
-export const AddItemResponseItemsItemOriginRepoAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemOriginRepoAuthorCase0Plan = S.String;
 
 export interface AddItemResponseItemsItemOriginRepoAuthorCase0 {
   _id: string;
@@ -944,7 +933,7 @@ export type AddItemResponseItemsItemOriginRepoAuthorCase1PrimaryOrgPlan =
   | "plus"
   | "academia";
 export const AddItemResponseItemsItemOriginRepoAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddItemResponseItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -953,7 +942,7 @@ export type AddItemResponseItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const AddItemResponseItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AddItemResponseItemsItemOriginRepoAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -1031,7 +1020,7 @@ export type AddItemResponseItemsItemOriginRepoAuthor =
   | AddItemResponseItemsItemOriginRepoAuthorCase0
   | AddItemResponseItemsItemOriginRepoAuthorCase1;
 export const AddItemResponseItemsItemOriginRepoAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddItemResponseItemsItemOriginRepoAuthor>;
+  S.Unknown as any as S.Schema<AddItemResponseItemsItemOriginRepoAuthor>;
 
 export interface AddItemResponseItemsItemOriginRepo {
   author: AddItemResponseItemsItemOriginRepoAuthor;
@@ -1055,14 +1044,14 @@ export type AddItemResponseItemsItemVisibility =
   | "public"
   | "private"
   | "protected";
-export const AddItemResponseItemsItemVisibility = /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemVisibility = S.String;
 
 export type AddItemResponseItemsItemOwnerCase0Plan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const AddItemResponseItemsItemOwnerCase0Plan = /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemOwnerCase0Plan = S.String;
 
 export interface AddItemResponseItemsItemOwnerCase0 {
   _id: string;
@@ -1100,8 +1089,7 @@ export type AddItemResponseItemsItemOwnerCase1PrimaryOrgPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const AddItemResponseItemsItemOwnerCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemOwnerCase1PrimaryOrgPlan = S.String;
 
 export type AddItemResponseItemsItemOwnerCase1PrimaryOrgUserRole =
   | "admin"
@@ -1109,8 +1097,7 @@ export type AddItemResponseItemsItemOwnerCase1PrimaryOrgUserRole =
   | "contributor"
   | "read"
   | "no_access";
-export const AddItemResponseItemsItemOwnerCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemOwnerCase1PrimaryOrgUserRole = S.String;
 
 export interface AddItemResponseItemsItemOwnerCase1PrimaryOrg {
   avatarUrl: string;
@@ -1183,7 +1170,7 @@ export type AddItemResponseItemsItemOwner =
   | AddItemResponseItemsItemOwnerCase0
   | AddItemResponseItemsItemOwnerCase1;
 export const AddItemResponseItemsItemOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddItemResponseItemsItemOwner>;
+  S.Unknown as any as S.Schema<AddItemResponseItemsItemOwner>;
 
 export type AddItemResponseItemsItemTheme =
   | "orange"
@@ -1192,7 +1179,7 @@ export type AddItemResponseItemsItemTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const AddItemResponseItemsItemTheme = /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemTheme = S.String;
 
 export type AddItemResponseItemsItemAdminTagsList = Array<string>;
 export const AddItemResponseItemsItemAdminTagsList = /*@__PURE__*/ S.Array(
@@ -1200,12 +1187,10 @@ export const AddItemResponseItemsItemAdminTagsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<AddItemResponseItemsItemAdminTagsList>;
 
 export type AddItemResponseItemsItemCdnRegionsItemProvider = "gcp" | "aws";
-export const AddItemResponseItemsItemCdnRegionsItemProvider =
-  /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemCdnRegionsItemProvider = S.String;
 
 export type AddItemResponseItemsItemCdnRegionsItemRegion = "us" | "eu";
-export const AddItemResponseItemsItemCdnRegionsItemRegion =
-  /*@__PURE__*/ S.String;
+export const AddItemResponseItemsItemCdnRegionsItemRegion = S.String;
 
 export interface AddItemResponseItemsItemCdnRegionsItem {
   provider: AddItemResponseItemsItemCdnRegionsItemProvider;
@@ -1405,7 +1390,7 @@ export type AddItemBySlugRequestItemType =
   | "model"
   | "dataset"
   | "bucket";
-export const AddItemBySlugRequestItemType = /*@__PURE__*/ S.String;
+export const AddItemBySlugRequestItemType = S.String;
 
 export interface AddItemBySlugRequestItem {
   type: AddItemBySlugRequestItemType | (string & {});
@@ -1451,8 +1436,7 @@ export const AddItemBySlugResponseGatingCase1Case1 =
 export type AddItemBySlugResponseGatingCase1Case2NotificationsMode =
   | "bulk"
   | "real-time";
-export const AddItemBySlugResponseGatingCase1Case2NotificationsMode =
-  /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseGatingCase1Case2NotificationsMode = S.String;
 
 export interface AddItemBySlugResponseGatingCase1Case2Notifications {
   mode: AddItemBySlugResponseGatingCase1Case2NotificationsMode;
@@ -1487,20 +1471,20 @@ export type AddItemBySlugResponseGatingCase1 =
   | AddItemResponseGatingCase1Case1
   | AddItemBySlugResponseGatingCase1Case2;
 export const AddItemBySlugResponseGatingCase1 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddItemBySlugResponseGatingCase1>;
+  S.Unknown as any as S.Schema<AddItemBySlugResponseGatingCase1>;
 
 export type AddItemBySlugResponseGating =
   | unknown
   | AddItemBySlugResponseGatingCase1;
 export const AddItemBySlugResponseGating =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddItemBySlugResponseGating>;
+  S.Unknown as any as S.Schema<AddItemBySlugResponseGating>;
 
 export type AddItemBySlugResponseOwnerCase0Plan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const AddItemBySlugResponseOwnerCase0Plan = /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseOwnerCase0Plan = S.String;
 
 export interface AddItemBySlugResponseOwnerCase0 {
   _id: string;
@@ -1538,8 +1522,7 @@ export type AddItemBySlugResponseOwnerCase1PrimaryOrgPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const AddItemBySlugResponseOwnerCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseOwnerCase1PrimaryOrgPlan = S.String;
 
 export type AddItemBySlugResponseOwnerCase1PrimaryOrgUserRole =
   | "admin"
@@ -1547,8 +1530,7 @@ export type AddItemBySlugResponseOwnerCase1PrimaryOrgUserRole =
   | "contributor"
   | "read"
   | "no_access";
-export const AddItemBySlugResponseOwnerCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseOwnerCase1PrimaryOrgUserRole = S.String;
 
 export interface AddItemBySlugResponseOwnerCase1PrimaryOrg {
   avatarUrl: string;
@@ -1619,7 +1601,7 @@ export type AddItemBySlugResponseOwner =
   | AddItemBySlugResponseOwnerCase0
   | AddItemBySlugResponseOwnerCase1;
 export const AddItemBySlugResponseOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddItemBySlugResponseOwner>;
+  S.Unknown as any as S.Schema<AddItemBySlugResponseOwner>;
 
 export type AddItemBySlugResponseTheme =
   | "orange"
@@ -1628,7 +1610,7 @@ export type AddItemBySlugResponseTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const AddItemBySlugResponseTheme = /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseTheme = S.String;
 
 export type AddItemBySlugResponseResourceGroup = AddItemResponseResourceGroup;
 export const AddItemBySlugResponseResourceGroup = AddItemResponseResourceGroup;
@@ -1645,8 +1627,7 @@ export type AddItemBySlugResponseItemsItemDatasetsServerInfoViewer =
   | "preview"
   | "viewer-partial"
   | "viewer";
-export const AddItemBySlugResponseItemsItemDatasetsServerInfoViewer =
-  /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseItemsItemDatasetsServerInfoViewer = S.String;
 
 export type AddItemBySlugResponseItemsItemDatasetsServerInfoLibrariesItem =
   | "mlcroissant"
@@ -1662,7 +1643,7 @@ export type AddItemBySlugResponseItemsItemDatasetsServerInfoLibrariesItem =
   | "duckdb"
   | "datadesigner";
 export const AddItemBySlugResponseItemsItemDatasetsServerInfoLibrariesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddItemBySlugResponseItemsItemDatasetsServerInfoLibrariesList =
   Array<AddItemBySlugResponseItemsItemDatasetsServerInfoLibrariesItem>;
@@ -1683,7 +1664,7 @@ export type AddItemBySlugResponseItemsItemDatasetsServerInfoFormatsItem =
   | "optimized-parquet"
   | "agent-traces";
 export const AddItemBySlugResponseItemsItemDatasetsServerInfoFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddItemBySlugResponseItemsItemDatasetsServerInfoFormatsList =
   Array<AddItemBySlugResponseItemsItemDatasetsServerInfoFormatsItem>;
@@ -1703,7 +1684,7 @@ export type AddItemBySlugResponseItemsItemDatasetsServerInfoModalitiesItem =
   | "timeseries"
   | "video";
 export const AddItemBySlugResponseItemsItemDatasetsServerInfoModalitiesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddItemBySlugResponseItemsItemDatasetsServerInfoModalitiesList =
   Array<AddItemBySlugResponseItemsItemDatasetsServerInfoModalitiesItem>;
@@ -1734,13 +1715,13 @@ export const AddItemBySlugResponseItemsItemDatasetsServerInfo =
   }) as any as S.Schema<AddItemBySlugResponseItemsItemDatasetsServerInfo>;
 
 export type AddItemBySlugResponseItemsItemGatedCase1 = "auto" | "manual";
-export const AddItemBySlugResponseItemsItemGatedCase1 = /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseItemsItemGatedCase1 = S.String;
 
 export type AddItemBySlugResponseItemsItemGated =
   | unknown
   | AddItemBySlugResponseItemsItemGatedCase1;
 export const AddItemBySlugResponseItemsItemGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddItemBySlugResponseItemsItemGated>;
+  S.Unknown as any as S.Schema<AddItemBySlugResponseItemsItemGated>;
 
 export type AddItemBySlugResponseItemsItemResourceGroup =
   AddItemResponseResourceGroup;
@@ -1768,21 +1749,21 @@ export type AddItemBySlugResponseItemsItemAvailableInferenceProvidersItemProvide
   | "wavespeed"
   | "zai-org";
 export const AddItemBySlugResponseItemsItemAvailableInferenceProvidersItemProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddItemBySlugResponseItemsItemAvailableInferenceProvidersItemProviderStatus =
   | "live"
   | "staging"
   | "error";
 export const AddItemBySlugResponseItemsItemAvailableInferenceProvidersItemProviderStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddItemBySlugResponseItemsItemAvailableInferenceProvidersItemModelStatus =
   | "live"
   | "staging"
   | "error";
 export const AddItemBySlugResponseItemsItemAvailableInferenceProvidersItemModelStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddItemBySlugResponseItemsItemAvailableInferenceProvidersItemTask =
   | "text-classification"
@@ -1844,7 +1825,7 @@ export type AddItemBySlugResponseItemsItemAvailableInferenceProvidersItemTask =
   | "other"
   | "conversational";
 export const AddItemBySlugResponseItemsItemAvailableInferenceProvidersItemTask =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddItemBySlugResponseItemsItemAvailableInferenceProvidersItemFeatures =
   AddItemResponseItemsItemAvailableInferenceProvidersItemFeatures;
@@ -1906,8 +1887,7 @@ export type AddItemBySlugResponseItemsItemAuthorDataCase0Plan =
   | "enterprise"
   | "plus"
   | "academia";
-export const AddItemBySlugResponseItemsItemAuthorDataCase0Plan =
-  /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseItemsItemAuthorDataCase0Plan = S.String;
 
 export interface AddItemBySlugResponseItemsItemAuthorDataCase0 {
   _id: string;
@@ -1947,7 +1927,7 @@ export type AddItemBySlugResponseItemsItemAuthorDataCase1PrimaryOrgPlan =
   | "plus"
   | "academia";
 export const AddItemBySlugResponseItemsItemAuthorDataCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddItemBySlugResponseItemsItemAuthorDataCase1PrimaryOrgUserRole =
   | "admin"
@@ -1956,7 +1936,7 @@ export type AddItemBySlugResponseItemsItemAuthorDataCase1PrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const AddItemBySlugResponseItemsItemAuthorDataCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AddItemBySlugResponseItemsItemAuthorDataCase1PrimaryOrg {
   avatarUrl: string;
@@ -2034,7 +2014,7 @@ export type AddItemBySlugResponseItemsItemAuthorData =
   | AddItemBySlugResponseItemsItemAuthorDataCase0
   | AddItemBySlugResponseItemsItemAuthorDataCase1;
 export const AddItemBySlugResponseItemsItemAuthorData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddItemBySlugResponseItemsItemAuthorData>;
+  S.Unknown as any as S.Schema<AddItemBySlugResponseItemsItemAuthorData>;
 
 export type AddItemBySlugResponseItemsItemWidgetOutputUrlsList = Array<string>;
 export const AddItemBySlugResponseItemsItemWidgetOutputUrlsList =
@@ -2047,7 +2027,7 @@ export type AddItemBySlugResponseItemsItemSdk =
   | "docker"
   | "static"
   | "streamlit";
-export const AddItemBySlugResponseItemsItemSdk = /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseItemsItemSdk = S.String;
 
 export type AddItemBySlugResponseItemsItemRuntimeStage =
   | "NO_APP_FILE"
@@ -2063,8 +2043,7 @@ export type AddItemBySlugResponseItemsItemRuntimeStage =
   | "STOPPED"
   | "PAUSED"
   | "SLEEPING";
-export const AddItemBySlugResponseItemsItemRuntimeStage =
-  /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseItemsItemRuntimeStage = S.String;
 
 export type AddItemBySlugResponseItemsItemRuntimeHardwareCurrent =
   | "cpu-basic"
@@ -2096,8 +2075,7 @@ export type AddItemBySlugResponseItemsItemRuntimeHardwareCurrent =
   | "rtx-pro-6000x4"
   | "rtx-pro-6000x8"
   | "inf2x6";
-export const AddItemBySlugResponseItemsItemRuntimeHardwareCurrent =
-  /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseItemsItemRuntimeHardwareCurrent = S.String;
 
 export type AddItemBySlugResponseItemsItemRuntimeHardwareRequested =
   | "cpu-basic"
@@ -2129,8 +2107,7 @@ export type AddItemBySlugResponseItemsItemRuntimeHardwareRequested =
   | "rtx-pro-6000x4"
   | "rtx-pro-6000x8"
   | "inf2x6";
-export const AddItemBySlugResponseItemsItemRuntimeHardwareRequested =
-  /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseItemsItemRuntimeHardwareRequested = S.String;
 
 export interface AddItemBySlugResponseItemsItemRuntimeHardware {
   current: AddItemBySlugResponseItemsItemRuntimeHardwareCurrent | null;
@@ -2152,7 +2129,7 @@ export type AddItemBySlugResponseItemsItemRuntimeReplicasRequested =
   | number
   | unknown;
 export const AddItemBySlugResponseItemsItemRuntimeReplicasRequested =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddItemBySlugResponseItemsItemRuntimeReplicasRequested>;
+  S.Unknown as any as S.Schema<AddItemBySlugResponseItemsItemRuntimeReplicasRequested>;
 
 export interface AddItemBySlugResponseItemsItemRuntimeReplicas {
   current?: number | null;
@@ -2174,8 +2151,7 @@ export type AddItemBySlugResponseItemsItemRuntimeDomainsItemStage =
   | "PENDING_CHALLENGE"
   | "EXPIRED_CHALLENGE"
   | "MISCONFIGURED";
-export const AddItemBySlugResponseItemsItemRuntimeDomainsItemStage =
-  /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseItemsItemRuntimeDomainsItemStage = S.String;
 
 export interface AddItemBySlugResponseItemsItemRuntimeDomainsItem {
   domain: string;
@@ -2264,8 +2240,7 @@ export type AddItemBySlugResponseItemsItemOriginRepoAuthorCase0Plan =
   | "enterprise"
   | "plus"
   | "academia";
-export const AddItemBySlugResponseItemsItemOriginRepoAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseItemsItemOriginRepoAuthorCase0Plan = S.String;
 
 export interface AddItemBySlugResponseItemsItemOriginRepoAuthorCase0 {
   _id: string;
@@ -2305,7 +2280,7 @@ export type AddItemBySlugResponseItemsItemOriginRepoAuthorCase1PrimaryOrgPlan =
   | "plus"
   | "academia";
 export const AddItemBySlugResponseItemsItemOriginRepoAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddItemBySlugResponseItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -2314,7 +2289,7 @@ export type AddItemBySlugResponseItemsItemOriginRepoAuthorCase1PrimaryOrgUserRol
   | "read"
   | "no_access";
 export const AddItemBySlugResponseItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AddItemBySlugResponseItemsItemOriginRepoAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -2392,7 +2367,7 @@ export type AddItemBySlugResponseItemsItemOriginRepoAuthor =
   | AddItemBySlugResponseItemsItemOriginRepoAuthorCase0
   | AddItemBySlugResponseItemsItemOriginRepoAuthorCase1;
 export const AddItemBySlugResponseItemsItemOriginRepoAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddItemBySlugResponseItemsItemOriginRepoAuthor>;
+  S.Unknown as any as S.Schema<AddItemBySlugResponseItemsItemOriginRepoAuthor>;
 
 export interface AddItemBySlugResponseItemsItemOriginRepo {
   author: AddItemBySlugResponseItemsItemOriginRepoAuthor;
@@ -2417,15 +2392,14 @@ export type AddItemBySlugResponseItemsItemVisibility =
   | "public"
   | "private"
   | "protected";
-export const AddItemBySlugResponseItemsItemVisibility = /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseItemsItemVisibility = S.String;
 
 export type AddItemBySlugResponseItemsItemOwnerCase0Plan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const AddItemBySlugResponseItemsItemOwnerCase0Plan =
-  /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseItemsItemOwnerCase0Plan = S.String;
 
 export interface AddItemBySlugResponseItemsItemOwnerCase0 {
   _id: string;
@@ -2464,8 +2438,7 @@ export type AddItemBySlugResponseItemsItemOwnerCase1PrimaryOrgPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const AddItemBySlugResponseItemsItemOwnerCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseItemsItemOwnerCase1PrimaryOrgPlan = S.String;
 
 export type AddItemBySlugResponseItemsItemOwnerCase1PrimaryOrgUserRole =
   | "admin"
@@ -2474,7 +2447,7 @@ export type AddItemBySlugResponseItemsItemOwnerCase1PrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const AddItemBySlugResponseItemsItemOwnerCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AddItemBySlugResponseItemsItemOwnerCase1PrimaryOrg {
   avatarUrl: string;
@@ -2550,7 +2523,7 @@ export type AddItemBySlugResponseItemsItemOwner =
   | AddItemBySlugResponseItemsItemOwnerCase0
   | AddItemBySlugResponseItemsItemOwnerCase1;
 export const AddItemBySlugResponseItemsItemOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddItemBySlugResponseItemsItemOwner>;
+  S.Unknown as any as S.Schema<AddItemBySlugResponseItemsItemOwner>;
 
 export type AddItemBySlugResponseItemsItemTheme =
   | "orange"
@@ -2559,7 +2532,7 @@ export type AddItemBySlugResponseItemsItemTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const AddItemBySlugResponseItemsItemTheme = /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseItemsItemTheme = S.String;
 
 export type AddItemBySlugResponseItemsItemAdminTagsList = Array<string>;
 export const AddItemBySlugResponseItemsItemAdminTagsList =
@@ -2570,12 +2543,10 @@ export const AddItemBySlugResponseItemsItemAdminTagsList =
 export type AddItemBySlugResponseItemsItemCdnRegionsItemProvider =
   | "gcp"
   | "aws";
-export const AddItemBySlugResponseItemsItemCdnRegionsItemProvider =
-  /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseItemsItemCdnRegionsItemProvider = S.String;
 
 export type AddItemBySlugResponseItemsItemCdnRegionsItemRegion = "us" | "eu";
-export const AddItemBySlugResponseItemsItemCdnRegionsItemRegion =
-  /*@__PURE__*/ S.String;
+export const AddItemBySlugResponseItemsItemCdnRegionsItemRegion = S.String;
 
 export interface AddItemBySlugResponseItemsItemCdnRegionsItem {
   provider: AddItemBySlugResponseItemsItemCdnRegionsItemProvider;
@@ -2775,7 +2746,7 @@ export const AddItemBySlugResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AddItemBySlugResponse>;
 
 export type BatchUpdateItemsRequestBodyItemAction = "update";
-export const BatchUpdateItemsRequestBodyItemAction = /*@__PURE__*/ S.String;
+export const BatchUpdateItemsRequestBodyItemAction = S.String;
 
 export type BatchUpdateItemsRequestBodyItemDataGalleryList = Array<string>;
 export const BatchUpdateItemsRequestBodyItemDataGalleryList =
@@ -2850,8 +2821,7 @@ export const BatchUpdateItemsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BatchUpdateItemsResponse>;
 
 export type BatchUpdateItemsBySlugRequestBodyItemAction = "update";
-export const BatchUpdateItemsBySlugRequestBodyItemAction =
-  /*@__PURE__*/ S.String;
+export const BatchUpdateItemsBySlugRequestBodyItemAction = S.String;
 
 export type BatchUpdateItemsBySlugRequestBodyItemDataGalleryList =
   Array<string>;
@@ -2933,7 +2903,7 @@ export type CreateCollectionRequestItemType =
   | "model"
   | "dataset"
   | "bucket";
-export const CreateCollectionRequestItemType = /*@__PURE__*/ S.String;
+export const CreateCollectionRequestItemType = S.String;
 
 export interface CreateCollectionRequestItem {
   type: CreateCollectionRequestItemType | (string & {});
@@ -2980,7 +2950,7 @@ export type CreateCollectionResponseGatingCase1Case2NotificationsMode =
   | "bulk"
   | "real-time";
 export const CreateCollectionResponseGatingCase1Case2NotificationsMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateCollectionResponseGatingCase1Case2Notifications {
   mode: CreateCollectionResponseGatingCase1Case2NotificationsMode;
@@ -3015,20 +2985,20 @@ export type CreateCollectionResponseGatingCase1 =
   | AddItemResponseGatingCase1Case1
   | CreateCollectionResponseGatingCase1Case2;
 export const CreateCollectionResponseGatingCase1 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCollectionResponseGatingCase1>;
+  S.Unknown as any as S.Schema<CreateCollectionResponseGatingCase1>;
 
 export type CreateCollectionResponseGating =
   | unknown
   | CreateCollectionResponseGatingCase1;
 export const CreateCollectionResponseGating =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCollectionResponseGating>;
+  S.Unknown as any as S.Schema<CreateCollectionResponseGating>;
 
 export type CreateCollectionResponseOwnerCase0Plan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const CreateCollectionResponseOwnerCase0Plan = /*@__PURE__*/ S.String;
+export const CreateCollectionResponseOwnerCase0Plan = S.String;
 
 export interface CreateCollectionResponseOwnerCase0 {
   _id: string;
@@ -3066,8 +3036,7 @@ export type CreateCollectionResponseOwnerCase1PrimaryOrgPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const CreateCollectionResponseOwnerCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const CreateCollectionResponseOwnerCase1PrimaryOrgPlan = S.String;
 
 export type CreateCollectionResponseOwnerCase1PrimaryOrgUserRole =
   | "admin"
@@ -3075,8 +3044,7 @@ export type CreateCollectionResponseOwnerCase1PrimaryOrgUserRole =
   | "contributor"
   | "read"
   | "no_access";
-export const CreateCollectionResponseOwnerCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+export const CreateCollectionResponseOwnerCase1PrimaryOrgUserRole = S.String;
 
 export interface CreateCollectionResponseOwnerCase1PrimaryOrg {
   avatarUrl: string;
@@ -3149,7 +3117,7 @@ export type CreateCollectionResponseOwner =
   | CreateCollectionResponseOwnerCase0
   | CreateCollectionResponseOwnerCase1;
 export const CreateCollectionResponseOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCollectionResponseOwner>;
+  S.Unknown as any as S.Schema<CreateCollectionResponseOwner>;
 
 export type CreateCollectionResponseTheme =
   | "orange"
@@ -3158,7 +3126,7 @@ export type CreateCollectionResponseTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const CreateCollectionResponseTheme = /*@__PURE__*/ S.String;
+export const CreateCollectionResponseTheme = S.String;
 
 export type CreateCollectionResponseResourceGroup =
   AddItemResponseResourceGroup;
@@ -3181,7 +3149,7 @@ export type CreateCollectionResponseItemsItemDatasetsServerInfoViewer =
   | "viewer-partial"
   | "viewer";
 export const CreateCollectionResponseItemsItemDatasetsServerInfoViewer =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCollectionResponseItemsItemDatasetsServerInfoLibrariesItem =
   | "mlcroissant"
@@ -3197,7 +3165,7 @@ export type CreateCollectionResponseItemsItemDatasetsServerInfoLibrariesItem =
   | "duckdb"
   | "datadesigner";
 export const CreateCollectionResponseItemsItemDatasetsServerInfoLibrariesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCollectionResponseItemsItemDatasetsServerInfoLibrariesList =
   Array<CreateCollectionResponseItemsItemDatasetsServerInfoLibrariesItem>;
@@ -3218,7 +3186,7 @@ export type CreateCollectionResponseItemsItemDatasetsServerInfoFormatsItem =
   | "optimized-parquet"
   | "agent-traces";
 export const CreateCollectionResponseItemsItemDatasetsServerInfoFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCollectionResponseItemsItemDatasetsServerInfoFormatsList =
   Array<CreateCollectionResponseItemsItemDatasetsServerInfoFormatsItem>;
@@ -3238,7 +3206,7 @@ export type CreateCollectionResponseItemsItemDatasetsServerInfoModalitiesItem =
   | "timeseries"
   | "video";
 export const CreateCollectionResponseItemsItemDatasetsServerInfoModalitiesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCollectionResponseItemsItemDatasetsServerInfoModalitiesList =
   Array<CreateCollectionResponseItemsItemDatasetsServerInfoModalitiesItem>;
@@ -3270,14 +3238,13 @@ export const CreateCollectionResponseItemsItemDatasetsServerInfo =
   }) as any as S.Schema<CreateCollectionResponseItemsItemDatasetsServerInfo>;
 
 export type CreateCollectionResponseItemsItemGatedCase1 = "auto" | "manual";
-export const CreateCollectionResponseItemsItemGatedCase1 =
-  /*@__PURE__*/ S.String;
+export const CreateCollectionResponseItemsItemGatedCase1 = S.String;
 
 export type CreateCollectionResponseItemsItemGated =
   | unknown
   | CreateCollectionResponseItemsItemGatedCase1;
 export const CreateCollectionResponseItemsItemGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCollectionResponseItemsItemGated>;
+  S.Unknown as any as S.Schema<CreateCollectionResponseItemsItemGated>;
 
 export type CreateCollectionResponseItemsItemResourceGroup =
   AddItemResponseResourceGroup;
@@ -3305,21 +3272,21 @@ export type CreateCollectionResponseItemsItemAvailableInferenceProvidersItemProv
   | "wavespeed"
   | "zai-org";
 export const CreateCollectionResponseItemsItemAvailableInferenceProvidersItemProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCollectionResponseItemsItemAvailableInferenceProvidersItemProviderStatus =
   | "live"
   | "staging"
   | "error";
 export const CreateCollectionResponseItemsItemAvailableInferenceProvidersItemProviderStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCollectionResponseItemsItemAvailableInferenceProvidersItemModelStatus =
   | "live"
   | "staging"
   | "error";
 export const CreateCollectionResponseItemsItemAvailableInferenceProvidersItemModelStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCollectionResponseItemsItemAvailableInferenceProvidersItemTask =
   | "text-classification"
@@ -3381,7 +3348,7 @@ export type CreateCollectionResponseItemsItemAvailableInferenceProvidersItemTask
   | "other"
   | "conversational";
 export const CreateCollectionResponseItemsItemAvailableInferenceProvidersItemTask =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCollectionResponseItemsItemAvailableInferenceProvidersItemFeatures =
   AddItemResponseItemsItemAvailableInferenceProvidersItemFeatures;
@@ -3444,8 +3411,7 @@ export type CreateCollectionResponseItemsItemAuthorDataCase0Plan =
   | "enterprise"
   | "plus"
   | "academia";
-export const CreateCollectionResponseItemsItemAuthorDataCase0Plan =
-  /*@__PURE__*/ S.String;
+export const CreateCollectionResponseItemsItemAuthorDataCase0Plan = S.String;
 
 export interface CreateCollectionResponseItemsItemAuthorDataCase0 {
   _id: string;
@@ -3485,7 +3451,7 @@ export type CreateCollectionResponseItemsItemAuthorDataCase1PrimaryOrgPlan =
   | "plus"
   | "academia";
 export const CreateCollectionResponseItemsItemAuthorDataCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCollectionResponseItemsItemAuthorDataCase1PrimaryOrgUserRole =
   | "admin"
@@ -3494,7 +3460,7 @@ export type CreateCollectionResponseItemsItemAuthorDataCase1PrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const CreateCollectionResponseItemsItemAuthorDataCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateCollectionResponseItemsItemAuthorDataCase1PrimaryOrg {
   avatarUrl: string;
@@ -3572,7 +3538,7 @@ export type CreateCollectionResponseItemsItemAuthorData =
   | CreateCollectionResponseItemsItemAuthorDataCase0
   | CreateCollectionResponseItemsItemAuthorDataCase1;
 export const CreateCollectionResponseItemsItemAuthorData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCollectionResponseItemsItemAuthorData>;
+  S.Unknown as any as S.Schema<CreateCollectionResponseItemsItemAuthorData>;
 
 export type CreateCollectionResponseItemsItemWidgetOutputUrlsList =
   Array<string>;
@@ -3586,7 +3552,7 @@ export type CreateCollectionResponseItemsItemSdk =
   | "docker"
   | "static"
   | "streamlit";
-export const CreateCollectionResponseItemsItemSdk = /*@__PURE__*/ S.String;
+export const CreateCollectionResponseItemsItemSdk = S.String;
 
 export type CreateCollectionResponseItemsItemRuntimeStage =
   | "NO_APP_FILE"
@@ -3602,8 +3568,7 @@ export type CreateCollectionResponseItemsItemRuntimeStage =
   | "STOPPED"
   | "PAUSED"
   | "SLEEPING";
-export const CreateCollectionResponseItemsItemRuntimeStage =
-  /*@__PURE__*/ S.String;
+export const CreateCollectionResponseItemsItemRuntimeStage = S.String;
 
 export type CreateCollectionResponseItemsItemRuntimeHardwareCurrent =
   | "cpu-basic"
@@ -3635,8 +3600,7 @@ export type CreateCollectionResponseItemsItemRuntimeHardwareCurrent =
   | "rtx-pro-6000x4"
   | "rtx-pro-6000x8"
   | "inf2x6";
-export const CreateCollectionResponseItemsItemRuntimeHardwareCurrent =
-  /*@__PURE__*/ S.String;
+export const CreateCollectionResponseItemsItemRuntimeHardwareCurrent = S.String;
 
 export type CreateCollectionResponseItemsItemRuntimeHardwareRequested =
   | "cpu-basic"
@@ -3669,7 +3633,7 @@ export type CreateCollectionResponseItemsItemRuntimeHardwareRequested =
   | "rtx-pro-6000x8"
   | "inf2x6";
 export const CreateCollectionResponseItemsItemRuntimeHardwareRequested =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateCollectionResponseItemsItemRuntimeHardware {
   current: CreateCollectionResponseItemsItemRuntimeHardwareCurrent | null;
@@ -3693,7 +3657,7 @@ export type CreateCollectionResponseItemsItemRuntimeReplicasRequested =
   | number
   | unknown;
 export const CreateCollectionResponseItemsItemRuntimeReplicasRequested =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCollectionResponseItemsItemRuntimeReplicasRequested>;
+  S.Unknown as any as S.Schema<CreateCollectionResponseItemsItemRuntimeReplicasRequested>;
 
 export interface CreateCollectionResponseItemsItemRuntimeReplicas {
   current?: number | null;
@@ -3716,7 +3680,7 @@ export type CreateCollectionResponseItemsItemRuntimeDomainsItemStage =
   | "EXPIRED_CHALLENGE"
   | "MISCONFIGURED";
 export const CreateCollectionResponseItemsItemRuntimeDomainsItemStage =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateCollectionResponseItemsItemRuntimeDomainsItem {
   domain: string;
@@ -3806,7 +3770,7 @@ export type CreateCollectionResponseItemsItemOriginRepoAuthorCase0Plan =
   | "plus"
   | "academia";
 export const CreateCollectionResponseItemsItemOriginRepoAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateCollectionResponseItemsItemOriginRepoAuthorCase0 {
   _id: string;
@@ -3848,7 +3812,7 @@ export type CreateCollectionResponseItemsItemOriginRepoAuthorCase1PrimaryOrgPlan
   | "plus"
   | "academia";
 export const CreateCollectionResponseItemsItemOriginRepoAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCollectionResponseItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -3857,7 +3821,7 @@ export type CreateCollectionResponseItemsItemOriginRepoAuthorCase1PrimaryOrgUser
   | "read"
   | "no_access";
 export const CreateCollectionResponseItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateCollectionResponseItemsItemOriginRepoAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -3936,7 +3900,7 @@ export type CreateCollectionResponseItemsItemOriginRepoAuthor =
   | CreateCollectionResponseItemsItemOriginRepoAuthorCase0
   | CreateCollectionResponseItemsItemOriginRepoAuthorCase1;
 export const CreateCollectionResponseItemsItemOriginRepoAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCollectionResponseItemsItemOriginRepoAuthor>;
+  S.Unknown as any as S.Schema<CreateCollectionResponseItemsItemOriginRepoAuthor>;
 
 export interface CreateCollectionResponseItemsItemOriginRepo {
   author: CreateCollectionResponseItemsItemOriginRepoAuthor;
@@ -3961,16 +3925,14 @@ export type CreateCollectionResponseItemsItemVisibility =
   | "public"
   | "private"
   | "protected";
-export const CreateCollectionResponseItemsItemVisibility =
-  /*@__PURE__*/ S.String;
+export const CreateCollectionResponseItemsItemVisibility = S.String;
 
 export type CreateCollectionResponseItemsItemOwnerCase0Plan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const CreateCollectionResponseItemsItemOwnerCase0Plan =
-  /*@__PURE__*/ S.String;
+export const CreateCollectionResponseItemsItemOwnerCase0Plan = S.String;
 
 export interface CreateCollectionResponseItemsItemOwnerCase0 {
   _id: string;
@@ -4010,7 +3972,7 @@ export type CreateCollectionResponseItemsItemOwnerCase1PrimaryOrgPlan =
   | "plus"
   | "academia";
 export const CreateCollectionResponseItemsItemOwnerCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCollectionResponseItemsItemOwnerCase1PrimaryOrgUserRole =
   | "admin"
@@ -4019,7 +3981,7 @@ export type CreateCollectionResponseItemsItemOwnerCase1PrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const CreateCollectionResponseItemsItemOwnerCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateCollectionResponseItemsItemOwnerCase1PrimaryOrg {
   avatarUrl: string;
@@ -4097,7 +4059,7 @@ export type CreateCollectionResponseItemsItemOwner =
   | CreateCollectionResponseItemsItemOwnerCase0
   | CreateCollectionResponseItemsItemOwnerCase1;
 export const CreateCollectionResponseItemsItemOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCollectionResponseItemsItemOwner>;
+  S.Unknown as any as S.Schema<CreateCollectionResponseItemsItemOwner>;
 
 export type CreateCollectionResponseItemsItemTheme =
   | "orange"
@@ -4106,7 +4068,7 @@ export type CreateCollectionResponseItemsItemTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const CreateCollectionResponseItemsItemTheme = /*@__PURE__*/ S.String;
+export const CreateCollectionResponseItemsItemTheme = S.String;
 
 export type CreateCollectionResponseItemsItemAdminTagsList = Array<string>;
 export const CreateCollectionResponseItemsItemAdminTagsList =
@@ -4117,12 +4079,10 @@ export const CreateCollectionResponseItemsItemAdminTagsList =
 export type CreateCollectionResponseItemsItemCdnRegionsItemProvider =
   | "gcp"
   | "aws";
-export const CreateCollectionResponseItemsItemCdnRegionsItemProvider =
-  /*@__PURE__*/ S.String;
+export const CreateCollectionResponseItemsItemCdnRegionsItemProvider = S.String;
 
 export type CreateCollectionResponseItemsItemCdnRegionsItemRegion = "us" | "eu";
-export const CreateCollectionResponseItemsItemCdnRegionsItemRegion =
-  /*@__PURE__*/ S.String;
+export const CreateCollectionResponseItemsItemCdnRegionsItemRegion = S.String;
 
 export interface CreateCollectionResponseItemsItemCdnRegionsItem {
   provider: CreateCollectionResponseItemsItemCdnRegionsItemProvider;
@@ -4460,8 +4420,7 @@ export const GetCollectionResponseGatingCase1Case1 =
 export type GetCollectionResponseGatingCase1Case2NotificationsMode =
   | "bulk"
   | "real-time";
-export const GetCollectionResponseGatingCase1Case2NotificationsMode =
-  /*@__PURE__*/ S.String;
+export const GetCollectionResponseGatingCase1Case2NotificationsMode = S.String;
 
 export interface GetCollectionResponseGatingCase1Case2Notifications {
   mode: GetCollectionResponseGatingCase1Case2NotificationsMode;
@@ -4496,20 +4455,20 @@ export type GetCollectionResponseGatingCase1 =
   | AddItemResponseGatingCase1Case1
   | GetCollectionResponseGatingCase1Case2;
 export const GetCollectionResponseGatingCase1 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionResponseGatingCase1>;
+  S.Unknown as any as S.Schema<GetCollectionResponseGatingCase1>;
 
 export type GetCollectionResponseGating =
   | unknown
   | GetCollectionResponseGatingCase1;
 export const GetCollectionResponseGating =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionResponseGating>;
+  S.Unknown as any as S.Schema<GetCollectionResponseGating>;
 
 export type GetCollectionResponseOwnerCase0Plan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const GetCollectionResponseOwnerCase0Plan = /*@__PURE__*/ S.String;
+export const GetCollectionResponseOwnerCase0Plan = S.String;
 
 export interface GetCollectionResponseOwnerCase0 {
   _id: string;
@@ -4547,8 +4506,7 @@ export type GetCollectionResponseOwnerCase1PrimaryOrgPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetCollectionResponseOwnerCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const GetCollectionResponseOwnerCase1PrimaryOrgPlan = S.String;
 
 export type GetCollectionResponseOwnerCase1PrimaryOrgUserRole =
   | "admin"
@@ -4556,8 +4514,7 @@ export type GetCollectionResponseOwnerCase1PrimaryOrgUserRole =
   | "contributor"
   | "read"
   | "no_access";
-export const GetCollectionResponseOwnerCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+export const GetCollectionResponseOwnerCase1PrimaryOrgUserRole = S.String;
 
 export interface GetCollectionResponseOwnerCase1PrimaryOrg {
   avatarUrl: string;
@@ -4628,7 +4585,7 @@ export type GetCollectionResponseOwner =
   | GetCollectionResponseOwnerCase0
   | GetCollectionResponseOwnerCase1;
 export const GetCollectionResponseOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionResponseOwner>;
+  S.Unknown as any as S.Schema<GetCollectionResponseOwner>;
 
 export type GetCollectionResponseTheme =
   | "orange"
@@ -4637,7 +4594,7 @@ export type GetCollectionResponseTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const GetCollectionResponseTheme = /*@__PURE__*/ S.String;
+export const GetCollectionResponseTheme = S.String;
 
 export type GetCollectionResponseResourceGroup = AddItemResponseResourceGroup;
 export const GetCollectionResponseResourceGroup = AddItemResponseResourceGroup;
@@ -4654,8 +4611,7 @@ export type GetCollectionResponseItemsItemDatasetsServerInfoViewer =
   | "preview"
   | "viewer-partial"
   | "viewer";
-export const GetCollectionResponseItemsItemDatasetsServerInfoViewer =
-  /*@__PURE__*/ S.String;
+export const GetCollectionResponseItemsItemDatasetsServerInfoViewer = S.String;
 
 export type GetCollectionResponseItemsItemDatasetsServerInfoLibrariesItem =
   | "mlcroissant"
@@ -4671,7 +4627,7 @@ export type GetCollectionResponseItemsItemDatasetsServerInfoLibrariesItem =
   | "duckdb"
   | "datadesigner";
 export const GetCollectionResponseItemsItemDatasetsServerInfoLibrariesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionResponseItemsItemDatasetsServerInfoLibrariesList =
   Array<GetCollectionResponseItemsItemDatasetsServerInfoLibrariesItem>;
@@ -4692,7 +4648,7 @@ export type GetCollectionResponseItemsItemDatasetsServerInfoFormatsItem =
   | "optimized-parquet"
   | "agent-traces";
 export const GetCollectionResponseItemsItemDatasetsServerInfoFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionResponseItemsItemDatasetsServerInfoFormatsList =
   Array<GetCollectionResponseItemsItemDatasetsServerInfoFormatsItem>;
@@ -4712,7 +4668,7 @@ export type GetCollectionResponseItemsItemDatasetsServerInfoModalitiesItem =
   | "timeseries"
   | "video";
 export const GetCollectionResponseItemsItemDatasetsServerInfoModalitiesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionResponseItemsItemDatasetsServerInfoModalitiesList =
   Array<GetCollectionResponseItemsItemDatasetsServerInfoModalitiesItem>;
@@ -4743,13 +4699,13 @@ export const GetCollectionResponseItemsItemDatasetsServerInfo =
   }) as any as S.Schema<GetCollectionResponseItemsItemDatasetsServerInfo>;
 
 export type GetCollectionResponseItemsItemGatedCase1 = "auto" | "manual";
-export const GetCollectionResponseItemsItemGatedCase1 = /*@__PURE__*/ S.String;
+export const GetCollectionResponseItemsItemGatedCase1 = S.String;
 
 export type GetCollectionResponseItemsItemGated =
   | unknown
   | GetCollectionResponseItemsItemGatedCase1;
 export const GetCollectionResponseItemsItemGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionResponseItemsItemGated>;
+  S.Unknown as any as S.Schema<GetCollectionResponseItemsItemGated>;
 
 export type GetCollectionResponseItemsItemResourceGroup =
   AddItemResponseResourceGroup;
@@ -4777,21 +4733,21 @@ export type GetCollectionResponseItemsItemAvailableInferenceProvidersItemProvide
   | "wavespeed"
   | "zai-org";
 export const GetCollectionResponseItemsItemAvailableInferenceProvidersItemProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionResponseItemsItemAvailableInferenceProvidersItemProviderStatus =
   | "live"
   | "staging"
   | "error";
 export const GetCollectionResponseItemsItemAvailableInferenceProvidersItemProviderStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionResponseItemsItemAvailableInferenceProvidersItemModelStatus =
   | "live"
   | "staging"
   | "error";
 export const GetCollectionResponseItemsItemAvailableInferenceProvidersItemModelStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionResponseItemsItemAvailableInferenceProvidersItemTask =
   | "text-classification"
@@ -4853,7 +4809,7 @@ export type GetCollectionResponseItemsItemAvailableInferenceProvidersItemTask =
   | "other"
   | "conversational";
 export const GetCollectionResponseItemsItemAvailableInferenceProvidersItemTask =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionResponseItemsItemAvailableInferenceProvidersItemFeatures =
   AddItemResponseItemsItemAvailableInferenceProvidersItemFeatures;
@@ -4915,8 +4871,7 @@ export type GetCollectionResponseItemsItemAuthorDataCase0Plan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetCollectionResponseItemsItemAuthorDataCase0Plan =
-  /*@__PURE__*/ S.String;
+export const GetCollectionResponseItemsItemAuthorDataCase0Plan = S.String;
 
 export interface GetCollectionResponseItemsItemAuthorDataCase0 {
   _id: string;
@@ -4956,7 +4911,7 @@ export type GetCollectionResponseItemsItemAuthorDataCase1PrimaryOrgPlan =
   | "plus"
   | "academia";
 export const GetCollectionResponseItemsItemAuthorDataCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionResponseItemsItemAuthorDataCase1PrimaryOrgUserRole =
   | "admin"
@@ -4965,7 +4920,7 @@ export type GetCollectionResponseItemsItemAuthorDataCase1PrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const GetCollectionResponseItemsItemAuthorDataCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionResponseItemsItemAuthorDataCase1PrimaryOrg {
   avatarUrl: string;
@@ -5043,7 +4998,7 @@ export type GetCollectionResponseItemsItemAuthorData =
   | GetCollectionResponseItemsItemAuthorDataCase0
   | GetCollectionResponseItemsItemAuthorDataCase1;
 export const GetCollectionResponseItemsItemAuthorData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionResponseItemsItemAuthorData>;
+  S.Unknown as any as S.Schema<GetCollectionResponseItemsItemAuthorData>;
 
 export type GetCollectionResponseItemsItemWidgetOutputUrlsList = Array<string>;
 export const GetCollectionResponseItemsItemWidgetOutputUrlsList =
@@ -5056,7 +5011,7 @@ export type GetCollectionResponseItemsItemSdk =
   | "docker"
   | "static"
   | "streamlit";
-export const GetCollectionResponseItemsItemSdk = /*@__PURE__*/ S.String;
+export const GetCollectionResponseItemsItemSdk = S.String;
 
 export type GetCollectionResponseItemsItemRuntimeStage =
   | "NO_APP_FILE"
@@ -5072,8 +5027,7 @@ export type GetCollectionResponseItemsItemRuntimeStage =
   | "STOPPED"
   | "PAUSED"
   | "SLEEPING";
-export const GetCollectionResponseItemsItemRuntimeStage =
-  /*@__PURE__*/ S.String;
+export const GetCollectionResponseItemsItemRuntimeStage = S.String;
 
 export type GetCollectionResponseItemsItemRuntimeHardwareCurrent =
   | "cpu-basic"
@@ -5105,8 +5059,7 @@ export type GetCollectionResponseItemsItemRuntimeHardwareCurrent =
   | "rtx-pro-6000x4"
   | "rtx-pro-6000x8"
   | "inf2x6";
-export const GetCollectionResponseItemsItemRuntimeHardwareCurrent =
-  /*@__PURE__*/ S.String;
+export const GetCollectionResponseItemsItemRuntimeHardwareCurrent = S.String;
 
 export type GetCollectionResponseItemsItemRuntimeHardwareRequested =
   | "cpu-basic"
@@ -5138,8 +5091,7 @@ export type GetCollectionResponseItemsItemRuntimeHardwareRequested =
   | "rtx-pro-6000x4"
   | "rtx-pro-6000x8"
   | "inf2x6";
-export const GetCollectionResponseItemsItemRuntimeHardwareRequested =
-  /*@__PURE__*/ S.String;
+export const GetCollectionResponseItemsItemRuntimeHardwareRequested = S.String;
 
 export interface GetCollectionResponseItemsItemRuntimeHardware {
   current: GetCollectionResponseItemsItemRuntimeHardwareCurrent | null;
@@ -5161,7 +5113,7 @@ export type GetCollectionResponseItemsItemRuntimeReplicasRequested =
   | number
   | unknown;
 export const GetCollectionResponseItemsItemRuntimeReplicasRequested =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionResponseItemsItemRuntimeReplicasRequested>;
+  S.Unknown as any as S.Schema<GetCollectionResponseItemsItemRuntimeReplicasRequested>;
 
 export interface GetCollectionResponseItemsItemRuntimeReplicas {
   current?: number | null;
@@ -5183,8 +5135,7 @@ export type GetCollectionResponseItemsItemRuntimeDomainsItemStage =
   | "PENDING_CHALLENGE"
   | "EXPIRED_CHALLENGE"
   | "MISCONFIGURED";
-export const GetCollectionResponseItemsItemRuntimeDomainsItemStage =
-  /*@__PURE__*/ S.String;
+export const GetCollectionResponseItemsItemRuntimeDomainsItemStage = S.String;
 
 export interface GetCollectionResponseItemsItemRuntimeDomainsItem {
   domain: string;
@@ -5273,8 +5224,7 @@ export type GetCollectionResponseItemsItemOriginRepoAuthorCase0Plan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetCollectionResponseItemsItemOriginRepoAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+export const GetCollectionResponseItemsItemOriginRepoAuthorCase0Plan = S.String;
 
 export interface GetCollectionResponseItemsItemOriginRepoAuthorCase0 {
   _id: string;
@@ -5314,7 +5264,7 @@ export type GetCollectionResponseItemsItemOriginRepoAuthorCase1PrimaryOrgPlan =
   | "plus"
   | "academia";
 export const GetCollectionResponseItemsItemOriginRepoAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionResponseItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -5323,7 +5273,7 @@ export type GetCollectionResponseItemsItemOriginRepoAuthorCase1PrimaryOrgUserRol
   | "read"
   | "no_access";
 export const GetCollectionResponseItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionResponseItemsItemOriginRepoAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -5401,7 +5351,7 @@ export type GetCollectionResponseItemsItemOriginRepoAuthor =
   | GetCollectionResponseItemsItemOriginRepoAuthorCase0
   | GetCollectionResponseItemsItemOriginRepoAuthorCase1;
 export const GetCollectionResponseItemsItemOriginRepoAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionResponseItemsItemOriginRepoAuthor>;
+  S.Unknown as any as S.Schema<GetCollectionResponseItemsItemOriginRepoAuthor>;
 
 export interface GetCollectionResponseItemsItemOriginRepo {
   author: GetCollectionResponseItemsItemOriginRepoAuthor;
@@ -5426,15 +5376,14 @@ export type GetCollectionResponseItemsItemVisibility =
   | "public"
   | "private"
   | "protected";
-export const GetCollectionResponseItemsItemVisibility = /*@__PURE__*/ S.String;
+export const GetCollectionResponseItemsItemVisibility = S.String;
 
 export type GetCollectionResponseItemsItemOwnerCase0Plan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const GetCollectionResponseItemsItemOwnerCase0Plan =
-  /*@__PURE__*/ S.String;
+export const GetCollectionResponseItemsItemOwnerCase0Plan = S.String;
 
 export interface GetCollectionResponseItemsItemOwnerCase0 {
   _id: string;
@@ -5473,8 +5422,7 @@ export type GetCollectionResponseItemsItemOwnerCase1PrimaryOrgPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetCollectionResponseItemsItemOwnerCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const GetCollectionResponseItemsItemOwnerCase1PrimaryOrgPlan = S.String;
 
 export type GetCollectionResponseItemsItemOwnerCase1PrimaryOrgUserRole =
   | "admin"
@@ -5483,7 +5431,7 @@ export type GetCollectionResponseItemsItemOwnerCase1PrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const GetCollectionResponseItemsItemOwnerCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionResponseItemsItemOwnerCase1PrimaryOrg {
   avatarUrl: string;
@@ -5559,7 +5507,7 @@ export type GetCollectionResponseItemsItemOwner =
   | GetCollectionResponseItemsItemOwnerCase0
   | GetCollectionResponseItemsItemOwnerCase1;
 export const GetCollectionResponseItemsItemOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionResponseItemsItemOwner>;
+  S.Unknown as any as S.Schema<GetCollectionResponseItemsItemOwner>;
 
 export type GetCollectionResponseItemsItemTheme =
   | "orange"
@@ -5568,7 +5516,7 @@ export type GetCollectionResponseItemsItemTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const GetCollectionResponseItemsItemTheme = /*@__PURE__*/ S.String;
+export const GetCollectionResponseItemsItemTheme = S.String;
 
 export type GetCollectionResponseItemsItemAdminTagsList = Array<string>;
 export const GetCollectionResponseItemsItemAdminTagsList =
@@ -5579,12 +5527,10 @@ export const GetCollectionResponseItemsItemAdminTagsList =
 export type GetCollectionResponseItemsItemCdnRegionsItemProvider =
   | "gcp"
   | "aws";
-export const GetCollectionResponseItemsItemCdnRegionsItemProvider =
-  /*@__PURE__*/ S.String;
+export const GetCollectionResponseItemsItemCdnRegionsItemProvider = S.String;
 
 export type GetCollectionResponseItemsItemCdnRegionsItemRegion = "us" | "eu";
-export const GetCollectionResponseItemsItemCdnRegionsItemRegion =
-  /*@__PURE__*/ S.String;
+export const GetCollectionResponseItemsItemCdnRegionsItemRegion = S.String;
 
 export interface GetCollectionResponseItemsItemCdnRegionsItem {
   provider: GetCollectionResponseItemsItemCdnRegionsItemProvider;
@@ -5811,7 +5757,7 @@ export type GetCollectionBySlugResponseGatingCase1Case2NotificationsMode =
   | "bulk"
   | "real-time";
 export const GetCollectionBySlugResponseGatingCase1Case2NotificationsMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionBySlugResponseGatingCase1Case2Notifications {
   mode: GetCollectionBySlugResponseGatingCase1Case2NotificationsMode;
@@ -5846,20 +5792,20 @@ export type GetCollectionBySlugResponseGatingCase1 =
   | AddItemResponseGatingCase1Case1
   | GetCollectionBySlugResponseGatingCase1Case2;
 export const GetCollectionBySlugResponseGatingCase1 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionBySlugResponseGatingCase1>;
+  S.Unknown as any as S.Schema<GetCollectionBySlugResponseGatingCase1>;
 
 export type GetCollectionBySlugResponseGating =
   | unknown
   | GetCollectionBySlugResponseGatingCase1;
 export const GetCollectionBySlugResponseGating =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionBySlugResponseGating>;
+  S.Unknown as any as S.Schema<GetCollectionBySlugResponseGating>;
 
 export type GetCollectionBySlugResponseOwnerCase0Plan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const GetCollectionBySlugResponseOwnerCase0Plan = /*@__PURE__*/ S.String;
+export const GetCollectionBySlugResponseOwnerCase0Plan = S.String;
 
 export interface GetCollectionBySlugResponseOwnerCase0 {
   _id: string;
@@ -5898,8 +5844,7 @@ export type GetCollectionBySlugResponseOwnerCase1PrimaryOrgPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetCollectionBySlugResponseOwnerCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const GetCollectionBySlugResponseOwnerCase1PrimaryOrgPlan = S.String;
 
 export type GetCollectionBySlugResponseOwnerCase1PrimaryOrgUserRole =
   | "admin"
@@ -5907,8 +5852,7 @@ export type GetCollectionBySlugResponseOwnerCase1PrimaryOrgUserRole =
   | "contributor"
   | "read"
   | "no_access";
-export const GetCollectionBySlugResponseOwnerCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+export const GetCollectionBySlugResponseOwnerCase1PrimaryOrgUserRole = S.String;
 
 export interface GetCollectionBySlugResponseOwnerCase1PrimaryOrg {
   avatarUrl: string;
@@ -5982,7 +5926,7 @@ export type GetCollectionBySlugResponseOwner =
   | GetCollectionBySlugResponseOwnerCase0
   | GetCollectionBySlugResponseOwnerCase1;
 export const GetCollectionBySlugResponseOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionBySlugResponseOwner>;
+  S.Unknown as any as S.Schema<GetCollectionBySlugResponseOwner>;
 
 export type GetCollectionBySlugResponseTheme =
   | "orange"
@@ -5991,7 +5935,7 @@ export type GetCollectionBySlugResponseTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const GetCollectionBySlugResponseTheme = /*@__PURE__*/ S.String;
+export const GetCollectionBySlugResponseTheme = S.String;
 
 export type GetCollectionBySlugResponseResourceGroup =
   AddItemResponseResourceGroup;
@@ -6014,7 +5958,7 @@ export type GetCollectionBySlugResponseItemsItemDatasetsServerInfoViewer =
   | "viewer-partial"
   | "viewer";
 export const GetCollectionBySlugResponseItemsItemDatasetsServerInfoViewer =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionBySlugResponseItemsItemDatasetsServerInfoLibrariesItem =
   | "mlcroissant"
@@ -6030,7 +5974,7 @@ export type GetCollectionBySlugResponseItemsItemDatasetsServerInfoLibrariesItem 
   | "duckdb"
   | "datadesigner";
 export const GetCollectionBySlugResponseItemsItemDatasetsServerInfoLibrariesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionBySlugResponseItemsItemDatasetsServerInfoLibrariesList =
   Array<GetCollectionBySlugResponseItemsItemDatasetsServerInfoLibrariesItem>;
@@ -6051,7 +5995,7 @@ export type GetCollectionBySlugResponseItemsItemDatasetsServerInfoFormatsItem =
   | "optimized-parquet"
   | "agent-traces";
 export const GetCollectionBySlugResponseItemsItemDatasetsServerInfoFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionBySlugResponseItemsItemDatasetsServerInfoFormatsList =
   Array<GetCollectionBySlugResponseItemsItemDatasetsServerInfoFormatsItem>;
@@ -6071,7 +6015,7 @@ export type GetCollectionBySlugResponseItemsItemDatasetsServerInfoModalitiesItem
   | "timeseries"
   | "video";
 export const GetCollectionBySlugResponseItemsItemDatasetsServerInfoModalitiesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionBySlugResponseItemsItemDatasetsServerInfoModalitiesList =
   Array<GetCollectionBySlugResponseItemsItemDatasetsServerInfoModalitiesItem>;
@@ -6104,14 +6048,13 @@ export const GetCollectionBySlugResponseItemsItemDatasetsServerInfo =
   }) as any as S.Schema<GetCollectionBySlugResponseItemsItemDatasetsServerInfo>;
 
 export type GetCollectionBySlugResponseItemsItemGatedCase1 = "auto" | "manual";
-export const GetCollectionBySlugResponseItemsItemGatedCase1 =
-  /*@__PURE__*/ S.String;
+export const GetCollectionBySlugResponseItemsItemGatedCase1 = S.String;
 
 export type GetCollectionBySlugResponseItemsItemGated =
   | unknown
   | GetCollectionBySlugResponseItemsItemGatedCase1;
 export const GetCollectionBySlugResponseItemsItemGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionBySlugResponseItemsItemGated>;
+  S.Unknown as any as S.Schema<GetCollectionBySlugResponseItemsItemGated>;
 
 export type GetCollectionBySlugResponseItemsItemResourceGroup =
   AddItemResponseResourceGroup;
@@ -6139,21 +6082,21 @@ export type GetCollectionBySlugResponseItemsItemAvailableInferenceProvidersItemP
   | "wavespeed"
   | "zai-org";
 export const GetCollectionBySlugResponseItemsItemAvailableInferenceProvidersItemProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionBySlugResponseItemsItemAvailableInferenceProvidersItemProviderStatus =
   | "live"
   | "staging"
   | "error";
 export const GetCollectionBySlugResponseItemsItemAvailableInferenceProvidersItemProviderStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionBySlugResponseItemsItemAvailableInferenceProvidersItemModelStatus =
   | "live"
   | "staging"
   | "error";
 export const GetCollectionBySlugResponseItemsItemAvailableInferenceProvidersItemModelStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionBySlugResponseItemsItemAvailableInferenceProvidersItemTask =
   | "text-classification"
@@ -6215,7 +6158,7 @@ export type GetCollectionBySlugResponseItemsItemAvailableInferenceProvidersItemT
   | "other"
   | "conversational";
 export const GetCollectionBySlugResponseItemsItemAvailableInferenceProvidersItemTask =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionBySlugResponseItemsItemAvailableInferenceProvidersItemFeatures =
   AddItemResponseItemsItemAvailableInferenceProvidersItemFeatures;
@@ -6278,8 +6221,7 @@ export type GetCollectionBySlugResponseItemsItemAuthorDataCase0Plan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetCollectionBySlugResponseItemsItemAuthorDataCase0Plan =
-  /*@__PURE__*/ S.String;
+export const GetCollectionBySlugResponseItemsItemAuthorDataCase0Plan = S.String;
 
 export interface GetCollectionBySlugResponseItemsItemAuthorDataCase0 {
   _id: string;
@@ -6319,7 +6261,7 @@ export type GetCollectionBySlugResponseItemsItemAuthorDataCase1PrimaryOrgPlan =
   | "plus"
   | "academia";
 export const GetCollectionBySlugResponseItemsItemAuthorDataCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionBySlugResponseItemsItemAuthorDataCase1PrimaryOrgUserRole =
   | "admin"
@@ -6328,7 +6270,7 @@ export type GetCollectionBySlugResponseItemsItemAuthorDataCase1PrimaryOrgUserRol
   | "read"
   | "no_access";
 export const GetCollectionBySlugResponseItemsItemAuthorDataCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionBySlugResponseItemsItemAuthorDataCase1PrimaryOrg {
   avatarUrl: string;
@@ -6406,7 +6348,7 @@ export type GetCollectionBySlugResponseItemsItemAuthorData =
   | GetCollectionBySlugResponseItemsItemAuthorDataCase0
   | GetCollectionBySlugResponseItemsItemAuthorDataCase1;
 export const GetCollectionBySlugResponseItemsItemAuthorData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionBySlugResponseItemsItemAuthorData>;
+  S.Unknown as any as S.Schema<GetCollectionBySlugResponseItemsItemAuthorData>;
 
 export type GetCollectionBySlugResponseItemsItemWidgetOutputUrlsList =
   Array<string>;
@@ -6420,7 +6362,7 @@ export type GetCollectionBySlugResponseItemsItemSdk =
   | "docker"
   | "static"
   | "streamlit";
-export const GetCollectionBySlugResponseItemsItemSdk = /*@__PURE__*/ S.String;
+export const GetCollectionBySlugResponseItemsItemSdk = S.String;
 
 export type GetCollectionBySlugResponseItemsItemRuntimeStage =
   | "NO_APP_FILE"
@@ -6436,8 +6378,7 @@ export type GetCollectionBySlugResponseItemsItemRuntimeStage =
   | "STOPPED"
   | "PAUSED"
   | "SLEEPING";
-export const GetCollectionBySlugResponseItemsItemRuntimeStage =
-  /*@__PURE__*/ S.String;
+export const GetCollectionBySlugResponseItemsItemRuntimeStage = S.String;
 
 export type GetCollectionBySlugResponseItemsItemRuntimeHardwareCurrent =
   | "cpu-basic"
@@ -6470,7 +6411,7 @@ export type GetCollectionBySlugResponseItemsItemRuntimeHardwareCurrent =
   | "rtx-pro-6000x8"
   | "inf2x6";
 export const GetCollectionBySlugResponseItemsItemRuntimeHardwareCurrent =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionBySlugResponseItemsItemRuntimeHardwareRequested =
   | "cpu-basic"
@@ -6503,7 +6444,7 @@ export type GetCollectionBySlugResponseItemsItemRuntimeHardwareRequested =
   | "rtx-pro-6000x8"
   | "inf2x6";
 export const GetCollectionBySlugResponseItemsItemRuntimeHardwareRequested =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionBySlugResponseItemsItemRuntimeHardware {
   current: GetCollectionBySlugResponseItemsItemRuntimeHardwareCurrent | null;
@@ -6527,7 +6468,7 @@ export type GetCollectionBySlugResponseItemsItemRuntimeReplicasRequested =
   | number
   | unknown;
 export const GetCollectionBySlugResponseItemsItemRuntimeReplicasRequested =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionBySlugResponseItemsItemRuntimeReplicasRequested>;
+  S.Unknown as any as S.Schema<GetCollectionBySlugResponseItemsItemRuntimeReplicasRequested>;
 
 export interface GetCollectionBySlugResponseItemsItemRuntimeReplicas {
   current?: number | null;
@@ -6550,7 +6491,7 @@ export type GetCollectionBySlugResponseItemsItemRuntimeDomainsItemStage =
   | "EXPIRED_CHALLENGE"
   | "MISCONFIGURED";
 export const GetCollectionBySlugResponseItemsItemRuntimeDomainsItemStage =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionBySlugResponseItemsItemRuntimeDomainsItem {
   domain: string;
@@ -6642,7 +6583,7 @@ export type GetCollectionBySlugResponseItemsItemOriginRepoAuthorCase0Plan =
   | "plus"
   | "academia";
 export const GetCollectionBySlugResponseItemsItemOriginRepoAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionBySlugResponseItemsItemOriginRepoAuthorCase0 {
   _id: string;
@@ -6684,7 +6625,7 @@ export type GetCollectionBySlugResponseItemsItemOriginRepoAuthorCase1PrimaryOrgP
   | "plus"
   | "academia";
 export const GetCollectionBySlugResponseItemsItemOriginRepoAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionBySlugResponseItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -6693,7 +6634,7 @@ export type GetCollectionBySlugResponseItemsItemOriginRepoAuthorCase1PrimaryOrgU
   | "read"
   | "no_access";
 export const GetCollectionBySlugResponseItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionBySlugResponseItemsItemOriginRepoAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -6772,7 +6713,7 @@ export type GetCollectionBySlugResponseItemsItemOriginRepoAuthor =
   | GetCollectionBySlugResponseItemsItemOriginRepoAuthorCase0
   | GetCollectionBySlugResponseItemsItemOriginRepoAuthorCase1;
 export const GetCollectionBySlugResponseItemsItemOriginRepoAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionBySlugResponseItemsItemOriginRepoAuthor>;
+  S.Unknown as any as S.Schema<GetCollectionBySlugResponseItemsItemOriginRepoAuthor>;
 
 export interface GetCollectionBySlugResponseItemsItemOriginRepo {
   author: GetCollectionBySlugResponseItemsItemOriginRepoAuthor;
@@ -6798,16 +6739,14 @@ export type GetCollectionBySlugResponseItemsItemVisibility =
   | "public"
   | "private"
   | "protected";
-export const GetCollectionBySlugResponseItemsItemVisibility =
-  /*@__PURE__*/ S.String;
+export const GetCollectionBySlugResponseItemsItemVisibility = S.String;
 
 export type GetCollectionBySlugResponseItemsItemOwnerCase0Plan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const GetCollectionBySlugResponseItemsItemOwnerCase0Plan =
-  /*@__PURE__*/ S.String;
+export const GetCollectionBySlugResponseItemsItemOwnerCase0Plan = S.String;
 
 export interface GetCollectionBySlugResponseItemsItemOwnerCase0 {
   _id: string;
@@ -6847,7 +6786,7 @@ export type GetCollectionBySlugResponseItemsItemOwnerCase1PrimaryOrgPlan =
   | "plus"
   | "academia";
 export const GetCollectionBySlugResponseItemsItemOwnerCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionBySlugResponseItemsItemOwnerCase1PrimaryOrgUserRole =
   | "admin"
@@ -6856,7 +6795,7 @@ export type GetCollectionBySlugResponseItemsItemOwnerCase1PrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const GetCollectionBySlugResponseItemsItemOwnerCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionBySlugResponseItemsItemOwnerCase1PrimaryOrg {
   avatarUrl: string;
@@ -6934,7 +6873,7 @@ export type GetCollectionBySlugResponseItemsItemOwner =
   | GetCollectionBySlugResponseItemsItemOwnerCase0
   | GetCollectionBySlugResponseItemsItemOwnerCase1;
 export const GetCollectionBySlugResponseItemsItemOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionBySlugResponseItemsItemOwner>;
+  S.Unknown as any as S.Schema<GetCollectionBySlugResponseItemsItemOwner>;
 
 export type GetCollectionBySlugResponseItemsItemTheme =
   | "orange"
@@ -6943,7 +6882,7 @@ export type GetCollectionBySlugResponseItemsItemTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const GetCollectionBySlugResponseItemsItemTheme = /*@__PURE__*/ S.String;
+export const GetCollectionBySlugResponseItemsItemTheme = S.String;
 
 export type GetCollectionBySlugResponseItemsItemAdminTagsList = Array<string>;
 export const GetCollectionBySlugResponseItemsItemAdminTagsList =
@@ -6955,13 +6894,13 @@ export type GetCollectionBySlugResponseItemsItemCdnRegionsItemProvider =
   | "gcp"
   | "aws";
 export const GetCollectionBySlugResponseItemsItemCdnRegionsItemProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionBySlugResponseItemsItemCdnRegionsItemRegion =
   | "us"
   | "eu";
 export const GetCollectionBySlugResponseItemsItemCdnRegionsItemRegion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionBySlugResponseItemsItemCdnRegionsItem {
   provider: GetCollectionBySlugResponseItemsItemCdnRegionsItemProvider;
@@ -7244,7 +7183,7 @@ export type GetCollectionsRequestItem =
   | GetCollectionsRequestItemCase0List
   | string;
 export const GetCollectionsRequestItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionsRequestItem>;
+  S.Unknown as any as S.Schema<GetCollectionsRequestItem>;
 
 export type GetCollectionsRequestOwnerCase0List = Array<string>;
 export const GetCollectionsRequestOwnerCase0List = /*@__PURE__*/ S.Array(
@@ -7264,10 +7203,10 @@ export type GetCollectionsRequestOwner =
   | string
   | GetCollectionsRequestOwnerCase2Map;
 export const GetCollectionsRequestOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionsRequestOwner>;
+  S.Unknown as any as S.Schema<GetCollectionsRequestOwner>;
 
 export type GetCollectionsRequestSort = "upvotes" | "lastModified" | "trending";
-export const GetCollectionsRequestSort = /*@__PURE__*/ S.String;
+export const GetCollectionsRequestSort = S.String;
 
 export interface GetCollectionsRequest {
   item?: GetCollectionsRequestItem;
@@ -7301,7 +7240,7 @@ export type GetCollectionsResponseBodyCase0ItemGatingCase1Case2NotificationsMode
   | "bulk"
   | "real-time";
 export const GetCollectionsResponseBodyCase0ItemGatingCase1Case2NotificationsMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionsResponseBodyCase0ItemGatingCase1Case2Notifications {
   mode: GetCollectionsResponseBodyCase0ItemGatingCase1Case2NotificationsMode;
@@ -7338,21 +7277,20 @@ export type GetCollectionsResponseBodyCase0ItemGatingCase1 =
   | AddItemResponseGatingCase1Case1
   | GetCollectionsResponseBodyCase0ItemGatingCase1Case2;
 export const GetCollectionsResponseBodyCase0ItemGatingCase1 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionsResponseBodyCase0ItemGatingCase1>;
+  S.Unknown as any as S.Schema<GetCollectionsResponseBodyCase0ItemGatingCase1>;
 
 export type GetCollectionsResponseBodyCase0ItemGating =
   | unknown
   | GetCollectionsResponseBodyCase0ItemGatingCase1;
 export const GetCollectionsResponseBodyCase0ItemGating =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionsResponseBodyCase0ItemGating>;
+  S.Unknown as any as S.Schema<GetCollectionsResponseBodyCase0ItemGating>;
 
 export type GetCollectionsResponseBodyCase0ItemOwnerCase0Plan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const GetCollectionsResponseBodyCase0ItemOwnerCase0Plan =
-  /*@__PURE__*/ S.String;
+export const GetCollectionsResponseBodyCase0ItemOwnerCase0Plan = S.String;
 
 export interface GetCollectionsResponseBodyCase0ItemOwnerCase0 {
   _id: string;
@@ -7392,7 +7330,7 @@ export type GetCollectionsResponseBodyCase0ItemOwnerCase1PrimaryOrgPlan =
   | "plus"
   | "academia";
 export const GetCollectionsResponseBodyCase0ItemOwnerCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionsResponseBodyCase0ItemOwnerCase1PrimaryOrgUserRole =
   | "admin"
@@ -7401,7 +7339,7 @@ export type GetCollectionsResponseBodyCase0ItemOwnerCase1PrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const GetCollectionsResponseBodyCase0ItemOwnerCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionsResponseBodyCase0ItemOwnerCase1PrimaryOrg {
   avatarUrl: string;
@@ -7479,7 +7417,7 @@ export type GetCollectionsResponseBodyCase0ItemOwner =
   | GetCollectionsResponseBodyCase0ItemOwnerCase0
   | GetCollectionsResponseBodyCase0ItemOwnerCase1;
 export const GetCollectionsResponseBodyCase0ItemOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionsResponseBodyCase0ItemOwner>;
+  S.Unknown as any as S.Schema<GetCollectionsResponseBodyCase0ItemOwner>;
 
 export type GetCollectionsResponseBodyCase0ItemTheme =
   | "orange"
@@ -7488,7 +7426,7 @@ export type GetCollectionsResponseBodyCase0ItemTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const GetCollectionsResponseBodyCase0ItemTheme = /*@__PURE__*/ S.String;
+export const GetCollectionsResponseBodyCase0ItemTheme = S.String;
 
 export type GetCollectionsResponseBodyCase0ItemResourceGroup =
   AddItemResponseResourceGroup;
@@ -7512,7 +7450,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemDatasetsServerInfoViewer
   | "viewer-partial"
   | "viewer";
 export const GetCollectionsResponseBodyCase0ItemItemsItemDatasetsServerInfoViewer =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemDatasetsServerInfoLibrariesItem =
   | "mlcroissant"
@@ -7528,7 +7466,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemDatasetsServerInfoLibrar
   | "duckdb"
   | "datadesigner";
 export const GetCollectionsResponseBodyCase0ItemItemsItemDatasetsServerInfoLibrariesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemDatasetsServerInfoLibrariesList =
   Array<GetCollectionsResponseBodyCase0ItemItemsItemDatasetsServerInfoLibrariesItem>;
@@ -7549,7 +7487,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemDatasetsServerInfoFormat
   | "optimized-parquet"
   | "agent-traces";
 export const GetCollectionsResponseBodyCase0ItemItemsItemDatasetsServerInfoFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemDatasetsServerInfoFormatsList =
   Array<GetCollectionsResponseBodyCase0ItemItemsItemDatasetsServerInfoFormatsItem>;
@@ -7569,7 +7507,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemDatasetsServerInfoModali
   | "timeseries"
   | "video";
 export const GetCollectionsResponseBodyCase0ItemItemsItemDatasetsServerInfoModalitiesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemDatasetsServerInfoModalitiesList =
   Array<GetCollectionsResponseBodyCase0ItemItemsItemDatasetsServerInfoModalitiesItem>;
@@ -7606,14 +7544,13 @@ export const GetCollectionsResponseBodyCase0ItemItemsItemDatasetsServerInfo =
 export type GetCollectionsResponseBodyCase0ItemItemsItemGatedCase1 =
   | "auto"
   | "manual";
-export const GetCollectionsResponseBodyCase0ItemItemsItemGatedCase1 =
-  /*@__PURE__*/ S.String;
+export const GetCollectionsResponseBodyCase0ItemItemsItemGatedCase1 = S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemGated =
   | unknown
   | GetCollectionsResponseBodyCase0ItemItemsItemGatedCase1;
 export const GetCollectionsResponseBodyCase0ItemItemsItemGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionsResponseBodyCase0ItemItemsItemGated>;
+  S.Unknown as any as S.Schema<GetCollectionsResponseBodyCase0ItemItemsItemGated>;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemResourceGroup =
   AddItemResponseResourceGroup;
@@ -7641,21 +7578,21 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemAvailableInferenceProvid
   | "wavespeed"
   | "zai-org";
 export const GetCollectionsResponseBodyCase0ItemItemsItemAvailableInferenceProvidersItemProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemAvailableInferenceProvidersItemProviderStatus =
   | "live"
   | "staging"
   | "error";
 export const GetCollectionsResponseBodyCase0ItemItemsItemAvailableInferenceProvidersItemProviderStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemAvailableInferenceProvidersItemModelStatus =
   | "live"
   | "staging"
   | "error";
 export const GetCollectionsResponseBodyCase0ItemItemsItemAvailableInferenceProvidersItemModelStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemAvailableInferenceProvidersItemTask =
   | "text-classification"
@@ -7717,7 +7654,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemAvailableInferenceProvid
   | "other"
   | "conversational";
 export const GetCollectionsResponseBodyCase0ItemItemsItemAvailableInferenceProvidersItemTask =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemAvailableInferenceProvidersItemFeatures =
   AddItemResponseItemsItemAvailableInferenceProvidersItemFeatures;
@@ -7781,7 +7718,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemAuthorDataCase0Plan =
   | "plus"
   | "academia";
 export const GetCollectionsResponseBodyCase0ItemItemsItemAuthorDataCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionsResponseBodyCase0ItemItemsItemAuthorDataCase0 {
   _id: string;
@@ -7823,7 +7760,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemAuthorDataCase1PrimaryOr
   | "plus"
   | "academia";
 export const GetCollectionsResponseBodyCase0ItemItemsItemAuthorDataCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemAuthorDataCase1PrimaryOrgUserRole =
   | "admin"
@@ -7832,7 +7769,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemAuthorDataCase1PrimaryOr
   | "read"
   | "no_access";
 export const GetCollectionsResponseBodyCase0ItemItemsItemAuthorDataCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionsResponseBodyCase0ItemItemsItemAuthorDataCase1PrimaryOrg {
   avatarUrl: string;
@@ -7911,7 +7848,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemAuthorData =
   | GetCollectionsResponseBodyCase0ItemItemsItemAuthorDataCase0
   | GetCollectionsResponseBodyCase0ItemItemsItemAuthorDataCase1;
 export const GetCollectionsResponseBodyCase0ItemItemsItemAuthorData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionsResponseBodyCase0ItemItemsItemAuthorData>;
+  S.Unknown as any as S.Schema<GetCollectionsResponseBodyCase0ItemItemsItemAuthorData>;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemWidgetOutputUrlsList =
   Array<string>;
@@ -7925,8 +7862,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemSdk =
   | "docker"
   | "static"
   | "streamlit";
-export const GetCollectionsResponseBodyCase0ItemItemsItemSdk =
-  /*@__PURE__*/ S.String;
+export const GetCollectionsResponseBodyCase0ItemItemsItemSdk = S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemRuntimeStage =
   | "NO_APP_FILE"
@@ -7943,7 +7879,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemRuntimeStage =
   | "PAUSED"
   | "SLEEPING";
 export const GetCollectionsResponseBodyCase0ItemItemsItemRuntimeStage =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemRuntimeHardwareCurrent =
   | "cpu-basic"
@@ -7976,7 +7912,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemRuntimeHardwareCurrent =
   | "rtx-pro-6000x8"
   | "inf2x6";
 export const GetCollectionsResponseBodyCase0ItemItemsItemRuntimeHardwareCurrent =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemRuntimeHardwareRequested =
   | "cpu-basic"
@@ -8009,7 +7945,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemRuntimeHardwareRequested
   | "rtx-pro-6000x8"
   | "inf2x6";
 export const GetCollectionsResponseBodyCase0ItemItemsItemRuntimeHardwareRequested =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionsResponseBodyCase0ItemItemsItemRuntimeHardware {
   current: GetCollectionsResponseBodyCase0ItemItemsItemRuntimeHardwareCurrent | null;
@@ -8033,7 +7969,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemRuntimeReplicasRequested
   | number
   | unknown;
 export const GetCollectionsResponseBodyCase0ItemItemsItemRuntimeReplicasRequested =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionsResponseBodyCase0ItemItemsItemRuntimeReplicasRequested>;
+  S.Unknown as any as S.Schema<GetCollectionsResponseBodyCase0ItemItemsItemRuntimeReplicasRequested>;
 
 export interface GetCollectionsResponseBodyCase0ItemItemsItemRuntimeReplicas {
   current?: number | null;
@@ -8057,7 +7993,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemRuntimeDomainsItemStage 
   | "EXPIRED_CHALLENGE"
   | "MISCONFIGURED";
 export const GetCollectionsResponseBodyCase0ItemItemsItemRuntimeDomainsItemStage =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionsResponseBodyCase0ItemItemsItemRuntimeDomainsItem {
   domain: string;
@@ -8152,7 +8088,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemOriginRepoAuthorCase0Pla
   | "plus"
   | "academia";
 export const GetCollectionsResponseBodyCase0ItemItemsItemOriginRepoAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionsResponseBodyCase0ItemItemsItemOriginRepoAuthorCase0 {
   _id: string;
@@ -8195,7 +8131,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemOriginRepoAuthorCase1Pri
   | "plus"
   | "academia";
 export const GetCollectionsResponseBodyCase0ItemItemsItemOriginRepoAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -8204,7 +8140,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemOriginRepoAuthorCase1Pri
   | "read"
   | "no_access";
 export const GetCollectionsResponseBodyCase0ItemItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionsResponseBodyCase0ItemItemsItemOriginRepoAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -8284,7 +8220,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemOriginRepoAuthor =
   | GetCollectionsResponseBodyCase0ItemItemsItemOriginRepoAuthorCase0
   | GetCollectionsResponseBodyCase0ItemItemsItemOriginRepoAuthorCase1;
 export const GetCollectionsResponseBodyCase0ItemItemsItemOriginRepoAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionsResponseBodyCase0ItemItemsItemOriginRepoAuthor>;
+  S.Unknown as any as S.Schema<GetCollectionsResponseBodyCase0ItemItemsItemOriginRepoAuthor>;
 
 export interface GetCollectionsResponseBodyCase0ItemItemsItemOriginRepo {
   author: GetCollectionsResponseBodyCase0ItemItemsItemOriginRepoAuthor;
@@ -8311,8 +8247,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemVisibility =
   | "public"
   | "private"
   | "protected";
-export const GetCollectionsResponseBodyCase0ItemItemsItemVisibility =
-  /*@__PURE__*/ S.String;
+export const GetCollectionsResponseBodyCase0ItemItemsItemVisibility = S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemOwnerCase0Plan =
   | "team"
@@ -8320,7 +8255,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemOwnerCase0Plan =
   | "plus"
   | "academia";
 export const GetCollectionsResponseBodyCase0ItemItemsItemOwnerCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionsResponseBodyCase0ItemItemsItemOwnerCase0 {
   _id: string;
@@ -8362,7 +8297,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemOwnerCase1PrimaryOrgPlan
   | "plus"
   | "academia";
 export const GetCollectionsResponseBodyCase0ItemItemsItemOwnerCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemOwnerCase1PrimaryOrgUserRole =
   | "admin"
@@ -8371,7 +8306,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemOwnerCase1PrimaryOrgUser
   | "read"
   | "no_access";
 export const GetCollectionsResponseBodyCase0ItemItemsItemOwnerCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionsResponseBodyCase0ItemItemsItemOwnerCase1PrimaryOrg {
   avatarUrl: string;
@@ -8450,7 +8385,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemOwner =
   | GetCollectionsResponseBodyCase0ItemItemsItemOwnerCase0
   | GetCollectionsResponseBodyCase0ItemItemsItemOwnerCase1;
 export const GetCollectionsResponseBodyCase0ItemItemsItemOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionsResponseBodyCase0ItemItemsItemOwner>;
+  S.Unknown as any as S.Schema<GetCollectionsResponseBodyCase0ItemItemsItemOwner>;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemTheme =
   | "orange"
@@ -8459,8 +8394,7 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const GetCollectionsResponseBodyCase0ItemItemsItemTheme =
-  /*@__PURE__*/ S.String;
+export const GetCollectionsResponseBodyCase0ItemItemsItemTheme = S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemAdminTagsList =
   Array<string>;
@@ -8473,13 +8407,13 @@ export type GetCollectionsResponseBodyCase0ItemItemsItemCdnRegionsItemProvider =
   | "gcp"
   | "aws";
 export const GetCollectionsResponseBodyCase0ItemItemsItemCdnRegionsItemProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCollectionsResponseBodyCase0ItemItemsItemCdnRegionsItemRegion =
   | "us"
   | "eu";
 export const GetCollectionsResponseBodyCase0ItemItemsItemCdnRegionsItemRegion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCollectionsResponseBodyCase0ItemItemsItemCdnRegionsItem {
   provider: GetCollectionsResponseBodyCase0ItemItemsItemCdnRegionsItemProvider;
@@ -8729,7 +8663,7 @@ export type GetCollectionsResponseBody =
   | GetCollectionsResponseBodyCase0List
   | GetCollectionsResponseBodyCase1List;
 export const GetCollectionsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCollectionsResponseBody>;
+  S.Unknown as any as S.Schema<GetCollectionsResponseBody>;
 
 export type GetCollectionsResponse = GetCollectionsResponseBody;
 export const GetCollectionsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -8831,7 +8765,7 @@ export type UpdateCollectionRequestTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const UpdateCollectionRequestTheme = /*@__PURE__*/ S.String;
+export const UpdateCollectionRequestTheme = S.String;
 
 export type UpdateCollectionRequestGatingCase1 =
   AddItemResponseGatingCase1Case1;
@@ -8841,8 +8775,7 @@ export const UpdateCollectionRequestGatingCase1 =
 export type UpdateCollectionRequestGatingCase2NotificationsMode =
   | "bulk"
   | "real-time";
-export const UpdateCollectionRequestGatingCase2NotificationsMode =
-  /*@__PURE__*/ S.String;
+export const UpdateCollectionRequestGatingCase2NotificationsMode = S.String;
 
 export interface UpdateCollectionRequestGatingCase2Notifications {
   mode: UpdateCollectionRequestGatingCase2NotificationsMode | (string & {});
@@ -8876,7 +8809,7 @@ export type UpdateCollectionRequestGating =
   | AddItemResponseGatingCase1Case1
   | UpdateCollectionRequestGatingCase2;
 export const UpdateCollectionRequestGating =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionRequestGating>;
+  S.Unknown as any as S.Schema<UpdateCollectionRequestGating>;
 
 export interface UpdateCollectionRequest {
   namespace: string;
@@ -8920,7 +8853,7 @@ export type UpdateCollectionResponseDataGatingCase1Case2NotificationsMode =
   | "bulk"
   | "real-time";
 export const UpdateCollectionResponseDataGatingCase1Case2NotificationsMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionResponseDataGatingCase1Case2Notifications {
   mode: UpdateCollectionResponseDataGatingCase1Case2NotificationsMode;
@@ -8955,21 +8888,20 @@ export type UpdateCollectionResponseDataGatingCase1 =
   | AddItemResponseGatingCase1Case1
   | UpdateCollectionResponseDataGatingCase1Case2;
 export const UpdateCollectionResponseDataGatingCase1 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionResponseDataGatingCase1>;
+  S.Unknown as any as S.Schema<UpdateCollectionResponseDataGatingCase1>;
 
 export type UpdateCollectionResponseDataGating =
   | unknown
   | UpdateCollectionResponseDataGatingCase1;
 export const UpdateCollectionResponseDataGating =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionResponseDataGating>;
+  S.Unknown as any as S.Schema<UpdateCollectionResponseDataGating>;
 
 export type UpdateCollectionResponseDataOwnerCase0Plan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const UpdateCollectionResponseDataOwnerCase0Plan =
-  /*@__PURE__*/ S.String;
+export const UpdateCollectionResponseDataOwnerCase0Plan = S.String;
 
 export interface UpdateCollectionResponseDataOwnerCase0 {
   _id: string;
@@ -9008,8 +8940,7 @@ export type UpdateCollectionResponseDataOwnerCase1PrimaryOrgPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const UpdateCollectionResponseDataOwnerCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const UpdateCollectionResponseDataOwnerCase1PrimaryOrgPlan = S.String;
 
 export type UpdateCollectionResponseDataOwnerCase1PrimaryOrgUserRole =
   | "admin"
@@ -9018,7 +8949,7 @@ export type UpdateCollectionResponseDataOwnerCase1PrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const UpdateCollectionResponseDataOwnerCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionResponseDataOwnerCase1PrimaryOrg {
   avatarUrl: string;
@@ -9092,7 +9023,7 @@ export type UpdateCollectionResponseDataOwner =
   | UpdateCollectionResponseDataOwnerCase0
   | UpdateCollectionResponseDataOwnerCase1;
 export const UpdateCollectionResponseDataOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionResponseDataOwner>;
+  S.Unknown as any as S.Schema<UpdateCollectionResponseDataOwner>;
 
 export type UpdateCollectionResponseDataTheme =
   | "orange"
@@ -9101,7 +9032,7 @@ export type UpdateCollectionResponseDataTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const UpdateCollectionResponseDataTheme = /*@__PURE__*/ S.String;
+export const UpdateCollectionResponseDataTheme = S.String;
 
 export type UpdateCollectionResponseDataResourceGroup =
   AddItemResponseResourceGroup;
@@ -9124,7 +9055,7 @@ export type UpdateCollectionResponseDataItemsItemDatasetsServerInfoViewer =
   | "viewer-partial"
   | "viewer";
 export const UpdateCollectionResponseDataItemsItemDatasetsServerInfoViewer =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionResponseDataItemsItemDatasetsServerInfoLibrariesItem =
   | "mlcroissant"
@@ -9140,7 +9071,7 @@ export type UpdateCollectionResponseDataItemsItemDatasetsServerInfoLibrariesItem
   | "duckdb"
   | "datadesigner";
 export const UpdateCollectionResponseDataItemsItemDatasetsServerInfoLibrariesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionResponseDataItemsItemDatasetsServerInfoLibrariesList =
   Array<UpdateCollectionResponseDataItemsItemDatasetsServerInfoLibrariesItem>;
@@ -9161,7 +9092,7 @@ export type UpdateCollectionResponseDataItemsItemDatasetsServerInfoFormatsItem =
   | "optimized-parquet"
   | "agent-traces";
 export const UpdateCollectionResponseDataItemsItemDatasetsServerInfoFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionResponseDataItemsItemDatasetsServerInfoFormatsList =
   Array<UpdateCollectionResponseDataItemsItemDatasetsServerInfoFormatsItem>;
@@ -9181,7 +9112,7 @@ export type UpdateCollectionResponseDataItemsItemDatasetsServerInfoModalitiesIte
   | "timeseries"
   | "video";
 export const UpdateCollectionResponseDataItemsItemDatasetsServerInfoModalitiesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionResponseDataItemsItemDatasetsServerInfoModalitiesList =
   Array<UpdateCollectionResponseDataItemsItemDatasetsServerInfoModalitiesItem>;
@@ -9214,14 +9145,13 @@ export const UpdateCollectionResponseDataItemsItemDatasetsServerInfo =
   }) as any as S.Schema<UpdateCollectionResponseDataItemsItemDatasetsServerInfo>;
 
 export type UpdateCollectionResponseDataItemsItemGatedCase1 = "auto" | "manual";
-export const UpdateCollectionResponseDataItemsItemGatedCase1 =
-  /*@__PURE__*/ S.String;
+export const UpdateCollectionResponseDataItemsItemGatedCase1 = S.String;
 
 export type UpdateCollectionResponseDataItemsItemGated =
   | unknown
   | UpdateCollectionResponseDataItemsItemGatedCase1;
 export const UpdateCollectionResponseDataItemsItemGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionResponseDataItemsItemGated>;
+  S.Unknown as any as S.Schema<UpdateCollectionResponseDataItemsItemGated>;
 
 export type UpdateCollectionResponseDataItemsItemResourceGroup =
   AddItemResponseResourceGroup;
@@ -9249,21 +9179,21 @@ export type UpdateCollectionResponseDataItemsItemAvailableInferenceProvidersItem
   | "wavespeed"
   | "zai-org";
 export const UpdateCollectionResponseDataItemsItemAvailableInferenceProvidersItemProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionResponseDataItemsItemAvailableInferenceProvidersItemProviderStatus =
   | "live"
   | "staging"
   | "error";
 export const UpdateCollectionResponseDataItemsItemAvailableInferenceProvidersItemProviderStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionResponseDataItemsItemAvailableInferenceProvidersItemModelStatus =
   | "live"
   | "staging"
   | "error";
 export const UpdateCollectionResponseDataItemsItemAvailableInferenceProvidersItemModelStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionResponseDataItemsItemAvailableInferenceProvidersItemTask =
   | "text-classification"
@@ -9325,7 +9255,7 @@ export type UpdateCollectionResponseDataItemsItemAvailableInferenceProvidersItem
   | "other"
   | "conversational";
 export const UpdateCollectionResponseDataItemsItemAvailableInferenceProvidersItemTask =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionResponseDataItemsItemAvailableInferenceProvidersItemFeatures =
   AddItemResponseItemsItemAvailableInferenceProvidersItemFeatures;
@@ -9389,7 +9319,7 @@ export type UpdateCollectionResponseDataItemsItemAuthorDataCase0Plan =
   | "plus"
   | "academia";
 export const UpdateCollectionResponseDataItemsItemAuthorDataCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionResponseDataItemsItemAuthorDataCase0 {
   _id: string;
@@ -9431,7 +9361,7 @@ export type UpdateCollectionResponseDataItemsItemAuthorDataCase1PrimaryOrgPlan =
   | "plus"
   | "academia";
 export const UpdateCollectionResponseDataItemsItemAuthorDataCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionResponseDataItemsItemAuthorDataCase1PrimaryOrgUserRole =
   | "admin"
@@ -9440,7 +9370,7 @@ export type UpdateCollectionResponseDataItemsItemAuthorDataCase1PrimaryOrgUserRo
   | "read"
   | "no_access";
 export const UpdateCollectionResponseDataItemsItemAuthorDataCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionResponseDataItemsItemAuthorDataCase1PrimaryOrg {
   avatarUrl: string;
@@ -9519,7 +9449,7 @@ export type UpdateCollectionResponseDataItemsItemAuthorData =
   | UpdateCollectionResponseDataItemsItemAuthorDataCase0
   | UpdateCollectionResponseDataItemsItemAuthorDataCase1;
 export const UpdateCollectionResponseDataItemsItemAuthorData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionResponseDataItemsItemAuthorData>;
+  S.Unknown as any as S.Schema<UpdateCollectionResponseDataItemsItemAuthorData>;
 
 export type UpdateCollectionResponseDataItemsItemWidgetOutputUrlsList =
   Array<string>;
@@ -9533,7 +9463,7 @@ export type UpdateCollectionResponseDataItemsItemSdk =
   | "docker"
   | "static"
   | "streamlit";
-export const UpdateCollectionResponseDataItemsItemSdk = /*@__PURE__*/ S.String;
+export const UpdateCollectionResponseDataItemsItemSdk = S.String;
 
 export type UpdateCollectionResponseDataItemsItemRuntimeStage =
   | "NO_APP_FILE"
@@ -9549,8 +9479,7 @@ export type UpdateCollectionResponseDataItemsItemRuntimeStage =
   | "STOPPED"
   | "PAUSED"
   | "SLEEPING";
-export const UpdateCollectionResponseDataItemsItemRuntimeStage =
-  /*@__PURE__*/ S.String;
+export const UpdateCollectionResponseDataItemsItemRuntimeStage = S.String;
 
 export type UpdateCollectionResponseDataItemsItemRuntimeHardwareCurrent =
   | "cpu-basic"
@@ -9583,7 +9512,7 @@ export type UpdateCollectionResponseDataItemsItemRuntimeHardwareCurrent =
   | "rtx-pro-6000x8"
   | "inf2x6";
 export const UpdateCollectionResponseDataItemsItemRuntimeHardwareCurrent =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionResponseDataItemsItemRuntimeHardwareRequested =
   | "cpu-basic"
@@ -9616,7 +9545,7 @@ export type UpdateCollectionResponseDataItemsItemRuntimeHardwareRequested =
   | "rtx-pro-6000x8"
   | "inf2x6";
 export const UpdateCollectionResponseDataItemsItemRuntimeHardwareRequested =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionResponseDataItemsItemRuntimeHardware {
   current: UpdateCollectionResponseDataItemsItemRuntimeHardwareCurrent | null;
@@ -9640,7 +9569,7 @@ export type UpdateCollectionResponseDataItemsItemRuntimeReplicasRequested =
   | number
   | unknown;
 export const UpdateCollectionResponseDataItemsItemRuntimeReplicasRequested =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionResponseDataItemsItemRuntimeReplicasRequested>;
+  S.Unknown as any as S.Schema<UpdateCollectionResponseDataItemsItemRuntimeReplicasRequested>;
 
 export interface UpdateCollectionResponseDataItemsItemRuntimeReplicas {
   current?: number | null;
@@ -9663,7 +9592,7 @@ export type UpdateCollectionResponseDataItemsItemRuntimeDomainsItemStage =
   | "EXPIRED_CHALLENGE"
   | "MISCONFIGURED";
 export const UpdateCollectionResponseDataItemsItemRuntimeDomainsItemStage =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionResponseDataItemsItemRuntimeDomainsItem {
   domain: string;
@@ -9755,7 +9684,7 @@ export type UpdateCollectionResponseDataItemsItemOriginRepoAuthorCase0Plan =
   | "plus"
   | "academia";
 export const UpdateCollectionResponseDataItemsItemOriginRepoAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionResponseDataItemsItemOriginRepoAuthorCase0 {
   _id: string;
@@ -9797,7 +9726,7 @@ export type UpdateCollectionResponseDataItemsItemOriginRepoAuthorCase1PrimaryOrg
   | "plus"
   | "academia";
 export const UpdateCollectionResponseDataItemsItemOriginRepoAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionResponseDataItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -9806,7 +9735,7 @@ export type UpdateCollectionResponseDataItemsItemOriginRepoAuthorCase1PrimaryOrg
   | "read"
   | "no_access";
 export const UpdateCollectionResponseDataItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionResponseDataItemsItemOriginRepoAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -9885,7 +9814,7 @@ export type UpdateCollectionResponseDataItemsItemOriginRepoAuthor =
   | UpdateCollectionResponseDataItemsItemOriginRepoAuthorCase0
   | UpdateCollectionResponseDataItemsItemOriginRepoAuthorCase1;
 export const UpdateCollectionResponseDataItemsItemOriginRepoAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionResponseDataItemsItemOriginRepoAuthor>;
+  S.Unknown as any as S.Schema<UpdateCollectionResponseDataItemsItemOriginRepoAuthor>;
 
 export interface UpdateCollectionResponseDataItemsItemOriginRepo {
   author: UpdateCollectionResponseDataItemsItemOriginRepoAuthor;
@@ -9911,16 +9840,14 @@ export type UpdateCollectionResponseDataItemsItemVisibility =
   | "public"
   | "private"
   | "protected";
-export const UpdateCollectionResponseDataItemsItemVisibility =
-  /*@__PURE__*/ S.String;
+export const UpdateCollectionResponseDataItemsItemVisibility = S.String;
 
 export type UpdateCollectionResponseDataItemsItemOwnerCase0Plan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const UpdateCollectionResponseDataItemsItemOwnerCase0Plan =
-  /*@__PURE__*/ S.String;
+export const UpdateCollectionResponseDataItemsItemOwnerCase0Plan = S.String;
 
 export interface UpdateCollectionResponseDataItemsItemOwnerCase0 {
   _id: string;
@@ -9960,7 +9887,7 @@ export type UpdateCollectionResponseDataItemsItemOwnerCase1PrimaryOrgPlan =
   | "plus"
   | "academia";
 export const UpdateCollectionResponseDataItemsItemOwnerCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionResponseDataItemsItemOwnerCase1PrimaryOrgUserRole =
   | "admin"
@@ -9969,7 +9896,7 @@ export type UpdateCollectionResponseDataItemsItemOwnerCase1PrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const UpdateCollectionResponseDataItemsItemOwnerCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionResponseDataItemsItemOwnerCase1PrimaryOrg {
   avatarUrl: string;
@@ -10047,7 +9974,7 @@ export type UpdateCollectionResponseDataItemsItemOwner =
   | UpdateCollectionResponseDataItemsItemOwnerCase0
   | UpdateCollectionResponseDataItemsItemOwnerCase1;
 export const UpdateCollectionResponseDataItemsItemOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionResponseDataItemsItemOwner>;
+  S.Unknown as any as S.Schema<UpdateCollectionResponseDataItemsItemOwner>;
 
 export type UpdateCollectionResponseDataItemsItemTheme =
   | "orange"
@@ -10056,8 +9983,7 @@ export type UpdateCollectionResponseDataItemsItemTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const UpdateCollectionResponseDataItemsItemTheme =
-  /*@__PURE__*/ S.String;
+export const UpdateCollectionResponseDataItemsItemTheme = S.String;
 
 export type UpdateCollectionResponseDataItemsItemAdminTagsList = Array<string>;
 export const UpdateCollectionResponseDataItemsItemAdminTagsList =
@@ -10069,13 +9995,13 @@ export type UpdateCollectionResponseDataItemsItemCdnRegionsItemProvider =
   | "gcp"
   | "aws";
 export const UpdateCollectionResponseDataItemsItemCdnRegionsItemProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionResponseDataItemsItemCdnRegionsItemRegion =
   | "us"
   | "eu";
 export const UpdateCollectionResponseDataItemsItemCdnRegionsItemRegion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionResponseDataItemsItemCdnRegionsItem {
   provider: UpdateCollectionResponseDataItemsItemCdnRegionsItemProvider;
@@ -10295,7 +10221,7 @@ export type UpdateCollectionBySlugRequestTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const UpdateCollectionBySlugRequestTheme = /*@__PURE__*/ S.String;
+export const UpdateCollectionBySlugRequestTheme = S.String;
 
 export type UpdateCollectionBySlugRequestGatingCase1 =
   AddItemResponseGatingCase1Case1;
@@ -10306,7 +10232,7 @@ export type UpdateCollectionBySlugRequestGatingCase2NotificationsMode =
   | "bulk"
   | "real-time";
 export const UpdateCollectionBySlugRequestGatingCase2NotificationsMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionBySlugRequestGatingCase2Notifications {
   mode:
@@ -10343,7 +10269,7 @@ export type UpdateCollectionBySlugRequestGating =
   | AddItemResponseGatingCase1Case1
   | UpdateCollectionBySlugRequestGatingCase2;
 export const UpdateCollectionBySlugRequestGating =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionBySlugRequestGating>;
+  S.Unknown as any as S.Schema<UpdateCollectionBySlugRequestGating>;
 
 export interface UpdateCollectionBySlugRequest {
   namespace: string;
@@ -10385,7 +10311,7 @@ export type UpdateCollectionBySlugResponseDataGatingCase1Case2NotificationsMode 
   | "bulk"
   | "real-time";
 export const UpdateCollectionBySlugResponseDataGatingCase1Case2NotificationsMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionBySlugResponseDataGatingCase1Case2Notifications {
   mode: UpdateCollectionBySlugResponseDataGatingCase1Case2NotificationsMode;
@@ -10422,21 +10348,20 @@ export type UpdateCollectionBySlugResponseDataGatingCase1 =
   | AddItemResponseGatingCase1Case1
   | UpdateCollectionBySlugResponseDataGatingCase1Case2;
 export const UpdateCollectionBySlugResponseDataGatingCase1 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionBySlugResponseDataGatingCase1>;
+  S.Unknown as any as S.Schema<UpdateCollectionBySlugResponseDataGatingCase1>;
 
 export type UpdateCollectionBySlugResponseDataGating =
   | unknown
   | UpdateCollectionBySlugResponseDataGatingCase1;
 export const UpdateCollectionBySlugResponseDataGating =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionBySlugResponseDataGating>;
+  S.Unknown as any as S.Schema<UpdateCollectionBySlugResponseDataGating>;
 
 export type UpdateCollectionBySlugResponseDataOwnerCase0Plan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const UpdateCollectionBySlugResponseDataOwnerCase0Plan =
-  /*@__PURE__*/ S.String;
+export const UpdateCollectionBySlugResponseDataOwnerCase0Plan = S.String;
 
 export interface UpdateCollectionBySlugResponseDataOwnerCase0 {
   _id: string;
@@ -10476,7 +10401,7 @@ export type UpdateCollectionBySlugResponseDataOwnerCase1PrimaryOrgPlan =
   | "plus"
   | "academia";
 export const UpdateCollectionBySlugResponseDataOwnerCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionBySlugResponseDataOwnerCase1PrimaryOrgUserRole =
   | "admin"
@@ -10485,7 +10410,7 @@ export type UpdateCollectionBySlugResponseDataOwnerCase1PrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const UpdateCollectionBySlugResponseDataOwnerCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionBySlugResponseDataOwnerCase1PrimaryOrg {
   avatarUrl: string;
@@ -10563,7 +10488,7 @@ export type UpdateCollectionBySlugResponseDataOwner =
   | UpdateCollectionBySlugResponseDataOwnerCase0
   | UpdateCollectionBySlugResponseDataOwnerCase1;
 export const UpdateCollectionBySlugResponseDataOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionBySlugResponseDataOwner>;
+  S.Unknown as any as S.Schema<UpdateCollectionBySlugResponseDataOwner>;
 
 export type UpdateCollectionBySlugResponseDataTheme =
   | "orange"
@@ -10572,7 +10497,7 @@ export type UpdateCollectionBySlugResponseDataTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const UpdateCollectionBySlugResponseDataTheme = /*@__PURE__*/ S.String;
+export const UpdateCollectionBySlugResponseDataTheme = S.String;
 
 export type UpdateCollectionBySlugResponseDataResourceGroup =
   AddItemResponseResourceGroup;
@@ -10596,7 +10521,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemDatasetsServerInfoViewer 
   | "viewer-partial"
   | "viewer";
 export const UpdateCollectionBySlugResponseDataItemsItemDatasetsServerInfoViewer =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemDatasetsServerInfoLibrariesItem =
   | "mlcroissant"
@@ -10612,7 +10537,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemDatasetsServerInfoLibrari
   | "duckdb"
   | "datadesigner";
 export const UpdateCollectionBySlugResponseDataItemsItemDatasetsServerInfoLibrariesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemDatasetsServerInfoLibrariesList =
   Array<UpdateCollectionBySlugResponseDataItemsItemDatasetsServerInfoLibrariesItem>;
@@ -10633,7 +10558,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemDatasetsServerInfoFormats
   | "optimized-parquet"
   | "agent-traces";
 export const UpdateCollectionBySlugResponseDataItemsItemDatasetsServerInfoFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemDatasetsServerInfoFormatsList =
   Array<UpdateCollectionBySlugResponseDataItemsItemDatasetsServerInfoFormatsItem>;
@@ -10653,7 +10578,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemDatasetsServerInfoModalit
   | "timeseries"
   | "video";
 export const UpdateCollectionBySlugResponseDataItemsItemDatasetsServerInfoModalitiesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemDatasetsServerInfoModalitiesList =
   Array<UpdateCollectionBySlugResponseDataItemsItemDatasetsServerInfoModalitiesItem>;
@@ -10689,14 +10614,13 @@ export const UpdateCollectionBySlugResponseDataItemsItemDatasetsServerInfo =
 export type UpdateCollectionBySlugResponseDataItemsItemGatedCase1 =
   | "auto"
   | "manual";
-export const UpdateCollectionBySlugResponseDataItemsItemGatedCase1 =
-  /*@__PURE__*/ S.String;
+export const UpdateCollectionBySlugResponseDataItemsItemGatedCase1 = S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemGated =
   | unknown
   | UpdateCollectionBySlugResponseDataItemsItemGatedCase1;
 export const UpdateCollectionBySlugResponseDataItemsItemGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionBySlugResponseDataItemsItemGated>;
+  S.Unknown as any as S.Schema<UpdateCollectionBySlugResponseDataItemsItemGated>;
 
 export type UpdateCollectionBySlugResponseDataItemsItemResourceGroup =
   AddItemResponseResourceGroup;
@@ -10724,21 +10648,21 @@ export type UpdateCollectionBySlugResponseDataItemsItemAvailableInferenceProvide
   | "wavespeed"
   | "zai-org";
 export const UpdateCollectionBySlugResponseDataItemsItemAvailableInferenceProvidersItemProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemAvailableInferenceProvidersItemProviderStatus =
   | "live"
   | "staging"
   | "error";
 export const UpdateCollectionBySlugResponseDataItemsItemAvailableInferenceProvidersItemProviderStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemAvailableInferenceProvidersItemModelStatus =
   | "live"
   | "staging"
   | "error";
 export const UpdateCollectionBySlugResponseDataItemsItemAvailableInferenceProvidersItemModelStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemAvailableInferenceProvidersItemTask =
   | "text-classification"
@@ -10800,7 +10724,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemAvailableInferenceProvide
   | "other"
   | "conversational";
 export const UpdateCollectionBySlugResponseDataItemsItemAvailableInferenceProvidersItemTask =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemAvailableInferenceProvidersItemFeatures =
   AddItemResponseItemsItemAvailableInferenceProvidersItemFeatures;
@@ -10864,7 +10788,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemAuthorDataCase0Plan =
   | "plus"
   | "academia";
 export const UpdateCollectionBySlugResponseDataItemsItemAuthorDataCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionBySlugResponseDataItemsItemAuthorDataCase0 {
   _id: string;
@@ -10906,7 +10830,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemAuthorDataCase1PrimaryOrg
   | "plus"
   | "academia";
 export const UpdateCollectionBySlugResponseDataItemsItemAuthorDataCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemAuthorDataCase1PrimaryOrgUserRole =
   | "admin"
@@ -10915,7 +10839,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemAuthorDataCase1PrimaryOrg
   | "read"
   | "no_access";
 export const UpdateCollectionBySlugResponseDataItemsItemAuthorDataCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionBySlugResponseDataItemsItemAuthorDataCase1PrimaryOrg {
   avatarUrl: string;
@@ -10994,7 +10918,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemAuthorData =
   | UpdateCollectionBySlugResponseDataItemsItemAuthorDataCase0
   | UpdateCollectionBySlugResponseDataItemsItemAuthorDataCase1;
 export const UpdateCollectionBySlugResponseDataItemsItemAuthorData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionBySlugResponseDataItemsItemAuthorData>;
+  S.Unknown as any as S.Schema<UpdateCollectionBySlugResponseDataItemsItemAuthorData>;
 
 export type UpdateCollectionBySlugResponseDataItemsItemWidgetOutputUrlsList =
   Array<string>;
@@ -11008,8 +10932,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemSdk =
   | "docker"
   | "static"
   | "streamlit";
-export const UpdateCollectionBySlugResponseDataItemsItemSdk =
-  /*@__PURE__*/ S.String;
+export const UpdateCollectionBySlugResponseDataItemsItemSdk = S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemRuntimeStage =
   | "NO_APP_FILE"
@@ -11025,8 +10948,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemRuntimeStage =
   | "STOPPED"
   | "PAUSED"
   | "SLEEPING";
-export const UpdateCollectionBySlugResponseDataItemsItemRuntimeStage =
-  /*@__PURE__*/ S.String;
+export const UpdateCollectionBySlugResponseDataItemsItemRuntimeStage = S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemRuntimeHardwareCurrent =
   | "cpu-basic"
@@ -11059,7 +10981,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemRuntimeHardwareCurrent =
   | "rtx-pro-6000x8"
   | "inf2x6";
 export const UpdateCollectionBySlugResponseDataItemsItemRuntimeHardwareCurrent =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemRuntimeHardwareRequested =
   | "cpu-basic"
@@ -11092,7 +11014,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemRuntimeHardwareRequested 
   | "rtx-pro-6000x8"
   | "inf2x6";
 export const UpdateCollectionBySlugResponseDataItemsItemRuntimeHardwareRequested =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionBySlugResponseDataItemsItemRuntimeHardware {
   current: UpdateCollectionBySlugResponseDataItemsItemRuntimeHardwareCurrent | null;
@@ -11116,7 +11038,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemRuntimeReplicasRequested 
   | number
   | unknown;
 export const UpdateCollectionBySlugResponseDataItemsItemRuntimeReplicasRequested =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionBySlugResponseDataItemsItemRuntimeReplicasRequested>;
+  S.Unknown as any as S.Schema<UpdateCollectionBySlugResponseDataItemsItemRuntimeReplicasRequested>;
 
 export interface UpdateCollectionBySlugResponseDataItemsItemRuntimeReplicas {
   current?: number | null;
@@ -11140,7 +11062,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemRuntimeDomainsItemStage =
   | "EXPIRED_CHALLENGE"
   | "MISCONFIGURED";
 export const UpdateCollectionBySlugResponseDataItemsItemRuntimeDomainsItemStage =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionBySlugResponseDataItemsItemRuntimeDomainsItem {
   domain: string;
@@ -11233,7 +11155,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemOriginRepoAuthorCase0Plan
   | "plus"
   | "academia";
 export const UpdateCollectionBySlugResponseDataItemsItemOriginRepoAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionBySlugResponseDataItemsItemOriginRepoAuthorCase0 {
   _id: string;
@@ -11276,7 +11198,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemOriginRepoAuthorCase1Prim
   | "plus"
   | "academia";
 export const UpdateCollectionBySlugResponseDataItemsItemOriginRepoAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -11285,7 +11207,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemOriginRepoAuthorCase1Prim
   | "read"
   | "no_access";
 export const UpdateCollectionBySlugResponseDataItemsItemOriginRepoAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionBySlugResponseDataItemsItemOriginRepoAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -11365,7 +11287,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemOriginRepoAuthor =
   | UpdateCollectionBySlugResponseDataItemsItemOriginRepoAuthorCase0
   | UpdateCollectionBySlugResponseDataItemsItemOriginRepoAuthorCase1;
 export const UpdateCollectionBySlugResponseDataItemsItemOriginRepoAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionBySlugResponseDataItemsItemOriginRepoAuthor>;
+  S.Unknown as any as S.Schema<UpdateCollectionBySlugResponseDataItemsItemOriginRepoAuthor>;
 
 export interface UpdateCollectionBySlugResponseDataItemsItemOriginRepo {
   author: UpdateCollectionBySlugResponseDataItemsItemOriginRepoAuthor;
@@ -11391,8 +11313,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemVisibility =
   | "public"
   | "private"
   | "protected";
-export const UpdateCollectionBySlugResponseDataItemsItemVisibility =
-  /*@__PURE__*/ S.String;
+export const UpdateCollectionBySlugResponseDataItemsItemVisibility = S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemOwnerCase0Plan =
   | "team"
@@ -11400,7 +11321,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemOwnerCase0Plan =
   | "plus"
   | "academia";
 export const UpdateCollectionBySlugResponseDataItemsItemOwnerCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionBySlugResponseDataItemsItemOwnerCase0 {
   _id: string;
@@ -11442,7 +11363,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemOwnerCase1PrimaryOrgPlan 
   | "plus"
   | "academia";
 export const UpdateCollectionBySlugResponseDataItemsItemOwnerCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemOwnerCase1PrimaryOrgUserRole =
   | "admin"
@@ -11451,7 +11372,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemOwnerCase1PrimaryOrgUserR
   | "read"
   | "no_access";
 export const UpdateCollectionBySlugResponseDataItemsItemOwnerCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionBySlugResponseDataItemsItemOwnerCase1PrimaryOrg {
   avatarUrl: string;
@@ -11530,7 +11451,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemOwner =
   | UpdateCollectionBySlugResponseDataItemsItemOwnerCase0
   | UpdateCollectionBySlugResponseDataItemsItemOwnerCase1;
 export const UpdateCollectionBySlugResponseDataItemsItemOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionBySlugResponseDataItemsItemOwner>;
+  S.Unknown as any as S.Schema<UpdateCollectionBySlugResponseDataItemsItemOwner>;
 
 export type UpdateCollectionBySlugResponseDataItemsItemTheme =
   | "orange"
@@ -11539,8 +11460,7 @@ export type UpdateCollectionBySlugResponseDataItemsItemTheme =
   | "purple"
   | "pink"
   | "indigo";
-export const UpdateCollectionBySlugResponseDataItemsItemTheme =
-  /*@__PURE__*/ S.String;
+export const UpdateCollectionBySlugResponseDataItemsItemTheme = S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemAdminTagsList =
   Array<string>;
@@ -11553,13 +11473,13 @@ export type UpdateCollectionBySlugResponseDataItemsItemCdnRegionsItemProvider =
   | "gcp"
   | "aws";
 export const UpdateCollectionBySlugResponseDataItemsItemCdnRegionsItemProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCollectionBySlugResponseDataItemsItemCdnRegionsItemRegion =
   | "us"
   | "eu";
 export const UpdateCollectionBySlugResponseDataItemsItemCdnRegionsItemRegion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCollectionBySlugResponseDataItemsItemCdnRegionsItem {
   provider: UpdateCollectionBySlugResponseDataItemsItemCdnRegionsItemProvider;

@@ -39,7 +39,7 @@ export type AssignFloatingIpResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const AssignFloatingIpResponseActionStatus = /*@__PURE__*/ S.String;
+export const AssignFloatingIpResponseActionStatus = S.String;
 
 export interface AssignFloatingIpResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -154,8 +154,7 @@ export type ChangeFloatingIpDnsPtrResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeFloatingIpDnsPtrResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const ChangeFloatingIpDnsPtrResponseActionStatus = S.String;
 
 export type ChangeFloatingIpDnsPtrResponseActionResourcesItem =
   AssignFloatingIpResponseActionResourcesItem;
@@ -247,8 +246,7 @@ export type ChangeFloatingIpProtectionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeFloatingIpProtectionResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const ChangeFloatingIpProtectionResponseActionStatus = S.String;
 
 export type ChangeFloatingIpProtectionResponseActionResourcesItem =
   AssignFloatingIpResponseActionResourcesItem;
@@ -333,7 +331,7 @@ export type GetFloatingIpsActionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const GetFloatingIpsActionResponseActionStatus = /*@__PURE__*/ S.String;
+export const GetFloatingIpsActionResponseActionStatus = S.String;
 
 export type GetFloatingIpsActionResponseActionResourcesItem =
   AssignFloatingIpResponseActionResourcesItem;
@@ -414,7 +412,7 @@ export type ListFloatingIpActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListFloatingIpActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListFloatingIpActionsRequestSortItem = S.String;
 
 export type ListFloatingIpActionsRequestSortList = Array<
   ListFloatingIpActionsRequestSortItem | (string & {})
@@ -428,7 +426,7 @@ export type ListFloatingIpActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListFloatingIpActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListFloatingIpActionsRequestStatusItem = S.String;
 
 export type ListFloatingIpActionsRequestStatusList = Array<
   ListFloatingIpActionsRequestStatusItem | (string & {})
@@ -468,8 +466,7 @@ export type ListFloatingIpActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListFloatingIpActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListFloatingIpActionsResponseActionsItemStatus = S.String;
 
 export type ListFloatingIpActionsResponseActionsItemResourcesItem =
   AssignFloatingIpResponseActionResourcesItem;
@@ -605,7 +602,7 @@ export type ListFloatingIpsActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListFloatingIpsActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListFloatingIpsActionsRequestSortItem = S.String;
 
 export type ListFloatingIpsActionsRequestSortList = Array<
   ListFloatingIpsActionsRequestSortItem | (string & {})
@@ -619,7 +616,7 @@ export type ListFloatingIpsActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListFloatingIpsActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListFloatingIpsActionsRequestStatusItem = S.String;
 
 export type ListFloatingIpsActionsRequestStatusList = Array<
   ListFloatingIpsActionsRequestStatusItem | (string & {})
@@ -657,8 +654,7 @@ export type ListFloatingIpsActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListFloatingIpsActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListFloatingIpsActionsResponseActionsItemStatus = S.String;
 
 export type ListFloatingIpsActionsResponseActionsItemResourcesItem =
   AssignFloatingIpResponseActionResourcesItem;
@@ -766,7 +762,7 @@ export type UnassignFloatingIpResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const UnassignFloatingIpResponseActionStatus = /*@__PURE__*/ S.String;
+export const UnassignFloatingIpResponseActionStatus = S.String;
 
 export type UnassignFloatingIpResponseActionResourcesItem =
   AssignFloatingIpResponseActionResourcesItem;

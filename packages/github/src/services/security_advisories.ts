@@ -94,7 +94,7 @@ export type SecurityAdvisoryEcosystems =
   | "pub"
   | "other"
   | "swift";
-export const SecurityAdvisoryEcosystems = /*@__PURE__*/ S.String;
+export const SecurityAdvisoryEcosystems = S.String;
 
 /** The name of the package affected by the vulnerability. */
 export interface CreatePrivateVulnerabilityReportRequestVulnerabilitiesItemPackage {
@@ -169,8 +169,7 @@ export type CreatePrivateVulnerabilityReportRequestSeverity =
   | "high"
   | "medium"
   | "low";
-export const CreatePrivateVulnerabilityReportRequestSeverity =
-  /*@__PURE__*/ S.String;
+export const CreatePrivateVulnerabilityReportRequestSeverity = S.String;
 
 export interface CreatePrivateVulnerabilityReportRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -226,7 +225,7 @@ export const CreatePrivateVulnerabilityReportRequest = /*@__PURE__*/ S.suspend(
 
 /** The severity of the advisory. */
 export type RepositoryAdvisorySeverity = "critical" | "high" | "medium" | "low";
-export const RepositoryAdvisorySeverity = /*@__PURE__*/ S.String;
+export const RepositoryAdvisorySeverity = S.String;
 
 /** A GitHub user. */
 export interface SimpleUser {
@@ -282,7 +281,7 @@ export const SimpleUser = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of identifier. */
 export type RepositoryAdvisoryIdentifiersItemType = "CVE" | "GHSA";
-export const RepositoryAdvisoryIdentifiersItemType = /*@__PURE__*/ S.String;
+export const RepositoryAdvisoryIdentifiersItemType = S.String;
 
 export interface RepositoryAdvisoryIdentifiersItem {
   /** The type of identifier. */
@@ -312,7 +311,7 @@ export type RepositoryAdvisoryState =
   | "withdrawn"
   | "draft"
   | "triage";
-export const RepositoryAdvisoryState = /*@__PURE__*/ S.String;
+export const RepositoryAdvisoryState = S.String;
 
 export interface RepositoryAdvisorySubmission {
   /** Whether a private vulnerability report was accepted by the repository's administrators. */
@@ -474,7 +473,7 @@ export type SecurityAdvisoryCreditTypes =
   | "tool"
   | "sponsor"
   | "other";
-export const SecurityAdvisoryCreditTypes = /*@__PURE__*/ S.String;
+export const SecurityAdvisoryCreditTypes = S.String;
 
 export interface RepositoryAdvisoryCreditsItem {
   /** The username of the user credited. */
@@ -498,7 +497,7 @@ export const RepositoryAdvisoryCreditsList = /*@__PURE__*/ S.Array(
 
 /** The state of the user's acceptance of the credit. */
 export type RepositoryAdvisoryCreditState = "accepted" | "declined" | "pending";
-export const RepositoryAdvisoryCreditState = /*@__PURE__*/ S.String;
+export const RepositoryAdvisoryCreditState = S.String;
 
 /** A credit given to a user for a repository security advisory. */
 export interface RepositoryAdvisoryCredit {
@@ -550,15 +549,15 @@ export const TeamPermissions = /*@__PURE__*/ S.suspend(() =>
 
 /** The ownership type of the team */
 export type TeamType = "enterprise" | "organization";
-export const TeamType = /*@__PURE__*/ S.String;
+export const TeamType = S.String;
 
 /** How the team's access to the repository was granted. This property is only present when the team is returned in a repository context, such as `GET /repos/{owner}/{repo}/teams`. */
 export type TeamAccessSource = "direct" | "organization" | "enterprise";
-export const TeamAccessSource = /*@__PURE__*/ S.String;
+export const TeamAccessSource = S.String;
 
 /** The ownership type of the team */
 export type NullableTeamSimpleType = "enterprise" | "organization";
-export const NullableTeamSimpleType = /*@__PURE__*/ S.String;
+export const NullableTeamSimpleType = S.String;
 
 /** Groups of organization members that gives permissions on specified repositories. */
 export interface NullableTeamSimple {
@@ -980,7 +979,7 @@ export type CreateRepositoryAdvisoryRequestSeverity =
   | "high"
   | "medium"
   | "low";
-export const CreateRepositoryAdvisoryRequestSeverity = /*@__PURE__*/ S.String;
+export const CreateRepositoryAdvisoryRequestSeverity = S.String;
 
 export interface CreateRepositoryAdvisoryRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -1075,7 +1074,7 @@ export const GetGlobalAdvisoryRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of advisory. */
 export type GlobalAdvisoryType = "reviewed" | "unreviewed" | "malware";
-export const GlobalAdvisoryType = /*@__PURE__*/ S.String;
+export const GlobalAdvisoryType = S.String;
 
 /** The severity of the advisory. */
 export type GlobalAdvisorySeverity =
@@ -1084,11 +1083,11 @@ export type GlobalAdvisorySeverity =
   | "medium"
   | "low"
   | "unknown";
-export const GlobalAdvisorySeverity = /*@__PURE__*/ S.String;
+export const GlobalAdvisorySeverity = S.String;
 
 /** The type of identifier. */
 export type GlobalAdvisoryIdentifiersItemType = "CVE" | "GHSA";
-export const GlobalAdvisoryIdentifiersItemType = /*@__PURE__*/ S.String;
+export const GlobalAdvisoryIdentifiersItemType = S.String;
 
 export interface GlobalAdvisoryIdentifiersItem {
   /** The type of identifier. */
@@ -1295,7 +1294,7 @@ export type ListGlobalAdvisoriesRequestType =
   | "reviewed"
   | "malware"
   | "unreviewed";
-export const ListGlobalAdvisoriesRequestType = /*@__PURE__*/ S.String;
+export const ListGlobalAdvisoriesRequestType = S.String;
 
 export type ListGlobalAdvisoriesRequestSeverity =
   | "unknown"
@@ -1303,7 +1302,7 @@ export type ListGlobalAdvisoriesRequestSeverity =
   | "medium"
   | "high"
   | "critical";
-export const ListGlobalAdvisoriesRequestSeverity = /*@__PURE__*/ S.String;
+export const ListGlobalAdvisoriesRequestSeverity = S.String;
 
 export type ListGlobalAdvisoriesRequestCwesCase1List = Array<string>;
 export const ListGlobalAdvisoriesRequestCwesCase1List = /*@__PURE__*/ S.Array(
@@ -1314,7 +1313,7 @@ export type ListGlobalAdvisoriesRequestCwes =
   | string
   | ListGlobalAdvisoriesRequestCwesCase1List;
 export const ListGlobalAdvisoriesRequestCwes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListGlobalAdvisoriesRequestCwes>;
+  S.Unknown as any as S.Schema<ListGlobalAdvisoriesRequestCwes>;
 
 export type ListGlobalAdvisoriesRequestAffectsCase1List = Array<string>;
 export const ListGlobalAdvisoriesRequestAffectsCase1List =
@@ -1326,17 +1325,17 @@ export type ListGlobalAdvisoriesRequestAffects =
   | string
   | ListGlobalAdvisoriesRequestAffectsCase1List;
 export const ListGlobalAdvisoriesRequestAffects =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListGlobalAdvisoriesRequestAffects>;
+  S.Unknown as any as S.Schema<ListGlobalAdvisoriesRequestAffects>;
 
 export type ListGlobalAdvisoriesRequestDirection = "asc" | "desc";
-export const ListGlobalAdvisoriesRequestDirection = /*@__PURE__*/ S.String;
+export const ListGlobalAdvisoriesRequestDirection = S.String;
 
 export type ListGlobalAdvisoriesRequestSort =
   | "updated"
   | "published"
   | "epss_percentage"
   | "epss_percentile";
-export const ListGlobalAdvisoriesRequestSort = /*@__PURE__*/ S.String;
+export const ListGlobalAdvisoriesRequestSort = S.String;
 
 export interface ListGlobalAdvisoriesRequest {
   /** If specified, only advisories with this GHSA (GitHub Security Advisory) identifier will be returned. */
@@ -1414,21 +1413,20 @@ export const ListGlobalAdvisoriesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListGlobalAdvisoriesResponse>;
 
 export type ListOrgRepositoryAdvisoriesRequestDirection = "asc" | "desc";
-export const ListOrgRepositoryAdvisoriesRequestDirection =
-  /*@__PURE__*/ S.String;
+export const ListOrgRepositoryAdvisoriesRequestDirection = S.String;
 
 export type ListOrgRepositoryAdvisoriesRequestSort =
   | "created"
   | "updated"
   | "published";
-export const ListOrgRepositoryAdvisoriesRequestSort = /*@__PURE__*/ S.String;
+export const ListOrgRepositoryAdvisoriesRequestSort = S.String;
 
 export type ListOrgRepositoryAdvisoriesRequestState =
   | "triage"
   | "draft"
   | "published"
   | "closed";
-export const ListOrgRepositoryAdvisoriesRequestState = /*@__PURE__*/ S.String;
+export const ListOrgRepositoryAdvisoriesRequestState = S.String;
 
 export interface ListOrgRepositoryAdvisoriesRequest {
   /** The organization name. The name is not case sensitive. */
@@ -1484,20 +1482,20 @@ export const ListOrgRepositoryAdvisoriesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOrgRepositoryAdvisoriesResponse>;
 
 export type ListRepositoryAdvisoriesRequestDirection = "asc" | "desc";
-export const ListRepositoryAdvisoriesRequestDirection = /*@__PURE__*/ S.String;
+export const ListRepositoryAdvisoriesRequestDirection = S.String;
 
 export type ListRepositoryAdvisoriesRequestSort =
   | "created"
   | "updated"
   | "published";
-export const ListRepositoryAdvisoriesRequestSort = /*@__PURE__*/ S.String;
+export const ListRepositoryAdvisoriesRequestSort = S.String;
 
 export type ListRepositoryAdvisoriesRequestState =
   | "triage"
   | "draft"
   | "published"
   | "closed";
-export const ListRepositoryAdvisoriesRequestState = /*@__PURE__*/ S.String;
+export const ListRepositoryAdvisoriesRequestState = S.String;
 
 export interface ListRepositoryAdvisoriesRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -1627,14 +1625,14 @@ export type UpdateRepositoryAdvisoryRequestSeverity =
   | "high"
   | "medium"
   | "low";
-export const UpdateRepositoryAdvisoryRequestSeverity = /*@__PURE__*/ S.String;
+export const UpdateRepositoryAdvisoryRequestSeverity = S.String;
 
 /** The state of the advisory. */
 export type UpdateRepositoryAdvisoryRequestState =
   | "published"
   | "closed"
   | "draft";
-export const UpdateRepositoryAdvisoryRequestState = /*@__PURE__*/ S.String;
+export const UpdateRepositoryAdvisoryRequestState = S.String;
 
 /** A list of usernames who have been granted write access to the advisory. */
 export type UpdateRepositoryAdvisoryRequestCollaboratingUsersList =

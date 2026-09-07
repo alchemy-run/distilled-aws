@@ -316,7 +316,7 @@ export const LFTagKeyResource = /*@__PURE__*/ S.suspend(() =>
   identifier: "LFTagKeyResource",
 }) as any as S.Schema<LFTagKeyResource>;
 export type ResourceType = "DATABASE" | "TABLE" | (string & {});
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 export type LFTagKey = string;
 export interface LFTag {
@@ -519,7 +519,7 @@ export type Permission =
   | "CREATE_CATALOG"
   | "SUPER_USER"
   | (string & {});
-export const Permission = /*@__PURE__*/ S.String;
+export const Permission = S.String;
 
 export type PermissionList = Permission[];
 export const PermissionList = /*@__PURE__*/ S.Array(Permission);
@@ -675,7 +675,7 @@ export type TransactionStatus =
   | "ABORTED"
   | "COMMIT_IN_PROGRESS"
   | (string & {});
-export const TransactionStatus = /*@__PURE__*/ S.String;
+export const TransactionStatus = S.String;
 
 export interface CommitTransactionResponse {
   TransactionStatus?: TransactionStatus;
@@ -752,7 +752,7 @@ export const CreateDataCellsFilterResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDataCellsFilterResponse>;
 export type IdentityCenterInstanceArn = string;
 export type EnableStatus = "ENABLED" | "DISABLED" | (string & {});
-export const EnableStatus = /*@__PURE__*/ S.String;
+export const EnableStatus = S.String;
 
 export type ScopeTarget = string;
 export type ScopeTargets = string[];
@@ -769,7 +769,7 @@ export const ExternalFilteringConfiguration = /*@__PURE__*/ S.suspend(() =>
 export type DataLakePrincipalList = DataLakePrincipal[];
 export const DataLakePrincipalList = /*@__PURE__*/ S.Array(DataLakePrincipal);
 export type ServiceAuthorization = "ENABLED" | "DISABLED" | (string & {});
-export const ServiceAuthorization = /*@__PURE__*/ S.String;
+export const ServiceAuthorization = S.String;
 
 export interface RedshiftConnect {
   Authorization: ServiceAuthorization;
@@ -1193,7 +1193,7 @@ export type VerificationStatus =
   | "VERIFICATION_FAILED"
   | "NOT_VERIFIED"
   | (string & {});
-export const VerificationStatus = /*@__PURE__*/ S.String;
+export const VerificationStatus = S.String;
 
 export type AccountIdString = string;
 export interface ResourceInfo {
@@ -1599,7 +1599,7 @@ export type QueryStateString =
   | "FINISHED"
   | "EXPIRED"
   | (string & {});
-export const QueryStateString = /*@__PURE__*/ S.String;
+export const QueryStateString = S.String;
 
 export interface GetQueryStateResponse {
   Error?: string;
@@ -1814,7 +1814,7 @@ export type PathString = string;
 export type PathStringList = string[];
 export const PathStringList = /*@__PURE__*/ S.Array(S.String);
 export type CredentialsScope = "READ" | "READWRITE" | (string & {});
-export const CredentialsScope = /*@__PURE__*/ S.String;
+export const CredentialsScope = S.String;
 
 export interface GetTemporaryDataLocationCredentialsRequest {
   DurationSeconds?: number;
@@ -1890,7 +1890,7 @@ export type PermissionType =
   | "NESTED_PERMISSION"
   | "NESTED_CELL_PERMISSION"
   | (string & {});
-export const PermissionType = /*@__PURE__*/ S.String;
+export const PermissionType = S.String;
 
 export type PermissionTypeList = PermissionType[];
 export const PermissionTypeList = /*@__PURE__*/ S.Array(PermissionType);
@@ -2300,7 +2300,7 @@ export const ListLFTagExpressionsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListLFTagExpressionsResponse",
 }) as any as S.Schema<ListLFTagExpressionsResponse>;
 export type ResourceShareType = "FOREIGN" | "ALL" | (string & {});
-export const ResourceShareType = /*@__PURE__*/ S.String;
+export const ResourceShareType = S.String;
 
 export interface ListLFTagsRequest {
   CatalogId?: string;
@@ -2347,7 +2347,7 @@ export type DataLakeResourceType =
   | "LF_TAG_POLICY_TABLE"
   | "LF_NAMED_TAG_EXPRESSION"
   | (string & {});
-export const DataLakeResourceType = /*@__PURE__*/ S.String;
+export const DataLakeResourceType = S.String;
 
 export type TrueFalseString = string;
 export interface ListPermissionsRequest {
@@ -2398,7 +2398,7 @@ export type FieldNameString =
   | "ROLE_ARN"
   | "LAST_MODIFIED"
   | (string & {});
-export const FieldNameString = /*@__PURE__*/ S.String;
+export const FieldNameString = S.String;
 
 export type ComparisonOperator =
   | "EQ"
@@ -2413,7 +2413,7 @@ export type ComparisonOperator =
   | "IN"
   | "BETWEEN"
   | (string & {});
-export const ComparisonOperator = /*@__PURE__*/ S.String;
+export const ComparisonOperator = S.String;
 
 export type StringValue = string;
 export type StringValueList = string[];
@@ -2476,7 +2476,7 @@ export type OptimizerType =
   | "GARBAGE_COLLECTION"
   | "ALL"
   | (string & {});
-export const OptimizerType = /*@__PURE__*/ S.String;
+export const OptimizerType = S.String;
 
 export interface ListTableStorageOptimizersRequest {
   CatalogId?: string;
@@ -2554,7 +2554,7 @@ export type TransactionStatusFilter =
   | "COMMITTED"
   | "ABORTED"
   | (string & {});
-export const TransactionStatusFilter = /*@__PURE__*/ S.String;
+export const TransactionStatusFilter = S.String;
 
 export interface ListTransactionsRequest {
   CatalogId?: string;
@@ -2887,7 +2887,7 @@ export const StartQueryPlanningResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "StartQueryPlanningResponse",
 }) as any as S.Schema<StartQueryPlanningResponse>;
 export type TransactionType = "READ_AND_WRITE" | "READ_ONLY" | (string & {});
-export const TransactionType = /*@__PURE__*/ S.String;
+export const TransactionType = S.String;
 
 export interface StartTransactionRequest {
   TransactionType?: TransactionType;
@@ -2938,7 +2938,7 @@ export const UpdateDataCellsFilterResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateDataCellsFilterResponse",
 }) as any as S.Schema<UpdateDataCellsFilterResponse>;
 export type ApplicationStatus = "ENABLED" | "DISABLED" | (string & {});
-export const ApplicationStatus = /*@__PURE__*/ S.String;
+export const ApplicationStatus = S.String;
 
 export interface UpdateLakeFormationIdentityCenterConfigurationRequest {
   CatalogId?: string;

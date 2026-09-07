@@ -129,7 +129,7 @@ export type OutpostId = string;
 export type SubnetId = string;
 export type SecurityGroupId = string;
 export type EndpointAccessType = "Private" | "CustomerOwnedIp" | (string & {});
-export const EndpointAccessType = /*@__PURE__*/ S.String;
+export const EndpointAccessType = S.String;
 
 export type CustomerOwnedIpv4Pool = string;
 export interface CreateEndpointRequest {
@@ -227,7 +227,7 @@ export type EndpointStatus =
   | "Create_Failed"
   | "Delete_Failed"
   | (string & {});
-export const EndpointStatus = /*@__PURE__*/ S.String;
+export const EndpointStatus = S.String;
 
 export type CreationTime = Date;
 export type NetworkInterfaceId = string;

@@ -21,11 +21,11 @@ export type ManagedCassandraProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const ManagedCassandraProvisioningState = /*@__PURE__*/ S.String;
+export const ManagedCassandraProvisioningState = S.String;
 
 /** Which authentication method Cassandra should use to authenticate clients. 'None' turns off authentication, so should not be used except in emergencies. 'Cassandra' is the default password based authentication. The default is 'Cassandra'. */
 export type AuthenticationMethod = "None" | "Cassandra" | "Ldap";
-export const AuthenticationMethod = /*@__PURE__*/ S.String;
+export const AuthenticationMethod = S.String;
 
 export interface SeedNode {
   /** IP address of this seed node. */
@@ -39,7 +39,7 @@ export const SeedNode = /*@__PURE__*/ S.suspend(() =>
 
 /** The form of AutoReplicate that is being used by this cluster. */
 export type AutoReplicate = "None" | "SystemKeyspaces" | "AllKeyspaces";
-export const AutoReplicate = /*@__PURE__*/ S.String;
+export const AutoReplicate = S.String;
 
 export interface Certificate {
   /** PEM formatted public key. */
@@ -135,11 +135,11 @@ export const ClusterResourcePropertiesInputBackupSchedulesList =
 
 /** How the nodes in the cluster react to scheduled events */
 export type ScheduledEventStrategy = "Ignore" | "StopAny" | "StopByRack";
-export const ScheduledEventStrategy = /*@__PURE__*/ S.String;
+export const ScheduledEventStrategy = S.String;
 
 /** How to connect to the azure services needed for running the cluster */
 export type AzureConnectionType = "None" | "VPN";
-export const AzureConnectionType = /*@__PURE__*/ S.String;
+export const AzureConnectionType = S.String;
 
 /** Properties of a managed Cassandra cluster. */
 export interface ClusterResourcePropertiesInput {
@@ -241,7 +241,7 @@ export const CassandraClustersCreateUpdateRequestTagsMap =
 
 /** The type of the resource. */
 export type ManagedCassandraResourceIdentityType = "SystemAssigned" | "None";
-export const ManagedCassandraResourceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedCassandraResourceIdentityType = S.String;
 
 /** Identity for the resource. */
 export interface ManagedCassandraManagedServiceIdentityInput {
@@ -301,7 +301,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -309,7 +309,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -658,7 +658,7 @@ export type ConnectionState =
   | "DatacenterToDatacenterNetworkError"
   | "InternalOperatorToDataCenterCertificateError"
   | "InternalError";
-export const ConnectionState = /*@__PURE__*/ S.String;
+export const ConnectionState = S.String;
 
 export interface ConnectionError {
   /** The kind of connection error that occurred. */
@@ -708,7 +708,7 @@ export const CassandraClusterPublicStatusDataCentersItemSeedNodesList =
 
 /** The state of the node in Cassandra ring. */
 export type NodeState = "Normal" | "Leaving" | "Joining" | "Moving" | "Stopped";
-export const NodeState = /*@__PURE__*/ S.String;
+export const NodeState = S.String;
 
 /** List of tokens this node covers. */
 export type ComponentsM9L909SchemasCassandraclusterpublicstatusPropertiesDatacentersItemsPropertiesNodesItemsTokensList =
@@ -1081,7 +1081,7 @@ export type ResourceIdentityType =
   | "UserAssigned"
   | "SystemAssigned,UserAssigned"
   | "None";
-export const ResourceIdentityType = /*@__PURE__*/ S.String;
+export const ResourceIdentityType = S.String;
 
 export interface ManagedServiceIdentityUserAssignedIdentitiesInput {}
 export const ManagedServiceIdentityUserAssignedIdentitiesInput =
@@ -1468,7 +1468,7 @@ export const CassandraResourcesCreateUpdateCassandraRoleAssignmentResponse =
 
 /** Indicates whether the Role Definition was built-in or user created. */
 export type RoleDefinitionType = "BuiltInRole" | "CustomRole";
-export const RoleDefinitionType = /*@__PURE__*/ S.String;
+export const RoleDefinitionType = S.String;
 
 /** A set of fully qualified Scopes at or below which Cassandra Role Assignments may be created using this Role Definition. This will allow application of this Role Definition on the entire database account or any underlying Database / Collection. Must have at least one element. Scopes higher than Database account are not enforceable as assignable Scopes. Note that resources referenced in assignable Scopes need not exist. */
 export type CassandraRoleDefinitionResourcePropertiesAssignableScopesList =
@@ -1884,7 +1884,7 @@ export type Status =
   | "Canceled"
   | "Updating"
   | "Creating";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** Properties to update Azure Cosmos DB fleet resource. */
 export interface FleetResourceProperties {
@@ -1972,13 +1972,13 @@ export const CreateFleetResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of API this fleetspace belongs to. Acceptable values: 'NoSQL' */
 export type FleetspacePropertiesFleetspaceApiKind = "NoSQL";
-export const FleetspacePropertiesFleetspaceApiKind = /*@__PURE__*/ S.String;
+export const FleetspacePropertiesFleetspaceApiKind = S.String;
 
 /** Service Tier for the fleetspace. GeneralPurpose types refers to single write region accounts that can be added to this fleetspace, whereas BusinessCritical refers to multi write region. */
 export type FleetspacePropertiesServiceTier =
   | "GeneralPurpose"
   | "BusinessCritical";
-export const FleetspacePropertiesServiceTier = /*@__PURE__*/ S.String;
+export const FleetspacePropertiesServiceTier = S.String;
 
 /** List of data regions assigned to the fleetspace. Eg [westus2] */
 export type FleetspacePropertiesDataRegionsList = Array<string>;
@@ -2186,7 +2186,7 @@ export const CreateFleetspaceAccountResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Instance type for the service. */
 export type ServiceSize = "Cosmos.D4s" | "Cosmos.D8s" | "Cosmos.D16s";
-export const ServiceSize = /*@__PURE__*/ S.String;
+export const ServiceSize = S.String;
 
 /** ServiceType for the service. */
 export type ServiceType =
@@ -2194,7 +2194,7 @@ export type ServiceType =
   | "DataTransfer"
   | "GraphAPICompute"
   | "MaterializedViewsBuilder";
-export const ServiceType = /*@__PURE__*/ S.String;
+export const ServiceType = S.String;
 
 /** Properties in ServiceResourceCreateUpdateParameters. */
 export interface ServiceResourceCreateUpdateProperties {
@@ -2255,7 +2255,7 @@ export type ServiceStatus =
   | "Deleting"
   | "Error"
   | "Stopped";
-export const ServiceStatus = /*@__PURE__*/ S.String;
+export const ServiceStatus = S.String;
 
 /** Services response resource. */
 export interface ServiceResourceProperties {
@@ -2321,7 +2321,7 @@ export type DatabaseAccountsCreateOrUpdateRequestKind =
   | "GlobalDocumentDB"
   | "MongoDB"
   | "Parse";
-export const DatabaseAccountsCreateOrUpdateRequestKind = /*@__PURE__*/ S.String;
+export const DatabaseAccountsCreateOrUpdateRequestKind = S.String;
 
 /** The default consistency level and configuration settings of the Cosmos DB account. */
 export type DefaultConsistencyLevel =
@@ -2330,7 +2330,7 @@ export type DefaultConsistencyLevel =
   | "BoundedStaleness"
   | "Strong"
   | "ConsistentPrefix";
-export const DefaultConsistencyLevel = /*@__PURE__*/ S.String;
+export const DefaultConsistencyLevel = S.String;
 
 /** The consistency policy for the Cosmos DB database account. */
 export interface ConsistencyPolicy {
@@ -2380,7 +2380,7 @@ export const DatabaseAccountCreateUpdatePropertiesInputLocationsList =
 export type DatabaseAccountCreateUpdatePropertiesInputDatabaseAccountOfferType =
   "Standard";
 export const DatabaseAccountCreateUpdatePropertiesInputDatabaseAccountOfferType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** IpAddressOrRange object */
 export interface IpAddressOrRange {
@@ -2448,11 +2448,11 @@ export const DatabaseAccountCreateUpdatePropertiesInputVirtualNetworkRulesList =
 
 /** The cassandra connector offer type for the Cosmos DB C* database account. */
 export type ConnectorOffer = "Small";
-export const ConnectorOffer = /*@__PURE__*/ S.String;
+export const ConnectorOffer = S.String;
 
 /** Whether requests from Public Network are allowed */
 export type PublicNetworkAccess = "Enabled" | "Disabled" | "SecuredByPerimeter";
-export const PublicNetworkAccess = /*@__PURE__*/ S.String;
+export const PublicNetworkAccess = S.String;
 
 /** Describes the version of the MongoDB account. */
 export type ServerVersion =
@@ -2463,7 +2463,7 @@ export type ServerVersion =
   | "5.0"
   | "6.0"
   | "7.0";
-export const ServerVersion = /*@__PURE__*/ S.String;
+export const ServerVersion = S.String;
 
 export interface ApiProperties {
   /** Describes the version of the MongoDB account. */
@@ -2477,7 +2477,7 @@ export const ApiProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** Describes the types of schema for analytical storage. */
 export type AnalyticalStorageSchemaType = "WellDefined" | "FullFidelity";
-export const AnalyticalStorageSchemaType = /*@__PURE__*/ S.String;
+export const AnalyticalStorageSchemaType = S.String;
 
 /** Analytical storage specific properties. */
 export interface AnalyticalStorageConfiguration {
@@ -2496,12 +2496,11 @@ export const AnalyticalStorageConfiguration = /*@__PURE__*/ S.suspend(() =>
 export type DatabaseAccountCreateUpdatePropertiesInputCreateMode =
   | "Default"
   | "Restore";
-export const DatabaseAccountCreateUpdatePropertiesInputCreateMode =
-  /*@__PURE__*/ S.String;
+export const DatabaseAccountCreateUpdatePropertiesInputCreateMode = S.String;
 
 /** Describes the mode of backups. */
 export type BackupPolicyType = "Periodic" | "Continuous";
-export const BackupPolicyType = /*@__PURE__*/ S.String;
+export const BackupPolicyType = S.String;
 
 /** Describes the status of migration between backup policy types. */
 export type BackupPolicyMigrationStatus =
@@ -2509,7 +2508,7 @@ export type BackupPolicyMigrationStatus =
   | "InProgress"
   | "Completed"
   | "Failed";
-export const BackupPolicyMigrationStatus = /*@__PURE__*/ S.String;
+export const BackupPolicyMigrationStatus = S.String;
 
 /** The object representing the state of the migration between the backup policies. */
 export interface BackupPolicyMigrationState {
@@ -2577,7 +2576,7 @@ export const DatabaseAccountCreateUpdatePropertiesInputCorsList =
 
 /** Indicates what services are allowed to bypass firewall checks. */
 export type NetworkAclBypass = "None" | "AzureServices";
-export const NetworkAclBypass = /*@__PURE__*/ S.String;
+export const NetworkAclBypass = S.String;
 
 /** An array that contains the Resource Ids for Network Acl Bypass for the Cosmos DB account. */
 export type DatabaseAccountCreateUpdatePropertiesInputNetworkAclBypassResourceIdsList =
@@ -2589,7 +2588,7 @@ export const DatabaseAccountCreateUpdatePropertiesInputNetworkAclBypassResourceI
 
 /** Describes the mode of the restore. */
 export type RestoreMode = "PointInTime";
-export const RestoreMode = /*@__PURE__*/ S.String;
+export const RestoreMode = S.String;
 
 /** The names of the collections available for restore. */
 export type DatabaseRestoreResourceCollectionNamesList = Array<string>;
@@ -2706,11 +2705,11 @@ export const Capacity = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates the minimum allowed Tls version. The default is Tls 1.0, except for Cassandra and Mongo API's, which only work with Tls 1.2. */
 export type MinimalTlsVersion = "Tls" | "Tls11" | "Tls12";
-export const MinimalTlsVersion = /*@__PURE__*/ S.String;
+export const MinimalTlsVersion = S.String;
 
 /** Enum to indicate default priorityLevel of requests */
 export type DefaultPriorityLevel = "High" | "Low";
-export const DefaultPriorityLevel = /*@__PURE__*/ S.String;
+export const DefaultPriorityLevel = S.String;
 
 /** Properties to create and update Azure Cosmos DB database accounts. */
 export interface DatabaseAccountCreateUpdatePropertiesInput {
@@ -2888,8 +2887,7 @@ export const DatabaseAccountsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
 
 /** The offer type for the Cosmos DB database account. Default value: Standard. */
 export type DatabaseAccountGetPropertiesDatabaseAccountOfferType = "Standard";
-export const DatabaseAccountGetPropertiesDatabaseAccountOfferType =
-  /*@__PURE__*/ S.String;
+export const DatabaseAccountGetPropertiesDatabaseAccountOfferType = S.String;
 
 /** List of IpRules. */
 export type DatabaseAccountGetPropertiesIpRulesList = Array<IpAddressOrRange>;
@@ -3075,7 +3073,7 @@ export const DatabaseAccountGetPropertiesPrivateEndpointConnectionsList =
 
 /** Enum to indicate the mode of account creation. */
 export type DatabaseAccountGetPropertiesCreateMode = "Default" | "Restore";
-export const DatabaseAccountGetPropertiesCreateMode = /*@__PURE__*/ S.String;
+export const DatabaseAccountGetPropertiesCreateMode = S.String;
 
 /** The CORS policy for the Cosmos DB database account. */
 export type DatabaseAccountGetPropertiesCorsList = Array<CorsPolicy>;
@@ -3293,8 +3291,7 @@ export type DatabaseAccountsCreateOrUpdateResponseKind =
   | "GlobalDocumentDB"
   | "MongoDB"
   | "Parse";
-export const DatabaseAccountsCreateOrUpdateResponseKind =
-  /*@__PURE__*/ S.String;
+export const DatabaseAccountsCreateOrUpdateResponseKind = S.String;
 
 export interface DatabaseAccountsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4237,8 +4234,7 @@ export const DeleteMongoMIResourceMongoMIRoleDefinitionResponse =
   }) as any as S.Schema<DeleteMongoMIResourceMongoMIRoleDefinitionResponse>;
 
 export type DeleteNotebookWorkspaceRequestNotebookWorkspaceName = "default";
-export const DeleteNotebookWorkspaceRequestNotebookWorkspaceName =
-  /*@__PURE__*/ S.String;
+export const DeleteNotebookWorkspaceRequestNotebookWorkspaceName = S.String;
 
 export interface DeleteNotebookWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5345,7 +5341,7 @@ export type GetDatabaseAccountResponseKind =
   | "GlobalDocumentDB"
   | "MongoDB"
   | "Parse";
-export const GetDatabaseAccountResponseKind = /*@__PURE__*/ S.String;
+export const GetDatabaseAccountResponseKind = S.String;
 
 export interface GetDatabaseAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5665,8 +5661,7 @@ export const RestoreParametersBase = /*@__PURE__*/ S.suspend(() =>
 export type GremlinDatabaseGetPropertiesResourceCreateMode =
   | "Default"
   | "Restore";
-export const GremlinDatabaseGetPropertiesResourceCreateMode =
-  /*@__PURE__*/ S.String;
+export const GremlinDatabaseGetPropertiesResourceCreateMode = S.String;
 
 export interface GremlinDatabaseGetPropertiesResource {
   /** Name of the Cosmos DB Gremlin database */
@@ -5863,7 +5858,7 @@ export const GetGremlinResourceGremlinGraphRequest = /*@__PURE__*/ S.suspend(
 
 /** Indicates the indexing mode. */
 export type IndexingPolicyIndexingMode = "consistent" | "lazy" | "none";
-export const IndexingPolicyIndexingMode = /*@__PURE__*/ S.String;
+export const IndexingPolicyIndexingMode = S.String;
 
 /** The datatype for which the indexing behavior is applied to. */
 export type IndexesDataType =
@@ -5873,11 +5868,11 @@ export type IndexesDataType =
   | "Polygon"
   | "LineString"
   | "MultiPolygon";
-export const IndexesDataType = /*@__PURE__*/ S.String;
+export const IndexesDataType = S.String;
 
 /** Indicates the type of index. */
 export type IndexesKind = "Hash" | "Range" | "Spatial";
-export const IndexesKind = /*@__PURE__*/ S.String;
+export const IndexesKind = S.String;
 
 /** The indexes for the path. */
 export interface Indexes {
@@ -5940,7 +5935,7 @@ export const IndexingPolicyExcludedPathsList = /*@__PURE__*/ S.Array(
 
 /** Sort order for composite paths. */
 export type CompositePathSortOrder = "ascending" | "descending";
-export const CompositePathSortOrder = /*@__PURE__*/ S.String;
+export const CompositePathSortOrder = S.String;
 
 export interface CompositePath {
   /** The path for which the indexing behavior applies to. Index paths typically start with root and end with wildcard (/path/*) */
@@ -5969,7 +5964,7 @@ export const IndexingPolicyCompositeIndexesList = /*@__PURE__*/ S.Array(
 
 /** Indicates the spatial type of index. */
 export type SpatialType = "Point" | "LineString" | "Polygon" | "MultiPolygon";
-export const SpatialType = /*@__PURE__*/ S.String;
+export const SpatialType = S.String;
 
 /** List of path's spatial type */
 export type SpatialSpecTypesList = Array<SpatialType | (string & {})>;
@@ -5998,7 +5993,7 @@ export const IndexingPolicySpatialIndexesList = /*@__PURE__*/ S.Array(
 
 /** The index type of the vector. Currently, flat, diskANN, and quantizedFlat are supported. */
 export type VectorIndexType = "flat" | "diskANN" | "quantizedFlat";
-export const VectorIndexType = /*@__PURE__*/ S.String;
+export const VectorIndexType = S.String;
 
 /** Array of shard keys for the vector index. This is only applicable for the quantizedFlat and diskANN vector index types. */
 export type VectorIndexVectorIndexShardKeyList = Array<string>;
@@ -6093,7 +6088,7 @@ export const ContainerPartitionKeyPathsList = /*@__PURE__*/ S.Array(
 
 /** Indicates the kind of algorithm used for partitioning. For MultiHash, multiple partition keys (upto three maximum) are supported for container create */
 export type ContainerPartitionKeyKind = "Hash" | "Range" | "MultiHash";
-export const ContainerPartitionKeyKind = /*@__PURE__*/ S.String;
+export const ContainerPartitionKeyKind = S.String;
 
 /** The configuration of the partition key to be used for partitioning data into multiple partitions */
 export interface ContainerPartitionKey {
@@ -6155,7 +6150,7 @@ export const UniqueKeyPolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates the conflict resolution mode. */
 export type ConflictResolutionPolicyMode = "LastWriterWins" | "Custom";
-export const ConflictResolutionPolicyMode = /*@__PURE__*/ S.String;
+export const ConflictResolutionPolicyMode = S.String;
 
 /** The conflict resolution policy for the container. */
 export interface ConflictResolutionPolicy {
@@ -6178,8 +6173,7 @@ export const ConflictResolutionPolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum to indicate the mode of resource creation. */
 export type GremlinGraphGetPropertiesResourceCreateMode = "Default" | "Restore";
-export const GremlinGraphGetPropertiesResourceCreateMode =
-  /*@__PURE__*/ S.String;
+export const GremlinGraphGetPropertiesResourceCreateMode = S.String;
 
 export interface GremlinGraphGetPropertiesResource {
   /** Name of the Cosmos DB Gremlin graph */
@@ -6561,7 +6555,7 @@ export const GetLocationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum to indicate type of backup storage redundancy. */
 export type BackupStorageRedundancy = "Geo" | "Local" | "Zone";
-export const BackupStorageRedundancy = /*@__PURE__*/ S.String;
+export const BackupStorageRedundancy = S.String;
 
 /** The properties of available backup storage redundancies. */
 export type LocationPropertiesBackupStorageRedundanciesList =
@@ -6761,8 +6755,7 @@ export const MongoDBCollectionGetPropertiesResourceIndexesList =
 export type MongoDBCollectionGetPropertiesResourceCreateMode =
   | "Default"
   | "Restore";
-export const MongoDBCollectionGetPropertiesResourceCreateMode =
-  /*@__PURE__*/ S.String;
+export const MongoDBCollectionGetPropertiesResourceCreateMode = S.String;
 
 export interface MongoDBCollectionGetPropertiesResource {
   /** Name of the Cosmos DB MongoDB collection */
@@ -6970,8 +6963,7 @@ export const GetMongoDBResourceMongoDBDatabaseRequest = /*@__PURE__*/ S.suspend(
 export type MongoDBDatabaseGetPropertiesResourceCreateMode =
   | "Default"
   | "Restore";
-export const MongoDBDatabaseGetPropertiesResourceCreateMode =
-  /*@__PURE__*/ S.String;
+export const MongoDBDatabaseGetPropertiesResourceCreateMode = S.String;
 
 export interface MongoDBDatabaseGetPropertiesResource {
   /** Name of the Cosmos DB MongoDB database */
@@ -7165,7 +7157,7 @@ export const GetMongoDBResourceMongoRoleDefinitionRequest =
 
 /** Indicates whether the Role Definition was built-in or user created. */
 export type MongoRoleDefinitionType = "BuiltInRole" | "CustomRole";
-export const MongoRoleDefinitionType = /*@__PURE__*/ S.String;
+export const MongoRoleDefinitionType = S.String;
 
 /** An Azure Cosmos DB Mongo DB Resource. */
 export interface PrivilegeResource {
@@ -7545,8 +7537,7 @@ export const GetMongoMIResourceMongoMIRoleDefinitionResponse =
   }) as any as S.Schema<GetMongoMIResourceMongoMIRoleDefinitionResponse>;
 
 export type GetNotebookWorkspaceRequestNotebookWorkspaceName = "default";
-export const GetNotebookWorkspaceRequestNotebookWorkspaceName =
-  /*@__PURE__*/ S.String;
+export const GetNotebookWorkspaceRequestNotebookWorkspaceName = S.String;
 
 export interface GetNotebookWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7795,7 +7786,7 @@ export type ApiType =
   | "Table"
   | "Sql"
   | "GremlinV2";
-export const ApiType = /*@__PURE__*/ S.String;
+export const ApiType = S.String;
 
 /** Properties of the regional restorable account. */
 export interface RestorableLocationResource {
@@ -8172,8 +8163,7 @@ export const ClientEncryptionPolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum to indicate the mode of account creation. */
 export type SqlContainerGetPropertiesResourceCreateMode = "Default" | "Restore";
-export const SqlContainerGetPropertiesResourceCreateMode =
-  /*@__PURE__*/ S.String;
+export const SqlContainerGetPropertiesResourceCreateMode = S.String;
 
 /** The definition of a computed property */
 export interface ComputedProperty {
@@ -8201,11 +8191,11 @@ export const SqlContainerGetPropertiesResourceComputedPropertiesList =
 
 /** Indicates the data type of vector. */
 export type VectorDataType = "float32" | "uint8" | "int8" | "float16";
-export const VectorDataType = /*@__PURE__*/ S.String;
+export const VectorDataType = S.String;
 
 /** The distance function to use for distance calculation in between vectors. */
 export type DistanceFunction = "euclidean" | "cosine" | "dotproduct";
-export const DistanceFunction = /*@__PURE__*/ S.String;
+export const DistanceFunction = S.String;
 
 /** Represents a vector embedding. A vector embedding is used to define a vector field in the documents. */
 export interface VectorEmbedding {
@@ -8503,8 +8493,7 @@ export const GetSqlResourceSqlDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum to indicate the mode of account creation. */
 export type SqlDatabaseGetPropertiesResourceCreateMode = "Default" | "Restore";
-export const SqlDatabaseGetPropertiesResourceCreateMode =
-  /*@__PURE__*/ S.String;
+export const SqlDatabaseGetPropertiesResourceCreateMode = S.String;
 
 export interface SqlDatabaseGetPropertiesResource {
   /** Name of the Cosmos DB SQL database */
@@ -9124,7 +9113,7 @@ export const GetTableResourceTableRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum to indicate the mode of account creation. */
 export type TableGetPropertiesResourceCreateMode = "Default" | "Restore";
-export const TableGetPropertiesResourceCreateMode = /*@__PURE__*/ S.String;
+export const TableGetPropertiesResourceCreateMode = S.String;
 
 export interface TableGetPropertiesResource {
   /** Name of the Cosmos DB table */
@@ -9471,7 +9460,7 @@ export const GremlinResourcesCreateUpdateGremlinDatabaseRequestTagsMap =
 
 /** Enum to indicate the mode of resource creation. */
 export type GremlinDatabaseResourceCreateMode = "Default" | "Restore";
-export const GremlinDatabaseResourceCreateMode = /*@__PURE__*/ S.String;
+export const GremlinDatabaseResourceCreateMode = S.String;
 
 /** Cosmos DB Gremlin database resource object */
 export interface GremlinDatabaseResource {
@@ -9616,7 +9605,7 @@ export const ContainerPartitionKeyInputPathsList = /*@__PURE__*/ S.Array(
 
 /** Indicates the kind of algorithm used for partitioning. For MultiHash, multiple partition keys (upto three maximum) are supported for container create */
 export type ContainerPartitionKeyInputKind = "Hash" | "Range" | "MultiHash";
-export const ContainerPartitionKeyInputKind = /*@__PURE__*/ S.String;
+export const ContainerPartitionKeyInputKind = S.String;
 
 /** The configuration of the partition key to be used for partitioning data into multiple partitions */
 export interface ContainerPartitionKeyInput {
@@ -9639,7 +9628,7 @@ export const ContainerPartitionKeyInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum to indicate the mode of resource creation. */
 export type GremlinGraphResourceInputCreateMode = "Default" | "Restore";
-export const GremlinGraphResourceInputCreateMode = /*@__PURE__*/ S.String;
+export const GremlinGraphResourceInputCreateMode = S.String;
 
 /** Cosmos DB Gremlin graph resource object */
 export interface GremlinGraphResourceInput {
@@ -10546,7 +10535,7 @@ export type PrimaryAggregationType =
   | "Minimum"
   | "Maximum"
   | "Last";
-export const PrimaryAggregationType = /*@__PURE__*/ S.String;
+export const PrimaryAggregationType = S.String;
 
 /** The unit of the metric. */
 export type UnitType =
@@ -10557,7 +10546,7 @@ export type UnitType =
   | "CountPerSecond"
   | "BytesPerSecond"
   | "Milliseconds";
-export const UnitType = /*@__PURE__*/ S.String;
+export const UnitType = S.String;
 
 /** A metric name. */
 export interface MetricName {
@@ -11101,7 +11090,7 @@ export type DatabaseAccountGetResultsKind =
   | "GlobalDocumentDB"
   | "MongoDB"
   | "Parse";
-export const DatabaseAccountGetResultsKind = /*@__PURE__*/ S.String;
+export const DatabaseAccountGetResultsKind = S.String;
 
 /** An Azure Cosmos DB database account. */
 export interface DatabaseAccountGetResults {
@@ -11194,7 +11183,7 @@ export type Kind =
   | "Secondary"
   | "PrimaryReadonly"
   | "SecondaryReadonly";
-export const Kind = /*@__PURE__*/ S.String;
+export const Kind = S.String;
 
 /** Type of the connection string */
 export type Type =
@@ -11207,7 +11196,7 @@ export type Type =
   | "SqlDedicatedGateway"
   | "GremlinV2"
   | "Undefined";
-export const Type = /*@__PURE__*/ S.String;
+export const Type = S.String;
 
 /** Connection string for the Cosmos DB account */
 export interface DatabaseAccountConnectionString {
@@ -12723,7 +12712,7 @@ export const NotebookWorkspaceListResult = /*@__PURE__*/ S.suspend(() =>
 export type ListNotebookWorkspaceConnectionInfoRequestNotebookWorkspaceName =
   "default";
 export const ListNotebookWorkspaceConnectionInfoRequestNotebookWorkspaceName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListNotebookWorkspaceConnectionInfoRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -13374,7 +13363,7 @@ export type OperationType =
   | "Delete"
   | "Recreate"
   | "SystemOperation";
-export const OperationType = /*@__PURE__*/ S.String;
+export const OperationType = S.String;
 
 /** The resource of an Azure Cosmos DB Gremlin database event */
 export interface RestorableGremlinDatabasePropertiesResource {
@@ -14053,7 +14042,7 @@ export type RestorableSqlContainerPropertiesResourceContainerCreateMode =
   | "Default"
   | "Restore";
 export const RestorableSqlContainerPropertiesResourceContainerCreateMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of computed properties */
 export type RestorableSqlContainerPropertiesResourceContainerComputedPropertiesList =
@@ -14251,7 +14240,7 @@ export type RestorableSqlDatabasePropertiesResourceDatabaseCreateMode =
   | "Default"
   | "Restore";
 export const RestorableSqlDatabasePropertiesResourceDatabaseCreateMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Cosmos DB SQL database resource object */
 export interface RestorableSqlDatabasePropertiesResourceDatabase {
@@ -15268,7 +15257,7 @@ export const ListSqlResourceSqlTriggersRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the Trigger */
 export type TriggerType = "Pre" | "Post";
-export const TriggerType = /*@__PURE__*/ S.String;
+export const TriggerType = S.String;
 
 /** The operation the trigger is associated with */
 export type TriggerOperation =
@@ -15277,7 +15266,7 @@ export type TriggerOperation =
   | "Update"
   | "Delete"
   | "Replace";
-export const TriggerOperation = /*@__PURE__*/ S.String;
+export const TriggerOperation = S.String;
 
 export interface SqlTriggerGetPropertiesResource {
   /** Name of the Cosmos DB SQL trigger */
@@ -17114,7 +17103,7 @@ export const MongoDBCollectionResourceIndexesList = /*@__PURE__*/ S.Array(
 
 /** Enum to indicate the mode of resource creation. */
 export type MongoDBCollectionResourceCreateMode = "Default" | "Restore";
-export const MongoDBCollectionResourceCreateMode = /*@__PURE__*/ S.String;
+export const MongoDBCollectionResourceCreateMode = S.String;
 
 /** Cosmos DB MongoDB collection resource object */
 export interface MongoDBCollectionResource {
@@ -17265,7 +17254,7 @@ export const MongoDBResourcesCreateUpdateMongoDBDatabaseRequestTagsMap =
 
 /** Enum to indicate the mode of account creation. */
 export type MongoDBDatabaseResourceCreateMode = "Default" | "Restore";
-export const MongoDBDatabaseResourceCreateMode = /*@__PURE__*/ S.String;
+export const MongoDBDatabaseResourceCreateMode = S.String;
 
 /** Cosmos DB MongoDB database resource object */
 export interface MongoDBDatabaseResource {
@@ -17643,7 +17632,7 @@ export const MongoMIResourcesCreateUpdateMongoMIRoleDefinitionResponse =
 export type NotebookWorkspacesCreateOrUpdateRequestNotebookWorkspaceName =
   "default";
 export const NotebookWorkspacesCreateOrUpdateRequestNotebookWorkspaceName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NotebookWorkspacesCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -17809,7 +17798,7 @@ export type KeyKind =
   | "secondary"
   | "primaryReadonly"
   | "secondaryReadonly";
-export const KeyKind = /*@__PURE__*/ S.String;
+export const KeyKind = S.String;
 
 export interface RegenerateDatabaseAccountKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -17849,7 +17838,7 @@ export const RegenerateDatabaseAccountKeyResponse = /*@__PURE__*/ S.suspend(
 export type RegenerateNotebookWorkspaceAuthTokenRequestNotebookWorkspaceName =
   "default";
 export const RegenerateNotebookWorkspaceAuthTokenRequestNotebookWorkspaceName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RegenerateNotebookWorkspaceAuthTokenRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -17999,7 +17988,7 @@ export const SqlResourcesCreateUpdateSqlContainerRequestTagsMap =
 
 /** Enum to indicate the mode of account creation. */
 export type SqlContainerResourceInputCreateMode = "Default" | "Restore";
-export const SqlContainerResourceInputCreateMode = /*@__PURE__*/ S.String;
+export const SqlContainerResourceInputCreateMode = S.String;
 
 /** List of computed properties */
 export type SqlContainerResourceInputComputedPropertiesList =
@@ -18177,7 +18166,7 @@ export const SqlResourcesCreateUpdateSqlDatabaseRequestTagsMap =
 
 /** Enum to indicate the mode of account creation. */
 export type SqlDatabaseResourceCreateMode = "Default" | "Restore";
-export const SqlDatabaseResourceCreateMode = /*@__PURE__*/ S.String;
+export const SqlDatabaseResourceCreateMode = S.String;
 
 /** Cosmos DB SQL database resource object */
 export interface SqlDatabaseResource {
@@ -18978,8 +18967,7 @@ export const StartCassandraClusterResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StartCassandraClusterResponse>;
 
 export type StartNotebookWorkspaceRequestNotebookWorkspaceName = "default";
-export const StartNotebookWorkspaceRequestNotebookWorkspaceName =
-  /*@__PURE__*/ S.String;
+export const StartNotebookWorkspaceRequestNotebookWorkspaceName = S.String;
 
 export interface StartNotebookWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -19031,7 +19019,7 @@ export const TableResourcesCreateUpdateTableRequestTagsMap =
 
 /** Enum to indicate the mode of account creation. */
 export type TableResourceCreateMode = "Default" | "Restore";
-export const TableResourceCreateMode = /*@__PURE__*/ S.String;
+export const TableResourceCreateMode = S.String;
 
 /** Cosmos DB table resource object */
 export interface TableResource {
@@ -19896,7 +19884,7 @@ export type UpdateDatabaseAccountResponseKind =
   | "GlobalDocumentDB"
   | "MongoDB"
   | "Parse";
-export const UpdateDatabaseAccountResponseKind = /*@__PURE__*/ S.String;
+export const UpdateDatabaseAccountResponseKind = S.String;
 
 export interface UpdateDatabaseAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */

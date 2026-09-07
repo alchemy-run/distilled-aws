@@ -17,7 +17,7 @@ export type { HetznerOpError, HetznerOpContext };
 export type CreateLoadBalancerRequestAlgorithmType =
   | "round_robin"
   | "least_connections";
-export const CreateLoadBalancerRequestAlgorithmType = /*@__PURE__*/ S.String;
+export const CreateLoadBalancerRequestAlgorithmType = S.String;
 
 /** Algorithm of the Load Balancer. */
 export interface CreateLoadBalancerRequestAlgorithm {
@@ -34,11 +34,11 @@ export const CreateLoadBalancerRequestAlgorithm = /*@__PURE__*/ S.suspend(() =>
 
 /** Protocol of the Load Balancer. */
 export type ServiceTCPProtocol = "tcp" | "http" | "https";
-export const ServiceTCPProtocol = /*@__PURE__*/ S.String;
+export const ServiceTCPProtocol = S.String;
 
 /** Type of the health check. */
 export type ServiceTCPHealthCheckProtocol = "tcp" | "http";
-export const ServiceTCPHealthCheckProtocol = /*@__PURE__*/ S.String;
+export const ServiceTCPHealthCheckProtocol = S.String;
 
 /** List of returned HTTP status codes in order to pass the health check. Supports the wildcards `?` for exactly one character and `*` for multiple ones. */
 export type ServiceTCPHealthCheckHttpStatusCodesList = Array<string>;
@@ -123,11 +123,11 @@ export const ServiceTCP = /*@__PURE__*/ S.suspend(() =>
 
 /** Protocol of the Load Balancer. */
 export type ServiceHTTPProtocolProtocol = "tcp" | "http" | "https";
-export const ServiceHTTPProtocolProtocol = /*@__PURE__*/ S.String;
+export const ServiceHTTPProtocolProtocol = S.String;
 
 /** Type of the health check. */
 export type ServiceHTTPProtocolHealthCheckProtocol = "tcp" | "http";
-export const ServiceHTTPProtocolHealthCheckProtocol = /*@__PURE__*/ S.String;
+export const ServiceHTTPProtocolHealthCheckProtocol = S.String;
 
 /** List of returned HTTP status codes in order to pass the health check. Supports the wildcards `?` for exactly one character and `*` for multiple ones. */
 export type ServiceHTTPProtocolHealthCheckHttpStatusCodesList = Array<string>;
@@ -240,11 +240,11 @@ export const ServiceHTTPProtocol = /*@__PURE__*/ S.suspend(() =>
 
 /** Protocol of the Load Balancer. */
 export type ServiceHTTPSProtocolProtocol = "tcp" | "http" | "https";
-export const ServiceHTTPSProtocolProtocol = /*@__PURE__*/ S.String;
+export const ServiceHTTPSProtocolProtocol = S.String;
 
 /** Type of the health check. */
 export type ServiceHTTPSProtocolHealthCheckProtocol = "tcp" | "http";
-export const ServiceHTTPSProtocolHealthCheckProtocol = /*@__PURE__*/ S.String;
+export const ServiceHTTPSProtocolHealthCheckProtocol = S.String;
 
 /** List of returned HTTP status codes in order to pass the health check. Supports the wildcards `?` for exactly one character and `*` for multiple ones. */
 export type ServiceHTTPSProtocolHealthCheckHttpStatusCodesList = Array<string>;
@@ -374,7 +374,7 @@ export type CreateLoadBalancerRequestServicesItem =
   | ServiceHTTPProtocol
   | ServiceHTTPSProtocol;
 export const CreateLoadBalancerRequestServicesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateLoadBalancerRequestServicesItem>;
+  S.Unknown as any as S.Schema<CreateLoadBalancerRequestServicesItem>;
 
 /** Array of services. */
 export type CreateLoadBalancerRequestServicesList =
@@ -388,7 +388,7 @@ export type CreateLoadBalancerRequestTargetsItemType =
   | "server"
   | "label_selector"
   | "ip";
-export const CreateLoadBalancerRequestTargetsItemType = /*@__PURE__*/ S.String;
+export const CreateLoadBalancerRequestTargetsItemType = S.String;
 
 /** Configuration for type Server, only valid and required if type is `server`. */
 export interface CreateLoadBalancerRequestTargetsItemServer {
@@ -785,7 +785,7 @@ export type CreateLoadBalancerResponseLoadBalancerServicesItem =
   | ServiceHTTPProtocol
   | ServiceHTTPSProtocol;
 export const CreateLoadBalancerResponseLoadBalancerServicesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateLoadBalancerResponseLoadBalancerServicesItem>;
+  S.Unknown as any as S.Schema<CreateLoadBalancerResponseLoadBalancerServicesItem>;
 
 /** List of services that belong to this Load Balancer. */
 export type CreateLoadBalancerResponseLoadBalancerServicesList =
@@ -797,7 +797,7 @@ export const CreateLoadBalancerResponseLoadBalancerServicesList =
 
 /** Type of the resource. */
 export type TargetTypeServerType = "server" | "label_selector" | "ip";
-export const TargetTypeServerType = /*@__PURE__*/ S.String;
+export const TargetTypeServerType = S.String;
 
 /** Server where the traffic should be routed to. Only present for target type "server". */
 export interface TargetTypeServerServer {
@@ -819,7 +819,7 @@ export type TargetTypeServerHealthStatusItemStatus =
   | "healthy"
   | "unhealthy"
   | "unknown";
-export const TargetTypeServerHealthStatusItemStatus = /*@__PURE__*/ S.String;
+export const TargetTypeServerHealthStatusItemStatus = S.String;
 
 export interface TargetTypeServerHealthStatusItem {
   listen_port: number;
@@ -864,7 +864,7 @@ export const TargetTypeServer = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the resource. */
 export type TargetTypeLabelSelectorType = "server" | "label_selector" | "ip";
-export const TargetTypeLabelSelectorType = /*@__PURE__*/ S.String;
+export const TargetTypeLabelSelectorType = S.String;
 
 /** Label selector used to determine targets. Only present for target type "label_selector". */
 export type TargetTypeLabelSelectorLabelSelector =
@@ -881,7 +881,7 @@ export type TargetTypeLabelSelectorTargetsItemHealthStatusItemStatus =
   | "unhealthy"
   | "unknown";
 export const TargetTypeLabelSelectorTargetsItemHealthStatusItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface TargetTypeLabelSelectorTargetsItemHealthStatusItem {
   listen_port: number;
@@ -956,7 +956,7 @@ export const TargetTypeLabelSelector = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the resource. */
 export type TargetTypeIPType = "server" | "label_selector" | "ip";
-export const TargetTypeIPType = /*@__PURE__*/ S.String;
+export const TargetTypeIPType = S.String;
 
 /** IP target where the traffic should be routed to. It is only possible to use the (Public or vSwitch) IPs of Hetzner Online Root Servers belonging to the project owner. IPs belonging to other users are blocked. Additionally IPs belonging to services provided by Hetzner Cloud (Servers, Load Balancers, ...) are blocked as well. Only present for target type `ip`. */
 export type TargetTypeIPIp = CreateLoadBalancerRequestTargetsItemIp;
@@ -966,7 +966,7 @@ export type TargetTypeIPHealthStatusItemStatus =
   | "healthy"
   | "unhealthy"
   | "unknown";
-export const TargetTypeIPHealthStatusItemStatus = /*@__PURE__*/ S.String;
+export const TargetTypeIPHealthStatusItemStatus = S.String;
 
 export interface TargetTypeIPHealthStatusItem {
   listen_port: number;
@@ -1008,7 +1008,7 @@ export type CreateLoadBalancerResponseLoadBalancerTargetsItem =
   | TargetTypeLabelSelector
   | TargetTypeIP;
 export const CreateLoadBalancerResponseLoadBalancerTargetsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateLoadBalancerResponseLoadBalancerTargetsItem>;
+  S.Unknown as any as S.Schema<CreateLoadBalancerResponseLoadBalancerTargetsItem>;
 
 /** List of targets that belong to this Load Balancer. */
 export type CreateLoadBalancerResponseLoadBalancerTargetsList =
@@ -1022,8 +1022,7 @@ export const CreateLoadBalancerResponseLoadBalancerTargetsList =
 export type CreateLoadBalancerResponseLoadBalancerAlgorithmType =
   | "round_robin"
   | "least_connections";
-export const CreateLoadBalancerResponseLoadBalancerAlgorithmType =
-  /*@__PURE__*/ S.String;
+export const CreateLoadBalancerResponseLoadBalancerAlgorithmType = S.String;
 
 /** Algorithm of the Load Balancer. */
 export interface CreateLoadBalancerResponseLoadBalancerAlgorithm {
@@ -1098,7 +1097,7 @@ export type CreateLoadBalancerResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const CreateLoadBalancerResponseActionStatus = /*@__PURE__*/ S.String;
+export const CreateLoadBalancerResponseActionStatus = S.String;
 
 export interface CreateLoadBalancerResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -1354,7 +1353,7 @@ export type GetLoadBalancerResponseLoadBalancerServicesItem =
   | ServiceHTTPProtocol
   | ServiceHTTPSProtocol;
 export const GetLoadBalancerResponseLoadBalancerServicesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetLoadBalancerResponseLoadBalancerServicesItem>;
+  S.Unknown as any as S.Schema<GetLoadBalancerResponseLoadBalancerServicesItem>;
 
 /** List of services that belong to this Load Balancer. */
 export type GetLoadBalancerResponseLoadBalancerServicesList =
@@ -1369,7 +1368,7 @@ export type GetLoadBalancerResponseLoadBalancerTargetsItem =
   | TargetTypeLabelSelector
   | TargetTypeIP;
 export const GetLoadBalancerResponseLoadBalancerTargetsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetLoadBalancerResponseLoadBalancerTargetsItem>;
+  S.Unknown as any as S.Schema<GetLoadBalancerResponseLoadBalancerTargetsItem>;
 
 /** List of targets that belong to this Load Balancer. */
 export type GetLoadBalancerResponseLoadBalancerTargetsList =
@@ -1383,8 +1382,7 @@ export const GetLoadBalancerResponseLoadBalancerTargetsList =
 export type GetLoadBalancerResponseLoadBalancerAlgorithmType =
   | "round_robin"
   | "least_connections";
-export const GetLoadBalancerResponseLoadBalancerAlgorithmType =
-  /*@__PURE__*/ S.String;
+export const GetLoadBalancerResponseLoadBalancerAlgorithmType = S.String;
 
 /** Algorithm of the Load Balancer. */
 export interface GetLoadBalancerResponseLoadBalancerAlgorithm {
@@ -1468,7 +1466,7 @@ export type GetLoadBalancerMetricsRequestTypeItem =
   | "connections_per_second"
   | "requests_per_second"
   | "bandwidth";
-export const GetLoadBalancerMetricsRequestTypeItem = /*@__PURE__*/ S.String;
+export const GetLoadBalancerMetricsRequestTypeItem = S.String;
 
 export type GetLoadBalancerMetricsRequestTypeList = Array<
   GetLoadBalancerMetricsRequestTypeItem | (string & {})
@@ -1586,7 +1584,7 @@ export type ListLoadBalancersRequestSortItem =
   | "created"
   | "created:asc"
   | "created:desc";
-export const ListLoadBalancersRequestSortItem = /*@__PURE__*/ S.String;
+export const ListLoadBalancersRequestSortItem = S.String;
 
 export type ListLoadBalancersRequestSortList = Array<
   ListLoadBalancersRequestSortItem | (string & {})
@@ -1756,7 +1754,7 @@ export type ListLoadBalancersResponseLoadBalancersItemServicesItem =
   | ServiceHTTPProtocol
   | ServiceHTTPSProtocol;
 export const ListLoadBalancersResponseLoadBalancersItemServicesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListLoadBalancersResponseLoadBalancersItemServicesItem>;
+  S.Unknown as any as S.Schema<ListLoadBalancersResponseLoadBalancersItemServicesItem>;
 
 /** List of services that belong to this Load Balancer. */
 export type ListLoadBalancersResponseLoadBalancersItemServicesList =
@@ -1771,7 +1769,7 @@ export type ListLoadBalancersResponseLoadBalancersItemTargetsItem =
   | TargetTypeLabelSelector
   | TargetTypeIP;
 export const ListLoadBalancersResponseLoadBalancersItemTargetsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListLoadBalancersResponseLoadBalancersItemTargetsItem>;
+  S.Unknown as any as S.Schema<ListLoadBalancersResponseLoadBalancersItemTargetsItem>;
 
 /** List of targets that belong to this Load Balancer. */
 export type ListLoadBalancersResponseLoadBalancersItemTargetsList =
@@ -1785,8 +1783,7 @@ export const ListLoadBalancersResponseLoadBalancersItemTargetsList =
 export type ListLoadBalancersResponseLoadBalancersItemAlgorithmType =
   | "round_robin"
   | "least_connections";
-export const ListLoadBalancersResponseLoadBalancersItemAlgorithmType =
-  /*@__PURE__*/ S.String;
+export const ListLoadBalancersResponseLoadBalancersItemAlgorithmType = S.String;
 
 /** Algorithm of the Load Balancer. */
 export interface ListLoadBalancersResponseLoadBalancersItemAlgorithm {
@@ -2079,7 +2076,7 @@ export type UpdateLoadBalancerResponseLoadBalancerServicesItem =
   | ServiceHTTPProtocol
   | ServiceHTTPSProtocol;
 export const UpdateLoadBalancerResponseLoadBalancerServicesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateLoadBalancerResponseLoadBalancerServicesItem>;
+  S.Unknown as any as S.Schema<UpdateLoadBalancerResponseLoadBalancerServicesItem>;
 
 /** List of services that belong to this Load Balancer. */
 export type UpdateLoadBalancerResponseLoadBalancerServicesList =
@@ -2094,7 +2091,7 @@ export type UpdateLoadBalancerResponseLoadBalancerTargetsItem =
   | TargetTypeLabelSelector
   | TargetTypeIP;
 export const UpdateLoadBalancerResponseLoadBalancerTargetsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateLoadBalancerResponseLoadBalancerTargetsItem>;
+  S.Unknown as any as S.Schema<UpdateLoadBalancerResponseLoadBalancerTargetsItem>;
 
 /** List of targets that belong to this Load Balancer. */
 export type UpdateLoadBalancerResponseLoadBalancerTargetsList =
@@ -2108,8 +2105,7 @@ export const UpdateLoadBalancerResponseLoadBalancerTargetsList =
 export type UpdateLoadBalancerResponseLoadBalancerAlgorithmType =
   | "round_robin"
   | "least_connections";
-export const UpdateLoadBalancerResponseLoadBalancerAlgorithmType =
-  /*@__PURE__*/ S.String;
+export const UpdateLoadBalancerResponseLoadBalancerAlgorithmType = S.String;
 
 /** Algorithm of the Load Balancer. */
 export interface UpdateLoadBalancerResponseLoadBalancerAlgorithm {

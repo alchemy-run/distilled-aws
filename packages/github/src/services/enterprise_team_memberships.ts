@@ -274,7 +274,7 @@ export const ListTeamsForUserRequest = /*@__PURE__*/ S.suspend(() =>
 export type EnterpriseTeamNotificationSetting =
   | "notifications_enabled"
   | "notifications_disabled";
-export const EnterpriseTeamNotificationSetting = /*@__PURE__*/ S.String;
+export const EnterpriseTeamNotificationSetting = S.String;
 
 /** Group of enterprise owners and/or members */
 export interface EnterpriseTeam {

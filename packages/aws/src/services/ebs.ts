@@ -172,10 +172,10 @@ export type SnapshotId = string;
 export type ChangedBlocksCount = number;
 export type Checksum = string;
 export type ChecksumAlgorithm = "SHA256" | (string & {});
-export const ChecksumAlgorithm = /*@__PURE__*/ S.String;
+export const ChecksumAlgorithm = S.String;
 
 export type ChecksumAggregationMethod = "LINEAR" | (string & {});
-export const ChecksumAggregationMethod = /*@__PURE__*/ S.String;
+export const ChecksumAggregationMethod = S.String;
 
 export interface CompleteSnapshotRequest {
   SnapshotId: string;
@@ -209,7 +209,7 @@ export const CompleteSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CompleteSnapshotRequest",
 }) as any as S.Schema<CompleteSnapshotRequest>;
 export type Status = "completed" | "pending" | "error" | (string & {});
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 export interface CompleteSnapshotResponse {
   Status?: Status;
@@ -492,7 +492,7 @@ export const StartSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StartSnapshotRequest>;
 export type OwnerId = string;
 export type SSEType = "sse-ebs" | "sse-kms" | "none" | (string & {});
-export const SSEType = /*@__PURE__*/ S.String;
+export const SSEType = S.String;
 
 export interface StartSnapshotResponse {
   Description?: string;
@@ -529,14 +529,14 @@ export type AccessDeniedExceptionReason =
   | "UNAUTHORIZED_ACCOUNT"
   | "DEPENDENCY_ACCESS_DENIED"
   | (string & {});
-export const AccessDeniedExceptionReason = /*@__PURE__*/ S.String;
+export const AccessDeniedExceptionReason = S.String;
 
 export type RequestThrottledExceptionReason =
   | "ACCOUNT_THROTTLED"
   | "DEPENDENCY_REQUEST_THROTTLED"
   | "RESOURCE_LEVEL_THROTTLE"
   | (string & {});
-export const RequestThrottledExceptionReason = /*@__PURE__*/ S.String;
+export const RequestThrottledExceptionReason = S.String;
 
 export type ResourceNotFoundExceptionReason =
   | "SNAPSHOT_NOT_FOUND"
@@ -544,12 +544,12 @@ export type ResourceNotFoundExceptionReason =
   | "DEPENDENCY_RESOURCE_NOT_FOUND"
   | "IMAGE_NOT_FOUND"
   | (string & {});
-export const ResourceNotFoundExceptionReason = /*@__PURE__*/ S.String;
+export const ResourceNotFoundExceptionReason = S.String;
 
 export type ServiceQuotaExceededExceptionReason =
   | "DEPENDENCY_SERVICE_QUOTA_EXCEEDED"
   | (string & {});
-export const ServiceQuotaExceededExceptionReason = /*@__PURE__*/ S.String;
+export const ServiceQuotaExceededExceptionReason = S.String;
 
 export type ValidationExceptionReason =
   | "INVALID_CUSTOMER_KEY"
@@ -568,7 +568,7 @@ export type ValidationExceptionReason =
   | "INVALID_IMAGE_ID"
   | "WRITE_REQUEST_TIMEOUT"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export type CompleteSnapshotError =
   | AccessDeniedException

@@ -24,7 +24,7 @@ export const AssociationsInterfaceCreateOrUpdateRequestTagsMap =
 
 /** Association Type Enum */
 export type AssociationType = "subnets";
-export const AssociationType = /*@__PURE__*/ S.String;
+export const AssociationType = S.String;
 
 /** Association Subnet. */
 export interface AssociationSubnet {
@@ -99,7 +99,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -107,7 +107,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -154,7 +154,7 @@ export type ProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Association Properties. */
 export interface AssociationProperties {
@@ -392,7 +392,7 @@ export const FrontendsInterfaceCreateOrUpdateRequestTagsMap =
 
 /** Whether public network access is allowed for the frontend. */
 export type PublicNetworkAccess = "Enabled" | "Disabled";
-export const PublicNetworkAccess = /*@__PURE__*/ S.String;
+export const PublicNetworkAccess = S.String;
 
 /** Reference to an Association resource. */
 export interface FrontendAssociation {
@@ -754,7 +754,7 @@ export type PrivateLinkServiceConnectionStatus =
   | "Approved"
   | "Rejected"
   | "Disconnected";
-export const PrivateLinkServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateLinkServiceConnectionStatus = S.String;
 
 /** The state of a private link service connection. */
 export interface PrivateLinkServiceConnectionState {
@@ -953,7 +953,7 @@ export const GetSecurityPoliciesInterfaceResponseTagsMap =
 
 /** Policy Type of the Security Policy */
 export type PolicyType = "waf" | "ipAccessRules";
-export const PolicyType = /*@__PURE__*/ S.String;
+export const PolicyType = S.String;
 
 /** Web Application Firewall Policy */
 export interface WafPolicy {
@@ -974,7 +974,7 @@ export const IpAccessRuleSourceAddressPrefixesList = /*@__PURE__*/ S.Array(
 
 /** Action of Ip Access Rule */
 export type IpAccessRuleAction = "allow" | "deny";
-export const IpAccessRuleAction = /*@__PURE__*/ S.String;
+export const IpAccessRuleAction = S.String;
 
 /** Ip Access Policy Rules */
 export interface IpAccessRule {
@@ -1425,11 +1425,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {

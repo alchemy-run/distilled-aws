@@ -23,15 +23,14 @@ export type AttachedNetworkConnectionPropertiesInputHealthCheckStatus =
   | "Failed"
   | "Informational";
 export const AttachedNetworkConnectionPropertiesInputHealthCheckStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Active Directory join type */
 export type AttachedNetworkConnectionPropertiesInputDomainJoinType =
   | "HybridAzureADJoin"
   | "AzureADJoin"
   | "None";
-export const AttachedNetworkConnectionPropertiesInputDomainJoinType =
-  /*@__PURE__*/ S.String;
+export const AttachedNetworkConnectionPropertiesInputDomainJoinType = S.String;
 
 /** Properties of an attached NetworkConnection. */
 export interface AttachedNetworkConnectionPropertiesInput {
@@ -99,7 +98,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -107,7 +106,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -153,8 +152,7 @@ export type AttachedNetworkConnectionPropertiesProvisioningState =
   | "TransientFailure"
   | "RolloutInProgress"
   | "StorageProvisioningFailed";
-export const AttachedNetworkConnectionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AttachedNetworkConnectionPropertiesProvisioningState = S.String;
 
 /** Health check status values */
 export type AttachedNetworkConnectionPropertiesHealthCheckStatus =
@@ -165,16 +163,14 @@ export type AttachedNetworkConnectionPropertiesHealthCheckStatus =
   | "Warning"
   | "Failed"
   | "Informational";
-export const AttachedNetworkConnectionPropertiesHealthCheckStatus =
-  /*@__PURE__*/ S.String;
+export const AttachedNetworkConnectionPropertiesHealthCheckStatus = S.String;
 
 /** Active Directory join type */
 export type AttachedNetworkConnectionPropertiesDomainJoinType =
   | "HybridAzureADJoin"
   | "AzureADJoin"
   | "None";
-export const AttachedNetworkConnectionPropertiesDomainJoinType =
-  /*@__PURE__*/ S.String;
+export const AttachedNetworkConnectionPropertiesDomainJoinType = S.String;
 
 /** Properties of an attached NetworkConnection. */
 export interface AttachedNetworkConnectionProperties {
@@ -295,7 +291,7 @@ export const GitCatalog = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates the type of sync that is configured for the catalog. */
 export type CatalogPropertiesInputSyncType = "Manual" | "Scheduled";
-export const CatalogPropertiesInputSyncType = /*@__PURE__*/ S.String;
+export const CatalogPropertiesInputSyncType = S.String;
 
 /** Resource tags. */
 export type CatalogPropertiesInputTagsMap = {
@@ -361,7 +357,7 @@ export const CatalogsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates the type of sync that is configured for the catalog. */
 export type CatalogPropertiesSyncType = "Manual" | "Scheduled";
-export const CatalogPropertiesSyncType = /*@__PURE__*/ S.String;
+export const CatalogPropertiesSyncType = S.String;
 
 /** Resource tags. */
 export type CatalogPropertiesTagsMap = { [key: string]: string | undefined };
@@ -388,7 +384,7 @@ export type CatalogPropertiesProvisioningState =
   | "TransientFailure"
   | "RolloutInProgress"
   | "StorageProvisioningFailed";
-export const CatalogPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const CatalogPropertiesProvisioningState = S.String;
 
 /** The synchronization state of the catalog. */
 export type CatalogPropertiesSyncState =
@@ -396,11 +392,11 @@ export type CatalogPropertiesSyncState =
   | "InProgress"
   | "Failed"
   | "Canceled";
-export const CatalogPropertiesSyncState = /*@__PURE__*/ S.String;
+export const CatalogPropertiesSyncState = S.String;
 
 /** Indicates catalog item types. */
 export type CatalogItemType = "EnvironmentDefinition" | "ImageDefinition";
-export const CatalogItemType = /*@__PURE__*/ S.String;
+export const CatalogItemType = S.String;
 
 /** Indicates catalog item types that were synced. */
 export type SyncStatsSyncedCatalogItemTypesList = Array<CatalogItemType>;
@@ -439,7 +435,7 @@ export const SyncStats = /*@__PURE__*/ S.suspend(() =>
 
 /** The connection state of the catalog. */
 export type CatalogPropertiesConnectionState = "Connected" | "Disconnected";
-export const CatalogPropertiesConnectionState = /*@__PURE__*/ S.String;
+export const CatalogPropertiesConnectionState = S.String;
 
 /** Properties of a catalog. */
 export interface CatalogProperties {
@@ -1053,7 +1049,7 @@ export const DevBoxDefinitionPropertiesInputImageReference =
 
 /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
 export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
-export const SkuTier = /*@__PURE__*/ S.String;
+export const SkuTier = S.String;
 
 /** The resource model definition representing SKU */
 export interface DevBoxDefinitionPropertiesInputSku {
@@ -1081,7 +1077,7 @@ export const DevBoxDefinitionPropertiesInputSku = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether hibernate is enabled/disabled. */
 export type HibernateSupport = "Disabled" | "Enabled";
-export const HibernateSupport = /*@__PURE__*/ S.String;
+export const HibernateSupport = S.String;
 
 /** Image validation status */
 export type DevBoxDefinitionPropertiesInputImageValidationStatus =
@@ -1090,8 +1086,7 @@ export type DevBoxDefinitionPropertiesInputImageValidationStatus =
   | "Succeeded"
   | "Failed"
   | "TimedOut";
-export const DevBoxDefinitionPropertiesInputImageValidationStatus =
-  /*@__PURE__*/ S.String;
+export const DevBoxDefinitionPropertiesInputImageValidationStatus = S.String;
 
 /** Image validation error details */
 export interface DevBoxDefinitionPropertiesInputImageValidationErrorDetails {
@@ -1116,8 +1111,7 @@ export type DevBoxDefinitionPropertiesInputValidationStatus =
   | "Pending"
   | "Succeeded"
   | "Failed";
-export const DevBoxDefinitionPropertiesInputValidationStatus =
-  /*@__PURE__*/ S.String;
+export const DevBoxDefinitionPropertiesInputValidationStatus = S.String;
 
 /** Image reference information */
 export type DevBoxDefinitionPropertiesInputActiveImageReference =
@@ -1278,8 +1272,7 @@ export type DevBoxDefinitionPropertiesProvisioningState =
   | "TransientFailure"
   | "RolloutInProgress"
   | "StorageProvisioningFailed";
-export const DevBoxDefinitionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const DevBoxDefinitionPropertiesProvisioningState = S.String;
 
 /** Image validation status */
 export type DevBoxDefinitionPropertiesImageValidationStatus =
@@ -1288,8 +1281,7 @@ export type DevBoxDefinitionPropertiesImageValidationStatus =
   | "Succeeded"
   | "Failed"
   | "TimedOut";
-export const DevBoxDefinitionPropertiesImageValidationStatus =
-  /*@__PURE__*/ S.String;
+export const DevBoxDefinitionPropertiesImageValidationStatus = S.String;
 
 /** Image validation error details */
 export type DevBoxDefinitionPropertiesImageValidationErrorDetails =
@@ -1303,8 +1295,7 @@ export type DevBoxDefinitionPropertiesValidationStatus =
   | "Pending"
   | "Succeeded"
   | "Failed";
-export const DevBoxDefinitionPropertiesValidationStatus =
-  /*@__PURE__*/ S.String;
+export const DevBoxDefinitionPropertiesValidationStatus = S.String;
 
 /** Image reference information */
 export type DevBoxDefinitionPropertiesActiveImageReference =
@@ -1399,7 +1390,7 @@ export type EncryptionCustomerManagedKeyEncryptionKeyEncryptionKeyIdentityIdenti
   | "userAssignedIdentity"
   | "delegatedResourceIdentity";
 export const EncryptionCustomerManagedKeyEncryptionKeyEncryptionKeyIdentityIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** All identity configuration for Customer-managed key settings defining which identity should be used to auth to Key Vault. */
 export interface EncryptionCustomerManagedKeyEncryptionKeyEncryptionKeyIdentity {
@@ -1459,7 +1450,7 @@ export const Encryption = /*@__PURE__*/ S.suspend(() =>
 
 /** Catalog item sync types enable or disable status. Indicates whether project catalogs are allowed to sync catalog items under projects associated to this dev center. */
 export type CatalogItemSyncEnableStatus = "Enabled" | "Disabled";
-export const CatalogItemSyncEnableStatus = /*@__PURE__*/ S.String;
+export const CatalogItemSyncEnableStatus = S.String;
 
 /** Project catalog settings for project catalogs under a project associated to this dev center. */
 export interface DevCenterProjectCatalogSettings {
@@ -1476,7 +1467,7 @@ export const DevCenterProjectCatalogSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether pools in this Dev Center can use Microsoft Hosted Networks. Defaults to Enabled if not set. */
 export type MicrosoftHostedNetworkEnableStatus = "Enabled" | "Disabled";
-export const MicrosoftHostedNetworkEnableStatus = /*@__PURE__*/ S.String;
+export const MicrosoftHostedNetworkEnableStatus = S.String;
 
 /** Network settings for the Dev Center. */
 export interface DevCenterNetworkSettings {
@@ -1496,7 +1487,7 @@ export const DevCenterNetworkSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Setting to be used when determining whether to install the Azure Monitor Agent service on Dev Boxes that belong to this dev center. */
 export type InstallAzureMonitorAgentEnableStatus = "Enabled" | "Disabled";
-export const InstallAzureMonitorAgentEnableStatus = /*@__PURE__*/ S.String;
+export const InstallAzureMonitorAgentEnableStatus = S.String;
 
 /** Provisioning settings that apply to all Dev Boxes created in this dev center */
 export interface DevBoxProvisioningSettings {
@@ -1546,7 +1537,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned, UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentityInput {}
@@ -1644,7 +1635,7 @@ export type DevCenterPropertiesProvisioningState =
   | "TransientFailure"
   | "RolloutInProgress"
   | "StorageProvisioningFailed";
-export const DevCenterPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const DevCenterPropertiesProvisioningState = S.String;
 
 /** Properties of the devcenter. */
 export interface DevCenterProperties {
@@ -1832,8 +1823,7 @@ export type EnvironmentTypePropertiesProvisioningState =
   | "TransientFailure"
   | "RolloutInProgress"
   | "StorageProvisioningFailed";
-export const EnvironmentTypePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const EnvironmentTypePropertiesProvisioningState = S.String;
 
 /** Properties of an environment type. */
 export interface EnvironmentTypeProperties {
@@ -1918,8 +1908,7 @@ export const ExecuteCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
 export type ExecuteCheckNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const ExecuteCheckNameAvailabilityResponseReason =
-  /*@__PURE__*/ S.String;
+export const ExecuteCheckNameAvailabilityResponseReason = S.String;
 
 export interface ExecuteCheckNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
@@ -1973,8 +1962,7 @@ export const ExecuteCheckScopedNameAvailabilityRequest =
 export type ExecuteCheckScopedNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const ExecuteCheckScopedNameAvailabilityResponseReason =
-  /*@__PURE__*/ S.String;
+export const ExecuteCheckScopedNameAvailabilityResponseReason = S.String;
 
 export interface ExecuteCheckScopedNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
@@ -2057,7 +2045,7 @@ export type GalleryPropertiesProvisioningState =
   | "TransientFailure"
   | "RolloutInProgress"
   | "StorageProvisioningFailed";
-export const GalleryPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const GalleryPropertiesProvisioningState = S.String;
 
 /** Properties of a gallery. */
 export interface GalleryProperties {
@@ -2402,7 +2390,7 @@ export const GetCustomizationTaskRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the input. */
 export type CustomizationTaskInputType = "string" | "number" | "boolean";
-export const CustomizationTaskInputType = /*@__PURE__*/ S.String;
+export const CustomizationTaskInputType = S.String;
 
 /** Input for a Task. */
 export interface CustomizationTaskInput {
@@ -2438,8 +2426,7 @@ export type CustomizationTaskPropertiesValidationStatus =
   | "Pending"
   | "Succeeded"
   | "Failed";
-export const CustomizationTaskPropertiesValidationStatus =
-  /*@__PURE__*/ S.String;
+export const CustomizationTaskPropertiesValidationStatus = S.String;
 
 /** Properties of a Task. */
 export interface CustomizationTaskProperties {
@@ -2789,7 +2776,7 @@ export type ParameterType =
   | "number"
   | "object"
   | "string";
-export const ParameterType = /*@__PURE__*/ S.String;
+export const ParameterType = S.String;
 
 /** Properties of an Environment Definition parameter */
 export interface EnvironmentDefinitionParameter {
@@ -2833,8 +2820,7 @@ export type EnvironmentDefinitionPropertiesValidationStatus =
   | "Pending"
   | "Succeeded"
   | "Failed";
-export const EnvironmentDefinitionPropertiesValidationStatus =
-  /*@__PURE__*/ S.String;
+export const EnvironmentDefinitionPropertiesValidationStatus = S.String;
 
 /** Properties of an environment definition. */
 export interface EnvironmentDefinitionProperties {
@@ -3191,7 +3177,7 @@ export type ImagePropertiesProvisioningState =
   | "TransientFailure"
   | "RolloutInProgress"
   | "StorageProvisioningFailed";
-export const ImagePropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const ImagePropertiesProvisioningState = S.String;
 
 /** Properties of an image. */
 export interface ImageProperties {
@@ -3354,7 +3340,7 @@ export type ImageVersionPropertiesProvisioningState =
   | "TransientFailure"
   | "RolloutInProgress"
   | "StorageProvisioningFailed";
-export const ImageVersionPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const ImageVersionPropertiesProvisioningState = S.String;
 
 /** Properties of an image version. */
 export interface ImageVersionProperties {
@@ -3512,7 +3498,7 @@ export type NetworkPropertiesProvisioningState =
   | "TransientFailure"
   | "RolloutInProgress"
   | "StorageProvisioningFailed";
-export const NetworkPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const NetworkPropertiesProvisioningState = S.String;
 
 /** Health check status values */
 export type NetworkPropertiesHealthCheckStatus =
@@ -3523,14 +3509,14 @@ export type NetworkPropertiesHealthCheckStatus =
   | "Warning"
   | "Failed"
   | "Informational";
-export const NetworkPropertiesHealthCheckStatus = /*@__PURE__*/ S.String;
+export const NetworkPropertiesHealthCheckStatus = S.String;
 
 /** Active Directory join type */
 export type NetworkPropertiesDomainJoinType =
   | "HybridAzureADJoin"
   | "AzureADJoin"
   | "None";
-export const NetworkPropertiesDomainJoinType = /*@__PURE__*/ S.String;
+export const NetworkPropertiesDomainJoinType = S.String;
 
 /** Network properties */
 export interface NetworkProperties {
@@ -3634,7 +3620,7 @@ export type HealthCheckStatus =
   | "Warning"
   | "Failed"
   | "Informational";
-export const HealthCheckStatus = /*@__PURE__*/ S.String;
+export const HealthCheckStatus = S.String;
 
 /** An individual health check item */
 export interface HealthCheck {
@@ -3919,7 +3905,7 @@ export const GetPoolResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Indicates if the pool is created from an existing Dev Box Definition or if one is provided directly. */
 export type PoolDevBoxDefinitionType = "Reference" | "Value";
-export const PoolDevBoxDefinitionType = /*@__PURE__*/ S.String;
+export const PoolDevBoxDefinitionType = S.String;
 
 /** Image reference information */
 export type PoolDevBoxDefinitionImageReference =
@@ -3958,15 +3944,15 @@ export const PoolDevBoxDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** License Types */
 export type LicenseType = "Windows_Client";
-export const LicenseType = /*@__PURE__*/ S.String;
+export const LicenseType = S.String;
 
 /** Local Administrator enable or disable status. Indicates whether owners of Dev Boxes are added as local administrators on the Dev Box. */
 export type LocalAdminStatus = "Disabled" | "Enabled";
-export const LocalAdminStatus = /*@__PURE__*/ S.String;
+export const LocalAdminStatus = S.String;
 
 /** Stop on disconnect enable or disable status. Indicates whether stop on disconnect to is either enabled or disabled. */
 export type StopOnDisconnectEnableStatus = "Enabled" | "Disabled";
-export const StopOnDisconnectEnableStatus = /*@__PURE__*/ S.String;
+export const StopOnDisconnectEnableStatus = S.String;
 
 /** Stop on disconnect configuration settings for Dev Boxes created in this pool. */
 export interface StopOnDisconnectConfiguration {
@@ -3986,7 +3972,7 @@ export const StopOnDisconnectConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** Stop on no connect enable or disable status. */
 export type StopOnNoConnectEnableStatus = "Enabled" | "Disabled";
-export const StopOnNoConnectEnableStatus = /*@__PURE__*/ S.String;
+export const StopOnNoConnectEnableStatus = S.String;
 
 /** Stop on no connect configuration settings for Dev Boxes created in this pool. */
 export interface StopOnNoConnectConfiguration {
@@ -4006,11 +3992,11 @@ export const StopOnNoConnectConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** SingleSignOn (SSO) enable or disable status. Indicates whether Dev Boxes in the Pool will have SSO enabled or disabled. */
 export type SingleSignOnStatus = "Disabled" | "Enabled";
-export const SingleSignOnStatus = /*@__PURE__*/ S.String;
+export const SingleSignOnStatus = S.String;
 
 /** Indicates a pool uses a Virtual Network managed by Microsoft (Managed), or a customer provided Network (Unmanaged). */
 export type VirtualNetworkType = "Managed" | "Unmanaged";
-export const VirtualNetworkType = /*@__PURE__*/ S.String;
+export const VirtualNetworkType = S.String;
 
 /** The regions of the managed virtual network (required when managedNetworkType is Managed). */
 export type PoolPropertiesManagedVirtualNetworkRegionsList = Array<string>;
@@ -4026,7 +4012,7 @@ export type HealthStatus =
   | "Healthy"
   | "Warning"
   | "Unhealthy";
-export const HealthStatus = /*@__PURE__*/ S.String;
+export const HealthStatus = S.String;
 
 /** Pool health status detail. */
 export interface HealthStatusDetail {
@@ -4068,7 +4054,7 @@ export type PoolPropertiesProvisioningState =
   | "TransientFailure"
   | "RolloutInProgress"
   | "StorageProvisioningFailed";
-export const PoolPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const PoolPropertiesProvisioningState = S.String;
 
 /** Properties of a Pool */
 export interface PoolProperties {
@@ -4232,7 +4218,7 @@ export type ProjectPropertiesProvisioningState =
   | "TransientFailure"
   | "RolloutInProgress"
   | "StorageProvisioningFailed";
-export const ProjectPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const ProjectPropertiesProvisioningState = S.String;
 
 /** Properties of a project. */
 export interface ProjectProperties {
@@ -4351,8 +4337,7 @@ export type AllowedEnvironmentTypePropertiesProvisioningState =
   | "TransientFailure"
   | "RolloutInProgress"
   | "StorageProvisioningFailed";
-export const AllowedEnvironmentTypePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AllowedEnvironmentTypePropertiesProvisioningState = S.String;
 
 /** Properties of an allowed environment type. */
 export interface AllowedEnvironmentTypeProperties {
@@ -4553,7 +4538,7 @@ export type ImageDefinitionBuildStatus =
   | "Failed"
   | "Cancelled"
   | "TimedOut";
-export const ImageDefinitionBuildStatus = /*@__PURE__*/ S.String;
+export const ImageDefinitionBuildStatus = S.String;
 
 /** Image creation error details */
 export type ImageCreationErrorDetails =
@@ -4860,8 +4845,7 @@ export type ImageDefinitionPropertiesImageValidationStatus =
   | "Succeeded"
   | "Failed"
   | "TimedOut";
-export const ImageDefinitionPropertiesImageValidationStatus =
-  /*@__PURE__*/ S.String;
+export const ImageDefinitionPropertiesImageValidationStatus = S.String;
 
 /** Image validation error details */
 export type ImageDefinitionPropertiesImageValidationErrorDetails =
@@ -4875,7 +4859,7 @@ export type ImageDefinitionPropertiesValidationStatus =
   | "Pending"
   | "Succeeded"
   | "Failed";
-export const ImageDefinitionPropertiesValidationStatus = /*@__PURE__*/ S.String;
+export const ImageDefinitionPropertiesValidationStatus = S.String;
 
 /** Image reference information */
 export type ImageDefinitionPropertiesActiveImageReference =
@@ -4885,7 +4869,7 @@ export const ImageDefinitionPropertiesActiveImageReference =
 
 /** Indicates whether auto image build is enabled/disabled. */
 export type AutoImageBuildStatus = "Disabled" | "Enabled";
-export const AutoImageBuildStatus = /*@__PURE__*/ S.String;
+export const AutoImageBuildStatus = S.String;
 
 /** Properties of an Image Definition. */
 export interface ImageDefinitionProperties {
@@ -5064,7 +5048,7 @@ export const GetProjectEnvironmentTypeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether the environment type is either enabled or disabled. */
 export type EnvironmentTypeEnableStatus = "Enabled" | "Disabled";
-export const EnvironmentTypeEnableStatus = /*@__PURE__*/ S.String;
+export const EnvironmentTypeEnableStatus = S.String;
 
 /** A role that can be assigned to a user. */
 export interface EnvironmentRole {
@@ -5158,8 +5142,7 @@ export type ProjectEnvironmentTypePropertiesProvisioningState =
   | "TransientFailure"
   | "RolloutInProgress"
   | "StorageProvisioningFailed";
-export const ProjectEnvironmentTypePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ProjectEnvironmentTypePropertiesProvisioningState = S.String;
 
 /** Properties of a project environment type. */
 export interface ProjectEnvironmentTypeProperties {
@@ -5331,11 +5314,11 @@ export const GetProjectPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates what action to perform for the policy. */
 export type PolicyAction = "Allow" | "Deny";
-export const PolicyAction = /*@__PURE__*/ S.String;
+export const PolicyAction = S.String;
 
 /** Indicates dev center resource types. */
 export type DevCenterResourceType = "Images" | "AttachedNetworks" | "Skus";
-export const DevCenterResourceType = /*@__PURE__*/ S.String;
+export const DevCenterResourceType = S.String;
 
 /** A resource policy. */
 export interface ResourcePolicy {
@@ -5388,7 +5371,7 @@ export type ProjectPolicyPropertiesProvisioningState =
   | "TransientFailure"
   | "RolloutInProgress"
   | "StorageProvisioningFailed";
-export const ProjectPolicyPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const ProjectPolicyPropertiesProvisioningState = S.String;
 
 /** Properties of an project policy. */
 export interface ProjectPolicyProperties {
@@ -5476,15 +5459,15 @@ export const Tags = /*@__PURE__*/ S.Record(
 
 /** The supported types for a scheduled task. */
 export type ScheduledType = "StopDevBox";
-export const ScheduledType = /*@__PURE__*/ S.String;
+export const ScheduledType = S.String;
 
 /** The frequency of task execution. */
 export type ScheduledFrequency = "Daily";
-export const ScheduledFrequency = /*@__PURE__*/ S.String;
+export const ScheduledFrequency = S.String;
 
 /** Schedule enable or disable status. Indicates whether the schedule applied to is either enabled or disabled. */
 export type ScheduleEnableStatus = "Enabled" | "Disabled";
-export const ScheduleEnableStatus = /*@__PURE__*/ S.String;
+export const ScheduleEnableStatus = S.String;
 
 /** Provisioning state of the resource. */
 export type SchedulePropertiesProvisioningState =
@@ -5504,7 +5487,7 @@ export type SchedulePropertiesProvisioningState =
   | "TransientFailure"
   | "RolloutInProgress"
   | "StorageProvisioningFailed";
-export const SchedulePropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const SchedulePropertiesProvisioningState = S.String;
 
 /** The Schedule properties defining when and what to execute. */
 export interface ScheduleProperties {
@@ -6891,11 +6874,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -7873,7 +7856,7 @@ export const ListUsageByLocationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The unit details. */
 export type UsageUnit = "Count";
-export const UsageUnit = /*@__PURE__*/ S.String;
+export const UsageUnit = S.String;
 
 /** The Usage Names. */
 export interface UsageName {
@@ -7953,14 +7936,14 @@ export type NetworkPropertiesInputHealthCheckStatus =
   | "Warning"
   | "Failed"
   | "Informational";
-export const NetworkPropertiesInputHealthCheckStatus = /*@__PURE__*/ S.String;
+export const NetworkPropertiesInputHealthCheckStatus = S.String;
 
 /** Active Directory join type */
 export type NetworkPropertiesInputDomainJoinType =
   | "HybridAzureADJoin"
   | "AzureADJoin"
   | "None";
-export const NetworkPropertiesInputDomainJoinType = /*@__PURE__*/ S.String;
+export const NetworkPropertiesInputDomainJoinType = S.String;
 
 /** Network properties */
 export interface NetworkPropertiesInput {
@@ -8074,7 +8057,7 @@ export const NetworkConnectionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 
 /** Indicates the type of sync that is configured for the catalog. */
 export type CatalogUpdatePropertiesSyncType = "Manual" | "Scheduled";
-export const CatalogUpdatePropertiesSyncType = /*@__PURE__*/ S.String;
+export const CatalogUpdatePropertiesSyncType = S.String;
 
 /** Resource tags. */
 export type CatalogUpdatePropertiesTagsMap = {

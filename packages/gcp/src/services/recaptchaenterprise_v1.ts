@@ -69,7 +69,7 @@ export type GoogleCloudRecaptchaenterpriseV1IpOverrideDataOverrideTypeEnum =
   | "OVERRIDE_TYPE_UNSPECIFIED"
   | "ALLOW";
 export const GoogleCloudRecaptchaenterpriseV1IpOverrideDataOverrideTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information about the IP or IP range override. */
 export interface GoogleCloudRecaptchaenterpriseV1IpOverrideData {
@@ -145,7 +145,7 @@ export type GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequestAnnotationE
   | "PASSWORD_CORRECT"
   | "PASSWORD_INCORRECT";
 export const GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequestAnnotationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequestReasonsItemEnum =
   | "REASON_UNSPECIFIED"
@@ -164,7 +164,7 @@ export type GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequestReasonsItem
   | "INCORRECT_PASSWORD"
   | "SOCIAL_SPAM";
 export const GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequestReasonsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequestReasonsItemEnumList =
   Array<
@@ -197,7 +197,7 @@ export type GoogleCloudRecaptchaenterpriseV1TransactionEventEventTypeEnum =
   | "REFUND"
   | "REFUND_REVERSE";
 export const GoogleCloudRecaptchaenterpriseV1TransactionEventEventTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Describes an event in the lifecycle of a payment transaction. */
 export interface GoogleCloudRecaptchaenterpriseV1TransactionEvent {
@@ -341,7 +341,7 @@ export type GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdictReasonsItemEnum =
   | "SMS_TOLL_FRAUD_REASON_UNSPECIFIED"
   | "INVALID_PHONE_NUMBER";
 export const GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdictReasonsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdictReasonsItemEnumList =
   Array<
@@ -594,8 +594,7 @@ export type GoogleCloudRecaptchaenterpriseV1BotBotTypeEnum =
   | "AI_AGENT"
   | "CONTENT_SCRAPER"
   | "SEARCH_INDEXER";
-export const GoogleCloudRecaptchaenterpriseV1BotBotTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRecaptchaenterpriseV1BotBotTypeEnum = S.String;
 
 /** Bot information and metadata. */
 export interface GoogleCloudRecaptchaenterpriseV1Bot {
@@ -625,14 +624,14 @@ export type GoogleCloudRecaptchaenterpriseV1RiskAnalysisChallengeEnum =
   | "PASSED"
   | "FAILED";
 export const GoogleCloudRecaptchaenterpriseV1RiskAnalysisChallengeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRecaptchaenterpriseV1RiskAnalysisLastChallengeTypeEnum =
   | "CHALLENGE_TYPE_UNSPECIFIED"
   | "CHALLENGE_TYPE_VISUAL"
   | "CHALLENGE_TYPE_AUDIO";
 export const GoogleCloudRecaptchaenterpriseV1RiskAnalysisLastChallengeTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRecaptchaenterpriseV1RiskAnalysisReasonsItemEnum =
   | "CLASSIFICATION_REASON_UNSPECIFIED"
@@ -644,7 +643,7 @@ export type GoogleCloudRecaptchaenterpriseV1RiskAnalysisReasonsItemEnum =
   | "SUSPECTED_CARDING"
   | "SUSPECTED_CHARGEBACK";
 export const GoogleCloudRecaptchaenterpriseV1RiskAnalysisReasonsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRecaptchaenterpriseV1RiskAnalysisReasonsItemEnumList =
   Array<
@@ -747,7 +746,7 @@ export type GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReasonR
   | "GEOLOCATION_DISCREPANCY"
   | "ASSOCIATED_WITH_FRAUD_CLUSTER";
 export const GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReasonReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Risk reasons applicable to the Fraud Prevention assessment. */
 export interface GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReason {
@@ -832,7 +831,7 @@ export type GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignalsCardLabelsIte
   | "VIRTUAL"
   | "UNEXPECTED_LOCATION";
 export const GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignalsCardLabelsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignalsCardLabelsItemEnumList =
   Array<
@@ -893,7 +892,7 @@ export type GoogleCloudRecaptchaenterpriseV1TokenPropertiesInvalidReasonEnum =
   | "KEY_MISMATCH"
   | "DOMAIN_MISMATCH";
 export const GoogleCloudRecaptchaenterpriseV1TokenPropertiesInvalidReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the provided event token. */
 export interface GoogleCloudRecaptchaenterpriseV1TokenProperties {
@@ -946,7 +945,7 @@ export type GoogleCloudRecaptchaenterpriseV1AccountVerificationInfoLatestVerific
   | "ERROR_VERIFICATION_BYPASSED"
   | "ERROR_VERDICT_MISMATCH";
 export const GoogleCloudRecaptchaenterpriseV1AccountVerificationInfoLatestVerificationResultEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information about a verification endpoint that can be used for 2FA. */
 export interface GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo {
@@ -1014,7 +1013,7 @@ export type GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentLabelsItemE
   | "SUSPICIOUS_ACCOUNT_CREATION"
   | "RELATED_ACCOUNTS_NUMBER_HIGH";
 export const GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentLabelsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentLabelsItemEnumList =
   Array<
@@ -1033,7 +1032,7 @@ export type GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrus
   | "IDENTITY_GLOBAL_ACTIVITY_REPUTABLE"
   | "IDENTITY_HISTORY_REPUTABLE";
 export const GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReasonReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Trust explainability reasons for Account defense. */
 export interface GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReason {
@@ -1068,7 +1067,7 @@ export type GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRisk
   | "CLIENT_ACCESSED_MANY_ACCOUNTS"
   | "DISPOSABLE_EMAIL_DOMAIN";
 export const GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReasonReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Risk explainability reasons for Account defense. */
 export interface GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReason {
@@ -1217,7 +1216,7 @@ export type GoogleCloudRecaptchaenterpriseV1EventFraudPreventionEnum =
   | "ENABLED"
   | "DISABLED";
 export const GoogleCloudRecaptchaenterpriseV1EventFraudPreventionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details about a user's account involved in the transaction. */
 export interface GoogleCloudRecaptchaenterpriseV1TransactionDataUser {
@@ -1699,7 +1698,7 @@ export type GoogleCloudRecaptchaenterpriseV1WebKeySettingsIntegrationTypeEnum =
   | "INVISIBLE"
   | "POLICY_BASED_CHALLENGE";
 export const GoogleCloudRecaptchaenterpriseV1WebKeySettingsIntegrationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRecaptchaenterpriseV1WebKeySettingsChallengeSecurityPreferenceEnum =
   | "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED"
@@ -1707,7 +1706,7 @@ export type GoogleCloudRecaptchaenterpriseV1WebKeySettingsChallengeSecurityPrefe
   | "BALANCE"
   | "SECURITY";
 export const GoogleCloudRecaptchaenterpriseV1WebKeySettingsChallengeSecurityPreferenceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Settings specific to keys that can be used by websites. */
 export interface GoogleCloudRecaptchaenterpriseV1WebKeySettings {
@@ -1767,7 +1766,7 @@ export type GoogleCloudRecaptchaenterpriseV1WafSettingsWafServiceEnum =
   | "CLOUDFLARE"
   | "AKAMAI";
 export const GoogleCloudRecaptchaenterpriseV1WafSettingsWafServiceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRecaptchaenterpriseV1WafSettingsWafFeatureEnum =
   | "WAF_FEATURE_UNSPECIFIED"
@@ -1776,7 +1775,7 @@ export type GoogleCloudRecaptchaenterpriseV1WafSettingsWafFeatureEnum =
   | "ACTION_TOKEN"
   | "EXPRESS";
 export const GoogleCloudRecaptchaenterpriseV1WafSettingsWafFeatureEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Settings specific to keys that can be used for WAF (Web Application Firewall). */
 export interface GoogleCloudRecaptchaenterpriseV1WafSettings {
@@ -1808,7 +1807,7 @@ export type GoogleCloudRecaptchaenterpriseV1TestingOptionsTestingChallengeEnum =
   | "NOCAPTCHA"
   | "UNSOLVABLE_CHALLENGE";
 export const GoogleCloudRecaptchaenterpriseV1TestingOptionsTestingChallengeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options for user acceptance testing. */
 export interface GoogleCloudRecaptchaenterpriseV1TestingOptions {
@@ -2131,7 +2130,7 @@ export type GoogleCloudRecaptchaenterpriseV1ChallengeRuleChallengeOutcomeDifficu
   | "BALANCE"
   | "SECURITY";
 export const GoogleCloudRecaptchaenterpriseV1ChallengeRuleChallengeOutcomeDifficultyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An outcome that indicates that a challenge of a specified difficulty should be presented to the user. */
 export interface GoogleCloudRecaptchaenterpriseV1ChallengeRuleChallengeOutcome {

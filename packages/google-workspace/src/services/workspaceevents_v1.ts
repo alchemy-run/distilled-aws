@@ -110,7 +110,7 @@ export const StringList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<StringList>;
 
 export type MessageRoleEnum = "ROLE_UNSPECIFIED" | "ROLE_USER" | "ROLE_AGENT";
-export const MessageRoleEnum = /*@__PURE__*/ S.String;
+export const MessageRoleEnum = S.String;
 
 /** DataPart represents a structured blob. This is most commonly a JSON payload. */
 export interface DataPart {
@@ -204,7 +204,7 @@ export type TaskStatusStateEnum =
   | "TASK_STATE_INPUT_REQUIRED"
   | "TASK_STATE_REJECTED"
   | "TASK_STATE_AUTH_REQUIRED";
-export const TaskStatusStateEnum = /*@__PURE__*/ S.String;
+export const TaskStatusStateEnum = S.String;
 
 /** A container for the status of a task */
 export interface TaskStatus {
@@ -285,7 +285,7 @@ export type SubscriptionStateEnum =
   | "ACTIVE"
   | "SUSPENDED"
   | "DELETED";
-export const SubscriptionStateEnum = /*@__PURE__*/ S.String;
+export const SubscriptionStateEnum = S.String;
 
 /** Options about what data to include in the event payload. Only supported for Google Chat and Google Drive events. */
 export interface PayloadOptions {
@@ -312,7 +312,7 @@ export type SubscriptionSuspensionReasonEnum =
   | "ENDPOINT_NOT_FOUND"
   | "ENDPOINT_RESOURCE_EXHAUSTED"
   | "OTHER";
-export const SubscriptionSuspensionReasonEnum = /*@__PURE__*/ S.String;
+export const SubscriptionSuspensionReasonEnum = S.String;
 
 /** The endpoint where the subscription delivers events. */
 export interface NotificationEndpoint {

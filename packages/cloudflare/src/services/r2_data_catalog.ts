@@ -221,14 +221,13 @@ export const GetMaintenanceConfigRequest = /*@__PURE__*/ S.suspend(() =>
 export type MaintenanceConfigsGetResponseCredentialStatus =
   | "present"
   | "absent";
-export const MaintenanceConfigsGetResponseCredentialStatus =
-  /*@__PURE__*/ S.String;
+export const MaintenanceConfigsGetResponseCredentialStatus = S.String;
 
 export type MaintenanceConfigsGetResponseMaintenanceConfigCompactionState =
   | "enabled"
   | "disabled";
 export const MaintenanceConfigsGetResponseMaintenanceConfigCompactionState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type MaintenanceConfigsGetResponseMaintenanceConfigCompactionTargetSizeMb =
   | "64"
@@ -236,7 +235,7 @@ export type MaintenanceConfigsGetResponseMaintenanceConfigCompactionTargetSizeMb
   | "256"
   | "512";
 export const MaintenanceConfigsGetResponseMaintenanceConfigCompactionTargetSizeMb =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaintenanceConfigsGetResponseMaintenanceConfigCompaction {
   /** Specifies the state of maintenance operations. */
@@ -261,7 +260,7 @@ export type MaintenanceConfigsGetResponseMaintenanceConfigSnapshotExpirationStat
   | "enabled"
   | "disabled";
 export const MaintenanceConfigsGetResponseMaintenanceConfigSnapshotExpirationState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaintenanceConfigsGetResponseMaintenanceConfigSnapshotExpiration {
   /** Specifies the maximum age for snapshots. The system deletes snapshots older than this age. */
@@ -358,7 +357,7 @@ export type NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigCompac
   | "enabled"
   | "disabled";
 export const NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigCompactionState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigCompactionTargetSizeMb =
   | "64"
@@ -366,7 +365,7 @@ export type NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigCompac
   | "256"
   | "512";
 export const NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigCompactionTargetSizeMb =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigCompaction {
   /** Specifies the state of maintenance operations. */
@@ -393,7 +392,7 @@ export type NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigSnapsh
   | "enabled"
   | "disabled";
 export const NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigSnapshotExpirationState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesTablesMaintenanceConfigsGetResponseMaintenanceConfigSnapshotExpiration {
   /** Specifies the maximum age for snapshots. The system deletes snapshots older than this age. */
@@ -482,24 +481,22 @@ export const GetR2DataCatalogRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetR2DataCatalogRequest>;
 
 export type GetResponseStatus = "active" | "inactive";
-export const GetResponseStatus = /*@__PURE__*/ S.String;
+export const GetResponseStatus = S.String;
 
 export type GetResponseCredentialStatus = "present" | "absent";
-export const GetResponseCredentialStatus = /*@__PURE__*/ S.String;
+export const GetResponseCredentialStatus = S.String;
 
 export type GetResponseMaintenanceConfigCompactionState =
   | "enabled"
   | "disabled";
-export const GetResponseMaintenanceConfigCompactionState =
-  /*@__PURE__*/ S.String;
+export const GetResponseMaintenanceConfigCompactionState = S.String;
 
 export type GetResponseMaintenanceConfigCompactionTargetSizeMb =
   | "64"
   | "128"
   | "256"
   | "512";
-export const GetResponseMaintenanceConfigCompactionTargetSizeMb =
-  /*@__PURE__*/ S.String;
+export const GetResponseMaintenanceConfigCompactionTargetSizeMb = S.String;
 
 export interface GetResponseMaintenanceConfigCompaction {
   /** Specifies the state of maintenance operations. */
@@ -522,8 +519,7 @@ export const GetResponseMaintenanceConfigCompaction = /*@__PURE__*/ S.suspend(
 export type GetResponseMaintenanceConfigSnapshotExpirationState =
   | "enabled"
   | "disabled";
-export const GetResponseMaintenanceConfigSnapshotExpirationState =
-  /*@__PURE__*/ S.String;
+export const GetResponseMaintenanceConfigSnapshotExpirationState = S.String;
 
 export interface GetResponseMaintenanceConfigSnapshotExpiration {
   /** Specifies the maximum age for snapshots. The system deletes snapshots older than this age. */
@@ -890,17 +886,16 @@ export const ListR2DataCatalogsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListR2DataCatalogsRequest>;
 
 export type ListResponseWarehousesItemStatus = "active" | "inactive";
-export const ListResponseWarehousesItemStatus = /*@__PURE__*/ S.String;
+export const ListResponseWarehousesItemStatus = S.String;
 
 export type ListResponseWarehousesItemCredentialStatus = "present" | "absent";
-export const ListResponseWarehousesItemCredentialStatus =
-  /*@__PURE__*/ S.String;
+export const ListResponseWarehousesItemCredentialStatus = S.String;
 
 export type ListResponseWarehousesItemMaintenanceConfigCompactionState =
   | "enabled"
   | "disabled";
 export const ListResponseWarehousesItemMaintenanceConfigCompactionState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListResponseWarehousesItemMaintenanceConfigCompactionTargetSizeMb =
   | "64"
@@ -908,7 +903,7 @@ export type ListResponseWarehousesItemMaintenanceConfigCompactionTargetSizeMb =
   | "256"
   | "512";
 export const ListResponseWarehousesItemMaintenanceConfigCompactionTargetSizeMb =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListResponseWarehousesItemMaintenanceConfigCompaction {
   /** Specifies the state of maintenance operations. */
@@ -933,7 +928,7 @@ export type ListResponseWarehousesItemMaintenanceConfigSnapshotExpirationState =
   | "enabled"
   | "disabled";
 export const ListResponseWarehousesItemMaintenanceConfigSnapshotExpirationState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListResponseWarehousesItemMaintenanceConfigSnapshotExpiration {
   /** Specifies the maximum age for snapshots. The system deletes snapshots older than this age. */
@@ -1032,16 +1027,14 @@ export const ListR2DataCatalogsResponse = /*@__PURE__*/ S.suspend(() =>
 export type MaintenanceConfigsUpdateRequestCompactionState =
   | "enabled"
   | "disabled";
-export const MaintenanceConfigsUpdateRequestCompactionState =
-  /*@__PURE__*/ S.String;
+export const MaintenanceConfigsUpdateRequestCompactionState = S.String;
 
 export type MaintenanceConfigsUpdateRequestCompactionTargetSizeMb =
   | "64"
   | "128"
   | "256"
   | "512";
-export const MaintenanceConfigsUpdateRequestCompactionTargetSizeMb =
-  /*@__PURE__*/ S.String;
+export const MaintenanceConfigsUpdateRequestCompactionTargetSizeMb = S.String;
 
 export interface MaintenanceConfigsUpdateRequestCompaction {
   /** Updates the state optionally. */
@@ -1068,8 +1061,7 @@ export const MaintenanceConfigsUpdateRequestCompaction =
 export type MaintenanceConfigsUpdateRequestSnapshotExpirationState =
   | "enabled"
   | "disabled";
-export const MaintenanceConfigsUpdateRequestSnapshotExpirationState =
-  /*@__PURE__*/ S.String;
+export const MaintenanceConfigsUpdateRequestSnapshotExpirationState = S.String;
 
 export interface MaintenanceConfigsUpdateRequestSnapshotExpiration {
   /** Updates the maximum age for snapshots optionally. */
@@ -1130,16 +1122,14 @@ export const UpdateMaintenanceConfigRequest = /*@__PURE__*/ S.suspend(() =>
 export type MaintenanceConfigsUpdateResponseCompactionState =
   | "enabled"
   | "disabled";
-export const MaintenanceConfigsUpdateResponseCompactionState =
-  /*@__PURE__*/ S.String;
+export const MaintenanceConfigsUpdateResponseCompactionState = S.String;
 
 export type MaintenanceConfigsUpdateResponseCompactionTargetSizeMb =
   | "64"
   | "128"
   | "256"
   | "512";
-export const MaintenanceConfigsUpdateResponseCompactionTargetSizeMb =
-  /*@__PURE__*/ S.String;
+export const MaintenanceConfigsUpdateResponseCompactionTargetSizeMb = S.String;
 
 export interface MaintenanceConfigsUpdateResponseCompaction {
   /** Specifies the state of maintenance operations. */
@@ -1162,8 +1152,7 @@ export const MaintenanceConfigsUpdateResponseCompaction =
 export type MaintenanceConfigsUpdateResponseSnapshotExpirationState =
   | "enabled"
   | "disabled";
-export const MaintenanceConfigsUpdateResponseSnapshotExpirationState =
-  /*@__PURE__*/ S.String;
+export const MaintenanceConfigsUpdateResponseSnapshotExpirationState = S.String;
 
 export interface MaintenanceConfigsUpdateResponseSnapshotExpiration {
   /** Specifies the maximum age for snapshots. The system deletes snapshots older than this age. */
@@ -1210,7 +1199,7 @@ export type NamespacesTablesMaintenanceConfigsUpdateRequestCompactionState =
   | "enabled"
   | "disabled";
 export const NamespacesTablesMaintenanceConfigsUpdateRequestCompactionState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NamespacesTablesMaintenanceConfigsUpdateRequestCompactionTargetSizeMb =
   | "64"
@@ -1218,7 +1207,7 @@ export type NamespacesTablesMaintenanceConfigsUpdateRequestCompactionTargetSizeM
   | "256"
   | "512";
 export const NamespacesTablesMaintenanceConfigsUpdateRequestCompactionTargetSizeMb =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesTablesMaintenanceConfigsUpdateRequestCompaction {
   /** Updates the state optionally. */
@@ -1250,7 +1239,7 @@ export type NamespacesTablesMaintenanceConfigsUpdateRequestSnapshotExpirationSta
   | "enabled"
   | "disabled";
 export const NamespacesTablesMaintenanceConfigsUpdateRequestSnapshotExpirationState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesTablesMaintenanceConfigsUpdateRequestSnapshotExpiration {
   /** Updates the maximum age for snapshots optionally. */
@@ -1322,7 +1311,7 @@ export type NamespacesTablesMaintenanceConfigsUpdateResponseCompactionState =
   | "enabled"
   | "disabled";
 export const NamespacesTablesMaintenanceConfigsUpdateResponseCompactionState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NamespacesTablesMaintenanceConfigsUpdateResponseCompactionTargetSizeMb =
   | "64"
@@ -1330,7 +1319,7 @@ export type NamespacesTablesMaintenanceConfigsUpdateResponseCompactionTargetSize
   | "256"
   | "512";
 export const NamespacesTablesMaintenanceConfigsUpdateResponseCompactionTargetSizeMb =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesTablesMaintenanceConfigsUpdateResponseCompaction {
   /** Specifies the state of maintenance operations. */
@@ -1355,7 +1344,7 @@ export type NamespacesTablesMaintenanceConfigsUpdateResponseSnapshotExpirationSt
   | "enabled"
   | "disabled";
 export const NamespacesTablesMaintenanceConfigsUpdateResponseSnapshotExpirationState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesTablesMaintenanceConfigsUpdateResponseSnapshotExpiration {
   /** Specifies the maximum age for snapshots. The system deletes snapshots older than this age. */

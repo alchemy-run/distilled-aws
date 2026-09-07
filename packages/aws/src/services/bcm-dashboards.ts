@@ -123,12 +123,12 @@ export type MetricName =
   | "Unit"
   | "Cost"
   | (string & {});
-export const MetricName = /*@__PURE__*/ S.String;
+export const MetricName = S.String;
 
 export type MetricNames = MetricName[];
 export const MetricNames = /*@__PURE__*/ S.Array(MetricName);
 export type DateTimeType = "ABSOLUTE" | "RELATIVE" | (string & {});
-export const DateTimeType = /*@__PURE__*/ S.String;
+export const DateTimeType = S.String;
 
 export interface DateTimeValue {
   type: DateTimeType;
@@ -145,14 +145,14 @@ export const DateTimeRange = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ startTime: DateTimeValue, endTime: DateTimeValue }),
 ).annotate({ identifier: "DateTimeRange" }) as any as S.Schema<DateTimeRange>;
 export type Granularity = "HOURLY" | "DAILY" | "MONTHLY" | (string & {});
-export const Granularity = /*@__PURE__*/ S.String;
+export const Granularity = S.String;
 
 export type GroupDefinitionType =
   | "DIMENSION"
   | "TAG"
   | "COST_CATEGORY"
   | (string & {});
-export const GroupDefinitionType = /*@__PURE__*/ S.String;
+export const GroupDefinitionType = S.String;
 
 export interface GroupDefinition {
   key: string;
@@ -199,7 +199,7 @@ export type Dimension =
   | "SCOPE"
   | "PLATFORM"
   | (string & {});
-export const Dimension = /*@__PURE__*/ S.String;
+export const Dimension = S.String;
 
 export type StringList = string[];
 export const StringList = /*@__PURE__*/ S.Array(S.String);
@@ -213,7 +213,7 @@ export type MatchOption =
   | "CASE_SENSITIVE"
   | "CASE_INSENSITIVE"
   | (string & {});
-export const MatchOption = /*@__PURE__*/ S.String;
+export const MatchOption = S.String;
 
 export type MatchOptions = MatchOption[];
 export const MatchOptions = /*@__PURE__*/ S.Array(MatchOption);
@@ -411,7 +411,7 @@ export const QueryParameters = /*@__PURE__*/ S.Union([
   S.Struct({ reservationUtilization: ReservationUtilizationQuery }),
 ]);
 export type VisualType = "LINE" | "BAR" | "STACK" | (string & {});
-export const VisualType = /*@__PURE__*/ S.String;
+export const VisualType = S.String;
 
 export interface GraphDisplayConfig {
   visualType: VisualType;
@@ -523,7 +523,7 @@ export const SchedulePeriod = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SchedulePeriod" }) as any as S.Schema<SchedulePeriod>;
 export type ScheduleState = "ENABLED" | "DISABLED" | (string & {});
-export const ScheduleState = /*@__PURE__*/ S.String;
+export const ScheduleState = S.String;
 
 export interface ScheduleConfig {
   scheduleExpression?: string;
@@ -648,7 +648,7 @@ export const ExecuteScheduledReportRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExecuteScheduledReportRequest",
 }) as any as S.Schema<ExecuteScheduledReportRequest>;
 export type HealthStatusCode = "HEALTHY" | "UNHEALTHY" | (string & {});
-export const HealthStatusCode = /*@__PURE__*/ S.String;
+export const HealthStatusCode = S.String;
 
 export type StatusReason =
   | "DATA_SOURCE_ACCESS_DENIED"
@@ -659,7 +659,7 @@ export type StatusReason =
   | "INTERNAL_FAILURE"
   | "WIDGET_ID_NOT_FOUND"
   | (string & {});
-export const StatusReason = /*@__PURE__*/ S.String;
+export const StatusReason = S.String;
 
 export type StatusReasonList = StatusReason[];
 export const StatusReasonList = /*@__PURE__*/ S.Array(StatusReason);
@@ -700,7 +700,7 @@ export const GetDashboardRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDashboardRequest",
 }) as any as S.Schema<GetDashboardRequest>;
 export type DashboardType = "CUSTOM" | (string & {});
-export const DashboardType = /*@__PURE__*/ S.String;
+export const DashboardType = S.String;
 
 export interface GetDashboardResponse {
   arn: string;

@@ -147,7 +147,7 @@ export type HttpTargetHttpMethodEnum =
   | "DELETE"
   | "PATCH"
   | "OPTIONS";
-export const HttpTargetHttpMethodEnum = /*@__PURE__*/ S.String;
+export const HttpTargetHttpMethodEnum = S.String;
 
 /** Contains information needed for generating an [OAuth token](https://developers.google.com/identity/protocols/OAuth2). This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com. */
 export interface OAuthToken {
@@ -218,7 +218,7 @@ export type JobStateEnum =
   | "PAUSED"
   | "DISABLED"
   | "UPDATE_FAILED";
-export const JobStateEnum = /*@__PURE__*/ S.String;
+export const JobStateEnum = S.String;
 
 export type DocumentMap = { [key: string]: unknown | undefined };
 export const DocumentMap = /*@__PURE__*/ S.Record(
@@ -257,7 +257,7 @@ export type AppEngineHttpTargetHttpMethodEnum =
   | "DELETE"
   | "PATCH"
   | "OPTIONS";
-export const AppEngineHttpTargetHttpMethodEnum = /*@__PURE__*/ S.String;
+export const AppEngineHttpTargetHttpMethodEnum = S.String;
 
 /** App Engine Routing. For more information about services, versions, and instances see [An Overview of App Engine](https://cloud.google.com/appengine/docs/python/an-overview-of-app-engine), [Microservices Architecture on Google App Engine](https://cloud.google.com/appengine/docs/python/microservices-on-app-engine), [App Engine Standard request routing](https://cloud.google.com/appengine/docs/standard/python/how-requests-are-routed), and [App Engine Flex request routing](https://cloud.google.com/appengine/docs/flexible/python/how-requests-are-routed). */
 export interface AppEngineRouting {

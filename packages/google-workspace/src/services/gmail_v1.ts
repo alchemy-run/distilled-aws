@@ -349,10 +349,10 @@ export const CreateUsersDraftsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateUsersDraftsRequest>;
 
 export type LabelTypeEnum = "system" | "user";
-export const LabelTypeEnum = /*@__PURE__*/ S.String;
+export const LabelTypeEnum = S.String;
 
 export type LabelMessageListVisibilityEnum = "show" | "hide";
-export const LabelMessageListVisibilityEnum = /*@__PURE__*/ S.String;
+export const LabelMessageListVisibilityEnum = S.String;
 
 export interface LabelColor {
   /** The text color of the label, represented as hex string. This field is required in order to set the color of a label. Only the following predefined set of color values are allowed: \#000000, #434343, #666666, #999999, #cccccc, #efefef, #f3f3f3, #ffffff, \#fb4c2f, #ffad47, #fad165, #16a766, #43d692, #4a86e8, #a479e2, #f691b3, \#f6c5be, #ffe6c7, #fef1d1, #b9e4d0, #c6f3de, #c9daf8, #e4d7f5, #fcdee8, \#efa093, #ffd6a2, #fce8b3, #89d3b2, #a0eac9, #a4c2f4, #d0bcf1, #fbc8d9, \#e66550, #ffbc6b, #fcda83, #44b984, #68dfa9, #6d9eeb, #b694e8, #f7a7c0, \#cc3a21, #eaa041, #f2c960, #149e60, #3dc789, #3c78d8, #8e63ce, #e07798, \#ac2b16, #cf8933, #d5ae49, #0b804b, #2a9c68, #285bac, #653e9b, #b65775, \#822111, #a46a21, #aa8831, #076239, #1a764d, #1c4587, #41236d, #83334c, \#464646, #e7e7e7, #0d3472, #b6cff5, #0d3b44, #98d7e4, #3d188e, #e3d7ff, \#711a36, #fbd3e0, #8a1c0a, #f2b2a8, #7a2e0b, #ffc8af, #7a4706, #ffdeb5, \#594c05, #fbe983, #684e07, #fdedc1, #0b4f30, #b3efd3, #04502e, #a2dcc1, \#c2c2c2, #4986e7, #2da2bb, #b99aff, #994a64, #f691b2, #ff7537, #ffad46, \#662e37, #ebdbde, #cca6ac, #094228, #42d692, #16a765, #757575, #1e53b8, \#007286, #7858c3, #c2185b, #d93025, #54240e, #633e04, #521d28, #202124, \#083018 */
@@ -371,7 +371,7 @@ export type LabelLabelListVisibilityEnum =
   | "labelShow"
   | "labelShowIfUnread"
   | "labelHide";
-export const LabelLabelListVisibilityEnum = /*@__PURE__*/ S.String;
+export const LabelLabelListVisibilityEnum = S.String;
 
 /** Labels are used to categorize messages and threads within the user's mailbox. The maximum number of labels supported for a user's mailbox is 10,000. */
 export interface Label {
@@ -488,8 +488,7 @@ export const CreateUsersSettingsCseIdentitiesRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateUsersSettingsCseIdentitiesRequest>;
 
 export type CreateUsersSettingsCseKeypairsChainValidationEnum = "all" | "none";
-export const CreateUsersSettingsCseKeypairsChainValidationEnum =
-  /*@__PURE__*/ S.String;
+export const CreateUsersSettingsCseKeypairsChainValidationEnum = S.String;
 
 /** Metadata for private keys managed by an external key access control list service. For details about managing key access, see [Google Workspace CSE API Reference](https://developers.google.com/workspace/cse/reference). */
 export interface KaclsKeyMetadata {
@@ -548,7 +547,7 @@ export type CseKeyPairEnablementStateEnum =
   | "stateUnspecified"
   | "enabled"
   | "disabled";
-export const CseKeyPairEnablementStateEnum = /*@__PURE__*/ S.String;
+export const CseKeyPairEnablementStateEnum = S.String;
 
 /** A client-side encryption S/MIME key pair, which is comprised of a public key, its certificate chain, and metadata for its paired private key. Gmail uses the key pair to complete the following tasks: - Sign outgoing client-side encrypted messages. - Save and reopen drafts of client-side encrypted messages. - Save and reopen sent messages. - Decrypt incoming or archived S/MIME messages. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured. */
 export interface CseKeyPair {
@@ -614,7 +613,7 @@ export type DelegateVerificationStatusEnum =
   | "pending"
   | "rejected"
   | "expired";
-export const DelegateVerificationStatusEnum = /*@__PURE__*/ S.String;
+export const DelegateVerificationStatusEnum = S.String;
 
 /** Settings for a delegate. Delegates can read, send, and delete messages, as well as view and add contacts, for the delegator's account. See "Set up mail delegation" for more information about delegates. */
 export interface Delegate {
@@ -655,7 +654,7 @@ export type FilterCriteriaSizeComparisonEnum =
   | "unspecified"
   | "smaller"
   | "larger";
-export const FilterCriteriaSizeComparisonEnum = /*@__PURE__*/ S.String;
+export const FilterCriteriaSizeComparisonEnum = S.String;
 
 /** Message matching criteria. */
 export interface FilterCriteria {
@@ -751,7 +750,7 @@ export type ForwardingAddressVerificationStatusEnum =
   | "verificationStatusUnspecified"
   | "accepted"
   | "pending";
-export const ForwardingAddressVerificationStatusEnum = /*@__PURE__*/ S.String;
+export const ForwardingAddressVerificationStatusEnum = S.String;
 
 /** Settings for a forwarding address. */
 export interface ForwardingAddress {
@@ -796,7 +795,7 @@ export type SmtpMsaSecurityModeEnum =
   | "none"
   | "ssl"
   | "starttls";
-export const SmtpMsaSecurityModeEnum = /*@__PURE__*/ S.String;
+export const SmtpMsaSecurityModeEnum = S.String;
 
 /** Configuration for communication with an SMTP service. */
 export interface SmtpMsa {
@@ -825,7 +824,7 @@ export type SendAsVerificationStatusEnum =
   | "verificationStatusUnspecified"
   | "accepted"
   | "pending";
-export const SendAsVerificationStatusEnum = /*@__PURE__*/ S.String;
+export const SendAsVerificationStatusEnum = S.String;
 
 /** Settings associated with a send-as alias, which can be either the primary login address associated with the account or a custom "from" address. Send-as aliases correspond to the "Send Mail As" feature in the web interface. The send-as alias must be a valid email address. */
 export interface SendAs {
@@ -1254,7 +1253,7 @@ export type AutoForwardingDispositionEnum =
   | "archive"
   | "trash"
   | "markRead";
-export const AutoForwardingDispositionEnum = /*@__PURE__*/ S.String;
+export const AutoForwardingDispositionEnum = S.String;
 
 /** Auto-forwarding settings for an account. */
 export interface AutoForwarding {
@@ -1296,7 +1295,7 @@ export type ImapSettingsExpungeBehaviorEnum =
   | "archive"
   | "trash"
   | "deleteForever";
-export const ImapSettingsExpungeBehaviorEnum = /*@__PURE__*/ S.String;
+export const ImapSettingsExpungeBehaviorEnum = S.String;
 
 /** IMAP settings for an account. */
 export interface ImapSettings {
@@ -1372,7 +1371,7 @@ export type PopSettingsAccessWindowEnum =
   | "disabled"
   | "fromNowOn"
   | "allMail";
-export const PopSettingsAccessWindowEnum = /*@__PURE__*/ S.String;
+export const PopSettingsAccessWindowEnum = S.String;
 
 export type PopSettingsDispositionEnum =
   | "dispositionUnspecified"
@@ -1380,7 +1379,7 @@ export type PopSettingsDispositionEnum =
   | "archive"
   | "trash"
   | "markRead";
-export const PopSettingsDispositionEnum = /*@__PURE__*/ S.String;
+export const PopSettingsDispositionEnum = S.String;
 
 /** POP settings for an account. */
 export interface PopSettings {
@@ -1435,7 +1434,7 @@ export const Profile = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Profile" }) as any as S.Schema<Profile>;
 
 export type GetUsersDraftsFormatEnum = "minimal" | "full" | "raw" | "metadata";
-export const GetUsersDraftsFormatEnum = /*@__PURE__*/ S.String;
+export const GetUsersDraftsFormatEnum = S.String;
 
 export interface GetUsersDraftsRequest {
   /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
@@ -1487,7 +1486,7 @@ export type GetUsersMessagesFormatEnum =
   | "full"
   | "raw"
   | "metadata";
-export const GetUsersMessagesFormatEnum = /*@__PURE__*/ S.String;
+export const GetUsersMessagesFormatEnum = S.String;
 
 export interface GetUsersMessagesRequest {
   /** The format to return the message in. */
@@ -1723,7 +1722,7 @@ export const SmimeInfo = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SmimeInfo" }) as any as S.Schema<SmimeInfo>;
 
 export type GetUsersThreadsFormatEnum = "full" | "metadata" | "minimal";
-export const GetUsersThreadsFormatEnum = /*@__PURE__*/ S.String;
+export const GetUsersThreadsFormatEnum = S.String;
 
 export interface GetUsersThreadsRequest {
   /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
@@ -1832,7 +1831,7 @@ export const VacationSettings = /*@__PURE__*/ S.suspend(() =>
 export type ImportUsersMessagesInternalDateSourceEnum =
   | "receivedTime"
   | "dateHeader";
-export const ImportUsersMessagesInternalDateSourceEnum = /*@__PURE__*/ S.String;
+export const ImportUsersMessagesInternalDateSourceEnum = S.String;
 
 export interface ImportUsersMessagesRequest {
   /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
@@ -1874,7 +1873,7 @@ export const ImportUsersMessagesRequest = /*@__PURE__*/ S.suspend(() =>
 export type InsertUsersMessagesInternalDateSourceEnum =
   | "receivedTime"
   | "dateHeader";
-export const InsertUsersMessagesInternalDateSourceEnum = /*@__PURE__*/ S.String;
+export const InsertUsersMessagesInternalDateSourceEnum = S.String;
 
 export interface InsertUsersMessagesRequest {
   /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
@@ -1990,7 +1989,7 @@ export type ListUsersHistoryHistoryTypesEnum =
   | "messageDeleted"
   | "labelAdded"
   | "labelRemoved";
-export const ListUsersHistoryHistoryTypesEnum = /*@__PURE__*/ S.String;
+export const ListUsersHistoryHistoryTypesEnum = S.String;
 
 export type ListUsersHistoryHistoryTypesEnumList = Array<
   ListUsersHistoryHistoryTypesEnum | (string & {})
@@ -3141,10 +3140,10 @@ export const VerifyUsersSettingsSendAsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VerifyUsersSettingsSendAsResponse>;
 
 export type WatchRequestLabelFilterBehaviorEnum = "include" | "exclude";
-export const WatchRequestLabelFilterBehaviorEnum = /*@__PURE__*/ S.String;
+export const WatchRequestLabelFilterBehaviorEnum = S.String;
 
 export type WatchRequestLabelFilterActionEnum = "include" | "exclude";
-export const WatchRequestLabelFilterActionEnum = /*@__PURE__*/ S.String;
+export const WatchRequestLabelFilterActionEnum = S.String;
 
 /** Set up or update a new push notification watch on this user's mailbox. */
 export interface WatchRequest {

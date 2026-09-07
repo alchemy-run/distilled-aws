@@ -173,8 +173,7 @@ export type GoogleAppsDriveLabelsV2LabelPermissionRoleEnum =
   | "APPLIER"
   | "ORGANIZER"
   | "EDITOR";
-export const GoogleAppsDriveLabelsV2LabelPermissionRoleEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsDriveLabelsV2LabelPermissionRoleEnum = S.String;
 
 /** The permission that applies to a principal (user, group, audience) on a label. */
 export interface GoogleAppsDriveLabelsV2LabelPermission {
@@ -328,7 +327,7 @@ export type GoogleAppsDriveLabelsV2LifecycleStateEnum =
   | "PUBLISHED"
   | "DISABLED"
   | "DELETED";
-export const GoogleAppsDriveLabelsV2LifecycleStateEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsDriveLabelsV2LifecycleStateEnum = S.String;
 
 /** The policy that governs how to treat a disabled label, field, or selection choice in different contexts. */
 export interface GoogleAppsDriveLabelsV2LifecycleDisabledPolicy {
@@ -391,7 +390,7 @@ export type GoogleAppsDriveLabelsV2LabelLabelTypeEnum =
   | "SHARED"
   | "ADMIN"
   | "GOOGLE_APP";
-export const GoogleAppsDriveLabelsV2LabelLabelTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsDriveLabelsV2LabelLabelTypeEnum = S.String;
 
 /** Information about a user. */
 export interface GoogleAppsDriveLabelsV2UserInfo {
@@ -429,7 +428,7 @@ export type GoogleAppsDriveLabelsV2LabelAppliedLabelPolicyCopyModeEnum =
   | "ALWAYS_COPY"
   | "COPY_APPLIABLE";
 export const GoogleAppsDriveLabelsV2LabelAppliedLabelPolicyCopyModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Behavior of this label when it's applied to Drive items. */
 export interface GoogleAppsDriveLabelsV2LabelAppliedLabelPolicy {
@@ -880,7 +879,7 @@ export type GoogleAppsDriveLabelsV2FieldDateOptionsDateFormatTypeEnum =
   | "LONG_DATE"
   | "SHORT_DATE";
 export const GoogleAppsDriveLabelsV2FieldDateOptionsDateFormatTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options for the date field type. */
 export interface GoogleAppsDriveLabelsV2FieldDateOptions {
@@ -1037,7 +1036,7 @@ export type GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledAppAppEnum =
   | "DRIVE"
   | "GMAIL";
 export const GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledAppAppEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An app where the label can be used. */
 export interface GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledApp {
@@ -1638,8 +1637,7 @@ export const GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestRequestList =
 export type GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestViewEnum =
   | "LABEL_VIEW_BASIC"
   | "LABEL_VIEW_FULL";
-export const GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestViewEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestViewEnum = S.String;
 
 /** Provides control over how write requests are executed. When not specified, the last write wins. */
 export interface GoogleAppsDriveLabelsV2WriteControl {
@@ -2264,7 +2262,7 @@ export const GoogleAppsDriveLabelsV2LabelLimits = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GoogleAppsDriveLabelsV2LabelLimits>;
 
 export type GetLabelsViewEnum = "LABEL_VIEW_BASIC" | "LABEL_VIEW_FULL";
-export const GetLabelsViewEnum = /*@__PURE__*/ S.String;
+export const GetLabelsViewEnum = S.String;
 
 export interface GetLabelsRequest {
   /** Set to `true` in order to use the user's admin credentials. The server verifies that the user is an admin for the label before allowing access. */
@@ -2299,10 +2297,10 @@ export type ListLabelsMinimumRoleEnum =
   | "APPLIER"
   | "ORGANIZER"
   | "EDITOR";
-export const ListLabelsMinimumRoleEnum = /*@__PURE__*/ S.String;
+export const ListLabelsMinimumRoleEnum = S.String;
 
 export type ListLabelsViewEnum = "LABEL_VIEW_BASIC" | "LABEL_VIEW_FULL";
-export const ListLabelsViewEnum = /*@__PURE__*/ S.String;
+export const ListLabelsViewEnum = S.String;
 
 export interface ListLabelsRequest {
   /** Specifies the level of access the user must have on the returned labels. The minimum role a user must have on a label. Defaults to `READER`. */
@@ -2408,7 +2406,7 @@ export type GoogleAppsDriveLabelsV2LabelLockStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DELETING";
-export const GoogleAppsDriveLabelsV2LabelLockStateEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsDriveLabelsV2LabelLockStateEnum = S.String;
 
 /** A lock that can be applied to a label, field, or choice. */
 export interface GoogleAppsDriveLabelsV2LabelLock {
@@ -2612,13 +2610,13 @@ export type GoogleAppsDriveLabelsV2UpdateLabelCopyModeRequestCopyModeEnum =
   | "ALWAYS_COPY"
   | "COPY_APPLIABLE";
 export const GoogleAppsDriveLabelsV2UpdateLabelCopyModeRequestCopyModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAppsDriveLabelsV2UpdateLabelCopyModeRequestViewEnum =
   | "LABEL_VIEW_BASIC"
   | "LABEL_VIEW_FULL";
 export const GoogleAppsDriveLabelsV2UpdateLabelCopyModeRequestViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request to update the `CopyMode` of the given label. Changes to this policy aren't revisioned, don't require publishing, and take effect immediately. \ */
 export interface GoogleAppsDriveLabelsV2UpdateLabelCopyModeRequest {
@@ -2678,7 +2676,7 @@ export type GoogleAppsDriveLabelsV2UpdateLabelEnabledAppSettingsRequestViewEnum 
   | "LABEL_VIEW_BASIC"
   | "LABEL_VIEW_FULL";
 export const GoogleAppsDriveLabelsV2UpdateLabelEnabledAppSettingsRequestViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request to update the `EnabledAppSettings` of the given label. This change is not revisioned, doesn't require publishing, and takes effect immediately. \ */
 export interface GoogleAppsDriveLabelsV2UpdateLabelEnabledAppSettingsRequest {

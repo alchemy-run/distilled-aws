@@ -123,7 +123,7 @@ export type PayoutAccountCalculatedStatuses =
   | "denied"
   | "not_started"
   | "blocked_by_parent";
-export const PayoutAccountCalculatedStatuses = /*@__PURE__*/ S.String;
+export const PayoutAccountCalculatedStatuses = S.String;
 
 /** Residential address reported by the identity provider. Present on `individual` profiles. */
 export type IdentityProfilePersonalAddress = IdentityProfileBusinessAddress;
@@ -137,7 +137,7 @@ export type IdentityProfileStatuses =
   | "approved"
   | "rejected"
   | "action_required";
-export const IdentityProfileStatuses = /*@__PURE__*/ S.String;
+export const IdentityProfileStatuses = S.String;
 
 /** An error code for a verification attempt. */
 export type VerificationErrorCodes =
@@ -160,7 +160,7 @@ export type VerificationErrorCodes =
   | "selfie_manipulated"
   | "selfie_unverified_other"
   | "under_supported_age";
-export const VerificationErrorCodes = /*@__PURE__*/ S.String;
+export const VerificationErrorCodes = S.String;
 
 /** A status for a verification. */
 export type VerificationStatuses =
@@ -179,7 +179,7 @@ export type VerificationStatuses =
   | "review"
   | "action_required"
   | "manual_review";
-export const VerificationStatuses = /*@__PURE__*/ S.String;
+export const VerificationStatuses = S.String;
 
 /** An identity verification session used to confirm a person or entity's identity for payout account eligibility. */
 export interface IdentityProfileVerificationsItem {
@@ -285,7 +285,7 @@ export const IdentityProfile = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of identity profile (individual vs business). */
 export type IdentityProfileKinds = "individual" | "business";
-export const IdentityProfileKinds = /*@__PURE__*/ S.String;
+export const IdentityProfileKinds = S.String;
 
 export interface ListIdentityProfileRequest {
   after?: string;

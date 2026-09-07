@@ -51,7 +51,7 @@ export const GetVrackServiceResourceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** ProductStatusEnum */
 export type VrackServicesProductStatusEnum = "ACTIVE" | "DRAFT" | "SUSPENDED";
-export const VrackServicesProductStatusEnum = /*@__PURE__*/ S.String;
+export const VrackServicesProductStatusEnum = S.String;
 
 /** Endpoint holding a managed service IP */
 export interface VrackServicesEndpoint {
@@ -183,7 +183,7 @@ export type CommonCurrentTaskStatusEnum =
   | "PENDING"
   | "RUNNING"
   | "SCHEDULED";
-export const CommonCurrentTaskStatusEnum = /*@__PURE__*/ S.String;
+export const CommonCurrentTaskStatusEnum = S.String;
 
 /** Asynchronous operation currently running */
 export interface CommonCurrentTask {
@@ -251,7 +251,7 @@ export type VrackServicesResourceStatusEnum =
   | "ERROR"
   | "READY"
   | "UPDATING";
-export const VrackServicesResourceStatusEnum = /*@__PURE__*/ S.String;
+export const VrackServicesResourceStatusEnum = S.String;
 
 /** Target specification of a Service Endpoint. A Service Endpoint provides an access to a managed service directly from one or several private IPs in the associated vRack */
 export interface VrackServicesTargetServiceEndpoint {
@@ -420,7 +420,7 @@ export type CommonTaskStatusEnum =
   | "PENDING"
   | "RUNNING"
   | "SCHEDULED";
-export const CommonTaskStatusEnum = /*@__PURE__*/ S.String;
+export const CommonTaskStatusEnum = S.String;
 
 /** Detailed information about an asynchronous operation progress steps */
 export interface CommonTaskProgress {

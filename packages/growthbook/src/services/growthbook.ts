@@ -154,13 +154,13 @@ export const AddTargetRampScheduleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AddTargetRampScheduleRequest>;
 
 export type RampScheduleEntityType = "feature";
-export const RampScheduleEntityType = /*@__PURE__*/ S.String;
+export const RampScheduleEntityType = S.String;
 
 export type RampScheduleTargetsItemEntityType = "feature";
-export const RampScheduleTargetsItemEntityType = /*@__PURE__*/ S.String;
+export const RampScheduleTargetsItemEntityType = S.String;
 
 export type RampScheduleTargetsItemStatus = "pending-join" | "active";
-export const RampScheduleTargetsItemStatus = /*@__PURE__*/ S.String;
+export const RampScheduleTargetsItemStatus = S.String;
 
 export interface RampScheduleTargetsItem {
   id: string;
@@ -197,8 +197,7 @@ export type RampScheduleStartActionsItemPatchSavedGroupsItemMatch =
   | "all"
   | "none"
   | "any";
-export const RampScheduleStartActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+export const RampScheduleStartActionsItemPatchSavedGroupsItemMatch = S.String;
 
 export type RampScheduleStartActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -329,7 +328,7 @@ export type RampScheduleStepsItemActionsItemPatchSavedGroupsItemMatch =
   | "none"
   | "any";
 export const RampScheduleStepsItemActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RampScheduleStepsItemActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -466,8 +465,7 @@ export type RampScheduleEndActionsItemPatchSavedGroupsItemMatch =
   | "all"
   | "none"
   | "any";
-export const RampScheduleEndActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+export const RampScheduleEndActionsItemPatchSavedGroupsItemMatch = S.String;
 
 export type RampScheduleEndActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -578,10 +576,10 @@ export type RampScheduleStatus =
   | "paused"
   | "completed"
   | "rolled-back";
-export const RampScheduleStatus = /*@__PURE__*/ S.String;
+export const RampScheduleStatus = S.String;
 
 export type RampScheduleLockdownConfigMode = "none" | "locked";
-export const RampScheduleLockdownConfigMode = /*@__PURE__*/ S.String;
+export const RampScheduleLockdownConfigMode = S.String;
 
 export interface RampScheduleLockdownConfig {
   mode: RampScheduleLockdownConfigMode;
@@ -607,28 +605,25 @@ export const RampScheduleMonitoringConfigSignalMetricIdsList =
   ) as any as S.Schema<RampScheduleMonitoringConfigSignalMetricIdsList>;
 
 export type RampScheduleMonitoringConfigMonitoringMode = "auto" | "manual";
-export const RampScheduleMonitoringConfigMonitoringMode =
-  /*@__PURE__*/ S.String;
+export const RampScheduleMonitoringConfigMonitoringMode = S.String;
 
 export type RampScheduleMonitoringConfigSrmAction =
   | "rollback"
   | "hold"
   | "warn";
-export const RampScheduleMonitoringConfigSrmAction = /*@__PURE__*/ S.String;
+export const RampScheduleMonitoringConfigSrmAction = S.String;
 
 export type RampScheduleMonitoringConfigNoTrafficAction =
   | "rollback"
   | "hold"
   | "warn";
-export const RampScheduleMonitoringConfigNoTrafficAction =
-  /*@__PURE__*/ S.String;
+export const RampScheduleMonitoringConfigNoTrafficAction = S.String;
 
 export type RampScheduleMonitoringConfigMultipleExposureAction =
   | "rollback"
   | "hold"
   | "warn";
-export const RampScheduleMonitoringConfigMultipleExposureAction =
-  /*@__PURE__*/ S.String;
+export const RampScheduleMonitoringConfigMultipleExposureAction = S.String;
 
 export interface RampScheduleMonitoringConfig {
   datasourceId: string;
@@ -667,11 +662,11 @@ export const RampScheduleMonitoringConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RampScheduleMonitoringConfig>;
 
 export type RampScheduleExperimentHealthAction = "rollback" | "hold" | "warn";
-export const RampScheduleExperimentHealthAction = /*@__PURE__*/ S.String;
+export const RampScheduleExperimentHealthAction = S.String;
 
 /** Surface through which the approval was granted. */
 export type RampScheduleStepApprovalContext = "ui" | "api";
-export const RampScheduleStepApprovalContext = /*@__PURE__*/ S.String;
+export const RampScheduleStepApprovalContext = S.String;
 
 export interface RampScheduleStepApproval {
   /** Index of the step that was approved. */
@@ -696,8 +691,7 @@ export const RampScheduleStepApproval = /*@__PURE__*/ S.suspend(() =>
 
 /** User-selected monitoring mode. `auto` schedules snapshots automatically; `manual` requires clicking Update. */
 export type RampScheduleMonitoringStatusMonitoringMode = "auto" | "manual";
-export const RampScheduleMonitoringStatusMonitoringMode =
-  /*@__PURE__*/ S.String;
+export const RampScheduleMonitoringStatusMonitoringMode = S.String;
 
 export interface RampScheduleMonitoringStatus {
   safeRolloutId?: string | null;
@@ -921,7 +915,7 @@ export const ApproveStepRampScheduleResponse = /*@__PURE__*/ S.suspend(() =>
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type ArchiveConfigRequestIgnoreWarnings = string | boolean;
 export const ArchiveConfigRequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ArchiveConfigRequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<ArchiveConfigRequestIgnoreWarnings>;
 
 export interface ArchiveConfigRequest {
   /** The key of the config */
@@ -1173,7 +1167,7 @@ export type BypassedGatesVia =
   | "bypassApprovalPermission"
   | "restApiBypassesReviews"
   | "revertsBypassApproval";
-export const BypassedGatesVia = /*@__PURE__*/ S.String;
+export const BypassedGatesVia = S.String;
 
 export interface BypassedGates {
   /** The gate that was bypassed (e.g. "approval-required", "stale-base", "schema-break"). */
@@ -1234,7 +1228,7 @@ export const ArchiveConstantRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ArchiveConstantRequest>;
 
 export type ConstantType = "string" | "json";
-export const ConstantType = /*@__PURE__*/ S.String;
+export const ConstantType = S.String;
 
 /** Per-environment value overrides (environment id → value). Falls back to `value` when an environment is absent. */
 export type ConstantEnvironmentValuesMap = {
@@ -1322,7 +1316,7 @@ export const ArchiveSavedGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ArchiveSavedGroupRequest>;
 
 export type SavedGroupType = "condition" | "list";
-export const SavedGroupType = /*@__PURE__*/ S.String;
+export const SavedGroupType = S.String;
 
 /** When type = 'list', this is the list of values for the attribute key */
 export type SavedGroupValuesList = Array<string>;
@@ -1413,7 +1407,7 @@ export const BulkImportExperimentTemplatesRequestTemplatesItemDataTemplateMetada
 export type BulkImportExperimentTemplatesRequestTemplatesItemDataType =
   "standard";
 export const BulkImportExperimentTemplatesRequestTemplatesItemDataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BulkImportExperimentTemplatesRequestTemplatesItemDataTagsList =
   Array<string>;
@@ -1455,14 +1449,14 @@ export type BulkImportExperimentTemplatesRequestTemplatesItemDataStatsEngine =
   | "bayesian"
   | "frequentist";
 export const BulkImportExperimentTemplatesRequestTemplatesItemDataStatsEngine =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BulkImportExperimentTemplatesRequestTemplatesItemDataTargetingSavedGroupsItemMatch =
   | "all"
   | "none"
   | "any";
 export const BulkImportExperimentTemplatesRequestTemplatesItemDataTargetingSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BulkImportExperimentTemplatesRequestTemplatesItemDataTargetingSavedGroupsItemIdsList =
   Array<string>;
@@ -1880,7 +1874,7 @@ export type CreateAttributeRequestDatatype =
   | "string[]"
   | "number[]"
   | "secureString[]";
-export const CreateAttributeRequestDatatype = /*@__PURE__*/ S.String;
+export const CreateAttributeRequestDatatype = S.String;
 
 /** The attribute's format */
 export type CreateAttributeRequestFormat =
@@ -1888,7 +1882,7 @@ export type CreateAttributeRequestFormat =
   | "version"
   | "date"
   | "isoCountryCode";
-export const CreateAttributeRequestFormat = /*@__PURE__*/ S.String;
+export const CreateAttributeRequestFormat = S.String;
 
 export type CreateAttributeRequestProjectsList = Array<string>;
 export const CreateAttributeRequestProjectsList = /*@__PURE__*/ S.Array(
@@ -1943,10 +1937,10 @@ export type AttributeDatatype =
   | "string[]"
   | "number[]"
   | "secureString[]";
-export const AttributeDatatype = /*@__PURE__*/ S.String;
+export const AttributeDatatype = S.String;
 
 export type AttributeFormat = "" | "version" | "date" | "isoCountryCode";
-export const AttributeFormat = /*@__PURE__*/ S.String;
+export const AttributeFormat = S.String;
 
 export type AttributeProjectsList = Array<string>;
 export const AttributeProjectsList = /*@__PURE__*/ S.Array(
@@ -1997,8 +1991,7 @@ export const CreateAttributeResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Fallback `managedBy` for Fact Tables and Fact Metrics that omit the field. Defaults to `"api"`. Filters inherit `"api"` only when the parent Fact Table is api-managed. */
 export type CreateBulkImportFactRequestDefaultManagedBy = "" | "api" | "admin";
-export const CreateBulkImportFactRequestDefaultManagedBy =
-  /*@__PURE__*/ S.String;
+export const CreateBulkImportFactRequestDefaultManagedBy = S.String;
 
 /** List of associated project ids */
 export type CreateBulkImportFactRequestFactTablesItemDataProjectsList =
@@ -2078,7 +2071,7 @@ export type FactTableColumnInputDatatype =
   | "binary"
   | "other"
   | "";
-export const FactTableColumnInputDatatype = /*@__PURE__*/ S.String;
+export const FactTableColumnInputDatatype = S.String;
 
 export type FactTableColumnInputNumberFormat =
   | ""
@@ -2086,7 +2079,7 @@ export type FactTableColumnInputNumberFormat =
   | "time:seconds"
   | "memory:bytes"
   | "memory:kilobytes";
-export const FactTableColumnInputNumberFormat = /*@__PURE__*/ S.String;
+export const FactTableColumnInputNumberFormat = S.String;
 
 export type FactTableColumnInputJsonFieldsValueDatatype =
   | "number"
@@ -2097,8 +2090,7 @@ export type FactTableColumnInputJsonFieldsValueDatatype =
   | "binary"
   | "other"
   | "";
-export const FactTableColumnInputJsonFieldsValueDatatype =
-  /*@__PURE__*/ S.String;
+export const FactTableColumnInputJsonFieldsValueDatatype = S.String;
 
 export interface FactTableColumnInputJsonFieldsValue {
   datatype?: FactTableColumnInputJsonFieldsValueDatatype | (string & {});
@@ -2190,8 +2182,7 @@ export type CreateBulkImportFactRequestFactTablesItemDataManagedBy =
   | ""
   | "api"
   | "admin";
-export const CreateBulkImportFactRequestFactTablesItemDataManagedBy =
-  /*@__PURE__*/ S.String;
+export const CreateBulkImportFactRequestFactTablesItemDataManagedBy = S.String;
 
 export interface CreateBulkImportFactRequestFactTablesItemData {
   name: string;
@@ -2273,7 +2264,7 @@ export type CreateBulkImportFactRequestFactTableFiltersItemDataManagedBy =
   | ""
   | "api";
 export const CreateBulkImportFactRequestFactTableFiltersItemDataManagedBy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateBulkImportFactRequestFactTableFiltersItemData {
   name: string;
@@ -2346,7 +2337,7 @@ export type CreateBulkImportFactRequestFactMetricsItemDataMetricType =
   | "dailyParticipation"
   | "funnel";
 export const CreateBulkImportFactRequestFactMetricsItemDataMetricType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** User aggregation of selected column. Either sum or max for numeric columns; count distinct for string columns; hll merge / kll merge for pre-built sketch columns (requires data-source support); ignored for special columns. Default: sum. If you specify a string column you must explicitly specify count distinct. Not used for proportion metrics; for event quantile metrics only kll merge is applicable. */
 export type CreateBulkImportFactRequestFactMetricsItemDataNumeratorAggregation =
@@ -2356,7 +2347,7 @@ export type CreateBulkImportFactRequestFactMetricsItemDataNumeratorAggregation =
   | "hll merge"
   | "kll merge";
 export const CreateBulkImportFactRequestFactMetricsItemDataNumeratorAggregation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Array of Fact Table Filter Ids. Deprecated, use rowFilters instead. */
 export type CreateBulkImportFactRequestFactMetricsItemDataNumeratorFiltersList =
@@ -2408,7 +2399,7 @@ export type CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersIte
   | "sql_expr"
   | "saved_filter";
 export const CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
 export type CreateBulkImportFactRequestFactMetricsItemDataNumeratorRowFiltersItemValuesList =
@@ -2501,7 +2492,7 @@ export type CreateBulkImportFactRequestFactMetricsItemDataDenominatorAggregation
   | "hll merge"
   | "kll merge";
 export const CreateBulkImportFactRequestFactMetricsItemDataDenominatorAggregation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Array of Fact Table Filter Ids. Deprecated, use rowFilters instead. */
 export type CreateBulkImportFactRequestFactMetricsItemDataDenominatorFiltersList =
@@ -2553,7 +2544,7 @@ export type CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersI
   | "sql_expr"
   | "saved_filter";
 export const CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
 export type CreateBulkImportFactRequestFactMetricsItemDataDenominatorRowFiltersItemValuesList =
@@ -2638,7 +2629,7 @@ export type CreateBulkImportFactRequestFactMetricsItemDataQuantileSettingsType =
   | "event"
   | "unit";
 export const CreateBulkImportFactRequestFactMetricsItemDataQuantileSettingsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Controls the settings for quantile metrics (mandatory if metricType is "quantile") */
 export interface CreateBulkImportFactRequestFactMetricsItemDataQuantileSettings {
@@ -2688,7 +2679,7 @@ export type CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsIte
   | "sql_expr"
   | "saved_filter";
 export const CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
 export type CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemRowFiltersItemValuesList =
@@ -2736,7 +2727,7 @@ export type CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsIte
   | "hours"
   | "minutes";
 export const CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindowUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Bounds how long after the nearest prior required step (or exposure, for the first step / after only-optional priors of an experiment funnel metric) this step's event can occur. */
 export interface CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsItemConversionWindow {
@@ -2798,7 +2789,7 @@ export const CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsStepsLi
 export type CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsOrdering =
   "sequential";
 export const CreateBulkImportFactRequestFactMetricsItemDataFunnelSettingsOrdering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Funnel metric settings (required when metricType is "funnel") */
 export interface CreateBulkImportFactRequestFactMetricsItemDataFunnelSettings {
@@ -2830,7 +2821,7 @@ export type CreateBulkImportFactRequestFactMetricsItemDataCappingSettingsType =
   | "absolute"
   | "percentile";
 export const CreateBulkImportFactRequestFactMetricsItemDataCappingSettingsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Controls how outliers are handled */
 export interface CreateBulkImportFactRequestFactMetricsItemDataCappingSettings {
@@ -2858,7 +2849,7 @@ export type CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsType =
   | "conversion"
   | "lookback";
 export const CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Default `hours`. */
 export type CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsDelayUnit =
@@ -2867,7 +2858,7 @@ export type CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsDelayUni
   | "days"
   | "weeks";
 export const CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsDelayUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Default `hours`. */
 export type CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsWindowUnit =
@@ -2876,7 +2867,7 @@ export type CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsWindowUn
   | "days"
   | "weeks";
 export const CreateBulkImportFactRequestFactMetricsItemDataWindowSettingsWindowUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Controls the conversion window for the metric */
 export interface CreateBulkImportFactRequestFactMetricsItemDataWindowSettings {
@@ -2964,8 +2955,7 @@ export type CreateBulkImportFactRequestFactMetricsItemDataManagedBy =
   | ""
   | "api"
   | "admin";
-export const CreateBulkImportFactRequestFactMetricsItemDataManagedBy =
-  /*@__PURE__*/ S.String;
+export const CreateBulkImportFactRequestFactMetricsItemDataManagedBy = S.String;
 
 /** Array of slice column names that will be automatically included in metric analysis. This is an enterprise feature. */
 export type CreateBulkImportFactRequestFactMetricsItemDataMetricAutoSlicesList =
@@ -3141,7 +3131,7 @@ export type BulkImportErrorResourceType =
   | "factTable"
   | "factTableFilter"
   | "factMetric";
-export const BulkImportErrorResourceType = /*@__PURE__*/ S.String;
+export const BulkImportErrorResourceType = S.String;
 
 export interface BulkImportError {
   resourceType: BulkImportErrorResourceType;
@@ -3192,7 +3182,7 @@ export const CreateBulkImportFactResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether to delete code references that are no longer present in the submitted data */
 export type CreateCodeRefRequestDeleteMissing = "true" | "false";
-export const CreateCodeRefRequestDeleteMissing = /*@__PURE__*/ S.String;
+export const CreateCodeRefRequestDeleteMissing = S.String;
 
 export interface CreateCodeRefRequestRefsItem {
   filePath: string;
@@ -3257,12 +3247,12 @@ export const CreateCodeRefResponse = /*@__PURE__*/ S.suspend(() =>
 /** Deprecated — pass `skipSchemaValidation` in the request body instead. */
 export type CreateConfigRequestSkipSchemaValidation = string | boolean;
 export const CreateConfigRequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateConfigRequestSkipSchemaValidation>;
+  S.Unknown as any as S.Schema<CreateConfigRequestSkipSchemaValidation>;
 
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type CreateConfigRequestIgnoreWarnings = string | boolean;
 export const CreateConfigRequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateConfigRequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<CreateConfigRequestIgnoreWarnings>;
 
 /** Additional composition bases (config `key`s) layered on top of `parent`, in precedence order (later overrides earlier; all override `parent`; own keys win last). Set inheritance here, never via a `@config:` entry in `value`. */
 export type CreateConfigRequestExtendsList = Array<string>;
@@ -3423,7 +3413,7 @@ export type ConfigSchemaSource =
   | ConfigSchemaSourceCase4
   | ConfigSchemaSourceCase5;
 export const ConfigSchemaSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigSchemaSource>;
+  S.Unknown as any as S.Schema<ConfigSchemaSource>;
 
 /** The rule expression, as a mongo condition (mongrule) — the same condition syntax as feature targeting, extended with `{ "$ref": "otherField" }` to compare against another field, e.g. `{ "min_replicas": { "$lte": { "$ref": "max_replicas" } } }`. */
 export type CreateConfigRequestInvariantsItemRuleMap = {
@@ -3526,7 +3516,7 @@ export type ConfigSchemaWarningCode =
   | "unsupported-member"
   | "redundant-declaration"
   | "undeclared-rule-field";
-export const ConfigSchemaWarningCode = /*@__PURE__*/ S.String;
+export const ConfigSchemaWarningCode = S.String;
 
 export interface ConfigSchemaWarning {
   code: ConfigSchemaWarningCode;
@@ -3601,7 +3591,7 @@ export type ConfigRevisionStatus =
   | "changes-requested"
   | "merged"
   | "discarded";
-export const ConfigRevisionStatus = /*@__PURE__*/ S.String;
+export const ConfigRevisionStatus = S.String;
 
 export type ConfigRevisionContributorsList = Array<string>;
 export const ConfigRevisionContributorsList = /*@__PURE__*/ S.Array(
@@ -3612,7 +3602,7 @@ export type ConfigRevisionReviewDecision =
   | "approve"
   | "request-changes"
   | "comment";
-export const ConfigRevisionReviewDecision = /*@__PURE__*/ S.String;
+export const ConfigRevisionReviewDecision = S.String;
 
 export interface ConfigRevisionReview {
   id: string;
@@ -3658,7 +3648,7 @@ export type ConfigRevisionActivityLogEntryAction =
   | "scheduled-publish-updated"
   | "scheduled-publish-canceled"
   | "merge-recovered";
-export const ConfigRevisionActivityLogEntryAction = /*@__PURE__*/ S.String;
+export const ConfigRevisionActivityLogEntryAction = S.String;
 
 export interface ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0 {
   op: string;
@@ -3732,7 +3722,7 @@ export type ConfigRevisionActivityLogEntryProposedChangesSnapshotItem =
   | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
   | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
 export const ConfigRevisionActivityLogEntryProposedChangesSnapshotItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigRevisionActivityLogEntryProposedChangesSnapshotItem>;
+  S.Unknown as any as S.Schema<ConfigRevisionActivityLogEntryProposedChangesSnapshotItem>;
 
 export type ConfigRevisionActivityLogEntryProposedChangesSnapshotList =
   Array<ConfigRevisionActivityLogEntryProposedChangesSnapshotItem>;
@@ -3773,7 +3763,7 @@ export const ConfigRevisionActivityLogList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ConfigRevisionActivityLogList>;
 
 export type ConfigRevisionResolutionAction = "merged" | "discarded";
-export const ConfigRevisionResolutionAction = /*@__PURE__*/ S.String;
+export const ConfigRevisionResolutionAction = S.String;
 
 export interface ConfigRevisionResolution {
   action: ConfigRevisionResolutionAction;
@@ -3828,7 +3818,7 @@ export type ConfigRevisionProposedChangesItem =
   | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
   | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
 export const ConfigRevisionProposedChangesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigRevisionProposedChangesItem>;
+  S.Unknown as any as S.Schema<ConfigRevisionProposedChangesItem>;
 
 export type ConfigRevisionProposedChangesList =
   Array<ConfigRevisionProposedChangesItem>;
@@ -3918,12 +3908,12 @@ export type CreateConfigRevisionPublishRequestSkipSchemaValidation =
   | string
   | boolean;
 export const CreateConfigRevisionPublishRequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateConfigRevisionPublishRequestSkipSchemaValidation>;
+  S.Unknown as any as S.Schema<CreateConfigRevisionPublishRequestSkipSchemaValidation>;
 
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type CreateConfigRevisionPublishRequestIgnoreWarnings = string | boolean;
 export const CreateConfigRevisionPublishRequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateConfigRevisionPublishRequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<CreateConfigRevisionPublishRequestIgnoreWarnings>;
 
 export interface CreateConfigRevisionPublishRequest {
   key: string;
@@ -3989,7 +3979,7 @@ export type CreateConfigRevisionRebaseRequestConflictResolutionsValue =
   | "discard"
   | "union";
 export const CreateConfigRevisionRebaseRequestConflictResolutionsValue =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateConfigRevisionRebaseRequestConflictResolutionsMap = {
   [key: string]:
@@ -4169,16 +4159,16 @@ export type CreateConfigRevisionRevertRequestSkipSchemaValidation =
   | string
   | boolean;
 export const CreateConfigRevisionRevertRequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateConfigRevisionRevertRequestSkipSchemaValidation>;
+  S.Unknown as any as S.Schema<CreateConfigRevisionRevertRequestSkipSchemaValidation>;
 
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type CreateConfigRevisionRevertRequestIgnoreWarnings = string | boolean;
 export const CreateConfigRevisionRevertRequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateConfigRevisionRevertRequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<CreateConfigRevisionRevertRequestIgnoreWarnings>;
 
 /** Whether to stage the revert as a draft or publish it immediately. Defaults to `draft`, or to `publish` when the org enables 'reverts bypass approval'. */
 export type CreateConfigRevisionRevertRequestStrategy = "draft" | "publish";
-export const CreateConfigRevisionRevertRequestStrategy = /*@__PURE__*/ S.String;
+export const CreateConfigRevisionRevertRequestStrategy = S.String;
 
 export interface CreateConfigRevisionRevertRequest {
   key: string;
@@ -4297,8 +4287,7 @@ export type CreateConfigRevisionSubmitReviewRequestDecision =
   | "approve"
   | "request-changes"
   | "comment";
-export const CreateConfigRevisionSubmitReviewRequestDecision =
-  /*@__PURE__*/ S.String;
+export const CreateConfigRevisionSubmitReviewRequestDecision = S.String;
 
 export interface CreateConfigRevisionSubmitReviewRequest {
   key: string;
@@ -4374,7 +4363,7 @@ export const CreateConfigRevisionUndoReviewResponse = /*@__PURE__*/ S.suspend(
 
 /** `string` (interpolated as `{{ @const:key }}`) or `json` (substituted as a whole value) */
 export type CreateConstantRequestType = "string" | "json";
-export const CreateConstantRequestType = /*@__PURE__*/ S.String;
+export const CreateConstantRequestType = S.String;
 
 export type CreateConstantRequestEnvironmentValuesMap = {
   [key: string]: string | undefined;
@@ -4453,7 +4442,7 @@ export type ConstantRevisionStatus =
   | "changes-requested"
   | "merged"
   | "discarded";
-export const ConstantRevisionStatus = /*@__PURE__*/ S.String;
+export const ConstantRevisionStatus = S.String;
 
 export type ConstantRevisionContributorsList = Array<string>;
 export const ConstantRevisionContributorsList = /*@__PURE__*/ S.Array(
@@ -4464,7 +4453,7 @@ export type ConstantRevisionReviewDecision =
   | "approve"
   | "request-changes"
   | "comment";
-export const ConstantRevisionReviewDecision = /*@__PURE__*/ S.String;
+export const ConstantRevisionReviewDecision = S.String;
 
 export interface ConstantRevisionReview {
   id: string;
@@ -4510,7 +4499,7 @@ export type ConstantRevisionActivityLogEntryAction =
   | "scheduled-publish-updated"
   | "scheduled-publish-canceled"
   | "merge-recovered";
-export const ConstantRevisionActivityLogEntryAction = /*@__PURE__*/ S.String;
+export const ConstantRevisionActivityLogEntryAction = S.String;
 
 export type ConstantRevisionActivityLogEntryProposedChangesSnapshotItemCase0 =
   ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
@@ -4550,7 +4539,7 @@ export type ConstantRevisionActivityLogEntryProposedChangesSnapshotItem =
   | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
   | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
 export const ConstantRevisionActivityLogEntryProposedChangesSnapshotItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConstantRevisionActivityLogEntryProposedChangesSnapshotItem>;
+  S.Unknown as any as S.Schema<ConstantRevisionActivityLogEntryProposedChangesSnapshotItem>;
 
 export type ConstantRevisionActivityLogEntryProposedChangesSnapshotList =
   Array<ConstantRevisionActivityLogEntryProposedChangesSnapshotItem>;
@@ -4591,7 +4580,7 @@ export const ConstantRevisionActivityLogList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ConstantRevisionActivityLogList>;
 
 export type ConstantRevisionResolutionAction = "merged" | "discarded";
-export const ConstantRevisionResolutionAction = /*@__PURE__*/ S.String;
+export const ConstantRevisionResolutionAction = S.String;
 
 export interface ConstantRevisionResolution {
   action: ConstantRevisionResolutionAction;
@@ -4646,7 +4635,7 @@ export type ConstantRevisionProposedChangesItem =
   | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
   | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
 export const ConstantRevisionProposedChangesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConstantRevisionProposedChangesItem>;
+  S.Unknown as any as S.Schema<ConstantRevisionProposedChangesItem>;
 
 export type ConstantRevisionProposedChangesList =
   Array<ConstantRevisionProposedChangesItem>;
@@ -4795,7 +4784,7 @@ export type CreateConstantRevisionRebaseRequestConflictResolutionsValue =
   | "overwrite"
   | "discard";
 export const CreateConstantRevisionRebaseRequestConflictResolutionsValue =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateConstantRevisionRebaseRequestConflictResolutionsMap = {
   [key: string]:
@@ -4952,8 +4941,7 @@ export const CreateConstantRevisionRequestReviewResponse =
 
 /** Whether to stage the revert as a draft or publish it immediately. Defaults to `draft`, or to `publish` when the org enables 'reverts bypass approval'. */
 export type CreateConstantRevisionRevertRequestStrategy = "draft" | "publish";
-export const CreateConstantRevisionRevertRequestStrategy =
-  /*@__PURE__*/ S.String;
+export const CreateConstantRevisionRevertRequestStrategy = S.String;
 
 export interface CreateConstantRevisionRevertRequest {
   key: string;
@@ -5069,8 +5057,7 @@ export type CreateConstantRevisionSubmitReviewRequestDecision =
   | "approve"
   | "request-changes"
   | "comment";
-export const CreateConstantRevisionSubmitReviewRequestDecision =
-  /*@__PURE__*/ S.String;
+export const CreateConstantRevisionSubmitReviewRequestDecision = S.String;
 
 export interface CreateConstantRevisionSubmitReviewRequest {
   key: string;
@@ -5180,16 +5167,15 @@ export const CreateContextualBanditRequestContextualAttributesList =
   ) as any as S.Schema<CreateContextualBanditRequestContextualAttributesList>;
 
 export type CreateContextualBanditRequestScheduleUnit = "days" | "hours";
-export const CreateContextualBanditRequestScheduleUnit = /*@__PURE__*/ S.String;
+export const CreateContextualBanditRequestScheduleUnit = S.String;
 
 export type CreateContextualBanditRequestBurnInUnit = "days" | "hours";
-export const CreateContextualBanditRequestBurnInUnit = /*@__PURE__*/ S.String;
+export const CreateContextualBanditRequestBurnInUnit = S.String;
 
 export type CreateContextualBanditRequestConversionWindowUnit =
   | "hours"
   | "days";
-export const CreateContextualBanditRequestConversionWindowUnit =
-  /*@__PURE__*/ S.String;
+export const CreateContextualBanditRequestConversionWindowUnit = S.String;
 
 export interface CreateContextualBanditRequest {
   name: string;
@@ -5251,7 +5237,7 @@ export const ContextualBanditTagsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ContextualBanditTagsList>;
 
 export type ContextualBanditStatus = "draft" | "running" | "stopped";
-export const ContextualBanditStatus = /*@__PURE__*/ S.String;
+export const ContextualBanditStatus = S.String;
 
 export interface ContextualBanditVariationsItem {
   id: string;
@@ -5277,7 +5263,7 @@ export const ContextualBanditVariationsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ContextualBanditVariationsList>;
 
 export type ContextualBanditSavedGroupsItemMatch = "all" | "none" | "any";
-export const ContextualBanditSavedGroupsItemMatch = /*@__PURE__*/ S.String;
+export const ContextualBanditSavedGroupsItemMatch = S.String;
 
 export type ContextualBanditSavedGroupsItemIdsList = Array<string>;
 export const ContextualBanditSavedGroupsItemIdsList = /*@__PURE__*/ S.Array(
@@ -5383,16 +5369,16 @@ export const ContextualBanditContextualAttributesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ContextualBanditContextualAttributesList>;
 
 export type ContextualBanditScheduleUnit = "days" | "hours";
-export const ContextualBanditScheduleUnit = /*@__PURE__*/ S.String;
+export const ContextualBanditScheduleUnit = S.String;
 
 export type ContextualBanditBurnInUnit = "days" | "hours";
-export const ContextualBanditBurnInUnit = /*@__PURE__*/ S.String;
+export const ContextualBanditBurnInUnit = S.String;
 
 export type ContextualBanditConversionWindowUnit = "hours" | "days";
-export const ContextualBanditConversionWindowUnit = /*@__PURE__*/ S.String;
+export const ContextualBanditConversionWindowUnit = S.String;
 
 export type ContextualBanditStage = "explore" | "exploit" | "paused";
-export const ContextualBanditStage = /*@__PURE__*/ S.String;
+export const ContextualBanditStage = S.String;
 
 export interface ContextualBandit {
   id: string;
@@ -5627,7 +5613,7 @@ export type CreateCustomFieldRequestDefaultValue =
   | CreateCustomFieldRequestDefaultValueCase8List
   | CreateCustomFieldRequestDefaultValueCase9List;
 export const CreateCustomFieldRequestDefaultValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCustomFieldRequestDefaultValue>;
+  S.Unknown as any as S.Schema<CreateCustomFieldRequestDefaultValue>;
 
 /** The type of value this custom field will take */
 export type CreateCustomFieldRequestType =
@@ -5641,7 +5627,7 @@ export type CreateCustomFieldRequestType =
   | "boolean"
   | "date"
   | "datetime";
-export const CreateCustomFieldRequestType = /*@__PURE__*/ S.String;
+export const CreateCustomFieldRequestType = S.String;
 
 export type CreateCustomFieldRequestProjectsList = Array<string>;
 export const CreateCustomFieldRequestProjectsList = /*@__PURE__*/ S.Array(
@@ -5649,7 +5635,7 @@ export const CreateCustomFieldRequestProjectsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateCustomFieldRequestProjectsList>;
 
 export type CreateCustomFieldRequestSectionsItem = "feature" | "experiment";
-export const CreateCustomFieldRequestSectionsItem = /*@__PURE__*/ S.String;
+export const CreateCustomFieldRequestSectionsItem = S.String;
 
 /** What types of objects this custom field is applicable to (feature, experiment) */
 export type CreateCustomFieldRequestSectionsList = Array<
@@ -5727,7 +5713,7 @@ export type CustomFieldDefaultValue =
   | CustomFieldDefaultValueCase8List
   | CustomFieldDefaultValueCase9List;
 export const CustomFieldDefaultValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldDefaultValue>;
+  S.Unknown as any as S.Schema<CustomFieldDefaultValue>;
 
 export type CustomFieldType =
   | "text"
@@ -5740,7 +5726,7 @@ export type CustomFieldType =
   | "boolean"
   | "date"
   | "datetime";
-export const CustomFieldType = /*@__PURE__*/ S.String;
+export const CustomFieldType = S.String;
 
 export type CustomFieldProjectsList = Array<string>;
 export const CustomFieldProjectsList = /*@__PURE__*/ S.Array(
@@ -5748,7 +5734,7 @@ export const CustomFieldProjectsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CustomFieldProjectsList>;
 
 export type CustomFieldSectionsItem = "feature" | "experiment";
-export const CustomFieldSectionsItem = /*@__PURE__*/ S.String;
+export const CustomFieldSectionsItem = S.String;
 
 export type CustomFieldSectionsList = Array<CustomFieldSectionsItem>;
 export const CustomFieldSectionsList = /*@__PURE__*/ S.Array(
@@ -5807,7 +5793,7 @@ export type CreateCustomHookRequestHook =
   | "validateConfig"
   | "validateConfigRevision"
   | "validateExperiment";
-export const CreateCustomHookRequestHook = /*@__PURE__*/ S.String;
+export const CreateCustomHookRequestHook = S.String;
 
 /** Project ids the hook applies to (empty/omitted = all) */
 export type CreateCustomHookRequestProjectsList = Array<string>;
@@ -5819,7 +5805,7 @@ export type CreateCustomHookRequestEntityType =
   | "feature"
   | "config"
   | "experiment";
-export const CreateCustomHookRequestEntityType = /*@__PURE__*/ S.String;
+export const CreateCustomHookRequestEntityType = S.String;
 
 export interface CreateCustomHookRequest {
   /** The display name of the custom hook */
@@ -5855,7 +5841,7 @@ export type CustomHookHook =
   | "validateConfig"
   | "validateConfigRevision"
   | "validateExperiment";
-export const CustomHookHook = /*@__PURE__*/ S.String;
+export const CustomHookHook = S.String;
 
 /** Project ids the hook applies to (empty = all projects). Always empty for entity-scoped hooks. */
 export type CustomHookProjectsList = Array<string>;
@@ -5865,7 +5851,7 @@ export const CustomHookProjectsList = /*@__PURE__*/ S.Array(
 
 /** Set (with entityId) to scope the hook to a single resource. */
 export type CustomHookEntityType = "feature" | "config" | "experiment";
-export const CustomHookEntityType = /*@__PURE__*/ S.String;
+export const CustomHookEntityType = S.String;
 
 export interface CustomHook {
   id: string;
@@ -5919,11 +5905,11 @@ export const CreateCustomHookResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Dashboards that are "published" are editable by organization members with appropriate permissions */
 export type CreateDashboardRequestEditLevel = "published" | "private";
-export const CreateDashboardRequestEditLevel = /*@__PURE__*/ S.String;
+export const CreateDashboardRequestEditLevel = S.String;
 
 /** General Dashboards only. Dashboards that are "published" are viewable by organization members with appropriate permissions */
 export type CreateDashboardRequestShareLevel = "published" | "private";
-export const CreateDashboardRequestShareLevel = /*@__PURE__*/ S.String;
+export const CreateDashboardRequestShareLevel = S.String;
 
 export interface CreateDashboardRequestUpdateScheduleCase0 {
   type: string;
@@ -5958,7 +5944,7 @@ export type CreateDashboardRequestUpdateSchedule =
   | CreateDashboardRequestUpdateScheduleCase0
   | CreateDashboardRequestUpdateScheduleCase1;
 export const CreateDashboardRequestUpdateSchedule =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDashboardRequestUpdateSchedule>;
+  S.Unknown as any as S.Schema<CreateDashboardRequestUpdateSchedule>;
 
 /** General Dashboards only, Experiment Dashboards use the experiment's projects */
 export type CreateDashboardRequestProjectsList = Array<string>;
@@ -5976,8 +5962,7 @@ export type CreateDashboardRequestGlobalControlsDateRangePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const CreateDashboardRequestGlobalControlsDateRangePredefined =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestGlobalControlsDateRangePredefined = S.String;
 
 export type CreateDashboardRequestGlobalControlsDateRangeLookbackUnit =
   | "hour"
@@ -5985,7 +5970,7 @@ export type CreateDashboardRequestGlobalControlsDateRangeLookbackUnit =
   | "week"
   | "month";
 export const CreateDashboardRequestGlobalControlsDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestGlobalControlsDateRange {
   predefined:
@@ -6021,8 +6006,7 @@ export type CreateDashboardRequestGlobalControlsDateGranularity =
   | "week"
   | "month"
   | "year";
-export const CreateDashboardRequestGlobalControlsDateGranularity =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestGlobalControlsDateGranularity = S.String;
 
 export type CreateDashboardRequestGlobalControlsProjectsList = Array<string>;
 export const CreateDashboardRequestGlobalControlsProjectsList =
@@ -6160,8 +6144,7 @@ export type CreateDashboardRequestBlocksItemCase2DifferenceType =
   | "absolute"
   | "relative"
   | "scaled";
-export const CreateDashboardRequestBlocksItemCase2DifferenceType =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase2DifferenceType = S.String;
 
 export type CreateDashboardRequestBlocksItemCase2ColumnsFilterItem =
   | "Metric & Variation Names"
@@ -6170,8 +6153,7 @@ export type CreateDashboardRequestBlocksItemCase2ColumnsFilterItem =
   | "Chance to Win"
   | "CI Graph"
   | "Lift";
-export const CreateDashboardRequestBlocksItemCase2ColumnsFilterItem =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase2ColumnsFilterItem = S.String;
 
 export type CreateDashboardRequestBlocksItemCase2ColumnsFilterList = Array<
   CreateDashboardRequestBlocksItemCase2ColumnsFilterItem | (string & {})
@@ -6200,12 +6182,10 @@ export type CreateDashboardRequestBlocksItemCase2SortBy =
   | "metricTags"
   | "significance"
   | "change";
-export const CreateDashboardRequestBlocksItemCase2SortBy =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase2SortBy = S.String;
 
 export type CreateDashboardRequestBlocksItemCase2SortDirection = "asc" | "desc";
-export const CreateDashboardRequestBlocksItemCase2SortDirection =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase2SortDirection = S.String;
 
 export interface CreateDashboardRequestBlocksItemCase2 {
   type: string;
@@ -6269,8 +6249,7 @@ export type CreateDashboardRequestBlocksItemCase3DifferenceType =
   | "absolute"
   | "relative"
   | "scaled";
-export const CreateDashboardRequestBlocksItemCase3DifferenceType =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase3DifferenceType = S.String;
 
 export type CreateDashboardRequestBlocksItemCase3StartDateRangePredefined =
   | "today"
@@ -6283,7 +6262,7 @@ export type CreateDashboardRequestBlocksItemCase3StartDateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const CreateDashboardRequestBlocksItemCase3StartDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase3StartDateRangeLookbackUnit =
   | "hour"
@@ -6291,7 +6270,7 @@ export type CreateDashboardRequestBlocksItemCase3StartDateRangeLookbackUnit =
   | "week"
   | "month";
 export const CreateDashboardRequestBlocksItemCase3StartDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase3StartDateRange {
   predefined:
@@ -6333,7 +6312,7 @@ export type CreateDashboardRequestBlocksItemCase3EndDateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const CreateDashboardRequestBlocksItemCase3EndDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase3EndDateRangeLookbackUnit =
   | "hour"
@@ -6341,7 +6320,7 @@ export type CreateDashboardRequestBlocksItemCase3EndDateRangeLookbackUnit =
   | "week"
   | "month";
 export const CreateDashboardRequestBlocksItemCase3EndDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase3EndDateRange {
   predefined:
@@ -6469,7 +6448,7 @@ export type CreateDashboardRequestBlocksItemCase4DateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const CreateDashboardRequestBlocksItemCase4DateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase4DateRangeLookbackUnit =
   | "hour"
@@ -6477,7 +6456,7 @@ export type CreateDashboardRequestBlocksItemCase4DateRangeLookbackUnit =
   | "week"
   | "month";
 export const CreateDashboardRequestBlocksItemCase4DateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase4DateRange {
   predefined:
@@ -6518,8 +6497,7 @@ export type CreateDashboardRequestBlocksItemCase4ComparisonMode =
   | "previousYear"
   | "previousYearMatchDayOfWeek"
   | "custom";
-export const CreateDashboardRequestBlocksItemCase4ComparisonMode =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase4ComparisonMode = S.String;
 
 export type CreateDashboardRequestBlocksItemCase4ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -6532,7 +6510,7 @@ export type CreateDashboardRequestBlocksItemCase4ComparisonPreviousTimeFramePred
   | "customLookback"
   | "customDateRange";
 export const CreateDashboardRequestBlocksItemCase4ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase4ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -6540,7 +6518,7 @@ export type CreateDashboardRequestBlocksItemCase4ComparisonPreviousTimeFrameLook
   | "week"
   | "month";
 export const CreateDashboardRequestBlocksItemCase4ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase4ComparisonPreviousTimeFrame {
   predefined:
@@ -6646,7 +6624,7 @@ export type CreateDashboardRequestBlocksItemCase5DateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const CreateDashboardRequestBlocksItemCase5DateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase5DateRangeLookbackUnit =
   | "hour"
@@ -6654,7 +6632,7 @@ export type CreateDashboardRequestBlocksItemCase5DateRangeLookbackUnit =
   | "week"
   | "month";
 export const CreateDashboardRequestBlocksItemCase5DateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase5DateRange {
   predefined:
@@ -6695,8 +6673,7 @@ export type CreateDashboardRequestBlocksItemCase5ComparisonMode =
   | "previousYear"
   | "previousYearMatchDayOfWeek"
   | "custom";
-export const CreateDashboardRequestBlocksItemCase5ComparisonMode =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase5ComparisonMode = S.String;
 
 export type CreateDashboardRequestBlocksItemCase5ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -6709,7 +6686,7 @@ export type CreateDashboardRequestBlocksItemCase5ComparisonPreviousTimeFramePred
   | "customLookback"
   | "customDateRange";
 export const CreateDashboardRequestBlocksItemCase5ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase5ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -6717,7 +6694,7 @@ export type CreateDashboardRequestBlocksItemCase5ComparisonPreviousTimeFrameLook
   | "week"
   | "month";
 export const CreateDashboardRequestBlocksItemCase5ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase5ComparisonPreviousTimeFrame {
   predefined:
@@ -6823,7 +6800,7 @@ export type CreateDashboardRequestBlocksItemCase6DateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const CreateDashboardRequestBlocksItemCase6DateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase6DateRangeLookbackUnit =
   | "hour"
@@ -6831,7 +6808,7 @@ export type CreateDashboardRequestBlocksItemCase6DateRangeLookbackUnit =
   | "week"
   | "month";
 export const CreateDashboardRequestBlocksItemCase6DateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase6DateRange {
   predefined:
@@ -6872,8 +6849,7 @@ export type CreateDashboardRequestBlocksItemCase6ComparisonMode =
   | "previousYear"
   | "previousYearMatchDayOfWeek"
   | "custom";
-export const CreateDashboardRequestBlocksItemCase6ComparisonMode =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase6ComparisonMode = S.String;
 
 export type CreateDashboardRequestBlocksItemCase6ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -6886,7 +6862,7 @@ export type CreateDashboardRequestBlocksItemCase6ComparisonPreviousTimeFramePred
   | "customLookback"
   | "customDateRange";
 export const CreateDashboardRequestBlocksItemCase6ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase6ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -6894,7 +6870,7 @@ export type CreateDashboardRequestBlocksItemCase6ComparisonPreviousTimeFrameLook
   | "week"
   | "month";
 export const CreateDashboardRequestBlocksItemCase6ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase6ComparisonPreviousTimeFrame {
   predefined:
@@ -6957,8 +6933,7 @@ export type CreateDashboardRequestBlocksItemCase6DateGranularity =
   | "week"
   | "month"
   | "year";
-export const CreateDashboardRequestBlocksItemCase6DateGranularity =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase6DateGranularity = S.String;
 
 export interface CreateDashboardRequestBlocksItemCase6 {
   type: string;
@@ -7027,8 +7002,7 @@ export type CreateDashboardRequestBlocksItemCase7DifferenceType =
   | "absolute"
   | "relative"
   | "scaled";
-export const CreateDashboardRequestBlocksItemCase7DifferenceType =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase7DifferenceType = S.String;
 
 export type CreateDashboardRequestBlocksItemCase7ColumnsFilterItem =
   | "Metric & Variation Names"
@@ -7037,8 +7011,7 @@ export type CreateDashboardRequestBlocksItemCase7ColumnsFilterItem =
   | "Chance to Win"
   | "CI Graph"
   | "Lift";
-export const CreateDashboardRequestBlocksItemCase7ColumnsFilterItem =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase7ColumnsFilterItem = S.String;
 
 export type CreateDashboardRequestBlocksItemCase7ColumnsFilterList = Array<
   CreateDashboardRequestBlocksItemCase7ColumnsFilterItem | (string & {})
@@ -7060,12 +7033,10 @@ export type CreateDashboardRequestBlocksItemCase7SortBy =
   | "metricTags"
   | "significance"
   | "change";
-export const CreateDashboardRequestBlocksItemCase7SortBy =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase7SortBy = S.String;
 
 export type CreateDashboardRequestBlocksItemCase7SortDirection = "asc" | "desc";
-export const CreateDashboardRequestBlocksItemCase7SortDirection =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase7SortDirection = S.String;
 
 export interface CreateDashboardRequestBlocksItemCase7 {
   type: string;
@@ -7138,8 +7109,7 @@ export type CreateDashboardRequestBlocksItemCase8DifferenceType =
   | "absolute"
   | "relative"
   | "scaled";
-export const CreateDashboardRequestBlocksItemCase8DifferenceType =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase8DifferenceType = S.String;
 
 export type CreateDashboardRequestBlocksItemCase8SliceTagsFilterList =
   Array<string>;
@@ -7160,12 +7130,10 @@ export type CreateDashboardRequestBlocksItemCase8SortBy =
   | "metricTags"
   | "significance"
   | "change";
-export const CreateDashboardRequestBlocksItemCase8SortBy =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase8SortBy = S.String;
 
 export type CreateDashboardRequestBlocksItemCase8SortDirection = "asc" | "desc";
-export const CreateDashboardRequestBlocksItemCase8SortDirection =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase8SortDirection = S.String;
 
 export interface CreateDashboardRequestBlocksItemCase8 {
   type: string;
@@ -7290,12 +7258,10 @@ export type CreateDashboardRequestBlocksItemCase11VisualizationType =
   | "histogram"
   | "bigNumber"
   | "timeseries";
-export const CreateDashboardRequestBlocksItemCase11VisualizationType =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase11VisualizationType = S.String;
 
 export type CreateDashboardRequestBlocksItemCase11ValueType = "avg" | "sum";
-export const CreateDashboardRequestBlocksItemCase11ValueType =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase11ValueType = S.String;
 
 export type CreateDashboardRequestBlocksItemCase11ComparisonMode =
   | "previousPeriod"
@@ -7303,8 +7269,7 @@ export type CreateDashboardRequestBlocksItemCase11ComparisonMode =
   | "previousYear"
   | "previousYearMatchDayOfWeek"
   | "custom";
-export const CreateDashboardRequestBlocksItemCase11ComparisonMode =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase11ComparisonMode = S.String;
 
 export type CreateDashboardRequestBlocksItemCase11ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -7317,7 +7282,7 @@ export type CreateDashboardRequestBlocksItemCase11ComparisonPreviousTimeFramePre
   | "customLookback"
   | "customDateRange";
 export const CreateDashboardRequestBlocksItemCase11ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase11ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -7325,7 +7290,7 @@ export type CreateDashboardRequestBlocksItemCase11ComparisonPreviousTimeFrameLoo
   | "week"
   | "month";
 export const CreateDashboardRequestBlocksItemCase11ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase11ComparisonPreviousTimeFrame {
   predefined:
@@ -7383,7 +7348,7 @@ export type CreateDashboardRequestBlocksItemCase11AnalysisSettingsPopulationType
   | "population"
   | "segment";
 export const CreateDashboardRequestBlocksItemCase11AnalysisSettingsPopulationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase11AnalysisSettingsAdditionalNumeratorFiltersList =
   Array<string>;
@@ -7480,8 +7445,7 @@ export type CreateDashboardRequestBlocksItemCase12ComparisonMode =
   | "previousYear"
   | "previousYearMatchDayOfWeek"
   | "custom";
-export const CreateDashboardRequestBlocksItemCase12ComparisonMode =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase12ComparisonMode = S.String;
 
 export type CreateDashboardRequestBlocksItemCase12ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -7494,7 +7458,7 @@ export type CreateDashboardRequestBlocksItemCase12ComparisonPreviousTimeFramePre
   | "customLookback"
   | "customDateRange";
 export const CreateDashboardRequestBlocksItemCase12ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase12ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -7502,7 +7466,7 @@ export type CreateDashboardRequestBlocksItemCase12ComparisonPreviousTimeFrameLoo
   | "week"
   | "month";
 export const CreateDashboardRequestBlocksItemCase12ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase12ComparisonPreviousTimeFrame {
   predefined:
@@ -7573,7 +7537,7 @@ export type CreateDashboardRequestBlocksItemCase12ConfigDimensionsItemCase0DateG
   | "month"
   | "year";
 export const CreateDashboardRequestBlocksItemCase12ConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase12ConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -7659,7 +7623,7 @@ export type CreateDashboardRequestBlocksItemCase12ConfigDimensionsItemCase3Slice
   | "sql_expr"
   | "saved_filter";
 export const CreateDashboardRequestBlocksItemCase12ConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase12ConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -7742,7 +7706,7 @@ export type CreateDashboardRequestBlocksItemCase12ConfigDimensionsItem =
   | CreateDashboardRequestBlocksItemCase12ConfigDimensionsItemCase2
   | CreateDashboardRequestBlocksItemCase12ConfigDimensionsItemCase3;
 export const CreateDashboardRequestBlocksItemCase12ConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDashboardRequestBlocksItemCase12ConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<CreateDashboardRequestBlocksItemCase12ConfigDimensionsItem>;
 
 export type CreateDashboardRequestBlocksItemCase12ConfigDimensionsList =
   Array<CreateDashboardRequestBlocksItemCase12ConfigDimensionsItem>;
@@ -7761,8 +7725,7 @@ export type CreateDashboardRequestBlocksItemCase12ConfigChartType =
   | "horizontalBar"
   | "stackedHorizontalBar"
   | "bigNumber";
-export const CreateDashboardRequestBlocksItemCase12ConfigChartType =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase12ConfigChartType = S.String;
 
 export type CreateDashboardRequestBlocksItemCase12ConfigDateRangePredefined =
   | "today"
@@ -7775,7 +7738,7 @@ export type CreateDashboardRequestBlocksItemCase12ConfigDateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const CreateDashboardRequestBlocksItemCase12ConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase12ConfigDateRangeLookbackUnit =
   | "hour"
@@ -7783,7 +7746,7 @@ export type CreateDashboardRequestBlocksItemCase12ConfigDateRangeLookbackUnit =
   | "week"
   | "month";
 export const CreateDashboardRequestBlocksItemCase12ConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase12ConfigDateRange {
   predefined:
@@ -7818,8 +7781,7 @@ export const CreateDashboardRequestBlocksItemCase12ConfigDateRange =
 export type CreateDashboardRequestBlocksItemCase12ConfigShowAs =
   | "total"
   | "per_unit";
-export const CreateDashboardRequestBlocksItemCase12ConfigShowAs =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase12ConfigShowAs = S.String;
 
 export type CreateDashboardRequestBlocksItemCase12ConfigDatasetValuesItemRowFiltersItemOperator =
   | "="
@@ -7843,7 +7805,7 @@ export type CreateDashboardRequestBlocksItemCase12ConfigDatasetValuesItemRowFilt
   | "sql_expr"
   | "saved_filter";
 export const CreateDashboardRequestBlocksItemCase12ConfigDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase12ConfigDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -7995,8 +7957,7 @@ export type CreateDashboardRequestBlocksItemCase13ComparisonMode =
   | "previousYear"
   | "previousYearMatchDayOfWeek"
   | "custom";
-export const CreateDashboardRequestBlocksItemCase13ComparisonMode =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase13ComparisonMode = S.String;
 
 export type CreateDashboardRequestBlocksItemCase13ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -8009,7 +7970,7 @@ export type CreateDashboardRequestBlocksItemCase13ComparisonPreviousTimeFramePre
   | "customLookback"
   | "customDateRange";
 export const CreateDashboardRequestBlocksItemCase13ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase13ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -8017,7 +7978,7 @@ export type CreateDashboardRequestBlocksItemCase13ComparisonPreviousTimeFrameLoo
   | "week"
   | "month";
 export const CreateDashboardRequestBlocksItemCase13ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase13ComparisonPreviousTimeFrame {
   predefined:
@@ -8081,7 +8042,7 @@ export type CreateDashboardRequestBlocksItemCase13ConfigDimensionsItemCase0DateG
   | "month"
   | "year";
 export const CreateDashboardRequestBlocksItemCase13ConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase13ConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -8155,7 +8116,7 @@ export type CreateDashboardRequestBlocksItemCase13ConfigDimensionsItemCase3Slice
   | "sql_expr"
   | "saved_filter";
 export const CreateDashboardRequestBlocksItemCase13ConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase13ConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -8238,7 +8199,7 @@ export type CreateDashboardRequestBlocksItemCase13ConfigDimensionsItem =
   | CreateDashboardRequestBlocksItemCase13ConfigDimensionsItemCase2
   | CreateDashboardRequestBlocksItemCase13ConfigDimensionsItemCase3;
 export const CreateDashboardRequestBlocksItemCase13ConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDashboardRequestBlocksItemCase13ConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<CreateDashboardRequestBlocksItemCase13ConfigDimensionsItem>;
 
 export type CreateDashboardRequestBlocksItemCase13ConfigDimensionsList =
   Array<CreateDashboardRequestBlocksItemCase13ConfigDimensionsItem>;
@@ -8257,8 +8218,7 @@ export type CreateDashboardRequestBlocksItemCase13ConfigChartType =
   | "horizontalBar"
   | "stackedHorizontalBar"
   | "bigNumber";
-export const CreateDashboardRequestBlocksItemCase13ConfigChartType =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase13ConfigChartType = S.String;
 
 export type CreateDashboardRequestBlocksItemCase13ConfigDateRangePredefined =
   | "today"
@@ -8271,7 +8231,7 @@ export type CreateDashboardRequestBlocksItemCase13ConfigDateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const CreateDashboardRequestBlocksItemCase13ConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase13ConfigDateRangeLookbackUnit =
   | "hour"
@@ -8279,7 +8239,7 @@ export type CreateDashboardRequestBlocksItemCase13ConfigDateRangeLookbackUnit =
   | "week"
   | "month";
 export const CreateDashboardRequestBlocksItemCase13ConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase13ConfigDateRange {
   predefined:
@@ -8314,8 +8274,7 @@ export const CreateDashboardRequestBlocksItemCase13ConfigDateRange =
 export type CreateDashboardRequestBlocksItemCase13ConfigShowAs =
   | "total"
   | "per_unit";
-export const CreateDashboardRequestBlocksItemCase13ConfigShowAs =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase13ConfigShowAs = S.String;
 
 export type CreateDashboardRequestBlocksItemCase13ConfigDatasetValuesItemRowFiltersItemOperator =
   | "="
@@ -8339,7 +8298,7 @@ export type CreateDashboardRequestBlocksItemCase13ConfigDatasetValuesItemRowFilt
   | "sql_expr"
   | "saved_filter";
 export const CreateDashboardRequestBlocksItemCase13ConfigDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase13ConfigDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -8382,7 +8341,7 @@ export type CreateDashboardRequestBlocksItemCase13ConfigDatasetValuesItemValueTy
   | "count"
   | "sum";
 export const CreateDashboardRequestBlocksItemCase13ConfigDatasetValuesItemValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase13ConfigDatasetValuesItem {
   name: string;
@@ -8503,8 +8462,7 @@ export type CreateDashboardRequestBlocksItemCase14ComparisonMode =
   | "previousYear"
   | "previousYearMatchDayOfWeek"
   | "custom";
-export const CreateDashboardRequestBlocksItemCase14ComparisonMode =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase14ComparisonMode = S.String;
 
 export type CreateDashboardRequestBlocksItemCase14ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -8517,7 +8475,7 @@ export type CreateDashboardRequestBlocksItemCase14ComparisonPreviousTimeFramePre
   | "customLookback"
   | "customDateRange";
 export const CreateDashboardRequestBlocksItemCase14ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase14ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -8525,7 +8483,7 @@ export type CreateDashboardRequestBlocksItemCase14ComparisonPreviousTimeFrameLoo
   | "week"
   | "month";
 export const CreateDashboardRequestBlocksItemCase14ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase14ComparisonPreviousTimeFrame {
   predefined:
@@ -8589,7 +8547,7 @@ export type CreateDashboardRequestBlocksItemCase14ConfigDimensionsItemCase0DateG
   | "month"
   | "year";
 export const CreateDashboardRequestBlocksItemCase14ConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase14ConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -8663,7 +8621,7 @@ export type CreateDashboardRequestBlocksItemCase14ConfigDimensionsItemCase3Slice
   | "sql_expr"
   | "saved_filter";
 export const CreateDashboardRequestBlocksItemCase14ConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase14ConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -8746,7 +8704,7 @@ export type CreateDashboardRequestBlocksItemCase14ConfigDimensionsItem =
   | CreateDashboardRequestBlocksItemCase14ConfigDimensionsItemCase2
   | CreateDashboardRequestBlocksItemCase14ConfigDimensionsItemCase3;
 export const CreateDashboardRequestBlocksItemCase14ConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDashboardRequestBlocksItemCase14ConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<CreateDashboardRequestBlocksItemCase14ConfigDimensionsItem>;
 
 export type CreateDashboardRequestBlocksItemCase14ConfigDimensionsList =
   Array<CreateDashboardRequestBlocksItemCase14ConfigDimensionsItem>;
@@ -8765,8 +8723,7 @@ export type CreateDashboardRequestBlocksItemCase14ConfigChartType =
   | "horizontalBar"
   | "stackedHorizontalBar"
   | "bigNumber";
-export const CreateDashboardRequestBlocksItemCase14ConfigChartType =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase14ConfigChartType = S.String;
 
 export type CreateDashboardRequestBlocksItemCase14ConfigDateRangePredefined =
   | "today"
@@ -8779,7 +8736,7 @@ export type CreateDashboardRequestBlocksItemCase14ConfigDateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const CreateDashboardRequestBlocksItemCase14ConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase14ConfigDateRangeLookbackUnit =
   | "hour"
@@ -8787,7 +8744,7 @@ export type CreateDashboardRequestBlocksItemCase14ConfigDateRangeLookbackUnit =
   | "week"
   | "month";
 export const CreateDashboardRequestBlocksItemCase14ConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase14ConfigDateRange {
   predefined:
@@ -8822,8 +8779,7 @@ export const CreateDashboardRequestBlocksItemCase14ConfigDateRange =
 export type CreateDashboardRequestBlocksItemCase14ConfigShowAs =
   | "total"
   | "per_unit";
-export const CreateDashboardRequestBlocksItemCase14ConfigShowAs =
-  /*@__PURE__*/ S.String;
+export const CreateDashboardRequestBlocksItemCase14ConfigShowAs = S.String;
 
 export type CreateDashboardRequestBlocksItemCase14ConfigDatasetColumnTypesValue =
   | "string"
@@ -8832,7 +8788,7 @@ export type CreateDashboardRequestBlocksItemCase14ConfigDatasetColumnTypesValue 
   | "boolean"
   | "other";
 export const CreateDashboardRequestBlocksItemCase14ConfigDatasetColumnTypesValue =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase14ConfigDatasetColumnTypesMap =
   {
@@ -8869,7 +8825,7 @@ export type CreateDashboardRequestBlocksItemCase14ConfigDatasetValuesItemRowFilt
   | "sql_expr"
   | "saved_filter";
 export const CreateDashboardRequestBlocksItemCase14ConfigDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDashboardRequestBlocksItemCase14ConfigDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -8912,7 +8868,7 @@ export type CreateDashboardRequestBlocksItemCase14ConfigDatasetValuesItemValueTy
   | "count"
   | "sum";
 export const CreateDashboardRequestBlocksItemCase14ConfigDatasetValuesItemValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDashboardRequestBlocksItemCase14ConfigDatasetValuesItem {
   name: string;
@@ -9046,7 +9002,7 @@ export type CreateDashboardRequestBlocksItem =
   | CreateDashboardRequestBlocksItemCase13
   | CreateDashboardRequestBlocksItemCase14;
 export const CreateDashboardRequestBlocksItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDashboardRequestBlocksItem>;
+  S.Unknown as any as S.Schema<CreateDashboardRequestBlocksItem>;
 
 export type CreateDashboardRequestBlocksList =
   Array<CreateDashboardRequestBlocksItem>;
@@ -9089,10 +9045,10 @@ export const CreateDashboardRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDashboardRequest>;
 
 export type DashboardEditLevel = "published" | "private";
-export const DashboardEditLevel = /*@__PURE__*/ S.String;
+export const DashboardEditLevel = S.String;
 
 export type DashboardShareLevel = "published" | "private";
-export const DashboardShareLevel = /*@__PURE__*/ S.String;
+export const DashboardShareLevel = S.String;
 
 export type DashboardUpdateScheduleCase0 =
   CreateDashboardRequestUpdateScheduleCase0;
@@ -9108,7 +9064,7 @@ export type DashboardUpdateSchedule =
   | CreateDashboardRequestUpdateScheduleCase0
   | CreateDashboardRequestUpdateScheduleCase1;
 export const DashboardUpdateSchedule =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DashboardUpdateSchedule>;
+  S.Unknown as any as S.Schema<DashboardUpdateSchedule>;
 
 export type DashboardGlobalControlsDateRangePredefined =
   | "today"
@@ -9120,16 +9076,14 @@ export type DashboardGlobalControlsDateRangePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const DashboardGlobalControlsDateRangePredefined =
-  /*@__PURE__*/ S.String;
+export const DashboardGlobalControlsDateRangePredefined = S.String;
 
 export type DashboardGlobalControlsDateRangeLookbackUnit =
   | "hour"
   | "day"
   | "week"
   | "month";
-export const DashboardGlobalControlsDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+export const DashboardGlobalControlsDateRangeLookbackUnit = S.String;
 
 export interface DashboardGlobalControlsDateRange {
   predefined: DashboardGlobalControlsDateRangePredefined;
@@ -9159,7 +9113,7 @@ export type DashboardGlobalControlsDateGranularity =
   | "week"
   | "month"
   | "year";
-export const DashboardGlobalControlsDateGranularity = /*@__PURE__*/ S.String;
+export const DashboardGlobalControlsDateGranularity = S.String;
 
 export type DashboardGlobalControlsProjectsList = Array<string>;
 export const DashboardGlobalControlsProjectsList = /*@__PURE__*/ S.Array(
@@ -9189,7 +9143,7 @@ export type DashboardComparisonMode =
   | "previousYear"
   | "previousYearMatchDayOfWeek"
   | "custom";
-export const DashboardComparisonMode = /*@__PURE__*/ S.String;
+export const DashboardComparisonMode = S.String;
 
 export type DashboardComparisonPreviousTimeFramePredefined =
   | "today"
@@ -9201,16 +9155,14 @@ export type DashboardComparisonPreviousTimeFramePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const DashboardComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+export const DashboardComparisonPreviousTimeFramePredefined = S.String;
 
 export type DashboardComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
   | "day"
   | "week"
   | "month";
-export const DashboardComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+export const DashboardComparisonPreviousTimeFrameLookbackUnit = S.String;
 
 export interface DashboardComparisonPreviousTimeFrame {
   predefined: DashboardComparisonPreviousTimeFramePredefined;
@@ -9274,10 +9226,10 @@ export type DashboardBlocksItemCase0VisualizationType =
   | "histogram"
   | "bigNumber"
   | "timeseries";
-export const DashboardBlocksItemCase0VisualizationType = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase0VisualizationType = S.String;
 
 export type DashboardBlocksItemCase0ValueType = "avg" | "sum";
-export const DashboardBlocksItemCase0ValueType = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase0ValueType = S.String;
 
 export type DashboardBlocksItemCase0ComparisonMode =
   | "previousPeriod"
@@ -9285,7 +9237,7 @@ export type DashboardBlocksItemCase0ComparisonMode =
   | "previousYear"
   | "previousYearMatchDayOfWeek"
   | "custom";
-export const DashboardBlocksItemCase0ComparisonMode = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase0ComparisonMode = S.String;
 
 export type DashboardBlocksItemCase0ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -9298,7 +9250,7 @@ export type DashboardBlocksItemCase0ComparisonPreviousTimeFramePredefined =
   | "customLookback"
   | "customDateRange";
 export const DashboardBlocksItemCase0ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DashboardBlocksItemCase0ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -9306,7 +9258,7 @@ export type DashboardBlocksItemCase0ComparisonPreviousTimeFrameLookbackUnit =
   | "week"
   | "month";
 export const DashboardBlocksItemCase0ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DashboardBlocksItemCase0ComparisonPreviousTimeFrame {
   predefined: DashboardBlocksItemCase0ComparisonPreviousTimeFramePredefined;
@@ -9355,8 +9307,7 @@ export type DashboardBlocksItemCase0AnalysisSettingsPopulationType =
   | "exposureQuery"
   | "population"
   | "segment";
-export const DashboardBlocksItemCase0AnalysisSettingsPopulationType =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase0AnalysisSettingsPopulationType = S.String;
 
 export type DashboardBlocksItemCase0AnalysisSettingsAdditionalNumeratorFiltersList =
   Array<string>;
@@ -9537,7 +9488,7 @@ export type DashboardBlocksItemCase3DifferenceType =
   | "absolute"
   | "relative"
   | "scaled";
-export const DashboardBlocksItemCase3DifferenceType = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase3DifferenceType = S.String;
 
 export type DashboardBlocksItemCase3ColumnsFilterItem =
   | "Metric & Variation Names"
@@ -9546,7 +9497,7 @@ export type DashboardBlocksItemCase3ColumnsFilterItem =
   | "Chance to Win"
   | "CI Graph"
   | "Lift";
-export const DashboardBlocksItemCase3ColumnsFilterItem = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase3ColumnsFilterItem = S.String;
 
 export type DashboardBlocksItemCase3ColumnsFilterList =
   Array<DashboardBlocksItemCase3ColumnsFilterItem>;
@@ -9571,10 +9522,10 @@ export type DashboardBlocksItemCase3SortBy =
   | "metricTags"
   | "significance"
   | "change";
-export const DashboardBlocksItemCase3SortBy = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase3SortBy = S.String;
 
 export type DashboardBlocksItemCase3SortDirection = "asc" | "desc";
-export const DashboardBlocksItemCase3SortDirection = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase3SortDirection = S.String;
 
 export interface DashboardBlocksItemCase3 {
   organization: string;
@@ -9635,7 +9586,7 @@ export type DashboardBlocksItemCase4DifferenceType =
   | "absolute"
   | "relative"
   | "scaled";
-export const DashboardBlocksItemCase4DifferenceType = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase4DifferenceType = S.String;
 
 export type DashboardBlocksItemCase4StartDateRangePredefined =
   | "today"
@@ -9647,16 +9598,14 @@ export type DashboardBlocksItemCase4StartDateRangePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const DashboardBlocksItemCase4StartDateRangePredefined =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase4StartDateRangePredefined = S.String;
 
 export type DashboardBlocksItemCase4StartDateRangeLookbackUnit =
   | "hour"
   | "day"
   | "week"
   | "month";
-export const DashboardBlocksItemCase4StartDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase4StartDateRangeLookbackUnit = S.String;
 
 export interface DashboardBlocksItemCase4StartDateRange {
   predefined: DashboardBlocksItemCase4StartDateRangePredefined;
@@ -9690,16 +9639,14 @@ export type DashboardBlocksItemCase4EndDateRangePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const DashboardBlocksItemCase4EndDateRangePredefined =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase4EndDateRangePredefined = S.String;
 
 export type DashboardBlocksItemCase4EndDateRangeLookbackUnit =
   | "hour"
   | "day"
   | "week"
   | "month";
-export const DashboardBlocksItemCase4EndDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase4EndDateRangeLookbackUnit = S.String;
 
 export interface DashboardBlocksItemCase4EndDateRange {
   predefined: DashboardBlocksItemCase4EndDateRangePredefined;
@@ -9799,16 +9746,14 @@ export type DashboardBlocksItemCase5DateRangePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const DashboardBlocksItemCase5DateRangePredefined =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase5DateRangePredefined = S.String;
 
 export type DashboardBlocksItemCase5DateRangeLookbackUnit =
   | "hour"
   | "day"
   | "week"
   | "month";
-export const DashboardBlocksItemCase5DateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase5DateRangeLookbackUnit = S.String;
 
 export interface DashboardBlocksItemCase5DateRange {
   predefined: DashboardBlocksItemCase5DateRangePredefined;
@@ -9842,7 +9787,7 @@ export type DashboardBlocksItemCase5ComparisonMode =
   | "previousYear"
   | "previousYearMatchDayOfWeek"
   | "custom";
-export const DashboardBlocksItemCase5ComparisonMode = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase5ComparisonMode = S.String;
 
 export type DashboardBlocksItemCase5ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -9855,7 +9800,7 @@ export type DashboardBlocksItemCase5ComparisonPreviousTimeFramePredefined =
   | "customLookback"
   | "customDateRange";
 export const DashboardBlocksItemCase5ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DashboardBlocksItemCase5ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -9863,7 +9808,7 @@ export type DashboardBlocksItemCase5ComparisonPreviousTimeFrameLookbackUnit =
   | "week"
   | "month";
 export const DashboardBlocksItemCase5ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DashboardBlocksItemCase5ComparisonPreviousTimeFrame {
   predefined: DashboardBlocksItemCase5ComparisonPreviousTimeFramePredefined;
@@ -9965,16 +9910,14 @@ export type DashboardBlocksItemCase6DateRangePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const DashboardBlocksItemCase6DateRangePredefined =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase6DateRangePredefined = S.String;
 
 export type DashboardBlocksItemCase6DateRangeLookbackUnit =
   | "hour"
   | "day"
   | "week"
   | "month";
-export const DashboardBlocksItemCase6DateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase6DateRangeLookbackUnit = S.String;
 
 export interface DashboardBlocksItemCase6DateRange {
   predefined: DashboardBlocksItemCase6DateRangePredefined;
@@ -10008,7 +9951,7 @@ export type DashboardBlocksItemCase6ComparisonMode =
   | "previousYear"
   | "previousYearMatchDayOfWeek"
   | "custom";
-export const DashboardBlocksItemCase6ComparisonMode = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase6ComparisonMode = S.String;
 
 export type DashboardBlocksItemCase6ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -10021,7 +9964,7 @@ export type DashboardBlocksItemCase6ComparisonPreviousTimeFramePredefined =
   | "customLookback"
   | "customDateRange";
 export const DashboardBlocksItemCase6ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DashboardBlocksItemCase6ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -10029,7 +9972,7 @@ export type DashboardBlocksItemCase6ComparisonPreviousTimeFrameLookbackUnit =
   | "week"
   | "month";
 export const DashboardBlocksItemCase6ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DashboardBlocksItemCase6ComparisonPreviousTimeFrame {
   predefined: DashboardBlocksItemCase6ComparisonPreviousTimeFramePredefined;
@@ -10131,16 +10074,14 @@ export type DashboardBlocksItemCase7DateRangePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const DashboardBlocksItemCase7DateRangePredefined =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase7DateRangePredefined = S.String;
 
 export type DashboardBlocksItemCase7DateRangeLookbackUnit =
   | "hour"
   | "day"
   | "week"
   | "month";
-export const DashboardBlocksItemCase7DateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase7DateRangeLookbackUnit = S.String;
 
 export interface DashboardBlocksItemCase7DateRange {
   predefined: DashboardBlocksItemCase7DateRangePredefined;
@@ -10174,7 +10115,7 @@ export type DashboardBlocksItemCase7ComparisonMode =
   | "previousYear"
   | "previousYearMatchDayOfWeek"
   | "custom";
-export const DashboardBlocksItemCase7ComparisonMode = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase7ComparisonMode = S.String;
 
 export type DashboardBlocksItemCase7ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -10187,7 +10128,7 @@ export type DashboardBlocksItemCase7ComparisonPreviousTimeFramePredefined =
   | "customLookback"
   | "customDateRange";
 export const DashboardBlocksItemCase7ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DashboardBlocksItemCase7ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -10195,7 +10136,7 @@ export type DashboardBlocksItemCase7ComparisonPreviousTimeFrameLookbackUnit =
   | "week"
   | "month";
 export const DashboardBlocksItemCase7ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DashboardBlocksItemCase7ComparisonPreviousTimeFrame {
   predefined: DashboardBlocksItemCase7ComparisonPreviousTimeFramePredefined;
@@ -10250,7 +10191,7 @@ export type DashboardBlocksItemCase7DateGranularity =
   | "week"
   | "month"
   | "year";
-export const DashboardBlocksItemCase7DateGranularity = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase7DateGranularity = S.String;
 
 export interface DashboardBlocksItemCase7 {
   organization: string;
@@ -10316,7 +10257,7 @@ export type DashboardBlocksItemCase8DifferenceType =
   | "absolute"
   | "relative"
   | "scaled";
-export const DashboardBlocksItemCase8DifferenceType = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase8DifferenceType = S.String;
 
 export type DashboardBlocksItemCase8ColumnsFilterItem =
   | "Metric & Variation Names"
@@ -10325,7 +10266,7 @@ export type DashboardBlocksItemCase8ColumnsFilterItem =
   | "Chance to Win"
   | "CI Graph"
   | "Lift";
-export const DashboardBlocksItemCase8ColumnsFilterItem = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase8ColumnsFilterItem = S.String;
 
 export type DashboardBlocksItemCase8ColumnsFilterList =
   Array<DashboardBlocksItemCase8ColumnsFilterItem>;
@@ -10344,10 +10285,10 @@ export type DashboardBlocksItemCase8SortBy =
   | "metricTags"
   | "significance"
   | "change";
-export const DashboardBlocksItemCase8SortBy = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase8SortBy = S.String;
 
 export type DashboardBlocksItemCase8SortDirection = "asc" | "desc";
-export const DashboardBlocksItemCase8SortDirection = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase8SortDirection = S.String;
 
 export interface DashboardBlocksItemCase8 {
   organization: string;
@@ -10415,7 +10356,7 @@ export type DashboardBlocksItemCase9DifferenceType =
   | "absolute"
   | "relative"
   | "scaled";
-export const DashboardBlocksItemCase9DifferenceType = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase9DifferenceType = S.String;
 
 export type DashboardBlocksItemCase9SliceTagsFilterList = Array<string>;
 export const DashboardBlocksItemCase9SliceTagsFilterList =
@@ -10434,10 +10375,10 @@ export type DashboardBlocksItemCase9SortBy =
   | "metricTags"
   | "significance"
   | "change";
-export const DashboardBlocksItemCase9SortBy = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase9SortBy = S.String;
 
 export type DashboardBlocksItemCase9SortDirection = "asc" | "desc";
-export const DashboardBlocksItemCase9SortDirection = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase9SortDirection = S.String;
 
 export interface DashboardBlocksItemCase9 {
   organization: string;
@@ -10570,7 +10511,7 @@ export type DashboardBlocksItemCase12ComparisonMode =
   | "previousYear"
   | "previousYearMatchDayOfWeek"
   | "custom";
-export const DashboardBlocksItemCase12ComparisonMode = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase12ComparisonMode = S.String;
 
 export type DashboardBlocksItemCase12ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -10583,7 +10524,7 @@ export type DashboardBlocksItemCase12ComparisonPreviousTimeFramePredefined =
   | "customLookback"
   | "customDateRange";
 export const DashboardBlocksItemCase12ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DashboardBlocksItemCase12ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -10591,7 +10532,7 @@ export type DashboardBlocksItemCase12ComparisonPreviousTimeFrameLookbackUnit =
   | "week"
   | "month";
 export const DashboardBlocksItemCase12ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DashboardBlocksItemCase12ComparisonPreviousTimeFrame {
   predefined: DashboardBlocksItemCase12ComparisonPreviousTimeFramePredefined;
@@ -10648,7 +10589,7 @@ export type DashboardBlocksItemCase12ConfigDimensionsItemCase0DateGranularity =
   | "month"
   | "year";
 export const DashboardBlocksItemCase12ConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DashboardBlocksItemCase12ConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -10717,7 +10658,7 @@ export type DashboardBlocksItemCase12ConfigDimensionsItemCase3SlicesItemFiltersI
   | "sql_expr"
   | "saved_filter";
 export const DashboardBlocksItemCase12ConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DashboardBlocksItemCase12ConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -10795,7 +10736,7 @@ export type DashboardBlocksItemCase12ConfigDimensionsItem =
   | DashboardBlocksItemCase12ConfigDimensionsItemCase2
   | DashboardBlocksItemCase12ConfigDimensionsItemCase3;
 export const DashboardBlocksItemCase12ConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DashboardBlocksItemCase12ConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<DashboardBlocksItemCase12ConfigDimensionsItem>;
 
 export type DashboardBlocksItemCase12ConfigDimensionsList =
   Array<DashboardBlocksItemCase12ConfigDimensionsItem>;
@@ -10814,7 +10755,7 @@ export type DashboardBlocksItemCase12ConfigChartType =
   | "horizontalBar"
   | "stackedHorizontalBar"
   | "bigNumber";
-export const DashboardBlocksItemCase12ConfigChartType = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase12ConfigChartType = S.String;
 
 export type DashboardBlocksItemCase12ConfigDateRangePredefined =
   | "today"
@@ -10826,16 +10767,14 @@ export type DashboardBlocksItemCase12ConfigDateRangePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const DashboardBlocksItemCase12ConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase12ConfigDateRangePredefined = S.String;
 
 export type DashboardBlocksItemCase12ConfigDateRangeLookbackUnit =
   | "hour"
   | "day"
   | "week"
   | "month";
-export const DashboardBlocksItemCase12ConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase12ConfigDateRangeLookbackUnit = S.String;
 
 export interface DashboardBlocksItemCase12ConfigDateRange {
   predefined: DashboardBlocksItemCase12ConfigDateRangePredefined;
@@ -10860,7 +10799,7 @@ export const DashboardBlocksItemCase12ConfigDateRange = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DashboardBlocksItemCase12ConfigDateRange>;
 
 export type DashboardBlocksItemCase12ConfigShowAs = "total" | "per_unit";
-export const DashboardBlocksItemCase12ConfigShowAs = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase12ConfigShowAs = S.String;
 
 export type DashboardBlocksItemCase12ConfigDatasetValuesItemRowFiltersItemOperator =
   | "="
@@ -10884,7 +10823,7 @@ export type DashboardBlocksItemCase12ConfigDatasetValuesItemRowFiltersItemOperat
   | "sql_expr"
   | "saved_filter";
 export const DashboardBlocksItemCase12ConfigDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DashboardBlocksItemCase12ConfigDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -11036,7 +10975,7 @@ export type DashboardBlocksItemCase13ComparisonMode =
   | "previousYear"
   | "previousYearMatchDayOfWeek"
   | "custom";
-export const DashboardBlocksItemCase13ComparisonMode = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase13ComparisonMode = S.String;
 
 export type DashboardBlocksItemCase13ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -11049,7 +10988,7 @@ export type DashboardBlocksItemCase13ComparisonPreviousTimeFramePredefined =
   | "customLookback"
   | "customDateRange";
 export const DashboardBlocksItemCase13ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DashboardBlocksItemCase13ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -11057,7 +10996,7 @@ export type DashboardBlocksItemCase13ComparisonPreviousTimeFrameLookbackUnit =
   | "week"
   | "month";
 export const DashboardBlocksItemCase13ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DashboardBlocksItemCase13ComparisonPreviousTimeFrame {
   predefined: DashboardBlocksItemCase13ComparisonPreviousTimeFramePredefined;
@@ -11114,7 +11053,7 @@ export type DashboardBlocksItemCase13ConfigDimensionsItemCase0DateGranularity =
   | "month"
   | "year";
 export const DashboardBlocksItemCase13ConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DashboardBlocksItemCase13ConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -11183,7 +11122,7 @@ export type DashboardBlocksItemCase13ConfigDimensionsItemCase3SlicesItemFiltersI
   | "sql_expr"
   | "saved_filter";
 export const DashboardBlocksItemCase13ConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DashboardBlocksItemCase13ConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -11261,7 +11200,7 @@ export type DashboardBlocksItemCase13ConfigDimensionsItem =
   | DashboardBlocksItemCase13ConfigDimensionsItemCase2
   | DashboardBlocksItemCase13ConfigDimensionsItemCase3;
 export const DashboardBlocksItemCase13ConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DashboardBlocksItemCase13ConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<DashboardBlocksItemCase13ConfigDimensionsItem>;
 
 export type DashboardBlocksItemCase13ConfigDimensionsList =
   Array<DashboardBlocksItemCase13ConfigDimensionsItem>;
@@ -11280,7 +11219,7 @@ export type DashboardBlocksItemCase13ConfigChartType =
   | "horizontalBar"
   | "stackedHorizontalBar"
   | "bigNumber";
-export const DashboardBlocksItemCase13ConfigChartType = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase13ConfigChartType = S.String;
 
 export type DashboardBlocksItemCase13ConfigDateRangePredefined =
   | "today"
@@ -11292,16 +11231,14 @@ export type DashboardBlocksItemCase13ConfigDateRangePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const DashboardBlocksItemCase13ConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase13ConfigDateRangePredefined = S.String;
 
 export type DashboardBlocksItemCase13ConfigDateRangeLookbackUnit =
   | "hour"
   | "day"
   | "week"
   | "month";
-export const DashboardBlocksItemCase13ConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase13ConfigDateRangeLookbackUnit = S.String;
 
 export interface DashboardBlocksItemCase13ConfigDateRange {
   predefined: DashboardBlocksItemCase13ConfigDateRangePredefined;
@@ -11326,7 +11263,7 @@ export const DashboardBlocksItemCase13ConfigDateRange = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DashboardBlocksItemCase13ConfigDateRange>;
 
 export type DashboardBlocksItemCase13ConfigShowAs = "total" | "per_unit";
-export const DashboardBlocksItemCase13ConfigShowAs = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase13ConfigShowAs = S.String;
 
 export type DashboardBlocksItemCase13ConfigDatasetValuesItemRowFiltersItemOperator =
   | "="
@@ -11350,7 +11287,7 @@ export type DashboardBlocksItemCase13ConfigDatasetValuesItemRowFiltersItemOperat
   | "sql_expr"
   | "saved_filter";
 export const DashboardBlocksItemCase13ConfigDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DashboardBlocksItemCase13ConfigDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -11391,7 +11328,7 @@ export type DashboardBlocksItemCase13ConfigDatasetValuesItemValueType =
   | "count"
   | "sum";
 export const DashboardBlocksItemCase13ConfigDatasetValuesItemValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DashboardBlocksItemCase13ConfigDatasetValuesItem {
   name: string;
@@ -11511,7 +11448,7 @@ export type DashboardBlocksItemCase14ComparisonMode =
   | "previousYear"
   | "previousYearMatchDayOfWeek"
   | "custom";
-export const DashboardBlocksItemCase14ComparisonMode = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase14ComparisonMode = S.String;
 
 export type DashboardBlocksItemCase14ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -11524,7 +11461,7 @@ export type DashboardBlocksItemCase14ComparisonPreviousTimeFramePredefined =
   | "customLookback"
   | "customDateRange";
 export const DashboardBlocksItemCase14ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DashboardBlocksItemCase14ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -11532,7 +11469,7 @@ export type DashboardBlocksItemCase14ComparisonPreviousTimeFrameLookbackUnit =
   | "week"
   | "month";
 export const DashboardBlocksItemCase14ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DashboardBlocksItemCase14ComparisonPreviousTimeFrame {
   predefined: DashboardBlocksItemCase14ComparisonPreviousTimeFramePredefined;
@@ -11589,7 +11526,7 @@ export type DashboardBlocksItemCase14ConfigDimensionsItemCase0DateGranularity =
   | "month"
   | "year";
 export const DashboardBlocksItemCase14ConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DashboardBlocksItemCase14ConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -11658,7 +11595,7 @@ export type DashboardBlocksItemCase14ConfigDimensionsItemCase3SlicesItemFiltersI
   | "sql_expr"
   | "saved_filter";
 export const DashboardBlocksItemCase14ConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DashboardBlocksItemCase14ConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -11736,7 +11673,7 @@ export type DashboardBlocksItemCase14ConfigDimensionsItem =
   | DashboardBlocksItemCase14ConfigDimensionsItemCase2
   | DashboardBlocksItemCase14ConfigDimensionsItemCase3;
 export const DashboardBlocksItemCase14ConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DashboardBlocksItemCase14ConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<DashboardBlocksItemCase14ConfigDimensionsItem>;
 
 export type DashboardBlocksItemCase14ConfigDimensionsList =
   Array<DashboardBlocksItemCase14ConfigDimensionsItem>;
@@ -11755,7 +11692,7 @@ export type DashboardBlocksItemCase14ConfigChartType =
   | "horizontalBar"
   | "stackedHorizontalBar"
   | "bigNumber";
-export const DashboardBlocksItemCase14ConfigChartType = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase14ConfigChartType = S.String;
 
 export type DashboardBlocksItemCase14ConfigDateRangePredefined =
   | "today"
@@ -11767,16 +11704,14 @@ export type DashboardBlocksItemCase14ConfigDateRangePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const DashboardBlocksItemCase14ConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase14ConfigDateRangePredefined = S.String;
 
 export type DashboardBlocksItemCase14ConfigDateRangeLookbackUnit =
   | "hour"
   | "day"
   | "week"
   | "month";
-export const DashboardBlocksItemCase14ConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase14ConfigDateRangeLookbackUnit = S.String;
 
 export interface DashboardBlocksItemCase14ConfigDateRange {
   predefined: DashboardBlocksItemCase14ConfigDateRangePredefined;
@@ -11801,7 +11736,7 @@ export const DashboardBlocksItemCase14ConfigDateRange = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DashboardBlocksItemCase14ConfigDateRange>;
 
 export type DashboardBlocksItemCase14ConfigShowAs = "total" | "per_unit";
-export const DashboardBlocksItemCase14ConfigShowAs = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase14ConfigShowAs = S.String;
 
 export type DashboardBlocksItemCase14ConfigDatasetColumnTypesValue =
   | "string"
@@ -11809,8 +11744,7 @@ export type DashboardBlocksItemCase14ConfigDatasetColumnTypesValue =
   | "date"
   | "boolean"
   | "other";
-export const DashboardBlocksItemCase14ConfigDatasetColumnTypesValue =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase14ConfigDatasetColumnTypesValue = S.String;
 
 export type DashboardBlocksItemCase14ConfigDatasetColumnTypesMap = {
   [key: string]:
@@ -11845,7 +11779,7 @@ export type DashboardBlocksItemCase14ConfigDatasetValuesItemRowFiltersItemOperat
   | "sql_expr"
   | "saved_filter";
 export const DashboardBlocksItemCase14ConfigDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DashboardBlocksItemCase14ConfigDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -11886,7 +11820,7 @@ export type DashboardBlocksItemCase14ConfigDatasetValuesItemValueType =
   | "count"
   | "sum";
 export const DashboardBlocksItemCase14ConfigDatasetValuesItemValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DashboardBlocksItemCase14ConfigDatasetValuesItem {
   name: string;
@@ -12012,7 +11946,7 @@ export type DashboardBlocksItemCase15ComparisonMode =
   | "previousYear"
   | "previousYearMatchDayOfWeek"
   | "custom";
-export const DashboardBlocksItemCase15ComparisonMode = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase15ComparisonMode = S.String;
 
 export type DashboardBlocksItemCase15ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -12025,7 +11959,7 @@ export type DashboardBlocksItemCase15ComparisonPreviousTimeFramePredefined =
   | "customLookback"
   | "customDateRange";
 export const DashboardBlocksItemCase15ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DashboardBlocksItemCase15ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -12033,7 +11967,7 @@ export type DashboardBlocksItemCase15ComparisonPreviousTimeFrameLookbackUnit =
   | "week"
   | "month";
 export const DashboardBlocksItemCase15ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DashboardBlocksItemCase15ComparisonPreviousTimeFrame {
   predefined: DashboardBlocksItemCase15ComparisonPreviousTimeFramePredefined;
@@ -12090,7 +12024,7 @@ export type DashboardBlocksItemCase15ConfigDimensionsItemCase0DateGranularity =
   | "month"
   | "year";
 export const DashboardBlocksItemCase15ConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DashboardBlocksItemCase15ConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -12159,7 +12093,7 @@ export type DashboardBlocksItemCase15ConfigDimensionsItemCase3SlicesItemFiltersI
   | "sql_expr"
   | "saved_filter";
 export const DashboardBlocksItemCase15ConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DashboardBlocksItemCase15ConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -12237,7 +12171,7 @@ export type DashboardBlocksItemCase15ConfigDimensionsItem =
   | DashboardBlocksItemCase15ConfigDimensionsItemCase2
   | DashboardBlocksItemCase15ConfigDimensionsItemCase3;
 export const DashboardBlocksItemCase15ConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DashboardBlocksItemCase15ConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<DashboardBlocksItemCase15ConfigDimensionsItem>;
 
 export type DashboardBlocksItemCase15ConfigDimensionsList =
   Array<DashboardBlocksItemCase15ConfigDimensionsItem>;
@@ -12256,7 +12190,7 @@ export type DashboardBlocksItemCase15ConfigChartType =
   | "horizontalBar"
   | "stackedHorizontalBar"
   | "bigNumber";
-export const DashboardBlocksItemCase15ConfigChartType = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase15ConfigChartType = S.String;
 
 export type DashboardBlocksItemCase15ConfigDateRangePredefined =
   | "today"
@@ -12268,16 +12202,14 @@ export type DashboardBlocksItemCase15ConfigDateRangePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const DashboardBlocksItemCase15ConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase15ConfigDateRangePredefined = S.String;
 
 export type DashboardBlocksItemCase15ConfigDateRangeLookbackUnit =
   | "hour"
   | "day"
   | "week"
   | "month";
-export const DashboardBlocksItemCase15ConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase15ConfigDateRangeLookbackUnit = S.String;
 
 export interface DashboardBlocksItemCase15ConfigDateRange {
   predefined: DashboardBlocksItemCase15ConfigDateRangePredefined;
@@ -12302,7 +12234,7 @@ export const DashboardBlocksItemCase15ConfigDateRange = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DashboardBlocksItemCase15ConfigDateRange>;
 
 export type DashboardBlocksItemCase15ConfigShowAs = "total" | "per_unit";
-export const DashboardBlocksItemCase15ConfigShowAs = /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase15ConfigShowAs = S.String;
 
 export type DashboardBlocksItemCase15ConfigDatasetStepsItemRowFiltersItemOperator =
   | "="
@@ -12326,7 +12258,7 @@ export type DashboardBlocksItemCase15ConfigDatasetStepsItemRowFiltersItemOperato
   | "sql_expr"
   | "saved_filter";
 export const DashboardBlocksItemCase15ConfigDatasetStepsItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DashboardBlocksItemCase15ConfigDatasetStepsItemRowFiltersItemValuesList =
   Array<string>;
@@ -12367,7 +12299,7 @@ export type DashboardBlocksItemCase15ConfigDatasetStepsItemConversionWindowUnit 
   | "hours"
   | "minutes";
 export const DashboardBlocksItemCase15ConfigDatasetStepsItemConversionWindowUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DashboardBlocksItemCase15ConfigDatasetStepsItemConversionWindow {
   unit: DashboardBlocksItemCase15ConfigDatasetStepsItemConversionWindowUnit;
@@ -12418,8 +12350,7 @@ export const DashboardBlocksItemCase15ConfigDatasetStepsList =
 export type DashboardBlocksItemCase15ConfigDatasetYAxisScale =
   | "count"
   | "percent";
-export const DashboardBlocksItemCase15ConfigDatasetYAxisScale =
-  /*@__PURE__*/ S.String;
+export const DashboardBlocksItemCase15ConfigDatasetYAxisScale = S.String;
 
 export interface DashboardBlocksItemCase15ConfigDataset {
   type: string;
@@ -12522,7 +12453,7 @@ export type DashboardBlocksItem =
   | DashboardBlocksItemCase14
   | DashboardBlocksItemCase15;
 export const DashboardBlocksItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DashboardBlocksItem>;
+  S.Unknown as any as S.Schema<DashboardBlocksItem>;
 
 export type DashboardBlocksList = Array<DashboardBlocksItem>;
 export const DashboardBlocksList = /*@__PURE__*/ S.Array(
@@ -12591,7 +12522,7 @@ export const CreateDashboardResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Where this dimension must be managed from. If not set (empty string), it can be managed from anywhere. */
 export type CreateDimensionRequestManagedBy = "" | "api";
-export const CreateDimensionRequestManagedBy = /*@__PURE__*/ S.String;
+export const CreateDimensionRequestManagedBy = S.String;
 
 export interface CreateDimensionRequest {
   /** Name of the dimension */
@@ -12625,7 +12556,7 @@ export const CreateDimensionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Where this dimension must be managed from. If not set (empty string), it can be managed from anywhere. */
 export type DimensionManagedBy = "" | "api" | "config";
-export const DimensionManagedBy = /*@__PURE__*/ S.String;
+export const DimensionManagedBy = S.String;
 
 export interface Dimension {
   id: string;
@@ -12737,7 +12668,7 @@ export const CreateEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateEnvironmentResponse>;
 
 export type CreateExperimentRequestType = "standard" | "multi-armed-bandit";
-export const CreateExperimentRequestType = /*@__PURE__*/ S.String;
+export const CreateExperimentRequestType = S.String;
 
 export type CreateExperimentRequestTagsList = Array<string>;
 export const CreateExperimentRequestTagsList = /*@__PURE__*/ S.Array(
@@ -12762,27 +12693,25 @@ export const CreateExperimentRequestGuardrailMetricsList =
   ) as any as S.Schema<CreateExperimentRequestGuardrailMetricsList>;
 
 export type CreateExperimentRequestStatus = "draft" | "running" | "stopped";
-export const CreateExperimentRequestStatus = /*@__PURE__*/ S.String;
+export const CreateExperimentRequestStatus = S.String;
 
 export type CreateExperimentRequestInProgressConversions = "loose" | "strict";
-export const CreateExperimentRequestInProgressConversions =
-  /*@__PURE__*/ S.String;
+export const CreateExperimentRequestInProgressConversions = S.String;
 
 /** Setting attribution model to `"experimentDuration"` is the same as selecting "Ignore Conversion Windows" for the Conversion Window Override. Setting it to `"lookbackOverride"` requires a `lookbackOverride` object to be provided. */
 export type CreateExperimentRequestAttributionModel =
   | "firstExposure"
   | "experimentDuration"
   | "lookbackOverride";
-export const CreateExperimentRequestAttributionModel = /*@__PURE__*/ S.String;
+export const CreateExperimentRequestAttributionModel = S.String;
 
 export type CreateExperimentRequestLookbackOverrideType = "date" | "window";
-export const CreateExperimentRequestLookbackOverrideType =
-  /*@__PURE__*/ S.String;
+export const CreateExperimentRequestLookbackOverrideType = S.String;
 
 /** For "window" type - non-negative numeric value (e.g. 7 for 7 days). For "date" type a date string. */
 export type CreateExperimentRequestLookbackOverrideValue = number | string;
 export const CreateExperimentRequestLookbackOverrideValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateExperimentRequestLookbackOverrideValue>;
+  S.Unknown as any as S.Schema<CreateExperimentRequestLookbackOverrideValue>;
 
 /** Used when type is "window". Defaults to "days". */
 export type CreateExperimentRequestLookbackOverrideValueUnit =
@@ -12790,8 +12719,7 @@ export type CreateExperimentRequestLookbackOverrideValueUnit =
   | "hours"
   | "days"
   | "weeks";
-export const CreateExperimentRequestLookbackOverrideValueUnit =
-  /*@__PURE__*/ S.String;
+export const CreateExperimentRequestLookbackOverrideValueUnit = S.String;
 
 /** Controls the lookback override for the experiment. For type "window", value must be a non-negative number and valueUnit is required. */
 export interface CreateExperimentRequestLookbackOverride {
@@ -12813,7 +12741,7 @@ export const CreateExperimentRequestLookbackOverride = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateExperimentRequestLookbackOverride>;
 
 export type CreateExperimentRequestStatsEngine = "bayesian" | "frequentist";
-export const CreateExperimentRequestStatsEngine = /*@__PURE__*/ S.String;
+export const CreateExperimentRequestStatsEngine = S.String;
 
 export interface CreateExperimentRequestVariationsItemScreenshotsItem {
   path: string;
@@ -12935,8 +12863,7 @@ export type CreateExperimentRequestPhasesItemSavedGroupsItemMatch =
   | "all"
   | "none"
   | "any";
-export const CreateExperimentRequestPhasesItemSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+export const CreateExperimentRequestPhasesItemSavedGroupsItemMatch = S.String;
 
 export type CreateExperimentRequestPhasesItemSavedGroupsItemIdsList =
   Array<string>;
@@ -12971,7 +12898,7 @@ export type CreateExperimentRequestPhasesItemSavedGroupTargetingItemMatchType =
   | "any"
   | "none";
 export const CreateExperimentRequestPhasesItemSavedGroupTargetingItemMatchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateExperimentRequestPhasesItemSavedGroupTargetingItemSavedGroupsList =
   Array<string>;
@@ -13085,19 +13012,18 @@ export const CreateExperimentRequestPhasesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateExperimentRequestPhasesList>;
 
 export type CreateExperimentRequestShareLevel = "public" | "organization";
-export const CreateExperimentRequestShareLevel = /*@__PURE__*/ S.String;
+export const CreateExperimentRequestShareLevel = S.String;
 
 export type CreateExperimentRequestBanditScheduleUnit = "days" | "hours";
-export const CreateExperimentRequestBanditScheduleUnit = /*@__PURE__*/ S.String;
+export const CreateExperimentRequestBanditScheduleUnit = S.String;
 
 export type CreateExperimentRequestBanditBurnInUnit = "days" | "hours";
-export const CreateExperimentRequestBanditBurnInUnit = /*@__PURE__*/ S.String;
+export const CreateExperimentRequestBanditBurnInUnit = S.String;
 
 export type CreateExperimentRequestBanditConversionWindowUnit =
   | "days"
   | "hours";
-export const CreateExperimentRequestBanditConversionWindowUnit =
-  /*@__PURE__*/ S.String;
+export const CreateExperimentRequestBanditConversionWindowUnit = S.String;
 
 export interface CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem {
   /** ID of the metric to override settings for. */
@@ -13144,8 +13070,7 @@ export type CreateExperimentRequestMetricOverridesItemWindowType =
   | "conversion"
   | "lookback"
   | "";
-export const CreateExperimentRequestMetricOverridesItemWindowType =
-  /*@__PURE__*/ S.String;
+export const CreateExperimentRequestMetricOverridesItemWindowType = S.String;
 
 /** Per-metric analysis overrides stored on the experiment (matches internal metricOverrides). */
 export interface CreateExperimentRequestMetricOverridesItem {
@@ -13261,7 +13186,7 @@ export type CreateExperimentRequestStatusUpdateScheduleStopAfterUnit =
   | "hours"
   | "days";
 export const CreateExperimentRequestStatusUpdateScheduleStopAfterUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Relative end offset. Deferred: resolved to a concrete `stopAt` at the experiment's actual start (or off `dateStarted` when already running). */
 export interface CreateExperimentRequestStatusUpdateScheduleStopAfter {
@@ -13285,11 +13210,11 @@ export type ScheduledStopPlanMode =
   | "auto-ship"
   | "force-ship"
   | "stop";
-export const ScheduledStopPlanMode = /*@__PURE__*/ S.String;
+export const ScheduledStopPlanMode = S.String;
 
 /** What to do at the scheduled end when there is no clear winner. Required when `mode` is `"auto-ship"`; ignored for other modes. */
 export type ScheduledStopPlanFallback = "notify" | "force-ship";
-export const ScheduledStopPlanFallback = /*@__PURE__*/ S.String;
+export const ScheduledStopPlanFallback = S.String;
 
 /** What happens at the scheduled end date. `notify` keeps the experiment running and just notifies (soft). `auto-ship` (requires the Decision Framework) ships the winning variation and stops; multi-winner ties break on `tiebreakerMetricId` (higher lift); with no clear winner, `fallback` either keeps running (`notify`) or ships `fallbackVariationId`. `force-ship` stops and rolls out `fallbackVariationId`. `stop` is a hard deadline that stops with no rollout. For `force-ship` and `stop`, the Decision Framework verdict (won/lost/inconclusive) is recorded as metadata when available. */
 export interface ScheduledStopPlan {
@@ -13495,7 +13420,7 @@ export const CreateExperimentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateExperimentRequest>;
 
 export type ExperimentType = "standard" | "multi-armed-bandit" | "holdout";
-export const ExperimentType = /*@__PURE__*/ S.String;
+export const ExperimentType = S.String;
 
 export type ExperimentTagsList = Array<string>;
 export const ExperimentTagsList = /*@__PURE__*/ S.Array(
@@ -13591,8 +13516,7 @@ export type ExperimentPhasesItemSavedGroupTargetingItemMatchType =
   | "all"
   | "any"
   | "none";
-export const ExperimentPhasesItemSavedGroupTargetingItemMatchType =
-  /*@__PURE__*/ S.String;
+export const ExperimentPhasesItemSavedGroupTargetingItemMatchType = S.String;
 
 export type ExperimentPhasesItemSavedGroupTargetingItemSavedGroupsList =
   Array<string>;
@@ -13663,28 +13587,26 @@ export const ExperimentPhasesList = /*@__PURE__*/ S.Array(
 export type ExperimentAnalysisSettingsInProgressConversions =
   | "include"
   | "exclude";
-export const ExperimentAnalysisSettingsInProgressConversions =
-  /*@__PURE__*/ S.String;
+export const ExperimentAnalysisSettingsInProgressConversions = S.String;
 
 /** Setting attribution model to `"experimentDuration"` is the same as selecting "Ignore Conversion Windows" for the Conversion Window Override. Setting it to `"lookbackOverride"` requires a `lookbackOverride` object to be provided. */
 export type ExperimentAnalysisSettingsAttributionModel =
   | "firstExposure"
   | "experimentDuration"
   | "lookbackOverride";
-export const ExperimentAnalysisSettingsAttributionModel =
-  /*@__PURE__*/ S.String;
+export const ExperimentAnalysisSettingsAttributionModel = S.String;
 
 export type LookbackOverrideType = "date" | "window";
-export const LookbackOverrideType = /*@__PURE__*/ S.String;
+export const LookbackOverrideType = S.String;
 
 /** For "window" type - non-negative numeric value (e.g. 7 for 7 days). For "date" type a date string. */
 export type LookbackOverrideValue = number | string;
 export const LookbackOverrideValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LookbackOverrideValue>;
+  S.Unknown as any as S.Schema<LookbackOverrideValue>;
 
 /** Used when type is "window". Defaults to "days". */
 export type LookbackOverrideValueUnit = "minutes" | "hours" | "days" | "weeks";
-export const LookbackOverrideValueUnit = /*@__PURE__*/ S.String;
+export const LookbackOverrideValueUnit = S.String;
 
 /** Controls the lookback override for the experiment. For type "window", value must be a non-negative number and valueUnit is required. */
 export interface LookbackOverride {
@@ -13705,7 +13627,7 @@ export const LookbackOverride = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LookbackOverride>;
 
 export type ExperimentAnalysisSettingsStatsEngine = "bayesian" | "frequentist";
-export const ExperimentAnalysisSettingsStatsEngine = /*@__PURE__*/ S.String;
+export const ExperimentAnalysisSettingsStatsEngine = S.String;
 
 export type ExperimentDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem =
   CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem;
@@ -13739,7 +13661,7 @@ export type ExperimentMetricOverrideEntryWindowType =
   | "conversion"
   | "lookback"
   | "";
-export const ExperimentMetricOverrideEntryWindowType = /*@__PURE__*/ S.String;
+export const ExperimentMetricOverrideEntryWindowType = S.String;
 
 /** Per-metric analysis overrides stored on the experiment (matches internal metricOverrides). */
 export interface ExperimentMetricOverrideEntry {
@@ -13785,7 +13707,7 @@ export const ExperimentAnalysisSettingsMetricOverridesList =
   ) as any as S.Schema<ExperimentAnalysisSettingsMetricOverridesList>;
 
 export type ExperimentMetricOverridesWindow = "conversion" | "lookback" | "";
-export const ExperimentMetricOverridesWindow = /*@__PURE__*/ S.String;
+export const ExperimentMetricOverridesWindow = S.String;
 
 export interface ExperimentMetricOverrides {
   delayHours?: number;
@@ -13921,16 +13843,16 @@ export const ExperimentResultSummary = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ExperimentResultSummary>;
 
 export type ExperimentShareLevel = "public" | "organization";
-export const ExperimentShareLevel = /*@__PURE__*/ S.String;
+export const ExperimentShareLevel = S.String;
 
 export type ExperimentBanditScheduleUnit = "days" | "hours";
-export const ExperimentBanditScheduleUnit = /*@__PURE__*/ S.String;
+export const ExperimentBanditScheduleUnit = S.String;
 
 export type ExperimentBanditBurnInUnit = "days" | "hours";
-export const ExperimentBanditBurnInUnit = /*@__PURE__*/ S.String;
+export const ExperimentBanditBurnInUnit = S.String;
 
 export type ExperimentBanditConversionWindowUnit = "days" | "hours";
-export const ExperimentBanditConversionWindowUnit = /*@__PURE__*/ S.String;
+export const ExperimentBanditConversionWindowUnit = S.String;
 
 export type ExperimentLinkedFeaturesList = Array<string>;
 export const ExperimentLinkedFeaturesList = /*@__PURE__*/ S.Array(
@@ -13994,8 +13916,7 @@ export const ExperimentPrecomputedUnitDimensionIdsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ExperimentPrecomputedUnitDimensionIdsList>;
 
 export type ExperimentStatusUpdateScheduleStopAfterUnit = "hours" | "days";
-export const ExperimentStatusUpdateScheduleStopAfterUnit =
-  /*@__PURE__*/ S.String;
+export const ExperimentStatusUpdateScheduleStopAfterUnit = S.String;
 
 /** Relative end offset. Deferred: resolved to a concrete `stopAt` at the experiment's actual start (or off `dateStarted` when already running). */
 export interface ExperimentStatusUpdateScheduleStopAfter {
@@ -14035,7 +13956,7 @@ export const ExperimentStatusUpdateSchedule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ExperimentStatusUpdateSchedule>;
 
 export type ExperimentNextScheduledStatusUpdateType = "start" | "stop";
-export const ExperimentNextScheduledStatusUpdateType = /*@__PURE__*/ S.String;
+export const ExperimentNextScheduledStatusUpdateType = S.String;
 
 export interface ExperimentNextScheduledStatusUpdate {
   type: ExperimentNextScheduledStatusUpdateType;
@@ -14198,7 +14119,7 @@ export type ExperimentWithEnhancedStatusType =
   | "standard"
   | "multi-armed-bandit"
   | "holdout";
-export const ExperimentWithEnhancedStatusType = /*@__PURE__*/ S.String;
+export const ExperimentWithEnhancedStatusType = S.String;
 
 export type ExperimentWithEnhancedStatusTagsList = Array<string>;
 export const ExperimentWithEnhancedStatusTagsList = /*@__PURE__*/ S.Array(
@@ -14310,7 +14231,7 @@ export type ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemMatchTy
   | "any"
   | "none";
 export const ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemMatchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ExperimentWithEnhancedStatusPhasesItemSavedGroupTargetingItemSavedGroupsList =
   Array<string>;
@@ -14389,21 +14310,18 @@ export const ExperimentWithEnhancedStatusResultSummary =
   ExperimentResultSummary;
 
 export type ExperimentWithEnhancedStatusShareLevel = "public" | "organization";
-export const ExperimentWithEnhancedStatusShareLevel = /*@__PURE__*/ S.String;
+export const ExperimentWithEnhancedStatusShareLevel = S.String;
 
 export type ExperimentWithEnhancedStatusBanditScheduleUnit = "days" | "hours";
-export const ExperimentWithEnhancedStatusBanditScheduleUnit =
-  /*@__PURE__*/ S.String;
+export const ExperimentWithEnhancedStatusBanditScheduleUnit = S.String;
 
 export type ExperimentWithEnhancedStatusBanditBurnInUnit = "days" | "hours";
-export const ExperimentWithEnhancedStatusBanditBurnInUnit =
-  /*@__PURE__*/ S.String;
+export const ExperimentWithEnhancedStatusBanditBurnInUnit = S.String;
 
 export type ExperimentWithEnhancedStatusBanditConversionWindowUnit =
   | "days"
   | "hours";
-export const ExperimentWithEnhancedStatusBanditConversionWindowUnit =
-  /*@__PURE__*/ S.String;
+export const ExperimentWithEnhancedStatusBanditConversionWindowUnit = S.String;
 
 export type ExperimentWithEnhancedStatusLinkedFeaturesList = Array<string>;
 export const ExperimentWithEnhancedStatusLinkedFeaturesList =
@@ -14480,7 +14398,7 @@ export type ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfterUnit =
   | "hours"
   | "days";
 export const ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfterUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Relative end offset. Deferred: resolved to a concrete `stopAt` at the experiment's actual start (or off `dateStarted` when already running). */
 export interface ExperimentWithEnhancedStatusStatusUpdateScheduleStopAfter {
@@ -14526,7 +14444,7 @@ export type ExperimentWithEnhancedStatusNextScheduledStatusUpdateType =
   | "start"
   | "stop";
 export const ExperimentWithEnhancedStatusNextScheduledStatusUpdateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ExperimentWithEnhancedStatusNextScheduledStatusUpdate {
   type: ExperimentWithEnhancedStatusNextScheduledStatusUpdateType;
@@ -14548,8 +14466,7 @@ export type ExperimentWithEnhancedStatusEnhancedStatusStatus =
   | "Draft"
   | "Scheduled"
   | "Archived";
-export const ExperimentWithEnhancedStatusEnhancedStatusStatus =
-  /*@__PURE__*/ S.String;
+export const ExperimentWithEnhancedStatusEnhancedStatusStatus = S.String;
 
 export interface ExperimentWithEnhancedStatusEnhancedStatus {
   status: ExperimentWithEnhancedStatusEnhancedStatusStatus;
@@ -14694,8 +14611,7 @@ export const CreateExperimentModifyTemporaryRolloutResponse =
 
 /** Set to "schedule" if you want this request to trigger notifications and other events as it if were a scheduled update. Defaults to manual. */
 export type CreateExperimentSnapshotRequestTriggeredBy = "manual" | "schedule";
-export const CreateExperimentSnapshotRequestTriggeredBy =
-  /*@__PURE__*/ S.String;
+export const CreateExperimentSnapshotRequestTriggeredBy = S.String;
 
 export interface CreateExperimentSnapshotRequest {
   /** The experiment id of the experiment to update */
@@ -14809,7 +14725,7 @@ export const CreateExperimentStartChecklistManualCompleteRequest =
   }) as any as S.Schema<CreateExperimentStartChecklistManualCompleteRequest>;
 
 export type ChecklistItemsStatus = "complete" | "incomplete";
-export const ChecklistItemsStatus = /*@__PURE__*/ S.String;
+export const ChecklistItemsStatus = S.String;
 
 export interface ChecklistItems {
   key: string;
@@ -14842,7 +14758,7 @@ export type CreateExperimentStartChecklistManualCompleteResponseStatus =
   | "ready"
   | "notReady";
 export const CreateExperimentStartChecklistManualCompleteResponseStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateExperimentStartChecklistManualCompleteResponse {
   checklistItems: CreateExperimentStartChecklistManualCompleteResponseChecklistItemsList;
@@ -14865,7 +14781,7 @@ export type CreateExperimentStopRequestResults =
   | "won"
   | "lost"
   | "inconclusive";
-export const CreateExperimentStopRequestResults = /*@__PURE__*/ S.String;
+export const CreateExperimentStopRequestResults = S.String;
 
 export interface CreateExperimentStopRequest {
   /** The id of the requested resource */
@@ -14922,7 +14838,7 @@ export const CreateExperimentTemplateRequestTemplateMetadata =
   BulkImportExperimentTemplatesRequestTemplatesItemDataTemplateMetadata;
 
 export type CreateExperimentTemplateRequestType = "standard";
-export const CreateExperimentTemplateRequestType = /*@__PURE__*/ S.String;
+export const CreateExperimentTemplateRequestType = S.String;
 
 export type CreateExperimentTemplateRequestTagsList = Array<string>;
 export const CreateExperimentTemplateRequestTagsList = /*@__PURE__*/ S.Array(
@@ -14959,15 +14875,14 @@ export const CreateExperimentTemplateRequestGuardrailMetricsList =
 export type CreateExperimentTemplateRequestStatsEngine =
   | "bayesian"
   | "frequentist";
-export const CreateExperimentTemplateRequestStatsEngine =
-  /*@__PURE__*/ S.String;
+export const CreateExperimentTemplateRequestStatsEngine = S.String;
 
 export type CreateExperimentTemplateRequestTargetingSavedGroupsItemMatch =
   | "all"
   | "none"
   | "any";
 export const CreateExperimentTemplateRequestTargetingSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateExperimentTemplateRequestTargetingSavedGroupsItemIdsList =
   Array<string>;
@@ -15148,7 +15063,7 @@ export const ExperimentTemplateTemplateMetadata =
   BulkImportExperimentTemplatesRequestTemplatesItemDataTemplateMetadata;
 
 export type ExperimentTemplateType = "standard";
-export const ExperimentTemplateType = /*@__PURE__*/ S.String;
+export const ExperimentTemplateType = S.String;
 
 export type ExperimentTemplateTagsList = Array<string>;
 export const ExperimentTemplateTagsList = /*@__PURE__*/ S.Array(
@@ -15179,14 +15094,13 @@ export const ExperimentTemplateGuardrailMetricsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ExperimentTemplateGuardrailMetricsList>;
 
 export type ExperimentTemplateStatsEngine = "bayesian" | "frequentist";
-export const ExperimentTemplateStatsEngine = /*@__PURE__*/ S.String;
+export const ExperimentTemplateStatsEngine = S.String;
 
 export type ExperimentTemplateTargetingSavedGroupsItemMatch =
   | "all"
   | "none"
   | "any";
-export const ExperimentTemplateTargetingSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+export const ExperimentTemplateTargetingSavedGroupsItemMatch = S.String;
 
 export type ExperimentTemplateTargetingSavedGroupsItemIdsList = Array<string>;
 export const ExperimentTemplateTargetingSavedGroupsItemIdsList =
@@ -15422,7 +15336,7 @@ export const CreateFactTableRequestColumnsList = /*@__PURE__*/ S.Array(
 
 /** Set this to "api" to disable editing in the GrowthBook UI */
 export type CreateFactTableRequestManagedBy = "" | "api" | "admin";
-export const CreateFactTableRequestManagedBy = /*@__PURE__*/ S.String;
+export const CreateFactTableRequestManagedBy = S.String;
 
 export interface CreateFactTableRequest {
   name: string;
@@ -15526,7 +15440,7 @@ export type FactTableColumnDatatype =
   | "binary"
   | "other"
   | "";
-export const FactTableColumnDatatype = /*@__PURE__*/ S.String;
+export const FactTableColumnDatatype = S.String;
 
 /** The warehouse-reported datatype. */
 export type FactTableColumnDataTypeFromWarehouse =
@@ -15538,7 +15452,7 @@ export type FactTableColumnDataTypeFromWarehouse =
   | "binary"
   | "other"
   | "";
-export const FactTableColumnDataTypeFromWarehouse = /*@__PURE__*/ S.String;
+export const FactTableColumnDataTypeFromWarehouse = S.String;
 
 export type FactTableColumnNumberFormat =
   | ""
@@ -15546,7 +15460,7 @@ export type FactTableColumnNumberFormat =
   | "time:seconds"
   | "memory:bytes"
   | "memory:kilobytes";
-export const FactTableColumnNumberFormat = /*@__PURE__*/ S.String;
+export const FactTableColumnNumberFormat = S.String;
 
 export type FactTableColumnJsonFieldsValueDatatype =
   | "number"
@@ -15557,7 +15471,7 @@ export type FactTableColumnJsonFieldsValueDatatype =
   | "binary"
   | "other"
   | "";
-export const FactTableColumnJsonFieldsValueDatatype = /*@__PURE__*/ S.String;
+export const FactTableColumnJsonFieldsValueDatatype = S.String;
 
 export interface FactTableColumnJsonFieldsValue {
   datatype?: FactTableColumnJsonFieldsValueDatatype;
@@ -15663,7 +15577,7 @@ export const FactTableColumnsList = /*@__PURE__*/ S.Array(
 
 /** Where this fact table must be managed from. If not set (empty string), it can be managed from anywhere. */
 export type FactTableManagedBy = "" | "api" | "admin";
-export const FactTableManagedBy = /*@__PURE__*/ S.String;
+export const FactTableManagedBy = S.String;
 
 export interface FactTable {
   id: string;
@@ -15736,7 +15650,7 @@ export const CreateFactTableResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Set this to "api" to disable editing in the GrowthBook UI. Before you do this, the Fact Table itself must also be marked as "api" */
 export type CreateFactTableFilterRequestManagedBy = "" | "api";
-export const CreateFactTableFilterRequestManagedBy = /*@__PURE__*/ S.String;
+export const CreateFactTableFilterRequestManagedBy = S.String;
 
 export interface CreateFactTableFilterRequest {
   /** Specify a specific fact table */
@@ -15769,7 +15683,7 @@ export const CreateFactTableFilterRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Where this fact table filter must be managed from. If not set (empty string), it can be managed from anywhere. */
 export type FactTableFilterManagedBy = "" | "api";
-export const FactTableFilterManagedBy = /*@__PURE__*/ S.String;
+export const FactTableFilterManagedBy = S.String;
 
 export interface FactTableFilter {
   id: string;
@@ -15812,8 +15726,7 @@ export type CreateFactTableVirtualColumnRequestNumberFormat =
   | "time:seconds"
   | "memory:bytes"
   | "memory:kilobytes";
-export const CreateFactTableVirtualColumnRequestNumberFormat =
-  /*@__PURE__*/ S.String;
+export const CreateFactTableVirtualColumnRequestNumberFormat = S.String;
 
 /** The data type of the computed column */
 export type CreateFactTableVirtualColumnRequestDatatype =
@@ -15824,8 +15737,7 @@ export type CreateFactTableVirtualColumnRequestDatatype =
   | "json"
   | "binary"
   | "other";
-export const CreateFactTableVirtualColumnRequestDatatype =
-  /*@__PURE__*/ S.String;
+export const CreateFactTableVirtualColumnRequestDatatype = S.String;
 
 export interface CreateFactTableVirtualColumnRequest {
   /** Specify a specific fact table */
@@ -15890,8 +15802,7 @@ export type CreateHoldoutRequestSavedGroupTargetingItemMatch =
   | "all"
   | "none"
   | "any";
-export const CreateHoldoutRequestSavedGroupTargetingItemMatch =
-  /*@__PURE__*/ S.String;
+export const CreateHoldoutRequestSavedGroupTargetingItemMatch = S.String;
 
 export type CreateHoldoutRequestSavedGroupTargetingItemIdsList = Array<string>;
 export const CreateHoldoutRequestSavedGroupTargetingItemIdsList =
@@ -15932,7 +15843,7 @@ export const CreateHoldoutRequestSecondaryMetricsList = /*@__PURE__*/ S.Array(
 
 /** Statistics engine used to analyze this Holdout. */
 export type CreateHoldoutRequestStatsEngine = "bayesian" | "frequentist";
-export const CreateHoldoutRequestStatsEngine = /*@__PURE__*/ S.String;
+export const CreateHoldoutRequestStatsEngine = S.String;
 
 export interface CreateHoldoutRequestEnvironmentsValue {
   /** Whether the Holdout is active in this environment. */
@@ -16042,10 +15953,10 @@ export const HoldoutTagsList = /*@__PURE__*/ S.Array(
 
 /** Lifecycle stage of the Holdout. Use the start, start-analysis, and stop endpoints to move through the lifecycle. */
 export type HoldoutStage = "draft" | "running" | "analysis-period" | "stopped";
-export const HoldoutStage = /*@__PURE__*/ S.String;
+export const HoldoutStage = S.String;
 
 export type HoldoutSavedGroupTargetingItemMatch = "all" | "none" | "any";
-export const HoldoutSavedGroupTargetingItemMatch = /*@__PURE__*/ S.String;
+export const HoldoutSavedGroupTargetingItemMatch = S.String;
 
 export type HoldoutSavedGroupTargetingItemIdsList = Array<string>;
 export const HoldoutSavedGroupTargetingItemIdsList = /*@__PURE__*/ S.Array(
@@ -16083,7 +15994,7 @@ export const HoldoutSecondaryMetricsList = /*@__PURE__*/ S.Array(
 
 /** Statistics engine used to analyze this Holdout. */
 export type HoldoutStatsEngine = "bayesian" | "frequentist";
-export const HoldoutStatsEngine = /*@__PURE__*/ S.String;
+export const HoldoutStatsEngine = S.String;
 
 export interface HoldoutVariationsItem {
   variationId: string;
@@ -16157,7 +16068,7 @@ export type HoldoutNextScheduledStatusUpdateType =
   | "start"
   | "startAnalysisPeriod"
   | "stop";
-export const HoldoutNextScheduledStatusUpdateType = /*@__PURE__*/ S.String;
+export const HoldoutNextScheduledStatusUpdateType = S.String;
 
 /** The next stage transition that will run automatically. */
 export interface HoldoutNextScheduledStatusUpdate {
@@ -16352,7 +16263,7 @@ export const LearningProjectsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<LearningProjectsList>;
 
 export type LearningSource = "ai" | "manual" | "api";
-export const LearningSource = /*@__PURE__*/ S.String;
+export const LearningSource = S.String;
 
 export interface Learning {
   id: string;
@@ -16503,11 +16414,11 @@ export const CreateMetricGroupResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateMetricGroupResponse>;
 
 export type CreateNamespaceRequestStatus = "active" | "inactive";
-export const CreateNamespaceRequestStatus = /*@__PURE__*/ S.String;
+export const CreateNamespaceRequestStatus = S.String;
 
 /** Namespace format. Defaults to 'multiRange', which supports multiple ranges per experiment and a configurable hash attribute. */
 export type CreateNamespaceRequestFormat = "legacy" | "multiRange";
-export const CreateNamespaceRequestFormat = /*@__PURE__*/ S.String;
+export const CreateNamespaceRequestFormat = S.String;
 
 export interface CreateNamespaceRequest {
   /** Human-readable display name. Must be unique within the organization. */
@@ -16532,11 +16443,11 @@ export const CreateNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateNamespaceRequest>;
 
 export type NamespaceStatus = "active" | "inactive";
-export const NamespaceStatus = /*@__PURE__*/ S.String;
+export const NamespaceStatus = S.String;
 
 /** Namespace format. 'multiRange' supports multiple ranges per experiment and a configurable hash attribute. */
 export type NamespaceFormat = "legacy" | "multiRange";
-export const NamespaceFormat = /*@__PURE__*/ S.String;
+export const NamespaceFormat = S.String;
 
 export interface Namespace {
   /** The unique internal identifier for the namespace (e.g. 'ns-abc123'). */
@@ -16746,7 +16657,7 @@ export type CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemMat
   | "none"
   | "any";
 export const CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -16899,7 +16810,7 @@ export type CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItemMatch =
   | "none"
   | "any";
 export const CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRampScheduleRequestStartActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -17017,7 +16928,7 @@ export type CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItemMatch =
   | "none"
   | "any";
 export const CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRampScheduleRequestEndActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -17143,29 +17054,27 @@ export const CreateRampScheduleRequestMonitoringConfigSignalMetricIdsList =
 export type CreateRampScheduleRequestMonitoringConfigMonitoringMode =
   | "auto"
   | "manual";
-export const CreateRampScheduleRequestMonitoringConfigMonitoringMode =
-  /*@__PURE__*/ S.String;
+export const CreateRampScheduleRequestMonitoringConfigMonitoringMode = S.String;
 
 export type CreateRampScheduleRequestMonitoringConfigSrmAction =
   | "warn"
   | "hold"
   | "rollback";
-export const CreateRampScheduleRequestMonitoringConfigSrmAction =
-  /*@__PURE__*/ S.String;
+export const CreateRampScheduleRequestMonitoringConfigSrmAction = S.String;
 
 export type CreateRampScheduleRequestMonitoringConfigNoTrafficAction =
   | "warn"
   | "hold"
   | "rollback";
 export const CreateRampScheduleRequestMonitoringConfigNoTrafficAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRampScheduleRequestMonitoringConfigMultipleExposureAction =
   | "warn"
   | "hold"
   | "rollback";
 export const CreateRampScheduleRequestMonitoringConfigMultipleExposureAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRampScheduleRequestMonitoringConfig {
   datasourceId: string;
@@ -17217,8 +17126,7 @@ export const CreateRampScheduleRequestMonitoringConfig =
   }) as any as S.Schema<CreateRampScheduleRequestMonitoringConfig>;
 
 export type CreateRampScheduleRequestLockdownConfigMode = "none" | "locked";
-export const CreateRampScheduleRequestLockdownConfigMode =
-  /*@__PURE__*/ S.String;
+export const CreateRampScheduleRequestLockdownConfigMode = S.String;
 
 export interface CreateRampScheduleRequestLockdownConfig {
   mode: CreateRampScheduleRequestLockdownConfigMode | (string & {});
@@ -17236,8 +17144,7 @@ export type CreateRampScheduleRequestExperimentHealthAction =
   | "rollback"
   | "hold"
   | "warn";
-export const CreateRampScheduleRequestExperimentHealthAction =
-  /*@__PURE__*/ S.String;
+export const CreateRampScheduleRequestExperimentHealthAction = S.String;
 
 export interface CreateRampScheduleRequest {
   name?: string;
@@ -17304,7 +17211,7 @@ export type CreateRampScheduleTemplateRequestStepsItemActionsItemPatchSavedGroup
   | "none"
   | "any";
 export const CreateRampScheduleTemplateRequestStepsItemActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRampScheduleTemplateRequestStepsItemActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -17452,7 +17359,7 @@ export type CreateRampScheduleTemplateRequestEndPatchSavedGroupsItemMatch =
   | "none"
   | "any";
 export const CreateRampScheduleTemplateRequestEndPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRampScheduleTemplateRequestEndPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -17549,28 +17456,28 @@ export type CreateRampScheduleTemplateRequestMonitoringConfigMonitoringMode =
   | "auto"
   | "manual";
 export const CreateRampScheduleTemplateRequestMonitoringConfigMonitoringMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRampScheduleTemplateRequestMonitoringConfigSrmAction =
   | "rollback"
   | "hold"
   | "warn";
 export const CreateRampScheduleTemplateRequestMonitoringConfigSrmAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRampScheduleTemplateRequestMonitoringConfigNoTrafficAction =
   | "rollback"
   | "hold"
   | "warn";
 export const CreateRampScheduleTemplateRequestMonitoringConfigNoTrafficAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRampScheduleTemplateRequestMonitoringConfigMultipleExposureAction =
   | "rollback"
   | "hold"
   | "warn";
 export const CreateRampScheduleTemplateRequestMonitoringConfigMultipleExposureAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRampScheduleTemplateRequestMonitoringConfig {
   datasourceId: string;
@@ -17627,8 +17534,7 @@ export const CreateRampScheduleTemplateRequestMonitoringConfig =
 export type CreateRampScheduleTemplateRequestLockdownConfigMode =
   | "none"
   | "locked";
-export const CreateRampScheduleTemplateRequestLockdownConfigMode =
-  /*@__PURE__*/ S.String;
+export const CreateRampScheduleTemplateRequestLockdownConfigMode = S.String;
 
 export interface CreateRampScheduleTemplateRequestLockdownConfig {
   mode: CreateRampScheduleTemplateRequestLockdownConfigMode | (string & {});
@@ -17680,7 +17586,7 @@ export type RampScheduleTemplateStepsItemActionsItemPatchSavedGroupsItemMatch =
   | "none"
   | "any";
 export const RampScheduleTemplateStepsItemActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RampScheduleTemplateStepsItemActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -17817,8 +17723,7 @@ export type RampScheduleTemplateEndPatchSavedGroupsItemMatch =
   | "all"
   | "none"
   | "any";
-export const RampScheduleTemplateEndPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+export const RampScheduleTemplateEndPatchSavedGroupsItemMatch = S.String;
 
 export type RampScheduleTemplateEndPatchSavedGroupsItemIdsList = Array<string>;
 export const RampScheduleTemplateEndPatchSavedGroupsItemIdsList =
@@ -17903,29 +17808,26 @@ export const RampScheduleTemplateMonitoringConfigSignalMetricIdsList =
 export type RampScheduleTemplateMonitoringConfigMonitoringMode =
   | "auto"
   | "manual";
-export const RampScheduleTemplateMonitoringConfigMonitoringMode =
-  /*@__PURE__*/ S.String;
+export const RampScheduleTemplateMonitoringConfigMonitoringMode = S.String;
 
 export type RampScheduleTemplateMonitoringConfigSrmAction =
   | "rollback"
   | "hold"
   | "warn";
-export const RampScheduleTemplateMonitoringConfigSrmAction =
-  /*@__PURE__*/ S.String;
+export const RampScheduleTemplateMonitoringConfigSrmAction = S.String;
 
 export type RampScheduleTemplateMonitoringConfigNoTrafficAction =
   | "rollback"
   | "hold"
   | "warn";
-export const RampScheduleTemplateMonitoringConfigNoTrafficAction =
-  /*@__PURE__*/ S.String;
+export const RampScheduleTemplateMonitoringConfigNoTrafficAction = S.String;
 
 export type RampScheduleTemplateMonitoringConfigMultipleExposureAction =
   | "rollback"
   | "hold"
   | "warn";
 export const RampScheduleTemplateMonitoringConfigMultipleExposureAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RampScheduleTemplateMonitoringConfig {
   datasourceId: string;
@@ -17970,7 +17872,7 @@ export const RampScheduleTemplateMonitoringConfig = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RampScheduleTemplateMonitoringConfig>;
 
 export type RampScheduleTemplateLockdownConfigMode = "none" | "locked";
-export const RampScheduleTemplateLockdownConfigMode = /*@__PURE__*/ S.String;
+export const RampScheduleTemplateLockdownConfigMode = S.String;
 
 export interface RampScheduleTemplateLockdownConfig {
   mode: RampScheduleTemplateLockdownConfigMode;
@@ -18099,7 +18001,7 @@ export type RevisionIdRefEntityType =
   | "saved-group"
   | "config"
   | "constant";
-export const RevisionIdRefEntityType = /*@__PURE__*/ S.String;
+export const RevisionIdRefEntityType = S.String;
 
 export interface RevisionIdRef {
   entityType: RevisionIdRefEntityType | (string & {});
@@ -18120,7 +18022,7 @@ export type CreateReleasePublishRevisionRequestRevisionsItem =
   | ConstantRevisionRef
   | RevisionIdRef;
 export const CreateReleasePublishRevisionRequestRevisionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateReleasePublishRevisionRequestRevisionsItem>;
+  S.Unknown as any as S.Schema<CreateReleasePublishRevisionRequestRevisionsItem>;
 
 /** The revisions to publish, at most one per entity. */
 export type CreateReleasePublishRevisionRequestRevisionsList =
@@ -18168,10 +18070,10 @@ export type ResultsEntityType =
   | "saved-group"
   | "config"
   | "constant";
-export const ResultsEntityType = /*@__PURE__*/ S.String;
+export const ResultsEntityType = S.String;
 
 export type ResultsStatus = "published" | "would-publish";
-export const ResultsStatus = /*@__PURE__*/ S.String;
+export const ResultsStatus = S.String;
 
 export interface Results {
   entityType: ResultsEntityType;
@@ -18199,10 +18101,10 @@ export const CreateReleasePublishRevisionResponseResultsList =
   ) as any as S.Schema<CreateReleasePublishRevisionResponseResultsList>;
 
 export type GatesEntityType = "feature" | "saved-group" | "config" | "constant";
-export const GatesEntityType = /*@__PURE__*/ S.String;
+export const GatesEntityType = S.String;
 
 export type GatesSeverity = "blocker" | "warning";
-export const GatesSeverity = /*@__PURE__*/ S.String;
+export const GatesSeverity = S.String;
 
 export type GatesMessagesList = Array<string>;
 export const GatesMessagesList = /*@__PURE__*/ S.Array(
@@ -18266,7 +18168,7 @@ export type CreateReleasePublishRevisionResponseBypassedGatesItemEntityType =
   | "config"
   | "constant";
 export const CreateReleasePublishRevisionResponseBypassedGatesItemEntityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateReleasePublishRevisionResponseBypassedGatesItem {
   entityType: CreateReleasePublishRevisionResponseBypassedGatesItemEntityType;
@@ -18331,7 +18233,7 @@ export const CreateReleasePublishRevisionResponse = /*@__PURE__*/ S.suspend(
 
 /** Stats engine override */
 export type CreateReportRequestStatsEngine = "bayesian" | "frequentist";
-export const CreateReportRequestStatsEngine = /*@__PURE__*/ S.String;
+export const CreateReportRequestStatsEngine = S.String;
 
 /** Goal metric IDs (defaults to experiment's goal metrics) */
 export type CreateReportRequestGoalMetricsList = Array<string>;
@@ -18356,14 +18258,14 @@ export type CreateReportRequestDifferenceType =
   | "relative"
   | "absolute"
   | "scaled";
-export const CreateReportRequestDifferenceType = /*@__PURE__*/ S.String;
+export const CreateReportRequestDifferenceType = S.String;
 
 /** Metric conversion window attribution model. Defaults to experiment setting. */
 export type CreateReportRequestAttributionModel =
   | "firstExposure"
   | "experimentDuration"
   | "lookbackOverride";
-export const CreateReportRequestAttributionModel = /*@__PURE__*/ S.String;
+export const CreateReportRequestAttributionModel = S.String;
 
 export interface CreateReportRequestLookbackOverrideCase0 {
   type: string;
@@ -18384,8 +18286,7 @@ export type CreateReportRequestLookbackOverrideCase1ValueUnit =
   | "hours"
   | "days"
   | "weeks";
-export const CreateReportRequestLookbackOverrideCase1ValueUnit =
-  /*@__PURE__*/ S.String;
+export const CreateReportRequestLookbackOverrideCase1ValueUnit = S.String;
 
 export interface CreateReportRequestLookbackOverrideCase1 {
   type: string;
@@ -18408,14 +18309,13 @@ export type CreateReportRequestLookbackOverride =
   | CreateReportRequestLookbackOverrideCase0
   | CreateReportRequestLookbackOverrideCase1;
 export const CreateReportRequestLookbackOverride =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateReportRequestLookbackOverride>;
+  S.Unknown as any as S.Schema<CreateReportRequestLookbackOverride>;
 
 export type CreateReportRequestMetricOverridesItemWindowType =
   | "conversion"
   | "lookback"
   | "";
-export const CreateReportRequestMetricOverridesItemWindowType =
-  /*@__PURE__*/ S.String;
+export const CreateReportRequestMetricOverridesItemWindowType = S.String;
 
 export interface CreateReportRequestMetricOverridesItem {
   id: string;
@@ -18512,7 +18412,7 @@ export type CreateReportRequestShareLevel =
   | "public"
   | "organization"
   | "private";
-export const CreateReportRequestShareLevel = /*@__PURE__*/ S.String;
+export const CreateReportRequestShareLevel = S.String;
 
 export interface CreateReportRequest {
   /** The experiment to create a report for */
@@ -18597,22 +18497,22 @@ export const CreateReportRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Report type. `experiment-snapshot` is the current shape and is what `POST /reports` always creates. `experiment` is a deprecated legacy shape that is read-only through this API; it cannot be created or refreshed and is preserved only for backward compatibility when reading reports created before the new shape existed. */
 export type ReportType = "experiment-snapshot" | "experiment";
-export const ReportType = /*@__PURE__*/ S.String;
+export const ReportType = S.String;
 
 /** UI lifecycle marker. Note: this does NOT control public shareability — see `shareLevel` for visibility controls. */
 export type ReportStatus = "published" | "private";
-export const ReportStatus = /*@__PURE__*/ S.String;
+export const ReportStatus = S.String;
 
 /** Visibility of the report. `private` (default) restricts access to the API caller and admins. `organization` makes it visible to all members of the organization in the GrowthBook UI. `public` additionally exposes it via a shareable URL (returned as `shareUrl`); anyone with the URL can view it without authentication. */
 export type ReportShareLevel = "public" | "organization" | "private";
-export const ReportShareLevel = /*@__PURE__*/ S.String;
+export const ReportShareLevel = S.String;
 
 /** Status of the latest snapshot (poll this after refresh) */
 export type ReportSnapshotStatus = "running" | "success" | "error";
-export const ReportSnapshotStatus = /*@__PURE__*/ S.String;
+export const ReportSnapshotStatus = S.String;
 
 export type ReportAnalysisSettingsStatsEngine = "bayesian" | "frequentist";
-export const ReportAnalysisSettingsStatsEngine = /*@__PURE__*/ S.String;
+export const ReportAnalysisSettingsStatsEngine = S.String;
 
 export type ReportAnalysisSettingsGoalMetricsList = Array<string>;
 export const ReportAnalysisSettingsGoalMetricsList = /*@__PURE__*/ S.Array(
@@ -18633,8 +18533,7 @@ export type ReportAnalysisSettingsMetricOverridesItemWindowType =
   | "conversion"
   | "lookback"
   | "";
-export const ReportAnalysisSettingsMetricOverridesItemWindowType =
-  /*@__PURE__*/ S.String;
+export const ReportAnalysisSettingsMetricOverridesItemWindowType = S.String;
 
 export interface ReportAnalysisSettingsMetricOverridesItem {
   id: string;
@@ -18734,14 +18633,14 @@ export type ReportAnalysisSettingsDifferenceType =
   | "relative"
   | "absolute"
   | "scaled";
-export const ReportAnalysisSettingsDifferenceType = /*@__PURE__*/ S.String;
+export const ReportAnalysisSettingsDifferenceType = S.String;
 
 /** Metric conversion window attribution model: `firstExposure`, `experimentDuration`, or `lookbackOverride` */
 export type ReportAnalysisSettingsAttributionModel =
   | "firstExposure"
   | "experimentDuration"
   | "lookbackOverride";
-export const ReportAnalysisSettingsAttributionModel = /*@__PURE__*/ S.String;
+export const ReportAnalysisSettingsAttributionModel = S.String;
 
 export type ReportAnalysisSettingsLookbackOverrideCase0 =
   CreateReportRequestLookbackOverrideCase0;
@@ -18753,8 +18652,7 @@ export type ReportAnalysisSettingsLookbackOverrideCase1ValueUnit =
   | "hours"
   | "days"
   | "weeks";
-export const ReportAnalysisSettingsLookbackOverrideCase1ValueUnit =
-  /*@__PURE__*/ S.String;
+export const ReportAnalysisSettingsLookbackOverrideCase1ValueUnit = S.String;
 
 export interface ReportAnalysisSettingsLookbackOverrideCase1 {
   type: string;
@@ -18777,7 +18675,7 @@ export type ReportAnalysisSettingsLookbackOverride =
   | CreateReportRequestLookbackOverrideCase0
   | ReportAnalysisSettingsLookbackOverrideCase1;
 export const ReportAnalysisSettingsLookbackOverride =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReportAnalysisSettingsLookbackOverride>;
+  S.Unknown as any as S.Schema<ReportAnalysisSettingsLookbackOverride>;
 
 export interface ReportAnalysisSettings {
   statsEngine?: ReportAnalysisSettingsStatsEngine;
@@ -18848,7 +18746,7 @@ export type ReportExperimentMetadataType =
   | "standard"
   | "multi-armed-bandit"
   | "holdout";
-export const ReportExperimentMetadataType = /*@__PURE__*/ S.String;
+export const ReportExperimentMetadataType = S.String;
 
 export interface ReportExperimentMetadataVariationsItem {
   id: string;
@@ -18952,7 +18850,7 @@ export type ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItemEng
   | "bayesian"
   | "frequentist";
 export const ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItemEngine =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItem {
   engine: ExperimentResultsResultsItemMetricsItemVariationsItemAnalysesItemEngine;
@@ -19189,7 +19087,7 @@ export const CreateReportRefreshResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of Saved Group (inferred from other arguments if missing) */
 export type CreateSavedGroupRequestType = "condition" | "list";
-export const CreateSavedGroupRequestType = /*@__PURE__*/ S.String;
+export const CreateSavedGroupRequestType = S.String;
 
 /** When type = 'list', this is the list of values for the attribute key */
 export type CreateSavedGroupRequestValuesList = Array<string>;
@@ -19274,7 +19172,7 @@ export type SavedGroupRevisionStatus =
   | "changes-requested"
   | "merged"
   | "discarded";
-export const SavedGroupRevisionStatus = /*@__PURE__*/ S.String;
+export const SavedGroupRevisionStatus = S.String;
 
 export type SavedGroupRevisionContributorsList = Array<string>;
 export const SavedGroupRevisionContributorsList = /*@__PURE__*/ S.Array(
@@ -19285,7 +19183,7 @@ export type SavedGroupRevisionReviewDecision =
   | "approve"
   | "request-changes"
   | "comment";
-export const SavedGroupRevisionReviewDecision = /*@__PURE__*/ S.String;
+export const SavedGroupRevisionReviewDecision = S.String;
 
 export interface SavedGroupRevisionReview {
   id: string;
@@ -19331,7 +19229,7 @@ export type SavedGroupRevisionActivityLogEntryAction =
   | "scheduled-publish-updated"
   | "scheduled-publish-canceled"
   | "merge-recovered";
-export const SavedGroupRevisionActivityLogEntryAction = /*@__PURE__*/ S.String;
+export const SavedGroupRevisionActivityLogEntryAction = S.String;
 
 export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItemCase0 =
   ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
@@ -19371,7 +19269,7 @@ export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItem =
   | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
   | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
 export const SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItem>;
+  S.Unknown as any as S.Schema<SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItem>;
 
 export type SavedGroupRevisionActivityLogEntryProposedChangesSnapshotList =
   Array<SavedGroupRevisionActivityLogEntryProposedChangesSnapshotItem>;
@@ -19412,7 +19310,7 @@ export const SavedGroupRevisionActivityLogList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SavedGroupRevisionActivityLogList>;
 
 export type SavedGroupRevisionResolutionAction = "merged" | "discarded";
-export const SavedGroupRevisionResolutionAction = /*@__PURE__*/ S.String;
+export const SavedGroupRevisionResolutionAction = S.String;
 
 export interface SavedGroupRevisionResolution {
   action: SavedGroupRevisionResolutionAction;
@@ -19467,7 +19365,7 @@ export type SavedGroupRevisionProposedChangesItem =
   | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase3
   | ConfigRevisionActivityLogEntryProposedChangesSnapshotItemCase0;
 export const SavedGroupRevisionProposedChangesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SavedGroupRevisionProposedChangesItem>;
+  S.Unknown as any as S.Schema<SavedGroupRevisionProposedChangesItem>;
 
 export type SavedGroupRevisionProposedChangesList =
   Array<SavedGroupRevisionProposedChangesItem>;
@@ -19699,7 +19597,7 @@ export type CreateSavedGroupRevisionRebaseRequestConflictResolutionsValue =
   | "discard"
   | "union";
 export const CreateSavedGroupRevisionRebaseRequestConflictResolutionsValue =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateSavedGroupRevisionRebaseRequestConflictResolutionsMap = {
   [key: string]:
@@ -19876,8 +19774,7 @@ export const CreateSavedGroupRevisionRequestReviewResponse =
 
 /** Whether to stage the revert as a draft or publish it immediately. Defaults to `draft`, or to `publish` when the org enables 'reverts bypass approval'. */
 export type CreateSavedGroupRevisionRevertRequestStrategy = "draft" | "publish";
-export const CreateSavedGroupRevisionRevertRequestStrategy =
-  /*@__PURE__*/ S.String;
+export const CreateSavedGroupRevisionRevertRequestStrategy = S.String;
 
 export interface CreateSavedGroupRevisionRevertRequest {
   savedGroupId: string;
@@ -19982,8 +19879,7 @@ export type CreateSavedGroupRevisionSubmitReviewRequestDecision =
   | "approve"
   | "request-changes"
   | "comment";
-export const CreateSavedGroupRevisionSubmitReviewRequestDecision =
-  /*@__PURE__*/ S.String;
+export const CreateSavedGroupRevisionSubmitReviewRequestDecision = S.String;
 
 export interface CreateSavedGroupRevisionSubmitReviewRequest {
   savedGroupId: string;
@@ -20233,11 +20129,11 @@ export const CreateSegmentRequestProjectsList = /*@__PURE__*/ S.Array(
 
 /** Where this Segment must be managed from. If not set (empty string), it can be managed from anywhere. */
 export type CreateSegmentRequestManagedBy = "" | "api";
-export const CreateSegmentRequestManagedBy = /*@__PURE__*/ S.String;
+export const CreateSegmentRequestManagedBy = S.String;
 
 /** GrowthBook supports two types of Segments, SQL and FACT. SQL segments are defined by a SQL query, and FACT segments are defined by a fact table and filters. */
 export type CreateSegmentRequestType = "SQL" | "FACT";
-export const CreateSegmentRequestType = /*@__PURE__*/ S.String;
+export const CreateSegmentRequestType = S.String;
 
 /** Optional array of fact table filter ids that can further define the Fact Table based Segment. */
 export type CreateSegmentRequestFiltersList = Array<string>;
@@ -20289,10 +20185,10 @@ export const CreateSegmentRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Where this segment must be managed from. If not set (empty string), it can be managed from anywhere. */
 export type SegmentManagedBy = "" | "api" | "config";
-export const SegmentManagedBy = /*@__PURE__*/ S.String;
+export const SegmentManagedBy = S.String;
 
 export type SegmentType = "SQL" | "FACT";
-export const SegmentType = /*@__PURE__*/ S.String;
+export const SegmentType = S.String;
 
 export type SegmentFiltersList = Array<string>;
 export const SegmentFiltersList = /*@__PURE__*/ S.Array(
@@ -20709,14 +20605,14 @@ export type DeleteConfigRevisionPropertyRequestSkipSchemaValidation =
   | string
   | boolean;
 export const DeleteConfigRevisionPropertyRequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DeleteConfigRevisionPropertyRequestSkipSchemaValidation>;
+  S.Unknown as any as S.Schema<DeleteConfigRevisionPropertyRequestSkipSchemaValidation>;
 
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type DeleteConfigRevisionPropertyRequestIgnoreWarnings =
   | string
   | boolean;
 export const DeleteConfigRevisionPropertyRequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DeleteConfigRevisionPropertyRequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<DeleteConfigRevisionPropertyRequestIgnoreWarnings>;
 
 export interface DeleteConfigRevisionPropertyRequest {
   key: string;
@@ -20790,7 +20686,7 @@ export type DeleteContextualBanditLinkedFeatureRequestAutoPublish =
   | string
   | boolean;
 export const DeleteContextualBanditLinkedFeatureRequestAutoPublish =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DeleteContextualBanditLinkedFeatureRequestAutoPublish>;
+  S.Unknown as any as S.Schema<DeleteContextualBanditLinkedFeatureRequestAutoPublish>;
 
 export interface DeleteContextualBanditLinkedFeatureRequest {
   /** The Contextual Bandit id */
@@ -21209,7 +21105,7 @@ export const DeleteFeatureRevisionRuleRampScheduleV2Request =
   }) as any as S.Schema<DeleteFeatureRevisionRuleRampScheduleV2Request>;
 
 export type EventUserType = "dashboard" | "api_key" | "system";
-export const EventUserType = /*@__PURE__*/ S.String;
+export const EventUserType = S.String;
 
 /** The user (or automated actor) responsible for an action */
 export interface EventUser {
@@ -21248,14 +21144,13 @@ export const FeatureRuleV2ScheduleRulesList = /*@__PURE__*/ S.Array(
 
 /** UI hint for which scheduling mode is active: - `none` – no schedule - `schedule` – simple time-based enable/disable via `scheduleRules` - `ramp` – multi-step ramp-up controlled by an associated RampSchedule document */
 export type FeatureRuleV2ScheduleType = "none" | "schedule" | "ramp";
-export const FeatureRuleV2ScheduleType = /*@__PURE__*/ S.String;
+export const FeatureRuleV2ScheduleType = S.String;
 
 export type FeatureRuleV2SavedGroupTargetingItemMatchType =
   | "all"
   | "any"
   | "none";
-export const FeatureRuleV2SavedGroupTargetingItemMatchType =
-  /*@__PURE__*/ S.String;
+export const FeatureRuleV2SavedGroupTargetingItemMatchType = S.String;
 
 export type FeatureRuleV2SavedGroupTargetingItemSavedGroupsList = Array<string>;
 export const FeatureRuleV2SavedGroupTargetingItemSavedGroupsList =
@@ -21355,7 +21250,7 @@ export type FeatureRuleV2Status =
   | "released"
   | "rolled-back"
   | "stopped";
-export const FeatureRuleV2Status = /*@__PURE__*/ S.String;
+export const FeatureRuleV2Status = S.String;
 
 /** The environment IDs this rule is active in. Populated when `allEnvironments` is false. */
 export type FeatureRuleV2EnvironmentsList = Array<string>;
@@ -21365,7 +21260,7 @@ export const FeatureRuleV2EnvironmentsList = /*@__PURE__*/ S.Array(
 
 /** Present on draft revisions only. "create" means a ramp schedule will be created for this rule on publish. "detach" means an existing live ramp schedule will be removed on publish. Use PUT/DELETE .../rules/{ruleId}/ramp-schedule to modify. */
 export type FeatureRuleV2PendingRamp = "create" | "detach";
-export const FeatureRuleV2PendingRamp = /*@__PURE__*/ S.String;
+export const FeatureRuleV2PendingRamp = S.String;
 
 export interface FeatureRuleV2 {
   description?: string;
@@ -21525,8 +21420,7 @@ export const FeatureRevisionV2MetadataTagsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FeatureRevisionV2MetadataTagsList>;
 
 export type FeatureRevisionV2MetadataJsonSchemaSchemaType = "schema" | "simple";
-export const FeatureRevisionV2MetadataJsonSchemaSchemaType =
-  /*@__PURE__*/ S.String;
+export const FeatureRevisionV2MetadataJsonSchemaSchemaType = S.String;
 
 export type FeatureRevisionV2MetadataJsonSchemaSimpleMap = {
   [key: string]: unknown | undefined;
@@ -21598,7 +21492,7 @@ export type FeatureRevisionV2RampActionsItemCase0StartActionsItemPatchSavedGroup
   | "none"
   | "any";
 export const FeatureRevisionV2RampActionsItemCase0StartActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type FeatureRevisionV2RampActionsItemCase0StartActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -21719,7 +21613,7 @@ export type FeatureRevisionV2RampActionsItemCase0StepsItemActionsItemPatchSavedG
   | "none"
   | "any";
 export const FeatureRevisionV2RampActionsItemCase0StepsItemActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type FeatureRevisionV2RampActionsItemCase0StepsItemActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -21875,7 +21769,7 @@ export type FeatureRevisionV2RampActionsItemCase0EndActionsItemPatchSavedGroupsI
   | "none"
   | "any";
 export const FeatureRevisionV2RampActionsItemCase0EndActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type FeatureRevisionV2RampActionsItemCase0EndActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -22009,28 +21903,28 @@ export type FeatureRevisionV2RampActionsItemCase0MonitoringConfigMonitoringMode 
   | "auto"
   | "manual";
 export const FeatureRevisionV2RampActionsItemCase0MonitoringConfigMonitoringMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type FeatureRevisionV2RampActionsItemCase0MonitoringConfigSrmAction =
   | "rollback"
   | "hold"
   | "warn";
 export const FeatureRevisionV2RampActionsItemCase0MonitoringConfigSrmAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type FeatureRevisionV2RampActionsItemCase0MonitoringConfigNoTrafficAction =
   | "rollback"
   | "hold"
   | "warn";
 export const FeatureRevisionV2RampActionsItemCase0MonitoringConfigNoTrafficAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type FeatureRevisionV2RampActionsItemCase0MonitoringConfigMultipleExposureAction =
   | "rollback"
   | "hold"
   | "warn";
 export const FeatureRevisionV2RampActionsItemCase0MonitoringConfigMultipleExposureAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface FeatureRevisionV2RampActionsItemCase0MonitoringConfig {
   datasourceId: string;
@@ -22079,8 +21973,7 @@ export const FeatureRevisionV2RampActionsItemCase0MonitoringConfig =
 export type FeatureRevisionV2RampActionsItemCase0LockdownConfigMode =
   | "none"
   | "locked";
-export const FeatureRevisionV2RampActionsItemCase0LockdownConfigMode =
-  /*@__PURE__*/ S.String;
+export const FeatureRevisionV2RampActionsItemCase0LockdownConfigMode = S.String;
 
 export interface FeatureRevisionV2RampActionsItemCase0LockdownConfig {
   mode: FeatureRevisionV2RampActionsItemCase0LockdownConfigMode;
@@ -22145,7 +22038,7 @@ export type FeatureRevisionV2RampActionsItemCase1StartActionsItemPatchSavedGroup
   | "none"
   | "any";
 export const FeatureRevisionV2RampActionsItemCase1StartActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type FeatureRevisionV2RampActionsItemCase1StartActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -22266,7 +22159,7 @@ export type FeatureRevisionV2RampActionsItemCase1StepsItemActionsItemPatchSavedG
   | "none"
   | "any";
 export const FeatureRevisionV2RampActionsItemCase1StepsItemActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type FeatureRevisionV2RampActionsItemCase1StepsItemActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -22422,7 +22315,7 @@ export type FeatureRevisionV2RampActionsItemCase1EndActionsItemPatchSavedGroupsI
   | "none"
   | "any";
 export const FeatureRevisionV2RampActionsItemCase1EndActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type FeatureRevisionV2RampActionsItemCase1EndActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -22556,28 +22449,28 @@ export type FeatureRevisionV2RampActionsItemCase1MonitoringConfigMonitoringMode 
   | "auto"
   | "manual";
 export const FeatureRevisionV2RampActionsItemCase1MonitoringConfigMonitoringMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type FeatureRevisionV2RampActionsItemCase1MonitoringConfigSrmAction =
   | "rollback"
   | "hold"
   | "warn";
 export const FeatureRevisionV2RampActionsItemCase1MonitoringConfigSrmAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type FeatureRevisionV2RampActionsItemCase1MonitoringConfigNoTrafficAction =
   | "rollback"
   | "hold"
   | "warn";
 export const FeatureRevisionV2RampActionsItemCase1MonitoringConfigNoTrafficAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type FeatureRevisionV2RampActionsItemCase1MonitoringConfigMultipleExposureAction =
   | "rollback"
   | "hold"
   | "warn";
 export const FeatureRevisionV2RampActionsItemCase1MonitoringConfigMultipleExposureAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface FeatureRevisionV2RampActionsItemCase1MonitoringConfig {
   datasourceId: string;
@@ -22626,8 +22519,7 @@ export const FeatureRevisionV2RampActionsItemCase1MonitoringConfig =
 export type FeatureRevisionV2RampActionsItemCase1LockdownConfigMode =
   | "none"
   | "locked";
-export const FeatureRevisionV2RampActionsItemCase1LockdownConfigMode =
-  /*@__PURE__*/ S.String;
+export const FeatureRevisionV2RampActionsItemCase1LockdownConfigMode = S.String;
 
 export interface FeatureRevisionV2RampActionsItemCase1LockdownConfig {
   mode: FeatureRevisionV2RampActionsItemCase1LockdownConfigMode;
@@ -22712,7 +22604,7 @@ export type FeatureRevisionV2RampActionsItem =
   | FeatureRevisionV2RampActionsItemCase1
   | FeatureRevisionV2RampActionsItemCase2;
 export const FeatureRevisionV2RampActionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeatureRevisionV2RampActionsItem>;
+  S.Unknown as any as S.Schema<FeatureRevisionV2RampActionsItem>;
 
 /** Pending ramp schedule actions that will be applied when this draft is published */
 export type FeatureRevisionV2RampActionsList =
@@ -22726,7 +22618,7 @@ export type FeatureRevisionV2ReviewsItemStatus =
   | "changes-requested"
   | "approved-stale"
   | "changes-requested-stale";
-export const FeatureRevisionV2ReviewsItemStatus = /*@__PURE__*/ S.String;
+export const FeatureRevisionV2ReviewsItemStatus = S.String;
 
 export interface FeatureRevisionV2ReviewsItem {
   /** Stable reviewer identifier: the user ID for dashboard users, or the API key ID for service accounts */
@@ -23290,7 +23182,7 @@ export type EjectTargetRampScheduleResponseBody =
   | EjectTargetRampScheduleResponseBodyCase0
   | EjectTargetRampScheduleResponseBodyCase1;
 export const EjectTargetRampScheduleResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EjectTargetRampScheduleResponseBody>;
+  S.Unknown as any as S.Schema<EjectTargetRampScheduleResponseBody>;
 
 export type EjectTargetRampScheduleResponse =
   EjectTargetRampScheduleResponseBody;
@@ -23324,12 +23216,12 @@ export type AggregatedFactTableStatus =
   | "error"
   | "pending"
   | "active";
-export const AggregatedFactTableStatus = /*@__PURE__*/ S.String;
+export const AggregatedFactTableStatus = S.String;
 
 export type AggregatedFactTablePendingRestateReason =
   | "incomplete-write"
   | "schema-drift";
-export const AggregatedFactTablePendingRestateReason = /*@__PURE__*/ S.String;
+export const AggregatedFactTablePendingRestateReason = S.String;
 
 export interface AggregatedFactTable {
   /** The id type this aggregated table is keyed by */
@@ -23415,7 +23307,7 @@ export const GetAggregatedTableRunRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether this run appended new data or rebuilt the table */
 export type AggregatedTableRunMode = "incremental" | "restate";
-export const AggregatedTableRunMode = /*@__PURE__*/ S.String;
+export const AggregatedTableRunMode = S.String;
 
 /** Overall run status derived from its warehouse queries */
 export type AggregatedTableRunStatus =
@@ -23424,7 +23316,7 @@ export type AggregatedTableRunStatus =
   | "failed"
   | "partially-succeeded"
   | "succeeded";
-export const AggregatedTableRunStatus = /*@__PURE__*/ S.String;
+export const AggregatedTableRunStatus = S.String;
 
 /** Warehouse query ids for this run; poll each via GET /queries/{id} for per-query status */
 export type AggregatedTableRunQueryIdsList = Array<string>;
@@ -23538,7 +23430,7 @@ export const GetCodeRefsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Source control platform */
 export type CodeRefPlatform = "github" | "gitlab" | "bitbucket";
-export const CodeRefPlatform = /*@__PURE__*/ S.String;
+export const CodeRefPlatform = S.String;
 
 export interface CodeRefRefsItem {
   /** Path to the file containing the reference */
@@ -23652,14 +23544,14 @@ export const GetConfigKeyUsageResponseFamilyKeysList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetConfigKeyUsageResponseFamilyKeysList>;
 
 export type ImplementationsLocation = "defaultValue" | "rule";
-export const ImplementationsLocation = /*@__PURE__*/ S.String;
+export const ImplementationsLocation = S.String;
 
 export type ImplementationsRelation =
   | "self"
   | "ancestor"
   | "descendant"
   | "other";
-export const ImplementationsRelation = /*@__PURE__*/ S.String;
+export const ImplementationsRelation = S.String;
 
 export type ImplementationsKeysList = Array<string>;
 export const ImplementationsKeysList = /*@__PURE__*/ S.Array(
@@ -23667,7 +23559,7 @@ export const ImplementationsKeysList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ImplementationsKeysList>;
 
 export type ImplementationsState = "live" | "draft";
-export const ImplementationsState = /*@__PURE__*/ S.String;
+export const ImplementationsState = S.String;
 
 export interface Implementations {
   featureId: string;
@@ -23941,7 +23833,7 @@ export const GetConfigRevisionResponse = /*@__PURE__*/ S.suspend(() =>
 /** If true, return only the most recent active draft authored by the calling user. Requires a user-scoped API key. */
 export type GetConfigRevisionLatestRequestMine = string | boolean;
 export const GetConfigRevisionLatestRequestMine =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigRevisionLatestRequestMine>;
+  S.Unknown as any as S.Schema<GetConfigRevisionLatestRequestMine>;
 
 export interface GetConfigRevisionLatestRequest {
   key: string;
@@ -24039,12 +23931,12 @@ export const GetConfigRevisionMergeStatusResponse = /*@__PURE__*/ S.suspend(
 /** If true, return all matching items and ignore limit/offset. Self-hosted only. Has no effect unless API_ALLOW_SKIP_PAGINATION is set to true or 1. */
 export type GetConfigRevisionsRequestSkipPagination = string | boolean;
 export const GetConfigRevisionsRequestSkipPagination =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigRevisionsRequestSkipPagination>;
+  S.Unknown as any as S.Schema<GetConfigRevisionsRequestSkipPagination>;
 
 /** If true, return only revisions authored by the calling user. Requires a user-scoped API key. Mutually exclusive with `author`. */
 export type GetConfigRevisionsRequestMine = string | boolean;
 export const GetConfigRevisionsRequestMine =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigRevisionsRequestMine>;
+  S.Unknown as any as S.Schema<GetConfigRevisionsRequestMine>;
 
 export interface GetConfigRevisionsRequest {
   key: string;
@@ -24114,12 +24006,12 @@ export type GetConfigSchemaRequestFormat =
   | "python"
   | "go"
   | "rust";
-export const GetConfigSchemaRequestFormat = /*@__PURE__*/ S.String;
+export const GetConfigSchemaRequestFormat = S.String;
 
 /** When true, includes fields inherited across the lineage (the family's accumulated schema). When false (default), returns only this config's own fields. */
 export type GetConfigSchemaRequestEffective = string | boolean;
 export const GetConfigSchemaRequestEffective =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConfigSchemaRequestEffective>;
+  S.Unknown as any as S.Schema<GetConfigSchemaRequestEffective>;
 
 export interface GetConfigSchemaRequest {
   /** The key of the config */
@@ -24276,7 +24168,7 @@ export const GetConstantRevisionResponse = /*@__PURE__*/ S.suspend(() =>
 /** If true, return only the most recent active draft authored by the calling user. Requires a user-scoped API key. */
 export type GetConstantRevisionLatestRequestMine = string | boolean;
 export const GetConstantRevisionLatestRequestMine =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConstantRevisionLatestRequestMine>;
+  S.Unknown as any as S.Schema<GetConstantRevisionLatestRequestMine>;
 
 export interface GetConstantRevisionLatestRequest {
   key: string;
@@ -24362,12 +24254,12 @@ export const GetConstantRevisionMergeStatusResponse = /*@__PURE__*/ S.suspend(
 /** If true, return all matching items and ignore limit/offset. Self-hosted only. Has no effect unless API_ALLOW_SKIP_PAGINATION is set to true or 1. */
 export type GetConstantRevisionsRequestSkipPagination = string | boolean;
 export const GetConstantRevisionsRequestSkipPagination =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConstantRevisionsRequestSkipPagination>;
+  S.Unknown as any as S.Schema<GetConstantRevisionsRequestSkipPagination>;
 
 /** If true, return only revisions authored by the calling user. Requires a user-scoped API key. Mutually exclusive with `author`. */
 export type GetConstantRevisionsRequestMine = string | boolean;
 export const GetConstantRevisionsRequestMine =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConstantRevisionsRequestMine>;
+  S.Unknown as any as S.Schema<GetConstantRevisionsRequestMine>;
 
 export interface GetConstantRevisionsRequest {
   key: string;
@@ -24855,7 +24747,7 @@ export type GetContextualBanditResultsResponseResultsLeavesItemClausesItemOperat
   | "in"
   | "not in";
 export const GetContextualBanditResultsResponseResultsLeavesItemClausesItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetContextualBanditResultsResponseResultsLeavesItemClausesItem {
   attribute: string;
@@ -25027,8 +24919,7 @@ export type GetContextualBanditResultsResponseLatestStatus =
   | "running"
   | "success"
   | "error";
-export const GetContextualBanditResultsResponseLatestStatus =
-  /*@__PURE__*/ S.String;
+export const GetContextualBanditResultsResponseLatestStatus = S.String;
 
 export type GetContextualBanditResultsResponseLatestQueriesList =
   Array<unknown>;
@@ -25131,7 +25022,7 @@ export type SnapshotsStatus =
   | "success"
   | "error"
   | "partial";
-export const SnapshotsStatus = /*@__PURE__*/ S.String;
+export const SnapshotsStatus = S.String;
 
 export interface Snapshots {
   id: string;
@@ -25587,7 +25478,7 @@ export const GetExperimentStartChecklistResponseChecklistItemsList =
   ) as any as S.Schema<GetExperimentStartChecklistResponseChecklistItemsList>;
 
 export type GetExperimentStartChecklistResponseStatus = "ready" | "notReady";
-export const GetExperimentStartChecklistResponseStatus = /*@__PURE__*/ S.String;
+export const GetExperimentStartChecklistResponseStatus = S.String;
 
 export interface GetExperimentStartChecklistResponse {
   checklistItems: GetExperimentStartChecklistResponseChecklistItemsList;
@@ -25656,7 +25547,7 @@ export type FactMetricMetricType =
   | "ratio"
   | "dailyParticipation"
   | "funnel";
-export const FactMetricMetricType = /*@__PURE__*/ S.String;
+export const FactMetricMetricType = S.String;
 
 export type FactMetricNumeratorAggregation =
   | "sum"
@@ -25664,7 +25555,7 @@ export type FactMetricNumeratorAggregation =
   | "count distinct"
   | "hll merge"
   | "kll merge";
-export const FactMetricNumeratorAggregation = /*@__PURE__*/ S.String;
+export const FactMetricNumeratorAggregation = S.String;
 
 /** Array of Fact Table Filter Ids. Deprecated, use rowFilters instead. */
 export type FactMetricNumeratorFiltersList = Array<string>;
@@ -25707,7 +25598,7 @@ export type FactMetricNumeratorRowFiltersItemOperator =
   | "ends_with"
   | "sql_expr"
   | "saved_filter";
-export const FactMetricNumeratorRowFiltersItemOperator = /*@__PURE__*/ S.String;
+export const FactMetricNumeratorRowFiltersItemOperator = S.String;
 
 /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
 export type FactMetricNumeratorRowFiltersItemValuesList = Array<string>;
@@ -25812,8 +25703,7 @@ export type FactMetricDenominatorRowFiltersItemOperator =
   | "ends_with"
   | "sql_expr"
   | "saved_filter";
-export const FactMetricDenominatorRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+export const FactMetricDenominatorRowFiltersItemOperator = S.String;
 
 /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
 export type FactMetricDenominatorRowFiltersItemValuesList = Array<string>;
@@ -25870,7 +25760,7 @@ export const FactMetricDenominator = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the quantile is over unit aggregations or raw event values */
 export type FactMetricQuantileSettingsType = "event" | "unit";
-export const FactMetricQuantileSettingsType = /*@__PURE__*/ S.String;
+export const FactMetricQuantileSettingsType = S.String;
 
 /** Controls the settings for quantile metrics (mandatory if metricType is "quantile") */
 export interface FactMetricQuantileSettings {
@@ -25915,8 +25805,7 @@ export type FactMetricFunnelSettingsStepsItemRowFiltersItemOperator =
   | "ends_with"
   | "sql_expr"
   | "saved_filter";
-export const FactMetricFunnelSettingsStepsItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+export const FactMetricFunnelSettingsStepsItemRowFiltersItemOperator = S.String;
 
 /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
 export type FactMetricFunnelSettingsStepsItemRowFiltersItemValuesList =
@@ -25959,8 +25848,7 @@ export type FactMetricFunnelSettingsStepsItemConversionWindowUnit =
   | "days"
   | "hours"
   | "minutes";
-export const FactMetricFunnelSettingsStepsItemConversionWindowUnit =
-  /*@__PURE__*/ S.String;
+export const FactMetricFunnelSettingsStepsItemConversionWindowUnit = S.String;
 
 /** Bounds how long after the nearest prior required step (or exposure, for the first step / after only-optional priors of an experiment funnel metric) this step's event can occur. */
 export interface FactMetricFunnelSettingsStepsItemConversionWindow {
@@ -26014,7 +25902,7 @@ export type FactMetricFunnelSettingsOrdering =
   | "sequential"
   | "strict"
   | "unordered";
-export const FactMetricFunnelSettingsOrdering = /*@__PURE__*/ S.String;
+export const FactMetricFunnelSettingsOrdering = S.String;
 
 /** Funnel metric settings (required when metricType is "funnel") */
 export interface FactMetricFunnelSettings {
@@ -26036,7 +25924,7 @@ export const FactMetricFunnelSettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FactMetricFunnelSettings>;
 
 export type FactMetricCappingSettingsType = "none" | "absolute" | "percentile";
-export const FactMetricCappingSettingsType = /*@__PURE__*/ S.String;
+export const FactMetricCappingSettingsType = S.String;
 
 /** Controls how outliers are handled */
 export interface FactMetricCappingSettings {
@@ -26057,21 +25945,21 @@ export const FactMetricCappingSettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FactMetricCappingSettings>;
 
 export type FactMetricWindowSettingsType = "none" | "conversion" | "lookback";
-export const FactMetricWindowSettingsType = /*@__PURE__*/ S.String;
+export const FactMetricWindowSettingsType = S.String;
 
 export type FactMetricWindowSettingsDelayUnit =
   | "minutes"
   | "hours"
   | "days"
   | "weeks";
-export const FactMetricWindowSettingsDelayUnit = /*@__PURE__*/ S.String;
+export const FactMetricWindowSettingsDelayUnit = S.String;
 
 export type FactMetricWindowSettingsWindowUnit =
   | "minutes"
   | "hours"
   | "days"
   | "weeks";
-export const FactMetricWindowSettingsWindowUnit = /*@__PURE__*/ S.String;
+export const FactMetricWindowSettingsWindowUnit = S.String;
 
 /** Controls the conversion window for the metric */
 export interface FactMetricWindowSettings {
@@ -26122,7 +26010,7 @@ export const FactMetricRegressionAdjustmentSettings = /*@__PURE__*/ S.suspend(
 
 /** Where this fact metric must be managed from. If not set (empty string), it can be managed from anywhere. */
 export type FactMetricManagedBy = "" | "api" | "admin";
-export const FactMetricManagedBy = /*@__PURE__*/ S.String;
+export const FactMetricManagedBy = S.String;
 
 /** Array of slice column names that will be automatically included in metric analysis. This is an enterprise feature. */
 export type FactMetricMetricAutoSlicesList = Array<string>;
@@ -26310,12 +26198,12 @@ export const GetFeatureKeysV2Response = /*@__PURE__*/ S.suspend(() =>
 
 /** `minimal` (default) returns only what changed, with id-keyed arrays bucketed into added/removed/modified items. `full` returns the complete before/after content of the revision. */
 export type GetFeatureRevisionDiffV2RequestFormat = "minimal" | "full";
-export const GetFeatureRevisionDiffV2RequestFormat = /*@__PURE__*/ S.String;
+export const GetFeatureRevisionDiffV2RequestFormat = S.String;
 
 /** Compare against: `baseVersion` (default — the revision's own `baseVersion`, matches the in-app review view), `live` (the currently-live revision), or an integer version (an arbitrary historical revision). */
 export type GetFeatureRevisionDiffV2RequestBase = string | number;
 export const GetFeatureRevisionDiffV2RequestBase =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetFeatureRevisionDiffV2RequestBase>;
+  S.Unknown as any as S.Schema<GetFeatureRevisionDiffV2RequestBase>;
 
 export interface GetFeatureRevisionDiffV2Request {
   id: string;
@@ -26347,7 +26235,7 @@ export type GetFeatureRevisionDiffV2ResponseBodyCase0DiffChangesItemChange =
   | "removed"
   | "modified";
 export const GetFeatureRevisionDiffV2ResponseBodyCase0DiffChangesItemChange =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetFeatureRevisionDiffV2ResponseBodyCase0DiffChangesItem {
   field: string;
@@ -26375,7 +26263,7 @@ export type GetFeatureRevisionDiffV2ResponseBodyCase0DiffSupplementalItemChange 
   | "removed"
   | "modified";
 export const GetFeatureRevisionDiffV2ResponseBodyCase0DiffSupplementalItemChange =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetFeatureRevisionDiffV2ResponseBodyCase0DiffSupplementalItem {
   name: string;
@@ -26528,7 +26416,7 @@ export type GetFeatureRevisionDiffV2ResponseBody =
   | GetFeatureRevisionDiffV2ResponseBodyCase0
   | GetFeatureRevisionDiffV2ResponseBodyCase1;
 export const GetFeatureRevisionDiffV2ResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetFeatureRevisionDiffV2ResponseBody>;
+  S.Unknown as any as S.Schema<GetFeatureRevisionDiffV2ResponseBody>;
 
 export type GetFeatureRevisionDiffV2Response =
   GetFeatureRevisionDiffV2ResponseBody;
@@ -26541,7 +26429,7 @@ export const GetFeatureRevisionDiffV2Response = /*@__PURE__*/ S.suspend(() =>
 /** If true, return only the most recent active draft authored by or contributed to by the calling user. */
 export type GetFeatureRevisionLatestV2RequestMine = string | boolean;
 export const GetFeatureRevisionLatestV2RequestMine =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetFeatureRevisionLatestV2RequestMine>;
+  S.Unknown as any as S.Schema<GetFeatureRevisionLatestV2RequestMine>;
 
 export type GetFeatureRevisionLatestV2RequestStatusCase1List = Array<string>;
 export const GetFeatureRevisionLatestV2RequestStatusCase1List =
@@ -26554,7 +26442,7 @@ export type GetFeatureRevisionLatestV2RequestStatus =
   | string
   | GetFeatureRevisionLatestV2RequestStatusCase1List;
 export const GetFeatureRevisionLatestV2RequestStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetFeatureRevisionLatestV2RequestStatus>;
+  S.Unknown as any as S.Schema<GetFeatureRevisionLatestV2RequestStatus>;
 
 export interface GetFeatureRevisionLatestV2Request {
   id: string;
@@ -26613,7 +26501,7 @@ export const GetFeatureRevisionLogV2Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFeatureRevisionLogV2Request>;
 
 export type LogUserType = "dashboard" | "api_key" | "system";
-export const LogUserType = /*@__PURE__*/ S.String;
+export const LogUserType = S.String;
 
 export interface LogUser {
   type: LogUserType;
@@ -26829,7 +26717,7 @@ export const GetFeatureRevisionMergeStatusV2Response = /*@__PURE__*/ S.suspend(
 /** If true, return all matching items and ignore limit/offset. Self-hosted only. Has no effect unless API_ALLOW_SKIP_PAGINATION is set to true or 1. */
 export type GetFeatureRevisionsV2RequestSkipPagination = string | boolean;
 export const GetFeatureRevisionsV2RequestSkipPagination =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetFeatureRevisionsV2RequestSkipPagination>;
+  S.Unknown as any as S.Schema<GetFeatureRevisionsV2RequestSkipPagination>;
 
 export type GetFeatureRevisionsV2RequestStatusCase1List = Array<string>;
 export const GetFeatureRevisionsV2RequestStatusCase1List =
@@ -26842,12 +26730,12 @@ export type GetFeatureRevisionsV2RequestStatus =
   | string
   | GetFeatureRevisionsV2RequestStatusCase1List;
 export const GetFeatureRevisionsV2RequestStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetFeatureRevisionsV2RequestStatus>;
+  S.Unknown as any as S.Schema<GetFeatureRevisionsV2RequestStatus>;
 
 /** If true, return only revisions authored by or contributed to by the calling user. Requires a user-scoped API key. Mutually exclusive with `author`. */
 export type GetFeatureRevisionsV2RequestMine = string | boolean;
 export const GetFeatureRevisionsV2RequestMine =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetFeatureRevisionsV2RequestMine>;
+  S.Unknown as any as S.Schema<GetFeatureRevisionsV2RequestMine>;
 
 export interface GetFeatureRevisionsV2Request {
   /** The id of the requested resource */
@@ -26964,8 +26852,7 @@ export type GetFeatureStaleV2ResponseFeaturesValueStaleReason =
   | "toggled-off"
   | "active-experiment"
   | "has-rules";
-export const GetFeatureStaleV2ResponseFeaturesValueStaleReason =
-  /*@__PURE__*/ S.String;
+export const GetFeatureStaleV2ResponseFeaturesValueStaleReason = S.String;
 
 export type GetFeatureStaleV2ResponseFeaturesValueStaleByEnvValueReason =
   | "no-rules"
@@ -26978,7 +26865,7 @@ export type GetFeatureStaleV2ResponseFeaturesValueStaleByEnvValueReason =
   | "active-draft"
   | "has-dependents";
 export const GetFeatureStaleV2ResponseFeaturesValueStaleByEnvValueReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetFeatureStaleV2ResponseFeaturesValueStaleByEnvValue {
   isStale: boolean;
@@ -27058,7 +26945,7 @@ export type GetFeatureV2RequestWithRevisions =
   | "drafts"
   | "published"
   | "none";
-export const GetFeatureV2RequestWithRevisions = /*@__PURE__*/ S.String;
+export const GetFeatureV2RequestWithRevisions = S.String;
 
 export interface GetFeatureV2Request {
   /** The id of the requested resource */
@@ -27086,7 +26973,7 @@ export type FeatureWithRevisionsV2ValueType =
   | "string"
   | "number"
   | "json";
-export const FeatureWithRevisionsV2ValueType = /*@__PURE__*/ S.String;
+export const FeatureWithRevisionsV2ValueType = S.String;
 
 export type FeatureWithRevisionsV2TagsList = Array<string>;
 export const FeatureWithRevisionsV2TagsList = /*@__PURE__*/ S.Array(
@@ -27289,13 +27176,13 @@ export const GetInformationSchemaRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetInformationSchemaRequest>;
 
 export type InformationSchemaStatus = "PENDING" | "COMPLETE";
-export const InformationSchemaStatus = /*@__PURE__*/ S.String;
+export const InformationSchemaStatus = S.String;
 
 export type InformationSchemaErrorErrorType =
   | "generic"
   | "not_supported"
   | "missing_params";
-export const InformationSchemaErrorErrorType = /*@__PURE__*/ S.String;
+export const InformationSchemaErrorErrorType = S.String;
 
 export interface InformationSchemaError {
   errorType: InformationSchemaErrorErrorType;
@@ -27537,10 +27424,10 @@ export const GetMetricRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Where this metric must be managed from. If not set (empty string), it can be managed from anywhere. */
 export type MetricManagedBy = "" | "api" | "config" | "admin";
-export const MetricManagedBy = /*@__PURE__*/ S.String;
+export const MetricManagedBy = S.String;
 
 export type MetricType = "binomial" | "count" | "duration" | "revenue";
-export const MetricType = /*@__PURE__*/ S.String;
+export const MetricType = S.String;
 
 export type MetricTagsList = Array<string>;
 export const MetricTagsList = /*@__PURE__*/ S.Array(
@@ -27553,13 +27440,13 @@ export const MetricProjectsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<MetricProjectsList>;
 
 export type MetricBehaviorGoal = "increase" | "decrease";
-export const MetricBehaviorGoal = /*@__PURE__*/ S.String;
+export const MetricBehaviorGoal = S.String;
 
 export type MetricBehaviorCappingSettingsType =
   | "none"
   | "absolute"
   | "percentile";
-export const MetricBehaviorCappingSettingsType = /*@__PURE__*/ S.String;
+export const MetricBehaviorCappingSettingsType = S.String;
 
 /** Controls how outliers are handled */
 export interface MetricBehaviorCappingSettings {
@@ -27580,27 +27467,27 @@ export const MetricBehaviorCappingSettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MetricBehaviorCappingSettings>;
 
 export type MetricBehaviorCapping = "absolute" | "percentile";
-export const MetricBehaviorCapping = /*@__PURE__*/ S.String;
+export const MetricBehaviorCapping = S.String;
 
 export type MetricBehaviorWindowSettingsType =
   | "none"
   | "conversion"
   | "lookback";
-export const MetricBehaviorWindowSettingsType = /*@__PURE__*/ S.String;
+export const MetricBehaviorWindowSettingsType = S.String;
 
 export type MetricBehaviorWindowSettingsDelayUnit =
   | "minutes"
   | "hours"
   | "days"
   | "weeks";
-export const MetricBehaviorWindowSettingsDelayUnit = /*@__PURE__*/ S.String;
+export const MetricBehaviorWindowSettingsDelayUnit = S.String;
 
 export type MetricBehaviorWindowSettingsWindowUnit =
   | "minutes"
   | "hours"
   | "days"
   | "weeks";
-export const MetricBehaviorWindowSettingsWindowUnit = /*@__PURE__*/ S.String;
+export const MetricBehaviorWindowSettingsWindowUnit = S.String;
 
 /** Controls the conversion window for the metric */
 export interface MetricBehaviorWindowSettings {
@@ -27880,8 +27767,7 @@ export type MetricUsageExperimentsItemExperimentStatus =
   | "draft"
   | "running"
   | "stopped";
-export const MetricUsageExperimentsItemExperimentStatus =
-  /*@__PURE__*/ S.String;
+export const MetricUsageExperimentsItemExperimentStatus = S.String;
 
 export interface MetricUsageExperimentsItem {
   /** The experiment ID */
@@ -27991,7 +27877,7 @@ export const GetNamespaceMembershipsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The current status of the experiment. */
 export type NamespaceExperimentMemberStatus = "draft" | "running" | "stopped";
-export const NamespaceExperimentMemberStatus = /*@__PURE__*/ S.String;
+export const NamespaceExperimentMemberStatus = S.String;
 
 export type NamespaceExperimentMemberRangesItemList = Array<unknown>;
 export const NamespaceExperimentMemberRangesItemList = /*@__PURE__*/ S.Array(
@@ -28100,7 +27986,7 @@ export type QueryStatus =
   | "failed"
   | "partially-succeeded"
   | "succeeded";
-export const QueryStatus = /*@__PURE__*/ S.String;
+export const QueryStatus = S.String;
 
 export type QueryDependenciesList = Array<string>;
 export const QueryDependenciesList = /*@__PURE__*/ S.Array(
@@ -28185,7 +28071,7 @@ export const GetRampScheduleStatusRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetRampScheduleStatusRequest>;
 
 export type MonitoringMonitoringMode = "auto" | "manual";
-export const MonitoringMonitoringMode = /*@__PURE__*/ S.String;
+export const MonitoringMonitoringMode = S.String;
 
 export interface Monitoring {
   enabled: boolean;
@@ -28213,7 +28099,7 @@ export const Monitoring = /*@__PURE__*/ S.suspend(() =>
 
 /** Current evaluator decision for the active step. Incorporates all hold conditions (timing, approval, min sample, metric health). When monitoring data is not yet available, the evaluator returns `hold` with a descriptive `decisionReason`. */
 export type HealthSummaryDecision = "advance" | "hold" | "rollback" | "pause";
-export const HealthSummaryDecision = /*@__PURE__*/ S.String;
+export const HealthSummaryDecision = S.String;
 
 export type HealthSummarySignalsItem =
   | "guardrail-failing"
@@ -28224,7 +28110,7 @@ export type HealthSummarySignalsItem =
   | "below-min-sample"
   | "healthy"
   | "awaiting-data";
-export const HealthSummarySignalsItem = /*@__PURE__*/ S.String;
+export const HealthSummarySignalsItem = S.String;
 
 /** All active health signals, not just the top-priority one. Useful for surfacing multiple concurrent issues (e.g. SRM + guardrail failing simultaneously). `healthy` is the sole entry when no issues are detected. */
 export type HealthSummarySignalsList = Array<HealthSummarySignalsItem>;
@@ -28240,7 +28126,7 @@ export const HealthSummaryTrafficVariationUnitsList = /*@__PURE__*/ S.Array(
 
 /** `failing` when p-value is below the org SRM threshold, indicating a traffic imbalance. */
 export type HealthSummaryTrafficSrmStatus = "ok" | "failing";
-export const HealthSummaryTrafficSrmStatus = /*@__PURE__*/ S.String;
+export const HealthSummaryTrafficSrmStatus = S.String;
 
 export interface HealthSummaryTrafficSrm {
   /** SRM p-value from the traffic query. */
@@ -28258,8 +28144,7 @@ export const HealthSummaryTrafficSrm = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<HealthSummaryTrafficSrm>;
 
 export type HealthSummaryTrafficMultipleExposuresStatus = "ok" | "warning";
-export const HealthSummaryTrafficMultipleExposuresStatus =
-  /*@__PURE__*/ S.String;
+export const HealthSummaryTrafficMultipleExposuresStatus = S.String;
 
 export interface HealthSummaryTrafficMultipleExposures {
   /** Number of users exposed to both variations. */
@@ -28304,11 +28189,11 @@ export type HealthSummaryMetricsValueStatus =
   | "failing"
   | "within-bounds"
   | "not-enough-data";
-export const HealthSummaryMetricsValueStatus = /*@__PURE__*/ S.String;
+export const HealthSummaryMetricsValueStatus = S.String;
 
 /** Whether this metric is a guardrail (triggers rollback on loss) or a signal (triggers hold on loss). */
 export type HealthSummaryMetricsValueRole = "guardrail" | "signal";
-export const HealthSummaryMetricsValueRole = /*@__PURE__*/ S.String;
+export const HealthSummaryMetricsValueRole = S.String;
 
 export interface HealthSummaryMetricsValue {
   /** Metric ID. */
@@ -28620,7 +28505,7 @@ export const GetSavedGroupRevisionResponse = /*@__PURE__*/ S.suspend(() =>
 /** If true, return only the most recent active draft authored by the calling user. Requires a user-scoped API key. */
 export type GetSavedGroupRevisionLatestRequestMine = string | boolean;
 export const GetSavedGroupRevisionLatestRequestMine =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetSavedGroupRevisionLatestRequestMine>;
+  S.Unknown as any as S.Schema<GetSavedGroupRevisionLatestRequestMine>;
 
 export interface GetSavedGroupRevisionLatestRequest {
   savedGroupId: string;
@@ -28706,12 +28591,12 @@ export const GetSavedGroupRevisionMergeStatusResponse = /*@__PURE__*/ S.suspend(
 /** If true, return all matching items and ignore limit/offset. Self-hosted only. Has no effect unless API_ALLOW_SKIP_PAGINATION is set to true or 1. */
 export type GetSavedGroupRevisionsRequestSkipPagination = string | boolean;
 export const GetSavedGroupRevisionsRequestSkipPagination =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetSavedGroupRevisionsRequestSkipPagination>;
+  S.Unknown as any as S.Schema<GetSavedGroupRevisionsRequestSkipPagination>;
 
 /** If true, return only revisions authored by the calling user. Requires a user-scoped API key. Mutually exclusive with `author`. */
 export type GetSavedGroupRevisionsRequestMine = string | boolean;
 export const GetSavedGroupRevisionsRequestMine =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetSavedGroupRevisionsRequestMine>;
+  S.Unknown as any as S.Schema<GetSavedGroupRevisionsRequestMine>;
 
 export interface GetSavedGroupRevisionsRequest {
   savedGroupId: string;
@@ -28907,7 +28792,7 @@ export const SettingsMetricDefaults = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SettingsMetricDefaults>;
 
 export type SettingsUpdateScheduleType = "cron" | "never" | "stale";
-export const SettingsUpdateScheduleType = /*@__PURE__*/ S.String;
+export const SettingsUpdateScheduleType = S.String;
 
 export interface SettingsUpdateSchedule {
   type?: SettingsUpdateScheduleType;
@@ -28948,10 +28833,10 @@ export type SettingsAttributionModel =
   | "firstExposure"
   | "experimentDuration"
   | "lookbackOverride";
-export const SettingsAttributionModel = /*@__PURE__*/ S.String;
+export const SettingsAttributionModel = S.String;
 
 export type SettingsFeatureKillSwitchBehavior = "off" | "warn";
-export const SettingsFeatureKillSwitchBehavior = /*@__PURE__*/ S.String;
+export const SettingsFeatureKillSwitchBehavior = S.String;
 
 export type RequireReviewRuleProjectsList = Array<string>;
 export const RequireReviewRuleProjectsList = /*@__PURE__*/ S.Array(
@@ -29062,7 +28947,7 @@ export const SettingsTargetingReviewModeItemProjectsList =
   ) as any as S.Schema<SettingsTargetingReviewModeItemProjectsList>;
 
 export type SettingsTargetingReviewModeItemMode = "strict" | "loose";
-export const SettingsTargetingReviewModeItemMode = /*@__PURE__*/ S.String;
+export const SettingsTargetingReviewModeItemMode = S.String;
 
 export interface SettingsTargetingReviewModeItem {
   projects: SettingsTargetingReviewModeItemProjectsList;
@@ -29084,13 +28969,13 @@ export const SettingsTargetingReviewModeList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SettingsTargetingReviewModeList>;
 
 export type SettingsBanditScheduleUnit = "hours" | "days";
-export const SettingsBanditScheduleUnit = /*@__PURE__*/ S.String;
+export const SettingsBanditScheduleUnit = S.String;
 
 export type SettingsBanditBurnInUnit = "hours" | "days";
-export const SettingsBanditBurnInUnit = /*@__PURE__*/ S.String;
+export const SettingsBanditBurnInUnit = S.String;
 
 export type SettingsTopValuesLookbackUnit = "days";
-export const SettingsTopValuesLookbackUnit = /*@__PURE__*/ S.String;
+export const SettingsTopValuesLookbackUnit = S.String;
 
 export interface Settings {
   confidenceLevel: number;
@@ -29258,7 +29143,7 @@ export const GetVisualChangesetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVisualChangesetRequest>;
 
 export type VisualChangesetUrlPatternsItemType = "simple" | "regex";
-export const VisualChangesetUrlPatternsItemType = /*@__PURE__*/ S.String;
+export const VisualChangesetUrlPatternsItemType = S.String;
 
 export interface VisualChangesetUrlPatternsItem {
   include?: boolean;
@@ -29285,8 +29170,7 @@ export type VisualChangesetVisualChangesItemDomMutationsItemAction =
   | "append"
   | "set"
   | "remove";
-export const VisualChangesetVisualChangesItemDomMutationsItemAction =
-  /*@__PURE__*/ S.String;
+export const VisualChangesetVisualChangesItemDomMutationsItemAction = S.String;
 
 export interface VisualChangesetVisualChangesItemDomMutationsItem {
   selector: string;
@@ -29434,7 +29318,7 @@ export const ListAggregatedTableRunsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether this run appended new data or rebuilt the table */
 export type AggregatedTableRunSummaryMode = "incremental" | "restate";
-export const AggregatedTableRunSummaryMode = /*@__PURE__*/ S.String;
+export const AggregatedTableRunSummaryMode = S.String;
 
 /** Overall run status derived from its warehouse queries */
 export type AggregatedTableRunSummaryStatus =
@@ -29443,7 +29327,7 @@ export type AggregatedTableRunSummaryStatus =
   | "failed"
   | "partially-succeeded"
   | "succeeded";
-export const AggregatedTableRunSummaryStatus = /*@__PURE__*/ S.String;
+export const AggregatedTableRunSummaryStatus = S.String;
 
 /** Warehouse query ids for this run; poll each via GET /queries/{id} for per-query status */
 export type AggregatedTableRunSummaryQueryIdsList = Array<string>;
@@ -29617,12 +29501,12 @@ export const ListCodeRefsResponse = /*@__PURE__*/ S.suspend(() =>
 /** If true, return all matching items and ignore limit/offset. Self-hosted only. Has no effect unless API_ALLOW_SKIP_PAGINATION is set to true or 1. */
 export type ListConfigRevisionsRequestSkipPagination = string | boolean;
 export const ListConfigRevisionsRequestSkipPagination =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListConfigRevisionsRequestSkipPagination>;
+  S.Unknown as any as S.Schema<ListConfigRevisionsRequestSkipPagination>;
 
 /** If true, return only revisions authored by the calling user. Requires a user-scoped API key. Mutually exclusive with `author`. */
 export type ListConfigRevisionsRequestMine = string | boolean;
 export const ListConfigRevisionsRequestMine =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListConfigRevisionsRequestMine>;
+  S.Unknown as any as S.Schema<ListConfigRevisionsRequestMine>;
 
 export interface ListConfigRevisionsRequest {
   /** The number of items to return */
@@ -29729,12 +29613,12 @@ export const ListConfigsResponse = /*@__PURE__*/ S.suspend(() =>
 /** If true, return all matching items and ignore limit/offset. Self-hosted only. Has no effect unless API_ALLOW_SKIP_PAGINATION is set to true or 1. */
 export type ListConstantRevisionsRequestSkipPagination = string | boolean;
 export const ListConstantRevisionsRequestSkipPagination =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListConstantRevisionsRequestSkipPagination>;
+  S.Unknown as any as S.Schema<ListConstantRevisionsRequestSkipPagination>;
 
 /** If true, return only revisions authored by the calling user. Requires a user-scoped API key. Mutually exclusive with `author`. */
 export type ListConstantRevisionsRequestMine = string | boolean;
 export const ListConstantRevisionsRequestMine =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListConstantRevisionsRequestMine>;
+  S.Unknown as any as S.Schema<ListConstantRevisionsRequestMine>;
 
 export interface ListConstantRevisionsRequest {
   /** The number of items to return */
@@ -30264,7 +30148,7 @@ export type ListExperimentResultsRequestStatus =
   | "draft"
   | "running"
   | "stopped";
-export const ListExperimentResultsRequestStatus = /*@__PURE__*/ S.String;
+export const ListExperimentResultsRequestStatus = S.String;
 
 export interface ListExperimentResultsRequest {
   /** The number of items to return */
@@ -30323,14 +30207,14 @@ export const ListExperimentResultsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListExperimentResultsResponse>;
 
 export type ListExperimentsRequestStatus = "draft" | "running" | "stopped";
-export const ListExperimentsRequestStatus = /*@__PURE__*/ S.String;
+export const ListExperimentsRequestStatus = S.String;
 
 export type ListExperimentsRequestResultItem =
   | "dnf"
   | "won"
   | "lost"
   | "inconclusive";
-export const ListExperimentsRequestResultItem = /*@__PURE__*/ S.String;
+export const ListExperimentsRequestResultItem = S.String;
 
 /** Filter by comma-separated results (won, lost, inconclusive, dnf). Matches the experiment's recorded result — set when an experiment is stopped and retained if it's later restarted, so running experiments can match too */
 export type ListExperimentsRequestResultList = Array<
@@ -30344,8 +30228,7 @@ export type ListExperimentsRequestImplementationTypeItem =
   | "feature"
   | "visualChange"
   | "redirect";
-export const ListExperimentsRequestImplementationTypeItem =
-  /*@__PURE__*/ S.String;
+export const ListExperimentsRequestImplementationTypeItem = S.String;
 
 /** Filter by comma-separated implementation types (feature, visualChange, redirect) — the kinds of changes linked to the experiment. To filter standard experiments vs bandits, use `bandits` instead */
 export type ListExperimentsRequestImplementationTypeList = Array<
@@ -30358,23 +30241,23 @@ export const ListExperimentsRequestImplementationTypeList =
 
 /** When true, return only multi-armed bandits; when false, exclude them */
 export type ListExperimentsRequestBandits = "true" | "false";
-export const ListExperimentsRequestBandits = /*@__PURE__*/ S.String;
+export const ListExperimentsRequestBandits = S.String;
 
 /** Filter by archived status. Set to `true` to return only archived experiments, `false` to exclude them. If omitted, both archived and non-archived experiments are returned. */
 export type ListExperimentsRequestArchived = string | boolean;
 export const ListExperimentsRequestArchived =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListExperimentsRequestArchived>;
+  S.Unknown as any as S.Schema<ListExperimentsRequestArchived>;
 
 /** Field to sort the results by */
 export type ListExperimentsRequestSortBy =
   | "dateCreated"
   | "dateUpdated"
   | "name";
-export const ListExperimentsRequestSortBy = /*@__PURE__*/ S.String;
+export const ListExperimentsRequestSortBy = S.String;
 
 /** Sort direction (used with `sortBy`) */
 export type ListExperimentsRequestSortOrder = "asc" | "desc";
-export const ListExperimentsRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListExperimentsRequestSortOrder = S.String;
 
 export interface ListExperimentsRequest {
   /** The number of items to return */
@@ -30654,12 +30537,12 @@ export const ListFactTablesResponse = /*@__PURE__*/ S.suspend(() =>
 /** Whether to include archived features. Defaults to `false` (non-archived only). Pass `true` to include archived features alongside non-archived ones. */
 export type ListFeaturesV2RequestArchived = string | boolean;
 export const ListFeaturesV2RequestArchived =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListFeaturesV2RequestArchived>;
+  S.Unknown as any as S.Schema<ListFeaturesV2RequestArchived>;
 
 /** If true, return all matching items and ignore limit/offset. Self-hosted only. Has no effect unless API_ALLOW_SKIP_PAGINATION is set to true or 1. */
 export type ListFeaturesV2RequestSkipPagination = string | boolean;
 export const ListFeaturesV2RequestSkipPagination =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListFeaturesV2RequestSkipPagination>;
+  S.Unknown as any as S.Schema<ListFeaturesV2RequestSkipPagination>;
 
 export interface ListFeaturesV2Request {
   /** The number of items to return */
@@ -30696,7 +30579,7 @@ export const FeatureV2TargetingProjectsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FeatureV2TargetingProjectsList>;
 
 export type FeatureV2ValueType = "boolean" | "string" | "number" | "json";
-export const FeatureV2ValueType = /*@__PURE__*/ S.String;
+export const FeatureV2ValueType = S.String;
 
 export type FeatureV2TagsList = Array<string>;
 export const FeatureV2TagsList = /*@__PURE__*/ S.Array(
@@ -30819,12 +30702,12 @@ export type ListHoldoutsRequestStage =
   | "running"
   | "analysis-period"
   | "stopped";
-export const ListHoldoutsRequestStage = /*@__PURE__*/ S.String;
+export const ListHoldoutsRequestStage = S.String;
 
 /** Filter by archived state. Omit to return both archived and unarchived Holdouts. */
 export type ListHoldoutsRequestArchived = string | boolean;
 export const ListHoldoutsRequestArchived =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListHoldoutsRequestArchived>;
+  S.Unknown as any as S.Schema<ListHoldoutsRequestArchived>;
 
 export interface ListHoldoutsRequest {
   projectId?: string;
@@ -31078,7 +30961,7 @@ export const ListMembersResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** When true, return only multi-armed bandits; when false, exclude them */
 export type ListMetricExperimentsRequestBandits = "true" | "false";
-export const ListMetricExperimentsRequestBandits = /*@__PURE__*/ S.String;
+export const ListMetricExperimentsRequestBandits = S.String;
 
 export interface ListMetricExperimentsRequest {
   /** The id of the requested resource */
@@ -31256,7 +31139,7 @@ export const ListMetricGroupsResponse = /*@__PURE__*/ S.suspend(() =>
 /** Whether to include archived metrics. Defaults to `true`. Pass `false` to return only non-archived metrics. */
 export type ListMetricsRequestIncludeArchived = string | boolean;
 export const ListMetricsRequestIncludeArchived =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListMetricsRequestIncludeArchived>;
+  S.Unknown as any as S.Schema<ListMetricsRequestIncludeArchived>;
 
 export interface ListMetricsRequest {
   /** The number of items to return */
@@ -31452,7 +31335,7 @@ export type ListRampSchedulesRequestStatus =
   | "paused"
   | "completed"
   | "rolled-back";
-export const ListRampSchedulesRequestStatus = /*@__PURE__*/ S.String;
+export const ListRampSchedulesRequestStatus = S.String;
 
 export interface ListRampSchedulesRequest {
   /** The number of items to return */
@@ -31579,7 +31462,7 @@ export const ListReportsResponse = /*@__PURE__*/ S.suspend(() =>
 /** If true, return all matching items and ignore limit/offset. Self-hosted only. Has no effect unless API_ALLOW_SKIP_PAGINATION is set to true or 1. */
 export type ListRevisionsV2RequestSkipPagination = string | boolean;
 export const ListRevisionsV2RequestSkipPagination =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListRevisionsV2RequestSkipPagination>;
+  S.Unknown as any as S.Schema<ListRevisionsV2RequestSkipPagination>;
 
 export type ListRevisionsV2RequestStatusCase1List = Array<string>;
 export const ListRevisionsV2RequestStatusCase1List = /*@__PURE__*/ S.Array(
@@ -31591,17 +31474,17 @@ export type ListRevisionsV2RequestStatus =
   | string
   | ListRevisionsV2RequestStatusCase1List;
 export const ListRevisionsV2RequestStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListRevisionsV2RequestStatus>;
+  S.Unknown as any as S.Schema<ListRevisionsV2RequestStatus>;
 
 /** If true, return only revisions authored by or contributed to by the calling user. */
 export type ListRevisionsV2RequestMine = string | boolean;
 export const ListRevisionsV2RequestMine =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListRevisionsV2RequestMine>;
+  S.Unknown as any as S.Schema<ListRevisionsV2RequestMine>;
 
 /** Whether to include revisions for archived features. Defaults to `false` (non-archived features only). Pass `true` to include revisions for archived features alongside non-archived ones. */
 export type ListRevisionsV2RequestArchived = string | boolean;
 export const ListRevisionsV2RequestArchived =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListRevisionsV2RequestArchived>;
+  S.Unknown as any as S.Schema<ListRevisionsV2RequestArchived>;
 
 export interface ListRevisionsV2Request {
   /** The number of items to return */
@@ -31667,12 +31550,12 @@ export const ListRevisionsV2Response = /*@__PURE__*/ S.suspend(() =>
 /** If true, return all matching items and ignore limit/offset. Self-hosted only. Has no effect unless API_ALLOW_SKIP_PAGINATION is set to true or 1. */
 export type ListSavedGroupRevisionsRequestSkipPagination = string | boolean;
 export const ListSavedGroupRevisionsRequestSkipPagination =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListSavedGroupRevisionsRequestSkipPagination>;
+  S.Unknown as any as S.Schema<ListSavedGroupRevisionsRequestSkipPagination>;
 
 /** If true, return only revisions authored by the calling user. Requires a user-scoped API key. Mutually exclusive with `author`. */
 export type ListSavedGroupRevisionsRequestMine = string | boolean;
 export const ListSavedGroupRevisionsRequestMine =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListSavedGroupRevisionsRequestMine>;
+  S.Unknown as any as S.Schema<ListSavedGroupRevisionsRequestMine>;
 
 export interface ListSavedGroupRevisionsRequest {
   /** The number of items to return */
@@ -32019,7 +31902,7 @@ export const PauseRampScheduleResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PauseRampScheduleResponse>;
 
 export type PostCopyTransformRequestMode = "energetic" | "concise" | "humorous";
-export const PostCopyTransformRequestMode = /*@__PURE__*/ S.String;
+export const PostCopyTransformRequestMode = S.String;
 
 export interface PostCopyTransformRequest {
   visualChangesetId: string;
@@ -32048,7 +31931,7 @@ export type PostDataSourceExplorationRequestCache =
   | "preferred"
   | "required"
   | "never";
-export const PostDataSourceExplorationRequestCache = /*@__PURE__*/ S.String;
+export const PostDataSourceExplorationRequestCache = S.String;
 
 export type PostDataSourceExplorationRequestDimensionsItemCase0DateGranularity =
   | "auto"
@@ -32058,7 +31941,7 @@ export type PostDataSourceExplorationRequestDimensionsItemCase0DateGranularity =
   | "month"
   | "year";
 export const PostDataSourceExplorationRequestDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostDataSourceExplorationRequestDimensionsItemCase0 {
   dimensionType: string;
@@ -32129,7 +32012,7 @@ export type PostDataSourceExplorationRequestDimensionsItemCase3SlicesItemFilters
   | "sql_expr"
   | "saved_filter";
 export const PostDataSourceExplorationRequestDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostDataSourceExplorationRequestDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -32209,7 +32092,7 @@ export type PostDataSourceExplorationRequestDimensionsItem =
   | PostDataSourceExplorationRequestDimensionsItemCase2
   | PostDataSourceExplorationRequestDimensionsItemCase3;
 export const PostDataSourceExplorationRequestDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostDataSourceExplorationRequestDimensionsItem>;
+  S.Unknown as any as S.Schema<PostDataSourceExplorationRequestDimensionsItem>;
 
 export type PostDataSourceExplorationRequestDimensionsList =
   Array<PostDataSourceExplorationRequestDimensionsItem>;
@@ -32228,7 +32111,7 @@ export type PostDataSourceExplorationRequestChartType =
   | "horizontalBar"
   | "stackedHorizontalBar"
   | "bigNumber";
-export const PostDataSourceExplorationRequestChartType = /*@__PURE__*/ S.String;
+export const PostDataSourceExplorationRequestChartType = S.String;
 
 export type PostDataSourceExplorationRequestDateRangePredefined =
   | "today"
@@ -32240,16 +32123,14 @@ export type PostDataSourceExplorationRequestDateRangePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const PostDataSourceExplorationRequestDateRangePredefined =
-  /*@__PURE__*/ S.String;
+export const PostDataSourceExplorationRequestDateRangePredefined = S.String;
 
 export type PostDataSourceExplorationRequestDateRangeLookbackUnit =
   | "hour"
   | "day"
   | "week"
   | "month";
-export const PostDataSourceExplorationRequestDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+export const PostDataSourceExplorationRequestDateRangeLookbackUnit = S.String;
 
 export interface PostDataSourceExplorationRequestDateRange {
   predefined:
@@ -32279,7 +32160,7 @@ export const PostDataSourceExplorationRequestDateRange =
   }) as any as S.Schema<PostDataSourceExplorationRequestDateRange>;
 
 export type PostDataSourceExplorationRequestShowAs = "total" | "per_unit";
-export const PostDataSourceExplorationRequestShowAs = /*@__PURE__*/ S.String;
+export const PostDataSourceExplorationRequestShowAs = S.String;
 
 export type PostDataSourceExplorationRequestDatasetColumnTypesValue =
   | "string"
@@ -32287,8 +32168,7 @@ export type PostDataSourceExplorationRequestDatasetColumnTypesValue =
   | "date"
   | "boolean"
   | "other";
-export const PostDataSourceExplorationRequestDatasetColumnTypesValue =
-  /*@__PURE__*/ S.String;
+export const PostDataSourceExplorationRequestDatasetColumnTypesValue = S.String;
 
 export type PostDataSourceExplorationRequestDatasetColumnTypesMap = {
   [key: string]:
@@ -32324,7 +32204,7 @@ export type PostDataSourceExplorationRequestDatasetValuesItemRowFiltersItemOpera
   | "sql_expr"
   | "saved_filter";
 export const PostDataSourceExplorationRequestDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostDataSourceExplorationRequestDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -32367,7 +32247,7 @@ export type PostDataSourceExplorationRequestDatasetValuesItemValueType =
   | "count"
   | "sum";
 export const PostDataSourceExplorationRequestDatasetValuesItemValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostDataSourceExplorationRequestDatasetValuesItem {
   name: string;
@@ -32460,8 +32340,7 @@ export type PostDataSourceExplorationResponseExplorationStatus =
   | "running"
   | "success"
   | "error";
-export const PostDataSourceExplorationResponseExplorationStatus =
-  /*@__PURE__*/ S.String;
+export const PostDataSourceExplorationResponseExplorationStatus = S.String;
 
 export type PostDataSourceExplorationResponseExplorationResultRowsItemDimensionsList =
   Array<string>;
@@ -32566,7 +32445,7 @@ export type PostDataSourceExplorationResponseExplorationConfigDimensionsItemCase
   | "month"
   | "year";
 export const PostDataSourceExplorationResponseExplorationConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostDataSourceExplorationResponseExplorationConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -32638,7 +32517,7 @@ export type PostDataSourceExplorationResponseExplorationConfigDimensionsItemCase
   | "sql_expr"
   | "saved_filter";
 export const PostDataSourceExplorationResponseExplorationConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostDataSourceExplorationResponseExplorationConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -32719,7 +32598,7 @@ export type PostDataSourceExplorationResponseExplorationConfigDimensionsItem =
   | PostDataSourceExplorationResponseExplorationConfigDimensionsItemCase2
   | PostDataSourceExplorationResponseExplorationConfigDimensionsItemCase3;
 export const PostDataSourceExplorationResponseExplorationConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostDataSourceExplorationResponseExplorationConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<PostDataSourceExplorationResponseExplorationConfigDimensionsItem>;
 
 export type PostDataSourceExplorationResponseExplorationConfigDimensionsList =
   Array<PostDataSourceExplorationResponseExplorationConfigDimensionsItem>;
@@ -32739,7 +32618,7 @@ export type PostDataSourceExplorationResponseExplorationConfigChartType =
   | "stackedHorizontalBar"
   | "bigNumber";
 export const PostDataSourceExplorationResponseExplorationConfigChartType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostDataSourceExplorationResponseExplorationConfigDateRangePredefined =
   | "today"
@@ -32752,7 +32631,7 @@ export type PostDataSourceExplorationResponseExplorationConfigDateRangePredefine
   | "customLookback"
   | "customDateRange";
 export const PostDataSourceExplorationResponseExplorationConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostDataSourceExplorationResponseExplorationConfigDateRangeLookbackUnit =
   | "hour"
@@ -32760,7 +32639,7 @@ export type PostDataSourceExplorationResponseExplorationConfigDateRangeLookbackU
   | "week"
   | "month";
 export const PostDataSourceExplorationResponseExplorationConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostDataSourceExplorationResponseExplorationConfigDateRange {
   predefined: PostDataSourceExplorationResponseExplorationConfigDateRangePredefined;
@@ -32791,7 +32670,7 @@ export type PostDataSourceExplorationResponseExplorationConfigShowAs =
   | "total"
   | "per_unit";
 export const PostDataSourceExplorationResponseExplorationConfigShowAs =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostDataSourceExplorationResponseExplorationConfigDatasetColumnTypesValue =
   | "string"
@@ -32800,7 +32679,7 @@ export type PostDataSourceExplorationResponseExplorationConfigDatasetColumnTypes
   | "boolean"
   | "other";
 export const PostDataSourceExplorationResponseExplorationConfigDatasetColumnTypesValue =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostDataSourceExplorationResponseExplorationConfigDatasetColumnTypesMap =
   {
@@ -32836,7 +32715,7 @@ export type PostDataSourceExplorationResponseExplorationConfigDatasetValuesItemR
   | "sql_expr"
   | "saved_filter";
 export const PostDataSourceExplorationResponseExplorationConfigDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostDataSourceExplorationResponseExplorationConfigDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -32877,7 +32756,7 @@ export type PostDataSourceExplorationResponseExplorationConfigDatasetValuesItemV
   | "count"
   | "sum";
 export const PostDataSourceExplorationResponseExplorationConfigDatasetValuesItemValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostDataSourceExplorationResponseExplorationConfigDatasetValuesItem {
   name: string;
@@ -33030,7 +32909,7 @@ export type PostFactMetricRequestMetricType =
   | "ratio"
   | "dailyParticipation"
   | "funnel";
-export const PostFactMetricRequestMetricType = /*@__PURE__*/ S.String;
+export const PostFactMetricRequestMetricType = S.String;
 
 /** User aggregation of selected column. Either sum or max for numeric columns; count distinct for string columns; hll merge / kll merge for pre-built sketch columns (requires data-source support); ignored for special columns. Default: sum. If you specify a string column you must explicitly specify count distinct. Not used for proportion metrics; for event quantile metrics only kll merge is applicable. */
 export type PostFactMetricRequestNumeratorAggregation =
@@ -33039,7 +32918,7 @@ export type PostFactMetricRequestNumeratorAggregation =
   | "count distinct"
   | "hll merge"
   | "kll merge";
-export const PostFactMetricRequestNumeratorAggregation = /*@__PURE__*/ S.String;
+export const PostFactMetricRequestNumeratorAggregation = S.String;
 
 /** Array of Fact Table Filter Ids. Deprecated, use rowFilters instead. */
 export type PostFactMetricRequestNumeratorFiltersList = Array<string>;
@@ -33087,8 +32966,7 @@ export type PostFactMetricRequestNumeratorRowFiltersItemOperator =
   | "ends_with"
   | "sql_expr"
   | "saved_filter";
-export const PostFactMetricRequestNumeratorRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+export const PostFactMetricRequestNumeratorRowFiltersItemOperator = S.String;
 
 /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
 export type PostFactMetricRequestNumeratorRowFiltersItemValuesList =
@@ -33167,8 +33045,7 @@ export type PostFactMetricRequestDenominatorAggregation =
   | "count distinct"
   | "hll merge"
   | "kll merge";
-export const PostFactMetricRequestDenominatorAggregation =
-  /*@__PURE__*/ S.String;
+export const PostFactMetricRequestDenominatorAggregation = S.String;
 
 /** Array of Fact Table Filter Ids. Deprecated, use rowFilters instead. */
 export type PostFactMetricRequestDenominatorFiltersList = Array<string>;
@@ -33217,8 +33094,7 @@ export type PostFactMetricRequestDenominatorRowFiltersItemOperator =
   | "ends_with"
   | "sql_expr"
   | "saved_filter";
-export const PostFactMetricRequestDenominatorRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+export const PostFactMetricRequestDenominatorRowFiltersItemOperator = S.String;
 
 /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
 export type PostFactMetricRequestDenominatorRowFiltersItemValuesList =
@@ -33287,7 +33163,7 @@ export const PostFactMetricRequestDenominator = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the quantile is over unit aggregations or raw event values */
 export type PostFactMetricRequestQuantileSettingsType = "event" | "unit";
-export const PostFactMetricRequestQuantileSettingsType = /*@__PURE__*/ S.String;
+export const PostFactMetricRequestQuantileSettingsType = S.String;
 
 /** Controls the settings for quantile metrics (mandatory if metricType is "quantile") */
 export interface PostFactMetricRequestQuantileSettings {
@@ -33334,7 +33210,7 @@ export type PostFactMetricRequestFunnelSettingsStepsItemRowFiltersItemOperator =
   | "sql_expr"
   | "saved_filter";
 export const PostFactMetricRequestFunnelSettingsStepsItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
 export type PostFactMetricRequestFunnelSettingsStepsItemRowFiltersItemValuesList =
@@ -33381,7 +33257,7 @@ export type PostFactMetricRequestFunnelSettingsStepsItemConversionWindowUnit =
   | "hours"
   | "minutes";
 export const PostFactMetricRequestFunnelSettingsStepsItemConversionWindowUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Bounds how long after the nearest prior required step (or exposure, for the first step / after only-optional priors of an experiment funnel metric) this step's event can occur. */
 export interface PostFactMetricRequestFunnelSettingsStepsItemConversionWindow {
@@ -33436,8 +33312,7 @@ export const PostFactMetricRequestFunnelSettingsStepsList =
 
 /** Step ordering mode. Only 'sequential' is supported in v1. */
 export type PostFactMetricRequestFunnelSettingsOrdering = "sequential";
-export const PostFactMetricRequestFunnelSettingsOrdering =
-  /*@__PURE__*/ S.String;
+export const PostFactMetricRequestFunnelSettingsOrdering = S.String;
 
 /** Funnel metric settings (required when metricType is "funnel") */
 export interface PostFactMetricRequestFunnelSettings {
@@ -33462,7 +33337,7 @@ export type PostFactMetricRequestCappingSettingsType =
   | "none"
   | "absolute"
   | "percentile";
-export const PostFactMetricRequestCappingSettingsType = /*@__PURE__*/ S.String;
+export const PostFactMetricRequestCappingSettingsType = S.String;
 
 /** Controls how outliers are handled */
 export interface PostFactMetricRequestCappingSettings {
@@ -33487,7 +33362,7 @@ export type PostFactMetricRequestWindowSettingsType =
   | "none"
   | "conversion"
   | "lookback";
-export const PostFactMetricRequestWindowSettingsType = /*@__PURE__*/ S.String;
+export const PostFactMetricRequestWindowSettingsType = S.String;
 
 /** Default `hours`. */
 export type PostFactMetricRequestWindowSettingsDelayUnit =
@@ -33495,8 +33370,7 @@ export type PostFactMetricRequestWindowSettingsDelayUnit =
   | "hours"
   | "days"
   | "weeks";
-export const PostFactMetricRequestWindowSettingsDelayUnit =
-  /*@__PURE__*/ S.String;
+export const PostFactMetricRequestWindowSettingsDelayUnit = S.String;
 
 /** Default `hours`. */
 export type PostFactMetricRequestWindowSettingsWindowUnit =
@@ -33504,8 +33378,7 @@ export type PostFactMetricRequestWindowSettingsWindowUnit =
   | "hours"
   | "days"
   | "weeks";
-export const PostFactMetricRequestWindowSettingsWindowUnit =
-  /*@__PURE__*/ S.String;
+export const PostFactMetricRequestWindowSettingsWindowUnit = S.String;
 
 /** Controls the conversion window for the metric */
 export interface PostFactMetricRequestWindowSettings {
@@ -33547,7 +33420,7 @@ export const PostFactMetricRequestRegressionAdjustmentSettings =
 
 /** Set this to "api" to disable editing in the GrowthBook UI */
 export type PostFactMetricRequestManagedBy = "" | "api" | "admin";
-export const PostFactMetricRequestManagedBy = /*@__PURE__*/ S.String;
+export const PostFactMetricRequestManagedBy = S.String;
 
 /** Array of slice column names that will be automatically included in metric analysis. This is an enterprise feature. */
 export type PostFactMetricRequestMetricAutoSlicesList = Array<string>;
@@ -33657,8 +33530,7 @@ export const PostFactMetricResponse = /*@__PURE__*/ S.suspend(() =>
 export type PostFactMetricAnalysisRequestPopulationType =
   | "factTable"
   | "segment";
-export const PostFactMetricAnalysisRequestPopulationType =
-  /*@__PURE__*/ S.String;
+export const PostFactMetricAnalysisRequestPopulationType = S.String;
 
 /** We support passing in adhoc filters for an analysis that don't live on the metric itself. These are in addition to the metric's filters. To use this, you can pass in an array of Fact Table Filter Ids. */
 export type PostFactMetricAnalysisRequestAdditionalNumeratorFiltersList =
@@ -33756,7 +33628,7 @@ export type PostFactTableExplorationRequestCache =
   | "preferred"
   | "required"
   | "never";
-export const PostFactTableExplorationRequestCache = /*@__PURE__*/ S.String;
+export const PostFactTableExplorationRequestCache = S.String;
 
 export type PostFactTableExplorationRequestDimensionsItemCase0DateGranularity =
   | "auto"
@@ -33766,7 +33638,7 @@ export type PostFactTableExplorationRequestDimensionsItemCase0DateGranularity =
   | "month"
   | "year";
 export const PostFactTableExplorationRequestDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostFactTableExplorationRequestDimensionsItemCase0 {
   dimensionType: string;
@@ -33837,7 +33709,7 @@ export type PostFactTableExplorationRequestDimensionsItemCase3SlicesItemFiltersI
   | "sql_expr"
   | "saved_filter";
 export const PostFactTableExplorationRequestDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFactTableExplorationRequestDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -33917,7 +33789,7 @@ export type PostFactTableExplorationRequestDimensionsItem =
   | PostFactTableExplorationRequestDimensionsItemCase2
   | PostFactTableExplorationRequestDimensionsItemCase3;
 export const PostFactTableExplorationRequestDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostFactTableExplorationRequestDimensionsItem>;
+  S.Unknown as any as S.Schema<PostFactTableExplorationRequestDimensionsItem>;
 
 export type PostFactTableExplorationRequestDimensionsList =
   Array<PostFactTableExplorationRequestDimensionsItem>;
@@ -33936,7 +33808,7 @@ export type PostFactTableExplorationRequestChartType =
   | "horizontalBar"
   | "stackedHorizontalBar"
   | "bigNumber";
-export const PostFactTableExplorationRequestChartType = /*@__PURE__*/ S.String;
+export const PostFactTableExplorationRequestChartType = S.String;
 
 export type PostFactTableExplorationRequestDateRangePredefined =
   | "today"
@@ -33948,16 +33820,14 @@ export type PostFactTableExplorationRequestDateRangePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const PostFactTableExplorationRequestDateRangePredefined =
-  /*@__PURE__*/ S.String;
+export const PostFactTableExplorationRequestDateRangePredefined = S.String;
 
 export type PostFactTableExplorationRequestDateRangeLookbackUnit =
   | "hour"
   | "day"
   | "week"
   | "month";
-export const PostFactTableExplorationRequestDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+export const PostFactTableExplorationRequestDateRangeLookbackUnit = S.String;
 
 export interface PostFactTableExplorationRequestDateRange {
   predefined:
@@ -33987,7 +33857,7 @@ export const PostFactTableExplorationRequestDateRange = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PostFactTableExplorationRequestDateRange>;
 
 export type PostFactTableExplorationRequestShowAs = "total" | "per_unit";
-export const PostFactTableExplorationRequestShowAs = /*@__PURE__*/ S.String;
+export const PostFactTableExplorationRequestShowAs = S.String;
 
 export type PostFactTableExplorationRequestDatasetValuesItemRowFiltersItemOperator =
   | "="
@@ -34011,7 +33881,7 @@ export type PostFactTableExplorationRequestDatasetValuesItemRowFiltersItemOperat
   | "sql_expr"
   | "saved_filter";
 export const PostFactTableExplorationRequestDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFactTableExplorationRequestDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -34054,7 +33924,7 @@ export type PostFactTableExplorationRequestDatasetValuesItemValueType =
   | "count"
   | "sum";
 export const PostFactTableExplorationRequestDatasetValuesItemValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostFactTableExplorationRequestDatasetValuesItem {
   name: string;
@@ -34141,8 +34011,7 @@ export type PostFactTableExplorationResponseExplorationStatus =
   | "running"
   | "success"
   | "error";
-export const PostFactTableExplorationResponseExplorationStatus =
-  /*@__PURE__*/ S.String;
+export const PostFactTableExplorationResponseExplorationStatus = S.String;
 
 export type PostFactTableExplorationResponseExplorationResultRowsItemDimensionsList =
   Array<string>;
@@ -34223,7 +34092,7 @@ export type PostFactTableExplorationResponseExplorationConfigDimensionsItemCase0
   | "month"
   | "year";
 export const PostFactTableExplorationResponseExplorationConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostFactTableExplorationResponseExplorationConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -34295,7 +34164,7 @@ export type PostFactTableExplorationResponseExplorationConfigDimensionsItemCase3
   | "sql_expr"
   | "saved_filter";
 export const PostFactTableExplorationResponseExplorationConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFactTableExplorationResponseExplorationConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -34376,7 +34245,7 @@ export type PostFactTableExplorationResponseExplorationConfigDimensionsItem =
   | PostFactTableExplorationResponseExplorationConfigDimensionsItemCase2
   | PostFactTableExplorationResponseExplorationConfigDimensionsItemCase3;
 export const PostFactTableExplorationResponseExplorationConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostFactTableExplorationResponseExplorationConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<PostFactTableExplorationResponseExplorationConfigDimensionsItem>;
 
 export type PostFactTableExplorationResponseExplorationConfigDimensionsList =
   Array<PostFactTableExplorationResponseExplorationConfigDimensionsItem>;
@@ -34396,7 +34265,7 @@ export type PostFactTableExplorationResponseExplorationConfigChartType =
   | "stackedHorizontalBar"
   | "bigNumber";
 export const PostFactTableExplorationResponseExplorationConfigChartType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFactTableExplorationResponseExplorationConfigDateRangePredefined =
   | "today"
@@ -34409,7 +34278,7 @@ export type PostFactTableExplorationResponseExplorationConfigDateRangePredefined
   | "customLookback"
   | "customDateRange";
 export const PostFactTableExplorationResponseExplorationConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFactTableExplorationResponseExplorationConfigDateRangeLookbackUnit =
   | "hour"
@@ -34417,7 +34286,7 @@ export type PostFactTableExplorationResponseExplorationConfigDateRangeLookbackUn
   | "week"
   | "month";
 export const PostFactTableExplorationResponseExplorationConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostFactTableExplorationResponseExplorationConfigDateRange {
   predefined: PostFactTableExplorationResponseExplorationConfigDateRangePredefined;
@@ -34447,8 +34316,7 @@ export const PostFactTableExplorationResponseExplorationConfigDateRange =
 export type PostFactTableExplorationResponseExplorationConfigShowAs =
   | "total"
   | "per_unit";
-export const PostFactTableExplorationResponseExplorationConfigShowAs =
-  /*@__PURE__*/ S.String;
+export const PostFactTableExplorationResponseExplorationConfigShowAs = S.String;
 
 export type PostFactTableExplorationResponseExplorationConfigDatasetValuesItemRowFiltersItemOperator =
   | "="
@@ -34472,7 +34340,7 @@ export type PostFactTableExplorationResponseExplorationConfigDatasetValuesItemRo
   | "sql_expr"
   | "saved_filter";
 export const PostFactTableExplorationResponseExplorationConfigDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFactTableExplorationResponseExplorationConfigDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -34513,7 +34381,7 @@ export type PostFactTableExplorationResponseExplorationConfigDatasetValuesItemVa
   | "count"
   | "sum";
 export const PostFactTableExplorationResponseExplorationConfigDatasetValuesItemValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostFactTableExplorationResponseExplorationConfigDatasetValuesItem {
   name: string;
@@ -34677,14 +34545,14 @@ export type PostFeatureRevisionPublishV2RequestSkipSchemaValidation =
   | string
   | boolean;
 export const PostFeatureRevisionPublishV2RequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostFeatureRevisionPublishV2RequestSkipSchemaValidation>;
+  S.Unknown as any as S.Schema<PostFeatureRevisionPublishV2RequestSkipSchemaValidation>;
 
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type PostFeatureRevisionPublishV2RequestIgnoreWarnings =
   | string
   | boolean;
 export const PostFeatureRevisionPublishV2RequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostFeatureRevisionPublishV2RequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<PostFeatureRevisionPublishV2RequestIgnoreWarnings>;
 
 export interface PostFeatureRevisionPublishV2Request {
   id: string;
@@ -34752,7 +34620,7 @@ export type PostFeatureRevisionRebasePreviewV2RequestConflictResolutionsValue =
   | "overwrite"
   | "discard";
 export const PostFeatureRevisionRebasePreviewV2RequestConflictResolutionsValue =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Map of conflict key → resolution. Keys come from the returned conflicts: `defaultValue`, `prerequisites`, `archived`, `holdout`, `environmentsEnabled.<env>`, `metadata.<field>`, `rules.<ruleId>`, and `rules.order`. `overwrite` keeps the draft's version of that item; `discard` keeps live's. The blanket `rules` key applies one strategy to all rule-level conflicts. */
 export type PostFeatureRevisionRebasePreviewV2RequestConflictResolutionsMap = {
@@ -34905,7 +34773,7 @@ export type PostFeatureRevisionRebaseV2RequestConflictResolutionsValue =
   | "overwrite"
   | "discard";
 export const PostFeatureRevisionRebaseV2RequestConflictResolutionsValue =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Map of conflict key → resolution. Keys come from the returned conflicts: `defaultValue`, `prerequisites`, `archived`, `holdout`, `environmentsEnabled.<env>`, `metadata.<field>`, `rules.<ruleId>`, and `rules.order`. `overwrite` keeps the draft's version of that item; `discard` keeps live's. The blanket `rules` key applies one strategy to all rule-level conflicts. */
 export type PostFeatureRevisionRebaseV2RequestConflictResolutionsMap = {
@@ -35069,8 +34937,7 @@ export const PostFeatureRevisionRequestReviewV2Response =
   }) as any as S.Schema<PostFeatureRevisionRequestReviewV2Response>;
 
 export type PostFeatureRevisionRevertV2RequestStrategy = "draft" | "publish";
-export const PostFeatureRevisionRevertV2RequestStrategy =
-  /*@__PURE__*/ S.String;
+export const PostFeatureRevisionRevertV2RequestStrategy = S.String;
 
 export interface PostFeatureRevisionRevertV2Request {
   id: string;
@@ -35135,17 +35002,17 @@ export type PostFeatureRevisionRuleAddV2RequestSkipSchemaValidation =
   | string
   | boolean;
 export const PostFeatureRevisionRuleAddV2RequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostFeatureRevisionRuleAddV2RequestSkipSchemaValidation>;
+  S.Unknown as any as S.Schema<PostFeatureRevisionRuleAddV2RequestSkipSchemaValidation>;
 
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type PostFeatureRevisionRuleAddV2RequestIgnoreWarnings =
   | string
   | boolean;
 export const PostFeatureRevisionRuleAddV2RequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostFeatureRevisionRuleAddV2RequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<PostFeatureRevisionRuleAddV2RequestIgnoreWarnings>;
 
 export type TargetingRuleSavedGroupsItemMatch = "all" | "none" | "any";
-export const TargetingRuleSavedGroupsItemMatch = /*@__PURE__*/ S.String;
+export const TargetingRuleSavedGroupsItemMatch = S.String;
 
 export type TargetingRuleSavedGroupsItemIdsList = Array<string>;
 export const TargetingRuleSavedGroupsItemIdsList = /*@__PURE__*/ S.Array(
@@ -35189,7 +35056,7 @@ export const TargetingRuleEnvironmentsList = /*@__PURE__*/ S.Array(
 
 /** Use "force" for a standard targeting rule, or "rollout" for a percentage rollout (coverage < 1). Defaults to "force". Both are functionally equivalent; a force rule with coverage < 1 behaves as a rollout. */
 export type TargetingRuleType = "force" | "rollout";
-export const TargetingRuleType = /*@__PURE__*/ S.String;
+export const TargetingRuleType = S.String;
 
 /** A targeting rule that serves a specific value to users matching the conditions. Set coverage < 1 for a percentage rollout. */
 export interface TargetingRule {
@@ -35239,7 +35106,7 @@ export const TargetingRule = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "TargetingRule" }) as any as S.Schema<TargetingRule>;
 
 export type ExperimentRuleSavedGroupsItemMatch = "all" | "none" | "any";
-export const ExperimentRuleSavedGroupsItemMatch = /*@__PURE__*/ S.String;
+export const ExperimentRuleSavedGroupsItemMatch = S.String;
 
 export type ExperimentRuleSavedGroupsItemIdsList = Array<string>;
 export const ExperimentRuleSavedGroupsItemIdsList = /*@__PURE__*/ S.Array(
@@ -35339,7 +35206,7 @@ export const ExperimentRule = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ExperimentRule" }) as any as S.Schema<ExperimentRule>;
 
 export type SafeRolloutRuleSavedGroupsItemMatch = "all" | "none" | "any";
-export const SafeRolloutRuleSavedGroupsItemMatch = /*@__PURE__*/ S.String;
+export const SafeRolloutRuleSavedGroupsItemMatch = S.String;
 
 export type SafeRolloutRuleSavedGroupsItemIdsList = Array<string>;
 export const SafeRolloutRuleSavedGroupsItemIdsList = /*@__PURE__*/ S.Array(
@@ -35394,8 +35261,7 @@ export type SafeRolloutRuleSafeRolloutFieldsMaxDurationUnit =
   | "days"
   | "hours"
   | "minutes";
-export const SafeRolloutRuleSafeRolloutFieldsMaxDurationUnit =
-  /*@__PURE__*/ S.String;
+export const SafeRolloutRuleSafeRolloutFieldsMaxDurationUnit = S.String;
 
 export interface SafeRolloutRuleSafeRolloutFieldsMaxDuration {
   amount: number;
@@ -35513,14 +35379,14 @@ export type PostFeatureRevisionRuleAddV2RequestRule =
   | ExperimentRule
   | SafeRolloutRule;
 export const PostFeatureRevisionRuleAddV2RequestRule =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostFeatureRevisionRuleAddV2RequestRule>;
+  S.Unknown as any as S.Schema<PostFeatureRevisionRuleAddV2RequestRule>;
 
 export type PostFeatureRevisionRuleAddV2RequestRampScheduleStartActionsItemPatchSavedGroupsItemMatch =
   | "all"
   | "none"
   | "any";
 export const PostFeatureRevisionRuleAddV2RequestRampScheduleStartActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFeatureRevisionRuleAddV2RequestRampScheduleStartActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -35646,7 +35512,7 @@ export type PostFeatureRevisionRuleAddV2RequestRampScheduleStepsItemActionsItemP
   | "none"
   | "any";
 export const PostFeatureRevisionRuleAddV2RequestRampScheduleStepsItemActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFeatureRevisionRuleAddV2RequestRampScheduleStepsItemActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -35806,7 +35672,7 @@ export type PostFeatureRevisionRuleAddV2RequestRampScheduleEndActionsItemPatchSa
   | "none"
   | "any";
 export const PostFeatureRevisionRuleAddV2RequestRampScheduleEndActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFeatureRevisionRuleAddV2RequestRampScheduleEndActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -35943,28 +35809,28 @@ export type PostFeatureRevisionRuleAddV2RequestRampScheduleMonitoringConfigMonit
   | "auto"
   | "manual";
 export const PostFeatureRevisionRuleAddV2RequestRampScheduleMonitoringConfigMonitoringMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFeatureRevisionRuleAddV2RequestRampScheduleMonitoringConfigSrmAction =
   | "rollback"
   | "hold"
   | "warn";
 export const PostFeatureRevisionRuleAddV2RequestRampScheduleMonitoringConfigSrmAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFeatureRevisionRuleAddV2RequestRampScheduleMonitoringConfigNoTrafficAction =
   | "rollback"
   | "hold"
   | "warn";
 export const PostFeatureRevisionRuleAddV2RequestRampScheduleMonitoringConfigNoTrafficAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFeatureRevisionRuleAddV2RequestRampScheduleMonitoringConfigMultipleExposureAction =
   | "rollback"
   | "hold"
   | "warn";
 export const PostFeatureRevisionRuleAddV2RequestRampScheduleMonitoringConfigMultipleExposureAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostFeatureRevisionRuleAddV2RequestRampScheduleMonitoringConfig {
   datasourceId: string;
@@ -36023,7 +35889,7 @@ export type PostFeatureRevisionRuleAddV2RequestRampScheduleLockdownConfigMode =
   | "none"
   | "locked";
 export const PostFeatureRevisionRuleAddV2RequestRampScheduleLockdownConfigMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostFeatureRevisionRuleAddV2RequestRampScheduleLockdownConfig {
   mode:
@@ -36260,8 +36126,7 @@ export type PostFeatureRevisionSubmitReviewV2RequestAction =
   | "approve"
   | "request-changes"
   | "comment";
-export const PostFeatureRevisionSubmitReviewV2RequestAction =
-  /*@__PURE__*/ S.String;
+export const PostFeatureRevisionSubmitReviewV2RequestAction = S.String;
 
 export interface PostFeatureRevisionSubmitReviewV2Request {
   id: string;
@@ -36381,7 +36246,7 @@ export const PostFeatureRevisionUndoReviewV2Response = /*@__PURE__*/ S.suspend(
 /** If the organization caps concurrent drafts per feature (`maxConcurrentDrafts` setting), requests at or over the cap are rejected with a 409. Pass `true` to create the draft anyway. */
 export type PostFeatureRevisionV2RequestOverrideDraftLimit = string | boolean;
 export const PostFeatureRevisionV2RequestOverrideDraftLimit =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostFeatureRevisionV2RequestOverrideDraftLimit>;
+  S.Unknown as any as S.Schema<PostFeatureRevisionV2RequestOverrideDraftLimit>;
 
 export interface PostFeatureRevisionV2Request {
   id: string;
@@ -36422,12 +36287,12 @@ export const PostFeatureRevisionV2Response = /*@__PURE__*/ S.suspend(() =>
 /** Deprecated — pass `skipSchemaValidation` in the request body instead. */
 export type PostFeatureV2RequestSkipSchemaValidation = string | boolean;
 export const PostFeatureV2RequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostFeatureV2RequestSkipSchemaValidation>;
+  S.Unknown as any as S.Schema<PostFeatureV2RequestSkipSchemaValidation>;
 
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type PostFeatureV2RequestIgnoreWarnings = string | boolean;
 export const PostFeatureV2RequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostFeatureV2RequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<PostFeatureV2RequestIgnoreWarnings>;
 
 /** Secondary project IDs this feature is targeted in and served to, beyond its primary `project`. Governance/approvals stay with `project`. */
 export type PostFeatureV2RequestTargetingProjectsList = Array<string>;
@@ -36441,7 +36306,7 @@ export type PostFeatureV2RequestValueType =
   | "string"
   | "number"
   | "json";
-export const PostFeatureV2RequestValueType = /*@__PURE__*/ S.String;
+export const PostFeatureV2RequestValueType = S.String;
 
 /** List of associated tags */
 export type PostFeatureV2RequestTagsList = Array<string>;
@@ -36453,8 +36318,7 @@ export type PostFeatureV2RequestRulesItemCase0SavedGroupsItemMatch =
   | "all"
   | "none"
   | "any";
-export const PostFeatureV2RequestRulesItemCase0SavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+export const PostFeatureV2RequestRulesItemCase0SavedGroupsItemMatch = S.String;
 
 export type PostFeatureV2RequestRulesItemCase0SavedGroupsItemIdsList =
   Array<string>;
@@ -36489,7 +36353,7 @@ export type PostFeatureV2RequestRulesItemCase0SavedGroupTargetingItemMatchType =
   | "any"
   | "none";
 export const PostFeatureV2RequestRulesItemCase0SavedGroupTargetingItemMatchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFeatureV2RequestRulesItemCase0SavedGroupTargetingItemSavedGroupsList =
   Array<string>;
@@ -36632,8 +36496,7 @@ export type PostFeatureV2RequestRulesItemCase1SavedGroupsItemMatch =
   | "all"
   | "none"
   | "any";
-export const PostFeatureV2RequestRulesItemCase1SavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+export const PostFeatureV2RequestRulesItemCase1SavedGroupsItemMatch = S.String;
 
 export type PostFeatureV2RequestRulesItemCase1SavedGroupsItemIdsList =
   Array<string>;
@@ -36668,7 +36531,7 @@ export type PostFeatureV2RequestRulesItemCase1SavedGroupTargetingItemMatchType =
   | "any"
   | "none";
 export const PostFeatureV2RequestRulesItemCase1SavedGroupTargetingItemMatchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFeatureV2RequestRulesItemCase1SavedGroupTargetingItemSavedGroupsList =
   Array<string>;
@@ -36810,8 +36673,7 @@ export type PostFeatureV2RequestRulesItemCase2SavedGroupsItemMatch =
   | "all"
   | "none"
   | "any";
-export const PostFeatureV2RequestRulesItemCase2SavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+export const PostFeatureV2RequestRulesItemCase2SavedGroupsItemMatch = S.String;
 
 export type PostFeatureV2RequestRulesItemCase2SavedGroupsItemIdsList =
   Array<string>;
@@ -36846,7 +36708,7 @@ export type PostFeatureV2RequestRulesItemCase2SavedGroupTargetingItemMatchType =
   | "any"
   | "none";
 export const PostFeatureV2RequestRulesItemCase2SavedGroupTargetingItemMatchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFeatureV2RequestRulesItemCase2SavedGroupTargetingItemSavedGroupsList =
   Array<string>;
@@ -37002,8 +36864,7 @@ export type PostFeatureV2RequestRulesItemCase3SavedGroupsItemMatch =
   | "all"
   | "none"
   | "any";
-export const PostFeatureV2RequestRulesItemCase3SavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+export const PostFeatureV2RequestRulesItemCase3SavedGroupsItemMatch = S.String;
 
 export type PostFeatureV2RequestRulesItemCase3SavedGroupsItemIdsList =
   Array<string>;
@@ -37038,7 +36899,7 @@ export type PostFeatureV2RequestRulesItemCase3SavedGroupTargetingItemMatchType =
   | "any"
   | "none";
 export const PostFeatureV2RequestRulesItemCase3SavedGroupTargetingItemMatchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFeatureV2RequestRulesItemCase3SavedGroupTargetingItemSavedGroupsList =
   Array<string>;
@@ -37102,7 +36963,7 @@ export type PostFeatureV2RequestRulesItemCase3Status =
   | "released"
   | "rolled-back"
   | "stopped";
-export const PostFeatureV2RequestRulesItemCase3Status = /*@__PURE__*/ S.String;
+export const PostFeatureV2RequestRulesItemCase3Status = S.String;
 
 /** Specific environment IDs this rule applies to. Required when allEnvironments is false. */
 export type PostFeatureV2RequestRulesItemCase3EnvironmentsList = Array<string>;
@@ -37187,7 +37048,7 @@ export type PostFeatureV2RequestRulesItem =
   | PostFeatureV2RequestRulesItemCase2
   | PostFeatureV2RequestRulesItemCase3;
 export const PostFeatureV2RequestRulesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostFeatureV2RequestRulesItem>;
+  S.Unknown as any as S.Schema<PostFeatureV2RequestRulesItem>;
 
 /** Feature rules. Each rule carries its own environment scope via `allEnvironments` / `environments`. */
 export type PostFeatureV2RequestRulesList =
@@ -37318,7 +37179,7 @@ export type PostFunnelExplorationRequestCache =
   | "preferred"
   | "required"
   | "never";
-export const PostFunnelExplorationRequestCache = /*@__PURE__*/ S.String;
+export const PostFunnelExplorationRequestCache = S.String;
 
 export type PostFunnelExplorationRequestDimensionsItemCase0DateGranularity =
   | "auto"
@@ -37328,7 +37189,7 @@ export type PostFunnelExplorationRequestDimensionsItemCase0DateGranularity =
   | "month"
   | "year";
 export const PostFunnelExplorationRequestDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostFunnelExplorationRequestDimensionsItemCase0 {
   dimensionType: string;
@@ -37399,7 +37260,7 @@ export type PostFunnelExplorationRequestDimensionsItemCase3SlicesItemFiltersItem
   | "sql_expr"
   | "saved_filter";
 export const PostFunnelExplorationRequestDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFunnelExplorationRequestDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -37479,7 +37340,7 @@ export type PostFunnelExplorationRequestDimensionsItem =
   | PostFunnelExplorationRequestDimensionsItemCase2
   | PostFunnelExplorationRequestDimensionsItemCase3;
 export const PostFunnelExplorationRequestDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostFunnelExplorationRequestDimensionsItem>;
+  S.Unknown as any as S.Schema<PostFunnelExplorationRequestDimensionsItem>;
 
 export type PostFunnelExplorationRequestDimensionsList =
   Array<PostFunnelExplorationRequestDimensionsItem>;
@@ -37497,7 +37358,7 @@ export type PostFunnelExplorationRequestChartType =
   | "horizontalBar"
   | "stackedHorizontalBar"
   | "bigNumber";
-export const PostFunnelExplorationRequestChartType = /*@__PURE__*/ S.String;
+export const PostFunnelExplorationRequestChartType = S.String;
 
 export type PostFunnelExplorationRequestDateRangePredefined =
   | "today"
@@ -37509,16 +37370,14 @@ export type PostFunnelExplorationRequestDateRangePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const PostFunnelExplorationRequestDateRangePredefined =
-  /*@__PURE__*/ S.String;
+export const PostFunnelExplorationRequestDateRangePredefined = S.String;
 
 export type PostFunnelExplorationRequestDateRangeLookbackUnit =
   | "hour"
   | "day"
   | "week"
   | "month";
-export const PostFunnelExplorationRequestDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+export const PostFunnelExplorationRequestDateRangeLookbackUnit = S.String;
 
 export interface PostFunnelExplorationRequestDateRange {
   predefined: PostFunnelExplorationRequestDateRangePredefined | (string & {});
@@ -37546,7 +37405,7 @@ export const PostFunnelExplorationRequestDateRange = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PostFunnelExplorationRequestDateRange>;
 
 export type PostFunnelExplorationRequestShowAs = "total" | "per_unit";
-export const PostFunnelExplorationRequestShowAs = /*@__PURE__*/ S.String;
+export const PostFunnelExplorationRequestShowAs = S.String;
 
 export type PostFunnelExplorationRequestDatasetStepsItemRowFiltersItemOperator =
   | "="
@@ -37570,7 +37429,7 @@ export type PostFunnelExplorationRequestDatasetStepsItemRowFiltersItemOperator =
   | "sql_expr"
   | "saved_filter";
 export const PostFunnelExplorationRequestDatasetStepsItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFunnelExplorationRequestDatasetStepsItemRowFiltersItemValuesList =
   Array<string>;
@@ -37613,7 +37472,7 @@ export type PostFunnelExplorationRequestDatasetStepsItemConversionWindowUnit =
   | "hours"
   | "minutes";
 export const PostFunnelExplorationRequestDatasetStepsItemConversionWindowUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostFunnelExplorationRequestDatasetStepsItemConversionWindow {
   unit:
@@ -37661,8 +37520,7 @@ export const PostFunnelExplorationRequestDatasetStepsList =
   ) as any as S.Schema<PostFunnelExplorationRequestDatasetStepsList>;
 
 export type PostFunnelExplorationRequestDatasetYAxisScale = "count" | "percent";
-export const PostFunnelExplorationRequestDatasetYAxisScale =
-  /*@__PURE__*/ S.String;
+export const PostFunnelExplorationRequestDatasetYAxisScale = S.String;
 
 export interface PostFunnelExplorationRequestDataset {
   type: string;
@@ -37720,8 +37578,7 @@ export type PostFunnelExplorationResponseExplorationStatus =
   | "running"
   | "success"
   | "error";
-export const PostFunnelExplorationResponseExplorationStatus =
-  /*@__PURE__*/ S.String;
+export const PostFunnelExplorationResponseExplorationStatus = S.String;
 
 export type PostFunnelExplorationResponseExplorationResultRowsItemDimensionsList =
   Array<string>;
@@ -37802,7 +37659,7 @@ export type PostFunnelExplorationResponseExplorationConfigDimensionsItemCase0Dat
   | "month"
   | "year";
 export const PostFunnelExplorationResponseExplorationConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostFunnelExplorationResponseExplorationConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -37874,7 +37731,7 @@ export type PostFunnelExplorationResponseExplorationConfigDimensionsItemCase3Sli
   | "sql_expr"
   | "saved_filter";
 export const PostFunnelExplorationResponseExplorationConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFunnelExplorationResponseExplorationConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -37955,7 +37812,7 @@ export type PostFunnelExplorationResponseExplorationConfigDimensionsItem =
   | PostFunnelExplorationResponseExplorationConfigDimensionsItemCase2
   | PostFunnelExplorationResponseExplorationConfigDimensionsItemCase3;
 export const PostFunnelExplorationResponseExplorationConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostFunnelExplorationResponseExplorationConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<PostFunnelExplorationResponseExplorationConfigDimensionsItem>;
 
 export type PostFunnelExplorationResponseExplorationConfigDimensionsList =
   Array<PostFunnelExplorationResponseExplorationConfigDimensionsItem>;
@@ -37974,8 +37831,7 @@ export type PostFunnelExplorationResponseExplorationConfigChartType =
   | "horizontalBar"
   | "stackedHorizontalBar"
   | "bigNumber";
-export const PostFunnelExplorationResponseExplorationConfigChartType =
-  /*@__PURE__*/ S.String;
+export const PostFunnelExplorationResponseExplorationConfigChartType = S.String;
 
 export type PostFunnelExplorationResponseExplorationConfigDateRangePredefined =
   | "today"
@@ -37988,7 +37844,7 @@ export type PostFunnelExplorationResponseExplorationConfigDateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const PostFunnelExplorationResponseExplorationConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFunnelExplorationResponseExplorationConfigDateRangeLookbackUnit =
   | "hour"
@@ -37996,7 +37852,7 @@ export type PostFunnelExplorationResponseExplorationConfigDateRangeLookbackUnit 
   | "week"
   | "month";
 export const PostFunnelExplorationResponseExplorationConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostFunnelExplorationResponseExplorationConfigDateRange {
   predefined: PostFunnelExplorationResponseExplorationConfigDateRangePredefined;
@@ -38026,8 +37882,7 @@ export const PostFunnelExplorationResponseExplorationConfigDateRange =
 export type PostFunnelExplorationResponseExplorationConfigShowAs =
   | "total"
   | "per_unit";
-export const PostFunnelExplorationResponseExplorationConfigShowAs =
-  /*@__PURE__*/ S.String;
+export const PostFunnelExplorationResponseExplorationConfigShowAs = S.String;
 
 export type PostFunnelExplorationResponseExplorationConfigDatasetStepsItemRowFiltersItemOperator =
   | "="
@@ -38051,7 +37906,7 @@ export type PostFunnelExplorationResponseExplorationConfigDatasetStepsItemRowFil
   | "sql_expr"
   | "saved_filter";
 export const PostFunnelExplorationResponseExplorationConfigDatasetStepsItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostFunnelExplorationResponseExplorationConfigDatasetStepsItemRowFiltersItemValuesList =
   Array<string>;
@@ -38093,7 +37948,7 @@ export type PostFunnelExplorationResponseExplorationConfigDatasetStepsItemConver
   | "hours"
   | "minutes";
 export const PostFunnelExplorationResponseExplorationConfigDatasetStepsItemConversionWindowUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostFunnelExplorationResponseExplorationConfigDatasetStepsItemConversionWindow {
   unit: PostFunnelExplorationResponseExplorationConfigDatasetStepsItemConversionWindowUnit;
@@ -38147,7 +38002,7 @@ export type PostFunnelExplorationResponseExplorationConfigDatasetYAxisScale =
   | "count"
   | "percent";
 export const PostFunnelExplorationResponseExplorationConfigDatasetYAxisScale =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostFunnelExplorationResponseExplorationConfigDataset {
   type: string;
@@ -38247,7 +38102,7 @@ export const PostFunnelExplorationResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Where this metric must be managed from. If not set (empty string), it can be managed from anywhere. If set to "api", it can be managed via the API only. */
 export type PostMetricRequestManagedBy = "" | "api";
-export const PostMetricRequestManagedBy = /*@__PURE__*/ S.String;
+export const PostMetricRequestManagedBy = S.String;
 
 /** Type of metric. See [Metrics documentation](/app/metrics/legacy) */
 export type PostMetricRequestType =
@@ -38255,7 +38110,7 @@ export type PostMetricRequestType =
   | "count"
   | "duration"
   | "revenue";
-export const PostMetricRequestType = /*@__PURE__*/ S.String;
+export const PostMetricRequestType = S.String;
 
 /** List of tags */
 export type PostMetricRequestTagsList = Array<string>;
@@ -38270,14 +38125,13 @@ export const PostMetricRequestProjectsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PostMetricRequestProjectsList>;
 
 export type PostMetricRequestBehaviorGoal = "increase" | "decrease";
-export const PostMetricRequestBehaviorGoal = /*@__PURE__*/ S.String;
+export const PostMetricRequestBehaviorGoal = S.String;
 
 export type PostMetricRequestBehaviorCappingSettingsType =
   | "none"
   | "absolute"
   | "percentile";
-export const PostMetricRequestBehaviorCappingSettingsType =
-  /*@__PURE__*/ S.String;
+export const PostMetricRequestBehaviorCappingSettingsType = S.String;
 
 /** Controls how outliers are handled */
 export interface PostMetricRequestBehaviorCappingSettings {
@@ -38299,14 +38153,13 @@ export const PostMetricRequestBehaviorCappingSettings = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PostMetricRequestBehaviorCappingSettings>;
 
 export type PostMetricRequestBehaviorCapping = "absolute" | "percentile";
-export const PostMetricRequestBehaviorCapping = /*@__PURE__*/ S.String;
+export const PostMetricRequestBehaviorCapping = S.String;
 
 export type PostMetricRequestBehaviorWindowSettingsType =
   | "none"
   | "conversion"
   | "lookback";
-export const PostMetricRequestBehaviorWindowSettingsType =
-  /*@__PURE__*/ S.String;
+export const PostMetricRequestBehaviorWindowSettingsType = S.String;
 
 /** Default `hours`. */
 export type PostMetricRequestBehaviorWindowSettingsDelayUnit =
@@ -38314,16 +38167,14 @@ export type PostMetricRequestBehaviorWindowSettingsDelayUnit =
   | "hours"
   | "days"
   | "weeks";
-export const PostMetricRequestBehaviorWindowSettingsDelayUnit =
-  /*@__PURE__*/ S.String;
+export const PostMetricRequestBehaviorWindowSettingsDelayUnit = S.String;
 
 export type PostMetricRequestBehaviorWindowSettingsWindowUnit =
   | "minutes"
   | "hours"
   | "days"
   | "weeks";
-export const PostMetricRequestBehaviorWindowSettingsWindowUnit =
-  /*@__PURE__*/ S.String;
+export const PostMetricRequestBehaviorWindowSettingsWindowUnit = S.String;
 
 /** Controls the conversion window for the metric */
 export interface PostMetricRequestBehaviorWindowSettings {
@@ -38572,7 +38423,7 @@ export type PostMetricExplorationRequestCache =
   | "preferred"
   | "required"
   | "never";
-export const PostMetricExplorationRequestCache = /*@__PURE__*/ S.String;
+export const PostMetricExplorationRequestCache = S.String;
 
 export type PostMetricExplorationRequestDimensionsItemCase0DateGranularity =
   | "auto"
@@ -38582,7 +38433,7 @@ export type PostMetricExplorationRequestDimensionsItemCase0DateGranularity =
   | "month"
   | "year";
 export const PostMetricExplorationRequestDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostMetricExplorationRequestDimensionsItemCase0 {
   dimensionType: string;
@@ -38653,7 +38504,7 @@ export type PostMetricExplorationRequestDimensionsItemCase3SlicesItemFiltersItem
   | "sql_expr"
   | "saved_filter";
 export const PostMetricExplorationRequestDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostMetricExplorationRequestDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -38733,7 +38584,7 @@ export type PostMetricExplorationRequestDimensionsItem =
   | PostMetricExplorationRequestDimensionsItemCase2
   | PostMetricExplorationRequestDimensionsItemCase3;
 export const PostMetricExplorationRequestDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostMetricExplorationRequestDimensionsItem>;
+  S.Unknown as any as S.Schema<PostMetricExplorationRequestDimensionsItem>;
 
 export type PostMetricExplorationRequestDimensionsList =
   Array<PostMetricExplorationRequestDimensionsItem>;
@@ -38751,7 +38602,7 @@ export type PostMetricExplorationRequestChartType =
   | "horizontalBar"
   | "stackedHorizontalBar"
   | "bigNumber";
-export const PostMetricExplorationRequestChartType = /*@__PURE__*/ S.String;
+export const PostMetricExplorationRequestChartType = S.String;
 
 export type PostMetricExplorationRequestDateRangePredefined =
   | "today"
@@ -38763,16 +38614,14 @@ export type PostMetricExplorationRequestDateRangePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const PostMetricExplorationRequestDateRangePredefined =
-  /*@__PURE__*/ S.String;
+export const PostMetricExplorationRequestDateRangePredefined = S.String;
 
 export type PostMetricExplorationRequestDateRangeLookbackUnit =
   | "hour"
   | "day"
   | "week"
   | "month";
-export const PostMetricExplorationRequestDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+export const PostMetricExplorationRequestDateRangeLookbackUnit = S.String;
 
 export interface PostMetricExplorationRequestDateRange {
   predefined: PostMetricExplorationRequestDateRangePredefined | (string & {});
@@ -38800,7 +38649,7 @@ export const PostMetricExplorationRequestDateRange = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PostMetricExplorationRequestDateRange>;
 
 export type PostMetricExplorationRequestShowAs = "total" | "per_unit";
-export const PostMetricExplorationRequestShowAs = /*@__PURE__*/ S.String;
+export const PostMetricExplorationRequestShowAs = S.String;
 
 export type PostMetricExplorationRequestDatasetValuesItemRowFiltersItemOperator =
   | "="
@@ -38824,7 +38673,7 @@ export type PostMetricExplorationRequestDatasetValuesItemRowFiltersItemOperator 
   | "sql_expr"
   | "saved_filter";
 export const PostMetricExplorationRequestDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostMetricExplorationRequestDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -38940,8 +38789,7 @@ export type PostMetricExplorationResponseExplorationStatus =
   | "running"
   | "success"
   | "error";
-export const PostMetricExplorationResponseExplorationStatus =
-  /*@__PURE__*/ S.String;
+export const PostMetricExplorationResponseExplorationStatus = S.String;
 
 export type PostMetricExplorationResponseExplorationResultRowsItemDimensionsList =
   Array<string>;
@@ -39022,7 +38870,7 @@ export type PostMetricExplorationResponseExplorationConfigDimensionsItemCase0Dat
   | "month"
   | "year";
 export const PostMetricExplorationResponseExplorationConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostMetricExplorationResponseExplorationConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -39094,7 +38942,7 @@ export type PostMetricExplorationResponseExplorationConfigDimensionsItemCase3Sli
   | "sql_expr"
   | "saved_filter";
 export const PostMetricExplorationResponseExplorationConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostMetricExplorationResponseExplorationConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -39175,7 +39023,7 @@ export type PostMetricExplorationResponseExplorationConfigDimensionsItem =
   | PostMetricExplorationResponseExplorationConfigDimensionsItemCase2
   | PostMetricExplorationResponseExplorationConfigDimensionsItemCase3;
 export const PostMetricExplorationResponseExplorationConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostMetricExplorationResponseExplorationConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<PostMetricExplorationResponseExplorationConfigDimensionsItem>;
 
 export type PostMetricExplorationResponseExplorationConfigDimensionsList =
   Array<PostMetricExplorationResponseExplorationConfigDimensionsItem>;
@@ -39194,8 +39042,7 @@ export type PostMetricExplorationResponseExplorationConfigChartType =
   | "horizontalBar"
   | "stackedHorizontalBar"
   | "bigNumber";
-export const PostMetricExplorationResponseExplorationConfigChartType =
-  /*@__PURE__*/ S.String;
+export const PostMetricExplorationResponseExplorationConfigChartType = S.String;
 
 export type PostMetricExplorationResponseExplorationConfigDateRangePredefined =
   | "today"
@@ -39208,7 +39055,7 @@ export type PostMetricExplorationResponseExplorationConfigDateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const PostMetricExplorationResponseExplorationConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostMetricExplorationResponseExplorationConfigDateRangeLookbackUnit =
   | "hour"
@@ -39216,7 +39063,7 @@ export type PostMetricExplorationResponseExplorationConfigDateRangeLookbackUnit 
   | "week"
   | "month";
 export const PostMetricExplorationResponseExplorationConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostMetricExplorationResponseExplorationConfigDateRange {
   predefined: PostMetricExplorationResponseExplorationConfigDateRangePredefined;
@@ -39246,8 +39093,7 @@ export const PostMetricExplorationResponseExplorationConfigDateRange =
 export type PostMetricExplorationResponseExplorationConfigShowAs =
   | "total"
   | "per_unit";
-export const PostMetricExplorationResponseExplorationConfigShowAs =
-  /*@__PURE__*/ S.String;
+export const PostMetricExplorationResponseExplorationConfigShowAs = S.String;
 
 export type PostMetricExplorationResponseExplorationConfigDatasetValuesItemRowFiltersItemOperator =
   | "="
@@ -39271,7 +39117,7 @@ export type PostMetricExplorationResponseExplorationConfigDatasetValuesItemRowFi
   | "sql_expr"
   | "saved_filter";
 export const PostMetricExplorationResponseExplorationConfigDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostMetricExplorationResponseExplorationConfigDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -39431,8 +39277,7 @@ export type PostVariationImageUploadRequestContentType =
   | "image/png"
   | "image/jpeg"
   | "image/gif";
-export const PostVariationImageUploadRequestContentType =
-  /*@__PURE__*/ S.String;
+export const PostVariationImageUploadRequestContentType = S.String;
 
 export interface PostVariationImageUploadRequest {
   id: string;
@@ -39490,8 +39335,7 @@ export type PostVisualChangeRequestDomMutationsItemAction =
   | "append"
   | "set"
   | "remove";
-export const PostVisualChangeRequestDomMutationsItemAction =
-  /*@__PURE__*/ S.String;
+export const PostVisualChangeRequestDomMutationsItemAction = S.String;
 
 export interface PostVisualChangeRequestDomMutationsItem {
   selector: string;
@@ -39563,8 +39407,7 @@ export const PostVisualChangeResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PostVisualChangeResponse>;
 
 export type PostVisualChangesetsRequestUrlPatternsItemType = "simple" | "regex";
-export const PostVisualChangesetsRequestUrlPatternsItemType =
-  /*@__PURE__*/ S.String;
+export const PostVisualChangesetsRequestUrlPatternsItemType = S.String;
 
 export interface PostVisualChangesetsRequestUrlPatternsItem {
   include?: boolean;
@@ -39810,7 +39653,7 @@ export type PutAttributeRequestDatatype =
   | "string[]"
   | "number[]"
   | "secureString[]";
-export const PutAttributeRequestDatatype = /*@__PURE__*/ S.String;
+export const PutAttributeRequestDatatype = S.String;
 
 /** The attribute's format */
 export type PutAttributeRequestFormat =
@@ -39818,7 +39661,7 @@ export type PutAttributeRequestFormat =
   | "version"
   | "date"
   | "isoCountryCode";
-export const PutAttributeRequestFormat = /*@__PURE__*/ S.String;
+export const PutAttributeRequestFormat = S.String;
 
 export type PutAttributeRequestProjectsList = Array<string>;
 export const PutAttributeRequestProjectsList = /*@__PURE__*/ S.Array(
@@ -39927,12 +39770,12 @@ export type PutConfigRevisionMetadataRequestSkipSchemaValidation =
   | string
   | boolean;
 export const PutConfigRevisionMetadataRequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutConfigRevisionMetadataRequestSkipSchemaValidation>;
+  S.Unknown as any as S.Schema<PutConfigRevisionMetadataRequestSkipSchemaValidation>;
 
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type PutConfigRevisionMetadataRequestIgnoreWarnings = string | boolean;
 export const PutConfigRevisionMetadataRequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutConfigRevisionMetadataRequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<PutConfigRevisionMetadataRequestIgnoreWarnings>;
 
 /** Replace the composition mixins layered on top of `parent`, in precedence order (later overrides earlier; all override `parent`; own keys win last). Send the complete set; an empty array clears all mixins. */
 export type PutConfigRevisionMetadataRequestExtendsList = Array<string>;
@@ -40019,12 +39862,12 @@ export type PutConfigRevisionProjectionRequestSkipSchemaValidation =
   | string
   | boolean;
 export const PutConfigRevisionProjectionRequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutConfigRevisionProjectionRequestSkipSchemaValidation>;
+  S.Unknown as any as S.Schema<PutConfigRevisionProjectionRequestSkipSchemaValidation>;
 
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type PutConfigRevisionProjectionRequestIgnoreWarnings = string | boolean;
 export const PutConfigRevisionProjectionRequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutConfigRevisionProjectionRequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<PutConfigRevisionProjectionRequestIgnoreWarnings>;
 
 export interface PutConfigRevisionProjectionRequest {
   key: string;
@@ -40096,12 +39939,12 @@ export type PutConfigRevisionPropertyRequestSkipSchemaValidation =
   | string
   | boolean;
 export const PutConfigRevisionPropertyRequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutConfigRevisionPropertyRequestSkipSchemaValidation>;
+  S.Unknown as any as S.Schema<PutConfigRevisionPropertyRequestSkipSchemaValidation>;
 
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type PutConfigRevisionPropertyRequestIgnoreWarnings = string | boolean;
 export const PutConfigRevisionPropertyRequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutConfigRevisionPropertyRequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<PutConfigRevisionPropertyRequestIgnoreWarnings>;
 
 export interface PutConfigRevisionPropertyRequest {
   key: string;
@@ -40170,12 +40013,12 @@ export type PutConfigRevisionSchemaRequestSkipSchemaValidation =
   | string
   | boolean;
 export const PutConfigRevisionSchemaRequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutConfigRevisionSchemaRequestSkipSchemaValidation>;
+  S.Unknown as any as S.Schema<PutConfigRevisionSchemaRequestSkipSchemaValidation>;
 
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type PutConfigRevisionSchemaRequestIgnoreWarnings = string | boolean;
 export const PutConfigRevisionSchemaRequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutConfigRevisionSchemaRequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<PutConfigRevisionSchemaRequestIgnoreWarnings>;
 
 export interface PutConfigRevisionSchemaRequest {
   key: string;
@@ -40246,12 +40089,12 @@ export type PutConfigRevisionValueRequestSkipSchemaValidation =
   | string
   | boolean;
 export const PutConfigRevisionValueRequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutConfigRevisionValueRequestSkipSchemaValidation>;
+  S.Unknown as any as S.Schema<PutConfigRevisionValueRequestSkipSchemaValidation>;
 
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type PutConfigRevisionValueRequestIgnoreWarnings = string | boolean;
 export const PutConfigRevisionValueRequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutConfigRevisionValueRequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<PutConfigRevisionValueRequestIgnoreWarnings>;
 
 /** This config's own value as a JSON object — a targeted patch deep-merged onto the resolved parent value. */
 export type PutConfigRevisionValueRequestValueMap = {
@@ -40503,7 +40346,7 @@ export const PutEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutEnvironmentResponse>;
 
 export type PutExperimentScheduleRequestStopAfterUnit = "hours" | "days";
-export const PutExperimentScheduleRequestStopAfterUnit = /*@__PURE__*/ S.String;
+export const PutExperimentScheduleRequestStopAfterUnit = S.String;
 
 /** Deferred relative end, resolved to a concrete stop at the experiment's actual start (or now, if already running). */
 export interface PutExperimentScheduleRequestStopAfter {
@@ -40610,14 +40453,14 @@ export type PutFeatureRevisionDefaultValueV2RequestSkipSchemaValidation =
   | string
   | boolean;
 export const PutFeatureRevisionDefaultValueV2RequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutFeatureRevisionDefaultValueV2RequestSkipSchemaValidation>;
+  S.Unknown as any as S.Schema<PutFeatureRevisionDefaultValueV2RequestSkipSchemaValidation>;
 
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type PutFeatureRevisionDefaultValueV2RequestIgnoreWarnings =
   | string
   | boolean;
 export const PutFeatureRevisionDefaultValueV2RequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutFeatureRevisionDefaultValueV2RequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<PutFeatureRevisionDefaultValueV2RequestIgnoreWarnings>;
 
 export interface PutFeatureRevisionDefaultValueV2Request {
   id: string;
@@ -40779,16 +40622,14 @@ export const PutFeatureRevisionMetadataV2RequestCustomFieldsMap =
 export type PutFeatureRevisionMetadataV2RequestJsonSchemaSchemaType =
   | "schema"
   | "simple";
-export const PutFeatureRevisionMetadataV2RequestJsonSchemaSchemaType =
-  /*@__PURE__*/ S.String;
+export const PutFeatureRevisionMetadataV2RequestJsonSchemaSchemaType = S.String;
 
 export type PutFeatureRevisionMetadataV2RequestJsonSchemaSimpleType =
   | "object"
   | "object[]"
   | "primitive"
   | "primitive[]";
-export const PutFeatureRevisionMetadataV2RequestJsonSchemaSimpleType =
-  /*@__PURE__*/ S.String;
+export const PutFeatureRevisionMetadataV2RequestJsonSchemaSimpleType = S.String;
 
 export type PutFeatureRevisionMetadataV2RequestJsonSchemaSimpleFieldsItemType =
   | "integer"
@@ -40796,7 +40637,7 @@ export type PutFeatureRevisionMetadataV2RequestJsonSchemaSimpleFieldsItemType =
   | "string"
   | "boolean";
 export const PutFeatureRevisionMetadataV2RequestJsonSchemaSimpleFieldsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutFeatureRevisionMetadataV2RequestJsonSchemaSimpleFieldsItemEnumList =
   Array<string>;
@@ -41035,7 +40876,7 @@ export type PutFeatureRevisionRuleRampScheduleV2RequestStartActionsItemPatchSave
   | "none"
   | "any";
 export const PutFeatureRevisionRuleRampScheduleV2RequestStartActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutFeatureRevisionRuleRampScheduleV2RequestStartActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -41159,7 +41000,7 @@ export type PutFeatureRevisionRuleRampScheduleV2RequestStepsItemActionsItemPatch
   | "none"
   | "any";
 export const PutFeatureRevisionRuleRampScheduleV2RequestStepsItemActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutFeatureRevisionRuleRampScheduleV2RequestStepsItemActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -41319,7 +41160,7 @@ export type PutFeatureRevisionRuleRampScheduleV2RequestEndActionsItemPatchSavedG
   | "none"
   | "any";
 export const PutFeatureRevisionRuleRampScheduleV2RequestEndActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutFeatureRevisionRuleRampScheduleV2RequestEndActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -41456,28 +41297,28 @@ export type PutFeatureRevisionRuleRampScheduleV2RequestMonitoringConfigMonitorin
   | "auto"
   | "manual";
 export const PutFeatureRevisionRuleRampScheduleV2RequestMonitoringConfigMonitoringMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutFeatureRevisionRuleRampScheduleV2RequestMonitoringConfigSrmAction =
   | "rollback"
   | "hold"
   | "warn";
 export const PutFeatureRevisionRuleRampScheduleV2RequestMonitoringConfigSrmAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutFeatureRevisionRuleRampScheduleV2RequestMonitoringConfigNoTrafficAction =
   | "rollback"
   | "hold"
   | "warn";
 export const PutFeatureRevisionRuleRampScheduleV2RequestMonitoringConfigNoTrafficAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutFeatureRevisionRuleRampScheduleV2RequestMonitoringConfigMultipleExposureAction =
   | "rollback"
   | "hold"
   | "warn";
 export const PutFeatureRevisionRuleRampScheduleV2RequestMonitoringConfigMultipleExposureAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutFeatureRevisionRuleRampScheduleV2RequestMonitoringConfig {
   datasourceId: string;
@@ -41535,7 +41376,7 @@ export type PutFeatureRevisionRuleRampScheduleV2RequestLockdownConfigMode =
   | "none"
   | "locked";
 export const PutFeatureRevisionRuleRampScheduleV2RequestLockdownConfigMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutFeatureRevisionRuleRampScheduleV2RequestLockdownConfig {
   mode:
@@ -41556,7 +41397,7 @@ export type PutFeatureRevisionRuleRampScheduleV2RequestStartStateSavedGroupsItem
   | "none"
   | "any";
 export const PutFeatureRevisionRuleRampScheduleV2RequestStartStateSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutFeatureRevisionRuleRampScheduleV2RequestStartStateSavedGroupsItemIdsList =
   Array<string>;
@@ -41748,19 +41589,18 @@ export type PutFeatureRevisionRuleV2RequestSkipSchemaValidation =
   | string
   | boolean;
 export const PutFeatureRevisionRuleV2RequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutFeatureRevisionRuleV2RequestSkipSchemaValidation>;
+  S.Unknown as any as S.Schema<PutFeatureRevisionRuleV2RequestSkipSchemaValidation>;
 
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type PutFeatureRevisionRuleV2RequestIgnoreWarnings = string | boolean;
 export const PutFeatureRevisionRuleV2RequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutFeatureRevisionRuleV2RequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<PutFeatureRevisionRuleV2RequestIgnoreWarnings>;
 
 export type PutFeatureRevisionRuleV2RequestRuleSavedGroupsItemMatch =
   | "all"
   | "none"
   | "any";
-export const PutFeatureRevisionRuleV2RequestRuleSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+export const PutFeatureRevisionRuleV2RequestRuleSavedGroupsItemMatch = S.String;
 
 export type PutFeatureRevisionRuleV2RequestRuleSavedGroupsItemIdsList =
   Array<string>;
@@ -41809,7 +41649,7 @@ export type PutFeatureRevisionRuleV2RequestRuleType =
   | "rollout"
   | "experiment-ref"
   | "safe-rollout";
-export const PutFeatureRevisionRuleV2RequestRuleType = /*@__PURE__*/ S.String;
+export const PutFeatureRevisionRuleV2RequestRuleType = S.String;
 
 export interface PutFeatureRevisionRuleV2RequestRuleVariationsItem {
   variationId: string;
@@ -41898,7 +41738,7 @@ export type PutFeatureRevisionRuleV2RequestRampScheduleStartActionsItemPatchSave
   | "none"
   | "any";
 export const PutFeatureRevisionRuleV2RequestRampScheduleStartActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutFeatureRevisionRuleV2RequestRampScheduleStartActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -42022,7 +41862,7 @@ export type PutFeatureRevisionRuleV2RequestRampScheduleStepsItemActionsItemPatch
   | "none"
   | "any";
 export const PutFeatureRevisionRuleV2RequestRampScheduleStepsItemActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutFeatureRevisionRuleV2RequestRampScheduleStepsItemActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -42182,7 +42022,7 @@ export type PutFeatureRevisionRuleV2RequestRampScheduleEndActionsItemPatchSavedG
   | "none"
   | "any";
 export const PutFeatureRevisionRuleV2RequestRampScheduleEndActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutFeatureRevisionRuleV2RequestRampScheduleEndActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -42319,28 +42159,28 @@ export type PutFeatureRevisionRuleV2RequestRampScheduleMonitoringConfigMonitorin
   | "auto"
   | "manual";
 export const PutFeatureRevisionRuleV2RequestRampScheduleMonitoringConfigMonitoringMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutFeatureRevisionRuleV2RequestRampScheduleMonitoringConfigSrmAction =
   | "rollback"
   | "hold"
   | "warn";
 export const PutFeatureRevisionRuleV2RequestRampScheduleMonitoringConfigSrmAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutFeatureRevisionRuleV2RequestRampScheduleMonitoringConfigNoTrafficAction =
   | "rollback"
   | "hold"
   | "warn";
 export const PutFeatureRevisionRuleV2RequestRampScheduleMonitoringConfigNoTrafficAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutFeatureRevisionRuleV2RequestRampScheduleMonitoringConfigMultipleExposureAction =
   | "rollback"
   | "hold"
   | "warn";
 export const PutFeatureRevisionRuleV2RequestRampScheduleMonitoringConfigMultipleExposureAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutFeatureRevisionRuleV2RequestRampScheduleMonitoringConfig {
   datasourceId: string;
@@ -42398,7 +42238,7 @@ export type PutFeatureRevisionRuleV2RequestRampScheduleLockdownConfigMode =
   | "none"
   | "locked";
 export const PutFeatureRevisionRuleV2RequestRampScheduleLockdownConfigMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutFeatureRevisionRuleV2RequestRampScheduleLockdownConfig {
   mode:
@@ -42522,7 +42362,7 @@ export const PutFeatureRevisionRuleV2Response = /*@__PURE__*/ S.suspend(() =>
 
 /** Where this metric must be managed from. If not set (empty string), it can be managed from anywhere. If set to "api", it can be managed via the API only. Please note that we have deprecated support for setting the managedBy property to "admin". Your existing Legacy Metrics with this value will continue to work, but we suggest migrating to Fact Metrics instead. */
 export type PutMetricRequestManagedBy = "" | "api" | "admin";
-export const PutMetricRequestManagedBy = /*@__PURE__*/ S.String;
+export const PutMetricRequestManagedBy = S.String;
 
 /** Type of metric. See [Metrics documentation](/app/metrics/legacy) */
 export type PutMetricRequestType =
@@ -42530,7 +42370,7 @@ export type PutMetricRequestType =
   | "count"
   | "duration"
   | "revenue";
-export const PutMetricRequestType = /*@__PURE__*/ S.String;
+export const PutMetricRequestType = S.String;
 
 /** List of tags */
 export type PutMetricRequestTagsList = Array<string>;
@@ -42545,14 +42385,13 @@ export const PutMetricRequestProjectsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PutMetricRequestProjectsList>;
 
 export type PutMetricRequestBehaviorGoal = "increase" | "decrease";
-export const PutMetricRequestBehaviorGoal = /*@__PURE__*/ S.String;
+export const PutMetricRequestBehaviorGoal = S.String;
 
 export type PutMetricRequestBehaviorCappingSettingsType =
   | "none"
   | "absolute"
   | "percentile";
-export const PutMetricRequestBehaviorCappingSettingsType =
-  /*@__PURE__*/ S.String;
+export const PutMetricRequestBehaviorCappingSettingsType = S.String;
 
 /** Controls how outliers are handled */
 export interface PutMetricRequestBehaviorCappingSettings {
@@ -42574,14 +42413,13 @@ export const PutMetricRequestBehaviorCappingSettings = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PutMetricRequestBehaviorCappingSettings>;
 
 export type PutMetricRequestBehaviorCapping = "absolute" | "percentile";
-export const PutMetricRequestBehaviorCapping = /*@__PURE__*/ S.String;
+export const PutMetricRequestBehaviorCapping = S.String;
 
 export type PutMetricRequestBehaviorWindowSettingsType =
   | "none"
   | "conversion"
   | "lookback";
-export const PutMetricRequestBehaviorWindowSettingsType =
-  /*@__PURE__*/ S.String;
+export const PutMetricRequestBehaviorWindowSettingsType = S.String;
 
 /** Default `hours`. */
 export type PutMetricRequestBehaviorWindowSettingsDelayUnit =
@@ -42589,16 +42427,14 @@ export type PutMetricRequestBehaviorWindowSettingsDelayUnit =
   | "hours"
   | "days"
   | "weeks";
-export const PutMetricRequestBehaviorWindowSettingsDelayUnit =
-  /*@__PURE__*/ S.String;
+export const PutMetricRequestBehaviorWindowSettingsDelayUnit = S.String;
 
 export type PutMetricRequestBehaviorWindowSettingsWindowUnit =
   | "minutes"
   | "hours"
   | "days"
   | "weeks";
-export const PutMetricRequestBehaviorWindowSettingsWindowUnit =
-  /*@__PURE__*/ S.String;
+export const PutMetricRequestBehaviorWindowSettingsWindowUnit = S.String;
 
 /** Controls the conversion window for the metric */
 export interface PutMetricRequestBehaviorWindowSettings {
@@ -42844,7 +42680,7 @@ export const PutMetricResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Set to 'inactive' to disable the namespace. */
 export type PutNamespaceRequestStatus = "active" | "inactive";
-export const PutNamespaceRequestStatus = /*@__PURE__*/ S.String;
+export const PutNamespaceRequestStatus = S.String;
 
 export interface PutNamespaceRequest {
   /** The unique id of the namespace */
@@ -42951,18 +42787,18 @@ export const PutProjectResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** UI lifecycle marker for the report */
 export type PutReportMetadataRequestStatus = "published" | "private";
-export const PutReportMetadataRequestStatus = /*@__PURE__*/ S.String;
+export const PutReportMetadataRequestStatus = S.String;
 
 /** Visibility of the report. Setting to `public` enables a shareable `shareUrl`; setting back to `organization` or `private` revokes public access (the share token is preserved, so re-publishing exposes the same URL). */
 export type PutReportMetadataRequestShareLevel =
   | "public"
   | "organization"
   | "private";
-export const PutReportMetadataRequestShareLevel = /*@__PURE__*/ S.String;
+export const PutReportMetadataRequestShareLevel = S.String;
 
 /** Who can edit the report in the GrowthBook UI. `organization` allows any org member with the `createAnalyses` permission; `private` restricts editing to the report owner. */
 export type PutReportMetadataRequestEditLevel = "organization" | "private";
-export const PutReportMetadataRequestEditLevel = /*@__PURE__*/ S.String;
+export const PutReportMetadataRequestEditLevel = S.String;
 
 export interface PutReportMetadataRequest {
   /** The id of the requested resource */
@@ -43006,7 +42842,7 @@ export const PutReportMetadataResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Stats engine override */
 export type PutReportSettingsRequestStatsEngine = "bayesian" | "frequentist";
-export const PutReportSettingsRequestStatsEngine = /*@__PURE__*/ S.String;
+export const PutReportSettingsRequestStatsEngine = S.String;
 
 /** Goal metric IDs */
 export type PutReportSettingsRequestGoalMetricsList = Array<string>;
@@ -43032,8 +42868,7 @@ export type PutReportSettingsRequestMetricOverridesItemWindowType =
   | "conversion"
   | "lookback"
   | "";
-export const PutReportSettingsRequestMetricOverridesItemWindowType =
-  /*@__PURE__*/ S.String;
+export const PutReportSettingsRequestMetricOverridesItemWindowType = S.String;
 
 export interface PutReportSettingsRequestMetricOverridesItem {
   id: string;
@@ -43137,14 +42972,14 @@ export type PutReportSettingsRequestDifferenceType =
   | "relative"
   | "absolute"
   | "scaled";
-export const PutReportSettingsRequestDifferenceType = /*@__PURE__*/ S.String;
+export const PutReportSettingsRequestDifferenceType = S.String;
 
 /** Metric conversion window attribution model */
 export type PutReportSettingsRequestAttributionModel =
   | "firstExposure"
   | "experimentDuration"
   | "lookbackOverride";
-export const PutReportSettingsRequestAttributionModel = /*@__PURE__*/ S.String;
+export const PutReportSettingsRequestAttributionModel = S.String;
 
 export type PutReportSettingsRequestLookbackOverrideCase0 =
   CreateReportRequestLookbackOverrideCase0;
@@ -43156,8 +42991,7 @@ export type PutReportSettingsRequestLookbackOverrideCase1ValueUnit =
   | "hours"
   | "days"
   | "weeks";
-export const PutReportSettingsRequestLookbackOverrideCase1ValueUnit =
-  /*@__PURE__*/ S.String;
+export const PutReportSettingsRequestLookbackOverrideCase1ValueUnit = S.String;
 
 export interface PutReportSettingsRequestLookbackOverrideCase1 {
   type: string;
@@ -43182,7 +43016,7 @@ export type PutReportSettingsRequestLookbackOverride =
   | CreateReportRequestLookbackOverrideCase0
   | PutReportSettingsRequestLookbackOverrideCase1;
 export const PutReportSettingsRequestLookbackOverride =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutReportSettingsRequestLookbackOverride>;
+  S.Unknown as any as S.Schema<PutReportSettingsRequestLookbackOverride>;
 
 export interface PutReportSettingsRequestVariationsItem {
   id: string;
@@ -43560,8 +43394,7 @@ export type PutVisualChangeRequestDomMutationsItemAction =
   | "append"
   | "set"
   | "remove";
-export const PutVisualChangeRequestDomMutationsItemAction =
-  /*@__PURE__*/ S.String;
+export const PutVisualChangeRequestDomMutationsItemAction = S.String;
 
 export interface PutVisualChangeRequestDomMutationsItem {
   selector: string;
@@ -43634,8 +43467,7 @@ export const PutVisualChangeResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutVisualChangeResponse>;
 
 export type PutVisualChangesetRequestUrlPatternsItemType = "simple" | "regex";
-export const PutVisualChangesetRequestUrlPatternsItemType =
-  /*@__PURE__*/ S.String;
+export const PutVisualChangesetRequestUrlPatternsItemType = S.String;
 
 export interface PutVisualChangesetRequestUrlPatternsItem {
   include?: boolean;
@@ -43665,7 +43497,7 @@ export type PutVisualChangesetRequestVisualChangesItemDomMutationsItemAction =
   | "set"
   | "remove";
 export const PutVisualChangesetRequestVisualChangesItemDomMutationsItemAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutVisualChangesetRequestVisualChangesItemDomMutationsItem {
   selector: string;
@@ -43792,7 +43624,7 @@ export type AggregatedTableRefreshTriggerStatus =
   | "started"
   | "failed"
   | "skipped";
-export const AggregatedTableRefreshTriggerStatus = /*@__PURE__*/ S.String;
+export const AggregatedTableRefreshTriggerStatus = S.String;
 
 export type AggregatedTableRefreshTriggerReason =
   | "already-in-progress"
@@ -43800,7 +43632,7 @@ export type AggregatedTableRefreshTriggerReason =
   | "pipeline-not-configured"
   | "unsupported-datasource"
   | "no-eligible-metrics";
-export const AggregatedTableRefreshTriggerReason = /*@__PURE__*/ S.String;
+export const AggregatedTableRefreshTriggerReason = S.String;
 
 export interface AggregatedTableRefreshTrigger {
   /** The id type this refresh targets */
@@ -44140,7 +43972,7 @@ export const LearningsProjectsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<LearningsProjectsList>;
 
 export type LearningsSource = "ai" | "manual" | "api";
-export const LearningsSource = /*@__PURE__*/ S.String;
+export const LearningsSource = S.String;
 
 export interface Learnings {
   id: string;
@@ -44219,14 +44051,13 @@ export const SetAutoUpdateRampScheduleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SetAutoUpdateRampScheduleRequest>;
 
 export type SetAutoUpdateRampScheduleResponseEntityType = "feature";
-export const SetAutoUpdateRampScheduleResponseEntityType =
-  /*@__PURE__*/ S.String;
+export const SetAutoUpdateRampScheduleResponseEntityType = S.String;
 
 export type TargetsEntityType = "feature";
-export const TargetsEntityType = /*@__PURE__*/ S.String;
+export const TargetsEntityType = S.String;
 
 export type TargetsStatus = "pending-join" | "active";
-export const TargetsStatus = /*@__PURE__*/ S.String;
+export const TargetsStatus = S.String;
 
 export interface Targets {
   id: string;
@@ -44259,7 +44090,7 @@ export const SetAutoUpdateRampScheduleResponseTargetsList =
   ) as any as S.Schema<SetAutoUpdateRampScheduleResponseTargetsList>;
 
 export type StartActionsPatchSavedGroupsItemMatch = "all" | "none" | "any";
-export const StartActionsPatchSavedGroupsItemMatch = /*@__PURE__*/ S.String;
+export const StartActionsPatchSavedGroupsItemMatch = S.String;
 
 export type StartActionsPatchSavedGroupsItemIdsList = Array<string>;
 export const StartActionsPatchSavedGroupsItemIdsList = /*@__PURE__*/ S.Array(
@@ -44355,7 +44186,7 @@ export type StepsHoldConditions = RampScheduleStepsItemHoldConditions;
 export const StepsHoldConditions = RampScheduleStepsItemHoldConditions;
 
 export type StepsActionsItemPatchSavedGroupsItemMatch = "all" | "none" | "any";
-export const StepsActionsItemPatchSavedGroupsItemMatch = /*@__PURE__*/ S.String;
+export const StepsActionsItemPatchSavedGroupsItemMatch = S.String;
 
 export type StepsActionsItemPatchSavedGroupsItemIdsList = Array<string>;
 export const StepsActionsItemPatchSavedGroupsItemIdsList =
@@ -44488,10 +44319,10 @@ export type SetAutoUpdateRampScheduleResponseStatus =
   | "paused"
   | "completed"
   | "rolled-back";
-export const SetAutoUpdateRampScheduleResponseStatus = /*@__PURE__*/ S.String;
+export const SetAutoUpdateRampScheduleResponseStatus = S.String;
 
 export type LockdownConfigMode = "none" | "locked";
-export const LockdownConfigMode = /*@__PURE__*/ S.String;
+export const LockdownConfigMode = S.String;
 
 export interface LockdownConfig {
   mode: LockdownConfigMode;
@@ -44520,28 +44351,28 @@ export type SetAutoUpdateRampScheduleResponseMonitoringConfigMonitoringMode =
   | "auto"
   | "manual";
 export const SetAutoUpdateRampScheduleResponseMonitoringConfigMonitoringMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type SetAutoUpdateRampScheduleResponseMonitoringConfigSrmAction =
   | "rollback"
   | "hold"
   | "warn";
 export const SetAutoUpdateRampScheduleResponseMonitoringConfigSrmAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type SetAutoUpdateRampScheduleResponseMonitoringConfigNoTrafficAction =
   | "rollback"
   | "hold"
   | "warn";
 export const SetAutoUpdateRampScheduleResponseMonitoringConfigNoTrafficAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type SetAutoUpdateRampScheduleResponseMonitoringConfigMultipleExposureAction =
   | "rollback"
   | "hold"
   | "warn";
 export const SetAutoUpdateRampScheduleResponseMonitoringConfigMultipleExposureAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SetAutoUpdateRampScheduleResponseMonitoringConfig {
   datasourceId: string;
@@ -44591,13 +44422,11 @@ export type SetAutoUpdateRampScheduleResponseExperimentHealthAction =
   | "rollback"
   | "hold"
   | "warn";
-export const SetAutoUpdateRampScheduleResponseExperimentHealthAction =
-  /*@__PURE__*/ S.String;
+export const SetAutoUpdateRampScheduleResponseExperimentHealthAction = S.String;
 
 /** Surface through which the approval was granted. */
 export type SetAutoUpdateRampScheduleResponseStepApprovalContext = "ui" | "api";
-export const SetAutoUpdateRampScheduleResponseStepApprovalContext =
-  /*@__PURE__*/ S.String;
+export const SetAutoUpdateRampScheduleResponseStepApprovalContext = S.String;
 
 export interface SetAutoUpdateRampScheduleResponseStepApproval {
   /** Index of the step that was approved. */
@@ -44626,7 +44455,7 @@ export type SetAutoUpdateRampScheduleResponseMonitoringStatusMonitoringMode =
   | "auto"
   | "manual";
 export const SetAutoUpdateRampScheduleResponseMonitoringStatusMonitoringMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SetAutoUpdateRampScheduleResponseMonitoringStatus {
   safeRolloutId?: string | null;
@@ -44761,8 +44590,7 @@ export const SetAutoUpdateRampScheduleResponse = /*@__PURE__*/ S.suspend(() =>
 export type SetMonitoringModeRampScheduleRequestMonitoringMode =
   | "auto"
   | "manual";
-export const SetMonitoringModeRampScheduleRequestMonitoringMode =
-  /*@__PURE__*/ S.String;
+export const SetMonitoringModeRampScheduleRequestMonitoringMode = S.String;
 
 export interface SetMonitoringModeRampScheduleRequest {
   id: string;
@@ -44788,8 +44616,7 @@ export const SetMonitoringModeRampScheduleRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<SetMonitoringModeRampScheduleRequest>;
 
 export type SetMonitoringModeRampScheduleResponseEntityType = "feature";
-export const SetMonitoringModeRampScheduleResponseEntityType =
-  /*@__PURE__*/ S.String;
+export const SetMonitoringModeRampScheduleResponseEntityType = S.String;
 
 /** Controlled entity references */
 export type SetMonitoringModeRampScheduleResponseTargetsList = Array<Targets>;
@@ -44828,8 +44655,7 @@ export type SetMonitoringModeRampScheduleResponseStatus =
   | "paused"
   | "completed"
   | "rolled-back";
-export const SetMonitoringModeRampScheduleResponseStatus =
-  /*@__PURE__*/ S.String;
+export const SetMonitoringModeRampScheduleResponseStatus = S.String;
 
 export type SetMonitoringModeRampScheduleResponseMonitoringConfigGuardrailMetricIdsList =
   Array<string>;
@@ -44849,28 +44675,28 @@ export type SetMonitoringModeRampScheduleResponseMonitoringConfigMonitoringMode 
   | "auto"
   | "manual";
 export const SetMonitoringModeRampScheduleResponseMonitoringConfigMonitoringMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type SetMonitoringModeRampScheduleResponseMonitoringConfigSrmAction =
   | "rollback"
   | "hold"
   | "warn";
 export const SetMonitoringModeRampScheduleResponseMonitoringConfigSrmAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type SetMonitoringModeRampScheduleResponseMonitoringConfigNoTrafficAction =
   | "rollback"
   | "hold"
   | "warn";
 export const SetMonitoringModeRampScheduleResponseMonitoringConfigNoTrafficAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type SetMonitoringModeRampScheduleResponseMonitoringConfigMultipleExposureAction =
   | "rollback"
   | "hold"
   | "warn";
 export const SetMonitoringModeRampScheduleResponseMonitoringConfigMultipleExposureAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SetMonitoringModeRampScheduleResponseMonitoringConfig {
   datasourceId: string;
@@ -44921,14 +44747,14 @@ export type SetMonitoringModeRampScheduleResponseExperimentHealthAction =
   | "hold"
   | "warn";
 export const SetMonitoringModeRampScheduleResponseExperimentHealthAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Surface through which the approval was granted. */
 export type SetMonitoringModeRampScheduleResponseStepApprovalContext =
   | "ui"
   | "api";
 export const SetMonitoringModeRampScheduleResponseStepApprovalContext =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SetMonitoringModeRampScheduleResponseStepApproval {
   /** Index of the step that was approved. */
@@ -44957,7 +44783,7 @@ export type SetMonitoringModeRampScheduleResponseMonitoringStatusMonitoringMode 
   | "auto"
   | "manual";
 export const SetMonitoringModeRampScheduleResponseMonitoringStatusMonitoringMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SetMonitoringModeRampScheduleResponseMonitoringStatus {
   safeRolloutId?: string | null;
@@ -45276,7 +45102,7 @@ export type TestCustomHookRequestEntityType =
   | "feature"
   | "config"
   | "experiment";
-export const TestCustomHookRequestEntityType = /*@__PURE__*/ S.String;
+export const TestCustomHookRequestEntityType = S.String;
 
 export interface TestCustomHookRequest {
   /** JavaScript function body to execute in the sandbox */
@@ -45349,7 +45175,7 @@ export const TestCustomHookResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type ToggleFeatureV2RequestEnvironmentsValue = boolean | string | number;
 export const ToggleFeatureV2RequestEnvironmentsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ToggleFeatureV2RequestEnvironmentsValue>;
+  S.Unknown as any as S.Schema<ToggleFeatureV2RequestEnvironmentsValue>;
 
 export type ToggleFeatureV2RequestEnvironmentsMap = {
   [key: string]: ToggleFeatureV2RequestEnvironmentsValue | undefined;
@@ -45550,12 +45376,12 @@ export const UnlockConfigResponse = /*@__PURE__*/ S.suspend(() =>
 /** Deprecated — pass `skipSchemaValidation` in the request body instead. */
 export type UpdateConfigRequestSkipSchemaValidation = string | boolean;
 export const UpdateConfigRequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateConfigRequestSkipSchemaValidation>;
+  S.Unknown as any as S.Schema<UpdateConfigRequestSkipSchemaValidation>;
 
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type UpdateConfigRequestIgnoreWarnings = string | boolean;
 export const UpdateConfigRequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateConfigRequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<UpdateConfigRequestIgnoreWarnings>;
 
 /** Replace the composition bases (mixins) layered on top of `parent`, in precedence order (later overrides earlier; all override `parent`; own keys win last). Send the complete set; an empty array clears all mixins. Set inheritance here, never via a `@config:` entry in `value`. */
 export type UpdateConfigRequestExtendsList = Array<string>;
@@ -45925,29 +45751,27 @@ export const UpdateContextualBanditRequestContextualAttributesList =
   ) as any as S.Schema<UpdateContextualBanditRequestContextualAttributesList>;
 
 export type UpdateContextualBanditRequestScheduleUnit = "days" | "hours";
-export const UpdateContextualBanditRequestScheduleUnit = /*@__PURE__*/ S.String;
+export const UpdateContextualBanditRequestScheduleUnit = S.String;
 
 export type UpdateContextualBanditRequestBurnInUnit = "days" | "hours";
-export const UpdateContextualBanditRequestBurnInUnit = /*@__PURE__*/ S.String;
+export const UpdateContextualBanditRequestBurnInUnit = S.String;
 
 export type UpdateContextualBanditRequestConversionWindowUnit =
   | "hours"
   | "days";
-export const UpdateContextualBanditRequestConversionWindowUnit =
-  /*@__PURE__*/ S.String;
+export const UpdateContextualBanditRequestConversionWindowUnit = S.String;
 
 export type UpdateContextualBanditRequestStatus =
   | "draft"
   | "running"
   | "stopped";
-export const UpdateContextualBanditRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateContextualBanditRequestStatus = S.String;
 
 export type UpdateContextualBanditRequestSavedGroupsItemMatch =
   | "all"
   | "none"
   | "any";
-export const UpdateContextualBanditRequestSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+export const UpdateContextualBanditRequestSavedGroupsItemMatch = S.String;
 
 export type UpdateContextualBanditRequestSavedGroupsItemIdsList = Array<string>;
 export const UpdateContextualBanditRequestSavedGroupsItemIdsList =
@@ -46282,7 +46106,7 @@ export type UpdateCustomFieldRequestDefaultValue =
   | UpdateCustomFieldRequestDefaultValueCase8List
   | UpdateCustomFieldRequestDefaultValueCase9List;
 export const UpdateCustomFieldRequestDefaultValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCustomFieldRequestDefaultValue>;
+  S.Unknown as any as S.Schema<UpdateCustomFieldRequestDefaultValue>;
 
 export type UpdateCustomFieldRequestProjectsList = Array<string>;
 export const UpdateCustomFieldRequestProjectsList = /*@__PURE__*/ S.Array(
@@ -46290,7 +46114,7 @@ export const UpdateCustomFieldRequestProjectsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateCustomFieldRequestProjectsList>;
 
 export type UpdateCustomFieldRequestSectionsItem = "feature" | "experiment";
-export const UpdateCustomFieldRequestSectionsItem = /*@__PURE__*/ S.String;
+export const UpdateCustomFieldRequestSectionsItem = S.String;
 
 /** What types of objects this custom field is applicable to (feature, experiment) */
 export type UpdateCustomFieldRequestSectionsList = Array<
@@ -46348,7 +46172,7 @@ export type UpdateCustomHookRequestHook =
   | "validateConfig"
   | "validateConfigRevision"
   | "validateExperiment";
-export const UpdateCustomHookRequestHook = /*@__PURE__*/ S.String;
+export const UpdateCustomHookRequestHook = S.String;
 
 export type UpdateCustomHookRequestProjectsList = Array<string>;
 export const UpdateCustomHookRequestProjectsList = /*@__PURE__*/ S.Array(
@@ -46359,7 +46183,7 @@ export type UpdateCustomHookRequestEntityType =
   | "feature"
   | "config"
   | "experiment";
-export const UpdateCustomHookRequestEntityType = /*@__PURE__*/ S.String;
+export const UpdateCustomHookRequestEntityType = S.String;
 
 export interface UpdateCustomHookRequest {
   /** The id of the custom hook */
@@ -46404,11 +46228,11 @@ export const UpdateCustomHookResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Dashboards that are "published" are editable by organization members with appropriate permissions */
 export type UpdateDashboardRequestEditLevel = "published" | "private";
-export const UpdateDashboardRequestEditLevel = /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestEditLevel = S.String;
 
 /** General Dashboards only. Dashboards that are "published" are viewable by organization members with appropriate permissions */
 export type UpdateDashboardRequestShareLevel = "published" | "private";
-export const UpdateDashboardRequestShareLevel = /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestShareLevel = S.String;
 
 export type UpdateDashboardRequestUpdateScheduleCase0 =
   CreateDashboardRequestUpdateScheduleCase0;
@@ -46425,7 +46249,7 @@ export type UpdateDashboardRequestUpdateSchedule =
   | CreateDashboardRequestUpdateScheduleCase0
   | CreateDashboardRequestUpdateScheduleCase1;
 export const UpdateDashboardRequestUpdateSchedule =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardRequestUpdateSchedule>;
+  S.Unknown as any as S.Schema<UpdateDashboardRequestUpdateSchedule>;
 
 /** General Dashboards only, Experiment Dashboards use the experiment's projects */
 export type UpdateDashboardRequestProjectsList = Array<string>;
@@ -46443,8 +46267,7 @@ export type UpdateDashboardRequestGlobalControlsDateRangePredefined =
   | "lastCalendarYear"
   | "customLookback"
   | "customDateRange";
-export const UpdateDashboardRequestGlobalControlsDateRangePredefined =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestGlobalControlsDateRangePredefined = S.String;
 
 export type UpdateDashboardRequestGlobalControlsDateRangeLookbackUnit =
   | "hour"
@@ -46452,7 +46275,7 @@ export type UpdateDashboardRequestGlobalControlsDateRangeLookbackUnit =
   | "week"
   | "month";
 export const UpdateDashboardRequestGlobalControlsDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestGlobalControlsDateRange {
   predefined:
@@ -46488,8 +46311,7 @@ export type UpdateDashboardRequestGlobalControlsDateGranularity =
   | "week"
   | "month"
   | "year";
-export const UpdateDashboardRequestGlobalControlsDateGranularity =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestGlobalControlsDateGranularity = S.String;
 
 export type UpdateDashboardRequestGlobalControlsProjectsList = Array<string>;
 export const UpdateDashboardRequestGlobalControlsProjectsList =
@@ -46597,7 +46419,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case2DifferenceType =
   | "relative"
   | "scaled";
 export const UpdateDashboardRequestBlocksItemCase0Case2DifferenceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case2ColumnsFilterItem =
   | "Metric & Variation Names"
@@ -46607,7 +46429,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case2ColumnsFilterItem =
   | "CI Graph"
   | "Lift";
 export const UpdateDashboardRequestBlocksItemCase0Case2ColumnsFilterItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case2ColumnsFilterList = Array<
   UpdateDashboardRequestBlocksItemCase0Case2ColumnsFilterItem | (string & {})
@@ -46636,14 +46458,12 @@ export type UpdateDashboardRequestBlocksItemCase0Case2SortBy =
   | "metricTags"
   | "significance"
   | "change";
-export const UpdateDashboardRequestBlocksItemCase0Case2SortBy =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase0Case2SortBy = S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case2SortDirection =
   | "asc"
   | "desc";
-export const UpdateDashboardRequestBlocksItemCase0Case2SortDirection =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase0Case2SortDirection = S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case2 {
   type: string;
@@ -46715,7 +46535,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case3DifferenceType =
   | "relative"
   | "scaled";
 export const UpdateDashboardRequestBlocksItemCase0Case3DifferenceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case3StartDateRangePredefined =
   | "today"
@@ -46728,7 +46548,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case3StartDateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase0Case3StartDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case3StartDateRangeLookbackUnit =
   | "hour"
@@ -46736,7 +46556,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case3StartDateRangeLookbackUnit
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase0Case3StartDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case3StartDateRange {
   predefined:
@@ -46779,7 +46599,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case3EndDateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase0Case3EndDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case3EndDateRangeLookbackUnit =
   | "hour"
@@ -46787,7 +46607,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case3EndDateRangeLookbackUnit =
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase0Case3EndDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case3EndDateRange {
   predefined:
@@ -46900,7 +46720,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case4DateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase0Case4DateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case4DateRangeLookbackUnit =
   | "hour"
@@ -46908,7 +46728,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case4DateRangeLookbackUnit =
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase0Case4DateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case4DateRange {
   predefined:
@@ -46953,7 +46773,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case4ComparisonMode =
   | "previousYearMatchDayOfWeek"
   | "custom";
 export const UpdateDashboardRequestBlocksItemCase0Case4ComparisonMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case4ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -46966,7 +46786,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case4ComparisonPreviousTimeFram
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase0Case4ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case4ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -46974,7 +46794,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case4ComparisonPreviousTimeFram
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase0Case4ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case4ComparisonPreviousTimeFrame {
   predefined:
@@ -47086,7 +46906,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case5DateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase0Case5DateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case5DateRangeLookbackUnit =
   | "hour"
@@ -47094,7 +46914,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case5DateRangeLookbackUnit =
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase0Case5DateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case5DateRange {
   predefined:
@@ -47139,7 +46959,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case5ComparisonMode =
   | "previousYearMatchDayOfWeek"
   | "custom";
 export const UpdateDashboardRequestBlocksItemCase0Case5ComparisonMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case5ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -47152,7 +46972,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case5ComparisonPreviousTimeFram
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase0Case5ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case5ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -47160,7 +46980,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case5ComparisonPreviousTimeFram
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase0Case5ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case5ComparisonPreviousTimeFrame {
   predefined:
@@ -47272,7 +47092,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case6DateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase0Case6DateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case6DateRangeLookbackUnit =
   | "hour"
@@ -47280,7 +47100,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case6DateRangeLookbackUnit =
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase0Case6DateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case6DateRange {
   predefined:
@@ -47325,7 +47145,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case6ComparisonMode =
   | "previousYearMatchDayOfWeek"
   | "custom";
 export const UpdateDashboardRequestBlocksItemCase0Case6ComparisonMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case6ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -47338,7 +47158,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case6ComparisonPreviousTimeFram
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase0Case6ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case6ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -47346,7 +47166,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case6ComparisonPreviousTimeFram
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase0Case6ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case6ComparisonPreviousTimeFrame {
   predefined:
@@ -47414,7 +47234,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case6DateGranularity =
   | "month"
   | "year";
 export const UpdateDashboardRequestBlocksItemCase0Case6DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case6 {
   type: string;
@@ -47487,7 +47307,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case7DifferenceType =
   | "relative"
   | "scaled";
 export const UpdateDashboardRequestBlocksItemCase0Case7DifferenceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case7ColumnsFilterItem =
   | "Metric & Variation Names"
@@ -47497,7 +47317,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case7ColumnsFilterItem =
   | "CI Graph"
   | "Lift";
 export const UpdateDashboardRequestBlocksItemCase0Case7ColumnsFilterItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case7ColumnsFilterList = Array<
   UpdateDashboardRequestBlocksItemCase0Case7ColumnsFilterItem | (string & {})
@@ -47519,14 +47339,12 @@ export type UpdateDashboardRequestBlocksItemCase0Case7SortBy =
   | "metricTags"
   | "significance"
   | "change";
-export const UpdateDashboardRequestBlocksItemCase0Case7SortBy =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase0Case7SortBy = S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case7SortDirection =
   | "asc"
   | "desc";
-export const UpdateDashboardRequestBlocksItemCase0Case7SortDirection =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase0Case7SortDirection = S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case7 {
   type: string;
@@ -47607,7 +47425,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case8DifferenceType =
   | "relative"
   | "scaled";
 export const UpdateDashboardRequestBlocksItemCase0Case8DifferenceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case8SliceTagsFilterList =
   Array<string>;
@@ -47628,14 +47446,12 @@ export type UpdateDashboardRequestBlocksItemCase0Case8SortBy =
   | "metricTags"
   | "significance"
   | "change";
-export const UpdateDashboardRequestBlocksItemCase0Case8SortBy =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase0Case8SortBy = S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case8SortDirection =
   | "asc"
   | "desc";
-export const UpdateDashboardRequestBlocksItemCase0Case8SortDirection =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase0Case8SortDirection = S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case8 {
   type: string;
@@ -47745,13 +47561,12 @@ export type UpdateDashboardRequestBlocksItemCase0Case11VisualizationType =
   | "bigNumber"
   | "timeseries";
 export const UpdateDashboardRequestBlocksItemCase0Case11VisualizationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case11ValueType =
   | "avg"
   | "sum";
-export const UpdateDashboardRequestBlocksItemCase0Case11ValueType =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase0Case11ValueType = S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case11ComparisonMode =
   | "previousPeriod"
@@ -47760,7 +47575,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case11ComparisonMode =
   | "previousYearMatchDayOfWeek"
   | "custom";
 export const UpdateDashboardRequestBlocksItemCase0Case11ComparisonMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case11ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -47773,7 +47588,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case11ComparisonPreviousTimeFra
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase0Case11ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case11ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -47781,7 +47596,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case11ComparisonPreviousTimeFra
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase0Case11ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case11ComparisonPreviousTimeFrame {
   predefined:
@@ -47843,7 +47658,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case11AnalysisSettingsPopulatio
   | "population"
   | "segment";
 export const UpdateDashboardRequestBlocksItemCase0Case11AnalysisSettingsPopulationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case11AnalysisSettingsAdditionalNumeratorFiltersList =
   Array<string>;
@@ -47946,7 +47761,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case12ComparisonMode =
   | "previousYearMatchDayOfWeek"
   | "custom";
 export const UpdateDashboardRequestBlocksItemCase0Case12ComparisonMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case12ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -47959,7 +47774,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case12ComparisonPreviousTimeFra
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase0Case12ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case12ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -47967,7 +47782,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case12ComparisonPreviousTimeFra
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase0Case12ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case12ComparisonPreviousTimeFrame {
   predefined:
@@ -48035,7 +47850,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case12ConfigDimensionsItemCase0
   | "month"
   | "year";
 export const UpdateDashboardRequestBlocksItemCase0Case12ConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case12ConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -48109,7 +47924,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case12ConfigDimensionsItemCase3
   | "sql_expr"
   | "saved_filter";
 export const UpdateDashboardRequestBlocksItemCase0Case12ConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case12ConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -48192,7 +48007,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case12ConfigDimensionsItem =
   | UpdateDashboardRequestBlocksItemCase0Case12ConfigDimensionsItemCase2
   | UpdateDashboardRequestBlocksItemCase0Case12ConfigDimensionsItemCase3;
 export const UpdateDashboardRequestBlocksItemCase0Case12ConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase0Case12ConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase0Case12ConfigDimensionsItem>;
 
 export type UpdateDashboardRequestBlocksItemCase0Case12ConfigDimensionsList =
   Array<UpdateDashboardRequestBlocksItemCase0Case12ConfigDimensionsItem>;
@@ -48212,7 +48027,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case12ConfigChartType =
   | "stackedHorizontalBar"
   | "bigNumber";
 export const UpdateDashboardRequestBlocksItemCase0Case12ConfigChartType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case12ConfigDateRangePredefined =
   | "today"
@@ -48225,7 +48040,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case12ConfigDateRangePredefined
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase0Case12ConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case12ConfigDateRangeLookbackUnit =
   | "hour"
@@ -48233,7 +48048,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case12ConfigDateRangeLookbackUn
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase0Case12ConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case12ConfigDateRange {
   predefined:
@@ -48268,8 +48083,7 @@ export const UpdateDashboardRequestBlocksItemCase0Case12ConfigDateRange =
 export type UpdateDashboardRequestBlocksItemCase0Case12ConfigShowAs =
   | "total"
   | "per_unit";
-export const UpdateDashboardRequestBlocksItemCase0Case12ConfigShowAs =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase0Case12ConfigShowAs = S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case12ConfigDatasetValuesItemRowFiltersItemOperator =
   | "="
@@ -48293,7 +48107,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case12ConfigDatasetValuesItemRo
   | "sql_expr"
   | "saved_filter";
 export const UpdateDashboardRequestBlocksItemCase0Case12ConfigDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case12ConfigDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -48455,7 +48269,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case13ComparisonMode =
   | "previousYearMatchDayOfWeek"
   | "custom";
 export const UpdateDashboardRequestBlocksItemCase0Case13ComparisonMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case13ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -48468,7 +48282,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case13ComparisonPreviousTimeFra
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase0Case13ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case13ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -48476,7 +48290,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case13ComparisonPreviousTimeFra
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase0Case13ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case13ComparisonPreviousTimeFrame {
   predefined:
@@ -48544,7 +48358,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case13ConfigDimensionsItemCase0
   | "month"
   | "year";
 export const UpdateDashboardRequestBlocksItemCase0Case13ConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case13ConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -48618,7 +48432,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case13ConfigDimensionsItemCase3
   | "sql_expr"
   | "saved_filter";
 export const UpdateDashboardRequestBlocksItemCase0Case13ConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case13ConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -48701,7 +48515,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case13ConfigDimensionsItem =
   | UpdateDashboardRequestBlocksItemCase0Case13ConfigDimensionsItemCase2
   | UpdateDashboardRequestBlocksItemCase0Case13ConfigDimensionsItemCase3;
 export const UpdateDashboardRequestBlocksItemCase0Case13ConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase0Case13ConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase0Case13ConfigDimensionsItem>;
 
 export type UpdateDashboardRequestBlocksItemCase0Case13ConfigDimensionsList =
   Array<UpdateDashboardRequestBlocksItemCase0Case13ConfigDimensionsItem>;
@@ -48721,7 +48535,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case13ConfigChartType =
   | "stackedHorizontalBar"
   | "bigNumber";
 export const UpdateDashboardRequestBlocksItemCase0Case13ConfigChartType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case13ConfigDateRangePredefined =
   | "today"
@@ -48734,7 +48548,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case13ConfigDateRangePredefined
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase0Case13ConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case13ConfigDateRangeLookbackUnit =
   | "hour"
@@ -48742,7 +48556,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case13ConfigDateRangeLookbackUn
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase0Case13ConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case13ConfigDateRange {
   predefined:
@@ -48777,8 +48591,7 @@ export const UpdateDashboardRequestBlocksItemCase0Case13ConfigDateRange =
 export type UpdateDashboardRequestBlocksItemCase0Case13ConfigShowAs =
   | "total"
   | "per_unit";
-export const UpdateDashboardRequestBlocksItemCase0Case13ConfigShowAs =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase0Case13ConfigShowAs = S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case13ConfigDatasetValuesItemRowFiltersItemOperator =
   | "="
@@ -48802,7 +48615,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case13ConfigDatasetValuesItemRo
   | "sql_expr"
   | "saved_filter";
 export const UpdateDashboardRequestBlocksItemCase0Case13ConfigDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case13ConfigDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -48845,7 +48658,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case13ConfigDatasetValuesItemVa
   | "count"
   | "sum";
 export const UpdateDashboardRequestBlocksItemCase0Case13ConfigDatasetValuesItemValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case13ConfigDatasetValuesItem {
   name: string;
@@ -48976,7 +48789,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case14ComparisonMode =
   | "previousYearMatchDayOfWeek"
   | "custom";
 export const UpdateDashboardRequestBlocksItemCase0Case14ComparisonMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case14ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -48989,7 +48802,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case14ComparisonPreviousTimeFra
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase0Case14ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case14ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -48997,7 +48810,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case14ComparisonPreviousTimeFra
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase0Case14ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case14ComparisonPreviousTimeFrame {
   predefined:
@@ -49065,7 +48878,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case14ConfigDimensionsItemCase0
   | "month"
   | "year";
 export const UpdateDashboardRequestBlocksItemCase0Case14ConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case14ConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -49139,7 +48952,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case14ConfigDimensionsItemCase3
   | "sql_expr"
   | "saved_filter";
 export const UpdateDashboardRequestBlocksItemCase0Case14ConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case14ConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -49222,7 +49035,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case14ConfigDimensionsItem =
   | UpdateDashboardRequestBlocksItemCase0Case14ConfigDimensionsItemCase2
   | UpdateDashboardRequestBlocksItemCase0Case14ConfigDimensionsItemCase3;
 export const UpdateDashboardRequestBlocksItemCase0Case14ConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase0Case14ConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase0Case14ConfigDimensionsItem>;
 
 export type UpdateDashboardRequestBlocksItemCase0Case14ConfigDimensionsList =
   Array<UpdateDashboardRequestBlocksItemCase0Case14ConfigDimensionsItem>;
@@ -49242,7 +49055,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case14ConfigChartType =
   | "stackedHorizontalBar"
   | "bigNumber";
 export const UpdateDashboardRequestBlocksItemCase0Case14ConfigChartType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case14ConfigDateRangePredefined =
   | "today"
@@ -49255,7 +49068,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case14ConfigDateRangePredefined
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase0Case14ConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case14ConfigDateRangeLookbackUnit =
   | "hour"
@@ -49263,7 +49076,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case14ConfigDateRangeLookbackUn
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase0Case14ConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case14ConfigDateRange {
   predefined:
@@ -49298,8 +49111,7 @@ export const UpdateDashboardRequestBlocksItemCase0Case14ConfigDateRange =
 export type UpdateDashboardRequestBlocksItemCase0Case14ConfigShowAs =
   | "total"
   | "per_unit";
-export const UpdateDashboardRequestBlocksItemCase0Case14ConfigShowAs =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase0Case14ConfigShowAs = S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case14ConfigDatasetColumnTypesValue =
   | "string"
@@ -49308,7 +49120,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case14ConfigDatasetColumnTypesV
   | "boolean"
   | "other";
 export const UpdateDashboardRequestBlocksItemCase0Case14ConfigDatasetColumnTypesValue =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case14ConfigDatasetColumnTypesMap =
   {
@@ -49345,7 +49157,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case14ConfigDatasetValuesItemRo
   | "sql_expr"
   | "saved_filter";
 export const UpdateDashboardRequestBlocksItemCase0Case14ConfigDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase0Case14ConfigDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -49388,7 +49200,7 @@ export type UpdateDashboardRequestBlocksItemCase0Case14ConfigDatasetValuesItemVa
   | "count"
   | "sum";
 export const UpdateDashboardRequestBlocksItemCase0Case14ConfigDatasetValuesItemValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase0Case14ConfigDatasetValuesItem {
   name: string;
@@ -49531,7 +49343,7 @@ export type UpdateDashboardRequestBlocksItemCase0 =
   | UpdateDashboardRequestBlocksItemCase0Case13
   | UpdateDashboardRequestBlocksItemCase0Case14;
 export const UpdateDashboardRequestBlocksItemCase0 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase0>;
+  S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase0>;
 
 export type UpdateDashboardRequestBlocksItemCase1Case0Layout =
   CreateDashboardRequestBlocksItemCase0Layout;
@@ -49543,11 +49355,10 @@ export type UpdateDashboardRequestBlocksItemCase1Case0VisualizationType =
   | "bigNumber"
   | "timeseries";
 export const UpdateDashboardRequestBlocksItemCase1Case0VisualizationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case0ValueType = "avg" | "sum";
-export const UpdateDashboardRequestBlocksItemCase1Case0ValueType =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase1Case0ValueType = S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case0ComparisonMode =
   | "previousPeriod"
@@ -49556,7 +49367,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case0ComparisonMode =
   | "previousYearMatchDayOfWeek"
   | "custom";
 export const UpdateDashboardRequestBlocksItemCase1Case0ComparisonMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case0ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -49569,7 +49380,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case0ComparisonPreviousTimeFram
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case0ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case0ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -49577,7 +49388,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case0ComparisonPreviousTimeFram
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case0ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case0ComparisonPreviousTimeFrame {
   predefined:
@@ -49639,7 +49450,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case0AnalysisSettingsPopulation
   | "population"
   | "segment";
 export const UpdateDashboardRequestBlocksItemCase1Case0AnalysisSettingsPopulationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case0AnalysisSettingsAdditionalNumeratorFiltersList =
   Array<string>;
@@ -49820,7 +49631,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case3DifferenceType =
   | "relative"
   | "scaled";
 export const UpdateDashboardRequestBlocksItemCase1Case3DifferenceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case3ColumnsFilterItem =
   | "Metric & Variation Names"
@@ -49830,7 +49641,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case3ColumnsFilterItem =
   | "CI Graph"
   | "Lift";
 export const UpdateDashboardRequestBlocksItemCase1Case3ColumnsFilterItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case3ColumnsFilterList = Array<
   UpdateDashboardRequestBlocksItemCase1Case3ColumnsFilterItem | (string & {})
@@ -49859,14 +49670,12 @@ export type UpdateDashboardRequestBlocksItemCase1Case3SortBy =
   | "metricTags"
   | "significance"
   | "change";
-export const UpdateDashboardRequestBlocksItemCase1Case3SortBy =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase1Case3SortBy = S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case3SortDirection =
   | "asc"
   | "desc";
-export const UpdateDashboardRequestBlocksItemCase1Case3SortDirection =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase1Case3SortDirection = S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case3 {
   organization: string;
@@ -49944,7 +49753,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case4DifferenceType =
   | "relative"
   | "scaled";
 export const UpdateDashboardRequestBlocksItemCase1Case4DifferenceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case4StartDateRangePredefined =
   | "today"
@@ -49957,7 +49766,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case4StartDateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case4StartDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case4StartDateRangeLookbackUnit =
   | "hour"
@@ -49965,7 +49774,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case4StartDateRangeLookbackUnit
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case4StartDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case4StartDateRange {
   predefined:
@@ -50008,7 +49817,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case4EndDateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case4EndDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case4EndDateRangeLookbackUnit =
   | "hour"
@@ -50016,7 +49825,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case4EndDateRangeLookbackUnit =
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case4EndDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case4EndDateRange {
   predefined:
@@ -50135,7 +49944,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case5DateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case5DateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case5DateRangeLookbackUnit =
   | "hour"
@@ -50143,7 +49952,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case5DateRangeLookbackUnit =
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case5DateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case5DateRange {
   predefined:
@@ -50188,7 +49997,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case5ComparisonMode =
   | "previousYearMatchDayOfWeek"
   | "custom";
 export const UpdateDashboardRequestBlocksItemCase1Case5ComparisonMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case5ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -50201,7 +50010,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case5ComparisonPreviousTimeFram
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case5ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case5ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -50209,7 +50018,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case5ComparisonPreviousTimeFram
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case5ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case5ComparisonPreviousTimeFrame {
   predefined:
@@ -50327,7 +50136,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case6DateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case6DateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case6DateRangeLookbackUnit =
   | "hour"
@@ -50335,7 +50144,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case6DateRangeLookbackUnit =
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case6DateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case6DateRange {
   predefined:
@@ -50380,7 +50189,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case6ComparisonMode =
   | "previousYearMatchDayOfWeek"
   | "custom";
 export const UpdateDashboardRequestBlocksItemCase1Case6ComparisonMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case6ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -50393,7 +50202,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case6ComparisonPreviousTimeFram
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case6ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case6ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -50401,7 +50210,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case6ComparisonPreviousTimeFram
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case6ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case6ComparisonPreviousTimeFrame {
   predefined:
@@ -50519,7 +50328,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case7DateRangePredefined =
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case7DateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case7DateRangeLookbackUnit =
   | "hour"
@@ -50527,7 +50336,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case7DateRangeLookbackUnit =
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case7DateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case7DateRange {
   predefined:
@@ -50572,7 +50381,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case7ComparisonMode =
   | "previousYearMatchDayOfWeek"
   | "custom";
 export const UpdateDashboardRequestBlocksItemCase1Case7ComparisonMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case7ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -50585,7 +50394,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case7ComparisonPreviousTimeFram
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case7ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case7ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -50593,7 +50402,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case7ComparisonPreviousTimeFram
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case7ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case7ComparisonPreviousTimeFrame {
   predefined:
@@ -50661,7 +50470,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case7DateGranularity =
   | "month"
   | "year";
 export const UpdateDashboardRequestBlocksItemCase1Case7DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case7 {
   organization: string;
@@ -50740,7 +50549,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case8DifferenceType =
   | "relative"
   | "scaled";
 export const UpdateDashboardRequestBlocksItemCase1Case8DifferenceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case8ColumnsFilterItem =
   | "Metric & Variation Names"
@@ -50750,7 +50559,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case8ColumnsFilterItem =
   | "CI Graph"
   | "Lift";
 export const UpdateDashboardRequestBlocksItemCase1Case8ColumnsFilterItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case8ColumnsFilterList = Array<
   UpdateDashboardRequestBlocksItemCase1Case8ColumnsFilterItem | (string & {})
@@ -50772,14 +50581,12 @@ export type UpdateDashboardRequestBlocksItemCase1Case8SortBy =
   | "metricTags"
   | "significance"
   | "change";
-export const UpdateDashboardRequestBlocksItemCase1Case8SortBy =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase1Case8SortBy = S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case8SortDirection =
   | "asc"
   | "desc";
-export const UpdateDashboardRequestBlocksItemCase1Case8SortDirection =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase1Case8SortDirection = S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case8 {
   organization: string;
@@ -50866,7 +50673,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case9DifferenceType =
   | "relative"
   | "scaled";
 export const UpdateDashboardRequestBlocksItemCase1Case9DifferenceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case9SliceTagsFilterList =
   Array<string>;
@@ -50887,14 +50694,12 @@ export type UpdateDashboardRequestBlocksItemCase1Case9SortBy =
   | "metricTags"
   | "significance"
   | "change";
-export const UpdateDashboardRequestBlocksItemCase1Case9SortBy =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase1Case9SortBy = S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case9SortDirection =
   | "asc"
   | "desc";
-export const UpdateDashboardRequestBlocksItemCase1Case9SortDirection =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase1Case9SortDirection = S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case9 {
   organization: string;
@@ -51018,7 +50823,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case12ComparisonMode =
   | "previousYearMatchDayOfWeek"
   | "custom";
 export const UpdateDashboardRequestBlocksItemCase1Case12ComparisonMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case12ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -51031,7 +50836,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case12ComparisonPreviousTimeFra
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case12ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case12ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -51039,7 +50844,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case12ComparisonPreviousTimeFra
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case12ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case12ComparisonPreviousTimeFrame {
   predefined:
@@ -51107,7 +50912,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case12ConfigDimensionsItemCase0
   | "month"
   | "year";
 export const UpdateDashboardRequestBlocksItemCase1Case12ConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case12ConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -51181,7 +50986,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case12ConfigDimensionsItemCase3
   | "sql_expr"
   | "saved_filter";
 export const UpdateDashboardRequestBlocksItemCase1Case12ConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case12ConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -51264,7 +51069,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case12ConfigDimensionsItem =
   | UpdateDashboardRequestBlocksItemCase1Case12ConfigDimensionsItemCase2
   | UpdateDashboardRequestBlocksItemCase1Case12ConfigDimensionsItemCase3;
 export const UpdateDashboardRequestBlocksItemCase1Case12ConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase1Case12ConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase1Case12ConfigDimensionsItem>;
 
 export type UpdateDashboardRequestBlocksItemCase1Case12ConfigDimensionsList =
   Array<UpdateDashboardRequestBlocksItemCase1Case12ConfigDimensionsItem>;
@@ -51284,7 +51089,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case12ConfigChartType =
   | "stackedHorizontalBar"
   | "bigNumber";
 export const UpdateDashboardRequestBlocksItemCase1Case12ConfigChartType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case12ConfigDateRangePredefined =
   | "today"
@@ -51297,7 +51102,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case12ConfigDateRangePredefined
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case12ConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case12ConfigDateRangeLookbackUnit =
   | "hour"
@@ -51305,7 +51110,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case12ConfigDateRangeLookbackUn
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case12ConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case12ConfigDateRange {
   predefined:
@@ -51340,8 +51145,7 @@ export const UpdateDashboardRequestBlocksItemCase1Case12ConfigDateRange =
 export type UpdateDashboardRequestBlocksItemCase1Case12ConfigShowAs =
   | "total"
   | "per_unit";
-export const UpdateDashboardRequestBlocksItemCase1Case12ConfigShowAs =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase1Case12ConfigShowAs = S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case12ConfigDatasetValuesItemRowFiltersItemOperator =
   | "="
@@ -51365,7 +51169,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case12ConfigDatasetValuesItemRo
   | "sql_expr"
   | "saved_filter";
 export const UpdateDashboardRequestBlocksItemCase1Case12ConfigDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case12ConfigDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -51533,7 +51337,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case13ComparisonMode =
   | "previousYearMatchDayOfWeek"
   | "custom";
 export const UpdateDashboardRequestBlocksItemCase1Case13ComparisonMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case13ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -51546,7 +51350,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case13ComparisonPreviousTimeFra
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case13ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case13ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -51554,7 +51358,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case13ComparisonPreviousTimeFra
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case13ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case13ComparisonPreviousTimeFrame {
   predefined:
@@ -51622,7 +51426,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case13ConfigDimensionsItemCase0
   | "month"
   | "year";
 export const UpdateDashboardRequestBlocksItemCase1Case13ConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case13ConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -51696,7 +51500,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case13ConfigDimensionsItemCase3
   | "sql_expr"
   | "saved_filter";
 export const UpdateDashboardRequestBlocksItemCase1Case13ConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case13ConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -51779,7 +51583,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case13ConfigDimensionsItem =
   | UpdateDashboardRequestBlocksItemCase1Case13ConfigDimensionsItemCase2
   | UpdateDashboardRequestBlocksItemCase1Case13ConfigDimensionsItemCase3;
 export const UpdateDashboardRequestBlocksItemCase1Case13ConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase1Case13ConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase1Case13ConfigDimensionsItem>;
 
 export type UpdateDashboardRequestBlocksItemCase1Case13ConfigDimensionsList =
   Array<UpdateDashboardRequestBlocksItemCase1Case13ConfigDimensionsItem>;
@@ -51799,7 +51603,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case13ConfigChartType =
   | "stackedHorizontalBar"
   | "bigNumber";
 export const UpdateDashboardRequestBlocksItemCase1Case13ConfigChartType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case13ConfigDateRangePredefined =
   | "today"
@@ -51812,7 +51616,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case13ConfigDateRangePredefined
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case13ConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case13ConfigDateRangeLookbackUnit =
   | "hour"
@@ -51820,7 +51624,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case13ConfigDateRangeLookbackUn
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case13ConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case13ConfigDateRange {
   predefined:
@@ -51855,8 +51659,7 @@ export const UpdateDashboardRequestBlocksItemCase1Case13ConfigDateRange =
 export type UpdateDashboardRequestBlocksItemCase1Case13ConfigShowAs =
   | "total"
   | "per_unit";
-export const UpdateDashboardRequestBlocksItemCase1Case13ConfigShowAs =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase1Case13ConfigShowAs = S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case13ConfigDatasetValuesItemRowFiltersItemOperator =
   | "="
@@ -51880,7 +51683,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case13ConfigDatasetValuesItemRo
   | "sql_expr"
   | "saved_filter";
 export const UpdateDashboardRequestBlocksItemCase1Case13ConfigDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case13ConfigDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -51923,7 +51726,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case13ConfigDatasetValuesItemVa
   | "count"
   | "sum";
 export const UpdateDashboardRequestBlocksItemCase1Case13ConfigDatasetValuesItemValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case13ConfigDatasetValuesItem {
   name: string;
@@ -52060,7 +51863,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case14ComparisonMode =
   | "previousYearMatchDayOfWeek"
   | "custom";
 export const UpdateDashboardRequestBlocksItemCase1Case14ComparisonMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case14ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -52073,7 +51876,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case14ComparisonPreviousTimeFra
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case14ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case14ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -52081,7 +51884,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case14ComparisonPreviousTimeFra
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case14ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case14ComparisonPreviousTimeFrame {
   predefined:
@@ -52149,7 +51952,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case14ConfigDimensionsItemCase0
   | "month"
   | "year";
 export const UpdateDashboardRequestBlocksItemCase1Case14ConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case14ConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -52223,7 +52026,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case14ConfigDimensionsItemCase3
   | "sql_expr"
   | "saved_filter";
 export const UpdateDashboardRequestBlocksItemCase1Case14ConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case14ConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -52306,7 +52109,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case14ConfigDimensionsItem =
   | UpdateDashboardRequestBlocksItemCase1Case14ConfigDimensionsItemCase2
   | UpdateDashboardRequestBlocksItemCase1Case14ConfigDimensionsItemCase3;
 export const UpdateDashboardRequestBlocksItemCase1Case14ConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase1Case14ConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase1Case14ConfigDimensionsItem>;
 
 export type UpdateDashboardRequestBlocksItemCase1Case14ConfigDimensionsList =
   Array<UpdateDashboardRequestBlocksItemCase1Case14ConfigDimensionsItem>;
@@ -52326,7 +52129,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case14ConfigChartType =
   | "stackedHorizontalBar"
   | "bigNumber";
 export const UpdateDashboardRequestBlocksItemCase1Case14ConfigChartType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case14ConfigDateRangePredefined =
   | "today"
@@ -52339,7 +52142,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case14ConfigDateRangePredefined
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case14ConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case14ConfigDateRangeLookbackUnit =
   | "hour"
@@ -52347,7 +52150,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case14ConfigDateRangeLookbackUn
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case14ConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case14ConfigDateRange {
   predefined:
@@ -52382,8 +52185,7 @@ export const UpdateDashboardRequestBlocksItemCase1Case14ConfigDateRange =
 export type UpdateDashboardRequestBlocksItemCase1Case14ConfigShowAs =
   | "total"
   | "per_unit";
-export const UpdateDashboardRequestBlocksItemCase1Case14ConfigShowAs =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase1Case14ConfigShowAs = S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case14ConfigDatasetColumnTypesValue =
   | "string"
@@ -52392,7 +52194,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case14ConfigDatasetColumnTypesV
   | "boolean"
   | "other";
 export const UpdateDashboardRequestBlocksItemCase1Case14ConfigDatasetColumnTypesValue =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case14ConfigDatasetColumnTypesMap =
   {
@@ -52429,7 +52231,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case14ConfigDatasetValuesItemRo
   | "sql_expr"
   | "saved_filter";
 export const UpdateDashboardRequestBlocksItemCase1Case14ConfigDatasetValuesItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case14ConfigDatasetValuesItemRowFiltersItemValuesList =
   Array<string>;
@@ -52472,7 +52274,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case14ConfigDatasetValuesItemVa
   | "count"
   | "sum";
 export const UpdateDashboardRequestBlocksItemCase1Case14ConfigDatasetValuesItemValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case14ConfigDatasetValuesItem {
   name: string;
@@ -52616,7 +52418,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case15ComparisonMode =
   | "previousYearMatchDayOfWeek"
   | "custom";
 export const UpdateDashboardRequestBlocksItemCase1Case15ComparisonMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case15ComparisonPreviousTimeFramePredefined =
   | "today"
@@ -52629,7 +52431,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case15ComparisonPreviousTimeFra
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case15ComparisonPreviousTimeFramePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case15ComparisonPreviousTimeFrameLookbackUnit =
   | "hour"
@@ -52637,7 +52439,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case15ComparisonPreviousTimeFra
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case15ComparisonPreviousTimeFrameLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case15ComparisonPreviousTimeFrame {
   predefined:
@@ -52705,7 +52507,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case15ConfigDimensionsItemCase0
   | "month"
   | "year";
 export const UpdateDashboardRequestBlocksItemCase1Case15ConfigDimensionsItemCase0DateGranularity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case15ConfigDimensionsItemCase0 {
   dimensionType: string;
@@ -52779,7 +52581,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case15ConfigDimensionsItemCase3
   | "sql_expr"
   | "saved_filter";
 export const UpdateDashboardRequestBlocksItemCase1Case15ConfigDimensionsItemCase3SlicesItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case15ConfigDimensionsItemCase3SlicesItemFiltersItemValuesList =
   Array<string>;
@@ -52862,7 +52664,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case15ConfigDimensionsItem =
   | UpdateDashboardRequestBlocksItemCase1Case15ConfigDimensionsItemCase2
   | UpdateDashboardRequestBlocksItemCase1Case15ConfigDimensionsItemCase3;
 export const UpdateDashboardRequestBlocksItemCase1Case15ConfigDimensionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase1Case15ConfigDimensionsItem>;
+  S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase1Case15ConfigDimensionsItem>;
 
 export type UpdateDashboardRequestBlocksItemCase1Case15ConfigDimensionsList =
   Array<UpdateDashboardRequestBlocksItemCase1Case15ConfigDimensionsItem>;
@@ -52882,7 +52684,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case15ConfigChartType =
   | "stackedHorizontalBar"
   | "bigNumber";
 export const UpdateDashboardRequestBlocksItemCase1Case15ConfigChartType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case15ConfigDateRangePredefined =
   | "today"
@@ -52895,7 +52697,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case15ConfigDateRangePredefined
   | "customLookback"
   | "customDateRange";
 export const UpdateDashboardRequestBlocksItemCase1Case15ConfigDateRangePredefined =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case15ConfigDateRangeLookbackUnit =
   | "hour"
@@ -52903,7 +52705,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case15ConfigDateRangeLookbackUn
   | "week"
   | "month";
 export const UpdateDashboardRequestBlocksItemCase1Case15ConfigDateRangeLookbackUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case15ConfigDateRange {
   predefined:
@@ -52938,8 +52740,7 @@ export const UpdateDashboardRequestBlocksItemCase1Case15ConfigDateRange =
 export type UpdateDashboardRequestBlocksItemCase1Case15ConfigShowAs =
   | "total"
   | "per_unit";
-export const UpdateDashboardRequestBlocksItemCase1Case15ConfigShowAs =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardRequestBlocksItemCase1Case15ConfigShowAs = S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case15ConfigDatasetStepsItemRowFiltersItemOperator =
   | "="
@@ -52963,7 +52764,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case15ConfigDatasetStepsItemRow
   | "sql_expr"
   | "saved_filter";
 export const UpdateDashboardRequestBlocksItemCase1Case15ConfigDatasetStepsItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDashboardRequestBlocksItemCase1Case15ConfigDatasetStepsItemRowFiltersItemValuesList =
   Array<string>;
@@ -53007,7 +52808,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case15ConfigDatasetStepsItemCon
   | "hours"
   | "minutes";
 export const UpdateDashboardRequestBlocksItemCase1Case15ConfigDatasetStepsItemConversionWindowUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case15ConfigDatasetStepsItemConversionWindow {
   unit:
@@ -53063,7 +52864,7 @@ export type UpdateDashboardRequestBlocksItemCase1Case15ConfigDatasetYAxisScale =
   | "count"
   | "percent";
 export const UpdateDashboardRequestBlocksItemCase1Case15ConfigDatasetYAxisScale =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDashboardRequestBlocksItemCase1Case15ConfigDataset {
   type: string;
@@ -53181,13 +52982,13 @@ export type UpdateDashboardRequestBlocksItemCase1 =
   | UpdateDashboardRequestBlocksItemCase1Case14
   | UpdateDashboardRequestBlocksItemCase1Case15;
 export const UpdateDashboardRequestBlocksItemCase1 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase1>;
+  S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItemCase1>;
 
 export type UpdateDashboardRequestBlocksItem =
   | UpdateDashboardRequestBlocksItemCase0
   | UpdateDashboardRequestBlocksItemCase1;
 export const UpdateDashboardRequestBlocksItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItem>;
+  S.Unknown as any as S.Schema<UpdateDashboardRequestBlocksItem>;
 
 export type UpdateDashboardRequestBlocksList =
   Array<UpdateDashboardRequestBlocksItem>;
@@ -53241,7 +53042,7 @@ export const UpdateDashboardResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Where this dimension must be managed from. If not set (empty string), it can be managed from anywhere. */
 export type UpdateDimensionRequestManagedBy = "" | "api";
-export const UpdateDimensionRequestManagedBy = /*@__PURE__*/ S.String;
+export const UpdateDimensionRequestManagedBy = S.String;
 
 export interface UpdateDimensionRequest {
   /** The id of the requested resource */
@@ -53288,7 +53089,7 @@ export const UpdateDimensionResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDimensionResponse>;
 
 export type UpdateExperimentRequestType = "standard" | "multi-armed-bandit";
-export const UpdateExperimentRequestType = /*@__PURE__*/ S.String;
+export const UpdateExperimentRequestType = S.String;
 
 export type UpdateExperimentRequestTagsList = Array<string>;
 export const UpdateExperimentRequestTagsList = /*@__PURE__*/ S.Array(
@@ -53313,7 +53114,7 @@ export const UpdateExperimentRequestGuardrailMetricsList =
   ) as any as S.Schema<UpdateExperimentRequestGuardrailMetricsList>;
 
 export type UpdateExperimentRequestStatus = "draft" | "running" | "stopped";
-export const UpdateExperimentRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateExperimentRequestStatus = S.String;
 
 /** The result status of the experiment. Maps to resultSummary.status in the GET response. */
 export type UpdateExperimentRequestResults =
@@ -53321,27 +53122,25 @@ export type UpdateExperimentRequestResults =
   | "won"
   | "lost"
   | "inconclusive";
-export const UpdateExperimentRequestResults = /*@__PURE__*/ S.String;
+export const UpdateExperimentRequestResults = S.String;
 
 export type UpdateExperimentRequestInProgressConversions = "loose" | "strict";
-export const UpdateExperimentRequestInProgressConversions =
-  /*@__PURE__*/ S.String;
+export const UpdateExperimentRequestInProgressConversions = S.String;
 
 /** Setting attribution model to `"experimentDuration"` is the same as selecting "Ignore Conversion Windows" for the Conversion Window Override. Setting it to `"lookbackOverride"` requires a `lookbackOverride` object to be provided. */
 export type UpdateExperimentRequestAttributionModel =
   | "firstExposure"
   | "experimentDuration"
   | "lookbackOverride";
-export const UpdateExperimentRequestAttributionModel = /*@__PURE__*/ S.String;
+export const UpdateExperimentRequestAttributionModel = S.String;
 
 export type UpdateExperimentRequestLookbackOverrideType = "date" | "window";
-export const UpdateExperimentRequestLookbackOverrideType =
-  /*@__PURE__*/ S.String;
+export const UpdateExperimentRequestLookbackOverrideType = S.String;
 
 /** For "window" type - non-negative numeric value (e.g. 7 for 7 days). For "date" type a date string. */
 export type UpdateExperimentRequestLookbackOverrideValue = number | string;
 export const UpdateExperimentRequestLookbackOverrideValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateExperimentRequestLookbackOverrideValue>;
+  S.Unknown as any as S.Schema<UpdateExperimentRequestLookbackOverrideValue>;
 
 /** Used when type is "window". Defaults to "days". */
 export type UpdateExperimentRequestLookbackOverrideValueUnit =
@@ -53349,8 +53148,7 @@ export type UpdateExperimentRequestLookbackOverrideValueUnit =
   | "hours"
   | "days"
   | "weeks";
-export const UpdateExperimentRequestLookbackOverrideValueUnit =
-  /*@__PURE__*/ S.String;
+export const UpdateExperimentRequestLookbackOverrideValueUnit = S.String;
 
 /** Controls the lookback override for the experiment. For type "window", value must be a non-negative number and valueUnit is required. */
 export interface UpdateExperimentRequestLookbackOverride {
@@ -53372,7 +53170,7 @@ export const UpdateExperimentRequestLookbackOverride = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateExperimentRequestLookbackOverride>;
 
 export type UpdateExperimentRequestStatsEngine = "bayesian" | "frequentist";
-export const UpdateExperimentRequestStatsEngine = /*@__PURE__*/ S.String;
+export const UpdateExperimentRequestStatsEngine = S.String;
 
 export type UpdateExperimentRequestVariationsItemScreenshotsItem =
   CreateExperimentRequestVariationsItemScreenshotsItem;
@@ -53455,8 +53253,7 @@ export type UpdateExperimentRequestPhasesItemSavedGroupsItemMatch =
   | "all"
   | "none"
   | "any";
-export const UpdateExperimentRequestPhasesItemSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+export const UpdateExperimentRequestPhasesItemSavedGroupsItemMatch = S.String;
 
 export type UpdateExperimentRequestPhasesItemSavedGroupsItemIdsList =
   Array<string>;
@@ -53491,7 +53288,7 @@ export type UpdateExperimentRequestPhasesItemSavedGroupTargetingItemMatchType =
   | "any"
   | "none";
 export const UpdateExperimentRequestPhasesItemSavedGroupTargetingItemMatchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateExperimentRequestPhasesItemSavedGroupTargetingItemSavedGroupsList =
   Array<string>;
@@ -53605,19 +53402,18 @@ export const UpdateExperimentRequestPhasesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateExperimentRequestPhasesList>;
 
 export type UpdateExperimentRequestShareLevel = "public" | "organization";
-export const UpdateExperimentRequestShareLevel = /*@__PURE__*/ S.String;
+export const UpdateExperimentRequestShareLevel = S.String;
 
 export type UpdateExperimentRequestBanditScheduleUnit = "days" | "hours";
-export const UpdateExperimentRequestBanditScheduleUnit = /*@__PURE__*/ S.String;
+export const UpdateExperimentRequestBanditScheduleUnit = S.String;
 
 export type UpdateExperimentRequestBanditBurnInUnit = "days" | "hours";
-export const UpdateExperimentRequestBanditBurnInUnit = /*@__PURE__*/ S.String;
+export const UpdateExperimentRequestBanditBurnInUnit = S.String;
 
 export type UpdateExperimentRequestBanditConversionWindowUnit =
   | "days"
   | "hours";
-export const UpdateExperimentRequestBanditConversionWindowUnit =
-  /*@__PURE__*/ S.String;
+export const UpdateExperimentRequestBanditConversionWindowUnit = S.String;
 
 export type UpdateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem =
   CreateExperimentRequestDecisionFrameworkSettingsDecisionFrameworkMetricOverridesItem;
@@ -53652,8 +53448,7 @@ export type UpdateExperimentRequestMetricOverridesItemWindowType =
   | "conversion"
   | "lookback"
   | "";
-export const UpdateExperimentRequestMetricOverridesItemWindowType =
-  /*@__PURE__*/ S.String;
+export const UpdateExperimentRequestMetricOverridesItemWindowType = S.String;
 
 /** Per-metric analysis overrides stored on the experiment (matches internal metricOverrides). */
 export interface UpdateExperimentRequestMetricOverridesItem {
@@ -53762,7 +53557,7 @@ export type UpdateExperimentRequestStatusUpdateScheduleStopAfterUnit =
   | "hours"
   | "days";
 export const UpdateExperimentRequestStatusUpdateScheduleStopAfterUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Relative end offset. Deferred: resolved to a concrete `stopAt` at the experiment's actual start (or off `dateStarted` when already running). */
 export interface UpdateExperimentRequestStatusUpdateScheduleStopAfter {
@@ -54000,7 +53795,7 @@ export const UpdateExperimentTemplateRequestTemplateMetadata =
   BulkImportExperimentTemplatesRequestTemplatesItemDataTemplateMetadata;
 
 export type UpdateExperimentTemplateRequestType = "standard";
-export const UpdateExperimentTemplateRequestType = /*@__PURE__*/ S.String;
+export const UpdateExperimentTemplateRequestType = S.String;
 
 export type UpdateExperimentTemplateRequestTagsList = Array<string>;
 export const UpdateExperimentTemplateRequestTagsList = /*@__PURE__*/ S.Array(
@@ -54037,15 +53832,14 @@ export const UpdateExperimentTemplateRequestGuardrailMetricsList =
 export type UpdateExperimentTemplateRequestStatsEngine =
   | "bayesian"
   | "frequentist";
-export const UpdateExperimentTemplateRequestStatsEngine =
-  /*@__PURE__*/ S.String;
+export const UpdateExperimentTemplateRequestStatsEngine = S.String;
 
 export type UpdateExperimentTemplateRequestTargetingSavedGroupsItemMatch =
   | "all"
   | "none"
   | "any";
 export const UpdateExperimentTemplateRequestTargetingSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateExperimentTemplateRequestTargetingSavedGroupsItemIdsList =
   Array<string>;
@@ -54252,7 +54046,7 @@ export type UpdateFactMetricRequestMetricType =
   | "ratio"
   | "dailyParticipation"
   | "funnel";
-export const UpdateFactMetricRequestMetricType = /*@__PURE__*/ S.String;
+export const UpdateFactMetricRequestMetricType = S.String;
 
 /** User aggregation of selected column. Either sum or max for numeric columns; count distinct for string columns; hll merge / kll merge for pre-built sketch columns (requires data-source support); ignored for special columns. Default: sum. If you specify a string column you must explicitly specify count distinct. Not used for proportion metrics; for event quantile metrics only kll merge is applicable. */
 export type UpdateFactMetricRequestNumeratorAggregation =
@@ -54261,8 +54055,7 @@ export type UpdateFactMetricRequestNumeratorAggregation =
   | "count distinct"
   | "hll merge"
   | "kll merge";
-export const UpdateFactMetricRequestNumeratorAggregation =
-  /*@__PURE__*/ S.String;
+export const UpdateFactMetricRequestNumeratorAggregation = S.String;
 
 /** Array of Fact Table Filter Ids. Deprecated, use rowFilters instead. */
 export type UpdateFactMetricRequestNumeratorFiltersList = Array<string>;
@@ -54311,8 +54104,7 @@ export type UpdateFactMetricRequestNumeratorRowFiltersItemOperator =
   | "ends_with"
   | "sql_expr"
   | "saved_filter";
-export const UpdateFactMetricRequestNumeratorRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+export const UpdateFactMetricRequestNumeratorRowFiltersItemOperator = S.String;
 
 /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
 export type UpdateFactMetricRequestNumeratorRowFiltersItemValuesList =
@@ -54391,8 +54183,7 @@ export type UpdateFactMetricRequestDenominatorAggregation =
   | "count distinct"
   | "hll merge"
   | "kll merge";
-export const UpdateFactMetricRequestDenominatorAggregation =
-  /*@__PURE__*/ S.String;
+export const UpdateFactMetricRequestDenominatorAggregation = S.String;
 
 /** Array of Fact Table Filter Ids. Deprecated, use rowFilters instead. */
 export type UpdateFactMetricRequestDenominatorFiltersList = Array<string>;
@@ -54442,7 +54233,7 @@ export type UpdateFactMetricRequestDenominatorRowFiltersItemOperator =
   | "sql_expr"
   | "saved_filter";
 export const UpdateFactMetricRequestDenominatorRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
 export type UpdateFactMetricRequestDenominatorRowFiltersItemValuesList =
@@ -54513,8 +54304,7 @@ export const UpdateFactMetricRequestDenominator = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the quantile is over unit aggregations or raw event values */
 export type UpdateFactMetricRequestQuantileSettingsType = "event" | "unit";
-export const UpdateFactMetricRequestQuantileSettingsType =
-  /*@__PURE__*/ S.String;
+export const UpdateFactMetricRequestQuantileSettingsType = S.String;
 
 /** Controls the settings for quantile metrics (mandatory if metricType is "quantile") */
 export interface UpdateFactMetricRequestQuantileSettings {
@@ -54561,7 +54351,7 @@ export type UpdateFactMetricRequestFunnelSettingsStepsItemRowFiltersItemOperator
   | "sql_expr"
   | "saved_filter";
 export const UpdateFactMetricRequestFunnelSettingsStepsItemRowFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Not required for is_null, not_null, is_true, is_false operators. The between and not_between operators take at most two values, a lower and an upper bound in that order; leave a bound as an empty string for an open-ended range. */
 export type UpdateFactMetricRequestFunnelSettingsStepsItemRowFiltersItemValuesList =
@@ -54608,7 +54398,7 @@ export type UpdateFactMetricRequestFunnelSettingsStepsItemConversionWindowUnit =
   | "hours"
   | "minutes";
 export const UpdateFactMetricRequestFunnelSettingsStepsItemConversionWindowUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Bounds how long after the nearest prior required step (or exposure, for the first step / after only-optional priors of an experiment funnel metric) this step's event can occur. */
 export interface UpdateFactMetricRequestFunnelSettingsStepsItemConversionWindow {
@@ -54666,8 +54456,7 @@ export const UpdateFactMetricRequestFunnelSettingsStepsList =
 
 /** Step ordering mode. Only 'sequential' is supported in v1. */
 export type UpdateFactMetricRequestFunnelSettingsOrdering = "sequential";
-export const UpdateFactMetricRequestFunnelSettingsOrdering =
-  /*@__PURE__*/ S.String;
+export const UpdateFactMetricRequestFunnelSettingsOrdering = S.String;
 
 /** Funnel metric settings (required when metricType is "funnel") */
 export interface UpdateFactMetricRequestFunnelSettings {
@@ -54693,8 +54482,7 @@ export type UpdateFactMetricRequestCappingSettingsType =
   | "none"
   | "absolute"
   | "percentile";
-export const UpdateFactMetricRequestCappingSettingsType =
-  /*@__PURE__*/ S.String;
+export const UpdateFactMetricRequestCappingSettingsType = S.String;
 
 /** Controls how outliers are handled */
 export interface UpdateFactMetricRequestCappingSettings {
@@ -54719,7 +54507,7 @@ export type UpdateFactMetricRequestWindowSettingsType =
   | "none"
   | "conversion"
   | "lookback";
-export const UpdateFactMetricRequestWindowSettingsType = /*@__PURE__*/ S.String;
+export const UpdateFactMetricRequestWindowSettingsType = S.String;
 
 /** Default `hours`. */
 export type UpdateFactMetricRequestWindowSettingsDelayUnit =
@@ -54727,8 +54515,7 @@ export type UpdateFactMetricRequestWindowSettingsDelayUnit =
   | "hours"
   | "days"
   | "weeks";
-export const UpdateFactMetricRequestWindowSettingsDelayUnit =
-  /*@__PURE__*/ S.String;
+export const UpdateFactMetricRequestWindowSettingsDelayUnit = S.String;
 
 /** Default `hours`. */
 export type UpdateFactMetricRequestWindowSettingsWindowUnit =
@@ -54736,8 +54523,7 @@ export type UpdateFactMetricRequestWindowSettingsWindowUnit =
   | "hours"
   | "days"
   | "weeks";
-export const UpdateFactMetricRequestWindowSettingsWindowUnit =
-  /*@__PURE__*/ S.String;
+export const UpdateFactMetricRequestWindowSettingsWindowUnit = S.String;
 
 /** Controls the conversion window for the metric */
 export interface UpdateFactMetricRequestWindowSettings {
@@ -54780,7 +54566,7 @@ export const UpdateFactMetricRequestRegressionAdjustmentSettings =
 
 /** Set this to "api" to disable editing in the GrowthBook UI */
 export type UpdateFactMetricRequestManagedBy = "" | "api" | "admin";
-export const UpdateFactMetricRequestManagedBy = /*@__PURE__*/ S.String;
+export const UpdateFactMetricRequestManagedBy = S.String;
 
 /** Array of slice column names that will be automatically included in metric analysis. This is an enterprise feature. */
 export type UpdateFactMetricRequestMetricAutoSlicesList = Array<string>;
@@ -54951,7 +54737,7 @@ export const UpdateFactTableRequestColumnsList = /*@__PURE__*/ S.Array(
 
 /** Set this to "api" to disable editing in the GrowthBook UI */
 export type UpdateFactTableRequestManagedBy = "" | "api" | "admin";
-export const UpdateFactTableRequestManagedBy = /*@__PURE__*/ S.String;
+export const UpdateFactTableRequestManagedBy = S.String;
 
 export interface UpdateFactTableRequest {
   /** The id of the requested resource */
@@ -55014,7 +54800,7 @@ export const UpdateFactTableResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Set this to "api" to disable editing in the GrowthBook UI. Before you do this, the Fact Table itself must also be marked as "api" */
 export type UpdateFactTableFilterRequestManagedBy = "" | "api";
-export const UpdateFactTableFilterRequestManagedBy = /*@__PURE__*/ S.String;
+export const UpdateFactTableFilterRequestManagedBy = S.String;
 
 export interface UpdateFactTableFilterRequest {
   /** Specify a specific fact table */
@@ -55065,8 +54851,7 @@ export type UpdateFactTableVirtualColumnRequestNumberFormat =
   | "time:seconds"
   | "memory:bytes"
   | "memory:kilobytes";
-export const UpdateFactTableVirtualColumnRequestNumberFormat =
-  /*@__PURE__*/ S.String;
+export const UpdateFactTableVirtualColumnRequestNumberFormat = S.String;
 
 /** The data type of the computed column */
 export type UpdateFactTableVirtualColumnRequestDatatype =
@@ -55077,8 +54862,7 @@ export type UpdateFactTableVirtualColumnRequestDatatype =
   | "json"
   | "binary"
   | "other";
-export const UpdateFactTableVirtualColumnRequestDatatype =
-  /*@__PURE__*/ S.String;
+export const UpdateFactTableVirtualColumnRequestDatatype = S.String;
 
 export interface UpdateFactTableVirtualColumnRequest {
   /** Specify a specific fact table */
@@ -55131,12 +54915,12 @@ export const UpdateFactTableVirtualColumnResponse = /*@__PURE__*/ S.suspend(
 /** Deprecated — pass `skipSchemaValidation` in the request body instead. */
 export type UpdateFeatureV2RequestSkipSchemaValidation = string | boolean;
 export const UpdateFeatureV2RequestSkipSchemaValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFeatureV2RequestSkipSchemaValidation>;
+  S.Unknown as any as S.Schema<UpdateFeatureV2RequestSkipSchemaValidation>;
 
 /** Deprecated — pass `ignoreWarnings` in the request body instead. */
 export type UpdateFeatureV2RequestIgnoreWarnings = string | boolean;
 export const UpdateFeatureV2RequestIgnoreWarnings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFeatureV2RequestIgnoreWarnings>;
+  S.Unknown as any as S.Schema<UpdateFeatureV2RequestIgnoreWarnings>;
 
 /** Secondary project IDs this feature is targeted in and served to, beyond its primary `project`. Governance/approvals stay with `project`. */
 export type UpdateFeatureV2RequestTargetingProjectsList = Array<string>;
@@ -55156,7 +54940,7 @@ export type UpdateFeatureV2RequestRulesItemCase0SavedGroupsItemMatch =
   | "none"
   | "any";
 export const UpdateFeatureV2RequestRulesItemCase0SavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFeatureV2RequestRulesItemCase0SavedGroupsItemIdsList =
   Array<string>;
@@ -55193,7 +54977,7 @@ export type UpdateFeatureV2RequestRulesItemCase0SavedGroupTargetingItemMatchType
   | "any"
   | "none";
 export const UpdateFeatureV2RequestRulesItemCase0SavedGroupTargetingItemMatchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFeatureV2RequestRulesItemCase0SavedGroupTargetingItemSavedGroupsList =
   Array<string>;
@@ -55331,7 +55115,7 @@ export type UpdateFeatureV2RequestRulesItemCase1SavedGroupsItemMatch =
   | "none"
   | "any";
 export const UpdateFeatureV2RequestRulesItemCase1SavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFeatureV2RequestRulesItemCase1SavedGroupsItemIdsList =
   Array<string>;
@@ -55368,7 +55152,7 @@ export type UpdateFeatureV2RequestRulesItemCase1SavedGroupTargetingItemMatchType
   | "any"
   | "none";
 export const UpdateFeatureV2RequestRulesItemCase1SavedGroupTargetingItemMatchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFeatureV2RequestRulesItemCase1SavedGroupTargetingItemSavedGroupsList =
   Array<string>;
@@ -55515,7 +55299,7 @@ export type UpdateFeatureV2RequestRulesItemCase2SavedGroupsItemMatch =
   | "none"
   | "any";
 export const UpdateFeatureV2RequestRulesItemCase2SavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFeatureV2RequestRulesItemCase2SavedGroupsItemIdsList =
   Array<string>;
@@ -55552,7 +55336,7 @@ export type UpdateFeatureV2RequestRulesItemCase2SavedGroupTargetingItemMatchType
   | "any"
   | "none";
 export const UpdateFeatureV2RequestRulesItemCase2SavedGroupTargetingItemMatchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFeatureV2RequestRulesItemCase2SavedGroupTargetingItemSavedGroupsList =
   Array<string>;
@@ -55701,7 +55485,7 @@ export type UpdateFeatureV2RequestRulesItemCase3SavedGroupsItemMatch =
   | "none"
   | "any";
 export const UpdateFeatureV2RequestRulesItemCase3SavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFeatureV2RequestRulesItemCase3SavedGroupsItemIdsList =
   Array<string>;
@@ -55738,7 +55522,7 @@ export type UpdateFeatureV2RequestRulesItemCase3SavedGroupTargetingItemMatchType
   | "any"
   | "none";
 export const UpdateFeatureV2RequestRulesItemCase3SavedGroupTargetingItemMatchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFeatureV2RequestRulesItemCase3SavedGroupTargetingItemSavedGroupsList =
   Array<string>;
@@ -55802,8 +55586,7 @@ export type UpdateFeatureV2RequestRulesItemCase3Status =
   | "released"
   | "rolled-back"
   | "stopped";
-export const UpdateFeatureV2RequestRulesItemCase3Status =
-  /*@__PURE__*/ S.String;
+export const UpdateFeatureV2RequestRulesItemCase3Status = S.String;
 
 /** Specific environment IDs this rule applies to. Required when allEnvironments is false. */
 export type UpdateFeatureV2RequestRulesItemCase3EnvironmentsList =
@@ -55892,7 +55675,7 @@ export type UpdateFeatureV2RequestRulesItem =
   | UpdateFeatureV2RequestRulesItemCase2
   | UpdateFeatureV2RequestRulesItemCase3;
 export const UpdateFeatureV2RequestRulesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFeatureV2RequestRulesItem>;
+  S.Unknown as any as S.Schema<UpdateFeatureV2RequestRulesItem>;
 
 /** Replaces all feature rules atomically. Behavior differs from v1: v1 PUT applies per-environment patches, v2 PUT swaps the entire `rules` array in one revision. To preserve existing rules during a partial edit, GET the feature first, mutate the returned `rules` array, and PUT the full array back. Safe-rollout rules round-trip via their `safeRolloutId` (creation requires `POST /v2/features/:id/revisions/:version/rules`). */
 export type UpdateFeatureV2RequestRulesList =
@@ -56036,8 +55819,7 @@ export type UpdateHoldoutRequestSavedGroupTargetingItemMatch =
   | "all"
   | "none"
   | "any";
-export const UpdateHoldoutRequestSavedGroupTargetingItemMatch =
-  /*@__PURE__*/ S.String;
+export const UpdateHoldoutRequestSavedGroupTargetingItemMatch = S.String;
 
 export type UpdateHoldoutRequestSavedGroupTargetingItemIdsList = Array<string>;
 export const UpdateHoldoutRequestSavedGroupTargetingItemIdsList =
@@ -56078,7 +55860,7 @@ export const UpdateHoldoutRequestSecondaryMetricsList = /*@__PURE__*/ S.Array(
 
 /** Statistics engine used to analyze this Holdout. */
 export type UpdateHoldoutRequestStatsEngine = "bayesian" | "frequentist";
-export const UpdateHoldoutRequestStatsEngine = /*@__PURE__*/ S.String;
+export const UpdateHoldoutRequestStatsEngine = S.String;
 
 export type UpdateHoldoutRequestEnvironmentsValue =
   CreateHoldoutRequestEnvironmentsValue;
@@ -56562,7 +56344,7 @@ export type UpdateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemMat
   | "none"
   | "any";
 export const UpdateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRampScheduleRequestStepsItemActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -56717,7 +56499,7 @@ export type UpdateRampScheduleRequestStartActionsItemPatchSavedGroupsItemMatch =
   | "none"
   | "any";
 export const UpdateRampScheduleRequestStartActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRampScheduleRequestStartActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -56835,7 +56617,7 @@ export type UpdateRampScheduleRequestEndActionsItemPatchSavedGroupsItemMatch =
   | "none"
   | "any";
 export const UpdateRampScheduleRequestEndActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRampScheduleRequestEndActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -56961,29 +56743,27 @@ export const UpdateRampScheduleRequestMonitoringConfigSignalMetricIdsList =
 export type UpdateRampScheduleRequestMonitoringConfigMonitoringMode =
   | "auto"
   | "manual";
-export const UpdateRampScheduleRequestMonitoringConfigMonitoringMode =
-  /*@__PURE__*/ S.String;
+export const UpdateRampScheduleRequestMonitoringConfigMonitoringMode = S.String;
 
 export type UpdateRampScheduleRequestMonitoringConfigSrmAction =
   | "rollback"
   | "hold"
   | "warn";
-export const UpdateRampScheduleRequestMonitoringConfigSrmAction =
-  /*@__PURE__*/ S.String;
+export const UpdateRampScheduleRequestMonitoringConfigSrmAction = S.String;
 
 export type UpdateRampScheduleRequestMonitoringConfigNoTrafficAction =
   | "rollback"
   | "hold"
   | "warn";
 export const UpdateRampScheduleRequestMonitoringConfigNoTrafficAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRampScheduleRequestMonitoringConfigMultipleExposureAction =
   | "rollback"
   | "hold"
   | "warn";
 export const UpdateRampScheduleRequestMonitoringConfigMultipleExposureAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRampScheduleRequestMonitoringConfig {
   datasourceId: string;
@@ -57039,12 +56819,10 @@ export type UpdateRampScheduleRequestExperimentHealthAction =
   | "rollback"
   | "hold"
   | "warn";
-export const UpdateRampScheduleRequestExperimentHealthAction =
-  /*@__PURE__*/ S.String;
+export const UpdateRampScheduleRequestExperimentHealthAction = S.String;
 
 export type UpdateRampScheduleRequestLockdownConfigMode = "none" | "locked";
-export const UpdateRampScheduleRequestLockdownConfigMode =
-  /*@__PURE__*/ S.String;
+export const UpdateRampScheduleRequestLockdownConfigMode = S.String;
 
 /** When mode is 'locked', blocks all feature edits while the ramp is actively running. */
 export interface UpdateRampScheduleRequestLockdownConfig {
@@ -57107,7 +56885,7 @@ export const UpdateRampScheduleResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRampScheduleResponse>;
 
 export type UpdateRampScheduleLockdownRequestMode = "none" | "locked";
-export const UpdateRampScheduleLockdownRequestMode = /*@__PURE__*/ S.String;
+export const UpdateRampScheduleLockdownRequestMode = S.String;
 
 export interface UpdateRampScheduleLockdownRequest {
   id: string;
@@ -57129,8 +56907,7 @@ export const UpdateRampScheduleLockdownRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRampScheduleLockdownRequest>;
 
 export type UpdateRampScheduleLockdownResponseEntityType = "feature";
-export const UpdateRampScheduleLockdownResponseEntityType =
-  /*@__PURE__*/ S.String;
+export const UpdateRampScheduleLockdownResponseEntityType = S.String;
 
 /** Controlled entity references */
 export type UpdateRampScheduleLockdownResponseTargetsList = Array<Targets>;
@@ -57169,7 +56946,7 @@ export type UpdateRampScheduleLockdownResponseStatus =
   | "paused"
   | "completed"
   | "rolled-back";
-export const UpdateRampScheduleLockdownResponseStatus = /*@__PURE__*/ S.String;
+export const UpdateRampScheduleLockdownResponseStatus = S.String;
 
 export type UpdateRampScheduleLockdownResponseMonitoringConfigGuardrailMetricIdsList =
   Array<string>;
@@ -57189,28 +56966,28 @@ export type UpdateRampScheduleLockdownResponseMonitoringConfigMonitoringMode =
   | "auto"
   | "manual";
 export const UpdateRampScheduleLockdownResponseMonitoringConfigMonitoringMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRampScheduleLockdownResponseMonitoringConfigSrmAction =
   | "rollback"
   | "hold"
   | "warn";
 export const UpdateRampScheduleLockdownResponseMonitoringConfigSrmAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRampScheduleLockdownResponseMonitoringConfigNoTrafficAction =
   | "rollback"
   | "hold"
   | "warn";
 export const UpdateRampScheduleLockdownResponseMonitoringConfigNoTrafficAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRampScheduleLockdownResponseMonitoringConfigMultipleExposureAction =
   | "rollback"
   | "hold"
   | "warn";
 export const UpdateRampScheduleLockdownResponseMonitoringConfigMultipleExposureAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRampScheduleLockdownResponseMonitoringConfig {
   datasourceId: string;
@@ -57261,14 +57038,13 @@ export type UpdateRampScheduleLockdownResponseExperimentHealthAction =
   | "hold"
   | "warn";
 export const UpdateRampScheduleLockdownResponseExperimentHealthAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Surface through which the approval was granted. */
 export type UpdateRampScheduleLockdownResponseStepApprovalContext =
   | "ui"
   | "api";
-export const UpdateRampScheduleLockdownResponseStepApprovalContext =
-  /*@__PURE__*/ S.String;
+export const UpdateRampScheduleLockdownResponseStepApprovalContext = S.String;
 
 export interface UpdateRampScheduleLockdownResponseStepApproval {
   /** Index of the step that was approved. */
@@ -57297,7 +57073,7 @@ export type UpdateRampScheduleLockdownResponseMonitoringStatusMonitoringMode =
   | "auto"
   | "manual";
 export const UpdateRampScheduleLockdownResponseMonitoringStatusMonitoringMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRampScheduleLockdownResponseMonitoringStatus {
   safeRolloutId?: string | null;
@@ -57447,29 +57223,26 @@ export const UpdateRampScheduleMonitoringRequestSignalMetricIdsList =
 export type UpdateRampScheduleMonitoringRequestMonitoringMode =
   | "auto"
   | "manual";
-export const UpdateRampScheduleMonitoringRequestMonitoringMode =
-  /*@__PURE__*/ S.String;
+export const UpdateRampScheduleMonitoringRequestMonitoringMode = S.String;
 
 export type UpdateRampScheduleMonitoringRequestSrmAction =
   | "rollback"
   | "hold"
   | "warn";
-export const UpdateRampScheduleMonitoringRequestSrmAction =
-  /*@__PURE__*/ S.String;
+export const UpdateRampScheduleMonitoringRequestSrmAction = S.String;
 
 export type UpdateRampScheduleMonitoringRequestNoTrafficAction =
   | "rollback"
   | "hold"
   | "warn";
-export const UpdateRampScheduleMonitoringRequestNoTrafficAction =
-  /*@__PURE__*/ S.String;
+export const UpdateRampScheduleMonitoringRequestNoTrafficAction = S.String;
 
 export type UpdateRampScheduleMonitoringRequestMultipleExposureAction =
   | "rollback"
   | "hold"
   | "warn";
 export const UpdateRampScheduleMonitoringRequestMultipleExposureAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRampScheduleMonitoringRequest {
   id: string;
@@ -57527,8 +57300,7 @@ export const UpdateRampScheduleMonitoringRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRampScheduleMonitoringRequest>;
 
 export type UpdateRampScheduleMonitoringResponseEntityType = "feature";
-export const UpdateRampScheduleMonitoringResponseEntityType =
-  /*@__PURE__*/ S.String;
+export const UpdateRampScheduleMonitoringResponseEntityType = S.String;
 
 /** Controlled entity references */
 export type UpdateRampScheduleMonitoringResponseTargetsList = Array<Targets>;
@@ -57567,8 +57339,7 @@ export type UpdateRampScheduleMonitoringResponseStatus =
   | "paused"
   | "completed"
   | "rolled-back";
-export const UpdateRampScheduleMonitoringResponseStatus =
-  /*@__PURE__*/ S.String;
+export const UpdateRampScheduleMonitoringResponseStatus = S.String;
 
 export type UpdateRampScheduleMonitoringResponseMonitoringConfigGuardrailMetricIdsList =
   Array<string>;
@@ -57588,28 +57359,28 @@ export type UpdateRampScheduleMonitoringResponseMonitoringConfigMonitoringMode =
   | "auto"
   | "manual";
 export const UpdateRampScheduleMonitoringResponseMonitoringConfigMonitoringMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRampScheduleMonitoringResponseMonitoringConfigSrmAction =
   | "rollback"
   | "hold"
   | "warn";
 export const UpdateRampScheduleMonitoringResponseMonitoringConfigSrmAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRampScheduleMonitoringResponseMonitoringConfigNoTrafficAction =
   | "rollback"
   | "hold"
   | "warn";
 export const UpdateRampScheduleMonitoringResponseMonitoringConfigNoTrafficAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRampScheduleMonitoringResponseMonitoringConfigMultipleExposureAction =
   | "rollback"
   | "hold"
   | "warn";
 export const UpdateRampScheduleMonitoringResponseMonitoringConfigMultipleExposureAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRampScheduleMonitoringResponseMonitoringConfig {
   datasourceId: string;
@@ -57660,14 +57431,13 @@ export type UpdateRampScheduleMonitoringResponseExperimentHealthAction =
   | "hold"
   | "warn";
 export const UpdateRampScheduleMonitoringResponseExperimentHealthAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Surface through which the approval was granted. */
 export type UpdateRampScheduleMonitoringResponseStepApprovalContext =
   | "ui"
   | "api";
-export const UpdateRampScheduleMonitoringResponseStepApprovalContext =
-  /*@__PURE__*/ S.String;
+export const UpdateRampScheduleMonitoringResponseStepApprovalContext = S.String;
 
 export interface UpdateRampScheduleMonitoringResponseStepApproval {
   /** Index of the step that was approved. */
@@ -57696,7 +57466,7 @@ export type UpdateRampScheduleMonitoringResponseMonitoringStatusMonitoringMode =
   | "auto"
   | "manual";
 export const UpdateRampScheduleMonitoringResponseMonitoringStatusMonitoringMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRampScheduleMonitoringResponseMonitoringStatus {
   safeRolloutId?: string | null;
@@ -57904,7 +57674,7 @@ export type UpdateRampScheduleTemplateRequestStepsItemActionsItemPatchSavedGroup
   | "none"
   | "any";
 export const UpdateRampScheduleTemplateRequestStepsItemActionsItemPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRampScheduleTemplateRequestStepsItemActionsItemPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -58052,7 +57822,7 @@ export type UpdateRampScheduleTemplateRequestEndPatchSavedGroupsItemMatch =
   | "none"
   | "any";
 export const UpdateRampScheduleTemplateRequestEndPatchSavedGroupsItemMatch =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRampScheduleTemplateRequestEndPatchSavedGroupsItemIdsList =
   Array<string>;
@@ -58149,28 +57919,28 @@ export type UpdateRampScheduleTemplateRequestMonitoringConfigMonitoringMode =
   | "auto"
   | "manual";
 export const UpdateRampScheduleTemplateRequestMonitoringConfigMonitoringMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRampScheduleTemplateRequestMonitoringConfigSrmAction =
   | "rollback"
   | "hold"
   | "warn";
 export const UpdateRampScheduleTemplateRequestMonitoringConfigSrmAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRampScheduleTemplateRequestMonitoringConfigNoTrafficAction =
   | "rollback"
   | "hold"
   | "warn";
 export const UpdateRampScheduleTemplateRequestMonitoringConfigNoTrafficAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRampScheduleTemplateRequestMonitoringConfigMultipleExposureAction =
   | "rollback"
   | "hold"
   | "warn";
 export const UpdateRampScheduleTemplateRequestMonitoringConfigMultipleExposureAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRampScheduleTemplateRequestMonitoringConfig {
   datasourceId: string;
@@ -58227,8 +57997,7 @@ export const UpdateRampScheduleTemplateRequestMonitoringConfig =
 export type UpdateRampScheduleTemplateRequestLockdownConfigMode =
   | "none"
   | "locked";
-export const UpdateRampScheduleTemplateRequestLockdownConfigMode =
-  /*@__PURE__*/ S.String;
+export const UpdateRampScheduleTemplateRequestLockdownConfigMode = S.String;
 
 export interface UpdateRampScheduleTemplateRequestLockdownConfig {
   mode: UpdateRampScheduleTemplateRequestLockdownConfigMode | (string & {});
@@ -58387,11 +58156,11 @@ export const UpdateSegmentRequestProjectsList = /*@__PURE__*/ S.Array(
 
 /** Where this Segment must be managed from. If not set (empty string), it can be managed from anywhere. */
 export type UpdateSegmentRequestManagedBy = "" | "api";
-export const UpdateSegmentRequestManagedBy = /*@__PURE__*/ S.String;
+export const UpdateSegmentRequestManagedBy = S.String;
 
 /** GrowthBook supports two types of Segments, SQL and FACT. SQL segments are defined by a SQL query, and FACT segments are defined by a fact table and filters. */
 export type UpdateSegmentRequestType = "SQL" | "FACT";
-export const UpdateSegmentRequestType = /*@__PURE__*/ S.String;
+export const UpdateSegmentRequestType = S.String;
 
 /** Optional array of fact table filter ids that can further define the Fact Table based Segment. */
 export type UpdateSegmentRequestFiltersList = Array<string>;
@@ -58599,7 +58368,7 @@ export const VerifyConfigSchemaRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VerifyConfigSchemaRequest>;
 
 export type DriftContractItemChange = "added" | "removed" | "changed";
-export const DriftContractItemChange = /*@__PURE__*/ S.String;
+export const DriftContractItemChange = S.String;
 
 export interface DriftContractItem {
   key: string;
@@ -58621,7 +58390,7 @@ export const DriftContractList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DriftContractList>;
 
 export type DriftDocsItemChange = "added" | "removed" | "changed";
-export const DriftDocsItemChange = /*@__PURE__*/ S.String;
+export const DriftDocsItemChange = S.String;
 
 export interface DriftDocsItem {
   key: string;

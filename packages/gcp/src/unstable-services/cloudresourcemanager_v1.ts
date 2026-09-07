@@ -224,7 +224,7 @@ export type ProjectLifecycleStateEnum =
   | "ACTIVE"
   | "DELETE_REQUESTED"
   | "DELETE_IN_PROGRESS";
-export const ProjectLifecycleStateEnum = /*@__PURE__*/ S.String;
+export const ProjectLifecycleStateEnum = S.String;
 
 /** A Project is a high-level Google Cloud Platform entity. It is a container for ACLs, APIs, App Engine Apps, VMs, and other Google Cloud Platform resources. */
 export interface Project {
@@ -466,7 +466,7 @@ export type ListPolicyAllValuesEnum =
   | "ALL_VALUES_UNSPECIFIED"
   | "ALLOW"
   | "DENY";
-export const ListPolicyAllValuesEnum = /*@__PURE__*/ S.String;
+export const ListPolicyAllValuesEnum = S.String;
 
 /** Used in `policy_type` to specify how `list_policy` behaves at this resource. `ListPolicy` can define specific values and subtrees of Cloud Resource Manager resource hierarchy (`Organizations`, `Folders`, `Projects`) that are allowed or denied by setting the `allowed_values` and `denied_values` fields. This is achieved by using the `under:` and optional `is:` prefixes. The `under:` prefix is used to denote resource subtree values. The `is:` prefix is used to denote specific values, and is required only if the value contains a ":". Values prefixed with "is:" are treated the same as values with no prefix. Ancestry subtrees must be in one of the following formats: - "projects/", e.g. "projects/tokyo-rain-123" - "folders/", e.g. "folders/1234" - "organizations/", e.g. "organizations/1234" The `supports_under` field of the associated `Constraint` defines whether ancestry prefixes can be used. You can set `allowed_values` and `denied_values` in the same `Policy` if `all_values` is `ALL_VALUES_UNSPECIFIED`. `ALLOW` or `DENY` are used to allow or deny all values. If `all_values` is set to either `ALLOW` or `DENY`, `allowed_values` and `denied_values` must be unset. */
 export interface ListPolicy {
@@ -669,7 +669,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -821,7 +821,7 @@ export type OrganizationLifecycleStateEnum =
   | "LIFECYCLE_STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DELETE_REQUESTED";
-export const OrganizationLifecycleStateEnum = /*@__PURE__*/ S.String;
+export const OrganizationLifecycleStateEnum = S.String;
 
 /** The root node in the resource hierarchy to which a particular entity's (e.g., company) resources belong. */
 export interface Organization {
@@ -989,7 +989,7 @@ export type ConstraintConstraintDefaultEnum =
   | "CONSTRAINT_DEFAULT_UNSPECIFIED"
   | "ALLOW"
   | "DENY";
-export const ConstraintConstraintDefaultEnum = /*@__PURE__*/ S.String;
+export const ConstraintConstraintDefaultEnum = S.String;
 
 /** A `Constraint` that allows or disallows a list of string values, which are configured by an Organization's policy administrator with a `Policy`. */
 export interface ListConstraint {

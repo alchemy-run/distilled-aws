@@ -113,7 +113,7 @@ export type EndpointApiSurface =
   | "ENDPOINT_API_SURFACE_OPENAI_CHAT_COMPLETIONS"
   | "ENDPOINT_API_SURFACE_OPENAI_RESPONSES"
   | "ENDPOINT_API_SURFACE_ANTHROPIC_MESSAGES";
-export const EndpointApiSurface = /*@__PURE__*/ S.String;
+export const EndpointApiSurface = S.String;
 
 export type EndpointApiSurfaceList = Array<EndpointApiSurface | (string & {})>;
 export const EndpointApiSurfaceList = /*@__PURE__*/ S.Array(
@@ -125,7 +125,7 @@ export type EndpointInputModality =
   | "ENDPOINT_INPUT_MODALITY_TEXT"
   | "ENDPOINT_INPUT_MODALITY_IMAGE"
   | "ENDPOINT_INPUT_MODALITY_AUDIO";
-export const EndpointInputModality = /*@__PURE__*/ S.String;
+export const EndpointInputModality = S.String;
 
 export type EndpointInputModalityList = Array<
   EndpointInputModality | (string & {})
@@ -138,7 +138,7 @@ export type EndpointServingMode =
   | "ENDPOINT_SERVING_MODE_UNSPECIFIED"
   | "ENDPOINT_SERVING_MODE_DEDICATED"
   | "ENDPOINT_SERVING_MODE_SHARED";
-export const EndpointServingMode = /*@__PURE__*/ S.String;
+export const EndpointServingMode = S.String;
 
 export interface CreateEndpointRequest {
   name?: string;
@@ -243,7 +243,7 @@ export type EndpointLifecycleStatus =
   | "ENDPOINT_LIFECYCLE_STATUS_UNSPECIFIED"
   | "ENDPOINT_LIFECYCLE_STATUS_ACTIVE"
   | "ENDPOINT_LIFECYCLE_STATUS_STOPPED";
-export const EndpointLifecycleStatus = /*@__PURE__*/ S.String;
+export const EndpointLifecycleStatus = S.String;
 
 export interface EndpointLifecycle {
   status?: EndpointLifecycleStatus;
@@ -348,7 +348,7 @@ export type AppState =
   | "APP_STATE_DISABLED"
   | "APP_STATE_DETACHED_DISCONNECTED"
   | "APP_STATE_DERIVED";
-export const AppState = /*@__PURE__*/ S.String;
+export const AppState = S.String;
 
 export type EndpointProvisioningStatus =
   | "ENDPOINT_PROVISIONING_STATUS_UNSPECIFIED"
@@ -358,7 +358,7 @@ export type EndpointProvisioningStatus =
   | "ENDPOINT_PROVISIONING_STATUS_FAILED"
   | "ENDPOINT_PROVISIONING_STATUS_CANCELLING"
   | "ENDPOINT_PROVISIONING_STATUS_CANCELLED";
-export const EndpointProvisioningStatus = /*@__PURE__*/ S.String;
+export const EndpointProvisioningStatus = S.String;
 
 export interface EndpointListItem {
   endpointId?: string;
@@ -415,7 +415,7 @@ export type EndpointStopSource =
   | "ENDPOINT_STOP_SOURCE_UNSPECIFIED"
   | "ENDPOINT_STOP_SOURCE_CLI"
   | "ENDPOINT_STOP_SOURCE_WEB";
-export const EndpointStopSource = /*@__PURE__*/ S.String;
+export const EndpointStopSource = S.String;
 
 export interface StopEndpointRequest {
   endpointId?: string;

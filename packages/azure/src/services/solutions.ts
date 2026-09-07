@@ -51,7 +51,7 @@ export const Sku = /*@__PURE__*/ S.suspend(() =>
 
 /** The managed application lock level. */
 export type ApplicationLockLevel = "CanNotDelete" | "ReadOnly" | "None";
-export const ApplicationLockLevel = /*@__PURE__*/ S.String;
+export const ApplicationLockLevel = S.String;
 
 /** The managed application provider authorization. */
 export interface ApplicationAuthorization {
@@ -83,11 +83,11 @@ export type ApplicationDefinitionArtifactName =
   | "ApplicationResourceTemplate"
   | "CreateUiDefinition"
   | "MainTemplateParameters";
-export const ApplicationDefinitionArtifactName = /*@__PURE__*/ S.String;
+export const ApplicationDefinitionArtifactName = S.String;
 
 /** The managed application artifact type. */
 export type ApplicationArtifactType = "NotSpecified" | "Template" | "Custom";
-export const ApplicationArtifactType = /*@__PURE__*/ S.String;
+export const ApplicationArtifactType = S.String;
 
 /** Application definition artifact. */
 export interface ApplicationDefinitionArtifact {
@@ -190,7 +190,7 @@ export const ApplicationPackageLockingPolicyDefinition =
 
 /** The deployment mode. */
 export type DeploymentMode = "NotSpecified" | "Incremental" | "Complete";
-export const DeploymentMode = /*@__PURE__*/ S.String;
+export const DeploymentMode = S.String;
 
 /** Managed application deployment policy. */
 export interface ApplicationDeploymentPolicy {
@@ -210,7 +210,7 @@ export type ApplicationManagementMode =
   | "NotSpecified"
   | "Unmanaged"
   | "Managed";
-export const ApplicationManagementMode = /*@__PURE__*/ S.String;
+export const ApplicationManagementMode = S.String;
 
 /** Managed application management policy. */
 export interface ApplicationManagementPolicy {
@@ -367,7 +367,7 @@ export type ApplicationDefinitionsCreateOrUpdateResponseSystemDataCreatedByType 
   | "ManagedIdentity"
   | "Key";
 export const ApplicationDefinitionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type ApplicationDefinitionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -376,7 +376,7 @@ export type ApplicationDefinitionsCreateOrUpdateResponseSystemDataLastModifiedBy
   | "ManagedIdentity"
   | "Key";
 export const ApplicationDefinitionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ApplicationDefinitionsCreateOrUpdateResponseSystemData {
@@ -461,11 +461,11 @@ export const ApplicationsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** The Jit approval mode. */
 export type JitApprovalMode = "NotSpecified" | "AutoApprove" | "ManualApprove";
-export const JitApprovalMode = /*@__PURE__*/ S.String;
+export const JitApprovalMode = S.String;
 
 /** The approver type. */
 export type JitApproverDefinitionType = "user" | "group";
-export const JitApproverDefinitionType = /*@__PURE__*/ S.String;
+export const JitApproverDefinitionType = S.String;
 
 /** JIT approver definition. */
 export interface JitApproverDefinition {
@@ -566,7 +566,7 @@ export type IdentityInputType =
   | "UserAssigned"
   | "SystemAssigned, UserAssigned"
   | "None";
-export const IdentityInputType = /*@__PURE__*/ S.String;
+export const IdentityInputType = S.String;
 
 /** Represents the user assigned identity that is contained within the UserAssignedIdentities dictionary on ResourceIdentity */
 export interface UserAssignedResourceIdentityInput {}
@@ -664,7 +664,7 @@ export type ApplicationsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const ApplicationsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type ApplicationsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -673,7 +673,7 @@ export type ApplicationsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const ApplicationsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ApplicationsCreateOrUpdateResponseSystemData {
@@ -719,7 +719,7 @@ export type ProvisioningState =
   | "Failed"
   | "Succeeded"
   | "Updating";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Managed application billing details definition. */
 export interface ApplicationBillingDetailsDefinition {
@@ -782,7 +782,7 @@ export type ApplicationArtifactName =
   | "ViewDefinition"
   | "Authorizations"
   | "CustomRoleDefinition";
-export const ApplicationArtifactName = /*@__PURE__*/ S.String;
+export const ApplicationArtifactName = S.String;
 
 /** Managed application artifact. */
 export interface ApplicationArtifact {
@@ -889,7 +889,7 @@ export type IdentityType =
   | "UserAssigned"
   | "SystemAssigned, UserAssigned"
   | "None";
-export const IdentityType = /*@__PURE__*/ S.String;
+export const IdentityType = S.String;
 
 /** Represents the user assigned identity that is contained within the UserAssignedIdentities dictionary on ResourceIdentity */
 export interface UserAssignedResourceIdentity {
@@ -1052,7 +1052,7 @@ export type ApplicationsCreateOrUpdateByIdResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const ApplicationsCreateOrUpdateByIdResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type ApplicationsCreateOrUpdateByIdResponseSystemDataLastModifiedByType =
@@ -1061,7 +1061,7 @@ export type ApplicationsCreateOrUpdateByIdResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const ApplicationsCreateOrUpdateByIdResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ApplicationsCreateOrUpdateByIdResponseSystemData {
@@ -1304,8 +1304,7 @@ export type GetApplicationResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetApplicationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetApplicationResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetApplicationResponseSystemDataLastModifiedByType =
@@ -1313,8 +1312,7 @@ export type GetApplicationResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetApplicationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetApplicationResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetApplicationResponseSystemData {
@@ -1425,8 +1423,7 @@ export type GetApplicationByIdResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetApplicationByIdResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetApplicationByIdResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetApplicationByIdResponseSystemDataLastModifiedByType =
@@ -1434,8 +1431,7 @@ export type GetApplicationByIdResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetApplicationByIdResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetApplicationByIdResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetApplicationByIdResponseSystemData {
@@ -1555,8 +1551,7 @@ export type GetApplicationDefinitionResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetApplicationDefinitionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetApplicationDefinitionResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetApplicationDefinitionResponseSystemDataLastModifiedByType =
@@ -1565,7 +1560,7 @@ export type GetApplicationDefinitionResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetApplicationDefinitionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetApplicationDefinitionResponseSystemData {
@@ -1676,8 +1671,7 @@ export type GetJitRequestResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetJitRequestResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetJitRequestResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetJitRequestResponseSystemDataLastModifiedByType =
@@ -1685,8 +1679,7 @@ export type GetJitRequestResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetJitRequestResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetJitRequestResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetJitRequestResponseSystemData {
@@ -1744,7 +1737,7 @@ export const JitRequestPropertiesJitAuthorizationPoliciesList =
 
 /** The JIT request scheduling type. */
 export type JitSchedulingType = "NotSpecified" | "Once" | "Recurring";
-export const JitSchedulingType = /*@__PURE__*/ S.String;
+export const JitSchedulingType = S.String;
 
 /** The JIT scheduling policies. */
 export interface JitSchedulingPolicy {
@@ -1774,7 +1767,7 @@ export type JitRequestState =
   | "Canceled"
   | "Expired"
   | "Timeout";
-export const JitRequestState = /*@__PURE__*/ S.String;
+export const JitRequestState = S.String;
 
 /** Information about JIT request properties */
 export interface JitRequestProperties {
@@ -1927,7 +1920,7 @@ export type JitRequestsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const JitRequestsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type JitRequestsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -1936,7 +1929,7 @@ export type JitRequestsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const JitRequestsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface JitRequestsCreateOrUpdateResponseSystemData {
@@ -2082,7 +2075,7 @@ export type ApplicationSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const ApplicationSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ApplicationSystemDataLastModifiedByType =
@@ -2090,7 +2083,7 @@ export type ApplicationSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const ApplicationSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ApplicationSystemData {
@@ -2244,8 +2237,7 @@ export type ApplicationDefinitionSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationDefinitionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const ApplicationDefinitionSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ApplicationDefinitionSystemDataLastModifiedByType =
@@ -2253,8 +2245,7 @@ export type ApplicationDefinitionSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationDefinitionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const ApplicationDefinitionSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ApplicationDefinitionSystemData {
@@ -2493,8 +2484,7 @@ export type JitRequestDefinitionSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const JitRequestDefinitionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const JitRequestDefinitionSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type JitRequestDefinitionSystemDataLastModifiedByType =
@@ -2502,8 +2492,7 @@ export type JitRequestDefinitionSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const JitRequestDefinitionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const JitRequestDefinitionSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface JitRequestDefinitionSystemData {
@@ -2646,11 +2635,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -2825,8 +2814,7 @@ export type UpdateApplicationResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateApplicationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateApplicationResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateApplicationResponseSystemDataLastModifiedByType =
@@ -2834,8 +2822,7 @@ export type UpdateApplicationResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateApplicationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateApplicationResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateApplicationResponseSystemData {
@@ -2936,7 +2923,7 @@ export const JitRequestMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** The JIT status. */
 export type Status = "NotSpecified" | "Elevate" | "Remove";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** The sub status. */
 export type SubStatus =
@@ -2946,7 +2933,7 @@ export type SubStatus =
   | "Failed"
   | "Expired"
   | "Timeout";
-export const SubStatus = /*@__PURE__*/ S.String;
+export const SubStatus = S.String;
 
 export interface UpdateApplicationAccessRequest {
   /** The ID of the target subscription. */
@@ -3059,8 +3046,7 @@ export type UpdateApplicationByIdResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateApplicationByIdResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateApplicationByIdResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateApplicationByIdResponseSystemDataLastModifiedByType =
@@ -3069,7 +3055,7 @@ export type UpdateApplicationByIdResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateApplicationByIdResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateApplicationByIdResponseSystemData {
@@ -3203,7 +3189,7 @@ export type UpdateApplicationDefinitionResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateApplicationDefinitionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateApplicationDefinitionResponseSystemDataLastModifiedByType =
@@ -3212,7 +3198,7 @@ export type UpdateApplicationDefinitionResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateApplicationDefinitionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateApplicationDefinitionResponseSystemData {
@@ -3335,8 +3321,7 @@ export type UpdateJitRequestResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateJitRequestResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateJitRequestResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateJitRequestResponseSystemDataLastModifiedByType =
@@ -3344,8 +3329,7 @@ export type UpdateJitRequestResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateJitRequestResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateJitRequestResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateJitRequestResponseSystemData {

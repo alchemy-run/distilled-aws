@@ -590,14 +590,14 @@ export const GetV2LogoResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetV2LogoResponse>;
 
 export type V2LogoMatchesGetRequestOrder = "asc" | "desc";
-export const V2LogoMatchesGetRequestOrder = /*@__PURE__*/ S.String;
+export const V2LogoMatchesGetRequestOrder = S.String;
 
 export type V2LogoMatchesGetRequestOrderBy =
   | "matchedAt"
   | "domain"
   | "similarityScore"
   | "registrar";
-export const V2LogoMatchesGetRequestOrderBy = /*@__PURE__*/ S.String;
+export const V2LogoMatchesGetRequestOrderBy = S.String;
 
 export interface GetV2LogoMatchRequest {
   accountId: string;
@@ -685,10 +685,10 @@ export const V2MatchesGetRequestQueryIdList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<V2MatchesGetRequestQueryIdList>;
 
 export type V2MatchesGetRequestOrder = "asc" | "desc";
-export const V2MatchesGetRequestOrder = /*@__PURE__*/ S.String;
+export const V2MatchesGetRequestOrder = S.String;
 
 export type V2MatchesGetRequestOrderBy = "domain" | "first_seen" | "registrar";
-export const V2MatchesGetRequestOrderBy = /*@__PURE__*/ S.String;
+export const V2MatchesGetRequestOrderBy = S.String;
 
 export interface GetV2MatchRequest {
   accountId: string;

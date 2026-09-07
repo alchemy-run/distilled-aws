@@ -170,7 +170,7 @@ export type StreamGroupLocationStatus =
   | "ERROR"
   | "REMOVING"
   | (string & {});
-export const StreamGroupLocationStatus = /*@__PURE__*/ S.String;
+export const StreamGroupLocationStatus = S.String;
 
 export type CapacityValue = number;
 export interface VpcTransitConfigurationResponse {
@@ -272,7 +272,7 @@ export type RuntimeEnvironmentType =
   | "WINDOWS"
   | "UBUNTU"
   | (string & {});
-export const RuntimeEnvironmentType = /*@__PURE__*/ S.String;
+export const RuntimeEnvironmentType = S.String;
 
 export type RuntimeEnvironmentVersion = string;
 export interface RuntimeEnvironment {
@@ -336,17 +336,17 @@ export type ApplicationStatus =
   | "DELETING"
   | "ERROR"
   | (string & {});
-export const ApplicationStatus = /*@__PURE__*/ S.String;
+export const ApplicationStatus = S.String;
 
 export type ApplicationStatusReason =
   | "internalError"
   | "accessDenied"
   | "sourceModified"
   | (string & {});
-export const ApplicationStatusReason = /*@__PURE__*/ S.String;
+export const ApplicationStatusReason = S.String;
 
 export type ReplicationStatusType = "REPLICATING" | "COMPLETED" | (string & {});
-export const ReplicationStatusType = /*@__PURE__*/ S.String;
+export const ReplicationStatusType = S.String;
 
 export interface ReplicationStatus {
   Location?: string;
@@ -417,7 +417,7 @@ export type StreamClass =
   | "gen6e_pro"
   | "gen6e_pro_win2022"
   | (string & {});
-export const StreamClass = /*@__PURE__*/ S.String;
+export const StreamClass = S.String;
 
 export interface CreateStreamGroupInput {
   Description: string;
@@ -466,13 +466,13 @@ export type StreamGroupStatus =
   | "DELETING"
   | "EXPIRED"
   | (string & {});
-export const StreamGroupStatus = /*@__PURE__*/ S.String;
+export const StreamGroupStatus = S.String;
 
 export type StreamGroupStatusReason =
   | "internalError"
   | "noAvailableInstances"
   | (string & {});
-export const StreamGroupStatusReason = /*@__PURE__*/ S.String;
+export const StreamGroupStatusReason = S.String;
 
 export interface CreateStreamGroupOutput {
   Arn: string;
@@ -590,7 +590,7 @@ export const CreateStreamSessionConnectionOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateStreamSessionConnectionOutput",
 }) as any as S.Schema<CreateStreamSessionConnectionOutput>;
 export type Protocol = "WebRTC" | (string & {});
-export const Protocol = /*@__PURE__*/ S.String;
+export const Protocol = S.String;
 
 export type UrlExpiresAfterMinutes = number;
 export type UsageLimit = number;
@@ -672,7 +672,7 @@ export type StreamUrlStatus =
   | "REVOKED"
   | "LIMIT_REACHED"
   | (string & {});
-export const StreamUrlStatus = /*@__PURE__*/ S.String;
+export const StreamUrlStatus = S.String;
 
 export type StreamUrlStatusReason =
   | "userRevoked"
@@ -681,7 +681,7 @@ export type StreamUrlStatusReason =
   | "streamGroupDeleted"
   | "applicationDeleted"
   | (string & {});
-export const StreamUrlStatusReason = /*@__PURE__*/ S.String;
+export const StreamUrlStatusReason = S.String;
 
 export type RemainingUses = number;
 export interface CreateStreamUrlOutput {
@@ -983,7 +983,7 @@ export type StreamSessionStatus =
   | "TERMINATED"
   | "ERROR"
   | (string & {});
-export const StreamSessionStatus = /*@__PURE__*/ S.String;
+export const StreamSessionStatus = S.String;
 
 export type StreamSessionStatusReason =
   | "internalError"
@@ -998,7 +998,7 @@ export type StreamSessionStatusReason =
   | "idleTimeout"
   | "apiTerminated"
   | (string & {});
-export const StreamSessionStatusReason = /*@__PURE__*/ S.String;
+export const StreamSessionStatusReason = S.String;
 
 export type ConnectionTimeoutSeconds = number;
 export interface PerformanceStatsConfiguration {
@@ -1016,7 +1016,7 @@ export type ExportFilesStatus =
   | "FAILED"
   | "PENDING"
   | (string & {});
-export const ExportFilesStatus = /*@__PURE__*/ S.String;
+export const ExportFilesStatus = S.String;
 
 export type ExportFilesReason = string;
 export interface ExportFilesMetadata {
@@ -1275,7 +1275,7 @@ export type ShaderCacheStatus =
   | "DELETING"
   | "ERROR"
   | (string & {});
-export const ShaderCacheStatus = /*@__PURE__*/ S.String;
+export const ShaderCacheStatus = S.String;
 
 export interface ShaderCacheSummary {
   Identifier: string;
@@ -1584,7 +1584,7 @@ export type RevocationMode =
   | "REVOKE_URL"
   | "REVOKE_AND_TERMINATE_SESSIONS"
   | (string & {});
-export const RevocationMode = /*@__PURE__*/ S.String;
+export const RevocationMode = S.String;
 
 export interface RevokeStreamUrlInput {
   Identifier: string;

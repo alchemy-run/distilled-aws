@@ -97,8 +97,7 @@ export type NotificationSettingNotificationTypesItemEnum =
   | "DUPLICATE_LOCATION"
   | "LOSS_OF_VOICE_OF_MERCHANT"
   | "VOICE_OF_MERCHANT_UPDATED";
-export const NotificationSettingNotificationTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const NotificationSettingNotificationTypesItemEnum = S.String;
 
 export type NotificationSettingNotificationTypesItemEnumList = Array<
   NotificationSettingNotificationTypesItemEnum | (string & {})

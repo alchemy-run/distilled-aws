@@ -161,7 +161,7 @@ export type QIamAction = string;
 export type QIamActions = string[];
 export const QIamActions = /*@__PURE__*/ S.Array(S.String);
 export type PermissionConditionOperator = "StringEquals" | (string & {});
-export const PermissionConditionOperator = /*@__PURE__*/ S.String;
+export const PermissionConditionOperator = S.String;
 
 export type PermissionConditionKey = string;
 export type PermissionConditionValue = string;
@@ -265,7 +265,7 @@ export type ErrorCode =
   | "ResourceInactive"
   | "ResourceNotFound"
   | (string & {});
-export const ErrorCode = /*@__PURE__*/ S.String;
+export const ErrorCode = S.String;
 
 export interface ErrorDetail {
   errorMessage?: string;
@@ -376,15 +376,15 @@ export type ContentType =
   | "JSON"
   | "MD"
   | (string & {});
-export const ContentType = /*@__PURE__*/ S.String;
+export const ContentType = S.String;
 
 export type Title = string;
 export type UserId = string;
 export type ReadAccessType = "ALLOW" | "DENY" | (string & {});
-export const ReadAccessType = /*@__PURE__*/ S.String;
+export const ReadAccessType = S.String;
 
 export type MembershipType = "INDEX" | "DATASOURCE" | (string & {});
-export const MembershipType = /*@__PURE__*/ S.String;
+export const MembershipType = S.String;
 
 export interface PrincipalUser {
   id?: string;
@@ -421,7 +421,7 @@ export const Principal = /*@__PURE__*/ S.Union([
 export type Principals = Principal[];
 export const Principals = /*@__PURE__*/ S.Array(Principal);
 export type MemberRelation = "AND" | "OR" | (string & {});
-export const MemberRelation = /*@__PURE__*/ S.String;
+export const MemberRelation = S.String;
 
 export interface AccessControl {
   principals: Principal[];
@@ -460,7 +460,7 @@ export type DocumentEnrichmentConditionOperator =
   | "NOT_EXISTS"
   | "BEGINS_WITH"
   | (string & {});
-export const DocumentEnrichmentConditionOperator = /*@__PURE__*/ S.String;
+export const DocumentEnrichmentConditionOperator = S.String;
 
 export interface DocumentAttributeCondition {
   key: string;
@@ -477,7 +477,7 @@ export const DocumentAttributeCondition = /*@__PURE__*/ S.suspend(() =>
   identifier: "DocumentAttributeCondition",
 }) as any as S.Schema<DocumentAttributeCondition>;
 export type AttributeValueOperator = "DELETE" | (string & {});
-export const AttributeValueOperator = /*@__PURE__*/ S.String;
+export const AttributeValueOperator = S.String;
 
 export interface DocumentAttributeTarget {
   key: string;
@@ -494,7 +494,7 @@ export const DocumentAttributeTarget = /*@__PURE__*/ S.suspend(() =>
   identifier: "DocumentAttributeTarget",
 }) as any as S.Schema<DocumentAttributeTarget>;
 export type DocumentContentOperator = "DELETE" | (string & {});
-export const DocumentContentOperator = /*@__PURE__*/ S.String;
+export const DocumentContentOperator = S.String;
 
 export interface InlineDocumentEnrichmentConfiguration {
   condition?: DocumentAttributeCondition;
@@ -549,7 +549,7 @@ export const DocumentEnrichmentConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "DocumentEnrichmentConfiguration",
 }) as any as S.Schema<DocumentEnrichmentConfiguration>;
 export type ImageExtractionStatus = "ENABLED" | "DISABLED" | (string & {});
-export const ImageExtractionStatus = /*@__PURE__*/ S.String;
+export const ImageExtractionStatus = S.String;
 
 export interface ImageExtractionConfiguration {
   imageExtractionStatus: ImageExtractionStatus;
@@ -560,7 +560,7 @@ export const ImageExtractionConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImageExtractionConfiguration",
 }) as any as S.Schema<ImageExtractionConfiguration>;
 export type AudioExtractionStatus = "ENABLED" | "DISABLED" | (string & {});
-export const AudioExtractionStatus = /*@__PURE__*/ S.String;
+export const AudioExtractionStatus = S.String;
 
 export interface AudioExtractionConfiguration {
   audioExtractionStatus: AudioExtractionStatus;
@@ -571,7 +571,7 @@ export const AudioExtractionConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "AudioExtractionConfiguration",
 }) as any as S.Schema<AudioExtractionConfiguration>;
 export type VideoExtractionStatus = "ENABLED" | "DISABLED" | (string & {});
-export const VideoExtractionStatus = /*@__PURE__*/ S.String;
+export const VideoExtractionStatus = S.String;
 
 export interface VideoExtractionConfiguration {
   videoExtractionStatus: VideoExtractionStatus;
@@ -686,7 +686,7 @@ export const CancelSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CancelSubscriptionRequest>;
 export type SubscriptionArn = string;
 export type SubscriptionType = "Q_LITE" | "Q_BUSINESS" | (string & {});
-export const SubscriptionType = /*@__PURE__*/ S.String;
+export const SubscriptionType = S.String;
 
 export interface SubscriptionDetails {
   type?: SubscriptionType;
@@ -720,7 +720,7 @@ export type ChatMode =
   | "CREATOR_MODE"
   | "PLUGIN_MODE"
   | (string & {});
-export const ChatMode = /*@__PURE__*/ S.String;
+export const ChatMode = S.String;
 
 export type PluginId = string;
 export interface PluginConfiguration {
@@ -992,7 +992,7 @@ export type SystemMessageType =
   | "RESPONSE"
   | "GROUNDED_RESPONSE"
   | (string & {});
-export const SystemMessageType = /*@__PURE__*/ S.String;
+export const SystemMessageType = S.String;
 
 export interface TextOutputEvent {
   systemMessageType?: SystemMessageType;
@@ -1034,7 +1034,7 @@ export const ImageSourceDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImageSourceDetails",
 }) as any as S.Schema<ImageSourceDetails>;
 export type AudioExtractionType = "TRANSCRIPT" | "SUMMARY" | (string & {});
-export const AudioExtractionType = /*@__PURE__*/ S.String;
+export const AudioExtractionType = S.String;
 
 export interface AudioSourceDetails {
   mediaId?: string;
@@ -1055,7 +1055,7 @@ export const AudioSourceDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "AudioSourceDetails",
 }) as any as S.Schema<AudioSourceDetails>;
 export type VideoExtractionType = "TRANSCRIPT" | "SUMMARY" | (string & {});
-export const VideoExtractionType = /*@__PURE__*/ S.String;
+export const VideoExtractionType = S.String;
 
 export interface VideoSourceDetails {
   mediaId?: string;
@@ -1181,7 +1181,7 @@ export type PluginType =
   | "SMARTSHEET"
   | "ASANA"
   | (string & {});
-export const PluginType = /*@__PURE__*/ S.String;
+export const PluginType = S.String;
 
 export type ActionPayloadFieldType =
   | "STRING"
@@ -1189,7 +1189,7 @@ export type ActionPayloadFieldType =
   | "ARRAY"
   | "BOOLEAN"
   | (string & {});
-export const ActionPayloadFieldType = /*@__PURE__*/ S.String;
+export const ActionPayloadFieldType = S.String;
 
 export interface ActionReviewPayloadFieldAllowedValue {
   value?: any;
@@ -1262,7 +1262,7 @@ export const ActionReviewEvent = /*@__PURE__*/ S.suspend(() =>
   identifier: "ActionReviewEvent",
 }) as any as S.Schema<ActionReviewEvent>;
 export type AttachmentStatus = "FAILED" | "SUCCESS" | (string & {});
-export const AttachmentStatus = /*@__PURE__*/ S.String;
+export const AttachmentStatus = S.String;
 
 export interface AttachmentOutput {
   name?: string;
@@ -1646,7 +1646,7 @@ export type IdentityType =
   | "AWS_QUICKSIGHT_IDP"
   | "ANONYMOUS"
   | (string & {});
-export const IdentityType = /*@__PURE__*/ S.String;
+export const IdentityType = S.String;
 
 export type IAMIdentityProviderArn = string;
 export type InstanceArn = string;
@@ -1675,7 +1675,7 @@ export const Tag = /*@__PURE__*/ S.suspend(() =>
 export type Tags = Tag[];
 export const Tags = /*@__PURE__*/ S.Array(Tag);
 export type AttachmentsControlMode = "ENABLED" | "DISABLED" | (string & {});
-export const AttachmentsControlMode = /*@__PURE__*/ S.String;
+export const AttachmentsControlMode = S.String;
 
 export interface AttachmentsConfiguration {
   attachmentsControlMode: AttachmentsControlMode;
@@ -1686,7 +1686,7 @@ export const AttachmentsConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "AttachmentsConfiguration",
 }) as any as S.Schema<AttachmentsConfiguration>;
 export type QAppsControlMode = "ENABLED" | "DISABLED" | (string & {});
-export const QAppsControlMode = /*@__PURE__*/ S.String;
+export const QAppsControlMode = S.String;
 
 export interface QAppsConfiguration {
   qAppsControlMode: QAppsControlMode;
@@ -1697,7 +1697,7 @@ export const QAppsConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "QAppsConfiguration",
 }) as any as S.Schema<QAppsConfiguration>;
 export type PersonalizationControlMode = "ENABLED" | "DISABLED" | (string & {});
-export const PersonalizationControlMode = /*@__PURE__*/ S.String;
+export const PersonalizationControlMode = S.String;
 
 export interface PersonalizationConfiguration {
   personalizationControlMode: PersonalizationControlMode;
@@ -1776,7 +1776,7 @@ export const CreateApplicationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateApplicationResponse>;
 export type DisplayName = string;
 export type ResponseConfigurationType = "ALL" | (string & {});
-export const ResponseConfigurationType = /*@__PURE__*/ S.String;
+export const ResponseConfigurationType = S.String;
 
 export type Instruction = string;
 export interface InstructionCollection {
@@ -1892,7 +1892,7 @@ export type DataAccessorAuthenticationType =
   | "AWS_IAM_IDC_TTI"
   | "AWS_IAM_IDC_AUTH_CODE"
   | (string & {});
-export const DataAccessorAuthenticationType = /*@__PURE__*/ S.String;
+export const DataAccessorAuthenticationType = S.String;
 
 export type IdcTrustedTokenIssuerArn = string;
 export interface DataAccessorIdcTrustedTokenIssuerConfiguration {
@@ -2062,7 +2062,7 @@ export const CreateDataSourceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDataSourceResponse>;
 export type IndexName = string;
 export type IndexType = "ENTERPRISE" | "STARTER" | (string & {});
-export const IndexType = /*@__PURE__*/ S.String;
+export const IndexType = S.String;
 
 export type IndexCapacityInteger = number;
 export interface IndexCapacityConfiguration {
@@ -2191,7 +2191,7 @@ export const PluginAuthConfiguration = /*@__PURE__*/ S.Union([
 ]);
 export type PluginDescription = string;
 export type APISchemaType = "OPEN_API_V3" | (string & {});
-export const APISchemaType = /*@__PURE__*/ S.String;
+export const APISchemaType = S.String;
 
 export type Payload = string | redacted.Redacted<string>;
 export type APISchema =
@@ -2258,7 +2258,7 @@ export type PluginBuildStatus =
   | "DELETE_IN_PROGRESS"
   | "DELETE_FAILED"
   | (string & {});
-export const PluginBuildStatus = /*@__PURE__*/ S.String;
+export const PluginBuildStatus = S.String;
 
 export interface CreatePluginResponse {
   pluginId?: string;
@@ -2275,7 +2275,7 @@ export const CreatePluginResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreatePluginResponse",
 }) as any as S.Schema<CreatePluginResponse>;
 export type RetrieverType = "NATIVE_INDEX" | "KENDRA_INDEX" | (string & {});
-export const RetrieverType = /*@__PURE__*/ S.String;
+export const RetrieverType = S.String;
 
 export type RetrieverName = string;
 export type DocumentAttributeBoostingLevel =
@@ -2287,13 +2287,13 @@ export type DocumentAttributeBoostingLevel =
   | "ONE"
   | "TWO"
   | (string & {});
-export const DocumentAttributeBoostingLevel = /*@__PURE__*/ S.String;
+export const DocumentAttributeBoostingLevel = S.String;
 
 export type NumberAttributeBoostingType =
   | "PRIORITIZE_LARGER_VALUES"
   | "PRIORITIZE_SMALLER_VALUES"
   | (string & {});
-export const NumberAttributeBoostingType = /*@__PURE__*/ S.String;
+export const NumberAttributeBoostingType = S.String;
 
 export interface NumberAttributeBoostingConfiguration {
   boostingLevel: DocumentAttributeBoostingLevel;
@@ -2319,7 +2319,7 @@ export type StringAttributeValueBoostingLevel =
   | "FOUR"
   | "FIVE"
   | (string & {});
-export const StringAttributeValueBoostingLevel = /*@__PURE__*/ S.String;
+export const StringAttributeValueBoostingLevel = S.String;
 
 export type StringAttributeValueBoosting = {
   [key: string]: StringAttributeValueBoostingLevel | undefined;
@@ -2595,7 +2595,7 @@ export type WebExperienceSamplePromptsControlMode =
   | "ENABLED"
   | "DISABLED"
   | (string & {});
-export const WebExperienceSamplePromptsControlMode = /*@__PURE__*/ S.String;
+export const WebExperienceSamplePromptsControlMode = S.String;
 
 export type Origin = string;
 export type WebExperienceOrigins = string[];
@@ -3170,7 +3170,7 @@ export type ApplicationStatus =
   | "FAILED"
   | "UPDATING"
   | (string & {});
-export const ApplicationStatus = /*@__PURE__*/ S.String;
+export const ApplicationStatus = S.String;
 
 export interface AppliedAttachmentsConfiguration {
   attachmentsControlMode?: AttachmentsControlMode;
@@ -3181,7 +3181,7 @@ export const AppliedAttachmentsConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "AppliedAttachmentsConfiguration",
 }) as any as S.Schema<AppliedAttachmentsConfiguration>;
 export type AutoSubscriptionStatus = "ENABLED" | "DISABLED" | (string & {});
-export const AutoSubscriptionStatus = /*@__PURE__*/ S.String;
+export const AutoSubscriptionStatus = S.String;
 
 export interface AutoSubscriptionConfiguration {
   autoSubscribe?: AutoSubscriptionStatus;
@@ -3273,10 +3273,10 @@ export type ResponseScope =
   | "ENTERPRISE_CONTENT_ONLY"
   | "EXTENDED_KNOWLEDGE_ENABLED"
   | (string & {});
-export const ResponseScope = /*@__PURE__*/ S.String;
+export const ResponseScope = S.String;
 
 export type OrchestrationControl = "ENABLED" | "DISABLED" | (string & {});
-export const OrchestrationControl = /*@__PURE__*/ S.String;
+export const OrchestrationControl = S.String;
 
 export interface AppliedOrchestrationConfiguration {
   control: OrchestrationControl;
@@ -3323,7 +3323,7 @@ export type RuleType =
   | "CONTENT_BLOCKER_RULE"
   | "CONTENT_RETRIEVAL_RULE"
   | (string & {});
-export const RuleType = /*@__PURE__*/ S.String;
+export const RuleType = S.String;
 
 export interface ContentBlockerRule {
   systemMessageOverride?: string;
@@ -3397,7 +3397,7 @@ export const TopicConfiguration = /*@__PURE__*/ S.suspend(() =>
 export type TopicConfigurations = TopicConfiguration[];
 export const TopicConfigurations = /*@__PURE__*/ S.Array(TopicConfiguration);
 export type CreatorModeControl = "ENABLED" | "DISABLED" | (string & {});
-export const CreatorModeControl = /*@__PURE__*/ S.String;
+export const CreatorModeControl = S.String;
 
 export interface AppliedCreatorModeConfiguration {
   creatorModeControl: CreatorModeControl;
@@ -3411,7 +3411,7 @@ export type HallucinationReductionControl =
   | "ENABLED"
   | "DISABLED"
   | (string & {});
-export const HallucinationReductionControl = /*@__PURE__*/ S.String;
+export const HallucinationReductionControl = S.String;
 
 export interface HallucinationReductionConfiguration {
   hallucinationReductionControl?: HallucinationReductionControl;
@@ -3480,7 +3480,7 @@ export type ChatResponseConfigurationStatus =
   | "FAILED"
   | "ACTIVE"
   | (string & {});
-export const ChatResponseConfigurationStatus = /*@__PURE__*/ S.String;
+export const ChatResponseConfigurationStatus = S.String;
 
 export interface ChatResponseConfigurationDetail {
   responseConfigurations?: { [key: string]: ResponseConfiguration | undefined };
@@ -3607,7 +3607,7 @@ export type DataSourceStatus =
   | "FAILED"
   | "UPDATING"
   | (string & {});
-export const DataSourceStatus = /*@__PURE__*/ S.String;
+export const DataSourceStatus = S.String;
 
 export interface GetDataSourceResponse {
   applicationId?: string;
@@ -3654,7 +3654,7 @@ export const GetDataSourceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDataSourceResponse",
 }) as any as S.Schema<GetDataSourceResponse>;
 export type OutputFormat = "RAW" | "EXTRACTED" | (string & {});
-export const OutputFormat = /*@__PURE__*/ S.String;
+export const OutputFormat = S.String;
 
 export interface GetDocumentContentRequest {
   applicationId: string;
@@ -3730,7 +3730,7 @@ export type GroupStatus =
   | "DELETING"
   | "DELETED"
   | (string & {});
-export const GroupStatus = /*@__PURE__*/ S.String;
+export const GroupStatus = S.String;
 
 export interface GroupStatusDetail {
   status?: GroupStatus;
@@ -3791,7 +3791,7 @@ export type IndexStatus =
   | "FAILED"
   | "UPDATING"
   | (string & {});
-export const IndexStatus = /*@__PURE__*/ S.String;
+export const IndexStatus = S.String;
 
 export type DocumentMetadataConfigurationName = string;
 export type AttributeType =
@@ -3800,10 +3800,10 @@ export type AttributeType =
   | "NUMBER"
   | "DATE"
   | (string & {});
-export const AttributeType = /*@__PURE__*/ S.String;
+export const AttributeType = S.String;
 
 export type Status = "ENABLED" | "DISABLED" | (string & {});
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 export interface DocumentAttributeConfiguration {
   name?: string;
@@ -3946,7 +3946,7 @@ export const GetPluginRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPluginRequest",
 }) as any as S.Schema<GetPluginRequest>;
 export type PluginState = "ENABLED" | "DISABLED" | (string & {});
-export const PluginState = /*@__PURE__*/ S.String;
+export const PluginState = S.String;
 
 export interface GetPluginResponse {
   applicationId?: string;
@@ -4030,7 +4030,7 @@ export const GetRetrieverRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetRetrieverRequest",
 }) as any as S.Schema<GetRetrieverRequest>;
 export type RetrieverStatus = "CREATING" | "ACTIVE" | "FAILED" | (string & {});
-export const RetrieverStatus = /*@__PURE__*/ S.String;
+export const RetrieverStatus = S.String;
 
 export interface GetRetrieverResponse {
   applicationId?: string;
@@ -4121,7 +4121,7 @@ export type WebExperienceStatus =
   | "FAILED"
   | "PENDING_AUTH_CONFIG"
   | (string & {});
-export const WebExperienceStatus = /*@__PURE__*/ S.String;
+export const WebExperienceStatus = S.String;
 
 export type SamlMetadataXML = string;
 export type SamlAttribute = string;
@@ -4576,7 +4576,7 @@ export type DataSourceSyncJobStatus =
   | "ABORTED"
   | "SYNCING_INDEXING"
   | (string & {});
-export const DataSourceSyncJobStatus = /*@__PURE__*/ S.String;
+export const DataSourceSyncJobStatus = S.String;
 
 export interface ListDataSourceSyncJobsRequest {
   dataSourceId: string;
@@ -4718,7 +4718,7 @@ export type DocumentStatus =
   | "DELETED"
   | "DOCUMENT_FAILED_TO_INDEX"
   | (string & {});
-export const DocumentStatus = /*@__PURE__*/ S.String;
+export const DocumentStatus = S.String;
 
 export interface DocumentDetails {
   documentId?: string;
@@ -4891,7 +4891,7 @@ export const ListMessagesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListMessagesRequest>;
 export type MessageBody = string;
 export type MessageType = "USER" | "SYSTEM" | (string & {});
-export const MessageType = /*@__PURE__*/ S.String;
+export const MessageType = S.String;
 
 export interface Message {
   messageId?: string;
@@ -5099,7 +5099,7 @@ export type PluginTypeCategory =
   | "Productivity"
   | "Ticketing and incident management"
   | (string & {});
-export const PluginTypeCategory = /*@__PURE__*/ S.String;
+export const PluginTypeCategory = S.String;
 
 export interface PluginTypeMetadataSummary {
   type?: PluginType;
@@ -5330,7 +5330,7 @@ export const ListWebExperiencesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListWebExperiencesResponse>;
 export type SystemMessageId = string;
 export type MessageUsefulness = "USEFUL" | "NOT_USEFUL" | (string & {});
-export const MessageUsefulness = /*@__PURE__*/ S.String;
+export const MessageUsefulness = S.String;
 
 export type MessageUsefulnessReason =
   | "NOT_FACTUALLY_CORRECT"
@@ -5346,7 +5346,7 @@ export type MessageUsefulnessReason =
   | "NOT_CONCISE"
   | "OTHER"
   | (string & {});
-export const MessageUsefulnessReason = /*@__PURE__*/ S.String;
+export const MessageUsefulnessReason = S.String;
 
 export type MessageUsefulnessComment = string;
 export interface MessageUsefulnessFeedback {
@@ -5529,7 +5529,7 @@ export type ScoreConfidence =
   | "LOW"
   | "NOT_AVAILABLE"
   | (string & {});
-export const ScoreConfidence = /*@__PURE__*/ S.String;
+export const ScoreConfidence = S.String;
 
 export interface ScoreAttributes {
   scoreConfidence?: ScoreConfidence;
@@ -6193,7 +6193,7 @@ export type ValidationExceptionReason =
   | "FIELD_VALIDATION_FAILED"
   | "UNKNOWN_OPERATION"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   name: string;

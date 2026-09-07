@@ -66,7 +66,7 @@ export class NotFound
   ) {}
 
 export type CustomClassStateEnum = "STATE_UNSPECIFIED" | "ACTIVE" | "DELETED";
-export const CustomClassStateEnum = /*@__PURE__*/ S.String;
+export const CustomClassStateEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -195,7 +195,7 @@ export const PhraseList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PhraseList>;
 
 export type PhraseSetStateEnum = "STATE_UNSPECIFIED" | "ACTIVE" | "DELETED";
-export const PhraseSetStateEnum = /*@__PURE__*/ S.String;
+export const PhraseSetStateEnum = S.String;
 
 /** Provides "hints" to the speech recognizer to favor specific words and phrases in the results. */
 export interface PhraseSet {
@@ -623,13 +623,13 @@ export type RecognitionMetadataInteractionTypeEnum =
   | "VOICE_SEARCH"
   | "VOICE_COMMAND"
   | "DICTATION";
-export const RecognitionMetadataInteractionTypeEnum = /*@__PURE__*/ S.String;
+export const RecognitionMetadataInteractionTypeEnum = S.String;
 
 export type RecognitionMetadataOriginalMediaTypeEnum =
   | "ORIGINAL_MEDIA_TYPE_UNSPECIFIED"
   | "AUDIO"
   | "VIDEO";
-export const RecognitionMetadataOriginalMediaTypeEnum = /*@__PURE__*/ S.String;
+export const RecognitionMetadataOriginalMediaTypeEnum = S.String;
 
 export type RecognitionMetadataRecordingDeviceTypeEnum =
   | "RECORDING_DEVICE_TYPE_UNSPECIFIED"
@@ -639,15 +639,14 @@ export type RecognitionMetadataRecordingDeviceTypeEnum =
   | "VEHICLE"
   | "OTHER_OUTDOOR_DEVICE"
   | "OTHER_INDOOR_DEVICE";
-export const RecognitionMetadataRecordingDeviceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const RecognitionMetadataRecordingDeviceTypeEnum = S.String;
 
 export type RecognitionMetadataMicrophoneDistanceEnum =
   | "MICROPHONE_DISTANCE_UNSPECIFIED"
   | "NEARFIELD"
   | "MIDFIELD"
   | "FARFIELD";
-export const RecognitionMetadataMicrophoneDistanceEnum = /*@__PURE__*/ S.String;
+export const RecognitionMetadataMicrophoneDistanceEnum = S.String;
 
 /** Description of audio data to be recognized. */
 export interface RecognitionMetadata {
@@ -743,7 +742,7 @@ export type RecognitionConfigEncodingEnum =
   | "MP3"
   | "WEBM_OPUS"
   | "ALAW";
-export const RecognitionConfigEncodingEnum = /*@__PURE__*/ S.String;
+export const RecognitionConfigEncodingEnum = S.String;
 
 export interface ABNFGrammar {
   /** All declarations and rules of an ABNF grammar broken up into multiple strings that will end up concatenated. */

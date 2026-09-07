@@ -126,7 +126,7 @@ export const DeleteAliasRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteAliasRequest>;
 
 export type DeleteAliasResponseStatus = "SUCCESS";
-export const DeleteAliasResponseStatus = /*@__PURE__*/ S.String;
+export const DeleteAliasResponseStatus = S.String;
 
 export interface DeleteAliasResponse {
   status: DeleteAliasResponseStatus;
@@ -209,11 +209,10 @@ export const GetAliasResponseDeployment = /*@__PURE__*/ S.suspend(() =>
 
 /** Status code to be used on redirect */
 export type GetAliasResponseRedirectStatusCode = 301 | 302 | 307 | 308;
-export const GetAliasResponseRedirectStatusCode = /*@__PURE__*/ S.Number;
+export const GetAliasResponseRedirectStatusCode = S.Number;
 
 export type GetAliasResponseProtectionBypassValueCase0Scope = "shareable-link";
-export const GetAliasResponseProtectionBypassValueCase0Scope =
-  /*@__PURE__*/ S.String;
+export const GetAliasResponseProtectionBypassValueCase0Scope = S.String;
 
 /** The protection bypass for the alias */
 export interface GetAliasResponseProtectionBypassValueCase0 {
@@ -237,12 +236,10 @@ export const GetAliasResponseProtectionBypassValueCase0 =
 export type GetAliasResponseProtectionBypassValueCase1Access =
   | "granted"
   | "requested";
-export const GetAliasResponseProtectionBypassValueCase1Access =
-  /*@__PURE__*/ S.String;
+export const GetAliasResponseProtectionBypassValueCase1Access = S.String;
 
 export type GetAliasResponseProtectionBypassValueCase1Scope = "user";
-export const GetAliasResponseProtectionBypassValueCase1Scope =
-  /*@__PURE__*/ S.String;
+export const GetAliasResponseProtectionBypassValueCase1Scope = S.String;
 
 /** The protection bypass for the alias */
 export interface GetAliasResponseProtectionBypassValueCase1 {
@@ -267,8 +264,7 @@ export const GetAliasResponseProtectionBypassValueCase1 =
 
 export type GetAliasResponseProtectionBypassValueCase2Scope =
   "alias-protection-override";
-export const GetAliasResponseProtectionBypassValueCase2Scope =
-  /*@__PURE__*/ S.String;
+export const GetAliasResponseProtectionBypassValueCase2Scope = S.String;
 
 /** The protection bypass for the alias */
 export interface GetAliasResponseProtectionBypassValueCase2 {
@@ -288,8 +284,7 @@ export const GetAliasResponseProtectionBypassValueCase2 =
   }) as any as S.Schema<GetAliasResponseProtectionBypassValueCase2>;
 
 export type GetAliasResponseProtectionBypassValueCase3Scope = "email_invite";
-export const GetAliasResponseProtectionBypassValueCase3Scope =
-  /*@__PURE__*/ S.String;
+export const GetAliasResponseProtectionBypassValueCase3Scope = S.String;
 
 /** The protection bypass for the alias */
 export interface GetAliasResponseProtectionBypassValueCase3 {
@@ -316,7 +311,7 @@ export type GetAliasResponseProtectionBypassValue =
   | GetAliasResponseProtectionBypassValueCase2
   | GetAliasResponseProtectionBypassValueCase3;
 export const GetAliasResponseProtectionBypassValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAliasResponseProtectionBypassValue>;
+  S.Unknown as any as S.Schema<GetAliasResponseProtectionBypassValue>;
 
 /** The protection bypass for the alias */
 export type GetAliasResponseProtectionBypassMap = {
@@ -433,7 +428,7 @@ export type GetAliasResponseMicrofrontendsApplications =
   | GetAliasResponseMicrofrontendsApplicationsCase1List
   | GetAliasResponseMicrofrontendsApplicationsCase2List;
 export const GetAliasResponseMicrofrontendsApplications =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAliasResponseMicrofrontendsApplications>;
+  S.Unknown as any as S.Schema<GetAliasResponseMicrofrontendsApplications>;
 
 /** The microfrontends for the alias including the routing configuration */
 export interface GetAliasResponseMicrofrontends {
@@ -512,7 +507,7 @@ export type ListAliasesRequestDomain =
   | ListAliasesRequestDomainCase0List
   | string;
 export const ListAliasesRequestDomain =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListAliasesRequestDomain>;
+  S.Unknown as any as S.Schema<ListAliasesRequestDomain>;
 
 export interface ListAliasesRequest {
   /** Get only aliases of the given domain name */
@@ -566,13 +561,12 @@ export type ListAliasesResponseAliasesItemRedirectStatusCode =
   | 302
   | 307
   | 308;
-export const ListAliasesResponseAliasesItemRedirectStatusCode =
-  /*@__PURE__*/ S.Number;
+export const ListAliasesResponseAliasesItemRedirectStatusCode = S.Number;
 
 export type ListAliasesResponseAliasesItemProtectionBypassValueCase0Scope =
   "shareable-link";
 export const ListAliasesResponseAliasesItemProtectionBypassValueCase0Scope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The protection bypass for the alias */
 export interface ListAliasesResponseAliasesItemProtectionBypassValueCase0 {
@@ -597,12 +591,12 @@ export type ListAliasesResponseAliasesItemProtectionBypassValueCase1Access =
   | "granted"
   | "requested";
 export const ListAliasesResponseAliasesItemProtectionBypassValueCase1Access =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListAliasesResponseAliasesItemProtectionBypassValueCase1Scope =
   "user";
 export const ListAliasesResponseAliasesItemProtectionBypassValueCase1Scope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The protection bypass for the alias */
 export interface ListAliasesResponseAliasesItemProtectionBypassValueCase1 {
@@ -628,7 +622,7 @@ export const ListAliasesResponseAliasesItemProtectionBypassValueCase1 =
 export type ListAliasesResponseAliasesItemProtectionBypassValueCase2Scope =
   "alias-protection-override";
 export const ListAliasesResponseAliasesItemProtectionBypassValueCase2Scope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The protection bypass for the alias */
 export interface ListAliasesResponseAliasesItemProtectionBypassValueCase2 {
@@ -650,7 +644,7 @@ export const ListAliasesResponseAliasesItemProtectionBypassValueCase2 =
 export type ListAliasesResponseAliasesItemProtectionBypassValueCase3Scope =
   "email_invite";
 export const ListAliasesResponseAliasesItemProtectionBypassValueCase3Scope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The protection bypass for the alias */
 export interface ListAliasesResponseAliasesItemProtectionBypassValueCase3 {
@@ -677,7 +671,7 @@ export type ListAliasesResponseAliasesItemProtectionBypassValue =
   | ListAliasesResponseAliasesItemProtectionBypassValueCase2
   | ListAliasesResponseAliasesItemProtectionBypassValueCase3;
 export const ListAliasesResponseAliasesItemProtectionBypassValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListAliasesResponseAliasesItemProtectionBypassValue>;
+  S.Unknown as any as S.Schema<ListAliasesResponseAliasesItemProtectionBypassValue>;
 
 /** The protection bypass for the alias */
 export type ListAliasesResponseAliasesItemProtectionBypassMap = {
@@ -743,7 +737,7 @@ export type ListAliasesResponseAliasesItemMicrofrontendsApplications =
   | ListAliasesResponseAliasesItemMicrofrontendsApplicationsCase1List
   | ListAliasesResponseAliasesItemMicrofrontendsApplicationsCase2List;
 export const ListAliasesResponseAliasesItemMicrofrontendsApplications =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListAliasesResponseAliasesItemMicrofrontendsApplications>;
+  S.Unknown as any as S.Schema<ListAliasesResponseAliasesItemMicrofrontendsApplications>;
 
 /** The microfrontends for the alias including the routing configuration */
 export interface ListAliasesResponseAliasesItemMicrofrontends {
@@ -874,7 +868,7 @@ export const ListDeploymentAliasesRequest = /*@__PURE__*/ S.suspend(() =>
 export type ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase0Scope =
   "shareable-link";
 export const ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase0Scope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The protection bypass for the alias */
 export interface ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase0 {
@@ -901,12 +895,12 @@ export type ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase1Ac
   | "granted"
   | "requested";
 export const ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase1Access =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase1Scope =
   "user";
 export const ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase1Scope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The protection bypass for the alias */
 export interface ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase1 {
@@ -935,7 +929,7 @@ export const ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase1 
 export type ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase2Scope =
   "alias-protection-override";
 export const ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase2Scope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The protection bypass for the alias */
 export interface ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase2 {
@@ -959,7 +953,7 @@ export const ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase2 
 export type ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase3Scope =
   "email_invite";
 export const ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase3Scope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The protection bypass for the alias */
 export interface ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase3 {
@@ -988,7 +982,7 @@ export type ListDeploymentAliasesResponseAliasesItemProtectionBypassValue =
   | ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase2
   | ListDeploymentAliasesResponseAliasesItemProtectionBypassValueCase3;
 export const ListDeploymentAliasesResponseAliasesItemProtectionBypassValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListDeploymentAliasesResponseAliasesItemProtectionBypassValue>;
+  S.Unknown as any as S.Schema<ListDeploymentAliasesResponseAliasesItemProtectionBypassValue>;
 
 /** The protection bypass for the alias */
 export type ListDeploymentAliasesResponseAliasesItemProtectionBypassMap = {
@@ -1086,8 +1080,7 @@ export const PatchUrlProtectionBypassRequestBodyCase0 = /*@__PURE__*/ S.suspend(
 export type PatchUrlProtectionBypassRequestBodyCase1ScopeAccess =
   | "denied"
   | "granted";
-export const PatchUrlProtectionBypassRequestBodyCase1ScopeAccess =
-  /*@__PURE__*/ S.String;
+export const PatchUrlProtectionBypassRequestBodyCase1ScopeAccess = S.String;
 
 /** Instructions for creating a user scoped protection bypass */
 export interface PatchUrlProtectionBypassRequestBodyCase1Scope {
@@ -1124,14 +1117,12 @@ export const PatchUrlProtectionBypassRequestBodyCase1 = /*@__PURE__*/ S.suspend(
 
 export type PatchUrlProtectionBypassRequestBodyCase2OverrideScope =
   "alias-protection-override";
-export const PatchUrlProtectionBypassRequestBodyCase2OverrideScope =
-  /*@__PURE__*/ S.String;
+export const PatchUrlProtectionBypassRequestBodyCase2OverrideScope = S.String;
 
 export type PatchUrlProtectionBypassRequestBodyCase2OverrideAction =
   | "create"
   | "revoke";
-export const PatchUrlProtectionBypassRequestBodyCase2OverrideAction =
-  /*@__PURE__*/ S.String;
+export const PatchUrlProtectionBypassRequestBodyCase2OverrideAction = S.String;
 
 export interface PatchUrlProtectionBypassRequestBodyCase2Override {
   scope: PatchUrlProtectionBypassRequestBodyCase2OverrideScope | (string & {});
@@ -1166,7 +1157,7 @@ export type PatchUrlProtectionBypassRequestBody =
   | PatchUrlProtectionBypassRequestBodyCase1
   | PatchUrlProtectionBypassRequestBodyCase2;
 export const PatchUrlProtectionBypassRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchUrlProtectionBypassRequestBody>;
+  S.Unknown as any as S.Schema<PatchUrlProtectionBypassRequestBody>;
 
 export interface PatchUrlProtectionBypassRequest {
   /** The alias or deployment ID */

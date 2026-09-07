@@ -282,8 +282,7 @@ export type GoogleCloudDataplexV1EntryLinkEntryReferenceTypeEnum =
   | "UNSPECIFIED"
   | "SOURCE"
   | "TARGET";
-export const GoogleCloudDataplexV1EntryLinkEntryReferenceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1EntryLinkEntryReferenceTypeEnum = S.String;
 
 /** Reference to the Entry that is linked through the Entry Link. */
 export interface GoogleCloudDataplexV1EntryLinkEntryReference {
@@ -681,8 +680,7 @@ export type GoogleCloudDataplexV1ChangeRequestStateEnum =
   | "REJECTED"
   | "EXPIRED"
   | "REVOKED";
-export const GoogleCloudDataplexV1ChangeRequestStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1ChangeRequestStateEnum = S.String;
 
 /** Request message for DeleteEntryLink. */
 export interface GoogleCloudDataplexV1DeleteEntryLinkRequest {
@@ -735,8 +733,7 @@ export type GoogleCloudDataplexV1ChangeRequestChangeTypeEnum =
   | "UPDATE_GLOSSARY_TERM"
   | "DELETE_GLOSSARY_TERM"
   | "REQUEST_DATA_PRODUCT_ACCESS";
-export const GoogleCloudDataplexV1ChangeRequestChangeTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1ChangeRequestChangeTypeEnum = S.String;
 
 /** Create Entry request. */
 export interface GoogleCloudDataplexV1CreateEntryRequest {
@@ -1034,14 +1031,14 @@ export type GoogleCloudDataplexV1EncryptionConfigEncryptionStateEnum =
   | "COMPLETED"
   | "FAILED";
 export const GoogleCloudDataplexV1EncryptionConfigEncryptionStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDataplexV1EncryptionConfigFailureDetailsErrorCodeEnum =
   | "UNKNOWN"
   | "INTERNAL_ERROR"
   | "REQUIRE_USER_ACTION";
 export const GoogleCloudDataplexV1EncryptionConfigFailureDetailsErrorCodeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details of the failure if anything related to Cmek db fails. */
 export interface GoogleCloudDataplexV1EncryptionConfigFailureDetails {
@@ -1184,8 +1181,7 @@ export const GoogleLongrunningOperation = /*@__PURE__*/ S.suspend(() =>
 export type GoogleCloudDataplexV1AspectTypeDataClassificationEnum =
   | "DATA_CLASSIFICATION_UNSPECIFIED"
   | "METADATA_AND_DATA";
-export const GoogleCloudDataplexV1AspectTypeDataClassificationEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1AspectTypeDataClassificationEnum = S.String;
 
 /** Definition of Enumvalue, to be used for enum fields. */
 export interface GoogleCloudDataplexV1AspectTypeMetadataTemplateEnumValue {
@@ -1334,8 +1330,7 @@ export type GoogleCloudDataplexV1AspectTypeTransferStatusEnum =
   | "TRANSFER_STATUS_UNSPECIFIED"
   | "TRANSFER_STATUS_MIGRATED"
   | "TRANSFER_STATUS_TRANSFERRED";
-export const GoogleCloudDataplexV1AspectTypeTransferStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1AspectTypeTransferStatusEnum = S.String;
 
 /** AspectType is a template for creating Aspects, and represents the JSON-schema for a given Entry, for example, BigQuery Table Schema. */
 export interface GoogleCloudDataplexV1AspectType {
@@ -2043,7 +2038,7 @@ export type GoogleCloudDataplexV1DataDiscoverySpecBigQueryPublishingConfigTableT
   | "EXTERNAL"
   | "BIGLAKE";
 export const GoogleCloudDataplexV1DataDiscoverySpecBigQueryPublishingConfigTableTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Describes BigQuery publishing configurations. */
 export interface GoogleCloudDataplexV1DataDiscoverySpecBigQueryPublishingConfig {
@@ -2099,7 +2094,7 @@ export type GoogleCloudDataplexV1DataDocumentationSpecSqlDialectEnum =
   | "GOOGLE_SQL"
   | "SPARK_SQL";
 export const GoogleCloudDataplexV1DataDocumentationSpecSqlDialectEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDataplexV1DataDocumentationSpecGenerationScopesItemEnum =
   | "GENERATION_SCOPE_UNSPECIFIED"
@@ -2108,7 +2103,7 @@ export type GoogleCloudDataplexV1DataDocumentationSpecGenerationScopesItemEnum =
   | "SQL_QUERIES"
   | "BUSINESS_GLOSSARY_TERM_ASSOCIATIONS";
 export const GoogleCloudDataplexV1DataDocumentationSpecGenerationScopesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDataplexV1DataDocumentationSpecGenerationScopesItemEnumList =
   Array<
@@ -2152,7 +2147,7 @@ export type GoogleCloudDataplexV1DataScanCatalogPublishingStatusStateEnum =
   | "FAILED"
   | "SKIPPED";
 export const GoogleCloudDataplexV1DataScanCatalogPublishingStatusStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The status of publishing the data scan result as Dataplex Universal Catalog metadata. Multiple DataScan log events may exist, each with different publishing information depending on the type of publishing triggered. */
 export interface GoogleCloudDataplexV1DataScanCatalogPublishingStatus {
@@ -2406,7 +2401,7 @@ export type GoogleCloudDataplexV1DataProfileResultPostScanActionsResultBigQueryE
   | "FAILED"
   | "SKIPPED";
 export const GoogleCloudDataplexV1DataProfileResultPostScanActionsResultBigQueryExportResultStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The result of BigQuery export post scan action. */
 export interface GoogleCloudDataplexV1DataProfileResultPostScanActionsResultBigQueryExportResult {
@@ -2593,8 +2588,7 @@ export type GoogleCloudDataplexV1DataProfileSpecModeEnum =
   | "MODE_UNSPECIFIED"
   | "STANDARD"
   | "LIGHTWEIGHT";
-export const GoogleCloudDataplexV1DataProfileSpecModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1DataProfileSpecModeEnum = S.String;
 
 /** DataProfileScan related setting. */
 export interface GoogleCloudDataplexV1DataProfileSpec {
@@ -2682,7 +2676,7 @@ export type GoogleCloudDataplexV1DataDocumentationResultQuerySqlDialectEnum =
   | "GOOGLE_SQL"
   | "SPARK_SQL";
 export const GoogleCloudDataplexV1DataDocumentationResultQuerySqlDialectEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A sample SQL query in data documentation. */
 export interface GoogleCloudDataplexV1DataDocumentationResultQuery {
@@ -2762,7 +2756,7 @@ export type GoogleCloudDataplexV1DataDocumentationResultSchemaRelationshipTypeEn
   | "TYPE_UNSPECIFIED"
   | "SCHEMA_JOIN";
 export const GoogleCloudDataplexV1DataDocumentationResultSchemaRelationshipTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDataplexV1DataDocumentationResultSchemaRelationshipSourcesItemEnum =
   | "SOURCE_UNSPECIFIED"
@@ -2770,7 +2764,7 @@ export type GoogleCloudDataplexV1DataDocumentationResultSchemaRelationshipSource
   | "QUERY_HISTORY"
   | "TABLE_CONSTRAINTS";
 export const GoogleCloudDataplexV1DataDocumentationResultSchemaRelationshipSourcesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDataplexV1DataDocumentationResultSchemaRelationshipSourcesItemEnumList =
   Array<
@@ -2874,7 +2868,7 @@ export type GoogleCloudDataplexV1DataScanStateEnum =
   | "CREATING"
   | "DELETING"
   | "ACTION_REQUIRED";
-export const GoogleCloudDataplexV1DataScanStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1DataScanStateEnum = S.String;
 
 /** The configuration of BigQuery export post scan action. */
 export interface GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport {
@@ -3246,7 +3240,7 @@ export type GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectationStatist
   | "MIN"
   | "MAX";
 export const GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectationStatisticEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Evaluates whether the column aggregate statistic lies between a specified range. */
 export interface GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation {
@@ -3625,8 +3619,7 @@ export type GoogleCloudDataplexV1GraphProfileFieldModeEnum =
   | "NULLABLE"
   | "REPEATED"
   | "REQUIRED";
-export const GoogleCloudDataplexV1GraphProfileFieldModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1GraphProfileFieldModeEnum = S.String;
 
 /** Extraction hints (field-level). */
 export interface GoogleCloudDataplexV1GraphProfileFieldExtractionHints {
@@ -3656,8 +3649,7 @@ export type GoogleCloudDataplexV1GraphProfileFieldMetadataTypeEnum =
   | "GEOSPATIAL"
   | "STRUCT"
   | "OTHER";
-export const GoogleCloudDataplexV1GraphProfileFieldMetadataTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1GraphProfileFieldMetadataTypeEnum = S.String;
 
 /** Represents a field in a node or edge type. */
 export interface GoogleCloudDataplexV1GraphProfileField {
@@ -3870,7 +3862,7 @@ export type GoogleCloudDataplexV1DataScanTypeEnum =
   | "DATA_DISCOVERY"
   | "DATA_DOCUMENTATION"
   | "UNSTRUCTURED_DATA_PROFILE";
-export const GoogleCloudDataplexV1DataScanTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1DataScanTypeEnum = S.String;
 
 /** A dimension captures data quality intent about a defined subset of the rules specified. */
 export interface GoogleCloudDataplexV1DataQualityDimension {
@@ -4072,7 +4064,7 @@ export type GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryE
   | "FAILED"
   | "SKIPPED";
 export const GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryExportResultStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The result of BigQuery export post scan action. */
 export interface GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryExportResult {
@@ -4523,8 +4515,7 @@ export type GoogleCloudDataplexV1EntryGroupTransferStatusEnum =
   | "TRANSFER_STATUS_UNSPECIFIED"
   | "TRANSFER_STATUS_MIGRATED"
   | "TRANSFER_STATUS_TRANSFERRED";
-export const GoogleCloudDataplexV1EntryGroupTransferStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1EntryGroupTransferStatusEnum = S.String;
 
 /** An Entry Group represents a logical grouping of one or more Entries. */
 export interface GoogleCloudDataplexV1EntryGroup {
@@ -4842,7 +4833,7 @@ export type GoogleCloudDataplexV1LakeStateEnum =
   | "CREATING"
   | "DELETING"
   | "ACTION_REQUIRED";
-export const GoogleCloudDataplexV1LakeStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1LakeStateEnum = S.String;
 
 /** Aggregated status of the underlying assets of a lake or zone. */
 export interface GoogleCloudDataplexV1AssetStatus {
@@ -4869,8 +4860,7 @@ export type GoogleCloudDataplexV1LakeMetastoreStatusStateEnum =
   | "READY"
   | "UPDATING"
   | "ERROR";
-export const GoogleCloudDataplexV1LakeMetastoreStatusStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1LakeMetastoreStatusStateEnum = S.String;
 
 /** Status of Lake and Dataproc Metastore service instance association. */
 export interface GoogleCloudDataplexV1LakeMetastoreStatus {
@@ -5098,8 +5088,7 @@ export type GoogleCloudDataplexV1TaskTriggerSpecTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "ON_DEMAND"
   | "RECURRING";
-export const GoogleCloudDataplexV1TaskTriggerSpecTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1TaskTriggerSpecTypeEnum = S.String;
 
 /** Task scheduling and trigger settings. */
 export interface GoogleCloudDataplexV1TaskTriggerSpec {
@@ -5194,7 +5183,7 @@ export type GoogleCloudDataplexV1JobTriggerEnum =
   | "TRIGGER_UNSPECIFIED"
   | "TASK_CONFIG"
   | "RUN_REQUEST";
-export const GoogleCloudDataplexV1JobTriggerEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1JobTriggerEnum = S.String;
 
 export type GoogleCloudDataplexV1JobStateEnum =
   | "STATE_UNSPECIFIED"
@@ -5204,12 +5193,12 @@ export type GoogleCloudDataplexV1JobStateEnum =
   | "SUCCEEDED"
   | "FAILED"
   | "ABORTED";
-export const GoogleCloudDataplexV1JobStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1JobStateEnum = S.String;
 
 export type GoogleCloudDataplexV1JobServiceEnum =
   | "SERVICE_UNSPECIFIED"
   | "DATAPROC";
-export const GoogleCloudDataplexV1JobServiceEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1JobServiceEnum = S.String;
 
 /** A job represents an instance of a task. */
 export interface GoogleCloudDataplexV1Job {
@@ -5280,7 +5269,7 @@ export type GoogleCloudDataplexV1TaskStateEnum =
   | "CREATING"
   | "DELETING"
   | "ACTION_REQUIRED";
-export const GoogleCloudDataplexV1TaskStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1TaskStateEnum = S.String;
 
 /** A task represents a user-visible job. */
 export interface GoogleCloudDataplexV1Task {
@@ -5363,14 +5352,13 @@ export type GoogleCloudDataplexV1ZoneTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "RAW"
   | "CURATED";
-export const GoogleCloudDataplexV1ZoneTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1ZoneTypeEnum = S.String;
 
 export type GoogleCloudDataplexV1ZoneResourceSpecLocationTypeEnum =
   | "LOCATION_TYPE_UNSPECIFIED"
   | "SINGLE_REGION"
   | "MULTI_REGION";
-export const GoogleCloudDataplexV1ZoneResourceSpecLocationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1ZoneResourceSpecLocationTypeEnum = S.String;
 
 /** Settings for resources attached as assets within a zone. */
 export interface GoogleCloudDataplexV1ZoneResourceSpec {
@@ -5396,7 +5384,7 @@ export type GoogleCloudDataplexV1ZoneStateEnum =
   | "CREATING"
   | "DELETING"
   | "ACTION_REQUIRED";
-export const GoogleCloudDataplexV1ZoneStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1ZoneStateEnum = S.String;
 
 /** Describe JSON data format. */
 export interface GoogleCloudDataplexV1ZoneDiscoverySpecJsonOptions {
@@ -5548,14 +5536,13 @@ export type GoogleCloudDataplexV1AssetResourceSpecReadAccessModeEnum =
   | "DIRECT"
   | "MANAGED";
 export const GoogleCloudDataplexV1AssetResourceSpecReadAccessModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDataplexV1AssetResourceSpecTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "STORAGE_BUCKET"
   | "BIGQUERY_DATASET";
-export const GoogleCloudDataplexV1AssetResourceSpecTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1AssetResourceSpecTypeEnum = S.String;
 
 /** Identifies the cloud resource that is referenced by this asset. */
 export interface GoogleCloudDataplexV1AssetResourceSpec {
@@ -5587,8 +5574,7 @@ export type GoogleCloudDataplexV1AssetDiscoveryStatusStateEnum =
   | "IN_PROGRESS"
   | "PAUSED"
   | "DISABLED";
-export const GoogleCloudDataplexV1AssetDiscoveryStatusStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1AssetDiscoveryStatusStateEnum = S.String;
 
 /** The aggregated data statistics for the asset reported by discovery. */
 export interface GoogleCloudDataplexV1AssetDiscoveryStatusStats {
@@ -5718,8 +5704,7 @@ export type GoogleCloudDataplexV1AssetSecurityStatusStateEnum =
   | "READY"
   | "APPLYING"
   | "ERROR";
-export const GoogleCloudDataplexV1AssetSecurityStatusStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1AssetSecurityStatusStateEnum = S.String;
 
 /** Security policy status of the asset. Data security policy, i.e., readers, writers & owners, should be specified in the lake/zone/asset IAM policy. */
 export interface GoogleCloudDataplexV1AssetSecurityStatus {
@@ -5745,8 +5730,7 @@ export type GoogleCloudDataplexV1AssetResourceStatusStateEnum =
   | "STATE_UNSPECIFIED"
   | "READY"
   | "ERROR";
-export const GoogleCloudDataplexV1AssetResourceStatusStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1AssetResourceStatusStateEnum = S.String;
 
 /** Status of the resource referenced by an asset. */
 export interface GoogleCloudDataplexV1AssetResourceStatus {
@@ -5777,7 +5761,7 @@ export type GoogleCloudDataplexV1AssetStateEnum =
   | "CREATING"
   | "DELETING"
   | "ACTION_REQUIRED";
-export const GoogleCloudDataplexV1AssetStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1AssetStateEnum = S.String;
 
 /** An asset represents a cloud resource that is being managed within a lake as a member of a zone. */
 export interface GoogleCloudDataplexV1Asset {
@@ -5898,8 +5882,7 @@ export type GoogleCloudDataplexV1StorageAccessReadEnum =
   | "ACCESS_MODE_UNSPECIFIED"
   | "DIRECT"
   | "MANAGED";
-export const GoogleCloudDataplexV1StorageAccessReadEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1StorageAccessReadEnum = S.String;
 
 /** Describes the access mechanism of the data within its storage location. */
 export interface GoogleCloudDataplexV1StorageAccess {
@@ -5931,8 +5914,7 @@ export type GoogleCloudDataplexV1SchemaPartitionFieldTypeEnum =
   | "TIME"
   | "RECORD"
   | "NULL";
-export const GoogleCloudDataplexV1SchemaPartitionFieldTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1SchemaPartitionFieldTypeEnum = S.String;
 
 /** Represents a key field within the entity's partition structure. You could have up to 20 partition fields, but only the first 10 partitions have the filtering ability due to performance consideration. Note: Partition fields are immutable. */
 export interface GoogleCloudDataplexV1SchemaPartitionField {
@@ -5961,8 +5943,7 @@ export const GoogleCloudDataplexV1SchemaPartitionFieldList =
 export type GoogleCloudDataplexV1SchemaPartitionStyleEnum =
   | "PARTITION_STYLE_UNSPECIFIED"
   | "HIVE_COMPATIBLE";
-export const GoogleCloudDataplexV1SchemaPartitionStyleEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1SchemaPartitionStyleEnum = S.String;
 
 export type GoogleCloudDataplexV1SchemaSchemaFieldTypeEnum =
   | "TYPE_UNSPECIFIED"
@@ -5981,16 +5962,14 @@ export type GoogleCloudDataplexV1SchemaSchemaFieldTypeEnum =
   | "TIME"
   | "RECORD"
   | "NULL";
-export const GoogleCloudDataplexV1SchemaSchemaFieldTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1SchemaSchemaFieldTypeEnum = S.String;
 
 export type GoogleCloudDataplexV1SchemaSchemaFieldModeEnum =
   | "MODE_UNSPECIFIED"
   | "REQUIRED"
   | "NULLABLE"
   | "REPEATED";
-export const GoogleCloudDataplexV1SchemaSchemaFieldModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1SchemaSchemaFieldModeEnum = S.String;
 
 /** Represents a column field within a table schema. */
 export interface GoogleCloudDataplexV1SchemaSchemaField {
@@ -6054,13 +6033,13 @@ export type GoogleCloudDataplexV1EntityTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "TABLE"
   | "FILESET";
-export const GoogleCloudDataplexV1EntityTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1EntityTypeEnum = S.String;
 
 export type GoogleCloudDataplexV1EntitySystemEnum =
   | "STORAGE_SYSTEM_UNSPECIFIED"
   | "CLOUD_STORAGE"
   | "BIGQUERY";
-export const GoogleCloudDataplexV1EntitySystemEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1EntitySystemEnum = S.String;
 
 export type GoogleCloudDataplexV1StorageFormatFormatEnum =
   | "FORMAT_UNSPECIFIED"
@@ -6076,8 +6055,7 @@ export type GoogleCloudDataplexV1StorageFormatFormatEnum =
   | "TFRECORD"
   | "OTHER"
   | "UNKNOWN";
-export const GoogleCloudDataplexV1StorageFormatFormatEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1StorageFormatFormatEnum = S.String;
 
 /** Describes CSV and similar semi-structured data formats. */
 export interface GoogleCloudDataplexV1StorageFormatCsvOptions {
@@ -6106,8 +6084,7 @@ export type GoogleCloudDataplexV1StorageFormatCompressionFormatEnum =
   | "COMPRESSION_FORMAT_UNSPECIFIED"
   | "GZIP"
   | "BZIP2";
-export const GoogleCloudDataplexV1StorageFormatCompressionFormatEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1StorageFormatCompressionFormatEnum = S.String;
 
 /** Describes Iceberg data format. */
 export interface GoogleCloudDataplexV1StorageFormatIcebergOptions {
@@ -6331,7 +6308,7 @@ export type GoogleCloudDataplexV1MetadataFeedFiltersChangeTypesItemEnum =
   | "UPDATE"
   | "DELETE";
 export const GoogleCloudDataplexV1MetadataFeedFiltersChangeTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDataplexV1MetadataFeedFiltersChangeTypesItemEnumList =
   Array<
@@ -6430,7 +6407,7 @@ export type GoogleCloudDataplexV1MetadataJobTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "IMPORT"
   | "EXPORT";
-export const GoogleCloudDataplexV1MetadataJobTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1MetadataJobTypeEnum = S.String;
 
 /** Summary results from a metadata export job. The results are a snapshot of the metadata at the time when the job was created. The exported entries are saved to a Cloud Storage bucket. */
 export interface GoogleCloudDataplexV1MetadataJobExportJobResult {
@@ -6503,8 +6480,7 @@ export type GoogleCloudDataplexV1MetadataJobStatusStateEnum =
   | "SUCCEEDED"
   | "FAILED"
   | "SUCCEEDED_WITH_ERRORS";
-export const GoogleCloudDataplexV1MetadataJobStatusStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1MetadataJobStatusStateEnum = S.String;
 
 /** Metadata job status. */
 export interface GoogleCloudDataplexV1MetadataJobStatus {
@@ -6534,7 +6510,7 @@ export type GoogleCloudDataplexV1MetadataJobImportJobSpecLogLevelEnum =
   | "DEBUG"
   | "INFO";
 export const GoogleCloudDataplexV1MetadataJobImportJobSpecLogLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDataplexV1MetadataJobImportJobSpecEntrySyncModeEnum =
   | "SYNC_MODE_UNSPECIFIED"
@@ -6542,7 +6518,7 @@ export type GoogleCloudDataplexV1MetadataJobImportJobSpecEntrySyncModeEnum =
   | "INCREMENTAL"
   | "NONE";
 export const GoogleCloudDataplexV1MetadataJobImportJobSpecEntrySyncModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A boundary on the scope of impact that the metadata import job can have. */
 export interface GoogleCloudDataplexV1MetadataJobImportJobSpecImportJobScope {
@@ -6579,7 +6555,7 @@ export type GoogleCloudDataplexV1MetadataJobImportJobSpecAspectSyncModeEnum =
   | "INCREMENTAL"
   | "NONE";
 export const GoogleCloudDataplexV1MetadataJobImportJobSpecAspectSyncModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Job specification for a metadata import job.You can run the following kinds of metadata import jobs: Full sync of entries with incremental import of their aspects. Supported for custom entries. Incremental import of aspects only. Supported for aspects that belong to custom entries and system entries. For custom entries, you can modify both optional aspects and required aspects. For system entries, you can modify optional aspects. */
 export interface GoogleCloudDataplexV1MetadataJobImportJobSpec {
@@ -7388,7 +7364,7 @@ export type GoogleIamV1AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const GoogleIamV1AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleIamV1AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface GoogleIamV1AuditLogConfig {
@@ -8134,7 +8110,7 @@ export type GetProjectsLocationsDataScansViewEnum =
   | "DATA_SCAN_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsDataScansViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsDataScansViewEnum = S.String;
 
 export interface GetProjectsLocationsDataScansRequest {
   /** Optional. Select the DataScan view to return. Defaults to BASIC. */
@@ -8162,7 +8138,7 @@ export type GetProjectsLocationsDataScansJobsViewEnum =
   | "DATA_SCAN_JOB_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsDataScansJobsViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsDataScansJobsViewEnum = S.String;
 
 export interface GetProjectsLocationsDataScansJobsRequest {
   /** Optional. Select the DataScanJob view to return. Defaults to BASIC. */
@@ -8197,7 +8173,7 @@ export type GoogleCloudDataplexV1DataScanJobStateEnum =
   | "FAILED"
   | "PENDING"
   | "SUCCEEDED_WITH_ERRORS";
-export const GoogleCloudDataplexV1DataScanJobStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1DataScanJobStateEnum = S.String;
 
 export type GoogleCloudDataplexV1DataScanJobTypeEnum =
   | "DATA_SCAN_TYPE_UNSPECIFIED"
@@ -8206,7 +8182,7 @@ export type GoogleCloudDataplexV1DataScanJobTypeEnum =
   | "DATA_DISCOVERY"
   | "DATA_DOCUMENTATION"
   | "UNSTRUCTURED_DATA_PROFILE";
-export const GoogleCloudDataplexV1DataScanJobTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1DataScanJobTypeEnum = S.String;
 
 /** A DataScanJob represents an instance of DataScan execution. */
 export interface GoogleCloudDataplexV1DataScanJob {
@@ -8345,8 +8321,7 @@ export type GetProjectsLocationsEntryGroupsEntriesViewEnum =
   | "FULL"
   | "CUSTOM"
   | "ALL";
-export const GetProjectsLocationsEntryGroupsEntriesViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsEntryGroupsEntriesViewEnum = S.String;
 
 export interface GetProjectsLocationsEntryGroupsEntriesRequest {
   /** Required. The resource name of the Entry: projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}. */
@@ -8572,8 +8547,7 @@ export type GetProjectsLocationsLakesZonesEntitiesViewEnum =
   | "BASIC"
   | "SCHEMA"
   | "FULL";
-export const GetProjectsLocationsLakesZonesEntitiesViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsLakesZonesEntitiesViewEnum = S.String;
 
 export interface GetProjectsLocationsLakesZonesEntitiesRequest {
   /** Optional. Used to select the subset of entity information to return. Defaults to BASIC. */
@@ -9898,7 +9872,7 @@ export type GoogleCloudDataplexV1ActionIncompatibleDataSchemaSchemaChangeEnum =
   | "INCOMPATIBLE"
   | "MODIFIED";
 export const GoogleCloudDataplexV1ActionIncompatibleDataSchemaSchemaChangeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Action details for incompatible schemas detected by discovery. */
 export interface GoogleCloudDataplexV1ActionIncompatibleDataSchema {
@@ -9933,7 +9907,7 @@ export type GoogleCloudDataplexV1ActionInvalidDataPartitionExpectedStructureEnum
   | "CONSISTENT_KEYS"
   | "HIVE_STYLE_KEYS";
 export const GoogleCloudDataplexV1ActionInvalidDataPartitionExpectedStructureEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Action details for invalid or unsupported partitions detected by discovery. */
 export interface GoogleCloudDataplexV1ActionInvalidDataPartition {
@@ -9956,7 +9930,7 @@ export type GoogleCloudDataplexV1ActionCategoryEnum =
   | "RESOURCE_MANAGEMENT"
   | "SECURITY_POLICY"
   | "DATA_DISCOVERY";
-export const GoogleCloudDataplexV1ActionCategoryEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDataplexV1ActionCategoryEnum = S.String;
 
 /** Action details for absence of data detected by discovery. */
 export type GoogleCloudDataplexV1ActionMissingData =
@@ -10348,8 +10322,7 @@ export type ListProjectsLocationsLakesZonesEntitiesViewEnum =
   | "ENTITY_VIEW_UNSPECIFIED"
   | "TABLES"
   | "FILESETS";
-export const ListProjectsLocationsLakesZonesEntitiesViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsLakesZonesEntitiesViewEnum = S.String;
 
 export interface ListProjectsLocationsLakesZonesEntitiesRequest {
   /** Required. The resource name of the parent zone: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}. */
@@ -10662,8 +10635,7 @@ export type LookupEntryLinksProjectsLocationsEntryModeEnum =
   | "ENTRY_MODE_UNSPECIFIED"
   | "SOURCE"
   | "TARGET";
-export const LookupEntryLinksProjectsLocationsEntryModeEnum =
-  /*@__PURE__*/ S.String;
+export const LookupEntryLinksProjectsLocationsEntryModeEnum = S.String;
 
 export interface LookupEntryLinksProjectsLocationsRequest {
   /** Maximum number of EntryLinks to return. The service may return fewer than this value. If unspecified, at most 10 EntryLinks will be returned. The maximum value is 10; values above 10 will be coerced to 10. */
@@ -10730,7 +10702,7 @@ export type LookupEntryProjectsLocationsViewEnum =
   | "FULL"
   | "CUSTOM"
   | "ALL";
-export const LookupEntryProjectsLocationsViewEnum = /*@__PURE__*/ S.String;
+export const LookupEntryProjectsLocationsViewEnum = S.String;
 
 export interface LookupEntryProjectsLocationsRequest {
   /** Required. The resource name of the Entry: projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}. */

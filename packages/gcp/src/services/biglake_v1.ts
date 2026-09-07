@@ -114,7 +114,7 @@ export const CreateProjectsLocationsCatalogsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateProjectsLocationsCatalogsRequest>;
 
 export type DatabaseTypeEnum = "TYPE_UNSPECIFIED" | "HIVE";
-export const DatabaseTypeEnum = /*@__PURE__*/ S.String;
+export const DatabaseTypeEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -193,7 +193,7 @@ export const CreateProjectsLocationsCatalogsDatabasesRequest =
   }) as any as S.Schema<CreateProjectsLocationsCatalogsDatabasesRequest>;
 
 export type TableTypeEnum = "TYPE_UNSPECIFIED" | "HIVE";
-export const TableTypeEnum = /*@__PURE__*/ S.String;
+export const TableTypeEnum = S.String;
 
 /** Serializer and deserializer information. */
 export interface SerDeInfo {
@@ -387,7 +387,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -690,8 +690,7 @@ export type ListProjectsLocationsCatalogsDatabasesTablesViewEnum =
   | "TABLE_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListProjectsLocationsCatalogsDatabasesTablesViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsCatalogsDatabasesTablesViewEnum = S.String;
 
 export interface ListProjectsLocationsCatalogsDatabasesTablesRequest {
   /** A page token, received from a previous `ListTables` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTables` must match the call that provided the page token. */

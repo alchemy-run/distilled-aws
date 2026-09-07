@@ -237,8 +237,7 @@ export type GoogleCloudDatacatalogLineageV1OriginSourceTypeEnum =
   | "VERTEX_AI"
   | "DATAFLOW"
   | "LOOKER_CORE";
-export const GoogleCloudDatacatalogLineageV1OriginSourceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogLineageV1OriginSourceTypeEnum = S.String;
 
 /** Origin of a process. */
 export interface GoogleCloudDatacatalogLineageV1Origin {
@@ -323,8 +322,7 @@ export type GoogleCloudDatacatalogLineageV1RunStateEnum =
   | "COMPLETED"
   | "FAILED"
   | "ABORTED";
-export const GoogleCloudDatacatalogLineageV1RunStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogLineageV1RunStateEnum = S.String;
 
 /** A lineage run represents an execution of a process that creates lineage events. */
 export interface GoogleCloudDatacatalogLineageV1Run {
@@ -401,7 +399,7 @@ export type GoogleCloudDatacatalogLineageV1DependencyInfoDependencyTypeEnum =
   | "EXACT_COPY"
   | "OTHER";
 export const GoogleCloudDatacatalogLineageV1DependencyInfoDependencyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Dependency info describes how one entity depends on another. */
 export interface GoogleCloudDatacatalogLineageV1DependencyInfo {
@@ -657,7 +655,7 @@ export type GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngest
   | "LOOKER_CORE"
   | "MANAGED_AIRFLOW";
 export const GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleIntegrationSelectorIntegrationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Integration selector of the rule. The rule is only applied to the Integration selected by the selector. */
 export interface GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleIntegrationSelector {
@@ -1295,7 +1293,7 @@ export type GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchFi
   | "EXACT_COPY"
   | "OTHER";
 export const GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchFiltersDependencyTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchFiltersDependencyTypesItemEnumList =
   Array<
@@ -1311,7 +1309,7 @@ export type GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchFi
   | "ENTITY_SET_UNSPECIFIED"
   | "ENTITIES";
 export const GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchFiltersEntitySetEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filters for the search. */
 export interface GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchFilters {
@@ -1345,7 +1343,7 @@ export type GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestDirectio
   | "DOWNSTREAM"
   | "UPSTREAM";
 export const GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestDirectionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDatacatalogLineageV1EntityReferenceList =
   Array<GoogleCloudDatacatalogLineageV1EntityReference>;
@@ -1473,7 +1471,7 @@ export type GoogleCloudDatacatalogLineageV1LineageLinkDependencyInfoDependencyTy
   | "EXACT_COPY"
   | "OTHER";
 export const GoogleCloudDatacatalogLineageV1LineageLinkDependencyInfoDependencyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Dependency info describes how one entity is dependent on another. */
 export interface GoogleCloudDatacatalogLineageV1LineageLinkDependencyInfo {
@@ -1616,7 +1614,7 @@ export type GoogleCloudDatacatalogLineageV1LinkDependencyInfoDependencyTypeEnum 
   | "EXACT_COPY"
   | "OTHER";
 export const GoogleCloudDatacatalogLineageV1LinkDependencyInfoDependencyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Dependency info describes how one entity depends on another. */
 export interface GoogleCloudDatacatalogLineageV1LinkDependencyInfo {

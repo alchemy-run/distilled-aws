@@ -49,7 +49,7 @@ export type CreateForCommitCommentRequestContent =
   | "hooray"
   | "rocket"
   | "eyes";
-export const CreateForCommitCommentRequestContent = /*@__PURE__*/ S.String;
+export const CreateForCommitCommentRequestContent = S.String;
 
 export interface CreateForCommitCommentRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -142,7 +142,7 @@ export type ReactionContent =
   | "hooray"
   | "rocket"
   | "eyes";
-export const ReactionContent = /*@__PURE__*/ S.String;
+export const ReactionContent = S.String;
 
 /** Reactions to conversations provide a way to help people express their feelings more simply and effectively. */
 export interface Reaction {
@@ -173,7 +173,7 @@ export type CreateForIssueRequestContent =
   | "hooray"
   | "rocket"
   | "eyes";
-export const CreateForIssueRequestContent = /*@__PURE__*/ S.String;
+export const CreateForIssueRequestContent = S.String;
 
 export interface CreateForIssueRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -212,7 +212,7 @@ export type CreateForIssueCommentRequestContent =
   | "hooray"
   | "rocket"
   | "eyes";
-export const CreateForIssueCommentRequestContent = /*@__PURE__*/ S.String;
+export const CreateForIssueCommentRequestContent = S.String;
 
 export interface CreateForIssueCommentRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -251,8 +251,7 @@ export type CreateForPullRequestReviewCommentRequestContent =
   | "hooray"
   | "rocket"
   | "eyes";
-export const CreateForPullRequestReviewCommentRequestContent =
-  /*@__PURE__*/ S.String;
+export const CreateForPullRequestReviewCommentRequestContent = S.String;
 
 export interface CreateForPullRequestReviewCommentRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -290,7 +289,7 @@ export type CreateForReleaseRequestContent =
   | "hooray"
   | "rocket"
   | "eyes";
-export const CreateForReleaseRequestContent = /*@__PURE__*/ S.String;
+export const CreateForReleaseRequestContent = S.String;
 
 export interface CreateForReleaseRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -498,7 +497,7 @@ export type ListForCommitCommentRequestContent =
   | "hooray"
   | "rocket"
   | "eyes";
-export const ListForCommitCommentRequestContent = /*@__PURE__*/ S.String;
+export const ListForCommitCommentRequestContent = S.String;
 
 export interface ListForCommitCommentRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -554,7 +553,7 @@ export type ListForIssueRequestContent =
   | "hooray"
   | "rocket"
   | "eyes";
-export const ListForIssueRequestContent = /*@__PURE__*/ S.String;
+export const ListForIssueRequestContent = S.String;
 
 export interface ListForIssueRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -610,7 +609,7 @@ export type ListForIssueCommentRequestContent =
   | "hooray"
   | "rocket"
   | "eyes";
-export const ListForIssueCommentRequestContent = /*@__PURE__*/ S.String;
+export const ListForIssueCommentRequestContent = S.String;
 
 export interface ListForIssueCommentRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -666,8 +665,7 @@ export type ListForPullRequestReviewCommentRequestContent =
   | "hooray"
   | "rocket"
   | "eyes";
-export const ListForPullRequestReviewCommentRequestContent =
-  /*@__PURE__*/ S.String;
+export const ListForPullRequestReviewCommentRequestContent = S.String;
 
 export interface ListForPullRequestReviewCommentRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -727,7 +725,7 @@ export type ListForReleaseRequestContent =
   | "hooray"
   | "rocket"
   | "eyes";
-export const ListForReleaseRequestContent = /*@__PURE__*/ S.String;
+export const ListForReleaseRequestContent = S.String;
 
 export interface ListForReleaseRequest {
   /** The account owner of the repository. The name is not case sensitive. */

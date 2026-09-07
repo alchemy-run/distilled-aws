@@ -61,7 +61,7 @@ export type ProductLimitScopeEnum =
   | "SCOPE_UNSPECIFIED"
   | "ADS_NON_EEA"
   | "ADS_EEA";
-export const ProductLimitScopeEnum = /*@__PURE__*/ S.String;
+export const ProductLimitScopeEnum = S.String;
 
 /** The limit for products. */
 export interface ProductLimit {

@@ -28,7 +28,7 @@ export type GPUType =
   | "GPU_TYPE_H100"
   | "GPU_TYPE_L40S"
   | "GPU_TYPE_H200";
-export const GPUType = /*@__PURE__*/ S.String;
+export const GPUType = S.String;
 
 export interface GPUConfig {
   type?: GPUType | (string & {});
@@ -78,7 +78,7 @@ export type CloudProvider =
   | "CLOUD_PROVIDER_GCP"
   | "CLOUD_PROVIDER_AUTO"
   | "CLOUD_PROVIDER_OCI";
-export const CloudProvider = /*@__PURE__*/ S.String;
+export const CloudProvider = S.String;
 
 export interface SharedVolumeMount {
   mountPath?: string;
@@ -121,13 +121,13 @@ export const S3MountList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<S3MountList>;
 
 export type CloudBucketMountBucketType = "UNSPECIFIED" | "S3" | "R2" | "GCP";
-export const CloudBucketMountBucketType = /*@__PURE__*/ S.String;
+export const CloudBucketMountBucketType = S.String;
 
 export type CloudBucketMountMetadataTTLType =
   | "METADATA_TTL_TYPE_UNSPECIFIED"
   | "METADATA_TTL_TYPE_MINIMAL"
   | "METADATA_TTL_TYPE_INDEFINITE";
-export const CloudBucketMountMetadataTTLType = /*@__PURE__*/ S.String;
+export const CloudBucketMountMetadataTTLType = S.String;
 
 export interface CloudBucketMount {
   bucketName?: string;
@@ -193,7 +193,7 @@ export type PTYInfoPTYType =
   | "PTY_TYPE_UNSPECIFIED"
   | "PTY_TYPE_FUNCTION"
   | "PTY_TYPE_SHELL";
-export const PTYInfoPTYType = /*@__PURE__*/ S.String;
+export const PTYInfoPTYType = S.String;
 
 export interface PTYInfo {
   enabled?: boolean;
@@ -241,7 +241,7 @@ export const SchedulerPlacement = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SchedulerPlacement>;
 
 export type TunnelType = "TUNNEL_TYPE_UNSPECIFIED" | "TUNNEL_TYPE_H2";
-export const TunnelType = /*@__PURE__*/ S.String;
+export const TunnelType = S.String;
 
 export interface PortSpec {
   port?: number;
@@ -275,7 +275,7 @@ export type NetworkAccessNetworkAccessType =
   | "OPEN"
   | "BLOCKED"
   | "ALLOWLIST";
-export const NetworkAccessNetworkAccessType = /*@__PURE__*/ S.String;
+export const NetworkAccessNetworkAccessType = S.String;
 
 export interface NetworkAccess {
   networkAccessType?: NetworkAccessNetworkAccessType | (string & {});
@@ -495,7 +495,7 @@ export type GenericResultGenericStatus =
   | "GENERIC_STATUS_INTERNAL_FAILURE"
   | "GENERIC_STATUS_IDLE_TIMEOUT"
   | "GENERIC_STATUS_MEMORY_MANAGER_EVICTION";
-export const GenericResultGenericStatus = /*@__PURE__*/ S.String;
+export const GenericResultGenericStatus = S.String;
 
 /** sub-type for generic types like lists */
 export interface GenericResult {
@@ -714,7 +714,7 @@ export type TaskSnapshotBehavior =
   | "TASK_SNAPSHOT_BEHAVIOR_SNAPSHOT"
   | "TASK_SNAPSHOT_BEHAVIOR_RESTORE"
   | "TASK_SNAPSHOT_BEHAVIOR_NONE";
-export const TaskSnapshotBehavior = /*@__PURE__*/ S.String;
+export const TaskSnapshotBehavior = S.String;
 
 export interface TaskInfo {
   id?: string;
@@ -859,8 +859,7 @@ export type RestoreSandboxRequestSandboxNameOverrideType =
   | "SANDBOX_NAME_OVERRIDE_TYPE_UNSPECIFIED"
   | "SANDBOX_NAME_OVERRIDE_TYPE_NONE"
   | "SANDBOX_NAME_OVERRIDE_TYPE_STRING";
-export const RestoreSandboxRequestSandboxNameOverrideType =
-  /*@__PURE__*/ S.String;
+export const RestoreSandboxRequestSandboxNameOverrideType = S.String;
 
 export interface RestoreSandboxRequest {
   snapshotId?: string;
@@ -1159,7 +1158,7 @@ export type SandboxGetExitSnapshotResponseErrorCode =
   | "ERROR_CODE_UNSPECIFIED"
   | "ERROR_CODE_TIMEOUT"
   | "ERROR_CODE_INTERNAL";
-export const SandboxGetExitSnapshotResponseErrorCode = /*@__PURE__*/ S.String;
+export const SandboxGetExitSnapshotResponseErrorCode = S.String;
 
 export interface SandboxGetExitSnapshotResponseError {
   errorCode?: SandboxGetExitSnapshotResponseErrorCode;

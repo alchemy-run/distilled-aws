@@ -160,13 +160,13 @@ export type JobsCreateRequestDataset =
   | "workers_trace_events"
   | "zaraz_events"
   | "zero_trust_network_sessions";
-export const JobsCreateRequestDataset = /*@__PURE__*/ S.String;
+export const JobsCreateRequestDataset = S.String;
 
 export type JobsCreateRequestFrequency = "high" | "low";
-export const JobsCreateRequestFrequency = /*@__PURE__*/ S.String;
+export const JobsCreateRequestFrequency = S.String;
 
 export type JobsCreateRequestKind = "" | "edge";
-export const JobsCreateRequestKind = /*@__PURE__*/ S.String;
+export const JobsCreateRequestKind = S.String;
 
 export type JobsCreateRequestOutputOptionsFieldNamesList = Array<string>;
 export const JobsCreateRequestOutputOptionsFieldNamesList =
@@ -175,7 +175,7 @@ export const JobsCreateRequestOutputOptionsFieldNamesList =
   ) as any as S.Schema<JobsCreateRequestOutputOptionsFieldNamesList>;
 
 export type JobsCreateRequestOutputOptionsOutputType = "ndjson" | "csv";
-export const JobsCreateRequestOutputOptionsOutputType = /*@__PURE__*/ S.String;
+export const JobsCreateRequestOutputOptionsOutputType = S.String;
 
 export type JobsCreateRequestOutputOptionsTimestampFormat =
   | "unixnano"
@@ -183,8 +183,7 @@ export type JobsCreateRequestOutputOptionsTimestampFormat =
   | "rfc3339"
   | "rfc3339ms"
   | "rfc3339ns";
-export const JobsCreateRequestOutputOptionsTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const JobsCreateRequestOutputOptionsTimestampFormat = S.String;
 
 export interface JobsCreateRequestOutputOptions {
   /** String to be prepended before each batch. */
@@ -345,13 +344,13 @@ export type JobsCreateResponseDataset =
   | "workers_trace_events"
   | "zaraz_events"
   | "zero_trust_network_sessions";
-export const JobsCreateResponseDataset = /*@__PURE__*/ S.String;
+export const JobsCreateResponseDataset = S.String;
 
 export type JobsCreateResponseFrequency = "high" | "low";
-export const JobsCreateResponseFrequency = /*@__PURE__*/ S.String;
+export const JobsCreateResponseFrequency = S.String;
 
 export type JobsCreateResponseKind = "" | "edge";
-export const JobsCreateResponseKind = /*@__PURE__*/ S.String;
+export const JobsCreateResponseKind = S.String;
 
 export type JobsCreateResponseOutputOptionsFieldNamesList = Array<string>;
 export const JobsCreateResponseOutputOptionsFieldNamesList =
@@ -360,7 +359,7 @@ export const JobsCreateResponseOutputOptionsFieldNamesList =
   ) as any as S.Schema<JobsCreateResponseOutputOptionsFieldNamesList>;
 
 export type JobsCreateResponseOutputOptionsOutputType = "ndjson" | "csv";
-export const JobsCreateResponseOutputOptionsOutputType = /*@__PURE__*/ S.String;
+export const JobsCreateResponseOutputOptionsOutputType = S.String;
 
 export type JobsCreateResponseOutputOptionsTimestampFormat =
   | "unixnano"
@@ -368,8 +367,7 @@ export type JobsCreateResponseOutputOptionsTimestampFormat =
   | "rfc3339"
   | "rfc3339ms"
   | "rfc3339ns";
-export const JobsCreateResponseOutputOptionsTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const JobsCreateResponseOutputOptionsTimestampFormat = S.String;
 
 export interface JobsCreateResponseOutputOptions {
   /** String to be prepended before each batch. */
@@ -851,7 +849,7 @@ export type DatasetsFieldsGetRequestDatasetId =
   | "workers_trace_events"
   | "zaraz_events"
   | "zero_trust_network_sessions";
-export const DatasetsFieldsGetRequestDatasetId = /*@__PURE__*/ S.String;
+export const DatasetsFieldsGetRequestDatasetId = S.String;
 
 export interface GetDatasetFieldForAccountRequest {
   /** The Account ID to use for this endpoint. Mutually exclusive with the Zone ID. */
@@ -942,7 +940,7 @@ export type DatasetsJobsGetRequestDatasetId =
   | "workers_trace_events"
   | "zaraz_events"
   | "zero_trust_network_sessions";
-export const DatasetsJobsGetRequestDatasetId = /*@__PURE__*/ S.String;
+export const DatasetsJobsGetRequestDatasetId = S.String;
 
 export interface GetDatasetJobForAccountRequest {
   /** The Account ID to use for this endpoint. Mutually exclusive with the Zone ID. */
@@ -1003,13 +1001,13 @@ export type DatasetsJobsGetResultItemDataset =
   | "workers_trace_events"
   | "zaraz_events"
   | "zero_trust_network_sessions";
-export const DatasetsJobsGetResultItemDataset = /*@__PURE__*/ S.String;
+export const DatasetsJobsGetResultItemDataset = S.String;
 
 export type DatasetsJobsGetResultItemFrequency = "high" | "low";
-export const DatasetsJobsGetResultItemFrequency = /*@__PURE__*/ S.String;
+export const DatasetsJobsGetResultItemFrequency = S.String;
 
 export type DatasetsJobsGetResultItemKind = "" | "edge";
-export const DatasetsJobsGetResultItemKind = /*@__PURE__*/ S.String;
+export const DatasetsJobsGetResultItemKind = S.String;
 
 export type DatasetsJobsGetResultItemOutputOptionsFieldNamesList =
   Array<string>;
@@ -1019,8 +1017,7 @@ export const DatasetsJobsGetResultItemOutputOptionsFieldNamesList =
   ) as any as S.Schema<DatasetsJobsGetResultItemOutputOptionsFieldNamesList>;
 
 export type DatasetsJobsGetResultItemOutputOptionsOutputType = "ndjson" | "csv";
-export const DatasetsJobsGetResultItemOutputOptionsOutputType =
-  /*@__PURE__*/ S.String;
+export const DatasetsJobsGetResultItemOutputOptionsOutputType = S.String;
 
 export type DatasetsJobsGetResultItemOutputOptionsTimestampFormat =
   | "unixnano"
@@ -1028,8 +1025,7 @@ export type DatasetsJobsGetResultItemOutputOptionsTimestampFormat =
   | "rfc3339"
   | "rfc3339ms"
   | "rfc3339ns";
-export const DatasetsJobsGetResultItemOutputOptionsTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const DatasetsJobsGetResultItemOutputOptionsTimestampFormat = S.String;
 
 export interface DatasetsJobsGetResultItemOutputOptions {
   /** String to be prepended before each batch. */
@@ -1340,13 +1336,13 @@ export type JobsGetResponseDataset =
   | "workers_trace_events"
   | "zaraz_events"
   | "zero_trust_network_sessions";
-export const JobsGetResponseDataset = /*@__PURE__*/ S.String;
+export const JobsGetResponseDataset = S.String;
 
 export type JobsGetResponseFrequency = "high" | "low";
-export const JobsGetResponseFrequency = /*@__PURE__*/ S.String;
+export const JobsGetResponseFrequency = S.String;
 
 export type JobsGetResponseKind = "" | "edge";
-export const JobsGetResponseKind = /*@__PURE__*/ S.String;
+export const JobsGetResponseKind = S.String;
 
 export type JobsGetResponseOutputOptionsFieldNamesList = Array<string>;
 export const JobsGetResponseOutputOptionsFieldNamesList = /*@__PURE__*/ S.Array(
@@ -1354,7 +1350,7 @@ export const JobsGetResponseOutputOptionsFieldNamesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<JobsGetResponseOutputOptionsFieldNamesList>;
 
 export type JobsGetResponseOutputOptionsOutputType = "ndjson" | "csv";
-export const JobsGetResponseOutputOptionsOutputType = /*@__PURE__*/ S.String;
+export const JobsGetResponseOutputOptionsOutputType = S.String;
 
 export type JobsGetResponseOutputOptionsTimestampFormat =
   | "unixnano"
@@ -1362,8 +1358,7 @@ export type JobsGetResponseOutputOptionsTimestampFormat =
   | "rfc3339"
   | "rfc3339ms"
   | "rfc3339ns";
-export const JobsGetResponseOutputOptionsTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const JobsGetResponseOutputOptionsTimestampFormat = S.String;
 
 export interface JobsGetResponseOutputOptions {
   /** String to be prepended before each batch. */
@@ -1579,13 +1574,13 @@ export type JobsListResultItemDataset =
   | "workers_trace_events"
   | "zaraz_events"
   | "zero_trust_network_sessions";
-export const JobsListResultItemDataset = /*@__PURE__*/ S.String;
+export const JobsListResultItemDataset = S.String;
 
 export type JobsListResultItemFrequency = "high" | "low";
-export const JobsListResultItemFrequency = /*@__PURE__*/ S.String;
+export const JobsListResultItemFrequency = S.String;
 
 export type JobsListResultItemKind = "" | "edge";
-export const JobsListResultItemKind = /*@__PURE__*/ S.String;
+export const JobsListResultItemKind = S.String;
 
 export type JobsListResultItemOutputOptionsFieldNamesList = Array<string>;
 export const JobsListResultItemOutputOptionsFieldNamesList =
@@ -1594,7 +1589,7 @@ export const JobsListResultItemOutputOptionsFieldNamesList =
   ) as any as S.Schema<JobsListResultItemOutputOptionsFieldNamesList>;
 
 export type JobsListResultItemOutputOptionsOutputType = "ndjson" | "csv";
-export const JobsListResultItemOutputOptionsOutputType = /*@__PURE__*/ S.String;
+export const JobsListResultItemOutputOptionsOutputType = S.String;
 
 export type JobsListResultItemOutputOptionsTimestampFormat =
   | "unixnano"
@@ -1602,8 +1597,7 @@ export type JobsListResultItemOutputOptionsTimestampFormat =
   | "rfc3339"
   | "rfc3339ms"
   | "rfc3339ns";
-export const JobsListResultItemOutputOptionsTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const JobsListResultItemOutputOptionsTimestampFormat = S.String;
 
 export interface JobsListResultItemOutputOptions {
   /** String to be prepended before each batch. */
@@ -1842,10 +1836,10 @@ export const OriginValidateForZoneRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OriginValidateForZoneRequest>;
 
 export type JobsUpdateRequestFrequency = "high" | "low";
-export const JobsUpdateRequestFrequency = /*@__PURE__*/ S.String;
+export const JobsUpdateRequestFrequency = S.String;
 
 export type JobsUpdateRequestKind = "" | "edge";
-export const JobsUpdateRequestKind = /*@__PURE__*/ S.String;
+export const JobsUpdateRequestKind = S.String;
 
 export type JobsUpdateRequestOutputOptionsFieldNamesList = Array<string>;
 export const JobsUpdateRequestOutputOptionsFieldNamesList =
@@ -1854,7 +1848,7 @@ export const JobsUpdateRequestOutputOptionsFieldNamesList =
   ) as any as S.Schema<JobsUpdateRequestOutputOptionsFieldNamesList>;
 
 export type JobsUpdateRequestOutputOptionsOutputType = "ndjson" | "csv";
-export const JobsUpdateRequestOutputOptionsOutputType = /*@__PURE__*/ S.String;
+export const JobsUpdateRequestOutputOptionsOutputType = S.String;
 
 export type JobsUpdateRequestOutputOptionsTimestampFormat =
   | "unixnano"
@@ -1862,8 +1856,7 @@ export type JobsUpdateRequestOutputOptionsTimestampFormat =
   | "rfc3339"
   | "rfc3339ms"
   | "rfc3339ns";
-export const JobsUpdateRequestOutputOptionsTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const JobsUpdateRequestOutputOptionsTimestampFormat = S.String;
 
 export interface JobsUpdateRequestOutputOptions {
   /** String to be prepended before each batch. */
@@ -2024,13 +2017,13 @@ export type JobsUpdateResponseDataset =
   | "workers_trace_events"
   | "zaraz_events"
   | "zero_trust_network_sessions";
-export const JobsUpdateResponseDataset = /*@__PURE__*/ S.String;
+export const JobsUpdateResponseDataset = S.String;
 
 export type JobsUpdateResponseFrequency = "high" | "low";
-export const JobsUpdateResponseFrequency = /*@__PURE__*/ S.String;
+export const JobsUpdateResponseFrequency = S.String;
 
 export type JobsUpdateResponseKind = "" | "edge";
-export const JobsUpdateResponseKind = /*@__PURE__*/ S.String;
+export const JobsUpdateResponseKind = S.String;
 
 export type JobsUpdateResponseOutputOptionsFieldNamesList = Array<string>;
 export const JobsUpdateResponseOutputOptionsFieldNamesList =
@@ -2039,7 +2032,7 @@ export const JobsUpdateResponseOutputOptionsFieldNamesList =
   ) as any as S.Schema<JobsUpdateResponseOutputOptionsFieldNamesList>;
 
 export type JobsUpdateResponseOutputOptionsOutputType = "ndjson" | "csv";
-export const JobsUpdateResponseOutputOptionsOutputType = /*@__PURE__*/ S.String;
+export const JobsUpdateResponseOutputOptionsOutputType = S.String;
 
 export type JobsUpdateResponseOutputOptionsTimestampFormat =
   | "unixnano"
@@ -2047,8 +2040,7 @@ export type JobsUpdateResponseOutputOptionsTimestampFormat =
   | "rfc3339"
   | "rfc3339ms"
   | "rfc3339ns";
-export const JobsUpdateResponseOutputOptionsTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const JobsUpdateResponseOutputOptionsTimestampFormat = S.String;
 
 export interface JobsUpdateResponseOutputOptions {
   /** String to be prepended before each batch. */

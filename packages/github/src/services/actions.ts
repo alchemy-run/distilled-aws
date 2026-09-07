@@ -101,7 +101,7 @@ export const AddCustomLabelsToSelfHostedRunnerForOrgRequest =
 
 /** The type of label. Read-only labels are applied automatically when the runner is configured. */
 export type RunnerLabelType = "read-only" | "custom";
-export const RunnerLabelType = /*@__PURE__*/ S.String;
+export const RunnerLabelType = S.String;
 
 /** A label for a self hosted runner */
 export interface RunnerLabel {
@@ -425,8 +425,7 @@ export type CreateHostedRunnerForOrgRequestImageSource =
   | "github"
   | "partner"
   | "custom";
-export const CreateHostedRunnerForOrgRequestImageSource =
-  /*@__PURE__*/ S.String;
+export const CreateHostedRunnerForOrgRequestImageSource = S.String;
 
 /** The image of runner. To list all available images, use `GET /actions/hosted-runners/images/github-owned` or `GET /actions/hosted-runners/images/partner`. */
 export interface CreateHostedRunnerForOrgRequestImage {
@@ -492,8 +491,7 @@ export type NullableActionsHostedRunnerPoolImageSource =
   | "github"
   | "partner"
   | "custom";
-export const NullableActionsHostedRunnerPoolImageSource =
-  /*@__PURE__*/ S.String;
+export const NullableActionsHostedRunnerPoolImageSource = S.String;
 
 /** Provides details of a hosted runner image */
 export interface NullableActionsHostedRunnerPoolImage {
@@ -550,7 +548,7 @@ export type ActionsHostedRunnerStatus =
   | "Shutdown"
   | "Deleting"
   | "Stuck";
-export const ActionsHostedRunnerStatus = /*@__PURE__*/ S.String;
+export const ActionsHostedRunnerStatus = S.String;
 
 /** Provides details of Public IP for a GitHub-hosted larger runners */
 export interface PublicIp {
@@ -621,7 +619,7 @@ export const ActionsHostedRunner = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of repositories in the organization that can access the variable. `selected` means only the repositories specified by `selected_repository_ids` can access the variable. */
 export type CreateOrgVariableRequestVisibility = "all" | "private" | "selected";
-export const CreateOrgVariableRequestVisibility = /*@__PURE__*/ S.String;
+export const CreateOrgVariableRequestVisibility = S.String;
 
 /** An array of repository ids that can access the organization variable. You can only provide a list of repository ids when the `visibility` is set to `selected`. */
 export type CreateOrgVariableRequestSelectedRepositoryIdsList = Array<number>;
@@ -711,7 +709,7 @@ export type CreateOrUpdateOrgSecretRequestVisibility =
   | "all"
   | "private"
   | "selected";
-export const CreateOrUpdateOrgSecretRequestVisibility = /*@__PURE__*/ S.String;
+export const CreateOrUpdateOrgSecretRequestVisibility = S.String;
 
 /** An array of repository ids that can access the organization secret. You can only provide a list of repository ids when the `visibility` is set to `selected`. You can manage the list of selected repositories using the [List selected repositories for an organization secret](https://docs.github.com/rest/actions/secrets#list-selected-repositories-for-an-organization-secret), [Set selected repositories for an organization secret](https://docs.github.com/rest/actions/secrets#set-selected-repositories-for-an-organization-secret), and [Remove selected repository from an organization secret](https://docs.github.com/rest/actions/secrets#remove-selected-repository-from-an-organization-secret) endpoints. */
 export type CreateOrUpdateOrgSecretRequestSelectedRepositoryIdsList =
@@ -919,28 +917,28 @@ export const RepositoryTopicsList = /*@__PURE__*/ S.Array(
 
 /** The policy controlling who can create pull requests: all or collaborators_only. */
 export type RepositoryPullRequestCreationPolicy = "all" | "collaborators_only";
-export const RepositoryPullRequestCreationPolicy = /*@__PURE__*/ S.String;
+export const RepositoryPullRequestCreationPolicy = S.String;
 
 /** The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit). */
 export type RepositorySquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const RepositorySquashMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type RepositorySquashMergeCommitMessage =
   | "PR_BODY"
   | "COMMIT_MESSAGES"
   | "BLANK";
-export const RepositorySquashMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitMessage = S.String;
 
 /** The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type RepositoryMergeCommitTitle = "PR_TITLE" | "MERGE_MESSAGE";
-export const RepositoryMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type RepositoryMergeCommitMessage = "PR_BODY" | "PR_TITLE" | "BLANK";
-export const RepositoryMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitMessage = S.String;
 
 /** The status of the code search index for this repository */
 export interface RepositoryCodeSearchIndexStatus {
@@ -1201,7 +1199,7 @@ export const AuthenticationTokenRepositoriesList = /*@__PURE__*/ S.Array(
 
 /** Describe whether all repositories have been selected or there's a selection involved */
 export type AuthenticationTokenRepositorySelection = "all" | "selected";
-export const AuthenticationTokenRepositorySelection = /*@__PURE__*/ S.String;
+export const AuthenticationTokenRepositorySelection = S.String;
 
 /** Authentication Token */
 export interface AuthenticationToken {
@@ -1329,8 +1327,7 @@ export type CreateSelfHostedRunnerGroupForOrgRequestVisibility =
   | "selected"
   | "all"
   | "private";
-export const CreateSelfHostedRunnerGroupForOrgRequestVisibility =
-  /*@__PURE__*/ S.String;
+export const CreateSelfHostedRunnerGroupForOrgRequestVisibility = S.String;
 
 /** List of repository IDs that can access the runner group. */
 export type CreateSelfHostedRunnerGroupForOrgRequestSelectedRepositoryIdsList =
@@ -2560,10 +2557,10 @@ export type GetActionsCacheListRequestSort =
   | "created_at"
   | "last_accessed_at"
   | "size_in_bytes";
-export const GetActionsCacheListRequestSort = /*@__PURE__*/ S.String;
+export const GetActionsCacheListRequestSort = S.String;
 
 export type GetActionsCacheListRequestDirection = "asc" | "desc";
-export const GetActionsCacheListRequestDirection = /*@__PURE__*/ S.String;
+export const GetActionsCacheListRequestDirection = S.String;
 
 export interface GetActionsCacheListRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -3160,7 +3157,7 @@ export const GetConcurrencyGroupForRepositoryRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetConcurrencyGroupForRepositoryRequest>;
 
 export type ConcurrencyGroupGroupMembersItemStatus = "in_progress" | "pending";
-export const ConcurrencyGroupGroupMembersItemStatus = /*@__PURE__*/ S.String;
+export const ConcurrencyGroupGroupMembersItemStatus = S.String;
 
 export interface ConcurrencyGroupGroupMembersItem {
   /** The ID of the workflow run. */
@@ -3539,8 +3536,7 @@ export type ActionsForkPrContributorApprovalApprovalPolicy =
   | "first_time_contributors_new_to_github"
   | "first_time_contributors"
   | "all_external_contributors";
-export const ActionsForkPrContributorApprovalApprovalPolicy =
-  /*@__PURE__*/ S.String;
+export const ActionsForkPrContributorApprovalApprovalPolicy = S.String;
 
 export interface ActionsForkPrContributorApproval {
   /** The policy that controls when fork PR workflows require approval from a maintainer. */
@@ -3597,7 +3593,7 @@ export const GetGithubActionsDefaultWorkflowPermissionsOrganizationRequest =
 
 /** The default workflow permissions granted to the GITHUB_TOKEN when running workflows. */
 export type ActionsDefaultWorkflowPermissions = "read" | "write";
-export const ActionsDefaultWorkflowPermissions = /*@__PURE__*/ S.String;
+export const ActionsDefaultWorkflowPermissions = S.String;
 
 export interface ActionsGetDefaultWorkflowPermissions {
   default_workflow_permissions: ActionsDefaultWorkflowPermissions;
@@ -3656,11 +3652,11 @@ export const GetGithubActionsPermissionsOrganizationRequest =
 
 /** The policy that controls the repositories in the organization that are allowed to run GitHub Actions. */
 export type EnabledRepositories = "all" | "none" | "selected";
-export const EnabledRepositories = /*@__PURE__*/ S.String;
+export const EnabledRepositories = S.String;
 
 /** The permissions policy that controls the actions and reusable workflows that are allowed to run. */
 export type AllowedActions = "all" | "local_only" | "selected";
-export const AllowedActions = /*@__PURE__*/ S.String;
+export const AllowedActions = S.String;
 
 export interface ActionsOrganizationPermissions {
   enabled_repositories: EnabledRepositories;
@@ -3766,7 +3762,7 @@ export type ActionsHostedRunnerCuratedImageSource =
   | "github"
   | "partner"
   | "custom";
-export const ActionsHostedRunnerCuratedImageSource = /*@__PURE__*/ S.String;
+export const ActionsHostedRunnerCuratedImageSource = S.String;
 
 /** Provides details of a hosted runner image */
 export interface ActionsHostedRunnerCuratedImage {
@@ -4012,7 +4008,7 @@ export type JobStatus =
   | "waiting"
   | "requested"
   | "pending";
-export const JobStatus = /*@__PURE__*/ S.String;
+export const JobStatus = S.String;
 
 /** The outcome of the job. */
 export type JobConclusion =
@@ -4023,11 +4019,11 @@ export type JobConclusion =
   | "skipped"
   | "timed_out"
   | "action_required";
-export const JobConclusion = /*@__PURE__*/ S.String;
+export const JobConclusion = S.String;
 
 /** The phase of the lifecycle that the job is currently in. */
 export type JobStepsItemStatus = "queued" | "in_progress" | "completed";
-export const JobStepsItemStatus = /*@__PURE__*/ S.String;
+export const JobStepsItemStatus = S.String;
 
 export interface JobStepsItem {
   /** The phase of the lifecycle that the job is currently in. */
@@ -4181,7 +4177,7 @@ export type OrganizationActionsSecretVisibility =
   | "all"
   | "private"
   | "selected";
-export const OrganizationActionsSecretVisibility = /*@__PURE__*/ S.String;
+export const OrganizationActionsSecretVisibility = S.String;
 
 /** Secrets for GitHub Actions for an organization. */
 export interface OrganizationActionsSecret {
@@ -4231,7 +4227,7 @@ export type OrganizationActionsVariableVisibility =
   | "all"
   | "private"
   | "selected";
-export const OrganizationActionsVariableVisibility = /*@__PURE__*/ S.String;
+export const OrganizationActionsVariableVisibility = S.String;
 
 /** Organization variable for GitHub Actions. */
 export interface OrganizationActionsVariable {
@@ -4307,7 +4303,7 @@ export const PendingDeploymentEnvironment = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of reviewer. */
 export type DeploymentReviewerType = "User" | "Team";
-export const DeploymentReviewerType = /*@__PURE__*/ S.String;
+export const DeploymentReviewerType = S.String;
 
 export interface TeamPermissions {
   pull: boolean;
@@ -4330,15 +4326,15 @@ export const TeamPermissions = /*@__PURE__*/ S.suspend(() =>
 
 /** The ownership type of the team */
 export type TeamType = "enterprise" | "organization";
-export const TeamType = /*@__PURE__*/ S.String;
+export const TeamType = S.String;
 
 /** How the team's access to the repository was granted. This property is only present when the team is returned in a repository context, such as `GET /repos/{owner}/{repo}/teams`. */
 export type TeamAccessSource = "direct" | "organization" | "enterprise";
-export const TeamAccessSource = /*@__PURE__*/ S.String;
+export const TeamAccessSource = S.String;
 
 /** The ownership type of the team */
 export type NullableTeamSimpleType = "enterprise" | "organization";
-export const NullableTeamSimpleType = /*@__PURE__*/ S.String;
+export const NullableTeamSimpleType = S.String;
 
 /** Groups of organization members that gives permissions on specified repositories. */
 export interface NullableTeamSimple {
@@ -4443,7 +4439,7 @@ export const Team = /*@__PURE__*/ S.suspend(() =>
 
 export type PendingDeploymentReviewersItemReviewer = SimpleUser | Team;
 export const PendingDeploymentReviewersItemReviewer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PendingDeploymentReviewersItemReviewer>;
+  S.Unknown as any as S.Schema<PendingDeploymentReviewersItemReviewer>;
 
 export interface PendingDeploymentReviewersItem {
   type?: DeploymentReviewerType;
@@ -4696,7 +4692,7 @@ export const EnvironmentApprovalsEnvironmentsList = /*@__PURE__*/ S.Array(
 
 /** Whether deployment to the environment(s) was approved or rejected or pending (with comments) */
 export type EnvironmentApprovalsState = "approved" | "rejected" | "pending";
-export const EnvironmentApprovalsState = /*@__PURE__*/ S.String;
+export const EnvironmentApprovalsState = S.String;
 
 /** An entry in the reviews log for environment deployments */
 export interface EnvironmentApprovals {
@@ -4907,8 +4903,7 @@ export type SelfHostedRunnersSettingsEnabledRepositories =
   | "all"
   | "selected"
   | "none";
-export const SelfHostedRunnersSettingsEnabledRepositories =
-  /*@__PURE__*/ S.String;
+export const SelfHostedRunnersSettingsEnabledRepositories = S.String;
 
 export interface SelfHostedRunnersSettings {
   /** The policy that controls whether self-hosted runners can be used by repositories in the organization */
@@ -4955,7 +4950,7 @@ export type WorkflowState =
   | "disabled_fork"
   | "disabled_inactivity"
   | "disabled_manually";
-export const WorkflowState = /*@__PURE__*/ S.String;
+export const WorkflowState = S.String;
 
 /** A GitHub Actions workflow */
 export interface Workflow {
@@ -5014,8 +5009,7 @@ export type ActionsWorkflowAccessToRepositoryAccessLevel =
   | "none"
   | "user"
   | "organization";
-export const ActionsWorkflowAccessToRepositoryAccessLevel =
-  /*@__PURE__*/ S.String;
+export const ActionsWorkflowAccessToRepositoryAccessLevel = S.String;
 
 export interface ActionsWorkflowAccessToRepository {
   /** Defines the level of access that workflows outside of the repository have to actions and reusable workflows within the repository. `none` means the access is only possible from workflows in this repository. `user` level access allows sharing across user owned private repositories only. `organization` level access allows sharing across the organization. */
@@ -5207,8 +5201,7 @@ export const MinimalRepositoryTopicsList = /*@__PURE__*/ S.Array(
 export type MinimalRepositoryPullRequestCreationPolicy =
   | "all"
   | "collaborators_only";
-export const MinimalRepositoryPullRequestCreationPolicy =
-  /*@__PURE__*/ S.String;
+export const MinimalRepositoryPullRequestCreationPolicy = S.String;
 
 export interface MinimalRepositoryPermissions {
   admin?: boolean;
@@ -5267,7 +5260,7 @@ export const MinimalRepositoryLicense = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MinimalRepositoryLicense>;
 
 export type SecurityAndAnalysisAdvancedSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisAdvancedSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisAdvancedSecurityStatus = S.String;
 
 /** Enable or disable GitHub Advanced Security for the repository. For standalone Code Scanning or Secret Protection products, this parameter cannot be used. */
 export interface SecurityAndAnalysisAdvancedSecurity {
@@ -5282,7 +5275,7 @@ export const SecurityAndAnalysisAdvancedSecurity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecurityAndAnalysisAdvancedSecurity>;
 
 export type SecurityAndAnalysisCodeSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisCodeSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisCodeSecurityStatus = S.String;
 
 export interface SecurityAndAnalysisCodeSecurity {
   status?: SecurityAndAnalysisCodeSecurityStatus;
@@ -5299,8 +5292,7 @@ export const SecurityAndAnalysisCodeSecurity = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisDependabotSecurityUpdatesStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisDependabotSecurityUpdatesStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisDependabotSecurityUpdatesStatus = S.String;
 
 /** Enable or disable Dependabot security updates for the repository. */
 export interface SecurityAndAnalysisDependabotSecurityUpdates {
@@ -5317,7 +5309,7 @@ export const SecurityAndAnalysisDependabotSecurityUpdates =
   }) as any as S.Schema<SecurityAndAnalysisDependabotSecurityUpdates>;
 
 export type SecurityAndAnalysisSecretScanningStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisSecretScanningStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanning {
   status?: SecurityAndAnalysisSecretScanningStatus;
@@ -5333,8 +5325,7 @@ export const SecurityAndAnalysisSecretScanning = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisSecretScanningPushProtectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningPushProtectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningPushProtectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningPushProtection {
   status?: SecurityAndAnalysisSecretScanningPushProtectionStatus;
@@ -5352,7 +5343,7 @@ export type SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningNonProviderPatterns {
   status?: SecurityAndAnalysisSecretScanningNonProviderPatternsStatus;
@@ -5371,8 +5362,7 @@ export const SecurityAndAnalysisSecretScanningNonProviderPatterns =
 export type SecurityAndAnalysisSecretScanningAiDetectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningAiDetectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningAiDetectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningAiDetection {
   status?: SecurityAndAnalysisSecretScanningAiDetectionStatus;
@@ -5390,7 +5380,7 @@ export type SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedAlertDismissal {
   status?: SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus;
@@ -5409,8 +5399,7 @@ export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissal =
 export type SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypass {
   status?: SecurityAndAnalysisSecretScanningDelegatedBypassStatus;
@@ -5431,14 +5420,14 @@ export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem
   | "TEAM"
   | "ROLE";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The bypass mode for the reviewer */
 export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
   | "ALWAYS"
   | "EXEMPT";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem {
   /** The ID of the team or role selected as a bypass reviewer */
@@ -6226,7 +6215,7 @@ export type ConcurrencyGroupRunListConcurrencyGroupsItemGroupMembersItemStatus =
   | "in_progress"
   | "pending";
 export const ConcurrencyGroupRunListConcurrencyGroupsItemGroupMembersItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConcurrencyGroupRunListConcurrencyGroupsItemGroupMembersItem {
   /** The ID of the workflow run. */
@@ -6592,7 +6581,7 @@ export const ListHostedRunnersForOrgResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListHostedRunnersForOrgResponse>;
 
 export type ListJobsForWorkflowRunRequestFilter = "latest" | "all";
-export const ListJobsForWorkflowRunRequestFilter = /*@__PURE__*/ S.String;
+export const ListJobsForWorkflowRunRequestFilter = S.String;
 
 export interface ListJobsForWorkflowRunRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -7626,7 +7615,7 @@ export const ListSelfHostedRunnersInGroupForOrgResponse =
   }) as any as S.Schema<ListSelfHostedRunnersInGroupForOrgResponse>;
 
 export type ListWorkflowRunArtifactsRequestDirection = "asc" | "desc";
-export const ListWorkflowRunArtifactsRequestDirection = /*@__PURE__*/ S.String;
+export const ListWorkflowRunArtifactsRequestDirection = S.String;
 
 export interface ListWorkflowRunArtifactsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -7700,7 +7689,7 @@ export type ListWorkflowRunsRequestStatus =
   | "requested"
   | "waiting"
   | "pending";
-export const ListWorkflowRunsRequestStatus = /*@__PURE__*/ S.String;
+export const ListWorkflowRunsRequestStatus = S.String;
 
 export interface ListWorkflowRunsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -7789,7 +7778,7 @@ export type ListWorkflowRunsForRepoRequestStatus =
   | "requested"
   | "waiting"
   | "pending";
-export const ListWorkflowRunsForRepoRequestStatus = /*@__PURE__*/ S.String;
+export const ListWorkflowRunsForRepoRequestStatus = S.String;
 
 export interface ListWorkflowRunsForRepoRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -8255,7 +8244,7 @@ export const ReviewCustomGatesCommentRequired = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether to approve or reject deployment to the specified environments. */
 export type ReviewCustomGatesStateRequiredState = "approved" | "rejected";
-export const ReviewCustomGatesStateRequiredState = /*@__PURE__*/ S.String;
+export const ReviewCustomGatesStateRequiredState = S.String;
 
 export interface ReviewCustomGatesStateRequired {
   /** The name of the environment to approve or reject. */
@@ -8279,7 +8268,7 @@ export type ReviewCustomGatesForRunRequestBody =
   | ReviewCustomGatesCommentRequired
   | ReviewCustomGatesStateRequired;
 export const ReviewCustomGatesForRunRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReviewCustomGatesForRunRequestBody>;
+  S.Unknown as any as S.Schema<ReviewCustomGatesForRunRequestBody>;
 
 export interface ReviewCustomGatesForRunRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -8326,8 +8315,7 @@ export const ReviewPendingDeploymentsForRunRequestEnvironmentIdsList =
 export type ReviewPendingDeploymentsForRunRequestState =
   | "approved"
   | "rejected";
-export const ReviewPendingDeploymentsForRunRequestState =
-  /*@__PURE__*/ S.String;
+export const ReviewPendingDeploymentsForRunRequestState = S.String;
 
 export interface ReviewPendingDeploymentsForRunRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -8371,7 +8359,7 @@ export const DeploymentPayloadCase0Map = /*@__PURE__*/ S.Record(
 
 export type DeploymentPayload = DeploymentPayloadCase0Map | string;
 export const DeploymentPayload =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DeploymentPayload>;
+  S.Unknown as any as S.Schema<DeploymentPayload>;
 
 /** A GitHub user. */
 export type NullableSimpleUser = SimpleUser;
@@ -8412,7 +8400,7 @@ export const Enterprise = /*@__PURE__*/ S.suspend(() =>
 
 export type NullableIntegrationOwner = SimpleUser | Enterprise;
 export const NullableIntegrationOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NullableIntegrationOwner>;
+  S.Unknown as any as S.Schema<NullableIntegrationOwner>;
 
 /** The set of permissions for the GitHub app */
 export interface NullableIntegrationPermissions {
@@ -9075,7 +9063,7 @@ export type SetForkPrContributorApprovalPermissionsOrganizationRequestApprovalPo
   | "first_time_contributors"
   | "all_external_contributors";
 export const SetForkPrContributorApprovalPermissionsOrganizationRequestApprovalPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SetForkPrContributorApprovalPermissionsOrganizationRequest {
   /** The organization name. The name is not case sensitive. */
@@ -9114,7 +9102,7 @@ export type SetForkPrContributorApprovalPermissionsRepositoryRequestApprovalPoli
   | "first_time_contributors"
   | "all_external_contributors";
 export const SetForkPrContributorApprovalPermissionsRepositoryRequestApprovalPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SetForkPrContributorApprovalPermissionsRepositoryRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -9603,7 +9591,7 @@ export type SetSelfHostedRunnersPermissionsOrganizationRequestEnabledRepositorie
   | "selected"
   | "none";
 export const SetSelfHostedRunnersPermissionsOrganizationRequestEnabledRepositories =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SetSelfHostedRunnersPermissionsOrganizationRequest {
   /** The organization name. The name is not case sensitive. */
@@ -9641,8 +9629,7 @@ export type SetWorkflowAccessToRepositoryRequestAccessLevel =
   | "none"
   | "user"
   | "organization";
-export const SetWorkflowAccessToRepositoryRequestAccessLevel =
-  /*@__PURE__*/ S.String;
+export const SetWorkflowAccessToRepositoryRequestAccessLevel = S.String;
 
 export interface SetWorkflowAccessToRepositoryRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -9718,8 +9705,7 @@ export type UpdateHostedRunnerForOrgRequestImageSource =
   | "github"
   | "partner"
   | "custom";
-export const UpdateHostedRunnerForOrgRequestImageSource =
-  /*@__PURE__*/ S.String;
+export const UpdateHostedRunnerForOrgRequestImageSource = S.String;
 
 export interface UpdateHostedRunnerForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -9771,7 +9757,7 @@ export const UpdateHostedRunnerForOrgRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of repositories in the organization that can access the variable. `selected` means only the repositories specified by `selected_repository_ids` can access the variable. */
 export type UpdateOrgVariableRequestVisibility = "all" | "private" | "selected";
-export const UpdateOrgVariableRequestVisibility = /*@__PURE__*/ S.String;
+export const UpdateOrgVariableRequestVisibility = S.String;
 
 /** An array of repository ids that can access the organization variable. You can only provide a list of repository ids when the `visibility` is set to `selected`. */
 export type UpdateOrgVariableRequestSelectedRepositoryIdsList = Array<number>;
@@ -9858,8 +9844,7 @@ export type UpdateSelfHostedRunnerGroupForOrgRequestVisibility =
   | "selected"
   | "all"
   | "private";
-export const UpdateSelfHostedRunnerGroupForOrgRequestVisibility =
-  /*@__PURE__*/ S.String;
+export const UpdateSelfHostedRunnerGroupForOrgRequestVisibility = S.String;
 
 /** List of workflows the runner group should be allowed to run. This setting will be ignored unless `restricted_to_workflows` is set to `true`. */
 export type UpdateSelfHostedRunnerGroupForOrgRequestSelectedWorkflowsList =

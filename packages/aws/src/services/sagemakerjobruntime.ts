@@ -116,7 +116,7 @@ export class ValidationException
 export type JobArn = string;
 export type TrajectoryId = string;
 export type CompletionStatus = "ready" | "failed" | (string & {});
-export const CompletionStatus = /*@__PURE__*/ S.String;
+export const CompletionStatus = S.String;
 
 export interface CompleteRolloutRequest {
   JobArn: string;

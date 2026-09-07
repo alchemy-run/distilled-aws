@@ -48,8 +48,7 @@ export type AzureResourceManagerResourceProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const AzureResourceManagerResourceProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AzureResourceManagerResourceProvisioningState = S.String;
 
 /** The artifact download properties */
 export interface ArtifactDownloadResult {
@@ -317,7 +316,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -325,7 +324,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -377,7 +376,7 @@ export type ProvisioningState =
   | "Initialized"
   | "InProgress"
   | "Deleting";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** ConfigTemplateMetadata Properties */
 export interface ConfigTemplateMetadataProperties {
@@ -955,7 +954,7 @@ export const ContextsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Resource Type State */
 export type ResourceState = "active" | "inactive";
-export const ResourceState = /*@__PURE__*/ S.String;
+export const ResourceState = S.String;
 
 /** Capability, to match in Solution Templates & Targets */
 export interface Capability {
@@ -1125,7 +1124,7 @@ export const ContextsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Denotes which part of the version number will be updated */
 export type UpdateType = "Major" | "Minor" | "Patch";
-export const UpdateType = /*@__PURE__*/ S.String;
+export const UpdateType = S.String;
 
 /** Config Template Version Resource */
 export interface ConfigTemplateVersionInput {
@@ -1316,7 +1315,7 @@ export const SolutionTemplateVersionPropertiesInputSpecificationMap =
 
 /** Available Orchestrator types */
 export type OrchestratorType = "TO";
-export const OrchestratorType = /*@__PURE__*/ S.String;
+export const OrchestratorType = S.String;
 
 /** Solution Template Version Properties */
 export interface SolutionTemplateVersionPropertiesInput {
@@ -1402,7 +1401,7 @@ export type InternalState =
   | "Validated"
   | "ValidatedWithSchema"
   | "ValidatedWithoutSchema";
-export const InternalState = /*@__PURE__*/ S.String;
+export const InternalState = S.String;
 
 /** Solution Template Version Properties */
 export interface SolutionTemplateVersionProperties {
@@ -2464,8 +2463,7 @@ export const DiagnosticPropertiesInput = ConfigurationPropertiesInput;
 export type AzureResourceManagerCommonTypesExtendedLocationType =
   | "EdgeZone"
   | "CustomLocation";
-export const AzureResourceManagerCommonTypesExtendedLocationType =
-  /*@__PURE__*/ S.String;
+export const AzureResourceManagerCommonTypesExtendedLocationType = S.String;
 
 /** The complex type of the extended location. */
 export interface AzureResourceManagerCommonTypesExtendedLocation {
@@ -2595,19 +2593,19 @@ export const DisconnectedOperationsCreateOrUpdateRequestTagsMap =
 
 /** Connection Intent */
 export type ConnectionIntent = "Connected" | "Disconnected";
-export const ConnectionIntent = /*@__PURE__*/ S.String;
+export const ConnectionIntent = S.String;
 
 /** Registration status */
 export type RegistrationStatus = "Registered" | "Unregistered";
-export const RegistrationStatus = /*@__PURE__*/ S.String;
+export const RegistrationStatus = S.String;
 
 /** Auto renew status */
 export type AutoRenew = "Enabled" | "Disabled";
-export const AutoRenew = /*@__PURE__*/ S.String;
+export const AutoRenew = S.String;
 
 /** Pricing model */
 export type PricingModel = "Trial" | "Annual";
-export const PricingModel = /*@__PURE__*/ S.String;
+export const PricingModel = S.String;
 
 /** The billing period */
 export interface BillingPeriodInput {
@@ -2646,7 +2644,7 @@ export const BillingConfigurationInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Benefit plans status */
 export type BenefitPlanStatus = "Enabled" | "Disabled";
-export const BenefitPlanStatus = /*@__PURE__*/ S.String;
+export const BenefitPlanStatus = S.String;
 
 /** The benefit plans */
 export interface BenefitPlans {
@@ -2735,15 +2733,15 @@ export const DisconnectedOperationsCreateOrUpdateResponseTagsMap =
 
 /** Billing model */
 export type BillingModel = "Capacity";
-export const BillingModel = /*@__PURE__*/ S.String;
+export const BillingModel = S.String;
 
 /** Connection status */
 export type ConnectionStatus = "Connected" | "Disconnected";
-export const ConnectionStatus = /*@__PURE__*/ S.String;
+export const ConnectionStatus = S.String;
 
 /** Billing status */
 export type BillingStatus = "Enabled" | "Disabled" | "Stopped";
-export const BillingStatus = /*@__PURE__*/ S.String;
+export const BillingStatus = S.String;
 
 /** The billing period */
 export interface BillingPeriod {
@@ -2904,11 +2902,11 @@ export const DynamicConfigurationsCreateOrUpdateRequest =
 
 /** Available configuration types */
 export type ConfigurationType = "Shared" | "Hierarchy";
-export const ConfigurationType = /*@__PURE__*/ S.String;
+export const ConfigurationType = S.String;
 
 /** Available configuration models */
 export type ConfigurationModel = "Application" | "Common";
-export const ConfigurationModel = /*@__PURE__*/ S.String;
+export const ConfigurationModel = S.String;
 
 /** Dynamic Configuration Properties */
 export interface DynamicConfigurationProperties {
@@ -3013,7 +3011,7 @@ export const DynamicConfigurationVersionsCreateOrUpdateRequest =
 export type ConfigurationState =
   | "ConfigurationCompleted"
   | "ConfigurationPending";
-export const ConfigurationState = /*@__PURE__*/ S.String;
+export const ConfigurationState = S.String;
 
 /** Dynamic Configuration Properties */
 export interface DynamicConfigurationVersionProperties {
@@ -3295,7 +3293,7 @@ export const ExecutionPropertiesSpecificationMap = /*@__PURE__*/ S.Record(
 
 /** Instance State */
 export type ActiveState = "active" | "inactive";
-export const ActiveState = /*@__PURE__*/ S.String;
+export const ActiveState = S.String;
 
 /** The inputs of the StageHistory, Inputs holds a key-value map of user-defined parameters for the initial stage */
 export type StageStatusInputsMap = { [key: string]: unknown | undefined };
@@ -4546,7 +4544,7 @@ export const GetHierarchyConfigurationMetadataVersionRequest =
 export type ConfigTemplateConfigurationState =
   | "ConfigurationCompleted"
   | "ConfigurationPending";
-export const ConfigTemplateConfigurationState = /*@__PURE__*/ S.String;
+export const ConfigTemplateConfigurationState = S.String;
 
 /** Hierarchy Configuration Metadata Version Properties */
 export interface HierarchyConfigurationMetadataVersionProperties {
@@ -4629,7 +4627,7 @@ export const GetImageRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Release Type */
 export type ReleaseType = "Install" | "Update";
-export const ReleaseType = /*@__PURE__*/ S.String;
+export const ReleaseType = S.String;
 
 /** The versions that are compatible for this update package. */
 export type ImagePropertiesCompatibleVersionsList = Array<string>;
@@ -4639,7 +4637,7 @@ export const ImagePropertiesCompatibleVersionsList = /*@__PURE__*/ S.Array(
 
 /** System Reboot */
 export type SystemReboot = "Required" | "NotRequired";
-export const SystemReboot = /*@__PURE__*/ S.String;
+export const SystemReboot = S.String;
 
 /** The update properties of the Update Release type Image */
 export interface ImageUpdateProperties {
@@ -4759,7 +4757,7 @@ export const GetInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Defines a state of the reconciliation policy. */
 export type ReconciliationState = "inactive" | "active";
-export const ReconciliationState = /*@__PURE__*/ S.String;
+export const ReconciliationState = S.String;
 
 /** Defines a ReconciliationPolicy */
 export interface ReconciliationPolicyProperties {
@@ -5097,11 +5095,11 @@ export type JobType =
   | "staging"
   | "externalValidation"
   | "uninstall";
-export const JobType = /*@__PURE__*/ S.String;
+export const JobType = S.String;
 
 /** Status of a job or job step. */
 export type JobStatus = "NotStarted" | "InProgress" | "Succeeded" | "Failed";
-export const JobStatus = /*@__PURE__*/ S.String;
+export const JobStatus = S.String;
 
 /** Base Job Parameter */
 export interface JobParameterBase {
@@ -6391,7 +6389,7 @@ export type State =
   | "ExternalValidationFailed"
   | "Staging"
   | "NotApplicable";
-export const State = /*@__PURE__*/ S.String;
+export const State = S.String;
 
 /** Stages for Solution Version */
 export type CMStages =
@@ -6402,7 +6400,7 @@ export type CMStages =
   | "ExternalValidation"
   | "Staging"
   | "Unstaging";
-export const CMStages = /*@__PURE__*/ S.String;
+export const CMStages = S.String;
 
 /** State Category for Solution Version */
 export type StateCategory =
@@ -6411,7 +6409,7 @@ export type StateCategory =
   | "Completed"
   | "Failed"
   | "None";
-export const StateCategory = /*@__PURE__*/ S.String;
+export const StateCategory = S.String;
 
 /** Child stages which represents more granular level stage status if any */
 export type StageMapChildStagesList = Array<StageMap>;
@@ -6906,7 +6904,7 @@ export type ErrorActionMode =
   | "stopOnAnyFailure"
   | "stopOnNFailures"
   | "silentlyContinue";
-export const ErrorActionMode = /*@__PURE__*/ S.String;
+export const ErrorActionMode = S.String;
 
 /** Error Action Properties */
 export interface ErrorAction {
@@ -9252,11 +9250,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -14259,7 +14257,7 @@ export const UpdateTargetExternalValidationStatusRequestErrorDetails =
 
 /** Solution Instance Validation Status */
 export type ValidationStatus = "Valid" | "Invalid";
-export const ValidationStatus = /*@__PURE__*/ S.String;
+export const ValidationStatus = S.String;
 
 export interface UpdateTargetExternalValidationStatusRequest {
   /** The ID of the target subscription. The value must be an UUID. */

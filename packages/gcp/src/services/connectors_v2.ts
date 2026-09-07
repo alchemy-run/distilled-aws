@@ -133,7 +133,7 @@ export type CheckStatusResponseStateEnum =
   | "ACTIVE"
   | "ERROR"
   | "AUTH_ERROR";
-export const CheckStatusResponseStateEnum = /*@__PURE__*/ S.String;
+export const CheckStatusResponseStateEnum = S.String;
 
 /** The status of the connector. */
 export interface CheckStatusResponse {
@@ -386,7 +386,7 @@ export type ExecuteHttpRequestRequestHttpMethodEnum =
   | "HTTP_METHOD_DELETE"
   | "HTTP_METHOD_HEAD"
   | "HTTP_METHOD_OPTIONS";
-export const ExecuteHttpRequestRequestHttpMethodEnum = /*@__PURE__*/ S.String;
+export const ExecuteHttpRequestRequestHttpMethodEnum = S.String;
 
 /** A single HTTP header. Keys are case-insensitive. Multiple headers with the same key may be present. */
 export interface HttpHeader {
@@ -636,7 +636,7 @@ export type QueryParameterDataTypeEnum =
   | "REF_CURSOR"
   | "TIME_WITH_TIMEZONE"
   | "TIMESTAMP_WITH_TIMEZONE";
-export const QueryParameterDataTypeEnum = /*@__PURE__*/ S.String;
+export const QueryParameterDataTypeEnum = S.String;
 
 /** Query parameter definition */
 export interface QueryParameter {
@@ -730,7 +730,7 @@ export type ToolNameOperationEnum =
   | "CREATE"
   | "UPDATE"
   | "DELETE";
-export const ToolNameOperationEnum = /*@__PURE__*/ S.String;
+export const ToolNameOperationEnum = S.String;
 
 export interface ToolName {
   /** Operation for which the tool was generated. */
@@ -817,8 +817,7 @@ export type GetProjectsLocationsConnectionsActionsViewEnum =
   | "ACTION_SCHEMA_VIEW_UNSPECIFIED"
   | "ACTION_SCHEMA_VIEW_BASIC"
   | "ACTION_SCHEMA_VIEW_ENRICHED";
-export const GetProjectsLocationsConnectionsActionsViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsConnectionsActionsViewEnum = S.String;
 
 export interface GetProjectsLocationsConnectionsActionsRequest {
   /** Required. Resource name of the Action. Format: projects/{project}/locations/{location}/connections/{connection}/actions/{action} */
@@ -893,7 +892,7 @@ export type ResultMetadataDataTypeEnum =
   | "REF_CURSOR"
   | "TIME_WITH_TIMEZONE"
   | "TIMESTAMP_WITH_TIMEZONE";
-export const ResultMetadataDataTypeEnum = /*@__PURE__*/ S.String;
+export const ResultMetadataDataTypeEnum = S.String;
 
 export type JsonSchemaMap = { [key: string]: JsonSchema | undefined };
 export const JsonSchemaMap = /*@__PURE__*/ S.Record(
@@ -957,7 +956,7 @@ export type JsonSchemaJdbcTypeEnum =
   | "REF_CURSOR"
   | "TIME_WITH_TIMEZONE"
   | "TIMESTAMP_WITH_TIMEZONE";
-export const JsonSchemaJdbcTypeEnum = /*@__PURE__*/ S.String;
+export const JsonSchemaJdbcTypeEnum = S.String;
 
 /** JsonSchema representation of schema metadata */
 export interface JsonSchema {
@@ -1191,7 +1190,7 @@ export type InputParameterDataTypeEnum =
   | "REF_CURSOR"
   | "TIME_WITH_TIMEZONE"
   | "TIMESTAMP_WITH_TIMEZONE";
-export const InputParameterDataTypeEnum = /*@__PURE__*/ S.String;
+export const InputParameterDataTypeEnum = S.String;
 
 /** Input Parameter message contains metadata about the parameters required for executing an Action. */
 export interface InputParameter {
@@ -1263,8 +1262,7 @@ export type GetProjectsLocationsConnectionsEntityTypesViewEnum =
   | "ENTITY_TYPE_SCHEMA_VIEW_UNSPECIFIED"
   | "ENTITY_TYPE_SCHEMA_VIEW_BASIC"
   | "ENTITY_TYPE_SCHEMA_VIEW_ENRICHED";
-export const GetProjectsLocationsConnectionsEntityTypesViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsConnectionsEntityTypesViewEnum = S.String;
 
 export interface GetProjectsLocationsConnectionsEntityTypesRequest {
   /** headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"}' */
@@ -1342,7 +1340,7 @@ export type FieldDataTypeEnum =
   | "REF_CURSOR"
   | "TIME_WITH_TIMEZONE"
   | "TIMESTAMP_WITH_TIMEZONE";
-export const FieldDataTypeEnum = /*@__PURE__*/ S.String;
+export const FieldDataTypeEnum = S.String;
 
 export interface Reference {
   /** Name of the reference field. */
@@ -1404,7 +1402,7 @@ export type EntityTypeOperationsItemEnum =
   | "CREATE"
   | "UPDATE"
   | "DELETE";
-export const EntityTypeOperationsItemEnum = /*@__PURE__*/ S.String;
+export const EntityTypeOperationsItemEnum = S.String;
 
 export type EntityTypeOperationsItemEnumList =
   Array<EntityTypeOperationsItemEnum>;
@@ -1574,8 +1572,7 @@ export type ListProjectsLocationsConnectionsActionsViewEnum =
   | "ACTION_VIEW_UNSPECIFIED"
   | "ACTION_VIEW_BASIC"
   | "ACTION_VIEW_FULL";
-export const ListProjectsLocationsConnectionsActionsViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsConnectionsActionsViewEnum = S.String;
 
 export interface ListProjectsLocationsConnectionsActionsRequest {
   /** Page token, return from a previous ListActions call, that can be used retrieve the next page of content. If unspecified, the request returns the first page of actions. */
@@ -1641,8 +1638,7 @@ export type ListProjectsLocationsConnectionsEntityTypesViewEnum =
   | "ENTITY_TYPE_VIEW_UNSPECIFIED"
   | "ENTITY_TYPE_VIEW_BASIC"
   | "ENTITY_TYPE_VIEW_FULL";
-export const ListProjectsLocationsConnectionsEntityTypesViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsConnectionsEntityTypesViewEnum = S.String;
 
 export interface ListProjectsLocationsConnectionsEntityTypesRequest {
   /** Number of entity types to return. Defaults to 25. */

@@ -85,7 +85,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -93,7 +93,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -148,7 +148,7 @@ export type ProvisioningState =
   | "Updating"
   | "Deleting"
   | "Failed";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Azure Traffic Collector resource properties. */
 export interface AzureTrafficCollectorPropertiesFormat {
@@ -218,11 +218,11 @@ export const AzureTrafficCollectorsCreateOrUpdateResponse =
 
 /** The ingestion type. */
 export type IngestionType = "IPFIX";
-export const IngestionType = /*@__PURE__*/ S.String;
+export const IngestionType = S.String;
 
 /** Ingestion source type. */
 export type SourceType = "Resource";
-export const SourceType = /*@__PURE__*/ S.String;
+export const SourceType = S.String;
 
 /** Ingestion policy properties. */
 export interface IngestionSourcesPropertiesFormat {
@@ -268,11 +268,11 @@ export const IngestionPolicyPropertiesFormat = /*@__PURE__*/ S.suspend(() =>
 
 /** Emission format type. */
 export type EmissionType = "IPFIX";
-export const EmissionType = /*@__PURE__*/ S.String;
+export const EmissionType = S.String;
 
 /** Emission destination type. */
 export type DestinationType = "AzureMonitor";
-export const DestinationType = /*@__PURE__*/ S.String;
+export const DestinationType = S.String;
 
 /** Emission policy destination properties. */
 export interface EmissionPolicyDestination {

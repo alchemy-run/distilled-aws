@@ -825,7 +825,7 @@ export type GetCopilotCodingAgentPermissionsOrganizationResponseEnabledRepositor
   | "selected"
   | "none";
 export const GetCopilotCodingAgentPermissionsOrganizationResponseEnabledRepositories =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCopilotCodingAgentPermissionsOrganizationResponse {
   /** The policy for which repositories can use Copilot cloud agent. Can be one of `all`, `selected`, or `none`. */
@@ -892,29 +892,28 @@ export type CopilotOrganizationDetailsPublicCodeSuggestions =
   | "allow"
   | "block"
   | "unconfigured";
-export const CopilotOrganizationDetailsPublicCodeSuggestions =
-  /*@__PURE__*/ S.String;
+export const CopilotOrganizationDetailsPublicCodeSuggestions = S.String;
 
 /** The organization policy for allowing or disallowing Copilot Chat in the IDE. */
 export type CopilotOrganizationDetailsIdeChat =
   | "enabled"
   | "disabled"
   | "unconfigured";
-export const CopilotOrganizationDetailsIdeChat = /*@__PURE__*/ S.String;
+export const CopilotOrganizationDetailsIdeChat = S.String;
 
 /** The organization policy for allowing or disallowing Copilot features on GitHub.com. */
 export type CopilotOrganizationDetailsPlatformChat =
   | "enabled"
   | "disabled"
   | "unconfigured";
-export const CopilotOrganizationDetailsPlatformChat = /*@__PURE__*/ S.String;
+export const CopilotOrganizationDetailsPlatformChat = S.String;
 
 /** The organization policy for allowing or disallowing Copilot CLI. */
 export type CopilotOrganizationDetailsCli =
   | "enabled"
   | "disabled"
   | "unconfigured";
-export const CopilotOrganizationDetailsCli = /*@__PURE__*/ S.String;
+export const CopilotOrganizationDetailsCli = S.String;
 
 /** The mode of assigning new seats. */
 export type CopilotOrganizationDetailsSeatManagementSetting =
@@ -922,12 +921,11 @@ export type CopilotOrganizationDetailsSeatManagementSetting =
   | "assign_selected"
   | "disabled"
   | "unconfigured";
-export const CopilotOrganizationDetailsSeatManagementSetting =
-  /*@__PURE__*/ S.String;
+export const CopilotOrganizationDetailsSeatManagementSetting = S.String;
 
 /** The Copilot plan of the organization, or the parent enterprise, when applicable. */
 export type CopilotOrganizationDetailsPlanType = "business" | "enterprise";
-export const CopilotOrganizationDetailsPlanType = /*@__PURE__*/ S.String;
+export const CopilotOrganizationDetailsPlanType = S.String;
 
 /** Information about the seat breakdown and policies set for an organization with a Copilot Business or Copilot Enterprise subscription. */
 export interface CopilotOrganizationDetails {
@@ -1089,15 +1087,15 @@ export const TeamPermissions = /*@__PURE__*/ S.suspend(() =>
 
 /** The ownership type of the team */
 export type TeamType = "enterprise" | "organization";
-export const TeamType = /*@__PURE__*/ S.String;
+export const TeamType = S.String;
 
 /** How the team's access to the repository was granted. This property is only present when the team is returned in a repository context, such as `GET /repos/{owner}/{repo}/teams`. */
 export type TeamAccessSource = "direct" | "organization" | "enterprise";
-export const TeamAccessSource = /*@__PURE__*/ S.String;
+export const TeamAccessSource = S.String;
 
 /** The ownership type of the team */
 export type NullableTeamSimpleType = "enterprise" | "organization";
-export const NullableTeamSimpleType = /*@__PURE__*/ S.String;
+export const NullableTeamSimpleType = S.String;
 
 /** Groups of organization members that gives permissions on specified repositories. */
 export interface NullableTeamSimple {
@@ -1204,7 +1202,7 @@ export const Team = /*@__PURE__*/ S.suspend(() =>
 export type EnterpriseTeamNotificationSetting =
   | "notifications_enabled"
   | "notifications_disabled";
-export const EnterpriseTeamNotificationSetting = /*@__PURE__*/ S.String;
+export const EnterpriseTeamNotificationSetting = S.String;
 
 /** Group of enterprise owners and/or members */
 export interface EnterpriseTeam {
@@ -1248,11 +1246,11 @@ export const EnterpriseTeam = /*@__PURE__*/ S.suspend(() =>
 /** The team through which the assignee is granted access to GitHub Copilot, if applicable. */
 export type CopilotSeatDetailsAssigningTeam = Team | EnterpriseTeam;
 export const CopilotSeatDetailsAssigningTeam =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CopilotSeatDetailsAssigningTeam>;
+  S.Unknown as any as S.Schema<CopilotSeatDetailsAssigningTeam>;
 
 /** The Copilot plan of the organization, or the parent enterprise, when applicable. */
 export type CopilotSeatDetailsPlanType = "business" | "enterprise" | "unknown";
-export const CopilotSeatDetailsPlanType = /*@__PURE__*/ S.String;
+export const CopilotSeatDetailsPlanType = S.String;
 
 /** Information about a Copilot Business seat assignment for a user, team, or organization. */
 export interface CopilotSeatDetails {
@@ -1331,8 +1329,7 @@ export const MinimalRepositoryTopicsList = /*@__PURE__*/ S.Array(
 export type MinimalRepositoryPullRequestCreationPolicy =
   | "all"
   | "collaborators_only";
-export const MinimalRepositoryPullRequestCreationPolicy =
-  /*@__PURE__*/ S.String;
+export const MinimalRepositoryPullRequestCreationPolicy = S.String;
 
 export interface MinimalRepositoryPermissions {
   admin?: boolean;
@@ -1391,7 +1388,7 @@ export const MinimalRepositoryLicense = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MinimalRepositoryLicense>;
 
 export type SecurityAndAnalysisAdvancedSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisAdvancedSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisAdvancedSecurityStatus = S.String;
 
 /** Enable or disable GitHub Advanced Security for the repository. For standalone Code Scanning or Secret Protection products, this parameter cannot be used. */
 export interface SecurityAndAnalysisAdvancedSecurity {
@@ -1406,7 +1403,7 @@ export const SecurityAndAnalysisAdvancedSecurity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecurityAndAnalysisAdvancedSecurity>;
 
 export type SecurityAndAnalysisCodeSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisCodeSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisCodeSecurityStatus = S.String;
 
 export interface SecurityAndAnalysisCodeSecurity {
   status?: SecurityAndAnalysisCodeSecurityStatus;
@@ -1423,8 +1420,7 @@ export const SecurityAndAnalysisCodeSecurity = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisDependabotSecurityUpdatesStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisDependabotSecurityUpdatesStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisDependabotSecurityUpdatesStatus = S.String;
 
 /** Enable or disable Dependabot security updates for the repository. */
 export interface SecurityAndAnalysisDependabotSecurityUpdates {
@@ -1441,7 +1437,7 @@ export const SecurityAndAnalysisDependabotSecurityUpdates =
   }) as any as S.Schema<SecurityAndAnalysisDependabotSecurityUpdates>;
 
 export type SecurityAndAnalysisSecretScanningStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisSecretScanningStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanning {
   status?: SecurityAndAnalysisSecretScanningStatus;
@@ -1457,8 +1453,7 @@ export const SecurityAndAnalysisSecretScanning = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisSecretScanningPushProtectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningPushProtectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningPushProtectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningPushProtection {
   status?: SecurityAndAnalysisSecretScanningPushProtectionStatus;
@@ -1476,7 +1471,7 @@ export type SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningNonProviderPatterns {
   status?: SecurityAndAnalysisSecretScanningNonProviderPatternsStatus;
@@ -1495,8 +1490,7 @@ export const SecurityAndAnalysisSecretScanningNonProviderPatterns =
 export type SecurityAndAnalysisSecretScanningAiDetectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningAiDetectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningAiDetectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningAiDetection {
   status?: SecurityAndAnalysisSecretScanningAiDetectionStatus;
@@ -1514,7 +1508,7 @@ export type SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedAlertDismissal {
   status?: SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus;
@@ -1533,8 +1527,7 @@ export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissal =
 export type SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypass {
   status?: SecurityAndAnalysisSecretScanningDelegatedBypassStatus;
@@ -1555,14 +1548,14 @@ export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem
   | "TEAM"
   | "ROLE";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The bypass mode for the reviewer */
 export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
   | "ALWAYS"
   | "EXEMPT";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem {
   /** The ID of the team or role selected as a bypass reviewer */
@@ -2008,7 +2001,7 @@ export type SetCopilotCodingAgentPermissionsOrganizationRequestEnabledRepositori
   | "selected"
   | "none";
 export const SetCopilotCodingAgentPermissionsOrganizationRequestEnabledRepositories =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SetCopilotCodingAgentPermissionsOrganizationRequest {
   /** The organization name. The name is not case sensitive. */
@@ -2127,7 +2120,7 @@ export type SetCopilotContentExclusionForOrganizationRequestBodyValueItem =
   | SetCopilotContentExclusionForOrganizationRequestBodyValueItemCase1
   | SetCopilotContentExclusionForOrganizationRequestBodyValueItemCase2;
 export const SetCopilotContentExclusionForOrganizationRequestBodyValueItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SetCopilotContentExclusionForOrganizationRequestBodyValueItem>;
+  S.Unknown as any as S.Schema<SetCopilotContentExclusionForOrganizationRequestBodyValueItem>;
 
 export type SetCopilotContentExclusionForOrganizationRequestBodyValueList =
   Array<SetCopilotContentExclusionForOrganizationRequestBodyValueItem>;
@@ -2188,8 +2181,7 @@ export type SetEnterpriseCodingAgentPolicyRequestPolicyState =
   | "disabled_for_all_orgs"
   | "enabled_for_selected_orgs"
   | "configured_by_org_admins";
-export const SetEnterpriseCodingAgentPolicyRequestPolicyState =
-  /*@__PURE__*/ S.String;
+export const SetEnterpriseCodingAgentPolicyRequestPolicyState = S.String;
 
 export interface SetEnterpriseCodingAgentPolicyRequest {
   /** The slug version of the enterprise name. */

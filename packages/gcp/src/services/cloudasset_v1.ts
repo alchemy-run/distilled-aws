@@ -81,8 +81,7 @@ export const GoogleCloudAssetV1GcsDestination = /*@__PURE__*/ S.suspend(() =>
 export type GoogleCloudAssetV1BigQueryDestinationPartitionKeyEnum =
   | "PARTITION_KEY_UNSPECIFIED"
   | "REQUEST_TIME";
-export const GoogleCloudAssetV1BigQueryDestinationPartitionKeyEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAssetV1BigQueryDestinationPartitionKeyEnum = S.String;
 
 /** A BigQuery destination. */
 export interface GoogleCloudAssetV1BigQueryDestination {
@@ -424,7 +423,7 @@ export type IamPolicyAnalysisStateCodeEnum =
   | "INTERNAL"
   | "UNAVAILABLE"
   | "DATA_LOSS";
-export const IamPolicyAnalysisStateCodeEnum = /*@__PURE__*/ S.String;
+export const IamPolicyAnalysisStateCodeEnum = S.String;
 
 /** Represents the detailed state of an entity under analysis, such as a resource, an identity or an access. */
 export interface IamPolicyAnalysisState {
@@ -497,7 +496,7 @@ export type ConditionEvaluationEvaluationValueEnum =
   | "TRUE"
   | "FALSE"
   | "CONDITIONAL";
-export const ConditionEvaluationEvaluationValueEnum = /*@__PURE__*/ S.String;
+export const ConditionEvaluationEvaluationValueEnum = S.String;
 
 /** The condition evaluation. */
 export interface ConditionEvaluation {
@@ -715,7 +714,7 @@ export type AnalyzeMoveV1ViewEnum =
   | "ANALYSIS_VIEW_UNSPECIFIED"
   | "FULL"
   | "BASIC";
-export const AnalyzeMoveV1ViewEnum = /*@__PURE__*/ S.String;
+export const AnalyzeMoveV1ViewEnum = S.String;
 
 export interface AnalyzeMoveV1Request {
   /** Required. Name of the resource to perform the analysis against. Only Google Cloud projects are supported as of today. Hence, this can only be a project ID (such as "projects/my-project-id") or a project number (such as "projects/12345"). */
@@ -967,8 +966,7 @@ export type GoogleCloudAssetV1ConstraintConstraintDefaultEnum =
   | "CONSTRAINT_DEFAULT_UNSPECIFIED"
   | "ALLOW"
   | "DENY";
-export const GoogleCloudAssetV1ConstraintConstraintDefaultEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAssetV1ConstraintConstraintDefaultEnum = S.String;
 
 /** A `Constraint` that is either enforced or not. For example a constraint `constraints/compute.disableSerialPortAccess`. If it is enforced on a VM instance, serial port connections will not be opened to that instance. */
 export interface GoogleCloudAssetV1BooleanConstraint {}
@@ -1015,8 +1013,7 @@ export type GoogleCloudAssetV1CustomConstraintMethodTypesItemEnum =
   | "DELETE"
   | "REMOVE_GRANT"
   | "GOVERN_TAGS";
-export const GoogleCloudAssetV1CustomConstraintMethodTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAssetV1CustomConstraintMethodTypesItemEnum = S.String;
 
 export type GoogleCloudAssetV1CustomConstraintMethodTypesItemEnumList =
   Array<GoogleCloudAssetV1CustomConstraintMethodTypesItemEnum>;
@@ -1029,8 +1026,7 @@ export type GoogleCloudAssetV1CustomConstraintActionTypeEnum =
   | "ACTION_TYPE_UNSPECIFIED"
   | "ALLOW"
   | "DENY";
-export const GoogleCloudAssetV1CustomConstraintActionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAssetV1CustomConstraintActionTypeEnum = S.String;
 
 /** The definition of a custom constraint. */
 export interface GoogleCloudAssetV1CustomConstraint {
@@ -1218,7 +1214,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -1464,7 +1460,7 @@ export type BatchGetAssetsHistoryV1ContentTypeEnum =
   | "ACCESS_POLICY"
   | "OS_INVENTORY"
   | "RELATIONSHIP";
-export const BatchGetAssetsHistoryV1ContentTypeEnum = /*@__PURE__*/ S.String;
+export const BatchGetAssetsHistoryV1ContentTypeEnum = S.String;
 
 export interface BatchGetAssetsHistoryV1Request {
   /** Start time of the time window (exclusive). */
@@ -1507,7 +1503,7 @@ export type TemporalAssetPriorAssetStateEnum =
   | "INVALID"
   | "DOES_NOT_EXIST"
   | "DELETED";
-export const TemporalAssetPriorAssetStateEnum = /*@__PURE__*/ S.String;
+export const TemporalAssetPriorAssetStateEnum = S.String;
 
 /** A time window specified by its `start_time` and `end_time`. */
 export interface TimeWindow {
@@ -1566,8 +1562,7 @@ export type GoogleCloudOrgpolicyV1ListPolicyAllValuesEnum =
   | "ALL_VALUES_UNSPECIFIED"
   | "ALLOW"
   | "DENY";
-export const GoogleCloudOrgpolicyV1ListPolicyAllValuesEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudOrgpolicyV1ListPolicyAllValuesEnum = S.String;
 
 /** Used in `policy_type` to specify how `list_policy` behaves at this resource. `ListPolicy` can define specific values and subtrees of Cloud Resource Manager resource hierarchy (`Organizations`, `Folders`, `Projects`) that are allowed or denied by setting the `allowed_values` and `denied_values` fields. This is achieved by using the `under:` and optional `is:` prefixes. The `under:` prefix is used to denote resource subtree values. The `is:` prefix is used to denote specific values, and is required only if the value contains a ":". Values prefixed with "is:" are treated the same as values with no prefix. Ancestry subtrees must be in one of the following formats: - "projects/", e.g. "projects/tokyo-rain-123" - "folders/", e.g. "folders/1234" - "organizations/", e.g. "organizations/1234" The `supports_under` field of the associated `Constraint` defines whether ancestry prefixes can be used. You can set `allowed_values` and `denied_values` in the same `Policy` if `all_values` is `ALL_VALUES_UNSPECIFIED`. `ALLOW` or `DENY` are used to allow or deny all values. If `all_values` is set to either `ALLOW` or `DENY`, `allowed_values` and `denied_values` must be unset. */
 export interface GoogleCloudOrgpolicyV1ListPolicy {
@@ -1675,7 +1670,7 @@ export const RelatedAssets = /*@__PURE__*/ S.suspend(() =>
 export type AssetExceptionExceptionTypeEnum =
   | "EXCEPTION_TYPE_UNSPECIFIED"
   | "TRUNCATION";
-export const AssetExceptionExceptionTypeEnum = /*@__PURE__*/ S.String;
+export const AssetExceptionExceptionTypeEnum = S.String;
 
 /** An exception of an asset. */
 export interface AssetException {
@@ -1742,7 +1737,7 @@ export type GoogleIdentityAccesscontextmanagerV1DevicePolicyAllowedEncryptionSta
   | "UNENCRYPTED"
   | "ENCRYPTED";
 export const GoogleIdentityAccesscontextmanagerV1DevicePolicyAllowedEncryptionStatusesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleIdentityAccesscontextmanagerV1DevicePolicyAllowedEncryptionStatusesItemEnumList =
   Array<GoogleIdentityAccesscontextmanagerV1DevicePolicyAllowedEncryptionStatusesItemEnum>;
@@ -1757,7 +1752,7 @@ export type GoogleIdentityAccesscontextmanagerV1DevicePolicyAllowedDeviceManagem
   | "BASIC"
   | "COMPLETE";
 export const GoogleIdentityAccesscontextmanagerV1DevicePolicyAllowedDeviceManagementLevelsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleIdentityAccesscontextmanagerV1DevicePolicyAllowedDeviceManagementLevelsItemEnumList =
   Array<GoogleIdentityAccesscontextmanagerV1DevicePolicyAllowedDeviceManagementLevelsItemEnum>;
@@ -1775,7 +1770,7 @@ export type GoogleIdentityAccesscontextmanagerV1OsConstraintOsTypeEnum =
   | "ANDROID"
   | "IOS";
 export const GoogleIdentityAccesscontextmanagerV1OsConstraintOsTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A restriction on the OS type and version of devices making requests. */
 export interface GoogleIdentityAccesscontextmanagerV1OsConstraint {
@@ -1928,7 +1923,7 @@ export type GoogleIdentityAccesscontextmanagerV1BasicLevelCombiningFunctionEnum 
   | "AND"
   | "OR";
 export const GoogleIdentityAccesscontextmanagerV1BasicLevelCombiningFunctionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** `BasicLevel` is an `AccessLevel` using a set of recommended features. */
 export interface GoogleIdentityAccesscontextmanagerV1BasicLevel {
@@ -2054,14 +2049,14 @@ export type GoogleIdentityAccesscontextmanagerV1EgressFromIdentityTypeEnum =
   | "ANY_USER_ACCOUNT"
   | "ANY_SERVICE_ACCOUNT";
 export const GoogleIdentityAccesscontextmanagerV1EgressFromIdentityTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleIdentityAccesscontextmanagerV1EgressFromSourceRestrictionEnum =
   | "SOURCE_RESTRICTION_UNSPECIFIED"
   | "SOURCE_RESTRICTION_ENABLED"
   | "SOURCE_RESTRICTION_DISABLED";
 export const GoogleIdentityAccesscontextmanagerV1EgressFromSourceRestrictionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines the conditions under which an EgressPolicy matches a request. Conditions based on information about the source of the request. Note that if the destination of the request is also protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed. */
 export interface GoogleIdentityAccesscontextmanagerV1EgressFrom {
@@ -2196,7 +2191,7 @@ export type GoogleIdentityAccesscontextmanagerV1VpcAccessibleServicesServicePatt
   | "SERVICE_PATTERNS_ENFORCEMENT_SCOPE_UNSPECIFIED"
   | "GOOGLE_APIS_VIA_PRIVATE_PATH";
 export const GoogleIdentityAccesscontextmanagerV1VpcAccessibleServicesServicePatternsEnforcementScopesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleIdentityAccesscontextmanagerV1VpcAccessibleServicesServicePatternsEnforcementScopesItemEnumList =
   Array<GoogleIdentityAccesscontextmanagerV1VpcAccessibleServicesServicePatternsEnforcementScopesItemEnum>;
@@ -2305,7 +2300,7 @@ export type GoogleIdentityAccesscontextmanagerV1IngressFromIdentityTypeEnum =
   | "ANY_USER_ACCOUNT"
   | "ANY_SERVICE_ACCOUNT";
 export const GoogleIdentityAccesscontextmanagerV1IngressFromIdentityTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The source that IngressPolicy authorizes access from. */
 export interface GoogleIdentityAccesscontextmanagerV1IngressSource {
@@ -2448,7 +2443,7 @@ export type GoogleIdentityAccesscontextmanagerV1ServicePerimeterPerimeterTypeEnu
   | "PERIMETER_TYPE_REGULAR"
   | "PERIMETER_TYPE_BRIDGE";
 export const GoogleIdentityAccesscontextmanagerV1ServicePerimeterPerimeterTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** `ServicePerimeter` describes a set of Google Cloud resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single Google Cloud project or VPC network can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only Google Cloud projects as members, a single Google Cloud project may belong to multiple Service Perimeter Bridges. */
 export interface GoogleIdentityAccesscontextmanagerV1ServicePerimeter {
@@ -2724,13 +2719,13 @@ export const SoftwarePackage = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SoftwarePackage>;
 
 export type ItemOriginTypeEnum = "ORIGIN_TYPE_UNSPECIFIED" | "INVENTORY_REPORT";
-export const ItemOriginTypeEnum = /*@__PURE__*/ S.String;
+export const ItemOriginTypeEnum = S.String;
 
 export type ItemTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "INSTALLED_PACKAGE"
   | "AVAILABLE_PACKAGE";
-export const ItemTypeEnum = /*@__PURE__*/ S.String;
+export const ItemTypeEnum = S.String;
 
 /** A single piece of inventory on a VM. */
 export interface Item {
@@ -2989,7 +2984,7 @@ export type FeedContentTypeEnum =
   | "ACCESS_POLICY"
   | "OS_INVENTORY"
   | "RELATIONSHIP";
-export const FeedContentTypeEnum = /*@__PURE__*/ S.String;
+export const FeedContentTypeEnum = S.String;
 
 /** An asset feed used to export asset updates to a destinations. An asset feed filter controls what updates are exported. The asset feed must be created within a project, organization, or folder. Supported destinations are: Pub/Sub topics. */
 export interface Feed {
@@ -3180,7 +3175,7 @@ export type ExportAssetsRequestContentTypeEnum =
   | "ACCESS_POLICY"
   | "OS_INVENTORY"
   | "RELATIONSHIP";
-export const ExportAssetsRequestContentTypeEnum = /*@__PURE__*/ S.String;
+export const ExportAssetsRequestContentTypeEnum = S.String;
 
 /** A Cloud Storage location. */
 export interface GcsDestination {
@@ -3200,7 +3195,7 @@ export type PartitionSpecPartitionKeyEnum =
   | "PARTITION_KEY_UNSPECIFIED"
   | "READ_TIME"
   | "REQUEST_TIME";
-export const PartitionSpecPartitionKeyEnum = /*@__PURE__*/ S.String;
+export const PartitionSpecPartitionKeyEnum = S.String;
 
 /** Specifications of BigQuery partitioned table as export destination. */
 export interface PartitionSpec {
@@ -3360,7 +3355,7 @@ export type ListAssetsContentTypeEnum =
   | "ACCESS_POLICY"
   | "OS_INVENTORY"
   | "RELATIONSHIP";
-export const ListAssetsContentTypeEnum = /*@__PURE__*/ S.String;
+export const ListAssetsContentTypeEnum = S.String;
 
 export interface ListAssetsRequest {
   /** A list of relationship types to output, for example: `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if content_type=RELATIONSHIP. * If specified: it snapshots specified relationships. It returns an error if any of the [relationship_types] doesn't belong to the supported relationship types of the [asset_types] or if any of the [asset_types] doesn't belong to the source types of the [relationship_types]. * Otherwise: it snapshots the supported relationships for all [asset_types] or returns an error if any of the [asset_types] has no relationship support. An unspecified asset types field means all supported asset_types. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types and relationship types. */

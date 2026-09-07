@@ -51,7 +51,7 @@ export class UnprocessableEntity
 
 /** The product type. Indicates whether the product is physical or digital goods, or a service. */
 export type CreateProductRequestType = "PHYSICAL" | "DIGITAL" | "SERVICE";
-export const CreateProductRequestType = /*@__PURE__*/ S.String;
+export const CreateProductRequestType = S.String;
 
 /** The product category. */
 export type ProductCategory =
@@ -501,7 +501,7 @@ export type ProductCategory =
   | "WIRE_TRANSFER_AND_MONEY_ORDER"
   | "WOMEN_ACCESSORY_SPECIALITY"
   | "WOMEN_CLOTHING";
-export const ProductCategory = /*@__PURE__*/ S.String;
+export const ProductCategory = S.String;
 
 export interface CreateProductRequest {
   /** The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> */
@@ -540,7 +540,7 @@ export const CreateProductRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The product type. Indicates whether the product is physical or digital goods, or a service. */
 export type ProductType = "PHYSICAL" | "DIGITAL" | "SERVICE";
-export const ProductType = /*@__PURE__*/ S.String;
+export const ProductType = S.String;
 
 /** The HTTP method required to make the related call. */
 export type LinkDescriptionMethod =
@@ -552,7 +552,7 @@ export type LinkDescriptionMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const LinkDescriptionMethod = /*@__PURE__*/ S.String;
+export const LinkDescriptionMethod = S.String;
 
 /** The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information. */
 export interface LinkDescription {
@@ -703,7 +703,7 @@ export const ProductCollection = /*@__PURE__*/ S.suspend(() =>
 
 /** The operation. */
 export type PatchOp = "add" | "remove" | "replace" | "move" | "copy" | "test";
-export const PatchOp = /*@__PURE__*/ S.String;
+export const PatchOp = S.String;
 
 /** The JSON patch object to apply partial updates to resources. */
 export interface Patch {

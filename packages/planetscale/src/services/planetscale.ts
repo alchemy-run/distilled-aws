@@ -173,8 +173,7 @@ export type OrganizationTeamMembershipPasswordsItemRole =
   | "writer"
   | "admin"
   | "readwriter";
-export const OrganizationTeamMembershipPasswordsItemRole =
-  /*@__PURE__*/ S.String;
+export const OrganizationTeamMembershipPasswordsItemRole = S.String;
 
 /** List of IP addresses or CIDR ranges that can use this password */
 export type OrganizationTeamMembershipPasswordsItemCidrsList = Array<string>;
@@ -488,7 +487,7 @@ export const DatabaseDeployRequestBranchDeletedBy =
 
 /** Whether the deploy request is open or closed */
 export type DatabaseDeployRequestState = "open" | "closed";
-export const DatabaseDeployRequestState = /*@__PURE__*/ S.String;
+export const DatabaseDeployRequestState = S.String;
 
 /** The deployment state of the deploy request */
 export type DatabaseDeployRequestDeploymentState =
@@ -512,7 +511,7 @@ export type DatabaseDeployRequestDeploymentState =
   | "complete_revert_error"
   | "cancelled"
   | "error";
-export const DatabaseDeployRequestDeploymentState = /*@__PURE__*/ S.String;
+export const DatabaseDeployRequestDeploymentState = S.String;
 
 /** The state the deployment is in */
 export type DatabaseDeployRequestDeploymentState2 =
@@ -536,7 +535,7 @@ export type DatabaseDeployRequestDeploymentState2 =
   | "complete_revert_error"
   | "cancelled"
   | "error";
-export const DatabaseDeployRequestDeploymentState2 = /*@__PURE__*/ S.String;
+export const DatabaseDeployRequestDeploymentState2 = S.String;
 
 export type DatabaseDeployRequestDeploymentPrecedingDeploymentsItemMap = {
   [key: string]: unknown | undefined;
@@ -564,7 +563,7 @@ export type DatabaseDeployRequestDeploymentDeployOperationsItemState =
   | "cancelled"
   | "error";
 export const DatabaseDeployRequestDeploymentDeployOperationsItemState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Names of foreign keys removed by this operation */
 export type DatabaseDeployRequestDeploymentDeployOperationsItemRemovedForeignKeyNamesList =
@@ -658,7 +657,7 @@ export type DatabaseDeployRequestDeploymentDeployOperationSummariesItemState =
   | "cancelled"
   | "error";
 export const DatabaseDeployRequestDeploymentDeployOperationSummariesItemState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Names of foreign keys removed by this operation summary */
 export type DatabaseDeployRequestDeploymentDeployOperationSummariesItemRemovedForeignKeyNamesList =
@@ -685,7 +684,7 @@ export type DatabaseDeployRequestDeploymentDeployOperationSummariesItemOperation
   | "cancelled"
   | "error";
 export const DatabaseDeployRequestDeploymentDeployOperationSummariesItemOperationsItemState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DatabaseDeployRequestDeploymentDeployOperationSummariesItemOperationsItem {
   /** The ID for the deploy operation */
@@ -1165,15 +1164,15 @@ export type WorkflowState =
   | "cancelling"
   | "cancelled"
   | "error";
-export const WorkflowState = /*@__PURE__*/ S.String;
+export const WorkflowState = S.String;
 
 /** The type of the workflow */
 export type WorkflowWorkflowType = "move_tables";
-export const WorkflowWorkflowType = /*@__PURE__*/ S.String;
+export const WorkflowWorkflowType = S.String;
 
 /** The behavior when DDL changes during the workflow */
 export type WorkflowOnDdl = "IGNORE" | "STOP" | "EXEC" | "EXEC_IGNORE";
-export const WorkflowOnDdl = /*@__PURE__*/ S.String;
+export const WorkflowOnDdl = S.String;
 
 export type WorkflowActor = OrganizationTeamMembershipActor;
 export const WorkflowActor = OrganizationTeamMembershipActor;
@@ -1424,7 +1423,7 @@ export type CreateBackupRequestRetentionUnit =
   | "week"
   | "month"
   | "year";
-export const CreateBackupRequestRetentionUnit = /*@__PURE__*/ S.String;
+export const CreateBackupRequestRetentionUnit = S.String;
 
 export interface CreateBackupRequest {
   /** The name of the organization the branch belongs to */
@@ -1470,7 +1469,7 @@ export type BackupState =
   | "failed"
   | "canceled"
   | "ignored";
-export const BackupState = /*@__PURE__*/ S.String;
+export const BackupState = S.String;
 
 export type BackupRestoredBranchesItem =
   OrganizationTeamMembershipUserDefaultOrganization;
@@ -1488,7 +1487,7 @@ export const BackupActor = OrganizationTeamMembershipActor;
 
 /** Whether the policy is for production or development branches */
 export type BackupBackupPolicyTarget = "production" | "development";
-export const BackupBackupPolicyTarget = /*@__PURE__*/ S.String;
+export const BackupBackupPolicyTarget = S.String;
 
 export interface BackupBackupPolicy {
   /** The ID of the backup policy */
@@ -1645,7 +1644,7 @@ export const Backup = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the policy is for production or development branches */
 export type CreateBackupPolicyRequestTarget = "production" | "development";
-export const CreateBackupPolicyRequestTarget = /*@__PURE__*/ S.String;
+export const CreateBackupPolicyRequestTarget = S.String;
 
 /** The unit for the retention period of the backup policy */
 export type CreateBackupPolicyRequestRetentionUnit =
@@ -1654,7 +1653,7 @@ export type CreateBackupPolicyRequestRetentionUnit =
   | "week"
   | "month"
   | "year";
-export const CreateBackupPolicyRequestRetentionUnit = /*@__PURE__*/ S.String;
+export const CreateBackupPolicyRequestRetentionUnit = S.String;
 
 /** The unit for the frequency of the backup policy */
 export type CreateBackupPolicyRequestFrequencyUnit =
@@ -1662,7 +1661,7 @@ export type CreateBackupPolicyRequestFrequencyUnit =
   | "day"
   | "week"
   | "month";
-export const CreateBackupPolicyRequestFrequencyUnit = /*@__PURE__*/ S.String;
+export const CreateBackupPolicyRequestFrequencyUnit = S.String;
 
 export interface CreateBackupPolicyRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -1714,7 +1713,7 @@ export const CreateBackupPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the policy is for production or development branches */
 export type BackupPolicyTarget = "production" | "development";
-export const BackupPolicyTarget = /*@__PURE__*/ S.String;
+export const BackupPolicyTarget = S.String;
 
 export interface BackupPolicy {
   /** The ID of the backup policy */
@@ -1836,7 +1835,7 @@ export type PostgresBouncerTarget =
   | "primary"
   | "replica"
   | "replica_az_affinity";
-export const PostgresBouncerTarget = /*@__PURE__*/ S.String;
+export const PostgresBouncerTarget = S.String;
 
 export type PostgresBouncerActor = OrganizationTeamMembershipActor;
 export const PostgresBouncerActor = OrganizationTeamMembershipActor;
@@ -1848,7 +1847,7 @@ export const PostgresBouncerBranch =
 
 /** The namespace of the parameter */
 export type PostgresBouncerParametersItemNamespace = "pgbouncer";
-export const PostgresBouncerParametersItemNamespace = /*@__PURE__*/ S.String;
+export const PostgresBouncerParametersItemNamespace = S.String;
 
 /** The type of the parameter */
 export type PostgresBouncerParametersItemParameterType =
@@ -1857,8 +1856,7 @@ export type PostgresBouncerParametersItemParameterType =
   | "seconds"
   | "select"
   | "string";
-export const PostgresBouncerParametersItemParameterType =
-  /*@__PURE__*/ S.String;
+export const PostgresBouncerParametersItemParameterType = S.String;
 
 /** Valid options for the parameter value */
 export type PostgresBouncerParametersItemOptionsList = Array<string>;
@@ -1982,7 +1980,7 @@ export const PostgresBouncer = /*@__PURE__*/ S.suspend(() =>
 
 /** If provided, restores the last successful backup's schema and data to the new branch. Must have `restore_production_branch_backup(s)` or `restore_backup(s)` access to do this, in addition to Data Branching™ being enabled for the branch. */
 export type CreateBranchRequestSeedData = "last_successful_backup";
-export const CreateBranchRequestSeedData = /*@__PURE__*/ S.String;
+export const CreateBranchRequestSeedData = S.String;
 
 /** For MySQL backup restores, per-keyspace cluster sizes. Each entry is { "keyspace_name": "main", "cluster_size": "PS_40" }. When provided, each restored keyspace must have a size here or via cluster_size. */
 export type CreateBranchRequestKeyspaceClusterSizesList = Array<string>;
@@ -2008,7 +2006,7 @@ export const CreateBranchRequestStorage = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of branch to create. Required when create_database_if_missing is set. */
 export type CreateBranchRequestKind = "mysql" | "postgresql";
-export const CreateBranchRequestKind = /*@__PURE__*/ S.String;
+export const CreateBranchRequestKind = S.String;
 
 export interface CreateBranchRequest {
   /** The name of the organization the branch belongs to */
@@ -2076,7 +2074,7 @@ export const CreateBranchRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of branch */
 export type DatabaseBranchKind = "mysql" | "postgresql";
-export const DatabaseBranchKind = /*@__PURE__*/ S.String;
+export const DatabaseBranchKind = S.String;
 
 /** The current state of the branch */
 export type DatabaseBranchState =
@@ -2085,7 +2083,7 @@ export type DatabaseBranchState =
   | "sleeping"
   | "awakening"
   | "ready";
-export const DatabaseBranchState = /*@__PURE__*/ S.String;
+export const DatabaseBranchState = S.String;
 
 export type DatabaseBranchActor = OrganizationTeamMembershipActor;
 export const DatabaseBranchActor = OrganizationTeamMembershipActor;
@@ -2279,7 +2277,7 @@ export const DatabaseBranch = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of database to create. */
 export type CreateDatabaseRequestKind = "mysql" | "postgresql";
-export const CreateDatabaseRequestKind = /*@__PURE__*/ S.String;
+export const CreateDatabaseRequestKind = S.String;
 
 export interface CreateDatabaseRequestStorage {
   /** The initial minimum storage size in bytes. */
@@ -2427,11 +2425,11 @@ export type DatabaseState =
   | "awakening"
   | "import_ready"
   | "ready";
-export const DatabaseState = /*@__PURE__*/ S.String;
+export const DatabaseState = S.String;
 
 /** The kind of database */
 export type DatabaseKind = "mysql" | "postgresql";
-export const DatabaseKind = /*@__PURE__*/ S.String;
+export const DatabaseKind = S.String;
 
 export interface Database {
   /** The ID of the database */
@@ -2727,7 +2725,7 @@ export type DatabaseBranchKeyspaceNodeTtlStrategy =
   | "node_ttl_follow_maintenance"
   | "node_ttl_always"
   | "node_ttl_off";
-export const DatabaseBranchKeyspaceNodeTtlStrategy = /*@__PURE__*/ S.String;
+export const DatabaseBranchKeyspaceNodeTtlStrategy = S.String;
 
 /** The replication durability strategy */
 export type DatabaseBranchKeyspaceReplicationDurabilityConstraintsStrategy =
@@ -2735,7 +2733,7 @@ export type DatabaseBranchKeyspaceReplicationDurabilityConstraintsStrategy =
   | "lag"
   | "always";
 export const DatabaseBranchKeyspaceReplicationDurabilityConstraintsStrategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DatabaseBranchKeyspaceReplicationDurabilityConstraints {
   /** The replication durability strategy */
@@ -2976,7 +2974,7 @@ export const KeyspaceResizeRequest = /*@__PURE__*/ S.suspend(() =>
 export type CreateOauthTokenRequestGrantType =
   | "authorization_code"
   | "refresh_token";
-export const CreateOauthTokenRequestGrantType = /*@__PURE__*/ S.String;
+export const CreateOauthTokenRequestGrantType = S.String;
 
 export interface CreateOauthTokenRequest {
   /** The name of the organization the OAuth application belongs to */
@@ -3513,7 +3511,7 @@ export type CreatePasswordRequestRole =
   | "writer"
   | "admin"
   | "readwriter";
-export const CreatePasswordRequestRole = /*@__PURE__*/ S.String;
+export const CreatePasswordRequestRole = S.String;
 
 /** List of IP addresses or CIDR ranges that can use this password */
 export type CreatePasswordRequestCidrsList = Array<string>;
@@ -3569,7 +3567,7 @@ export type DatabaseBranchPasswordWithSecretRole =
   | "writer"
   | "admin"
   | "readwriter";
-export const DatabaseBranchPasswordWithSecretRole = /*@__PURE__*/ S.String;
+export const DatabaseBranchPasswordWithSecretRole = S.String;
 
 /** List of IP addresses or CIDR ranges that can use this password */
 export type DatabaseBranchPasswordWithSecretCidrsList = Array<string>;
@@ -3755,7 +3753,7 @@ export const CreateQueryPatternsReportRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The state of the download */
 export type QueryPatternsDownloadState = "pending" | "completed" | "failed";
-export const QueryPatternsDownloadState = /*@__PURE__*/ S.String;
+export const QueryPatternsDownloadState = S.String;
 
 export type QueryPatternsDownloadActor = OrganizationTeamMembershipActor;
 export const QueryPatternsDownloadActor = OrganizationTeamMembershipActor;
@@ -3876,15 +3874,13 @@ export const PostgresReadOnlyReplicaRegion = /*@__PURE__*/ S.suspend(() =>
 
 /** The namespace of the parameter */
 export type PostgresReadOnlyReplicaParametersItemNamespace = "pgconf";
-export const PostgresReadOnlyReplicaParametersItemNamespace =
-  /*@__PURE__*/ S.String;
+export const PostgresReadOnlyReplicaParametersItemNamespace = S.String;
 
 /** The type of the parameter */
 export type PostgresReadOnlyReplicaParametersItemParameterType =
   | "integer"
   | "time";
-export const PostgresReadOnlyReplicaParametersItemParameterType =
-  /*@__PURE__*/ S.String;
+export const PostgresReadOnlyReplicaParametersItemParameterType = S.String;
 
 /** Valid options for the parameter value */
 export type PostgresReadOnlyReplicaParametersItemOptionsList = Array<string>;
@@ -4050,7 +4046,7 @@ export type CreateRoleRequestInheritedRolesItem =
   | "pg_use_reserved_connections"
   | "pg_write_all_data"
   | "postgres";
-export const CreateRoleRequestInheritedRolesItem = /*@__PURE__*/ S.String;
+export const CreateRoleRequestInheritedRolesItem = S.String;
 
 /** Roles to inherit from */
 export type CreateRoleRequestInheritedRolesList = Array<
@@ -4115,7 +4111,7 @@ export type PostgresRoleInheritedRolesItem =
   | "pg_use_reserved_connections"
   | "pg_write_all_data"
   | "postgres";
-export const PostgresRoleInheritedRolesItem = /*@__PURE__*/ S.String;
+export const PostgresRoleInheritedRolesItem = S.String;
 
 /** Database roles these credentials inherit */
 export type PostgresRoleInheritedRolesList =
@@ -4137,16 +4133,14 @@ export type PostgresRoleQuerySafetySettingsRequireWhereOnDelete =
   | "off"
   | "warn"
   | "on";
-export const PostgresRoleQuerySafetySettingsRequireWhereOnDelete =
-  /*@__PURE__*/ S.String;
+export const PostgresRoleQuerySafetySettingsRequireWhereOnDelete = S.String;
 
 /** Require WHERE clause on UPDATE statements */
 export type PostgresRoleQuerySafetySettingsRequireWhereOnUpdate =
   | "off"
   | "warn"
   | "on";
-export const PostgresRoleQuerySafetySettingsRequireWhereOnUpdate =
-  /*@__PURE__*/ S.String;
+export const PostgresRoleQuerySafetySettingsRequireWhereOnUpdate = S.String;
 
 export interface PostgresRoleQuerySafetySettings {
   /** Require WHERE clause on DELETE statements */
@@ -4302,11 +4296,11 @@ export type PostgresSwitchoverState =
   | "succeeded"
   | "failed"
   | "canceled";
-export const PostgresSwitchoverState = /*@__PURE__*/ S.String;
+export const PostgresSwitchoverState = S.String;
 
 /** How the primary was moved. `switchover` promotes a replica on a highly available branch; `restart` restarts the single instance of a branch that has no replicas. Absent until the operator selects one. */
 export type PostgresSwitchoverMethod = "switchover" | "restart";
-export const PostgresSwitchoverMethod = /*@__PURE__*/ S.String;
+export const PostgresSwitchoverMethod = S.String;
 
 export type PostgresSwitchoverActor = OrganizationTeamMembershipActor;
 export const PostgresSwitchoverActor = OrganizationTeamMembershipActor;
@@ -4348,7 +4342,7 @@ export const PostgresSwitchover = /*@__PURE__*/ S.suspend(() =>
 
 /** The mode of the traffic budget */
 export type CreateTrafficBudgetRequestMode = "enforce" | "warn" | "off";
-export const CreateTrafficBudgetRequestMode = /*@__PURE__*/ S.String;
+export const CreateTrafficBudgetRequestMode = S.String;
 
 /** Array of traffic rules to apply to the budget */
 export type CreateTrafficBudgetRequestRulesList = Array<string>;
@@ -4406,18 +4400,18 @@ export const CreateTrafficBudgetRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The mode of the budget */
 export type TrafficBudgetMode = "enforce" | "warn" | "off";
-export const TrafficBudgetMode = /*@__PURE__*/ S.String;
+export const TrafficBudgetMode = S.String;
 
 export type TrafficBudgetActor = OrganizationTeamMembershipActor;
 export const TrafficBudgetActor = OrganizationTeamMembershipActor;
 
 /** The kind of rule */
 export type TrafficBudgetRulesItemKind = "match" | "each";
-export const TrafficBudgetRulesItemKind = /*@__PURE__*/ S.String;
+export const TrafficBudgetRulesItemKind = S.String;
 
 /** The source of this tag */
 export type TrafficBudgetRulesItemTagsItemSource = "sql" | "system";
-export const TrafficBudgetRulesItemTagsItemSource = /*@__PURE__*/ S.String;
+export const TrafficBudgetRulesItemTagsItemSource = S.String;
 
 export interface TrafficBudgetRulesItemTagsItem {
   /** The ID of the key for this tag */
@@ -4531,7 +4525,7 @@ export const TrafficBudget = /*@__PURE__*/ S.suspend(() =>
 
 /** Kind of rule */
 export type CreateTrafficRuleRequestKind = "match" | "each";
-export const CreateTrafficRuleRequestKind = /*@__PURE__*/ S.String;
+export const CreateTrafficRuleRequestKind = S.String;
 
 /** Optional array of tags for this rule. Each rules take exactly one tag. */
 export type CreateTrafficRuleRequestTagsList = Array<string>;
@@ -4580,11 +4574,11 @@ export const CreateTrafficRuleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of rule */
 export type TrafficRuleKind = "match" | "each";
-export const TrafficRuleKind = /*@__PURE__*/ S.String;
+export const TrafficRuleKind = S.String;
 
 /** The source of this tag */
 export type TrafficRuleTagsItemSource = "sql" | "system";
-export const TrafficRuleTagsItemSource = /*@__PURE__*/ S.String;
+export const TrafficRuleTagsItemSource = S.String;
 
 export interface TrafficRuleTagsItem {
   /** The ID of the key for this tag */
@@ -4706,7 +4700,7 @@ export type DatabaseWebhookEventsItem =
   | "deploy_request.schema_applied"
   | "keyspace.storage"
   | "webhook.test";
-export const DatabaseWebhookEventsItem = /*@__PURE__*/ S.String;
+export const DatabaseWebhookEventsItem = S.String;
 
 /** The events this webhook subscribes to */
 export type DatabaseWebhookEventsList = Array<DatabaseWebhookEventsItem>;
@@ -4759,7 +4753,7 @@ export type CreateWorkflowRequestOnDdl =
   | "STOP"
   | "EXEC"
   | "EXEC_IGNORE";
-export const CreateWorkflowRequestOnDdl = /*@__PURE__*/ S.String;
+export const CreateWorkflowRequestOnDdl = S.String;
 
 /** List of tables to move */
 export type CreateWorkflowRequestTablesList = Array<string>;
@@ -5542,7 +5536,7 @@ export const DeployCheckRequestStorageResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The deploy request will be updated to this state */
 export type DeployCloseRequestRequestState = "closed";
-export const DeployCloseRequestRequestState = /*@__PURE__*/ S.String;
+export const DeployCloseRequestRequestState = S.String;
 
 export interface DeployCloseRequestRequest {
   /** The name of the deploy request's organization */
@@ -5672,7 +5666,7 @@ export const DeployQueueRequestRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the review is a comment or approval. Service tokens must have corresponding access (either `approve_deploy_request` or `review_deploy_request`) */
 export type DeployReviewRequestRequestState = "commented" | "approved";
-export const DeployReviewRequestRequestState = /*@__PURE__*/ S.String;
+export const DeployReviewRequestRequestState = S.String;
 
 export interface DeployReviewRequestRequest {
   /** The name of the organization the deploy request belongs to */
@@ -5706,7 +5700,7 @@ export const DeployReviewRequestRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the review is a comment or approval */
 export type DeployRequestReviewState = "commented" | "approved";
-export const DeployRequestReviewState = /*@__PURE__*/ S.String;
+export const DeployRequestReviewState = S.String;
 
 export type DeployRequestReviewActor = OrganizationTeamMembershipActor;
 export const DeployRequestReviewActor = OrganizationTeamMembershipActor;
@@ -5760,18 +5754,18 @@ export const DisableOrganizationSsoRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type */
 export type OrganizationSsoSerializerType = "OrganizationSSO";
-export const OrganizationSsoSerializerType = /*@__PURE__*/ S.String;
+export const OrganizationSsoSerializerType = S.String;
 
 /** The resource type */
 export type OrganizationSsoSerializerDomainsItemType = "OrganizationDomain";
-export const OrganizationSsoSerializerDomainsItemType = /*@__PURE__*/ S.String;
+export const OrganizationSsoSerializerDomainsItemType = S.String;
 
 /** The verification state of the domain */
 export type OrganizationSsoSerializerDomainsItemState =
   | "pending"
   | "verified"
   | "failed";
-export const OrganizationSsoSerializerDomainsItemState = /*@__PURE__*/ S.String;
+export const OrganizationSsoSerializerDomainsItemState = S.String;
 
 export interface OrganizationSsoSerializerDomainsItem {
   /** The resource type */
@@ -5921,7 +5915,7 @@ export type SchemaRecommendationState =
   | "applied"
   | "dismissed"
   | "stale";
-export const SchemaRecommendationState = /*@__PURE__*/ S.String;
+export const SchemaRecommendationState = S.String;
 
 /** The type of recommendation */
 export type SchemaRecommendationRecommendationType =
@@ -5934,7 +5928,7 @@ export type SchemaRecommendationRecommendationType =
   | "encoding_upgrade"
   | "bloated_table"
   | "bloated_index";
-export const SchemaRecommendationRecommendationType = /*@__PURE__*/ S.String;
+export const SchemaRecommendationRecommendationType = S.String;
 
 export interface SchemaRecommendationClosedByDeployRequest {
   /** The ID of the deploy request */
@@ -6220,7 +6214,7 @@ export type AnomalyCorrelationsItemTabletType =
   | "primary"
   | "replica"
   | "rdonly";
-export const AnomalyCorrelationsItemTabletType = /*@__PURE__*/ S.String;
+export const AnomalyCorrelationsItemTabletType = S.String;
 
 export interface AnomalyCorrelationsItem {
   /** The ID of the correlation */
@@ -6324,7 +6318,7 @@ export type PostgresClusterResizeRequestState =
   | "resizing"
   | "canceled"
   | "completed";
-export const PostgresClusterResizeRequestState = /*@__PURE__*/ S.String;
+export const PostgresClusterResizeRequestState = S.String;
 
 export type PostgresClusterResizeRequestActor = OrganizationTeamMembershipActor;
 export const PostgresClusterResizeRequestActor =
@@ -6356,7 +6350,7 @@ export type PostgresClusterResizeRequestStorageType =
   | "pd_ssd"
   | "hyperdisk_balanced"
   | "premium_v2_lrs";
-export const PostgresClusterResizeRequestStorageType = /*@__PURE__*/ S.String;
+export const PostgresClusterResizeRequestStorageType = S.String;
 
 export interface PostgresClusterResizeRequest {
   /** The ID of the branch change request */
@@ -6593,7 +6587,7 @@ export type GetBranchMetricsRequestMetricsItem =
   | "vtgate_memory_avg_by_az"
   | "vtgate_memory_by_az"
   | "vtgate_requests";
-export const GetBranchMetricsRequestMetricsItem = /*@__PURE__*/ S.String;
+export const GetBranchMetricsRequestMetricsItem = S.String;
 
 export type GetBranchMetricsRequestMetricsList = Array<
   GetBranchMetricsRequestMetricsItem | (string & {})
@@ -6612,13 +6606,13 @@ export type GetBranchMetricsRequestPeriod =
   | "2d"
   | "7d"
   | "8d";
-export const GetBranchMetricsRequestPeriod = /*@__PURE__*/ S.String;
+export const GetBranchMetricsRequestPeriod = S.String;
 
 export type GetBranchMetricsRequestTabletType =
   | "primary"
   | "replica"
   | "rdonly";
-export const GetBranchMetricsRequestTabletType = /*@__PURE__*/ S.String;
+export const GetBranchMetricsRequestTabletType = S.String;
 
 export type GetBranchMetricsRequestPodsList = Array<string>;
 export const GetBranchMetricsRequestPodsList = /*@__PURE__*/ S.Array(
@@ -6868,7 +6862,7 @@ export type GetBranchQueryErrorRequestPeriod =
   | "2d"
   | "7d"
   | "8d";
-export const GetBranchQueryErrorRequestPeriod = /*@__PURE__*/ S.String;
+export const GetBranchQueryErrorRequestPeriod = S.String;
 
 export interface GetBranchQueryErrorRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -7090,7 +7084,7 @@ export type GetBranchQueryMetricsRequestMetricsItem =
   | "total_duration_millis"
   | "traffic_control_throttled"
   | "traffic_control_warnings";
-export const GetBranchQueryMetricsRequestMetricsItem = /*@__PURE__*/ S.String;
+export const GetBranchQueryMetricsRequestMetricsItem = S.String;
 
 export type GetBranchQueryMetricsRequestMetricsList = Array<
   GetBranchQueryMetricsRequestMetricsItem | (string & {})
@@ -7114,13 +7108,13 @@ export type GetBranchQueryMetricsRequestPeriod =
   | "2d"
   | "7d"
   | "8d";
-export const GetBranchQueryMetricsRequestPeriod = /*@__PURE__*/ S.String;
+export const GetBranchQueryMetricsRequestPeriod = S.String;
 
 export type GetBranchQueryMetricsRequestTabletType =
   | "primary"
   | "replica"
   | "rdonly";
-export const GetBranchQueryMetricsRequestTabletType = /*@__PURE__*/ S.String;
+export const GetBranchQueryMetricsRequestTabletType = S.String;
 
 export interface GetBranchQueryMetricsRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -7226,13 +7220,13 @@ export type GetBranchQueryTagRequestPeriod =
   | "2d"
   | "7d"
   | "8d";
-export const GetBranchQueryTagRequestPeriod = /*@__PURE__*/ S.String;
+export const GetBranchQueryTagRequestPeriod = S.String;
 
 export type GetBranchQueryTagRequestTabletType =
   | "primary"
   | "replica"
   | "rdonly";
-export const GetBranchQueryTagRequestTabletType = /*@__PURE__*/ S.String;
+export const GetBranchQueryTagRequestTabletType = S.String;
 
 export interface GetBranchQueryTagRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -7287,11 +7281,11 @@ export const GetBranchQueryTagRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The source of the tag */
 export type QueryTagSource = "sql" | "system";
-export const QueryTagSource = /*@__PURE__*/ S.String;
+export const QueryTagSource = S.String;
 
 /** The kind of tag value */
 export type QueryTagValuesItemKind = "literal" | "overflow" | "collapsed";
-export const QueryTagValuesItemKind = /*@__PURE__*/ S.String;
+export const QueryTagValuesItemKind = S.String;
 
 export interface QueryTagValuesItem {
   /** The name of the tag value */
@@ -7371,7 +7365,7 @@ export type MysqlClusterResizeRequestState =
   | "canceled"
   | "completed"
   | "queued";
-export const MysqlClusterResizeRequestState = /*@__PURE__*/ S.String;
+export const MysqlClusterResizeRequestState = S.String;
 
 export type MysqlClusterResizeRequestActor = OrganizationTeamMembershipActor;
 export const MysqlClusterResizeRequestActor = OrganizationTeamMembershipActor;
@@ -7578,7 +7572,7 @@ export type GetBranchTagMetricsRequestMetricsItem =
   | "total_duration_millis"
   | "traffic_control_throttled"
   | "traffic_control_warnings";
-export const GetBranchTagMetricsRequestMetricsItem = /*@__PURE__*/ S.String;
+export const GetBranchTagMetricsRequestMetricsItem = S.String;
 
 export type GetBranchTagMetricsRequestMetricsList = Array<
   GetBranchTagMetricsRequestMetricsItem | (string & {})
@@ -7602,13 +7596,13 @@ export type GetBranchTagMetricsRequestPeriod =
   | "2d"
   | "7d"
   | "8d";
-export const GetBranchTagMetricsRequestPeriod = /*@__PURE__*/ S.String;
+export const GetBranchTagMetricsRequestPeriod = S.String;
 
 export type GetBranchTagMetricsRequestTabletType =
   | "primary"
   | "replica"
   | "rdonly";
-export const GetBranchTagMetricsRequestTabletType = /*@__PURE__*/ S.String;
+export const GetBranchTagMetricsRequestTabletType = S.String;
 
 export interface GetBranchTagMetricsRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -7938,7 +7932,7 @@ export type DeploymentState =
   | "complete_revert_error"
   | "cancelled"
   | "error";
-export const DeploymentState = /*@__PURE__*/ S.String;
+export const DeploymentState = S.String;
 
 export type DeploymentPrecedingDeploymentsItemMap = {
   [key: string]: unknown | undefined;
@@ -7963,7 +7957,7 @@ export type DeploymentDeployOperationsItemState =
   | "complete"
   | "cancelled"
   | "error";
-export const DeploymentDeployOperationsItemState = /*@__PURE__*/ S.String;
+export const DeploymentDeployOperationsItemState = S.String;
 
 /** Names of foreign keys removed by this operation */
 export type DeploymentDeployOperationsItemRemovedForeignKeyNamesList =
@@ -8054,8 +8048,7 @@ export type DeploymentDeployOperationSummariesItemState =
   | "complete"
   | "cancelled"
   | "error";
-export const DeploymentDeployOperationSummariesItemState =
-  /*@__PURE__*/ S.String;
+export const DeploymentDeployOperationSummariesItemState = S.String;
 
 /** Names of foreign keys removed by this operation summary */
 export type DeploymentDeployOperationSummariesItemRemovedForeignKeyNamesList =
@@ -8082,7 +8075,7 @@ export type DeploymentDeployOperationSummariesItemOperationsItemState =
   | "cancelled"
   | "error";
 export const DeploymentDeployOperationSummariesItemOperationsItemState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DeploymentDeployOperationSummariesItemOperationsItem {
   /** The ID for the deploy operation */
@@ -8425,7 +8418,7 @@ export type PaginatedDeploymentDataItemState =
   | "complete_revert_error"
   | "cancelled"
   | "error";
-export const PaginatedDeploymentDataItemState = /*@__PURE__*/ S.String;
+export const PaginatedDeploymentDataItemState = S.String;
 
 export type PaginatedDeploymentDataItemPrecedingDeploymentsItemMap = {
   [key: string]: unknown | undefined;
@@ -8452,8 +8445,7 @@ export type PaginatedDeploymentDataItemDeployOperationsItemState =
   | "complete"
   | "cancelled"
   | "error";
-export const PaginatedDeploymentDataItemDeployOperationsItemState =
-  /*@__PURE__*/ S.String;
+export const PaginatedDeploymentDataItemDeployOperationsItemState = S.String;
 
 /** Names of foreign keys removed by this operation */
 export type PaginatedDeploymentDataItemDeployOperationsItemRemovedForeignKeyNamesList =
@@ -8547,7 +8539,7 @@ export type PaginatedDeploymentDataItemDeployOperationSummariesItemState =
   | "cancelled"
   | "error";
 export const PaginatedDeploymentDataItemDeployOperationSummariesItemState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Names of foreign keys removed by this operation summary */
 export type PaginatedDeploymentDataItemDeployOperationSummariesItemRemovedForeignKeyNamesList =
@@ -8574,7 +8566,7 @@ export type PaginatedDeploymentDataItemDeployOperationSummariesItemOperationsIte
   | "cancelled"
   | "error";
 export const PaginatedDeploymentDataItemDeployOperationSummariesItemOperationsItemState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PaginatedDeploymentDataItemDeployOperationSummariesItemOperationsItem {
   /** The ID for the deploy operation */
@@ -8993,7 +8985,7 @@ export type GetInstantBranchMetricsRequestMetricsItem =
   | "planetscale_volume_capacity_bytes"
   | "planetscale_volume_disk_usage_bytes"
   | "planetscale_volume_usage_percentage";
-export const GetInstantBranchMetricsRequestMetricsItem = /*@__PURE__*/ S.String;
+export const GetInstantBranchMetricsRequestMetricsItem = S.String;
 
 export type GetInstantBranchMetricsRequestMetricsList = Array<
   GetInstantBranchMetricsRequestMetricsItem | (string & {})
@@ -9140,7 +9132,7 @@ export type GetInstantTabletMetricsRequestMetricsItem =
   | "primary_memory_usage"
   | "vtgate_cpu_usage"
   | "vtgate_memory_usage";
-export const GetInstantTabletMetricsRequestMetricsItem = /*@__PURE__*/ S.String;
+export const GetInstantTabletMetricsRequestMetricsItem = S.String;
 
 export type GetInstantTabletMetricsRequestMetricsList = Array<
   GetInstantTabletMetricsRequestMetricsItem | (string & {})
@@ -9586,7 +9578,7 @@ export type BranchMaintenanceScheduleFrequencyUnit =
   | "week"
   | "month"
   | "once";
-export const BranchMaintenanceScheduleFrequencyUnit = /*@__PURE__*/ S.String;
+export const BranchMaintenanceScheduleFrequencyUnit = S.String;
 
 export interface BranchMaintenanceSchedule {
   /** The ID of the maintenance schedule */
@@ -9901,7 +9893,7 @@ export const GetOrganizationBillingPaymentMethodRequest =
 
 /** The resource type */
 export type BillingPaymentMethodType = "PaymentMethod";
-export const BillingPaymentMethodType = /*@__PURE__*/ S.String;
+export const BillingPaymentMethodType = S.String;
 
 export interface BillingPaymentMethod {
   /** The resource type */
@@ -10010,7 +10002,7 @@ export const OrganizationMembershipUser = /*@__PURE__*/ S.suspend(() =>
 
 /** The role of the user in the organization */
 export type OrganizationMembershipRole = "member" | "admin";
-export const OrganizationMembershipRole = /*@__PURE__*/ S.String;
+export const OrganizationMembershipRole = S.String;
 
 export interface OrganizationMembership {
   /** The ID of the membership */
@@ -10076,11 +10068,11 @@ export const GetOrganizationSsoDomainRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type */
 export type OrganizationDomainType = "OrganizationDomain";
-export const OrganizationDomainType = /*@__PURE__*/ S.String;
+export const OrganizationDomainType = S.String;
 
 /** The verification state of the domain */
 export type OrganizationDomainState = "pending" | "verified" | "failed";
-export const OrganizationDomainState = /*@__PURE__*/ S.String;
+export const OrganizationDomainState = S.String;
 
 export interface OrganizationDomain {
   /** The resource type */
@@ -10193,7 +10185,7 @@ export type DatabaseBranchPasswordRole =
   | "writer"
   | "admin"
   | "readwriter";
-export const DatabaseBranchPasswordRole = /*@__PURE__*/ S.String;
+export const DatabaseBranchPasswordRole = S.String;
 
 /** List of IP addresses or CIDR ranges that can use this password */
 export type DatabaseBranchPasswordCidrsList = Array<string>;
@@ -10367,7 +10359,7 @@ export const GetPaymentMethodSetupRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type */
 export type BillingPaymentMethodSetupType = "BillingPaymentMethodSetup";
-export const BillingPaymentMethodSetupType = /*@__PURE__*/ S.String;
+export const BillingPaymentMethodSetupType = S.String;
 
 /** The setup state */
 export type BillingPaymentMethodSetupState =
@@ -10375,7 +10367,7 @@ export type BillingPaymentMethodSetupState =
   | "completed"
   | "failed"
   | "expired";
-export const BillingPaymentMethodSetupState = /*@__PURE__*/ S.String;
+export const BillingPaymentMethodSetupState = S.String;
 
 export interface BillingPaymentMethodSetup {
   /** The resource type */
@@ -10481,7 +10473,7 @@ export type GetQueryStatisticsRequestPeriod =
   | "2d"
   | "7d"
   | "8d";
-export const GetQueryStatisticsRequestPeriod = /*@__PURE__*/ S.String;
+export const GetQueryStatisticsRequestPeriod = S.String;
 
 export interface GetQueryStatisticsRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -10538,7 +10530,7 @@ export type GetQuerySummaryRequestPeriod =
   | "2d"
   | "7d"
   | "8d";
-export const GetQuerySummaryRequestPeriod = /*@__PURE__*/ S.String;
+export const GetQuerySummaryRequestPeriod = S.String;
 
 export interface GetQuerySummaryRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -10942,7 +10934,7 @@ export type GetTabletMetricsRequestMetricsItem =
   | "primary_rows_written"
   | "shard_storage_usage"
   | "shard_storage_available";
-export const GetTabletMetricsRequestMetricsItem = /*@__PURE__*/ S.String;
+export const GetTabletMetricsRequestMetricsItem = S.String;
 
 export type GetTabletMetricsRequestMetricsList = Array<
   GetTabletMetricsRequestMetricsItem | (string & {})
@@ -10961,7 +10953,7 @@ export type GetTabletMetricsRequestPeriod =
   | "2d"
   | "7d"
   | "8d";
-export const GetTabletMetricsRequestPeriod = /*@__PURE__*/ S.String;
+export const GetTabletMetricsRequestPeriod = S.String;
 
 export interface GetTabletMetricsRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -11152,8 +11144,7 @@ export type PaginatedSchemaLintErrorDataItemSubjectType =
   | "table"
   | "vschema"
   | "routing_rules";
-export const PaginatedSchemaLintErrorDataItemSubjectType =
-  /*@__PURE__*/ S.String;
+export const PaginatedSchemaLintErrorDataItemSubjectType = S.String;
 
 /** A list of invalid foreign key columns in a table */
 export type PaginatedSchemaLintErrorDataItemForeignKeyColumnNamesList =
@@ -11428,7 +11419,7 @@ export const ListBackupPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the policy is for production or development branches */
 export type PaginatedBackupPolicyDataItemTarget = "production" | "development";
-export const PaginatedBackupPolicyDataItemTarget = /*@__PURE__*/ S.String;
+export const PaginatedBackupPolicyDataItemTarget = S.String;
 
 export interface PaginatedBackupPolicyDataItem {
   /** The ID of the backup policy */
@@ -11532,7 +11523,7 @@ export type ListBackupsRequestState =
   | "failed"
   | "canceled"
   | "ignored";
-export const ListBackupsRequestState = /*@__PURE__*/ S.String;
+export const ListBackupsRequestState = S.String;
 
 export interface ListBackupsRequest {
   /** The name of the organization the branch belongs to */
@@ -11593,7 +11584,7 @@ export type PaginatedBackupDataItemState =
   | "failed"
   | "canceled"
   | "ignored";
-export const PaginatedBackupDataItemState = /*@__PURE__*/ S.String;
+export const PaginatedBackupDataItemState = S.String;
 
 export type PaginatedBackupDataItemRestoredBranchesItem =
   OrganizationTeamMembershipUserDefaultOrganization;
@@ -11614,7 +11605,7 @@ export const PaginatedBackupDataItemActor = OrganizationTeamMembershipActor;
 export type PaginatedBackupDataItemBackupPolicyTarget =
   | "production"
   | "development";
-export const PaginatedBackupDataItemBackupPolicyTarget = /*@__PURE__*/ S.String;
+export const PaginatedBackupDataItemBackupPolicyTarget = S.String;
 
 export interface PaginatedBackupDataItemBackupPolicy {
   /** The ID of the backup policy */
@@ -11829,16 +11820,14 @@ export type PaginatedPostgresBouncerResizeRequestDataItemState =
   | "resizing"
   | "canceled"
   | "completed";
-export const PaginatedPostgresBouncerResizeRequestDataItemState =
-  /*@__PURE__*/ S.String;
+export const PaginatedPostgresBouncerResizeRequestDataItemState = S.String;
 
 /** The backend target for the bouncer after the resize */
 export type PaginatedPostgresBouncerResizeRequestDataItemTarget =
   | "primary"
   | "replica"
   | "replica_az_affinity";
-export const PaginatedPostgresBouncerResizeRequestDataItemTarget =
-  /*@__PURE__*/ S.String;
+export const PaginatedPostgresBouncerResizeRequestDataItemTarget = S.String;
 
 /** The bouncer parameters */
 export type PaginatedPostgresBouncerResizeRequestDataItemParametersMap = {
@@ -11856,7 +11845,7 @@ export type PaginatedPostgresBouncerResizeRequestDataItemPreviousTarget =
   | "replica"
   | "replica_az_affinity";
 export const PaginatedPostgresBouncerResizeRequestDataItemPreviousTarget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The previous bouncer parameters */
 export type PaginatedPostgresBouncerResizeRequestDataItemPreviousParametersMap =
@@ -12021,7 +12010,7 @@ export type PaginatedPostgresBouncerDataItemTarget =
   | "primary"
   | "replica"
   | "replica_az_affinity";
-export const PaginatedPostgresBouncerDataItemTarget = /*@__PURE__*/ S.String;
+export const PaginatedPostgresBouncerDataItemTarget = S.String;
 
 export type PaginatedPostgresBouncerDataItemActor =
   OrganizationTeamMembershipActor;
@@ -12036,8 +12025,7 @@ export const PaginatedPostgresBouncerDataItemBranch =
 /** The namespace of the parameter */
 export type PaginatedPostgresBouncerDataItemParametersItemNamespace =
   "pgbouncer";
-export const PaginatedPostgresBouncerDataItemParametersItemNamespace =
-  /*@__PURE__*/ S.String;
+export const PaginatedPostgresBouncerDataItemParametersItemNamespace = S.String;
 
 /** The type of the parameter */
 export type PaginatedPostgresBouncerDataItemParametersItemParameterType =
@@ -12047,7 +12035,7 @@ export type PaginatedPostgresBouncerDataItemParametersItemParameterType =
   | "select"
   | "string";
 export const PaginatedPostgresBouncerDataItemParametersItemParameterType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Valid options for the parameter value */
 export type PaginatedPostgresBouncerDataItemParametersItemOptionsList =
@@ -12222,7 +12210,7 @@ export type ListBranchAnomaliesRequestPeriod =
   | "2d"
   | "7d"
   | "8d";
-export const ListBranchAnomaliesRequestPeriod = /*@__PURE__*/ S.String;
+export const ListBranchAnomaliesRequestPeriod = S.String;
 
 export interface ListBranchAnomaliesRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -12268,8 +12256,7 @@ export type PaginatedAnomalyDataItemCorrelationsItemTabletType =
   | "primary"
   | "replica"
   | "rdonly";
-export const PaginatedAnomalyDataItemCorrelationsItemTabletType =
-  /*@__PURE__*/ S.String;
+export const PaginatedAnomalyDataItemCorrelationsItemTabletType = S.String;
 
 export interface PaginatedAnomalyDataItemCorrelationsItem {
   /** The ID of the correlation */
@@ -12450,8 +12437,7 @@ export type PaginatedPostgresClusterResizeRequestDataItemState =
   | "resizing"
   | "canceled"
   | "completed";
-export const PaginatedPostgresClusterResizeRequestDataItemState =
-  /*@__PURE__*/ S.String;
+export const PaginatedPostgresClusterResizeRequestDataItemState = S.String;
 
 export type PaginatedPostgresClusterResizeRequestDataItemActor =
   OrganizationTeamMembershipActor;
@@ -12485,7 +12471,7 @@ export type PaginatedPostgresClusterResizeRequestDataItemStorageType =
   | "hyperdisk_balanced"
   | "premium_v2_lrs";
 export const PaginatedPostgresClusterResizeRequestDataItemStorageType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PaginatedPostgresClusterResizeRequestDataItem {
   /** The ID of the branch change request */
@@ -12640,7 +12626,7 @@ export const PaginatedPostgresClusterResizeRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PaginatedPostgresClusterResizeRequest>;
 
 export type ListBranchesRequestOrder = "asc" | "desc";
-export const ListBranchesRequestOrder = /*@__PURE__*/ S.String;
+export const ListBranchesRequestOrder = S.String;
 
 export interface ListBranchesRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -12683,7 +12669,7 @@ export const ListBranchesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of branch */
 export type PaginatedDatabaseBranchDataItemKind = "mysql" | "postgresql";
-export const PaginatedDatabaseBranchDataItemKind = /*@__PURE__*/ S.String;
+export const PaginatedDatabaseBranchDataItemKind = S.String;
 
 /** The current state of the branch */
 export type PaginatedDatabaseBranchDataItemState =
@@ -12692,7 +12678,7 @@ export type PaginatedDatabaseBranchDataItemState =
   | "sleeping"
   | "awakening"
   | "ready";
-export const PaginatedDatabaseBranchDataItemState = /*@__PURE__*/ S.String;
+export const PaginatedDatabaseBranchDataItemState = S.String;
 
 export type PaginatedDatabaseBranchDataItemActor =
   OrganizationTeamMembershipActor;
@@ -12947,7 +12933,7 @@ export type ListBranchQueriesRequestPeriod =
   | "2d"
   | "7d"
   | "8d";
-export const ListBranchQueriesRequestPeriod = /*@__PURE__*/ S.String;
+export const ListBranchQueriesRequestPeriod = S.String;
 
 export type ListBranchQueriesRequestSort =
   | "keyspace"
@@ -12995,23 +12981,23 @@ export type ListBranchQueriesRequestSort =
   | "trafficControlThrottled"
   | "trafficControlChecked"
   | "trafficControlBudgetsUsed";
-export const ListBranchQueriesRequestSort = /*@__PURE__*/ S.String;
+export const ListBranchQueriesRequestSort = S.String;
 
 export type ListBranchQueriesRequestDir = "asc" | "desc";
-export const ListBranchQueriesRequestDir = /*@__PURE__*/ S.String;
+export const ListBranchQueriesRequestDir = S.String;
 
 export type ListBranchQueriesRequestTabletType =
   | "primary"
   | "replica"
   | "rdonly";
-export const ListBranchQueriesRequestTabletType = /*@__PURE__*/ S.String;
+export const ListBranchQueriesRequestTabletType = S.String;
 
 export type ListBranchQueriesRequestType =
   | "SELECT"
   | "INSERT"
   | "UPDATE"
   | "DELETE";
-export const ListBranchQueriesRequestType = /*@__PURE__*/ S.String;
+export const ListBranchQueriesRequestType = S.String;
 
 export type ListBranchQueriesRequestFieldsList = Array<string>;
 export const ListBranchQueriesRequestFieldsList = /*@__PURE__*/ S.Array(
@@ -13346,7 +13332,7 @@ export type ListBranchQueryErrorsRequestPeriod =
   | "2d"
   | "7d"
   | "8d";
-export const ListBranchQueryErrorsRequestPeriod = /*@__PURE__*/ S.String;
+export const ListBranchQueryErrorsRequestPeriod = S.String;
 
 export type ListBranchQueryErrorsRequestSort =
   | "error"
@@ -13354,16 +13340,16 @@ export type ListBranchQueryErrorsRequestSort =
   | "count"
   | "totalTime"
   | "timePerQuery";
-export const ListBranchQueryErrorsRequestSort = /*@__PURE__*/ S.String;
+export const ListBranchQueryErrorsRequestSort = S.String;
 
 export type ListBranchQueryErrorsRequestDir = "asc" | "desc";
-export const ListBranchQueryErrorsRequestDir = /*@__PURE__*/ S.String;
+export const ListBranchQueryErrorsRequestDir = S.String;
 
 export type ListBranchQueryErrorsRequestTabletType =
   | "primary"
   | "replica"
   | "rdonly";
-export const ListBranchQueryErrorsRequestTabletType = /*@__PURE__*/ S.String;
+export const ListBranchQueryErrorsRequestTabletType = S.String;
 
 export interface ListBranchQueryErrorsRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -13496,13 +13482,13 @@ export type ListBranchQueryTagsRequestPeriod =
   | "2d"
   | "7d"
   | "8d";
-export const ListBranchQueryTagsRequestPeriod = /*@__PURE__*/ S.String;
+export const ListBranchQueryTagsRequestPeriod = S.String;
 
 export type ListBranchQueryTagsRequestTabletType =
   | "primary"
   | "replica"
   | "rdonly";
-export const ListBranchQueryTagsRequestTabletType = /*@__PURE__*/ S.String;
+export const ListBranchQueryTagsRequestTabletType = S.String;
 
 export interface ListBranchQueryTagsRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -13565,14 +13551,14 @@ export const ListBranchQueryTagsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The source of the tag */
 export type PaginatedQueryTagDataItemSource = "sql" | "system";
-export const PaginatedQueryTagDataItemSource = /*@__PURE__*/ S.String;
+export const PaginatedQueryTagDataItemSource = S.String;
 
 /** The kind of tag value */
 export type PaginatedQueryTagDataItemValuesItemKind =
   | "literal"
   | "overflow"
   | "collapsed";
-export const PaginatedQueryTagDataItemValuesItemKind = /*@__PURE__*/ S.String;
+export const PaginatedQueryTagDataItemValuesItemKind = S.String;
 
 export interface PaginatedQueryTagDataItemValuesItem {
   /** The name of the tag value */
@@ -13673,7 +13659,7 @@ export type ListBranchQueryTagSummariesRequestPeriod =
   | "2d"
   | "7d"
   | "8d";
-export const ListBranchQueryTagSummariesRequestPeriod = /*@__PURE__*/ S.String;
+export const ListBranchQueryTagSummariesRequestPeriod = S.String;
 
 export type ListBranchQueryTagSummariesRequestSort =
   | "dimensions"
@@ -13720,24 +13706,23 @@ export type ListBranchQueryTagSummariesRequestSort =
   | "trafficControlThrottled"
   | "trafficControlChecked"
   | "trafficControlBudgetsUsed";
-export const ListBranchQueryTagSummariesRequestSort = /*@__PURE__*/ S.String;
+export const ListBranchQueryTagSummariesRequestSort = S.String;
 
 export type ListBranchQueryTagSummariesRequestDir = "asc" | "desc";
-export const ListBranchQueryTagSummariesRequestDir = /*@__PURE__*/ S.String;
+export const ListBranchQueryTagSummariesRequestDir = S.String;
 
 export type ListBranchQueryTagSummariesRequestTabletType =
   | "primary"
   | "replica"
   | "rdonly";
-export const ListBranchQueryTagSummariesRequestTabletType =
-  /*@__PURE__*/ S.String;
+export const ListBranchQueryTagSummariesRequestTabletType = S.String;
 
 export type ListBranchQueryTagSummariesRequestType =
   | "SELECT"
   | "INSERT"
   | "UPDATE"
   | "DELETE";
-export const ListBranchQueryTagSummariesRequestType = /*@__PURE__*/ S.String;
+export const ListBranchQueryTagSummariesRequestType = S.String;
 
 export type ListBranchQueryTagSummariesRequestFieldsList = Array<string>;
 export const ListBranchQueryTagSummariesRequestFieldsList =
@@ -14109,8 +14094,7 @@ export type PaginatedMysqlClusterResizeRequestDataItemState =
   | "canceled"
   | "completed"
   | "queued";
-export const PaginatedMysqlClusterResizeRequestDataItemState =
-  /*@__PURE__*/ S.String;
+export const PaginatedMysqlClusterResizeRequestDataItemState = S.String;
 
 export type PaginatedMysqlClusterResizeRequestDataItemActor =
   OrganizationTeamMembershipActor;
@@ -14228,7 +14212,7 @@ export const PaginatedMysqlClusterResizeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PaginatedMysqlClusterResizeRequest>;
 
 export type ListClusterSizeSkusRequestEngine = "mysql" | "postgresql";
-export const ListClusterSizeSkusRequestEngine = /*@__PURE__*/ S.String;
+export const ListClusterSizeSkusRequestEngine = S.String;
 
 export interface ListClusterSizeSkusRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -14653,11 +14637,11 @@ export type PaginatedDatabaseDataItemState =
   | "awakening"
   | "import_ready"
   | "ready";
-export const PaginatedDatabaseDataItemState = /*@__PURE__*/ S.String;
+export const PaginatedDatabaseDataItemState = S.String;
 
 /** The kind of database */
 export type PaginatedDatabaseDataItemKind = "mysql" | "postgresql";
-export const PaginatedDatabaseDataItemKind = /*@__PURE__*/ S.String;
+export const PaginatedDatabaseDataItemKind = S.String;
 
 export interface PaginatedDatabaseDataItem {
   /** The ID of the database */
@@ -14876,7 +14860,7 @@ export type PaginatedDeployOperationDataItemState =
   | "complete"
   | "cancelled"
   | "error";
-export const PaginatedDeployOperationDataItemState = /*@__PURE__*/ S.String;
+export const PaginatedDeployOperationDataItemState = S.String;
 
 /** Names of foreign keys removed by this operation */
 export type PaginatedDeployOperationDataItemRemovedForeignKeyNamesList =
@@ -15026,7 +15010,7 @@ export const ListDeployRequestReviewsRequest = /*@__PURE__*/ S.suspend(() =>
 export type PaginatedDeployRequestReviewDataItemState =
   | "commented"
   | "approved";
-export const PaginatedDeployRequestReviewDataItemState = /*@__PURE__*/ S.String;
+export const PaginatedDeployRequestReviewDataItemState = S.String;
 
 export type PaginatedDeployRequestReviewDataItemActor =
   OrganizationTeamMembershipActor;
@@ -15160,8 +15144,7 @@ export const PaginatedDatabaseDeployRequestDataItemBranchDeletedBy =
 
 /** Whether the deploy request is open or closed */
 export type PaginatedDatabaseDeployRequestDataItemState = "open" | "closed";
-export const PaginatedDatabaseDeployRequestDataItemState =
-  /*@__PURE__*/ S.String;
+export const PaginatedDatabaseDeployRequestDataItemState = S.String;
 
 /** The deployment state of the deploy request */
 export type PaginatedDatabaseDeployRequestDataItemDeploymentState =
@@ -15185,8 +15168,7 @@ export type PaginatedDatabaseDeployRequestDataItemDeploymentState =
   | "complete_revert_error"
   | "cancelled"
   | "error";
-export const PaginatedDatabaseDeployRequestDataItemDeploymentState =
-  /*@__PURE__*/ S.String;
+export const PaginatedDatabaseDeployRequestDataItemDeploymentState = S.String;
 
 /** The state the deployment is in */
 export type PaginatedDatabaseDeployRequestDataItemDeploymentState2 =
@@ -15210,8 +15192,7 @@ export type PaginatedDatabaseDeployRequestDataItemDeploymentState2 =
   | "complete_revert_error"
   | "cancelled"
   | "error";
-export const PaginatedDatabaseDeployRequestDataItemDeploymentState2 =
-  /*@__PURE__*/ S.String;
+export const PaginatedDatabaseDeployRequestDataItemDeploymentState2 = S.String;
 
 export type PaginatedDatabaseDeployRequestDataItemDeploymentPrecedingDeploymentsItemMap =
   { [key: string]: unknown | undefined };
@@ -15238,7 +15219,7 @@ export type PaginatedDatabaseDeployRequestDataItemDeploymentDeployOperationsItem
   | "cancelled"
   | "error";
 export const PaginatedDatabaseDeployRequestDataItemDeploymentDeployOperationsItemState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Names of foreign keys removed by this operation */
 export type PaginatedDatabaseDeployRequestDataItemDeploymentDeployOperationsItemRemovedForeignKeyNamesList =
@@ -15334,7 +15315,7 @@ export type PaginatedDatabaseDeployRequestDataItemDeploymentDeployOperationSumma
   | "cancelled"
   | "error";
 export const PaginatedDatabaseDeployRequestDataItemDeploymentDeployOperationSummariesItemState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Names of foreign keys removed by this operation summary */
 export type PaginatedDatabaseDeployRequestDataItemDeploymentDeployOperationSummariesItemRemovedForeignKeyNamesList =
@@ -15361,7 +15342,7 @@ export type PaginatedDatabaseDeployRequestDataItemDeploymentDeployOperationSumma
   | "cancelled"
   | "error";
 export const PaginatedDatabaseDeployRequestDataItemDeploymentDeployOperationSummariesItemOperationsItemState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PaginatedDatabaseDeployRequestDataItemDeploymentDeployOperationSummariesItemOperationsItem {
   /** The ID for the deploy operation */
@@ -15838,15 +15819,14 @@ export type PostgresClusterExtensionLoader =
   | "shared_preload_libraries"
   | "session_preload_libraries"
   | "create_extension";
-export const PostgresClusterExtensionLoader = /*@__PURE__*/ S.String;
+export const PostgresClusterExtensionLoader = S.String;
 
 /** The namespace of the parameter */
 export type PostgresClusterExtensionParametersItemNamespace =
   | "patroni"
   | "pgconf"
   | "pgbouncer";
-export const PostgresClusterExtensionParametersItemNamespace =
-  /*@__PURE__*/ S.String;
+export const PostgresClusterExtensionParametersItemNamespace = S.String;
 
 /** The type of the parameter */
 export type PostgresClusterExtensionParametersItemParameterType =
@@ -15859,8 +15839,7 @@ export type PostgresClusterExtensionParametersItemParameterType =
   | "select"
   | "string"
   | "time";
-export const PostgresClusterExtensionParametersItemParameterType =
-  /*@__PURE__*/ S.String;
+export const PostgresClusterExtensionParametersItemParameterType = S.String;
 
 /** Valid options for the parameter value */
 export type PostgresClusterExtensionParametersItemOptionsList = Array<string>;
@@ -16035,8 +16014,7 @@ export type PaginatedQueryPatternsDownloadDataItemState =
   | "pending"
   | "completed"
   | "failed";
-export const PaginatedQueryPatternsDownloadDataItemState =
-  /*@__PURE__*/ S.String;
+export const PaginatedQueryPatternsDownloadDataItemState = S.String;
 
 export type PaginatedQueryPatternsDownloadDataItemActor =
   OrganizationTeamMembershipActor;
@@ -16296,8 +16274,7 @@ export type PaginatedDatabaseBranchKeyspaceDataItemNodeTtlStrategy =
   | "node_ttl_follow_maintenance"
   | "node_ttl_always"
   | "node_ttl_off";
-export const PaginatedDatabaseBranchKeyspaceDataItemNodeTtlStrategy =
-  /*@__PURE__*/ S.String;
+export const PaginatedDatabaseBranchKeyspaceDataItemNodeTtlStrategy = S.String;
 
 /** The replication durability strategy */
 export type PaginatedDatabaseBranchKeyspaceDataItemReplicationDurabilityConstraintsStrategy =
@@ -16305,7 +16282,7 @@ export type PaginatedDatabaseBranchKeyspaceDataItemReplicationDurabilityConstrai
   | "lag"
   | "always";
 export const PaginatedDatabaseBranchKeyspaceDataItemReplicationDurabilityConstraintsStrategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PaginatedDatabaseBranchKeyspaceDataItemReplicationDurabilityConstraints {
   /** The replication durability strategy */
@@ -16506,8 +16483,7 @@ export type PaginatedBranchMaintenanceScheduleDataItemFrequencyUnit =
   | "week"
   | "month"
   | "once";
-export const PaginatedBranchMaintenanceScheduleDataItemFrequencyUnit =
-  /*@__PURE__*/ S.String;
+export const PaginatedBranchMaintenanceScheduleDataItemFrequencyUnit = S.String;
 
 export interface PaginatedBranchMaintenanceScheduleDataItem {
   /** The ID of the maintenance schedule */
@@ -17239,8 +17215,7 @@ export const PaginatedOrganizationMembershipDataItemUser =
 
 /** The role of the user in the organization */
 export type PaginatedOrganizationMembershipDataItemRole = "member" | "admin";
-export const PaginatedOrganizationMembershipDataItemRole =
-  /*@__PURE__*/ S.String;
+export const PaginatedOrganizationMembershipDataItemRole = S.String;
 
 export interface PaginatedOrganizationMembershipDataItem {
   /** The ID of the membership */
@@ -17522,7 +17497,7 @@ export type PaginatedOrganizationTeamMembershipDataItemPasswordsItemRole =
   | "admin"
   | "readwriter";
 export const PaginatedOrganizationTeamMembershipDataItemPasswordsItemRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of IP addresses or CIDR ranges that can use this password */
 export type PaginatedOrganizationTeamMembershipDataItemPasswordsItemCidrsList =
@@ -17952,7 +17927,7 @@ export type PostgresClusterParameterNamespace =
   | "patroni"
   | "pgconf"
   | "pgbouncer";
-export const PostgresClusterParameterNamespace = /*@__PURE__*/ S.String;
+export const PostgresClusterParameterNamespace = S.String;
 
 /** The type of the parameter */
 export type PostgresClusterParameterParameterType =
@@ -17965,7 +17940,7 @@ export type PostgresClusterParameterParameterType =
   | "select"
   | "string"
   | "time";
-export const PostgresClusterParameterParameterType = /*@__PURE__*/ S.String;
+export const PostgresClusterParameterParameterType = S.String;
 
 /** Valid options for the parameter value */
 export type PostgresClusterParameterOptionsList = Array<string>;
@@ -18101,8 +18076,7 @@ export type PaginatedDatabaseBranchPasswordDataItemRole =
   | "writer"
   | "admin"
   | "readwriter";
-export const PaginatedDatabaseBranchPasswordDataItemRole =
-  /*@__PURE__*/ S.String;
+export const PaginatedDatabaseBranchPasswordDataItemRole = S.String;
 
 /** List of IP addresses or CIDR ranges that can use this password */
 export type PaginatedDatabaseBranchPasswordDataItemCidrsList = Array<string>;
@@ -18566,8 +18540,7 @@ export type ListReadOnlyReplicaChangeRequestsRequestPeriod =
   | "2d"
   | "7d"
   | "8d";
-export const ListReadOnlyReplicaChangeRequestsRequestPeriod =
-  /*@__PURE__*/ S.String;
+export const ListReadOnlyReplicaChangeRequestsRequestPeriod = S.String;
 
 export interface ListReadOnlyReplicaChangeRequestsRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -18615,7 +18588,7 @@ export type PaginatedPostgresReadOnlyReplicaChangeRequestDataItemState =
   | "canceled"
   | "completed";
 export const PaginatedPostgresReadOnlyReplicaChangeRequestDataItemState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The new parameters */
 export type PaginatedPostgresReadOnlyReplicaChangeRequestDataItemParametersMap =
@@ -18859,8 +18832,7 @@ export type PaginatedPostgresRoleDataItemInheritedRolesItem =
   | "pg_use_reserved_connections"
   | "pg_write_all_data"
   | "postgres";
-export const PaginatedPostgresRoleDataItemInheritedRolesItem =
-  /*@__PURE__*/ S.String;
+export const PaginatedPostgresRoleDataItemInheritedRolesItem = S.String;
 
 /** Database roles these credentials inherit */
 export type PaginatedPostgresRoleDataItemInheritedRolesList =
@@ -18886,7 +18858,7 @@ export type PaginatedPostgresRoleDataItemQuerySafetySettingsRequireWhereOnDelete
   | "warn"
   | "on";
 export const PaginatedPostgresRoleDataItemQuerySafetySettingsRequireWhereOnDelete =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Require WHERE clause on UPDATE statements */
 export type PaginatedPostgresRoleDataItemQuerySafetySettingsRequireWhereOnUpdate =
@@ -18894,7 +18866,7 @@ export type PaginatedPostgresRoleDataItemQuerySafetySettingsRequireWhereOnUpdate
   | "warn"
   | "on";
 export const PaginatedPostgresRoleDataItemQuerySafetySettingsRequireWhereOnUpdate =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PaginatedPostgresRoleDataItemQuerySafetySettings {
   /** Require WHERE clause on DELETE statements */
@@ -19040,7 +19012,7 @@ export const PaginatedPostgresRole = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PaginatedPostgresRole>;
 
 export type ListSchemaRecommendationsRequestState = "open" | "closed";
-export const ListSchemaRecommendationsRequestState = /*@__PURE__*/ S.String;
+export const ListSchemaRecommendationsRequestState = S.String;
 
 export interface ListSchemaRecommendationsRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -19078,8 +19050,7 @@ export type PaginatedSchemaRecommendationDataItemState =
   | "applied"
   | "dismissed"
   | "stale";
-export const PaginatedSchemaRecommendationDataItemState =
-  /*@__PURE__*/ S.String;
+export const PaginatedSchemaRecommendationDataItemState = S.String;
 
 /** The type of recommendation */
 export type PaginatedSchemaRecommendationDataItemRecommendationType =
@@ -19092,8 +19063,7 @@ export type PaginatedSchemaRecommendationDataItemRecommendationType =
   | "encoding_upgrade"
   | "bloated_table"
   | "bloated_index";
-export const PaginatedSchemaRecommendationDataItemRecommendationType =
-  /*@__PURE__*/ S.String;
+export const PaginatedSchemaRecommendationDataItemRecommendationType = S.String;
 
 export type PaginatedSchemaRecommendationDataItemClosedByDeployRequest =
   SchemaRecommendationClosedByDeployRequest;
@@ -19266,13 +19236,13 @@ export type PaginatedPostgresSwitchoverDataItemState =
   | "succeeded"
   | "failed"
   | "canceled";
-export const PaginatedPostgresSwitchoverDataItemState = /*@__PURE__*/ S.String;
+export const PaginatedPostgresSwitchoverDataItemState = S.String;
 
 /** How the primary was moved. `switchover` promotes a replica on a highly available branch; `restart` restarts the single instance of a branch that has no replicas. Absent until the operator selects one. */
 export type PaginatedPostgresSwitchoverDataItemMethod =
   | "switchover"
   | "restart";
-export const PaginatedPostgresSwitchoverDataItemMethod = /*@__PURE__*/ S.String;
+export const PaginatedPostgresSwitchoverDataItemMethod = S.String;
 
 export type PaginatedPostgresSwitchoverDataItemActor =
   OrganizationTeamMembershipActor;
@@ -19362,7 +19332,7 @@ export type ListTrafficBudgetsRequestPeriod =
   | "2d"
   | "7d"
   | "8d";
-export const ListTrafficBudgetsRequestPeriod = /*@__PURE__*/ S.String;
+export const ListTrafficBudgetsRequestPeriod = S.String;
 
 export interface ListTrafficBudgetsRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -19405,7 +19375,7 @@ export const ListTrafficBudgetsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The mode of the budget */
 export type PaginatedTrafficBudgetDataItemMode = "enforce" | "warn" | "off";
-export const PaginatedTrafficBudgetDataItemMode = /*@__PURE__*/ S.String;
+export const PaginatedTrafficBudgetDataItemMode = S.String;
 
 export type PaginatedTrafficBudgetDataItemActor =
   OrganizationTeamMembershipActor;
@@ -19414,15 +19384,13 @@ export const PaginatedTrafficBudgetDataItemActor =
 
 /** The kind of rule */
 export type PaginatedTrafficBudgetDataItemRulesItemKind = "match" | "each";
-export const PaginatedTrafficBudgetDataItemRulesItemKind =
-  /*@__PURE__*/ S.String;
+export const PaginatedTrafficBudgetDataItemRulesItemKind = S.String;
 
 /** The source of this tag */
 export type PaginatedTrafficBudgetDataItemRulesItemTagsItemSource =
   | "sql"
   | "system";
-export const PaginatedTrafficBudgetDataItemRulesItemTagsItemSource =
-  /*@__PURE__*/ S.String;
+export const PaginatedTrafficBudgetDataItemRulesItemTagsItemSource = S.String;
 
 export interface PaginatedTrafficBudgetDataItemRulesItemTagsItem {
   /** The ID of the key for this tag */
@@ -19666,8 +19634,7 @@ export type PaginatedDatabaseWebhookDataItemEventsItem =
   | "deploy_request.schema_applied"
   | "keyspace.storage"
   | "webhook.test";
-export const PaginatedDatabaseWebhookDataItemEventsItem =
-  /*@__PURE__*/ S.String;
+export const PaginatedDatabaseWebhookDataItemEventsItem = S.String;
 
 /** The events this webhook subscribes to */
 export type PaginatedDatabaseWebhookDataItemEventsList =
@@ -19804,11 +19771,11 @@ export type PaginatedWorkflowDataItemState =
   | "cancelling"
   | "cancelled"
   | "error";
-export const PaginatedWorkflowDataItemState = /*@__PURE__*/ S.String;
+export const PaginatedWorkflowDataItemState = S.String;
 
 /** The type of the workflow */
 export type PaginatedWorkflowDataItemWorkflowType = "move_tables";
-export const PaginatedWorkflowDataItemWorkflowType = /*@__PURE__*/ S.String;
+export const PaginatedWorkflowDataItemWorkflowType = S.String;
 
 /** The behavior when DDL changes during the workflow */
 export type PaginatedWorkflowDataItemOnDdl =
@@ -19816,7 +19783,7 @@ export type PaginatedWorkflowDataItemOnDdl =
   | "STOP"
   | "EXEC"
   | "EXEC_IGNORE";
-export const PaginatedWorkflowDataItemOnDdl = /*@__PURE__*/ S.String;
+export const PaginatedWorkflowDataItemOnDdl = S.String;
 
 export type PaginatedWorkflowDataItemActor = OrganizationTeamMembershipActor;
 export const PaginatedWorkflowDataItemActor = OrganizationTeamMembershipActor;
@@ -20474,7 +20441,7 @@ export const UpdateBackupRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the policy is for production or development branches */
 export type UpdateBackupPolicyRequestTarget = "production" | "development";
-export const UpdateBackupPolicyRequestTarget = /*@__PURE__*/ S.String;
+export const UpdateBackupPolicyRequestTarget = S.String;
 
 /** The unit for the retention period of the backup policy */
 export type UpdateBackupPolicyRequestRetentionUnit =
@@ -20483,7 +20450,7 @@ export type UpdateBackupPolicyRequestRetentionUnit =
   | "week"
   | "month"
   | "year";
-export const UpdateBackupPolicyRequestRetentionUnit = /*@__PURE__*/ S.String;
+export const UpdateBackupPolicyRequestRetentionUnit = S.String;
 
 /** The unit for the frequency of the backup policy */
 export type UpdateBackupPolicyRequestFrequencyUnit =
@@ -20491,7 +20458,7 @@ export type UpdateBackupPolicyRequestFrequencyUnit =
   | "day"
   | "week"
   | "month";
-export const UpdateBackupPolicyRequestFrequencyUnit = /*@__PURE__*/ S.String;
+export const UpdateBackupPolicyRequestFrequencyUnit = S.String;
 
 export interface UpdateBackupPolicyRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -20599,14 +20566,14 @@ export type PostgresBouncerResizeRequestState =
   | "resizing"
   | "canceled"
   | "completed";
-export const PostgresBouncerResizeRequestState = /*@__PURE__*/ S.String;
+export const PostgresBouncerResizeRequestState = S.String;
 
 /** The backend target for the bouncer after the resize */
 export type PostgresBouncerResizeRequestTarget =
   | "primary"
   | "replica"
   | "replica_az_affinity";
-export const PostgresBouncerResizeRequestTarget = /*@__PURE__*/ S.String;
+export const PostgresBouncerResizeRequestTarget = S.String;
 
 /** The bouncer parameters */
 export type PostgresBouncerResizeRequestParametersMap = {
@@ -20622,8 +20589,7 @@ export type PostgresBouncerResizeRequestPreviousTarget =
   | "primary"
   | "replica"
   | "replica_az_affinity";
-export const PostgresBouncerResizeRequestPreviousTarget =
-  /*@__PURE__*/ S.String;
+export const PostgresBouncerResizeRequestPreviousTarget = S.String;
 
 /** The previous bouncer parameters */
 export type PostgresBouncerResizeRequestPreviousParametersMap = {
@@ -21406,7 +21372,7 @@ export const UpdateSafeMigrationsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The mode of the traffic budget */
 export type UpdateTrafficBudgetRequestMode = "enforce" | "warn" | "off";
-export const UpdateTrafficBudgetRequestMode = /*@__PURE__*/ S.String;
+export const UpdateTrafficBudgetRequestMode = S.String;
 
 /** Array of traffic rules to apply to the budget */
 export type UpdateTrafficBudgetRequestRulesList = Array<string>;

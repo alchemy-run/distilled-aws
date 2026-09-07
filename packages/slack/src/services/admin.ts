@@ -1247,8 +1247,7 @@ export const CreateBarrierRequestBarrieredFromUsergroupIdsList =
   ) as any as S.Schema<CreateBarrierRequestBarrieredFromUsergroupIdsList>;
 
 export type CreateBarrierRequestRestrictedSubjectsItem = "im" | "mpim" | "call";
-export const CreateBarrierRequestRestrictedSubjectsItem =
-  /*@__PURE__*/ S.String;
+export const CreateBarrierRequestRestrictedSubjectsItem = S.String;
 
 /** What kind of interactions are blocked by this barrier? For v1, we only support a list of all 3, eg `im, mpim, call` */
 export type CreateBarrierRequestRestrictedSubjectsList = Array<
@@ -2220,7 +2219,7 @@ export const LinkObjectsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The direction you want the data sorted by (always by timestamp) */
 export type ListAppsActivitiesRequestSortDirection = "asc" | "desc";
-export const ListAppsActivitiesRequestSortDirection = /*@__PURE__*/ S.String;
+export const ListAppsActivitiesRequestSortDirection = S.String;
 
 export interface ListAppsActivitiesRequest {
   /** The ID of the app to get activities from. */
@@ -3651,8 +3650,7 @@ export type LookupAppsConfigRequestRichLinkPreviewTypesItem =
   | "limited_details"
   | "no_preview"
   | "default_to_global_setting";
-export const LookupAppsConfigRequestRichLinkPreviewTypesItem =
-  /*@__PURE__*/ S.String;
+export const LookupAppsConfigRequestRichLinkPreviewTypesItem = S.String;
 
 /** return apps with the corresponding rich link preview layouts */
 export type LookupAppsConfigRequestRichLinkPreviewTypesList = Array<
@@ -3685,8 +3683,7 @@ export const LookupAppsConfigRequest = /*@__PURE__*/ S.suspend(() =>
 export type LookupAppsConfigResponseConfigsItemWorkflowAuthStrategy =
   | "builder_choice"
   | "end_user_only";
-export const LookupAppsConfigResponseConfigsItemWorkflowAuthStrategy =
-  /*@__PURE__*/ S.String;
+export const LookupAppsConfigResponseConfigsItemWorkflowAuthStrategy = S.String;
 
 export interface LookupAppsConfigResponseConfigsItem {
   app_id: string;
@@ -4567,22 +4564,22 @@ export type SearchWorkflowRequestSource =
   | "workflow_builder"
   | "sales_home"
   | "agent";
-export const SearchWorkflowRequestSource = /*@__PURE__*/ S.String;
+export const SearchWorkflowRequestSource = S.String;
 
 /** The field used to sort the returned workflows */
 export type SearchWorkflowRequestSort = "name";
-export const SearchWorkflowRequestSort = /*@__PURE__*/ S.String;
+export const SearchWorkflowRequestSort = S.String;
 
 /** Sort direction. Possible values are `asc` for ascending order like (1, 2, 3) or (a, b, c), and `desc` for descending order like (3, 2, 1) or (c, b, a) */
 export type SearchWorkflowRequestSortDir = "asc" | "desc";
-export const SearchWorkflowRequestSortDir = /*@__PURE__*/ S.String;
+export const SearchWorkflowRequestSortDir = S.String;
 
 /** Filter workflows by their published status */
 export type SearchWorkflowRequestPublishStatus =
   | "all"
   | "published"
   | "unpublished";
-export const SearchWorkflowRequestPublishStatus = /*@__PURE__*/ S.String;
+export const SearchWorkflowRequestPublishStatus = S.String;
 
 /** Only include workflows that use all of the provided step function ids */
 export type SearchWorkflowRequestStepFunctionIdsList = Array<string>;
@@ -4707,7 +4704,7 @@ export const SetAdminResponse = /*@__PURE__*/ S.suspend(() =>
 export type SetAppsConfigRequestWorkflowAuthStrategy =
   | "builder_choice"
   | "end_user_only";
-export const SetAppsConfigRequestWorkflowAuthStrategy = /*@__PURE__*/ S.String;
+export const SetAppsConfigRequestWorkflowAuthStrategy = S.String;
 
 /** Indicates the app-level override for rich link preview. Unsupported for free teams. */
 export type SetAppsConfigRequestRichLinkPreviewType =
@@ -4715,7 +4712,7 @@ export type SetAppsConfigRequestRichLinkPreviewType =
   | "limited_details"
   | "no_preview"
   | "default_to_global_setting";
-export const SetAppsConfigRequestRichLinkPreviewType = /*@__PURE__*/ S.String;
+export const SetAppsConfigRequestRichLinkPreviewType = S.String;
 
 /** List of URLs for allowed connector authorization */
 export type SetAppsConfigRequestDomainRestrictionsUrlsList = Array<string>;
@@ -4793,8 +4790,7 @@ export type SetAppsMcpServersPermissionsRequestPermissionType =
   | "no_one"
   | "named_entities"
   | "named_entities_exclude";
-export const SetAppsMcpServersPermissionsRequestPermissionType =
-  /*@__PURE__*/ S.String;
+export const SetAppsMcpServersPermissionsRequestPermissionType = S.String;
 
 /** List of user IDs to set for named_entities or named_entities_exclude */
 export type SetAppsMcpServersPermissionsRequestUserIdsList = Array<string>;
@@ -4862,7 +4858,7 @@ export type SetAppsPermissionsRequestPermissionType =
   | "everyone"
   | "named_entities"
   | "no_one";
-export const SetAppsPermissionsRequestPermissionType = /*@__PURE__*/ S.String;
+export const SetAppsPermissionsRequestPermissionType = S.String;
 
 /** List of user IDs to allow for named_entities visibility */
 export type SetAppsPermissionsRequestUserIdsList = Array<string>;
@@ -5115,7 +5111,7 @@ export type SetFunctionsPermissionsRequestVisibility =
   | "app_collaborators"
   | "named_entities"
   | "no_one";
-export const SetFunctionsPermissionsRequestVisibility = /*@__PURE__*/ S.String;
+export const SetFunctionsPermissionsRequestVisibility = S.String;
 
 /** List of user IDs to allow for `named_entities` visibility. */
 export type SetFunctionsPermissionsRequestUserIdsList = Array<unknown>;
@@ -5127,14 +5123,13 @@ export type SetFunctionsPermissionsRequestPermissionsItemVisibility =
   | "everyone"
   | "named_entities"
   | "no_one";
-export const SetFunctionsPermissionsRequestPermissionsItemVisibility =
-  /*@__PURE__*/ S.String;
+export const SetFunctionsPermissionsRequestPermissionsItemVisibility = S.String;
 
 export type SetFunctionsPermissionsRequestPermissionsItemPermissionType =
   | "slack_function"
   | "private_channel_access";
 export const SetFunctionsPermissionsRequestPermissionsItemPermissionType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of user IDs to allow for `named_entities` visibility. */
 export type SetFunctionsPermissionsRequestPermissionsItemUserIdsList =
@@ -5413,8 +5408,7 @@ export type SetWorkflowsTriggersTypesPermissionsRequestVisibility =
   | "everyone"
   | "named_entities"
   | "no_one";
-export const SetWorkflowsTriggersTypesPermissionsRequestVisibility =
-  /*@__PURE__*/ S.String;
+export const SetWorkflowsTriggersTypesPermissionsRequestVisibility = S.String;
 
 /** List of user IDs to allow for named_entities visibility */
 export type SetWorkflowsTriggersTypesPermissionsRequestUserIdsList =
@@ -5694,8 +5688,7 @@ export const UpdateBarrierRequestBarrieredFromUsergroupIdsList =
   ) as any as S.Schema<UpdateBarrierRequestBarrieredFromUsergroupIdsList>;
 
 export type UpdateBarrierRequestRestrictedSubjectsItem = "im" | "mpim" | "call";
-export const UpdateBarrierRequestRestrictedSubjectsItem =
-  /*@__PURE__*/ S.String;
+export const UpdateBarrierRequestRestrictedSubjectsItem = S.String;
 
 /** What kind of interactions are blocked by this barrier? For v1, we only support a list of all 3, eg `im, mpim, call` */
 export type UpdateBarrierRequestRestrictedSubjectsList = Array<

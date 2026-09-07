@@ -169,7 +169,7 @@ export const Attempt = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Attempt" }) as any as S.Schema<Attempt>;
 
 export type TaskViewEnum = "VIEW_UNSPECIFIED" | "BASIC" | "FULL";
-export const TaskViewEnum = /*@__PURE__*/ S.String;
+export const TaskViewEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -208,7 +208,7 @@ export type AppEngineHttpRequestHttpMethodEnum =
   | "DELETE"
   | "PATCH"
   | "OPTIONS";
-export const AppEngineHttpRequestHttpMethodEnum = /*@__PURE__*/ S.String;
+export const AppEngineHttpRequestHttpMethodEnum = S.String;
 
 /** App Engine HTTP request. The message defines the HTTP request that is sent to an App Engine app when the task is dispatched. Using AppEngineHttpRequest requires [`appengine.applications.get`](https://cloud.google.com/appengine/docs/admin-api/access-control) Google IAM permission for the project and the following scope: `https://www.googleapis.com/auth/cloud-platform` The task will be delivered to the App Engine app which belongs to the same project as the queue. For more information, see [How Requests are Routed](https://cloud.google.com/appengine/docs/standard/python/how-requests-are-routed) and how routing is affected by [dispatch files](https://cloud.google.com/appengine/docs/python/config/dispatchref). Traffic is encrypted during transport and never leaves Google datacenters. Because this traffic is carried over a communication mechanism internal to Google, you cannot explicitly set the protocol (for example, HTTP or HTTPS). The request to the handler, however, will appear to have used the HTTP protocol. The AppEngineRouting used to construct the URL that the task is delivered to can be set at the queue-level or task-level: * If app_engine_routing_override is set on the queue, this value is used for all tasks in the queue, no matter what the setting is for the task-level app_engine_routing. The `url` that the task will be sent to is: * `url =` host `+` relative_uri Tasks can be dispatched to secure app handlers, unsecure app handlers, and URIs restricted with [`login: admin`](https://cloud.google.com/appengine/docs/standard/python/config/appref). Because tasks are not run as any user, they cannot be dispatched to URIs restricted with [`login: required`](https://cloud.google.com/appengine/docs/standard/python/config/appref) Task dispatches also do not follow redirects. The task attempt has succeeded if the app's request handler returns an HTTP response code in the range [`200` - `299`]. The task attempt has failed if the app's handler returns a non-2xx response code or Cloud Tasks does not receive response before the deadline. Failed tasks will be retried according to the retry configuration. `503` (Service Unavailable) is considered an App Engine system error instead of an application error and will cause Cloud Tasks' traffic congestion control to temporarily throttle the queue's dispatches. Unlike other types of task targets, a `429` (Too Many Requests) response from an app handler does not cause traffic congestion control to throttle the queue. */
 export interface AppEngineHttpRequest {
@@ -258,7 +258,7 @@ export type HttpRequestHttpMethodEnum =
   | "DELETE"
   | "PATCH"
   | "OPTIONS";
-export const HttpRequestHttpMethodEnum = /*@__PURE__*/ S.String;
+export const HttpRequestHttpMethodEnum = S.String;
 
 /** Contains information needed for generating an [OAuth token](https://developers.google.com/identity/protocols/OAuth2). This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com. */
 export interface OAuthToken {
@@ -355,7 +355,7 @@ export const BufferTaskResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BufferTaskResponse>;
 
 export type UriOverrideSchemeEnum = "SCHEME_UNSPECIFIED" | "HTTP" | "HTTPS";
-export const UriOverrideSchemeEnum = /*@__PURE__*/ S.String;
+export const UriOverrideSchemeEnum = S.String;
 
 /** PathOverride. Path message defines path override for HTTP targets. */
 export interface PathOverride {
@@ -383,7 +383,7 @@ export type UriOverrideUriOverrideEnforceModeEnum =
   | "URI_OVERRIDE_ENFORCE_MODE_UNSPECIFIED"
   | "IF_NOT_EXISTS"
   | "ALWAYS";
-export const UriOverrideUriOverrideEnforceModeEnum = /*@__PURE__*/ S.String;
+export const UriOverrideUriOverrideEnforceModeEnum = S.String;
 
 /** URI Override. When specified, all the HTTP tasks inside the queue will be partially or fully overridden depending on the configured values. */
 export interface UriOverride {
@@ -422,7 +422,7 @@ export type HttpTargetHttpMethodEnum =
   | "DELETE"
   | "PATCH"
   | "OPTIONS";
-export const HttpTargetHttpMethodEnum = /*@__PURE__*/ S.String;
+export const HttpTargetHttpMethodEnum = S.String;
 
 /** Defines a header message. A header can have a key and a value. */
 export interface Header {
@@ -535,7 +535,7 @@ export type QueueStateEnum =
   | "RUNNING"
   | "PAUSED"
   | "DISABLED";
-export const QueueStateEnum = /*@__PURE__*/ S.String;
+export const QueueStateEnum = S.String;
 
 /** A queue is a container of related tasks. Queues are configured to manage how those tasks are dispatched. Configurable properties include rate limits, retry options, queue types, and others. */
 export interface Queue {
@@ -595,7 +595,7 @@ export type CreateTaskRequestResponseViewEnum =
   | "VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const CreateTaskRequestResponseViewEnum = /*@__PURE__*/ S.String;
+export const CreateTaskRequestResponseViewEnum = S.String;
 
 /** Request message for CreateTask. */
 export interface CreateTaskRequest {
@@ -887,8 +887,7 @@ export type GetProjectsLocationsQueuesTasksResponseViewEnum =
   | "VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsQueuesTasksResponseViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsQueuesTasksResponseViewEnum = S.String;
 
 export interface GetProjectsLocationsQueuesTasksRequest {
   /** The response_view specifies which subset of the Task will be returned. By default response_view is BASIC; not all information is retrieved by default because some data, such as payloads, might be desirable to return only when needed because of its large size or because of the sensitivity of data that it contains. Authorization for FULL requires `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/) permission on the Task resource. */
@@ -1019,8 +1018,7 @@ export type ListProjectsLocationsQueuesTasksResponseViewEnum =
   | "VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListProjectsLocationsQueuesTasksResponseViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsQueuesTasksResponseViewEnum = S.String;
 
 export interface ListProjectsLocationsQueuesTasksRequest {
   /** Required. The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` */
@@ -1183,7 +1181,7 @@ export type RunTaskRequestResponseViewEnum =
   | "VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const RunTaskRequestResponseViewEnum = /*@__PURE__*/ S.String;
+export const RunTaskRequestResponseViewEnum = S.String;
 
 /** Request message for forcing a task to run now using RunTask. */
 export interface RunTaskRequest {

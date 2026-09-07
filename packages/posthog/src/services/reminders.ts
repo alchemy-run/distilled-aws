@@ -13,17 +13,17 @@ export type { PosthogOpError, PosthogOpContext };
 
 /** * `daily` - Daily * `weekly` - Weekly * `monthly` - Monthly * `yearly` - Yearly */
 export type RecurrenceIntervalEnum = "daily" | "weekly" | "monthly" | "yearly";
-export const RecurrenceIntervalEnum = /*@__PURE__*/ S.String;
+export const RecurrenceIntervalEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 /** For a recurring reminder: daily, weekly, monthly, or yearly. * `daily` - Daily * `weekly` - Weekly * `monthly` - Monthly * `yearly` - Yearly */
 export type CreateReminderRequestRecurrenceInterval =
   | RecurrenceIntervalEnum
   | BlankEnum;
 export const CreateReminderRequestRecurrenceInterval =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateReminderRequestRecurrenceInterval>;
+  S.Unknown as any as S.Schema<CreateReminderRequestRecurrenceInterval>;
 
 export interface CreateReminderRequest {
   /** ID of the organization this reminder belongs to. You must be a member of it. */
@@ -72,11 +72,11 @@ export const CreateReminderRequest = /*@__PURE__*/ S.suspend(() =>
 /** For a recurring reminder: daily, weekly, monthly, or yearly. * `daily` - Daily * `weekly` - Weekly * `monthly` - Monthly * `yearly` - Yearly */
 export type ReminderRecurrenceInterval = RecurrenceIntervalEnum | BlankEnum;
 export const ReminderRecurrenceInterval =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReminderRecurrenceInterval>;
+  S.Unknown as any as S.Schema<ReminderRecurrenceInterval>;
 
 /** * `active` - Active * `completed` - Completed * `errored` - Errored */
 export type ReminderStatusEnum = "active" | "completed" | "errored";
-export const ReminderStatusEnum = /*@__PURE__*/ S.String;
+export const ReminderStatusEnum = S.String;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -95,11 +95,11 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -253,7 +253,7 @@ export type UpdateReminderRequestRecurrenceInterval =
   | RecurrenceIntervalEnum
   | BlankEnum;
 export const UpdateReminderRequestRecurrenceInterval =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateReminderRequestRecurrenceInterval>;
+  S.Unknown as any as S.Schema<UpdateReminderRequestRecurrenceInterval>;
 
 export interface UpdateReminderRequest {
   /** A UUID string identifying this reminder. */
@@ -307,7 +307,7 @@ export type UpdateRemindersPartialRequestRecurrenceInterval =
   | RecurrenceIntervalEnum
   | BlankEnum;
 export const UpdateRemindersPartialRequestRecurrenceInterval =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateRemindersPartialRequestRecurrenceInterval>;
+  S.Unknown as any as S.Schema<UpdateRemindersPartialRequestRecurrenceInterval>;
 
 export interface UpdateRemindersPartialRequest {
   /** A UUID string identifying this reminder. */

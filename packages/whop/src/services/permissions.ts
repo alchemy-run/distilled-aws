@@ -293,7 +293,7 @@ export type PermissionAction =
   | "user:notifications:read"
   | "user:notifications:update"
   | "user:profile:update";
-export const PermissionAction = /*@__PURE__*/ S.String;
+export const PermissionAction = S.String;
 
 export interface ListPermissionsResponseDataItem {
   action: PermissionAction;

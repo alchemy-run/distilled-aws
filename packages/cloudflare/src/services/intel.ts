@@ -484,8 +484,7 @@ export type MiscategorizationsCreateRequestIndicatorType =
   | "ipv4"
   | "ipv6"
   | "url";
-export const MiscategorizationsCreateRequestIndicatorType =
-  /*@__PURE__*/ S.String;
+export const MiscategorizationsCreateRequestIndicatorType = S.String;
 
 export type MiscategorizationsCreateRequestSecurityAddsList = Array<number>;
 export const MiscategorizationsCreateRequestSecurityAddsList =
@@ -1368,8 +1367,7 @@ export type IndicatorFeedsGetResponseLatestUploadStatus =
   | "Provisioning"
   | "Complete"
   | "Error";
-export const IndicatorFeedsGetResponseLatestUploadStatus =
-  /*@__PURE__*/ S.String;
+export const IndicatorFeedsGetResponseLatestUploadStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetIndicatorFeedResponse {
@@ -1460,7 +1458,7 @@ export type IpsGetResultItemBelongsToRefType =
   | "hosting_provider"
   | "isp"
   | "organization";
-export const IpsGetResultItemBelongsToRefType = /*@__PURE__*/ S.String;
+export const IpsGetResultItemBelongsToRefType = S.String;
 
 export interface IpsGetResultItemBelongsToRef {
   id?: string | null;
@@ -2013,7 +2011,7 @@ export type AttackSurfaceReportIssuesListResponseIssuesItemIssueType =
   | "weak_authentication"
   | "configuration_suggestion";
 export const AttackSurfaceReportIssuesListResponseIssuesItemIssueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AttackSurfaceReportIssuesListResponseIssuesItemPayload {
   /** Describes the method used to detect insight. */
@@ -2036,21 +2034,19 @@ export type AttackSurfaceReportIssuesListResponseIssuesItemSeverity =
   | "Low"
   | "Moderate"
   | "Critical";
-export const AttackSurfaceReportIssuesListResponseIssuesItemSeverity =
-  /*@__PURE__*/ S.String;
+export const AttackSurfaceReportIssuesListResponseIssuesItemSeverity = S.String;
 
 export type AttackSurfaceReportIssuesListResponseIssuesItemStatus =
   | "active"
   | "resolved";
-export const AttackSurfaceReportIssuesListResponseIssuesItemStatus =
-  /*@__PURE__*/ S.String;
+export const AttackSurfaceReportIssuesListResponseIssuesItemStatus = S.String;
 
 export type AttackSurfaceReportIssuesListResponseIssuesItemUserClassification =
   | "false_positive"
   | "accept_risk"
   | "other";
 export const AttackSurfaceReportIssuesListResponseIssuesItemUserClassification =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AttackSurfaceReportIssuesListResponseIssuesItem {
   id?: string | null;

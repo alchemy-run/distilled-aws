@@ -107,7 +107,7 @@ export type AddCollectionRequestBody =
   | AddCollectionRequestBodyCase0
   | AddCollectionRequestBodyCase1;
 export const AddCollectionRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddCollectionRequestBody>;
+  S.Unknown as any as S.Schema<AddCollectionRequestBody>;
 
 export interface AddCollectionRequest {
   body?: AddCollectionRequestBody;
@@ -172,7 +172,7 @@ export type BroadcastActionLinksRequestPeriod =
   | "days"
   | "weeks"
   | "months";
-export const BroadcastActionLinksRequestPeriod = /*@__PURE__*/ S.String;
+export const BroadcastActionLinksRequestPeriod = S.String;
 
 export type BroadcastActionLinksRequestType =
   | "email"
@@ -183,7 +183,7 @@ export type BroadcastActionLinksRequestType =
   | "push"
   | "in_app"
   | "live_notification";
-export const BroadcastActionLinksRequestType = /*@__PURE__*/ S.String;
+export const BroadcastActionLinksRequestType = S.String;
 
 export interface BroadcastActionLinksRequest {
   /** The identifier of a broadcast. */
@@ -332,7 +332,7 @@ export type BroadcastActionMetricsRequestPeriod =
   | "days"
   | "weeks"
   | "months";
-export const BroadcastActionMetricsRequestPeriod = /*@__PURE__*/ S.String;
+export const BroadcastActionMetricsRequestPeriod = S.String;
 
 export type BroadcastActionMetricsRequestType =
   | "email"
@@ -343,7 +343,7 @@ export type BroadcastActionMetricsRequestType =
   | "push"
   | "in_app"
   | "live_notification";
-export const BroadcastActionMetricsRequestType = /*@__PURE__*/ S.String;
+export const BroadcastActionMetricsRequestType = S.String;
 
 export interface BroadcastActionMetricsRequest {
   /** The identifier of a broadcast. */
@@ -1154,21 +1154,18 @@ export type BroadcastActionsResponseActionsItemCase0Type =
   | "twilio"
   | "slack"
   | "whatsapp";
-export const BroadcastActionsResponseActionsItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const BroadcastActionsResponseActionsItemCase0Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type BroadcastActionsResponseActionsItemCase0SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const BroadcastActionsResponseActionsItemCase0SendingState =
-  /*@__PURE__*/ S.String;
+export const BroadcastActionsResponseActionsItemCase0SendingState = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type BroadcastActionsResponseActionsItemCase0Preprocessor = "premailer";
-export const BroadcastActionsResponseActionsItemCase0Preprocessor =
-  /*@__PURE__*/ S.String;
+export const BroadcastActionsResponseActionsItemCase0Preprocessor = S.String;
 
 export interface BroadcastActionsResponseActionsItemCase0 {
   /** The identifier for an action. */
@@ -1258,16 +1255,14 @@ export const BroadcastActionsResponseActionsItemCase0 = /*@__PURE__*/ S.suspend(
 
 /** For SMS/MMS messages, the `type` is always `twilio`. */
 export type BroadcastActionsResponseActionsItemCase1Type = "twilio";
-export const BroadcastActionsResponseActionsItemCase1Type =
-  /*@__PURE__*/ S.String;
+export const BroadcastActionsResponseActionsItemCase1Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type BroadcastActionsResponseActionsItemCase1SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const BroadcastActionsResponseActionsItemCase1SendingState =
-  /*@__PURE__*/ S.String;
+export const BroadcastActionsResponseActionsItemCase1SendingState = S.String;
 
 export interface BroadcastActionsResponseActionsItemCase1 {
   /** The identifier for an action. */
@@ -1322,16 +1317,14 @@ export const BroadcastActionsResponseActionsItemCase1 = /*@__PURE__*/ S.suspend(
 
 /** For WhatsApp messages sent from Customer.io using your Facebook Business Account (not Twilio), the `type` is always `whatsapp`. */
 export type BroadcastActionsResponseActionsItemCase2Type = "whatsapp";
-export const BroadcastActionsResponseActionsItemCase2Type =
-  /*@__PURE__*/ S.String;
+export const BroadcastActionsResponseActionsItemCase2Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type BroadcastActionsResponseActionsItemCase2SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const BroadcastActionsResponseActionsItemCase2SendingState =
-  /*@__PURE__*/ S.String;
+export const BroadcastActionsResponseActionsItemCase2SendingState = S.String;
 
 export interface BroadcastActionsResponseActionsItemCase2 {
   /** The identifier for an action. */
@@ -1392,8 +1385,7 @@ export const BroadcastActionsResponseActionsItemCase2 = /*@__PURE__*/ S.suspend(
 
 /** The type of action. */
 export type BroadcastActionsResponseActionsItemCase3Type = "webhook";
-export const BroadcastActionsResponseActionsItemCase3Type =
-  /*@__PURE__*/ S.String;
+export const BroadcastActionsResponseActionsItemCase3Type = S.String;
 
 /** The HTTP method for your webhook. */
 export type BroadcastActionsResponseActionsItemCase3Method =
@@ -1402,16 +1394,14 @@ export type BroadcastActionsResponseActionsItemCase3Method =
   | "put"
   | "delete"
   | "patch";
-export const BroadcastActionsResponseActionsItemCase3Method =
-  /*@__PURE__*/ S.String;
+export const BroadcastActionsResponseActionsItemCase3Method = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type BroadcastActionsResponseActionsItemCase3SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const BroadcastActionsResponseActionsItemCase3SendingState =
-  /*@__PURE__*/ S.String;
+export const BroadcastActionsResponseActionsItemCase3SendingState = S.String;
 
 export interface BroadcastActionsResponseActionsItemCase3 {
   /** The identifier for an action. */
@@ -1470,7 +1460,7 @@ export type BroadcastActionsResponseActionsItem =
   | BroadcastActionsResponseActionsItemCase2
   | BroadcastActionsResponseActionsItemCase3;
 export const BroadcastActionsResponseActionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BroadcastActionsResponseActionsItem>;
+  S.Unknown as any as S.Schema<BroadcastActionsResponseActionsItem>;
 
 export type BroadcastActionsResponseActionsList =
   Array<BroadcastActionsResponseActionsItem>;
@@ -1538,7 +1528,7 @@ export const BroadcastErrorsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BroadcastErrorsResponse>;
 
 export type BroadcastLinksRequestPeriod = "hours" | "days" | "weeks" | "months";
-export const BroadcastLinksRequestPeriod = /*@__PURE__*/ S.String;
+export const BroadcastLinksRequestPeriod = S.String;
 
 export interface BroadcastLinksRequest {
   /** The identifier of a broadcast. */
@@ -1678,14 +1668,14 @@ export type BroadcastMessagesRequestMetric =
   | "dropped"
   | "failed"
   | "undeliverable";
-export const BroadcastMessagesRequestMetric = /*@__PURE__*/ S.String;
+export const BroadcastMessagesRequestMetric = S.String;
 
 export type BroadcastMessagesRequestState =
   | "failed"
   | "sent"
   | "drafted"
   | "attempted";
-export const BroadcastMessagesRequestState = /*@__PURE__*/ S.String;
+export const BroadcastMessagesRequestState = S.String;
 
 export type BroadcastMessagesRequestType =
   | "email"
@@ -1696,7 +1686,7 @@ export type BroadcastMessagesRequestType =
   | "push"
   | "in_app"
   | "live_notification";
-export const BroadcastMessagesRequestType = /*@__PURE__*/ S.String;
+export const BroadcastMessagesRequestType = S.String;
 
 export interface BroadcastMessagesRequest {
   /** The identifier of a broadcast. */
@@ -1860,7 +1850,7 @@ export type BroadcastMessagesResponseMessagesItemType =
   | "slack"
   | "whatsapp"
   | "live_notification";
-export const BroadcastMessagesResponseMessagesItemType = /*@__PURE__*/ S.String;
+export const BroadcastMessagesResponseMessagesItemType = S.String;
 
 /** Describes an individual message delivery. The object contains keys for all possible parents of the message (`newsletter_id`, `broadcast_id`, etc) but only the parents of the delivery are populated. Other parent IDs are null. */
 export interface BroadcastMessagesResponseMessagesItem {
@@ -1956,7 +1946,7 @@ export type BroadcastMetricsRequestPeriod =
   | "days"
   | "weeks"
   | "months";
-export const BroadcastMetricsRequestPeriod = /*@__PURE__*/ S.String;
+export const BroadcastMetricsRequestPeriod = S.String;
 
 export type BroadcastMetricsRequestType =
   | "email"
@@ -1967,7 +1957,7 @@ export type BroadcastMetricsRequestType =
   | "push"
   | "in_app"
   | "live_notification";
-export const BroadcastMetricsRequestType = /*@__PURE__*/ S.String;
+export const BroadcastMetricsRequestType = S.String;
 
 export interface BroadcastMetricsRequest {
   /** The identifier of a broadcast. */
@@ -2371,7 +2361,7 @@ export type CampaignActionLinksRequestPeriod =
   | "days"
   | "weeks"
   | "months";
-export const CampaignActionLinksRequestPeriod = /*@__PURE__*/ S.String;
+export const CampaignActionLinksRequestPeriod = S.String;
 
 export type CampaignActionLinksRequestType =
   | "email"
@@ -2382,7 +2372,7 @@ export type CampaignActionLinksRequestType =
   | "push"
   | "in_app"
   | "live_notification";
-export const CampaignActionLinksRequestType = /*@__PURE__*/ S.String;
+export const CampaignActionLinksRequestType = S.String;
 
 export interface CampaignActionLinksRequest {
   /** The ID of the campaign that you want to trigger or return information about. */
@@ -2519,7 +2509,7 @@ export const CampaignActionLinksResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CampaignActionLinksResponse>;
 
 export type CampaignActionMetricsRequestVersion = "1" | "2";
-export const CampaignActionMetricsRequestVersion = /*@__PURE__*/ S.String;
+export const CampaignActionMetricsRequestVersion = S.String;
 
 export type CampaignActionMetricsRequestRes =
   | "hours"
@@ -2530,14 +2520,14 @@ export type CampaignActionMetricsRequestRes =
   | "weekly"
   | "months"
   | "monthly";
-export const CampaignActionMetricsRequestRes = /*@__PURE__*/ S.String;
+export const CampaignActionMetricsRequestRes = S.String;
 
 export type CampaignActionMetricsRequestPeriod =
   | "hours"
   | "days"
   | "weeks"
   | "months";
-export const CampaignActionMetricsRequestPeriod = /*@__PURE__*/ S.String;
+export const CampaignActionMetricsRequestPeriod = S.String;
 
 export type CampaignActionMetricsRequestType =
   | "email"
@@ -2548,7 +2538,7 @@ export type CampaignActionMetricsRequestType =
   | "push"
   | "in_app"
   | "live_notification";
-export const CampaignActionMetricsRequestType = /*@__PURE__*/ S.String;
+export const CampaignActionMetricsRequestType = S.String;
 
 export interface CampaignActionMetricsRequest {
   /** The ID of the campaign that you want to trigger or return information about. */
@@ -2605,7 +2595,7 @@ export type CampaignActionMetricsResponseRes =
   | "weekly"
   | "months"
   | "monthly";
-export const CampaignActionMetricsResponseRes = /*@__PURE__*/ S.String;
+export const CampaignActionMetricsResponseRes = S.String;
 
 /** The number of `attempted` messages. */
 export type CampaignActionMetricsResponseMetricSeriesAttemptedList =
@@ -3361,7 +3351,7 @@ export type CampaignJourneyMetricsRequestResolution =
   | "weekly"
   | "months"
   | "monthly";
-export const CampaignJourneyMetricsRequestResolution = /*@__PURE__*/ S.String;
+export const CampaignJourneyMetricsRequestResolution = S.String;
 
 export interface CampaignJourneyMetricsRequest {
   /** The ID of the campaign that you want to trigger or return information about. */
@@ -3507,7 +3497,7 @@ export type CampaignLinkMetricsRequestPeriod =
   | "days"
   | "weeks"
   | "months";
-export const CampaignLinkMetricsRequestPeriod = /*@__PURE__*/ S.String;
+export const CampaignLinkMetricsRequestPeriod = S.String;
 
 export interface CampaignLinkMetricsRequest {
   /** The ID of the campaign that you want to trigger or return information about. */
@@ -3636,7 +3626,7 @@ export const CampaignLinkMetricsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CampaignLinkMetricsResponse>;
 
 export type CampaignMetricsRequestVersion = "1" | "2";
-export const CampaignMetricsRequestVersion = /*@__PURE__*/ S.String;
+export const CampaignMetricsRequestVersion = S.String;
 
 export type CampaignMetricsRequestRes =
   | "hours"
@@ -3647,14 +3637,14 @@ export type CampaignMetricsRequestRes =
   | "weekly"
   | "months"
   | "monthly";
-export const CampaignMetricsRequestRes = /*@__PURE__*/ S.String;
+export const CampaignMetricsRequestRes = S.String;
 
 export type CampaignMetricsRequestPeriod =
   | "hours"
   | "days"
   | "weeks"
   | "months";
-export const CampaignMetricsRequestPeriod = /*@__PURE__*/ S.String;
+export const CampaignMetricsRequestPeriod = S.String;
 
 export type CampaignMetricsRequestType =
   | "email"
@@ -3665,7 +3655,7 @@ export type CampaignMetricsRequestType =
   | "push"
   | "in_app"
   | "live_notification";
-export const CampaignMetricsRequestType = /*@__PURE__*/ S.String;
+export const CampaignMetricsRequestType = S.String;
 
 export interface CampaignMetricsRequest {
   /** The ID of the campaign that you want to trigger or return information about. */
@@ -3719,7 +3709,7 @@ export type CampaignMetricsResponseRes =
   | "weekly"
   | "months"
   | "monthly";
-export const CampaignMetricsResponseRes = /*@__PURE__*/ S.String;
+export const CampaignMetricsResponseRes = S.String;
 
 /** The number of `attempted` messages. */
 export type CampaignMetricsResponseMetricSeriesAttemptedList = Array<number>;
@@ -4518,15 +4508,14 @@ export type CreateEmailRequestTransformersFormatterType =
   | "none"
   | "prettify"
   | "minify";
-export const CreateEmailRequestTransformersFormatterType =
-  /*@__PURE__*/ S.String;
+export const CreateEmailRequestTransformersFormatterType = S.String;
 
 /** Character used for indentation. */
 export type CreateEmailRequestTransformersFormatterPrettifyIndentCharacter =
   | "spaces"
   | "tabs";
 export const CreateEmailRequestTransformersFormatterPrettifyIndentCharacter =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"prettify"`. Produces human-readable, indented HTML output. */
 export interface CreateEmailRequestTransformersFormatterPrettify {
@@ -4558,7 +4547,7 @@ export type CreateEmailRequestTransformersFormatterMinifyRemoveHtmlComments =
   | "1"
   | "2";
 export const CreateEmailRequestTransformersFormatterMinifyRemoveHtmlComments =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"minify"`. Reduces file size by stripping whitespace and comments. */
 export interface CreateEmailRequestTransformersFormatterMinify {
@@ -4881,15 +4870,14 @@ export type CreateEmailResponseEmailTransformersFormatterType =
   | "none"
   | "prettify"
   | "minify";
-export const CreateEmailResponseEmailTransformersFormatterType =
-  /*@__PURE__*/ S.String;
+export const CreateEmailResponseEmailTransformersFormatterType = S.String;
 
 /** Character used for indentation. */
 export type CreateEmailResponseEmailTransformersFormatterPrettifyIndentCharacter =
   | "spaces"
   | "tabs";
 export const CreateEmailResponseEmailTransformersFormatterPrettifyIndentCharacter =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"prettify"`. Produces human-readable, indented HTML output. */
 export interface CreateEmailResponseEmailTransformersFormatterPrettify {
@@ -4919,7 +4907,7 @@ export type CreateEmailResponseEmailTransformersFormatterMinifyRemoveHtmlComment
   | "1"
   | "2";
 export const CreateEmailResponseEmailTransformersFormatterMinifyRemoveHtmlComments =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"minify"`. Reduces file size by stripping whitespace and comments. */
 export interface CreateEmailResponseEmailTransformersFormatterMinify {
@@ -5231,15 +5219,14 @@ export type CreateEmailTranslationRequestTransformersFormatterType =
   | "none"
   | "prettify"
   | "minify";
-export const CreateEmailTranslationRequestTransformersFormatterType =
-  /*@__PURE__*/ S.String;
+export const CreateEmailTranslationRequestTransformersFormatterType = S.String;
 
 /** Character used for indentation. */
 export type CreateEmailTranslationRequestTransformersFormatterPrettifyIndentCharacter =
   | "spaces"
   | "tabs";
 export const CreateEmailTranslationRequestTransformersFormatterPrettifyIndentCharacter =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"prettify"`. Produces human-readable, indented HTML output. */
 export interface CreateEmailTranslationRequestTransformersFormatterPrettify {
@@ -5271,7 +5258,7 @@ export type CreateEmailTranslationRequestTransformersFormatterMinifyRemoveHtmlCo
   | "1"
   | "2";
 export const CreateEmailTranslationRequestTransformersFormatterMinifyRemoveHtmlComments =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"minify"`. Reduces file size by stripping whitespace and comments. */
 export interface CreateEmailTranslationRequestTransformersFormatterMinify {
@@ -5582,14 +5569,14 @@ export type CreateEmailTranslationResponseEmailTranslationTransformersFormatterT
   | "prettify"
   | "minify";
 export const CreateEmailTranslationResponseEmailTranslationTransformersFormatterType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Character used for indentation. */
 export type CreateEmailTranslationResponseEmailTranslationTransformersFormatterPrettifyIndentCharacter =
   | "spaces"
   | "tabs";
 export const CreateEmailTranslationResponseEmailTranslationTransformersFormatterPrettifyIndentCharacter =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"prettify"`. Produces human-readable, indented HTML output. */
 export interface CreateEmailTranslationResponseEmailTranslationTransformersFormatterPrettify {
@@ -5620,7 +5607,7 @@ export type CreateEmailTranslationResponseEmailTranslationTransformersFormatterM
   | "1"
   | "2";
 export const CreateEmailTranslationResponseEmailTranslationTransformersFormatterMinifyRemoveHtmlComments =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"minify"`. Reduces file size by stripping whitespace and comments. */
 export interface CreateEmailTranslationResponseEmailTranslationTransformersFormatterMinify {
@@ -5926,11 +5913,11 @@ export type CreateManSegmentResponseSegmentState =
   | "events_queued"
   | "build_queued"
   | "finished";
-export const CreateManSegmentResponseSegmentState = /*@__PURE__*/ S.String;
+export const CreateManSegmentResponseSegmentState = S.String;
 
 /** The type of segment. */
 export type CreateManSegmentResponseSegmentType = "dynamic" | "manual";
-export const CreateManSegmentResponseSegmentType = /*@__PURE__*/ S.String;
+export const CreateManSegmentResponseSegmentType = S.String;
 
 /** The tags assigned to the segment, if any. Tags may help you sort through your segments. */
 export type CreateManSegmentResponseSegmentTagsList = Array<string>;
@@ -6021,7 +6008,7 @@ export type CreateNewsletterRequestBodyCase0RecipientsAttributeOperator =
   | "eq"
   | "exists";
 export const CreateNewsletterRequestBodyCase0RecipientsAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A customer attribute condition. */
 export interface CreateNewsletterRequestBodyCase0RecipientsAttribute {
@@ -6083,12 +6070,11 @@ export type CreateNewsletterRequestBodyCase0RateLimitTimePeriod =
   | 60
   | 3600
   | 86400;
-export const CreateNewsletterRequestBodyCase0RateLimitTimePeriod =
-  /*@__PURE__*/ S.Number;
+export const CreateNewsletterRequestBodyCase0RateLimitTimePeriod = S.Number;
 
 /** The channel type for the newsletter. */
 export type CreateNewsletterRequestBodyCase0Type = "email";
-export const CreateNewsletterRequestBodyCase0Type = /*@__PURE__*/ S.String;
+export const CreateNewsletterRequestBodyCase0Type = S.String;
 
 /** When you create an email, include `subject` and `body`. Set either `from` or `from_id`, but not both. If you set neither, Customer.io uses your oldest verified sending address. */
 export interface CreateNewsletterRequestBodyCase0 {
@@ -6177,7 +6163,7 @@ export type CreateNewsletterRequestBodyCase1RecipientsAttributeOperator =
   | "eq"
   | "exists";
 export const CreateNewsletterRequestBodyCase1RecipientsAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A customer attribute condition. */
 export interface CreateNewsletterRequestBodyCase1RecipientsAttribute {
@@ -6239,12 +6225,11 @@ export type CreateNewsletterRequestBodyCase1RateLimitTimePeriod =
   | 60
   | 3600
   | 86400;
-export const CreateNewsletterRequestBodyCase1RateLimitTimePeriod =
-  /*@__PURE__*/ S.Number;
+export const CreateNewsletterRequestBodyCase1RateLimitTimePeriod = S.Number;
 
 /** The channel type for the newsletter. */
 export type CreateNewsletterRequestBodyCase1Type = "twilio";
-export const CreateNewsletterRequestBodyCase1Type = /*@__PURE__*/ S.String;
+export const CreateNewsletterRequestBodyCase1Type = S.String;
 
 /** When creating an SMS text, you must include `body`. */
 export interface CreateNewsletterRequestBodyCase1 {
@@ -6315,7 +6300,7 @@ export type CreateNewsletterRequestBodyCase2RecipientsAttributeOperator =
   | "eq"
   | "exists";
 export const CreateNewsletterRequestBodyCase2RecipientsAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A customer attribute condition. */
 export interface CreateNewsletterRequestBodyCase2RecipientsAttribute {
@@ -6377,12 +6362,11 @@ export type CreateNewsletterRequestBodyCase2RateLimitTimePeriod =
   | 60
   | 3600
   | 86400;
-export const CreateNewsletterRequestBodyCase2RateLimitTimePeriod =
-  /*@__PURE__*/ S.Number;
+export const CreateNewsletterRequestBodyCase2RateLimitTimePeriod = S.Number;
 
 /** The channel type for the newsletter. */
 export type CreateNewsletterRequestBodyCase2Type = "push";
-export const CreateNewsletterRequestBodyCase2Type = /*@__PURE__*/ S.String;
+export const CreateNewsletterRequestBodyCase2Type = S.String;
 
 /** For push notifications, you must provide at least one of `subject` or `body`. */
 export interface CreateNewsletterRequestBodyCase2 {
@@ -6456,7 +6440,7 @@ export type CreateNewsletterRequestBodyCase3RecipientsAttributeOperator =
   | "eq"
   | "exists";
 export const CreateNewsletterRequestBodyCase3RecipientsAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A customer attribute condition. */
 export interface CreateNewsletterRequestBodyCase3RecipientsAttribute {
@@ -6518,12 +6502,11 @@ export type CreateNewsletterRequestBodyCase3RateLimitTimePeriod =
   | 60
   | 3600
   | 86400;
-export const CreateNewsletterRequestBodyCase3RateLimitTimePeriod =
-  /*@__PURE__*/ S.Number;
+export const CreateNewsletterRequestBodyCase3RateLimitTimePeriod = S.Number;
 
 /** The channel type for the newsletter. */
 export type CreateNewsletterRequestBodyCase3Type = "in_app";
-export const CreateNewsletterRequestBodyCase3Type = /*@__PURE__*/ S.String;
+export const CreateNewsletterRequestBodyCase3Type = S.String;
 
 /** For in-app messages, you must include `body_json`. */
 export interface CreateNewsletterRequestBodyCase3 {
@@ -6594,7 +6577,7 @@ export type CreateNewsletterRequestBodyCase4RecipientsAttributeOperator =
   | "eq"
   | "exists";
 export const CreateNewsletterRequestBodyCase4RecipientsAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A customer attribute condition. */
 export interface CreateNewsletterRequestBodyCase4RecipientsAttribute {
@@ -6656,12 +6639,11 @@ export type CreateNewsletterRequestBodyCase4RateLimitTimePeriod =
   | 60
   | 3600
   | 86400;
-export const CreateNewsletterRequestBodyCase4RateLimitTimePeriod =
-  /*@__PURE__*/ S.Number;
+export const CreateNewsletterRequestBodyCase4RateLimitTimePeriod = S.Number;
 
 /** The channel type for the newsletter. */
 export type CreateNewsletterRequestBodyCase4Type = "webhook";
-export const CreateNewsletterRequestBodyCase4Type = /*@__PURE__*/ S.String;
+export const CreateNewsletterRequestBodyCase4Type = S.String;
 
 /** The HTTP method for the webhook request. */
 export type CreateNewsletterRequestBodyCase4RequestMethod =
@@ -6670,8 +6652,7 @@ export type CreateNewsletterRequestBodyCase4RequestMethod =
   | "POST"
   | "PUT"
   | "PATCH";
-export const CreateNewsletterRequestBodyCase4RequestMethod =
-  /*@__PURE__*/ S.String;
+export const CreateNewsletterRequestBodyCase4RequestMethod = S.String;
 
 /** For webhooks, you must include `body`, `request_method`, and `url`. */
 export interface CreateNewsletterRequestBodyCase4 {
@@ -6748,7 +6729,7 @@ export type CreateNewsletterRequestBodyCase5RecipientsAttributeOperator =
   | "eq"
   | "exists";
 export const CreateNewsletterRequestBodyCase5RecipientsAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A customer attribute condition. */
 export interface CreateNewsletterRequestBodyCase5RecipientsAttribute {
@@ -6810,12 +6791,11 @@ export type CreateNewsletterRequestBodyCase5RateLimitTimePeriod =
   | 60
   | 3600
   | 86400;
-export const CreateNewsletterRequestBodyCase5RateLimitTimePeriod =
-  /*@__PURE__*/ S.Number;
+export const CreateNewsletterRequestBodyCase5RateLimitTimePeriod = S.Number;
 
 /** The channel type for the newsletter. */
 export type CreateNewsletterRequestBodyCase5Type = "inbox";
-export const CreateNewsletterRequestBodyCase5Type = /*@__PURE__*/ S.String;
+export const CreateNewsletterRequestBodyCase5Type = S.String;
 
 /** For inbox messages, you must include `body_json`. */
 export interface CreateNewsletterRequestBodyCase5 {
@@ -6869,7 +6849,7 @@ export type CreateNewsletterRequestBody =
   | CreateNewsletterRequestBodyCase4
   | CreateNewsletterRequestBodyCase5;
 export const CreateNewsletterRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateNewsletterRequestBody>;
+  S.Unknown as any as S.Schema<CreateNewsletterRequestBody>;
 
 export interface CreateNewsletterRequest {
   body: CreateNewsletterRequestBody;
@@ -6897,7 +6877,7 @@ export type CreateNewsletterResponseNewsletterType =
   | "push"
   | "in_app"
   | "inbox";
-export const CreateNewsletterResponseNewsletterType = /*@__PURE__*/ S.String;
+export const CreateNewsletterResponseNewsletterType = S.String;
 
 /** An array of tags associated with the newsletter. */
 export type CreateNewsletterResponseNewsletterTagsList = Array<string>;
@@ -7076,7 +7056,7 @@ export type CreateNewsletterLanguageVariantRequestBody =
   | CreateNewsletterLanguageVariantRequestBodyCase3
   | CreateNewsletterLanguageVariantRequestBodyCase4;
 export const CreateNewsletterLanguageVariantRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateNewsletterLanguageVariantRequestBody>;
+  S.Unknown as any as S.Schema<CreateNewsletterLanguageVariantRequestBody>;
 
 export interface CreateNewsletterLanguageVariantRequest {
   /** The identifier of a newsletter. */
@@ -7115,8 +7095,7 @@ export type CreateNewsletterLanguageVariantResponseNewsletterType =
   | "push"
   | "in_app"
   | "inbox";
-export const CreateNewsletterLanguageVariantResponseNewsletterType =
-  /*@__PURE__*/ S.String;
+export const CreateNewsletterLanguageVariantResponseNewsletterType = S.String;
 
 /** An array of tags associated with the newsletter. */
 export type CreateNewsletterLanguageVariantResponseNewsletterTagsList =
@@ -7229,8 +7208,7 @@ export type CreateNewsletterTestGroupResponseNewsletterType =
   | "push"
   | "in_app"
   | "inbox";
-export const CreateNewsletterTestGroupResponseNewsletterType =
-  /*@__PURE__*/ S.String;
+export const CreateNewsletterTestGroupResponseNewsletterType = S.String;
 
 /** An array of tags associated with the newsletter. */
 export type CreateNewsletterTestGroupResponseNewsletterTagsList = Array<string>;
@@ -7343,7 +7321,7 @@ export type CreateNewsletterTestLanguageVariantRequestBody =
   | CreateNewsletterLanguageVariantRequestBodyCase3
   | CreateNewsletterLanguageVariantRequestBodyCase4;
 export const CreateNewsletterTestLanguageVariantRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateNewsletterTestLanguageVariantRequestBody>;
+  S.Unknown as any as S.Schema<CreateNewsletterTestLanguageVariantRequestBody>;
 
 export interface CreateNewsletterTestLanguageVariantRequest {
   /** The identifier of a newsletter. */
@@ -7386,7 +7364,7 @@ export type CreateNewsletterTestLanguageVariantResponseNewsletterType =
   | "in_app"
   | "inbox";
 export const CreateNewsletterTestLanguageVariantResponseNewsletterType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of tags associated with the newsletter. */
 export type CreateNewsletterTestLanguageVariantResponseNewsletterTagsList =
@@ -7588,7 +7566,7 @@ export type CreateWebhookRequestEventsItem =
   | "webhook_converted"
   | "webhook_failed"
   | "webhook_undeliverable";
-export const CreateWebhookRequestEventsItem = /*@__PURE__*/ S.String;
+export const CreateWebhookRequestEventsItem = S.String;
 
 /** Specifies the types of events you want to report to your webhook. See our [reporting webhooks reference](/integrations/api/webhooks/) for more information about event types and the information they return. */
 export type CreateWebhookRequestEventsList = Array<
@@ -7627,7 +7605,7 @@ export const CreateWebhookRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of webhook—`webhook` for a standard reporting webhook or `js` for a JavaScript webhook. */
 export type CreateWebhookResponseType = "webhook" | "js";
-export const CreateWebhookResponseType = /*@__PURE__*/ S.String;
+export const CreateWebhookResponseType = S.String;
 
 export type CreateWebhookResponseEventsItem =
   | "customer_subscribed"
@@ -7702,7 +7680,7 @@ export type CreateWebhookResponseEventsItem =
   | "webhook_converted"
   | "webhook_failed"
   | "webhook_undeliverable";
-export const CreateWebhookResponseEventsItem = /*@__PURE__*/ S.String;
+export const CreateWebhookResponseEventsItem = S.String;
 
 /** Specifies the types of events you want to report to your webhook. See our [reporting webhooks reference](/integrations/api/webhooks/) for more information about event types and the information they return. */
 export type CreateWebhookResponseEventsList =
@@ -8046,7 +8024,7 @@ export type DeleteSuppressionRequestSuppressionType =
   | "bounces"
   | "spam_reports"
   | "invalid_emails";
-export const DeleteSuppressionRequestSuppressionType = /*@__PURE__*/ S.String;
+export const DeleteSuppressionRequestSuppressionType = S.String;
 
 export interface DeleteSuppressionRequest {
   /** The reason a person's email address was suppressed by the email service provider (ESP). */
@@ -8193,7 +8171,7 @@ export type EndLiveNotificationRequestContentState =
   | EndLiveNotificationRequestContentStateCase1
   | EndLiveNotificationRequestContentStateCase2;
 export const EndLiveNotificationRequestContentState =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EndLiveNotificationRequestContentState>;
+  S.Unknown as any as S.Schema<EndLiveNotificationRequestContentState>;
 
 /** Static activity fields, for renderers that need them alongside the content state. */
 export type EndLiveNotificationRequestAttributesMap = {
@@ -8296,8 +8274,7 @@ export type ExportDeliveriesDataRequestBodyCase0Metric =
   | "dropped"
   | "failed"
   | "undeliverable";
-export const ExportDeliveriesDataRequestBodyCase0Metric =
-  /*@__PURE__*/ S.String;
+export const ExportDeliveriesDataRequestBodyCase0Metric = S.String;
 
 export interface ExportDeliveriesDataRequestBodyCase0 {
   /** The ID of a newsletter you want to export information from. */
@@ -8354,8 +8331,7 @@ export type ExportDeliveriesDataRequestBodyCase1Metric =
   | "dropped"
   | "failed"
   | "undeliverable";
-export const ExportDeliveriesDataRequestBodyCase1Metric =
-  /*@__PURE__*/ S.String;
+export const ExportDeliveriesDataRequestBodyCase1Metric = S.String;
 
 export interface ExportDeliveriesDataRequestBodyCase1 {
   /** The ID of a campaign you want to export information from. */
@@ -8412,8 +8388,7 @@ export type ExportDeliveriesDataRequestBodyCase2Metric =
   | "dropped"
   | "failed"
   | "undeliverable";
-export const ExportDeliveriesDataRequestBodyCase2Metric =
-  /*@__PURE__*/ S.String;
+export const ExportDeliveriesDataRequestBodyCase2Metric = S.String;
 
 export interface ExportDeliveriesDataRequestBodyCase2 {
   /** The ID of the transactional message you want to export information for. */
@@ -8470,8 +8445,7 @@ export type ExportDeliveriesDataRequestBodyCase3Metric =
   | "dropped"
   | "failed"
   | "undeliverable";
-export const ExportDeliveriesDataRequestBodyCase3Metric =
-  /*@__PURE__*/ S.String;
+export const ExportDeliveriesDataRequestBodyCase3Metric = S.String;
 
 export interface ExportDeliveriesDataRequestBodyCase3 {
   /** The ID of an action you want to export information from. */
@@ -8512,7 +8486,7 @@ export type ExportDeliveriesDataRequestBody =
   | ExportDeliveriesDataRequestBodyCase2
   | ExportDeliveriesDataRequestBodyCase3;
 export const ExportDeliveriesDataRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportDeliveriesDataRequestBody>;
+  S.Unknown as any as S.Schema<ExportDeliveriesDataRequestBody>;
 
 export interface ExportDeliveriesDataRequest {
   body?: ExportDeliveriesDataRequestBody;
@@ -8527,14 +8501,14 @@ export const ExportDeliveriesDataRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of information contained in the export. */
 export type ExportDeliveriesDataResponseExportType = "customers" | "deliveries";
-export const ExportDeliveriesDataResponseExportType = /*@__PURE__*/ S.String;
+export const ExportDeliveriesDataResponseExportType = S.String;
 
 /** The state of your export where `done` indicates an export that you can download, `pending`, indicates that your export is not ready to download, and `failed` indicates an export that has failed and will not be downloadable. */
 export type ExportDeliveriesDataResponseExportStatus =
   | "done"
   | "pending"
   | "failed";
-export const ExportDeliveriesDataResponseExportStatus = /*@__PURE__*/ S.String;
+export const ExportDeliveriesDataResponseExportStatus = S.String;
 
 /** Metadata about an export. */
 export interface ExportDeliveriesDataResponseExport {
@@ -8629,7 +8603,7 @@ export type ExportPeopleDataRequestFiltersCase0AndItemOrItemCase1AttributeOperat
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase0AndItemOrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase0AndItemOrItemCase1Attribute {
@@ -8675,7 +8649,7 @@ export type ExportPeopleDataRequestFiltersCase0AndItemOrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase1;
 export const ExportPeopleDataRequestFiltersCase0AndItemOrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase0AndItemOrItem>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase0AndItemOrItem>;
 
 /** Returns results matching *any* conditions. */
 export type ExportPeopleDataRequestFiltersCase0AndItemOrList =
@@ -8702,7 +8676,7 @@ export type ExportPeopleDataRequestFiltersCase0AndItemNotCase0AndItemCase1Attrib
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase0AndItemNotCase0AndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase0AndItemNotCase0AndItemCase1Attribute {
@@ -8749,7 +8723,7 @@ export type ExportPeopleDataRequestFiltersCase0AndItemNotCase0AndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase0AndItemNotCase0AndItemCase1;
 export const ExportPeopleDataRequestFiltersCase0AndItemNotCase0AndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase0AndItemNotCase0AndItem>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase0AndItemNotCase0AndItem>;
 
 /** Match *all* conditions to return results. */
 export type ExportPeopleDataRequestFiltersCase0AndItemNotCase0AndList =
@@ -8791,7 +8765,7 @@ export type ExportPeopleDataRequestFiltersCase0AndItemNotCase1OrItemCase1Attribu
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase0AndItemNotCase1OrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase0AndItemNotCase1OrItemCase1Attribute {
@@ -8837,7 +8811,7 @@ export type ExportPeopleDataRequestFiltersCase0AndItemNotCase1OrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase0AndItemNotCase1OrItemCase1;
 export const ExportPeopleDataRequestFiltersCase0AndItemNotCase1OrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase0AndItemNotCase1OrItem>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase0AndItemNotCase1OrItem>;
 
 /** Match *any* condition to return results. */
 export type ExportPeopleDataRequestFiltersCase0AndItemNotCase1OrList =
@@ -8876,7 +8850,7 @@ export type ExportPeopleDataRequestFiltersCase0AndItemNotCase3AttributeOperator 
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase0AndItemNotCase3AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase0AndItemNotCase3Attribute {
@@ -8923,7 +8897,7 @@ export type ExportPeopleDataRequestFiltersCase0AndItemNot =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase0AndItemNotCase3;
 export const ExportPeopleDataRequestFiltersCase0AndItemNot =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase0AndItemNot>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase0AndItemNot>;
 
 /** Provide the `id` of a segment containing people you want to search for. */
 export type ExportPeopleDataRequestFiltersCase0AndItemSegment =
@@ -8936,7 +8910,7 @@ export type ExportPeopleDataRequestFiltersCase0AndItemAttributeOperator =
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase0AndItemAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase0AndItemAttribute {
@@ -9022,7 +8996,7 @@ export type ExportPeopleDataRequestFiltersCase1OrItemAndItemCase1AttributeOperat
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase1OrItemAndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase1OrItemAndItemCase1Attribute {
@@ -9068,7 +9042,7 @@ export type ExportPeopleDataRequestFiltersCase1OrItemAndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase1OrItemAndItemCase1;
 export const ExportPeopleDataRequestFiltersCase1OrItemAndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase1OrItemAndItem>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase1OrItemAndItem>;
 
 /** Returns results matching *all* conditions. */
 export type ExportPeopleDataRequestFiltersCase1OrItemAndList =
@@ -9095,7 +9069,7 @@ export type ExportPeopleDataRequestFiltersCase1OrItemNotCase0AndItemCase1Attribu
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase1OrItemNotCase0AndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase1OrItemNotCase0AndItemCase1Attribute {
@@ -9141,7 +9115,7 @@ export type ExportPeopleDataRequestFiltersCase1OrItemNotCase0AndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase1OrItemNotCase0AndItemCase1;
 export const ExportPeopleDataRequestFiltersCase1OrItemNotCase0AndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase1OrItemNotCase0AndItem>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase1OrItemNotCase0AndItem>;
 
 /** Match *all* conditions to return results. */
 export type ExportPeopleDataRequestFiltersCase1OrItemNotCase0AndList =
@@ -9181,7 +9155,7 @@ export type ExportPeopleDataRequestFiltersCase1OrItemNotCase1OrItemCase1Attribut
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase1OrItemNotCase1OrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase1OrItemNotCase1OrItemCase1Attribute {
@@ -9227,7 +9201,7 @@ export type ExportPeopleDataRequestFiltersCase1OrItemNotCase1OrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase1OrItemNotCase1OrItemCase1;
 export const ExportPeopleDataRequestFiltersCase1OrItemNotCase1OrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase1OrItemNotCase1OrItem>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase1OrItemNotCase1OrItem>;
 
 /** Match *any* condition to return results. */
 export type ExportPeopleDataRequestFiltersCase1OrItemNotCase1OrList =
@@ -9266,7 +9240,7 @@ export type ExportPeopleDataRequestFiltersCase1OrItemNotCase3AttributeOperator =
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase1OrItemNotCase3AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase1OrItemNotCase3Attribute {
@@ -9313,7 +9287,7 @@ export type ExportPeopleDataRequestFiltersCase1OrItemNot =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase1OrItemNotCase3;
 export const ExportPeopleDataRequestFiltersCase1OrItemNot =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase1OrItemNot>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase1OrItemNot>;
 
 /** Provide the `id` of a segment containing people you want to search for. */
 export type ExportPeopleDataRequestFiltersCase1OrItemSegment =
@@ -9326,7 +9300,7 @@ export type ExportPeopleDataRequestFiltersCase1OrItemAttributeOperator =
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase1OrItemAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase1OrItemAttribute {
@@ -9410,7 +9384,7 @@ export type ExportPeopleDataRequestFiltersCase2Case0AndItemAndItemCase1Attribute
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase2Case0AndItemAndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase2Case0AndItemAndItemCase1Attribute {
@@ -9456,7 +9430,7 @@ export type ExportPeopleDataRequestFiltersCase2Case0AndItemAndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase2Case0AndItemAndItemCase1;
 export const ExportPeopleDataRequestFiltersCase2Case0AndItemAndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case0AndItemAndItem>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case0AndItemAndItem>;
 
 /** Returns results matching *all* conditions. */
 export type ExportPeopleDataRequestFiltersCase2Case0AndItemAndList =
@@ -9483,7 +9457,7 @@ export type ExportPeopleDataRequestFiltersCase2Case0AndItemOrItemCase1AttributeO
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase2Case0AndItemOrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase2Case0AndItemOrItemCase1Attribute {
@@ -9529,7 +9503,7 @@ export type ExportPeopleDataRequestFiltersCase2Case0AndItemOrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase2Case0AndItemOrItemCase1;
 export const ExportPeopleDataRequestFiltersCase2Case0AndItemOrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case0AndItemOrItem>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case0AndItemOrItem>;
 
 /** Returns results matching *any* conditions. */
 export type ExportPeopleDataRequestFiltersCase2Case0AndItemOrList =
@@ -9556,7 +9530,7 @@ export type ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase0AndItemCase1A
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase0AndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase0AndItemCase1Attribute {
@@ -9603,7 +9577,7 @@ export type ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase0AndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase0AndItemCase1;
 export const ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase0AndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase0AndItem>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase0AndItem>;
 
 /** Match *all* conditions to return results. */
 export type ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase0AndList =
@@ -9645,7 +9619,7 @@ export type ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase1OrItemCase1At
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase1OrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase1OrItemCase1Attribute {
@@ -9692,7 +9666,7 @@ export type ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase1OrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase1OrItemCase1;
 export const ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase1OrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase1OrItem>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase1OrItem>;
 
 /** Match *any* condition to return results. */
 export type ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase1OrList =
@@ -9733,7 +9707,7 @@ export type ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase3AttributeOper
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase3AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase3Attribute {
@@ -9781,7 +9755,7 @@ export type ExportPeopleDataRequestFiltersCase2Case0AndItemNot =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase2Case0AndItemNotCase3;
 export const ExportPeopleDataRequestFiltersCase2Case0AndItemNot =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case0AndItemNot>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case0AndItemNot>;
 
 /** Provide the `id` of a segment containing people you want to search for. */
 export type ExportPeopleDataRequestFiltersCase2Case0AndItemSegment =
@@ -9794,7 +9768,7 @@ export type ExportPeopleDataRequestFiltersCase2Case0AndItemAttributeOperator =
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase2Case0AndItemAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase2Case0AndItemAttribute {
@@ -9887,7 +9861,7 @@ export type ExportPeopleDataRequestFiltersCase2Case1OrItemAndItemCase1AttributeO
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase2Case1OrItemAndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase2Case1OrItemAndItemCase1Attribute {
@@ -9933,7 +9907,7 @@ export type ExportPeopleDataRequestFiltersCase2Case1OrItemAndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase2Case1OrItemAndItemCase1;
 export const ExportPeopleDataRequestFiltersCase2Case1OrItemAndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case1OrItemAndItem>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case1OrItemAndItem>;
 
 /** Returns results matching *all* conditions. */
 export type ExportPeopleDataRequestFiltersCase2Case1OrItemAndList =
@@ -9960,7 +9934,7 @@ export type ExportPeopleDataRequestFiltersCase2Case1OrItemOrItemCase1AttributeOp
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase2Case1OrItemOrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase2Case1OrItemOrItemCase1Attribute {
@@ -10006,7 +9980,7 @@ export type ExportPeopleDataRequestFiltersCase2Case1OrItemOrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase2Case1OrItemOrItemCase1;
 export const ExportPeopleDataRequestFiltersCase2Case1OrItemOrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case1OrItemOrItem>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case1OrItemOrItem>;
 
 /** Returns results matching *any* conditions. */
 export type ExportPeopleDataRequestFiltersCase2Case1OrItemOrList =
@@ -10033,7 +10007,7 @@ export type ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase0AndItemCase1At
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase0AndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase0AndItemCase1Attribute {
@@ -10080,7 +10054,7 @@ export type ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase0AndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase0AndItemCase1;
 export const ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase0AndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase0AndItem>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase0AndItem>;
 
 /** Match *all* conditions to return results. */
 export type ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase0AndList =
@@ -10122,7 +10096,7 @@ export type ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase1OrItemCase1Att
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase1OrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase1OrItemCase1Attribute {
@@ -10169,7 +10143,7 @@ export type ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase1OrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase1OrItemCase1;
 export const ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase1OrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase1OrItem>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase1OrItem>;
 
 /** Match *any* condition to return results. */
 export type ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase1OrList =
@@ -10210,7 +10184,7 @@ export type ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase3AttributeOpera
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase3AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase3Attribute {
@@ -10258,7 +10232,7 @@ export type ExportPeopleDataRequestFiltersCase2Case1OrItemNot =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase2Case1OrItemNotCase3;
 export const ExportPeopleDataRequestFiltersCase2Case1OrItemNot =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case1OrItemNot>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2Case1OrItemNot>;
 
 /** Provide the `id` of a segment containing people you want to search for. */
 export type ExportPeopleDataRequestFiltersCase2Case1OrItemSegment =
@@ -10271,7 +10245,7 @@ export type ExportPeopleDataRequestFiltersCase2Case1OrItemAttributeOperator =
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase2Case1OrItemAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase2Case1OrItemAttribute {
@@ -10362,7 +10336,7 @@ export type ExportPeopleDataRequestFiltersCase2Case3AttributeOperator =
   | "eq"
   | "exists";
 export const ExportPeopleDataRequestFiltersCase2Case3AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase2Case3Attribute {
@@ -10406,7 +10380,7 @@ export type ExportPeopleDataRequestFiltersCase2 =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase2Case3;
 export const ExportPeopleDataRequestFiltersCase2 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFiltersCase2>;
 
 /** Provide the `id` of a segment containing people you want to search for. */
 export type ExportPeopleDataRequestFiltersCase3Segment =
@@ -10424,8 +10398,7 @@ export const ExportPeopleDataRequestFiltersCase3 =
 export type ExportPeopleDataRequestFiltersCase4AttributeOperator =
   | "eq"
   | "exists";
-export const ExportPeopleDataRequestFiltersCase4AttributeOperator =
-  /*@__PURE__*/ S.String;
+export const ExportPeopleDataRequestFiltersCase4AttributeOperator = S.String;
 
 /** Filter your audience by attribute. */
 export interface ExportPeopleDataRequestFiltersCase4Attribute {
@@ -10470,7 +10443,7 @@ export type ExportPeopleDataRequestFilters =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | ExportPeopleDataRequestFiltersCase4;
 export const ExportPeopleDataRequestFilters =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExportPeopleDataRequestFilters>;
+  S.Unknown as any as S.Schema<ExportPeopleDataRequestFilters>;
 
 /** Recipient attributes you want to include as extra columns in your export. */
 export type ExportPeopleDataRequestAttributesList = Array<string>;
@@ -10495,14 +10468,14 @@ export const ExportPeopleDataRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of information contained in the export. */
 export type ExportPeopleDataResponseExportType = "customers" | "deliveries";
-export const ExportPeopleDataResponseExportType = /*@__PURE__*/ S.String;
+export const ExportPeopleDataResponseExportType = S.String;
 
 /** The state of your export where `done` indicates an export that you can download, `pending`, indicates that your export is not ready to download, and `failed` indicates an export that has failed and will not be downloadable. */
 export type ExportPeopleDataResponseExportStatus =
   | "done"
   | "pending"
   | "failed";
-export const ExportPeopleDataResponseExportStatus = /*@__PURE__*/ S.String;
+export const ExportPeopleDataResponseExportStatus = S.String;
 
 /** Metadata about an export. */
 export interface ExportPeopleDataResponseExport {
@@ -10587,8 +10560,7 @@ export type GetArchivedMessageResponseArchivedMessageRequestMethod =
   | "PUT"
   | "DELETE"
   | "PATCH";
-export const GetArchivedMessageResponseArchivedMessageRequestMethod =
-  /*@__PURE__*/ S.String;
+export const GetArchivedMessageResponseArchivedMessageRequestMethod = S.String;
 
 /** An archived message, including a complete message body. */
 export interface GetArchivedMessageResponseArchivedMessage {
@@ -10725,11 +10697,11 @@ export const GetBroadcastRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of broadcast. */
 export type GetBroadcastResponseBroadcastType = "triggered_broadcast";
-export const GetBroadcastResponseBroadcastType = /*@__PURE__*/ S.String;
+export const GetBroadcastResponseBroadcastType = S.String;
 
 /** The state of the broadcast. */
 export type GetBroadcastResponseBroadcastState = "running" | "draft";
-export const GetBroadcastResponseBroadcastState = /*@__PURE__*/ S.String;
+export const GetBroadcastResponseBroadcastState = S.String;
 
 /** The type of action. */
 export type GetBroadcastResponseBroadcastActionsItemType =
@@ -10738,8 +10710,7 @@ export type GetBroadcastResponseBroadcastActionsItemType =
   | "push"
   | "sms"
   | "slack";
-export const GetBroadcastResponseBroadcastActionsItemType =
-  /*@__PURE__*/ S.String;
+export const GetBroadcastResponseBroadcastActionsItemType = S.String;
 
 export interface GetBroadcastResponseBroadcastActionsItem {
   /** The identifier for the action. */
@@ -10771,8 +10742,7 @@ export type GetBroadcastResponseBroadcastMsgTemplateIdsItemType =
   | "push"
   | "sms"
   | "slack";
-export const GetBroadcastResponseBroadcastMsgTemplateIdsItemType =
-  /*@__PURE__*/ S.String;
+export const GetBroadcastResponseBroadcastMsgTemplateIdsItemType = S.String;
 
 export interface GetBroadcastResponseBroadcastMsgTemplateIdsItem {
   /** The identifier for the template. */
@@ -10891,20 +10861,18 @@ export type GetBroadcastActionResponseActionCase0Type =
   | "twilio"
   | "slack"
   | "whatsapp";
-export const GetBroadcastActionResponseActionCase0Type = /*@__PURE__*/ S.String;
+export const GetBroadcastActionResponseActionCase0Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type GetBroadcastActionResponseActionCase0SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const GetBroadcastActionResponseActionCase0SendingState =
-  /*@__PURE__*/ S.String;
+export const GetBroadcastActionResponseActionCase0SendingState = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type GetBroadcastActionResponseActionCase0Preprocessor = "premailer";
-export const GetBroadcastActionResponseActionCase0Preprocessor =
-  /*@__PURE__*/ S.String;
+export const GetBroadcastActionResponseActionCase0Preprocessor = S.String;
 
 export interface GetBroadcastActionResponseActionCase0 {
   /** The identifier for an action. */
@@ -10994,15 +10962,14 @@ export const GetBroadcastActionResponseActionCase0 = /*@__PURE__*/ S.suspend(
 
 /** For SMS/MMS messages, the `type` is always `twilio`. */
 export type GetBroadcastActionResponseActionCase1Type = "twilio";
-export const GetBroadcastActionResponseActionCase1Type = /*@__PURE__*/ S.String;
+export const GetBroadcastActionResponseActionCase1Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type GetBroadcastActionResponseActionCase1SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const GetBroadcastActionResponseActionCase1SendingState =
-  /*@__PURE__*/ S.String;
+export const GetBroadcastActionResponseActionCase1SendingState = S.String;
 
 export interface GetBroadcastActionResponseActionCase1 {
   /** The identifier for an action. */
@@ -11057,15 +11024,14 @@ export const GetBroadcastActionResponseActionCase1 = /*@__PURE__*/ S.suspend(
 
 /** For WhatsApp messages sent from Customer.io using your Facebook Business Account (not Twilio), the `type` is always `whatsapp`. */
 export type GetBroadcastActionResponseActionCase2Type = "whatsapp";
-export const GetBroadcastActionResponseActionCase2Type = /*@__PURE__*/ S.String;
+export const GetBroadcastActionResponseActionCase2Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type GetBroadcastActionResponseActionCase2SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const GetBroadcastActionResponseActionCase2SendingState =
-  /*@__PURE__*/ S.String;
+export const GetBroadcastActionResponseActionCase2SendingState = S.String;
 
 export interface GetBroadcastActionResponseActionCase2 {
   /** The identifier for an action. */
@@ -11126,7 +11092,7 @@ export const GetBroadcastActionResponseActionCase2 = /*@__PURE__*/ S.suspend(
 
 /** The type of action. */
 export type GetBroadcastActionResponseActionCase3Type = "webhook";
-export const GetBroadcastActionResponseActionCase3Type = /*@__PURE__*/ S.String;
+export const GetBroadcastActionResponseActionCase3Type = S.String;
 
 /** The HTTP method for your webhook. */
 export type GetBroadcastActionResponseActionCase3Method =
@@ -11135,16 +11101,14 @@ export type GetBroadcastActionResponseActionCase3Method =
   | "put"
   | "delete"
   | "patch";
-export const GetBroadcastActionResponseActionCase3Method =
-  /*@__PURE__*/ S.String;
+export const GetBroadcastActionResponseActionCase3Method = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type GetBroadcastActionResponseActionCase3SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const GetBroadcastActionResponseActionCase3SendingState =
-  /*@__PURE__*/ S.String;
+export const GetBroadcastActionResponseActionCase3SendingState = S.String;
 
 export interface GetBroadcastActionResponseActionCase3 {
   /** The identifier for an action. */
@@ -11203,7 +11167,7 @@ export type GetBroadcastActionResponseAction =
   | GetBroadcastActionResponseActionCase2
   | GetBroadcastActionResponseActionCase3;
 export const GetBroadcastActionResponseAction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetBroadcastActionResponseAction>;
+  S.Unknown as any as S.Schema<GetBroadcastActionResponseAction>;
 
 export interface GetBroadcastActionResponse {
   action?: GetBroadcastActionResponseAction;
@@ -11248,8 +11212,7 @@ export type GetBroadcastActionLanguageResponseActionCase0Type =
   | "twilio"
   | "slack"
   | "whatsapp";
-export const GetBroadcastActionLanguageResponseActionCase0Type =
-  /*@__PURE__*/ S.String;
+export const GetBroadcastActionLanguageResponseActionCase0Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type GetBroadcastActionLanguageResponseActionCase0SendingState =
@@ -11257,13 +11220,13 @@ export type GetBroadcastActionLanguageResponseActionCase0SendingState =
   | "draft"
   | "off";
 export const GetBroadcastActionLanguageResponseActionCase0SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type GetBroadcastActionLanguageResponseActionCase0Preprocessor =
   "premailer";
 export const GetBroadcastActionLanguageResponseActionCase0Preprocessor =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetBroadcastActionLanguageResponseActionCase0 {
   /** The identifier for an action. */
@@ -11353,8 +11316,7 @@ export const GetBroadcastActionLanguageResponseActionCase0 =
 
 /** For SMS/MMS messages, the `type` is always `twilio`. */
 export type GetBroadcastActionLanguageResponseActionCase1Type = "twilio";
-export const GetBroadcastActionLanguageResponseActionCase1Type =
-  /*@__PURE__*/ S.String;
+export const GetBroadcastActionLanguageResponseActionCase1Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type GetBroadcastActionLanguageResponseActionCase1SendingState =
@@ -11362,7 +11324,7 @@ export type GetBroadcastActionLanguageResponseActionCase1SendingState =
   | "draft"
   | "off";
 export const GetBroadcastActionLanguageResponseActionCase1SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetBroadcastActionLanguageResponseActionCase1 {
   /** The identifier for an action. */
@@ -11417,8 +11379,7 @@ export const GetBroadcastActionLanguageResponseActionCase1 =
 
 /** For WhatsApp messages sent from Customer.io using your Facebook Business Account (not Twilio), the `type` is always `whatsapp`. */
 export type GetBroadcastActionLanguageResponseActionCase2Type = "whatsapp";
-export const GetBroadcastActionLanguageResponseActionCase2Type =
-  /*@__PURE__*/ S.String;
+export const GetBroadcastActionLanguageResponseActionCase2Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type GetBroadcastActionLanguageResponseActionCase2SendingState =
@@ -11426,7 +11387,7 @@ export type GetBroadcastActionLanguageResponseActionCase2SendingState =
   | "draft"
   | "off";
 export const GetBroadcastActionLanguageResponseActionCase2SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetBroadcastActionLanguageResponseActionCase2 {
   /** The identifier for an action. */
@@ -11487,8 +11448,7 @@ export const GetBroadcastActionLanguageResponseActionCase2 =
 
 /** The type of action. */
 export type GetBroadcastActionLanguageResponseActionCase3Type = "webhook";
-export const GetBroadcastActionLanguageResponseActionCase3Type =
-  /*@__PURE__*/ S.String;
+export const GetBroadcastActionLanguageResponseActionCase3Type = S.String;
 
 /** The HTTP method for your webhook. */
 export type GetBroadcastActionLanguageResponseActionCase3Method =
@@ -11497,8 +11457,7 @@ export type GetBroadcastActionLanguageResponseActionCase3Method =
   | "put"
   | "delete"
   | "patch";
-export const GetBroadcastActionLanguageResponseActionCase3Method =
-  /*@__PURE__*/ S.String;
+export const GetBroadcastActionLanguageResponseActionCase3Method = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type GetBroadcastActionLanguageResponseActionCase3SendingState =
@@ -11506,7 +11465,7 @@ export type GetBroadcastActionLanguageResponseActionCase3SendingState =
   | "draft"
   | "off";
 export const GetBroadcastActionLanguageResponseActionCase3SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetBroadcastActionLanguageResponseActionCase3 {
   /** The identifier for an action. */
@@ -11565,7 +11524,7 @@ export type GetBroadcastActionLanguageResponseAction =
   | GetBroadcastActionLanguageResponseActionCase2
   | GetBroadcastActionLanguageResponseActionCase3;
 export const GetBroadcastActionLanguageResponseAction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetBroadcastActionLanguageResponseAction>;
+  S.Unknown as any as S.Schema<GetBroadcastActionLanguageResponseAction>;
 
 export interface GetBroadcastActionLanguageResponse {
   action?: GetBroadcastActionLanguageResponseAction;
@@ -11607,20 +11566,18 @@ export type GetCampaignActionResponseActionCase0Type =
   | "twilio"
   | "slack"
   | "whatsapp";
-export const GetCampaignActionResponseActionCase0Type = /*@__PURE__*/ S.String;
+export const GetCampaignActionResponseActionCase0Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type GetCampaignActionResponseActionCase0SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const GetCampaignActionResponseActionCase0SendingState =
-  /*@__PURE__*/ S.String;
+export const GetCampaignActionResponseActionCase0SendingState = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type GetCampaignActionResponseActionCase0Preprocessor = "premailer";
-export const GetCampaignActionResponseActionCase0Preprocessor =
-  /*@__PURE__*/ S.String;
+export const GetCampaignActionResponseActionCase0Preprocessor = S.String;
 
 export interface GetCampaignActionResponseActionCase0 {
   /** The identifier for an action. */
@@ -11716,15 +11673,14 @@ export const GetCampaignActionResponseActionCase0 = /*@__PURE__*/ S.suspend(
 
 /** For SMS/MMS messages, the `type` is always `twilio`. */
 export type GetCampaignActionResponseActionCase1Type = "twilio";
-export const GetCampaignActionResponseActionCase1Type = /*@__PURE__*/ S.String;
+export const GetCampaignActionResponseActionCase1Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type GetCampaignActionResponseActionCase1SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const GetCampaignActionResponseActionCase1SendingState =
-  /*@__PURE__*/ S.String;
+export const GetCampaignActionResponseActionCase1SendingState = S.String;
 
 export interface GetCampaignActionResponseActionCase1 {
   /** The identifier for an action. */
@@ -11782,15 +11738,14 @@ export const GetCampaignActionResponseActionCase1 = /*@__PURE__*/ S.suspend(
 
 /** For WhatsApp messages sent from Customer.io using your Facebook Business Account (not Twilio), the `type` is always `whatsapp`. */
 export type GetCampaignActionResponseActionCase2Type = "whatsapp";
-export const GetCampaignActionResponseActionCase2Type = /*@__PURE__*/ S.String;
+export const GetCampaignActionResponseActionCase2Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type GetCampaignActionResponseActionCase2SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const GetCampaignActionResponseActionCase2SendingState =
-  /*@__PURE__*/ S.String;
+export const GetCampaignActionResponseActionCase2SendingState = S.String;
 
 export interface GetCampaignActionResponseActionCase2 {
   /** The identifier for an action. */
@@ -11854,7 +11809,7 @@ export const GetCampaignActionResponseActionCase2 = /*@__PURE__*/ S.suspend(
 
 /** The type of action. */
 export type GetCampaignActionResponseActionCase3Type = "webhook";
-export const GetCampaignActionResponseActionCase3Type = /*@__PURE__*/ S.String;
+export const GetCampaignActionResponseActionCase3Type = S.String;
 
 /** The HTTP method for your webhook. */
 export type GetCampaignActionResponseActionCase3Method =
@@ -11863,16 +11818,14 @@ export type GetCampaignActionResponseActionCase3Method =
   | "put"
   | "delete"
   | "patch";
-export const GetCampaignActionResponseActionCase3Method =
-  /*@__PURE__*/ S.String;
+export const GetCampaignActionResponseActionCase3Method = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type GetCampaignActionResponseActionCase3SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const GetCampaignActionResponseActionCase3SendingState =
-  /*@__PURE__*/ S.String;
+export const GetCampaignActionResponseActionCase3SendingState = S.String;
 
 export interface GetCampaignActionResponseActionCase3 {
   /** The identifier for an action. */
@@ -11934,7 +11887,7 @@ export type GetCampaignActionResponseAction =
   | GetCampaignActionResponseActionCase2
   | GetCampaignActionResponseActionCase3;
 export const GetCampaignActionResponseAction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCampaignActionResponseAction>;
+  S.Unknown as any as S.Schema<GetCampaignActionResponseAction>;
 
 export interface GetCampaignActionResponse {
   action?: GetCampaignActionResponseAction;
@@ -11979,8 +11932,7 @@ export type GetCampaignActionTranslationResponseActionCase0Type =
   | "twilio"
   | "slack"
   | "whatsapp";
-export const GetCampaignActionTranslationResponseActionCase0Type =
-  /*@__PURE__*/ S.String;
+export const GetCampaignActionTranslationResponseActionCase0Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type GetCampaignActionTranslationResponseActionCase0SendingState =
@@ -11988,13 +11940,13 @@ export type GetCampaignActionTranslationResponseActionCase0SendingState =
   | "draft"
   | "off";
 export const GetCampaignActionTranslationResponseActionCase0SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type GetCampaignActionTranslationResponseActionCase0Preprocessor =
   "premailer";
 export const GetCampaignActionTranslationResponseActionCase0Preprocessor =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCampaignActionTranslationResponseActionCase0 {
   /** The identifier for an action. */
@@ -12090,8 +12042,7 @@ export const GetCampaignActionTranslationResponseActionCase0 =
 
 /** For SMS/MMS messages, the `type` is always `twilio`. */
 export type GetCampaignActionTranslationResponseActionCase1Type = "twilio";
-export const GetCampaignActionTranslationResponseActionCase1Type =
-  /*@__PURE__*/ S.String;
+export const GetCampaignActionTranslationResponseActionCase1Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type GetCampaignActionTranslationResponseActionCase1SendingState =
@@ -12099,7 +12050,7 @@ export type GetCampaignActionTranslationResponseActionCase1SendingState =
   | "draft"
   | "off";
 export const GetCampaignActionTranslationResponseActionCase1SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCampaignActionTranslationResponseActionCase1 {
   /** The identifier for an action. */
@@ -12157,8 +12108,7 @@ export const GetCampaignActionTranslationResponseActionCase1 =
 
 /** For WhatsApp messages sent from Customer.io using your Facebook Business Account (not Twilio), the `type` is always `whatsapp`. */
 export type GetCampaignActionTranslationResponseActionCase2Type = "whatsapp";
-export const GetCampaignActionTranslationResponseActionCase2Type =
-  /*@__PURE__*/ S.String;
+export const GetCampaignActionTranslationResponseActionCase2Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type GetCampaignActionTranslationResponseActionCase2SendingState =
@@ -12166,7 +12116,7 @@ export type GetCampaignActionTranslationResponseActionCase2SendingState =
   | "draft"
   | "off";
 export const GetCampaignActionTranslationResponseActionCase2SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCampaignActionTranslationResponseActionCase2 {
   /** The identifier for an action. */
@@ -12230,8 +12180,7 @@ export const GetCampaignActionTranslationResponseActionCase2 =
 
 /** The type of action. */
 export type GetCampaignActionTranslationResponseActionCase3Type = "webhook";
-export const GetCampaignActionTranslationResponseActionCase3Type =
-  /*@__PURE__*/ S.String;
+export const GetCampaignActionTranslationResponseActionCase3Type = S.String;
 
 /** The HTTP method for your webhook. */
 export type GetCampaignActionTranslationResponseActionCase3Method =
@@ -12240,8 +12189,7 @@ export type GetCampaignActionTranslationResponseActionCase3Method =
   | "put"
   | "delete"
   | "patch";
-export const GetCampaignActionTranslationResponseActionCase3Method =
-  /*@__PURE__*/ S.String;
+export const GetCampaignActionTranslationResponseActionCase3Method = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type GetCampaignActionTranslationResponseActionCase3SendingState =
@@ -12249,7 +12197,7 @@ export type GetCampaignActionTranslationResponseActionCase3SendingState =
   | "draft"
   | "off";
 export const GetCampaignActionTranslationResponseActionCase3SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCampaignActionTranslationResponseActionCase3 {
   /** The identifier for an action. */
@@ -12311,7 +12259,7 @@ export type GetCampaignActionTranslationResponseAction =
   | GetCampaignActionTranslationResponseActionCase2
   | GetCampaignActionTranslationResponseActionCase3;
 export const GetCampaignActionTranslationResponseAction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCampaignActionTranslationResponseAction>;
+  S.Unknown as any as S.Schema<GetCampaignActionTranslationResponseAction>;
 
 export interface GetCampaignActionTranslationResponse {
   action?: GetCampaignActionTranslationResponseAction;
@@ -12334,7 +12282,7 @@ export type GetCampaignMessagesRequestType =
   | "push"
   | "in_app"
   | "live_notification";
-export const GetCampaignMessagesRequestType = /*@__PURE__*/ S.String;
+export const GetCampaignMessagesRequestType = S.String;
 
 export type GetCampaignMessagesRequestMetric =
   | "attempted"
@@ -12349,7 +12297,7 @@ export type GetCampaignMessagesRequestMetric =
   | "dropped"
   | "failed"
   | "undeliverable";
-export const GetCampaignMessagesRequestMetric = /*@__PURE__*/ S.String;
+export const GetCampaignMessagesRequestMetric = S.String;
 
 export interface GetCampaignMessagesRequest {
   /** The ID of the campaign that you want to trigger or return information about. */
@@ -12432,8 +12380,7 @@ export type GetCampaignMessagesResponseMessagesItemType =
   | "slack"
   | "whatsapp"
   | "live_notification";
-export const GetCampaignMessagesResponseMessagesItemType =
-  /*@__PURE__*/ S.String;
+export const GetCampaignMessagesResponseMessagesItemType = S.String;
 
 /** Describes an individual message delivery. The object contains keys for all possible parents of the message (`newsletter_id`, `broadcast_id`, etc) but only the parents of the delivery are populated. Other parent IDs are null. */
 export interface GetCampaignMessagesResponseMessagesItem {
@@ -12540,14 +12487,14 @@ export const GetCampaignsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of campaign trigger. **Sunsetting on March 30, 2025** */
 export type GetCampaignsResponseCampaignCase0Type = "segment";
-export const GetCampaignsResponseCampaignCase0Type = /*@__PURE__*/ S.String;
+export const GetCampaignsResponseCampaignCase0Type = S.String;
 
 /** The status of the campaign. */
 export type GetCampaignsResponseCampaignCase0State =
   | "running"
   | "draft"
   | "stopped";
-export const GetCampaignsResponseCampaignCase0State = /*@__PURE__*/ S.String;
+export const GetCampaignsResponseCampaignCase0State = S.String;
 
 export interface GetCampaignsResponseCampaignCase0ActionsItem {
   /** The action type. */
@@ -12601,8 +12548,7 @@ export type GetCampaignsResponseCampaignCase0MsgTemplatesItemType =
   | "sms"
   | "push"
   | "slack";
-export const GetCampaignsResponseCampaignCase0MsgTemplatesItemType =
-  /*@__PURE__*/ S.String;
+export const GetCampaignsResponseCampaignCase0MsgTemplatesItemType = S.String;
 
 export interface GetCampaignsResponseCampaignCase0MsgTemplatesItem {
   /** The message type the template represents. */
@@ -12690,14 +12636,14 @@ export const GetCampaignsResponseCampaignCase0 = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of campaign trigger. **Sunsetting on March 30, 2025** */
 export type GetCampaignsResponseCampaignCase1Type = "event";
-export const GetCampaignsResponseCampaignCase1Type = /*@__PURE__*/ S.String;
+export const GetCampaignsResponseCampaignCase1Type = S.String;
 
 /** The status of the campaign. */
 export type GetCampaignsResponseCampaignCase1State =
   | "running"
   | "draft"
   | "stopped";
-export const GetCampaignsResponseCampaignCase1State = /*@__PURE__*/ S.String;
+export const GetCampaignsResponseCampaignCase1State = S.String;
 
 export type GetCampaignsResponseCampaignCase1ActionsItem =
   GetCampaignsResponseCampaignCase0ActionsItem;
@@ -12781,14 +12727,14 @@ export const GetCampaignsResponseCampaignCase1 = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of campaign trigger. **Sunsetting on March 30, 2025** */
 export type GetCampaignsResponseCampaignCase2Type = "form";
-export const GetCampaignsResponseCampaignCase2Type = /*@__PURE__*/ S.String;
+export const GetCampaignsResponseCampaignCase2Type = S.String;
 
 /** The status of the campaign. */
 export type GetCampaignsResponseCampaignCase2State =
   | "running"
   | "draft"
   | "stopped";
-export const GetCampaignsResponseCampaignCase2State = /*@__PURE__*/ S.String;
+export const GetCampaignsResponseCampaignCase2State = S.String;
 
 export type GetCampaignsResponseCampaignCase2ActionsItem =
   GetCampaignsResponseCampaignCase0ActionsItem;
@@ -12869,14 +12815,14 @@ export const GetCampaignsResponseCampaignCase2 = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of campaign trigger. **Sunsetting on March 30, 2025** */
 export type GetCampaignsResponseCampaignCase3Type = "date";
-export const GetCampaignsResponseCampaignCase3Type = /*@__PURE__*/ S.String;
+export const GetCampaignsResponseCampaignCase3Type = S.String;
 
 /** The status of the campaign. */
 export type GetCampaignsResponseCampaignCase3State =
   | "running"
   | "draft"
   | "stopped";
-export const GetCampaignsResponseCampaignCase3State = /*@__PURE__*/ S.String;
+export const GetCampaignsResponseCampaignCase3State = S.String;
 
 export type GetCampaignsResponseCampaignCase3ActionsItem =
   GetCampaignsResponseCampaignCase0ActionsItem;
@@ -12910,8 +12856,7 @@ export type GetCampaignsResponseCampaignCase3Frequency =
   | "once"
   | "monthly"
   | "yearly";
-export const GetCampaignsResponseCampaignCase3Frequency =
-  /*@__PURE__*/ S.String;
+export const GetCampaignsResponseCampaignCase3Frequency = S.String;
 
 export interface GetCampaignsResponseCampaignCase3 {
   /** The identifier for a campaign. */
@@ -12983,14 +12928,14 @@ export const GetCampaignsResponseCampaignCase3 = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of campaign trigger. **Sunsetting on March 30, 2025** */
 export type GetCampaignsResponseCampaignCase4Type = "relationship";
-export const GetCampaignsResponseCampaignCase4Type = /*@__PURE__*/ S.String;
+export const GetCampaignsResponseCampaignCase4Type = S.String;
 
 /** The status of the campaign. */
 export type GetCampaignsResponseCampaignCase4State =
   | "running"
   | "draft"
   | "stopped";
-export const GetCampaignsResponseCampaignCase4State = /*@__PURE__*/ S.String;
+export const GetCampaignsResponseCampaignCase4State = S.String;
 
 export type GetCampaignsResponseCampaignCase4ActionsItem =
   GetCampaignsResponseCampaignCase0ActionsItem;
@@ -13106,14 +13051,14 @@ export const GetCampaignsResponseCampaignCase4 = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of campaign trigger. **Sunsetting on March 30, 2025** */
 export type GetCampaignsResponseCampaignCase5Type = "object";
-export const GetCampaignsResponseCampaignCase5Type = /*@__PURE__*/ S.String;
+export const GetCampaignsResponseCampaignCase5Type = S.String;
 
 /** The status of the campaign. */
 export type GetCampaignsResponseCampaignCase5State =
   | "running"
   | "draft"
   | "stopped";
-export const GetCampaignsResponseCampaignCase5State = /*@__PURE__*/ S.String;
+export const GetCampaignsResponseCampaignCase5State = S.String;
 
 export type GetCampaignsResponseCampaignCase5ActionsItem =
   GetCampaignsResponseCampaignCase0ActionsItem;
@@ -13229,14 +13174,14 @@ export const GetCampaignsResponseCampaignCase5 = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of campaign trigger. **Sunsetting on March 30, 2025** */
 export type GetCampaignsResponseCampaignCase6Type = "webhook";
-export const GetCampaignsResponseCampaignCase6Type = /*@__PURE__*/ S.String;
+export const GetCampaignsResponseCampaignCase6Type = S.String;
 
 /** The status of the campaign. */
 export type GetCampaignsResponseCampaignCase6State =
   | "running"
   | "draft"
   | "stopped";
-export const GetCampaignsResponseCampaignCase6State = /*@__PURE__*/ S.String;
+export const GetCampaignsResponseCampaignCase6State = S.String;
 
 export type GetCampaignsResponseCampaignCase6ActionsItem =
   GetCampaignsResponseCampaignCase0ActionsItem;
@@ -13314,7 +13259,7 @@ export type GetCampaignsResponseCampaign =
   | GetCampaignsResponseCampaignCase5
   | GetCampaignsResponseCampaignCase6;
 export const GetCampaignsResponseCampaign =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCampaignsResponseCampaign>;
+  S.Unknown as any as S.Schema<GetCampaignsResponseCampaign>;
 
 export interface GetCampaignsResponse {
   campaign?: GetCampaignsResponseCampaign;
@@ -13347,7 +13292,7 @@ export type GetChannelsResponseChannelsItemType =
   | "line"
   | "inbox"
   | "whatsapp";
-export const GetChannelsResponseChannelsItemType = /*@__PURE__*/ S.String;
+export const GetChannelsResponseChannelsItemType = S.String;
 
 export interface GetChannelsResponseChannelsItem {
   /** The system-generated ID for the subscription channel. */
@@ -13615,8 +13560,7 @@ export type GetDomainSuppressionsByTypeRequestSuppressionType =
   | "bounces"
   | "spam_reports"
   | "invalid_emails";
-export const GetDomainSuppressionsByTypeRequestSuppressionType =
-  /*@__PURE__*/ S.String;
+export const GetDomainSuppressionsByTypeRequestSuppressionType = S.String;
 
 export interface GetDomainSuppressionsByTypeRequest {
   /** The sending domain you want to look up suppressions for. */
@@ -13654,8 +13598,7 @@ export const GetDomainSuppressionsByTypeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The reason the addresses are suppressed. */
 export type GetDomainSuppressionsByTypeResponseCategory = "bounces" | "spam";
-export const GetDomainSuppressionsByTypeResponseCategory =
-  /*@__PURE__*/ S.String;
+export const GetDomainSuppressionsByTypeResponseCategory = S.String;
 
 export interface GetDomainSuppressionsByTypeResponseSuppressionsItem {
   /** The timestamp (in seconds), when the ESP suppressed the address. */
@@ -13838,15 +13781,14 @@ export type GetEmailResponseEmailTransformersFormatterType =
   | "none"
   | "prettify"
   | "minify";
-export const GetEmailResponseEmailTransformersFormatterType =
-  /*@__PURE__*/ S.String;
+export const GetEmailResponseEmailTransformersFormatterType = S.String;
 
 /** Character used for indentation. */
 export type GetEmailResponseEmailTransformersFormatterPrettifyIndentCharacter =
   | "spaces"
   | "tabs";
 export const GetEmailResponseEmailTransformersFormatterPrettifyIndentCharacter =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"prettify"`. Produces human-readable, indented HTML output. */
 export interface GetEmailResponseEmailTransformersFormatterPrettify {
@@ -13876,7 +13818,7 @@ export type GetEmailResponseEmailTransformersFormatterMinifyRemoveHtmlComments =
   | "1"
   | "2";
 export const GetEmailResponseEmailTransformersFormatterMinifyRemoveHtmlComments =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"minify"`. Reduces file size by stripping whitespace and comments. */
 export interface GetEmailResponseEmailTransformersFormatterMinify {
@@ -14223,14 +14165,14 @@ export type GetEmailTranslationResponseEmailTranslationTransformersFormatterType
   | "prettify"
   | "minify";
 export const GetEmailTranslationResponseEmailTranslationTransformersFormatterType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Character used for indentation. */
 export type GetEmailTranslationResponseEmailTranslationTransformersFormatterPrettifyIndentCharacter =
   | "spaces"
   | "tabs";
 export const GetEmailTranslationResponseEmailTranslationTransformersFormatterPrettifyIndentCharacter =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"prettify"`. Produces human-readable, indented HTML output. */
 export interface GetEmailTranslationResponseEmailTranslationTransformersFormatterPrettify {
@@ -14261,7 +14203,7 @@ export type GetEmailTranslationResponseEmailTranslationTransformersFormatterMini
   | "1"
   | "2";
 export const GetEmailTranslationResponseEmailTranslationTransformersFormatterMinifyRemoveHtmlComments =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"minify"`. Reduces file size by stripping whitespace and comments. */
 export interface GetEmailTranslationResponseEmailTranslationTransformersFormatterMinify {
@@ -14492,11 +14434,11 @@ export const GetExportRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of information contained in the export. */
 export type GetExportResponseExportType = "customers" | "deliveries";
-export const GetExportResponseExportType = /*@__PURE__*/ S.String;
+export const GetExportResponseExportType = S.String;
 
 /** The state of your export where `done` indicates an export that you can download, `pending`, indicates that your export is not ready to download, and `failed` indicates an export that has failed and will not be downloadable. */
 export type GetExportResponseExportStatus = "done" | "pending" | "failed";
-export const GetExportResponseExportStatus = /*@__PURE__*/ S.String;
+export const GetExportResponseExportStatus = S.String;
 
 /** Metadata about an export. */
 export interface GetExportResponseExport {
@@ -14606,7 +14548,7 @@ export type GetImportResponseImportState =
   | "imported"
   | "failed"
   | "canceled";
-export const GetImportResponseImportState = /*@__PURE__*/ S.String;
+export const GetImportResponseImportState = S.String;
 
 /** The type of import. */
 export type GetImportResponseImportType =
@@ -14614,25 +14556,25 @@ export type GetImportResponseImportType =
   | "event"
   | "object"
   | "relationship";
-export const GetImportResponseImportType = /*@__PURE__*/ S.String;
+export const GetImportResponseImportType = S.String;
 
 /** The type of identifier you used to identify people in your CSV. Not applicable for object imports. */
 export type GetImportResponseImportIdentifier = "id" | "email";
-export const GetImportResponseImportIdentifier = /*@__PURE__*/ S.String;
+export const GetImportResponseImportIdentifier = S.String;
 
 /** Controls whether your import adds and updates all rows, adds only new rows, or updates only existing rows. Defaults to `all`. Event imports support only `all` and `only_existing`. Formerly called `people_to_process`. */
 export type GetImportResponseImportDataToProcess =
   | "all"
   | "only_new"
   | "only_existing";
-export const GetImportResponseImportDataToProcess = /*@__PURE__*/ S.String;
+export const GetImportResponseImportDataToProcess = S.String;
 
 /** Returned for people and event imports, even if you imported using the field `data_to_process`. This field will be deprecated soon. */
 export type GetImportResponseImportPeopleToProcess =
   | "all"
   | "only_new"
   | "only_existing";
-export const GetImportResponseImportPeopleToProcess = /*@__PURE__*/ S.String;
+export const GetImportResponseImportPeopleToProcess = S.String;
 
 export interface GetImportResponseImport {
   /** This is the `import_id` you'll use if you want to [lookup your import operation](/integrations/api/app/tag/imports/getImport/). */
@@ -14732,15 +14674,14 @@ export type GetLiveNotificationResponseState =
   | "ended"
   | "expired"
   | "failed";
-export const GetLiveNotificationResponseState = /*@__PURE__*/ S.String;
+export const GetLiveNotificationResponseState = S.String;
 
 /** The lifecycle operation the delivery carried. */
 export type GetLiveNotificationResponseLastDeliveryOperation =
   | "start"
   | "update"
   | "end";
-export const GetLiveNotificationResponseLastDeliveryOperation =
-  /*@__PURE__*/ S.String;
+export const GetLiveNotificationResponseLastDeliveryOperation = S.String;
 
 /** The delivery's status. */
 export type GetLiveNotificationResponseLastDeliveryStatus =
@@ -14748,8 +14689,7 @@ export type GetLiveNotificationResponseLastDeliveryStatus =
   | "sent"
   | "failed"
   | "undeliverable";
-export const GetLiveNotificationResponseLastDeliveryStatus =
-  /*@__PURE__*/ S.String;
+export const GetLiveNotificationResponseLastDeliveryStatus = S.String;
 
 /** The most recent delivery for the activity. */
 export interface GetLiveNotificationResponseLastDelivery {
@@ -14871,7 +14811,7 @@ export type GetMessageResponseMessageType =
   | "slack"
   | "whatsapp"
   | "live_notification";
-export const GetMessageResponseMessageType = /*@__PURE__*/ S.String;
+export const GetMessageResponseMessageType = S.String;
 
 /** Describes an individual message delivery. The object contains keys for all possible parents of the message (`newsletter_id`, `broadcast_id`, etc) but only the parents of the delivery are populated. Other parent IDs are null. */
 export interface GetMessageResponseMessage {
@@ -14959,7 +14899,7 @@ export type GetNewsletterLinksRequestPeriod =
   | "days"
   | "weeks"
   | "months";
-export const GetNewsletterLinksRequestPeriod = /*@__PURE__*/ S.String;
+export const GetNewsletterLinksRequestPeriod = S.String;
 
 export interface GetNewsletterLinksRequest {
   /** The identifier of a newsletter. */
@@ -15091,7 +15031,7 @@ export type GetNewsletterMetricsRequestPeriod =
   | "days"
   | "weeks"
   | "months";
-export const GetNewsletterMetricsRequestPeriod = /*@__PURE__*/ S.String;
+export const GetNewsletterMetricsRequestPeriod = S.String;
 
 export type GetNewsletterMetricsRequestType =
   | "email"
@@ -15100,7 +15040,7 @@ export type GetNewsletterMetricsRequestType =
   | "push"
   | "in_app"
   | "inbox";
-export const GetNewsletterMetricsRequestType = /*@__PURE__*/ S.String;
+export const GetNewsletterMetricsRequestType = S.String;
 
 export interface GetNewsletterMetricsRequest {
   /** The identifier of a newsletter. */
@@ -15137,7 +15077,7 @@ export type GetNewsletterMetricsResponseMetricType =
   | "push"
   | "in_app"
   | "inbox";
-export const GetNewsletterMetricsResponseMetricType = /*@__PURE__*/ S.String;
+export const GetNewsletterMetricsResponseMetricType = S.String;
 
 /** The number of `attempted` messages. */
 export type GetNewsletterMetricsResponseMetricSeriesAttemptedList =
@@ -15500,7 +15440,7 @@ export type GetNewsletterMsgMetaRequestMetric =
   | "dropped"
   | "failed"
   | "undeliverable";
-export const GetNewsletterMsgMetaRequestMetric = /*@__PURE__*/ S.String;
+export const GetNewsletterMsgMetaRequestMetric = S.String;
 
 export interface GetNewsletterMsgMetaRequest {
   /** The identifier of a newsletter. */
@@ -15575,8 +15515,7 @@ export type GetNewsletterMsgMetaResponseMessagesItemType =
   | "push"
   | "in_app"
   | "inbox";
-export const GetNewsletterMsgMetaResponseMessagesItemType =
-  /*@__PURE__*/ S.String;
+export const GetNewsletterMsgMetaResponseMessagesItemType = S.String;
 
 /** Each object is a delivery of a newsletter. */
 export interface GetNewsletterMsgMetaResponseMessagesItem {
@@ -15700,7 +15639,7 @@ export type GetNewslettersResponseNewsletterType =
   | "push"
   | "in_app"
   | "inbox";
-export const GetNewslettersResponseNewsletterType = /*@__PURE__*/ S.String;
+export const GetNewslettersResponseNewsletterType = S.String;
 
 /** An array of tags associated with the newsletter. */
 export type GetNewslettersResponseNewsletterTagsList = Array<string>;
@@ -15873,12 +15812,11 @@ export type GetNewsletterVariantResponseContentType =
   | "push"
   | "in_app"
   | "inbox";
-export const GetNewsletterVariantResponseContentType = /*@__PURE__*/ S.String;
+export const GetNewsletterVariantResponseContentType = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type GetNewsletterVariantResponseContentPreprocessor = "premailer";
-export const GetNewsletterVariantResponseContentPreprocessor =
-  /*@__PURE__*/ S.String;
+export const GetNewsletterVariantResponseContentPreprocessor = S.String;
 
 export interface GetNewsletterVariantResponseContent {
   /** The identifier of a newsletter variant—a language in a multi-language newsletter or a test in an A/B test. */
@@ -15993,14 +15931,13 @@ export type GetNewsletterVariantTranslationResponseContentType =
   | "push"
   | "in_app"
   | "inbox";
-export const GetNewsletterVariantTranslationResponseContentType =
-  /*@__PURE__*/ S.String;
+export const GetNewsletterVariantTranslationResponseContentType = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type GetNewsletterVariantTranslationResponseContentPreprocessor =
   "premailer";
 export const GetNewsletterVariantTranslationResponseContentPreprocessor =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetNewsletterVariantTranslationResponseContent {
   /** The identifier of a newsletter variant—a language in a multi-language newsletter or a test in an A/B test. */
@@ -16122,14 +16059,13 @@ export type GetNewsletterVariantTranslationTestResponseContentType =
   | "push"
   | "in_app"
   | "inbox";
-export const GetNewsletterVariantTranslationTestResponseContentType =
-  /*@__PURE__*/ S.String;
+export const GetNewsletterVariantTranslationTestResponseContentType = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type GetNewsletterVariantTranslationTestResponseContentPreprocessor =
   "premailer";
 export const GetNewsletterVariantTranslationTestResponseContentPreprocessor =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetNewsletterVariantTranslationTestResponseContent {
   /** The identifier of a newsletter variant—a language in a multi-language newsletter or a test in an A/B test. */
@@ -16219,7 +16155,7 @@ export const GetNewsletterVariantTranslationTestResponse =
   }) as any as S.Schema<GetNewsletterVariantTranslationTestResponse>;
 
 export type GetObjectAttributesRequestIdType = "object_id" | "cio_object_id";
-export const GetObjectAttributesRequestIdType = /*@__PURE__*/ S.String;
+export const GetObjectAttributesRequestIdType = S.String;
 
 export interface GetObjectAttributesRequest {
   /** The object type an object belongs to—like "Companies" or "Accounts". Object type IDs begin at `1` and increment for each new type. */
@@ -16319,7 +16255,7 @@ export const GetObjectAttributesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetObjectAttributesResponse>;
 
 export type GetObjectRelationshipsRequestIdType = "object_id" | "cio_object_id";
-export const GetObjectRelationshipsRequestIdType = /*@__PURE__*/ S.String;
+export const GetObjectRelationshipsRequestIdType = S.String;
 
 export interface GetObjectRelationshipsRequest {
   /** The object type an object belongs to—like "Companies" or "Accounts". Object type IDs begin at `1` and increment for each new type. */
@@ -16421,7 +16357,7 @@ export type GetObjectsFilterRequestFilterCase0AndItemObjectAttributeOperator =
   | "eq"
   | "exists";
 export const GetObjectsFilterRequestFilterCase0AndItemObjectAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your objects by their attributes. */
 export interface GetObjectsFilterRequestFilterCase0AndItemObjectAttribute {
@@ -16488,7 +16424,7 @@ export type GetObjectsFilterRequestFilterCase1OrItemObjectAttributeOperator =
   | "eq"
   | "exists";
 export const GetObjectsFilterRequestFilterCase1OrItemObjectAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your objects by their attributes. */
 export interface GetObjectsFilterRequestFilterCase1OrItemObjectAttribute {
@@ -16554,7 +16490,7 @@ export type GetObjectsFilterRequestFilterCase2NotObjectAttributeOperator =
   | "eq"
   | "exists";
 export const GetObjectsFilterRequestFilterCase2NotObjectAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your objects by their attributes. */
 export interface GetObjectsFilterRequestFilterCase2NotObjectAttribute {
@@ -16614,7 +16550,7 @@ export type GetObjectsFilterRequestFilterCase3ObjectAttributeOperator =
   | "eq"
   | "exists";
 export const GetObjectsFilterRequestFilterCase3ObjectAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your objects by their attributes. */
 export interface GetObjectsFilterRequestFilterCase3ObjectAttribute {
@@ -16663,7 +16599,7 @@ export type GetObjectsFilterRequestFilter =
   | GetObjectsFilterRequestFilterCase2
   | GetObjectsFilterRequestFilterCase3;
 export const GetObjectsFilterRequestFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetObjectsFilterRequestFilter>;
+  S.Unknown as any as S.Schema<GetObjectsFilterRequestFilter>;
 
 export interface GetObjectsFilterRequest {
   /** The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results. */
@@ -16809,8 +16745,7 @@ export const GetOptoutsRequest = /*@__PURE__*/ S.suspend(() =>
 export type GetOptoutsResponseOptoutsItemOptoutsItemChannel =
   | "sms"
   | "whatsapp";
-export const GetOptoutsResponseOptoutsItemOptoutsItemChannel =
-  /*@__PURE__*/ S.String;
+export const GetOptoutsResponseOptoutsItemOptoutsItemChannel = S.String;
 
 export interface GetOptoutsResponseOptoutsItemOptoutsItem {
   /** The channel that the person is opted out of. */
@@ -16876,7 +16811,7 @@ export const GetOptoutsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOptoutsResponse>;
 
 export type GetPeopleByIdRequestIdType = "id" | "email" | "phone" | "cio_id";
-export const GetPeopleByIdRequestIdType = /*@__PURE__*/ S.String;
+export const GetPeopleByIdRequestIdType = S.String;
 
 /** An array of up to 100 customer identifiers. All values must match the `id_type` query parameter—`id` values by default. */
 export type GetPeopleByIdRequestIdsList = Array<string>;
@@ -16973,7 +16908,7 @@ export type GetPeopleByIdResponseCustomersItemCustomerDevicesItemPlatform =
   | "ios"
   | "android";
 export const GetPeopleByIdResponseCustomersItemCustomerDevicesItemPlatform =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The delivery status of the last message sent to the device—sent, bounced, or suppressed. An empty string indicates that that the device hasn't received a push yet. */
 export type GetPeopleByIdResponseCustomersItemCustomerDevicesItemAttributesLastStatus =
@@ -16982,14 +16917,14 @@ export type GetPeopleByIdResponseCustomersItemCustomerDevicesItemAttributesLastS
   | "sent"
   | "suppressed";
 export const GetPeopleByIdResponseCustomersItemCustomerDevicesItemAttributesLastStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** If `"true"`, the device is opted-in and can receive push notifications. */
 export type GetPeopleByIdResponseCustomersItemCustomerDevicesItemAttributesPushEnabled =
   | "true"
   | "false";
 export const GetPeopleByIdResponseCustomersItemCustomerDevicesItemAttributesPushEnabled =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Attributes that you can reference to segment your audience—like a person's attributes, but specific to a device. These can be either the attributes defined below or custom key-value attributes. */
 export interface GetPeopleByIdResponseCustomersItemCustomerDevicesItemAttributes {
@@ -17193,7 +17128,7 @@ export type GetPeopleFilterRequestFilterCase0AndItemOrItemCase1AttributeOperator
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase0AndItemOrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase0AndItemOrItemCase1Attribute {
@@ -17238,7 +17173,7 @@ export type GetPeopleFilterRequestFilterCase0AndItemOrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase0AndItemOrItemCase1;
 export const GetPeopleFilterRequestFilterCase0AndItemOrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase0AndItemOrItem>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase0AndItemOrItem>;
 
 /** Returns results matching *any* conditions. */
 export type GetPeopleFilterRequestFilterCase0AndItemOrList =
@@ -17265,7 +17200,7 @@ export type GetPeopleFilterRequestFilterCase0AndItemNotCase0AndItemCase1Attribut
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase0AndItemNotCase0AndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase0AndItemNotCase0AndItemCase1Attribute {
@@ -17311,7 +17246,7 @@ export type GetPeopleFilterRequestFilterCase0AndItemNotCase0AndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase0AndItemNotCase0AndItemCase1;
 export const GetPeopleFilterRequestFilterCase0AndItemNotCase0AndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase0AndItemNotCase0AndItem>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase0AndItemNotCase0AndItem>;
 
 /** Match *all* conditions to return results. */
 export type GetPeopleFilterRequestFilterCase0AndItemNotCase0AndList =
@@ -17351,7 +17286,7 @@ export type GetPeopleFilterRequestFilterCase0AndItemNotCase1OrItemCase1Attribute
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase0AndItemNotCase1OrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase0AndItemNotCase1OrItemCase1Attribute {
@@ -17397,7 +17332,7 @@ export type GetPeopleFilterRequestFilterCase0AndItemNotCase1OrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase0AndItemNotCase1OrItemCase1;
 export const GetPeopleFilterRequestFilterCase0AndItemNotCase1OrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase0AndItemNotCase1OrItem>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase0AndItemNotCase1OrItem>;
 
 /** Match *any* condition to return results. */
 export type GetPeopleFilterRequestFilterCase0AndItemNotCase1OrList =
@@ -17436,7 +17371,7 @@ export type GetPeopleFilterRequestFilterCase0AndItemNotCase3AttributeOperator =
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase0AndItemNotCase3AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase0AndItemNotCase3Attribute {
@@ -17483,7 +17418,7 @@ export type GetPeopleFilterRequestFilterCase0AndItemNot =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase0AndItemNotCase3;
 export const GetPeopleFilterRequestFilterCase0AndItemNot =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase0AndItemNot>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase0AndItemNot>;
 
 /** Provide the `id` of a segment containing people you want to search for. */
 export type GetPeopleFilterRequestFilterCase0AndItemSegment =
@@ -17496,7 +17431,7 @@ export type GetPeopleFilterRequestFilterCase0AndItemAttributeOperator =
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase0AndItemAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase0AndItemAttribute {
@@ -17580,7 +17515,7 @@ export type GetPeopleFilterRequestFilterCase1OrItemAndItemCase1AttributeOperator
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase1OrItemAndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase1OrItemAndItemCase1Attribute {
@@ -17625,7 +17560,7 @@ export type GetPeopleFilterRequestFilterCase1OrItemAndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase1OrItemAndItemCase1;
 export const GetPeopleFilterRequestFilterCase1OrItemAndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase1OrItemAndItem>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase1OrItemAndItem>;
 
 /** Returns results matching *all* conditions. */
 export type GetPeopleFilterRequestFilterCase1OrItemAndList =
@@ -17652,7 +17587,7 @@ export type GetPeopleFilterRequestFilterCase1OrItemNotCase0AndItemCase1Attribute
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase1OrItemNotCase0AndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase1OrItemNotCase0AndItemCase1Attribute {
@@ -17698,7 +17633,7 @@ export type GetPeopleFilterRequestFilterCase1OrItemNotCase0AndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase1OrItemNotCase0AndItemCase1;
 export const GetPeopleFilterRequestFilterCase1OrItemNotCase0AndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase1OrItemNotCase0AndItem>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase1OrItemNotCase0AndItem>;
 
 /** Match *all* conditions to return results. */
 export type GetPeopleFilterRequestFilterCase1OrItemNotCase0AndList =
@@ -17738,7 +17673,7 @@ export type GetPeopleFilterRequestFilterCase1OrItemNotCase1OrItemCase1AttributeO
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase1OrItemNotCase1OrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase1OrItemNotCase1OrItemCase1Attribute {
@@ -17784,7 +17719,7 @@ export type GetPeopleFilterRequestFilterCase1OrItemNotCase1OrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase1OrItemNotCase1OrItemCase1;
 export const GetPeopleFilterRequestFilterCase1OrItemNotCase1OrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase1OrItemNotCase1OrItem>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase1OrItemNotCase1OrItem>;
 
 /** Match *any* condition to return results. */
 export type GetPeopleFilterRequestFilterCase1OrItemNotCase1OrList =
@@ -17823,7 +17758,7 @@ export type GetPeopleFilterRequestFilterCase1OrItemNotCase3AttributeOperator =
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase1OrItemNotCase3AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase1OrItemNotCase3Attribute {
@@ -17870,7 +17805,7 @@ export type GetPeopleFilterRequestFilterCase1OrItemNot =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase1OrItemNotCase3;
 export const GetPeopleFilterRequestFilterCase1OrItemNot =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase1OrItemNot>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase1OrItemNot>;
 
 /** Provide the `id` of a segment containing people you want to search for. */
 export type GetPeopleFilterRequestFilterCase1OrItemSegment =
@@ -17883,7 +17818,7 @@ export type GetPeopleFilterRequestFilterCase1OrItemAttributeOperator =
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase1OrItemAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase1OrItemAttribute {
@@ -17967,7 +17902,7 @@ export type GetPeopleFilterRequestFilterCase2Case0AndItemAndItemCase1AttributeOp
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase2Case0AndItemAndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase2Case0AndItemAndItemCase1Attribute {
@@ -18013,7 +17948,7 @@ export type GetPeopleFilterRequestFilterCase2Case0AndItemAndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase2Case0AndItemAndItemCase1;
 export const GetPeopleFilterRequestFilterCase2Case0AndItemAndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case0AndItemAndItem>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case0AndItemAndItem>;
 
 /** Returns results matching *all* conditions. */
 export type GetPeopleFilterRequestFilterCase2Case0AndItemAndList =
@@ -18040,7 +17975,7 @@ export type GetPeopleFilterRequestFilterCase2Case0AndItemOrItemCase1AttributeOpe
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase2Case0AndItemOrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase2Case0AndItemOrItemCase1Attribute {
@@ -18086,7 +18021,7 @@ export type GetPeopleFilterRequestFilterCase2Case0AndItemOrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase2Case0AndItemOrItemCase1;
 export const GetPeopleFilterRequestFilterCase2Case0AndItemOrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case0AndItemOrItem>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case0AndItemOrItem>;
 
 /** Returns results matching *any* conditions. */
 export type GetPeopleFilterRequestFilterCase2Case0AndItemOrList =
@@ -18113,7 +18048,7 @@ export type GetPeopleFilterRequestFilterCase2Case0AndItemNotCase0AndItemCase1Att
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase2Case0AndItemNotCase0AndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase2Case0AndItemNotCase0AndItemCase1Attribute {
@@ -18160,7 +18095,7 @@ export type GetPeopleFilterRequestFilterCase2Case0AndItemNotCase0AndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase2Case0AndItemNotCase0AndItemCase1;
 export const GetPeopleFilterRequestFilterCase2Case0AndItemNotCase0AndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case0AndItemNotCase0AndItem>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case0AndItemNotCase0AndItem>;
 
 /** Match *all* conditions to return results. */
 export type GetPeopleFilterRequestFilterCase2Case0AndItemNotCase0AndList =
@@ -18202,7 +18137,7 @@ export type GetPeopleFilterRequestFilterCase2Case0AndItemNotCase1OrItemCase1Attr
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase2Case0AndItemNotCase1OrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase2Case0AndItemNotCase1OrItemCase1Attribute {
@@ -18249,7 +18184,7 @@ export type GetPeopleFilterRequestFilterCase2Case0AndItemNotCase1OrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase2Case0AndItemNotCase1OrItemCase1;
 export const GetPeopleFilterRequestFilterCase2Case0AndItemNotCase1OrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case0AndItemNotCase1OrItem>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case0AndItemNotCase1OrItem>;
 
 /** Match *any* condition to return results. */
 export type GetPeopleFilterRequestFilterCase2Case0AndItemNotCase1OrList =
@@ -18290,7 +18225,7 @@ export type GetPeopleFilterRequestFilterCase2Case0AndItemNotCase3AttributeOperat
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase2Case0AndItemNotCase3AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase2Case0AndItemNotCase3Attribute {
@@ -18338,7 +18273,7 @@ export type GetPeopleFilterRequestFilterCase2Case0AndItemNot =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase2Case0AndItemNotCase3;
 export const GetPeopleFilterRequestFilterCase2Case0AndItemNot =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case0AndItemNot>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case0AndItemNot>;
 
 /** Provide the `id` of a segment containing people you want to search for. */
 export type GetPeopleFilterRequestFilterCase2Case0AndItemSegment =
@@ -18351,7 +18286,7 @@ export type GetPeopleFilterRequestFilterCase2Case0AndItemAttributeOperator =
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase2Case0AndItemAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase2Case0AndItemAttribute {
@@ -18443,7 +18378,7 @@ export type GetPeopleFilterRequestFilterCase2Case1OrItemAndItemCase1AttributeOpe
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase2Case1OrItemAndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase2Case1OrItemAndItemCase1Attribute {
@@ -18489,7 +18424,7 @@ export type GetPeopleFilterRequestFilterCase2Case1OrItemAndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase2Case1OrItemAndItemCase1;
 export const GetPeopleFilterRequestFilterCase2Case1OrItemAndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case1OrItemAndItem>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case1OrItemAndItem>;
 
 /** Returns results matching *all* conditions. */
 export type GetPeopleFilterRequestFilterCase2Case1OrItemAndList =
@@ -18516,7 +18451,7 @@ export type GetPeopleFilterRequestFilterCase2Case1OrItemOrItemCase1AttributeOper
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase2Case1OrItemOrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase2Case1OrItemOrItemCase1Attribute {
@@ -18562,7 +18497,7 @@ export type GetPeopleFilterRequestFilterCase2Case1OrItemOrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase2Case1OrItemOrItemCase1;
 export const GetPeopleFilterRequestFilterCase2Case1OrItemOrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case1OrItemOrItem>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case1OrItemOrItem>;
 
 /** Returns results matching *any* conditions. */
 export type GetPeopleFilterRequestFilterCase2Case1OrItemOrList =
@@ -18589,7 +18524,7 @@ export type GetPeopleFilterRequestFilterCase2Case1OrItemNotCase0AndItemCase1Attr
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase2Case1OrItemNotCase0AndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase2Case1OrItemNotCase0AndItemCase1Attribute {
@@ -18636,7 +18571,7 @@ export type GetPeopleFilterRequestFilterCase2Case1OrItemNotCase0AndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase2Case1OrItemNotCase0AndItemCase1;
 export const GetPeopleFilterRequestFilterCase2Case1OrItemNotCase0AndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case1OrItemNotCase0AndItem>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case1OrItemNotCase0AndItem>;
 
 /** Match *all* conditions to return results. */
 export type GetPeopleFilterRequestFilterCase2Case1OrItemNotCase0AndList =
@@ -18678,7 +18613,7 @@ export type GetPeopleFilterRequestFilterCase2Case1OrItemNotCase1OrItemCase1Attri
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase2Case1OrItemNotCase1OrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase2Case1OrItemNotCase1OrItemCase1Attribute {
@@ -18725,7 +18660,7 @@ export type GetPeopleFilterRequestFilterCase2Case1OrItemNotCase1OrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase2Case1OrItemNotCase1OrItemCase1;
 export const GetPeopleFilterRequestFilterCase2Case1OrItemNotCase1OrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case1OrItemNotCase1OrItem>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case1OrItemNotCase1OrItem>;
 
 /** Match *any* condition to return results. */
 export type GetPeopleFilterRequestFilterCase2Case1OrItemNotCase1OrList =
@@ -18766,7 +18701,7 @@ export type GetPeopleFilterRequestFilterCase2Case1OrItemNotCase3AttributeOperato
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase2Case1OrItemNotCase3AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase2Case1OrItemNotCase3Attribute {
@@ -18813,7 +18748,7 @@ export type GetPeopleFilterRequestFilterCase2Case1OrItemNot =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase2Case1OrItemNotCase3;
 export const GetPeopleFilterRequestFilterCase2Case1OrItemNot =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case1OrItemNot>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2Case1OrItemNot>;
 
 /** Provide the `id` of a segment containing people you want to search for. */
 export type GetPeopleFilterRequestFilterCase2Case1OrItemSegment =
@@ -18826,7 +18761,7 @@ export type GetPeopleFilterRequestFilterCase2Case1OrItemAttributeOperator =
   | "eq"
   | "exists";
 export const GetPeopleFilterRequestFilterCase2Case1OrItemAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase2Case1OrItemAttribute {
@@ -18916,8 +18851,7 @@ export const GetPeopleFilterRequestFilterCase2Case2 =
 export type GetPeopleFilterRequestFilterCase2Case3AttributeOperator =
   | "eq"
   | "exists";
-export const GetPeopleFilterRequestFilterCase2Case3AttributeOperator =
-  /*@__PURE__*/ S.String;
+export const GetPeopleFilterRequestFilterCase2Case3AttributeOperator = S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase2Case3Attribute {
@@ -18961,7 +18895,7 @@ export type GetPeopleFilterRequestFilterCase2 =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase2Case3;
 export const GetPeopleFilterRequestFilterCase2 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilterCase2>;
 
 /** Provide the `id` of a segment containing people you want to search for. */
 export type GetPeopleFilterRequestFilterCase3Segment =
@@ -18979,8 +18913,7 @@ export const GetPeopleFilterRequestFilterCase3 =
 export type GetPeopleFilterRequestFilterCase4AttributeOperator =
   | "eq"
   | "exists";
-export const GetPeopleFilterRequestFilterCase4AttributeOperator =
-  /*@__PURE__*/ S.String;
+export const GetPeopleFilterRequestFilterCase4AttributeOperator = S.String;
 
 /** Filter your audience by attribute. */
 export interface GetPeopleFilterRequestFilterCase4Attribute {
@@ -19023,7 +18956,7 @@ export type GetPeopleFilterRequestFilter =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | GetPeopleFilterRequestFilterCase4;
 export const GetPeopleFilterRequestFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPeopleFilterRequestFilter>;
+  S.Unknown as any as S.Schema<GetPeopleFilterRequestFilter>;
 
 export interface GetPeopleFilterRequest {
   /** The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results. */
@@ -19084,7 +19017,7 @@ export type GetPersonActivitiesRequestIdType =
   | "email"
   | "phone"
   | "cio_id";
-export const GetPersonActivitiesRequestIdType = /*@__PURE__*/ S.String;
+export const GetPersonActivitiesRequestIdType = S.String;
 
 /** The type of activity. Types with `_o:<object_type_id>` are for objects and types with `_r:<object_type_id>` are for relationships. */
 export type GetPersonActivitiesRequestType =
@@ -19205,7 +19138,7 @@ export type GetPersonActivitiesRequestType =
   | "_o:<object_type_id>:failed_attribute_change"
   | "_r:<object_type_id>:attribute_change"
   | "_r:<object_type_id>:failed_attribute_change";
-export const GetPersonActivitiesRequestType = /*@__PURE__*/ S.String;
+export const GetPersonActivitiesRequestType = S.String;
 
 export interface GetPersonActivitiesRequest {
   /** The ID of the customer you want to perform an operation against. */
@@ -19297,7 +19230,7 @@ export type GetPersonActivitiesResponseActivitiesItemData =
   | GetPersonActivitiesResponseActivitiesItemDataCase0
   | GetPersonActivitiesResponseActivitiesItemDataCase1Map;
 export const GetPersonActivitiesResponseActivitiesItemData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPersonActivitiesResponseActivitiesItemData>;
+  S.Unknown as any as S.Schema<GetPersonActivitiesResponseActivitiesItemData>;
 
 /** The recipient device, if applicable. */
 export type GetPersonActivitiesResponseActivitiesItemDeliveryType =
@@ -19305,8 +19238,7 @@ export type GetPersonActivitiesResponseActivitiesItemDeliveryType =
   | "android"
   | "email"
   | "phone";
-export const GetPersonActivitiesResponseActivitiesItemDeliveryType =
-  /*@__PURE__*/ S.String;
+export const GetPersonActivitiesResponseActivitiesItemDeliveryType = S.String;
 
 /** The type of activity. Types with `_o:<object_type_id>` are for objects and types with `_r:<object_type_id>` are for relationships. */
 export type GetPersonActivitiesResponseActivitiesItemType =
@@ -19427,8 +19359,7 @@ export type GetPersonActivitiesResponseActivitiesItemType =
   | "_o:<object_type_id>:failed_attribute_change"
   | "_r:<object_type_id>:attribute_change"
   | "_r:<object_type_id>:failed_attribute_change";
-export const GetPersonActivitiesResponseActivitiesItemType =
-  /*@__PURE__*/ S.String;
+export const GetPersonActivitiesResponseActivitiesItemType = S.String;
 
 export interface GetPersonActivitiesResponseActivitiesItem {
   /** The ID of a customer profile, analogous to a "person" in the UI. If your workspace supports multiple identifiers (email and ID), this value can be null. */
@@ -19495,7 +19426,7 @@ export type GetPersonAttributesRequestIdType =
   | "email"
   | "phone"
   | "cio_id";
-export const GetPersonAttributesRequestIdType = /*@__PURE__*/ S.String;
+export const GetPersonAttributesRequestIdType = S.String;
 
 export interface GetPersonAttributesRequest {
   /** The ID of the customer you want to perform an operation against. */
@@ -19540,8 +19471,7 @@ export const GetPersonAttributesResponseCustomerTimestamps =
 export type GetPersonAttributesResponseCustomerDevicesItemPlatform =
   | "ios"
   | "android";
-export const GetPersonAttributesResponseCustomerDevicesItemPlatform =
-  /*@__PURE__*/ S.String;
+export const GetPersonAttributesResponseCustomerDevicesItemPlatform = S.String;
 
 /** The delivery status of the last message sent to the device—sent, bounced, or suppressed. An empty string indicates that that the device hasn't received a push yet. */
 export type GetPersonAttributesResponseCustomerDevicesItemAttributesLastStatus =
@@ -19550,14 +19480,14 @@ export type GetPersonAttributesResponseCustomerDevicesItemAttributesLastStatus =
   | "sent"
   | "suppressed";
 export const GetPersonAttributesResponseCustomerDevicesItemAttributesLastStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** If `"true"`, the device is opted-in and can receive push notifications. */
 export type GetPersonAttributesResponseCustomerDevicesItemAttributesPushEnabled =
   | "true"
   | "false";
 export const GetPersonAttributesResponseCustomerDevicesItemAttributesPushEnabled =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Attributes that you can reference to segment your audience—like a person's attributes, but specific to a device. These can be either the attributes defined below or custom key-value attributes. */
 export interface GetPersonAttributesResponseCustomerDevicesItemAttributes {
@@ -19679,7 +19609,7 @@ export type GetPersonMessagesRequestIdType =
   | "email"
   | "phone"
   | "cio_id";
-export const GetPersonMessagesRequestIdType = /*@__PURE__*/ S.String;
+export const GetPersonMessagesRequestIdType = S.String;
 
 export interface GetPersonMessagesRequest {
   /** The ID of the customer you want to perform an operation against. */
@@ -19740,7 +19670,7 @@ export type GetPersonMessagesResponseMessagesItemType =
   | "push"
   | "in_app"
   | "whatsapp";
-export const GetPersonMessagesResponseMessagesItemType = /*@__PURE__*/ S.String;
+export const GetPersonMessagesResponseMessagesItemType = S.String;
 
 export interface GetPersonMessagesResponseMessagesItem {
   /** The message identifier. */
@@ -19818,7 +19748,7 @@ export const GetPersonMessagesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPersonMessagesResponse>;
 
 export type GetPersonOptoutsRequestIdType = "id" | "email" | "phone" | "cio_id";
-export const GetPersonOptoutsRequestIdType = /*@__PURE__*/ S.String;
+export const GetPersonOptoutsRequestIdType = S.String;
 
 export interface GetPersonOptoutsRequest {
   /** The ID of the customer you want to perform an operation against. */
@@ -19843,8 +19773,7 @@ export const GetPersonOptoutsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The channel that the person is opted out of. */
 export type GetPersonOptoutsResponseOptoutsItemChannel = "sms" | "whatsapp";
-export const GetPersonOptoutsResponseOptoutsItemChannel =
-  /*@__PURE__*/ S.String;
+export const GetPersonOptoutsResponseOptoutsItemChannel = S.String;
 
 export interface GetPersonOptoutsResponseOptoutsItem {
   /** The channel that the person is opted out of. */
@@ -19885,7 +19814,7 @@ export type GetPersonRelationshipsRequestIdType =
   | "email"
   | "phone"
   | "cio_id";
-export const GetPersonRelationshipsRequestIdType = /*@__PURE__*/ S.String;
+export const GetPersonRelationshipsRequestIdType = S.String;
 
 export interface GetPersonRelationshipsRequest {
   /** The ID of the customer you want to perform an operation against. */
@@ -20009,7 +19938,7 @@ export type GetPersonSegmentsRequestIdType =
   | "email"
   | "phone"
   | "cio_id";
-export const GetPersonSegmentsRequestIdType = /*@__PURE__*/ S.String;
+export const GetPersonSegmentsRequestIdType = S.String;
 
 export interface GetPersonSegmentsRequest {
   /** The ID of the customer you want to perform an operation against. */
@@ -20073,8 +20002,7 @@ export type GetPersonSubscriptionPreferencesRequestIdType =
   | "email"
   | "phone"
   | "cio_id";
-export const GetPersonSubscriptionPreferencesRequestIdType =
-  /*@__PURE__*/ S.String;
+export const GetPersonSubscriptionPreferencesRequestIdType = S.String;
 
 export interface GetPersonSubscriptionPreferencesRequest {
   /** The ID of the customer you want to perform an operation against. */
@@ -20222,7 +20150,7 @@ export const GetPublishStatusRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** `pending` while the publish is still running; `done` when it has finished. */
 export type GetPublishStatusResponseStatus = "pending" | "done";
-export const GetPublishStatusResponseStatus = /*@__PURE__*/ S.String;
+export const GetPublishStatusResponseStatus = S.String;
 
 /** A single node-to-template-version mapping produced by the publish process. */
 export interface GetPublishStatusResponseMappingsItem {
@@ -20290,11 +20218,11 @@ export type GetSegmentResponseSegmentState =
   | "events_queued"
   | "build_queued"
   | "finished";
-export const GetSegmentResponseSegmentState = /*@__PURE__*/ S.String;
+export const GetSegmentResponseSegmentState = S.String;
 
 /** The type of segment. */
 export type GetSegmentResponseSegmentType = "dynamic" | "manual";
-export const GetSegmentResponseSegmentType = /*@__PURE__*/ S.String;
+export const GetSegmentResponseSegmentType = S.String;
 
 /** The tags assigned to the segment, if any. Tags may help you sort through your segments. */
 export type GetSegmentResponseSegmentTagsList = Array<string>;
@@ -20592,7 +20520,7 @@ export type GetSegmentMembershipResponseBody =
   | GetSegmentMembershipResponseBodyCase0
   | GetSegmentMembershipResponseBodyCase1;
 export const GetSegmentMembershipResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetSegmentMembershipResponseBody>;
+  S.Unknown as any as S.Schema<GetSegmentMembershipResponseBody>;
 
 export type GetSegmentMembershipResponse = GetSegmentMembershipResponseBody;
 export const GetSegmentMembershipResponse = /*@__PURE__*/ S.suspend(() =>
@@ -20621,8 +20549,7 @@ export const GetSenderRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of sender. */
 export type GetSenderResponseSenderIdentityTemplateType = "email" | "phone";
-export const GetSenderResponseSenderIdentityTemplateType =
-  /*@__PURE__*/ S.String;
+export const GetSenderResponseSenderIdentityTemplateType = S.String;
 
 /** Information about a sender. */
 export interface GetSenderResponseSenderIdentity {
@@ -20780,7 +20707,7 @@ export const GetSuppressionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The reason the addresses are suppressed. */
 export type GetSuppressionResponseCategory = "bounces" | "spam";
-export const GetSuppressionResponseCategory = /*@__PURE__*/ S.String;
+export const GetSuppressionResponseCategory = S.String;
 
 export type GetSuppressionResponseSuppressionsItem =
   GetDomainSuppressionsByTypeResponseSuppressionsItem;
@@ -20814,8 +20741,7 @@ export type GetSuppressionByTypeRequestSuppressionType =
   | "bounces"
   | "spam_reports"
   | "invalid_emails";
-export const GetSuppressionByTypeRequestSuppressionType =
-  /*@__PURE__*/ S.String;
+export const GetSuppressionByTypeRequestSuppressionType = S.String;
 
 export interface GetSuppressionByTypeRequest {
   /** The reason a person's email address was suppressed by the email service provider (ESP). */
@@ -20848,7 +20774,7 @@ export const GetSuppressionByTypeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The reason the addresses are suppressed. */
 export type GetSuppressionByTypeResponseCategory = "bounces" | "spam";
-export const GetSuppressionByTypeResponseCategory = /*@__PURE__*/ S.String;
+export const GetSuppressionByTypeResponseCategory = S.String;
 
 export type GetSuppressionByTypeResponseSuppressionsItem =
   GetDomainSuppressionsByTypeResponseSuppressionsItem;
@@ -21023,14 +20949,13 @@ export const GetTransactionalTranslationByIdRequest = /*@__PURE__*/ S.suspend(
 export type GetTransactionalTranslationByIdResponseContentType =
   | "email"
   | "push";
-export const GetTransactionalTranslationByIdResponseContentType =
-  /*@__PURE__*/ S.String;
+export const GetTransactionalTranslationByIdResponseContentType = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type GetTransactionalTranslationByIdResponseContentPreprocessor =
   "premailer";
 export const GetTransactionalTranslationByIdResponseContentPreprocessor =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetTransactionalTranslationByIdResponseContent {
   /** The identifier for an action. */
@@ -21139,14 +21064,12 @@ export const GetTransactionalVariantRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of message. */
 export type GetTransactionalVariantResponseContentItemType = "email" | "push";
-export const GetTransactionalVariantResponseContentItemType =
-  /*@__PURE__*/ S.String;
+export const GetTransactionalVariantResponseContentItemType = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type GetTransactionalVariantResponseContentItemPreprocessor =
   "premailer";
-export const GetTransactionalVariantResponseContentItemPreprocessor =
-  /*@__PURE__*/ S.String;
+export const GetTransactionalVariantResponseContentItemPreprocessor = S.String;
 
 export interface GetTransactionalVariantResponseContentItem {
   /** The identifier for an action. */
@@ -21244,7 +21167,7 @@ export type GetVariantLinksRequestPeriod =
   | "days"
   | "weeks"
   | "months";
-export const GetVariantLinksRequestPeriod = /*@__PURE__*/ S.String;
+export const GetVariantLinksRequestPeriod = S.String;
 
 export type GetVariantLinksRequestType =
   | "email"
@@ -21253,7 +21176,7 @@ export type GetVariantLinksRequestType =
   | "push"
   | "in_app"
   | "inbox";
-export const GetVariantLinksRequestType = /*@__PURE__*/ S.String;
+export const GetVariantLinksRequestType = S.String;
 
 export interface GetVariantLinksRequest {
   /** The identifier of a newsletter. */
@@ -21390,7 +21313,7 @@ export type GetVariantMetricsRequestPeriod =
   | "days"
   | "weeks"
   | "months";
-export const GetVariantMetricsRequestPeriod = /*@__PURE__*/ S.String;
+export const GetVariantMetricsRequestPeriod = S.String;
 
 export type GetVariantMetricsRequestType =
   | "email"
@@ -21399,7 +21322,7 @@ export type GetVariantMetricsRequestType =
   | "push"
   | "in_app"
   | "inbox";
-export const GetVariantMetricsRequestType = /*@__PURE__*/ S.String;
+export const GetVariantMetricsRequestType = S.String;
 
 export interface GetVariantMetricsRequest {
   /** The identifier of a newsletter. */
@@ -21439,7 +21362,7 @@ export type GetVariantMetricsResponseMetricType =
   | "push"
   | "in_app"
   | "inbox";
-export const GetVariantMetricsResponseMetricType = /*@__PURE__*/ S.String;
+export const GetVariantMetricsResponseMetricType = S.String;
 
 /** The number of `attempted` messages. */
 export type GetVariantMetricsResponseMetricSeriesAttemptedList = Array<number>;
@@ -21793,7 +21716,7 @@ export const GetWebhookRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of webhook—`webhook` for a standard reporting webhook or `js` for a JavaScript webhook. */
 export type GetWebhookResponseType = "webhook" | "js";
-export const GetWebhookResponseType = /*@__PURE__*/ S.String;
+export const GetWebhookResponseType = S.String;
 
 export type GetWebhookResponseEventsItem =
   | "customer_subscribed"
@@ -21868,7 +21791,7 @@ export type GetWebhookResponseEventsItem =
   | "webhook_converted"
   | "webhook_failed"
   | "webhook_undeliverable";
-export const GetWebhookResponseEventsItem = /*@__PURE__*/ S.String;
+export const GetWebhookResponseEventsItem = S.String;
 
 /** Specifies the types of events you want to report to your webhook. See our [reporting webhooks reference](/integrations/api/webhooks/) for more information about event types and the information they return. */
 export type GetWebhookResponseEventsList = Array<GetWebhookResponseEventsItem>;
@@ -21911,18 +21834,18 @@ export const GetWebhookResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of import. */
 export type ImportRequestImportCase0Type = "people";
-export const ImportRequestImportCase0Type = /*@__PURE__*/ S.String;
+export const ImportRequestImportCase0Type = S.String;
 
 /** The type of identifier you want to use to identify people in your sheet—`id` or `email`. At least one column in the CSV must contain an identifier. */
 export type ImportRequestImportCase0Identifier = "id" | "email";
-export const ImportRequestImportCase0Identifier = /*@__PURE__*/ S.String;
+export const ImportRequestImportCase0Identifier = S.String;
 
 /** Controls whether your import adds and updates all rows, adds only new rows, or updates only existing rows. Defaults to `all`. Event imports support only `all` and `only_existing`. Formerly called `people_to_process`. */
 export type ImportRequestImportCase0DataToProcess =
   | "all"
   | "only_new"
   | "only_existing";
-export const ImportRequestImportCase0DataToProcess = /*@__PURE__*/ S.String;
+export const ImportRequestImportCase0DataToProcess = S.String;
 
 /** Contains your import parameters. */
 export interface ImportRequestImportCase0 {
@@ -21954,18 +21877,18 @@ export const ImportRequestImportCase0 = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of import. */
 export type ImportRequestImportCase1Type = "event";
-export const ImportRequestImportCase1Type = /*@__PURE__*/ S.String;
+export const ImportRequestImportCase1Type = S.String;
 
 /** The type of identifier you want to use to identify people in your sheet—`id` or `email`. At least one column in the CSV must contain an identifier. */
 export type ImportRequestImportCase1Identifier = "id" | "email";
-export const ImportRequestImportCase1Identifier = /*@__PURE__*/ S.String;
+export const ImportRequestImportCase1Identifier = S.String;
 
 /** Controls whether your import adds and updates all rows, adds only new rows, or updates only existing rows. Defaults to `all`. Event imports support only `all` and `only_existing`. Formerly called `people_to_process`. */
 export type ImportRequestImportCase1DataToProcess =
   | "all"
   | "only_new"
   | "only_existing";
-export const ImportRequestImportCase1DataToProcess = /*@__PURE__*/ S.String;
+export const ImportRequestImportCase1DataToProcess = S.String;
 
 /** Contains your import parameters. */
 export interface ImportRequestImportCase1 {
@@ -21997,18 +21920,18 @@ export const ImportRequestImportCase1 = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of import. */
 export type ImportRequestImportCase2Type = "relationship";
-export const ImportRequestImportCase2Type = /*@__PURE__*/ S.String;
+export const ImportRequestImportCase2Type = S.String;
 
 /** The type of identifier used to identify the person in each relationship—`id`, `email`, or `cio_id`. */
 export type ImportRequestImportCase2Identifier = "id" | "email" | "cio_id";
-export const ImportRequestImportCase2Identifier = /*@__PURE__*/ S.String;
+export const ImportRequestImportCase2Identifier = S.String;
 
 /** Controls whether your import adds and updates all rows, adds only new rows, or updates only existing rows. Defaults to `all`. Event imports support only `all` and `only_existing`. Formerly called `people_to_process`. */
 export type ImportRequestImportCase2DataToProcess =
   | "all"
   | "only_new"
   | "only_existing";
-export const ImportRequestImportCase2DataToProcess = /*@__PURE__*/ S.String;
+export const ImportRequestImportCase2DataToProcess = S.String;
 
 /** Contains your import parameters. */
 export interface ImportRequestImportCase2 {
@@ -22040,14 +21963,14 @@ export const ImportRequestImportCase2 = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of import. */
 export type ImportRequestImportCase3Type = "object";
-export const ImportRequestImportCase3Type = /*@__PURE__*/ S.String;
+export const ImportRequestImportCase3Type = S.String;
 
 /** Controls whether your import adds and updates all rows, adds only new rows, or updates only existing rows. Defaults to `all`. Event imports support only `all` and `only_existing`. Formerly called `people_to_process`. */
 export type ImportRequestImportCase3DataToProcess =
   | "all"
   | "only_new"
   | "only_existing";
-export const ImportRequestImportCase3DataToProcess = /*@__PURE__*/ S.String;
+export const ImportRequestImportCase3DataToProcess = S.String;
 
 /** Contains your import parameters. */
 export interface ImportRequestImportCase3 {
@@ -22083,7 +22006,7 @@ export type ImportRequestImport =
   | ImportRequestImportCase2
   | ImportRequestImportCase3;
 export const ImportRequestImport =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ImportRequestImport>;
+  S.Unknown as any as S.Schema<ImportRequestImport>;
 
 export interface ImportRequest {
   import: ImportRequestImport;
@@ -22104,7 +22027,7 @@ export type ImportResponseImportState =
   | "imported"
   | "failed"
   | "canceled";
-export const ImportResponseImportState = /*@__PURE__*/ S.String;
+export const ImportResponseImportState = S.String;
 
 /** The type of import. */
 export type ImportResponseImportType =
@@ -22112,25 +22035,25 @@ export type ImportResponseImportType =
   | "event"
   | "object"
   | "relationship";
-export const ImportResponseImportType = /*@__PURE__*/ S.String;
+export const ImportResponseImportType = S.String;
 
 /** The type of identifier you used to identify people in your CSV. Not applicable for object imports. */
 export type ImportResponseImportIdentifier = "id" | "email";
-export const ImportResponseImportIdentifier = /*@__PURE__*/ S.String;
+export const ImportResponseImportIdentifier = S.String;
 
 /** Controls whether your import adds and updates all rows, adds only new rows, or updates only existing rows. Defaults to `all`. Event imports support only `all` and `only_existing`. Formerly called `people_to_process`. */
 export type ImportResponseImportDataToProcess =
   | "all"
   | "only_new"
   | "only_existing";
-export const ImportResponseImportDataToProcess = /*@__PURE__*/ S.String;
+export const ImportResponseImportDataToProcess = S.String;
 
 /** Returned for people and event imports, even if you imported using the field `data_to_process`. This field will be deprecated soon. */
 export type ImportResponseImportPeopleToProcess =
   | "all"
   | "only_new"
   | "only_existing";
-export const ImportResponseImportPeopleToProcess = /*@__PURE__*/ S.String;
+export const ImportResponseImportPeopleToProcess = S.String;
 
 /** Represents an import operation. */
 export interface ImportResponseImport {
@@ -22199,7 +22122,7 @@ export type LinkEmailRequestTargetType =
   | "transactional_message"
   | "newsletter"
   | "campaign_action";
-export const LinkEmailRequestTargetType = /*@__PURE__*/ S.String;
+export const LinkEmailRequestTargetType = S.String;
 
 /** The workflow to link the content to. */
 export interface LinkEmailRequestTarget {
@@ -22252,7 +22175,7 @@ export type LinkEmailResponseTargetType =
   | "transactional_message"
   | "newsletter"
   | "campaign_action";
-export const LinkEmailResponseTargetType = /*@__PURE__*/ S.String;
+export const LinkEmailResponseTargetType = S.String;
 
 /** The workflow linked to the message. The response returns `campaign_action` for a campaign or an API-triggered broadcast. */
 export interface LinkEmailResponseTarget {
@@ -22413,10 +22336,10 @@ export type ListActivitiesRequestType =
   | "_o:<object_type_id>:failed_attribute_change"
   | "_r:<object_type_id>:attribute_change"
   | "_r:<object_type_id>:failed_attribute_change";
-export const ListActivitiesRequestType = /*@__PURE__*/ S.String;
+export const ListActivitiesRequestType = S.String;
 
 export type ListActivitiesRequestIdType = "id" | "email" | "phone" | "cio_id";
-export const ListActivitiesRequestIdType = /*@__PURE__*/ S.String;
+export const ListActivitiesRequestIdType = S.String;
 
 export interface ListActivitiesRequest {
   /** The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results. */
@@ -22480,7 +22403,7 @@ export type ListActivitiesResponseActivitiesItemData =
   | GetPersonActivitiesResponseActivitiesItemDataCase0
   | ListActivitiesResponseActivitiesItemDataCase1Map;
 export const ListActivitiesResponseActivitiesItemData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListActivitiesResponseActivitiesItemData>;
+  S.Unknown as any as S.Schema<ListActivitiesResponseActivitiesItemData>;
 
 /** The recipient device, if applicable. */
 export type ListActivitiesResponseActivitiesItemDeliveryType =
@@ -22488,8 +22411,7 @@ export type ListActivitiesResponseActivitiesItemDeliveryType =
   | "android"
   | "email"
   | "phone";
-export const ListActivitiesResponseActivitiesItemDeliveryType =
-  /*@__PURE__*/ S.String;
+export const ListActivitiesResponseActivitiesItemDeliveryType = S.String;
 
 /** The type of activity. Types with `_o:<object_type_id>` are for objects and types with `_r:<object_type_id>` are for relationships. */
 export type ListActivitiesResponseActivitiesItemType =
@@ -22610,7 +22532,7 @@ export type ListActivitiesResponseActivitiesItemType =
   | "_o:<object_type_id>:failed_attribute_change"
   | "_r:<object_type_id>:attribute_change"
   | "_r:<object_type_id>:failed_attribute_change";
-export const ListActivitiesResponseActivitiesItemType = /*@__PURE__*/ S.String;
+export const ListActivitiesResponseActivitiesItemType = S.String;
 
 export interface ListActivitiesResponseActivitiesItem {
   /** The ID of a customer profile, analogous to a "person" in the UI. If your workspace supports multiple identifiers (email and ID), this value can be null. */
@@ -22846,11 +22768,11 @@ export const ListBroadcastsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of broadcast. */
 export type ListBroadcastsResponseBroadcastsItemType = "triggered_broadcast";
-export const ListBroadcastsResponseBroadcastsItemType = /*@__PURE__*/ S.String;
+export const ListBroadcastsResponseBroadcastsItemType = S.String;
 
 /** The state of the broadcast. */
 export type ListBroadcastsResponseBroadcastsItemState = "running" | "draft";
-export const ListBroadcastsResponseBroadcastsItemState = /*@__PURE__*/ S.String;
+export const ListBroadcastsResponseBroadcastsItemState = S.String;
 
 /** The type of action. */
 export type ListBroadcastsResponseBroadcastsItemActionsItemType =
@@ -22859,8 +22781,7 @@ export type ListBroadcastsResponseBroadcastsItemActionsItemType =
   | "push"
   | "sms"
   | "slack";
-export const ListBroadcastsResponseBroadcastsItemActionsItemType =
-  /*@__PURE__*/ S.String;
+export const ListBroadcastsResponseBroadcastsItemActionsItemType = S.String;
 
 export interface ListBroadcastsResponseBroadcastsItemActionsItem {
   /** The identifier for the action. */
@@ -22894,7 +22815,7 @@ export type ListBroadcastsResponseBroadcastsItemMsgTemplateIdsItemType =
   | "sms"
   | "slack";
 export const ListBroadcastsResponseBroadcastsItemMsgTemplateIdsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListBroadcastsResponseBroadcastsItemMsgTemplateIdsItem {
   /** The identifier for the template. */
@@ -23083,22 +23004,19 @@ export type ListCampaignActionsResponseActionsItemCase0Type =
   | "twilio"
   | "slack"
   | "whatsapp";
-export const ListCampaignActionsResponseActionsItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const ListCampaignActionsResponseActionsItemCase0Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type ListCampaignActionsResponseActionsItemCase0SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const ListCampaignActionsResponseActionsItemCase0SendingState =
-  /*@__PURE__*/ S.String;
+export const ListCampaignActionsResponseActionsItemCase0SendingState = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type ListCampaignActionsResponseActionsItemCase0Preprocessor =
   "premailer";
-export const ListCampaignActionsResponseActionsItemCase0Preprocessor =
-  /*@__PURE__*/ S.String;
+export const ListCampaignActionsResponseActionsItemCase0Preprocessor = S.String;
 
 export interface ListCampaignActionsResponseActionsItemCase0 {
   /** The identifier for an action. */
@@ -23194,16 +23112,14 @@ export const ListCampaignActionsResponseActionsItemCase0 =
 
 /** For SMS/MMS messages, the `type` is always `twilio`. */
 export type ListCampaignActionsResponseActionsItemCase1Type = "twilio";
-export const ListCampaignActionsResponseActionsItemCase1Type =
-  /*@__PURE__*/ S.String;
+export const ListCampaignActionsResponseActionsItemCase1Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type ListCampaignActionsResponseActionsItemCase1SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const ListCampaignActionsResponseActionsItemCase1SendingState =
-  /*@__PURE__*/ S.String;
+export const ListCampaignActionsResponseActionsItemCase1SendingState = S.String;
 
 export interface ListCampaignActionsResponseActionsItemCase1 {
   /** The identifier for an action. */
@@ -23261,16 +23177,14 @@ export const ListCampaignActionsResponseActionsItemCase1 =
 
 /** For WhatsApp messages sent from Customer.io using your Facebook Business Account (not Twilio), the `type` is always `whatsapp`. */
 export type ListCampaignActionsResponseActionsItemCase2Type = "whatsapp";
-export const ListCampaignActionsResponseActionsItemCase2Type =
-  /*@__PURE__*/ S.String;
+export const ListCampaignActionsResponseActionsItemCase2Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type ListCampaignActionsResponseActionsItemCase2SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const ListCampaignActionsResponseActionsItemCase2SendingState =
-  /*@__PURE__*/ S.String;
+export const ListCampaignActionsResponseActionsItemCase2SendingState = S.String;
 
 export interface ListCampaignActionsResponseActionsItemCase2 {
   /** The identifier for an action. */
@@ -23334,8 +23248,7 @@ export const ListCampaignActionsResponseActionsItemCase2 =
 
 /** The type of action. */
 export type ListCampaignActionsResponseActionsItemCase3Type = "webhook";
-export const ListCampaignActionsResponseActionsItemCase3Type =
-  /*@__PURE__*/ S.String;
+export const ListCampaignActionsResponseActionsItemCase3Type = S.String;
 
 /** The HTTP method for your webhook. */
 export type ListCampaignActionsResponseActionsItemCase3Method =
@@ -23344,16 +23257,14 @@ export type ListCampaignActionsResponseActionsItemCase3Method =
   | "put"
   | "delete"
   | "patch";
-export const ListCampaignActionsResponseActionsItemCase3Method =
-  /*@__PURE__*/ S.String;
+export const ListCampaignActionsResponseActionsItemCase3Method = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type ListCampaignActionsResponseActionsItemCase3SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const ListCampaignActionsResponseActionsItemCase3SendingState =
-  /*@__PURE__*/ S.String;
+export const ListCampaignActionsResponseActionsItemCase3SendingState = S.String;
 
 export interface ListCampaignActionsResponseActionsItemCase3 {
   /** The identifier for an action. */
@@ -23415,7 +23326,7 @@ export type ListCampaignActionsResponseActionsItem =
   | ListCampaignActionsResponseActionsItemCase2
   | ListCampaignActionsResponseActionsItemCase3;
 export const ListCampaignActionsResponseActionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListCampaignActionsResponseActionsItem>;
+  S.Unknown as any as S.Schema<ListCampaignActionsResponseActionsItem>;
 
 /** Each object in the array represents an action in your campaign. */
 export type ListCampaignActionsResponseActionsList =
@@ -23448,16 +23359,14 @@ export const ListCampaignsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of campaign trigger. **Sunsetting on March 30, 2025** */
 export type ListCampaignsResponseCampaignsItemCase0Type = "segment";
-export const ListCampaignsResponseCampaignsItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const ListCampaignsResponseCampaignsItemCase0Type = S.String;
 
 /** The status of the campaign. */
 export type ListCampaignsResponseCampaignsItemCase0State =
   | "running"
   | "draft"
   | "stopped";
-export const ListCampaignsResponseCampaignsItemCase0State =
-  /*@__PURE__*/ S.String;
+export const ListCampaignsResponseCampaignsItemCase0State = S.String;
 
 export type ListCampaignsResponseCampaignsItemCase0ActionsItem =
   GetCampaignsResponseCampaignCase0ActionsItem;
@@ -23502,7 +23411,7 @@ export type ListCampaignsResponseCampaignsItemCase0MsgTemplatesItemType =
   | "push"
   | "slack";
 export const ListCampaignsResponseCampaignsItemCase0MsgTemplatesItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListCampaignsResponseCampaignsItemCase0MsgTemplatesItem {
   /** The message type the template represents. */
@@ -23593,16 +23502,14 @@ export const ListCampaignsResponseCampaignsItemCase0 = /*@__PURE__*/ S.suspend(
 
 /** The type of campaign trigger. **Sunsetting on March 30, 2025** */
 export type ListCampaignsResponseCampaignsItemCase1Type = "event";
-export const ListCampaignsResponseCampaignsItemCase1Type =
-  /*@__PURE__*/ S.String;
+export const ListCampaignsResponseCampaignsItemCase1Type = S.String;
 
 /** The status of the campaign. */
 export type ListCampaignsResponseCampaignsItemCase1State =
   | "running"
   | "draft"
   | "stopped";
-export const ListCampaignsResponseCampaignsItemCase1State =
-  /*@__PURE__*/ S.String;
+export const ListCampaignsResponseCampaignsItemCase1State = S.String;
 
 export type ListCampaignsResponseCampaignsItemCase1ActionsItem =
   GetCampaignsResponseCampaignCase0ActionsItem;
@@ -23688,16 +23595,14 @@ export const ListCampaignsResponseCampaignsItemCase1 = /*@__PURE__*/ S.suspend(
 
 /** The type of campaign trigger. **Sunsetting on March 30, 2025** */
 export type ListCampaignsResponseCampaignsItemCase2Type = "form";
-export const ListCampaignsResponseCampaignsItemCase2Type =
-  /*@__PURE__*/ S.String;
+export const ListCampaignsResponseCampaignsItemCase2Type = S.String;
 
 /** The status of the campaign. */
 export type ListCampaignsResponseCampaignsItemCase2State =
   | "running"
   | "draft"
   | "stopped";
-export const ListCampaignsResponseCampaignsItemCase2State =
-  /*@__PURE__*/ S.String;
+export const ListCampaignsResponseCampaignsItemCase2State = S.String;
 
 export type ListCampaignsResponseCampaignsItemCase2ActionsItem =
   GetCampaignsResponseCampaignCase0ActionsItem;
@@ -23780,16 +23685,14 @@ export const ListCampaignsResponseCampaignsItemCase2 = /*@__PURE__*/ S.suspend(
 
 /** The type of campaign trigger. **Sunsetting on March 30, 2025** */
 export type ListCampaignsResponseCampaignsItemCase3Type = "date";
-export const ListCampaignsResponseCampaignsItemCase3Type =
-  /*@__PURE__*/ S.String;
+export const ListCampaignsResponseCampaignsItemCase3Type = S.String;
 
 /** The status of the campaign. */
 export type ListCampaignsResponseCampaignsItemCase3State =
   | "running"
   | "draft"
   | "stopped";
-export const ListCampaignsResponseCampaignsItemCase3State =
-  /*@__PURE__*/ S.String;
+export const ListCampaignsResponseCampaignsItemCase3State = S.String;
 
 export type ListCampaignsResponseCampaignsItemCase3ActionsItem =
   GetCampaignsResponseCampaignCase0ActionsItem;
@@ -23824,8 +23727,7 @@ export type ListCampaignsResponseCampaignsItemCase3Frequency =
   | "once"
   | "monthly"
   | "yearly";
-export const ListCampaignsResponseCampaignsItemCase3Frequency =
-  /*@__PURE__*/ S.String;
+export const ListCampaignsResponseCampaignsItemCase3Frequency = S.String;
 
 export interface ListCampaignsResponseCampaignsItemCase3 {
   /** The identifier for a campaign. */
@@ -23898,16 +23800,14 @@ export const ListCampaignsResponseCampaignsItemCase3 = /*@__PURE__*/ S.suspend(
 
 /** The type of campaign trigger. **Sunsetting on March 30, 2025** */
 export type ListCampaignsResponseCampaignsItemCase4Type = "relationship";
-export const ListCampaignsResponseCampaignsItemCase4Type =
-  /*@__PURE__*/ S.String;
+export const ListCampaignsResponseCampaignsItemCase4Type = S.String;
 
 /** The status of the campaign. */
 export type ListCampaignsResponseCampaignsItemCase4State =
   | "running"
   | "draft"
   | "stopped";
-export const ListCampaignsResponseCampaignsItemCase4State =
-  /*@__PURE__*/ S.String;
+export const ListCampaignsResponseCampaignsItemCase4State = S.String;
 
 export type ListCampaignsResponseCampaignsItemCase4ActionsItem =
   GetCampaignsResponseCampaignCase0ActionsItem;
@@ -24011,16 +23911,14 @@ export const ListCampaignsResponseCampaignsItemCase4 = /*@__PURE__*/ S.suspend(
 
 /** The type of campaign trigger. **Sunsetting on March 30, 2025** */
 export type ListCampaignsResponseCampaignsItemCase5Type = "object";
-export const ListCampaignsResponseCampaignsItemCase5Type =
-  /*@__PURE__*/ S.String;
+export const ListCampaignsResponseCampaignsItemCase5Type = S.String;
 
 /** The status of the campaign. */
 export type ListCampaignsResponseCampaignsItemCase5State =
   | "running"
   | "draft"
   | "stopped";
-export const ListCampaignsResponseCampaignsItemCase5State =
-  /*@__PURE__*/ S.String;
+export const ListCampaignsResponseCampaignsItemCase5State = S.String;
 
 export type ListCampaignsResponseCampaignsItemCase5ActionsItem =
   GetCampaignsResponseCampaignCase0ActionsItem;
@@ -24124,16 +24022,14 @@ export const ListCampaignsResponseCampaignsItemCase5 = /*@__PURE__*/ S.suspend(
 
 /** The type of campaign trigger. **Sunsetting on March 30, 2025** */
 export type ListCampaignsResponseCampaignsItemCase6Type = "webhook";
-export const ListCampaignsResponseCampaignsItemCase6Type =
-  /*@__PURE__*/ S.String;
+export const ListCampaignsResponseCampaignsItemCase6Type = S.String;
 
 /** The status of the campaign. */
 export type ListCampaignsResponseCampaignsItemCase6State =
   | "running"
   | "draft"
   | "stopped";
-export const ListCampaignsResponseCampaignsItemCase6State =
-  /*@__PURE__*/ S.String;
+export const ListCampaignsResponseCampaignsItemCase6State = S.String;
 
 export type ListCampaignsResponseCampaignsItemCase6ActionsItem =
   GetCampaignsResponseCampaignCase0ActionsItem;
@@ -24213,7 +24109,7 @@ export type ListCampaignsResponseCampaignsItem =
   | ListCampaignsResponseCampaignsItemCase5
   | ListCampaignsResponseCampaignsItemCase6;
 export const ListCampaignsResponseCampaignsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListCampaignsResponseCampaignsItem>;
+  S.Unknown as any as S.Schema<ListCampaignsResponseCampaignsItem>;
 
 /** Each object is a campaign in your workspace with one of seven types of campaign triggers. */
 export type ListCampaignsResponseCampaignsList =
@@ -24235,10 +24131,10 @@ export const ListCampaignsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListCampaignsResponse>;
 
 export type ListComponentsRequestSortBy = "created" | "updated" | "name";
-export const ListComponentsRequestSortBy = /*@__PURE__*/ S.String;
+export const ListComponentsRequestSortBy = S.String;
 
 export type ListComponentsRequestSortOrder = "asc" | "desc";
-export const ListComponentsRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListComponentsRequestSortOrder = S.String;
 
 export interface ListComponentsRequest {
   /** Filter by component tag name. This is the name of the tag inserted into your emails. */
@@ -24374,19 +24270,19 @@ export const ListComponentsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListComponentsResponse>;
 
 export type ListEmailsRequestSortBy = "created" | "updated" | "name";
-export const ListEmailsRequestSortBy = /*@__PURE__*/ S.String;
+export const ListEmailsRequestSortBy = S.String;
 
 export type ListEmailsRequestSortOrder = "asc" | "desc";
-export const ListEmailsRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListEmailsRequestSortOrder = S.String;
 
 export type ListEmailsRequestIsTemplate = "true" | "false" | "any";
-export const ListEmailsRequestIsTemplate = /*@__PURE__*/ S.String;
+export const ListEmailsRequestIsTemplate = S.String;
 
 export type ListEmailsRequestHasTranslations = "true" | "false" | "any";
-export const ListEmailsRequestHasTranslations = /*@__PURE__*/ S.String;
+export const ListEmailsRequestHasTranslations = S.String;
 
 export type ListEmailsRequestIsLinked = "true" | "false" | "any";
-export const ListEmailsRequestIsLinked = /*@__PURE__*/ S.String;
+export const ListEmailsRequestIsLinked = S.String;
 
 export interface ListEmailsRequest {
   /** The page number of results you want to display. Use with `limit`. */
@@ -24651,14 +24547,14 @@ export type ListEmailTranslationsResponseEmailTranslationsItemTransformersFormat
   | "prettify"
   | "minify";
 export const ListEmailTranslationsResponseEmailTranslationsItemTransformersFormatterType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Character used for indentation. */
 export type ListEmailTranslationsResponseEmailTranslationsItemTransformersFormatterPrettifyIndentCharacter =
   | "spaces"
   | "tabs";
 export const ListEmailTranslationsResponseEmailTranslationsItemTransformersFormatterPrettifyIndentCharacter =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"prettify"`. Produces human-readable, indented HTML output. */
 export interface ListEmailTranslationsResponseEmailTranslationsItemTransformersFormatterPrettify {
@@ -24689,7 +24585,7 @@ export type ListEmailTranslationsResponseEmailTranslationsItemTransformersFormat
   | "1"
   | "2";
 export const ListEmailTranslationsResponseEmailTranslationsItemTransformersFormatterMinifyRemoveHtmlComments =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"minify"`. Reduces file size by stripping whitespace and comments. */
 export interface ListEmailTranslationsResponseEmailTranslationsItemTransformersFormatterMinify {
@@ -24927,14 +24823,14 @@ export const ListExportsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of information contained in the export. */
 export type ListExportsResponseExportsItemType = "customers" | "deliveries";
-export const ListExportsResponseExportsItemType = /*@__PURE__*/ S.String;
+export const ListExportsResponseExportsItemType = S.String;
 
 /** The state of your export where `done` indicates an export that you can download, `pending`, indicates that your export is not ready to download, and `failed` indicates an export that has failed and will not be downloadable. */
 export type ListExportsResponseExportsItemStatus =
   | "done"
   | "pending"
   | "failed";
-export const ListExportsResponseExportsItemStatus = /*@__PURE__*/ S.String;
+export const ListExportsResponseExportsItemStatus = S.String;
 
 /** Metadata about an export. */
 export interface ListExportsResponseExportsItem {
@@ -25000,10 +24896,10 @@ export const ListExportsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListExportsResponse>;
 
 export type ListFoldersRequestSortBy = "created" | "updated" | "name";
-export const ListFoldersRequestSortBy = /*@__PURE__*/ S.String;
+export const ListFoldersRequestSortBy = S.String;
 
 export type ListFoldersRequestSortOrder = "asc" | "desc";
-export const ListFoldersRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListFoldersRequestSortOrder = S.String;
 
 export interface ListFoldersRequest {
   /** The page number of results you want to display. Use with `limit`. */
@@ -25082,7 +24978,7 @@ export type ListMessagesRequestType =
   | "push"
   | "in_app"
   | "live_notification";
-export const ListMessagesRequestType = /*@__PURE__*/ S.String;
+export const ListMessagesRequestType = S.String;
 
 export type ListMessagesRequestMetric =
   | "attempted"
@@ -25097,7 +24993,7 @@ export type ListMessagesRequestMetric =
   | "dropped"
   | "failed"
   | "undeliverable";
-export const ListMessagesRequestMetric = /*@__PURE__*/ S.String;
+export const ListMessagesRequestMetric = S.String;
 
 export interface ListMessagesRequest {
   /** The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results. */
@@ -25180,7 +25076,7 @@ export type ListMessagesResponseMessagesItemType =
   | "slack"
   | "whatsapp"
   | "live_notification";
-export const ListMessagesResponseMessagesItemType = /*@__PURE__*/ S.String;
+export const ListMessagesResponseMessagesItemType = S.String;
 
 /** Describes an individual message delivery. The object contains keys for all possible parents of the message (`newsletter_id`, `broadcast_id`, etc) but only the parents of the delivery are populated. Other parent IDs are null. */
 export interface ListMessagesResponseMessagesItem {
@@ -25273,7 +25169,7 @@ export const ListMessagesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListMessagesResponse>;
 
 export type ListNewslettersRequestSort = "asc" | "desc";
-export const ListNewslettersRequestSort = /*@__PURE__*/ S.String;
+export const ListNewslettersRequestSort = S.String;
 
 export interface ListNewslettersRequest {
   /** The maximum number of results you want to retrieve per page. */
@@ -25309,8 +25205,7 @@ export type ListNewslettersResponseNewslettersItemType =
   | "push"
   | "in_app"
   | "inbox";
-export const ListNewslettersResponseNewslettersItemType =
-  /*@__PURE__*/ S.String;
+export const ListNewslettersResponseNewslettersItemType = S.String;
 
 /** An array of tags associated with the newsletter. */
 export type ListNewslettersResponseNewslettersItemTagsList = Array<string>;
@@ -25420,14 +25315,12 @@ export type ListNewsletterVariantsResponseContentsItemType =
   | "push"
   | "in_app"
   | "inbox";
-export const ListNewsletterVariantsResponseContentsItemType =
-  /*@__PURE__*/ S.String;
+export const ListNewsletterVariantsResponseContentsItemType = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type ListNewsletterVariantsResponseContentsItemPreprocessor =
   "premailer";
-export const ListNewsletterVariantsResponseContentsItemPreprocessor =
-  /*@__PURE__*/ S.String;
+export const ListNewsletterVariantsResponseContentsItemPreprocessor = S.String;
 
 export interface ListNewsletterVariantsResponseContentsItem {
   /** The identifier of a newsletter variant—a language in a multi-language newsletter or a test in an A/B test. */
@@ -25535,11 +25428,11 @@ export type ListSegmentsResponseSegmentsItemState =
   | "events_queued"
   | "build_queued"
   | "finished";
-export const ListSegmentsResponseSegmentsItemState = /*@__PURE__*/ S.String;
+export const ListSegmentsResponseSegmentsItemState = S.String;
 
 /** The type of segment. */
 export type ListSegmentsResponseSegmentsItemType = "dynamic" | "manual";
-export const ListSegmentsResponseSegmentsItemType = /*@__PURE__*/ S.String;
+export const ListSegmentsResponseSegmentsItemType = S.String;
 
 /** The tags assigned to the segment, if any. Tags may help you sort through your segments. */
 export type ListSegmentsResponseSegmentsItemTagsList = Array<string>;
@@ -25604,7 +25497,7 @@ export const ListSegmentsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListSegmentsResponse>;
 
 export type ListSendersRequestSort = "asc" | "desc";
-export const ListSendersRequestSort = /*@__PURE__*/ S.String;
+export const ListSendersRequestSort = S.String;
 
 export interface ListSendersRequest {
   /** The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results. */
@@ -25631,8 +25524,7 @@ export const ListSendersRequest = /*@__PURE__*/ S.suspend(() =>
 export type ListSendersResponseSenderIdentitiesItemTemplateType =
   | "email"
   | "phone";
-export const ListSendersResponseSenderIdentitiesItemTemplateType =
-  /*@__PURE__*/ S.String;
+export const ListSendersResponseSenderIdentitiesItemTemplateType = S.String;
 
 /** Information about a sender. */
 export interface ListSendersResponseSenderIdentitiesItem {
@@ -25776,14 +25668,13 @@ export const ListTransactionalVariantsRequest = /*@__PURE__*/ S.suspend(() =>
 export type ListTransactionalVariantsResponseContentsItemType =
   | "email"
   | "push";
-export const ListTransactionalVariantsResponseContentsItemType =
-  /*@__PURE__*/ S.String;
+export const ListTransactionalVariantsResponseContentsItemType = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type ListTransactionalVariantsResponseContentsItemPreprocessor =
   "premailer";
 export const ListTransactionalVariantsResponseContentsItemPreprocessor =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListTransactionalVariantsResponseContentsItem {
   /** The identifier for an action. */
@@ -25888,8 +25779,7 @@ export const ListWebhooksRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of webhook—`webhook` for a standard reporting webhook or `js` for a JavaScript webhook. */
 export type ListWebhooksResponseReportingWebhooksItemType = "webhook" | "js";
-export const ListWebhooksResponseReportingWebhooksItemType =
-  /*@__PURE__*/ S.String;
+export const ListWebhooksResponseReportingWebhooksItemType = S.String;
 
 export type ListWebhooksResponseReportingWebhooksItemEventsItem =
   | "customer_subscribed"
@@ -25964,8 +25854,7 @@ export type ListWebhooksResponseReportingWebhooksItemEventsItem =
   | "webhook_converted"
   | "webhook_failed"
   | "webhook_undeliverable";
-export const ListWebhooksResponseReportingWebhooksItemEventsItem =
-  /*@__PURE__*/ S.String;
+export const ListWebhooksResponseReportingWebhooksItemEventsItem = S.String;
 
 /** Specifies the types of events you want to report to your webhook. See our [reporting webhooks reference](/integrations/api/webhooks/) for more information about event types and the information they return. */
 export type ListWebhooksResponseReportingWebhooksItemEventsList =
@@ -26089,7 +25978,7 @@ export type PostSuppressionRequestSuppressionType =
   | "bounces"
   | "spam_reports"
   | "invalid_emails";
-export const PostSuppressionRequestSuppressionType = /*@__PURE__*/ S.String;
+export const PostSuppressionRequestSuppressionType = S.String;
 
 export interface PostSuppressionRequest {
   /** The reason a person's email address was suppressed by the email service provider (ESP). */
@@ -26139,7 +26028,7 @@ export const PublishEmailRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Returns `done` when the publish process finished within the request window. Returns `pending` when publish is still running for a multi-language email (poll with `publish_id`). */
 export type PublishEmailResponseStatus = "done" | "pending";
-export const PublishEmailResponseStatus = /*@__PURE__*/ S.String;
+export const PublishEmailResponseStatus = S.String;
 
 /** A single node-to-template-version mapping produced by the publish process. */
 export type PublishEmailResponseMappingsItem =
@@ -26174,8 +26063,7 @@ export const PublishEmailResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Time period in seconds for rate limiting. Must be one of 60 (minute), 3600 (hour), or 86400 (day). */
 export type ScheduleNewsletterRequestRateLimitTimePeriod = 60 | 3600 | 86400;
-export const ScheduleNewsletterRequestRateLimitTimePeriod =
-  /*@__PURE__*/ S.Number;
+export const ScheduleNewsletterRequestRateLimitTimePeriod = S.Number;
 
 export interface ScheduleNewsletterRequest {
   /** The identifier of a newsletter. */
@@ -26232,7 +26120,7 @@ export type ScheduleNewsletterResponseNewsletterType =
   | "push"
   | "in_app"
   | "inbox";
-export const ScheduleNewsletterResponseNewsletterType = /*@__PURE__*/ S.String;
+export const ScheduleNewsletterResponseNewsletterType = S.String;
 
 /** An array of tags associated with the newsletter. */
 export type ScheduleNewsletterResponseNewsletterTagsList = Array<string>;
@@ -26310,7 +26198,7 @@ export const ScheduleNewsletterResponse = /*@__PURE__*/ S.suspend(() =>
 /** The transactional message template you want to use. You can call the template by its numerical ID or by the *Trigger Name* that you assigned to the template in the UI (case insensitive). */
 export type SendEmailRequestTransactionalMessageId = number | string;
 export const SendEmailRequestTransactionalMessageId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendEmailRequestTransactionalMessageId>;
+  S.Unknown as any as S.Schema<SendEmailRequestTransactionalMessageId>;
 
 export interface SendEmailRequestIdentifiersCase0 {
   /** The identifier for the person represented by the transactional message. **NOTE**: If your workspace identifies people by email, use the `email` identifier instead. */
@@ -26354,7 +26242,7 @@ export type SendEmailRequestIdentifiers =
   | SendEmailRequestIdentifiersCase1
   | SendEmailRequestIdentifiersCase2;
 export const SendEmailRequestIdentifiers =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendEmailRequestIdentifiers>;
+  S.Unknown as any as S.Schema<SendEmailRequestIdentifiers>;
 
 /** An object containing the key-value pairs referenced using liquid in your message. */
 export type SendEmailRequestMessageDataMap = {
@@ -26481,7 +26369,7 @@ export const SendEmailResponse = /*@__PURE__*/ S.suspend(() =>
 /** The transactional message template that you want to use for your message. You can call the template by its numerical ID or by the *Trigger Name* that you assigned to the template in the UI (case insensitive). */
 export type SendInAppRequestTransactionalMessageId = number | string;
 export const SendInAppRequestTransactionalMessageId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendInAppRequestTransactionalMessageId>;
+  S.Unknown as any as S.Schema<SendInAppRequestTransactionalMessageId>;
 
 export type SendInAppRequestIdentifiersCase0 = SendEmailRequestIdentifiersCase0;
 export const SendInAppRequestIdentifiersCase0 =
@@ -26501,7 +26389,7 @@ export type SendInAppRequestIdentifiers =
   | SendEmailRequestIdentifiersCase1
   | SendEmailRequestIdentifiersCase2;
 export const SendInAppRequestIdentifiers =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendInAppRequestIdentifiers>;
+  S.Unknown as any as S.Schema<SendInAppRequestIdentifiers>;
 
 /** An object containing the key-value pairs referenced using liquid in the format `{{trigger.<property_name>}}` in your in-app message. These values populate the `properties` field in the message that the SDK delivers to your application. */
 export type SendInAppRequestMessageDataMap = {
@@ -26563,7 +26451,7 @@ export const SendInAppResponse = /*@__PURE__*/ S.suspend(() =>
 /** The transactional message template that you want to use for your message. You can call the template by its numerical ID or by the *Trigger Name* that you assigned to the template in the UI (case insensitive). */
 export type SendInboxMessageRequestTransactionalMessageId = number | string;
 export const SendInboxMessageRequestTransactionalMessageId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendInboxMessageRequestTransactionalMessageId>;
+  S.Unknown as any as S.Schema<SendInboxMessageRequestTransactionalMessageId>;
 
 export type SendInboxMessageRequestIdentifiersCase0 =
   SendEmailRequestIdentifiersCase0;
@@ -26586,7 +26474,7 @@ export type SendInboxMessageRequestIdentifiers =
   | SendEmailRequestIdentifiersCase1
   | SendEmailRequestIdentifiersCase2;
 export const SendInboxMessageRequestIdentifiers =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendInboxMessageRequestIdentifiers>;
+  S.Unknown as any as S.Schema<SendInboxMessageRequestIdentifiers>;
 
 /** An object containing the key-value pairs referenced using liquid in the format `{{trigger.<property_name>}}` in your inbox message. These values will populate the `properties` field in the message received by your application. */
 export type SendInboxMessageRequestMessageDataMap = {
@@ -26650,7 +26538,7 @@ export const SendInboxMessageResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Time period in seconds for rate limiting. Must be one of 60 (minute), 3600 (hour), or 86400 (day). */
 export type SendNewsletterRequestRateLimitTimePeriod = 60 | 3600 | 86400;
-export const SendNewsletterRequestRateLimitTimePeriod = /*@__PURE__*/ S.Number;
+export const SendNewsletterRequestRateLimitTimePeriod = S.Number;
 
 export interface SendNewsletterRequest {
   /** The identifier of a newsletter. */
@@ -26698,7 +26586,7 @@ export type SendNewsletterResponseNewsletterType =
   | "push"
   | "in_app"
   | "inbox";
-export const SendNewsletterResponseNewsletterType = /*@__PURE__*/ S.String;
+export const SendNewsletterResponseNewsletterType = S.String;
 
 /** An array of tags associated with the newsletter. */
 export type SendNewsletterResponseNewsletterTagsList = Array<string>;
@@ -26772,24 +26660,23 @@ export const SendNewsletterResponse = /*@__PURE__*/ S.suspend(() =>
 /** The transactional message template that you want to use for your message. You can call the template by its numerical ID or by the *Trigger Name* that you assigned to the template in the UI (case insensitive). */
 export type SendPushRequestTransactionalMessageId = number | string;
 export const SendPushRequestTransactionalMessageId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendPushRequestTransactionalMessageId>;
+  S.Unknown as any as S.Schema<SendPushRequestTransactionalMessageId>;
 
 /** The devices you want to send this push to—`all`, `last_used`, or a custom device token from the identified profile. Defaults to `all` and overrides the `To` value from your transactional template. */
 export type SendPushRequestTo = "all" | "last_used" | "$device_token";
-export const SendPushRequestTo = /*@__PURE__*/ S.String;
+export const SendPushRequestTo = S.String;
 
 /** **For iOS Only**: your notification can alert users with the device's default notification sound or play no sound at all. */
 export type SendPushRequestSound = "default" | "none";
-export const SendPushRequestSound = /*@__PURE__*/ S.String;
+export const SendPushRequestSound = S.String;
 
 /** The device/messaging platform. */
 export type SendPushRequestCustomDevicePlatform = "ios" | "android";
-export const SendPushRequestCustomDevicePlatform = /*@__PURE__*/ S.String;
+export const SendPushRequestCustomDevicePlatform = S.String;
 
 /** If `"true"`, the device is opted-in and can receive push notifications. */
 export type SendPushRequestCustomDeviceAttributesPushEnabled = "true" | "false";
-export const SendPushRequestCustomDeviceAttributesPushEnabled =
-  /*@__PURE__*/ S.String;
+export const SendPushRequestCustomDeviceAttributesPushEnabled = S.String;
 
 /** Attributes that you can reference to segment your audience—like a person's attributes, but specific to a device. These can be either the attributes defined below or custom key-value attributes. */
 export interface SendPushRequestCustomDeviceAttributes {
@@ -26964,7 +26851,7 @@ export type SendPushRequestCustomPayloadIosCase0MessageApnsPayloadApsAlert =
   | string
   | SendPushRequestCustomPayloadIosCase0MessageApnsPayloadApsAlertCase1;
 export const SendPushRequestCustomPayloadIosCase0MessageApnsPayloadApsAlert =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendPushRequestCustomPayloadIosCase0MessageApnsPayloadApsAlert>;
+  S.Unknown as any as S.Schema<SendPushRequestCustomPayloadIosCase0MessageApnsPayloadApsAlert>;
 
 export interface SendPushRequestCustomPayloadIosCase0MessageApnsPayloadApsSoundCase1 {
   /** 1 indicates critical. 0 is not critical. */
@@ -26990,7 +26877,7 @@ export type SendPushRequestCustomPayloadIosCase0MessageApnsPayloadApsSound =
   | string
   | SendPushRequestCustomPayloadIosCase0MessageApnsPayloadApsSoundCase1;
 export const SendPushRequestCustomPayloadIosCase0MessageApnsPayloadApsSound =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendPushRequestCustomPayloadIosCase0MessageApnsPayloadApsSound>;
+  S.Unknown as any as S.Schema<SendPushRequestCustomPayloadIosCase0MessageApnsPayloadApsSound>;
 
 /** Indicates the importance and delivery timing of a notification. */
 export type SendPushRequestCustomPayloadIosCase0MessageApnsPayloadApsInterruptionLevel =
@@ -26999,7 +26886,7 @@ export type SendPushRequestCustomPayloadIosCase0MessageApnsPayloadApsInterruptio
   | "time-sensitive"
   | "critical";
 export const SendPushRequestCustomPayloadIosCase0MessageApnsPayloadApsInterruptionLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A push payload intended for an iOS device. */
 export interface SendPushRequestCustomPayloadIosCase0MessageApnsPayloadAps {
@@ -27226,7 +27113,7 @@ export type SendPushRequestCustomPayloadIosCase1ApsAlert =
   | string
   | SendPushRequestCustomPayloadIosCase1ApsAlertCase1;
 export const SendPushRequestCustomPayloadIosCase1ApsAlert =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendPushRequestCustomPayloadIosCase1ApsAlert>;
+  S.Unknown as any as S.Schema<SendPushRequestCustomPayloadIosCase1ApsAlert>;
 
 export type SendPushRequestCustomPayloadIosCase1ApsSoundCase1 =
   SendPushRequestCustomPayloadIosCase0MessageApnsPayloadApsSoundCase1;
@@ -27237,7 +27124,7 @@ export type SendPushRequestCustomPayloadIosCase1ApsSound =
   | string
   | SendPushRequestCustomPayloadIosCase0MessageApnsPayloadApsSoundCase1;
 export const SendPushRequestCustomPayloadIosCase1ApsSound =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendPushRequestCustomPayloadIosCase1ApsSound>;
+  S.Unknown as any as S.Schema<SendPushRequestCustomPayloadIosCase1ApsSound>;
 
 /** Indicates the importance and delivery timing of a notification. */
 export type SendPushRequestCustomPayloadIosCase1ApsInterruptionLevel =
@@ -27246,7 +27133,7 @@ export type SendPushRequestCustomPayloadIosCase1ApsInterruptionLevel =
   | "time-sensitive"
   | "critical";
 export const SendPushRequestCustomPayloadIosCase1ApsInterruptionLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A push payload intended for an iOS device. */
 export interface SendPushRequestCustomPayloadIosCase1Aps {
@@ -27314,7 +27201,7 @@ export type SendPushRequestCustomPayloadIos =
   | SendPushRequestCustomPayloadIosCase0
   | SendPushRequestCustomPayloadIosCase1;
 export const SendPushRequestCustomPayloadIos =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendPushRequestCustomPayloadIos>;
+  S.Unknown as any as S.Schema<SendPushRequestCustomPayloadIos>;
 
 /** Contains the push body and title. */
 export interface SendPushRequestCustomPayloadAndroidMessageNotification {
@@ -27463,7 +27350,7 @@ export type SendPushRequestIdentifiers =
   | SendEmailRequestIdentifiersCase1
   | SendEmailRequestIdentifiersCase2;
 export const SendPushRequestIdentifiers =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendPushRequestIdentifiers>;
+  S.Unknown as any as S.Schema<SendPushRequestIdentifiers>;
 
 /** An object containing the key-value pairs referenced using liquid in your message. */
 export type SendPushRequestMessageDataMap = {
@@ -27558,7 +27445,7 @@ export const SendPushResponse = /*@__PURE__*/ S.suspend(() =>
 /** The transactional message template that you want to use for your message. You can call the template by its numerical ID or by the *Trigger Name* that you assigned to the template in the UI (case insensitive). */
 export type SendSMSRequestTransactionalMessageId = number | string;
 export const SendSMSRequestTransactionalMessageId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendSMSRequestTransactionalMessageId>;
+  S.Unknown as any as S.Schema<SendSMSRequestTransactionalMessageId>;
 
 export type SendSMSRequestIdentifiersCase0 = SendEmailRequestIdentifiersCase0;
 export const SendSMSRequestIdentifiersCase0 = SendEmailRequestIdentifiersCase0;
@@ -27575,7 +27462,7 @@ export type SendSMSRequestIdentifiers =
   | SendEmailRequestIdentifiersCase1
   | SendEmailRequestIdentifiersCase2;
 export const SendSMSRequestIdentifiers =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendSMSRequestIdentifiers>;
+  S.Unknown as any as S.Schema<SendSMSRequestIdentifiers>;
 
 /** An object containing the key-value pairs referenced using liquid in your message. */
 export type SendSMSRequestMessageDataMap = {
@@ -27650,7 +27537,7 @@ export const SendSMSResponse = /*@__PURE__*/ S.suspend(() =>
 /** The transactional message template that you want to use for your message. You can call the template by its numerical ID or by the *Trigger Name* that you assigned to the template in the UI (case insensitive). */
 export type SendWhatsAppRequestTransactionalMessageId = number | string;
 export const SendWhatsAppRequestTransactionalMessageId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendWhatsAppRequestTransactionalMessageId>;
+  S.Unknown as any as S.Schema<SendWhatsAppRequestTransactionalMessageId>;
 
 export type SendWhatsAppRequestIdentifiersCase0 =
   SendEmailRequestIdentifiersCase0;
@@ -27673,7 +27560,7 @@ export type SendWhatsAppRequestIdentifiers =
   | SendEmailRequestIdentifiersCase1
   | SendEmailRequestIdentifiersCase2;
 export const SendWhatsAppRequestIdentifiers =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendWhatsAppRequestIdentifiers>;
+  S.Unknown as any as S.Schema<SendWhatsAppRequestIdentifiers>;
 
 /** An object containing the key-value pairs referenced using liquid in your message. */
 export type SendWhatsAppRequestMessageDataMap = {
@@ -27769,7 +27656,7 @@ export const StartLiveNotificationRequestIdentifiers = /*@__PURE__*/ S.suspend(
 
 /** The device platform. */
 export type StartLiveNotificationRequestPlatform = "ios" | "android";
-export const StartLiveNotificationRequestPlatform = /*@__PURE__*/ S.String;
+export const StartLiveNotificationRequestPlatform = S.String;
 
 /** Your own static fields. On iOS, field names must match the `ActivityAttributes` type in your app. For Android custom types, fields pass through to your app's renderer as-is. */
 export type StartLiveNotificationRequestAttributesCase0Map = {
@@ -27815,7 +27702,7 @@ export type StartLiveNotificationRequestAttributes =
   | StartLiveNotificationRequestAttributesCase1
   | StartLiveNotificationRequestAttributesCase2;
 export const StartLiveNotificationRequestAttributes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StartLiveNotificationRequestAttributes>;
+  S.Unknown as any as S.Schema<StartLiveNotificationRequestAttributes>;
 
 /** Your own dynamic fields. On iOS, field names must match your `ContentState` type. For Android custom types, fields pass through to your app's renderer as-is. Date fields are epoch seconds. */
 export type StartLiveNotificationRequestContentStateCase0Map = {
@@ -27845,7 +27732,7 @@ export type StartLiveNotificationRequestContentState =
   | EndLiveNotificationRequestContentStateCase1
   | EndLiveNotificationRequestContentStateCase2;
 export const StartLiveNotificationRequestContentState =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StartLiveNotificationRequestContentState>;
+  S.Unknown as any as S.Schema<StartLiveNotificationRequestContentState>;
 
 export interface StartLiveNotificationRequestPushPayloadAlert {
   /** The alert title. */
@@ -27937,7 +27824,7 @@ export type TransactionalLinksRequestPeriod =
   | "days"
   | "weeks"
   | "months";
-export const TransactionalLinksRequestPeriod = /*@__PURE__*/ S.String;
+export const TransactionalLinksRequestPeriod = S.String;
 
 export interface TransactionalLinksRequest {
   /** The identifier of your transactional message. You'll find this in the UI or URL of your transactional message. For example, if this is the path of a transactional message URL - `/transactional/3/templates/139` - the `transactional_id` is 3. */
@@ -28077,14 +27964,14 @@ export type TransactionalMessagesRequestMetric =
   | "dropped"
   | "failed"
   | "undeliverable";
-export const TransactionalMessagesRequestMetric = /*@__PURE__*/ S.String;
+export const TransactionalMessagesRequestMetric = S.String;
 
 export type TransactionalMessagesRequestState =
   | "failed"
   | "sent"
   | "drafted"
   | "attempted";
-export const TransactionalMessagesRequestState = /*@__PURE__*/ S.String;
+export const TransactionalMessagesRequestState = S.String;
 
 export interface TransactionalMessagesRequest {
   /** The identifier of your transactional message. You'll find this in the UI or URL of your transactional message. For example, if this is the path of a transactional message URL - `/transactional/3/templates/139` - the `transactional_id` is 3. */
@@ -28164,8 +28051,7 @@ export type TransactionalMessagesResponseMessagesItemType =
   | "slack"
   | "whatsapp"
   | "live_notification";
-export const TransactionalMessagesResponseMessagesItemType =
-  /*@__PURE__*/ S.String;
+export const TransactionalMessagesResponseMessagesItemType = S.String;
 
 /** Describes an individual message delivery. The object contains keys for all possible parents of the message (`newsletter_id`, `broadcast_id`, etc) but only the parents of the delivery are populated. Other parent IDs are null. */
 export interface TransactionalMessagesResponseMessagesItem {
@@ -28261,7 +28147,7 @@ export type TransactionalMetricsRequestPeriod =
   | "days"
   | "weeks"
   | "months";
-export const TransactionalMetricsRequestPeriod = /*@__PURE__*/ S.String;
+export const TransactionalMetricsRequestPeriod = S.String;
 
 export interface TransactionalMetricsRequest {
   /** The identifier of your transactional message. You'll find this in the UI or URL of your transactional message. For example, if this is the path of a transactional message URL - `/transactional/3/templates/139` - the `transactional_id` is 3. */
@@ -28679,7 +28565,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemOrItemCase1Att
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemOrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemOrItemCase1Attribute {
@@ -28726,7 +28612,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemOrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemOrItemCase1;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemOrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemOrItem>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemOrItem>;
 
 /** Returns results matching *any* conditions. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemOrList =
@@ -28753,7 +28639,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase0AndIte
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase0AndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase0AndItemCase1Attribute {
@@ -28800,7 +28686,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase0AndIte
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase0AndItemCase1;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase0AndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase0AndItem>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase0AndItem>;
 
 /** Match *all* conditions to return results. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase0AndList =
@@ -28843,7 +28729,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase1OrItem
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase1OrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase1OrItemCase1Attribute {
@@ -28890,7 +28776,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase1OrItem
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase1OrItemCase1;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase1OrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase1OrItem>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase1OrItem>;
 
 /** Match *any* condition to return results. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase1OrList =
@@ -28932,7 +28818,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase3Attrib
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase3AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase3Attribute {
@@ -28981,7 +28867,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNot =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNotCase3;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNot =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNot>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemNot>;
 
 /** Provide the `id` of a segment containing people you want to search for. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemSegment =
@@ -28994,7 +28880,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemAttributeOpera
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase0AndItemAttribute {
@@ -29088,7 +28974,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemAndItemCase1Att
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemAndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemAndItemCase1Attribute {
@@ -29135,7 +29021,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemAndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemAndItemCase1;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemAndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemAndItem>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemAndItem>;
 
 /** Returns results matching *all* conditions. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemAndList =
@@ -29162,7 +29048,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase0AndItem
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase0AndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase0AndItemCase1Attribute {
@@ -29209,7 +29095,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase0AndItem
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase0AndItemCase1;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase0AndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase0AndItem>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase0AndItem>;
 
 /** Match *all* conditions to return results. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase0AndList =
@@ -29251,7 +29137,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase1OrItemC
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase1OrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase1OrItemCase1Attribute {
@@ -29298,7 +29184,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase1OrItem 
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase1OrItemCase1;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase1OrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase1OrItem>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase1OrItem>;
 
 /** Match *any* condition to return results. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase1OrList =
@@ -29339,7 +29225,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase3Attribu
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase3AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase3Attribute {
@@ -29387,7 +29273,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNot =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNotCase3;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNot =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNot>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemNot>;
 
 /** Provide the `id` of a segment containing people you want to search for. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemSegment =
@@ -29400,7 +29286,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemAttributeOperat
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase1OrItemAttribute {
@@ -29492,7 +29378,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemAndItemCa
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemAndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemAndItemCase1Attribute {
@@ -29539,7 +29425,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemAndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemAndItemCase1;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemAndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemAndItem>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemAndItem>;
 
 /** Returns results matching *all* conditions. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemAndList =
@@ -29566,7 +29452,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemOrItemCas
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemOrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemOrItemCase1Attribute {
@@ -29613,7 +29499,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemOrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemOrItemCase1;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemOrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemOrItem>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemOrItem>;
 
 /** Returns results matching *any* conditions. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemOrList =
@@ -29640,7 +29526,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase0A
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase0AndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase0AndItemCase1Attribute {
@@ -29687,7 +29573,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase0A
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase0AndItemCase1;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase0AndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase0AndItem>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase0AndItem>;
 
 /** Match *all* conditions to return results. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase0AndList =
@@ -29730,7 +29616,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase1O
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase1OrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase1OrItemCase1Attribute {
@@ -29777,7 +29663,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase1O
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase1OrItemCase1;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase1OrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase1OrItem>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase1OrItem>;
 
 /** Match *any* condition to return results. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase1OrList =
@@ -29819,7 +29705,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase3A
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase3AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase3Attribute {
@@ -29868,7 +29754,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNot =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNotCase3;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNot =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNot>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemNot>;
 
 /** Provide the `id` of a segment containing people you want to search for. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemSegment =
@@ -29881,7 +29767,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemAttribute
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase2Case0AndItemAttribute {
@@ -29983,7 +29869,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemAndItemCas
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemAndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemAndItemCase1Attribute {
@@ -30030,7 +29916,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemAndItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemAndItemCase1;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemAndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemAndItem>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemAndItem>;
 
 /** Returns results matching *all* conditions. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemAndList =
@@ -30057,7 +29943,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemOrItemCase
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemOrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemOrItemCase1Attribute {
@@ -30104,7 +29990,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemOrItem =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemOrItemCase1;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemOrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemOrItem>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemOrItem>;
 
 /** Returns results matching *any* conditions. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemOrList =
@@ -30131,7 +30017,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase0An
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase0AndItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase0AndItemCase1Attribute {
@@ -30178,7 +30064,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase0An
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase0AndItemCase1;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase0AndItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase0AndItem>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase0AndItem>;
 
 /** Match *all* conditions to return results. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase0AndList =
@@ -30221,7 +30107,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase1Or
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase1OrItemCase1AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase1OrItemCase1Attribute {
@@ -30268,7 +30154,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase1Or
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase1OrItemCase1;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase1OrItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase1OrItem>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase1OrItem>;
 
 /** Match *any* condition to return results. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase1OrList =
@@ -30310,7 +30196,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase3At
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase3AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase3Attribute {
@@ -30359,7 +30245,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNot =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNotCase3;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNot =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNot>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemNot>;
 
 /** Provide the `id` of a segment containing people you want to search for. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemSegment =
@@ -30372,7 +30258,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemAttributeO
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemAttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase2Case1OrItemAttribute {
@@ -30473,7 +30359,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2Case3AttributeOperato
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2Case3AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase2Case3Attribute {
@@ -30520,7 +30406,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase2 =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase2Case3;
 export const TriggerBroadcastRequestBodyCase1RecipientsCase2 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1RecipientsCase2>;
 
 /** Provide the `id` of a segment containing people you want to search for. */
 export type TriggerBroadcastRequestBodyCase1RecipientsCase3Segment =
@@ -30539,7 +30425,7 @@ export type TriggerBroadcastRequestBodyCase1RecipientsCase4AttributeOperator =
   | "eq"
   | "exists";
 export const TriggerBroadcastRequestBodyCase1RecipientsCase4AttributeOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter your audience by attribute. */
 export interface TriggerBroadcastRequestBodyCase1RecipientsCase4Attribute {
@@ -30588,7 +30474,7 @@ export type TriggerBroadcastRequestBodyCase1Recipients =
   | ExportPeopleDataRequestFiltersCase0AndItemOrItemCase0
   | TriggerBroadcastRequestBodyCase1RecipientsCase4;
 export const TriggerBroadcastRequestBodyCase1Recipients =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1Recipients>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase1Recipients>;
 
 /** Contains information you want to use to populate your broadcast. */
 export type TriggerBroadcastRequestBodyCase1DataMap = {
@@ -30764,7 +30650,7 @@ export type TriggerBroadcastRequestBodyCase4PerUserDataItem =
   | TriggerBroadcastRequestBodyCase4PerUserDataItemCase0
   | TriggerBroadcastRequestBodyCase4PerUserDataItemCase1;
 export const TriggerBroadcastRequestBodyCase4PerUserDataItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase4PerUserDataItem>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBodyCase4PerUserDataItem>;
 
 /** The people you want to send a broadcast to, with custom data to personalize each message. Each person must already exist in your workspace—a broadcast trigger can't create people. */
 export type TriggerBroadcastRequestBodyCase4PerUserDataList =
@@ -30850,7 +30736,7 @@ export type TriggerBroadcastRequestBody =
   | TriggerBroadcastRequestBodyCase4
   | TriggerBroadcastRequestBodyCase5;
 export const TriggerBroadcastRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerBroadcastRequestBody>;
+  S.Unknown as any as S.Schema<TriggerBroadcastRequestBody>;
 
 export interface TriggerBroadcastRequest {
   /** The ID of the broadcast that you want to trigger. */
@@ -30937,7 +30823,7 @@ export const UpdateAssetFolderResponse = /*@__PURE__*/ S.suspend(() =>
 /** Available on Premium plans. This indicates whether an attribute is sensitive or not. 0 means NOT sensitive. 1 means sensitive. */
 export type UpdateAttributeMetadataRequestAttributesItemPrivacyLevel = 0 | 1;
 export const UpdateAttributeMetadataRequestAttributesItemPrivacyLevel =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface UpdateAttributeMetadataRequestAttributesItem {
   /** The name of the attribute to update */
@@ -30996,8 +30882,7 @@ export type UpdateBroadcastActionRequestBodyCase0SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const UpdateBroadcastActionRequestBodyCase0SendingState =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionRequestBodyCase0SendingState = S.String;
 
 export interface UpdateBroadcastActionRequestBodyCase0HeadersItem {
   /** The name of the header. */
@@ -31072,8 +30957,7 @@ export type UpdateBroadcastActionRequestBodyCase1SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const UpdateBroadcastActionRequestBodyCase1SendingState =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionRequestBodyCase1SendingState = S.String;
 
 export interface UpdateBroadcastActionRequestBodyCase1 {
   /** The identifier for a broadcast. */
@@ -31109,8 +30993,7 @@ export type UpdateBroadcastActionRequestBodyCase2SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const UpdateBroadcastActionRequestBodyCase2SendingState =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionRequestBodyCase2SendingState = S.String;
 
 export interface UpdateBroadcastActionRequestBodyCase2 {
   /** The identifier for a broadcast. */
@@ -31157,16 +31040,14 @@ export type UpdateBroadcastActionRequestBodyCase3Method =
   | "put"
   | "delete"
   | "patch";
-export const UpdateBroadcastActionRequestBodyCase3Method =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionRequestBodyCase3Method = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateBroadcastActionRequestBodyCase3SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const UpdateBroadcastActionRequestBodyCase3SendingState =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionRequestBodyCase3SendingState = S.String;
 
 export interface UpdateBroadcastActionRequestBodyCase3 {
   /** The identifier for a broadcast. */
@@ -31206,7 +31087,7 @@ export type UpdateBroadcastActionRequestBody =
   | UpdateBroadcastActionRequestBodyCase2
   | UpdateBroadcastActionRequestBodyCase3;
 export const UpdateBroadcastActionRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateBroadcastActionRequestBody>;
+  S.Unknown as any as S.Schema<UpdateBroadcastActionRequestBody>;
 
 export interface UpdateBroadcastActionRequest {
   /** The identifier of a broadcast. */
@@ -31239,21 +31120,18 @@ export type UpdateBroadcastActionResponseActionCase0Type =
   | "twilio"
   | "slack"
   | "whatsapp";
-export const UpdateBroadcastActionResponseActionCase0Type =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionResponseActionCase0Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateBroadcastActionResponseActionCase0SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const UpdateBroadcastActionResponseActionCase0SendingState =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionResponseActionCase0SendingState = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type UpdateBroadcastActionResponseActionCase0Preprocessor = "premailer";
-export const UpdateBroadcastActionResponseActionCase0Preprocessor =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionResponseActionCase0Preprocessor = S.String;
 
 export interface UpdateBroadcastActionResponseActionCase0 {
   /** The identifier for an action. */
@@ -31343,16 +31221,14 @@ export const UpdateBroadcastActionResponseActionCase0 = /*@__PURE__*/ S.suspend(
 
 /** For SMS/MMS messages, the `type` is always `twilio`. */
 export type UpdateBroadcastActionResponseActionCase1Type = "twilio";
-export const UpdateBroadcastActionResponseActionCase1Type =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionResponseActionCase1Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateBroadcastActionResponseActionCase1SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const UpdateBroadcastActionResponseActionCase1SendingState =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionResponseActionCase1SendingState = S.String;
 
 export interface UpdateBroadcastActionResponseActionCase1 {
   /** The identifier for an action. */
@@ -31407,16 +31283,14 @@ export const UpdateBroadcastActionResponseActionCase1 = /*@__PURE__*/ S.suspend(
 
 /** For WhatsApp messages sent from Customer.io using your Facebook Business Account (not Twilio), the `type` is always `whatsapp`. */
 export type UpdateBroadcastActionResponseActionCase2Type = "whatsapp";
-export const UpdateBroadcastActionResponseActionCase2Type =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionResponseActionCase2Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateBroadcastActionResponseActionCase2SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const UpdateBroadcastActionResponseActionCase2SendingState =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionResponseActionCase2SendingState = S.String;
 
 export interface UpdateBroadcastActionResponseActionCase2 {
   /** The identifier for an action. */
@@ -31477,8 +31351,7 @@ export const UpdateBroadcastActionResponseActionCase2 = /*@__PURE__*/ S.suspend(
 
 /** The type of action. */
 export type UpdateBroadcastActionResponseActionCase3Type = "webhook";
-export const UpdateBroadcastActionResponseActionCase3Type =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionResponseActionCase3Type = S.String;
 
 /** The HTTP method for your webhook. */
 export type UpdateBroadcastActionResponseActionCase3Method =
@@ -31487,16 +31360,14 @@ export type UpdateBroadcastActionResponseActionCase3Method =
   | "put"
   | "delete"
   | "patch";
-export const UpdateBroadcastActionResponseActionCase3Method =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionResponseActionCase3Method = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateBroadcastActionResponseActionCase3SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const UpdateBroadcastActionResponseActionCase3SendingState =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionResponseActionCase3SendingState = S.String;
 
 export interface UpdateBroadcastActionResponseActionCase3 {
   /** The identifier for an action. */
@@ -31555,7 +31426,7 @@ export type UpdateBroadcastActionResponseAction =
   | UpdateBroadcastActionResponseActionCase2
   | UpdateBroadcastActionResponseActionCase3;
 export const UpdateBroadcastActionResponseAction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateBroadcastActionResponseAction>;
+  S.Unknown as any as S.Schema<UpdateBroadcastActionResponseAction>;
 
 export interface UpdateBroadcastActionResponse {
   action?: UpdateBroadcastActionResponseAction;
@@ -31574,7 +31445,7 @@ export type UpdateBroadcastActionLanguageRequestBodyCase0SendingState =
   | "draft"
   | "off";
 export const UpdateBroadcastActionLanguageRequestBodyCase0SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateBroadcastActionLanguageRequestBodyCase0HeadersItem =
   UpdateBroadcastActionRequestBodyCase0HeadersItem;
@@ -31641,7 +31512,7 @@ export type UpdateBroadcastActionLanguageRequestBodyCase1SendingState =
   | "draft"
   | "off";
 export const UpdateBroadcastActionLanguageRequestBodyCase1SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateBroadcastActionLanguageRequestBodyCase1 {
   /** The identifier for a broadcast. */
@@ -31678,7 +31549,7 @@ export type UpdateBroadcastActionLanguageRequestBodyCase2SendingState =
   | "draft"
   | "off";
 export const UpdateBroadcastActionLanguageRequestBodyCase2SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateBroadcastActionLanguageRequestBodyCase2 {
   /** The identifier for a broadcast. */
@@ -31725,8 +31596,7 @@ export type UpdateBroadcastActionLanguageRequestBodyCase3Method =
   | "put"
   | "delete"
   | "patch";
-export const UpdateBroadcastActionLanguageRequestBodyCase3Method =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionLanguageRequestBodyCase3Method = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateBroadcastActionLanguageRequestBodyCase3SendingState =
@@ -31734,7 +31604,7 @@ export type UpdateBroadcastActionLanguageRequestBodyCase3SendingState =
   | "draft"
   | "off";
 export const UpdateBroadcastActionLanguageRequestBodyCase3SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateBroadcastActionLanguageRequestBodyCase3 {
   /** The identifier for a broadcast. */
@@ -31774,7 +31644,7 @@ export type UpdateBroadcastActionLanguageRequestBody =
   | UpdateBroadcastActionLanguageRequestBodyCase2
   | UpdateBroadcastActionLanguageRequestBodyCase3;
 export const UpdateBroadcastActionLanguageRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateBroadcastActionLanguageRequestBody>;
+  S.Unknown as any as S.Schema<UpdateBroadcastActionLanguageRequestBody>;
 
 export interface UpdateBroadcastActionLanguageRequest {
   /** The identifier of a broadcast. */
@@ -31813,8 +31683,7 @@ export type UpdateBroadcastActionLanguageResponseActionCase0Type =
   | "twilio"
   | "slack"
   | "whatsapp";
-export const UpdateBroadcastActionLanguageResponseActionCase0Type =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionLanguageResponseActionCase0Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateBroadcastActionLanguageResponseActionCase0SendingState =
@@ -31822,13 +31691,13 @@ export type UpdateBroadcastActionLanguageResponseActionCase0SendingState =
   | "draft"
   | "off";
 export const UpdateBroadcastActionLanguageResponseActionCase0SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type UpdateBroadcastActionLanguageResponseActionCase0Preprocessor =
   "premailer";
 export const UpdateBroadcastActionLanguageResponseActionCase0Preprocessor =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateBroadcastActionLanguageResponseActionCase0 {
   /** The identifier for an action. */
@@ -31918,8 +31787,7 @@ export const UpdateBroadcastActionLanguageResponseActionCase0 =
 
 /** For SMS/MMS messages, the `type` is always `twilio`. */
 export type UpdateBroadcastActionLanguageResponseActionCase1Type = "twilio";
-export const UpdateBroadcastActionLanguageResponseActionCase1Type =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionLanguageResponseActionCase1Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateBroadcastActionLanguageResponseActionCase1SendingState =
@@ -31927,7 +31795,7 @@ export type UpdateBroadcastActionLanguageResponseActionCase1SendingState =
   | "draft"
   | "off";
 export const UpdateBroadcastActionLanguageResponseActionCase1SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateBroadcastActionLanguageResponseActionCase1 {
   /** The identifier for an action. */
@@ -31982,8 +31850,7 @@ export const UpdateBroadcastActionLanguageResponseActionCase1 =
 
 /** For WhatsApp messages sent from Customer.io using your Facebook Business Account (not Twilio), the `type` is always `whatsapp`. */
 export type UpdateBroadcastActionLanguageResponseActionCase2Type = "whatsapp";
-export const UpdateBroadcastActionLanguageResponseActionCase2Type =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionLanguageResponseActionCase2Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateBroadcastActionLanguageResponseActionCase2SendingState =
@@ -31991,7 +31858,7 @@ export type UpdateBroadcastActionLanguageResponseActionCase2SendingState =
   | "draft"
   | "off";
 export const UpdateBroadcastActionLanguageResponseActionCase2SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateBroadcastActionLanguageResponseActionCase2 {
   /** The identifier for an action. */
@@ -32052,8 +31919,7 @@ export const UpdateBroadcastActionLanguageResponseActionCase2 =
 
 /** The type of action. */
 export type UpdateBroadcastActionLanguageResponseActionCase3Type = "webhook";
-export const UpdateBroadcastActionLanguageResponseActionCase3Type =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionLanguageResponseActionCase3Type = S.String;
 
 /** The HTTP method for your webhook. */
 export type UpdateBroadcastActionLanguageResponseActionCase3Method =
@@ -32062,8 +31928,7 @@ export type UpdateBroadcastActionLanguageResponseActionCase3Method =
   | "put"
   | "delete"
   | "patch";
-export const UpdateBroadcastActionLanguageResponseActionCase3Method =
-  /*@__PURE__*/ S.String;
+export const UpdateBroadcastActionLanguageResponseActionCase3Method = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateBroadcastActionLanguageResponseActionCase3SendingState =
@@ -32071,7 +31936,7 @@ export type UpdateBroadcastActionLanguageResponseActionCase3SendingState =
   | "draft"
   | "off";
 export const UpdateBroadcastActionLanguageResponseActionCase3SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateBroadcastActionLanguageResponseActionCase3 {
   /** The identifier for an action. */
@@ -32132,7 +31997,7 @@ export type UpdateBroadcastActionLanguageResponseAction =
   | UpdateBroadcastActionLanguageResponseActionCase2
   | UpdateBroadcastActionLanguageResponseActionCase3;
 export const UpdateBroadcastActionLanguageResponseAction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateBroadcastActionLanguageResponseAction>;
+  S.Unknown as any as S.Schema<UpdateBroadcastActionLanguageResponseAction>;
 
 export interface UpdateBroadcastActionLanguageResponse {
   action?: UpdateBroadcastActionLanguageResponseAction;
@@ -32151,8 +32016,7 @@ export type UpdateCampaignActionRequestBodyCase0SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const UpdateCampaignActionRequestBodyCase0SendingState =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionRequestBodyCase0SendingState = S.String;
 
 export type UpdateCampaignActionRequestBodyCase0HeadersItem =
   UpdateBroadcastActionRequestBodyCase0HeadersItem;
@@ -32219,8 +32083,7 @@ export type UpdateCampaignActionRequestBodyCase1SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const UpdateCampaignActionRequestBodyCase1SendingState =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionRequestBodyCase1SendingState = S.String;
 
 export interface UpdateCampaignActionRequestBodyCase1 {
   /** The identifier for a campaign. */
@@ -32256,8 +32119,7 @@ export type UpdateCampaignActionRequestBodyCase2SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const UpdateCampaignActionRequestBodyCase2SendingState =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionRequestBodyCase2SendingState = S.String;
 
 export interface UpdateCampaignActionRequestBodyCase2 {
   /** The identifier for a campaign. */
@@ -32304,16 +32166,14 @@ export type UpdateCampaignActionRequestBodyCase3Method =
   | "put"
   | "delete"
   | "patch";
-export const UpdateCampaignActionRequestBodyCase3Method =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionRequestBodyCase3Method = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateCampaignActionRequestBodyCase3SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const UpdateCampaignActionRequestBodyCase3SendingState =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionRequestBodyCase3SendingState = S.String;
 
 export interface UpdateCampaignActionRequestBodyCase3 {
   /** The identifier for a campaign. */
@@ -32353,7 +32213,7 @@ export type UpdateCampaignActionRequestBody =
   | UpdateCampaignActionRequestBodyCase2
   | UpdateCampaignActionRequestBodyCase3;
 export const UpdateCampaignActionRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCampaignActionRequestBody>;
+  S.Unknown as any as S.Schema<UpdateCampaignActionRequestBody>;
 
 export interface UpdateCampaignActionRequest {
   /** The ID of the campaign that you want to trigger or return information about. */
@@ -32386,21 +32246,18 @@ export type UpdateCampaignActionResponseActionCase0Type =
   | "twilio"
   | "slack"
   | "whatsapp";
-export const UpdateCampaignActionResponseActionCase0Type =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionResponseActionCase0Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateCampaignActionResponseActionCase0SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const UpdateCampaignActionResponseActionCase0SendingState =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionResponseActionCase0SendingState = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type UpdateCampaignActionResponseActionCase0Preprocessor = "premailer";
-export const UpdateCampaignActionResponseActionCase0Preprocessor =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionResponseActionCase0Preprocessor = S.String;
 
 export interface UpdateCampaignActionResponseActionCase0 {
   /** The identifier for an action. */
@@ -32496,16 +32353,14 @@ export const UpdateCampaignActionResponseActionCase0 = /*@__PURE__*/ S.suspend(
 
 /** For SMS/MMS messages, the `type` is always `twilio`. */
 export type UpdateCampaignActionResponseActionCase1Type = "twilio";
-export const UpdateCampaignActionResponseActionCase1Type =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionResponseActionCase1Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateCampaignActionResponseActionCase1SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const UpdateCampaignActionResponseActionCase1SendingState =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionResponseActionCase1SendingState = S.String;
 
 export interface UpdateCampaignActionResponseActionCase1 {
   /** The identifier for an action. */
@@ -32563,16 +32418,14 @@ export const UpdateCampaignActionResponseActionCase1 = /*@__PURE__*/ S.suspend(
 
 /** For WhatsApp messages sent from Customer.io using your Facebook Business Account (not Twilio), the `type` is always `whatsapp`. */
 export type UpdateCampaignActionResponseActionCase2Type = "whatsapp";
-export const UpdateCampaignActionResponseActionCase2Type =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionResponseActionCase2Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateCampaignActionResponseActionCase2SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const UpdateCampaignActionResponseActionCase2SendingState =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionResponseActionCase2SendingState = S.String;
 
 export interface UpdateCampaignActionResponseActionCase2 {
   /** The identifier for an action. */
@@ -32636,8 +32489,7 @@ export const UpdateCampaignActionResponseActionCase2 = /*@__PURE__*/ S.suspend(
 
 /** The type of action. */
 export type UpdateCampaignActionResponseActionCase3Type = "webhook";
-export const UpdateCampaignActionResponseActionCase3Type =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionResponseActionCase3Type = S.String;
 
 /** The HTTP method for your webhook. */
 export type UpdateCampaignActionResponseActionCase3Method =
@@ -32646,16 +32498,14 @@ export type UpdateCampaignActionResponseActionCase3Method =
   | "put"
   | "delete"
   | "patch";
-export const UpdateCampaignActionResponseActionCase3Method =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionResponseActionCase3Method = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateCampaignActionResponseActionCase3SendingState =
   | "automatic"
   | "draft"
   | "off";
-export const UpdateCampaignActionResponseActionCase3SendingState =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionResponseActionCase3SendingState = S.String;
 
 export interface UpdateCampaignActionResponseActionCase3 {
   /** The identifier for an action. */
@@ -32717,7 +32567,7 @@ export type UpdateCampaignActionResponseAction =
   | UpdateCampaignActionResponseActionCase2
   | UpdateCampaignActionResponseActionCase3;
 export const UpdateCampaignActionResponseAction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCampaignActionResponseAction>;
+  S.Unknown as any as S.Schema<UpdateCampaignActionResponseAction>;
 
 export interface UpdateCampaignActionResponse {
   action?: UpdateCampaignActionResponseAction;
@@ -32736,7 +32586,7 @@ export type UpdateCampaignActionTranslationRequestBodyCase0SendingState =
   | "draft"
   | "off";
 export const UpdateCampaignActionTranslationRequestBodyCase0SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateCampaignActionTranslationRequestBodyCase0HeadersItem =
   UpdateBroadcastActionRequestBodyCase0HeadersItem;
@@ -32806,7 +32656,7 @@ export type UpdateCampaignActionTranslationRequestBodyCase1SendingState =
   | "draft"
   | "off";
 export const UpdateCampaignActionTranslationRequestBodyCase1SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCampaignActionTranslationRequestBodyCase1 {
   /** The identifier for a campaign. */
@@ -32843,7 +32693,7 @@ export type UpdateCampaignActionTranslationRequestBodyCase2SendingState =
   | "draft"
   | "off";
 export const UpdateCampaignActionTranslationRequestBodyCase2SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCampaignActionTranslationRequestBodyCase2 {
   /** The identifier for a campaign. */
@@ -32890,8 +32740,7 @@ export type UpdateCampaignActionTranslationRequestBodyCase3Method =
   | "put"
   | "delete"
   | "patch";
-export const UpdateCampaignActionTranslationRequestBodyCase3Method =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionTranslationRequestBodyCase3Method = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateCampaignActionTranslationRequestBodyCase3SendingState =
@@ -32899,7 +32748,7 @@ export type UpdateCampaignActionTranslationRequestBodyCase3SendingState =
   | "draft"
   | "off";
 export const UpdateCampaignActionTranslationRequestBodyCase3SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCampaignActionTranslationRequestBodyCase3 {
   /** The identifier for a campaign. */
@@ -32941,7 +32790,7 @@ export type UpdateCampaignActionTranslationRequestBody =
   | UpdateCampaignActionTranslationRequestBodyCase2
   | UpdateCampaignActionTranslationRequestBodyCase3;
 export const UpdateCampaignActionTranslationRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCampaignActionTranslationRequestBody>;
+  S.Unknown as any as S.Schema<UpdateCampaignActionTranslationRequestBody>;
 
 export interface UpdateCampaignActionTranslationRequest {
   /** The ID of the campaign that you want to trigger or return information about. */
@@ -32980,8 +32829,7 @@ export type UpdateCampaignActionTranslationResponseActionCase0Type =
   | "twilio"
   | "slack"
   | "whatsapp";
-export const UpdateCampaignActionTranslationResponseActionCase0Type =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionTranslationResponseActionCase0Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateCampaignActionTranslationResponseActionCase0SendingState =
@@ -32989,13 +32837,13 @@ export type UpdateCampaignActionTranslationResponseActionCase0SendingState =
   | "draft"
   | "off";
 export const UpdateCampaignActionTranslationResponseActionCase0SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type UpdateCampaignActionTranslationResponseActionCase0Preprocessor =
   "premailer";
 export const UpdateCampaignActionTranslationResponseActionCase0Preprocessor =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCampaignActionTranslationResponseActionCase0 {
   /** The identifier for an action. */
@@ -33091,8 +32939,7 @@ export const UpdateCampaignActionTranslationResponseActionCase0 =
 
 /** For SMS/MMS messages, the `type` is always `twilio`. */
 export type UpdateCampaignActionTranslationResponseActionCase1Type = "twilio";
-export const UpdateCampaignActionTranslationResponseActionCase1Type =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionTranslationResponseActionCase1Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateCampaignActionTranslationResponseActionCase1SendingState =
@@ -33100,7 +32947,7 @@ export type UpdateCampaignActionTranslationResponseActionCase1SendingState =
   | "draft"
   | "off";
 export const UpdateCampaignActionTranslationResponseActionCase1SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCampaignActionTranslationResponseActionCase1 {
   /** The identifier for an action. */
@@ -33158,8 +33005,7 @@ export const UpdateCampaignActionTranslationResponseActionCase1 =
 
 /** For WhatsApp messages sent from Customer.io using your Facebook Business Account (not Twilio), the `type` is always `whatsapp`. */
 export type UpdateCampaignActionTranslationResponseActionCase2Type = "whatsapp";
-export const UpdateCampaignActionTranslationResponseActionCase2Type =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionTranslationResponseActionCase2Type = S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateCampaignActionTranslationResponseActionCase2SendingState =
@@ -33167,7 +33013,7 @@ export type UpdateCampaignActionTranslationResponseActionCase2SendingState =
   | "draft"
   | "off";
 export const UpdateCampaignActionTranslationResponseActionCase2SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCampaignActionTranslationResponseActionCase2 {
   /** The identifier for an action. */
@@ -33231,8 +33077,7 @@ export const UpdateCampaignActionTranslationResponseActionCase2 =
 
 /** The type of action. */
 export type UpdateCampaignActionTranslationResponseActionCase3Type = "webhook";
-export const UpdateCampaignActionTranslationResponseActionCase3Type =
-  /*@__PURE__*/ S.String;
+export const UpdateCampaignActionTranslationResponseActionCase3Type = S.String;
 
 /** The HTTP method for your webhook. */
 export type UpdateCampaignActionTranslationResponseActionCase3Method =
@@ -33242,7 +33087,7 @@ export type UpdateCampaignActionTranslationResponseActionCase3Method =
   | "delete"
   | "patch";
 export const UpdateCampaignActionTranslationResponseActionCase3Method =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Determines the sending behavior for the action. `automatic` sends the action automatically when triggered; `draft` queues drafts when the action is triggered; or `off` to disable the action. */
 export type UpdateCampaignActionTranslationResponseActionCase3SendingState =
@@ -33250,7 +33095,7 @@ export type UpdateCampaignActionTranslationResponseActionCase3SendingState =
   | "draft"
   | "off";
 export const UpdateCampaignActionTranslationResponseActionCase3SendingState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateCampaignActionTranslationResponseActionCase3 {
   /** The identifier for an action. */
@@ -33314,7 +33159,7 @@ export type UpdateCampaignActionTranslationResponseAction =
   | UpdateCampaignActionTranslationResponseActionCase2
   | UpdateCampaignActionTranslationResponseActionCase3;
 export const UpdateCampaignActionTranslationResponseAction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCampaignActionTranslationResponseAction>;
+  S.Unknown as any as S.Schema<UpdateCampaignActionTranslationResponseAction>;
 
 export interface UpdateCampaignActionTranslationResponse {
   action?: UpdateCampaignActionTranslationResponseAction;
@@ -33378,7 +33223,7 @@ export type UpdateCollectionRequestBody =
   | UpdateCollectionRequestBodyCase0
   | UpdateCollectionRequestBodyCase1;
 export const UpdateCollectionRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCollectionRequestBody>;
+  S.Unknown as any as S.Schema<UpdateCollectionRequestBody>;
 
 export interface UpdateCollectionRequest {
   /** The identifier for a collection. */
@@ -33668,15 +33513,14 @@ export type UpdateEmailRequestTransformersFormatterType =
   | "none"
   | "prettify"
   | "minify";
-export const UpdateEmailRequestTransformersFormatterType =
-  /*@__PURE__*/ S.String;
+export const UpdateEmailRequestTransformersFormatterType = S.String;
 
 /** Character used for indentation. */
 export type UpdateEmailRequestTransformersFormatterPrettifyIndentCharacter =
   | "spaces"
   | "tabs";
 export const UpdateEmailRequestTransformersFormatterPrettifyIndentCharacter =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"prettify"`. Produces human-readable, indented HTML output. */
 export interface UpdateEmailRequestTransformersFormatterPrettify {
@@ -33708,7 +33552,7 @@ export type UpdateEmailRequestTransformersFormatterMinifyRemoveHtmlComments =
   | "1"
   | "2";
 export const UpdateEmailRequestTransformersFormatterMinifyRemoveHtmlComments =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"minify"`. Reduces file size by stripping whitespace and comments. */
 export interface UpdateEmailRequestTransformersFormatterMinify {
@@ -34002,15 +33846,14 @@ export type UpdateEmailTranslationRequestTransformersFormatterType =
   | "none"
   | "prettify"
   | "minify";
-export const UpdateEmailTranslationRequestTransformersFormatterType =
-  /*@__PURE__*/ S.String;
+export const UpdateEmailTranslationRequestTransformersFormatterType = S.String;
 
 /** Character used for indentation. */
 export type UpdateEmailTranslationRequestTransformersFormatterPrettifyIndentCharacter =
   | "spaces"
   | "tabs";
 export const UpdateEmailTranslationRequestTransformersFormatterPrettifyIndentCharacter =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"prettify"`. Produces human-readable, indented HTML output. */
 export interface UpdateEmailTranslationRequestTransformersFormatterPrettify {
@@ -34042,7 +33885,7 @@ export type UpdateEmailTranslationRequestTransformersFormatterMinifyRemoveHtmlCo
   | "1"
   | "2";
 export const UpdateEmailTranslationRequestTransformersFormatterMinifyRemoveHtmlComments =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options used when `type` is `"minify"`. Reduces file size by stripping whitespace and comments. */
 export interface UpdateEmailTranslationRequestTransformersFormatterMinify {
@@ -34331,7 +34174,7 @@ export type UpdateLiveNotificationRequestContentState =
   | EndLiveNotificationRequestContentStateCase1
   | EndLiveNotificationRequestContentStateCase2;
 export const UpdateLiveNotificationRequestContentState =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateLiveNotificationRequestContentState>;
+  S.Unknown as any as S.Schema<UpdateLiveNotificationRequestContentState>;
 
 /** Static activity fields, for renderers that need them alongside the content state. On iOS, attributes can't change after start. */
 export type UpdateLiveNotificationRequestAttributesMap = {
@@ -34532,7 +34375,7 @@ export type UpdateNewsletterTestTranslationRequestBody =
   | UpdateNewsletterTestTranslationRequestBodyCase4
   | UpdateNewsletterTestTranslationRequestBodyCase4;
 export const UpdateNewsletterTestTranslationRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateNewsletterTestTranslationRequestBody>;
+  S.Unknown as any as S.Schema<UpdateNewsletterTestTranslationRequestBody>;
 
 export interface UpdateNewsletterTestTranslationRequest {
   /** The identifier of a newsletter. */
@@ -34571,14 +34414,13 @@ export type UpdateNewsletterTestTranslationResponseContentType =
   | "push"
   | "in_app"
   | "inbox";
-export const UpdateNewsletterTestTranslationResponseContentType =
-  /*@__PURE__*/ S.String;
+export const UpdateNewsletterTestTranslationResponseContentType = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type UpdateNewsletterTestTranslationResponseContentPreprocessor =
   "premailer";
 export const UpdateNewsletterTestTranslationResponseContentPreprocessor =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateNewsletterTestTranslationResponseContent {
   /** The identifier of a newsletter variant—a language in a multi-language newsletter or a test in an A/B test. */
@@ -34735,7 +34577,7 @@ export type UpdateNewsletterVariantRequestBody =
   | UpdateNewsletterTestTranslationRequestBodyCase4
   | UpdateNewsletterTestTranslationRequestBodyCase4;
 export const UpdateNewsletterVariantRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateNewsletterVariantRequestBody>;
+  S.Unknown as any as S.Schema<UpdateNewsletterVariantRequestBody>;
 
 export interface UpdateNewsletterVariantRequest {
   /** The identifier of a newsletter. */
@@ -34768,13 +34610,11 @@ export type UpdateNewsletterVariantResponseContentType =
   | "push"
   | "in_app"
   | "inbox";
-export const UpdateNewsletterVariantResponseContentType =
-  /*@__PURE__*/ S.String;
+export const UpdateNewsletterVariantResponseContentType = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type UpdateNewsletterVariantResponseContentPreprocessor = "premailer";
-export const UpdateNewsletterVariantResponseContentPreprocessor =
-  /*@__PURE__*/ S.String;
+export const UpdateNewsletterVariantResponseContentPreprocessor = S.String;
 
 export interface UpdateNewsletterVariantResponseContent {
   /** The identifier of a newsletter variant—a language in a multi-language newsletter or a test in an A/B test. */
@@ -34932,7 +34772,7 @@ export type UpdateNewsletterVariantTranslationRequestBody =
   | UpdateNewsletterTestTranslationRequestBodyCase4
   | UpdateNewsletterTestTranslationRequestBodyCase4;
 export const UpdateNewsletterVariantTranslationRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateNewsletterVariantTranslationRequestBody>;
+  S.Unknown as any as S.Schema<UpdateNewsletterVariantTranslationRequestBody>;
 
 export interface UpdateNewsletterVariantTranslationRequest {
   /** The identifier of a newsletter. */
@@ -34968,14 +34808,13 @@ export type UpdateNewsletterVariantTranslationResponseContentType =
   | "push"
   | "in_app"
   | "inbox";
-export const UpdateNewsletterVariantTranslationResponseContentType =
-  /*@__PURE__*/ S.String;
+export const UpdateNewsletterVariantTranslationResponseContentType = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type UpdateNewsletterVariantTranslationResponseContentPreprocessor =
   "premailer";
 export const UpdateNewsletterVariantTranslationResponseContentPreprocessor =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateNewsletterVariantTranslationResponseContent {
   /** The identifier of a newsletter variant—a language in a multi-language newsletter or a test in an A/B test. */
@@ -35069,12 +34908,11 @@ export type UpdatePersonOptoutsRequestIdType =
   | "email"
   | "phone"
   | "cio_id";
-export const UpdatePersonOptoutsRequestIdType = /*@__PURE__*/ S.String;
+export const UpdatePersonOptoutsRequestIdType = S.String;
 
 /** The channel for the opt-out. Defaults to `sms`. */
 export type UpdatePersonOptoutsRequestOptoutsItemChannel = "sms" | "whatsapp";
-export const UpdatePersonOptoutsRequestOptoutsItemChannel =
-  /*@__PURE__*/ S.String;
+export const UpdatePersonOptoutsRequestOptoutsItemChannel = S.String;
 
 export interface UpdatePersonOptoutsRequestOptoutsItem {
   /** The sender you want to opt the person out of, or back in to. For SMS, this is a sender phone number (E.164), an alphanumeric sender ID, or a messaging-service SID; for WhatsApp, it's the sender phone number. */
@@ -35223,13 +35061,11 @@ export const UpdateTransactionalRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of message. */
 export type UpdateTransactionalResponseContentItemType = "email" | "push";
-export const UpdateTransactionalResponseContentItemType =
-  /*@__PURE__*/ S.String;
+export const UpdateTransactionalResponseContentItemType = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type UpdateTransactionalResponseContentItemPreprocessor = "premailer";
-export const UpdateTransactionalResponseContentItemPreprocessor =
-  /*@__PURE__*/ S.String;
+export const UpdateTransactionalResponseContentItemPreprocessor = S.String;
 
 export interface UpdateTransactionalResponseContentItem {
   /** The identifier for an action. */
@@ -35384,14 +35220,13 @@ export const UpdateTransactionalVariantRequest = /*@__PURE__*/ S.suspend(() =>
 export type UpdateTransactionalVariantResponseContentItemType =
   | "email"
   | "push";
-export const UpdateTransactionalVariantResponseContentItemType =
-  /*@__PURE__*/ S.String;
+export const UpdateTransactionalVariantResponseContentItemType = S.String;
 
 /** If CSS pre-processing is enabled, this key is populated with `premailer`. Note, Juice replaced Premailer as the pre-processor, but you will only see `premailer` as the value. */
 export type UpdateTransactionalVariantResponseContentItemPreprocessor =
   "premailer";
 export const UpdateTransactionalVariantResponseContentItemPreprocessor =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateTransactionalVariantResponseContentItem {
   /** The identifier for an action. */
@@ -35558,7 +35393,7 @@ export type UpdateWebhookRequestEventsItem =
   | "webhook_converted"
   | "webhook_failed"
   | "webhook_undeliverable";
-export const UpdateWebhookRequestEventsItem = /*@__PURE__*/ S.String;
+export const UpdateWebhookRequestEventsItem = S.String;
 
 /** Specifies the types of events you want to report to your webhook. See our [reporting webhooks reference](/integrations/api/webhooks/) for more information about event types and the information they return. */
 export type UpdateWebhookRequestEventsList = Array<
@@ -35606,7 +35441,7 @@ export const UpdateWebhookRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of webhook—`webhook` for a standard reporting webhook or `js` for a JavaScript webhook. */
 export type UpdateWebhookResponseType = "webhook" | "js";
-export const UpdateWebhookResponseType = /*@__PURE__*/ S.String;
+export const UpdateWebhookResponseType = S.String;
 
 export type UpdateWebhookResponseEventsItem =
   | "customer_subscribed"
@@ -35681,7 +35516,7 @@ export type UpdateWebhookResponseEventsItem =
   | "webhook_converted"
   | "webhook_failed"
   | "webhook_undeliverable";
-export const UpdateWebhookResponseEventsItem = /*@__PURE__*/ S.String;
+export const UpdateWebhookResponseEventsItem = S.String;
 
 /** Specifies the types of events you want to report to your webhook. See our [reporting webhooks reference](/integrations/api/webhooks/) for more information about event types and the information they return. */
 export type UpdateWebhookResponseEventsList =

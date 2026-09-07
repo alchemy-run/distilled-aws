@@ -80,16 +80,16 @@ export type CreateRequestAct =
   | "abuse_threat"
   | "abuse_registrar_whois"
   | "abuse_ncsei";
-export const CreateRequestAct = /*@__PURE__*/ S.String;
+export const CreateRequestAct = S.String;
 
 export type CreateRequestAgree = 1;
-export const CreateRequestAgree = /*@__PURE__*/ S.Number;
+export const CreateRequestAgree = S.Number;
 
 export type CreateRequestHostNotificationEnum = "send";
-export const CreateRequestHostNotificationEnum = /*@__PURE__*/ S.String;
+export const CreateRequestHostNotificationEnum = S.String;
 
 export type CreateRequestHostNotificationAbuseGeneral = "send" | "send-anon";
-export const CreateRequestHostNotificationAbuseGeneral = /*@__PURE__*/ S.String;
+export const CreateRequestHostNotificationAbuseGeneral = S.String;
 
 export type CreateRequestHostNotification =
   | CreateRequestHostNotificationEnum
@@ -101,18 +101,16 @@ export const CreateRequestHostNotification = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type CreateRequestOwnerNotificationEnum = "send";
-export const CreateRequestOwnerNotificationEnum = /*@__PURE__*/ S.String;
+export const CreateRequestOwnerNotificationEnum = S.String;
 
 export type CreateRequestOwnerNotificationAbuseGeneral = "send" | "send-anon";
-export const CreateRequestOwnerNotificationAbuseGeneral =
-  /*@__PURE__*/ S.String;
+export const CreateRequestOwnerNotificationAbuseGeneral = S.String;
 
 export type CreateRequestOwnerNotificationAbuseChildren =
   | "send"
   | "send-anon"
   | "none";
-export const CreateRequestOwnerNotificationAbuseChildren =
-  /*@__PURE__*/ S.String;
+export const CreateRequestOwnerNotificationAbuseChildren = S.String;
 
 export type CreateRequestOwnerNotification =
   | CreateRequestOwnerNotificationEnum
@@ -126,13 +124,12 @@ export const CreateRequestOwnerNotification = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type CreateRequestNcmecNotification = "send" | "send-anon";
-export const CreateRequestNcmecNotification = /*@__PURE__*/ S.String;
+export const CreateRequestNcmecNotification = S.String;
 
 export type CreateRequestRegWhoRequestRegWhoRequestType =
   | "disclosure"
   | "invalid_whois";
-export const CreateRequestRegWhoRequestRegWhoRequestType =
-  /*@__PURE__*/ S.String;
+export const CreateRequestRegWhoRequestRegWhoRequestType = S.String;
 
 export type CreateRequestRegWhoRequestRegWhoRequestedDataElementsItem =
   | "registrant_name"
@@ -153,7 +150,7 @@ export type CreateRequestRegWhoRequestRegWhoRequestedDataElementsItem =
   | "tech_phone"
   | "tech_address";
 export const CreateRequestRegWhoRequestRegWhoRequestedDataElementsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRequestRegWhoRequestRegWhoRequestedDataElementsList = Array<
   CreateRequestRegWhoRequestRegWhoRequestedDataElementsItem | (string & {})
@@ -167,8 +164,7 @@ export type CreateRequestRegWhoRequestRegWhoRequestorType =
   | "government"
   | "corporation"
   | "individual";
-export const CreateRequestRegWhoRequestRegWhoRequestorType =
-  /*@__PURE__*/ S.String;
+export const CreateRequestRegWhoRequestRegWhoRequestorType = S.String;
 
 export interface CreateRequestRegWhoRequest {
   /** Affirmation that the request is made in good faith per RDP 10.2.4. Must be true. */
@@ -395,7 +391,7 @@ export const GetResponseMitigationSummary = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseMitigationSummary>;
 
 export type GetResponseStatus = "accepted" | "in_review";
-export const GetResponseStatus = /*@__PURE__*/ S.String;
+export const GetResponseStatus = S.String;
 
 export type GetResponseType =
   | "PHISH"
@@ -407,7 +403,7 @@ export type GetResponseType =
   | "REG_WHO"
   | "NCSEI"
   | "NETWORK";
-export const GetResponseType = /*@__PURE__*/ S.String;
+export const GetResponseType = S.String;
 
 export interface GetResponseSubmitter {
   company?: string | null;
@@ -476,10 +472,10 @@ export type ListRequestMitigationStatus =
   | "in_review"
   | "cancelled"
   | "removed";
-export const ListRequestMitigationStatus = /*@__PURE__*/ S.String;
+export const ListRequestMitigationStatus = S.String;
 
 export type ListRequestStatus = "accepted" | "in_review";
-export const ListRequestStatus = /*@__PURE__*/ S.String;
+export const ListRequestStatus = S.String;
 
 export type ListRequestType =
   | "PHISH"
@@ -491,7 +487,7 @@ export type ListRequestType =
   | "REG_WHO"
   | "NCSEI"
   | "NETWORK";
-export const ListRequestType = /*@__PURE__*/ S.String;
+export const ListRequestType = S.String;
 
 export interface ListAbuseReportsRequest {
   accountId: string;
@@ -547,7 +543,7 @@ export const ListResponseReportsItemMitigationSummary =
   GetResponseMitigationSummary;
 
 export type ListResponseReportsItemStatus = "accepted" | "in_review";
-export const ListResponseReportsItemStatus = /*@__PURE__*/ S.String;
+export const ListResponseReportsItemStatus = S.String;
 
 export type ListResponseReportsItemType =
   | "PHISH"
@@ -559,7 +555,7 @@ export type ListResponseReportsItemType =
   | "REG_WHO"
   | "NCSEI"
   | "NETWORK";
-export const ListResponseReportsItemType = /*@__PURE__*/ S.String;
+export const ListResponseReportsItemType = S.String;
 
 export type ListResponseReportsItemSubmitter = GetResponseSubmitter;
 export const ListResponseReportsItemSubmitter = GetResponseSubmitter;
@@ -630,7 +626,7 @@ export type MitigationsListRequestEntityType =
   | "url_pattern"
   | "account"
   | "zone";
-export const MitigationsListRequestEntityType = /*@__PURE__*/ S.String;
+export const MitigationsListRequestEntityType = S.String;
 
 export type MitigationsListRequestSort =
   | "type,asc"
@@ -641,7 +637,7 @@ export type MitigationsListRequestSort =
   | "status,desc"
   | "entity_type,asc"
   | "entity_type,desc";
-export const MitigationsListRequestSort = /*@__PURE__*/ S.String;
+export const MitigationsListRequestSort = S.String;
 
 export type MitigationsListRequestStatus =
   | "pending"
@@ -649,7 +645,7 @@ export type MitigationsListRequestStatus =
   | "in_review"
   | "cancelled"
   | "removed";
-export const MitigationsListRequestStatus = /*@__PURE__*/ S.String;
+export const MitigationsListRequestStatus = S.String;
 
 export type MitigationsListRequestType =
   | "account_suspend"
@@ -671,7 +667,7 @@ export type MitigationsListRequestType =
   | "stream_block_account"
   | "user_suspend"
   | "workers_takedown_by_zone_id";
-export const MitigationsListRequestType = /*@__PURE__*/ S.String;
+export const MitigationsListRequestType = S.String;
 
 export interface ListMitigationsRequest {
   accountId: string;
@@ -724,8 +720,7 @@ export type MitigationsListResponseMitigationsItemEntityType =
   | "url_pattern"
   | "account"
   | "zone";
-export const MitigationsListResponseMitigationsItemEntityType =
-  /*@__PURE__*/ S.String;
+export const MitigationsListResponseMitigationsItemEntityType = S.String;
 
 export type MitigationsListResponseMitigationsItemStatus =
   | "pending"
@@ -733,8 +728,7 @@ export type MitigationsListResponseMitigationsItemStatus =
   | "in_review"
   | "cancelled"
   | "removed";
-export const MitigationsListResponseMitigationsItemStatus =
-  /*@__PURE__*/ S.String;
+export const MitigationsListResponseMitigationsItemStatus = S.String;
 
 export type MitigationsListResponseMitigationsItemType =
   | "account_suspend"
@@ -756,8 +750,7 @@ export type MitigationsListResponseMitigationsItemType =
   | "stream_block_account"
   | "user_suspend"
   | "workers_takedown_by_zone_id";
-export const MitigationsListResponseMitigationsItemType =
-  /*@__PURE__*/ S.String;
+export const MitigationsListResponseMitigationsItemType = S.String;
 
 export interface MitigationsListResponseMitigationsItem {
   /** ID of remediation. */
@@ -809,7 +802,7 @@ export const ListMitigationsResponse = /*@__PURE__*/ S.suspend(() =>
 export type MitigationsReviewRequestAppealsItemReason =
   | "removed"
   | "misclassified";
-export const MitigationsReviewRequestAppealsItemReason = /*@__PURE__*/ S.String;
+export const MitigationsReviewRequestAppealsItemReason = S.String;
 
 export interface MitigationsReviewRequestAppealsItem {
   /** ID of the mitigation to appeal. */
@@ -860,7 +853,7 @@ export type MitigationsReviewResultItemEntityType =
   | "url_pattern"
   | "account"
   | "zone";
-export const MitigationsReviewResultItemEntityType = /*@__PURE__*/ S.String;
+export const MitigationsReviewResultItemEntityType = S.String;
 
 export type MitigationsReviewResultItemStatus =
   | "pending"
@@ -868,7 +861,7 @@ export type MitigationsReviewResultItemStatus =
   | "in_review"
   | "cancelled"
   | "removed";
-export const MitigationsReviewResultItemStatus = /*@__PURE__*/ S.String;
+export const MitigationsReviewResultItemStatus = S.String;
 
 export type MitigationsReviewResultItemType =
   | "account_suspend"
@@ -890,7 +883,7 @@ export type MitigationsReviewResultItemType =
   | "stream_block_account"
   | "user_suspend"
   | "workers_takedown_by_zone_id";
-export const MitigationsReviewResultItemType = /*@__PURE__*/ S.String;
+export const MitigationsReviewResultItemType = S.String;
 
 export interface MitigationsReviewResultItem {
   /** ID of remediation. */

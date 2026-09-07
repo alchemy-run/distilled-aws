@@ -97,7 +97,7 @@ export type GoogleAdsSearchads360V0Resources__CustomColumnValueTypeEnum =
   | "BOOLEAN"
   | "DATE";
 export const GoogleAdsSearchads360V0Resources__CustomColumnValueTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__CustomColumnRenderTypeEnum =
   | "UNSPECIFIED"
@@ -109,7 +109,7 @@ export type GoogleAdsSearchads360V0Resources__CustomColumnRenderTypeEnum =
   | "BOOLEAN"
   | "DATE";
 export const GoogleAdsSearchads360V0Resources__CustomColumnRenderTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A custom column. See Search Ads 360 custom column at https://support.google.com/sa360/answer/9633916 */
 export interface GoogleAdsSearchads360V0Resources__CustomColumn {
@@ -189,7 +189,7 @@ export type GoogleAdsSearchads360V0Resources__SearchAds360FieldDataTypeEnum =
   | "STRING"
   | "UINT64";
 export const GoogleAdsSearchads360V0Resources__SearchAds360FieldDataTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__SearchAds360FieldCategoryEnum =
   | "UNSPECIFIED"
@@ -199,7 +199,7 @@ export type GoogleAdsSearchads360V0Resources__SearchAds360FieldCategoryEnum =
   | "SEGMENT"
   | "METRIC";
 export const GoogleAdsSearchads360V0Resources__SearchAds360FieldCategoryEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A field or resource (artifact) used by SearchAds360Service. */
 export interface GoogleAdsSearchads360V0Resources__SearchAds360Field {
@@ -335,7 +335,7 @@ export type GoogleAdsSearchads360V0Services__SearchSearchAds360RequestSummaryRow
   | "SUMMARY_ROW_WITH_RESULTS"
   | "SUMMARY_ROW_ONLY";
 export const GoogleAdsSearchads360V0Services__SearchSearchAds360RequestSummaryRowSettingEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for SearchAds360Service.Search. */
 export interface GoogleAdsSearchads360V0Services__SearchSearchAds360Request {
@@ -402,7 +402,7 @@ export type GoogleAdsSearchads360V0Common__TargetImpressionShareLocationEnum =
   | "TOP_OF_PAGE"
   | "ABSOLUTE_TOP_OF_PAGE";
 export const GoogleAdsSearchads360V0Common__TargetImpressionShareLocationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An automated bidding strategy that sets bids so that a certain percentage of search ads are shown at the top of the first page (or other targeted location). */
 export interface GoogleAdsSearchads360V0Common__TargetImpressionShare {
@@ -530,7 +530,7 @@ export type GoogleAdsSearchads360V0Resources__BiddingStrategyStatusEnum =
   | "ENABLED"
   | "REMOVED";
 export const GoogleAdsSearchads360V0Resources__BiddingStrategyStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An automated bidding strategy that helps you maximize revenue while averaging a specific target return on ad spend (ROAS). */
 export interface GoogleAdsSearchads360V0Common__TargetRoas {
@@ -573,7 +573,7 @@ export type GoogleAdsSearchads360V0Resources__BiddingStrategyTypeEnum =
   | "TARGET_ROAS"
   | "TARGET_SPEND";
 export const GoogleAdsSearchads360V0Resources__BiddingStrategyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A bidding strategy. */
 export interface GoogleAdsSearchads360V0Resources__BiddingStrategy {
@@ -655,7 +655,7 @@ export type GoogleAdsSearchads360V0Resources__AssetSetAssetStatusEnum =
   | "ENABLED"
   | "REMOVED";
 export const GoogleAdsSearchads360V0Resources__AssetSetAssetStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** AssetSetAsset is the link between an asset and an asset set. Adding an AssetSetAsset links an asset with an asset set. */
 export interface GoogleAdsSearchads360V0Resources__AssetSetAsset {
@@ -689,8 +689,7 @@ export type GoogleAdsSearchads360V0Resources__AssetStatusEnum =
   | "REMOVED"
   | "ARCHIVED"
   | "PENDING_SYSTEM_GENERATED";
-export const GoogleAdsSearchads360V0Resources__AssetStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Resources__AssetStatusEnum = S.String;
 
 export type GoogleAdsSearchads360V0Common__CallToActionAssetCallToActionEnum =
   | "UNSPECIFIED"
@@ -713,7 +712,7 @@ export type GoogleAdsSearchads360V0Common__CallToActionAssetCallToActionEnum =
   | "VISIT_SITE"
   | "WATCH_NOW";
 export const GoogleAdsSearchads360V0Common__CallToActionAssetCallToActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A call to action asset. */
 export interface GoogleAdsSearchads360V0Common__CallToActionAsset {
@@ -739,8 +738,7 @@ export type GoogleAdsSearchads360V0Resources__AssetEngineStatusEnum =
   | "DISAPPROVED"
   | "DISABLED"
   | "REMOVED";
-export const GoogleAdsSearchads360V0Resources__AssetEngineStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Resources__AssetEngineStatusEnum = S.String;
 
 export type GoogleAdsSearchads360V0Resources__AssetTypeEnum =
   | "UNSPECIFIED"
@@ -772,8 +770,7 @@ export type GoogleAdsSearchads360V0Resources__AssetTypeEnum =
   | "DYNAMIC_JOBS"
   | "LOCATION"
   | "HOTEL_PROPERTY";
-export const GoogleAdsSearchads360V0Resources__AssetTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Resources__AssetTypeEnum = S.String;
 
 /** A mapping that can be used by custom parameter tags in a `tracking_url_template`, `final_urls`, or `mobile_final_urls`. */
 export interface GoogleAdsSearchads360V0Common__CustomParameter {
@@ -805,7 +802,7 @@ export type GoogleAdsSearchads360V0Common__MobileAppAssetAppStoreEnum =
   | "APPLE_APP_STORE"
   | "GOOGLE_APP_STORE";
 export const GoogleAdsSearchads360V0Common__MobileAppAssetAppStoreEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An asset representing a mobile app. */
 export interface GoogleAdsSearchads360V0Common__MobileAppAsset {
@@ -849,7 +846,7 @@ export type GoogleAdsSearchads360V0Common__UnifiedLocationAssetLocationOwnership
   | "BUSINESS_OWNER"
   | "AFFILIATE";
 export const GoogleAdsSearchads360V0Common__UnifiedLocationAssetLocationOwnershipTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Business Profile location data synced from the linked Business Profile account. */
 export interface GoogleAdsSearchads360V0Common__BusinessProfileLocation {
@@ -913,7 +910,7 @@ export type GoogleAdsSearchads360V0Common__AdScheduleInfoDayOfWeekEnum =
   | "SATURDAY"
   | "SUNDAY";
 export const GoogleAdsSearchads360V0Common__AdScheduleInfoDayOfWeekEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Common__AdScheduleInfoEndMinuteEnum =
   | "UNSPECIFIED"
@@ -923,7 +920,7 @@ export type GoogleAdsSearchads360V0Common__AdScheduleInfoEndMinuteEnum =
   | "THIRTY"
   | "FORTY_FIVE";
 export const GoogleAdsSearchads360V0Common__AdScheduleInfoEndMinuteEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Common__AdScheduleInfoStartMinuteEnum =
   | "UNSPECIFIED"
@@ -933,7 +930,7 @@ export type GoogleAdsSearchads360V0Common__AdScheduleInfoStartMinuteEnum =
   | "THIRTY"
   | "FORTY_FIVE";
 export const GoogleAdsSearchads360V0Common__AdScheduleInfoStartMinuteEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents an AdSchedule criterion. AdSchedule is specified as the day of the week and a time interval within which ads will be shown. No more than six AdSchedules can be added for the same day. */
 export interface GoogleAdsSearchads360V0Common__AdScheduleInfo {
@@ -1066,7 +1063,7 @@ export type GoogleAdsSearchads360V0Common__SyntheticContentAttestationSourceEnum
   | "GOOGLE_GENERATED_ADVERTISER_REVIEWED"
   | "GOOGLE_GENERATED_FULLY_AUTOMATED";
 export const GoogleAdsSearchads360V0Common__SyntheticContentAttestationSourceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Common__SyntheticContentAttestationStatusEnum =
   | "UNSPECIFIED"
@@ -1074,7 +1071,7 @@ export type GoogleAdsSearchads360V0Common__SyntheticContentAttestationStatusEnum
   | "NOT_SYNTHETIC"
   | "IS_SYNTHETIC";
 export const GoogleAdsSearchads360V0Common__SyntheticContentAttestationStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents an attestation about synthetic content from a single source. */
 export interface GoogleAdsSearchads360V0Common__SyntheticContentAttestation {
@@ -1133,8 +1130,7 @@ export type GoogleAdsSearchads360V0Common__ImageAssetMimeTypeEnum =
   | "AUDIO_WAV"
   | "AUDIO_MP3"
   | "HTML5_AD_ZIP";
-export const GoogleAdsSearchads360V0Common__ImageAssetMimeTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Common__ImageAssetMimeTypeEnum = S.String;
 
 /** Metadata for an image at a certain size, either original or resized. */
 export interface GoogleAdsSearchads360V0Common__ImageDimension {
@@ -1199,7 +1195,7 @@ export type GoogleAdsSearchads360V0Common__UnifiedCallAssetCallConversionReporti
   | "USE_ACCOUNT_LEVEL_CALL_CONVERSION_ACTION"
   | "USE_RESOURCE_LEVEL_CALL_CONVERSION_ACTION";
 export const GoogleAdsSearchads360V0Common__UnifiedCallAssetCallConversionReportingStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A unified call asset. */
 export interface GoogleAdsSearchads360V0Common__UnifiedCallAsset {
@@ -1385,7 +1381,7 @@ export type GoogleAdsSearchads360V0Common__WebpageConditionInfoOperatorEnum =
   | "EQUALS"
   | "CONTAINS";
 export const GoogleAdsSearchads360V0Common__WebpageConditionInfoOperatorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Common__WebpageConditionInfoOperandEnum =
   | "UNSPECIFIED"
@@ -1396,7 +1392,7 @@ export type GoogleAdsSearchads360V0Common__WebpageConditionInfoOperandEnum =
   | "PAGE_CONTENT"
   | "CUSTOM_LABEL";
 export const GoogleAdsSearchads360V0Common__WebpageConditionInfoOperandEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Logical expression for targeting webpages of an advertiser's website. */
 export interface GoogleAdsSearchads360V0Common__WebpageConditionInfo {
@@ -1473,8 +1469,7 @@ export type GoogleAdsSearchads360V0Common__DeviceInfoTypeEnum =
   | "DESKTOP"
   | "CONNECTED_TV"
   | "OTHER";
-export const GoogleAdsSearchads360V0Common__DeviceInfoTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Common__DeviceInfoTypeEnum = S.String;
 
 /** A device criterion. */
 export interface GoogleAdsSearchads360V0Common__DeviceInfo {
@@ -1496,8 +1491,7 @@ export type GoogleAdsSearchads360V0Common__GenderInfoTypeEnum =
   | "MALE"
   | "FEMALE"
   | "UNDETERMINED";
-export const GoogleAdsSearchads360V0Common__GenderInfoTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Common__GenderInfoTypeEnum = S.String;
 
 /** A gender criterion. */
 export interface GoogleAdsSearchads360V0Common__GenderInfo {
@@ -1520,7 +1514,7 @@ export type GoogleAdsSearchads360V0Common__LocationGroupInfoRadiusUnitsEnum =
   | "MILES"
   | "MILLI_MILES";
 export const GoogleAdsSearchads360V0Common__LocationGroupInfoRadiusUnitsEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A radius around a list of locations specified through a feed. */
 export interface GoogleAdsSearchads360V0Common__LocationGroupInfo {
@@ -1557,8 +1551,7 @@ export type GoogleAdsSearchads360V0Common__AgeRangeInfoTypeEnum =
   | "AGE_RANGE_55_64"
   | "AGE_RANGE_65_UP"
   | "AGE_RANGE_UNDETERMINED";
-export const GoogleAdsSearchads360V0Common__AgeRangeInfoTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Common__AgeRangeInfoTypeEnum = S.String;
 
 /** An age range criterion. */
 export interface GoogleAdsSearchads360V0Common__AgeRangeInfo {
@@ -1616,7 +1609,7 @@ export type GoogleAdsSearchads360V0Resources__CampaignCriterionTypeEnum =
   | "BRAND_LIST"
   | "LIFE_EVENT";
 export const GoogleAdsSearchads360V0Resources__CampaignCriterionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A User List criterion. Represents a user list that is defined by the advertiser to be targeted. */
 export interface GoogleAdsSearchads360V0Common__UserListInfo {
@@ -1639,7 +1632,7 @@ export type GoogleAdsSearchads360V0Resources__CampaignCriterionStatusEnum =
   | "PAUSED"
   | "REMOVED";
 export const GoogleAdsSearchads360V0Resources__CampaignCriterionStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Common__KeywordInfoMatchTypeEnum =
   | "UNSPECIFIED"
@@ -1647,8 +1640,7 @@ export type GoogleAdsSearchads360V0Common__KeywordInfoMatchTypeEnum =
   | "EXACT"
   | "PHRASE"
   | "BROAD";
-export const GoogleAdsSearchads360V0Common__KeywordInfoMatchTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Common__KeywordInfoMatchTypeEnum = S.String;
 
 /** A keyword criterion. */
 export interface GoogleAdsSearchads360V0Common__KeywordInfo {
@@ -1758,7 +1750,7 @@ export type GoogleAdsSearchads360V0Resources__CustomerAssetStatusEnum =
   | "REMOVED"
   | "PAUSED";
 export const GoogleAdsSearchads360V0Resources__CustomerAssetStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A link between a customer and an asset. */
 export interface GoogleAdsSearchads360V0Resources__CustomerAsset {
@@ -1788,7 +1780,7 @@ export type GoogleAdsSearchads360V0Resources__AdGroupAssetSetStatusEnum =
   | "ENABLED"
   | "REMOVED";
 export const GoogleAdsSearchads360V0Resources__AdGroupAssetSetStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** AdGroupAssetSet is the linkage between an ad group and an asset set. Creating an AdGroupAssetSet links an asset set with an ad group. */
 export interface GoogleAdsSearchads360V0Resources__AdGroupAssetSet {
@@ -1821,7 +1813,7 @@ export type GoogleAdsSearchads360V0Common__SegmentsProductChannelExclusivityEnum
   | "SINGLE_CHANNEL"
   | "MULTI_CHANNEL";
 export const GoogleAdsSearchads360V0Common__SegmentsProductChannelExclusivityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Common__SegmentsConversionActionCategoryEnum =
   | "UNSPECIFIED"
@@ -1849,7 +1841,7 @@ export type GoogleAdsSearchads360V0Common__SegmentsConversionActionCategoryEnum 
   | "QUALIFIED_LEAD"
   | "CONVERTED_LEAD";
 export const GoogleAdsSearchads360V0Common__SegmentsConversionActionCategoryEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Common__SegmentsAdNetworkTypeEnum =
   | "UNSPECIFIED"
@@ -1861,7 +1853,7 @@ export type GoogleAdsSearchads360V0Common__SegmentsAdNetworkTypeEnum =
   | "YOUTUBE_WATCH"
   | "MIXED";
 export const GoogleAdsSearchads360V0Common__SegmentsAdNetworkTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Common__SegmentsDeviceEnum =
   | "UNSPECIFIED"
@@ -1871,8 +1863,7 @@ export type GoogleAdsSearchads360V0Common__SegmentsDeviceEnum =
   | "DESKTOP"
   | "CONNECTED_TV"
   | "OTHER";
-export const GoogleAdsSearchads360V0Common__SegmentsDeviceEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Common__SegmentsDeviceEnum = S.String;
 
 export type GoogleAdsSearchads360V0Common__SegmentsVerticalAdsVerticalEnum =
   | "UNSPECIFIED"
@@ -1884,7 +1875,7 @@ export type GoogleAdsSearchads360V0Common__SegmentsVerticalAdsVerticalEnum =
   | "THINGS_TO_DO"
   | "FLIGHTS";
 export const GoogleAdsSearchads360V0Common__SegmentsVerticalAdsVerticalEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Common__SegmentsProductChannelEnum =
   | "UNSPECIFIED"
@@ -1892,7 +1883,7 @@ export type GoogleAdsSearchads360V0Common__SegmentsProductChannelEnum =
   | "ONLINE"
   | "LOCAL";
 export const GoogleAdsSearchads360V0Common__SegmentsProductChannelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Common__SegmentsProductSoldConditionEnum =
   | "UNSPECIFIED"
@@ -1902,7 +1893,7 @@ export type GoogleAdsSearchads360V0Common__SegmentsProductSoldConditionEnum =
   | "REFURBISHED"
   | "USED";
 export const GoogleAdsSearchads360V0Common__SegmentsProductSoldConditionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Common__SegmentsProductConditionEnum =
   | "UNSPECIFIED"
@@ -1912,7 +1903,7 @@ export type GoogleAdsSearchads360V0Common__SegmentsProductConditionEnum =
   | "REFURBISHED"
   | "USED";
 export const GoogleAdsSearchads360V0Common__SegmentsProductConditionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Common__SegmentsDayOfWeekEnum =
   | "UNSPECIFIED"
@@ -1924,8 +1915,7 @@ export type GoogleAdsSearchads360V0Common__SegmentsDayOfWeekEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const GoogleAdsSearchads360V0Common__SegmentsDayOfWeekEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Common__SegmentsDayOfWeekEnum = S.String;
 
 /** A generic data container. */
 export interface GoogleAdsSearchads360V0Common__Value {
@@ -1999,8 +1989,7 @@ export type GoogleAdsSearchads360V0Common__SegmentsAdFormatTypeEnum =
   | "VERTICAL_ADS_PROMOTION"
   | "VERTICAL_ADS_BOOKING_LINK"
   | "TEXT";
-export const GoogleAdsSearchads360V0Common__SegmentsAdFormatTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Common__SegmentsAdFormatTypeEnum = S.String;
 
 /** Segment only fields. */
 export interface GoogleAdsSearchads360V0Common__Segments {
@@ -2268,7 +2257,7 @@ export type GoogleAdsSearchads360V0Resources__CustomerManagerLinkStatusEnum =
   | "REFUSED"
   | "CANCELED";
 export const GoogleAdsSearchads360V0Resources__CustomerManagerLinkStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents customer-manager link relationship. */
 export interface GoogleAdsSearchads360V0Resources__CustomerManagerLink {
@@ -2306,7 +2295,7 @@ export type GoogleAdsSearchads360V0Resources__CustomerClientStatusEnum =
   | "SUSPENDED"
   | "CLOSED";
 export const GoogleAdsSearchads360V0Resources__CustomerClientStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A link between the given customer and a client customer. CustomerClients only exist for manager customers. All direct and indirect client customers are included, as well as the manager itself. */
 export interface GoogleAdsSearchads360V0Resources__CustomerClient {
@@ -2377,7 +2366,7 @@ export type GoogleAdsSearchads360V0Resources__VisitProductChannelEnum =
   | "ONLINE"
   | "LOCAL";
 export const GoogleAdsSearchads360V0Resources__VisitProductChannelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__VisitAssetFieldTypeEnum =
   | "UNSPECIFIED"
@@ -2413,7 +2402,7 @@ export type GoogleAdsSearchads360V0Resources__VisitAssetFieldTypeEnum =
   | "LONG_DESCRIPTION"
   | "CALL_TO_ACTION";
 export const GoogleAdsSearchads360V0Resources__VisitAssetFieldTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A visit. */
 export interface GoogleAdsSearchads360V0Resources__Visit {
@@ -2518,7 +2507,7 @@ export type GoogleAdsSearchads360V0Resources__AdGroupCriterionEngineStatusEnum =
   | "AD_GROUP_CRITERION_SERVING"
   | "AD_GROUP_CRITERION_ACCOUNT_PAUSED";
 export const GoogleAdsSearchads360V0Resources__AdGroupCriterionEngineStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__AdGroupCriterionStatusEnum =
   | "UNSPECIFIED"
@@ -2527,7 +2516,7 @@ export type GoogleAdsSearchads360V0Resources__AdGroupCriterionStatusEnum =
   | "PAUSED"
   | "REMOVED";
 export const GoogleAdsSearchads360V0Resources__AdGroupCriterionStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Estimates for criterion bids at various positions. */
 export interface GoogleAdsSearchads360V0Resources_AdGroupCriterion_PositionEstimates {
@@ -2549,8 +2538,7 @@ export type GoogleAdsSearchads360V0Common__ListingGroupInfoTypeEnum =
   | "UNKNOWN"
   | "SUBDIVISION"
   | "UNIT";
-export const GoogleAdsSearchads360V0Common__ListingGroupInfoTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Common__ListingGroupInfoTypeEnum = S.String;
 
 /** A listing group criterion. */
 export interface GoogleAdsSearchads360V0Common__ListingGroupInfo {
@@ -2622,7 +2610,7 @@ export type GoogleAdsSearchads360V0Resources__AdGroupCriterionTypeEnum =
   | "BRAND_LIST"
   | "LIFE_EVENT";
 export const GoogleAdsSearchads360V0Resources__AdGroupCriterionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An ad group criterion. The ad_group_criterion report only returns criteria that were explicitly added to the ad group. */
 export interface GoogleAdsSearchads360V0Resources__AdGroupCriterion {
@@ -2801,8 +2789,7 @@ export type GoogleAdsSearchads360V0Resources__AdTypeEnum =
   | "APP_PRE_REGISTRATION_AD"
   | "TRAVEL_AD"
   | "MULTIMEDIA_AD";
-export const GoogleAdsSearchads360V0Resources__AdTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Resources__AdTypeEnum = S.String;
 
 /** A text asset used inside an ad. */
 export interface GoogleAdsSearchads360V0Common__AdTextAsset {
@@ -2948,8 +2935,7 @@ export type GoogleAdsSearchads360V0Common__FinalAppUrlOsTypeEnum =
   | "UNKNOWN"
   | "IOS"
   | "ANDROID";
-export const GoogleAdsSearchads360V0Common__FinalAppUrlOsTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Common__FinalAppUrlOsTypeEnum = S.String;
 
 /** A URL for deep linking into an app for the given operating system. */
 export interface GoogleAdsSearchads360V0Common__FinalAppUrl {
@@ -3048,8 +3034,7 @@ export type GoogleAdsSearchads360V0Resources__AdGroupAdStatusEnum =
   | "ENABLED"
   | "PAUSED"
   | "REMOVED";
-export const GoogleAdsSearchads360V0Resources__AdGroupAdStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Resources__AdGroupAdStatusEnum = S.String;
 
 export type GoogleAdsSearchads360V0Resources__AdGroupAdEngineStatusEnum =
   | "UNSPECIFIED"
@@ -3072,7 +3057,7 @@ export type GoogleAdsSearchads360V0Resources__AdGroupAdEngineStatusEnum =
   | "AD_GROUP_AD_CAMPAIGN_PAUSED"
   | "AD_GROUP_AD_AD_GROUP_PAUSED";
 export const GoogleAdsSearchads360V0Resources__AdGroupAdEngineStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An ad group ad. */
 export interface GoogleAdsSearchads360V0Resources__AdGroupAd {
@@ -3136,7 +3121,7 @@ export type GoogleAdsSearchads360V0Resources_Campaign_OptimizationGoalSettingOpt
   | "DRIVING_DIRECTIONS"
   | "APP_PRE_REGISTRATION";
 export const GoogleAdsSearchads360V0Resources_Campaign_OptimizationGoalSettingOptimizationGoalTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources_Campaign_OptimizationGoalSettingOptimizationGoalTypesItemEnumList =
   Array<GoogleAdsSearchads360V0Resources_Campaign_OptimizationGoalSettingOptimizationGoalTypesItemEnum>;
@@ -3191,7 +3176,7 @@ export type GoogleAdsSearchads360V0Resources__CampaignBiddingStrategySystemStatu
   | "MULTIPLE_MISCONFIGURED"
   | "MULTIPLE";
 export const GoogleAdsSearchads360V0Resources__CampaignBiddingStrategySystemStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Manual bidding strategy that allows advertiser to set the bid per advertiser-specified action. */
 export type GoogleAdsSearchads360V0Common__ManualCpa =
@@ -3220,7 +3205,7 @@ export type GoogleAdsSearchads360V0Resources__CampaignBiddingStrategyTypeEnum =
   | "TARGET_ROAS"
   | "TARGET_SPEND";
 export const GoogleAdsSearchads360V0Resources__CampaignBiddingStrategyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__CampaignAdServingOptimizationStatusEnum =
   | "UNSPECIFIED"
@@ -3231,7 +3216,7 @@ export type GoogleAdsSearchads360V0Resources__CampaignAdServingOptimizationStatu
   | "ROTATE_INDEFINITELY"
   | "UNAVAILABLE";
 export const GoogleAdsSearchads360V0Resources__CampaignAdServingOptimizationStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__CampaignAdvertisingChannelTypeEnum =
   | "UNSPECIFIED"
@@ -3250,7 +3235,7 @@ export type GoogleAdsSearchads360V0Resources__CampaignAdvertisingChannelTypeEnum
   | "TRAVEL"
   | "SOCIAL";
 export const GoogleAdsSearchads360V0Resources__CampaignAdvertisingChannelTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__CampaignAdvertisingChannelSubTypeEnum =
   | "UNSPECIFIED"
@@ -3276,7 +3261,7 @@ export type GoogleAdsSearchads360V0Resources__CampaignAdvertisingChannelSubTypeE
   | "TRAVEL_ACTIVITIES"
   | "SOCIAL_FACEBOOK_TRACKING_ONLY";
 export const GoogleAdsSearchads360V0Resources__CampaignAdvertisingChannelSubTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A rule specifying the maximum number of times an ad (or some set of ads) can be shown to a user over a particular time period. */
 export type GoogleAdsSearchads360V0Common__FrequencyCapEntry =
@@ -3340,7 +3325,7 @@ export type GoogleAdsSearchads360V0Resources__CampaignFeedTypesItemEnum =
   | "HOTEL_PROPERTY"
   | "TRAVEL_FEED";
 export const GoogleAdsSearchads360V0Resources__CampaignFeedTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__CampaignFeedTypesItemEnumList =
   Array<GoogleAdsSearchads360V0Resources__CampaignFeedTypesItemEnum>;
@@ -3400,7 +3385,7 @@ export type GoogleAdsSearchads360V0Resources__CampaignExcludedParentAssetFieldTy
   | "LONG_DESCRIPTION"
   | "CALL_TO_ACTION";
 export const GoogleAdsSearchads360V0Resources__CampaignExcludedParentAssetFieldTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__CampaignExcludedParentAssetFieldTypesItemEnumList =
   Array<GoogleAdsSearchads360V0Resources__CampaignExcludedParentAssetFieldTypesItemEnum>;
@@ -3486,7 +3471,7 @@ export type GoogleAdsSearchads360V0Resources_Campaign_GeoTargetTypeSettingPositi
   | "SEARCH_INTEREST"
   | "PRESENCE";
 export const GoogleAdsSearchads360V0Resources_Campaign_GeoTargetTypeSettingPositiveGeoTargetTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources_Campaign_GeoTargetTypeSettingNegativeGeoTargetTypeEnum =
   | "UNSPECIFIED"
@@ -3494,7 +3479,7 @@ export type GoogleAdsSearchads360V0Resources_Campaign_GeoTargetTypeSettingNegati
   | "PRESENCE_OR_INTEREST"
   | "PRESENCE";
 export const GoogleAdsSearchads360V0Resources_Campaign_GeoTargetTypeSettingNegativeGeoTargetTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a collection of settings related to ads geotargeting. */
 export interface GoogleAdsSearchads360V0Resources_Campaign_GeoTargetTypeSetting {
@@ -3524,8 +3509,7 @@ export type GoogleAdsSearchads360V0Resources__CampaignStatusEnum =
   | "ENABLED"
   | "PAUSED"
   | "REMOVED";
-export const GoogleAdsSearchads360V0Resources__CampaignStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Resources__CampaignStatusEnum = S.String;
 
 export type GoogleAdsSearchads360V0Resources__CampaignServingStatusEnum =
   | "UNSPECIFIED"
@@ -3536,7 +3520,7 @@ export type GoogleAdsSearchads360V0Resources__CampaignServingStatusEnum =
   | "PENDING"
   | "SUSPENDED";
 export const GoogleAdsSearchads360V0Resources__CampaignServingStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Campaign-level settings for tracking information. */
 export interface GoogleAdsSearchads360V0Resources_Campaign_TrackingSetting {
@@ -3889,7 +3873,7 @@ export type GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_Product
   | "ONLINE"
   | "LOCAL";
 export const GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductChannelChannelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Locality of a product offer. */
 export interface GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductChannel {
@@ -3917,7 +3901,7 @@ export type GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_Product
   | "LEVEL4"
   | "LEVEL5";
 export const GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductTypeLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Type of a product offer. */
 export interface GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductType {
@@ -3948,7 +3932,7 @@ export type GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_Product
   | "LEVEL4"
   | "LEVEL5";
 export const GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBiddingCategoryLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** One element of a bidding category at a certain level. Top-level categories are at level 1, their children at level 2, and so on. We currently support up to 5 levels. The user must specify a dimension type that indicates the level of the category. All cases of the same subdivision must have the same dimension type (category level). */
 export interface GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBiddingCategory {
@@ -3979,7 +3963,7 @@ export type GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_Product
   | "INDEX3"
   | "INDEX4";
 export const GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCustomAttributeIndexEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Custom attribute of a product offer. */
 export interface GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCustomAttribute {
@@ -4038,7 +4022,7 @@ export type GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_Product
   | "REFURBISHED"
   | "USED";
 export const GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductConditionConditionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Condition of a product offer. */
 export interface GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCondition {
@@ -4132,7 +4116,7 @@ export type GoogleAdsSearchads360V0Resources__AssetGroupListingGroupFilterVertic
   | "UNKNOWN"
   | "SHOPPING";
 export const GoogleAdsSearchads360V0Resources__AssetGroupListingGroupFilterVerticalEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__AssetGroupListingGroupFilterTypeEnum =
   | "UNSPECIFIED"
@@ -4141,7 +4125,7 @@ export type GoogleAdsSearchads360V0Resources__AssetGroupListingGroupFilterTypeEn
   | "UNIT_INCLUDED"
   | "UNIT_EXCLUDED";
 export const GoogleAdsSearchads360V0Resources__AssetGroupListingGroupFilterTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** AssetGroupListingGroupFilter represents a listing group filter tree node in an asset group. */
 export interface GoogleAdsSearchads360V0Resources__AssetGroupListingGroupFilter {
@@ -4217,7 +4201,7 @@ export type GoogleAdsSearchads360V0Common__MetricsHistoricalLandingPageQualitySc
   | "AVERAGE"
   | "ABOVE_AVERAGE";
 export const GoogleAdsSearchads360V0Common__MetricsHistoricalLandingPageQualityScoreEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Common__MetricsInteractionEventTypesItemEnum =
   | "UNSPECIFIED"
@@ -4227,7 +4211,7 @@ export type GoogleAdsSearchads360V0Common__MetricsInteractionEventTypesItemEnum 
   | "VIDEO_VIEW"
   | "NONE";
 export const GoogleAdsSearchads360V0Common__MetricsInteractionEventTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Common__MetricsInteractionEventTypesItemEnumList =
   Array<GoogleAdsSearchads360V0Common__MetricsInteractionEventTypesItemEnum>;
@@ -4243,7 +4227,7 @@ export type GoogleAdsSearchads360V0Common__MetricsHistoricalCreativeQualityScore
   | "AVERAGE"
   | "ABOVE_AVERAGE";
 export const GoogleAdsSearchads360V0Common__MetricsHistoricalCreativeQualityScoreEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Common__MetricsHistoricalSearchPredictedCtrEnum =
   | "UNSPECIFIED"
@@ -4252,7 +4236,7 @@ export type GoogleAdsSearchads360V0Common__MetricsHistoricalSearchPredictedCtrEn
   | "AVERAGE"
   | "ABOVE_AVERAGE";
 export const GoogleAdsSearchads360V0Common__MetricsHistoricalSearchPredictedCtrEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metrics data. */
 export interface GoogleAdsSearchads360V0Common__Metrics {
@@ -4616,7 +4600,7 @@ export type GoogleAdsSearchads360V0Common__AssetUsageServedAssetFieldTypeEnum =
   | "DESCRIPTION_LINE_HEADLINE_AS_SITELINK_POSITION_ONE"
   | "DESCRIPTION_LINE_HEADLINE_AS_SITELINK_POSITION_TWO";
 export const GoogleAdsSearchads360V0Common__AssetUsageServedAssetFieldTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Contains the usage information of the asset. */
 export interface GoogleAdsSearchads360V0Common__AssetUsage {
@@ -4722,15 +4706,14 @@ export type GoogleAdsSearchads360V0Resources__ConversionAssetFieldTypeEnum =
   | "LONG_DESCRIPTION"
   | "CALL_TO_ACTION";
 export const GoogleAdsSearchads360V0Resources__ConversionAssetFieldTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__ConversionStatusEnum =
   | "UNSPECIFIED"
   | "UNKNOWN"
   | "ENABLED"
   | "REMOVED";
-export const GoogleAdsSearchads360V0Resources__ConversionStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Resources__ConversionStatusEnum = S.String;
 
 export type GoogleAdsSearchads360V0Resources__ConversionProductChannelEnum =
   | "UNSPECIFIED"
@@ -4738,7 +4721,7 @@ export type GoogleAdsSearchads360V0Resources__ConversionProductChannelEnum =
   | "ONLINE"
   | "LOCAL";
 export const GoogleAdsSearchads360V0Resources__ConversionProductChannelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__ConversionAttributionTypeEnum =
   | "UNSPECIFIED"
@@ -4746,7 +4729,7 @@ export type GoogleAdsSearchads360V0Resources__ConversionAttributionTypeEnum =
   | "VISIT"
   | "CRITERION_AD";
 export const GoogleAdsSearchads360V0Resources__ConversionAttributionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A conversion. */
 export interface GoogleAdsSearchads360V0Resources__Conversion {
@@ -4852,7 +4835,7 @@ export type GoogleAdsSearchads360V0Resources__AdGroupEngineStatusEnum =
   | "CAMPAIGN_PAUSED"
   | "ACCOUNT_PAUSED";
 export const GoogleAdsSearchads360V0Resources__AdGroupEngineStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__AdGroupStatusEnum =
   | "UNSPECIFIED"
@@ -4860,8 +4843,7 @@ export type GoogleAdsSearchads360V0Resources__AdGroupStatusEnum =
   | "ENABLED"
   | "PAUSED"
   | "REMOVED";
-export const GoogleAdsSearchads360V0Resources__AdGroupStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Resources__AdGroupStatusEnum = S.String;
 
 export type GoogleAdsSearchads360V0Common__TargetRestrictionTargetingDimensionEnum =
   | "UNSPECIFIED"
@@ -4875,7 +4857,7 @@ export type GoogleAdsSearchads360V0Common__TargetRestrictionTargetingDimensionEn
   | "PARENTAL_STATUS"
   | "INCOME_RANGE";
 export const GoogleAdsSearchads360V0Common__TargetRestrictionTargetingDimensionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of per-targeting-dimension targeting settings. */
 export interface GoogleAdsSearchads360V0Common__TargetRestriction {
@@ -4939,8 +4921,7 @@ export type GoogleAdsSearchads360V0Resources__AdGroupTypeEnum =
   | "VIDEO_EFFICIENT_REACH"
   | "SMART_CAMPAIGN_ADS"
   | "TRAVEL_ADS";
-export const GoogleAdsSearchads360V0Resources__AdGroupTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Resources__AdGroupTypeEnum = S.String;
 
 export type GoogleAdsSearchads360V0Resources__AdGroupAdRotationModeEnum =
   | "UNSPECIFIED"
@@ -4948,7 +4929,7 @@ export type GoogleAdsSearchads360V0Resources__AdGroupAdRotationModeEnum =
   | "OPTIMIZE"
   | "ROTATE_FOREVER";
 export const GoogleAdsSearchads360V0Resources__AdGroupAdRotationModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An ad group. */
 export interface GoogleAdsSearchads360V0Resources__AdGroup {
@@ -5043,8 +5024,7 @@ export type GoogleAdsSearchads360V0Resources__LabelStatusEnum =
   | "UNKNOWN"
   | "ENABLED"
   | "REMOVED";
-export const GoogleAdsSearchads360V0Resources__LabelStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Resources__LabelStatusEnum = S.String;
 
 /** A type of label displaying text on a colored background. */
 export interface GoogleAdsSearchads360V0Common__TextLabel {
@@ -5098,8 +5078,7 @@ export type GoogleAdsSearchads360V0Resources__UserListTypeEnum =
   | "RULE_BASED"
   | "SIMILAR"
   | "CRM_BASED";
-export const GoogleAdsSearchads360V0Resources__UserListTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Resources__UserListTypeEnum = S.String;
 
 /** A user list. This is a list of users a customer may target. The unique key of a user list consists of the following fields: `id`. Note that the `name` must also be unique for user lists owned by a given customer, except in some cases where `access_reason` is set to `SHARED`. Violating the unique name constraint produces error: `UserListError.INVALID_NAME`. */
 export interface GoogleAdsSearchads360V0Resources__UserList {
@@ -5131,7 +5110,7 @@ export type GoogleAdsSearchads360V0Resources__AdGroupAssetStatusEnum =
   | "REMOVED"
   | "PAUSED";
 export const GoogleAdsSearchads360V0Resources__AdGroupAssetStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A link between an ad group and an asset. */
 export interface GoogleAdsSearchads360V0Resources__AdGroupAsset {
@@ -5227,7 +5206,7 @@ export type GoogleAdsSearchads360V0Resources__AccessibleBiddingStrategyTypeEnum 
   | "TARGET_ROAS"
   | "TARGET_SPEND";
 export const GoogleAdsSearchads360V0Resources__AccessibleBiddingStrategyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An automated bidding strategy to help get the most conversions for your campaigns while spending your budget. */
 export interface GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_MaximizeConversions {
@@ -5269,7 +5248,7 @@ export type GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetImp
   | "TOP_OF_PAGE"
   | "ABSOLUTE_TOP_OF_PAGE";
 export const GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetImpressionShareLocationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An automated bidding strategy that sets bids so that a certain percentage of search ads are shown at the top of the first page (or other targeted location). */
 export interface GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetImpressionShare {
@@ -5432,7 +5411,7 @@ export type GoogleAdsSearchads360V0Resources__CampaignAssetSetStatusEnum =
   | "ENABLED"
   | "REMOVED";
 export const GoogleAdsSearchads360V0Resources__CampaignAssetSetStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** CampaignAssetSet is the linkage between a campaign and an asset set. Adding a CampaignAssetSet links an asset set with a campaign. */
 export interface GoogleAdsSearchads360V0Resources__CampaignAssetSet {
@@ -5465,7 +5444,7 @@ export type GoogleAdsSearchads360V0Resources__GeoTargetConstantStatusEnum =
   | "ENABLED"
   | "REMOVAL_PLANNED";
 export const GoogleAdsSearchads360V0Resources__GeoTargetConstantStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A geo target constant. */
 export interface GoogleAdsSearchads360V0Resources__GeoTargetConstant {
@@ -5511,7 +5490,7 @@ export type GoogleAdsSearchads360V0Resources__ConversionActionStatusEnum =
   | "REMOVED"
   | "HIDDEN";
 export const GoogleAdsSearchads360V0Resources__ConversionActionStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Settings related to a Floodlight conversion action. */
 export interface GoogleAdsSearchads360V0Resources_ConversionAction_FloodlightSettings {
@@ -5599,7 +5578,7 @@ export type GoogleAdsSearchads360V0Resources__ConversionActionTypeEnum =
   | "GOOGLE_ANALYTICS_4_CUSTOM"
   | "GOOGLE_ANALYTICS_4_PURCHASE";
 export const GoogleAdsSearchads360V0Resources__ConversionActionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources_ConversionAction_AttributionModelSettingsAttributionModelEnum =
   | "UNSPECIFIED"
@@ -5612,7 +5591,7 @@ export type GoogleAdsSearchads360V0Resources_ConversionAction_AttributionModelSe
   | "GOOGLE_SEARCH_ATTRIBUTION_POSITION_BASED"
   | "GOOGLE_SEARCH_ATTRIBUTION_DATA_DRIVEN";
 export const GoogleAdsSearchads360V0Resources_ConversionAction_AttributionModelSettingsAttributionModelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources_ConversionAction_AttributionModelSettingsDataDrivenModelStatusEnum =
   | "UNSPECIFIED"
@@ -5622,7 +5601,7 @@ export type GoogleAdsSearchads360V0Resources_ConversionAction_AttributionModelSe
   | "EXPIRED"
   | "NEVER_GENERATED";
 export const GoogleAdsSearchads360V0Resources_ConversionAction_AttributionModelSettingsDataDrivenModelStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Settings related to this conversion action's attribution model. */
 export interface GoogleAdsSearchads360V0Resources_ConversionAction_AttributionModelSettings {
@@ -5672,7 +5651,7 @@ export type GoogleAdsSearchads360V0Resources__ConversionActionCategoryEnum =
   | "QUALIFIED_LEAD"
   | "CONVERTED_LEAD";
 export const GoogleAdsSearchads360V0Resources__ConversionActionCategoryEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A conversion action. */
 export interface GoogleAdsSearchads360V0Resources__ConversionAction {
@@ -5751,7 +5730,7 @@ export type GoogleAdsSearchads360V0Resources__ProductBiddingCategoryConstantStat
   | "ACTIVE"
   | "OBSOLETE";
 export const GoogleAdsSearchads360V0Resources__ProductBiddingCategoryConstantStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__ProductBiddingCategoryConstantLevelEnum =
   | "UNSPECIFIED"
@@ -5762,7 +5741,7 @@ export type GoogleAdsSearchads360V0Resources__ProductBiddingCategoryConstantLeve
   | "LEVEL4"
   | "LEVEL5";
 export const GoogleAdsSearchads360V0Resources__ProductBiddingCategoryConstantLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A Product Bidding Category. */
 export interface GoogleAdsSearchads360V0Resources__ProductBiddingCategoryConstant {
@@ -5840,7 +5819,7 @@ export type GoogleAdsSearchads360V0Resources__CustomerAccountLevelEnum =
   | "SUB_MANAGER"
   | "ASSOCIATE_MANAGER";
 export const GoogleAdsSearchads360V0Resources__CustomerAccountLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__ConversionTrackingSettingConversionTrackingStatusEnum =
   | "UNSPECIFIED"
@@ -5850,7 +5829,7 @@ export type GoogleAdsSearchads360V0Resources__ConversionTrackingSettingConversio
   | "CONVERSION_TRACKING_MANAGED_BY_THIS_MANAGER"
   | "CONVERSION_TRACKING_MANAGED_BY_ANOTHER_MANAGER";
 export const GoogleAdsSearchads360V0Resources__ConversionTrackingSettingConversionTrackingStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A collection of customer-wide settings related to Search Ads 360 Conversion Tracking. */
 export interface GoogleAdsSearchads360V0Resources__ConversionTrackingSetting {
@@ -5895,7 +5874,7 @@ export type GoogleAdsSearchads360V0Resources__CustomerAccountStatusEnum =
   | "REMOVED"
   | "DRAFT";
 export const GoogleAdsSearchads360V0Resources__CustomerAccountStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** DoubleClick Campaign Manager (DCM) setting for a manager customer. */
 export interface GoogleAdsSearchads360V0Resources__DoubleClickCampaignManagerSetting {
@@ -5930,7 +5909,7 @@ export type GoogleAdsSearchads360V0Resources__CustomerAccountTypeEnum =
   | "SEARCH_ADS_360"
   | "YAHOO_JAPAN";
 export const GoogleAdsSearchads360V0Resources__CustomerAccountTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__CustomerStatusEnum =
   | "UNSPECIFIED"
@@ -5939,8 +5918,7 @@ export type GoogleAdsSearchads360V0Resources__CustomerStatusEnum =
   | "CANCELED"
   | "SUSPENDED"
   | "CLOSED";
-export const GoogleAdsSearchads360V0Resources__CustomerStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Resources__CustomerStatusEnum = S.String;
 
 /** A customer. */
 export interface GoogleAdsSearchads360V0Resources__Customer {
@@ -6065,7 +6043,7 @@ export type GoogleAdsSearchads360V0Resources__CampaignAssetStatusEnum =
   | "REMOVED"
   | "PAUSED";
 export const GoogleAdsSearchads360V0Resources__CampaignAssetStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A link between a Campaign and an Asset. */
 export interface GoogleAdsSearchads360V0Resources__CampaignAsset {
@@ -6098,7 +6076,7 @@ export type GoogleAdsSearchads360V0Resources__CampaignBudgetDeliveryMethodEnum =
   | "STANDARD"
   | "ACCELERATED";
 export const GoogleAdsSearchads360V0Resources__CampaignBudgetDeliveryMethodEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__CampaignBudgetPeriodEnum =
   | "UNSPECIFIED"
@@ -6107,7 +6085,7 @@ export type GoogleAdsSearchads360V0Resources__CampaignBudgetPeriodEnum =
   | "FIXED_DAILY"
   | "CUSTOM_PERIOD";
 export const GoogleAdsSearchads360V0Resources__CampaignBudgetPeriodEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A campaign budget. */
 export interface GoogleAdsSearchads360V0Resources__CampaignBudget {
@@ -6232,7 +6210,7 @@ export type GoogleAdsSearchads360V0Resources__ConversionCustomVariableCardinalit
   | "APPROACHES_STATS_LIMIT"
   | "EXCEEDS_STATS_LIMIT";
 export const GoogleAdsSearchads360V0Resources__ConversionCustomVariableCardinalityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__ConversionCustomVariableStatusEnum =
   | "UNSPECIFIED"
@@ -6241,7 +6219,7 @@ export type GoogleAdsSearchads360V0Resources__ConversionCustomVariableStatusEnum
   | "ENABLED"
   | "PAUSED";
 export const GoogleAdsSearchads360V0Resources__ConversionCustomVariableStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__ConversionCustomVariableFamilyEnum =
   | "UNSPECIFIED"
@@ -6249,7 +6227,7 @@ export type GoogleAdsSearchads360V0Resources__ConversionCustomVariableFamilyEnum
   | "STANDARD"
   | "FLOODLIGHT";
 export const GoogleAdsSearchads360V0Resources__ConversionCustomVariableFamilyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources_ConversionCustomVariable_FloodlightConversionCustomVariableInfoFloodlightVariableTypeEnum =
   | "UNSPECIFIED"
@@ -6258,7 +6236,7 @@ export type GoogleAdsSearchads360V0Resources_ConversionCustomVariable_Floodlight
   | "METRIC"
   | "UNSET";
 export const GoogleAdsSearchads360V0Resources_ConversionCustomVariable_FloodlightConversionCustomVariableInfoFloodlightVariableTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources_ConversionCustomVariable_FloodlightConversionCustomVariableInfoFloodlightVariableDataTypeEnum =
   | "UNSPECIFIED"
@@ -6266,7 +6244,7 @@ export type GoogleAdsSearchads360V0Resources_ConversionCustomVariable_Floodlight
   | "NUMBER"
   | "STRING";
 export const GoogleAdsSearchads360V0Resources_ConversionCustomVariable_FloodlightConversionCustomVariableInfoFloodlightVariableDataTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information for Search Ads 360 Floodlight Conversion Custom Variables. */
 export interface GoogleAdsSearchads360V0Resources_ConversionCustomVariable_FloodlightConversionCustomVariableInfo {
@@ -6345,8 +6323,7 @@ export type GoogleAdsSearchads360V0Resources__AssetGroupStatusEnum =
   | "ENABLED"
   | "PAUSED"
   | "REMOVED";
-export const GoogleAdsSearchads360V0Resources__AssetGroupStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAdsSearchads360V0Resources__AssetGroupStatusEnum = S.String;
 
 export type GoogleAdsSearchads360V0Resources__AssetGroupAdStrengthEnum =
   | "UNSPECIFIED"
@@ -6358,7 +6335,7 @@ export type GoogleAdsSearchads360V0Resources__AssetGroupAdStrengthEnum =
   | "GOOD"
   | "EXCELLENT";
 export const GoogleAdsSearchads360V0Resources__AssetGroupAdStrengthEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An asset group. AssetGroupAsset is used to link an asset to the asset group. AssetGroupSignal is used to associate a signal to an asset group. */
 export interface GoogleAdsSearchads360V0Resources__AssetGroup {
@@ -6411,7 +6388,7 @@ export type GoogleAdsSearchads360V0Resources__CustomerAssetSetStatusEnum =
   | "ENABLED"
   | "REMOVED";
 export const GoogleAdsSearchads360V0Resources__CustomerAssetSetStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** CustomerAssetSet is the linkage between a customer and an asset set. Adding a CustomerAssetSet links an asset set with a customer. */
 export interface GoogleAdsSearchads360V0Resources__CustomerAssetSet {
@@ -6459,7 +6436,7 @@ export type GoogleAdsSearchads360V0Resources__AssetGroupAssetStatusEnum =
   | "REMOVED"
   | "PAUSED";
 export const GoogleAdsSearchads360V0Resources__AssetGroupAssetStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsSearchads360V0Resources__AssetGroupAssetFieldTypeEnum =
   | "UNSPECIFIED"
@@ -6495,7 +6472,7 @@ export type GoogleAdsSearchads360V0Resources__AssetGroupAssetFieldTypeEnum =
   | "LONG_DESCRIPTION"
   | "CALL_TO_ACTION";
 export const GoogleAdsSearchads360V0Resources__AssetGroupAssetFieldTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** AssetGroupAsset is the link between an asset and an asset group. Adding an AssetGroupAsset links an asset with an asset group. */
 export interface GoogleAdsSearchads360V0Resources__AssetGroupAsset {

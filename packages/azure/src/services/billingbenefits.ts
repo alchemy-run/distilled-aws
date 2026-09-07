@@ -43,7 +43,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -51,7 +51,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -90,7 +90,7 @@ export const CancelConditionalCreditResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Type of conditional credit entity */
 export type ConditionalCreditEntityType = "Primary" | "Contributor";
-export const ConditionalCreditEntityType = /*@__PURE__*/ S.String;
+export const ConditionalCreditEntityType = S.String;
 
 /** Provisioning state for billing benefit resources. Includes the standard terminal states (Succeeded, Failed, Canceled) plus benefit-specific transition states. */
 export type BenefitProvisioningState =
@@ -98,7 +98,7 @@ export type BenefitProvisioningState =
   | "Failed"
   | "Canceled"
   | "Pending";
-export const BenefitProvisioningState = /*@__PURE__*/ S.String;
+export const BenefitProvisioningState = S.String;
 
 /** The status of the conditional credit */
 export type ConditionalCreditStatus =
@@ -111,7 +111,7 @@ export type ConditionalCreditStatus =
   | "Completed"
   | "Stopped"
   | "PendingSettlement";
-export const ConditionalCreditStatus = /*@__PURE__*/ S.String;
+export const ConditionalCreditStatus = S.String;
 
 /** Common product detail properties shared across all benefit resources */
 export interface ProductDetailsBase {
@@ -137,7 +137,7 @@ export type BenefitAppliedScopeType =
   | "BillingAccount"
   | "BillingProfile"
   | "Customer";
-export const BenefitAppliedScopeType = /*@__PURE__*/ S.String;
+export const BenefitAppliedScopeType = S.String;
 
 export interface Price {
   /** The ISO 4217 3-letter currency code for the currency used by this purchase record. */
@@ -209,7 +209,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
@@ -263,7 +263,7 @@ export const CancelConditionalCreditResponseIdentity = /*@__PURE__*/ S.suspend(
 
 /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
 export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
-export const SkuTier = /*@__PURE__*/ S.String;
+export const SkuTier = S.String;
 
 /** The resource model definition representing SKU */
 export interface Sku {
@@ -402,7 +402,7 @@ export type CreditStatus =
   | "Expired"
   | "Exhausted"
   | "NotStarted";
-export const CreditStatus = /*@__PURE__*/ S.String;
+export const CreditStatus = S.String;
 
 /** The reason for the credit. Not required if not applicable. */
 export interface CreditReason {
@@ -420,7 +420,7 @@ export const CreditReason = /*@__PURE__*/ S.suspend(() =>
 
 /** Grain. */
 export type CommitmentGrain = "Hourly" | "FullTerm" | "Unknown";
-export const CommitmentGrain = /*@__PURE__*/ S.String;
+export const CommitmentGrain = S.String;
 
 /** Commitment towards the benefit. */
 export interface Commitment {
@@ -443,11 +443,11 @@ export type CreditRedemptionPolicy =
   | "NotApplicable"
   | "AutoRedeem"
   | "ManualRedeem";
-export const CreditRedemptionPolicy = /*@__PURE__*/ S.String;
+export const CreditRedemptionPolicy = S.String;
 
 /** Expiration policy of the Credit */
 export type CreditExpirationPolicy = "None" | "SuspendBillingProfile";
-export const CreditExpirationPolicy = /*@__PURE__*/ S.String;
+export const CreditExpirationPolicy = S.String;
 
 /** Credit breakdown item representing a milestone, line-item, or no-charge service */
 export interface CreditPolicies {
@@ -515,7 +515,7 @@ export const CreditPropertiesBreakdownList = /*@__PURE__*/ S.Array(
 
 /** Indicates where the credit benefit is applied */
 export type AppliedOn = "Consumption" | "Invoice" | "External";
-export const AppliedOn = /*@__PURE__*/ S.String;
+export const AppliedOn = S.String;
 
 /** Indicates where the credit benefit is applied (e.g., consume, invoice, or external application). */
 export type CreditProductDetailsAppliedOnList = Array<AppliedOn>;
@@ -738,7 +738,7 @@ export const CancelDiscountResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** This defines whether the entity being created is primary or affiliate. Supported values: primary, affiliate. Validation: Required, must match one of the 2 values. */
 export type DiscountEntityType = "Primary" | "Affiliate";
-export const DiscountEntityType = /*@__PURE__*/ S.String;
+export const DiscountEntityType = S.String;
 
 /** Represents the current status of the discount. */
 export type DiscountStatus =
@@ -747,7 +747,7 @@ export type DiscountStatus =
   | "Failed"
   | "Canceled"
   | "Expired";
-export const DiscountStatus = /*@__PURE__*/ S.String;
+export const DiscountStatus = S.String;
 
 /** Properties belonging to discounts. */
 export interface DiscountProperties {
@@ -937,15 +937,15 @@ export type MaccStatus =
   | "PendingSettlement"
   | "ShortfallCharged"
   | "ShortfallWaived";
-export const MaccStatus = /*@__PURE__*/ S.String;
+export const MaccStatus = S.String;
 
 /** Represents type of the object being operated on. Possible values are primary or contributor. */
 export type MaccEntityType = "Primary" | "Contributor";
-export const MaccEntityType = /*@__PURE__*/ S.String;
+export const MaccEntityType = S.String;
 
 /** Represents the enablement status of a feature or settings. */
 export type EnablementMode = "Unknown" | "Enabled" | "Disabled";
-export const EnablementMode = /*@__PURE__*/ S.String;
+export const EnablementMode = S.String;
 
 /** Optional field to record suppression reason for automatic shortfall. */
 export interface AutomaticShortfallSuppressReason {
@@ -1005,7 +1005,7 @@ export type MaccMilestoneStatus =
   | "PendingSettlement"
   | "ShortfallCharged"
   | "ShortfallWaived";
-export const MaccMilestoneStatus = /*@__PURE__*/ S.String;
+export const MaccMilestoneStatus = S.String;
 
 /** MACC milestone represents interim targets within the period of MACC. */
 export interface MaccMilestone {
@@ -1858,7 +1858,7 @@ export type FreeServicesStatus =
   | "Active"
   | "Canceled"
   | "Completed";
-export const FreeServicesStatus = /*@__PURE__*/ S.String;
+export const FreeServicesStatus = S.String;
 
 /** Properties of free services */
 export interface FreeServicesPropertiesInput {
@@ -2360,15 +2360,15 @@ export const ResourceSku = /*@__PURE__*/ S.suspend(() =>
 
 /** Represent benefit term in ISO 8601 format. */
 export type Term = "P1M" | "P1Y" | "P3Y" | "P5Y";
-export const Term = /*@__PURE__*/ S.String;
+export const Term = S.String;
 
 /** Represents the billing plan in ISO 8601 format. Required only for monthly billing plans. */
 export type BillingPlan = "P1M";
-export const BillingPlan = /*@__PURE__*/ S.String;
+export const BillingPlan = S.String;
 
 /** Type of the Applied Scope. */
 export type AppliedScopeType = "Single" | "Shared" | "ManagementGroup";
-export const AppliedScopeType = /*@__PURE__*/ S.String;
+export const AppliedScopeType = S.String;
 
 /** Properties specific to applied scope type. Not required if not applicable. */
 export interface AppliedScopeProperties {
@@ -2400,7 +2400,7 @@ export const AppliedScopeProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** Represents the renewal action for a reservation to be a new purchase or existing renewal. */
 export type RenewAction = "CreateNew" | "RenewExisting";
-export const RenewAction = /*@__PURE__*/ S.String;
+export const RenewAction = S.String;
 
 /** The type of the resource that is being reserved. */
 export type ReservedResourceType =
@@ -2430,11 +2430,11 @@ export type ReservedResourceType =
   | "AzureFiles"
   | "SqlEdge"
   | "VirtualMachineSoftware";
-export const ReservedResourceType = /*@__PURE__*/ S.String;
+export const ReservedResourceType = S.String;
 
 /** Turning this on will apply the reservation discount to other VMs in the same VM size group. */
 export type InstanceFlexibility = "On" | "Off";
-export const InstanceFlexibility = /*@__PURE__*/ S.String;
+export const InstanceFlexibility = S.String;
 
 /** Properties specific to each reserved resource type. Not required if not applicable. */
 export interface ReservationOrderAliasRequestPropertiesReservedResourceProperties {
@@ -2541,7 +2541,7 @@ export type ProvisioningState =
   | "Cancelled"
   | "Expired"
   | "Failed";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Properties specific to each reserved resource type. Not required if not applicable. */
 export interface ReservationOrderAliasResponsePropertiesReservedResourceProperties {
@@ -3259,7 +3259,7 @@ export type ResourceType =
   | "FreeServices"
   | "SavingsPlans"
   | "Reservations";
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 /** Manifest-sourced array of search terms for this catalog group. Omitted when empty. */
 export type CatalogGroupPropertiesKeywordsList = Array<string>;
@@ -3566,7 +3566,7 @@ export type MilestoneStatus =
   | "Removed"
   | "PendingSettlement"
   | "Missed";
-export const MilestoneStatus = /*@__PURE__*/ S.String;
+export const MilestoneStatus = S.String;
 
 /** Award details for milestone completion */
 export interface Award {
@@ -3756,11 +3756,11 @@ export const GetConditionalCreditTransactionRequest = /*@__PURE__*/ S.suspend(
 
 /** The type of charge for a transaction. */
 export type TransactionChargeType = "Usage" | "Purchase" | "Refund";
-export const TransactionChargeType = /*@__PURE__*/ S.String;
+export const TransactionChargeType = S.String;
 
 /** Billing lifecycle status of a transaction. */
 export type TransactionBillingStatus = "Open" | "Closed";
-export const TransactionBillingStatus = /*@__PURE__*/ S.String;
+export const TransactionBillingStatus = S.String;
 
 /** Product details for a transaction */
 export interface TransactionProductDetails {
@@ -4747,7 +4747,7 @@ export const GetSavingsPlanOrderRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Describes whether the payment is completed, failed, cancelled or scheduled in the future. */
 export type PaymentStatus = "Succeeded" | "Failed" | "Scheduled" | "Cancelled";
-export const PaymentStatus = /*@__PURE__*/ S.String;
+export const PaymentStatus = S.String;
 
 /** Information about payment related to a savings plan order. */
 export interface PaymentDetail {
@@ -6424,11 +6424,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -8371,7 +8371,7 @@ export type BenefitType =
   | "Reservations"
   | "SavingsPlan"
   | "MACC";
-export const BenefitType = /*@__PURE__*/ S.String;
+export const BenefitType = S.String;
 
 /** Abstract benefit model to validate. */
 export interface BenefitValidateModel {

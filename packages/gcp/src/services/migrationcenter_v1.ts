@@ -470,13 +470,13 @@ export type DiskEntryInterfaceTypeEnum =
   | "NVME"
   | "FC"
   | "ISCSI";
-export const DiskEntryInterfaceTypeEnum = /*@__PURE__*/ S.String;
+export const DiskEntryInterfaceTypeEnum = S.String;
 
 export type VmwareDiskConfigRdmCompatibilityEnum =
   | "RDM_COMPATIBILITY_UNSPECIFIED"
   | "PHYSICAL_COMPATIBILITY"
   | "VIRTUAL_COMPATIBILITY";
-export const VmwareDiskConfigRdmCompatibilityEnum = /*@__PURE__*/ S.String;
+export const VmwareDiskConfigRdmCompatibilityEnum = S.String;
 
 export type VmwareDiskConfigBackingTypeEnum =
   | "BACKING_TYPE_UNSPECIFIED"
@@ -488,14 +488,14 @@ export type VmwareDiskConfigBackingTypeEnum =
   | "BACKING_TYPE_SESPARSE"
   | "BACKING_TYPE_SESPARSE_V1"
   | "BACKING_TYPE_SESPARSE_V2";
-export const VmwareDiskConfigBackingTypeEnum = /*@__PURE__*/ S.String;
+export const VmwareDiskConfigBackingTypeEnum = S.String;
 
 export type VmwareDiskConfigVmdkModeEnum =
   | "VMDK_MODE_UNSPECIFIED"
   | "DEPENDENT"
   | "INDEPENDENT_PERSISTENT"
   | "INDEPENDENT_NONPERSISTENT";
-export const VmwareDiskConfigVmdkModeEnum = /*@__PURE__*/ S.String;
+export const VmwareDiskConfigVmdkModeEnum = S.String;
 
 /** VMware disk config details. */
 export interface VmwareDiskConfig {
@@ -638,7 +638,7 @@ export type GuestOsDetailsFamilyEnum =
   | "OS_FAMILY_WINDOWS"
   | "OS_FAMILY_LINUX"
   | "OS_FAMILY_UNIX";
-export const GuestOsDetailsFamilyEnum = /*@__PURE__*/ S.String;
+export const GuestOsDetailsFamilyEnum = S.String;
 
 /** Single fstab entry. */
 export interface FstabEntry {
@@ -717,7 +717,7 @@ export type GuestConfigDetailsSelinuxModeEnum =
   | "SE_LINUX_MODE_DISABLED"
   | "SE_LINUX_MODE_PERMISSIVE"
   | "SE_LINUX_MODE_ENFORCING";
-export const GuestConfigDetailsSelinuxModeEnum = /*@__PURE__*/ S.String;
+export const GuestConfigDetailsSelinuxModeEnum = S.String;
 
 /** Single /etc/hosts entry. */
 export interface HostsEntry {
@@ -781,14 +781,14 @@ export type RunningServiceStartModeEnum =
   | "AUTO"
   | "MANUAL"
   | "DISABLED";
-export const RunningServiceStartModeEnum = /*@__PURE__*/ S.String;
+export const RunningServiceStartModeEnum = S.String;
 
 export type RunningServiceStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "PAUSED"
   | "STOPPED";
-export const RunningServiceStateEnum = /*@__PURE__*/ S.String;
+export const RunningServiceStateEnum = S.String;
 
 /** Guest OS running service details. */
 export interface RunningService {
@@ -841,7 +841,7 @@ export type NetworkConnectionStateEnum =
   | "LISTEN"
   | "CLOSING"
   | "CLOSED";
-export const NetworkConnectionStateEnum = /*@__PURE__*/ S.String;
+export const NetworkConnectionStateEnum = S.String;
 
 export interface NetworkConnection {
   /** Process ID. */
@@ -1115,15 +1115,13 @@ export type MachineArchitectureDetailsHyperthreadingEnum =
   | "CPU_HYPER_THREADING_UNSPECIFIED"
   | "DISABLED"
   | "ENABLED";
-export const MachineArchitectureDetailsHyperthreadingEnum =
-  /*@__PURE__*/ S.String;
+export const MachineArchitectureDetailsHyperthreadingEnum = S.String;
 
 export type MachineArchitectureDetailsFirmwareTypeEnum =
   | "FIRMWARE_TYPE_UNSPECIFIED"
   | "BIOS"
   | "EFI";
-export const MachineArchitectureDetailsFirmwareTypeEnum =
-  /*@__PURE__*/ S.String;
+export const MachineArchitectureDetailsFirmwareTypeEnum = S.String;
 
 /** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
 export interface Migrationcenter_Date {
@@ -1215,13 +1213,13 @@ export type MachineDetailsPowerStateEnum =
   | "SUSPENDED"
   | "DELETING"
   | "DELETED";
-export const MachineDetailsPowerStateEnum = /*@__PURE__*/ S.String;
+export const MachineDetailsPowerStateEnum = S.String;
 
 export type NetworkAddressAssignmentEnum =
   | "ADDRESS_ASSIGNMENT_UNSPECIFIED"
   | "ADDRESS_ASSIGNMENT_STATIC"
   | "ADDRESS_ASSIGNMENT_DHCP";
-export const NetworkAddressAssignmentEnum = /*@__PURE__*/ S.String;
+export const NetworkAddressAssignmentEnum = S.String;
 
 /** Details of network address. */
 export interface NetworkAddress {
@@ -1330,7 +1328,7 @@ export type AwsEc2PlatformDetailsHyperthreadingEnum =
   | "HYPERTHREADING_STATUS_UNSPECIFIED"
   | "HYPERTHREADING_STATUS_DISABLED"
   | "HYPERTHREADING_STATUS_ENABLED";
-export const AwsEc2PlatformDetailsHyperthreadingEnum = /*@__PURE__*/ S.String;
+export const AwsEc2PlatformDetailsHyperthreadingEnum = S.String;
 
 /** AWS EC2 specific details. */
 export interface AwsEc2PlatformDetails {
@@ -1355,7 +1353,7 @@ export type PhysicalPlatformDetailsHyperthreadingEnum =
   | "HYPERTHREADING_STATUS_UNSPECIFIED"
   | "HYPERTHREADING_STATUS_DISABLED"
   | "HYPERTHREADING_STATUS_ENABLED";
-export const PhysicalPlatformDetailsHyperthreadingEnum = /*@__PURE__*/ S.String;
+export const PhysicalPlatformDetailsHyperthreadingEnum = S.String;
 
 /** Platform specific details for Physical Machines. */
 export interface PhysicalPlatformDetails {
@@ -1377,7 +1375,7 @@ export type GenericPlatformDetailsHyperthreadingEnum =
   | "HYPERTHREADING_STATUS_UNSPECIFIED"
   | "HYPERTHREADING_STATUS_DISABLED"
   | "HYPERTHREADING_STATUS_ENABLED";
-export const GenericPlatformDetailsHyperthreadingEnum = /*@__PURE__*/ S.String;
+export const GenericPlatformDetailsHyperthreadingEnum = S.String;
 
 /** Generic platform details. */
 export interface GenericPlatformDetails {
@@ -1399,8 +1397,7 @@ export type VmwarePlatformDetailsEsxHyperthreadingEnum =
   | "HYPERTHREADING_STATUS_UNSPECIFIED"
   | "HYPERTHREADING_STATUS_DISABLED"
   | "HYPERTHREADING_STATUS_ENABLED";
-export const VmwarePlatformDetailsEsxHyperthreadingEnum =
-  /*@__PURE__*/ S.String;
+export const VmwarePlatformDetailsEsxHyperthreadingEnum = S.String;
 
 /** VMware specific details. */
 export interface VmwarePlatformDetails {
@@ -1439,7 +1436,7 @@ export type AzureVmPlatformDetailsHyperthreadingEnum =
   | "HYPERTHREADING_STATUS_UNSPECIFIED"
   | "HYPERTHREADING_STATUS_DISABLED"
   | "HYPERTHREADING_STATUS_ENABLED";
-export const AzureVmPlatformDetailsHyperthreadingEnum = /*@__PURE__*/ S.String;
+export const AzureVmPlatformDetailsHyperthreadingEnum = S.String;
 
 /** Azure VM specific details. */
 export interface AzureVmPlatformDetails {
@@ -1562,7 +1559,7 @@ export type MySqlStorageEngineDetailsEngineEnum =
   | "FEDERATED"
   | "EXAMPLE"
   | "OTHER";
-export const MySqlStorageEngineDetailsEngineEnum = /*@__PURE__*/ S.String;
+export const MySqlStorageEngineDetailsEngineEnum = S.String;
 
 /** Mysql storage engine tables. */
 export interface MySqlStorageEngineDetails {
@@ -1622,7 +1619,7 @@ export type DatabaseObjectsCategoryEnum =
   | "VIEWS"
   | "SOURCE_CODE"
   | "OTHER";
-export const DatabaseObjectsCategoryEnum = /*@__PURE__*/ S.String;
+export const DatabaseObjectsCategoryEnum = S.String;
 
 /** Details of a group of database objects. */
 export interface DatabaseObjects {
@@ -1759,7 +1756,7 @@ export type FitDescriptorFitLevelEnum =
   | "FIT"
   | "NO_FIT"
   | "REQUIRES_EFFORT";
-export const FitDescriptorFitLevelEnum = /*@__PURE__*/ S.String;
+export const FitDescriptorFitLevelEnum = S.String;
 
 /** Describes the fit level of an asset for migration to a specific target. */
 export interface FitDescriptor {
@@ -1777,7 +1774,7 @@ export type ComputeStorageDescriptorTypeEnum =
   | "PERSISTENT_DISK_TYPE_STANDARD"
   | "PERSISTENT_DISK_TYPE_BALANCED"
   | "PERSISTENT_DISK_TYPE_SSD";
-export const ComputeStorageDescriptorTypeEnum = /*@__PURE__*/ S.String;
+export const ComputeStorageDescriptorTypeEnum = S.String;
 
 /** Compute Engine storage option descriptor. */
 export interface ComputeStorageDescriptor {
@@ -1899,7 +1896,7 @@ export type DatabaseInstanceRoleEnum =
   | "PRIMARY"
   | "SECONDARY"
   | "ARBITER";
-export const DatabaseInstanceRoleEnum = /*@__PURE__*/ S.String;
+export const DatabaseInstanceRoleEnum = S.String;
 
 /** Network details of a database instance. */
 export interface DatabaseInstanceNetwork {
@@ -2007,7 +2004,7 @@ export type SqlServerTraceFlagScopeEnum =
   | "OFF"
   | "GLOBAL"
   | "SESSION";
-export const SqlServerTraceFlagScopeEnum = /*@__PURE__*/ S.String;
+export const SqlServerTraceFlagScopeEnum = S.String;
 
 /** SQL Server trace flag details. */
 export interface SqlServerTraceFlag {
@@ -2588,7 +2585,7 @@ export type SignedUriDestinationFileFormatEnum =
   | "FILE_FORMAT_UNSPECIFIED"
   | "CSV"
   | "XLSX";
-export const SignedUriDestinationFileFormatEnum = /*@__PURE__*/ S.String;
+export const SignedUriDestinationFileFormatEnum = S.String;
 
 /** Signed URI destination configuration. */
 export interface SignedUriDestination {
@@ -2858,7 +2855,7 @@ export type DiscoveryClientStateEnum =
   | "OFFLINE"
   | "DEGRADED"
   | "EXPIRED";
-export const DiscoveryClientStateEnum = /*@__PURE__*/ S.String;
+export const DiscoveryClientStateEnum = S.String;
 
 /** Represents an installed Migration Center Discovery Client instance. */
 export interface DiscoveryClient {
@@ -3002,7 +2999,7 @@ export type ImportErrorSeverityEnum =
   | "ERROR"
   | "WARNING"
   | "INFO";
-export const ImportErrorSeverityEnum = /*@__PURE__*/ S.String;
+export const ImportErrorSeverityEnum = S.String;
 
 /** A resource that reports the errors encountered while processing an import job. */
 export interface ImportError {
@@ -3176,7 +3173,7 @@ export type ImportJobStateEnum =
   | "IMPORT_JOB_STATE_VALIDATING"
   | "IMPORT_JOB_STATE_FAILED_VALIDATION"
   | "IMPORT_JOB_STATE_READY";
-export const ImportJobStateEnum = /*@__PURE__*/ S.String;
+export const ImportJobStateEnum = S.String;
 
 /** A resource that represents the background job that imports asset frames. */
 export interface ImportJob {
@@ -3252,7 +3249,7 @@ export type ImportDataFileFormatEnum =
   | "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV"
   | "IMPORT_JOB_FORMAT_STRATOZONE_CSV"
   | "IMPORT_JOB_FORMAT_DATABASE_ZIP";
-export const ImportDataFileFormatEnum = /*@__PURE__*/ S.String;
+export const ImportDataFileFormatEnum = S.String;
 
 /** A resource that contains a URI to which a data file can be uploaded. */
 export interface UploadFileInfo {
@@ -3275,7 +3272,7 @@ export type ImportDataFileStateEnum =
   | "STATE_UNSPECIFIED"
   | "CREATING"
   | "ACTIVE";
-export const ImportDataFileStateEnum = /*@__PURE__*/ S.String;
+export const ImportDataFileStateEnum = S.String;
 
 /** A resource that represents a payload file in an import job. */
 export interface ImportDataFile {
@@ -3336,8 +3333,7 @@ export type VirtualMachinePreferencesSizingOptimizationStrategyEnum =
   | "SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE"
   | "SIZING_OPTIMIZATION_STRATEGY_MODERATE"
   | "SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE";
-export const VirtualMachinePreferencesSizingOptimizationStrategyEnum =
-  /*@__PURE__*/ S.String;
+export const VirtualMachinePreferencesSizingOptimizationStrategyEnum = S.String;
 
 /** The user preferences relating to target regions. */
 export interface RegionPreferences {
@@ -3356,7 +3352,7 @@ export type ComputeEnginePreferencesLicenseTypeEnum =
   | "LICENSE_TYPE_UNSPECIFIED"
   | "LICENSE_TYPE_DEFAULT"
   | "LICENSE_TYPE_BRING_YOUR_OWN_LICENSE";
-export const ComputeEnginePreferencesLicenseTypeEnum = /*@__PURE__*/ S.String;
+export const ComputeEnginePreferencesLicenseTypeEnum = S.String;
 
 /** A machine series, for a target product (e.g. Compute Engine, Google Cloud VMware Engine). */
 export interface MachineSeries {
@@ -3392,8 +3388,7 @@ export type ComputeEnginePreferencesPersistentDiskTypeEnum =
   | "PERSISTENT_DISK_TYPE_STANDARD"
   | "PERSISTENT_DISK_TYPE_BALANCED"
   | "PERSISTENT_DISK_TYPE_SSD";
-export const ComputeEnginePreferencesPersistentDiskTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ComputeEnginePreferencesPersistentDiskTypeEnum = S.String;
 
 /** The user preferences relating to Compute Engine target platform. */
 export interface ComputeEnginePreferences {
@@ -3441,15 +3436,14 @@ export type SoleTenancyPreferencesHostMaintenancePolicyEnum =
   | "HOST_MAINTENANCE_POLICY_DEFAULT"
   | "HOST_MAINTENANCE_POLICY_RESTART_IN_PLACE"
   | "HOST_MAINTENANCE_POLICY_MIGRATE_WITHIN_NODE_GROUP";
-export const SoleTenancyPreferencesHostMaintenancePolicyEnum =
-  /*@__PURE__*/ S.String;
+export const SoleTenancyPreferencesHostMaintenancePolicyEnum = S.String;
 
 export type SoleTenancyPreferencesCommitmentPlanEnum =
   | "COMMITMENT_PLAN_UNSPECIFIED"
   | "ON_DEMAND"
   | "COMMITMENT_1_YEAR"
   | "COMMITMENT_3_YEAR";
-export const SoleTenancyPreferencesCommitmentPlanEnum = /*@__PURE__*/ S.String;
+export const SoleTenancyPreferencesCommitmentPlanEnum = S.String;
 
 /** Preferences concerning Sole Tenancy nodes and VMs. */
 export interface SoleTenancyPreferences {
@@ -3482,8 +3476,7 @@ export type VirtualMachinePreferencesCommitmentPlanEnum =
   | "COMMITMENT_PLAN_NONE"
   | "COMMITMENT_PLAN_ONE_YEAR"
   | "COMMITMENT_PLAN_THREE_YEARS";
-export const VirtualMachinePreferencesCommitmentPlanEnum =
-  /*@__PURE__*/ S.String;
+export const VirtualMachinePreferencesCommitmentPlanEnum = S.String;
 
 export type VmwareEnginePreferencesCommitmentPlanEnum =
   | "COMMITMENT_PLAN_UNSPECIFIED"
@@ -3492,7 +3485,7 @@ export type VmwareEnginePreferencesCommitmentPlanEnum =
   | "COMMITMENT_3_YEAR_MONTHLY_PAYMENTS"
   | "COMMITMENT_1_YEAR_UPFRONT_PAYMENT"
   | "COMMITMENT_3_YEAR_UPFRONT_PAYMENT";
-export const VmwareEnginePreferencesCommitmentPlanEnum = /*@__PURE__*/ S.String;
+export const VmwareEnginePreferencesCommitmentPlanEnum = S.String;
 
 /** The user preferences relating to Google Cloud VMware Engine target platform. */
 export interface VmwareEnginePreferences {
@@ -3521,8 +3514,7 @@ export type VirtualMachinePreferencesTargetProductEnum =
   | "COMPUTE_MIGRATION_TARGET_PRODUCT_COMPUTE_ENGINE"
   | "COMPUTE_MIGRATION_TARGET_PRODUCT_VMWARE_ENGINE"
   | "COMPUTE_MIGRATION_TARGET_PRODUCT_SOLE_TENANCY";
-export const VirtualMachinePreferencesTargetProductEnum =
-  /*@__PURE__*/ S.String;
+export const VirtualMachinePreferencesTargetProductEnum = S.String;
 
 /** VirtualMachinePreferences enables you to create sets of assumptions, for example, a geographical location and pricing track, for your migrated virtual machines. The set of preferences influence recommendations for migrating virtual machine assets. */
 export interface VirtualMachinePreferences {
@@ -3694,14 +3686,14 @@ export const CreateProjectsLocationsReportConfigsRequest =
   }) as any as S.Schema<CreateProjectsLocationsReportConfigsRequest>;
 
 export type ReportTypeEnum = "TYPE_UNSPECIFIED" | "TOTAL_COST_OF_OWNERSHIP";
-export const ReportTypeEnum = /*@__PURE__*/ S.String;
+export const ReportTypeEnum = S.String;
 
 export type ReportStateEnum =
   | "STATE_UNSPECIFIED"
   | "PENDING"
   | "SUCCEEDED"
   | "FAILED";
-export const ReportStateEnum = /*@__PURE__*/ S.String;
+export const ReportStateEnum = S.String;
 
 /** A histogram bucket with a lower and upper bound, and a count of items with a field value between those bounds. The lower bound is inclusive and the upper bound is exclusive. Lower bound may be -infinity and upper bound may be infinity. */
 export interface ReportSummaryHistogramChartDataBucket {
@@ -3904,7 +3896,7 @@ export type ReportSummaryComputeEngineFindingAllocatedDiskTypesItemEnum =
   | "PERSISTENT_DISK_TYPE_BALANCED"
   | "PERSISTENT_DISK_TYPE_SSD";
 export const ReportSummaryComputeEngineFindingAllocatedDiskTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReportSummaryComputeEngineFindingAllocatedDiskTypesItemEnumList =
   Array<
@@ -4185,7 +4177,7 @@ export type SourceStateEnum =
   | "ACTIVE"
   | "DELETING"
   | "INVALID";
-export const SourceStateEnum = /*@__PURE__*/ S.String;
+export const SourceStateEnum = S.String;
 
 export type SourceTypeEnum =
   | "SOURCE_TYPE_UNKNOWN"
@@ -4194,7 +4186,7 @@ export type SourceTypeEnum =
   | "SOURCE_TYPE_INVENTORY_SCAN"
   | "SOURCE_TYPE_CUSTOM"
   | "SOURCE_TYPE_DISCOVERY_CLIENT";
-export const SourceTypeEnum = /*@__PURE__*/ S.String;
+export const SourceTypeEnum = S.String;
 
 /** Source represents an object from which asset information is streamed to Migration Center. */
 export interface Source {
@@ -4555,7 +4547,7 @@ export type GetProjectsLocationsAssetsViewEnum =
   | "ASSET_VIEW_STANDARD"
   | "ASSET_VIEW_UI"
   | "ASSET_VIEW_LABELS";
-export const GetProjectsLocationsAssetsViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsAssetsViewEnum = S.String;
 
 export interface GetProjectsLocationsAssetsRequest {
   /** Required. Name of the resource. */
@@ -4638,7 +4630,7 @@ export type GetProjectsLocationsImportJobsViewEnum =
   | "IMPORT_JOB_VIEW_UNSPECIFIED"
   | "IMPORT_JOB_VIEW_BASIC"
   | "IMPORT_JOB_VIEW_FULL";
-export const GetProjectsLocationsImportJobsViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsImportJobsViewEnum = S.String;
 
 export interface GetProjectsLocationsImportJobsRequest {
   /** Required. Name of the resource. */
@@ -4742,7 +4734,7 @@ export type RelationTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "LOGICAL_DATABASE"
   | "DATABASE_DEPLOYMENT_HOSTING_SERVER";
-export const RelationTypeEnum = /*@__PURE__*/ S.String;
+export const RelationTypeEnum = S.String;
 
 /** Message representing a relation between 2 resource. */
 export interface Relation {
@@ -4791,8 +4783,7 @@ export type GetProjectsLocationsReportConfigsReportsViewEnum =
   | "REPORT_VIEW_BASIC"
   | "REPORT_VIEW_FULL"
   | "REPORT_VIEW_STANDARD";
-export const GetProjectsLocationsReportConfigsReportsViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsReportConfigsReportsViewEnum = S.String;
 
 export interface GetProjectsLocationsReportConfigsReportsRequest {
   /** Determines what information to retrieve for the Report. */
@@ -4840,8 +4831,7 @@ export type GetProjectsLocationsSourcesErrorFramesViewEnum =
   | "ERROR_FRAME_VIEW_UNSPECIFIED"
   | "ERROR_FRAME_VIEW_BASIC"
   | "ERROR_FRAME_VIEW_FULL";
-export const GetProjectsLocationsSourcesErrorFramesViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsSourcesErrorFramesViewEnum = S.String;
 
 export interface GetProjectsLocationsSourcesErrorFramesRequest {
   /** Required. The name of the frame to retrieve. Format: projects/{project}/locations/{location}/sources/{source}/errorFrames/{error_frame} */
@@ -4895,7 +4885,7 @@ export type AssetFrameCollectionTypeEnum =
   | "SOURCE_TYPE_INVENTORY_SCAN"
   | "SOURCE_TYPE_CUSTOM"
   | "SOURCE_TYPE_DISCOVERY_CLIENT";
-export const AssetFrameCollectionTypeEnum = /*@__PURE__*/ S.String;
+export const AssetFrameCollectionTypeEnum = S.String;
 
 /** CPU usage sample. */
 export interface CpuUsageSample {
@@ -5134,7 +5124,7 @@ export type ListProjectsLocationsAssetsViewEnum =
   | "ASSET_VIEW_STANDARD"
   | "ASSET_VIEW_UI"
   | "ASSET_VIEW_LABELS";
-export const ListProjectsLocationsAssetsViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsLocationsAssetsViewEnum = S.String;
 
 export interface ListProjectsLocationsAssetsRequest {
   /** Field to sort by. See https://google.aip.dev/132#ordering for more details. */
@@ -5350,7 +5340,7 @@ export type ListProjectsLocationsImportJobsViewEnum =
   | "IMPORT_JOB_VIEW_UNSPECIFIED"
   | "IMPORT_JOB_VIEW_BASIC"
   | "IMPORT_JOB_VIEW_FULL";
-export const ListProjectsLocationsImportJobsViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsLocationsImportJobsViewEnum = S.String;
 
 export interface ListProjectsLocationsImportJobsRequest {
   /** Filtering results. */
@@ -5684,8 +5674,7 @@ export type ListProjectsLocationsReportConfigsReportsViewEnum =
   | "REPORT_VIEW_BASIC"
   | "REPORT_VIEW_FULL"
   | "REPORT_VIEW_STANDARD";
-export const ListProjectsLocationsReportConfigsReportsViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsReportConfigsReportsViewEnum = S.String;
 
 export interface ListProjectsLocationsReportConfigsReportsRequest {
   /** Determines what information to retrieve for each Report. */
@@ -5805,8 +5794,7 @@ export type ListProjectsLocationsSourcesErrorFramesViewEnum =
   | "ERROR_FRAME_VIEW_UNSPECIFIED"
   | "ERROR_FRAME_VIEW_BASIC"
   | "ERROR_FRAME_VIEW_FULL";
-export const ListProjectsLocationsSourcesErrorFramesViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsSourcesErrorFramesViewEnum = S.String;
 
 export interface ListProjectsLocationsSourcesErrorFramesRequest {
   /** Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. */

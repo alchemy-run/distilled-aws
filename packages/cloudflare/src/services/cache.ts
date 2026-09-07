@@ -167,8 +167,7 @@ export type OriginCloudRegionsBulkUpdateRequestBodyItemVendor =
   | "azure"
   | "gcp"
   | "oci";
-export const OriginCloudRegionsBulkUpdateRequestBodyItemVendor =
-  /*@__PURE__*/ S.String;
+export const OriginCloudRegionsBulkUpdateRequestBodyItemVendor = S.String;
 
 export interface OriginCloudRegionsBulkUpdateRequestBodyItem {
   /** Origin IP address (IPv4 or IPv6). For the single PUT endpoint (`PUT /origin/cloud_regions/{origin_ip}`), this field must match the path parameter or the request will be rejected with a 400 error. For the batch PUT endpoint, this field identifies which mapping to upsert. */
@@ -279,10 +278,10 @@ export const ClearCacheReserveRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ClearCacheReserveRequest>;
 
 export type CacheReserveClearResponseId = "cache_reserve_clear";
-export const CacheReserveClearResponseId = /*@__PURE__*/ S.String;
+export const CacheReserveClearResponseId = S.String;
 
 export type CacheReserveClearResponseState = "In-progress" | "Completed";
-export const CacheReserveClearResponseState = /*@__PURE__*/ S.String;
+export const CacheReserveClearResponseState = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface ClearCacheReserveResponse {
@@ -310,7 +309,7 @@ export const ClearCacheReserveResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ClearCacheReserveResponse>;
 
 export type SmartTieredCacheCreateRequestValue = "on" | "off";
-export const SmartTieredCacheCreateRequestValue = /*@__PURE__*/ S.String;
+export const SmartTieredCacheCreateRequestValue = S.String;
 
 export interface CreateSmartTieredCacheRequest {
   /** Identifier. */
@@ -337,10 +336,10 @@ export const CreateSmartTieredCacheRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type SmartTieredCacheCreateResponseId =
   "tiered_cache_smart_topology_enable";
-export const SmartTieredCacheCreateResponseId = /*@__PURE__*/ S.String;
+export const SmartTieredCacheCreateResponseId = S.String;
 
 export type SmartTieredCacheCreateResponseValue = "on" | "off";
-export const SmartTieredCacheCreateResponseValue = /*@__PURE__*/ S.String;
+export const SmartTieredCacheCreateResponseValue = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateSmartTieredCacheResponse {
@@ -421,7 +420,7 @@ export const DeleteSmartTieredCacheRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type SmartTieredCacheDeleteResponseId =
   "tiered_cache_smart_topology_enable";
-export const SmartTieredCacheDeleteResponseId = /*@__PURE__*/ S.String;
+export const SmartTieredCacheDeleteResponseId = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeleteSmartTieredCacheResponse {
@@ -463,7 +462,7 @@ export const DeleteVariantRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteVariantRequest>;
 
 export type VariantsDeleteResponseId = "variants";
-export const VariantsDeleteResponseId = /*@__PURE__*/ S.String;
+export const VariantsDeleteResponseId = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeleteVariantResponse {
@@ -505,10 +504,10 @@ export const GetCacheReserveRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCacheReserveRequest>;
 
 export type CacheReserveGetResponseId = "cache_reserve";
-export const CacheReserveGetResponseId = /*@__PURE__*/ S.String;
+export const CacheReserveGetResponseId = S.String;
 
 export type CacheReserveGetResponseValue = "on" | "off";
-export const CacheReserveGetResponseValue = /*@__PURE__*/ S.String;
+export const CacheReserveGetResponseValue = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetCacheReserveResponse {
@@ -559,7 +558,7 @@ export type OriginCloudRegionsGetResponseVendor =
   | "azure"
   | "gcp"
   | "oci";
-export const OriginCloudRegionsGetResponseVendor = /*@__PURE__*/ S.String;
+export const OriginCloudRegionsGetResponseVendor = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetOriginCloudRegionResponse {
@@ -604,10 +603,10 @@ export const GetRegionalTieredCacheRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetRegionalTieredCacheRequest>;
 
 export type RegionalTieredCacheGetResponseId = "tc_regional";
-export const RegionalTieredCacheGetResponseId = /*@__PURE__*/ S.String;
+export const RegionalTieredCacheGetResponseId = S.String;
 
 export type RegionalTieredCacheGetResponseValue = "on" | "off";
-export const RegionalTieredCacheGetResponseValue = /*@__PURE__*/ S.String;
+export const RegionalTieredCacheGetResponseValue = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetRegionalTieredCacheResponse {
@@ -653,10 +652,10 @@ export const GetSmartTieredCacheRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type SmartTieredCacheGetResponseId =
   "tiered_cache_smart_topology_enable";
-export const SmartTieredCacheGetResponseId = /*@__PURE__*/ S.String;
+export const SmartTieredCacheGetResponseId = S.String;
 
 export type SmartTieredCacheGetResponseValue = "on" | "off";
-export const SmartTieredCacheGetResponseValue = /*@__PURE__*/ S.String;
+export const SmartTieredCacheGetResponseValue = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetSmartTieredCacheResponse {
@@ -701,7 +700,7 @@ export const GetVariantRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVariantRequest>;
 
 export type VariantsGetResponseId = "variants";
-export const VariantsGetResponseId = /*@__PURE__*/ S.String;
+export const VariantsGetResponseId = S.String;
 
 export type VariantsGetResponseValueAvifList = Array<string>;
 export const VariantsGetResponseValueAvifList = /*@__PURE__*/ S.Array(
@@ -853,7 +852,7 @@ export type OriginCloudRegionsListResultItemVendor =
   | "azure"
   | "gcp"
   | "oci";
-export const OriginCloudRegionsListResultItemVendor = /*@__PURE__*/ S.String;
+export const OriginCloudRegionsListResultItemVendor = S.String;
 
 export interface OriginCloudRegionsListResultItem {
   /** The origin IP address (IPv4 or IPv6). Normalized to canonical form (RFC 5952 for IPv6). */
@@ -920,7 +919,7 @@ export const OriginCloudRegionsBulkDeleteV1Request = /*@__PURE__*/ S.suspend(
 
 export type OriginCloudRegionsBulkDeleteV1ResponseId =
   "origin_public_cloud_region";
-export const OriginCloudRegionsBulkDeleteV1ResponseId = /*@__PURE__*/ S.String;
+export const OriginCloudRegionsBulkDeleteV1ResponseId = S.String;
 
 export interface OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem {
   /** The origin IP address for this item. */
@@ -1005,8 +1004,7 @@ export type OriginCloudRegionsBulkEditV1RequestBodyItemVendor =
   | "azure"
   | "gcp"
   | "oci";
-export const OriginCloudRegionsBulkEditV1RequestBodyItemVendor =
-  /*@__PURE__*/ S.String;
+export const OriginCloudRegionsBulkEditV1RequestBodyItemVendor = S.String;
 
 export interface OriginCloudRegionsBulkEditV1RequestBodyItem {
   /** Origin IP address (IPv4 or IPv6). Normalized to canonical form before storage (RFC 5952 for IPv6). */
@@ -1058,7 +1056,7 @@ export const OriginCloudRegionsBulkEditV1Request = /*@__PURE__*/ S.suspend(() =>
 
 export type OriginCloudRegionsBulkEditV1ResponseId =
   "origin_public_cloud_region";
-export const OriginCloudRegionsBulkEditV1ResponseId = /*@__PURE__*/ S.String;
+export const OriginCloudRegionsBulkEditV1ResponseId = S.String;
 
 export type OriginCloudRegionsBulkEditV1ResponseValueFailedItem =
   OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem;
@@ -1126,7 +1124,7 @@ export type OriginCloudRegionsCreateV1RequestVendor =
   | "azure"
   | "gcp"
   | "oci";
-export const OriginCloudRegionsCreateV1RequestVendor = /*@__PURE__*/ S.String;
+export const OriginCloudRegionsCreateV1RequestVendor = S.String;
 
 export interface OriginCloudRegionsCreateV1Request {
   /** Identifier. */
@@ -1158,15 +1156,14 @@ export const OriginCloudRegionsCreateV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OriginCloudRegionsCreateV1Request>;
 
 export type OriginCloudRegionsCreateV1ResponseId = "origin_public_cloud_region";
-export const OriginCloudRegionsCreateV1ResponseId = /*@__PURE__*/ S.String;
+export const OriginCloudRegionsCreateV1ResponseId = S.String;
 
 export type OriginCloudRegionsCreateV1ResponseValueVendor =
   | "aws"
   | "azure"
   | "gcp"
   | "oci";
-export const OriginCloudRegionsCreateV1ResponseValueVendor =
-  /*@__PURE__*/ S.String;
+export const OriginCloudRegionsCreateV1ResponseValueVendor = S.String;
 
 export interface OriginCloudRegionsCreateV1ResponseValue {
   /** The origin IP address (IPv4 or IPv6, canonicalized). */
@@ -1234,15 +1231,14 @@ export const OriginCloudRegionsDeleteV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OriginCloudRegionsDeleteV1Request>;
 
 export type OriginCloudRegionsDeleteV1ResponseId = "origin_public_cloud_region";
-export const OriginCloudRegionsDeleteV1ResponseId = /*@__PURE__*/ S.String;
+export const OriginCloudRegionsDeleteV1ResponseId = S.String;
 
 export type OriginCloudRegionsDeleteV1ResponseValueVendor =
   | "aws"
   | "azure"
   | "gcp"
   | "oci";
-export const OriginCloudRegionsDeleteV1ResponseValueVendor =
-  /*@__PURE__*/ S.String;
+export const OriginCloudRegionsDeleteV1ResponseValueVendor = S.String;
 
 export interface OriginCloudRegionsDeleteV1ResponseValue {
   /** The origin IP address (IPv4 or IPv6, canonicalized). */
@@ -1292,7 +1288,7 @@ export type OriginCloudRegionsEditV1RequestVendor =
   | "azure"
   | "gcp"
   | "oci";
-export const OriginCloudRegionsEditV1RequestVendor = /*@__PURE__*/ S.String;
+export const OriginCloudRegionsEditV1RequestVendor = S.String;
 
 export interface OriginCloudRegionsEditV1Request {
   /** Identifier. */
@@ -1324,15 +1320,14 @@ export const OriginCloudRegionsEditV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OriginCloudRegionsEditV1Request>;
 
 export type OriginCloudRegionsEditV1ResponseId = "origin_public_cloud_region";
-export const OriginCloudRegionsEditV1ResponseId = /*@__PURE__*/ S.String;
+export const OriginCloudRegionsEditV1ResponseId = S.String;
 
 export type OriginCloudRegionsEditV1ResponseValueItemVendor =
   | "aws"
   | "azure"
   | "gcp"
   | "oci";
-export const OriginCloudRegionsEditV1ResponseValueItemVendor =
-  /*@__PURE__*/ S.String;
+export const OriginCloudRegionsEditV1ResponseValueItemVendor = S.String;
 
 export interface OriginCloudRegionsEditV1ResponseValueItem {
   /** The origin IP address (IPv4 or IPv6, canonicalized). */
@@ -1405,15 +1400,14 @@ export const OriginCloudRegionsGetV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OriginCloudRegionsGetV1Request>;
 
 export type OriginCloudRegionsGetV1ResponseId = "origin_public_cloud_region";
-export const OriginCloudRegionsGetV1ResponseId = /*@__PURE__*/ S.String;
+export const OriginCloudRegionsGetV1ResponseId = S.String;
 
 export type OriginCloudRegionsGetV1ResponseValueVendor =
   | "aws"
   | "azure"
   | "gcp"
   | "oci";
-export const OriginCloudRegionsGetV1ResponseValueVendor =
-  /*@__PURE__*/ S.String;
+export const OriginCloudRegionsGetV1ResponseValueVendor = S.String;
 
 export interface OriginCloudRegionsGetV1ResponseValue {
   /** The origin IP address (IPv4 or IPv6, canonicalized). */
@@ -1479,15 +1473,14 @@ export const OriginCloudRegionsListV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OriginCloudRegionsListV1Request>;
 
 export type OriginCloudRegionsListV1ResponseId = "origin_public_cloud_region";
-export const OriginCloudRegionsListV1ResponseId = /*@__PURE__*/ S.String;
+export const OriginCloudRegionsListV1ResponseId = S.String;
 
 export type OriginCloudRegionsListV1ResponseValueItemVendor =
   | "aws"
   | "azure"
   | "gcp"
   | "oci";
-export const OriginCloudRegionsListV1ResponseValueItemVendor =
-  /*@__PURE__*/ S.String;
+export const OriginCloudRegionsListV1ResponseValueItemVendor = S.String;
 
 export interface OriginCloudRegionsListV1ResponseValueItem {
   /** The origin IP address (IPv4 or IPv6, canonicalized). */
@@ -1620,7 +1613,7 @@ export const OriginCloudRegionsSupportedRegionsV1Response =
   }) as any as S.Schema<OriginCloudRegionsSupportedRegionsV1Response>;
 
 export type CacheReserveEditRequestValue = "on" | "off";
-export const CacheReserveEditRequestValue = /*@__PURE__*/ S.String;
+export const CacheReserveEditRequestValue = S.String;
 
 export interface PatchCacheReserveRequest {
   /** Identifier. */
@@ -1646,10 +1639,10 @@ export const PatchCacheReserveRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchCacheReserveRequest>;
 
 export type CacheReserveEditResponseId = "cache_reserve";
-export const CacheReserveEditResponseId = /*@__PURE__*/ S.String;
+export const CacheReserveEditResponseId = S.String;
 
 export type CacheReserveEditResponseValue = "on" | "off";
-export const CacheReserveEditResponseValue = /*@__PURE__*/ S.String;
+export const CacheReserveEditResponseValue = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchCacheReserveResponse {
@@ -1674,7 +1667,7 @@ export const PatchCacheReserveResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchCacheReserveResponse>;
 
 export type RegionalTieredCacheEditRequestValue = "on" | "off";
-export const RegionalTieredCacheEditRequestValue = /*@__PURE__*/ S.String;
+export const RegionalTieredCacheEditRequestValue = S.String;
 
 export interface PatchRegionalTieredCacheRequest {
   /** Identifier. */
@@ -1700,10 +1693,10 @@ export const PatchRegionalTieredCacheRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchRegionalTieredCacheRequest>;
 
 export type RegionalTieredCacheEditResponseId = "tc_regional";
-export const RegionalTieredCacheEditResponseId = /*@__PURE__*/ S.String;
+export const RegionalTieredCacheEditResponseId = S.String;
 
 export type RegionalTieredCacheEditResponseValue = "on" | "off";
-export const RegionalTieredCacheEditResponseValue = /*@__PURE__*/ S.String;
+export const RegionalTieredCacheEditResponseValue = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchRegionalTieredCacheResponse {
@@ -1728,7 +1721,7 @@ export const PatchRegionalTieredCacheResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchRegionalTieredCacheResponse>;
 
 export type SmartTieredCacheEditRequestValue = "on" | "off";
-export const SmartTieredCacheEditRequestValue = /*@__PURE__*/ S.String;
+export const SmartTieredCacheEditRequestValue = S.String;
 
 export interface PatchSmartTieredCacheRequest {
   /** Identifier. */
@@ -1755,10 +1748,10 @@ export const PatchSmartTieredCacheRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type SmartTieredCacheEditResponseId =
   "tiered_cache_smart_topology_enable";
-export const SmartTieredCacheEditResponseId = /*@__PURE__*/ S.String;
+export const SmartTieredCacheEditResponseId = S.String;
 
 export type SmartTieredCacheEditResponseValue = "on" | "off";
-export const SmartTieredCacheEditResponseValue = /*@__PURE__*/ S.String;
+export const SmartTieredCacheEditResponseValue = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchSmartTieredCacheResponse {
@@ -1903,7 +1896,7 @@ export const PatchVariantRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchVariantRequest>;
 
 export type VariantsEditResponseId = "variants";
-export const VariantsEditResponseId = /*@__PURE__*/ S.String;
+export const VariantsEditResponseId = S.String;
 
 export type VariantsEditResponseValueAvifList = Array<string>;
 export const VariantsEditResponseValueAvifList = /*@__PURE__*/ S.Array(
@@ -2242,7 +2235,7 @@ export type OriginCloudRegionsUpdateRequestVendor =
   | "azure"
   | "gcp"
   | "oci";
-export const OriginCloudRegionsUpdateRequestVendor = /*@__PURE__*/ S.String;
+export const OriginCloudRegionsUpdateRequestVendor = S.String;
 
 export interface PutOriginCloudRegionRequest {
   /** Identifier. */
@@ -2280,7 +2273,7 @@ export type OriginCloudRegionsUpdateResponseVendor =
   | "azure"
   | "gcp"
   | "oci";
-export const OriginCloudRegionsUpdateResponseVendor = /*@__PURE__*/ S.String;
+export const OriginCloudRegionsUpdateResponseVendor = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PutOriginCloudRegionResponse {
@@ -2325,10 +2318,10 @@ export const StatusCacheReserveRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StatusCacheReserveRequest>;
 
 export type CacheReserveStatusResponseId = "cache_reserve_clear";
-export const CacheReserveStatusResponseId = /*@__PURE__*/ S.String;
+export const CacheReserveStatusResponseId = S.String;
 
 export type CacheReserveStatusResponseState = "In-progress" | "Completed";
-export const CacheReserveStatusResponseState = /*@__PURE__*/ S.String;
+export const CacheReserveStatusResponseState = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface StatusCacheReserveResponse {

@@ -209,7 +209,7 @@ export type DeleteAgentErrorCode =
   | "INTERNAL_SERVER_ERROR"
   | "AGENT_IN_USE"
   | (string & {});
-export const DeleteAgentErrorCode = /*@__PURE__*/ S.String;
+export const DeleteAgentErrorCode = S.String;
 
 export interface BatchDeleteAgentError {
   agentId: string;
@@ -267,7 +267,7 @@ export type BatchDeleteImportDataErrorCode =
   | "INTERNAL_SERVER_ERROR"
   | "OVER_LIMIT"
   | (string & {});
-export const BatchDeleteImportDataErrorCode = /*@__PURE__*/ S.String;
+export const BatchDeleteImportDataErrorCode = S.String;
 
 export type BatchDeleteImportDataErrorDescription = string;
 export interface BatchDeleteImportDataError_ {
@@ -490,7 +490,7 @@ export type AgentStatus =
   | "BLACKLISTED"
   | "SHUTDOWN"
   | (string & {});
-export const AgentStatus = /*@__PURE__*/ S.String;
+export const AgentStatus = S.String;
 
 export interface AgentInfo {
   agentId?: string;
@@ -559,10 +559,10 @@ export type BatchDeleteConfigurationTaskStatus =
   | "COMPLETED"
   | "FAILED"
   | (string & {});
-export const BatchDeleteConfigurationTaskStatus = /*@__PURE__*/ S.String;
+export const BatchDeleteConfigurationTaskStatus = S.String;
 
 export type DeletionConfigurationItemType = "SERVER" | (string & {});
-export const DeletionConfigurationItemType = /*@__PURE__*/ S.String;
+export const DeletionConfigurationItemType = S.String;
 
 export type ErrorStatusCode = number;
 export type ErrorMessage = string;
@@ -714,12 +714,12 @@ export type ContinuousExportStatus =
   | "STOP_FAILED"
   | "INACTIVE"
   | (string & {});
-export const ContinuousExportStatus = /*@__PURE__*/ S.String;
+export const ContinuousExportStatus = S.String;
 
 export type StringMax255 = string;
 export type S3Bucket = string;
 export type DataSource = "AGENT" | (string & {});
-export const DataSource = /*@__PURE__*/ S.String;
+export const DataSource = S.String;
 
 export type DatabaseName = string;
 export type SchemaStorageConfig = { [key: string]: string | undefined };
@@ -798,7 +798,7 @@ export type ExportStatus =
   | "SUCCEEDED"
   | "IN_PROGRESS"
   | (string & {});
-export const ExportStatus = /*@__PURE__*/ S.String;
+export const ExportStatus = S.String;
 
 export type ExportStatusMessage = string;
 export type ConfigurationsDownloadUrl = string;
@@ -899,7 +899,7 @@ export type ImportTaskFilterName =
   | "NAME"
   | "FILE_CLASSIFICATION"
   | (string & {});
-export const ImportTaskFilterName = /*@__PURE__*/ S.String;
+export const ImportTaskFilterName = S.String;
 
 export type ImportTaskFilterValue = string;
 export type ImportTaskFilterValueList = string[];
@@ -961,7 +961,7 @@ export type ImportStatus =
   | "DELETE_FAILED_LIMIT_EXCEEDED"
   | "INTERNAL_ERROR"
   | (string & {});
-export const ImportStatus = /*@__PURE__*/ S.String;
+export const ImportStatus = S.String;
 
 export type FileClassification =
   | "MODELIZEIT_EXPORT"
@@ -969,7 +969,7 @@ export type FileClassification =
   | "VMWARE_NSX_EXPORT"
   | "IMPORT_TEMPLATE"
   | (string & {});
-export const FileClassification = /*@__PURE__*/ S.String;
+export const FileClassification = S.String;
 
 export type S3PresignedUrl = string;
 export interface ImportTask {
@@ -1065,7 +1065,7 @@ export type ConfigurationItemType =
   | "CONNECTION"
   | "APPLICATION"
   | (string & {});
-export const ConfigurationItemType = /*@__PURE__*/ S.String;
+export const ConfigurationItemType = S.String;
 
 export interface ConfigurationTag {
   configurationType?: ConfigurationItemType;
@@ -1285,7 +1285,7 @@ export const GetDiscoverySummaryResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDiscoverySummaryResponse>;
 export type OrderByElementFieldName = string;
 export type OrderString = "ASC" | "DESC" | (string & {});
-export const OrderString = /*@__PURE__*/ S.String;
+export const OrderString = S.String;
 
 export interface OrderByElement {
   fieldName: string;
@@ -1523,7 +1523,7 @@ export const StartDataCollectionByAgentIdsResponse = /*@__PURE__*/ S.suspend(
   identifier: "StartDataCollectionByAgentIdsResponse",
 }) as any as S.Schema<StartDataCollectionByAgentIdsResponse>;
 export type ExportDataFormat = "CSV" | (string & {});
-export const ExportDataFormat = /*@__PURE__*/ S.String;
+export const ExportDataFormat = S.String;
 
 export type ExportDataFormats = ExportDataFormat[];
 export const ExportDataFormats = /*@__PURE__*/ S.Array(ExportDataFormat);
@@ -1543,7 +1543,7 @@ export const UsageMetricBasis = /*@__PURE__*/ S.suspend(() =>
   identifier: "UsageMetricBasis",
 }) as any as S.Schema<UsageMetricBasis>;
 export type Tenancy = "DEDICATED" | "SHARED" | (string & {});
-export const Tenancy = /*@__PURE__*/ S.String;
+export const Tenancy = S.String;
 
 export type EC2InstanceType = string;
 export type ExcludedInstanceTypes = string[];
@@ -1554,13 +1554,13 @@ export type PurchasingOption =
   | "PARTIAL_UPFRONT"
   | "NO_UPFRONT"
   | (string & {});
-export const PurchasingOption = /*@__PURE__*/ S.String;
+export const PurchasingOption = S.String;
 
 export type OfferingClass = "STANDARD" | "CONVERTIBLE" | (string & {});
-export const OfferingClass = /*@__PURE__*/ S.String;
+export const OfferingClass = S.String;
 
 export type TermLength = "ONE_YEAR" | "THREE_YEAR" | (string & {});
-export const TermLength = /*@__PURE__*/ S.String;
+export const TermLength = S.String;
 
 export interface ReservedInstanceOptions {
   purchasingOption: PurchasingOption;

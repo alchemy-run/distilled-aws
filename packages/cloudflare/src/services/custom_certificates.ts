@@ -77,16 +77,16 @@ export class ZoneNotFound
   ) {}
 
 export type CreateRequestBundleMethod = "ubiquitous" | "optimal" | "force";
-export const CreateRequestBundleMethod = /*@__PURE__*/ S.String;
+export const CreateRequestBundleMethod = S.String;
 
 export type CreateRequestDeploy = "staging" | "production";
-export const CreateRequestDeploy = /*@__PURE__*/ S.String;
+export const CreateRequestDeploy = S.String;
 
 export type CreateRequestGeoRestrictionsLabel =
   | "us"
   | "eu"
   | "highest_security";
-export const CreateRequestGeoRestrictionsLabel = /*@__PURE__*/ S.String;
+export const CreateRequestGeoRestrictionsLabel = S.String;
 
 export interface CreateRequestGeoRestrictions {
   label?: CreateRequestGeoRestrictionsLabel | (string & {});
@@ -100,7 +100,7 @@ export const CreateRequestGeoRestrictions = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRequestGeoRestrictions>;
 
 export type CreateRequestType = "legacy_custom" | "sni_custom";
-export const CreateRequestType = /*@__PURE__*/ S.String;
+export const CreateRequestType = S.String;
 
 export interface CreateCustomCertificateRequest {
   /** Identifier. */
@@ -151,13 +151,13 @@ export const CreateCustomCertificateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateCustomCertificateRequest>;
 
 export type CreateResponseBundleMethod = "ubiquitous" | "optimal" | "force";
-export const CreateResponseBundleMethod = /*@__PURE__*/ S.String;
+export const CreateResponseBundleMethod = S.String;
 
 export type CreateResponseGeoRestrictionsLabel =
   | "us"
   | "eu"
   | "highest_security";
-export const CreateResponseGeoRestrictionsLabel = /*@__PURE__*/ S.String;
+export const CreateResponseGeoRestrictionsLabel = S.String;
 
 export interface CreateResponseGeoRestrictions {
   label?: CreateResponseGeoRestrictionsLabel | null;
@@ -181,7 +181,7 @@ export const CreateResponseKeylessServerPermissionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateResponseKeylessServerPermissionsList>;
 
 export type CreateResponseKeylessServerStatus = "active" | "deleted";
-export const CreateResponseKeylessServerStatus = /*@__PURE__*/ S.String;
+export const CreateResponseKeylessServerStatus = S.String;
 
 export interface CreateResponseKeylessServerTunnel {
   /** Private IP of the Key Server Host. */
@@ -243,7 +243,7 @@ export type CreateResponseStatus =
   | "deleted"
   | "pending"
   | "initializing";
-export const CreateResponseStatus = /*@__PURE__*/ S.String;
+export const CreateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateCustomCertificateResponse {
@@ -366,10 +366,10 @@ export const GetCustomCertificateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCustomCertificateRequest>;
 
 export type GetResponseBundleMethod = "ubiquitous" | "optimal" | "force";
-export const GetResponseBundleMethod = /*@__PURE__*/ S.String;
+export const GetResponseBundleMethod = S.String;
 
 export type GetResponseGeoRestrictionsLabel = "us" | "eu" | "highest_security";
-export const GetResponseGeoRestrictionsLabel = /*@__PURE__*/ S.String;
+export const GetResponseGeoRestrictionsLabel = S.String;
 
 export interface GetResponseGeoRestrictions {
   label?: GetResponseGeoRestrictionsLabel | null;
@@ -393,7 +393,7 @@ export const GetResponseKeylessServerPermissionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetResponseKeylessServerPermissionsList>;
 
 export type GetResponseKeylessServerStatus = "active" | "deleted";
-export const GetResponseKeylessServerStatus = /*@__PURE__*/ S.String;
+export const GetResponseKeylessServerStatus = S.String;
 
 export type GetResponseKeylessServerTunnel = CreateResponseKeylessServerTunnel;
 export const GetResponseKeylessServerTunnel = CreateResponseKeylessServerTunnel;
@@ -443,7 +443,7 @@ export type GetResponseStatus =
   | "deleted"
   | "pending"
   | "initializing";
-export const GetResponseStatus = /*@__PURE__*/ S.String;
+export const GetResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetCustomCertificateResponse {
@@ -507,7 +507,7 @@ export const GetCustomCertificateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCustomCertificateResponse>;
 
 export type ListRequestMatch = "any" | "all";
-export const ListRequestMatch = /*@__PURE__*/ S.String;
+export const ListRequestMatch = S.String;
 
 export type ListRequestStatus =
   | "active"
@@ -515,7 +515,7 @@ export type ListRequestStatus =
   | "deleted"
   | "pending"
   | "initializing";
-export const ListRequestStatus = /*@__PURE__*/ S.String;
+export const ListRequestStatus = S.String;
 
 export interface ListCustomCertificatesRequest {
   /** Identifier. */
@@ -550,13 +550,13 @@ export const ListCustomCertificatesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListCustomCertificatesRequest>;
 
 export type ListResultItemBundleMethod = "ubiquitous" | "optimal" | "force";
-export const ListResultItemBundleMethod = /*@__PURE__*/ S.String;
+export const ListResultItemBundleMethod = S.String;
 
 export type ListResultItemGeoRestrictionsLabel =
   | "us"
   | "eu"
   | "highest_security";
-export const ListResultItemGeoRestrictionsLabel = /*@__PURE__*/ S.String;
+export const ListResultItemGeoRestrictionsLabel = S.String;
 
 export interface ListResultItemGeoRestrictions {
   label?: ListResultItemGeoRestrictionsLabel | null;
@@ -580,7 +580,7 @@ export const ListResultItemKeylessServerPermissionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListResultItemKeylessServerPermissionsList>;
 
 export type ListResultItemKeylessServerStatus = "active" | "deleted";
-export const ListResultItemKeylessServerStatus = /*@__PURE__*/ S.String;
+export const ListResultItemKeylessServerStatus = S.String;
 
 export type ListResultItemKeylessServerTunnel =
   CreateResponseKeylessServerTunnel;
@@ -632,7 +632,7 @@ export type ListResultItemStatus =
   | "deleted"
   | "pending"
   | "initializing";
-export const ListResultItemStatus = /*@__PURE__*/ S.String;
+export const ListResultItemStatus = S.String;
 
 export interface ListResultItem {
   /** Identifier. */
@@ -713,13 +713,13 @@ export const ListCustomCertificatesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListCustomCertificatesResponse>;
 
 export type EditRequestBundleMethod = "ubiquitous" | "optimal" | "force";
-export const EditRequestBundleMethod = /*@__PURE__*/ S.String;
+export const EditRequestBundleMethod = S.String;
 
 export type EditRequestDeploy = "staging" | "production";
-export const EditRequestDeploy = /*@__PURE__*/ S.String;
+export const EditRequestDeploy = S.String;
 
 export type EditRequestGeoRestrictionsLabel = "us" | "eu" | "highest_security";
-export const EditRequestGeoRestrictionsLabel = /*@__PURE__*/ S.String;
+export const EditRequestGeoRestrictionsLabel = S.String;
 
 export interface EditRequestGeoRestrictions {
   label?: EditRequestGeoRestrictionsLabel | (string & {});
@@ -781,10 +781,10 @@ export const PatchCustomCertificateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchCustomCertificateRequest>;
 
 export type EditResponseBundleMethod = "ubiquitous" | "optimal" | "force";
-export const EditResponseBundleMethod = /*@__PURE__*/ S.String;
+export const EditResponseBundleMethod = S.String;
 
 export type EditResponseGeoRestrictionsLabel = "us" | "eu" | "highest_security";
-export const EditResponseGeoRestrictionsLabel = /*@__PURE__*/ S.String;
+export const EditResponseGeoRestrictionsLabel = S.String;
 
 export interface EditResponseGeoRestrictions {
   label?: EditResponseGeoRestrictionsLabel | null;
@@ -808,7 +808,7 @@ export const EditResponseKeylessServerPermissionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<EditResponseKeylessServerPermissionsList>;
 
 export type EditResponseKeylessServerStatus = "active" | "deleted";
-export const EditResponseKeylessServerStatus = /*@__PURE__*/ S.String;
+export const EditResponseKeylessServerStatus = S.String;
 
 export type EditResponseKeylessServerTunnel = CreateResponseKeylessServerTunnel;
 export const EditResponseKeylessServerTunnel =
@@ -859,7 +859,7 @@ export type EditResponseStatus =
   | "deleted"
   | "pending"
   | "initializing";
-export const EditResponseStatus = /*@__PURE__*/ S.String;
+export const EditResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchCustomCertificateResponse {
@@ -971,14 +971,13 @@ export type PrioritizeUpdateResultItemBundleMethod =
   | "ubiquitous"
   | "optimal"
   | "force";
-export const PrioritizeUpdateResultItemBundleMethod = /*@__PURE__*/ S.String;
+export const PrioritizeUpdateResultItemBundleMethod = S.String;
 
 export type PrioritizeUpdateResultItemGeoRestrictionsLabel =
   | "us"
   | "eu"
   | "highest_security";
-export const PrioritizeUpdateResultItemGeoRestrictionsLabel =
-  /*@__PURE__*/ S.String;
+export const PrioritizeUpdateResultItemGeoRestrictionsLabel = S.String;
 
 export interface PrioritizeUpdateResultItemGeoRestrictions {
   label?: PrioritizeUpdateResultItemGeoRestrictionsLabel | null;
@@ -1009,8 +1008,7 @@ export const PrioritizeUpdateResultItemKeylessServerPermissionsList =
 export type PrioritizeUpdateResultItemKeylessServerStatus =
   | "active"
   | "deleted";
-export const PrioritizeUpdateResultItemKeylessServerStatus =
-  /*@__PURE__*/ S.String;
+export const PrioritizeUpdateResultItemKeylessServerStatus = S.String;
 
 export type PrioritizeUpdateResultItemKeylessServerTunnel =
   CreateResponseKeylessServerTunnel;
@@ -1063,7 +1061,7 @@ export type PrioritizeUpdateResultItemStatus =
   | "deleted"
   | "pending"
   | "initializing";
-export const PrioritizeUpdateResultItemStatus = /*@__PURE__*/ S.String;
+export const PrioritizeUpdateResultItemStatus = S.String;
 
 export interface PrioritizeUpdateResultItem {
   /** Identifier. */

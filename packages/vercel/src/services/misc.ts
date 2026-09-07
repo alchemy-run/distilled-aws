@@ -45,15 +45,15 @@ export type GetSandboxesRequestSortBy =
   | "name"
   | "statusUpdatedAt"
   | "currentSnapshotId";
-export const GetSandboxesRequestSortBy = /*@__PURE__*/ S.String;
+export const GetSandboxesRequestSortBy = S.String;
 
 /** Sort direction. Defaults to desc. */
 export type GetSandboxesRequestSortOrder = "asc" | "desc";
-export const GetSandboxesRequestSortOrder = /*@__PURE__*/ S.String;
+export const GetSandboxesRequestSortOrder = S.String;
 
 /** Filter named sandboxes by status. Only valid when sortBy is createdAt. */
 export type GetSandboxesRequestStatus = "running" | "stopping" | "stopped";
-export const GetSandboxesRequestStatus = /*@__PURE__*/ S.String;
+export const GetSandboxesRequestStatus = S.String;
 
 export type GetSandboxesRequestTagsCase1List = Array<string>;
 export const GetSandboxesRequestTagsCase1List = /*@__PURE__*/ S.Array(
@@ -63,7 +63,7 @@ export const GetSandboxesRequestTagsCase1List = /*@__PURE__*/ S.Array(
 /** Filter sandboxes by tag. Format: \"key:value\". Only one tag filter is supported at a time. */
 export type GetSandboxesRequestTags = string | GetSandboxesRequestTagsCase1List;
 export const GetSandboxesRequestTags =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetSandboxesRequestTags>;
+  S.Unknown as any as S.Schema<GetSandboxesRequestTags>;
 
 export interface GetSandboxesRequest {
   /** The unique identifier or name of the project to list named sandboxes for. */
@@ -100,7 +100,7 @@ export const GetSandboxesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the current sandbox. */
 export type NamedSandboxStatus = "running" | "stopped" | "stopping";
-export const NamedSandboxStatus = /*@__PURE__*/ S.String;
+export const NamedSandboxStatus = S.String;
 
 /** The regions the sandbox fails over to. Empty when it does not fail over. */
 export type NamedSandboxFailoverRegionsItem =
@@ -123,7 +123,7 @@ export type NamedSandboxFailoverRegionsItem =
   | "sin1"
   | "syd1"
   | "yul1";
-export const NamedSandboxFailoverRegionsItem = /*@__PURE__*/ S.String;
+export const NamedSandboxFailoverRegionsItem = S.String;
 
 /** The regions the sandbox fails over to. Empty when it does not fail over. */
 export type NamedSandboxFailoverRegionsList =
@@ -157,7 +157,7 @@ export type NamedSandboxNetworkPolicyMode =
   | "default-allow"
   | "default-deny"
   | "deny-all";
-export const NamedSandboxNetworkPolicyMode = /*@__PURE__*/ S.String;
+export const NamedSandboxNetworkPolicyMode = S.String;
 
 export type NamedSandboxNetworkPolicyAllowedDomainsList = Array<string>;
 export const NamedSandboxNetworkPolicyAllowedDomainsList =
@@ -203,7 +203,7 @@ export const NamedSandboxTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<NamedSandboxTagsMap>;
 
 export type NamedSandboxMountsValueMode = "read-only" | "read-write";
-export const NamedSandboxMountsValueMode = /*@__PURE__*/ S.String;
+export const NamedSandboxMountsValueMode = S.String;
 
 /** Key-value pairs of mount path and drive. */
 export interface NamedSandboxMountsValue {

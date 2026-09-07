@@ -224,7 +224,7 @@ export type OperationOperationTypeEnum =
   | "CREATE_BLUE_GREEN_DEPLOYMENT"
   | "SWITCHOVER_BLUE_GREEN_DEPLOYMENT"
   | "DELETE_BLUE_GREEN_DEPLOYMENT";
-export const OperationOperationTypeEnum = /*@__PURE__*/ S.String;
+export const OperationOperationTypeEnum = S.String;
 
 /** Database instance operation error. */
 export interface OperationError {
@@ -286,7 +286,7 @@ export type OperationStatusEnum =
   | "PENDING"
   | "RUNNING"
   | "DONE";
-export const OperationStatusEnum = /*@__PURE__*/ S.String;
+export const OperationStatusEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -347,14 +347,14 @@ export type ImportContextFileTypeEnum =
   | "CSV"
   | "BAK"
   | "TDE";
-export const ImportContextFileTypeEnum = /*@__PURE__*/ S.String;
+export const ImportContextFileTypeEnum = S.String;
 
 export type ImportContextBakImportOptionsBakTypeEnum =
   | "BAK_TYPE_UNSPECIFIED"
   | "FULL"
   | "DIFF"
   | "TLOG";
-export const ImportContextBakImportOptionsBakTypeEnum = /*@__PURE__*/ S.String;
+export const ImportContextBakImportOptionsBakTypeEnum = S.String;
 
 export interface ImportContextBakImportOptionsEncryptionOptions {
   /** Optional. Whether the imported file remains encrypted. */
@@ -486,7 +486,7 @@ export type ApiWarningCodeEnum =
   | "MAX_RESULTS_EXCEEDS_LIMIT"
   | "COMPROMISED_CREDENTIALS"
   | "INTERNAL_STATE_FAILURE";
-export const ApiWarningCodeEnum = /*@__PURE__*/ S.String;
+export const ApiWarningCodeEnum = S.String;
 
 /** An Admin API warning message. */
 export interface ApiWarning {
@@ -531,7 +531,7 @@ export type ExportContextBakExportOptionsBakTypeEnum =
   | "FULL"
   | "DIFF"
   | "TLOG";
-export const ExportContextBakExportOptionsBakTypeEnum = /*@__PURE__*/ S.String;
+export const ExportContextBakExportOptionsBakTypeEnum = S.String;
 
 export interface ExportContextBakExportOptions {
   /** Type of this bak file will be export, FULL or DIFF, SQL Server only */
@@ -653,7 +653,7 @@ export type ExportContextFileTypeEnum =
   | "CSV"
   | "BAK"
   | "TDE";
-export const ExportContextFileTypeEnum = /*@__PURE__*/ S.String;
+export const ExportContextFileTypeEnum = S.String;
 
 /** Database instance export context. */
 export interface ExportContext {
@@ -696,7 +696,7 @@ export type SqlSubOperationTypeMaintenanceTypeEnum =
   | "REPLICA_INCLUDED_MAINTENANCE"
   | "INSTANCE_SELF_SERVICE_MAINTENANCE"
   | "REPLICA_INCLUDED_SELF_SERVICE_MAINTENANCE";
-export const SqlSubOperationTypeMaintenanceTypeEnum = /*@__PURE__*/ S.String;
+export const SqlSubOperationTypeMaintenanceTypeEnum = S.String;
 
 /** The sub operation type based on the operation type. */
 export interface SqlSubOperationType {
@@ -769,14 +769,14 @@ export type PreCheckMajorVersionUpgradeContextTargetDatabaseVersionEnum =
   | "SQLSERVER_2025_ENTERPRISE"
   | "SQLSERVER_2025_EXPRESS";
 export const PreCheckMajorVersionUpgradeContextTargetDatabaseVersionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PreCheckResponseMessageTypeEnum =
   | "MESSAGE_TYPE_UNSPECIFIED"
   | "INFO"
   | "WARNING"
   | "ERROR";
-export const PreCheckResponseMessageTypeEnum = /*@__PURE__*/ S.String;
+export const PreCheckResponseMessageTypeEnum = S.String;
 
 /** Structured PreCheckResponse containing message, type, and required actions. */
 export interface PreCheckResponse {
@@ -1103,7 +1103,7 @@ export type IpMappingTypeEnum =
   | "OUTGOING"
   | "PRIVATE"
   | "MIGRATED_1ST_GEN";
-export const IpMappingTypeEnum = /*@__PURE__*/ S.String;
+export const IpMappingTypeEnum = S.String;
 
 /** Database instance IP mapping */
 export interface IpMapping {
@@ -1130,7 +1130,7 @@ export const IpMappingList = /*@__PURE__*/ S.Array(
 export type ConnectSettingsMdxProtocolSupportItemEnum =
   | "MDX_PROTOCOL_SUPPORT_UNSPECIFIED"
   | "CLIENT_PROTOCOL_TYPE";
-export const ConnectSettingsMdxProtocolSupportItemEnum = /*@__PURE__*/ S.String;
+export const ConnectSettingsMdxProtocolSupportItemEnum = S.String;
 
 export type ConnectSettingsMdxProtocolSupportItemEnumList =
   Array<ConnectSettingsMdxProtocolSupportItemEnum>;
@@ -1179,19 +1179,19 @@ export type DnsNameMappingConnectionTypeEnum =
   | "PUBLIC"
   | "PRIVATE_SERVICES_ACCESS"
   | "PRIVATE_SERVICE_CONNECT";
-export const DnsNameMappingConnectionTypeEnum = /*@__PURE__*/ S.String;
+export const DnsNameMappingConnectionTypeEnum = S.String;
 
 export type DnsNameMappingDnsScopeEnum =
   | "DNS_SCOPE_UNSPECIFIED"
   | "INSTANCE"
   | "CLUSTER";
-export const DnsNameMappingDnsScopeEnum = /*@__PURE__*/ S.String;
+export const DnsNameMappingDnsScopeEnum = S.String;
 
 export type DnsNameMappingRecordManagerEnum =
   | "RECORD_MANAGER_UNSPECIFIED"
   | "CUSTOMER"
   | "CLOUD_SQL_AUTOMATION";
-export const DnsNameMappingRecordManagerEnum = /*@__PURE__*/ S.String;
+export const DnsNameMappingRecordManagerEnum = S.String;
 
 /** DNS metadata. */
 export interface DnsNameMapping {
@@ -1250,7 +1250,7 @@ export type ConnectSettingsBackendTypeEnum =
   | "FIRST_GEN"
   | "SECOND_GEN"
   | "EXTERNAL";
-export const ConnectSettingsBackendTypeEnum = /*@__PURE__*/ S.String;
+export const ConnectSettingsBackendTypeEnum = S.String;
 
 export type ConnectSettingsDatabaseVersionEnum =
   | "SQL_DATABASE_VERSION_UNSPECIFIED"
@@ -1309,14 +1309,14 @@ export type ConnectSettingsDatabaseVersionEnum =
   | "SQLSERVER_2025_STANDARD"
   | "SQLSERVER_2025_ENTERPRISE"
   | "SQLSERVER_2025_EXPRESS";
-export const ConnectSettingsDatabaseVersionEnum = /*@__PURE__*/ S.String;
+export const ConnectSettingsDatabaseVersionEnum = S.String;
 
 export type ConnectSettingsServerCaModeEnum =
   | "CA_MODE_UNSPECIFIED"
   | "GOOGLE_MANAGED_INTERNAL_CA"
   | "GOOGLE_MANAGED_CAS_CA"
   | "CUSTOMER_MANAGED_CAS_CA";
-export const ConnectSettingsServerCaModeEnum = /*@__PURE__*/ S.String;
+export const ConnectSettingsServerCaModeEnum = S.String;
 
 /** Connect settings retrieval response. */
 export interface ConnectSettings {
@@ -1383,13 +1383,13 @@ export type BackupStateEnum =
   | "SUCCESSFUL"
   | "DELETING"
   | "DELETION_FAILED";
-export const BackupStateEnum = /*@__PURE__*/ S.String;
+export const BackupStateEnum = S.String;
 
 export type BackupBackupKindEnum =
   | "SQL_BACKUP_KIND_UNSPECIFIED"
   | "SNAPSHOT"
   | "PHYSICAL";
-export const BackupBackupKindEnum = /*@__PURE__*/ S.String;
+export const BackupBackupKindEnum = S.String;
 
 export type BackupDatabaseVersionEnum =
   | "SQL_DATABASE_VERSION_UNSPECIFIED"
@@ -1448,7 +1448,7 @@ export type BackupDatabaseVersionEnum =
   | "SQLSERVER_2025_STANDARD"
   | "SQLSERVER_2025_ENTERPRISE"
   | "SQLSERVER_2025_EXPRESS";
-export const BackupDatabaseVersionEnum = /*@__PURE__*/ S.String;
+export const BackupDatabaseVersionEnum = S.String;
 
 export type PoolNodeConfigStateEnum =
   | "SQL_INSTANCE_STATE_UNSPECIFIED"
@@ -1460,23 +1460,21 @@ export type PoolNodeConfigStateEnum =
   | "FAILED"
   | "ONLINE_MAINTENANCE"
   | "REPAIRING";
-export const PoolNodeConfigStateEnum = /*@__PURE__*/ S.String;
+export const PoolNodeConfigStateEnum = S.String;
 
 export type PscAutoConnectionConfigWriteEndpointAutoDnsStatusEnum =
   | "AUTO_DNS_STATUS_UNSPECIFIED"
   | "AUTO_DNS_OK"
   | "AUTO_DNS_FAILED"
   | "AUTO_DNS_UNKNOWN";
-export const PscAutoConnectionConfigWriteEndpointAutoDnsStatusEnum =
-  /*@__PURE__*/ S.String;
+export const PscAutoConnectionConfigWriteEndpointAutoDnsStatusEnum = S.String;
 
 export type PscAutoConnectionConfigInstanceAutoDnsStatusEnum =
   | "AUTO_DNS_STATUS_UNSPECIFIED"
   | "AUTO_DNS_OK"
   | "AUTO_DNS_FAILED"
   | "AUTO_DNS_UNKNOWN";
-export const PscAutoConnectionConfigInstanceAutoDnsStatusEnum =
-  /*@__PURE__*/ S.String;
+export const PscAutoConnectionConfigInstanceAutoDnsStatusEnum = S.String;
 
 /** Settings for an automatically-setup Private Service Connect consumer endpoint that is used to connect to a Cloud SQL instance. */
 export interface PscAutoConnectionConfig {
@@ -1570,7 +1568,7 @@ export type DatabaseInstanceBackendTypeEnum =
   | "FIRST_GEN"
   | "SECOND_GEN"
   | "EXTERNAL";
-export const DatabaseInstanceBackendTypeEnum = /*@__PURE__*/ S.String;
+export const DatabaseInstanceBackendTypeEnum = S.String;
 
 /** Reference to another Cloud SQL instance. */
 export interface InstanceReference {
@@ -1617,7 +1615,7 @@ export type BlueGreenDeploymentInfoStateEnum =
   | "STATE_UNSPECIFIED"
   | "PRE_SWITCHOVER"
   | "POST_SWITCHOVER";
-export const BlueGreenDeploymentInfoStateEnum = /*@__PURE__*/ S.String;
+export const BlueGreenDeploymentInfoStateEnum = S.String;
 
 /** Blue-green deployment metadata for a database instance. In a blue-green deployment, we maintain two environments, one of which is live. This message contains details about the blue-green deployment. */
 export interface BlueGreenDeploymentInfo {
@@ -1645,7 +1643,7 @@ export type SqlOutOfDiskReportSqlOutOfDiskStateEnum =
   | "SQL_OUT_OF_DISK_STATE_UNSPECIFIED"
   | "NORMAL"
   | "SOFT_SHUTDOWN";
-export const SqlOutOfDiskReportSqlOutOfDiskStateEnum = /*@__PURE__*/ S.String;
+export const SqlOutOfDiskReportSqlOutOfDiskStateEnum = S.String;
 
 /** This message wraps up the information written by out-of-disk detection job. */
 export interface SqlOutOfDiskReport {
@@ -1766,7 +1764,7 @@ export type DatabaseInstanceStateEnum =
   | "FAILED"
   | "ONLINE_MAINTENANCE"
   | "REPAIRING";
-export const DatabaseInstanceStateEnum = /*@__PURE__*/ S.String;
+export const DatabaseInstanceStateEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -1797,8 +1795,7 @@ export type DatabaseInstanceSqlNetworkArchitectureEnum =
   | "SQL_NETWORK_ARCHITECTURE_UNSPECIFIED"
   | "NEW_NETWORK_ARCHITECTURE"
   | "OLD_NETWORK_ARCHITECTURE";
-export const DatabaseInstanceSqlNetworkArchitectureEnum =
-  /*@__PURE__*/ S.String;
+export const DatabaseInstanceSqlNetworkArchitectureEnum = S.String;
 
 /** Any scheduled maintenance for this instance. */
 export interface SqlScheduledMaintenance {
@@ -1847,7 +1844,7 @@ export type DatabaseInstanceInstanceTypeEnum =
   | "READ_REPLICA_INSTANCE"
   | "READ_POOL_INSTANCE"
   | "GREEN_INSTANCE";
-export const DatabaseInstanceInstanceTypeEnum = /*@__PURE__*/ S.String;
+export const DatabaseInstanceInstanceTypeEnum = S.String;
 
 /** Deny maintenance Periods. This specifies a date range during when all CSA rollout will be denied. */
 export interface DenyMaintenancePeriod {
@@ -1896,19 +1893,19 @@ export type SettingsDataApiAccessEnum =
   | "DATA_API_ACCESS_UNSPECIFIED"
   | "DISALLOW_DATA_API"
   | "ALLOW_DATA_API";
-export const SettingsDataApiAccessEnum = /*@__PURE__*/ S.String;
+export const SettingsDataApiAccessEnum = S.String;
 
 export type BackupConfigurationBackupTierEnum =
   | "BACKUP_TIER_UNSPECIFIED"
   | "STANDARD"
   | "ADVANCED"
   | "ENHANCED";
-export const BackupConfigurationBackupTierEnum = /*@__PURE__*/ S.String;
+export const BackupConfigurationBackupTierEnum = S.String;
 
 export type BackupRetentionSettingsRetentionUnitEnum =
   | "RETENTION_UNIT_UNSPECIFIED"
   | "COUNT";
-export const BackupRetentionSettingsRetentionUnitEnum = /*@__PURE__*/ S.String;
+export const BackupRetentionSettingsRetentionUnitEnum = S.String;
 
 /** We currently only support backup retention by specifying the number of backups we will retain. */
 export interface BackupRetentionSettings {
@@ -1932,8 +1929,7 @@ export type BackupConfigurationTransactionalLogStorageStateEnum =
   | "SWITCHING_TO_CLOUD_STORAGE"
   | "SWITCHED_TO_CLOUD_STORAGE"
   | "CLOUD_STORAGE";
-export const BackupConfigurationTransactionalLogStorageStateEnum =
-  /*@__PURE__*/ S.String;
+export const BackupConfigurationTransactionalLogStorageStateEnum = S.String;
 
 /** Database instance backup configuration. */
 export interface BackupConfiguration {
@@ -2070,13 +2066,13 @@ export type SettingsDataDiskTypeEnum =
   | "PD_HDD"
   | "OBSOLETE_LOCAL_SSD"
   | "HYPERDISK_BALANCED";
-export const SettingsDataDiskTypeEnum = /*@__PURE__*/ S.String;
+export const SettingsDataDiskTypeEnum = S.String;
 
 export type SettingsPricingPlanEnum =
   | "SQL_PRICING_PLAN_UNSPECIFIED"
   | "PACKAGE"
   | "PER_USE";
-export const SettingsPricingPlanEnum = /*@__PURE__*/ S.String;
+export const SettingsPricingPlanEnum = S.String;
 
 /** Preferred location. This specifies where a Cloud SQL instance is located. Note that if the preferred location is not available, the instance will be located as close as possible within the region. Only one location may be specified. */
 export interface LocationPreference {
@@ -2105,7 +2101,7 @@ export type MaintenanceWindowUpdateTrackEnum =
   | "canary"
   | "stable"
   | "week5";
-export const MaintenanceWindowUpdateTrackEnum = /*@__PURE__*/ S.String;
+export const MaintenanceWindowUpdateTrackEnum = S.String;
 
 /** Maintenance window. This specifies when a Cloud SQL instance is restarted for system maintenance purposes. */
 export interface MaintenanceWindow {
@@ -2179,21 +2175,20 @@ export type IpConfigurationSslModeEnum =
   | "ALLOW_UNENCRYPTED_AND_ENCRYPTED"
   | "ENCRYPTED_ONLY"
   | "TRUSTED_CLIENT_CERTIFICATE_REQUIRED";
-export const IpConfigurationSslModeEnum = /*@__PURE__*/ S.String;
+export const IpConfigurationSslModeEnum = S.String;
 
 export type IpConfigurationServerCertificateRotationModeEnum =
   | "SERVER_CERTIFICATE_ROTATION_MODE_UNSPECIFIED"
   | "NO_AUTOMATIC_ROTATION"
   | "AUTOMATIC_ROTATION_DURING_MAINTENANCE";
-export const IpConfigurationServerCertificateRotationModeEnum =
-  /*@__PURE__*/ S.String;
+export const IpConfigurationServerCertificateRotationModeEnum = S.String;
 
 export type IpConfigurationServerCaModeEnum =
   | "CA_MODE_UNSPECIFIED"
   | "GOOGLE_MANAGED_INTERNAL_CA"
   | "GOOGLE_MANAGED_CAS_CA"
   | "CUSTOMER_MANAGED_CAS_CA";
-export const IpConfigurationServerCaModeEnum = /*@__PURE__*/ S.String;
+export const IpConfigurationServerCaModeEnum = S.String;
 
 /** An entry for an Access Control list. */
 export interface AclEntry {
@@ -2322,7 +2317,7 @@ export type SettingsConnectorEnforcementEnum =
   | "CONNECTOR_ENFORCEMENT_UNSPECIFIED"
   | "NOT_REQUIRED"
   | "REQUIRED";
-export const SettingsConnectorEnforcementEnum = /*@__PURE__*/ S.String;
+export const SettingsConnectorEnforcementEnum = S.String;
 
 /** Connection pool flags for Cloud SQL instances managed connection pool configuration. */
 export interface ConnectionPoolFlags {
@@ -2367,7 +2362,7 @@ export const ConnectionPoolConfig = /*@__PURE__*/ S.suspend(() =>
 export type PasswordValidationPolicyComplexityEnum =
   | "COMPLEXITY_UNSPECIFIED"
   | "COMPLEXITY_DEFAULT";
-export const PasswordValidationPolicyComplexityEnum = /*@__PURE__*/ S.String;
+export const PasswordValidationPolicyComplexityEnum = S.String;
 
 /** Database instance local user password validation policy. This message defines the password policy for local database users. When enabled, it enforces constraints on password complexity, length, and reuse. Keep this policy enabled to help prevent unauthorized access. */
 export interface PasswordValidationPolicy {
@@ -2405,7 +2400,7 @@ export type SqlActiveDirectoryConfigModeEnum =
   | "MANAGED_ACTIVE_DIRECTORY"
   | "SELF_MANAGED_ACTIVE_DIRECTORY"
   | "CUSTOMER_MANAGED_ACTIVE_DIRECTORY";
-export const SqlActiveDirectoryConfigModeEnum = /*@__PURE__*/ S.String;
+export const SqlActiveDirectoryConfigModeEnum = S.String;
 
 /** Active Directory configuration, relevant only for Cloud SQL for SQL Server. */
 export interface SqlActiveDirectoryConfig {
@@ -2440,33 +2435,32 @@ export type SettingsActivationPolicyEnum =
   | "ALWAYS"
   | "NEVER"
   | "ON_DEMAND";
-export const SettingsActivationPolicyEnum = /*@__PURE__*/ S.String;
+export const SettingsActivationPolicyEnum = S.String;
 
 export type SettingsAvailabilityTypeEnum =
   | "SQL_AVAILABILITY_TYPE_UNSPECIFIED"
   | "ZONAL"
   | "REGIONAL";
-export const SettingsAvailabilityTypeEnum = /*@__PURE__*/ S.String;
+export const SettingsAvailabilityTypeEnum = S.String;
 
 export type SettingsReplicationTypeEnum =
   | "SQL_REPLICATION_TYPE_UNSPECIFIED"
   | "SYNCHRONOUS"
   | "ASYNCHRONOUS";
-export const SettingsReplicationTypeEnum = /*@__PURE__*/ S.String;
+export const SettingsReplicationTypeEnum = S.String;
 
 export type SettingsEditionEnum =
   | "EDITION_UNSPECIFIED"
   | "ENTERPRISE"
   | "ENTERPRISE_PLUS"
   | "DEVELOPER";
-export const SettingsEditionEnum = /*@__PURE__*/ S.String;
+export const SettingsEditionEnum = S.String;
 
 export type PerformanceCaptureConfigTransactionKillTypeEnum =
   | "TRANSACTION_KILL_TYPE_UNSPECIFIED"
   | "READ_ONLY_TRANSACTIONS"
   | "ALL_TRANSACTIONS";
-export const PerformanceCaptureConfigTransactionKillTypeEnum =
-  /*@__PURE__*/ S.String;
+export const PerformanceCaptureConfigTransactionKillTypeEnum = S.String;
 
 /** Performance capture configuration. */
 export interface PerformanceCaptureConfig {
@@ -2740,14 +2734,14 @@ export type DatabaseInstanceDatabaseVersionEnum =
   | "SQLSERVER_2025_STANDARD"
   | "SQLSERVER_2025_ENTERPRISE"
   | "SQLSERVER_2025_EXPRESS";
-export const DatabaseInstanceDatabaseVersionEnum = /*@__PURE__*/ S.String;
+export const DatabaseInstanceDatabaseVersionEnum = S.String;
 
 export type OnPremisesConfigurationSslOptionEnum =
   | "SSL_OPTION_UNSPECIFIED"
   | "DISABLE"
   | "REQUIRE"
   | "VERIFY_CA";
-export const OnPremisesConfigurationSslOptionEnum = /*@__PURE__*/ S.String;
+export const OnPremisesConfigurationSslOptionEnum = S.String;
 
 /** A list of objects that the user selects for replication from an external source instance. */
 export interface SelectedObjects {
@@ -2875,7 +2869,7 @@ export type DatabaseInstanceSuspensionReasonItemEnum =
   | "OPERATIONAL_ISSUE"
   | "KMS_KEY_ISSUE"
   | "PROJECT_ABUSE";
-export const DatabaseInstanceSuspensionReasonItemEnum = /*@__PURE__*/ S.String;
+export const DatabaseInstanceSuspensionReasonItemEnum = S.String;
 
 export type DatabaseInstanceSuspensionReasonItemEnumList = Array<
   DatabaseInstanceSuspensionReasonItemEnum | (string & {})
@@ -3062,7 +3056,7 @@ export type BackupTypeEnum =
   | "AUTOMATED"
   | "ON_DEMAND"
   | "FINAL";
-export const BackupTypeEnum = /*@__PURE__*/ S.String;
+export const BackupTypeEnum = S.String;
 
 /** Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time. */
 export interface Interval {
@@ -3182,7 +3176,7 @@ export type DeploymentTaskStateEnum =
   | "RUNNING"
   | "SUCCEEDED"
   | "FAILED";
-export const DeploymentTaskStateEnum = /*@__PURE__*/ S.String;
+export const DeploymentTaskStateEnum = S.String;
 
 export type DeploymentTaskTypeEnum =
   | "TYPE_UNSPECIFIED"
@@ -3191,7 +3185,7 @@ export type DeploymentTaskTypeEnum =
   | "SWITCHOVER"
   | "DELETE"
   | "POST_SWITCHOVER_OPERATIONS";
-export const DeploymentTaskTypeEnum = /*@__PURE__*/ S.String;
+export const DeploymentTaskTypeEnum = S.String;
 
 /** Represents a task executed as part of the deployment on a target instance. */
 export interface DeploymentTask {
@@ -3258,7 +3252,7 @@ export type SourceTargetPairedNodeStateEnum =
   | "SWITCHOVER_FAILED"
   | "SWITCHOVER_SUCCEEDED"
   | "DELETING";
-export const SourceTargetPairedNodeStateEnum = /*@__PURE__*/ S.String;
+export const SourceTargetPairedNodeStateEnum = S.String;
 
 /** Represents a specific configuration difference between blue and green instances. */
 export interface ConfigDiff {
@@ -3337,7 +3331,7 @@ export type BlueGreenDeploymentStateEnum =
   | "SWITCHOVER_IN_PROGRESS"
   | "SWITCHOVER_COMPLETED"
   | "DELETING";
-export const BlueGreenDeploymentStateEnum = /*@__PURE__*/ S.String;
+export const BlueGreenDeploymentStateEnum = S.String;
 
 /** A `BlueGreenDeployment` resource represents a Cloud SQL blue-green deployment setup. */
 export interface BlueGreenDeployment {
@@ -3796,7 +3790,7 @@ export type ExecuteSqlPayloadPartialResultModeEnum =
   | "PARTIAL_RESULT_MODE_UNSPECIFIED"
   | "FAIL_PARTIAL_RESULT"
   | "ALLOW_PARTIAL_RESULT";
-export const ExecuteSqlPayloadPartialResultModeEnum = /*@__PURE__*/ S.String;
+export const ExecuteSqlPayloadPartialResultModeEnum = S.String;
 
 /** The request payload used to execute SQL statements. */
 export interface ExecuteSqlPayload {
@@ -4220,7 +4214,7 @@ export type BackupRunTypeEnum =
   | "SQL_BACKUP_RUN_TYPE_UNSPECIFIED"
   | "AUTOMATED"
   | "ON_DEMAND";
-export const BackupRunTypeEnum = /*@__PURE__*/ S.String;
+export const BackupRunTypeEnum = S.String;
 
 export type BackupRunDatabaseVersionEnum =
   | "SQL_DATABASE_VERSION_UNSPECIFIED"
@@ -4279,13 +4273,13 @@ export type BackupRunDatabaseVersionEnum =
   | "SQLSERVER_2025_STANDARD"
   | "SQLSERVER_2025_ENTERPRISE"
   | "SQLSERVER_2025_EXPRESS";
-export const BackupRunDatabaseVersionEnum = /*@__PURE__*/ S.String;
+export const BackupRunDatabaseVersionEnum = S.String;
 
 export type BackupRunBackupKindEnum =
   | "SQL_BACKUP_KIND_UNSPECIFIED"
   | "SNAPSHOT"
   | "PHYSICAL";
-export const BackupRunBackupKindEnum = /*@__PURE__*/ S.String;
+export const BackupRunBackupKindEnum = S.String;
 
 export type BackupRunStatusEnum =
   | "SQL_BACKUP_RUN_STATUS_UNSPECIFIED"
@@ -4298,7 +4292,7 @@ export type BackupRunStatusEnum =
   | "DELETION_PENDING"
   | "DELETION_FAILED"
   | "DELETED";
-export const BackupRunStatusEnum = /*@__PURE__*/ S.String;
+export const BackupRunStatusEnum = S.String;
 
 /** A BackupRun resource. */
 export interface BackupRun {
@@ -4369,7 +4363,7 @@ export type GetBlueGreenDeploymentsViewEnum =
   | "BLUE_GREEN_DEPLOYMENT_VIEW_UNSPECIFIED"
   | "BASIC"
   | "DETAILED";
-export const GetBlueGreenDeploymentsViewEnum = /*@__PURE__*/ S.String;
+export const GetBlueGreenDeploymentsViewEnum = S.String;
 
 export interface GetBlueGreenDeploymentsRequest {
   /** Required. The name of the blue-green deployment to retrieve. Format: projects/{project}/locations/{location}/blueGreenDeployments/{blue_green_deployment} */
@@ -4692,7 +4686,7 @@ export type UserIamStatusEnum =
   | "IAM_STATUS_UNSPECIFIED"
   | "INACTIVE"
   | "ACTIVE";
-export const UserIamStatusEnum = /*@__PURE__*/ S.String;
+export const UserIamStatusEnum = S.String;
 
 export type UserTypeEnum =
   | "BUILT_IN"
@@ -4703,7 +4697,7 @@ export type UserTypeEnum =
   | "CLOUD_IAM_GROUP_SERVICE_ACCOUNT"
   | "CLOUD_IAM_WORKFORCE_IDENTITY"
   | "ENTRAID_USER";
-export const UserTypeEnum = /*@__PURE__*/ S.String;
+export const UserTypeEnum = S.String;
 
 /** Represents a Sql Server user on the Cloud SQL instance. */
 export interface SqlServerUserDetails {
@@ -4765,7 +4759,7 @@ export type UserDualPasswordTypeEnum =
   | "NO_MODIFY_DUAL_PASSWORD"
   | "NO_DUAL_PASSWORD"
   | "DUAL_PASSWORD";
-export const UserDualPasswordTypeEnum = /*@__PURE__*/ S.String;
+export const UserDualPasswordTypeEnum = S.String;
 
 /** A Cloud SQL user resource. */
 export interface User {
@@ -5291,7 +5285,7 @@ export type ListFlagsFlagScopeEnum =
   | "SQL_FLAG_SCOPE_UNSPECIFIED"
   | "SQL_FLAG_SCOPE_DATABASE"
   | "SQL_FLAG_SCOPE_CONNECTION_POOL";
-export const ListFlagsFlagScopeEnum = /*@__PURE__*/ S.String;
+export const ListFlagsFlagScopeEnum = S.String;
 
 export interface ListFlagsRequest {
   /** Database type and version you want to retrieve flags for. By default, this method returns flags for all database types and versions. */
@@ -5371,7 +5365,7 @@ export type FlagAppliesToItemEnum =
   | "SQLSERVER_2025_STANDARD"
   | "SQLSERVER_2025_ENTERPRISE"
   | "SQLSERVER_2025_EXPRESS";
-export const FlagAppliesToItemEnum = /*@__PURE__*/ S.String;
+export const FlagAppliesToItemEnum = S.String;
 
 export type FlagAppliesToItemEnumList = Array<FlagAppliesToItemEnum>;
 export const FlagAppliesToItemEnumList = /*@__PURE__*/ S.Array(
@@ -5387,13 +5381,13 @@ export type FlagTypeEnum =
   | "MYSQL_TIMEZONE_OFFSET"
   | "FLOAT"
   | "REPEATED_STRING";
-export const FlagTypeEnum = /*@__PURE__*/ S.String;
+export const FlagTypeEnum = S.String;
 
 export type FlagFlagScopeEnum =
   | "SQL_FLAG_SCOPE_UNSPECIFIED"
   | "SQL_FLAG_SCOPE_DATABASE"
   | "SQL_FLAG_SCOPE_CONNECTION_POOL";
-export const FlagFlagScopeEnum = /*@__PURE__*/ S.String;
+export const FlagFlagScopeEnum = S.String;
 
 /** A flag resource. */
 export interface Flag {
@@ -6053,7 +6047,7 @@ export type BackupReencryptionConfigBackupTypeEnum =
   | "BACKUP_TYPE_UNSPECIFIED"
   | "AUTOMATED"
   | "ON_DEMAND";
-export const BackupReencryptionConfigBackupTypeEnum = /*@__PURE__*/ S.String;
+export const BackupReencryptionConfigBackupTypeEnum = S.String;
 
 /** Backup Reencryption Config */
 export interface BackupReencryptionConfig {
@@ -6154,7 +6148,7 @@ export type RescheduleRescheduleTypeEnum =
   | "IMMEDIATE"
   | "NEXT_AVAILABLE_WINDOW"
   | "SPECIFIC_TIME";
-export const RescheduleRescheduleTypeEnum = /*@__PURE__*/ S.String;
+export const RescheduleRescheduleTypeEnum = S.String;
 
 export interface Reschedule {
   /** Required. The type of the reschedule. */
@@ -6255,7 +6249,7 @@ export type ResetSslConfigInstancesModeEnum =
   | "RESET_SSL_MODE_UNSPECIFIED"
   | "ALL"
   | "SYNC_FROM_PRIMARY";
-export const ResetSslConfigInstancesModeEnum = /*@__PURE__*/ S.String;
+export const ResetSslConfigInstancesModeEnum = S.String;
 
 export interface ResetSslConfigInstancesRequest {
   /** Optional. Reset SSL mode to use. */
@@ -6569,8 +6563,7 @@ export type SqlInstancesStartExternalSyncRequestSyncModeEnum =
   | "EXTERNAL_SYNC_MODE_UNSPECIFIED"
   | "ONLINE"
   | "OFFLINE";
-export const SqlInstancesStartExternalSyncRequestSyncModeEnum =
-  /*@__PURE__*/ S.String;
+export const SqlInstancesStartExternalSyncRequestSyncModeEnum = S.String;
 
 /** Initial sync flags for certain Cloud SQL APIs. Currently used for the MySQL external server initial dump. */
 export interface SyncFlags {
@@ -6610,14 +6603,13 @@ export type SqlInstancesStartExternalSyncRequestSyncParallelLevelEnum =
   | "OPTIMAL"
   | "MAX";
 export const SqlInstancesStartExternalSyncRequestSyncParallelLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type SqlInstancesStartExternalSyncRequestMigrationTypeEnum =
   | "MIGRATION_TYPE_UNSPECIFIED"
   | "LOGICAL"
   | "PHYSICAL";
-export const SqlInstancesStartExternalSyncRequestMigrationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const SqlInstancesStartExternalSyncRequestMigrationTypeEnum = S.String;
 
 /** Instance start external sync request. */
 export interface SqlInstancesStartExternalSyncRequest {
@@ -6977,7 +6969,7 @@ export type SqlInstancesVerifyExternalSyncSettingsRequestSyncParallelLevelEnum =
   | "OPTIMAL"
   | "MAX";
 export const SqlInstancesVerifyExternalSyncSettingsRequestSyncParallelLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The selected object that Cloud SQL migrates. */
 export interface ExternalSyncSelectedObject {
@@ -7002,14 +6994,14 @@ export type SqlInstancesVerifyExternalSyncSettingsRequestSyncModeEnum =
   | "ONLINE"
   | "OFFLINE";
 export const SqlInstancesVerifyExternalSyncSettingsRequestSyncModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type SqlInstancesVerifyExternalSyncSettingsRequestMigrationTypeEnum =
   | "MIGRATION_TYPE_UNSPECIFIED"
   | "LOGICAL"
   | "PHYSICAL";
 export const SqlInstancesVerifyExternalSyncSettingsRequestMigrationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Instance verify external sync settings request. */
 export interface SqlInstancesVerifyExternalSyncSettingsRequest {
@@ -7147,7 +7139,7 @@ export type SqlExternalSyncSettingErrorTypeEnum =
   | "PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE"
   | "WRITABLE_DESTINATION_REPLICA_RECREATION_DOWNTIME"
   | "WRITABLE_DESTINATION_STORAGE_AUTO_INCREASE_DISABLED";
-export const SqlExternalSyncSettingErrorTypeEnum = /*@__PURE__*/ S.String;
+export const SqlExternalSyncSettingErrorTypeEnum = S.String;
 
 /** External primary instance migration setting error/warning. */
 export interface SqlExternalSyncSettingError {

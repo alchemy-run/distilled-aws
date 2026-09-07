@@ -18,7 +18,7 @@ export type PostHogConnectionForwardMethodEnum =
   | "PUT"
   | "PATCH"
   | "DELETE";
-export const PostHogConnectionForwardMethodEnum = /*@__PURE__*/ S.String;
+export const PostHogConnectionForwardMethodEnum = S.String;
 
 /** Query parameters to send to the target. */
 export type CreatePosthogConnectionsForwardRequestQueryMap = {

@@ -492,8 +492,7 @@ export type GoogleFirebaseAppdistroV1alphaReleaseTestTestStateEnum =
   | "PASSED"
   | "FAILED"
   | "INCONCLUSIVE";
-export const GoogleFirebaseAppdistroV1alphaReleaseTestTestStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirebaseAppdistroV1alphaReleaseTestTestStateEnum = S.String;
 
 export type GoogleFirebaseAppdistroV1alphaDeviceExecutionFailedReasonEnum =
   | "FAILED_REASON_UNSPECIFIED"
@@ -504,7 +503,7 @@ export type GoogleFirebaseAppdistroV1alphaDeviceExecutionFailedReasonEnum =
   | "FAILED_AI_STEP"
   | "TIMED_OUT";
 export const GoogleFirebaseAppdistroV1alphaDeviceExecutionFailedReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleFirebaseAppdistroV1alphaDeviceExecutionExecutionTypeEnum =
   | "EXECUTION_TYPE_UNSPECIFIED"
@@ -513,22 +512,20 @@ export type GoogleFirebaseAppdistroV1alphaDeviceExecutionExecutionTypeEnum =
   | "AI_REPLAY"
   | "RANDOM_CRAWL";
 export const GoogleFirebaseAppdistroV1alphaDeviceExecutionExecutionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleFirebaseAppdistroV1alphaGoalActionCachingTypeEnum =
   | "CACHING_TYPE_UNSPECIFIED"
   | "NO_CACHING"
   | "CACHE_AND_MODEL"
   | "CACHE_ONLY";
-export const GoogleFirebaseAppdistroV1alphaGoalActionCachingTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirebaseAppdistroV1alphaGoalActionCachingTypeEnum = S.String;
 
 export type GoogleFirebaseAppdistroV1alphaTerminalActionReasonEnum =
   | "REASON_UNSPECIFIED"
   | "GOAL_IMPOSSIBLE"
   | "GOAL_COMPLETE";
-export const GoogleFirebaseAppdistroV1alphaTerminalActionReasonEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirebaseAppdistroV1alphaTerminalActionReasonEnum = S.String;
 
 /** A device screenshot taken during a test. */
 export interface GoogleFirebaseAppdistroV1alphaScreenshot {
@@ -662,7 +659,7 @@ export type GoogleFirebaseAppdistroV1alphaDeviceInteractionTargetOrientationEnum
   | "PORTRAIT"
   | "LANDSCAPE";
 export const GoogleFirebaseAppdistroV1alphaDeviceInteractionTargetOrientationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Rectangle for describing bounding boxes */
 export interface AndroidxCrawlerOutputRectangle {
@@ -863,8 +860,7 @@ export type GoogleFirebaseAppdistroV1alphaAiStepResultStateEnum =
   | "FAILED"
   | "TIMED_OUT"
   | "GOAL_ACTION_LIMIT_REACHED";
-export const GoogleFirebaseAppdistroV1alphaAiStepResultStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirebaseAppdistroV1alphaAiStepResultStateEnum = S.String;
 
 /** Captures the results of an AiStep */
 export interface GoogleFirebaseAppdistroV1alphaAiStepResult {
@@ -944,8 +940,7 @@ export type GoogleFirebaseAppdistroV1alphaDeviceExecutionStateEnum =
   | "PASSED"
   | "FAILED"
   | "INCONCLUSIVE";
-export const GoogleFirebaseAppdistroV1alphaDeviceExecutionStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirebaseAppdistroV1alphaDeviceExecutionStateEnum = S.String;
 
 export type GoogleFirebaseAppdistroV1alphaDeviceExecutionInconclusiveReasonEnum =
   | "INCONCLUSIVE_REASON_UNSPECIFIED"
@@ -959,7 +954,7 @@ export type GoogleFirebaseAppdistroV1alphaDeviceExecutionInconclusiveReasonEnum 
   | "NO_CODE_APK"
   | "INVALID_APK_PREVIEW_SDK";
 export const GoogleFirebaseAppdistroV1alphaDeviceExecutionInconclusiveReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The results of running an automated test on a particular device. */
 export interface GoogleFirebaseAppdistroV1alphaDeviceExecution {
@@ -1215,7 +1210,7 @@ export const GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseResponse =
   }) as any as S.Schema<GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseResponse>;
 
 export type GetAppsAppViewEnum = "APP_VIEW_UNSPECIFIED" | "BASIC" | "FULL";
-export const GetAppsAppViewEnum = /*@__PURE__*/ S.String;
+export const GetAppsAppViewEnum = S.String;
 
 export interface GetAppsRequest {
   /** App view. When unset or set to BASIC, returns an App with everything set except for aab_state. When set to FULL, returns an App with aab_state set. */
@@ -1244,8 +1239,7 @@ export type GoogleFirebaseAppdistroV1alphaAppAabStateEnum =
   | "APP_NOT_PUBLISHED"
   | "AAB_STATE_UNAVAILABLE"
   | "PLAY_IAS_TERMS_NOT_ACCEPTED";
-export const GoogleFirebaseAppdistroV1alphaAppAabStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirebaseAppdistroV1alphaAppAabStateEnum = S.String;
 
 /** App bundle test certificate */
 export interface GoogleFirebaseAppdistroV1alphaAabCertificate {
@@ -1405,7 +1399,7 @@ export type GoogleFirebaseAppdistroV1alphaGetUploadStatusResponseStatusEnum =
   | "SUCCESS"
   | "ERROR";
 export const GoogleFirebaseAppdistroV1alphaGetUploadStatusResponseStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleFirebaseAppdistroV1alphaGetUploadStatusResponseErrorCodeEnum =
   | "ERROR_UNSPECIFIED"
@@ -1435,7 +1429,7 @@ export type GoogleFirebaseAppdistroV1alphaGetUploadStatusResponseErrorCodeEnum =
   | "AAB_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND"
   | "AAB_ANDROID_DEVELOPER_CONSOLE_PACKAGE_NOT_FOUND";
 export const GoogleFirebaseAppdistroV1alphaGetUploadStatusResponseErrorCodeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The response message for `GetUploadStatus`. */
 export interface GoogleFirebaseAppdistroV1alphaGetUploadStatusResponse {
@@ -1719,7 +1713,7 @@ export type ListProjectsAppsReleasesTestsViewEnum =
   | "RELEASE_TEST_VIEW_UNSPECIFIED"
   | "RELEASE_TEST_VIEW_BASIC"
   | "RELEASE_TEST_VIEW_FULL";
-export const ListProjectsAppsReleasesTestsViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsAppsReleasesTestsViewEnum = S.String;
 
 export interface ListProjectsAppsReleasesTestsRequest {
   /** Optional. A page token, received from a previous `ListReleaseTests` call. Provide this to retrieve the subsequent page. */

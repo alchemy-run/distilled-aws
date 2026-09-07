@@ -76,7 +76,7 @@ export const AbortSessionResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of MCP server connection */
 export type McpLocalConfigType = "local";
-export const McpLocalConfigType = /*@__PURE__*/ S.String;
+export const McpLocalConfigType = S.String;
 
 /** Command and arguments to run the MCP server */
 export type McpLocalConfigCommandList = Array<string>;
@@ -115,7 +115,7 @@ export const McpLocalConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of MCP server connection */
 export type McpRemoteConfigType = "remote";
-export const McpRemoteConfigType = /*@__PURE__*/ S.String;
+export const McpRemoteConfigType = S.String;
 
 export type McpRemoteConfigHeadersMap = { [key: string]: string | undefined };
 export const McpRemoteConfigHeadersMap = /*@__PURE__*/ S.Record(
@@ -143,7 +143,7 @@ export const McpOAuthConfig = /*@__PURE__*/ S.suspend(() =>
 /** OAuth authentication configuration for the MCP server. Set to false to disable OAuth auto-detection. */
 export type McpRemoteConfigOauth = McpOAuthConfig | boolean;
 export const McpRemoteConfigOauth =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<McpRemoteConfigOauth>;
+  S.Unknown as any as S.Schema<McpRemoteConfigOauth>;
 
 export interface McpRemoteConfig {
   /** Type of MCP server connection */
@@ -171,7 +171,7 @@ export const McpRemoteConfig = /*@__PURE__*/ S.suspend(() =>
 
 export type AddMcpRequestConfig = McpLocalConfig | McpRemoteConfig;
 export const AddMcpRequestConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddMcpRequestConfig>;
+  S.Unknown as any as S.Schema<AddMcpRequestConfig>;
 
 export interface AddMcpRequest {
   directory?: string;
@@ -189,7 +189,7 @@ export const AddMcpRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "AddMcpRequest" }) as any as S.Schema<AddMcpRequest>;
 
 export type MCPStatusConnectedStatus = "connected";
-export const MCPStatusConnectedStatus = /*@__PURE__*/ S.String;
+export const MCPStatusConnectedStatus = S.String;
 
 export interface MCPStatusConnected {
   status: MCPStatusConnectedStatus;
@@ -203,7 +203,7 @@ export const MCPStatusConnected = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MCPStatusConnected>;
 
 export type MCPStatusDisabledStatus = "disabled";
-export const MCPStatusDisabledStatus = /*@__PURE__*/ S.String;
+export const MCPStatusDisabledStatus = S.String;
 
 export interface MCPStatusDisabled {
   status: MCPStatusDisabledStatus;
@@ -217,7 +217,7 @@ export const MCPStatusDisabled = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MCPStatusDisabled>;
 
 export type MCPStatusFailedStatus = "failed";
-export const MCPStatusFailedStatus = /*@__PURE__*/ S.String;
+export const MCPStatusFailedStatus = S.String;
 
 export interface MCPStatusFailed {
   status: MCPStatusFailedStatus;
@@ -233,7 +233,7 @@ export const MCPStatusFailed = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MCPStatusFailed>;
 
 export type MCPStatusNeedsAuthStatus = "needs_auth";
-export const MCPStatusNeedsAuthStatus = /*@__PURE__*/ S.String;
+export const MCPStatusNeedsAuthStatus = S.String;
 
 export interface MCPStatusNeedsAuth {
   status: MCPStatusNeedsAuthStatus;
@@ -248,7 +248,7 @@ export const MCPStatusNeedsAuth = /*@__PURE__*/ S.suspend(() =>
 
 export type MCPStatusNeedsClientRegistrationStatus =
   "needs_client_registration";
-export const MCPStatusNeedsClientRegistrationStatus = /*@__PURE__*/ S.String;
+export const MCPStatusNeedsClientRegistrationStatus = S.String;
 
 export interface MCPStatusNeedsClientRegistration {
   status: MCPStatusNeedsClientRegistrationStatus;
@@ -269,7 +269,7 @@ export type MCPStatus =
   | MCPStatusFailed
   | MCPStatusNeedsAuth
   | MCPStatusNeedsClientRegistration;
-export const MCPStatus = /*@__PURE__*/ S.Unknown as any as S.Schema<MCPStatus>;
+export const MCPStatus = S.Unknown as any as S.Schema<MCPStatus>;
 
 /** MCP server added successfully */
 export type AddMcpResponseBodyMap = { [key: string]: MCPStatus | undefined };
@@ -297,10 +297,10 @@ export const AppAgentsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AppAgentsRequest>;
 
 export type AgentMode = "subagent" | "primary" | "all";
-export const AgentMode = /*@__PURE__*/ S.String;
+export const AgentMode = S.String;
 
 export type PermissionAction = "allow" | "deny" | "ask";
-export const PermissionAction = /*@__PURE__*/ S.String;
+export const PermissionAction = S.String;
 
 export interface PermissionRule {
   permission: string;
@@ -381,7 +381,7 @@ export const AppAgentsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Log level */
 export type AppLogRequestLevel = "debug" | "info" | "error" | "warn";
-export const AppLogRequestLevel = /*@__PURE__*/ S.String;
+export const AppLogRequestLevel = S.String;
 
 export interface AppLogRequest {
   directory?: string;
@@ -538,7 +538,7 @@ export const AuthorizeProviderOauthRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AuthorizeProviderOauthRequest>;
 
 export type ProviderAuthAuthorizationMethod = "auto" | "code";
-export const ProviderAuthAuthorizationMethod = /*@__PURE__*/ S.String;
+export const ProviderAuthAuthorizationMethod = S.String;
 
 export interface ProviderAuthAuthorization {
   url: string;
@@ -718,7 +718,7 @@ export const ConfigProvidersRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConfigProvidersRequest>;
 
 export type ProviderSource = "env" | "config" | "custom" | "api";
-export const ProviderSource = /*@__PURE__*/ S.String;
+export const ProviderSource = S.String;
 
 export type ProviderEnvList = Array<string>;
 export const ProviderEnvList = /*@__PURE__*/ S.Array(
@@ -764,14 +764,13 @@ export type ModelCapabilitiesInterleavedCase1FieldCase0 =
   | "reasoning"
   | "reasoning_content"
   | "reasoning_text";
-export const ModelCapabilitiesInterleavedCase1FieldCase0 =
-  /*@__PURE__*/ S.String;
+export const ModelCapabilitiesInterleavedCase1FieldCase0 = S.String;
 
 export type ModelCapabilitiesInterleavedCase1Field =
   | ModelCapabilitiesInterleavedCase1FieldCase0
   | string;
 export const ModelCapabilitiesInterleavedCase1Field =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ModelCapabilitiesInterleavedCase1Field>;
+  S.Unknown as any as S.Schema<ModelCapabilitiesInterleavedCase1Field>;
 
 export interface ModelCapabilitiesInterleavedCase1 {
   field: ModelCapabilitiesInterleavedCase1Field;
@@ -788,7 +787,7 @@ export type ModelCapabilitiesInterleaved =
   | boolean
   | ModelCapabilitiesInterleavedCase1;
 export const ModelCapabilitiesInterleaved =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ModelCapabilitiesInterleaved>;
+  S.Unknown as any as S.Schema<ModelCapabilitiesInterleaved>;
 
 export interface ModelCapabilities {
   temperature: boolean;
@@ -828,7 +827,7 @@ export type ModelCostTiersItemCache = ModelCostCache;
 export const ModelCostTiersItemCache = ModelCostCache;
 
 export type ModelCostTiersItemTierType = "context";
-export const ModelCostTiersItemTierType = /*@__PURE__*/ S.String;
+export const ModelCostTiersItemTierType = S.String;
 
 export interface ModelCostTiersItemTier {
   type: ModelCostTiersItemTierType;
@@ -914,7 +913,7 @@ export const ModelLimit = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ModelLimit" }) as any as S.Schema<ModelLimit>;
 
 export type ModelStatus = "alpha" | "beta" | "deprecated" | "active";
-export const ModelStatus = /*@__PURE__*/ S.String;
+export const ModelStatus = S.String;
 
 export type ModelHeadersMap = { [key: string]: string | undefined };
 export const ModelHeadersMap = /*@__PURE__*/ S.Record(
@@ -1118,16 +1117,16 @@ export const CreateExperimentalWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateExperimentalWorkspaceRequest>;
 
 export type WorkspaceTimeUsedCase1 = "NaN";
-export const WorkspaceTimeUsedCase1 = /*@__PURE__*/ S.String;
+export const WorkspaceTimeUsedCase1 = S.String;
 
 export type WorkspaceTimeUsedCase2 = "Infinity";
-export const WorkspaceTimeUsedCase2 = /*@__PURE__*/ S.String;
+export const WorkspaceTimeUsedCase2 = S.String;
 
 export type WorkspaceTimeUsedCase3 = "-Infinity";
-export const WorkspaceTimeUsedCase3 = /*@__PURE__*/ S.String;
+export const WorkspaceTimeUsedCase3 = S.String;
 
 export type WorkspaceTimeUsedCase4 = "Infinity" | "-Infinity" | "NaN";
-export const WorkspaceTimeUsedCase4 = /*@__PURE__*/ S.String;
+export const WorkspaceTimeUsedCase4 = S.String;
 
 export type WorkspaceTimeUsed =
   | number
@@ -1136,7 +1135,7 @@ export type WorkspaceTimeUsed =
   | WorkspaceTimeUsedCase3
   | WorkspaceTimeUsedCase4;
 export const WorkspaceTimeUsed =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WorkspaceTimeUsed>;
+  S.Unknown as any as S.Schema<WorkspaceTimeUsed>;
 
 export interface Workspace {
   id: string;
@@ -1201,7 +1200,7 @@ export const PtyArgsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PtyArgsList>;
 
 export type PtyStatus = "running" | "exited";
-export const PtyStatus = /*@__PURE__*/ S.String;
+export const PtyStatus = S.String;
 
 export interface Pty {
   id: string;
@@ -1269,7 +1268,7 @@ export const CreateSessionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSessionRequest>;
 
 export type SnapshotFileDiffStatus = "added" | "deleted" | "modified";
-export const SnapshotFileDiffStatus = /*@__PURE__*/ S.String;
+export const SnapshotFileDiffStatus = S.String;
 
 export interface SnapshotFileDiff {
   file?: string;
@@ -1546,7 +1545,7 @@ export const SessionV2InfoTime = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionV2InfoTime>;
 
 export type FileDiffStatus = "added" | "modified" | "deleted";
-export const FileDiffStatus = /*@__PURE__*/ S.String;
+export const FileDiffStatus = S.String;
 
 export interface FileDiff {
   path: string;
@@ -1641,7 +1640,7 @@ export const CreateV2SessionPermissionRequestSaveList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateV2SessionPermissionRequestSaveList>;
 
 export type PermissionV2SourceType = "tool";
-export const PermissionV2SourceType = /*@__PURE__*/ S.String;
+export const PermissionV2SourceType = S.String;
 
 export interface PermissionV2Source {
   type: PermissionV2SourceType | (string & {});
@@ -1690,7 +1689,7 @@ export const CreateV2SessionPermissionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateV2SessionPermissionRequest>;
 
 export type PermissionV2Effect = "allow" | "deny" | "ask";
-export const PermissionV2Effect = /*@__PURE__*/ S.String;
+export const PermissionV2Effect = S.String;
 
 export interface CreateV2SessionPermissionResponseData {
   id: string;
@@ -2029,7 +2028,7 @@ export type WorkspaceEventConnectionStatusStatus =
   | "connecting"
   | "disconnected"
   | "error";
-export const WorkspaceEventConnectionStatusStatus = /*@__PURE__*/ S.String;
+export const WorkspaceEventConnectionStatusStatus = S.String;
 
 export interface WorkspaceEventConnectionStatus {
   workspaceID: string;
@@ -2102,7 +2101,7 @@ export const FileStatusRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FileStatusRequest>;
 
 export type FileStatus = "added" | "deleted" | "modified";
-export const FileStatus = /*@__PURE__*/ S.String;
+export const FileStatus = S.String;
 
 export interface File {
   path: string;
@@ -2133,10 +2132,10 @@ export const FileStatusResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FileStatusResponse>;
 
 export type FindFilesRequestDirs = "true" | "false";
-export const FindFilesRequestDirs = /*@__PURE__*/ S.String;
+export const FindFilesRequestDirs = S.String;
 
 export type FindFilesRequestType = "file" | "directory";
-export const FindFilesRequestType = /*@__PURE__*/ S.String;
+export const FindFilesRequestType = S.String;
 
 export interface FindFilesRequest {
   directory?: string;
@@ -2417,7 +2416,7 @@ export const GetConfigRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Log level */
 export type LogLevel = "DEBUG" | "INFO" | "WARN" | "ERROR";
-export const LogLevel = /*@__PURE__*/ S.String;
+export const LogLevel = S.String;
 
 export type ServerConfigCorsList = Array<string>;
 export const ServerConfigCorsList = /*@__PURE__*/ S.Array(
@@ -2529,7 +2528,7 @@ export type ConfigReferencesValue =
   | ConfigV2ReferenceGit
   | ConfigV2ReferenceLocal;
 export const ConfigReferencesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigReferencesValue>;
+  S.Unknown as any as S.Schema<ConfigReferencesValue>;
 
 export type ConfigReferencesMap = {
   [key: string]: ConfigReferencesValue | undefined;
@@ -2544,7 +2543,7 @@ export type ConfigReferenceValue =
   | ConfigV2ReferenceGit
   | ConfigV2ReferenceLocal;
 export const ConfigReferenceValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigReferenceValue>;
+  S.Unknown as any as S.Schema<ConfigReferenceValue>;
 
 export type ConfigReferenceMap = {
   [key: string]: ConfigReferenceValue | undefined;
@@ -2574,8 +2573,7 @@ export const ConfigPluginItemCase1List = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ConfigPluginItemCase1List>;
 
 export type ConfigPluginItem = string | ConfigPluginItemCase1List;
-export const ConfigPluginItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigPluginItem>;
+export const ConfigPluginItem = S.Unknown as any as S.Schema<ConfigPluginItem>;
 
 export type ConfigPluginList = Array<ConfigPluginItem>;
 export const ConfigPluginList = /*@__PURE__*/ S.Array(
@@ -2583,15 +2581,14 @@ export const ConfigPluginList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ConfigPluginList>;
 
 export type ConfigShare = "manual" | "auto" | "disabled";
-export const ConfigShare = /*@__PURE__*/ S.String;
+export const ConfigShare = S.String;
 
 export type ConfigAutoupdateCase1 = "notify";
-export const ConfigAutoupdateCase1 = /*@__PURE__*/ S.String;
+export const ConfigAutoupdateCase1 = S.String;
 
 /** Automatically update to the latest version. Set to true to auto-update, false to disable, or 'notify' to show update notifications */
 export type ConfigAutoupdate = boolean | ConfigAutoupdateCase1;
-export const ConfigAutoupdate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigAutoupdate>;
+export const ConfigAutoupdate = S.Unknown as any as S.Schema<ConfigAutoupdate>;
 
 export type ConfigDisabledProvidersList = Array<string>;
 export const ConfigDisabledProvidersList = /*@__PURE__*/ S.Array(
@@ -2610,7 +2607,7 @@ export const AgentConfigToolsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<AgentConfigToolsMap>;
 
 export type AgentConfigMode = "subagent" | "primary" | "all";
-export const AgentConfigMode = /*@__PURE__*/ S.String;
+export const AgentConfigMode = S.String;
 
 export type AgentConfigColorCase1 =
   | "primary"
@@ -2620,15 +2617,14 @@ export type AgentConfigColorCase1 =
   | "warning"
   | "error"
   | "info";
-export const AgentConfigColorCase1 = /*@__PURE__*/ S.String;
+export const AgentConfigColorCase1 = S.String;
 
 /** Hex color code (e.g., #FF5733) or theme color (e.g., primary) */
 export type AgentConfigColor = string | AgentConfigColorCase1;
-export const AgentConfigColor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AgentConfigColor>;
+export const AgentConfigColor = S.Unknown as any as S.Schema<AgentConfigColor>;
 
 export type PermissionActionConfig = "ask" | "allow" | "deny";
-export const PermissionActionConfig = /*@__PURE__*/ S.String;
+export const PermissionActionConfig = S.String;
 
 export type PermissionObjectConfig = {
   [key: string]: PermissionActionConfig | (string & {}) | undefined;
@@ -2642,7 +2638,7 @@ export type PermissionRuleConfig =
   | PermissionActionConfig
   | PermissionObjectConfig;
 export const PermissionRuleConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PermissionRuleConfig>;
+  S.Unknown as any as S.Schema<PermissionRuleConfig>;
 
 export interface PermissionConfigCase1 {
   read?: PermissionRuleConfig;
@@ -2684,8 +2680,7 @@ export const PermissionConfigCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PermissionConfigCase1>;
 
 export type PermissionConfig = PermissionActionConfig | PermissionConfigCase1;
-export const PermissionConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PermissionConfig>;
+export const PermissionConfig = S.Unknown as any as S.Schema<PermissionConfig>;
 
 export interface AgentConfig {
   model?: string;
@@ -2775,12 +2770,12 @@ export const ProviderConfigBlacklistList = /*@__PURE__*/ S.Array(
 /** Timeout in milliseconds for full requests to this provider. Set to false to disable timeout. */
 export type ProviderConfigOptionsTimeout = number | boolean;
 export const ProviderConfigOptionsTimeout =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProviderConfigOptionsTimeout>;
+  S.Unknown as any as S.Schema<ProviderConfigOptionsTimeout>;
 
 /** Timeout in milliseconds to wait for response headers. Provider integrations may set defaults. Set to false to disable timeout. */
 export type ProviderConfigOptionsHeaderTimeout = number | boolean;
 export const ProviderConfigOptionsHeaderTimeout =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProviderConfigOptionsHeaderTimeout>;
+  S.Unknown as any as S.Schema<ProviderConfigOptionsHeaderTimeout>;
 
 export interface ProviderConfigOptions {
   apiKey?: string | Redacted.Redacted<string>;
@@ -2811,20 +2806,19 @@ export type ProviderConfigModelsValueInterleavedCase1 =
   | "reasoning"
   | "reasoning_content"
   | "reasoning_text";
-export const ProviderConfigModelsValueInterleavedCase1 = /*@__PURE__*/ S.String;
+export const ProviderConfigModelsValueInterleavedCase1 = S.String;
 
 export type ProviderConfigModelsValueInterleavedCase3FieldCase0 =
   | "reasoning"
   | "reasoning_content"
   | "reasoning_text";
-export const ProviderConfigModelsValueInterleavedCase3FieldCase0 =
-  /*@__PURE__*/ S.String;
+export const ProviderConfigModelsValueInterleavedCase3FieldCase0 = S.String;
 
 export type ProviderConfigModelsValueInterleavedCase3Field =
   | ProviderConfigModelsValueInterleavedCase3FieldCase0
   | string;
 export const ProviderConfigModelsValueInterleavedCase3Field =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProviderConfigModelsValueInterleavedCase3Field>;
+  S.Unknown as any as S.Schema<ProviderConfigModelsValueInterleavedCase3Field>;
 
 export interface ProviderConfigModelsValueInterleavedCase3 {
   field: ProviderConfigModelsValueInterleavedCase3Field;
@@ -2844,7 +2838,7 @@ export type ProviderConfigModelsValueInterleaved =
   | string
   | ProviderConfigModelsValueInterleavedCase3;
 export const ProviderConfigModelsValueInterleaved =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProviderConfigModelsValueInterleaved>;
+  S.Unknown as any as S.Schema<ProviderConfigModelsValueInterleaved>;
 
 export interface ProviderConfigModelsValueCostContextOver200k {
   input: number;
@@ -2892,8 +2886,7 @@ export type ProviderConfigModelsValueModalitiesInputItem =
   | "image"
   | "video"
   | "pdf";
-export const ProviderConfigModelsValueModalitiesInputItem =
-  /*@__PURE__*/ S.String;
+export const ProviderConfigModelsValueModalitiesInputItem = S.String;
 
 export type ProviderConfigModelsValueModalitiesInputList = Array<
   ProviderConfigModelsValueModalitiesInputItem | (string & {})
@@ -2909,8 +2902,7 @@ export type ProviderConfigModelsValueModalitiesOutputItem =
   | "image"
   | "video"
   | "pdf";
-export const ProviderConfigModelsValueModalitiesOutputItem =
-  /*@__PURE__*/ S.String;
+export const ProviderConfigModelsValueModalitiesOutputItem = S.String;
 
 export type ProviderConfigModelsValueModalitiesOutputList = Array<
   ProviderConfigModelsValueModalitiesOutputItem | (string & {})
@@ -2938,7 +2930,7 @@ export type ProviderConfigModelsValueStatus =
   | "beta"
   | "deprecated"
   | "active";
-export const ProviderConfigModelsValueStatus = /*@__PURE__*/ S.String;
+export const ProviderConfigModelsValueStatus = S.String;
 
 export interface ProviderConfigModelsValueProvider {
   npm?: string;
@@ -3082,8 +3074,7 @@ export type ConfigMcpValue =
   | McpLocalConfig
   | McpRemoteConfig
   | ConfigMcpValueCase2;
-export const ConfigMcpValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigMcpValue>;
+export const ConfigMcpValue = S.Unknown as any as S.Schema<ConfigMcpValue>;
 
 export type ConfigMcpMap = { [key: string]: ConfigMcpValue | undefined };
 export const ConfigMcpMap = /*@__PURE__*/ S.Record(
@@ -3136,8 +3127,7 @@ export const ConfigFormatterCase1Map = /*@__PURE__*/ S.Record(
 
 /** Enable or configure formatters. Omit or set to false to disable, true to enable built-ins, or an object to enable built-ins with overrides. */
 export type ConfigFormatter = boolean | ConfigFormatterCase1Map;
-export const ConfigFormatter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigFormatter>;
+export const ConfigFormatter = S.Unknown as any as S.Schema<ConfigFormatter>;
 
 export interface ConfigLspCase1ValueCase0 {
   disabled: boolean;
@@ -3191,7 +3181,7 @@ export type ConfigLspCase1Value =
   | ConfigLspCase1ValueCase0
   | ConfigLspCase1ValueCase1;
 export const ConfigLspCase1Value =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigLspCase1Value>;
+  S.Unknown as any as S.Schema<ConfigLspCase1Value>;
 
 export type ConfigLspCase1Map = {
   [key: string]: ConfigLspCase1Value | undefined;
@@ -3203,7 +3193,7 @@ export const ConfigLspCase1Map = /*@__PURE__*/ S.Record(
 
 /** Enable or configure LSP servers. Omit or set to false to disable, true to enable built-ins, or an object to enable built-ins with overrides. */
 export type ConfigLsp = boolean | ConfigLspCase1Map;
-export const ConfigLsp = /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigLsp>;
+export const ConfigLsp = S.Unknown as any as S.Schema<ConfigLsp>;
 
 export type ConfigInstructionsList = Array<string>;
 export const ConfigInstructionsList = /*@__PURE__*/ S.Array(
@@ -3212,7 +3202,7 @@ export const ConfigInstructionsList = /*@__PURE__*/ S.Array(
 
 /** @deprecated Always uses stretch layout. */
 export type LayoutConfig = "auto" | "stretch";
-export const LayoutConfig = /*@__PURE__*/ S.String;
+export const LayoutConfig = S.String;
 
 export type ConfigToolsMap = { [key: string]: boolean | undefined };
 export const ConfigToolsMap = /*@__PURE__*/ S.Record(
@@ -3297,10 +3287,10 @@ export const ConfigExperimentalPrimaryToolsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ConfigExperimentalPrimaryToolsList>;
 
 export type ConfigV2ExperimentalPolicyAction = "provider.use";
-export const ConfigV2ExperimentalPolicyAction = /*@__PURE__*/ S.String;
+export const ConfigV2ExperimentalPolicyAction = S.String;
 
 export type PolicyEffect = "allow" | "deny";
-export const PolicyEffect = /*@__PURE__*/ S.String;
+export const PolicyEffect = S.String;
 
 export interface ConfigV2ExperimentalPolicy {
   action: ConfigV2ExperimentalPolicyAction | (string & {});
@@ -3594,13 +3584,13 @@ export const GetV2IntegrationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetV2IntegrationRequest>;
 
 export type IntegrationOAuthMethodType = "oauth";
-export const IntegrationOAuthMethodType = /*@__PURE__*/ S.String;
+export const IntegrationOAuthMethodType = S.String;
 
 export type IntegrationTextPromptType = "text";
-export const IntegrationTextPromptType = /*@__PURE__*/ S.String;
+export const IntegrationTextPromptType = S.String;
 
 export type IntegrationWhenOp = "eq" | "neq";
-export const IntegrationWhenOp = /*@__PURE__*/ S.String;
+export const IntegrationWhenOp = S.String;
 
 export interface IntegrationWhen {
   key: string;
@@ -3637,7 +3627,7 @@ export const IntegrationTextPrompt = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IntegrationTextPrompt>;
 
 export type IntegrationSelectPromptType = "select";
-export const IntegrationSelectPromptType = /*@__PURE__*/ S.String;
+export const IntegrationSelectPromptType = S.String;
 
 export interface IntegrationSelectPromptOptionsItem {
   label: string;
@@ -3683,7 +3673,7 @@ export type IntegrationOAuthMethodPromptsItem =
   | IntegrationTextPrompt
   | IntegrationSelectPrompt;
 export const IntegrationOAuthMethodPromptsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationOAuthMethodPromptsItem>;
+  S.Unknown as any as S.Schema<IntegrationOAuthMethodPromptsItem>;
 
 export type IntegrationOAuthMethodPromptsList =
   Array<IntegrationOAuthMethodPromptsItem>;
@@ -3709,7 +3699,7 @@ export const IntegrationOAuthMethod = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IntegrationOAuthMethod>;
 
 export type IntegrationKeyMethodType = "key";
-export const IntegrationKeyMethodType = /*@__PURE__*/ S.String;
+export const IntegrationKeyMethodType = S.String;
 
 export interface IntegrationKeyMethod {
   type: IntegrationKeyMethodType;
@@ -3725,7 +3715,7 @@ export const IntegrationKeyMethod = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IntegrationKeyMethod>;
 
 export type IntegrationEnvMethodType = "env";
-export const IntegrationEnvMethodType = /*@__PURE__*/ S.String;
+export const IntegrationEnvMethodType = S.String;
 
 export type IntegrationEnvMethodNamesList = Array<string>;
 export const IntegrationEnvMethodNamesList = /*@__PURE__*/ S.Array(
@@ -3750,7 +3740,7 @@ export type IntegrationMethod =
   | IntegrationKeyMethod
   | IntegrationEnvMethod;
 export const IntegrationMethod =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationMethod>;
+  S.Unknown as any as S.Schema<IntegrationMethod>;
 
 export type IntegrationInfoMethodsList = Array<IntegrationMethod>;
 export const IntegrationInfoMethodsList = /*@__PURE__*/ S.Array(
@@ -3758,7 +3748,7 @@ export const IntegrationInfoMethodsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<IntegrationInfoMethodsList>;
 
 export type ConnectionCredentialInfoType = "credential";
-export const ConnectionCredentialInfoType = /*@__PURE__*/ S.String;
+export const ConnectionCredentialInfoType = S.String;
 
 export interface ConnectionCredentialInfo {
   type: ConnectionCredentialInfoType;
@@ -3776,7 +3766,7 @@ export const ConnectionCredentialInfo = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConnectionCredentialInfo>;
 
 export type ConnectionEnvInfoType = "env";
-export const ConnectionEnvInfoType = /*@__PURE__*/ S.String;
+export const ConnectionEnvInfoType = S.String;
 
 export interface ConnectionEnvInfo {
   type: ConnectionEnvInfoType;
@@ -3792,8 +3782,7 @@ export const ConnectionEnvInfo = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConnectionEnvInfo>;
 
 export type ConnectionInfo = ConnectionCredentialInfo | ConnectionEnvInfo;
-export const ConnectionInfo =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectionInfo>;
+export const ConnectionInfo = S.Unknown as any as S.Schema<ConnectionInfo>;
 
 export type IntegrationInfoConnectionsList = Array<ConnectionInfo>;
 export const IntegrationInfoConnectionsList = /*@__PURE__*/ S.Array(
@@ -3871,7 +3860,7 @@ export const GetV2ProviderRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetV2ProviderRequest>;
 
 export type ProviderAISDKType = "aisdk";
-export const ProviderAISDKType = /*@__PURE__*/ S.String;
+export const ProviderAISDKType = S.String;
 
 export interface ProviderAISDK {
   type: ProviderAISDKType;
@@ -3889,7 +3878,7 @@ export const ProviderAISDK = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ProviderAISDK" }) as any as S.Schema<ProviderAISDK>;
 
 export type ProviderNativeType = "native";
-export const ProviderNativeType = /*@__PURE__*/ S.String;
+export const ProviderNativeType = S.String;
 
 export interface ProviderNative {
   type: ProviderNativeType;
@@ -3905,8 +3894,7 @@ export const ProviderNative = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ProviderNative" }) as any as S.Schema<ProviderNative>;
 
 export type ProviderApi = ProviderAISDK | ProviderNative;
-export const ProviderApi =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProviderApi>;
+export const ProviderApi = S.Unknown as any as S.Schema<ProviderApi>;
 
 export type ProviderRequestHeadersMap = { [key: string]: string | undefined };
 export const ProviderRequestHeadersMap = /*@__PURE__*/ S.Record(
@@ -4194,7 +4182,7 @@ export type GlobalUpgradeResponseBody =
   | GlobalUpgradeResponseBodyCase0
   | GlobalUpgradeResponseBodyCase1;
 export const GlobalUpgradeResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalUpgradeResponseBody>;
+  S.Unknown as any as S.Schema<GlobalUpgradeResponseBody>;
 
 export type GlobalUpgradeResponse = GlobalUpgradeResponseBody;
 export const GlobalUpgradeResponse = /*@__PURE__*/ S.suspend(() =>
@@ -4237,7 +4225,7 @@ export const ListCommandRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListCommandRequest>;
 
 export type CommandSource = "command" | "mcp" | "skill";
-export const CommandSource = /*@__PURE__*/ S.String;
+export const CommandSource = S.String;
 
 export type CommandHintsList = Array<string>;
 export const CommandHintsList = /*@__PURE__*/ S.Array(
@@ -4328,23 +4316,22 @@ export const ListExperimentalResourceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListExperimentalResourceResponse>;
 
 export type ListExperimentalSessionRequestRootsCase1 = "true" | "false";
-export const ListExperimentalSessionRequestRootsCase1 = /*@__PURE__*/ S.String;
+export const ListExperimentalSessionRequestRootsCase1 = S.String;
 
 export type ListExperimentalSessionRequestRoots =
   | boolean
   | ListExperimentalSessionRequestRootsCase1;
 export const ListExperimentalSessionRequestRoots =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListExperimentalSessionRequestRoots>;
+  S.Unknown as any as S.Schema<ListExperimentalSessionRequestRoots>;
 
 export type ListExperimentalSessionRequestArchivedCase1 = "true" | "false";
-export const ListExperimentalSessionRequestArchivedCase1 =
-  /*@__PURE__*/ S.String;
+export const ListExperimentalSessionRequestArchivedCase1 = S.String;
 
 export type ListExperimentalSessionRequestArchived =
   | boolean
   | ListExperimentalSessionRequestArchivedCase1;
 export const ListExperimentalSessionRequestArchived =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListExperimentalSessionRequestArchived>;
+  S.Unknown as any as S.Schema<ListExperimentalSessionRequestArchived>;
 
 export interface ListExperimentalSessionRequest {
   directory?: string;
@@ -4610,7 +4597,7 @@ export const ListFileRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListFileRequest>;
 
 export type FileNodeType = "file" | "directory";
-export const FileNodeType = /*@__PURE__*/ S.String;
+export const FileNodeType = S.String;
 
 export interface FileNode {
   name: string;
@@ -4728,7 +4715,7 @@ export const ListProjectRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListProjectRequest>;
 
 export type ProjectVcs = "git";
-export const ProjectVcs = /*@__PURE__*/ S.String;
+export const ProjectVcs = S.String;
 
 export interface ProjectIcon {
   url?: string;
@@ -4869,13 +4856,13 @@ export const ListProviderAuthMethodsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListProviderAuthMethodsRequest>;
 
 export type ProviderAuthMethodType = "oauth" | "api";
-export const ProviderAuthMethodType = /*@__PURE__*/ S.String;
+export const ProviderAuthMethodType = S.String;
 
 export type ProviderAuthMethodPromptsItemCase0Type = "text";
-export const ProviderAuthMethodPromptsItemCase0Type = /*@__PURE__*/ S.String;
+export const ProviderAuthMethodPromptsItemCase0Type = S.String;
 
 export type ProviderAuthMethodPromptsItemCase0WhenOp = "eq" | "neq";
-export const ProviderAuthMethodPromptsItemCase0WhenOp = /*@__PURE__*/ S.String;
+export const ProviderAuthMethodPromptsItemCase0WhenOp = S.String;
 
 export interface ProviderAuthMethodPromptsItemCase0When {
   key: string;
@@ -4913,7 +4900,7 @@ export const ProviderAuthMethodPromptsItemCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProviderAuthMethodPromptsItemCase0>;
 
 export type ProviderAuthMethodPromptsItemCase1Type = "select";
-export const ProviderAuthMethodPromptsItemCase1Type = /*@__PURE__*/ S.String;
+export const ProviderAuthMethodPromptsItemCase1Type = S.String;
 
 export type ProviderAuthMethodPromptsItemCase1OptionsItem =
   IntegrationSelectPromptOptionsItem;
@@ -4928,7 +4915,7 @@ export const ProviderAuthMethodPromptsItemCase1OptionsList =
   ) as any as S.Schema<ProviderAuthMethodPromptsItemCase1OptionsList>;
 
 export type ProviderAuthMethodPromptsItemCase1WhenOp = "eq" | "neq";
-export const ProviderAuthMethodPromptsItemCase1WhenOp = /*@__PURE__*/ S.String;
+export const ProviderAuthMethodPromptsItemCase1WhenOp = S.String;
 
 export interface ProviderAuthMethodPromptsItemCase1When {
   key: string;
@@ -4969,7 +4956,7 @@ export type ProviderAuthMethodPromptsItem =
   | ProviderAuthMethodPromptsItemCase0
   | ProviderAuthMethodPromptsItemCase1;
 export const ProviderAuthMethodPromptsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProviderAuthMethodPromptsItem>;
+  S.Unknown as any as S.Schema<ProviderAuthMethodPromptsItem>;
 
 export type ProviderAuthMethodPromptsList =
   Array<ProviderAuthMethodPromptsItem>;
@@ -5133,14 +5120,14 @@ export const ListQuestionResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListQuestionResponse>;
 
 export type ListSessionRequestScope = "project";
-export const ListSessionRequestScope = /*@__PURE__*/ S.String;
+export const ListSessionRequestScope = S.String;
 
 export type ListSessionRequestRootsCase1 = "true" | "false";
-export const ListSessionRequestRootsCase1 = /*@__PURE__*/ S.String;
+export const ListSessionRequestRootsCase1 = S.String;
 
 export type ListSessionRequestRoots = boolean | ListSessionRequestRootsCase1;
 export const ListSessionRequestRoots =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListSessionRequestRoots>;
+  S.Unknown as any as S.Schema<ListSessionRequestRoots>;
 
 export interface ListSessionRequest {
   directory?: string;
@@ -5297,7 +5284,7 @@ export const ListV2AgentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListV2AgentRequest>;
 
 export type AgentV2InfoMode = "subagent" | "primary" | "all";
-export const AgentV2InfoMode = /*@__PURE__*/ S.String;
+export const AgentV2InfoMode = S.String;
 
 export type AgentColorCase1 =
   | "primary"
@@ -5307,11 +5294,10 @@ export type AgentColorCase1 =
   | "warning"
   | "error"
   | "info";
-export const AgentColorCase1 = /*@__PURE__*/ S.String;
+export const AgentColorCase1 = S.String;
 
 export type AgentColor = string | AgentColorCase1;
-export const AgentColor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AgentColor>;
+export const AgentColor = S.Unknown as any as S.Schema<AgentColor>;
 
 export interface PermissionV2Rule {
   action: string;
@@ -5453,7 +5439,7 @@ export const ListV2FsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListV2FsRequest>;
 
 export type FileSystemEntryType = "file" | "directory";
-export const FileSystemEntryType = /*@__PURE__*/ S.String;
+export const FileSystemEntryType = S.String;
 
 export interface FileSystemEntry {
   path: string;
@@ -5541,7 +5527,7 @@ export const ListV2ModelRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListV2ModelRequest>;
 
 export type ModelApiCase0Type = "aisdk";
-export const ModelApiCase0Type = /*@__PURE__*/ S.String;
+export const ModelApiCase0Type = S.String;
 
 export interface ModelApiCase0 {
   id: string;
@@ -5561,7 +5547,7 @@ export const ModelApiCase0 = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ModelApiCase0" }) as any as S.Schema<ModelApiCase0>;
 
 export type ModelApiCase1Type = "native";
-export const ModelApiCase1Type = /*@__PURE__*/ S.String;
+export const ModelApiCase1Type = S.String;
 
 export interface ModelApiCase1 {
   id: string;
@@ -5579,7 +5565,7 @@ export const ModelApiCase1 = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ModelApiCase1" }) as any as S.Schema<ModelApiCase1>;
 
 export type ModelApi2 = ModelApiCase0 | ModelApiCase1;
-export const ModelApi2 = /*@__PURE__*/ S.Unknown as any as S.Schema<ModelApi2>;
+export const ModelApi2 = S.Unknown as any as S.Schema<ModelApi2>;
 
 export type ModelCapabilitiesInputList = Array<string>;
 export const ModelCapabilitiesInputList = /*@__PURE__*/ S.Array(
@@ -5669,7 +5655,7 @@ export const ModelV2InfoTime = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ModelV2InfoTime>;
 
 export type ModelCostTierType = "context";
-export const ModelCostTierType = /*@__PURE__*/ S.String;
+export const ModelCostTierType = S.String;
 
 export interface ModelCostTier {
   type: ModelCostTierType;
@@ -5706,7 +5692,7 @@ export const ModelV2InfoCostList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ModelV2InfoCostList>;
 
 export type ModelV2InfoStatus = "alpha" | "beta" | "deprecated" | "active";
-export const ModelV2InfoStatus = /*@__PURE__*/ S.String;
+export const ModelV2InfoStatus = S.String;
 
 export type ModelV2InfoLimit = ModelLimit;
 export const ModelV2InfoLimit = ModelLimit;
@@ -6026,7 +6012,7 @@ export const ListV2ReferenceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListV2ReferenceRequest>;
 
 export type ReferenceLocalSourceType = "local";
-export const ReferenceLocalSourceType = /*@__PURE__*/ S.String;
+export const ReferenceLocalSourceType = S.String;
 
 export interface ReferenceLocalSource {
   type: ReferenceLocalSourceType;
@@ -6046,7 +6032,7 @@ export const ReferenceLocalSource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ReferenceLocalSource>;
 
 export type ReferenceGitSourceType = "git";
-export const ReferenceGitSourceType = /*@__PURE__*/ S.String;
+export const ReferenceGitSourceType = S.String;
 
 export interface ReferenceGitSource {
   type: ReferenceGitSourceType;
@@ -6068,8 +6054,7 @@ export const ReferenceGitSource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ReferenceGitSource>;
 
 export type ReferenceSource = ReferenceLocalSource | ReferenceGitSource;
-export const ReferenceSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReferenceSource>;
+export const ReferenceSource = S.Unknown as any as S.Schema<ReferenceSource>;
 
 export interface ReferenceInfo {
   name: string;
@@ -6107,7 +6092,7 @@ export const ListV2ReferenceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListV2ReferenceResponse>;
 
 export type ListV2SessionRequestOrder = "asc" | "desc";
-export const ListV2SessionRequestOrder = /*@__PURE__*/ S.String;
+export const ListV2SessionRequestOrder = S.String;
 
 export interface ListV2SessionRequest {
   workspace?: string;
@@ -6325,7 +6310,7 @@ export const LspStatusRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LspStatusRequest>;
 
 export type LSPStatusStatus = "connected" | "error";
-export const LSPStatusStatus = /*@__PURE__*/ S.String;
+export const LSPStatusStatus = S.String;
 
 export interface LSPStatus {
   id: string;
@@ -6585,7 +6570,7 @@ export const PtyShellsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PtyShellsResponse>;
 
 export type EventTuiPromptAppendType = "tui.prompt.append";
-export const EventTuiPromptAppendType = /*@__PURE__*/ S.String;
+export const EventTuiPromptAppendType = S.String;
 
 export type EventTuiPromptAppendProperties = FindTextResponseBodyItemPath;
 export const EventTuiPromptAppendProperties = FindTextResponseBodyItemPath;
@@ -6604,7 +6589,7 @@ export const EventTuiPromptAppend = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EventTuiPromptAppend>;
 
 export type EventTuiCommandExecuteType = "tui.command.execute";
-export const EventTuiCommandExecuteType = /*@__PURE__*/ S.String;
+export const EventTuiCommandExecuteType = S.String;
 
 export type EventTuiCommandExecutePropertiesCommandCase0 =
   | "session.list"
@@ -6623,14 +6608,13 @@ export type EventTuiCommandExecutePropertiesCommandCase0 =
   | "prompt.clear"
   | "prompt.submit"
   | "agent.cycle";
-export const EventTuiCommandExecutePropertiesCommandCase0 =
-  /*@__PURE__*/ S.String;
+export const EventTuiCommandExecutePropertiesCommandCase0 = S.String;
 
 export type EventTuiCommandExecutePropertiesCommand =
   | EventTuiCommandExecutePropertiesCommandCase0
   | string;
 export const EventTuiCommandExecutePropertiesCommand =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventTuiCommandExecutePropertiesCommand>;
+  S.Unknown as any as S.Schema<EventTuiCommandExecutePropertiesCommand>;
 
 export interface EventTuiCommandExecuteProperties {
   command: EventTuiCommandExecutePropertiesCommand;
@@ -6657,14 +6641,14 @@ export const EventTuiCommandExecute = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EventTuiCommandExecute>;
 
 export type EventTuiToastShowType = "tui.toast.show";
-export const EventTuiToastShowType = /*@__PURE__*/ S.String;
+export const EventTuiToastShowType = S.String;
 
 export type EventTuiToastShowPropertiesVariant =
   | "info"
   | "success"
   | "warning"
   | "error";
-export const EventTuiToastShowPropertiesVariant = /*@__PURE__*/ S.String;
+export const EventTuiToastShowPropertiesVariant = S.String;
 
 export interface EventTuiToastShowProperties {
   title?: string;
@@ -6697,7 +6681,7 @@ export const EventTuiToastShow = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EventTuiToastShow>;
 
 export type EventTuiSessionSelectType = "tui.session.select";
-export const EventTuiSessionSelectType = /*@__PURE__*/ S.String;
+export const EventTuiSessionSelectType = S.String;
 
 export interface EventTuiSessionSelectProperties {
   /** Session ID to navigate to */
@@ -6730,7 +6714,7 @@ export type PublishTuiRequestBody =
   | EventTuiToastShow
   | EventTuiSessionSelect;
 export const PublishTuiRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PublishTuiRequestBody>;
+  S.Unknown as any as S.Schema<PublishTuiRequestBody>;
 
 export interface PublishTuiRequest {
   directory?: string;
@@ -6770,7 +6754,7 @@ export const ReadFileRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ReadFileRequest>;
 
 export type FileContentType = "text" | "binary";
-export const FileContentType = /*@__PURE__*/ S.String;
+export const FileContentType = S.String;
 
 export type FileContentPatchHunksItemLinesList = Array<string>;
 export const FileContentPatchHunksItemLinesList = /*@__PURE__*/ S.Array(
@@ -6823,7 +6807,7 @@ export const FileContentPatch = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FileContentPatch>;
 
 export type FileContentEncoding = "base64";
-export const FileContentEncoding = /*@__PURE__*/ S.String;
+export const FileContentEncoding = S.String;
 
 export interface FileContent {
   type: FileContentType;
@@ -7108,7 +7092,7 @@ export const RemoveWorktreeResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RemoveWorktreeResponse>;
 
 export type ReplyPermissionRequestReply = "once" | "always" | "reject";
-export const ReplyPermissionRequestReply = /*@__PURE__*/ S.String;
+export const ReplyPermissionRequestReply = S.String;
 
 export interface ReplyPermissionRequest {
   requestID: string;
@@ -7177,7 +7161,7 @@ export const ReplyQuestionResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ReplyQuestionResponse>;
 
 export type PermissionV2Reply = "once" | "always" | "reject";
-export const PermissionV2Reply = /*@__PURE__*/ S.String;
+export const PermissionV2Reply = S.String;
 
 export interface ReplyV2SessionPermissionRequest {
   sessionID: string;
@@ -7302,7 +7286,7 @@ export const SessionChildrenResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionChildrenResponse>;
 
 export type SessionCommandRequestPartsItemType = "file";
-export const SessionCommandRequestPartsItemType = /*@__PURE__*/ S.String;
+export const SessionCommandRequestPartsItemType = S.String;
 
 export interface FilePartSourceText {
   value: string;
@@ -7320,7 +7304,7 @@ export const FilePartSourceText = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FilePartSourceText>;
 
 export type FileSourceType = "file";
-export const FileSourceType = /*@__PURE__*/ S.String;
+export const FileSourceType = S.String;
 
 export interface FileSource {
   text: FilePartSourceText;
@@ -7336,7 +7320,7 @@ export const FileSource = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FileSource" }) as any as S.Schema<FileSource>;
 
 export type SymbolSourceType = "symbol";
-export const SymbolSourceType = /*@__PURE__*/ S.String;
+export const SymbolSourceType = S.String;
 
 export interface SymbolSource {
   text: FilePartSourceText;
@@ -7358,7 +7342,7 @@ export const SymbolSource = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SymbolSource" }) as any as S.Schema<SymbolSource>;
 
 export type ResourceSourceType = "resource";
-export const ResourceSourceType = /*@__PURE__*/ S.String;
+export const ResourceSourceType = S.String;
 
 export interface ResourceSource {
   text: FilePartSourceText;
@@ -7376,8 +7360,7 @@ export const ResourceSource = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ResourceSource" }) as any as S.Schema<ResourceSource>;
 
 export type FilePartSource = FileSource | SymbolSource | ResourceSource;
-export const FilePartSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FilePartSource>;
+export const FilePartSource = S.Unknown as any as S.Schema<FilePartSource>;
 
 export interface SessionCommandRequestPartsItem {
   id?: string;
@@ -7438,7 +7421,7 @@ export const SessionCommandRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionCommandRequest>;
 
 export type AssistantMessageRole = "assistant";
-export const AssistantMessageRole = /*@__PURE__*/ S.String;
+export const AssistantMessageRole = S.String;
 
 export interface AssistantMessageTime {
   created: number;
@@ -7454,7 +7437,7 @@ export const AssistantMessageTime = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AssistantMessageTime>;
 
 export type ProviderAuthErrorName = "ProviderAuthError";
-export const ProviderAuthErrorName = /*@__PURE__*/ S.String;
+export const ProviderAuthErrorName = S.String;
 
 export interface ProviderAuthErrorData {
   providerID: string;
@@ -7483,7 +7466,7 @@ export const ProviderAuthError = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProviderAuthError>;
 
 export type UnknownErrorName = "UnknownError";
-export const UnknownErrorName = /*@__PURE__*/ S.String;
+export const UnknownErrorName = S.String;
 
 export interface UnknownErrorData {
   message: string;
@@ -7510,7 +7493,7 @@ export const UnknownError = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UnknownError" }) as any as S.Schema<UnknownError>;
 
 export type MessageOutputLengthErrorName = "MessageOutputLengthError";
-export const MessageOutputLengthErrorName = /*@__PURE__*/ S.String;
+export const MessageOutputLengthErrorName = S.String;
 
 export interface MessageOutputLengthError {
   name: MessageOutputLengthErrorName;
@@ -7526,7 +7509,7 @@ export const MessageOutputLengthError = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MessageOutputLengthError>;
 
 export type MessageAbortedErrorName = "MessageAbortedError";
-export const MessageAbortedErrorName = /*@__PURE__*/ S.String;
+export const MessageAbortedErrorName = S.String;
 
 export interface MessageAbortedErrorData {
   message: string;
@@ -7553,7 +7536,7 @@ export const MessageAbortedError = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MessageAbortedError>;
 
 export type StructuredOutputErrorName = "StructuredOutputError";
-export const StructuredOutputErrorName = /*@__PURE__*/ S.String;
+export const StructuredOutputErrorName = S.String;
 
 export interface StructuredOutputErrorData {
   message: string;
@@ -7582,7 +7565,7 @@ export const StructuredOutputError = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StructuredOutputError>;
 
 export type ContextOverflowErrorName = "ContextOverflowError";
-export const ContextOverflowErrorName = /*@__PURE__*/ S.String;
+export const ContextOverflowErrorName = S.String;
 
 export interface ContextOverflowErrorData {
   message: string;
@@ -7611,7 +7594,7 @@ export const ContextOverflowError = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ContextOverflowError>;
 
 export type ContentFilterErrorName = "ContentFilterError";
-export const ContentFilterErrorName = /*@__PURE__*/ S.String;
+export const ContentFilterErrorName = S.String;
 
 export type ContentFilterErrorData = MessageAbortedErrorData;
 export const ContentFilterErrorData = MessageAbortedErrorData;
@@ -7630,7 +7613,7 @@ export const ContentFilterError = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ContentFilterError>;
 
 export type APIErrorName = "APIError";
-export const APIErrorName = /*@__PURE__*/ S.String;
+export const APIErrorName = S.String;
 
 export type APIErrorDataResponseHeadersMap = {
   [key: string]: string | undefined;
@@ -7686,7 +7669,7 @@ export type AssistantMessageError =
   | ContentFilterError
   | APIError;
 export const AssistantMessageError =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AssistantMessageError>;
+  S.Unknown as any as S.Schema<AssistantMessageError>;
 
 export interface AssistantMessagePath {
   cwd: string;
@@ -7767,7 +7750,7 @@ export const AssistantMessage = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AssistantMessage>;
 
 export type TextPartType = "text";
-export const TextPartType = /*@__PURE__*/ S.String;
+export const TextPartType = S.String;
 
 export interface TextPartTime {
   start: number;
@@ -7806,7 +7789,7 @@ export const TextPart = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "TextPart" }) as any as S.Schema<TextPart>;
 
 export type SubtaskPartType = "subtask";
-export const SubtaskPartType = /*@__PURE__*/ S.String;
+export const SubtaskPartType = S.String;
 
 export interface SubtaskPartModel {
   providerID: string;
@@ -7847,7 +7830,7 @@ export const SubtaskPart = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SubtaskPart" }) as any as S.Schema<SubtaskPart>;
 
 export type ReasoningPartType = "reasoning";
-export const ReasoningPartType = /*@__PURE__*/ S.String;
+export const ReasoningPartType = S.String;
 
 export type ReasoningPartTime = TextPartTime;
 export const ReasoningPartTime = TextPartTime;
@@ -7874,7 +7857,7 @@ export const ReasoningPart = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ReasoningPart" }) as any as S.Schema<ReasoningPart>;
 
 export type FilePartType = "file";
-export const FilePartType = /*@__PURE__*/ S.String;
+export const FilePartType = S.String;
 
 export interface FilePart {
   id: string;
@@ -7900,10 +7883,10 @@ export const FilePart = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FilePart" }) as any as S.Schema<FilePart>;
 
 export type ToolPartType = "tool";
-export const ToolPartType = /*@__PURE__*/ S.String;
+export const ToolPartType = S.String;
 
 export type ToolStatePendingStatus = "pending";
-export const ToolStatePendingStatus = /*@__PURE__*/ S.String;
+export const ToolStatePendingStatus = S.String;
 
 export interface ToolStatePending {
   status: ToolStatePendingStatus;
@@ -7921,7 +7904,7 @@ export const ToolStatePending = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ToolStatePending>;
 
 export type ToolStateRunningStatus = "running";
-export const ToolStateRunningStatus = /*@__PURE__*/ S.String;
+export const ToolStateRunningStatus = S.String;
 
 export interface ToolStateRunningTime {
   start: number;
@@ -7954,7 +7937,7 @@ export const ToolStateRunning = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ToolStateRunning>;
 
 export type ToolStateCompletedStatus = "completed";
-export const ToolStateCompletedStatus = /*@__PURE__*/ S.String;
+export const ToolStateCompletedStatus = S.String;
 
 export interface ToolStateCompletedTime {
   start: number;
@@ -8000,7 +7983,7 @@ export const ToolStateCompleted = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ToolStateCompleted>;
 
 export type ToolStateErrorStatus = "error";
-export const ToolStateErrorStatus = /*@__PURE__*/ S.String;
+export const ToolStateErrorStatus = S.String;
 
 export interface ToolStateErrorTime {
   start: number;
@@ -8037,7 +8020,7 @@ export type ToolState =
   | ToolStateRunning
   | ToolStateCompleted
   | ToolStateError;
-export const ToolState = /*@__PURE__*/ S.Unknown as any as S.Schema<ToolState>;
+export const ToolState = S.Unknown as any as S.Schema<ToolState>;
 
 export interface ToolPart {
   id: string;
@@ -8063,7 +8046,7 @@ export const ToolPart = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ToolPart" }) as any as S.Schema<ToolPart>;
 
 export type StepStartPartType = "step-start";
-export const StepStartPartType = /*@__PURE__*/ S.String;
+export const StepStartPartType = S.String;
 
 export interface StepStartPart {
   id: string;
@@ -8083,7 +8066,7 @@ export const StepStartPart = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "StepStartPart" }) as any as S.Schema<StepStartPart>;
 
 export type StepFinishPartType = "step-finish";
-export const StepFinishPartType = /*@__PURE__*/ S.String;
+export const StepFinishPartType = S.String;
 
 export type StepFinishPartTokensCache = ModelCostCache;
 export const StepFinishPartTokensCache = ModelCostCache;
@@ -8115,7 +8098,7 @@ export const StepFinishPart = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "StepFinishPart" }) as any as S.Schema<StepFinishPart>;
 
 export type SnapshotPartType = "snapshot";
-export const SnapshotPartType = /*@__PURE__*/ S.String;
+export const SnapshotPartType = S.String;
 
 export interface SnapshotPart {
   id: string;
@@ -8135,7 +8118,7 @@ export const SnapshotPart = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SnapshotPart" }) as any as S.Schema<SnapshotPart>;
 
 export type PatchPartType = "patch";
-export const PatchPartType = /*@__PURE__*/ S.String;
+export const PatchPartType = S.String;
 
 export type PatchPartFilesList = Array<string>;
 export const PatchPartFilesList = /*@__PURE__*/ S.Array(
@@ -8162,7 +8145,7 @@ export const PatchPart = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "PatchPart" }) as any as S.Schema<PatchPart>;
 
 export type AgentPartType = "agent";
-export const AgentPartType = /*@__PURE__*/ S.String;
+export const AgentPartType = S.String;
 
 export type AgentPartSource = FilePartSourceText;
 export const AgentPartSource = FilePartSourceText;
@@ -8187,7 +8170,7 @@ export const AgentPart = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "AgentPart" }) as any as S.Schema<AgentPart>;
 
 export type RetryPartType = "retry";
-export const RetryPartType = /*@__PURE__*/ S.String;
+export const RetryPartType = S.String;
 
 export interface RetryPartTime {
   created: number;
@@ -8220,7 +8203,7 @@ export const RetryPart = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "RetryPart" }) as any as S.Schema<RetryPart>;
 
 export type CompactionPartType = "compaction";
-export const CompactionPartType = /*@__PURE__*/ S.String;
+export const CompactionPartType = S.String;
 
 export interface CompactionPart {
   id: string;
@@ -8256,7 +8239,7 @@ export type Part =
   | AgentPart
   | RetryPart
   | CompactionPart;
-export const Part = /*@__PURE__*/ S.Unknown as any as S.Schema<Part>;
+export const Part = S.Unknown as any as S.Schema<Part>;
 
 export type SessionCommandResponsePartsList = Array<Part>;
 export const SessionCommandResponsePartsList = /*@__PURE__*/ S.Array(
@@ -8392,13 +8375,13 @@ export const SessionMessageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionMessageRequest>;
 
 export type UserMessageRole = "user";
-export const UserMessageRole = /*@__PURE__*/ S.String;
+export const UserMessageRole = S.String;
 
 export type UserMessageTime = RetryPartTime;
 export const UserMessageTime = RetryPartTime;
 
 export type OutputFormatTextType = "text";
-export const OutputFormatTextType = /*@__PURE__*/ S.String;
+export const OutputFormatTextType = S.String;
 
 export interface OutputFormatText {
   type: OutputFormatTextType;
@@ -8412,7 +8395,7 @@ export const OutputFormatText = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OutputFormatText>;
 
 export type OutputFormatJsonSchemaType = "json_schema";
-export const OutputFormatJsonSchemaType = /*@__PURE__*/ S.String;
+export const OutputFormatJsonSchemaType = S.String;
 
 export interface OutputFormatJsonSchema {
   type: OutputFormatJsonSchemaType;
@@ -8430,8 +8413,7 @@ export const OutputFormatJsonSchema = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OutputFormatJsonSchema>;
 
 export type OutputFormat = OutputFormatText | OutputFormatJsonSchema;
-export const OutputFormat =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OutputFormat>;
+export const OutputFormat = S.Unknown as any as S.Schema<OutputFormat>;
 
 export type UserMessageSummaryDiffsList = Array<SnapshotFileDiff>;
 export const UserMessageSummaryDiffsList = /*@__PURE__*/ S.Array(
@@ -8502,7 +8484,7 @@ export const UserMessage = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UserMessage" }) as any as S.Schema<UserMessage>;
 
 export type Message = UserMessage | AssistantMessage;
-export const Message = /*@__PURE__*/ S.Unknown as any as S.Schema<Message>;
+export const Message = S.Unknown as any as S.Schema<Message>;
 
 export type SessionMessageResponsePartsList = Array<Part>;
 export const SessionMessageResponsePartsList = /*@__PURE__*/ S.Array(
@@ -8587,7 +8569,7 @@ export const SessionPromptRequestToolsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<SessionPromptRequestToolsMap>;
 
 export type TextPartInputType = "text";
-export const TextPartInputType = /*@__PURE__*/ S.String;
+export const TextPartInputType = S.String;
 
 export type TextPartInputTime = TextPartTime;
 export const TextPartInputTime = TextPartTime;
@@ -8614,7 +8596,7 @@ export const TextPartInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "TextPartInput" }) as any as S.Schema<TextPartInput>;
 
 export type FilePartInputType = "file";
-export const FilePartInputType = /*@__PURE__*/ S.String;
+export const FilePartInputType = S.String;
 
 export interface FilePartInput {
   id?: string;
@@ -8636,7 +8618,7 @@ export const FilePartInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FilePartInput" }) as any as S.Schema<FilePartInput>;
 
 export type AgentPartInputType = "agent";
-export const AgentPartInputType = /*@__PURE__*/ S.String;
+export const AgentPartInputType = S.String;
 
 export type AgentPartInputSource = FilePartSourceText;
 export const AgentPartInputSource = FilePartSourceText;
@@ -8657,7 +8639,7 @@ export const AgentPartInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "AgentPartInput" }) as any as S.Schema<AgentPartInput>;
 
 export type SubtaskPartInputType = "subtask";
-export const SubtaskPartInputType = /*@__PURE__*/ S.String;
+export const SubtaskPartInputType = S.String;
 
 export type SubtaskPartInputModel = SubtaskPartModel;
 export const SubtaskPartInputModel = SubtaskPartModel;
@@ -8691,7 +8673,7 @@ export type SessionPromptRequestPartsItem =
   | AgentPartInput
   | SubtaskPartInput;
 export const SessionPromptRequestPartsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionPromptRequestPartsItem>;
+  S.Unknown as any as S.Schema<SessionPromptRequestPartsItem>;
 
 export type SessionPromptRequestPartsList =
   Array<SessionPromptRequestPartsItem>;
@@ -8769,7 +8751,7 @@ export type SessionPromptAsyncRequestPartsItem =
   | AgentPartInput
   | SubtaskPartInput;
 export const SessionPromptAsyncRequestPartsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionPromptAsyncRequestPartsItem>;
+  S.Unknown as any as S.Schema<SessionPromptAsyncRequestPartsItem>;
 
 export type SessionPromptAsyncRequestPartsList =
   Array<SessionPromptAsyncRequestPartsItem>;
@@ -8904,7 +8886,7 @@ export const SessionStatusRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionStatusRequest>;
 
 export type SessionStatusCase0Type = "idle";
-export const SessionStatusCase0Type = /*@__PURE__*/ S.String;
+export const SessionStatusCase0Type = S.String;
 
 export interface SessionStatusCase0 {
   type: SessionStatusCase0Type;
@@ -8918,7 +8900,7 @@ export const SessionStatusCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionStatusCase0>;
 
 export type SessionStatusCase1Type = "retry";
-export const SessionStatusCase1Type = /*@__PURE__*/ S.String;
+export const SessionStatusCase1Type = S.String;
 
 export interface SessionStatusCase1Action {
   reason: string;
@@ -8961,7 +8943,7 @@ export const SessionStatusCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionStatusCase1>;
 
 export type SessionStatusCase2Type = "busy";
-export const SessionStatusCase2Type = /*@__PURE__*/ S.String;
+export const SessionStatusCase2Type = S.String;
 
 export interface SessionStatusCase2 {
   type: SessionStatusCase2Type;
@@ -8978,8 +8960,7 @@ export type SessionStatus =
   | SessionStatusCase0
   | SessionStatusCase1
   | SessionStatusCase2;
-export const SessionStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionStatus>;
+export const SessionStatus = S.Unknown as any as S.Schema<SessionStatus>;
 
 /** Get session status */
 export type SessionStatusResponseBodyMap = {
@@ -9095,7 +9076,7 @@ export const SessionUnrevertRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionUnrevertRequest>;
 
 export type OAuthType = "oauth";
-export const OAuthType = /*@__PURE__*/ S.String;
+export const OAuthType = S.String;
 
 export interface OAuth {
   type: OAuthType;
@@ -9117,7 +9098,7 @@ export const OAuth = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "OAuth" }) as any as S.Schema<OAuth>;
 
 export type ApiAuthType = "api";
-export const ApiAuthType = /*@__PURE__*/ S.String;
+export const ApiAuthType = S.String;
 
 export type ApiAuthMetadataMap = { [key: string]: string | undefined };
 export const ApiAuthMetadataMap = /*@__PURE__*/ S.Record(
@@ -9139,7 +9120,7 @@ export const ApiAuth = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ApiAuth" }) as any as S.Schema<ApiAuth>;
 
 export type WellKnownAuthType = "wellknown";
-export const WellKnownAuthType = /*@__PURE__*/ S.String;
+export const WellKnownAuthType = S.String;
 
 export interface WellKnownAuth {
   type: WellKnownAuthType;
@@ -9155,7 +9136,7 @@ export const WellKnownAuth = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "WellKnownAuth" }) as any as S.Schema<WellKnownAuth>;
 
 export type Auth = OAuth | ApiAuth | WellKnownAuth;
-export const Auth = /*@__PURE__*/ S.Unknown as any as S.Schema<Auth>;
+export const Auth = S.Unknown as any as S.Schema<Auth>;
 
 export interface SetAuthRequest {
   providerID: string;
@@ -9591,7 +9572,7 @@ export type TuiShowToastRequestVariant =
   | "success"
   | "warning"
   | "error";
-export const TuiShowToastRequestVariant = /*@__PURE__*/ S.String;
+export const TuiShowToastRequestVariant = S.String;
 
 export interface TuiShowToastRequest {
   directory?: string;
@@ -9697,7 +9678,7 @@ export type UpdateConfigRequestReferencesValue =
   | ConfigV2ReferenceGit
   | ConfigV2ReferenceLocal;
 export const UpdateConfigRequestReferencesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateConfigRequestReferencesValue>;
+  S.Unknown as any as S.Schema<UpdateConfigRequestReferencesValue>;
 
 export type UpdateConfigRequestReferencesMap = {
   [key: string]: UpdateConfigRequestReferencesValue | undefined;
@@ -9712,7 +9693,7 @@ export type UpdateConfigRequestReferenceValue =
   | ConfigV2ReferenceGit
   | ConfigV2ReferenceLocal;
 export const UpdateConfigRequestReferenceValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateConfigRequestReferenceValue>;
+  S.Unknown as any as S.Schema<UpdateConfigRequestReferenceValue>;
 
 export type UpdateConfigRequestReferenceMap = {
   [key: string]: UpdateConfigRequestReferenceValue | undefined;
@@ -9747,7 +9728,7 @@ export type UpdateConfigRequestPluginItem =
   | string
   | UpdateConfigRequestPluginItemCase1List;
 export const UpdateConfigRequestPluginItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateConfigRequestPluginItem>;
+  S.Unknown as any as S.Schema<UpdateConfigRequestPluginItem>;
 
 export type UpdateConfigRequestPluginList =
   Array<UpdateConfigRequestPluginItem>;
@@ -9756,17 +9737,17 @@ export const UpdateConfigRequestPluginList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateConfigRequestPluginList>;
 
 export type UpdateConfigRequestShare = "manual" | "auto" | "disabled";
-export const UpdateConfigRequestShare = /*@__PURE__*/ S.String;
+export const UpdateConfigRequestShare = S.String;
 
 export type UpdateConfigRequestAutoupdateCase1 = "notify";
-export const UpdateConfigRequestAutoupdateCase1 = /*@__PURE__*/ S.String;
+export const UpdateConfigRequestAutoupdateCase1 = S.String;
 
 /** Automatically update to the latest version. Set to true to auto-update, false to disable, or 'notify' to show update notifications */
 export type UpdateConfigRequestAutoupdate =
   | boolean
   | UpdateConfigRequestAutoupdateCase1;
 export const UpdateConfigRequestAutoupdate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateConfigRequestAutoupdate>;
+  S.Unknown as any as S.Schema<UpdateConfigRequestAutoupdate>;
 
 export type UpdateConfigRequestDisabledProvidersList = Array<string>;
 export const UpdateConfigRequestDisabledProvidersList = /*@__PURE__*/ S.Array(
@@ -9800,7 +9781,7 @@ export type UpdateConfigRequestMcpValue =
   | McpRemoteConfig
   | ConfigMcpValueCase2;
 export const UpdateConfigRequestMcpValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateConfigRequestMcpValue>;
+  S.Unknown as any as S.Schema<UpdateConfigRequestMcpValue>;
 
 export type UpdateConfigRequestMcpMap = {
   [key: string]: UpdateConfigRequestMcpValue | undefined;
@@ -9867,7 +9848,7 @@ export type UpdateConfigRequestFormatter =
   | boolean
   | UpdateConfigRequestFormatterCase1Map;
 export const UpdateConfigRequestFormatter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateConfigRequestFormatter>;
+  S.Unknown as any as S.Schema<UpdateConfigRequestFormatter>;
 
 export type UpdateConfigRequestLspCase1ValueCase0 = ConfigLspCase1ValueCase0;
 export const UpdateConfigRequestLspCase1ValueCase0 = ConfigLspCase1ValueCase0;
@@ -9919,7 +9900,7 @@ export type UpdateConfigRequestLspCase1Value =
   | ConfigLspCase1ValueCase0
   | UpdateConfigRequestLspCase1ValueCase1;
 export const UpdateConfigRequestLspCase1Value =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateConfigRequestLspCase1Value>;
+  S.Unknown as any as S.Schema<UpdateConfigRequestLspCase1Value>;
 
 export type UpdateConfigRequestLspCase1Map = {
   [key: string]: UpdateConfigRequestLspCase1Value | undefined;
@@ -9932,7 +9913,7 @@ export const UpdateConfigRequestLspCase1Map = /*@__PURE__*/ S.Record(
 /** Enable or configure LSP servers. Omit or set to false to disable, true to enable built-ins, or an object to enable built-ins with overrides. */
 export type UpdateConfigRequestLsp = boolean | UpdateConfigRequestLspCase1Map;
 export const UpdateConfigRequestLsp =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateConfigRequestLsp>;
+  S.Unknown as any as S.Schema<UpdateConfigRequestLsp>;
 
 export type UpdateConfigRequestInstructionsList = Array<string>;
 export const UpdateConfigRequestInstructionsList = /*@__PURE__*/ S.Array(
@@ -10119,7 +10100,7 @@ export type UpdateGlobalConfigRequestReferencesValue =
   | ConfigV2ReferenceGit
   | ConfigV2ReferenceLocal;
 export const UpdateGlobalConfigRequestReferencesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateGlobalConfigRequestReferencesValue>;
+  S.Unknown as any as S.Schema<UpdateGlobalConfigRequestReferencesValue>;
 
 export type UpdateGlobalConfigRequestReferencesMap = {
   [key: string]: UpdateGlobalConfigRequestReferencesValue | undefined;
@@ -10134,7 +10115,7 @@ export type UpdateGlobalConfigRequestReferenceValue =
   | ConfigV2ReferenceGit
   | ConfigV2ReferenceLocal;
 export const UpdateGlobalConfigRequestReferenceValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateGlobalConfigRequestReferenceValue>;
+  S.Unknown as any as S.Schema<UpdateGlobalConfigRequestReferenceValue>;
 
 export type UpdateGlobalConfigRequestReferenceMap = {
   [key: string]: UpdateGlobalConfigRequestReferenceValue | undefined;
@@ -10170,7 +10151,7 @@ export type UpdateGlobalConfigRequestPluginItem =
   | string
   | UpdateGlobalConfigRequestPluginItemCase1List;
 export const UpdateGlobalConfigRequestPluginItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateGlobalConfigRequestPluginItem>;
+  S.Unknown as any as S.Schema<UpdateGlobalConfigRequestPluginItem>;
 
 export type UpdateGlobalConfigRequestPluginList =
   Array<UpdateGlobalConfigRequestPluginItem>;
@@ -10179,17 +10160,17 @@ export const UpdateGlobalConfigRequestPluginList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateGlobalConfigRequestPluginList>;
 
 export type UpdateGlobalConfigRequestShare = "manual" | "auto" | "disabled";
-export const UpdateGlobalConfigRequestShare = /*@__PURE__*/ S.String;
+export const UpdateGlobalConfigRequestShare = S.String;
 
 export type UpdateGlobalConfigRequestAutoupdateCase1 = "notify";
-export const UpdateGlobalConfigRequestAutoupdateCase1 = /*@__PURE__*/ S.String;
+export const UpdateGlobalConfigRequestAutoupdateCase1 = S.String;
 
 /** Automatically update to the latest version. Set to true to auto-update, false to disable, or 'notify' to show update notifications */
 export type UpdateGlobalConfigRequestAutoupdate =
   | boolean
   | UpdateGlobalConfigRequestAutoupdateCase1;
 export const UpdateGlobalConfigRequestAutoupdate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateGlobalConfigRequestAutoupdate>;
+  S.Unknown as any as S.Schema<UpdateGlobalConfigRequestAutoupdate>;
 
 export type UpdateGlobalConfigRequestDisabledProvidersList = Array<string>;
 export const UpdateGlobalConfigRequestDisabledProvidersList =
@@ -10225,7 +10206,7 @@ export type UpdateGlobalConfigRequestMcpValue =
   | McpRemoteConfig
   | ConfigMcpValueCase2;
 export const UpdateGlobalConfigRequestMcpValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateGlobalConfigRequestMcpValue>;
+  S.Unknown as any as S.Schema<UpdateGlobalConfigRequestMcpValue>;
 
 export type UpdateGlobalConfigRequestMcpMap = {
   [key: string]: UpdateGlobalConfigRequestMcpValue | undefined;
@@ -10296,7 +10277,7 @@ export type UpdateGlobalConfigRequestFormatter =
   | boolean
   | UpdateGlobalConfigRequestFormatterCase1Map;
 export const UpdateGlobalConfigRequestFormatter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateGlobalConfigRequestFormatter>;
+  S.Unknown as any as S.Schema<UpdateGlobalConfigRequestFormatter>;
 
 export type UpdateGlobalConfigRequestLspCase1ValueCase0 =
   ConfigLspCase1ValueCase0;
@@ -10352,7 +10333,7 @@ export type UpdateGlobalConfigRequestLspCase1Value =
   | ConfigLspCase1ValueCase0
   | UpdateGlobalConfigRequestLspCase1ValueCase1;
 export const UpdateGlobalConfigRequestLspCase1Value =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateGlobalConfigRequestLspCase1Value>;
+  S.Unknown as any as S.Schema<UpdateGlobalConfigRequestLspCase1Value>;
 
 export type UpdateGlobalConfigRequestLspCase1Map = {
   [key: string]: UpdateGlobalConfigRequestLspCase1Value | undefined;
@@ -10367,7 +10348,7 @@ export type UpdateGlobalConfigRequestLsp =
   | boolean
   | UpdateGlobalConfigRequestLspCase1Map;
 export const UpdateGlobalConfigRequestLsp =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateGlobalConfigRequestLsp>;
+  S.Unknown as any as S.Schema<UpdateGlobalConfigRequestLsp>;
 
 export type UpdateGlobalConfigRequestInstructionsList = Array<string>;
 export const UpdateGlobalConfigRequestInstructionsList = /*@__PURE__*/ S.Array(
@@ -10720,7 +10701,7 @@ export const V2FsFindRequestLocation =
   CancelV2IntegrationAttemptRequestLocation;
 
 export type V2FsFindRequestType = "file" | "directory";
-export const V2FsFindRequestType = /*@__PURE__*/ S.String;
+export const V2FsFindRequestType = S.String;
 
 export interface V2FsFindRequest {
   location?: CancelV2IntegrationAttemptRequestLocation;
@@ -10786,26 +10767,22 @@ export const V2IntegrationAttemptStatusRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V2IntegrationAttemptStatusRequest>;
 
 export type IntegrationAttemptStatusCase0Status = "pending";
-export const IntegrationAttemptStatusCase0Status = /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase0Status = S.String;
 
 export type IntegrationAttemptStatusCase0TimeCreatedCase1 = "NaN";
-export const IntegrationAttemptStatusCase0TimeCreatedCase1 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase0TimeCreatedCase1 = S.String;
 
 export type IntegrationAttemptStatusCase0TimeCreatedCase2 = "Infinity";
-export const IntegrationAttemptStatusCase0TimeCreatedCase2 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase0TimeCreatedCase2 = S.String;
 
 export type IntegrationAttemptStatusCase0TimeCreatedCase3 = "-Infinity";
-export const IntegrationAttemptStatusCase0TimeCreatedCase3 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase0TimeCreatedCase3 = S.String;
 
 export type IntegrationAttemptStatusCase0TimeCreatedCase4 =
   | "Infinity"
   | "-Infinity"
   | "NaN";
-export const IntegrationAttemptStatusCase0TimeCreatedCase4 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase0TimeCreatedCase4 = S.String;
 
 export type IntegrationAttemptStatusCase0TimeCreated =
   | number
@@ -10814,26 +10791,22 @@ export type IntegrationAttemptStatusCase0TimeCreated =
   | IntegrationAttemptStatusCase0TimeCreatedCase3
   | IntegrationAttemptStatusCase0TimeCreatedCase4;
 export const IntegrationAttemptStatusCase0TimeCreated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationAttemptStatusCase0TimeCreated>;
+  S.Unknown as any as S.Schema<IntegrationAttemptStatusCase0TimeCreated>;
 
 export type IntegrationAttemptStatusCase0TimeExpiresCase1 = "NaN";
-export const IntegrationAttemptStatusCase0TimeExpiresCase1 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase0TimeExpiresCase1 = S.String;
 
 export type IntegrationAttemptStatusCase0TimeExpiresCase2 = "Infinity";
-export const IntegrationAttemptStatusCase0TimeExpiresCase2 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase0TimeExpiresCase2 = S.String;
 
 export type IntegrationAttemptStatusCase0TimeExpiresCase3 = "-Infinity";
-export const IntegrationAttemptStatusCase0TimeExpiresCase3 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase0TimeExpiresCase3 = S.String;
 
 export type IntegrationAttemptStatusCase0TimeExpiresCase4 =
   | "Infinity"
   | "-Infinity"
   | "NaN";
-export const IntegrationAttemptStatusCase0TimeExpiresCase4 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase0TimeExpiresCase4 = S.String;
 
 export type IntegrationAttemptStatusCase0TimeExpires =
   | number
@@ -10842,7 +10815,7 @@ export type IntegrationAttemptStatusCase0TimeExpires =
   | IntegrationAttemptStatusCase0TimeExpiresCase3
   | IntegrationAttemptStatusCase0TimeExpiresCase4;
 export const IntegrationAttemptStatusCase0TimeExpires =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationAttemptStatusCase0TimeExpires>;
+  S.Unknown as any as S.Schema<IntegrationAttemptStatusCase0TimeExpires>;
 
 export interface IntegrationAttemptStatusCase0Time {
   created: IntegrationAttemptStatusCase0TimeCreated;
@@ -10871,26 +10844,22 @@ export const IntegrationAttemptStatusCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IntegrationAttemptStatusCase0>;
 
 export type IntegrationAttemptStatusCase1Status = "complete";
-export const IntegrationAttemptStatusCase1Status = /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase1Status = S.String;
 
 export type IntegrationAttemptStatusCase1TimeCreatedCase1 = "NaN";
-export const IntegrationAttemptStatusCase1TimeCreatedCase1 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase1TimeCreatedCase1 = S.String;
 
 export type IntegrationAttemptStatusCase1TimeCreatedCase2 = "Infinity";
-export const IntegrationAttemptStatusCase1TimeCreatedCase2 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase1TimeCreatedCase2 = S.String;
 
 export type IntegrationAttemptStatusCase1TimeCreatedCase3 = "-Infinity";
-export const IntegrationAttemptStatusCase1TimeCreatedCase3 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase1TimeCreatedCase3 = S.String;
 
 export type IntegrationAttemptStatusCase1TimeCreatedCase4 =
   | "Infinity"
   | "-Infinity"
   | "NaN";
-export const IntegrationAttemptStatusCase1TimeCreatedCase4 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase1TimeCreatedCase4 = S.String;
 
 export type IntegrationAttemptStatusCase1TimeCreated =
   | number
@@ -10899,26 +10868,22 @@ export type IntegrationAttemptStatusCase1TimeCreated =
   | IntegrationAttemptStatusCase1TimeCreatedCase3
   | IntegrationAttemptStatusCase1TimeCreatedCase4;
 export const IntegrationAttemptStatusCase1TimeCreated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationAttemptStatusCase1TimeCreated>;
+  S.Unknown as any as S.Schema<IntegrationAttemptStatusCase1TimeCreated>;
 
 export type IntegrationAttemptStatusCase1TimeExpiresCase1 = "NaN";
-export const IntegrationAttemptStatusCase1TimeExpiresCase1 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase1TimeExpiresCase1 = S.String;
 
 export type IntegrationAttemptStatusCase1TimeExpiresCase2 = "Infinity";
-export const IntegrationAttemptStatusCase1TimeExpiresCase2 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase1TimeExpiresCase2 = S.String;
 
 export type IntegrationAttemptStatusCase1TimeExpiresCase3 = "-Infinity";
-export const IntegrationAttemptStatusCase1TimeExpiresCase3 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase1TimeExpiresCase3 = S.String;
 
 export type IntegrationAttemptStatusCase1TimeExpiresCase4 =
   | "Infinity"
   | "-Infinity"
   | "NaN";
-export const IntegrationAttemptStatusCase1TimeExpiresCase4 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase1TimeExpiresCase4 = S.String;
 
 export type IntegrationAttemptStatusCase1TimeExpires =
   | number
@@ -10927,7 +10892,7 @@ export type IntegrationAttemptStatusCase1TimeExpires =
   | IntegrationAttemptStatusCase1TimeExpiresCase3
   | IntegrationAttemptStatusCase1TimeExpiresCase4;
 export const IntegrationAttemptStatusCase1TimeExpires =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationAttemptStatusCase1TimeExpires>;
+  S.Unknown as any as S.Schema<IntegrationAttemptStatusCase1TimeExpires>;
 
 export interface IntegrationAttemptStatusCase1Time {
   created: IntegrationAttemptStatusCase1TimeCreated;
@@ -10956,26 +10921,22 @@ export const IntegrationAttemptStatusCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IntegrationAttemptStatusCase1>;
 
 export type IntegrationAttemptStatusCase2Status = "failed";
-export const IntegrationAttemptStatusCase2Status = /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase2Status = S.String;
 
 export type IntegrationAttemptStatusCase2TimeCreatedCase1 = "NaN";
-export const IntegrationAttemptStatusCase2TimeCreatedCase1 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase2TimeCreatedCase1 = S.String;
 
 export type IntegrationAttemptStatusCase2TimeCreatedCase2 = "Infinity";
-export const IntegrationAttemptStatusCase2TimeCreatedCase2 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase2TimeCreatedCase2 = S.String;
 
 export type IntegrationAttemptStatusCase2TimeCreatedCase3 = "-Infinity";
-export const IntegrationAttemptStatusCase2TimeCreatedCase3 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase2TimeCreatedCase3 = S.String;
 
 export type IntegrationAttemptStatusCase2TimeCreatedCase4 =
   | "Infinity"
   | "-Infinity"
   | "NaN";
-export const IntegrationAttemptStatusCase2TimeCreatedCase4 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase2TimeCreatedCase4 = S.String;
 
 export type IntegrationAttemptStatusCase2TimeCreated =
   | number
@@ -10984,26 +10945,22 @@ export type IntegrationAttemptStatusCase2TimeCreated =
   | IntegrationAttemptStatusCase2TimeCreatedCase3
   | IntegrationAttemptStatusCase2TimeCreatedCase4;
 export const IntegrationAttemptStatusCase2TimeCreated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationAttemptStatusCase2TimeCreated>;
+  S.Unknown as any as S.Schema<IntegrationAttemptStatusCase2TimeCreated>;
 
 export type IntegrationAttemptStatusCase2TimeExpiresCase1 = "NaN";
-export const IntegrationAttemptStatusCase2TimeExpiresCase1 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase2TimeExpiresCase1 = S.String;
 
 export type IntegrationAttemptStatusCase2TimeExpiresCase2 = "Infinity";
-export const IntegrationAttemptStatusCase2TimeExpiresCase2 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase2TimeExpiresCase2 = S.String;
 
 export type IntegrationAttemptStatusCase2TimeExpiresCase3 = "-Infinity";
-export const IntegrationAttemptStatusCase2TimeExpiresCase3 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase2TimeExpiresCase3 = S.String;
 
 export type IntegrationAttemptStatusCase2TimeExpiresCase4 =
   | "Infinity"
   | "-Infinity"
   | "NaN";
-export const IntegrationAttemptStatusCase2TimeExpiresCase4 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase2TimeExpiresCase4 = S.String;
 
 export type IntegrationAttemptStatusCase2TimeExpires =
   | number
@@ -11012,7 +10969,7 @@ export type IntegrationAttemptStatusCase2TimeExpires =
   | IntegrationAttemptStatusCase2TimeExpiresCase3
   | IntegrationAttemptStatusCase2TimeExpiresCase4;
 export const IntegrationAttemptStatusCase2TimeExpires =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationAttemptStatusCase2TimeExpires>;
+  S.Unknown as any as S.Schema<IntegrationAttemptStatusCase2TimeExpires>;
 
 export interface IntegrationAttemptStatusCase2Time {
   created: IntegrationAttemptStatusCase2TimeCreated;
@@ -11043,26 +11000,22 @@ export const IntegrationAttemptStatusCase2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IntegrationAttemptStatusCase2>;
 
 export type IntegrationAttemptStatusCase3Status = "expired";
-export const IntegrationAttemptStatusCase3Status = /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase3Status = S.String;
 
 export type IntegrationAttemptStatusCase3TimeCreatedCase1 = "NaN";
-export const IntegrationAttemptStatusCase3TimeCreatedCase1 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase3TimeCreatedCase1 = S.String;
 
 export type IntegrationAttemptStatusCase3TimeCreatedCase2 = "Infinity";
-export const IntegrationAttemptStatusCase3TimeCreatedCase2 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase3TimeCreatedCase2 = S.String;
 
 export type IntegrationAttemptStatusCase3TimeCreatedCase3 = "-Infinity";
-export const IntegrationAttemptStatusCase3TimeCreatedCase3 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase3TimeCreatedCase3 = S.String;
 
 export type IntegrationAttemptStatusCase3TimeCreatedCase4 =
   | "Infinity"
   | "-Infinity"
   | "NaN";
-export const IntegrationAttemptStatusCase3TimeCreatedCase4 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase3TimeCreatedCase4 = S.String;
 
 export type IntegrationAttemptStatusCase3TimeCreated =
   | number
@@ -11071,26 +11024,22 @@ export type IntegrationAttemptStatusCase3TimeCreated =
   | IntegrationAttemptStatusCase3TimeCreatedCase3
   | IntegrationAttemptStatusCase3TimeCreatedCase4;
 export const IntegrationAttemptStatusCase3TimeCreated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationAttemptStatusCase3TimeCreated>;
+  S.Unknown as any as S.Schema<IntegrationAttemptStatusCase3TimeCreated>;
 
 export type IntegrationAttemptStatusCase3TimeExpiresCase1 = "NaN";
-export const IntegrationAttemptStatusCase3TimeExpiresCase1 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase3TimeExpiresCase1 = S.String;
 
 export type IntegrationAttemptStatusCase3TimeExpiresCase2 = "Infinity";
-export const IntegrationAttemptStatusCase3TimeExpiresCase2 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase3TimeExpiresCase2 = S.String;
 
 export type IntegrationAttemptStatusCase3TimeExpiresCase3 = "-Infinity";
-export const IntegrationAttemptStatusCase3TimeExpiresCase3 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase3TimeExpiresCase3 = S.String;
 
 export type IntegrationAttemptStatusCase3TimeExpiresCase4 =
   | "Infinity"
   | "-Infinity"
   | "NaN";
-export const IntegrationAttemptStatusCase3TimeExpiresCase4 =
-  /*@__PURE__*/ S.String;
+export const IntegrationAttemptStatusCase3TimeExpiresCase4 = S.String;
 
 export type IntegrationAttemptStatusCase3TimeExpires =
   | number
@@ -11099,7 +11048,7 @@ export type IntegrationAttemptStatusCase3TimeExpires =
   | IntegrationAttemptStatusCase3TimeExpiresCase3
   | IntegrationAttemptStatusCase3TimeExpiresCase4;
 export const IntegrationAttemptStatusCase3TimeExpires =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationAttemptStatusCase3TimeExpires>;
+  S.Unknown as any as S.Schema<IntegrationAttemptStatusCase3TimeExpires>;
 
 export interface IntegrationAttemptStatusCase3Time {
   created: IntegrationAttemptStatusCase3TimeCreated;
@@ -11133,7 +11082,7 @@ export type IntegrationAttemptStatus =
   | IntegrationAttemptStatusCase2
   | IntegrationAttemptStatusCase3;
 export const IntegrationAttemptStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationAttemptStatus>;
+  S.Unknown as any as S.Schema<IntegrationAttemptStatus>;
 
 export interface V2IntegrationAttemptStatusResponse {
   location: LocationInfo;
@@ -11226,22 +11175,22 @@ export const V2IntegrationConnectOauthRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V2IntegrationConnectOauthRequest>;
 
 export type IntegrationAttemptMode = "auto" | "code";
-export const IntegrationAttemptMode = /*@__PURE__*/ S.String;
+export const IntegrationAttemptMode = S.String;
 
 export type IntegrationAttemptTimeCreatedCase1 = "NaN";
-export const IntegrationAttemptTimeCreatedCase1 = /*@__PURE__*/ S.String;
+export const IntegrationAttemptTimeCreatedCase1 = S.String;
 
 export type IntegrationAttemptTimeCreatedCase2 = "Infinity";
-export const IntegrationAttemptTimeCreatedCase2 = /*@__PURE__*/ S.String;
+export const IntegrationAttemptTimeCreatedCase2 = S.String;
 
 export type IntegrationAttemptTimeCreatedCase3 = "-Infinity";
-export const IntegrationAttemptTimeCreatedCase3 = /*@__PURE__*/ S.String;
+export const IntegrationAttemptTimeCreatedCase3 = S.String;
 
 export type IntegrationAttemptTimeCreatedCase4 =
   | "Infinity"
   | "-Infinity"
   | "NaN";
-export const IntegrationAttemptTimeCreatedCase4 = /*@__PURE__*/ S.String;
+export const IntegrationAttemptTimeCreatedCase4 = S.String;
 
 export type IntegrationAttemptTimeCreated =
   | number
@@ -11250,22 +11199,22 @@ export type IntegrationAttemptTimeCreated =
   | IntegrationAttemptTimeCreatedCase3
   | IntegrationAttemptTimeCreatedCase4;
 export const IntegrationAttemptTimeCreated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationAttemptTimeCreated>;
+  S.Unknown as any as S.Schema<IntegrationAttemptTimeCreated>;
 
 export type IntegrationAttemptTimeExpiresCase1 = "NaN";
-export const IntegrationAttemptTimeExpiresCase1 = /*@__PURE__*/ S.String;
+export const IntegrationAttemptTimeExpiresCase1 = S.String;
 
 export type IntegrationAttemptTimeExpiresCase2 = "Infinity";
-export const IntegrationAttemptTimeExpiresCase2 = /*@__PURE__*/ S.String;
+export const IntegrationAttemptTimeExpiresCase2 = S.String;
 
 export type IntegrationAttemptTimeExpiresCase3 = "-Infinity";
-export const IntegrationAttemptTimeExpiresCase3 = /*@__PURE__*/ S.String;
+export const IntegrationAttemptTimeExpiresCase3 = S.String;
 
 export type IntegrationAttemptTimeExpiresCase4 =
   | "Infinity"
   | "-Infinity"
   | "NaN";
-export const IntegrationAttemptTimeExpiresCase4 = /*@__PURE__*/ S.String;
+export const IntegrationAttemptTimeExpiresCase4 = S.String;
 
 export type IntegrationAttemptTimeExpires =
   | number
@@ -11274,7 +11223,7 @@ export type IntegrationAttemptTimeExpires =
   | IntegrationAttemptTimeExpiresCase3
   | IntegrationAttemptTimeExpiresCase4;
 export const IntegrationAttemptTimeExpires =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationAttemptTimeExpires>;
+  S.Unknown as any as S.Schema<IntegrationAttemptTimeExpires>;
 
 export interface IntegrationAttemptTime {
   created: IntegrationAttemptTimeCreated;
@@ -11514,7 +11463,7 @@ export type SessionMessageAgentSwitchedTime = RetryPartTime;
 export const SessionMessageAgentSwitchedTime = RetryPartTime;
 
 export type SessionMessageAgentSwitchedType = "agent-switched";
-export const SessionMessageAgentSwitchedType = /*@__PURE__*/ S.String;
+export const SessionMessageAgentSwitchedType = S.String;
 
 export interface SessionMessageAgentSwitched {
   id: string;
@@ -11539,7 +11488,7 @@ export type SessionMessageModelSwitchedTime = RetryPartTime;
 export const SessionMessageModelSwitchedTime = RetryPartTime;
 
 export type SessionMessageModelSwitchedType = "model-switched";
-export const SessionMessageModelSwitchedType = /*@__PURE__*/ S.String;
+export const SessionMessageModelSwitchedType = S.String;
 
 export interface SessionMessageModelSwitched {
   id: string;
@@ -11619,7 +11568,7 @@ export const SessionMessageUserAgentsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SessionMessageUserAgentsList>;
 
 export type SessionMessageUserType = "user";
-export const SessionMessageUserType = /*@__PURE__*/ S.String;
+export const SessionMessageUserType = S.String;
 
 export interface SessionMessageUser {
   id: string;
@@ -11648,7 +11597,7 @@ export type SessionMessageSyntheticTime = RetryPartTime;
 export const SessionMessageSyntheticTime = RetryPartTime;
 
 export type SessionMessageSyntheticType = "synthetic";
-export const SessionMessageSyntheticType = /*@__PURE__*/ S.String;
+export const SessionMessageSyntheticType = S.String;
 
 export interface SessionMessageSynthetic {
   id: string;
@@ -11675,7 +11624,7 @@ export type SessionMessageSystemTime = RetryPartTime;
 export const SessionMessageSystemTime = RetryPartTime;
 
 export type SessionMessageSystemType = "system";
-export const SessionMessageSystemType = /*@__PURE__*/ S.String;
+export const SessionMessageSystemType = S.String;
 
 export interface SessionMessageSystem {
   id: string;
@@ -11700,7 +11649,7 @@ export type SessionMessageShellTime = AssistantMessageTime;
 export const SessionMessageShellTime = AssistantMessageTime;
 
 export type SessionMessageShellType = "shell";
-export const SessionMessageShellType = /*@__PURE__*/ S.String;
+export const SessionMessageShellType = S.String;
 
 export interface SessionMessageShell {
   id: string;
@@ -11729,10 +11678,10 @@ export type SessionMessageAssistantTime = AssistantMessageTime;
 export const SessionMessageAssistantTime = AssistantMessageTime;
 
 export type SessionMessageAssistantType = "assistant";
-export const SessionMessageAssistantType = /*@__PURE__*/ S.String;
+export const SessionMessageAssistantType = S.String;
 
 export type SessionMessageAssistantTextType = "text";
-export const SessionMessageAssistantTextType = /*@__PURE__*/ S.String;
+export const SessionMessageAssistantTextType = S.String;
 
 export interface SessionMessageAssistantText {
   type: SessionMessageAssistantTextType;
@@ -11750,7 +11699,7 @@ export const SessionMessageAssistantText = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionMessageAssistantText>;
 
 export type SessionMessageAssistantReasoningType = "reasoning";
-export const SessionMessageAssistantReasoningType = /*@__PURE__*/ S.String;
+export const SessionMessageAssistantReasoningType = S.String;
 
 export type LLMProviderMetadata = { [key: string]: unknown | undefined };
 export const LLMProviderMetadata = /*@__PURE__*/ S.Record(
@@ -11781,7 +11730,7 @@ export const SessionMessageAssistantReasoning = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionMessageAssistantReasoning>;
 
 export type SessionMessageAssistantToolType = "tool";
-export const SessionMessageAssistantToolType = /*@__PURE__*/ S.String;
+export const SessionMessageAssistantToolType = S.String;
 
 export interface SessionMessageAssistantToolProvider {
   executed: boolean;
@@ -11799,7 +11748,7 @@ export const SessionMessageAssistantToolProvider = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionMessageAssistantToolProvider>;
 
 export type SessionMessageToolStatePendingStatus = "pending";
-export const SessionMessageToolStatePendingStatus = /*@__PURE__*/ S.String;
+export const SessionMessageToolStatePendingStatus = S.String;
 
 export interface SessionMessageToolStatePending {
   status: SessionMessageToolStatePendingStatus;
@@ -11815,10 +11764,10 @@ export const SessionMessageToolStatePending = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionMessageToolStatePending>;
 
 export type SessionMessageToolStateRunningStatus = "running";
-export const SessionMessageToolStateRunningStatus = /*@__PURE__*/ S.String;
+export const SessionMessageToolStateRunningStatus = S.String;
 
 export type ToolTextContentType = "text";
-export const ToolTextContentType = /*@__PURE__*/ S.String;
+export const ToolTextContentType = S.String;
 
 export interface ToolTextContent {
   type: ToolTextContentType;
@@ -11834,7 +11783,7 @@ export const ToolTextContent = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ToolTextContent>;
 
 export type ToolFileContentType = "file";
-export const ToolFileContentType = /*@__PURE__*/ S.String;
+export const ToolFileContentType = S.String;
 
 export interface ToolFileContent {
   type: ToolFileContentType;
@@ -11854,8 +11803,7 @@ export const ToolFileContent = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ToolFileContent>;
 
 export type LLMToolContent = ToolTextContent | ToolFileContent;
-export const LLMToolContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LLMToolContent>;
+export const LLMToolContent = S.Unknown as any as S.Schema<LLMToolContent>;
 
 export type SessionMessageToolStateRunningContentList = Array<LLMToolContent>;
 export const SessionMessageToolStateRunningContentList = /*@__PURE__*/ S.Array(
@@ -11880,7 +11828,7 @@ export const SessionMessageToolStateRunning = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionMessageToolStateRunning>;
 
 export type SessionMessageToolStateCompletedStatus = "completed";
-export const SessionMessageToolStateCompletedStatus = /*@__PURE__*/ S.String;
+export const SessionMessageToolStateCompletedStatus = S.String;
 
 export type SessionMessageToolStateCompletedAttachmentsList =
   Array<PromptFileAttachment>;
@@ -11925,7 +11873,7 @@ export const SessionMessageToolStateCompleted = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionMessageToolStateCompleted>;
 
 export type SessionMessageToolStateErrorStatus = "error";
-export const SessionMessageToolStateErrorStatus = /*@__PURE__*/ S.String;
+export const SessionMessageToolStateErrorStatus = S.String;
 
 export type SessionMessageToolStateErrorContentList = Array<LLMToolContent>;
 export const SessionMessageToolStateErrorContentList = /*@__PURE__*/ S.Array(
@@ -11933,7 +11881,7 @@ export const SessionMessageToolStateErrorContentList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SessionMessageToolStateErrorContentList>;
 
 export type SessionErrorUnknownType = "unknown";
-export const SessionErrorUnknownType = /*@__PURE__*/ S.String;
+export const SessionErrorUnknownType = S.String;
 
 export interface SessionErrorUnknown {
   type: SessionErrorUnknownType;
@@ -11975,7 +11923,7 @@ export type SessionMessageAssistantToolState =
   | SessionMessageToolStateCompleted
   | SessionMessageToolStateError;
 export const SessionMessageAssistantToolState =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionMessageAssistantToolState>;
+  S.Unknown as any as S.Schema<SessionMessageAssistantToolState>;
 
 export interface SessionMessageAssistantToolTime {
   created: number;
@@ -12020,7 +11968,7 @@ export type SessionMessageAssistantContentItem =
   | SessionMessageAssistantReasoning
   | SessionMessageAssistantTool;
 export const SessionMessageAssistantContentItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionMessageAssistantContentItem>;
+  S.Unknown as any as S.Schema<SessionMessageAssistantContentItem>;
 
 export type SessionMessageAssistantContentList =
   Array<SessionMessageAssistantContentItem>;
@@ -12088,10 +12036,10 @@ export const SessionMessageAssistant = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionMessageAssistant>;
 
 export type SessionMessageCompactionType = "compaction";
-export const SessionMessageCompactionType = /*@__PURE__*/ S.String;
+export const SessionMessageCompactionType = S.String;
 
 export type SessionMessageCompactionReason = "auto" | "manual";
-export const SessionMessageCompactionReason = /*@__PURE__*/ S.String;
+export const SessionMessageCompactionReason = S.String;
 
 export type SessionMessageCompactionTime = RetryPartTime;
 export const SessionMessageCompactionTime = RetryPartTime;
@@ -12128,8 +12076,7 @@ export type SessionMessage2 =
   | SessionMessageShell
   | SessionMessageAssistant
   | SessionMessageCompaction;
-export const SessionMessage2 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionMessage2>;
+export const SessionMessage2 = S.Unknown as any as S.Schema<SessionMessage2>;
 
 export type V2SessionContextResponseDataList = Array<SessionMessage2>;
 export const V2SessionContextResponseDataList = /*@__PURE__*/ S.Array(
@@ -12191,7 +12138,7 @@ export const V2SessionHistoryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V2SessionHistoryRequest>;
 
 export type SessionNextAgentSwitchedType = "session.next.agent.switched";
-export const SessionNextAgentSwitchedType = /*@__PURE__*/ S.String;
+export const SessionNextAgentSwitchedType = S.String;
 
 export interface SessionNextAgentSwitchedDurable {
   aggregateID: string;
@@ -12247,7 +12194,7 @@ export const SessionNextAgentSwitched = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextAgentSwitched>;
 
 export type SessionNextModelSwitchedType = "session.next.model.switched";
-export const SessionNextModelSwitchedType = /*@__PURE__*/ S.String;
+export const SessionNextModelSwitchedType = S.String;
 
 export type SessionNextModelSwitchedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextModelSwitchedDurable = SessionNextAgentSwitchedDurable;
@@ -12291,7 +12238,7 @@ export const SessionNextModelSwitched = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextModelSwitched>;
 
 export type SessionNextMovedType = "session.next.moved";
-export const SessionNextMovedType = /*@__PURE__*/ S.String;
+export const SessionNextMovedType = S.String;
 
 export type SessionNextMovedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextMovedDurable = SessionNextAgentSwitchedDurable;
@@ -12335,7 +12282,7 @@ export const SessionNextMoved = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextMoved>;
 
 export type SessionNextPromptedType = "session.next.prompted";
-export const SessionNextPromptedType = /*@__PURE__*/ S.String;
+export const SessionNextPromptedType = S.String;
 
 export type SessionNextPromptedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextPromptedDurable = SessionNextAgentSwitchedDurable;
@@ -12364,7 +12311,7 @@ export const Prompt = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Prompt" }) as any as S.Schema<Prompt>;
 
 export type SessionNextPromptedDataDelivery = "steer" | "queue";
-export const SessionNextPromptedDataDelivery = /*@__PURE__*/ S.String;
+export const SessionNextPromptedDataDelivery = S.String;
 
 export interface SessionNextPromptedData {
   timestamp: number;
@@ -12407,13 +12354,13 @@ export const SessionNextPrompted = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextPrompted>;
 
 export type SessionNextPromptAdmittedType = "session.next.prompt.admitted";
-export const SessionNextPromptAdmittedType = /*@__PURE__*/ S.String;
+export const SessionNextPromptAdmittedType = S.String;
 
 export type SessionNextPromptAdmittedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextPromptAdmittedDurable = SessionNextAgentSwitchedDurable;
 
 export type SessionNextPromptAdmittedDataDelivery = "steer" | "queue";
-export const SessionNextPromptAdmittedDataDelivery = /*@__PURE__*/ S.String;
+export const SessionNextPromptAdmittedDataDelivery = S.String;
 
 export interface SessionNextPromptAdmittedData {
   timestamp: number;
@@ -12456,7 +12403,7 @@ export const SessionNextPromptAdmitted = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextPromptAdmitted>;
 
 export type SessionNextContextUpdatedType = "session.next.context.updated";
-export const SessionNextContextUpdatedType = /*@__PURE__*/ S.String;
+export const SessionNextContextUpdatedType = S.String;
 
 export type SessionNextContextUpdatedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextContextUpdatedDurable = SessionNextAgentSwitchedDurable;
@@ -12500,7 +12447,7 @@ export const SessionNextContextUpdated = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextContextUpdated>;
 
 export type SessionNextSyntheticType = "session.next.synthetic";
-export const SessionNextSyntheticType = /*@__PURE__*/ S.String;
+export const SessionNextSyntheticType = S.String;
 
 export type SessionNextSyntheticDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextSyntheticDurable = SessionNextAgentSwitchedDurable;
@@ -12530,7 +12477,7 @@ export const SessionNextSynthetic = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextSynthetic>;
 
 export type SessionNextShellStartedType = "session.next.shell.started";
-export const SessionNextShellStartedType = /*@__PURE__*/ S.String;
+export const SessionNextShellStartedType = S.String;
 
 export type SessionNextShellStartedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextShellStartedDurable = SessionNextAgentSwitchedDurable;
@@ -12576,7 +12523,7 @@ export const SessionNextShellStarted = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextShellStarted>;
 
 export type SessionNextShellEndedType = "session.next.shell.ended";
-export const SessionNextShellEndedType = /*@__PURE__*/ S.String;
+export const SessionNextShellEndedType = S.String;
 
 export type SessionNextShellEndedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextShellEndedDurable = SessionNextAgentSwitchedDurable;
@@ -12620,7 +12567,7 @@ export const SessionNextShellEnded = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextShellEnded>;
 
 export type SessionNextStepStartedType = "session.next.step.started";
-export const SessionNextStepStartedType = /*@__PURE__*/ S.String;
+export const SessionNextStepStartedType = S.String;
 
 export type SessionNextStepStartedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextStepStartedDurable = SessionNextAgentSwitchedDurable;
@@ -12668,7 +12615,7 @@ export const SessionNextStepStarted = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextStepStarted>;
 
 export type SessionNextStepEndedType = "session.next.step.ended";
-export const SessionNextStepEndedType = /*@__PURE__*/ S.String;
+export const SessionNextStepEndedType = S.String;
 
 export type SessionNextStepEndedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextStepEndedDurable = SessionNextAgentSwitchedDurable;
@@ -12731,7 +12678,7 @@ export const SessionNextStepEnded = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextStepEnded>;
 
 export type SessionNextStepFailedType = "session.next.step.failed";
-export const SessionNextStepFailedType = /*@__PURE__*/ S.String;
+export const SessionNextStepFailedType = S.String;
 
 export type SessionNextStepFailedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextStepFailedDurable = SessionNextAgentSwitchedDurable;
@@ -12775,7 +12722,7 @@ export const SessionNextStepFailed = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextStepFailed>;
 
 export type SessionNextTextStartedType = "session.next.text.started";
-export const SessionNextTextStartedType = /*@__PURE__*/ S.String;
+export const SessionNextTextStartedType = S.String;
 
 export type SessionNextTextStartedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextTextStartedDurable = SessionNextAgentSwitchedDurable;
@@ -12819,7 +12766,7 @@ export const SessionNextTextStarted = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextTextStarted>;
 
 export type SessionNextTextEndedType = "session.next.text.ended";
-export const SessionNextTextEndedType = /*@__PURE__*/ S.String;
+export const SessionNextTextEndedType = S.String;
 
 export type SessionNextTextEndedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextTextEndedDurable = SessionNextAgentSwitchedDurable;
@@ -12865,7 +12812,7 @@ export const SessionNextTextEnded = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextTextEnded>;
 
 export type SessionNextToolInputStartedType = "session.next.tool.input.started";
-export const SessionNextToolInputStartedType = /*@__PURE__*/ S.String;
+export const SessionNextToolInputStartedType = S.String;
 
 export type SessionNextToolInputStartedDurable =
   SessionNextAgentSwitchedDurable;
@@ -12913,7 +12860,7 @@ export const SessionNextToolInputStarted = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextToolInputStarted>;
 
 export type SessionNextToolInputEndedType = "session.next.tool.input.ended";
-export const SessionNextToolInputEndedType = /*@__PURE__*/ S.String;
+export const SessionNextToolInputEndedType = S.String;
 
 export type SessionNextToolInputEndedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextToolInputEndedDurable = SessionNextAgentSwitchedDurable;
@@ -12959,7 +12906,7 @@ export const SessionNextToolInputEnded = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextToolInputEnded>;
 
 export type SessionNextToolCalledType = "session.next.tool.called";
-export const SessionNextToolCalledType = /*@__PURE__*/ S.String;
+export const SessionNextToolCalledType = S.String;
 
 export type SessionNextToolCalledDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextToolCalledDurable = SessionNextAgentSwitchedDurable;
@@ -13022,7 +12969,7 @@ export const SessionNextToolCalled = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextToolCalled>;
 
 export type SessionNextToolProgressType = "session.next.tool.progress";
-export const SessionNextToolProgressType = /*@__PURE__*/ S.String;
+export const SessionNextToolProgressType = S.String;
 
 export type SessionNextToolProgressDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextToolProgressDurable = SessionNextAgentSwitchedDurable;
@@ -13075,7 +13022,7 @@ export const SessionNextToolProgress = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextToolProgress>;
 
 export type SessionNextToolSuccessType = "session.next.tool.success";
-export const SessionNextToolSuccessType = /*@__PURE__*/ S.String;
+export const SessionNextToolSuccessType = S.String;
 
 export type SessionNextToolSuccessDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextToolSuccessDurable = SessionNextAgentSwitchedDurable;
@@ -13144,7 +13091,7 @@ export const SessionNextToolSuccess = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextToolSuccess>;
 
 export type SessionNextToolFailedType = "session.next.tool.failed";
-export const SessionNextToolFailedType = /*@__PURE__*/ S.String;
+export const SessionNextToolFailedType = S.String;
 
 export type SessionNextToolFailedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextToolFailedDurable = SessionNextAgentSwitchedDurable;
@@ -13199,7 +13146,7 @@ export const SessionNextToolFailed = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextToolFailed>;
 
 export type SessionNextReasoningStartedType = "session.next.reasoning.started";
-export const SessionNextReasoningStartedType = /*@__PURE__*/ S.String;
+export const SessionNextReasoningStartedType = S.String;
 
 export type SessionNextReasoningStartedDurable =
   SessionNextAgentSwitchedDurable;
@@ -13247,7 +13194,7 @@ export const SessionNextReasoningStarted = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextReasoningStarted>;
 
 export type SessionNextReasoningEndedType = "session.next.reasoning.ended";
-export const SessionNextReasoningEndedType = /*@__PURE__*/ S.String;
+export const SessionNextReasoningEndedType = S.String;
 
 export type SessionNextReasoningEndedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextReasoningEndedDurable = SessionNextAgentSwitchedDurable;
@@ -13295,7 +13242,7 @@ export const SessionNextReasoningEnded = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextReasoningEnded>;
 
 export type SessionNextRetriedType = "session.next.retried";
-export const SessionNextRetriedType = /*@__PURE__*/ S.String;
+export const SessionNextRetriedType = S.String;
 
 export type SessionNextRetriedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextRetriedDurable = SessionNextAgentSwitchedDurable;
@@ -13377,7 +13324,7 @@ export const SessionNextRetried = /*@__PURE__*/ S.suspend(() =>
 
 export type SessionNextCompactionStartedType =
   "session.next.compaction.started";
-export const SessionNextCompactionStartedType = /*@__PURE__*/ S.String;
+export const SessionNextCompactionStartedType = S.String;
 
 export type SessionNextCompactionStartedDurable =
   SessionNextAgentSwitchedDurable;
@@ -13385,7 +13332,7 @@ export const SessionNextCompactionStartedDurable =
   SessionNextAgentSwitchedDurable;
 
 export type SessionNextCompactionStartedDataReason = "auto" | "manual";
-export const SessionNextCompactionStartedDataReason = /*@__PURE__*/ S.String;
+export const SessionNextCompactionStartedDataReason = S.String;
 
 export interface SessionNextCompactionStartedData {
   timestamp: number;
@@ -13426,14 +13373,14 @@ export const SessionNextCompactionStarted = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextCompactionStarted>;
 
 export type SessionNextCompactionEndedType = "session.next.compaction.ended";
-export const SessionNextCompactionEndedType = /*@__PURE__*/ S.String;
+export const SessionNextCompactionEndedType = S.String;
 
 export type SessionNextCompactionEndedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextCompactionEndedDurable =
   SessionNextAgentSwitchedDurable;
 
 export type SessionNextCompactionEndedDataReason = "auto" | "manual";
-export const SessionNextCompactionEndedDataReason = /*@__PURE__*/ S.String;
+export const SessionNextCompactionEndedDataReason = S.String;
 
 export interface SessionNextCompactionEndedData {
   timestamp: number;
@@ -13478,7 +13425,7 @@ export const SessionNextCompactionEnded = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextCompactionEnded>;
 
 export type SessionNextRevertStagedType = "session.next.revert.staged";
-export const SessionNextRevertStagedType = /*@__PURE__*/ S.String;
+export const SessionNextRevertStagedType = S.String;
 
 export type SessionNextRevertStagedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextRevertStagedDurable = SessionNextAgentSwitchedDurable;
@@ -13520,7 +13467,7 @@ export const SessionNextRevertStaged = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextRevertStaged>;
 
 export type SessionNextRevertClearedType = "session.next.revert.cleared";
-export const SessionNextRevertClearedType = /*@__PURE__*/ S.String;
+export const SessionNextRevertClearedType = S.String;
 
 export type SessionNextRevertClearedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextRevertClearedDurable = SessionNextAgentSwitchedDurable;
@@ -13560,7 +13507,7 @@ export const SessionNextRevertCleared = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionNextRevertCleared>;
 
 export type SessionNextRevertCommittedType = "session.next.revert.committed";
-export const SessionNextRevertCommittedType = /*@__PURE__*/ S.String;
+export const SessionNextRevertCommittedType = S.String;
 
 export type SessionNextRevertCommittedDurable = SessionNextAgentSwitchedDurable;
 export const SessionNextRevertCommittedDurable =
@@ -13632,7 +13579,7 @@ export type SessionDurableEvent =
   | SessionNextRevertCleared
   | SessionNextRevertCommitted;
 export const SessionDurableEvent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionDurableEvent>;
+  S.Unknown as any as S.Schema<SessionDurableEvent>;
 
 export type SessionHistoryDataList = Array<SessionDurableEvent>;
 export const SessionHistoryDataList = /*@__PURE__*/ S.Array(
@@ -13705,7 +13652,7 @@ export const V2SessionMessageResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V2SessionMessageResponse>;
 
 export type V2SessionMessagesRequestOrder = "asc" | "desc";
-export const V2SessionMessagesRequestOrder = /*@__PURE__*/ S.String;
+export const V2SessionMessagesRequestOrder = S.String;
 
 export interface V2SessionMessagesRequest {
   sessionID: string;
@@ -13792,7 +13739,7 @@ export const PromptInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "PromptInput" }) as any as S.Schema<PromptInput>;
 
 export type V2SessionPromptRequestDelivery = "steer" | "queue";
-export const V2SessionPromptRequestDelivery = /*@__PURE__*/ S.String;
+export const V2SessionPromptRequestDelivery = S.String;
 
 export interface V2SessionPromptRequest {
   sessionID: string;
@@ -13820,7 +13767,7 @@ export const V2SessionPromptRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V2SessionPromptRequest>;
 
 export type SessionInputAdmittedDelivery = "steer" | "queue";
-export const SessionInputAdmittedDelivery = /*@__PURE__*/ S.String;
+export const SessionInputAdmittedDelivery = S.String;
 
 export interface SessionInputAdmitted {
   admittedSeq: number;
@@ -13941,7 +13888,7 @@ export const V2SessionSwitchModelResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V2SessionSwitchModelResponse>;
 
 export type VcsDiffRequestMode = "git" | "branch";
-export const VcsDiffRequestMode = /*@__PURE__*/ S.String;
+export const VcsDiffRequestMode = S.String;
 
 export interface VcsDiffRequest {
   directory?: string;
@@ -13959,7 +13906,7 @@ export const VcsDiffRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "VcsDiffRequest" }) as any as S.Schema<VcsDiffRequest>;
 
 export type VcsFileDiffStatus = "added" | "deleted" | "modified";
-export const VcsFileDiffStatus = /*@__PURE__*/ S.String;
+export const VcsFileDiffStatus = S.String;
 
 export interface VcsFileDiff {
   file: string;
@@ -14025,7 +13972,7 @@ export const VcsStatusRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VcsStatusRequest>;
 
 export type VcsFileStatusStatus = "added" | "deleted" | "modified";
-export const VcsFileStatusStatus = /*@__PURE__*/ S.String;
+export const VcsFileStatusStatus = S.String;
 
 export interface VcsFileStatus {
   file: string;

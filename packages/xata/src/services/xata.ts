@@ -52,11 +52,11 @@ export class NotFound
 
 /** Log attribute to filter on. */
 export type LogFilterField = "instance" | "level" | "process" | "body";
-export const LogFilterField = /*@__PURE__*/ S.String;
+export const LogFilterField = S.String;
 
 /** Match operator. */
 export type LogFilterOp = "in" | "contains" | "icontains" | "regex" | "iregex";
-export const LogFilterOp = /*@__PURE__*/ S.String;
+export const LogFilterOp = S.String;
 
 /** Used with `op: in`. */
 export type LogFilterValuesList = Array<string>;
@@ -127,7 +127,7 @@ export const BranchLogsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Log level enumeration */
 export type LogLevel = "debug" | "info" | "warning" | "error";
-export const LogLevel = /*@__PURE__*/ S.String;
+export const LogLevel = S.String;
 
 export interface LogEntry {
   timestamp: string;
@@ -186,7 +186,7 @@ export type BranchMetricName =
   | "throughput_write"
   | "wal_sync_time"
   | "replication_lag_time";
-export const BranchMetricName = /*@__PURE__*/ S.String;
+export const BranchMetricName = S.String;
 
 /** List of metric names to query. */
 export type BranchMetricsRequestMetricsList = Array<
@@ -203,7 +203,7 @@ export const BranchMetricsRequestInstancesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<BranchMetricsRequestInstancesList>;
 
 export type BranchMetricsRequestAggregationsItem = "avg" | "max" | "min";
-export const BranchMetricsRequestAggregationsItem = /*@__PURE__*/ S.String;
+export const BranchMetricsRequestAggregationsItem = S.String;
 
 /** List of aggregations to get, this is how the data-points within the interval are aggregated. Each one will generate a separate time-series per metric in the response. */
 export type BranchMetricsRequestAggregationsList = Array<
@@ -251,7 +251,7 @@ export const BranchMetricsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The aggregation used to generate this time-series */
 export type MetricSeriesAggregation = "avg" | "max" | "min";
-export const MetricSeriesAggregation = /*@__PURE__*/ S.String;
+export const MetricSeriesAggregation = S.String;
 
 export interface MetricSeriesValuesItem {
   timestamp: string;
@@ -426,7 +426,7 @@ export const BackupConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** The mode used to discriminate between types of branches. */
 export type CreateBranchRequestMode = "inherit" | "custom";
-export const CreateBranchRequestMode = /*@__PURE__*/ S.String;
+export const CreateBranchRequestMode = S.String;
 
 export interface CreateBranchRequest {
   /** Unique identifier of the organization containing the project */
@@ -614,7 +614,7 @@ export const CreateOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether the organization is active, it's computed as `!disabled_by_admin AND billing_status == 'ok'` */
 export type OrganizationStatusStatus = "enabled" | "disabled";
-export const OrganizationStatusStatus = /*@__PURE__*/ S.String;
+export const OrganizationStatusStatus = S.String;
 
 /** Indicates the status of the organization from a billing perspective */
 export type OrganizationStatusBillingStatus =
@@ -623,11 +623,11 @@ export type OrganizationStatusBillingStatus =
   | "invoice_overdue"
   | "unknown"
   | "deletion_requested";
-export const OrganizationStatusBillingStatus = /*@__PURE__*/ S.String;
+export const OrganizationStatusBillingStatus = S.String;
 
 /** Usage tier of the organization. t1 is the default for new organizations, t2 is assigned when a valid payment method is on file. */
 export type OrganizationStatusUsageTier = "t1" | "t2";
-export const OrganizationStatusUsageTier = /*@__PURE__*/ S.String;
+export const OrganizationStatusUsageTier = S.String;
 
 export interface OrganizationStatus {
   /** Indicates whether the organization is active, it's computed as `!disabled_by_admin AND billing_status == 'ok'` */
@@ -664,7 +664,7 @@ export const OrganizationStatus = /*@__PURE__*/ S.suspend(() =>
 
 /** Marketplace provider associated with an organization. */
 export type OrganizationMarketplaceProvider = "aws";
-export const OrganizationMarketplaceProvider = /*@__PURE__*/ S.String;
+export const OrganizationMarketplaceProvider = S.String;
 
 /** Organization details including ID and name */
 export interface Organization {
@@ -1254,7 +1254,7 @@ export type BranchStatusStatusType =
   | "STATUS_TYPE_TRANSIENT"
   | "STATUS_TYPE_FAULT"
   | "STATUS_TYPE_HIBERNATED";
-export const BranchStatusStatusType = /*@__PURE__*/ S.String;
+export const BranchStatusStatusType = S.String;
 
 /** Current operational state of the cluster (ready, creating, updating, etc.) */
 export type ClusterLifecycleState =
@@ -1263,7 +1263,7 @@ export type ClusterLifecycleState =
   | "updating"
   | "upgrading"
   | "unknown";
-export const ClusterLifecycleState = /*@__PURE__*/ S.String;
+export const ClusterLifecycleState = S.String;
 
 /** Information about the current lifecycle state of a database cluster */
 export interface ClusterLifecycle {
@@ -1504,7 +1504,7 @@ export type BillingCollectionMethod =
   | "stripe_payment_method"
   | "marketplace"
   | "bank_transfer";
-export const BillingCollectionMethod = /*@__PURE__*/ S.String;
+export const BillingCollectionMethod = S.String;
 
 export interface BillingPaymentMethodCard {
   brand: string;
@@ -1535,7 +1535,7 @@ export const BillingPaymentMethod = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BillingPaymentMethod>;
 
 export type BillingCreditStatus = "active" | "pending_payment";
-export const BillingCreditStatus = /*@__PURE__*/ S.String;
+export const BillingCreditStatus = S.String;
 
 export interface BillingCredit {
   id: string;
@@ -1658,7 +1658,7 @@ export type BillingInvoiceStatus =
   | "paid"
   | "void"
   | "synced";
-export const BillingInvoiceStatus = /*@__PURE__*/ S.String;
+export const BillingInvoiceStatus = S.String;
 
 export interface BillingInvoice {
   id: string;
@@ -1842,7 +1842,7 @@ export type PostgresConfigParameterType =
   | "enum"
   | "duration"
   | "boolean";
-export const PostgresConfigParameterType = /*@__PURE__*/ S.String;
+export const PostgresConfigParameterType = S.String;
 
 /** List of allowed enum values (if applicable) */
 export type PostgresConfigParameterAcceptableRangeEnumValuesList =
@@ -1878,7 +1878,7 @@ export const PostgresConfigParameterAcceptableRange = /*@__PURE__*/ S.suspend(
 export type PostgresConfigParameterDefaultValueSource =
   | "postgres"
   | "instance_type";
-export const PostgresConfigParameterDefaultValueSource = /*@__PURE__*/ S.String;
+export const PostgresConfigParameterDefaultValueSource = S.String;
 
 /** Detailed information about a single PostgreSQL configuration parameter */
 export interface PostgresConfigParameter {
@@ -2058,7 +2058,7 @@ export const GetOrganizationInvitationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Current status of the invitation */
 export type OrganizationInvitationStatus = "pending" | "expired";
-export const OrganizationInvitationStatus = /*@__PURE__*/ S.String;
+export const OrganizationInvitationStatus = S.String;
 
 export interface OrganizationInvitation {
   /** Unique identifier for the invitation */
@@ -2477,7 +2477,7 @@ export const ListExtensionsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** type of installation */
 export type ExtensionType = "extension" | "plugin" | "module";
-export const ExtensionType = /*@__PURE__*/ S.String;
+export const ExtensionType = S.String;
 
 /** Details of a postgres extension */
 export interface Extension {
@@ -2783,7 +2783,7 @@ export const ListOrganizationAPIKeysResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOrganizationAPIKeysResponse>;
 
 export type ListOrganizationInvitationsRequestStatus = "pending" | "expired";
-export const ListOrganizationInvitationsRequestStatus = /*@__PURE__*/ S.String;
+export const ListOrganizationInvitationsRequestStatus = S.String;
 
 export interface ListOrganizationInvitationsRequest {
   /** Unique identifier for a specific organization */
@@ -2949,7 +2949,7 @@ export const ListRegionsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Cloud provider the region runs on */
 export type ListRegionsResponseRegionsItemProvider = "aws" | "gcp" | "custom";
-export const ListRegionsResponseRegionsItemProvider = /*@__PURE__*/ S.String;
+export const ListRegionsResponseRegionsItemProvider = S.String;
 
 export interface ListRegionsResponseRegionsItem {
   /** Unique identifier for the region */
@@ -3183,7 +3183,7 @@ export const BatchResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type QueryResponseBody = QueryResult | BatchResponse;
 export const QueryResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseBody>;
+  S.Unknown as any as S.Schema<QueryResponseBody>;
 
 export type QueryResponse = QueryResponseBody;
 export const QueryResponse = /*@__PURE__*/ S.suspend(() =>
@@ -3192,7 +3192,7 @@ export const QueryResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Marketplace provider accepted for registration. */
 export type MarketplaceRegistrationProvider = "aws";
-export const MarketplaceRegistrationProvider = /*@__PURE__*/ S.String;
+export const MarketplaceRegistrationProvider = S.String;
 
 /** AWS-specific marketplace details */
 export interface RegisterMarketplaceRequestAws {
@@ -3388,12 +3388,12 @@ export const RotateBranchCredentialsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON-RPC protocol version. Always `2.0`. */
 export type SendMcpRequestRequestJsonrpc = "2.0";
-export const SendMcpRequestRequestJsonrpc = /*@__PURE__*/ S.String;
+export const SendMcpRequestRequestJsonrpc = S.String;
 
 /** Request identifier, echoed on the response. Omitted for notifications. */
 export type SendMcpRequestRequestId = string | number;
 export const SendMcpRequestRequestId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendMcpRequestRequestId>;
+  S.Unknown as any as S.Schema<SendMcpRequestRequestId>;
 
 /** Method parameters as defined by the MCP specification. */
 export type SendMcpRequestRequestParamsMap = {
@@ -3427,12 +3427,12 @@ export const SendMcpRequestRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON-RPC protocol version. Always `2.0`. */
 export type JSONRPCResponseJsonrpc = "2.0";
-export const JSONRPCResponseJsonrpc = /*@__PURE__*/ S.String;
+export const JSONRPCResponseJsonrpc = S.String;
 
 /** Identifier of the request this responds to. */
 export type JSONRPCResponseId = string | number;
 export const JSONRPCResponseId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<JSONRPCResponseId>;
+  S.Unknown as any as S.Schema<JSONRPCResponseId>;
 
 /** Method result as defined by the MCP specification. */
 export type JSONRPCResponseResultMap = { [key: string]: unknown | undefined };

@@ -202,7 +202,7 @@ export class StudioServiceRoleNotAssumable
   ).pipe(C.withRetryableError) {}
 export type XmlStringMaxLen256 = string;
 export type InstanceFleetType = "MASTER" | "CORE" | "TASK" | (string & {});
-export const InstanceFleetType = /*@__PURE__*/ S.String;
+export const InstanceFleetType = S.String;
 
 export type WholeNumber = number;
 export type InstanceType = string;
@@ -308,7 +308,7 @@ export type SpotProvisioningTimeoutAction =
   | "SWITCH_TO_ON_DEMAND"
   | "TERMINATE_CLUSTER"
   | (string & {});
-export const SpotProvisioningTimeoutAction = /*@__PURE__*/ S.String;
+export const SpotProvisioningTimeoutAction = S.String;
 
 export type SpotProvisioningAllocationStrategy =
   | "capacity-optimized"
@@ -317,7 +317,7 @@ export type SpotProvisioningAllocationStrategy =
   | "diversified"
   | "capacity-optimized-prioritized"
   | (string & {});
-export const SpotProvisioningAllocationStrategy = /*@__PURE__*/ S.String;
+export const SpotProvisioningAllocationStrategy = S.String;
 
 export interface SpotProvisioningSpecification {
   TimeoutDurationMinutes?: number;
@@ -339,18 +339,18 @@ export type OnDemandProvisioningAllocationStrategy =
   | "lowest-price"
   | "prioritized"
   | (string & {});
-export const OnDemandProvisioningAllocationStrategy = /*@__PURE__*/ S.String;
+export const OnDemandProvisioningAllocationStrategy = S.String;
 
 export type OnDemandCapacityReservationUsageStrategy =
   | "use-capacity-reservations-first"
   | (string & {});
-export const OnDemandCapacityReservationUsageStrategy = /*@__PURE__*/ S.String;
+export const OnDemandCapacityReservationUsageStrategy = S.String;
 
 export type OnDemandCapacityReservationPreference =
   | "open"
   | "none"
   | (string & {});
-export const OnDemandCapacityReservationPreference = /*@__PURE__*/ S.String;
+export const OnDemandCapacityReservationPreference = S.String;
 
 export interface OnDemandCapacityReservationOptions {
   UsageStrategy?: OnDemandCapacityReservationUsageStrategy;
@@ -494,10 +494,10 @@ export const AddInstanceFleetOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddInstanceFleetOutput",
 }) as any as S.Schema<AddInstanceFleetOutput>;
 export type MarketType = "ON_DEMAND" | "SPOT" | (string & {});
-export const MarketType = /*@__PURE__*/ S.String;
+export const MarketType = S.String;
 
 export type InstanceRoleType = "MASTER" | "CORE" | "TASK" | (string & {});
-export const InstanceRoleType = /*@__PURE__*/ S.String;
+export const InstanceRoleType = S.String;
 
 export interface ScalingConstraints {
   MinCapacity?: number;
@@ -516,7 +516,7 @@ export type AdjustmentType =
   | "PERCENT_CHANGE_IN_CAPACITY"
   | "EXACT_CAPACITY"
   | (string & {});
-export const AdjustmentType = /*@__PURE__*/ S.String;
+export const AdjustmentType = S.String;
 
 export interface SimpleScalingPolicyConfiguration {
   AdjustmentType?: AdjustmentType;
@@ -550,7 +550,7 @@ export type ComparisonOperator =
   | "LESS_THAN"
   | "LESS_THAN_OR_EQUAL"
   | (string & {});
-export const ComparisonOperator = /*@__PURE__*/ S.String;
+export const ComparisonOperator = S.String;
 
 export type Statistic =
   | "SAMPLE_COUNT"
@@ -559,7 +559,7 @@ export type Statistic =
   | "MINIMUM"
   | "MAXIMUM"
   | (string & {});
-export const Statistic = /*@__PURE__*/ S.String;
+export const Statistic = S.String;
 
 export type Unit =
   | "NONE"
@@ -590,7 +590,7 @@ export type Unit =
   | "TERA_BITS_PER_SECOND"
   | "COUNT_PER_SECOND"
   | (string & {});
-export const Unit = /*@__PURE__*/ S.String;
+export const Unit = S.String;
 
 export interface MetricDimension {
   Key?: string;
@@ -740,7 +740,7 @@ export type ActionOnFailure =
   | "CANCEL_AND_WAIT"
   | "CONTINUE"
   | (string & {});
-export const ActionOnFailure = /*@__PURE__*/ S.String;
+export const ActionOnFailure = S.String;
 
 export type XmlString = string;
 export interface KeyValue {
@@ -883,7 +883,7 @@ export type StepCancellationOption =
   | "SEND_INTERRUPT"
   | "TERMINATE_PROCESS"
   | (string & {});
-export const StepCancellationOption = /*@__PURE__*/ S.String;
+export const StepCancellationOption = S.String;
 
 export interface CancelStepsInput {
   ClusterId?: string;
@@ -911,7 +911,7 @@ export const CancelStepsInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CancelStepsInput>;
 export type StepId = string;
 export type CancelStepsRequestStatus = "SUBMITTED" | "FAILED" | (string & {});
-export const CancelStepsRequestStatus = /*@__PURE__*/ S.String;
+export const CancelStepsRequestStatus = S.String;
 
 export interface CancelStepsInfo {
   StepId?: string;
@@ -946,7 +946,7 @@ export const EMRContainersConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "EMRContainersConfig",
 }) as any as S.Schema<EMRContainersConfig>;
 export type ProfilerType = "SHS" | "TEZUI" | "YTS" | (string & {});
-export const ProfilerType = /*@__PURE__*/ S.String;
+export const ProfilerType = S.String;
 
 export interface CreatePersistentAppUIInput {
   TargetResourceArn?: string;
@@ -1025,12 +1025,12 @@ export const CreateSecurityConfigurationOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateSecurityConfigurationOutput",
 }) as any as S.Schema<CreateSecurityConfigurationOutput>;
 export type AuthMode = "SSO" | "IAM" | (string & {});
-export const AuthMode = /*@__PURE__*/ S.String;
+export const AuthMode = S.String;
 
 export type SubnetIdList = string[];
 export const SubnetIdList = /*@__PURE__*/ S.Array(S.String);
 export type IdcUserAssignment = "REQUIRED" | "OPTIONAL" | (string & {});
-export const IdcUserAssignment = /*@__PURE__*/ S.String;
+export const IdcUserAssignment = S.String;
 
 export interface CreateStudioInput {
   Name?: string;
@@ -1096,7 +1096,7 @@ export const CreateStudioOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateStudioOutput",
 }) as any as S.Schema<CreateStudioOutput>;
 export type IdentityType = "USER" | "GROUP" | (string & {});
-export const IdentityType = /*@__PURE__*/ S.String;
+export const IdentityType = S.String;
 
 export interface CreateStudioSessionMappingInput {
   StudioId?: string;
@@ -1239,7 +1239,7 @@ export type ClusterState =
   | "TERMINATED"
   | "TERMINATED_WITH_ERRORS"
   | (string & {});
-export const ClusterState = /*@__PURE__*/ S.String;
+export const ClusterState = S.String;
 
 export type ClusterStateChangeReasonCode =
   | "INTERNAL_ERROR"
@@ -1251,7 +1251,7 @@ export type ClusterStateChangeReasonCode =
   | "STEP_FAILURE"
   | "ALL_STEPS_COMPLETED"
   | (string & {});
-export const ClusterStateChangeReasonCode = /*@__PURE__*/ S.String;
+export const ClusterStateChangeReasonCode = S.String;
 
 export interface ClusterStateChangeReason {
   Code?: ClusterStateChangeReasonCode;
@@ -1349,7 +1349,7 @@ export type InstanceCollectionType =
   | "INSTANCE_FLEET"
   | "INSTANCE_GROUP"
   | (string & {});
-export const InstanceCollectionType = /*@__PURE__*/ S.String;
+export const InstanceCollectionType = S.String;
 
 export interface Application {
   Name?: string;
@@ -1371,10 +1371,10 @@ export type ScaleDownBehavior =
   | "TERMINATE_AT_INSTANCE_HOUR"
   | "TERMINATE_AT_TASK_COMPLETION"
   | (string & {});
-export const ScaleDownBehavior = /*@__PURE__*/ S.String;
+export const ScaleDownBehavior = S.String;
 
 export type RepoUpgradeOnBoot = "SECURITY" | "NONE" | (string & {});
-export const RepoUpgradeOnBoot = /*@__PURE__*/ S.String;
+export const RepoUpgradeOnBoot = S.String;
 
 export interface KerberosAttributes {
   Realm?: string;
@@ -1401,7 +1401,7 @@ export type PlacementGroupStrategy =
   | "CLUSTER"
   | "NONE"
   | (string & {});
-export const PlacementGroupStrategy = /*@__PURE__*/ S.String;
+export const PlacementGroupStrategy = S.String;
 
 export interface PlacementGroupConfig {
   InstanceRole?: InstanceRoleType;
@@ -1446,14 +1446,14 @@ export type LogType =
   | "application-logs"
   | "persistent-ui-logs"
   | (string & {});
-export const LogType = /*@__PURE__*/ S.String;
+export const LogType = S.String;
 
 export type LogUploadPolicyValue =
   | "emr-managed"
   | "on-customer-s3only"
   | "disabled"
   | (string & {});
-export const LogUploadPolicyValue = /*@__PURE__*/ S.String;
+export const LogUploadPolicyValue = S.String;
 
 export type LogTypeMap = { [key in LogType]?: LogUploadPolicyValue };
 export const LogTypeMap = /*@__PURE__*/ S.Record(
@@ -1591,7 +1591,7 @@ export type JobFlowExecutionState =
   | "COMPLETED"
   | "FAILED"
   | (string & {});
-export const JobFlowExecutionState = /*@__PURE__*/ S.String;
+export const JobFlowExecutionState = S.String;
 
 export type JobFlowExecutionStateList = JobFlowExecutionState[];
 export const JobFlowExecutionStateList = /*@__PURE__*/ S.Array(
@@ -1658,7 +1658,7 @@ export type InstanceGroupState =
   | "SHUTTING_DOWN"
   | "ENDED"
   | (string & {});
-export const InstanceGroupState = /*@__PURE__*/ S.String;
+export const InstanceGroupState = S.String;
 
 export interface InstanceGroupDetail {
   InstanceGroupId?: string;
@@ -1758,7 +1758,7 @@ export type StepExecutionState =
   | "FAILED"
   | "INTERRUPTED"
   | (string & {});
-export const StepExecutionState = /*@__PURE__*/ S.String;
+export const StepExecutionState = S.String;
 
 export interface StepExecutionStatusDetail {
   State?: StepExecutionState;
@@ -1931,7 +1931,7 @@ export const DescribeNotebookExecutionInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeNotebookExecutionInput",
 }) as any as S.Schema<DescribeNotebookExecutionInput>;
 export type ExecutionEngineType = "EMR" | (string & {});
-export const ExecutionEngineType = /*@__PURE__*/ S.String;
+export const ExecutionEngineType = S.String;
 
 export type IAMRoleArn = string;
 export interface ExecutionEngineConfig {
@@ -1962,7 +1962,7 @@ export type NotebookExecutionStatus =
   | "STOPPING"
   | "STOPPED"
   | (string & {});
-export const NotebookExecutionStatus = /*@__PURE__*/ S.String;
+export const NotebookExecutionStatus = S.String;
 
 export type UriString = string;
 export interface NotebookS3LocationForOutput {
@@ -1984,7 +1984,7 @@ export const OutputNotebookS3LocationForOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "OutputNotebookS3LocationForOutput",
 }) as any as S.Schema<OutputNotebookS3LocationForOutput>;
 export type OutputNotebookFormat = "HTML" | (string & {});
-export const OutputNotebookFormat = /*@__PURE__*/ S.String;
+export const OutputNotebookFormat = S.String;
 
 export type EnvironmentVariablesMap = { [key: string]: string | undefined };
 export const EnvironmentVariablesMap = /*@__PURE__*/ S.Record(
@@ -2062,7 +2062,7 @@ export const DescribePersistentAppUIInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribePersistentAppUIInput",
 }) as any as S.Schema<DescribePersistentAppUIInput>;
 export type PersistentAppUIType = "SHS" | "TEZ" | "YTS" | (string & {});
-export const PersistentAppUIType = /*@__PURE__*/ S.String;
+export const PersistentAppUIType = S.String;
 
 export type PersistentAppUITypeList = PersistentAppUIType[];
 export const PersistentAppUITypeList =
@@ -2244,10 +2244,10 @@ export type StepState =
   | "FAILED"
   | "INTERRUPTED"
   | (string & {});
-export const StepState = /*@__PURE__*/ S.String;
+export const StepState = S.String;
 
 export type StepStateChangeReasonCode = "NONE" | (string & {});
-export const StepStateChangeReasonCode = /*@__PURE__*/ S.String;
+export const StepStateChangeReasonCode = S.String;
 
 export interface StepStateChangeReason {
   Code?: StepStateChangeReasonCode;
@@ -2597,7 +2597,7 @@ export type ComputeLimitsUnitType =
   | "Instances"
   | "VCPU"
   | (string & {});
-export const ComputeLimitsUnitType = /*@__PURE__*/ S.String;
+export const ComputeLimitsUnitType = S.String;
 
 export interface ComputeLimits {
   UnitType?: ComputeLimitsUnitType;
@@ -2617,7 +2617,7 @@ export const ComputeLimits = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ComputeLimits" }) as any as S.Schema<ComputeLimits>;
 export type UtilizationPerformanceIndexInteger = number;
 export type ScalingStrategy = "DEFAULT" | "ADVANCED" | (string & {});
-export const ScalingStrategy = /*@__PURE__*/ S.String;
+export const ScalingStrategy = S.String;
 
 export interface ManagedScalingPolicy {
   ComputeLimits?: ComputeLimits;
@@ -2655,7 +2655,7 @@ export type OnClusterAppUIType =
   | "JobHistoryServer"
   | "ResourceManager"
   | (string & {});
-export const OnClusterAppUIType = /*@__PURE__*/ S.String;
+export const OnClusterAppUIType = S.String;
 
 export interface GetOnClusterAppUIPresignedURLInput {
   ClusterId?: string;
@@ -2771,7 +2771,7 @@ export type SessionState =
   | "TERMINATED"
   | "FAILED"
   | (string & {});
-export const SessionState = /*@__PURE__*/ S.String;
+export const SessionState = S.String;
 
 export interface SessionCloudWatchLoggingConfiguration {
   Enabled?: boolean;
@@ -3133,7 +3133,7 @@ export type InstanceFleetState =
   | "TERMINATING"
   | "TERMINATED"
   | (string & {});
-export const InstanceFleetState = /*@__PURE__*/ S.String;
+export const InstanceFleetState = S.String;
 
 export type InstanceFleetStateChangeReasonCode =
   | "INTERNAL_ERROR"
@@ -3141,7 +3141,7 @@ export type InstanceFleetStateChangeReasonCode =
   | "INSTANCE_FAILURE"
   | "CLUSTER_TERMINATED"
   | (string & {});
-export const InstanceFleetStateChangeReasonCode = /*@__PURE__*/ S.String;
+export const InstanceFleetStateChangeReasonCode = S.String;
 
 export interface InstanceFleetStateChangeReason {
   Code?: InstanceFleetStateChangeReasonCode;
@@ -3313,7 +3313,7 @@ export const ListInstanceGroupsInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListInstanceGroupsInput>;
 export type InstanceGroupId = string;
 export type InstanceGroupType = "MASTER" | "CORE" | "TASK" | (string & {});
-export const InstanceGroupType = /*@__PURE__*/ S.String;
+export const InstanceGroupType = S.String;
 
 export type InstanceGroupStateChangeReasonCode =
   | "INTERNAL_ERROR"
@@ -3321,7 +3321,7 @@ export type InstanceGroupStateChangeReasonCode =
   | "INSTANCE_FAILURE"
   | "CLUSTER_TERMINATED"
   | (string & {});
-export const InstanceGroupStateChangeReasonCode = /*@__PURE__*/ S.String;
+export const InstanceGroupStateChangeReasonCode = S.String;
 
 export interface InstanceGroupStateChangeReason {
   Code?: InstanceGroupStateChangeReasonCode;
@@ -3400,14 +3400,14 @@ export type AutoScalingPolicyState =
   | "DETACHED"
   | "FAILED"
   | (string & {});
-export const AutoScalingPolicyState = /*@__PURE__*/ S.String;
+export const AutoScalingPolicyState = S.String;
 
 export type AutoScalingPolicyStateChangeReasonCode =
   | "USER_REQUEST"
   | "PROVISION_FAILURE"
   | "CLEANUP_FAILURE"
   | (string & {});
-export const AutoScalingPolicyStateChangeReasonCode = /*@__PURE__*/ S.String;
+export const AutoScalingPolicyStateChangeReasonCode = S.String;
 
 export interface AutoScalingPolicyStateChangeReason {
   Code?: AutoScalingPolicyStateChangeReasonCode;
@@ -3541,7 +3541,7 @@ export type InstanceState =
   | "RUNNING"
   | "TERMINATED"
   | (string & {});
-export const InstanceState = /*@__PURE__*/ S.String;
+export const InstanceState = S.String;
 
 export type InstanceStateList = InstanceState[];
 export const InstanceStateList = /*@__PURE__*/ S.Array(InstanceState);
@@ -3584,7 +3584,7 @@ export type InstanceStateChangeReasonCode =
   | "BOOTSTRAP_FAILURE"
   | "CLUSTER_TERMINATED"
   | (string & {});
-export const InstanceStateChangeReasonCode = /*@__PURE__*/ S.String;
+export const InstanceStateChangeReasonCode = S.String;
 
 export interface InstanceStateChangeReason {
   Code?: InstanceStateChangeReasonCode;
@@ -4216,7 +4216,7 @@ export const ModifyInstanceFleetResponse = /*@__PURE__*/ S.suspend(() =>
 export type EC2InstanceIdsToTerminateList = string[];
 export const EC2InstanceIdsToTerminateList = /*@__PURE__*/ S.Array(S.String);
 export type ReconfigurationType = "OVERWRITE" | "MERGE" | (string & {});
-export const ReconfigurationType = /*@__PURE__*/ S.String;
+export const ReconfigurationType = S.String;
 
 export interface InstanceGroupModifyConfig {
   InstanceGroupId?: string;

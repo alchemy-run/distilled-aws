@@ -23,7 +23,7 @@ export class Conflict
 
 /** The region where the repository is hosted. */
 export type CreateNewRepositoryRequestRegion = "us" | "eu";
-export const CreateNewRepositoryRequestRegion = /*@__PURE__*/ S.String;
+export const CreateNewRepositoryRequestRegion = S.String;
 
 /** The license of the repository. You can select 'Other' if your license is not in the list */
 export type CreateNewRepositoryRequestLicense =
@@ -110,22 +110,21 @@ export type CreateNewRepositoryRequestLicense =
   | "gemma"
   | "unknown"
   | "other";
-export const CreateNewRepositoryRequestLicense = /*@__PURE__*/ S.String;
+export const CreateNewRepositoryRequestLicense = S.String;
 
 export type CreateNewRepositoryRequestLicenseLink = unknown | string;
 export const CreateNewRepositoryRequestLicenseLink =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateNewRepositoryRequestLicenseLink>;
+  S.Unknown as any as S.Schema<CreateNewRepositoryRequestLicenseLink>;
 
 /** Repository visibility. `protected` is only supported for Spaces. Cannot be specified along with private. */
 export type CreateNewRepositoryRequestVisibility =
   | "private"
   | "public"
   | "protected";
-export const CreateNewRepositoryRequestVisibility = /*@__PURE__*/ S.String;
+export const CreateNewRepositoryRequestVisibility = S.String;
 
 export type CreateNewRepositoryRequestFilesItemEncoding = "utf-8" | "base64";
-export const CreateNewRepositoryRequestFilesItemEncoding =
-  /*@__PURE__*/ S.String;
+export const CreateNewRepositoryRequestFilesItemEncoding = S.String;
 
 export interface CreateNewRepositoryRequestFilesItem {
   content: string;
@@ -180,7 +179,7 @@ export type CreateNewRepositoryRequestHardware =
   | "rtx-pro-6000x8"
   | "inf2x6"
   | "zerogpu";
-export const CreateNewRepositoryRequestHardware = /*@__PURE__*/ S.String;
+export const CreateNewRepositoryRequestHardware = S.String;
 
 export interface CreateNewRepositoryRequestSecretsItem {
   key: string;
@@ -217,14 +216,14 @@ export const CreateNewRepositoryRequestVariablesList = /*@__PURE__*/ S.Array(
 
 export type CreateNewRepositoryRequestSleepTimeSeconds = number | unknown;
 export const CreateNewRepositoryRequestSleepTimeSeconds =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateNewRepositoryRequestSleepTimeSeconds>;
+  S.Unknown as any as S.Schema<CreateNewRepositoryRequestSleepTimeSeconds>;
 
 export type CreateNewRepositoryRequestVolumesItemType =
   | "bucket"
   | "model"
   | "dataset"
   | "space";
-export const CreateNewRepositoryRequestVolumesItemType = /*@__PURE__*/ S.String;
+export const CreateNewRepositoryRequestVolumesItemType = S.String;
 
 export interface CreateNewRepositoryRequestVolumesItem {
   type: CreateNewRepositoryRequestVolumesItemType | (string & {});
@@ -262,7 +261,7 @@ export const CreateNewRepositoryRequestVolumesList = /*@__PURE__*/ S.Array(
 
 /** The Space SDK. `static` is free for everyone. `gradio` and `docker` run on compute: on the free `cpu-basic` flavor they require a subscription (PRO for users, Team/Enterprise for orgs), while paid hardware only requires billing (a payment method and prepaid credits). */
 export type CreateNewRepositoryRequestSdk = "gradio" | "docker" | "static";
-export const CreateNewRepositoryRequestSdk = /*@__PURE__*/ S.String;
+export const CreateNewRepositoryRequestSdk = S.String;
 
 export interface CreateNewRepositoryRequest {
   name: string;
@@ -340,13 +339,13 @@ export const CreateNewRepositoryResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateNewRepositoryResponse>;
 
 export type DuplicateRepositoryRequestRepoType = "spaces";
-export const DuplicateRepositoryRequestRepoType = /*@__PURE__*/ S.String;
+export const DuplicateRepositoryRequestRepoType = S.String;
 
 export type DuplicateRepositoryRequestVisibility =
   | "private"
   | "public"
   | "protected";
-export const DuplicateRepositoryRequestVisibility = /*@__PURE__*/ S.String;
+export const DuplicateRepositoryRequestVisibility = S.String;
 
 export type DuplicateRepositoryRequestHardware =
   | "cpu-basic"
@@ -379,11 +378,11 @@ export type DuplicateRepositoryRequestHardware =
   | "rtx-pro-6000x8"
   | "inf2x6"
   | "";
-export const DuplicateRepositoryRequestHardware = /*@__PURE__*/ S.String;
+export const DuplicateRepositoryRequestHardware = S.String;
 
 export type DuplicateRepositoryRequestSleepTimeSeconds = number | unknown;
 export const DuplicateRepositoryRequestSleepTimeSeconds =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DuplicateRepositoryRequestSleepTimeSeconds>;
+  S.Unknown as any as S.Schema<DuplicateRepositoryRequestSleepTimeSeconds>;
 
 export type DuplicateRepositoryRequestSecretsItem =
   CreateNewRepositoryRequestSecretsItem;
@@ -412,7 +411,7 @@ export type DuplicateRepositoryRequestVolumesItemType =
   | "model"
   | "dataset"
   | "space";
-export const DuplicateRepositoryRequestVolumesItemType = /*@__PURE__*/ S.String;
+export const DuplicateRepositoryRequestVolumesItemType = S.String;
 
 export interface DuplicateRepositoryRequestVolumesItem {
   type: DuplicateRepositoryRequestVolumesItemType | (string & {});
@@ -503,7 +502,7 @@ export const DuplicateRepositoryResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DuplicateRepositoryResponse>;
 
 export type DuplicationStatusRequestRepoType = "models" | "datasets" | "spaces";
-export const DuplicationStatusRequestRepoType = /*@__PURE__*/ S.String;
+export const DuplicationStatusRequestRepoType = S.String;
 
 export interface DuplicationStatusRequest {
   repoType: DuplicationStatusRequestRepoType | (string & {});
@@ -550,7 +549,7 @@ export type MoveRepoRequestType =
   | "space"
   | "bucket"
   | "kernel";
-export const MoveRepoRequestType = /*@__PURE__*/ S.String;
+export const MoveRepoRequestType = S.String;
 
 export interface MoveRepoRequest {
   fromRepo: string;

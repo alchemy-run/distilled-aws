@@ -151,10 +151,10 @@ export type NetworkConnectorSecurityGroupId = string;
 export type NetworkConnectorSecurityGroupIds = string[];
 export const NetworkConnectorSecurityGroupIds = /*@__PURE__*/ S.Array(S.String);
 export type NetworkProtocol = "IPv4" | "DualStack" | (string & {});
-export const NetworkProtocol = /*@__PURE__*/ S.String;
+export const NetworkProtocol = S.String;
 
 export type ComputeResourceType = "MicroVm" | (string & {});
-export const ComputeResourceType = /*@__PURE__*/ S.String;
+export const ComputeResourceType = S.String;
 
 export type AssociatedComputeResourceTypesList = ComputeResourceType[];
 export const AssociatedComputeResourceTypesList =
@@ -230,7 +230,7 @@ export type NetworkConnectorState =
   | "DELETING"
   | "DELETE_FAILED"
   | (string & {});
-export const NetworkConnectorState = /*@__PURE__*/ S.String;
+export const NetworkConnectorState = S.String;
 
 export interface CreateNetworkConnectorResponse {
   Arn: string;
@@ -323,14 +323,14 @@ export type NetworkConnectorStateReasonCode =
   | "InvalidSubnet"
   | "SubnetOutOfIPAddresses"
   | (string & {});
-export const NetworkConnectorStateReasonCode = /*@__PURE__*/ S.String;
+export const NetworkConnectorStateReasonCode = S.String;
 
 export type NetworkConnectorLastUpdateStatus =
   | "Successful"
   | "Failed"
   | "InProgress"
   | (string & {});
-export const NetworkConnectorLastUpdateStatus = /*@__PURE__*/ S.String;
+export const NetworkConnectorLastUpdateStatus = S.String;
 
 export type NetworkConnectorLastUpdateStatusReason = string;
 export type NetworkConnectorLastUpdateStatusReasonCode =
@@ -342,8 +342,7 @@ export type NetworkConnectorLastUpdateStatusReasonCode =
   | "InvalidSubnet"
   | "SubnetOutOfIPAddresses"
   | (string & {});
-export const NetworkConnectorLastUpdateStatusReasonCode =
-  /*@__PURE__*/ S.String;
+export const NetworkConnectorLastUpdateStatusReasonCode = S.String;
 
 export type CoreTimestamp = Date;
 export interface GetNetworkConnectorResponse {
@@ -409,7 +408,7 @@ export const ListNetworkConnectorsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListNetworkConnectorsRequest",
 }) as any as S.Schema<ListNetworkConnectorsRequest>;
 export type NetworkConnectorType = "VPC_EGRESS" | (string & {});
-export const NetworkConnectorType = /*@__PURE__*/ S.String;
+export const NetworkConnectorType = S.String;
 
 export interface NetworkConnectorSummary {
   Arn: string;
@@ -513,7 +512,7 @@ export type ThrottleReason =
   | "CallerRateLimitExceeded"
   | "ConcurrentSnapshotCreateLimitExceeded"
   | (string & {});
-export const ThrottleReason = /*@__PURE__*/ S.String;
+export const ThrottleReason = S.String;
 
 export type CreateNetworkConnectorError =
   | InvalidParameterValueException

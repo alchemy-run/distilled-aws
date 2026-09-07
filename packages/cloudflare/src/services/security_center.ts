@@ -705,12 +705,10 @@ export const GetInsightTypeForZoneRequest = /*@__PURE__*/ S.suspend(() =>
 export type InsightsAuditLogsListByInsightRequestFieldChanged =
   | "status"
   | "user_classification";
-export const InsightsAuditLogsListByInsightRequestFieldChanged =
-  /*@__PURE__*/ S.String;
+export const InsightsAuditLogsListByInsightRequestFieldChanged = S.String;
 
 export type InsightsAuditLogsListByInsightRequestOrder = "asc" | "desc";
-export const InsightsAuditLogsListByInsightRequestOrder =
-  /*@__PURE__*/ S.String;
+export const InsightsAuditLogsListByInsightRequestOrder = S.String;
 
 export interface ListByInsightInsightAuditLogForAccountRequest {
   /** The Account ID to use for this endpoint. Mutually exclusive with the Zone ID. */
@@ -767,8 +765,7 @@ export const ListByInsightInsightAuditLogForAccountRequest =
 export type InsightsAuditLogsListByInsightResultItemFieldChanged =
   | "status"
   | "user_classification";
-export const InsightsAuditLogsListByInsightResultItemFieldChanged =
-  /*@__PURE__*/ S.String;
+export const InsightsAuditLogsListByInsightResultItemFieldChanged = S.String;
 
 export interface InsightsAuditLogsListByInsightResultItem {
   /** UUIDv7 identifier for the audit log entry, time-ordered. */
@@ -894,10 +891,10 @@ export const ListByInsightInsightAuditLogForZoneRequest =
 export type InsightsAuditLogsListRequestFieldChanged =
   | "status"
   | "user_classification";
-export const InsightsAuditLogsListRequestFieldChanged = /*@__PURE__*/ S.String;
+export const InsightsAuditLogsListRequestFieldChanged = S.String;
 
 export type InsightsAuditLogsListRequestOrder = "asc" | "desc";
-export const InsightsAuditLogsListRequestOrder = /*@__PURE__*/ S.String;
+export const InsightsAuditLogsListRequestOrder = S.String;
 
 export interface ListInsightAuditLogsForAccountRequest {
   /** The Account ID to use for this endpoint. Mutually exclusive with the Zone ID. */
@@ -946,8 +943,7 @@ export const ListInsightAuditLogsForAccountRequest = /*@__PURE__*/ S.suspend(
 export type InsightsAuditLogsListResultItemFieldChanged =
   | "status"
   | "user_classification";
-export const InsightsAuditLogsListResultItemFieldChanged =
-  /*@__PURE__*/ S.String;
+export const InsightsAuditLogsListResultItemFieldChanged = S.String;
 
 export interface InsightsAuditLogsListResultItem {
   /** UUIDv7 identifier for the audit log entry, time-ordered. */
@@ -1174,7 +1170,7 @@ export type InsightsListResponseIssuesItemIssueType =
   | "insecure_configuration"
   | "weak_authentication"
   | "configuration_suggestion";
-export const InsightsListResponseIssuesItemIssueType = /*@__PURE__*/ S.String;
+export const InsightsListResponseIssuesItemIssueType = S.String;
 
 export interface InsightsListResponseIssuesItemPayload {
   /** Describes the method used to detect insight. */
@@ -1197,17 +1193,16 @@ export type InsightsListResponseIssuesItemSeverity =
   | "Low"
   | "Moderate"
   | "Critical";
-export const InsightsListResponseIssuesItemSeverity = /*@__PURE__*/ S.String;
+export const InsightsListResponseIssuesItemSeverity = S.String;
 
 export type InsightsListResponseIssuesItemStatus = "active" | "resolved";
-export const InsightsListResponseIssuesItemStatus = /*@__PURE__*/ S.String;
+export const InsightsListResponseIssuesItemStatus = S.String;
 
 export type InsightsListResponseIssuesItemUserClassification =
   | "false_positive"
   | "accept_risk"
   | "other";
-export const InsightsListResponseIssuesItemUserClassification =
-  /*@__PURE__*/ S.String;
+export const InsightsListResponseIssuesItemUserClassification = S.String;
 
 export interface InsightsListResponseIssuesItem {
   id?: string | null;
@@ -1352,8 +1347,7 @@ export type InsightsClassificationUpdateRequestClassification =
   | "false_positive"
   | "accept_risk"
   | "other";
-export const InsightsClassificationUpdateRequestClassification =
-  /*@__PURE__*/ S.String;
+export const InsightsClassificationUpdateRequestClassification = S.String;
 
 export interface PatchInsightClassificationForAccountRequest {
   /** The Account ID to use for this endpoint. Mutually exclusive with the Zone ID. */

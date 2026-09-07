@@ -23,7 +23,7 @@ export type DeleteRecordSetRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const DeleteRecordSetRequestRecordType = /*@__PURE__*/ S.String;
+export const DeleteRecordSetRequestRecordType = S.String;
 
 export interface DeleteRecordSetRequest {
   /** Specifies the Azure subscription ID, which uniquely identifies the Microsoft Azure subscription. */
@@ -223,7 +223,7 @@ export type GetRecordSetRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const GetRecordSetRequestRecordType = /*@__PURE__*/ S.String;
+export const GetRecordSetRequestRecordType = S.String;
 
 export interface GetRecordSetRequest {
   /** Specifies the Azure subscription ID, which uniquely identifies the Microsoft Azure subscription. */
@@ -581,7 +581,7 @@ export const ZonePropertiesNameServersList = /*@__PURE__*/ S.Array(
 
 /** The type of this DNS zone (Public or Private). */
 export type ZonePropertiesZoneType = "Public" | "Private";
-export const ZonePropertiesZoneType = /*@__PURE__*/ S.String;
+export const ZonePropertiesZoneType = S.String;
 
 /** A list of references to virtual networks that register hostnames in this DNS zone. This is a only when ZoneType is Private. */
 export type ZonePropertiesRegistrationVirtualNetworksList = Array<SubResource>;
@@ -759,7 +759,7 @@ export type ListRecordSetByTypeRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const ListRecordSetByTypeRequestRecordType = /*@__PURE__*/ S.String;
+export const ListRecordSetByTypeRequestRecordType = S.String;
 
 export interface ListRecordSetByTypeRequest {
   /** Specifies the Azure subscription ID, which uniquely identifies the Microsoft Azure subscription. */
@@ -911,7 +911,7 @@ export type RecordSetsCreateOrUpdateRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const RecordSetsCreateOrUpdateRequestRecordType = /*@__PURE__*/ S.String;
+export const RecordSetsCreateOrUpdateRequestRecordType = S.String;
 
 /** The metadata attached to the record set. */
 export type RecordSetPropertiesInputMetadataMap = {
@@ -1067,7 +1067,7 @@ export type UpdateRecordSetRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const UpdateRecordSetRequestRecordType = /*@__PURE__*/ S.String;
+export const UpdateRecordSetRequestRecordType = S.String;
 
 export interface UpdateRecordSetRequest {
   /** Specifies the Azure subscription ID, which uniquely identifies the Microsoft Azure subscription. */
@@ -1189,7 +1189,7 @@ export const ZonesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** The type of this DNS zone (Public or Private). */
 export type ZonePropertiesInputZoneType = "Public" | "Private";
-export const ZonePropertiesInputZoneType = /*@__PURE__*/ S.String;
+export const ZonePropertiesInputZoneType = S.String;
 
 /** A list of references to virtual networks that register hostnames in this DNS zone. This is a only when ZoneType is Private. */
 export type ZonePropertiesInputRegistrationVirtualNetworksList =

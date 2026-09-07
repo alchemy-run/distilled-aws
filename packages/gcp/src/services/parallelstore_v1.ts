@@ -107,7 +107,7 @@ export type InstanceDeploymentTypeEnum =
   | "DEPLOYMENT_TYPE_UNSPECIFIED"
   | "SCRATCH"
   | "PERSISTENT";
-export const InstanceDeploymentTypeEnum = /*@__PURE__*/ S.String;
+export const InstanceDeploymentTypeEnum = S.String;
 
 export type InstanceStateEnum =
   | "STATE_UNSPECIFIED"
@@ -117,7 +117,7 @@ export type InstanceStateEnum =
   | "FAILED"
   | "UPGRADING"
   | "REPAIRING";
-export const InstanceStateEnum = /*@__PURE__*/ S.String;
+export const InstanceStateEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -129,7 +129,7 @@ export type InstanceDirectoryStripeLevelEnum =
   | "DIRECTORY_STRIPE_LEVEL_MIN"
   | "DIRECTORY_STRIPE_LEVEL_BALANCED"
   | "DIRECTORY_STRIPE_LEVEL_MAX";
-export const InstanceDirectoryStripeLevelEnum = /*@__PURE__*/ S.String;
+export const InstanceDirectoryStripeLevelEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -142,7 +142,7 @@ export type InstanceFileStripeLevelEnum =
   | "FILE_STRIPE_LEVEL_MIN"
   | "FILE_STRIPE_LEVEL_BALANCED"
   | "FILE_STRIPE_LEVEL_MAX";
-export const InstanceFileStripeLevelEnum = /*@__PURE__*/ S.String;
+export const InstanceFileStripeLevelEnum = S.String;
 
 /** A Parallelstore instance. */
 export interface Instance {
@@ -334,19 +334,19 @@ export type TransferMetadataOptionsGidEnum =
   | "GID_UNSPECIFIED"
   | "GID_SKIP"
   | "GID_NUMBER_PRESERVE";
-export const TransferMetadataOptionsGidEnum = /*@__PURE__*/ S.String;
+export const TransferMetadataOptionsGidEnum = S.String;
 
 export type TransferMetadataOptionsModeEnum =
   | "MODE_UNSPECIFIED"
   | "MODE_SKIP"
   | "MODE_PRESERVE";
-export const TransferMetadataOptionsModeEnum = /*@__PURE__*/ S.String;
+export const TransferMetadataOptionsModeEnum = S.String;
 
 export type TransferMetadataOptionsUidEnum =
   | "UID_UNSPECIFIED"
   | "UID_SKIP"
   | "UID_NUMBER_PRESERVE";
-export const TransferMetadataOptionsUidEnum = /*@__PURE__*/ S.String;
+export const TransferMetadataOptionsUidEnum = S.String;
 
 /** Transfer metadata options for the instance. */
 export interface TransferMetadataOptions {

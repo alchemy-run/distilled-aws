@@ -469,7 +469,7 @@ export type Category =
   | "WebBasedEmail"
   | "ParkedDomains"
   | (string & {});
-export const Category = /*@__PURE__*/ S.String;
+export const Category = S.String;
 
 export type BlockedCategories = Category[];
 export const BlockedCategories = /*@__PURE__*/ S.Array(Category);
@@ -854,7 +854,7 @@ export type Event =
   | "SessionEnd"
   | "UrlBlockByContentFilter"
   | (string & {});
-export const Event = /*@__PURE__*/ S.String;
+export const Event = S.String;
 
 export type Events = Event[];
 export const Events = /*@__PURE__*/ S.Array(Event);
@@ -869,10 +869,10 @@ export type S3Bucket = string | redacted.Redacted<string>;
 export type S3KeyPrefix = string | redacted.Redacted<string>;
 export type S3BucketOwner = string;
 export type LogFileFormat = "JSONLines" | "Json" | (string & {});
-export const LogFileFormat = /*@__PURE__*/ S.String;
+export const LogFileFormat = S.String;
 
 export type FolderStructure = "Flat" | "NestedByDate" | (string & {});
-export const FolderStructure = /*@__PURE__*/ S.String;
+export const FolderStructure = S.String;
 
 export interface S3LogConfiguration {
   bucket: string | redacted.Redacted<string>;
@@ -1092,7 +1092,7 @@ export type Locale =
   | "zh-CN"
   | "zh-TW"
   | (string & {});
-export const Locale = /*@__PURE__*/ S.String;
+export const Locale = S.String;
 
 export type BrandingSafeStringType = string;
 export type ContactLinkUrl = string;
@@ -1128,7 +1128,7 @@ export const LocalizedBrandingStringMap = /*@__PURE__*/ S.Record(
   LocalizedBrandingStrings.pipe(S.optional),
 );
 export type ColorTheme = "Light" | "Dark" | (string & {});
-export const ColorTheme = /*@__PURE__*/ S.String;
+export const ColorTheme = S.String;
 
 export type Markdown = string | redacted.Redacted<string>;
 export interface BrandingConfigurationCreateInput {
@@ -2100,7 +2100,7 @@ export type IpAddress = string | redacted.Redacted<string>;
 export type IpAddressList = (string | redacted.Redacted<string>)[];
 export const IpAddressList = /*@__PURE__*/ S.Array(SensitiveString);
 export type SessionStatus = "Active" | "Terminated" | (string & {});
-export const SessionStatus = /*@__PURE__*/ S.String;
+export const SessionStatus = S.String;
 
 export interface Session {
   portalArn?: string;
@@ -2340,7 +2340,7 @@ export type MimeType =
   | "image/jpeg"
   | "image/x-icon"
   | (string & {});
-export const MimeType = /*@__PURE__*/ S.String;
+export const MimeType = S.String;
 
 export interface ImageMetadata {
   mimeType: MimeType;
@@ -2808,7 +2808,7 @@ export type SessionSortBy =
   | "StartTimeAscending"
   | "StartTimeDescending"
   | (string & {});
-export const SessionSortBy = /*@__PURE__*/ S.String;
+export const SessionSortBy = S.String;
 
 export interface ListSessionsRequest {
   portalId: string;

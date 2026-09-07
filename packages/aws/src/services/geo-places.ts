@@ -215,7 +215,7 @@ export type AutocompleteFilterPlaceType =
   | "Country"
   | "Region"
   | (string & {});
-export const AutocompleteFilterPlaceType = /*@__PURE__*/ S.String;
+export const AutocompleteFilterPlaceType = S.String;
 
 export type AutocompleteFilterPlaceTypeList = AutocompleteFilterPlaceType[];
 export const AutocompleteFilterPlaceTypeList = /*@__PURE__*/ S.Array(
@@ -242,10 +242,10 @@ export type PostalCodeMode =
   | "EnumerateSpannedLocalities"
   | "EnumerateSpannedDistricts"
   | (string & {});
-export const PostalCodeMode = /*@__PURE__*/ S.String;
+export const PostalCodeMode = S.String;
 
 export type AutocompleteAdditionalFeature = "Core" | (string & {});
-export const AutocompleteAdditionalFeature = /*@__PURE__*/ S.String;
+export const AutocompleteAdditionalFeature = S.String;
 
 export type AutocompleteAdditionalFeatureList = AutocompleteAdditionalFeature[];
 export const AutocompleteAdditionalFeatureList = /*@__PURE__*/ S.Array(
@@ -253,7 +253,7 @@ export const AutocompleteAdditionalFeatureList = /*@__PURE__*/ S.Array(
 );
 export type LanguageTag = string;
 export type AutocompleteIntendedUse = "SingleUse" | (string & {});
-export const AutocompleteIntendedUse = /*@__PURE__*/ S.String;
+export const AutocompleteIntendedUse = S.String;
 
 export type ApiKey = string | redacted.Redacted<string>;
 export interface AutocompleteRequest {
@@ -311,7 +311,7 @@ export type PlaceType =
   | "SecondaryAddress"
   | "InferredSecondaryAddress"
   | (string & {});
-export const PlaceType = /*@__PURE__*/ S.String;
+export const PlaceType = S.String;
 
 export type CountryCode2 = string | redacted.Redacted<string>;
 export type CountryCode3 = string | redacted.Redacted<string>;
@@ -351,7 +351,7 @@ export type IntersectionStreet = string;
 export type IntersectionStreetList = string[];
 export const IntersectionStreetList = /*@__PURE__*/ S.Array(S.String);
 export type TypePlacement = "BeforeBaseName" | "AfterBaseName" | (string & {});
-export const TypePlacement = /*@__PURE__*/ S.String;
+export const TypePlacement = S.String;
 
 export type TypeSeparator = string;
 export interface StreetComponents {
@@ -613,7 +613,7 @@ export type GeocodeFilterPlaceType =
   | "Country"
   | "Region"
   | (string & {});
-export const GeocodeFilterPlaceType = /*@__PURE__*/ S.String;
+export const GeocodeFilterPlaceType = S.String;
 
 export type GeocodeFilterPlaceTypeList = GeocodeFilterPlaceType[];
 export const GeocodeFilterPlaceTypeList = /*@__PURE__*/ S.Array(
@@ -635,14 +635,14 @@ export type GeocodeAdditionalFeature =
   | "SecondaryAddresses"
   | "Intersections"
   | (string & {});
-export const GeocodeAdditionalFeature = /*@__PURE__*/ S.String;
+export const GeocodeAdditionalFeature = S.String;
 
 export type GeocodeAdditionalFeatureList = GeocodeAdditionalFeature[];
 export const GeocodeAdditionalFeatureList = /*@__PURE__*/ S.Array(
   GeocodeAdditionalFeature,
 );
 export type GeocodeIntendedUse = "SingleUse" | "Storage" | (string & {});
-export const GeocodeIntendedUse = /*@__PURE__*/ S.String;
+export const GeocodeIntendedUse = S.String;
 
 export type AddressTranslationComponent =
   | "District"
@@ -650,7 +650,7 @@ export type AddressTranslationComponent =
   | "Region"
   | "SubRegion"
   | (string & {});
-export const AddressTranslationComponent = /*@__PURE__*/ S.String;
+export const AddressTranslationComponent = S.String;
 
 export type AddressTranslationComponentList = AddressTranslationComponent[];
 export const AddressTranslationComponentList = /*@__PURE__*/ S.Array(
@@ -660,7 +660,7 @@ export type GeocodeAddressNamesMode =
   | "Matched"
   | "Administrative"
   | (string & {});
-export const GeocodeAddressNamesMode = /*@__PURE__*/ S.String;
+export const GeocodeAddressNamesMode = S.String;
 
 export interface GeocodeRequest {
   QueryText?: string | redacted.Redacted<string>;
@@ -704,17 +704,17 @@ export const GeocodeRequest = /*@__PURE__*/ S.suspend(() =>
   ),
 ).annotate({ identifier: "GeocodeRequest" }) as any as S.Schema<GeocodeRequest>;
 export type PostalAuthority = "Usps" | (string & {});
-export const PostalAuthority = /*@__PURE__*/ S.String;
+export const PostalAuthority = S.String;
 
 export type PostalCodeType = "UspsZip" | "UspsZipPlus4" | (string & {});
-export const PostalCodeType = /*@__PURE__*/ S.String;
+export const PostalCodeType = S.String;
 
 export type ZipClassificationCode =
   | "Military"
   | "PostOfficeBoxes"
   | "Unique"
   | (string & {});
-export const ZipClassificationCode = /*@__PURE__*/ S.String;
+export const ZipClassificationCode = S.String;
 
 export interface UspsZip {
   ZipClassificationCode?: ZipClassificationCode;
@@ -730,7 +730,7 @@ export type RecordTypeCode =
   | "Rural"
   | "Street"
   | (string & {});
-export const RecordTypeCode = /*@__PURE__*/ S.String;
+export const RecordTypeCode = S.String;
 
 export interface UspsZipPlus4 {
   RecordTypeCode?: RecordTypeCode;
@@ -797,7 +797,7 @@ export type AccessPointType =
   | "Parking"
   | "Taxi"
   | (string & {});
-export const AccessPointType = /*@__PURE__*/ S.String;
+export const AccessPointType = S.String;
 
 export interface AccessPoint {
   Position?: number[];
@@ -1049,7 +1049,7 @@ export type TranslationNameType =
   | "Shortened"
   | "Synonym"
   | (string & {});
-export const TranslationNameType = /*@__PURE__*/ S.String;
+export const TranslationNameType = S.String;
 
 export interface TranslationName {
   Value: string | redacted.Redacted<string>;
@@ -1072,7 +1072,7 @@ export const TranslationName = /*@__PURE__*/ S.suspend(() =>
 export type TranslationNameList = TranslationName[];
 export const TranslationNameList = /*@__PURE__*/ S.Array(TranslationName);
 export type AdminNamesPreference = "Alternative" | "Primary" | (string & {});
-export const AdminNamesPreference = /*@__PURE__*/ S.String;
+export const AdminNamesPreference = S.String;
 
 export interface AdminNames {
   Names: TranslationName[];
@@ -1174,17 +1174,17 @@ export type GetPlaceAdditionalFeature =
   | "SecondaryAddresses"
   | "CrossReferences"
   | (string & {});
-export const GetPlaceAdditionalFeature = /*@__PURE__*/ S.String;
+export const GetPlaceAdditionalFeature = S.String;
 
 export type GetPlaceAdditionalFeatureList = GetPlaceAdditionalFeature[];
 export const GetPlaceAdditionalFeatureList = /*@__PURE__*/ S.Array(
   GetPlaceAdditionalFeature,
 );
 export type GetPlaceIntendedUse = "SingleUse" | "Storage" | (string & {});
-export const GetPlaceIntendedUse = /*@__PURE__*/ S.String;
+export const GetPlaceIntendedUse = S.String;
 
 export type GetPlaceAddressNamesMode = "Administrative" | (string & {});
-export const GetPlaceAddressNamesMode = /*@__PURE__*/ S.String;
+export const GetPlaceAddressNamesMode = S.String;
 
 export interface GetPlaceRequest {
   PlaceId: string | redacted.Redacted<string>;
@@ -1370,7 +1370,7 @@ export const PhonemeDetails = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "PhonemeDetails" }) as any as S.Schema<PhonemeDetails>;
 export type PlaceAttribute = "DriveThrough" | (string & {});
-export const PlaceAttribute = /*@__PURE__*/ S.String;
+export const PlaceAttribute = S.String;
 
 export type PlaceAttributeList = PlaceAttribute[];
 export const PlaceAttributeList = /*@__PURE__*/ S.Array(PlaceAttribute);
@@ -1453,7 +1453,7 @@ export type ReverseGeocodeFilterPlaceType =
   | "SecondaryAddress"
   | "PointOfInterest"
   | (string & {});
-export const ReverseGeocodeFilterPlaceType = /*@__PURE__*/ S.String;
+export const ReverseGeocodeFilterPlaceType = S.String;
 
 export type ReverseGeocodeFilterPlaceTypeList = ReverseGeocodeFilterPlaceType[];
 export const ReverseGeocodeFilterPlaceTypeList = /*@__PURE__*/ S.Array(
@@ -1474,7 +1474,7 @@ export type ReverseGeocodeAdditionalFeature =
   | "Access"
   | "Intersections"
   | (string & {});
-export const ReverseGeocodeAdditionalFeature = /*@__PURE__*/ S.String;
+export const ReverseGeocodeAdditionalFeature = S.String;
 
 export type ReverseGeocodeAdditionalFeatureList =
   ReverseGeocodeAdditionalFeature[];
@@ -1482,11 +1482,11 @@ export const ReverseGeocodeAdditionalFeatureList = /*@__PURE__*/ S.Array(
   ReverseGeocodeAdditionalFeature,
 );
 export type ReverseGeocodeIntendedUse = "SingleUse" | "Storage" | (string & {});
-export const ReverseGeocodeIntendedUse = /*@__PURE__*/ S.String;
+export const ReverseGeocodeIntendedUse = S.String;
 
 export type Heading = number;
 export type ReverseGeocodeAddressNamesMode = "Administrative" | (string & {});
-export const ReverseGeocodeAddressNamesMode = /*@__PURE__*/ S.String;
+export const ReverseGeocodeAddressNamesMode = S.String;
 
 export interface ReverseGeocodeRequest {
   QueryPosition: number[];
@@ -1622,14 +1622,14 @@ export type SearchNearbyAdditionalFeature =
   | "Contact"
   | "CrossReferences"
   | (string & {});
-export const SearchNearbyAdditionalFeature = /*@__PURE__*/ S.String;
+export const SearchNearbyAdditionalFeature = S.String;
 
 export type SearchNearbyAdditionalFeatureList = SearchNearbyAdditionalFeature[];
 export const SearchNearbyAdditionalFeatureList = /*@__PURE__*/ S.Array(
   SearchNearbyAdditionalFeature,
 );
 export type SearchNearbyIntendedUse = "SingleUse" | "Storage" | (string & {});
-export const SearchNearbyIntendedUse = /*@__PURE__*/ S.String;
+export const SearchNearbyIntendedUse = S.String;
 
 export type Token = string;
 export interface SearchNearbyRequest {
@@ -1756,17 +1756,17 @@ export type SearchTextAdditionalFeature =
   | "Contact"
   | "CrossReferences"
   | (string & {});
-export const SearchTextAdditionalFeature = /*@__PURE__*/ S.String;
+export const SearchTextAdditionalFeature = S.String;
 
 export type SearchTextAdditionalFeatureList = SearchTextAdditionalFeature[];
 export const SearchTextAdditionalFeatureList = /*@__PURE__*/ S.Array(
   SearchTextAdditionalFeature,
 );
 export type SearchTextIntendedUse = "SingleUse" | "Storage" | (string & {});
-export const SearchTextIntendedUse = /*@__PURE__*/ S.String;
+export const SearchTextIntendedUse = S.String;
 
 export type SearchTextTravelMode = "Car" | "Scooter" | "Truck" | (string & {});
-export const SearchTextTravelMode = /*@__PURE__*/ S.String;
+export const SearchTextTravelMode = S.String;
 
 export interface SearchTextRequest {
   QueryText?: string | redacted.Redacted<string>;
@@ -1893,17 +1893,17 @@ export type SuggestAdditionalFeature =
   | "Access"
   | "CrossReferences"
   | (string & {});
-export const SuggestAdditionalFeature = /*@__PURE__*/ S.String;
+export const SuggestAdditionalFeature = S.String;
 
 export type SuggestAdditionalFeatureList = SuggestAdditionalFeature[];
 export const SuggestAdditionalFeatureList = /*@__PURE__*/ S.Array(
   SuggestAdditionalFeature,
 );
 export type SuggestIntendedUse = "SingleUse" | (string & {});
-export const SuggestIntendedUse = /*@__PURE__*/ S.String;
+export const SuggestIntendedUse = S.String;
 
 export type SuggestTravelMode = "Car" | "Scooter" | "Truck" | (string & {});
-export const SuggestTravelMode = /*@__PURE__*/ S.String;
+export const SuggestTravelMode = S.String;
 
 export interface SuggestRequest {
   QueryText: string | redacted.Redacted<string>;
@@ -1943,7 +1943,7 @@ export const SuggestRequest = /*@__PURE__*/ S.suspend(() =>
   ),
 ).annotate({ identifier: "SuggestRequest" }) as any as S.Schema<SuggestRequest>;
 export type SuggestResultItemType = "Place" | "Query" | (string & {});
-export const SuggestResultItemType = /*@__PURE__*/ S.String;
+export const SuggestResultItemType = S.String;
 
 export interface SuggestPlaceResult {
   PlaceId?: string | redacted.Redacted<string>;
@@ -1986,7 +1986,7 @@ export const SuggestPlaceResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SuggestPlaceResult",
 }) as any as S.Schema<SuggestPlaceResult>;
 export type QueryType = "Category" | "BusinessChain" | (string & {});
-export const QueryType = /*@__PURE__*/ S.String;
+export const QueryType = S.String;
 
 export interface SuggestQueryResult {
   QueryId?: string | redacted.Redacted<string>;
@@ -2080,7 +2080,7 @@ export type ValidationExceptionReason =
   | "Other"
   | "UnknownField"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   Name: string;

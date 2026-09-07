@@ -41,7 +41,7 @@ export class NotFound
 
 /** * `cohort` - cohort * `person` - person * `group` - group */
 export type PropertyGroupTypeEnum = "cohort" | "person" | "group";
-export const PropertyGroupTypeEnum = /*@__PURE__*/ S.String;
+export const PropertyGroupTypeEnum = S.String;
 
 /** * `exact` - exact * `is_not` - is_not * `icontains` - icontains * `not_icontains` - not_icontains * `starts_with` - starts_with * `not_starts_with` - not_starts_with * `ends_with` - ends_with * `not_ends_with` - not_ends_with * `regex` - regex * `not_regex` - not_regex * `gt` - gt * `gte` - gte * `lt` - lt * `lte` - lte */
 export type FeatureFlagFilterPropertyGenericSchemaOperatorEnum =
@@ -59,8 +59,7 @@ export type FeatureFlagFilterPropertyGenericSchemaOperatorEnum =
   | "gte"
   | "lt"
   | "lte";
-export const FeatureFlagFilterPropertyGenericSchemaOperatorEnum =
-  /*@__PURE__*/ S.String;
+export const FeatureFlagFilterPropertyGenericSchemaOperatorEnum = S.String;
 
 export interface FeatureFlagFilterPropertyGenericSchema {
   /** Property key used in this feature flag condition. */
@@ -92,7 +91,7 @@ export const FeatureFlagFilterPropertyGenericSchema = /*@__PURE__*/ S.suspend(
 
 /** * `is_set` - is_set * `is_not_set` - is_not_set */
 export type ExistenceOperatorEnum = "is_set" | "is_not_set";
-export const ExistenceOperatorEnum = /*@__PURE__*/ S.String;
+export const ExistenceOperatorEnum = S.String;
 
 export interface FeatureFlagFilterPropertyExistsSchema {
   /** Property key used in this feature flag condition. */
@@ -127,7 +126,7 @@ export type DateOperatorEnum =
   | "is_date_exact"
   | "is_date_before"
   | "is_date_after";
-export const DateOperatorEnum = /*@__PURE__*/ S.String;
+export const DateOperatorEnum = S.String;
 
 export interface FeatureFlagFilterPropertyDateSchema {
   /** Property key used in this feature flag condition. */
@@ -167,8 +166,7 @@ export type FeatureFlagFilterPropertySemverSchemaOperatorEnum =
   | "semver_tilde"
   | "semver_caret"
   | "semver_wildcard";
-export const FeatureFlagFilterPropertySemverSchemaOperatorEnum =
-  /*@__PURE__*/ S.String;
+export const FeatureFlagFilterPropertySemverSchemaOperatorEnum = S.String;
 
 export interface FeatureFlagFilterPropertySemverSchema {
   /** Property key used in this feature flag condition. */
@@ -203,7 +201,7 @@ export type FeatureFlagFilterPropertyMultiContainsSchemaOperatorEnum =
   | "icontains_multi"
   | "not_icontains_multi";
 export const FeatureFlagFilterPropertyMultiContainsSchemaOperatorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of strings to evaluate against. */
 export type FeatureFlagFilterPropertyMultiContainsSchemaValueList =
@@ -247,15 +245,13 @@ export const FeatureFlagFilterPropertyMultiContainsSchema =
 
 /** * `cohort` - cohort */
 export type FeatureFlagFilterPropertyCohortInSchemaTypeEnum = "cohort";
-export const FeatureFlagFilterPropertyCohortInSchemaTypeEnum =
-  /*@__PURE__*/ S.String;
+export const FeatureFlagFilterPropertyCohortInSchemaTypeEnum = S.String;
 
 /** * `in` - in * `not_in` - not_in */
 export type FeatureFlagFilterPropertyCohortInSchemaOperatorEnum =
   | "in"
   | "not_in";
-export const FeatureFlagFilterPropertyCohortInSchemaOperatorEnum =
-  /*@__PURE__*/ S.String;
+export const FeatureFlagFilterPropertyCohortInSchemaOperatorEnum = S.String;
 
 export interface FeatureFlagFilterPropertyCohortInSchema {
   /** Property key used in this feature flag condition. */
@@ -289,14 +285,13 @@ export const FeatureFlagFilterPropertyCohortInSchema = /*@__PURE__*/ S.suspend(
 
 /** * `flag` - flag */
 export type FeatureFlagFilterPropertyFlagEvaluatesSchemaTypeEnum = "flag";
-export const FeatureFlagFilterPropertyFlagEvaluatesSchemaTypeEnum =
-  /*@__PURE__*/ S.String;
+export const FeatureFlagFilterPropertyFlagEvaluatesSchemaTypeEnum = S.String;
 
 /** * `flag_evaluates_to` - flag_evaluates_to */
 export type FeatureFlagFilterPropertyFlagEvaluatesSchemaOperatorEnum =
   "flag_evaluates_to";
 export const FeatureFlagFilterPropertyFlagEvaluatesSchemaOperatorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface FeatureFlagFilterPropertyFlagEvaluatesSchema {
   /** Property key used in this feature flag condition. */
@@ -339,7 +334,7 @@ export type FeatureFlagFilterPropertySchema =
   | FeatureFlagFilterPropertyCohortInSchema
   | FeatureFlagFilterPropertyFlagEvaluatesSchema;
 export const FeatureFlagFilterPropertySchema =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeatureFlagFilterPropertySchema>;
+  S.Unknown as any as S.Schema<FeatureFlagFilterPropertySchema>;
 
 /** Property conditions for this release condition group. */
 export type FeatureFlagConditionGroupSchemaPropertiesList =
@@ -428,14 +423,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;

@@ -140,7 +140,7 @@ export const ConnectionInfo = /*@__PURE__*/ S.suspend(() =>
 export type BlockchainNodeBlockchainTypeEnum =
   | "BLOCKCHAIN_TYPE_UNSPECIFIED"
   | "ETHEREUM";
-export const BlockchainNodeBlockchainTypeEnum = /*@__PURE__*/ S.String;
+export const BlockchainNodeBlockchainTypeEnum = S.String;
 
 export type EthereumDetailsNetworkEnum =
   | "NETWORK_UNSPECIFIED"
@@ -148,20 +148,20 @@ export type EthereumDetailsNetworkEnum =
   | "TESTNET_GOERLI_PRATER"
   | "TESTNET_SEPOLIA"
   | "TESTNET_HOLESKY";
-export const EthereumDetailsNetworkEnum = /*@__PURE__*/ S.String;
+export const EthereumDetailsNetworkEnum = S.String;
 
 export type EthereumDetailsNodeTypeEnum =
   | "NODE_TYPE_UNSPECIFIED"
   | "LIGHT"
   | "FULL"
   | "ARCHIVE";
-export const EthereumDetailsNodeTypeEnum = /*@__PURE__*/ S.String;
+export const EthereumDetailsNodeTypeEnum = S.String;
 
 export type EthereumDetailsConsensusClientEnum =
   | "CONSENSUS_CLIENT_UNSPECIFIED"
   | "LIGHTHOUSE"
   | "ERIGON_EMBEDDED_CONSENSUS_LAYER";
-export const EthereumDetailsConsensusClientEnum = /*@__PURE__*/ S.String;
+export const EthereumDetailsConsensusClientEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -210,7 +210,7 @@ export type GethDetailsGarbageCollectionModeEnum =
   | "GARBAGE_COLLECTION_MODE_UNSPECIFIED"
   | "FULL"
   | "ARCHIVE";
-export const GethDetailsGarbageCollectionModeEnum = /*@__PURE__*/ S.String;
+export const GethDetailsGarbageCollectionModeEnum = S.String;
 
 /** Options for the Geth execution client. See [Command-line Options](https://geth.ethereum.org/docs/fundamentals/command-line-options) for more details. */
 export interface GethDetails {
@@ -227,7 +227,7 @@ export type EthereumDetailsExecutionClientEnum =
   | "EXECUTION_CLIENT_UNSPECIFIED"
   | "GETH"
   | "ERIGON";
-export const EthereumDetailsExecutionClientEnum = /*@__PURE__*/ S.String;
+export const EthereumDetailsExecutionClientEnum = S.String;
 
 /** Ethereum-specific blockchain node details. */
 export interface EthereumDetails {
@@ -276,7 +276,7 @@ export type BlockchainNodeStateEnum =
   | "REPAIRING"
   | "RECONCILING"
   | "SYNCING";
-export const BlockchainNodeStateEnum = /*@__PURE__*/ S.String;
+export const BlockchainNodeStateEnum = S.String;
 
 /** A representation of a blockchain node. */
 export interface BlockchainNode {

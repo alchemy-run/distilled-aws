@@ -169,7 +169,7 @@ export const DeleteCalendarsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteCalendarsResponse>;
 
 export type DeleteEventsSendUpdatesEnum = "all" | "externalOnly" | "none";
-export const DeleteEventsSendUpdatesEnum = /*@__PURE__*/ S.String;
+export const DeleteEventsSendUpdatesEnum = S.String;
 
 export interface DeleteEventsRequest {
   /** Guests who should receive notifications about the deletion of the event. */
@@ -1330,7 +1330,7 @@ export const InsertCalendarsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InsertCalendarsRequest>;
 
 export type InsertEventsSendUpdatesEnum = "all" | "externalOnly" | "none";
-export const InsertEventsSendUpdatesEnum = /*@__PURE__*/ S.String;
+export const InsertEventsSendUpdatesEnum = S.String;
 
 export interface InsertEventsRequest {
   /** Whether to send notifications about the creation of the new event. Note that some emails might still be sent. The default is false. */
@@ -1525,7 +1525,7 @@ export type ListCalendarListMinAccessRoleEnum =
   | "reader"
   | "writer"
   | "writerWithoutPrivateAccess";
-export const ListCalendarListMinAccessRoleEnum = /*@__PURE__*/ S.String;
+export const ListCalendarListMinAccessRoleEnum = S.String;
 
 export interface ListCalendarListRequest {
   /** Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional. */
@@ -1599,7 +1599,7 @@ export type ListEventsEventTypesEnum =
   | "fromGmail"
   | "outOfOffice"
   | "workingLocation";
-export const ListEventsEventTypesEnum = /*@__PURE__*/ S.String;
+export const ListEventsEventTypesEnum = S.String;
 
 export type ListEventsEventTypesEnumList = Array<
   ListEventsEventTypesEnum | (string & {})
@@ -1609,7 +1609,7 @@ export const ListEventsEventTypesEnumList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListEventsEventTypesEnumList>;
 
 export type ListEventsOrderByEnum = "startTime" | "updated";
-export const ListEventsOrderByEnum = /*@__PURE__*/ S.String;
+export const ListEventsOrderByEnum = S.String;
 
 export interface ListEventsRequest {
   /** Time zone used in the response. Optional. The default is the time zone of the calendar. */
@@ -1735,7 +1735,7 @@ export const Settings = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Settings" }) as any as S.Schema<Settings>;
 
 export type MoveEventsSendUpdatesEnum = "all" | "externalOnly" | "none";
-export const MoveEventsSendUpdatesEnum = /*@__PURE__*/ S.String;
+export const MoveEventsSendUpdatesEnum = S.String;
 
 export interface MoveEventsRequest {
   /** Guests who should receive notifications about the change of the event's organizer. */
@@ -1840,7 +1840,7 @@ export const PatchCalendarsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchCalendarsRequest>;
 
 export type PatchEventsSendUpdatesEnum = "all" | "externalOnly" | "none";
-export const PatchEventsSendUpdatesEnum = /*@__PURE__*/ S.String;
+export const PatchEventsSendUpdatesEnum = S.String;
 
 export interface PatchEventsRequest {
   /** The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional. */
@@ -2052,7 +2052,7 @@ export const FreeBusyResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FreeBusyResponse>;
 
 export type QuickAddEventsSendUpdatesEnum = "all" | "externalOnly" | "none";
-export const QuickAddEventsSendUpdatesEnum = /*@__PURE__*/ S.String;
+export const QuickAddEventsSendUpdatesEnum = S.String;
 
 export interface QuickAddEventsRequest {
   /** The text describing the event to be created. */
@@ -2247,7 +2247,7 @@ export const UpdateCalendarsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCalendarsRequest>;
 
 export type UpdateEventsSendUpdatesEnum = "all" | "externalOnly" | "none";
-export const UpdateEventsSendUpdatesEnum = /*@__PURE__*/ S.String;
+export const UpdateEventsSendUpdatesEnum = S.String;
 
 export interface UpdateEventsRequest {
   /** Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword. */
@@ -2333,7 +2333,7 @@ export type WatchCalendarListMinAccessRoleEnum =
   | "reader"
   | "writer"
   | "writerWithoutPrivateAccess";
-export const WatchCalendarListMinAccessRoleEnum = /*@__PURE__*/ S.String;
+export const WatchCalendarListMinAccessRoleEnum = S.String;
 
 export interface WatchCalendarListRequest {
   /** Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional. */
@@ -2377,7 +2377,7 @@ export const WatchCalendarListRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WatchCalendarListRequest>;
 
 export type WatchEventsOrderByEnum = "startTime" | "updated";
-export const WatchEventsOrderByEnum = /*@__PURE__*/ S.String;
+export const WatchEventsOrderByEnum = S.String;
 
 export type WatchEventsEventTypesEnum =
   | "birthday"
@@ -2386,7 +2386,7 @@ export type WatchEventsEventTypesEnum =
   | "fromGmail"
   | "outOfOffice"
   | "workingLocation";
-export const WatchEventsEventTypesEnum = /*@__PURE__*/ S.String;
+export const WatchEventsEventTypesEnum = S.String;
 
 export type WatchEventsEventTypesEnumList = Array<
   WatchEventsEventTypesEnum | (string & {})

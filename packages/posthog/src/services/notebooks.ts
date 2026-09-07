@@ -162,14 +162,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -197,7 +197,7 @@ export const UserBasic = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UserBasic" }) as any as S.Schema<UserBasic>;
 
 export type NotebookOutputParentResourceType = "account";
-export const NotebookOutputParentResourceType = /*@__PURE__*/ S.String;
+export const NotebookOutputParentResourceType = S.String;
 
 /** Parent resource this notebook is attached to, or `null`. Returns `{type: 'account', id: <uuid>}` for account-linked notebooks; used by the frontend to route breadcrumbs back to the resource's list. */
 export interface NotebookOutputParentResource {
@@ -556,11 +556,11 @@ export const SharingConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** * `hogql` - hogql * `python` - python */
 export type NotebookSQLV2NodeTypeEnum = "hogql" | "python";
-export const NotebookSQLV2NodeTypeEnum = /*@__PURE__*/ S.String;
+export const NotebookSQLV2NodeTypeEnum = S.String;
 
 /** * `hogql` - hogql * `local` - local */
 export type NotebookSQLV2RefKindEnum = "hogql" | "local";
-export const NotebookSQLV2RefKindEnum = /*@__PURE__*/ S.String;
+export const NotebookSQLV2RefKindEnum = S.String;
 
 export interface NotebookSQLV2Ref {
   /** ProseMirror node id of the upstream node this name points at. */
@@ -701,11 +701,11 @@ export type WidgetGenerateRequestModelEnum =
   | "claude-sonnet-4-6"
   | "claude-sonnet-5"
   | "claude-opus-5";
-export const WidgetGenerateRequestModelEnum = /*@__PURE__*/ S.String;
+export const WidgetGenerateRequestModelEnum = S.String;
 
 /** * `initial` - initial * `regenerate` - regenerate * `improve` - improve */
 export type GenerationOperationEnum = "initial" | "regenerate" | "improve";
-export const GenerationOperationEnum = /*@__PURE__*/ S.String;
+export const GenerationOperationEnum = S.String;
 
 export interface GenerateNotebooksWidgetRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2137,7 +2137,7 @@ export type LifecycleStatusEnum =
   | "ready"
   | "failed"
   | "incompatible";
-export const LifecycleStatusEnum = /*@__PURE__*/ S.String;
+export const LifecycleStatusEnum = S.String;
 
 /** * `generating_source` - generating_source * `reviewing_source` - reviewing_source * `publishing_source` - publishing_source * `unknown` - unknown */
 export type FailurePhaseEnum =
@@ -2145,7 +2145,7 @@ export type FailurePhaseEnum =
   | "reviewing_source"
   | "publishing_source"
   | "unknown";
-export const FailurePhaseEnum = /*@__PURE__*/ S.String;
+export const FailurePhaseEnum = S.String;
 
 /** Logical dataframe slots available to the selected version. */
 export type WidgetStatusFrameNamesList = Array<string>;
@@ -2155,7 +2155,7 @@ export const WidgetStatusFrameNamesList = /*@__PURE__*/ S.Array(
 
 /** * `queued` - queued * `generating` - generating * `publishing` - publishing */
 export type WidgetJobStatusEnum = "queued" | "generating" | "publishing";
-export const WidgetJobStatusEnum = /*@__PURE__*/ S.String;
+export const WidgetJobStatusEnum = S.String;
 
 export interface WidgetJob {
   /** Generation job identifier. */
@@ -2189,8 +2189,7 @@ export type GeneratedWidgetVersionSecurityReviewSeverityEnum =
   | "medium"
   | "high"
   | "critical";
-export const GeneratedWidgetVersionSecurityReviewSeverityEnum =
-  /*@__PURE__*/ S.String;
+export const GeneratedWidgetVersionSecurityReviewSeverityEnum = S.String;
 
 /** * `low` - low * `medium` - medium * `high` - high * `critical` - critical */
 export type ErrorTrackingIssueSeverityRuleEnum =
@@ -2198,7 +2197,7 @@ export type ErrorTrackingIssueSeverityRuleEnum =
   | "medium"
   | "high"
   | "critical";
-export const ErrorTrackingIssueSeverityRuleEnum = /*@__PURE__*/ S.String;
+export const ErrorTrackingIssueSeverityRuleEnum = S.String;
 
 export interface WidgetSecurityFinding {
   /** Severity of this potential security issue. * `low` - low * `medium` - medium * `high` - high * `critical` - critical */
@@ -2389,11 +2388,11 @@ export type GeneratedWidgetVersionOperationEnum =
   | "regenerate"
   | "improve"
   | "revert";
-export const GeneratedWidgetVersionOperationEnum = /*@__PURE__*/ S.String;
+export const GeneratedWidgetVersionOperationEnum = S.String;
 
 /** * `queued` - queued * `building` - building * `ready` - ready * `failed` - failed */
 export type BuildStatusEnum = "queued" | "building" | "ready" | "failed";
-export const BuildStatusEnum = /*@__PURE__*/ S.String;
+export const BuildStatusEnum = S.String;
 
 /** Logical dataframe slots available to this version. */
 export type WidgetVersionFrameNamesList = Array<string>;

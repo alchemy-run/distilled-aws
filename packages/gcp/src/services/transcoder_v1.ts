@@ -97,13 +97,13 @@ export type JobModeEnum =
   | "PROCESSING_MODE_UNSPECIFIED"
   | "PROCESSING_MODE_INTERACTIVE"
   | "PROCESSING_MODE_BATCH";
-export const JobModeEnum = /*@__PURE__*/ S.String;
+export const JobModeEnum = S.String;
 
 export type JobOptimizationEnum =
   | "OPTIMIZATION_STRATEGY_UNSPECIFIED"
   | "AUTODETECT"
   | "DISABLED";
-export const JobOptimizationEnum = /*@__PURE__*/ S.String;
+export const JobOptimizationEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -117,7 +117,7 @@ export type JobStateEnum =
   | "RUNNING"
   | "SUCCEEDED"
   | "FAILED";
-export const JobStateEnum = /*@__PURE__*/ S.String;
+export const JobStateEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -209,13 +209,13 @@ export const PubsubDestination = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PubsubDestination>;
 
 export type ManifestTypeEnum = "MANIFEST_TYPE_UNSPECIFIED" | "HLS" | "DASH";
-export const ManifestTypeEnum = /*@__PURE__*/ S.String;
+export const ManifestTypeEnum = S.String;
 
 export type DashConfigSegmentReferenceSchemeEnum =
   | "SEGMENT_REFERENCE_SCHEME_UNSPECIFIED"
   | "SEGMENT_LIST"
   | "SEGMENT_TEMPLATE_NUMBER";
-export const DashConfigSegmentReferenceSchemeEnum = /*@__PURE__*/ S.String;
+export const DashConfigSegmentReferenceSchemeEnum = S.String;
 
 /** `DASH` manifest configuration. */
 export interface DashConfig {
@@ -550,8 +550,7 @@ export type H265CodecSettingsFrameRateConversionStrategyEnum =
   | "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED"
   | "DOWNSAMPLE"
   | "DROP_DUPLICATE";
-export const H265CodecSettingsFrameRateConversionStrategyEnum =
-  /*@__PURE__*/ S.String;
+export const H265CodecSettingsFrameRateConversionStrategyEnum = S.String;
 
 /** Convert the input video to a High Dynamic Range 10 (HDR10) video. */
 export type H265ColorFormatHDR10 = Widevine;
@@ -648,8 +647,7 @@ export type Vp9CodecSettingsFrameRateConversionStrategyEnum =
   | "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED"
   | "DOWNSAMPLE"
   | "DROP_DUPLICATE";
-export const Vp9CodecSettingsFrameRateConversionStrategyEnum =
-  /*@__PURE__*/ S.String;
+export const Vp9CodecSettingsFrameRateConversionStrategyEnum = S.String;
 
 /** Convert the input video to a Hybrid Log Gamma (HLG) video. */
 export type Vp9ColorFormatHLG = Widevine;
@@ -720,8 +718,7 @@ export type H264CodecSettingsFrameRateConversionStrategyEnum =
   | "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED"
   | "DOWNSAMPLE"
   | "DROP_DUPLICATE";
-export const H264CodecSettingsFrameRateConversionStrategyEnum =
-  /*@__PURE__*/ S.String;
+export const H264CodecSettingsFrameRateConversionStrategyEnum = S.String;
 
 /** H264 codec settings. */
 export interface H264CodecSettings {
@@ -903,7 +900,7 @@ export type AnimationFadeFadeTypeEnum =
   | "FADE_TYPE_UNSPECIFIED"
   | "FADE_IN"
   | "FADE_OUT";
-export const AnimationFadeFadeTypeEnum = /*@__PURE__*/ S.String;
+export const AnimationFadeFadeTypeEnum = S.String;
 
 /** Display overlay object with fade animation. */
 export interface AnimationFade {

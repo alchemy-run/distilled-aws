@@ -93,7 +93,7 @@ export type AttributionSettingsAttributionModelEnum =
   | "CROSS_CHANNEL_LINEAR"
   | "CROSS_CHANNEL_POSITION_BASED"
   | "CROSS_CHANNEL_TIME_DECAY";
-export const AttributionSettingsAttributionModelEnum = /*@__PURE__*/ S.String;
+export const AttributionSettingsAttributionModelEnum = S.String;
 
 /** Represents attribution settings for conversion sources receiving pre-attribution data. */
 export interface AttributionSettings {
@@ -141,13 +141,13 @@ export type ConversionSourceStateEnum =
   | "ACTIVE"
   | "ARCHIVED"
   | "PENDING";
-export const ConversionSourceStateEnum = /*@__PURE__*/ S.String;
+export const ConversionSourceStateEnum = S.String;
 
 export type ConversionSourceControllerEnum =
   | "CONTROLLER_UNSPECIFIED"
   | "MERCHANT"
   | "YOUTUBE_AFFILIATES";
-export const ConversionSourceControllerEnum = /*@__PURE__*/ S.String;
+export const ConversionSourceControllerEnum = S.String;
 
 /** "Google Analytics Link" sources can be used to get conversion data from an existing Google Analytics property into the linked Merchant Center account. */
 export interface GoogleAnalyticsLink {

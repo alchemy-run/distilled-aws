@@ -290,7 +290,7 @@ export type DomainAvailability =
   | "INVALID_NAME_FOR_TLD"
   | "PENDING"
   | (string & {});
-export const DomainAvailability = /*@__PURE__*/ S.String;
+export const DomainAvailability = S.String;
 
 export interface CheckDomainAvailabilityResponse {
   Availability?: DomainAvailability;
@@ -331,7 +331,7 @@ export type Transferable =
   | "DOMAIN_IN_ANOTHER_ACCOUNT"
   | "PREMIUM_DOMAIN"
   | (string & {});
-export const Transferable = /*@__PURE__*/ S.String;
+export const Transferable = S.String;
 
 export interface DomainTransferability {
   Transferable?: Transferable;
@@ -556,7 +556,7 @@ export const GetContactReachabilityStatusRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetContactReachabilityStatusRequest",
 }) as any as S.Schema<GetContactReachabilityStatusRequest>;
 export type ReachabilityStatus = "PENDING" | "DONE" | "EXPIRED" | (string & {});
-export const ReachabilityStatus = /*@__PURE__*/ S.String;
+export const ReachabilityStatus = S.String;
 
 export interface GetContactReachabilityStatusResponse {
   domainName?: string;
@@ -610,7 +610,7 @@ export type ContactType =
   | "PUBLIC_BODY"
   | "RESELLER"
   | (string & {});
-export const ContactType = /*@__PURE__*/ S.String;
+export const ContactType = S.String;
 
 export type AddressLine = string | redacted.Redacted<string>;
 export type City = string | redacted.Redacted<string>;
@@ -868,7 +868,7 @@ export type CountryCode =
   | "ZM"
   | "ZW"
   | (string & {});
-export const CountryCode = /*@__PURE__*/ S.String;
+export const CountryCode = S.String;
 
 export type ZipCode = string | redacted.Redacted<string>;
 export type ContactNumber = string | redacted.Redacted<string>;
@@ -909,7 +909,7 @@ export type ExtraParamName =
   | "AU_POLICY_REASON"
   | "AU_REGISTRANT_NAME"
   | (string & {});
-export const ExtraParamName = /*@__PURE__*/ S.String;
+export const ExtraParamName = S.String;
 
 export type ExtraParamValue = string | redacted.Redacted<string>;
 export interface ExtraParam {
@@ -1113,7 +1113,7 @@ export type OperationStatus =
   | "SUCCESSFUL"
   | "FAILED"
   | (string & {});
-export const OperationStatus = /*@__PURE__*/ S.String;
+export const OperationStatus = S.String;
 
 export type ErrorMessage = string;
 export type OperationType =
@@ -1139,7 +1139,7 @@ export type OperationType =
   | "TRANSFER_ON_RENEW"
   | "RESTORE_DOMAIN"
   | (string & {});
-export const OperationType = /*@__PURE__*/ S.String;
+export const OperationType = S.String;
 
 export type StatusFlag =
   | "PENDING_ACCEPTANCE"
@@ -1148,7 +1148,7 @@ export type StatusFlag =
   | "PENDING_PAYMENT_VERIFICATION"
   | "PENDING_SUPPORT_CASE"
   | (string & {});
-export const StatusFlag = /*@__PURE__*/ S.String;
+export const StatusFlag = S.String;
 
 export interface GetOperationDetailResponse {
   OperationId?: string;
@@ -1177,10 +1177,10 @@ export const GetOperationDetailResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetOperationDetailResponse",
 }) as any as S.Schema<GetOperationDetailResponse>;
 export type ListDomainsAttributeName = "DomainName" | "Expiry" | (string & {});
-export const ListDomainsAttributeName = /*@__PURE__*/ S.String;
+export const ListDomainsAttributeName = S.String;
 
 export type Operator = "LE" | "GE" | "BEGINS_WITH" | (string & {});
-export const Operator = /*@__PURE__*/ S.String;
+export const Operator = S.String;
 
 export type Value = string;
 export type Values = string[];
@@ -1202,7 +1202,7 @@ export const FilterCondition = /*@__PURE__*/ S.suspend(() =>
 export type FilterConditions = FilterCondition[];
 export const FilterConditions = /*@__PURE__*/ S.Array(FilterCondition);
 export type SortOrder = "ASC" | "DESC" | (string & {});
-export const SortOrder = /*@__PURE__*/ S.String;
+export const SortOrder = S.String;
 
 export interface SortCondition {
   Name: ListDomainsAttributeName;
@@ -1272,7 +1272,7 @@ export const OperationStatusList = /*@__PURE__*/ S.Array(OperationStatus);
 export type OperationTypeList = OperationType[];
 export const OperationTypeList = /*@__PURE__*/ S.Array(OperationType);
 export type ListOperationsSortAttributeName = "SubmittedDate" | (string & {});
-export const ListOperationsSortAttributeName = /*@__PURE__*/ S.String;
+export const ListOperationsSortAttributeName = S.String;
 
 export interface ListOperationsRequest {
   SubmittedSince?: Date;

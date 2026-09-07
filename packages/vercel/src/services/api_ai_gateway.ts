@@ -107,7 +107,7 @@ export type AiGatewayVirtualModelConfigInferenceRegionProvidersValueScope =
   | "specific"
   | "zone";
 export const AiGatewayVirtualModelConfigInferenceRegionProvidersValueScope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Per-provider region overrides keyed by provider slug. */
 export interface AiGatewayVirtualModelConfigInferenceRegionProvidersValue {
@@ -148,8 +148,7 @@ export type AiGatewayVirtualModelConfigInferenceRegionScope =
   | "global"
   | "specific"
   | "zone";
-export const AiGatewayVirtualModelConfigInferenceRegionScope =
-  /*@__PURE__*/ S.String;
+export const AiGatewayVirtualModelConfigInferenceRegionScope = S.String;
 
 /** Region pinned on the VMC for system-credential routing (alias/router only). */
 export interface AiGatewayVirtualModelConfigInferenceRegion {
@@ -188,7 +187,7 @@ export type AiGatewayVirtualModelConfigSelector =
   | "priority"
   | "tps"
   | "ttft";
-export const AiGatewayVirtualModelConfigSelector = /*@__PURE__*/ S.String;
+export const AiGatewayVirtualModelConfigSelector = S.String;
 
 /** For kind=router: capability tags a candidate must have. */
 export type AiGatewayVirtualModelConfigRequiresList = Array<string>;
@@ -218,11 +217,11 @@ export type AiGatewayVirtualModelConfigSort =
   | "throughput"
   | "tps"
   | "ttft";
-export const AiGatewayVirtualModelConfigSort = /*@__PURE__*/ S.String;
+export const AiGatewayVirtualModelConfigSort = S.String;
 
 /** Limit providers to those with these features. */
 export type AiGatewayVirtualModelConfigHasItem = "implicit-caching" | "vision";
-export const AiGatewayVirtualModelConfigHasItem = /*@__PURE__*/ S.String;
+export const AiGatewayVirtualModelConfigHasItem = S.String;
 
 /** Limit providers to those with these features. */
 export type AiGatewayVirtualModelConfigHasList =
@@ -233,14 +232,14 @@ export const AiGatewayVirtualModelConfigHasList = /*@__PURE__*/ S.Array(
 
 /** Use caching if available. */
 export type AiGatewayVirtualModelConfigCaching = "auto";
-export const AiGatewayVirtualModelConfigCaching = /*@__PURE__*/ S.String;
+export const AiGatewayVirtualModelConfigCaching = S.String;
 
 /** Service tier for providers that support it. */
 export type AiGatewayVirtualModelConfigServiceTier =
   | "fast"
   | "flex"
   | "priority";
-export const AiGatewayVirtualModelConfigServiceTier = /*@__PURE__*/ S.String;
+export const AiGatewayVirtualModelConfigServiceTier = S.String;
 
 export type AiGatewayVirtualModelConfigProviderTimeoutsByokMap = {
   [key: string]: number | undefined;
@@ -266,7 +265,7 @@ export const AiGatewayVirtualModelConfigProviderTimeouts =
 
 /** Only use fastest providers with short timeouts. */
 export type AiGatewayVirtualModelConfigSpeed = "fast";
-export const AiGatewayVirtualModelConfigSpeed = /*@__PURE__*/ S.String;
+export const AiGatewayVirtualModelConfigSpeed = S.String;
 
 /** Public response shape for virtual model configs. Used so OpenAPI generation can avoid ElectroDB's recursive EntityItem types. */
 export interface AiGatewayVirtualModelConfig {

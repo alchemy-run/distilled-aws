@@ -187,7 +187,7 @@ export const AddGoogleAnalyticsProjectsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AddGoogleAnalyticsProjectsRequest>;
 
 export type AndroidAppStateEnum = "STATE_UNSPECIFIED" | "ACTIVE" | "DELETED";
-export const AndroidAppStateEnum = /*@__PURE__*/ S.String;
+export const AndroidAppStateEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -260,7 +260,7 @@ export type ShaCertificateCertTypeEnum =
   | "SHA_CERTIFICATE_TYPE_UNSPECIFIED"
   | "SHA_1"
   | "SHA_256";
-export const ShaCertificateCertTypeEnum = /*@__PURE__*/ S.String;
+export const ShaCertificateCertTypeEnum = S.String;
 
 /** A SHA-1 or SHA-256 certificate associated with the AndroidApp. */
 export interface ShaCertificate {
@@ -301,7 +301,7 @@ export const CreateProjectsAndroidAppsShaRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateProjectsAndroidAppsShaRequest>;
 
 export type IosAppStateEnum = "STATE_UNSPECIFIED" | "ACTIVE" | "DELETED";
-export const IosAppStateEnum = /*@__PURE__*/ S.String;
+export const IosAppStateEnum = S.String;
 
 /** Details of a Firebase App for iOS. */
 export interface IosApp {
@@ -366,7 +366,7 @@ export const CreateProjectsIosAppsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateProjectsIosAppsRequest>;
 
 export type WebAppStateEnum = "STATE_UNSPECIFIED" | "ACTIVE" | "DELETED";
-export const WebAppStateEnum = /*@__PURE__*/ S.String;
+export const WebAppStateEnum = S.String;
 
 /** Details of a Firebase App for the web. */
 export interface WebApp {
@@ -789,7 +789,7 @@ export type FirebaseProjectStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DELETED";
-export const FirebaseProjectStateEnum = /*@__PURE__*/ S.String;
+export const FirebaseProjectStateEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -1099,7 +1099,7 @@ export type LocationFeaturesItemEnum =
   | "FIRESTORE"
   | "DEFAULT_STORAGE"
   | "FUNCTIONS";
-export const LocationFeaturesItemEnum = /*@__PURE__*/ S.String;
+export const LocationFeaturesItemEnum = S.String;
 
 export type LocationFeaturesItemEnumList = Array<LocationFeaturesItemEnum>;
 export const LocationFeaturesItemEnumList = /*@__PURE__*/ S.Array(
@@ -1110,7 +1110,7 @@ export type LocationTypeEnum =
   | "LOCATION_TYPE_UNSPECIFIED"
   | "REGIONAL"
   | "MULTI_REGIONAL";
-export const LocationTypeEnum = /*@__PURE__*/ S.String;
+export const LocationTypeEnum = S.String;
 
 /** **DEPRECATED.** _This Location is no longer used to determine Firebase resource locations. Instead, consult product documentation to determine valid locations for each resource used in your Project._ A ["location for default Google Cloud resources"](https://firebase.google.com/docs/projects/locations#default-cloud-location) that can be selected for a FirebaseProject. These are resources associated with Google App Engine. */
 export interface Location {
@@ -1533,13 +1533,13 @@ export type FirebaseAppInfoPlatformEnum =
   | "IOS"
   | "ANDROID"
   | "WEB";
-export const FirebaseAppInfoPlatformEnum = /*@__PURE__*/ S.String;
+export const FirebaseAppInfoPlatformEnum = S.String;
 
 export type FirebaseAppInfoStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DELETED";
-export const FirebaseAppInfoStateEnum = /*@__PURE__*/ S.String;
+export const FirebaseAppInfoStateEnum = S.String;
 
 /** A high-level summary of an App. */
 export interface FirebaseAppInfo {

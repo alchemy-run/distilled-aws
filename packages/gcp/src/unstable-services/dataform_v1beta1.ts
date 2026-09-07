@@ -373,7 +373,7 @@ export type ComputeRepositoryAccessTokenStatusResponseTokenStatusEnum =
   | "VALID"
   | "PERMISSION_DENIED";
 export const ComputeRepositoryAccessTokenStatusResponseTokenStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** `ComputeRepositoryAccessTokenStatus` response message. */
 export interface ComputeRepositoryAccessTokenStatusResponse {
@@ -459,7 +459,7 @@ export type GitRemoteSettingsTokenStatusEnum =
   | "NOT_FOUND"
   | "INVALID"
   | "VALID";
-export const GitRemoteSettingsTokenStatusEnum = /*@__PURE__*/ S.String;
+export const GitRemoteSettingsTokenStatusEnum = S.String;
 
 /** Configures fields for performing SSH authentication. */
 export interface SshAuthenticationConfig {
@@ -654,7 +654,7 @@ export type PipelineConfigPipelineTypeEnum =
   | "DATAFORM"
   | "SQL"
   | "NOTEBOOK";
-export const PipelineConfigPipelineTypeEnum = /*@__PURE__*/ S.String;
+export const PipelineConfigPipelineTypeEnum = S.String;
 
 /** Defines the pipeline type and path within the Git repository. */
 export interface PipelineConfig {
@@ -976,7 +976,7 @@ export type WorkflowTriggerConfigConditionEnum =
   | "CONDITION_UNSPECIFIED"
   | "ALL"
   | "ANY";
-export const WorkflowTriggerConfigConditionEnum = /*@__PURE__*/ S.String;
+export const WorkflowTriggerConfigConditionEnum = S.String;
 
 /** Represents a table update trigger configuration. */
 export interface TableUpdateTrigger {
@@ -1089,7 +1089,7 @@ export type InvocationConfigQueryPriorityEnum =
   | "QUERY_PRIORITY_UNSPECIFIED"
   | "INTERACTIVE"
   | "BATCH";
-export const InvocationConfigQueryPriorityEnum = /*@__PURE__*/ S.String;
+export const InvocationConfigQueryPriorityEnum = S.String;
 
 export type TargetList = Array<Target>;
 export const TargetList = /*@__PURE__*/ S.Array(
@@ -1214,7 +1214,7 @@ export type WorkflowInvocationStateEnum =
   | "CANCELLED"
   | "FAILED"
   | "CANCELING";
-export const WorkflowInvocationStateEnum = /*@__PURE__*/ S.String;
+export const WorkflowInvocationStateEnum = S.String;
 
 /** Represents a single invocation of a compilation result. */
 export interface WorkflowInvocation {
@@ -1721,7 +1721,7 @@ export type FetchBranchesProjectsLocationsRepositoriesWorkspacesFilterEnum =
   | "REMOTE_ONLY"
   | "ALL";
 export const FetchBranchesProjectsLocationsRepositoriesWorkspacesFilterEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface FetchBranchesProjectsLocationsRepositoriesWorkspacesRequest {
   /** Optional. Maximum number of branches to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000. */
@@ -1906,7 +1906,7 @@ export type UncommittedFileChangeStateEnum =
   | "DELETED"
   | "MODIFIED"
   | "HAS_CONFLICTS";
-export const UncommittedFileChangeStateEnum = /*@__PURE__*/ S.String;
+export const UncommittedFileChangeStateEnum = S.String;
 
 /** Represents the Git state of a file with uncommitted changes. */
 export interface UncommittedFileChange {
@@ -3497,7 +3497,7 @@ export type QueryDirectoryContentsProjectsLocationsRepositoriesWorkspacesViewEnu
   | "DIRECTORY_CONTENTS_VIEW_BASIC"
   | "DIRECTORY_CONTENTS_VIEW_METADATA";
 export const QueryDirectoryContentsProjectsLocationsRepositoriesWorkspacesViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface QueryDirectoryContentsProjectsLocationsRepositoriesWorkspacesRequest {
   /** Optional. The directory's full path including directory name, relative to the workspace root. If left unset, the workspace root is used. */
@@ -3718,7 +3718,7 @@ export const Declaration = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Declaration" }) as any as S.Schema<Declaration>;
 
 export type RelationFileFormatEnum = "FILE_FORMAT_UNSPECIFIED" | "PARQUET";
-export const RelationFileFormatEnum = /*@__PURE__*/ S.String;
+export const RelationFileFormatEnum = S.String;
 
 export type RelationRelationTypeEnum =
   | "RELATION_TYPE_UNSPECIFIED"
@@ -3726,7 +3726,7 @@ export type RelationRelationTypeEnum =
   | "VIEW"
   | "INCREMENTAL_TABLE"
   | "MATERIALIZED_VIEW";
-export const RelationRelationTypeEnum = /*@__PURE__*/ S.String;
+export const RelationRelationTypeEnum = S.String;
 
 /** Contains settings for relations of type `INCREMENTAL_TABLE`. */
 export interface IncrementalTableConfig {
@@ -3757,7 +3757,7 @@ export const IncrementalTableConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IncrementalTableConfig>;
 
 export type RelationTableFormatEnum = "TABLE_FORMAT_UNSPECIFIED" | "ICEBERG";
-export const RelationTableFormatEnum = /*@__PURE__*/ S.String;
+export const RelationTableFormatEnum = S.String;
 
 /** Represents a database relation. */
 export interface Relation {
@@ -4055,7 +4055,7 @@ export type WorkflowInvocationActionStateEnum =
   | "SUCCEEDED"
   | "CANCELLED"
   | "FAILED";
-export const WorkflowInvocationActionStateEnum = /*@__PURE__*/ S.String;
+export const WorkflowInvocationActionStateEnum = S.String;
 
 /** Error table information, used to write error data into a BigQuery table. */
 export type ActionErrorTable = ErrorTable;

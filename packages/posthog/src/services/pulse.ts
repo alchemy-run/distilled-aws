@@ -127,14 +127,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -222,15 +222,15 @@ export type ProductBriefStatusEnum =
   | "ready"
   | "quiet"
   | "failed";
-export const ProductBriefStatusEnum = /*@__PURE__*/ S.String;
+export const ProductBriefStatusEnum = S.String;
 
 /** * `on_demand` - On Demand * `scheduled` - Scheduled */
 export type ProductBriefTriggerEnum = "on_demand" | "scheduled";
-export const ProductBriefTriggerEnum = /*@__PURE__*/ S.String;
+export const ProductBriefTriggerEnum = S.String;
 
 /** * `last_n_days` - last_n_days * `since_last_run` - since_last_run */
 export type PeriodTypeEnum = "last_n_days" | "since_last_run";
-export const PeriodTypeEnum = /*@__PURE__*/ S.String;
+export const PeriodTypeEnum = S.String;
 
 export interface Period {
   /** How the brief window is chosen: a fixed lookback (last_n_days) or since the last ready brief. * `last_n_days` - last_n_days * `since_last_run` - since_last_run */

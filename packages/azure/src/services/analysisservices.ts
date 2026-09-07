@@ -61,7 +61,7 @@ export const CheckServerNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
 
 /** The name of the Azure pricing tier to which the SKU applies. */
 export type ResourceSkuTier = "Development" | "Basic" | "Standard";
-export const ResourceSkuTier = /*@__PURE__*/ S.String;
+export const ResourceSkuTier = S.String;
 
 /** Represents the SKU name and Azure pricing tier for Analysis Services resource. */
 export interface ResourceSku {
@@ -165,17 +165,15 @@ export type AnalysisServicesServerPropertiesInputQuerypoolConnectionMode =
   | "All"
   | "ReadOnly";
 export const AnalysisServicesServerPropertiesInputQuerypoolConnectionMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The managed mode of the server (0 = not managed, 1 = managed). */
 export type AnalysisServicesServerPropertiesInputManagedMode = 0 | 1;
-export const AnalysisServicesServerPropertiesInputManagedMode =
-  /*@__PURE__*/ S.Number;
+export const AnalysisServicesServerPropertiesInputManagedMode = S.Number;
 
 /** The server monitor mode for AS server */
 export type AnalysisServicesServerPropertiesInputServerMonitorMode = 0 | 1;
-export const AnalysisServicesServerPropertiesInputServerMonitorMode =
-  /*@__PURE__*/ S.Number;
+export const AnalysisServicesServerPropertiesInputServerMonitorMode = S.Number;
 
 /** Properties of Analysis Services resource. */
 export interface AnalysisServicesServerPropertiesInput {
@@ -287,18 +285,15 @@ export const GatewayDetails = /*@__PURE__*/ S.suspend(() =>
 export type AnalysisServicesServerPropertiesQuerypoolConnectionMode =
   | "All"
   | "ReadOnly";
-export const AnalysisServicesServerPropertiesQuerypoolConnectionMode =
-  /*@__PURE__*/ S.String;
+export const AnalysisServicesServerPropertiesQuerypoolConnectionMode = S.String;
 
 /** The managed mode of the server (0 = not managed, 1 = managed). */
 export type AnalysisServicesServerPropertiesManagedMode = 0 | 1;
-export const AnalysisServicesServerPropertiesManagedMode =
-  /*@__PURE__*/ S.Number;
+export const AnalysisServicesServerPropertiesManagedMode = S.Number;
 
 /** The server monitor mode for AS server */
 export type AnalysisServicesServerPropertiesServerMonitorMode = 0 | 1;
-export const AnalysisServicesServerPropertiesServerMonitorMode =
-  /*@__PURE__*/ S.Number;
+export const AnalysisServicesServerPropertiesServerMonitorMode = S.Number;
 
 /** The current state of Analysis Services resource. The state is to indicate more states outside of resource provisioning. */
 export type AnalysisServicesServerPropertiesState =
@@ -314,7 +309,7 @@ export type AnalysisServicesServerPropertiesState =
   | "Resuming"
   | "Preparing"
   | "Scaling";
-export const AnalysisServicesServerPropertiesState = /*@__PURE__*/ S.String;
+export const AnalysisServicesServerPropertiesState = S.String;
 
 /** The current deployment state of Analysis Services resource. The provisioningState is to indicate states for resource provisioning. */
 export type AnalysisServicesServerPropertiesProvisioningState =
@@ -330,8 +325,7 @@ export type AnalysisServicesServerPropertiesProvisioningState =
   | "Resuming"
   | "Preparing"
   | "Scaling";
-export const AnalysisServicesServerPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AnalysisServicesServerPropertiesProvisioningState = S.String;
 
 /** Properties of Analysis Services resource. */
 export interface AnalysisServicesServerProperties {
@@ -813,7 +807,7 @@ export const ListServerGatewayStatusRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Live message of list gateway. Status: 0 - Live */
 export type GatewayListStatusLiveStatus = 0;
-export const GatewayListStatusLiveStatus = /*@__PURE__*/ S.Number;
+export const GatewayListStatusLiveStatus = S.Number;
 
 /** Status of gateway is live. */
 export interface GatewayListStatusLive {
@@ -1202,19 +1196,18 @@ export type AnalysisServicesServerMutablePropertiesInputQuerypoolConnectionMode 
   | "All"
   | "ReadOnly";
 export const AnalysisServicesServerMutablePropertiesInputQuerypoolConnectionMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The managed mode of the server (0 = not managed, 1 = managed). */
 export type AnalysisServicesServerMutablePropertiesInputManagedMode = 0 | 1;
-export const AnalysisServicesServerMutablePropertiesInputManagedMode =
-  /*@__PURE__*/ S.Number;
+export const AnalysisServicesServerMutablePropertiesInputManagedMode = S.Number;
 
 /** The server monitor mode for AS server */
 export type AnalysisServicesServerMutablePropertiesInputServerMonitorMode =
   | 0
   | 1;
 export const AnalysisServicesServerMutablePropertiesInputServerMonitorMode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 /** An object that represents a set of mutable Analysis Services resource properties. */
 export interface AnalysisServicesServerMutablePropertiesInput {

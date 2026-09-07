@@ -42,7 +42,7 @@ export const CheckServiceProviderAvailabilityRequest = /*@__PURE__*/ S.suspend(
 export type CheckServiceProviderAvailabilityResponse =
   | "Available"
   | "Unavailable";
-export const CheckServiceProviderAvailabilityResponse = /*@__PURE__*/ S.String;
+export const CheckServiceProviderAvailabilityResponse = S.String;
 
 export type CheckServiceProviderAvailabilityResponse2 =
   CheckServiceProviderAvailabilityResponse;
@@ -114,7 +114,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -122,7 +122,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -163,7 +163,7 @@ export type ProvisioningState =
   | "Deleting"
   | "Failed"
   | "Canceled";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** The properties that define a Connection Monitor Test. */
 export interface ConnectionMonitorTestProperties {
@@ -536,7 +536,7 @@ export type Role =
   | "Service"
   | "Escalation"
   | "Other";
-export const Role = /*@__PURE__*/ S.String;
+export const Role = S.String;
 
 /** The contact detail class. */
 export interface ContactDetail {
@@ -563,7 +563,7 @@ export const PeerAsnPropertiesPeerContactDetailList = /*@__PURE__*/ S.Array(
 
 /** The validation state of the ASN associated with the peer. */
 export type ValidationState = "None" | "Pending" | "Approved" | "Failed";
-export const ValidationState = /*@__PURE__*/ S.String;
+export const ValidationState = S.String;
 
 /** The properties that define a peer's ASN. */
 export interface PeerAsnProperties {
@@ -648,7 +648,7 @@ export const GetPeeringResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The field indicating if Microsoft provides session ip addresses. */
 export type SessionAddressProvider = "Microsoft" | "Peer";
-export const SessionAddressProvider = /*@__PURE__*/ S.String;
+export const SessionAddressProvider = S.String;
 
 /** The state of the connection. */
 export type ConnectionState =
@@ -663,7 +663,7 @@ export type ConnectionState =
   | "TypeChangeRequested"
   | "TypeChangeInProgress"
   | "ExternalBlocker";
-export const ConnectionState = /*@__PURE__*/ S.String;
+export const ConnectionState = S.String;
 
 /** The state of the IPv4 session. */
 export type SessionStateV4 =
@@ -678,7 +678,7 @@ export type SessionStateV4 =
   | "PendingAdd"
   | "PendingUpdate"
   | "PendingRemove";
-export const SessionStateV4 = /*@__PURE__*/ S.String;
+export const SessionStateV4 = S.String;
 
 /** The state of the IPv6 session. */
 export type SessionStateV6 =
@@ -693,7 +693,7 @@ export type SessionStateV6 =
   | "PendingAdd"
   | "PendingUpdate"
   | "PendingRemove";
-export const SessionStateV6 = /*@__PURE__*/ S.String;
+export const SessionStateV6 = S.String;
 
 /** The properties that define a BGP session. */
 export interface BgpSession {
@@ -804,7 +804,7 @@ export type DirectPeeringType =
   | "Voice"
   | "EdgeZoneForOperators"
   | "PeerProp";
-export const DirectPeeringType = /*@__PURE__*/ S.String;
+export const DirectPeeringType = S.String;
 
 /** The properties that define a direct peering. */
 export interface PeeringPropertiesDirect {
@@ -878,7 +878,7 @@ export const PeeringPropertiesExchange = /*@__PURE__*/ S.suspend(() =>
 
 /** The protocol of the traffic that will be sent for the connectivity probe. */
 export type Protocol = "None" | "ICMP" | "TCP";
-export const Protocol = /*@__PURE__*/ S.String;
+export const Protocol = S.String;
 
 /** Set to contain the prefixes that agents in Azure will send traffic from. For peers to allow into their network the connectivity probe traffic can reach their endpoint for the connectivity probe. */
 export type ConnectivityProbePrefixesToAccesslistList = Array<string>;
@@ -941,15 +941,15 @@ export const PeeringProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The tier of the peering SKU. */
 export type Tier = "Basic" | "Premium";
-export const Tier = /*@__PURE__*/ S.String;
+export const Tier = S.String;
 
 /** The family of the peering SKU. */
 export type Family = "Direct" | "Exchange";
-export const Family = /*@__PURE__*/ S.String;
+export const Family = S.String;
 
 /** The size of the peering SKU. */
 export type Size = "Free" | "Metered" | "Unlimited";
-export const Size = /*@__PURE__*/ S.String;
+export const Size = S.String;
 
 /** The SKU that defines the tier and kind of the peering. */
 export interface PeeringSku {
@@ -973,7 +973,7 @@ export const PeeringSku = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of the peering. */
 export type Kind = "Direct" | "Exchange";
-export const Kind = /*@__PURE__*/ S.String;
+export const Kind = S.String;
 
 export interface GetPeeringResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1189,11 +1189,11 @@ export type PrefixValidationState =
   | "Pending"
   | "Warning"
   | "Unknown";
-export const PrefixValidationState = /*@__PURE__*/ S.String;
+export const PrefixValidationState = S.String;
 
 /** The prefix learned type */
 export type LearnedType = "None" | "ViaServiceProvider" | "ViaSession";
-export const LearnedType = /*@__PURE__*/ S.String;
+export const LearnedType = S.String;
 
 /** The details of the event associated with a prefix. */
 export interface PeeringServicePrefixEvent {
@@ -1434,10 +1434,10 @@ export type InvokeLookingGlassRequestCommand =
   | "Traceroute"
   | "Ping"
   | "BgpRoute";
-export const InvokeLookingGlassRequestCommand = /*@__PURE__*/ S.String;
+export const InvokeLookingGlassRequestCommand = S.String;
 
 export type InvokeLookingGlassRequestSourceType = "EdgeSite" | "AzureRegion";
-export const InvokeLookingGlassRequestSourceType = /*@__PURE__*/ S.String;
+export const InvokeLookingGlassRequestSourceType = S.String;
 
 export interface InvokeLookingGlassRequest {
   /** The ID of the target subscription. */
@@ -1472,7 +1472,7 @@ export const InvokeLookingGlassRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Invoked command */
 export type Command = "Traceroute" | "Ping" | "BgpRoute";
-export const Command = /*@__PURE__*/ S.String;
+export const Command = S.String;
 
 /** Looking glass output model */
 export interface LookingGlassOutput {
@@ -1659,7 +1659,7 @@ export const ConnectionMonitorTestListResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConnectionMonitorTestListResult>;
 
 export type ListLegacyPeeringsRequestKind = "Direct" | "Exchange";
-export const ListLegacyPeeringsRequestKind = /*@__PURE__*/ S.String;
+export const ListLegacyPeeringsRequestKind = S.String;
 
 export type ListLegacyPeeringsRequestDirectPeeringType =
   | "Edge"
@@ -1671,8 +1671,7 @@ export type ListLegacyPeeringsRequestDirectPeeringType =
   | "Voice"
   | "EdgeZoneForOperators"
   | "PeerProp";
-export const ListLegacyPeeringsRequestDirectPeeringType =
-  /*@__PURE__*/ S.String;
+export const ListLegacyPeeringsRequestDirectPeeringType = S.String;
 
 export interface ListLegacyPeeringsRequest {
   /** The ID of the target subscription. */
@@ -2055,7 +2054,7 @@ export const ListPeeringBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListPeeringBySubscriptionRequest>;
 
 export type ListPeeringLocationsRequestKind = "Direct" | "Exchange";
-export const ListPeeringLocationsRequestKind = /*@__PURE__*/ S.String;
+export const ListPeeringLocationsRequestKind = S.String;
 
 export type ListPeeringLocationsRequestDirectPeeringType =
   | "Edge"
@@ -2067,8 +2066,7 @@ export type ListPeeringLocationsRequestDirectPeeringType =
   | "Voice"
   | "EdgeZoneForOperators"
   | "PeerProp";
-export const ListPeeringLocationsRequestDirectPeeringType =
-  /*@__PURE__*/ S.String;
+export const ListPeeringLocationsRequestDirectPeeringType = S.String;
 
 export interface ListPeeringLocationsRequest {
   /** The ID of the target subscription. */

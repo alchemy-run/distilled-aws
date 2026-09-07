@@ -211,7 +211,7 @@ export type GdataCompositeMediaReferenceTypeEnum =
   | "INLINE"
   | "BIGSTORE_REF"
   | "COSMO_BINARY_REFERENCE";
-export const GdataCompositeMediaReferenceTypeEnum = /*@__PURE__*/ S.String;
+export const GdataCompositeMediaReferenceTypeEnum = S.String;
 
 /** gdata */
 export interface GdataCompositeMedia {
@@ -355,7 +355,7 @@ export type GdataMediaReferenceTypeEnum =
   | "DIFF_UPLOAD_RESPONSE"
   | "COSMO_BINARY_REFERENCE"
   | "ARBITRARY_BYTES";
-export const GdataMediaReferenceTypeEnum = /*@__PURE__*/ S.String;
+export const GdataMediaReferenceTypeEnum = S.String;
 
 /** gdata */
 export interface GdataDiffChecksumsResponse {

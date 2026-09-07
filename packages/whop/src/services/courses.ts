@@ -64,7 +64,7 @@ export const CreateCourseRequestThumbnail = /*@__PURE__*/ S.suspend(() =>
 
 /** The available visibilities for a course. Determines how / whether a course is visible to users. */
 export type CourseVisibilities = "visible" | "hidden";
-export const CourseVisibilities = /*@__PURE__*/ S.String;
+export const CourseVisibilities = S.String;
 
 export interface CreateCourseRequest {
   /** Whether the course awards students a PDF certificate after completing all lessons. */
@@ -107,7 +107,7 @@ export type LessonTypes =
   | "multi"
   | "quiz"
   | "knowledge_check";
-export const LessonTypes = /*@__PURE__*/ S.String;
+export const LessonTypes = S.String;
 
 /** The thumbnail image displayed on lesson cards and previews. Null if no thumbnail has been uploaded. */
 export interface CourseChaptersItemLessonsItemThumbnail {
@@ -230,7 +230,7 @@ export type Languages =
   | "da"
   | "ro"
   | "bg";
-export const Languages = /*@__PURE__*/ S.String;
+export const Languages = S.String;
 
 /** The distinct drip schedules, in days after the course start, of lessons visible to the current user. Combine with startedAt to work out which have unlocked. Empty when the user has not started the course or no lesson is on a schedule. */
 export type CourseLessonUnlockDaysList = Array<number>;

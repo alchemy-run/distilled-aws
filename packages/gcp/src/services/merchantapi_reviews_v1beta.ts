@@ -155,8 +155,7 @@ export type MerchantReviewAttributesCollectionMethodEnum =
   | "MERCHANT_UNSOLICITED"
   | "POINT_OF_SALE"
   | "AFTER_FULFILLMENT";
-export const MerchantReviewAttributesCollectionMethodEnum =
-  /*@__PURE__*/ S.String;
+export const MerchantReviewAttributesCollectionMethodEnum = S.String;
 
 /** Attributes. */
 export interface MerchantReviewAttributes {
@@ -222,7 +221,7 @@ export type MerchantReviewItemLevelIssueSeverityEnum =
   | "SEVERITY_UNSPECIFIED"
   | "NOT_IMPACTED"
   | "DISAPPROVED";
-export const MerchantReviewItemLevelIssueSeverityEnum = /*@__PURE__*/ S.String;
+export const MerchantReviewItemLevelIssueSeverityEnum = S.String;
 
 export type MerchantReviewItemLevelIssueReportingContextEnum =
   | "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
@@ -246,8 +245,7 @@ export type MerchantReviewItemLevelIssueReportingContextEnum =
   | "MERCHANT_REVIEWS"
   | "YOUTUBE_CHECKOUT"
   | "RENTAL_ADS";
-export const MerchantReviewItemLevelIssueReportingContextEnum =
-  /*@__PURE__*/ S.String;
+export const MerchantReviewItemLevelIssueReportingContextEnum = S.String;
 
 /** The ItemLevelIssue of the merchant review status. */
 export interface MerchantReviewItemLevelIssue {
@@ -315,8 +313,7 @@ export type MerchantReviewDestinationStatusReportingContextEnum =
   | "MERCHANT_REVIEWS"
   | "YOUTUBE_CHECKOUT"
   | "RENTAL_ADS";
-export const MerchantReviewDestinationStatusReportingContextEnum =
-  /*@__PURE__*/ S.String;
+export const MerchantReviewDestinationStatusReportingContextEnum = S.String;
 
 /** The destination status of the merchant review status. */
 export interface MerchantReviewDestinationStatus {
@@ -429,8 +426,7 @@ export type ProductReviewDestinationStatusReportingContextEnum =
   | "MERCHANT_REVIEWS"
   | "YOUTUBE_CHECKOUT"
   | "RENTAL_ADS";
-export const ProductReviewDestinationStatusReportingContextEnum =
-  /*@__PURE__*/ S.String;
+export const ProductReviewDestinationStatusReportingContextEnum = S.String;
 
 /** The destination status of the product review status. */
 export interface ProductReviewDestinationStatus {
@@ -477,14 +473,13 @@ export type ProductReviewItemLevelIssueReportingContextEnum =
   | "MERCHANT_REVIEWS"
   | "YOUTUBE_CHECKOUT"
   | "RENTAL_ADS";
-export const ProductReviewItemLevelIssueReportingContextEnum =
-  /*@__PURE__*/ S.String;
+export const ProductReviewItemLevelIssueReportingContextEnum = S.String;
 
 export type ProductReviewItemLevelIssueSeverityEnum =
   | "SEVERITY_UNSPECIFIED"
   | "NOT_IMPACTED"
   | "DISAPPROVED";
-export const ProductReviewItemLevelIssueSeverityEnum = /*@__PURE__*/ S.String;
+export const ProductReviewItemLevelIssueSeverityEnum = S.String;
 
 /** The ItemLevelIssue of the product review status. */
 export interface ProductReviewItemLevelIssue {
@@ -558,7 +553,7 @@ export const StringList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<StringList>;
 
 export type ReviewLinkTypeEnum = "TYPE_UNSPECIFIED" | "SINGLETON" | "GROUP";
-export const ReviewLinkTypeEnum = /*@__PURE__*/ S.String;
+export const ReviewLinkTypeEnum = S.String;
 
 /** The URI of the review landing page. */
 export interface ReviewLink {
@@ -578,8 +573,7 @@ export type ProductReviewAttributesCollectionMethodEnum =
   | "COLLECTION_METHOD_UNSPECIFIED"
   | "UNSOLICITED"
   | "POST_FULFILLMENT";
-export const ProductReviewAttributesCollectionMethodEnum =
-  /*@__PURE__*/ S.String;
+export const ProductReviewAttributesCollectionMethodEnum = S.String;
 
 /** Attributes. */
 export interface ProductReviewAttributes {

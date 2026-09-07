@@ -116,7 +116,7 @@ export const CreateIssueRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateIssueRequest>;
 
 export type AttachmentType = "attachment" | "external";
-export const AttachmentType = /*@__PURE__*/ S.String;
+export const AttachmentType = S.String;
 
 /** Attachment a generic attachment */
 export interface Attachment {
@@ -1214,7 +1214,7 @@ export const IssueCreateLabelRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IssueCreateLabelRequest>;
 
 export type IssueCreateMilestoneRequestState = "open" | "closed";
-export const IssueCreateMilestoneRequestState = /*@__PURE__*/ S.String;
+export const IssueCreateMilestoneRequestState = S.String;
 
 export interface IssueCreateMilestoneRequest {
   /** owner of the repo */
@@ -1739,7 +1739,7 @@ export const Organization = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Organization" }) as any as S.Schema<Organization>;
 
 export type TeamPermission = "none" | "read" | "write" | "admin" | "owner";
-export const TeamPermission = /*@__PURE__*/ S.String;
+export const TeamPermission = S.String;
 
 export type TeamUnitsList = Array<string>;
 export const TeamUnitsList = /*@__PURE__*/ S.Array(
@@ -2084,7 +2084,7 @@ export type IssueListLabelsRequestSort =
   | "mostissues"
   | "leastissues"
   | "reversealphabetically";
-export const IssueListLabelsRequestSort = /*@__PURE__*/ S.String;
+export const IssueListLabelsRequestSort = S.String;
 
 export interface IssueListLabelsRequest {
   /** owner of the repo */
@@ -2537,10 +2537,10 @@ export const ListIssueDependenciesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListIssueDependenciesResponse>;
 
 export type ListIssuesRequestState = "closed" | "open" | "all";
-export const ListIssuesRequestState = /*@__PURE__*/ S.String;
+export const ListIssuesRequestState = S.String;
 
 export type ListIssuesRequestType = "issues" | "pulls";
-export const ListIssuesRequestType = /*@__PURE__*/ S.String;
+export const ListIssuesRequestType = S.String;
 
 export type ListIssuesRequestSort =
   | "relevance"
@@ -2552,7 +2552,7 @@ export type ListIssuesRequestSort =
   | "leastcomment"
   | "nearduedate"
   | "farduedate";
-export const ListIssuesRequestSort = /*@__PURE__*/ S.String;
+export const ListIssuesRequestSort = S.String;
 
 export interface ListIssuesRequest {
   /** owner of the repo */
@@ -2762,10 +2762,10 @@ export const RemoveIssueDependenciesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RemoveIssueDependenciesRequest>;
 
 export type SearchIssuesRequestState = "open" | "closed" | "all";
-export const SearchIssuesRequestState = /*@__PURE__*/ S.String;
+export const SearchIssuesRequestState = S.String;
 
 export type SearchIssuesRequestType = "issues" | "pulls";
-export const SearchIssuesRequestType = /*@__PURE__*/ S.String;
+export const SearchIssuesRequestType = S.String;
 
 export type SearchIssuesRequestSort =
   | "relevance"
@@ -2777,7 +2777,7 @@ export type SearchIssuesRequestSort =
   | "leastcomment"
   | "nearduedate"
   | "farduedate";
-export const SearchIssuesRequestSort = /*@__PURE__*/ S.String;
+export const SearchIssuesRequestSort = S.String;
 
 export interface SearchIssuesRequest {
   /** State of the issue */

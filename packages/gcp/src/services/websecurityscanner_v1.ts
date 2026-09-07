@@ -148,7 +148,7 @@ export type ScanConfigTargetPlatformsItemEnum =
   | "COMPUTE"
   | "CLOUD_RUN"
   | "CLOUD_FUNCTIONS";
-export const ScanConfigTargetPlatformsItemEnum = /*@__PURE__*/ S.String;
+export const ScanConfigTargetPlatformsItemEnum = S.String;
 
 export type ScanConfigTargetPlatformsItemEnumList = Array<
   ScanConfigTargetPlatformsItemEnum | (string & {})
@@ -161,21 +161,20 @@ export type ScanConfigRiskLevelEnum =
   | "RISK_LEVEL_UNSPECIFIED"
   | "NORMAL"
   | "LOW";
-export const ScanConfigRiskLevelEnum = /*@__PURE__*/ S.String;
+export const ScanConfigRiskLevelEnum = S.String;
 
 export type ScanConfigUserAgentEnum =
   | "USER_AGENT_UNSPECIFIED"
   | "CHROME_LINUX"
   | "CHROME_ANDROID"
   | "SAFARI_IPHONE";
-export const ScanConfigUserAgentEnum = /*@__PURE__*/ S.String;
+export const ScanConfigUserAgentEnum = S.String;
 
 export type ScanConfigExportToSecurityCommandCenterEnum =
   | "EXPORT_TO_SECURITY_COMMAND_CENTER_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED";
-export const ScanConfigExportToSecurityCommandCenterEnum =
-  /*@__PURE__*/ S.String;
+export const ScanConfigExportToSecurityCommandCenterEnum = S.String;
 
 export type ScanRunErrorTraceCodeEnum =
   | "CODE_UNSPECIFIED"
@@ -186,7 +185,7 @@ export type ScanRunErrorTraceCodeEnum =
   | "TOO_MANY_REDIRECTS"
   | "TOO_MANY_HTTP_ERRORS"
   | "STARTING_URLS_CRAWL_HTTP_ERRORS";
-export const ScanRunErrorTraceCodeEnum = /*@__PURE__*/ S.String;
+export const ScanRunErrorTraceCodeEnum = S.String;
 
 export type ScanConfigErrorCodeEnum =
   | "CODE_UNSPECIFIED"
@@ -232,7 +231,7 @@ export type ScanConfigErrorCodeEnum =
   | "UNSUPPORTED_FINDING_TYPE"
   | "UNSUPPORTED_URL_SCHEME"
   | "CLOUD_ASSET_INVENTORY_ASSET_NOT_FOUND";
-export const ScanConfigErrorCodeEnum = /*@__PURE__*/ S.String;
+export const ScanConfigErrorCodeEnum = S.String;
 
 /** Defines a custom error message used by CreateScanConfig and UpdateScanConfig APIs when scan configuration validation fails. It is also reported as part of a ScanRunErrorTrace message if scan validation fails due to a scan configuration error. */
 export interface ScanConfigError {
@@ -274,14 +273,14 @@ export type ScanRunExecutionStateEnum =
   | "QUEUED"
   | "SCANNING"
   | "FINISHED";
-export const ScanRunExecutionStateEnum = /*@__PURE__*/ S.String;
+export const ScanRunExecutionStateEnum = S.String;
 
 export type ScanRunResultStateEnum =
   | "RESULT_STATE_UNSPECIFIED"
   | "SUCCESS"
   | "ERROR"
   | "KILLED";
-export const ScanRunResultStateEnum = /*@__PURE__*/ S.String;
+export const ScanRunResultStateEnum = S.String;
 
 export type ScanRunWarningTraceCodeEnum =
   | "CODE_UNSPECIFIED"
@@ -290,7 +289,7 @@ export type ScanRunWarningTraceCodeEnum =
   | "TOO_MANY_FUZZ_TASKS"
   | "BLOCKED_BY_IAP"
   | "NO_STARTING_URL_FOUND_FOR_MANAGED_SCAN";
-export const ScanRunWarningTraceCodeEnum = /*@__PURE__*/ S.String;
+export const ScanRunWarningTraceCodeEnum = S.String;
 
 /** Output only. Defines a warning trace message for ScanRun. Warning traces provide customers with useful information that helps make the scanning process more effective. */
 export interface ScanRunWarningTrace {
@@ -539,7 +538,7 @@ export type XssAttackVectorEnum =
   | "STORED_XSS"
   | "SAME_ORIGIN"
   | "USER_CONTROLLABLE_URL";
-export const XssAttackVectorEnum = /*@__PURE__*/ S.String;
+export const XssAttackVectorEnum = S.String;
 
 /** Information reported for an XSS. */
 export interface Xss {
@@ -599,7 +598,7 @@ export const VulnerableHeaders = /*@__PURE__*/ S.suspend(() =>
 export type XxePayloadLocationEnum =
   | "LOCATION_UNSPECIFIED"
   | "COMPLETE_REQUEST_BODY";
-export const XxePayloadLocationEnum = /*@__PURE__*/ S.String;
+export const XxePayloadLocationEnum = S.String;
 
 /** Information reported for an XXE. */
 export interface Xxe {
@@ -621,7 +620,7 @@ export type FindingSeverityEnum =
   | "HIGH"
   | "MEDIUM"
   | "LOW";
-export const FindingSeverityEnum = /*@__PURE__*/ S.String;
+export const FindingSeverityEnum = S.String;
 
 /** ! Information about a vulnerability with an HTML. */
 export interface Form {

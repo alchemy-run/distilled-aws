@@ -118,7 +118,7 @@ export type EndpointStateEnum =
   | "READY"
   | "DELETING"
   | "UPDATING";
-export const EndpointStateEnum = /*@__PURE__*/ S.String;
+export const EndpointStateEnum = S.String;
 
 export type EndpointSeverityEnum =
   | "SEVERITY_UNSPECIFIED"
@@ -127,7 +127,7 @@ export type EndpointSeverityEnum =
   | "MEDIUM"
   | "HIGH"
   | "CRITICAL";
-export const EndpointSeverityEnum = /*@__PURE__*/ S.String;
+export const EndpointSeverityEnum = S.String;
 
 /** Endpoint describes a single IDS endpoint. It defines a forwarding rule to which packets can be sent for IDS inspection. */
 export interface Endpoint {

@@ -65,7 +65,7 @@ export const ChangeRequestsApproveCreateRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `valid` - Valid * `invalid` - Invalid * `stale` - Stale (resource changed) */
 export type ValidationStatusEnum = "valid" | "invalid" | "stale";
-export const ValidationStatusEnum = /*@__PURE__*/ S.String;
+export const ValidationStatusEnum = S.String;
 
 /** * `pending` - Pending * `approved` - Approved (awaiting application) * `applied` - Applied * `rejected` - Rejected * `expired` - Expired * `failed` - Failed to apply */
 export type ChangeRequestStateEnum =
@@ -75,7 +75,7 @@ export type ChangeRequestStateEnum =
   | "rejected"
   | "expired"
   | "failed";
-export const ChangeRequestStateEnum = /*@__PURE__*/ S.String;
+export const ChangeRequestStateEnum = S.String;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -94,14 +94,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;

@@ -69,7 +69,7 @@ export type CreateRecordRequestType =
   | "SRV"
   | "TXT"
   | "NS";
-export const CreateRecordRequestType = /*@__PURE__*/ S.String;
+export const CreateRecordRequestType = S.String;
 
 export interface CreateRecordRequest {
   /** The domain used to create the DNS record. */
@@ -123,7 +123,7 @@ export type CreateRecordResponseBody =
   | CreateRecordResponseBodyCase0
   | CreateRecordResponseBodyCase1;
 export const CreateRecordResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateRecordResponseBody>;
+  S.Unknown as any as S.Schema<CreateRecordResponseBody>;
 
 export type CreateRecordResponse = CreateRecordResponseBody;
 export const CreateRecordResponse = /*@__PURE__*/ S.suspend(() =>
@@ -157,7 +157,7 @@ export type GetDomainsRecordResponseType =
   | "NS"
   | "SRV"
   | "TXT";
-export const GetDomainsRecordResponseType = /*@__PURE__*/ S.String;
+export const GetDomainsRecordResponseType = S.String;
 
 export type GetDomainsRecordResponseRecordType =
   | "A"
@@ -170,7 +170,7 @@ export type GetDomainsRecordResponseRecordType =
   | "NS"
   | "SRV"
   | "TXT";
-export const GetDomainsRecordResponseRecordType = /*@__PURE__*/ S.String;
+export const GetDomainsRecordResponseRecordType = S.String;
 
 export interface GetDomainsRecordResponse {
   type: GetDomainsRecordResponseType;
@@ -240,8 +240,7 @@ export type GetRecordsResponseBodyCase1RecordsItemType =
   | "NS"
   | "SRV"
   | "TXT";
-export const GetRecordsResponseBodyCase1RecordsItemType =
-  /*@__PURE__*/ S.String;
+export const GetRecordsResponseBodyCase1RecordsItemType = S.String;
 
 export interface GetRecordsResponseBodyCase1RecordsItem {
   id: string;
@@ -309,8 +308,7 @@ export type GetRecordsResponseBodyCase2RecordsItemType =
   | "NS"
   | "SRV"
   | "TXT";
-export const GetRecordsResponseBodyCase2RecordsItemType =
-  /*@__PURE__*/ S.String;
+export const GetRecordsResponseBodyCase2RecordsItemType = S.String;
 
 export interface GetRecordsResponseBodyCase2RecordsItem {
   id: string;
@@ -392,7 +390,7 @@ export type GetRecordsResponseBody =
   | GetRecordsResponseBodyCase1
   | GetRecordsResponseBodyCase2;
 export const GetRecordsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetRecordsResponseBody>;
+  S.Unknown as any as S.Schema<GetRecordsResponseBody>;
 
 export type GetRecordsResponse = GetRecordsResponseBody;
 export const GetRecordsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -478,7 +476,7 @@ export type UpdateRecordRequestType =
   | "SRV"
   | "TXT"
   | "NS";
-export const UpdateRecordRequestType = /*@__PURE__*/ S.String;
+export const UpdateRecordRequestType = S.String;
 
 export interface UpdateRecordRequestSrv {
   target: string | null;
@@ -559,7 +557,7 @@ export const UpdateRecordRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRecordRequest>;
 
 export type UpdateRecordResponseType = "record" | "record-sys";
-export const UpdateRecordResponseType = /*@__PURE__*/ S.String;
+export const UpdateRecordResponseType = S.String;
 
 export type UpdateRecordResponseRecordType =
   | "A"
@@ -572,7 +570,7 @@ export type UpdateRecordResponseRecordType =
   | "NS"
   | "SRV"
   | "TXT";
-export const UpdateRecordResponseRecordType = /*@__PURE__*/ S.String;
+export const UpdateRecordResponseRecordType = S.String;
 
 export interface UpdateRecordResponse {
   id: string;

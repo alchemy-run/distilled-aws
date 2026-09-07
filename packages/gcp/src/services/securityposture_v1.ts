@@ -204,7 +204,7 @@ export type PostureDeploymentCategoriesItemEnum =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const PostureDeploymentCategoriesItemEnum = /*@__PURE__*/ S.String;
+export const PostureDeploymentCategoriesItemEnum = S.String;
 
 export type PostureDeploymentCategoriesItemEnumList = Array<
   PostureDeploymentCategoriesItemEnum | (string & {})
@@ -228,7 +228,7 @@ export type PostureDeploymentStateEnum =
   | "CREATE_FAILED"
   | "UPDATE_FAILED"
   | "DELETE_FAILED";
-export const PostureDeploymentStateEnum = /*@__PURE__*/ S.String;
+export const PostureDeploymentStateEnum = S.String;
 
 /** Details for a Posture deployment on an organization, folder, or project. You can deploy at most one posture to each organization, folder, or project. The parent resource for a posture deployment is always the organization, even if the deployment applies to a folder or project. */
 export interface PostureDeployment {
@@ -427,7 +427,7 @@ export type GoogleCloudSecuritypostureV1CustomConstraintActionTypeEnum =
   | "ALLOW"
   | "DENY";
 export const GoogleCloudSecuritypostureV1CustomConstraintActionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudSecuritypostureV1CustomConstraintMethodTypesItemEnum =
   | "METHOD_TYPE_UNSPECIFIED"
@@ -435,7 +435,7 @@ export type GoogleCloudSecuritypostureV1CustomConstraintMethodTypesItemEnum =
   | "UPDATE"
   | "DELETE";
 export const GoogleCloudSecuritypostureV1CustomConstraintMethodTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudSecuritypostureV1CustomConstraintMethodTypesItemEnumList =
   Array<
@@ -510,7 +510,7 @@ export type CustomConfigSeverityEnum =
   | "HIGH"
   | "MEDIUM"
   | "LOW";
-export const CustomConfigSeverityEnum = /*@__PURE__*/ S.String;
+export const CustomConfigSeverityEnum = S.String;
 
 /** A name-value pair used as a custom source property. */
 export interface Property {
@@ -588,7 +588,7 @@ export type SecurityHealthAnalyticsCustomModuleModuleEnablementStateEnum =
   | "ENABLED"
   | "DISABLED";
 export const SecurityHealthAnalyticsCustomModuleModuleEnablementStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A custom module for Security Health Analytics. */
 export interface SecurityHealthAnalyticsCustomModule {
@@ -620,8 +620,7 @@ export type SecurityHealthAnalyticsModuleModuleEnablementStateEnum =
   | "ENABLEMENT_STATE_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED";
-export const SecurityHealthAnalyticsModuleModuleEnablementStateEnum =
-  /*@__PURE__*/ S.String;
+export const SecurityHealthAnalyticsModuleModuleEnablementStateEnum = S.String;
 
 /** A built-in detector for Security Health Analytics. */
 export interface SecurityHealthAnalyticsModule {
@@ -733,7 +732,7 @@ export type PostureStateEnum =
   | "DEPRECATED"
   | "DRAFT"
   | "ACTIVE";
-export const PostureStateEnum = /*@__PURE__*/ S.String;
+export const PostureStateEnum = S.String;
 
 export type PostureCategoriesItemEnum =
   | "CATEGORY_UNSPECIFIED"
@@ -741,7 +740,7 @@ export type PostureCategoriesItemEnum =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const PostureCategoriesItemEnum = /*@__PURE__*/ S.String;
+export const PostureCategoriesItemEnum = S.String;
 
 export type PostureCategoriesItemEnumList = Array<
   PostureCategoriesItemEnum | (string & {})
@@ -1046,7 +1045,7 @@ export type PostureTemplateCategoriesItemEnum =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const PostureTemplateCategoriesItemEnum = /*@__PURE__*/ S.String;
+export const PostureTemplateCategoriesItemEnum = S.String;
 
 export type PostureTemplateCategoriesItemEnumList =
   Array<PostureTemplateCategoriesItemEnum>;
@@ -1058,7 +1057,7 @@ export type PostureTemplateStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DEPRECATED";
-export const PostureTemplateStateEnum = /*@__PURE__*/ S.String;
+export const PostureTemplateStateEnum = S.String;
 
 /** The details of a posture template. */
 export interface PostureTemplate {
@@ -1150,7 +1149,7 @@ export type ViolationSeverityEnum =
   | "HIGH"
   | "MEDIUM"
   | "LOW";
-export const ViolationSeverityEnum = /*@__PURE__*/ S.String;
+export const ViolationSeverityEnum = S.String;
 
 export type PolicyDetailsConstraintTypeEnum =
   | "CONSTRAINT_TYPE_UNSPECIFIED"
@@ -1159,7 +1158,7 @@ export type PolicyDetailsConstraintTypeEnum =
   | "SECURITY_HEALTH_ANALYTICS_MODULE"
   | "ORG_POLICY"
   | "REGO_POLICY";
-export const PolicyDetailsConstraintTypeEnum = /*@__PURE__*/ S.String;
+export const PolicyDetailsConstraintTypeEnum = S.String;
 
 /** Details of a policy that was violated. */
 export interface PolicyDetails {

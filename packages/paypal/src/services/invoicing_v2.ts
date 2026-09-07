@@ -134,7 +134,7 @@ export type PaymentTermType =
   | "NET_60"
   | "NET_90"
   | "NO_DUE_DATE";
-export const PaymentTermType = /*@__PURE__*/ S.String;
+export const PaymentTermType = S.String;
 
 /** The payment term of the invoice. Payment can be due upon receipt, a specified date, or in a set number of days. */
 export interface InvoicePaymentTerm {
@@ -283,7 +283,7 @@ export const AddressPortable = /*@__PURE__*/ S.suspend(() =>
 
 /** The phone type. */
 export type PhoneType = "FAX" | "HOME" | "MOBILE" | "OTHER" | "PAGER";
-export const PhoneType = /*@__PURE__*/ S.String;
+export const PhoneType = S.String;
 
 /** The phone details. Includes the phone number and type. */
 export interface PhoneDetail {
@@ -466,7 +466,7 @@ export const Discount = /*@__PURE__*/ S.suspend(() =>
 
 /** The unit of measure for the invoiced item. */
 export type UnitOfMeasure = "QUANTITY" | "HOURS" | "AMOUNT";
-export const UnitOfMeasure = /*@__PURE__*/ S.String;
+export const UnitOfMeasure = S.String;
 
 /** An array of invoice line item information. The maximum items for an invoice is `100`. */
 export interface ItemInput {
@@ -694,14 +694,14 @@ export type InvoiceStatus =
   | "PAID_EXTERNAL"
   | "REFUNDED_EXTERNAL"
   | "SHARED";
-export const InvoiceStatus = /*@__PURE__*/ S.String;
+export const InvoiceStatus = S.String;
 
 /** The frequency at which the invoice is sent:<ul><li>Multiple recipient. Sent to multiple recipients.</li><li>Batch. Sent in a batch.</li><li>Regular single. Sent one time to a single recipient.</li></ul> */
 export type InvoiceCreationFlow =
   | "MULTIPLE_RECIPIENTS_GROUP"
   | "BATCH"
   | "REGULAR_SINGLE";
-export const InvoiceCreationFlow = /*@__PURE__*/ S.String;
+export const InvoiceCreationFlow = S.String;
 
 /** The audit metadata. Captures all invoicing actions on create, send, update, and cancel. */
 export interface Metadata {
@@ -827,7 +827,7 @@ export const ItemList = /*@__PURE__*/ S.Array(
 
 /** The payment type. Can be PayPal or an external payment. Includes cash or a check. */
 export type PaymentType = "PAYPAL" | "EXTERNAL";
-export const PaymentType = /*@__PURE__*/ S.String;
+export const PaymentType = S.String;
 
 /** The payment mode or method through which the invoicer can accept the payments. */
 export type PaymentMethod =
@@ -839,7 +839,7 @@ export type PaymentMethod =
   | "PAYPAL"
   | "WIRE_TRANSFER"
   | "OTHER";
-export const PaymentMethod = /*@__PURE__*/ S.String;
+export const PaymentMethod = S.String;
 
 /** The payment details of the invoice. Includes payment type, method, date, discount, and transaction type. */
 export interface PaymentDetail {
@@ -941,7 +941,7 @@ export type LinkDescriptionMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const LinkDescriptionMethod = /*@__PURE__*/ S.String;
+export const LinkDescriptionMethod = S.String;
 
 /** The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information. */
 export interface LinkDescription {
@@ -1136,7 +1136,7 @@ export type TemplateItemField =
   | "ITEMS_DATE"
   | "ITEMS_DISCOUNT"
   | "ITEMS_TAX";
-export const TemplateItemField = /*@__PURE__*/ S.String;
+export const TemplateItemField = S.String;
 
 /** The template display preference. */
 export interface TemplateDisplayPreference {
@@ -1175,7 +1175,7 @@ export const TemplateItemSettingList = /*@__PURE__*/ S.Array(
 
 /** The field names in the template for discount, shipping, and custom amounts. */
 export type TemplateSubtotalField = "DISCOUNT" | "SHIPPING" | "CUSTOM";
-export const TemplateSubtotalField = /*@__PURE__*/ S.String;
+export const TemplateSubtotalField = S.String;
 
 /** The template subtotal setting. Includes the field name and display preference. */
 export interface TemplateSubtotalSetting {
@@ -1479,7 +1479,7 @@ export const GetConnectionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the last sync. This property supports Unicode. */
 export type ConnectionLastSyncStatus = "IN_PROGRESS" | "SUCCESS" | "FAILED";
-export const ConnectionLastSyncStatus = /*@__PURE__*/ S.String;
+export const ConnectionLastSyncStatus = S.String;
 
 /** This lists last sync status and connection platform name. */
 export interface Connection {

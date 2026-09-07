@@ -249,7 +249,7 @@ export const AddDatabaseConnectionPoolResponse = /*@__PURE__*/ S.suspend(() =>
 export type MysqlSettingsAuthPlugin =
   | "mysql_native_password"
   | "caching_sha2_password";
-export const MysqlSettingsAuthPlugin = /*@__PURE__*/ S.String;
+export const MysqlSettingsAuthPlugin = S.String;
 
 export interface MysqlSettings {
   /** A string specifying the authentication method to be used for connections to the MySQL user account. The valid values are `mysql_native_password` or `caching_sha2_password`. If excluded when creating a new user, the default for the version of MySQL in use will be used. As of MySQL 8.0, the default is `caching_sha2_password`. */
@@ -268,7 +268,7 @@ export type UserSettingsOpensearchAclItemPermission =
   | "read"
   | "readwrite"
   | "write";
-export const UserSettingsOpensearchAclItemPermission = /*@__PURE__*/ S.String;
+export const UserSettingsOpensearchAclItemPermission = S.String;
 
 export interface UserSettingsOpensearchAclItem {
   /** A regex for matching the indexes that this ACL should apply to. */
@@ -298,7 +298,7 @@ export type UserSettingsAclItemPermission =
   | "consume"
   | "produce"
   | "produceconsume";
-export const UserSettingsAclItemPermission = /*@__PURE__*/ S.String;
+export const UserSettingsAclItemPermission = S.String;
 
 export interface UserSettingsAclItem {
   /** An identifier for the ACL. Will be computed after the ACL is created/updated. */
@@ -335,7 +335,7 @@ export type UserSettingsMongoUserSettingsRole =
   | "readOnly"
   | "readWrite"
   | "dbAdmin";
-export const UserSettingsMongoUserSettingsRole = /*@__PURE__*/ S.String;
+export const UserSettingsMongoUserSettingsRole = S.String;
 
 /** MongoDB-specific settings for the user. This option is not currently supported for other database engines. */
 export interface UserSettingsMongoUserSettings {
@@ -402,7 +402,7 @@ export const AddDatabaseUserRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** A string representing the database user's role. The value will be either "primary" or "normal". */
 export type DatabaseUserRole = "primary" | "normal";
-export const DatabaseUserRole = /*@__PURE__*/ S.String;
+export const DatabaseUserRole = S.String;
 
 export interface DatabaseUser {
   /** The name of a database user. */
@@ -446,8 +446,7 @@ export type AddFirewallRulesRequestInboundRulesItemProtocol =
   | "tcp"
   | "udp"
   | "icmp";
-export const AddFirewallRulesRequestInboundRulesItemProtocol =
-  /*@__PURE__*/ S.String;
+export const AddFirewallRulesRequestInboundRulesItemProtocol = S.String;
 
 /** An array of strings containing the IPv4 addresses, IPv6 addresses, IPv4 CIDRs, and/or IPv6 CIDRs to which the firewall will allow traffic. */
 export type AddFirewallRulesRequestInboundRulesItemSourcesAddressesList =
@@ -542,8 +541,7 @@ export type AddFirewallRulesRequestOutboundRulesItemProtocol =
   | "tcp"
   | "udp"
   | "icmp";
-export const AddFirewallRulesRequestOutboundRulesItemProtocol =
-  /*@__PURE__*/ S.String;
+export const AddFirewallRulesRequestOutboundRulesItemProtocol = S.String;
 
 /** An array of strings containing the IPv4 addresses, IPv6 addresses, IPv4 CIDRs, and/or IPv6 CIDRs to which the firewall will allow traffic. */
 export type AddFirewallRulesRequestOutboundRulesItemDestinationsAddressesList =
@@ -704,7 +702,7 @@ export type KubernetesNodePoolTaintEffect =
   | "NoSchedule"
   | "PreferNoSchedule"
   | "NoExecute";
-export const KubernetesNodePoolTaintEffect = /*@__PURE__*/ S.String;
+export const KubernetesNodePoolTaintEffect = S.String;
 
 export interface KubernetesNodePoolTaint {
   /** An arbitrary string. The `key` and `value` fields of the `taint` object form a key-value pair. For example, if the value of the `key` field is "special" and the value of the `value` field is "gpu", the key value pair would be `special=gpu`. */
@@ -735,8 +733,7 @@ export const AddKubernetesNodePoolRequestTaintsList = /*@__PURE__*/ S.Array(
 export type AddKubernetesNodePoolRequestGpuPartitionMode =
   | "AMD_PARTITION_MODE_SPX_NPS1"
   | "AMD_PARTITION_MODE_DPX_NPS2";
-export const AddKubernetesNodePoolRequestGpuPartitionMode =
-  /*@__PURE__*/ S.String;
+export const AddKubernetesNodePoolRequestGpuPartitionMode = S.String;
 
 export interface AddKubernetesNodePoolRequest {
   /** A unique ID that can be used to reference a Kubernetes cluster. */
@@ -808,7 +805,7 @@ export type NodeStatusState =
   | "running"
   | "draining"
   | "deleting";
-export const NodeStatusState = /*@__PURE__*/ S.String;
+export const NodeStatusState = S.String;
 
 /** An object containing a `state` attribute whose value is set to a string indicating the current status of the node. */
 export interface NodeStatus {
@@ -856,7 +853,7 @@ export const KubernetesNodePoolNodesList = /*@__PURE__*/ S.Array(
 export type KubernetesNodePoolGpuPartitionMode =
   | "AMD_PARTITION_MODE_SPX_NPS1"
   | "AMD_PARTITION_MODE_DPX_NPS2";
-export const KubernetesNodePoolGpuPartitionMode = /*@__PURE__*/ S.String;
+export const KubernetesNodePoolGpuPartitionMode = S.String;
 
 export interface KubernetesNodePool {
   /** The slug identifier for the type of Droplet used as workers in the node pool. */
@@ -1023,7 +1020,7 @@ export type ForwardingRuleEntryProtocol =
   | "http3"
   | "tcp"
   | "udp";
-export const ForwardingRuleEntryProtocol = /*@__PURE__*/ S.String;
+export const ForwardingRuleEntryProtocol = S.String;
 
 /** The protocol used for traffic from the load balancer to the backend Droplets. The possible values are: `http`, `https`, `http2`, `tcp`, or `udp`. If you set the `target_protocol` to `udp`, the `entry_protocol` must be set to `udp`. When using UDP, the load balancer requires that you set up a health check with a port that uses TCP, HTTP, or HTTPS to work properly. */
 export type ForwardingRuleTargetProtocol =
@@ -1032,7 +1029,7 @@ export type ForwardingRuleTargetProtocol =
   | "http2"
   | "tcp"
   | "udp";
-export const ForwardingRuleTargetProtocol = /*@__PURE__*/ S.String;
+export const ForwardingRuleTargetProtocol = S.String;
 
 /** An object specifying a forwarding rule for a load balancer. */
 export interface ForwardingRule {
@@ -1227,7 +1224,7 @@ export type AppsDeploymentPhase =
   | "SUPERSEDED"
   | "ERROR"
   | "CANCELED";
-export const AppsDeploymentPhase = /*@__PURE__*/ S.String;
+export const AppsDeploymentPhase = S.String;
 
 export interface AppsDeploymentProgressStepReason {
   code?: string;
@@ -1248,7 +1245,7 @@ export type AppsDeploymentProgressStepStatus =
   | "RUNNING"
   | "ERROR"
   | "SUCCESS";
-export const AppsDeploymentProgressStepStatus = /*@__PURE__*/ S.String;
+export const AppsDeploymentProgressStepStatus = S.String;
 
 export type AppsDeploymentProgressStepStepsList = Array<unknown>;
 export const AppsDeploymentProgressStepStepsList = /*@__PURE__*/ S.Array(
@@ -1335,15 +1332,15 @@ export type AppSpecRegion =
   | "blr"
   | "sgp"
   | "syd";
-export const AppSpecRegion = /*@__PURE__*/ S.String;
+export const AppSpecRegion = S.String;
 
 /** - DEFAULT: The default `.ondigitalocean.app` domain assigned to this app - PRIMARY: The primary domain for this app that is displayed as the default in the control panel, used in bindable environment variables, and any other places that reference an app's live URL. Only one domain may be set as primary. - ALIAS: A non-primary domain */
 export type AppDomainSpecType = "UNSPECIFIED" | "DEFAULT" | "PRIMARY" | "ALIAS";
-export const AppDomainSpecType = /*@__PURE__*/ S.String;
+export const AppDomainSpecType = S.String;
 
 /** The minimum version of TLS a client application can use to access resources for the domain. Must be one of the following values wrapped within quotations: `"1.2"` or `"1.3"`. */
 export type AppDomainSpecMinimumTlsVersion = "1.2" | "1.3";
-export const AppDomainSpecMinimumTlsVersion = /*@__PURE__*/ S.String;
+export const AppDomainSpecMinimumTlsVersion = S.String;
 
 export interface AppDomainSpec {
   /** The hostname for the domain */
@@ -1414,7 +1411,7 @@ export const AppsBitbucketSourceSpec = AppsGithubSourceSpec;
 
 /** - DOCKER_HUB: The DockerHub container registry type. - DOCR: The DigitalOcean container registry type. - GHCR: The Github container registry type. */
 export type AppsImageSourceSpecRegistryType = "DOCKER_HUB" | "DOCR" | "GHCR";
-export const AppsImageSourceSpecRegistryType = /*@__PURE__*/ S.String;
+export const AppsImageSourceSpecRegistryType = S.String;
 
 export interface AppsImageSourceSpecDeployOnPush {
   /** Whether to automatically deploy new images. Can only be used for images hosted in DOCR and can only be used with an image tag, not a specific digest. */
@@ -1463,11 +1460,11 @@ export type AppVariableDefinitionScope =
   | "RUN_TIME"
   | "BUILD_TIME"
   | "RUN_AND_BUILD_TIME";
-export const AppVariableDefinitionScope = /*@__PURE__*/ S.String;
+export const AppVariableDefinitionScope = S.String;
 
 /** - GENERAL: A plain-text environment variable - SECRET: A secret encrypted environment variable */
 export type AppVariableDefinitionType = "GENERAL" | "SECRET";
-export const AppVariableDefinitionType = /*@__PURE__*/ S.String;
+export const AppVariableDefinitionType = S.String;
 
 export interface AppVariableDefinition {
   /** The variable name */
@@ -1617,7 +1614,7 @@ export type AppServiceSpecInstanceSizeSlugCase0 =
   | "apps-d-4vcpu-8gb"
   | "apps-d-4vcpu-16gb"
   | "apps-d-8vcpu-32gb";
-export const AppServiceSpecInstanceSizeSlugCase0 = /*@__PURE__*/ S.String;
+export const AppServiceSpecInstanceSizeSlugCase0 = S.String;
 
 /** Deprecated size slugs for legacy plans. We strongly encourage customers to use the new plans when creating or upgrading apps. */
 export type AppServiceSpecInstanceSizeSlugCase1 =
@@ -1631,14 +1628,14 @@ export type AppServiceSpecInstanceSizeSlugCase1 =
   | "professional-1l"
   | "professional-l"
   | "professional-xl";
-export const AppServiceSpecInstanceSizeSlugCase1 = /*@__PURE__*/ S.String;
+export const AppServiceSpecInstanceSizeSlugCase1 = S.String;
 
 /** The instance size to use for this component. Default: `apps-s-1vcpu-0.5gb` */
 export type AppServiceSpecInstanceSizeSlug =
   | AppServiceSpecInstanceSizeSlugCase0
   | AppServiceSpecInstanceSizeSlugCase1;
 export const AppServiceSpecInstanceSizeSlug =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AppServiceSpecInstanceSizeSlug>;
+  S.Unknown as any as S.Schema<AppServiceSpecInstanceSizeSlug>;
 
 /** Settings for scaling the component based on CPU utilization. */
 export interface AppAutoscalingSpecServiceMetricsCpu {
@@ -1815,7 +1812,7 @@ export const AppHealthCheckSpec = /*@__PURE__*/ S.suspend(() =>
 
 /** The protocol which the service uses to serve traffic on the http_port. - `HTTP`: The app is serving the HTTP protocol. Default. - `HTTP2`: The app is serving the HTTP/2 protocol. Currently, this needs to be implemented in the service by serving HTTP/2 cleartext (h2c). */
 export type AppServiceSpecProtocol = "HTTP" | "HTTP2";
-export const AppServiceSpecProtocol = /*@__PURE__*/ S.String;
+export const AppServiceSpecProtocol = S.String;
 
 /** The ports on which this service will listen for internal traffic. */
 export type AppServiceSpecInternalPortsList = Array<number>;
@@ -2095,7 +2092,7 @@ export type AppJobSpecInstanceSizeSlugCase0 =
   | "apps-d-4vcpu-8gb"
   | "apps-d-4vcpu-16gb"
   | "apps-d-8vcpu-32gb";
-export const AppJobSpecInstanceSizeSlugCase0 = /*@__PURE__*/ S.String;
+export const AppJobSpecInstanceSizeSlugCase0 = S.String;
 
 /** Deprecated size slugs for legacy plans. We strongly encourage customers to use the new plans when creating or upgrading apps. */
 export type AppJobSpecInstanceSizeSlugCase1 =
@@ -2109,14 +2106,14 @@ export type AppJobSpecInstanceSizeSlugCase1 =
   | "professional-1l"
   | "professional-l"
   | "professional-xl";
-export const AppJobSpecInstanceSizeSlugCase1 = /*@__PURE__*/ S.String;
+export const AppJobSpecInstanceSizeSlugCase1 = S.String;
 
 /** The instance size to use for this component. Default: `apps-s-1vcpu-0.5gb` */
 export type AppJobSpecInstanceSizeSlug =
   | AppJobSpecInstanceSizeSlugCase0
   | AppJobSpecInstanceSizeSlugCase1;
 export const AppJobSpecInstanceSizeSlug =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AppJobSpecInstanceSizeSlug>;
+  S.Unknown as any as S.Schema<AppJobSpecInstanceSizeSlug>;
 
 /** - UNSPECIFIED: Default job type, will auto-complete to POST_DEPLOY kind. - PRE_DEPLOY: Indicates a job that runs before an app deployment. - POST_DEPLOY: Indicates a job that runs after an app deployment. - FAILED_DEPLOY: Indicates a job that runs after a component fails to deploy. */
 export type AppJobSpecKind =
@@ -2124,7 +2121,7 @@ export type AppJobSpecKind =
   | "PRE_DEPLOY"
   | "POST_DEPLOY"
   | "FAILED_DEPLOY";
-export const AppJobSpecKind = /*@__PURE__*/ S.String;
+export const AppJobSpecKind = S.String;
 
 export interface AppJobSpecTermination {
   /** The number of seconds to wait between sending a TERM signal to a container and issuing a KILL which causes immediate shutdown. (Default 120) */
@@ -2224,7 +2221,7 @@ export type AppWorkerSpecInstanceSizeSlugCase0 =
   | "apps-d-4vcpu-8gb"
   | "apps-d-4vcpu-16gb"
   | "apps-d-8vcpu-32gb";
-export const AppWorkerSpecInstanceSizeSlugCase0 = /*@__PURE__*/ S.String;
+export const AppWorkerSpecInstanceSizeSlugCase0 = S.String;
 
 /** Deprecated size slugs for legacy plans. We strongly encourage customers to use the new plans when creating or upgrading apps. */
 export type AppWorkerSpecInstanceSizeSlugCase1 =
@@ -2238,14 +2235,14 @@ export type AppWorkerSpecInstanceSizeSlugCase1 =
   | "professional-1l"
   | "professional-l"
   | "professional-xl";
-export const AppWorkerSpecInstanceSizeSlugCase1 = /*@__PURE__*/ S.String;
+export const AppWorkerSpecInstanceSizeSlugCase1 = S.String;
 
 /** The instance size to use for this component. Default: `apps-s-1vcpu-0.5gb` */
 export type AppWorkerSpecInstanceSizeSlug =
   | AppWorkerSpecInstanceSizeSlugCase0
   | AppWorkerSpecInstanceSizeSlugCase1;
 export const AppWorkerSpecInstanceSizeSlug =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AppWorkerSpecInstanceSizeSlug>;
+  S.Unknown as any as S.Schema<AppWorkerSpecInstanceSizeSlug>;
 
 /** Settings for scaling the component based on CPU utilization. */
 export type AppAutoscalingSpecMetricsCpu = AppAutoscalingSpecServiceMetricsCpu;
@@ -2397,13 +2394,13 @@ export type AppAlertSpecRule =
   | "FUNCTIONS_GB_RATE_PER_SECOND"
   | "REQUESTS_PER_SECOND"
   | "REQUEST_DURATION_P95_MS";
-export const AppAlertSpecRule = /*@__PURE__*/ S.String;
+export const AppAlertSpecRule = S.String;
 
 export type AppAlertSpecOperator =
   | "UNSPECIFIED_OPERATOR"
   | "GREATER_THAN"
   | "LESS_THAN";
-export const AppAlertSpecOperator = /*@__PURE__*/ S.String;
+export const AppAlertSpecOperator = S.String;
 
 export type AppAlertSpecWindow =
   | "UNSPECIFIED_WINDOW"
@@ -2411,7 +2408,7 @@ export type AppAlertSpecWindow =
   | "TEN_MINUTES"
   | "THIRTY_MINUTES"
   | "ONE_HOUR";
-export const AppAlertSpecWindow = /*@__PURE__*/ S.String;
+export const AppAlertSpecWindow = S.String;
 
 export interface AppAlertSpec {
   rule?: AppAlertSpecRule | (string & {});
@@ -2502,7 +2499,7 @@ export type AppDatabaseSpecEngine =
   | "KAFKA"
   | "OPENSEARCH"
   | "VALKEY";
-export const AppDatabaseSpecEngine = /*@__PURE__*/ S.String;
+export const AppDatabaseSpecEngine = S.String;
 
 export interface AppDatabaseSpec {
   /** The name of the underlying DigitalOcean DBaaS cluster. This is required for production databases. For dev databases, if cluster_name is not set, a new cluster will be provisioned. */
@@ -2711,7 +2708,7 @@ export const AppIngressSpec = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "AppIngressSpec" }) as any as S.Schema<AppIngressSpec>;
 
 export type AppEgressTypeSpec = "AUTOASSIGN" | "DEDICATED_IP";
-export const AppEgressTypeSpec = /*@__PURE__*/ S.String;
+export const AppEgressTypeSpec = S.String;
 
 /** Specification for app egress configurations. */
 export interface AppEgressSpec {
@@ -2954,7 +2951,7 @@ export type AppAlertPhase =
   | "CONFIGURING"
   | "ACTIVE"
   | "ERROR";
-export const AppAlertPhase = /*@__PURE__*/ S.String;
+export const AppAlertPhase = S.String;
 
 export type AppAlertProgressStepStatus =
   | "UNKNOWN"
@@ -2962,7 +2959,7 @@ export type AppAlertProgressStepStatus =
   | "RUNNING"
   | "ERROR"
   | "SUCCESS";
-export const AppAlertProgressStepStatus = /*@__PURE__*/ S.String;
+export const AppAlertProgressStepStatus = S.String;
 
 export type AppAlertProgressStepReason = AppsDeploymentProgressStepReason;
 export const AppAlertProgressStepReason = AppsDeploymentProgressStepReason;
@@ -3114,7 +3111,7 @@ export type ResourceStatus =
   | "assigned"
   | "already_assigned"
   | "service_down";
-export const ResourceStatus = /*@__PURE__*/ S.String;
+export const ResourceStatus = S.String;
 
 export interface Resource {
   urn?: string;
@@ -3206,8 +3203,7 @@ export type AssignTagResourcesRequestResourcesItemResourceType =
   | "image"
   | "volume"
   | "volume_snapshot";
-export const AssignTagResourcesRequestResourcesItemResourceType =
-  /*@__PURE__*/ S.String;
+export const AssignTagResourcesRequestResourcesItemResourceType = S.String;
 
 export interface AssignTagResourcesRequestResourcesItem {
   /** The identifier of a resource. */
@@ -3480,7 +3476,7 @@ export type ApiDeploymentStatus =
   | "STATUS_UNDEPLOYMENT_FAILED"
   | "STATUS_DELETED"
   | "STATUS_BUILDING";
-export const ApiDeploymentStatus = /*@__PURE__*/ S.String;
+export const ApiDeploymentStatus = S.String;
 
 /** - VISIBILITY_UNKNOWN: The status of the deployment is unknown - VISIBILITY_DISABLED: The deployment is disabled and will no longer service requests - VISIBILITY_PLAYGROUND: Deprecated: No longer a valid state - VISIBILITY_PUBLIC: The deployment is public and will service requests from the public internet - VISIBILITY_PRIVATE: The deployment is private and will only service requests from other agents, or through API keys */
 export type ApiDeploymentVisibility =
@@ -3489,7 +3485,7 @@ export type ApiDeploymentVisibility =
   | "VISIBILITY_PLAYGROUND"
   | "VISIBILITY_PUBLIC"
   | "VISIBILITY_PRIVATE";
-export const ApiDeploymentVisibility = /*@__PURE__*/ S.String;
+export const ApiDeploymentVisibility = S.String;
 
 /** Description of deployment */
 export interface ApiDeployment {
@@ -3570,7 +3566,7 @@ export type ApiGuardrailType =
   | "GUARDRAIL_TYPE_JAILBREAK"
   | "GUARDRAIL_TYPE_SENSITIVE_DATA"
   | "GUARDRAIL_TYPE_CONTENT_MODERATION";
-export const ApiGuardrailType = /*@__PURE__*/ S.String;
+export const ApiGuardrailType = S.String;
 
 /** A Agent Guardrail */
 export interface ApiAgentGuardrail {
@@ -3622,7 +3618,7 @@ export type ApiIndexedDataSourceStatus =
   | "DATA_SOURCE_STATUS_NOT_UPDATED"
   | "DATA_SOURCE_STATUS_FAILED"
   | "DATA_SOURCE_STATUS_CANCELLED";
-export const ApiIndexedDataSourceStatus = /*@__PURE__*/ S.String;
+export const ApiIndexedDataSourceStatus = S.String;
 
 export interface ApiIndexedDataSource {
   /** Timestamp when data source completed indexing */
@@ -3693,7 +3689,7 @@ export type ApiBatchJobPhase =
   | "BATCH_JOB_PHASE_FAILED"
   | "BATCH_JOB_PHASE_ERROR"
   | "BATCH_JOB_PHASE_CANCELLED";
-export const ApiBatchJobPhase = /*@__PURE__*/ S.String;
+export const ApiBatchJobPhase = S.String;
 
 export type ApiIndexJobStatus =
   | "INDEX_JOB_STATUS_UNKNOWN"
@@ -3704,7 +3700,7 @@ export type ApiIndexJobStatus =
   | "INDEX_JOB_STATUS_NO_CHANGES"
   | "INDEX_JOB_STATUS_PENDING"
   | "INDEX_JOB_STATUS_CANCELLED";
-export const ApiIndexJobStatus = /*@__PURE__*/ S.String;
+export const ApiIndexJobStatus = S.String;
 
 /** IndexingJob description */
 export interface ApiIndexingJob {
@@ -3976,7 +3972,7 @@ export type ApiModelProvider =
   | "MODEL_PROVIDER_DIGITALOCEAN"
   | "MODEL_PROVIDER_ANTHROPIC"
   | "MODEL_PROVIDER_OPENAI";
-export const ApiModelProvider = /*@__PURE__*/ S.String;
+export const ApiModelProvider = S.String;
 
 /** Available reasoning efforts for this model */
 export type ApiModelReasoningEffortsList = Array<string>;
@@ -4044,7 +4040,7 @@ export type ApiModelUsecase =
   | "MODEL_USECASE_AUDIO"
   | "MODEL_USECASE_RERANKING"
   | "MODEL_USECASE_TEXT";
-export const ApiModelUsecase = /*@__PURE__*/ S.String;
+export const ApiModelUsecase = S.String;
 
 /** Usecases of the model */
 export type ApiModelUsecasesList = Array<ApiModelUsecase>;
@@ -4366,7 +4362,7 @@ export type ApiRetrievalMethod =
   | "RETRIEVAL_METHOD_STEP_BACK"
   | "RETRIEVAL_METHOD_SUB_QUERIES"
   | "RETRIEVAL_METHOD_NONE";
-export const ApiRetrievalMethod = /*@__PURE__*/ S.String;
+export const ApiRetrievalMethod = S.String;
 
 /** Agent tag to organize related resources */
 export type ApiAgentTagsList = Array<string>;
@@ -4411,7 +4407,7 @@ export const ApiAgentTemplateTagsList = /*@__PURE__*/ S.Array(
 export type ApiAgentTemplateType =
   | "AGENT_TEMPLATE_TYPE_STANDARD"
   | "AGENT_TEMPLATE_TYPE_ONE_CLICK";
-export const ApiAgentTemplateType = /*@__PURE__*/ S.String;
+export const ApiAgentTemplateType = S.String;
 
 /** Represents an AgentTemplate entity */
 export interface ApiAgentTemplate {
@@ -4492,7 +4488,7 @@ export type ApiEvaluationDatasetType =
   | "EVALUATION_DATASET_TYPE_ADK"
   | "EVALUATION_DATASET_TYPE_NON_ADK"
   | "EVALUATION_DATASET_TYPE_MODEL";
-export const ApiEvaluationDatasetType = /*@__PURE__*/ S.String;
+export const ApiEvaluationDatasetType = S.String;
 
 export interface ApiEvaluationDataset {
   /** Time created at. */
@@ -4553,7 +4549,7 @@ export type ApiEvaluationMetricCategory =
   | "METRIC_CATEGORY_SAFETY_AND_SECURITY"
   | "METRIC_CATEGORY_CONTEXT_QUALITY"
   | "METRIC_CATEGORY_MODEL_FIT";
-export const ApiEvaluationMetricCategory = /*@__PURE__*/ S.String;
+export const ApiEvaluationMetricCategory = S.String;
 
 /** Configuration for a custom model-evaluation metric scored by an LLM judge. Prompt and model response are always included in the judge context. */
 export interface ApiCustomEvaluationMetricConfig {
@@ -4583,7 +4579,7 @@ export type ApiEvaluationScope =
   | "EVALUATION_SCOPE_UNSPECIFIED"
   | "EVALUATION_SCOPE_AGENT"
   | "EVALUATION_SCOPE_MODEL";
-export const ApiEvaluationScope = /*@__PURE__*/ S.String;
+export const ApiEvaluationScope = S.String;
 
 export type ApiEvaluationMetricType =
   | "METRIC_TYPE_UNSPECIFIED"
@@ -4591,21 +4587,21 @@ export type ApiEvaluationMetricType =
   | "METRIC_TYPE_RAG_AND_TOOL"
   | "METRIC_TYPE_MODEL_QUALITY"
   | "METRIC_TYPE_MODEL_SAFETY";
-export const ApiEvaluationMetricType = /*@__PURE__*/ S.String;
+export const ApiEvaluationMetricType = S.String;
 
 export type ApiEvaluationMetricValueType =
   | "METRIC_VALUE_TYPE_UNSPECIFIED"
   | "METRIC_VALUE_TYPE_NUMBER"
   | "METRIC_VALUE_TYPE_STRING"
   | "METRIC_VALUE_TYPE_PERCENTAGE";
-export const ApiEvaluationMetricValueType = /*@__PURE__*/ S.String;
+export const ApiEvaluationMetricValueType = S.String;
 
 /** Distinguishes platform catalog metrics from user-defined LLM-as-judge metrics. */
 export type ApiEvaluationMetricSource =
   | "EVALUATION_METRIC_SOURCE_UNSPECIFIED"
   | "EVALUATION_METRIC_SOURCE_BUILTIN"
   | "EVALUATION_METRIC_SOURCE_CUSTOM";
-export const ApiEvaluationMetricSource = /*@__PURE__*/ S.String;
+export const ApiEvaluationMetricSource = S.String;
 
 export interface ApiEvaluationMetric {
   /** Saved model evaluation presets that reference this metric. Populated for custom metrics when listing metrics so the dashboard can warn that deleting the metric will also delete these presets. Empty for built-in metrics. */
@@ -5057,7 +5053,7 @@ export const CancelAppEventRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of event */
 export type AppEventType = "UNKNOWN" | "DEPLOYMENT" | "AUTOSCALING";
-export const AppEventType = /*@__PURE__*/ S.String;
+export const AppEventType = S.String;
 
 /** The current phase of the autoscaling event */
 export type AppEventAutoscalingPhase =
@@ -5067,7 +5063,7 @@ export type AppEventAutoscalingPhase =
   | "SUCCEEDED"
   | "FAILED"
   | "CANCELED";
-export const AppEventAutoscalingPhase = /*@__PURE__*/ S.String;
+export const AppEventAutoscalingPhase = S.String;
 
 export interface AppEventAutoscalingComponentsValue {
   /** The number of replicas before scaling */
@@ -5178,11 +5174,11 @@ export type AppJobInvocationPhase =
   | "FAILED"
   | "CANCELED"
   | "SKIPPED";
-export const AppJobInvocationPhase = /*@__PURE__*/ S.String;
+export const AppJobInvocationPhase = S.String;
 
 /** The type of trigger that initiated the job invocation. */
 export type AppJobInvocationTriggerType = "MANUAL" | "SCHEDULE" | "UNKNOWN";
-export const AppJobInvocationTriggerType = /*@__PURE__*/ S.String;
+export const AppJobInvocationTriggerType = S.String;
 
 export interface AppJobInvocationTriggerScheduledSchedule {
   /** The cron expression defining the schedule */
@@ -5340,7 +5336,7 @@ export type ApiCandidateModelSource =
   | "CANDIDATE_MODEL_SOURCE_SERVERLESS"
   | "CANDIDATE_MODEL_SOURCE_DEDICATED"
   | "CANDIDATE_MODEL_SOURCE_ROUTER";
-export const ApiCandidateModelSource = /*@__PURE__*/ S.String;
+export const ApiCandidateModelSource = S.String;
 
 /** Per-phase progress for a model evaluation run. The candidate phase invokes the candidate model once per dataset row; the judge phase scores each candidate-success row with the configured metrics. Counts grow as the run advances; compare against total_rows to render a progress bar. */
 export interface ApiModelEvaluationRunProgress {
@@ -5372,7 +5368,7 @@ export type ApiModelEvaluationRunStatus =
   | "MODEL_EVALUATION_RUN_SUCCESSFUL"
   | "MODEL_EVALUATION_RUN_PARTIALLY_SUCCESSFUL"
   | "MODEL_EVALUATION_RUN_FAILED";
-export const ApiModelEvaluationRunStatus = /*@__PURE__*/ S.String;
+export const ApiModelEvaluationRunStatus = S.String;
 
 /** Model Evaluation Run Summary - lightweight view used in run history list. */
 export interface ApiModelEvaluationRunSummary {
@@ -5451,13 +5447,13 @@ export type BatchStatus =
   | "expired"
   | "cancelling"
   | "cancelled";
-export const BatchStatus = /*@__PURE__*/ S.String;
+export const BatchStatus = S.String;
 
 export type BatchProvider = "openai" | "anthropic";
-export const BatchProvider = /*@__PURE__*/ S.String;
+export const BatchProvider = S.String;
 
 export type BatchCompletionWindow = "24h";
-export const BatchCompletionWindow = /*@__PURE__*/ S.String;
+export const BatchCompletionWindow = S.String;
 
 /** Aggregate request counts. */
 export interface BatchRequestCounts {
@@ -5589,7 +5585,7 @@ export const CommitAppRollbackResponse = /*@__PURE__*/ S.suspend(() =>
 /** The value to be set for the metadata item, which can be a string or boolean. */
 export type AddonsResourceMetadataValue = string | boolean;
 export const AddonsResourceMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddonsResourceMetadataValue>;
+  S.Unknown as any as S.Schema<AddonsResourceMetadataValue>;
 
 export interface AddonsResourceMetadata {
   /** The name of the metadata item to be set. */
@@ -5649,7 +5645,7 @@ export type AddonsResourceState =
   | "provisioning-failed"
   | "deprovisioning-failed"
   | "suspended";
-export const AddonsResourceState = /*@__PURE__*/ S.String;
+export const AddonsResourceState = S.String;
 
 /** Metadata associated with the resource, set by the user. */
 export type AddonsResourceMetadataList = Array<AddonsResourceMetadata>;
@@ -5718,11 +5714,11 @@ export type ChatMessageRole =
   | "user"
   | "assistant"
   | "tool";
-export const ChatMessageRole = /*@__PURE__*/ S.String;
+export const ChatMessageRole = S.String;
 
 /** The type of the tool. Currently, only function is supported. */
 export type ChatCompletionToolCallType = "function";
-export const ChatCompletionToolCallType = /*@__PURE__*/ S.String;
+export const ChatCompletionToolCallType = S.String;
 
 export interface ChatCompletionToolCallFunction {
   /** The name of the function to call. */
@@ -5798,7 +5794,7 @@ export const CreateAgentInferenceChatCompletionRequestMessagesList =
 
 /** The type of the tool. Currently, only function is supported. */
 export type ChatCompletionToolType = "function";
-export const ChatCompletionToolType = /*@__PURE__*/ S.String;
+export const ChatCompletionToolType = S.String;
 
 /** The parameters the function accepts, described as a JSON Schema object. */
 export type FunctionObjectParametersMap = {
@@ -5852,12 +5848,12 @@ export type CreateAgentInferenceChatCompletionRequestToolChoiceCase0 =
   | "auto"
   | "required";
 export const CreateAgentInferenceChatCompletionRequestToolChoiceCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateAgentInferenceChatCompletionRequestToolChoiceCase1Type =
   "function";
 export const CreateAgentInferenceChatCompletionRequestToolChoiceCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateAgentInferenceChatCompletionRequestToolChoiceCase1Function {
   /** The name of the function to call. */
@@ -5894,7 +5890,7 @@ export type CreateAgentInferenceChatCompletionRequestToolChoice =
   | CreateAgentInferenceChatCompletionRequestToolChoiceCase0
   | CreateAgentInferenceChatCompletionRequestToolChoiceCase1;
 export const CreateAgentInferenceChatCompletionRequestToolChoice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateAgentInferenceChatCompletionRequestToolChoice>;
+  S.Unknown as any as S.Schema<CreateAgentInferenceChatCompletionRequestToolChoice>;
 
 export type CreateAgentInferenceChatCompletionRequestStopCase1List =
   Array<string>;
@@ -5908,7 +5904,7 @@ export type CreateAgentInferenceChatCompletionRequestStop =
   | string
   | CreateAgentInferenceChatCompletionRequestStopCase1List;
 export const CreateAgentInferenceChatCompletionRequestStop =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateAgentInferenceChatCompletionRequestStop>;
+  S.Unknown as any as S.Schema<CreateAgentInferenceChatCompletionRequestStop>;
 
 /** Modify the likelihood of specified tokens appearing in the completion. Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. */
 export type CreateAgentInferenceChatCompletionRequestLogitBiasMap = {
@@ -5943,7 +5939,7 @@ export type CreateAgentInferenceChatCompletionRequestReasoningEffort =
   | "high"
   | "xhigh";
 export const CreateAgentInferenceChatCompletionRequestReasoningEffort =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. */
 export type CreateAgentInferenceChatCompletionRequestMetadataMap = {
@@ -6052,14 +6048,13 @@ export type ChatCompletionResponseChoicesItemFinishReason =
   | "length"
   | "tool_calls"
   | "content_filter";
-export const ChatCompletionResponseChoicesItemFinishReason =
-  /*@__PURE__*/ S.String;
+export const ChatCompletionResponseChoicesItemFinishReason = S.String;
 
 /** The type of the tool. */
 export type ChatCompletionResponseChoicesItemMessageToolCallsItemType =
   "function";
 export const ChatCompletionResponseChoicesItemMessageToolCallsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ChatCompletionResponseChoicesItemMessageToolCallsItemFunction {
   /** The name of the function to call. */
@@ -6105,8 +6100,7 @@ export const ChatCompletionResponseChoicesItemMessageToolCallsList =
 
 /** The role of the author of this message. */
 export type ChatCompletionResponseChoicesItemMessageRole = "assistant";
-export const ChatCompletionResponseChoicesItemMessageRole =
-  /*@__PURE__*/ S.String;
+export const ChatCompletionResponseChoicesItemMessageRole = S.String;
 
 /** A chat completion message generated by the model. */
 export interface ChatCompletionResponseChoicesItemMessage {
@@ -6255,7 +6249,7 @@ export const ChatCompletionResponseChoicesList = /*@__PURE__*/ S.Array(
 
 /** The object type, which is always chat.completion. */
 export type ChatCompletionResponseObject = "chat.completion";
-export const ChatCompletionResponseObject = /*@__PURE__*/ S.String;
+export const ChatCompletionResponseObject = S.String;
 
 /** Breakdown of prompt tokens written to cache. */
 export interface CompletionUsageCacheCreation {
@@ -6340,7 +6334,7 @@ export type AppSpecInputRegion =
   | "blr"
   | "sgp"
   | "syd";
-export const AppSpecInputRegion = /*@__PURE__*/ S.String;
+export const AppSpecInputRegion = S.String;
 
 /** A set of hostnames where the application will be available. */
 export type AppSpecInputDomainsList = Array<AppDomainSpec>;
@@ -6454,7 +6448,7 @@ export type AppsDomainPhase =
   | "CONFIGURING"
   | "ACTIVE"
   | "ERROR";
-export const AppsDomainPhase = /*@__PURE__*/ S.String;
+export const AppsDomainPhase = S.String;
 
 export type AppsDomainProgressStepsList = Array<unknown>;
 export const AppsDomainProgressStepsList = /*@__PURE__*/ S.Array(
@@ -6678,7 +6672,7 @@ export type AppsDedicatedEgressIpStatus =
   | "ASSIGNING"
   | "ASSIGNED"
   | "REMOVED";
-export const AppsDedicatedEgressIpStatus = /*@__PURE__*/ S.String;
+export const AppsDedicatedEgressIpStatus = S.String;
 
 export interface AppsDedicatedEgressIp {
   ip?: string;
@@ -6835,7 +6829,7 @@ export type CreateAutoscalepoolRequestConfig =
   | AutoscalePoolStaticConfig
   | AutoscalePoolDynamicConfig;
 export const CreateAutoscalepoolRequestConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateAutoscalepoolRequestConfig>;
+  S.Unknown as any as S.Schema<CreateAutoscalepoolRequestConfig>;
 
 /** The datacenter in which all of the Droplets will be created. */
 export type AutoscalePoolDropletTemplateRegion =
@@ -6853,7 +6847,7 @@ export type AutoscalePoolDropletTemplateRegion =
   | "tor1"
   | "blr1"
   | "syd1";
-export const AutoscalePoolDropletTemplateRegion = /*@__PURE__*/ S.String;
+export const AutoscalePoolDropletTemplateRegion = S.String;
 
 /** The SSH keys to be installed on the Droplets in the autoscale pool. You can either specify the key ID or the fingerprint. Requires `ssh_key:read` scope. */
 export type AutoscalePoolDropletTemplateSshKeysList = Array<string>;
@@ -6963,7 +6957,7 @@ export const CreateByoipPrefixResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The amount of time the content is cached by the CDN's edge servers in seconds. TTL must be one of 60, 600, 3600, 86400, or 604800. Defaults to 3600 (one hour) when excluded. */
 export type CreateCdnEndpointRequestTtl = 60 | 600 | 3600 | 86400 | 604800;
-export const CreateCdnEndpointRequestTtl = /*@__PURE__*/ S.Number;
+export const CreateCdnEndpointRequestTtl = S.Number;
 
 export interface CreateCdnEndpointRequest {
   /** The fully qualified domain name (FQDN) for the origin server which provides the content for the CDN. This is currently restricted to a Space. */
@@ -6988,7 +6982,7 @@ export const CreateCdnEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The amount of time the content is cached by the CDN's edge servers in seconds. TTL must be one of 60, 600, 3600, 86400, or 604800. Defaults to 3600 (one hour) when excluded. */
 export type CdnEndpointTtl = 60 | 600 | 3600 | 86400 | 604800;
-export const CdnEndpointTtl = /*@__PURE__*/ S.Number;
+export const CdnEndpointTtl = S.Number;
 
 export interface CdnEndpoint {
   /** A unique ID that can be used to identify and reference a CDN endpoint. */
@@ -7031,7 +7025,7 @@ export const CreateCdnEndpointResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** A string representing the type of the certificate. The value will be `custom` for a user-uploaded certificate or `lets_encrypt` for one automatically generated with Let's Encrypt. */
 export type CertificateRequestLetsEncryptType = "custom" | "lets_encrypt";
-export const CertificateRequestLetsEncryptType = /*@__PURE__*/ S.String;
+export const CertificateRequestLetsEncryptType = S.String;
 
 /** An array of fully qualified domain names (FQDNs) for which the certificate was issued. A certificate covering all subdomains can be issued using a wildcard (e.g. `*.example.com`). */
 export type CertificateRequestLetsEncryptDnsNamesList = Array<string>;
@@ -7059,7 +7053,7 @@ export const CertificateRequestLetsEncrypt = /*@__PURE__*/ S.suspend(() =>
 
 /** A string representing the type of the certificate. The value will be `custom` for a user-uploaded certificate or `lets_encrypt` for one automatically generated with Let's Encrypt. */
 export type CertificateRequestCustomType = "custom" | "lets_encrypt";
-export const CertificateRequestCustomType = /*@__PURE__*/ S.String;
+export const CertificateRequestCustomType = S.String;
 
 export interface CertificateRequestCustom {
   /** A unique human-readable name referring to a certificate. */
@@ -7089,7 +7083,7 @@ export type CreateCertificateRequestBody =
   | CertificateRequestLetsEncrypt
   | CertificateRequestCustom;
 export const CreateCertificateRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCertificateRequestBody>;
+  S.Unknown as any as S.Schema<CreateCertificateRequestBody>;
 
 export interface CreateCertificateRequest {
   body: CreateCertificateRequestBody;
@@ -7110,11 +7104,11 @@ export const CertificateDnsNamesList = /*@__PURE__*/ S.Array(
 
 /** A string representing the current state of the certificate. It may be `pending`, `verified`, or `error`. */
 export type CertificateState = "pending" | "verified" | "error";
-export const CertificateState = /*@__PURE__*/ S.String;
+export const CertificateState = S.String;
 
 /** A string representing the type of the certificate. The value will be `custom` for a user-uploaded certificate or `lets_encrypt` for one automatically generated with Let's Encrypt. */
 export type CertificateType = "custom" | "lets_encrypt";
-export const CertificateType = /*@__PURE__*/ S.String;
+export const CertificateType = S.String;
 
 export interface Certificate {
   /** A unique ID that can be used to identify and reference a certificate. */
@@ -7169,7 +7163,7 @@ export type CreateDatabaseClusterRequestEngine =
   | "opensearch"
   | "advanced_pg"
   | "advanced_mysql";
-export const CreateDatabaseClusterRequestEngine = /*@__PURE__*/ S.String;
+export const CreateDatabaseClusterRequestEngine = S.String;
 
 /** An array of tags (as strings) to apply to the database cluster. <br><br>Requires `tag:create` scope. */
 export type CreateDatabaseClusterRequestTagsList = Array<string>;
@@ -7232,7 +7226,7 @@ export type FirewallRuleInputType =
   | "ip_addr"
   | "tag"
   | "app";
-export const FirewallRuleInputType = /*@__PURE__*/ S.String;
+export const FirewallRuleInputType = S.String;
 
 export interface FirewallRuleInput {
   /** A unique ID for the firewall rule itself. */
@@ -7407,7 +7401,7 @@ export type DatabaseClusterReadEngine =
   | "opensearch"
   | "advanced_pg"
   | "advanced_mysql";
-export const DatabaseClusterReadEngine = /*@__PURE__*/ S.String;
+export const DatabaseClusterReadEngine = S.String;
 
 /** A string representing the current status of the database cluster. */
 export type DatabaseClusterReadStatus =
@@ -7416,7 +7410,7 @@ export type DatabaseClusterReadStatus =
   | "resizing"
   | "migrating"
   | "forking";
-export const DatabaseClusterReadStatus = /*@__PURE__*/ S.String;
+export const DatabaseClusterReadStatus = S.String;
 
 /** An array of tags that have been applied to the database cluster. <br><br>Requires `tag:read` scope. */
 export type DatabaseClusterReadTagsList = Array<string>;
@@ -7539,7 +7533,7 @@ export const DatabaseClusterReadMaintenanceWindow = /*@__PURE__*/ S.suspend(
 
 /** The type of resource that the firewall rule allows to access the database cluster. */
 export type FirewallRuleType = "droplet" | "k8s" | "ip_addr" | "tag" | "app";
-export const FirewallRuleType = /*@__PURE__*/ S.String;
+export const FirewallRuleType = S.String;
 
 export interface FirewallRule {
   /** A unique ID for the firewall rule itself. */
@@ -7715,8 +7709,7 @@ export type CreateDatabaseKafkaSchemaRequestSchemaType =
   | "AVRO"
   | "JSON"
   | "PROTOBUF";
-export const CreateDatabaseKafkaSchemaRequestSchemaType =
-  /*@__PURE__*/ S.String;
+export const CreateDatabaseKafkaSchemaRequestSchemaType = S.String;
 
 export interface CreateDatabaseKafkaSchemaRequest {
   /** A unique identifier for a database cluster. */
@@ -7750,8 +7743,7 @@ export type CreateDatabaseKafkaSchemaResponseSchemaType =
   | "AVRO"
   | "JSON"
   | "PROTOBUF";
-export const CreateDatabaseKafkaSchemaResponseSchemaType =
-  /*@__PURE__*/ S.String;
+export const CreateDatabaseKafkaSchemaResponseSchemaType = S.String;
 
 export interface CreateDatabaseKafkaSchemaResponse {
   /** The id for schema. */
@@ -7779,7 +7771,7 @@ export type KafkaTopicConfigCleanupPolicy =
   | "delete"
   | "compact"
   | "compact_delete";
-export const KafkaTopicConfigCleanupPolicy = /*@__PURE__*/ S.String;
+export const KafkaTopicConfigCleanupPolicy = S.String;
 
 /** The compression_type specifies the compression type of the topic. */
 export type KafkaTopicConfigCompressionType =
@@ -7789,7 +7781,7 @@ export type KafkaTopicConfigCompressionType =
   | "Iz4"
   | "zstd"
   | "uncompressed";
-export const KafkaTopicConfigCompressionType = /*@__PURE__*/ S.String;
+export const KafkaTopicConfigCompressionType = S.String;
 
 /** The message_format_version specifies the message format version used by the broker to append messages to the logs. The value of this setting is assumed to be 3.0-IV1 if the broker protocol version is 3.0 or higher. By setting a particular message format version, all existing messages on disk must be smaller or equal to the specified version. */
 export type KafkaTopicConfigMessageFormatVersion =
@@ -7834,13 +7826,13 @@ export type KafkaTopicConfigMessageFormatVersion =
   | "3.3-IV1"
   | "3.3-IV2"
   | "3.3-IV3";
-export const KafkaTopicConfigMessageFormatVersion = /*@__PURE__*/ S.String;
+export const KafkaTopicConfigMessageFormatVersion = S.String;
 
 /** The message_timestamp_type specifies whether to use the message create time or log append time as the timestamp on a message. */
 export type KafkaTopicConfigMessageTimestampType =
   | "create_time"
   | "log_append_time";
-export const KafkaTopicConfigMessageTimestampType = /*@__PURE__*/ S.String;
+export const KafkaTopicConfigMessageTimestampType = S.String;
 
 export interface KafkaTopicConfig {
   /** The cleanup_policy sets the retention policy to use on log segments. 'delete' will discard old segments when retention time/size limits are reached. 'compact' will enable log compaction, resulting in retention of the latest value for each key. */
@@ -7949,7 +7941,7 @@ export type KafkaTopicVerboseState =
   | "configuring"
   | "deleting"
   | "unknown";
-export const KafkaTopicVerboseState = /*@__PURE__*/ S.String;
+export const KafkaTopicVerboseState = S.String;
 
 export interface KafkaTopicPartitionConsumerGroupsItem {
   /** Name of the consumer group. */
@@ -8042,11 +8034,11 @@ export type CreateDatabaseLogsinkRequestSinkType =
   | "elasticsearch"
   | "opensearch"
   | "datadog";
-export const CreateDatabaseLogsinkRequestSinkType = /*@__PURE__*/ S.String;
+export const CreateDatabaseLogsinkRequestSinkType = S.String;
 
 /** Message format used by the server, this can be either rfc3164 (the old BSD style message format), `rfc5424` (current syslog message format) or custom */
 export type RsyslogLogsinkFormat = "rfc5424" | "rfc3164" | "custom";
-export const RsyslogLogsinkFormat = /*@__PURE__*/ S.String;
+export const RsyslogLogsinkFormat = S.String;
 
 export interface RsyslogLogsink {
   /** DNS name or IPv4 address of the rsyslog server */
@@ -8150,7 +8142,7 @@ export type CreateDatabaseLogsinkRequestConfig =
   | OpensearchLogsink
   | DatadogLogsink;
 export const CreateDatabaseLogsinkRequestConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDatabaseLogsinkRequestConfig>;
+  S.Unknown as any as S.Schema<CreateDatabaseLogsinkRequestConfig>;
 
 export interface CreateDatabaseLogsinkRequest {
   /** A unique identifier for a database cluster. */
@@ -8179,7 +8171,7 @@ export const CreateDatabaseLogsinkRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDatabaseLogsinkRequest>;
 
 export type LogsinkVerboseSinkType = "rsyslog" | "elasticsearch" | "opensearch";
-export const LogsinkVerboseSinkType = /*@__PURE__*/ S.String;
+export const LogsinkVerboseSinkType = S.String;
 
 export type LogsinkVerboseConfig =
   | RsyslogLogsink
@@ -8187,7 +8179,7 @@ export type LogsinkVerboseConfig =
   | OpensearchLogsink
   | DatadogLogsink;
 export const LogsinkVerboseConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogsinkVerboseConfig>;
+  S.Unknown as any as S.Schema<LogsinkVerboseConfig>;
 
 export interface LogsinkVerbose {
   /** A unique identifier for Logsink */
@@ -8305,7 +8297,7 @@ export type DatabaseReplicaReadStatus =
   | "resizing"
   | "migrating"
   | "forking";
-export const DatabaseReplicaReadStatus = /*@__PURE__*/ S.String;
+export const DatabaseReplicaReadStatus = S.String;
 
 /** A flat array of tag names as strings applied to the read-only replica.<br><br>Requires `tag:read` scope. */
 export type DatabaseReplicaReadTagsList = Array<string>;
@@ -8393,7 +8385,7 @@ export const CreateDatabaseReplicaResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** DigitalOcean region where the Dedicated Inference is hosted. */
 export type DedicatedInferenceSpecInputRegion = "atl1" | "nyc2" | "tor1";
-export const DedicatedInferenceSpecInputRegion = /*@__PURE__*/ S.String;
+export const DedicatedInferenceSpecInputRegion = S.String;
 
 export interface DedicatedInferenceSpecInputVpc {
   /** VPC UUID for the Dedicated Inference. */
@@ -8409,7 +8401,7 @@ export const DedicatedInferenceSpecInputVpc = /*@__PURE__*/ S.suspend(() =>
 
 /** Model provider. */
 export type ModelDeploymentSpecInputModelProvider = "hugging_face";
-export const ModelDeploymentSpecInputModelProvider = /*@__PURE__*/ S.String;
+export const ModelDeploymentSpecInputModelProvider = S.String;
 
 export interface AcceleratorConfigSpecInput {
   /** Number of accelerator instances. */
@@ -8803,7 +8795,7 @@ export type CreateDomainRecordRequestBody =
   | DomainRecordSrvInput
   | DomainRecordCaaInput;
 export const CreateDomainRecordRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDomainRecordRequestBody>;
+  S.Unknown as any as S.Schema<CreateDomainRecordRequestBody>;
 
 export interface CreateDomainRecordRequest {
   /** The name of the domain itself. */
@@ -8876,11 +8868,11 @@ export const CreateDomainRecordResponse = /*@__PURE__*/ S.suspend(() =>
 /** The image ID of a public or private image or the slug identifier for a public image. This image will be the base image for your Droplet.<br>Requires `image:read` scope. */
 export type DropletSingleCreateInputImage = string | number;
 export const DropletSingleCreateInputImage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DropletSingleCreateInputImage>;
+  S.Unknown as any as S.Schema<DropletSingleCreateInputImage>;
 
 export type DropletSingleCreateInputSshKeysItem = string | number;
 export const DropletSingleCreateInputSshKeysItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DropletSingleCreateInputSshKeysItem>;
+  S.Unknown as any as S.Schema<DropletSingleCreateInputSshKeysItem>;
 
 /** An array containing the IDs or fingerprints of the SSH keys that you wish to embed in the Droplet's root account upon creation. You must add the keys to your team before they can be embedded on a Droplet.<br>Requires `ssh_key:read` scope. */
 export type DropletSingleCreateInputSshKeysList =
@@ -8891,7 +8883,7 @@ export const DropletSingleCreateInputSshKeysList = /*@__PURE__*/ S.Array(
 
 /** The backup plan used for the Droplet. The plan can be either `daily` or `weekly`. */
 export type DropletSingleCreateInputBackupPolicyPlan = "daily" | "weekly";
-export const DropletSingleCreateInputBackupPolicyPlan = /*@__PURE__*/ S.String;
+export const DropletSingleCreateInputBackupPolicyPlan = S.String;
 
 /** The day of the week on which the backup will occur. */
 export type DropletSingleCreateInputBackupPolicyWeekday =
@@ -8902,12 +8894,11 @@ export type DropletSingleCreateInputBackupPolicyWeekday =
   | "THU"
   | "FRI"
   | "SAT";
-export const DropletSingleCreateInputBackupPolicyWeekday =
-  /*@__PURE__*/ S.String;
+export const DropletSingleCreateInputBackupPolicyWeekday = S.String;
 
 /** The hour of the day that the backup window will start. */
 export type DropletSingleCreateInputBackupPolicyHour = 0 | 4 | 8 | 12 | 16 | 20;
-export const DropletSingleCreateInputBackupPolicyHour = /*@__PURE__*/ S.Number;
+export const DropletSingleCreateInputBackupPolicyHour = S.Number;
 
 export interface DropletSingleCreateInputBackupPolicy {
   /** The backup plan used for the Droplet. The plan can be either `daily` or `weekly`. */
@@ -9005,11 +8996,11 @@ export const DropletMultiCreateInputNamesList = /*@__PURE__*/ S.Array(
 /** The image ID of a public or private image or the slug identifier for a public image. This image will be the base image for your Droplet.<br>Requires `image:read` scope. */
 export type DropletMultiCreateInputImage = string | number;
 export const DropletMultiCreateInputImage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DropletMultiCreateInputImage>;
+  S.Unknown as any as S.Schema<DropletMultiCreateInputImage>;
 
 export type DropletMultiCreateInputSshKeysItem = string | number;
 export const DropletMultiCreateInputSshKeysItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DropletMultiCreateInputSshKeysItem>;
+  S.Unknown as any as S.Schema<DropletMultiCreateInputSshKeysItem>;
 
 /** An array containing the IDs or fingerprints of the SSH keys that you wish to embed in the Droplet's root account upon creation. You must add the keys to your team before they can be embedded on a Droplet.<br>Requires `ssh_key:read` scope. */
 export type DropletMultiCreateInputSshKeysList =
@@ -9020,7 +9011,7 @@ export const DropletMultiCreateInputSshKeysList = /*@__PURE__*/ S.Array(
 
 /** The backup plan used for the Droplet. The plan can be either `daily` or `weekly`. */
 export type DropletMultiCreateInputBackupPolicyPlan = "daily" | "weekly";
-export const DropletMultiCreateInputBackupPolicyPlan = /*@__PURE__*/ S.String;
+export const DropletMultiCreateInputBackupPolicyPlan = S.String;
 
 /** The day of the week on which the backup will occur. */
 export type DropletMultiCreateInputBackupPolicyWeekday =
@@ -9031,12 +9022,11 @@ export type DropletMultiCreateInputBackupPolicyWeekday =
   | "THU"
   | "FRI"
   | "SAT";
-export const DropletMultiCreateInputBackupPolicyWeekday =
-  /*@__PURE__*/ S.String;
+export const DropletMultiCreateInputBackupPolicyWeekday = S.String;
 
 /** The hour of the day that the backup window will start. */
 export type DropletMultiCreateInputBackupPolicyHour = 0 | 4 | 8 | 12 | 16 | 20;
-export const DropletMultiCreateInputBackupPolicyHour = /*@__PURE__*/ S.Number;
+export const DropletMultiCreateInputBackupPolicyHour = S.Number;
 
 export interface DropletMultiCreateInputBackupPolicy {
   /** The backup plan used for the Droplet. The plan can be either `daily` or `weekly`. */
@@ -9128,7 +9118,7 @@ export type CreateDropletRequestBody =
   | DropletSingleCreateInput
   | DropletMultiCreateInput;
 export const CreateDropletRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDropletRequestBody>;
+  S.Unknown as any as S.Schema<CreateDropletRequestBody>;
 
 export interface CreateDropletRequest {
   body?: CreateDropletRequestBody;
@@ -9159,8 +9149,7 @@ export type CreateFirewallRequestInboundRulesItemProtocol =
   | "tcp"
   | "udp"
   | "icmp";
-export const CreateFirewallRequestInboundRulesItemProtocol =
-  /*@__PURE__*/ S.String;
+export const CreateFirewallRequestInboundRulesItemProtocol = S.String;
 
 /** An array of strings containing the IPv4 addresses, IPv6 addresses, IPv4 CIDRs, and/or IPv6 CIDRs to which the firewall will allow traffic. */
 export type CreateFirewallRequestInboundRulesItemSourcesAddressesList =
@@ -9255,8 +9244,7 @@ export type CreateFirewallRequestOutboundRulesItemProtocol =
   | "tcp"
   | "udp"
   | "icmp";
-export const CreateFirewallRequestOutboundRulesItemProtocol =
-  /*@__PURE__*/ S.String;
+export const CreateFirewallRequestOutboundRulesItemProtocol = S.String;
 
 /** An array of strings containing the IPv4 addresses, IPv6 addresses, IPv4 CIDRs, and/or IPv6 CIDRs to which the firewall will allow traffic. */
 export type CreateFirewallRequestOutboundRulesItemDestinationsAddressesList =
@@ -9404,8 +9392,7 @@ export const FloatingIpCreateCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FloatingIpCreateCase1>;
 
 export type FloatingIpCreate = FloatingIpCreateCase0 | FloatingIpCreateCase1;
-export const FloatingIpCreate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FloatingIpCreate>;
+export const FloatingIpCreate = S.Unknown as any as S.Schema<FloatingIpCreate>;
 
 export interface CreateFloatingIPRequest {
   body: FloatingIpCreate;
@@ -9912,7 +9899,7 @@ export type ApiChunkingAlgorithm =
   | "CHUNKING_ALGORITHM_HIERARCHICAL"
   | "CHUNKING_ALGORITHM_SEMANTIC"
   | "CHUNKING_ALGORITHM_FIXED_LENGTH";
-export const ApiChunkingAlgorithm = /*@__PURE__*/ S.String;
+export const ApiChunkingAlgorithm = S.String;
 
 export interface ApiChunkingOptions {
   child_chunk_size?: number;
@@ -9990,7 +9977,7 @@ export type ApiCrawlingOption =
   | "DOMAIN"
   | "SUBDOMAINS"
   | "SITEMAP";
-export const ApiCrawlingOption = /*@__PURE__*/ S.String;
+export const ApiCrawlingOption = S.String;
 
 /** Declaring which tags to exclude in web pages while webcrawling */
 export type ApiWebCrawlerDataSourceExcludeTagsList = Array<string>;
@@ -10066,7 +10053,7 @@ export type ApiOpenSearchPlanSize =
   | "OPEN_SEARCH_PLAN_SIZE_MEDIUM"
   | "OPEN_SEARCH_PLAN_SIZE_LARGE"
   | "OPEN_SEARCH_PLAN_SIZE_EXTRA_LARGE";
-export const ApiOpenSearchPlanSize = /*@__PURE__*/ S.String;
+export const ApiOpenSearchPlanSize = S.String;
 
 /** Tags to organize your knowledge base. */
 export type CreateGenaiKnowledgeBaseRequestTagsList = Array<string>;
@@ -10277,7 +10264,7 @@ export type ApiPresetSaveSection =
   | "PRESET_SAVE_SECTION_JUDGE"
   | "PRESET_SAVE_SECTION_DATASET"
   | "PRESET_SAVE_SECTION_SYSTEM_PROMPT";
-export const ApiPresetSaveSection = /*@__PURE__*/ S.String;
+export const ApiPresetSaveSection = S.String;
 
 /** Which sections of this run's resolved configuration to persist as a reusable preset. Each selected section saves only its own fields; the remaining sections stay empty on the preset and must be supplied inline on future runs that reference it. Empty means do not save a preset (unless the deprecated `save_as_preset` boolean is true, in which case all sections are saved). Ignored when `eval_preset_uuid` is set. Use `preset_name` to label the saved preset. */
 export type CreateGenaiModelEvaluationRunRequestPresetSaveSectionsList = Array<
@@ -10615,7 +10602,7 @@ export type Distribution =
   | "Rocky Linux"
   | "Ubuntu"
   | "Unknown";
-export const Distribution = /*@__PURE__*/ S.String;
+export const Distribution = S.String;
 
 /** The slug identifier for the region where the resource will initially be available. */
 export type RegionSlug =
@@ -10634,7 +10621,7 @@ export type RegionSlug =
   | "sgp1"
   | "tor1"
   | "syd1";
-export const RegionSlug = /*@__PURE__*/ S.String;
+export const RegionSlug = S.String;
 
 /** A flat array of tag names as strings to be applied to the resource. Tag names may be for either existing or new tags. <br><br>Requires `tag:create` scope. */
 export type TagsArray = Array<string>;
@@ -10673,18 +10660,17 @@ export const CreateImageCustomResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The inference provider whose JSONL schema the input file conforms to. `openai` follows the OpenAI Batch API input schema (`custom_id`, `method`, `url`, `body`); `anthropic` follows the Anthropic Message Batches JSONL conventions. */
 export type CreateInferenceBatchRequestProvider = "openai" | "anthropic";
-export const CreateInferenceBatchRequestProvider = /*@__PURE__*/ S.String;
+export const CreateInferenceBatchRequestProvider = S.String;
 
 /** Inference endpoint each request is dispatched to. **Required when `provider` is `openai` and must match the `url` on every JSONL line. Must be omitted when `provider` is `anthropic`.** */
 export type CreateInferenceBatchRequestEndpoint =
   | "/v1/responses"
   | "/v1/chat/completions";
-export const CreateInferenceBatchRequestEndpoint = /*@__PURE__*/ S.String;
+export const CreateInferenceBatchRequestEndpoint = S.String;
 
 /** Time window in which the job must complete. Jobs that do not finish in time transition to `expired`. */
 export type CreateInferenceBatchRequestCompletionWindow = "24h";
-export const CreateInferenceBatchRequestCompletionWindow =
-  /*@__PURE__*/ S.String;
+export const CreateInferenceBatchRequestCompletionWindow = S.String;
 
 /** Optional string-valued metadata to attach to the job. */
 export type CreateInferenceBatchRequestMetadataMap = {
@@ -10775,13 +10761,11 @@ export type CreateInferenceChatCompletionRequestToolChoiceCase0 =
   | "none"
   | "auto"
   | "required";
-export const CreateInferenceChatCompletionRequestToolChoiceCase0 =
-  /*@__PURE__*/ S.String;
+export const CreateInferenceChatCompletionRequestToolChoiceCase0 = S.String;
 
 export type CreateInferenceChatCompletionRequestToolChoiceCase1Type =
   "function";
-export const CreateInferenceChatCompletionRequestToolChoiceCase1Type =
-  /*@__PURE__*/ S.String;
+export const CreateInferenceChatCompletionRequestToolChoiceCase1Type = S.String;
 
 export type CreateInferenceChatCompletionRequestToolChoiceCase1Function =
   CreateAgentInferenceChatCompletionRequestToolChoiceCase1Function;
@@ -10809,7 +10793,7 @@ export type CreateInferenceChatCompletionRequestToolChoice =
   | CreateInferenceChatCompletionRequestToolChoiceCase0
   | CreateInferenceChatCompletionRequestToolChoiceCase1;
 export const CreateInferenceChatCompletionRequestToolChoice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateInferenceChatCompletionRequestToolChoice>;
+  S.Unknown as any as S.Schema<CreateInferenceChatCompletionRequestToolChoice>;
 
 export type CreateInferenceChatCompletionRequestStopCase1List = Array<string>;
 export const CreateInferenceChatCompletionRequestStopCase1List =
@@ -10822,7 +10806,7 @@ export type CreateInferenceChatCompletionRequestStop =
   | string
   | CreateInferenceChatCompletionRequestStopCase1List;
 export const CreateInferenceChatCompletionRequestStop =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateInferenceChatCompletionRequestStop>;
+  S.Unknown as any as S.Schema<CreateInferenceChatCompletionRequestStop>;
 
 /** Modify the likelihood of specified tokens appearing in the completion. Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. */
 export type CreateInferenceChatCompletionRequestLogitBiasMap = {
@@ -10848,8 +10832,7 @@ export type CreateInferenceChatCompletionRequestReasoningEffort =
   | "medium"
   | "high"
   | "xhigh";
-export const CreateInferenceChatCompletionRequestReasoningEffort =
-  /*@__PURE__*/ S.String;
+export const CreateInferenceChatCompletionRequestReasoningEffort = S.String;
 
 /** Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. */
 export type CreateInferenceChatCompletionRequestMetadataMap = {
@@ -10956,12 +10939,11 @@ export type CreateInferenceEmbeddingRequestInput =
   | string
   | CreateInferenceEmbeddingRequestInputCase1List;
 export const CreateInferenceEmbeddingRequestInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateInferenceEmbeddingRequestInput>;
+  S.Unknown as any as S.Schema<CreateInferenceEmbeddingRequestInput>;
 
 /** How embedding values are returned in each `data[].embedding` field. */
 export type CreateInferenceEmbeddingRequestEncodingFormat = "float" | "base64";
-export const CreateInferenceEmbeddingRequestEncodingFormat =
-  /*@__PURE__*/ S.String;
+export const CreateInferenceEmbeddingRequestEncodingFormat = S.String;
 
 export interface CreateInferenceEmbeddingRequest {
   /** Model id to use for embeddings. Must match a model your account can access. */
@@ -10988,11 +10970,11 @@ export const CreateInferenceEmbeddingRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The object type, which is always the string `list`. */
 export type EmbeddingsResponseObject = "list";
-export const EmbeddingsResponseObject = /*@__PURE__*/ S.String;
+export const EmbeddingsResponseObject = S.String;
 
 /** The object type, which is always `embedding`. */
 export type EmbeddingDataItemObject = "embedding";
-export const EmbeddingDataItemObject = /*@__PURE__*/ S.String;
+export const EmbeddingDataItemObject = S.String;
 
 /** Float vector when encoding_format is float or omitted. */
 export type EmbeddingDataItemEmbeddingCase0List = Array<number>;
@@ -11005,7 +10987,7 @@ export type EmbeddingDataItemEmbedding =
   | EmbeddingDataItemEmbeddingCase0List
   | string;
 export const EmbeddingDataItemEmbedding =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EmbeddingDataItemEmbedding>;
+  S.Unknown as any as S.Schema<EmbeddingDataItemEmbedding>;
 
 /** One row in the embeddings `data` array, aligned with a single `input` item. */
 export interface EmbeddingDataItem {
@@ -11074,7 +11056,7 @@ export type CreateInferenceImageRequestSize =
   | "auto"
   | "1536x1024"
   | "1024x1536";
-export const CreateInferenceImageRequestSize = /*@__PURE__*/ S.String;
+export const CreateInferenceImageRequestSize = S.String;
 
 export interface CreateInferenceImageRequest {
   /** A text description of the desired image(s). Supports up to 32,000 characters and provides automatic prompt optimization for best results. */
@@ -11208,11 +11190,11 @@ export const ImagesResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Speaker role for this message. */
 export type MessagesApiMessageParamRole = "user" | "assistant";
-export const MessagesApiMessageParamRole = /*@__PURE__*/ S.String;
+export const MessagesApiMessageParamRole = S.String;
 
 /** Block type identifier. */
 export type MessagesRequestTextBlockParamType = "text";
-export const MessagesRequestTextBlockParamType = /*@__PURE__*/ S.String;
+export const MessagesRequestTextBlockParamType = S.String;
 
 /** A text content block in a request message. */
 export interface MessagesRequestTextBlockParam {
@@ -11231,7 +11213,7 @@ export const MessagesRequestTextBlockParam = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MessagesRequestTextBlockParam>;
 
 export type MessagesImageBlockParamType = "image";
-export const MessagesImageBlockParamType = /*@__PURE__*/ S.String;
+export const MessagesImageBlockParamType = S.String;
 
 /** Image payload (for example base64-encoded bytes). */
 export interface MessagesImageSourceParam {
@@ -11267,7 +11249,7 @@ export const MessagesImageBlockParam = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MessagesImageBlockParam>;
 
 export type MessagesToolUseBlockParamType = "tool_use";
-export const MessagesToolUseBlockParamType = /*@__PURE__*/ S.String;
+export const MessagesToolUseBlockParamType = S.String;
 
 /** JSON object matching the tool's `input_schema`. */
 export type MessagesToolUseBlockParamInputMap = {
@@ -11298,7 +11280,7 @@ export const MessagesToolUseBlockParam = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MessagesToolUseBlockParam>;
 
 export type MessagesToolResultBlockParamType = "tool_result";
-export const MessagesToolResultBlockParamType = /*@__PURE__*/ S.String;
+export const MessagesToolResultBlockParamType = S.String;
 
 export type MessagesToolResultBlockParamContentCase1ItemMap = {
   [key: string]: unknown | undefined;
@@ -11321,7 +11303,7 @@ export type MessagesToolResultBlockParamContent =
   | string
   | MessagesToolResultBlockParamContentCase1List;
 export const MessagesToolResultBlockParamContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MessagesToolResultBlockParamContent>;
+  S.Unknown as any as S.Schema<MessagesToolResultBlockParamContent>;
 
 /** Result for a prior `tool_use` block, returned to the model. */
 export interface MessagesToolResultBlockParam {
@@ -11347,7 +11329,7 @@ export type MessagesRequestContentBlockParam =
   | MessagesToolUseBlockParam
   | MessagesToolResultBlockParam;
 export const MessagesRequestContentBlockParam =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MessagesRequestContentBlockParam>;
+  S.Unknown as any as S.Schema<MessagesRequestContentBlockParam>;
 
 export type MessagesApiMessageParamContentCase1List =
   Array<MessagesRequestContentBlockParam>;
@@ -11360,7 +11342,7 @@ export type MessagesApiMessageParamContent =
   | string
   | MessagesApiMessageParamContentCase1List;
 export const MessagesApiMessageParamContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MessagesApiMessageParamContent>;
+  S.Unknown as any as S.Schema<MessagesApiMessageParamContent>;
 
 /** One turn in the conversation. Roles are `user` or `assistant` (no `system` role; use the top-level `system` field). Content may be a string (equivalent to a single text block) or an array of content blocks. */
 export interface MessagesApiMessageParam {
@@ -11397,7 +11379,7 @@ export type CreateInferenceMessagesRequestSystem =
   | string
   | CreateInferenceMessagesRequestSystemCase1List;
 export const CreateInferenceMessagesRequestSystem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateInferenceMessagesRequestSystem>;
+  S.Unknown as any as S.Schema<CreateInferenceMessagesRequestSystem>;
 
 /** Custom strings that stop generation when produced. */
 export type CreateInferenceMessagesRequestStopSequencesList = Array<string>;
@@ -11443,7 +11425,7 @@ export const CreateInferenceMessagesRequestToolsList = /*@__PURE__*/ S.Array(
 
 /** Tool selection mode. */
 export type MessagesToolChoiceParamCase1Type = "auto" | "any" | "tool";
-export const MessagesToolChoiceParamCase1Type = /*@__PURE__*/ S.String;
+export const MessagesToolChoiceParamCase1Type = S.String;
 
 export interface MessagesToolChoiceParamCase1 {
   /** Tool selection mode. */
@@ -11463,7 +11445,7 @@ export const MessagesToolChoiceParamCase1 = /*@__PURE__*/ S.suspend(() =>
 /** Controls how the model uses tools: automatic selection, require any tool, force a specific tool, or a string form accepted by the service. */
 export type MessagesToolChoiceParam = string | MessagesToolChoiceParamCase1;
 export const MessagesToolChoiceParam =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MessagesToolChoiceParam>;
+  S.Unknown as any as S.Schema<MessagesToolChoiceParam>;
 
 /** Optional request metadata. */
 export interface CreateInferenceMessagesRequestMetadata {
@@ -11487,12 +11469,11 @@ export type CreateInferenceMessagesRequestReasoningEffort =
   | "medium"
   | "high"
   | "xhigh";
-export const CreateInferenceMessagesRequestReasoningEffort =
-  /*@__PURE__*/ S.String;
+export const CreateInferenceMessagesRequestReasoningEffort = S.String;
 
 /** DigitalOcean extension for preferred inference speed. Ignored when not supported. */
 export type CreateInferenceMessagesRequestSpeed = "standard" | "fast";
-export const CreateInferenceMessagesRequestSpeed = /*@__PURE__*/ S.String;
+export const CreateInferenceMessagesRequestSpeed = S.String;
 
 /** Extended thinking configuration. Executors that do not support thinking may ignore this field. */
 export interface MessagesThinkingConfigParam {
@@ -11566,14 +11547,14 @@ export const CreateInferenceMessagesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Object type discriminator. */
 export type MessagesCreateResponseType = "message";
-export const MessagesCreateResponseType = /*@__PURE__*/ S.String;
+export const MessagesCreateResponseType = S.String;
 
 /** Always `assistant` for this response. */
 export type MessagesCreateResponseRole = "assistant";
-export const MessagesCreateResponseRole = /*@__PURE__*/ S.String;
+export const MessagesCreateResponseRole = S.String;
 
 export type MessagesResponseTextBlockType = "text";
-export const MessagesResponseTextBlockType = /*@__PURE__*/ S.String;
+export const MessagesResponseTextBlockType = S.String;
 
 /** A text block in an assistant message in the response. */
 export interface MessagesResponseTextBlock {
@@ -11591,7 +11572,7 @@ export const MessagesResponseTextBlock = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MessagesResponseTextBlock>;
 
 export type MessagesResponseToolUseBlockType = "tool_use";
-export const MessagesResponseToolUseBlockType = /*@__PURE__*/ S.String;
+export const MessagesResponseToolUseBlockType = S.String;
 
 /** Arguments for the tool invocation. */
 export type MessagesResponseToolUseBlockInputMap = {
@@ -11626,7 +11607,7 @@ export type MessagesResponseContentBlock =
   | MessagesResponseTextBlock
   | MessagesResponseToolUseBlock;
 export const MessagesResponseContentBlock =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MessagesResponseContentBlock>;
+  S.Unknown as any as S.Schema<MessagesResponseContentBlock>;
 
 /** Assistant output blocks (`text` and/or `tool_use`). */
 export type MessagesCreateResponseContentList =
@@ -11641,11 +11622,11 @@ export type MessagesCreateResponseStopReason =
   | "max_tokens"
   | "stop_sequence"
   | "tool_use";
-export const MessagesCreateResponseStopReason = /*@__PURE__*/ S.String;
+export const MessagesCreateResponseStopReason = S.String;
 
 /** Inference speed tier reflected in billing or routing. */
 export type MessagesUsageSpeed = "standard" | "fast";
-export const MessagesUsageSpeed = /*@__PURE__*/ S.String;
+export const MessagesUsageSpeed = S.String;
 
 /** Token usage for a non-streaming `POST /v1/messages` response. */
 export interface MessagesUsage {
@@ -11710,8 +11691,7 @@ export type CreateInferenceResponseRequestInputCase1ItemRole =
   | "system"
   | "tool"
   | "developer";
-export const CreateInferenceResponseRequestInputCase1ItemRole =
-  /*@__PURE__*/ S.String;
+export const CreateInferenceResponseRequestInputCase1ItemRole = S.String;
 
 export interface CreateInferenceResponseRequestInputCase1Item {
   /** The role of the message author. */
@@ -11742,7 +11722,7 @@ export type CreateInferenceResponseRequestInput =
   | string
   | CreateInferenceResponseRequestInputCase1List;
 export const CreateInferenceResponseRequestInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateInferenceResponseRequestInput>;
+  S.Unknown as any as S.Schema<CreateInferenceResponseRequestInput>;
 
 /** Options for streaming response. Only set this when you set stream to true. */
 export interface CreateInferenceResponseRequestStreamOptions {
@@ -11760,8 +11740,7 @@ export const CreateInferenceResponseRequestStreamOptions =
 
 /** The type of the tool. */
 export type CreateInferenceResponseRequestToolsItemType = "function";
-export const CreateInferenceResponseRequestToolsItemType =
-  /*@__PURE__*/ S.String;
+export const CreateInferenceResponseRequestToolsItemType = S.String;
 
 /** The parameters the function accepts, described as a JSON Schema object. */
 export type CreateInferenceResponseRequestToolsItemParametersMap = {
@@ -11808,12 +11787,10 @@ export type CreateInferenceResponseRequestToolChoiceCase0 =
   | "none"
   | "auto"
   | "required";
-export const CreateInferenceResponseRequestToolChoiceCase0 =
-  /*@__PURE__*/ S.String;
+export const CreateInferenceResponseRequestToolChoiceCase0 = S.String;
 
 export type CreateInferenceResponseRequestToolChoiceCase1Type = "function";
-export const CreateInferenceResponseRequestToolChoiceCase1Type =
-  /*@__PURE__*/ S.String;
+export const CreateInferenceResponseRequestToolChoiceCase1Type = S.String;
 
 export type CreateInferenceResponseRequestToolChoiceCase1Function =
   CreateAgentInferenceChatCompletionRequestToolChoiceCase1Function;
@@ -11840,7 +11817,7 @@ export type CreateInferenceResponseRequestToolChoice =
   | CreateInferenceResponseRequestToolChoiceCase0
   | CreateInferenceResponseRequestToolChoiceCase1;
 export const CreateInferenceResponseRequestToolChoice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateInferenceResponseRequestToolChoice>;
+  S.Unknown as any as S.Schema<CreateInferenceResponseRequestToolChoice>;
 
 export type CreateInferenceResponseRequestStopCase1List = Array<string>;
 export const CreateInferenceResponseRequestStopCase1List =
@@ -11853,7 +11830,7 @@ export type CreateInferenceResponseRequestStop =
   | string
   | CreateInferenceResponseRequestStopCase1List;
 export const CreateInferenceResponseRequestStop =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateInferenceResponseRequestStop>;
+  S.Unknown as any as S.Schema<CreateInferenceResponseRequestStop>;
 
 /** Set of key-value pairs that can be attached to the request. */
 export type CreateInferenceResponseRequestMetadataMap = {
@@ -11916,21 +11893,20 @@ export const CreateInferenceResponseRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The object type, which is always `response`. */
 export type CreateResponseResponseObject = "response";
-export const CreateResponseResponseObject = /*@__PURE__*/ S.String;
+export const CreateResponseResponseObject = S.String;
 
 /** The type of output item. One of `reasoning`, `message`, or `function_call`. */
 export type CreateResponseResponseOutputItemType =
   | "reasoning"
   | "message"
   | "function_call";
-export const CreateResponseResponseOutputItemType = /*@__PURE__*/ S.String;
+export const CreateResponseResponseOutputItemType = S.String;
 
 /** The type of content part. `reasoning_text` for reasoning content, `output_text` for final output text. */
 export type CreateResponseResponseOutputItemContentItemType =
   | "reasoning_text"
   | "output_text";
-export const CreateResponseResponseOutputItemContentItemType =
-  /*@__PURE__*/ S.String;
+export const CreateResponseResponseOutputItemContentItemType = S.String;
 
 export interface CreateResponseResponseOutputItemContentItem {
   /** The type of content part. `reasoning_text` for reasoning content, `output_text` for final output text. */
@@ -12050,7 +12026,7 @@ export const ResponseUsage = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the tool. */
 export type CreateResponseResponseToolsItemType = "function";
-export const CreateResponseResponseToolsItemType = /*@__PURE__*/ S.String;
+export const CreateResponseResponseToolsItemType = S.String;
 
 /** The parameters the function accepts. */
 export type CreateResponseResponseToolsItemParametersMap = {
@@ -12163,7 +12139,7 @@ export const KubernetesNodePoolInputTaintsList = /*@__PURE__*/ S.Array(
 export type KubernetesNodePoolInputGpuPartitionMode =
   | "AMD_PARTITION_MODE_SPX_NPS1"
   | "AMD_PARTITION_MODE_DPX_NPS2";
-export const KubernetesNodePoolInputGpuPartitionMode = /*@__PURE__*/ S.String;
+export const KubernetesNodePoolInputGpuPartitionMode = S.String;
 
 export interface KubernetesNodePoolInput {
   /** The slug identifier for the type of Droplet used as workers in the node pool. */
@@ -12222,7 +12198,7 @@ export type MaintenancePolicyInputDay =
   | "friday"
   | "saturday"
   | "sunday";
-export const MaintenancePolicyInputDay = /*@__PURE__*/ S.String;
+export const MaintenancePolicyInputDay = S.String;
 
 /** An object specifying the maintenance window policy for the Kubernetes cluster. */
 export interface MaintenancePolicyInput {
@@ -12266,8 +12242,7 @@ export type ClusterAutoscalerConfigurationExpandersItem =
   | "random"
   | "priority"
   | "least_waste";
-export const ClusterAutoscalerConfigurationExpandersItem =
-  /*@__PURE__*/ S.String;
+export const ClusterAutoscalerConfigurationExpandersItem = S.String;
 
 /** Customizes expanders used by cluster-autoscaler. The autoscaler will apply each expander from the provided list to narrow down the selection of node types created to scale up, until either a single node type is left, or the list of expanders is exhausted. If this flag is unset, autoscaler will use its default expander `random`. Passing an empty list (_not_ `null`) will unset any previous expander customizations. Available expanders: - `random`: Randomly selects a node group to scale. - `priority`: Selects the node group with the highest priority as per [user-provided configuration](https://docs.digitalocean.com/products/kubernetes/how-to/autoscale/#configuring-priority-expander) - `least_waste`: Selects the node group that will result in the least amount of idle resources. */
 export type ClusterAutoscalerConfigurationExpandersList = Array<
@@ -12534,7 +12509,7 @@ export type MaintenancePolicyDay =
   | "friday"
   | "saturday"
   | "sunday";
-export const MaintenancePolicyDay = /*@__PURE__*/ S.String;
+export const MaintenancePolicyDay = S.String;
 
 /** An object specifying the maintenance window policy for the Kubernetes cluster. */
 export interface MaintenancePolicy {
@@ -12564,7 +12539,7 @@ export type ClusterStatusState =
   | "deleted"
   | "upgrading"
   | "deleting";
-export const ClusterStatusState = /*@__PURE__*/ S.String;
+export const ClusterStatusState = S.String;
 
 /** An object containing a `state` attribute whose value is set to a string indicating the current status of the cluster. */
 export interface ClusterStatus {
@@ -12699,13 +12674,13 @@ export type LoadBalancerCreateInputCase0Size =
   | "lb-small"
   | "lb-medium"
   | "lb-large";
-export const LoadBalancerCreateInputCase0Size = /*@__PURE__*/ S.String;
+export const LoadBalancerCreateInputCase0Size = S.String;
 
 /** This field has been deprecated. You can no longer specify an algorithm for load balancers. */
 export type LoadBalancerCreateInputCase0Algorithm =
   | "round_robin"
   | "least_connections";
-export const LoadBalancerCreateInputCase0Algorithm = /*@__PURE__*/ S.String;
+export const LoadBalancerCreateInputCase0Algorithm = S.String;
 
 /** An array of objects specifying the forwarding rules for a load balancer. */
 export type LoadBalancerCreateInputCase0ForwardingRulesList =
@@ -12717,7 +12692,7 @@ export const LoadBalancerCreateInputCase0ForwardingRulesList =
 
 /** The protocol used for health checks sent to the backend Droplets. The possible values are `http`, `https`, or `tcp`. */
 export type HealthCheckProtocol = "http" | "https" | "tcp";
-export const HealthCheckProtocol = /*@__PURE__*/ S.String;
+export const HealthCheckProtocol = S.String;
 
 /** An object specifying health check settings for the load balancer. */
 export interface HealthCheck {
@@ -12750,7 +12725,7 @@ export const HealthCheck = /*@__PURE__*/ S.suspend(() =>
 
 /** An attribute indicating how and if requests from a client will be persistently served by the same backend Droplet. The possible values are `cookies` or `none`. */
 export type StickySessionsType = "cookies" | "none";
-export const StickySessionsType = /*@__PURE__*/ S.String;
+export const StickySessionsType = S.String;
 
 /** An object specifying sticky sessions settings for the load balancer. */
 export interface StickySessions {
@@ -12797,18 +12772,18 @@ export const LbFirewall = /*@__PURE__*/ S.suspend(() =>
 
 /** A string indicating whether the load balancer should be external or internal. Internal load balancers have no public IPs and are only accessible to resources on the same VPC network. This property cannot be updated after creating the load balancer. */
 export type LoadBalancerCreateInputCase0Network = "EXTERNAL" | "INTERNAL";
-export const LoadBalancerCreateInputCase0Network = /*@__PURE__*/ S.String;
+export const LoadBalancerCreateInputCase0Network = S.String;
 
 /** A string indicating whether the load balancer will support IPv4 or both IPv4 and IPv6 networking. This property cannot be updated after creating the load balancer. */
 export type LoadBalancerCreateInputCase0NetworkStack = "IPV4" | "DUALSTACK";
-export const LoadBalancerCreateInputCase0NetworkStack = /*@__PURE__*/ S.String;
+export const LoadBalancerCreateInputCase0NetworkStack = S.String;
 
 /** A string indicating whether the load balancer should be a standard regional HTTP load balancer, a regional network load balancer that routes traffic at the TCP/UDP transport layer, or a global load balancer. */
 export type LoadBalancerCreateInputCase0Type =
   | "REGIONAL"
   | "REGIONAL_NETWORK"
   | "GLOBAL";
-export const LoadBalancerCreateInputCase0Type = /*@__PURE__*/ S.String;
+export const LoadBalancerCreateInputCase0Type = S.String;
 
 /** An object specifying domain configurations for a Global load balancer. */
 export interface Domains {
@@ -12835,7 +12810,7 @@ export const LoadBalancerCreateInputCase0DomainsList = /*@__PURE__*/ S.Array(
 
 /** The protocol used for forwarding traffic from the load balancer to the target backends. The possible values are `http`, `https` and `http2`. */
 export type GlbSettingsTargetProtocol = "http" | "https" | "http2";
-export const GlbSettingsTargetProtocol = /*@__PURE__*/ S.String;
+export const GlbSettingsTargetProtocol = S.String;
 
 /** An object specifying CDN configurations for a Global load balancer. */
 export interface GlbSettingsCdn {
@@ -12890,8 +12865,7 @@ export const LoadBalancerCreateInputCase0TargetLoadBalancerIdsList =
 
 /** A string indicating the policy for the TLS cipher suites used by the load balancer. The possible values are `DEFAULT` or `STRONG`. The default value is `DEFAULT`. */
 export type LoadBalancerCreateInputCase0TlsCipherPolicy = "DEFAULT" | "STRONG";
-export const LoadBalancerCreateInputCase0TlsCipherPolicy =
-  /*@__PURE__*/ S.String;
+export const LoadBalancerCreateInputCase0TlsCipherPolicy = S.String;
 
 export interface LoadBalancerCreateInputCase0 {
   /** An array containing the IDs of the Droplets assigned to the load balancer. */
@@ -12978,13 +12952,13 @@ export type LoadBalancerCreateInputCase1Size =
   | "lb-small"
   | "lb-medium"
   | "lb-large";
-export const LoadBalancerCreateInputCase1Size = /*@__PURE__*/ S.String;
+export const LoadBalancerCreateInputCase1Size = S.String;
 
 /** This field has been deprecated. You can no longer specify an algorithm for load balancers. */
 export type LoadBalancerCreateInputCase1Algorithm =
   | "round_robin"
   | "least_connections";
-export const LoadBalancerCreateInputCase1Algorithm = /*@__PURE__*/ S.String;
+export const LoadBalancerCreateInputCase1Algorithm = S.String;
 
 /** An array of objects specifying the forwarding rules for a load balancer. */
 export type LoadBalancerCreateInputCase1ForwardingRulesList =
@@ -12996,18 +12970,18 @@ export const LoadBalancerCreateInputCase1ForwardingRulesList =
 
 /** A string indicating whether the load balancer should be external or internal. Internal load balancers have no public IPs and are only accessible to resources on the same VPC network. This property cannot be updated after creating the load balancer. */
 export type LoadBalancerCreateInputCase1Network = "EXTERNAL" | "INTERNAL";
-export const LoadBalancerCreateInputCase1Network = /*@__PURE__*/ S.String;
+export const LoadBalancerCreateInputCase1Network = S.String;
 
 /** A string indicating whether the load balancer will support IPv4 or both IPv4 and IPv6 networking. This property cannot be updated after creating the load balancer. */
 export type LoadBalancerCreateInputCase1NetworkStack = "IPV4" | "DUALSTACK";
-export const LoadBalancerCreateInputCase1NetworkStack = /*@__PURE__*/ S.String;
+export const LoadBalancerCreateInputCase1NetworkStack = S.String;
 
 /** A string indicating whether the load balancer should be a standard regional HTTP load balancer, a regional network load balancer that routes traffic at the TCP/UDP transport layer, or a global load balancer. */
 export type LoadBalancerCreateInputCase1Type =
   | "REGIONAL"
   | "REGIONAL_NETWORK"
   | "GLOBAL";
-export const LoadBalancerCreateInputCase1Type = /*@__PURE__*/ S.String;
+export const LoadBalancerCreateInputCase1Type = S.String;
 
 /** An array of objects specifying the domain configurations for a Global load balancer. */
 export type LoadBalancerCreateInputCase1DomainsList = Array<Domains>;
@@ -13025,8 +12999,7 @@ export const LoadBalancerCreateInputCase1TargetLoadBalancerIdsList =
 
 /** A string indicating the policy for the TLS cipher suites used by the load balancer. The possible values are `DEFAULT` or `STRONG`. The default value is `DEFAULT`. */
 export type LoadBalancerCreateInputCase1TlsCipherPolicy = "DEFAULT" | "STRONG";
-export const LoadBalancerCreateInputCase1TlsCipherPolicy =
-  /*@__PURE__*/ S.String;
+export const LoadBalancerCreateInputCase1TlsCipherPolicy = S.String;
 
 export interface LoadBalancerCreateInputCase1 {
   /** The name of a Droplet tag corresponding to Droplets assigned to the load balancer. */
@@ -13112,7 +13085,7 @@ export type LoadBalancerCreateInput =
   | LoadBalancerCreateInputCase0
   | LoadBalancerCreateInputCase1;
 export const LoadBalancerCreateInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LoadBalancerCreateInput>;
+  S.Unknown as any as S.Schema<LoadBalancerCreateInput>;
 
 export interface CreateLoadBalancerRequest {
   body: LoadBalancerCreateInput;
@@ -13173,7 +13146,7 @@ export const Alerts = /*@__PURE__*/ S.suspend(() =>
 export type CreateMonitoringAlertPolicyRequestCompare =
   | "GreaterThan"
   | "LessThan";
-export const CreateMonitoringAlertPolicyRequestCompare = /*@__PURE__*/ S.String;
+export const CreateMonitoringAlertPolicyRequestCompare = S.String;
 
 export type CreateMonitoringAlertPolicyRequestEntitiesList = Array<string>;
 export const CreateMonitoringAlertPolicyRequestEntitiesList =
@@ -13223,14 +13196,14 @@ export type CreateMonitoringAlertPolicyRequestType =
   | "v1/droplet/autoscale_alerts/target_memory_utilization"
   | "v1/droplet/autoscale_alerts/scale_up"
   | "v1/droplet/autoscale_alerts/scale_down";
-export const CreateMonitoringAlertPolicyRequestType = /*@__PURE__*/ S.String;
+export const CreateMonitoringAlertPolicyRequestType = S.String;
 
 export type CreateMonitoringAlertPolicyRequestWindow =
   | "5m"
   | "10m"
   | "30m"
   | "1h";
-export const CreateMonitoringAlertPolicyRequestWindow = /*@__PURE__*/ S.String;
+export const CreateMonitoringAlertPolicyRequestWindow = S.String;
 
 export interface CreateMonitoringAlertPolicyRequest {
   alerts: Alerts;
@@ -13260,7 +13233,7 @@ export const CreateMonitoringAlertPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateMonitoringAlertPolicyRequest>;
 
 export type AlertPolicyCompare = "GreaterThan" | "LessThan";
-export const AlertPolicyCompare = /*@__PURE__*/ S.String;
+export const AlertPolicyCompare = S.String;
 
 export type AlertPolicyEntitiesList = Array<string>;
 export const AlertPolicyEntitiesList = /*@__PURE__*/ S.Array(
@@ -13309,10 +13282,10 @@ export type AlertPolicyType =
   | "v1/droplet/autoscale_alerts/target_memory_utilization"
   | "v1/droplet/autoscale_alerts/scale_up"
   | "v1/droplet/autoscale_alerts/scale_down";
-export const AlertPolicyType = /*@__PURE__*/ S.String;
+export const AlertPolicyType = S.String;
 
 export type AlertPolicyWindow = "5m" | "10m" | "30m" | "1h";
-export const AlertPolicyWindow = /*@__PURE__*/ S.String;
+export const AlertPolicyWindow = S.String;
 
 export interface AlertPolicy {
   alerts: Alerts;
@@ -13356,7 +13329,7 @@ export const CreateMonitoringAlertPolicyResponse = /*@__PURE__*/ S.suspend(() =>
 export type CreateMonitoringDestinationRequestType =
   | "opensearch_dbaas"
   | "opensearch_ext";
-export const CreateMonitoringDestinationRequestType = /*@__PURE__*/ S.String;
+export const CreateMonitoringDestinationRequestType = S.String;
 
 /** Credentials for an OpenSearch cluster user. Optional if `cluster_uuid` is passed. */
 export interface OpensearchConfigRequestCredentials {
@@ -13426,7 +13399,7 @@ export const CreateMonitoringDestinationRequest = /*@__PURE__*/ S.suspend(() =>
 export type DestinationOmitCredentialsType =
   | "opensearch_dbaas"
   | "opensearch_ext";
-export const DestinationOmitCredentialsType = /*@__PURE__*/ S.String;
+export const DestinationOmitCredentialsType = S.String;
 
 /** OpenSearch destination configuration with `credentials` omitted. */
 export interface OpensearchConfigOmitCredentials {
@@ -13565,7 +13538,7 @@ export type NfsResponseStatus =
   | "INACTIVE"
   | "FAILED"
   | "DELETED";
-export const NfsResponseStatus = /*@__PURE__*/ S.String;
+export const NfsResponseStatus = S.String;
 
 /** List of VPC IDs that should be able to access the share. */
 export type NfsResponseVpcIdsList = Array<string>;
@@ -13579,10 +13552,10 @@ export type AccessPointResponseStatus =
   | "ACCESS_POINT_ACTIVE"
   | "ACCESS_POINT_FAILED"
   | "ACCESS_POINT_DELETED";
-export const AccessPointResponseStatus = /*@__PURE__*/ S.String;
+export const AccessPointResponseStatus = S.String;
 
 export type AccessPolicyProtocolsItem = "NFS4" | "NFS";
-export const AccessPolicyProtocolsItem = /*@__PURE__*/ S.String;
+export const AccessPolicyProtocolsItem = S.String;
 
 /** Allowed NFS protocols for this export. */
 export type AccessPolicyProtocolsList = Array<
@@ -13597,7 +13570,7 @@ export type AccessPolicySquashConfig =
   | "NO_SQUASH"
   | "ROOT_SQUASH"
   | "ALL_SQUASH";
-export const AccessPolicySquashConfig = /*@__PURE__*/ S.String;
+export const AccessPolicySquashConfig = S.String;
 
 /** Provider-agnostic NFS access policy for an access point. Network CIDRs are managed by attach, detach, and managed-access workflows and are not part of this policy. */
 export interface AccessPolicy {
@@ -13749,11 +13722,11 @@ export const CreateNfsAccessPointRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of resource on which the action is being performed. Access point mutations return `SHARE` with `resource_id` set to the access point UUID. */
 export type NfsAction2ResourceType = "SHARE" | "SNAPSHOT";
-export const NfsAction2ResourceType = /*@__PURE__*/ S.String;
+export const NfsAction2ResourceType = S.String;
 
 /** The current status of the action. */
 export type NfsAction2Status = "IN_PROGRESS" | "COMPLETED" | "ACTION_FAILED";
-export const NfsAction2Status = /*@__PURE__*/ S.String;
+export const NfsAction2Status = S.String;
 
 /** The action that was submitted. */
 export interface NfsAction2 {
@@ -13806,7 +13779,7 @@ export type NfsActionResizeType =
   | "detach"
   | "reassign"
   | "switch_performance_tier";
-export const NfsActionResizeType = /*@__PURE__*/ S.String;
+export const NfsActionResizeType = S.String;
 
 export interface NfsActionResizeParams {
   /** The new size for the NFS share. */
@@ -13845,7 +13818,7 @@ export type NfsActionSnapshotType =
   | "detach"
   | "reassign"
   | "switch_performance_tier";
-export const NfsActionSnapshotType = /*@__PURE__*/ S.String;
+export const NfsActionSnapshotType = S.String;
 
 export interface NfsActionSnapshotParams {
   /** Snapshot name of the NFS share */
@@ -13884,7 +13857,7 @@ export type NfsActionAttachType =
   | "detach"
   | "reassign"
   | "switch_performance_tier";
-export const NfsActionAttachType = /*@__PURE__*/ S.String;
+export const NfsActionAttachType = S.String;
 
 export interface NfsActionAttachParams {
   /** The ID of the VPC to which the NFS share will be attached */
@@ -13923,7 +13896,7 @@ export type NfsActionDetachType =
   | "detach"
   | "reassign"
   | "switch_performance_tier";
-export const NfsActionDetachType = /*@__PURE__*/ S.String;
+export const NfsActionDetachType = S.String;
 
 export interface NfsActionDetachParams {
   /** The ID of the VPC from which the NFS share will be detached */
@@ -13962,7 +13935,7 @@ export type NfsActionReassignType =
   | "detach"
   | "reassign"
   | "switch_performance_tier";
-export const NfsActionReassignType = /*@__PURE__*/ S.String;
+export const NfsActionReassignType = S.String;
 
 export interface NfsActionReassignParams {
   /** The ID of the VPC from which the NFS share will be reassigned */
@@ -14004,7 +13977,7 @@ export type NfsActionSwitchPerformanceTierType =
   | "detach"
   | "reassign"
   | "switch_performance_tier";
-export const NfsActionSwitchPerformanceTierType = /*@__PURE__*/ S.String;
+export const NfsActionSwitchPerformanceTierType = S.String;
 
 export interface NfsActionSwitchPerformanceTierParams {
   /** The performance tier to which the NFS share will be switched (e.g., standard, high). */
@@ -14044,7 +14017,7 @@ export type CreateNfsActionRequestBody =
   | NfsActionReassign
   | NfsActionSwitchPerformanceTier;
 export const CreateNfsActionRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateNfsActionRequestBody>;
+  S.Unknown as any as S.Schema<CreateNfsActionRequestBody>;
 
 export interface CreateNfsActionRequest {
   /** The unique ID of the NFS share */
@@ -14081,7 +14054,7 @@ export type TeamInvitationRole =
   | "billing viewer"
   | "resource viewer"
   | "modifier";
-export const TeamInvitationRole = /*@__PURE__*/ S.String;
+export const TeamInvitationRole = S.String;
 
 /** An invitation to join a newly created team. */
 export interface TeamInvitation {
@@ -14136,7 +14109,7 @@ export const CreateTeam = /*@__PURE__*/ S.suspend(() =>
 
 /** The invitation delivery status for the email address. */
 export type TeamInvitationStatusStatus = "ok" | "daily_invite_limit_reached";
-export const TeamInvitationStatusStatus = /*@__PURE__*/ S.String;
+export const TeamInvitationStatusStatus = S.String;
 
 /** The result of attempting to send a team invitation. */
 export interface TeamInvitationStatus {
@@ -14181,8 +14154,7 @@ export type CreatePartnerAttachmentRequestConnectionBandwidthInMbps =
   | 2000
   | 5000
   | 10000;
-export const CreatePartnerAttachmentRequestConnectionBandwidthInMbps =
-  /*@__PURE__*/ S.Number;
+export const CreatePartnerAttachmentRequestConnectionBandwidthInMbps = S.Number;
 
 /** The region to create the partner attachment. */
 export type CreatePartnerAttachmentRequestRegion =
@@ -14191,7 +14163,7 @@ export type CreatePartnerAttachmentRequestRegion =
   | "fra"
   | "ams"
   | "sgp";
-export const CreatePartnerAttachmentRequestRegion = /*@__PURE__*/ S.String;
+export const CreatePartnerAttachmentRequestRegion = S.String;
 
 /** An array of VPCs IDs. */
 export type CreatePartnerAttachmentRequestVpcIdsList = Array<string>;
@@ -14225,8 +14197,7 @@ export const CreatePartnerAttachmentRequestBgp = /*@__PURE__*/ S.suspend(() =>
 export type CreatePartnerAttachmentRequestRedundancyZone =
   | "MEGAPORT_BLUE"
   | "MEGAPORT_RED";
-export const CreatePartnerAttachmentRequestRedundancyZone =
-  /*@__PURE__*/ S.String;
+export const CreatePartnerAttachmentRequestRedundancyZone = S.String;
 
 export interface CreatePartnerAttachmentRequest {
   /** The name of the partner attachment. Must be unique and may only contain alphanumeric characters, dashes, and periods. */
@@ -14308,7 +14279,7 @@ export type CreateProjectRequestEnvironment =
   | "Development"
   | "Staging"
   | "Production";
-export const CreateProjectRequestEnvironment = /*@__PURE__*/ S.String;
+export const CreateProjectRequestEnvironment = S.String;
 
 export interface CreateProjectRequest {
   /** The human-readable name for the project. The maximum length is 175 characters and the name must be unique. */
@@ -14333,7 +14304,7 @@ export const CreateProjectRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The environment of the project's resources. */
 export type ProjectEnvironment = "Development" | "Staging" | "Production";
-export const ProjectEnvironment = /*@__PURE__*/ S.String;
+export const ProjectEnvironment = S.String;
 
 export interface Project {
   /** The unique universal identifier of this project. */
@@ -14388,7 +14359,7 @@ export type CreateRegistryRequestSubscriptionTierSlug =
   | "starter"
   | "basic"
   | "professional";
-export const CreateRegistryRequestSubscriptionTierSlug = /*@__PURE__*/ S.String;
+export const CreateRegistryRequestSubscriptionTierSlug = S.String;
 
 /** Slug of the region where registry data is stored. When not provided, a region will be selected. */
 export type CreateRegistryRequestRegion =
@@ -14400,7 +14371,7 @@ export type CreateRegistryRequestRegion =
   | "fra1"
   | "blr1"
   | "syd1";
-export const CreateRegistryRequestRegion = /*@__PURE__*/ S.String;
+export const CreateRegistryRequestRegion = S.String;
 
 export interface CreateRegistryRequest {
   /** A globally unique name for the container registry. Must be lowercase and be composed only of numbers, letters and `-`, up to a limit of 63 characters. */
@@ -14485,8 +14456,7 @@ export const ReservedIpCreateCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ReservedIpCreateCase1>;
 
 export type ReservedIpCreate = ReservedIpCreateCase0 | ReservedIpCreateCase1;
-export const ReservedIpCreate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReservedIpCreate>;
+export const ReservedIpCreate = S.Unknown as any as S.Schema<ReservedIpCreate>;
 
 export interface CreateReservedIPRequest {
   body: ReservedIpCreate;
@@ -14563,11 +14533,11 @@ export type ScanStatus =
   | "FAILED"
   | "CSPM_NOT_ENABLED"
   | "SCAN_NOT_RUN";
-export const ScanStatus = /*@__PURE__*/ S.String;
+export const ScanStatus = S.String;
 
 /** The severity of the finding. */
 export type ScanFindingsItemSeverity = "CRITICAL" | "HIGH" | "MEDIUM" | "LOW";
-export const ScanFindingsItemSeverity = /*@__PURE__*/ S.String;
+export const ScanFindingsItemSeverity = S.String;
 
 export interface ScanFindingsItemMitigationStepsItem {
   step?: number;
@@ -15008,11 +14978,11 @@ export type CreateUptimeAlertRequestType =
   | "down"
   | "down_global"
   | "ssl_expiry";
-export const CreateUptimeAlertRequestType = /*@__PURE__*/ S.String;
+export const CreateUptimeAlertRequestType = S.String;
 
 /** The comparison operator used against the alert's threshold. */
 export type CreateUptimeAlertRequestComparison = "greater_than" | "less_than";
-export const CreateUptimeAlertRequestComparison = /*@__PURE__*/ S.String;
+export const CreateUptimeAlertRequestComparison = S.String;
 
 /** An email to notify on an alert trigger. The Email has to be one that is verified on that DigitalOcean account. */
 export type NotificationEmailList = Array<string>;
@@ -15052,7 +15022,7 @@ export type CreateUptimeAlertRequestPeriod =
   | "15m"
   | "30m"
   | "1h";
-export const CreateUptimeAlertRequestPeriod = /*@__PURE__*/ S.String;
+export const CreateUptimeAlertRequestPeriod = S.String;
 
 export interface CreateUptimeAlertRequest {
   /** A unique identifier for a check. */
@@ -15091,15 +15061,15 @@ export const CreateUptimeAlertRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of alert. */
 export type AlertType = "latency" | "down" | "down_global" | "ssl_expiry";
-export const AlertType = /*@__PURE__*/ S.String;
+export const AlertType = S.String;
 
 /** The comparison operator used against the alert's threshold. */
 export type AlertComparison = "greater_than" | "less_than";
-export const AlertComparison = /*@__PURE__*/ S.String;
+export const AlertComparison = S.String;
 
 /** Period of time the threshold must be exceeded to trigger the alert. */
 export type AlertPeriod = "2m" | "3m" | "5m" | "10m" | "15m" | "30m" | "1h";
-export const AlertPeriod = /*@__PURE__*/ S.String;
+export const AlertPeriod = S.String;
 
 export interface Alert {
   /** A unique ID that can be used to identify and reference the alert. */
@@ -15141,14 +15111,14 @@ export const CreateUptimeAlertResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of health check to perform. */
 export type CreateUptimeCheckRequestType = "ping" | "http" | "https";
-export const CreateUptimeCheckRequestType = /*@__PURE__*/ S.String;
+export const CreateUptimeCheckRequestType = S.String;
 
 export type CreateUptimeCheckRequestRegionsItem =
   | "us_east"
   | "us_west"
   | "eu_west"
   | "se_asia";
-export const CreateUptimeCheckRequestRegionsItem = /*@__PURE__*/ S.String;
+export const CreateUptimeCheckRequestRegionsItem = S.String;
 
 /** An array containing the selected regions to perform healthchecks from. */
 export type CreateUptimeCheckRequestRegionsList = Array<
@@ -15184,10 +15154,10 @@ export const CreateUptimeCheckRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of health check to perform. */
 export type CheckType = "ping" | "http" | "https";
-export const CheckType = /*@__PURE__*/ S.String;
+export const CheckType = S.String;
 
 export type CheckRegionsItem = "us_east" | "us_west" | "eu_west" | "se_asia";
-export const CheckRegionsItem = /*@__PURE__*/ S.String;
+export const CheckRegionsItem = S.String;
 
 /** An array containing the selected regions to perform healthchecks from. */
 export type CheckRegionsList = Array<CheckRegionsItem>;
@@ -15389,7 +15359,7 @@ export const VolumesXfsInput = VolumesExt4Input;
 
 export type CreateVolumeRequestBody = VolumesExt4Input | VolumesExt4Input;
 export const CreateVolumeRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateVolumeRequestBody>;
+  S.Unknown as any as S.Schema<CreateVolumeRequestBody>;
 
 export interface CreateVolumeRequest {
   body: CreateVolumeRequestBody;
@@ -15527,7 +15497,7 @@ export const SnapshotsRegionsList = /*@__PURE__*/ S.Array(
 
 /** The type of resource that the snapshot originated from. */
 export type SnapshotsResourceType = "droplet" | "volume";
-export const SnapshotsResourceType = /*@__PURE__*/ S.String;
+export const SnapshotsResourceType = S.String;
 
 /** An array of Tags the snapshot has been tagged with.<br><br>Requires `tag:read` scope. */
 export type SnapshotsTagsList = Array<string>;
@@ -15644,7 +15614,7 @@ export const CreateVpcResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the VPC NAT gateway. */
 export type CreateVpcnatgatewayRequestType = "PUBLIC";
-export const CreateVpcnatgatewayRequestType = /*@__PURE__*/ S.String;
+export const CreateVpcnatgatewayRequestType = S.String;
 
 /** The region in which the VPC NAT gateway is created. */
 export type CreateVpcnatgatewayRequestRegion =
@@ -15663,7 +15633,7 @@ export type CreateVpcnatgatewayRequestRegion =
   | "blr1"
   | "syd1"
   | "atl1";
-export const CreateVpcnatgatewayRequestRegion = /*@__PURE__*/ S.String;
+export const CreateVpcnatgatewayRequestRegion = S.String;
 
 export interface CreateVpcnatgatewayRequestVpcsItem {
   /** The unique identifier of the VPC to which the NAT gateway is attached. */
@@ -16416,8 +16386,7 @@ export type DeleteFirewallRulesRequestInboundRulesItemProtocol =
   | "tcp"
   | "udp"
   | "icmp";
-export const DeleteFirewallRulesRequestInboundRulesItemProtocol =
-  /*@__PURE__*/ S.String;
+export const DeleteFirewallRulesRequestInboundRulesItemProtocol = S.String;
 
 /** An array of strings containing the IPv4 addresses, IPv6 addresses, IPv4 CIDRs, and/or IPv6 CIDRs to which the firewall will allow traffic. */
 export type DeleteFirewallRulesRequestInboundRulesItemSourcesAddressesList =
@@ -16512,8 +16481,7 @@ export type DeleteFirewallRulesRequestOutboundRulesItemProtocol =
   | "tcp"
   | "udp"
   | "icmp";
-export const DeleteFirewallRulesRequestOutboundRulesItemProtocol =
-  /*@__PURE__*/ S.String;
+export const DeleteFirewallRulesRequestOutboundRulesItemProtocol = S.String;
 
 /** An array of strings containing the IPv4 addresses, IPv6 addresses, IPv4 CIDRs, and/or IPv6 CIDRs to which the firewall will allow traffic. */
 export type DeleteFirewallRulesRequestOutboundRulesItemDestinationsAddressesList =
@@ -16878,7 +16846,7 @@ export type ApiDeleteCustomModelStatus =
   | "DELETE_CUSTOM_MODEL_STATUS_UNSPECIFIED"
   | "DELETE_CUSTOM_MODEL_STATUS_SUCCESS"
   | "DELETE_CUSTOM_MODEL_STATUS_FAIL";
-export const ApiDeleteCustomModelStatus = /*@__PURE__*/ S.String;
+export const ApiDeleteCustomModelStatus = S.String;
 
 /** Response containing delete operation status (public) */
 export interface ApiDeleteCustomModelOutputPublic {
@@ -17073,7 +17041,7 @@ export type ApiDeleteModelEvaluationRunStatus =
   | "DELETE_MODEL_EVALUATION_RUN_STATUS_UNSPECIFIED"
   | "DELETE_MODEL_EVALUATION_RUN_STATUS_SUCCESS"
   | "DELETE_MODEL_EVALUATION_RUN_STATUS_FAIL";
-export const ApiDeleteModelEvaluationRunStatus = /*@__PURE__*/ S.String;
+export const ApiDeleteModelEvaluationRunStatus = S.String;
 
 export interface ApiDeleteModelEvaluationRunOutputPublic {
   /** Error message if deletion failed */
@@ -18840,7 +18808,7 @@ export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** This value is one of "active", "warning" or "locked". */
 export type AccountStatus = "active" | "warning" | "locked";
-export const AccountStatus = /*@__PURE__*/ S.String;
+export const AccountStatus = S.String;
 
 /** When authorized in a team context, includes information about the current team. */
 export interface AccountTeam {
@@ -18915,7 +18883,7 @@ export const GetActionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The current status of the action. This can be "in-progress", "completed", or "errored". */
 export type ActionStatus = "in-progress" | "completed" | "errored";
-export const ActionStatus = /*@__PURE__*/ S.String;
+export const ActionStatus = S.String;
 
 /** This attribute is set to an array which contains features available in this region */
 export type RegionFeaturesList = Array<string>;
@@ -19041,11 +19009,11 @@ export type AddonsPlanState =
   | "approved"
   | "suspended"
   | "archived";
-export const AddonsPlanState = /*@__PURE__*/ S.String;
+export const AddonsPlanState = S.String;
 
 /** Feature type, indicating the kind of data it holds. */
 export type AddonsFeatureType = "unknown" | "string" | "boolean" | "allowance";
-export const AddonsFeatureType = /*@__PURE__*/ S.String;
+export const AddonsFeatureType = S.String;
 
 /** Unit of measurement for the feature, if applicable. Units apply to allowance features. */
 export type AddonsFeatureUnit =
@@ -19055,12 +19023,12 @@ export type AddonsFeatureUnit =
   | "count"
   | "byte"
   | "byte_second";
-export const AddonsFeatureUnit = /*@__PURE__*/ S.String;
+export const AddonsFeatureUnit = S.String;
 
 /** Value of the feature, which can vary based on the type. */
 export type AddonsFeatureValue = string | boolean;
 export const AddonsFeatureValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddonsFeatureValue>;
+  S.Unknown as any as S.Schema<AddonsFeatureValue>;
 
 export interface AddonsFeature {
   /** Unique identifier for the app feature. */
@@ -19270,7 +19238,7 @@ export const GetAddonAppMetadataRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The data type of the metadata value. */
 export type AddonsAppMetadataType = "string" | "boolean";
-export const AddonsAppMetadataType = /*@__PURE__*/ S.String;
+export const AddonsAppMetadataType = S.String;
 
 export type AddonsAppMetadataOptionsList = Array<string>;
 export const AddonsAppMetadataOptionsList = /*@__PURE__*/ S.Array(
@@ -19392,7 +19360,7 @@ export type GetAppEventLogsRequestType =
   | "RUN"
   | "RUN_RESTARTED"
   | "AUTOSCALE_EVENT";
-export const GetAppEventLogsRequestType = /*@__PURE__*/ S.String;
+export const GetAppEventLogsRequestType = S.String;
 
 export interface GetAppEventLogsRequest {
   /** The app ID */
@@ -19458,7 +19426,7 @@ export const GetAppHealthRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAppHealthRequest>;
 
 export type AppComponentHealthState = "UNKNOWN" | "HEALTHY" | "UNHEALTHY";
-export const AppComponentHealthState = /*@__PURE__*/ S.String;
+export const AppComponentHealthState = S.String;
 
 export interface AppComponentHealth {
   name?: string;
@@ -19569,7 +19537,7 @@ export const GetAppInstancesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Supported compute component by DigitalOcean App Platform. */
 export type AppInstanceComponentType = "SERVICE" | "WORKER" | "JOB";
-export const AppInstanceComponentType = /*@__PURE__*/ S.String;
+export const AppInstanceComponentType = S.String;
 
 export interface AppInstance {
   /** Name of the component, from the app spec. */
@@ -19623,7 +19591,7 @@ export const GetAppInstanceSizeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAppInstanceSizeRequest>;
 
 export type InstanceSizeCpuType = "UNSPECIFIED" | "SHARED" | "DEDICATED";
-export const InstanceSizeCpuType = /*@__PURE__*/ S.String;
+export const InstanceSizeCpuType = S.String;
 
 export interface AppsInstanceSize {
   bandwidth_allowance_gib?: string;
@@ -19698,7 +19666,7 @@ export const GetAppJobInvocationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAppJobInvocationRequest>;
 
 export type GetAppJobInvocationLogsRequestType = "JOB_INVOCATION";
-export const GetAppJobInvocationLogsRequestType = /*@__PURE__*/ S.String;
+export const GetAppJobInvocationLogsRequestType = S.String;
 
 export interface GetAppJobInvocationLogsRequest {
   /** The app ID */
@@ -19746,7 +19714,7 @@ export type GetAppLogsRequestType =
   | "RUN"
   | "RUN_RESTARTED"
   | "AUTOSCALE_EVENT";
-export const GetAppLogsRequestType = /*@__PURE__*/ S.String;
+export const GetAppLogsRequestType = S.String;
 
 export interface GetAppLogsRequest {
   /** The app ID */
@@ -19788,7 +19756,7 @@ export type GetAppLogsActiveDeploymentRequestType =
   | "RUN"
   | "RUN_RESTARTED"
   | "AUTOSCALE_EVENT";
-export const GetAppLogsActiveDeploymentRequestType = /*@__PURE__*/ S.String;
+export const GetAppLogsActiveDeploymentRequestType = S.String;
 
 export interface GetAppLogsActiveDeploymentRequest {
   /** The app ID */
@@ -19827,8 +19795,7 @@ export type GetAppLogsActiveDeploymentAggregateRequestType =
   | "RUN"
   | "RUN_RESTARTED"
   | "AUTOSCALE_EVENT";
-export const GetAppLogsActiveDeploymentAggregateRequestType =
-  /*@__PURE__*/ S.String;
+export const GetAppLogsActiveDeploymentAggregateRequestType = S.String;
 
 export interface GetAppLogsActiveDeploymentAggregateRequest {
   /** The app ID */
@@ -19861,7 +19828,7 @@ export type GetAppLogsAggregateRequestType =
   | "RUN"
   | "RUN_RESTARTED"
   | "AUTOSCALE_EVENT";
-export const GetAppLogsAggregateRequestType = /*@__PURE__*/ S.String;
+export const GetAppLogsAggregateRequestType = S.String;
 
 export interface GetAppLogsAggregateRequest {
   /** The app ID */
@@ -19978,7 +19945,7 @@ export type AutoscalePoolConfig =
   | AutoscalePoolStaticConfig
   | AutoscalePoolDynamicConfig;
 export const AutoscalePoolConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AutoscalePoolConfig>;
+  S.Unknown as any as S.Schema<AutoscalePoolConfig>;
 
 export interface CurrentUtilization {
   /** The average memory utilization of the autoscale pool. */
@@ -19997,7 +19964,7 @@ export const CurrentUtilization = /*@__PURE__*/ S.suspend(() =>
 
 /** The current status of the autoscale pool. */
 export type AutoscalePoolStatus = "active" | "deleting" | "error";
-export const AutoscalePoolStatus = /*@__PURE__*/ S.String;
+export const AutoscalePoolStatus = S.String;
 
 export interface AutoscalePool {
   /** A unique identifier for each autoscale pool instance. This is automatically generated upon autoscale pool creation. */
@@ -20417,12 +20384,11 @@ export const GetDatabaseConfigRequest = /*@__PURE__*/ S.suspend(() =>
 export type MysqlAdvancedConfigInternalTmpMemStorageEngine =
   | "TempTable"
   | "MEMORY";
-export const MysqlAdvancedConfigInternalTmpMemStorageEngine =
-  /*@__PURE__*/ S.String;
+export const MysqlAdvancedConfigInternalTmpMemStorageEngine = S.String;
 
 /** Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent. - 0 &mdash; disables this functionality, dirty pages in the same extent are not flushed. - 1 &mdash; flushes contiguous dirty pages in the same extent. - 2 &mdash; flushes dirty pages in the same extent. */
 export type MysqlAdvancedConfigInnodbFlushNeighbors = 0 | 1 | 2;
-export const MysqlAdvancedConfigInnodbFlushNeighbors = /*@__PURE__*/ S.Number;
+export const MysqlAdvancedConfigInnodbFlushNeighbors = S.Number;
 
 /** Defines the destination for logs. Can be `INSIGHTS`, `TABLE`, or both (`INSIGHTS,TABLE`), or `NONE` to disable logs. To specify both destinations, use `INSIGHTS,TABLE` (order matters). Default is NONE. */
 export type MysqlAdvancedConfigLogOutput =
@@ -20430,7 +20396,7 @@ export type MysqlAdvancedConfigLogOutput =
   | "TABLE"
   | "INSIGHTS,TABLE"
   | "NONE";
-export const MysqlAdvancedConfigLogOutput = /*@__PURE__*/ S.String;
+export const MysqlAdvancedConfigLogOutput = S.String;
 
 /** MySQL Incremental Backup configuration settings */
 export interface MysqlIncrementalBackup {
@@ -20617,50 +20583,46 @@ export const MysqlAdvancedConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the default TOAST compression method for values of compressible columns (the default is lz4). */
 export type PostgresAdvancedConfigDefaultToastCompression = "lz4" | "pglz";
-export const PostgresAdvancedConfigDefaultToastCompression =
-  /*@__PURE__*/ S.String;
+export const PostgresAdvancedConfigDefaultToastCompression = S.String;
 
 /** Controls the amount of detail written in the server log for each message that is logged. */
 export type PostgresAdvancedConfigLogErrorVerbosity =
   | "TERSE"
   | "DEFAULT"
   | "VERBOSE";
-export const PostgresAdvancedConfigLogErrorVerbosity = /*@__PURE__*/ S.String;
+export const PostgresAdvancedConfigLogErrorVerbosity = S.String;
 
 /** Selects one of the available log-formats. These can support popular log analyzers like pgbadger, pganalyze, etc. */
 export type PostgresAdvancedConfigLogLinePrefix =
   | "pid=%p,user=%u,db=%d,app=%a,client=%h"
   | "%m [%p] %q[user=%u,db=%d,app=%a]"
   | "%t [%p]: [%l-1] user=%u,db=%d,app=%a,client=%h";
-export const PostgresAdvancedConfigLogLinePrefix = /*@__PURE__*/ S.String;
+export const PostgresAdvancedConfigLogLinePrefix = S.String;
 
 /** Controls which statements are counted. Specify 'top' to track top-level statements (those issued directly by clients), 'all' to also track nested statements (such as statements invoked within functions), or 'none' to disable statement statistics collection. The default value is top. */
 export type PostgresAdvancedConfigPgStatStatementsTrack =
   | "all"
   | "top"
   | "none";
-export const PostgresAdvancedConfigPgStatStatementsTrack =
-  /*@__PURE__*/ S.String;
+export const PostgresAdvancedConfigPgStatStatementsTrack = S.String;
 
 /** Record commit time of transactions. */
 export type PostgresAdvancedConfigTrackCommitTimestamp = "off" | "on";
-export const PostgresAdvancedConfigTrackCommitTimestamp =
-  /*@__PURE__*/ S.String;
+export const PostgresAdvancedConfigTrackCommitTimestamp = S.String;
 
 /** Enables tracking of function call counts and time used. */
 export type PostgresAdvancedConfigTrackFunctions = "all" | "pl" | "none";
-export const PostgresAdvancedConfigTrackFunctions = /*@__PURE__*/ S.String;
+export const PostgresAdvancedConfigTrackFunctions = S.String;
 
 /** Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms. */
 export type PostgresAdvancedConfigTrackIoTiming = "off" | "on";
-export const PostgresAdvancedConfigTrackIoTiming = /*@__PURE__*/ S.String;
+export const PostgresAdvancedConfigTrackIoTiming = S.String;
 
 /** Enum of parameters to ignore when given in startup packet. */
 export type PgbouncerAdvancedConfigIgnoreStartupParametersItem =
   | "extra_float_digits"
   | "search_path";
-export const PgbouncerAdvancedConfigIgnoreStartupParametersItem =
-  /*@__PURE__*/ S.String;
+export const PgbouncerAdvancedConfigIgnoreStartupParametersItem = S.String;
 
 /** List of parameters to ignore when given in startup packet. */
 export type PgbouncerAdvancedConfigIgnoreStartupParametersList = Array<
@@ -20676,7 +20638,7 @@ export type PgbouncerAdvancedConfigAutodbPoolMode =
   | "session"
   | "transaction"
   | "statement";
-export const PgbouncerAdvancedConfigAutodbPoolMode = /*@__PURE__*/ S.String;
+export const PgbouncerAdvancedConfigAutodbPoolMode = S.String;
 
 /** PGBouncer connection pooling settings */
 export interface PgbouncerAdvancedConfig {
@@ -20732,8 +20694,7 @@ export const TimescaledbAdvancedConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Synchronous replication type. Note that the service plan also needs to support synchronous replication. */
 export type PostgresAdvancedConfigSynchronousReplication = "off" | "quorum";
-export const PostgresAdvancedConfigSynchronousReplication =
-  /*@__PURE__*/ S.String;
+export const PostgresAdvancedConfigSynchronousReplication = S.String;
 
 export interface PostgresAdvancedConfig {
   /** Specifies the maximum age (in transactions) that a table's pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table. Note that the system will launch autovacuum processes to prevent wraparound even when autovacuum is otherwise disabled. This parameter will cause the server to be restarted. */
@@ -20940,18 +20901,17 @@ export type RedisAdvancedConfigRedisMaxmemoryPolicy =
   | "volatile-lru"
   | "volatile-random"
   | "volatile-ttl";
-export const RedisAdvancedConfigRedisMaxmemoryPolicy = /*@__PURE__*/ S.String;
+export const RedisAdvancedConfigRedisMaxmemoryPolicy = S.String;
 
 /** Creates an RDB dump of the database every 10 minutes that can be used to recover data after a node crash. The database does not create the dump if no keys have changed since the last dump. When set to `off`, the database cannot fork services, and data can be lost if a service is restarted or powered off. DigitalOcean Managed Caching databases do not support the Append Only File (AOF) persistence method. */
 export type RedisAdvancedConfigRedisPersistence = "off" | "rdb";
-export const RedisAdvancedConfigRedisPersistence = /*@__PURE__*/ S.String;
+export const RedisAdvancedConfigRedisPersistence = S.String;
 
 /** Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Caching configuration acl-pubsub-default. */
 export type RedisAdvancedConfigRedisAclChannelsDefault =
   | "allchannels"
   | "resetchannels";
-export const RedisAdvancedConfigRedisAclChannelsDefault =
-  /*@__PURE__*/ S.String;
+export const RedisAdvancedConfigRedisAclChannelsDefault = S.String;
 
 export interface RedisAdvancedConfig {
   /** A string specifying the desired eviction policy for the Caching cluster. - `noeviction`: Don't evict any data, returns error when memory limit is reached. - `allkeys-lru:` Evict any key, least recently used (LRU) first. - `allkeys-random`: Evict keys in a random order. - `volatile-lru`: Evict keys with expiration only, least recently used (LRU) first. - `volatile-random`: Evict keys with expiration only in a random order. - `volatile-ttl`: Evict keys with expiration only, shortest time-to-live (TTL) first. */
@@ -21009,18 +20969,17 @@ export type EvictionPolicyModel =
   | "volatile_lru"
   | "volatile_random"
   | "volatile_ttl";
-export const EvictionPolicyModel = /*@__PURE__*/ S.String;
+export const EvictionPolicyModel = S.String;
 
 /** When persistence is 'rdb', Valkey does RDB dumps each 10 minutes if any key is changed. Also RDB dumps are done according to backup schedule for backup purposes. When persistence is 'off', no RDB dumps and backups are done, so data can be lost at any moment if service is restarted for any reason, or if service is powered off. Also service can't be forked. */
 export type ValkeyAdvancedConfigValkeyPersistence = "off" | "rdb";
-export const ValkeyAdvancedConfigValkeyPersistence = /*@__PURE__*/ S.String;
+export const ValkeyAdvancedConfigValkeyPersistence = S.String;
 
 /** Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Valkey configuration acl-pubsub-default. */
 export type ValkeyAdvancedConfigValkeyAclChannelsDefault =
   | "allchannels"
   | "resetchannels";
-export const ValkeyAdvancedConfigValkeyAclChannelsDefault =
-  /*@__PURE__*/ S.String;
+export const ValkeyAdvancedConfigValkeyAclChannelsDefault = S.String;
 
 export interface ValkeyAdvancedConfig {
   valkey_maxmemory_policy?: EvictionPolicyModel | (string & {});
@@ -21081,21 +21040,20 @@ export type KafkaAdvancedConfigCompressionType =
   | "zstd"
   | "uncompressed"
   | "producer";
-export const KafkaAdvancedConfigCompressionType = /*@__PURE__*/ S.String;
+export const KafkaAdvancedConfigCompressionType = S.String;
 
 /** The default cleanup policy for segments beyond the retention window */
 export type KafkaAdvancedConfigLogCleanupPolicy =
   | "delete"
   | "compact"
   | "compact,delete";
-export const KafkaAdvancedConfigLogCleanupPolicy = /*@__PURE__*/ S.String;
+export const KafkaAdvancedConfigLogCleanupPolicy = S.String;
 
 /** Define whether the timestamp in the message is message create time or log append time. */
 export type KafkaAdvancedConfigLogMessageTimestampType =
   | "CreateTime"
   | "LogAppendTime";
-export const KafkaAdvancedConfigLogMessageTimestampType =
-  /*@__PURE__*/ S.String;
+export const KafkaAdvancedConfigLogMessageTimestampType = S.String;
 
 export interface KafkaAdvancedConfig {
   /** Specify the final compression type for a given topic. This configuration accepts the standard compression codecs ('gzip', 'snappy', 'lz4', 'zstd'). It additionally accepts 'uncompressed' which is equivalent to no compression; and 'producer' which means retain the original compression codec set by the producer. */
@@ -21378,7 +21336,7 @@ export type MongoAdvancedConfigDefaultReadConcern =
   | "local"
   | "available"
   | "majority";
-export const MongoAdvancedConfigDefaultReadConcern = /*@__PURE__*/ S.String;
+export const MongoAdvancedConfigDefaultReadConcern = S.String;
 
 export interface MongoAdvancedConfig {
   /** Specifies the default consistency behavior of reads from the database. Data that is returned from the query with may or may not have been acknowledged by all nodes in the replicaset depending on this value. Learn more [here](https://www.mongodb.com/docs/manual/reference/read-concern/). */
@@ -21413,7 +21371,7 @@ export type GetDatabaseConfigResponseConfig =
   | OpensearchAdvancedConfig
   | MongoAdvancedConfig;
 export const GetDatabaseConfigResponseConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDatabaseConfigResponseConfig>;
+  S.Unknown as any as S.Schema<GetDatabaseConfigResponseConfig>;
 
 export interface GetDatabaseConfigResponse {
   config: GetDatabaseConfigResponseConfig;
@@ -21559,7 +21517,7 @@ export type GetDatabaseKafkaSchemaResponseSchemaType =
   | "AVRO"
   | "JSON"
   | "PROTOBUF";
-export const GetDatabaseKafkaSchemaResponseSchemaType = /*@__PURE__*/ S.String;
+export const GetDatabaseKafkaSchemaResponseSchemaType = S.String;
 
 export interface GetDatabaseKafkaSchemaResponse {
   /** The id for schema. */
@@ -21612,8 +21570,7 @@ export type GetDatabaseKafkaSchemaConfigResponseCompatibilityLevel =
   | "FORWARD_TRANSITIVE"
   | "FULL"
   | "FULL_TRANSITIVE";
-export const GetDatabaseKafkaSchemaConfigResponseCompatibilityLevel =
-  /*@__PURE__*/ S.String;
+export const GetDatabaseKafkaSchemaConfigResponseCompatibilityLevel = S.String;
 
 export interface GetDatabaseKafkaSchemaConfigResponse {
   /** The compatibility level of the schema registry. */
@@ -21661,7 +21618,7 @@ export type GetDatabaseKafkaSchemaSubjectConfigResponseCompatibilityLevel =
   | "FULL"
   | "FULL_TRANSITIVE";
 export const GetDatabaseKafkaSchemaSubjectConfigResponseCompatibilityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDatabaseKafkaSchemaSubjectConfigResponse {
   /** The name of the schema subject. */
@@ -21710,8 +21667,7 @@ export type GetDatabaseKafkaSchemaVersionResponseSchemaType =
   | "AVRO"
   | "JSON"
   | "PROTOBUF";
-export const GetDatabaseKafkaSchemaVersionResponseSchemaType =
-  /*@__PURE__*/ S.String;
+export const GetDatabaseKafkaSchemaVersionResponseSchemaType = S.String;
 
 export interface GetDatabaseKafkaSchemaVersionResponse {
   /** The id for schema. */
@@ -21795,7 +21751,7 @@ export type GetDatabaseLogsinkResponseSinkType =
   | "rsyslog"
   | "elasticsearch"
   | "opensearch";
-export const GetDatabaseLogsinkResponseSinkType = /*@__PURE__*/ S.String;
+export const GetDatabaseLogsinkResponseSinkType = S.String;
 
 export type GetDatabaseLogsinkResponseConfig =
   | RsyslogLogsink
@@ -21803,7 +21759,7 @@ export type GetDatabaseLogsinkResponseConfig =
   | OpensearchLogsink
   | DatadogLogsink;
 export const GetDatabaseLogsinkResponseConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDatabaseLogsinkResponseConfig>;
+  S.Unknown as any as S.Schema<GetDatabaseLogsinkResponseConfig>;
 
 export interface GetDatabaseLogsinkResponse {
   /** A unique identifier for Logsink */
@@ -21849,7 +21805,7 @@ export type OnlineMigrationStatus =
   | "canceled"
   | "error"
   | "done";
-export const OnlineMigrationStatus = /*@__PURE__*/ S.String;
+export const OnlineMigrationStatus = S.String;
 
 export interface OnlineMigration {
   /** The ID of the most recent migration. */
@@ -21987,22 +21943,22 @@ export type DedicatedInferenceStatus =
   | "updating"
   | "deleting"
   | "error";
-export const DedicatedInferenceStatus = /*@__PURE__*/ S.String;
+export const DedicatedInferenceStatus = S.String;
 
 /** DigitalOcean region where the Dedicated Inference is hosted. */
 export type DedicatedInferenceSpecRegion = "atl1" | "nyc2" | "tor1";
-export const DedicatedInferenceSpecRegion = /*@__PURE__*/ S.String;
+export const DedicatedInferenceSpecRegion = S.String;
 
 export type DedicatedInferenceSpecVpc = DedicatedInferenceSpecInputVpc;
 export const DedicatedInferenceSpecVpc = DedicatedInferenceSpecInputVpc;
 
 /** Model provider. */
 export type ModelDeploymentSpecModelProvider = "hugging_face";
-export const ModelDeploymentSpecModelProvider = /*@__PURE__*/ S.String;
+export const ModelDeploymentSpecModelProvider = S.String;
 
 /** Current state of the Accelerator. */
 export type AcceleratorConfigSpecStatus = "new" | "provisioning" | "active";
-export const AcceleratorConfigSpecStatus = /*@__PURE__*/ S.String;
+export const AcceleratorConfigSpecStatus = S.String;
 
 export interface AcceleratorConfigSpec {
   /** Number of accelerator instances. */
@@ -22091,7 +22047,7 @@ export const DedicatedInferenceSpec = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DedicatedInferenceSpec>;
 
 export type PendingDeploymentSpecStatus = "provisioning" | "updating";
-export const PendingDeploymentSpecStatus = /*@__PURE__*/ S.String;
+export const PendingDeploymentSpecStatus = S.String;
 
 export type PendingDeploymentSpecVpc = DedicatedInferenceSpecInputVpc;
 export const PendingDeploymentSpecVpc = DedicatedInferenceSpecInputVpc;
@@ -22408,7 +22364,7 @@ export const GetDropletRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of disk. All Droplets contain a `local` or `boot` disk. Additionally, GPU Droplets can also have a `scratch` disk for non-persistent data. */
 export type DiskInfoType = "local" | "boot" | "scratch";
-export const DiskInfoType = /*@__PURE__*/ S.String;
+export const DiskInfoType = S.String;
 
 export interface DiskInfoSize {
   /** The amount of space allocated to the disk. */
@@ -22443,7 +22399,7 @@ export const DropletDiskInfoList = /*@__PURE__*/ S.Array(
 
 /** A status string indicating the state of the Droplet instance. This may be "new", "active", "off", or "archive". */
 export type DropletStatus = "new" | "active" | "off" | "archive";
-export const DropletStatus = /*@__PURE__*/ S.String;
+export const DropletStatus = S.String;
 
 /** **Note**: All Droplets created after March 2017 use internal kernels by default. These Droplets will have this attribute set to `null`. The current [kernel](https://docs.digitalocean.com/products/droplets/how-to/kernel/) for Droplets with externally managed kernels. This will initially be set to the kernel of the base image when the Droplet is created. */
 export interface Kernel {
@@ -22502,7 +22458,7 @@ export type DropletImageType =
   | "backup"
   | "custom"
   | "admin";
-export const DropletImageType = /*@__PURE__*/ S.String;
+export const DropletImageType = S.String;
 
 /** This attribute is an array of the regions that the image is available in. The regions are represented by their identifying slug values. */
 export type RegionsArray = Array<RegionSlug>;
@@ -22517,7 +22473,7 @@ export type DropletImageStatus =
   | "pending"
   | "deleted"
   | "retired";
-export const DropletImageStatus = /*@__PURE__*/ S.String;
+export const DropletImageStatus = S.String;
 
 export interface DropletImage {
   /** A unique number that can be used to identify and reference a specific image. */
@@ -22654,7 +22610,7 @@ export const Size = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the IPv4 network interface. */
 export type NetworkV4Type = "public" | "private";
-export const NetworkV4Type = /*@__PURE__*/ S.String;
+export const NetworkV4Type = S.String;
 
 export interface NetworkV4 {
   /** The IP address of the IPv4 network interface. */
@@ -22682,7 +22638,7 @@ export const DropletNetworksV4List = /*@__PURE__*/ S.Array(
 
 /** The type of the IPv6 network interface. **Note**: IPv6 private networking is not currently supported. */
 export type NetworkV6Type = "public";
-export const NetworkV6Type = /*@__PURE__*/ S.String;
+export const NetworkV6Type = S.String;
 
 export interface NetworkV6 {
   /** The IP address of the IPv6 network interface. */
@@ -22861,7 +22817,7 @@ export const GetDropletBackupPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The backup plan used for the Droplet. The plan can be either `daily` or `weekly`. */
 export type DropletBackupPolicyRecordBackupPolicyPlan = "daily" | "weekly";
-export const DropletBackupPolicyRecordBackupPolicyPlan = /*@__PURE__*/ S.String;
+export const DropletBackupPolicyRecordBackupPolicyPlan = S.String;
 
 /** The day of the week on which the backup will occur. */
 export type DropletBackupPolicyRecordBackupPolicyWeekday =
@@ -22872,8 +22828,7 @@ export type DropletBackupPolicyRecordBackupPolicyWeekday =
   | "THU"
   | "FRI"
   | "SAT";
-export const DropletBackupPolicyRecordBackupPolicyWeekday =
-  /*@__PURE__*/ S.String;
+export const DropletBackupPolicyRecordBackupPolicyWeekday = S.String;
 
 /** The hour of the day that the backup window will start. */
 export type DropletBackupPolicyRecordBackupPolicyHour =
@@ -22883,7 +22838,7 @@ export type DropletBackupPolicyRecordBackupPolicyHour =
   | 12
   | 16
   | 20;
-export const DropletBackupPolicyRecordBackupPolicyHour = /*@__PURE__*/ S.Number;
+export const DropletBackupPolicyRecordBackupPolicyHour = S.Number;
 
 export interface DropletBackupPolicyRecordBackupPolicy {
   /** The backup plan used for the Droplet. The plan can be either `daily` or `weekly`. */
@@ -23079,7 +23034,7 @@ export const GetFirewallRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** A status string indicating the current state of the firewall. This can be "waiting", "succeeded", or "failed". */
 export type FirewallStatus = "waiting" | "succeeded" | "failed";
-export const FirewallStatus = /*@__PURE__*/ S.String;
+export const FirewallStatus = S.String;
 
 export interface FirewallPendingChangesItem {
   droplet_id?: number;
@@ -23110,7 +23065,7 @@ export const FirewallDropletIdsList = /*@__PURE__*/ S.Array(
 
 /** The type of traffic to be allowed. This may be one of `tcp`, `udp`, or `icmp`. */
 export type FirewallInboundRulesItemProtocol = "tcp" | "udp" | "icmp";
-export const FirewallInboundRulesItemProtocol = /*@__PURE__*/ S.String;
+export const FirewallInboundRulesItemProtocol = S.String;
 
 /** An array of strings containing the IPv4 addresses, IPv6 addresses, IPv4 CIDRs, and/or IPv6 CIDRs to which the firewall will allow traffic. */
 export type FirewallInboundRulesItemSourcesAddressesList = Array<string>;
@@ -23191,7 +23146,7 @@ export const FirewallInboundRulesList = /*@__PURE__*/ S.Array(
 
 /** The type of traffic to be allowed. This may be one of `tcp`, `udp`, or `icmp`. */
 export type FirewallOutboundRulesItemProtocol = "tcp" | "udp" | "icmp";
-export const FirewallOutboundRulesItemProtocol = /*@__PURE__*/ S.String;
+export const FirewallOutboundRulesItemProtocol = S.String;
 
 /** An array of strings containing the IPv4 addresses, IPv6 addresses, IPv4 CIDRs, and/or IPv6 CIDRs to which the firewall will allow traffic. */
 export type FirewallOutboundRulesItemDestinationsAddressesList = Array<string>;
@@ -23370,7 +23325,7 @@ export const FloatingIpRegion = /*@__PURE__*/ S.suspend(() =>
 /** The Droplet that the floating IP has been assigned to. When you query a floating IP, if it is assigned to a Droplet, the entire Droplet object will be returned. If it is not assigned, the value will be null. <br><br>Requires `droplet:read` scope. */
 export type FloatingIpDroplet = unknown | Droplet;
 export const FloatingIpDroplet =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FloatingIpDroplet>;
+  S.Unknown as any as S.Schema<FloatingIpDroplet>;
 
 export interface FloatingIp {
   /** The public IP address of the floating IP. It also serves as its identifier. */
@@ -23430,7 +23385,7 @@ export type GetFloatingIPsActionResponseActionStatus =
   | "in-progress"
   | "completed"
   | "errored";
-export const GetFloatingIPsActionResponseActionStatus = /*@__PURE__*/ S.String;
+export const GetFloatingIPsActionResponseActionStatus = S.String;
 
 export interface GetFloatingIPsActionResponseAction {
   /** A unique numeric ID that can be used to identify and reference an action. */
@@ -23763,7 +23718,7 @@ export type SourceRefAccessType =
   | "ACCESS_TYPE_PUBLIC"
   | "ACCESS_TYPE_PRIVATE"
   | "ACCESS_TYPE_GATED";
-export const SourceRefAccessType = /*@__PURE__*/ S.String;
+export const SourceRefAccessType = S.String;
 
 /** Reference to the original source of the model */
 export interface CustomModelSourceRef {
@@ -23802,7 +23757,7 @@ export type CustomModelSourceType =
   | "SOURCE_TYPE_SPACES_BUCKET"
   | "SOURCE_TYPE_SDK_UPLOAD"
   | "SOURCE_TYPE_FINE_TUNING";
-export const CustomModelSourceType = /*@__PURE__*/ S.String;
+export const CustomModelSourceType = S.String;
 
 /** Import and deployment status of the custom model */
 export type ApiCustomModelStatus =
@@ -23811,7 +23766,7 @@ export type ApiCustomModelStatus =
   | "STATUS_READY"
   | "STATUS_FAILED"
   | "STATUS_DELETED";
-export const ApiCustomModelStatus = /*@__PURE__*/ S.String;
+export const ApiCustomModelStatus = S.String;
 
 /** List of tag strings */
 export type CustomModelTagsTagsList = Array<string>;
@@ -23941,7 +23896,7 @@ export type ApiEvaluationMetricResultStatus =
   | "EVALUATION_METRIC_RESULT_STATUS_COMPLETED"
   | "EVALUATION_METRIC_RESULT_STATUS_FAILED"
   | "EVALUATION_METRIC_RESULT_STATUS_SKIPPED";
-export const ApiEvaluationMetricResultStatus = /*@__PURE__*/ S.String;
+export const ApiEvaluationMetricResultStatus = S.String;
 
 export interface ApiEvaluationMetricResult {
   /** Error description if the metric could not be calculated. */
@@ -23991,7 +23946,7 @@ export type ApiEvaluationRunStatus =
   | "EVALUATION_RUN_SUCCESSFUL"
   | "EVALUATION_RUN_PARTIALLY_SUCCESSFUL"
   | "EVALUATION_RUN_FAILED";
-export const ApiEvaluationRunStatus = /*@__PURE__*/ S.String;
+export const ApiEvaluationRunStatus = S.String;
 
 export interface ApiEvaluationRun {
   /** Whether agent is deleted */
@@ -24148,7 +24103,7 @@ export type ApiAgentType =
   | "AGENT_TYPE_CLASSIFIER"
   | "AGENT_TYPE_SUPERVISOR"
   | "AGENT_TYPE_JUDGE";
-export const ApiAgentType = /*@__PURE__*/ S.String;
+export const ApiAgentType = S.String;
 
 /** Arbitrary structured metadata */
 export type ApiSpanCommonMetadataMap = { [key: string]: string | undefined };
@@ -24270,7 +24225,7 @@ export type ApiTraceSpanType =
   | "TRACE_SPAN_TYPE_TOOL"
   | "TRACE_SPAN_TYPE_AGENT"
   | "TRACE_SPAN_TYPE_WORKFLOW";
-export const ApiTraceSpanType = /*@__PURE__*/ S.String;
+export const ApiTraceSpanType = S.String;
 
 /** Child spans - must contain between 1 and 999 spans Allowed types: agent, llm, tool, retriever (not workflow) */
 export type ApiWorkflowSpanSpansList = Array<ApiTraceSpan>;
@@ -24658,7 +24613,7 @@ export type DbaasClusterStatus =
   | "POWERING_ON"
   | "UNHEALTHY"
   | "UPGRADING";
-export const DbaasClusterStatus = /*@__PURE__*/ S.String;
+export const DbaasClusterStatus = S.String;
 
 /** The knowledge base */
 export interface ApiGetKnowledgeBaseOutput {
@@ -24784,7 +24739,7 @@ export type ApiModelBillingMode =
   | "MODEL_BILLING_MODE_UNSPECIFIED"
   | "MODEL_BILLING_MODE_INTERACTIVE"
   | "MODEL_BILLING_MODE_BATCH";
-export const ApiModelBillingMode = /*@__PURE__*/ S.String;
+export const ApiModelBillingMode = S.String;
 
 /** A time window during which the model's rates stay the same. Together these intervals show how pricing changes over the course of a day. */
 export interface ApiModelPricingInterval {
@@ -24835,7 +24790,7 @@ export type ApiModelPricingTier =
   | "MODEL_PRICING_TIER_EXTENDED_1M"
   | "MODEL_PRICING_TIER_EXTENDED_272K"
   | "MODEL_PRICING_TIER_BYOK";
-export const ApiModelPricingTier = /*@__PURE__*/ S.String;
+export const ApiModelPricingTier = S.String;
 
 /** Pricing for one variant of a model: a specific tier and billing mode. */
 export interface ApiModelPricingVariant {
@@ -25672,7 +25627,7 @@ export const GetImageRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Describes the kind of image. It may be one of `base`, `snapshot`, `backup`, `custom`, or `admin`. Respectively, this specifies whether an image is a DigitalOcean base OS image, user-generated Droplet snapshot, automatically created Droplet backup, user-provided virtual machine image, or an image used for DigitalOcean managed resources (e.g. DOKS worker nodes). */
 export type ImageType = "base" | "snapshot" | "backup" | "custom" | "admin";
-export const ImageType = /*@__PURE__*/ S.String;
+export const ImageType = S.String;
 
 /** A status string indicating the state of a custom image. This may be `NEW`, `available`, `pending`, `deleted`, or `retired`. */
 export type ImageStatus =
@@ -25681,7 +25636,7 @@ export type ImageStatus =
   | "pending"
   | "deleted"
   | "retired";
-export const ImageStatus = /*@__PURE__*/ S.String;
+export const ImageStatus = S.String;
 
 export interface Image {
   /** A unique number that can be used to identify and reference a specific image. */
@@ -25905,8 +25860,7 @@ export const BackwardLinks = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "BackwardLinks" }) as any as S.Schema<BackwardLinks>;
 
 export type PageLinksPages = ForwardLinks | BackwardLinks | unknown;
-export const PageLinksPages =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PageLinksPages>;
+export const PageLinksPages = S.Unknown as any as S.Schema<PageLinksPages>;
 
 export interface PageLinks {
   pages?: PageLinksPages;
@@ -26251,7 +26205,7 @@ export type ClusterReadStatusState =
   | "deleted"
   | "upgrading"
   | "deleting";
-export const ClusterReadStatusState = /*@__PURE__*/ S.String;
+export const ClusterReadStatusState = S.String;
 
 /** An object containing a `state` attribute whose value is set to a string indicating the current status of the cluster. */
 export interface ClusterReadStatus {
@@ -26572,7 +26526,7 @@ export const Credentials = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Credentials" }) as any as S.Schema<Credentials>;
 
 export type GetKubernetesKubeconfigRequestType = "token" | "sso";
-export const GetKubernetesKubeconfigRequestType = /*@__PURE__*/ S.String;
+export const GetKubernetesKubeconfigRequestType = S.String;
 
 export interface GetKubernetesKubeconfigRequest {
   /** A unique ID that can be used to reference a Kubernetes cluster. */
@@ -26705,15 +26659,15 @@ export const GetLoadBalancerRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** This field has been replaced by the `size_unit` field for all regions except in AMS2, NYC2, and SFO1. Each available load balancer size now equates to the load balancer having a set number of nodes. * `lb-small` = 1 node * `lb-medium` = 3 nodes * `lb-large` = 6 nodes You can resize load balancers after creation up to once per hour. You cannot resize a load balancer within the first hour of its creation. */
 export type LoadBalancerSize = "lb-small" | "lb-medium" | "lb-large";
-export const LoadBalancerSize = /*@__PURE__*/ S.String;
+export const LoadBalancerSize = S.String;
 
 /** This field has been deprecated. You can no longer specify an algorithm for load balancers. */
 export type LoadBalancerAlgorithm = "round_robin" | "least_connections";
-export const LoadBalancerAlgorithm = /*@__PURE__*/ S.String;
+export const LoadBalancerAlgorithm = S.String;
 
 /** A status string indicating the current state of the load balancer. This can be `new`, `active`, or `errored`. */
 export type LoadBalancerStatus = "new" | "active" | "errored";
-export const LoadBalancerStatus = /*@__PURE__*/ S.String;
+export const LoadBalancerStatus = S.String;
 
 /** An array of objects specifying the forwarding rules for a load balancer. */
 export type LoadBalancerForwardingRulesList = Array<ForwardingRule>;
@@ -26723,15 +26677,15 @@ export const LoadBalancerForwardingRulesList = /*@__PURE__*/ S.Array(
 
 /** A string indicating whether the load balancer should be external or internal. Internal load balancers have no public IPs and are only accessible to resources on the same VPC network. This property cannot be updated after creating the load balancer. */
 export type LoadBalancerNetwork = "EXTERNAL" | "INTERNAL";
-export const LoadBalancerNetwork = /*@__PURE__*/ S.String;
+export const LoadBalancerNetwork = S.String;
 
 /** A string indicating whether the load balancer will support IPv4 or both IPv4 and IPv6 networking. This property cannot be updated after creating the load balancer. */
 export type LoadBalancerNetworkStack = "IPV4" | "DUALSTACK";
-export const LoadBalancerNetworkStack = /*@__PURE__*/ S.String;
+export const LoadBalancerNetworkStack = S.String;
 
 /** A string indicating whether the load balancer should be a standard regional HTTP load balancer, a regional network load balancer that routes traffic at the TCP/UDP transport layer, or a global load balancer. */
 export type LoadBalancerType = "REGIONAL" | "REGIONAL_NETWORK" | "GLOBAL";
-export const LoadBalancerType = /*@__PURE__*/ S.String;
+export const LoadBalancerType = S.String;
 
 /** An array of objects specifying the domain configurations for a Global load balancer. */
 export type LoadBalancerDomainsList = Array<Domains>;
@@ -26747,7 +26701,7 @@ export const LoadBalancerTargetLoadBalancerIdsList = /*@__PURE__*/ S.Array(
 
 /** A string indicating the policy for the TLS cipher suites used by the load balancer. The possible values are `DEFAULT` or `STRONG`. The default value is `DEFAULT`. */
 export type LoadBalancerTlsCipherPolicy = "DEFAULT" | "STRONG";
-export const LoadBalancerTlsCipherPolicy = /*@__PURE__*/ S.String;
+export const LoadBalancerTlsCipherPolicy = S.String;
 
 /** This attribute is set to an array which contains features available in this region */
 export type LoadBalancerRegionFeaturesList = Array<string>;
@@ -26960,7 +26914,7 @@ export const MetricsResultMetricMap = /*@__PURE__*/ S.Record(
 
 export type MetricsResultValuesItemItem = number | string;
 export const MetricsResultValuesItemItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsResultValuesItemItem>;
+  S.Unknown as any as S.Schema<MetricsResultValuesItemItem>;
 
 export type MetricsResultValuesItemList = Array<MetricsResultValuesItemItem>;
 export const MetricsResultValuesItemList = /*@__PURE__*/ S.Array(
@@ -26993,7 +26947,7 @@ export const MetricsDataResultList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<MetricsDataResultList>;
 
 export type MetricsDataResultType = "matrix";
-export const MetricsDataResultType = /*@__PURE__*/ S.String;
+export const MetricsDataResultType = S.String;
 
 export interface MetricsData {
   /** Result of query. */
@@ -27008,7 +26962,7 @@ export const MetricsData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "MetricsData" }) as any as S.Schema<MetricsData>;
 
 export type MetricsStatus = "success" | "error";
-export const MetricsStatus = /*@__PURE__*/ S.String;
+export const MetricsStatus = S.String;
 
 export interface Metrics {
   data: MetricsData;
@@ -27053,8 +27007,7 @@ export type GetMonitoringDatabaseMysqlCpuUsageRequestAggregate =
   | "avg"
   | "max"
   | "min";
-export const GetMonitoringDatabaseMysqlCpuUsageRequestAggregate =
-  /*@__PURE__*/ S.String;
+export const GetMonitoringDatabaseMysqlCpuUsageRequestAggregate = S.String;
 
 export interface GetMonitoringDatabaseMysqlCpuUsageRequest {
   /** The DBaaS cluster UUID (database ID). */
@@ -27090,8 +27043,7 @@ export type GetMonitoringDatabaseMysqlDiskUsageRequestAggregate =
   | "avg"
   | "max"
   | "min";
-export const GetMonitoringDatabaseMysqlDiskUsageRequestAggregate =
-  /*@__PURE__*/ S.String;
+export const GetMonitoringDatabaseMysqlDiskUsageRequestAggregate = S.String;
 
 export interface GetMonitoringDatabaseMysqlDiskUsageRequest {
   /** The DBaaS cluster UUID (database ID). */
@@ -27129,12 +27081,10 @@ export type GetMonitoringDatabaseMysqlLoadRequestMetric =
   | "load1"
   | "load5"
   | "load15";
-export const GetMonitoringDatabaseMysqlLoadRequestMetric =
-  /*@__PURE__*/ S.String;
+export const GetMonitoringDatabaseMysqlLoadRequestMetric = S.String;
 
 export type GetMonitoringDatabaseMysqlLoadRequestAggregate = "avg" | "max";
-export const GetMonitoringDatabaseMysqlLoadRequestAggregate =
-  /*@__PURE__*/ S.String;
+export const GetMonitoringDatabaseMysqlLoadRequestAggregate = S.String;
 
 export interface GetMonitoringDatabaseMysqlLoadRequest {
   /** The DBaaS cluster UUID (database ID). */
@@ -27171,8 +27121,7 @@ export type GetMonitoringDatabaseMysqlMemoryUsageRequestAggregate =
   | "avg"
   | "max"
   | "min";
-export const GetMonitoringDatabaseMysqlMemoryUsageRequestAggregate =
-  /*@__PURE__*/ S.String;
+export const GetMonitoringDatabaseMysqlMemoryUsageRequestAggregate = S.String;
 
 export interface GetMonitoringDatabaseMysqlMemoryUsageRequest {
   /** The DBaaS cluster UUID (database ID). */
@@ -27211,8 +27160,7 @@ export type GetMonitoringDatabaseMysqlOpRatesRequestMetric =
   | "insert"
   | "update"
   | "delete";
-export const GetMonitoringDatabaseMysqlOpRatesRequestMetric =
-  /*@__PURE__*/ S.String;
+export const GetMonitoringDatabaseMysqlOpRatesRequestMetric = S.String;
 
 export interface GetMonitoringDatabaseMysqlOpRatesRequest {
   /** The DBaaS cluster UUID (database ID). */
@@ -27247,8 +27195,7 @@ export type GetMonitoringDatabaseMysqlSchemaLatencyRequestMetric =
   | "fetch"
   | "update"
   | "delete";
-export const GetMonitoringDatabaseMysqlSchemaLatencyRequestMetric =
-  /*@__PURE__*/ S.String;
+export const GetMonitoringDatabaseMysqlSchemaLatencyRequestMetric = S.String;
 
 export interface GetMonitoringDatabaseMysqlSchemaLatencyRequest {
   /** The DBaaS cluster UUID (database ID). */
@@ -27288,8 +27235,7 @@ export type GetMonitoringDatabaseMysqlSchemaThroughputRequestMetric =
   | "fetch"
   | "update"
   | "delete";
-export const GetMonitoringDatabaseMysqlSchemaThroughputRequestMetric =
-  /*@__PURE__*/ S.String;
+export const GetMonitoringDatabaseMysqlSchemaThroughputRequestMetric = S.String;
 
 export interface GetMonitoringDatabaseMysqlSchemaThroughputRequest {
   /** The DBaaS cluster UUID (database ID). */
@@ -27583,14 +27529,12 @@ export const GetMonitoringDropletAutoscaleTargetMemoryUtilizationRequest =
 export type GetMonitoringDropletBandwidthMetricsRequestInterface =
   | "private"
   | "public";
-export const GetMonitoringDropletBandwidthMetricsRequestInterface =
-  /*@__PURE__*/ S.String;
+export const GetMonitoringDropletBandwidthMetricsRequestInterface = S.String;
 
 export type GetMonitoringDropletBandwidthMetricsRequestDirection =
   | "inbound"
   | "outbound";
-export const GetMonitoringDropletBandwidthMetricsRequestDirection =
-  /*@__PURE__*/ S.String;
+export const GetMonitoringDropletBandwidthMetricsRequestDirection = S.String;
 
 export interface GetMonitoringDropletBandwidthMetricsRequest {
   /** The droplet ID. */
@@ -28577,7 +28521,7 @@ export const GetMonitoringSinkRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The destination type. `opensearch_dbaas` for a DigitalOcean managed OpenSearch cluster or `opensearch_ext` for an externally managed one. */
 export type DestinationType = "opensearch_dbaas" | "opensearch_ext";
-export const DestinationType = /*@__PURE__*/ S.String;
+export const DestinationType = S.String;
 
 /** Credentials for an OpenSearch cluster user. Optional if `cluster_uuid` is passed. */
 export type OpensearchConfigCredentials = OpensearchConfigRequestCredentials;
@@ -28740,7 +28684,7 @@ export type NfsSnapshotResponseStatus =
   | "ACTIVE"
   | "FAILED"
   | "DELETED";
-export const NfsSnapshotResponseStatus = /*@__PURE__*/ S.String;
+export const NfsSnapshotResponseStatus = S.String;
 
 /** Represents an NFS snapshot. */
 export interface NfsSnapshotResponse {
@@ -29106,7 +29050,7 @@ export type GarbageCollectionStatus =
   | "failed"
   | "succeeded"
   | "cancelled";
-export const GarbageCollectionStatus = /*@__PURE__*/ S.String;
+export const GarbageCollectionStatus = S.String;
 
 export interface GarbageCollection {
   /** A string specifying the UUID of the garbage collection. */
@@ -29170,7 +29114,7 @@ export type GetRegistryOptionsResponseOptionsSubscriptionTiersItemEligibilityRea
   | "OverRepositoryLimit"
   | "OverStorageLimit";
 export const GetRegistryOptionsResponseOptionsSubscriptionTiersItemEligibilityReasonsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** If your account is not eligible to use a certain subscription tier, this will include a list of reasons that prevent you from using the tier. */
 export type GetRegistryOptionsResponseOptionsSubscriptionTiersItemEligibilityReasonsList =
@@ -29378,7 +29322,7 @@ export const ReservedIpRegion = /*@__PURE__*/ S.suspend(() =>
 /** The Droplet that the reserved IP has been assigned to. When you query a reserved IP, if it is assigned to a Droplet, the entire Droplet object will be returned. If it is not assigned, the value will be null.<br><br>Requires `droplet:read` scope. */
 export type ReservedIpDroplet = unknown | Droplet;
 export const ReservedIpDroplet =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReservedIpDroplet>;
+  S.Unknown as any as S.Schema<ReservedIpDroplet>;
 
 export interface ReservedIp {
   /** The public IP address of the reserved IP. It also serves as its identifier. */
@@ -29438,7 +29382,7 @@ export type GetReservedIPsActionResponseActionStatus =
   | "in-progress"
   | "completed"
   | "errored";
-export const GetReservedIPsActionResponseActionStatus = /*@__PURE__*/ S.String;
+export const GetReservedIPsActionResponseActionStatus = S.String;
 
 export interface GetReservedIPsActionResponseAction {
   /** A unique numeric ID that can be used to identify and reference an action. */
@@ -29509,7 +29453,7 @@ export const GetReservedIPv6Request = /*@__PURE__*/ S.suspend(() =>
 
 export type ReservedIpv6Droplet = unknown | Droplet;
 export const ReservedIpv6Droplet =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReservedIpv6Droplet>;
+  S.Unknown as any as S.Schema<ReservedIpv6Droplet>;
 
 export interface ReservedIpv6 {
   /** The public IP address of the reserved IPv6. It also serves as its identifier. */
@@ -29545,7 +29489,7 @@ export type GetSecurityLatestScanRequestSeverity =
   | "MEDIUM"
   | "HIGH"
   | "CRITICAL";
-export const GetSecurityLatestScanRequestSeverity = /*@__PURE__*/ S.String;
+export const GetSecurityLatestScanRequestSeverity = S.String;
 
 export interface GetSecurityLatestScanRequest {
   /** Number of items returned per page */
@@ -29586,7 +29530,7 @@ export type GetSecurityScanRequestSeverity =
   | "MEDIUM"
   | "HIGH"
   | "CRITICAL";
-export const GetSecurityScanRequestSeverity = /*@__PURE__*/ S.String;
+export const GetSecurityScanRequestSeverity = S.String;
 
 export interface GetSecurityScanRequest {
   /** The scan UUID. */
@@ -29829,7 +29773,7 @@ export const GetUptimeCheckStateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetUptimeCheckStateRequest>;
 
 export type RegionStateStatus = "DOWN" | "UP" | "CHECKING";
-export const RegionStateStatus = /*@__PURE__*/ S.String;
+export const RegionStateStatus = S.String;
 
 export interface RegionState {
   status?: RegionStateStatus;
@@ -30004,7 +29948,7 @@ export const GetVolumeActionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The current status of the action. This can be "in-progress", "completed", or "errored". */
 export type VolumeActionStatus = "in-progress" | "completed" | "errored";
-export const VolumeActionStatus = /*@__PURE__*/ S.String;
+export const VolumeActionStatus = S.String;
 
 export interface VolumeAction {
   /** This is the type of action that the object represents. For example, this could be "attach_volume" to represent the state of a volume attach action. */
@@ -30113,7 +30057,7 @@ export const GetVpcnatgatewayRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the VPC NAT gateway. */
 export type VpcNatGatewayGetType = "PUBLIC";
-export const VpcNatGatewayGetType = /*@__PURE__*/ S.String;
+export const VpcNatGatewayGetType = S.String;
 
 /** The current state of the VPC NAT gateway. */
 export type VpcNatGatewayGetState =
@@ -30123,7 +30067,7 @@ export type VpcNatGatewayGetState =
   | "DELETING"
   | "ERROR"
   | "INVALID";
-export const VpcNatGatewayGetState = /*@__PURE__*/ S.String;
+export const VpcNatGatewayGetState = S.String;
 
 /** The region in which the VPC NAT gateway is created. */
 export type VpcNatGatewayGetRegion =
@@ -30142,7 +30086,7 @@ export type VpcNatGatewayGetRegion =
   | "blr1"
   | "syd1"
   | "atl1";
-export const VpcNatGatewayGetRegion = /*@__PURE__*/ S.String;
+export const VpcNatGatewayGetRegion = S.String;
 
 export interface VpcNatGatewayGetVpcsItem {
   /** The unique identifier of the VPC to which the NAT gateway is attached. */
@@ -30277,7 +30221,7 @@ export const GetVpcPeeringRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The current status of the VPC peering. */
 export type VpcPeeringStatus = "PROVISIONING" | "ACTIVE" | "DELETING";
-export const VpcPeeringStatus = /*@__PURE__*/ S.String;
+export const VpcPeeringStatus = S.String;
 
 /** An array of the two peered VPCs IDs. */
 export type VpcPeeringVpcIdsList = Array<string>;
@@ -30409,7 +30353,7 @@ export type ImagesPostAccountTransferCreate =
   | ImagesPostAccountTransferCreateCase0
   | ImagesPostAccountTransferCreateCase1;
 export const ImagesPostAccountTransferCreate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ImagesPostAccountTransferCreate>;
+  S.Unknown as any as S.Schema<ImagesPostAccountTransferCreate>;
 
 export interface ImagesPostAccountTransferCreateRequest {
   /** A unique number that can be used to identify and reference a specific image. */
@@ -30653,7 +30597,7 @@ export type AsyncInvokeResponseStatus =
   | "IN_PROGRESS"
   | "COMPLETED"
   | "FAILED";
-export const AsyncInvokeResponseStatus = /*@__PURE__*/ S.String;
+export const AsyncInvokeResponseStatus = S.String;
 
 /** The output of the invocation. Null while the job is queued or in progress. Contains the result once completed. */
 export type AsyncInvokeResponseOutputMap = {
@@ -30952,8 +30896,7 @@ export type ListAppDeploymentsRequestDeploymentTypesItem =
   | "AUTO_ROLLBACK"
   | "UPDATE_DATABASE_TRUSTED_SOURCES"
   | "AUTOSCALED";
-export const ListAppDeploymentsRequestDeploymentTypesItem =
-  /*@__PURE__*/ S.String;
+export const ListAppDeploymentsRequestDeploymentTypesItem = S.String;
 
 export type ListAppDeploymentsRequestDeploymentTypesList = Array<
   ListAppDeploymentsRequestDeploymentTypesItem | (string & {})
@@ -31015,7 +30958,7 @@ export type ListAppEventsRequestEventTypesItem =
   | "UNKNOWN"
   | "DEPLOYMENT"
   | "AUTOSCALING";
-export const ListAppEventsRequestEventTypesItem = /*@__PURE__*/ S.String;
+export const ListAppEventsRequestEventTypesItem = S.String;
 
 export type ListAppEventsRequestEventTypesList = Array<
   ListAppEventsRequestEventTypesItem | (string & {})
@@ -31273,11 +31216,11 @@ export const ListAutoscalepoolHistoryRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The reason for the scaling event. */
 export type HistoryReason = "CONFIGURATION_CHANGE" | "SCALE_UP" | "SCALE_DOWN";
-export const HistoryReason = /*@__PURE__*/ S.String;
+export const HistoryReason = S.String;
 
 /** The status of the scaling event. */
 export type HistoryStatus = "in_progress" | "success" | "error";
-export const HistoryStatus = /*@__PURE__*/ S.String;
+export const HistoryStatus = S.String;
 
 export interface History {
   /** The unique identifier of the history event. */
@@ -31358,11 +31301,11 @@ export const ListAutoscalepoolMembersRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The health status of the Droplet. */
 export type MemberHealthStatus = "healthy" | "unhealthy";
-export const MemberHealthStatus = /*@__PURE__*/ S.String;
+export const MemberHealthStatus = S.String;
 
 /** The power status of the Droplet. */
 export type MemberStatus = "provisioning" | "active" | "deleting" | "off";
-export const MemberStatus = /*@__PURE__*/ S.String;
+export const MemberStatus = S.String;
 
 export interface MemberCurrentUtilization {
   /** The memory utilization average of the individual Droplet. */
@@ -31498,7 +31441,7 @@ export type BillingHistoryType =
   | "Payment"
   | "Refund"
   | "Reversal";
-export const BillingHistoryType = /*@__PURE__*/ S.String;
+export const BillingHistoryType = S.String;
 
 export interface BillingHistory {
   /** Description of the billing history entry. */
@@ -32003,7 +31946,7 @@ export type EventsLogsEventType =
   | "cluster_delete"
   | "cluster_poweron"
   | "cluster_poweroff";
-export const EventsLogsEventType = /*@__PURE__*/ S.String;
+export const EventsLogsEventType = S.String;
 
 export interface EventsLogs {
   /** ID of the particular event. */
@@ -32094,7 +32037,7 @@ export const ListDatabaseKafkaSchemasRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the schema. */
 export type KafkaSchemaVerboseSchemaType = "AVRO" | "JSON" | "PROTOBUF";
-export const KafkaSchemaVerboseSchemaType = /*@__PURE__*/ S.String;
+export const KafkaSchemaVerboseSchemaType = S.String;
 
 export interface KafkaSchemaVerbose {
   /** The id for schema. */
@@ -32155,7 +32098,7 @@ export const ListDatabaseKafkaTopicsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The state of the Kafka topic. */
 export type KafkaTopicState = "active" | "configuring" | "deleting" | "unknown";
-export const KafkaTopicState = /*@__PURE__*/ S.String;
+export const KafkaTopicState = S.String;
 
 export interface KafkaTopic {
   /** The name of the Kafka topic. */
@@ -32247,7 +32190,7 @@ export const ListDatabaseOpeasearchIndexesRequest = /*@__PURE__*/ S.suspend(
 
 /** The status of the OpenSearch index. */
 export type OpensearchIndexStatus = "unknown" | "open" | "close" | "none";
-export const OpensearchIndexStatus = /*@__PURE__*/ S.String;
+export const OpensearchIndexStatus = S.String;
 
 /** The health of the OpenSearch index. */
 export type OpensearchIndexHealth =
@@ -32256,7 +32199,7 @@ export type OpensearchIndexHealth =
   | "yellow"
   | "red"
   | "red*";
-export const OpensearchIndexHealth = /*@__PURE__*/ S.String;
+export const OpensearchIndexHealth = S.String;
 
 export interface OpensearchIndex {
   /** The name of the opensearch index. */
@@ -32910,7 +32853,7 @@ export const ListDedicatedInferenceAcceleratorsResponse =
   }) as any as S.Schema<ListDedicatedInferenceAcceleratorsResponse>;
 
 export type ListDedicatedInferencesRequestRegion = "nyc2" | "tor1" | "atl1";
-export const ListDedicatedInferencesRequestRegion = /*@__PURE__*/ S.String;
+export const ListDedicatedInferencesRequestRegion = S.String;
 
 export interface ListDedicatedInferencesRequest {
   /** Number of items returned per page */
@@ -33134,7 +33077,7 @@ export type ListDomainRecordsRequestType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const ListDomainRecordsRequestType = /*@__PURE__*/ S.String;
+export const ListDomainRecordsRequestType = S.String;
 
 export interface ListDomainRecordsRequest {
   /** The name of the domain itself. */
@@ -33467,7 +33410,7 @@ export const DropletSnapshotRegionsList = /*@__PURE__*/ S.Array(
 
 /** Describes the kind of image. It may be one of `snapshot` or `backup`. This specifies whether an image is a user-generated Droplet snapshot or automatically created Droplet backup. */
 export type DropletSnapshotType = "snapshot" | "backup";
-export const DropletSnapshotType = /*@__PURE__*/ S.String;
+export const DropletSnapshotType = S.String;
 
 export interface DropletSnapshot {
   /** The unique identifier for the snapshot or backup. */
@@ -33685,7 +33628,7 @@ export const NeighborIds = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "NeighborIds" }) as any as S.Schema<NeighborIds>;
 
 export type ListDropletsRequestType = "droplets" | "gpus";
-export const ListDropletsRequestType = /*@__PURE__*/ S.String;
+export const ListDropletsRequestType = S.String;
 
 export interface ListDropletsRequest {
   /** Number of items returned per page */
@@ -34744,7 +34687,7 @@ export type ListGenaiCustomModelsRequestStatus =
   | "STATUS_READY"
   | "STATUS_FAILED"
   | "STATUS_DELETED";
-export const ListGenaiCustomModelsRequestStatus = /*@__PURE__*/ S.String;
+export const ListGenaiCustomModelsRequestStatus = S.String;
 
 export interface ListGenaiCustomModelsRequest {
   /** Page number for pagination. */
@@ -34854,8 +34797,7 @@ export type ListGenaiEvaluationDatasetsRequestDatasetType =
   | "EVALUATION_DATASET_TYPE_ADK"
   | "EVALUATION_DATASET_TYPE_NON_ADK"
   | "EVALUATION_DATASET_TYPE_MODEL";
-export const ListGenaiEvaluationDatasetsRequestDatasetType =
-  /*@__PURE__*/ S.String;
+export const ListGenaiEvaluationDatasetsRequestDatasetType = S.String;
 
 export interface ListGenaiEvaluationDatasetsRequest {
   /** Filter by evaluation dataset type. */
@@ -35303,13 +35245,13 @@ export type ListGenaiModelCatalogRequestSortBy =
   | "MODEL_CATALOG_SORT_BY_CREATED_AT"
   | "MODEL_CATALOG_SORT_BY_NAME"
   | "MODEL_CATALOG_SORT_BY_PRICE";
-export const ListGenaiModelCatalogRequestSortBy = /*@__PURE__*/ S.String;
+export const ListGenaiModelCatalogRequestSortBy = S.String;
 
 export type ListGenaiModelCatalogRequestSortDirection =
   | "SORT_DIRECTION_UNSPECIFIED"
   | "SORT_DIRECTION_ASC"
   | "SORT_DIRECTION_DESC";
-export const ListGenaiModelCatalogRequestSortDirection = /*@__PURE__*/ S.String;
+export const ListGenaiModelCatalogRequestSortDirection = S.String;
 
 export type ListGenaiModelCatalogRequestUseCase =
   | "MODEL_CATALOG_USE_CASE_UNSPECIFIED"
@@ -35319,7 +35261,7 @@ export type ListGenaiModelCatalogRequestUseCase =
   | "MODEL_CATALOG_USE_CASE_IMAGE"
   | "MODEL_CATALOG_USE_CASE_VIDEO"
   | "MODEL_CATALOG_USE_CASE_EMBEDDING";
-export const ListGenaiModelCatalogRequestUseCase = /*@__PURE__*/ S.String;
+export const ListGenaiModelCatalogRequestUseCase = S.String;
 
 export interface ListGenaiModelCatalogRequest {
   /** Page number for pagination. */
@@ -35406,7 +35348,7 @@ export type ApiModelCatalogSortBy =
   | "MODEL_CATALOG_SORT_BY_CREATED_AT"
   | "MODEL_CATALOG_SORT_BY_NAME"
   | "MODEL_CATALOG_SORT_BY_PRICE";
-export const ApiModelCatalogSortBy = /*@__PURE__*/ S.String;
+export const ApiModelCatalogSortBy = S.String;
 
 /** All sort-by field values the client can offer in the sort UI. */
 export type ApiListModelCatalogOutputAvailableSortByList =
@@ -35421,7 +35363,7 @@ export type ApiSortDirection =
   | "SORT_DIRECTION_UNSPECIFIED"
   | "SORT_DIRECTION_ASC"
   | "SORT_DIRECTION_DESC";
-export const ApiSortDirection = /*@__PURE__*/ S.String;
+export const ApiSortDirection = S.String;
 
 /** All sort-direction values the client can offer in the sort UI. */
 export type ApiListModelCatalogOutputAvailableSortDirectionsList =
@@ -35625,7 +35567,7 @@ export type ListGenaiModelEvaluationRunsRequestStatus =
   | "MODEL_EVALUATION_RUN_SUCCESSFUL"
   | "MODEL_EVALUATION_RUN_PARTIALLY_SUCCESSFUL"
   | "MODEL_EVALUATION_RUN_FAILED";
-export const ListGenaiModelEvaluationRunsRequestStatus = /*@__PURE__*/ S.String;
+export const ListGenaiModelEvaluationRunsRequestStatus = S.String;
 
 export type ListGenaiModelEvaluationRunsRequestStatusesItem =
   | "MODEL_EVALUATION_RUN_STATUS_UNSPECIFIED"
@@ -35637,8 +35579,7 @@ export type ListGenaiModelEvaluationRunsRequestStatusesItem =
   | "MODEL_EVALUATION_RUN_SUCCESSFUL"
   | "MODEL_EVALUATION_RUN_PARTIALLY_SUCCESSFUL"
   | "MODEL_EVALUATION_RUN_FAILED";
-export const ListGenaiModelEvaluationRunsRequestStatusesItem =
-  /*@__PURE__*/ S.String;
+export const ListGenaiModelEvaluationRunsRequestStatusesItem = S.String;
 
 export type ListGenaiModelEvaluationRunsRequestStatusesList = Array<
   ListGenaiModelEvaluationRunsRequestStatusesItem | (string & {})
@@ -35652,8 +35593,7 @@ export type ListGenaiModelEvaluationRunsRequestCandidateTypesItem =
   | "CANDIDATE_MODEL_SOURCE_SERVERLESS"
   | "CANDIDATE_MODEL_SOURCE_DEDICATED"
   | "CANDIDATE_MODEL_SOURCE_ROUTER";
-export const ListGenaiModelEvaluationRunsRequestCandidateTypesItem =
-  /*@__PURE__*/ S.String;
+export const ListGenaiModelEvaluationRunsRequestCandidateTypesItem = S.String;
 
 export type ListGenaiModelEvaluationRunsRequestCandidateTypesList = Array<
   ListGenaiModelEvaluationRunsRequestCandidateTypesItem | (string & {})
@@ -35667,14 +35607,13 @@ export type ListGenaiModelEvaluationRunsRequestSortBy =
   | "MODEL_EVALUATION_RUN_SORT_FIELD_UNSPECIFIED"
   | "MODEL_EVALUATION_RUN_SORT_FIELD_CREATED_AT"
   | "MODEL_EVALUATION_RUN_SORT_FIELD_STATUS";
-export const ListGenaiModelEvaluationRunsRequestSortBy = /*@__PURE__*/ S.String;
+export const ListGenaiModelEvaluationRunsRequestSortBy = S.String;
 
 export type ListGenaiModelEvaluationRunsRequestSortDirection =
   | "SORT_DIRECTION_UNSPECIFIED"
   | "SORT_DIRECTION_ASC"
   | "SORT_DIRECTION_DESC";
-export const ListGenaiModelEvaluationRunsRequestSortDirection =
-  /*@__PURE__*/ S.String;
+export const ListGenaiModelEvaluationRunsRequestSortDirection = S.String;
 
 export interface ListGenaiModelEvaluationRunsRequest {
   /** UUID of the evaluation preset to filter by. */
@@ -35985,7 +35924,7 @@ export type ListGenaiModelsRequestUsecasesItem =
   | "MODEL_USECASE_GUARDRAIL"
   | "MODEL_USECASE_REASONING"
   | "MODEL_USECASE_SERVERLESS";
-export const ListGenaiModelsRequestUsecasesItem = /*@__PURE__*/ S.String;
+export const ListGenaiModelsRequestUsecasesItem = S.String;
 
 export type ListGenaiModelsRequestUsecasesList = Array<
   ListGenaiModelsRequestUsecasesItem | (string & {})
@@ -36256,7 +36195,7 @@ export const ListImageActionsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListImageActionsResponse>;
 
 export type ListImagesRequestType = "application" | "distribution";
-export const ListImagesRequestType = /*@__PURE__*/ S.String;
+export const ListImagesRequestType = S.String;
 
 export interface ListImagesRequest {
   /** Filters results based on image type which can be either `application` or `distribution`. */
@@ -36314,7 +36253,7 @@ export type ListInferenceBatchesRequestStatus =
   | "expired"
   | "cancelling"
   | "cancelled";
-export const ListInferenceBatchesRequestStatus = /*@__PURE__*/ S.String;
+export const ListInferenceBatchesRequestStatus = S.String;
 
 export interface ListInferenceBatchesRequest {
   /** Cursor for pagination. Pass the `last_id` value from the previous response to fetch the next page. Omit for the first page. */
@@ -36336,7 +36275,7 @@ export const ListInferenceBatchesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The object type, always `list`. */
 export type BatchListResponseObject = "list";
-export const BatchListResponseObject = /*@__PURE__*/ S.String;
+export const BatchListResponseObject = S.String;
 
 /** Batch jobs on this page, ordered newest first. */
 export type BatchListResponseDataList = Array<Batch>;
@@ -36378,11 +36317,11 @@ export const ListInferenceModelsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The object type, which is always "list". */
 export type ListModelsResponseObject = "list";
-export const ListModelsResponseObject = /*@__PURE__*/ S.String;
+export const ListModelsResponseObject = S.String;
 
 /** The object type, which is always "model". */
 export type ModelObject = "model";
-export const ModelObject = /*@__PURE__*/ S.String;
+export const ModelObject = S.String;
 
 /** Describes a model offering that can be used with the API. */
 export interface Model {
@@ -36898,7 +36837,7 @@ export type ListNfsAccessPointsRequestStatus =
   | "ACCESS_POINT_ACTIVE"
   | "ACCESS_POINT_FAILED"
   | "ACCESS_POINT_DELETED";
-export const ListNfsAccessPointsRequestStatus = /*@__PURE__*/ S.String;
+export const ListNfsAccessPointsRequestStatus = S.String;
 
 export interface ListNfsAccessPointsRequest {
   /** The unique identifier of the NFS share. */
@@ -36973,7 +36912,7 @@ export const NfsSnapshotListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NfsSnapshotListResponse>;
 
 export type ListOneClicksRequestType = "droplet" | "kubernetes";
-export const ListOneClicksRequestType = /*@__PURE__*/ S.String;
+export const ListOneClicksRequestType = S.String;
 
 export interface ListOneClicksRequest {
   /** Restrict results to a certain type of 1-Click. */
@@ -37029,7 +36968,7 @@ export const ListOrganizationTeamsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The team's membership status within the organization. */
 export type OrganizationTeamStatus = "joined" | "pending";
-export const OrganizationTeamStatus = /*@__PURE__*/ S.String;
+export const OrganizationTeamStatus = S.String;
 
 /** A team that belongs to an organization. */
 export interface OrganizationTeam {
@@ -37828,7 +37767,7 @@ export type ListReservedIPv6ResponseReservedIpv6sItemDroplet =
   | unknown
   | Droplet;
 export const ListReservedIPv6ResponseReservedIpv6sItemDroplet =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListReservedIPv6ResponseReservedIpv6sItemDroplet>;
+  S.Unknown as any as S.Schema<ListReservedIPv6ResponseReservedIpv6sItemDroplet>;
 
 export interface ListReservedIPv6ResponseReservedIpv6sItem {
   /** The public IP address of the reserved IPv6. It also serves as its identifier. */
@@ -38117,7 +38056,7 @@ export const ListSizesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListSizesResponse>;
 
 export type ListSnapshotsRequestResourceType = "droplet" | "volume";
-export const ListSnapshotsRequestResourceType = /*@__PURE__*/ S.String;
+export const ListSnapshotsRequestResourceType = S.String;
 
 export interface ListSnapshotsRequest {
   /** Number of items returned per page */
@@ -38670,7 +38609,7 @@ export type ListVpcnatgatewaysRequestState =
   | "deleting"
   | "error"
   | "invalid";
-export const ListVpcnatgatewaysRequestState = /*@__PURE__*/ S.String;
+export const ListVpcnatgatewaysRequestState = S.String;
 
 export type ListVpcnatgatewaysRequestRegion =
   | "nyc1"
@@ -38688,10 +38627,10 @@ export type ListVpcnatgatewaysRequestRegion =
   | "blr1"
   | "syd1"
   | "atl1";
-export const ListVpcnatgatewaysRequestRegion = /*@__PURE__*/ S.String;
+export const ListVpcnatgatewaysRequestRegion = S.String;
 
 export type ListVpcnatgatewaysRequestType = "public";
-export const ListVpcnatgatewaysRequestType = /*@__PURE__*/ S.String;
+export const ListVpcnatgatewaysRequestType = S.String;
 
 export interface ListVpcnatgatewaysRequest {
   /** Number of items returned per page */
@@ -39021,7 +38960,7 @@ export type PatchDatabaseConfigRequestConfig =
   | KafkaAdvancedConfig
   | OpensearchAdvancedConfig;
 export const PatchDatabaseConfigRequestConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchDatabaseConfigRequestConfig>;
+  S.Unknown as any as S.Schema<PatchDatabaseConfigRequestConfig>;
 
 export interface PatchDatabaseConfigRequest {
   /** A unique identifier for a database cluster. */
@@ -39222,7 +39161,7 @@ export type PartnerAttachmentUpdatable =
   | PartnerAttachmentUpdatableCase1
   | PartnerAttachmentUpdatableCase2;
 export const PartnerAttachmentUpdatable =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PartnerAttachmentUpdatable>;
+  S.Unknown as any as S.Schema<PartnerAttachmentUpdatable>;
 
 export interface PatchPartnerAttachmentRequest {
   /** A unique identifier for a partner attachment. */
@@ -39256,7 +39195,7 @@ export type PatchProjectRequestEnvironment =
   | "Development"
   | "Staging"
   | "Production";
-export const PatchProjectRequestEnvironment = /*@__PURE__*/ S.String;
+export const PatchProjectRequestEnvironment = S.String;
 
 export interface PatchProjectRequest {
   /** A unique identifier for a project. */
@@ -39303,7 +39242,7 @@ export type PatchProjectDefaultRequestEnvironment =
   | "Development"
   | "Staging"
   | "Production";
-export const PatchProjectDefaultRequestEnvironment = /*@__PURE__*/ S.String;
+export const PatchProjectDefaultRequestEnvironment = S.String;
 
 export interface PatchProjectDefaultRequest {
   /** The human-readable name for the project. The maximum length is 175 characters and the name must be unique. */
@@ -39493,7 +39432,7 @@ export type DropletActionType =
   | "change_kernel"
   | "enable_ipv6"
   | "snapshot";
-export const DropletActionType = /*@__PURE__*/ S.String;
+export const DropletActionType = S.String;
 
 /** Specifies the action that will be taken on the Droplet. */
 export interface DropletAction {
@@ -39523,14 +39462,13 @@ export type DropletActionEnableBackupsInputType =
   | "change_kernel"
   | "enable_ipv6"
   | "snapshot";
-export const DropletActionEnableBackupsInputType = /*@__PURE__*/ S.String;
+export const DropletActionEnableBackupsInputType = S.String;
 
 /** The backup plan used for the Droplet. The plan can be either `daily` or `weekly`. */
 export type DropletActionEnableBackupsInputBackupPolicyPlan =
   | "daily"
   | "weekly";
-export const DropletActionEnableBackupsInputBackupPolicyPlan =
-  /*@__PURE__*/ S.String;
+export const DropletActionEnableBackupsInputBackupPolicyPlan = S.String;
 
 /** The day of the week on which the backup will occur. */
 export type DropletActionEnableBackupsInputBackupPolicyWeekday =
@@ -39541,8 +39479,7 @@ export type DropletActionEnableBackupsInputBackupPolicyWeekday =
   | "THU"
   | "FRI"
   | "SAT";
-export const DropletActionEnableBackupsInputBackupPolicyWeekday =
-  /*@__PURE__*/ S.String;
+export const DropletActionEnableBackupsInputBackupPolicyWeekday = S.String;
 
 /** The hour of the day that the backup window will start. */
 export type DropletActionEnableBackupsInputBackupPolicyHour =
@@ -39552,8 +39489,7 @@ export type DropletActionEnableBackupsInputBackupPolicyHour =
   | 12
   | 16
   | 20;
-export const DropletActionEnableBackupsInputBackupPolicyHour =
-  /*@__PURE__*/ S.Number;
+export const DropletActionEnableBackupsInputBackupPolicyHour = S.Number;
 
 export interface DropletActionEnableBackupsInputBackupPolicy {
   /** The backup plan used for the Droplet. The plan can be either `daily` or `weekly`. */
@@ -39605,14 +39541,13 @@ export type DropletActionChangeBackupPolicyInputType =
   | "change_kernel"
   | "enable_ipv6"
   | "snapshot";
-export const DropletActionChangeBackupPolicyInputType = /*@__PURE__*/ S.String;
+export const DropletActionChangeBackupPolicyInputType = S.String;
 
 /** The backup plan used for the Droplet. The plan can be either `daily` or `weekly`. */
 export type DropletActionChangeBackupPolicyInputBackupPolicyPlan =
   | "daily"
   | "weekly";
-export const DropletActionChangeBackupPolicyInputBackupPolicyPlan =
-  /*@__PURE__*/ S.String;
+export const DropletActionChangeBackupPolicyInputBackupPolicyPlan = S.String;
 
 /** The day of the week on which the backup will occur. */
 export type DropletActionChangeBackupPolicyInputBackupPolicyWeekday =
@@ -39623,8 +39558,7 @@ export type DropletActionChangeBackupPolicyInputBackupPolicyWeekday =
   | "THU"
   | "FRI"
   | "SAT";
-export const DropletActionChangeBackupPolicyInputBackupPolicyWeekday =
-  /*@__PURE__*/ S.String;
+export const DropletActionChangeBackupPolicyInputBackupPolicyWeekday = S.String;
 
 /** The hour of the day that the backup window will start. */
 export type DropletActionChangeBackupPolicyInputBackupPolicyHour =
@@ -39634,8 +39568,7 @@ export type DropletActionChangeBackupPolicyInputBackupPolicyHour =
   | 12
   | 16
   | 20;
-export const DropletActionChangeBackupPolicyInputBackupPolicyHour =
-  /*@__PURE__*/ S.Number;
+export const DropletActionChangeBackupPolicyInputBackupPolicyHour = S.Number;
 
 export interface DropletActionChangeBackupPolicyInputBackupPolicy {
   /** The backup plan used for the Droplet. The plan can be either `daily` or `weekly`. */
@@ -39692,7 +39625,7 @@ export type DropletActionRestoreType =
   | "change_kernel"
   | "enable_ipv6"
   | "snapshot";
-export const DropletActionRestoreType = /*@__PURE__*/ S.String;
+export const DropletActionRestoreType = S.String;
 
 export interface DropletActionRestore {
   /** The type of action to initiate for the Droplet. */
@@ -39726,7 +39659,7 @@ export type DropletActionResizeType =
   | "change_kernel"
   | "enable_ipv6"
   | "snapshot";
-export const DropletActionResizeType = /*@__PURE__*/ S.String;
+export const DropletActionResizeType = S.String;
 
 export interface DropletActionResize {
   /** The type of action to initiate for the Droplet. */
@@ -39763,12 +39696,12 @@ export type DropletActionRebuildType =
   | "change_kernel"
   | "enable_ipv6"
   | "snapshot";
-export const DropletActionRebuildType = /*@__PURE__*/ S.String;
+export const DropletActionRebuildType = S.String;
 
 /** The image ID of a public or private image or the slug identifier for a public image. The Droplet will be rebuilt using this image as its base. */
 export type DropletActionRebuildImage = string | number;
 export const DropletActionRebuildImage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DropletActionRebuildImage>;
+  S.Unknown as any as S.Schema<DropletActionRebuildImage>;
 
 export interface DropletActionRebuild {
   /** The type of action to initiate for the Droplet. */
@@ -39802,7 +39735,7 @@ export type DropletActionRenameType =
   | "change_kernel"
   | "enable_ipv6"
   | "snapshot";
-export const DropletActionRenameType = /*@__PURE__*/ S.String;
+export const DropletActionRenameType = S.String;
 
 export interface DropletActionRename {
   /** The type of action to initiate for the Droplet. */
@@ -39836,7 +39769,7 @@ export type DropletActionChangeKernelType =
   | "change_kernel"
   | "enable_ipv6"
   | "snapshot";
-export const DropletActionChangeKernelType = /*@__PURE__*/ S.String;
+export const DropletActionChangeKernelType = S.String;
 
 export interface DropletActionChangeKernel {
   /** The type of action to initiate for the Droplet. */
@@ -39870,7 +39803,7 @@ export type DropletActionSnapshotType =
   | "change_kernel"
   | "enable_ipv6"
   | "snapshot";
-export const DropletActionSnapshotType = /*@__PURE__*/ S.String;
+export const DropletActionSnapshotType = S.String;
 
 export interface DropletActionSnapshot {
   /** The type of action to initiate for the Droplet. */
@@ -39898,7 +39831,7 @@ export type PostDropletActionRequestBody =
   | DropletActionChangeKernel
   | DropletActionSnapshot;
 export const PostDropletActionRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostDropletActionRequestBody>;
+  S.Unknown as any as S.Schema<PostDropletActionRequestBody>;
 
 export interface PostDropletActionRequest {
   /** A unique identifier for a Droplet instance. */
@@ -39935,7 +39868,7 @@ export type PostDropletActionByTagRequestBody =
   | DropletAction
   | DropletActionSnapshot;
 export const PostDropletActionByTagRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostDropletActionByTagRequestBody>;
+  S.Unknown as any as S.Schema<PostDropletActionByTagRequestBody>;
 
 export interface PostDropletActionByTagRequest {
   /** Used to filter Droplets by a specific tag. Can not be combined with `name` or `type`.<br>Requires `tag:read` scope. */
@@ -39969,7 +39902,7 @@ export const PostDropletActionByTagResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of action to initiate for the floating IP. */
 export type FloatingIpActionUnassignType = "assign" | "unassign";
-export const FloatingIpActionUnassignType = /*@__PURE__*/ S.String;
+export const FloatingIpActionUnassignType = S.String;
 
 export interface FloatingIpActionUnassign {
   /** The type of action to initiate for the floating IP. */
@@ -39985,7 +39918,7 @@ export const FloatingIpActionUnassign = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of action to initiate for the floating IP. */
 export type FloatingIpActionAssignType = "assign" | "unassign";
-export const FloatingIpActionAssignType = /*@__PURE__*/ S.String;
+export const FloatingIpActionAssignType = S.String;
 
 export interface FloatingIpActionAssign {
   /** The type of action to initiate for the floating IP. */
@@ -40006,7 +39939,7 @@ export type PostFloatingIPsActionRequestBody =
   | FloatingIpActionUnassign
   | FloatingIpActionAssign;
 export const PostFloatingIPsActionRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostFloatingIPsActionRequestBody>;
+  S.Unknown as any as S.Schema<PostFloatingIPsActionRequestBody>;
 
 export interface PostFloatingIPsActionRequest {
   /** A floating IP address. */
@@ -40033,7 +39966,7 @@ export type PostFloatingIPsActionResponseActionStatus =
   | "in-progress"
   | "completed"
   | "errored";
-export const PostFloatingIPsActionResponseActionStatus = /*@__PURE__*/ S.String;
+export const PostFloatingIPsActionResponseActionStatus = S.String;
 
 export interface PostFloatingIPsActionResponseAction {
   /** A unique numeric ID that can be used to identify and reference an action. */
@@ -40115,7 +40048,7 @@ export const PostImageAccountTransferDeclineResponse = /*@__PURE__*/ S.suspend(
 
 /** The action to be taken on the image. Can be either `convert` or `transfer`. */
 export type ImageActionBaseType = "convert" | "transfer";
-export const ImageActionBaseType = /*@__PURE__*/ S.String;
+export const ImageActionBaseType = S.String;
 
 export interface ImageActionBase {
   /** The action to be taken on the image. Can be either `convert` or `transfer`. */
@@ -40131,7 +40064,7 @@ export const ImageActionBase = /*@__PURE__*/ S.suspend(() =>
 
 /** The action to be taken on the image. Can be either `convert` or `transfer`. */
 export type ImageActionTransferType = "convert" | "transfer";
-export const ImageActionTransferType = /*@__PURE__*/ S.String;
+export const ImageActionTransferType = S.String;
 
 export interface ImageActionTransfer {
   /** The action to be taken on the image. Can be either `convert` or `transfer`. */
@@ -40149,7 +40082,7 @@ export const ImageActionTransfer = /*@__PURE__*/ S.suspend(() =>
 
 export type PostImageActionRequestBody = ImageActionBase | ImageActionTransfer;
 export const PostImageActionRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostImageActionRequestBody>;
+  S.Unknown as any as S.Schema<PostImageActionRequestBody>;
 
 export interface PostImageActionRequest {
   /** A unique number that can be used to identify and reference a specific image. */
@@ -40169,7 +40102,7 @@ export const PostImageActionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of action to initiate for the reserved IP. */
 export type ReservedIpActionUnassignType = "assign" | "unassign";
-export const ReservedIpActionUnassignType = /*@__PURE__*/ S.String;
+export const ReservedIpActionUnassignType = S.String;
 
 export interface ReservedIpActionUnassign {
   /** The type of action to initiate for the reserved IP. */
@@ -40185,7 +40118,7 @@ export const ReservedIpActionUnassign = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of action to initiate for the reserved IP. */
 export type ReservedIpActionAssignType = "assign" | "unassign";
-export const ReservedIpActionAssignType = /*@__PURE__*/ S.String;
+export const ReservedIpActionAssignType = S.String;
 
 export interface ReservedIpActionAssign {
   /** The type of action to initiate for the reserved IP. */
@@ -40206,7 +40139,7 @@ export type PostReservedIPsActionRequestBody =
   | ReservedIpActionUnassign
   | ReservedIpActionAssign;
 export const PostReservedIPsActionRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostReservedIPsActionRequestBody>;
+  S.Unknown as any as S.Schema<PostReservedIPsActionRequestBody>;
 
 export interface PostReservedIPsActionRequest {
   /** A reserved IP address. */
@@ -40233,7 +40166,7 @@ export type PostReservedIPsActionResponseActionStatus =
   | "in-progress"
   | "completed"
   | "errored";
-export const PostReservedIPsActionResponseActionStatus = /*@__PURE__*/ S.String;
+export const PostReservedIPsActionResponseActionStatus = S.String;
 
 export interface PostReservedIPsActionResponseAction {
   /** A unique numeric ID that can be used to identify and reference an action. */
@@ -40286,7 +40219,7 @@ export const PostReservedIPsActionResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of action to initiate for the reserved IPv6. */
 export type ReservedIpv6ActionUnassignType = "assign" | "unassign";
-export const ReservedIpv6ActionUnassignType = /*@__PURE__*/ S.String;
+export const ReservedIpv6ActionUnassignType = S.String;
 
 export interface ReservedIpv6ActionUnassign {
   /** The type of action to initiate for the reserved IPv6. */
@@ -40302,7 +40235,7 @@ export const ReservedIpv6ActionUnassign = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of action to initiate for the reserved IPv6. */
 export type ReservedIpv6ActionAssignType = "assign" | "unassign";
-export const ReservedIpv6ActionAssignType = /*@__PURE__*/ S.String;
+export const ReservedIpv6ActionAssignType = S.String;
 
 export interface ReservedIpv6ActionAssign {
   /** The type of action to initiate for the reserved IPv6. */
@@ -40323,7 +40256,7 @@ export type PostReservedIPv6ActionRequestBody =
   | ReservedIpv6ActionUnassign
   | ReservedIpv6ActionAssign;
 export const PostReservedIPv6ActionRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostReservedIPv6ActionRequestBody>;
+  S.Unknown as any as S.Schema<PostReservedIPv6ActionRequestBody>;
 
 export interface PostReservedIPv6ActionRequest {
   /** A reserved IPv6 address. */
@@ -40350,8 +40283,7 @@ export type PostReservedIPv6ActionResponseActionStatus =
   | "in-progress"
   | "completed"
   | "errored";
-export const PostReservedIPv6ActionResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const PostReservedIPv6ActionResponseActionStatus = S.String;
 
 export interface PostReservedIPv6ActionResponseAction {
   /** A unique numeric ID that can be used to identify and reference an action. */
@@ -40402,7 +40334,7 @@ export const PostReservedIPv6ActionResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The volume action to initiate. */
 export type VolumeActionPostAttachType = "attach" | "detach" | "resize";
-export const VolumeActionPostAttachType = /*@__PURE__*/ S.String;
+export const VolumeActionPostAttachType = S.String;
 
 export interface VolumeActionPostAttach {
   /** The volume action to initiate. */
@@ -40424,7 +40356,7 @@ export const VolumeActionPostAttach = /*@__PURE__*/ S.suspend(() =>
 
 /** The volume action to initiate. */
 export type VolumeActionPostDetachType = "attach" | "detach" | "resize";
-export const VolumeActionPostDetachType = /*@__PURE__*/ S.String;
+export const VolumeActionPostDetachType = S.String;
 
 export interface VolumeActionPostDetach {
   /** The volume action to initiate. */
@@ -40446,7 +40378,7 @@ export type PostVolumeActionRequestBody =
   | VolumeActionPostAttach
   | VolumeActionPostDetach;
 export const PostVolumeActionRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostVolumeActionRequestBody>;
+  S.Unknown as any as S.Schema<PostVolumeActionRequestBody>;
 
 export interface PostVolumeActionRequest {
   /** Number of items returned per page */
@@ -40474,7 +40406,7 @@ export const PostVolumeActionResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The volume action to initiate. */
 export type VolumeActionPostResizeType = "attach" | "detach" | "resize";
-export const VolumeActionPostResizeType = /*@__PURE__*/ S.String;
+export const VolumeActionPostResizeType = S.String;
 
 export interface VolumeActionPostResize {
   /** The volume action to initiate. */
@@ -40498,7 +40430,7 @@ export type PostVolumeActionByIdRequestBody =
   | VolumeActionPostDetach
   | VolumeActionPostResize;
 export const PostVolumeActionByIdRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostVolumeActionByIdRequestBody>;
+  S.Unknown as any as S.Schema<PostVolumeActionByIdRequestBody>;
 
 export interface PostVolumeActionByIdRequest {
   /** The ID of the block storage volume. */
@@ -41043,8 +40975,7 @@ export type UnassignTagResourcesRequestResourcesItemResourceType =
   | "image"
   | "volume"
   | "volume_snapshot";
-export const UnassignTagResourcesRequestResourcesItemResourceType =
-  /*@__PURE__*/ S.String;
+export const UnassignTagResourcesRequestResourcesItemResourceType = S.String;
 
 export interface UnassignTagResourcesRequestResourcesItem {
   /** The identifier of a resource. */
@@ -41119,7 +41050,7 @@ export type UpdateAutoscalepoolRequestConfig =
   | AutoscalePoolStaticConfig
   | AutoscalePoolDynamicConfig;
 export const UpdateAutoscalepoolRequestConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateAutoscalepoolRequestConfig>;
+  S.Unknown as any as S.Schema<UpdateAutoscalepoolRequestConfig>;
 
 export interface UpdateAutoscalepoolRequest {
   /** A unique identifier for an autoscale pool. */
@@ -41160,7 +41091,7 @@ export const UpdateAutoscalepoolResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The amount of time the content is cached by the CDN's edge servers in seconds. TTL must be one of 60, 600, 3600, 86400, or 604800. Defaults to 3600 (one hour) when excluded. */
 export type UpdateCdnEndpointsRequestTtl = 60 | 600 | 3600 | 86400 | 604800;
-export const UpdateCdnEndpointsRequestTtl = /*@__PURE__*/ S.Number;
+export const UpdateCdnEndpointsRequestTtl = S.Number;
 
 export interface UpdateCdnEndpointsRequest {
   /** A unique identifier for a CDN endpoint. */
@@ -41424,7 +41355,7 @@ export type UpdateDatabaseKafkaSchemaConfigRequestCompatibilityLevel =
   | "FULL"
   | "FULL_TRANSITIVE";
 export const UpdateDatabaseKafkaSchemaConfigRequestCompatibilityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDatabaseKafkaSchemaConfigRequest {
   /** A unique identifier for a database cluster. */
@@ -41461,7 +41392,7 @@ export type UpdateDatabaseKafkaSchemaConfigResponseCompatibilityLevel =
   | "FULL"
   | "FULL_TRANSITIVE";
 export const UpdateDatabaseKafkaSchemaConfigResponseCompatibilityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDatabaseKafkaSchemaConfigResponse {
   /** The compatibility level of the schema registry. */
@@ -41487,7 +41418,7 @@ export type UpdateDatabaseKafkaSchemaSubjectConfigRequestCompatibilityLevel =
   | "FULL"
   | "FULL_TRANSITIVE";
 export const UpdateDatabaseKafkaSchemaSubjectConfigRequestCompatibilityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDatabaseKafkaSchemaSubjectConfigRequest {
   /** A unique identifier for a database cluster. */
@@ -41527,7 +41458,7 @@ export type UpdateDatabaseKafkaSchemaSubjectConfigResponseCompatibilityLevel =
   | "FULL"
   | "FULL_TRANSITIVE";
 export const UpdateDatabaseKafkaSchemaSubjectConfigResponseCompatibilityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDatabaseKafkaSchemaSubjectConfigResponse {
   /** The name of the schema subject. */
@@ -41592,7 +41523,7 @@ export type UpdateDatabaseLogsinkRequestConfig =
   | OpensearchLogsink
   | DatadogLogsink;
 export const UpdateDatabaseLogsinkRequestConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDatabaseLogsinkRequestConfig>;
+  S.Unknown as any as S.Schema<UpdateDatabaseLogsinkRequestConfig>;
 
 export interface UpdateDatabaseLogsinkRequest {
   /** A unique identifier for a database cluster. */
@@ -41902,8 +41833,7 @@ export type UpdateFirewallRequestInboundRulesItemProtocol =
   | "tcp"
   | "udp"
   | "icmp";
-export const UpdateFirewallRequestInboundRulesItemProtocol =
-  /*@__PURE__*/ S.String;
+export const UpdateFirewallRequestInboundRulesItemProtocol = S.String;
 
 /** An array of strings containing the IPv4 addresses, IPv6 addresses, IPv4 CIDRs, and/or IPv6 CIDRs to which the firewall will allow traffic. */
 export type UpdateFirewallRequestInboundRulesItemSourcesAddressesList =
@@ -41998,8 +41928,7 @@ export type UpdateFirewallRequestOutboundRulesItemProtocol =
   | "tcp"
   | "udp"
   | "icmp";
-export const UpdateFirewallRequestOutboundRulesItemProtocol =
-  /*@__PURE__*/ S.String;
+export const UpdateFirewallRequestOutboundRulesItemProtocol = S.String;
 
 /** An array of strings containing the IPv4 addresses, IPv6 addresses, IPv4 CIDRs, and/or IPv6 CIDRs to which the firewall will allow traffic. */
 export type UpdateFirewallRequestOutboundRulesItemDestinationsAddressesList =
@@ -43182,7 +43111,7 @@ export const UpdateLoadBalancerResponse = /*@__PURE__*/ S.suspend(() =>
 export type UpdateMonitoringAlertPolicyRequestCompare =
   | "GreaterThan"
   | "LessThan";
-export const UpdateMonitoringAlertPolicyRequestCompare = /*@__PURE__*/ S.String;
+export const UpdateMonitoringAlertPolicyRequestCompare = S.String;
 
 export type UpdateMonitoringAlertPolicyRequestEntitiesList = Array<string>;
 export const UpdateMonitoringAlertPolicyRequestEntitiesList =
@@ -43232,14 +43161,14 @@ export type UpdateMonitoringAlertPolicyRequestType =
   | "v1/droplet/autoscale_alerts/target_memory_utilization"
   | "v1/droplet/autoscale_alerts/scale_up"
   | "v1/droplet/autoscale_alerts/scale_down";
-export const UpdateMonitoringAlertPolicyRequestType = /*@__PURE__*/ S.String;
+export const UpdateMonitoringAlertPolicyRequestType = S.String;
 
 export type UpdateMonitoringAlertPolicyRequestWindow =
   | "5m"
   | "10m"
   | "30m"
   | "1h";
-export const UpdateMonitoringAlertPolicyRequestWindow = /*@__PURE__*/ S.String;
+export const UpdateMonitoringAlertPolicyRequestWindow = S.String;
 
 export interface UpdateMonitoringAlertPolicyRequest {
   /** A unique identifier for an alert policy. */
@@ -43292,7 +43221,7 @@ export const UpdateMonitoringAlertPolicyResponse = /*@__PURE__*/ S.suspend(() =>
 export type UpdateMonitoringDestinationRequestType =
   | "opensearch_dbaas"
   | "opensearch_ext";
-export const UpdateMonitoringDestinationRequestType = /*@__PURE__*/ S.String;
+export const UpdateMonitoringDestinationRequestType = S.String;
 
 export interface UpdateMonitoringDestinationRequest {
   /** A unique identifier for a destination. */
@@ -43332,7 +43261,7 @@ export type UpdateProjectRequestEnvironment =
   | "Development"
   | "Staging"
   | "Production";
-export const UpdateProjectRequestEnvironment = /*@__PURE__*/ S.String;
+export const UpdateProjectRequestEnvironment = S.String;
 
 export interface UpdateProjectRequest {
   /** A unique identifier for a project. */
@@ -43379,7 +43308,7 @@ export type UpdateProjectDefaultRequestEnvironment =
   | "Development"
   | "Staging"
   | "Production";
-export const UpdateProjectDefaultRequestEnvironment = /*@__PURE__*/ S.String;
+export const UpdateProjectDefaultRequestEnvironment = S.String;
 
 export interface UpdateProjectDefaultRequest {
   /** The human-readable name for the project. The maximum length is 175 characters and the name must be unique. */
@@ -43458,7 +43387,7 @@ export type UpdateRegistrySubscriptionRequestTierSlug =
   | "starter"
   | "basic"
   | "professional";
-export const UpdateRegistrySubscriptionRequestTierSlug = /*@__PURE__*/ S.String;
+export const UpdateRegistrySubscriptionRequestTierSlug = S.String;
 
 export interface UpdateRegistrySubscriptionRequest {
   /** The slug of the subscription tier to sign up for. */
@@ -43675,11 +43604,11 @@ export type UpdateUptimeAlertRequestType =
   | "down"
   | "down_global"
   | "ssl_expiry";
-export const UpdateUptimeAlertRequestType = /*@__PURE__*/ S.String;
+export const UpdateUptimeAlertRequestType = S.String;
 
 /** The comparison operator used against the alert's threshold. */
 export type UpdateUptimeAlertRequestComparison = "greater_than" | "less_than";
-export const UpdateUptimeAlertRequestComparison = /*@__PURE__*/ S.String;
+export const UpdateUptimeAlertRequestComparison = S.String;
 
 /** Period of time the threshold must be exceeded to trigger the alert. */
 export type UpdateUptimeAlertRequestPeriod =
@@ -43690,7 +43619,7 @@ export type UpdateUptimeAlertRequestPeriod =
   | "15m"
   | "30m"
   | "1h";
-export const UpdateUptimeAlertRequestPeriod = /*@__PURE__*/ S.String;
+export const UpdateUptimeAlertRequestPeriod = S.String;
 
 export interface UpdateUptimeAlertRequest {
   /** A unique identifier for a check. */
@@ -43743,14 +43672,14 @@ export const UpdateUptimeAlertResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of health check to perform. */
 export type UpdateUptimeCheckRequestType = "ping" | "http" | "https";
-export const UpdateUptimeCheckRequestType = /*@__PURE__*/ S.String;
+export const UpdateUptimeCheckRequestType = S.String;
 
 export type UpdateUptimeCheckRequestRegionsItem =
   | "us_east"
   | "us_west"
   | "eu_west"
   | "se_asia";
-export const UpdateUptimeCheckRequestRegionsItem = /*@__PURE__*/ S.String;
+export const UpdateUptimeCheckRequestRegionsItem = S.String;
 
 /** An array containing the selected regions to perform healthchecks from. */
 export type UpdateUptimeCheckRequestRegionsList = Array<
@@ -44089,7 +44018,7 @@ export type ValidateAppRollbackResponseErrorCode =
   | "region_conflict"
   | "static_site_requires_rebuild"
   | "image_source_missing_digest";
-export const ValidateAppRollbackResponseErrorCode = /*@__PURE__*/ S.String;
+export const ValidateAppRollbackResponseErrorCode = S.String;
 
 export type ValidateAppRollbackResponseErrorComponentsList = Array<string>;
 export const ValidateAppRollbackResponseErrorComponentsList =
@@ -44124,7 +44053,7 @@ export type AppRollbackValidationConditionCode =
   | "region_conflict"
   | "static_site_requires_rebuild"
   | "image_source_missing_digest";
-export const AppRollbackValidationConditionCode = /*@__PURE__*/ S.String;
+export const AppRollbackValidationConditionCode = S.String;
 
 export type AppRollbackValidationConditionComponentsList = Array<string>;
 export const AppRollbackValidationConditionComponentsList =

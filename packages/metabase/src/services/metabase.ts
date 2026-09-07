@@ -29,7 +29,7 @@ export type MetabaseLibSchemaParameterTarget =
   | MetabaseLibSchemaParameterVariable
   | MetabaseLibSchemaParameterTextTag;
 export const MetabaseLibSchemaParameterTarget =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseLibSchemaParameterTarget>;
+  S.Unknown as any as S.Schema<MetabaseLibSchemaParameterTarget>;
 
 /** parameter_mapping must be a map with :parameter_id and :target keys */
 export interface MetabaseParametersSchemaParameterMapping {
@@ -58,7 +58,7 @@ export const MetabaseParametersSchemaParameterMappings = /*@__PURE__*/ S.Array(
 
 /** Unsupported action type */
 export type MetabaseActionsSchemaType = "http" | "implicit" | "query";
-export const MetabaseActionsSchemaType = /*@__PURE__*/ S.String;
+export const MetabaseActionsSchemaType = S.String;
 
 export type MetabaseActionsSchemaHttpActionTemplateMethod =
   | "GET"
@@ -66,8 +66,7 @@ export type MetabaseActionsSchemaHttpActionTemplateMethod =
   | "PUT"
   | "DELETE"
   | "PATCH";
-export const MetabaseActionsSchemaHttpActionTemplateMethod =
-  /*@__PURE__*/ S.String;
+export const MetabaseActionsSchemaHttpActionTemplateMethod = S.String;
 
 export type MetabaseParametersSchemaParameterFilteringParametersList =
   Array<string>;
@@ -94,7 +93,7 @@ export type MetabaseParametersSchemaParameterMappings2 =
   | MetabaseParametersSchemaParameterMappingsCase0List
   | MetabaseParametersSchemaParameterMappingsCase1List;
 export const MetabaseParametersSchemaParameterMappings2 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseParametersSchemaParameterMappings2>;
+  S.Unknown as any as S.Schema<MetabaseParametersSchemaParameterMappings2>;
 
 /** Schema for valid source_options within a Parameter */
 export interface MetabaseParametersSchemaValuesSourceConfig {
@@ -125,13 +124,13 @@ export type MetabaseLibSchemaParameterParameterValue =
   | unknown
   | MetabaseLibSchemaParameterParameterValueCase1List;
 export const MetabaseLibSchemaParameterParameterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseLibSchemaParameterParameterValue>;
+  S.Unknown as any as S.Schema<MetabaseLibSchemaParameterParameterValue>;
 
 export type MetabaseParametersSchemaValuesQueryType =
   | "none"
   | "list"
   | "search";
-export const MetabaseParametersSchemaValuesQueryType = /*@__PURE__*/ S.String;
+export const MetabaseParametersSchemaValuesQueryType = S.String;
 
 /** Valid parameter :type */
 export type MetabaseLibSchemaParameterType =
@@ -164,7 +163,7 @@ export type MetabaseLibSchemaParameterType =
   | "string/ends-with"
   | "string/starts-with"
   | "boolean/=";
-export const MetabaseLibSchemaParameterType = /*@__PURE__*/ S.String;
+export const MetabaseLibSchemaParameterType = S.String;
 
 export type MetabaseLibSchemaTemporalBucketingUnit =
   | "day"
@@ -187,7 +186,7 @@ export type MetabaseLibSchemaTemporalBucketingUnit =
   | "week-of-year"
   | "year"
   | "year-of-era";
-export const MetabaseLibSchemaTemporalBucketingUnit = /*@__PURE__*/ S.String;
+export const MetabaseLibSchemaTemporalBucketingUnit = S.String;
 
 export type MetabaseParametersSchemaParameterTemporalUnitsList = Array<
   MetabaseLibSchemaTemporalBucketingUnit | (string & {})
@@ -198,7 +197,7 @@ export const MetabaseParametersSchemaParameterTemporalUnitsList =
   ) as any as S.Schema<MetabaseParametersSchemaParameterTemporalUnitsList>;
 
 export type MetabaseParametersSchemaValuesSourceType = "static-list" | "card";
-export const MetabaseParametersSchemaValuesSourceType = /*@__PURE__*/ S.String;
+export const MetabaseParametersSchemaValuesSourceType = S.String;
 
 /** Options the frontend attaches to a parameter value. */
 export interface MetabaseLibSchemaParameterParameterOptions {
@@ -345,7 +344,7 @@ export type MetabaseActionsSchemaImplicitActionKind =
   | "bulk/create"
   | "bulk/update"
   | "bulk/delete";
-export const MetabaseActionsSchemaImplicitActionKind = /*@__PURE__*/ S.String;
+export const MetabaseActionsSchemaImplicitActionKind = S.String;
 
 export interface MetabaseActionsSchemaActionForInsertCase1 {
   visualization_settings?: unknown | null;
@@ -442,8 +441,7 @@ export type MetabaseLibSchemaMetadataColumnVisibilityType =
   | "normal"
   | "hidden"
   | "details-only";
-export const MetabaseLibSchemaMetadataColumnVisibilityType =
-  /*@__PURE__*/ S.String;
+export const MetabaseLibSchemaMetadataColumnVisibilityType = S.String;
 
 /** External remapping (Dimension) for a column. From the [[metabase.warehouse-schema.models.dimension]] with `type = external` associated with a `Field` in the application database. See [[metabase.query-processor.middleware.add-remaps]] for what this means. */
 export interface MetabaseLibSchemaMetadataColumnRemappingExternal {
@@ -660,8 +658,7 @@ export type MetabaseLibSchemaMetadataColumnHasFieldValues =
   | "list"
   | "none"
   | "search";
-export const MetabaseLibSchemaMetadataColumnHasFieldValues =
-  /*@__PURE__*/ S.String;
+export const MetabaseLibSchemaMetadataColumnHasFieldValues = S.String;
 
 export type MetabaseLibSchemaMetadataColumnRemappingInternalHumanReadableValuesList =
   Array<unknown>;
@@ -747,7 +744,7 @@ export type MetabaseLibSchemaBinningBinning =
   | MetabaseLibSchemaBinningBinningCase1
   | MetabaseLibSchemaBinningBinningCase2;
 export const MetabaseLibSchemaBinningBinning =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseLibSchemaBinningBinning>;
+  S.Unknown as any as S.Schema<MetabaseLibSchemaBinningBinning>;
 
 /** Possible values for `column.source` -- this is added by [[metabase.lib.metadata.result-metadata]] for historical reasons (it is used in a few places in the FE). DO NOT use this in the backend for any purpose, use `:lib/source` instead. */
 export type MetabaseLibSchemaMetadataColumnLegacySource =
@@ -755,8 +752,7 @@ export type MetabaseLibSchemaMetadataColumnLegacySource =
   | "fields"
   | "breakout"
   | "native";
-export const MetabaseLibSchemaMetadataColumnLegacySource =
-  /*@__PURE__*/ S.String;
+export const MetabaseLibSchemaMetadataColumnLegacySource = S.String;
 
 /** `:lib/source` -- where a column came from with respect to the current stage. Traditionally, `:lib/source` meant something slightly different -- it denoted what part of the current stage a column came from, and thus included two additional options -- `:source/fields`, for columns used by `:fields`, and `:source/breakouts`, for columns used in `:breakout`. This was not really useful information and made `:lib/source` itself useless for determining if a column was 'inherited' or not (i.e., whether it came from a previous stage, source card, or a join, and should get field name refs instead of field ID refs -- see [[metabase.lib.field.util/inherited-column?]]). */
 export type MetabaseLibSchemaMetadataColumnSource =
@@ -768,7 +764,7 @@ export type MetabaseLibSchemaMetadataColumnSource =
   | "source/joins"
   | "source/expressions"
   | "source/implicitly-joinable";
-export const MetabaseLibSchemaMetadataColumnSource = /*@__PURE__*/ S.String;
+export const MetabaseLibSchemaMetadataColumnSource = S.String;
 
 /** Malli schema for a valid map of column metadata, which can mean one of two things: 1. Metadata about a particular Field in the application database. This will always have an `:id` 2. Results metadata from a column in `data.cols` and/or `data.results_metadata.columns` in a Query Processor response, or saved in something like `Card.result_metadata`. These *may* have an `:id`, or may not -- columns coming back from native queries or things like `SELECT count(*)` aren't associated with any particular `Field` and thus will not have an `:id`. Now maybe these should be two different schemas, but `:id` being there or not is the only real difference; besides that they are largely compatible. So they're the same for now. We can revisit this in the future if we actually want to differentiate between the two versions. */
 export interface MetabaseLibSchemaMetadataColumn {
@@ -994,7 +990,7 @@ export type MetabaseLibSchemaInfoInfoPivotResultMetadata =
   | unknown
   | MetabaseLibSchemaInfoInfoPivotResultMetadataCase1List;
 export const MetabaseLibSchemaInfoInfoPivotResultMetadata =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseLibSchemaInfoInfoPivotResultMetadata>;
+  S.Unknown as any as S.Schema<MetabaseLibSchemaInfoInfoPivotResultMetadata>;
 
 /** Schema for `info.context`; used for informational purposes to record how a query was executed. */
 export type MetabaseLibSchemaInfoContext =
@@ -1026,7 +1022,7 @@ export type MetabaseLibSchemaInfoContext =
   | "table-rows-sample"
   | "transform-inspector"
   | "slackbot";
-export const MetabaseLibSchemaInfoContext = /*@__PURE__*/ S.String;
+export const MetabaseLibSchemaInfoContext = S.String;
 
 export type MetabaseLibSchemaInfoInfoLensParamsMap = {
   [key: string]: unknown | undefined;
@@ -1300,18 +1296,18 @@ export type MetabaseLegacyMbqlSchemaLegacyColumnMetadataLibTemporalUnit =
   | "year"
   | "year-of-era";
 export const MetabaseLegacyMbqlSchemaLegacyColumnMetadataLibTemporalUnit =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Schema for a valid value for the `:source-table` clause of an MBQL query. */
 export type MetabaseLegacyMbqlSchemaSourceTable = number | string;
 export const MetabaseLegacyMbqlSchemaSourceTable =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseLegacyMbqlSchemaSourceTable>;
+  S.Unknown as any as S.Schema<MetabaseLegacyMbqlSchemaSourceTable>;
 
 export type MetabaseLibSchemaBinningStrategy =
   | "bin-width"
   | "default"
   | "num-bins";
-export const MetabaseLibSchemaBinningStrategy = /*@__PURE__*/ S.String;
+export const MetabaseLibSchemaBinningStrategy = S.String;
 
 export interface MetabaseLegacyMbqlSchemaLegacyColumnMetadataBinningInfo {
   bin_width?: unknown;
@@ -1359,7 +1355,7 @@ export type MetabaseLegacyMbqlSchemaLegacyColumnMetadataLibOriginalBinning =
   | MetabaseLibSchemaBinningBinningCase1
   | MetabaseLibSchemaBinningBinningCase2;
 export const MetabaseLegacyMbqlSchemaLegacyColumnMetadataLibOriginalBinning =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseLegacyMbqlSchemaLegacyColumnMetadataLibOriginalBinning>;
+  S.Unknown as any as S.Schema<MetabaseLegacyMbqlSchemaLegacyColumnMetadataLibOriginalBinning>;
 
 export type MetabaseLegacyMbqlSchemaLegacyColumnMetadataLibBinningCase0 =
   MetabaseLibSchemaBinningBinningCase0;
@@ -1382,7 +1378,7 @@ export type MetabaseLegacyMbqlSchemaLegacyColumnMetadataLibBinning =
   | MetabaseLibSchemaBinningBinningCase1
   | MetabaseLibSchemaBinningBinningCase2;
 export const MetabaseLegacyMbqlSchemaLegacyColumnMetadataLibBinning =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseLegacyMbqlSchemaLegacyColumnMetadataLibBinning>;
+  S.Unknown as any as S.Schema<MetabaseLegacyMbqlSchemaLegacyColumnMetadataLibBinning>;
 
 /** Schema for a single legacy metadata column. This is the pre-Lib equivalent of `:metabase.lib.schema.metadata/column`. */
 export interface MetabaseLegacyMbqlSchemaLegacyColumnMetadata {
@@ -1621,7 +1617,7 @@ export type MetabaseLibSchemaMetadataLibOrLegacyColumn =
   | MetabaseLibSchemaMetadataLibOrLegacyColumnCase0
   | MetabaseLegacyMbqlSchemaLegacyColumnMetadata;
 export const MetabaseLibSchemaMetadataLibOrLegacyColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseLibSchemaMetadataLibOrLegacyColumn>;
+  S.Unknown as any as S.Schema<MetabaseLibSchemaMetadataLibOrLegacyColumn>;
 
 export type MetabaseLibSchemaInfoInfoMetadataModelMetadataList =
   Array<MetabaseLibSchemaMetadataLibOrLegacyColumn>;
@@ -1740,7 +1736,7 @@ export const MetabaseLibSchemaMiddlewareOptionsMiddlewareOptions =
 
 export type MetabaseLibSchemaQueryDatabase = unknown | number;
 export const MetabaseLibSchemaQueryDatabase =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseLibSchemaQueryDatabase>;
+  S.Unknown as any as S.Schema<MetabaseLibSchemaQueryDatabase>;
 
 export type MetabaseLibSchemaQueryPivotMeasuresList = Array<number>;
 export const MetabaseLibSchemaQueryPivotMeasuresList = /*@__PURE__*/ S.Array(
@@ -1852,7 +1848,7 @@ export type MetabaseLibBeSchemaMaybeLegacyOrEmptyQuery =
   | unknown
   | MetabaseLibSchemaQuery;
 export const MetabaseLibBeSchemaMaybeLegacyOrEmptyQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseLibBeSchemaMaybeLegacyOrEmptyQuery>;
+  S.Unknown as any as S.Schema<MetabaseLibBeSchemaMaybeLegacyOrEmptyQuery>;
 
 export interface MetabaseActionsSchemaActionForInsertCase2 {
   visualization_settings?: unknown | null;
@@ -1937,7 +1933,7 @@ export type MetabaseActionsSchemaActionForInsert =
   | MetabaseActionsSchemaActionForInsertCase2
   | MetabaseActionsSchemaActionForInsertCase3;
 export const MetabaseActionsSchemaActionForInsert =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseActionsSchemaActionForInsert>;
+  S.Unknown as any as S.Schema<MetabaseActionsSchemaActionForInsert>;
 
 export interface CreateActionRequest {
   body?: MetabaseActionsSchemaActionForInsert;
@@ -2054,7 +2050,7 @@ export const CreateActionPublicLinkResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateActionPublicLinkResponse>;
 
 export type CreateActivityRecentRequestContext = "selection";
-export const CreateActivityRecentRequestContext = /*@__PURE__*/ S.String;
+export const CreateActivityRecentRequestContext = S.String;
 
 export type CreateActivityRecentRequestModel =
   | "card"
@@ -2064,7 +2060,7 @@ export type CreateActivityRecentRequestModel =
   | "table"
   | "collection"
   | "document";
-export const CreateActivityRecentRequestModel = /*@__PURE__*/ S.String;
+export const CreateActivityRecentRequestModel = S.String;
 
 export interface CreateActivityRecentRequest {
   context: CreateActivityRecentRequestContext | (string & {});
@@ -2257,7 +2253,7 @@ export type MetabaseAgentApiApiCardDisplay =
   | "map"
   | "waterfall"
   | "sankey";
-export const MetabaseAgentApiApiCardDisplay = /*@__PURE__*/ S.String;
+export const MetabaseAgentApiApiCardDisplay = S.String;
 
 export interface CreateAgentMetricRequest {
   collection_id?: number | null;
@@ -2333,7 +2329,7 @@ export type MetabaseAgentApiApiQueryRequest =
   | MetabaseAgentApiApiQueryRequestCase1
   | MetabaseAgentApiApiConstructQueryRequest;
 export const MetabaseAgentApiApiQueryRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseAgentApiApiQueryRequest>;
+  S.Unknown as any as S.Schema<MetabaseAgentApiApiQueryRequest>;
 
 export interface CreateAgentQueryRequest {
   body?: MetabaseAgentApiApiQueryRequest;
@@ -2441,7 +2437,7 @@ export type CreateAgentSearchRequestSemanticQueries =
   | CreateAgentSearchRequestSemanticQueriesCase0List
   | string;
 export const CreateAgentSearchRequestSemanticQueries =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateAgentSearchRequestSemanticQueries>;
+  S.Unknown as any as S.Schema<CreateAgentSearchRequestSemanticQueries>;
 
 export type CreateAgentSearchRequestTermQueriesCase0List = Array<string>;
 export const CreateAgentSearchRequestTermQueriesCase0List =
@@ -2453,7 +2449,7 @@ export type CreateAgentSearchRequestTermQueries =
   | CreateAgentSearchRequestTermQueriesCase0List
   | string;
 export const CreateAgentSearchRequestTermQueries =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateAgentSearchRequestTermQueries>;
+  S.Unknown as any as S.Schema<CreateAgentSearchRequestTermQueries>;
 
 export interface CreateAgentSearchRequest {
   semantic_queries?: CreateAgentSearchRequestSemanticQueries | null;
@@ -2547,8 +2543,7 @@ export type CreateAnalyticsInternalRequestEventsItemOp =
   | "set"
   | "observe"
   | "clear";
-export const CreateAnalyticsInternalRequestEventsItemOp =
-  /*@__PURE__*/ S.String;
+export const CreateAnalyticsInternalRequestEventsItemOp = S.String;
 
 export interface CreateAnalyticsInternalRequestEventsItem {
   amount?: number | null;
@@ -2689,11 +2684,11 @@ export const MetabaseLibSchemaMetadataCardResultMetadata =
 
 export type CreateCardRequestCollectionId = number | string;
 export const CreateCardRequestCollectionId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCardRequestCollectionId>;
+  S.Unknown as any as S.Schema<CreateCardRequestCollectionId>;
 
 /** All acceptable card types. Previously (< 49), we only had 2 card types: question and model, which were differentiated using the boolean `dataset` column. Soon we'll have more card types (e.g: metric) and we will longer be able to use a boolean column to differentiate between all types. So we've added a new `type` column for this purpose. Migrating all the code to use `report_card.type` will be quite an effort, we decided that we'll migrate it gradually. */
 export type MetabaseLibSchemaMetadataCardType = "question" | "metric" | "model";
-export const MetabaseLibSchemaMetadataCardType = /*@__PURE__*/ S.String;
+export const MetabaseLibSchemaMetadataCardType = S.String;
 
 export interface CreateCardRequestSize {
   /** value must be an integer greater than zero. */
@@ -2977,20 +2972,17 @@ export type CreateChannelRequestBodyCase0DetailsAuthMethod =
   | "header"
   | "query-param"
   | "request-body";
-export const CreateChannelRequestBodyCase0DetailsAuthMethod =
-  /*@__PURE__*/ S.String;
+export const CreateChannelRequestBodyCase0DetailsAuthMethod = S.String;
 
 export type CreateChannelRequestBodyCase0DetailsFeFormType =
   | "api-key"
   | "bearer"
   | "basic"
   | "none";
-export const CreateChannelRequestBodyCase0DetailsFeFormType =
-  /*@__PURE__*/ S.String;
+export const CreateChannelRequestBodyCase0DetailsFeFormType = S.String;
 
 export type CreateChannelRequestBodyCase0DetailsMethod = "get" | "post" | "put";
-export const CreateChannelRequestBodyCase0DetailsMethod =
-  /*@__PURE__*/ S.String;
+export const CreateChannelRequestBodyCase0DetailsMethod = S.String;
 
 export interface CreateChannelRequestBodyCase0Details {
   /** Value must be a map. */
@@ -3102,23 +3094,20 @@ export type CreateChannelRequestBodyCase3DetailsCase1AuthMethod =
   | "header"
   | "query-param"
   | "request-body";
-export const CreateChannelRequestBodyCase3DetailsCase1AuthMethod =
-  /*@__PURE__*/ S.String;
+export const CreateChannelRequestBodyCase3DetailsCase1AuthMethod = S.String;
 
 export type CreateChannelRequestBodyCase3DetailsCase1FeFormType =
   | "api-key"
   | "bearer"
   | "basic"
   | "none";
-export const CreateChannelRequestBodyCase3DetailsCase1FeFormType =
-  /*@__PURE__*/ S.String;
+export const CreateChannelRequestBodyCase3DetailsCase1FeFormType = S.String;
 
 export type CreateChannelRequestBodyCase3DetailsCase1Method =
   | "get"
   | "post"
   | "put";
-export const CreateChannelRequestBodyCase3DetailsCase1Method =
-  /*@__PURE__*/ S.String;
+export const CreateChannelRequestBodyCase3DetailsCase1Method = S.String;
 
 export interface CreateChannelRequestBodyCase3DetailsCase1 {
   /** Value must be a map. */
@@ -3157,7 +3146,7 @@ export type CreateChannelRequestBodyCase3Details =
   | CreateChannelRequestBodyCase3DetailsCase1
   | unknown;
 export const CreateChannelRequestBodyCase3Details =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateChannelRequestBodyCase3Details>;
+  S.Unknown as any as S.Schema<CreateChannelRequestBodyCase3Details>;
 
 export interface CreateChannelRequestBodyCase3 {
   active?: boolean | null;
@@ -3185,7 +3174,7 @@ export type CreateChannelRequestBody =
   | CreateChannelRequestBodyCase2
   | CreateChannelRequestBodyCase3;
 export const CreateChannelRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateChannelRequestBody>;
+  S.Unknown as any as S.Schema<CreateChannelRequestBody>;
 
 export interface CreateChannelRequest {
   body?: CreateChannelRequestBody;
@@ -3210,23 +3199,20 @@ export type CreateChannelTestRequestBodyCase0DetailsAuthMethod =
   | "header"
   | "query-param"
   | "request-body";
-export const CreateChannelTestRequestBodyCase0DetailsAuthMethod =
-  /*@__PURE__*/ S.String;
+export const CreateChannelTestRequestBodyCase0DetailsAuthMethod = S.String;
 
 export type CreateChannelTestRequestBodyCase0DetailsFeFormType =
   | "api-key"
   | "bearer"
   | "basic"
   | "none";
-export const CreateChannelTestRequestBodyCase0DetailsFeFormType =
-  /*@__PURE__*/ S.String;
+export const CreateChannelTestRequestBodyCase0DetailsFeFormType = S.String;
 
 export type CreateChannelTestRequestBodyCase0DetailsMethod =
   | "get"
   | "post"
   | "put";
-export const CreateChannelTestRequestBodyCase0DetailsMethod =
-  /*@__PURE__*/ S.String;
+export const CreateChannelTestRequestBodyCase0DetailsMethod = S.String;
 
 export interface CreateChannelTestRequestBodyCase0Details {
   /** Value must be a map. */
@@ -3317,23 +3303,20 @@ export type CreateChannelTestRequestBodyCase3DetailsCase1AuthMethod =
   | "header"
   | "query-param"
   | "request-body";
-export const CreateChannelTestRequestBodyCase3DetailsCase1AuthMethod =
-  /*@__PURE__*/ S.String;
+export const CreateChannelTestRequestBodyCase3DetailsCase1AuthMethod = S.String;
 
 export type CreateChannelTestRequestBodyCase3DetailsCase1FeFormType =
   | "api-key"
   | "bearer"
   | "basic"
   | "none";
-export const CreateChannelTestRequestBodyCase3DetailsCase1FeFormType =
-  /*@__PURE__*/ S.String;
+export const CreateChannelTestRequestBodyCase3DetailsCase1FeFormType = S.String;
 
 export type CreateChannelTestRequestBodyCase3DetailsCase1Method =
   | "get"
   | "post"
   | "put";
-export const CreateChannelTestRequestBodyCase3DetailsCase1Method =
-  /*@__PURE__*/ S.String;
+export const CreateChannelTestRequestBodyCase3DetailsCase1Method = S.String;
 
 export interface CreateChannelTestRequestBodyCase3DetailsCase1 {
   /** Value must be a map. */
@@ -3372,7 +3355,7 @@ export type CreateChannelTestRequestBodyCase3Details =
   | CreateChannelTestRequestBodyCase3DetailsCase1
   | unknown;
 export const CreateChannelTestRequestBodyCase3Details =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateChannelTestRequestBodyCase3Details>;
+  S.Unknown as any as S.Schema<CreateChannelTestRequestBodyCase3Details>;
 
 export interface CreateChannelTestRequestBodyCase3 {
   details?: CreateChannelTestRequestBodyCase3Details | null;
@@ -3394,7 +3377,7 @@ export type CreateChannelTestRequestBody =
   | CreateChannelTestRequestBodyCase2
   | CreateChannelTestRequestBodyCase3;
 export const CreateChannelTestRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateChannelTestRequestBody>;
+  S.Unknown as any as S.Schema<CreateChannelTestRequestBody>;
 
 export interface CreateChannelTestRequest {
   body?: CreateChannelTestRequestBody;
@@ -3431,7 +3414,7 @@ export const CreateCloudMigrationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateCloudMigrationResponse>;
 
 export type CreateCollectionRequestAuthorityLevel = "official";
-export const CreateCollectionRequestAuthorityLevel = /*@__PURE__*/ S.String;
+export const CreateCollectionRequestAuthorityLevel = S.String;
 
 export interface CreateCollectionRequest {
   authority_level?:
@@ -3566,7 +3549,7 @@ export const CreateCollectionRootMoveDashboardQuestionCandidateResponse =
   }) as any as S.Schema<CreateCollectionRootMoveDashboardQuestionCandidateResponse>;
 
 export type CreateCommentRequestTargetType = "document";
-export const CreateCommentRequestTargetType = /*@__PURE__*/ S.String;
+export const CreateCommentRequestTargetType = S.String;
 
 export interface CreateCommentRequest {
   child_target_id?: string | null;
@@ -3800,7 +3783,7 @@ export const CreateDashboardDashcardExecute2Response = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateDashboardDashcardExecute2Response>;
 
 export type CreateDashboardPdfRequestPaperSize = "a4" | "letter";
-export const CreateDashboardPdfRequestPaperSize = /*@__PURE__*/ S.String;
+export const CreateDashboardPdfRequestPaperSize = S.String;
 
 export interface CreateDashboardPdfRequest {
   /** value must be an integer greater than zero. */
@@ -3889,7 +3872,7 @@ export type CreateDashboardSaveRequestDashcardsItemSeriesItemId =
   | number
   | string;
 export const CreateDashboardSaveRequestDashcardsItemSeriesItemId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDashboardSaveRequestDashcardsItemSeriesItemId>;
+  S.Unknown as any as S.Schema<CreateDashboardSaveRequestDashcardsItemSeriesItemId>;
 
 export interface CreateDashboardSaveRequestDashcardsItemSeriesItem {
   dataset_query?: MetabaseLibBeSchemaMaybeLegacyOrEmptyQuery | null;
@@ -3926,7 +3909,7 @@ export const CreateDashboardSaveRequestDashcardsItemSeriesList =
 
 export type CreateDashboardSaveRequestDashcardsItemCardId = number | string;
 export const CreateDashboardSaveRequestDashcardsItemCardId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDashboardSaveRequestDashcardsItemCardId>;
+  S.Unknown as any as S.Schema<CreateDashboardSaveRequestDashcardsItemCardId>;
 
 export interface CreateDashboardSaveRequestDashcardsItemCard {
   dataset_query?: MetabaseLibBeSchemaMaybeLegacyOrEmptyQuery | null;
@@ -4014,7 +3997,7 @@ export const CreateDashboardSaveRequestTabsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateDashboardSaveRequestTabsList>;
 
 export type CreateDashboardSaveRequestWidth = "fixed" | "full";
-export const CreateDashboardSaveRequestWidth = /*@__PURE__*/ S.String;
+export const CreateDashboardSaveRequestWidth = S.String;
 
 export interface CreateDashboardSaveRequest {
   auto_apply_filters?: boolean | null;
@@ -4047,7 +4030,7 @@ export const CreateDashboardSaveResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDashboardSaveResponse>;
 
 export type CreateDatabaseRequestConnectionSource = "admin" | "setup";
-export const CreateDatabaseRequestConnectionSource = /*@__PURE__*/ S.String;
+export const CreateDatabaseRequestConnectionSource = S.String;
 
 export type MetabaseUtilCronScheduleMapScheduleDay =
   | "sun"
@@ -4057,17 +4040,17 @@ export type MetabaseUtilCronScheduleMapScheduleDay =
   | "thu"
   | "fri"
   | "sat";
-export const MetabaseUtilCronScheduleMapScheduleDay = /*@__PURE__*/ S.String;
+export const MetabaseUtilCronScheduleMapScheduleDay = S.String;
 
 export type MetabaseUtilCronScheduleMapScheduleFrame = "first" | "mid" | "last";
-export const MetabaseUtilCronScheduleMapScheduleFrame = /*@__PURE__*/ S.String;
+export const MetabaseUtilCronScheduleMapScheduleFrame = S.String;
 
 export type MetabaseUtilCronScheduleMapScheduleType =
   | "hourly"
   | "daily"
   | "weekly"
   | "monthly";
-export const MetabaseUtilCronScheduleMapScheduleType = /*@__PURE__*/ S.String;
+export const MetabaseUtilCronScheduleMapScheduleType = S.String;
 
 /** value must be a valid schedule map. See schema in metabase.util.cron for details. */
 export interface MetabaseUtilCronScheduleMap {
@@ -4334,7 +4317,7 @@ export type MetabaseLibBeSchemaMaybeLegacyOrInternalQuery =
   | MetabaseLibBeSchemaInternalQuery
   | MetabaseLibSchemaQuery;
 export const MetabaseLibBeSchemaMaybeLegacyOrInternalQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseLibBeSchemaMaybeLegacyOrInternalQuery>;
+  S.Unknown as any as S.Schema<MetabaseLibBeSchemaMaybeLegacyOrInternalQuery>;
 
 export interface CreateDatasetRequest {
   body?: MetabaseLibBeSchemaMaybeLegacyOrInternalQuery;
@@ -4453,7 +4436,7 @@ export const CreateDatasetPivotRequestPivotRowsList = /*@__PURE__*/ S.Array(
 
 export type CreateDatasetPivotRequestDatabase = unknown | number;
 export const CreateDatasetPivotRequestDatabase =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDatasetPivotRequestDatabase>;
+  S.Unknown as any as S.Schema<CreateDatasetPivotRequestDatabase>;
 
 export type CreateDatasetPivotRequestPivotMeasuresList = Array<number>;
 export const CreateDatasetPivotRequestPivotMeasuresList = /*@__PURE__*/ S.Array(
@@ -4544,7 +4527,7 @@ export const CreateDatasetQueryMetadataRequestPivotRowsList =
 
 export type CreateDatasetQueryMetadataRequestDatabase = unknown | number;
 export const CreateDatasetQueryMetadataRequestDatabase =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDatasetQueryMetadataRequestDatabase>;
+  S.Unknown as any as S.Schema<CreateDatasetQueryMetadataRequestDatabase>;
 
 export type CreateDatasetQueryMetadataRequestPivotMeasuresList = Array<number>;
 export const CreateDatasetQueryMetadataRequestPivotMeasuresList =
@@ -4691,13 +4674,13 @@ export type MetabaseDataStudioApiTableDataAuthorities =
   | "authoritative"
   | "unconfigured"
   | "ingested";
-export const MetabaseDataStudioApiTableDataAuthorities = /*@__PURE__*/ S.String;
+export const MetabaseDataStudioApiTableDataAuthorities = S.String;
 
 export type MetabaseDataStudioApiTableDataLayers =
   | "final"
   | "internal"
   | "hidden";
-export const MetabaseDataStudioApiTableDataLayers = /*@__PURE__*/ S.String;
+export const MetabaseDataStudioApiTableDataLayers = S.String;
 
 export type CreateDataStudioTableEditRequestTableIdsList = Array<number>;
 export const CreateDataStudioTableEditRequestTableIdsList =
@@ -4712,7 +4695,7 @@ export type MetabaseDataStudioApiTableDataSources =
   | "ingested"
   | "metabase-transform"
   | "upload";
-export const MetabaseDataStudioApiTableDataSources = /*@__PURE__*/ S.String;
+export const MetabaseDataStudioApiTableDataSources = S.String;
 
 export type CreateDataStudioTableEditRequestSchemaIdsList = Array<string>;
 export const CreateDataStudioTableEditRequestSchemaIdsList =
@@ -5078,14 +5061,14 @@ export const CreateDocumentPublicLinkResponse = /*@__PURE__*/ S.suspend(() =>
 /** Primitive actions, saved actions, and packed encodings from the picker. */
 export type MetabaseEnterpriseActionV2ApiApiActionId = number | string;
 export const MetabaseEnterpriseActionV2ApiApiActionId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseEnterpriseActionV2ApiApiActionId>;
+  S.Unknown as any as S.Schema<MetabaseEnterpriseActionV2ApiApiActionId>;
 
 /** All the various ways of referring to an action with the v2 APIs. */
 export type MetabaseEnterpriseActionV2ApiApiActionIdOrExpression =
   | MetabaseEnterpriseActionV2ApiApiActionId
   | unknown;
 export const MetabaseEnterpriseActionV2ApiApiActionIdOrExpression =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseEnterpriseActionV2ApiApiActionIdOrExpression>;
+  S.Unknown as any as S.Schema<MetabaseEnterpriseActionV2ApiApiActionIdOrExpression>;
 
 /** A map from parameter name / column name to a value. Keys are keywords: the request decoder keywordizes map keys and the handler reads them via `(keyword ...)`, so the FE never sends anything else. Same shape as [[metabase.actions.schema/execute-parameter-values]] and for the same two reasons. Decoding sees a permissive `[:map-of :keyword :any]`, because `:map-of` *drops* an entry whose value fails rather than rejecting it -- a bad cell would silently go missing from the write instead of 400ing. And `parameter.value` must be validated against rather than decoded through: its `:decode/normalize` rewrites a bad value to `nil`, which for an action that writes would store NULL instead of rejecting the request. */
 export type MetabaseEnterpriseActionV2ApiActionValueMap = {
@@ -5182,7 +5165,7 @@ export const MetabaseActionsTypesScopeRawCase5 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MetabaseActionsTypesScopeRawCase5>;
 
 export type MetabaseActionsTypesScopeRawCase6Unknown = "model-action";
-export const MetabaseActionsTypesScopeRawCase6Unknown = /*@__PURE__*/ S.String;
+export const MetabaseActionsTypesScopeRawCase6Unknown = S.String;
 
 export interface MetabaseActionsTypesScopeRawCase6 {
   type?: string;
@@ -5206,7 +5189,7 @@ export type MetabaseActionsTypesScopeRaw =
   | MetabaseActionsTypesScopeRawCase5
   | MetabaseActionsTypesScopeRawCase6;
 export const MetabaseActionsTypesScopeRaw =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseActionsTypesScopeRaw>;
+  S.Unknown as any as S.Schema<MetabaseActionsTypesScopeRaw>;
 
 export interface CreateEeActionV2ExecuteRequest {
   action: MetabaseEnterpriseActionV2ApiApiActionIdOrExpression;
@@ -5474,7 +5457,7 @@ export type CreateEeDatabaseReplicationConnectionDatabasePreviewRequestReplicati
   | "exclusion"
   | "all";
 export const CreateEeDatabaseReplicationConnectionDatabasePreviewRequestReplicationSchemaFiltersSchemaFiltersType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateEeDatabaseReplicationConnectionDatabasePreviewRequestReplicationSchemaFilters {
   schema_filters_patterns: string;
@@ -5999,8 +5982,7 @@ export type MetabaseEnterpriseReplacementSchemaSourceEntityType =
   | "card"
   | "table"
   | "transform";
-export const MetabaseEnterpriseReplacementSchemaSourceEntityType =
-  /*@__PURE__*/ S.String;
+export const MetabaseEnterpriseReplacementSchemaSourceEntityType = S.String;
 
 export interface CreateEeReplacementCheckReplaceSourceRequest {
   source_entity_id: number;
@@ -6328,7 +6310,7 @@ export type MetabaseNotificationModelsNotificationRecipientCase0Type =
   | "notification-recipient/template"
   | "notification-recipient/group";
 export const MetabaseNotificationModelsNotificationRecipientCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MetabaseNotificationModelsNotificationRecipientCase0 {
   details?: unknown;
@@ -6363,7 +6345,7 @@ export type MetabaseNotificationModelsNotificationRecipientCase1Type =
   | "notification-recipient/template"
   | "notification-recipient/group";
 export const MetabaseNotificationModelsNotificationRecipientCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MetabaseNotificationModelsNotificationRecipientCase1 {
   details?: unknown;
@@ -6412,7 +6394,7 @@ export type MetabaseNotificationModelsNotificationRecipientCase2Type =
   | "notification-recipient/template"
   | "notification-recipient/group";
 export const MetabaseNotificationModelsNotificationRecipientCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MetabaseNotificationModelsNotificationRecipientCase2 {
   details: MetabaseNotificationModelsNotificationRecipientCase2Details;
@@ -6460,7 +6442,7 @@ export type MetabaseNotificationModelsNotificationRecipientCase3Type =
   | "notification-recipient/template"
   | "notification-recipient/group";
 export const MetabaseNotificationModelsNotificationRecipientCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MetabaseNotificationModelsNotificationRecipientCase3 {
   details: MetabaseNotificationModelsNotificationRecipientCase3Details;
@@ -6495,7 +6477,7 @@ export type MetabaseNotificationModelsNotificationRecipient =
   | MetabaseNotificationModelsNotificationRecipientCase2
   | MetabaseNotificationModelsNotificationRecipientCase3;
 export const MetabaseNotificationModelsNotificationRecipient =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseNotificationModelsNotificationRecipient>;
+  S.Unknown as any as S.Schema<MetabaseNotificationModelsNotificationRecipient>;
 
 export type CreateEeSecurityCenterTestNotificationRequestEmailRecipientsList =
   Array<MetabaseNotificationModelsNotificationRecipient>;
@@ -6536,7 +6518,7 @@ export const CreateEeSecurityCenterTestNotificationResponse =
 
 export type CreateEeSerializationExportRequestCollectionItem = number | string;
 export const CreateEeSerializationExportRequestCollectionItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEeSerializationExportRequestCollectionItem>;
+  S.Unknown as any as S.Schema<CreateEeSerializationExportRequestCollectionItem>;
 
 export type CreateEeSerializationExportRequestCollectionList =
   Array<CreateEeSerializationExportRequestCollectionItem>;
@@ -6743,7 +6725,7 @@ export type MetabaseEnterpriseTransformsInspectorSchemaLensParamsValue =
   | boolean
   | number;
 export const MetabaseEnterpriseTransformsInspectorSchemaLensParamsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseEnterpriseTransformsInspectorSchemaLensParamsValue>;
+  S.Unknown as any as S.Schema<MetabaseEnterpriseTransformsInspectorSchemaLensParamsValue>;
 
 /** Params passed to a drill lens (e.g. `{:join_step 2}`), emitted on drill-lens triggers and echoed back by the FE to the lens endpoints. Scalar values only: they end up in `query_execution.lens_params`, and scalars keep map/collection shapes out of the value position. */
 export type MetabaseEnterpriseTransformsInspectorSchemaLensParams = {
@@ -7072,7 +7054,7 @@ export const CreateEmbedThemeSeedDefaultResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateEmbedThemeSeedDefaultResponse>;
 
 export type CreateFieldDimensionRequestType = "internal" | "external";
-export const CreateFieldDimensionRequestType = /*@__PURE__*/ S.String;
+export const CreateFieldDimensionRequestType = S.String;
 
 export interface CreateFieldDimensionRequest {
   /** value must be an integer greater than zero. */
@@ -7184,7 +7166,7 @@ export type CreateFieldValueRequestValuesItem =
   | CreateFieldValueRequestValuesItemCase0List
   | CreateFieldValueRequestValuesItemCase1List;
 export const CreateFieldValueRequestValuesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFieldValueRequestValuesItem>;
+  S.Unknown as any as S.Schema<CreateFieldValueRequestValuesItem>;
 
 export type CreateFieldValueRequestValuesList =
   Array<CreateFieldValueRequestValuesItem>;
@@ -7216,8 +7198,7 @@ export const CreateFieldValueResponse = /*@__PURE__*/ S.suspend(() =>
 export type MetabaseFrontendErrorsApiFrontendErrorType =
   | "component-crash"
   | "chart-render-error";
-export const MetabaseFrontendErrorsApiFrontendErrorType =
-  /*@__PURE__*/ S.String;
+export const MetabaseFrontendErrorsApiFrontendErrorType = S.String;
 
 export interface CreateFrontendErrorRequest {
   type: MetabaseFrontendErrorsApiFrontendErrorType | (string & {});
@@ -7379,7 +7360,7 @@ export type MetabaseLoggerApiTimeUnit =
   | "milliseconds"
   | "microseconds"
   | "nanoseconds";
-export const MetabaseLoggerApiTimeUnit = /*@__PURE__*/ S.String;
+export const MetabaseLoggerApiTimeUnit = S.String;
 
 export interface CreateLoggerAdjustmentRequest {
   duration: number;
@@ -7454,8 +7435,7 @@ export type MetabaseMetabotContextContextUserIsViewingItemCase0Type =
   | "question"
   | "metric"
   | "adhoc";
-export const MetabaseMetabotContextContextUserIsViewingItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const MetabaseMetabotContextContextUserIsViewingItemCase0Type = S.String;
 
 export interface MetabaseMetabotContextContextUserIsViewingItemCase0 {
   chart_configs?: MetabaseMetabotContextContextUserIsViewingItemCase0ChartConfigsList;
@@ -7485,8 +7465,7 @@ export type MetabaseMetabotContextContextUserIsViewingItemCase1Type =
   | "question"
   | "metric"
   | "adhoc";
-export const MetabaseMetabotContextContextUserIsViewingItemCase1Type =
-  /*@__PURE__*/ S.String;
+export const MetabaseMetabotContextContextUserIsViewingItemCase1Type = S.String;
 
 export interface MetabaseMetabotContextContextUserIsViewingItemCase1 {
   /** Value must be a map. */
@@ -7507,7 +7486,7 @@ export type MetabaseMetabotContextContextUserIsViewingItem =
   | MetabaseMetabotContextContextUserIsViewingItemCase0
   | MetabaseMetabotContextContextUserIsViewingItemCase1;
 export const MetabaseMetabotContextContextUserIsViewingItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseMetabotContextContextUserIsViewingItem>;
+  S.Unknown as any as S.Schema<MetabaseMetabotContextContextUserIsViewingItem>;
 
 export type MetabaseMetabotContextContextUserIsViewingList =
   Array<MetabaseMetabotContextContextUserIsViewingItem>;
@@ -7532,7 +7511,7 @@ export type MetabaseMetabotSchemaRole =
   | "user"
   | "assistant"
   | "tool";
-export const MetabaseMetabotSchemaRole = /*@__PURE__*/ S.String;
+export const MetabaseMetabotSchemaRole = S.String;
 
 export interface MetabaseMetabotSchemaMessageToolCallsItem {
   arguments: string;
@@ -7908,7 +7887,7 @@ export type CreateMetabotSlackEventRequestBody =
   | CreateMetabotSlackEventRequestBodyCase1
   | MetabaseDocumentsProseMirrorAst;
 export const CreateMetabotSlackEventRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateMetabotSlackEventRequestBody>;
+  S.Unknown as any as S.Schema<CreateMetabotSlackEventRequestBody>;
 
 export interface CreateMetabotSlackEventRequest {
   body?: CreateMetabotSlackEventRequestBody;
@@ -7959,8 +7938,7 @@ export type CreateMetabotSourceFeedbackRequestSourceType =
   | "table"
   | "card"
   | "model";
-export const CreateMetabotSourceFeedbackRequestSourceType =
-  /*@__PURE__*/ S.String;
+export const CreateMetabotSourceFeedbackRequestSourceType = S.String;
 
 export interface CreateMetabotSourceFeedbackRequest {
   message_id: string;
@@ -8010,7 +7988,7 @@ export type MetabaseLibMetricSchemaExpressionLeaf =
   | MetabaseLibMetricSchemaMetricExpressionRef
   | MetabaseLibMetricSchemaMeasureExpressionRef;
 export const MetabaseLibMetricSchemaExpressionLeaf =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseLibMetricSchemaExpressionLeaf>;
+  S.Unknown as any as S.Schema<MetabaseLibMetricSchemaExpressionLeaf>;
 
 export type MetabaseLibMetricSchemaMetricMathExpressionCase2List =
   Array<unknown>;
@@ -8025,7 +8003,7 @@ export type MetabaseLibMetricSchemaMetricMathExpression =
   | number
   | MetabaseLibMetricSchemaMetricMathExpressionCase2List;
 export const MetabaseLibMetricSchemaMetricMathExpression =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseLibMetricSchemaMetricMathExpression>;
+  S.Unknown as any as S.Schema<MetabaseLibMetricSchemaMetricMathExpression>;
 
 /** A filter associated with a specific expression instance via lib/uuid. */
 export interface MetabaseLibMetricSchemaInstanceFilter {
@@ -8063,8 +8041,7 @@ export const MetabaseLibMetricSchemaTypedProjectionProjectionList =
   ) as any as S.Schema<MetabaseLibMetricSchemaTypedProjectionProjectionList>;
 
 export type MetabaseLibMetricSchemaTypedProjectionType = "metric" | "measure";
-export const MetabaseLibMetricSchemaTypedProjectionType =
-  /*@__PURE__*/ S.String;
+export const MetabaseLibMetricSchemaTypedProjectionType = S.String;
 
 /** A projection associated with a specific expression leaf instance via :lib/uuid. The :type and :id identify the source metric/measure for metadata resolution. The :lib/uuid disambiguates multiple references to the same metric/measure in an expression. */
 export interface MetabaseLibMetricSchemaTypedProjection {
@@ -8174,11 +8151,10 @@ export type CreateModerationReviewRequestModeratedItemType =
   | "card"
   | "dashboard"
   | "dashboard";
-export const CreateModerationReviewRequestModeratedItemType =
-  /*@__PURE__*/ S.String;
+export const CreateModerationReviewRequestModeratedItemType = S.String;
 
 export type CreateModerationReviewRequestStatus = "verified";
-export const CreateModerationReviewRequestStatus = /*@__PURE__*/ S.String;
+export const CreateModerationReviewRequestStatus = S.String;
 
 export interface CreateModerationReviewRequest {
   /** value must be an integer greater than zero. */
@@ -8212,7 +8188,7 @@ export type MetabaseEnterpriseSandboxSchemaAttributeRemappingsValue =
   | number
   | MetabaseLibSchemaParameterTarget;
 export const MetabaseEnterpriseSandboxSchemaAttributeRemappingsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseEnterpriseSandboxSchemaAttributeRemappingsValue>;
+  S.Unknown as any as S.Schema<MetabaseEnterpriseSandboxSchemaAttributeRemappingsValue>;
 
 export type MetabaseEnterpriseSandboxSchemaAttributeRemappingsMap = {
   [key: string]:
@@ -8328,7 +8304,7 @@ export type MetabaseNotificationModelsCreateNotificationRecipientParamsCase0Type
   | "notification-recipient/template"
   | "notification-recipient/group";
 export const MetabaseNotificationModelsCreateNotificationRecipientParamsCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MetabaseNotificationModelsCreateNotificationRecipientParamsCase0 {
   details?: unknown;
@@ -8361,7 +8337,7 @@ export type MetabaseNotificationModelsCreateNotificationRecipientParamsCase1Type
   | "notification-recipient/template"
   | "notification-recipient/group";
 export const MetabaseNotificationModelsCreateNotificationRecipientParamsCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MetabaseNotificationModelsCreateNotificationRecipientParamsCase1 {
   details?: unknown;
@@ -8399,7 +8375,7 @@ export type MetabaseNotificationModelsCreateNotificationRecipientParamsCase2Type
   | "notification-recipient/template"
   | "notification-recipient/group";
 export const MetabaseNotificationModelsCreateNotificationRecipientParamsCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MetabaseNotificationModelsCreateNotificationRecipientParamsCase2 {
   details: MetabaseNotificationModelsNotificationRecipientCase2Details;
@@ -8436,7 +8412,7 @@ export type MetabaseNotificationModelsCreateNotificationRecipientParamsCase3Type
   | "notification-recipient/template"
   | "notification-recipient/group";
 export const MetabaseNotificationModelsCreateNotificationRecipientParamsCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MetabaseNotificationModelsCreateNotificationRecipientParamsCase3 {
   details: MetabaseNotificationModelsNotificationRecipientCase3Details;
@@ -8469,7 +8445,7 @@ export type MetabaseNotificationModelsCreateNotificationRecipientParams =
   | MetabaseNotificationModelsCreateNotificationRecipientParamsCase2
   | MetabaseNotificationModelsCreateNotificationRecipientParamsCase3;
 export const MetabaseNotificationModelsCreateNotificationRecipientParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseNotificationModelsCreateNotificationRecipientParams>;
+  S.Unknown as any as S.Schema<MetabaseNotificationModelsCreateNotificationRecipientParams>;
 
 export type MetabaseNotificationApiNotificationCreateNotificationParamsCase0HandlersItemRecipientsList =
   Array<MetabaseNotificationModelsCreateNotificationRecipientParams>;
@@ -8484,13 +8460,13 @@ export type MetabaseChannelModelsChannelChannelTemplateEmailDetailsUserProvidedR
   | "cc"
   | "bcc";
 export const MetabaseChannelModelsChannelChannelTemplateEmailDetailsUserProvidedRecipientType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type MetabaseChannelModelsChannelChannelTemplateEmailDetailsUserProvidedType =
   | "email/handlebars-text"
   | "email/handlebars-text";
 export const MetabaseChannelModelsChannelChannelTemplateEmailDetailsUserProvidedType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Email template details schema for API-provided templates. Only handlebars-text is allowed; handlebars-resource is restricted to internal use only. */
 export interface MetabaseChannelModelsChannelChannelTemplateEmailDetailsUserProvided {
@@ -8562,7 +8538,7 @@ export type MetabaseChannelModelsChannelChannelTemplateUserProvided =
   | MetabaseChannelModelsChannelChannelTemplateUserProvidedCase0
   | MetabaseChannelModelsChannelChannelTemplateUserProvidedCase1;
 export const MetabaseChannelModelsChannelChannelTemplateUserProvided =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseChannelModelsChannelChannelTemplateUserProvided>;
+  S.Unknown as any as S.Schema<MetabaseChannelModelsChannelChannelTemplateUserProvided>;
 
 /** [[::NotificationHandler]] on a create request, where the caller does not get to pick the id. */
 export interface MetabaseNotificationApiNotificationCreateNotificationParamsCase0HandlersItem {
@@ -8609,7 +8585,7 @@ export type MetabaseNotificationModelsCreateNotificationCardParamsSendCondition 
   | "has_result"
   | "goal_above";
 export const MetabaseNotificationModelsCreateNotificationCardParamsSendCondition =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** [[::NotificationCard]] on a create request, where the caller does not get to pick the id. */
 export interface MetabaseNotificationModelsCreateNotificationCardParams {
@@ -8643,13 +8619,13 @@ export type MetabaseNotificationApiNotificationCreateNotificationParamsCase0Payl
   | "notification/testing"
   | "notification/card";
 export const MetabaseNotificationApiNotificationCreateNotificationParamsCase0PayloadType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type MetabaseNotificationModelsCreateNotificationSubscriptionParamsCase0Type =
   | "notification-subscription/cron"
   | "notification-subscription/system-event";
 export const MetabaseNotificationModelsCreateNotificationSubscriptionParamsCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MetabaseNotificationModelsCreateNotificationSubscriptionParamsCase0 {
   cron_schedule?: unknown | null;
@@ -8677,13 +8653,13 @@ export type MetabaseNotificationModelsCreateNotificationSubscriptionParamsCase1T
   | "notification-subscription/cron"
   | "notification-subscription/system-event";
 export const MetabaseNotificationModelsCreateNotificationSubscriptionParamsCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type MetabaseNotificationModelsCreateNotificationSubscriptionParamsCase1UiDisplayType =
   | "cron/raw"
   | "cron/builder";
 export const MetabaseNotificationModelsCreateNotificationSubscriptionParamsCase1UiDisplayType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MetabaseNotificationModelsCreateNotificationSubscriptionParamsCase1 {
   cron_schedule: string;
@@ -8721,7 +8697,7 @@ export type MetabaseNotificationModelsCreateNotificationSubscriptionParams =
   | MetabaseNotificationModelsCreateNotificationSubscriptionParamsCase0
   | MetabaseNotificationModelsCreateNotificationSubscriptionParamsCase1;
 export const MetabaseNotificationModelsCreateNotificationSubscriptionParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseNotificationModelsCreateNotificationSubscriptionParams>;
+  S.Unknown as any as S.Schema<MetabaseNotificationModelsCreateNotificationSubscriptionParams>;
 
 export type MetabaseNotificationApiNotificationCreateNotificationParamsCase0SubscriptionsList =
   Array<MetabaseNotificationModelsCreateNotificationSubscriptionParams>;
@@ -8817,7 +8793,7 @@ export type MetabaseNotificationApiNotificationCreateNotificationParamsCase1Payl
   | "notification/testing"
   | "notification/card";
 export const MetabaseNotificationApiNotificationCreateNotificationParamsCase1PayloadType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type MetabaseNotificationApiNotificationCreateNotificationParamsCase1SubscriptionsList =
   Array<MetabaseNotificationModelsCreateNotificationSubscriptionParams>;
@@ -8863,7 +8839,7 @@ export type MetabaseNotificationApiNotificationCreateNotificationParams =
   | MetabaseNotificationApiNotificationCreateNotificationParamsCase0
   | MetabaseNotificationApiNotificationCreateNotificationParamsCase1;
 export const MetabaseNotificationApiNotificationCreateNotificationParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseNotificationApiNotificationCreateNotificationParams>;
+  S.Unknown as any as S.Schema<MetabaseNotificationApiNotificationCreateNotificationParams>;
 
 export interface CreateNotificationRequest {
   body?: MetabaseNotificationApiNotificationCreateNotificationParams;
@@ -8890,7 +8866,7 @@ export const CreateNotificationResponse = /*@__PURE__*/ S.suspend(() =>
 export type CreateNotificationAdminBulkRequestAction =
   | "archive"
   | "change-creator";
-export const CreateNotificationAdminBulkRequestAction = /*@__PURE__*/ S.String;
+export const CreateNotificationAdminBulkRequestAction = S.String;
 
 export type CreateNotificationAdminBulkRequestNotificationIdsList =
   Array<number>;
@@ -8930,7 +8906,7 @@ export type MetabaseNotificationApiNotificationNotificationApiInputCase0PayloadT
   | "notification/testing"
   | "notification/card";
 export const MetabaseNotificationApiNotificationNotificationApiInputCase0PayloadType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type MetabaseNotificationApiNotificationNotificationApiInputCase0HandlersItemRecipientsList =
   Array<MetabaseNotificationModelsNotificationRecipient>;
@@ -8985,8 +8961,7 @@ export type MetabaseNotificationModelsNotificationCardSendCondition =
   | "goal_below"
   | "has_result"
   | "goal_above";
-export const MetabaseNotificationModelsNotificationCardSendCondition =
-  /*@__PURE__*/ S.String;
+export const MetabaseNotificationModelsNotificationCardSendCondition = S.String;
 
 /** Schema for :model/NotificationCard. */
 export interface MetabaseNotificationModelsNotificationCard {
@@ -9020,7 +8995,7 @@ export type MetabaseNotificationModelsNotificationSubscriptionCase0Type =
   | "notification-subscription/cron"
   | "notification-subscription/system-event";
 export const MetabaseNotificationModelsNotificationSubscriptionCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MetabaseNotificationModelsNotificationSubscriptionCase0 {
   cron_schedule?: unknown | null;
@@ -9049,13 +9024,13 @@ export type MetabaseNotificationModelsNotificationSubscriptionCase1Type =
   | "notification-subscription/cron"
   | "notification-subscription/system-event";
 export const MetabaseNotificationModelsNotificationSubscriptionCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type MetabaseNotificationModelsNotificationSubscriptionCase1UiDisplayType =
   | "cron/raw"
   | "cron/builder";
 export const MetabaseNotificationModelsNotificationSubscriptionCase1UiDisplayType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MetabaseNotificationModelsNotificationSubscriptionCase1 {
   cron_schedule: string;
@@ -9094,7 +9069,7 @@ export type MetabaseNotificationModelsNotificationSubscription =
   | MetabaseNotificationModelsNotificationSubscriptionCase0
   | MetabaseNotificationModelsNotificationSubscriptionCase1;
 export const MetabaseNotificationModelsNotificationSubscription =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseNotificationModelsNotificationSubscription>;
+  S.Unknown as any as S.Schema<MetabaseNotificationModelsNotificationSubscription>;
 
 export type MetabaseNotificationApiNotificationNotificationApiInputCase0SubscriptionsList =
   Array<MetabaseNotificationModelsNotificationSubscription>;
@@ -9194,7 +9169,7 @@ export type MetabaseNotificationApiNotificationNotificationApiInputCase1PayloadT
   | "notification/testing"
   | "notification/card";
 export const MetabaseNotificationApiNotificationNotificationApiInputCase1PayloadType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type MetabaseNotificationApiNotificationNotificationApiInputCase1SubscriptionsList =
   Array<MetabaseNotificationModelsNotificationSubscription>;
@@ -9242,7 +9217,7 @@ export type MetabaseNotificationApiNotificationNotificationApiInput =
   | MetabaseNotificationApiNotificationNotificationApiInputCase0
   | MetabaseNotificationApiNotificationNotificationApiInputCase1;
 export const MetabaseNotificationApiNotificationNotificationApiInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseNotificationApiNotificationNotificationApiInput>;
+  S.Unknown as any as S.Schema<MetabaseNotificationApiNotificationNotificationApiInput>;
 
 export interface CreateNotificationSendRequest {
   body?: MetabaseNotificationApiNotificationNotificationApiInput;
@@ -9762,7 +9737,7 @@ export const CreatePulseResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreatePulseResponse>;
 
 export type CreatePulseTestRequestAlertCondition = "rows" | "goal";
-export const CreatePulseTestRequestAlertCondition = /*@__PURE__*/ S.String;
+export const CreatePulseTestRequestAlertCondition = S.String;
 
 export interface CreatePulseTestRequest {
   id?: number | null;
@@ -9861,7 +9836,7 @@ export type CreateRevisionRevertRequestEntity =
   | "measure"
   | "segment"
   | "transform";
-export const CreateRevisionRevertRequestEntity = /*@__PURE__*/ S.String;
+export const CreateRevisionRevertRequestEntity = S.String;
 
 export interface CreateRevisionRevertRequest {
   entity: CreateRevisionRevertRequestEntity | (string & {});
@@ -10320,7 +10295,7 @@ export type CreateTimelineRequestIcon =
   | "warning"
   | "bell"
   | "cloud";
-export const CreateTimelineRequestIcon = /*@__PURE__*/ S.String;
+export const CreateTimelineRequestIcon = S.String;
 
 export interface CreateTimelineRequest {
   archived?: boolean | null;
@@ -10351,7 +10326,7 @@ export const CreateTimelineResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateTimelineResponse>;
 
 export type CreateTimelineEventRequestSource = "collections" | "question";
-export const CreateTimelineEventRequestSource = /*@__PURE__*/ S.String;
+export const CreateTimelineEventRequestSource = S.String;
 
 export type CreateTimelineEventRequestIcon =
   | "star"
@@ -10360,7 +10335,7 @@ export type CreateTimelineEventRequestIcon =
   | "warning"
   | "bell"
   | "cloud";
-export const CreateTimelineEventRequestIcon = /*@__PURE__*/ S.String;
+export const CreateTimelineEventRequestIcon = S.String;
 
 export interface CreateTimelineEventRequest {
   question_id?: number | null;
@@ -10479,7 +10454,7 @@ export type MetabaseTransformsSchemaTransformSource =
   | MetabaseTransformsSchemaTransformSourceCase0
   | MetabaseTransformsSchemaTransformSourceCase1;
 export const MetabaseTransformsSchemaTransformSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseTransformsSchemaTransformSource>;
+  S.Unknown as any as S.Schema<MetabaseTransformsSchemaTransformSource>;
 
 export interface MetabaseTransformsSchemaTableTarget {
   database?: number;
@@ -10551,7 +10526,7 @@ export type MetabaseTransformsSchemaTargetIncrementalStrategy =
   | MetabaseTransformsSchemaAppendConfig
   | MetabaseTransformsSchemaMergeConfig;
 export const MetabaseTransformsSchemaTargetIncrementalStrategy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseTransformsSchemaTargetIncrementalStrategy>;
+  S.Unknown as any as S.Schema<MetabaseTransformsSchemaTargetIncrementalStrategy>;
 
 export interface MetabaseTransformsSchemaTableIncrementalTarget {
   database?: number;
@@ -10580,13 +10555,12 @@ export type MetabaseTransformsSchemaTransformTarget =
   | MetabaseTransformsSchemaTableTarget
   | MetabaseTransformsSchemaTableIncrementalTarget;
 export const MetabaseTransformsSchemaTransformTarget =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseTransformsSchemaTransformTarget>;
+  S.Unknown as any as S.Schema<MetabaseTransformsSchemaTransformTarget>;
 
 export type MetabaseTransformsRestApiTransformRunTrigger =
   | "none"
   | "global-schedule";
-export const MetabaseTransformsRestApiTransformRunTrigger =
-  /*@__PURE__*/ S.String;
+export const MetabaseTransformsRestApiTransformRunTrigger = S.String;
 
 export interface CreateTransformRequest {
   owner_email?: string | null;
@@ -10651,7 +10625,7 @@ export const CreateTransformJobRequestTagIdsList = /*@__PURE__*/ S.Array(
 export type CreateTransformJobRequestUiDisplayType =
   | "cron/raw"
   | "cron/builder";
-export const CreateTransformJobRequestUiDisplayType = /*@__PURE__*/ S.String;
+export const CreateTransformJobRequestUiDisplayType = S.String;
 
 export interface CreateTransformJobRequest {
   description?: string | null;
@@ -10833,7 +10807,7 @@ export const CreateUserRequestUserGroupMembershipsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateUserRequestUserGroupMembershipsList>;
 
 export type CreateUserRequestInviteTargetType = "dashboard" | "question";
-export const CreateUserRequestInviteTargetType = /*@__PURE__*/ S.String;
+export const CreateUserRequestInviteTargetType = S.String;
 
 export interface CreateUserRequestInviteTarget {
   /** value must be an integer greater than zero. */
@@ -10988,7 +10962,7 @@ export type DeleteBookmarkRequestModel =
   | "dashboard"
   | "collection"
   | "document";
-export const DeleteBookmarkRequestModel = /*@__PURE__*/ S.String;
+export const DeleteBookmarkRequestModel = S.String;
 
 export interface DeleteBookmarkRequest {
   model: DeleteBookmarkRequestModel | (string & {});
@@ -11018,7 +10992,7 @@ export type DeleteCacheRequestModel =
   | "database"
   | "dashboard"
   | "question";
-export const DeleteCacheRequestModel = /*@__PURE__*/ S.String;
+export const DeleteCacheRequestModel = S.String;
 
 export type DeleteCacheRequestModelIdList = Array<number>;
 export const DeleteCacheRequestModelIdList = /*@__PURE__*/ S.Array(
@@ -11320,7 +11294,7 @@ export type DeleteEeCloudAddOnsRequestProductType =
   | "transforms-advanced-metered"
   | "dwh-rent"
   | "etl-connections";
-export const DeleteEeCloudAddOnsRequestProductType = /*@__PURE__*/ S.String;
+export const DeleteEeCloudAddOnsRequestProductType = S.String;
 
 export interface DeleteEeCloudAddOnsRequest {
   product_type: DeleteEeCloudAddOnsRequestProductType | (string & {});
@@ -12130,7 +12104,7 @@ export const GetActivityPopularItemsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetActivityPopularItemsResponse>;
 
 export type GetActivityRecentsRequestContextItem = "selections" | "views";
-export const GetActivityRecentsRequestContextItem = /*@__PURE__*/ S.String;
+export const GetActivityRecentsRequestContextItem = S.String;
 
 export type GetActivityRecentsRequestContextList = Array<
   GetActivityRecentsRequestContextItem | (string & {})
@@ -12238,11 +12212,11 @@ export type GetAutomagicDashboardRequestEntity =
   | "segment"
   | "table"
   | "transform";
-export const GetAutomagicDashboardRequestEntity = /*@__PURE__*/ S.String;
+export const GetAutomagicDashboardRequestEntity = S.String;
 
 export type GetAutomagicDashboardRequestShow = unknown | number;
 export const GetAutomagicDashboardRequestShow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAutomagicDashboardRequestShow>;
+  S.Unknown as any as S.Schema<GetAutomagicDashboardRequestShow>;
 
 export interface GetAutomagicDashboardRequest {
   entity: GetAutomagicDashboardRequestEntity | (string & {});
@@ -12280,16 +12254,16 @@ export type GetAutomagicDashboardCellRequestEntity =
   | "segment"
   | "table"
   | "transform";
-export const GetAutomagicDashboardCellRequestEntity = /*@__PURE__*/ S.String;
+export const GetAutomagicDashboardCellRequestEntity = S.String;
 
 export type GetAutomagicDashboardCellRequestShowCase0 = "all";
-export const GetAutomagicDashboardCellRequestShowCase0 = /*@__PURE__*/ S.String;
+export const GetAutomagicDashboardCellRequestShowCase0 = S.String;
 
 export type GetAutomagicDashboardCellRequestShow =
   | GetAutomagicDashboardCellRequestShowCase0
   | number;
 export const GetAutomagicDashboardCellRequestShow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAutomagicDashboardCellRequestShow>;
+  S.Unknown as any as S.Schema<GetAutomagicDashboardCellRequestShow>;
 
 export interface GetAutomagicDashboardCellRequest {
   entity: GetAutomagicDashboardCellRequestEntity | (string & {});
@@ -12330,25 +12304,22 @@ export type GetAutomagicDashboardCellCompareRequestEntity =
   | "segment"
   | "table"
   | "transform";
-export const GetAutomagicDashboardCellCompareRequestEntity =
-  /*@__PURE__*/ S.String;
+export const GetAutomagicDashboardCellCompareRequestEntity = S.String;
 
 export type GetAutomagicDashboardCellCompareRequestComparisonEntity =
   | "adhoc"
   | "segment"
   | "table";
-export const GetAutomagicDashboardCellCompareRequestComparisonEntity =
-  /*@__PURE__*/ S.String;
+export const GetAutomagicDashboardCellCompareRequestComparisonEntity = S.String;
 
 export type GetAutomagicDashboardCellCompareRequestShowCase0 = "all";
-export const GetAutomagicDashboardCellCompareRequestShowCase0 =
-  /*@__PURE__*/ S.String;
+export const GetAutomagicDashboardCellCompareRequestShowCase0 = S.String;
 
 export type GetAutomagicDashboardCellCompareRequestShow =
   | GetAutomagicDashboardCellCompareRequestShowCase0
   | number;
 export const GetAutomagicDashboardCellCompareRequestShow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAutomagicDashboardCellCompareRequestShow>;
+  S.Unknown as any as S.Schema<GetAutomagicDashboardCellCompareRequestShow>;
 
 export interface GetAutomagicDashboardCellCompareRequest {
   entity: GetAutomagicDashboardCellCompareRequestEntity | (string & {});
@@ -12401,18 +12372,18 @@ export type GetAutomagicDashboardCellRuleDashboardTemplateRequestEntity =
   | "table"
   | "transform";
 export const GetAutomagicDashboardCellRuleDashboardTemplateRequestEntity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAutomagicDashboardCellRuleDashboardTemplateRequestShowCase0 =
   "all";
 export const GetAutomagicDashboardCellRuleDashboardTemplateRequestShowCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAutomagicDashboardCellRuleDashboardTemplateRequestShow =
   | GetAutomagicDashboardCellRuleDashboardTemplateRequestShowCase0
   | number;
 export const GetAutomagicDashboardCellRuleDashboardTemplateRequestShow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAutomagicDashboardCellRuleDashboardTemplateRequestShow>;
+  S.Unknown as any as S.Schema<GetAutomagicDashboardCellRuleDashboardTemplateRequestShow>;
 
 export interface GetAutomagicDashboardCellRuleDashboardTemplateRequest {
   entity:
@@ -12467,25 +12438,25 @@ export type GetAutomagicDashboardCellRuleDashboardTemplateCompareRequestEntity =
   | "table"
   | "transform";
 export const GetAutomagicDashboardCellRuleDashboardTemplateCompareRequestEntity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAutomagicDashboardCellRuleDashboardTemplateCompareRequestComparisonEntity =
   | "adhoc"
   | "segment"
   | "table";
 export const GetAutomagicDashboardCellRuleDashboardTemplateCompareRequestComparisonEntity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAutomagicDashboardCellRuleDashboardTemplateCompareRequestShowCase0 =
   "all";
 export const GetAutomagicDashboardCellRuleDashboardTemplateCompareRequestShowCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAutomagicDashboardCellRuleDashboardTemplateCompareRequestShow =
   | GetAutomagicDashboardCellRuleDashboardTemplateCompareRequestShowCase0
   | number;
 export const GetAutomagicDashboardCellRuleDashboardTemplateCompareRequestShow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAutomagicDashboardCellRuleDashboardTemplateCompareRequestShow>;
+  S.Unknown as any as S.Schema<GetAutomagicDashboardCellRuleDashboardTemplateCompareRequestShow>;
 
 export interface GetAutomagicDashboardCellRuleDashboardTemplateCompareRequest {
   entity:
@@ -12550,24 +12521,22 @@ export type GetAutomagicDashboardCompareRequestEntity =
   | "segment"
   | "table"
   | "transform";
-export const GetAutomagicDashboardCompareRequestEntity = /*@__PURE__*/ S.String;
+export const GetAutomagicDashboardCompareRequestEntity = S.String;
 
 export type GetAutomagicDashboardCompareRequestComparisonEntity =
   | "adhoc"
   | "segment"
   | "table";
-export const GetAutomagicDashboardCompareRequestComparisonEntity =
-  /*@__PURE__*/ S.String;
+export const GetAutomagicDashboardCompareRequestComparisonEntity = S.String;
 
 export type GetAutomagicDashboardCompareRequestShowCase0 = "all";
-export const GetAutomagicDashboardCompareRequestShowCase0 =
-  /*@__PURE__*/ S.String;
+export const GetAutomagicDashboardCompareRequestShowCase0 = S.String;
 
 export type GetAutomagicDashboardCompareRequestShow =
   | GetAutomagicDashboardCompareRequestShowCase0
   | number;
 export const GetAutomagicDashboardCompareRequestShow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAutomagicDashboardCompareRequestShow>;
+  S.Unknown as any as S.Schema<GetAutomagicDashboardCompareRequestShow>;
 
 export interface GetAutomagicDashboardCompareRequest {
   entity: GetAutomagicDashboardCompareRequestEntity | (string & {});
@@ -12616,7 +12585,7 @@ export type GetAutomagicDashboardEntityOrQueryQueryMetadataRequestEntity =
   | "table"
   | "transform";
 export const GetAutomagicDashboardEntityOrQueryQueryMetadataRequestEntity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAutomagicDashboardEntityOrQueryQueryMetadataRequest {
   entity:
@@ -12656,18 +12625,17 @@ export type GetAutomagicDashboardRuleDashboardTemplateRequestEntity =
   | "segment"
   | "table"
   | "transform";
-export const GetAutomagicDashboardRuleDashboardTemplateRequestEntity =
-  /*@__PURE__*/ S.String;
+export const GetAutomagicDashboardRuleDashboardTemplateRequestEntity = S.String;
 
 export type GetAutomagicDashboardRuleDashboardTemplateRequestShowCase0 = "all";
 export const GetAutomagicDashboardRuleDashboardTemplateRequestShowCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAutomagicDashboardRuleDashboardTemplateRequestShow =
   | GetAutomagicDashboardRuleDashboardTemplateRequestShowCase0
   | number;
 export const GetAutomagicDashboardRuleDashboardTemplateRequestShow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAutomagicDashboardRuleDashboardTemplateRequestShow>;
+  S.Unknown as any as S.Schema<GetAutomagicDashboardRuleDashboardTemplateRequestShow>;
 
 export interface GetAutomagicDashboardRuleDashboardTemplateRequest {
   entity:
@@ -12718,25 +12686,25 @@ export type GetAutomagicDashboardRuleDashboardTemplateCompareRequestEntity =
   | "table"
   | "transform";
 export const GetAutomagicDashboardRuleDashboardTemplateCompareRequestEntity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAutomagicDashboardRuleDashboardTemplateCompareRequestComparisonEntity =
   | "adhoc"
   | "segment"
   | "table";
 export const GetAutomagicDashboardRuleDashboardTemplateCompareRequestComparisonEntity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAutomagicDashboardRuleDashboardTemplateCompareRequestShowCase0 =
   "all";
 export const GetAutomagicDashboardRuleDashboardTemplateCompareRequestShowCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAutomagicDashboardRuleDashboardTemplateCompareRequestShow =
   | GetAutomagicDashboardRuleDashboardTemplateCompareRequestShowCase0
   | number;
 export const GetAutomagicDashboardRuleDashboardTemplateCompareRequestShow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAutomagicDashboardRuleDashboardTemplateCompareRequestShow>;
+  S.Unknown as any as S.Schema<GetAutomagicDashboardRuleDashboardTemplateCompareRequestShow>;
 
 export interface GetAutomagicDashboardRuleDashboardTemplateCompareRequest {
   entity:
@@ -12897,7 +12865,7 @@ export type GetCacheRequestModelItem =
   | "database"
   | "dashboard"
   | "question";
-export const GetCacheRequestModelItem = /*@__PURE__*/ S.String;
+export const GetCacheRequestModelItem = S.String;
 
 export type GetCacheRequestModelList = Array<
   GetCacheRequestModelItem | (string & {})
@@ -12907,10 +12875,10 @@ export const GetCacheRequestModelList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetCacheRequestModelList>;
 
 export type GetCacheRequestSortColumn = "name" | "policy" | "collection";
-export const GetCacheRequestSortColumn = /*@__PURE__*/ S.String;
+export const GetCacheRequestSortColumn = S.String;
 
 export type GetCacheRequestSortDirection = "asc" | "desc";
-export const GetCacheRequestSortDirection = /*@__PURE__*/ S.String;
+export const GetCacheRequestSortDirection = S.String;
 
 export interface GetCacheRequest {
   /** Type of model */
@@ -12950,7 +12918,7 @@ export type GetCardRequestF =
   | "all"
   | "mine"
   | "database";
-export const GetCardRequestF = /*@__PURE__*/ S.String;
+export const GetCardRequestF = S.String;
 
 export interface GetCardRequest {
   f?: GetCardRequestF | (string & {});
@@ -13264,8 +13232,7 @@ export type GetCardQueryByExportFormatRequestExportFormat =
   | "api"
   | "xlsx"
   | "json";
-export const GetCardQueryByExportFormatRequestExportFormat =
-  /*@__PURE__*/ S.String;
+export const GetCardQueryByExportFormatRequestExportFormat = S.String;
 
 export interface GetCardQueryByExportFormatRequest {
   /** value must be a valid UUID. */
@@ -13504,7 +13471,7 @@ export type GetCollectionItemsRequestModelsItem =
   | "pulse"
   | "metric"
   | "card";
-export const GetCollectionItemsRequestModelsItem = /*@__PURE__*/ S.String;
+export const GetCollectionItemsRequestModelsItem = S.String;
 
 export type GetCollectionItemsRequestModelsList = Array<
   GetCollectionItemsRequestModelsItem | (string & {})
@@ -13517,7 +13484,7 @@ export type GetCollectionItemsRequestPinnedState =
   | "is_not_pinned"
   | "is_pinned"
   | "all";
-export const GetCollectionItemsRequestPinnedState = /*@__PURE__*/ S.String;
+export const GetCollectionItemsRequestPinnedState = S.String;
 
 export type GetCollectionItemsRequestSortColumn =
   | "model"
@@ -13525,10 +13492,10 @@ export type GetCollectionItemsRequestSortColumn =
   | "last_edited_by"
   | "last_edited_at"
   | "description";
-export const GetCollectionItemsRequestSortColumn = /*@__PURE__*/ S.String;
+export const GetCollectionItemsRequestSortColumn = S.String;
 
 export type GetCollectionItemsRequestSortDirection = "desc" | "asc";
-export const GetCollectionItemsRequestSortDirection = /*@__PURE__*/ S.String;
+export const GetCollectionItemsRequestSortDirection = S.String;
 
 export interface GetCollectionItemsRequest {
   id: string;
@@ -13622,7 +13589,7 @@ export type GetCollectionRootItemsRequestModelsItem =
   | "pulse"
   | "metric"
   | "card";
-export const GetCollectionRootItemsRequestModelsItem = /*@__PURE__*/ S.String;
+export const GetCollectionRootItemsRequestModelsItem = S.String;
 
 export type GetCollectionRootItemsRequestModelsList = Array<
   GetCollectionRootItemsRequestModelsItem | (string & {})
@@ -13632,14 +13599,13 @@ export const GetCollectionRootItemsRequestModelsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetCollectionRootItemsRequestModelsList>;
 
 export type GetCollectionRootItemsRequestCollectionType = "remote-synced";
-export const GetCollectionRootItemsRequestCollectionType =
-  /*@__PURE__*/ S.String;
+export const GetCollectionRootItemsRequestCollectionType = S.String;
 
 export type GetCollectionRootItemsRequestPinnedState =
   | "is_not_pinned"
   | "is_pinned"
   | "all";
-export const GetCollectionRootItemsRequestPinnedState = /*@__PURE__*/ S.String;
+export const GetCollectionRootItemsRequestPinnedState = S.String;
 
 export type GetCollectionRootItemsRequestSortColumn =
   | "model"
@@ -13647,11 +13613,10 @@ export type GetCollectionRootItemsRequestSortColumn =
   | "last_edited_by"
   | "last_edited_at"
   | "description";
-export const GetCollectionRootItemsRequestSortColumn = /*@__PURE__*/ S.String;
+export const GetCollectionRootItemsRequestSortColumn = S.String;
 
 export type GetCollectionRootItemsRequestSortDirection = "desc" | "asc";
-export const GetCollectionRootItemsRequestSortDirection =
-  /*@__PURE__*/ S.String;
+export const GetCollectionRootItemsRequestSortDirection = S.String;
 
 export interface GetCollectionRootItemsRequest {
   models?: GetCollectionRootItemsRequestModelsList;
@@ -13755,7 +13720,7 @@ export const GetCollectionTreeResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCollectionTreeResponse>;
 
 export type GetCommentRequestTargetType = "document";
-export const GetCommentRequestTargetType = /*@__PURE__*/ S.String;
+export const GetCommentRequestTargetType = S.String;
 
 export interface GetCommentRequest {
   target_type: GetCommentRequestTargetType | (string & {});
@@ -14248,7 +14213,7 @@ export const GetDashboardRelatedResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDashboardRelatedResponse>;
 
 export type GetDatabaseRequestInclude = "tables" | "schemas";
-export const GetDatabaseRequestInclude = /*@__PURE__*/ S.String;
+export const GetDatabaseRequestInclude = S.String;
 
 export interface GetDatabaseRequest {
   /** include must be either empty, 'tables', or 'schemas' */
@@ -14317,7 +14282,7 @@ export const GetDatabaseAutocompleteSuggestionsResponse =
   }) as any as S.Schema<GetDatabaseAutocompleteSuggestionsResponse>;
 
 export type GetDatabaseByIdRequestInclude = "tables" | "tables.fields";
-export const GetDatabaseByIdRequestInclude = /*@__PURE__*/ S.String;
+export const GetDatabaseByIdRequestInclude = S.String;
 
 export interface GetDatabaseByIdRequest {
   /** value must be an integer greater than zero. */
@@ -14449,7 +14414,7 @@ export type MetabaseDriverConnectionConnectionType =
   | "write-data"
   | "admin"
   | "transform";
-export const MetabaseDriverConnectionConnectionType = /*@__PURE__*/ S.String;
+export const MetabaseDriverConnectionConnectionType = S.String;
 
 export interface GetDatabaseHealthcheckRequest {
   /** value must be an integer greater than zero. */
@@ -15378,7 +15343,7 @@ export type MetabaseEnterpriseDependenciesDependencyTypesDependencyTypes =
   | "document"
   | "segment";
 export const MetabaseEnterpriseDependenciesDependencyTypesDependencyTypes =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetEeDependenciesGraphRequest {
   /** value must be an integer greater than zero. */
@@ -15421,21 +15386,19 @@ export type GetEeDependenciesGraphBreakingRequestTypes =
   | MetabaseEnterpriseDependenciesDependencyTypesDependencyTypes
   | GetEeDependenciesGraphBreakingRequestTypesCase1List;
 export const GetEeDependenciesGraphBreakingRequestTypes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEeDependenciesGraphBreakingRequestTypes>;
+  S.Unknown as any as S.Schema<GetEeDependenciesGraphBreakingRequestTypes>;
 
 export type GetEeDependenciesGraphBreakingRequestCardTypesCase0 =
   | "question"
   | "metric"
   | "model";
-export const GetEeDependenciesGraphBreakingRequestCardTypesCase0 =
-  /*@__PURE__*/ S.String;
+export const GetEeDependenciesGraphBreakingRequestCardTypesCase0 = S.String;
 
 export type GetEeDependenciesGraphBreakingRequestCardTypesCase1Item =
   | "question"
   | "metric"
   | "model";
-export const GetEeDependenciesGraphBreakingRequestCardTypesCase1Item =
-  /*@__PURE__*/ S.String;
+export const GetEeDependenciesGraphBreakingRequestCardTypesCase1Item = S.String;
 
 export type GetEeDependenciesGraphBreakingRequestCardTypesCase1List = Array<
   GetEeDependenciesGraphBreakingRequestCardTypesCase1Item | (string & {})
@@ -15449,19 +15412,17 @@ export type GetEeDependenciesGraphBreakingRequestCardTypes =
   | GetEeDependenciesGraphBreakingRequestCardTypesCase0
   | GetEeDependenciesGraphBreakingRequestCardTypesCase1List;
 export const GetEeDependenciesGraphBreakingRequestCardTypes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEeDependenciesGraphBreakingRequestCardTypes>;
+  S.Unknown as any as S.Schema<GetEeDependenciesGraphBreakingRequestCardTypes>;
 
 export type GetEeDependenciesGraphBreakingRequestSortColumn =
   | "dependents-with-errors"
   | "dependents-errors"
   | "name"
   | "location";
-export const GetEeDependenciesGraphBreakingRequestSortColumn =
-  /*@__PURE__*/ S.String;
+export const GetEeDependenciesGraphBreakingRequestSortColumn = S.String;
 
 export type GetEeDependenciesGraphBreakingRequestSortDirection = "desc" | "asc";
-export const GetEeDependenciesGraphBreakingRequestSortDirection =
-  /*@__PURE__*/ S.String;
+export const GetEeDependenciesGraphBreakingRequestSortDirection = S.String;
 
 export interface GetEeDependenciesGraphBreakingRequest {
   types?: GetEeDependenciesGraphBreakingRequestTypes;
@@ -15528,21 +15489,21 @@ export type GetEeDependenciesGraphBrokenRequestDependentTypes =
   | MetabaseEnterpriseDependenciesDependencyTypesDependencyTypes
   | GetEeDependenciesGraphBrokenRequestDependentTypesCase1List;
 export const GetEeDependenciesGraphBrokenRequestDependentTypes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEeDependenciesGraphBrokenRequestDependentTypes>;
+  S.Unknown as any as S.Schema<GetEeDependenciesGraphBrokenRequestDependentTypes>;
 
 export type GetEeDependenciesGraphBrokenRequestDependentCardTypesCase0 =
   | "question"
   | "metric"
   | "model";
 export const GetEeDependenciesGraphBrokenRequestDependentCardTypesCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetEeDependenciesGraphBrokenRequestDependentCardTypesCase1Item =
   | "question"
   | "metric"
   | "model";
 export const GetEeDependenciesGraphBrokenRequestDependentCardTypesCase1Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetEeDependenciesGraphBrokenRequestDependentCardTypesCase1List =
   Array<
@@ -15558,18 +15519,16 @@ export type GetEeDependenciesGraphBrokenRequestDependentCardTypes =
   | GetEeDependenciesGraphBrokenRequestDependentCardTypesCase0
   | GetEeDependenciesGraphBrokenRequestDependentCardTypesCase1List;
 export const GetEeDependenciesGraphBrokenRequestDependentCardTypes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEeDependenciesGraphBrokenRequestDependentCardTypes>;
+  S.Unknown as any as S.Schema<GetEeDependenciesGraphBrokenRequestDependentCardTypes>;
 
 export type GetEeDependenciesGraphBrokenRequestSortColumn =
   | "name"
   | "view-count"
   | "location";
-export const GetEeDependenciesGraphBrokenRequestSortColumn =
-  /*@__PURE__*/ S.String;
+export const GetEeDependenciesGraphBrokenRequestSortColumn = S.String;
 
 export type GetEeDependenciesGraphBrokenRequestSortDirection = "desc" | "asc";
-export const GetEeDependenciesGraphBrokenRequestSortDirection =
-  /*@__PURE__*/ S.String;
+export const GetEeDependenciesGraphBrokenRequestSortDirection = S.String;
 
 export interface GetEeDependenciesGraphBrokenRequest {
   /** value must be an integer greater than zero. */
@@ -15645,21 +15604,21 @@ export type GetEeDependenciesGraphDependentsRequestDependentTypes =
   | MetabaseEnterpriseDependenciesDependencyTypesDependencyTypes
   | GetEeDependenciesGraphDependentsRequestDependentTypesCase1List;
 export const GetEeDependenciesGraphDependentsRequestDependentTypes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEeDependenciesGraphDependentsRequestDependentTypes>;
+  S.Unknown as any as S.Schema<GetEeDependenciesGraphDependentsRequestDependentTypes>;
 
 export type GetEeDependenciesGraphDependentsRequestDependentCardTypesCase0 =
   | "question"
   | "metric"
   | "model";
 export const GetEeDependenciesGraphDependentsRequestDependentCardTypesCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetEeDependenciesGraphDependentsRequestDependentCardTypesCase1Item =
   | "question"
   | "metric"
   | "model";
 export const GetEeDependenciesGraphDependentsRequestDependentCardTypesCase1Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetEeDependenciesGraphDependentsRequestDependentCardTypesCase1List =
   Array<
@@ -15675,20 +15634,18 @@ export type GetEeDependenciesGraphDependentsRequestDependentCardTypes =
   | GetEeDependenciesGraphDependentsRequestDependentCardTypesCase0
   | GetEeDependenciesGraphDependentsRequestDependentCardTypesCase1List;
 export const GetEeDependenciesGraphDependentsRequestDependentCardTypes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEeDependenciesGraphDependentsRequestDependentCardTypes>;
+  S.Unknown as any as S.Schema<GetEeDependenciesGraphDependentsRequestDependentCardTypes>;
 
 export type GetEeDependenciesGraphDependentsRequestSortColumn =
   | "name"
   | "view-count"
   | "location";
-export const GetEeDependenciesGraphDependentsRequestSortColumn =
-  /*@__PURE__*/ S.String;
+export const GetEeDependenciesGraphDependentsRequestSortColumn = S.String;
 
 export type GetEeDependenciesGraphDependentsRequestSortDirection =
   | "desc"
   | "asc";
-export const GetEeDependenciesGraphDependentsRequestSortDirection =
-  /*@__PURE__*/ S.String;
+export const GetEeDependenciesGraphDependentsRequestSortDirection = S.String;
 
 export interface GetEeDependenciesGraphDependentsRequest {
   /** value must be an integer greater than zero. */
@@ -15770,21 +15727,20 @@ export type GetEeDependenciesGraphUnreferencedRequestTypes =
   | MetabaseEnterpriseDependenciesDependencyTypesDependencyTypes
   | GetEeDependenciesGraphUnreferencedRequestTypesCase1List;
 export const GetEeDependenciesGraphUnreferencedRequestTypes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEeDependenciesGraphUnreferencedRequestTypes>;
+  S.Unknown as any as S.Schema<GetEeDependenciesGraphUnreferencedRequestTypes>;
 
 export type GetEeDependenciesGraphUnreferencedRequestCardTypesCase0 =
   | "question"
   | "metric"
   | "model";
-export const GetEeDependenciesGraphUnreferencedRequestCardTypesCase0 =
-  /*@__PURE__*/ S.String;
+export const GetEeDependenciesGraphUnreferencedRequestCardTypesCase0 = S.String;
 
 export type GetEeDependenciesGraphUnreferencedRequestCardTypesCase1Item =
   | "question"
   | "metric"
   | "model";
 export const GetEeDependenciesGraphUnreferencedRequestCardTypesCase1Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetEeDependenciesGraphUnreferencedRequestCardTypesCase1List = Array<
   GetEeDependenciesGraphUnreferencedRequestCardTypesCase1Item | (string & {})
@@ -15798,21 +15754,19 @@ export type GetEeDependenciesGraphUnreferencedRequestCardTypes =
   | GetEeDependenciesGraphUnreferencedRequestCardTypesCase0
   | GetEeDependenciesGraphUnreferencedRequestCardTypesCase1List;
 export const GetEeDependenciesGraphUnreferencedRequestCardTypes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEeDependenciesGraphUnreferencedRequestCardTypes>;
+  S.Unknown as any as S.Schema<GetEeDependenciesGraphUnreferencedRequestCardTypes>;
 
 export type GetEeDependenciesGraphUnreferencedRequestSortColumn =
   | "dependents-with-errors"
   | "dependents-errors"
   | "name"
   | "location";
-export const GetEeDependenciesGraphUnreferencedRequestSortColumn =
-  /*@__PURE__*/ S.String;
+export const GetEeDependenciesGraphUnreferencedRequestSortColumn = S.String;
 
 export type GetEeDependenciesGraphUnreferencedRequestSortDirection =
   | "desc"
   | "asc";
-export const GetEeDependenciesGraphUnreferencedRequestSortDirection =
-  /*@__PURE__*/ S.String;
+export const GetEeDependenciesGraphUnreferencedRequestSortDirection = S.String;
 
 export interface GetEeDependenciesGraphUnreferencedRequest {
   types?: GetEeDependenciesGraphUnreferencedRequestTypes;
@@ -16028,12 +15982,10 @@ export type GetEeMetabotAnalyticsConversationsRequestSortBy =
   | "user"
   | "profile_id"
   | "ip_address";
-export const GetEeMetabotAnalyticsConversationsRequestSortBy =
-  /*@__PURE__*/ S.String;
+export const GetEeMetabotAnalyticsConversationsRequestSortBy = S.String;
 
 export type GetEeMetabotAnalyticsConversationsRequestSortDir = "asc" | "desc";
-export const GetEeMetabotAnalyticsConversationsRequestSortDir =
-  /*@__PURE__*/ S.String;
+export const GetEeMetabotAnalyticsConversationsRequestSortDir = S.String;
 
 export interface GetEeMetabotAnalyticsConversationsRequest {
   sort_by?: GetEeMetabotAnalyticsConversationsRequestSortBy | (string & {});
@@ -16125,7 +16077,7 @@ export type GetEePermissionDebugRequestActionType =
   | "card/read"
   | "card/query"
   | "card/download-data";
-export const GetEePermissionDebugRequestActionType = /*@__PURE__*/ S.String;
+export const GetEePermissionDebugRequestActionType = S.String;
 
 export interface GetEePermissionDebugRequest {
   user_id: number;
@@ -16468,10 +16420,10 @@ export const GetEeSerializationMetadataImportResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetEeSerializationMetadataImportResponse>;
 
 export type GetEeStaleRequestSortColumn = "name" | "last_used_at";
-export const GetEeStaleRequestSortColumn = /*@__PURE__*/ S.String;
+export const GetEeStaleRequestSortColumn = S.String;
 
 export type GetEeStaleRequestSortDirection = "asc" | "desc";
-export const GetEeStaleRequestSortDirection = /*@__PURE__*/ S.String;
+export const GetEeStaleRequestSortDirection = S.String;
 
 export interface GetEeStaleRequest {
   id: string;
@@ -16545,7 +16497,7 @@ export const GetEeSupportAccessGrantCurrentResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetEeSupportAccessGrantCurrentResponse>;
 
 export type GetEeTenantRequestStatus = "all" | "deactivated" | "active";
-export const GetEeTenantRequestStatus = /*@__PURE__*/ S.String;
+export const GetEeTenantRequestStatus = S.String;
 
 export interface GetEeTenantRequest {
   status?: GetEeTenantRequestStatus | (string & {});
@@ -16807,8 +16759,7 @@ export type GetEmbedCardQueryByExportFormatRequestExportFormat =
   | "api"
   | "xlsx"
   | "json";
-export const GetEmbedCardQueryByExportFormatRequestExportFormat =
-  /*@__PURE__*/ S.String;
+export const GetEmbedCardQueryByExportFormatRequestExportFormat = S.String;
 
 export interface GetEmbedCardQueryByExportFormatRequest {
   token: string;
@@ -16903,7 +16854,7 @@ export type GetEmbedDashboardDashcardCardByExportFormatRequestExportFormat =
   | "xlsx"
   | "json";
 export const GetEmbedDashboardDashcardCardByExportFormatRequestExportFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetEmbedDashboardDashcardCardByExportFormatRequest {
   token: string;
@@ -17699,8 +17650,7 @@ export const GetMetabotMetabotByIdResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetMetabotMetabotByIdResponse>;
 
 export type GetMetabotMetabotPromptSuggestionsRequestModel = "metric" | "model";
-export const GetMetabotMetabotPromptSuggestionsRequestModel =
-  /*@__PURE__*/ S.String;
+export const GetMetabotMetabotPromptSuggestionsRequestModel = S.String;
 
 export interface GetMetabotMetabotPromptSuggestionsRequest {
   id: number;
@@ -17763,7 +17713,7 @@ export type GetMetabotSettingsRequestProvider =
   | "zai"
   | "metabase"
   | "openrouter";
-export const GetMetabotSettingsRequestProvider = /*@__PURE__*/ S.String;
+export const GetMetabotSettingsRequestProvider = S.String;
 
 export interface GetMetabotSettingsRequest {
   provider?: GetMetabotSettingsRequestProvider | (string & {});
@@ -18043,7 +17993,7 @@ export type GetNotificationRequestPayloadType =
   | "notification/system-event"
   | "notification/testing"
   | "notification/card";
-export const GetNotificationRequestPayloadType = /*@__PURE__*/ S.String;
+export const GetNotificationRequestPayloadType = S.String;
 
 export interface GetNotificationRequest {
   /** value must be an integer greater than zero. */
@@ -18087,10 +18037,10 @@ export type GetNotificationAdminRequestChannel =
   | string
   | GetNotificationAdminRequestChannelCase1List;
 export const GetNotificationAdminRequestChannel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetNotificationAdminRequestChannel>;
+  S.Unknown as any as S.Schema<GetNotificationAdminRequestChannel>;
 
 export type MetabaseNotificationApiAdminRunStatus = "failing" | "successful";
-export const MetabaseNotificationApiAdminRunStatus = /*@__PURE__*/ S.String;
+export const MetabaseNotificationApiAdminRunStatus = S.String;
 
 export type MetabaseNotificationApiAdminSortColumn =
   | "id"
@@ -18099,10 +18049,10 @@ export type MetabaseNotificationApiAdminSortColumn =
   | "card_name"
   | "creator_name"
   | "updated_at";
-export const MetabaseNotificationApiAdminSortColumn = /*@__PURE__*/ S.String;
+export const MetabaseNotificationApiAdminSortColumn = S.String;
 
 export type MetabaseNotificationApiAdminSortDirection = "asc" | "desc";
-export const MetabaseNotificationApiAdminSortDirection = /*@__PURE__*/ S.String;
+export const MetabaseNotificationApiAdminSortDirection = S.String;
 
 export interface GetNotificationAdminRequest {
   active?: boolean;
@@ -18198,7 +18148,7 @@ export type GetOauthAuthorizationsRequestEventType =
   | "registered"
   | "approved"
   | "denied";
-export const GetOauthAuthorizationsRequestEventType = /*@__PURE__*/ S.String;
+export const GetOauthAuthorizationsRequestEventType = S.String;
 
 export interface GetOauthAuthorizationsRequest {
   client_id?: string;
@@ -18225,7 +18175,7 @@ export const GetOauthAuthorizationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOauthAuthorizationsResponse>;
 
 export type GetOembedRequestFormat = "json";
-export const GetOembedRequestFormat = /*@__PURE__*/ S.String;
+export const GetOembedRequestFormat = S.String;
 
 export interface GetOembedRequest {
   url: string;
@@ -18363,7 +18313,7 @@ export const GetPermissionsGraphGroupResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPermissionsGraphGroupResponse>;
 
 export type GetPermissionsGroupRequestTenancy = "external" | "internal";
-export const GetPermissionsGroupRequestTenancy = /*@__PURE__*/ S.String;
+export const GetPermissionsGroupRequestTenancy = S.String;
 
 export interface GetPermissionsGroupRequest {
   tenancy?: GetPermissionsGroupRequestTenancy | (string & {});
@@ -19014,7 +18964,7 @@ export type GetRevisionRequestEntity =
   | "measure"
   | "segment"
   | "transform";
-export const GetRevisionRequestEntity = /*@__PURE__*/ S.String;
+export const GetRevisionRequestEntity = S.String;
 
 export interface GetRevisionRequest {
   /** value must be an integer greater than zero. */
@@ -19044,7 +18994,7 @@ export type GetRevisionByIdRequestEntity =
   | "measure"
   | "segment"
   | "transform";
-export const GetRevisionByIdRequestEntity = /*@__PURE__*/ S.String;
+export const GetRevisionByIdRequestEntity = S.String;
 
 export interface GetRevisionByIdRequest {
   entity: GetRevisionByIdRequestEntity | (string & {});
@@ -19085,7 +19035,7 @@ export type GetSearchRequestContext =
   | "type-filter"
   | "api"
   | "metabot";
-export const GetSearchRequestContext = /*@__PURE__*/ S.String;
+export const GetSearchRequestContext = S.String;
 
 export type GetSearchRequestModelsItem =
   | "dashboard"
@@ -19101,7 +19051,7 @@ export type GetSearchRequestModelsItem =
   | "indexed-entity"
   | "metric"
   | "card";
-export const GetSearchRequestModelsItem = /*@__PURE__*/ S.String;
+export const GetSearchRequestModelsItem = S.String;
 
 export type GetSearchRequestModelsList = Array<
   GetSearchRequestModelsItem | (string & {})
@@ -19116,8 +19066,7 @@ export type GetSearchRequestFilterItemsInPersonalCollection =
   | "only-mine"
   | "exclude"
   | "exclude-others";
-export const GetSearchRequestFilterItemsInPersonalCollection =
-  /*@__PURE__*/ S.String;
+export const GetSearchRequestFilterItemsInPersonalCollection = S.String;
 
 export type GetSearchRequestCreatedByList = Array<number>;
 export const GetSearchRequestCreatedByList = /*@__PURE__*/ S.Array(
@@ -19139,7 +19088,7 @@ export type GetSearchRequestVectorSearchStrategy =
   | "brute-force"
   | "hnsw-iterative-relaxed"
   | "hnsw-iterative-strict";
-export const GetSearchRequestVectorSearchStrategy = /*@__PURE__*/ S.String;
+export const GetSearchRequestVectorSearchStrategy = S.String;
 
 export type GetSearchRequestIdsList = Array<number>;
 export const GetSearchRequestIdsList = /*@__PURE__*/ S.Array(
@@ -19234,7 +19183,7 @@ export type GetSearchDebugRequestContext =
   | "type-filter"
   | "api"
   | "metabot";
-export const GetSearchDebugRequestContext = /*@__PURE__*/ S.String;
+export const GetSearchDebugRequestContext = S.String;
 
 export type GetSearchDebugRequestModelsItem =
   | "dashboard"
@@ -19250,7 +19199,7 @@ export type GetSearchDebugRequestModelsItem =
   | "indexed-entity"
   | "metric"
   | "card";
-export const GetSearchDebugRequestModelsItem = /*@__PURE__*/ S.String;
+export const GetSearchDebugRequestModelsItem = S.String;
 
 export type GetSearchDebugRequestModelsList = Array<
   GetSearchDebugRequestModelsItem | (string & {})
@@ -19265,8 +19214,7 @@ export type GetSearchDebugRequestFilterItemsInPersonalCollection =
   | "only-mine"
   | "exclude"
   | "exclude-others";
-export const GetSearchDebugRequestFilterItemsInPersonalCollection =
-  /*@__PURE__*/ S.String;
+export const GetSearchDebugRequestFilterItemsInPersonalCollection = S.String;
 
 export type GetSearchDebugRequestCreatedByList = Array<number>;
 export const GetSearchDebugRequestCreatedByList = /*@__PURE__*/ S.Array(
@@ -19288,7 +19236,7 @@ export type GetSearchDebugRequestVectorSearchStrategy =
   | "brute-force"
   | "hnsw-iterative-relaxed"
   | "hnsw-iterative-strict";
-export const GetSearchDebugRequestVectorSearchStrategy = /*@__PURE__*/ S.String;
+export const GetSearchDebugRequestVectorSearchStrategy = S.String;
 
 export type GetSearchDebugRequestIdsList = Array<number>;
 export const GetSearchDebugRequestIdsList = /*@__PURE__*/ S.Array(
@@ -19309,7 +19257,7 @@ export type GetSearchDebugRequestExpectedResultType =
   | "indexed-entity"
   | "metric"
   | "card";
-export const GetSearchDebugRequestExpectedResultType = /*@__PURE__*/ S.String;
+export const GetSearchDebugRequestExpectedResultType = S.String;
 
 export interface GetSearchDebugRequest {
   q?: string;
@@ -19576,8 +19524,7 @@ export type MetabaseWarehouseSchemaRestApiTableDataLayers =
   | "final"
   | "internal"
   | "hidden";
-export const MetabaseWarehouseSchemaRestApiTableDataLayers =
-  /*@__PURE__*/ S.String;
+export const MetabaseWarehouseSchemaRestApiTableDataLayers = S.String;
 
 export type MetabaseWarehouseSchemaRestApiTableDataSources =
   | "source-data"
@@ -19586,8 +19533,7 @@ export type MetabaseWarehouseSchemaRestApiTableDataSources =
   | "ingested"
   | "metabase-transform"
   | "upload";
-export const MetabaseWarehouseSchemaRestApiTableDataSources =
-  /*@__PURE__*/ S.String;
+export const MetabaseWarehouseSchemaRestApiTableDataSources = S.String;
 
 export interface GetTableRequest {
   term?: string;
@@ -19867,7 +19813,7 @@ export type GetTaskRunsEntitiesRequestRunType =
   | "sync"
   | "fingerprint"
   | "subscription";
-export const GetTaskRunsEntitiesRequestRunType = /*@__PURE__*/ S.String;
+export const GetTaskRunsEntitiesRequestRunType = S.String;
 
 export interface GetTaskRunsEntitiesRequest {
   run_type: GetTaskRunsEntitiesRequestRunType | (string & {});
@@ -20114,7 +20060,7 @@ export const GetTilesDashboardDashcardCardResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetTilesDashboardDashcardCardResponse>;
 
 export type MetabaseTimelineApiTimelineInclude = "events";
-export const MetabaseTimelineApiTimelineInclude = /*@__PURE__*/ S.String;
+export const MetabaseTimelineApiTimelineInclude = S.String;
 
 export interface GetTimelineRequest {
   include?: MetabaseTimelineApiTimelineInclude | (string & {});
@@ -20238,7 +20184,7 @@ export type GetTransformRequestLastRunStatusesItem =
   | "succeeded"
   | "failed"
   | "timeout";
-export const GetTransformRequestLastRunStatusesItem = /*@__PURE__*/ S.String;
+export const GetTransformRequestLastRunStatusesItem = S.String;
 
 export type GetTransformRequestLastRunStatusesList = Array<
   GetTransformRequestLastRunStatusesItem | (string & {})
@@ -20329,7 +20275,7 @@ export type GetTransformJobRequestLastRunStatusesItem =
   | "succeeded"
   | "failed"
   | "timeout";
-export const GetTransformJobRequestLastRunStatusesItem = /*@__PURE__*/ S.String;
+export const GetTransformJobRequestLastRunStatusesItem = S.String;
 
 export type GetTransformJobRequestLastRunStatusesList = Array<
   GetTransformJobRequestLastRunStatusesItem | (string & {})
@@ -20403,16 +20349,16 @@ export type GetTransformJobRunsRequestStatus =
   | "succeeded"
   | "failed"
   | "timeout";
-export const GetTransformJobRunsRequestStatus = /*@__PURE__*/ S.String;
+export const GetTransformJobRunsRequestStatus = S.String;
 
 export type GetTransformJobRunsRequestRunMethod = "manual" | "cron";
-export const GetTransformJobRunsRequestRunMethod = /*@__PURE__*/ S.String;
+export const GetTransformJobRunsRequestRunMethod = S.String;
 
 export type GetTransformJobRunsRequestSortColumn = "start_time" | "end_time";
-export const GetTransformJobRunsRequestSortColumn = /*@__PURE__*/ S.String;
+export const GetTransformJobRunsRequestSortColumn = S.String;
 
 export type GetTransformJobRunsRequestSortDirection = "asc" | "desc";
-export const GetTransformJobRunsRequestSortDirection = /*@__PURE__*/ S.String;
+export const GetTransformJobRunsRequestSortDirection = S.String;
 
 export interface GetTransformJobRunsRequest {
   /** value must be an integer greater than zero. */
@@ -20517,10 +20463,10 @@ export type GetTransformRunRequestSortColumn =
   | "run-method"
   | "transform-tags"
   | "duration";
-export const GetTransformRunRequestSortColumn = /*@__PURE__*/ S.String;
+export const GetTransformRunRequestSortColumn = S.String;
 
 export type GetTransformRunRequestSortDirection = "asc" | "desc";
-export const GetTransformRunRequestSortDirection = /*@__PURE__*/ S.String;
+export const GetTransformRunRequestSortDirection = S.String;
 
 export type GetTransformRunRequestTransformIdsList = Array<number>;
 export const GetTransformRunRequestTransformIdsList = /*@__PURE__*/ S.Array(
@@ -20532,7 +20478,7 @@ export type GetTransformRunRequestStatusesItem =
   | "succeeded"
   | "failed"
   | "timeout";
-export const GetTransformRunRequestStatusesItem = /*@__PURE__*/ S.String;
+export const GetTransformRunRequestStatusesItem = S.String;
 
 export type GetTransformRunRequestStatusesList = Array<
   GetTransformRunRequestStatusesItem | (string & {})
@@ -20547,7 +20493,7 @@ export const GetTransformRunRequestTransformTagIdsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetTransformRunRequestTransformTagIdsList>;
 
 export type GetTransformRunRequestRunMethodsItem = "manual" | "cron";
-export const GetTransformRunRequestRunMethodsItem = /*@__PURE__*/ S.String;
+export const GetTransformRunRequestRunMethodsItem = S.String;
 
 export type GetTransformRunRequestRunMethodsList = Array<
   GetTransformRunRequestRunMethodsItem | (string & {})
@@ -20640,7 +20586,7 @@ export const GetTransformTagResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetTransformTagResponse>;
 
 export type GetUserRequestTenancy = "all" | "internal" | "external";
-export const GetUserRequestTenancy = /*@__PURE__*/ S.String;
+export const GetUserRequestTenancy = S.String;
 
 export interface GetUserRequest {
   status?: string;
@@ -20987,7 +20933,7 @@ export type MetabaseActionsSchemaActionForUpdate =
   | MetabaseActionsSchemaActionForUpdateCase2
   | MetabaseActionsSchemaActionForUpdateCase3;
 export const MetabaseActionsSchemaActionForUpdate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseActionsSchemaActionForUpdate>;
+  S.Unknown as any as S.Schema<MetabaseActionsSchemaActionForUpdate>;
 
 export interface PutActionRequest {
   id: number;
@@ -21013,8 +20959,7 @@ export type MetabaseAgentApiApiDashcardMutationCase0DisplaySize =
   | "wide"
   | "tall"
   | "full";
-export const MetabaseAgentApiApiDashcardMutationCase0DisplaySize =
-  /*@__PURE__*/ S.String;
+export const MetabaseAgentApiApiDashcardMutationCase0DisplaySize = S.String;
 
 export interface MetabaseAgentApiApiDashcardMutationCase0 {
   action: unknown;
@@ -21054,8 +20999,7 @@ export const MetabaseAgentApiApiDashcardMutationCase1 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<MetabaseAgentApiApiDashcardMutationCase1>;
 
 export type MetabaseAgentApiApiDashcardMutationCase2Position = "top" | "bottom";
-export const MetabaseAgentApiApiDashcardMutationCase2Position =
-  /*@__PURE__*/ S.String;
+export const MetabaseAgentApiApiDashcardMutationCase2Position = S.String;
 
 export interface MetabaseAgentApiApiDashcardMutationCase2 {
   action: unknown;
@@ -21080,7 +21024,7 @@ export type MetabaseAgentApiApiDashcardMutation =
   | MetabaseAgentApiApiDashcardMutationCase1
   | MetabaseAgentApiApiDashcardMutationCase2;
 export const MetabaseAgentApiApiDashcardMutation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseAgentApiApiDashcardMutation>;
+  S.Unknown as any as S.Schema<MetabaseAgentApiApiDashcardMutation>;
 
 export type PutAgentDashboardRequestDashcardsList =
   Array<MetabaseAgentApiApiDashcardMutation>;
@@ -21194,8 +21138,7 @@ export type PutBookmarkOrderingRequestOrderingsItemType =
   | "dashboard"
   | "collection"
   | "document";
-export const PutBookmarkOrderingRequestOrderingsItemType =
-  /*@__PURE__*/ S.String;
+export const PutBookmarkOrderingRequestOrderingsItemType = S.String;
 
 export interface PutBookmarkOrderingRequestOrderingsItem {
   /** value must be an integer greater than zero. */
@@ -21241,7 +21184,7 @@ export type PutCacheRequestModel =
   | "database"
   | "dashboard"
   | "question";
-export const PutCacheRequestModel = /*@__PURE__*/ S.String;
+export const PutCacheRequestModel = S.String;
 
 export interface MetabaseCacheApiCacheStrategyNocache {
   name?: string | null;
@@ -21279,8 +21222,7 @@ export type MetabaseCacheApiCacheStrategyEeDurationUnit =
   | "minutes"
   | "seconds"
   | "days";
-export const MetabaseCacheApiCacheStrategyEeDurationUnit =
-  /*@__PURE__*/ S.String;
+export const MetabaseCacheApiCacheStrategyEeDurationUnit = S.String;
 
 export interface MetabaseCacheApiCacheStrategyEeDuration {
   /** value must be an integer greater than zero. */
@@ -21324,20 +21266,20 @@ export type MetabaseCacheApiCacheStrategyEe =
   | MetabaseCacheApiCacheStrategyEeDuration
   | MetabaseCacheApiCacheStrategyEeSchedule;
 export const MetabaseCacheApiCacheStrategyEe =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseCacheApiCacheStrategyEe>;
+  S.Unknown as any as S.Schema<MetabaseCacheApiCacheStrategyEe>;
 
 /** cache strategy :type must be one of :nocache, :ttl */
 export type MetabaseCacheApiCacheStrategyOss =
   | MetabaseCacheApiCacheStrategyNocache
   | MetabaseCacheApiCacheStrategyTtl;
 export const MetabaseCacheApiCacheStrategyOss =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseCacheApiCacheStrategyOss>;
+  S.Unknown as any as S.Schema<MetabaseCacheApiCacheStrategyOss>;
 
 export type MetabaseCacheApiCacheStrategy =
   | MetabaseCacheApiCacheStrategyEe
   | MetabaseCacheApiCacheStrategyOss;
 export const MetabaseCacheApiCacheStrategy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseCacheApiCacheStrategy>;
+  S.Unknown as any as S.Schema<MetabaseCacheApiCacheStrategy>;
 
 export interface PutCacheRequest {
   model: PutCacheRequestModel | (string & {});
@@ -21366,7 +21308,7 @@ export type PutCardRequestEmbeddingParamsValue =
   | "disabled"
   | "enabled"
   | "locked";
-export const PutCardRequestEmbeddingParamsValue = /*@__PURE__*/ S.String;
+export const PutCardRequestEmbeddingParamsValue = S.String;
 
 export type PutCardRequestEmbeddingParamsMap = {
   [key: string]: PutCardRequestEmbeddingParamsValue | (string & {}) | undefined;
@@ -21442,19 +21384,17 @@ export type PutChannelRequestBodyCase0DetailsAuthMethod =
   | "header"
   | "query-param"
   | "request-body";
-export const PutChannelRequestBodyCase0DetailsAuthMethod =
-  /*@__PURE__*/ S.String;
+export const PutChannelRequestBodyCase0DetailsAuthMethod = S.String;
 
 export type PutChannelRequestBodyCase0DetailsFeFormType =
   | "api-key"
   | "bearer"
   | "basic"
   | "none";
-export const PutChannelRequestBodyCase0DetailsFeFormType =
-  /*@__PURE__*/ S.String;
+export const PutChannelRequestBodyCase0DetailsFeFormType = S.String;
 
 export type PutChannelRequestBodyCase0DetailsMethod = "get" | "post" | "put";
-export const PutChannelRequestBodyCase0DetailsMethod = /*@__PURE__*/ S.String;
+export const PutChannelRequestBodyCase0DetailsMethod = S.String;
 
 export interface PutChannelRequestBodyCase0Details {
   /** Value must be a map. */
@@ -21553,23 +21493,20 @@ export type PutChannelRequestBodyCase3DetailsCase1AuthMethod =
   | "header"
   | "query-param"
   | "request-body";
-export const PutChannelRequestBodyCase3DetailsCase1AuthMethod =
-  /*@__PURE__*/ S.String;
+export const PutChannelRequestBodyCase3DetailsCase1AuthMethod = S.String;
 
 export type PutChannelRequestBodyCase3DetailsCase1FeFormType =
   | "api-key"
   | "bearer"
   | "basic"
   | "none";
-export const PutChannelRequestBodyCase3DetailsCase1FeFormType =
-  /*@__PURE__*/ S.String;
+export const PutChannelRequestBodyCase3DetailsCase1FeFormType = S.String;
 
 export type PutChannelRequestBodyCase3DetailsCase1Method =
   | "get"
   | "post"
   | "put";
-export const PutChannelRequestBodyCase3DetailsCase1Method =
-  /*@__PURE__*/ S.String;
+export const PutChannelRequestBodyCase3DetailsCase1Method = S.String;
 
 export interface PutChannelRequestBodyCase3DetailsCase1 {
   /** Value must be a map. */
@@ -21606,7 +21543,7 @@ export type PutChannelRequestBodyCase3Details =
   | PutChannelRequestBodyCase3DetailsCase1
   | unknown;
 export const PutChannelRequestBodyCase3Details =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutChannelRequestBodyCase3Details>;
+  S.Unknown as any as S.Schema<PutChannelRequestBodyCase3Details>;
 
 export interface PutChannelRequestBodyCase3 {
   active?: boolean | null;
@@ -21633,7 +21570,7 @@ export type PutChannelRequestBody =
   | PutChannelRequestBodyCase2
   | PutChannelRequestBodyCase3;
 export const PutChannelRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutChannelRequestBody>;
+  S.Unknown as any as S.Schema<PutChannelRequestBody>;
 
 export interface PutChannelRequest {
   /** value must be an integer greater than zero. */
@@ -21673,7 +21610,7 @@ export const PutCloudMigrationCancelResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutCloudMigrationCancelResponse>;
 
 export type PutCollectionRequestAuthorityLevel = "official";
-export const PutCollectionRequestAuthorityLevel = /*@__PURE__*/ S.String;
+export const PutCollectionRequestAuthorityLevel = S.String;
 
 export interface PutCollectionRequest {
   /** value must be an integer greater than zero. */
@@ -21757,13 +21694,13 @@ export const PutCommentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutCommentResponse>;
 
 export type PutDashboardRequestWidth = "fixed" | "full";
-export const PutDashboardRequestWidth = /*@__PURE__*/ S.String;
+export const PutDashboardRequestWidth = S.String;
 
 export type PutDashboardRequestEmbeddingParamsValue =
   | "disabled"
   | "enabled"
   | "locked";
-export const PutDashboardRequestEmbeddingParamsValue = /*@__PURE__*/ S.String;
+export const PutDashboardRequestEmbeddingParamsValue = S.String;
 
 export type PutDashboardRequestEmbeddingParamsMap = {
   [key: string]:
@@ -22218,13 +22155,13 @@ export type PutEeAiControlsPermissionsRequestPermissionsItemPermType =
   | "permission/metabot-other-tools"
   | "permission/metabot";
 export const PutEeAiControlsPermissionsRequestPermissionsItemPermType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutEeAiControlsPermissionsRequestPermissionsItemPermValue =
   | "yes"
   | "no";
 export const PutEeAiControlsPermissionsRequestPermissionsItemPermValue =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutEeAiControlsPermissionsRequestPermissionsItem {
   group_id: number;
@@ -22511,8 +22448,7 @@ export const PutEeRemoteSyncSettingsRequestCollectionsMap =
 export type PutEeRemoteSyncSettingsRequestRemoteSyncType =
   | "read-only"
   | "read-write";
-export const PutEeRemoteSyncSettingsRequestRemoteSyncType =
-  /*@__PURE__*/ S.String;
+export const PutEeRemoteSyncSettingsRequestRemoteSyncType = S.String;
 
 export interface PutEeRemoteSyncSettingsRequest {
   collections?: PutEeRemoteSyncSettingsRequestCollectionsMap | null;
@@ -22817,7 +22753,7 @@ export type PutFieldRequestVisibilityType =
   | "normal"
   | "hidden"
   | "details-only";
-export const PutFieldRequestVisibilityType = /*@__PURE__*/ S.String;
+export const PutFieldRequestVisibilityType = S.String;
 
 export type PutFieldRequestNfcPathList = Array<string>;
 export const PutFieldRequestNfcPathList = /*@__PURE__*/ S.Array(
@@ -22980,7 +22916,7 @@ export const PutLdapSettingsRequestLdapGroupMappingsMap =
   ) as any as S.Schema<PutLdapSettingsRequestLdapGroupMappingsMap>;
 
 export type PutLdapSettingsRequestLdapSecurity = "none" | "ssl" | "starttls";
-export const PutLdapSettingsRequestLdapSecurity = /*@__PURE__*/ S.String;
+export const PutLdapSettingsRequestLdapSecurity = S.String;
 
 export interface PutLdapSettingsRequest {
   ldap_host?: string | null;
@@ -23142,7 +23078,7 @@ export type PutMetabotSettingsRequestProvider =
   | "zai"
   | "metabase"
   | "openrouter";
-export const PutMetabotSettingsRequestProvider = /*@__PURE__*/ S.String;
+export const PutMetabotSettingsRequestProvider = S.String;
 
 export interface PutMetabotSettingsRequest {
   api_key?: string | null;
@@ -23374,12 +23310,10 @@ export type MetabasePermissionsRestSchemaTablePermsCase0Query =
   | "all"
   | "none"
   | "segmented";
-export const MetabasePermissionsRestSchemaTablePermsCase0Query =
-  /*@__PURE__*/ S.String;
+export const MetabasePermissionsRestSchemaTablePermsCase0Query = S.String;
 
 export type MetabasePermissionsRestSchemaTablePermsCase0Read = "all" | "none";
-export const MetabasePermissionsRestSchemaTablePermsCase0Read =
-  /*@__PURE__*/ S.String;
+export const MetabasePermissionsRestSchemaTablePermsCase0Read = S.String;
 
 export interface MetabasePermissionsRestSchemaTablePermsCase0 {
   query?: MetabasePermissionsRestSchemaTablePermsCase0Query | (string & {});
@@ -23408,19 +23342,19 @@ export type MetabasePermissionsRestSchemaPerms =
   | "sandboxed"
   | "segmented"
   | "unrestricted";
-export const MetabasePermissionsRestSchemaPerms = /*@__PURE__*/ S.String;
+export const MetabasePermissionsRestSchemaPerms = S.String;
 
 export type MetabasePermissionsRestSchemaTablePerms =
   | MetabasePermissionsRestSchemaTablePermsCase0
   | MetabasePermissionsRestSchemaPerms;
 export const MetabasePermissionsRestSchemaTablePerms =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabasePermissionsRestSchemaTablePerms>;
+  S.Unknown as any as S.Schema<MetabasePermissionsRestSchemaTablePerms>;
 
 export type MetabasePermissionsRestSchemaSchemaPermsCase0Value =
   | MetabasePermissionsRestSchemaTablePerms
   | unknown;
 export const MetabasePermissionsRestSchemaSchemaPermsCase0Value =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabasePermissionsRestSchemaSchemaPermsCase0Value>;
+  S.Unknown as any as S.Schema<MetabasePermissionsRestSchemaSchemaPermsCase0Value>;
 
 export type MetabasePermissionsRestSchemaSchemaPermsCase0Map = {
   [key: string]: MetabasePermissionsRestSchemaSchemaPermsCase0Value | undefined;
@@ -23435,13 +23369,13 @@ export type MetabasePermissionsRestSchemaSchemaPerms =
   | MetabasePermissionsRestSchemaSchemaPermsCase0Map
   | MetabasePermissionsRestSchemaPerms;
 export const MetabasePermissionsRestSchemaSchemaPerms =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabasePermissionsRestSchemaSchemaPerms>;
+  S.Unknown as any as S.Schema<MetabasePermissionsRestSchemaSchemaPerms>;
 
 export type MetabasePermissionsRestSchemaSchemaGraphValue =
   | MetabasePermissionsRestSchemaSchemaPerms
   | unknown;
 export const MetabasePermissionsRestSchemaSchemaGraphValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabasePermissionsRestSchemaSchemaGraphValue>;
+  S.Unknown as any as S.Schema<MetabasePermissionsRestSchemaSchemaGraphValue>;
 
 export type MetabasePermissionsRestSchemaSchemaGraph = {
   [key: string]: MetabasePermissionsRestSchemaSchemaGraphValue | undefined;
@@ -23466,20 +23400,20 @@ export type MetabasePermissionsRestSchemaSchemasCase1 =
   | "query-builder-and-native"
   | "query-builder"
   | "no";
-export const MetabasePermissionsRestSchemaSchemasCase1 = /*@__PURE__*/ S.String;
+export const MetabasePermissionsRestSchemaSchemasCase1 = S.String;
 
 export type MetabasePermissionsRestSchemaSchemas =
   | MetabasePermissionsRestSchemaSchemaGraph
   | MetabasePermissionsRestSchemaSchemasCase1;
 export const MetabasePermissionsRestSchemaSchemas =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabasePermissionsRestSchemaSchemas>;
+  S.Unknown as any as S.Schema<MetabasePermissionsRestSchemaSchemas>;
 
 export type MetabasePermissionsRestSchemaNative =
   | "write"
   | "none"
   | "full"
   | "limited";
-export const MetabasePermissionsRestSchemaNative = /*@__PURE__*/ S.String;
+export const MetabasePermissionsRestSchemaNative = S.String;
 
 export interface MetabasePermissionsRestSchemaDataPerms {
   native?: MetabasePermissionsRestSchemaNative | (string & {}) | null;
@@ -23496,12 +23430,10 @@ export const MetabasePermissionsRestSchemaDataPerms = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<MetabasePermissionsRestSchemaDataPerms>;
 
 export type MetabasePermissionsRestSchemaDbPermsDetails = "yes" | "no";
-export const MetabasePermissionsRestSchemaDbPermsDetails =
-  /*@__PURE__*/ S.String;
+export const MetabasePermissionsRestSchemaDbPermsDetails = S.String;
 
 export type MetabasePermissionsRestSchemaDbPermsTransforms = "yes" | "no";
-export const MetabasePermissionsRestSchemaDbPermsTransforms =
-  /*@__PURE__*/ S.String;
+export const MetabasePermissionsRestSchemaDbPermsTransforms = S.String;
 
 /** the permissions one group has on one database */
 export interface MetabasePermissionsRestSchemaDbPerms {
@@ -23538,7 +23470,7 @@ export type PutPermissionsGraphRequestGroupsCase0ValueCase0Value =
   | MetabasePermissionsRestSchemaDbPerms
   | unknown;
 export const PutPermissionsGraphRequestGroupsCase0ValueCase0Value =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutPermissionsGraphRequestGroupsCase0ValueCase0Value>;
+  S.Unknown as any as S.Schema<PutPermissionsGraphRequestGroupsCase0ValueCase0Value>;
 
 export type PutPermissionsGraphRequestGroupsCase0ValueCase0Map = {
   [key: string]:
@@ -23555,7 +23487,7 @@ export type PutPermissionsGraphRequestGroupsCase0Value =
   | PutPermissionsGraphRequestGroupsCase0ValueCase0Map
   | unknown;
 export const PutPermissionsGraphRequestGroupsCase0Value =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutPermissionsGraphRequestGroupsCase0Value>;
+  S.Unknown as any as S.Schema<PutPermissionsGraphRequestGroupsCase0Value>;
 
 export type PutPermissionsGraphRequestGroupsCase0Map = {
   [key: string]: PutPermissionsGraphRequestGroupsCase0Value | undefined;
@@ -23569,7 +23501,7 @@ export type PutPermissionsGraphRequestGroups =
   | PutPermissionsGraphRequestGroupsCase0Map
   | unknown;
 export const PutPermissionsGraphRequestGroups =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutPermissionsGraphRequestGroups>;
+  S.Unknown as any as S.Schema<PutPermissionsGraphRequestGroups>;
 
 /** a connection impersonation policy to write alongside a permissions graph update */
 export interface MetabasePermissionsRestSchemaImpersonationUpdate {
@@ -23603,13 +23535,13 @@ export type MetabasePermissionsRestSchemaAttributeRemapping =
   | number
   | MetabaseLibSchemaParameterTarget;
 export const MetabasePermissionsRestSchemaAttributeRemapping =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabasePermissionsRestSchemaAttributeRemapping>;
+  S.Unknown as any as S.Schema<MetabasePermissionsRestSchemaAttributeRemapping>;
 
 export type MetabasePermissionsRestSchemaAttributeRemappingsValue =
   | MetabasePermissionsRestSchemaAttributeRemapping
   | unknown;
 export const MetabasePermissionsRestSchemaAttributeRemappingsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabasePermissionsRestSchemaAttributeRemappingsValue>;
+  S.Unknown as any as S.Schema<MetabasePermissionsRestSchemaAttributeRemappingsValue>;
 
 /** a map of user attribute name -> the field or parameter target it is remapped onto */
 export type MetabasePermissionsRestSchemaAttributeRemappings = {
@@ -23932,7 +23864,7 @@ export const PutSlackSettingsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutSlackSettingsResponse>;
 
 export type PutTableRequestVisibilityType = "technical" | "hidden" | "cruft";
-export const PutTableRequestVisibilityType = /*@__PURE__*/ S.String;
+export const PutTableRequestVisibilityType = S.String;
 
 /** Schema for writing a valid table data authority. */
 export type MetabaseWarehouseSchemaRestApiTableDataAuthorityWrite =
@@ -23940,8 +23872,7 @@ export type MetabaseWarehouseSchemaRestApiTableDataAuthorityWrite =
   | "authoritative"
   | "unconfigured"
   | "ingested";
-export const MetabaseWarehouseSchemaRestApiTableDataAuthorityWrite =
-  /*@__PURE__*/ S.String;
+export const MetabaseWarehouseSchemaRestApiTableDataAuthorityWrite = S.String;
 
 export type PutTableRequestIdsList = Array<number>;
 export const PutTableRequestIdsList = /*@__PURE__*/ S.Array(
@@ -23999,14 +23930,14 @@ export type PutTableByIdRequestVisibilityType =
   | "technical"
   | "hidden"
   | "cruft";
-export const PutTableByIdRequestVisibilityType = /*@__PURE__*/ S.String;
+export const PutTableByIdRequestVisibilityType = S.String;
 
 export type PutTableByIdRequestFieldOrder =
   | "alphabetical"
   | "custom"
   | "database"
   | "smart";
-export const PutTableByIdRequestFieldOrder = /*@__PURE__*/ S.String;
+export const PutTableByIdRequestFieldOrder = S.String;
 
 export interface PutTableByIdRequest {
   /** value must be an integer greater than zero. */
@@ -24086,7 +24017,7 @@ export type PutTableFieldsOrderRequestBody =
   | PutTableFieldsOrderRequestBodyCase0List
   | PutTableFieldsOrderRequestBodyCase1;
 export const PutTableFieldsOrderRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutTableFieldsOrderRequestBody>;
+  S.Unknown as any as S.Schema<PutTableFieldsOrderRequestBody>;
 
 export interface PutTableFieldsOrderRequest {
   /** value must be an integer greater than zero. */
@@ -24118,7 +24049,7 @@ export type PutTimelineRequestIcon =
   | "warning"
   | "bell"
   | "cloud";
-export const PutTimelineRequestIcon = /*@__PURE__*/ S.String;
+export const PutTimelineRequestIcon = S.String;
 
 export interface PutTimelineRequest {
   /** value must be an integer greater than zero. */
@@ -24158,7 +24089,7 @@ export type PutTimelineEventRequestIcon =
   | "warning"
   | "bell"
   | "cloud";
-export const PutTimelineEventRequestIcon = /*@__PURE__*/ S.String;
+export const PutTimelineEventRequestIcon = S.String;
 
 export interface PutTimelineEventRequest {
   /** value must be an integer greater than zero. */
@@ -24245,7 +24176,7 @@ export const PutTransformJobRequestTagIdsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PutTransformJobRequestTagIdsList>;
 
 export type PutTransformJobRequestUiDisplayType = "cron/raw" | "cron/builder";
-export const PutTransformJobRequestUiDisplayType = /*@__PURE__*/ S.String;
+export const PutTransformJobRequestUiDisplayType = S.String;
 
 export interface PutTransformJobRequest {
   /** value must be an integer greater than zero. */
@@ -24407,7 +24338,7 @@ export const PutUserKeyValueNamespaceKeyResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutUserKeyValueNamespaceKeyResponse>;
 
 export type PutUserModalRequestModal = "qbnewb" | "datasetnewb";
-export const PutUserModalRequestModal = /*@__PURE__*/ S.String;
+export const PutUserModalRequestModal = S.String;
 
 export interface PutUserModalRequest {
   /** value must be an integer greater than zero. */
@@ -24482,7 +24413,7 @@ export type UpdateBookmarkRequestModel =
   | "dashboard"
   | "collection"
   | "document";
-export const UpdateBookmarkRequestModel = /*@__PURE__*/ S.String;
+export const UpdateBookmarkRequestModel = S.String;
 
 export interface UpdateBookmarkRequest {
   model: UpdateBookmarkRequestModel | (string & {});
@@ -24513,7 +24444,7 @@ export type UpdateCardQueryRequestExportFormat =
   | "api"
   | "xlsx"
   | "json";
-export const UpdateCardQueryRequestExportFormat = /*@__PURE__*/ S.String;
+export const UpdateCardQueryRequestExportFormat = S.String;
 
 export interface UpdateCardQueryRequest {
   /** value must be an integer greater than zero. */
@@ -24556,8 +24487,7 @@ export type UpdateDashboardDashcardCardRequestExportFormat =
   | "api"
   | "xlsx"
   | "json";
-export const UpdateDashboardDashcardCardRequestExportFormat =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardDashcardCardRequestExportFormat = S.String;
 
 export interface UpdateDashboardDashcardCardRequest {
   /** value must be a valid UUID. */
@@ -24608,8 +24538,7 @@ export type UpdateDashboardDashcardCardQueryRequestExportFormat =
   | "api"
   | "xlsx"
   | "json";
-export const UpdateDashboardDashcardCardQueryRequestExportFormat =
-  /*@__PURE__*/ S.String;
+export const UpdateDashboardDashcardCardQueryRequestExportFormat = S.String;
 
 export interface UpdateDashboardDashcardCardQueryRequest {
   /** value must be an integer greater than zero. */
@@ -24659,7 +24588,7 @@ export type UpdateDashboardSaveCollectionRequestDashcardsItemSeriesItemId =
   | number
   | string;
 export const UpdateDashboardSaveCollectionRequestDashcardsItemSeriesItemId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardSaveCollectionRequestDashcardsItemSeriesItemId>;
+  S.Unknown as any as S.Schema<UpdateDashboardSaveCollectionRequestDashcardsItemSeriesItemId>;
 
 export interface UpdateDashboardSaveCollectionRequestDashcardsItemSeriesItem {
   dataset_query?: MetabaseLibBeSchemaMaybeLegacyOrEmptyQuery | null;
@@ -24698,7 +24627,7 @@ export type UpdateDashboardSaveCollectionRequestDashcardsItemCardId =
   | number
   | string;
 export const UpdateDashboardSaveCollectionRequestDashcardsItemCardId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardSaveCollectionRequestDashcardsItemCardId>;
+  S.Unknown as any as S.Schema<UpdateDashboardSaveCollectionRequestDashcardsItemCardId>;
 
 export interface UpdateDashboardSaveCollectionRequestDashcardsItemCard {
   dataset_query?: MetabaseLibBeSchemaMaybeLegacyOrEmptyQuery | null;
@@ -24780,7 +24709,7 @@ export const UpdateDashboardSaveCollectionRequestTabsList =
   ) as any as S.Schema<UpdateDashboardSaveCollectionRequestTabsList>;
 
 export type UpdateDashboardSaveCollectionRequestWidth = "fixed" | "full";
-export const UpdateDashboardSaveCollectionRequestWidth = /*@__PURE__*/ S.String;
+export const UpdateDashboardSaveCollectionRequestWidth = S.String;
 
 export interface UpdateDashboardSaveCollectionRequest {
   /** value must be an integer greater than zero. */
@@ -24826,7 +24755,7 @@ export const UpdateDashboardSaveCollectionResponse = /*@__PURE__*/ S.suspend(
 
 /** Schema for valid export formats for downloading query results. */
 export type UpdateDatasetRequestExportFormat = "csv" | "api" | "xlsx" | "json";
-export const UpdateDatasetRequestExportFormat = /*@__PURE__*/ S.String;
+export const UpdateDatasetRequestExportFormat = S.String;
 
 export interface UpdateDatasetRequest {
   export_format: UpdateDatasetRequestExportFormat | (string & {});
@@ -24900,7 +24829,7 @@ export type UpdateDocumentCardRequestExportFormat =
   | "api"
   | "xlsx"
   | "json";
-export const UpdateDocumentCardRequestExportFormat = /*@__PURE__*/ S.String;
+export const UpdateDocumentCardRequestExportFormat = S.String;
 
 export interface UpdateDocumentCardRequest {
   /** value must be a valid UUID. */
@@ -24988,7 +24917,7 @@ export type UpdateEeCloudAddOnsRequestProductType =
   | "transforms-advanced-metered"
   | "dwh-rent"
   | "etl-connections";
-export const UpdateEeCloudAddOnsRequestProductType = /*@__PURE__*/ S.String;
+export const UpdateEeCloudAddOnsRequestProductType = S.String;
 
 export interface UpdateEeCloudAddOnsRequest {
   product_type: UpdateEeCloudAddOnsRequestProductType | (string & {});
@@ -25066,7 +24995,7 @@ export type UpdateEeDatabaseReplicationConnectionDatabaseRequestReplicationSchem
   | "exclusion"
   | "all";
 export const UpdateEeDatabaseReplicationConnectionDatabaseRequestReplicationSchemaFiltersSchemaFiltersType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateEeDatabaseReplicationConnectionDatabaseRequestReplicationSchemaFilters {
   schema_filters_patterns: string;
@@ -25129,13 +25058,13 @@ export const UpdateEeScimUserRequestOperationsItemValueCase0Map =
 /** A single attribute value in a PATCH operation. Deliberately *not* `ms/BooleanValue`: its decoder maps everything that isn't `true`/"true" onto `false`, so a blank or junk value would coerce into a deactivation rather than be rejected. The strings clients send for booleans are parsed by the handler instead. */
 export type MetabaseEnterpriseScimV2ApiPatchValue = string | boolean;
 export const MetabaseEnterpriseScimV2ApiPatchValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetabaseEnterpriseScimV2ApiPatchValue>;
+  S.Unknown as any as S.Schema<MetabaseEnterpriseScimV2ApiPatchValue>;
 
 export type UpdateEeScimUserRequestOperationsItemValue =
   | UpdateEeScimUserRequestOperationsItemValueCase0Map
   | MetabaseEnterpriseScimV2ApiPatchValue;
 export const UpdateEeScimUserRequestOperationsItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateEeScimUserRequestOperationsItemValue>;
+  S.Unknown as any as S.Schema<UpdateEeScimUserRequestOperationsItemValue>;
 
 export interface UpdateEeScimUserRequestOperationsItem {
   op: string;
@@ -25189,7 +25118,7 @@ export const UpdateEeScimUserResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateEeScimUserResponse>;
 
 export type UpdateNotifyDbRequestScan = "full" | "schema";
-export const UpdateNotifyDbRequestScan = /*@__PURE__*/ S.String;
+export const UpdateNotifyDbRequestScan = S.String;
 
 export interface UpdateNotifyDbRequest {
   /** value must be an integer greater than zero. */

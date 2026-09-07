@@ -80,11 +80,11 @@ export const CreateRequestFilesMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CreateRequestFilesMap>;
 
 export type CreateRequestPublicCase1 = "true" | "false";
-export const CreateRequestPublicCase1 = /*@__PURE__*/ S.String;
+export const CreateRequestPublicCase1 = S.String;
 
 export type CreateRequestPublic = boolean | CreateRequestPublicCase1;
 export const CreateRequestPublic =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateRequestPublic>;
+  S.Unknown as any as S.Schema<CreateRequestPublic>;
 
 export interface CreateRequest {
   /** Description of the gist */
@@ -527,7 +527,7 @@ export type AuthorAssociation =
   | "MEMBER"
   | "NONE"
   | "OWNER";
-export const AuthorAssociation = /*@__PURE__*/ S.String;
+export const AuthorAssociation = S.String;
 
 /** A comment made to a gist. */
 export interface GistComment {

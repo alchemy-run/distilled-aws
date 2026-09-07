@@ -57,7 +57,7 @@ export type CreateTeamMemberRequestRole =
   | "moderator"
   | "advertiser"
   | "workforce";
-export const CreateTeamMemberRequestRole = /*@__PURE__*/ S.String;
+export const CreateTeamMemberRequestRole = S.String;
 
 export interface CreateTeamMemberRequest {
   /** Account ID, prefixed `biz_`. */
@@ -110,11 +110,11 @@ export type TeamMemberRole =
   | "manager"
   | "workforce"
   | "custom";
-export const TeamMemberRole = /*@__PURE__*/ S.String;
+export const TeamMemberRole = S.String;
 
 /** `joined` for accepted members, `pending` while the invite is pending. */
 export type TeamMemberStatus = "joined" | "pending";
-export const TeamMemberStatus = /*@__PURE__*/ S.String;
+export const TeamMemberStatus = S.String;
 
 export interface UserProfilePicture {
   /** Avatar image URL. Always present — a generated placeholder when the user set no picture. */
@@ -220,7 +220,7 @@ export const GetTeamMemberRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetTeamMemberRequest>;
 
 export type ListTeamMembersRequestStatus = "joined" | "pending";
-export const ListTeamMembersRequestStatus = /*@__PURE__*/ S.String;
+export const ListTeamMembersRequestStatus = S.String;
 
 export type ListTeamMembersRequestRole =
   | "owner"
@@ -233,13 +233,13 @@ export type ListTeamMembersRequestRole =
   | "manager"
   | "workforce"
   | "custom";
-export const ListTeamMembersRequestRole = /*@__PURE__*/ S.String;
+export const ListTeamMembersRequestRole = S.String;
 
 export type ListTeamMembersRequestOrder = "created_at";
-export const ListTeamMembersRequestOrder = /*@__PURE__*/ S.String;
+export const ListTeamMembersRequestOrder = S.String;
 
 export type ListTeamMembersRequestDirection = "asc" | "desc";
-export const ListTeamMembersRequestDirection = /*@__PURE__*/ S.String;
+export const ListTeamMembersRequestDirection = S.String;
 
 export interface ListTeamMembersRequest {
   /** Account ID, prefixed `biz_`. */
@@ -329,7 +329,7 @@ export type UpdateTeamMemberRequestRole =
   | "moderator"
   | "advertiser"
   | "workforce";
-export const UpdateTeamMemberRequestRole = /*@__PURE__*/ S.String;
+export const UpdateTeamMemberRequestRole = S.String;
 
 export interface UpdateTeamMemberRequest {
   /** Team member ID — `ausr_` for accepted members, `ausri_` for pending invites. */

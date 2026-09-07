@@ -274,7 +274,7 @@ export const CreateAppInstanceAdminResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateAppInstanceAdminResponse",
 }) as any as S.Schema<CreateAppInstanceAdminResponse>;
 export type RespondsTo = "STANDARD_MESSAGES" | (string & {});
-export const RespondsTo = /*@__PURE__*/ S.String;
+export const RespondsTo = S.String;
 
 export type StandardMessages =
   | "AUTO"
@@ -282,10 +282,10 @@ export type StandardMessages =
   | "MENTIONS"
   | "NONE"
   | (string & {});
-export const StandardMessages = /*@__PURE__*/ S.String;
+export const StandardMessages = S.String;
 
 export type TargetedMessages = "ALL" | "NONE" | (string & {});
-export const TargetedMessages = /*@__PURE__*/ S.String;
+export const TargetedMessages = S.String;
 
 export interface InvokedBy {
   StandardMessages: StandardMessages;
@@ -364,7 +364,7 @@ export type UserId = string | redacted.Redacted<string>;
 export type UserName = string | redacted.Redacted<string>;
 export type ExpirationDays = number;
 export type ExpirationCriterion = "CREATED_TIMESTAMP" | (string & {});
-export const ExpirationCriterion = /*@__PURE__*/ S.String;
+export const ExpirationCriterion = S.String;
 
 export interface ExpirationSettings {
   ExpirationDays: number;
@@ -789,7 +789,7 @@ export type AppInstanceUserEndpointType =
   | "APNS_SANDBOX"
   | "GCM"
   | (string & {});
-export const AppInstanceUserEndpointType = /*@__PURE__*/ S.String;
+export const AppInstanceUserEndpointType = S.String;
 
 export type NonEmptySensitiveString1600 = string | redacted.Redacted<string>;
 export interface EndpointAttributes {
@@ -805,16 +805,16 @@ export const EndpointAttributes = /*@__PURE__*/ S.suspend(() =>
   identifier: "EndpointAttributes",
 }) as any as S.Schema<EndpointAttributes>;
 export type AllowMessages = "ALL" | "NONE" | (string & {});
-export const AllowMessages = /*@__PURE__*/ S.String;
+export const AllowMessages = S.String;
 
 export type EndpointStatus = "ACTIVE" | "INACTIVE" | (string & {});
-export const EndpointStatus = /*@__PURE__*/ S.String;
+export const EndpointStatus = S.String;
 
 export type EndpointStatusReason =
   | "INVALID_DEVICE_TOKEN"
   | "INVALID_PINPOINT_ARN"
   | (string & {});
-export const EndpointStatusReason = /*@__PURE__*/ S.String;
+export const EndpointStatusReason = S.String;
 
 export interface EndpointState {
   Status: EndpointStatus;
@@ -1555,7 +1555,7 @@ export type ErrorCode =
   | "VoiceConnectorGroupAssociationsExist"
   | "PhoneNumberAssociationsExist"
   | (string & {});
-export const ErrorCode = /*@__PURE__*/ S.String;
+export const ErrorCode = S.String;
 
 export type CreateAppInstanceError =
   | BadRequestException

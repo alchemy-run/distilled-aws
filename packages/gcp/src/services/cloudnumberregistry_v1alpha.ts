@@ -154,8 +154,7 @@ export type IpamAdminScopeAvailabilityAvailabilityEnum =
   | "AVAILABILITY_UNSPECIFIED"
   | "AVAILABLE"
   | "UNAVAILABLE";
-export const IpamAdminScopeAvailabilityAvailabilityEnum =
-  /*@__PURE__*/ S.String;
+export const IpamAdminScopeAvailabilityAvailabilityEnum = S.String;
 
 /** Availability details for a specific IpamAdminScope. */
 export interface IpamAdminScopeAvailability {
@@ -438,14 +437,13 @@ export type IpamAdminScopeStateEnum =
   | "DELETION_COMPLETED"
   | "CLEANUP_IN_PROGRESS"
   | "READY_FOR_DELETION";
-export const IpamAdminScopeStateEnum = /*@__PURE__*/ S.String;
+export const IpamAdminScopeStateEnum = S.String;
 
 export type IpamAdminScopeEnabledAddonPlatformsItemEnum =
   | "ADD_ON_PLATFORM_UNSPECIFIED"
   | "COMPUTE_ENGINE"
   | "GCE";
-export const IpamAdminScopeEnabledAddonPlatformsItemEnum =
-  /*@__PURE__*/ S.String;
+export const IpamAdminScopeEnabledAddonPlatformsItemEnum = S.String;
 
 export type IpamAdminScopeEnabledAddonPlatformsItemEnumList = Array<
   IpamAdminScopeEnabledAddonPlatformsItemEnum | (string & {})
@@ -515,7 +513,7 @@ export const CreateProjectsLocationsIpamAdminScopesRequest =
   }) as any as S.Schema<CreateProjectsLocationsIpamAdminScopesRequest>;
 
 export type RealmIpVersionEnum = "IP_VERSION_UNSPECIFIED" | "IPV4" | "IPV6";
-export const RealmIpVersionEnum = /*@__PURE__*/ S.String;
+export const RealmIpVersionEnum = S.String;
 
 /** Aggregated data for the Realm. */
 export interface RealmAggregatedData {
@@ -539,7 +537,7 @@ export type RealmTrafficTypeEnum =
   | "INTERNET"
   | "PRIVATE"
   | "LINKLOCAL";
-export const RealmTrafficTypeEnum = /*@__PURE__*/ S.String;
+export const RealmTrafficTypeEnum = S.String;
 
 export type DiscoveryMetadataStateEnum =
   | "RESOURCE_STATE_UNSPECIFIED"
@@ -547,7 +545,7 @@ export type DiscoveryMetadataStateEnum =
   | "EXISTS"
   | "DOES_NOT_EXIST"
   | "ERROR";
-export const DiscoveryMetadataStateEnum = /*@__PURE__*/ S.String;
+export const DiscoveryMetadataStateEnum = S.String;
 
 /** Metadata about a discovered resource, tracking event times, state, and source information. */
 export interface DiscoveryMetadata {
@@ -587,7 +585,7 @@ export type RealmManagementTypeEnum =
   | "MANAGEMENT_TYPE_UNSPECIFIED"
   | "CNR"
   | "USER";
-export const RealmManagementTypeEnum = /*@__PURE__*/ S.String;
+export const RealmManagementTypeEnum = S.String;
 
 /** A Realm represents a distinct network domain or security zone. It groups Ranges that share the same traffic and management characteristics. All the ranges in a Realm are routable to each other, meaning that they cannot overlap. */
 export interface Realm {
@@ -1238,7 +1236,7 @@ export type GetProjectsLocationsRealmsViewEnum =
   | "BASIC"
   | "FULL"
   | "AGGREGATE";
-export const GetProjectsLocationsRealmsViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsRealmsViewEnum = S.String;
 
 export interface GetProjectsLocationsRealmsRequest {
   /** Required. The resource name of the Realm to retrieve. */
@@ -1266,7 +1264,7 @@ export type GetProjectsLocationsRegistryBooksViewEnum =
   | "BASIC"
   | "FULL"
   | "AGGREGATE";
-export const GetProjectsLocationsRegistryBooksViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsRegistryBooksViewEnum = S.String;
 
 export interface GetProjectsLocationsRegistryBooksRequest {
   /** Required. The resource name of the RegistryBook to retrieve. */
@@ -1744,7 +1742,7 @@ export type ListProjectsLocationsRealmsViewEnum =
   | "BASIC"
   | "FULL"
   | "AGGREGATE";
-export const ListProjectsLocationsRealmsViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsLocationsRealmsViewEnum = S.String;
 
 export interface ListProjectsLocationsRealmsRequest {
   /** Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. */
@@ -1808,8 +1806,7 @@ export type ListProjectsLocationsRegistryBooksViewEnum =
   | "BASIC"
   | "FULL"
   | "AGGREGATE";
-export const ListProjectsLocationsRegistryBooksViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsRegistryBooksViewEnum = S.String;
 
 export interface ListProjectsLocationsRegistryBooksRequest {
   /** Optional. Filter expression to filter the results. */
@@ -1986,8 +1983,7 @@ export type SearchIpResourcesRequestSearchResourceTypesItemEnum =
   | "SEARCH_RESOURCE_TYPE_UNSPECIFIED"
   | "RANGES"
   | "REALMS";
-export const SearchIpResourcesRequestSearchResourceTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const SearchIpResourcesRequestSearchResourceTypesItemEnum = S.String;
 
 export type SearchIpResourcesRequestSearchResourceTypesItemEnumList = Array<
   SearchIpResourcesRequestSearchResourceTypesItemEnum | (string & {})

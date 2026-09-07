@@ -19,7 +19,7 @@ export type ServiceTerminationFutureUseEnum =
   | "SUBSCRIBE_AN_OTHER_SERVICE"
   | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
   | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationFutureUseEnum = S.String;
 
 /** All reasons you can provide for a service termination */
 export type ServiceTerminationReasonEnum =
@@ -37,7 +37,7 @@ export type ServiceTerminationReasonEnum =
   | "TOO_EXPENSIVE"
   | "TOO_HARD_TO_USE"
   | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationReasonEnum = S.String;
 
 export interface ConfirmOvhCloudConnectTerminationRequest {
   /** Service name */
@@ -123,7 +123,7 @@ export const CreateOvhCloudConnectChangeContactResponse =
 
 /** Enum values for Pop Configuration Type */
 export type OvhcloudconnectPopConfigTypeEnum = "l2" | "l3";
-export const OvhcloudconnectPopConfigTypeEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectPopConfigTypeEnum = S.String;
 
 export interface CreateOvhCloudConnectConfigPopRequest {
   /** Service name */
@@ -171,7 +171,7 @@ export type OvhcloudconnectTaskFunctionEnum =
   | "lockInterface"
   | "removeVrack"
   | "unlockInterface";
-export const OvhcloudconnectTaskFunctionEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectTaskFunctionEnum = S.String;
 
 /** Enum values for Task status */
 export type OvhcloudconnectTaskStatusEnum =
@@ -181,7 +181,7 @@ export type OvhcloudconnectTaskStatusEnum =
   | "error"
   | "pause"
   | "todo";
-export const OvhcloudconnectTaskStatusEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectTaskStatusEnum = S.String;
 
 /** OVHcloud Connect Task */
 export interface OvhcloudconnectTask {
@@ -238,8 +238,7 @@ export const CreateOvhCloudConnectConfigPopDatacenterRequest =
 
 /** Enum values for Datacenter Extra Configuration Type */
 export type OvhcloudconnectDatacenterExtraConfigTypeEnum = "bgp" | "network";
-export const OvhcloudconnectDatacenterExtraConfigTypeEnum =
-  /*@__PURE__*/ S.String;
+export const OvhcloudconnectDatacenterExtraConfigTypeEnum = S.String;
 
 export interface CreateOvhCloudConnectConfigPopDatacenterExtraRequest {
   /** Service name */
@@ -287,14 +286,14 @@ export type OvhcloudconnectDiagnosticFunctionEnum =
   | "diagPeering"
   | "diagPeeringExtra"
   | "diagRoutes";
-export const OvhcloudconnectDiagnosticFunctionEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectDiagnosticFunctionEnum = S.String;
 
 /** Enum values for Diagnostic type */
 export type OvhcloudconnectDiagnosticTypeEnum =
   | "advertised-routes"
   | "default"
   | "routes";
-export const OvhcloudconnectDiagnosticTypeEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectDiagnosticTypeEnum = S.String;
 
 export interface CreateOvhCloudConnectDiagnosticRequest {
   /** Service name */
@@ -695,7 +694,7 @@ export type OvhcloudconnectServiceBandwidthEnum =
   | "2g"
   | "500m"
   | "5g";
-export const OvhcloudconnectServiceBandwidthEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectServiceBandwidthEnum = S.String;
 
 /** Resource tags. Tags that were internally computed are prefixed with ovh: */
 export type IamResourceMetadataTagsMap = { [key: string]: string | undefined };
@@ -735,7 +734,7 @@ export const OvhcloudconnectServiceWithIAMInterfaceListList =
 
 /** Enum values for port quantity */
 export type OvhcloudconnectServicePortEnum = "1" | "2";
-export const OvhcloudconnectServicePortEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectServicePortEnum = S.String;
 
 /** Enum values for service provider */
 export type OvhcloudconnectServiceProviderEnum =
@@ -750,11 +749,11 @@ export type OvhcloudconnectServiceProviderEnum =
   | "interxion"
   | "megaport"
   | "orange";
-export const OvhcloudconnectServiceProviderEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectServiceProviderEnum = S.String;
 
 /** Enum values for the Service */
 export type OvhcloudconnectServiceStatusEnum = "active" | "closed";
-export const OvhcloudconnectServiceStatusEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectServiceStatusEnum = S.String;
 
 /** OVHcloud Connect Service */
 export interface OvhcloudconnectServiceWithIAM {
@@ -822,7 +821,7 @@ export const GetOvhCloudConnectConfigPopRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum values for Pop Configuration Status */
 export type OvhcloudconnectPopConfigStatusEnum = "active" | "init" | "toDelete";
-export const OvhcloudconnectPopConfigStatusEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectPopConfigStatusEnum = S.String;
 
 /** OVHcloud Connect Service Pop Configuration */
 export interface OvhcloudconnectPopConfig {
@@ -989,7 +988,7 @@ export const GetOvhCloudConnectConfigPopStatusRequest = /*@__PURE__*/ S.suspend(
 
 /** Enum values for status */
 export type OvhcloudconnectStatusStatusEnum = "down" | "up";
-export const OvhcloudconnectStatusStatusEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectStatusStatusEnum = S.String;
 
 /** OVHcloud Connect L3 peering current status */
 export interface OvhcloudconnectPopConfStatus {
@@ -1079,11 +1078,11 @@ export type CommonRegionEnum =
   | "us-west-lz-den"
   | "us-west-lz-lax"
   | "us-west-lz-pao";
-export const CommonRegionEnum = /*@__PURE__*/ S.String;
+export const CommonRegionEnum = S.String;
 
 /** Enum values for datacenter region type */
 export type OvhcloudconnectDatacenterRegionTypeEnum = "1-AZ" | "3-AZ";
-export const OvhcloudconnectDatacenterRegionTypeEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectDatacenterRegionTypeEnum = S.String;
 
 /** OVHcloud Connect Datacenter */
 export interface OvhcloudconnectDatacenter {
@@ -1154,7 +1153,7 @@ export const GetOvhCloudConnectIncidentRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum values for incident type status */
 export type OvhcloudconnectIncidentTypeEnum = "incident" | "maintenance";
-export const OvhcloudconnectIncidentTypeEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectIncidentTypeEnum = S.String;
 
 /** OVHcloud Connect Incident */
 export interface OvhcloudconnectIncident {
@@ -1201,19 +1200,18 @@ export const GetOvhCloudConnectInterfaceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum values for the light status */
 export type OvhcloudconnectInterfaceLightStatusEnum = "down" | "unknown" | "up";
-export const OvhcloudconnectInterfaceLightStatusEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectInterfaceLightStatusEnum = S.String;
 
 /** Enum values for the termination type */
 export type OvhcloudconnectInterfaceTerminationTypeEnum = "LC/PC" | "SC/PC";
-export const OvhcloudconnectInterfaceTerminationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const OvhcloudconnectInterfaceTerminationTypeEnum = S.String;
 
 /** Enum values for interface status */
 export type OvhcloudconnectInterfaceStatusEnum =
   | "disabled"
   | "enabled"
   | "reserved";
-export const OvhcloudconnectInterfaceStatusEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectInterfaceStatusEnum = S.String;
 
 /** OVHcloud Connect Interface */
 export interface OvhcloudconnectInterface {
@@ -1499,7 +1497,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 /** service.StateEnum */
 export type ServiceStateEnum =
@@ -1509,7 +1507,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -1580,7 +1578,7 @@ export type OvhcloudconnectKeyStatusEnum =
   | "doing"
   | "terminated"
   | "toCheck";
-export const OvhcloudconnectKeyStatusEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectKeyStatusEnum = S.String;
 
 /** OVHcloud Connect Service Key */
 export interface OvhcloudconnectKey {
@@ -1791,13 +1789,13 @@ export type OvhcloudconnectInterfaceMetricsPeriodEnum =
   | "daily"
   | "hourly"
   | "weekly";
-export const OvhcloudconnectInterfaceMetricsPeriodEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectInterfaceMetricsPeriodEnum = S.String;
 
 /** Enum values for the type of the statistics */
 export type OvhcloudconnectPopConfigMetricsTypeEnum =
   | "prefix:accepted"
   | "prefix:limit";
-export const OvhcloudconnectPopConfigMetricsTypeEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectPopConfigMetricsTypeEnum = S.String;
 
 export interface ListOvhCloudConnectConfigPopStatisticsRequest {
   /** Service name */
@@ -1834,7 +1832,7 @@ export type OvhcloudconnectInterfaceMetricsUnitEnum =
   | "error/s"
   | "prefix_accepted"
   | "prefix_limit";
-export const OvhcloudconnectInterfaceMetricsUnitEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectInterfaceMetricsUnitEnum = S.String;
 
 /** OVHcloud Connect Metrics value */
 export interface OvhcloudconnectMetricsValue {
@@ -2022,7 +2020,7 @@ export type OvhcloudconnectInterfaceMetricsTypeEnum =
   | "light:out"
   | "traffic:download"
   | "traffic:upload";
-export const OvhcloudconnectInterfaceMetricsTypeEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectInterfaceMetricsTypeEnum = S.String;
 
 export interface ListOvhCloudConnectInterfaceStatisticsRequest {
   /** Service name */
@@ -2383,7 +2381,7 @@ export const SendOvhCloudConnectServiceKeyRequest = /*@__PURE__*/ S.suspend(
 
 /** Enum values for messageCode */
 export type OvhcloudconnectMessageCodeEnum = "mailSent";
-export const OvhcloudconnectMessageCodeEnum = /*@__PURE__*/ S.String;
+export const OvhcloudconnectMessageCodeEnum = S.String;
 
 /** OVHcloud Connect send key answer */
 export interface OvhcloudconnectSendKeyAnswer {

@@ -69,7 +69,7 @@ export const AnnotationsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** * `USR` - user * `GIT` - GitHub */
 export type AnnotationCreationTypeEnum = "USR" | "GIT";
-export const AnnotationCreationTypeEnum = /*@__PURE__*/ S.String;
+export const AnnotationCreationTypeEnum = S.String;
 
 /** * `dashboard_item` - insight * `dashboard` - dashboard * `project` - project * `organization` - organization * `recording` - recording */
 export type AnnotationScopeEnum =
@@ -78,7 +78,7 @@ export type AnnotationScopeEnum =
   | "project"
   | "organization"
   | "recording";
-export const AnnotationScopeEnum = /*@__PURE__*/ S.String;
+export const AnnotationScopeEnum = S.String;
 
 export interface CreateAnnotationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -142,14 +142,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;

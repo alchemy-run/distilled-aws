@@ -279,7 +279,7 @@ export const ListRegionalServicePrefixBindingsResponse =
   }) as any as S.Schema<ListRegionalServicePrefixBindingsResponse>;
 
 export type RegionsListRequestType = "managed" | "custom";
-export const RegionsListRequestType = /*@__PURE__*/ S.String;
+export const RegionsListRequestType = S.String;
 
 export interface ListRegionsRequest {
   /** Identifier of a Cloudflare account. */

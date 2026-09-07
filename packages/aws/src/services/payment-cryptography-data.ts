@@ -142,7 +142,7 @@ export type EncryptionMode =
   | "CFB128"
   | "OFB"
   | (string & {});
-export const EncryptionMode = /*@__PURE__*/ S.String;
+export const EncryptionMode = S.String;
 
 export type InitializationVectorType = string | redacted.Redacted<string>;
 export type PaddingType =
@@ -151,7 +151,7 @@ export type PaddingType =
   | "OAEP_SHA256"
   | "OAEP_SHA512"
   | (string & {});
-export const PaddingType = /*@__PURE__*/ S.String;
+export const PaddingType = S.String;
 
 export interface SymmetricEncryptionAttributes {
   Mode: EncryptionMode;
@@ -177,7 +177,7 @@ export const AsymmetricEncryptionAttributes = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AsymmetricEncryptionAttributes>;
 export type HexLength16Or20Or24 = string;
 export type DukptEncryptionMode = "ECB" | "CBC" | (string & {});
-export const DukptEncryptionMode = /*@__PURE__*/ S.String;
+export const DukptEncryptionMode = S.String;
 
 export type DukptDerivationType =
   | "TDES_2KEY"
@@ -186,14 +186,14 @@ export type DukptDerivationType =
   | "AES_192"
   | "AES_256"
   | (string & {});
-export const DukptDerivationType = /*@__PURE__*/ S.String;
+export const DukptDerivationType = S.String;
 
 export type DukptKeyVariant =
   | "BIDIRECTIONAL"
   | "REQUEST"
   | "RESPONSE"
   | (string & {});
-export const DukptKeyVariant = /*@__PURE__*/ S.String;
+export const DukptKeyVariant = S.String;
 
 export interface DukptEncryptionAttributes {
   KeySerialNumber: string;
@@ -217,13 +217,13 @@ export type EmvMajorKeyDerivationMode =
   | "EMV_OPTION_A"
   | "EMV_OPTION_B"
   | (string & {});
-export const EmvMajorKeyDerivationMode = /*@__PURE__*/ S.String;
+export const EmvMajorKeyDerivationMode = S.String;
 
 export type PrimaryAccountNumberType = string | redacted.Redacted<string>;
 export type NumberLengthEquals2 = string;
 export type SessionDerivationDataType = string | redacted.Redacted<string>;
 export type EmvEncryptionMode = "ECB" | "CBC" | (string & {});
-export const EmvEncryptionMode = /*@__PURE__*/ S.String;
+export const EmvEncryptionMode = S.String;
 
 export interface EmvEncryptionAttributes {
   MajorKeyDerivationMode: EmvMajorKeyDerivationMode;
@@ -289,17 +289,17 @@ export type SymmetricKeyAlgorithm =
   | "HMAC_SHA512"
   | "HMAC_SHA224"
   | (string & {});
-export const SymmetricKeyAlgorithm = /*@__PURE__*/ S.String;
+export const SymmetricKeyAlgorithm = S.String;
 
 export type KeyDerivationFunction = "NIST_SP800" | "ANSI_X963" | (string & {});
-export const KeyDerivationFunction = /*@__PURE__*/ S.String;
+export const KeyDerivationFunction = S.String;
 
 export type KeyDerivationHashAlgorithm =
   | "SHA_256"
   | "SHA_384"
   | "SHA_512"
   | (string & {});
-export const KeyDerivationHashAlgorithm = /*@__PURE__*/ S.String;
+export const KeyDerivationHashAlgorithm = S.String;
 
 export type SharedInformation = string;
 export interface EcdhDerivationAttributes {
@@ -433,7 +433,7 @@ export type RandomKeyMaxLength =
   | "BYTES_16"
   | "BYTES_24"
   | (string & {});
-export const RandomKeyMaxLength = /*@__PURE__*/ S.String;
+export const RandomKeyMaxLength = S.String;
 
 export interface KekValidationRequest {
   DeriveKeyAlgorithm: SymmetricKeyAlgorithm;
@@ -473,7 +473,7 @@ export type RandomKeySendVariantMask =
   | "VARIANT_MASK_82C0"
   | "VARIANT_MASK_82"
   | (string & {});
-export const RandomKeySendVariantMask = /*@__PURE__*/ S.String;
+export const RandomKeySendVariantMask = S.String;
 
 export interface GenerateAs2805KekValidationInput {
   KeyIdentifier: string;
@@ -519,7 +519,7 @@ export type MajorKeyDerivationMode =
   | "EMV_OPTION_A"
   | "EMV_OPTION_B"
   | (string & {});
-export const MajorKeyDerivationMode = /*@__PURE__*/ S.String;
+export const MajorKeyDerivationMode = S.String;
 
 export type HexLengthEquals4 = string;
 export interface SessionKeyEmvCommon {
@@ -909,7 +909,7 @@ export type MacAlgorithm =
   | "HMAC_SHA512"
   | "AS2805_4_1"
   | (string & {});
-export const MacAlgorithm = /*@__PURE__*/ S.String;
+export const MacAlgorithm = S.String;
 
 export type SessionKeyDerivationMode =
   | "EMV_COMMON_SESSION_KEY"
@@ -919,7 +919,7 @@ export type SessionKeyDerivationMode =
   | "VISA"
   | "UNION_PAY"
   | (string & {});
-export const SessionKeyDerivationMode = /*@__PURE__*/ S.String;
+export const SessionKeyDerivationMode = S.String;
 
 export type ApplicationCryptogramType = string | redacted.Redacted<string>;
 export type SessionKeyDerivationValue =
@@ -1050,20 +1050,20 @@ export type PinBlockFormatForEmvPinChange =
   | "ISO_FORMAT_1"
   | "ISO_FORMAT_3"
   | (string & {});
-export const PinBlockFormatForEmvPinChange = /*@__PURE__*/ S.String;
+export const PinBlockFormatForEmvPinChange = S.String;
 
 export type CommandMessageDataType = string | redacted.Redacted<string>;
 export type PinBlockPaddingType =
   | "NO_PADDING"
   | "ISO_IEC_7816_4"
   | (string & {});
-export const PinBlockPaddingType = /*@__PURE__*/ S.String;
+export const PinBlockPaddingType = S.String;
 
 export type PinBlockLengthPosition =
   | "NONE"
   | "FRONT_OF_PIN_BLOCK"
   | (string & {});
-export const PinBlockLengthPosition = /*@__PURE__*/ S.String;
+export const PinBlockLengthPosition = S.String;
 
 export interface EmvCommonAttributes {
   MajorKeyDerivationMode: MajorKeyDerivationMode;
@@ -1432,7 +1432,7 @@ export type PinBlockFormatForPinData =
   | "ISO_FORMAT_3"
   | "ISO_FORMAT_4"
   | (string & {});
-export const PinBlockFormatForPinData = /*@__PURE__*/ S.String;
+export const PinBlockFormatForPinData = S.String;
 
 export interface GeneratePinDataInput {
   GenerationKeyIdentifier: string;

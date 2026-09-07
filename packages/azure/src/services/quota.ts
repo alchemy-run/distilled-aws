@@ -104,7 +104,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -112,7 +112,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -199,7 +199,7 @@ export type RequestState =
   | "Failed"
   | "InProgress"
   | "Canceled";
-export const RequestState = /*@__PURE__*/ S.String;
+export const RequestState = S.String;
 
 export interface SubmittedResourceRequestStatusProperties {
   /** Requested Resource. */
@@ -277,7 +277,7 @@ export const GetGroupQuotaLocationSettingsRequest = /*@__PURE__*/ S.suspend(
 
 /** Enforcement status. */
 export type EnforcementState = "Enabled" | "Disabled" | "NotAvailable";
-export const EnforcementState = /*@__PURE__*/ S.String;
+export const EnforcementState = S.String;
 
 export interface GroupQuotasEnforcementStatusProperties {
   /** Is the GroupQuota Enforcement enabled for the Azure region. */
@@ -349,7 +349,7 @@ export const GetGroupQuotasRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the group. */
 export type GroupType = "AllocationGroup" | "EnforcedGroup";
-export const GroupType = /*@__PURE__*/ S.String;
+export const GroupType = S.String;
 
 /** Properties and filters for ShareQuota. The request parameter is optional, if there are no filters specified. */
 export interface GroupQuotasEntityBase {
@@ -665,7 +665,7 @@ export const GetQuotaRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The limit object type. */
 export type LimitType = "LimitValue";
-export const LimitType = /*@__PURE__*/ S.String;
+export const LimitType = S.String;
 
 /** LimitJson abstract class. */
 export interface LimitJsonObject {
@@ -768,7 +768,7 @@ export type QuotaRequestState =
   | "Succeeded"
   | "Failed"
   | "InProgress";
-export const QuotaRequestState = /*@__PURE__*/ S.String;
+export const QuotaRequestState = S.String;
 
 /** Error details. */
 export interface ServiceErrorDetail {
@@ -894,7 +894,7 @@ export const GetUsageRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The quota or usages limit types. */
 export type UsagesTypes = "Individual" | "Combined";
-export const UsagesTypes = /*@__PURE__*/ S.String;
+export const UsagesTypes = S.String;
 
 /** The resource usages value. */
 export interface UsagesObject {

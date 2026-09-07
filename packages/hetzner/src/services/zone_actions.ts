@@ -19,7 +19,7 @@ export type ChangeZonePrimaryNameserversRequestPrimaryNameserversItemTsigAlgorit
   | "hmac-sha1"
   | "hmac-sha256";
 export const ChangeZonePrimaryNameserversRequestPrimaryNameserversItemTsigAlgorithm =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Primary nameserver that returns [Zones](#tag/zones) via `AXFR`. Must allow queries from and may send `NOTIFY` queries to [Hetzner's secondary nameservers](https://docs.hetzner.com/dns-console/dns/general/authoritative-name-servers#secondary-dns-servers-old-name-servers-for-robot-customers). */
 export interface ChangeZonePrimaryNameserversRequestPrimaryNameserversItem {
@@ -83,8 +83,7 @@ export type ChangeZonePrimaryNameserversResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeZonePrimaryNameserversResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const ChangeZonePrimaryNameserversResponseActionStatus = S.String;
 
 export interface ChangeZonePrimaryNameserversResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -199,7 +198,7 @@ export type ChangeZoneProtectionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeZoneProtectionResponseActionStatus = /*@__PURE__*/ S.String;
+export const ChangeZoneProtectionResponseActionStatus = S.String;
 
 export type ChangeZoneProtectionResponseActionResourcesItem =
   ChangeZonePrimaryNameserversResponseActionResourcesItem;
@@ -287,7 +286,7 @@ export const ChangeZoneTtlRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the Action. */
 export type ChangeZoneTtlResponseActionStatus = "running" | "success" | "error";
-export const ChangeZoneTtlResponseActionStatus = /*@__PURE__*/ S.String;
+export const ChangeZoneTtlResponseActionStatus = S.String;
 
 export type ChangeZoneTtlResponseActionResourcesItem =
   ChangeZonePrimaryNameserversResponseActionResourcesItem;
@@ -368,7 +367,7 @@ export type GetZonesActionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const GetZonesActionResponseActionStatus = /*@__PURE__*/ S.String;
+export const GetZonesActionResponseActionStatus = S.String;
 
 export type GetZonesActionResponseActionResourcesItem =
   ChangeZonePrimaryNameserversResponseActionResourcesItem;
@@ -458,7 +457,7 @@ export type ImportZoneZonefileResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ImportZoneZonefileResponseActionStatus = /*@__PURE__*/ S.String;
+export const ImportZoneZonefileResponseActionStatus = S.String;
 
 export type ImportZoneZonefileResponseActionResourcesItem =
   ChangeZonePrimaryNameserversResponseActionResourcesItem;
@@ -539,7 +538,7 @@ export type ListZoneActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListZoneActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListZoneActionsRequestSortItem = S.String;
 
 export type ListZoneActionsRequestSortList = Array<
   ListZoneActionsRequestSortItem | (string & {})
@@ -550,7 +549,7 @@ export const ListZoneActionsRequestSortList = /*@__PURE__*/ S.Array(
 
 /** Status of the Action. */
 export type ListZoneActionsRequestStatusItem = "running" | "success" | "error";
-export const ListZoneActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListZoneActionsRequestStatusItem = S.String;
 
 export type ListZoneActionsRequestStatusList = Array<
   ListZoneActionsRequestStatusItem | (string & {})
@@ -590,7 +589,7 @@ export type ListZoneActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListZoneActionsResponseActionsItemStatus = /*@__PURE__*/ S.String;
+export const ListZoneActionsResponseActionsItemStatus = S.String;
 
 export type ListZoneActionsResponseActionsItemResourcesItem =
   ChangeZonePrimaryNameserversResponseActionResourcesItem;
@@ -725,7 +724,7 @@ export type ListZonesActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListZonesActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListZonesActionsRequestSortItem = S.String;
 
 export type ListZonesActionsRequestSortList = Array<
   ListZonesActionsRequestSortItem | (string & {})
@@ -736,7 +735,7 @@ export const ListZonesActionsRequestSortList = /*@__PURE__*/ S.Array(
 
 /** Status of the Action. */
 export type ListZonesActionsRequestStatusItem = "running" | "success" | "error";
-export const ListZonesActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListZonesActionsRequestStatusItem = S.String;
 
 export type ListZonesActionsRequestStatusList = Array<
   ListZonesActionsRequestStatusItem | (string & {})
@@ -774,7 +773,7 @@ export type ListZonesActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListZonesActionsResponseActionsItemStatus = /*@__PURE__*/ S.String;
+export const ListZonesActionsResponseActionsItemStatus = S.String;
 
 export type ListZonesActionsResponseActionsItemResourcesItem =
   ChangeZonePrimaryNameserversResponseActionResourcesItem;

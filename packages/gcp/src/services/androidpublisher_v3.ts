@@ -185,8 +185,7 @@ export type ActivateOneTimeProductOfferRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const ActivateOneTimeProductOfferRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const ActivateOneTimeProductOfferRequestLatencyToleranceEnum = S.String;
 
 /** Request message for ActivateOneTimeProductOffer. */
 export interface ActivateOneTimeProductOfferRequest {
@@ -255,7 +254,7 @@ export type OneTimeProductOfferStateEnum =
   | "ACTIVE"
   | "CANCELLED"
   | "INACTIVE";
-export const OneTimeProductOfferStateEnum = /*@__PURE__*/ S.String;
+export const OneTimeProductOfferStateEnum = S.String;
 
 /** Configuration specific to discounted offers. */
 export interface OneTimeProductDiscountedOffer {
@@ -317,7 +316,7 @@ export type OneTimeProductOfferRegionalPricingAndAvailabilityConfigAvailabilityE
   | "AVAILABLE"
   | "NO_LONGER_AVAILABLE";
 export const OneTimeProductOfferRegionalPricingAndAvailabilityConfigAvailabilityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents an amount of money with its currency type. */
 export interface Money {
@@ -377,8 +376,7 @@ export type OneTimeProductPreOrderOfferPriceChangeBehaviorEnum =
   | "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_UNSPECIFIED"
   | "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_TWO_POINT_LOWEST"
   | "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_NEW_ORDERS_ONLY";
-export const OneTimeProductPreOrderOfferPriceChangeBehaviorEnum =
-  /*@__PURE__*/ S.String;
+export const OneTimeProductPreOrderOfferPriceChangeBehaviorEnum = S.String;
 
 /** Configuration specific to pre-order offers. */
 export interface OneTimeProductPreOrderOffer {
@@ -466,8 +464,7 @@ export type ActivateBasePlanRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const ActivateBasePlanRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const ActivateBasePlanRequestLatencyToleranceEnum = S.String;
 
 /** Request message for ActivateBasePlan. */
 export interface ActivateBasePlanRequest {
@@ -525,7 +522,7 @@ export type PrepaidBasePlanTypeTimeExtensionEnum =
   | "TIME_EXTENSION_UNSPECIFIED"
   | "TIME_EXTENSION_ACTIVE"
   | "TIME_EXTENSION_INACTIVE";
-export const PrepaidBasePlanTypeTimeExtensionEnum = /*@__PURE__*/ S.String;
+export const PrepaidBasePlanTypeTimeExtensionEnum = S.String;
 
 /** Represents a base plan that does not automatically renew at the end of the base plan, and must be manually renewed by the user. */
 export interface PrepaidBasePlanType {
@@ -567,7 +564,7 @@ export type BasePlanStateEnum =
   | "DRAFT"
   | "ACTIVE"
   | "INACTIVE";
-export const BasePlanStateEnum = /*@__PURE__*/ S.String;
+export const BasePlanStateEnum = S.String;
 
 /** Configuration for a base plan specific to a region. */
 export interface RegionalBasePlanConfig {
@@ -597,14 +594,13 @@ export type AutoRenewingBasePlanTypeProrationModeEnum =
   | "SUBSCRIPTION_PRORATION_MODE_UNSPECIFIED"
   | "SUBSCRIPTION_PRORATION_MODE_CHARGE_ON_NEXT_BILLING_DATE"
   | "SUBSCRIPTION_PRORATION_MODE_CHARGE_FULL_PRICE_IMMEDIATELY";
-export const AutoRenewingBasePlanTypeProrationModeEnum = /*@__PURE__*/ S.String;
+export const AutoRenewingBasePlanTypeProrationModeEnum = S.String;
 
 export type AutoRenewingBasePlanTypeResubscribeStateEnum =
   | "RESUBSCRIBE_STATE_UNSPECIFIED"
   | "RESUBSCRIBE_STATE_ACTIVE"
   | "RESUBSCRIBE_STATE_INACTIVE";
-export const AutoRenewingBasePlanTypeResubscribeStateEnum =
-  /*@__PURE__*/ S.String;
+export const AutoRenewingBasePlanTypeResubscribeStateEnum = S.String;
 
 /** Represents a base plan that automatically renews at the end of its subscription period. */
 export interface AutoRenewingBasePlanType {
@@ -643,20 +639,19 @@ export type InstallmentsBasePlanTypeRenewalTypeEnum =
   | "RENEWAL_TYPE_UNSPECIFIED"
   | "RENEWAL_TYPE_RENEWS_WITHOUT_COMMITMENT"
   | "RENEWAL_TYPE_RENEWS_WITH_COMMITMENT";
-export const InstallmentsBasePlanTypeRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const InstallmentsBasePlanTypeRenewalTypeEnum = S.String;
 
 export type InstallmentsBasePlanTypeResubscribeStateEnum =
   | "RESUBSCRIBE_STATE_UNSPECIFIED"
   | "RESUBSCRIBE_STATE_ACTIVE"
   | "RESUBSCRIBE_STATE_INACTIVE";
-export const InstallmentsBasePlanTypeResubscribeStateEnum =
-  /*@__PURE__*/ S.String;
+export const InstallmentsBasePlanTypeResubscribeStateEnum = S.String;
 
 export type InstallmentsBasePlanTypeProrationModeEnum =
   | "SUBSCRIPTION_PRORATION_MODE_UNSPECIFIED"
   | "SUBSCRIPTION_PRORATION_MODE_CHARGE_ON_NEXT_BILLING_DATE"
   | "SUBSCRIPTION_PRORATION_MODE_CHARGE_FULL_PRICE_IMMEDIATELY";
-export const InstallmentsBasePlanTypeProrationModeEnum = /*@__PURE__*/ S.String;
+export const InstallmentsBasePlanTypeProrationModeEnum = S.String;
 
 /** Represents an installments base plan where a user commits to a specified number of payments. */
 export interface InstallmentsBasePlanType {
@@ -766,8 +761,7 @@ export type RegionalProductAgeRatingInfoProductAgeRatingTierEnum =
   | "PRODUCT_AGE_RATING_TIER_THIRTEEN_AND_ABOVE"
   | "PRODUCT_AGE_RATING_TIER_SIXTEEN_AND_ABOVE"
   | "PRODUCT_AGE_RATING_TIER_EIGHTEEN_AND_ABOVE";
-export const RegionalProductAgeRatingInfoProductAgeRatingTierEnum =
-  /*@__PURE__*/ S.String;
+export const RegionalProductAgeRatingInfoProductAgeRatingTierEnum = S.String;
 
 /** Details about the age rating for a specific geographic region. */
 export interface RegionalProductAgeRatingInfo {
@@ -800,7 +794,7 @@ export type SubscriptionTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum =
   | "WITHDRAWAL_RIGHT_DIGITAL_CONTENT"
   | "WITHDRAWAL_RIGHT_SERVICE";
 export const SubscriptionTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RegionalTaxRateInfoStreamingTaxTypeEnum =
   | "STREAMING_TAX_TYPE_UNSPECIFIED"
@@ -810,7 +804,7 @@ export type RegionalTaxRateInfoStreamingTaxTypeEnum =
   | "STREAMING_TAX_TYPE_TELCO_AUDIO_RENTAL"
   | "STREAMING_TAX_TYPE_TELCO_AUDIO_SALES"
   | "STREAMING_TAX_TYPE_TELCO_AUDIO_MULTI_CHANNEL";
-export const RegionalTaxRateInfoStreamingTaxTypeEnum = /*@__PURE__*/ S.String;
+export const RegionalTaxRateInfoStreamingTaxTypeEnum = S.String;
 
 export type RegionalTaxRateInfoTaxTierEnum =
   | "TAX_TIER_UNSPECIFIED"
@@ -819,7 +813,7 @@ export type RegionalTaxRateInfoTaxTierEnum =
   | "TAX_TIER_NEWS_2"
   | "TAX_TIER_MUSIC_OR_AUDIO_1"
   | "TAX_TIER_LIVE_OR_BROADCAST_1";
-export const RegionalTaxRateInfoTaxTierEnum = /*@__PURE__*/ S.String;
+export const RegionalTaxRateInfoTaxTierEnum = S.String;
 
 /** Specified details about taxation in a given geographical region. */
 export interface RegionalTaxRateInfo {
@@ -926,8 +920,7 @@ export type ActivateSubscriptionOfferRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const ActivateSubscriptionOfferRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const ActivateSubscriptionOfferRequestLatencyToleranceEnum = S.String;
 
 /** Request message for ActivateSubscriptionOffer. */
 export interface ActivateSubscriptionOfferRequest {
@@ -1127,7 +1120,7 @@ export type SubscriptionOfferStateEnum =
   | "DRAFT"
   | "ACTIVE"
   | "INACTIVE";
-export const SubscriptionOfferStateEnum = /*@__PURE__*/ S.String;
+export const SubscriptionOfferStateEnum = S.String;
 
 /** Represents the targeting rule scope corresponding to any subscription in the parent app. */
 export type TargetingRuleScopeAnySubscriptionInApp =
@@ -1519,8 +1512,7 @@ export type InappproductsDeleteRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const InappproductsDeleteRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const InappproductsDeleteRequestLatencyToleranceEnum = S.String;
 
 /** Request to delete an in-app product. */
 export interface InappproductsDeleteRequest {
@@ -1595,8 +1587,7 @@ export type DeleteOneTimeProductRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const DeleteOneTimeProductRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const DeleteOneTimeProductRequestLatencyToleranceEnum = S.String;
 
 /** Request message for deleting a one-time product. */
 export interface DeleteOneTimeProductRequest {
@@ -1672,8 +1663,7 @@ export type DeletePurchaseOptionRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const DeletePurchaseOptionRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const DeletePurchaseOptionRequestLatencyToleranceEnum = S.String;
 
 /** Request message for deleting a purchase option. */
 export interface DeletePurchaseOptionRequest {
@@ -1758,8 +1748,7 @@ export type DeleteOneTimeProductOfferRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const DeleteOneTimeProductOfferRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const DeleteOneTimeProductOfferRequestLatencyToleranceEnum = S.String;
 
 /** Request message for deleting an one-time product offer. */
 export interface DeleteOneTimeProductOfferRequest {
@@ -1900,7 +1889,7 @@ export type InAppProductStatusEnum =
   | "statusUnspecified"
   | "active"
   | "inactive";
-export const InAppProductStatusEnum = /*@__PURE__*/ S.String;
+export const InAppProductStatusEnum = S.String;
 
 /** Definition of a price, i.e. currency and units. */
 export interface Price {
@@ -1927,7 +1916,7 @@ export type ManagedProductTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum =
   | "WITHDRAWAL_RIGHT_DIGITAL_CONTENT"
   | "WITHDRAWAL_RIGHT_SERVICE";
 export const ManagedProductTaxAndComplianceSettingsEeaWithdrawalRightTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details about taxation and legal compliance for managed products. */
 export interface ManagedProductTaxAndComplianceSettings {
@@ -1965,7 +1954,7 @@ export type InAppProductPurchaseTypeEnum =
   | "purchaseTypeUnspecified"
   | "managedUser"
   | "subscription";
-export const InAppProductPurchaseTypeEnum = /*@__PURE__*/ S.String;
+export const InAppProductPurchaseTypeEnum = S.String;
 
 /** An in-app product. The resource for InappproductsService. */
 export interface InAppProduct {
@@ -2065,7 +2054,7 @@ export type RegionalTaxConfigTaxTierEnum =
   | "TAX_TIER_NEWS_2"
   | "TAX_TIER_MUSIC_OR_AUDIO_1"
   | "TAX_TIER_LIVE_OR_BROADCAST_1";
-export const RegionalTaxConfigTaxTierEnum = /*@__PURE__*/ S.String;
+export const RegionalTaxConfigTaxTierEnum = S.String;
 
 export type RegionalTaxConfigStreamingTaxTypeEnum =
   | "STREAMING_TAX_TYPE_UNSPECIFIED"
@@ -2075,7 +2064,7 @@ export type RegionalTaxConfigStreamingTaxTypeEnum =
   | "STREAMING_TAX_TYPE_TELCO_AUDIO_RENTAL"
   | "STREAMING_TAX_TYPE_TELCO_AUDIO_SALES"
   | "STREAMING_TAX_TYPE_TELCO_AUDIO_MULTI_CHANNEL";
-export const RegionalTaxConfigStreamingTaxTypeEnum = /*@__PURE__*/ S.String;
+export const RegionalTaxConfigStreamingTaxTypeEnum = S.String;
 
 /** Details about taxation in a given geographical region. */
 export interface RegionalTaxConfig {
@@ -2150,7 +2139,7 @@ export type OneTimeProductPurchaseOptionNewRegionsConfigAvailabilityEnum =
   | "AVAILABLE"
   | "NO_LONGER_AVAILABLE";
 export const OneTimeProductPurchaseOptionNewRegionsConfigAvailabilityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Pricing information for any new regions Play may launch in the future. */
 export interface OneTimeProductPurchaseOptionNewRegionsConfig {
@@ -2183,7 +2172,7 @@ export type OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigAvai
   | "AVAILABLE_IF_RELEASED"
   | "AVAILABLE_FOR_OFFERS_ONLY";
 export const OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfigAvailabilityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Regional pricing and availability configuration for a purchase option. */
 export interface OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig {
@@ -2223,14 +2212,14 @@ export type OneTimeProductPurchaseOptionStateEnum =
   | "ACTIVE"
   | "INACTIVE"
   | "INACTIVE_PUBLISHED";
-export const OneTimeProductPurchaseOptionStateEnum = /*@__PURE__*/ S.String;
+export const OneTimeProductPurchaseOptionStateEnum = S.String;
 
 export type PurchaseOptionTaxAndComplianceSettingsWithdrawalRightTypeEnum =
   | "WITHDRAWAL_RIGHT_TYPE_UNSPECIFIED"
   | "WITHDRAWAL_RIGHT_DIGITAL_CONTENT"
   | "WITHDRAWAL_RIGHT_SERVICE";
 export const PurchaseOptionTaxAndComplianceSettingsWithdrawalRightTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details about taxation, Google Play policy and legal compliance for one-time product purchase options. */
 export interface PurchaseOptionTaxAndComplianceSettings {
@@ -2660,7 +2649,7 @@ export type PartialRefundEventStateEnum =
   | "STATE_UNSPECIFIED"
   | "PENDING"
   | "PROCESSED_SUCCESSFULLY";
-export const PartialRefundEventStateEnum = /*@__PURE__*/ S.String;
+export const PartialRefundEventStateEnum = S.String;
 
 /** Details of the partial refund events for this order. */
 export interface PartialRefundEvent {
@@ -2706,7 +2695,7 @@ export type RefundEventRefundReasonEnum =
   | "REFUND_REASON_UNSPECIFIED"
   | "OTHER"
   | "CHARGEBACK";
-export const RefundEventRefundReasonEnum = /*@__PURE__*/ S.String;
+export const RefundEventRefundReasonEnum = S.String;
 
 /** Details of when the order was fully refunded. */
 export interface RefundEvent {
@@ -2775,7 +2764,7 @@ export type OrderStateEnum =
   | "PENDING_REFUND"
   | "PARTIALLY_REFUNDED"
   | "REFUNDED";
-export const OrderStateEnum = /*@__PURE__*/ S.String;
+export const OrderStateEnum = S.String;
 
 /** Details of a rental purchase. */
 export type RentalDetails = OneTimeProductOfferNoPriceOverrideOptions;
@@ -2815,15 +2804,14 @@ export type SubscriptionDetailsOfferPhaseEnum =
   | "BASE"
   | "INTRODUCTORY"
   | "FREE_TRIAL";
-export const SubscriptionDetailsOfferPhaseEnum = /*@__PURE__*/ S.String;
+export const SubscriptionDetailsOfferPhaseEnum = S.String;
 
 export type ProrationPeriodDetailsOriginalOfferPhaseEnum =
   | "OFFER_PHASE_UNSPECIFIED"
   | "BASE"
   | "INTRODUCTORY"
   | "FREE_TRIAL";
-export const ProrationPeriodDetailsOriginalOfferPhaseEnum =
-  /*@__PURE__*/ S.String;
+export const ProrationPeriodDetailsOriginalOfferPhaseEnum = S.String;
 
 /** Details of a proration period. A proration period can be a period calculated during a plan change to cover existing entitlements (For more information, see [Allow users to upgrade, downgrade, or change their subscription](https://developer.android.com/google/play/billing/subscriptions#allow-users-change), or a prorated period to align add-on renewal dates with the base (For more information, see [Rules applicable for items in the purchase](https://developer.android.com/google/play/billing/subscription-with-addons#rules-base-addons)). */
 export interface ProrationPeriodDetails {
@@ -2971,7 +2959,7 @@ export type OrderSalesChannelEnum =
   | "NATIVE_PC"
   | "PLAY_STORE"
   | "OUTSIDE_PLAY_STORE";
-export const OrderSalesChannelEnum = /*@__PURE__*/ S.String;
+export const OrderSalesChannelEnum = S.String;
 
 /** The Order resource encapsulates comprehensive information about a transaction made on Google Play. It includes a variety of attributes that provide details about the order itself, the products purchased, and the history of events related to the order. The Orders APIs provide real-time access to your order data within the Google Play ecosystem. You can retrieve detailed information and metadata for both one-time and recurring orders, including transaction details like charges, taxes, and refunds, as well as metadata such as pricing phases for subscriptions. The Orders APIs let you automate tasks related to order management, reducing the need for manual checks via the Play Developer Console. The following are some of the use cases for this API: + Real-time order data retrieval - Get order details and metadata immediately after a purchase using an order ID. + Order update synchronization - Periodically sync order updates to maintain an up-to-date record of order information. Note: + The Orders API calls count towards your Play Developer API quota, which defaults to 200K daily, and may be insufficient to sync extensive order histories. + A maximum of 1000 orders can be retrieved per call. Using larger page sizes is recommended to minimize quota usage. Check your quota in the Cloud Console and request more if required. */
 export interface Order {
@@ -3045,8 +3033,7 @@ export type RegionalPriceMigrationConfigPriceIncreaseTypeEnum =
   | "PRICE_INCREASE_TYPE_UNSPECIFIED"
   | "PRICE_INCREASE_TYPE_OPT_IN"
   | "PRICE_INCREASE_TYPE_OPT_OUT";
-export const RegionalPriceMigrationConfigPriceIncreaseTypeEnum =
-  /*@__PURE__*/ S.String;
+export const RegionalPriceMigrationConfigPriceIncreaseTypeEnum = S.String;
 
 /** Configuration for migration of a legacy price cohort. */
 export interface RegionalPriceMigrationConfig {
@@ -3081,8 +3068,7 @@ export type MigrateBasePlanPricesRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const MigrateBasePlanPricesRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const MigrateBasePlanPricesRequestLatencyToleranceEnum = S.String;
 
 /** Request message for MigrateBasePlanPrices. */
 export interface MigrateBasePlanPricesRequest {
@@ -3191,8 +3177,7 @@ export type InappproductsUpdateRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const InappproductsUpdateRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const InappproductsUpdateRequestLatencyToleranceEnum = S.String;
 
 /** Request to update an in-app product. */
 export interface InappproductsUpdateRequest {
@@ -3282,8 +3267,7 @@ export type UpdateOneTimeProductRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const UpdateOneTimeProductRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const UpdateOneTimeProductRequestLatencyToleranceEnum = S.String;
 
 /** Request message for UpdateOneTimeProduct. */
 export interface UpdateOneTimeProductRequest {
@@ -3372,8 +3356,7 @@ export type UpdateOneTimeProductOfferRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const UpdateOneTimeProductOfferRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const UpdateOneTimeProductOfferRequestLatencyToleranceEnum = S.String;
 
 /** Request message for UpdateOneTimeProductOffer. */
 export interface UpdateOneTimeProductOfferRequest {
@@ -3473,8 +3456,7 @@ export type UpdateSubscriptionRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const UpdateSubscriptionRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const UpdateSubscriptionRequestLatencyToleranceEnum = S.String;
 
 /** Request message for UpdateSubscription. */
 export interface UpdateSubscriptionRequest {
@@ -3560,8 +3542,7 @@ export type UpdateSubscriptionOfferRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const UpdateSubscriptionOfferRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const UpdateSubscriptionOfferRequestLatencyToleranceEnum = S.String;
 
 /** Request message for UpdateSubscriptionOffer. */
 export interface UpdateSubscriptionOfferRequest {
@@ -3658,8 +3639,7 @@ export type DeactivatePurchaseOptionRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const DeactivatePurchaseOptionRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const DeactivatePurchaseOptionRequestLatencyToleranceEnum = S.String;
 
 /** Request message for UpdatePurchaseOptionState. */
 export interface DeactivatePurchaseOptionRequest {
@@ -3691,8 +3671,7 @@ export type ActivatePurchaseOptionRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const ActivatePurchaseOptionRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const ActivatePurchaseOptionRequestLatencyToleranceEnum = S.String;
 
 /** Request message for UpdatePurchaseOptionState. */
 export interface ActivatePurchaseOptionRequest {
@@ -3805,7 +3784,7 @@ export type DeactivateOneTimeProductOfferRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
 export const DeactivateOneTimeProductOfferRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for DeactivateOneTimeProductOffer. */
 export interface DeactivateOneTimeProductOfferRequest {
@@ -3841,8 +3820,7 @@ export type CancelOneTimeProductOfferRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const CancelOneTimeProductOfferRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const CancelOneTimeProductOfferRequestLatencyToleranceEnum = S.String;
 
 /** Request message for CancelOneTimeProductOffer. */
 export interface CancelOneTimeProductOfferRequest {
@@ -3968,8 +3946,7 @@ export type DeactivateBasePlanRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const DeactivateBasePlanRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const DeactivateBasePlanRequestLatencyToleranceEnum = S.String;
 
 /** Request message for DeactivateBasePlan. */
 export interface DeactivateBasePlanRequest {
@@ -4071,8 +4048,7 @@ export type DeactivateSubscriptionOfferRequestLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const DeactivateSubscriptionOfferRequestLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const DeactivateSubscriptionOfferRequestLatencyToleranceEnum = S.String;
 
 /** Request message for DeactivateSubscriptionOffer. */
 export interface DeactivateSubscriptionOfferRequest {
@@ -4294,7 +4270,7 @@ export type CancellationContextCancellationTypeEnum =
   | "CANCELLATION_TYPE_UNSPECIFIED"
   | "USER_REQUESTED_STOP_RENEWALS"
   | "DEVELOPER_REQUESTED_STOP_PAYMENTS";
-export const CancellationContextCancellationTypeEnum = /*@__PURE__*/ S.String;
+export const CancellationContextCancellationTypeEnum = S.String;
 
 /** Cancellation context of the purchases.subscriptionsv2.cancel API. */
 export interface CancellationContext {
@@ -4359,7 +4335,7 @@ export type CommitEditsChangesInReviewBehaviorEnum =
   | "CHANGES_IN_REVIEW_BEHAVIOR_TYPE_UNSPECIFIED"
   | "CANCEL_IN_REVIEW_AND_SUBMIT"
   | "ERROR_IF_IN_REVIEW";
-export const CommitEditsChangesInReviewBehaviorEnum = /*@__PURE__*/ S.String;
+export const CommitEditsChangesInReviewBehaviorEnum = S.String;
 
 export interface CommitEditsRequest {
   /** Package name of the app. */
@@ -4898,7 +4874,7 @@ export type AppRecoveryActionStatusEnum =
   | "RECOVERY_STATUS_DRAFT"
   | "RECOVERY_STATUS_GENERATION_IN_PROGRESS"
   | "RECOVERY_STATUS_GENERATION_FAILED";
-export const AppRecoveryActionStatusEnum = /*@__PURE__*/ S.String;
+export const AppRecoveryActionStatusEnum = S.String;
 
 /** Information about an app recovery action. */
 export interface AppRecoveryAction {
@@ -4982,10 +4958,10 @@ export type TrackConfigFormFactorEnum =
   | "DEFAULT"
   | "WEAR"
   | "AUTOMOTIVE";
-export const TrackConfigFormFactorEnum = /*@__PURE__*/ S.String;
+export const TrackConfigFormFactorEnum = S.String;
 
 export type TrackConfigTypeEnum = "TRACK_TYPE_UNSPECIFIED" | "CLOSED_TESTING";
-export const TrackConfigTypeEnum = /*@__PURE__*/ S.String;
+export const TrackConfigTypeEnum = S.String;
 
 /** Configurations of the new track. */
 export interface TrackConfig {
@@ -5050,7 +5026,7 @@ export type TrackReleaseStatusEnum =
   | "inProgress"
   | "halted"
   | "completed";
-export const TrackReleaseStatusEnum = /*@__PURE__*/ S.String;
+export const TrackReleaseStatusEnum = S.String;
 
 /** Localized text in given language. */
 export interface LocalizedText {
@@ -5127,7 +5103,7 @@ export type ExternalSubscriptionSubscriptionTypeEnum =
   | "SUBSCRIPTION_TYPE_UNSPECIFIED"
   | "RECURRING"
   | "PREPAID";
-export const ExternalSubscriptionSubscriptionTypeEnum = /*@__PURE__*/ S.String;
+export const ExternalSubscriptionSubscriptionTypeEnum = S.String;
 
 /** Details of an external subscription. */
 export interface ExternalSubscription {
@@ -5147,7 +5123,7 @@ export type RecurringExternalTransactionMigratedTransactionProgramEnum =
   | "USER_CHOICE_BILLING"
   | "ALTERNATIVE_BILLING_ONLY";
 export const RecurringExternalTransactionMigratedTransactionProgramEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a transaction that is part of a recurring series of payments. This can be a subscription or a one-time product with multiple payments (such as preorder). */
 export interface RecurringExternalTransaction {
@@ -5200,20 +5176,19 @@ export type ExternalTransactionTransactionStateEnum =
   | "TRANSACTION_STATE_UNSPECIFIED"
   | "TRANSACTION_REPORTED"
   | "TRANSACTION_CANCELED";
-export const ExternalTransactionTransactionStateEnum = /*@__PURE__*/ S.String;
+export const ExternalTransactionTransactionStateEnum = S.String;
 
 export type ExternalOfferDetailsLinkTypeEnum =
   | "EXTERNAL_OFFER_LINK_TYPE_UNSPECIFIED"
   | "LINK_TO_DIGITAL_CONTENT_OFFER"
   | "LINK_TO_APP_DOWNLOAD";
-export const ExternalOfferDetailsLinkTypeEnum = /*@__PURE__*/ S.String;
+export const ExternalOfferDetailsLinkTypeEnum = S.String;
 
 export type ExternalOfferDetailsInstalledAppCategoryEnum =
   | "EXTERNAL_OFFER_APP_CATEGORY_UNSPECIFIED"
   | "APP"
   | "GAME";
-export const ExternalOfferDetailsInstalledAppCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const ExternalOfferDetailsInstalledAppCategoryEnum = S.String;
 
 /** Reporting details unique to the external offers program. */
 export interface ExternalOfferDetails {
@@ -5264,14 +5239,13 @@ export type ExternalContentLinkDetailsExternalAppCategoryEnum =
   | "EXTERNAL_CONTENT_APP_CATEGORY_UNSPECIFIED"
   | "APP"
   | "GAME";
-export const ExternalContentLinkDetailsExternalAppCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const ExternalContentLinkDetailsExternalAppCategoryEnum = S.String;
 
 export type ExternalContentLinkDetailsLinkTypeEnum =
   | "EXTERNAL_CONTENT_LINK_TYPE_UNSPECIFIED"
   | "LINK_TO_DIGITAL_CONTENT_OFFER"
   | "LINK_TO_APP_DOWNLOAD";
-export const ExternalContentLinkDetailsLinkTypeEnum = /*@__PURE__*/ S.String;
+export const ExternalContentLinkDetailsLinkTypeEnum = S.String;
 
 /** Reporting details unique to the external content link program. */
 export interface ExternalContentLinkDetails {
@@ -5395,7 +5369,7 @@ export type GrantAppLevelPermissionsItemEnum =
   | "CAN_VIEW_NON_FINANCIAL_DATA"
   | "CAN_VIEW_APP_QUALITY"
   | "CAN_MANAGE_DEEPLINKS";
-export const GrantAppLevelPermissionsItemEnum = /*@__PURE__*/ S.String;
+export const GrantAppLevelPermissionsItemEnum = S.String;
 
 export type GrantAppLevelPermissionsItemEnumList = Array<
   GrantAppLevelPermissionsItemEnum | (string & {})
@@ -5603,7 +5577,7 @@ export type UserDeveloperAccountPermissionsItemEnum =
   | "CAN_MANAGE_DEEPLINKS_GLOBAL"
   | "CAN_VIEW_CONNECTED_APPS_GLOBAL"
   | "CAN_EDIT_CONNECTED_APPS_GLOBAL";
-export const UserDeveloperAccountPermissionsItemEnum = /*@__PURE__*/ S.String;
+export const UserDeveloperAccountPermissionsItemEnum = S.String;
 
 export type UserDeveloperAccountPermissionsItemEnumList = Array<
   UserDeveloperAccountPermissionsItemEnum | (string & {})
@@ -5619,7 +5593,7 @@ export type UserAccessStateEnum =
   | "INVITATION_EXPIRED"
   | "ACCESS_GRANTED"
   | "ACCESS_EXPIRED";
-export const UserAccessStateEnum = /*@__PURE__*/ S.String;
+export const UserAccessStateEnum = S.String;
 
 export type GrantList = Array<Grant>;
 export const GrantList = /*@__PURE__*/ S.Array(
@@ -5981,7 +5955,7 @@ export type DeleteallEditsImagesImageTypeEnum =
   | "icon"
   | "featureGraphic"
   | "tvBanner";
-export const DeleteallEditsImagesImageTypeEnum = /*@__PURE__*/ S.String;
+export const DeleteallEditsImagesImageTypeEnum = S.String;
 
 export interface DeleteallEditsImagesRequest {
   /** Identifier of the edit. */
@@ -6014,7 +5988,7 @@ export type ImageAiGeneratedStateEnum =
   | "aiGeneratedStateUnspecified"
   | "aiGeneratedStateNotAiGenerated"
   | "aiGeneratedStateAiGeneratedDeveloperAttested";
-export const ImageAiGeneratedStateEnum = /*@__PURE__*/ S.String;
+export const ImageAiGeneratedStateEnum = S.String;
 
 /** An uploaded image. The resource for ImagesService. */
 export interface Image {
@@ -6123,7 +6097,7 @@ export type DeleteEditsImagesImageTypeEnum =
   | "icon"
   | "featureGraphic"
   | "tvBanner";
-export const DeleteEditsImagesImageTypeEnum = /*@__PURE__*/ S.String;
+export const DeleteEditsImagesImageTypeEnum = S.String;
 
 export interface DeleteEditsImagesRequest {
   /** Language localization code (a BCP-47 language tag; for example, "de-AT" for Austrian German). */
@@ -6222,7 +6196,7 @@ export type DeleteInappproductsLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const DeleteInappproductsLatencyToleranceEnum = /*@__PURE__*/ S.String;
+export const DeleteInappproductsLatencyToleranceEnum = S.String;
 
 export interface DeleteInappproductsRequest {
   /** Unique identifier for the in-app product. */
@@ -6261,8 +6235,7 @@ export type DeleteMonetizationOnetimeproductsLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const DeleteMonetizationOnetimeproductsLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const DeleteMonetizationOnetimeproductsLatencyToleranceEnum = S.String;
 
 export interface DeleteMonetizationOnetimeproductsRequest {
   /** Required. The parent app (package name) of the one-time product to delete. */
@@ -6834,7 +6807,7 @@ export type CompatibleScreenScreenSizeEnum =
   | "SCREEN_SIZE_NORMAL"
   | "SCREEN_SIZE_LARGE"
   | "SCREEN_SIZE_EXTRA_LARGE";
-export const CompatibleScreenScreenSizeEnum = /*@__PURE__*/ S.String;
+export const CompatibleScreenScreenSizeEnum = S.String;
 
 export type CompatibleScreenDensityEnum =
   | "DENSITY_UNSPECIFIED"
@@ -6851,7 +6824,7 @@ export type CompatibleScreenDensityEnum =
   | "DENSITY_XXHDPI"
   | "DENSITY_560"
   | "DENSITY_XXXHDPI";
-export const CompatibleScreenDensityEnum = /*@__PURE__*/ S.String;
+export const CompatibleScreenDensityEnum = S.String;
 
 /** Compatible screens as listed in the `compatible-screens` Manifest tag. */
 export interface CompatibleScreen {
@@ -6880,8 +6853,7 @@ export type DeviceCompatibilityRequirementsSupportedScreensItemEnum =
   | "SCREEN_SIZE_NORMAL"
   | "SCREEN_SIZE_LARGE"
   | "SCREEN_SIZE_EXTRA_LARGE";
-export const DeviceCompatibilityRequirementsSupportedScreensItemEnum =
-  /*@__PURE__*/ S.String;
+export const DeviceCompatibilityRequirementsSupportedScreensItemEnum = S.String;
 
 export type DeviceCompatibilityRequirementsSupportedScreensItemEnumList =
   Array<DeviceCompatibilityRequirementsSupportedScreensItemEnum>;
@@ -6896,8 +6868,7 @@ export type UsesConfigurationRequiredTouchscreenTypeEnum =
   | "TOUCHSCREEN_TYPE_NO_TOUCHSCREEN"
   | "TOUCHSCREEN_TYPE_STYLUS"
   | "TOUCHSCREEN_TYPE_FINGER";
-export const UsesConfigurationRequiredTouchscreenTypeEnum =
-  /*@__PURE__*/ S.String;
+export const UsesConfigurationRequiredTouchscreenTypeEnum = S.String;
 
 export type UsesConfigurationRequiredNavigationTypeEnum =
   | "NAVIGATION_TYPE_UNSPECIFIED"
@@ -6906,8 +6877,7 @@ export type UsesConfigurationRequiredNavigationTypeEnum =
   | "NAVIGATION_TYPE_DPAD"
   | "NAVIGATION_TYPE_TRACKBALL"
   | "NAVIGATION_TYPE_WHEEL";
-export const UsesConfigurationRequiredNavigationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const UsesConfigurationRequiredNavigationTypeEnum = S.String;
 
 export type UsesConfigurationRequiredKeyboardTypeEnum =
   | "KEYBOARD_TYPE_UNSPECIFIED"
@@ -6915,7 +6885,7 @@ export type UsesConfigurationRequiredKeyboardTypeEnum =
   | "KEYBOARD_TYPE_NO_KEYS"
   | "KEYBOARD_TYPE_QWERTY"
   | "KEYBOARD_TYPE_TWELVE_KEY";
-export const UsesConfigurationRequiredKeyboardTypeEnum = /*@__PURE__*/ S.String;
+export const UsesConfigurationRequiredKeyboardTypeEnum = S.String;
 
 /** Represents all configurations marked as required by use of the uses-configuration manifest tag. */
 export interface UsesConfiguration {
@@ -6955,8 +6925,7 @@ export type DeviceCompatibilityRequirementsUse32BitAbiEnum =
   | "USE_32_BIT_ABI_UNSPECIFIED"
   | "USE_32_BIT_ABI_TRUE"
   | "USE_32_BIT_ABI_OTHER";
-export const DeviceCompatibilityRequirementsUse32BitAbiEnum =
-  /*@__PURE__*/ S.String;
+export const DeviceCompatibilityRequirementsUse32BitAbiEnum = S.String;
 
 /** Defines a set of device compatibility requirements for the app. A device must satisfy all of the requirements in a set to be considered compatible with the app. */
 export interface DeviceCompatibilityRequirements {
@@ -7129,8 +7098,7 @@ export const SocSelectorList = /*@__PURE__*/ S.Array(
 export type CatalogDeviceSelectorDeviceTypeSelectorEnum =
   | "DEVICE_TYPE_SELECTOR_UNSPECIFIED"
   | "ANDROID_GO";
-export const CatalogDeviceSelectorDeviceTypeSelectorEnum =
-  /*@__PURE__*/ S.String;
+export const CatalogDeviceSelectorDeviceTypeSelectorEnum = S.String;
 
 /** Defines a device selector for a device. A device is considered matched if it matches any of given the selectors. */
 export interface CatalogDeviceSelector {
@@ -7160,7 +7128,7 @@ export type CatalogAppViewAppCategoryEnum =
   | "APP_CATEGORY_UNSPECIFIED"
   | "GAME"
   | "APP";
-export const CatalogAppViewAppCategoryEnum = /*@__PURE__*/ S.String;
+export const CatalogAppViewAppCategoryEnum = S.String;
 
 /** LINT.IfChange A view of a Google Play app within the Catalog Export for app stores. */
 export interface CatalogAppView {
@@ -7376,8 +7344,7 @@ export type GetEditsExpansionfilesExpansionFileTypeEnum =
   | "expansionFileTypeUnspecified"
   | "main"
   | "patch";
-export const GetEditsExpansionfilesExpansionFileTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GetEditsExpansionfilesExpansionFileTypeEnum = S.String;
 
 export interface GetEditsExpansionfilesRequest {
   /** Identifier of the edit. */
@@ -7685,7 +7652,7 @@ export const Getproductpurchasev2PurchasesProductsv2Request =
   }) as any as S.Schema<Getproductpurchasev2PurchasesProductsv2Request>;
 
 export type TestPurchaseContextFopTypeEnum = "FOP_TYPE_UNSPECIFIED" | "TEST";
-export const TestPurchaseContextFopTypeEnum = /*@__PURE__*/ S.String;
+export const TestPurchaseContextFopTypeEnum = S.String;
 
 /** Context about a test purchase. */
 export interface TestPurchaseContext {
@@ -7704,14 +7671,14 @@ export type ProductPurchaseV2AcknowledgementStateEnum =
   | "ACKNOWLEDGEMENT_STATE_UNSPECIFIED"
   | "ACKNOWLEDGEMENT_STATE_PENDING"
   | "ACKNOWLEDGEMENT_STATE_ACKNOWLEDGED";
-export const ProductPurchaseV2AcknowledgementStateEnum = /*@__PURE__*/ S.String;
+export const ProductPurchaseV2AcknowledgementStateEnum = S.String;
 
 export type PurchaseStateContextPurchaseStateEnum =
   | "PURCHASE_STATE_UNSPECIFIED"
   | "PURCHASED"
   | "CANCELLED"
   | "PENDING";
-export const PurchaseStateContextPurchaseStateEnum = /*@__PURE__*/ S.String;
+export const PurchaseStateContextPurchaseStateEnum = S.String;
 
 /** Context about the purchase state. */
 export interface PurchaseStateContext {
@@ -7734,7 +7701,7 @@ export type ProductOfferDetailsConsumptionStateEnum =
   | "CONSUMPTION_STATE_UNSPECIFIED"
   | "CONSUMPTION_STATE_YET_TO_BE_CONSUMED"
   | "CONSUMPTION_STATE_CONSUMED";
-export const ProductOfferDetailsConsumptionStateEnum = /*@__PURE__*/ S.String;
+export const ProductOfferDetailsConsumptionStateEnum = S.String;
 
 /** Offer details information related to a preorder line item. */
 export interface PreorderOfferDetails {
@@ -8055,7 +8022,7 @@ export type CancelSurveyResultReasonEnum =
   | "CANCEL_SURVEY_REASON_COST_RELATED"
   | "CANCEL_SURVEY_REASON_FOUND_BETTER_APP"
   | "CANCEL_SURVEY_REASON_OTHERS";
-export const CancelSurveyResultReasonEnum = /*@__PURE__*/ S.String;
+export const CancelSurveyResultReasonEnum = S.String;
 
 /** Result of the cancel survey when the subscription was canceled by the user. */
 export interface CancelSurveyResult {
@@ -8144,8 +8111,7 @@ export type SubscriptionPurchaseV2AcknowledgementStateEnum =
   | "ACKNOWLEDGEMENT_STATE_UNSPECIFIED"
   | "ACKNOWLEDGEMENT_STATE_PENDING"
   | "ACKNOWLEDGEMENT_STATE_ACKNOWLEDGED";
-export const SubscriptionPurchaseV2AcknowledgementStateEnum =
-  /*@__PURE__*/ S.String;
+export const SubscriptionPurchaseV2AcknowledgementStateEnum = S.String;
 
 export type SubscriptionPurchaseV2SubscriptionStateEnum =
   | "SUBSCRIPTION_STATE_UNSPECIFIED"
@@ -8157,8 +8123,7 @@ export type SubscriptionPurchaseV2SubscriptionStateEnum =
   | "SUBSCRIPTION_STATE_CANCELED"
   | "SUBSCRIPTION_STATE_EXPIRED"
   | "SUBSCRIPTION_STATE_PENDING_PURCHASE_CANCELED";
-export const SubscriptionPurchaseV2SubscriptionStateEnum =
-  /*@__PURE__*/ S.String;
+export const SubscriptionPurchaseV2SubscriptionStateEnum = S.String;
 
 /** Information related to deferred item replacement. */
 export interface DeferredItemReplacement {
@@ -8182,8 +8147,7 @@ export type SubscriptionItemPriceChangeDetailsPriceChangeModeEnum =
   | "PRICE_DECREASE"
   | "PRICE_INCREASE"
   | "OPT_OUT_PRICE_INCREASE";
-export const SubscriptionItemPriceChangeDetailsPriceChangeModeEnum =
-  /*@__PURE__*/ S.String;
+export const SubscriptionItemPriceChangeDetailsPriceChangeModeEnum = S.String;
 
 export type SubscriptionItemPriceChangeDetailsPriceChangeStateEnum =
   | "PRICE_CHANGE_STATE_UNSPECIFIED"
@@ -8191,8 +8155,7 @@ export type SubscriptionItemPriceChangeDetailsPriceChangeStateEnum =
   | "CONFIRMED"
   | "APPLIED"
   | "CANCELED";
-export const SubscriptionItemPriceChangeDetailsPriceChangeStateEnum =
-  /*@__PURE__*/ S.String;
+export const SubscriptionItemPriceChangeDetailsPriceChangeStateEnum = S.String;
 
 /** Price change related information of a subscription item. */
 export interface SubscriptionItemPriceChangeDetails {
@@ -8225,7 +8188,7 @@ export type PriceStepUpConsentDetailsStateEnum =
   | "PENDING"
   | "CONFIRMED"
   | "COMPLETED";
-export const PriceStepUpConsentDetailsStateEnum = /*@__PURE__*/ S.String;
+export const PriceStepUpConsentDetailsStateEnum = S.String;
 
 /** Information related to a price step-up that requires user consent. */
 export interface PriceStepUpConsentDetails {
@@ -8344,8 +8307,7 @@ export type ProrationPeriodOfferPhaseOriginalOfferPhaseTypeEnum =
   | "BASE"
   | "INTRODUCTORY"
   | "FREE_TRIAL";
-export const ProrationPeriodOfferPhaseOriginalOfferPhaseTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ProrationPeriodOfferPhaseOriginalOfferPhaseTypeEnum = S.String;
 
 /** Details about proration period offer phase. */
 export interface ProrationPeriodOfferPhase {
@@ -8390,7 +8352,7 @@ export type ItemReplacementReplacementModeEnum =
   | "CHARGE_FULL_PRICE"
   | "DEFERRED"
   | "KEEP_EXISTING";
-export const ItemReplacementReplacementModeEnum = /*@__PURE__*/ S.String;
+export const ItemReplacementReplacementModeEnum = S.String;
 
 /** Details about a subscription line item that is being replaced. */
 export interface ItemReplacement {
@@ -8889,7 +8851,7 @@ export type ReleaseSummaryReleaseLifecycleStateEnum =
   | "RELEASE_LIFECYCLE_STATE_APPROVED_NOT_PUBLISHED"
   | "RELEASE_LIFECYCLE_STATE_NOT_APPROVED"
   | "RELEASE_LIFECYCLE_STATE_PUBLISHED";
-export const ReleaseSummaryReleaseLifecycleStateEnum = /*@__PURE__*/ S.String;
+export const ReleaseSummaryReleaseLifecycleStateEnum = S.String;
 
 /** Summary of a release. */
 export interface ReleaseSummary {
@@ -9003,7 +8965,7 @@ export type RecentUpdateEventUpdateTypeEnum =
   | "UPDATE_TYPE_UNSPECIFIED"
   | "MODIFICATION"
   | "DELETION";
-export const RecentUpdateEventUpdateTypeEnum = /*@__PURE__*/ S.String;
+export const RecentUpdateEventUpdateTypeEnum = S.String;
 
 /** A recent update event. */
 export interface RecentUpdateEvent {
@@ -9182,7 +9144,7 @@ export type ListEditsImagesImageTypeEnum =
   | "icon"
   | "featureGraphic"
   | "tvBanner";
-export const ListEditsImagesImageTypeEnum = /*@__PURE__*/ S.String;
+export const ListEditsImagesImageTypeEnum = S.String;
 
 export interface ListEditsImagesRequest {
   /** Package name of the app. */
@@ -9494,12 +9456,12 @@ export type ModuleMetadataDeliveryTypeEnum =
   | "INSTALL_TIME"
   | "ON_DEMAND"
   | "FAST_FOLLOW";
-export const ModuleMetadataDeliveryTypeEnum = /*@__PURE__*/ S.String;
+export const ModuleMetadataDeliveryTypeEnum = S.String;
 
 export type ModuleMetadataModuleTypeEnum =
   | "UNKNOWN_MODULE_TYPE"
   | "FEATURE_MODULE";
-export const ModuleMetadataModuleTypeEnum = /*@__PURE__*/ S.String;
+export const ModuleMetadataModuleTypeEnum = S.String;
 
 /** Metadata of a module. */
 export interface ModuleMetadata {
@@ -9563,7 +9525,7 @@ export type ScreenDensityDensityAliasEnum =
   | "XHDPI"
   | "XXHDPI"
   | "XXXHDPI";
-export const ScreenDensityDensityAliasEnum = /*@__PURE__*/ S.String;
+export const ScreenDensityDensityAliasEnum = S.String;
 
 /** Represents a screen density. */
 export interface ScreenDensity {
@@ -9628,7 +9590,7 @@ export type TextureCompressionFormatAliasEnum =
   | "PVRTC"
   | "ASTC"
   | "ETC2";
-export const TextureCompressionFormatAliasEnum = /*@__PURE__*/ S.String;
+export const TextureCompressionFormatAliasEnum = S.String;
 
 /** Represents texture compression format. */
 export interface TextureCompressionFormat {
@@ -9672,7 +9634,7 @@ export type AbiAliasEnum =
   | "X86"
   | "X86_64"
   | "RISCV64";
-export const AbiAliasEnum = /*@__PURE__*/ S.String;
+export const AbiAliasEnum = S.String;
 
 /** Represents an Abi. */
 export interface Abi {
@@ -9868,7 +9830,7 @@ export type AssetModuleMetadataDeliveryTypeEnum =
   | "INSTALL_TIME"
   | "ON_DEMAND"
   | "FAST_FOLLOW";
-export const AssetModuleMetadataDeliveryTypeEnum = /*@__PURE__*/ S.String;
+export const AssetModuleMetadataDeliveryTypeEnum = S.String;
 
 /** Metadata of an asset module. */
 export interface AssetModuleMetadata {
@@ -9929,7 +9891,7 @@ export type GeneratedRecoveryApkRecoveryStatusEnum =
   | "RECOVERY_STATUS_DRAFT"
   | "RECOVERY_STATUS_GENERATION_IN_PROGRESS"
   | "RECOVERY_STATUS_GENERATION_FAILED";
-export const GeneratedRecoveryApkRecoveryStatusEnum = /*@__PURE__*/ S.String;
+export const GeneratedRecoveryApkRecoveryStatusEnum = S.String;
 
 /** Download metadata for an app recovery module. */
 export interface GeneratedRecoveryApk {
@@ -10588,8 +10550,7 @@ export type PatchEditsExpansionfilesExpansionFileTypeEnum =
   | "expansionFileTypeUnspecified"
   | "main"
   | "patch";
-export const PatchEditsExpansionfilesExpansionFileTypeEnum =
-  /*@__PURE__*/ S.String;
+export const PatchEditsExpansionfilesExpansionFileTypeEnum = S.String;
 
 export interface PatchEditsExpansionfilesRequest {
   /** Package name of the app. */
@@ -10734,7 +10695,7 @@ export type PatchInappproductsLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const PatchInappproductsLatencyToleranceEnum = /*@__PURE__*/ S.String;
+export const PatchInappproductsLatencyToleranceEnum = S.String;
 
 export interface PatchInappproductsRequest {
   /** Package name of the app. */
@@ -10772,8 +10733,7 @@ export type PatchMonetizationOnetimeproductsLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const PatchMonetizationOnetimeproductsLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const PatchMonetizationOnetimeproductsLatencyToleranceEnum = S.String;
 
 export interface PatchMonetizationOnetimeproductsRequest {
   /** Optional. The latency tolerance for the propagation of this product upsert. Defaults to latency-sensitive. */
@@ -10820,8 +10780,7 @@ export type PatchMonetizationSubscriptionsLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const PatchMonetizationSubscriptionsLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+export const PatchMonetizationSubscriptionsLatencyToleranceEnum = S.String;
 
 export interface PatchMonetizationSubscriptionsRequest {
   /** Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive. */
@@ -10869,7 +10828,7 @@ export type PatchMonetizationSubscriptionsBasePlansOffersLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
 export const PatchMonetizationSubscriptionsBasePlansOffersLatencyToleranceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PatchMonetizationSubscriptionsBasePlansOffersRequest {
   /** Optional. If set to true, and the subscription offer with the given package_name, product_id, base_plan_id and offer_id doesn't exist, an offer will be created. If a new offer is created, update_mask is ignored. */
@@ -11105,8 +11064,7 @@ export type OrdersReviewRefundRequestRefundPreferenceEnum =
   | "DECLINE"
   | "APPROVE"
   | "NEUTRAL";
-export const OrdersReviewRefundRequestRefundPreferenceEnum =
-  /*@__PURE__*/ S.String;
+export const OrdersReviewRefundRequestRefundPreferenceEnum = S.String;
 
 /** Coarse Geographic location details for where the consumption happened. */
 export interface CoarseLocation {
@@ -11332,8 +11290,7 @@ export type RotateAppSigningKeyRequestKeyRotationReasonEnum =
   | "USE_SAME_KEY_FOR_MULTIPLE_APPS"
   | "ROUTINE_KEY_UPGRADE"
   | "OTHER";
-export const RotateAppSigningKeyRequestKeyRotationReasonEnum =
-  /*@__PURE__*/ S.String;
+export const RotateAppSigningKeyRequestKeyRotationReasonEnum = S.String;
 
 /** Request to rotate an app's signing key. */
 export interface RotateAppSigningKeyRequest {
@@ -11763,7 +11720,7 @@ export type UpdateAppStoreHostedAppPublishStatusRequestPublishStateEnum =
   | "APP_STORE_APP_PUBLISH_STATE_PUBLISHED"
   | "APP_STORE_APP_PUBLISH_STATE_UNPUBLISHED";
 export const UpdateAppStoreHostedAppPublishStatusRequestPublishStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request to update the publish status of an app store hosted app. The default state for any app with an update is PUBLISHED. It is not necessary to call this RPC explicitly to set an app to PUBLISHED. */
 export interface UpdateAppStoreHostedAppPublishStatusRequest {
@@ -11845,8 +11802,7 @@ export type UpdateEditsExpansionfilesExpansionFileTypeEnum =
   | "expansionFileTypeUnspecified"
   | "main"
   | "patch";
-export const UpdateEditsExpansionfilesExpansionFileTypeEnum =
-  /*@__PURE__*/ S.String;
+export const UpdateEditsExpansionfilesExpansionFileTypeEnum = S.String;
 
 export interface UpdateEditsExpansionfilesRequest {
   /** Identifier of the edit. */
@@ -11967,7 +11923,7 @@ export type UpdateInappproductsLatencyToleranceEnum =
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE"
   | "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT";
-export const UpdateInappproductsLatencyToleranceEnum = /*@__PURE__*/ S.String;
+export const UpdateInappproductsLatencyToleranceEnum = S.String;
 
 export interface UpdateInappproductsRequest {
   /** If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false. */
@@ -12089,7 +12045,7 @@ export type UploadAppStoreAppPolicyDeclarationFileRequestFileTypeEnum =
   | "DECLARATION_FILE_TYPE_UNSPECIFIED"
   | "DECLARATION_FILE_TYPE_DOCUMENT";
 export const UploadAppStoreAppPolicyDeclarationFileRequestFileTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request to upload a policy declaration file. */
 export interface UploadAppStoreAppPolicyDeclarationFileRequest {
@@ -12222,8 +12178,7 @@ export type UploadEditsDeobfuscationfilesDeobfuscationFileTypeEnum =
   | "deobfuscationFileTypeUnspecified"
   | "proguard"
   | "nativeCode";
-export const UploadEditsDeobfuscationfilesDeobfuscationFileTypeEnum =
-  /*@__PURE__*/ S.String;
+export const UploadEditsDeobfuscationfilesDeobfuscationFileTypeEnum = S.String;
 
 export interface UploadEditsDeobfuscationfilesRequest {
   /** The type of the deobfuscation file. */
@@ -12260,7 +12215,7 @@ export type DeobfuscationFileSymbolTypeEnum =
   | "deobfuscationFileTypeUnspecified"
   | "proguard"
   | "nativeCode";
-export const DeobfuscationFileSymbolTypeEnum = /*@__PURE__*/ S.String;
+export const DeobfuscationFileSymbolTypeEnum = S.String;
 
 /** Represents a deobfuscation file. */
 export interface DeobfuscationFile {
@@ -12292,8 +12247,7 @@ export type UploadEditsExpansionfilesExpansionFileTypeEnum =
   | "expansionFileTypeUnspecified"
   | "main"
   | "patch";
-export const UploadEditsExpansionfilesExpansionFileTypeEnum =
-  /*@__PURE__*/ S.String;
+export const UploadEditsExpansionfilesExpansionFileTypeEnum = S.String;
 
 export interface UploadEditsExpansionfilesRequest {
   /** Package name of the app. */
@@ -12349,13 +12303,13 @@ export type UploadEditsImagesImageTypeEnum =
   | "icon"
   | "featureGraphic"
   | "tvBanner";
-export const UploadEditsImagesImageTypeEnum = /*@__PURE__*/ S.String;
+export const UploadEditsImagesImageTypeEnum = S.String;
 
 export type UploadEditsImagesAiGeneratedStateEnum =
   | "aiGeneratedStateUnspecified"
   | "aiGeneratedStateNotAiGenerated"
   | "aiGeneratedStateAiGeneratedDeveloperAttested";
-export const UploadEditsImagesAiGeneratedStateEnum = /*@__PURE__*/ S.String;
+export const UploadEditsImagesAiGeneratedStateEnum = S.String;
 
 export interface UploadEditsImagesRequest {
   /** Type of the Image. */

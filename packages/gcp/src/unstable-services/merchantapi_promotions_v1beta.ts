@@ -106,13 +106,13 @@ export type AttributesAudienceEnum =
   | "AUDIENCE_UNSPECIFIED"
   | "NEW_CUSTOMERS"
   | "LOCATION";
-export const AttributesAudienceEnum = /*@__PURE__*/ S.String;
+export const AttributesAudienceEnum = S.String;
 
 export type AttributesEventApplicabilityEnum =
   | "EVENT_APPLICABILITY_UNSPECIFIED"
   | "SITEWIDE"
   | "SPECIFIC_CATEGORIES";
-export const AttributesEventApplicabilityEnum = /*@__PURE__*/ S.String;
+export const AttributesEventApplicabilityEnum = S.String;
 
 /** The price represented as a number and currency. */
 export interface Price {
@@ -144,13 +144,13 @@ export type AttributesCouponValueTypeEnum =
   | "FREE_SHIPPING_TWO_DAY"
   | "MONEY_OFF_RANGE"
   | "PERCENT_OFF_RANGE";
-export const AttributesCouponValueTypeEnum = /*@__PURE__*/ S.String;
+export const AttributesCouponValueTypeEnum = S.String;
 
 export type AttributesProductApplicabilityEnum =
   | "PRODUCT_APPLICABILITY_UNSPECIFIED"
   | "ALL_PRODUCTS"
   | "SPECIFIC_PRODUCTS";
-export const AttributesProductApplicabilityEnum = /*@__PURE__*/ S.String;
+export const AttributesProductApplicabilityEnum = S.String;
 
 export type AttributesRedemptionRestrictionEnum =
   | "REDEMPTION_RESTRICTION_UNSPECIFIED"
@@ -159,7 +159,7 @@ export type AttributesRedemptionRestrictionEnum =
   | "SIGNUP_FOR_EMAIL"
   | "SIGNUP_FOR_TEXT"
   | "CUSTOM";
-export const AttributesRedemptionRestrictionEnum = /*@__PURE__*/ S.String;
+export const AttributesRedemptionRestrictionEnum = S.String;
 
 export type AttributesPromotionDestinationsItemEnum =
   | "DESTINATION_ENUM_UNSPECIFIED"
@@ -175,7 +175,7 @@ export type AttributesPromotionDestinationsItemEnum =
   | "VEHICLE_ADS"
   | "CLOUD_RETAIL"
   | "LOCAL_CLOUD_RETAIL";
-export const AttributesPromotionDestinationsItemEnum = /*@__PURE__*/ S.String;
+export const AttributesPromotionDestinationsItemEnum = S.String;
 
 export type AttributesPromotionDestinationsItemEnumList = Array<
   AttributesPromotionDestinationsItemEnum | (string & {})
@@ -189,13 +189,13 @@ export type AttributesOfferTypeEnum =
   | "OFFER_TYPE_UNSPECIFIED"
   | "NO_CODE"
   | "GENERIC_CODE";
-export const AttributesOfferTypeEnum = /*@__PURE__*/ S.String;
+export const AttributesOfferTypeEnum = S.String;
 
 export type AttributesStoreApplicabilityEnum =
   | "STORE_APPLICABILITY_UNSPECIFIED"
   | "ALL_STORES"
   | "SPECIFIC_STORES";
-export const AttributesStoreApplicabilityEnum = /*@__PURE__*/ S.String;
+export const AttributesStoreApplicabilityEnum = S.String;
 
 /** Attributes. */
 export interface Attributes {
@@ -350,14 +350,14 @@ export type ItemLevelIssueReportingContextEnum =
   | "PRODUCT_REVIEWS"
   | "MERCHANT_REVIEWS"
   | "YOUTUBE_CHECKOUT";
-export const ItemLevelIssueReportingContextEnum = /*@__PURE__*/ S.String;
+export const ItemLevelIssueReportingContextEnum = S.String;
 
 export type ItemLevelIssueSeverityEnum =
   | "SEVERITY_UNSPECIFIED"
   | "NOT_IMPACTED"
   | "DEMOTED"
   | "DISAPPROVED";
-export const ItemLevelIssueSeverityEnum = /*@__PURE__*/ S.String;
+export const ItemLevelIssueSeverityEnum = S.String;
 
 /** The issue associated with the promotion. */
 export interface ItemLevelIssue {
@@ -420,7 +420,7 @@ export type DestinationStatusReportingContextEnum =
   | "PRODUCT_REVIEWS"
   | "MERCHANT_REVIEWS"
   | "YOUTUBE_CHECKOUT";
-export const DestinationStatusReportingContextEnum = /*@__PURE__*/ S.String;
+export const DestinationStatusReportingContextEnum = S.String;
 
 export type DestinationStatusStatusEnum =
   | "STATE_UNSPECIFIED"
@@ -430,7 +430,7 @@ export type DestinationStatusStatusEnum =
   | "STOPPED"
   | "EXPIRED"
   | "PENDING";
-export const DestinationStatusStatusEnum = /*@__PURE__*/ S.String;
+export const DestinationStatusStatusEnum = S.String;
 
 /** The status for the specified destination. */
 export interface DestinationStatus {
@@ -503,7 +503,7 @@ export type PromotionRedemptionChannelItemEnum =
   | "REDEMPTION_CHANNEL_UNSPECIFIED"
   | "IN_STORE"
   | "ONLINE";
-export const PromotionRedemptionChannelItemEnum = /*@__PURE__*/ S.String;
+export const PromotionRedemptionChannelItemEnum = S.String;
 
 export type PromotionRedemptionChannelItemEnumList = Array<
   PromotionRedemptionChannelItemEnum | (string & {})

@@ -50,13 +50,13 @@ export type FunctionDefinitionType =
   | "DEFINITION_TYPE_UNSPECIFIED"
   | "DEFINITION_TYPE_SERIALIZED"
   | "DEFINITION_TYPE_FILE";
-export const FunctionDefinitionType = /*@__PURE__*/ S.String;
+export const FunctionDefinitionType = S.String;
 
 export type FunctionFunctionType =
   | "FUNCTION_TYPE_UNSPECIFIED"
   | "FUNCTION_TYPE_GENERATOR"
   | "FUNCTION_TYPE_FUNCTION";
-export const FunctionFunctionType = /*@__PURE__*/ S.String;
+export const FunctionFunctionType = S.String;
 
 export type GPUType =
   | "GPU_TYPE_UNSPECIFIED"
@@ -69,7 +69,7 @@ export type GPUType =
   | "GPU_TYPE_H100"
   | "GPU_TYPE_L40S"
   | "GPU_TYPE_H200";
-export const GPUType = /*@__PURE__*/ S.String;
+export const GPUType = S.String;
 
 export interface GPUConfig {
   type?: GPUType | (string & {});
@@ -116,7 +116,7 @@ export type RateLimitInterval =
   | "RATE_LIMIT_INTERVAL_UNSPECIFIED"
   | "RATE_LIMIT_INTERVAL_SECOND"
   | "RATE_LIMIT_INTERVAL_MINUTE";
-export const RateLimitInterval = /*@__PURE__*/ S.String;
+export const RateLimitInterval = S.String;
 
 export interface RateLimit {
   limit?: number;
@@ -136,14 +136,14 @@ export type WebhookType =
   | "WEBHOOK_TYPE_FUNCTION"
   | "WEBHOOK_TYPE_WSGI_APP"
   | "WEBHOOK_TYPE_WEB_SERVER";
-export const WebhookType = /*@__PURE__*/ S.String;
+export const WebhookType = S.String;
 
 export type WebhookAsyncMode =
   | "WEBHOOK_ASYNC_MODE_UNSPECIFIED"
   | "WEBHOOK_ASYNC_MODE_DISABLED"
   | "WEBHOOK_ASYNC_MODE_TRIGGER"
   | "WEBHOOK_ASYNC_MODE_AUTO";
-export const WebhookAsyncMode = /*@__PURE__*/ S.String;
+export const WebhookAsyncMode = S.String;
 
 export interface CustomDomainConfig {
   name?: string;
@@ -196,7 +196,7 @@ export type CloudProvider =
   | "CLOUD_PROVIDER_GCP"
   | "CLOUD_PROVIDER_AUTO"
   | "CLOUD_PROVIDER_OCI";
-export const CloudProvider = /*@__PURE__*/ S.String;
+export const CloudProvider = S.String;
 
 export interface SharedVolumeMount {
   mountPath?: string;
@@ -240,7 +240,7 @@ export type PTYInfoPTYType =
   | "PTY_TYPE_UNSPECIFIED"
   | "PTY_TYPE_FUNCTION"
   | "PTY_TYPE_SHELL";
-export const PTYInfoPTYType = /*@__PURE__*/ S.String;
+export const PTYInfoPTYType = S.String;
 
 export interface PTYInfo {
   enabled?: boolean;
@@ -324,7 +324,7 @@ export type CheckpointStatus =
   | "CHECKPOINT_STATUS_PROCESSING"
   | "CHECKPOINT_STATUS_READY"
   | "CHECKPOINT_STATUS_FAILED";
-export const CheckpointStatus = /*@__PURE__*/ S.String;
+export const CheckpointStatus = S.String;
 
 export interface CheckpointInfo {
   checksum?: string;
@@ -386,13 +386,13 @@ export const S3MountList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<S3MountList>;
 
 export type CloudBucketMountBucketType = "UNSPECIFIED" | "S3" | "R2" | "GCP";
-export const CloudBucketMountBucketType = /*@__PURE__*/ S.String;
+export const CloudBucketMountBucketType = S.String;
 
 export type CloudBucketMountMetadataTTLType =
   | "METADATA_TTL_TYPE_UNSPECIFIED"
   | "METADATA_TTL_TYPE_MINIMAL"
   | "METADATA_TTL_TYPE_INDEFINITE";
-export const CloudBucketMountMetadataTTLType = /*@__PURE__*/ S.String;
+export const CloudBucketMountMetadataTTLType = S.String;
 
 export interface CloudBucketMount {
   bucketName?: string;
@@ -456,8 +456,7 @@ export type ClassParameterInfoParameterSerializationFormat =
   | "PARAM_SERIALIZATION_FORMAT_UNSPECIFIED"
   | "PARAM_SERIALIZATION_FORMAT_PICKLE"
   | "PARAM_SERIALIZATION_FORMAT_PROTO";
-export const ClassParameterInfoParameterSerializationFormat =
-  /*@__PURE__*/ S.String;
+export const ClassParameterInfoParameterSerializationFormat = S.String;
 
 export type ParameterType =
   | "PARAM_TYPE_UNSPECIFIED"
@@ -470,7 +469,7 @@ export type ParameterType =
   | "PARAM_TYPE_DICT"
   | "PARAM_TYPE_NONE"
   | "PARAM_TYPE_BOOL";
-export const ParameterType = /*@__PURE__*/ S.String;
+export const ParameterType = S.String;
 
 export type GenericPayloadTypeList = Array<GenericPayloadType>;
 export const GenericPayloadTypeList = /*@__PURE__*/ S.Array(
@@ -608,7 +607,7 @@ export const Schedule = /*@__PURE__*/ S.suspend(() =>
 export type FunctionSchemaFunctionSchemaType =
   | "FUNCTION_SCHEMA_UNSPECIFIED"
   | "FUNCTION_SCHEMA_V1";
-export const FunctionSchemaFunctionSchemaType = /*@__PURE__*/ S.String;
+export const FunctionSchemaFunctionSchemaType = S.String;
 
 export interface FunctionSchema {
   schemaType?: FunctionSchemaFunctionSchemaType | (string & {});
@@ -631,7 +630,7 @@ export type DataFormat =
   | "DATA_FORMAT_ASGI"
   | "DATA_FORMAT_GENERATOR_DONE"
   | "DATA_FORMAT_CBOR";
-export const DataFormat = /*@__PURE__*/ S.String;
+export const DataFormat = S.String;
 
 export type DataFormatList = Array<DataFormat | (string & {})>;
 export const DataFormatList = /*@__PURE__*/ S.Array(
@@ -1160,7 +1159,7 @@ export type WarningWarningType =
   | "WARNING_TYPE_CLIENT_DEPRECATION"
   | "WARNING_TYPE_RESOURCE_LIMIT"
   | "WARNING_TYPE_FUNCTION_CONFIGURATION";
-export const WarningWarningType = /*@__PURE__*/ S.String;
+export const WarningWarningType = S.String;
 
 export interface Warning {
   type?: WarningWarningType;
@@ -1573,7 +1572,7 @@ export type GenericResultGenericStatus =
   | "GENERIC_STATUS_INTERNAL_FAILURE"
   | "GENERIC_STATUS_IDLE_TIMEOUT"
   | "GENERIC_STATUS_MEMORY_MANAGER_EVICTION";
-export const GenericResultGenericStatus = /*@__PURE__*/ S.String;
+export const GenericResultGenericStatus = S.String;
 
 export interface InputCallGraphInfo {
   inputId?: string;
@@ -1814,7 +1813,7 @@ export type FunctionCallType =
   | "FUNCTION_CALL_TYPE_UNSPECIFIED"
   | "FUNCTION_CALL_TYPE_UNARY"
   | "FUNCTION_CALL_TYPE_MAP";
-export const FunctionCallType = /*@__PURE__*/ S.String;
+export const FunctionCallType = S.String;
 
 export interface FunctionInput {
   /** serialized (args, kwargs). */
@@ -1864,7 +1863,7 @@ export type FunctionCallInvocationType =
   | "FUNCTION_CALL_INVOCATION_TYPE_ASYNC_LEGACY"
   | "FUNCTION_CALL_INVOCATION_TYPE_ASYNC"
   | "FUNCTION_CALL_INVOCATION_TYPE_SYNC";
-export const FunctionCallInvocationType = /*@__PURE__*/ S.String;
+export const FunctionCallInvocationType = S.String;
 
 export interface FunctionMapRequest {
   functionId?: string;

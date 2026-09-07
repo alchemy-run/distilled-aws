@@ -68,11 +68,11 @@ export const GetAdReportRequestAdIdsList = /*@__PURE__*/ S.Array(
 
 /** Entity level to group an ad report by. */
 export type AdReportBreakdownLevels = "campaign" | "ad_group" | "ad";
-export const AdReportBreakdownLevels = /*@__PURE__*/ S.String;
+export const AdReportBreakdownLevels = S.String;
 
 /** Bucket size for external ad stat rows. */
 export type Granularities = "hourly" | "daily" | "weekly" | "monthly";
-export const Granularities = /*@__PURE__*/ S.String;
+export const Granularities = S.String;
 
 export interface GetAdReportRequest {
   ad_campaign_ids?: GetAdReportRequestAdCampaignIdsList;
@@ -139,7 +139,7 @@ export type ResultLabelKeys =
   | "website_find_locations"
   | "website_product_customizations"
   | "custom";
-export const ResultLabelKeys = /*@__PURE__*/ S.String;
+export const ResultLabelKeys = S.String;
 
 /** The available currencies on the platform */
 export type Currencies =
@@ -233,7 +233,7 @@ export type Currencies =
   | "awg"
   | "whop_usd"
   | "xau";
-export const Currencies = /*@__PURE__*/ S.String;
+export const Currencies = S.String;
 
 /** Per-bucket ad performance for an ad campaign, ad group, or ad. Bucket grain is set by the `ad_report` query's `granularity` argument. */
 export interface AdReportBreakdownItemGranularityItem {

@@ -163,7 +163,7 @@ export type AuthProviderStateEnum =
   | "STATE_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED";
-export const AuthProviderStateEnum = /*@__PURE__*/ S.String;
+export const AuthProviderStateEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -381,7 +381,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -555,7 +555,7 @@ export type AccessSummaryAuthProviderTypeEnum =
   | "AUTH_PROVIDER_TYPE_TWO_LEGGED_OAUTH"
   | "AUTH_PROVIDER_TYPE_API_KEY"
   | "AUTH_PROVIDER_TYPE_GEMINI_ENTERPRISE";
-export const AccessSummaryAuthProviderTypeEnum = /*@__PURE__*/ S.String;
+export const AccessSummaryAuthProviderTypeEnum = S.String;
 
 /** Represents an access summary. */
 export interface AccessSummary {
@@ -640,7 +640,7 @@ export type AuthorizationStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "SUSPENDED";
-export const AuthorizationStateEnum = /*@__PURE__*/ S.String;
+export const AuthorizationStateEnum = S.String;
 
 /** Represents an authorization. */
 export interface Authorization {

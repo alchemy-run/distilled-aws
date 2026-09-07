@@ -299,7 +299,7 @@ export type CreateChartRequestDatasourceType =
   | "query"
   | "saved_query"
   | "view";
-export const CreateChartRequestDatasourceType = /*@__PURE__*/ S.String;
+export const CreateChartRequestDatasourceType = S.String;
 
 export type CreateChartRequestOwnersList = Array<number>;
 export const CreateChartRequestOwnersList = /*@__PURE__*/ S.Array(
@@ -373,7 +373,7 @@ export type ChartRestApiPostDatasourceType =
   | "query"
   | "saved_query"
   | "view";
-export const ChartRestApiPostDatasourceType = /*@__PURE__*/ S.String;
+export const ChartRestApiPostDatasourceType = S.String;
 
 export type ChartRestApiPostOwnersList = Array<number>;
 export const ChartRestApiPostOwnersList = /*@__PURE__*/ S.Array(
@@ -455,7 +455,7 @@ export type ChartDataDatasourceType =
   | "query"
   | "saved_query"
   | "view";
-export const ChartDataDatasourceType = /*@__PURE__*/ S.String;
+export const ChartDataDatasourceType = S.String;
 
 export interface ChartDataDatasource {
   /** Datasource id or uuid */
@@ -478,7 +478,7 @@ export type AnnotationLayerAnnotationType =
   | "INTERVAL"
   | "EVENT"
   | "TIME_SERIES";
-export const AnnotationLayerAnnotationType = /*@__PURE__*/ S.String;
+export const AnnotationLayerAnnotationType = S.String;
 
 /** Columns to use as the description. If none are provided, all will be shown. */
 export type AnnotationLayerDescriptionColumnsList = Array<string>;
@@ -492,7 +492,7 @@ export type AnnotationLayerOpacity =
   | "opacityLow"
   | "opacityMedium"
   | "opacityHigh";
-export const AnnotationLayerOpacity = /*@__PURE__*/ S.String;
+export const AnnotationLayerOpacity = S.String;
 
 /** which properties should be overridable */
 export type AnnotationLayerOverridesMap = {
@@ -505,11 +505,11 @@ export const AnnotationLayerOverridesMap = /*@__PURE__*/ S.Record(
 
 /** Type of source for annotation data */
 export type AnnotationLayerSourceType = "" | "line" | "NATIVE" | "table";
-export const AnnotationLayerSourceType = /*@__PURE__*/ S.String;
+export const AnnotationLayerSourceType = S.String;
 
 /** Line style. Only applies to time-series annotations */
 export type AnnotationLayerStyle = "dashed" | "dotted" | "solid" | "longDashed";
-export const AnnotationLayerStyle = /*@__PURE__*/ S.String;
+export const AnnotationLayerStyle = S.String;
 
 export interface AnnotationLayer {
   /** Type of annotation layer */
@@ -591,11 +591,11 @@ export const ChartDataExtrasColumnOrderList = /*@__PURE__*/ S.Array(
 
 /** End time for relative time deltas. Default: `config["DEFAULT_RELATIVE_START_TIME"]` */
 export type ChartDataExtrasRelativeEnd = "today" | "now";
-export const ChartDataExtrasRelativeEnd = /*@__PURE__*/ S.String;
+export const ChartDataExtrasRelativeEnd = S.String;
 
 /** Start time for relative time deltas. Default: `config["DEFAULT_RELATIVE_START_TIME"]` */
 export type ChartDataExtrasRelativeStart = "today" | "now";
-export const ChartDataExtrasRelativeStart = /*@__PURE__*/ S.String;
+export const ChartDataExtrasRelativeStart = S.String;
 
 /** To what level of granularity should the temporal column be aggregated. Supports [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) durations. */
 export type ChartDataExtrasTimeGrainSqla =
@@ -618,7 +618,7 @@ export type ChartDataExtrasTimeGrainSqla =
   | "1969-12-29T00:00:00Z/P1W"
   | "P1W/1970-01-03T00:00:00Z"
   | "P1W/1970-01-04T00:00:00Z";
-export const ChartDataExtrasTimeGrainSqla = /*@__PURE__*/ S.String;
+export const ChartDataExtrasTimeGrainSqla = S.String;
 
 export interface ChartDataExtras {
   /** Ordered list of column names for result ordering. Used to preserve user's column reordering (including mixed dimension columns and metrics) */
@@ -672,7 +672,7 @@ export type ChartDataFilterOp =
   | "IS TRUE"
   | "IS FALSE"
   | "TEMPORAL_RANGE";
-export const ChartDataFilterOp = /*@__PURE__*/ S.String;
+export const ChartDataFilterOp = S.String;
 
 export interface ChartDataFilter {
   /** The column to filter by. Can be either a string (physical or saved expression) or an object (adhoc column) */
@@ -744,7 +744,7 @@ export type ChartDataPostProcessingOperationOperation =
   | "select"
   | "sort"
   | "unescape_separator";
-export const ChartDataPostProcessingOperationOperation = /*@__PURE__*/ S.String;
+export const ChartDataPostProcessingOperationOperation = S.String;
 
 export interface ChartDataPostProcessingOperation {
   /** Post processing operation type */
@@ -777,7 +777,7 @@ export type ChartDataQueryObjectResultType =
   | "timegrains"
   | "post_processed"
   | "drill_detail";
-export const ChartDataQueryObjectResultType = /*@__PURE__*/ S.String;
+export const ChartDataQueryObjectResultType = S.String;
 
 /** Columns to use when limiting series count. All columns must be present in the `columns` property. Requires `series_limit` and `series_limit_metric` to be set. */
 export type ChartDataQueryObjectSeriesColumnsList = Array<unknown>;
@@ -907,7 +907,7 @@ export const CreateChartDataRequestQueriesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateChartDataRequestQueriesList>;
 
 export type CreateChartDataRequestResultFormat = "csv" | "json" | "xlsx";
-export const CreateChartDataRequestResultFormat = /*@__PURE__*/ S.String;
+export const CreateChartDataRequestResultFormat = S.String;
 
 export type CreateChartDataRequestResultType =
   | "columns"
@@ -918,7 +918,7 @@ export type CreateChartDataRequestResultType =
   | "timegrains"
   | "post_processed"
   | "drill_detail";
-export const CreateChartDataRequestResultType = /*@__PURE__*/ S.String;
+export const CreateChartDataRequestResultType = S.String;
 
 export interface CreateChartDataRequest {
   /** Override the default cache timeout */
@@ -1000,7 +1000,7 @@ export type ChartDataResponseResultStatus =
   | "scheduled"
   | "success"
   | "timed_out";
-export const ChartDataResponseResultStatus = /*@__PURE__*/ S.String;
+export const ChartDataResponseResultStatus = S.String;
 
 export interface ChartDataResponseResult {
   /** All requested annotation data */
@@ -1554,7 +1554,7 @@ export const CreateDashboardPermalinkResponse = /*@__PURE__*/ S.suspend(() =>
 export type CreateDatabaseRequestConfigurationMethod =
   | "sqlalchemy_form"
   | "dynamic_form";
-export const CreateDatabaseRequestConfigurationMethod = /*@__PURE__*/ S.String;
+export const CreateDatabaseRequestConfigurationMethod = S.String;
 
 /** DB-specific parameters for configuration */
 export type CreateDatabaseRequestParametersMap = {
@@ -1666,7 +1666,7 @@ export const CreateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
 export type DatabaseRestApiPostConfigurationMethod =
   | "sqlalchemy_form"
   | "dynamic_form";
-export const DatabaseRestApiPostConfigurationMethod = /*@__PURE__*/ S.String;
+export const DatabaseRestApiPostConfigurationMethod = S.String;
 
 /** DB-specific parameters for configuration */
 export type DatabaseRestApiPostParametersMap = {
@@ -1857,8 +1857,7 @@ export type CreateExploreFormDataRequestDatasourceType =
   | "query"
   | "saved_query"
   | "view";
-export const CreateExploreFormDataRequestDatasourceType =
-  /*@__PURE__*/ S.String;
+export const CreateExploreFormDataRequestDatasourceType = S.String;
 
 export interface CreateExploreFormDataRequest {
   tab_id?: number;
@@ -1973,7 +1972,7 @@ export type CreateReportRequestCreationMethod =
   | "charts"
   | "dashboards"
   | "alerts_reports";
-export const CreateReportRequestCreationMethod = /*@__PURE__*/ S.String;
+export const CreateReportRequestCreationMethod = S.String;
 
 export type CreateReportRequestOwnersList = Array<number>;
 export const CreateReportRequestOwnersList = /*@__PURE__*/ S.Array(
@@ -1997,7 +1996,7 @@ export const ReportRecipientConfigJSON = /*@__PURE__*/ S.suspend(() =>
 
 /** The recipient type, check spec for valid options */
 export type ReportRecipientType = "Email" | "Slack" | "SlackV2" | "Webhook";
-export const ReportRecipientType = /*@__PURE__*/ S.String;
+export const ReportRecipientType = S.String;
 
 export interface ReportRecipient {
   recipient_config_json?: ReportRecipientConfigJSON;
@@ -2019,7 +2018,7 @@ export const CreateReportRequestRecipientsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateReportRequestRecipientsList>;
 
 export type CreateReportRequestReportFormat = "PDF" | "PNG" | "CSV" | "TEXT";
-export const CreateReportRequestReportFormat = /*@__PURE__*/ S.String;
+export const CreateReportRequestReportFormat = S.String;
 
 export type CreateReportRequestSelectedTabsList = Array<number>;
 export const CreateReportRequestSelectedTabsList = /*@__PURE__*/ S.Array(
@@ -2625,15 +2624,15 @@ export type CreateReportRequestTimezone =
   | "W-SU"
   | "WET"
   | "Zulu";
-export const CreateReportRequestTimezone = /*@__PURE__*/ S.String;
+export const CreateReportRequestTimezone = S.String;
 
 /** The report schedule type */
 export type CreateReportRequestType = "Alert" | "Report";
-export const CreateReportRequestType = /*@__PURE__*/ S.String;
+export const CreateReportRequestType = S.String;
 
 /** The operation to compare with a threshold to apply to the SQL output */
 export type ValidatorConfigJSONOp = "<" | "<=" | ">" | ">=" | "==" | "!=";
-export const ValidatorConfigJSONOp = /*@__PURE__*/ S.String;
+export const ValidatorConfigJSONOp = S.String;
 
 export interface ValidatorConfigJSON {
   /** The operation to compare with a threshold to apply to the SQL output */
@@ -2651,7 +2650,7 @@ export const ValidatorConfigJSON = /*@__PURE__*/ S.suspend(() =>
 
 /** Determines when to trigger alert based off value from alert query. Alerts will be triggered with these validator types: - Not Null - When the return value is Not NULL, Empty, or 0 - Operator - When `sql_return_value comparison_operator threshold` is True e.g. `50 <= 75`<br>Supports the comparison operators <, <=, >, >=, ==, and != */
 export type CreateReportRequestValidatorType = "not null" | "operator";
-export const CreateReportRequestValidatorType = /*@__PURE__*/ S.String;
+export const CreateReportRequestValidatorType = S.String;
 
 export interface CreateReportRequest {
   active?: boolean;
@@ -2731,7 +2730,7 @@ export type ReportScheduleRestApiPostCreationMethod =
   | "charts"
   | "dashboards"
   | "alerts_reports";
-export const ReportScheduleRestApiPostCreationMethod = /*@__PURE__*/ S.String;
+export const ReportScheduleRestApiPostCreationMethod = S.String;
 
 export type ReportScheduleRestApiPostOwnersList = Array<number>;
 export const ReportScheduleRestApiPostOwnersList = /*@__PURE__*/ S.Array(
@@ -2748,7 +2747,7 @@ export type ReportScheduleRestApiPostReportFormat =
   | "PNG"
   | "CSV"
   | "TEXT";
-export const ReportScheduleRestApiPostReportFormat = /*@__PURE__*/ S.String;
+export const ReportScheduleRestApiPostReportFormat = S.String;
 
 export type ReportScheduleRestApiPostSelectedTabsList = Array<number>;
 export const ReportScheduleRestApiPostSelectedTabsList = /*@__PURE__*/ S.Array(
@@ -3354,15 +3353,15 @@ export type ReportScheduleRestApiPostTimezone =
   | "W-SU"
   | "WET"
   | "Zulu";
-export const ReportScheduleRestApiPostTimezone = /*@__PURE__*/ S.String;
+export const ReportScheduleRestApiPostTimezone = S.String;
 
 /** The report schedule type */
 export type ReportScheduleRestApiPostType = "Alert" | "Report";
-export const ReportScheduleRestApiPostType = /*@__PURE__*/ S.String;
+export const ReportScheduleRestApiPostType = S.String;
 
 /** Determines when to trigger alert based off value from alert query. Alerts will be triggered with these validator types: - Not Null - When the return value is Not NULL, Empty, or 0 - Operator - When `sql_return_value comparison_operator threshold` is True e.g. `50 <= 75`<br>Supports the comparison operators <, <=, >, >=, ==, and != */
 export type ReportScheduleRestApiPostValidatorType = "not null" | "operator";
-export const ReportScheduleRestApiPostValidatorType = /*@__PURE__*/ S.String;
+export const ReportScheduleRestApiPostValidatorType = S.String;
 
 export interface ReportScheduleRestApiPost {
   active?: boolean;
@@ -3454,7 +3453,7 @@ export const CreateReportResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** filter_type_description */
 export type CreateRowlevelsecurityRequestFilterType = "Regular" | "Base";
-export const CreateRowlevelsecurityRequestFilterType = /*@__PURE__*/ S.String;
+export const CreateRowlevelsecurityRequestFilterType = S.String;
 
 /** roles_description */
 export type CreateRowlevelsecurityRequestRolesList = Array<number>;
@@ -3502,7 +3501,7 @@ export const CreateRowlevelsecurityRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** filter_type_description */
 export type RLSRestApiPostFilterType = "Regular" | "Base";
-export const RLSRestApiPostFilterType = /*@__PURE__*/ S.String;
+export const RLSRestApiPostFilterType = S.String;
 
 /** roles_description */
 export type RLSRestApiPostRolesList = Array<number>;
@@ -3706,7 +3705,7 @@ export const CreateSecurityGroupsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSecurityGroupsResponse>;
 
 export type ResourceType = "dashboard";
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 export interface Resource {
   id: string;
@@ -3792,7 +3791,7 @@ export const CreateSecurityGuestTokenResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Choose an authentication provider */
 export type CreateSecurityLoginRequestProvider = "db" | "ldap";
-export const CreateSecurityLoginRequestProvider = /*@__PURE__*/ S.String;
+export const CreateSecurityLoginRequestProvider = S.String;
 
 export interface CreateSecurityLoginRequest {
   /** The password for authentication */
@@ -6130,7 +6129,7 @@ export const ChartRestApiGetListSqlaTable = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ChartRestApiGetListSqlaTable>;
 
 export type ChartRestApiGetListTagType = 1 | 2 | 3 | 4;
-export const ChartRestApiGetListTagType = /*@__PURE__*/ S.Number;
+export const ChartRestApiGetListTagType = S.Number;
 
 export interface ChartRestApiGetListTag {
   id?: number;
@@ -6314,7 +6313,7 @@ export const ChartGetResponseSchemaOwnersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ChartGetResponseSchemaOwnersList>;
 
 export type TagType = 1 | 2 | 3 | 4;
-export const TagType = /*@__PURE__*/ S.Number;
+export const TagType = S.Number;
 
 export interface Tag {
   id?: number;
@@ -6778,7 +6777,7 @@ export const DashboardGetResponseSchemaChartsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DashboardGetResponseSchemaChartsList>;
 
 export type Tag1Type = 1 | 2 | 3 | 4;
-export const Tag1Type = /*@__PURE__*/ S.Number;
+export const Tag1Type = S.Number;
 
 export interface Tag1 {
   id?: number;
@@ -7073,8 +7072,7 @@ export const GetDashboardRelatedRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDashboardRelatedRequest>;
 
 export type GetDashboardScreenshotRequestDownloadFormat = "png" | "pdf";
-export const GetDashboardScreenshotRequestDownloadFormat =
-  /*@__PURE__*/ S.String;
+export const GetDashboardScreenshotRequestDownloadFormat = S.String;
 
 export interface GetDashboardScreenshotRequest {
   pk: number;
@@ -9964,7 +9962,7 @@ export const GetRowlevelsecurityResponseOrderColumnsList =
 
 /** filter_type_description */
 export type RLSRestApiGetListFilterType = "Regular" | "Base";
-export const RLSRestApiGetListFilterType = /*@__PURE__*/ S.String;
+export const RLSRestApiGetListFilterType = S.String;
 
 export type Roles1 = Roles;
 export const Roles1 = Roles;
@@ -10093,7 +10091,7 @@ export const GetRowlevelsecurityByPkResponseLabelColumns =
 
 /** filter_type_description */
 export type RLSRestApiGetFilterType = "Regular" | "Base";
-export const RLSRestApiGetFilterType = /*@__PURE__*/ S.String;
+export const RLSRestApiGetFilterType = S.String;
 
 export type RLSRestApiGetRolesList = Array<Roles>;
 export const RLSRestApiGetRolesList = /*@__PURE__*/ S.Array(
@@ -10236,7 +10234,7 @@ export const SavedQueryRestApiGetListDatabase =
   ReportScheduleRestApiGetDatabase;
 
 export type SavedQueryRestApiGetListTagType = 1 | 2 | 3 | 4;
-export const SavedQueryRestApiGetListTagType = /*@__PURE__*/ S.Number;
+export const SavedQueryRestApiGetListTagType = S.Number;
 
 export interface SavedQueryRestApiGetListTag {
   id?: number;
@@ -12403,7 +12401,7 @@ export type TagRestApiGetListUser1 = AnnotationLayerRestApiGetListUser1;
 export const TagRestApiGetListUser1 = AnnotationLayerRestApiGetListUser1;
 
 export type TagRestApiGetListType = 1 | 2 | 3 | 4;
-export const TagRestApiGetListType = /*@__PURE__*/ S.Number;
+export const TagRestApiGetListType = S.Number;
 
 export interface TagRestApiGetList {
   changed_by?: AnnotationLayerRestApiGetListUser1;
@@ -12497,7 +12495,7 @@ export type TagRestApiGetUser1 = AnnotationLayerRestApiGetListUser1;
 export const TagRestApiGetUser1 = AnnotationLayerRestApiGetListUser1;
 
 export type TagRestApiGetType = 1 | 2 | 3 | 4;
-export const TagRestApiGetType = /*@__PURE__*/ S.Number;
+export const TagRestApiGetType = S.Number;
 
 export interface TagRestApiGet {
   changed_by?: AnnotationLayerRestApiGetListUser1;
@@ -13221,7 +13219,7 @@ export type DatasourceDatasourceType =
   | "query"
   | "saved_query"
   | "view";
-export const DatasourceDatasourceType = /*@__PURE__*/ S.String;
+export const DatasourceDatasourceType = S.String;
 
 export interface Datasource {
   /** Datasource catalog */
@@ -13767,7 +13765,7 @@ export const DashboardRestApiGetListEditorsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DashboardRestApiGetListEditorsList>;
 
 export type DashboardRestApiGetListTagType = 1 | 2 | 3 | 4;
-export const DashboardRestApiGetListTagType = /*@__PURE__*/ S.Number;
+export const DashboardRestApiGetListTagType = S.Number;
 
 export interface DashboardRestApiGetListTag {
   id?: number;
@@ -14685,7 +14683,7 @@ export type ListDatasourceColumnValuesResponseResultItem =
   | boolean
   | unknown;
 export const ListDatasourceColumnValuesResponseResultItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListDatasourceColumnValuesResponseResultItem>;
+  S.Unknown as any as S.Schema<ListDatasourceColumnValuesResponseResultItem>;
 
 export type ListDatasourceColumnValuesResponseResultList =
   Array<ListDatasourceColumnValuesResponseResultItem>;
@@ -15072,8 +15070,7 @@ export type ListSecurityRoleSearchRequestQFiltersItemCol =
   | "user_ids"
   | "permission_ids"
   | "name";
-export const ListSecurityRoleSearchRequestQFiltersItemCol =
-  /*@__PURE__*/ S.String;
+export const ListSecurityRoleSearchRequestQFiltersItemCol = S.String;
 
 export interface ListSecurityRoleSearchRequestQFiltersItem {
   col?: ListSecurityRoleSearchRequestQFiltersItemCol | (string & {});
@@ -15096,11 +15093,10 @@ export const ListSecurityRoleSearchRequestQFiltersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListSecurityRoleSearchRequestQFiltersList>;
 
 export type ListSecurityRoleSearchRequestQOrderColumn = "id" | "name";
-export const ListSecurityRoleSearchRequestQOrderColumn = /*@__PURE__*/ S.String;
+export const ListSecurityRoleSearchRequestQOrderColumn = S.String;
 
 export type ListSecurityRoleSearchRequestQOrderDirection = "asc" | "desc";
-export const ListSecurityRoleSearchRequestQOrderDirection =
-  /*@__PURE__*/ S.String;
+export const ListSecurityRoleSearchRequestQOrderDirection = S.String;
 
 export interface ListSecurityRoleSearchRequestQ {
   filters?: ListSecurityRoleSearchRequestQFiltersList;
@@ -15261,7 +15257,7 @@ export const TabState = /*@__PURE__*/ S.suspend(() =>
 export type ImportV1DatabaseConfigurationMethod =
   | "sqlalchemy_form"
   | "dynamic_form";
-export const ImportV1DatabaseConfigurationMethod = /*@__PURE__*/ S.String;
+export const ImportV1DatabaseConfigurationMethod = S.String;
 
 export type ImportV1DatabaseExtraEngineParamsMap = {
   [key: string]: unknown | undefined;
@@ -15766,7 +15762,7 @@ export type PutChartRequestDatasourceType =
   | "query"
   | "saved_query"
   | "view";
-export const PutChartRequestDatasourceType = /*@__PURE__*/ S.String;
+export const PutChartRequestDatasourceType = S.String;
 
 export type PutChartRequestOwnersList = Array<number>;
 export const PutChartRequestOwnersList = /*@__PURE__*/ S.Array(
@@ -15846,7 +15842,7 @@ export type ChartRestApiPutDatasourceType =
   | "query"
   | "saved_query"
   | "view";
-export const ChartRestApiPutDatasourceType = /*@__PURE__*/ S.String;
+export const ChartRestApiPutDatasourceType = S.String;
 
 export type ChartRestApiPutOwnersList = Array<number>;
 export const ChartRestApiPutOwnersList = /*@__PURE__*/ S.Array(
@@ -16409,7 +16405,7 @@ export const PutDashboardFilterStateResponse = /*@__PURE__*/ S.suspend(() =>
 export type PutDatabaseRequestConfigurationMethod =
   | "sqlalchemy_form"
   | "dynamic_form";
-export const PutDatabaseRequestConfigurationMethod = /*@__PURE__*/ S.String;
+export const PutDatabaseRequestConfigurationMethod = S.String;
 
 /** DB-specific parameters for configuration */
 export type PutDatabaseRequestParametersMap = {
@@ -16497,7 +16493,7 @@ export const PutDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
 export type DatabaseRestApiPutConfigurationMethod =
   | "sqlalchemy_form"
   | "dynamic_form";
-export const DatabaseRestApiPutConfigurationMethod = /*@__PURE__*/ S.String;
+export const DatabaseRestApiPutConfigurationMethod = S.String;
 
 /** DB-specific parameters for configuration */
 export type DatabaseRestApiPutParametersMap = {
@@ -16642,7 +16638,7 @@ export const FolderChildrenList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FolderChildrenList>;
 
 export type FolderType = "metric" | "column" | "folder";
-export const FolderType = /*@__PURE__*/ S.String;
+export const FolderType = S.String;
 
 export interface Folder {
   children?: FolderChildrenList | null;
@@ -16951,7 +16947,7 @@ export type PutExploreFormDataRequestDatasourceType =
   | "query"
   | "saved_query"
   | "view";
-export const PutExploreFormDataRequestDatasourceType = /*@__PURE__*/ S.String;
+export const PutExploreFormDataRequestDatasourceType = S.String;
 
 export interface PutExploreFormDataRequest {
   key: string;
@@ -17026,7 +17022,7 @@ export type PutReportRequestCreationMethod =
   | "charts"
   | "dashboards"
   | "alerts_reports";
-export const PutReportRequestCreationMethod = /*@__PURE__*/ S.String;
+export const PutReportRequestCreationMethod = S.String;
 
 export type PutReportRequestOwnersList = Array<number>;
 export const PutReportRequestOwnersList = /*@__PURE__*/ S.Array(
@@ -17039,7 +17035,7 @@ export const PutReportRequestRecipientsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PutReportRequestRecipientsList>;
 
 export type PutReportRequestReportFormat = "PDF" | "PNG" | "CSV" | "TEXT";
-export const PutReportRequestReportFormat = /*@__PURE__*/ S.String;
+export const PutReportRequestReportFormat = S.String;
 
 /** A timezone string that represents the location of the timezone. */
 export type PutReportRequestTimezone =
@@ -17640,15 +17636,15 @@ export type PutReportRequestTimezone =
   | "W-SU"
   | "WET"
   | "Zulu";
-export const PutReportRequestTimezone = /*@__PURE__*/ S.String;
+export const PutReportRequestTimezone = S.String;
 
 /** The report schedule type */
 export type PutReportRequestType = "Alert" | "Report";
-export const PutReportRequestType = /*@__PURE__*/ S.String;
+export const PutReportRequestType = S.String;
 
 /** Determines when to trigger alert based off value from alert query. Alerts will be triggered with these validator types: - Not Null - When the return value is Not NULL, Empty, or 0 - Operator - When `sql_return_value comparison_operator threshold` is True e.g. `50 <= 75`<br>Supports the comparison operators <, <=, >, >=, ==, and != */
 export type PutReportRequestValidatorType = "not null" | "operator";
-export const PutReportRequestValidatorType = /*@__PURE__*/ S.String;
+export const PutReportRequestValidatorType = S.String;
 
 export interface PutReportRequest {
   /** The Report Schedule pk */
@@ -17729,7 +17725,7 @@ export type ReportScheduleRestApiPutCreationMethod =
   | "charts"
   | "dashboards"
   | "alerts_reports";
-export const ReportScheduleRestApiPutCreationMethod = /*@__PURE__*/ S.String;
+export const ReportScheduleRestApiPutCreationMethod = S.String;
 
 export type ReportScheduleRestApiPutOwnersList = Array<number>;
 export const ReportScheduleRestApiPutOwnersList = /*@__PURE__*/ S.Array(
@@ -17746,7 +17742,7 @@ export type ReportScheduleRestApiPutReportFormat =
   | "PNG"
   | "CSV"
   | "TEXT";
-export const ReportScheduleRestApiPutReportFormat = /*@__PURE__*/ S.String;
+export const ReportScheduleRestApiPutReportFormat = S.String;
 
 /** A timezone string that represents the location of the timezone. */
 export type ReportScheduleRestApiPutTimezone =
@@ -18347,15 +18343,15 @@ export type ReportScheduleRestApiPutTimezone =
   | "W-SU"
   | "WET"
   | "Zulu";
-export const ReportScheduleRestApiPutTimezone = /*@__PURE__*/ S.String;
+export const ReportScheduleRestApiPutTimezone = S.String;
 
 /** The report schedule type */
 export type ReportScheduleRestApiPutType = "Alert" | "Report";
-export const ReportScheduleRestApiPutType = /*@__PURE__*/ S.String;
+export const ReportScheduleRestApiPutType = S.String;
 
 /** Determines when to trigger alert based off value from alert query. Alerts will be triggered with these validator types: - Not Null - When the return value is Not NULL, Empty, or 0 - Operator - When `sql_return_value comparison_operator threshold` is True e.g. `50 <= 75`<br>Supports the comparison operators <, <=, >, >=, ==, and != */
 export type ReportScheduleRestApiPutValidatorType = "not null" | "operator";
-export const ReportScheduleRestApiPutValidatorType = /*@__PURE__*/ S.String;
+export const ReportScheduleRestApiPutValidatorType = S.String;
 
 export interface ReportScheduleRestApiPut {
   active?: boolean;
@@ -18445,7 +18441,7 @@ export const PutReportResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** filter_type_description */
 export type PutRowlevelsecurityRequestFilterType = "Regular" | "Base";
-export const PutRowlevelsecurityRequestFilterType = /*@__PURE__*/ S.String;
+export const PutRowlevelsecurityRequestFilterType = S.String;
 
 /** roles_description */
 export type PutRowlevelsecurityRequestRolesList = Array<number>;
@@ -18496,7 +18492,7 @@ export const PutRowlevelsecurityRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** filter_type_description */
 export type RLSRestApiPutFilterType = "Regular" | "Base";
-export const RLSRestApiPutFilterType = /*@__PURE__*/ S.String;
+export const RLSRestApiPutFilterType = S.String;
 
 /** roles_description */
 export type RLSRestApiPutRolesList = Array<number>;
@@ -18795,8 +18791,7 @@ export const SyncDatabasePermissionsResponse = /*@__PURE__*/ S.suspend(() =>
 export type TestDatabaseConnectionRequestConfigurationMethod =
   | "sqlalchemy_form"
   | "dynamic_form";
-export const TestDatabaseConnectionRequestConfigurationMethod =
-  /*@__PURE__*/ S.String;
+export const TestDatabaseConnectionRequestConfigurationMethod = S.String;
 
 /** DB-specific parameters for configuration */
 export type TestDatabaseConnectionRequestParametersMap = {
@@ -19389,7 +19384,7 @@ export const UpdateTagResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** What to do if the table already exists accepts: fail, replace, append */
 export type UploadDatabaseRequestAlreadyExists = "fail" | "replace" | "append";
-export const UploadDatabaseRequestAlreadyExists = /*@__PURE__*/ S.String;
+export const UploadDatabaseRequestAlreadyExists = S.String;
 
 /** [CSV and Excel only] A list of column names that should be parsed as dates. Example: date,timestamp */
 export type UploadDatabaseRequestColumnDatesList = Array<string>;
@@ -19411,7 +19406,7 @@ export const UploadDatabaseRequestNullValuesList = /*@__PURE__*/ S.Array(
 
 /** File type to upload */
 export type UploadDatabaseRequestType = "csv" | "excel" | "columnar";
-export const UploadDatabaseRequestType = /*@__PURE__*/ S.String;
+export const UploadDatabaseRequestType = S.String;
 
 export interface UploadDatabaseRequest {
   pk: number;
@@ -19507,7 +19502,7 @@ export const UploadDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** File type to upload */
 export type UploadDatabaseMetadataRequestType = "csv" | "excel" | "columnar";
-export const UploadDatabaseMetadataRequestType = /*@__PURE__*/ S.String;
+export const UploadDatabaseMetadataRequestType = S.String;
 
 export interface UploadDatabaseMetadataRequest {
   /** The character used to separate values in the CSV file (e.g., a comma, semicolon, or tab). */
@@ -19599,8 +19594,7 @@ export const ValidateDatabaseParametersRequestCatalogMap =
 export type ValidateDatabaseParametersRequestConfigurationMethod =
   | "sqlalchemy_form"
   | "dynamic_form";
-export const ValidateDatabaseParametersRequestConfigurationMethod =
-  /*@__PURE__*/ S.String;
+export const ValidateDatabaseParametersRequestConfigurationMethod = S.String;
 
 /** DB-specific parameters for configuration */
 export type ValidateDatabaseParametersRequestParametersMap = {
@@ -19736,7 +19730,7 @@ export const ValidateDatabaseSqlResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** SQL clause type for filter expressions */
 export type ValidateDatasourceExpressionRequestClause = "WHERE" | "HAVING";
-export const ValidateDatasourceExpressionRequestClause = /*@__PURE__*/ S.String;
+export const ValidateDatasourceExpressionRequestClause = S.String;
 
 /** The type of SQL expression */
 export type ValidateDatasourceExpressionRequestExpressionType =
@@ -19744,8 +19738,7 @@ export type ValidateDatasourceExpressionRequestExpressionType =
   | "metric"
   | "where"
   | "having";
-export const ValidateDatasourceExpressionRequestExpressionType =
-  /*@__PURE__*/ S.String;
+export const ValidateDatasourceExpressionRequestExpressionType = S.String;
 
 export interface ValidateDatasourceExpressionRequest {
   /** The type of datasource */

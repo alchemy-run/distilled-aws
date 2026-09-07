@@ -13,7 +13,7 @@ export type { PosthogOpError, PosthogOpContext };
 
 /** * `all` - all * `label` - label */
 export type ReviewModeEnum = "all" | "label";
-export const ReviewModeEnum = /*@__PURE__*/ S.String;
+export const ReviewModeEnum = S.String;
 
 export interface CreateStamphogRepoConfigRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -204,11 +204,11 @@ export type ResolutionSourceEnum =
   | "slack_name_match"
   | "stamphog_config"
   | "owners_contact";
-export const ResolutionSourceEnum = /*@__PURE__*/ S.String;
+export const ResolutionSourceEnum = S.String;
 
 /** * `pending` - PENDING * `completed` - COMPLETED * `failed` - FAILED */
 export type DigestRunStatusEnum = "pending" | "completed" | "failed";
-export const DigestRunStatusEnum = /*@__PURE__*/ S.String;
+export const DigestRunStatusEnum = S.String;
 
 export interface DigestRun {
   id: string;
@@ -364,7 +364,7 @@ export const GetStamphogReviewRunRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `self_driving` - SELF_DRIVING * `label` - LABEL * `all` - ALL */
 export type ReviewRunTriggerEnum = "self_driving" | "label" | "all";
-export const ReviewRunTriggerEnum = /*@__PURE__*/ S.String;
+export const ReviewRunTriggerEnum = S.String;
 
 /** * `queued` - QUEUED * `gated` - GATED * `reviewing` - REVIEWING * `completed` - COMPLETED * `failed` - FAILED * `superseded` - SUPERSEDED */
 export type ReviewRunStatusEnum =
@@ -374,7 +374,7 @@ export type ReviewRunStatusEnum =
   | "completed"
   | "failed"
   | "superseded";
-export const ReviewRunStatusEnum = /*@__PURE__*/ S.String;
+export const ReviewRunStatusEnum = S.String;
 
 /** * `none` - NONE * `approved` - APPROVED * `refused` - REFUSED * `escalate` - ESCALATE * `wait` - WAIT * `error` - ERROR */
 export type ReviewRunVerdictEnum =
@@ -384,7 +384,7 @@ export type ReviewRunVerdictEnum =
   | "escalate"
   | "wait"
   | "error";
-export const ReviewRunVerdictEnum = /*@__PURE__*/ S.String;
+export const ReviewRunVerdictEnum = S.String;
 
 /** Allowlisted, content-free slice of ``ReviewRun.gate_result``. The raw gate blob nests ``gates``, ``classification``, and ``policy`` sub-objects that carry repository content — changed-file paths (``safe_migration_files``, ``invalid_folder_files``), manifest gate messages, and declared ``policy.scopes`` — which a project member without repo access must not read. Only the terminal decision is exposed. */
 export interface GateResultSummary {
@@ -644,7 +644,7 @@ export type ListStamphogReviewRunsRequestTrigger =
   | "all"
   | "label"
   | "self_driving";
-export const ListStamphogReviewRunsRequestTrigger = /*@__PURE__*/ S.String;
+export const ListStamphogReviewRunsRequestTrigger = S.String;
 
 export interface ListStamphogReviewRunsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

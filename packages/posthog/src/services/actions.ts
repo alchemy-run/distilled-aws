@@ -40,7 +40,7 @@ export class NotFound
   ) {}
 
 export type ActionsDestroyRequestFormat = "csv" | "json";
-export const ActionsDestroyRequestFormat = /*@__PURE__*/ S.String;
+export const ActionsDestroyRequestFormat = S.String;
 
 export interface ActionsDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -73,7 +73,7 @@ export const ActionsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ActionsDestroyResponse>;
 
 export type CreateActionRequestFormat = "csv" | "json";
-export const CreateActionRequestFormat = /*@__PURE__*/ S.String;
+export const CreateActionRequestFormat = S.String;
 
 export type CreateActionRequestTagsList = Array<unknown>;
 export const CreateActionRequestTagsList = /*@__PURE__*/ S.Array(
@@ -112,7 +112,7 @@ export type PropertyFilterTypeEnum =
   | "account_custom_property"
   | "flag"
   | "workflow_variable";
-export const PropertyFilterTypeEnum = /*@__PURE__*/ S.String;
+export const PropertyFilterTypeEnum = S.String;
 
 /** * `exact` - exact * `is_not` - is_not * `icontains` - icontains * `not_icontains` - not_icontains * `starts_with` - starts_with * `not_starts_with` - not_starts_with * `ends_with` - ends_with * `not_ends_with` - not_ends_with * `regex` - regex * `not_regex` - not_regex */
 export type StringMatchOperatorEnum =
@@ -126,7 +126,7 @@ export type StringMatchOperatorEnum =
   | "not_ends_with"
   | "regex"
   | "not_regex";
-export const StringMatchOperatorEnum = /*@__PURE__*/ S.String;
+export const StringMatchOperatorEnum = S.String;
 
 /** Matches string values with text-oriented operators. */
 export interface StringPropertyFilter {
@@ -158,7 +158,7 @@ export type NumericPropertyFilterOperatorEnum =
   | "lt"
   | "gte"
   | "lte";
-export const NumericPropertyFilterOperatorEnum = /*@__PURE__*/ S.String;
+export const NumericPropertyFilterOperatorEnum = S.String;
 
 /** Matches numeric values with comparison operators. */
 export interface NumericPropertyFilter {
@@ -194,7 +194,7 @@ export type ArrayPropertyFilterOperatorEnum =
   | "is_not"
   | "in"
   | "not_in";
-export const ArrayPropertyFilterOperatorEnum = /*@__PURE__*/ S.String;
+export const ArrayPropertyFilterOperatorEnum = S.String;
 
 /** Matches against a list of values (OR semantics for exact/is_not, set membership for in/not_in). */
 export interface ArrayPropertyFilter {
@@ -223,7 +223,7 @@ export type DateOperatorEnum =
   | "is_date_exact"
   | "is_date_before"
   | "is_date_after";
-export const DateOperatorEnum = /*@__PURE__*/ S.String;
+export const DateOperatorEnum = S.String;
 
 /** Matches date/datetime values with date-specific operators. */
 export interface DatePropertyFilter {
@@ -249,7 +249,7 @@ export const DatePropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 /** * `is_set` - is_set * `is_not_set` - is_not_set */
 export type ExistenceOperatorEnum = "is_set" | "is_not_set";
-export const ExistenceOperatorEnum = /*@__PURE__*/ S.String;
+export const ExistenceOperatorEnum = S.String;
 
 /** Checks whether a property is set or not, without comparing values. */
 export interface ExistencePropertyFilter {
@@ -277,7 +277,7 @@ export type ActionStepPropertyFilter =
   | DatePropertyFilter
   | ExistencePropertyFilter;
 export const ActionStepPropertyFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionStepPropertyFilter>;
+  S.Unknown as any as S.Schema<ActionStepPropertyFilter>;
 
 /** Event or person property filters. Each item should have 'key' (string), 'value' (string, number, boolean, or array), optional 'operator' (exact, is_not, is_set, is_not_set, icontains, not_icontains, regex, not_regex, gt, gte, lt, lte), and optional 'type' (event, person). */
 export type ActionStepJSONInputPropertiesList = Array<ActionStepPropertyFilter>;
@@ -287,7 +287,7 @@ export const ActionStepJSONInputPropertiesList = /*@__PURE__*/ S.Array(
 
 /** * `contains` - contains * `regex` - regex * `exact` - exact */
 export type ActionStepMatchingEnum = "contains" | "regex" | "exact";
-export const ActionStepMatchingEnum = /*@__PURE__*/ S.String;
+export const ActionStepMatchingEnum = S.String;
 
 export interface ActionStepJSONInput {
   /** Event name to match (e.g. '$pageview', '$autocapture', or a custom event name). */
@@ -453,14 +453,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -539,7 +539,7 @@ export const ActionOutput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ActionOutput" }) as any as S.Schema<ActionOutput>;
 
 export type GetActionRequestFormat = "csv" | "json";
-export const GetActionRequestFormat = /*@__PURE__*/ S.String;
+export const GetActionRequestFormat = S.String;
 
 export interface GetActionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -565,7 +565,7 @@ export const GetActionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetActionRequest>;
 
 export type ListActionsRequestFormat = "csv" | "json";
-export const ListActionsRequestFormat = /*@__PURE__*/ S.String;
+export const ListActionsRequestFormat = S.String;
 
 export interface ListActionsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -628,7 +628,7 @@ export const PaginatedActionListOutput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PaginatedActionListOutput>;
 
 export type ListActionsReferencesRequestFormat = "csv" | "json";
-export const ListActionsReferencesRequestFormat = /*@__PURE__*/ S.String;
+export const ListActionsReferencesRequestFormat = S.String;
 
 export interface ListActionsReferencesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -694,7 +694,7 @@ export const ListActionsReferencesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListActionsReferencesResponse>;
 
 export type UpdateActionRequestFormat = "csv" | "json";
-export const UpdateActionRequestFormat = /*@__PURE__*/ S.String;
+export const UpdateActionRequestFormat = S.String;
 
 export type UpdateActionRequestTagsList = Array<unknown>;
 export const UpdateActionRequestTagsList = /*@__PURE__*/ S.Array(
@@ -757,7 +757,7 @@ export const UpdateActionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateActionRequest>;
 
 export type UpdateActionsPartialRequestFormat = "csv" | "json";
-export const UpdateActionsPartialRequestFormat = /*@__PURE__*/ S.String;
+export const UpdateActionsPartialRequestFormat = S.String;
 
 export type UpdateActionsPartialRequestTagsList = Array<unknown>;
 export const UpdateActionsPartialRequestTagsList = /*@__PURE__*/ S.Array(

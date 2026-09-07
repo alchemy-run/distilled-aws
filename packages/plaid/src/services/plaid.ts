@@ -650,7 +650,7 @@ export type AccountType =
   | "loan"
   | "brokerage"
   | "other";
-export const AccountType = /*@__PURE__*/ S.String;
+export const AccountType = S.String;
 
 /** See the [Account type schema](https://plaid.com/docs/api/accounts/#account-type-schema) for a full listing of account types and corresponding subtypes. */
 export type AccountSubtype =
@@ -737,7 +737,7 @@ export type AccountSubtype =
   | "ugma"
   | "utma"
   | "variable annuity";
-export const AccountSubtype = /*@__PURE__*/ S.String;
+export const AccountSubtype = S.String;
 
 /** The current verification status of an Auth Item initiated through Automated or Manual micro-deposits. Returned for Auth Items only. `pending_automatic_verification`: The Item is pending automatic verification. `pending_manual_verification`: The Item is pending manual micro-deposit verification. Items remain in this state until the user successfully verifies the micro-deposit. `automatically_verified`: The Item has successfully been automatically verified. `manually_verified`: The Item has successfully been manually verified. `verification_expired`: Plaid was unable to automatically verify the deposit within 7 calendar days and will no longer attempt to validate the Item. Users may retry by submitting their information again through Link. `verification_failed`: The Item failed manual micro-deposit verification because the user exhausted all 3 verification attempts. Users may retry by submitting their information again through Link. `database_matched`: (deprecated) The Item has successfully been verified using Plaid's data sources. Only returned for Auth Items created via Database Match. */
 export type AccountAssetsVerificationStatus =
@@ -748,7 +748,7 @@ export type AccountAssetsVerificationStatus =
   | "verification_expired"
   | "verification_failed"
   | "database_matched";
-export const AccountAssetsVerificationStatus = /*@__PURE__*/ S.String;
+export const AccountAssetsVerificationStatus = S.String;
 
 /** A hierarchical array of the categories to which this transaction belongs. For a full list of categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget). This field will only appear in an Asset Report with Insights. */
 export type AssetReportTransactionCategoryList = Array<string>;
@@ -840,7 +840,7 @@ export type AssetReportTransactionType =
   | "place"
   | "special"
   | "unresolved";
-export const AssetReportTransactionType = /*@__PURE__*/ S.String;
+export const AssetReportTransactionType = S.String;
 
 /** A transaction on the asset report */
 export interface AssetReportTransaction {
@@ -919,7 +919,7 @@ export const AccountAssetsTransactionsList = /*@__PURE__*/ S.Array(
 
 /** Indicates whether a holding lot position is long or short. Possible values are `LONG` and `SHORT`. */
 export type HoldingTaxLotPositionType = "LONG" | "SHORT";
-export const HoldingTaxLotPositionType = /*@__PURE__*/ S.String;
+export const HoldingTaxLotPositionType = S.String;
 
 /** A single acquisition lot within a holding. */
 export interface HoldingTaxLot {
@@ -1042,7 +1042,7 @@ export type InvestmentTransactionType =
   | "cash"
   | "fee"
   | "transfer";
-export const InvestmentTransactionType = /*@__PURE__*/ S.String;
+export const InvestmentTransactionType = S.String;
 
 /** For descriptions of possible transaction types and subtypes, see the [Investment transaction types schema](https://plaid.com/docs/api/accounts/#investment-transaction-types-schema). */
 export type InvestmentTransactionSubtype =
@@ -1094,7 +1094,7 @@ export type InvestmentTransactionSubtype =
   | "trust fee"
   | "unqualified gain"
   | "withdrawal";
-export const InvestmentTransactionSubtype = /*@__PURE__*/ S.String;
+export const InvestmentTransactionSubtype = S.String;
 
 /** A transaction within an investment account. */
 export interface AssetReportInvestmentTransaction {
@@ -1189,7 +1189,7 @@ export type PhoneNumberType =
   | "mobile"
   | "mobile1"
   | "other";
-export const PhoneNumberType = /*@__PURE__*/ S.String;
+export const PhoneNumberType = S.String;
 
 /** A phone number */
 export interface PhoneNumber {
@@ -1216,7 +1216,7 @@ export const OwnerPhoneNumbersList = /*@__PURE__*/ S.Array(
 
 /** The type of email account as described by the financial institution. */
 export type EmailType = "primary" | "secondary" | "other";
-export const EmailType = /*@__PURE__*/ S.String;
+export const EmailType = S.String;
 
 /** An object representing an email address */
 export interface Email {
@@ -1311,7 +1311,7 @@ export const AccountAssetsOwnersList = /*@__PURE__*/ S.Array(
 
 /** How an asset is owned. `association`: Ownership by a corporation, partnership, or unincorporated association, including for-profit and not-for-profit organizations. `individual`: Ownership by an individual. `joint`: Joint ownership by multiple parties. `trust`: Ownership by a revocable or irrevocable trust. */
 export type OwnershipType = "individual" | "joint" | "association" | "trust";
-export const OwnershipType = /*@__PURE__*/ S.String;
+export const OwnershipType = S.String;
 
 /** An object representing a balance held by an account in the past */
 export interface HistoricalBalance {
@@ -1463,7 +1463,7 @@ export type WarningWarningCode =
   | "BANK_INCOME_INSIGHTS_STATUS_IN_PROGRESS"
   | "BANK_INCOME_INSIGHTS_INTERNAL_ERROR"
   | "BANK_INCOME_INSIGHTS_MISMATCHED_DAYS_REQUESTED";
-export const WarningWarningCode = /*@__PURE__*/ S.String;
+export const WarningWarningCode = S.String;
 
 /** A broad categorization of the error. Safe for programmatic use. */
 export type PlaidErrorType =
@@ -1505,7 +1505,7 @@ export type PlaidErrorType =
   | "STATEMENTS_ERROR"
   | "TRANSFER_RECURRING_ERROR"
   | "TRANSFER_REFUND_ERROR";
-export const PlaidErrorType = /*@__PURE__*/ S.String;
+export const PlaidErrorType = S.String;
 
 /** In this product, a request can pertain to more than one Item. If an error is returned for such a request, `causes` will return an array of errors containing a breakdown of these errors on the individual Item level, if any can be identified. `causes` will be provided for the `error_type` `ASSET_REPORT_ERROR` or `CHECK_REPORT_ERROR`. `causes` will also not be populated inside an error nested within a `warning` object. */
 export type CauseCausesList = Array<unknown>;
@@ -1737,7 +1737,7 @@ export type BetaIssuesV1MatchIdentifierType =
   | "REQUEST_ID"
   | "LINK_SESSION_ID"
   | "ACCOUNT_ID";
-export const BetaIssuesV1MatchIdentifierType = /*@__PURE__*/ S.String;
+export const BetaIssuesV1MatchIdentifierType = S.String;
 
 export interface BetaIssuesV1MatchRequest {
   client_id?: string;
@@ -1759,18 +1759,18 @@ export const BetaIssuesV1MatchRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The customer-facing category of an issue. */
 export type BetaIssuesV1IssueType = "ERROR";
-export const BetaIssuesV1IssueType = /*@__PURE__*/ S.String;
+export const BetaIssuesV1IssueType = S.String;
 
 /** The customer-facing severity of an issue. */
 export type BetaIssuesV1IssueSeverity = "CRITICAL" | "HIGH" | "MEDIUM" | "LOW";
-export const BetaIssuesV1IssueSeverity = /*@__PURE__*/ S.String;
+export const BetaIssuesV1IssueSeverity = S.String;
 
 /** A customer-visible effect of an issue. */
 export type BetaIssuesV1IssueBehavior =
   | "NEW_CONNECTIONS_CANNOT_BE_ESTABLISHED"
   | "EXISTING_CONNECTIONS_WILL_NOT_RECEIVE_UPDATES"
   | "EXISTING_CONNECTIONS_WILL_BE_DISCONNECTED";
-export const BetaIssuesV1IssueBehavior = /*@__PURE__*/ S.String;
+export const BetaIssuesV1IssueBehavior = S.String;
 
 /** The customer-visible effects of the issue. */
 export type BetaIssuesV1IssueBehaviorsList = Array<BetaIssuesV1IssueBehavior>;
@@ -1780,7 +1780,7 @@ export const BetaIssuesV1IssueBehaviorsList = /*@__PURE__*/ S.Array(
 
 /** The party responsible for resolving an issue. */
 export type BetaIssuesV1IssueAttribution = "USER" | "PLAID" | "DATA_PARTNER";
-export const BetaIssuesV1IssueAttribution = /*@__PURE__*/ S.String;
+export const BetaIssuesV1IssueAttribution = S.String;
 
 /** The customer-facing resolution state of an issue. */
 export type BetaIssuesV1IssueStatus =
@@ -1792,7 +1792,7 @@ export type BetaIssuesV1IssueStatus =
   | "PENDING_NOTIFICATION"
   | "DATA_PARTNER_NOTIFIED"
   | "DATA_PARTNER_FIX_IN_PROGRESS";
-export const BetaIssuesV1IssueStatus = /*@__PURE__*/ S.String;
+export const BetaIssuesV1IssueStatus = S.String;
 
 /** The client-specific impact of an error issue. */
 export interface BetaIssuesV1IssueImpact {
@@ -1850,7 +1850,7 @@ export type Products =
   | "pay_by_bank"
   | "protect_linked_bank"
   | "protect_transactions";
-export const Products = /*@__PURE__*/ S.String;
+export const Products = S.String;
 
 /** The Plaid products affected by the issue. */
 export type BetaIssuesV1IssueAffectedProductsList = Array<Products>;
@@ -1862,7 +1862,7 @@ export const BetaIssuesV1IssueAffectedProductsList = /*@__PURE__*/ S.Array(
 export type BetaIssuesV1IssueResolutionType =
   | "MANUAL_RESOLUTION"
   | "AUTOMATED_RESOLUTION";
-export const BetaIssuesV1IssueResolutionType = /*@__PURE__*/ S.String;
+export const BetaIssuesV1IssueResolutionType = S.String;
 
 /** A recorded reduction in the impact of an issue. */
 export interface BetaIssuesV1IssueResolutionEvent {
@@ -1985,7 +1985,7 @@ export type ReasonCode =
   | "MS03"
   | "RR04"
   | "RUTA";
-export const ReasonCode = /*@__PURE__*/ S.String;
+export const ReasonCode = S.String;
 
 export interface CancelTransferRequest {
   client_id?: string;
@@ -2125,7 +2125,7 @@ export const AssetReportCreateRequestOptionsProductsList =
 
 /** Add-ons that should be included in the Asset Report. `investments`: The Investments add-on `fast_assets`: The Fast Assets add-on */
 export type AssetReportAddOns = "investments" | "fast_assets";
-export const AssetReportAddOns = /*@__PURE__*/ S.String;
+export const AssetReportAddOns = S.String;
 
 /** A list of add-ons that should be included in the Asset Report. When Fast Assets is requested, Plaid will create two versions of the Asset Report: the Fast Asset Report, which will contain only Identity and Balance information, and the Full Asset Report, which will also contain Transactions information. A `PRODUCT_READY` webhook will be fired for each Asset Report when it is ready, and the `report_type` field will indicate whether the webhook is firing for the `FULL` or `FAST` Asset Report. To retrieve the Fast Asset Report, call `/asset_report/get` with `fast_report` set to `true`. There is no additional charge for using Fast Assets. To create a Fast Asset Report, Plaid must successfully retrieve both Identity and Balance data; if Plaid encounters an error obtaining this data, the Fast Asset Report will not be created. However, as long as Plaid can obtain Transactions data, the Full Asset Report will still be available. When Investments is requested, `investments` must be specified in the `optional_products` array when initializing Link. */
 export type AssetReportCreateRequestOptionsAddOnsList = Array<
@@ -2310,7 +2310,7 @@ export type PartnerEndCustomerCRAUseCase =
   | "BANK_ACCOUNT_OPENING"
   | "IDENTITY_VERIFICATION_FRAUD_PREVENTION"
   | "COLLECTIONS_DEBT_RECOVERY";
-export const PartnerEndCustomerCRAUseCase = /*@__PURE__*/ S.String;
+export const PartnerEndCustomerCRAUseCase = S.String;
 
 /** List of use cases for the given permissible purpose. */
 export type PartnerEndCustomerCRAUseCasesUseCasesList = Array<
@@ -2460,7 +2460,7 @@ export type PartnerEndCustomerStatus =
   | "ACTIVE"
   | "DENIED"
   | "MORE_INFORMATION_NEEDED";
-export const PartnerEndCustomerStatus = /*@__PURE__*/ S.String;
+export const PartnerEndCustomerStatus = S.String;
 
 /** Mapping of product names to their current status. */
 export type PartnerEndCustomerProductStatuses = {
@@ -2482,7 +2482,7 @@ export type PartnerEndCustomerRequirementDue =
   | "address"
   | "bank_addendum_acceptance"
   | "questionnaires.cra";
-export const PartnerEndCustomerRequirementDue = /*@__PURE__*/ S.String;
+export const PartnerEndCustomerRequirementDue = S.String;
 
 /** A list of fields that are still required to be submitted. */
 export type PartnerEndCustomerRequirementsDue =
@@ -2614,7 +2614,7 @@ export const CreateBusinessVerificationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the overall business verification */
 export type BusinessVerificationStatusOverall = "active" | "success" | "failed";
-export const BusinessVerificationStatusOverall = /*@__PURE__*/ S.String;
+export const BusinessVerificationStatusOverall = S.String;
 
 /** Alternative business names that were submitted as search inputs. */
 export type BusinessSearchTermsAlternativeNamesList = Array<string>;
@@ -2672,7 +2672,7 @@ export type BusinessVerificationStatusKYBCheck =
   | "active"
   | "success"
   | "failed";
-export const BusinessVerificationStatusKYBCheck = /*@__PURE__*/ S.String;
+export const BusinessVerificationStatusKYBCheck = S.String;
 
 /** An enum indicating the match type between data provided by user and data checked against an external data source. `match` indicates that the provided input data was a strong match against external data. `partial_match` indicates the data approximately matched against external data. For example, "Knope" vs. "Knope-Wyatt" for last name. `no_match` indicates that Plaid was able to perform a check against an external data source and it did not match the provided input data. `no_data` indicates that Plaid was unable to find external data to compare against the provided input data. `no_input` indicates that Plaid was unable to perform a check because no information was provided for this field by the end user. */
 export type MatchSummaryCode =
@@ -2681,7 +2681,7 @@ export type MatchSummaryCode =
   | "no_match"
   | "no_data"
   | "no_input";
-export const MatchSummaryCode = /*@__PURE__*/ S.String;
+export const MatchSummaryCode = S.String;
 
 /** Summary of how a specific business field matched against data provider results */
 export interface BusinessFieldMatchSummary {
@@ -2738,7 +2738,7 @@ export type BusinessEntityType =
   | "insurance"
   | "other"
   | "unknown";
-export const BusinessEntityType = /*@__PURE__*/ S.String;
+export const BusinessEntityType = S.String;
 
 /** Detailed address information for a business from data provider */
 export interface ProviderBusinessAddress {
@@ -2888,7 +2888,7 @@ export type BusinessVerificationStatusRiskCheck =
   | "active"
   | "success"
   | "failed";
-export const BusinessVerificationStatusRiskCheck = /*@__PURE__*/ S.String;
+export const BusinessVerificationStatusRiskCheck = S.String;
 
 /** Nullable industry prediction details. */
 export interface BusinessIndustryPredictionNullable {
@@ -2929,16 +2929,15 @@ export type BusinessVerificationStatusWebPresenceCheck =
   | "success"
   | "failed"
   | "not_applicable";
-export const BusinessVerificationStatusWebPresenceCheck =
-  /*@__PURE__*/ S.String;
+export const BusinessVerificationStatusWebPresenceCheck = S.String;
 
 /** Tri-state boolean status, where `no_data` indicates the check could not determine a value. */
 export type BusinessCheckBooleanStatus = "yes" | "no" | "no_data";
-export const BusinessCheckBooleanStatus = /*@__PURE__*/ S.String;
+export const BusinessCheckBooleanStatus = S.String;
 
 /** Build status of the business website. */
 export type BusinessWebsiteBuildStatus = "coming_soon" | "active" | "inactive";
-export const BusinessWebsiteBuildStatus = /*@__PURE__*/ S.String;
+export const BusinessWebsiteBuildStatus = S.String;
 
 /** WHOIS metadata for the business website domain. */
 export interface BusinessWhoisRecord {
@@ -3060,7 +3059,7 @@ export const CreateCraCheckReportRequestProductsList = /*@__PURE__*/ S.Array(
 
 /** The types of GSE Reports supported by the Plaid API */
 export type GSEReportType = "VOA" | "EMPLOYMENT_REFRESH";
-export const GSEReportType = /*@__PURE__*/ S.String;
+export const GSEReportType = S.String;
 
 /** Specifies which types of reports should be made available to GSEs. */
 export type CraCheckReportGSEOptionsReportTypesList = Array<
@@ -3088,7 +3087,7 @@ export type CraCheckReportVerificationGetReportType =
   | "VOA"
   | "EMPLOYMENT_REFRESH"
   | "INCOME";
-export const CraCheckReportVerificationGetReportType = /*@__PURE__*/ S.String;
+export const CraCheckReportVerificationGetReportType = S.String;
 
 /** Specifies which types of home lending reports to generate. */
 export type CraCheckReportHomeLendingReportOptionsReportsRequestedList = Array<
@@ -3157,7 +3156,7 @@ export const CraCheckReportCreateBaseReportOptions = /*@__PURE__*/ S.suspend(
 
 /** The version of cashflow attributes. Required if using Cash Flow Insights. */
 export type CashflowAttributesVersion = "v1.0" | "v2.0" | "CFI1";
-export const CashflowAttributesVersion = /*@__PURE__*/ S.String;
+export const CashflowAttributesVersion = S.String;
 
 /** Defines configuration options to generate Cashflow Insights */
 export interface CraCheckReportCreateCashflowInsightsOptions {
@@ -3174,23 +3173,23 @@ export const CraCheckReportCreateCashflowInsightsOptions =
 
 /** The version of Prism FirstDetect. If not specified, will default to v3. */
 export type PrismFirstDetectVersion = "3";
-export const PrismFirstDetectVersion = /*@__PURE__*/ S.String;
+export const PrismFirstDetectVersion = S.String;
 
 /** The version of Prism Detect */
 export type PrismDetectVersion = "4.1" | "4";
-export const PrismDetectVersion = /*@__PURE__*/ S.String;
+export const PrismDetectVersion = S.String;
 
 /** The version of Prism CashScore. If not specified, will default to v3. */
 export type PrismCashScoreVersion = "4.1" | "4" | "3_lite" | "3";
-export const PrismCashScoreVersion = /*@__PURE__*/ S.String;
+export const PrismCashScoreVersion = S.String;
 
 /** The version of Prism Extend */
 export type PrismExtendVersion = "4.1" | "4";
-export const PrismExtendVersion = /*@__PURE__*/ S.String;
+export const PrismExtendVersion = S.String;
 
 /** The version of Prism Insights. If not specified, will default to v3. */
 export type PrismInsightsVersion = "4.1" | "4" | "3";
-export const PrismInsightsVersion = /*@__PURE__*/ S.String;
+export const PrismInsightsVersion = S.String;
 
 /** The versions of Prism products to evaluate */
 export interface PrismVersions {
@@ -3212,11 +3211,11 @@ export const PrismVersions = /*@__PURE__*/ S.suspend(() =>
 
 /** The version of the UltraFICO® score. */
 export type CraPartnerInsightsUltraFicoScoreVersion = "1.0";
-export const CraPartnerInsightsUltraFicoScoreVersion = /*@__PURE__*/ S.String;
+export const CraPartnerInsightsUltraFicoScoreVersion = S.String;
 
 /** The credit bureau that provided the base FICO score. */
 export type CraPartnerInsightsBureau = "EQUIFAX" | "EXPERIAN" | "TRANSUNION";
-export const CraPartnerInsightsBureau = /*@__PURE__*/ S.String;
+export const CraPartnerInsightsBureau = S.String;
 
 /** Reason codes associated with the score, in priority order. May contain up to 4 items. */
 export type CraPartnerInsightsBaseFicoScoreReasonCodesList = Array<string>;
@@ -3227,7 +3226,7 @@ export const CraPartnerInsightsBaseFicoScoreReasonCodesList =
 
 /** The version of the base FICO score model. */
 export type CraPartnerInsightsBaseFicoScoreVersion = "8" | "9" | "10" | "10T";
-export const CraPartnerInsightsBaseFicoScoreVersion = /*@__PURE__*/ S.String;
+export const CraPartnerInsightsBaseFicoScoreVersion = S.String;
 
 /** Details about the base FICO score associated with an UltraFICO® scoring request. */
 export interface CraPartnerInsightsBaseFicoScore {
@@ -3334,7 +3333,7 @@ export const CraCheckReportCreatePartnerInsightsOptions =
 
 /** The version of the LendScore to use. Required if using LendScore. */
 export type PlaidLendScoreVersion = "v1.0" | "v2.0" | "LS1";
-export const PlaidLendScoreVersion = /*@__PURE__*/ S.String;
+export const PlaidLendScoreVersion = S.String;
 
 /** Defines configuration options to generate the LendScore */
 export interface CraCheckReportCreateLendScoreOptions {
@@ -3351,7 +3350,7 @@ export const CraCheckReportCreateLendScoreOptions = /*@__PURE__*/ S.suspend(
 
 /** The version of Network Insights. Required if using Network Insights. */
 export type NetworkInsightsVersion = "NI1";
-export const NetworkInsightsVersion = /*@__PURE__*/ S.String;
+export const NetworkInsightsVersion = S.String;
 
 /** Defines configuration options to generate Network Insights */
 export interface CraCheckReportCreateNetworkInsightsOptions {
@@ -3396,7 +3395,7 @@ export const IncomeInsightsFilter = /*@__PURE__*/ S.suspend(() =>
 
 /** The version of Income Insights to use. This value is not shared across API calls for the same resource. If it is omitted from a request, the default version is used, even if a version was set in an earlier call such as `/link/token/create` or `/cra/check_report/create`. */
 export type IncomeInsightsVersion = "II2";
-export const IncomeInsightsVersion = /*@__PURE__*/ S.String;
+export const IncomeInsightsVersion = S.String;
 
 /** Defines configuration options to generate Income Insights. */
 export interface CraCheckReportCreateIncomeInsightsOptions {
@@ -3423,7 +3422,7 @@ export type ConsumerReportPermissiblePurpose =
   | "WRITTEN_INSTRUCTION_PREQUALIFICATION"
   | "WRITTEN_INSTRUCTION_OTHER"
   | "ELIGIBILITY_FOR_GOVT_BENEFITS";
-export const ConsumerReportPermissiblePurpose = /*@__PURE__*/ S.String;
+export const ConsumerReportPermissiblePurpose = S.String;
 
 export interface CreateCraCheckReportRequest {
   client_id?: string;
@@ -3500,15 +3499,15 @@ export const CraCheckReportCreateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Determines whose items are used. `PLAID_NETWORK` (default) uses the Plaid Network view of the user's profile. `CLIENT_USER` uses only the items linked by this client. */
 export type CraReportScope = "PLAID_NETWORK" | "CLIENT_USER";
-export const CraReportScope = /*@__PURE__*/ S.String;
+export const CraReportScope = S.String;
 
 /** The cadence at which products are generated and webhooks are fired. If the Qualify product is requested, cadence must be null or omitted, because Qualify's generation cadence is controlled by Plaid. */
 export type CraSubscriptionCadence = "DAILY";
-export const CraSubscriptionCadence = /*@__PURE__*/ S.String;
+export const CraSubscriptionCadence = S.String;
 
 /** The Qualify product discriminator. */
 export type CraQualifyProductConfigProduct = "cra_qualify";
-export const CraQualifyProductConfigProduct = /*@__PURE__*/ S.String;
+export const CraQualifyProductConfigProduct = S.String;
 
 /** The Qualify product at a given version. Qualify accepts no additional configuration today. */
 export interface CraQualifyProductConfig {
@@ -3527,7 +3526,7 @@ export const CraQualifyProductConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** The Base Report product discriminator. */
 export type CraBaseReportProductConfigProduct = "cra_base_report";
-export const CraBaseReportProductConfigProduct = /*@__PURE__*/ S.String;
+export const CraBaseReportProductConfigProduct = S.String;
 
 /** The Base Report product at a given version. Base Report accepts no additional configuration today. */
 export interface CraBaseReportProductConfig {
@@ -3546,7 +3545,7 @@ export const CraBaseReportProductConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** The Income Insights product discriminator. */
 export type CraIncomeInsightsProductConfigProduct = "cra_income_insights";
-export const CraIncomeInsightsProductConfigProduct = /*@__PURE__*/ S.String;
+export const CraIncomeInsightsProductConfigProduct = S.String;
 
 /** The Income Insights product at a given version, together with options for additional configuration. */
 export interface CraIncomeInsightsProductConfig {
@@ -3571,7 +3570,7 @@ export type CraSubscriptionProductConfig =
   | CraBaseReportProductConfig
   | CraIncomeInsightsProductConfig;
 export const CraSubscriptionProductConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CraSubscriptionProductConfig>;
+  S.Unknown as any as S.Schema<CraSubscriptionProductConfig>;
 
 /** The products included in this subscription. */
 export type CreateCraServicingSubscriptionRequestProductsList =
@@ -3743,7 +3742,7 @@ export type IDNumberType =
   | "us_ssn"
   | "us_ssn_last_4"
   | "za_smart_id";
-export const IDNumberType = /*@__PURE__*/ S.String;
+export const IDNumberType = S.String;
 
 /** ID number submitted by the user, currently used only for the Identity Verification product. If the user has not submitted this data yet, this field will be `null`. Otherwise, both fields are guaranteed to be filled. */
 export interface UserIDNumber {
@@ -3871,7 +3870,7 @@ export type IdentityVerificationStatus =
   | "expired"
   | "canceled"
   | "pending_review";
-export const IdentityVerificationStatus = /*@__PURE__*/ S.String;
+export const IdentityVerificationStatus = S.String;
 
 /** The status of a step in the Identity Verification process. */
 export type IdentityVerificationStepStatus =
@@ -3886,7 +3885,7 @@ export type IdentityVerificationStepStatus =
   | "pending_review"
   | "manually_approved"
   | "manually_rejected";
-export const IdentityVerificationStepStatus = /*@__PURE__*/ S.String;
+export const IdentityVerificationStepStatus = S.String;
 
 /** Each step will be one of the following values: `active` - This step is the user's current step. They are either in the process of completing this step, or they recently closed their Identity Verification attempt while in the middle of this step. Only one step will be marked as `active` at any given point. `success` - The Identity Verification attempt has completed this step. `failed` - The user failed this step. This can either cause the user to fail the session as a whole, or cause them to fall back to another step depending on how the Identity Verification template is configured. A failed step does not imply a failed session. `waiting_for_prerequisite` - The user needs to complete another step first, before they progress to this step. This step may never run, depending on if the user fails an earlier step or if the step is only run as a fallback. `not_applicable` - This step will not be run for this session. `skipped` - The retry instructions that created this Identity Verification attempt specified that this step should be skipped. `expired` - This step had not yet been completed when the Identity Verification attempt as a whole expired. `canceled` - The Identity Verification attempt was canceled before the user completed this step. `pending_review` - The Identity Verification attempt template was configured to perform a screening that had one or more hits needing review. `manually_approved` - The step was manually overridden to pass by a team member in the dashboard. `manually_rejected` - The step was manually overridden to fail by a team member in the dashboard. */
 export interface IdentityVerificationStepSummary {
@@ -3914,7 +3913,7 @@ export const IdentityVerificationStepSummary = /*@__PURE__*/ S.suspend(() =>
 
 /** An outcome status for this specific document submission. Distinct from the overall `documentary_verification.status` that summarizes the verification outcome from one or more documents. */
 export type DocumentStatus = "success" | "failed" | "manually_approved";
-export const DocumentStatus = /*@__PURE__*/ S.String;
+export const DocumentStatus = S.String;
 
 /** URLs for downloading original and cropped images for this document submission. The URLs are designed to only allow downloading, not hot linking, so the URL will only serve the document image for 60 seconds before expiring. The expiration time is 60 seconds after the `GET` request for the associated Identity Verification attempt. A new expiring URL is generated with each request, so you can always rerequest the Identity Verification attempt if one of your URLs expires. */
 export interface PhysicalDocumentImages {
@@ -3944,7 +3943,7 @@ export type PhysicalDocumentCategory =
   | "residence_permit_card"
   | "resident_card"
   | "visa";
-export const PhysicalDocumentCategory = /*@__PURE__*/ S.String;
+export const PhysicalDocumentCategory = S.String;
 
 /** The address extracted from the document. The address must at least contain the following fields to be a valid address: `street`, `city`, `country`. If any are missing or unable to be extracted, the address will be null. `region`, and `postal_code` may be null based on the addressing system. For example: Addresses from the United Kingdom will not include a region Addresses from Hong Kong will not include postal code Note: Optical Character Recognition (OCR) technology may sometimes extract incorrect data from a document. */
 export interface IdentityVerificationDocumentAddressResponse {
@@ -4007,11 +4006,11 @@ export type DocumentAuthenticityMatchCode =
   | "partial_match"
   | "no_match"
   | "no_data";
-export const DocumentAuthenticityMatchCode = /*@__PURE__*/ S.String;
+export const DocumentAuthenticityMatchCode = S.String;
 
 /** A high level description of the quality of the image the user submitted. For example, an image that is blurry, distorted by glare from a nearby light source, or improperly framed might be marked as low or medium quality. Poor quality images are more likely to fail OCR and/or template conformity checks. Note: By default, Plaid will let a user recapture document images twice before failing the entire session if we attribute the failure to low image quality. */
 export type ImageQuality = "high" | "medium" | "low";
-export const ImageQuality = /*@__PURE__*/ S.String;
+export const ImageQuality = S.String;
 
 /** A match summary describing the cross comparison between the subject's name, extracted from the document image, and the name they separately provided to the identity verification attempt. */
 export type DocumentNameMatchCode =
@@ -4019,7 +4018,7 @@ export type DocumentNameMatchCode =
   | "partial_match"
   | "no_match"
   | "no_data";
-export const DocumentNameMatchCode = /*@__PURE__*/ S.String;
+export const DocumentNameMatchCode = S.String;
 
 /** A match summary describing the cross comparison between the subject's date of birth, extracted from the document image, and the date of birth they separately provided to the identity verification attempt. */
 export type DocumentDateOfBirthMatchCode =
@@ -4027,15 +4026,15 @@ export type DocumentDateOfBirthMatchCode =
   | "partial_match"
   | "no_match"
   | "no_data";
-export const DocumentDateOfBirthMatchCode = /*@__PURE__*/ S.String;
+export const DocumentDateOfBirthMatchCode = S.String;
 
 /** A description of whether the associated document was expired when the verification was performed. Note: In the case where an expiration date is not present on the document or failed to be extracted, this value will be `no_data`. */
 export type ExpirationDate = "not_expired" | "expired" | "no_data";
-export const ExpirationDate = /*@__PURE__*/ S.String;
+export const ExpirationDate = S.String;
 
 /** A binary match indicator specifying whether the country that issued the provided document matches the country that the user separately provided to Plaid. Note: You can configure whether a `no_match` on `issuing_country` fails the `documentary_verification` by editing your Plaid Template. */
 export type IssuingCountry = "match" | "no_match";
-export const IssuingCountry = /*@__PURE__*/ S.String;
+export const IssuingCountry = S.String;
 
 /** Analysis of the data extracted from the submitted document. */
 export interface PhysicalDocumentExtractedDataAnalysis {
@@ -4058,11 +4057,11 @@ export const PhysicalDocumentExtractedDataAnalysis = /*@__PURE__*/ S.suspend(
 
 /** The outcome of the fraud check. `success` - The check passed. `failed` - The check did not pass. */
 export type FraudCheckOutcome = "success" | "failed";
-export const FraudCheckOutcome = /*@__PURE__*/ S.String;
+export const FraudCheckOutcome = S.String;
 
 /** The outcome of the fraud check. `success` - The check passed. `failed` - The check did not pass. `no_data` - The check could not be performed due to insufficient data. */
 export type FraudCheckOutcomeWithNoData = "success" | "failed" | "no_data";
-export const FraudCheckOutcomeWithNoData = /*@__PURE__*/ S.String;
+export const FraudCheckOutcomeWithNoData = S.String;
 
 /** Details about the fraud analysis performed on the document. */
 export interface FraudAnalysisDetails {
@@ -4097,7 +4096,7 @@ export const FraudAnalysisDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** The outcome of the image quality check. `success` - The check passed. `failed` - The check did not pass. */
 export type ImageQualityOutcome = "success" | "failed";
-export const ImageQualityOutcome = /*@__PURE__*/ S.String;
+export const ImageQualityOutcome = S.String;
 
 /** Details about the image quality of the document. */
 export interface ImageQualityDetails {
@@ -4120,7 +4119,7 @@ export const ImageQualityDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** The outcome of the human review check, when available. The following values are possible: `success` - The document passed the check. `failed` - The document failed the check. `no_data` - The document was submitted, but the document specialist review was not completed in time. */
 export type HumanReviewStatus = "success" | "failed" | "no_data";
-export const HumanReviewStatus = /*@__PURE__*/ S.String;
+export const HumanReviewStatus = S.String;
 
 /** Details about the human review check, which refers to a check that is performed by a document specialist. */
 export interface HumanReview {
@@ -4134,7 +4133,7 @@ export const HumanReview = /*@__PURE__*/ S.suspend(() =>
 
 /** The outcome of checking the particular field against state databases. `match` - The field is an exact match with the state database. `no_match` - The field is not an exact match with the state database. `no_data` - The field was unable to be checked against state databases. */
 export type AAMVAMatchResult = "match" | "no_match" | "no_data";
-export const AAMVAMatchResult = /*@__PURE__*/ S.String;
+export const AAMVAMatchResult = S.String;
 
 /** The outcome of checking the associated hit against state databases. `match` - The field is an exact match with the state database. `partial_match` - The field is a partial match with the state database. `no_match` - The field is not an exact match with the state database. `no_data` - The field was unable to be checked against state databases. */
 export type AAMVADetailedMatchResult =
@@ -4142,7 +4141,7 @@ export type AAMVADetailedMatchResult =
   | "partial_match"
   | "no_match"
   | "no_data";
-export const AAMVADetailedMatchResult = /*@__PURE__*/ S.String;
+export const AAMVADetailedMatchResult = S.String;
 
 /** Analyzed AAMVA data for the associated hit. Note: This field is only available for U.S. driver's licenses issued by participating states. */
 export interface AAMVAAnalysis {
@@ -4253,11 +4252,11 @@ export const DocumentaryVerification = /*@__PURE__*/ S.suspend(() =>
 
 /** The outcome status for the associated Identity Verification attempt's `selfie_check` step. This field will always have the same value as `steps.selfie_check`. */
 export type SelfieCheckStatus = "success" | "failed";
-export const SelfieCheckStatus = /*@__PURE__*/ S.String;
+export const SelfieCheckStatus = S.String;
 
 /** An outcome status for this specific selfie. Distinct from the overall `selfie_check.status` that summarizes the verification outcome from one or more selfies. */
 export type SelfieStatus = "success" | "failed";
-export const SelfieStatus = /*@__PURE__*/ S.String;
+export const SelfieStatus = S.String;
 
 /** The image or video capture of a selfie. Only one of `image_url` or `video_url` will be populated per selfie. In the vast majority of sessions Plaid records a short video of the user, so `video_url` is populated and `image_url` is `null`. `image_url` is only populated in the rare passive-liveness fallback case, where the user's device could not complete the standard video liveness capture (for example, a camera or streaming error) and submitted a single still image instead. */
 export interface SelfieCapture {
@@ -4276,15 +4275,15 @@ export type SelfieAnalysisDocumentComparison =
   | "match"
   | "no_match"
   | "no_input";
-export const SelfieAnalysisDocumentComparison = /*@__PURE__*/ S.String;
+export const SelfieAnalysisDocumentComparison = S.String;
 
 /** Assessment of whether the selfie capture is of a real human being, as opposed to a picture of a human on a screen, a picture of a paper cut out, someone wearing a mask, or a deepfake. */
 export type SelfieAnalysisLivenessCheck = "success" | "failed";
-export const SelfieAnalysisLivenessCheck = /*@__PURE__*/ S.String;
+export const SelfieAnalysisLivenessCheck = S.String;
 
 /** An enum indicating whether the reported age aligns with the estimated selfie capture age range. `match` indicates that the reported age falls within the estimated selfie capture age range. `warning` indicates that the reported age falls outside the estimated selfie capture age range, but is close enough that the result should be reviewed. `no_match` indicates that the reported age falls far outside the estimated selfie capture age range. `no_data` indicates that there was not enough data available at age-estimation time to compare the reported age against the estimated selfie capture age range. */
 export type SelfieAgeCheckStatus = "match" | "warning" | "no_match" | "no_data";
-export const SelfieAgeCheckStatus = /*@__PURE__*/ S.String;
+export const SelfieAgeCheckStatus = S.String;
 
 /** Age-estimation results from the selfie capture. This field is `null` when an age range could not be estimated from the selfie capture. */
 export interface SelfieAgeCheck {
@@ -4307,7 +4306,7 @@ export const SelfieAgeCheck = /*@__PURE__*/ S.suspend(() =>
 
 /** Outcome of the facial analysis for a specific facial feature. */
 export type SelfieAnalysisFacialAnalysisOutcome = "success" | "failed";
-export const SelfieAnalysisFacialAnalysisOutcome = /*@__PURE__*/ S.String;
+export const SelfieAnalysisFacialAnalysisOutcome = S.String;
 
 /** Analysis of the facial features of the selfie when compared to the face in the uploaded document, if one is present. */
 export interface SelfieAnalysisFacialAnalysis {
@@ -4399,11 +4398,11 @@ export const SelfieCheck = /*@__PURE__*/ S.suspend(() =>
 
 /** Field describing whether the associated address is a post office box. Will be `yes` when a P.O. box is detected, `no` when Plaid confirmed the address is not a P.O. box, and `no_data` when Plaid was not able to determine if the address is a P.O. box. */
 export type POBoxStatus = "yes" | "no" | "no_data";
-export const POBoxStatus = /*@__PURE__*/ S.String;
+export const POBoxStatus = S.String;
 
 /** Field describing whether the associated address is being used for commercial or residential purposes. Note: This value will be `no_data` when Plaid does not have sufficient data to determine the address's use. */
 export type AddressPurposeLabel = "residential" | "commercial" | "no_data";
-export const AddressPurposeLabel = /*@__PURE__*/ S.String;
+export const AddressPurposeLabel = S.String;
 
 /** An enum indicating the match type between data provided by user and data checked against an external data source. `match` indicates that the provided input data was a strong match against external data. `partial_match` indicates the data approximately matched against external data. For example, "Knope" vs. "Knope-Wyatt" for last name. `no_match` indicates that Plaid was able to perform a check against an external data source and it did not match the provided input data. `no_data` indicates that Plaid was unable to find external data to compare against the provided input data. `no_input` indicates that Plaid was unable to perform a check because no information was provided for this field by the end user. */
 export type HiddenMatchSummaryCode =
@@ -4412,7 +4411,7 @@ export type HiddenMatchSummaryCode =
   | "no_match"
   | "no_data"
   | "no_input";
-export const HiddenMatchSummaryCode = /*@__PURE__*/ S.String;
+export const HiddenMatchSummaryCode = S.String;
 
 /** Result summary object specifying how the `address` field matched for fields that are only present on an international KYC check. */
 export interface KYCCheckDetailsInternationalAddress {
@@ -4545,19 +4544,19 @@ export type RiskCheckBehaviorUserInteractionsLabel =
   | "neutral"
   | "risky"
   | "no_data";
-export const RiskCheckBehaviorUserInteractionsLabel = /*@__PURE__*/ S.String;
+export const RiskCheckBehaviorUserInteractionsLabel = S.String;
 
 /** Field describing the outcome of a fraud ring behavior risk check. `yes` indicates that fraud ring activity was detected. `no` indicates that fraud ring activity was not detected. `no_data` indicates there was not enough information available to give an accurate signal. */
 export type RiskCheckBehaviorFraudRingDetectedLabel = "yes" | "no" | "no_data";
-export const RiskCheckBehaviorFraudRingDetectedLabel = /*@__PURE__*/ S.String;
+export const RiskCheckBehaviorFraudRingDetectedLabel = S.String;
 
 /** Field describing the outcome of a bot detection behavior risk check. `yes` indicates that automated activity was detected. `no` indicates that automated activity was not detected. `no_data` indicates there was not enough information available to give an accurate signal. */
 export type RiskCheckBehaviorBotDetectedLabel = "yes" | "no" | "no_data";
-export const RiskCheckBehaviorBotDetectedLabel = /*@__PURE__*/ S.String;
+export const RiskCheckBehaviorBotDetectedLabel = S.String;
 
 /** Risk level for the given risk check type, when available. */
 export type RiskLevelWithNoData = "low" | "medium" | "high" | "no_data";
-export const RiskLevelWithNoData = /*@__PURE__*/ S.String;
+export const RiskLevelWithNoData = S.String;
 
 /** Result summary object specifying values for `behavior` attributes of risk check, when available. */
 export interface RiskCheckBehavior {
@@ -4579,31 +4578,31 @@ export const RiskCheckBehavior = /*@__PURE__*/ S.suspend(() =>
 
 /** SMTP-MX check to confirm the email address exists if known. */
 export type RiskCheckEmailIsDeliverableStatus = "yes" | "no" | "no_data";
-export const RiskCheckEmailIsDeliverableStatus = /*@__PURE__*/ S.String;
+export const RiskCheckEmailIsDeliverableStatus = S.String;
 
 /** Indicates whether the email address domain is a free provider such as Gmail or Hotmail if known. */
 export type RiskCheckEmailDomainIsFreeProvider = "yes" | "no" | "no_data";
-export const RiskCheckEmailDomainIsFreeProvider = /*@__PURE__*/ S.String;
+export const RiskCheckEmailDomainIsFreeProvider = S.String;
 
 /** Indicates whether the email address domain is custom if known, i.e. a company domain and not free or disposable. */
 export type RiskCheckEmailDomainIsCustom = "yes" | "no" | "no_data";
-export const RiskCheckEmailDomainIsCustom = /*@__PURE__*/ S.String;
+export const RiskCheckEmailDomainIsCustom = S.String;
 
 /** Indicates whether the email domain is listed as disposable if known. Disposable domains are often used to create email addresses that are part of a fake set of user details. */
 export type RiskCheckEmailDomainIsDisposable = "yes" | "no" | "no_data";
-export const RiskCheckEmailDomainIsDisposable = /*@__PURE__*/ S.String;
+export const RiskCheckEmailDomainIsDisposable = S.String;
 
 /** Indicates whether the email address top level domain, which is the last part of the domain, is fraudulent or risky if known. In most cases, a suspicious top level domain is also associated with a disposable or high-risk domain. */
 export type RiskCheckEmailTopLevelDomainIsSuspicious = "yes" | "no" | "no_data";
-export const RiskCheckEmailTopLevelDomainIsSuspicious = /*@__PURE__*/ S.String;
+export const RiskCheckEmailTopLevelDomainIsSuspicious = S.String;
 
 /** Indicates whether the email address domain is an educational institution domain if known. */
 export type RiskCheckEmailIsEdu = "yes" | "no" | "no_data";
-export const RiskCheckEmailIsEdu = /*@__PURE__*/ S.String;
+export const RiskCheckEmailIsEdu = S.String;
 
 /** Indicates whether the email address includes the date of birth or year of birth if known. */
 export type RiskCheckEmailIncludesDateOfBirth = "yes" | "no" | "no_data";
-export const RiskCheckEmailIncludesDateOfBirth = /*@__PURE__*/ S.String;
+export const RiskCheckEmailIncludesDateOfBirth = S.String;
 
 /** Indicates whether the provided name matches the email address according to the KYC name-matches-email inference result if known. `match` - "The email's name identifiers match the user's name." `partial_match` - "The email's name identifiers partially match the user's name." `no_match` - "The email's name identifiers do not match the user's name." `indeterminate` - "The email does not contain any name identifiers, and a match could not be determined." `no_input` - "The user's profile does not contain the required user inputs to determine a match." `no_data` - "Field could not be verified against available sources." */
 export type RiskCheckEmailName =
@@ -4613,7 +4612,7 @@ export type RiskCheckEmailName =
   | "partial_match"
   | "match"
   | "no_data";
-export const RiskCheckEmailName = /*@__PURE__*/ S.String;
+export const RiskCheckEmailName = S.String;
 
 /** An enum indicating the type of a linked service. Note that `adult_sites` refers to explicit video content, and includes a number of related services. */
 export type RiskCheckLinkedService =
@@ -4707,7 +4706,7 @@ export type RiskCheckLinkedService =
   | "yandex"
   | "zalo"
   | "zoho";
-export const RiskCheckLinkedService = /*@__PURE__*/ S.String;
+export const RiskCheckLinkedService = S.String;
 
 /** A list of online services where this email address has been detected to have accounts or other activity. */
 export type RiskCheckEmailLinkedServicesList = Array<RiskCheckLinkedService>;
@@ -4717,7 +4716,7 @@ export const RiskCheckEmailLinkedServicesList = /*@__PURE__*/ S.Array(
 
 /** Risk level for the given risk check type. */
 export type RiskLevel = "low" | "medium" | "high";
-export const RiskLevel = /*@__PURE__*/ S.String;
+export const RiskLevel = S.String;
 
 /** List of factors, when available, that contribute towards the risk level of the given risk check type. */
 export type RiskCheckFactors = Array<string>;
@@ -4793,7 +4792,7 @@ export type ProxyType =
   | "vpn"
   | "web_proxy"
   | "public_proxy";
-export const ProxyType = /*@__PURE__*/ S.String;
+export const ProxyType = S.String;
 
 /** Result summary object specifying values for `device` attributes of risk check. */
 export interface RiskCheckDevice {
@@ -4952,7 +4951,7 @@ export const RiskCheckDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** The outcome status for the associated Identity Verification attempt's `verify_sms` step. This field will always have the same value as `steps.verify_sms`. */
 export type VerifySMSDetailsStatus = "success" | "failed";
-export const VerifySMSDetailsStatus = /*@__PURE__*/ S.String;
+export const VerifySMSDetailsStatus = S.String;
 
 /** The outcome status for the individual SMS verification. */
 export type SMSVerificationStatus =
@@ -4960,7 +4959,7 @@ export type SMSVerificationStatus =
   | "success"
   | "failed"
   | "canceled";
-export const SMSVerificationStatus = /*@__PURE__*/ S.String;
+export const SMSVerificationStatus = S.String;
 
 /** Additional information for the individual SMS verification. */
 export interface SMSVerification {
@@ -5159,7 +5158,7 @@ export const CreateIdentityVerificationAutofillRequest =
 
 /** A status enum indicating whether autofill succeeded or failed. */
 export type IdentityVerificationAutofillStatus = "success" | "failed";
-export const IdentityVerificationAutofillStatus = /*@__PURE__*/ S.String;
+export const IdentityVerificationAutofillStatus = S.String;
 
 /** Even if an address has been autofilled, some fields may be null depending on the region's addressing system. For example: Addresses from the United Kingdom will not include a region Addresses from Hong Kong will not include postal code */
 export interface IdentityVerificationAutofillAddress {
@@ -5243,7 +5242,7 @@ export type CountryCode =
   | "BE"
   | "AT"
   | "FI";
-export const CountryCode = /*@__PURE__*/ S.String;
+export const CountryCode = S.String;
 
 /** Specify an array of Plaid-supported country codes using the ISO-3166-1 alpha-2 country code standard. Institutions from all listed countries will be shown. For a complete mapping of supported products by country, see https://support.plaid.com/hc/en-us/articles/27895826947735-What-Plaid-products-are-supported-in-each-country-and-region. For access to additional countries beyond what you have been approved for, [contact sales](https://plaid.com/contact/), your account manager, or support. If using Identity Verification, `country_codes` should be set to the country where your company is based, not the country where your user is located. For all other products, `country_codes` represents the location of your user's financial institution. If Link is launched with multiple country codes, only products that you are enabled for in all countries will be used by Link. While all countries are enabled by default in Sandbox, in Production only the countries you have requested access for are shown. To request access to additional countries, [file a product access Support ticket](https://dashboard.plaid.com/support/new/product-and-development/product-troubleshooting/request-product-access) via the Plaid dashboard. If using a Link customization, make sure the country codes in the customization match those specified in `country_codes`, or the customization may not be applied. If using the Auth features Instant Match, Instant Micro-deposits, Same-Day Micro-deposits, Automated Micro-deposits, or Database Auth, `country_codes` must be set to `['US']`. */
 export type CreateLinkTokenRequestCountryCodesList = Array<
@@ -5346,7 +5345,7 @@ export const CreateLinkTokenRequestAccessTokensList = /*@__PURE__*/ S.Array(
 
 /** Enum representing the desired appearance mode for Link, used to force light or dark modes or set Link to change depending on user system settings. Currently in closed beta. */
 export type LinkTokenCreateRequestAppearanceMode = "LIGHT" | "DARK" | "SYSTEM";
-export const LinkTokenCreateRequestAppearanceMode = /*@__PURE__*/ S.String;
+export const LinkTokenCreateRequestAppearanceMode = S.String;
 
 /** A map containing data used to highlight institutions in Link. */
 export interface LinkTokenCreateInstitutionData {
@@ -5387,7 +5386,7 @@ export type DepositoryAccountSubtype =
   | "ebt"
   | "limited purpose checking"
   | "all";
-export const DepositoryAccountSubtype = /*@__PURE__*/ S.String;
+export const DepositoryAccountSubtype = S.String;
 
 /** An array of account subtypes to display in Link. If not specified, all account subtypes will be shown. For a full list of valid types and subtypes, see the [Account schema](https://plaid.com/docs/api/accounts#account-type-schema). */
 export type DepositoryAccountSubtypes = Array<
@@ -5399,7 +5398,7 @@ export const DepositoryAccountSubtypes = /*@__PURE__*/ S.Array(
 
 /** A specific use case for a limited purpose checking account. Limited purpose checking accounts will reject or return ACH transactions that aren't for eligible use cases. For example, a `RENT_MORTGAGE` limited purpose checking account will reject ACH transactions that are not specifically rent or mortgage payments. */
 export type LimitedPurposeType = "RENT_MORTGAGE";
-export const LimitedPurposeType = /*@__PURE__*/ S.String;
+export const LimitedPurposeType = S.String;
 
 /** An array of limited purpose types. Restricts which kinds of limited purpose checking accounts may be connected in Link to prevent users from connecting them for unsupported use cases. Required when 'limited purpose checking' is in the subtypes filter. */
 export type LimitedPurposeTypes = Array<LimitedPurposeType | (string & {})>;
@@ -5427,7 +5426,7 @@ export type CreditAccountSubtype =
   | "credit card"
   | "paypal"
   | "all";
-export const CreditAccountSubtype = /*@__PURE__*/ S.String;
+export const CreditAccountSubtype = S.String;
 
 /** An array of account subtypes to display in Link. If not specified, all account subtypes will be shown. For a full list of valid types and subtypes, see the [Account schema](https://plaid.com/docs/api/accounts#account-type-schema). */
 export type CreditAccountSubtypes = Array<CreditAccountSubtype | (string & {})>;
@@ -5463,7 +5462,7 @@ export type LoanAccountSubtype =
   | "student"
   | "other"
   | "all";
-export const LoanAccountSubtype = /*@__PURE__*/ S.String;
+export const LoanAccountSubtype = S.String;
 
 /** An array of account subtypes to display in Link. If not specified, all account subtypes will be shown. For a full list of valid types and subtypes, see the [Account schema](https://plaid.com/docs/api/accounts#account-type-schema). */
 export type LoanAccountSubtypes = Array<LoanAccountSubtype | (string & {})>;
@@ -5542,7 +5541,7 @@ export type InvestmentAccountSubtype =
   | "utma"
   | "variable annuity"
   | "all";
-export const InvestmentAccountSubtype = /*@__PURE__*/ S.String;
+export const InvestmentAccountSubtype = S.String;
 
 /** An array of account subtypes to display in Link. If not specified, all account subtypes will be shown. For a full list of valid types and subtypes, see the [Account schema](https://plaid.com/docs/api/accounts#account-type-schema). */
 export type InvestmentAccountSubtypes = Array<
@@ -5566,7 +5565,7 @@ export const InvestmentFilter = /*@__PURE__*/ S.suspend(() =>
 
 /** Valid account subtypes for other accounts. For a list containing descriptions of each subtype, see [Account schemas](https://plaid.com/docs/api/accounts/#StandaloneAccountType-other). */
 export type OtherAccountSubtype = "other" | "all";
-export const OtherAccountSubtype = /*@__PURE__*/ S.String;
+export const OtherAccountSubtype = S.String;
 
 /** An array of account subtypes to display in Link. If not specified, all account subtypes will be shown. For a full list of valid types and subtypes, see the [Account schema](https://plaid.com/docs/api/accounts#account-type-schema). */
 export type OtherAccountSubtypes = Array<OtherAccountSubtype | (string & {})>;
@@ -5653,7 +5652,7 @@ export const LinkTokenCreateRequestPaymentInitiation = /*@__PURE__*/ S.suspend(
 
 /** The types of source employment data that users should be able to share */
 export type EmploymentSourceType = "bank" | "payroll";
-export const EmploymentSourceType = /*@__PURE__*/ S.String;
+export const EmploymentSourceType = S.String;
 
 /** The types of source employment data that users will be permitted to share. Options include `bank` and `payroll`. Currently you can only specify one of these options. */
 export type LinkTokenCreateRequestEmploymentEmploymentSourceTypesList = Array<
@@ -5705,7 +5704,7 @@ export const LinkTokenCreateRequestIncomeVerificationAccessTokensList =
 
 /** The types of source income data that users should be able to share */
 export type IncomeVerificationSourceType = "bank" | "payroll";
-export const IncomeVerificationSourceType = /*@__PURE__*/ S.String;
+export const IncomeVerificationSourceType = S.String;
 
 /** The types of source income data that users will be permitted to share. Options include `bank` and `payroll`. Currently you can only specify one of these options. */
 export type LinkTokenCreateRequestIncomeVerificationIncomeSourceTypesList =
@@ -5736,7 +5735,7 @@ export const LinkTokenCreateRequestIncomeVerificationBankIncome =
 export type IncomeVerificationPayrollFlowType =
   | "payroll_digital_income"
   | "payroll_document_income";
-export const IncomeVerificationPayrollFlowType = /*@__PURE__*/ S.String;
+export const IncomeVerificationPayrollFlowType = S.String;
 
 /** The types of payroll income verification to enable for the Link session. If none are specified, then users will see both document and digital payroll income. */
 export type LinkTokenCreateRequestIncomeVerificationPayrollIncomeFlowTypesList =
@@ -5748,7 +5747,7 @@ export const LinkTokenCreateRequestIncomeVerificationPayrollIncomeFlowTypesList 
 
 /** Analysis options to enable for document parsing */
 export type IncomeVerificationDocParsingConfig = "ocr" | "risk_signals";
-export const IncomeVerificationDocParsingConfig = /*@__PURE__*/ S.String;
+export const IncomeVerificationDocParsingConfig = S.String;
 
 /** The types of analysis to enable for document uploads. If this field is not provided, then docs will undergo OCR parsing only. */
 export type LinkTokenCreateRequestIncomeVerificationPayrollIncomeParsingConfigList =
@@ -5802,11 +5801,11 @@ export type UserStatedIncomeSourceCategory =
   | "RETIREMENT"
   | "LONG_TERM_DISABILITY"
   | "BANK_INTEREST";
-export const UserStatedIncomeSourceCategory = /*@__PURE__*/ S.String;
+export const UserStatedIncomeSourceCategory = S.String;
 
 /** The pay type - `GROSS`, `NET`, or `UNKNOWN` for a specified income source */
 export type UserStatedIncomeSourcePayType = "UNKNOWN" | "GROSS" | "NET";
-export const UserStatedIncomeSourcePayType = /*@__PURE__*/ S.String;
+export const UserStatedIncomeSourcePayType = S.String;
 
 /** The pay frequency of a specified income source */
 export type UserStatedIncomeSourceFrequency =
@@ -5815,7 +5814,7 @@ export type UserStatedIncomeSourceFrequency =
   | "BIWEEKLY"
   | "SEMI_MONTHLY"
   | "MONTHLY";
-export const UserStatedIncomeSourceFrequency = /*@__PURE__*/ S.String;
+export const UserStatedIncomeSourceFrequency = S.String;
 
 /** Specifies user stated income sources for the Income product */
 export interface LinkTokenCreateRequestUserStatedIncomeSource {
@@ -6038,12 +6037,11 @@ export type LinkTokenCreateRequestAuthRerouteToCredentials =
   | "OFF"
   | "OPTIONAL"
   | "FORCED";
-export const LinkTokenCreateRequestAuthRerouteToCredentials =
-  /*@__PURE__*/ S.String;
+export const LinkTokenCreateRequestAuthRerouteToCredentials = S.String;
 
 /** This field has been deprecated in favor of `auth_type_select_enabled`. */
 export type LinkTokenCreateRequestAuthFlowType = "FLEXIBLE_AUTH";
-export const LinkTokenCreateRequestAuthFlowType = /*@__PURE__*/ S.String;
+export const LinkTokenCreateRequestAuthFlowType = S.String;
 
 /** Specifies options for initializing Link for use with the Auth product. This field can be used to enable or disable extended Auth flows for the resulting Link session. Omitting any field will result in a default that can be configured by your account manager. The default behavior described in the documentation is the default behavior that will apply if you have not requested your account manager to apply a different default. If you have enabled the [Dashboard Account Verification pane](https://dashboard.plaid.com/account-verification), the settings enabled there will override any settings in this object. */
 export interface LinkTokenCreateRequestAuth {
@@ -6209,7 +6207,7 @@ export const LinkTokenInvestmentsAuth = /*@__PURE__*/ S.suspend(() =>
 
 /** How Plaid should deliver the Plaid Link session to the customer. Only available to customers enabled for Link Delivery (beta). To request Link Delivery access, contact your account manager. 'sms' will deliver via SMS. Must pass `user.phone_number`. 'email' will deliver via email. Must pass `user.email_address`. In the Sandbox environment, this field will be ignored; use the Production environment to test Link Delivery instead. */
 export type HostedLinkDeliveryMethod = "sms" | "email";
-export const HostedLinkDeliveryMethod = /*@__PURE__*/ S.String;
+export const HostedLinkDeliveryMethod = S.String;
 
 /** Configuration parameters for Hosted Link. To enable the session for Hosted Link, send this object in the request. It can be empty. */
 export interface LinkTokenCreateHostedLink {
@@ -6575,7 +6573,7 @@ export const PartnerCustomerCreateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** This field is deprecated in favor of the consent `type` field. Consents are required to have a single type. Payment consent scope. Defines possible directions for payments made with the given consent. `ME_TO_ME`: Allows moving money between accounts owned by the same user. `EXTERNAL`: Allows initiating payments from the user's account to third parties. */
 export type PaymentInitiationConsentScope = "ME_TO_ME" | "EXTERNAL";
-export const PaymentInitiationConsentScope = /*@__PURE__*/ S.String;
+export const PaymentInitiationConsentScope = S.String;
 
 /** An array of payment consent scopes. */
 export type CreatePaymentInitiationConsentRequestScopesList = Array<
@@ -6588,7 +6586,7 @@ export const CreatePaymentInitiationConsentRequestScopesList =
 
 /** Payment consent type. Defines possible use case for payments made with the given consent. `SWEEPING`: Allows moving money between accounts owned by the same user. `COMMERCIAL`: Allows initiating payments from the user's account to third parties. */
 export type PaymentInitiationConsentType = "SWEEPING" | "COMMERCIAL";
-export const PaymentInitiationConsentType = /*@__PURE__*/ S.String;
+export const PaymentInitiationConsentType = S.String;
 
 /** Life span for the payment consent. After the `to` date the payment consent expires and can no longer be used for payment initiation. */
 export interface PaymentConsentValidDateTime {
@@ -6614,7 +6612,7 @@ export type PaymentAmountCurrency =
   | "SEK"
   | "DKK"
   | "NOK";
-export const PaymentAmountCurrency = /*@__PURE__*/ S.String;
+export const PaymentAmountCurrency = S.String;
 
 /** The amount and currency of a payment */
 export interface PaymentAmount {
@@ -6631,11 +6629,11 @@ export const PaymentAmount = /*@__PURE__*/ S.suspend(() =>
 
 /** Payment consent periodic interval. */
 export type PaymentConsentPeriodicInterval = "DAY" | "WEEK" | "MONTH" | "YEAR";
-export const PaymentConsentPeriodicInterval = /*@__PURE__*/ S.String;
+export const PaymentConsentPeriodicInterval = S.String;
 
 /** Where the payment consent period should start. If the institution is Monzo, only `CONSENT` alignments are supported. `CALENDAR`: line up with a calendar. `CONSENT`: on the date of consent creation. */
 export type PaymentConsentPeriodicAlignment = "CALENDAR" | "CONSENT";
-export const PaymentConsentPeriodicAlignment = /*@__PURE__*/ S.String;
+export const PaymentConsentPeriodicAlignment = S.String;
 
 /** Defines consent payments limitations per period. */
 export interface PaymentConsentPeriodicAmount {
@@ -6848,7 +6846,7 @@ export type PaymentInitiationConsentStatus =
   | "REVOKED"
   | "REJECTED"
   | "EXPIRED";
-export const PaymentInitiationConsentStatus = /*@__PURE__*/ S.String;
+export const PaymentInitiationConsentStatus = S.String;
 
 /** PaymentInitiationConsentCreateResponse defines the response schema for `/payment_initiation/consent/create` */
 export interface PaymentInitiationConsentCreateResponse {
@@ -6870,7 +6868,7 @@ export const PaymentInitiationConsentCreateResponse = /*@__PURE__*/ S.suspend(
 
 /** The frequency interval of the payment. */
 export type PaymentScheduleInterval = "WEEKLY" | "MONTHLY";
-export const PaymentScheduleInterval = /*@__PURE__*/ S.String;
+export const PaymentScheduleInterval = S.String;
 
 /** The schedule that the payment will be executed on. If a schedule is provided, the payment is automatically set up as a standing order. If no schedule is specified, the payment will be executed only once. */
 export interface ExternalPaymentScheduleRequest {
@@ -6902,7 +6900,7 @@ export type PaymentScheme =
   | "LOCAL_INSTANT"
   | "SEPA_CREDIT_TRANSFER"
   | "SEPA_CREDIT_TRANSFER_INSTANT";
-export const PaymentScheme = /*@__PURE__*/ S.String;
+export const PaymentScheme = S.String;
 
 /** Additional payment options */
 export interface ExternalPaymentOptions {
@@ -6962,7 +6960,7 @@ export const CreatePaymentInitiationPaymentRequest = /*@__PURE__*/ S.suspend(
 /** For a payment returned by this endpoint, there is only one possible value: `PAYMENT_STATUS_INPUT_NEEDED`: The initial phase of the payment */
 export type PaymentInitiationPaymentCreateStatus =
   "PAYMENT_STATUS_INPUT_NEEDED";
-export const PaymentInitiationPaymentCreateStatus = /*@__PURE__*/ S.String;
+export const PaymentInitiationPaymentCreateStatus = S.String;
 
 /** PaymentInitiationPaymentCreateResponse defines the response schema for `/payment_initiation/payment/create` */
 export interface PaymentInitiationPaymentCreateResponse {
@@ -7199,7 +7197,7 @@ export type CreateProcessorTokenRequestProcessor =
   | "cybrid"
   | "bizcap"
   | "webull";
-export const CreateProcessorTokenRequestProcessor = /*@__PURE__*/ S.String;
+export const CreateProcessorTokenRequestProcessor = S.String;
 
 export interface CreateProcessorTokenRequest {
   client_id?: string;
@@ -7240,7 +7238,7 @@ export const ProtectUser = /*@__PURE__*/ S.suspend(() =>
 
 /** The outcome of a cash-advance decision. `APPROVED` - The cash-advance was approved. `DECLINED` - The cash-advance was declined. */
 export type CashAdvanceDecisionOutcome = "APPROVED" | "DECLINED";
-export const CashAdvanceDecisionOutcome = /*@__PURE__*/ S.String;
+export const CashAdvanceDecisionOutcome = S.String;
 
 /** A monetary amount and its currency. */
 export interface Amount {
@@ -7325,7 +7323,7 @@ export const ProtectCashAdvanceDecisionCreateResponse = /*@__PURE__*/ S.suspend(
 
 /** The repayment status of a cash-advance. `REPAID` - The cash-advance has been fully repaid. `DELIVERED` - The cash-advance has been disbursed to the user and is still outstanding, but its due date has not yet passed. `UNPAID` - The cash-advance is past its due date and has not been repaid; the user is delinquent. */
 export type CashAdvanceRepaymentStatus = "REPAID" | "DELIVERED" | "UNPAID";
-export const CashAdvanceRepaymentStatus = /*@__PURE__*/ S.String;
+export const CashAdvanceRepaymentStatus = S.String;
 
 /** The repayment details for a cash-advance. */
 export interface CashAdvanceRepayment {
@@ -7445,7 +7443,7 @@ export const ProtectIncidentEvent = /*@__PURE__*/ S.suspend(() =>
 
 /** The confidence level of the incident report. `CONFIRMED` indicates the incident has been verified and definitively occurred. `SUSPECTED` indicates the incident is believed to have occurred but has not been fully verified. */
 export type ProtectReportConfidence = "CONFIRMED" | "SUSPECTED";
-export const ProtectReportConfidence = /*@__PURE__*/ S.String;
+export const ProtectReportConfidence = S.String;
 
 /** The type of incident being reported. `USER_ACCOUNT_TAKEOVER` - Indicates that a legitimate user's account was accessed or controlled by an unauthorized party. `FALSE_IDENTITY` - Indicates that a user created an account using stolen or fabricated identity information. `STOLEN_IDENTITY` - Indicates that a user created an account using identity information belonging to a real individual without their consent. `SYNTHETIC_IDENTITY` - Indicates that a user created an account using a fake or partially fabricated identity (e.g., combining real and fake information to form a new persona). `MULTIPLE_USER_ACCOUNTS` - Indicates that the same individual is operating multiple accounts in violation of policy. `SCAM_VICTIM` - Indicates that the user was tricked into authorizing or sending funds as part of a scam. `BANK_ACCOUNT_TAKEOVER` - Indicates that a user's linked bank account was accessed or misused by an unauthorized party. `BANK_CONNECTION_REVOKED` - Indicates that a linked bank account connection was revoked by the financial institution, often due to suspected misuse, fraud, or security concerns. `CARD_TESTING` - Indicates that a card was used in small or repeated transactions to test its validity. `UNAUTHORIZED_TRANSACTION` - Indicates that a transaction was made without the user's consent or authorization. `CARD_CHARGEBACK` - Indicates that a card transaction was reversed via a chargeback claim. `ACH_RETURN` - Indicates that an ACH transaction was returned or reversed by the bank. `DISPUTE` - Indicates that a user filed a dispute regarding a transaction or account activity. `FIRST_PARTY_FRAUD` - Indicates that a user intentionally misrepresented themselves or their actions for financial gain. `MISSED_PAYMENT` - Indicates that a user failed to make a required payment on time. `LOAN_STACKING` - Indicates that a user applied for or took out multiple loans simultaneously beyond their ability to repay. `MONEY_LAUNDERING` - Indicates that funds are being moved through accounts to obscure their illicit origin. `NO_FRAUD` - Indicates that an investigation determined no fraudulent activity occurred on user/event (positive label). `OTHER` - Indicates that the case involves fraud or financial risk not covered by other report types. */
 export type ProtectReportType =
@@ -7468,7 +7466,7 @@ export type ProtectReportType =
   | "MONEY_LAUNDERING"
   | "NO_FRAUD"
   | "OTHER";
-export const ProtectReportType = /*@__PURE__*/ S.String;
+export const ProtectReportType = S.String;
 
 /** The source that identified or reported the incident. `INTERNAL_REVIEW` - Incident was identified through internal fraud investigations or review processes. `USER_SELF_REPORTED` - Incident was reported directly by the affected user. `BANK_FEEDBACK` - Incident was identified through bank feedback, including ACH returns and connection revocations. `NETWORK_FEEDBACK` - Incident was identified through card network alerts or chargebacks. `AUTOMATED_SYSTEM` - Incident was detected by automated systems such as fraud models or rule engines. `THIRD_PARTY_ALERT` - Incident was identified through external vendor or consortium alerts. `OTHER` - Incident was identified through a source not covered by other categories. */
 export type ProtectReportSource =
@@ -7479,7 +7477,7 @@ export type ProtectReportSource =
   | "AUTOMATED_SYSTEM"
   | "THIRD_PARTY_ALERT"
   | "OTHER";
-export const ProtectReportSource = /*@__PURE__*/ S.String;
+export const ProtectReportSource = S.String;
 
 /** Bank account information associated with the incident. */
 export interface ProtectBankAccount {
@@ -7959,11 +7957,11 @@ export const SessionTokenCreateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Transaction field for which the rule is defined. */
 export type TransactionsRuleField = "TRANSACTION_ID" | "MERCHANT_NAME";
-export const TransactionsRuleField = /*@__PURE__*/ S.String;
+export const TransactionsRuleField = S.String;
 
 /** Transaction rule's match type. For `TRANSACTION_ID` field, `EXACT_MATCH` is available. Matches are case sensitive. */
 export type TransactionsRuleType = "EXACT_MATCH" | "SUBSTRING_MATCH";
-export const TransactionsRuleType = /*@__PURE__*/ S.String;
+export const TransactionsRuleType = S.String;
 
 /** A representation of transactions rule details. */
 export interface TransactionsRuleDetails {
@@ -8054,15 +8052,15 @@ export const TransactionsRulesCreateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of transfer. This will be either `debit` or `credit`. A `debit` indicates a transfer of money into the origination account; a `credit` indicates a transfer of money out of the origination account. */
 export type TransferType = "debit" | "credit";
-export const TransferType = /*@__PURE__*/ S.String;
+export const TransferType = S.String;
 
 /** The network or rails used for the transfer. For transfers submitted as `ach` or `same-day-ach`, the Standard ACH cutoff is 8:30 PM Eastern Time. For transfers submitted as `same-day-ach`, the Same Day ACH cutoff is 3:00 PM Eastern Time. It is recommended to send the request 15 minutes prior to the cutoff to ensure that it will be processed in time for submission before the cutoff. If the transfer is processed after this cutoff but before the Standard ACH cutoff, it will be sent over Standard ACH rails and will not incur same-day charges; this will apply to both legs of the transfer if applicable. The transaction limit for a Same Day ACH transfer is $1,000,000. Authorization requests sent with an amount greater than $1,000,000 will fail. For transfers submitted as `rtp`, Plaid will automatically route between the Real-Time Payments (RTP) rail by TCH or FedNow rails as necessary. If a transfer is submitted as `rtp` and the counterparty account is not eligible for RTP, the `/transfer/authorization/create` request will fail with an `INVALID_FIELD` error code. To pre-check to determine whether a counterparty account can support RTP, call `/transfer/capabilities/get` before calling `/transfer/authorization/create`. Wire transfers are currently in early availability. To request access to `wire` as a payment network, contact your account manager. For transfers submitted as `wire`, the `type` must be `credit`; wire debits are not supported. The cutoff to submit a wire payment is 6:30 PM Eastern Time on a business day; wires submitted after that time will be processed on the next business day. The transaction limit for a wire is $999,999.99. Authorization requests sent with an amount greater than $999,999.99 will fail. Support for `rfp` (request for payment) is currently in closed beta. To learn more, contact your Plaid account manager. For transfers submitted as `rfp`, the `type` must be `debit`. */
 export type TransferNetwork = "ach" | "same-day-ach" | "rtp" | "wire" | "rfp";
-export const TransferNetwork = /*@__PURE__*/ S.String;
+export const TransferNetwork = S.String;
 
 /** Specifies the use case of the transfer. Required for transfers on an ACH network. For more details, see [ACH SEC codes](https://plaid.com/docs/transfer/creating-transfers/#ach-sec-codes). Codes supported for credits: `ccd`, `ppd` Codes supported for debits: `ccd`, `ppd`, `tel`, `web` `"ccd"` - Corporate Credit or Debit - fund transfer between two corporate bank accounts `"ppd"` - Prearranged Payment or Deposit - The transfer is part of a pre-existing relationship with a consumer. Authorization was obtained in writing either in person or via an electronic document signing, e.g. Docusign, by the consumer. Can be used for credits or debits. `"web"` - Internet-Initiated Entry. The transfer debits a consumer's bank account. Authorization from the consumer is obtained over the Internet (e.g. a web or mobile application). Can be used for single debits or recurring debits. `"tel"` - Telephone-Initiated Entry. The transfer debits a consumer. Debit authorization has been received orally over the telephone via a recorded call. */
 export type ACHClass = "ccd" | "ppd" | "tel" | "web";
-export const ACHClass = /*@__PURE__*/ S.String;
+export const ACHClass = S.String;
 
 /** The address associated with the account holder. */
 export interface TransferUserAddressInRequest {
@@ -8220,7 +8218,7 @@ export type TransferStatus =
   | "cancelled"
   | "failed"
   | "returned";
-export const TransferStatus = /*@__PURE__*/ S.String;
+export const TransferStatus = S.String;
 
 /** The status of the sweep for the transfer. `unswept`: The transfer hasn't been swept yet. `swept`: The transfer was swept to the sweep account. `swept_settled`: Credits are available to be withdrawn or debits have been deducted from the customer's business checking account. `return_swept`: The transfer was returned, funds were pulled back or pushed back to the sweep account. `null`: The transfer will never be swept (e.g. if the transfer is cancelled or returned before being swept) */
 export type TransferSweepStatus =
@@ -8228,7 +8226,7 @@ export type TransferSweepStatus =
   | "swept"
   | "swept_settled"
   | "return_swept";
-export const TransferSweepStatus = /*@__PURE__*/ S.String;
+export const TransferSweepStatus = S.String;
 
 /** Information specific to wire transfers. */
 export interface TransferWireDetails {
@@ -8269,7 +8267,7 @@ export const TransferFailure = /*@__PURE__*/ S.suspend(() =>
 export type TransferAuthorizationGuaranteeDecision =
   | "GUARANTEED"
   | "NOT_GUARANTEED";
-export const TransferAuthorizationGuaranteeDecision = /*@__PURE__*/ S.String;
+export const TransferAuthorizationGuaranteeDecision = S.String;
 
 /** A code representing the reason Plaid declined to guarantee this transfer: `RETURN_BANK`: The risk of a bank-initiated return (for example, an R01/NSF) is too high to guarantee this transfer. `RETURN_CUSTOMER`: The risk of a customer-initiated return (for example, a R10/Unauthorized) is too high to guarantee this transfer. `GUARANTEE_LIMIT_REACHED`: This transfer is low-risk, but Guarantee has exhausted an internal limit on the number or rate of guarantees that applies to this transfer. `RISK_ESTIMATE_UNAVAILABLE`: A risk estimate is unavailable for this Item. `REQUIRED_PARAM_MISSING`: Required fields are missing. */
 export type TransferAuthorizationGuaranteeDecisionRationaleCode =
@@ -8278,8 +8276,7 @@ export type TransferAuthorizationGuaranteeDecisionRationaleCode =
   | "GUARANTEE_LIMIT_REACHED"
   | "RISK_ESTIMATE_UNAVAILABLE"
   | "REQUIRED_PARAM_MISSING";
-export const TransferAuthorizationGuaranteeDecisionRationaleCode =
-  /*@__PURE__*/ S.String;
+export const TransferAuthorizationGuaranteeDecisionRationaleCode = S.String;
 
 /** The rationale for Plaid's decision to not guarantee a transfer. Will be `null` unless `guarantee_decision` is `NOT_GUARANTEED`. */
 export interface TransferAuthorizationGuaranteeDecisionRationale {
@@ -8347,7 +8344,7 @@ export type TransferRefundStatus =
   | "failed"
   | "settled"
   | "returned";
-export const TransferRefundStatus = /*@__PURE__*/ S.String;
+export const TransferRefundStatus = S.String;
 
 /** The failure reason if the status for a refund is `"failed"` or `"returned"`. Null value otherwise. */
 export interface TransferRefundFailure {
@@ -8429,7 +8426,7 @@ export type TransferCreditFundsSource =
   | "sweep"
   | "prefunded_rtp_credits"
   | "prefunded_ach_credits";
-export const TransferCreditFundsSource = /*@__PURE__*/ S.String;
+export const TransferCreditFundsSource = S.String;
 
 /** Represents a transfer within the Transfers API. */
 export interface Transfer {
@@ -8669,7 +8666,7 @@ export type TransferAuthorizationDecision =
   | "approved"
   | "declined"
   | "user_action_required";
-export const TransferAuthorizationDecision = /*@__PURE__*/ S.String;
+export const TransferAuthorizationDecision = S.String;
 
 /** A code representing the rationale for approving or declining the proposed transfer. If the `rationale_code` is `null`, the transfer passed the authorization check. Any non-`null` value for an `approved` transfer indicates that the authorization check could not be run and that you should perform your own risk assessment on the transfer. The code will indicate why the check could not be run. Possible values for an `approved` transfer are: `MANUALLY_VERIFIED_ITEM` - Item created via a manual entry flow (i.e. Same-Day Micro-deposit, Instant Micro-deposit, or database-based verification), limited information available. `ITEM_LOGIN_REQUIRED` - Unable to collect the account information due to Item staleness. Can be resolved by using Link and setting [`transfer.authorization_id`](https://plaid.com/docs/api/link/#link-token-create-request-transfer-authorization-id) in the request to `/link/token/create`. `PAYMENT_PROFILE_LOGIN_REQUIRED` - The Payment Profile associated with the call to `/transfer/authorization/create` is in a state that requires the end user to re-authenticate. Can be resolved by using Link to refresh the Payment Profile. `MIGRATED_ACCOUNT_ITEM` - Item created via `/transfer/migrate_account` endpoint, limited information available. `ERROR` - Unable to collect the account information due to an unspecified error. The following codes indicate that the authorization decision was `declined`: `NSF` - Transaction has an elevated risk of resulting in a return due to insufficient funds. `RISK` - Transaction is high-risk. `TRANSFER_LIMIT_REACHED` - One or several transfer limits are reached, e.g. monthly transfer limit. Check the accompanying `description` field to understand which limit has been reached. `ADMIN` - Transaction has an elevated risk of resulting in an administrative return (for example a closed, invalid, or unauthorized account). `FRAUD` - Transaction has an elevated risk of being fraudulent. */
 export type TransferAuthorizationDecisionRationaleCode =
@@ -8683,8 +8680,7 @@ export type TransferAuthorizationDecisionRationaleCode =
   | "MIGRATED_ACCOUNT_ITEM"
   | "ADMIN"
   | "FRAUD";
-export const TransferAuthorizationDecisionRationaleCode =
-  /*@__PURE__*/ S.String;
+export const TransferAuthorizationDecisionRationaleCode = S.String;
 
 /** The rationale for Plaid's decision regarding a proposed transfer. It is always set for `declined` decisions, and may or may not be null for `approved` decisions. */
 export interface TransferAuthorizationDecisionRationale {
@@ -8708,7 +8704,7 @@ export type TransferGuaranteeOutcome =
   | "PARTIAL_INSTANT_ONLY"
   | "PARTIAL_INSTANT_WITH_OBSERVATION_WINDOW"
   | "NOT_GUARANTEED";
-export const TransferGuaranteeOutcome = /*@__PURE__*/ S.String;
+export const TransferGuaranteeOutcome = S.String;
 
 /** A single entry in an authorization's adaptive guarantee settlement schedule, describing one tranche of guaranteed funds. */
 export interface AuthorizationGuaranteeScheduleItem {
@@ -8755,7 +8751,7 @@ export type TransferAuthorizationRiskLevel =
   | "MEDIUM_RISK"
   | "MEDIUM_LOW_RISK"
   | "LOW_RISK";
-export const TransferAuthorizationRiskLevel = /*@__PURE__*/ S.String;
+export const TransferAuthorizationRiskLevel = S.String;
 
 /** Conveys information about the errors causing missing or stale bank data used to construct the `/signal/evaluate` scores and response */
 export interface SignalWarning {
@@ -8894,11 +8890,11 @@ export const TransferAuthorizationCreateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The direction of the flow of transfer funds. `PAYMENT`: Transfers funds from an end user's account to your business account. `DISBURSEMENT`: Transfers funds from your business account to an end user's account. */
 export type TransferIntentCreateMode = "PAYMENT" | "DISBURSEMENT";
-export const TransferIntentCreateMode = /*@__PURE__*/ S.String;
+export const TransferIntentCreateMode = S.String;
 
 /** The network or rails used for the transfer. Defaults to `same-day-ach`. For transfers submitted using `ach`, the Standard ACH cutoff is 8:30 PM Eastern Time. For transfers submitted using `same-day-ach`, the Same Day ACH cutoff is 3:00 PM Eastern Time. It is recommended to send the request 15 minutes prior to the cutoff to ensure that it will be processed in time for submission before the cutoff. If the transfer is processed after this cutoff but before the Standard ACH cutoff, it will be sent over Standard ACH rails and will not incur same-day charges. For transfers submitted using `rtp`, in the case that the account being credited does not support RTP, the transfer will be sent over ACH as long as an `ach_class` is provided in the request. If RTP isn't supported by the account and no `ach_class` is provided, the transfer will fail to be submitted. */
 export type TransferIntentCreateNetwork = "ach" | "same-day-ach" | "rtp";
-export const TransferIntentCreateNetwork = /*@__PURE__*/ S.String;
+export const TransferIntentCreateNetwork = S.String;
 
 /** The legal name and other information for the account holder. */
 export interface TransferUserInRequest {
@@ -8967,7 +8963,7 @@ export const CreateTransferIntentRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the transfer intent. `PENDING`: The transfer intent is pending. `SUCCEEDED`: The transfer intent was successfully created. `FAILED`: The transfer intent was unable to be created. */
 export type TransferIntentStatus = "PENDING" | "SUCCEEDED" | "FAILED";
-export const TransferIntentStatus = /*@__PURE__*/ S.String;
+export const TransferIntentStatus = S.String;
 
 /** Represents a transfer intent within Transfer UI. */
 export interface TransferIntentCreate {
@@ -9338,11 +9334,11 @@ export const TransferQuestionnaireCreateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Networks eligible for recurring transfers. */
 export type TransferRecurringNetwork = "ach" | "same-day-ach" | "rtp";
-export const TransferRecurringNetwork = /*@__PURE__*/ S.String;
+export const TransferRecurringNetwork = S.String;
 
 /** The unit of the recurring interval. */
 export type TransferScheduleIntervalUnit = "week" | "month";
-export const TransferScheduleIntervalUnit = /*@__PURE__*/ S.String;
+export const TransferScheduleIntervalUnit = S.String;
 
 /** The schedule that the recurring transfer will be executed on. */
 export interface TransferRecurringSchedule {
@@ -9433,7 +9429,7 @@ export const CreateTransferRecurringRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the recurring transfer. `active`: The recurring transfer is currently active. `cancelled`: The recurring transfer was cancelled by the client or Plaid. `expired`: The recurring transfer has completed all originations according to its recurring schedule. */
 export type TransferRecurringStatus = "active" | "cancelled" | "expired";
-export const TransferRecurringStatus = /*@__PURE__*/ S.String;
+export const TransferRecurringStatus = S.String;
 
 /** The created transfer instances associated with this `recurring_transfer_id`. If the recurring transfer has been newly created, this array will be empty. */
 export type RecurringTransferNullableTransferIdsList = Array<string>;
@@ -9813,7 +9809,7 @@ export const UserThirdPartyTokenCreateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** An ISO-4217 currency code, used with e-wallets and transactions. */
 export type WalletISOCurrencyCode = "GBP" | "EUR";
-export const WalletISOCurrencyCode = /*@__PURE__*/ S.String;
+export const WalletISOCurrencyCode = S.String;
 
 export interface CreateWalletRequest {
   client_id?: string;
@@ -9880,7 +9876,7 @@ export const WalletNumbers = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the wallet. `UNKNOWN`: The wallet status is unknown. `ACTIVE`: The wallet is active and ready to send money to and receive money from. `CLOSED`: The wallet is closed. Any transactions made to or from this wallet will error. */
 export type WalletStatus = "UNKNOWN" | "ACTIVE" | "CLOSED";
-export const WalletStatus = /*@__PURE__*/ S.String;
+export const WalletStatus = S.String;
 
 export interface CreateWalletResponse {
   /** A unique ID identifying the e-wallet */
@@ -9985,11 +9981,11 @@ export type WatchlistScreeningStatus =
   | "rejected"
   | "pending_review"
   | "cleared";
-export const WatchlistScreeningStatus = /*@__PURE__*/ S.String;
+export const WatchlistScreeningStatus = S.String;
 
 /** A type indicating who or what last touched this object. `dashboard`, `link`, and `api` indicate the originating surface; `system` indicates Plaid. `retro` indicates a screening created retroactively via a bulk screening creation. */
 export type Source = "dashboard" | "link" | "api" | "system" | "retro";
-export const Source = /*@__PURE__*/ S.String;
+export const Source = S.String;
 
 /** Information about the last change made to the parent object specifying what caused the change as well as when it occurred. */
 export interface WatchlistScreeningAuditTrail {
@@ -10582,7 +10578,7 @@ export const PartnerCustomerEnableResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Decides the mode under which the payment processing should be performed, using `IMMEDIATE` as default. `IMMEDIATE`: Will immediately execute the payment, waiting for a response from the ASPSP before returning the result of the payment initiation. This is ideal for user-present flows. `ASYNC`: Will accept a payment execution request and schedule it for processing, immediately returning the new `payment_id`. Listen for webhooks to obtain real-time updates on the payment status. This is ideal for non user-present flows. */
 export type PaymentInitiationConsentProcessingMode = "ASYNC" | "IMMEDIATE";
-export const PaymentInitiationConsentProcessingMode = /*@__PURE__*/ S.String;
+export const PaymentInitiationConsentProcessingMode = S.String;
 
 export interface ExecutePaymentInitiationConsentPaymentRequest {
   client_id?: string;
@@ -10634,7 +10630,7 @@ export type PaymentInitiationPaymentStatus =
   | "PAYMENT_STATUS_CANCELLED"
   | "PAYMENT_STATUS_ESTABLISHED"
   | "PAYMENT_STATUS_REJECTED";
-export const PaymentInitiationPaymentStatus = /*@__PURE__*/ S.String;
+export const PaymentInitiationPaymentStatus = S.String;
 
 /** In this product, a request can pertain to more than one Item. If an error is returned for such a request, `causes` will return an array of errors containing a breakdown of these errors on the individual Item level, if any can be identified. `causes` will be provided for the `error_type` `ASSET_REPORT_ERROR` or `CHECK_REPORT_ERROR`. `causes` will also not be populated inside an error nested within a `warning` object. */
 export type PlaidErrorCausesList = Array<unknown>;
@@ -10853,7 +10849,7 @@ export type WalletTransactionStatus =
   | "SETTLED"
   | "BLOCKED"
   | "FAILED";
-export const WalletTransactionStatus = /*@__PURE__*/ S.String;
+export const WalletTransactionStatus = S.String;
 
 /** WalletTransactionExecuteResponse defines the response schema for `/wallet/transaction/execute` */
 export interface WalletTransactionExecuteResponse {
@@ -10892,7 +10888,7 @@ export type FDXNotificationType =
   | "TAN_CREATED"
   | "TAN_REVOKED"
   | "TAN_SUSPENDED";
-export const FDXNotificationType = /*@__PURE__*/ S.String;
+export const FDXNotificationType = S.String;
 
 /** Category of Notification */
 export type FDXNotificationCategory =
@@ -10902,7 +10898,7 @@ export type FDXNotificationCategory =
   | "CONSENT"
   | "NEW_DATA"
   | "TOKENIZED_ACCOUNT_NUMBER";
-export const FDXNotificationCategory = /*@__PURE__*/ S.String;
+export const FDXNotificationCategory = S.String;
 
 /** Severity level of notification */
 export type FDXNotificationSeverity =
@@ -10911,11 +10907,11 @@ export type FDXNotificationSeverity =
   | "WARNING"
   | "NOTICE"
   | "INFO";
-export const FDXNotificationSeverity = /*@__PURE__*/ S.String;
+export const FDXNotificationSeverity = S.String;
 
 /** Priority of notification */
 export type FDXNotificationPriority = "HIGH" | "MEDIUM" | "LOW";
-export const FDXNotificationPriority = /*@__PURE__*/ S.String;
+export const FDXNotificationPriority = S.String;
 
 /** Identifies the type of a party */
 export type FDXPartyType =
@@ -10925,11 +10921,11 @@ export type FDXPartyType =
   | "INDIVIDUAL"
   | "MERCHANT"
   | "VENDOR";
-export const FDXPartyType = /*@__PURE__*/ S.String;
+export const FDXPartyType = S.String;
 
 /** The registry containing the party's registration with name and id */
 export type FDXPartyRegistry = "FDX" | "GLEIF" | "ICANN" | "PRIVATE";
-export const FDXPartyRegistry = /*@__PURE__*/ S.String;
+export const FDXPartyRegistry = S.String;
 
 /** FDX Participant - an entity or person that is a part of a FDX API transaction */
 export interface FDXParty {
@@ -10965,11 +10961,11 @@ export type FDXNotificationPayloadIdType =
   | "PARTY"
   | "MAINTENANCE"
   | "CONSENT";
-export const FDXNotificationPayloadIdType = /*@__PURE__*/ S.String;
+export const FDXNotificationPayloadIdType = S.String;
 
 /** Current status of indicated entity after reported event change. Not all statuses will be supported on all entity types by all data providers */
 export type FDXEventStatus = "ACTIVE" | "EXPIRED" | "REVOKED" | "SUSPENDED";
-export const FDXEventStatus = /*@__PURE__*/ S.String;
+export const FDXEventStatus = S.String;
 
 /** Reason for lifecycle event status change */
 export type FDXUpdateReason =
@@ -10977,7 +10973,7 @@ export type FDXUpdateReason =
   | "SECURITY_EVENT"
   | "USER_ACTION"
   | "OTHER";
-export const FDXUpdateReason = /*@__PURE__*/ S.String;
+export const FDXUpdateReason = S.String;
 
 /** Details of consent or payment network identifier or other entity's revocation request or other lifecycle status change event */
 export interface FDXLifecycleEvent {
@@ -11019,7 +11015,7 @@ export const FDXNotificationPayload = /*@__PURE__*/ S.suspend(() =>
 
 /** HTTP Method to use for the request */
 export type FDXHateoasLinkAction = "GET" | "POST" | "PATCH" | "DELETE" | "PUT";
-export const FDXHateoasLinkAction = /*@__PURE__*/ S.String;
+export const FDXHateoasLinkAction = S.String;
 
 /** Types of document formats. (Suggested values) */
 export type FDXContentTypes =
@@ -11029,7 +11025,7 @@ export type FDXContentTypes =
   | "image/tiff"
   | "image/png"
   | "application/json";
-export const FDXContentTypes = /*@__PURE__*/ S.String;
+export const FDXContentTypes = S.String;
 
 /** Content-types that can be used in the Accept header */
 export type FDXHateoasLinkTypesList = Array<FDXContentTypes | (string & {})>;
@@ -11171,7 +11167,7 @@ export type AccountBaseVerificationStatus =
   | "database_insights_pass"
   | "database_insights_pass_with_caution"
   | "database_insights_fail";
-export const AccountBaseVerificationStatus = /*@__PURE__*/ S.String;
+export const AccountBaseVerificationStatus = S.String;
 
 /** Status information about the account and routing number in the Plaid network. */
 export interface AccountVerificationInsightsNetworkStatus {
@@ -11209,8 +11205,7 @@ export type AccountVerificationInsightsAccountNumberFormat =
   | "valid"
   | "invalid"
   | "unknown";
-export const AccountVerificationInsightsAccountNumberFormat =
-  /*@__PURE__*/ S.String;
+export const AccountVerificationInsightsAccountNumberFormat = S.String;
 
 /** Insights from performing database verification for the account. Only returned for Auth Items using Database Auth. */
 export interface AccountVerificationInsights {
@@ -11233,7 +11228,7 @@ export const AccountVerificationInsights = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates the account's categorization as either a personal or a business account. This field is currently in beta; to request access, contact your account manager. Coverage varies by institution, with approximately 70% of accounts populated overall. */
 export type AccountHolderCategory = "business" | "personal" | "unrecognized";
-export const AccountHolderCategory = /*@__PURE__*/ S.String;
+export const AccountHolderCategory = S.String;
 
 /** A single account at a financial institution. */
 export interface AccountBase {
@@ -11294,7 +11289,7 @@ export type ItemAuthMethod =
   | "DATABASE_INSIGHTS"
   | "TRANSFER_MIGRATED"
   | "INVESTMENTS_FALLBACK";
-export const ItemAuthMethod = /*@__PURE__*/ S.String;
+export const ItemAuthMethod = S.String;
 
 /** A list of products available for the Item that have not yet been accessed. The contents of this array will be mutually exclusive with `billed_products`. */
 export type ItemAvailableProductsList = Array<Products>;
@@ -11322,7 +11317,7 @@ export const ItemConsentedProductsList = /*@__PURE__*/ S.Array(
 
 /** Indicates whether an Item requires user interaction to be updated, which can be the case for Items with some forms of two-factor authentication. `background` - Item can be updated in the background `user_present_required` - Item requires user interaction to be updated */
 export type ItemUpdateType = "background" | "user_present_required";
-export const ItemUpdateType = /*@__PURE__*/ S.String;
+export const ItemUpdateType = S.String;
 
 /** Metadata about the Item. */
 export interface Item {
@@ -12078,7 +12073,7 @@ export type BusinessAccountVerificationStatus =
   | "database_insights_pass"
   | "database_insights_pass_with_caution"
   | "database_insights_fail";
-export const BusinessAccountVerificationStatus = /*@__PURE__*/ S.String;
+export const BusinessAccountVerificationStatus = S.String;
 
 /** Data returned by the financial institution about the account owner or owners. For business accounts, the name reported may be either the name of the individual or the name of the business, depending on the institution. Multiple owners on a single account will be represented in the same owner object, not in multiple owner objects within the array. */
 export type BusinessAccountOwnersList = Array<Owner>;
@@ -12145,11 +12140,11 @@ export const CashflowReportPaymentMeta = PaymentMeta;
 
 /** The channel used to make a payment. `online:` transactions that took place online. `in store:` transactions that were made at a physical location. `other:` transactions that relate to banks, e.g. fees or deposits. */
 export type PaymentChannel = "online" | "in store" | "other";
-export const PaymentChannel = /*@__PURE__*/ S.String;
+export const PaymentChannel = S.String;
 
 /** Indicates which version of the personal finance category taxonomy is being used. [View PFCv2 and PFCv1 taxonomies](https://plaid.com/documents/pfc-taxonomy-all.csv). If you enabled Transactions or Enrich before December 3, 2025 you will receive the `v1` taxonomy by default and may request `v2` by explicitly setting this field to `v2` in the request. If you enabled Transactions or Enrich on or after December 3, 2025, you may only receive the `v2` taxonomy. */
 export type PersonalFinanceCategoryVersion = "v1" | "v2";
-export const PersonalFinanceCategoryVersion = /*@__PURE__*/ S.String;
+export const PersonalFinanceCategoryVersion = S.String;
 
 /** Information describing the intent of the transaction. Most relevant for personal finance use cases, but not limited to such use cases. See the [taxonomy CSV file](https://plaid.com/documents/pfc-taxonomy-all.csv) for a full list of personal finance categories. If you are migrating to personal finance categories from the legacy categories, also refer to the [migration guide](https://plaid.com/docs/transactions/pfc-migration/). */
 export interface PersonalFinanceCategory {
@@ -12211,7 +12206,7 @@ export type TransactionCode =
   | "returned item fee"
   | "standing order"
   | "transfer";
-export const TransactionCode = /*@__PURE__*/ S.String;
+export const TransactionCode = S.String;
 
 /** The counterparty type. `merchant`: a provider of goods or services for purchase `financial_institution`: a financial entity (bank, credit union, BNPL, fintech) `payment_app`: a transfer or P2P app (e.g. Zelle) `marketplace`: a marketplace (e.g. DoorDash, Google Play Store) `payment_terminal`: a point-of-sale payment terminal (e.g. Square, Toast) `income_source`: the payer in an income transaction (e.g., an employer, client, or government agency) */
 export type CounterpartyType =
@@ -12221,7 +12216,7 @@ export type CounterpartyType =
   | "marketplace"
   | "payment_terminal"
   | "income_source";
-export const CounterpartyType = /*@__PURE__*/ S.String;
+export const CounterpartyType = S.String;
 
 /** Identifying information for a UK bank account via Bacs. */
 export interface CounterpartyNumbersBACS {
@@ -12775,7 +12770,7 @@ export type ConsentEventType =
   | "CONSENT_GRANTED"
   | "CONSENT_REVOKED"
   | "CONSENT_UPDATED";
-export const ConsentEventType = /*@__PURE__*/ S.String;
+export const ConsentEventType = S.String;
 
 /** Codes describing the object of a consent event. */
 export type ConsentEventCode =
@@ -12784,7 +12779,7 @@ export type ConsentEventCode =
   | "DATA_SCOPES"
   | "ACCOUNT_SCOPES"
   | "REVOCATION";
-export const ConsentEventCode = /*@__PURE__*/ S.String;
+export const ConsentEventCode = S.String;
 
 /** The entity that initiated collection of consent. */
 export type ConsentEventInitiator =
@@ -12792,7 +12787,7 @@ export type ConsentEventInitiator =
   | "DATA_PROVIDER"
   | "CUSTOMER"
   | "END_USER";
-export const ConsentEventInitiator = /*@__PURE__*/ S.String;
+export const ConsentEventInitiator = S.String;
 
 /** A list of strings containing the full list of use cases the end user has consented to for the Item. See the [full list](https://plaid.com/docs/link/data-transparency-messaging-migration-guide/#updating-link-customizations) of use cases. */
 export type ConsentEventConsentedUseCasesList = Array<string>;
@@ -12927,13 +12922,13 @@ export const GetCraCheckReportBaseReportRequestItemIdsList =
 
 /** The tier of the user. */
 export type CraUserTier = "free" | "paid";
-export const CraUserTier = /*@__PURE__*/ S.String;
+export const CraUserTier = S.String;
 
 /** The permissible purpose under the FCRA for retrieving this consumer report. Restricted to permissible purposes related to loan servicing only. Required when `report_id` is provided. */
 export type CraCheckReportPermissiblePurpose =
   | "ACCOUNT_REVIEW_CREDIT"
   | "WRITTEN_INSTRUCTION_OTHER";
-export const CraCheckReportPermissiblePurpose = /*@__PURE__*/ S.String;
+export const CraCheckReportPermissiblePurpose = S.String;
 
 export interface GetCraCheckReportBaseReportRequest {
   client_id?: string;
@@ -13053,7 +13048,7 @@ export type ConsumerDisputeCategory =
   | "BALANCE"
   | "IDENTITY"
   | "OTHER";
-export const ConsumerDisputeCategory = /*@__PURE__*/ S.String;
+export const ConsumerDisputeCategory = S.String;
 
 /** The information about a previously submitted valid dispute statement by the consumer */
 export interface ConsumerDispute {
@@ -13104,7 +13099,7 @@ export type BaseReportTransactionType =
   | "place"
   | "special"
   | "unresolved";
-export const BaseReportTransactionType = /*@__PURE__*/ S.String;
+export const BaseReportTransactionType = S.String;
 
 /** A hierarchical array of the categories to which this transaction belongs. For a full list of categories, see [`/categories/get`](https://plaid.com/docs/api/products/transactions/#categoriesget). */
 export type BaseReportTransactionCategoryList = Array<string>;
@@ -13652,7 +13647,7 @@ export type BaseReportWarningCode =
   | "IDENTITY_UNAVAILABLE"
   | "TRANSACTIONS_UNAVAILABLE"
   | "USER_FRAUD_ALERT";
-export const BaseReportWarningCode = /*@__PURE__*/ S.String;
+export const BaseReportWarningCode = S.String;
 
 /** It is possible for a Base Report to be returned with missing account owner information. In such cases, the Base Report will contain warning data in the response, indicating why obtaining the owner information failed. */
 export interface BaseReportWarning {
@@ -13755,7 +13750,7 @@ export type CheckReportWarningCode =
   | "IDENTITY_UNAVAILABLE"
   | "TRANSACTIONS_UNAVAILABLE"
   | "USER_FRAUD_ALERT";
-export const CheckReportWarningCode = /*@__PURE__*/ S.String;
+export const CheckReportWarningCode = S.String;
 
 /** It is possible for a Check Report product to be returned with missing information. In such cases, the product will contain warning data in the response, indicating why some of the requested information could not be retrieved. */
 export interface CheckReportWarning {
@@ -13863,7 +13858,7 @@ export const CraBankIncomeAccountMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** The account type. This will always be `depository`. */
 export type CreditBankIncomeAccountType = "depository";
-export const CreditBankIncomeAccountType = /*@__PURE__*/ S.String;
+export const CreditBankIncomeAccountType = S.String;
 
 /** Data returned by the financial institution about the account owner or owners. Identity information is optional, so field may return an empty array. */
 export type CraBankIncomeAccountOwnersList = Array<Owner>;
@@ -13932,7 +13927,7 @@ export type CreditBankIncomeCategory =
   | "TAX_REFUND"
   | "BENEFIT_OTHER"
   | "OTHER";
-export const CreditBankIncomeCategory = /*@__PURE__*/ S.String;
+export const CreditBankIncomeCategory = S.String;
 
 /** The income pay frequency. */
 export type CreditBankIncomePayFrequency =
@@ -13942,11 +13937,11 @@ export type CreditBankIncomePayFrequency =
   | "MONTHLY"
   | "DAILY"
   | "UNKNOWN";
-export const CreditBankIncomePayFrequency = /*@__PURE__*/ S.String;
+export const CreditBankIncomePayFrequency = S.String;
 
 /** The status of the income sources. `ACTIVE`: The income source is active. `INACTIVE`: The income source is inactive. `UNKNOWN`: The income source status is unknown. */
 export type CraBankIncomeStatus = "ACTIVE" | "INACTIVE" | "UNKNOWN";
-export const CraBankIncomeStatus = /*@__PURE__*/ S.String;
+export const CraBankIncomeStatus = S.String;
 
 /** The object containing prediction interval data. */
 export interface CraPredictionInterval {
@@ -14014,7 +14009,7 @@ export const CraBankIncomeHistoricalSummaryTotalAmountsList =
 
 /** The type of bonus that this transaction represents, if it is a bonus. `BONUS_INCLUDED`: Bonus is included in this transaction along with the normal pay `BONUS_ONLY`: This transaction is a standalone bonus */
 export type CraBankIncomeBonusType = "BONUS_INCLUDED" | "BONUS_ONLY";
-export const CraBankIncomeBonusType = /*@__PURE__*/ S.String;
+export const CraBankIncomeBonusType = S.String;
 
 /** The transactions data for the end user's income source(s). */
 export interface CraBankIncomeTransaction {
@@ -14531,7 +14526,7 @@ export const CraBankIncomeSummary = /*@__PURE__*/ S.suspend(() =>
 
 /** The warning type which will always be `BANK_INCOME_WARNING`. */
 export type CreditBankIncomeWarningType = "BANK_INCOME_WARNING";
-export const CreditBankIncomeWarningType = /*@__PURE__*/ S.String;
+export const CreditBankIncomeWarningType = S.String;
 
 /** The warning code identifies a specific kind of warning. `IDENTITY_UNAVAILABLE`: Unable to extract identity for the Item `TRANSACTIONS_UNAVAILABLE`: Unable to extract transactions for the Item `REPORT_DELETED`: Report deleted due to customer or consumer request `DATA_UNAVAILABLE`: No relevant data was found for the Item */
 export type CraBankIncomeWarningCode =
@@ -14539,7 +14534,7 @@ export type CraBankIncomeWarningCode =
   | "TRANSACTIONS_UNAVAILABLE"
   | "REPORT_DELETED"
   | "DATA_UNAVAILABLE";
-export const CraBankIncomeWarningCode = /*@__PURE__*/ S.String;
+export const CraBankIncomeWarningCode = S.String;
 
 /** A broad categorization of the error. Safe for programmatic use. */
 export type CreditBankIncomeErrorType =
@@ -14559,7 +14554,7 @@ export type CreditBankIncomeErrorType =
   | "NO_ACCOUNTS"
   | "ITEM_NOT_SUPPORTED"
   | "ACCESS_NOT_GRANTED";
-export const CreditBankIncomeErrorType = /*@__PURE__*/ S.String;
+export const CreditBankIncomeErrorType = S.String;
 
 /** An error object and associated `item_id` used to identify a specific Item and error when a batch operation operating on multiple Items has encountered an error in one of the Items. */
 export interface CraBankIncomeCause {
@@ -15466,7 +15461,7 @@ export const CraCheckReportPartnerInsightsGetResponse = /*@__PURE__*/ S.suspend(
 
 /** A list of add-ons that can be included in the PDF. `cra_income_insights`: Include Income Insights report in the PDF. `cra_partner_insights`: Include Partner Insights report in the PDF. */
 export type CraPDFAddOns = "cra_income_insights" | "cra_partner_insights";
-export const CraPDFAddOns = /*@__PURE__*/ S.String;
+export const CraPDFAddOns = S.String;
 
 /** Use this field to include other reports in the PDF. */
 export type GetCraCheckReportPdfRequestAddOnsList = Array<
@@ -16112,7 +16107,7 @@ export type CraVerificationIncomePayFrequency =
   | "MONTHLY"
   | "DAILY"
   | "UNKNOWN";
-export const CraVerificationIncomePayFrequency = /*@__PURE__*/ S.String;
+export const CraVerificationIncomePayFrequency = S.String;
 
 /** The object containing data about the income provider. */
 export type CraVerificationIncomeProvider = CraBankIncomeIncomeProvider;
@@ -16120,7 +16115,7 @@ export const CraVerificationIncomeProvider = CraBankIncomeIncomeProvider;
 
 /** The status of the income source. `ACTIVE`: The income source is active. `INACTIVE`: The income source is inactive. `UNKNOWN`: The income source status is unknown. */
 export type CraVerificationIncomeStatus = "ACTIVE" | "INACTIVE" | "UNKNOWN";
-export const CraVerificationIncomeStatus = /*@__PURE__*/ S.String;
+export const CraVerificationIncomeStatus = S.String;
 
 /** Metadata of the income stream's next payment. */
 export type CraVerificationIncomeNextPayment = CraIncomeNextPayment;
@@ -16347,7 +16342,7 @@ export type CraCheckReportVerificationPdfReportType =
   | "voa"
   | "employment_refresh"
   | "income";
-export const CraCheckReportVerificationPdfReportType = /*@__PURE__*/ S.String;
+export const CraCheckReportVerificationPdfReportType = S.String;
 
 /** Specifies which types of verification reports to include in the returned PDF. Supported combinations are: `[voa]`, `[employment_refresh]`, `[income]`, or `[voa, income]`. Other combinations are not supported. */
 export type GetCraCheckReportVerificationPdfRequestReportsRequestedList = Array<
@@ -16403,15 +16398,15 @@ export const GetCraCheckReportVerificationPdfResponse = /*@__PURE__*/ S.suspend(
 
 /** The product type for the credit profile report request. */
 export type CraCreditProfileReportType = "QUALIFY";
-export const CraCreditProfileReportType = /*@__PURE__*/ S.String;
+export const CraCreditProfileReportType = S.String;
 
 /** The inquiry type of credit profile report. */
 export type CraCreditProfileInquiryType = "SOFT_INQUIRY" | "STANDARD_INQUIRY";
-export const CraCreditProfileInquiryType = /*@__PURE__*/ S.String;
+export const CraCreditProfileInquiryType = S.String;
 
 /** The version of the credit profile report to retrieve. */
 export type CraCreditProfileReportVersion = "v1";
-export const CraCreditProfileReportVersion = /*@__PURE__*/ S.String;
+export const CraCreditProfileReportVersion = S.String;
 
 export interface GetCraCreditProfileReportRequest {
   client_id?: string;
@@ -16612,8 +16607,7 @@ export const CraCreditProfileReportGetResponse = /*@__PURE__*/ S.suspend(() =>
 export type MonitoringConsumerReportPermissiblePurpose =
   | "ACCOUNT_REVIEW_CREDIT"
   | "WRITTEN_INSTRUCTION_OTHER";
-export const MonitoringConsumerReportPermissiblePurpose =
-  /*@__PURE__*/ S.String;
+export const MonitoringConsumerReportPermissiblePurpose = S.String;
 
 export interface GetCraMonitoringInsightRequest {
   client_id?: string;
@@ -16641,7 +16635,7 @@ export const GetCraMonitoringInsightRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum for the status of the Item's insights */
 export type MonitoringItemStatusCode = "AVAILABLE" | "FAILED" | "PENDING";
-export const MonitoringItemStatusCode = /*@__PURE__*/ S.String;
+export const MonitoringItemStatusCode = S.String;
 
 /** An object with details of the Monitoring Insights Item's status. */
 export interface MonitoringInsightsItemStatus {
@@ -16933,7 +16927,7 @@ export const CraPartnerInsightsGetResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The Qualify product discriminator. */
 export type CraQualifyProductProduct = "cra_qualify";
-export const CraQualifyProductProduct = /*@__PURE__*/ S.String;
+export const CraQualifyProductProduct = S.String;
 
 /** Names the Qualify product at a given version. */
 export interface CraQualifyProduct {
@@ -16952,7 +16946,7 @@ export const CraQualifyProduct = /*@__PURE__*/ S.suspend(() =>
 
 /** The Income Insights product discriminator. */
 export type CraIncomeInsightsProductProduct = "cra_income_insights";
-export const CraIncomeInsightsProductProduct = /*@__PURE__*/ S.String;
+export const CraIncomeInsightsProductProduct = S.String;
 
 /** Names the Income Insights product at a given version. */
 export interface CraIncomeInsightsProduct {
@@ -16971,7 +16965,7 @@ export const CraIncomeInsightsProduct = /*@__PURE__*/ S.suspend(() =>
 
 /** The Home Lending product discriminator. */
 export type CraHomeLendingProductProduct = "cra_home_lending";
-export const CraHomeLendingProductProduct = /*@__PURE__*/ S.String;
+export const CraHomeLendingProductProduct = S.String;
 
 /** Names the Home Lending product at a given version. */
 export interface CraHomeLendingProduct {
@@ -16994,7 +16988,7 @@ export type CraReportGetRequestProduct =
   | CraIncomeInsightsProduct
   | CraHomeLendingProduct;
 export const CraReportGetRequestProduct =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CraReportGetRequestProduct>;
+  S.Unknown as any as S.Schema<CraReportGetRequestProduct>;
 
 /** The requested products and their versions, e.g. `[{"product":"cra_qualify","version":"V1"}]`. */
 export type GetCraReportRequestProductsList = Array<CraReportGetRequestProduct>;
@@ -17007,7 +17001,7 @@ export type CraReportDecisionStage =
   | "PREQUALIFICATION"
   | "DECISIONING"
   | "SERVICING";
-export const CraReportDecisionStage = /*@__PURE__*/ S.String;
+export const CraReportDecisionStage = S.String;
 
 export interface GetCraReportRequest {
   client_id?: string;
@@ -17039,7 +17033,7 @@ export const GetCraReportRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The Qualify product. */
 export type CraReportGetQualifyResponseProductProduct = "cra_qualify";
-export const CraReportGetQualifyResponseProductProduct = /*@__PURE__*/ S.String;
+export const CraReportGetQualifyResponseProductProduct = S.String;
 
 /** A map of product report metadata, where the key is a string and the value varies by product. For a full list of metadata fields per product, see the data dictionary. May be `null` if metadata was not available. */
 export type CraReportGetProductMetadata = {
@@ -17091,8 +17085,7 @@ export const CraReportGetQualifyResponseProduct = /*@__PURE__*/ S.suspend(() =>
 /** The Income Insights product. */
 export type CraReportGetIncomeInsightsResponseProductProduct =
   "cra_income_insights";
-export const CraReportGetIncomeInsightsResponseProductProduct =
-  /*@__PURE__*/ S.String;
+export const CraReportGetIncomeInsightsResponseProductProduct = S.String;
 
 /** The institution IDs of the Items used to generate the report. */
 export type CraReportGetIncomeInsightsMetadataInstitutionIdsList =
@@ -17225,8 +17218,7 @@ export const CraReportGetIncomeInsightsResponseProduct =
 
 /** The Home Lending product. */
 export type CraReportGetHomeLendingResponseProductProduct = "cra_home_lending";
-export const CraReportGetHomeLendingResponseProductProduct =
-  /*@__PURE__*/ S.String;
+export const CraReportGetHomeLendingResponseProductProduct = S.String;
 
 /** The institution IDs of the Items used to generate the report. */
 export type CraReportGetProductBaseMetadataInstitutionIdsList = Array<string>;
@@ -17409,7 +17401,7 @@ export type CraReportGetResponseProduct =
   | CraReportGetIncomeInsightsResponseProduct
   | CraReportGetHomeLendingResponseProduct;
 export const CraReportGetResponseProduct =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CraReportGetResponseProduct>;
+  S.Unknown as any as S.Schema<CraReportGetResponseProduct>;
 
 /** Per-product report data. Each entry corresponds to one requested product. */
 export type CraReportGetReportProductsList = Array<CraReportGetResponseProduct>;
@@ -17555,7 +17547,7 @@ export const GetCreditAssetReportFreddieMacRequest = /*@__PURE__*/ S.suspend(
 
 /** A value from a MISMO prescribed list that specifies the type of loan identifier. */
 export type LoanIdentifierType = "LenderLoan" | "UniversalLoan";
-export const LoanIdentifierType = /*@__PURE__*/ S.String;
+export const LoanIdentifierType = S.String;
 
 /** The information used to identify this loan by various parties to the transaction or other organizations. */
 export interface LoanIdentifier {
@@ -17630,7 +17622,7 @@ export const PartyIndividual = /*@__PURE__*/ S.suspend(() =>
 
 /** A value from a MISMO defined list that identifies the role that the party plays in the transaction. Parties may be either a person or legal entity. A party may play multiple roles in a transaction. */
 export type PartyRoleType = "Borrower";
-export const PartyRoleType = /*@__PURE__*/ S.String;
+export const PartyRoleType = S.String;
 
 /** Documentation not found in the MISMO model viewer and not provided by Freddie Mac. */
 export interface RoleDetail {
@@ -17666,7 +17658,7 @@ export const Roles = /*@__PURE__*/ S.suspend(() =>
 export type TaxpayerIdentifierType =
   | "IndividualTaxpayerIdentificationNumber"
   | "SocialSecurityNumber";
-export const TaxpayerIdentifierType = /*@__PURE__*/ S.String;
+export const TaxpayerIdentifierType = S.String;
 
 /** Information about the Taxpayer identification values assigned to the individual or legal entity. */
 export interface TaxpayerIdentifier {
@@ -17739,7 +17731,7 @@ export const ReportingInformation = /*@__PURE__*/ S.suspend(() =>
 
 /** Documentation not found in the MISMO model viewer and not provided by Freddie Mac. */
 export type ServiceProductFulfillmentIdentifier = "VOA" | "VOE";
-export const ServiceProductFulfillmentIdentifier = /*@__PURE__*/ S.String;
+export const ServiceProductFulfillmentIdentifier = S.String;
 
 /** Documentation not found in the MISMO model viewer and not provided by Freddie Mac. */
 export interface ServiceProductFulfillmentDetail {
@@ -17775,16 +17767,15 @@ export type AssetType =
   | "Investment"
   | "MoneyMarketFund"
   | "Other";
-export const AssetType = /*@__PURE__*/ S.String;
+export const AssetType = S.String;
 
 /** Whether or not the account is a retirement account (e.g., 401K, 403b, 457, thrift savings plans, traditional and Roth, IRAs, SEP-IRA, SIMPLE-IRA, KEOGH, state retirement savings plans, other independent and IRS-qualified employer retirement plans) */
 export type AssetDetailAssetRetirementIndicator = "Yes" | "No";
-export const AssetDetailAssetRetirementIndicator = /*@__PURE__*/ S.String;
+export const AssetDetailAssetRetirementIndicator = S.String;
 
 /** Whether the account is employer sponsored retirement account or not (e.g., 401K, 403b, 457, thrift savings plan) */
 export type AssetDetailAssetEmployerSponsoredIndicator = "Yes" | "No";
-export const AssetDetailAssetEmployerSponsoredIndicator =
-  /*@__PURE__*/ S.String;
+export const AssetDetailAssetEmployerSponsoredIndicator = S.String;
 
 /** Details about an asset. */
 export interface AssetDetail {
@@ -17913,7 +17904,7 @@ export const AssetHolder = /*@__PURE__*/ S.suspend(() =>
 
 /** Asset Transaction Type. */
 export type AssetTransactionType = "Credit" | "Debit";
-export const AssetTransactionType = /*@__PURE__*/ S.String;
+export const AssetTransactionType = S.String;
 
 /** Asset Investment Transaction Type Enumerated derived by Vendor. */
 export type AssetInvestmentTransactionType =
@@ -17925,7 +17916,7 @@ export type AssetInvestmentTransactionType =
   | "Reinvestments"
   | "FundsReceived"
   | "Other";
-export const AssetInvestmentTransactionType = /*@__PURE__*/ S.String;
+export const AssetInvestmentTransactionType = S.String;
 
 /** Asset Transaction Category Type Enumerated derived by Vendor. */
 export type AssetTransactionCategoryType =
@@ -18036,7 +18027,7 @@ export type AssetTransactionCategoryType =
   | "Utilities"
   | "Vacation"
   | "Veterinary";
-export const AssetTransactionCategoryType = /*@__PURE__*/ S.String;
+export const AssetTransactionCategoryType = S.String;
 
 /** Documentation not found in the MISMO model viewer and not provided by Freddie Mac. */
 export interface AssetTransactionDetail {
@@ -18461,7 +18452,7 @@ export const CreditBankEmploymentReportItemsList = /*@__PURE__*/ S.Array(
 
 /** The warning type which will always be `BANK_EMPLOYMENT_WARNING`. */
 export type CreditBankEmploymentWarningType = "BANK_EMPLOYMENT_WARNING";
-export const CreditBankEmploymentWarningType = /*@__PURE__*/ S.String;
+export const CreditBankEmploymentWarningType = S.String;
 
 /** The warning code identifies a specific kind of warning. `IDENTITY_UNAVAILABLE`: Unable to extract identity for the Item `TRANSACTIONS_UNAVAILABLE`: Unable to extract transactions for the Item `ITEM_UNAPPROVED`: User exited flow before giving permission to share data for the Item `REPORT_DELETED`: Report deleted due to customer or consumer request `DATA_UNAVAILABLE`: No relevant data was found for the Item */
 export type CreditBankIncomeWarningCode =
@@ -18470,7 +18461,7 @@ export type CreditBankIncomeWarningCode =
   | "ITEM_UNAPPROVED"
   | "REPORT_DELETED"
   | "DATA_UNAVAILABLE";
-export const CreditBankIncomeWarningCode = /*@__PURE__*/ S.String;
+export const CreditBankIncomeWarningCode = S.String;
 
 /** An error object and associated `item_id` used to identify a specific Item and error when a batch operation operating on multiple Items has encountered an error in one of the Items. */
 export interface CreditBankIncomeCause {
@@ -19518,12 +19509,11 @@ export type AssetHoldingAssetHoldingType =
   | "Stock"
   | "Crypto"
   | "Other";
-export const AssetHoldingAssetHoldingType = /*@__PURE__*/ S.String;
+export const AssetHoldingAssetHoldingType = S.String;
 
 /** Whether or not the stock is restricted, i.e. "Restricted" or "Not Restricted" */
 export type AssetHoldingAssetHoldingRestrictedIndicator = "Yes" | "No";
-export const AssetHoldingAssetHoldingRestrictedIndicator =
-  /*@__PURE__*/ S.String;
+export const AssetHoldingAssetHoldingRestrictedIndicator = S.String;
 
 /** Documentation not found in the MISMO model viewer and not provided by Freddie Mac. */
 export interface AssetHolding {
@@ -20110,7 +20100,7 @@ export const PayStubPayPeriodDetailsDistributionBreakdownList =
 
 /** The explicit pay basis on the paystub (if present). */
 export type CreditPayStubPayBasisType = "SALARY" | "HOURLY" | "COMMISSION";
-export const CreditPayStubPayBasisType = /*@__PURE__*/ S.String;
+export const CreditPayStubPayBasisType = S.String;
 
 /** Details about the pay period. */
 export interface PayStubPayPeriodDetails {
@@ -20319,7 +20309,7 @@ export type Form1099Type =
   | "FORM_1099_TYPE_UNKNOWN"
   | "FORM_1099_TYPE_MISC"
   | "FORM_1099_TYPE_K";
-export const Form1099Type = /*@__PURE__*/ S.String;
+export const Form1099Type = S.String;
 
 /** An object representing a recipient used in both 1099-K and 1099-MISC tax documents. */
 export interface Credit1099Recipient {
@@ -20748,7 +20738,7 @@ export type RiskSignalDocumentStatus =
   | "PROCESSING_ERROR"
   | "PASSWORD_PROTECTED"
   | "VIRUS_DETECTED";
-export const RiskSignalDocumentStatus = /*@__PURE__*/ S.String;
+export const RiskSignalDocumentStatus = S.String;
 
 /** Type of a document for risk signal analysis */
 export type RiskSignalDocumentType =
@@ -20764,7 +20754,7 @@ export type RiskSignalDocumentType =
   | "SOCIAL_SECURITY_CARD"
   | "TAX_FORM"
   | "UTILITY_BILL";
-export const RiskSignalDocumentType = /*@__PURE__*/ S.String;
+export const RiskSignalDocumentType = S.String;
 
 /** The file type for risk signal analysis */
 export type RiskSignalFileType =
@@ -20776,7 +20766,7 @@ export type RiskSignalFileType =
   | "MIXED_PAGE_PDF"
   | "EMPTY_PDF"
   | "FLATTENED_PDF";
-export const RiskSignalFileType = /*@__PURE__*/ S.String;
+export const RiskSignalFileType = S.String;
 
 /** Object containing metadata for the document */
 export interface RiskSignalDocumentReference {
@@ -21001,7 +20991,7 @@ export const CreditPayrollIncomeRiskSignalsGetResponse =
 
 /** The report type. It can be `asset`. Income report types are not yet supported. */
 export type ReportType = "asset";
-export const ReportType = /*@__PURE__*/ S.String;
+export const ReportType = S.String;
 
 export interface GetCreditRelayRequest {
   client_id?: string;
@@ -21099,7 +21089,7 @@ export type CreditSessionBankIncomeStatus =
   | "USER_REPORTED_NO_INCOME"
   | "STARTED"
   | "INTERNAL_ERROR";
-export const CreditSessionBankIncomeStatus = /*@__PURE__*/ S.String;
+export const CreditSessionBankIncomeStatus = S.String;
 
 /** The details of a bank income verification in Link */
 export interface CreditSessionBankIncomeResult {
@@ -21133,7 +21123,7 @@ export type CreditSessionBankEmploymentStatus =
   | "EMPLOYER_NOT_LISTED"
   | "STARTED"
   | "INTERNAL_ERROR";
-export const CreditSessionBankEmploymentStatus = /*@__PURE__*/ S.String;
+export const CreditSessionBankEmploymentStatus = S.String;
 
 /** The details of a bank employment verification in Link. */
 export interface CreditSessionBankEmploymentResult {
@@ -21331,7 +21321,7 @@ export const GetDashboardUserRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The current status of the user. */
 export type DashboardUserStatus = "invited" | "active" | "deactivated";
-export const DashboardUserStatus = /*@__PURE__*/ S.String;
+export const DashboardUserStatus = S.String;
 
 /** Account information associated with a team member with access to the Plaid dashboard. */
 export interface DashboardUserGetResponse {
@@ -21369,7 +21359,7 @@ export const GetFdxConsentRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Current status of a consent grant. One of `ACTIVE`, `REVOKED`, `EXPIRED`. */
 export type FDXConsentGrantStatus = "ACTIVE" | "REVOKED" | "EXPIRED";
-export const FDXConsentGrantStatus = /*@__PURE__*/ S.String;
+export const FDXConsentGrantStatus = S.String;
 
 /** Non-end-user parties participating in the consent grant (Data Recipient, Data Provider, Data Access Platform). */
 export type FDXConsentGrantPartiesList = Array<FDXParty>;
@@ -21379,7 +21369,7 @@ export const FDXConsentGrantPartiesList = /*@__PURE__*/ S.Array(
 
 /** Type of resource permissioned on a consent grant. */
 export type FDXConsentResourceType = "ACCOUNT" | "CUSTOMER" | "DOCUMENT";
-export const FDXConsentResourceType = /*@__PURE__*/ S.String;
+export const FDXConsentResourceType = S.String;
 
 /** Name of a cluster of data elements permissioned by a consent grant. */
 export type FDXDataCluster =
@@ -21399,7 +21389,7 @@ export type FDXDataCluster =
   | "TRANSACTIONS"
   | "BALANCES"
   | "SCHEDULED_PAYMENTS";
-export const FDXDataCluster = /*@__PURE__*/ S.String;
+export const FDXDataCluster = S.String;
 
 /** Names of clusters of data elements permissioned. */
 export type FDXConsentGrantResourceDataClustersList = Array<FDXDataCluster>;
@@ -21567,7 +21557,7 @@ export type AccountIdentityVerificationStatus =
   | "database_insights_pass"
   | "database_insights_pass_with_caution"
   | "database_insights_fail";
-export const AccountIdentityVerificationStatus = /*@__PURE__*/ S.String;
+export const AccountIdentityVerificationStatus = S.String;
 
 /** Data returned by the financial institution about the account owner or owners. Only returned by Identity or Assets endpoints. For business accounts, the name reported may be either the name of the individual or the name of the business, depending on the institution. To determine whether the linked account is a business account, use the `holder_category` field on the account object. Multiple owners on a single account will be represented in the same `owner` object, not in multiple owner objects within the array. In API versions 2018-05-22 and earlier, the `owners` object is not returned, and instead identity information is returned in the top level `identity` object. For more details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2019-05-29) */
 export type AccountIdentityOwnersList = Array<Owner>;
@@ -21705,8 +21695,7 @@ export type AccountIdentityDocumentUploadVerificationStatus =
   | "database_insights_pass"
   | "database_insights_pass_with_caution"
   | "database_insights_fail";
-export const AccountIdentityDocumentUploadVerificationStatus =
-  /*@__PURE__*/ S.String;
+export const AccountIdentityDocumentUploadVerificationStatus = S.String;
 
 /** Data returned by the financial institution about the account owner or owners. Only returned by Identity or Assets endpoints. For business accounts, the name reported may be either the name of the individual or the name of the business, depending on the institution. To determine whether the linked account is a business account, use the `holder_category` field on the account object. Multiple owners on a single account will be represented in the same `owner` object, not in multiple owner objects within the array. In API versions 2018-05-22 and earlier, the `owners` object is not returned, and instead identity information is returned in the top level `identity` object. For more details, see [Plaid API versioning](https://plaid.com/docs/api/versioning/#version-2019-05-29) */
 export type AccountIdentityDocumentUploadOwnersList = Array<Owner>;
@@ -22070,14 +22059,14 @@ export const InstitutionDtcNumbersList = /*@__PURE__*/ S.Array(
 
 /** This field is deprecated in favor of the `breakdown` object, which provides more granular institution health data. `HEALTHY`: the majority of requests are successful `DEGRADED`: only some requests are successful `DOWN`: all requests are failing */
 export type ProductStatusStatus = "HEALTHY" | "DEGRADED" | "DOWN";
-export const ProductStatusStatus = /*@__PURE__*/ S.String;
+export const ProductStatusStatus = S.String;
 
 /** How frequently data for subscription products like Investments, Transactions, and Liabilities, is being refreshed, relative to the institution's normal scheduling. The `refresh_interval` may be `DELAYED` or `STOPPED` even when the success rate is high. */
 export type ProductStatusBreakdownRefreshInterval =
   | "NORMAL"
   | "DELAYED"
   | "STOPPED";
-export const ProductStatusBreakdownRefreshInterval = /*@__PURE__*/ S.String;
+export const ProductStatusBreakdownRefreshInterval = S.String;
 
 /** A detailed breakdown of the institution's performance for a request type. The values for `success`, `error_plaid`, and `error_institution` sum to 1. The time range used for calculating the breakdown may range from the most recent few minutes to the past six hours. In general, smaller institutions will show status that was calculated over a longer period of time. For Investment updates, which are refreshed less frequently, the period assessed may be 24 hours or more. For more details, see [Institution status details](https://plaid.com/docs/account/activity/#troubleshooting-institution-insights). */
 export interface ProductStatusBreakdown {
@@ -22124,7 +22113,7 @@ export type IncidentUpdateStatus =
   | "SCHEDULED"
   | "RESOLVED"
   | "UNKNOWN";
-export const IncidentUpdateStatus = /*@__PURE__*/ S.String;
+export const IncidentUpdateStatus = S.String;
 
 /** An update on the health incident */
 export interface IncidentUpdate {
@@ -22422,7 +22411,7 @@ export type InvestmentAccountVerificationStatus =
   | "database_insights_pass"
   | "database_insights_pass_with_caution"
   | "database_insights_fail";
-export const InvestmentAccountVerificationStatus = /*@__PURE__*/ S.String;
+export const InvestmentAccountVerificationStatus = S.String;
 
 /** A single account at a financial institution, with additional investment-specific balance information. */
 export interface InvestmentAccount {
@@ -22559,7 +22548,7 @@ export type YieldRateType =
   | "coupon_equivalent"
   | "discount"
   | "yield";
-export const YieldRateType = /*@__PURE__*/ S.String;
+export const YieldRateType = S.String;
 
 /** Details about a fixed income security's expected rate of return. */
 export interface YieldRate {
@@ -22796,7 +22785,7 @@ export const InvestmentsAuthGetNumbers = /*@__PURE__*/ S.suspend(() =>
 
 /** A description of the source of data for a given product/data type. `INSTITUTION`: The institution supports this product, and the data was provided by the institution. `INSTITUTION_MASK`: The user manually provided the full account number, which was matched to the account mask provided by the institution. Only applicable to the `numbers` data type. `USER`: The institution does not support this product, and the data was manually provided by the user. */
 export type DataSources = "INSTITUTION" | "INSTITUTION_MASK" | "USER";
-export const DataSources = /*@__PURE__*/ S.String;
+export const DataSources = S.String;
 
 /** Object with metadata pertaining to the source of data for the account numbers, owners, and holdings that are returned. */
 export interface InvestmentsAuthDataSources {
@@ -23216,7 +23205,7 @@ export type IssuesStatus =
   | "FIX_PENDING_VALIDATION"
   | "CANNOT_FIX"
   | "RESOLVED";
-export const IssuesStatus = /*@__PURE__*/ S.String;
+export const IssuesStatus = S.String;
 
 /** Information on an issue encountered with financial institution interactions during Linking. */
 export interface Issue {
@@ -23301,7 +23290,7 @@ export const ItemWithConsentFieldsConsentedProductsList = /*@__PURE__*/ S.Array(
 export type ItemWithConsentFieldsUpdateType =
   | "background"
   | "user_present_required";
-export const ItemWithConsentFieldsUpdateType = /*@__PURE__*/ S.String;
+export const ItemWithConsentFieldsUpdateType = S.String;
 
 /** A list of use cases that the user has consented to for the Item via [Data Transparency Messaging](https://plaid.com/docs/link/data-transparency-messaging-migration-guide). You can see the full list of use cases or update the list of use cases to request at any time via the Link Customization section of the [Plaid Dashboard](https://dashboard.plaid.com/link/data-transparency-v5). */
 export type ItemWithConsentFieldsConsentedUseCasesList = Array<string>;
@@ -23326,7 +23315,7 @@ export type ItemConsentedDataScope =
   | "risk_info"
   | "network_insights_lite"
   | "fraud_info";
-export const ItemConsentedDataScope = /*@__PURE__*/ S.String;
+export const ItemConsentedDataScope = S.String;
 
 /** A list of data scopes that the user has consented to for the Item via [Data Transparency Messaging](https://plaid.com/docs/link/data-transparency-messaging-migration-guide). These are based on the `consented_products`; see the [full mapping](https://plaid.com/docs/link/data-transparency-messaging-migration-guide/#data-scopes-by-product) of data scopes and products. */
 export type ItemWithConsentFieldsConsentedDataScopesList =
@@ -23520,7 +23509,7 @@ export type APRAprType =
   | "penalty_apr"
   | "purchase_apr"
   | "special";
-export const APRAprType = /*@__PURE__*/ S.String;
+export const APRAprType = S.String;
 
 /** Information about the APR on the account. */
 export interface APR {
@@ -23733,7 +23722,7 @@ export type StudentLoanStatusType =
   | "repayment"
   | "transferred"
   | "pending idr";
-export const StudentLoanStatusType = /*@__PURE__*/ S.String;
+export const StudentLoanStatusType = S.String;
 
 /** An object representing the status of the student loan */
 export interface StudentLoanStatus {
@@ -23782,7 +23771,7 @@ export type StudentRepaymentPlanType =
   | "revised pay as you earn"
   | "standard"
   | "saving on a valuable education";
-export const StudentRepaymentPlanType = /*@__PURE__*/ S.String;
+export const StudentRepaymentPlanType = S.String;
 
 /** An object representing the repayment plan for the student loan */
 export interface StudentRepaymentPlan {
@@ -23912,7 +23901,7 @@ export const LiabilitiesObjectStudentList = /*@__PURE__*/ S.Array(
 
 /** The type of interest rate. */
 export type LoanInterestRateType = "fixed" | "variable";
-export const LoanInterestRateType = /*@__PURE__*/ S.String;
+export const LoanInterestRateType = S.String;
 
 /** Information about the interest rate on a loan or line of credit. */
 export interface LoanInterestRate {
@@ -23938,7 +23927,7 @@ export type LoanPaymentFrequency =
   | "monthly"
   | "semiannually"
   | "annually";
-export const LoanPaymentFrequency = /*@__PURE__*/ S.String;
+export const LoanPaymentFrequency = S.String;
 
 /** The frequency at which interest is compounded. */
 export type LoanCompoundingPeriod =
@@ -23949,7 +23938,7 @@ export type LoanCompoundingPeriod =
   | "monthly"
   | "semiannually"
   | "annually";
-export const LoanCompoundingPeriod = /*@__PURE__*/ S.String;
+export const LoanCompoundingPeriod = S.String;
 
 /** Contains details about a closed-end loan account. */
 export interface LoanLiability {
@@ -24201,7 +24190,7 @@ export const LinkSessionSuccessMetadataAccountsList = /*@__PURE__*/ S.Array(
 export type LinkSessionSuccessMetadataTransferStatus =
   | "COMPLETE"
   | "INCOMPLETE";
-export const LinkSessionSuccessMetadataTransferStatus = /*@__PURE__*/ S.String;
+export const LinkSessionSuccessMetadataTransferStatus = S.String;
 
 /** Displayed once a user has successfully linked their Item. */
 export interface LinkSessionSuccessMetadata {
@@ -24768,7 +24757,7 @@ export const GetNetworkStatusRequest = /*@__PURE__*/ S.suspend(() =>
 export type NetworkStatusGetResponseNetworkStatus =
   | "UNKNOWN"
   | "RETURNING_USER";
-export const NetworkStatusGetResponseNetworkStatus = /*@__PURE__*/ S.String;
+export const NetworkStatusGetResponseNetworkStatus = S.String;
 
 /** An object representing Layer-related metadata for the requested user. */
 export interface NetworkStatusGetResponseLayer {
@@ -24874,14 +24863,14 @@ export type PartnerEndCustomerFlowdownStatus =
   | "IN_REVIEW"
   | "NEGOTIATION"
   | "COMPLETE";
-export const PartnerEndCustomerFlowdownStatus = /*@__PURE__*/ S.String;
+export const PartnerEndCustomerFlowdownStatus = S.String;
 
 /** The status of the end customer's security questionnaire. */
 export type PartnerEndCustomerQuestionnaireStatus =
   | "NOT_STARTED"
   | "RECEIVED"
   | "COMPLETE";
-export const PartnerEndCustomerQuestionnaireStatus = /*@__PURE__*/ S.String;
+export const PartnerEndCustomerQuestionnaireStatus = S.String;
 
 /** The registration status for the end customer's application. */
 export type PartnerEndCustomerOAuthInstitutionApplicationStatus =
@@ -24890,8 +24879,7 @@ export type PartnerEndCustomerOAuthInstitutionApplicationStatus =
   | "APPROVED"
   | "ENABLED"
   | "ATTENTION_REQUIRED";
-export const PartnerEndCustomerOAuthInstitutionApplicationStatus =
-  /*@__PURE__*/ S.String;
+export const PartnerEndCustomerOAuthInstitutionApplicationStatus = S.String;
 
 /** Registration statuses by environment. */
 export interface PartnerEndCustomerOAuthInstitutionEnvironments {
@@ -25776,11 +25764,11 @@ export type TransactionTransactionType =
   | "place"
   | "special"
   | "unresolved";
-export const TransactionTransactionType = /*@__PURE__*/ S.String;
+export const TransactionTransactionType = S.String;
 
 /** The channel used to make a payment. `online:` transactions that took place online. `in store:` transactions that were made at a physical location. `other:` transactions that relate to banks, e.g. fees or deposits. This field replaces the `transaction_type` field. */
 export type TransactionPaymentChannel = "online" | "in store" | "other";
-export const TransactionPaymentChannel = /*@__PURE__*/ S.String;
+export const TransactionPaymentChannel = S.String;
 
 /** The counterparties present in the transaction. Counterparties, such as the merchant or the financial institution, are extracted by Plaid from the raw description. */
 export type TransactionCounterpartiesList = Array<TransactionCounterparty>;
@@ -25985,7 +25973,7 @@ export type RecurringTransactionFrequency =
   | "SEMI_MONTHLY"
   | "MONTHLY"
   | "ANNUALLY";
-export const RecurringTransactionFrequency = /*@__PURE__*/ S.String;
+export const RecurringTransactionFrequency = S.String;
 
 /** An array of Plaid transaction IDs belonging to the stream, sorted by posted date. */
 export type TransactionStreamTransactionIdsList = Array<string>;
@@ -26018,7 +26006,7 @@ export type TransactionStreamStatus =
   | "MATURE"
   | "EARLY_DETECTION"
   | "TOMBSTONED";
-export const TransactionStreamStatus = /*@__PURE__*/ S.String;
+export const TransactionStreamStatus = S.String;
 
 /** A grouping of related transactions */
 export interface TransactionStream {
@@ -27152,7 +27140,7 @@ export const TransferIntentGetFailureReason = /*@__PURE__*/ S.suspend(() =>
 
 /** A decision regarding the proposed transfer. `APPROVED` - The proposed transfer has received the end user's consent and has been approved for processing by Plaid. The `decision_rationale` field is set if Plaid was unable to fetch the account information. You may proceed with the transfer, but further review is recommended (i.e., use Link in update mode to re-authenticate your user when `decision_rationale.code` is `ITEM_LOGIN_REQUIRED`). Refer to the `code` field in the `decision_rationale` object for details. `DECLINED` - Plaid reviewed the proposed transfer and declined processing. Refer to the `code` field in the `decision_rationale` object for details. */
 export type TransferIntentAuthorizationDecision = "APPROVED" | "DECLINED";
-export const TransferIntentAuthorizationDecision = /*@__PURE__*/ S.String;
+export const TransferIntentAuthorizationDecision = S.String;
 
 /** Represents a transfer intent within Transfer UI. */
 export interface TransferIntentGet {
@@ -27423,7 +27411,7 @@ export type TransferDiligenceStatus =
   | "approved"
   | "denied"
   | "more_information_required";
-export const TransferDiligenceStatus = /*@__PURE__*/ S.String;
+export const TransferDiligenceStatus = S.String;
 
 /** A piece of information that is required for originator onboarding. */
 export interface TransferPlatformRequirement {
@@ -27628,7 +27616,7 @@ export type SweepStatus =
   | "funds_available"
   | "returned"
   | "failed";
-export const SweepStatus = /*@__PURE__*/ S.String;
+export const SweepStatus = S.String;
 
 /** The trigger of the sweep `"manual"` - The sweep is created manually by the customer `"incoming"` - The sweep is created by incoming funds flow (e.g. Incoming Wire) `"balance_threshold"` - The sweep is created by balance threshold setting `"automatic_aggregate"` - The sweep is created by the Plaid automatic aggregation process. These funds did not pass through the Plaid Ledger balance. */
 export type SweepTrigger =
@@ -27636,7 +27624,7 @@ export type SweepTrigger =
   | "incoming"
   | "balance_threshold"
   | "automatic_aggregate";
-export const SweepTrigger = /*@__PURE__*/ S.String;
+export const SweepTrigger = S.String;
 
 /** The failure reason if the status for a sweep is `"failed"` or `"returned"`. Null value otherwise. */
 export interface SweepFailure {
@@ -28036,14 +28024,14 @@ export type GetWalletTransactionResponseType =
   | "ACCOUNT_FUNDING"
   | "AUTO_REFUND"
   | "TRANSFER_OUT";
-export const GetWalletTransactionResponseType = /*@__PURE__*/ S.String;
+export const GetWalletTransactionResponseType = S.String;
 
 /** The payment scheme used to execute this transaction. This is present only for transaction types `PAYOUT` and `REFUND`. `FASTER_PAYMENTS`: The standard payment scheme within the UK. `SEPA_CREDIT_TRANSFER`: The standard payment to a beneficiary within the SEPA area. `SEPA_CREDIT_TRANSFER_INSTANT`: Instant payment to a beneficiary within the SEPA area. */
 export type WalletPaymentScheme =
   | "FASTER_PAYMENTS"
   | "SEPA_CREDIT_TRANSFER"
   | "SEPA_CREDIT_TRANSFER_INSTANT";
-export const WalletPaymentScheme = /*@__PURE__*/ S.String;
+export const WalletPaymentScheme = S.String;
 
 /** Result of payee verification check for EUR payouts. Payee verification checks whether the payee name provided matches the account holder name at the destination institution. `FULL_MATCH`: The payee name fully matches the account holder. `PARTIAL_MATCH`: The payee name partially matches the account holder. `NO_MATCH`: The payee name does not match the account holder. `ERROR`: An error occurred during payee verification. `CHECK_NOT_POSSIBLE`: Payee verification could not be performed. This field is only populated for applicable EUR payout transactions and will be `null` for other transaction types. */
 export type WalletTransactionPayeeVerificationStatus =
@@ -28052,7 +28040,7 @@ export type WalletTransactionPayeeVerificationStatus =
   | "NO_MATCH"
   | "ERROR"
   | "CHECK_NOT_POSSIBLE";
-export const WalletTransactionPayeeVerificationStatus = /*@__PURE__*/ S.String;
+export const WalletTransactionPayeeVerificationStatus = S.String;
 
 /** The error code of a failed transaction. Error codes include: `EXTERNAL_SYSTEM`: The transaction was declined by an external system. `EXPIRED`: The transaction request has expired. `CANCELLED`: The transaction request was rescinded. `INVALID`: The transaction did not meet certain criteria, such as an inactive account or no valid counterparty, etc. `ACCOUNT_INVALID`: The transaction could not be processed because the wallet account is invalid or inactive. `AUTHENTICATION_FAILED`: The transaction could not be processed because authentication with the wallet provider failed. `UNKNOWN`: The transaction was unsuccessful, but the exact cause is unknown. */
 export type WalletTransactionFailureReason =
@@ -28063,7 +28051,7 @@ export type WalletTransactionFailureReason =
   | "ACCOUNT_INVALID"
   | "AUTHENTICATION_FAILED"
   | "UNKNOWN";
-export const WalletTransactionFailureReason = /*@__PURE__*/ S.String;
+export const WalletTransactionFailureReason = S.String;
 
 /** The type of the transaction. */
 export type WalletTransactionRelationType =
@@ -28071,7 +28059,7 @@ export type WalletTransactionRelationType =
   | "RETURN"
   | "REFUND"
   | "FUNDS_SWEEP";
-export const WalletTransactionRelationType = /*@__PURE__*/ S.String;
+export const WalletTransactionRelationType = S.String;
 
 /** Transactions are related when they have a logical connection. For example, a `PAYOUT` transaction can be returned by the sender, creating a `RETURN` transaction. Each `PAYOUT` transaction can have at most one corresponding `RETURN` transaction in case of reversal. These relationships are bi-directional, meaning that both entities have references to each other. For instance, when a transaction of type RETURN occurs, it is linked to the original transaction being returned. Likewise, the original transaction has a reference back to the RETURN transaction that represents the return. This field is only populated for transactions of type `RETURN`, `FUNDS_SWEEP`, `REFUND` and `PAYOUT`. The relationship between a `PIS_PAY_IN` payment and its corresponding `REFUND` transactions is only available through the `refund_ids` property in the payment object. See [`/payment_initiation/payment/get`](https://plaid.com/docs/api/products/payment-initiation/#payment_initiation-payment-get-response-refund-ids). */
 export interface WalletTransactionRelation {
@@ -28235,7 +28223,7 @@ export type EntityWatchlistCode =
   | "US_TEL"
   | "AU_CON"
   | "UK_HMC";
-export const EntityWatchlistCode = /*@__PURE__*/ S.String;
+export const EntityWatchlistCode = S.String;
 
 /** Watchlists enabled for the associated program */
 export type WatchlistScreeningEntityProgramGetResponseListsEnabledList =
@@ -28247,7 +28235,7 @@ export const WatchlistScreeningEntityProgramGetResponseListsEnabledList =
 
 /** The valid name matching sensitivity configurations for a screening program. Note that while certain matching techniques may be more prevalent on less strict settings, all matching algorithms are enabled for every sensitivity. `coarse` - See more potential matches. This sensitivity will see more broad phonetic matches across alphabets that make missing a potential hit very unlikely. This setting is noisier and will require more manual review. `balanced` - A good default for most companies. This sensitivity is balanced to show high quality hits with reduced noise. `strict` - Aggressive false positive reduction. This sensitivity will require names to be more similar than `coarse` and `balanced` settings, relying less on phonetics, while still accounting for character transpositions, missing tokens, and other common permutations. `exact` - Matches must be nearly exact. This sensitivity will only show hits with exact or nearly exact name matches with only basic correction such as extraneous symbols and capitalization. This setting is generally not recommended unless you have a very specific use case. */
 export type ProgramNameSensitivity = "coarse" | "balanced" | "strict" | "exact";
-export const ProgramNameSensitivity = /*@__PURE__*/ S.String;
+export const ProgramNameSensitivity = S.String;
 
 /** A program that configures the active lists, search parameters, and other behavior for initial and ongoing screening of entities. */
 export interface WatchlistScreeningEntityProgramGetResponse {
@@ -28376,7 +28364,7 @@ export type IndividualWatchlistCode =
   | "TR_FOR"
   | "TR_WMD"
   | "TR_CMB";
-export const IndividualWatchlistCode = /*@__PURE__*/ S.String;
+export const IndividualWatchlistCode = S.String;
 
 /** Watchlists enabled for the associated program */
 export type WatchlistScreeningIndividualProgramGetResponseListsEnabledList =
@@ -28582,8 +28570,7 @@ export type AccountIdentityMatchScoreVerificationStatus =
   | "database_insights_pass"
   | "database_insights_pass_with_caution"
   | "database_insights_fail";
-export const AccountIdentityMatchScoreVerificationStatus =
-  /*@__PURE__*/ S.String;
+export const AccountIdentityMatchScoreVerificationStatus = S.String;
 
 /** Score found by matching name provided by the API with the name on the account at the financial institution. If the account contains multiple owners, the maximum match score is filled. */
 export interface NameMatchScore {
@@ -28970,7 +28957,7 @@ export const LinkOAuthCorrelationIdExchangeResponse = /*@__PURE__*/ S.suspend(
 
 /** The type of bank transfer. This will be either `debit` or `credit`. A `debit` indicates a transfer of money into your origination account; a `credit` indicates a transfer of money out of your origination account. */
 export type BankTransferEventListBankTransferType = "debit" | "credit";
-export const BankTransferEventListBankTransferType = /*@__PURE__*/ S.String;
+export const BankTransferEventListBankTransferType = S.String;
 
 /** The type of event that this bank transfer represents. `pending`: A new transfer was created; it is in the pending state. `cancelled`: The transfer was cancelled by the client. `failed`: The transfer failed, no funds were moved. `posted`: The transfer has been successfully submitted to the payment network. `reversed`: A posted transfer was reversed. */
 export type BankTransferEventType =
@@ -28979,7 +28966,7 @@ export type BankTransferEventType =
   | "failed"
   | "posted"
   | "reversed";
-export const BankTransferEventType = /*@__PURE__*/ S.String;
+export const BankTransferEventType = S.String;
 
 /** Filter events by event type. */
 export type ListBankTransferEventRequestEventTypesList = Array<
@@ -28991,7 +28978,7 @@ export const ListBankTransferEventRequestEventTypesList = /*@__PURE__*/ S.Array(
 
 /** Indicates the direction of the transfer: `outbound`: for API-initiated transfers `inbound`: for payments received by the FBO account. */
 export type BankTransferEventListDirection = "inbound" | "outbound";
-export const BankTransferEventListDirection = /*@__PURE__*/ S.String;
+export const BankTransferEventListDirection = S.String;
 
 export interface ListBankTransferEventRequest {
   client_id?: string;
@@ -29043,7 +29030,7 @@ export const ListBankTransferEventRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of bank transfer. This will be either `debit` or `credit`. A `debit` indicates a transfer of money into the origination account; a `credit` indicates a transfer of money out of the origination account. */
 export type BankTransferType = "debit" | "credit";
-export const BankTransferType = /*@__PURE__*/ S.String;
+export const BankTransferType = S.String;
 
 /** The failure reason if the type of this transfer is `"failed"` or `"reversed"`. Null value otherwise. */
 export interface BankTransferFailure {
@@ -29063,7 +29050,7 @@ export const BankTransferFailure = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates the direction of the transfer: `outbound` for API-initiated transfers, or `inbound` for payments received by the FBO account. */
 export type BankTransferDirection = "outbound" | "inbound";
-export const BankTransferDirection = /*@__PURE__*/ S.String;
+export const BankTransferDirection = S.String;
 
 /** Additional details for receiver events. Currently always `null`. */
 export interface ReceiverDetails {
@@ -29198,7 +29185,7 @@ export const ListBetaWebhookEventsRequestItemIdsList = /*@__PURE__*/ S.Array(
 
 /** Latest delivery state for this webhook. `PENDING`: Plaid has not yet received a successful response and may still retry. `DELIVERED`: the destination returned a 2xx response. `FAILED`: all delivery attempts were exhausted without a 2xx response. */
 export type WebhookEventDeliveryStatus = "PENDING" | "DELIVERED" | "FAILED";
-export const WebhookEventDeliveryStatus = /*@__PURE__*/ S.String;
+export const WebhookEventDeliveryStatus = S.String;
 
 /** Filter by delivery status. Returns webhook events whose latest delivery state matches any of the supplied values. Combined with other filters using AND. */
 export type ListBetaWebhookEventsRequestDeliveryStatusesList = Array<
@@ -29483,7 +29470,7 @@ export const ListIdentityMatchRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Link outcome for the Identity Match attempt. */
 export type IdentityMatchListOutcome = "PASS" | "FAIL" | "UNKNOWN";
-export const IdentityMatchListOutcome = /*@__PURE__*/ S.String;
+export const IdentityMatchListOutcome = S.String;
 
 /** Identity Match scores for one account. */
 export interface IdentityMatchListAttemptScore {
@@ -29709,7 +29696,7 @@ export type ActivityType =
   | "ITEM_REMOVE"
   | "INVARIANT_CHECKER_DELETION"
   | "SCOPES_UPDATE";
-export const ActivityType = /*@__PURE__*/ S.String;
+export const ActivityType = S.String;
 
 /** Enum representing the state of the action/activity. */
 export type ActionState =
@@ -29718,7 +29705,7 @@ export type ActionState =
   | "SUCCESS"
   | "FAILURE"
   | "SKIPPED";
-export const ActionState = /*@__PURE__*/ S.String;
+export const ActionState = S.String;
 
 /** The product access being requested. Used to allow or disallow product access across all accounts. If unset, defaults to all products allowed. */
 export interface ProductAccess {
@@ -29812,7 +29799,7 @@ export const ScopesNullable = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum representing the entity authenticating the user. */
 export type ItemCreateAuthentication = "UNKNOWN" | "DATA_PARTNER" | "PLAID";
-export const ItemCreateAuthentication = /*@__PURE__*/ S.String;
+export const ItemCreateAuthentication = S.String;
 
 /** Describes a consent activity. */
 export interface Activity {
@@ -30469,7 +30456,7 @@ export const TransferListResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of transfer. This will be either `debit` or `credit`. A `debit` indicates a transfer of money into your origination account; a `credit` indicates a transfer of money out of your origination account. */
 export type TransferEventListTransferType = "debit" | "credit";
-export const TransferEventListTransferType = /*@__PURE__*/ S.String;
+export const TransferEventListTransferType = S.String;
 
 /** The type of event that this transfer represents. Event types with prefix `sweep` represent events for Plaid Ledger sweeps. `pending`: A new transfer was created; it is in the pending state. `cancelled`: The transfer was cancelled by the client. `failed`: The transfer failed, no funds were moved. `posted`: The transfer has been successfully submitted to the payment network. `settled`: The transfer has been successfully completed by the payment network. `funds_available`: Funds from the transfer have been released from hold and applied to the ledger's available balance. (Only applicable to ACH debits.) `guaranteed`: The transfer has been fully guaranteed by Plaid. `returned`: A posted transfer was returned. `guarantee_reimbursed`: Plaid reimbursed the client for the loss on a returned guaranteed transfer. The `event_amount` is the reimbursed amount. `client_return_recovered`: The client reported recovering the loss on a returned transfer via `/transfer/return/recover`, and Plaid debited the recovered amount from the client's ledger. The `event_amount` is the recovered amount. `plaid_return_recovered`: Plaid recovered the loss on a returned transfer by successfully reinitiating it. The `event_amount` is the recovered amount. Client should stop their return recovery effort. `swept`: The transfer was swept to / from the sweep account. `swept_settled`: Credits are available to be withdrawn or debits have been deducted from the customer's business checking account. `return_swept`: Due to the transfer being returned, funds were pulled from or pushed back to the sweep account. `sweep.pending`: A new ledger sweep was created; it is in the pending state. `sweep.posted`: The ledger sweep has been successfully submitted to the payment network. `sweep.settled`: The transaction has settled in the funding account. This means that funds withdrawn from Plaid Ledger balance have reached the funding account, or funds to be deposited into the Plaid Ledger Balance have been pulled, and the hold period has begun. `sweep.returned`: A posted ledger sweep was returned. `sweep.failed`: The ledger sweep failed, no funds were moved. `sweep.funds_available`: Funds from the ledger sweep have been released from hold and applied to the ledger's available balance. This is only applicable to debits. `refund.pending`: A new refund was created; it is in the pending state. `refund.cancelled`: The refund was cancelled. `refund.failed`: The refund failed, no funds were moved. `refund.posted`: The refund has been successfully submitted to the payment network. `refund.settled`: The refund transaction has settled in the Plaid linked account. `refund.returned`: A posted refund was returned. `refund.swept`: The refund was swept from the sweep account. `refund.return_swept`: Due to the refund being returned, funds were pushed back to the sweep account. */
 export type TransferEventType =
@@ -30501,7 +30488,7 @@ export type TransferEventType =
   | "refund.returned"
   | "refund.swept"
   | "refund.return_swept";
-export const TransferEventType = /*@__PURE__*/ S.String;
+export const TransferEventType = S.String;
 
 /** Filter events by event type. */
 export type ListTransferEventRequestEventTypesList = Array<
@@ -30561,7 +30548,7 @@ export const ListTransferEventRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of transfer. Valid values are `debit` or `credit`. A `debit` indicates a transfer of money into the origination account; a `credit` indicates a transfer of money out of the origination account. This field is omitted for Plaid Ledger Sweep events. */
 export type OmittableTransferType = "debit" | "credit";
-export const OmittableTransferType = /*@__PURE__*/ S.String;
+export const OmittableTransferType = S.String;
 
 /** Represents an event in the Transfers API. */
 export interface TransferEvent {
@@ -30643,7 +30630,7 @@ export const TransferEventListResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Source of the ledger event. `"TRANSFER"` - The source of the ledger event is a transfer `"SWEEP"` - The source of the ledger event is a sweep `"REFUND"` - The source of the ledger event is a refund */
 export type LedgerEventSourceType = "TRANSFER" | "SWEEP" | "REFUND";
-export const LedgerEventSourceType = /*@__PURE__*/ S.String;
+export const LedgerEventSourceType = S.String;
 
 export interface ListTransferLedgerEventRequest {
   client_id?: string;
@@ -31178,7 +31165,7 @@ export type WalletTransactionType =
   | "ACCOUNT_FUNDING"
   | "AUTO_REFUND"
   | "TRANSFER_OUT";
-export const WalletTransactionType = /*@__PURE__*/ S.String;
+export const WalletTransactionType = S.String;
 
 /** A list of wallet transactions that this transaction is associated with, if any. */
 export type WalletTransactionRelatedTransactionsList =
@@ -31421,7 +31408,7 @@ export type WatchlistScreeningHitStatus =
   | "confirmed"
   | "pending_review"
   | "dismissed";
-export const WatchlistScreeningHitStatus = /*@__PURE__*/ S.String;
+export const WatchlistScreeningHitStatus = S.String;
 
 /** Sub-program designations that may be attached to the watchlist entry by the issuing authority. For OFAC SDN entries these are the program codes published in the SDN list (for example `SDGT` for Specially Designated Global Terrorists, `SDNTK` for Specially Designated Narcotics Trafficking Kingpins, `IRAN`, `RUSSIA-EO14024`). New codes are added by sanctioning authorities without prior notice, so callers should treat unknown values as opaque strings rather than enum members. */
 export type EntityWatchlistScreeningHitSubProgramsList = Array<string>;
@@ -31466,7 +31453,7 @@ export type EntityDocumentType =
   | "other"
   | "swift"
   | "tax_id";
-export const EntityDocumentType = /*@__PURE__*/ S.String;
+export const EntityDocumentType = S.String;
 
 /** An official document, usually issued by a governing body or institution, with an associated identifier. */
 export interface EntityDocument {
@@ -31572,7 +31559,7 @@ export const EntityScreeningHitDataLocationsList = /*@__PURE__*/ S.Array(
 
 /** Names that are explicitly marked as low quality either by their `source` list, or by `plaid` by a series of additional checks done by Plaid. Plaid does not ever surface a hit as a result of a weak name alone. If a name has no quality issues, this value will be `none`. */
 export type WeakAliasDetermination = "none" | "source" | "plaid";
-export const WeakAliasDetermination = /*@__PURE__*/ S.String;
+export const WeakAliasDetermination = S.String;
 
 /** Name information for the associated entity watchlist hit */
 export interface EntityScreeningHitNames {
@@ -31615,7 +31602,7 @@ export const EntityScreeningHitDataNamesList = /*@__PURE__*/ S.Array(
 
 /** An enum indicating whether a phone number is a phone line or a fax line. */
 export type PhoneType = "phone" | "fax";
-export const PhoneType = /*@__PURE__*/ S.String;
+export const PhoneType = S.String;
 
 /** Phone number information associated with the entity screening hit */
 export interface EntityScreeningHitPhoneNumbers {
@@ -32171,7 +32158,7 @@ export type WatchlistScreeningDocumentType =
   | "tax_id"
   | "travel_document"
   | "voter_id";
-export const WatchlistScreeningDocumentType = /*@__PURE__*/ S.String;
+export const WatchlistScreeningDocumentType = S.String;
 
 /** An official document, usually issued by a governing body or institution, with an associated identifier. */
 export interface WatchlistScreeningDocument {
@@ -32565,14 +32552,14 @@ export type OAuthGrantType =
   | "refresh_token"
   | "urn:ietf:params:oauth:grant-type:token-exchange"
   | "client_credentials";
-export const OAuthGrantType = /*@__PURE__*/ S.String;
+export const OAuthGrantType = S.String;
 
 /** The type of the subject token. `urn:plaid:params:tokens:user` allows exchanging a Plaid-issued user token for an OAuth token. When using this token type, `audience` must be the same as the `client_id`. `subject_token` must be a Plaid-issued user token issued from the `/user/create` endpoint. `urn:plaid:params:oauth:user-token` allows exchanging a refresh token for an OAuth token to another `client_id`. The other `client_id` is provided in `audience`. `subject_token` must be an OAuth refresh token issued from the `/oauth/token` endpoint. `urn:plaid:params:credit:multi-user` allows exchanging a Plaid-issued user token for an OAuth token. When using this token type, `audience` may be a client id or a supported CRA partner URN. `audience` supports a comma-delimited list of clients. When multiple clients are specified in the `audience` a multi-party token is created which can be used by all parties in the audience in conjunction with their `client_id` and `client_secret`. */
 export type OAuthSubjectTokenType =
   | "urn:plaid:params:tokens:user"
   | "urn:plaid:params:oauth:user-token"
   | "urn:plaid:params:credit:multi-user";
-export const OAuthSubjectTokenType = /*@__PURE__*/ S.String;
+export const OAuthSubjectTokenType = S.String;
 
 export interface OauthTokenRequest {
   grant_type: OAuthGrantType | (string & {});
@@ -32736,7 +32723,7 @@ export type SignalDecisionOutcome =
   | "REJECT"
   | "TAKE_OTHER_RISK_MEASURES"
   | "NOT_EVALUATED";
-export const SignalDecisionOutcome = /*@__PURE__*/ S.String;
+export const SignalDecisionOutcome = S.String;
 
 /** The payment method to complete the transaction after the risk assessment. It may be different from the default payment method. `SAME_DAY_ACH`: Same Day ACH by Nacha. The debit transaction is processed and settled on the same day. `STANDARD_ACH`: Standard ACH by Nacha. `MULTIPLE_PAYMENT_METHODS`: if there is no default debit rail or there are multiple payment methods. */
 export type SignalPaymentMethod =
@@ -32744,7 +32731,7 @@ export type SignalPaymentMethod =
   | "NEXT_DAY_ACH"
   | "STANDARD_ACH"
   | "MULTIPLE_PAYMENT_METHODS";
-export const SignalPaymentMethod = /*@__PURE__*/ S.String;
+export const SignalPaymentMethod = S.String;
 
 export interface ProcessorSignalDecisionReportRequest {
   client_id?: string;
@@ -33226,7 +33213,7 @@ export const SignalEvaluateCoreAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The result of the rule that was triggered for this transaction. `ACCEPT`: Accept the transaction for processing. `REROUTE`: Reroute the transaction to a different payment method, as this transaction is too risky. `REVIEW`: Review the transaction before proceeding. */
 export type RuleResult = "ACCEPT" | "REROUTE" | "REVIEW";
-export const RuleResult = /*@__PURE__*/ S.String;
+export const RuleResult = S.String;
 
 /** Rules are run in numerical order. The first rule with a logic match is triggered. These are the details of that rule. */
 export interface RuleDetails {
@@ -33920,7 +33907,7 @@ export type CraLoanType =
   | "STUDENT"
   | "HOME_EQUITY"
   | "OTHER";
-export const CraLoanType = /*@__PURE__*/ S.String;
+export const CraLoanType = S.String;
 
 /** The frequency of a loan's payment schedule. `BIWEEKLY` represents one payment every two weeks. */
 export type CraLoanPaymentSchedule =
@@ -33931,7 +33918,7 @@ export type CraLoanPaymentSchedule =
   | "QUARTERLY"
   | "ANNUALLY"
   | "OTHER";
-export const CraLoanPaymentSchedule = /*@__PURE__*/ S.String;
+export const CraLoanPaymentSchedule = S.String;
 
 /** The status of the loan. */
 export type CraLoanStatus =
@@ -33945,7 +33932,7 @@ export type CraLoanStatus =
   | "TRANSFERRED"
   | "PAID_OFF"
   | "OTHER";
-export const CraLoanStatus = /*@__PURE__*/ S.String;
+export const CraLoanStatus = S.String;
 
 /** Contains the status and date information of the loan when registering. */
 export interface CraLoanOpenedStatus {
@@ -34040,7 +34027,7 @@ export const CraLoansRegisterResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The decision of the loan application. */
 export type CraLoanApplicationDecision = "APPROVED" | "DECLINED" | "OTHER";
-export const CraLoanApplicationDecision = /*@__PURE__*/ S.String;
+export const CraLoanApplicationDecision = S.String;
 
 /** Contains loan application data. */
 export interface CraLoanApplication {
@@ -34178,7 +34165,7 @@ export type ItemRemoveReasonCode =
   | "FRAUD_OTHER"
   | "CONNECTION_IS_NON_FUNCTIONAL"
   | "OTHER";
-export const ItemRemoveReasonCode = /*@__PURE__*/ S.String;
+export const ItemRemoveReasonCode = S.String;
 
 export interface RemoveItemRequest {
   client_id?: string;
@@ -34411,7 +34398,7 @@ export const UserThirdPartyTokenRemoveResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** An instruction specifying what steps the new Identity Verification attempt should require the user to complete: `reset` - Restart the user at the beginning of the session, regardless of whether they successfully completed part of their previous session. `incomplete` - Start the new session at the step that the user failed in the previous session, skipping steps that have already been successfully completed. `infer` - If the most recent Identity Verification attempt associated with the given `client_user_id` has a status of `failed` or `expired`, retry using the `incomplete` strategy. Otherwise, use the `reset` strategy. `custom` - Start the new session with a custom configuration, specified by the value of the `steps` field Note: The `incomplete` strategy cannot be applied if the session's failing step is `watchlist_screening` or `risk_check`. The `infer` strategy cannot be applied if the session's status is still `active` */
 export type Strategy = "reset" | "incomplete" | "infer" | "custom";
-export const Strategy = /*@__PURE__*/ S.String;
+export const Strategy = S.String;
 
 /** User information collected outside of Link, most likely via your own onboarding process. Each of the following identity fields are optional: `email_address` `phone_number` `date_of_birth` `name` `address` `id_number` Specifically, these fields are optional in that they can either be fully provided (satisfying every required field in their subschema) or omitted from the request entirely by not providing the key or value. Providing these fields via the API will result in Link skipping the data collection process for the associated user. All verification steps enabled in the associated Identity Verification Template will still be run. Verification steps will either be run immediately, or once the user completes the `accept_tos` step, depending on the value provided to the `gave_consent` field. */
 export interface IdentityVerificationRequestUser {
@@ -34645,8 +34632,7 @@ export type SandboxCraServicingSimulateErrorWebhookCode =
   | "UNMATCH"
   | "DATA_UNAVAILABLE"
   | "NO_ELIGIBLE_ITEMS_ON_PROFILE";
-export const SandboxCraServicingSimulateErrorWebhookCode =
-  /*@__PURE__*/ S.String;
+export const SandboxCraServicingSimulateErrorWebhookCode = S.String;
 
 /** Optional parameters controlling the simulated report. */
 export interface SandboxCraServicingSimulateRequestOptions {
@@ -34751,8 +34737,7 @@ export type SandboxIncomeFireWebhookRequestVerificationStatus =
   | "VERIFICATION_STATUS_PROCESSING_COMPLETE"
   | "VERIFICATION_STATUS_PROCESSING_FAILED"
   | "VERIFICATION_STATUS_PENDING_APPROVAL";
-export const SandboxIncomeFireWebhookRequestVerificationStatus =
-  /*@__PURE__*/ S.String;
+export const SandboxIncomeFireWebhookRequestVerificationStatus = S.String;
 
 /** The webhook codes that can be fired by this test endpoint. */
 export type SandboxIncomeWebhookFireRequestWebhookCode =
@@ -34760,8 +34745,7 @@ export type SandboxIncomeWebhookFireRequestWebhookCode =
   | "USER_INCOME_VERIFICATION"
   | "INCOME_VERIFICATION_RISK_SIGNALS"
   | "USER_INCOME_VERIFICATION_RISK_SIGNALS";
-export const SandboxIncomeWebhookFireRequestWebhookCode =
-  /*@__PURE__*/ S.String;
+export const SandboxIncomeWebhookFireRequestWebhookCode = S.String;
 
 export interface SandboxIncomeFireWebhookRequest {
   client_id?: string;
@@ -34855,7 +34839,7 @@ export type WebhookType =
   | "LIABILITIES"
   | "TRANSACTIONS"
   | "ASSETS";
-export const WebhookType = /*@__PURE__*/ S.String;
+export const WebhookType = S.String;
 
 /** The webhook codes that can be fired by this test endpoint. */
 export type SandboxItemFireWebhookRequestWebhookCode =
@@ -34871,7 +34855,7 @@ export type SandboxItemFireWebhookRequestWebhookCode =
   | "SYNC_UPDATES_AVAILABLE"
   | "PRODUCT_READY"
   | "ERROR";
-export const SandboxItemFireWebhookRequestWebhookCode = /*@__PURE__*/ S.String;
+export const SandboxItemFireWebhookRequestWebhookCode = S.String;
 
 export interface SandboxItemFireWebhookRequest {
   client_id?: string;
@@ -34947,7 +34931,7 @@ export type SandboxItemSetVerificationStatusRequestVerificationStatus =
   | "automatically_verified"
   | "verification_expired";
 export const SandboxItemSetVerificationStatusRequestVerificationStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SandboxItemSetVerificationStatusRequest {
   client_id?: string;
@@ -35115,7 +35099,7 @@ export type TransferLedgerSweepSimulateEventType =
   | "sweep.settled"
   | "sweep.returned"
   | "sweep.failed";
-export const TransferLedgerSweepSimulateEventType = /*@__PURE__*/ S.String;
+export const TransferLedgerSweepSimulateEventType = S.String;
 
 export interface SandboxTransferLedgerDepositSimulateRequest {
   client_id?: string;
@@ -35442,7 +35426,7 @@ export const SandboxTransferTestClockAdvanceResponse = /*@__PURE__*/ S.suspend(
 
 /** The webhook types that can be fired by this test endpoint. */
 export type SandboxUserFireWebhookType = "CHECK_REPORT";
-export const SandboxUserFireWebhookType = /*@__PURE__*/ S.String;
+export const SandboxUserFireWebhookType = S.String;
 
 /** The webhook codes that can be fired by this test endpoint. */
 export type SandboxUserFireWebhookCode =
@@ -35450,7 +35434,7 @@ export type SandboxUserFireWebhookCode =
   | "USER_CHECK_REPORT_FAILED"
   | "CHECK_REPORT_READY"
   | "CHECK_REPORT_FAILED";
-export const SandboxUserFireWebhookCode = /*@__PURE__*/ S.String;
+export const SandboxUserFireWebhookCode = S.String;
 
 export interface SandboxUserFireWebhookRequest {
   client_id?: string;
@@ -35985,7 +35969,7 @@ export type SignalScheduleDefaultPaymentMethod =
   | "SAME_DAY_ACH"
   | "STANDARD_ACH"
   | "MULTIPLE_PAYMENT_METHODS";
-export const SignalScheduleDefaultPaymentMethod = /*@__PURE__*/ S.String;
+export const SignalScheduleDefaultPaymentMethod = S.String;
 
 export interface SignalScheduleRequest {
   client_id?: string;
@@ -36018,7 +36002,7 @@ export type RecommendationString =
   | "RECOMMENDED"
   | "NOT_RECOMMENDED"
   | "UNKNOWN";
-export const RecommendationString = /*@__PURE__*/ S.String;
+export const RecommendationString = S.String;
 
 /** Conveys information on if a retry is recommended on a given date */
 export interface SignalScheduleRecommendation {
@@ -36078,11 +36062,11 @@ export type OriginatorExpectedTransferFrequency =
   | "twice_per_month"
   | "once_per_week"
   | "daily";
-export const OriginatorExpectedTransferFrequency = /*@__PURE__*/ S.String;
+export const OriginatorExpectedTransferFrequency = S.String;
 
 /** Specifies the use case of the transfer. Required for transfers on an ACH network. `"ccd"` - Corporate Credit or Debit - fund transfer between two corporate bank accounts `"ppd"` - Prearranged Payment or Deposit - The transfer is part of a pre-existing relationship with a consumer. Authorization was obtained in writing either in person or via an electronic document signing, e.g. Docusign, by the consumer. Can be used for credits or debits. `"web"` - Internet-Initiated Entry. The transfer debits a consumer's bank account. Authorization from the consumer is obtained over the Internet (e.g. a web or mobile application). Can be used for single debits or recurring debits. */
 export type CreditACHClass = "ccd" | "ppd" | "web";
-export const CreditACHClass = /*@__PURE__*/ S.String;
+export const CreditACHClass = S.String;
 
 /** Specifies the expected use cases for the originator's credit transfers. This should be a list that contains one or more of the following codes: `"ccd"` - Corporate Credit or Debit - fund transfer between two corporate bank accounts `"ppd"` - Prearranged Payment or Deposit. The transfer is part of a pre-existing relationship with a consumer. Authorization was obtained from the consumer in person via writing, or through online authorization, or via an electronic document signing, e.g. Docusign. For example language for online authorization, see the 2025 Nacha Operating Rules -- Section 2.3.2, Authorization of Entries via Electronic Means. Can be used for credits or debits. `"web"` - Internet-Initiated Entry. The transfer debits a consumer's bank account. Authorization from the consumer is obtained over the Internet (e.g. a web or mobile application). Can be used for single debits or recurring debits. */
 export type TransferCreditUsageConfigurationSecCodesList = Array<
@@ -36551,7 +36535,7 @@ export type TransactionsUpdateStatus =
   | "NOT_READY"
   | "INITIAL_UPDATE_COMPLETE"
   | "HISTORICAL_UPDATE_COMPLETE";
-export const TransactionsUpdateStatus = /*@__PURE__*/ S.String;
+export const TransactionsUpdateStatus = S.String;
 
 /** Indicates an Item's micro-deposit-based verification or database verification status. This field is only populated when using Auth and falling back to micro-deposit or database verification. Possible values are: `pending_automatic_verification`: The Item is pending automatic verification. `pending_manual_verification`: The Item is pending manual micro-deposit verification. Items remain in this state until the user successfully verifies the code. `automatically_verified`: The Item has successfully been automatically verified. `manually_verified`: The Item has successfully been manually verified. `verification_expired`: Plaid was unable to automatically verify the deposit within 7 calendar days and will no longer attempt to validate the Item. Users may retry by submitting their information again through Link. `verification_failed`: The Item failed manual micro-deposit verification because the user exhausted all 3 verification attempts. Users may retry by submitting their information again through Link. `unsent`: The Item is pending micro-deposit verification, but Plaid has not yet sent the micro-deposit. `database_insights_fail`: The Item's numbers have been verified using Plaid's data sources and have signal for being invalid and/or have no signal for being valid. Typically this indicates that the routing number is invalid, the account number does not match the account number format associated with the routing number, or the account has been reported as closed or frozen. Only returned for Auth Items created via Database Auth. `database_insights_pass`: The Item's numbers have been verified using Plaid's data sources: the routing and account number match a routing and account number of an account recognized on the Plaid network, and the account is not known by Plaid to be frozen or closed. Only returned for Auth Items created via Database Auth. `database_insights_pass_with_caution`: The Item's numbers have been verified using Plaid's data sources and have some signal for being valid: the routing and account number were not recognized on the Plaid network, but the routing number is valid and the account number is a potential valid account number for that routing number. Only returned for Auth Items created via Database Auth. `database_matched`: (deprecated) The Item has successfully been verified using Plaid's data sources. Only returned for Auth Items created via Database Match. `null` or empty string: Neither micro-deposit-based verification nor database verification are being used for the Item. */
 export type AccountBaseNullableVerificationStatus =
@@ -36566,7 +36550,7 @@ export type AccountBaseNullableVerificationStatus =
   | "database_insights_pass"
   | "database_insights_pass_with_caution"
   | "database_insights_fail";
-export const AccountBaseNullableVerificationStatus = /*@__PURE__*/ S.String;
+export const AccountBaseNullableVerificationStatus = S.String;
 
 /** A single account at a financial institution. */
 export interface AccountBaseNullable {
@@ -36774,7 +36758,7 @@ export type ProductsTerminateReasonCode =
   | "DUPLICATE_ITEM"
   | "BILLING_TERMINATION"
   | "OTHER";
-export const ProductsTerminateReasonCode = /*@__PURE__*/ S.String;
+export const ProductsTerminateReasonCode = S.String;
 
 export interface TerminateItemProductRequest {
   client_id?: string;
@@ -37022,7 +37006,7 @@ export const TransactionsEnhanceGetResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The direction of the transaction from the perspective of the account holder: `OUTFLOW` - Includes outgoing transfers, purchases, and fees. (Typically represented as a negative value on checking accounts and debit cards and a positive value on credit cards.) `INFLOW` - Includes incoming transfers, refunds, and income. (Typically represented as a positive value on checking accounts and debit cards and a negative value on credit cards.) */
 export type EnrichTransactionDirection = "INFLOW" | "OUTFLOW";
-export const EnrichTransactionDirection = /*@__PURE__*/ S.String;
+export const EnrichTransactionDirection = S.String;
 
 /** A representation of where a transaction took place. Use this field to pass in structured location information you may have about your transactions. Providing location data is optional but can increase result quality. If you have unstructured location information, it may be appended to the `description` field. */
 export interface ClientProvidedTransactionLocation {
@@ -37306,7 +37290,7 @@ export const TransferEventSyncResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The ACH networks used for the funds flow. For requests submitted as either `ach` or `same-day-ach` the cutoff for Same Day ACH is 3:00 PM Eastern Time and the cutoff for Standard ACH transfers is 8:30 PM Eastern Time. It is recommended to submit a request at least 15 minutes before the cutoff time in order to ensure that it will be processed before the cutoff. Any request that is indicated as `same-day-ach` and that misses the Same Day ACH cutoff, but is submitted in time for the Standard ACH cutoff, will be sent over Standard ACH rails and will not incur same-day charges. */
 export type TransferACHNetwork = "ach" | "same-day-ach";
-export const TransferACHNetwork = /*@__PURE__*/ S.String;
+export const TransferACHNetwork = S.String;
 
 export interface TransferLedgerDepositRequest {
   client_id?: string;
@@ -37819,8 +37803,7 @@ export const UpdateCraServicingSubscriptionRequestProductsList =
 
 /** The name of a field that can be reset back to its default value. */
 export type CraServicingSubscriptionUpdateRequestResettableField = "webhook";
-export const CraServicingSubscriptionUpdateRequestResettableField =
-  /*@__PURE__*/ S.String;
+export const CraServicingSubscriptionUpdateRequestResettableField = S.String;
 
 /** A list of fields to reset back to their default value. Fields named here take precedence over any value provided for the same field elsewhere in the request. */
 export type CraServicingSubscriptionUpdateRequestResettableFieldList = Array<
@@ -37991,7 +37974,7 @@ export const Scopes = /*@__PURE__*/ S.suspend(() =>
 
 /** An indicator for when scopes are being updated. When scopes are updated via enrollment (i.e. OAuth), the partner must send `ENROLLMENT`. When scopes are updated in a post-enrollment view, the partner must send `PORTAL`. */
 export type ScopesContext = "ENROLLMENT" | "PORTAL";
-export const ScopesContext = /*@__PURE__*/ S.String;
+export const ScopesContext = S.String;
 
 export interface UpdateItemApplicationScopeRequest {
   client_id?: string;
@@ -38108,7 +38091,7 @@ export type CashFlowUpdatesEventWebhookCodes =
   | "LOW_BALANCE_DETECTED"
   | "NEW_LOAN_PAYMENT_DETECTED"
   | "NSF_OVERDRAFT_DETECTED";
-export const CashFlowUpdatesEventWebhookCodes = /*@__PURE__*/ S.String;
+export const CashFlowUpdatesEventWebhookCodes = S.String;
 
 /** Webhook codes corresponding to the Cash Flow Updates events to be simulated. */
 export type UpdateSandboxCraCashflowUpdateRequestWebhookCodesList = Array<
@@ -38261,8 +38244,7 @@ export const UpdateEntityScreeningRequestSearchTerms = /*@__PURE__*/ S.suspend(
 
 /** The name of a field that can be reset back to null */
 export type WatchlistScreeningEntityUpdateRequestResettableField = "assignee";
-export const WatchlistScreeningEntityUpdateRequestResettableField =
-  /*@__PURE__*/ S.String;
+export const WatchlistScreeningEntityUpdateRequestResettableField = S.String;
 
 /** A list of fields to reset back to null */
 export type WatchlistScreeningEntityUpdateRequestResettableFieldList = Array<
@@ -38359,7 +38341,7 @@ export const UpdateIndividualScreeningRequestSearchTerms =
 export type WatchlistScreeningIndividualUpdateRequestResettableField =
   "assignee";
 export const WatchlistScreeningIndividualUpdateRequestResettableField =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A list of fields to reset back to null */
 export type WatchlistScreeningIndividualUpdateRequestResettableFieldList =
@@ -38434,7 +38416,7 @@ export const WatchlistScreeningIndividualUpdateResponse =
 
 /** Specifies the purpose of the uploaded file. `"DUE_DILIGENCE"` - The transfer due diligence document of the originator. */
 export type TransferDocumentPurpose = "DUE_DILIGENCE";
-export const TransferDocumentPurpose = /*@__PURE__*/ S.String;
+export const TransferDocumentPurpose = S.String;
 
 export interface UploadTransferDiligenceDocumentRequest {
   /** The Client ID of the originator whose document that you want to upload. */

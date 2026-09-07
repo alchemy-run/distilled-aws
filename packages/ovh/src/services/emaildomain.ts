@@ -29,7 +29,7 @@ export type ServiceTerminationReasonEnum =
   | "TOO_EXPENSIVE"
   | "TOO_HARD_TO_USE"
   | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationReasonEnum = S.String;
 
 export interface ConfirmEmailDomainTerminationRequest {
   /** Name of your domain name */
@@ -106,7 +106,7 @@ export type DomainDomainPopActionEnum =
   | "migration"
   | "temporaryTask"
   | "unknown";
-export const DomainDomainPopActionEnum = /*@__PURE__*/ S.String;
+export const DomainDomainPopActionEnum = S.String;
 
 /** Task Pop List */
 export interface EmailDomainTaskPop {
@@ -195,14 +195,14 @@ export type DomainDomainFilterActionEnum =
   | "account"
   | "delete"
   | "redirect";
-export const DomainDomainFilterActionEnum = /*@__PURE__*/ S.String;
+export const DomainDomainFilterActionEnum = S.String;
 
 /** Possible values for filter operation */
 export type DomainDomainFilterOperandEnum =
   | "checkspf"
   | "contains"
   | "noContains";
-export const DomainDomainFilterOperandEnum = /*@__PURE__*/ S.String;
+export const DomainDomainFilterOperandEnum = S.String;
 
 export interface CreateEmailDomainAccountFilterRequest {
   /** Name of your domain name */
@@ -443,7 +443,7 @@ export type DomainDomainMXFilterEnum =
   | "NO_FILTERING"
   | "REDIRECT"
   | "SIMPLE_FILTERING";
-export const DomainDomainMXFilterEnum = /*@__PURE__*/ S.String;
+export const DomainDomainMXFilterEnum = S.String;
 
 export interface CreateEmailDomainChangeDnsMXFilterRequest {
   /** Name of your domain name */
@@ -661,7 +661,7 @@ export const CreateEmailDomainDelegatedAccountResponderRequest =
 
 /** Possible values for pop action task */
 export type DomainDomainSpecialAccountActionEnum = "add" | "change" | "delete";
-export const DomainDomainSpecialAccountActionEnum = /*@__PURE__*/ S.String;
+export const DomainDomainSpecialAccountActionEnum = S.String;
 
 /** Possible type task */
 export type DomainDomainSpecialAccountTypeEnum =
@@ -671,7 +671,7 @@ export type DomainDomainSpecialAccountTypeEnum =
   | "filter"
   | "forward"
   | "responder";
-export const DomainDomainSpecialAccountTypeEnum = /*@__PURE__*/ S.String;
+export const DomainDomainSpecialAccountTypeEnum = S.String;
 
 /** Task special account List */
 export interface EmailDomainTaskSpecialAccount {
@@ -749,7 +749,7 @@ export type DomainDomainMlLanguageEnum =
   | "nl"
   | "pl"
   | "pt";
-export const DomainDomainMlLanguageEnum = /*@__PURE__*/ S.String;
+export const DomainDomainMlLanguageEnum = S.String;
 
 /** Structure of imapCopy */
 export interface DomainDomainMlOptionsStruct {
@@ -1392,7 +1392,7 @@ export type IamResourceMetadataStateEnum =
   | "IN_CREATION"
   | "OK"
   | "SUSPENDED";
-export const IamResourceMetadataStateEnum = /*@__PURE__*/ S.String;
+export const IamResourceMetadataStateEnum = S.String;
 
 /** Resource tags. Tags that were internally computed are prefixed with ovh: */
 export type IamResourceMetadataTagsMap = { [key: string]: string | undefined };
@@ -1433,11 +1433,11 @@ export type EmailDomainDiagnoseEnum =
   | "none"
   | "unknown"
   | "valid";
-export const EmailDomainDiagnoseEnum = /*@__PURE__*/ S.String;
+export const EmailDomainDiagnoseEnum = S.String;
 
 /** Possible values for status domain */
 export type DomainDomainStatusEnum = "close" | "ok" | "readOnly" | "unknown";
-export const DomainDomainStatusEnum = /*@__PURE__*/ S.String;
+export const DomainDomainStatusEnum = S.String;
 
 /** Domain service */
 export interface EmailDomainDomainServiceWithIAM {
@@ -1704,7 +1704,7 @@ export type EmailDomainMigrationServiceType =
   | "HOSTED EXCHANGE"
   | "PRIVATE EXCHANGE"
   | "PROVIDER EXCHANGE";
-export const EmailDomainMigrationServiceType = /*@__PURE__*/ S.String;
+export const EmailDomainMigrationServiceType = S.String;
 
 /** Migration service */
 export interface EmailDomainMigrationService {
@@ -2357,7 +2357,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 export type ServiceStateEnum =
   | "autorenewInProgress"
@@ -2366,7 +2366,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -2496,7 +2496,7 @@ export type EmailDomainTaskStatusEnum =
   | "init"
   | "ovhError"
   | "todo";
-export const EmailDomainTaskStatusEnum = /*@__PURE__*/ S.String;
+export const EmailDomainTaskStatusEnum = S.String;
 
 /** Tasks */
 export interface EmailDomainTask {
@@ -2935,7 +2935,7 @@ export type EmailDomainMigrationCheckCodeEnum =
   | "RESPONDER_EXIST"
   | "RESPONDER_INPROGRESS"
   | "UNKNOW";
-export const EmailDomainMigrationCheckCodeEnum = /*@__PURE__*/ S.String;
+export const EmailDomainMigrationCheckCodeEnum = S.String;
 
 /** Check Migration result */
 export interface EmailDomainMigrationCheckResultStruct {
@@ -3161,7 +3161,7 @@ export const ListEmailDomainDkimRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of DKIM selector */
 export type EmailDomainDKIMSelectorStatusEnum = "set" | "toFix" | "toSet";
-export const EmailDomainDKIMSelectorStatusEnum = /*@__PURE__*/ S.String;
+export const EmailDomainDKIMSelectorStatusEnum = S.String;
 
 /** DKIM selector data for a domain */
 export interface EmailDomainDKIMSelector {
@@ -3196,7 +3196,7 @@ export type EmailDomainDKIMStatusEnum =
   | "error"
   | "modifying"
   | "toConfigure";
-export const EmailDomainDKIMStatusEnum = /*@__PURE__*/ S.String;
+export const EmailDomainDKIMStatusEnum = S.String;
 
 /** DKIM for a domain */
 export interface EmailDomainDkimSimplified {
@@ -3412,7 +3412,7 @@ export type EmailDomainDnsRecordTypeEnum =
   | "SSHFP"
   | "TLSA"
   | "TXT";
-export const EmailDomainDnsRecordTypeEnum = /*@__PURE__*/ S.String;
+export const EmailDomainDnsRecordTypeEnum = S.String;
 
 /** DNS record for email services */
 export interface EmailDomainRecord {

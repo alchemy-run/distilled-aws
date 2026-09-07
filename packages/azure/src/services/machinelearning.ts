@@ -97,7 +97,7 @@ export type WorkspacePropertiesWorkspaceType =
   | "Anonymous"
   | "PaidStandard"
   | "PaidPremium";
-export const WorkspacePropertiesWorkspaceType = /*@__PURE__*/ S.String;
+export const WorkspacePropertiesWorkspaceType = S.String;
 
 /** The current state of workspace resource. */
 export type WorkspacePropertiesWorkspaceState =
@@ -108,7 +108,7 @@ export type WorkspacePropertiesWorkspaceState =
   | "Updated"
   | "Registered"
   | "Unregistered";
-export const WorkspacePropertiesWorkspaceState = /*@__PURE__*/ S.String;
+export const WorkspacePropertiesWorkspaceState = S.String;
 
 /** The properties of a machine learning workspace. */
 export interface WorkspaceProperties {
@@ -401,8 +401,7 @@ export type WorkspacePropertiesUpdateParametersWorkspaceState =
   | "Updated"
   | "Registered"
   | "Unregistered";
-export const WorkspacePropertiesUpdateParametersWorkspaceState =
-  /*@__PURE__*/ S.String;
+export const WorkspacePropertiesUpdateParametersWorkspaceState = S.String;
 
 /** The parameters for updating the properties of a machine learning workspace. */
 export interface WorkspacePropertiesUpdateParameters {

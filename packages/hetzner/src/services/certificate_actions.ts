@@ -32,7 +32,7 @@ export type GetCertificatesActionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const GetCertificatesActionResponseActionStatus = /*@__PURE__*/ S.String;
+export const GetCertificatesActionResponseActionStatus = S.String;
 
 export interface GetCertificatesActionResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -135,7 +135,7 @@ export type ListCertificateActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListCertificateActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListCertificateActionsRequestSortItem = S.String;
 
 export type ListCertificateActionsRequestSortList = Array<
   ListCertificateActionsRequestSortItem | (string & {})
@@ -149,7 +149,7 @@ export type ListCertificateActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListCertificateActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListCertificateActionsRequestStatusItem = S.String;
 
 export type ListCertificateActionsRequestStatusList = Array<
   ListCertificateActionsRequestStatusItem | (string & {})
@@ -189,8 +189,7 @@ export type ListCertificateActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListCertificateActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListCertificateActionsResponseActionsItemStatus = S.String;
 
 export type ListCertificateActionsResponseActionsItemResourcesItem =
   GetCertificatesActionResponseActionResourcesItem;
@@ -326,7 +325,7 @@ export type ListCertificatesActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListCertificatesActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListCertificatesActionsRequestSortItem = S.String;
 
 export type ListCertificatesActionsRequestSortList = Array<
   ListCertificatesActionsRequestSortItem | (string & {})
@@ -340,7 +339,7 @@ export type ListCertificatesActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListCertificatesActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListCertificatesActionsRequestStatusItem = S.String;
 
 export type ListCertificatesActionsRequestStatusList = Array<
   ListCertificatesActionsRequestStatusItem | (string & {})
@@ -380,8 +379,7 @@ export type ListCertificatesActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListCertificatesActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListCertificatesActionsResponseActionsItemStatus = S.String;
 
 export type ListCertificatesActionsResponseActionsItemResourcesItem =
   GetCertificatesActionResponseActionResourcesItem;
@@ -489,7 +487,7 @@ export type RetryCertificateResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const RetryCertificateResponseActionStatus = /*@__PURE__*/ S.String;
+export const RetryCertificateResponseActionStatus = S.String;
 
 export type RetryCertificateResponseActionResourcesItem =
   GetCertificatesActionResponseActionResourcesItem;

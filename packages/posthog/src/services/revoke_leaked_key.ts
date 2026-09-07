@@ -41,7 +41,7 @@ export type LeakedKeyReportResponseTypeEnum =
   | "project_secret_api_key"
   | "oauth_access_token"
   | "oauth_refresh_token";
-export const LeakedKeyReportResponseTypeEnum = /*@__PURE__*/ S.String;
+export const LeakedKeyReportResponseTypeEnum = S.String;
 
 export interface LeakedKeyReportResponse {
   /** Whether a matching PostHog key or token was found and revoked. */

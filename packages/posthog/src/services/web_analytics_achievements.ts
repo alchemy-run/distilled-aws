@@ -103,7 +103,7 @@ export const WebAnalyticsAchievementsOverviewRequest = /*@__PURE__*/ S.suspend(
 
 /** * `user` - user * `team` - team */
 export type AchievementDefinitionScopeEnum = "user" | "team";
-export const AchievementDefinitionScopeEnum = /*@__PURE__*/ S.String;
+export const AchievementDefinitionScopeEnum = S.String;
 
 export interface AchievementStage {
   /** Stage number within the track, 1-5. */
@@ -278,7 +278,7 @@ export const WebAnalyticsAchievementsPreferencesRequest =
 
 /** * `data` - data * `recording` - recording */
 export type InteractionKindEnum = "data" | "recording";
-export const InteractionKindEnum = /*@__PURE__*/ S.String;
+export const InteractionKindEnum = S.String;
 
 export interface WebAnalyticsAchievementsRecordInteractionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

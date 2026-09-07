@@ -66,7 +66,7 @@ export type ForumEmailNotificationPreferences =
   | "all_admin_posts"
   | "only_weekly_summary"
   | "none";
-export const ForumEmailNotificationPreferences = /*@__PURE__*/ S.String;
+export const ForumEmailNotificationPreferences = S.String;
 
 /** The parent experience that this forum belongs to. */
 export interface ForumExperience {
@@ -89,11 +89,11 @@ export const ForumExperience = /*@__PURE__*/ S.suspend(() =>
 
 /** Who can comment on a forum feed */
 export type ForumWhoCanCommentTypes = "everyone" | "admins";
-export const ForumWhoCanCommentTypes = /*@__PURE__*/ S.String;
+export const ForumWhoCanCommentTypes = S.String;
 
 /** Who can post on a forum feed */
 export type ForumWhoCanPostTypes = "everyone" | "admins";
-export const ForumWhoCanPostTypes = /*@__PURE__*/ S.String;
+export const ForumWhoCanPostTypes = S.String;
 
 /** A discussion forum where members can create posts, comment, and react, belonging to an experience. */
 export interface Forum {

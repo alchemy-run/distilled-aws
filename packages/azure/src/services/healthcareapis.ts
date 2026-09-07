@@ -39,7 +39,7 @@ export const CheckServiceNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The reason for unavailability. */
 export type ServicesNameAvailabilityInfoReason = "Invalid" | "AlreadyExists";
-export const ServicesNameAvailabilityInfoReason = /*@__PURE__*/ S.String;
+export const ServicesNameAvailabilityInfoReason = S.String;
 
 /** The properties indicating whether a given service name is available. */
 export interface ServicesNameAvailabilityInfo {
@@ -353,8 +353,7 @@ export type DicomServicesCreateOrUpdateRequestIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const DicomServicesCreateOrUpdateRequestIdentityType =
-  /*@__PURE__*/ S.String;
+export const DicomServicesCreateOrUpdateRequestIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentityInput {}
@@ -565,8 +564,7 @@ export type DicomServicesCreateOrUpdateResponseIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const DicomServicesCreateOrUpdateResponseIdentityType =
-  /*@__PURE__*/ S.String;
+export const DicomServicesCreateOrUpdateResponseIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
@@ -630,7 +628,7 @@ export type ProvisioningState =
   | "Suspended"
   | "Warned"
   | "SystemMaintenance";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** The audiences for the service */
 export type DicomServiceAuthenticationConfigurationAudiencesList =
@@ -677,7 +675,7 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
@@ -704,8 +702,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Properties of the PrivateEndpointConnectProperties. */
 export interface PrivateEndpointConnectionProperties {
@@ -759,11 +756,11 @@ export const DicomServicePropertiesPrivateEndpointConnectionsList =
 
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
 export type ResourcePublicNetworkAccess = "Enabled" | "Disabled";
-export const ResourcePublicNetworkAccess = /*@__PURE__*/ S.String;
+export const ResourcePublicNetworkAccess = S.String;
 
 /** Indicates the current status of event support for the resource. */
 export type ResourceEventState = "Disabled" | "Enabled" | "Updating";
-export const ResourceEventState = /*@__PURE__*/ S.String;
+export const ResourceEventState = S.String;
 
 /** Dicom Service properties. */
 export interface DicomServiceProperties {
@@ -815,7 +812,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -823,7 +820,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -902,8 +899,7 @@ export type FhirServicesCreateOrUpdateRequestIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const FhirServicesCreateOrUpdateRequestIdentityType =
-  /*@__PURE__*/ S.String;
+export const FhirServicesCreateOrUpdateRequestIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface FhirServicesCreateOrUpdateRequestIdentity {
@@ -923,7 +919,7 @@ export const FhirServicesCreateOrUpdateRequestIdentity =
 
 /** The kind of the service. */
 export type FhirServicesCreateOrUpdateRequestKind = "fhir-Stu3" | "fhir-R4";
-export const FhirServicesCreateOrUpdateRequestKind = /*@__PURE__*/ S.String;
+export const FhirServicesCreateOrUpdateRequestKind = S.String;
 
 /** The list of the Azure container registry login servers. */
 export type FhirServiceAcrConfigurationLoginServersList = Array<string>;
@@ -977,7 +973,7 @@ export const FhirServiceAcrConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** The Data Actions that can be enabled for a Smart Identity Provider Application. */
 export type SmartDataActions = "Read";
-export const SmartDataActions = /*@__PURE__*/ S.String;
+export const SmartDataActions = S.String;
 
 /** The actions that are permitted to be performed on FHIR resources for the application. */
 export type SmartIdentityProviderApplicationAllowedDataActionsList = Array<
@@ -1129,7 +1125,7 @@ export type FhirResourceVersionPolicy =
   | "no-version"
   | "versioned"
   | "versioned-update";
-export const FhirResourceVersionPolicy = /*@__PURE__*/ S.String;
+export const FhirResourceVersionPolicy = S.String;
 
 /** A list of FHIR Resources and their version policy overrides. */
 export type ResourceVersionPolicyConfigurationResourceTypeOverridesMap = {
@@ -1292,8 +1288,7 @@ export type FhirServicesCreateOrUpdateResponseIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const FhirServicesCreateOrUpdateResponseIdentityType =
-  /*@__PURE__*/ S.String;
+export const FhirServicesCreateOrUpdateResponseIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface FhirServicesCreateOrUpdateResponseIdentity {
@@ -1319,7 +1314,7 @@ export const FhirServicesCreateOrUpdateResponseIdentity =
 
 /** The kind of the service. */
 export type FhirServicesCreateOrUpdateResponseKind = "fhir-Stu3" | "fhir-R4";
-export const FhirServicesCreateOrUpdateResponseKind = /*@__PURE__*/ S.String;
+export const FhirServicesCreateOrUpdateResponseKind = S.String;
 
 /** The Private Endpoint Connection resource. */
 export type FhirServicePropertiesPrivateEndpointConnectionsItem =
@@ -1471,7 +1466,7 @@ export type GetDicomServiceResponseIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const GetDicomServiceResponseIdentityType = /*@__PURE__*/ S.String;
+export const GetDicomServiceResponseIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface GetDicomServiceResponseIdentity {
@@ -1573,7 +1568,7 @@ export type GetFhirServiceResponseIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const GetFhirServiceResponseIdentityType = /*@__PURE__*/ S.String;
+export const GetFhirServiceResponseIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface GetFhirServiceResponseIdentity {
@@ -1598,7 +1593,7 @@ export const GetFhirServiceResponseIdentity = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of the service. */
 export type GetFhirServiceResponseKind = "fhir-Stu3" | "fhir-R4";
-export const GetFhirServiceResponseKind = /*@__PURE__*/ S.String;
+export const GetFhirServiceResponseKind = S.String;
 
 export interface GetFhirServiceResponse {
   /** Resource tags. */
@@ -1682,7 +1677,7 @@ export type GetIotConnectorResponseIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const GetIotConnectorResponseIdentityType = /*@__PURE__*/ S.String;
+export const GetIotConnectorResponseIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface GetIotConnectorResponseIdentity {
@@ -1829,7 +1824,7 @@ export const GetIotConnectorFhirDestinationRequest = /*@__PURE__*/ S.suspend(
 
 /** The type of IoT identity resolution to use with the destination. */
 export type IotIdentityResolutionType = "Create" | "Lookup";
-export const IotIdentityResolutionType = /*@__PURE__*/ S.String;
+export const IotIdentityResolutionType = S.String;
 
 /** IoT Connector destination properties for an Azure FHIR service. */
 export interface IotFhirDestinationProperties {
@@ -1916,7 +1911,7 @@ export type OperationResultsDescriptionStatus =
   | "Failed"
   | "Requested"
   | "Running";
-export const OperationResultsDescriptionStatus = /*@__PURE__*/ S.String;
+export const OperationResultsDescriptionStatus = S.String;
 
 /** The properties indicating the operation result of an operation on a service. */
 export interface OperationResultsDescription {
@@ -1981,7 +1976,7 @@ export type GetPrivateEndpointConnectionResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateEndpointConnectionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateEndpointConnectionResponseSystemDataLastModifiedByType =
@@ -1990,7 +1985,7 @@ export type GetPrivateEndpointConnectionResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateEndpointConnectionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateEndpointConnectionResponseSystemData {
@@ -2121,8 +2116,7 @@ export type GetPrivateLinkResourceResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetPrivateLinkResourceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetPrivateLinkResourceResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateLinkResourceResponseSystemDataLastModifiedByType =
@@ -2131,7 +2125,7 @@ export type GetPrivateLinkResourceResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkResourceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateLinkResourceResponseSystemData {
@@ -2217,7 +2211,7 @@ export const GetServiceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of the service. */
 export type GetServiceResponseKind = "fhir" | "fhir-Stu3" | "fhir-R4";
-export const GetServiceResponseKind = /*@__PURE__*/ S.String;
+export const GetServiceResponseKind = S.String;
 
 /** The resource tags. */
 export type GetServiceResponseTagsMap = { [key: string]: string | undefined };
@@ -2228,7 +2222,7 @@ export const GetServiceResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Type of identity being specified, currently SystemAssigned and None are allowed. */
 export type GetServiceResponseIdentityType = "SystemAssigned" | "None";
-export const GetServiceResponseIdentityType = /*@__PURE__*/ S.String;
+export const GetServiceResponseIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface GetServiceResponseIdentity {
@@ -2370,7 +2364,7 @@ export const ServicesPropertiesPrivateEndpointConnectionsList =
 
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
 export type ServicesPropertiesPublicNetworkAccess = "Enabled" | "Disabled";
-export const ServicesPropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const ServicesPropertiesPublicNetworkAccess = S.String;
 
 /** The list of the ACR login servers. */
 export type ServiceAcrConfigurationInfoLoginServersList = Array<string>;
@@ -2626,7 +2620,7 @@ export type GetWorkspacePrivateEndpointConnectionResponseSystemDataCreatedByType
   | "ManagedIdentity"
   | "Key";
 export const GetWorkspacePrivateEndpointConnectionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetWorkspacePrivateEndpointConnectionResponseSystemDataLastModifiedByType =
@@ -2635,7 +2629,7 @@ export type GetWorkspacePrivateEndpointConnectionResponseSystemDataLastModifiedB
   | "ManagedIdentity"
   | "Key";
 export const GetWorkspacePrivateEndpointConnectionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetWorkspacePrivateEndpointConnectionResponseSystemData {
@@ -2733,7 +2727,7 @@ export type GetWorkspacePrivateLinkResourceResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetWorkspacePrivateLinkResourceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetWorkspacePrivateLinkResourceResponseSystemDataLastModifiedByType =
@@ -2742,7 +2736,7 @@ export type GetWorkspacePrivateLinkResourceResponseSystemDataLastModifiedByType 
   | "ManagedIdentity"
   | "Key";
 export const GetWorkspacePrivateLinkResourceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetWorkspacePrivateLinkResourceResponseSystemData {
@@ -2908,8 +2902,7 @@ export type IotConnectorsCreateOrUpdateRequestIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const IotConnectorsCreateOrUpdateRequestIdentityType =
-  /*@__PURE__*/ S.String;
+export const IotConnectorsCreateOrUpdateRequestIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface IotConnectorsCreateOrUpdateRequestIdentity {
@@ -3004,8 +2997,7 @@ export type IotConnectorsCreateOrUpdateResponseIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const IotConnectorsCreateOrUpdateResponseIdentityType =
-  /*@__PURE__*/ S.String;
+export const IotConnectorsCreateOrUpdateResponseIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface IotConnectorsCreateOrUpdateResponseIdentity {
@@ -3103,7 +3095,7 @@ export type DicomServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const DicomServiceIdentityType = /*@__PURE__*/ S.String;
+export const DicomServiceIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface DicomServiceIdentity {
@@ -3303,7 +3295,7 @@ export type FhirServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const FhirServiceIdentityType = /*@__PURE__*/ S.String;
+export const FhirServiceIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface FhirServiceIdentity {
@@ -3328,7 +3320,7 @@ export const FhirServiceIdentity = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of the service. */
 export type FhirServiceKind = "fhir-Stu3" | "fhir-R4";
-export const FhirServiceKind = /*@__PURE__*/ S.String;
+export const FhirServiceKind = S.String;
 
 /** The description of Fhir Service */
 export interface FhirService {
@@ -3428,7 +3420,7 @@ export type IotConnectorIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const IotConnectorIdentityType = /*@__PURE__*/ S.String;
+export const IotConnectorIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface IotConnectorIdentity {
@@ -3546,7 +3538,7 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationDetailActionType = "Internal";
-export const OperationDetailActionType = /*@__PURE__*/ S.String;
+export const OperationDetailActionType = S.String;
 
 /** Specifications of the Log for Azure Monitoring */
 export interface LogSpecification {
@@ -3794,7 +3786,7 @@ export type PrivateEndpointConnectionDescriptionSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const PrivateEndpointConnectionDescriptionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateEndpointConnectionDescriptionSystemDataLastModifiedByType =
@@ -3803,7 +3795,7 @@ export type PrivateEndpointConnectionDescriptionSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const PrivateEndpointConnectionDescriptionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateEndpointConnectionDescriptionSystemData {
@@ -3920,8 +3912,7 @@ export type PrivateLinkResourceDescriptionSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourceDescriptionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const PrivateLinkResourceDescriptionSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateLinkResourceDescriptionSystemDataLastModifiedByType =
@@ -3930,7 +3921,7 @@ export type PrivateLinkResourceDescriptionSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkResourceDescriptionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateLinkResourceDescriptionSystemData {
@@ -4036,7 +4027,7 @@ export const ListServiceByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of the service. */
 export type ServicesDescriptionKind = "fhir" | "fhir-Stu3" | "fhir-R4";
-export const ServicesDescriptionKind = /*@__PURE__*/ S.String;
+export const ServicesDescriptionKind = S.String;
 
 /** The resource tags. */
 export type ServicesDescriptionTagsMap = { [key: string]: string | undefined };
@@ -4047,7 +4038,7 @@ export const ServicesDescriptionTagsMap = /*@__PURE__*/ S.Record(
 
 /** Type of identity being specified, currently SystemAssigned and None are allowed. */
 export type ServicesDescriptionIdentityType = "SystemAssigned" | "None";
-export const ServicesDescriptionIdentityType = /*@__PURE__*/ S.String;
+export const ServicesDescriptionIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface ServicesDescriptionIdentity {
@@ -4396,7 +4387,7 @@ export type PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataCreatedByT
   | "ManagedIdentity"
   | "Key";
 export const PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -4405,7 +4396,7 @@ export type PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataLastModifi
   | "ManagedIdentity"
   | "Key";
 export const PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateEndpointConnectionsCreateOrUpdateResponseSystemData {
@@ -4472,7 +4463,7 @@ export type ServicesCreateOrUpdateRequestKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const ServicesCreateOrUpdateRequestKind = /*@__PURE__*/ S.String;
+export const ServicesCreateOrUpdateRequestKind = S.String;
 
 /** The resource tags. */
 export type ServicesCreateOrUpdateRequestTagsMap = {
@@ -4487,7 +4478,7 @@ export const ServicesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 export type ServicesCreateOrUpdateRequestIdentityType =
   | "SystemAssigned"
   | "None";
-export const ServicesCreateOrUpdateRequestIdentityType = /*@__PURE__*/ S.String;
+export const ServicesCreateOrUpdateRequestIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface ServicesCreateOrUpdateRequestIdentity {
@@ -4527,8 +4518,7 @@ export const ServicesPropertiesInputPrivateEndpointConnectionsList =
 
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
 export type ServicesPropertiesInputPublicNetworkAccess = "Enabled" | "Disabled";
-export const ServicesPropertiesInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const ServicesPropertiesInputPublicNetworkAccess = S.String;
 
 /** The properties of a service instance. */
 export interface ServicesPropertiesInput {
@@ -4621,7 +4611,7 @@ export type ServicesCreateOrUpdateResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const ServicesCreateOrUpdateResponseKind = /*@__PURE__*/ S.String;
+export const ServicesCreateOrUpdateResponseKind = S.String;
 
 /** The resource tags. */
 export type ServicesCreateOrUpdateResponseTagsMap = {
@@ -4636,8 +4626,7 @@ export const ServicesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
 export type ServicesCreateOrUpdateResponseIdentityType =
   | "SystemAssigned"
   | "None";
-export const ServicesCreateOrUpdateResponseIdentityType =
-  /*@__PURE__*/ S.String;
+export const ServicesCreateOrUpdateResponseIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface ServicesCreateOrUpdateResponseIdentity {
@@ -4713,7 +4702,7 @@ export type UpdateDicomServiceRequestIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const UpdateDicomServiceRequestIdentityType = /*@__PURE__*/ S.String;
+export const UpdateDicomServiceRequestIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface UpdateDicomServiceRequestIdentity {
@@ -4779,7 +4768,7 @@ export type UpdateDicomServiceResponseIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const UpdateDicomServiceResponseIdentityType = /*@__PURE__*/ S.String;
+export const UpdateDicomServiceResponseIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface UpdateDicomServiceResponseIdentity {
@@ -4853,7 +4842,7 @@ export type UpdateFhirServiceRequestIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const UpdateFhirServiceRequestIdentityType = /*@__PURE__*/ S.String;
+export const UpdateFhirServiceRequestIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface UpdateFhirServiceRequestIdentity {
@@ -4919,7 +4908,7 @@ export type UpdateFhirServiceResponseIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const UpdateFhirServiceResponseIdentityType = /*@__PURE__*/ S.String;
+export const UpdateFhirServiceResponseIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface UpdateFhirServiceResponseIdentity {
@@ -4944,7 +4933,7 @@ export const UpdateFhirServiceResponseIdentity = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of the service. */
 export type UpdateFhirServiceResponseKind = "fhir-Stu3" | "fhir-R4";
-export const UpdateFhirServiceResponseKind = /*@__PURE__*/ S.String;
+export const UpdateFhirServiceResponseKind = S.String;
 
 export interface UpdateFhirServiceResponse {
   /** Resource tags. */
@@ -5000,7 +4989,7 @@ export type UpdateIotConnectorRequestIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const UpdateIotConnectorRequestIdentityType = /*@__PURE__*/ S.String;
+export const UpdateIotConnectorRequestIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface UpdateIotConnectorRequestIdentity {
@@ -5066,7 +5055,7 @@ export type UpdateIotConnectorResponseIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const UpdateIotConnectorResponseIdentityType = /*@__PURE__*/ S.String;
+export const UpdateIotConnectorResponseIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface UpdateIotConnectorResponseIdentity {
@@ -5136,8 +5125,7 @@ export const UpdateServiceRequestTagsMap = /*@__PURE__*/ S.Record(
 export type ServicesPropertiesUpdateParametersPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const ServicesPropertiesUpdateParametersPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const ServicesPropertiesUpdateParametersPublicNetworkAccess = S.String;
 
 /** The properties for updating a service instance. */
 export interface ServicesPropertiesUpdateParameters {
@@ -5189,7 +5177,7 @@ export const UpdateServiceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of the service. */
 export type UpdateServiceResponseKind = "fhir" | "fhir-Stu3" | "fhir-R4";
-export const UpdateServiceResponseKind = /*@__PURE__*/ S.String;
+export const UpdateServiceResponseKind = S.String;
 
 /** The resource tags. */
 export type UpdateServiceResponseTagsMap = {
@@ -5202,7 +5190,7 @@ export const UpdateServiceResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Type of identity being specified, currently SystemAssigned and None are allowed. */
 export type UpdateServiceResponseIdentityType = "SystemAssigned" | "None";
-export const UpdateServiceResponseIdentityType = /*@__PURE__*/ S.String;
+export const UpdateServiceResponseIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface UpdateServiceResponseIdentity {
@@ -5415,7 +5403,7 @@ export type WorkspacePrivateEndpointConnectionsCreateOrUpdateResponseSystemDataC
   | "ManagedIdentity"
   | "Key";
 export const WorkspacePrivateEndpointConnectionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type WorkspacePrivateEndpointConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -5424,7 +5412,7 @@ export type WorkspacePrivateEndpointConnectionsCreateOrUpdateResponseSystemDataL
   | "ManagedIdentity"
   | "Key";
 export const WorkspacePrivateEndpointConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface WorkspacePrivateEndpointConnectionsCreateOrUpdateResponseSystemData {

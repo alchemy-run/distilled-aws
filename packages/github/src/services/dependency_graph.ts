@@ -78,8 +78,7 @@ export const CreateRepositorySnapshotRequestDetector = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateRepositorySnapshotRequestDetector>;
 
 export type MetadataValue = string | number | boolean;
-export const MetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetadataValue>;
+export const MetadataValue = S.Unknown as any as S.Schema<MetadataValue>;
 
 /** User-defined metadata to store domain-specific information limited to 8 keys with scalar values. */
 export type Metadata = { [key: string]: MetadataValue | undefined };
@@ -100,11 +99,11 @@ export const ManifestFile = /*@__PURE__*/ S.suspend(() =>
 
 /** A notation of whether a dependency is requested directly by this manifest or is a dependency of another dependency. */
 export type DependencyRelationship = "direct" | "indirect";
-export const DependencyRelationship = /*@__PURE__*/ S.String;
+export const DependencyRelationship = S.String;
 
 /** A notation of whether the dependency is required for the primary build artifact (runtime) or is only used for development. Future versions of this specification may allow for more granular scopes. */
 export type DependencyScope = "runtime" | "development";
-export const DependencyScope = /*@__PURE__*/ S.String;
+export const DependencyScope = S.String;
 
 /** Array of package-url (PURLs) of direct child dependencies. */
 export type DependencyDependenciesList = Array<string>;
@@ -259,7 +258,7 @@ export const DiffRangeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DiffRangeRequest>;
 
 export type DependencyGraphDiffItemChangeType = "added" | "removed";
-export const DependencyGraphDiffItemChangeType = /*@__PURE__*/ S.String;
+export const DependencyGraphDiffItemChangeType = S.String;
 
 export interface DependencyGraphDiffItemVulnerabilitiesItem {
   severity: string;
@@ -290,7 +289,7 @@ export type DependencyGraphDiffItemScope =
   | "unknown"
   | "runtime"
   | "development";
-export const DependencyGraphDiffItemScope = /*@__PURE__*/ S.String;
+export const DependencyGraphDiffItemScope = S.String;
 
 export interface DependencyGraphDiffItem {
   change_type: DependencyGraphDiffItemChangeType;

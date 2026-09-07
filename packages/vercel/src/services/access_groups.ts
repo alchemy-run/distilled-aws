@@ -35,7 +35,7 @@ export type CreateAccessGroupRequestProjectsItemRole =
   | "ADMIN"
   | "PROJECT_VIEWER"
   | "PROJECT_DEVELOPER";
-export const CreateAccessGroupRequestProjectsItemRole = /*@__PURE__*/ S.String;
+export const CreateAccessGroupRequestProjectsItemRole = S.String;
 
 export interface CreateAccessGroupRequestProjectsItem {
   /** The ID of the project. */
@@ -89,7 +89,7 @@ export const CreateAccessGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateAccessGroupRequest>;
 
 export type CreateAccessGroupResponseEntitlementsItem = "v0";
-export const CreateAccessGroupResponseEntitlementsItem = /*@__PURE__*/ S.String;
+export const CreateAccessGroupResponseEntitlementsItem = S.String;
 
 export type CreateAccessGroupResponseEntitlementsList =
   Array<CreateAccessGroupResponseEntitlementsItem>;
@@ -151,7 +151,7 @@ export type CreateAccessGroupProjectRequestRole =
   | "ADMIN"
   | "PROJECT_VIEWER"
   | "PROJECT_DEVELOPER";
-export const CreateAccessGroupProjectRequestRole = /*@__PURE__*/ S.String;
+export const CreateAccessGroupProjectRequestRole = S.String;
 
 export interface CreateAccessGroupProjectRequest {
   accessGroupIdOrName: string;
@@ -187,7 +187,7 @@ export type CreateAccessGroupProjectResponseRole =
   | "PROJECT_DEVELOPER"
   | "PROJECT_GUEST"
   | "PROJECT_VIEWER";
-export const CreateAccessGroupProjectResponseRole = /*@__PURE__*/ S.String;
+export const CreateAccessGroupProjectResponseRole = S.String;
 
 export interface CreateAccessGroupProjectResponse {
   teamId: string;
@@ -314,8 +314,7 @@ export type ListAccessGroupMembersResponseMembersItemTeamRole =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const ListAccessGroupMembersResponseMembersItemTeamRole =
-  /*@__PURE__*/ S.String;
+export const ListAccessGroupMembersResponseMembersItemTeamRole = S.String;
 
 export interface ListAccessGroupMembersResponseMembersItem {
   avatar?: string;
@@ -409,8 +408,7 @@ export type ListAccessGroupProjectsResponseProjectsItemRole =
   | "PROJECT_DEVELOPER"
   | "PROJECT_GUEST"
   | "PROJECT_VIEWER";
-export const ListAccessGroupProjectsResponseProjectsItemRole =
-  /*@__PURE__*/ S.String;
+export const ListAccessGroupProjectsResponseProjectsItemRole = S.String;
 
 export interface ListAccessGroupProjectsResponseProjectsItemProject {
   name?: string;
@@ -625,7 +623,7 @@ export type ListAccessGroupsResponseBody =
   | unknown
   | ListAccessGroupsResponseBodyCase1;
 export const ListAccessGroupsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListAccessGroupsResponseBody>;
+  S.Unknown as any as S.Schema<ListAccessGroupsResponseBody>;
 
 export type ListAccessGroupsResponse = ListAccessGroupsResponseBody;
 export const ListAccessGroupsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -673,8 +671,7 @@ export type ReadAccessGroupResponseTeamPermissionsItem =
   | "V0Chatter"
   | "V0Viewer"
   | "WorkflowDecryptor";
-export const ReadAccessGroupResponseTeamPermissionsItem =
-  /*@__PURE__*/ S.String;
+export const ReadAccessGroupResponseTeamPermissionsItem = S.String;
 
 export type ReadAccessGroupResponseTeamPermissionsList =
   Array<ReadAccessGroupResponseTeamPermissionsItem>;
@@ -683,7 +680,7 @@ export const ReadAccessGroupResponseTeamPermissionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ReadAccessGroupResponseTeamPermissionsList>;
 
 export type ReadAccessGroupResponseEntitlementsItem = "v0";
-export const ReadAccessGroupResponseEntitlementsItem = /*@__PURE__*/ S.String;
+export const ReadAccessGroupResponseEntitlementsItem = S.String;
 
 export type ReadAccessGroupResponseEntitlementsList =
   Array<ReadAccessGroupResponseEntitlementsItem>;
@@ -766,7 +763,7 @@ export type ReadAccessGroupProjectResponseRole =
   | "PROJECT_DEVELOPER"
   | "PROJECT_GUEST"
   | "PROJECT_VIEWER";
-export const ReadAccessGroupProjectResponseRole = /*@__PURE__*/ S.String;
+export const ReadAccessGroupProjectResponseRole = S.String;
 
 export interface ReadAccessGroupProjectResponse {
   teamId: string;
@@ -794,7 +791,7 @@ export type UpdateAccessGroupRequestProjectsItemRole =
   | "ADMIN"
   | "PROJECT_VIEWER"
   | "PROJECT_DEVELOPER";
-export const UpdateAccessGroupRequestProjectsItemRole = /*@__PURE__*/ S.String;
+export const UpdateAccessGroupRequestProjectsItemRole = S.String;
 
 export interface UpdateAccessGroupRequestProjectsItem {
   /** The ID of the project. */
@@ -862,7 +859,7 @@ export const UpdateAccessGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAccessGroupRequest>;
 
 export type UpdateAccessGroupResponseEntitlementsItem = "v0";
-export const UpdateAccessGroupResponseEntitlementsItem = /*@__PURE__*/ S.String;
+export const UpdateAccessGroupResponseEntitlementsItem = S.String;
 
 export type UpdateAccessGroupResponseEntitlementsList =
   Array<UpdateAccessGroupResponseEntitlementsItem>;
@@ -926,7 +923,7 @@ export type UpdateAccessGroupProjectRequestRole =
   | "ADMIN"
   | "PROJECT_VIEWER"
   | "PROJECT_DEVELOPER";
-export const UpdateAccessGroupProjectRequestRole = /*@__PURE__*/ S.String;
+export const UpdateAccessGroupProjectRequestRole = S.String;
 
 export interface UpdateAccessGroupProjectRequest {
   accessGroupIdOrName: string;
@@ -961,7 +958,7 @@ export type UpdateAccessGroupProjectResponseRole =
   | "PROJECT_DEVELOPER"
   | "PROJECT_GUEST"
   | "PROJECT_VIEWER";
-export const UpdateAccessGroupProjectResponseRole = /*@__PURE__*/ S.String;
+export const UpdateAccessGroupProjectResponseRole = S.String;
 
 export interface UpdateAccessGroupProjectResponse {
   teamId: string;

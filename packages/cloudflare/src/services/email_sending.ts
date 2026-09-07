@@ -253,7 +253,7 @@ export type SubdomainsDnsGetResultItemType =
   | "SVCB"
   | "TLSA"
   | "URI";
-export const SubdomainsDnsGetResultItemType = /*@__PURE__*/ S.String;
+export const SubdomainsDnsGetResultItemType = S.String;
 
 export interface SubdomainsDnsGetResultItem {
   /** DNS record content. */
@@ -400,8 +400,7 @@ export const SendRequestFrom = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type SendRequestAttachmentsItemInlineDisposition = "inline";
-export const SendRequestAttachmentsItemInlineDisposition =
-  /*@__PURE__*/ S.String;
+export const SendRequestAttachmentsItemInlineDisposition = S.String;
 
 export interface SendRequestAttachmentsItemInline {
   /** Base64-encoded content of the attachment. */
@@ -428,8 +427,7 @@ export const SendRequestAttachmentsItemInline = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SendRequestAttachmentsItemInline>;
 
 export type SendRequestAttachmentsItemAttachmentDisposition = "attachment";
-export const SendRequestAttachmentsItemAttachmentDisposition =
-  /*@__PURE__*/ S.String;
+export const SendRequestAttachmentsItemAttachmentDisposition = S.String;
 
 export interface SendRequestAttachmentsItemAttachment {
   /** Base64-encoded content of the attachment. */

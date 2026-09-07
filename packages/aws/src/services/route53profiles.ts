@@ -192,7 +192,7 @@ export type ProfileStatus =
   | "DELETED"
   | "FAILED"
   | (string & {});
-export const ProfileStatus = /*@__PURE__*/ S.String;
+export const ProfileStatus = S.String;
 
 export type Rfc3339Timestamp = Date;
 export interface ProfileAssociation {
@@ -329,7 +329,7 @@ export type ShareStatus =
   | "SHARED_WITH_ME"
   | "SHARED_BY_ME"
   | (string & {});
-export const ShareStatus = /*@__PURE__*/ S.String;
+export const ShareStatus = S.String;
 
 export interface Profile {
   Id?: string;

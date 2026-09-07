@@ -61,7 +61,7 @@ export const CreateHybridUseBenefitRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Represent the current state of the Reservation. */
 export type ProvisioningState = "Succeeded" | "Cancelled" | "Failed";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Hybrid use benefit properties */
 export interface HybridUseBenefitProperties {

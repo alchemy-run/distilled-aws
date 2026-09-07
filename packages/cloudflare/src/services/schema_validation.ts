@@ -90,7 +90,7 @@ export type SettingsOperationsBulkEditRequestBodyValueMitigationAction =
   | "log"
   | "block";
 export const SettingsOperationsBulkEditRequestBodyValueMitigationAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SettingsOperationsBulkEditRequestBodyValue {
   /** Mitigation actions are as follows: */
@@ -145,8 +145,7 @@ export type SettingsOperationsBulkEditResultValueMitigationAction =
   | "log"
   | "block"
   | "none";
-export const SettingsOperationsBulkEditResultValueMitigationAction =
-  /*@__PURE__*/ S.String;
+export const SettingsOperationsBulkEditResultValueMitigationAction = S.String;
 
 export interface SettingsOperationsBulkEditResultValue {
   /** When set, this applies a mitigation action to this operation which supersedes a global schema validation setting just for this operation */
@@ -187,7 +186,7 @@ export const BulkPatchSettingOperationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BulkPatchSettingOperationsResponse>;
 
 export type SchemasCreateRequestKind = "openapi_v3";
-export const SchemasCreateRequestKind = /*@__PURE__*/ S.String;
+export const SchemasCreateRequestKind = S.String;
 
 export interface CreateSchemaRequest {
   /** Identifier. */
@@ -222,7 +221,7 @@ export const CreateSchemaRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSchemaRequest>;
 
 export type SchemasCreateResponseKind = "openapi_v3";
-export const SchemasCreateResponseKind = /*@__PURE__*/ S.String;
+export const SchemasCreateResponseKind = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateSchemaResponse {
@@ -352,7 +351,7 @@ export const GetSchemaRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSchemaRequest>;
 
 export type SchemasGetResponseKind = "openapi_v3";
-export const SchemasGetResponseKind = /*@__PURE__*/ S.String;
+export const SchemasGetResponseKind = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetSchemaResponse {
@@ -407,12 +406,10 @@ export type SettingsGetResponseValidationDefaultMitigationAction =
   | "none"
   | "log"
   | "block";
-export const SettingsGetResponseValidationDefaultMitigationAction =
-  /*@__PURE__*/ S.String;
+export const SettingsGetResponseValidationDefaultMitigationAction = S.String;
 
 export type SettingsGetResponseValidationOverrideMitigationAction = "none";
-export const SettingsGetResponseValidationOverrideMitigationAction =
-  /*@__PURE__*/ S.String;
+export const SettingsGetResponseValidationOverrideMitigationAction = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetSettingResponse {
@@ -464,8 +461,7 @@ export type SettingsOperationsGetResponseMitigationAction =
   | "log"
   | "block"
   | "none";
-export const SettingsOperationsGetResponseMitigationAction =
-  /*@__PURE__*/ S.String;
+export const SettingsOperationsGetResponseMitigationAction = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetSettingOperationResponse {
@@ -520,7 +516,7 @@ export const ListSchemasRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListSchemasRequest>;
 
 export type SchemasListResultItemKind = "openapi_v3";
-export const SchemasListResultItemKind = /*@__PURE__*/ S.String;
+export const SchemasListResultItemKind = S.String;
 
 export interface SchemasListResultItem {
   createdAt: string;
@@ -600,8 +596,7 @@ export type SettingsOperationsListResultItemMitigationAction =
   | "log"
   | "block"
   | "none";
-export const SettingsOperationsListResultItemMitigationAction =
-  /*@__PURE__*/ S.String;
+export const SettingsOperationsListResultItemMitigationAction = S.String;
 
 export interface SettingsOperationsListResultItem {
   /** When set, this applies a mitigation action to this operation which supersedes a global schema validation setting just for this operation */
@@ -668,7 +663,7 @@ export const PatchSchemaRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchSchemaRequest>;
 
 export type SchemasEditResponseKind = "openapi_v3";
-export const SchemasEditResponseKind = /*@__PURE__*/ S.String;
+export const SchemasEditResponseKind = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchSchemaResponse {
@@ -703,12 +698,10 @@ export type SettingsEditRequestValidationDefaultMitigationAction =
   | "none"
   | "log"
   | "block";
-export const SettingsEditRequestValidationDefaultMitigationAction =
-  /*@__PURE__*/ S.String;
+export const SettingsEditRequestValidationDefaultMitigationAction = S.String;
 
 export type SettingsEditRequestValidationOverrideMitigationAction = "none";
-export const SettingsEditRequestValidationOverrideMitigationAction =
-  /*@__PURE__*/ S.String;
+export const SettingsEditRequestValidationOverrideMitigationAction = S.String;
 
 export interface PatchSettingRequest {
   /** Identifier. */
@@ -753,12 +746,10 @@ export type SettingsEditResponseValidationDefaultMitigationAction =
   | "none"
   | "log"
   | "block";
-export const SettingsEditResponseValidationDefaultMitigationAction =
-  /*@__PURE__*/ S.String;
+export const SettingsEditResponseValidationDefaultMitigationAction = S.String;
 
 export type SettingsEditResponseValidationOverrideMitigationAction = "none";
-export const SettingsEditResponseValidationOverrideMitigationAction =
-  /*@__PURE__*/ S.String;
+export const SettingsEditResponseValidationOverrideMitigationAction = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchSettingResponse {
@@ -787,12 +778,10 @@ export type SettingsUpdateRequestValidationDefaultMitigationAction =
   | "none"
   | "log"
   | "block";
-export const SettingsUpdateRequestValidationDefaultMitigationAction =
-  /*@__PURE__*/ S.String;
+export const SettingsUpdateRequestValidationDefaultMitigationAction = S.String;
 
 export type SettingsUpdateRequestValidationOverrideMitigationAction = "none";
-export const SettingsUpdateRequestValidationOverrideMitigationAction =
-  /*@__PURE__*/ S.String;
+export const SettingsUpdateRequestValidationOverrideMitigationAction = S.String;
 
 export interface PutSettingRequest {
   /** Identifier. */
@@ -836,12 +825,11 @@ export type SettingsUpdateResponseValidationDefaultMitigationAction =
   | "none"
   | "log"
   | "block";
-export const SettingsUpdateResponseValidationDefaultMitigationAction =
-  /*@__PURE__*/ S.String;
+export const SettingsUpdateResponseValidationDefaultMitigationAction = S.String;
 
 export type SettingsUpdateResponseValidationOverrideMitigationAction = "none";
 export const SettingsUpdateResponseValidationOverrideMitigationAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PutSettingResponse {
@@ -870,8 +858,7 @@ export type SettingsOperationsUpdateRequestMitigationAction =
   | "log"
   | "block"
   | "none";
-export const SettingsOperationsUpdateRequestMitigationAction =
-  /*@__PURE__*/ S.String;
+export const SettingsOperationsUpdateRequestMitigationAction = S.String;
 
 export interface PutSettingOperationRequest {
   /** Identifier. */
@@ -907,8 +894,7 @@ export type SettingsOperationsUpdateResponseMitigationAction =
   | "log"
   | "block"
   | "none";
-export const SettingsOperationsUpdateResponseMitigationAction =
-  /*@__PURE__*/ S.String;
+export const SettingsOperationsUpdateResponseMitigationAction = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PutSettingOperationResponse {

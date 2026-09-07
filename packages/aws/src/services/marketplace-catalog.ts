@@ -358,7 +358,7 @@ export const FrameworkSummary = /*@__PURE__*/ S.Union([
   S.Struct({ ContainerSecuritySummary: ContainerSecuritySummary }),
 ]);
 export type AssessmentResult = "PASS" | "FAIL" | (string & {});
-export const AssessmentResult = /*@__PURE__*/ S.String;
+export const AssessmentResult = S.String;
 
 export type ControlAssessmentResult =
   | "PASS"
@@ -366,7 +366,7 @@ export type ControlAssessmentResult =
   | "NOT_EXECUTED"
   | "EXEMPTION_PASS"
   | (string & {});
-export const ControlAssessmentResult = /*@__PURE__*/ S.String;
+export const ControlAssessmentResult = S.String;
 
 export type ErrorCode = string;
 export type ErrorMessage = string;
@@ -462,7 +462,7 @@ export const DescribeChangeSetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DescribeChangeSetRequest>;
 export type ChangeSetName = string;
 export type Intent = "VALIDATE" | "APPLY" | (string & {});
-export const Intent = /*@__PURE__*/ S.String;
+export const Intent = S.String;
 
 export type ChangeStatus =
   | "PREPARING"
@@ -471,10 +471,10 @@ export type ChangeStatus =
   | "CANCELLED"
   | "FAILED"
   | (string & {});
-export const ChangeStatus = /*@__PURE__*/ S.String;
+export const ChangeStatus = S.String;
 
 export type FailureCode = "CLIENT_ERROR" | "SERVER_FAULT" | (string & {});
-export const FailureCode = /*@__PURE__*/ S.String;
+export const FailureCode = S.String;
 
 export type ExceptionMessageContent = string;
 export type ChangeType = string;
@@ -737,7 +737,7 @@ export type FilterList = Filter[];
 export const FilterList = /*@__PURE__*/ S.Array(Filter);
 export type SortBy = string;
 export type SortOrder = "ASCENDING" | "DESCENDING" | (string & {});
-export const SortOrder = /*@__PURE__*/ S.String;
+export const SortOrder = S.String;
 
 export interface Sort {
   SortBy?: string;
@@ -818,7 +818,7 @@ export const ListChangeSetsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListChangeSetsResponse>;
 export type ListEntitiesMaxResultInteger = number;
 export type OwnershipType = "SELF" | "SHARED" | (string & {});
-export const OwnershipType = /*@__PURE__*/ S.String;
+export const OwnershipType = S.String;
 
 export type DataProductEntityIdString = string;
 export type DataProductEntityIdFilterValueList = string[];
@@ -855,7 +855,7 @@ export type DataProductVisibilityString =
   | "Unavailable"
   | "Draft"
   | (string & {});
-export const DataProductVisibilityString = /*@__PURE__*/ S.String;
+export const DataProductVisibilityString = S.String;
 
 export type DataProductVisibilityFilterValueList =
   DataProductVisibilityString[];
@@ -943,7 +943,7 @@ export type SaaSProductVisibilityString =
   | "Restricted"
   | "Draft"
   | (string & {});
-export const SaaSProductVisibilityString = /*@__PURE__*/ S.String;
+export const SaaSProductVisibilityString = S.String;
 
 export type SaaSProductVisibilityFilterValueList =
   SaaSProductVisibilityString[];
@@ -1054,7 +1054,7 @@ export type AmiProductVisibilityString =
   | "Restricted"
   | "Draft"
   | (string & {});
-export const AmiProductVisibilityString = /*@__PURE__*/ S.String;
+export const AmiProductVisibilityString = S.String;
 
 export type AmiProductVisibilityFilterValueList = AmiProductVisibilityString[];
 export const AmiProductVisibilityFilterValueList = /*@__PURE__*/ S.Array(
@@ -1187,7 +1187,7 @@ export const OfferBuyerAccountsFilter = /*@__PURE__*/ S.suspend(() =>
   identifier: "OfferBuyerAccountsFilter",
 }) as any as S.Schema<OfferBuyerAccountsFilter>;
 export type OfferStateString = "Draft" | "Released" | (string & {});
-export const OfferStateString = /*@__PURE__*/ S.String;
+export const OfferStateString = S.String;
 
 export type OfferStateFilterValueList = OfferStateString[];
 export const OfferStateFilterValueList =
@@ -1206,7 +1206,7 @@ export type OfferTargetingString =
   | "CountryCodes"
   | "None"
   | (string & {});
-export const OfferTargetingString = /*@__PURE__*/ S.String;
+export const OfferTargetingString = S.String;
 
 export type OfferTargetingFilterValueList = OfferTargetingString[];
 export const OfferTargetingFilterValueList =
@@ -1265,7 +1265,7 @@ export const OfferTargetAgreementIdFilter = /*@__PURE__*/ S.suspend(() =>
   identifier: "OfferTargetAgreementIdFilter",
 }) as any as S.Schema<OfferTargetAgreementIdFilter>;
 export type OfferTargetAgreementIntentString = "Renew" | (string & {});
-export const OfferTargetAgreementIntentString = /*@__PURE__*/ S.String;
+export const OfferTargetAgreementIntentString = S.String;
 
 export type OfferTargetAgreementIntentFilterValueList =
   OfferTargetAgreementIntentString[];
@@ -1286,7 +1286,7 @@ export type OfferCreatedBySourceString =
   | "Seller"
   | "AwsMarketplace"
   | (string & {});
-export const OfferCreatedBySourceString = /*@__PURE__*/ S.String;
+export const OfferCreatedBySourceString = S.String;
 
 export type OfferCreatedBySourceFilterValueList = OfferCreatedBySourceString[];
 export const OfferCreatedBySourceFilterValueList = /*@__PURE__*/ S.Array(
@@ -1394,7 +1394,7 @@ export type ContainerProductVisibilityString =
   | "Restricted"
   | "Draft"
   | (string & {});
-export const ContainerProductVisibilityString = /*@__PURE__*/ S.String;
+export const ContainerProductVisibilityString = S.String;
 
 export type ContainerProductVisibilityFilterValueList =
   ContainerProductVisibilityString[];
@@ -1642,7 +1642,7 @@ export type ResaleAuthorizationStatusString =
   | "Active"
   | "Restricted"
   | (string & {});
-export const ResaleAuthorizationStatusString = /*@__PURE__*/ S.String;
+export const ResaleAuthorizationStatusString = S.String;
 
 export type ResaleAuthorizationStatusFilterValueList =
   ResaleAuthorizationStatusString[];
@@ -1702,7 +1702,7 @@ export type ResaleAuthorizationResellerRoleString =
   | "ChannelPartner"
   | "Distributor"
   | (string & {});
-export const ResaleAuthorizationResellerRoleString = /*@__PURE__*/ S.String;
+export const ResaleAuthorizationResellerRoleString = S.String;
 
 export type ResaleAuthorizationResellerRoleFilterValueList =
   ResaleAuthorizationResellerRoleString[];
@@ -1827,7 +1827,7 @@ export type MachineLearningProductVisibilityString =
   | "Restricted"
   | "Draft"
   | (string & {});
-export const MachineLearningProductVisibilityString = /*@__PURE__*/ S.String;
+export const MachineLearningProductVisibilityString = S.String;
 
 export type MachineLearningProductVisibilityFilterValueList =
   MachineLearningProductVisibilityString[];
@@ -1883,7 +1883,7 @@ export const OfferSetNameFilter = /*@__PURE__*/ S.suspend(() =>
   identifier: "OfferSetNameFilter",
 }) as any as S.Schema<OfferSetNameFilter>;
 export type OfferSetStateString = "Draft" | "Released" | (string & {});
-export const OfferSetStateString = /*@__PURE__*/ S.String;
+export const OfferSetStateString = S.String;
 
 export type OfferSetStateFilterValueList = OfferSetStateString[];
 export const OfferSetStateFilterValueList =
@@ -2084,7 +2084,7 @@ export type DataProductSortBy =
   | "Visibility"
   | "LastModifiedDate"
   | (string & {});
-export const DataProductSortBy = /*@__PURE__*/ S.String;
+export const DataProductSortBy = S.String;
 
 export interface DataProductSort {
   SortBy?: DataProductSortBy;
@@ -2105,7 +2105,7 @@ export type SaaSProductSortBy =
   | "LastModifiedDate"
   | "DeliveryOptionTypes"
   | (string & {});
-export const SaaSProductSortBy = /*@__PURE__*/ S.String;
+export const SaaSProductSortBy = S.String;
 
 export interface SaaSProductSort {
   SortBy?: SaaSProductSortBy;
@@ -2125,7 +2125,7 @@ export type AmiProductSortBy =
   | "ProductTitle"
   | "Visibility"
   | (string & {});
-export const AmiProductSortBy = /*@__PURE__*/ S.String;
+export const AmiProductSortBy = S.String;
 
 export interface AmiProductSort {
   SortBy?: AmiProductSortBy;
@@ -2153,7 +2153,7 @@ export type OfferSortBy =
   | "TargetAgreementIntent"
   | "CreatedBySource"
   | (string & {});
-export const OfferSortBy = /*@__PURE__*/ S.String;
+export const OfferSortBy = S.String;
 
 export interface OfferSort {
   SortBy?: OfferSortBy;
@@ -2172,7 +2172,7 @@ export type ContainerProductSortBy =
   | "Visibility"
   | "CompatibleAWSServices"
   | (string & {});
-export const ContainerProductSortBy = /*@__PURE__*/ S.String;
+export const ContainerProductSortBy = S.String;
 
 export interface ContainerProductSort {
   SortBy?: ContainerProductSortBy;
@@ -2201,7 +2201,7 @@ export type ResaleAuthorizationSortBy =
   | "AvailabilityEndDate"
   | "LastModifiedDate"
   | (string & {});
-export const ResaleAuthorizationSortBy = /*@__PURE__*/ S.String;
+export const ResaleAuthorizationSortBy = S.String;
 
 export interface ResaleAuthorizationSort {
   SortBy?: ResaleAuthorizationSortBy;
@@ -2221,7 +2221,7 @@ export type MachineLearningProductSortBy =
   | "ProductTitle"
   | "Visibility"
   | (string & {});
-export const MachineLearningProductSortBy = /*@__PURE__*/ S.String;
+export const MachineLearningProductSortBy = S.String;
 
 export interface MachineLearningProductSort {
   SortBy?: MachineLearningProductSortBy;
@@ -2243,7 +2243,7 @@ export type OfferSetSortBy =
   | "EntityId"
   | "LastModifiedDate"
   | (string & {});
-export const OfferSetSortBy = /*@__PURE__*/ S.String;
+export const OfferSetSortBy = S.String;
 
 export interface OfferSetSort {
   SortBy?: OfferSetSortBy;
@@ -2757,7 +2757,7 @@ export type ValidationExceptionReason =
   | "FieldValidationFailed"
   | "Other"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export type FieldName = string;
 export interface ValidationExceptionField {

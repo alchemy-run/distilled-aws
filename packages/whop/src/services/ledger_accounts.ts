@@ -152,7 +152,7 @@ export type Currencies =
   | "awg"
   | "whop_usd"
   | "xau";
-export const Currencies = /*@__PURE__*/ S.String;
+export const Currencies = S.String;
 
 /** A cached balance for a LedgerAccount in respect to a currency. */
 export interface LedgerAccountBalancesItem {
@@ -184,7 +184,7 @@ export const LedgerAccountBalancesList = /*@__PURE__*/ S.Array(
 
 /** The types of ledgers that can be created. */
 export type LedgerTypes = "primary" | "pool";
-export const LedgerTypes = /*@__PURE__*/ S.String;
+export const LedgerTypes = S.String;
 
 /** A user account on Whop. Contains profile information, identity details, and social connections. */
 export interface LedgerAccountOwnerCase0 {
@@ -235,7 +235,7 @@ export type LedgerAccountOwner =
   | LedgerAccountOwnerCase0
   | LedgerAccountOwnerCase1;
 export const LedgerAccountOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LedgerAccountOwner>;
+  S.Unknown as any as S.Schema<LedgerAccountOwner>;
 
 /** The different approval statuses an account can have. */
 export type PaymentsApprovalStatuses =
@@ -243,7 +243,7 @@ export type PaymentsApprovalStatuses =
   | "approved"
   | "monitoring"
   | "rejected";
-export const PaymentsApprovalStatuses = /*@__PURE__*/ S.String;
+export const PaymentsApprovalStatuses = S.String;
 
 /** The physical address associated with this payout account */
 export interface LedgerAccountPayoutAccountDetailsAddress {
@@ -318,7 +318,7 @@ export type VerificationErrorCodes =
   | "selfie_manipulated"
   | "selfie_unverified_other"
   | "under_supported_age";
-export const VerificationErrorCodes = /*@__PURE__*/ S.String;
+export const VerificationErrorCodes = S.String;
 
 /** A status for a verification. */
 export type VerificationStatuses =
@@ -337,7 +337,7 @@ export type VerificationStatuses =
   | "review"
   | "action_required"
   | "manual_review";
-export const VerificationStatuses = /*@__PURE__*/ S.String;
+export const VerificationStatuses = S.String;
 
 /** The latest verification for the connected account. */
 export interface LedgerAccountPayoutAccountDetailsLatestVerification {
@@ -373,7 +373,7 @@ export type PayoutAccountCalculatedStatuses =
   | "denied"
   | "not_started"
   | "blocked_by_parent";
-export const PayoutAccountCalculatedStatuses = /*@__PURE__*/ S.String;
+export const PayoutAccountCalculatedStatuses = S.String;
 
 /** The payout account associated with the LedgerAccount, if any. */
 export interface LedgerAccountPayoutAccountDetails {

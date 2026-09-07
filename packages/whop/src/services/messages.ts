@@ -140,7 +140,7 @@ export const MessageMentionsList = /*@__PURE__*/ S.Array(
 
 /** The types of post */
 export type DmsPostTypes = "regular" | "system" | "automated";
-export const DmsPostTypes = /*@__PURE__*/ S.String;
+export const DmsPostTypes = S.String;
 
 /** Represents a single poll option */
 export interface MessagePollOptionsItem {
@@ -322,7 +322,7 @@ export const GetMessageRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The direction of the sort. */
 export type Direction = "asc" | "desc";
-export const Direction = /*@__PURE__*/ S.String;
+export const Direction = S.String;
 
 export interface ListMessageRequest {
   after?: string;

@@ -136,7 +136,7 @@ export const StringMap = /*@__PURE__*/ S.Record(
 export type MembershipMembershipTypeEnum =
   | "MEMBERSHIP_TYPE_UNSPECIFIED"
   | "LIGHTWEIGHT";
-export const MembershipMembershipTypeEnum = /*@__PURE__*/ S.String;
+export const MembershipMembershipTypeEnum = S.String;
 
 /** MonitoringConfig informs Fleet-based applications/services/UIs how the metrics for the underlying cluster is reported to cloud monitoring services. It can be set from empty to non-empty, but can't be mutated directly to prevent accidentally breaking the constinousty of metrics. */
 export interface MonitoringConfig {
@@ -170,7 +170,7 @@ export type MembershipStateCodeEnum =
   | "DELETING"
   | "UPDATING"
   | "SERVICE_UPDATING";
-export const MembershipStateCodeEnum = /*@__PURE__*/ S.String;
+export const MembershipStateCodeEnum = S.String;
 
 /** State of the Membership resource. */
 export interface MembershipState {
@@ -195,7 +195,7 @@ export type MembershipInfrastructureTypeEnum =
   | "INFRASTRUCTURE_TYPE_UNSPECIFIED"
   | "ON_PREM"
   | "MULTI_CLOUD";
-export const MembershipInfrastructureTypeEnum = /*@__PURE__*/ S.String;
+export const MembershipInfrastructureTypeEnum = S.String;
 
 /** KubernetesMetadata provides informational metadata for Memberships representing Kubernetes clusters. */
 export interface KubernetesMetadata {
@@ -242,7 +242,7 @@ export type OnPremClusterClusterTypeEnum =
   | "HYBRID"
   | "STANDALONE"
   | "USER";
-export const OnPremClusterClusterTypeEnum = /*@__PURE__*/ S.String;
+export const OnPremClusterClusterTypeEnum = S.String;
 
 /** OnPremCluster contains information specific to GKE On-Prem clusters. */
 export interface OnPremCluster {
@@ -785,7 +785,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {

@@ -69,14 +69,14 @@ export type DatabaseInstanceTypeEnum =
   | "DATABASE_INSTANCE_TYPE_UNSPECIFIED"
   | "DEFAULT_DATABASE"
   | "USER_DATABASE";
-export const DatabaseInstanceTypeEnum = /*@__PURE__*/ S.String;
+export const DatabaseInstanceTypeEnum = S.String;
 
 export type DatabaseInstanceStateEnum =
   | "LIFECYCLE_STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DISABLED"
   | "DELETED";
-export const DatabaseInstanceStateEnum = /*@__PURE__*/ S.String;
+export const DatabaseInstanceStateEnum = S.String;
 
 /** Representation of a Realtime Database instance. Details on interacting with contents of a DatabaseInstance can be found at: https://firebase.google.com/docs/database/rest/start. */
 export interface DatabaseInstance {

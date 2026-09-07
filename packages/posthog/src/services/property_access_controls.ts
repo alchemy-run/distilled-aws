@@ -13,7 +13,7 @@ export type { PosthogOpError, PosthogOpContext };
 
 /** * `read_write` - read_write * `read` - read * `none` - none */
 export type AccessLevelEnum = "read_write" | "read" | "none";
-export const AccessLevelEnum = /*@__PURE__*/ S.String;
+export const AccessLevelEnum = S.String;
 
 export interface CreatePropertyAccessControlRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

@@ -47,7 +47,7 @@ export type EarlyAccessFeatureStageEnum =
   | "beta"
   | "general-availability"
   | "archived";
-export const EarlyAccessFeatureStageEnum = /*@__PURE__*/ S.String;
+export const EarlyAccessFeatureStageEnum = S.String;
 
 export interface CreateEarlyAccessFeatureRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -104,14 +104,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -142,13 +142,13 @@ export type EarlyAccessFeatureSerializerCreateOnlyOutputAssigneeType =
   | "user"
   | "role";
 export const EarlyAccessFeatureSerializerCreateOnlyOutputAssigneeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type EarlyAccessFeatureSerializerCreateOnlyOutputAssigneeId =
   | number
   | string;
 export const EarlyAccessFeatureSerializerCreateOnlyOutputAssigneeId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EarlyAccessFeatureSerializerCreateOnlyOutputAssigneeId>;
+  S.Unknown as any as S.Schema<EarlyAccessFeatureSerializerCreateOnlyOutputAssigneeId>;
 
 /** The person or role responsible for this feature, e.g. {"type": "user", "id": 123} or {"type": "role", "id": "<role uuid>"}. Defaults to the creator. Send null to unassign. */
 export interface EarlyAccessFeatureSerializerCreateOnlyOutputAssignee {
@@ -177,25 +177,25 @@ export const MinimalFeatureFlagFiltersMap = /*@__PURE__*/ S.Record(
 
 /** * `server` - Server * `client` - Client * `all` - All */
 export type EvaluationRuntimeEnum = "server" | "client" | "all";
-export const EvaluationRuntimeEnum = /*@__PURE__*/ S.String;
+export const EvaluationRuntimeEnum = S.String;
 
 /** Specifies where this feature flag should be evaluated * `server` - Server * `client` - Client * `all` - All */
 export type MinimalFeatureFlagEvaluationRuntime =
   | EvaluationRuntimeEnum
   | BlankEnum;
 export const MinimalFeatureFlagEvaluationRuntime =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MinimalFeatureFlagEvaluationRuntime>;
+  S.Unknown as any as S.Schema<MinimalFeatureFlagEvaluationRuntime>;
 
 /** * `distinct_id` - User ID (default) * `device_id` - Device ID */
 export type BucketingIdentifierEnum = "distinct_id" | "device_id";
-export const BucketingIdentifierEnum = /*@__PURE__*/ S.String;
+export const BucketingIdentifierEnum = S.String;
 
 /** Identifier used for bucketing users into rollout and variants * `distinct_id` - User ID (default) * `device_id` - Device ID */
 export type MinimalFeatureFlagBucketingIdentifier =
   | BucketingIdentifierEnum
   | BlankEnum;
 export const MinimalFeatureFlagBucketingIdentifier =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MinimalFeatureFlagBucketingIdentifier>;
+  S.Unknown as any as S.Schema<MinimalFeatureFlagBucketingIdentifier>;
 
 export type MinimalFeatureFlagEvaluationContextsList = Array<string>;
 export const MinimalFeatureFlagEvaluationContextsList = /*@__PURE__*/ S.Array(
@@ -343,11 +343,11 @@ export const EarlyAccessFeaturePayloadMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<EarlyAccessFeaturePayloadMap>;
 
 export type EarlyAccessFeatureAssigneeType = "user" | "role";
-export const EarlyAccessFeatureAssigneeType = /*@__PURE__*/ S.String;
+export const EarlyAccessFeatureAssigneeType = S.String;
 
 export type EarlyAccessFeatureAssigneeId = number | string;
 export const EarlyAccessFeatureAssigneeId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EarlyAccessFeatureAssigneeId>;
+  S.Unknown as any as S.Schema<EarlyAccessFeatureAssigneeId>;
 
 /** The person or role responsible for this feature, e.g. {"type": "user", "id": 123} or {"type": "role", "id": "<role uuid>"}. Defaults to the creator. Send null to unassign. */
 export interface EarlyAccessFeatureAssignee {

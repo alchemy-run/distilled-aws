@@ -71,11 +71,11 @@ export const CreatePaymentMethodDomainRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Wallet provider the domain is registered with. */
 export type PaymentMethodDomainProvider = "apple";
-export const PaymentMethodDomainProvider = /*@__PURE__*/ S.String;
+export const PaymentMethodDomainProvider = S.String;
 
 /** Verification status. `pending` means the provider could not fetch the domain-association file yet; only `verified` domains show wallet payment methods at checkout. */
 export type PaymentMethodDomainStatus = "pending" | "verified";
-export const PaymentMethodDomainStatus = /*@__PURE__*/ S.String;
+export const PaymentMethodDomainStatus = S.String;
 
 export interface PaymentMethodDomain {
   /** ID of the account the domain is registered for, prefixed `biz_`. */
@@ -153,16 +153,16 @@ export const GetPaymentMethodDomainRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPaymentMethodDomainRequest>;
 
 export type ListPaymentMethodDomainsRequestStatus = "pending" | "verified";
-export const ListPaymentMethodDomainsRequestStatus = /*@__PURE__*/ S.String;
+export const ListPaymentMethodDomainsRequestStatus = S.String;
 
 export type ListPaymentMethodDomainsRequestProvider = "apple";
-export const ListPaymentMethodDomainsRequestProvider = /*@__PURE__*/ S.String;
+export const ListPaymentMethodDomainsRequestProvider = S.String;
 
 export type ListPaymentMethodDomainsRequestOrder = "created_at";
-export const ListPaymentMethodDomainsRequestOrder = /*@__PURE__*/ S.String;
+export const ListPaymentMethodDomainsRequestOrder = S.String;
 
 export type ListPaymentMethodDomainsRequestDirection = "asc" | "desc";
-export const ListPaymentMethodDomainsRequestDirection = /*@__PURE__*/ S.String;
+export const ListPaymentMethodDomainsRequestDirection = S.String;
 
 export interface ListPaymentMethodDomainsRequest {
   /** Only domains registered for this account (`biz_` tag). Defaults to the caller's account plus its connected accounts. */

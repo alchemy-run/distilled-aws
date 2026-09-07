@@ -59,7 +59,7 @@ export const GetTrackerRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The tracking number type. */
 export type TrackingNumberType = "CARRIER_PROVIDED" | "E2E_PARTNER_PROVIDED";
-export const TrackingNumberType = /*@__PURE__*/ S.String;
+export const TrackingNumberType = S.String;
 
 /** The status of the item shipment. For allowed values, see <a href="/docs/tracking/reference/shipping-status/">Shipping Statuses</a>. */
 export type TrackingStatus =
@@ -86,7 +86,7 @@ export type TrackingStatus =
   | "PROCESSED"
   | "NOT_SHIPPED"
   | "COMPLETED";
-export const TrackingStatus = /*@__PURE__*/ S.String;
+export const TrackingStatus = S.String;
 
 /** The carrier for the shipment. Carrier information is required when tracking_number is provided. Some carriers have a global version as well as local subsidiaries. The subsidiaries are repeated over many countries and might also have an entry in the global list. Choose the carrier for your country. If the carrier is not available for your country, choose the global version of the carrier. If your carrier name is not in the list, set `carrier` to `OTHER` and set carrier name in `carrier_name_other`. For allowed values, see <a href="/docs/tracking/reference/carriers/">Carriers</a>. */
 export type Carrier =
@@ -900,15 +900,15 @@ export type Carrier =
   | "ZJS_EXPRESS"
   | "ZTO_EXPRESS"
   | "ZYLLEM";
-export const Carrier = /*@__PURE__*/ S.String;
+export const Carrier = S.String;
 
 /** To denote whether the shipment is sent forward to the receiver or returned back. */
 export type TrackerShipmentDirection = "FORWARD" | "RETURN";
-export const TrackerShipmentDirection = /*@__PURE__*/ S.String;
+export const TrackerShipmentDirection = S.String;
 
 /** To denote which party uploaded the shipment tracking info. */
 export type TrackerShipmentUploader = "MERCHANT" | "CONSUMER" | "PARTNER";
-export const TrackerShipmentUploader = /*@__PURE__*/ S.String;
+export const TrackerShipmentUploader = S.String;
 
 /** The HTTP method required to make the related call. */
 export type LinkDescriptionMethod =
@@ -920,7 +920,7 @@ export type LinkDescriptionMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const LinkDescriptionMethod = /*@__PURE__*/ S.String;
+export const LinkDescriptionMethod = S.String;
 
 /** A request-related [HATEOAS link](/api/rest/responses/#hateoas-links). */
 export interface LinkDescription {
@@ -1023,7 +1023,7 @@ export const GetTrackerBatchRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** To denote whether the shipment is sent forward to the receiver or returned back. */
 export type TrackerInputShipmentDirection = "FORWARD" | "RETURN";
-export const TrackerInputShipmentDirection = /*@__PURE__*/ S.String;
+export const TrackerInputShipmentDirection = S.String;
 
 /** The tracking information for a shipment. */
 export interface TrackerInput {
@@ -1158,7 +1158,7 @@ export type LinkDescription2Method =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const LinkDescription2Method = /*@__PURE__*/ S.String;
+export const LinkDescription2Method = S.String;
 
 /** The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information. */
 export interface LinkDescription2 {
@@ -1278,7 +1278,7 @@ export const BatchTrackerCollection = /*@__PURE__*/ S.suspend(() =>
 
 /** To denote whether the shipment is sent forward to the receiver or returned back. */
 export type PutTrackerRequestShipmentDirection = "FORWARD" | "RETURN";
-export const PutTrackerRequestShipmentDirection = /*@__PURE__*/ S.String;
+export const PutTrackerRequestShipmentDirection = S.String;
 
 export interface PutTrackerRequest {
   /** The ID of the tracker in the <code><var>transaction_id</var>-<var>tracking_number</var></code> format. */

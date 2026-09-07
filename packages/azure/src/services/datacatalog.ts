@@ -23,7 +23,7 @@ export const ADCCatalogsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Azure data catalog SKU. */
 export type ADCCatalogPropertiesSku = "Free" | "Standard";
-export const ADCCatalogPropertiesSku = /*@__PURE__*/ S.String;
+export const ADCCatalogPropertiesSku = S.String;
 
 /** User principals. */
 export interface Principals {

@@ -105,7 +105,7 @@ export type AnnotationTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "TYPE_LEGACY_EXPORT_CONSENT"
   | "TYPE_QWIKLAB";
-export const AnnotationTypeEnum = /*@__PURE__*/ S.String;
+export const AnnotationTypeEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -244,7 +244,7 @@ export type CollectorStateEnum =
   | "STATE_DELETING"
   | "STATE_DECOMMISSIONED"
   | "STATE_ERROR";
-export const CollectorStateEnum = /*@__PURE__*/ S.String;
+export const CollectorStateEnum = S.String;
 
 /** Message describing Collector object. */
 export interface Collector {

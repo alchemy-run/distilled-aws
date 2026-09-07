@@ -226,7 +226,7 @@ export const DreamRun = /*@__PURE__*/ S.suspend(() =>
 
 /** * `added` - added * `modified` - modified * `deleted` - deleted */
 export type DreamFileDiffStatusEnum = "added" | "modified" | "deleted";
-export const DreamFileDiffStatusEnum = /*@__PURE__*/ S.String;
+export const DreamFileDiffStatusEnum = S.String;
 
 /** One file a dream run changed, with its unified patch. */
 export interface DreamFileDiff {
@@ -444,7 +444,7 @@ export type ActiveDreamRunRunStatusEnum =
   | "not_started"
   | "queued"
   | "in_progress";
-export const ActiveDreamRunRunStatusEnum = /*@__PURE__*/ S.String;
+export const ActiveDreamRunRunStatusEnum = S.String;
 
 /** A dreaming task that has not reached a terminal state yet. */
 export interface ActiveDreamRun {

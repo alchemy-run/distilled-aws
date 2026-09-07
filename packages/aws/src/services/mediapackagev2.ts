@@ -185,7 +185,7 @@ export const CancelHarvestJobResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CancelHarvestJobResponse>;
 export type IdempotencyToken = string;
 export type InputType = "HLS" | "CMAF" | (string & {});
-export const InputType = /*@__PURE__*/ S.String;
+export const InputType = S.String;
 
 export type ResourceDescription = string;
 export interface InputSwitchConfiguration {
@@ -212,7 +212,7 @@ export type OutputLockingMode =
   | "EPOCH_LOCKED"
   | "NON_EPOCH_LOCKED"
   | (string & {});
-export const OutputLockingMode = /*@__PURE__*/ S.String;
+export const OutputLockingMode = S.String;
 
 export type TagKey = string;
 export type TagValue = string;
@@ -490,7 +490,7 @@ export type HarvestJobStatus =
   | "COMPLETED"
   | "FAILED"
   | (string & {});
-export const HarvestJobStatus = /*@__PURE__*/ S.String;
+export const HarvestJobStatus = S.String;
 
 export interface CreateHarvestJobResponse {
   ChannelGroupName: string;
@@ -531,7 +531,7 @@ export const CreateHarvestJobResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateHarvestJobResponse",
 }) as any as S.Schema<CreateHarvestJobResponse>;
 export type ContainerType = "TS" | "CMAF" | "ISM" | (string & {});
-export const ContainerType = /*@__PURE__*/ S.String;
+export const ContainerType = S.String;
 
 export type ScteFilter =
   | "SPLICE_INSERT"
@@ -554,12 +554,12 @@ export type ScteFilter =
   | "CONTENT_IDENTIFICATION"
   | "CALL_AD_SERVER"
   | (string & {});
-export const ScteFilter = /*@__PURE__*/ S.String;
+export const ScteFilter = S.String;
 
 export type ScteFilterList = ScteFilter[];
 export const ScteFilterList = /*@__PURE__*/ S.Array(ScteFilter);
 export type ScteInSegments = "NONE" | "ALL" | "MATCHES_FILTER" | (string & {});
-export const ScteInSegments = /*@__PURE__*/ S.String;
+export const ScteInSegments = S.String;
 
 export type CustomAdType =
   | "PROGRAM"
@@ -568,7 +568,7 @@ export type CustomAdType =
   | "ALTERNATE_CONTENT_OPPORTUNITY"
   | "NETWORK"
   | (string & {});
-export const CustomAdType = /*@__PURE__*/ S.String;
+export const CustomAdType = S.String;
 
 export type CustomAdTypeList = CustomAdType[];
 export const CustomAdTypeList = /*@__PURE__*/ S.Array(CustomAdType);
@@ -585,13 +585,13 @@ export const Scte = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Scte" }) as any as S.Schema<Scte>;
 export type TsEncryptionMethod = "AES_128" | "SAMPLE_AES" | (string & {});
-export const TsEncryptionMethod = /*@__PURE__*/ S.String;
+export const TsEncryptionMethod = S.String;
 
 export type CmafEncryptionMethod = "CENC" | "CBCS" | (string & {});
-export const CmafEncryptionMethod = /*@__PURE__*/ S.String;
+export const CmafEncryptionMethod = S.String;
 
 export type IsmEncryptionMethod = "CENC" | (string & {});
-export const IsmEncryptionMethod = /*@__PURE__*/ S.String;
+export const IsmEncryptionMethod = S.String;
 
 export interface EncryptionMethod {
   TsEncryptionMethod?: TsEncryptionMethod;
@@ -614,7 +614,7 @@ export type PresetSpeke20Audio =
   | "SHARED"
   | "UNENCRYPTED"
   | (string & {});
-export const PresetSpeke20Audio = /*@__PURE__*/ S.String;
+export const PresetSpeke20Audio = S.String;
 
 export type PresetSpeke20Video =
   | "PRESET_VIDEO_1"
@@ -628,7 +628,7 @@ export type PresetSpeke20Video =
   | "SHARED"
   | "UNENCRYPTED"
   | (string & {});
-export const PresetSpeke20Video = /*@__PURE__*/ S.String;
+export const PresetSpeke20Video = S.String;
 
 export interface EncryptionContractConfiguration {
   PresetSpeke20Audio: PresetSpeke20Audio;
@@ -649,7 +649,7 @@ export type DrmSystem =
   | "WIDEVINE"
   | "IRDETO"
   | (string & {});
-export const DrmSystem = /*@__PURE__*/ S.String;
+export const DrmSystem = S.String;
 
 export type DrmSystems = DrmSystem[];
 export const DrmSystems = /*@__PURE__*/ S.Array(DrmSystem);
@@ -693,7 +693,7 @@ export type OutputTimestampMode =
   | "PASSTHROUGH"
   | "REBASED_TO_CHANNEL_START"
   | (string & {});
-export const OutputTimestampMode = /*@__PURE__*/ S.String;
+export const OutputTimestampMode = S.String;
 
 export interface Segment {
   SegmentDurationSeconds?: number;
@@ -719,10 +719,10 @@ export const Segment = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Segment" }) as any as S.Schema<Segment>;
 export type ManifestName = string;
 export type AdMarkerHls = "DATERANGE" | "SCTE35_ENHANCED" | (string & {});
-export const AdMarkerHls = /*@__PURE__*/ S.String;
+export const AdMarkerHls = S.String;
 
 export type ScteInManifests = "ALL" | "MATCHES_FILTER" | (string & {});
-export const ScteInManifests = /*@__PURE__*/ S.String;
+export const ScteInManifests = S.String;
 
 export interface ScteHls {
   AdMarkerHls?: AdMarkerHls;
@@ -762,7 +762,7 @@ export const FilterConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "FilterConfiguration",
 }) as any as S.Schema<FilterConfiguration>;
 export type UriPathType = "LEAF" | "ROOT" | (string & {});
-export const UriPathType = /*@__PURE__*/ S.String;
+export const UriPathType = S.String;
 
 export interface CreateHlsManifestConfiguration {
   ManifestName: string;
@@ -827,7 +827,7 @@ export const CreateLowLatencyHlsManifests = /*@__PURE__*/ S.Array(
   CreateLowLatencyHlsManifestConfiguration,
 );
 export type DashSegmentTemplateFormat = "NUMBER_WITH_TIMELINE" | (string & {});
-export const DashSegmentTemplateFormat = /*@__PURE__*/ S.String;
+export const DashSegmentTemplateFormat = S.String;
 
 export type DashPeriodTrigger =
   | "AVAILS"
@@ -836,12 +836,12 @@ export type DashPeriodTrigger =
   | "SOURCE_DISRUPTIONS"
   | "NONE"
   | (string & {});
-export const DashPeriodTrigger = /*@__PURE__*/ S.String;
+export const DashPeriodTrigger = S.String;
 
 export type DashPeriodTriggers = DashPeriodTrigger[];
 export const DashPeriodTriggers = /*@__PURE__*/ S.Array(DashPeriodTrigger);
 export type AdMarkerDash = "BINARY" | "XML" | (string & {});
-export const AdMarkerDash = /*@__PURE__*/ S.String;
+export const AdMarkerDash = S.String;
 
 export interface ScteDash {
   AdMarkerDash?: AdMarkerDash;
@@ -854,7 +854,7 @@ export const ScteDash = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ScteDash" }) as any as S.Schema<ScteDash>;
 export type DashDrmSignaling = "INDIVIDUAL" | "REFERENCED" | (string & {});
-export const DashDrmSignaling = /*@__PURE__*/ S.String;
+export const DashDrmSignaling = S.String;
 
 export type DashUtcTimingMode =
   | "HTTP_HEAD"
@@ -862,7 +862,7 @@ export type DashUtcTimingMode =
   | "HTTP_XSDATE"
   | "UTC_DIRECT"
   | (string & {});
-export const DashUtcTimingMode = /*@__PURE__*/ S.String;
+export const DashUtcTimingMode = S.String;
 
 export interface DashUtcTiming {
   TimingMode?: DashUtcTimingMode;
@@ -875,7 +875,7 @@ export const DashUtcTiming = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DashUtcTiming" }) as any as S.Schema<DashUtcTiming>;
 export type DashProfile = "DVB_DASH" | (string & {});
-export const DashProfile = /*@__PURE__*/ S.String;
+export const DashProfile = S.String;
 
 export type DashProfiles = DashProfile[];
 export const DashProfiles = /*@__PURE__*/ S.Array(DashProfile);
@@ -953,13 +953,13 @@ export const DashDvbSettings = /*@__PURE__*/ S.suspend(() =>
   identifier: "DashDvbSettings",
 }) as any as S.Schema<DashDvbSettings>;
 export type DashCompactness = "STANDARD" | "NONE" | (string & {});
-export const DashCompactness = /*@__PURE__*/ S.String;
+export const DashCompactness = S.String;
 
 export type DashAudioTimelinePattern = "NONE" | "PATTERNED" | (string & {});
-export const DashAudioTimelinePattern = /*@__PURE__*/ S.String;
+export const DashAudioTimelinePattern = S.String;
 
 export type DashTtmlProfile = "IMSC_1" | "EBU_TT_D_101" | (string & {});
-export const DashTtmlProfile = /*@__PURE__*/ S.String;
+export const DashTtmlProfile = S.String;
 
 export interface DashTtmlConfiguration {
   TtmlProfile: DashTtmlProfile;
@@ -1040,7 +1040,7 @@ export const CreateDashManifests = /*@__PURE__*/ S.Array(
   CreateDashManifestConfiguration,
 );
 export type MssManifestLayout = "FULL" | "COMPACT" | (string & {});
-export const MssManifestLayout = /*@__PURE__*/ S.String;
+export const MssManifestLayout = S.String;
 
 export interface CreateMssManifestConfiguration {
   ManifestName: string;
@@ -1068,7 +1068,7 @@ export type EndpointErrorCondition =
   | "MISSING_DRM_KEY"
   | "SLATE_INPUT"
   | (string & {});
-export const EndpointErrorCondition = /*@__PURE__*/ S.String;
+export const EndpointErrorCondition = S.String;
 
 export type EndpointErrorConditions = EndpointErrorCondition[];
 export const EndpointErrorConditions = /*@__PURE__*/ S.Array(
@@ -1083,10 +1083,10 @@ export const ForceEndpointErrorConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "ForceEndpointErrorConfiguration",
 }) as any as S.Schema<ForceEndpointErrorConfiguration>;
 export type UriSeparator = "UNDERSCORE" | "HYPHEN" | (string & {});
-export const UriSeparator = /*@__PURE__*/ S.String;
+export const UriSeparator = S.String;
 
 export type StreamNameOutputMode = "INDEX" | "PASSTHROUGH_NAME" | (string & {});
-export const StreamNameOutputMode = /*@__PURE__*/ S.String;
+export const StreamNameOutputMode = S.String;
 
 export interface CreateOriginEndpointRequest {
   ChannelGroupName: string;
@@ -2630,7 +2630,7 @@ export type ConflictExceptionType =
   | "IDEMPOTENT_PARAMETER_MISMATCH"
   | "CONFLICTING_OPERATION"
   | (string & {});
-export const ConflictExceptionType = /*@__PURE__*/ S.String;
+export const ConflictExceptionType = S.String;
 
 export type ResourceTypeNotFound =
   | "CHANNEL_GROUP"
@@ -2638,7 +2638,7 @@ export type ResourceTypeNotFound =
   | "ORIGIN_ENDPOINT"
   | "HARVEST_JOB"
   | (string & {});
-export const ResourceTypeNotFound = /*@__PURE__*/ S.String;
+export const ResourceTypeNotFound = S.String;
 
 export type ValidationExceptionType =
   | "CONTAINER_TYPE_IMMUTABLE"
@@ -2748,7 +2748,7 @@ export type ValidationExceptionType =
   | "ONLY_HLS_INPUT_TYPE_ALLOW_STREAM_NAME_OUTPUT_MODE"
   | "STREAM_NAME_OUTPUT_MODE_IMMUTABLE"
   | (string & {});
-export const ValidationExceptionType = /*@__PURE__*/ S.String;
+export const ValidationExceptionType = S.String;
 
 export type CancelHarvestJobError =
   | AccessDeniedException

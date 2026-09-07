@@ -25,7 +25,7 @@ export const GetIsoRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the ISO. */
 export type GetIsoResponseIsoType = "public" | "private";
-export const GetIsoResponseIsoType = /*@__PURE__*/ S.String;
+export const GetIsoResponseIsoType = S.String;
 
 /** Describes if, when and how the resource is deprecated. If this field is set to `null` the resource is not deprecated. If a value is set, it is considered deprecated. */
 export interface GetIsoResponseIsoDeprecation {
@@ -45,7 +45,7 @@ export const GetIsoResponseIsoDeprecation = /*@__PURE__*/ S.suspend(() =>
 
 /** CPU architecture compatible with the ISO. Null indicates no restriction on the architecture (wildcard). */
 export type GetIsoResponseIsoArchitecture = "x86" | "arm";
-export const GetIsoResponseIsoArchitecture = /*@__PURE__*/ S.String;
+export const GetIsoResponseIsoArchitecture = S.String;
 
 export interface GetIsoResponseIso {
   /** ID of the [ISO](#tag/isos). */
@@ -85,7 +85,7 @@ export const GetIsoResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** CPU architecture of the Resource. */
 export type ListIsosRequestArchitecture = "x86" | "arm";
-export const ListIsosRequestArchitecture = /*@__PURE__*/ S.String;
+export const ListIsosRequestArchitecture = S.String;
 
 export interface ListIsosRequest {
   /** Filter resources by their name. The response will only contain the resources matching exactly the specified name. */
@@ -113,7 +113,7 @@ export const ListIsosRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the ISO. */
 export type ListIsosResponseIsosItemType = "public" | "private";
-export const ListIsosResponseIsosItemType = /*@__PURE__*/ S.String;
+export const ListIsosResponseIsosItemType = S.String;
 
 /** Describes if, when and how the resource is deprecated. If this field is set to `null` the resource is not deprecated. If a value is set, it is considered deprecated. */
 export type ListIsosResponseIsosItemDeprecation = GetIsoResponseIsoDeprecation;
@@ -121,7 +121,7 @@ export const ListIsosResponseIsosItemDeprecation = GetIsoResponseIsoDeprecation;
 
 /** CPU architecture compatible with the ISO. Null indicates no restriction on the architecture (wildcard). */
 export type ListIsosResponseIsosItemArchitecture = "x86" | "arm";
-export const ListIsosResponseIsosItemArchitecture = /*@__PURE__*/ S.String;
+export const ListIsosResponseIsosItemArchitecture = S.String;
 
 export interface ListIsosResponseIsosItem {
   /** ID of the [ISO](#tag/isos). */

@@ -109,7 +109,7 @@ export type QueryParser =
   | "lucene"
   | "dismax"
   | (string & {});
-export const QueryParser = /*@__PURE__*/ S.String;
+export const QueryParser = S.String;
 
 export type Return = string;
 export type Size = number;
@@ -356,7 +356,7 @@ export type ContentType =
   | "application/json"
   | "application/xml"
   | (string & {});
-export const ContentType = /*@__PURE__*/ S.String;
+export const ContentType = S.String;
 
 export interface UploadDocumentsRequest {
   documents: T.StreamingInputBody;

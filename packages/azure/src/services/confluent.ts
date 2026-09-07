@@ -133,7 +133,7 @@ export const SCMetadataEntity = /*@__PURE__*/ S.suspend(() =>
 
 /** Stream Governance Package. Supported values are ESSENTIALS and ADVANCED */
 export type Package = "ESSENTIALS" | "ADVANCED";
-export const Package = /*@__PURE__*/ S.String;
+export const Package = S.String;
 
 /** The configuration of the Kafka cluster */
 export interface ClusterConfigEntity {
@@ -316,7 +316,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -324,7 +324,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -381,15 +381,15 @@ export const ClusterCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Connector Type */
 export type ConnectorType = "SINK" | "SOURCE";
-export const ConnectorType = /*@__PURE__*/ S.String;
+export const ConnectorType = S.String;
 
 /** Connector Class */
 export type ConnectorClass = "AZUREBLOBSOURCE" | "AZUREBLOBSINK";
-export const ConnectorClass = /*@__PURE__*/ S.String;
+export const ConnectorClass = S.String;
 
 /** Connector Status */
 export type ConnectorStatus = "PROVISIONING" | "RUNNING" | "PAUSED" | "FAILED";
-export const ConnectorStatus = /*@__PURE__*/ S.String;
+export const ConnectorStatus = S.String;
 
 /** Connector Info Base properties */
 export interface ConnectorInfoBase {
@@ -423,7 +423,7 @@ export type ConnectorServiceType =
   | "AzureCosmosDBSinkConnector"
   | "AzureCosmosDBSourceConnector"
   | "AzureSynapseAnalyticsSinkConnector";
-export const ConnectorServiceType = /*@__PURE__*/ S.String;
+export const ConnectorServiceType = S.String;
 
 /** The connector service type info */
 export interface ConnectorServiceTypeInfoBase {
@@ -445,7 +445,7 @@ export type PartnerConnectorType =
   | "KafkaAzureCosmosDBSource"
   | "KafkaAzureCosmosDBSink"
   | "KafkaAzureSynapseAnalyticsSink";
-export const PartnerConnectorType = /*@__PURE__*/ S.String;
+export const PartnerConnectorType = S.String;
 
 /** The partner info base */
 export interface PartnerInfoBase {
@@ -687,8 +687,7 @@ export type ConfluentAgreementResourceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfluentAgreementResourceSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const ConfluentAgreementResourceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ConfluentAgreementResourceSystemDataLastModifiedByType =
@@ -696,8 +695,7 @@ export type ConfluentAgreementResourceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfluentAgreementResourceSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const ConfluentAgreementResourceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ConfluentAgreementResourceSystemData {
@@ -915,7 +913,7 @@ export type ProvisionState =
   | "Canceled"
   | "Deleted"
   | "NotSpecified";
-export const ProvisionState = /*@__PURE__*/ S.String;
+export const ProvisionState = S.String;
 
 /** Array of Private Offer Ids */
 export type OfferDetailPrivateOfferIdsList = Array<string>;
@@ -935,7 +933,7 @@ export type SaaSOfferStatus =
   | "Failed"
   | "Unsubscribed"
   | "Updating";
-export const SaaSOfferStatus = /*@__PURE__*/ S.String;
+export const SaaSOfferStatus = S.String;
 
 /** Confluent Offer detail */
 export interface OfferDetail {

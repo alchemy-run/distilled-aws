@@ -22,15 +22,15 @@ export type AggregationEnum =
   | "rate"
   | "increase"
   | "histogram_quantile";
-export const AggregationEnum = /*@__PURE__*/ S.String;
+export const AggregationEnum = S.String;
 
 /** * `eq` - eq * `neq` - neq * `regex` - regex * `not_regex` - not_regex */
 export type OpEnum = "eq" | "neq" | "regex" | "not_regex";
-export const OpEnum = /*@__PURE__*/ S.String;
+export const OpEnum = S.String;
 
 /** * `resource` - resource * `attribute` - attribute * `auto` - auto */
 export type MetricAttributeScopeEnum = "resource" | "attribute" | "auto";
-export const MetricAttributeScopeEnum = /*@__PURE__*/ S.String;
+export const MetricAttributeScopeEnum = S.String;
 
 export interface MetricFilter {
   /** Attribute name to filter on, without any type-tag suffix (e.g. 'k8s.pod.name', 'env'). */
@@ -122,7 +122,7 @@ export const CreateMetricsCharacterizeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `up` - up * `down` - down * `flat` - flat */
 export type MetricAnomalyDirectionEnum = "up" | "down" | "flat";
-export const MetricAnomalyDirectionEnum = /*@__PURE__*/ S.String;
+export const MetricAnomalyDirectionEnum = S.String;
 
 export interface MetricAnomalyDimension {
   /** Label key that was drilled into. */
@@ -265,7 +265,7 @@ export type OtelMetricTypeEnum =
   | "histogram"
   | "exponential_histogram"
   | "summary";
-export const OtelMetricTypeEnum = /*@__PURE__*/ S.String;
+export const OtelMetricTypeEnum = S.String;
 
 /** Label predicates ANDed together, matching the chart the point came from. */
 export type MetricExplainBodyFiltersList = Array<MetricFilter>;
@@ -283,7 +283,7 @@ export type MetricQueryIntervalEnum =
   | "hour_6"
   | "day"
   | "week";
-export const MetricQueryIntervalEnum = /*@__PURE__*/ S.String;
+export const MetricQueryIntervalEnum = S.String;
 
 export interface MetricExplainBody {
   /** Exact metric name whose bucket should be taken apart. */
@@ -344,7 +344,7 @@ export type TemporalReducerEnum =
   | "sum_over_time"
   | "increase"
   | "pooled_samples";
-export const TemporalReducerEnum = /*@__PURE__*/ S.String;
+export const TemporalReducerEnum = S.String;
 
 /** * `sum` - sum * `avg` - avg * `min` - min * `max` - max * `quantile` - quantile * `count_series` - count_series */
 export type SpatialReducerEnum =
@@ -354,7 +354,7 @@ export type SpatialReducerEnum =
   | "max"
   | "quantile"
   | "count_series";
-export const SpatialReducerEnum = /*@__PURE__*/ S.String;
+export const SpatialReducerEnum = S.String;
 
 /** Per-data-point attributes identifying the series. */
 export type MetricSeriesBreakdownLabelsMap = {

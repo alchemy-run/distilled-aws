@@ -24,7 +24,7 @@ export const CustomLocationsCreateOrUpdateRequestTagsMap =
 
 /** The identity type. */
 export type IdentityInputType = "SystemAssigned" | "None";
-export const IdentityInputType = /*@__PURE__*/ S.String;
+export const IdentityInputType = S.String;
 
 /** Identity for the resource. */
 export interface IdentityInput {
@@ -63,7 +63,7 @@ export const CustomLocationPropertiesClusterExtensionIdsList =
 
 /** Type of host the Custom Locations is referencing (Kubernetes, etc...). */
 export type CustomLocationPropertiesHostType = "Kubernetes";
-export const CustomLocationPropertiesHostType = /*@__PURE__*/ S.String;
+export const CustomLocationPropertiesHostType = S.String;
 
 /** Properties for a custom location. */
 export interface CustomLocationProperties {
@@ -148,7 +148,7 @@ export const CustomLocationsCreateOrUpdateResponseTagsMap =
 
 /** The identity type. */
 export type IdentityType = "SystemAssigned" | "None";
-export const IdentityType = /*@__PURE__*/ S.String;
+export const IdentityType = S.String;
 
 /** Identity for the resource. */
 export interface Identity {
@@ -174,7 +174,7 @@ export type CustomLocationsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const CustomLocationsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type CustomLocationsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -183,7 +183,7 @@ export type CustomLocationsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const CustomLocationsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CustomLocationsCreateOrUpdateResponseSystemData {
@@ -324,8 +324,7 @@ export type GetCustomLocationResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetCustomLocationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetCustomLocationResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetCustomLocationResponseSystemDataLastModifiedByType =
@@ -333,8 +332,7 @@ export type GetCustomLocationResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetCustomLocationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetCustomLocationResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetCustomLocationResponseSystemData {
@@ -435,7 +433,7 @@ export type CustomLocationSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CustomLocationSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const CustomLocationSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type CustomLocationSystemDataLastModifiedByType =
@@ -443,8 +441,7 @@ export type CustomLocationSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CustomLocationSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const CustomLocationSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CustomLocationSystemData {
@@ -627,8 +624,7 @@ export type EnabledResourceTypeSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const EnabledResourceTypeSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const EnabledResourceTypeSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type EnabledResourceTypeSystemDataLastModifiedByType =
@@ -636,8 +632,7 @@ export type EnabledResourceTypeSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const EnabledResourceTypeSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const EnabledResourceTypeSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface EnabledResourceTypeSystemData {
@@ -856,8 +851,7 @@ export type UpdateCustomLocationResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateCustomLocationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateCustomLocationResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateCustomLocationResponseSystemDataLastModifiedByType =
@@ -866,7 +860,7 @@ export type UpdateCustomLocationResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateCustomLocationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateCustomLocationResponseSystemData {

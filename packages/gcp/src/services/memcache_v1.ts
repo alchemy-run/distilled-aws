@@ -223,7 +223,7 @@ export type WeeklyMaintenanceWindowDayEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const WeeklyMaintenanceWindowDayEnum = /*@__PURE__*/ S.String;
+export const WeeklyMaintenanceWindowDayEnum = S.String;
 
 /** Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. */
 export interface TimeOfDay {
@@ -296,7 +296,7 @@ export type InstanceMemcacheVersionEnum =
   | "MEMCACHE_VERSION_UNSPECIFIED"
   | "MEMCACHE_1_5"
   | "MEMCACHE_1_6_15";
-export const InstanceMemcacheVersionEnum = /*@__PURE__*/ S.String;
+export const InstanceMemcacheVersionEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -322,7 +322,7 @@ export const MemcacheParameters = /*@__PURE__*/ S.suspend(() =>
 export type InstanceMessageCodeEnum =
   | "CODE_UNSPECIFIED"
   | "ZONE_DISTRIBUTION_UNBALANCED";
-export const InstanceMessageCodeEnum = /*@__PURE__*/ S.String;
+export const InstanceMessageCodeEnum = S.String;
 
 export interface InstanceMessage {
   /** Message on memcached instance which will be exposed to users. */
@@ -348,7 +348,7 @@ export type NodeMemcacheVersionEnum =
   | "MEMCACHE_VERSION_UNSPECIFIED"
   | "MEMCACHE_1_5"
   | "MEMCACHE_1_6_15";
-export const NodeMemcacheVersionEnum = /*@__PURE__*/ S.String;
+export const NodeMemcacheVersionEnum = S.String;
 
 export type NodeStateEnum =
   | "STATE_UNSPECIFIED"
@@ -356,7 +356,7 @@ export type NodeStateEnum =
   | "READY"
   | "DELETING"
   | "UPDATING";
-export const NodeStateEnum = /*@__PURE__*/ S.String;
+export const NodeStateEnum = S.String;
 
 export interface Node {
   /** Output only. Identifier of the Memcached node. The node id does not include project or location like the Memcached instance name. */
@@ -416,7 +416,7 @@ export type InstanceStateEnum =
   | "DELETING"
   | "PERFORMING_MAINTENANCE"
   | "MEMCACHE_VERSION_UPGRADING";
-export const InstanceStateEnum = /*@__PURE__*/ S.String;
+export const InstanceStateEnum = S.String;
 
 /** A Memorystore for Memcached instance */
 export interface Instance {
@@ -869,8 +869,7 @@ export type RescheduleMaintenanceRequestRescheduleTypeEnum =
   | "IMMEDIATE"
   | "NEXT_AVAILABLE_WINDOW"
   | "SPECIFIC_TIME";
-export const RescheduleMaintenanceRequestRescheduleTypeEnum =
-  /*@__PURE__*/ S.String;
+export const RescheduleMaintenanceRequestRescheduleTypeEnum = S.String;
 
 /** Request for RescheduleMaintenance. */
 export interface RescheduleMaintenanceRequest {
@@ -1016,7 +1015,7 @@ export type GoogleCloudMemcacheV1UpgradeInstanceRequestMemcacheVersionEnum =
   | "MEMCACHE_1_5"
   | "MEMCACHE_1_6_15";
 export const GoogleCloudMemcacheV1UpgradeInstanceRequestMemcacheVersionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request for UpgradeInstance. */
 export interface GoogleCloudMemcacheV1UpgradeInstanceRequest {

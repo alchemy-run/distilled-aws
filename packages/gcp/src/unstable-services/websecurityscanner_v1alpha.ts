@@ -129,21 +129,21 @@ export type ScanConfigUserAgentEnum =
   | "CHROME_LINUX"
   | "CHROME_ANDROID"
   | "SAFARI_IPHONE";
-export const ScanConfigUserAgentEnum = /*@__PURE__*/ S.String;
+export const ScanConfigUserAgentEnum = S.String;
 
 export type ScanRunResultStateEnum =
   | "RESULT_STATE_UNSPECIFIED"
   | "SUCCESS"
   | "ERROR"
   | "KILLED";
-export const ScanRunResultStateEnum = /*@__PURE__*/ S.String;
+export const ScanRunResultStateEnum = S.String;
 
 export type ScanRunExecutionStateEnum =
   | "EXECUTION_STATE_UNSPECIFIED"
   | "QUEUED"
   | "SCANNING"
   | "FINISHED";
-export const ScanRunExecutionStateEnum = /*@__PURE__*/ S.String;
+export const ScanRunExecutionStateEnum = S.String;
 
 /** A ScanRun is a output-only resource representing an actual run of the scan. */
 export interface ScanRun {
@@ -191,7 +191,7 @@ export type ScanConfigTargetPlatformsItemEnum =
   | "COMPUTE"
   | "CLOUD_RUN"
   | "CLOUD_FUNCTIONS";
-export const ScanConfigTargetPlatformsItemEnum = /*@__PURE__*/ S.String;
+export const ScanConfigTargetPlatformsItemEnum = S.String;
 
 export type ScanConfigTargetPlatformsItemEnumList = Array<
   ScanConfigTargetPlatformsItemEnum | (string & {})
@@ -433,7 +433,7 @@ export type FindingFindingTypeEnum =
   | "ACCESSIBLE_GIT_REPOSITORY"
   | "ACCESSIBLE_SVN_REPOSITORY"
   | "ACCESSIBLE_ENV_FILE";
-export const FindingFindingTypeEnum = /*@__PURE__*/ S.String;
+export const FindingFindingTypeEnum = S.String;
 
 /** Information reported for an outdated library. */
 export interface OutdatedLibrary {
@@ -745,7 +745,7 @@ export type FindingTypeStatsFindingTypeEnum =
   | "ACCESSIBLE_GIT_REPOSITORY"
   | "ACCESSIBLE_SVN_REPOSITORY"
   | "ACCESSIBLE_ENV_FILE";
-export const FindingTypeStatsFindingTypeEnum = /*@__PURE__*/ S.String;
+export const FindingTypeStatsFindingTypeEnum = S.String;
 
 /** A FindingTypeStats resource represents stats regarding a specific FindingType of Findings under a given ScanRun. */
 export interface FindingTypeStats {

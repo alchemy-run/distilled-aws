@@ -311,8 +311,7 @@ export type DeleteProjectsLocationsKeysCheckExistingUsageEnum =
   | "CHECK_EXISTING_USAGE_UNSPECIFIED"
   | "SKIP"
   | "CHECK";
-export const DeleteProjectsLocationsKeysCheckExistingUsageEnum =
-  /*@__PURE__*/ S.String;
+export const DeleteProjectsLocationsKeysCheckExistingUsageEnum = S.String;
 
 export interface DeleteProjectsLocationsKeysRequest {
   /** Optional. The etag known to the client for the expected state of the key. This is to be used for optimistic concurrency. */
@@ -496,8 +495,7 @@ export type PatchProjectsLocationsKeysCheckExistingUsageEnum =
   | "CHECK_EXISTING_USAGE_UNSPECIFIED"
   | "SKIP"
   | "CHECK";
-export const PatchProjectsLocationsKeysCheckExistingUsageEnum =
-  /*@__PURE__*/ S.String;
+export const PatchProjectsLocationsKeysCheckExistingUsageEnum = S.String;
 
 export interface PatchProjectsLocationsKeysRequest {
   /** Optional. Defines the behavior for checking existing usage when updating a key. */

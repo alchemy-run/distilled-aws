@@ -71,7 +71,7 @@ export const CreateAutoScaleVCoreRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** The current deployment state of an auto scale v-core resource. The provisioningState is to indicate states for resource provisioning. */
 export type VCoreProvisioningState = "Succeeded";
-export const VCoreProvisioningState = /*@__PURE__*/ S.String;
+export const VCoreProvisioningState = S.String;
 
 /** Properties of an auto scale v-core resource. */
 export interface AutoScaleVCoreProperties {
@@ -94,7 +94,7 @@ export const AutoScaleVCoreProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The name of the Azure pricing tier to which the SKU applies. */
 export type VCoreSkuTier = "AutoScale";
-export const VCoreSkuTier = /*@__PURE__*/ S.String;
+export const VCoreSkuTier = S.String;
 
 /** Represents the SKU name and Azure pricing tier for auto scale v-core resource. */
 export interface AutoScaleVCoreSku {
@@ -158,7 +158,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -166,7 +166,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -266,7 +266,7 @@ export const DedicatedCapacityAdministrators = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the generation of the Power BI Embedded capacity. If no value is specified, the default value 'Gen2' is used. [Learn More](https://docs.microsoft.com/power-bi/developer/embedded/power-bi-embedded-generation-2) */
 export type Mode = "Gen1" | "Gen2";
-export const Mode = /*@__PURE__*/ S.String;
+export const Mode = S.String;
 
 /** Properties of Dedicated Capacity resource. */
 export interface DedicatedCapacityPropertiesInput {
@@ -286,7 +286,7 @@ export const DedicatedCapacityPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The name of the Azure pricing tier to which the SKU applies. */
 export type CapacitySkuTier = "PBIE_Azure" | "Premium" | "AutoPremiumHost";
-export const CapacitySkuTier = /*@__PURE__*/ S.String;
+export const CapacitySkuTier = S.String;
 
 /** Represents the SKU name and Azure pricing tier for PowerBI Dedicated capacity resource. */
 export interface CapacitySku {
@@ -365,7 +365,7 @@ export type State =
   | "Resuming"
   | "Preparing"
   | "Scaling";
-export const State = /*@__PURE__*/ S.String;
+export const State = S.String;
 
 /** The current deployment state of PowerBI Dedicated resource. The provisioningState is to indicate states for resource provisioning. */
 export type CapacityProvisioningState =
@@ -381,7 +381,7 @@ export type CapacityProvisioningState =
   | "Resuming"
   | "Preparing"
   | "Scaling";
-export const CapacityProvisioningState = /*@__PURE__*/ S.String;
+export const CapacityProvisioningState = S.String;
 
 /** Properties of Dedicated Capacity resource. */
 export interface DedicatedCapacityProperties {

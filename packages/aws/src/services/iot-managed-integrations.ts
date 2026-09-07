@@ -186,7 +186,7 @@ export type AssociationState =
   | "ASSOCIATION_DELETING"
   | "REFRESH_TOKEN_EXPIRED"
   | (string & {});
-export const AssociationState = /*@__PURE__*/ S.String;
+export const AssociationState = S.String;
 
 export type AccountAssociationArn = string;
 export interface CreateAccountAssociationResponse {
@@ -221,7 +221,7 @@ export const EndpointConfig = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "EndpointConfig" }) as any as S.Schema<EndpointConfig>;
 export type CloudConnectorDescription = string;
 export type EndpointType = "LAMBDA" | (string & {});
-export const EndpointType = /*@__PURE__*/ S.String;
+export const EndpointType = S.String;
 
 export interface CreateCloudConnectorRequest {
   Name: string;
@@ -262,7 +262,7 @@ export const CreateCloudConnectorResponse = /*@__PURE__*/ S.suspend(() =>
 export type ConnectorDestinationName = string;
 export type ConnectorDestinationDescription = string;
 export type AuthType = "OAUTH" | (string & {});
-export const AuthType = /*@__PURE__*/ S.String;
+export const AuthType = S.String;
 
 export type AuthUrl = string;
 export type TokenUrl = string;
@@ -270,7 +270,7 @@ export type TokenEndpointAuthenticationScheme =
   | "HTTP_BASIC"
   | "REQUEST_BODY_CREDENTIALS"
   | (string & {});
-export const TokenEndpointAuthenticationScheme = /*@__PURE__*/ S.String;
+export const TokenEndpointAuthenticationScheme = S.String;
 
 export interface ProactiveRefreshTokenRenewal {
   enabled?: boolean;
@@ -412,7 +412,7 @@ export const CreateCredentialLockerResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateCredentialLockerResponse>;
 export type DeliveryDestinationArn = string;
 export type DeliveryDestinationType = "KINESIS" | (string & {});
-export const DeliveryDestinationType = /*@__PURE__*/ S.String;
+export const DeliveryDestinationType = S.String;
 
 export type DestinationName = string;
 export type DeliveryDestinationRoleArn = string;
@@ -459,7 +459,7 @@ export const CreateDestinationResponse = /*@__PURE__*/ S.suspend(() =>
 export type SmartHomeResourceType = string;
 export type SmartHomeResourceId = string;
 export type LogLevel = "DEBUG" | "ERROR" | "INFO" | "WARN" | (string & {});
-export const LogLevel = /*@__PURE__*/ S.String;
+export const LogLevel = S.String;
 
 export interface CreateEventLogConfigurationRequest {
   ResourceType: string;
@@ -496,7 +496,7 @@ export const CreateEventLogConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateEventLogConfigurationResponse",
 }) as any as S.Schema<CreateEventLogConfigurationResponse>;
 export type Role = "CONTROLLER" | "DEVICE" | (string & {});
-export const Role = /*@__PURE__*/ S.String;
+export const Role = S.String;
 
 export type Owner = string | redacted.Redacted<string>;
 export type AuthMaterialString = string | redacted.Redacted<string>;
@@ -508,7 +508,7 @@ export type AuthMaterialType =
   | "DISCOVERED_DEVICE"
   | "PRE_ONBOARDED_CLOUD"
   | (string & {});
-export const AuthMaterialType = /*@__PURE__*/ S.String;
+export const AuthMaterialType = S.String;
 
 export type EnableAsProvisioner = boolean;
 export type EnableAsProvisionee = boolean;
@@ -606,7 +606,7 @@ export const CapabilityReport = /*@__PURE__*/ S.suspend(() =>
   identifier: "CapabilityReport",
 }) as any as S.Schema<CapabilityReport>;
 export type SchemaVersionFormat = "AWS" | "ZCL" | "CONNECTOR" | (string & {});
-export const SchemaVersionFormat = /*@__PURE__*/ S.String;
+export const SchemaVersionFormat = S.String;
 
 export type ExtrinsicSchemaId = string;
 export type MatterCapabilityReportClusterRevisionId = number;
@@ -721,7 +721,7 @@ export type EventType =
   | "ACCOUNT_ASSOCIATION"
   | "CONNECTOR_ERROR_REPORT"
   | (string & {});
-export const EventType = /*@__PURE__*/ S.String;
+export const EventType = S.String;
 
 export interface CreateNotificationConfigurationRequest {
   EventType: EventType;
@@ -760,16 +760,16 @@ export const CreateNotificationConfigurationResponse = /*@__PURE__*/ S.suspend(
 export type OtaDescription = string;
 export type S3Url = string;
 export type OtaProtocol = "HTTP" | (string & {});
-export const OtaProtocol = /*@__PURE__*/ S.String;
+export const OtaProtocol = S.String;
 
 export type Target = string[];
 export const Target = /*@__PURE__*/ S.Array(S.String);
 export type OtaTaskConfigurationId = string;
 export type OtaMechanism = "PUSH" | (string & {});
-export const OtaMechanism = /*@__PURE__*/ S.String;
+export const OtaMechanism = S.String;
 
 export type OtaType = "ONE_TIME" | "CONTINUOUS" | (string & {});
-export const OtaType = /*@__PURE__*/ S.String;
+export const OtaType = S.String;
 
 export type OtaTargetQueryString = string;
 export type SchedulingConfigEndBehavior =
@@ -777,7 +777,7 @@ export type SchedulingConfigEndBehavior =
   | "CANCEL"
   | "FORCE_CANCEL"
   | (string & {});
-export const SchedulingConfigEndBehavior = /*@__PURE__*/ S.String;
+export const SchedulingConfigEndBehavior = S.String;
 
 export type EndTime = string;
 export type DurationInMinutes = number;
@@ -820,7 +820,7 @@ export type RetryCriteriaFailureType =
   | "TIMED_OUT"
   | "ALL"
   | (string & {});
-export const RetryCriteriaFailureType = /*@__PURE__*/ S.String;
+export const RetryCriteriaFailureType = S.String;
 
 export type MinNumberOfRetries = number;
 export interface RetryConfigCriteria {
@@ -905,7 +905,7 @@ export const CreateOtaTaskResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateOtaTaskResponse>;
 export type OtaTaskConfigurationName = string | redacted.Redacted<string>;
 export type AbortCriteriaAction = "CANCEL" | (string & {});
-export const AbortCriteriaAction = /*@__PURE__*/ S.String;
+export const AbortCriteriaAction = S.String;
 
 export type AbortCriteriaFailureType =
   | "FAILED"
@@ -913,7 +913,7 @@ export type AbortCriteriaFailureType =
   | "TIMED_OUT"
   | "ALL"
   | (string & {});
-export const AbortCriteriaFailureType = /*@__PURE__*/ S.String;
+export const AbortCriteriaFailureType = S.String;
 
 export type MinNumberOfExecutedThings = number;
 export type ThresholdPercentage = number;
@@ -1042,7 +1042,7 @@ export const CreateOtaTaskConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateOtaTaskConfigurationResponse",
 }) as any as S.Schema<CreateOtaTaskConfigurationResponse>;
 export type ProvisioningType = "FLEET_PROVISIONING" | "JITR" | (string & {});
-export const ProvisioningType = /*@__PURE__*/ S.String;
+export const ProvisioningType = S.String;
 
 export type CaCertificate = string | redacted.Redacted<string>;
 export type ClaimCertificate = string | redacted.Redacted<string>;
@@ -1085,7 +1085,7 @@ export type ProvisioningProfileStatus =
   | "DELETE_IN_PROGRESS"
   | "DELETE_FAILED"
   | (string & {});
-export const ProvisioningProfileStatus = /*@__PURE__*/ S.String;
+export const ProvisioningProfileStatus = S.String;
 
 export type ClaimCertificatePrivateKey = string | redacted.Redacted<string>;
 export interface CreateProvisioningProfileResponse {
@@ -1472,7 +1472,7 @@ export const GetCloudConnectorRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetCloudConnectorRequest",
 }) as any as S.Schema<GetCloudConnectorRequest>;
 export type CloudConnectorType = "LISTED" | "UNLISTED" | (string & {});
-export const CloudConnectorType = /*@__PURE__*/ S.String;
+export const CloudConnectorType = S.String;
 
 export interface GetCloudConnectorResponse {
   Name: string;
@@ -1627,7 +1627,7 @@ export type ConfigurationState =
   | "UPDATE_IN_PROGRESS"
   | "UPDATE_FAILED"
   | (string & {});
-export const ConfigurationState = /*@__PURE__*/ S.String;
+export const ConfigurationState = S.String;
 
 export interface ConfigurationStatus {
   error?: ConfigurationError;
@@ -1645,7 +1645,7 @@ export type EncryptionType =
   | "MANAGED_INTEGRATIONS_DEFAULT_ENCRYPTION"
   | "CUSTOMER_KEY_ENCRYPTION"
   | (string & {});
-export const EncryptionType = /*@__PURE__*/ S.String;
+export const EncryptionType = S.String;
 
 export type KmsKeyArn = string;
 export interface GetDefaultEncryptionConfigurationResponse {
@@ -1732,7 +1732,7 @@ export type DiscoveryType =
   | "CUSTOM"
   | "CONTROLLER_CAPABILITY_REDISCOVERY"
   | (string & {});
-export const DiscoveryType = /*@__PURE__*/ S.String;
+export const DiscoveryType = S.String;
 
 export type DeviceDiscoveryStatus =
   | "RUNNING"
@@ -1740,7 +1740,7 @@ export type DeviceDiscoveryStatus =
   | "FAILED"
   | "TIMED_OUT"
   | (string & {});
-export const DeviceDiscoveryStatus = /*@__PURE__*/ S.String;
+export const DeviceDiscoveryStatus = S.String;
 
 export type DiscoveryStartedAt = Date;
 export type ConnectorAssociationId = string;
@@ -1863,7 +1863,7 @@ export type ProvisioningStatus =
   | "ISOLATED"
   | "DELETED"
   | (string & {});
-export const ProvisioningStatus = /*@__PURE__*/ S.String;
+export const ProvisioningStatus = S.String;
 
 export type UniversalProductCode = string | redacted.Redacted<string>;
 export type InternationalArticleNumber = string | redacted.Redacted<string>;
@@ -1878,7 +1878,7 @@ export type HubNetworkMode =
   | "STANDARD"
   | "NETWORK_WIDE_EXCLUSION"
   | (string & {});
-export const HubNetworkMode = /*@__PURE__*/ S.String;
+export const HubNetworkMode = S.String;
 
 export interface GetManagedThingResponse {
   Id?: string;
@@ -2048,7 +2048,7 @@ export type DisconnectReasonValue =
   | "UNKNOWN"
   | "NONE"
   | (string & {});
-export const DisconnectReasonValue = /*@__PURE__*/ S.String;
+export const DisconnectReasonValue = S.String;
 
 export interface GetManagedThingConnectivityDataResponse {
   ManagedThingId?: string;
@@ -2243,7 +2243,7 @@ export type OtaStatus =
   | "DELETION_IN_PROGRESS"
   | "SCHEDULED"
   | (string & {});
-export const OtaStatus = /*@__PURE__*/ S.String;
+export const OtaStatus = S.String;
 
 export interface GetOtaTaskResponse {
   TaskId?: string;
@@ -2426,7 +2426,7 @@ export const GetRuntimeLogConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetRuntimeLogConfigurationResponse",
 }) as any as S.Schema<GetRuntimeLogConfigurationResponse>;
 export type SchemaVersionType = "capability" | "definition" | (string & {});
-export const SchemaVersionType = /*@__PURE__*/ S.String;
+export const SchemaVersionType = S.String;
 
 export interface GetSchemaVersionRequest {
   Type: SchemaVersionType;
@@ -2459,7 +2459,7 @@ export type SchemaVersionDescription = string;
 export type SchemaVersionNamespaceName = string;
 export type SchemaVersionVersion = string;
 export type SchemaVersionVisibility = "PUBLIC" | "PRIVATE" | (string & {});
-export const SchemaVersionVisibility = /*@__PURE__*/ S.String;
+export const SchemaVersionVisibility = S.String;
 
 export type SchemaVersionSchema = unknown;
 export interface GetSchemaVersionResponse {
@@ -2861,7 +2861,7 @@ export type DiscoveryModification =
   | "UPDATED"
   | "NO_CHANGE"
   | (string & {});
-export const DiscoveryModification = /*@__PURE__*/ S.String;
+export const DiscoveryModification = S.String;
 
 export type DiscoveredAt = Date;
 export interface DiscoveredDeviceSummary {
@@ -2992,7 +2992,7 @@ export type ManagedThingAssociationStatus =
   | "PRE_ASSOCIATED"
   | "ASSOCIATED"
   | (string & {});
-export const ManagedThingAssociationStatus = /*@__PURE__*/ S.String;
+export const ManagedThingAssociationStatus = S.String;
 
 export interface ManagedThingAssociation {
   ManagedThingId?: string;
@@ -3344,7 +3344,7 @@ export type OtaTaskExecutionStatus =
   | "REMOVED"
   | "CANCELED"
   | (string & {});
-export const OtaTaskExecutionStatus = /*@__PURE__*/ S.String;
+export const OtaTaskExecutionStatus = S.String;
 
 export interface OtaTaskExecutionSummary {
   ExecutionNumber?: number;
@@ -3786,7 +3786,7 @@ export type ConnectorEventOperation =
   | "DEVICE_EVENT"
   | "DEVICE_COMMAND_REQUEST"
   | (string & {});
-export const ConnectorEventOperation = /*@__PURE__*/ S.String;
+export const ConnectorEventOperation = S.String;
 
 export type ConnectorEventOperationVersion = string;
 export type ConnectorEventStatusCode = number;
@@ -4138,12 +4138,12 @@ export const CustomProtocolDetail = /*@__PURE__*/ S.Record(
 );
 export type DiscoveryAuthMaterialString = string | redacted.Redacted<string>;
 export type DiscoveryAuthMaterialType = "ZWAVE_INSTALL_CODE" | (string & {});
-export const DiscoveryAuthMaterialType = /*@__PURE__*/ S.String;
+export const DiscoveryAuthMaterialType = S.String;
 
 export type ConnectorDeviceIdList = (string | redacted.Redacted<string>)[];
 export const ConnectorDeviceIdList = /*@__PURE__*/ S.Array(SensitiveString);
 export type ProtocolType = "ZWAVE" | "ZIGBEE" | "CUSTOM" | (string & {});
-export const ProtocolType = /*@__PURE__*/ S.String;
+export const ProtocolType = S.String;
 
 export interface StartDeviceDiscoveryRequest {
   DiscoveryType: DiscoveryType;

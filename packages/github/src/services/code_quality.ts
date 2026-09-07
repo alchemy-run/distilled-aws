@@ -74,7 +74,7 @@ export const GetFindingRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** State of the code quality finding. */
 export type CodeQualityFindingState = "open" | "dismissed";
-export const CodeQualityFindingState = /*@__PURE__*/ S.String;
+export const CodeQualityFindingState = S.String;
 
 /** The severity of the rule used to detect the finding. */
 export type CodeQualityFindingRuleSeverity =
@@ -82,14 +82,14 @@ export type CodeQualityFindingRuleSeverity =
   | "warning"
   | "note"
   | "none";
-export const CodeQualityFindingRuleSeverity = /*@__PURE__*/ S.String;
+export const CodeQualityFindingRuleSeverity = S.String;
 
 /** The category of the rule used to detect the finding. */
 export type CodeQualityFindingRuleCategory =
   | "none"
   | "maintainability"
   | "reliability";
-export const CodeQualityFindingRuleCategory = /*@__PURE__*/ S.String;
+export const CodeQualityFindingRuleCategory = S.String;
 
 /** Code quality rule */
 export interface CodeQualityFindingRule {
@@ -211,7 +211,7 @@ export const GetSetupRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Code quality setup has been configured or not. */
 export type CodeQualitySetupState = "configured" | "not-configured";
-export const CodeQualitySetupState = /*@__PURE__*/ S.String;
+export const CodeQualitySetupState = S.String;
 
 export type CodeQualitySetupLanguagesItem =
   | "csharp"
@@ -221,7 +221,7 @@ export type CodeQualitySetupLanguagesItem =
   | "python"
   | "ruby"
   | "rust";
-export const CodeQualitySetupLanguagesItem = /*@__PURE__*/ S.String;
+export const CodeQualitySetupLanguagesItem = S.String;
 
 /** Languages to be analyzed. */
 export type CodeQualitySetupLanguagesList =
@@ -232,15 +232,15 @@ export const CodeQualitySetupLanguagesList = /*@__PURE__*/ S.Array(
 
 /** Runner type to be used. */
 export type CodeQualitySetupRunnerType = "standard" | "labeled";
-export const CodeQualitySetupRunnerType = /*@__PURE__*/ S.String;
+export const CodeQualitySetupRunnerType = S.String;
 
 /** The frequency of the periodic analysis. */
 export type CodeQualitySetupSchedule = "weekly";
-export const CodeQualitySetupSchedule = /*@__PURE__*/ S.String;
+export const CodeQualitySetupSchedule = S.String;
 
 /** The AI findings configuration for the repository. */
 export type CodeQualitySetupAiFindingsOption = "disabled" | "on_push";
-export const CodeQualitySetupAiFindingsOption = /*@__PURE__*/ S.String;
+export const CodeQualitySetupAiFindingsOption = S.String;
 
 /** Configuration for code quality setup. */
 export interface CodeQualitySetup {
@@ -274,10 +274,10 @@ export const CodeQualitySetup = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CodeQualitySetup>;
 
 export type ListFindingsForRepoRequestDirection = "asc" | "desc";
-export const ListFindingsForRepoRequestDirection = /*@__PURE__*/ S.String;
+export const ListFindingsForRepoRequestDirection = S.String;
 
 export type ListFindingsForRepoRequestState = "open" | "dismissed";
-export const ListFindingsForRepoRequestState = /*@__PURE__*/ S.String;
+export const ListFindingsForRepoRequestState = S.String;
 
 export interface ListFindingsForRepoRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -329,11 +329,11 @@ export const ListFindingsForRepoResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The desired state of code quality setup. */
 export type UpdateSetupRequestState = "configured" | "not-configured";
-export const UpdateSetupRequestState = /*@__PURE__*/ S.String;
+export const UpdateSetupRequestState = S.String;
 
 /** Runner type to be used. */
 export type UpdateSetupRequestRunnerType = "standard" | "labeled";
-export const UpdateSetupRequestRunnerType = /*@__PURE__*/ S.String;
+export const UpdateSetupRequestRunnerType = S.String;
 
 export type UpdateSetupRequestLanguagesItem =
   | "csharp"
@@ -342,7 +342,7 @@ export type UpdateSetupRequestLanguagesItem =
   | "javascript-typescript"
   | "python"
   | "ruby";
-export const UpdateSetupRequestLanguagesItem = /*@__PURE__*/ S.String;
+export const UpdateSetupRequestLanguagesItem = S.String;
 
 /** Languages to be analyzed. */
 export type UpdateSetupRequestLanguagesList = Array<
@@ -354,7 +354,7 @@ export const UpdateSetupRequestLanguagesList = /*@__PURE__*/ S.Array(
 
 /** Whether AI findings run for Code Quality on this repository. */
 export type UpdateSetupRequestAiFindingsOption = "disabled" | "on_push";
-export const UpdateSetupRequestAiFindingsOption = /*@__PURE__*/ S.String;
+export const UpdateSetupRequestAiFindingsOption = S.String;
 
 export interface UpdateSetupRequest {
   /** The account owner of the repository. The name is not case sensitive. */

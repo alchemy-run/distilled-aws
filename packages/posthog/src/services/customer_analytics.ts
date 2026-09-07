@@ -96,7 +96,7 @@ export type CreateAccountsCustomPropertyValueRequestValue =
   | number
   | boolean;
 export const CreateAccountsCustomPropertyValueRequestValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateAccountsCustomPropertyValueRequestValue>;
+  S.Unknown as any as S.Schema<CreateAccountsCustomPropertyValueRequestValue>;
 
 export interface CreateAccountsCustomPropertyValueRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -129,7 +129,7 @@ export const CreateAccountsCustomPropertyValueRequest = /*@__PURE__*/ S.suspend(
 /** The stored value, typed per the property's data type. */
 export type CustomPropertyValueValue = string | number | boolean;
 export const CustomPropertyValueValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomPropertyValueValue>;
+  S.Unknown as any as S.Schema<CustomPropertyValueValue>;
 
 /** An account's current value for a custom property (read shape). */
 export interface CustomPropertyValue {
@@ -206,14 +206,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -855,7 +855,7 @@ export type ListAccountsNotebooksRequestOrdering =
   | "-created_by"
   | "created_at"
   | "created_by";
-export const ListAccountsNotebooksRequestOrdering = /*@__PURE__*/ S.String;
+export const ListAccountsNotebooksRequestOrdering = S.String;
 
 export interface ListAccountsNotebooksRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

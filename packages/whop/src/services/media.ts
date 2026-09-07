@@ -59,7 +59,7 @@ export class PaymentRequired
 
 /** Video length in seconds. Video only; defaults to 5. */
 export type GenerateMediaAssetRequestDurationSeconds = 5 | 10 | 15;
-export const GenerateMediaAssetRequestDurationSeconds = /*@__PURE__*/ S.Number;
+export const GenerateMediaAssetRequestDurationSeconds = S.Number;
 
 /** Optional reference image file IDs (`file_` prefixed), up to 4. For video, a single reference seeds the opening frame; multiple references guide subject and style instead. */
 export type GenerateMediaAssetRequestReferenceMediaList = Array<string>;
@@ -74,11 +74,11 @@ export type GenerateMediaAssetRequestResolution =
   | "720p"
   | "1080p"
   | "4k";
-export const GenerateMediaAssetRequestResolution = /*@__PURE__*/ S.String;
+export const GenerateMediaAssetRequestResolution = S.String;
 
 /** The kind of media to generate. */
 export type GenerateMediaAssetRequestType = "video" | "image";
-export const GenerateMediaAssetRequestType = /*@__PURE__*/ S.String;
+export const GenerateMediaAssetRequestType = S.String;
 
 export interface GenerateMediaAssetRequest {
   /** Account ID, prefixed `biz_`. Defaults to the account the API key belongs to. */
@@ -130,7 +130,7 @@ export const MediaAssetGenerationReferenceMediaList = /*@__PURE__*/ S.Array(
 
 /** Requested video resolution. `null` for images. `1080p` is not supported by Seedance 2.0 Fast or Mini; `4k` is only supported by Seedance 2.0. */
 export type MediaAssetGenerationResolution = "480p" | "720p" | "1080p" | "4k";
-export const MediaAssetGenerationResolution = /*@__PURE__*/ S.String;
+export const MediaAssetGenerationResolution = S.String;
 
 export interface MediaAssetGeneration {
   /** Requested video length in seconds. `null` for images. */
@@ -154,15 +154,15 @@ export const MediaAssetGeneration = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of media this asset holds. */
 export type MediaAssetMediaType = "video" | "image";
-export const MediaAssetMediaType = /*@__PURE__*/ S.String;
+export const MediaAssetMediaType = S.String;
 
 /** How the asset was created. Always `generated`. */
 export type MediaAssetSource = "generated";
-export const MediaAssetSource = /*@__PURE__*/ S.String;
+export const MediaAssetSource = S.String;
 
 /** Lifecycle state: `processing` while generation runs, `ready` when the file is available, `failed` when generation failed and the charge was refunded. */
 export type MediaAssetStatus = "processing" | "ready" | "failed";
-export const MediaAssetStatus = /*@__PURE__*/ S.String;
+export const MediaAssetStatus = S.String;
 
 export interface MediaAsset {
   /** USD amount charged to the account's balance for this generation. `null` if the generation wasn't billed. */

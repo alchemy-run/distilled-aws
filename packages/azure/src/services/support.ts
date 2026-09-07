@@ -16,7 +16,7 @@ export type { AzureOpError, AzureOpContext };
 export type Type =
   | "Microsoft.Support/supportTickets"
   | "Microsoft.Support/communications";
-export const Type = /*@__PURE__*/ S.String;
+export const Type = S.String;
 
 export interface CheckCommunicationNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -194,7 +194,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -202,7 +202,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -232,11 +232,11 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 
 /** Communication type. */
 export type CommunicationType = "web" | "phone";
-export const CommunicationType = /*@__PURE__*/ S.String;
+export const CommunicationType = S.String;
 
 /** Direction of communication. */
 export type CommunicationDirection = "inbound" | "outbound";
-export const CommunicationDirection = /*@__PURE__*/ S.String;
+export const CommunicationDirection = S.String;
 
 /** Describes the properties of a communication resource. */
 export interface CommunicationDetailsProperties {
@@ -596,15 +596,15 @@ export type SeverityLevel =
   | "moderate"
   | "critical"
   | "highestcriticalimpact";
-export const SeverityLevel = /*@__PURE__*/ S.String;
+export const SeverityLevel = S.String;
 
 /** Advanced diagnostic consent to be updated on the support ticket. */
 export type Consent = "Yes" | "No";
-export const Consent = /*@__PURE__*/ S.String;
+export const Consent = S.String;
 
 /** Preferred contact method. */
 export type PreferredContactMethod = "email" | "phone";
-export const PreferredContactMethod = /*@__PURE__*/ S.String;
+export const PreferredContactMethod = S.String;
 
 /** Additional email addresses listed will be copied on any correspondence about the support ticket. */
 export type ContactProfileAdditionalEmailAddressesList = Array<string>;
@@ -718,7 +718,7 @@ export const QuotaTicketDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** User consent value provided */
 export type UserConsent = "Yes" | "No";
-export const UserConsent = /*@__PURE__*/ S.String;
+export const UserConsent = S.String;
 
 /** This property indicates secondary consent for the support ticket. */
 export interface SecondaryConsent {
@@ -872,7 +872,7 @@ export const SupportEngineer = /*@__PURE__*/ S.suspend(() =>
 
 /** This property indicates if support ticket is a temporary ticket. */
 export type IsTemporaryTicket = "Yes" | "No";
-export const IsTemporaryTicket = /*@__PURE__*/ S.String;
+export const IsTemporaryTicket = S.String;
 
 /** This property indicates secondary consents for the support ticket */
 export type SupportTicketDetailsPropertiesSecondaryConsentList =
@@ -2032,11 +2032,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -2305,7 +2305,7 @@ export const ListSupportTicketsNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
 
 /** Status to be updated on the ticket. */
 export type Status = "open" | "closed";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** Email addresses listed will be copied on any correspondence about the support ticket. */
 export type UpdateContactProfileAdditionalEmailAddressesList = Array<string>;

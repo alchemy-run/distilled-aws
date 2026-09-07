@@ -974,7 +974,7 @@ export type OAuth2ErrorCode =
   | "CONFLICT"
   | "SERVICE_QUOTA_EXCEEDED"
   | (string & {});
-export const OAuth2ErrorCode = /*@__PURE__*/ S.String;
+export const OAuth2ErrorCode = S.String;
 
 export type CreateOAuth2TokenError =
   | AccessDeniedException

@@ -44,8 +44,7 @@ export class UnprocessableEntity
 export type CreateCompanyCompanyBenefitRequestCatchUpType =
   | "elective"
   | "deemed";
-export const CreateCompanyCompanyBenefitRequestCatchUpType =
-  /*@__PURE__*/ S.String;
+export const CreateCompanyCompanyBenefitRequestCatchUpType = S.String;
 
 export interface CreateCompanyCompanyBenefitRequest {
   /** The UUID of the company */
@@ -89,11 +88,11 @@ export const CreateCompanyCompanyBenefitRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateCompanyCompanyBenefitRequest>;
 
 export type CompanyBenefitCatchUpType = "elective" | "deemed";
-export const CompanyBenefitCatchUpType = /*@__PURE__*/ S.String;
+export const CompanyBenefitCatchUpType = S.String;
 
 /** The source of the company benefit. This can be "internal", "external", or "partnered". Company benefits created via the API default to "external". Certain partners can create company benefits with a source of "partnered". */
 export type CompanyBenefitSource = "internal" | "external" | "partnered";
-export const CompanyBenefitSource = /*@__PURE__*/ S.String;
+export const CompanyBenefitSource = S.String;
 
 /** The representation of a company benefit. */
 export interface CompanyBenefit {
@@ -147,11 +146,11 @@ export const CompanyBenefit = /*@__PURE__*/ S.suspend(() =>
 
 /** The contractor type. */
 export type CreateCompanyContractorRequestType = "Individual" | "Business";
-export const CreateCompanyContractorRequestType = /*@__PURE__*/ S.String;
+export const CreateCompanyContractorRequestType = S.String;
 
 /** The contractor’s wage type. */
 export type CreateCompanyContractorRequestWageType = "Fixed" | "Hourly";
-export const CreateCompanyContractorRequestWageType = /*@__PURE__*/ S.String;
+export const CreateCompanyContractorRequestWageType = S.String;
 
 export interface CreateCompanyContractorRequest {
   /** The UUID of the company */
@@ -248,8 +247,7 @@ export type ContractorMemberPortalInvitationStatusStatus =
   | "verified"
   | "complete"
   | "cancelled";
-export const ContractorMemberPortalInvitationStatusStatus =
-  /*@__PURE__*/ S.String;
+export const ContractorMemberPortalInvitationStatusStatus = S.String;
 
 /** Member portal invitation status information. Only included when the include param has the portal_invitations value set. */
 export interface ContractorMemberPortalInvitationStatus {
@@ -285,14 +283,14 @@ export type ContractorOnboardingStatus =
   | "self_onboarding_started"
   | "self_onboarding_review"
   | "onboarding_completed";
-export const ContractorOnboardingStatus = /*@__PURE__*/ S.String;
+export const ContractorOnboardingStatus = S.String;
 
 export type ContractorPaymentMethod = "Direct Deposit" | "Check";
-export const ContractorPaymentMethod = /*@__PURE__*/ S.String;
+export const ContractorPaymentMethod = S.String;
 
 /** The contractor's type, either "Individual" or "Business". */
 export type ContractorType = "Individual" | "Business";
-export const ContractorType = /*@__PURE__*/ S.String;
+export const ContractorType = S.String;
 
 /** The contractor's upcoming employment details, if a rehire is scheduled. */
 export interface ContractorUpcomingEmployment {
@@ -312,7 +310,7 @@ export const ContractorUpcomingEmployment = /*@__PURE__*/ S.suspend(() =>
 
 /** The contractor's wage type, either "Fixed" or "Hourly". */
 export type ContractorWageType = "Fixed" | "Hourly";
-export const ContractorWageType = /*@__PURE__*/ S.String;
+export const ContractorWageType = S.String;
 
 /** The representation of a contractor (individual or business) in Gusto. */
 export interface Contractor {
@@ -584,7 +582,7 @@ export type CreateCompanyTimeTrackingTimeSheetRequestEntriesItemPayClassificatio
   | "Overtime"
   | "Double overtime";
 export const CreateCompanyTimeTrackingTimeSheetRequestEntriesItemPayClassification =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateCompanyTimeTrackingTimeSheetRequestEntriesItem {
   /** Hours worked for this pay classification. Should be passed as number with up to 3 decimal places. */
@@ -671,14 +669,14 @@ export const CreateCompanyTimeTrackingTimeSheetRequest =
 
 /** Type of entity associated with the time sheet. */
 export type TimeSheetEntityType = "Employee" | "Contractor";
-export const TimeSheetEntityType = /*@__PURE__*/ S.String;
+export const TimeSheetEntityType = S.String;
 
 /** Pay classification for the entry. */
 export type TimeSheetEntriesItemPayClassification =
   | "Regular"
   | "Overtime"
   | "Double overtime";
-export const TimeSheetEntriesItemPayClassification = /*@__PURE__*/ S.String;
+export const TimeSheetEntriesItemPayClassification = S.String;
 
 export interface TimeSheetEntriesItem {
   /** Hours worked for this pay classification. Represented as a string, e.g. "1.500". */
@@ -713,7 +711,7 @@ export const TimeSheetMetadataMap = /*@__PURE__*/ S.Record(
 
 /** Status of the time sheet. */
 export type TimeSheetStatus = "pending" | "rejected" | "approved";
-export const TimeSheetStatus = /*@__PURE__*/ S.String;
+export const TimeSheetStatus = S.String;
 
 /** Record representing an employee/contractor's time sheet */
 export interface TimeSheet {
@@ -773,8 +771,7 @@ export type CreateEmployeeEmployeeBenefitRequestContributionType =
   | "tiered"
   | "percentage"
   | "amount";
-export const CreateEmployeeEmployeeBenefitRequestContributionType =
-  /*@__PURE__*/ S.String;
+export const CreateEmployeeEmployeeBenefitRequestContributionType = S.String;
 
 /** A single tier of a tiered matching scheme. */
 export interface CreateEmployeeEmployeeBenefitRequestContributionValueCase1Item {
@@ -807,7 +804,7 @@ export type CreateEmployeeEmployeeBenefitRequestContributionValue =
   | string
   | CreateEmployeeEmployeeBenefitRequestContributionValueCase1List;
 export const CreateEmployeeEmployeeBenefitRequestContributionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEmployeeEmployeeBenefitRequestContributionValue>;
+  S.Unknown as any as S.Schema<CreateEmployeeEmployeeBenefitRequestContributionValue>;
 
 /** An object representing the company contribution type and value. */
 export interface CreateEmployeeEmployeeBenefitRequestContribution {
@@ -831,15 +828,14 @@ export type CreateEmployeeEmployeeBenefitRequestDeductionReducesTaxableIncome =
   | "reduces_taxable_income"
   | "does_not_reduce_taxable_income";
 export const CreateEmployeeEmployeeBenefitRequestDeductionReducesTaxableIncome =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateEmployeeEmployeeBenefitRequestLimitOption =
   | "Family"
   | "Individual"
   | "Joint Filing or Single"
   | "Married and Filing Separately";
-export const CreateEmployeeEmployeeBenefitRequestLimitOption =
-  /*@__PURE__*/ S.String;
+export const CreateEmployeeEmployeeBenefitRequestLimitOption = S.String;
 
 export interface CreateEmployeeEmployeeBenefitRequest {
   /** The UUID of the employee */
@@ -972,7 +968,7 @@ export type CreateEmployeeEmployeeBenefitResponseContributionValue =
   | string
   | CreateEmployeeEmployeeBenefitResponseContributionValueCase1;
 export const CreateEmployeeEmployeeBenefitResponseContributionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEmployeeEmployeeBenefitResponseContributionValue>;
+  S.Unknown as any as S.Schema<CreateEmployeeEmployeeBenefitResponseContributionValue>;
 
 /** An object representing the type and value of the company contribution. */
 export interface CreateEmployeeEmployeeBenefitResponseContribution {
@@ -996,7 +992,7 @@ export type CreateEmployeeEmployeeBenefitResponseDeductionReducesTaxableIncome =
   | "reduces_taxable_income"
   | "does_not_reduce_taxable_income";
 export const CreateEmployeeEmployeeBenefitResponseDeductionReducesTaxableIncome =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateEmployeeEmployeeBenefitResponse {
   /** Whether the employee benefit is active. */
@@ -1083,7 +1079,7 @@ export type GarnishmentChildSupportPaymentPeriod =
   | "Every other week"
   | "Twice per month"
   | "Monthly";
-export const GarnishmentChildSupportPaymentPeriod = /*@__PURE__*/ S.String;
+export const GarnishmentChildSupportPaymentPeriod = S.String;
 
 /** Additional child support order details */
 export interface GarnishmentChildSupport {
@@ -1121,8 +1117,7 @@ export type CreateEmployeeGarnishmentRequestGarnishmentType =
   | "creditor_garnishment"
   | "federal_loan"
   | "other_garnishment";
-export const CreateEmployeeGarnishmentRequestGarnishmentType =
-  /*@__PURE__*/ S.String;
+export const CreateEmployeeGarnishmentRequestGarnishmentType = S.String;
 
 export interface CreateEmployeeGarnishmentRequest {
   /** The UUID of the employee */
@@ -1190,7 +1185,7 @@ export type GarnishmentGarnishmentType =
   | "creditor_garnishment"
   | "federal_loan"
   | "other_garnishment";
-export const GarnishmentGarnishmentType = /*@__PURE__*/ S.String;
+export const GarnishmentGarnishmentType = S.String;
 
 /** Garnishments, or employee deductions, are fixed amounts or percentages deducted from an employee’s pay. They can be deducted a specific number of times or on a recurring basis. Garnishments can also have maximum deductions on a yearly or per-pay-period bases. Common uses for garnishments are court-ordered payments for child support or back taxes. Some companies provide loans to their employees that are repaid via garnishments. */
 export interface Garnishment {
@@ -1387,8 +1382,7 @@ export type CreateEmployeeRehireRequestEmploymentStatus =
   | "variable"
   | "seasonal"
   | "not_set";
-export const CreateEmployeeRehireRequestEmploymentStatus =
-  /*@__PURE__*/ S.String;
+export const CreateEmployeeRehireRequestEmploymentStatus = S.String;
 
 export interface CreateEmployeeRehireRequest {
   /** The UUID of the employee */
@@ -1433,7 +1427,7 @@ export type RehireEmploymentStatus =
   | "variable"
   | "seasonal"
   | "not_set";
-export const RehireEmploymentStatus = /*@__PURE__*/ S.String;
+export const RehireEmploymentStatus = S.String;
 
 export interface Rehire {
   /** Whether the employee's rehire has gone into effect. */
@@ -1474,7 +1468,7 @@ export type CreateEmployeeSalaryEstimateRequestOccupationsItemExperienceLevel =
   | "skilled"
   | "expert";
 export const CreateEmployeeSalaryEstimateRequestOccupationsItemExperienceLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateEmployeeSalaryEstimateRequestOccupationsItem {
   /** Bureau of Labor Statistics (BLS) occupation code */
@@ -1543,8 +1537,7 @@ export type SalaryEstimateOccupationsItemExperienceLevel =
   | "average"
   | "skilled"
   | "expert";
-export const SalaryEstimateOccupationsItemExperienceLevel =
-  /*@__PURE__*/ S.String;
+export const SalaryEstimateOccupationsItemExperienceLevel = S.String;
 
 export interface SalaryEstimateOccupationsItem {
   /** Bureau of Labor Statistics (BLS) occupation code. */
@@ -1821,14 +1814,12 @@ export type CreatePayrollReportsGeneralLedgerRequestAggregation =
   | "job"
   | "department"
   | "integration";
-export const CreatePayrollReportsGeneralLedgerRequestAggregation =
-  /*@__PURE__*/ S.String;
+export const CreatePayrollReportsGeneralLedgerRequestAggregation = S.String;
 
 export type CreatePayrollReportsGeneralLedgerRequestIntegrationType =
   | "xero"
   | "qbo";
-export const CreatePayrollReportsGeneralLedgerRequestIntegrationType =
-  /*@__PURE__*/ S.String;
+export const CreatePayrollReportsGeneralLedgerRequestIntegrationType = S.String;
 
 export interface CreatePayrollReportsGeneralLedgerRequest {
   /** The UUID of the payroll */
@@ -1868,7 +1859,7 @@ export type GeneralLedgerReportAggregation =
   | "job"
   | "department"
   | "integration";
-export const GeneralLedgerReportAggregation = /*@__PURE__*/ S.String;
+export const GeneralLedgerReportAggregation = S.String;
 
 /** A request for a general ledger report. The report is generated asynchronously and the URL is available via the report GET endpoint using the returned `request_uuid`. */
 export interface GeneralLedgerReport {
@@ -2045,8 +2036,7 @@ export type CreateWebhookSubscriptionRequestSubscriptionTypesItem =
   | "PeopleBatch"
   | "Signatory"
   | "TimeOffRequest";
-export const CreateWebhookSubscriptionRequestSubscriptionTypesItem =
-  /*@__PURE__*/ S.String;
+export const CreateWebhookSubscriptionRequestSubscriptionTypesItem = S.String;
 
 /** The types of events to subscribe to. */
 export type CreateWebhookSubscriptionRequestSubscriptionTypesList = Array<
@@ -2080,7 +2070,7 @@ export type WebhookSubscriptionStatus =
   | "verified"
   | "removed"
   | "unreachable";
-export const WebhookSubscriptionStatus = /*@__PURE__*/ S.String;
+export const WebhookSubscriptionStatus = S.String;
 
 export type WebhookSubscriptionSubscriptionTypesItem =
   | "BankAccount"
@@ -2100,7 +2090,7 @@ export type WebhookSubscriptionSubscriptionTypesItem =
   | "PaySchedule"
   | "Signatory"
   | "TimeOffRequest";
-export const WebhookSubscriptionSubscriptionTypesItem = /*@__PURE__*/ S.String;
+export const WebhookSubscriptionSubscriptionTypesItem = S.String;
 
 /** Receive updates for these types. */
 export type WebhookSubscriptionSubscriptionTypesList =
@@ -2887,7 +2877,7 @@ export const GetCompaniesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the company in Gusto. "Approved" companies are approved to run payroll from a risk and compliance perspective. However, an approved company may still need to resolve other [payroll blockers](https://docs.gusto.com/embedded-payroll/docs/payroll-blockers) to be able to run payroll. "Not Approved" companies may not yet run payroll with Gusto and may need to complete onboarding or contact support. "Suspended" companies may not run payroll with Gusto. In order to unsuspend their account, the company must contact support. */
 export type CompanyCompanyStatus = "Approved" | "Not Approved" | "Suspended";
-export const CompanyCompanyStatus = /*@__PURE__*/ S.String;
+export const CompanyCompanyStatus = S.String;
 
 export interface CompanyCompensationsFixedItem {
   /** The name of the fixed compensation. */
@@ -2990,7 +2980,7 @@ export type CompanyEntityType =
   | "General partnership"
   | "Joint venture"
   | "Non-Profit";
-export const CompanyEntityType = /*@__PURE__*/ S.String;
+export const CompanyEntityType = S.String;
 
 export type CompanyFundingType =
   | "ach"
@@ -2999,7 +2989,7 @@ export type CompanyFundingType =
   | "partner_disbursement"
   | "rtp"
   | "line_of_credit";
-export const CompanyFundingType = /*@__PURE__*/ S.String;
+export const CompanyFundingType = S.String;
 
 /** The representation of a company's address in Gusto. */
 export interface CompanyAddress {
@@ -3038,7 +3028,7 @@ export type CompanyPayScheduleType =
   | "hourly_salaried"
   | "by_employee"
   | "by_department";
-export const CompanyPayScheduleType = /*@__PURE__*/ S.String;
+export const CompanyPayScheduleType = S.String;
 
 /** The primary payroll admin of the company. */
 export interface CompanyPrimaryPayrollAdmin {
@@ -3107,7 +3097,7 @@ export type CompanyTier =
   | "concierge"
   | "contractor_only"
   | "basic";
-export const CompanyTier = /*@__PURE__*/ S.String;
+export const CompanyTier = S.String;
 
 /** The representation of a company in Gusto. */
 export interface Company {
@@ -3318,7 +3308,7 @@ export const GetCompanyAdminsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCompanyAdminsResponse>;
 
 export type GetCompanyBenefitRequestInclude = "all_benefits";
-export const GetCompanyBenefitRequestInclude = /*@__PURE__*/ S.String;
+export const GetCompanyBenefitRequestInclude = S.String;
 
 export interface GetCompanyBenefitRequest {
   /** The UUID of the company benefit */
@@ -3347,8 +3337,7 @@ export const GetCompanyBenefitRequest = /*@__PURE__*/ S.suspend(() =>
 export type CompanyBenefitWithEmployeeBenefitsCatchUpType =
   | "elective"
   | "deemed";
-export const CompanyBenefitWithEmployeeBenefitsCatchUpType =
-  /*@__PURE__*/ S.String;
+export const CompanyBenefitWithEmployeeBenefitsCatchUpType = S.String;
 
 /** A single tier of a tiered matching scheme. */
 export type CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1TiersItem =
@@ -3383,7 +3372,7 @@ export type CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionVa
   | string
   | CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValueCase1;
 export const CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValue>;
+  S.Unknown as any as S.Schema<CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContributionValue>;
 
 /** An object representing the type and value of the company contribution. */
 export interface CompanyBenefitWithEmployeeBenefitsEmployeeBenefitsItemContribution {
@@ -3456,7 +3445,7 @@ export type CompanyBenefitWithEmployeeBenefitsSource =
   | "internal"
   | "external"
   | "partnered";
-export const CompanyBenefitWithEmployeeBenefitsSource = /*@__PURE__*/ S.String;
+export const CompanyBenefitWithEmployeeBenefitsSource = S.String;
 
 /** The representation of a company benefit. */
 export interface CompanyBenefitWithEmployeeBenefits {
@@ -3570,8 +3559,7 @@ export const GetCompanyBenefitContributionExclusionsResponse =
   }) as any as S.Schema<GetCompanyBenefitContributionExclusionsResponse>;
 
 export type GetCompanyBenefitEmployeeBenefitsRequestInclude = "all_benefits";
-export const GetCompanyBenefitEmployeeBenefitsRequestInclude =
-  /*@__PURE__*/ S.String;
+export const GetCompanyBenefitEmployeeBenefitsRequestInclude = S.String;
 
 export interface GetCompanyBenefitEmployeeBenefitsRequest {
   /** The UUID of the company benefit */
@@ -3633,7 +3621,7 @@ export type EmployeeBenefitContributionValue =
   | string
   | EmployeeBenefitContributionValueCase1;
 export const EmployeeBenefitContributionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EmployeeBenefitContributionValue>;
+  S.Unknown as any as S.Schema<EmployeeBenefitContributionValue>;
 
 /** An object representing the type and value of the company contribution. */
 export interface EmployeeBenefitContribution {
@@ -3655,8 +3643,7 @@ export type EmployeeBenefitDeductionReducesTaxableIncome =
   | "unset"
   | "reduces_taxable_income"
   | "does_not_reduce_taxable_income";
-export const EmployeeBenefitDeductionReducesTaxableIncome =
-  /*@__PURE__*/ S.String;
+export const EmployeeBenefitDeductionReducesTaxableIncome = S.String;
 
 /** The representation of an employee benefit. */
 export interface EmployeeBenefit {
@@ -3817,15 +3804,15 @@ export type ContractorPaymentPaymentMethod =
   | "Check"
   | "Historical Payment"
   | "Correction Payment";
-export const ContractorPaymentPaymentMethod = /*@__PURE__*/ S.String;
+export const ContractorPaymentPaymentMethod = S.String;
 
 /** Contractor payment status */
 export type ContractorPaymentStatus = "Funded" | "Unfunded";
-export const ContractorPaymentStatus = /*@__PURE__*/ S.String;
+export const ContractorPaymentStatus = S.String;
 
 /** The wage type for the payment. */
 export type ContractorPaymentWageType = "Hourly" | "Fixed";
-export const ContractorPaymentWageType = /*@__PURE__*/ S.String;
+export const ContractorPaymentWageType = S.String;
 
 /** The representation of a single contractor payment. */
 export interface ContractorPayment {
@@ -4063,7 +4050,7 @@ export type GetCompanyContractorPaymentsResponseBody =
   | ContractorPaymentSummary
   | ContractorPaymentSummaryByDates;
 export const GetCompanyContractorPaymentsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCompanyContractorPaymentsResponseBody>;
+  S.Unknown as any as S.Schema<GetCompanyContractorPaymentsResponseBody>;
 
 export type GetCompanyContractorPaymentsResponse =
   GetCompanyContractorPaymentsResponseBody;
@@ -4076,7 +4063,7 @@ export const GetCompanyContractorPaymentsResponse = /*@__PURE__*/ S.suspend(
 export type GetCompanyContractorsRequestIncludeItem =
   | "company_name"
   | "portal_invitations";
-export const GetCompanyContractorsRequestIncludeItem = /*@__PURE__*/ S.String;
+export const GetCompanyContractorsRequestIncludeItem = S.String;
 
 export type GetCompanyContractorsRequestIncludeList = Array<
   GetCompanyContractorsRequestIncludeItem | (string & {})
@@ -4177,7 +4164,7 @@ export const CompanyCustomFieldSelectionOptionsList = /*@__PURE__*/ S.Array(
 
 /** Input type for the custom field. */
 export type CustomFieldType = "text" | "currency" | "number" | "date" | "radio";
-export const CustomFieldType = /*@__PURE__*/ S.String;
+export const CustomFieldType = S.String;
 
 /** A custom field on a company */
 export interface CompanyCustomField {
@@ -4274,7 +4261,7 @@ export type GetCompanyEmployeesRequestIncludeItem =
   | "current_home_address"
   | "custom_fields"
   | "portal_invitations";
-export const GetCompanyEmployeesRequestIncludeItem = /*@__PURE__*/ S.String;
+export const GetCompanyEmployeesRequestIncludeItem = S.String;
 
 export type GetCompanyEmployeesRequestIncludeList = Array<
   GetCompanyEmployeesRequestIncludeItem | (string & {})
@@ -4353,7 +4340,7 @@ export type ShowEmployeesItemCurrentEmploymentStatus =
   | "part_time_twenty_plus_hours"
   | "variable"
   | "seasonal";
-export const ShowEmployeesItemCurrentEmploymentStatus = /*@__PURE__*/ S.String;
+export const ShowEmployeesItemCurrentEmploymentStatus = S.String;
 
 /** An array of options for fields of type radio. Otherwise, null. */
 export type EmployeeCustomFieldSelectionOptionsList = Array<string>;
@@ -4396,7 +4383,7 @@ export const ShowEmployeesItemCustomFieldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ShowEmployeesItemCustomFieldsList>;
 
 export type PaidTimeOffName = "Vacation Hours" | "Sick Hours" | "Holiday Hours";
-export const PaidTimeOffName = /*@__PURE__*/ S.String;
+export const PaidTimeOffName = S.String;
 
 /** The representation of paid time off in Gusto. */
 export interface PaidTimeOff {
@@ -4449,7 +4436,7 @@ export type FlsaStatusType =
   | "Owner"
   | "Commission Only Exempt"
   | "Commission Only Nonexempt";
-export const FlsaStatusType = /*@__PURE__*/ S.String;
+export const FlsaStatusType = S.String;
 
 export type ShowEmployeesItemGarnishmentsList = Array<Garnishment>;
 export const ShowEmployeesItemGarnishmentsList = /*@__PURE__*/ S.Array(
@@ -4487,7 +4474,7 @@ export type CompensationPaymentUnit =
   | "Month"
   | "Year"
   | "Paycheck";
-export const CompensationPaymentUnit = /*@__PURE__*/ S.String;
+export const CompensationPaymentUnit = S.String;
 
 /** The representation of compensation in Gusto. */
 export interface Compensation {
@@ -4599,8 +4586,7 @@ export type ShowEmployeesItemMemberPortalInvitationStatusStatus =
   | "verified"
   | "complete"
   | "cancelled";
-export const ShowEmployeesItemMemberPortalInvitationStatusStatus =
-  /*@__PURE__*/ S.String;
+export const ShowEmployeesItemMemberPortalInvitationStatusStatus = S.String;
 
 /** Member portal invitation status information. Only included when the include param has the portal_invitations value set. */
 export interface ShowEmployeesItemMemberPortalInvitationStatus {
@@ -4653,11 +4639,11 @@ export type ShowEmployeesItemOnboardingStatus =
   | "self_onboarding_invited_overdue"
   | "self_onboarding_completed_by_employee"
   | "self_onboarding_awaiting_admin_review";
-export const ShowEmployeesItemOnboardingStatus = /*@__PURE__*/ S.String;
+export const ShowEmployeesItemOnboardingStatus = S.String;
 
 /** The employee's payment method */
 export type ShowEmployeesItemPaymentMethod = "Direct Deposit" | "Check";
-export const ShowEmployeesItemPaymentMethod = /*@__PURE__*/ S.String;
+export const ShowEmployeesItemPaymentMethod = S.String;
 
 export type ShowEmployeesItemTerminationsList = Array<Termination>;
 export const ShowEmployeesItemTerminationsList = /*@__PURE__*/ S.Array(
@@ -4897,7 +4883,7 @@ export type GetCompanyNotificationsRequestStatus =
   | "open"
   | "expired"
   | "resolved";
-export const GetCompanyNotificationsRequestStatus = /*@__PURE__*/ S.String;
+export const GetCompanyNotificationsRequestStatus = S.String;
 
 export interface GetCompanyNotificationsRequest {
   /** The UUID of the company for which you would like to return notifications */
@@ -4936,7 +4922,7 @@ export type NotificationResourcesItemEntityType =
   | "RecoveryCase"
   | "Signatory"
   | "Wire In Request";
-export const NotificationResourcesItemEntityType = /*@__PURE__*/ S.String;
+export const NotificationResourcesItemEntityType = S.String;
 
 export interface NotificationResourcesItem {
   /** The type of entity being described. */
@@ -4967,7 +4953,7 @@ export const NotificationResourcesList = /*@__PURE__*/ S.Array(
 
 /** Represents the notification's status as managed by our system. It is updated based on observable system events and internal business logic, and does not reflect resolution steps taken outside our system. This field is read-only and cannot be modified via the API. */
 export type NotificationStatus = "open" | "resolved" | "expired";
-export const NotificationStatus = /*@__PURE__*/ S.String;
+export const NotificationStatus = S.String;
 
 /** An object containing template variables used to render the notification. The structure of this object depends on the notification category. Each category defines a fixed set of variable names (keys), which are always present. The values of these variables can vary depending on the specific notification instance. */
 export type NotificationTemplateVariablesMap = {
@@ -5038,7 +5024,7 @@ export type GetCompanyPayPeriodsRequestPayrollTypes =
   | "regular"
   | "transition"
   | "regular,transition";
-export const GetCompanyPayPeriodsRequestPayrollTypes = /*@__PURE__*/ S.String;
+export const GetCompanyPayPeriodsRequestPayrollTypes = S.String;
 
 export interface GetCompanyPayPeriodsRequest {
   /** The UUID of the company */
@@ -5070,7 +5056,7 @@ export const GetCompanyPayPeriodsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether it is regular pay period or transition pay period. */
 export type PayPeriodPayrollPayrollType = "regular" | "transition";
-export const PayPeriodPayrollPayrollType = /*@__PURE__*/ S.String;
+export const PayPeriodPayrollPayrollType = S.String;
 
 /** Information about the payroll for the pay period. */
 export interface PayPeriodPayroll {
@@ -5138,7 +5124,7 @@ export type GetCompanyPayrollRequestIncludeItem =
   | "risk_blockers"
   | "reversals"
   | "payroll_taxes";
-export const GetCompanyPayrollRequestIncludeItem = /*@__PURE__*/ S.String;
+export const GetCompanyPayrollRequestIncludeItem = S.String;
 
 export type GetCompanyPayrollRequestIncludeList = Array<
   GetCompanyPayrollRequestIncludeItem | (string & {})
@@ -5210,7 +5196,7 @@ export type PayrollCreditBlockerTypeStatus =
   | "pending_review"
   | "resolved"
   | "failed";
-export const PayrollCreditBlockerTypeStatus = /*@__PURE__*/ S.String;
+export const PayrollCreditBlockerTypeStatus = S.String;
 
 export interface PayrollCreditBlockerUnblockOptionSubmitWireMetadata {
   /** The amount to be wired in (decimal string) */
@@ -5234,8 +5220,7 @@ export const PayrollCreditBlockerUnblockOptionSubmitWireMetadata =
 /** The type of unblock option for the credit blocker */
 export type PayrollCreditBlockerUnblockOptionSubmitWireUnblockType =
   "submit_wire";
-export const PayrollCreditBlockerUnblockOptionSubmitWireUnblockType =
-  /*@__PURE__*/ S.String;
+export const PayrollCreditBlockerUnblockOptionSubmitWireUnblockType = S.String;
 
 /** Unblock option to resolve a credit blocker by submitting a wire transfer */
 export interface PayrollCreditBlockerUnblockOptionSubmitWire {
@@ -5276,7 +5261,7 @@ export const PayrollCreditBlockerUnblockOptionSubmitBankScreenshotMetadata =
 export type PayrollCreditBlockerUnblockOptionSubmitBankScreenshotUnblockType =
   "submit_bank_screenshot";
 export const PayrollCreditBlockerUnblockOptionSubmitBankScreenshotUnblockType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Unblock option to resolve a credit blocker by submitting a bank screenshot */
 export interface PayrollCreditBlockerUnblockOptionSubmitBankScreenshot {
@@ -5316,7 +5301,7 @@ export const PayrollCreditBlockerUnblockOptionRespondToHighRiskFraudRfiMetadata 
 export type PayrollCreditBlockerUnblockOptionRespondToHighRiskFraudRfiUnblockType =
   "respond_to_high_risk_fraud_rfi";
 export const PayrollCreditBlockerUnblockOptionRespondToHighRiskFraudRfiUnblockType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Unblock option to resolve a credit blocker by responding to high risk fraud RFI */
 export interface PayrollCreditBlockerUnblockOptionRespondToHighRiskFraudRfi {
@@ -5343,7 +5328,7 @@ export const PayrollCreditBlockerUnblockOptionRespondToHighRiskFraudRfi =
 export type PayrollCreditBlockerUnblockOptionWaitForReverseWireUnblockType =
   "wait_for_reverse_wire";
 export const PayrollCreditBlockerUnblockOptionWaitForReverseWireUnblockType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Unblock option to resolve a credit blocker by waiting for reverse wire */
 export interface PayrollCreditBlockerUnblockOptionWaitForReverseWire {
@@ -5371,7 +5356,7 @@ export type PayrollCreditBlockerTypeUnblockOptionsItem =
   | PayrollCreditBlockerUnblockOptionRespondToHighRiskFraudRfi
   | PayrollCreditBlockerUnblockOptionWaitForReverseWire;
 export const PayrollCreditBlockerTypeUnblockOptionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PayrollCreditBlockerTypeUnblockOptionsItem>;
+  S.Unknown as any as S.Schema<PayrollCreditBlockerTypeUnblockOptionsItem>;
 
 /** The available options to unblock a credit blocker. */
 export type PayrollCreditBlockerTypeUnblockOptionsList =
@@ -5416,13 +5401,13 @@ export type PayrollShowEmployeeCompensationsItemCustomWithholdingsFederalAmountT
   | "fixed"
   | "percent";
 export const PayrollShowEmployeeCompensationsItemCustomWithholdingsFederalAmountType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Override mode. Only `one_time` is currently exposed. */
 export type PayrollShowEmployeeCompensationsItemCustomWithholdingsFederalOverrideType =
   "one_time";
 export const PayrollShowEmployeeCompensationsItemCustomWithholdingsFederalOverrideType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Federal one-time custom withholding override applied to this payroll. */
 export interface PayrollShowEmployeeCompensationsItemCustomWithholdingsFederal {
@@ -5453,13 +5438,13 @@ export type PayrollShowEmployeeCompensationsItemCustomWithholdingsStateItemAmoun
   | "fixed"
   | "percent";
 export const PayrollShowEmployeeCompensationsItemCustomWithholdingsStateItemAmountType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Override mode. Only `one_time` is currently exposed. */
 export type PayrollShowEmployeeCompensationsItemCustomWithholdingsStateItemOverrideType =
   "one_time";
 export const PayrollShowEmployeeCompensationsItemCustomWithholdingsStateItemOverrideType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PayrollShowEmployeeCompensationsItemCustomWithholdingsStateItem {
   /** The amount that was withheld for this payroll. */
@@ -5614,8 +5599,7 @@ export type PayrollShowEmployeeCompensationsItemPaymentMethod =
   | "Direct Deposit"
   | "Check"
   | "Historical";
-export const PayrollShowEmployeeCompensationsItemPaymentMethod =
-  /*@__PURE__*/ S.String;
+export const PayrollShowEmployeeCompensationsItemPaymentMethod = S.String;
 
 export interface PayrollShowEmployeeCompensationsItemReimbursementsItem {
   /** The dollar amount of the reimbursement for the pay period. */
@@ -5652,7 +5636,7 @@ export type PayrollShowEmployeeCompensationsItemDeductionsItemAmountType =
   | "fixed"
   | "percent";
 export const PayrollShowEmployeeCompensationsItemDeductionsItemAmountType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PayrollShowEmployeeCompensationsItemDeductionsItem {
   /** The amount of the deduction for the pay period. */
@@ -5838,7 +5822,7 @@ export type OffCycleReasonType =
   | "Reversal"
   | "Disability insurance distribution"
   | "Transition from old pay schedule";
-export const OffCycleReasonType = /*@__PURE__*/ S.String;
+export const OffCycleReasonType = S.String;
 
 export interface PayrollPayPeriodType {
   /** The start date, inclusive, of the pay period. */
@@ -6009,7 +5993,7 @@ export type EntityErrorObjectMetadata =
   | MetadataWithMultipleEntities
   | MetadataWithOneEntity;
 export const EntityErrorObjectMetadata =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EntityErrorObjectMetadata>;
+  S.Unknown as any as S.Schema<EntityErrorObjectMetadata>;
 
 export interface EntityErrorObject {
   /** Specifies the type of error. The category provides error groupings and can be used to build custom error handling in your integration. If category is `nested_errors`, the object will contain a nested `errors` property with entity errors. */
@@ -6048,7 +6032,7 @@ export type PayrollProcessingRequestStatus =
   | "submitting"
   | "submit_success"
   | "processing_failed";
-export const PayrollProcessingRequestStatus = /*@__PURE__*/ S.String;
+export const PayrollProcessingRequestStatus = S.String;
 
 export interface PayrollProcessingRequest {
   /** Errors that occurred during async payroll processing */
@@ -6067,7 +6051,7 @@ export const PayrollProcessingRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the submission blocker. */
 export type PayrollSubmissionBlockerTypeStatus = "unresolved" | "resolved";
-export const PayrollSubmissionBlockerTypeStatus = /*@__PURE__*/ S.String;
+export const PayrollSubmissionBlockerTypeStatus = S.String;
 
 /** Additional data associated with the unblock option. */
 export type PayrollSubmissionBlockerTypeUnblockOptionsItemMetadataMap = {
@@ -6223,7 +6207,7 @@ export type PayrollWithholdingPayPeriodType =
   | "Quarterly"
   | "Semiannually"
   | "Annually";
-export const PayrollWithholdingPayPeriodType = /*@__PURE__*/ S.String;
+export const PayrollWithholdingPayPeriodType = S.String;
 
 export interface PayrollShow {
   auto_payroll?: boolean;
@@ -6293,8 +6277,7 @@ export const PayrollShow = /*@__PURE__*/ S.suspend(() =>
 export type GetCompanyPayrollsRequestProcessingStatusesItem =
   | "processed"
   | "unprocessed";
-export const GetCompanyPayrollsRequestProcessingStatusesItem =
-  /*@__PURE__*/ S.String;
+export const GetCompanyPayrollsRequestProcessingStatusesItem = S.String;
 
 export type GetCompanyPayrollsRequestProcessingStatusesList = Array<
   GetCompanyPayrollsRequestProcessingStatusesItem | (string & {})
@@ -6308,7 +6291,7 @@ export type GetCompanyPayrollsRequestPayrollTypesItem =
   | "regular"
   | "off_cycle"
   | "external";
-export const GetCompanyPayrollsRequestPayrollTypesItem = /*@__PURE__*/ S.String;
+export const GetCompanyPayrollsRequestPayrollTypesItem = S.String;
 
 export type GetCompanyPayrollsRequestPayrollTypesList = Array<
   GetCompanyPayrollsRequestPayrollTypesItem | (string & {})
@@ -6323,7 +6306,7 @@ export type GetCompanyPayrollsRequestIncludeItem =
   | "totals"
   | "risk_blockers"
   | "reversals";
-export const GetCompanyPayrollsRequestIncludeItem = /*@__PURE__*/ S.String;
+export const GetCompanyPayrollsRequestIncludeItem = S.String;
 
 export type GetCompanyPayrollsRequestIncludeList = Array<
   GetCompanyPayrollsRequestIncludeItem | (string & {})
@@ -6333,10 +6316,10 @@ export const GetCompanyPayrollsRequestIncludeList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetCompanyPayrollsRequestIncludeList>;
 
 export type GetCompanyPayrollsRequestDateFilterBy = "check_date";
-export const GetCompanyPayrollsRequestDateFilterBy = /*@__PURE__*/ S.String;
+export const GetCompanyPayrollsRequestDateFilterBy = S.String;
 
 export type GetCompanyPayrollsRequestSortOrder = "asc" | "desc";
-export const GetCompanyPayrollsRequestSortOrder = /*@__PURE__*/ S.String;
+export const GetCompanyPayrollsRequestSortOrder = S.String;
 
 export interface GetCompanyPayrollsRequest {
   /** The UUID of the company */
@@ -6524,7 +6507,7 @@ export type PayScheduleFrequency =
   | "Monthly"
   | "Quarterly"
   | "Annually";
-export const PayScheduleFrequency = /*@__PURE__*/ S.String;
+export const PayScheduleFrequency = S.String;
 
 /** Pay schedule returned from pay schedule endpoints (GET by ID, POST create, PUT update). Same fields as Pay-Schedule with a required `version` for [optimistic concurrency](https://docs.gusto.com/embedded-payroll/docs/api-fundamentals#optimistic-version-control). For API version 2025-11-15 and later, responses use `auto_payroll`; earlier versions use `auto_pilot` for the same semantic. */
 export interface PayScheduleShow {
@@ -6667,7 +6650,7 @@ export type PayScheduleAssignmentType =
   | "hourly_salaried"
   | "by_employee"
   | "by_department";
-export const PayScheduleAssignmentType = /*@__PURE__*/ S.String;
+export const PayScheduleAssignmentType = S.String;
 
 /** The representation of a pay schedule assignment. */
 export interface PayScheduleAssignment {
@@ -6748,7 +6731,7 @@ export type TimeOffPolicyPolicyType =
   | "personal_day"
   | "volunteer"
   | "weather";
-export const TimeOffPolicyPolicyType = /*@__PURE__*/ S.String;
+export const TimeOffPolicyPolicyType = S.String;
 
 /** Representation of a Time Off Policy */
 export interface TimeOffPolicy {
@@ -6894,7 +6877,7 @@ export const TimeOffRequestInitiator = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of time off request. */
 export type TimeOffRequestRequestType = "vacation" | "sick";
-export const TimeOffRequestRequestType = /*@__PURE__*/ S.String;
+export const TimeOffRequestRequestType = S.String;
 
 /** The status of the time off request. */
 export type TimeOffRequestStatus =
@@ -6902,7 +6885,7 @@ export type TimeOffRequestStatus =
   | "approved"
   | "declined"
   | "consumed";
-export const TimeOffRequestStatus = /*@__PURE__*/ S.String;
+export const TimeOffRequestStatus = S.String;
 
 /** The representation of a time off request. */
 export interface TimeOffRequest {
@@ -6965,27 +6948,23 @@ export const GetCompanyTimeTrackingTimeSheetsRequestEntityUuidsList =
 export type GetCompanyTimeTrackingTimeSheetsRequestEntityType =
   | "Employee"
   | "Contractor";
-export const GetCompanyTimeTrackingTimeSheetsRequestEntityType =
-  /*@__PURE__*/ S.String;
+export const GetCompanyTimeTrackingTimeSheetsRequestEntityType = S.String;
 
 export type GetCompanyTimeTrackingTimeSheetsRequestStatus =
   | "approved"
   | "pending"
   | "rejected";
-export const GetCompanyTimeTrackingTimeSheetsRequestStatus =
-  /*@__PURE__*/ S.String;
+export const GetCompanyTimeTrackingTimeSheetsRequestStatus = S.String;
 
 export type GetCompanyTimeTrackingTimeSheetsRequestSortBy =
   | "created_at"
   | "updated_at"
   | "shift_started_at"
   | "shift_ended_at";
-export const GetCompanyTimeTrackingTimeSheetsRequestSortBy =
-  /*@__PURE__*/ S.String;
+export const GetCompanyTimeTrackingTimeSheetsRequestSortBy = S.String;
 
 export type GetCompanyTimeTrackingTimeSheetsRequestSortOrder = "asc" | "desc";
-export const GetCompanyTimeTrackingTimeSheetsRequestSortOrder =
-  /*@__PURE__*/ S.String;
+export const GetCompanyTimeTrackingTimeSheetsRequestSortOrder = S.String;
 
 export interface GetCompanyTimeTrackingTimeSheetsRequest {
   /** The UUID of the company */
@@ -7081,7 +7060,7 @@ export const GetCompensationRequest = /*@__PURE__*/ S.suspend(() =>
 export type GetContractorRequestIncludeItem =
   | "company_name"
   | "portal_invitations";
-export const GetContractorRequestIncludeItem = /*@__PURE__*/ S.String;
+export const GetContractorRequestIncludeItem = S.String;
 
 export type GetContractorRequestIncludeList = Array<
   GetContractorRequestIncludeItem | (string & {})
@@ -7226,7 +7205,7 @@ export type GetEmployeeBenefitResponseContributionValue =
   | string
   | GetEmployeeBenefitResponseContributionValueCase1;
 export const GetEmployeeBenefitResponseContributionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEmployeeBenefitResponseContributionValue>;
+  S.Unknown as any as S.Schema<GetEmployeeBenefitResponseContributionValue>;
 
 /** An object representing the type and value of the company contribution. */
 export interface GetEmployeeBenefitResponseContribution {
@@ -7249,8 +7228,7 @@ export type GetEmployeeBenefitResponseDeductionReducesTaxableIncome =
   | "unset"
   | "reduces_taxable_income"
   | "does_not_reduce_taxable_income";
-export const GetEmployeeBenefitResponseDeductionReducesTaxableIncome =
-  /*@__PURE__*/ S.String;
+export const GetEmployeeBenefitResponseDeductionReducesTaxableIncome = S.String;
 
 export interface GetEmployeeBenefitResponse {
   /** Whether the employee benefit is active. */
@@ -7369,7 +7347,7 @@ export const EmployeeCustomFieldList = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EmployeeCustomFieldList>;
 
 export type GetEmployeeEmployeeBenefitsRequestInclude = "all_benefits";
-export const GetEmployeeEmployeeBenefitsRequestInclude = /*@__PURE__*/ S.String;
+export const GetEmployeeEmployeeBenefitsRequestInclude = S.String;
 
 export interface GetEmployeeEmployeeBenefitsRequest {
   /** The UUID of the employee */
@@ -7440,7 +7418,7 @@ export type EmploymentHistoryListItemEmploymentStatus =
   | "part_time_eligible"
   | "variable"
   | "seasonal - not_set";
-export const EmploymentHistoryListItemEmploymentStatus = /*@__PURE__*/ S.String;
+export const EmploymentHistoryListItemEmploymentStatus = S.String;
 
 /** The representation of an employee's individual employements. */
 export interface EmploymentHistoryListItem {
@@ -7610,7 +7588,7 @@ export type GetEmployeesRequestIncludeItem =
   | "current_home_address"
   | "custom_fields"
   | "portal_invitations";
-export const GetEmployeesRequestIncludeItem = /*@__PURE__*/ S.String;
+export const GetEmployeesRequestIncludeItem = S.String;
 
 export type GetEmployeesRequestIncludeList = Array<
   GetEmployeesRequestIncludeItem | (string & {})
@@ -7647,7 +7625,7 @@ export type EmployeeCurrentEmploymentStatus =
   | "part_time_twenty_plus_hours"
   | "variable"
   | "seasonal";
-export const EmployeeCurrentEmploymentStatus = /*@__PURE__*/ S.String;
+export const EmployeeCurrentEmploymentStatus = S.String;
 
 /** Custom fields are only included for the employee if the include param has the custom_fields value set */
 export type EmployeeCustomFieldsList = Array<EmployeeCustomField>;
@@ -7677,8 +7655,7 @@ export type EmployeeMemberPortalInvitationStatusStatus =
   | "verified"
   | "complete"
   | "cancelled";
-export const EmployeeMemberPortalInvitationStatusStatus =
-  /*@__PURE__*/ S.String;
+export const EmployeeMemberPortalInvitationStatusStatus = S.String;
 
 /** Member portal invitation status information. Only included when the include param has the portal_invitations value set. */
 export interface EmployeeMemberPortalInvitationStatus {
@@ -7720,11 +7697,11 @@ export type EmployeeOnboardingStatus =
   | "self_onboarding_invited_overdue"
   | "self_onboarding_completed_by_employee"
   | "self_onboarding_awaiting_admin_review";
-export const EmployeeOnboardingStatus = /*@__PURE__*/ S.String;
+export const EmployeeOnboardingStatus = S.String;
 
 /** The employee's payment method */
 export type EmployeePaymentMethod = "Direct Deposit" | "Check";
-export const EmployeePaymentMethod = /*@__PURE__*/ S.String;
+export const EmployeePaymentMethod = S.String;
 
 export type EmployeeTerminationsList = Array<Termination>;
 export const EmployeeTerminationsList = /*@__PURE__*/ S.Array(
@@ -8022,7 +7999,7 @@ export const GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponse =
   }) as any as S.Schema<GetEmployeeYtdBenefitAmountsFromDifferentCompanyResponse>;
 
 export type GetEventsRequestSortOrder = "asc" | "desc";
-export const GetEventsRequestSortOrder = /*@__PURE__*/ S.String;
+export const GetEventsRequestSortOrder = S.String;
 
 export interface GetEventsRequest {
   /** A cursor for pagination. Returns all events occuring after the specified UUID (exclusive). Events are sorted according to the provided sort_order param. */
@@ -8050,7 +8027,7 @@ export const GetEventsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Name of the parent resource of the described entity. */
 export type EventResourceType = "Company";
-export const EventResourceType = /*@__PURE__*/ S.String;
+export const EventResourceType = S.String;
 
 /** Representation of an Event */
 export interface Event {
@@ -8149,8 +8126,7 @@ export type ChildSupportDataAgenciesItemRequiredAttributesItemKey =
   | "case_number"
   | "order_number"
   | "remittance_number";
-export const ChildSupportDataAgenciesItemRequiredAttributesItemKey =
-  /*@__PURE__*/ S.String;
+export const ChildSupportDataAgenciesItemRequiredAttributesItemKey = S.String;
 
 export interface ChildSupportDataAgenciesItemRequiredAttributesItem {
   /** A required attribute when creating a garnishment for this state agency. The current values are listed as an enum; though unlikely, values could be added if state agency requirements change in the future. */
@@ -8240,7 +8216,7 @@ export const GetHomeAddressRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetHomeAddressRequest>;
 
 export type GetJobCompensationsRequestInclude = "all_compensations";
-export const GetJobCompensationsRequestInclude = /*@__PURE__*/ S.String;
+export const GetJobCompensationsRequestInclude = S.String;
 
 export interface GetJobCompensationsRequest {
   /** The UUID of the job */
@@ -8538,7 +8514,7 @@ export type TokenInfoResourceOwnerType =
   | "CompanyAdmin"
   | "Employee"
   | "Contractor";
-export const TokenInfoResourceOwnerType = /*@__PURE__*/ S.String;
+export const TokenInfoResourceOwnerType = S.String;
 
 /** The resource owner (user) who authorized this access token. Null for system-level tokens or when the owner cannot be determined. */
 export interface TokenInfoResourceOwner {
@@ -8860,7 +8836,7 @@ export const GetVersionEmployeesTimeOffActivitiesRequest =
 
 /** Type of the time off activity */
 export type TimeOffActivityTimeOffType = "vacation" | "sick";
-export const TimeOffActivityTimeOffType = /*@__PURE__*/ S.String;
+export const TimeOffActivityTimeOffType = S.String;
 
 /** Representation of a Time Off Activity */
 export interface TimeOffActivity {
@@ -8924,7 +8900,7 @@ export type WebhooksHealthCheckStatusStatus =
   | "healthy"
   | "unhealthy"
   | "unknown";
-export const WebhooksHealthCheckStatusStatus = /*@__PURE__*/ S.String;
+export const WebhooksHealthCheckStatusStatus = S.String;
 
 /** The representation of a webhooks health check response */
 export interface WebhooksHealthCheckStatus {
@@ -9003,7 +8979,7 @@ export const GetWorkAddressRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Set system_access to create a system access token, refresh_token to refresh an existing token */
 export type OauthAccessTokenRequestBodyCase0GrantType = "refresh_token";
-export const OauthAccessTokenRequestBodyCase0GrantType = /*@__PURE__*/ S.String;
+export const OauthAccessTokenRequestBodyCase0GrantType = S.String;
 
 export interface OauthAccessTokenRequestBodyCase0 {
   /** Your client ID */
@@ -9030,7 +9006,7 @@ export const OauthAccessTokenRequestBodyCase0 = /*@__PURE__*/ S.suspend(() =>
 
 /** Set system_access to create a system access token, refresh_token to refresh an existing token */
 export type OauthAccessTokenRequestBodyCase1GrantType = "system_access";
-export const OauthAccessTokenRequestBodyCase1GrantType = /*@__PURE__*/ S.String;
+export const OauthAccessTokenRequestBodyCase1GrantType = S.String;
 
 export interface OauthAccessTokenRequestBodyCase1 {
   /** Your client ID */
@@ -9054,7 +9030,7 @@ export type OauthAccessTokenRequestBody =
   | OauthAccessTokenRequestBodyCase0
   | OauthAccessTokenRequestBodyCase1;
 export const OauthAccessTokenRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OauthAccessTokenRequestBody>;
+  S.Unknown as any as S.Schema<OauthAccessTokenRequestBody>;
 
 export interface OauthAccessTokenRequest {
   body: OauthAccessTokenRequestBody;
@@ -9121,8 +9097,7 @@ export const RefreshTokenAuthentication = /*@__PURE__*/ S.suspend(() =>
 export type Authentication =
   | CreateTokenAuthentication
   | RefreshTokenAuthentication;
-export const Authentication =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Authentication>;
+export const Authentication = S.Unknown as any as S.Schema<Authentication>;
 
 export type OauthAccessTokenResponse = Authentication;
 export const OauthAccessTokenResponse = /*@__PURE__*/ S.suspend(() =>
@@ -9226,8 +9201,7 @@ export type PostV1CompensationsCompensationIdRequestPaymentUnit =
   | "Month"
   | "Year"
   | "Paycheck";
-export const PostV1CompensationsCompensationIdRequestPaymentUnit =
-  /*@__PURE__*/ S.String;
+export const PostV1CompensationsCompensationIdRequestPaymentUnit = S.String;
 
 export interface PostV1CompensationsCompensationIdRequest {
   /** The UUID of the job */
@@ -9535,7 +9509,7 @@ export const PutCompaniesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutCompaniesRequest>;
 
 export type PutCompanyBenefitRequestCatchUpType = "elective" | "deemed";
-export const PutCompanyBenefitRequestCatchUpType = /*@__PURE__*/ S.String;
+export const PutCompanyBenefitRequestCatchUpType = S.String;
 
 export interface PutCompanyBenefitRequest {
   /** The UUID of the company benefit */
@@ -9654,7 +9628,7 @@ export type EmployeeBenefitForCompanyBenefitInputContributionValue =
   | string
   | EmployeeBenefitForCompanyBenefitInputContributionValueCase1;
 export const EmployeeBenefitForCompanyBenefitInputContributionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EmployeeBenefitForCompanyBenefitInputContributionValue>;
+  S.Unknown as any as S.Schema<EmployeeBenefitForCompanyBenefitInputContributionValue>;
 
 /** An object representing the type and value of the company contribution. */
 export interface EmployeeBenefitForCompanyBenefitInputContribution {
@@ -9678,12 +9652,11 @@ export type EmployeeBenefitForCompanyBenefitInputDeductionReducesTaxableIncome =
   | "reduces_taxable_income"
   | "does_not_reduce_taxable_income";
 export const EmployeeBenefitForCompanyBenefitInputDeductionReducesTaxableIncome =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The action to perform on the employee benefit. Required for creating/updating an effective dated employee benefit. */
 export type EmployeeBenefitForCompanyBenefitInputAction = "create" | "update";
-export const EmployeeBenefitForCompanyBenefitInputAction =
-  /*@__PURE__*/ S.String;
+export const EmployeeBenefitForCompanyBenefitInputAction = S.String;
 
 /** The representation of an employee benefit for a company benefit. */
 export interface EmployeeBenefitForCompanyBenefitInput {
@@ -9886,13 +9859,13 @@ export type PayrollEmployeeCompensationsTypeCustomWithholdingsFederalAmountType 
   | "fixed"
   | "percent";
 export const PayrollEmployeeCompensationsTypeCustomWithholdingsFederalAmountType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Override mode. Only `one_time` is currently exposed. */
 export type PayrollEmployeeCompensationsTypeCustomWithholdingsFederalOverrideType =
   "one_time";
 export const PayrollEmployeeCompensationsTypeCustomWithholdingsFederalOverrideType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Federal one-time custom withholding override applied to this payroll. */
 export interface PayrollEmployeeCompensationsTypeCustomWithholdingsFederal {
@@ -9923,13 +9896,13 @@ export type PayrollEmployeeCompensationsTypeCustomWithholdingsStateItemAmountTyp
   | "fixed"
   | "percent";
 export const PayrollEmployeeCompensationsTypeCustomWithholdingsStateItemAmountType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Override mode. Only `one_time` is currently exposed. */
 export type PayrollEmployeeCompensationsTypeCustomWithholdingsStateItemOverrideType =
   "one_time";
 export const PayrollEmployeeCompensationsTypeCustomWithholdingsStateItemOverrideType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PayrollEmployeeCompensationsTypeCustomWithholdingsStateItem {
   /** The amount that was withheld for this payroll. */
@@ -10029,8 +10002,7 @@ export type PayrollEmployeeCompensationsTypePaymentMethod =
   | "Direct Deposit"
   | "Check"
   | "Historical";
-export const PayrollEmployeeCompensationsTypePaymentMethod =
-  /*@__PURE__*/ S.String;
+export const PayrollEmployeeCompensationsTypePaymentMethod = S.String;
 
 export type PayrollEmployeeCompensationsTypeReimbursementsItem =
   PayrollShowEmployeeCompensationsItemReimbursementsItem;
@@ -10050,7 +10022,7 @@ export type PayrollEmployeeCompensationsTypeDeductionsItemAmountType =
   | "fixed"
   | "percent";
 export const PayrollEmployeeCompensationsTypeDeductionsItemAmountType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PayrollEmployeeCompensationsTypeDeductionsItem {
   /** The amount of the deduction for the pay period. */
@@ -10249,13 +10221,13 @@ export type PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdings
   | "fixed"
   | "percent";
 export const PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalAmountType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Override mode. Only `one_time` is currently supported. */
 export type PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalOverrideType =
   "one_time";
 export const PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederalOverrideType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Federal one-time custom withholding override. */
 export interface PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsFederal {
@@ -10291,13 +10263,13 @@ export type PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdings
   | "fixed"
   | "percent";
 export const PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemAmountType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Override mode. Only `one_time` is currently supported. */
 export type PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemOverrideType =
   "one_time";
 export const PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItemOverrideType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutCompanyPayrollsRequestEmployeeCompensationsItemCustomWithholdingsStateItem {
   /** The amount to be withheld for this payroll. */
@@ -10365,7 +10337,7 @@ export type PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsItemAmou
   | "fixed"
   | "percent";
 export const PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsItemAmountType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of deductions for the employee. */
 export interface PutCompanyPayrollsRequestEmployeeCompensationsItemDeductionsItem {
@@ -10479,7 +10451,7 @@ export type PutCompanyPayrollsRequestEmployeeCompensationsItemPaymentMethod =
   | "Direct Deposit"
   | "Check";
 export const PutCompanyPayrollsRequestEmployeeCompensationsItemPaymentMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutCompanyPayrollsRequestEmployeeCompensationsItemReimbursementsItem {
   /** The dollar amount of the reimbursement for the pay period. */
@@ -10581,8 +10553,7 @@ export type PutCompanyPayrollsRequestWithholdingPayPeriod =
   | "Quarterly"
   | "Semiannually"
   | "Annually";
-export const PutCompanyPayrollsRequestWithholdingPayPeriod =
-  /*@__PURE__*/ S.String;
+export const PutCompanyPayrollsRequestWithholdingPayPeriod = S.String;
 
 export interface PutCompanyPayrollsRequest {
   /** The UUID of the company */
@@ -10638,7 +10609,7 @@ export type PutCompensationRequestPaymentUnit =
   | "Month"
   | "Year"
   | "Paycheck";
-export const PutCompensationRequestPaymentUnit = /*@__PURE__*/ S.String;
+export const PutCompensationRequestPaymentUnit = S.String;
 
 export interface PutCompensationRequest {
   /** The UUID of the compensation */
@@ -10682,11 +10653,11 @@ export const PutCompensationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The contractor type. */
 export type PutContractorRequestType = "Individual" | "Business";
-export const PutContractorRequestType = /*@__PURE__*/ S.String;
+export const PutContractorRequestType = S.String;
 
 /** The contractor’s wage type. */
 export type PutContractorRequestWageType = "Fixed" | "Hourly";
-export const PutContractorRequestWageType = /*@__PURE__*/ S.String;
+export const PutContractorRequestWageType = S.String;
 
 export interface PutContractorRequest {
   /** The UUID of the contractor */
@@ -10833,7 +10804,7 @@ export type PutEmployeeBenefitRequestContributionType =
   | "amount"
   | "percentage"
   | "tiered";
-export const PutEmployeeBenefitRequestContributionType = /*@__PURE__*/ S.String;
+export const PutEmployeeBenefitRequestContributionType = S.String;
 
 /** A single tier of a tiered matching scheme. */
 export type PutEmployeeBenefitRequestContributionValueCase1Item =
@@ -10854,7 +10825,7 @@ export type PutEmployeeBenefitRequestContributionValue =
   | string
   | PutEmployeeBenefitRequestContributionValueCase1List;
 export const PutEmployeeBenefitRequestContributionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmployeeBenefitRequestContributionValue>;
+  S.Unknown as any as S.Schema<PutEmployeeBenefitRequestContributionValue>;
 
 /** An object representing the type and value of the company contribution. */
 export interface PutEmployeeBenefitRequestContribution {
@@ -10877,15 +10848,14 @@ export type PutEmployeeBenefitRequestDeductionReducesTaxableIncome =
   | "unset"
   | "reduces_taxable_income"
   | "does_not_reduce_taxable_income";
-export const PutEmployeeBenefitRequestDeductionReducesTaxableIncome =
-  /*@__PURE__*/ S.String;
+export const PutEmployeeBenefitRequestDeductionReducesTaxableIncome = S.String;
 
 export type PutEmployeeBenefitRequestLimitOption =
   | "Family"
   | "Individual"
   | "Joint Filing or Single"
   | "Married and Filing Separately";
-export const PutEmployeeBenefitRequestLimitOption = /*@__PURE__*/ S.String;
+export const PutEmployeeBenefitRequestLimitOption = S.String;
 
 export interface PutEmployeeBenefitRequest {
   /** The UUID of the employee benefit. */
@@ -10993,7 +10963,7 @@ export type PutEmployeeBenefitResponseContributionValue =
   | string
   | PutEmployeeBenefitResponseContributionValueCase1;
 export const PutEmployeeBenefitResponseContributionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmployeeBenefitResponseContributionValue>;
+  S.Unknown as any as S.Schema<PutEmployeeBenefitResponseContributionValue>;
 
 /** An object representing the type and value of the company contribution. */
 export interface PutEmployeeBenefitResponseContribution {
@@ -11016,8 +10986,7 @@ export type PutEmployeeBenefitResponseDeductionReducesTaxableIncome =
   | "unset"
   | "reduces_taxable_income"
   | "does_not_reduce_taxable_income";
-export const PutEmployeeBenefitResponseDeductionReducesTaxableIncome =
-  /*@__PURE__*/ S.String;
+export const PutEmployeeBenefitResponseDeductionReducesTaxableIncome = S.String;
 
 export interface PutEmployeeBenefitResponse {
   /** Whether the employee benefit is active. */
@@ -11101,7 +11070,7 @@ export type PutEmployeeRehireRequestEmploymentStatus =
   | "variable"
   | "seasonal"
   | "not_set";
-export const PutEmployeeRehireRequestEmploymentStatus = /*@__PURE__*/ S.String;
+export const PutEmployeeRehireRequestEmploymentStatus = S.String;
 
 export interface PutEmployeeRehireRequest {
   /** The UUID of the employee */
@@ -11183,7 +11152,7 @@ export type PutGarnishmentRequestGarnishmentType =
   | "creditor_garnishment"
   | "federal_loan"
   | "other_garnishment";
-export const PutGarnishmentRequestGarnishmentType = /*@__PURE__*/ S.String;
+export const PutGarnishmentRequestGarnishmentType = S.String;
 
 export interface PutGarnishmentRequest {
   /** The UUID of the garnishment */
@@ -11529,7 +11498,7 @@ export type PutTimeTrackingTimeSheetRequestEntriesItemPayClassification =
   | "Overtime"
   | "Double overtime";
 export const PutTimeTrackingTimeSheetRequestEntriesItemPayClassification =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutTimeTrackingTimeSheetRequestEntriesItem {
   /** Hours worked for this pay classification. Should be passed as number with up to 3 decimal places. */
@@ -11624,7 +11593,7 @@ export type PutV1SalaryEstimatesIdRequestOccupationsItemExperienceLevel =
   | "skilled"
   | "expert";
 export const PutV1SalaryEstimatesIdRequestOccupationsItemExperienceLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutV1SalaryEstimatesIdRequestOccupationsItem {
   /** Bureau of Labor Statistics (BLS) occupation code */
@@ -11723,8 +11692,7 @@ export type PutWebhookSubscriptionUuidRequestSubscriptionTypesItem =
   | "PeopleBatch"
   | "Signatory"
   | "TimeOffRequest";
-export const PutWebhookSubscriptionUuidRequestSubscriptionTypesItem =
-  /*@__PURE__*/ S.String;
+export const PutWebhookSubscriptionUuidRequestSubscriptionTypesItem = S.String;
 
 /** The types of events to subscribe to. */
 export type PutWebhookSubscriptionUuidRequestSubscriptionTypesList = Array<

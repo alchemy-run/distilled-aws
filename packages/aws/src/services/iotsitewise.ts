@@ -319,7 +319,7 @@ export type DataSegmentErrorCode =
   | "LIMIT_EXCEEDED"
   | "CONFLICTING_OPERATION"
   | (string & {});
-export const DataSegmentErrorCode = /*@__PURE__*/ S.String;
+export const DataSegmentErrorCode = S.String;
 
 export type DataSegmentErrorMessage = string;
 export interface FailedDataSegmentAssociation {
@@ -387,7 +387,7 @@ export const BatchAssociateProjectAssetsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "BatchAssociateProjectAssetsRequest",
 }) as any as S.Schema<BatchAssociateProjectAssetsRequest>;
 export type AssetErrorCode = "INTERNAL_FAILURE" | (string & {});
-export const AssetErrorCode = /*@__PURE__*/ S.String;
+export const AssetErrorCode = S.String;
 
 export type AssetErrorMessage = string;
 export interface AssetErrorDetails {
@@ -632,18 +632,18 @@ export type AggregateType =
   | "SUM"
   | "STANDARD_DEVIATION"
   | (string & {});
-export const AggregateType = /*@__PURE__*/ S.String;
+export const AggregateType = S.String;
 
 export type AggregateTypes = AggregateType[];
 export const AggregateTypes = /*@__PURE__*/ S.Array(AggregateType);
 export type Resolution = string;
 export type Quality = "GOOD" | "BAD" | "UNCERTAIN" | (string & {});
-export const Quality = /*@__PURE__*/ S.String;
+export const Quality = S.String;
 
 export type Qualities = Quality[];
 export const Qualities = /*@__PURE__*/ S.Array(Quality);
 export type TimeOrdering = "ASCENDING" | "DESCENDING" | (string & {});
-export const TimeOrdering = /*@__PURE__*/ S.String;
+export const TimeOrdering = S.String;
 
 export interface BatchGetAssetPropertyAggregatesEntry {
   entryId: string;
@@ -710,7 +710,7 @@ export type BatchGetAssetPropertyAggregatesErrorCode =
   | "InvalidRequestException"
   | "AccessDeniedException"
   | (string & {});
-export const BatchGetAssetPropertyAggregatesErrorCode = /*@__PURE__*/ S.String;
+export const BatchGetAssetPropertyAggregatesErrorCode = S.String;
 
 export type ErrorMessage = string;
 export interface BatchGetAssetPropertyAggregatesErrorEntry {
@@ -782,7 +782,7 @@ export type BatchGetAssetPropertyAggregatesSuccessEntries =
 export const BatchGetAssetPropertyAggregatesSuccessEntries =
   /*@__PURE__*/ S.Array(BatchGetAssetPropertyAggregatesSuccessEntry);
 export type BatchEntryCompletionStatus = "SUCCESS" | "ERROR" | (string & {});
-export const BatchEntryCompletionStatus = /*@__PURE__*/ S.String;
+export const BatchEntryCompletionStatus = S.String;
 
 export interface BatchGetAssetPropertyAggregatesErrorInfo {
   errorCode: BatchGetAssetPropertyAggregatesErrorCode;
@@ -880,7 +880,7 @@ export type BatchGetAssetPropertyValueErrorCode =
   | "InvalidRequestException"
   | "AccessDeniedException"
   | (string & {});
-export const BatchGetAssetPropertyValueErrorCode = /*@__PURE__*/ S.String;
+export const BatchGetAssetPropertyValueErrorCode = S.String;
 
 export interface BatchGetAssetPropertyValueErrorEntry {
   errorCode: BatchGetAssetPropertyValueErrorCode;
@@ -907,7 +907,7 @@ export type PropertyValueIntegerValue = number;
 export type PropertyValueDoubleValue = number;
 export type PropertyValueBooleanValue = boolean;
 export type RawValueType = "D" | "B" | "S" | "I" | "U" | (string & {});
-export const RawValueType = /*@__PURE__*/ S.String;
+export const RawValueType = S.String;
 
 export interface PropertyValueNullValue {
   valueType: RawValueType;
@@ -1073,8 +1073,7 @@ export type BatchGetAssetPropertyValueHistoryErrorCode =
   | "InvalidRequestException"
   | "AccessDeniedException"
   | (string & {});
-export const BatchGetAssetPropertyValueHistoryErrorCode =
-  /*@__PURE__*/ S.String;
+export const BatchGetAssetPropertyValueHistoryErrorCode = S.String;
 
 export interface BatchGetAssetPropertyValueHistoryErrorEntry {
   errorCode: BatchGetAssetPropertyValueHistoryErrorCode;
@@ -1220,7 +1219,7 @@ export type BatchPutAssetPropertyValueErrorCode =
   | "TimestampOutOfRangeException"
   | "AccessDeniedException"
   | (string & {});
-export const BatchPutAssetPropertyValueErrorCode = /*@__PURE__*/ S.String;
+export const BatchPutAssetPropertyValueErrorCode = S.String;
 
 export type Timestamps = TimeInNanos[];
 export const Timestamps = /*@__PURE__*/ S.Array(TimeInNanos);
@@ -1296,7 +1295,7 @@ export type EnrichmentJobStatus =
   | "TIMED_OUT"
   | "CANCELLED"
   | (string & {});
-export const EnrichmentJobStatus = /*@__PURE__*/ S.String;
+export const EnrichmentJobStatus = S.String;
 
 export interface CancelEnrichmentJobResponse {
   jobId: string;
@@ -1345,7 +1344,7 @@ export type PipelineExecutionState =
   | "CANCELLING"
   | "CANCELLED"
   | (string & {});
-export const PipelineExecutionState = /*@__PURE__*/ S.String;
+export const PipelineExecutionState = S.String;
 
 export interface CancelPipelineExecutionResponse {
   state: PipelineExecutionState;
@@ -1388,7 +1387,7 @@ export type QueryStatus =
   | "CANCELED"
   | "CANCELING"
   | (string & {});
-export const QueryStatus = /*@__PURE__*/ S.String;
+export const QueryStatus = S.String;
 
 export interface CancelQueryResponse {
   queryId: string;
@@ -1468,7 +1467,7 @@ export const Resource = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Resource" }) as any as S.Schema<Resource>;
 export type Permission = "ADMINISTRATOR" | "VIEWER" | (string & {});
-export const Permission = /*@__PURE__*/ S.String;
+export const Permission = S.String;
 
 export type TagKey = string;
 export type TagValue = string;
@@ -1552,7 +1551,7 @@ export type ApplicationStatus =
   | "ACTIVE"
   | "DELETING"
   | (string & {});
-export const ApplicationStatus = /*@__PURE__*/ S.String;
+export const ApplicationStatus = S.String;
 
 export interface CreateApplicationResponse {
   arn: string;
@@ -1612,16 +1611,16 @@ export type AssetState =
   | "DELETING"
   | "FAILED"
   | (string & {});
-export const AssetState = /*@__PURE__*/ S.String;
+export const AssetState = S.String;
 
 export type ErrorCode = "VALIDATION_ERROR" | "INTERNAL_FAILURE" | (string & {});
-export const ErrorCode = /*@__PURE__*/ S.String;
+export const ErrorCode = S.String;
 
 export type DetailedErrorCode =
   | "INCOMPATIBLE_COMPUTE_LOCATION"
   | "INCOMPATIBLE_FORWARDING_CONFIGURATION"
   | (string & {});
-export const DetailedErrorCode = /*@__PURE__*/ S.String;
+export const DetailedErrorCode = S.String;
 
 export type DetailedErrorMessage = string;
 export interface DetailedError {
@@ -1667,7 +1666,7 @@ export type AssetModelType =
   | "COMPONENT_MODEL"
   | "INTERFACE"
   | (string & {});
-export const AssetModelType = /*@__PURE__*/ S.String;
+export const AssetModelType = S.String;
 
 export type PropertyDataType =
   | "STRING"
@@ -1679,7 +1678,7 @@ export type PropertyDataType =
   | "ANNOTATION"
   | "JSON"
   | (string & {});
-export const PropertyDataType = /*@__PURE__*/ S.String;
+export const PropertyDataType = S.String;
 
 export type PropertyUnit = string;
 export type DefaultValue = string;
@@ -1690,7 +1689,7 @@ export const Attribute = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ defaultValue: S.optional(S.String) }),
 ).annotate({ identifier: "Attribute" }) as any as S.Schema<Attribute>;
 export type ForwardingConfigState = "DISABLED" | "ENABLED" | (string & {});
-export const ForwardingConfigState = /*@__PURE__*/ S.String;
+export const ForwardingConfigState = S.String;
 
 export interface ForwardingConfig {
   state: ForwardingConfigState;
@@ -1754,7 +1753,7 @@ export const ExpressionVariable = /*@__PURE__*/ S.suspend(() =>
 export type ExpressionVariables = ExpressionVariable[];
 export const ExpressionVariables = /*@__PURE__*/ S.Array(ExpressionVariable);
 export type ComputeLocation = "EDGE" | "CLOUD" | (string & {});
-export const ComputeLocation = /*@__PURE__*/ S.String;
+export const ComputeLocation = S.String;
 
 export interface TransformProcessingConfig {
   computeLocation: ComputeLocation;
@@ -1947,7 +1946,7 @@ export type AssetModelState =
   | "DELETING"
   | "FAILED"
   | (string & {});
-export const AssetModelState = /*@__PURE__*/ S.String;
+export const AssetModelState = S.String;
 
 export interface AssetModelStatus {
   state: AssetModelState;
@@ -1975,7 +1974,7 @@ export const CreateAssetModelResponse = /*@__PURE__*/ S.suspend(() =>
 export type ETag = string;
 export type SelectAll = string;
 export type AssetModelVersionType = "LATEST" | "ACTIVE" | (string & {});
-export const AssetModelVersionType = /*@__PURE__*/ S.String;
+export const AssetModelVersionType = S.String;
 
 export interface CreateAssetModelCompositeModelRequest {
   assetModelId: string;
@@ -2071,7 +2070,7 @@ export type ColumnName =
   | "QUALITY"
   | "VALUE"
   | (string & {});
-export const ColumnName = /*@__PURE__*/ S.String;
+export const ColumnName = S.String;
 
 export type ColumnNames = ColumnName[];
 export const ColumnNames = /*@__PURE__*/ S.Array(ColumnName);
@@ -2189,7 +2188,7 @@ export type JobStatus =
   | "FAILED"
   | "COMPLETED_WITH_FAILURES"
   | (string & {});
-export const JobStatus = /*@__PURE__*/ S.String;
+export const JobStatus = S.String;
 
 export interface CreateBulkImportJobResponse {
   jobId: string;
@@ -2319,7 +2318,7 @@ export type ComputationModelState =
   | "DELETING"
   | "FAILED"
   | (string & {});
-export const ComputationModelState = /*@__PURE__*/ S.String;
+export const ComputationModelState = S.String;
 
 export interface ComputationModelStatus {
   state: ComputationModelState;
@@ -2388,7 +2387,7 @@ export type DatasetTypeEnum =
   | "CURATED"
   | "EXTERNAL"
   | (string & {});
-export const DatasetTypeEnum = /*@__PURE__*/ S.String;
+export const DatasetTypeEnum = S.String;
 
 export interface SessionConfig {
   sessionStartTimestamp: TimeInNanos;
@@ -2414,13 +2413,13 @@ export const Metadata = /*@__PURE__*/ S.Record(
   S.String.pipe(S.optional),
 );
 export type DatasetSourceType = "KENDRA" | "SITEWISE" | (string & {});
-export const DatasetSourceType = /*@__PURE__*/ S.String;
+export const DatasetSourceType = S.String;
 
 export type DatasetSourceFormat =
   | "KNOWLEDGE_BASE"
   | "TIMESERIES"
   | (string & {});
-export const DatasetSourceFormat = /*@__PURE__*/ S.String;
+export const DatasetSourceFormat = S.String;
 
 export interface KendraSourceDetail {
   knowledgeBaseArn: string;
@@ -2493,7 +2492,7 @@ export type DatasetState =
   | "DELETING"
   | "FAILED"
   | (string & {});
-export const DatasetState = /*@__PURE__*/ S.String;
+export const DatasetState = S.String;
 
 export interface DatasetStatus {
   state: DatasetState;
@@ -2559,7 +2558,7 @@ export type ExportDataType =
   | "TELEMETRY"
   | "ANNOTATION"
   | (string & {});
-export const ExportDataType = /*@__PURE__*/ S.String;
+export const ExportDataType = S.String;
 
 export type ExportDataTypeList = ExportDataType[];
 export const ExportDataTypeList = /*@__PURE__*/ S.Array(ExportDataType);
@@ -2710,7 +2709,7 @@ export type CoreDeviceOperatingSystem =
   | "LINUX_AMD64"
   | "WINDOWS_AMD64"
   | (string & {});
-export const CoreDeviceOperatingSystem = /*@__PURE__*/ S.String;
+export const CoreDeviceOperatingSystem = S.String;
 
 export interface GreengrassV2 {
   coreDeviceThingName: string;
@@ -2838,7 +2837,7 @@ export type ResourceErrorCode =
   | "VALIDATION_ERROR"
   | "INTERNAL_FAILURE"
   | (string & {});
-export const ResourceErrorCode = /*@__PURE__*/ S.String;
+export const ResourceErrorCode = S.String;
 
 export interface ResourceError {
   code?: ResourceErrorCode;
@@ -2857,7 +2856,7 @@ export type ResourceState =
   | "DELETING"
   | "FAILED"
   | (string & {});
-export const ResourceState = /*@__PURE__*/ S.String;
+export const ResourceState = S.String;
 
 export interface ResourceStatus {
   error?: ResourceError;
@@ -2888,7 +2887,7 @@ export const CreatePipelineResponse = /*@__PURE__*/ S.suspend(() =>
 export type Email = string | redacted.Redacted<string>;
 export type ImageFileData = Uint8Array;
 export type ImageFileType = "PNG" | (string & {});
-export const ImageFileType = /*@__PURE__*/ S.String;
+export const ImageFileType = S.String;
 
 export interface ImageFile {
   data: Uint8Array;
@@ -2898,7 +2897,7 @@ export const ImageFile = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ data: T.Blob, type: ImageFileType }),
 ).annotate({ identifier: "ImageFile" }) as any as S.Schema<ImageFile>;
 export type AuthMode = "IAM" | "SSO" | (string & {});
-export const AuthMode = /*@__PURE__*/ S.String;
+export const AuthMode = S.String;
 
 export interface Alarms {
   alarmRoleArn: string;
@@ -2914,7 +2913,7 @@ export type PortalType =
   | "SITEWISE_PORTAL_V1"
   | "SITEWISE_PORTAL_V2"
   | (string & {});
-export const PortalType = /*@__PURE__*/ S.String;
+export const PortalType = S.String;
 
 export type PortalTypeKey = string;
 export type PortalTools = string[];
@@ -2984,14 +2983,14 @@ export type PortalState =
   | "ACTIVE"
   | "FAILED"
   | (string & {});
-export const PortalState = /*@__PURE__*/ S.String;
+export const PortalState = S.String;
 
 export type MonitorErrorCode =
   | "INTERNAL_FAILURE"
   | "VALIDATION_ERROR"
   | "LIMIT_EXCEEDED"
   | (string & {});
-export const MonitorErrorCode = /*@__PURE__*/ S.String;
+export const MonitorErrorCode = S.String;
 
 export type MonitorErrorMessage = string;
 export interface MonitorErrorDetails {
@@ -3074,7 +3073,7 @@ export type ProcessingType =
   | "GENERIC_COMPUTE_PROCESSING"
   | "HARDWARE_ACCELERATED_PROCESSING"
   | (string & {});
-export const ProcessingType = /*@__PURE__*/ S.String;
+export const ProcessingType = S.String;
 
 export type ProcessingUnit =
   | "UNITS_2"
@@ -3092,7 +3091,7 @@ export type ProcessingUnit =
   | "UNITS_84"
   | "UNITS_96"
   | (string & {});
-export const ProcessingUnit = /*@__PURE__*/ S.String;
+export const ProcessingUnit = S.String;
 
 export type CommandList = string[];
 export const CommandList = /*@__PURE__*/ S.Array(S.String);
@@ -3174,7 +3173,7 @@ export type EncryptionType =
   | "SITEWISE_DEFAULT_ENCRYPTION"
   | "KMS_BASED_ENCRYPTION"
   | (string & {});
-export const EncryptionType = /*@__PURE__*/ S.String;
+export const EncryptionType = S.String;
 
 export type KmsKeyId = string;
 export interface WorkspaceEncryptionConfiguration {
@@ -3220,7 +3219,7 @@ export type WorkspaceState =
   | "DELETING"
   | "FAILED"
   | (string & {});
-export const WorkspaceState = /*@__PURE__*/ S.String;
+export const WorkspaceState = S.String;
 
 export interface WorkspaceErrorDetails {
   code: ErrorCode;
@@ -3986,7 +3985,7 @@ export const DescribeAssetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DescribeAssetRequest>;
 export type PropertyNotificationTopic = string;
 export type PropertyNotificationState = "ENABLED" | "DISABLED" | (string & {});
-export const PropertyNotificationState = /*@__PURE__*/ S.String;
+export const PropertyNotificationState = S.String;
 
 export interface PropertyNotification {
   topic: string;
@@ -4743,7 +4742,7 @@ export const DescribeComputationModelResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeComputationModelResponse",
 }) as any as S.Schema<DescribeComputationModelResponse>;
 export type ResolveToResourceType = "ASSET" | (string & {});
-export const ResolveToResourceType = /*@__PURE__*/ S.String;
+export const ResolveToResourceType = S.String;
 
 export interface DescribeComputationModelExecutionSummaryRequest {
   computationModelId: string;
@@ -4869,7 +4868,7 @@ export type DatasetEnrichmentStatus =
   | "PARTIALLY_ENRICHED"
   | "NOT_ENRICHED"
   | (string & {});
-export const DatasetEnrichmentStatus = /*@__PURE__*/ S.String;
+export const DatasetEnrichmentStatus = S.String;
 
 export interface DatasetEnrichmentEntry {
   status: DatasetEnrichmentStatus;
@@ -4958,7 +4957,7 @@ export type DatasetExportJobStatus =
   | "COMPLETED_WITH_ERRORS"
   | "FAILED"
   | (string & {});
-export const DatasetExportJobStatus = /*@__PURE__*/ S.String;
+export const DatasetExportJobStatus = S.String;
 
 export interface DescribeDatasetExportJobResponse {
   jobId: string;
@@ -5005,7 +5004,7 @@ export type ConfigurationState =
   | "UPDATE_IN_PROGRESS"
   | "UPDATE_FAILED"
   | (string & {});
-export const ConfigurationState = /*@__PURE__*/ S.String;
+export const ConfigurationState = S.String;
 
 export interface ConfigurationErrorDetails {
   code: ErrorCode;
@@ -5068,7 +5067,7 @@ export const DescribeEnrichmentJobRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeEnrichmentJobRequest",
 }) as any as S.Schema<DescribeEnrichmentJobRequest>;
 export type JobType = "EVENT_DETECTION" | (string & {});
-export const JobType = /*@__PURE__*/ S.String;
+export const JobType = S.String;
 
 export interface DescribeEnrichmentJobResponse {
   jobId: string;
@@ -5116,7 +5115,7 @@ export const DescribeExecutionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeExecutionRequest",
 }) as any as S.Schema<DescribeExecutionRequest>;
 export type ExecutionState = "RUNNING" | "COMPLETED" | "FAILED" | (string & {});
-export const ExecutionState = /*@__PURE__*/ S.String;
+export const ExecutionState = S.String;
 
 export interface ExecutionStatus {
   state: ExecutionState;
@@ -5197,7 +5196,7 @@ export type CapabilitySyncStatus =
   | "UNKNOWN"
   | "NOT_APPLICABLE"
   | (string & {});
-export const CapabilitySyncStatus = /*@__PURE__*/ S.String;
+export const CapabilitySyncStatus = S.String;
 
 export interface GatewayCapabilitySummary {
   capabilityNamespace: string;
@@ -5302,7 +5301,7 @@ export const DescribeLoggingOptionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeLoggingOptionsRequest",
 }) as any as S.Schema<DescribeLoggingOptionsRequest>;
 export type LoggingLevel = "ERROR" | "INFO" | "OFF" | (string & {});
-export const LoggingLevel = /*@__PURE__*/ S.String;
+export const LoggingLevel = S.String;
 
 export interface LoggingOptions {
   level: LoggingLevel;
@@ -5410,7 +5409,7 @@ export type PipelineErrorCode =
   | "EXECUTION_ERROR"
   | "TIMED_OUT"
   | (string & {});
-export const PipelineErrorCode = /*@__PURE__*/ S.String;
+export const PipelineErrorCode = S.String;
 
 export type DetailedPipelineErrorCode =
   | "VALIDATION_ERROR"
@@ -5418,7 +5417,7 @@ export type DetailedPipelineErrorCode =
   | "EXECUTION_ERROR"
   | "TIMED_OUT"
   | (string & {});
-export const DetailedPipelineErrorCode = /*@__PURE__*/ S.String;
+export const DetailedPipelineErrorCode = S.String;
 
 export interface DetailedPipelineError {
   code: DetailedPipelineErrorCode;
@@ -5486,7 +5485,7 @@ export type ComputeNodeExecutionState =
   | "SUCCEEDED"
   | "FAILED"
   | (string & {});
-export const ComputeNodeExecutionState = /*@__PURE__*/ S.String;
+export const ComputeNodeExecutionState = S.String;
 
 export type ComputeNodeErrorCode =
   | "VALIDATION_ERROR"
@@ -5494,7 +5493,7 @@ export type ComputeNodeErrorCode =
   | "EXECUTION_ERROR"
   | "TIMED_OUT"
   | (string & {});
-export const ComputeNodeErrorCode = /*@__PURE__*/ S.String;
+export const ComputeNodeErrorCode = S.String;
 
 export interface ComputeNodeExecutionStateDetails {
   code: ComputeNodeErrorCode;
@@ -5787,11 +5786,11 @@ export type SearchStatus =
   | "SUCCEEDED"
   | "FAILED"
   | (string & {});
-export const SearchStatus = /*@__PURE__*/ S.String;
+export const SearchStatus = S.String;
 
 export type SearchQueryStatement = string | redacted.Redacted<string>;
 export type SearchType = "DEEP" | "QUICK" | (string & {});
-export const SearchType = /*@__PURE__*/ S.String;
+export const SearchType = S.String;
 
 export type GroupId = string;
 export interface DescribeSearchResponse {
@@ -5837,7 +5836,7 @@ export type StorageType =
   | "SITEWISE_DEFAULT_STORAGE"
   | "MULTI_LAYER_STORAGE"
   | (string & {});
-export const StorageType = /*@__PURE__*/ S.String;
+export const StorageType = S.String;
 
 export interface CustomerManagedS3Storage {
   s3ResourceArn: string;
@@ -5860,7 +5859,7 @@ export type DisassociatedDataStorageState =
   | "ENABLED"
   | "DISABLED"
   | (string & {});
-export const DisassociatedDataStorageState = /*@__PURE__*/ S.String;
+export const DisassociatedDataStorageState = S.String;
 
 export type NumberOfDays = number;
 export type Unlimited = boolean;
@@ -5877,7 +5876,7 @@ export const RetentionPeriod = /*@__PURE__*/ S.suspend(() =>
   identifier: "RetentionPeriod",
 }) as any as S.Schema<RetentionPeriod>;
 export type WarmTierState = "ENABLED" | "DISABLED" | (string & {});
-export const WarmTierState = /*@__PURE__*/ S.String;
+export const WarmTierState = S.String;
 
 export interface WarmTierRetentionPeriod {
   numberOfDays?: number;
@@ -6210,7 +6209,7 @@ export type ScalarType =
   | "TIMESTAMP"
   | "STRING"
   | (string & {});
-export const ScalarType = /*@__PURE__*/ S.String;
+export const ScalarType = S.String;
 
 export interface ColumnType {
   scalarType?: ScalarType;
@@ -6453,7 +6452,7 @@ export const GetCaptureDataRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCaptureDataRequest>;
 export type CaptureBlob = Uint8Array;
 export type VideoDataType = "VIDEO-MP4" | (string & {});
-export const VideoDataType = /*@__PURE__*/ S.String;
+export const VideoDataType = S.String;
 
 export interface GetCaptureDataResponse {
   data: Uint8Array;
@@ -6921,10 +6920,10 @@ export const InvokeAssistantResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "InvokeAssistantResponse",
 }) as any as S.Schema<InvokeAssistantResponse>;
 export type IdentityType = "USER" | "GROUP" | "IAM" | (string & {});
-export const IdentityType = /*@__PURE__*/ S.String;
+export const IdentityType = S.String;
 
 export type ResourceType = "PORTAL" | "PROJECT" | (string & {});
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 export type MaxResults = number;
 export interface ListAccessPoliciesRequest {
@@ -6993,7 +6992,7 @@ export const ListAccessPoliciesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAccessPoliciesResponse",
 }) as any as S.Schema<ListAccessPoliciesResponse>;
 export type TargetResourceType = "ASSET" | "COMPUTATION_MODEL" | (string & {});
-export const TargetResourceType = /*@__PURE__*/ S.String;
+export const TargetResourceType = S.String;
 
 export interface ListActionsRequest {
   targetResourceType: TargetResourceType;
@@ -7152,7 +7151,7 @@ export const ListAssetModelCompositeModelsResponse = /*@__PURE__*/ S.suspend(
   identifier: "ListAssetModelCompositeModelsResponse",
 }) as any as S.Schema<ListAssetModelCompositeModelsResponse>;
 export type ListAssetModelPropertiesFilter = "ALL" | "BASE" | (string & {});
-export const ListAssetModelPropertiesFilter = /*@__PURE__*/ S.String;
+export const ListAssetModelPropertiesFilter = S.String;
 
 export interface ListAssetModelPropertiesRequest {
   assetModelId: string;
@@ -7317,7 +7316,7 @@ export const ListAssetModelsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAssetModelsResponse",
 }) as any as S.Schema<ListAssetModelsResponse>;
 export type ListAssetPropertiesFilter = "ALL" | "BASE" | (string & {});
-export const ListAssetPropertiesFilter = /*@__PURE__*/ S.String;
+export const ListAssetPropertiesFilter = S.String;
 
 export interface ListAssetPropertiesRequest {
   assetId: string;
@@ -7382,7 +7381,7 @@ export const ListAssetPropertiesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAssetPropertiesResponse",
 }) as any as S.Schema<ListAssetPropertiesResponse>;
 export type TraversalType = "PATH_TO_ROOT" | (string & {});
-export const TraversalType = /*@__PURE__*/ S.String;
+export const TraversalType = S.String;
 
 export interface ListAssetRelationshipsRequest {
   assetId: string;
@@ -7422,7 +7421,7 @@ export const AssetHierarchyInfo = /*@__PURE__*/ S.suspend(() =>
   identifier: "AssetHierarchyInfo",
 }) as any as S.Schema<AssetHierarchyInfo>;
 export type AssetRelationshipType = "HIERARCHY" | (string & {});
-export const AssetRelationshipType = /*@__PURE__*/ S.String;
+export const AssetRelationshipType = S.String;
 
 export interface AssetRelationshipSummary {
   hierarchyInfo?: AssetHierarchyInfo;
@@ -7453,7 +7452,7 @@ export const ListAssetRelationshipsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAssetRelationshipsResponse",
 }) as any as S.Schema<ListAssetRelationshipsResponse>;
 export type ListAssetsFilter = "ALL" | "TOP_LEVEL" | (string & {});
-export const ListAssetsFilter = /*@__PURE__*/ S.String;
+export const ListAssetsFilter = S.String;
 
 export interface ListAssetsRequest {
   nextToken?: string;
@@ -7518,7 +7517,7 @@ export const ListAssetsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAssetsResponse",
 }) as any as S.Schema<ListAssetsResponse>;
 export type TraversalDirection = "PARENT" | "CHILD" | (string & {});
-export const TraversalDirection = /*@__PURE__*/ S.String;
+export const TraversalDirection = S.String;
 
 export interface ListAssociatedAssetsRequest {
   assetId: string;
@@ -7602,7 +7601,7 @@ export type ListBulkImportJobsFilter =
   | "COMPLETED_WITH_FAILURES"
   | "COMPLETED"
   | (string & {});
-export const ListBulkImportJobsFilter = /*@__PURE__*/ S.String;
+export const ListBulkImportJobsFilter = S.String;
 
 export interface ListBulkImportJobsRequest {
   nextToken?: string;
@@ -7890,7 +7889,7 @@ export const ListComputationModelResolveToResourcesResponse =
     identifier: "ListComputationModelResolveToResourcesResponse",
   }) as any as S.Schema<ListComputationModelResolveToResourcesResponse>;
 export type ComputationModelType = "ANOMALY_DETECTION" | (string & {});
-export const ComputationModelType = /*@__PURE__*/ S.String;
+export const ComputationModelType = S.String;
 
 export interface ListComputationModelsRequest {
   computationModelType?: ComputationModelType;
@@ -8106,7 +8105,7 @@ export const ListDatasetDataSegmentsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListDatasetDataSegmentsRequest",
 }) as any as S.Schema<ListDatasetDataSegmentsRequest>;
 export type EnrichmentStatus = "ENRICHED" | "NOT_ENRICHED" | (string & {});
-export const EnrichmentStatus = /*@__PURE__*/ S.String;
+export const EnrichmentStatus = S.String;
 
 export interface DataSegmentEnrichment {
   status: EnrichmentStatus;
@@ -8164,7 +8163,7 @@ export type DatasetExportJobFilter =
   | "COMPLETED_WITH_ERRORS"
   | "FAILED"
   | (string & {});
-export const DatasetExportJobFilter = /*@__PURE__*/ S.String;
+export const DatasetExportJobFilter = S.String;
 
 export type ListExportJobsMaxResults = number;
 export type ListExportJobsNextToken = string;
@@ -9072,7 +9071,7 @@ export const ListTasksResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTasksResponse",
 }) as any as S.Schema<ListTasksResponse>;
 export type ListTimeSeriesType = "ASSOCIATED" | "DISASSOCIATED" | (string & {});
-export const ListTimeSeriesType = /*@__PURE__*/ S.String;
+export const ListTimeSeriesType = S.String;
 
 export interface ListTimeSeriesRequest {
   nextToken?: string;

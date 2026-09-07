@@ -42,7 +42,7 @@ export class NotFound
 export type GetHeatmapsEventRequestAggregation =
   | "unique_visitors"
   | "total_count";
-export const GetHeatmapsEventRequestAggregation = /*@__PURE__*/ S.String;
+export const GetHeatmapsEventRequestAggregation = S.String;
 
 export interface GetHeatmapsEventRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -151,7 +151,7 @@ export const HeatmapEventsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<HeatmapEventsResponse>;
 
 export type ListHeatmapsRequestAggregation = "unique_visitors" | "total_count";
-export const ListHeatmapsRequestAggregation = /*@__PURE__*/ S.String;
+export const ListHeatmapsRequestAggregation = S.String;
 
 export interface ListHeatmapsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

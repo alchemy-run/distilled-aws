@@ -132,7 +132,7 @@ export const CancelSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of capture. */
 export type CaptureSubscriptionRequestCaptureType = "OUTSTANDING_BALANCE";
-export const CaptureSubscriptionRequestCaptureType = /*@__PURE__*/ S.String;
+export const CaptureSubscriptionRequestCaptureType = S.String;
 
 /** The currency and amount for a financial transaction, such as a balance or payment due. */
 export interface Money {
@@ -185,7 +185,7 @@ export type TransactionStatus =
   | "PENDING"
   | "REFUNDED"
   | "FAILED";
-export const TransactionStatus = /*@__PURE__*/ S.String;
+export const TransactionStatus = S.String;
 
 /** The breakdown details for the amount. Includes the gross, tax, fee, and shipping amounts. */
 export interface AmountWithBreakdown {
@@ -268,11 +268,11 @@ export const Transaction = /*@__PURE__*/ S.suspend(() =>
 
 /** The initial state of the plan. Allowed input values are CREATED and ACTIVE. */
 export type CreatePlanRequestStatus = "CREATED" | "INACTIVE" | "ACTIVE";
-export const CreatePlanRequestStatus = /*@__PURE__*/ S.String;
+export const CreatePlanRequestStatus = S.String;
 
 /** The pricing model for tiered plan. The `tiers` parameter is required. */
 export type PricingSchemeInputPricingModel = "VOLUME" | "TIERED";
-export const PricingSchemeInputPricingModel = /*@__PURE__*/ S.String;
+export const PricingSchemeInputPricingModel = S.String;
 
 /** The pricing tier details. */
 export interface PricingTier {
@@ -317,7 +317,7 @@ export const PricingSchemeInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The interval at which the subscription is charged or billed. */
 export type FrequencyIntervalUnit = "DAY" | "WEEK" | "MONTH" | "YEAR";
-export const FrequencyIntervalUnit = /*@__PURE__*/ S.String;
+export const FrequencyIntervalUnit = S.String;
 
 /** The frequency of the billing cycle. */
 export interface Frequency {
@@ -335,7 +335,7 @@ export const Frequency = /*@__PURE__*/ S.suspend(() =>
 
 /** The tenure type of the billing cycle. In case of a plan having trial cycle, only 2 trial cycles are allowed per plan. */
 export type BillingCycleInputTenureType = "REGULAR" | "TRIAL";
-export const BillingCycleInputTenureType = /*@__PURE__*/ S.String;
+export const BillingCycleInputTenureType = S.String;
 
 /** The billing cycle details. */
 export interface BillingCycleInput {
@@ -370,7 +370,7 @@ export const BillingCycleListInput = /*@__PURE__*/ S.Array(
 
 /** The action to take on the subscription if the initial payment for the setup fails. */
 export type PaymentPreferencesSetupFeeFailureAction = "CONTINUE" | "CANCEL";
-export const PaymentPreferencesSetupFeeFailureAction = /*@__PURE__*/ S.String;
+export const PaymentPreferencesSetupFeeFailureAction = S.String;
 
 /** The payment preferences for a subscription. */
 export interface PaymentPreferences {
@@ -450,11 +450,11 @@ export const CreatePlanRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The plan status. */
 export type PlanStatus = "CREATED" | "INACTIVE" | "ACTIVE";
-export const PlanStatus = /*@__PURE__*/ S.String;
+export const PlanStatus = S.String;
 
 /** The pricing model for tiered plan. The `tiers` parameter is required. */
 export type PricingSchemePricingModel = "VOLUME" | "TIERED";
-export const PricingSchemePricingModel = /*@__PURE__*/ S.String;
+export const PricingSchemePricingModel = S.String;
 
 /** The pricing scheme details. */
 export interface PricingScheme {
@@ -483,7 +483,7 @@ export const PricingScheme = /*@__PURE__*/ S.suspend(() =>
 
 /** The tenure type of the billing cycle. In case of a plan having trial cycle, only 2 trial cycles are allowed per plan. */
 export type BillingCycleTenureType = "REGULAR" | "TRIAL";
-export const BillingCycleTenureType = /*@__PURE__*/ S.String;
+export const BillingCycleTenureType = S.String;
 
 /** The billing cycle details. */
 export interface BillingCycle {
@@ -524,7 +524,7 @@ export type LinkDescriptionMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const LinkDescriptionMethod = /*@__PURE__*/ S.String;
+export const LinkDescriptionMethod = S.String;
 
 /** The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information. */
 export interface LinkDescription {
@@ -609,7 +609,7 @@ export const SubscriberRequestName = /*@__PURE__*/ S.suspend(() =>
 
 /** The phone type. */
 export type PhoneType = "FAX" | "HOME" | "MOBILE" | "OTHER" | "PAGER";
-export const PhoneType = /*@__PURE__*/ S.String;
+export const PhoneType = S.String;
 
 /** The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). */
 export interface PhoneWithTypePhoneNumber {
@@ -656,7 +656,7 @@ export type ShippingDetailType =
   | "PICKUP_IN_PERSON"
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
-export const ShippingDetailType = /*@__PURE__*/ S.String;
+export const ShippingDetailType = S.String;
 
 /** A classification for the method of purchase fulfillment. */
 export type ShippingType =
@@ -664,7 +664,7 @@ export type ShippingType =
   | "PICKUP"
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
-export const ShippingType = /*@__PURE__*/ S.String;
+export const ShippingType = S.String;
 
 /** The options that the payee or merchant offers to the payer to ship or pick up their items. */
 export interface ShippingOption {
@@ -743,7 +743,7 @@ export const ShippingDetail = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of card. i.e Credit, Debit and so on. */
 export type CardType = "CREDIT" | "DEBIT" | "PREPAID" | "STORE" | "UNKNOWN";
-export const CardType = /*@__PURE__*/ S.String;
+export const CardType = S.String;
 
 /** The card network or brand. Applies to credit, debit, gift, and payment cards. */
 export type CardBrand =
@@ -771,7 +771,7 @@ export type CardBrand =
   | "GE"
   | "SYNCHRONY"
   | "UNKNOWN";
-export const CardBrand = /*@__PURE__*/ S.String;
+export const CardBrand = S.String;
 
 /** The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). */
 export type PaymentSourceCardBillingAddress = ShippingDetailAddress;
@@ -795,7 +795,7 @@ export const Customer = /*@__PURE__*/ S.suspend(() =>
 
 /** Defines how and when the payment source gets vaulted. */
 export type StoreInVaultInstruction = "ON_SUCCESS";
-export const StoreInVaultInstruction = /*@__PURE__*/ S.String;
+export const StoreInVaultInstruction = S.String;
 
 /** Basic vault instruction specification that can be extended by specific payment sources that supports vaulting. */
 export interface VaultInstructionBase {
@@ -815,7 +815,7 @@ export type CardVerificationMethod =
   | "SCA_WHEN_REQUIRED"
   | "3D_SECURE"
   | "AVS_CVV";
-export const CardVerificationMethod = /*@__PURE__*/ S.String;
+export const CardVerificationMethod = S.String;
 
 /** The API caller can opt in to verify the card through PayPal offered verification services (e.g. Smart Dollar Auth, 3DS). */
 export interface CardVerification {
@@ -918,17 +918,17 @@ export type ApplicationContextShippingPreference =
   | "GET_FROM_FILE"
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
-export const ApplicationContextShippingPreference = /*@__PURE__*/ S.String;
+export const ApplicationContextShippingPreference = S.String;
 
 /** Configures the label name to `Continue` or `Subscribe Now` for subscription consent experience. */
 export type ApplicationContextUserAction = "CONTINUE" | "SUBSCRIBE_NOW";
-export const ApplicationContextUserAction = /*@__PURE__*/ S.String;
+export const ApplicationContextUserAction = S.String;
 
 /** The merchant-preferred payment methods. */
 export type PayeePaymentMethodPreference =
   | "UNRESTRICTED"
   | "IMMEDIATE_PAYMENT_REQUIRED";
-export const PayeePaymentMethodPreference = /*@__PURE__*/ S.String;
+export const PayeePaymentMethodPreference = S.String;
 
 /** The customer and merchant payment preferences. */
 export interface ApplicationContextPaymentMethod {
@@ -1002,8 +1002,7 @@ export const BillingCycleOverrideListInput = /*@__PURE__*/ S.Array(
 export type PaymentPreferencesOverrideSetupFeeFailureAction =
   | "CONTINUE"
   | "CANCEL";
-export const PaymentPreferencesOverrideSetupFeeFailureAction =
-  /*@__PURE__*/ S.String;
+export const PaymentPreferencesOverrideSetupFeeFailureAction = S.String;
 
 /** The payment preferences to override at subscription level. */
 export interface PaymentPreferencesOverride {
@@ -1114,7 +1113,7 @@ export type CreateSubscriptionResponseStatus =
   | "SUSPENDED"
   | "CANCELLED"
   | "EXPIRED";
-export const CreateSubscriptionResponseStatus = /*@__PURE__*/ S.String;
+export const CreateSubscriptionResponseStatus = S.String;
 
 /** The name of the party. */
 export type SubscriberName = SubscriberRequestName;
@@ -1128,15 +1127,15 @@ export const CardBrandList = /*@__PURE__*/ S.Array(
 
 /** Liability shift indicator. The outcome of the issuer's authentication. */
 export type LiabilityShift = "NO" | "POSSIBLE" | "UNKNOWN";
-export const LiabilityShift = /*@__PURE__*/ S.String;
+export const LiabilityShift = S.String;
 
 /** Transactions status result identifier. The outcome of the issuer's authentication. */
 export type ParesStatus = "Y" | "N" | "U" | "A" | "C" | "R" | "D" | "I";
-export const ParesStatus = /*@__PURE__*/ S.String;
+export const ParesStatus = S.String;
 
 /** Status of Authentication eligibility. */
 export type Enrolled = "Y" | "N" | "U" | "B";
-export const Enrolled = /*@__PURE__*/ S.String;
+export const Enrolled = S.String;
 
 /** Results of 3D Secure Authentication. */
 export interface ThreeDSecureAuthenticationResponse {
@@ -1170,7 +1169,7 @@ export const AuthenticationResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The vault status. */
 export type VaultResponseStatus = "VAULTED" | "CREATED" | "APPROVED";
-export const VaultResponseStatus = /*@__PURE__*/ S.String;
+export const VaultResponseStatus = S.String;
 
 /** The details about a customer in PayPal's system of record. */
 export interface VaultResponseCustomer {
@@ -1346,7 +1345,7 @@ export const Subscriber = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the billing cycle. */
 export type CycleExecutionTenureType = "REGULAR" | "TRIAL";
-export const CycleExecutionTenureType = /*@__PURE__*/ S.String;
+export const CycleExecutionTenureType = S.String;
 
 /** The regular and trial execution details for a billing cycle. */
 export interface CycleExecution {
@@ -1405,7 +1404,7 @@ export type FailedPaymentDetailsReasonCode =
   | "SENDING_LIMIT_EXCEEDED"
   | "TRANSACTION_RECEIVING_LIMIT_EXCEEDED"
   | "CURRENCY_MISMATCH";
-export const FailedPaymentDetailsReasonCode = /*@__PURE__*/ S.String;
+export const FailedPaymentDetailsReasonCode = S.String;
 
 /** The details for the failed payment of the subscription. */
 export interface FailedPaymentDetails {
@@ -1596,7 +1595,7 @@ export type GetSubscriptionResponseStatus =
   | "SUSPENDED"
   | "CANCELLED"
   | "EXPIRED";
-export const GetSubscriptionResponseStatus = /*@__PURE__*/ S.String;
+export const GetSubscriptionResponseStatus = S.String;
 
 /** The plan details. */
 export type GetSubscriptionResponsePlan = CreateSubscriptionResponsePlan;
@@ -1701,7 +1700,7 @@ export const PlanCollection = /*@__PURE__*/ S.suspend(() =>
 
 /** The operation. */
 export type PatchOp = "add" | "remove" | "replace" | "move" | "copy" | "test";
-export const PatchOp = /*@__PURE__*/ S.String;
+export const PatchOp = S.String;
 
 /** The JSON patch object to apply partial updates to resources. */
 export interface Patch {
@@ -1834,7 +1833,7 @@ export type SubscriptionsReviseRequestApplicationContextShippingPreference =
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const SubscriptionsReviseRequestApplicationContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The customer and merchant payment preferences. */
 export type SubscriptionsReviseRequestApplicationContextPaymentMethod =

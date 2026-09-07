@@ -105,13 +105,13 @@ export type SqlServerWorkloadFciTypeEnum =
   | "FCI_TYPE_UNSPECIFIED"
   | "SHARED_DISK"
   | "S2D";
-export const SqlServerWorkloadFciTypeEnum = /*@__PURE__*/ S.String;
+export const SqlServerWorkloadFciTypeEnum = S.String;
 
 export type ActiveDirectoryTypeEnum =
   | "ACTIVE_DIRECTORY_TYPE_UNSPECIFIED"
   | "GCP_MANAGED"
   | "SELF_MANAGED";
-export const ActiveDirectoryTypeEnum = /*@__PURE__*/ S.String;
+export const ActiveDirectoryTypeEnum = S.String;
 
 /** Active Directory details. */
 export interface ActiveDirectory {
@@ -142,7 +142,7 @@ export type DatabaseTenancyModelEnum =
   | "TENANCY_MODEL_UNSPECIFIED"
   | "SHARED"
   | "SOLE_TENANT";
-export const DatabaseTenancyModelEnum = /*@__PURE__*/ S.String;
+export const DatabaseTenancyModelEnum = S.String;
 
 /** Database details. */
 export interface Database {
@@ -189,7 +189,7 @@ export type SqlServerWorkloadDeploymentModelEnum =
   | "DEPLOYMENT_MODEL_UNSPECIFIED"
   | "HIGH_AVAILABILITY"
   | "SINGLE_INSTANCE";
-export const SqlServerWorkloadDeploymentModelEnum = /*@__PURE__*/ S.String;
+export const SqlServerWorkloadDeploymentModelEnum = S.String;
 
 export type SqlServerWorkloadSqlServerEditionEnum =
   | "SQL_SERVER_EDITION_TYPE_UNSPECIFIED"
@@ -197,7 +197,7 @@ export type SqlServerWorkloadSqlServerEditionEnum =
   | "SQL_SERVER_EDITION_TYPE_ENTERPRISE"
   | "SQL_SERVER_EDITION_TYPE_STANDARD"
   | "SQL_SERVER_EDITION_TYPE_WEB";
-export const SqlServerWorkloadSqlServerEditionEnum = /*@__PURE__*/ S.String;
+export const SqlServerWorkloadSqlServerEditionEnum = S.String;
 
 /** Pacemaker configuration. */
 export interface Pacemaker {
@@ -230,25 +230,25 @@ export type SqlServerWorkloadSqlServerVersionEnum =
   | "SQL_SERVER_VERSION_TYPE_2017"
   | "SQL_SERVER_VERSION_TYPE_2019"
   | "SQL_SERVER_VERSION_TYPE_2022";
-export const SqlServerWorkloadSqlServerVersionEnum = /*@__PURE__*/ S.String;
+export const SqlServerWorkloadSqlServerVersionEnum = S.String;
 
 export type SqlServerWorkloadOsImageTypeEnum =
   | "OS_IMAGE_TYPE_UNSPECIFIED"
   | "PUBLIC_IMAGE"
   | "CUSTOM_IMAGE";
-export const SqlServerWorkloadOsImageTypeEnum = /*@__PURE__*/ S.String;
+export const SqlServerWorkloadOsImageTypeEnum = S.String;
 
 export type SqlServerWorkloadEnvironmentTypeEnum =
   | "ENVIRONMENT_TYPE_UNSPECIFIED"
   | "NON_PRODUCTION"
   | "PRODUCTION";
-export const SqlServerWorkloadEnvironmentTypeEnum = /*@__PURE__*/ S.String;
+export const SqlServerWorkloadEnvironmentTypeEnum = S.String;
 
 export type SqlServerWorkloadHaTypeEnum =
   | "HA_TYPE_UNSPECIFIED"
   | "AOAG"
   | "FCI";
-export const SqlServerWorkloadHaTypeEnum = /*@__PURE__*/ S.String;
+export const SqlServerWorkloadHaTypeEnum = S.String;
 
 export type SqlServerWorkloadOperatingSystemTypeEnum =
   | "OPERATING_SYSTEM_TYPE_UNSPECIFIED"
@@ -256,13 +256,13 @@ export type SqlServerWorkloadOperatingSystemTypeEnum =
   | "UBUNTU"
   | "RED_HAT_ENTERPRISE_LINUX"
   | "SUSE";
-export const SqlServerWorkloadOperatingSystemTypeEnum = /*@__PURE__*/ S.String;
+export const SqlServerWorkloadOperatingSystemTypeEnum = S.String;
 
 export type SqlLocationDetailsInternetAccessEnum =
   | "INTERNET_ACCESS_UNSPECIFIED"
   | "ALLOW_EXTERNAL_IP"
   | "CONFIGURE_NAT";
-export const SqlLocationDetailsInternetAccessEnum = /*@__PURE__*/ S.String;
+export const SqlLocationDetailsInternetAccessEnum = S.String;
 
 /** Location and networking details for configuring SQL server workload. */
 export interface SqlLocationDetails {
@@ -429,13 +429,13 @@ export type SapSystemS4ConfigDeploymentModelEnum =
   | "DEPLOYMENT_MODEL_UNSPECIFIED"
   | "DISTRIBUTED"
   | "DISTRIBUTED_HA";
-export const SapSystemS4ConfigDeploymentModelEnum = /*@__PURE__*/ S.String;
+export const SapSystemS4ConfigDeploymentModelEnum = S.String;
 
 export type SapSystemS4ConfigScalingMethodEnum =
   | "SCALE_METHOD_UNSPECIFIED"
   | "SCALE_UP"
   | "SCALE_OUT";
-export const SapSystemS4ConfigScalingMethodEnum = /*@__PURE__*/ S.String;
+export const SapSystemS4ConfigScalingMethodEnum = S.String;
 
 /** Message for SAP instance details. */
 export interface DatabaseDetails {
@@ -478,7 +478,7 @@ export type LocationDetailsInternetAccessEnum =
   | "INTERNETACCESS_UNSPECIFIED"
   | "ALLOW_EXTERNAL_IP"
   | "CONFIGURE_NAT";
-export const LocationDetailsInternetAccessEnum = /*@__PURE__*/ S.String;
+export const LocationDetailsInternetAccessEnum = S.String;
 
 /** Message for SAP instance details. */
 export interface LocationDetails {
@@ -530,13 +530,13 @@ export type SapSystemS4ConfigVersionEnum =
   | "S4_HANA_2021"
   | "S4_HANA_2022"
   | "S4_HANA_2023";
-export const SapSystemS4ConfigVersionEnum = /*@__PURE__*/ S.String;
+export const SapSystemS4ConfigVersionEnum = S.String;
 
 export type SapSystemS4ConfigEnvironmentTypeEnum =
   | "ENVIRONMENT_TYPE_UNSPECIFIED"
   | "NON_PRODUCTION"
   | "PRODUCTION";
-export const SapSystemS4ConfigEnvironmentTypeEnum = /*@__PURE__*/ S.String;
+export const SapSystemS4ConfigEnvironmentTypeEnum = S.String;
 
 /** Message for SAP system workload. */
 export interface SapSystemS4Config {
@@ -614,14 +614,14 @@ export type DeploymentStateEnum =
   | "UPDATING"
   | "DELETING"
   | "FAILED";
-export const DeploymentStateEnum = /*@__PURE__*/ S.String;
+export const DeploymentStateEnum = S.String;
 
 export type DeploymentWorkloadTypeEnum =
   | "WORKLOAD_TYPE_UNSPECIFIED"
   | "SAP_S4"
   | "SQL_SERVER"
   | "ORACLE";
-export const DeploymentWorkloadTypeEnum = /*@__PURE__*/ S.String;
+export const DeploymentWorkloadTypeEnum = S.String;
 
 /** The Deployment object represents user intent for deploying a specific type of workload. */
 export interface Deployment {
@@ -757,7 +757,7 @@ export type ActuationOutputErrorCodeEnum =
   | "TERRAFORM_DELETION_FAILED"
   | "RESOURCE_IN_USE_IN_TERRAFORM_DELETION"
   | "ANSIBLE_START_FAILED";
-export const ActuationOutputErrorCodeEnum = /*@__PURE__*/ S.String;
+export const ActuationOutputErrorCodeEnum = S.String;
 
 /** Message for output of actuation. */
 export interface ActuationOutput {
@@ -807,7 +807,7 @@ export type ActuationStateEnum =
   | "POST_INFRA_CONFIGURING"
   | "INFRA_DESTROYING"
   | "TIMEOUT";
-export const ActuationStateEnum = /*@__PURE__*/ S.String;
+export const ActuationStateEnum = S.String;
 
 /** Message for output of deployment resource. */
 export interface DeploymentOutput {
@@ -925,14 +925,14 @@ export type EvaluationEvaluationTypeEnum =
   | "SAP"
   | "SQL_SERVER"
   | "OTHER";
-export const EvaluationEvaluationTypeEnum = /*@__PURE__*/ S.String;
+export const EvaluationEvaluationTypeEnum = S.String;
 
 export type ResourceStatusStateEnum =
   | "STATE_UNSPECIFIED"
   | "CREATING"
   | "ACTIVE"
   | "DELETING";
-export const ResourceStatusStateEnum = /*@__PURE__*/ S.String;
+export const ResourceStatusStateEnum = S.String;
 
 /** The lifecycle status of an Evaluation resource. */
 export interface ResourceStatus {
@@ -1267,7 +1267,7 @@ export type BackupPropertiesLatestBackupStatusEnum =
   | "BACKUP_STATE_UNSPECIFIED"
   | "BACKUP_STATE_SUCCESS"
   | "BACKUP_STATE_FAILURE";
-export const BackupPropertiesLatestBackupStatusEnum = /*@__PURE__*/ S.String;
+export const BackupPropertiesLatestBackupStatusEnum = S.String;
 
 /** Backup properties. */
 export interface BackupProperties {
@@ -1293,7 +1293,7 @@ export type DatabasePropertiesDatabaseTypeEnum =
   | "ORACLE"
   | "SQLSERVER"
   | "ASE";
-export const DatabasePropertiesDatabaseTypeEnum = /*@__PURE__*/ S.String;
+export const DatabasePropertiesDatabaseTypeEnum = S.String;
 
 /** Database Properties. */
 export interface DatabaseProperties {
@@ -1315,7 +1315,7 @@ export type SapComponentTopologyTypeEnum =
   | "TOPOLOGY_TYPE_UNSPECIFIED"
   | "TOPOLOGY_SCALE_UP"
   | "TOPOLOGY_SCALE_OUT";
-export const SapComponentTopologyTypeEnum = /*@__PURE__*/ S.String;
+export const SapComponentTopologyTypeEnum = S.String;
 
 export type CloudResourceKindEnum =
   | "RESOURCE_KIND_UNSPECIFIED"
@@ -1330,7 +1330,7 @@ export type CloudResourceKindEnum =
   | "RESOURCE_KIND_NETWORK"
   | "RESOURCE_KIND_PUBLIC_ADDRESS"
   | "RESOURCE_KIND_INSTANCE_GROUP";
-export const CloudResourceKindEnum = /*@__PURE__*/ S.String;
+export const CloudResourceKindEnum = S.String;
 
 /** Maintenance Event */
 export interface UpcomingMaintenanceEvent {
@@ -1364,7 +1364,7 @@ export type InstancePropertiesRolesItemEnum =
   | "INSTANCE_ROLE_APP_SERVER"
   | "INSTANCE_ROLE_HANA_PRIMARY"
   | "INSTANCE_ROLE_HANA_SECONDARY";
-export const InstancePropertiesRolesItemEnum = /*@__PURE__*/ S.String;
+export const InstancePropertiesRolesItemEnum = S.String;
 
 export type InstancePropertiesRolesItemEnumList =
   Array<InstancePropertiesRolesItemEnum>;
@@ -1379,7 +1379,7 @@ export type ServiceStatesStateEnum =
   | "FUNCTIONALITY_FAILURE"
   | "ENABLED"
   | "DISABLED";
-export const ServiceStatesStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStatesStateEnum = S.String;
 
 /** The IAM permission status. */
 export interface IAMPermission {
@@ -1537,7 +1537,7 @@ export type SapWorkloadArchitectureEnum =
   | "DISTRIBUTED_HA"
   | "STANDALONE_DATABASE"
   | "STANDALONE_DATABASE_HA";
-export const SapWorkloadArchitectureEnum = /*@__PURE__*/ S.String;
+export const SapWorkloadArchitectureEnum = S.String;
 
 /** Contains the details of a product. */
 export interface Product {
@@ -1584,7 +1584,7 @@ export const SapWorkload = /*@__PURE__*/ S.suspend(() =>
 export type WorkloadProfileWorkloadTypeEnum =
   | "WORKLOAD_TYPE_UNSPECIFIED"
   | "S4_HANA";
-export const WorkloadProfileWorkloadTypeEnum = /*@__PURE__*/ S.String;
+export const WorkloadProfileWorkloadTypeEnum = S.String;
 
 /** Workload resource. */
 export interface WorkloadProfile {
@@ -1636,14 +1636,14 @@ export type ComponentHealthStateEnum =
   | "UNHEALTHY"
   | "CRITICAL"
   | "UNSUPPORTED";
-export const ComponentHealthStateEnum = /*@__PURE__*/ S.String;
+export const ComponentHealthStateEnum = S.String;
 
 export type ComponentHealthComponentHealthTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "TYPE_REQUIRED"
   | "TYPE_OPTIONAL"
   | "TYPE_SPECIAL";
-export const ComponentHealthComponentHealthTypeEnum = /*@__PURE__*/ S.String;
+export const ComponentHealthComponentHealthTypeEnum = S.String;
 
 export type HealthCheckStateEnum =
   | "STATE_UNSPECIFIED"
@@ -1652,7 +1652,7 @@ export type HealthCheckStateEnum =
   | "DEGRADED"
   | "SKIPPED"
   | "UNSUPPORTED";
-export const HealthCheckStateEnum = /*@__PURE__*/ S.String;
+export const HealthCheckStateEnum = S.String;
 
 /** HealthCheck contains the detailed health check of a component based on asource. */
 export interface HealthCheck {
@@ -1718,7 +1718,7 @@ export type WorkloadProfileHealthStateEnum =
   | "UNHEALTHY"
   | "CRITICAL"
   | "UNSUPPORTED";
-export const WorkloadProfileHealthStateEnum = /*@__PURE__*/ S.String;
+export const WorkloadProfileHealthStateEnum = S.String;
 
 /** WorkloadProfileHealth contains the detailed health check of workload. */
 export interface WorkloadProfileHealth {
@@ -1782,14 +1782,14 @@ export type ExecutionStateEnum =
   | "RUNNING"
   | "SUCCEEDED"
   | "FAILED";
-export const ExecutionStateEnum = /*@__PURE__*/ S.String;
+export const ExecutionStateEnum = S.String;
 
 export type RuleExecutionResultStateEnum =
   | "STATE_UNSPECIFIED"
   | "STATE_SUCCESS"
   | "STATE_FAILURE"
   | "STATE_SKIPPED";
-export const RuleExecutionResultStateEnum = /*@__PURE__*/ S.String;
+export const RuleExecutionResultStateEnum = S.String;
 
 /** Execution result summary per rule. */
 export interface RuleExecutionResult {
@@ -1824,7 +1824,7 @@ export const RuleExecutionResultList = /*@__PURE__*/ S.Array(
 export type ExternalDataSourcesTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "BIG_QUERY_TABLE";
-export const ExternalDataSourcesTypeEnum = /*@__PURE__*/ S.String;
+export const ExternalDataSourcesTypeEnum = S.String;
 
 /** External data sources for an execution. */
 export interface ExternalDataSources {
@@ -1857,13 +1857,13 @@ export type ExecutionEngineEnum =
   | "ENGINE_UNSPECIFIED"
   | "ENGINE_SCANNER"
   | "V2";
-export const ExecutionEngineEnum = /*@__PURE__*/ S.String;
+export const ExecutionEngineEnum = S.String;
 
 export type ExecutionRunTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "ONE_TIME"
   | "SCHEDULED";
-export const ExecutionRunTypeEnum = /*@__PURE__*/ S.String;
+export const ExecutionRunTypeEnum = S.String;
 
 /** Additional information generated by an execution. */
 export interface Notice {
@@ -2386,7 +2386,7 @@ export type ExecutionResultTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "TYPE_PASSED"
   | "TYPE_VIOLATED";
-export const ExecutionResultTypeEnum = /*@__PURE__*/ S.String;
+export const ExecutionResultTypeEnum = S.String;
 
 /** The rule output of the violation. */
 export interface RuleOutput {
@@ -2616,8 +2616,7 @@ export type ListProjectsLocationsRulesEvaluationTypeEnum =
   | "SAP"
   | "SQL_SERVER"
   | "OTHER";
-export const ListProjectsLocationsRulesEvaluationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsRulesEvaluationTypeEnum = S.String;
 
 export interface ListProjectsLocationsRulesRequest {
   /** A token identifying a page of results the server should return. */
@@ -2655,7 +2654,7 @@ export const ListProjectsLocationsRulesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListProjectsLocationsRulesRequest>;
 
 export type RuleRuleTypeEnum = "RULE_TYPE_UNSPECIFIED" | "BASELINE" | "CUSTOM";
-export const RuleRuleTypeEnum = /*@__PURE__*/ S.String;
+export const RuleRuleTypeEnum = S.String;
 
 /** A rule to be evaluated. */
 export interface Rule {
@@ -2796,7 +2795,7 @@ export type TorsoValidationWorkloadTypeEnum =
   | "MYSQL"
   | "ORACLE"
   | "REDIS";
-export const TorsoValidationWorkloadTypeEnum = /*@__PURE__*/ S.String;
+export const TorsoValidationWorkloadTypeEnum = S.String;
 
 /** The schema of torso workload validation data. */
 export interface TorsoValidation {
@@ -2832,8 +2831,7 @@ export type SapValidationValidationDetailSapValidationTypeEnum =
   | "NETWEAVER"
   | "HANA_SECURITY"
   | "CUSTOM";
-export const SapValidationValidationDetailSapValidationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const SapValidationValidationDetailSapValidationTypeEnum = S.String;
 
 /** Message describing the SAP validation metrics. */
 export interface SapValidationValidationDetail {
@@ -2898,8 +2896,7 @@ export type SapDiscoveryResourceInstancePropertiesInstanceRoleEnum =
   | "INSTANCE_ROLE_ASCS_APP_SERVER_DATABASE"
   | "INSTANCE_ROLE_ERS_APP_SERVER_DATABASE"
   | "INSTANCE_ROLE_ASCS_ERS_APP_SERVER_DATABASE";
-export const SapDiscoveryResourceInstancePropertiesInstanceRoleEnum =
-  /*@__PURE__*/ S.String;
+export const SapDiscoveryResourceInstancePropertiesInstanceRoleEnum = S.String;
 
 /** Fields to describe an SAP application server instance. */
 export interface SapDiscoveryResourceInstancePropertiesAppInstance {
@@ -3060,14 +3057,14 @@ export type SapDiscoveryResourceResourceKindEnum =
   | "RESOURCE_KIND_NETWORK"
   | "RESOURCE_KIND_PUBLIC_ADDRESS"
   | "RESOURCE_KIND_INSTANCE_GROUP";
-export const SapDiscoveryResourceResourceKindEnum = /*@__PURE__*/ S.String;
+export const SapDiscoveryResourceResourceKindEnum = S.String;
 
 export type SapDiscoveryResourceResourceTypeEnum =
   | "RESOURCE_TYPE_UNSPECIFIED"
   | "RESOURCE_TYPE_COMPUTE"
   | "RESOURCE_TYPE_STORAGE"
   | "RESOURCE_TYPE_NETWORK";
-export const SapDiscoveryResourceResourceTypeEnum = /*@__PURE__*/ S.String;
+export const SapDiscoveryResourceResourceTypeEnum = S.String;
 
 /** Message describing a resource. */
 export interface SapDiscoveryResource {
@@ -3106,7 +3103,7 @@ export type SapDiscoveryComponentTopologyTypeEnum =
   | "TOPOLOGY_TYPE_UNSPECIFIED"
   | "TOPOLOGY_SCALE_UP"
   | "TOPOLOGY_SCALE_OUT";
-export const SapDiscoveryComponentTopologyTypeEnum = /*@__PURE__*/ S.String;
+export const SapDiscoveryComponentTopologyTypeEnum = S.String;
 
 /** A replication site used in Disaster Recovery (DR) configurations. */
 export interface SapDiscoveryComponentReplicationSite {
@@ -3139,8 +3136,7 @@ export type SapDiscoveryComponentDatabasePropertiesDatabaseTypeEnum =
   | "ORACLE"
   | "SQLSERVER"
   | "ASE";
-export const SapDiscoveryComponentDatabasePropertiesDatabaseTypeEnum =
-  /*@__PURE__*/ S.String;
+export const SapDiscoveryComponentDatabasePropertiesDatabaseTypeEnum = S.String;
 
 /** A set of properties describing an SAP Database layer. */
 export interface SapDiscoveryComponentDatabaseProperties {
@@ -3184,7 +3180,7 @@ export type SapDiscoveryComponentApplicationPropertiesApplicationTypeEnum =
   | "NETWEAVER_ABAP"
   | "NETWEAVER_JAVA";
 export const SapDiscoveryComponentApplicationPropertiesApplicationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A set of properties describing an SAP Application layer. */
 export interface SapDiscoveryComponentApplicationProperties {
@@ -3421,22 +3417,21 @@ export type AgentStatusServiceStatusStateEnum =
   | "SUCCESS_STATE"
   | "FAILURE_STATE"
   | "ERROR_STATE";
-export const AgentStatusServiceStatusStateEnum = /*@__PURE__*/ S.String;
+export const AgentStatusServiceStatusStateEnum = S.String;
 
 export type AgentStatusServiceStatusFullyFunctionalEnum =
   | "UNSPECIFIED_STATE"
   | "SUCCESS_STATE"
   | "FAILURE_STATE"
   | "ERROR_STATE";
-export const AgentStatusServiceStatusFullyFunctionalEnum =
-  /*@__PURE__*/ S.String;
+export const AgentStatusServiceStatusFullyFunctionalEnum = S.String;
 
 export type AgentStatusIAMPermissionGrantedEnum =
   | "UNSPECIFIED_STATE"
   | "SUCCESS_STATE"
   | "FAILURE_STATE"
   | "ERROR_STATE";
-export const AgentStatusIAMPermissionGrantedEnum = /*@__PURE__*/ S.String;
+export const AgentStatusIAMPermissionGrantedEnum = S.String;
 
 /** The IAM permission status. */
 export interface AgentStatusIAMPermission {
@@ -3500,14 +3495,14 @@ export type AgentStatusSystemdServiceRunningEnum =
   | "SUCCESS_STATE"
   | "FAILURE_STATE"
   | "ERROR_STATE";
-export const AgentStatusSystemdServiceRunningEnum = /*@__PURE__*/ S.String;
+export const AgentStatusSystemdServiceRunningEnum = S.String;
 
 export type AgentStatusConfigurationValidEnum =
   | "UNSPECIFIED_STATE"
   | "SUCCESS_STATE"
   | "FAILURE_STATE"
   | "ERROR_STATE";
-export const AgentStatusConfigurationValidEnum = /*@__PURE__*/ S.String;
+export const AgentStatusConfigurationValidEnum = S.String;
 
 /** The reference to public documentation. */
 export interface AgentStatusReference {
@@ -3535,15 +3530,14 @@ export type AgentStatusCloudApiAccessFullScopesGrantedEnum =
   | "SUCCESS_STATE"
   | "FAILURE_STATE"
   | "ERROR_STATE";
-export const AgentStatusCloudApiAccessFullScopesGrantedEnum =
-  /*@__PURE__*/ S.String;
+export const AgentStatusCloudApiAccessFullScopesGrantedEnum = S.String;
 
 export type AgentStatusSystemdServiceEnabledEnum =
   | "UNSPECIFIED_STATE"
   | "SUCCESS_STATE"
   | "FAILURE_STATE"
   | "ERROR_STATE";
-export const AgentStatusSystemdServiceEnabledEnum = /*@__PURE__*/ S.String;
+export const AgentStatusSystemdServiceEnabledEnum = S.String;
 
 /** The schema of agent status data. */
 export interface AgentStatus {
@@ -3628,8 +3622,7 @@ export type SqlserverValidationValidationDetailTypeEnum =
   | "DB_INDEX_FRAGMENTATION"
   | "DB_TABLE_INDEX_COMPRESSION"
   | "DB_BACKUP_POLICY";
-export const SqlserverValidationValidationDetailTypeEnum =
-  /*@__PURE__*/ S.String;
+export const SqlserverValidationValidationDetailTypeEnum = S.String;
 
 /** Message containing collected data names and values. */
 export interface SqlserverValidationDetails {

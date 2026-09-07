@@ -98,7 +98,7 @@ export type PatchRolloutModeEnum =
   | "MODE_UNSPECIFIED"
   | "ZONE_BY_ZONE"
   | "CONCURRENT_ZONES";
-export const PatchRolloutModeEnum = /*@__PURE__*/ S.String;
+export const PatchRolloutModeEnum = S.String;
 
 /** Message encapsulating a value that can be either absolute ("fixed") or relative ("percent") to a value. */
 export interface FixedOrPercent {
@@ -138,7 +138,7 @@ export type PatchJobStateEnum =
   | "COMPLETED_WITH_ERRORS"
   | "CANCELED"
   | "TIMED_OUT";
-export const PatchJobStateEnum = /*@__PURE__*/ S.String;
+export const PatchJobStateEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -206,8 +206,7 @@ export type WindowsUpdateSettingsClassificationsItemEnum =
   | "TOOL"
   | "UPDATE_ROLLUP"
   | "UPDATE";
-export const WindowsUpdateSettingsClassificationsItemEnum =
-  /*@__PURE__*/ S.String;
+export const WindowsUpdateSettingsClassificationsItemEnum = S.String;
 
 export type WindowsUpdateSettingsClassificationsItemEnumList = Array<
   WindowsUpdateSettingsClassificationsItemEnum | (string & {})
@@ -239,7 +238,7 @@ export const WindowsUpdateSettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WindowsUpdateSettings>;
 
 export type AptSettingsTypeEnum = "TYPE_UNSPECIFIED" | "DIST" | "UPGRADE";
-export const AptSettingsTypeEnum = /*@__PURE__*/ S.String;
+export const AptSettingsTypeEnum = S.String;
 
 /** Apt patching is completed by executing `apt-get update && apt-get upgrade`. Additional options can be set to control how this is executed. */
 export interface AptSettings {
@@ -263,7 +262,7 @@ export type ExecStepConfigInterpreterEnum =
   | "NONE"
   | "SHELL"
   | "POWERSHELL";
-export const ExecStepConfigInterpreterEnum = /*@__PURE__*/ S.String;
+export const ExecStepConfigInterpreterEnum = S.String;
 
 export type IntegerList = Array<number>;
 export const IntegerList = /*@__PURE__*/ S.Array(
@@ -376,7 +375,7 @@ export type PatchConfigRebootConfigEnum =
   | "DEFAULT"
   | "ALWAYS"
   | "NEVER";
-export const PatchConfigRebootConfigEnum = /*@__PURE__*/ S.String;
+export const PatchConfigRebootConfigEnum = S.String;
 
 /** Patch configuration specifications. Contains details on how to apply the patch(es) to a VM instance. */
 export interface PatchConfig {
@@ -531,7 +530,7 @@ export type AptRepositoryArchiveTypeEnum =
   | "ARCHIVE_TYPE_UNSPECIFIED"
   | "DEB"
   | "DEB_SRC";
-export const AptRepositoryArchiveTypeEnum = /*@__PURE__*/ S.String;
+export const AptRepositoryArchiveTypeEnum = S.String;
 
 /** Represents a single Apt package repository. This repository is added to a repo file that is stored at `/etc/apt/sources.list.d/google_osconfig.list`. */
 export interface AptRepository {
@@ -709,7 +708,7 @@ export type PackageDesiredStateEnum =
   | "INSTALLED"
   | "UPDATED"
   | "REMOVED";
-export const PackageDesiredStateEnum = /*@__PURE__*/ S.String;
+export const PackageDesiredStateEnum = S.String;
 
 export type PackageManagerEnum =
   | "MANAGER_UNSPECIFIED"
@@ -718,7 +717,7 @@ export type PackageManagerEnum =
   | "YUM"
   | "ZYPPER"
   | "GOO";
-export const PackageManagerEnum = /*@__PURE__*/ S.String;
+export const PackageManagerEnum = S.String;
 
 /** Package is a reference to the software package to be installed or removed. The agent on the VM instance uses the system package manager to apply the config. These are the commands that the agent uses to install or remove packages. Apt install: `apt-get update && apt-get -y install package1 package2 package3` remove: `apt-get -y remove package1 package2 package3` Yum install: `yum -y install package1 package2 package3` remove: `yum -y remove package1 package2 package3` Zypper install: `zypper install package1 package2 package3` remove: `zypper rm package1 package2` Googet install: `googet -noconfirm install package1 package2 package3` remove: `googet -noconfirm remove package1 package2 package3` */
 export interface Package {
@@ -812,7 +811,7 @@ export type SoftwareRecipeStepExtractArchiveTypeEnum =
   | "TAR_LZMA"
   | "TAR_XZ"
   | "ZIP";
-export const SoftwareRecipeStepExtractArchiveTypeEnum = /*@__PURE__*/ S.String;
+export const SoftwareRecipeStepExtractArchiveTypeEnum = S.String;
 
 /** Extracts an archive of the type specified in the specified directory. */
 export interface SoftwareRecipeStepExtractArchive {
@@ -917,8 +916,7 @@ export type SoftwareRecipeStepRunScriptInterpreterEnum =
   | "INTERPRETER_UNSPECIFIED"
   | "SHELL"
   | "POWERSHELL";
-export const SoftwareRecipeStepRunScriptInterpreterEnum =
-  /*@__PURE__*/ S.String;
+export const SoftwareRecipeStepRunScriptInterpreterEnum = S.String;
 
 /** Runs a script through an interpreter. */
 export interface SoftwareRecipeStepRunScript {
@@ -980,7 +978,7 @@ export type SoftwareRecipeDesiredStateEnum =
   | "INSTALLED"
   | "UPDATED"
   | "REMOVED";
-export const SoftwareRecipeDesiredStateEnum = /*@__PURE__*/ S.String;
+export const SoftwareRecipeDesiredStateEnum = S.String;
 
 /** A software recipe is a set of instructions for installing and configuring a piece of software. It consists of a set of artifacts that are downloaded, and a set of steps that install, configure, and/or update the software. Recipes support installing and updating software from artifacts in the following formats: Zip archive, Tar archive, Windows MSI, Debian package, and RPM package. Additionally, recipes support executing a script (either defined in a file or directly in this api) in bash, sh, cmd, and powershell. Updating a software recipe If a recipe is assigned to an instance and there is a recipe with the same name but a lower version already installed and the assigned state of the recipe is `UPDATED`, then the recipe is updated to the new version. Script Working Directories Each script or execution step is run in its own temporary directory which is deleted after completing the step. */
 export interface SoftwareRecipe {
@@ -1111,7 +1109,7 @@ export type RecurringScheduleFrequencyEnum =
   | "WEEKLY"
   | "MONTHLY"
   | "DAILY";
-export const RecurringScheduleFrequencyEnum = /*@__PURE__*/ S.String;
+export const RecurringScheduleFrequencyEnum = S.String;
 
 export type WeeklyScheduleDayOfWeekEnum =
   | "DAY_OF_WEEK_UNSPECIFIED"
@@ -1122,7 +1120,7 @@ export type WeeklyScheduleDayOfWeekEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const WeeklyScheduleDayOfWeekEnum = /*@__PURE__*/ S.String;
+export const WeeklyScheduleDayOfWeekEnum = S.String;
 
 /** Represents a weekly schedule. */
 export interface WeeklySchedule {
@@ -1144,7 +1142,7 @@ export type WeekDayOfMonthDayOfWeekEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const WeekDayOfMonthDayOfWeekEnum = /*@__PURE__*/ S.String;
+export const WeekDayOfMonthDayOfWeekEnum = S.String;
 
 /** Represents one week day in a month. An example is "the 4th Sunday". */
 export interface WeekDayOfMonth {
@@ -1233,7 +1231,7 @@ export type PatchDeploymentStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "PAUSED";
-export const PatchDeploymentStateEnum = /*@__PURE__*/ S.String;
+export const PatchDeploymentStateEnum = S.String;
 
 /** Patch deployments are configurations that individual patch jobs use to complete a patch. These configurations include instance filter, package repository settings, and a schedule. For more information about creating and managing patch deployments, see [Scheduling patch jobs](https://cloud.google.com/compute/docs/os-patch-management/schedule-patch-jobs). */
 export interface PatchDeployment {
@@ -1639,7 +1637,7 @@ export type PatchJobInstanceDetailsStateEnum =
   | "RUNNING_POST_PATCH_STEP"
   | "NO_AGENT_DETECTED"
   | "SKIPPED";
-export const PatchJobInstanceDetailsStateEnum = /*@__PURE__*/ S.String;
+export const PatchJobInstanceDetailsStateEnum = S.String;
 
 /** Patch details for a VM instance. For more information about reviewing VM instance details, see [Listing all VM instance details for a specific patch job](https://cloud.google.com/compute/docs/os-patch-management/manage-patch-jobs#list-instance-details). */
 export interface PatchJobInstanceDetails {

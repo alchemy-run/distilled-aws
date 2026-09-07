@@ -285,7 +285,7 @@ export type Status =
   | "CREATE_FAILED"
   | "DELETE_FAILED"
   | (string & {});
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 export type ErrorCode =
   | "AUTHORIZATION_ERROR"
@@ -293,7 +293,7 @@ export type ErrorCode =
   | "SERVICE_QUOTA_EXCEEDED_ERROR"
   | "INTERNAL_SERVICE_ERROR"
   | (string & {});
-export const ErrorCode = /*@__PURE__*/ S.String;
+export const ErrorCode = S.String;
 
 export interface ErrorDetails {
   code: ErrorCode;

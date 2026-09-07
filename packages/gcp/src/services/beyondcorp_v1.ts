@@ -155,7 +155,7 @@ export type GoogleCloudBeyondcorpAppconnectionsV1AppConnectionGatewayTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "GCP_REGIONAL_MIG";
 export const GoogleCloudBeyondcorpAppconnectionsV1AppConnectionGatewayTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Gateway represents a user facing component that serves as an entrance to enable connectivity. */
 export interface GoogleCloudBeyondcorpAppconnectionsV1AppConnectionGateway {
@@ -196,7 +196,7 @@ export type GoogleCloudBeyondcorpAppconnectionsV1AppConnectionTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "TCP_PROXY";
 export const GoogleCloudBeyondcorpAppconnectionsV1AppConnectionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudBeyondcorpAppconnectionsV1AppConnectionStateEnum =
   | "STATE_UNSPECIFIED"
@@ -206,7 +206,7 @@ export type GoogleCloudBeyondcorpAppconnectionsV1AppConnectionStateEnum =
   | "DELETING"
   | "DOWN";
 export const GoogleCloudBeyondcorpAppconnectionsV1AppConnectionStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A BeyondCorp AppConnection resource represents a BeyondCorp protected AppConnection to a remote application. It creates all the necessary GCP components needed for creating a BeyondCorp protected AppConnection. Multiple connectors can be authorized for a single AppConnection. */
 export interface GoogleCloudBeyondcorpAppconnectionsV1AppConnection {
@@ -397,7 +397,7 @@ export type GoogleCloudBeyondcorpAppconnectorsV1AppConnectorStateEnum =
   | "DELETING"
   | "DOWN";
 export const GoogleCloudBeyondcorpAppconnectorsV1AppConnectorStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudBeyondcorpAppconnectorsV1ResourceInfoStatusEnum =
   | "HEALTH_STATUS_UNSPECIFIED"
@@ -406,7 +406,7 @@ export type GoogleCloudBeyondcorpAppconnectorsV1ResourceInfoStatusEnum =
   | "UNRESPONSIVE"
   | "DEGRADED";
 export const GoogleCloudBeyondcorpAppconnectorsV1ResourceInfoStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudBeyondcorpAppconnectorsV1ResourceInfoList =
   Array<GoogleCloudBeyondcorpAppconnectorsV1ResourceInfo>;
@@ -531,10 +531,10 @@ export type AppGatewayStateEnum =
   | "UPDATING"
   | "DELETING"
   | "DOWN";
-export const AppGatewayStateEnum = /*@__PURE__*/ S.String;
+export const AppGatewayStateEnum = S.String;
 
 export type AppGatewayTypeEnum = "TYPE_UNSPECIFIED" | "TCP_PROXY";
-export const AppGatewayTypeEnum = /*@__PURE__*/ S.String;
+export const AppGatewayTypeEnum = S.String;
 
 /** Allocated connection of the AppGateway. */
 export interface AllocatedConnection {
@@ -560,7 +560,7 @@ export const AllocatedConnectionList = /*@__PURE__*/ S.Array(
 export type AppGatewayHostTypeEnum =
   | "HOST_TYPE_UNSPECIFIED"
   | "GCP_REGIONAL_MIG";
-export const AppGatewayHostTypeEnum = /*@__PURE__*/ S.String;
+export const AppGatewayHostTypeEnum = S.String;
 
 /** A BeyondCorp AppGateway resource represents a BeyondCorp protected AppGateway to a remote application. It creates all the necessary GCP components needed for creating a BeyondCorp protected AppGateway. Multiple connectors can be authorised for a single AppGateway. */
 export interface AppGateway {
@@ -649,7 +649,7 @@ export type GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGatewayStateEnum =
   | "DOWN"
   | "ERROR";
 export const GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGatewayStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** API operation descriptor. */
 export interface GoogleCloudBeyondcorpSecuritygatewaysV1ServiceDiscoveryApiGatewayOperationDescriptor {
@@ -703,7 +703,7 @@ export type GoogleCloudBeyondcorpSecuritygatewaysV1ProxyProtocolConfigGatewayIde
   | "GATEWAY_IDENTITY_UNSPECIFIED"
   | "RESOURCE_NAME";
 export const GoogleCloudBeyondcorpSecuritygatewaysV1ProxyProtocolConfigGatewayIdentityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedUserInfoOutputTypeEnum =
   | "OUTPUT_TYPE_UNSPECIFIED"
@@ -711,7 +711,7 @@ export type GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedUse
   | "JSON"
   | "NONE";
 export const GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedUserInfoOutputTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration information for the delegated user. */
 export interface GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedUserInfo {
@@ -738,7 +738,7 @@ export type GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGro
   | "JSON"
   | "NONE";
 export const GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfoOutputTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The delegated group configuration details. */
 export interface GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo {
@@ -765,7 +765,7 @@ export type GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDev
   | "JSON"
   | "NONE";
 export const GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfoOutputTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The delegated device information configuration. */
 export interface GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo {
@@ -792,7 +792,7 @@ export type GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersOutputTypeEn
   | "JSON"
   | "NONE";
 export const GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersOutputTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfoOutputTypeEnum =
   | "OUTPUT_TYPE_UNSPECIFIED"
@@ -800,7 +800,7 @@ export type GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDis
   | "JSON"
   | "NONE";
 export const GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfoOutputTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The delegated dispatch information configuration. */
 export interface GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo {
@@ -1025,7 +1025,7 @@ export type GoogleCloudBeyondcorpSecuritygatewaysV1ApplicationSchemaEnum =
   | "PROXY_GATEWAY"
   | "API_GATEWAY";
 export const GoogleCloudBeyondcorpSecuritygatewaysV1ApplicationSchemaEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type IntegerList = Array<number>;
 export const IntegerList = /*@__PURE__*/ S.Array(
@@ -1424,7 +1424,7 @@ export type GoogleIamV1AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const GoogleIamV1AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleIamV1AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface GoogleIamV1AuditLogConfig {

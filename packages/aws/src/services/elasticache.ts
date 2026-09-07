@@ -1088,7 +1088,7 @@ export type UpdateActionStatus =
   | "scheduled"
   | "not-applicable"
   | (string & {});
-export const UpdateActionStatus = /*@__PURE__*/ S.String;
+export const UpdateActionStatus = S.String;
 
 export interface ProcessedUpdateAction {
   ReplicationGroupId?: string;
@@ -1210,7 +1210,7 @@ export type PendingAutomaticFailoverStatus =
   | "enabled"
   | "disabled"
   | (string & {});
-export const PendingAutomaticFailoverStatus = /*@__PURE__*/ S.String;
+export const PendingAutomaticFailoverStatus = S.String;
 
 export interface SlotMigration {
   ProgressPercentage?: number;
@@ -1227,7 +1227,7 @@ export const ReshardingStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReshardingStatus",
 }) as any as S.Schema<ReshardingStatus>;
 export type AuthTokenUpdateStatus = "SETTING" | "ROTATING" | (string & {});
-export const AuthTokenUpdateStatus = /*@__PURE__*/ S.String;
+export const AuthTokenUpdateStatus = S.String;
 
 export type UserGroupId = string;
 export type UserGroupIdList = string[];
@@ -1245,13 +1245,13 @@ export const UserGroupsUpdateStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "UserGroupsUpdateStatus",
 }) as any as S.Schema<UserGroupsUpdateStatus>;
 export type LogType = "slow-log" | "engine-log" | (string & {});
-export const LogType = /*@__PURE__*/ S.String;
+export const LogType = S.String;
 
 export type DestinationType =
   | "cloudwatch-logs"
   | "kinesis-firehose"
   | (string & {});
-export const DestinationType = /*@__PURE__*/ S.String;
+export const DestinationType = S.String;
 
 export interface CloudWatchLogsDestinationDetails {
   LogGroup?: string;
@@ -1282,7 +1282,7 @@ export const DestinationDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "DestinationDetails",
 }) as any as S.Schema<DestinationDetails>;
 export type LogFormat = "text" | "json" | (string & {});
-export const LogFormat = /*@__PURE__*/ S.String;
+export const LogFormat = S.String;
 
 export interface PendingLogDeliveryConfiguration {
   LogType?: LogType;
@@ -1306,10 +1306,10 @@ export const PendingLogDeliveryConfigurationList = /*@__PURE__*/ S.Array(
   PendingLogDeliveryConfiguration,
 );
 export type TransitEncryptionMode = "preferred" | "required" | (string & {});
-export const TransitEncryptionMode = /*@__PURE__*/ S.String;
+export const TransitEncryptionMode = S.String;
 
 export type ClusterMode = "enabled" | "disabled" | "compatible" | (string & {});
-export const ClusterMode = /*@__PURE__*/ S.String;
+export const ClusterMode = S.String;
 
 export interface ReplicationGroupPendingModifiedValues {
   PrimaryClusterId?: string;
@@ -1405,10 +1405,10 @@ export type AutomaticFailoverStatus =
   | "enabling"
   | "disabling"
   | (string & {});
-export const AutomaticFailoverStatus = /*@__PURE__*/ S.String;
+export const AutomaticFailoverStatus = S.String;
 
 export type MultiAZStatus = "enabled" | "disabled" | (string & {});
-export const MultiAZStatus = /*@__PURE__*/ S.String;
+export const MultiAZStatus = S.String;
 
 export type ReplicationGroupOutpostArnList = string[];
 export const ReplicationGroupOutpostArnList = /*@__PURE__*/ S.Array(
@@ -1419,7 +1419,7 @@ export type StorageEncryptionType =
   | "sse-elasticache"
   | "sse-kms"
   | (string & {});
-export const StorageEncryptionType = /*@__PURE__*/ S.String;
+export const StorageEncryptionType = S.String;
 
 export type LogDeliveryConfigurationStatus =
   | "active"
@@ -1428,7 +1428,7 @@ export type LogDeliveryConfigurationStatus =
   | "disabling"
   | "error"
   | (string & {});
-export const LogDeliveryConfigurationStatus = /*@__PURE__*/ S.String;
+export const LogDeliveryConfigurationStatus = S.String;
 
 export interface LogDeliveryConfiguration {
   LogType?: LogType;
@@ -1457,13 +1457,13 @@ export const LogDeliveryConfigurationList = /*@__PURE__*/ S.Array(
   ),
 );
 export type DataTieringStatus = "enabled" | "disabled" | (string & {});
-export const DataTieringStatus = /*@__PURE__*/ S.String;
+export const DataTieringStatus = S.String;
 
 export type NetworkType = "ipv4" | "ipv6" | "dual_stack" | (string & {});
-export const NetworkType = /*@__PURE__*/ S.String;
+export const NetworkType = S.String;
 
 export type IpDiscovery = "ipv4" | "ipv6" | (string & {});
-export const IpDiscovery = /*@__PURE__*/ S.String;
+export const IpDiscovery = S.String;
 
 export type Durability =
   | "default"
@@ -1471,10 +1471,10 @@ export type Durability =
   | "sync"
   | "disabled"
   | (string & {});
-export const Durability = /*@__PURE__*/ S.String;
+export const Durability = S.String;
 
 export type EffectiveDurability = "async" | "sync" | "disabled" | (string & {});
-export const EffectiveDurability = /*@__PURE__*/ S.String;
+export const EffectiveDurability = S.String;
 
 export interface ReplicationGroup {
   ReplicationGroupId?: string;
@@ -1810,7 +1810,7 @@ export const CopySnapshotResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "CopySnapshotResult",
 }) as any as S.Schema<CopySnapshotResult>;
 export type AZMode = "single-az" | "cross-az" | (string & {});
-export const AZMode = /*@__PURE__*/ S.String;
+export const AZMode = S.String;
 
 export type PreferredAvailabilityZoneList = string[];
 export const PreferredAvailabilityZoneList = /*@__PURE__*/ S.Array(
@@ -1829,7 +1829,7 @@ export const SnapshotArnsList = /*@__PURE__*/ S.Array(
   S.String.pipe(T.XmlName("SnapshotArn")),
 );
 export type OutpostMode = "single-outpost" | "cross-outpost" | (string & {});
-export const OutpostMode = /*@__PURE__*/ S.String;
+export const OutpostMode = S.String;
 
 export type PreferredOutpostArnList = string[];
 export const PreferredOutpostArnList = /*@__PURE__*/ S.Array(
@@ -2551,7 +2551,7 @@ export const CreateReplicationGroupResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateReplicationGroupResult",
 }) as any as S.Schema<CreateReplicationGroupResult>;
 export type DataStorageUnit = "GB" | (string & {});
-export const DataStorageUnit = /*@__PURE__*/ S.String;
+export const DataStorageUnit = S.String;
 
 export interface DataStorage {
   Maximum?: number;
@@ -2779,7 +2779,7 @@ export type InputAuthenticationType =
   | "no-password-required"
   | "iam"
   | (string & {});
-export const InputAuthenticationType = /*@__PURE__*/ S.String;
+export const InputAuthenticationType = S.String;
 
 export interface AuthenticationMode {
   Type?: InputAuthenticationType;
@@ -2832,7 +2832,7 @@ export type AuthenticationType =
   | "no-password"
   | "iam"
   | (string & {});
-export const AuthenticationType = /*@__PURE__*/ S.String;
+export const AuthenticationType = S.String;
 
 export interface Authentication {
   Type?: AuthenticationType;
@@ -3513,7 +3513,7 @@ export const DescribeCacheParametersMessage = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeCacheParametersMessage",
 }) as any as S.Schema<DescribeCacheParametersMessage>;
 export type ChangeType = "immediate" | "requires-reboot" | (string & {});
-export const ChangeType = /*@__PURE__*/ S.String;
+export const ChangeType = S.String;
 
 export interface Parameter {
   ParameterName?: string;
@@ -3754,7 +3754,7 @@ export type SourceType =
   | "user"
   | "user-group"
   | (string & {});
-export const SourceType = /*@__PURE__*/ S.String;
+export const SourceType = S.String;
 
 export interface DescribeEventsMessage {
   SourceIdentifier?: string;
@@ -4182,7 +4182,7 @@ export type ServiceUpdateStatus =
   | "cancelled"
   | "expired"
   | (string & {});
-export const ServiceUpdateStatus = /*@__PURE__*/ S.String;
+export const ServiceUpdateStatus = S.String;
 
 export type ServiceUpdateStatusList = ServiceUpdateStatus[];
 export const ServiceUpdateStatusList =
@@ -4219,10 +4219,10 @@ export type ServiceUpdateSeverity =
   | "medium"
   | "low"
   | (string & {});
-export const ServiceUpdateSeverity = /*@__PURE__*/ S.String;
+export const ServiceUpdateSeverity = S.String;
 
 export type ServiceUpdateType = "security-update" | (string & {});
-export const ServiceUpdateType = /*@__PURE__*/ S.String;
+export const ServiceUpdateType = S.String;
 
 export interface ServiceUpdate {
   ServiceUpdateName?: string;
@@ -4381,7 +4381,7 @@ export const DescribeUpdateActionsMessage = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeUpdateActionsMessage",
 }) as any as S.Schema<DescribeUpdateActionsMessage>;
 export type SlaMet = "yes" | "no" | "n/a" | (string & {});
-export const SlaMet = /*@__PURE__*/ S.String;
+export const SlaMet = S.String;
 
 export type NodeUpdateStatus =
   | "not-applied"
@@ -4391,10 +4391,10 @@ export type NodeUpdateStatus =
   | "stopped"
   | "complete"
   | (string & {});
-export const NodeUpdateStatus = /*@__PURE__*/ S.String;
+export const NodeUpdateStatus = S.String;
 
 export type NodeUpdateInitiatedBy = "system" | "customer" | (string & {});
-export const NodeUpdateInitiatedBy = /*@__PURE__*/ S.String;
+export const NodeUpdateInitiatedBy = S.String;
 
 export interface NodeGroupMemberUpdateStatus {
   CacheClusterId?: string;
@@ -4930,7 +4930,7 @@ export type AuthTokenUpdateStrategyType =
   | "ROTATE"
   | "DELETE"
   | (string & {});
-export const AuthTokenUpdateStrategyType = /*@__PURE__*/ S.String;
+export const AuthTokenUpdateStrategyType = S.String;
 
 export interface ModifyCacheClusterMessage {
   CacheClusterId?: string;

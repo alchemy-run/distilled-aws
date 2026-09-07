@@ -300,7 +300,7 @@ export const GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigDockerReposit
 export type DockerRepositoryPublicRepositoryEnum =
   | "PUBLIC_REPOSITORY_UNSPECIFIED"
   | "DOCKER_HUB";
-export const DockerRepositoryPublicRepositoryEnum = /*@__PURE__*/ S.String;
+export const DockerRepositoryPublicRepositoryEnum = S.String;
 
 /** Configuration for a Docker remote repository. */
 export interface DockerRepository {
@@ -323,7 +323,7 @@ export const DockerRepository = /*@__PURE__*/ S.suspend(() =>
 export type PythonRepositoryPublicRepositoryEnum =
   | "PUBLIC_REPOSITORY_UNSPECIFIED"
   | "PYPI";
-export const PythonRepositoryPublicRepositoryEnum = /*@__PURE__*/ S.String;
+export const PythonRepositoryPublicRepositoryEnum = S.String;
 
 /** Customer-specified publicly available remote repository. */
 export interface GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigPythonRepositoryCustomRepository {
@@ -361,7 +361,7 @@ export const PythonRepository = /*@__PURE__*/ S.suspend(() =>
 export type MavenRepositoryPublicRepositoryEnum =
   | "PUBLIC_REPOSITORY_UNSPECIFIED"
   | "MAVEN_CENTRAL";
-export const MavenRepositoryPublicRepositoryEnum = /*@__PURE__*/ S.String;
+export const MavenRepositoryPublicRepositoryEnum = S.String;
 
 /** Customer-specified publicly available remote repository. */
 export interface GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigMavenRepositoryCustomRepository {
@@ -414,7 +414,7 @@ export const GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigNpmRepository
 export type NpmRepositoryPublicRepositoryEnum =
   | "PUBLIC_REPOSITORY_UNSPECIFIED"
   | "NPMJS";
-export const NpmRepositoryPublicRepositoryEnum = /*@__PURE__*/ S.String;
+export const NpmRepositoryPublicRepositoryEnum = S.String;
 
 /** Configuration for a Npm remote repository. */
 export interface NpmRepository {
@@ -456,7 +456,7 @@ export type GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryP
   | "ROCKY"
   | "EPEL";
 export const GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepositoryRepositoryBaseEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Publicly available Yum repositories constructed from a common repository base and a custom repository path. */
 export interface GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepository {
@@ -550,7 +550,7 @@ export type GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryP
   | "UBUNTU"
   | "DEBIAN_SNAPSHOT";
 export const GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepositoryRepositoryBaseEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Publicly available Apt repositories constructed from a common repository base and a custom repository path. */
 export interface GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository {
@@ -660,13 +660,13 @@ export type PlatformLogsConfigSeverityLevelEnum =
   | "CRITICAL"
   | "ALERT"
   | "EMERGENCY";
-export const PlatformLogsConfigSeverityLevelEnum = /*@__PURE__*/ S.String;
+export const PlatformLogsConfigSeverityLevelEnum = S.String;
 
 export type PlatformLogsConfigLoggingStateEnum =
   | "LOGGING_STATE_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED";
-export const PlatformLogsConfigLoggingStateEnum = /*@__PURE__*/ S.String;
+export const PlatformLogsConfigLoggingStateEnum = S.String;
 
 /** The platform logs config for a project or a repository. */
 export interface PlatformLogsConfig {
@@ -698,13 +698,13 @@ export type RepositoryFormatEnum =
   | "GENERIC"
   | "RUBY"
   | "CONDA";
-export const RepositoryFormatEnum = /*@__PURE__*/ S.String;
+export const RepositoryFormatEnum = S.String;
 
 export type MavenRepositoryConfigVersionPolicyEnum =
   | "VERSION_POLICY_UNSPECIFIED"
   | "RELEASE"
   | "SNAPSHOT";
-export const MavenRepositoryConfigVersionPolicyEnum = /*@__PURE__*/ S.String;
+export const MavenRepositoryConfigVersionPolicyEnum = S.String;
 
 /** MavenRepositoryConfig is maven related repository details. Provides additional configuration details for repositories of the maven format type. */
 export interface MavenRepositoryConfig {
@@ -735,22 +735,20 @@ export type RepositoryModeEnum =
   | "REMOTE_REPOSITORY"
   | "AOSS_REPOSITORY"
   | "ASSURED_OSS_REPOSITORY";
-export const RepositoryModeEnum = /*@__PURE__*/ S.String;
+export const RepositoryModeEnum = S.String;
 
 export type VulnerabilityScanningConfigEnablementStateEnum =
   | "ENABLEMENT_STATE_UNSPECIFIED"
   | "SCANNING_UNSUPPORTED"
   | "SCANNING_DISABLED"
   | "SCANNING_ACTIVE";
-export const VulnerabilityScanningConfigEnablementStateEnum =
-  /*@__PURE__*/ S.String;
+export const VulnerabilityScanningConfigEnablementStateEnum = S.String;
 
 export type VulnerabilityScanningConfigEnablementConfigEnum =
   | "ENABLEMENT_CONFIG_UNSPECIFIED"
   | "INHERITED"
   | "DISABLED";
-export const VulnerabilityScanningConfigEnablementConfigEnum =
-  /*@__PURE__*/ S.String;
+export const VulnerabilityScanningConfigEnablementConfigEnum = S.String;
 
 /** Config on whether to perform vulnerability scanning for resources in this repository, as well as output fields describing current state. */
 export interface VulnerabilityScanningConfig {
@@ -781,7 +779,7 @@ export const VulnerabilityScanningConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VulnerabilityScanningConfig>;
 
 export type CleanupPolicyActionEnum = "ACTION_UNSPECIFIED" | "DELETE" | "KEEP";
-export const CleanupPolicyActionEnum = /*@__PURE__*/ S.String;
+export const CleanupPolicyActionEnum = S.String;
 
 /** CleanupPolicyMostRecentVersions is an alternate condition of a CleanupPolicy for retaining a minimum number of versions. */
 export interface CleanupPolicyMostRecentVersions {
@@ -804,7 +802,7 @@ export type CleanupPolicyConditionTagStateEnum =
   | "TAGGED"
   | "UNTAGGED"
   | "ANY";
-export const CleanupPolicyConditionTagStateEnum = /*@__PURE__*/ S.String;
+export const CleanupPolicyConditionTagStateEnum = S.String;
 
 /** CleanupPolicyCondition is a set of conditions attached to a CleanupPolicy. If multiple entries are set, all must be satisfied for the condition to be satisfied. */
 export interface CleanupPolicyCondition {
@@ -1094,8 +1092,7 @@ export type GoogleDevtoolsArtifactregistryV1RuleActionEnum =
   | "ACTION_UNSPECIFIED"
   | "ALLOW"
   | "DENY";
-export const GoogleDevtoolsArtifactregistryV1RuleActionEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleDevtoolsArtifactregistryV1RuleActionEnum = S.String;
 
 /** Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information. */
 export interface Expr {
@@ -1120,8 +1117,7 @@ export const Expr = /*@__PURE__*/ S.suspend(() =>
 export type GoogleDevtoolsArtifactregistryV1RuleOperationEnum =
   | "OPERATION_UNSPECIFIED"
   | "DOWNLOAD";
-export const GoogleDevtoolsArtifactregistryV1RuleOperationEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleDevtoolsArtifactregistryV1RuleOperationEnum = S.String;
 
 /** A rule defines the deny or allow action of the operation it applies to and the conditions required for the rule to apply. You can set one rule for an entire repository and one rule for each package within. */
 export interface GoogleDevtoolsArtifactregistryV1Rule {
@@ -1496,7 +1492,7 @@ export type ProjectSettingsLegacyRedirectionStateEnum =
   | "REDIRECTION_FROM_GCR_IO_FINALIZED"
   | "REDIRECTION_FROM_GCR_IO_ENABLED_AND_COPYING"
   | "REDIRECTION_FROM_GCR_IO_PARTIAL_AND_COPYING";
-export const ProjectSettingsLegacyRedirectionStateEnum = /*@__PURE__*/ S.String;
+export const ProjectSettingsLegacyRedirectionStateEnum = S.String;
 
 /** The Artifact Registry settings that apply to a Project. */
 export interface ProjectSettings {
@@ -1734,7 +1730,7 @@ export type HashTypeEnum =
   | "SHA256"
   | "MD5"
   | "DIRSUM_SHA256";
-export const HashTypeEnum = /*@__PURE__*/ S.String;
+export const HashTypeEnum = S.String;
 
 /** A hash of file content. */
 export interface Hash {
@@ -1949,7 +1945,7 @@ export type GetProjectsLocationsRepositoriesPackagesVersionsViewEnum =
   | "BASIC"
   | "FULL";
 export const GetProjectsLocationsRepositoriesPackagesVersionsViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectsLocationsRepositoriesPackagesVersionsRequest {
   /** The name of the version to retrieve. */
@@ -2101,7 +2097,7 @@ export type VPCSCConfigVpcscPolicyEnum =
   | "VPCSC_POLICY_UNSPECIFIED"
   | "DENY"
   | "ALLOW";
-export const VPCSCConfigVpcscPolicyEnum = /*@__PURE__*/ S.String;
+export const VPCSCConfigVpcscPolicyEnum = S.String;
 
 /** The Artifact Registry VPC SC config that apply to a Project. */
 export interface VPCSCConfig {
@@ -2717,7 +2713,7 @@ export type ListProjectsLocationsRepositoriesPackagesVersionsViewEnum =
   | "BASIC"
   | "FULL";
 export const ListProjectsLocationsRepositoriesPackagesVersionsViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListProjectsLocationsRepositoriesPackagesVersionsRequest {
   /** The maximum number of versions to return. Maximum page size is 1,000. */
@@ -3390,7 +3386,7 @@ export const UploadAptArtifactMediaResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UploadAptArtifactMediaResponse>;
 
 export type UploadFileRequestFileTypeEnum = "ATTACHMENT" | "ARTIFACT";
-export const UploadFileRequestFileTypeEnum = /*@__PURE__*/ S.String;
+export const UploadFileRequestFileTypeEnum = S.String;
 
 /** The request to upload a file. */
 export interface UploadFileRequest {

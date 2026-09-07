@@ -214,8 +214,7 @@ export type GetBackgroundCheckConnectorResponseResourcesItemStatus =
   | "INCOMPLETE"
   | "IN_PROGRESS"
   | "COMPLETE";
-export const GetBackgroundCheckConnectorResponseResourcesItemStatus =
-  /*@__PURE__*/ S.String;
+export const GetBackgroundCheckConnectorResponseResourcesItemStatus = S.String;
 
 export interface GetBackgroundCheckConnectorResponseResourcesItem {
   /** A human readable label for this resource - will be shown as-is in inventory page. */
@@ -369,7 +368,7 @@ export type GetMacosUserComputerResponseResourcesItemBrowserExtensionsItemBrowse
   | "SAFARI"
   | "EDGE";
 export const GetMacosUserComputerResponseResourcesItemBrowserExtensionsItemBrowser =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMacosUserComputerResponseResourcesItemBrowserExtensionsItem {
   /** The identifier of the browser extension. */
@@ -786,8 +785,7 @@ export type GetSecurityTaskResponseResourcesItemTaskState =
   | "OPEN"
   | "IN_PROGRESS"
   | "CLOSED";
-export const GetSecurityTaskResponseResourcesItemTaskState =
-  /*@__PURE__*/ S.String;
+export const GetSecurityTaskResponseResourcesItemTaskState = S.String;
 
 /** Priorities are mapped against SLAs for tasks. If your task system does not have fixed priorities, consider letting users configure priorities through labels. */
 export type GetSecurityTaskResponseResourcesItemPriority =
@@ -796,8 +794,7 @@ export type GetSecurityTaskResponseResourcesItemPriority =
   | "P2"
   | "P3"
   | "P4";
-export const GetSecurityTaskResponseResourcesItemPriority =
-  /*@__PURE__*/ S.String;
+export const GetSecurityTaskResponseResourcesItemPriority = S.String;
 
 /** The set of users assigned to the tasks. Emails do not necessarily need to be Vanta users. */
 export type GetSecurityTaskResponseResourcesItemAssigneesList = Array<string>;
@@ -1023,14 +1020,13 @@ export type GetUserAccountResponseResourcesItemPermissionLevel =
   | "ADMIN"
   | "EDITOR"
   | "BASE";
-export const GetUserAccountResponseResourcesItemPermissionLevel =
-  /*@__PURE__*/ S.String;
+export const GetUserAccountResponseResourcesItemPermissionLevel = S.String;
 
 /** The status of the user. It's acceptable to omit any deactivated users from your application, but if your application has access to deactivated users, it's preferable to send them over with this status. */
 export type GetUserAccountResponseResourcesItemStatus =
   | "ACTIVE"
   | "DEACTIVATED";
-export const GetUserAccountResponseResourcesItemStatus = /*@__PURE__*/ S.String;
+export const GetUserAccountResponseResourcesItemStatus = S.String;
 
 /** The individual MFA setting. */
 export type GetUserAccountResponseResourcesItemMfaMethodsItem =
@@ -1041,8 +1037,7 @@ export type GetUserAccountResponseResourcesItemMfaMethodsItem =
   | "OTP"
   | "HARDWARE_TOKEN"
   | "PUSH_PROMPT";
-export const GetUserAccountResponseResourcesItemMfaMethodsItem =
-  /*@__PURE__*/ S.String;
+export const GetUserAccountResponseResourcesItemMfaMethodsItem = S.String;
 
 /** The MFA settings of the user. This helps customers verify that their users are adequately protecting their accounts. This value is ignored if authMethod is SSO. */
 export type GetUserAccountResponseResourcesItemMfaMethodsList =
@@ -1058,8 +1053,7 @@ export type GetUserAccountResponseResourcesItemAuthMethod =
   | "PASSWORD"
   | "TOKEN"
   | "BIOMETRIC";
-export const GetUserAccountResponseResourcesItemAuthMethod =
-  /*@__PURE__*/ S.String;
+export const GetUserAccountResponseResourcesItemAuthMethod = S.String;
 
 /** If the user belongs to any groups/teams in the product, those corresponding group IDs. We'll map these to groups in our product in the future. */
 export type GetUserAccountResponseResourcesItemGroupIdsList = Array<string>;
@@ -1176,7 +1170,7 @@ export type GetUserSecurityTrainingStatusResponseResourcesItemFrameworksFulfille
   | "GDPR"
   | "CCPA";
 export const GetUserSecurityTrainingStatusResponseResourcesItemFrameworksFulfilledItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The set of compliance or other framework requirements that can be satisfied when an employee completes this training. */
 export type GetUserSecurityTrainingStatusResponseResourcesItemFrameworksFulfilledList =
@@ -1191,7 +1185,7 @@ export type GetUserSecurityTrainingStatusResponseResourcesItemStatus =
   | "INCOMPLETE"
   | "COMPLETE";
 export const GetUserSecurityTrainingStatusResponseResourcesItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetUserSecurityTrainingStatusResponseResourcesItem {
   /** A human readable label for this resource - will be shown as-is in inventory page. */
@@ -1292,8 +1286,7 @@ export type GetVulnerableComponentResponseResourcesItemTargetType =
   | "MANIFEST_FILE"
   | "WORKSTATION"
   | "OTHER";
-export const GetVulnerableComponentResponseResourcesItemTargetType =
-  /*@__PURE__*/ S.String;
+export const GetVulnerableComponentResponseResourcesItemTargetType = S.String;
 
 export interface GetVulnerableComponentResponseResourcesItem {
   /** A human readable label for this resource - will be shown as-is in inventory page. */
@@ -1394,7 +1387,7 @@ export type GetWindowsUserComputerResponseResourcesItemBrowserExtensionsItemBrow
   | "SAFARI"
   | "EDGE";
 export const GetWindowsUserComputerResponseResourcesItemBrowserExtensionsItemBrowser =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetWindowsUserComputerResponseResourcesItemBrowserExtensionsItem {
   /** The identifier of the browser extension. */
@@ -1525,7 +1518,7 @@ export type GetWindowsUserComputerResponseResourcesItemWindowsSecurityProductsIt
   | "ANTIVIRUS"
   | "ANTISPYWARE";
 export const GetWindowsUserComputerResponseResourcesItemWindowsSecurityProductsItemCategory =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The state of the security product. */
 export type GetWindowsUserComputerResponseResourcesItemWindowsSecurityProductsItemState =
@@ -1533,7 +1526,7 @@ export type GetWindowsUserComputerResponseResourcesItemWindowsSecurityProductsIt
   | "OFF"
   | "UNKNOWN";
 export const GetWindowsUserComputerResponseResourcesItemWindowsSecurityProductsItemState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetWindowsUserComputerResponseResourcesItemWindowsSecurityProductsItem {
   /** The name of the security product. */
@@ -1579,7 +1572,7 @@ export type GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterFire
   | "NOT_MONITORED"
   | "ERROR";
 export const GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterFirewall =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The health of the Windows Autoupdate feature. */
 export type GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterAutoupdate =
@@ -1589,7 +1582,7 @@ export type GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterAuto
   | "NOT_MONITORED"
   | "ERROR";
 export const GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterAutoupdate =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The health of the monitored Antivirus solution. */
 export type GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterAntivirus =
@@ -1599,7 +1592,7 @@ export type GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterAnti
   | "NOT_MONITORED"
   | "ERROR";
 export const GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterAntivirus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The health of the Internet Settings. */
 export type GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterInternetSetting =
@@ -1609,7 +1602,7 @@ export type GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterInte
   | "NOT_MONITORED"
   | "ERROR";
 export const GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterInternetSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The health of the User Account Control (UAC) capability in Windows. */
 export type GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterUserAccountControl =
@@ -1619,7 +1612,7 @@ export type GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterUser
   | "NOT_MONITORED"
   | "ERROR";
 export const GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterUserAccountControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The health of the Windows Security Center Service. */
 export type GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterWindowsSecurityCenterService =
@@ -1629,7 +1622,7 @@ export type GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterWind
   | "NOT_MONITORED"
   | "ERROR";
 export const GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenterWindowsSecurityCenterService =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetWindowsUserComputerResponseResourcesItemWindowsSecurityCenter {
   /** The health of the monitored Firewall. */
@@ -1919,8 +1912,7 @@ export type PutBackgroundCheckConnectorRequestResourcesItemStatus =
   | "INCOMPLETE"
   | "IN_PROGRESS"
   | "COMPLETE";
-export const PutBackgroundCheckConnectorRequestResourcesItemStatus =
-  /*@__PURE__*/ S.String;
+export const PutBackgroundCheckConnectorRequestResourcesItemStatus = S.String;
 
 export interface PutBackgroundCheckConnectorRequestResourcesItem {
   /** A human readable label for this resource - will be shown as-is in inventory page. */
@@ -2050,7 +2042,7 @@ export type PutMacosUserComputerRequestResourcesItemBrowserExtensionsItemBrowser
   | "SAFARI"
   | "EDGE";
 export const PutMacosUserComputerRequestResourcesItemBrowserExtensionsItemBrowser =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutMacosUserComputerRequestResourcesItemBrowserExtensionsItem {
   /** The identifier of the browser extension. */
@@ -2353,8 +2345,7 @@ export type PutSecurityTaskRequestResourcesItemTaskState =
   | "OPEN"
   | "IN_PROGRESS"
   | "CLOSED";
-export const PutSecurityTaskRequestResourcesItemTaskState =
-  /*@__PURE__*/ S.String;
+export const PutSecurityTaskRequestResourcesItemTaskState = S.String;
 
 /** Priorities are mapped against SLAs for tasks. If your task system does not have fixed priorities, consider letting users configure priorities through labels. */
 export type PutSecurityTaskRequestResourcesItemPriority =
@@ -2363,8 +2354,7 @@ export type PutSecurityTaskRequestResourcesItemPriority =
   | "P2"
   | "P3"
   | "P4";
-export const PutSecurityTaskRequestResourcesItemPriority =
-  /*@__PURE__*/ S.String;
+export const PutSecurityTaskRequestResourcesItemPriority = S.String;
 
 /** The set of users assigned to the tasks. Emails do not necessarily need to be Vanta users. */
 export type PutSecurityTaskRequestResourcesItemAssigneesList = Array<string>;
@@ -2571,12 +2561,11 @@ export type PutUserAccountRequestResourcesItemPermissionLevel =
   | "ADMIN"
   | "EDITOR"
   | "BASE";
-export const PutUserAccountRequestResourcesItemPermissionLevel =
-  /*@__PURE__*/ S.String;
+export const PutUserAccountRequestResourcesItemPermissionLevel = S.String;
 
 /** The status of the user. It's acceptable to omit any deactivated users from your application, but if your application has access to deactivated users, it's preferable to send them over with this status. */
 export type PutUserAccountRequestResourcesItemStatus = "ACTIVE" | "DEACTIVATED";
-export const PutUserAccountRequestResourcesItemStatus = /*@__PURE__*/ S.String;
+export const PutUserAccountRequestResourcesItemStatus = S.String;
 
 /** The individual MFA setting. */
 export type PutUserAccountRequestResourcesItemMfaMethodsItem =
@@ -2587,8 +2576,7 @@ export type PutUserAccountRequestResourcesItemMfaMethodsItem =
   | "OTP"
   | "HARDWARE_TOKEN"
   | "PUSH_PROMPT";
-export const PutUserAccountRequestResourcesItemMfaMethodsItem =
-  /*@__PURE__*/ S.String;
+export const PutUserAccountRequestResourcesItemMfaMethodsItem = S.String;
 
 /** The MFA settings of the user. This helps customers verify that their users are adequately protecting their accounts. This value is ignored if authMethod is SSO. */
 export type PutUserAccountRequestResourcesItemMfaMethodsList = Array<
@@ -2605,8 +2593,7 @@ export type PutUserAccountRequestResourcesItemAuthMethod =
   | "PASSWORD"
   | "TOKEN"
   | "BIOMETRIC";
-export const PutUserAccountRequestResourcesItemAuthMethod =
-  /*@__PURE__*/ S.String;
+export const PutUserAccountRequestResourcesItemAuthMethod = S.String;
 
 /** If the user belongs to any groups/teams in the product, those corresponding group IDs. We'll map these to groups in our product in the future. */
 export type PutUserAccountRequestResourcesItemGroupIdsList = Array<string>;
@@ -2722,7 +2709,7 @@ export type PutUserSecurityTrainingStatusRequestResourcesItemFrameworksFulfilled
   | "GDPR"
   | "CCPA";
 export const PutUserSecurityTrainingStatusRequestResourcesItemFrameworksFulfilledItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The set of compliance or other framework requirements that can be satisfied when an employee completes this training. */
 export type PutUserSecurityTrainingStatusRequestResourcesItemFrameworksFulfilledList =
@@ -2739,8 +2726,7 @@ export const PutUserSecurityTrainingStatusRequestResourcesItemFrameworksFulfille
 export type PutUserSecurityTrainingStatusRequestResourcesItemStatus =
   | "INCOMPLETE"
   | "COMPLETE";
-export const PutUserSecurityTrainingStatusRequestResourcesItemStatus =
-  /*@__PURE__*/ S.String;
+export const PutUserSecurityTrainingStatusRequestResourcesItemStatus = S.String;
 
 export interface PutUserSecurityTrainingStatusRequestResourcesItem {
   /** A human readable label for this resource - will be shown as-is in inventory page. */
@@ -2846,8 +2832,7 @@ export type PutVulnerableComponentRequestResourcesItemTargetType =
   | "MANIFEST_FILE"
   | "WORKSTATION"
   | "OTHER";
-export const PutVulnerableComponentRequestResourcesItemTargetType =
-  /*@__PURE__*/ S.String;
+export const PutVulnerableComponentRequestResourcesItemTargetType = S.String;
 
 export interface PutVulnerableComponentRequestResourcesItem {
   /** A human readable label for this resource - will be shown as-is in inventory page. */
@@ -2940,7 +2925,7 @@ export type PutWindowsUserComputerRequestResourcesItemBrowserExtensionsItemBrows
   | "SAFARI"
   | "EDGE";
 export const PutWindowsUserComputerRequestResourcesItemBrowserExtensionsItemBrowser =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutWindowsUserComputerRequestResourcesItemBrowserExtensionsItem {
   /** The identifier of the browser extension. */
@@ -3059,7 +3044,7 @@ export type PutWindowsUserComputerRequestResourcesItemWindowsSecurityProductsIte
   | "ANTIVIRUS"
   | "ANTISPYWARE";
 export const PutWindowsUserComputerRequestResourcesItemWindowsSecurityProductsItemCategory =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The state of the security product. */
 export type PutWindowsUserComputerRequestResourcesItemWindowsSecurityProductsItemState =
@@ -3067,7 +3052,7 @@ export type PutWindowsUserComputerRequestResourcesItemWindowsSecurityProductsIte
   | "OFF"
   | "UNKNOWN";
 export const PutWindowsUserComputerRequestResourcesItemWindowsSecurityProductsItemState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutWindowsUserComputerRequestResourcesItemWindowsSecurityProductsItem {
   /** The name of the security product. */
@@ -3117,7 +3102,7 @@ export type PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterFirew
   | "NOT_MONITORED"
   | "ERROR";
 export const PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterFirewall =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The health of the Windows Autoupdate feature. */
 export type PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterAutoupdate =
@@ -3127,7 +3112,7 @@ export type PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterAutou
   | "NOT_MONITORED"
   | "ERROR";
 export const PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterAutoupdate =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The health of the monitored Antivirus solution. */
 export type PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterAntivirus =
@@ -3137,7 +3122,7 @@ export type PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterAntiv
   | "NOT_MONITORED"
   | "ERROR";
 export const PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterAntivirus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The health of the Internet Settings. */
 export type PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterInternetSetting =
@@ -3147,7 +3132,7 @@ export type PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterInter
   | "NOT_MONITORED"
   | "ERROR";
 export const PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterInternetSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The health of the User Account Control (UAC) capability in Windows. */
 export type PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterUserAccountControl =
@@ -3157,7 +3142,7 @@ export type PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterUserA
   | "NOT_MONITORED"
   | "ERROR";
 export const PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterUserAccountControl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The health of the Windows Security Center Service. */
 export type PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterWindowsSecurityCenterService =
@@ -3167,7 +3152,7 @@ export type PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterWindo
   | "NOT_MONITORED"
   | "ERROR";
 export const PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenterWindowsSecurityCenterService =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutWindowsUserComputerRequestResourcesItemWindowsSecurityCenter {
   /** The health of the monitored Firewall. */
@@ -3356,7 +3341,7 @@ export const UploadFileForDocumentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UploadFileForDocumentRequest>;
 
 export type UploadedDocumentUploadedByType = "USER" | "APPLICATION";
-export const UploadedDocumentUploadedByType = /*@__PURE__*/ S.String;
+export const UploadedDocumentUploadedByType = S.String;
 
 /** The actor who uploaded this document. It could be a user or an app. */
 export interface UploadedFileTUploadedBy {

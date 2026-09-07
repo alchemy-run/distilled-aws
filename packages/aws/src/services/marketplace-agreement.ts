@@ -199,7 +199,7 @@ export type AgreementCancellationRequestStatus =
   | "CANCELLED"
   | "VALIDATION_FAILED"
   | (string & {});
-export const AgreementCancellationRequestStatus = /*@__PURE__*/ S.String;
+export const AgreementCancellationRequestStatus = S.String;
 
 export type AgreementCancellationRequestReasonCode =
   | "INCORRECT_TERMS_ACCEPTED"
@@ -211,7 +211,7 @@ export type AgreementCancellationRequestReasonCode =
   | "BUYER_DISSATISFACTION"
   | "OTHER"
   | (string & {});
-export const AgreementCancellationRequestReasonCode = /*@__PURE__*/ S.String;
+export const AgreementCancellationRequestReasonCode = S.String;
 
 export type AgreementCancellationRequestDescription =
   | string
@@ -265,7 +265,7 @@ export type PaymentRequestStatus =
   | "REJECTED"
   | "CANCELLED"
   | (string & {});
-export const PaymentRequestStatus = /*@__PURE__*/ S.String;
+export const PaymentRequestStatus = S.String;
 
 export type PaymentRequestName = string;
 export type PaymentRequestDescription = string | redacted.Redacted<string>;
@@ -348,7 +348,7 @@ export type BillingAdjustmentReasonCode =
   | "BUYER_DISSATISFACTION"
   | "OTHER"
   | (string & {});
-export const BillingAdjustmentReasonCode = /*@__PURE__*/ S.String;
+export const BillingAdjustmentReasonCode = S.String;
 
 export type BillingAdjustmentDescription = string | redacted.Redacted<string>;
 export type ClientToken = string;
@@ -414,7 +414,7 @@ export type BillingAdjustmentErrorCode =
   | "RESOURCE_NOT_FOUND_EXCEPTION"
   | "INTERNAL_FAILURE"
   | (string & {});
-export const BillingAdjustmentErrorCode = /*@__PURE__*/ S.String;
+export const BillingAdjustmentErrorCode = S.String;
 
 export interface BatchCreateBillingAdjustmentError {
   code: BillingAdjustmentErrorCode;
@@ -548,7 +548,7 @@ export const CancelAgreementPaymentRequestOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "CancelAgreementPaymentRequestOutput",
 }) as any as S.Schema<CancelAgreementPaymentRequestOutput>;
 export type Intent = "NEW" | "AMEND" | "REPLACE" | (string & {});
-export const Intent = /*@__PURE__*/ S.String;
+export const Intent = S.String;
 
 export type TermId = string;
 export type BoundedString = string;
@@ -584,7 +584,7 @@ export type PaymentRequestApprovalStrategy =
   | "AUTO_APPROVE_ON_EXPIRATION"
   | "WAIT_FOR_APPROVAL"
   | (string & {});
-export const PaymentRequestApprovalStrategy = /*@__PURE__*/ S.String;
+export const PaymentRequestApprovalStrategy = S.String;
 
 export type ISO8601Duration = string;
 export interface VariablePaymentTermConfiguration {
@@ -639,7 +639,7 @@ export type RequestedTermList = RequestedTerm[];
 export const RequestedTermList = /*@__PURE__*/ S.Array(RequestedTerm);
 export type AgreementProposalId = string;
 export type TaxEstimation = "DISABLED" | "ENABLED" | (string & {});
-export const TaxEstimation = /*@__PURE__*/ S.String;
+export const TaxEstimation = S.String;
 
 export interface TaxConfiguration {
   taxEstimation?: TaxEstimation;
@@ -676,7 +676,7 @@ export type Timing =
   | "SCHEDULED"
   | "BILLING_PERIOD"
   | (string & {});
-export const Timing = /*@__PURE__*/ S.String;
+export const Timing = S.String;
 
 export interface TaxBreakdownItem {
   amount?: string;
@@ -859,7 +859,7 @@ export type AgreementStatus =
   | "SUPERSEDED"
   | "TERMINATED"
   | (string & {});
-export const AgreementStatus = /*@__PURE__*/ S.String;
+export const AgreementStatus = S.String;
 
 export interface DescribeAgreementOutput {
   agreementId?: string;
@@ -956,7 +956,7 @@ export type AgreementEntitlementStatus =
   | "FAILED"
   | "DEPROVISIONED"
   | (string & {});
-export const AgreementEntitlementStatus = /*@__PURE__*/ S.String;
+export const AgreementEntitlementStatus = S.String;
 
 export type AgreementEntitlementStatusReasonCode =
   | "PROVISIONING_IN_PROGRESS"
@@ -969,7 +969,7 @@ export type AgreementEntitlementStatusReasonCode =
   | "AGREEMENT_ACTIVE"
   | "PRODUCT_RESTRICTED"
   | (string & {});
-export const AgreementEntitlementStatusReasonCode = /*@__PURE__*/ S.String;
+export const AgreementEntitlementStatusReasonCode = S.String;
 
 export type AwsArn = string;
 export interface AgreementEntitlement {
@@ -1605,7 +1605,7 @@ export type BillingAdjustmentStatus =
   | "VALIDATION_FAILED"
   | "COMPLETED"
   | (string & {});
-export const BillingAdjustmentStatus = /*@__PURE__*/ S.String;
+export const BillingAdjustmentStatus = S.String;
 
 export type BillingAdjustmentStatusMessage = string;
 export interface GetBillingAdjustmentRequestOutput {
@@ -1761,10 +1761,10 @@ export const ListAgreementChargesOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAgreementChargesOutput",
 }) as any as S.Schema<ListAgreementChargesOutput>;
 export type LineItemGroupBy = "INVOICE_ID" | (string & {});
-export const LineItemGroupBy = /*@__PURE__*/ S.String;
+export const LineItemGroupBy = S.String;
 
 export type InvoiceType = "INVOICE" | "CREDIT_MEMO" | (string & {});
-export const InvoiceType = /*@__PURE__*/ S.String;
+export const InvoiceType = S.String;
 
 export interface InvoiceBillingPeriod {
   month: number;
@@ -2104,7 +2104,7 @@ export type FilterList = Filter[];
 export const FilterList = /*@__PURE__*/ S.Array(Filter);
 export type SortBy = string;
 export type SortOrder = "ASCENDING" | "DESCENDING" | (string & {});
-export const SortOrder = /*@__PURE__*/ S.String;
+export const SortOrder = S.String;
 
 export interface Sort {
   sortBy?: string;
@@ -2297,7 +2297,7 @@ export type AccessDeniedExceptionReason =
   | "MISSING_MFA"
   | "INVALID_ACCESS"
   | (string & {});
-export const AccessDeniedExceptionReason = /*@__PURE__*/ S.String;
+export const AccessDeniedExceptionReason = S.String;
 
 export type ResourceType =
   | "Agreement"
@@ -2309,7 +2309,7 @@ export type ResourceType =
   | "AgreementCancellationRequest"
   | "BillingAdjustmentRequest"
   | (string & {});
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 export type ValidationExceptionReason =
   | "MISSING_BILLING_ADJUSTMENTS"
@@ -2395,7 +2395,7 @@ export type ValidationExceptionReason =
   | "DUPLICATE_AGREEMENT_IN_ORGANIZATION"
   | "MISSING_PURCHASE_ORDER_REFERENCE"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   name: string;

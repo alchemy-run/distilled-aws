@@ -118,7 +118,7 @@ export type ProviderOAuthConfigSystemProviderIdEnum =
   | "DATASTAX"
   | "DYNATRACE"
   | "BITBUCKET_CLOUD";
-export const ProviderOAuthConfigSystemProviderIdEnum = /*@__PURE__*/ S.String;
+export const ProviderOAuthConfigSystemProviderIdEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -160,7 +160,7 @@ export type CustomOAuthConfigScmProviderEnum =
   | "GITHUB_ENTERPRISE"
   | "GITLAB_ENTERPRISE"
   | "BITBUCKET_DATA_CENTER";
-export const CustomOAuthConfigScmProviderEnum = /*@__PURE__*/ S.String;
+export const CustomOAuthConfigScmProviderEnum = S.String;
 
 /** ServiceDirectoryConfig represents Service Directory configuration for a connection. */
 export interface ServiceDirectoryConfig {
@@ -443,7 +443,7 @@ export type GitHubConfigGithubAppEnum =
   | "FIREBASE"
   | "GEMINI_CODE_ASSIST"
   | "DATAFORM";
-export const GitHubConfigGithubAppEnum = /*@__PURE__*/ S.String;
+export const GitHubConfigGithubAppEnum = S.String;
 
 /** Represents an OAuth token of the account that authorized the Connection, and associated metadata. */
 export interface OAuthCredential {
@@ -572,7 +572,7 @@ export type InstallationStateStageEnum =
   | "PENDING_USER_OAUTH"
   | "PENDING_INSTALL_APP"
   | "COMPLETE";
-export const InstallationStateStageEnum = /*@__PURE__*/ S.String;
+export const InstallationStateStageEnum = S.String;
 
 /** Describes stage and necessary actions to be taken by the user to complete the installation. Used for GitHub and GitHub Enterprise based connections. */
 export interface InstallationState {
@@ -947,7 +947,7 @@ export type RuntimeConfigStateEnum =
   | "STATE_UNSPECIFIED"
   | "LINKED"
   | "UNLINKED";
-export const RuntimeConfigStateEnum = /*@__PURE__*/ S.String;
+export const RuntimeConfigStateEnum = S.String;
 
 /** GKEWorkload represents the Google Kubernetes Engine runtime. */
 export interface GKEWorkload {
@@ -1015,7 +1015,7 @@ export type InsightsConfigStateEnum =
   | "PENDING"
   | "COMPLETE"
   | "ERROR";
-export const InsightsConfigStateEnum = /*@__PURE__*/ S.String;
+export const InsightsConfigStateEnum = S.String;
 
 /** The InsightsConfig resource is the core configuration object to capture events from your Software Development Lifecycle. It acts as the central hub for managing how Developer Connect understands your application, its runtime environments, and the artifacts deployed within them. */
 export interface InsightsConfig {
@@ -1392,7 +1392,7 @@ export type FetchGitRefsProjectsLocationsConnectionsGitRepositoryLinksRefTypeEnu
   | "TAG"
   | "BRANCH";
 export const FetchGitRefsProjectsLocationsConnectionsGitRepositoryLinksRefTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface FetchGitRefsProjectsLocationsConnectionsGitRepositoryLinksRequest {
   /** Optional. Number of results to return in the list. Default to 20. */
@@ -1930,7 +1930,7 @@ export type DeploymentEventStateEnum =
   | "STATE_UNSPECIFIED"
   | "STATE_ACTIVE"
   | "STATE_INACTIVE";
-export const DeploymentEventStateEnum = /*@__PURE__*/ S.String;
+export const DeploymentEventStateEnum = S.String;
 
 /** The DeploymentEvent resource represents the deployment of the artifact within the InsightsConfig resource. */
 export interface DeploymentEvent {
@@ -2717,7 +2717,7 @@ export type StartOAuthResponseSystemProviderIdEnum =
   | "DATASTAX"
   | "DYNATRACE"
   | "BITBUCKET_CLOUD";
-export const StartOAuthResponseSystemProviderIdEnum = /*@__PURE__*/ S.String;
+export const StartOAuthResponseSystemProviderIdEnum = S.String;
 
 /** Message for responding to starting an OAuth flow. */
 export interface StartOAuthResponse {

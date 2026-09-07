@@ -51,7 +51,7 @@ export type SpanPropertyTypeEnum =
   | "span"
   | "span_attribute"
   | "span_resource_attribute";
-export const SpanPropertyTypeEnum = /*@__PURE__*/ S.String;
+export const SpanPropertyTypeEnum = S.String;
 
 /** * `exact` - exact * `is_not` - is_not * `icontains` - icontains * `not_icontains` - not_icontains * `starts_with` - starts_with * `not_starts_with` - not_starts_with * `ends_with` - ends_with * `not_ends_with` - not_ends_with * `regex` - regex * `not_regex` - not_regex * `gt` - gt * `lt` - lt * `is_set` - is_set * `is_not_set` - is_not_set */
 export type SpanPropertyFilterOperatorEnum =
@@ -69,7 +69,7 @@ export type SpanPropertyFilterOperatorEnum =
   | "lt"
   | "is_set"
   | "is_not_set";
-export const SpanPropertyFilterOperatorEnum = /*@__PURE__*/ S.String;
+export const SpanPropertyFilterOperatorEnum = S.String;
 
 export interface SpanPropertyFilter {
   /** Attribute key. For type "span", use built-in fields (trace_id, span_id, duration, name, kind, status_code, is_root_span). For "span_attribute"/"span_resource_attribute", use the attribute key (e.g. "http.method"). */
@@ -223,8 +223,7 @@ export const TracingAggregationResponse = /*@__PURE__*/ S.suspend(() =>
 export type TracingAttributeBreakdownQueryBodyOrderByEnum =
   | "count"
   | "error_count";
-export const TracingAttributeBreakdownQueryBodyOrderByEnum =
-  /*@__PURE__*/ S.String;
+export const TracingAttributeBreakdownQueryBodyOrderByEnum = S.String;
 
 /** Filter by service names. */
 export type TracingAttributeBreakdownQueryBodyServiceNamesList = Array<string>;
@@ -578,11 +577,11 @@ export const TracingQueryBodyStatusCodesList = /*@__PURE__*/ S.Array(
 
 /** * `timestamp` - timestamp * `duration` - duration */
 export type TracingQueryBodyOrderByEnum = "timestamp" | "duration";
-export const TracingQueryBodyOrderByEnum = /*@__PURE__*/ S.String;
+export const TracingQueryBodyOrderByEnum = S.String;
 
 /** * `ASC` - ASC * `DESC` - DESC */
 export type OrderDirectionEnum = "ASC" | "DESC";
-export const OrderDirectionEnum = /*@__PURE__*/ S.String;
+export const OrderDirectionEnum = S.String;
 
 /** Property filters for the query. */
 export type TracingQueryBodyFilterGroupList = Array<SpanPropertyFilter>;
@@ -905,7 +904,7 @@ export const SymbolStatsResponseResultsList = /*@__PURE__*/ S.Array(
 
 /** * `line` - line * `symbol` - symbol */
 export type GranularityEnum = "line" | "symbol";
-export const GranularityEnum = /*@__PURE__*/ S.String;
+export const GranularityEnum = S.String;
 
 export interface SymbolStatsResponse {
   /** One row per bucket, ordered by line ascending. */
@@ -1085,14 +1084,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -1149,8 +1148,7 @@ export const TracingView = /*@__PURE__*/ S.suspend(() =>
 export type GetTracingSpansAttributeRequestAttributeType =
   | "span_attribute"
   | "span_resource_attribute";
-export const GetTracingSpansAttributeRequestAttributeType =
-  /*@__PURE__*/ S.String;
+export const GetTracingSpansAttributeRequestAttributeType = S.String;
 
 export interface GetTracingSpansAttributeRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1189,7 +1187,7 @@ export const GetTracingSpansAttributeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `key` - key * `value` - value */
 export type MatchedOnEnum = "key" | "value";
-export const MatchedOnEnum = /*@__PURE__*/ S.String;
+export const MatchedOnEnum = S.String;
 
 export interface TracingAttributeEntry {
   /** Attribute key name. */
@@ -1298,7 +1296,7 @@ export type GetTracingSpansValueRequestAttributeType =
   | "span"
   | "span_attribute"
   | "span_resource_attribute";
-export const GetTracingSpansValueRequestAttributeType = /*@__PURE__*/ S.String;
+export const GetTracingSpansValueRequestAttributeType = S.String;
 
 export interface GetTracingSpansValueRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

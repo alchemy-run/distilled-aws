@@ -174,7 +174,7 @@ export type DnsCreateResponseStatus =
   | "misconfigured"
   | "misconfigured/locked"
   | "unlocked";
-export const DnsCreateResponseStatus = /*@__PURE__*/ S.String;
+export const DnsCreateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateDnsResponse {
@@ -216,7 +216,7 @@ export const CreateDnsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDnsResponse>;
 
 export type RulesCreateRequestActionsItemType = "drop" | "forward" | "worker";
-export const RulesCreateRequestActionsItemType = /*@__PURE__*/ S.String;
+export const RulesCreateRequestActionsItemType = S.String;
 
 export type RulesCreateRequestActionsItemValueList = Array<string>;
 export const RulesCreateRequestActionsItemValueList = /*@__PURE__*/ S.Array(
@@ -244,10 +244,10 @@ export const RulesCreateRequestActionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesCreateRequestActionsList>;
 
 export type RulesCreateRequestMatchersItemType = "all" | "literal";
-export const RulesCreateRequestMatchersItemType = /*@__PURE__*/ S.String;
+export const RulesCreateRequestMatchersItemType = S.String;
 
 export type RulesCreateRequestMatchersItemField = "to";
-export const RulesCreateRequestMatchersItemField = /*@__PURE__*/ S.String;
+export const RulesCreateRequestMatchersItemField = S.String;
 
 export interface RulesCreateRequestMatchersItem {
   /** Type of matcher. */
@@ -274,7 +274,7 @@ export const RulesCreateRequestMatchersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesCreateRequestMatchersList>;
 
 export type RulesCreateRequestSource = "api" | "wrangler";
-export const RulesCreateRequestSource = /*@__PURE__*/ S.String;
+export const RulesCreateRequestSource = S.String;
 
 export interface CreateRuleRequest {
   /** Identifier. */
@@ -318,7 +318,7 @@ export const CreateRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRuleRequest>;
 
 export type RulesCreateResponseActionsItemType = "drop" | "forward" | "worker";
-export const RulesCreateResponseActionsItemType = /*@__PURE__*/ S.String;
+export const RulesCreateResponseActionsItemType = S.String;
 
 export type RulesCreateResponseActionsItemValueList = Array<string>;
 export const RulesCreateResponseActionsItemValueList = /*@__PURE__*/ S.Array(
@@ -346,10 +346,10 @@ export const RulesCreateResponseActionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesCreateResponseActionsList>;
 
 export type RulesCreateResponseMatchersItemType = "all" | "literal";
-export const RulesCreateResponseMatchersItemType = /*@__PURE__*/ S.String;
+export const RulesCreateResponseMatchersItemType = S.String;
 
 export type RulesCreateResponseMatchersItemField = "to";
-export const RulesCreateResponseMatchersItemField = /*@__PURE__*/ S.String;
+export const RulesCreateResponseMatchersItemField = S.String;
 
 export interface RulesCreateResponseMatchersItem {
   /** Type of matcher. */
@@ -376,7 +376,7 @@ export const RulesCreateResponseMatchersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesCreateResponseMatchersList>;
 
 export type RulesCreateResponseSource = "api" | "wrangler";
-export const RulesCreateResponseSource = /*@__PURE__*/ S.String;
+export const RulesCreateResponseSource = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateRuleResponse {
@@ -516,7 +516,7 @@ export const DeleteRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteRuleRequest>;
 
 export type RulesDeleteResponseActionsItemType = "drop" | "forward" | "worker";
-export const RulesDeleteResponseActionsItemType = /*@__PURE__*/ S.String;
+export const RulesDeleteResponseActionsItemType = S.String;
 
 export type RulesDeleteResponseActionsItemValueList = Array<string>;
 export const RulesDeleteResponseActionsItemValueList = /*@__PURE__*/ S.Array(
@@ -544,10 +544,10 @@ export const RulesDeleteResponseActionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesDeleteResponseActionsList>;
 
 export type RulesDeleteResponseMatchersItemType = "all" | "literal";
-export const RulesDeleteResponseMatchersItemType = /*@__PURE__*/ S.String;
+export const RulesDeleteResponseMatchersItemType = S.String;
 
 export type RulesDeleteResponseMatchersItemField = "to";
-export const RulesDeleteResponseMatchersItemField = /*@__PURE__*/ S.String;
+export const RulesDeleteResponseMatchersItemField = S.String;
 
 export interface RulesDeleteResponseMatchersItem {
   /** Type of matcher. */
@@ -574,7 +574,7 @@ export const RulesDeleteResponseMatchersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesDeleteResponseMatchersList>;
 
 export type RulesDeleteResponseSource = "api" | "wrangler";
-export const RulesDeleteResponseSource = /*@__PURE__*/ S.String;
+export const RulesDeleteResponseSource = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeleteRuleResponse {
@@ -636,7 +636,7 @@ export type DisableResponseStatus =
   | "misconfigured"
   | "misconfigured/locked"
   | "unlocked";
-export const DisableResponseStatus = /*@__PURE__*/ S.String;
+export const DisableResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DisableEmailRoutingResponse {
@@ -678,7 +678,7 @@ export const DisableEmailRoutingResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DisableEmailRoutingResponse>;
 
 export type EditAddressRequestStatus = "unverified" | "verified";
-export const EditAddressRequestStatus = /*@__PURE__*/ S.String;
+export const EditAddressRequestStatus = S.String;
 
 export interface EditAddressRequest {
   /** Identifier. */
@@ -762,7 +762,7 @@ export type EnableResponseStatus =
   | "misconfigured"
   | "misconfigured/locked"
   | "unlocked";
-export const EnableResponseStatus = /*@__PURE__*/ S.String;
+export const EnableResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface EnableEmailRoutingResponse {
@@ -896,7 +896,7 @@ export type DnsGetResponseErrorsItemMissingType =
   | "SVCB"
   | "TLSA"
   | "URI";
-export const DnsGetResponseErrorsItemMissingType = /*@__PURE__*/ S.String;
+export const DnsGetResponseErrorsItemMissingType = S.String;
 
 export interface DnsGetResponseErrorsItemMissing {
   /** DNS record content. */
@@ -1008,7 +1008,7 @@ export type GetResponseStatus =
   | "misconfigured"
   | "misconfigured/locked"
   | "unlocked";
-export const GetResponseStatus = /*@__PURE__*/ S.String;
+export const GetResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetEmailRoutingResponse {
@@ -1071,7 +1071,7 @@ export const GetRuleRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetRuleRequest" }) as any as S.Schema<GetRuleRequest>;
 
 export type RulesGetResponseActionsItemType = "drop" | "forward" | "worker";
-export const RulesGetResponseActionsItemType = /*@__PURE__*/ S.String;
+export const RulesGetResponseActionsItemType = S.String;
 
 export type RulesGetResponseActionsItemValueList = Array<string>;
 export const RulesGetResponseActionsItemValueList = /*@__PURE__*/ S.Array(
@@ -1098,10 +1098,10 @@ export const RulesGetResponseActionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesGetResponseActionsList>;
 
 export type RulesGetResponseMatchersItemType = "all" | "literal";
-export const RulesGetResponseMatchersItemType = /*@__PURE__*/ S.String;
+export const RulesGetResponseMatchersItemType = S.String;
 
 export type RulesGetResponseMatchersItemField = "to";
-export const RulesGetResponseMatchersItemField = /*@__PURE__*/ S.String;
+export const RulesGetResponseMatchersItemField = S.String;
 
 export interface RulesGetResponseMatchersItem {
   /** Type of matcher. */
@@ -1127,7 +1127,7 @@ export const RulesGetResponseMatchersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesGetResponseMatchersList>;
 
 export type RulesGetResponseSource = "api" | "wrangler";
-export const RulesGetResponseSource = /*@__PURE__*/ S.String;
+export const RulesGetResponseSource = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetRuleResponse {
@@ -1187,7 +1187,7 @@ export type RulesCatchAllsGetResponseActionsItemType =
   | "drop"
   | "forward"
   | "worker";
-export const RulesCatchAllsGetResponseActionsItemType = /*@__PURE__*/ S.String;
+export const RulesCatchAllsGetResponseActionsItemType = S.String;
 
 export type RulesCatchAllsGetResponseActionsItemValueList = Array<string>;
 export const RulesCatchAllsGetResponseActionsItemValueList =
@@ -1219,7 +1219,7 @@ export const RulesCatchAllsGetResponseActionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesCatchAllsGetResponseActionsList>;
 
 export type RulesCatchAllsGetResponseMatchersItemType = "all";
-export const RulesCatchAllsGetResponseMatchersItemType = /*@__PURE__*/ S.String;
+export const RulesCatchAllsGetResponseMatchersItemType = S.String;
 
 export interface RulesCatchAllsGetResponseMatchersItem {
   /** Type of matcher. Default is 'all'. */
@@ -1241,7 +1241,7 @@ export const RulesCatchAllsGetResponseMatchersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesCatchAllsGetResponseMatchersList>;
 
 export type RulesCatchAllsGetResponseSource = "api" | "wrangler";
-export const RulesCatchAllsGetResponseSource = /*@__PURE__*/ S.String;
+export const RulesCatchAllsGetResponseSource = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetRuleCatchAllResponse {
@@ -1275,7 +1275,7 @@ export const GetRuleCatchAllResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetRuleCatchAllResponse>;
 
 export type AddressesListRequestDirection = "asc" | "desc";
-export const AddressesListRequestDirection = /*@__PURE__*/ S.String;
+export const AddressesListRequestDirection = S.String;
 
 export interface ListAddressesRequest {
   /** Identifier. */
@@ -1432,7 +1432,7 @@ export type DnsEditResponseStatus =
   | "misconfigured"
   | "misconfigured/locked"
   | "unlocked";
-export const DnsEditResponseStatus = /*@__PURE__*/ S.String;
+export const DnsEditResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchDnsResponse {
@@ -1477,8 +1477,7 @@ export type RulesCatchAllsUpdateRequestActionsItemType =
   | "drop"
   | "forward"
   | "worker";
-export const RulesCatchAllsUpdateRequestActionsItemType =
-  /*@__PURE__*/ S.String;
+export const RulesCatchAllsUpdateRequestActionsItemType = S.String;
 
 export type RulesCatchAllsUpdateRequestActionsItemValueList = Array<string>;
 export const RulesCatchAllsUpdateRequestActionsItemValueList =
@@ -1508,8 +1507,7 @@ export const RulesCatchAllsUpdateRequestActionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesCatchAllsUpdateRequestActionsList>;
 
 export type RulesCatchAllsUpdateRequestMatchersItemType = "all";
-export const RulesCatchAllsUpdateRequestMatchersItemType =
-  /*@__PURE__*/ S.String;
+export const RulesCatchAllsUpdateRequestMatchersItemType = S.String;
 
 export interface RulesCatchAllsUpdateRequestMatchersItem {
   /** Type of matcher. Default is 'all'. */
@@ -1531,7 +1529,7 @@ export const RulesCatchAllsUpdateRequestMatchersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesCatchAllsUpdateRequestMatchersList>;
 
 export type RulesCatchAllsUpdateRequestSource = "api" | "wrangler";
-export const RulesCatchAllsUpdateRequestSource = /*@__PURE__*/ S.String;
+export const RulesCatchAllsUpdateRequestSource = S.String;
 
 export interface PutRuleCatchAllRequest {
   /** Identifier. */
@@ -1575,8 +1573,7 @@ export type RulesCatchAllsUpdateResponseActionsItemType =
   | "drop"
   | "forward"
   | "worker";
-export const RulesCatchAllsUpdateResponseActionsItemType =
-  /*@__PURE__*/ S.String;
+export const RulesCatchAllsUpdateResponseActionsItemType = S.String;
 
 export type RulesCatchAllsUpdateResponseActionsItemValueList = Array<string>;
 export const RulesCatchAllsUpdateResponseActionsItemValueList =
@@ -1608,8 +1605,7 @@ export const RulesCatchAllsUpdateResponseActionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesCatchAllsUpdateResponseActionsList>;
 
 export type RulesCatchAllsUpdateResponseMatchersItemType = "all";
-export const RulesCatchAllsUpdateResponseMatchersItemType =
-  /*@__PURE__*/ S.String;
+export const RulesCatchAllsUpdateResponseMatchersItemType = S.String;
 
 export interface RulesCatchAllsUpdateResponseMatchersItem {
   /** Type of matcher. Default is 'all'. */
@@ -1631,7 +1627,7 @@ export const RulesCatchAllsUpdateResponseMatchersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesCatchAllsUpdateResponseMatchersList>;
 
 export type RulesCatchAllsUpdateResponseSource = "api" | "wrangler";
-export const RulesCatchAllsUpdateResponseSource = /*@__PURE__*/ S.String;
+export const RulesCatchAllsUpdateResponseSource = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PutRuleCatchAllResponse {
@@ -1691,7 +1687,7 @@ export type UnlockResponseStatus =
   | "misconfigured"
   | "misconfigured/locked"
   | "unlocked";
-export const UnlockResponseStatus = /*@__PURE__*/ S.String;
+export const UnlockResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UnlockResponse {
@@ -1731,7 +1727,7 @@ export const UnlockResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UnlockResponse" }) as any as S.Schema<UnlockResponse>;
 
 export type RulesUpdateRequestActionsItemType = "drop" | "forward" | "worker";
-export const RulesUpdateRequestActionsItemType = /*@__PURE__*/ S.String;
+export const RulesUpdateRequestActionsItemType = S.String;
 
 export type RulesUpdateRequestActionsItemValueList = Array<string>;
 export const RulesUpdateRequestActionsItemValueList = /*@__PURE__*/ S.Array(
@@ -1759,10 +1755,10 @@ export const RulesUpdateRequestActionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesUpdateRequestActionsList>;
 
 export type RulesUpdateRequestMatchersItemType = "all" | "literal";
-export const RulesUpdateRequestMatchersItemType = /*@__PURE__*/ S.String;
+export const RulesUpdateRequestMatchersItemType = S.String;
 
 export type RulesUpdateRequestMatchersItemField = "to";
-export const RulesUpdateRequestMatchersItemField = /*@__PURE__*/ S.String;
+export const RulesUpdateRequestMatchersItemField = S.String;
 
 export interface RulesUpdateRequestMatchersItem {
   /** Type of matcher. */
@@ -1789,7 +1785,7 @@ export const RulesUpdateRequestMatchersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesUpdateRequestMatchersList>;
 
 export type RulesUpdateRequestSource = "api" | "wrangler";
-export const RulesUpdateRequestSource = /*@__PURE__*/ S.String;
+export const RulesUpdateRequestSource = S.String;
 
 export interface UpdateRuleRequest {
   /** Identifier. */
@@ -1836,7 +1832,7 @@ export const UpdateRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRuleRequest>;
 
 export type RulesUpdateResponseActionsItemType = "drop" | "forward" | "worker";
-export const RulesUpdateResponseActionsItemType = /*@__PURE__*/ S.String;
+export const RulesUpdateResponseActionsItemType = S.String;
 
 export type RulesUpdateResponseActionsItemValueList = Array<string>;
 export const RulesUpdateResponseActionsItemValueList = /*@__PURE__*/ S.Array(
@@ -1864,10 +1860,10 @@ export const RulesUpdateResponseActionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesUpdateResponseActionsList>;
 
 export type RulesUpdateResponseMatchersItemType = "all" | "literal";
-export const RulesUpdateResponseMatchersItemType = /*@__PURE__*/ S.String;
+export const RulesUpdateResponseMatchersItemType = S.String;
 
 export type RulesUpdateResponseMatchersItemField = "to";
-export const RulesUpdateResponseMatchersItemField = /*@__PURE__*/ S.String;
+export const RulesUpdateResponseMatchersItemField = S.String;
 
 export interface RulesUpdateResponseMatchersItem {
   /** Type of matcher. */
@@ -1894,7 +1890,7 @@ export const RulesUpdateResponseMatchersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesUpdateResponseMatchersList>;
 
 export type RulesUpdateResponseSource = "api" | "wrangler";
-export const RulesUpdateResponseSource = /*@__PURE__*/ S.String;
+export const RulesUpdateResponseSource = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateRuleResponse {

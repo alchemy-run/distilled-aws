@@ -60,7 +60,7 @@ export type CloudProvider =
   | "CLOUD_PROVIDER_GCP"
   | "CLOUD_PROVIDER_AUTO"
   | "CLOUD_PROVIDER_OCI";
-export const CloudProvider = /*@__PURE__*/ S.String;
+export const CloudProvider = S.String;
 
 export interface SharedVolumeListItem {
   label?: string;
@@ -137,7 +137,7 @@ export type ObjectCreationType =
   | "OBJECT_CREATION_TYPE_CREATE_OVERWRITE_IF_EXISTS"
   | "OBJECT_CREATION_TYPE_ANONYMOUS_OWNED_BY_APP"
   | "OBJECT_CREATION_TYPE_EPHEMERAL";
-export const ObjectCreationType = /*@__PURE__*/ S.String;
+export const ObjectCreationType = S.String;
 
 export interface SharedVolumeGetOrCreateRequest {
   deploymentName?: string;
@@ -224,7 +224,7 @@ export type FileEntryFileType =
   | "SYMLINK"
   | "FIFO"
   | "SOCKET";
-export const FileEntryFileType = /*@__PURE__*/ S.String;
+export const FileEntryFileType = S.String;
 
 /** A file entry when listing files in a volume or network file system. */
 export interface FileEntry {

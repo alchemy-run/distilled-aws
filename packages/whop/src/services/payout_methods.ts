@@ -82,7 +82,7 @@ export type PayoutDestinationCategory =
   | "bank_wire"
   | "digital_wallet"
   | "unknown";
-export const PayoutDestinationCategory = /*@__PURE__*/ S.String;
+export const PayoutDestinationCategory = S.String;
 
 /** The payout destination configuration linked to this token. Null if not yet configured. */
 export interface PayoutMethodDestination {

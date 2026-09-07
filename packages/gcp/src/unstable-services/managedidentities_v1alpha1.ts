@@ -75,13 +75,13 @@ export type TrustTrustDirectionEnum =
   | "INBOUND"
   | "OUTBOUND"
   | "BIDIRECTIONAL";
-export const TrustTrustDirectionEnum = /*@__PURE__*/ S.String;
+export const TrustTrustDirectionEnum = S.String;
 
 export type TrustTrustTypeEnum =
   | "TRUST_TYPE_UNSPECIFIED"
   | "FOREST"
   | "EXTERNAL";
-export const TrustTrustTypeEnum = /*@__PURE__*/ S.String;
+export const TrustTrustTypeEnum = S.String;
 
 export type TrustStateEnum =
   | "STATE_UNSPECIFIED"
@@ -90,7 +90,7 @@ export type TrustStateEnum =
   | "DELETING"
   | "CONNECTED"
   | "DISCONNECTED";
-export const TrustStateEnum = /*@__PURE__*/ S.String;
+export const TrustStateEnum = S.String;
 
 /** Represents a relationship between two domains which makes it possible for users in one domain to be authenticated by a dc in another domain. Refer https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc731335(v%3dws.10) If the trust is being changed, it will be placed into the UPDATING state, which indicates that the resource is being reconciled. At this point, Get will reflect an intermediate state. */
 export interface Trust {
@@ -285,14 +285,13 @@ export type CheckMigrationPermissionResponseStateEnum =
   | "DISABLED"
   | "ENABLED"
   | "NEEDS_MAINTENANCE";
-export const CheckMigrationPermissionResponseStateEnum = /*@__PURE__*/ S.String;
+export const CheckMigrationPermissionResponseStateEnum = S.String;
 
 export type OnPremDomainSIDDetailsSidFilteringStateEnum =
   | "SID_FILTERING_STATE_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED";
-export const OnPremDomainSIDDetailsSidFilteringStateEnum =
-  /*@__PURE__*/ S.String;
+export const OnPremDomainSIDDetailsSidFilteringStateEnum = S.String;
 
 /** OnPremDomainDetails is the message which contains details of on-prem domain which is trusted and needs to be migrated. */
 export interface OnPremDomainSIDDetails {
@@ -345,7 +344,7 @@ export type DomainStateEnum =
   | "REPAIRING"
   | "PERFORMING_MAINTENANCE"
   | "DOWN";
-export const DomainStateEnum = /*@__PURE__*/ S.String;
+export const DomainStateEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -430,7 +429,7 @@ export type BackupTypeEnum =
   | "ON_DEMAND"
   | "SCHEDULED"
   | "SCHEMA_EXTENSION";
-export const BackupTypeEnum = /*@__PURE__*/ S.String;
+export const BackupTypeEnum = S.String;
 
 export type BackupStateEnum =
   | "STATE_UNSPECIFIED"
@@ -438,7 +437,7 @@ export type BackupStateEnum =
   | "ACTIVE"
   | "FAILED"
   | "DELETING";
-export const BackupStateEnum = /*@__PURE__*/ S.String;
+export const BackupStateEnum = S.String;
 
 /** Represents a Managed Microsoft Identities backup. */
 export interface Backup {
@@ -503,7 +502,7 @@ export type PeeringStateEnum =
   | "CONNECTED"
   | "DISCONNECTED"
   | "DELETING";
-export const PeeringStateEnum = /*@__PURE__*/ S.String;
+export const PeeringStateEnum = S.String;
 
 /** Represents a Managed Microsoft Identities Peering. */
 export interface Peering {
@@ -1001,7 +1000,7 @@ export type LDAPSSettingsStateEnum =
   | "UPDATING"
   | "ACTIVE"
   | "FAILED";
-export const LDAPSSettingsStateEnum = /*@__PURE__*/ S.String;
+export const LDAPSSettingsStateEnum = S.String;
 
 /** Certificate used to configure LDAPS. */
 export interface Certificate {
@@ -1155,7 +1154,7 @@ export type SQLIntegrationStateEnum =
   | "CREATING"
   | "DELETING"
   | "READY";
-export const SQLIntegrationStateEnum = /*@__PURE__*/ S.String;
+export const SQLIntegrationStateEnum = S.String;
 
 /** Represents the SQL instance integrated with AD. */
 export interface SQLIntegration {

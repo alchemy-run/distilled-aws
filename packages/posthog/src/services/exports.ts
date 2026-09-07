@@ -49,7 +49,7 @@ export type ExportedAssetCreateExportFormatEnum =
   | "video/mp4"
   | "image/gif"
   | "application/json";
-export const ExportedAssetCreateExportFormatEnum = /*@__PURE__*/ S.String;
+export const ExportedAssetCreateExportFormatEnum = S.String;
 
 export interface CreateExportRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -144,7 +144,7 @@ export type ExportedAssetExportFormatEnum =
   | "image/gif"
   | "application/json"
   | "application/x-ndjson";
-export const ExportedAssetExportFormatEnum = /*@__PURE__*/ S.String;
+export const ExportedAssetExportFormatEnum = S.String;
 
 /** Standard ExportedAsset serializer that doesn't return content. */
 export interface ExportedAsset {

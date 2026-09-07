@@ -256,7 +256,7 @@ export const ListItemsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListItemsRequest>;
 export type ItemName = string;
 export type ItemType = "OBJECT" | "FOLDER" | (string & {});
-export const ItemType = /*@__PURE__*/ S.String;
+export const ItemType = S.String;
 
 export interface Item {
   Name?: string;
@@ -291,10 +291,10 @@ export const ListItemsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListItemsResponse",
 }) as any as S.Schema<ListItemsResponse>;
 export type StorageClass = "TEMPORAL" | (string & {});
-export const StorageClass = /*@__PURE__*/ S.String;
+export const StorageClass = S.String;
 
 export type UploadAvailability = "STANDARD" | "STREAMING" | (string & {});
-export const UploadAvailability = /*@__PURE__*/ S.String;
+export const UploadAvailability = S.String;
 
 export interface PutObjectRequest {
   Body: T.StreamingInputBody;

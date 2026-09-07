@@ -1005,7 +1005,7 @@ export type PrivateConnectionStateEnum =
   | "FAILED"
   | "DELETING"
   | "FAILED_TO_DELETE";
-export const PrivateConnectionStateEnum = /*@__PURE__*/ S.String;
+export const PrivateConnectionStateEnum = S.String;
 
 /** The PrivateConnection resource is used to establish private connectivity between Datastream and a customer's network. */
 export interface PrivateConnection {
@@ -1151,7 +1151,7 @@ export type StreamStateEnum =
   | "FAILED_PERMANENTLY"
   | "STARTING"
   | "DRAINING";
-export const StreamStateEnum = /*@__PURE__*/ S.String;
+export const StreamStateEnum = S.String;
 
 /** Backfill strategy to disable automatic backfill for the Stream's objects. */
 export type BackfillNoneStrategy = CancelOperationRequest;
@@ -1165,13 +1165,13 @@ export type JsonFileFormatCompressionEnum =
   | "JSON_COMPRESSION_UNSPECIFIED"
   | "NO_COMPRESSION"
   | "GZIP";
-export const JsonFileFormatCompressionEnum = /*@__PURE__*/ S.String;
+export const JsonFileFormatCompressionEnum = S.String;
 
 export type JsonFileFormatSchemaFileFormatEnum =
   | "SCHEMA_FILE_FORMAT_UNSPECIFIED"
   | "NO_SCHEMA_FILE"
   | "AVRO_SCHEMA_FILE";
-export const JsonFileFormatSchemaFileFormatEnum = /*@__PURE__*/ S.String;
+export const JsonFileFormatSchemaFileFormatEnum = S.String;
 
 /** JSON file format configuration. */
 export interface JsonFileFormat {
@@ -1213,10 +1213,10 @@ export const GcsDestinationConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GcsDestinationConfig>;
 
 export type BlmtConfigTableFormatEnum = "TABLE_FORMAT_UNSPECIFIED" | "ICEBERG";
-export const BlmtConfigTableFormatEnum = /*@__PURE__*/ S.String;
+export const BlmtConfigTableFormatEnum = S.String;
 
 export type BlmtConfigFileFormatEnum = "FILE_FORMAT_UNSPECIFIED" | "PARQUET";
-export const BlmtConfigFileFormatEnum = /*@__PURE__*/ S.String;
+export const BlmtConfigFileFormatEnum = S.String;
 
 /** The configuration for BLMT. */
 export interface BlmtConfig {
@@ -1355,8 +1355,7 @@ export type TimeUnitPartitionPartitioningTimeGranularityEnum =
   | "PARTITIONING_TIME_GRANULARITY_DAY"
   | "PARTITIONING_TIME_GRANULARITY_MONTH"
   | "PARTITIONING_TIME_GRANULARITY_YEAR";
-export const TimeUnitPartitionPartitioningTimeGranularityEnum =
-  /*@__PURE__*/ S.String;
+export const TimeUnitPartitionPartitioningTimeGranularityEnum = S.String;
 
 /** Time unit column partitioning. see https://cloud.google.com/bigquery/docs/partitioned-tables#date_timestamp_partitioned_tables */
 export interface TimeUnitPartition {
@@ -1406,8 +1405,7 @@ export type IngestionTimePartitionPartitioningTimeGranularityEnum =
   | "PARTITIONING_TIME_GRANULARITY_DAY"
   | "PARTITIONING_TIME_GRANULARITY_MONTH"
   | "PARTITIONING_TIME_GRANULARITY_YEAR";
-export const IngestionTimePartitionPartitioningTimeGranularityEnum =
-  /*@__PURE__*/ S.String;
+export const IngestionTimePartitionPartitioningTimeGranularityEnum = S.String;
 
 /** Ingestion time partitioning. see https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time */
 export interface IngestionTimePartition {
@@ -1769,7 +1767,7 @@ export type MongodbSourceConfigJsonModeEnum =
   | "MONGODB_JSON_MODE_UNSPECIFIED"
   | "STRICT"
   | "CANONICAL";
-export const MongodbSourceConfigJsonModeEnum = /*@__PURE__*/ S.String;
+export const MongodbSourceConfigJsonModeEnum = S.String;
 
 /** MongoDB Field. */
 export interface MongodbField {
@@ -2233,7 +2231,7 @@ export type SpannerSourceConfigSpannerRpcPriorityEnum =
   | "LOW"
   | "MEDIUM"
   | "HIGH";
-export const SpannerSourceConfigSpannerRpcPriorityEnum = /*@__PURE__*/ S.String;
+export const SpannerSourceConfigSpannerRpcPriorityEnum = S.String;
 
 /** Configuration for syncing data from a Spanner source. */
 export interface SpannerSourceConfig {
@@ -3183,7 +3181,7 @@ export type BackfillJobStateEnum =
   | "FAILED"
   | "COMPLETED"
   | "UNSUPPORTED";
-export const BackfillJobStateEnum = /*@__PURE__*/ S.String;
+export const BackfillJobStateEnum = S.String;
 
 /** Represents a filter for included data on a stream object. */
 export interface EventFilter {
@@ -3200,7 +3198,7 @@ export type BackfillJobTriggerEnum =
   | "TRIGGER_UNSPECIFIED"
   | "AUTOMATIC"
   | "MANUAL";
-export const BackfillJobTriggerEnum = /*@__PURE__*/ S.String;
+export const BackfillJobTriggerEnum = S.String;
 
 /** Represents a backfill job on a specific stream object. */
 export interface BackfillJob {

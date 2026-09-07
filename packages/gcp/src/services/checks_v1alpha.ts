@@ -111,7 +111,7 @@ export type GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfigPolicyT
   | "VIOLENCE_AND_GORE"
   | "OBSCENITY_AND_PROFANITY";
 export const GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfigPolicyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of policies to classify against. */
 export interface GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig {
@@ -177,7 +177,7 @@ export type GoogleChecksAisafetyV1alphaClassifyContentRequestClassifierVersionEn
   | "STABLE"
   | "LATEST";
 export const GoogleChecksAisafetyV1alphaClassifyContentRequestClassifierVersionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Context about the input that will be used to help on the classification. */
 export interface GoogleChecksAisafetyV1alphaClassifyContentRequestContext {
@@ -257,7 +257,7 @@ export type GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResultPolicy
   | "VIOLENCE_AND_GORE"
   | "OBSCENITY_AND_PROFANITY";
 export const GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResultPolicyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResultViolationResultEnum =
   | "VIOLATION_RESULT_UNSPECIFIED"
@@ -265,7 +265,7 @@ export type GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResultViolat
   | "NON_VIOLATIVE"
   | "CLASSIFICATION_ERROR";
 export const GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResultViolationResultEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Result for one policy against the corresponding input. */
 export interface GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult {
@@ -413,8 +413,7 @@ export type GoogleChecksRepoScanV1alphaSourceDataTypeEnum =
   | "DATA_TYPE_PERFORMANCE_DIAGNOSTICS"
   | "DATA_TYPE_OTHER_APP_PERFORMANCE_DATA"
   | "DATA_TYPE_DEVICE_OR_OTHER_IDS";
-export const GoogleChecksRepoScanV1alphaSourceDataTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChecksRepoScanV1alphaSourceDataTypeEnum = S.String;
 
 /** Source code attribution. */
 export interface GoogleChecksRepoScanV1alphaCodeAttribution {
@@ -528,7 +527,7 @@ export type GoogleChecksRepoScanV1alphaCodeScanDataTypeClassificationDataTypeEnu
   | "DATA_TYPE_OTHER_APP_PERFORMANCE_DATA"
   | "DATA_TYPE_DEVICE_OR_OTHER_IDS";
 export const GoogleChecksRepoScanV1alphaCodeScanDataTypeClassificationDataTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A request to classify data types. */
 export interface GoogleChecksRepoScanV1alphaCodeScanDataTypeClassification {
@@ -774,7 +773,7 @@ export type GoogleChecksReportV1alphaCheckStateEnum =
   | "PASSED"
   | "FAILED"
   | "UNCHECKED";
-export const GoogleChecksReportV1alphaCheckStateEnum = /*@__PURE__*/ S.String;
+export const GoogleChecksReportV1alphaCheckStateEnum = S.String;
 
 export type GoogleChecksReportV1alphaCheckTypeEnum =
   | "CHECK_TYPE_UNSPECIFIED"
@@ -869,7 +868,7 @@ export type GoogleChecksReportV1alphaCheckTypeEnum =
   | "DATA_MONITORING_MINIMIZE_PERMISSION_MEDIA"
   | "DATA_MONITORING_MINIMIZE_PERMISSION_CAMERA"
   | "DATA_MONITORING_MINIMIZE_PERMISSION_DOCUMENTS";
-export const GoogleChecksReportV1alphaCheckTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleChecksReportV1alphaCheckTypeEnum = S.String;
 
 export type GoogleChecksReportV1alphaCheckCitationTypeEnum =
   | "CITATION_TYPE_UNSPECIFIED"
@@ -899,8 +898,7 @@ export type GoogleChecksReportV1alphaCheckCitationTypeEnum =
   | "OCPA"
   | "TDPSA"
   | "MCDPA";
-export const GoogleChecksReportV1alphaCheckCitationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChecksReportV1alphaCheckCitationTypeEnum = S.String;
 
 /** Regulation or policy that serves as the legal basis for the check. */
 export interface GoogleChecksReportV1alphaCheckCitation {
@@ -928,7 +926,7 @@ export type GoogleChecksReportV1alphaCheckStateMetadataBadgesItemEnum =
   | "RECENTLY_FAILING"
   | "RESOLVED";
 export const GoogleChecksReportV1alphaCheckStateMetadataBadgesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChecksReportV1alphaCheckStateMetadataBadgesItemEnumList =
   Array<GoogleChecksReportV1alphaCheckStateMetadataBadgesItemEnum>;
@@ -969,8 +967,7 @@ export type GoogleChecksReportV1alphaCheckSeverityEnum =
   | "PRIORITY"
   | "POTENTIAL"
   | "OPPORTUNITY";
-export const GoogleChecksReportV1alphaCheckSeverityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChecksReportV1alphaCheckSeverityEnum = S.String;
 
 /** Information about a permission. */
 export interface GoogleChecksReportV1alphaPermission {
@@ -1352,7 +1349,7 @@ export type GoogleChecksReportV1alphaCheckDataTypeEvidenceDataTypeEnum =
   | "DATA_TYPE_OTHER_APP_PERFORMANCE_DATA"
   | "DATA_TYPE_DEVICE_OR_OTHER_IDS";
 export const GoogleChecksReportV1alphaCheckDataTypeEvidenceDataTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details of SDK that is attributed to the exfiltration. */
 export interface GoogleChecksReportV1alphaDataTypeEndpointEvidenceAttributedSdk {
@@ -1397,7 +1394,7 @@ export type GoogleChecksReportV1alphaDataTypeEndpointEvidenceExfiltratedDataType
   | "EXFILTRATED_DATA_TYPE_EXTERNAL_ACCOUNT"
   | "EXFILTRATED_DATA_TYPE_INSTALLED_PACKAGES";
 export const GoogleChecksReportV1alphaDataTypeEndpointEvidenceExfiltratedDataTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details of the endpoint the data type was sent to. */
 export interface GoogleChecksReportV1alphaDataTypeEndpointEvidenceEndpointDetails {
@@ -1642,8 +1639,7 @@ export type GoogleChecksReportV1alphaAppBundleReleaseTypeEnum =
   | "APP_BUNDLE_RELEASE_TYPE_UNSPECIFIED"
   | "PUBLIC"
   | "PRE_RELEASE";
-export const GoogleChecksReportV1alphaAppBundleReleaseTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChecksReportV1alphaAppBundleReleaseTypeEnum = S.String;
 
 /** Information about the analyzed app bundle. */
 export interface GoogleChecksReportV1alphaAppBundle {
@@ -1674,7 +1670,7 @@ export type GoogleChecksReportV1alphaDataMonitoringResultMetadataBadgesItemEnum 
   | "DATA_MONITORING_RESULT_BADGE_UNSPECIFIED"
   | "NEW";
 export const GoogleChecksReportV1alphaDataMonitoringResultMetadataBadgesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChecksReportV1alphaDataMonitoringResultMetadataBadgesItemEnumList =
   Array<GoogleChecksReportV1alphaDataMonitoringResultMetadataBadgesItemEnum>;
@@ -1830,7 +1826,7 @@ export type GoogleChecksReportV1alphaDataMonitoringDataTypeResultDataTypeEnum =
   | "DATA_TYPE_OTHER_APP_PERFORMANCE_DATA"
   | "DATA_TYPE_DEVICE_OR_OTHER_IDS";
 export const GoogleChecksReportV1alphaDataMonitoringDataTypeResultDataTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information about a data type that was found in your app. */
 export interface GoogleChecksReportV1alphaDataMonitoringDataTypeResult {
@@ -2191,7 +2187,7 @@ export type GoogleChecksReportV1alphaAnalyzeUploadRequestAppBinaryFileTypeEnum =
   | "ANDROID_AAB"
   | "IOS_IPA";
 export const GoogleChecksReportV1alphaAnalyzeUploadRequestAppBinaryFileTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The request message for ReportService.AnalyzeUpload. */
 export interface GoogleChecksReportV1alphaAnalyzeUploadRequest {

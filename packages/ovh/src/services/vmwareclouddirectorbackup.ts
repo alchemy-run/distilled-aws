@@ -63,14 +63,14 @@ export type VmwareCloudDirectorAZNameEnum =
   | "eu-west-lim-a"
   | "eu-west-rbx-a"
   | "eu-west-sbg-a";
-export const VmwareCloudDirectorAZNameEnum = /*@__PURE__*/ S.String;
+export const VmwareCloudDirectorAZNameEnum = S.String;
 
 /** The backup offer type of your VMware Cloud Director project */
 export type VmwareCloudDirectorBackupOfferNameEnum =
   | "BRONZE"
   | "GOLD"
   | "SILVER";
-export const VmwareCloudDirectorBackupOfferNameEnum = /*@__PURE__*/ S.String;
+export const VmwareCloudDirectorBackupOfferNameEnum = S.String;
 
 /** The region of your VMware Cloud Director project */
 export type VmwareCloudDirectorRegionNameEnum =
@@ -87,7 +87,7 @@ export type VmwareCloudDirectorRegionNameEnum =
   | "eu-west-sbg"
   | "us-east-vin"
   | "us-west-hil";
-export const VmwareCloudDirectorRegionNameEnum = /*@__PURE__*/ S.String;
+export const VmwareCloudDirectorRegionNameEnum = S.String;
 
 /** Status of VMware Cloud Director backup service */
 export type VmwareCloudDirectorBackupResourceStatusEnum =
@@ -98,8 +98,7 @@ export type VmwareCloudDirectorBackupResourceStatusEnum =
   | "REMOVED"
   | "REMOVING"
   | "UPDATING";
-export const VmwareCloudDirectorBackupResourceStatusEnum =
-  /*@__PURE__*/ S.String;
+export const VmwareCloudDirectorBackupResourceStatusEnum = S.String;
 
 /** VMware Cloud Director Backup current state */
 export interface VmwareCloudDirectorBackupCurrentStateOffer {
@@ -163,7 +162,7 @@ export type CommonCurrentTaskStatusEnum =
   | "PENDING"
   | "RUNNING"
   | "SCHEDULED";
-export const CommonCurrentTaskStatusEnum = /*@__PURE__*/ S.String;
+export const CommonCurrentTaskStatusEnum = S.String;
 
 /** Asynchronous operation currently running */
 export interface CommonCurrentTask {
@@ -345,7 +344,7 @@ export type CommonTaskStatusEnum =
   | "PENDING"
   | "RUNNING"
   | "SCHEDULED";
-export const CommonTaskStatusEnum = /*@__PURE__*/ S.String;
+export const CommonTaskStatusEnum = S.String;
 
 /** Detailed information about an asynchronous operation progress steps */
 export interface CommonTaskProgress {
@@ -431,7 +430,7 @@ export const GetVmwareCloudDirectorOrganizationRequest =
 
 /** The billing type of your VMware Cloud Director project */
 export type VmwareCloudDirectorBillingTypeEnum = "DEMO" | "MONTHLY";
-export const VmwareCloudDirectorBillingTypeEnum = /*@__PURE__*/ S.String;
+export const VmwareCloudDirectorBillingTypeEnum = S.String;
 
 /** Current status of VMware Cloud Director organization service */
 export interface VmwareCloudDirectorOrganizationCurrentState {
@@ -484,7 +483,7 @@ export type CommonResourceStatusEnum =
   | "READY"
   | "SUSPENDED"
   | "UPDATING";
-export const CommonResourceStatusEnum = /*@__PURE__*/ S.String;
+export const CommonResourceStatusEnum = S.String;
 
 /** Target specification of VMware Cloud Director organization service */
 export interface VmwareCloudDirectorOrganizationTargetSpec {
@@ -583,7 +582,7 @@ export type VmwareCloudDirectorCommercialRangeEnum =
   | "NSX"
   | "STANDARD"
   | "VSAN-NSX";
-export const VmwareCloudDirectorCommercialRangeEnum = /*@__PURE__*/ S.String;
+export const VmwareCloudDirectorCommercialRangeEnum = S.String;
 
 /** Current status of organization Virtual DataCenter service */
 export interface VmwareCloudDirectorVirtualDataCenterCurrentState {
@@ -974,7 +973,7 @@ export type CommonEventTypeEnum =
   | "TASK_ERROR"
   | "TASK_START"
   | "TASK_SUCCESS";
-export const CommonEventTypeEnum = /*@__PURE__*/ S.String;
+export const CommonEventTypeEnum = S.String;
 
 /** Represents an event for an async envelope */
 export interface CommonEvent {
@@ -1582,7 +1581,7 @@ export type VmwareCloudDirectorRegionLocationEnum =
   | "North America (Canada - East - Beauharnois)"
   | "North America (US - East - Vinthill)"
   | "North America (US - West - Hillsboro)";
-export const VmwareCloudDirectorRegionLocationEnum = /*@__PURE__*/ S.String;
+export const VmwareCloudDirectorRegionLocationEnum = S.String;
 
 /** Hosting location */
 export interface VmwareCloudDirectorRegion {

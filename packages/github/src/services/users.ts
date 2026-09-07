@@ -71,7 +71,7 @@ export type AddEmailForAuthenticatedUserRequestBody =
   | AddEmailForAuthenticatedUserRequestBodyCase1List
   | string;
 export const AddEmailForAuthenticatedUserRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddEmailForAuthenticatedUserRequestBody>;
+  S.Unknown as any as S.Schema<AddEmailForAuthenticatedUserRequestBody>;
 
 export interface AddEmailForAuthenticatedUserRequest {
   body?: AddEmailForAuthenticatedUserRequestBody;
@@ -499,7 +499,7 @@ export type DeleteAttestationsBulkRequestBody =
   | DeleteAttestationsBulkRequestBodyCase0
   | DeleteAttestationsBulkRequestBodyCase1;
 export const DeleteAttestationsBulkRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DeleteAttestationsBulkRequestBody>;
+  S.Unknown as any as S.Schema<DeleteAttestationsBulkRequestBody>;
 
 export interface DeleteAttestationsBulkRequest {
   /** The handle for the GitHub user account. */
@@ -617,7 +617,7 @@ export type DeleteEmailForAuthenticatedUserRequestBody =
   | DeleteEmailForAuthenticatedUserRequestBodyCase1List
   | string;
 export const DeleteEmailForAuthenticatedUserRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DeleteEmailForAuthenticatedUserRequestBody>;
+  S.Unknown as any as S.Schema<DeleteEmailForAuthenticatedUserRequestBody>;
 
 export interface DeleteEmailForAuthenticatedUserRequest {
   body?: DeleteEmailForAuthenticatedUserRequestBody;
@@ -970,7 +970,7 @@ export const PublicUser = /*@__PURE__*/ S.suspend(() =>
 
 export type GetAuthenticatedResponseBody = PrivateUser | PublicUser;
 export const GetAuthenticatedResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAuthenticatedResponseBody>;
+  S.Unknown as any as S.Schema<GetAuthenticatedResponseBody>;
 
 export type GetAuthenticatedResponse = GetAuthenticatedResponseBody;
 export const GetAuthenticatedResponse = /*@__PURE__*/ S.suspend(() =>
@@ -991,7 +991,7 @@ export const GetByIdRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type GetByIdResponseBody = PrivateUser | PublicUser;
 export const GetByIdResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetByIdResponseBody>;
+  S.Unknown as any as S.Schema<GetByIdResponseBody>;
 
 export type GetByIdResponse = GetByIdResponseBody;
 export const GetByIdResponse = /*@__PURE__*/ S.suspend(() =>
@@ -1014,7 +1014,7 @@ export const GetByUsernameRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type GetByUsernameResponseBody = PrivateUser | PublicUser;
 export const GetByUsernameResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetByUsernameResponseBody>;
+  S.Unknown as any as S.Schema<GetByUsernameResponseBody>;
 
 export type GetByUsernameResponse = GetByUsernameResponseBody;
 export const GetByUsernameResponse = /*@__PURE__*/ S.suspend(() =>
@@ -1028,7 +1028,7 @@ export type GetContextForUserRequestSubjectType =
   | "repository"
   | "issue"
   | "pull_request";
-export const GetContextForUserRequestSubjectType = /*@__PURE__*/ S.String;
+export const GetContextForUserRequestSubjectType = S.String;
 
 export interface GetContextForUserRequest {
   /** The handle for the GitHub user account. */
@@ -1980,7 +1980,7 @@ export type SetPrimaryEmailVisibilityForAuthenticatedUserRequestVisibility =
   | "public"
   | "private";
 export const SetPrimaryEmailVisibilityForAuthenticatedUserRequestVisibility =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SetPrimaryEmailVisibilityForAuthenticatedUserRequest {
   /** Denotes whether an email is publicly visible. */

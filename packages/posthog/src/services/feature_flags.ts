@@ -59,7 +59,7 @@ export class UnprocessableEntity
 
 /** * `cohort` - cohort * `person` - person * `group` - group */
 export type PropertyGroupTypeEnum = "cohort" | "person" | "group";
-export const PropertyGroupTypeEnum = /*@__PURE__*/ S.String;
+export const PropertyGroupTypeEnum = S.String;
 
 /** * `exact` - exact * `is_not` - is_not * `icontains` - icontains * `not_icontains` - not_icontains * `starts_with` - starts_with * `not_starts_with` - not_starts_with * `ends_with` - ends_with * `not_ends_with` - not_ends_with * `regex` - regex * `not_regex` - not_regex * `gt` - gt * `gte` - gte * `lt` - lt * `lte` - lte */
 export type FeatureFlagFilterPropertyGenericSchemaOperatorEnum =
@@ -77,8 +77,7 @@ export type FeatureFlagFilterPropertyGenericSchemaOperatorEnum =
   | "gte"
   | "lt"
   | "lte";
-export const FeatureFlagFilterPropertyGenericSchemaOperatorEnum =
-  /*@__PURE__*/ S.String;
+export const FeatureFlagFilterPropertyGenericSchemaOperatorEnum = S.String;
 
 export interface FeatureFlagFilterPropertyGenericSchema {
   /** Property key used in this feature flag condition. */
@@ -110,7 +109,7 @@ export const FeatureFlagFilterPropertyGenericSchema = /*@__PURE__*/ S.suspend(
 
 /** * `is_set` - is_set * `is_not_set` - is_not_set */
 export type ExistenceOperatorEnum = "is_set" | "is_not_set";
-export const ExistenceOperatorEnum = /*@__PURE__*/ S.String;
+export const ExistenceOperatorEnum = S.String;
 
 export interface FeatureFlagFilterPropertyExistsSchema {
   /** Property key used in this feature flag condition. */
@@ -145,7 +144,7 @@ export type DateOperatorEnum =
   | "is_date_exact"
   | "is_date_before"
   | "is_date_after";
-export const DateOperatorEnum = /*@__PURE__*/ S.String;
+export const DateOperatorEnum = S.String;
 
 export interface FeatureFlagFilterPropertyDateSchema {
   /** Property key used in this feature flag condition. */
@@ -185,8 +184,7 @@ export type FeatureFlagFilterPropertySemverSchemaOperatorEnum =
   | "semver_tilde"
   | "semver_caret"
   | "semver_wildcard";
-export const FeatureFlagFilterPropertySemverSchemaOperatorEnum =
-  /*@__PURE__*/ S.String;
+export const FeatureFlagFilterPropertySemverSchemaOperatorEnum = S.String;
 
 export interface FeatureFlagFilterPropertySemverSchema {
   /** Property key used in this feature flag condition. */
@@ -221,7 +219,7 @@ export type FeatureFlagFilterPropertyMultiContainsSchemaOperatorEnum =
   | "icontains_multi"
   | "not_icontains_multi";
 export const FeatureFlagFilterPropertyMultiContainsSchemaOperatorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of strings to evaluate against. */
 export type FeatureFlagFilterPropertyMultiContainsSchemaValueList =
@@ -265,15 +263,13 @@ export const FeatureFlagFilterPropertyMultiContainsSchema =
 
 /** * `cohort` - cohort */
 export type FeatureFlagFilterPropertyCohortInSchemaTypeEnum = "cohort";
-export const FeatureFlagFilterPropertyCohortInSchemaTypeEnum =
-  /*@__PURE__*/ S.String;
+export const FeatureFlagFilterPropertyCohortInSchemaTypeEnum = S.String;
 
 /** * `in` - in * `not_in` - not_in */
 export type FeatureFlagFilterPropertyCohortInSchemaOperatorEnum =
   | "in"
   | "not_in";
-export const FeatureFlagFilterPropertyCohortInSchemaOperatorEnum =
-  /*@__PURE__*/ S.String;
+export const FeatureFlagFilterPropertyCohortInSchemaOperatorEnum = S.String;
 
 export interface FeatureFlagFilterPropertyCohortInSchema {
   /** Property key used in this feature flag condition. */
@@ -307,14 +303,13 @@ export const FeatureFlagFilterPropertyCohortInSchema = /*@__PURE__*/ S.suspend(
 
 /** * `flag` - flag */
 export type FeatureFlagFilterPropertyFlagEvaluatesSchemaTypeEnum = "flag";
-export const FeatureFlagFilterPropertyFlagEvaluatesSchemaTypeEnum =
-  /*@__PURE__*/ S.String;
+export const FeatureFlagFilterPropertyFlagEvaluatesSchemaTypeEnum = S.String;
 
 /** * `flag_evaluates_to` - flag_evaluates_to */
 export type FeatureFlagFilterPropertyFlagEvaluatesSchemaOperatorEnum =
   "flag_evaluates_to";
 export const FeatureFlagFilterPropertyFlagEvaluatesSchemaOperatorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface FeatureFlagFilterPropertyFlagEvaluatesSchema {
   /** Property key used in this feature flag condition. */
@@ -357,7 +352,7 @@ export type FeatureFlagFilterPropertySchema =
   | FeatureFlagFilterPropertyCohortInSchema
   | FeatureFlagFilterPropertyFlagEvaluatesSchema;
 export const FeatureFlagFilterPropertySchema =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeatureFlagFilterPropertySchema>;
+  S.Unknown as any as S.Schema<FeatureFlagFilterPropertySchema>;
 
 /** Property conditions for this release condition group. */
 export type FeatureFlagConditionGroupSchemaPropertiesList =
@@ -484,11 +479,11 @@ export const CreateFeatureFlagRequestEvaluationContextsList =
 
 /** * `server` - Server * `client` - Client * `all` - All */
 export type EvaluationRuntimeEnum = "server" | "client" | "all";
-export const EvaluationRuntimeEnum = /*@__PURE__*/ S.String;
+export const EvaluationRuntimeEnum = S.String;
 
 /** * `distinct_id` - User ID (default) * `device_id` - Device ID */
 export type BucketingIdentifierEnum = "distinct_id" | "device_id";
-export const BucketingIdentifierEnum = /*@__PURE__*/ S.String;
+export const BucketingIdentifierEnum = S.String;
 
 export interface CreateFeatureFlagRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -568,14 +563,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -662,14 +657,14 @@ export type FeatureFlagOutputEvaluationRuntime =
   | EvaluationRuntimeEnum
   | BlankEnum;
 export const FeatureFlagOutputEvaluationRuntime =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeatureFlagOutputEvaluationRuntime>;
+  S.Unknown as any as S.Schema<FeatureFlagOutputEvaluationRuntime>;
 
 /** Identifier used for bucketing users into rollout and variants * `distinct_id` - User ID (default) * `device_id` - Device ID */
 export type FeatureFlagOutputBucketingIdentifier =
   | BucketingIdentifierEnum
   | BlankEnum;
 export const FeatureFlagOutputBucketingIdentifier =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeatureFlagOutputBucketingIdentifier>;
+  S.Unknown as any as S.Schema<FeatureFlagOutputBucketingIdentifier>;
 
 /** Serializer mixin that handles tags for objects. */
 export interface FeatureFlagOutput {
@@ -1048,7 +1043,7 @@ export const FeatureFlagsArchiveCreateRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `true` - true * `false` - false * `STALE` - STALE */
 export type ActiveEnum = "true" | "false" | "STALE";
-export const ActiveEnum = /*@__PURE__*/ S.String;
+export const ActiveEnum = S.String;
 
 /** * `boolean` - boolean * `multivariant` - multivariant * `experiment` - experiment * `remote_config` - remote_config */
 export type BulkDeleteFiltersTypeEnum =
@@ -1056,7 +1051,7 @@ export type BulkDeleteFiltersTypeEnum =
   | "multivariant"
   | "experiment"
   | "remote_config";
-export const BulkDeleteFiltersTypeEnum = /*@__PURE__*/ S.String;
+export const BulkDeleteFiltersTypeEnum = S.String;
 
 /** Tag names to filter by. Flags carrying at least one of these tags match. */
 export type BulkDeleteFiltersTagsList = Array<string>;
@@ -1145,7 +1140,7 @@ export type RolloutStateEnum =
   | "fully_rolled_out"
   | "not_rolled_out"
   | "partial";
-export const RolloutStateEnum = /*@__PURE__*/ S.String;
+export const RolloutStateEnum = S.String;
 
 export interface BulkDeleteDeletedItem {
   /** ID of the soft-deleted flag. */
@@ -1272,7 +1267,7 @@ export const FeatureFlagsBulkUpdateTagsCreateRequestIdsList =
 
 /** * `add` - add * `remove` - remove * `set` - set */
 export type BulkUpdateTagsActionEnum = "add" | "remove" | "set";
-export const BulkUpdateTagsActionEnum = /*@__PURE__*/ S.String;
+export const BulkUpdateTagsActionEnum = S.String;
 
 /** Tag names to add, remove, or set. */
 export type FeatureFlagsBulkUpdateTagsCreateRequestTagsList = Array<string>;
@@ -1401,21 +1396,21 @@ export type FeatureFlagCreationContextEnum =
   | "early_access_features"
   | "web_experiments"
   | "product_tours";
-export const FeatureFlagCreationContextEnum = /*@__PURE__*/ S.String;
+export const FeatureFlagCreationContextEnum = S.String;
 
 /** Specifies where this feature flag should be evaluated * `server` - Server * `client` - Client * `all` - All */
 export type FeatureFlagsCreateStaticCohortForFlagCreateRequestEvaluationRuntime =
   | EvaluationRuntimeEnum
   | BlankEnum;
 export const FeatureFlagsCreateStaticCohortForFlagCreateRequestEvaluationRuntime =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeatureFlagsCreateStaticCohortForFlagCreateRequestEvaluationRuntime>;
+  S.Unknown as any as S.Schema<FeatureFlagsCreateStaticCohortForFlagCreateRequestEvaluationRuntime>;
 
 /** Identifier used for bucketing users into rollout and variants * `distinct_id` - User ID (default) * `device_id` - Device ID */
 export type FeatureFlagsCreateStaticCohortForFlagCreateRequestBucketingIdentifier =
   | BucketingIdentifierEnum
   | BlankEnum;
 export const FeatureFlagsCreateStaticCohortForFlagCreateRequestBucketingIdentifier =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeatureFlagsCreateStaticCohortForFlagCreateRequestBucketingIdentifier>;
+  S.Unknown as any as S.Schema<FeatureFlagsCreateStaticCohortForFlagCreateRequestBucketingIdentifier>;
 
 export interface FeatureFlagsCreateStaticCohortForFlagCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1906,14 +1901,14 @@ export type MinimalFeatureFlagEvaluationRuntime =
   | EvaluationRuntimeEnum
   | BlankEnum;
 export const MinimalFeatureFlagEvaluationRuntime =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MinimalFeatureFlagEvaluationRuntime>;
+  S.Unknown as any as S.Schema<MinimalFeatureFlagEvaluationRuntime>;
 
 /** Identifier used for bucketing users into rollout and variants * `distinct_id` - User ID (default) * `device_id` - Device ID */
 export type MinimalFeatureFlagBucketingIdentifier =
   | BucketingIdentifierEnum
   | BlankEnum;
 export const MinimalFeatureFlagBucketingIdentifier =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MinimalFeatureFlagBucketingIdentifier>;
+  S.Unknown as any as S.Schema<MinimalFeatureFlagBucketingIdentifier>;
 
 export type MinimalFeatureFlagEvaluationContextsList = Array<string>;
 export const MinimalFeatureFlagEvaluationContextsList = /*@__PURE__*/ S.Array(
@@ -2113,14 +2108,14 @@ export type FeatureFlagVersionResponseEvaluationRuntime =
   | EvaluationRuntimeEnum
   | BlankEnum;
 export const FeatureFlagVersionResponseEvaluationRuntime =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeatureFlagVersionResponseEvaluationRuntime>;
+  S.Unknown as any as S.Schema<FeatureFlagVersionResponseEvaluationRuntime>;
 
 /** Identifier used for bucketing users into rollout and variants * `distinct_id` - User ID (default) * `device_id` - Device ID */
 export type FeatureFlagVersionResponseBucketingIdentifier =
   | BucketingIdentifierEnum
   | BlankEnum;
 export const FeatureFlagVersionResponseBucketingIdentifier =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeatureFlagVersionResponseBucketingIdentifier>;
+  S.Unknown as any as S.Schema<FeatureFlagVersionResponseBucketingIdentifier>;
 
 /** Feature flag state at a given version plus reconstruction metadata. */
 export interface FeatureFlagVersionResponse {
@@ -2180,31 +2175,29 @@ export const FeatureFlagVersionResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FeatureFlagVersionResponse>;
 
 export type ListFeatureFlagsRequestActive = "STALE" | "false" | "true";
-export const ListFeatureFlagsRequestActive = /*@__PURE__*/ S.String;
+export const ListFeatureFlagsRequestActive = S.String;
 
 export type ListFeatureFlagsRequestArchived = "false" | "true";
-export const ListFeatureFlagsRequestArchived = /*@__PURE__*/ S.String;
+export const ListFeatureFlagsRequestArchived = S.String;
 
 export type ListFeatureFlagsRequestEligibleForExperiment = "true";
-export const ListFeatureFlagsRequestEligibleForExperiment =
-  /*@__PURE__*/ S.String;
+export const ListFeatureFlagsRequestEligibleForExperiment = S.String;
 
 export type ListFeatureFlagsRequestEvaluationRuntime =
   | "all"
   | "client"
   | "server";
-export const ListFeatureFlagsRequestEvaluationRuntime = /*@__PURE__*/ S.String;
+export const ListFeatureFlagsRequestEvaluationRuntime = S.String;
 
 export type ListFeatureFlagsRequestHasEvaluationContexts = "false" | "true";
-export const ListFeatureFlagsRequestHasEvaluationContexts =
-  /*@__PURE__*/ S.String;
+export const ListFeatureFlagsRequestHasEvaluationContexts = S.String;
 
 export type ListFeatureFlagsRequestType =
   | "boolean"
   | "experiment"
   | "multivariant"
   | "remote_config";
-export const ListFeatureFlagsRequestType = /*@__PURE__*/ S.String;
+export const ListFeatureFlagsRequestType = S.String;
 
 export interface ListFeatureFlagsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2381,14 +2374,14 @@ export type UpdateFeatureFlagRequestEvaluationRuntime =
   | EvaluationRuntimeEnum
   | BlankEnum;
 export const UpdateFeatureFlagRequestEvaluationRuntime =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFeatureFlagRequestEvaluationRuntime>;
+  S.Unknown as any as S.Schema<UpdateFeatureFlagRequestEvaluationRuntime>;
 
 /** Identifier used for bucketing users into rollout and variants * `distinct_id` - User ID (default) * `device_id` - Device ID */
 export type UpdateFeatureFlagRequestBucketingIdentifier =
   | BucketingIdentifierEnum
   | BlankEnum;
 export const UpdateFeatureFlagRequestBucketingIdentifier =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFeatureFlagRequestBucketingIdentifier>;
+  S.Unknown as any as S.Schema<UpdateFeatureFlagRequestBucketingIdentifier>;
 
 export interface UpdateFeatureFlagRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

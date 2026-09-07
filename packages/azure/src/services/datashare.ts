@@ -40,7 +40,7 @@ export type EmailRegistrationRegistrationStatus =
   | "ActivationPending"
   | "Activated"
   | "ActivationAttemptsExhausted";
-export const EmailRegistrationRegistrationStatus = /*@__PURE__*/ S.String;
+export const EmailRegistrationRegistrationStatus = S.String;
 
 /** Dto for tenant domain registration */
 export interface EmailRegistration {
@@ -103,8 +103,7 @@ export const CancelShareSubscriptionSynchronizationRequest =
 export type ShareSubscriptionSynchronizationSynchronizationMode =
   | "Incremental"
   | "FullSync";
-export const ShareSubscriptionSynchronizationSynchronizationMode =
-  /*@__PURE__*/ S.String;
+export const ShareSubscriptionSynchronizationSynchronizationMode = S.String;
 
 /** A ShareSubscriptionSynchronization data transfer object. */
 export interface ShareSubscriptionSynchronization {
@@ -148,7 +147,7 @@ export const CreateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Identity Type */
 export type IdentityInputType = "SystemAssigned";
-export const IdentityInputType = /*@__PURE__*/ S.String;
+export const IdentityInputType = S.String;
 
 /** Identity of resource */
 export interface IdentityInput {
@@ -212,7 +211,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -220,7 +219,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -259,7 +258,7 @@ export const CreateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Identity Type */
 export type IdentityType = "SystemAssigned";
-export const IdentityType = /*@__PURE__*/ S.String;
+export const IdentityType = S.String;
 
 /** Identity of resource */
 export interface Identity {
@@ -285,7 +284,7 @@ export type AccountPropertiesProvisioningState =
   | "Deleting"
   | "Moving"
   | "Failed";
-export const AccountPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const AccountPropertiesProvisioningState = S.String;
 
 /** Account property bag. */
 export interface AccountProperties {
@@ -358,7 +357,7 @@ export type CreateDataSetRequestKind =
   | "SqlDBTable"
   | "SqlDWTable"
   | "SynapseWorkspaceSqlPoolTable";
-export const CreateDataSetRequestKind = /*@__PURE__*/ S.String;
+export const CreateDataSetRequestKind = S.String;
 
 export interface CreateDataSetRequest {
   /** The subscription identifier */
@@ -410,7 +409,7 @@ export type CreateDataSetResponseKind =
   | "SqlDBTable"
   | "SqlDWTable"
   | "SynapseWorkspaceSqlPoolTable";
-export const CreateDataSetResponseKind = /*@__PURE__*/ S.String;
+export const CreateDataSetResponseKind = S.String;
 
 export interface CreateDataSetResponse {
   /** The resource id of the azure resource */
@@ -450,7 +449,7 @@ export type CreateDataSetMappingRequestKind =
   | "SqlDBTable"
   | "SqlDWTable"
   | "SynapseWorkspaceSqlPoolTable";
-export const CreateDataSetMappingRequestKind = /*@__PURE__*/ S.String;
+export const CreateDataSetMappingRequestKind = S.String;
 
 export interface CreateDataSetMappingRequest {
   /** The subscription identifier */
@@ -500,7 +499,7 @@ export type CreateDataSetMappingResponseKind =
   | "SqlDBTable"
   | "SqlDWTable"
   | "SynapseWorkspaceSqlPoolTable";
-export const CreateDataSetMappingResponseKind = /*@__PURE__*/ S.String;
+export const CreateDataSetMappingResponseKind = S.String;
 
 export interface CreateDataSetMappingResponse {
   /** The resource id of the azure resource */
@@ -588,7 +587,7 @@ export type InvitationPropertiesInvitationStatus =
   | "Accepted"
   | "Rejected"
   | "Withdrawn";
-export const InvitationPropertiesInvitationStatus = /*@__PURE__*/ S.String;
+export const InvitationPropertiesInvitationStatus = S.String;
 
 /** Invitation property bag. */
 export interface InvitationProperties {
@@ -656,7 +655,7 @@ export const CreateInvitationResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Share kind. */
 export type SharePropertiesInputShareKind = "CopyBased" | "InPlace";
-export const SharePropertiesInputShareKind = /*@__PURE__*/ S.String;
+export const SharePropertiesInputShareKind = S.String;
 
 /** Share property bag. */
 export interface SharePropertiesInput {
@@ -715,11 +714,11 @@ export type SharePropertiesProvisioningState =
   | "Deleting"
   | "Moving"
   | "Failed";
-export const SharePropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const SharePropertiesProvisioningState = S.String;
 
 /** Share kind. */
 export type SharePropertiesShareKind = "CopyBased" | "InPlace";
-export const SharePropertiesShareKind = /*@__PURE__*/ S.String;
+export const SharePropertiesShareKind = S.String;
 
 /** Share property bag. */
 export interface ShareProperties {
@@ -833,12 +832,11 @@ export type ShareSubscriptionPropertiesProvisioningState =
   | "Deleting"
   | "Moving"
   | "Failed";
-export const ShareSubscriptionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ShareSubscriptionPropertiesProvisioningState = S.String;
 
 /** Kind of share */
 export type ShareSubscriptionPropertiesShareKind = "CopyBased" | "InPlace";
-export const ShareSubscriptionPropertiesShareKind = /*@__PURE__*/ S.String;
+export const ShareSubscriptionPropertiesShareKind = S.String;
 
 /** Gets the current status of share subscription. */
 export type ShareSubscriptionPropertiesShareSubscriptionStatus =
@@ -846,8 +844,7 @@ export type ShareSubscriptionPropertiesShareSubscriptionStatus =
   | "Revoked"
   | "SourceDeleted"
   | "Revoking";
-export const ShareSubscriptionPropertiesShareSubscriptionStatus =
-  /*@__PURE__*/ S.String;
+export const ShareSubscriptionPropertiesShareSubscriptionStatus = S.String;
 
 /** Share subscription property bag. */
 export interface ShareSubscriptionProperties {
@@ -932,7 +929,7 @@ export const CreateShareSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Kind of synchronization setting. */
 export type CreateSynchronizationSettingsRequestKind = "ScheduleBased";
-export const CreateSynchronizationSettingsRequestKind = /*@__PURE__*/ S.String;
+export const CreateSynchronizationSettingsRequestKind = S.String;
 
 export interface CreateSynchronizationSettingsRequest {
   /** The subscription identifier */
@@ -971,7 +968,7 @@ export const CreateSynchronizationSettingsRequest = /*@__PURE__*/ S.suspend(
 
 /** Kind of synchronization setting. */
 export type CreateSynchronizationSettingsResponseKind = "ScheduleBased";
-export const CreateSynchronizationSettingsResponseKind = /*@__PURE__*/ S.String;
+export const CreateSynchronizationSettingsResponseKind = S.String;
 
 export interface CreateSynchronizationSettingsResponse {
   /** The resource id of the azure resource */
@@ -1000,7 +997,7 @@ export const CreateSynchronizationSettingsResponse = /*@__PURE__*/ S.suspend(
 
 /** Kind of synchronization on trigger. */
 export type CreateTriggerRequestKind = "ScheduleBased";
-export const CreateTriggerRequestKind = /*@__PURE__*/ S.String;
+export const CreateTriggerRequestKind = S.String;
 
 export interface CreateTriggerRequest {
   /** The subscription identifier */
@@ -1038,7 +1035,7 @@ export const CreateTriggerRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Kind of synchronization on trigger. */
 export type CreateTriggerResponseKind = "ScheduleBased";
-export const CreateTriggerResponseKind = /*@__PURE__*/ S.String;
+export const CreateTriggerResponseKind = S.String;
 
 export interface CreateTriggerResponse {
   /** The resource id of the azure resource */
@@ -1125,7 +1122,7 @@ export type OperationResponseStatus =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const OperationResponseStatus = /*@__PURE__*/ S.String;
+export const OperationResponseStatus = S.String;
 
 /** Response for long running operation */
 export interface OperationResponse {
@@ -1475,8 +1472,7 @@ export type ConsumerInvitationPropertiesInvitationStatus =
   | "Accepted"
   | "Rejected"
   | "Withdrawn";
-export const ConsumerInvitationPropertiesInvitationStatus =
-  /*@__PURE__*/ S.String;
+export const ConsumerInvitationPropertiesInvitationStatus = S.String;
 
 /** Properties of consumer invitation */
 export interface ConsumerInvitationProperties {
@@ -1604,7 +1600,7 @@ export type GetDataSetResponseKind =
   | "SqlDBTable"
   | "SqlDWTable"
   | "SynapseWorkspaceSqlPoolTable";
-export const GetDataSetResponseKind = /*@__PURE__*/ S.String;
+export const GetDataSetResponseKind = S.String;
 
 export interface GetDataSetResponse {
   /** The resource id of the azure resource */
@@ -1675,7 +1671,7 @@ export type GetDataSetMappingResponseKind =
   | "SqlDBTable"
   | "SqlDWTable"
   | "SynapseWorkspaceSqlPoolTable";
-export const GetDataSetMappingResponseKind = /*@__PURE__*/ S.String;
+export const GetDataSetMappingResponseKind = S.String;
 
 export interface GetDataSetMappingResponse {
   /** The resource id of the azure resource */
@@ -1795,7 +1791,7 @@ export type ProviderShareSubscriptionPropertiesShareSubscriptionStatus =
   | "SourceDeleted"
   | "Revoking";
 export const ProviderShareSubscriptionPropertiesShareSubscriptionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provider share subscription properties */
 export interface ProviderShareSubscriptionProperties {
@@ -2001,7 +1997,7 @@ export const GetSynchronizationSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Kind of synchronization setting. */
 export type GetSynchronizationSettingsResponseKind = "ScheduleBased";
-export const GetSynchronizationSettingsResponseKind = /*@__PURE__*/ S.String;
+export const GetSynchronizationSettingsResponseKind = S.String;
 
 export interface GetSynchronizationSettingsResponse {
   /** The resource id of the azure resource */
@@ -2060,7 +2056,7 @@ export const GetTriggerRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Kind of synchronization on trigger. */
 export type GetTriggerResponseKind = "ScheduleBased";
-export const GetTriggerResponseKind = /*@__PURE__*/ S.String;
+export const GetTriggerResponseKind = S.String;
 
 export interface GetTriggerResponse {
   /** The resource id of the azure resource */
@@ -2307,8 +2303,7 @@ export type ConsumerSourceDataSetPropertiesDataSetType =
   | "SqlDBTable"
   | "SqlDWTable"
   | "SynapseWorkspaceSqlPoolTable";
-export const ConsumerSourceDataSetPropertiesDataSetType =
-  /*@__PURE__*/ S.String;
+export const ConsumerSourceDataSetPropertiesDataSetType = S.String;
 
 /** Properties of consumer source dataSet */
 export interface ConsumerSourceDataSetProperties {
@@ -2435,7 +2430,7 @@ export type DataSetKind =
   | "SqlDBTable"
   | "SqlDWTable"
   | "SynapseWorkspaceSqlPoolTable";
-export const DataSetKind = /*@__PURE__*/ S.String;
+export const DataSetKind = S.String;
 
 /** A DataSet data transfer object. */
 export interface DataSet {
@@ -2532,7 +2527,7 @@ export type DataSetMappingKind =
   | "SqlDBTable"
   | "SqlDWTable"
   | "SynapseWorkspaceSqlPoolTable";
-export const DataSetMappingKind = /*@__PURE__*/ S.String;
+export const DataSetMappingKind = S.String;
 
 /** A data set mapping data transfer object. */
 export interface DataSetMapping {
@@ -3167,7 +3162,7 @@ export const ListShareSubscriptionSourceShareSynchronizationSettingsRequest =
 
 /** Kind of synchronization setting on share. */
 export type SourceShareSynchronizationSettingKind = "ScheduleBased";
-export const SourceShareSynchronizationSettingKind = /*@__PURE__*/ S.String;
+export const SourceShareSynchronizationSettingKind = S.String;
 
 /** A view of synchronization setting added by the provider */
 export interface SourceShareSynchronizationSetting {
@@ -3264,7 +3259,7 @@ export type SynchronizationDetailsDataSetType =
   | "SqlDBTable"
   | "SqlDWTable"
   | "SynapseWorkspaceSqlPoolTable";
-export const SynchronizationDetailsDataSetType = /*@__PURE__*/ S.String;
+export const SynchronizationDetailsDataSetType = S.String;
 
 /** Synchronization details at data set level */
 export interface SynchronizationDetails {
@@ -3512,7 +3507,7 @@ export const ListShareSynchronizationsRequest = /*@__PURE__*/ S.suspend(() =>
 export type ShareSynchronizationSynchronizationMode =
   | "Incremental"
   | "FullSync";
-export const ShareSynchronizationSynchronizationMode = /*@__PURE__*/ S.String;
+export const ShareSynchronizationSynchronizationMode = S.String;
 
 /** A ShareSynchronization data transfer object. */
 export interface ShareSynchronization {
@@ -3610,7 +3605,7 @@ export const ListSynchronizationSettingsByShareRequest =
 
 /** Kind of synchronization setting. */
 export type SynchronizationSettingKind = "ScheduleBased";
-export const SynchronizationSettingKind = /*@__PURE__*/ S.String;
+export const SynchronizationSettingKind = S.String;
 
 /** A Synchronization Setting data transfer object. */
 export interface SynchronizationSetting {
@@ -3693,7 +3688,7 @@ export const ListTriggerByShareSubscriptionRequest = /*@__PURE__*/ S.suspend(
 
 /** Kind of synchronization on trigger. */
 export type TriggerKind = "ScheduleBased";
-export const TriggerKind = /*@__PURE__*/ S.String;
+export const TriggerKind = S.String;
 
 /** A Trigger data transfer object. */
 export interface Trigger {
@@ -4014,8 +4009,7 @@ export const RevokeProviderShareSubscriptionResponse = /*@__PURE__*/ S.suspend(
 export type ShareSubscriptionsSynchronizeRequestSynchronizationMode =
   | "Incremental"
   | "FullSync";
-export const ShareSubscriptionsSynchronizeRequestSynchronizationMode =
-  /*@__PURE__*/ S.String;
+export const ShareSubscriptionsSynchronizeRequestSynchronizationMode = S.String;
 
 export interface ShareSubscriptionsSynchronizeRequest {
   /** The subscription identifier */

@@ -171,14 +171,14 @@ export const CollapsibleGroup = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CollapsibleGroup>;
 
 export type TextFormatEnum = "FORMAT_UNSPECIFIED" | "MARKDOWN" | "RAW";
-export const TextFormatEnum = /*@__PURE__*/ S.String;
+export const TextFormatEnum = S.String;
 
 export type TextStyleVerticalAlignmentEnum =
   | "VERTICAL_ALIGNMENT_UNSPECIFIED"
   | "V_TOP"
   | "V_CENTER"
   | "V_BOTTOM";
-export const TextStyleVerticalAlignmentEnum = /*@__PURE__*/ S.String;
+export const TextStyleVerticalAlignmentEnum = S.String;
 
 export type TextStylePaddingEnum =
   | "PADDING_SIZE_UNSPECIFIED"
@@ -187,7 +187,7 @@ export type TextStylePaddingEnum =
   | "P_MEDIUM"
   | "P_LARGE"
   | "P_EXTRA_LARGE";
-export const TextStylePaddingEnum = /*@__PURE__*/ S.String;
+export const TextStylePaddingEnum = S.String;
 
 export type TextStylePointerLocationEnum =
   | "POINTER_LOCATION_UNSPECIFIED"
@@ -203,14 +203,14 @@ export type TextStylePointerLocationEnum =
   | "PL_BOTTOM_LEFT"
   | "PL_LEFT_BOTTOM"
   | "PL_LEFT_TOP";
-export const TextStylePointerLocationEnum = /*@__PURE__*/ S.String;
+export const TextStylePointerLocationEnum = S.String;
 
 export type TextStyleHorizontalAlignmentEnum =
   | "HORIZONTAL_ALIGNMENT_UNSPECIFIED"
   | "H_LEFT"
   | "H_CENTER"
   | "H_RIGHT";
-export const TextStyleHorizontalAlignmentEnum = /*@__PURE__*/ S.String;
+export const TextStyleHorizontalAlignmentEnum = S.String;
 
 export type TextStyleFontSizeEnum =
   | "FONT_SIZE_UNSPECIFIED"
@@ -219,7 +219,7 @@ export type TextStyleFontSizeEnum =
   | "FS_MEDIUM"
   | "FS_LARGE"
   | "FS_EXTRA_LARGE";
-export const TextStyleFontSizeEnum = /*@__PURE__*/ S.String;
+export const TextStyleFontSizeEnum = S.String;
 
 /** Properties that determine how the title and content are styled */
 export interface TextStyle {
@@ -272,7 +272,7 @@ export type ChartOptionsModeEnum =
   | "COLOR"
   | "X_RAY"
   | "STATS";
-export const ChartOptionsModeEnum = /*@__PURE__*/ S.String;
+export const ChartOptionsModeEnum = S.String;
 
 /** Options to control visual rendering of a chart. */
 export interface ChartOptions {
@@ -289,16 +289,16 @@ export const ChartOptions = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ChartOptions" }) as any as S.Schema<ChartOptions>;
 
 export type ThresholdTargetAxisEnum = "TARGET_AXIS_UNSPECIFIED" | "Y1" | "Y2";
-export const ThresholdTargetAxisEnum = /*@__PURE__*/ S.String;
+export const ThresholdTargetAxisEnum = S.String;
 
 export type ThresholdColorEnum = "COLOR_UNSPECIFIED" | "YELLOW" | "RED";
-export const ThresholdColorEnum = /*@__PURE__*/ S.String;
+export const ThresholdColorEnum = S.String;
 
 export type ThresholdDirectionEnum =
   | "DIRECTION_UNSPECIFIED"
   | "ABOVE"
   | "BELOW";
-export const ThresholdDirectionEnum = /*@__PURE__*/ S.String;
+export const ThresholdDirectionEnum = S.String;
 
 /** Defines a threshold for categorizing time series values. */
 export interface Threshold {
@@ -329,7 +329,7 @@ export const ThresholdList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ThresholdList>;
 
 export type DataSetTargetAxisEnum = "TARGET_AXIS_UNSPECIFIED" | "Y1" | "Y2";
-export const DataSetTargetAxisEnum = /*@__PURE__*/ S.String;
+export const DataSetTargetAxisEnum = S.String;
 
 export type DataSetPlotTypeEnum =
   | "PLOT_TYPE_UNSPECIFIED"
@@ -337,14 +337,14 @@ export type DataSetPlotTypeEnum =
   | "STACKED_AREA"
   | "STACKED_BAR"
   | "HEATMAP";
-export const DataSetPlotTypeEnum = /*@__PURE__*/ S.String;
+export const DataSetPlotTypeEnum = S.String;
 
 export type ColumnSortingOptionsDirectionEnum =
   | "SORT_ORDER_UNSPECIFIED"
   | "SORT_ORDER_NONE"
   | "SORT_ORDER_ASCENDING"
   | "SORT_ORDER_DESCENDING";
-export const ColumnSortingOptionsDirectionEnum = /*@__PURE__*/ S.String;
+export const ColumnSortingOptionsDirectionEnum = S.String;
 
 /** Data structure to storing column's sort strategy */
 export interface ColumnSortingOptions {
@@ -382,7 +382,7 @@ export type AggregationCrossSeriesReducerEnum =
   | "REDUCE_PERCENTILE_95"
   | "REDUCE_PERCENTILE_50"
   | "REDUCE_PERCENTILE_05";
-export const AggregationCrossSeriesReducerEnum = /*@__PURE__*/ S.String;
+export const AggregationCrossSeriesReducerEnum = S.String;
 
 export type AggregationPerSeriesAlignerEnum =
   | "ALIGN_NONE"
@@ -404,7 +404,7 @@ export type AggregationPerSeriesAlignerEnum =
   | "ALIGN_PERCENTILE_50"
   | "ALIGN_PERCENTILE_05"
   | "ALIGN_PERCENT_CHANGE";
-export const AggregationPerSeriesAlignerEnum = /*@__PURE__*/ S.String;
+export const AggregationPerSeriesAlignerEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -466,13 +466,13 @@ export type PickTimeSeriesFilterRankingMethodEnum =
   | "METHOD_MIN"
   | "METHOD_SUM"
   | "METHOD_LATEST";
-export const PickTimeSeriesFilterRankingMethodEnum = /*@__PURE__*/ S.String;
+export const PickTimeSeriesFilterRankingMethodEnum = S.String;
 
 export type PickTimeSeriesFilterDirectionEnum =
   | "DIRECTION_UNSPECIFIED"
   | "TOP"
   | "BOTTOM";
-export const PickTimeSeriesFilterDirectionEnum = /*@__PURE__*/ S.String;
+export const PickTimeSeriesFilterDirectionEnum = S.String;
 
 /** Describes a ranking-based time series filter. Each input time series is ranked with an aligner. The filter will allow up to num_time_series time series to pass through it, selecting them based on the relative ranking.For example, if ranking_method is METHOD_MEAN,direction is BOTTOM, and num_time_series is 3, then the 3 times series with the lowest mean values will pass through the filter. */
 export interface PickTimeSeriesFilter {
@@ -499,8 +499,7 @@ export const PickTimeSeriesFilter = /*@__PURE__*/ S.suspend(() =>
 export type StatisticalTimeSeriesFilterRankingMethodEnum =
   | "METHOD_UNSPECIFIED"
   | "METHOD_CLUSTER_OUTLIER";
-export const StatisticalTimeSeriesFilterRankingMethodEnum =
-  /*@__PURE__*/ S.String;
+export const StatisticalTimeSeriesFilterRankingMethodEnum = S.String;
 
 /** A filter that ranks streams based on their statistical relation to other streams in a request. Note: This field is deprecated and completely ignored by the API. */
 export interface StatisticalTimeSeriesFilter {
@@ -586,7 +585,7 @@ export type TraceQuerySpanDataValueEnum =
   | "SPAN_COUNT"
   | "SPAN_DURATION"
   | "SPAN_DURATION_PERCENTILES";
-export const TraceQuerySpanDataValueEnum = /*@__PURE__*/ S.String;
+export const TraceQuerySpanDataValueEnum = S.String;
 
 /** Span attribute key and list of values to be used for filtering. */
 export interface SpanAttributeFilter {
@@ -706,7 +705,7 @@ export type DimensionSortOrderEnum =
   | "SORT_ORDER_NONE"
   | "SORT_ORDER_ASCENDING"
   | "SORT_ORDER_DESCENDING";
-export const DimensionSortOrderEnum = /*@__PURE__*/ S.String;
+export const DimensionSortOrderEnum = S.String;
 
 /** A chart dimension. Dimensions are a structured label, class, or category for a set of measurements in your data. */
 export interface Dimension {
@@ -791,7 +790,7 @@ export type BreakdownSortOrderEnum =
   | "SORT_ORDER_NONE"
   | "SORT_ORDER_ASCENDING"
   | "SORT_ORDER_DESCENDING";
-export const BreakdownSortOrderEnum = /*@__PURE__*/ S.String;
+export const BreakdownSortOrderEnum = S.String;
 
 /** Preview: A breakdown is an aggregation applied to the measures over a specified column. A breakdown can result in multiple series across a category for the provided measure. This is a preview feature and may be subject to change before final release. */
 export interface Breakdown {
@@ -878,7 +877,7 @@ export const DataSetList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DataSetList>;
 
 export type AxisScaleEnum = "SCALE_UNSPECIFIED" | "LINEAR" | "LOG10";
-export const AxisScaleEnum = /*@__PURE__*/ S.String;
+export const AxisScaleEnum = S.String;
 
 /** A chart axis. */
 export interface Axis {
@@ -987,14 +986,14 @@ export type TimeSeriesTableMetricVisualizationEnum =
   | "METRIC_VISUALIZATION_UNSPECIFIED"
   | "NUMBER"
   | "BAR";
-export const TimeSeriesTableMetricVisualizationEnum = /*@__PURE__*/ S.String;
+export const TimeSeriesTableMetricVisualizationEnum = S.String;
 
 export type ColumnSettingsAlignmentEnum =
   | "CELL_ALIGNMENT_UNSPECIFIED"
   | "LEFT"
   | "CENTER"
   | "RIGHT";
-export const ColumnSettingsAlignmentEnum = /*@__PURE__*/ S.String;
+export const ColumnSettingsAlignmentEnum = S.String;
 
 /** The persistent settings for a table's columns. */
 export interface ColumnSettings {
@@ -1047,7 +1046,7 @@ export type SingleViewGroupDisplayTypeEnum =
   | "DISPLAY_TYPE_UNSPECIFIED"
   | "DROPDOWN"
   | "TAB";
-export const SingleViewGroupDisplayTypeEnum = /*@__PURE__*/ S.String;
+export const SingleViewGroupDisplayTypeEnum = S.String;
 
 /** A widget that groups the other widgets by using a dropdown menu. All widgets that are within the area spanned by the grouping widget are considered member widgets. */
 export interface SingleViewGroup {
@@ -1080,7 +1079,7 @@ export type SparkChartViewSparkChartTypeEnum =
   | "SPARK_CHART_TYPE_UNSPECIFIED"
   | "SPARK_LINE"
   | "SPARK_BAR";
-export const SparkChartViewSparkChartTypeEnum = /*@__PURE__*/ S.String;
+export const SparkChartViewSparkChartTypeEnum = S.String;
 
 /** A sparkChart is a small chart suitable for inclusion in a table-cell or inline in text. This message contains the configuration for a sparkChart to show up on a Scorecard, showing recent trends of the scorecard's timeseries. */
 export interface SparkChartView {
@@ -1137,7 +1136,7 @@ export const Scorecard = /*@__PURE__*/ S.suspend(() =>
 export type TemplateVariableConditionComparatorEnum =
   | "COMPARATOR_UNSPECIFIED"
   | "REGEX_FULL_MATCH";
-export const TemplateVariableConditionComparatorEnum = /*@__PURE__*/ S.String;
+export const TemplateVariableConditionComparatorEnum = S.String;
 
 /** A condition whose evaluation is based on the value of a template variable. */
 export interface TemplateVariableCondition {
@@ -1205,7 +1204,7 @@ export type PieChartChartTypeEnum =
   | "PIE_CHART_TYPE_UNSPECIFIED"
   | "PIE"
   | "DONUT";
-export const PieChartChartTypeEnum = /*@__PURE__*/ S.String;
+export const PieChartChartTypeEnum = S.String;
 
 /** A widget that displays timeseries data as a pie or a donut. */
 export interface PieChart {
@@ -1467,7 +1466,7 @@ export type DashboardFilterValueTypeEnum =
   | "VALUE_TYPE_UNSPECIFIED"
   | "STRING"
   | "STRING_ARRAY";
-export const DashboardFilterValueTypeEnum = /*@__PURE__*/ S.String;
+export const DashboardFilterValueTypeEnum = S.String;
 
 export type DashboardFilterFilterTypeEnum =
   | "FILTER_TYPE_UNSPECIFIED"
@@ -1477,7 +1476,7 @@ export type DashboardFilterFilterTypeEnum =
   | "SYSTEM_METADATA_LABEL"
   | "GROUP"
   | "VALUE_ONLY";
-export const DashboardFilterFilterTypeEnum = /*@__PURE__*/ S.String;
+export const DashboardFilterFilterTypeEnum = S.String;
 
 /** A filter to reduce the amount of data charted in relevant widgets. */
 export interface DashboardFilter {
@@ -1597,7 +1596,7 @@ export type EventAnnotationEventTypeEnum =
   | "INTERCONNECT_MAINTENANCE_COMPLETED"
   | "VPN_TRAFFIC_SELECTOR_NARROWING"
   | "VPN_MAINTENANCE";
-export const EventAnnotationEventTypeEnum = /*@__PURE__*/ S.String;
+export const EventAnnotationEventTypeEnum = S.String;
 
 /** Annotation configuration for one event type on a dashboard */
 export interface EventAnnotation {

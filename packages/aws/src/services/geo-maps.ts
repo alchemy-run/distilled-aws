@@ -241,13 +241,13 @@ export type MapStyle =
   | "Hybrid"
   | "Satellite"
   | (string & {});
-export const MapStyle = /*@__PURE__*/ S.String;
+export const MapStyle = S.String;
 
 export type ColorScheme = "Light" | "Dark" | (string & {});
-export const ColorScheme = /*@__PURE__*/ S.String;
+export const ColorScheme = S.String;
 
 export type Variant = "Default" | (string & {});
-export const Variant = /*@__PURE__*/ S.String;
+export const Variant = S.String;
 
 export interface GetSpritesRequest {
   FileName: string;
@@ -300,12 +300,12 @@ export type GeoJsonOverlay = string | redacted.Redacted<string>;
 export type SensitiveInteger = number;
 export type ApiKey = string | redacted.Redacted<string>;
 export type LabelSize = "Small" | "Large" | (string & {});
-export const LabelSize = /*@__PURE__*/ S.String;
+export const LabelSize = S.String;
 
 export type LanguageTag = string;
 export type CountryCode = string | redacted.Redacted<string>;
 export type MapFeatureMode = "Enabled" | "Disabled" | (string & {});
-export const MapFeatureMode = /*@__PURE__*/ S.String;
+export const MapFeatureMode = S.String;
 
 export type DistanceMeters = number;
 export type ScaleBarUnit =
@@ -314,10 +314,10 @@ export type ScaleBarUnit =
   | "Miles"
   | "MilesKilometers"
   | (string & {});
-export const ScaleBarUnit = /*@__PURE__*/ S.String;
+export const ScaleBarUnit = S.String;
 
 export type StaticMapStyle = "Satellite" | "Standard" | (string & {});
-export const StaticMapStyle = /*@__PURE__*/ S.String;
+export const StaticMapStyle = S.String;
 
 export type SensitiveFloat = number;
 export interface GetStaticMapRequest {
@@ -404,21 +404,21 @@ export const GetStaticMapResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetStaticMapResponse",
 }) as any as S.Schema<GetStaticMapResponse>;
 export type Terrain = "Hillshade" | "Terrain3D" | (string & {});
-export const Terrain = /*@__PURE__*/ S.String;
+export const Terrain = S.String;
 
 export type ContourDensity = "Low" | "Medium" | "High" | (string & {});
-export const ContourDensity = /*@__PURE__*/ S.String;
+export const ContourDensity = S.String;
 
 export type Traffic = "All" | "Congestion" | (string & {});
-export const Traffic = /*@__PURE__*/ S.String;
+export const Traffic = S.String;
 
 export type TravelMode = "Transit" | "Truck" | (string & {});
-export const TravelMode = /*@__PURE__*/ S.String;
+export const TravelMode = S.String;
 
 export type TravelModeList = TravelMode[];
 export const TravelModeList = /*@__PURE__*/ S.Array(TravelMode);
 export type Buildings = "Buildings3D" | (string & {});
-export const Buildings = /*@__PURE__*/ S.String;
+export const Buildings = S.String;
 
 export type PoiDensity =
   | "Off"
@@ -428,7 +428,7 @@ export type PoiDensity =
   | "Dense"
   | "VeryDense"
   | (string & {});
-export const PoiDensity = /*@__PURE__*/ S.String;
+export const PoiDensity = S.String;
 
 export type PoiCategory =
   | "FoodAndDrink"
@@ -441,7 +441,7 @@ export type PoiCategory =
   | "BusinessAndServices"
   | "FacilitiesAndBuildings"
   | (string & {});
-export const PoiCategory = /*@__PURE__*/ S.String;
+export const PoiCategory = S.String;
 
 export type PoiCategoryList = PoiCategory[];
 export const PoiCategoryList = /*@__PURE__*/ S.Array(PoiCategory);
@@ -512,7 +512,7 @@ export type TileAdditionalFeature =
   | "Logistics"
   | "Transit"
   | (string & {});
-export const TileAdditionalFeature = /*@__PURE__*/ S.String;
+export const TileAdditionalFeature = S.String;
 
 export type TileAdditionalFeatureList = TileAdditionalFeature[];
 export const TileAdditionalFeatureList = /*@__PURE__*/ S.Array(
@@ -575,7 +575,7 @@ export type ValidationExceptionReason =
   | "Other"
   | "UnknownField"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   Name: string;

@@ -70,7 +70,7 @@ export type DimensionOrderByOrderTypeEnum =
   | "ALPHANUMERIC"
   | "CASE_INSENSITIVE_ALPHANUMERIC"
   | "NUMERIC";
-export const DimensionOrderByOrderTypeEnum = /*@__PURE__*/ S.String;
+export const DimensionOrderByOrderTypeEnum = S.String;
 
 /** Sorts by dimension values. */
 export interface DimensionOrderBy {
@@ -168,7 +168,7 @@ export type PivotMetricAggregationsItemEnum =
   | "MINIMUM"
   | "MAXIMUM"
   | "COUNT";
-export const PivotMetricAggregationsItemEnum = /*@__PURE__*/ S.String;
+export const PivotMetricAggregationsItemEnum = S.String;
 
 export type PivotMetricAggregationsItemEnumList = Array<
   PivotMetricAggregationsItemEnum | (string & {})
@@ -308,7 +308,7 @@ export type NumericFilterOperationEnum =
   | "LESS_THAN_OR_EQUAL"
   | "GREATER_THAN"
   | "GREATER_THAN_OR_EQUAL";
-export const NumericFilterOperationEnum = /*@__PURE__*/ S.String;
+export const NumericFilterOperationEnum = S.String;
 
 /** Filters for numeric or date values. */
 export interface NumericFilter {
@@ -346,7 +346,7 @@ export type StringFilterMatchTypeEnum =
   | "CONTAINS"
   | "FULL_REGEXP"
   | "PARTIAL_REGEXP";
-export const StringFilterMatchTypeEnum = /*@__PURE__*/ S.String;
+export const StringFilterMatchTypeEnum = S.String;
 
 /** The filter for string */
 export interface StringFilter {
@@ -475,7 +475,7 @@ export type CohortsRangeGranularityEnum =
   | "DAILY"
   | "WEEKLY"
   | "MONTHLY";
-export const CohortsRangeGranularityEnum = /*@__PURE__*/ S.String;
+export const CohortsRangeGranularityEnum = S.String;
 
 /** Configures the extended reporting date range for a cohort report. Specifies an offset duration to follow the cohorts over. */
 export interface CohortsRange {
@@ -666,8 +666,7 @@ export type ActiveMetricRestrictionRestrictedMetricTypesItemEnum =
   | "RESTRICTED_METRIC_TYPE_UNSPECIFIED"
   | "COST_DATA"
   | "REVENUE_DATA";
-export const ActiveMetricRestrictionRestrictedMetricTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const ActiveMetricRestrictionRestrictedMetricTypesItemEnum = S.String;
 
 export type ActiveMetricRestrictionRestrictedMetricTypesItemEnumList =
   Array<ActiveMetricRestrictionRestrictedMetricTypesItemEnum>;
@@ -882,7 +881,7 @@ export type MetricHeaderTypeEnum =
   | "TYPE_MILES"
   | "TYPE_METERS"
   | "TYPE_KILOMETERS";
-export const MetricHeaderTypeEnum = /*@__PURE__*/ S.String;
+export const MetricHeaderTypeEnum = S.String;
 
 /** Describes a metric column in the report. Visible metrics requested in a report produce column entries within rows and MetricHeaders. However, metrics used exclusively within filters or expressions do not produce columns in a report; correspondingly, those metrics do not produce headers. */
 export interface MetricHeader {
@@ -1004,8 +1003,7 @@ export type RunReportRequestMetricAggregationsItemEnum =
   | "MINIMUM"
   | "MAXIMUM"
   | "COUNT";
-export const RunReportRequestMetricAggregationsItemEnum =
-  /*@__PURE__*/ S.String;
+export const RunReportRequestMetricAggregationsItemEnum = S.String;
 
 export type RunReportRequestMetricAggregationsItemEnumList = Array<
   RunReportRequestMetricAggregationsItemEnum | (string & {})
@@ -1176,8 +1174,7 @@ export type CheckCompatibilityRequestCompatibilityFilterEnum =
   | "COMPATIBILITY_UNSPECIFIED"
   | "COMPATIBLE"
   | "INCOMPATIBLE";
-export const CheckCompatibilityRequestCompatibilityFilterEnum =
-  /*@__PURE__*/ S.String;
+export const CheckCompatibilityRequestCompatibilityFilterEnum = S.String;
 
 /** The request for compatibility information for a report's dimensions and metrics. Check compatibility provides a preview of the compatibility of a report; fields shared with the `runReport` request should be the same values as in your `runReport` request. */
 export interface CheckCompatibilityRequest {
@@ -1243,13 +1240,13 @@ export type MetricMetadataTypeEnum =
   | "TYPE_MILES"
   | "TYPE_METERS"
   | "TYPE_KILOMETERS";
-export const MetricMetadataTypeEnum = /*@__PURE__*/ S.String;
+export const MetricMetadataTypeEnum = S.String;
 
 export type MetricMetadataBlockedReasonsItemEnum =
   | "BLOCKED_REASON_UNSPECIFIED"
   | "NO_REVENUE_METRICS"
   | "NO_COST_METRICS";
-export const MetricMetadataBlockedReasonsItemEnum = /*@__PURE__*/ S.String;
+export const MetricMetadataBlockedReasonsItemEnum = S.String;
 
 export type MetricMetadataBlockedReasonsItemEnumList =
   Array<MetricMetadataBlockedReasonsItemEnum>;
@@ -1296,7 +1293,7 @@ export type MetricCompatibilityCompatibilityEnum =
   | "COMPATIBILITY_UNSPECIFIED"
   | "COMPATIBLE"
   | "INCOMPATIBLE";
-export const MetricCompatibilityCompatibilityEnum = /*@__PURE__*/ S.String;
+export const MetricCompatibilityCompatibilityEnum = S.String;
 
 /** The compatibility for a single metric. */
 export interface MetricCompatibility {
@@ -1323,7 +1320,7 @@ export type DimensionCompatibilityCompatibilityEnum =
   | "COMPATIBILITY_UNSPECIFIED"
   | "COMPATIBLE"
   | "INCOMPATIBLE";
-export const DimensionCompatibilityCompatibilityEnum = /*@__PURE__*/ S.String;
+export const DimensionCompatibilityCompatibilityEnum = S.String;
 
 /** Explains a dimension. */
 export interface DimensionMetadata {
@@ -1413,7 +1410,7 @@ export type AudienceExportStateEnum =
   | "CREATING"
   | "ACTIVE"
   | "FAILED";
-export const AudienceExportStateEnum = /*@__PURE__*/ S.String;
+export const AudienceExportStateEnum = S.String;
 
 /** An audience export is a list of users in an audience at the time of the list's creation. One audience may have multiple audience exports created for different days. */
 export interface AudienceExport {
@@ -1773,8 +1770,7 @@ export type RunRealtimeReportRequestMetricAggregationsItemEnum =
   | "MINIMUM"
   | "MAXIMUM"
   | "COUNT";
-export const RunRealtimeReportRequestMetricAggregationsItemEnum =
-  /*@__PURE__*/ S.String;
+export const RunRealtimeReportRequestMetricAggregationsItemEnum = S.String;
 
 export type RunRealtimeReportRequestMetricAggregationsItemEnumList = Array<
   RunRealtimeReportRequestMetricAggregationsItemEnum | (string & {})

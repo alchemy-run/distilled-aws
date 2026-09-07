@@ -331,7 +331,7 @@ export type ImportStatus =
   | "COMPLETED"
   | "FAILED"
   | (string & {});
-export const ImportStatus = /*@__PURE__*/ S.String;
+export const ImportStatus = S.String;
 
 export interface CancelImportTaskResponse {
   importId?: string;
@@ -410,7 +410,7 @@ export type DeliveryDestinationType =
   | "FH"
   | "XRAY"
   | (string & {});
-export const DeliveryDestinationType = /*@__PURE__*/ S.String;
+export const DeliveryDestinationType = S.String;
 
 export interface Delivery {
   id?: string;
@@ -549,7 +549,7 @@ export type EvaluationFrequency =
   | "THIRTY_MIN"
   | "ONE_HOUR"
   | (string & {});
-export const EvaluationFrequency = /*@__PURE__*/ S.String;
+export const EvaluationFrequency = S.String;
 
 export type FilterPattern = string;
 export type DetectorKmsKeyArn = string;
@@ -600,7 +600,7 @@ export type LogGroupClass =
   | "INFREQUENT_ACCESS"
   | "DELIVERY"
   | (string & {});
-export const LogGroupClass = /*@__PURE__*/ S.String;
+export const LogGroupClass = S.String;
 
 export type DeletionProtectionEnabled = boolean;
 export interface CreateLogGroupRequest {
@@ -711,7 +711,7 @@ export const CreateLookupTableResponse = /*@__PURE__*/ S.suspend(() =>
 export type ScheduledQueryName = string;
 export type ScheduledQueryDescription = string;
 export type QueryLanguage = "CWLI" | "SQL" | "PPL" | (string & {});
-export const QueryLanguage = /*@__PURE__*/ S.String;
+export const QueryLanguage = S.String;
 
 export type QueryString = string;
 export type LogGroupIdentifier = string;
@@ -772,7 +772,7 @@ export const DestinationConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "DestinationConfiguration",
 }) as any as S.Schema<DestinationConfiguration>;
 export type ScheduledQueryState = "ENABLED" | "DISABLED" | (string & {});
-export const ScheduledQueryState = /*@__PURE__*/ S.String;
+export const ScheduledQueryState = S.String;
 
 export interface CreateScheduledQueryRequest {
   name: string;
@@ -842,7 +842,7 @@ export type PolicyType =
   | "TRANSFORMER_POLICY"
   | "METRIC_EXTRACTION_POLICY"
   | (string & {});
-export const PolicyType = /*@__PURE__*/ S.String;
+export const PolicyType = S.String;
 
 export interface DeleteAccountPolicyRequest {
   policyName: string;
@@ -1406,7 +1406,7 @@ export const DescribeAccountPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DescribeAccountPoliciesRequest>;
 export type AccountPolicyDocument = string;
 export type Scope = "ALL" | (string & {});
-export const Scope = /*@__PURE__*/ S.String;
+export const Scope = S.String;
 
 export type SelectionCriteria = string;
 export interface AccountPolicy {
@@ -1517,7 +1517,7 @@ export type OutputFormat =
   | "raw"
   | "parquet"
   | (string & {});
-export const OutputFormat = /*@__PURE__*/ S.String;
+export const OutputFormat = S.String;
 
 export type OutputFormats = OutputFormat[];
 export const OutputFormats = /*@__PURE__*/ S.Array(OutputFormat);
@@ -1532,8 +1532,7 @@ export type DeliverySourceConfigurationSchemaValueType =
   | "double"
   | "long"
   | (string & {});
-export const DeliverySourceConfigurationSchemaValueType =
-  /*@__PURE__*/ S.String;
+export const DeliverySourceConfigurationSchemaValueType = S.String;
 
 export type DeliverySourceConfigurationSupportedValues = string[];
 export const DeliverySourceConfigurationSupportedValues = /*@__PURE__*/ S.Array(
@@ -1765,10 +1764,10 @@ export const DeliverySourceConfiguration = /*@__PURE__*/ S.Record(
   S.String.pipe(S.optional),
 );
 export type DeliverySourceStatus = "ACTIVE" | "INACTIVE" | (string & {});
-export const DeliverySourceStatus = /*@__PURE__*/ S.String;
+export const DeliverySourceStatus = S.String;
 
 export type DeliverySourceStatusReason = "RESOURCE_DELETED" | (string & {});
-export const DeliverySourceStatusReason = /*@__PURE__*/ S.String;
+export const DeliverySourceStatusReason = S.String;
 
 export interface DeliverySource {
   name?: string;
@@ -1874,7 +1873,7 @@ export type ExportTaskStatusCode =
   | "PENDING_CANCEL"
   | "RUNNING"
   | (string & {});
-export const ExportTaskStatusCode = /*@__PURE__*/ S.String;
+export const ExportTaskStatusCode = S.String;
 
 export interface DescribeExportTasksRequest {
   taskId?: string;
@@ -1975,7 +1974,7 @@ export type IndexCategory =
   | "AUTO"
   | "INACTIVE"
   | (string & {});
-export const IndexCategory = /*@__PURE__*/ S.String;
+export const IndexCategory = S.String;
 
 export type IndexCategories = IndexCategory[];
 export const IndexCategories = /*@__PURE__*/ S.Array(IndexCategory);
@@ -2005,7 +2004,7 @@ export const DescribeFieldIndexesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DescribeFieldIndexesRequest>;
 export type FieldIndexName = string;
 export type IndexType = "FACET" | "FIELD_INDEX" | (string & {});
-export const IndexType = /*@__PURE__*/ S.String;
+export const IndexType = S.String;
 
 export interface FieldIndex {
   logGroupIdentifier?: string;
@@ -2195,7 +2194,7 @@ export const DescribeIndexPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DescribeIndexPoliciesRequest>;
 export type PolicyDocument = string;
 export type IndexSource = "ACCOUNT" | "LOG_GROUP" | (string & {});
-export const IndexSource = /*@__PURE__*/ S.String;
+export const IndexSource = S.String;
 
 export interface IndexPolicy {
   logGroupIdentifier?: string;
@@ -2275,10 +2274,10 @@ export type DataProtectionStatus =
   | "ARCHIVED"
   | "DISABLED"
   | (string & {});
-export const DataProtectionStatus = /*@__PURE__*/ S.String;
+export const DataProtectionStatus = S.String;
 
 export type InheritedProperty = "ACCOUNT_DATA_PROTECTION" | (string & {});
-export const InheritedProperty = /*@__PURE__*/ S.String;
+export const InheritedProperty = S.String;
 
 export type InheritedProperties = InheritedProperty[];
 export const InheritedProperties = /*@__PURE__*/ S.Array(InheritedProperty);
@@ -2330,7 +2329,7 @@ export const DescribeLogGroupsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeLogGroupsResponse",
 }) as any as S.Schema<DescribeLogGroupsResponse>;
 export type OrderBy = "LogStreamName" | "LastEventTime" | (string & {});
-export const OrderBy = /*@__PURE__*/ S.String;
+export const OrderBy = S.String;
 
 export type Descending = boolean;
 export interface DescribeLogStreamsRequest {
@@ -2536,7 +2535,7 @@ export type StandardUnit =
   | "Count/Second"
   | "None"
   | (string & {});
-export const StandardUnit = /*@__PURE__*/ S.String;
+export const StandardUnit = S.String;
 
 export interface MetricTransformation {
   metricName: string;
@@ -2611,7 +2610,7 @@ export type QueryStatus =
   | "Timeout"
   | "Unknown"
   | (string & {});
-export const QueryStatus = /*@__PURE__*/ S.String;
+export const QueryStatus = S.String;
 
 export type DescribeQueriesMaxResults = number;
 export interface DescribeQueriesRequest {
@@ -2768,7 +2767,7 @@ export const DescribeQueryDefinitionsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeQueryDefinitionsResponse",
 }) as any as S.Schema<DescribeQueryDefinitionsResponse>;
 export type PolicyScope = "ACCOUNT" | "RESOURCE" | (string & {});
-export const PolicyScope = /*@__PURE__*/ S.String;
+export const PolicyScope = S.String;
 
 export interface DescribeResourcePoliciesRequest {
   nextToken?: string;
@@ -2856,7 +2855,7 @@ export const DescribeSubscriptionFiltersRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DescribeSubscriptionFiltersRequest>;
 export type DestinationArn = string;
 export type Distribution = "Random" | "ByLogStream" | (string & {});
-export const Distribution = /*@__PURE__*/ S.String;
+export const Distribution = S.String;
 
 export interface SubscriptionFilter {
   filterName?: string;
@@ -3218,14 +3217,14 @@ export const GetIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetIntegrationRequest",
 }) as any as S.Schema<GetIntegrationRequest>;
 export type IntegrationType = "OPENSEARCH" | (string & {});
-export const IntegrationType = /*@__PURE__*/ S.String;
+export const IntegrationType = S.String;
 
 export type IntegrationStatus =
   | "PROVISIONING"
   | "ACTIVE"
   | "FAILED"
   | (string & {});
-export const IntegrationStatus = /*@__PURE__*/ S.String;
+export const IntegrationStatus = S.String;
 
 export type OpenSearchDataSourceName = string;
 export type OpenSearchResourceStatusType =
@@ -3233,7 +3232,7 @@ export type OpenSearchResourceStatusType =
   | "NOT_FOUND"
   | "ERROR"
   | (string & {});
-export const OpenSearchResourceStatusType = /*@__PURE__*/ S.String;
+export const OpenSearchResourceStatusType = S.String;
 
 export type IntegrationStatusMessage = string;
 export interface OpenSearchResourceStatus {
@@ -3427,7 +3426,7 @@ export type AnomalyDetectorStatus =
   | "DELETED"
   | "PAUSED"
   | (string & {});
-export const AnomalyDetectorStatus = /*@__PURE__*/ S.String;
+export const AnomalyDetectorStatus = S.String;
 
 export type EpochMillis = number;
 export interface GetLogAnomalyDetectorResponse {
@@ -3859,7 +3858,7 @@ export const GetScheduledQueryRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetScheduledQueryRequest",
 }) as any as S.Schema<GetScheduledQueryRequest>;
 export type ScheduleType = "CUSTOMER_MANAGED" | "AWS_MANAGED" | (string & {});
-export const ScheduleType = /*@__PURE__*/ S.String;
+export const ScheduleType = S.String;
 
 export type ExecutionStatus =
   | "Running"
@@ -3868,7 +3867,7 @@ export type ExecutionStatus =
   | "Failed"
   | "Timeout"
   | (string & {});
-export const ExecutionStatus = /*@__PURE__*/ S.String;
+export const ExecutionStatus = S.String;
 
 export interface GetScheduledQueryResponse {
   scheduledQueryArn?: string;
@@ -3955,7 +3954,7 @@ export type ScheduledQueryDestinationType =
   | "S3"
   | "LOOKUP_TABLE"
   | (string & {});
-export const ScheduledQueryDestinationType = /*@__PURE__*/ S.String;
+export const ScheduledQueryDestinationType = S.String;
 
 export type ActionStatus =
   | "IN_PROGRESS"
@@ -3963,7 +3962,7 @@ export type ActionStatus =
   | "FAILED"
   | "COMPLETE"
   | (string & {});
-export const ActionStatus = /*@__PURE__*/ S.String;
+export const ActionStatus = S.String;
 
 export interface ScheduledQueryDestination {
   destinationType?: ScheduledQueryDestinationType;
@@ -4041,7 +4040,7 @@ export const GetStorageTierPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetStorageTierPolicyRequest",
 }) as any as S.Schema<GetStorageTierPolicyRequest>;
 export type StorageTier = "STANDARD" | "INTELLIGENT_TIERING" | (string & {});
-export const StorageTier = /*@__PURE__*/ S.String;
+export const StorageTier = S.String;
 
 export interface GetStorageTierPolicyResponse {
   storageTier?: StorageTier;
@@ -4189,7 +4188,7 @@ export const Grok = /*@__PURE__*/ S.suspend(() =>
 export type ValueKey = string;
 export type Flatten = boolean;
 export type FlattenedElement = "first" | "last" | (string & {});
-export const FlattenedElement = /*@__PURE__*/ S.String;
+export const FlattenedElement = S.String;
 
 export interface ListToMap {
   source: string;
@@ -4291,10 +4290,10 @@ export type EventSource =
   | "EKSAudit"
   | "AWSWAF"
   | (string & {});
-export const EventSource = /*@__PURE__*/ S.String;
+export const EventSource = S.String;
 
 export type OCSFVersion = "V1.1" | "V1.5" | (string & {});
-export const OCSFVersion = /*@__PURE__*/ S.String;
+export const OCSFVersion = S.String;
 
 export type MappingVersion = string;
 export interface ParseToOCSF {
@@ -4401,7 +4400,7 @@ export const TrimString = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ withKeys: TrimStringWithKeys }),
 ).annotate({ identifier: "TrimString" }) as any as S.Schema<TrimString>;
 export type Type = "boolean" | "integer" | "double" | "string" | (string & {});
-export const Type = /*@__PURE__*/ S.String;
+export const Type = S.String;
 
 export interface TypeConverterEntry {
   key: string;
@@ -4516,7 +4515,7 @@ export type ListAggregateLogGroupSummariesGroupBy =
   | "DATA_SOURCE_NAME_TYPE_AND_FORMAT"
   | "DATA_SOURCE_NAME_AND_TYPE"
   | (string & {});
-export const ListAggregateLogGroupSummariesGroupBy = /*@__PURE__*/ S.String;
+export const ListAggregateLogGroupSummariesGroupBy = S.String;
 
 export type ListLogGroupsRequestLimit = number;
 export interface ListAggregateLogGroupSummariesRequest {
@@ -4598,7 +4597,7 @@ export const ListAggregateLogGroupSummariesResponse = /*@__PURE__*/ S.suspend(
   identifier: "ListAggregateLogGroupSummariesResponse",
 }) as any as S.Schema<ListAggregateLogGroupSummariesResponse>;
 export type SuppressionState = "SUPPRESSED" | "UNSUPPRESSED" | (string & {});
-export const SuppressionState = /*@__PURE__*/ S.String;
+export const SuppressionState = S.String;
 
 export type ListAnomaliesLimit = number;
 export interface ListAnomaliesRequest {
@@ -4634,7 +4633,7 @@ export type PatternRegex = string;
 export type Priority = string;
 export type Description = string;
 export type State = "Active" | "Suppressed" | "Baseline" | (string & {});
-export const State = /*@__PURE__*/ S.String;
+export const State = S.String;
 
 export type Count = number;
 export type Histogram = { [key: string]: number | undefined };
@@ -5076,7 +5075,7 @@ export type S3TableIntegrationSourceStatus =
   | "FAILED"
   | "DATA_SOURCE_DELETE_IN_PROGRESS"
   | (string & {});
-export const S3TableIntegrationSourceStatus = /*@__PURE__*/ S.String;
+export const S3TableIntegrationSourceStatus = S.String;
 
 export type S3TableIntegrationSourceStatusReason = string;
 export interface S3TableIntegrationSource {
@@ -5144,7 +5143,7 @@ export const ListSyslogConfigurationsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListSyslogConfigurationsRequest",
 }) as any as S.Schema<ListSyslogConfigurationsRequest>;
 export type SyslogSourceType = "VPCE" | (string & {});
-export const SyslogSourceType = /*@__PURE__*/ S.String;
+export const SyslogSourceType = S.String;
 
 export interface SyslogConfiguration {
   logGroupArn?: string;
@@ -5670,7 +5669,7 @@ export type EntityRejectionErrorType =
   | "UnsupportedLogGroupType"
   | "MissingRequiredFields"
   | (string & {});
-export const EntityRejectionErrorType = /*@__PURE__*/ S.String;
+export const EntityRejectionErrorType = S.String;
 
 export interface RejectedEntityInfo {
   errorType: EntityRejectionErrorType;
@@ -6423,10 +6422,10 @@ export const UntagResourceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UntagResourceResponse",
 }) as any as S.Schema<UntagResourceResponse>;
 export type SuppressionType = "LIMITED" | "INFINITE" | (string & {});
-export const SuppressionType = /*@__PURE__*/ S.String;
+export const SuppressionType = S.String;
 
 export type SuppressionUnit = "SECONDS" | "MINUTES" | "HOURS" | (string & {});
-export const SuppressionUnit = /*@__PURE__*/ S.String;
+export const SuppressionUnit = S.String;
 
 export interface SuppressionPeriod {
   value?: number;

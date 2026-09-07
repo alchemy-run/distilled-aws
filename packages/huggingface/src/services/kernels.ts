@@ -16,7 +16,7 @@ export type DuplicateXetFilesRequestTargetType =
   | "model"
   | "space"
   | "kernel";
-export const DuplicateXetFilesRequestTargetType = /*@__PURE__*/ S.String;
+export const DuplicateXetFilesRequestTargetType = S.String;
 
 export interface DuplicateXetFilesRequestTarget {
   type: DuplicateXetFilesRequestTargetType | (string & {});
@@ -141,11 +141,11 @@ export const GetKernelRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetKernelRequest>;
 
 export type GetKernelResponseGatedCase1 = "auto" | "manual";
-export const GetKernelResponseGatedCase1 = /*@__PURE__*/ S.String;
+export const GetKernelResponseGatedCase1 = S.String;
 
 export type GetKernelResponseGated = unknown | GetKernelResponseGatedCase1;
 export const GetKernelResponseGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetKernelResponseGated>;
+  S.Unknown as any as S.Schema<GetKernelResponseGated>;
 
 export interface GetKernelResponseResourceGroup {
   id: string;
@@ -167,7 +167,7 @@ export type GetKernelResponseAuthorDataCase0Plan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetKernelResponseAuthorDataCase0Plan = /*@__PURE__*/ S.String;
+export const GetKernelResponseAuthorDataCase0Plan = S.String;
 
 export interface GetKernelResponseAuthorDataCase0 {
   _id: string;
@@ -205,8 +205,7 @@ export type GetKernelResponseAuthorDataCase1PrimaryOrgPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetKernelResponseAuthorDataCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const GetKernelResponseAuthorDataCase1PrimaryOrgPlan = S.String;
 
 export type GetKernelResponseAuthorDataCase1PrimaryOrgUserRole =
   | "admin"
@@ -214,8 +213,7 @@ export type GetKernelResponseAuthorDataCase1PrimaryOrgUserRole =
   | "contributor"
   | "read"
   | "no_access";
-export const GetKernelResponseAuthorDataCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+export const GetKernelResponseAuthorDataCase1PrimaryOrgUserRole = S.String;
 
 export interface GetKernelResponseAuthorDataCase1PrimaryOrg {
   avatarUrl: string;
@@ -286,7 +284,7 @@ export type GetKernelResponseAuthorData =
   | GetKernelResponseAuthorDataCase0
   | GetKernelResponseAuthorDataCase1;
 export const GetKernelResponseAuthorData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetKernelResponseAuthorData>;
+  S.Unknown as any as S.Schema<GetKernelResponseAuthorData>;
 
 export type GetKernelResponseFilesList = Array<string>;
 export const GetKernelResponseFilesList = /*@__PURE__*/ S.Array(
@@ -300,8 +298,7 @@ export type GetKernelResponseSupportedDriverFamiliesItem =
   | "xpu"
   | "cpu"
   | "webgpu";
-export const GetKernelResponseSupportedDriverFamiliesItem =
-  /*@__PURE__*/ S.String;
+export const GetKernelResponseSupportedDriverFamiliesItem = S.String;
 
 export type GetKernelResponseSupportedDriverFamiliesList =
   Array<GetKernelResponseSupportedDriverFamiliesItem>;
@@ -375,13 +372,13 @@ export const GetKernelRevisionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetKernelRevisionRequest>;
 
 export type GetKernelRevisionResponseGatedCase1 = "auto" | "manual";
-export const GetKernelRevisionResponseGatedCase1 = /*@__PURE__*/ S.String;
+export const GetKernelRevisionResponseGatedCase1 = S.String;
 
 export type GetKernelRevisionResponseGated =
   | unknown
   | GetKernelRevisionResponseGatedCase1;
 export const GetKernelRevisionResponseGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetKernelRevisionResponseGated>;
+  S.Unknown as any as S.Schema<GetKernelRevisionResponseGated>;
 
 export type GetKernelRevisionResponseResourceGroup =
   GetKernelResponseResourceGroup;
@@ -393,8 +390,7 @@ export type GetKernelRevisionResponseAuthorDataCase0Plan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetKernelRevisionResponseAuthorDataCase0Plan =
-  /*@__PURE__*/ S.String;
+export const GetKernelRevisionResponseAuthorDataCase0Plan = S.String;
 
 export interface GetKernelRevisionResponseAuthorDataCase0 {
   _id: string;
@@ -433,8 +429,7 @@ export type GetKernelRevisionResponseAuthorDataCase1PrimaryOrgPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetKernelRevisionResponseAuthorDataCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const GetKernelRevisionResponseAuthorDataCase1PrimaryOrgPlan = S.String;
 
 export type GetKernelRevisionResponseAuthorDataCase1PrimaryOrgUserRole =
   | "admin"
@@ -443,7 +438,7 @@ export type GetKernelRevisionResponseAuthorDataCase1PrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const GetKernelRevisionResponseAuthorDataCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetKernelRevisionResponseAuthorDataCase1PrimaryOrg {
   avatarUrl: string;
@@ -519,7 +514,7 @@ export type GetKernelRevisionResponseAuthorData =
   | GetKernelRevisionResponseAuthorDataCase0
   | GetKernelRevisionResponseAuthorDataCase1;
 export const GetKernelRevisionResponseAuthorData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetKernelRevisionResponseAuthorData>;
+  S.Unknown as any as S.Schema<GetKernelRevisionResponseAuthorData>;
 
 export type GetKernelRevisionResponseFilesList = Array<string>;
 export const GetKernelRevisionResponseFilesList = /*@__PURE__*/ S.Array(
@@ -533,8 +528,7 @@ export type GetKernelRevisionResponseSupportedDriverFamiliesItem =
   | "xpu"
   | "cpu"
   | "webgpu";
-export const GetKernelRevisionResponseSupportedDriverFamiliesItem =
-  /*@__PURE__*/ S.String;
+export const GetKernelRevisionResponseSupportedDriverFamiliesItem = S.String;
 
 export type GetKernelRevisionResponseSupportedDriverFamiliesList =
   Array<GetKernelRevisionResponseSupportedDriverFamiliesItem>;
@@ -596,7 +590,7 @@ export type ListKernelsRequestAuthor =
   | string
   | ListKernelsRequestAuthorCase1List;
 export const ListKernelsRequestAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListKernelsRequestAuthor>;
+  S.Unknown as any as S.Schema<ListKernelsRequestAuthor>;
 
 export type ListKernelsRequestIdCase1List = Array<string>;
 export const ListKernelsRequestIdCase1List = /*@__PURE__*/ S.Array(
@@ -606,7 +600,7 @@ export const ListKernelsRequestIdCase1List = /*@__PURE__*/ S.Array(
 /** Filter by ID */
 export type ListKernelsRequestId = string | ListKernelsRequestIdCase1List;
 export const ListKernelsRequestId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListKernelsRequestId>;
+  S.Unknown as any as S.Schema<ListKernelsRequestId>;
 
 export type ListKernelsRequestArxivIdsCase1List = Array<string>;
 export const ListKernelsRequestArxivIdsCase1List = /*@__PURE__*/ S.Array(
@@ -618,7 +612,7 @@ export type ListKernelsRequestArxivIds =
   | string
   | ListKernelsRequestArxivIdsCase1List;
 export const ListKernelsRequestArxivIds =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListKernelsRequestArxivIds>;
+  S.Unknown as any as S.Schema<ListKernelsRequestArxivIds>;
 
 export type ListKernelsRequestFilterCase1List = Array<string>;
 export const ListKernelsRequestFilterCase1List = /*@__PURE__*/ S.Array(
@@ -630,7 +624,7 @@ export type ListKernelsRequestFilter =
   | string
   | ListKernelsRequestFilterCase1List;
 export const ListKernelsRequestFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListKernelsRequestFilter>;
+  S.Unknown as any as S.Schema<ListKernelsRequestFilter>;
 
 /** Sort field (e.g. downloads, likes, lastModified, trendingScore) */
 export type ListKernelsRequestSort =
@@ -641,11 +635,11 @@ export type ListKernelsRequestSort =
   | "likes30d"
   | "_id"
   | "id";
-export const ListKernelsRequestSort = /*@__PURE__*/ S.String;
+export const ListKernelsRequestSort = S.String;
 
 /** Sort direction: 1 for ascending, -1 for descending */
 export type ListKernelsRequestDirection = "1" | "-1";
-export const ListKernelsRequestDirection = /*@__PURE__*/ S.String;
+export const ListKernelsRequestDirection = S.String;
 
 export type ListKernelsRequestExpandCase0 =
   | "author"
@@ -666,7 +660,7 @@ export type ListKernelsRequestExpandCase0 =
   | "supportedDriverFamilies"
   | "resourceGroup"
   | "arxivIds";
-export const ListKernelsRequestExpandCase0 = /*@__PURE__*/ S.String;
+export const ListKernelsRequestExpandCase0 = S.String;
 
 export type ListKernelsRequestExpandCase1Item =
   | "author"
@@ -687,7 +681,7 @@ export type ListKernelsRequestExpandCase1Item =
   | "supportedDriverFamilies"
   | "resourceGroup"
   | "arxivIds";
-export const ListKernelsRequestExpandCase1Item = /*@__PURE__*/ S.String;
+export const ListKernelsRequestExpandCase1Item = S.String;
 
 export type ListKernelsRequestExpandCase1List = Array<
   ListKernelsRequestExpandCase1Item | (string & {})
@@ -701,7 +695,7 @@ export type ListKernelsRequestExpand =
   | ListKernelsRequestExpandCase0
   | ListKernelsRequestExpandCase1List;
 export const ListKernelsRequestExpand =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListKernelsRequestExpand>;
+  S.Unknown as any as S.Schema<ListKernelsRequestExpand>;
 
 export interface ListKernelsRequest {
   search?: string;
@@ -748,7 +742,7 @@ export const ListKernelsResponseBodyItemCardDataMap = /*@__PURE__*/ S.Record(
 /** Gated access status */
 export type ListKernelsResponseBodyItemGated = boolean | unknown;
 export const ListKernelsResponseBodyItemGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListKernelsResponseBodyItemGated>;
+  S.Unknown as any as S.Schema<ListKernelsResponseBodyItemGated>;
 
 /** List of files in the kernel */
 export type ListKernelsResponseBodyItemFilesList = Array<string>;
@@ -767,7 +761,7 @@ export type ListKernelsResponseBodyItemBuildMetadataCompatibilityTorchItem =
   | "2.9"
   | "2.10";
 export const ListKernelsResponseBodyItemBuildMetadataCompatibilityTorchItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListKernelsResponseBodyItemBuildMetadataCompatibilityTorchList =
   Array<ListKernelsResponseBodyItemBuildMetadataCompatibilityTorchItem>;
@@ -781,7 +775,7 @@ export type ListKernelsResponseBodyItemBuildMetadataCompatibilityOsItem =
   | "linux"
   | "windows";
 export const ListKernelsResponseBodyItemBuildMetadataCompatibilityOsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListKernelsResponseBodyItemBuildMetadataCompatibilityOsList =
   Array<ListKernelsResponseBodyItemBuildMetadataCompatibilityOsItem>;
@@ -795,7 +789,7 @@ export type ListKernelsResponseBodyItemBuildMetadataCompatibilityArchItem =
   | "arm64"
   | "aarch64";
 export const ListKernelsResponseBodyItemBuildMetadataCompatibilityArchItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListKernelsResponseBodyItemBuildMetadataCompatibilityArchList =
   Array<ListKernelsResponseBodyItemBuildMetadataCompatibilityArchItem>;
@@ -828,7 +822,7 @@ export type ListKernelsResponseBodyItemBuildMetadataBackendsItemType =
   | "cpu"
   | "webgpu";
 export const ListKernelsResponseBodyItemBuildMetadataBackendsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListKernelsResponseBodyItemBuildMetadataBackendsItemHardwareTypesItem =
   | "5.0"
@@ -894,7 +888,7 @@ export type ListKernelsResponseBodyItemBuildMetadataBackendsItemHardwareTypesIte
   | "gfx1200"
   | "gfx1201";
 export const ListKernelsResponseBodyItemBuildMetadataBackendsItemHardwareTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListKernelsResponseBodyItemBuildMetadataBackendsItemHardwareTypesList =
   Array<ListKernelsResponseBodyItemBuildMetadataBackendsItemHardwareTypesItem>;
@@ -969,8 +963,7 @@ export type ListKernelsResponseBodyItemSupportedDriverFamiliesItem =
   | "xpu"
   | "cpu"
   | "webgpu";
-export const ListKernelsResponseBodyItemSupportedDriverFamiliesItem =
-  /*@__PURE__*/ S.String;
+export const ListKernelsResponseBodyItemSupportedDriverFamiliesItem = S.String;
 
 /** Driver families supported by the kernel (derived from build metadata) */
 export type ListKernelsResponseBodyItemSupportedDriverFamiliesList =

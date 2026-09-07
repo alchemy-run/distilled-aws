@@ -148,7 +148,7 @@ export const BatchDeletePhotosResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BatchDeletePhotosResponse>;
 
 export type BatchGetPhotosViewEnum = "BASIC" | "INCLUDE_DOWNLOAD_URL";
-export const BatchGetPhotosViewEnum = /*@__PURE__*/ S.String;
+export const BatchGetPhotosViewEnum = S.String;
 
 export interface BatchGetPhotosRequest {
   /** Required. Specifies if a download URL for the photo bytes should be returned in the Photo response. */
@@ -194,7 +194,7 @@ export type PhotoTransferStatusEnum =
   | "EXPIRED"
   | "CANCELLED"
   | "RECEIVED_VIA_TRANSFER";
-export const PhotoTransferStatusEnum = /*@__PURE__*/ S.String;
+export const PhotoTransferStatusEnum = S.String;
 
 /** Identifier for a Photo. */
 export interface PhotoId {
@@ -227,7 +227,7 @@ export type PhotoMapsPublishStatusEnum =
   | "UNSPECIFIED_MAPS_PUBLISH_STATUS"
   | "PUBLISHED"
   | "REJECTED_UNKNOWN";
-export const PhotoMapsPublishStatusEnum = /*@__PURE__*/ S.String;
+export const PhotoMapsPublishStatusEnum = S.String;
 
 /** An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges. */
 export interface LatLng {
@@ -477,7 +477,7 @@ export type CreatePhotoSequenceInputTypeEnum =
   | "INPUT_TYPE_UNSPECIFIED"
   | "VIDEO"
   | "XDM";
-export const CreatePhotoSequenceInputTypeEnum = /*@__PURE__*/ S.String;
+export const CreatePhotoSequenceInputTypeEnum = S.String;
 
 /** Details related to PhotoSequenceProcessingFailureReason#NO_OVERLAP_GPS. */
 export interface NoOverlapGpsFailureDetails {
@@ -590,12 +590,12 @@ export type PhotoSequenceProcessingStateEnum =
   | "PROCESSING"
   | "PROCESSED"
   | "FAILED";
-export const PhotoSequenceProcessingStateEnum = /*@__PURE__*/ S.String;
+export const PhotoSequenceProcessingStateEnum = S.String;
 
 export type PhotoSequenceGpsSourceEnum =
   | "PHOTO_SEQUENCE"
   | "CAMERA_MOTION_METADATA_TRACK";
-export const PhotoSequenceGpsSourceEnum = /*@__PURE__*/ S.String;
+export const PhotoSequenceGpsSourceEnum = S.String;
 
 export type PoseList = Array<Pose>;
 export const PoseList = /*@__PURE__*/ S.Array(
@@ -670,7 +670,7 @@ export type PhotoSequenceFailureReasonEnum =
   | "INSUFFICIENT_MOVEMENT"
   | "MAST_DOWN"
   | "CAMERA_COVERED";
-export const PhotoSequenceFailureReasonEnum = /*@__PURE__*/ S.String;
+export const PhotoSequenceFailureReasonEnum = S.String;
 
 export type PhotoList = Array<Photo>;
 export const PhotoList = /*@__PURE__*/ S.Array(
@@ -831,7 +831,7 @@ export const DeletePhotoSequenceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeletePhotoSequenceRequest>;
 
 export type GetPhotoViewEnum = "BASIC" | "INCLUDE_DOWNLOAD_URL";
-export const GetPhotoViewEnum = /*@__PURE__*/ S.String;
+export const GetPhotoViewEnum = S.String;
 
 export interface GetPhotoRequest {
   /** Required. ID of the Photo. */
@@ -858,7 +858,7 @@ export const GetPhotoRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPhotoRequest>;
 
 export type GetPhotoSequenceViewEnum = "BASIC" | "INCLUDE_DOWNLOAD_URL";
-export const GetPhotoSequenceViewEnum = /*@__PURE__*/ S.String;
+export const GetPhotoSequenceViewEnum = S.String;
 
 export interface GetPhotoSequenceRequest {
   /** Optional. The filter expression. For example: `published_status=PUBLISHED`. The filters supported are: `published_status`. See https://google.aip.dev/160 for more information. */
@@ -885,7 +885,7 @@ export const GetPhotoSequenceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPhotoSequenceRequest>;
 
 export type ListPhotosViewEnum = "BASIC" | "INCLUDE_DOWNLOAD_URL";
-export const ListPhotosViewEnum = /*@__PURE__*/ S.String;
+export const ListPhotosViewEnum = S.String;
 
 export interface ListPhotosRequest {
   /** Optional. The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used. */

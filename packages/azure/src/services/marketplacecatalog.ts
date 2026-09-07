@@ -2524,7 +2524,7 @@ export type Store =
   | "Ibiza"
   | "Cosell"
   | "DakotaDownstream";
-export const Store = /*@__PURE__*/ S.String;
+export const Store = S.String;
 
 /** The list of the storefronts for which this offer is designated */
 export type CatalogItemDeterminedStorefrontsList = Array<Store>;
@@ -2555,10 +2555,10 @@ export type OfferType =
   | "PowerBIVisuals"
   | "Office365"
   | "AADApps";
-export const OfferType = /*@__PURE__*/ S.String;
+export const OfferType = S.String;
 
 export type StopSellReason = "EndOfSupport" | "SecurityIssue" | "Other";
-export const StopSellReason = /*@__PURE__*/ S.String;
+export const StopSellReason = S.String;
 
 export interface StopSellInfo {
   /** A value indicating when the sale of this item is going to be stopped */
@@ -2610,7 +2610,7 @@ export const CatalogItemIsvContactDetailsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CatalogItemIsvContactDetailsMap>;
 
 export type LegalTermsType = "None" | "EA";
-export const LegalTermsType = /*@__PURE__*/ S.String;
+export const LegalTermsType = S.String;
 
 /** List of category IDs the marketplace item belongs to */
 export type CatalogItemCategoryIdsList = Array<string>;
@@ -2686,7 +2686,7 @@ export const CatalogItemCompetenciesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CatalogItemCompetenciesList>;
 
 export type ServiceDurationUnit = "Days" | "Hours" | "Weeks" | "Months";
-export const ServiceDurationUnit = /*@__PURE__*/ S.String;
+export const ServiceDurationUnit = S.String;
 
 export interface Duration {
   /** Duration value */
@@ -2703,7 +2703,7 @@ export const Duration = /*@__PURE__*/ S.suspend(() =>
 
 /** 0 = Fixed 1 = Estimated */
 export type CurrencyDecorator = 0 | 1;
-export const CurrencyDecorator = /*@__PURE__*/ S.Number;
+export const CurrencyDecorator = S.Number;
 
 export interface PlanPrice {
   /** Plan id */
@@ -2861,7 +2861,7 @@ export const CatalogItemIconFileUrisMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CatalogItemIconFileUrisMap>;
 
 export type ArtifactType = "Template" | "Fragment" | "Custom" | "Metadata";
-export const ArtifactType = /*@__PURE__*/ S.String;
+export const ArtifactType = S.String;
 
 export interface Artifact {
   /** Artifact name */
@@ -3169,7 +3169,7 @@ export type PricingAudience =
   | "DirectChk"
   | "DirectBlue"
   | "DirectRock";
-export const PricingAudience = /*@__PURE__*/ S.String;
+export const PricingAudience = S.String;
 
 export interface TermDescriptionParameter {
   /** Term description parameter */
@@ -3461,10 +3461,10 @@ export const PlanArtifactsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PlanArtifactsList>;
 
 export type CSPState = "OptIn" | "OptOut" | "Terminated" | "SelectiveOptIn";
-export const CSPState = /*@__PURE__*/ S.String;
+export const CSPState = S.String;
 
 export type VmSecurityType = "None" | "Trusted" | "Confidential";
-export const VmSecurityType = /*@__PURE__*/ S.String;
+export const VmSecurityType = S.String;
 
 export type BillingComponentCustomMeterIdsValueList = Array<number>;
 export const BillingComponentCustomMeterIdsValueList = /*@__PURE__*/ S.Array(
@@ -3544,7 +3544,7 @@ export const PlanCertificationsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PlanCertificationsList>;
 
 export type PricingType = "Free" | "FreeTrial" | "Byol" | "Payg" | "Ri";
-export const PricingType = /*@__PURE__*/ S.String;
+export const PricingType = S.String;
 
 /** The list of the pricing types for which this plan is designated */
 export type PlanPricingTypesList = Array<PricingType>;
@@ -3786,7 +3786,7 @@ export const CatalogItemKeywordsList = /*@__PURE__*/ S.Array(
 
 /** 0 = None 1 = Azure 2 = AMP 4 = AppSource 8 = Any */
 export type StoreFrontOptions = 0 | 1 | 2 | 4 | 8;
-export const StoreFrontOptions = /*@__PURE__*/ S.Number;
+export const StoreFrontOptions = S.Number;
 
 /** The list of document links provided for the item */
 export type CatalogItemDocumentLinksList = Array<LinkProperties>;
@@ -3796,7 +3796,7 @@ export const CatalogItemDocumentLinksList = /*@__PURE__*/ S.Array(
 
 /** 1 = DogFood 2 = Canary 3 = Production 4 = FairFax 5 = Unknown */
 export type EnvironmentInfo = 1 | 2 | 3 | 4 | 5;
-export const EnvironmentInfo = /*@__PURE__*/ S.Number;
+export const EnvironmentInfo = S.Number;
 
 /** List of linked Add Ins provided for the item */
 export type CatalogItemLinkedAddInsList = Array<string>;
@@ -3820,7 +3820,7 @@ export const CatalogItemPbiServicePrincipalIdsList = /*@__PURE__*/ S.Array(
 
 /** 0 = Undefined 1 = None 2 = SelfAttested 3 = MicrosoftCertified */
 export type CertificationType = 0 | 1 | 2 | 3;
-export const CertificationType = /*@__PURE__*/ S.Number;
+export const CertificationType = S.Number;
 
 export interface M365CertificationInfo {
   /** M365 Certification Type */
@@ -3842,7 +3842,7 @@ export const M365CertificationInfo = /*@__PURE__*/ S.suspend(() =>
 
 /** 0 = None 1 = Free 2 = FreeTrial 4 = Paid 8 = Byol */
 export type PricingOptions = 0 | 1 | 2 | 4 | 8;
-export const PricingOptions = /*@__PURE__*/ S.Number;
+export const PricingOptions = S.Number;
 
 export interface UIPricing {
   /** A value indicating what pricing options are available on the application */
@@ -3898,7 +3898,7 @@ export type ReviewSource =
   | "G2"
   | "Internal"
   | "All";
-export const ReviewSource = /*@__PURE__*/ S.String;
+export const ReviewSource = S.String;
 
 export type RatingSummaryStarsDistributionMap = {
   [key: string]: number | undefined;
@@ -3970,7 +3970,7 @@ export const EnrichedData = /*@__PURE__*/ S.suspend(() =>
 
 /** 1 = Capability1 2 = Capability2 3 = Capability3 4 = Capability4 5 = Capability5 6 = Capability6 7 = Capability7 8 = Capability8 9 = Capability9 10 = Capability10 11 = Capability11 */
 export type OfficeCapabilityType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
-export const OfficeCapabilityType = /*@__PURE__*/ S.Number;
+export const OfficeCapabilityType = S.Number;
 
 /** Office capabilities */
 export type CatalogItemCapabilitiesList = Array<OfficeCapabilityType>;
@@ -4508,11 +4508,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -5389,7 +5389,7 @@ export type PrivateStoreAllow =
   | "AllowedByAdmin"
   | "AllowedByDefault"
   | "NonAllowed";
-export const PrivateStoreAllow = /*@__PURE__*/ S.String;
+export const PrivateStoreAllow = S.String;
 
 export type SearchPostArmRequestPrivateStoreAllowancesList = Array<
   PrivateStoreAllow | (string & {})

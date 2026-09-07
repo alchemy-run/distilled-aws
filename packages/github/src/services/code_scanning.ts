@@ -132,7 +132,7 @@ export type CodeScanningAutofixStatus =
   | "error"
   | "success"
   | "outdated";
-export const CodeScanningAutofixStatus = /*@__PURE__*/ S.String;
+export const CodeScanningAutofixStatus = S.String;
 
 export interface CodeScanningAutofix {
   status: CodeScanningAutofixStatus;
@@ -161,7 +161,7 @@ export type CodeScanningVariantAnalysisLanguage =
   | "ruby"
   | "rust"
   | "swift";
-export const CodeScanningVariantAnalysisLanguage = /*@__PURE__*/ S.String;
+export const CodeScanningVariantAnalysisLanguage = S.String;
 
 /** List of repository names (in the form `owner/repo-name`) to run the query against. Precisely one property from `repositories`, `repository_lists` and `repository_owners` is required. */
 export type CreateVariantAnalysisRequestRepositoriesList = Array<string>;
@@ -427,14 +427,14 @@ export type CodeScanningVariantAnalysisStatus =
   | "succeeded"
   | "failed"
   | "cancelled";
-export const CodeScanningVariantAnalysisStatus = /*@__PURE__*/ S.String;
+export const CodeScanningVariantAnalysisStatus = S.String;
 
 /** The reason for a failure of the variant analysis. This is only available if the variant analysis has failed. */
 export type CodeScanningVariantAnalysisFailureReason =
   | "no_repos_queried"
   | "actions_workflow_run_failed"
   | "internal_error";
-export const CodeScanningVariantAnalysisFailureReason = /*@__PURE__*/ S.String;
+export const CodeScanningVariantAnalysisFailureReason = S.String;
 
 /** Repository Identifier */
 export interface CodeScanningVariantAnalysisRepository {
@@ -471,7 +471,7 @@ export type CodeScanningVariantAnalysisStatus2 =
   | "failed"
   | "canceled"
   | "timed_out";
-export const CodeScanningVariantAnalysisStatus2 = /*@__PURE__*/ S.String;
+export const CodeScanningVariantAnalysisStatus2 = S.String;
 
 export interface CodeScanningVariantAnalysisScannedRepositoriesItem {
   repository: CodeScanningVariantAnalysisRepository;
@@ -720,7 +720,7 @@ export const GetAlertRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** State of a code scanning alert. */
 export type CodeScanningAlertState = "open" | "dismissed" | "fixed";
-export const CodeScanningAlertState = /*@__PURE__*/ S.String;
+export const CodeScanningAlertState = S.String;
 
 /** A GitHub user. */
 export type NullableSimpleUser = SimpleUser;
@@ -732,7 +732,7 @@ export type CodeScanningAlertDismissedReason =
   | "won't fix"
   | "used in tests"
   | "mitigated";
-export const CodeScanningAlertDismissedReason = /*@__PURE__*/ S.String;
+export const CodeScanningAlertDismissedReason = S.String;
 
 /** The severity of the alert. */
 export type CodeScanningAlertRuleSeverity =
@@ -740,7 +740,7 @@ export type CodeScanningAlertRuleSeverity =
   | "note"
   | "warning"
   | "error";
-export const CodeScanningAlertRuleSeverity = /*@__PURE__*/ S.String;
+export const CodeScanningAlertRuleSeverity = S.String;
 
 /** The security severity of the alert. */
 export type CodeScanningAlertRuleSecuritySeverityLevel =
@@ -748,8 +748,7 @@ export type CodeScanningAlertRuleSecuritySeverityLevel =
   | "medium"
   | "high"
   | "critical";
-export const CodeScanningAlertRuleSecuritySeverityLevel =
-  /*@__PURE__*/ S.String;
+export const CodeScanningAlertRuleSecuritySeverityLevel = S.String;
 
 /** A set of tags applicable for the rule. */
 export type CodeScanningAlertRuleTagsList = Array<string>;
@@ -850,7 +849,7 @@ export type CodeScanningAlertClassification =
   | "generated"
   | "test"
   | "library";
-export const CodeScanningAlertClassification = /*@__PURE__*/ S.String;
+export const CodeScanningAlertClassification = S.String;
 
 /** Classifications that have been applied to the file that triggered the alert. For example identifying it as documentation, or a generated file. */
 export type CodeScanningAlertInstanceClassificationsList =
@@ -925,7 +924,7 @@ export const PullRequestSimpleLabelsList = /*@__PURE__*/ S.Array(
 
 /** The state of the milestone. */
 export type NullableMilestoneState = "open" | "closed";
-export const NullableMilestoneState = /*@__PURE__*/ S.String;
+export const NullableMilestoneState = S.String;
 
 /** A collection of related issues and pull requests. */
 export interface NullableMilestone {
@@ -1003,15 +1002,15 @@ export const TeamPermissions = /*@__PURE__*/ S.suspend(() =>
 
 /** The ownership type of the team */
 export type TeamType = "enterprise" | "organization";
-export const TeamType = /*@__PURE__*/ S.String;
+export const TeamType = S.String;
 
 /** How the team's access to the repository was granted. This property is only present when the team is returned in a repository context, such as `GET /repos/{owner}/{repo}/teams`. */
 export type TeamAccessSource = "direct" | "organization" | "enterprise";
-export const TeamAccessSource = /*@__PURE__*/ S.String;
+export const TeamAccessSource = S.String;
 
 /** The ownership type of the team */
 export type NullableTeamSimpleType = "enterprise" | "organization";
-export const NullableTeamSimpleType = /*@__PURE__*/ S.String;
+export const NullableTeamSimpleType = S.String;
 
 /** Groups of organization members that gives permissions on specified repositories. */
 export interface NullableTeamSimple {
@@ -1167,28 +1166,28 @@ export const RepositoryTopicsList = /*@__PURE__*/ S.Array(
 
 /** The policy controlling who can create pull requests: all or collaborators_only. */
 export type RepositoryPullRequestCreationPolicy = "all" | "collaborators_only";
-export const RepositoryPullRequestCreationPolicy = /*@__PURE__*/ S.String;
+export const RepositoryPullRequestCreationPolicy = S.String;
 
 /** The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit). */
 export type RepositorySquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const RepositorySquashMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type RepositorySquashMergeCommitMessage =
   | "PR_BODY"
   | "COMMIT_MESSAGES"
   | "BLANK";
-export const RepositorySquashMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitMessage = S.String;
 
 /** The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type RepositoryMergeCommitTitle = "PR_TITLE" | "MERGE_MESSAGE";
-export const RepositoryMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type RepositoryMergeCommitMessage = "PR_BODY" | "PR_TITLE" | "BLANK";
-export const RepositoryMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitMessage = S.String;
 
 /** The status of the code search index for this repository */
 export interface RepositoryCodeSearchIndexStatus {
@@ -1508,11 +1507,11 @@ export type AuthorAssociation =
   | "MEMBER"
   | "NONE"
   | "OWNER";
-export const AuthorAssociation = /*@__PURE__*/ S.String;
+export const AuthorAssociation = S.String;
 
 /** The merge method to use. */
 export type AutoMergeMergeMethod = "merge" | "squash" | "rebase";
-export const AutoMergeMergeMethod = /*@__PURE__*/ S.String;
+export const AutoMergeMergeMethod = S.String;
 
 /** The status of auto merging a pull request. */
 export interface AutoMerge {
@@ -1886,7 +1885,7 @@ export const GetDefaultSetupRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Code scanning default setup has been configured or not. */
 export type CodeScanningDefaultSetupState = "configured" | "not-configured";
-export const CodeScanningDefaultSetupState = /*@__PURE__*/ S.String;
+export const CodeScanningDefaultSetupState = S.String;
 
 export type CodeScanningDefaultSetupLanguagesItem =
   | "actions"
@@ -1900,7 +1899,7 @@ export type CodeScanningDefaultSetupLanguagesItem =
   | "ruby"
   | "typescript"
   | "swift";
-export const CodeScanningDefaultSetupLanguagesItem = /*@__PURE__*/ S.String;
+export const CodeScanningDefaultSetupLanguagesItem = S.String;
 
 /** Languages to be analyzed. */
 export type CodeScanningDefaultSetupLanguagesList =
@@ -1911,19 +1910,19 @@ export const CodeScanningDefaultSetupLanguagesList = /*@__PURE__*/ S.Array(
 
 /** Runner type to be used. */
 export type CodeScanningDefaultSetupRunnerType = "standard" | "labeled";
-export const CodeScanningDefaultSetupRunnerType = /*@__PURE__*/ S.String;
+export const CodeScanningDefaultSetupRunnerType = S.String;
 
 /** CodeQL query suite to be used. */
 export type CodeScanningDefaultSetupQuerySuite = "default" | "extended";
-export const CodeScanningDefaultSetupQuerySuite = /*@__PURE__*/ S.String;
+export const CodeScanningDefaultSetupQuerySuite = S.String;
 
 /** Threat model to be used for code scanning analysis. Use `remote` to analyze only network sources and `remote_and_local` to include local sources like filesystem access, command-line arguments, database reads, environment variable and standard input. */
 export type CodeScanningDefaultSetupThreatModel = "remote" | "remote_and_local";
-export const CodeScanningDefaultSetupThreatModel = /*@__PURE__*/ S.String;
+export const CodeScanningDefaultSetupThreatModel = S.String;
 
 /** The frequency of the periodic analysis. */
 export type CodeScanningDefaultSetupSchedule = "weekly";
-export const CodeScanningDefaultSetupSchedule = /*@__PURE__*/ S.String;
+export const CodeScanningDefaultSetupSchedule = S.String;
 
 /** Configuration for code scanning default setup. */
 export interface CodeScanningDefaultSetup {
@@ -1988,7 +1987,7 @@ export type CodeScanningSarifsStatusProcessingStatus =
   | "pending"
   | "complete"
   | "failed";
-export const CodeScanningSarifsStatusProcessingStatus = /*@__PURE__*/ S.String;
+export const CodeScanningSarifsStatusProcessingStatus = S.String;
 
 /** Any errors that ocurred during processing of the delivery. */
 export type CodeScanningSarifsStatusErrorsList = Array<string>;
@@ -2137,7 +2136,7 @@ export const ListAlertInstancesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** State of a code scanning alert instance. */
 export type CodeScanningAlertInstanceState = "open" | "fixed";
-export const CodeScanningAlertInstanceState = /*@__PURE__*/ S.String;
+export const CodeScanningAlertInstanceState = S.String;
 
 export interface CodeScanningAlertInstanceListMessage {
   text?: string;
@@ -2205,7 +2204,7 @@ export const ListAlertInstancesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListAlertInstancesResponse>;
 
 export type ListAlertsForOrgRequestDirection = "asc" | "desc";
-export const ListAlertsForOrgRequestDirection = /*@__PURE__*/ S.String;
+export const ListAlertsForOrgRequestDirection = S.String;
 
 /** State of a code scanning alert. */
 export type CodeScanningAlertStateQuery =
@@ -2213,10 +2212,10 @@ export type CodeScanningAlertStateQuery =
   | "closed"
   | "dismissed"
   | "fixed";
-export const CodeScanningAlertStateQuery = /*@__PURE__*/ S.String;
+export const CodeScanningAlertStateQuery = S.String;
 
 export type ListAlertsForOrgRequestSort = "created" | "updated";
-export const ListAlertsForOrgRequestSort = /*@__PURE__*/ S.String;
+export const ListAlertsForOrgRequestSort = S.String;
 
 /** Severity of a code scanning alert. */
 export type CodeScanningAlertSeverity =
@@ -2227,7 +2226,7 @@ export type CodeScanningAlertSeverity =
   | "warning"
   | "note"
   | "error";
-export const CodeScanningAlertSeverity = /*@__PURE__*/ S.String;
+export const CodeScanningAlertSeverity = S.String;
 
 export interface ListAlertsForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -2286,7 +2285,7 @@ export type CodeScanningAlertRuleSummarySeverity =
   | "note"
   | "warning"
   | "error";
-export const CodeScanningAlertRuleSummarySeverity = /*@__PURE__*/ S.String;
+export const CodeScanningAlertRuleSummarySeverity = S.String;
 
 /** The security severity of the alert. */
 export type CodeScanningAlertRuleSummarySecuritySeverityLevel =
@@ -2294,8 +2293,7 @@ export type CodeScanningAlertRuleSummarySecuritySeverityLevel =
   | "medium"
   | "high"
   | "critical";
-export const CodeScanningAlertRuleSummarySecuritySeverityLevel =
-  /*@__PURE__*/ S.String;
+export const CodeScanningAlertRuleSummarySecuritySeverityLevel = S.String;
 
 /** A set of tags applicable for the rule. */
 export type CodeScanningAlertRuleSummaryTagsList = Array<string>;
@@ -2406,10 +2404,10 @@ export const ListAlertsForOrgResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListAlertsForOrgResponse>;
 
 export type ListAlertsForRepoRequestDirection = "asc" | "desc";
-export const ListAlertsForRepoRequestDirection = /*@__PURE__*/ S.String;
+export const ListAlertsForRepoRequestDirection = S.String;
 
 export type ListAlertsForRepoRequestSort = "created" | "updated";
-export const ListAlertsForRepoRequestSort = /*@__PURE__*/ S.String;
+export const ListAlertsForRepoRequestSort = S.String;
 
 export interface ListAlertsForRepoRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -2566,10 +2564,10 @@ export const ListCodeqlDatabasesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListCodeqlDatabasesResponse>;
 
 export type ListRecentAnalysesRequestDirection = "asc" | "desc";
-export const ListRecentAnalysesRequestDirection = /*@__PURE__*/ S.String;
+export const ListRecentAnalysesRequestDirection = S.String;
 
 export type ListRecentAnalysesRequestSort = "created";
-export const ListRecentAnalysesRequestSort = /*@__PURE__*/ S.String;
+export const ListRecentAnalysesRequestSort = S.String;
 
 export interface ListRecentAnalysesRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -2633,7 +2631,7 @@ export const ListRecentAnalysesResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sets the state of the code scanning alert. You must provide `dismissed_reason` when you set the state to `dismissed`. */
 export type CodeScanningAlertSetState = "open" | "dismissed";
-export const CodeScanningAlertSetState = /*@__PURE__*/ S.String;
+export const CodeScanningAlertSetState = S.String;
 
 /** The list of users to assign to the code scanning alert. An empty array unassigns all previous assignees from the alert. */
 export type CodeScanningAlertAssignees = Array<string>;
@@ -2677,21 +2675,21 @@ export const UpdateAlertRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The desired state of code scanning default setup. */
 export type UpdateDefaultSetupRequestState = "configured" | "not-configured";
-export const UpdateDefaultSetupRequestState = /*@__PURE__*/ S.String;
+export const UpdateDefaultSetupRequestState = S.String;
 
 /** Runner type to be used. */
 export type UpdateDefaultSetupRequestRunnerType = "standard" | "labeled";
-export const UpdateDefaultSetupRequestRunnerType = /*@__PURE__*/ S.String;
+export const UpdateDefaultSetupRequestRunnerType = S.String;
 
 /** CodeQL query suite to be used. */
 export type UpdateDefaultSetupRequestQuerySuite = "default" | "extended";
-export const UpdateDefaultSetupRequestQuerySuite = /*@__PURE__*/ S.String;
+export const UpdateDefaultSetupRequestQuerySuite = S.String;
 
 /** Threat model to be used for code scanning analysis. Use `remote` to analyze only network sources and `remote_and_local` to include local sources like filesystem access, command-line arguments, database reads, environment variable and standard input. */
 export type UpdateDefaultSetupRequestThreatModel =
   | "remote"
   | "remote_and_local";
-export const UpdateDefaultSetupRequestThreatModel = /*@__PURE__*/ S.String;
+export const UpdateDefaultSetupRequestThreatModel = S.String;
 
 export type UpdateDefaultSetupRequestLanguagesItem =
   | "actions"
@@ -2703,7 +2701,7 @@ export type UpdateDefaultSetupRequestLanguagesItem =
   | "python"
   | "ruby"
   | "swift";
-export const UpdateDefaultSetupRequestLanguagesItem = /*@__PURE__*/ S.String;
+export const UpdateDefaultSetupRequestLanguagesItem = S.String;
 
 /** CodeQL languages to be analyzed. */
 export type UpdateDefaultSetupRequestLanguagesList = Array<

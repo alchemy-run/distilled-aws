@@ -59,14 +59,14 @@ export type DisputeAlertNotActionableReason =
   | "payment_not_captured"
   | "payment_disputed"
   | "payment_refunded";
-export const DisputeAlertNotActionableReason = /*@__PURE__*/ S.String;
+export const DisputeAlertNotActionableReason = S.String;
 
 /** What the issuer sent. `early_fraud_warning` is a fraud report on a settled payment (Visa TC40 / Mastercard SAFE) — refunding still avoids the chargeback, and Whop never charges a fee for one. `dispute_alert` is a pre-dispute notice from the issuer's alert network, which Whop pays for and passes on as a fee. `rapid_dispute_resolution` is a Visa RDR case the network already closed by refunding the payment — nothing is left to act on. */
 export type DisputeAlertType =
   | "early_fraud_warning"
   | "dispute_alert"
   | "rapid_dispute_resolution";
-export const DisputeAlertType = /*@__PURE__*/ S.String;
+export const DisputeAlertType = S.String;
 
 export interface DisputeAlert {
   /** The account the alerted payment belongs to, prefixed `biz_`. `null` while the alert is unmatched. */
@@ -127,16 +127,16 @@ export type ListDisputeAlertsRequestType =
   | "early_fraud_warning"
   | "dispute_alert"
   | "rapid_dispute_resolution";
-export const ListDisputeAlertsRequestType = /*@__PURE__*/ S.String;
+export const ListDisputeAlertsRequestType = S.String;
 
 export type ListDisputeAlertsRequestOrder =
   | "created_at"
   | "reported_at"
   | "amount";
-export const ListDisputeAlertsRequestOrder = /*@__PURE__*/ S.String;
+export const ListDisputeAlertsRequestOrder = S.String;
 
 export type ListDisputeAlertsRequestDirection = "asc" | "desc";
-export const ListDisputeAlertsRequestDirection = /*@__PURE__*/ S.String;
+export const ListDisputeAlertsRequestDirection = S.String;
 
 export interface ListDisputeAlertsRequest {
   /** Only alerts on this account's payments (`biz_` tag). Omit it to cover every account you can read. */

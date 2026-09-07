@@ -40,8 +40,7 @@ export type AddServerToPlacementGroupResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const AddServerToPlacementGroupResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const AddServerToPlacementGroupResponseActionStatus = S.String;
 
 export interface AddServerToPlacementGroupResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -155,7 +154,7 @@ export type AttachServerIsoResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const AttachServerIsoResponseActionStatus = /*@__PURE__*/ S.String;
+export const AttachServerIsoResponseActionStatus = S.String;
 
 export type AttachServerIsoResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -260,7 +259,7 @@ export type AttachServerToNetworkResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const AttachServerToNetworkResponseActionStatus = /*@__PURE__*/ S.String;
+export const AttachServerToNetworkResponseActionStatus = S.String;
 
 export type AttachServerToNetworkResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -360,7 +359,7 @@ export type ChangeServerAliasIpsResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeServerAliasIpsResponseActionStatus = /*@__PURE__*/ S.String;
+export const ChangeServerAliasIpsResponseActionStatus = S.String;
 
 export type ChangeServerAliasIpsResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -454,7 +453,7 @@ export type ChangeServerDnsPtrResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeServerDnsPtrResponseActionStatus = /*@__PURE__*/ S.String;
+export const ChangeServerDnsPtrResponseActionStatus = S.String;
 
 export type ChangeServerDnsPtrResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -548,8 +547,7 @@ export type ChangeServerProtectionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeServerProtectionResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const ChangeServerProtectionResponseActionStatus = S.String;
 
 export type ChangeServerProtectionResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -644,7 +642,7 @@ export type ChangeServerTypeResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeServerTypeResponseActionStatus = /*@__PURE__*/ S.String;
+export const ChangeServerTypeResponseActionStatus = S.String;
 
 export type ChangeServerTypeResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -711,7 +709,7 @@ export const ChangeServerTypeResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of Image to create. */
 export type CreateServerImageRequestType = "snapshot" | "backup";
-export const CreateServerImageRequestType = /*@__PURE__*/ S.String;
+export const CreateServerImageRequestType = S.String;
 
 /** User-defined labels (`key/value` pairs) for the Resource. For more information, see "[Labels](#description/labels)". */
 export type CreateServerImageRequestLabelsMap = {
@@ -755,14 +753,14 @@ export type CreateServerImageResponseImageType =
   | "app"
   | "snapshot"
   | "backup";
-export const CreateServerImageResponseImageType = /*@__PURE__*/ S.String;
+export const CreateServerImageResponseImageType = S.String;
 
 /** Status of the Image. */
 export type CreateServerImageResponseImageStatus =
   | "available"
   | "creating"
   | "unavailable";
-export const CreateServerImageResponseImageStatus = /*@__PURE__*/ S.String;
+export const CreateServerImageResponseImageStatus = S.String;
 
 /** Information about the Server the Image was created from. */
 export interface CreateServerImageResponseImageCreatedFrom {
@@ -791,7 +789,7 @@ export type CreateServerImageResponseImageOsFlavor =
   | "alma"
   | "opensuse"
   | "unknown";
-export const CreateServerImageResponseImageOsFlavor = /*@__PURE__*/ S.String;
+export const CreateServerImageResponseImageOsFlavor = S.String;
 
 /** Protection configuration for the Resource. */
 export interface CreateServerImageResponseImageProtection {
@@ -818,8 +816,7 @@ export const CreateServerImageResponseImageLabelsMap = /*@__PURE__*/ S.Record(
 
 /** CPU architecture compatible with the Image. */
 export type CreateServerImageResponseImageArchitecture = "x86" | "arm";
-export const CreateServerImageResponseImageArchitecture =
-  /*@__PURE__*/ S.String;
+export const CreateServerImageResponseImageArchitecture = S.String;
 
 export interface CreateServerImageResponseImage {
   /** ID of the [Image](#tag/images). */
@@ -889,7 +886,7 @@ export type CreateServerImageResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const CreateServerImageResponseActionStatus = /*@__PURE__*/ S.String;
+export const CreateServerImageResponseActionStatus = S.String;
 
 export type CreateServerImageResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -982,8 +979,7 @@ export type DetachServerFromNetworkResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const DetachServerFromNetworkResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const DetachServerFromNetworkResponseActionStatus = S.String;
 
 export type DetachServerFromNetworkResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -1072,7 +1068,7 @@ export type DetachServerIsoResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const DetachServerIsoResponseActionStatus = /*@__PURE__*/ S.String;
+export const DetachServerIsoResponseActionStatus = S.String;
 
 export type DetachServerIsoResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -1159,7 +1155,7 @@ export type DisableServerBackupResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const DisableServerBackupResponseActionStatus = /*@__PURE__*/ S.String;
+export const DisableServerBackupResponseActionStatus = S.String;
 
 export type DisableServerBackupResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -1247,7 +1243,7 @@ export type DisableServerRescueResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const DisableServerRescueResponseActionStatus = /*@__PURE__*/ S.String;
+export const DisableServerRescueResponseActionStatus = S.String;
 
 export type DisableServerRescueResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -1335,7 +1331,7 @@ export type EnableServerBackupResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const EnableServerBackupResponseActionStatus = /*@__PURE__*/ S.String;
+export const EnableServerBackupResponseActionStatus = S.String;
 
 export type EnableServerBackupResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -1402,7 +1398,7 @@ export const EnableServerBackupResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of rescue system to boot. */
 export type EnableServerRescueRequestType = "linux64";
-export const EnableServerRescueRequestType = /*@__PURE__*/ S.String;
+export const EnableServerRescueRequestType = S.String;
 
 /** Array of SSH key IDs which should be injected into the rescue system. */
 export type EnableServerRescueRequestSshKeysList = Array<number>;
@@ -1439,7 +1435,7 @@ export type EnableServerRescueResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const EnableServerRescueResponseActionStatus = /*@__PURE__*/ S.String;
+export const EnableServerRescueResponseActionStatus = S.String;
 
 export type EnableServerRescueResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -1524,7 +1520,7 @@ export type GetServersActionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const GetServersActionResponseActionStatus = /*@__PURE__*/ S.String;
+export const GetServersActionResponseActionStatus = S.String;
 
 export type GetServersActionResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -1605,7 +1601,7 @@ export type ListServerActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListServerActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListServerActionsRequestSortItem = S.String;
 
 export type ListServerActionsRequestSortList = Array<
   ListServerActionsRequestSortItem | (string & {})
@@ -1619,7 +1615,7 @@ export type ListServerActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListServerActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListServerActionsRequestStatusItem = S.String;
 
 export type ListServerActionsRequestStatusList = Array<
   ListServerActionsRequestStatusItem | (string & {})
@@ -1657,8 +1653,7 @@ export type ListServerActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListServerActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListServerActionsResponseActionsItemStatus = S.String;
 
 export type ListServerActionsResponseActionsItemResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -1794,7 +1789,7 @@ export type ListServersActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListServersActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListServersActionsRequestSortItem = S.String;
 
 export type ListServersActionsRequestSortList = Array<
   ListServersActionsRequestSortItem | (string & {})
@@ -1808,7 +1803,7 @@ export type ListServersActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListServersActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListServersActionsRequestStatusItem = S.String;
 
 export type ListServersActionsRequestStatusList = Array<
   ListServersActionsRequestStatusItem | (string & {})
@@ -1846,8 +1841,7 @@ export type ListServersActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListServersActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListServersActionsResponseActionsItemStatus = S.String;
 
 export type ListServersActionsResponseActionsItemResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -1953,7 +1947,7 @@ export type PoweroffServerResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const PoweroffServerResponseActionStatus = /*@__PURE__*/ S.String;
+export const PoweroffServerResponseActionStatus = S.String;
 
 export type PoweroffServerResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -2033,7 +2027,7 @@ export const PoweronServerRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the Action. */
 export type PoweronServerResponseActionStatus = "running" | "success" | "error";
-export const PoweronServerResponseActionStatus = /*@__PURE__*/ S.String;
+export const PoweronServerResponseActionStatus = S.String;
 
 export type PoweronServerResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -2113,7 +2107,7 @@ export const RebootServerRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the Action. */
 export type RebootServerResponseActionStatus = "running" | "success" | "error";
-export const RebootServerResponseActionStatus = /*@__PURE__*/ S.String;
+export const RebootServerResponseActionStatus = S.String;
 
 export type RebootServerResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -2199,7 +2193,7 @@ export const RebuildServerRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the Action. */
 export type RebuildServerResponseActionStatus = "running" | "success" | "error";
-export const RebuildServerResponseActionStatus = /*@__PURE__*/ S.String;
+export const RebuildServerResponseActionStatus = S.String;
 
 export type RebuildServerResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -2290,8 +2284,7 @@ export type RemoveServerFromPlacementGroupResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const RemoveServerFromPlacementGroupResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const RemoveServerFromPlacementGroupResponseActionStatus = S.String;
 
 export type RemoveServerFromPlacementGroupResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -2381,7 +2374,7 @@ export type RequestServerConsoleResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const RequestServerConsoleResponseActionStatus = /*@__PURE__*/ S.String;
+export const RequestServerConsoleResponseActionStatus = S.String;
 
 export type RequestServerConsoleResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -2468,7 +2461,7 @@ export const ResetServerRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the Action. */
 export type ResetServerResponseActionStatus = "running" | "success" | "error";
-export const ResetServerResponseActionStatus = /*@__PURE__*/ S.String;
+export const ResetServerResponseActionStatus = S.String;
 
 export type ResetServerResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -2555,7 +2548,7 @@ export type ResetServerPasswordResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ResetServerPasswordResponseActionStatus = /*@__PURE__*/ S.String;
+export const ResetServerPasswordResponseActionStatus = S.String;
 
 export type ResetServerPasswordResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;
@@ -2646,7 +2639,7 @@ export type ShutdownServerResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ShutdownServerResponseActionStatus = /*@__PURE__*/ S.String;
+export const ShutdownServerResponseActionStatus = S.String;
 
 export type ShutdownServerResponseActionResourcesItem =
   AddServerToPlacementGroupResponseActionResourcesItem;

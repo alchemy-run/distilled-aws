@@ -330,7 +330,7 @@ export const IamPolicyConditionConditionsList = /*@__PURE__*/ S.Array(
 
 /** Operator that can be used in order to restrict policy */
 export type IamPolicyConditionOperatorEnum = "AND" | "MATCH" | "NOT" | "OR";
-export const IamPolicyConditionOperatorEnum = /*@__PURE__*/ S.String;
+export const IamPolicyConditionOperatorEnum = S.String;
 
 /** Conditions to apply */
 export type IamPolicyConditionValuesMap = { [key: string]: string | undefined };

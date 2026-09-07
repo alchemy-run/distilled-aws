@@ -259,7 +259,7 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 export type EndpointSpecTypeEnum = "TYPE_UNSPECIFIED" | "NO_SPEC";
-export const EndpointSpecTypeEnum = /*@__PURE__*/ S.String;
+export const EndpointSpecTypeEnum = S.String;
 
 /** The spec of the endpoint. */
 export interface EndpointSpec {
@@ -279,7 +279,7 @@ export type McpServerSpecTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "NO_SPEC"
   | "TOOL_SPEC";
-export const McpServerSpecTypeEnum = /*@__PURE__*/ S.String;
+export const McpServerSpecTypeEnum = S.String;
 
 /** The spec of the MCP Server. */
 export interface McpServerSpec {
@@ -300,7 +300,7 @@ export type InterfaceProtocolBindingEnum =
   | "JSONRPC"
   | "GRPC"
   | "HTTP_JSON";
-export const InterfaceProtocolBindingEnum = /*@__PURE__*/ S.String;
+export const InterfaceProtocolBindingEnum = S.String;
 
 /** Represents the connection details for an Agent or MCP Server. */
 export interface Interface {
@@ -325,7 +325,7 @@ export type AgentSpecTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "NO_SPEC"
   | "A2A_AGENT_CARD";
-export const AgentSpecTypeEnum = /*@__PURE__*/ S.String;
+export const AgentSpecTypeEnum = S.String;
 
 /** The spec of the agent. */
 export interface AgentSpec {
@@ -622,7 +622,7 @@ export const A2ASkillList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<A2ASkillList>;
 
 export type ProtocolTypeEnum = "TYPE_UNSPECIFIED" | "A2A_AGENT" | "CUSTOM";
-export const ProtocolTypeEnum = /*@__PURE__*/ S.String;
+export const ProtocolTypeEnum = S.String;
 
 /** Represents the protocol of an Agent. */
 export interface Protocol {
@@ -647,7 +647,7 @@ export const ProtocolList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ProtocolList>;
 
 export type CardTypeEnum = "TYPE_UNSPECIFIED" | "A2A_AGENT_CARD";
-export const CardTypeEnum = /*@__PURE__*/ S.String;
+export const CardTypeEnum = S.String;
 
 /** Full Agent Card payload, often obtained from the A2A Agent Card. */
 export interface Card {

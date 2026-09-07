@@ -34,7 +34,7 @@ export type DNSRecordType =
   | "DNS_RECORD_TYPE_A"
   | "DNS_RECORD_TYPE_TXT"
   | "DNS_RECORD_TYPE_CNAME";
-export const DNSRecordType = /*@__PURE__*/ S.String;
+export const DNSRecordType = S.String;
 
 export interface DNSRecord {
   type?: DNSRecordType;
@@ -85,7 +85,7 @@ export type CertificateStatus =
   | "CERTIFICATE_STATUS_ISSUED"
   | "CERTIFICATE_STATUS_FAILED"
   | "CERTIFICATE_STATUS_REVOKED";
-export const CertificateStatus = /*@__PURE__*/ S.String;
+export const CertificateStatus = S.String;
 
 export interface Domain {
   domainId?: string;

@@ -70,7 +70,7 @@ export type CreateServicesConsumerQuotaMetricsLimitsProducerOverridesForceOnlyEn
   | "LIMIT_DECREASE_BELOW_USAGE"
   | "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH";
 export const CreateServicesConsumerQuotaMetricsLimitsProducerOverridesForceOnlyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateServicesConsumerQuotaMetricsLimitsProducerOverridesForceOnlyEnumList =
   Array<
@@ -268,7 +268,7 @@ export type DeleteServicesConsumerQuotaMetricsLimitsProducerOverridesForceOnlyEn
   | "LIMIT_DECREASE_BELOW_USAGE"
   | "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH";
 export const DeleteServicesConsumerQuotaMetricsLimitsProducerOverridesForceOnlyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DeleteServicesConsumerQuotaMetricsLimitsProducerOverridesForceOnlyEnumList =
   Array<
@@ -364,7 +364,7 @@ export type GetServicesConsumerQuotaMetricsViewEnum =
   | "QUOTA_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetServicesConsumerQuotaMetricsViewEnum = /*@__PURE__*/ S.String;
+export const GetServicesConsumerQuotaMetricsViewEnum = S.String;
 
 export interface GetServicesConsumerQuotaMetricsRequest {
   /** The resource name of the quota metric, returned by a ListConsumerQuotaMetrics call. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus` */
@@ -510,8 +510,7 @@ export type GetServicesConsumerQuotaMetricsLimitsViewEnum =
   | "QUOTA_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetServicesConsumerQuotaMetricsLimitsViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetServicesConsumerQuotaMetricsLimitsViewEnum = S.String;
 
 export interface GetServicesConsumerQuotaMetricsLimitsRequest {
   /** The resource name of the quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion` */
@@ -541,8 +540,7 @@ export type V1Beta1ImportProducerOverridesRequestForceOnlyItemEnum =
   | "QUOTA_SAFETY_CHECK_UNSPECIFIED"
   | "LIMIT_DECREASE_BELOW_USAGE"
   | "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH";
-export const V1Beta1ImportProducerOverridesRequestForceOnlyItemEnum =
-  /*@__PURE__*/ S.String;
+export const V1Beta1ImportProducerOverridesRequestForceOnlyItemEnum = S.String;
 
 export type V1Beta1ImportProducerOverridesRequestForceOnlyItemEnumList = Array<
   V1Beta1ImportProducerOverridesRequestForceOnlyItemEnum | (string & {})
@@ -692,7 +690,7 @@ export type ListServicesConsumerQuotaMetricsViewEnum =
   | "QUOTA_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListServicesConsumerQuotaMetricsViewEnum = /*@__PURE__*/ S.String;
+export const ListServicesConsumerQuotaMetricsViewEnum = S.String;
 
 export interface ListServicesConsumerQuotaMetricsRequest {
   /** Specifies the level of detail for quota information in the response. */
@@ -837,7 +835,7 @@ export type PatchServicesConsumerQuotaMetricsLimitsProducerOverridesForceOnlyEnu
   | "LIMIT_DECREASE_BELOW_USAGE"
   | "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH";
 export const PatchServicesConsumerQuotaMetricsLimitsProducerOverridesForceOnlyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchServicesConsumerQuotaMetricsLimitsProducerOverridesForceOnlyEnumList =
   Array<

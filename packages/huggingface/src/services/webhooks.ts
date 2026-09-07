@@ -20,7 +20,7 @@ export type CreateWebhookRequestWatchedItemType =
   | "kernel"
   | "user"
   | "org";
-export const CreateWebhookRequestWatchedItemType = /*@__PURE__*/ S.String;
+export const CreateWebhookRequestWatchedItemType = S.String;
 
 export interface CreateWebhookRequestWatchedItem {
   type: CreateWebhookRequestWatchedItemType | (string & {});
@@ -97,10 +97,10 @@ export type CreateWebhookRequestJobFlavor =
   | "rtx-pro-6000x4"
   | "rtx-pro-6000x8"
   | "inf2x6";
-export const CreateWebhookRequestJobFlavor = /*@__PURE__*/ S.String;
+export const CreateWebhookRequestJobFlavor = S.String;
 
 export type CreateWebhookRequestJobArch = "amd64" | "arm64";
-export const CreateWebhookRequestJobArch = /*@__PURE__*/ S.String;
+export const CreateWebhookRequestJobArch = S.String;
 
 /** Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores. */
 export type CreateWebhookRequestJobLabelsMap = {
@@ -116,7 +116,7 @@ export type CreateWebhookRequestJobVolumesItemType =
   | "model"
   | "dataset"
   | "space";
-export const CreateWebhookRequestJobVolumesItemType = /*@__PURE__*/ S.String;
+export const CreateWebhookRequestJobVolumesItemType = S.String;
 
 export interface CreateWebhookRequestJobVolumesItem {
   type: CreateWebhookRequestJobVolumesItemType | (string & {});
@@ -235,7 +235,7 @@ export const CreateWebhookRequestJob = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateWebhookRequestJob>;
 
 export type CreateWebhookRequestDomainsItem = "repo" | "discussion";
-export const CreateWebhookRequestDomainsItem = /*@__PURE__*/ S.String;
+export const CreateWebhookRequestDomainsItem = S.String;
 
 export type CreateWebhookRequestDomainsList = Array<
   CreateWebhookRequestDomainsItem | (string & {})
@@ -315,7 +315,7 @@ export type CreateWebhookResponseWebhookJobFlavor =
   | "rtx-pro-6000x4"
   | "rtx-pro-6000x8"
   | "inf2x6";
-export const CreateWebhookResponseWebhookJobFlavor = /*@__PURE__*/ S.String;
+export const CreateWebhookResponseWebhookJobFlavor = S.String;
 
 /** Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores. */
 export type CreateWebhookResponseWebhookJobLabelsMap = {
@@ -361,7 +361,7 @@ export const CreateWebhookResponseWebhookJob = /*@__PURE__*/ S.suspend(() =>
 
 export type CreateWebhookResponseWebhookDisabled = boolean | unknown;
 export const CreateWebhookResponseWebhookDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateWebhookResponseWebhookDisabled>;
+  S.Unknown as any as S.Schema<CreateWebhookResponseWebhookDisabled>;
 
 export type CreateWebhookResponseWebhookWatchedItemType =
   | "dataset"
@@ -371,8 +371,7 @@ export type CreateWebhookResponseWebhookWatchedItemType =
   | "kernel"
   | "user"
   | "org";
-export const CreateWebhookResponseWebhookWatchedItemType =
-  /*@__PURE__*/ S.String;
+export const CreateWebhookResponseWebhookWatchedItemType = S.String;
 
 export interface CreateWebhookResponseWebhookWatchedItem {
   name: string;
@@ -397,7 +396,7 @@ export const CreateWebhookResponseWebhookWatchedList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateWebhookResponseWebhookWatchedList>;
 
 export type CreateWebhookResponseWebhookDomainsItem = "repo" | "discussion";
-export const CreateWebhookResponseWebhookDomainsItem = /*@__PURE__*/ S.String;
+export const CreateWebhookResponseWebhookDomainsItem = S.String;
 
 export type CreateWebhookResponseWebhookDomainsList =
   Array<CreateWebhookResponseWebhookDomainsItem>;
@@ -469,7 +468,7 @@ export const DeleteWebhookResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteWebhookResponse>;
 
 export type EnableDisableWebhookRequestAction = "enable" | "disable";
-export const EnableDisableWebhookRequestAction = /*@__PURE__*/ S.String;
+export const EnableDisableWebhookRequestAction = S.String;
 
 export interface EnableDisableWebhookRequest {
   webhookId: string;
@@ -541,8 +540,7 @@ export type EnableDisableWebhookResponseWebhookJobFlavor =
   | "rtx-pro-6000x4"
   | "rtx-pro-6000x8"
   | "inf2x6";
-export const EnableDisableWebhookResponseWebhookJobFlavor =
-  /*@__PURE__*/ S.String;
+export const EnableDisableWebhookResponseWebhookJobFlavor = S.String;
 
 /** Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores. */
 export type EnableDisableWebhookResponseWebhookJobLabelsMap = {
@@ -593,7 +591,7 @@ export const EnableDisableWebhookResponseWebhookJob = /*@__PURE__*/ S.suspend(
 
 export type EnableDisableWebhookResponseWebhookDisabled = boolean | unknown;
 export const EnableDisableWebhookResponseWebhookDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnableDisableWebhookResponseWebhookDisabled>;
+  S.Unknown as any as S.Schema<EnableDisableWebhookResponseWebhookDisabled>;
 
 export type EnableDisableWebhookResponseWebhookWatchedItemType =
   | "dataset"
@@ -603,8 +601,7 @@ export type EnableDisableWebhookResponseWebhookWatchedItemType =
   | "kernel"
   | "user"
   | "org";
-export const EnableDisableWebhookResponseWebhookWatchedItemType =
-  /*@__PURE__*/ S.String;
+export const EnableDisableWebhookResponseWebhookWatchedItemType = S.String;
 
 export interface EnableDisableWebhookResponseWebhookWatchedItem {
   name: string;
@@ -632,8 +629,7 @@ export const EnableDisableWebhookResponseWebhookWatchedList =
 export type EnableDisableWebhookResponseWebhookDomainsItem =
   | "repo"
   | "discussion";
-export const EnableDisableWebhookResponseWebhookDomainsItem =
-  /*@__PURE__*/ S.String;
+export const EnableDisableWebhookResponseWebhookDomainsItem = S.String;
 
 export type EnableDisableWebhookResponseWebhookDomainsList =
   Array<EnableDisableWebhookResponseWebhookDomainsItem>;
@@ -749,7 +745,7 @@ export type GetWebhookResponseWebhookJobFlavor =
   | "rtx-pro-6000x4"
   | "rtx-pro-6000x8"
   | "inf2x6";
-export const GetWebhookResponseWebhookJobFlavor = /*@__PURE__*/ S.String;
+export const GetWebhookResponseWebhookJobFlavor = S.String;
 
 /** Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores. */
 export type GetWebhookResponseWebhookJobLabelsMap = {
@@ -795,7 +791,7 @@ export const GetWebhookResponseWebhookJob = /*@__PURE__*/ S.suspend(() =>
 
 export type GetWebhookResponseWebhookDisabled = boolean | unknown;
 export const GetWebhookResponseWebhookDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetWebhookResponseWebhookDisabled>;
+  S.Unknown as any as S.Schema<GetWebhookResponseWebhookDisabled>;
 
 export type GetWebhookResponseWebhookWatchedItemType =
   | "dataset"
@@ -805,7 +801,7 @@ export type GetWebhookResponseWebhookWatchedItemType =
   | "kernel"
   | "user"
   | "org";
-export const GetWebhookResponseWebhookWatchedItemType = /*@__PURE__*/ S.String;
+export const GetWebhookResponseWebhookWatchedItemType = S.String;
 
 export interface GetWebhookResponseWebhookWatchedItem {
   name: string;
@@ -830,7 +826,7 @@ export const GetWebhookResponseWebhookWatchedList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetWebhookResponseWebhookWatchedList>;
 
 export type GetWebhookResponseWebhookDomainsItem = "repo" | "discussion";
-export const GetWebhookResponseWebhookDomainsItem = /*@__PURE__*/ S.String;
+export const GetWebhookResponseWebhookDomainsItem = S.String;
 
 export type GetWebhookResponseWebhookDomainsList =
   Array<GetWebhookResponseWebhookDomainsItem>;
@@ -938,7 +934,7 @@ export type ListWebhooksResponseBodyItemJobFlavor =
   | "rtx-pro-6000x4"
   | "rtx-pro-6000x8"
   | "inf2x6";
-export const ListWebhooksResponseBodyItemJobFlavor = /*@__PURE__*/ S.String;
+export const ListWebhooksResponseBodyItemJobFlavor = S.String;
 
 /** Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores. */
 export type ListWebhooksResponseBodyItemJobLabelsMap = {
@@ -984,7 +980,7 @@ export const ListWebhooksResponseBodyItemJob = /*@__PURE__*/ S.suspend(() =>
 
 export type ListWebhooksResponseBodyItemDisabled = boolean | unknown;
 export const ListWebhooksResponseBodyItemDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListWebhooksResponseBodyItemDisabled>;
+  S.Unknown as any as S.Schema<ListWebhooksResponseBodyItemDisabled>;
 
 export type ListWebhooksResponseBodyItemWatchedItemType =
   | "dataset"
@@ -994,8 +990,7 @@ export type ListWebhooksResponseBodyItemWatchedItemType =
   | "kernel"
   | "user"
   | "org";
-export const ListWebhooksResponseBodyItemWatchedItemType =
-  /*@__PURE__*/ S.String;
+export const ListWebhooksResponseBodyItemWatchedItemType = S.String;
 
 export interface ListWebhooksResponseBodyItemWatchedItem {
   name: string;
@@ -1020,7 +1015,7 @@ export const ListWebhooksResponseBodyItemWatchedList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListWebhooksResponseBodyItemWatchedList>;
 
 export type ListWebhooksResponseBodyItemDomainsItem = "repo" | "discussion";
-export const ListWebhooksResponseBodyItemDomainsItem = /*@__PURE__*/ S.String;
+export const ListWebhooksResponseBodyItemDomainsItem = S.String;
 
 export type ListWebhooksResponseBodyItemDomainsList =
   Array<ListWebhooksResponseBodyItemDomainsItem>;
@@ -1107,7 +1102,7 @@ export type UpdateWebhookRequestWatchedItemType =
   | "kernel"
   | "user"
   | "org";
-export const UpdateWebhookRequestWatchedItemType = /*@__PURE__*/ S.String;
+export const UpdateWebhookRequestWatchedItemType = S.String;
 
 export interface UpdateWebhookRequestWatchedItem {
   type: UpdateWebhookRequestWatchedItemType | (string & {});
@@ -1184,10 +1179,10 @@ export type UpdateWebhookRequestJobFlavor =
   | "rtx-pro-6000x4"
   | "rtx-pro-6000x8"
   | "inf2x6";
-export const UpdateWebhookRequestJobFlavor = /*@__PURE__*/ S.String;
+export const UpdateWebhookRequestJobFlavor = S.String;
 
 export type UpdateWebhookRequestJobArch = "amd64" | "arm64";
-export const UpdateWebhookRequestJobArch = /*@__PURE__*/ S.String;
+export const UpdateWebhookRequestJobArch = S.String;
 
 /** Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores. */
 export type UpdateWebhookRequestJobLabelsMap = {
@@ -1203,7 +1198,7 @@ export type UpdateWebhookRequestJobVolumesItemType =
   | "model"
   | "dataset"
   | "space";
-export const UpdateWebhookRequestJobVolumesItemType = /*@__PURE__*/ S.String;
+export const UpdateWebhookRequestJobVolumesItemType = S.String;
 
 export interface UpdateWebhookRequestJobVolumesItem {
   type: UpdateWebhookRequestJobVolumesItemType | (string & {});
@@ -1314,7 +1309,7 @@ export const UpdateWebhookRequestJob = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateWebhookRequestJob>;
 
 export type UpdateWebhookRequestDomainsItem = "repo" | "discussion";
-export const UpdateWebhookRequestDomainsItem = /*@__PURE__*/ S.String;
+export const UpdateWebhookRequestDomainsItem = S.String;
 
 export type UpdateWebhookRequestDomainsList = Array<
   UpdateWebhookRequestDomainsItem | (string & {})
@@ -1402,7 +1397,7 @@ export type UpdateWebhookResponseWebhookJobFlavor =
   | "rtx-pro-6000x4"
   | "rtx-pro-6000x8"
   | "inf2x6";
-export const UpdateWebhookResponseWebhookJobFlavor = /*@__PURE__*/ S.String;
+export const UpdateWebhookResponseWebhookJobFlavor = S.String;
 
 /** Labels for the job as key-value pairs. Both keys and values must be max 100 characters and contain only alphanumeric characters, dots, dashes, and underscores. */
 export type UpdateWebhookResponseWebhookJobLabelsMap = {
@@ -1448,7 +1443,7 @@ export const UpdateWebhookResponseWebhookJob = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateWebhookResponseWebhookDisabled = boolean | unknown;
 export const UpdateWebhookResponseWebhookDisabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateWebhookResponseWebhookDisabled>;
+  S.Unknown as any as S.Schema<UpdateWebhookResponseWebhookDisabled>;
 
 export type UpdateWebhookResponseWebhookWatchedItemType =
   | "dataset"
@@ -1458,8 +1453,7 @@ export type UpdateWebhookResponseWebhookWatchedItemType =
   | "kernel"
   | "user"
   | "org";
-export const UpdateWebhookResponseWebhookWatchedItemType =
-  /*@__PURE__*/ S.String;
+export const UpdateWebhookResponseWebhookWatchedItemType = S.String;
 
 export interface UpdateWebhookResponseWebhookWatchedItem {
   name: string;
@@ -1484,7 +1478,7 @@ export const UpdateWebhookResponseWebhookWatchedList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateWebhookResponseWebhookWatchedList>;
 
 export type UpdateWebhookResponseWebhookDomainsItem = "repo" | "discussion";
-export const UpdateWebhookResponseWebhookDomainsItem = /*@__PURE__*/ S.String;
+export const UpdateWebhookResponseWebhookDomainsItem = S.String;
 
 export type UpdateWebhookResponseWebhookDomainsList =
   Array<UpdateWebhookResponseWebhookDomainsItem>;

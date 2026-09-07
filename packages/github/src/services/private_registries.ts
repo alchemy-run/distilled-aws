@@ -56,15 +56,14 @@ export type CreateOrgPrivateRegistryRequestRegistryType =
   | "pub_repository"
   | "python_index"
   | "terraform_registry";
-export const CreateOrgPrivateRegistryRequestRegistryType =
-  /*@__PURE__*/ S.String;
+export const CreateOrgPrivateRegistryRequestRegistryType = S.String;
 
 /** Which type of organization repositories have access to the private registry. `selected` means only the repositories specified by `selected_repository_ids` can access the private registry. */
 export type CreateOrgPrivateRegistryRequestVisibility =
   | "all"
   | "private"
   | "selected";
-export const CreateOrgPrivateRegistryRequestVisibility = /*@__PURE__*/ S.String;
+export const CreateOrgPrivateRegistryRequestVisibility = S.String;
 
 /** An array of repository IDs that can access the organization private registry. You can only provide a list of repository IDs when `visibility` is set to `selected`. You can manage the list of selected repositories using the [Update a private registry for an organization](https://docs.github.com/rest/private-registries/organization-configurations#update-a-private-registry-for-an-organization) endpoint. This field should be omitted if `visibility` is set to `all` or `private`. */
 export type CreateOrgPrivateRegistryRequestSelectedRepositoryIdsList =
@@ -83,7 +82,7 @@ export type CreateOrgPrivateRegistryRequestAuthType =
   | "oidc_jfrog"
   | "oidc_cloudsmith"
   | "oidc_gcp";
-export const CreateOrgPrivateRegistryRequestAuthType = /*@__PURE__*/ S.String;
+export const CreateOrgPrivateRegistryRequestAuthType = S.String;
 
 export interface CreateOrgPrivateRegistryRequest {
   /** The organization name. The name is not case sensitive. */
@@ -195,7 +194,7 @@ export type OrgPrivateRegistryConfigurationWithSelectedRepositoriesRegistryType 
   | "python_index"
   | "terraform_registry";
 export const OrgPrivateRegistryConfigurationWithSelectedRepositoriesRegistryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The authentication type for the private registry. */
 export type OrgPrivateRegistryConfigurationWithSelectedRepositoriesAuthType =
@@ -207,7 +206,7 @@ export type OrgPrivateRegistryConfigurationWithSelectedRepositoriesAuthType =
   | "oidc_cloudsmith"
   | "oidc_gcp";
 export const OrgPrivateRegistryConfigurationWithSelectedRepositoriesAuthType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Which type of organization repositories have access to the private registry. `selected` means only the repositories specified by `selected_repository_ids` can access the private registry. */
 export type OrgPrivateRegistryConfigurationWithSelectedRepositoriesVisibility =
@@ -215,7 +214,7 @@ export type OrgPrivateRegistryConfigurationWithSelectedRepositoriesVisibility =
   | "private"
   | "selected";
 export const OrgPrivateRegistryConfigurationWithSelectedRepositoriesVisibility =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of repository IDs that can access the organization private registry when `visibility` is set to `selected`. */
 export type OrgPrivateRegistryConfigurationWithSelectedRepositoriesSelectedRepositoryIdsList =
@@ -381,8 +380,7 @@ export type OrgPrivateRegistryConfigurationRegistryType =
   | "pub_repository"
   | "python_index"
   | "terraform_registry";
-export const OrgPrivateRegistryConfigurationRegistryType =
-  /*@__PURE__*/ S.String;
+export const OrgPrivateRegistryConfigurationRegistryType = S.String;
 
 /** The authentication type for the private registry. */
 export type OrgPrivateRegistryConfigurationAuthType =
@@ -393,14 +391,14 @@ export type OrgPrivateRegistryConfigurationAuthType =
   | "oidc_jfrog"
   | "oidc_cloudsmith"
   | "oidc_gcp";
-export const OrgPrivateRegistryConfigurationAuthType = /*@__PURE__*/ S.String;
+export const OrgPrivateRegistryConfigurationAuthType = S.String;
 
 /** Which type of organization repositories have access to the private registry. */
 export type OrgPrivateRegistryConfigurationVisibility =
   | "all"
   | "private"
   | "selected";
-export const OrgPrivateRegistryConfigurationVisibility = /*@__PURE__*/ S.String;
+export const OrgPrivateRegistryConfigurationVisibility = S.String;
 
 /** Private registry configuration for an organization */
 export interface OrgPrivateRegistryConfiguration {
@@ -572,15 +570,14 @@ export type UpdateOrgPrivateRegistryRequestRegistryType =
   | "pub_repository"
   | "python_index"
   | "terraform_registry";
-export const UpdateOrgPrivateRegistryRequestRegistryType =
-  /*@__PURE__*/ S.String;
+export const UpdateOrgPrivateRegistryRequestRegistryType = S.String;
 
 /** Which type of organization repositories have access to the private registry. `selected` means only the repositories specified by `selected_repository_ids` can access the private registry. */
 export type UpdateOrgPrivateRegistryRequestVisibility =
   | "all"
   | "private"
   | "selected";
-export const UpdateOrgPrivateRegistryRequestVisibility = /*@__PURE__*/ S.String;
+export const UpdateOrgPrivateRegistryRequestVisibility = S.String;
 
 /** An array of repository IDs that can access the organization private registry. You can only provide a list of repository IDs when `visibility` is set to `selected`. This field should be omitted if `visibility` is set to `all` or `private`. */
 export type UpdateOrgPrivateRegistryRequestSelectedRepositoryIdsList =
@@ -599,7 +596,7 @@ export type UpdateOrgPrivateRegistryRequestAuthType =
   | "oidc_jfrog"
   | "oidc_cloudsmith"
   | "oidc_gcp";
-export const UpdateOrgPrivateRegistryRequestAuthType = /*@__PURE__*/ S.String;
+export const UpdateOrgPrivateRegistryRequestAuthType = S.String;
 
 export interface UpdateOrgPrivateRegistryRequest {
   /** The organization name. The name is not case sensitive. */

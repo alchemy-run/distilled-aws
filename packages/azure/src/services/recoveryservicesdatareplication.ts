@@ -79,7 +79,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -87,7 +87,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -132,7 +132,7 @@ export type ProvisioningState =
   | "Failed"
   | "Succeeded"
   | "Updating";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Email configuration model properties. */
 export interface EmailConfigurationModelProperties {
@@ -258,7 +258,7 @@ export const CreateFabricResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Gets or sets the fabric health. */
 export type HealthStatus = "Normal" | "Warning" | "Critical";
-export const HealthStatus = /*@__PURE__*/ S.String;
+export const HealthStatus = S.String;
 
 /** Gets or sets the list of affected resource correlation Ids. This can be used to uniquely identify the count of items affected by a specific category and severity as well as count of item affected by an specific issue. */
 export type HealthErrorModelAffectedResourceCorrelationIdsList = Array<string>;
@@ -814,7 +814,7 @@ export type ProtectionState =
   | "ReprotectInitiated"
   | "ReprotectFailed"
   | "ReprotectStatesEnd";
-export const ProtectionState = /*@__PURE__*/ S.String;
+export const ProtectionState = S.String;
 
 /** Gets or sets the test failover state. */
 export type TestFailoverState =
@@ -827,7 +827,7 @@ export type TestFailoverState =
   | "TestFailoverCleanupInitiated"
   | "TestFailoverCleanupCompleting"
   | "MarkedForDeletion";
-export const TestFailoverState = /*@__PURE__*/ S.String;
+export const TestFailoverState = S.String;
 
 /** Gets or sets the resynchronization state. */
 export type ResynchronizationState =
@@ -835,7 +835,7 @@ export type ResynchronizationState =
   | "ResynchronizationInitiated"
   | "ResynchronizationCompleted"
   | "ResynchronizationFailed";
-export const ResynchronizationState = /*@__PURE__*/ S.String;
+export const ResynchronizationState = S.String;
 
 /** Protected item job properties. */
 export interface ProtectedItemJobProperties {
@@ -1112,11 +1112,11 @@ export const CreateVaultRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Gets or sets the type of vault. */
 export type ReplicationVaultType = "DisasterRecovery" | "Migrate";
-export const ReplicationVaultType = /*@__PURE__*/ S.String;
+export const ReplicationVaultType = S.String;
 
 /** Property to enable or disable resource provider inbound network traffic from public clients. */
 export type PublicNetworkAccess = "Enabled" | "Disabled";
-export const PublicNetworkAccess = /*@__PURE__*/ S.String;
+export const PublicNetworkAccess = S.String;
 
 /** Vault properties. */
 export interface VaultModelPropertiesInput {
@@ -1140,7 +1140,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentityInput {}
@@ -1229,7 +1229,7 @@ export type VaultPrivateEndpointState =
   | "Deleting"
   | "Failed"
   | "Pending";
-export const VaultPrivateEndpointState = /*@__PURE__*/ S.String;
+export const VaultPrivateEndpointState = S.String;
 
 /** Represent private Endpoint network resource that is linked to the Private Endpoint connection. */
 export interface PrivateEndpoint {
@@ -1250,7 +1250,7 @@ export type PrivateEndpointConnectionStatus =
   | "Disconnected"
   | "Pending"
   | "Rejected";
-export const PrivateEndpointConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionStatus = S.String;
 
 /** Represents Private link service connection state. */
 export interface PrivateLinkServiceConnectionState {
@@ -1998,7 +1998,7 @@ export type JobState =
   | "CompletedWithInformation"
   | "CompletedWithWarnings"
   | "CompletedWithErrors";
-export const JobState = /*@__PURE__*/ S.String;
+export const JobState = S.String;
 
 /** Gets or sets the object type. */
 export type JobObjectType =
@@ -2010,7 +2010,7 @@ export type JobObjectType =
   | "RecoveryPlan"
   | "ReplicationExtension"
   | "Vault";
-export const JobObjectType = /*@__PURE__*/ S.String;
+export const JobObjectType = S.String;
 
 /** Gets or sets the list of allowed actions on the job. */
 export type JobModelPropertiesAllowedActionsList = Array<string>;
@@ -2026,7 +2026,7 @@ export type TaskState =
   | "Failed"
   | "Cancelled"
   | "Skipped";
-export const TaskState = /*@__PURE__*/ S.String;
+export const TaskState = S.String;
 
 /** Task model custom properties. */
 export interface TaskModelCustomProperties {
@@ -2139,7 +2139,7 @@ export const JobModelPropertiesErrorsList = /*@__PURE__*/ S.Array(
 
 /** Type of the affected object details. */
 export type AffectedObjectDetailsType = "object";
-export const AffectedObjectDetailsType = /*@__PURE__*/ S.String;
+export const AffectedObjectDetailsType = S.String;
 
 /** Details of the affected object. */
 export interface AffectedObjectDetails {
@@ -2620,7 +2620,7 @@ export const GetRecoveryPointRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Gets or sets the recovery point type. */
 export type RecoveryPointType = "ApplicationConsistent" | "CrashConsistent";
-export const RecoveryPointType = /*@__PURE__*/ S.String;
+export const RecoveryPointType = S.String;
 
 /** Recovery point model custom properties. */
 export interface RecoveryPointModelCustomProperties {
@@ -3249,11 +3249,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -4300,7 +4300,7 @@ export const UpdateVaultRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Gets or sets the identityType which can be either SystemAssigned or None. */
 export type VaultIdentityType = "None" | "SystemAssigned" | "UserAssigned";
-export const VaultIdentityType = /*@__PURE__*/ S.String;
+export const VaultIdentityType = S.String;
 
 /** Vault model. */
 export interface VaultIdentityModelInput {

@@ -268,7 +268,7 @@ export type GoogleCloudDiscoveryengineV1AnswerQueryRequestSearchSpecSearchParams
   | "DOCUMENTS"
   | "CHUNKS";
 export const GoogleCloudDiscoveryengineV1AnswerQueryRequestSearchSpecSearchParamsSearchResultModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The control points used to define the curve. The curve defined through these control points can only be monotonically increasing or decreasing(constant values are acceptable). */
 export interface GoogleCloudDiscoveryengineV1SearchRequestBoostSpecConditionBoostSpecBoostControlSpecControlPoint {
@@ -300,13 +300,13 @@ export type GoogleCloudDiscoveryengineV1SearchRequestBoostSpecConditionBoostSpec
   | "NUMERICAL"
   | "FRESHNESS";
 export const GoogleCloudDiscoveryengineV1SearchRequestBoostSpecConditionBoostSpecBoostControlSpecAttributeTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1SearchRequestBoostSpecConditionBoostSpecBoostControlSpecInterpolationTypeEnum =
   | "INTERPOLATION_TYPE_UNSPECIFIED"
   | "LINEAR";
 export const GoogleCloudDiscoveryengineV1SearchRequestBoostSpecConditionBoostSpecBoostControlSpecInterpolationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specification for custom ranking based on customer specified attribute value. It provides more controls for customized ranking than the simple (condition, boost) combination above. */
 export interface GoogleCloudDiscoveryengineV1SearchRequestBoostSpecConditionBoostSpecBoostControlSpec {
@@ -517,7 +517,7 @@ export type GoogleCloudDiscoveryengineV1AnswerQueryRequestQueryUnderstandingSpec
   | "NON_ANSWER_SEEKING_QUERY_V2"
   | "USER_DEFINED_CLASSIFICATION_QUERY";
 export const GoogleCloudDiscoveryengineV1AnswerQueryRequestQueryUnderstandingSpecQueryClassificationSpecTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1AnswerQueryRequestQueryUnderstandingSpecQueryClassificationSpecTypesItemEnumList =
   Array<
@@ -551,7 +551,7 @@ export type GoogleCloudDiscoveryengineV1AnswerQueryRequestQueryUnderstandingSpec
   | "SMALL"
   | "LARGE";
 export const GoogleCloudDiscoveryengineV1AnswerQueryRequestQueryUnderstandingSpecQueryRephraserSpecModelSpecModelTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Query Rephraser Model specification. */
 export interface GoogleCloudDiscoveryengineV1AnswerQueryRequestQueryUnderstandingSpecQueryRephraserSpecModelSpec {
@@ -634,7 +634,7 @@ export type GoogleCloudDiscoveryengineV1AnswerQueryRequestSafetySpecSafetySettin
   | "HARM_CATEGORY_SEXUALLY_EXPLICIT"
   | "HARM_CATEGORY_CIVIC_INTEGRITY";
 export const GoogleCloudDiscoveryengineV1AnswerQueryRequestSafetySpecSafetySettingCategoryEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1AnswerQueryRequestSafetySpecSafetySettingThresholdEnum =
   | "HARM_BLOCK_THRESHOLD_UNSPECIFIED"
@@ -644,7 +644,7 @@ export type GoogleCloudDiscoveryengineV1AnswerQueryRequestSafetySpecSafetySettin
   | "BLOCK_NONE"
   | "OFF";
 export const GoogleCloudDiscoveryengineV1AnswerQueryRequestSafetySpecSafetySettingThresholdEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Safety settings. */
 export interface GoogleCloudDiscoveryengineV1AnswerQueryRequestSafetySpecSafetySetting {
@@ -703,7 +703,7 @@ export type GoogleCloudDiscoveryengineV1AnswerQueryRequestGroundingSpecFiltering
   | "FILTERING_LEVEL_LOW"
   | "FILTERING_LEVEL_HIGH";
 export const GoogleCloudDiscoveryengineV1AnswerQueryRequestGroundingSpecFilteringLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Grounding specification. */
 export interface GoogleCloudDiscoveryengineV1AnswerQueryRequestGroundingSpec {
@@ -1019,7 +1019,7 @@ export type GoogleCloudDiscoveryengineV1AnswerQueryUnderstandingInfoQueryClassif
   | "NON_ANSWER_SEEKING_QUERY_V2"
   | "USER_DEFINED_CLASSIFICATION_QUERY";
 export const GoogleCloudDiscoveryengineV1AnswerQueryUnderstandingInfoQueryClassificationInfoTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Query classification information. */
 export interface GoogleCloudDiscoveryengineV1AnswerQueryUnderstandingInfoQueryClassificationInfo {
@@ -1244,8 +1244,7 @@ export type GoogleCloudDiscoveryengineV1AnswerStateEnum =
   | "FAILED"
   | "SUCCEEDED"
   | "STREAMING";
-export const GoogleCloudDiscoveryengineV1AnswerStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1AnswerStateEnum = S.String;
 
 /** Snippet information. */
 export interface GoogleCloudDiscoveryengineV1AnswerStepActionObservationSearchResultSnippetInfo {
@@ -1403,8 +1402,7 @@ export type GoogleCloudDiscoveryengineV1AnswerStepStateEnum =
   | "IN_PROGRESS"
   | "FAILED"
   | "SUCCEEDED";
-export const GoogleCloudDiscoveryengineV1AnswerStepStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1AnswerStepStateEnum = S.String;
 
 /** Step information. */
 export interface GoogleCloudDiscoveryengineV1AnswerStep {
@@ -1449,7 +1447,7 @@ export type GoogleCloudDiscoveryengineV1AnswerAnswerSkippedReasonsItemEnum =
   | "USER_DEFINED_CLASSIFICATION_QUERY_IGNORED"
   | "UNHELPFUL_ANSWER";
 export const GoogleCloudDiscoveryengineV1AnswerAnswerSkippedReasonsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1AnswerAnswerSkippedReasonsItemEnumList =
   Array<
@@ -1494,8 +1492,7 @@ export type GoogleCloudDiscoveryengineV1SafetyRatingSeverityEnum =
   | "HARM_SEVERITY_LOW"
   | "HARM_SEVERITY_MEDIUM"
   | "HARM_SEVERITY_HIGH";
-export const GoogleCloudDiscoveryengineV1SafetyRatingSeverityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1SafetyRatingSeverityEnum = S.String;
 
 export type GoogleCloudDiscoveryengineV1SafetyRatingProbabilityEnum =
   | "HARM_PROBABILITY_UNSPECIFIED"
@@ -1503,8 +1500,7 @@ export type GoogleCloudDiscoveryengineV1SafetyRatingProbabilityEnum =
   | "LOW"
   | "MEDIUM"
   | "HIGH";
-export const GoogleCloudDiscoveryengineV1SafetyRatingProbabilityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1SafetyRatingProbabilityEnum = S.String;
 
 export type GoogleCloudDiscoveryengineV1SafetyRatingCategoryEnum =
   | "HARM_CATEGORY_UNSPECIFIED"
@@ -1513,8 +1509,7 @@ export type GoogleCloudDiscoveryengineV1SafetyRatingCategoryEnum =
   | "HARM_CATEGORY_HARASSMENT"
   | "HARM_CATEGORY_SEXUALLY_EXPLICIT"
   | "HARM_CATEGORY_CIVIC_INTEGRITY";
-export const GoogleCloudDiscoveryengineV1SafetyRatingCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1SafetyRatingCategoryEnum = S.String;
 
 /** Safety rating corresponding to the generated content. */
 export interface GoogleCloudDiscoveryengineV1SafetyRating {
@@ -1630,8 +1625,7 @@ export const GoogleCloudDiscoveryengineV1Answer = /*@__PURE__*/ S.suspend(() =>
 export type GoogleCloudDiscoveryengineV1SessionStateEnum =
   | "STATE_UNSPECIFIED"
   | "IN_PROGRESS";
-export const GoogleCloudDiscoveryengineV1SessionStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1SessionStateEnum = S.String;
 
 export type GoogleCloudDiscoveryengineV1AssistAnswerStateEnum =
   | "STATE_UNSPECIFIED"
@@ -1640,15 +1634,14 @@ export type GoogleCloudDiscoveryengineV1AssistAnswerStateEnum =
   | "SUCCEEDED"
   | "SKIPPED"
   | "CANCELLED";
-export const GoogleCloudDiscoveryengineV1AssistAnswerStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1AssistAnswerStateEnum = S.String;
 
 export type GoogleCloudDiscoveryengineV1AssistAnswerCustomerPolicyEnforcementResultVerdictEnum =
   | "UNSPECIFIED"
   | "ALLOW"
   | "BLOCK";
 export const GoogleCloudDiscoveryengineV1AssistAnswerCustomerPolicyEnforcementResultVerdictEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1AssistAnswerCustomerPolicyEnforcementResultViolationSourceEnum =
   | "VIOLATION_SOURCE_UNSPECIFIED"
@@ -1656,7 +1649,7 @@ export type GoogleCloudDiscoveryengineV1AssistAnswerCustomerPolicyEnforcementRes
   | "PROMPT"
   | "ATTACHMENT";
 export const GoogleCloudDiscoveryengineV1AssistAnswerCustomerPolicyEnforcementResultViolationSourceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DocumentMapList = Array<DocumentMap>;
 export const DocumentMapList = /*@__PURE__*/ S.Array(
@@ -1844,7 +1837,7 @@ export type GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMet
   | "PYTHON"
   | "SQL";
 export const GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataReferenceDocumentMetadataLanguageEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Document metadata. */
 export interface GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataReferenceDocumentMetadata {
@@ -2014,7 +2007,7 @@ export type GoogleCloudDiscoveryengineV1AssistantContentCodeExecutionResultOutco
   | "OUTCOME_FAILED"
   | "OUTCOME_DEADLINE_EXCEEDED";
 export const GoogleCloudDiscoveryengineV1AssistantContentCodeExecutionResultOutcomeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Result of executing ExecutableCode. */
 export interface GoogleCloudDiscoveryengineV1AssistantContentCodeExecutionResult {
@@ -2177,7 +2170,7 @@ export type GoogleCloudDiscoveryengineV1AssistAnswerAssistSkippedReasonsItemEnum
   | "NON_ASSIST_SEEKING_QUERY_IGNORED"
   | "CUSTOMER_POLICY_VIOLATION";
 export const GoogleCloudDiscoveryengineV1AssistAnswerAssistSkippedReasonsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1AssistAnswerAssistSkippedReasonsItemEnumList =
   Array<
@@ -2372,7 +2365,7 @@ export type GoogleCloudDiscoveryengineV1SiteVerificationInfoSiteVerificationStat
   | "UNVERIFIED"
   | "EXEMPTED";
 export const GoogleCloudDiscoveryengineV1SiteVerificationInfoSiteVerificationStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Verification information for target sites in advanced site search. */
 export interface GoogleCloudDiscoveryengineV1SiteVerificationInfo {
@@ -2399,8 +2392,7 @@ export type GoogleCloudDiscoveryengineV1TargetSiteTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "INCLUDE"
   | "EXCLUDE";
-export const GoogleCloudDiscoveryengineV1TargetSiteTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1TargetSiteTypeEnum = S.String;
 
 export type GoogleCloudDiscoveryengineV1TargetSiteIndexingStatusEnum =
   | "INDEXING_STATUS_UNSPECIFIED"
@@ -2411,7 +2403,7 @@ export type GoogleCloudDiscoveryengineV1TargetSiteIndexingStatusEnum =
   | "CANCELLABLE"
   | "CANCELLED";
 export const GoogleCloudDiscoveryengineV1TargetSiteIndexingStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Failed due to insufficient quota. */
 export interface GoogleCloudDiscoveryengineV1TargetSiteFailureReasonQuotaFailure {
@@ -2646,7 +2638,7 @@ export type GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponseDocumen
   | "NOT_IN_TARGET_SITE"
   | "NOT_IN_INDEX";
 export const GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponseDocumentMetadataStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The value of the matcher that was used to match the Document. */
 export interface GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponseDocumentMetadataMatcherValue {
@@ -2753,7 +2745,7 @@ export type GoogleCloudDiscoveryengineV1UserLicenseLicenseAssignmentStateEnum =
   | "NO_LICENSE_ATTEMPTED_LOGIN"
   | "BLOCKED";
 export const GoogleCloudDiscoveryengineV1UserLicenseLicenseAssignmentStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** User License information assigned by the admin. */
 export interface GoogleCloudDiscoveryengineV1UserLicense {
@@ -3054,7 +3046,7 @@ export type A2aV1MessageRoleEnum =
   | "ROLE_UNSPECIFIED"
   | "ROLE_USER"
   | "ROLE_AGENT";
-export const A2aV1MessageRoleEnum = /*@__PURE__*/ S.String;
+export const A2aV1MessageRoleEnum = S.String;
 
 /** Message is one unit of communication between client and server. It is associated with a context and optionally a task. Since the server is responsible for the context definition, it must always provide a context_id in its messages. The client can optionally provide the context_id if it knows the context to associate the message to. Similarly for task_id, except the server decides if a task is created and whether to include the task_id. */
 export interface A2aV1Message {
@@ -3095,7 +3087,7 @@ export type A2aV1TaskStatusStateEnum =
   | "TASK_STATE_INPUT_REQUIRED"
   | "TASK_STATE_REJECTED"
   | "TASK_STATE_AUTH_REQUIRED";
-export const A2aV1TaskStatusStateEnum = /*@__PURE__*/ S.String;
+export const A2aV1TaskStatusStateEnum = S.String;
 
 /** A container for the status of a task */
 export interface A2aV1TaskStatus {
@@ -3622,7 +3614,7 @@ export type GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestSuggestionTy
   | "RECENT_SEARCH"
   | "GOOGLE_WORKSPACE";
 export const GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestSuggestionTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestSuggestionTypesItemEnumList =
   Array<
@@ -3700,7 +3692,7 @@ export type GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestSuggestionTy
   | "RECENT_SEARCH"
   | "GOOGLE_WORKSPACE";
 export const GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestSuggestionTypeSpecSuggestionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specification of each suggestion type. */
 export interface GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestSuggestionTypeSpec {
@@ -3909,7 +3901,7 @@ export type GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponsePersonSugge
   | "THIRD_PARTY_IDENTITY"
   | "GOOGLE_GROUP";
 export const GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponsePersonSuggestionPersonTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleRpcStatusList = Array<GoogleRpcStatus>;
 export const GoogleRpcStatusList = /*@__PURE__*/ S.Array(
@@ -4113,7 +4105,7 @@ export type GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseContentSugg
   | "GOOGLE_WORKSPACE"
   | "THIRD_PARTY";
 export const GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseContentSuggestionContentTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Suggestions as content. */
 export interface GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseContentSuggestion {
@@ -4390,8 +4382,7 @@ export type GoogleCloudDiscoveryengineV1ConversationStateEnum =
   | "STATE_UNSPECIFIED"
   | "IN_PROGRESS"
   | "COMPLETED";
-export const GoogleCloudDiscoveryengineV1ConversationStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1ConversationStateEnum = S.String;
 
 export type DoubleList = Array<number>;
 export const DoubleList = /*@__PURE__*/ S.Array(
@@ -4579,7 +4570,7 @@ export type GoogleCloudDiscoveryengineV1SearchResponseSummarySummarySkippedReaso
   | "NON_SUMMARY_SEEKING_QUERY_IGNORED_V2"
   | "TIME_OUT";
 export const GoogleCloudDiscoveryengineV1SearchResponseSummarySummarySkippedReasonsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1SearchResponseSummarySummarySkippedReasonsItemEnumList =
   Array<
@@ -4758,7 +4749,7 @@ export type GoogleCloudDiscoveryengineV1SearchResponseSearchResultRetrievalSigna
   | "KEYWORD_SEARCH"
   | "SEMANTIC_SEARCH";
 export const GoogleCloudDiscoveryengineV1SearchResponseSearchResultRetrievalSignalsRetrievalSourcesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1SearchResponseSearchResultRetrievalSignalsRetrievalSourcesItemEnumList =
   Array<GoogleCloudDiscoveryengineV1SearchResponseSearchResultRetrievalSignalsRetrievalSourcesItemEnum>;
@@ -4810,7 +4801,7 @@ export type GoogleCloudDiscoveryengineV1ChunkStructuredContentStructureTypeEnum 
   | "SIGNATURE_STRUCTURE"
   | "CHECKBOX_STRUCTURE";
 export const GoogleCloudDiscoveryengineV1ChunkStructuredContentStructureTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The structured content information. */
 export interface GoogleCloudDiscoveryengineV1ChunkStructuredContent {
@@ -5162,15 +5153,14 @@ export type GoogleCloudDiscoveryengineV1DataStoreContentConfigEnum =
   | "CONTENT_REQUIRED"
   | "PUBLIC_WEBSITE"
   | "GOOGLE_WORKSPACE";
-export const GoogleCloudDiscoveryengineV1DataStoreContentConfigEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1DataStoreContentConfigEnum = S.String;
 
 export type GoogleCloudDiscoveryengineV1NaturalLanguageQueryUnderstandingConfigModeEnum =
   | "MODE_UNSPECIFIED"
   | "DISABLED"
   | "ENABLED";
 export const GoogleCloudDiscoveryengineV1NaturalLanguageQueryUnderstandingConfigModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for Natural Language Query Understanding. */
 export interface GoogleCloudDiscoveryengineV1NaturalLanguageQueryUnderstandingConfig {
@@ -5245,7 +5235,7 @@ export type GoogleCloudDiscoveryengineV1DataStoreConfigurableBillingApproachEnum
   | "CONFIGURABLE_SUBSCRIPTION_INDEXING_CORE"
   | "CONFIGURABLE_CONSUMPTION_EMBEDDING";
 export const GoogleCloudDiscoveryengineV1DataStoreConfigurableBillingApproachEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The digital parsing configurations for documents. */
 export type GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigDigitalParsingConfig =
@@ -5421,8 +5411,7 @@ export type GoogleCloudDiscoveryengineV1CmekConfigStateEnum =
   | "ACTIVE_ROTATING"
   | "DELETED"
   | "EXPIRED";
-export const GoogleCloudDiscoveryengineV1CmekConfigStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1CmekConfigStateEnum = S.String;
 
 export type GoogleCloudDiscoveryengineV1CmekConfigNotebooklmStateEnum =
   | "NOTEBOOK_LM_STATE_UNSPECIFIED"
@@ -5430,7 +5419,7 @@ export type GoogleCloudDiscoveryengineV1CmekConfigNotebooklmStateEnum =
   | "NOTEBOOK_LM_READY"
   | "NOTEBOOK_LM_NOT_ENABLED";
 export const GoogleCloudDiscoveryengineV1CmekConfigNotebooklmStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata for single-regional CMEKs. */
 export interface GoogleCloudDiscoveryengineV1SingleRegionKey {
@@ -5502,7 +5491,7 @@ export type GoogleCloudDiscoveryengineV1DataStoreSolutionTypesItemEnum =
   | "SOLUTION_TYPE_GENERATIVE_CHAT"
   | "SOLUTION_TYPE_AI_MODE";
 export const GoogleCloudDiscoveryengineV1DataStoreSolutionTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1DataStoreSolutionTypesItemEnumList =
   Array<
@@ -5524,8 +5513,7 @@ export type GoogleCloudDiscoveryengineV1WorkspaceConfigTypeEnum =
   | "GOOGLE_KEEP"
   | "GOOGLE_PEOPLE"
   | "GOOGLE_WORKSPACE";
-export const GoogleCloudDiscoveryengineV1WorkspaceConfigTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1WorkspaceConfigTypeEnum = S.String;
 
 /** Config to store data store type configuration for workspace data */
 export interface GoogleCloudDiscoveryengineV1WorkspaceConfig {
@@ -5606,7 +5594,7 @@ export type GoogleCloudDiscoveryengineV1DataStoreIndustryVerticalEnum =
   | "MEDIA"
   | "HEALTHCARE_FHIR";
 export const GoogleCloudDiscoveryengineV1DataStoreIndustryVerticalEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Config for connecting to NotebookLM Enterprise. */
 export interface GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigNotebooklmConfig {
@@ -5628,7 +5616,7 @@ export type GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigAlloyDbCon
   | "AUTH_MODE_SERVICE_ACCOUNT"
   | "AUTH_MODE_END_USER_ACCOUNT";
 export const GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigAlloyDbConfigAlloyDbConnectionConfigAuthModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for connecting to AlloyDB. */
 export interface GoogleCloudDiscoveryengineV1DataStoreFederatedSearchConfigAlloyDbConfigAlloyDbConnectionConfig {
@@ -5988,7 +5976,7 @@ export type GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpec
   | "NUMERICAL"
   | "FRESHNESS";
 export const GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpecAttributeTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The control points used to define the curve. The curve defined through these control points can only be monotonically increasing or decreasing(constant values are acceptable). */
 export interface GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpecControlPoint {
@@ -6019,7 +6007,7 @@ export type GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpec
   | "INTERPOLATION_TYPE_UNSPECIFIED"
   | "LINEAR";
 export const GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpecInterpolationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specification for custom ranking based on customer specified attribute value. It provides more controls for customized ranking than the simple (condition, boost) combination above. */
 export interface GoogleCloudDiscoveryengineV1ControlBoostActionInterpolationBoostSpec {
@@ -6107,8 +6095,7 @@ export type GoogleCloudDiscoveryengineV1ControlSolutionTypeEnum =
   | "SOLUTION_TYPE_CHAT"
   | "SOLUTION_TYPE_GENERATIVE_CHAT"
   | "SOLUTION_TYPE_AI_MODE";
-export const GoogleCloudDiscoveryengineV1ControlSolutionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1ControlSolutionTypeEnum = S.String;
 
 /** Redirects a shopper to the provided URI. */
 export interface GoogleCloudDiscoveryengineV1ControlRedirectAction {
@@ -6128,8 +6115,7 @@ export type GoogleCloudDiscoveryengineV1ControlUseCasesItemEnum =
   | "SEARCH_USE_CASE_UNSPECIFIED"
   | "SEARCH_USE_CASE_SEARCH"
   | "SEARCH_USE_CASE_BROWSE";
-export const GoogleCloudDiscoveryengineV1ControlUseCasesItemEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1ControlUseCasesItemEnum = S.String;
 
 export type GoogleCloudDiscoveryengineV1ControlUseCasesItemEnumList = Array<
   GoogleCloudDiscoveryengineV1ControlUseCasesItemEnum | (string & {})
@@ -6405,7 +6391,7 @@ export type GoogleCloudDiscoveryengineV1ServingConfigSolutionTypeEnum =
   | "SOLUTION_TYPE_GENERATIVE_CHAT"
   | "SOLUTION_TYPE_AI_MODE";
 export const GoogleCloudDiscoveryengineV1ServingConfigSolutionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specifies the chunk spec to be returned from the search response. Only available if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS */
 export interface GoogleCloudDiscoveryengineV1SearchRequestContentSearchSpecChunkSpec {
@@ -6457,7 +6443,7 @@ export type GoogleCloudDiscoveryengineV1SearchRequestContentSearchSpecSearchResu
   | "DOCUMENTS"
   | "CHUNKS";
 export const GoogleCloudDiscoveryengineV1SearchRequestContentSearchSpecSearchResultModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A specification for configuring snippets in a search response. */
 export interface GoogleCloudDiscoveryengineV1SearchRequestContentSearchSpecSnippetSpec {
@@ -6768,14 +6754,13 @@ export type GoogleCloudDiscoveryengineV1EngineSolutionTypeEnum =
   | "SOLUTION_TYPE_CHAT"
   | "SOLUTION_TYPE_GENERATIVE_CHAT"
   | "SOLUTION_TYPE_AI_MODE";
-export const GoogleCloudDiscoveryengineV1EngineSolutionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1EngineSolutionTypeEnum = S.String;
 
 export type GoogleCloudDiscoveryengineV1EngineConfigurableBillingApproachEnum =
   | "CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED"
   | "CONFIGURABLE_BILLING_APPROACH_ENABLED";
 export const GoogleCloudDiscoveryengineV1EngineConfigurableBillingApproachEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1EngineMarketplaceAgentVisibilityEnum =
   | "MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED"
@@ -6784,7 +6769,7 @@ export type GoogleCloudDiscoveryengineV1EngineMarketplaceAgentVisibilityEnum =
   | "SHOW_AGENTS_ALREADY_PURCHASED"
   | "SHOW_ALL_AGENTS";
 export const GoogleCloudDiscoveryengineV1EngineMarketplaceAgentVisibilityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Observability config for a resource. */
 export interface GoogleCloudDiscoveryengineV1ObservabilityConfig {
@@ -6826,7 +6811,7 @@ export type GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfigTra
   | "PAUSED"
   | "TRAINING";
 export const GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfigTrainingStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Additional feature configurations for creating a `recommended-for-you` engine. */
 export interface GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfigRecommendedForYouFeatureConfig {
@@ -6972,14 +6957,12 @@ export type GoogleCloudDiscoveryengineV1EngineIndustryVerticalEnum =
   | "GENERIC"
   | "MEDIA"
   | "HEALTHCARE_FHIR";
-export const GoogleCloudDiscoveryengineV1EngineIndustryVerticalEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1EngineIndustryVerticalEnum = S.String;
 
 export type GoogleCloudDiscoveryengineV1EngineAppTypeEnum =
   | "APP_TYPE_UNSPECIFIED"
   | "APP_TYPE_INTRANET";
-export const GoogleCloudDiscoveryengineV1EngineAppTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1EngineAppTypeEnum = S.String;
 
 /** Configurations for generating a Dialogflow agent. Note that these configurations are one-time consumed by and passed to Dialogflow service. It means they cannot be retrieved using EngineService.GetEngine or EngineService.ListEngines API after engine creation. */
 export interface GoogleCloudDiscoveryengineV1EngineChatEngineConfigAgentCreationConfig {
@@ -7031,8 +7014,7 @@ export type GoogleCloudDiscoveryengineV1EngineModelConfigsValueEnum =
   | "MODEL_STATE_UNSPECIFIED"
   | "MODEL_ENABLED"
   | "MODEL_DISABLED";
-export const GoogleCloudDiscoveryengineV1EngineModelConfigsValueEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1EngineModelConfigsValueEnum = S.String;
 
 export type GoogleCloudDiscoveryengineV1EngineModelConfigsValueEnumMap = {
   [key: string]:
@@ -7050,8 +7032,7 @@ export type GoogleCloudDiscoveryengineV1EngineFeaturesValueEnum =
   | "FEATURE_STATE_UNSPECIFIED"
   | "FEATURE_STATE_ON"
   | "FEATURE_STATE_OFF";
-export const GoogleCloudDiscoveryengineV1EngineFeaturesValueEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1EngineFeaturesValueEnum = S.String;
 
 export type GoogleCloudDiscoveryengineV1EngineFeaturesValueEnumMap = {
   [key: string]:
@@ -7097,7 +7078,7 @@ export type GoogleCloudDiscoveryengineV1EngineSearchEngineConfigSearchAddOnsItem
   | "SEARCH_ADD_ON_UNSPECIFIED"
   | "SEARCH_ADD_ON_LLM";
 export const GoogleCloudDiscoveryengineV1EngineSearchEngineConfigSearchAddOnsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1EngineSearchEngineConfigSearchAddOnsItemEnumList =
   Array<
@@ -7127,14 +7108,14 @@ export type GoogleCloudDiscoveryengineV1EngineSearchEngineConfigRequiredSubscrip
   | "SUBSCRIPTION_TIER_CONSUMPTION_ONLY"
   | "SUBSCRIPTION_TIER_EDU_GOV_EMERGING";
 export const GoogleCloudDiscoveryengineV1EngineSearchEngineConfigRequiredSubscriptionTierEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1EngineSearchEngineConfigSearchTierEnum =
   | "SEARCH_TIER_UNSPECIFIED"
   | "SEARCH_TIER_STANDARD"
   | "SEARCH_TIER_ENTERPRISE";
 export const GoogleCloudDiscoveryengineV1EngineSearchEngineConfigSearchTierEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configurations for a Search Engine. */
 export interface GoogleCloudDiscoveryengineV1EngineSearchEngineConfig {
@@ -7346,7 +7327,7 @@ export type GoogleCloudDiscoveryengineV1AssistantCustomerPolicyModelArmorConfigF
   | "FAIL_OPEN"
   | "FAIL_CLOSED";
 export const GoogleCloudDiscoveryengineV1AssistantCustomerPolicyModelArmorConfigFailureModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and assistant responses. */
 export interface GoogleCloudDiscoveryengineV1AssistantCustomerPolicyModelArmorConfig {
@@ -7378,7 +7359,7 @@ export type GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhraseMatch
   | "SIMPLE_STRING_MATCH"
   | "WORD_BOUNDARY_STRING_MATCH";
 export const GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhraseMatchTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Definition of a customer-defined banned phrase. A banned phrase is not allowed to appear in the user query or the LLM response, or else the answer will be refused. */
 export interface GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase {
@@ -7439,7 +7420,7 @@ export type GoogleCloudDiscoveryengineV1AssistantWebGroundingTypeEnum =
   | "WEB_GROUNDING_TYPE_GOOGLE_SEARCH"
   | "WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH";
 export const GoogleCloudDiscoveryengineV1AssistantWebGroundingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** System instruction, also known as the prompt preamble for LLM calls. */
 export interface GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction {
@@ -8088,7 +8069,7 @@ export type GoogleCloudDiscoveryengineV1LicenseConfigSubscriptionTermEnum =
   | "SUBSCRIPTION_TERM_THREE_YEARS"
   | "SUBSCRIPTION_TERM_CUSTOM";
 export const GoogleCloudDiscoveryengineV1LicenseConfigSubscriptionTermEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1LicenseConfigStateEnum =
   | "STATE_UNSPECIFIED"
@@ -8097,8 +8078,7 @@ export type GoogleCloudDiscoveryengineV1LicenseConfigStateEnum =
   | "NOT_STARTED"
   | "WITHDRAWN"
   | "DEACTIVATING";
-export const GoogleCloudDiscoveryengineV1LicenseConfigStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1LicenseConfigStateEnum = S.String;
 
 export type GoogleCloudDiscoveryengineV1LicenseConfigSubscriptionTierEnum =
   | "SUBSCRIPTION_TIER_UNSPECIFIED"
@@ -8118,7 +8098,7 @@ export type GoogleCloudDiscoveryengineV1LicenseConfigSubscriptionTierEnum =
   | "SUBSCRIPTION_TIER_CONSUMPTION_ONLY"
   | "SUBSCRIPTION_TIER_EDU_GOV_EMERGING";
 export const GoogleCloudDiscoveryengineV1LicenseConfigSubscriptionTierEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information about users' licenses. */
 export interface GoogleCloudDiscoveryengineV1LicenseConfig {
@@ -9093,8 +9073,7 @@ export type GoogleCloudDiscoveryengineV1IdpConfigIdpTypeEnum =
   | "IDP_TYPE_UNSPECIFIED"
   | "GSUITE"
   | "THIRD_PARTY";
-export const GoogleCloudDiscoveryengineV1IdpConfigIdpTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1IdpConfigIdpTypeEnum = S.String;
 
 /** Third party IDP Config. */
 export interface GoogleCloudDiscoveryengineV1IdpConfigExternalIdpConfig {
@@ -9652,7 +9631,7 @@ export type GoogleCloudDiscoveryengineV1AlertPolicyConfigAlertEnrollmentEnrollSt
   | "ENROLLED"
   | "DECLINED";
 export const GoogleCloudDiscoveryengineV1AlertPolicyConfigAlertEnrollmentEnrollStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The alert enrollment status. */
 export interface GoogleCloudDiscoveryengineV1AlertPolicyConfigAlertEnrollment {
@@ -9744,7 +9723,7 @@ export type GoogleCloudDiscoveryengineV1DataConnectorRealtimeSyncConfigStreaming
   | "STREAMING_SYNC_ERROR"
   | "INGRESS_ENDPOINT_REQUIRED";
 export const GoogleCloudDiscoveryengineV1DataConnectorRealtimeSyncConfigStreamingErrorStreamingErrorReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Streaming error details. */
 export interface GoogleCloudDiscoveryengineV1DataConnectorRealtimeSyncConfigStreamingError {
@@ -9796,7 +9775,7 @@ export type GoogleCloudDiscoveryengineV1BAPConfigSupportedConnectorModesItemEnum
   | "ACTIONS"
   | "END_USER_AUTHENTICATION";
 export const GoogleCloudDiscoveryengineV1BAPConfigSupportedConnectorModesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1BAPConfigSupportedConnectorModesItemEnumList =
   Array<
@@ -9853,8 +9832,7 @@ export type GoogleCloudDiscoveryengineV1DataConnectorSyncModeEnum =
   | "PERIODIC"
   | "STREAMING"
   | "UNSPECIFIED";
-export const GoogleCloudDiscoveryengineV1DataConnectorSyncModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1DataConnectorSyncModeEnum = S.String;
 
 /** User-facing metadata for the connector, shown on the connector detail page (title, description, short_description, author, note). */
 export interface GoogleCloudDiscoveryengineV1DataConnectorConnectorMetadata {
@@ -9960,7 +9938,7 @@ export type GoogleCloudDiscoveryengineV1DataConnectorConnectorModesItemEnum =
   | "EUA"
   | "FEDERATED_AND_EUA";
 export const GoogleCloudDiscoveryengineV1DataConnectorConnectorModesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1DataConnectorConnectorModesItemEnumList =
   Array<
@@ -10220,7 +10198,7 @@ export type GoogleCloudDiscoveryengineV1DataConnectorConnectorTypeEnum =
   | "REMOTE_MCP"
   | "GOOGLE_WORKSPACE";
 export const GoogleCloudDiscoveryengineV1DataConnectorConnectorTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1DataConnectorBlockingReasonsItemEnum =
   | "BLOCKING_REASON_UNSPECIFIED"
@@ -10228,7 +10206,7 @@ export type GoogleCloudDiscoveryengineV1DataConnectorBlockingReasonsItemEnum =
   | "ALLOWLIST_IN_SERVICE_ATTACHMENT"
   | "ALLOWLIST_SERVICE_ACCOUNT";
 export const GoogleCloudDiscoveryengineV1DataConnectorBlockingReasonsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1DataConnectorBlockingReasonsItemEnumList =
   Array<
@@ -10250,7 +10228,7 @@ export type GoogleCloudDiscoveryengineV1DataConnectorRealtimeStateEnum =
   | "INITIALIZATION_FAILED"
   | "UPDATING";
 export const GoogleCloudDiscoveryengineV1DataConnectorRealtimeStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1DataConnectorActionStateEnum =
   | "STATE_UNSPECIFIED"
@@ -10262,7 +10240,7 @@ export type GoogleCloudDiscoveryengineV1DataConnectorActionStateEnum =
   | "INITIALIZATION_FAILED"
   | "UPDATING";
 export const GoogleCloudDiscoveryengineV1DataConnectorActionStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1DataConnectorStateEnum =
   | "STATE_UNSPECIFIED"
@@ -10273,8 +10251,7 @@ export type GoogleCloudDiscoveryengineV1DataConnectorStateEnum =
   | "WARNING"
   | "INITIALIZATION_FAILED"
   | "UPDATING";
-export const GoogleCloudDiscoveryengineV1DataConnectorStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1DataConnectorStateEnum = S.String;
 
 /** Manages the connection to external data sources for all data stores grouped under a Collection. It's a singleton resource of Collection. The initialization is only supported through DataConnectorService.SetUpDataConnector method, which will create a new Collection and initialize its DataConnector. */
 export interface GoogleCloudDiscoveryengineV1DataConnector {
@@ -10955,7 +10932,7 @@ export type GetProjectsLocationsCollectionsDataStoresWidgetConfigsModelInfoViewE
   | "END_USER_WEB"
   | "ADMIN";
 export const GetProjectsLocationsCollectionsDataStoresWidgetConfigsModelInfoViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectsLocationsCollectionsDataStoresWidgetConfigsRequest {
   /** Optional. BCP-47 language tag (e.g. "en", "fr-CA"). Used to localize human-readable strings in the response, such as the model selector `display_name` / `description` on `WidgetConfig.UiSettings.ModelConfigInfo`. Empty / unset falls back to the default language (English). */
@@ -11003,7 +10980,7 @@ export type GoogleCloudDiscoveryengineV1WidgetConfigConnectorAuthStateAuthStateE
   | "ACTIONS_DISABLED"
   | "NO_AUTH";
 export const GoogleCloudDiscoveryengineV1WidgetConfigConnectorAuthStateAuthStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Read-only connector in CollectionComponent auth state. */
 export interface GoogleCloudDiscoveryengineV1WidgetConfigConnectorAuthState {
@@ -11063,7 +11040,7 @@ export type GoogleCloudDiscoveryengineV1WidgetConfigUIComponentFieldDeviceVisibi
   | "MOBILE"
   | "DESKTOP";
 export const GoogleCloudDiscoveryengineV1WidgetConfigUIComponentFieldDeviceVisibilityItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1WidgetConfigUIComponentFieldDeviceVisibilityItemEnumList =
   Array<
@@ -11141,8 +11118,7 @@ export type GoogleCloudDiscoveryengineV1WidgetConfigNodeTypeEnum =
   | "TRIGGER"
   | "FLOW"
   | "CONNECTOR";
-export const GoogleCloudDiscoveryengineV1WidgetConfigNodeTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1WidgetConfigNodeTypeEnum = S.String;
 
 /** Represents a single reusable computational or logical unit. */
 export interface GoogleCloudDiscoveryengineV1WidgetConfigNode {
@@ -11185,13 +11161,13 @@ export type GoogleCloudDiscoveryengineV1WidgetConfigResultDisplayTypeEnum =
   | "SNIPPET"
   | "EXTRACTIVE_ANSWER";
 export const GoogleCloudDiscoveryengineV1WidgetConfigResultDisplayTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1WidgetConfigCustomerProvidedConfigCustomerTypeEnum =
   | "DEFAULT_CUSTOMER"
   | "GOVERNMENT_CUSTOMER";
 export const GoogleCloudDiscoveryengineV1WidgetConfigCustomerProvidedConfigCustomerTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1WidgetConfigCustomerProvidedConfigComplianceLevelEnum =
   | "COMPLIANCE_LEVEL_UNSPECIFIED"
@@ -11199,7 +11175,7 @@ export type GoogleCloudDiscoveryengineV1WidgetConfigCustomerProvidedConfigCompli
   | "COMPLIANCE_LEVEL_IL4"
   | "COMPLIANCE_LEVEL_IL5";
 export const GoogleCloudDiscoveryengineV1WidgetConfigCustomerProvidedConfigComplianceLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Customer provided configurations. */
 export interface GoogleCloudDiscoveryengineV1WidgetConfigCustomerProvidedConfig {
@@ -11277,7 +11253,7 @@ export type GoogleCloudDiscoveryengineV1WidgetConfigAssistantSettingsWebGroundin
   | "WEB_GROUNDING_TYPE_GOOGLE_SEARCH"
   | "WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH";
 export const GoogleCloudDiscoveryengineV1WidgetConfigAssistantSettingsWebGroundingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Describes the assistant settings of the widget. */
 export interface GoogleCloudDiscoveryengineV1WidgetConfigAssistantSettings {
@@ -11370,7 +11346,7 @@ export type GoogleCloudDiscoveryengineV1WidgetConfigDataStoreComponentDataStoreC
   | "THIRD_PARTY_OAUTH_CONFIG"
   | "NOTEBOOKLM_CONFIG";
 export const GoogleCloudDiscoveryengineV1WidgetConfigDataStoreComponentDataStoreConfigTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Read-only data store component that contains data stores fields that may be used for filtering, it's the child of `CollectionComponent`. */
 export interface GoogleCloudDiscoveryengineV1WidgetConfigDataStoreComponent {
@@ -11500,7 +11476,7 @@ export type GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsModelConfigsValueE
   | "MODEL_ENABLED"
   | "MODEL_DISABLED";
 export const GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsModelConfigsValueEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsModelConfigsValueEnumMap =
   {
@@ -11520,7 +11496,7 @@ export type GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsResultDescriptionT
   | "SNIPPET"
   | "EXTRACTIVE_ANSWER";
 export const GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsResultDescriptionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsGenerativeAnswerConfigImageSourceEnum =
   | "IMAGE_SOURCE_UNSPECIFIED"
@@ -11528,7 +11504,7 @@ export type GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsGenerativeAnswerCo
   | "CORPUS_IMAGE_ONLY"
   | "FIGURE_GENERATION_ONLY";
 export const GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsGenerativeAnswerConfigImageSourceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Describes configuration for generative answer. */
 export interface GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsGenerativeAnswerConfig {
@@ -11603,7 +11579,7 @@ export type GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsInteractionTypeEnu
   | "SEARCH_WITH_ANSWER"
   | "SEARCH_WITH_FOLLOW_UPS";
 export const GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsInteractionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Admin-surface metadata. Populated only when the request originates from the Cloud Console admin "Feature Control" page; left unset for end-user surfaces (Web, Mobile). Lets the admin page render its toggle table directly from the backend instead of a hardcoded client-side registry. */
 export interface GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsModelConfigInfoResolvedModelAdminView {
@@ -11696,7 +11672,7 @@ export type GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsFeaturesValueEnum 
   | "FEATURE_STATE_ON"
   | "FEATURE_STATE_OFF";
 export const GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsFeaturesValueEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1WidgetConfigUiSettingsFeaturesValueEnumMap =
   {
@@ -11808,7 +11784,7 @@ export type GoogleCloudDiscoveryengineV1WidgetConfigIndustryVerticalEnum =
   | "MEDIA"
   | "HEALTHCARE_FHIR";
 export const GoogleCloudDiscoveryengineV1WidgetConfigIndustryVerticalEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1WidgetConfigDataStoreTypeEnum =
   | "DATA_STORE_TYPE_UNSPECIFIED"
@@ -11817,7 +11793,7 @@ export type GoogleCloudDiscoveryengineV1WidgetConfigDataStoreTypeEnum =
   | "UNSTRUCTURED"
   | "BLENDED";
 export const GoogleCloudDiscoveryengineV1WidgetConfigDataStoreTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1WidgetConfigSolutionTypeEnum =
   | "SOLUTION_TYPE_UNSPECIFIED"
@@ -11827,7 +11803,7 @@ export type GoogleCloudDiscoveryengineV1WidgetConfigSolutionTypeEnum =
   | "SOLUTION_TYPE_GENERATIVE_CHAT"
   | "SOLUTION_TYPE_AI_MODE";
 export const GoogleCloudDiscoveryengineV1WidgetConfigSolutionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** WidgetConfig captures configs at the Widget level. */
 export interface GoogleCloudDiscoveryengineV1WidgetConfig {
@@ -12223,7 +12199,7 @@ export type GetProjectsLocationsCollectionsEnginesWidgetConfigsModelInfoViewEnum
   | "END_USER_WEB"
   | "ADMIN";
 export const GetProjectsLocationsCollectionsEnginesWidgetConfigsModelInfoViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectsLocationsCollectionsEnginesWidgetConfigsRequest {
   /** Optional. Whether it's acceptable to load the widget config from cache. If set to true, recent changes on widget configs may take a few minutes to reflect on the end user's view. It's recommended to set to true for maturely developed widgets, as it improves widget performance. Set to false to see changes reflected in prod right away, if your widget is under development. */
@@ -12520,7 +12496,7 @@ export type GetProjectsLocationsDataStoresWidgetConfigsModelInfoViewEnum =
   | "END_USER_WEB"
   | "ADMIN";
 export const GetProjectsLocationsDataStoresWidgetConfigsModelInfoViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectsLocationsDataStoresWidgetConfigsRequest {
   /** Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend computes. `MODEL_INFO_VIEW_ADMIN` is set by the Cloud Console admin "Feature Management" page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with `ResolvedModel.admin_view` populated; unset / `MODEL_INFO_VIEW_WEB` returns the end-user selector. The mobile surface is detected from the `X-Goog-Gemini-Enterprise-Mobile` header instead (see `ModelInfoView`). */
@@ -12936,7 +12912,7 @@ export type GoogleCloudDiscoveryengineV1ImportDocumentsRequestReconciliationMode
   | "INCREMENTAL"
   | "FULL";
 export const GoogleCloudDiscoveryengineV1ImportDocumentsRequestReconciliationModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Cloud FhirStore source import data from. */
 export interface GoogleCloudDiscoveryengineV1FhirStoreSource {
@@ -13067,7 +13043,7 @@ export type GoogleCloudDiscoveryengineV1BigtableOptionsBigtableColumnFamilyTypeE
   | "BOOLEAN"
   | "JSON";
 export const GoogleCloudDiscoveryengineV1BigtableOptionsBigtableColumnFamilyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1BigtableOptionsBigtableColumnTypeEnum =
   | "TYPE_UNSPECIFIED"
@@ -13079,14 +13055,14 @@ export type GoogleCloudDiscoveryengineV1BigtableOptionsBigtableColumnTypeEnum =
   | "BOOLEAN"
   | "JSON";
 export const GoogleCloudDiscoveryengineV1BigtableOptionsBigtableColumnTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1BigtableOptionsBigtableColumnEncodingEnum =
   | "ENCODING_UNSPECIFIED"
   | "TEXT"
   | "BINARY";
 export const GoogleCloudDiscoveryengineV1BigtableOptionsBigtableColumnEncodingEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The column of the Bigtable. */
 export interface GoogleCloudDiscoveryengineV1BigtableOptionsBigtableColumn {
@@ -13131,7 +13107,7 @@ export type GoogleCloudDiscoveryengineV1BigtableOptionsBigtableColumnFamilyEncod
   | "TEXT"
   | "BINARY";
 export const GoogleCloudDiscoveryengineV1BigtableOptionsBigtableColumnFamilyEncodingEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The column family of the Bigtable. */
 export interface GoogleCloudDiscoveryengineV1BigtableOptionsBigtableColumnFamily {
@@ -13445,7 +13421,7 @@ export type GoogleCloudDiscoveryengineV1SuggestionDenyListEntryMatchOperatorEnum
   | "EXACT_MATCH"
   | "CONTAINS";
 export const GoogleCloudDiscoveryengineV1SuggestionDenyListEntryMatchOperatorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Suggestion deny list entry identifying the phrase to block from suggestions and the applied operation for the phrase. */
 export interface GoogleCloudDiscoveryengineV1SuggestionDenyListEntry {
@@ -13700,8 +13676,7 @@ export type GoogleCloudDiscoveryengineV1FeedbackFeedbackTypeEnum =
   | "FEEDBACK_TYPE_UNSPECIFIED"
   | "LIKE"
   | "DISLIKE";
-export const GoogleCloudDiscoveryengineV1FeedbackFeedbackTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1FeedbackFeedbackTypeEnum = S.String;
 
 export type GoogleCloudDiscoveryengineV1FeedbackReasonsItemEnum =
   | "REASON_UNSPECIFIED"
@@ -13714,8 +13689,7 @@ export type GoogleCloudDiscoveryengineV1FeedbackReasonsItemEnum =
   | "CANVAS_NOT_GENERATED"
   | "CANVAS_QUALITY_BAD"
   | "CANVAS_EXPORT_FAILED";
-export const GoogleCloudDiscoveryengineV1FeedbackReasonsItemEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1FeedbackReasonsItemEnum = S.String;
 
 export type GoogleCloudDiscoveryengineV1FeedbackReasonsItemEnumList = Array<
   GoogleCloudDiscoveryengineV1FeedbackReasonsItemEnum | (string & {})
@@ -13757,8 +13731,7 @@ export type GoogleCloudDiscoveryengineV1FeedbackFeedbackSourceEnum =
   | "GOOGLE_WIDGET"
   | "GOOGLE_WEBAPP"
   | "GOOGLE_AGENTSPACE_MOBILE";
-export const GoogleCloudDiscoveryengineV1FeedbackFeedbackSourceEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDiscoveryengineV1FeedbackFeedbackSourceEnum = S.String;
 
 /** Information about the user feedback. This information will be used for logging and metrics purpose. */
 export interface GoogleCloudDiscoveryengineV1Feedback {
@@ -14534,7 +14507,7 @@ export type GoogleCloudDiscoveryengineV1CustomTuningModelModelStateEnum =
   | "NO_IMPROVEMENT"
   | "INPUT_VALIDATION_FAILED";
 export const GoogleCloudDiscoveryengineV1CustomTuningModelModelStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DoubleMap = { [key: string]: number | undefined };
 export const DoubleMap = /*@__PURE__*/ S.Record(
@@ -17496,7 +17469,7 @@ export type GoogleCloudDiscoveryengineV1SearchRequestQueryExpansionSpecCondition
   | "DISABLED"
   | "AUTO";
 export const GoogleCloudDiscoveryengineV1SearchRequestQueryExpansionSpecConditionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specification to determine under which conditions query expansion should occur. */
 export interface GoogleCloudDiscoveryengineV1SearchRequestQueryExpansionSpec {
@@ -17524,7 +17497,7 @@ export type GoogleCloudDiscoveryengineV1SearchRequestSpellCorrectionSpecModeEnum
   | "SUGGESTION_ONLY"
   | "AUTO";
 export const GoogleCloudDiscoveryengineV1SearchRequestSpellCorrectionSpecModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The specification for query spell correction. */
 export interface GoogleCloudDiscoveryengineV1SearchRequestSpellCorrectionSpec {
@@ -17551,21 +17524,21 @@ export type GoogleCloudDiscoveryengineV1SearchRequestRankingExpressionBackendEnu
   | "RANK_BY_EMBEDDING"
   | "RANK_BY_FORMULA";
 export const GoogleCloudDiscoveryengineV1SearchRequestRankingExpressionBackendEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1SearchRequestNaturalLanguageQueryUnderstandingSpecFilterExtractionConditionEnum =
   | "CONDITION_UNSPECIFIED"
   | "DISABLED"
   | "ENABLED";
 export const GoogleCloudDiscoveryengineV1SearchRequestNaturalLanguageQueryUnderstandingSpecFilterExtractionConditionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDiscoveryengineV1SearchRequestNaturalLanguageQueryUnderstandingSpecExtractedFilterBehaviorEnum =
   | "EXTRACTED_FILTER_BEHAVIOR_UNSPECIFIED"
   | "HARD_FILTER"
   | "SOFT_BOOST";
 export const GoogleCloudDiscoveryengineV1SearchRequestNaturalLanguageQueryUnderstandingSpecExtractedFilterBehaviorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specification to enable natural language understanding capabilities for search requests. */
 export interface GoogleCloudDiscoveryengineV1SearchRequestNaturalLanguageQueryUnderstandingSpec {
@@ -17605,7 +17578,7 @@ export type GoogleCloudDiscoveryengineV1SearchRequestSearchAsYouTypeSpecConditio
   | "ENABLED"
   | "AUTO";
 export const GoogleCloudDiscoveryengineV1SearchRequestSearchAsYouTypeSpecConditionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specification for search as you type in search requests. */
 export interface GoogleCloudDiscoveryengineV1SearchRequestSearchAsYouTypeSpec {
@@ -17666,7 +17639,7 @@ export type GoogleCloudDiscoveryengineV1SearchRequestRelevanceThresholdEnum =
   | "MEDIUM"
   | "HIGH";
 export const GoogleCloudDiscoveryengineV1SearchRequestRelevanceThresholdEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A floating point interval. */
 export interface GoogleCloudDiscoveryengineV1Interval {
@@ -17780,7 +17753,7 @@ export type GoogleCloudDiscoveryengineV1SearchRequestCrowdingSpecModeEnum =
   | "DROP_CROWDED_RESULTS"
   | "DEMOTE_CROWDED_RESULTS_TO_END";
 export const GoogleCloudDiscoveryengineV1SearchRequestCrowdingSpecModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specification for crowding. Crowding improves the diversity of search results by limiting the number of results that share the same field value. For example, crowding on the color field with a max_count of 3 and mode DROP_CROWDED_RESULTS will return at most 3 results with the same color across all pages. */
 export interface GoogleCloudDiscoveryengineV1SearchRequestCrowdingSpec {
@@ -17837,7 +17810,7 @@ export type GoogleCloudDiscoveryengineV1SearchRequestRelevanceFilterSpecRelevanc
   | "MEDIUM"
   | "HIGH";
 export const GoogleCloudDiscoveryengineV1SearchRequestRelevanceFilterSpecRelevanceThresholdSpecRelevanceThresholdEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specification for relevance filtering on a specific sub-search. */
 export interface GoogleCloudDiscoveryengineV1SearchRequestRelevanceFilterSpecRelevanceThresholdSpec {
@@ -17901,7 +17874,7 @@ export type GoogleCloudDiscoveryengineV1SearchRequestDisplaySpecMatchHighlightin
   | "MATCH_HIGHLIGHTING_DISABLED"
   | "MATCH_HIGHLIGHTING_ENABLED";
 export const GoogleCloudDiscoveryengineV1SearchRequestDisplaySpecMatchHighlightingConditionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specifies features for display, like match highlighting. */
 export interface GoogleCloudDiscoveryengineV1SearchRequestDisplaySpec {
@@ -18209,7 +18182,7 @@ export type GoogleCloudDiscoveryengineV1SearchResponseNaturalLanguageQueryUnders
   | "GREATER_THAN_EQUALS"
   | "GREATER_THAN";
 export const GoogleCloudDiscoveryengineV1SearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterNumberConstraintComparisonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Constraint expression of a number field. Example: price < 100. */
 export interface GoogleCloudDiscoveryengineV1SearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterNumberConstraint {
@@ -18346,7 +18319,7 @@ export type GoogleCloudDiscoveryengineV1SearchResponseSemanticStateEnum =
   | "DISABLED"
   | "ENABLED";
 export const GoogleCloudDiscoveryengineV1SearchResponseSemanticStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A facet value which contains value names and their count. */
 export interface GoogleCloudDiscoveryengineV1SearchResponseFacetFacetValue {

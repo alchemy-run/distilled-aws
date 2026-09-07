@@ -23,19 +23,19 @@ export const AccountsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** This property sets the connection region for Playwright client workers to cloud-hosted browsers. If enabled, workers connect to browsers in the closest Azure region, ensuring lower latency. If disabled, workers connect to browsers in the Azure region in which the workspace was initially created. */
 export type AccountPropertiesInputRegionalAffinity = "Enabled" | "Disabled";
-export const AccountPropertiesInputRegionalAffinity = /*@__PURE__*/ S.String;
+export const AccountPropertiesInputRegionalAffinity = S.String;
 
 /** When enabled, Playwright client workers can connect to cloud-hosted browsers. This can increase the number of parallel workers for a test run, significantly minimizing test completion durations. */
 export type AccountPropertiesInputScalableExecution = "Enabled" | "Disabled";
-export const AccountPropertiesInputScalableExecution = /*@__PURE__*/ S.String;
+export const AccountPropertiesInputScalableExecution = S.String;
 
 /** When enabled, this feature allows the workspace to upload and display test results, including artifacts like traces and screenshots, in the Playwright portal. This enables faster and more efficient troubleshooting. */
 export type AccountPropertiesInputReporting = "Enabled" | "Disabled";
-export const AccountPropertiesInputReporting = /*@__PURE__*/ S.String;
+export const AccountPropertiesInputReporting = S.String;
 
 /** When enabled, this feature allows the workspace to use local auth (through service access token) for executing operations. */
 export type AccountPropertiesInputLocalAuth = "Enabled" | "Disabled";
-export const AccountPropertiesInputLocalAuth = /*@__PURE__*/ S.String;
+export const AccountPropertiesInputLocalAuth = S.String;
 
 /** Account resource properties. */
 export interface AccountPropertiesInput {
@@ -99,7 +99,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -107,7 +107,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -146,19 +146,19 @@ export const AccountsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** This property sets the connection region for Playwright client workers to cloud-hosted browsers. If enabled, workers connect to browsers in the closest Azure region, ensuring lower latency. If disabled, workers connect to browsers in the Azure region in which the workspace was initially created. */
 export type AccountPropertiesRegionalAffinity = "Enabled" | "Disabled";
-export const AccountPropertiesRegionalAffinity = /*@__PURE__*/ S.String;
+export const AccountPropertiesRegionalAffinity = S.String;
 
 /** When enabled, Playwright client workers can connect to cloud-hosted browsers. This can increase the number of parallel workers for a test run, significantly minimizing test completion durations. */
 export type AccountPropertiesScalableExecution = "Enabled" | "Disabled";
-export const AccountPropertiesScalableExecution = /*@__PURE__*/ S.String;
+export const AccountPropertiesScalableExecution = S.String;
 
 /** When enabled, this feature allows the workspace to upload and display test results, including artifacts like traces and screenshots, in the Playwright portal. This enables faster and more efficient troubleshooting. */
 export type AccountPropertiesReporting = "Enabled" | "Disabled";
-export const AccountPropertiesReporting = /*@__PURE__*/ S.String;
+export const AccountPropertiesReporting = S.String;
 
 /** When enabled, this feature allows the workspace to use local auth (through service access token) for executing operations. */
 export type AccountPropertiesLocalAuth = "Enabled" | "Disabled";
-export const AccountPropertiesLocalAuth = /*@__PURE__*/ S.String;
+export const AccountPropertiesLocalAuth = S.String;
 
 /** The status of the current operation. */
 export type ProvisioningState =
@@ -168,7 +168,7 @@ export type ProvisioningState =
   | "Creating"
   | "Deleting"
   | "Accepted";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Account resource properties. */
 export interface AccountProperties {
@@ -257,8 +257,7 @@ export const CheckAccountNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
 export type CheckAccountNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const CheckAccountNameAvailabilityResponseReason =
-  /*@__PURE__*/ S.String;
+export const CheckAccountNameAvailabilityResponseReason = S.String;
 
 export interface CheckAccountNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
@@ -376,7 +375,7 @@ export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
 export type GetAccountQuotasRequestQuotaName =
   | "ScalableExecution"
   | "Reporting";
-export const GetAccountQuotasRequestQuotaName = /*@__PURE__*/ S.String;
+export const GetAccountQuotasRequestQuotaName = S.String;
 
 export interface GetAccountQuotasRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -472,7 +471,7 @@ export const GetAccountQuotasResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccountQuotasResponse>;
 
 export type GetQuotasRequestQuotaName = "ScalableExecution" | "Reporting";
-export const GetQuotasRequestQuotaName = /*@__PURE__*/ S.String;
+export const GetQuotasRequestQuotaName = S.String;
 
 export interface GetQuotasRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -505,7 +504,7 @@ export type FreeTrialState =
   | "Expired"
   | "NotEligible"
   | "NotRegistered";
-export const FreeTrialState = /*@__PURE__*/ S.String;
+export const FreeTrialState = S.String;
 
 /** The subscription quota resource free-trial properties. */
 export interface FreeTrialProperties {
@@ -529,7 +528,7 @@ export type OfferingType =
   | "PrivatePreview"
   | "PublicPreview"
   | "GeneralAvailability";
-export const OfferingType = /*@__PURE__*/ S.String;
+export const OfferingType = S.String;
 
 /** The subscription quota resource properties. */
 export interface QuotaProperties {
@@ -781,11 +780,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -907,7 +906,7 @@ export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** The enablement status of a feature. */
 export type EnablementStatus = "Enabled" | "Disabled";
-export const EnablementStatus = /*@__PURE__*/ S.String;
+export const EnablementStatus = S.String;
 
 /** The updatable properties of the Account. */
 export interface AccountUpdateProperties {

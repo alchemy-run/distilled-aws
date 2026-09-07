@@ -48,7 +48,7 @@ export type DataWarehouseTableFormatEnum =
   | "JSONEachRow"
   | "Delta"
   | "DeltaS3Wrapper";
-export const DataWarehouseTableFormatEnum = /*@__PURE__*/ S.String;
+export const DataWarehouseTableFormatEnum = S.String;
 
 export interface CredentialInput {
   /** Access key ID for the bucket the files live in (an AWS access key ID, a Google Cloud HMAC key, or the equivalent for another S3-compatible store). */
@@ -126,14 +126,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -170,7 +170,7 @@ export type DataWarehouseTableCreatedViaEnum =
   | "source"
   | "materialized_view"
   | "demo";
-export const DataWarehouseTableCreatedViaEnum = /*@__PURE__*/ S.String;
+export const DataWarehouseTableCreatedViaEnum = S.String;
 
 export interface CredentialOutput {
   id?: string;
@@ -1529,7 +1529,7 @@ export type ExternalDataSourceTypeEnum =
   | "Medusa"
   | "Membrain"
   | "RecallAI";
-export const ExternalDataSourceTypeEnum = /*@__PURE__*/ S.String;
+export const ExternalDataSourceTypeEnum = S.String;
 
 export interface SimpleExternalDataSourceSerializers {
   id?: string;
@@ -1620,7 +1620,7 @@ export type CheckTypeEnum =
   | "row_count"
   | "freshness"
   | "custom_sql";
-export const CheckTypeEnum = /*@__PURE__*/ S.String;
+export const CheckTypeEnum = S.String;
 
 /** Type-specific configuration, validated against the check type's JSON schema. */
 export type CreateWarehouseTablesCheckRequestConfigMap = {
@@ -1634,7 +1634,7 @@ export const CreateWarehouseTablesCheckRequestConfigMap =
 
 /** * `error` - error * `warn` - warn */
 export type DataQualityCheckSeverityEnum = "error" | "warn";
-export const DataQualityCheckSeverityEnum = /*@__PURE__*/ S.String;
+export const DataQualityCheckSeverityEnum = S.String;
 
 /** Free-form string labels for grouping and filtering. */
 export type CreateWarehouseTablesCheckRequestTagsList = Array<string>;
@@ -1644,7 +1644,7 @@ export const CreateWarehouseTablesCheckRequestTagsList = /*@__PURE__*/ S.Array(
 
 /** * `user` - user * `ai_generated` - ai_generated */
 export type CreatedSourceEnum = "user" | "ai_generated";
-export const CreatedSourceEnum = /*@__PURE__*/ S.String;
+export const CreatedSourceEnum = S.String;
 
 export interface CreateWarehouseTablesCheckRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1704,7 +1704,7 @@ export const CreateWarehouseTablesCheckRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `table` - table * `view` - view */
 export type SubjectTypeEnum = "table" | "view";
-export const SubjectTypeEnum = /*@__PURE__*/ S.String;
+export const SubjectTypeEnum = S.String;
 
 /** Type-specific configuration, validated against the check type's JSON schema. */
 export type DataQualityCheckConfigMap = { [key: string]: unknown | undefined };
@@ -2707,7 +2707,7 @@ export const WarehouseTablesChecksDestroyResponse = /*@__PURE__*/ S.suspend(
 
 /** * `csv` - csv * `json` - json * `parquet` - parquet */
 export type CreateTableFromUploadFileFormatEnum = "csv" | "json" | "parquet";
-export const CreateTableFromUploadFileFormatEnum = /*@__PURE__*/ S.String;
+export const CreateTableFromUploadFileFormatEnum = S.String;
 
 export interface WarehouseTablesCreateFromUploadCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2856,8 +2856,7 @@ export type WarehouseTablesUploadFileCreateRequestFileFormat =
   | "csv"
   | "json"
   | "parquet";
-export const WarehouseTablesUploadFileCreateRequestFileFormat =
-  /*@__PURE__*/ S.String;
+export const WarehouseTablesUploadFileCreateRequestFileFormat = S.String;
 
 export interface WarehouseTablesUploadFileCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

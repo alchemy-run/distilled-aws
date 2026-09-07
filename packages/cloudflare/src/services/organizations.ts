@@ -104,7 +104,7 @@ export const CreateMemberRequestMemberUser = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateMemberRequestMemberUser>;
 
 export type CreateMemberRequestMemberStatus = "active" | "canceled";
-export const CreateMemberRequestMemberStatus = /*@__PURE__*/ S.String;
+export const CreateMemberRequestMemberStatus = S.String;
 
 export interface CreateMemberRequestMember {
   user: CreateMemberRequestMemberUser;
@@ -149,7 +149,7 @@ export const CreateMemberResponseMetaMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CreateMemberResponseMetaMap>;
 
 export type CreateMemberResponseStatus = "active" | "canceled";
-export const CreateMemberResponseStatus = /*@__PURE__*/ S.String;
+export const CreateMemberResponseStatus = S.String;
 
 export interface CreateMemberResponseUser {
   id: string;
@@ -415,13 +415,13 @@ export const GetBillingUsageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBillingUsageRequest>;
 
 export type BillingUsageGetResultItemChargeCategory = "Usage";
-export const BillingUsageGetResultItemChargeCategory = /*@__PURE__*/ S.String;
+export const BillingUsageGetResultItemChargeCategory = S.String;
 
 export type BillingUsageGetResultItemChargeFrequency = "Usage-Based";
-export const BillingUsageGetResultItemChargeFrequency = /*@__PURE__*/ S.String;
+export const BillingUsageGetResultItemChargeFrequency = S.String;
 
 export type BillingUsageGetResultItemChargeClass = "Correction";
-export const BillingUsageGetResultItemChargeClass = /*@__PURE__*/ S.String;
+export const BillingUsageGetResultItemChargeClass = S.String;
 
 export interface BillingUsageGetResultItem {
   /** Public identifier of the Cloudflare account (account tag). */
@@ -601,7 +601,7 @@ export const GetMemberResponseMetaMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<GetMemberResponseMetaMap>;
 
 export type GetMemberResponseStatus = "active" | "canceled";
-export const GetMemberResponseStatus = /*@__PURE__*/ S.String;
+export const GetMemberResponseStatus = S.String;
 
 export type GetMemberResponseUser = CreateMemberResponseUser;
 export const GetMemberResponseUser = CreateMemberResponseUser;
@@ -723,7 +723,7 @@ export const GetOrganizationAccountRequestAccountPubname =
   }) as any as S.Schema<GetOrganizationAccountRequestAccountPubname>;
 
 export type GetOrganizationAccountRequestDirection = "asc" | "desc";
-export const GetOrganizationAccountRequestDirection = /*@__PURE__*/ S.String;
+export const GetOrganizationAccountRequestDirection = S.String;
 
 export interface GetOrganizationAccountRequestName {
   /** (case-insensitive) Filter the list of accounts to where the name contains a particular */
@@ -744,7 +744,7 @@ export const GetOrganizationAccountRequestName = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOrganizationAccountRequestName>;
 
 export type GetOrganizationAccountRequestOrderBy = "account_name";
-export const GetOrganizationAccountRequestOrderBy = /*@__PURE__*/ S.String;
+export const GetOrganizationAccountRequestOrderBy = S.String;
 
 export interface GetOrganizationAccountRequest {
   organizationId: string;
@@ -819,7 +819,7 @@ export const GetOrganizationAccountResultItemSettings = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetOrganizationAccountResultItemSettings>;
 
 export type GetOrganizationAccountResultItemType = "standard" | "enterprise";
-export const GetOrganizationAccountResultItemType = /*@__PURE__*/ S.String;
+export const GetOrganizationAccountResultItemType = S.String;
 
 export interface GetOrganizationAccountResultItem {
   id: string;
@@ -913,7 +913,7 @@ export const LogsAuditListRequestId = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LogsAuditListRequestId>;
 
 export type LogsAuditListRequestActionResultNotItem = "success" | "failure";
-export const LogsAuditListRequestActionResultNotItem = /*@__PURE__*/ S.String;
+export const LogsAuditListRequestActionResultNotItem = S.String;
 
 export type LogsAuditListRequestActionResultNotList = Array<
   LogsAuditListRequestActionResultNotItem | (string & {})
@@ -939,7 +939,7 @@ export type LogsAuditListRequestActionTypeNotItem =
   | "delete"
   | "view"
   | "update";
-export const LogsAuditListRequestActionTypeNotItem = /*@__PURE__*/ S.String;
+export const LogsAuditListRequestActionTypeNotItem = S.String;
 
 export type LogsAuditListRequestActionTypeNotList = Array<
   LogsAuditListRequestActionTypeNotItem | (string & {})
@@ -966,7 +966,7 @@ export type LogsAuditListRequestActorContextNotItem =
   | "dash"
   | "oauth"
   | "origin_ca_key";
-export const LogsAuditListRequestActorContextNotItem = /*@__PURE__*/ S.String;
+export const LogsAuditListRequestActorContextNotItem = S.String;
 
 export type LogsAuditListRequestActorContextNotList = Array<
   LogsAuditListRequestActorContextNotItem | (string & {})
@@ -1076,7 +1076,7 @@ export type LogsAuditListRequestActorTypeNotItem =
   | "cloudflare_admin"
   | "system"
   | "user";
-export const LogsAuditListRequestActorTypeNotItem = /*@__PURE__*/ S.String;
+export const LogsAuditListRequestActorTypeNotItem = S.String;
 
 export type LogsAuditListRequestActorTypeNotList = Array<
   LogsAuditListRequestActorTypeNotItem | (string & {})
@@ -1098,7 +1098,7 @@ export const LogsAuditListRequestActorType = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LogsAuditListRequestActorType>;
 
 export type LogsAuditListRequestDirection = "desc" | "asc";
-export const LogsAuditListRequestDirection = /*@__PURE__*/ S.String;
+export const LogsAuditListRequestDirection = S.String;
 
 export type LogsAuditListRequestRawCfRayIdNotList = Array<string>;
 export const LogsAuditListRequestRawCfRayIdNotList = /*@__PURE__*/ S.Array(
@@ -1203,7 +1203,7 @@ export const LogsAuditListRequestResourceProduct = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LogsAuditListRequestResourceProduct>;
 
 export type LogsAuditListRequestResourceScopeNotItem = "organizations";
-export const LogsAuditListRequestResourceScopeNotItem = /*@__PURE__*/ S.String;
+export const LogsAuditListRequestResourceScopeNotItem = S.String;
 
 export type LogsAuditListRequestResourceScopeNotList = Array<
   LogsAuditListRequestResourceScopeNotItem | (string & {})
@@ -1424,13 +1424,13 @@ export type LogsAuditListResultItemActorContext =
   | "dash"
   | "oauth"
   | "origin_ca_key";
-export const LogsAuditListResultItemActorContext = /*@__PURE__*/ S.String;
+export const LogsAuditListResultItemActorContext = S.String;
 
 export type LogsAuditListResultItemActorType =
   | "cloudflare_admin"
   | "system"
   | "user";
-export const LogsAuditListResultItemActorType = /*@__PURE__*/ S.String;
+export const LogsAuditListResultItemActorType = S.String;
 
 export interface LogsAuditListResultItemActor {
   /** The ID of the actor who performed the action. If a user performed the action, this will be their User ID. */
@@ -1570,7 +1570,7 @@ export const ListLogAuditsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListLogAuditsResponse>;
 
 export type ListMembersRequestStatus = "active" | "canceled";
-export const ListMembersRequestStatus = /*@__PURE__*/ S.String;
+export const ListMembersRequestStatus = S.String;
 
 export type ListMembersRequestStatusList = Array<
   ListMembersRequestStatus | (string & {})
@@ -1630,7 +1630,7 @@ export const ListMembersResultItemMetaMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<ListMembersResultItemMetaMap>;
 
 export type ListMembersResultItemStatus = "active" | "canceled";
-export const ListMembersResultItemStatus = /*@__PURE__*/ S.String;
+export const ListMembersResultItemStatus = S.String;
 
 export type ListMembersResultItemUser = CreateMemberResponseUser;
 export const ListMembersResultItemUser = CreateMemberResponseUser;

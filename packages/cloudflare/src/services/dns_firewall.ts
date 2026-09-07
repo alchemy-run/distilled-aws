@@ -428,8 +428,7 @@ export type AnalyticsReportsBytimesGetRequestTimeDelta =
   | "hour"
   | "dekaminute"
   | "minute";
-export const AnalyticsReportsBytimesGetRequestTimeDelta =
-  /*@__PURE__*/ S.String;
+export const AnalyticsReportsBytimesGetRequestTimeDelta = S.String;
 
 export interface GetAnalyticReportBytimeRequest {
   /** Identifier. */
@@ -547,8 +546,7 @@ export type AnalyticsReportsBytimesGetResponseQueryTimeDelta =
   | "hour"
   | "dekaminute"
   | "minute";
-export const AnalyticsReportsBytimesGetResponseQueryTimeDelta =
-  /*@__PURE__*/ S.String;
+export const AnalyticsReportsBytimesGetResponseQueryTimeDelta = S.String;
 
 export type AnalyticsReportsBytimesGetResponseQuerySortList = Array<string>;
 export const AnalyticsReportsBytimesGetResponseQuerySortList =

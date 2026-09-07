@@ -277,7 +277,7 @@ export const CancelLifecycleExecutionResponse = /*@__PURE__*/ S.suspend(() =>
 export type ResourceName = string;
 export type VersionNumber = string;
 export type Platform = "Windows" | "Linux" | "macOS" | (string & {});
-export const Platform = /*@__PURE__*/ S.String;
+export const Platform = S.String;
 
 export type OsVersion = string;
 export type OsVersionList = string[];
@@ -367,7 +367,7 @@ export const CreateComponentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateComponentResponse",
 }) as any as S.Schema<CreateComponentResponse>;
 export type ContainerType = "DOCKER" | (string & {});
-export const ContainerType = /*@__PURE__*/ S.String;
+export const ContainerType = S.String;
 
 export type WildcardVersionNumber = string;
 export type ComponentVersionArnOrBuildVersionArn = string;
@@ -413,7 +413,7 @@ export type EbsVolumeType =
   | "sc1"
   | "st1"
   | (string & {});
-export const EbsVolumeType = /*@__PURE__*/ S.String;
+export const EbsVolumeType = S.String;
 
 export type EbsVolumeThroughput = number;
 export interface EbsInstanceBlockDeviceSpecification {
@@ -475,7 +475,7 @@ export const InstanceConfiguration = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InstanceConfiguration>;
 export type InlineDockerFileTemplate = string;
 export type ContainerRepositoryService = "ECR" | (string & {});
-export const ContainerRepositoryService = /*@__PURE__*/ S.String;
+export const ContainerRepositoryService = S.String;
 
 export interface TargetContainerRepository {
   service: ContainerRepositoryService;
@@ -637,7 +637,7 @@ export const LaunchTemplateConfigurationList = /*@__PURE__*/ S.Array(
   LaunchTemplateConfiguration,
 );
 export type DiskImageFormat = "VMDK" | "RAW" | "VHD" | (string & {});
-export const DiskImageFormat = /*@__PURE__*/ S.String;
+export const DiskImageFormat = S.String;
 
 export interface S3ExportConfiguration {
   roleName: string;
@@ -704,7 +704,7 @@ export const FastLaunchConfigurationList = /*@__PURE__*/ S.Array(
 );
 export type SsmParameterName = string;
 export type SsmParameterDataType = "text" | "aws:ec2:image" | (string & {});
-export const SsmParameterDataType = /*@__PURE__*/ S.String;
+export const SsmParameterDataType = S.String;
 
 export interface SsmParameterConfiguration {
   amiAccountId?: string;
@@ -851,7 +851,7 @@ export type WorkflowParameterList = WorkflowParameter[];
 export const WorkflowParameterList = /*@__PURE__*/ S.Array(WorkflowParameter);
 export type ParallelGroup = string;
 export type OnWorkflowFailure = "CONTINUE" | "ABORT" | (string & {});
-export const OnWorkflowFailure = /*@__PURE__*/ S.String;
+export const OnWorkflowFailure = S.String;
 
 export interface WorkflowConfiguration {
   workflowArn: string;
@@ -945,7 +945,7 @@ export type PipelineExecutionStartCondition =
   | "EXPRESSION_MATCH_ONLY"
   | "EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE"
   | (string & {});
-export const PipelineExecutionStartCondition = /*@__PURE__*/ S.String;
+export const PipelineExecutionStartCondition = S.String;
 
 export type AutoDisableFailureCount = number;
 export interface AutoDisablePolicy {
@@ -973,7 +973,7 @@ export const Schedule = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Schedule" }) as any as S.Schema<Schedule>;
 export type PipelineStatus = "DISABLED" | "ENABLED" | (string & {});
-export const PipelineStatus = /*@__PURE__*/ S.String;
+export const PipelineStatus = S.String;
 
 export interface PipelineLoggingConfiguration {
   imageLogGroupName?: string;
@@ -1179,7 +1179,7 @@ export const InstanceMetadataOptions = /*@__PURE__*/ S.suspend(() =>
   identifier: "InstanceMetadataOptions",
 }) as any as S.Schema<InstanceMetadataOptions>;
 export type TenancyType = "default" | "dedicated" | "host" | (string & {});
-export const TenancyType = /*@__PURE__*/ S.String;
+export const TenancyType = S.String;
 
 export interface Placement {
   availabilityZone?: string;
@@ -1259,20 +1259,20 @@ export const CreateInfrastructureConfigurationResponse =
     identifier: "CreateInfrastructureConfigurationResponse",
   }) as any as S.Schema<CreateInfrastructureConfigurationResponse>;
 export type LifecyclePolicyStatus = "DISABLED" | "ENABLED" | (string & {});
-export const LifecyclePolicyStatus = /*@__PURE__*/ S.String;
+export const LifecyclePolicyStatus = S.String;
 
 export type LifecyclePolicyResourceType =
   | "AMI_IMAGE"
   | "CONTAINER_IMAGE"
   | (string & {});
-export const LifecyclePolicyResourceType = /*@__PURE__*/ S.String;
+export const LifecyclePolicyResourceType = S.String;
 
 export type LifecyclePolicyDetailActionType =
   | "DELETE"
   | "DEPRECATE"
   | "DISABLE"
   | (string & {});
-export const LifecyclePolicyDetailActionType = /*@__PURE__*/ S.String;
+export const LifecyclePolicyDetailActionType = S.String;
 
 export interface LifecyclePolicyDetailActionIncludeResources {
   amis?: boolean;
@@ -1302,7 +1302,7 @@ export const LifecyclePolicyDetailAction = /*@__PURE__*/ S.suspend(() =>
   identifier: "LifecyclePolicyDetailAction",
 }) as any as S.Schema<LifecyclePolicyDetailAction>;
 export type LifecyclePolicyDetailFilterType = "AGE" | "COUNT" | (string & {});
-export const LifecyclePolicyDetailFilterType = /*@__PURE__*/ S.String;
+export const LifecyclePolicyDetailFilterType = S.String;
 
 export type LifecyclePolicyDetailFilterValue = number;
 export type LifecyclePolicyTimeUnit =
@@ -1311,7 +1311,7 @@ export type LifecyclePolicyTimeUnit =
   | "MONTHS"
   | "YEARS"
   | (string & {});
-export const LifecyclePolicyTimeUnit = /*@__PURE__*/ S.String;
+export const LifecyclePolicyTimeUnit = S.String;
 
 export type LifecyclePolicyDetailFilterRetainAtLeast = number;
 export interface LifecyclePolicyDetailFilter {
@@ -1468,7 +1468,7 @@ export const CreateLifecyclePolicyResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateLifecyclePolicyResponse>;
 export type InlineWorkflowData = string;
 export type WorkflowType = "BUILD" | "TEST" | "DISTRIBUTION" | (string & {});
-export const WorkflowType = /*@__PURE__*/ S.String;
+export const WorkflowType = S.String;
 
 export interface CreateWorkflowRequest {
   name: string;
@@ -1870,14 +1870,14 @@ export const GetComponentRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetComponentRequest",
 }) as any as S.Schema<GetComponentRequest>;
 export type ComponentType = "BUILD" | "TEST" | (string & {});
-export const ComponentType = /*@__PURE__*/ S.String;
+export const ComponentType = S.String;
 
 export type ComponentStatus =
   | "DEPRECATED"
   | "DISABLED"
   | "ACTIVE"
   | (string & {});
-export const ComponentStatus = /*@__PURE__*/ S.String;
+export const ComponentStatus = S.String;
 
 export interface ComponentState {
   status?: ComponentStatus;
@@ -1914,7 +1914,7 @@ export const ComponentParameterDetailList = /*@__PURE__*/ S.Array(
 export type ComponentData = string;
 export type ProductCodeId = string;
 export type ProductCodeType = "marketplace" | (string & {});
-export const ProductCodeType = /*@__PURE__*/ S.String;
+export const ProductCodeType = S.String;
 
 export interface ProductCodeListItem {
   productCodeId: string;
@@ -2196,7 +2196,7 @@ export const GetImageRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetImageRequest",
 }) as any as S.Schema<GetImageRequest>;
 export type ImageType = "AMI" | "DOCKER" | (string & {});
-export const ImageType = /*@__PURE__*/ S.String;
+export const ImageType = S.String;
 
 export type ImageStatus =
   | "PENDING"
@@ -2212,7 +2212,7 @@ export type ImageStatus =
   | "DELETED"
   | "DISABLED"
   | (string & {});
-export const ImageStatus = /*@__PURE__*/ S.String;
+export const ImageStatus = S.String;
 
 export interface ImageState {
   status?: ImageStatus;
@@ -2351,7 +2351,7 @@ export type BuildType =
   | "IMPORT"
   | "IMPORT_ISO"
   | (string & {});
-export const BuildType = /*@__PURE__*/ S.String;
+export const BuildType = S.String;
 
 export type ImageSource =
   | "AMAZON_MANAGED"
@@ -2359,7 +2359,7 @@ export type ImageSource =
   | "IMPORTED"
   | "CUSTOM"
   | (string & {});
-export const ImageSource = /*@__PURE__*/ S.String;
+export const ImageSource = S.String;
 
 export type ImageScanStatus =
   | "PENDING"
@@ -2370,7 +2370,7 @@ export type ImageScanStatus =
   | "FAILED"
   | "TIMED_OUT"
   | (string & {});
-export const ImageScanStatus = /*@__PURE__*/ S.String;
+export const ImageScanStatus = S.String;
 
 export interface ImageScanState {
   status?: ImageScanStatus;
@@ -2703,7 +2703,7 @@ export type LifecycleExecutionStatus =
   | "SUCCESS"
   | "PENDING"
   | (string & {});
-export const LifecycleExecutionStatus = /*@__PURE__*/ S.String;
+export const LifecycleExecutionStatus = S.String;
 
 export interface LifecycleExecutionState {
   status?: LifecycleExecutionStatus;
@@ -2810,7 +2810,7 @@ export type MarketplaceResourceType =
   | "COMPONENT_DATA"
   | "COMPONENT_ARTIFACT"
   | (string & {});
-export const MarketplaceResourceType = /*@__PURE__*/ S.String;
+export const MarketplaceResourceType = S.String;
 
 export type MarketplaceResourceLocation = string;
 export interface GetMarketplaceResourceRequest {
@@ -2872,7 +2872,7 @@ export const GetWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetWorkflowRequest",
 }) as any as S.Schema<GetWorkflowRequest>;
 export type WorkflowStatus = "DEPRECATED" | (string & {});
-export const WorkflowStatus = /*@__PURE__*/ S.String;
+export const WorkflowStatus = S.String;
 
 export interface WorkflowState {
   status?: WorkflowStatus;
@@ -2981,7 +2981,7 @@ export type WorkflowExecutionStatus =
   | "ROLLBACK_COMPLETED"
   | "CANCELLED"
   | (string & {});
-export const WorkflowExecutionStatus = /*@__PURE__*/ S.String;
+export const WorkflowExecutionStatus = S.String;
 
 export type WorkflowExecutionMessage = string;
 export type WorkflowStepCount = number;
@@ -3052,7 +3052,7 @@ export type WorkflowStepExecutionStatus =
   | "FAILED"
   | "CANCELLED"
   | (string & {});
-export const WorkflowStepExecutionStatus = /*@__PURE__*/ S.String;
+export const WorkflowStepExecutionStatus = S.String;
 
 export type WorkflowStepExecutionRollbackStatus =
   | "RUNNING"
@@ -3060,7 +3060,7 @@ export type WorkflowStepExecutionRollbackStatus =
   | "SKIPPED"
   | "FAILED"
   | (string & {});
-export const WorkflowStepExecutionRollbackStatus = /*@__PURE__*/ S.String;
+export const WorkflowStepExecutionRollbackStatus = S.String;
 
 export type WorkflowStepMessage = string;
 export type WorkflowStepInputs = string;
@@ -3109,7 +3109,7 @@ export const GetWorkflowStepExecutionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetWorkflowStepExecutionResponse",
 }) as any as S.Schema<GetWorkflowStepExecutionResponse>;
 export type ComponentFormat = "SHELL" | (string & {});
-export const ComponentFormat = /*@__PURE__*/ S.String;
+export const ComponentFormat = S.String;
 
 export interface ImportComponentRequest {
   name: string;
@@ -3377,7 +3377,7 @@ export type Ownership =
   | "ThirdParty"
   | "AWSMarketplace"
   | (string & {});
-export const Ownership = /*@__PURE__*/ S.String;
+export const Ownership = S.String;
 
 export type FilterName = string;
 export type FilterValue = string;
@@ -4412,7 +4412,7 @@ export type LifecycleExecutionResourceStatus =
   | "SKIPPED"
   | "SUCCESS"
   | (string & {});
-export const LifecycleExecutionResourceStatus = /*@__PURE__*/ S.String;
+export const LifecycleExecutionResourceStatus = S.String;
 
 export interface LifecycleExecutionResourceState {
   status?: LifecycleExecutionResourceStatus;
@@ -4432,7 +4432,7 @@ export type LifecycleExecutionResourceActionName =
   | "DEPRECATE"
   | "DISABLE"
   | (string & {});
-export const LifecycleExecutionResourceActionName = /*@__PURE__*/ S.String;
+export const LifecycleExecutionResourceActionName = S.String;
 
 export interface LifecycleExecutionResourceAction {
   name?: LifecycleExecutionResourceActionName;
@@ -5139,7 +5139,7 @@ export const RetryImageResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RetryImageResponse",
 }) as any as S.Schema<RetryImageResponse>;
 export type WorkflowStepActionType = "RESUME" | "STOP" | (string & {});
-export const WorkflowStepActionType = /*@__PURE__*/ S.String;
+export const WorkflowStepActionType = S.String;
 
 export interface SendWorkflowStepActionRequest {
   stepExecutionId: string;
@@ -5225,7 +5225,7 @@ export type ResourceStatus =
   | "DEPRECATED"
   | "DISABLED"
   | (string & {});
-export const ResourceStatus = /*@__PURE__*/ S.String;
+export const ResourceStatus = S.String;
 
 export interface ResourceState {
   status?: ResourceStatus;

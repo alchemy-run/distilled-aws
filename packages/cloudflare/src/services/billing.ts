@@ -247,13 +247,13 @@ export const GetUsageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetUsageRequest>;
 
 export type UsageGetResultItemChargeCategory = "Usage";
-export const UsageGetResultItemChargeCategory = /*@__PURE__*/ S.String;
+export const UsageGetResultItemChargeCategory = S.String;
 
 export type UsageGetResultItemChargeFrequency = "Usage-Based";
-export const UsageGetResultItemChargeFrequency = /*@__PURE__*/ S.String;
+export const UsageGetResultItemChargeFrequency = S.String;
 
 export type UsageGetResultItemChargeClass = "Correction";
-export const UsageGetResultItemChargeClass = /*@__PURE__*/ S.String;
+export const UsageGetResultItemChargeClass = S.String;
 
 export interface UsageGetResultItem {
   /** Public identifier of the Cloudflare account (account tag). */

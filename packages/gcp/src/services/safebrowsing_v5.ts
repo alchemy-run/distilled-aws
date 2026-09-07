@@ -182,7 +182,7 @@ export type GoogleSecuritySafebrowsingV5HashListMetadataHashLengthEnum =
   | "SIXTEEN_BYTES"
   | "THIRTY_TWO_BYTES";
 export const GoogleSecuritySafebrowsingV5HashListMetadataHashLengthEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV5HashListMetadataLikelySafeTypesItemEnum =
   | "LIKELY_SAFE_TYPE_UNSPECIFIED"
@@ -190,7 +190,7 @@ export type GoogleSecuritySafebrowsingV5HashListMetadataLikelySafeTypesItemEnum 
   | "CSD"
   | "DOWNLOAD";
 export const GoogleSecuritySafebrowsingV5HashListMetadataLikelySafeTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV5HashListMetadataLikelySafeTypesItemEnumList =
   Array<GoogleSecuritySafebrowsingV5HashListMetadataLikelySafeTypesItemEnum>;
@@ -206,7 +206,7 @@ export type GoogleSecuritySafebrowsingV5HashListMetadataThreatTypesItemEnum =
   | "UNWANTED_SOFTWARE"
   | "POTENTIALLY_HARMFUL_APPLICATION";
 export const GoogleSecuritySafebrowsingV5HashListMetadataThreatTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV5HashListMetadataThreatTypesItemEnumList =
   Array<GoogleSecuritySafebrowsingV5HashListMetadataThreatTypesItemEnum>;
@@ -408,14 +408,14 @@ export type GoogleSecuritySafebrowsingV5FullHashFullHashDetailThreatTypeEnum =
   | "UNWANTED_SOFTWARE"
   | "POTENTIALLY_HARMFUL_APPLICATION";
 export const GoogleSecuritySafebrowsingV5FullHashFullHashDetailThreatTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV5FullHashFullHashDetailAttributesItemEnum =
   | "THREAT_ATTRIBUTE_UNSPECIFIED"
   | "CANARY"
   | "FRAME_ONLY";
 export const GoogleSecuritySafebrowsingV5FullHashFullHashDetailAttributesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV5FullHashFullHashDetailAttributesItemEnumList =
   Array<GoogleSecuritySafebrowsingV5FullHashFullHashDetailAttributesItemEnum>;
@@ -519,7 +519,7 @@ export type GoogleSecuritySafebrowsingV5ThreatUrlThreatTypesItemEnum =
   | "UNWANTED_SOFTWARE"
   | "POTENTIALLY_HARMFUL_APPLICATION";
 export const GoogleSecuritySafebrowsingV5ThreatUrlThreatTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV5ThreatUrlThreatTypesItemEnumList =
   Array<GoogleSecuritySafebrowsingV5ThreatUrlThreatTypesItemEnum>;

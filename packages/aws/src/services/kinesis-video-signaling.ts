@@ -124,7 +124,7 @@ export class SessionExpiredException
 export type ResourceARN = string;
 export type ClientId = string;
 export type Service = "TURN" | (string & {});
-export const Service = /*@__PURE__*/ S.String;
+export const Service = S.String;
 
 export type Username = string;
 export interface GetIceServerConfigRequest {

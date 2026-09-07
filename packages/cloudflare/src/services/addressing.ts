@@ -257,8 +257,7 @@ export const AddressMapsCreateRequestIpsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<AddressMapsCreateRequestIpsList>;
 
 export type AddressMapsCreateRequestMembershipsItemKind = "zone" | "account";
-export const AddressMapsCreateRequestMembershipsItemKind =
-  /*@__PURE__*/ S.String;
+export const AddressMapsCreateRequestMembershipsItemKind = S.String;
 
 export interface AddressMapsCreateRequestMembershipsItem {
   /** The identifier for the membership (eg. a zone or account tag). */
@@ -334,8 +333,7 @@ export const AddressMapsCreateResponseIpsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<AddressMapsCreateResponseIpsList>;
 
 export type AddressMapsCreateResponseMembershipsItemKind = "zone" | "account";
-export const AddressMapsCreateResponseMembershipsItemKind =
-  /*@__PURE__*/ S.String;
+export const AddressMapsCreateResponseMembershipsItemKind = S.String;
 
 export interface AddressMapsCreateResponseMembershipsItem {
   /** Controls whether the membership can be deleted via the API or not. */
@@ -782,8 +780,7 @@ export const CreatePrefixServiceBindingRequest = /*@__PURE__*/ S.suspend(() =>
 export type PrefixesServiceBindingsCreateResponseProvisioningState =
   | "provisioning"
   | "active";
-export const PrefixesServiceBindingsCreateResponseProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrefixesServiceBindingsCreateResponseProvisioningState = S.String;
 
 export interface PrefixesServiceBindingsCreateResponseProvisioning {
   /** When a binding has been deployed to a majority of Cloudflare datacenters, the binding will become active and can be used with its associated service. */
@@ -1171,7 +1168,7 @@ export const AddressMapsGetResponseIpsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<AddressMapsGetResponseIpsList>;
 
 export type AddressMapsGetResponseMembershipsItemKind = "zone" | "account";
-export const AddressMapsGetResponseMembershipsItemKind = /*@__PURE__*/ S.String;
+export const AddressMapsGetResponseMembershipsItemKind = S.String;
 
 export interface AddressMapsGetResponseMembershipsItem {
   /** Controls whether the membership can be deleted via the API or not. */
@@ -1525,8 +1522,7 @@ export const GetPrefixServiceBindingRequest = /*@__PURE__*/ S.suspend(() =>
 export type PrefixesServiceBindingsGetResponseProvisioningState =
   | "provisioning"
   | "active";
-export const PrefixesServiceBindingsGetResponseProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrefixesServiceBindingsGetResponseProvisioningState = S.String;
 
 export interface PrefixesServiceBindingsGetResponseProvisioning {
   /** When a binding has been deployed to a majority of Cloudflare datacenters, the binding will become active and can be used with its associated service. */
@@ -2004,8 +2000,7 @@ export const ListPrefixServiceBindingsRequest = /*@__PURE__*/ S.suspend(() =>
 export type PrefixesServiceBindingsListResultItemProvisioningState =
   | "provisioning"
   | "active";
-export const PrefixesServiceBindingsListResultItemProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrefixesServiceBindingsListResultItemProvisioningState = S.String;
 
 export interface PrefixesServiceBindingsListResultItemProvisioning {
   /** When a binding has been deployed to a majority of Cloudflare datacenters, the binding will become active and can be used with its associated service. */

@@ -155,7 +155,7 @@ export const BeginVerificationSsoResponse = /*@__PURE__*/ S.suspend(() =>
 export type OauthClientsCreateRequestGrantTypesItem =
   | "authorization_code"
   | "refresh_token";
-export const OauthClientsCreateRequestGrantTypesItem = /*@__PURE__*/ S.String;
+export const OauthClientsCreateRequestGrantTypesItem = S.String;
 
 export type OauthClientsCreateRequestGrantTypesList = Array<
   OauthClientsCreateRequestGrantTypesItem | (string & {})
@@ -173,8 +173,7 @@ export type OauthClientsCreateRequestResponseTypesItem =
   | "token"
   | "id_token"
   | "code";
-export const OauthClientsCreateRequestResponseTypesItem =
-  /*@__PURE__*/ S.String;
+export const OauthClientsCreateRequestResponseTypesItem = S.String;
 
 export type OauthClientsCreateRequestResponseTypesList = Array<
   OauthClientsCreateRequestResponseTypesItem | (string & {})
@@ -192,8 +191,7 @@ export type OauthClientsCreateRequestTokenEndpointAuthMethod =
   | "none"
   | "client_secret_basic"
   | "client_secret_post";
-export const OauthClientsCreateRequestTokenEndpointAuthMethod =
-  /*@__PURE__*/ S.String;
+export const OauthClientsCreateRequestTokenEndpointAuthMethod = S.String;
 
 export type OauthClientsCreateRequestAllowedCorsOriginsList = Array<string>;
 export const OauthClientsCreateRequestAllowedCorsOriginsList =
@@ -283,7 +281,7 @@ export const CreateOauthClientRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateOauthClientRequest>;
 
 export type OauthClientsCreateResponseVisibility = "public" | "private";
-export const OauthClientsCreateResponseVisibility = /*@__PURE__*/ S.String;
+export const OauthClientsCreateResponseVisibility = S.String;
 
 export type OauthClientsCreateResponseAllowedCorsOriginsList = Array<string>;
 export const OauthClientsCreateResponseAllowedCorsOriginsList =
@@ -296,8 +294,7 @@ export type OauthClientsCreateResponseClientUriVerificationStatus =
   | "in_progress"
   | "verified"
   | "failed";
-export const OauthClientsCreateResponseClientUriVerificationStatus =
-  /*@__PURE__*/ S.String;
+export const OauthClientsCreateResponseClientUriVerificationStatus = S.String;
 
 export interface OauthClientsCreateResponseClientUriVerification {
   /** Current verification status for the client URI host. */
@@ -320,7 +317,7 @@ export const OauthClientsCreateResponseClientUriVerification =
 export type OauthClientsCreateResponseGrantTypesItem =
   | "authorization_code"
   | "refresh_token";
-export const OauthClientsCreateResponseGrantTypesItem = /*@__PURE__*/ S.String;
+export const OauthClientsCreateResponseGrantTypesItem = S.String;
 
 export type OauthClientsCreateResponseGrantTypesList =
   Array<OauthClientsCreateResponseGrantTypesItem>;
@@ -344,8 +341,7 @@ export type OauthClientsCreateResponseResponseTypesItem =
   | "token"
   | "id_token"
   | "code";
-export const OauthClientsCreateResponseResponseTypesItem =
-  /*@__PURE__*/ S.String;
+export const OauthClientsCreateResponseResponseTypesItem = S.String;
 
 export type OauthClientsCreateResponseResponseTypesList =
   Array<OauthClientsCreateResponseResponseTypesItem>;
@@ -363,8 +359,7 @@ export type OauthClientsCreateResponseTokenEndpointAuthMethod =
   | "none"
   | "client_secret_basic"
   | "client_secret_post";
-export const OauthClientsCreateResponseTokenEndpointAuthMethod =
-  /*@__PURE__*/ S.String;
+export const OauthClientsCreateResponseTokenEndpointAuthMethod = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateOauthClientResponse {
@@ -632,7 +627,7 @@ export type SsoCreateResponseVerificationStatus =
   | "pending"
   | "failed"
   | "verified";
-export const SsoCreateResponseVerificationStatus = /*@__PURE__*/ S.String;
+export const SsoCreateResponseVerificationStatus = S.String;
 
 export interface SsoCreateResponseVerification {
   /** DNS verification code. Add this entire string to the DNS TXT record of the email domain to validate ownership. */
@@ -680,7 +675,7 @@ export const CreateSsoResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSsoResponse>;
 
 export type UserGroupsCreateRequestPoliciesItemAccess = "allow" | "deny";
-export const UserGroupsCreateRequestPoliciesItemAccess = /*@__PURE__*/ S.String;
+export const UserGroupsCreateRequestPoliciesItemAccess = S.String;
 
 export interface UserGroupsCreateRequestPoliciesItemPermissionGroupsItem {
   /** Permission Group identifier tag. */
@@ -778,8 +773,7 @@ export const CreateUserGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateUserGroupRequest>;
 
 export type UserGroupsCreateResponsePoliciesItemAccess = "allow" | "deny";
-export const UserGroupsCreateResponsePoliciesItemAccess =
-  /*@__PURE__*/ S.String;
+export const UserGroupsCreateResponsePoliciesItemAccess = S.String;
 
 export type UserGroupsCreateResponsePoliciesItemPermissionGroupsItemMeta =
   ResourceGroupsCreateResponseMeta;
@@ -989,7 +983,7 @@ export const CreateUserGroupMemberRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateUserGroupMemberRequest>;
 
 export type UserGroupsMembersCreateResultItemStatus = "accepted" | "pending";
-export const UserGroupsMembersCreateResultItemStatus = /*@__PURE__*/ S.String;
+export const UserGroupsMembersCreateResultItemStatus = S.String;
 
 export interface UserGroupsMembersCreateResultItem {
   /** Account member identifier. */
@@ -1239,7 +1233,7 @@ export const DeleteUserGroupMemberRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteUserGroupMemberRequest>;
 
 export type UserGroupsMembersDeleteResponseStatus = "accepted" | "pending";
-export const UserGroupsMembersDeleteResponseStatus = /*@__PURE__*/ S.String;
+export const UserGroupsMembersDeleteResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeleteUserGroupMemberResponse {
@@ -1284,7 +1278,7 @@ export const GetOauthClientRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOauthClientRequest>;
 
 export type OauthClientsGetResponseVisibility = "public" | "private";
-export const OauthClientsGetResponseVisibility = /*@__PURE__*/ S.String;
+export const OauthClientsGetResponseVisibility = S.String;
 
 export type OauthClientsGetResponseAllowedCorsOriginsList = Array<string>;
 export const OauthClientsGetResponseAllowedCorsOriginsList =
@@ -1297,8 +1291,7 @@ export type OauthClientsGetResponseClientUriVerificationStatus =
   | "in_progress"
   | "verified"
   | "failed";
-export const OauthClientsGetResponseClientUriVerificationStatus =
-  /*@__PURE__*/ S.String;
+export const OauthClientsGetResponseClientUriVerificationStatus = S.String;
 
 export interface OauthClientsGetResponseClientUriVerification {
   /** Current verification status for the client URI host. */
@@ -1321,7 +1314,7 @@ export const OauthClientsGetResponseClientUriVerification =
 export type OauthClientsGetResponseGrantTypesItem =
   | "authorization_code"
   | "refresh_token";
-export const OauthClientsGetResponseGrantTypesItem = /*@__PURE__*/ S.String;
+export const OauthClientsGetResponseGrantTypesItem = S.String;
 
 export type OauthClientsGetResponseGrantTypesList =
   Array<OauthClientsGetResponseGrantTypesItem>;
@@ -1344,7 +1337,7 @@ export type OauthClientsGetResponseResponseTypesItem =
   | "token"
   | "id_token"
   | "code";
-export const OauthClientsGetResponseResponseTypesItem = /*@__PURE__*/ S.String;
+export const OauthClientsGetResponseResponseTypesItem = S.String;
 
 export type OauthClientsGetResponseResponseTypesList =
   Array<OauthClientsGetResponseResponseTypesItem>;
@@ -1361,8 +1354,7 @@ export type OauthClientsGetResponseTokenEndpointAuthMethod =
   | "none"
   | "client_secret_basic"
   | "client_secret_post";
-export const OauthClientsGetResponseTokenEndpointAuthMethod =
-  /*@__PURE__*/ S.String;
+export const OauthClientsGetResponseTokenEndpointAuthMethod = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetOauthClientResponse {
@@ -1613,7 +1605,7 @@ export type SsoGetResponseVerificationStatus =
   | "pending"
   | "failed"
   | "verified";
-export const SsoGetResponseVerificationStatus = /*@__PURE__*/ S.String;
+export const SsoGetResponseVerificationStatus = S.String;
 
 export interface SsoGetResponseVerification {
   /** DNS verification code. Add this entire string to the DNS TXT record of the email domain to validate ownership. */
@@ -1682,7 +1674,7 @@ export const GetUserGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetUserGroupRequest>;
 
 export type UserGroupsGetResponsePoliciesItemAccess = "allow" | "deny";
-export const UserGroupsGetResponsePoliciesItemAccess = /*@__PURE__*/ S.String;
+export const UserGroupsGetResponsePoliciesItemAccess = S.String;
 
 export type UserGroupsGetResponsePoliciesItemPermissionGroupsItemMeta =
   ResourceGroupsCreateResponseMeta;
@@ -1858,7 +1850,7 @@ export const GetUserGroupMemberRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetUserGroupMemberRequest>;
 
 export type UserGroupsMembersGetResponseStatus = "accepted" | "pending";
-export const UserGroupsMembersGetResponseStatus = /*@__PURE__*/ S.String;
+export const UserGroupsMembersGetResponseStatus = S.String;
 
 export interface UserGroupsMembersGetResponseUser {
   /** User identifier tag. */
@@ -1927,7 +1919,7 @@ export const ListOauthClientsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOauthClientsRequest>;
 
 export type OauthClientsListResultItemVisibility = "public" | "private";
-export const OauthClientsListResultItemVisibility = /*@__PURE__*/ S.String;
+export const OauthClientsListResultItemVisibility = S.String;
 
 export type OauthClientsListResultItemAllowedCorsOriginsList = Array<string>;
 export const OauthClientsListResultItemAllowedCorsOriginsList =
@@ -1940,8 +1932,7 @@ export type OauthClientsListResultItemClientUriVerificationStatus =
   | "in_progress"
   | "verified"
   | "failed";
-export const OauthClientsListResultItemClientUriVerificationStatus =
-  /*@__PURE__*/ S.String;
+export const OauthClientsListResultItemClientUriVerificationStatus = S.String;
 
 export interface OauthClientsListResultItemClientUriVerification {
   /** Current verification status for the client URI host. */
@@ -1964,7 +1955,7 @@ export const OauthClientsListResultItemClientUriVerification =
 export type OauthClientsListResultItemGrantTypesItem =
   | "authorization_code"
   | "refresh_token";
-export const OauthClientsListResultItemGrantTypesItem = /*@__PURE__*/ S.String;
+export const OauthClientsListResultItemGrantTypesItem = S.String;
 
 export type OauthClientsListResultItemGrantTypesList =
   Array<OauthClientsListResultItemGrantTypesItem>;
@@ -1988,8 +1979,7 @@ export type OauthClientsListResultItemResponseTypesItem =
   | "token"
   | "id_token"
   | "code";
-export const OauthClientsListResultItemResponseTypesItem =
-  /*@__PURE__*/ S.String;
+export const OauthClientsListResultItemResponseTypesItem = S.String;
 
 export type OauthClientsListResultItemResponseTypesList =
   Array<OauthClientsListResultItemResponseTypesItem>;
@@ -2007,8 +1997,7 @@ export type OauthClientsListResultItemTokenEndpointAuthMethod =
   | "none"
   | "client_secret_basic"
   | "client_secret_post";
-export const OauthClientsListResultItemTokenEndpointAuthMethod =
-  /*@__PURE__*/ S.String;
+export const OauthClientsListResultItemTokenEndpointAuthMethod = S.String;
 
 export interface OauthClientsListResultItem {
   /** The unique identifier for an OAuth client. */
@@ -2377,7 +2366,7 @@ export type SsoListResultItemVerificationStatus =
   | "pending"
   | "failed"
   | "verified";
-export const SsoListResultItemVerificationStatus = /*@__PURE__*/ S.String;
+export const SsoListResultItemVerificationStatus = S.String;
 
 export interface SsoListResultItemVerification {
   /** DNS verification code. Add this entire string to the DNS TXT record of the email domain to validate ownership. */
@@ -2444,7 +2433,7 @@ export const ListSsosResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListSsosResponse>;
 
 export type UserGroupsMembersListRequestDirection = "asc" | "desc";
-export const UserGroupsMembersListRequestDirection = /*@__PURE__*/ S.String;
+export const UserGroupsMembersListRequestDirection = S.String;
 
 export interface ListUserGroupMembersRequest {
   /** Account identifier tag. */
@@ -2484,7 +2473,7 @@ export const ListUserGroupMembersRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListUserGroupMembersRequest>;
 
 export type UserGroupsMembersListResultItemStatus = "accepted" | "pending";
-export const UserGroupsMembersListResultItemStatus = /*@__PURE__*/ S.String;
+export const UserGroupsMembersListResultItemStatus = S.String;
 
 export interface UserGroupsMembersListResultItem {
   /** Account member identifier. */
@@ -2526,7 +2515,7 @@ export const ListUserGroupMembersResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListUserGroupMembersResponse>;
 
 export type UserGroupsListRequestDirection = "asc" | "desc";
-export const UserGroupsListRequestDirection = /*@__PURE__*/ S.String;
+export const UserGroupsListRequestDirection = S.String;
 
 export interface ListUserGroupsRequest {
   /** Account identifier tag. */
@@ -2567,8 +2556,7 @@ export const ListUserGroupsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListUserGroupsRequest>;
 
 export type UserGroupsListResultItemPoliciesItemAccess = "allow" | "deny";
-export const UserGroupsListResultItemPoliciesItemAccess =
-  /*@__PURE__*/ S.String;
+export const UserGroupsListResultItemPoliciesItemAccess = S.String;
 
 export type UserGroupsListResultItemPoliciesItemPermissionGroupsItemMeta =
   ResourceGroupsCreateResponseMeta;
@@ -2747,7 +2735,7 @@ export const OauthClientsUpdateRequestAllowedCorsOriginsList =
 export type OauthClientsUpdateRequestGrantTypesItem =
   | "authorization_code"
   | "refresh_token";
-export const OauthClientsUpdateRequestGrantTypesItem = /*@__PURE__*/ S.String;
+export const OauthClientsUpdateRequestGrantTypesItem = S.String;
 
 export type OauthClientsUpdateRequestGrantTypesList = Array<
   OauthClientsUpdateRequestGrantTypesItem | (string & {})
@@ -2771,8 +2759,7 @@ export type OauthClientsUpdateRequestResponseTypesItem =
   | "token"
   | "id_token"
   | "code";
-export const OauthClientsUpdateRequestResponseTypesItem =
-  /*@__PURE__*/ S.String;
+export const OauthClientsUpdateRequestResponseTypesItem = S.String;
 
 export type OauthClientsUpdateRequestResponseTypesList = Array<
   OauthClientsUpdateRequestResponseTypesItem | (string & {})
@@ -2790,11 +2777,10 @@ export type OauthClientsUpdateRequestTokenEndpointAuthMethod =
   | "none"
   | "client_secret_basic"
   | "client_secret_post";
-export const OauthClientsUpdateRequestTokenEndpointAuthMethod =
-  /*@__PURE__*/ S.String;
+export const OauthClientsUpdateRequestTokenEndpointAuthMethod = S.String;
 
 export type OauthClientsUpdateRequestVisibility = "public";
-export const OauthClientsUpdateRequestVisibility = /*@__PURE__*/ S.String;
+export const OauthClientsUpdateRequestVisibility = S.String;
 
 export interface PatchOauthClientRequest {
   /** Account identifier tag. */
@@ -2879,7 +2865,7 @@ export const PatchOauthClientRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchOauthClientRequest>;
 
 export type OauthClientsUpdateResponseVisibility = "public" | "private";
-export const OauthClientsUpdateResponseVisibility = /*@__PURE__*/ S.String;
+export const OauthClientsUpdateResponseVisibility = S.String;
 
 export type OauthClientsUpdateResponseAllowedCorsOriginsList = Array<string>;
 export const OauthClientsUpdateResponseAllowedCorsOriginsList =
@@ -2892,8 +2878,7 @@ export type OauthClientsUpdateResponseClientUriVerificationStatus =
   | "in_progress"
   | "verified"
   | "failed";
-export const OauthClientsUpdateResponseClientUriVerificationStatus =
-  /*@__PURE__*/ S.String;
+export const OauthClientsUpdateResponseClientUriVerificationStatus = S.String;
 
 export interface OauthClientsUpdateResponseClientUriVerification {
   /** Current verification status for the client URI host. */
@@ -2916,7 +2901,7 @@ export const OauthClientsUpdateResponseClientUriVerification =
 export type OauthClientsUpdateResponseGrantTypesItem =
   | "authorization_code"
   | "refresh_token";
-export const OauthClientsUpdateResponseGrantTypesItem = /*@__PURE__*/ S.String;
+export const OauthClientsUpdateResponseGrantTypesItem = S.String;
 
 export type OauthClientsUpdateResponseGrantTypesList =
   Array<OauthClientsUpdateResponseGrantTypesItem>;
@@ -2940,8 +2925,7 @@ export type OauthClientsUpdateResponseResponseTypesItem =
   | "token"
   | "id_token"
   | "code";
-export const OauthClientsUpdateResponseResponseTypesItem =
-  /*@__PURE__*/ S.String;
+export const OauthClientsUpdateResponseResponseTypesItem = S.String;
 
 export type OauthClientsUpdateResponseResponseTypesList =
   Array<OauthClientsUpdateResponseResponseTypesItem>;
@@ -2959,8 +2943,7 @@ export type OauthClientsUpdateResponseTokenEndpointAuthMethod =
   | "none"
   | "client_secret_basic"
   | "client_secret_post";
-export const OauthClientsUpdateResponseTokenEndpointAuthMethod =
-  /*@__PURE__*/ S.String;
+export const OauthClientsUpdateResponseTokenEndpointAuthMethod = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchOauthClientResponse {
@@ -3095,7 +3078,7 @@ export type SsoUpdateResponseVerificationStatus =
   | "pending"
   | "failed"
   | "verified";
-export const SsoUpdateResponseVerificationStatus = /*@__PURE__*/ S.String;
+export const SsoUpdateResponseVerificationStatus = S.String;
 
 export interface SsoUpdateResponseVerification {
   /** DNS verification code. Add this entire string to the DNS TXT record of the email domain to validate ownership. */
@@ -3295,7 +3278,7 @@ export const UpdateResourceGroupResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateResourceGroupResponse>;
 
 export type UserGroupsUpdateRequestPoliciesItemAccess = "allow" | "deny";
-export const UserGroupsUpdateRequestPoliciesItemAccess = /*@__PURE__*/ S.String;
+export const UserGroupsUpdateRequestPoliciesItemAccess = S.String;
 
 export type UserGroupsUpdateRequestPoliciesItemPermissionGroupsItem =
   UserGroupsCreateRequestPoliciesItemPermissionGroupsItem;
@@ -3383,8 +3366,7 @@ export const UpdateUserGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateUserGroupRequest>;
 
 export type UserGroupsUpdateResponsePoliciesItemAccess = "allow" | "deny";
-export const UserGroupsUpdateResponsePoliciesItemAccess =
-  /*@__PURE__*/ S.String;
+export const UserGroupsUpdateResponsePoliciesItemAccess = S.String;
 
 export type UserGroupsUpdateResponsePoliciesItemPermissionGroupsItemMeta =
   ResourceGroupsCreateResponseMeta;
@@ -3573,7 +3555,7 @@ export const UpdateUserGroupMemberRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateUserGroupMemberRequest>;
 
 export type UserGroupsMembersUpdateResultItemStatus = "accepted" | "pending";
-export const UserGroupsMembersUpdateResultItemStatus = /*@__PURE__*/ S.String;
+export const UserGroupsMembersUpdateResultItemStatus = S.String;
 
 export interface UserGroupsMembersUpdateResultItem {
   /** Account member identifier. */

@@ -198,7 +198,7 @@ export type CheckResponseErrorCodeItemEnum =
   | "ERROR_CODE_MALFORMED_CONTENT"
   | "ERROR_CODE_SECURE_ASSET_INCLUDES_INSECURE"
   | "ERROR_CODE_FETCH_BUDGET_EXHAUSTED";
-export const CheckResponseErrorCodeItemEnum = /*@__PURE__*/ S.String;
+export const CheckResponseErrorCodeItemEnum = S.String;
 
 export type CheckResponseErrorCodeItemEnumList =
   Array<CheckResponseErrorCodeItemEnum>;
@@ -257,7 +257,7 @@ export type BulkCheckResponseBulkErrorCodeEnum =
   | "ERROR_CODE_MALFORMED_CONTENT"
   | "ERROR_CODE_SECURE_ASSET_INCLUDES_INSECURE"
   | "ERROR_CODE_FETCH_BUDGET_EXHAUSTED";
-export const BulkCheckResponseBulkErrorCodeEnum = /*@__PURE__*/ S.String;
+export const BulkCheckResponseBulkErrorCodeEnum = S.String;
 
 /** Response for BulkCheck call. Results are sent in a list in the same order in which they were sent. Individual check errors are described in the appropriate check_results entry. If the entire call fails, the response will include a bulk_error_code field describing the error. */
 export interface BulkCheckResponse {
@@ -362,7 +362,7 @@ export type ListResponseErrorCodeItemEnum =
   | "ERROR_CODE_MALFORMED_CONTENT"
   | "ERROR_CODE_SECURE_ASSET_INCLUDES_INSECURE"
   | "ERROR_CODE_FETCH_BUDGET_EXHAUSTED";
-export const ListResponseErrorCodeItemEnum = /*@__PURE__*/ S.String;
+export const ListResponseErrorCodeItemEnum = S.String;
 
 export type ListResponseErrorCodeItemEnumList =
   Array<ListResponseErrorCodeItemEnum>;

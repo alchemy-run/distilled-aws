@@ -141,8 +141,7 @@ export const SecurityMonitoringIntegrationActivateAttributes =
 /** The type of the resource. The value should always be `activate_entra_id_request`. */
 export type SecurityMonitoringIntegrationActivateResourceType =
   "activate_entra_id_request";
-export const SecurityMonitoringIntegrationActivateResourceType =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringIntegrationActivateResourceType = S.String;
 
 /** The configuration overrides for the integration to activate. */
 export interface SecurityMonitoringIntegrationActivateData {
@@ -186,14 +185,14 @@ export type SecurityMonitoringIntegrationType =
   | "ENTRA_ID"
   | "CROWDSTRIKE"
   | "SENTINELONE";
-export const SecurityMonitoringIntegrationType = /*@__PURE__*/ S.String;
+export const SecurityMonitoringIntegrationType = S.String;
 
 /** The state of the credentials configured on the entity context sync. */
 export type SecurityMonitoringIntegrationConfigState =
   | "valid"
   | "invalid"
   | "initializing";
-export const SecurityMonitoringIntegrationConfigState = /*@__PURE__*/ S.String;
+export const SecurityMonitoringIntegrationConfigState = S.String;
 
 /** The attributes of an entity context sync configuration as returned by the API. */
 export interface SecurityMonitoringIntegrationConfigAttributes {
@@ -230,8 +229,7 @@ export const SecurityMonitoringIntegrationConfigAttributes =
 /** The type of the resource. The value should always be `integration_config`. */
 export type SecurityMonitoringIntegrationConfigResourceType =
   "integration_config";
-export const SecurityMonitoringIntegrationConfigResourceType =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringIntegrationConfigResourceType = S.String;
 
 /** An entity context sync configuration. */
 export interface SecurityMonitoringIntegrationConfigData {
@@ -282,7 +280,7 @@ export type CaseInsightType =
   | "APM_RECOMMENDATION"
   | "SCM_URL"
   | "PROFILING_DOWNSIZING_EXPERIMENT";
-export const CaseInsightType = /*@__PURE__*/ S.String;
+export const CaseInsightType = S.String;
 
 /** A reference to an external Datadog resource that provides investigative context for a case, such as a security signal, monitor alert, error tracking issue, or incident. */
 export interface CaseInsight {
@@ -321,7 +319,7 @@ export const CaseInsightsAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for cases. */
 export type CaseResourceType = "case";
-export const CaseResourceType = /*@__PURE__*/ S.String;
+export const CaseResourceType = S.String;
 
 /** Data object containing the insights to add or remove. */
 export interface CaseInsightsData {
@@ -373,7 +371,7 @@ export const CaseObjectAttributes = /*@__PURE__*/ S.Record(
 
 /** The data type of the custom attribute, which determines the allowed values and UI input control. */
 export type CustomAttributeType = "URL" | "TEXT" | "NUMBER" | "SELECT";
-export const CustomAttributeType = /*@__PURE__*/ S.String;
+export const CustomAttributeType = S.String;
 
 /** An array of string values for a multi-value TEXT, URL, or SELECT-type custom attribute. */
 export type CustomAttributeMultiStringValue = Array<string>;
@@ -394,7 +392,7 @@ export type CustomAttributeValuesUnion =
   | number
   | CustomAttributeMultiNumberValue;
 export const CustomAttributeValuesUnion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomAttributeValuesUnion>;
+  S.Unknown as any as S.Schema<CustomAttributeValuesUnion>;
 
 /** A typed value for a custom attribute on a specific case. */
 export interface CustomAttributeValue {
@@ -446,7 +444,7 @@ export const JiraIssueResult = /*@__PURE__*/ S.suspend(() =>
 
 /** Case status */
 export type Case3rdPartyTicketStatus = "IN_PROGRESS" | "COMPLETED" | "FAILED";
-export const Case3rdPartyTicketStatus = /*@__PURE__*/ S.String;
+export const Case3rdPartyTicketStatus = S.String;
 
 /** Jira issue attached to case */
 export interface JiraIssue {
@@ -462,7 +460,7 @@ export const JiraIssue = /*@__PURE__*/ S.suspend(() =>
 
 /** Case priority */
 export type CasePriority = "NOT_DEFINED" | "P1" | "P2" | "P3" | "P4" | "P5";
-export const CasePriority = /*@__PURE__*/ S.String;
+export const CasePriority = S.String;
 
 /** ServiceNow ticket information */
 export interface ServiceNowTicketResult {
@@ -493,15 +491,15 @@ export const ServiceNowTicket = /*@__PURE__*/ S.suspend(() =>
 
 /** Deprecated way of representing the case status, which only supports OPEN, IN_PROGRESS, and CLOSED statuses. Use `status_name` instead. */
 export type CaseStatus = "OPEN" | "IN_PROGRESS" | "CLOSED";
-export const CaseStatus = /*@__PURE__*/ S.String;
+export const CaseStatus = S.String;
 
 /** Status group of the case. */
 export type CaseStatusGroup = "SG_OPEN" | "SG_IN_PROGRESS" | "SG_CLOSED";
-export const CaseStatusGroup = /*@__PURE__*/ S.String;
+export const CaseStatusGroup = S.String;
 
 /** Case type */
 export type CaseType = "STANDARD";
-export const CaseType = /*@__PURE__*/ S.String;
+export const CaseType = S.String;
 
 /** Case resource attributes */
 export interface CaseAttributes {
@@ -556,7 +554,7 @@ export const CaseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** User resource type. */
 export type UserResourceType = "user";
-export const UserResourceType = /*@__PURE__*/ S.String;
+export const UserResourceType = S.String;
 
 /** Relationship to user object. */
 export interface NullableUserRelationshipData {
@@ -587,7 +585,7 @@ export const NullableUserRelationship = /*@__PURE__*/ S.suspend(() =>
 
 /** Project resource type. */
 export type ProjectResourceType = "project";
-export const ProjectResourceType = /*@__PURE__*/ S.String;
+export const ProjectResourceType = S.String;
 
 /** Relationship to project object. */
 export interface ProjectRelationshipData {
@@ -663,7 +661,7 @@ export const CaseResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Permissions resource type. */
 export type PermissionsType = "permissions";
-export const PermissionsType = /*@__PURE__*/ S.String;
+export const PermissionsType = S.String;
 
 /** Relationship to permission object. */
 export interface RelationshipToPermissionData {
@@ -776,7 +774,7 @@ export const PermissionsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Roles type. */
 export type RolesType = "roles";
-export const RolesType = /*@__PURE__*/ S.String;
+export const RolesType = S.String;
 
 /** Relationship to role object. */
 export interface RelationshipToRoleData {
@@ -903,7 +901,7 @@ export const PlaylistsSessionDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Rum replay session resource type. */
 export type ViewershipHistorySessionDataType = "rum_replay_session";
-export const ViewershipHistorySessionDataType = /*@__PURE__*/ S.String;
+export const ViewershipHistorySessionDataType = S.String;
 
 /** Data object representing a session within a playlist, including its identifier, type, and attributes. */
 export interface PlaylistsSessionData {
@@ -936,7 +934,7 @@ export const PlaylistsSession = /*@__PURE__*/ S.suspend(() =>
 
 /** Team type */
 export type TeamType = "team";
-export const TeamType = /*@__PURE__*/ S.String;
+export const TeamType = S.String;
 
 /** This schema defines the attributes about each team that has to be provided when creating a team hierarchy link */
 export interface TeamHierarchyLinkCreateTeam {
@@ -983,7 +981,7 @@ export const TeamHierarchyLinkCreateRelationships = /*@__PURE__*/ S.suspend(
 
 /** Team hierarchy link type */
 export type TeamHierarchyLinkType = "team_hierarchy_links";
-export const TeamHierarchyLinkType = /*@__PURE__*/ S.String;
+export const TeamHierarchyLinkType = S.String;
 
 /** Data provided when creating a team hierarchy link */
 export interface TeamHierarchyLinkCreate {
@@ -1215,7 +1213,7 @@ export type SyntheticsDowntimeFrequency =
   | "WEEKLY"
   | "MONTHLY"
   | "YEARLY";
-export const SyntheticsDowntimeFrequency = /*@__PURE__*/ S.String;
+export const SyntheticsDowntimeFrequency = S.String;
 
 /** A specific date and time used to define the start or end of a Synthetics downtime time slot. */
 export interface SyntheticsDowntimeTimeSlotDate {
@@ -1244,7 +1242,7 @@ export const SyntheticsDowntimeTimeSlotDate = /*@__PURE__*/ S.suspend(() =>
 
 /** The position of a weekday within a month for a monthly Synthetics downtime recurrence. `1` through `4` select the first through fourth occurrence of the weekday in the month, and `-1` selects the last occurrence. */
 export type SyntheticsDowntimeWeekdayPosition = 1 | 2 | 3 | 4 | -1;
-export const SyntheticsDowntimeWeekdayPosition = /*@__PURE__*/ S.Number;
+export const SyntheticsDowntimeWeekdayPosition = S.Number;
 
 /** Positions of the weekdays within a month for a monthly Synthetics downtime recurrence. Used in combination with `weekdays` to schedule occurrences such as "the first Monday of the month". */
 export type SyntheticsDowntimeWeekdayPositions = Array<
@@ -1263,7 +1261,7 @@ export type SyntheticsDowntimeWeekday =
   | "FR"
   | "SA"
   | "SU";
-export const SyntheticsDowntimeWeekday = /*@__PURE__*/ S.String;
+export const SyntheticsDowntimeWeekday = S.String;
 
 /** Days of the week for a Synthetics downtime recurrence schedule. */
 export type SyntheticsDowntimeWeekdays = Array<
@@ -1374,7 +1372,7 @@ export const SyntheticsDowntimeDataAttributesResponse = /*@__PURE__*/ S.suspend(
 
 /** The resource type for a Synthetics downtime. */
 export type SyntheticsDowntimeResourceType = "downtime";
-export const SyntheticsDowntimeResourceType = /*@__PURE__*/ S.String;
+export const SyntheticsDowntimeResourceType = S.String;
 
 /** A Synthetics downtime object. */
 export interface SyntheticsDowntimeData {
@@ -1407,7 +1405,7 @@ export const SyntheticsDowntimeResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Users resource type. */
 export type UsersType = "users";
-export const UsersType = /*@__PURE__*/ S.String;
+export const UsersType = S.String;
 
 /** Relationship to user object. */
 export interface RelationshipToUserData {
@@ -1492,7 +1490,7 @@ export const UserAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Organizations resource type. */
 export type OrganizationsType = "orgs";
-export const OrganizationsType = /*@__PURE__*/ S.String;
+export const OrganizationsType = S.String;
 
 /** Relationship to organization object. */
 export interface RelationshipToOrganizationData {
@@ -1752,7 +1750,7 @@ export const Role = /*@__PURE__*/ S.suspend(() =>
 /** An object related to a user. */
 export type UserResponseIncludedItem = Organization | Permission | Role;
 export const UserResponseIncludedItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserResponseIncludedItem>;
+  S.Unknown as any as S.Schema<UserResponseIncludedItem>;
 
 /** Array of objects related to the users. */
 export type UsersResponseIncludedList = Array<UserResponseIncludedItem>;
@@ -1841,7 +1839,7 @@ export const CaseAggregateRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for case aggregation requests. */
 export type CaseAggregateResourceType = "aggregate";
-export const CaseAggregateResourceType = /*@__PURE__*/ S.String;
+export const CaseAggregateResourceType = S.String;
 
 /** Data object wrapping the aggregation query type and attributes. */
 export interface CaseAggregateRequestData {
@@ -1963,11 +1961,11 @@ export type CIAppAggregationFunction =
   | "earliest"
   | "most_frequent"
   | "delta";
-export const CIAppAggregationFunction = /*@__PURE__*/ S.String;
+export const CIAppAggregationFunction = S.String;
 
 /** The type of compute. */
 export type CIAppComputeType = "timeseries" | "total";
-export const CIAppComputeType = /*@__PURE__*/ S.String;
+export const CIAppComputeType = S.String;
 
 /** A compute rule to compute metrics or timeseries. */
 export interface CIAppCompute {
@@ -2036,15 +2034,15 @@ export const CIAppGroupByHistogram = /*@__PURE__*/ S.suspend(() =>
 /** The value to use for logs that don't have the facet used to group-by. */
 export type CIAppGroupByMissing = string | number;
 export const CIAppGroupByMissing =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CIAppGroupByMissing>;
+  S.Unknown as any as S.Schema<CIAppGroupByMissing>;
 
 /** The order to use, ascending or descending. */
 export type CIAppSortOrder = "asc" | "desc";
-export const CIAppSortOrder = /*@__PURE__*/ S.String;
+export const CIAppSortOrder = S.String;
 
 /** The type of sorting algorithm. */
 export type CIAppAggregateSortType = "alphabetical" | "measure";
-export const CIAppAggregateSortType = /*@__PURE__*/ S.String;
+export const CIAppAggregateSortType = S.String;
 
 /** A sort rule. The `aggregation` field is required when `type` is `measure`. */
 export interface CIAppAggregateSort {
@@ -2068,7 +2066,7 @@ export const CIAppAggregateSort = /*@__PURE__*/ S.suspend(() =>
 /** A resulting object to put the given computes in over all the matching records. */
 export type CIAppGroupByTotal = boolean | string | number;
 export const CIAppGroupByTotal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CIAppGroupByTotal>;
+  S.Unknown as any as S.Schema<CIAppGroupByTotal>;
 
 /** A group-by rule. */
 export interface CIAppPipelinesGroupBy {
@@ -2182,7 +2180,7 @@ export type CIAppAggregateBucketValue =
   | number
   | CIAppAggregateBucketValueTimeseries;
 export const CIAppAggregateBucketValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CIAppAggregateBucketValue>;
+  S.Unknown as any as S.Schema<CIAppAggregateBucketValue>;
 
 /** A map of the metric name to value for regular compute, or a list of values for a timeseries. */
 export type CIAppComputes = {
@@ -2245,7 +2243,7 @@ export const CIAppResponseLinks = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the response. */
 export type CIAppResponseStatus = "done" | "timeout";
-export const CIAppResponseStatus = /*@__PURE__*/ S.String;
+export const CIAppResponseStatus = S.String;
 
 /** A warning message indicating something that went wrong with the query. */
 export interface CIAppWarning {
@@ -2591,7 +2589,7 @@ export const LLMObsExperimentationAnalyticsDataAttributesRequest =
 
 /** Resource type for experimentation search and analytics operations. */
 export type LLMObsExperimentationType = "experimentation";
-export const LLMObsExperimentationType = /*@__PURE__*/ S.String;
+export const LLMObsExperimentationType = S.String;
 
 /** Data object for an analytics request. */
 export interface LLMObsExperimentationAnalyticsDataRequest {
@@ -2744,11 +2742,11 @@ export type LogsAggregationFunction =
   | "max"
   | "avg"
   | "median";
-export const LogsAggregationFunction = /*@__PURE__*/ S.String;
+export const LogsAggregationFunction = S.String;
 
 /** The type of compute */
 export type LogsComputeType = "timeseries" | "total";
-export const LogsComputeType = /*@__PURE__*/ S.String;
+export const LogsComputeType = S.String;
 
 /** A compute rule to compute metrics or timeseries */
 export interface LogsCompute {
@@ -2782,7 +2780,7 @@ export const LogsQueryFilterIndexesList = /*@__PURE__*/ S.Array(
 
 /** Specifies storage type as indexes, online-archives or flex */
 export type LogsStorageTier = "indexes" | "online-archives" | "flex";
-export const LogsStorageTier = /*@__PURE__*/ S.String;
+export const LogsStorageTier = S.String;
 
 /** The search and filter query settings */
 export interface LogsQueryFilter {
@@ -2830,15 +2828,15 @@ export const LogsGroupByHistogram = /*@__PURE__*/ S.suspend(() =>
 /** The value to use for logs that don't have the facet used to group by */
 export type LogsGroupByMissing = string | number;
 export const LogsGroupByMissing =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogsGroupByMissing>;
+  S.Unknown as any as S.Schema<LogsGroupByMissing>;
 
 /** The order to use, ascending or descending */
 export type LogsSortOrder = "asc" | "desc";
-export const LogsSortOrder = /*@__PURE__*/ S.String;
+export const LogsSortOrder = S.String;
 
 /** The type of sorting algorithm */
 export type LogsAggregateSortType = "alphabetical" | "measure";
-export const LogsAggregateSortType = /*@__PURE__*/ S.String;
+export const LogsAggregateSortType = S.String;
 
 /** A sort rule */
 export interface LogsAggregateSort {
@@ -2861,8 +2859,7 @@ export const LogsAggregateSort = /*@__PURE__*/ S.suspend(() =>
 
 /** A resulting object to put the given computes in over all the matching records. */
 export type LogsGroupByTotal = boolean | string | number;
-export const LogsGroupByTotal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogsGroupByTotal>;
+export const LogsGroupByTotal = S.Unknown as any as S.Schema<LogsGroupByTotal>;
 
 /** A group by rule */
 export interface LogsGroupBy {
@@ -2985,7 +2982,7 @@ export type LogsAggregateBucketValue =
   | number
   | LogsAggregateBucketValueTimeseries;
 export const LogsAggregateBucketValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogsAggregateBucketValue>;
+  S.Unknown as any as S.Schema<LogsAggregateBucketValue>;
 
 /** A map of the metric name -> value for regular compute or list of values for a timeseries */
 export type LogsAggregateBucketComputesMap = {
@@ -3046,7 +3043,7 @@ export const LogsResponseMetadataPage = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the response */
 export type LogsAggregateResponseStatus = "done" | "timeout";
-export const LogsAggregateResponseStatus = /*@__PURE__*/ S.String;
+export const LogsAggregateResponseStatus = S.String;
 
 /** A warning message indicating something that went wrong with the query */
 export interface LogsWarning {
@@ -3122,11 +3119,11 @@ export type RUMAggregationFunction =
   | "max"
   | "avg"
   | "median";
-export const RUMAggregationFunction = /*@__PURE__*/ S.String;
+export const RUMAggregationFunction = S.String;
 
 /** The type of compute. */
 export type RUMComputeType = "timeseries" | "total";
-export const RUMComputeType = /*@__PURE__*/ S.String;
+export const RUMComputeType = S.String;
 
 /** A compute rule to compute metrics or timeseries. */
 export interface RUMCompute {
@@ -3176,15 +3173,15 @@ export const RUMGroupByHistogram = CIAppGroupByHistogram;
 /** The value to use for logs that don't have the facet used to group by. */
 export type RUMGroupByMissing = string | number;
 export const RUMGroupByMissing =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RUMGroupByMissing>;
+  S.Unknown as any as S.Schema<RUMGroupByMissing>;
 
 /** The order to use, ascending or descending. */
 export type RUMSortOrder = "asc" | "desc";
-export const RUMSortOrder = /*@__PURE__*/ S.String;
+export const RUMSortOrder = S.String;
 
 /** The type of sorting algorithm. */
 export type RUMAggregateSortType = "alphabetical" | "measure";
-export const RUMAggregateSortType = /*@__PURE__*/ S.String;
+export const RUMAggregateSortType = S.String;
 
 /** A sort rule. */
 export interface RUMAggregateSort {
@@ -3207,8 +3204,7 @@ export const RUMAggregateSort = /*@__PURE__*/ S.suspend(() =>
 
 /** A resulting object to put the given computes in over all the matching records. */
 export type RUMGroupByTotal = boolean | string | number;
-export const RUMGroupByTotal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RUMGroupByTotal>;
+export const RUMGroupByTotal = S.Unknown as any as S.Schema<RUMGroupByTotal>;
 
 /** A group-by rule. */
 export interface RUMGroupBy {
@@ -3311,7 +3307,7 @@ export type RUMAggregateBucketValue =
   | number
   | RUMAggregateBucketValueTimeseries;
 export const RUMAggregateBucketValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RUMAggregateBucketValue>;
+  S.Unknown as any as S.Schema<RUMAggregateBucketValue>;
 
 /** A map of the metric name to value for regular compute, or a list of values for a timeseries. */
 export type RUMBucketResponseComputesMap = {
@@ -3376,7 +3372,7 @@ export const RUMResponsePage = CIAppResponsePage;
 
 /** The status of the response. */
 export type RUMResponseStatus = "done" | "timeout";
-export const RUMResponseStatus = /*@__PURE__*/ S.String;
+export const RUMResponseStatus = S.String;
 
 /** A warning message indicating something that went wrong with the query. */
 export type RUMWarning = CIAppWarning;
@@ -3441,11 +3437,11 @@ export type SpansAggregationFunction =
   | "max"
   | "avg"
   | "median";
-export const SpansAggregationFunction = /*@__PURE__*/ S.String;
+export const SpansAggregationFunction = S.String;
 
 /** The type of compute. */
 export type SpansComputeType = "timeseries" | "total";
-export const SpansComputeType = /*@__PURE__*/ S.String;
+export const SpansComputeType = S.String;
 
 /** A compute rule to compute metrics or timeseries. */
 export interface SpansCompute {
@@ -3497,15 +3493,15 @@ export const SpansGroupByHistogram = CIAppGroupByHistogram;
 /** The value to use for spans that don't have the facet used to group by. */
 export type SpansGroupByMissing = string | number;
 export const SpansGroupByMissing =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SpansGroupByMissing>;
+  S.Unknown as any as S.Schema<SpansGroupByMissing>;
 
 /** The order to use, ascending or descending. */
 export type SpansSortOrder = "asc" | "desc";
-export const SpansSortOrder = /*@__PURE__*/ S.String;
+export const SpansSortOrder = S.String;
 
 /** The type of sorting algorithm. */
 export type SpansAggregateSortType = "alphabetical" | "measure";
-export const SpansAggregateSortType = /*@__PURE__*/ S.String;
+export const SpansAggregateSortType = S.String;
 
 /** A sort rule. */
 export interface SpansAggregateSort {
@@ -3529,7 +3525,7 @@ export const SpansAggregateSort = /*@__PURE__*/ S.suspend(() =>
 /** A resulting object to put the given computes in over all the matching records. */
 export type SpansGroupByTotal = boolean | string | number;
 export const SpansGroupByTotal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SpansGroupByTotal>;
+  S.Unknown as any as S.Schema<SpansGroupByTotal>;
 
 /** A group by rule. */
 export interface SpansGroupBy {
@@ -3585,7 +3581,7 @@ export const SpansAggregateRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of resource. The value should always be aggregate_request. */
 export type SpansAggregateRequestType = "aggregate_request";
-export const SpansAggregateRequestType = /*@__PURE__*/ S.String;
+export const SpansAggregateRequestType = S.String;
 
 /** The object containing the query content. */
 export interface SpansAggregateData {
@@ -3646,7 +3642,7 @@ export type SpansAggregateBucketValue =
   | number
   | SpansAggregateBucketValueTimeseries;
 export const SpansAggregateBucketValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SpansAggregateBucketValue>;
+  S.Unknown as any as S.Schema<SpansAggregateBucketValue>;
 
 /** A map of the metric name -> value for regular compute or list of values for a timeseries. */
 export type SpansAggregateBucketAttributesComputesMap = {
@@ -3678,7 +3674,7 @@ export const SpansAggregateBucketAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The spans aggregate bucket type. */
 export type SpansAggregateBucketType = "bucket";
-export const SpansAggregateBucketType = /*@__PURE__*/ S.String;
+export const SpansAggregateBucketType = S.String;
 
 /** Spans aggregate. */
 export interface SpansAggregateBucket {
@@ -3705,7 +3701,7 @@ export const SpansAggregateResponseDataList = /*@__PURE__*/ S.Array(
 
 /** The status of the response. */
 export type SpansAggregateResponseStatus = "done" | "timeout";
-export const SpansAggregateResponseStatus = /*@__PURE__*/ S.String;
+export const SpansAggregateResponseStatus = S.String;
 
 /** A warning message indicating something that went wrong with the query. */
 export type SpansWarning = CIAppWarning;
@@ -3774,7 +3770,7 @@ export const AnonymizeUsersRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the anonymize users request. */
 export type AnonymizeUsersRequestType = "anonymize_users_request";
-export const AnonymizeUsersRequestType = /*@__PURE__*/ S.String;
+export const AnonymizeUsersRequestType = S.String;
 
 /** Object to anonymize a list of users. */
 export interface AnonymizeUsersRequestData {
@@ -3854,7 +3850,7 @@ export const AnonymizeUsersResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the anonymize users response. */
 export type AnonymizeUsersResponseType = "anonymize_users_response";
-export const AnonymizeUsersResponseType = /*@__PURE__*/ S.String;
+export const AnonymizeUsersResponseType = S.String;
 
 /** Response data for anonymizing users. */
 export interface AnonymizeUsersResponseData {
@@ -3951,7 +3947,7 @@ export const FeatureFlagEnvironmentEnvironmentQueriesList =
 
 /** The status of a feature flag in an environment. */
 export type FeatureFlagStatus = "ENABLED" | "DISABLED";
-export const FeatureFlagStatus = /*@__PURE__*/ S.String;
+export const FeatureFlagStatus = S.String;
 
 /** Environment-specific settings for a feature flag. */
 export interface FeatureFlagEnvironment {
@@ -4016,7 +4012,7 @@ export const FeatureFlagAttributesTagsList = /*@__PURE__*/ S.Array(
 
 /** The type of values for the feature flag variants. */
 export type ValueType = "BOOLEAN" | "INTEGER" | "NUMERIC" | "STRING" | "JSON";
-export const ValueType = /*@__PURE__*/ S.String;
+export const ValueType = S.String;
 
 /** A variant of a feature flag. */
 export interface Variant {
@@ -4111,7 +4107,7 @@ export const FeatureFlagAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type. */
 export type CreateFeatureFlagDataType = "feature-flags";
-export const CreateFeatureFlagDataType = /*@__PURE__*/ S.String;
+export const CreateFeatureFlagDataType = S.String;
 
 /** A feature flag resource. */
 export interface FeatureFlag {
@@ -4211,7 +4207,7 @@ export const AssignSeatsUserRequestDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** Seat assignments resource type. */
 export type SeatAssignmentsDataType = "seat-assignments";
-export const SeatAssignmentsDataType = /*@__PURE__*/ S.String;
+export const SeatAssignmentsDataType = S.String;
 
 /** The request data object containing attributes for assigning seats to users. */
 export interface AssignSeatsUserRequestData {
@@ -4304,7 +4300,7 @@ export const AssignSeatsUserResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Security findings resource type. */
 export type FindingDataType = "findings";
-export const FindingDataType = /*@__PURE__*/ S.String;
+export const FindingDataType = S.String;
 
 /** Data object representing a security finding. */
 export interface FindingData {
@@ -4351,7 +4347,7 @@ export const AttachCaseRequestDataRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Cases resource type. */
 export type CaseDataType = "cases";
-export const CaseDataType = /*@__PURE__*/ S.String;
+export const CaseDataType = S.String;
 
 /** Data of the case to attach security findings to. */
 export interface AttachCaseRequestData {
@@ -4646,7 +4642,7 @@ export const FindingCaseResponseDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Projects resource type. */
 export type CaseManagementProjectDataType = "projects";
-export const CaseManagementProjectDataType = /*@__PURE__*/ S.String;
+export const CaseManagementProjectDataType = S.String;
 
 /** Data object representing a case management project. */
 export interface CaseManagementProjectData {
@@ -4759,7 +4755,7 @@ export const AttachJiraIssueRequestDataRelationships = /*@__PURE__*/ S.suspend(
 
 /** Jira issues resource type. */
 export type JiraIssuesDataType = "jira_issues";
-export const JiraIssuesDataType = /*@__PURE__*/ S.String;
+export const JiraIssuesDataType = S.String;
 
 /** Data of the Jira issue to attach security findings to. */
 export interface AttachJiraIssueRequestData {
@@ -4827,7 +4823,7 @@ export const AttachLinearIssueRequestDataRelationships =
 
 /** Linear issues resource type. */
 export type LinearIssuesDataType = "linear_issues";
-export const LinearIssuesDataType = /*@__PURE__*/ S.String;
+export const LinearIssuesDataType = S.String;
 
 /** Data of the Linear issue to attach security findings to. */
 export interface AttachLinearIssueRequestData {
@@ -4895,7 +4891,7 @@ export const AttachServiceNowTicketRequestDataRelationships =
 
 /** ServiceNow tickets resource type. */
 export type ServiceNowTicketsDataType = "servicenow_tickets";
-export const ServiceNowTicketsDataType = /*@__PURE__*/ S.String;
+export const ServiceNowTicketsDataType = S.String;
 
 /** Data of the ServiceNow ticket to attach security findings to. */
 export interface AttachServiceNowTicketRequestData {
@@ -5014,7 +5010,7 @@ export const SecurityMonitoringDatasetDependentsAttributes =
 
 /** The type of resource for a dataset dependents entry. */
 export type SecurityMonitoringDatasetDependentsType = "datasetDependents";
-export const SecurityMonitoringDatasetDependentsType = /*@__PURE__*/ S.String;
+export const SecurityMonitoringDatasetDependentsType = S.String;
 
 /** A single entry describing the dependents of one dataset. */
 export interface SecurityMonitoringDatasetDependentsData {
@@ -5080,7 +5076,7 @@ export const BatchRowsQueryRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type identifier for batch queries of reference table rows. */
 export type BatchRowsQueryDataType = "reference-tables-batch-rows-query";
-export const BatchRowsQueryDataType = /*@__PURE__*/ S.String;
+export const BatchRowsQueryDataType = S.String;
 
 /** Data object for a batch rows query request. */
 export interface BatchRowsQueryRequestData {
@@ -5115,7 +5111,7 @@ export const BatchRowsQueryRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Row resource type. */
 export type TableRowResourceDataType = "row";
-export const TableRowResourceDataType = /*@__PURE__*/ S.String;
+export const TableRowResourceDataType = S.String;
 
 /** Row resource containing a single row identifier. */
 export interface TableRowResourceIdentifier {
@@ -5248,8 +5244,7 @@ export const AnyValueObject = /*@__PURE__*/ S.Record(
 
 /** A single item in an array of arbitrary values, which can be a string, number, object, or boolean. */
 export type AnyValueItem = string | number | AnyValueObject | boolean;
-export const AnyValueItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AnyValueItem>;
+export const AnyValueItem = S.Unknown as any as S.Schema<AnyValueItem>;
 
 /** An array of arbitrary values. */
 export type AnyValueArray = Array<AnyValueItem>;
@@ -5264,7 +5259,7 @@ export type AnyValue =
   | AnyValueObject
   | AnyValueArray
   | boolean;
-export const AnyValue = /*@__PURE__*/ S.Unknown as any as S.Schema<AnyValue>;
+export const AnyValue = S.Unknown as any as S.Schema<AnyValue>;
 
 /** Arbitrary metadata associated with the record. */
 export type LLMObsDatasetBatchUpdateInsertRecordMetadataMap = {
@@ -5394,7 +5389,7 @@ export const LLMObsDatasetBatchUpdateDataAttributesRequest =
 
 /** Resource type of an Agent Observability dataset. */
 export type LLMObsDatasetType = "datasets";
-export const LLMObsDatasetType = /*@__PURE__*/ S.String;
+export const LLMObsDatasetType = S.String;
 
 /** Data object for batch-updating records in an Agent Observability dataset. */
 export interface LLMObsDatasetBatchUpdateDataRequest {
@@ -5543,7 +5538,7 @@ export const SecurityMonitoringRuleConvertBulkAttributes =
 /** The type of the resource. */
 export type SecurityMonitoringRuleConvertBulkDataType =
   "security_monitoring_rules_convert_bulk";
-export const SecurityMonitoringRuleConvertBulkDataType = /*@__PURE__*/ S.String;
+export const SecurityMonitoringRuleConvertBulkDataType = S.String;
 
 /** Data for bulk converting security monitoring rules to Terraform. */
 export interface SecurityMonitoringRuleConvertBulkData {
@@ -5597,7 +5592,7 @@ export const SampleLogGenerationBulkSubscriptionAttributesContentPackIdsList =
 
 /** How long the subscription should remain active before expiring. */
 export type SampleLogGenerationDuration = "1h" | "1d" | "3d" | "7d";
-export const SampleLogGenerationDuration = /*@__PURE__*/ S.String;
+export const SampleLogGenerationDuration = S.String;
 
 /** The attributes for creating sample log generation subscriptions for multiple content packs. */
 export interface SampleLogGenerationBulkSubscriptionAttributes {
@@ -5619,8 +5614,7 @@ export const SampleLogGenerationBulkSubscriptionAttributes =
 /** The type of the resource. The value should always be `bulk_subscription_requests`. */
 export type SampleLogGenerationBulkSubscriptionRequestType =
   "bulk_subscription_requests";
-export const SampleLogGenerationBulkSubscriptionRequestType =
-  /*@__PURE__*/ S.String;
+export const SampleLogGenerationBulkSubscriptionRequestType = S.String;
 
 /** The bulk subscription request body. */
 export interface SampleLogGenerationBulkSubscriptionData {
@@ -5664,7 +5658,7 @@ export type SampleLogGenerationSubscriptionStatus =
   | "not_available"
   | "active"
   | "expired";
-export const SampleLogGenerationSubscriptionStatus = /*@__PURE__*/ S.String;
+export const SampleLogGenerationSubscriptionStatus = S.String;
 
 /** The attributes describing a sample log generation subscription. */
 export interface SampleLogGenerationSubscriptionAttributes {
@@ -5710,8 +5704,7 @@ export const SampleLogGenerationBulkSubscriptionItemMeta =
 
 /** The type of the resource. The value should always be `subscriptions`. */
 export type SampleLogGenerationSubscriptionResourceType = "subscriptions";
-export const SampleLogGenerationSubscriptionResourceType =
-  /*@__PURE__*/ S.String;
+export const SampleLogGenerationSubscriptionResourceType = S.String;
 
 /** A single result entry returned by the bulk subscription endpoint. */
 export interface SampleLogGenerationBulkSubscriptionResultItem {
@@ -5781,8 +5774,7 @@ export const BulkDeleteAppsDatastoreItemsRequestDataAttributes =
 
 /** Items resource type. */
 export type BulkDeleteAppsDatastoreItemsRequestDataType = "items";
-export const BulkDeleteAppsDatastoreItemsRequestDataType =
-  /*@__PURE__*/ S.String;
+export const BulkDeleteAppsDatastoreItemsRequestDataType = S.String;
 
 /** Data wrapper containing the data needed to delete items from a datastore. */
 export interface BulkDeleteAppsDatastoreItemsRequestData {
@@ -5824,7 +5816,7 @@ export const BulkDeleteDatastoreItemsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type for datastore items. */
 export type DatastoreItemsDataType = "items";
-export const DatastoreItemsDataType = /*@__PURE__*/ S.String;
+export const DatastoreItemsDataType = S.String;
 
 /** Data containing the identifier of the datastore item that was successfully deleted. */
 export interface DeleteAppsDatastoreItemResponseData {
@@ -5888,8 +5880,7 @@ export const SecurityMonitoringRuleBulkDeleteAttributes =
 /** The resource type for a bulk delete request. */
 export type SecurityMonitoringRuleBulkDeleteRequestDataType =
   "bulk_delete_rules";
-export const SecurityMonitoringRuleBulkDeleteRequestDataType =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringRuleBulkDeleteRequestDataType = S.String;
 
 /** Data for bulk deleting security monitoring rules. */
 export interface SecurityMonitoringRuleBulkDeleteData {
@@ -5967,8 +5958,7 @@ export const SecurityMonitoringRuleBulkDeleteResponseAttributes =
 /** The resource type for a bulk delete response. */
 export type SecurityMonitoringRuleBulkDeleteResponseDataType =
   "bulk_delete_response";
-export const SecurityMonitoringRuleBulkDeleteResponseDataType =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringRuleBulkDeleteResponseDataType = S.String;
 
 /** Data for the bulk delete response. */
 export interface SecurityMonitoringRuleBulkDeleteResponseData {
@@ -6013,7 +6003,7 @@ export type SecurityMonitoringSignalArchiveReason =
   | "true_positive_benign"
   | "true_positive_malicious"
   | "other";
-export const SecurityMonitoringSignalArchiveReason = /*@__PURE__*/ S.String;
+export const SecurityMonitoringSignalArchiveReason = S.String;
 
 /** Object representing a given user entity. */
 export interface SecurityMonitoringTriageUserInput {
@@ -6042,7 +6032,7 @@ export type SecurityMonitoringSignalState =
   | "open"
   | "archived"
   | "under_review";
-export const SecurityMonitoringSignalState = /*@__PURE__*/ S.String;
+export const SecurityMonitoringSignalState = S.String;
 
 /** Attributes for updating the triage state or assignee of a security signal. */
 export interface SecurityMonitoringSignalUpdateAttributesInput {
@@ -6067,7 +6057,7 @@ export const SecurityMonitoringSignalUpdateAttributesInput =
 
 /** The type of event. */
 export type SecurityMonitoringSignalType = "signal";
-export const SecurityMonitoringSignalType = /*@__PURE__*/ S.String;
+export const SecurityMonitoringSignalType = S.String;
 
 /** Data for updating a single security signal in a bulk update operation. */
 export interface SecurityMonitoringSignalsBulkUpdateDataInput {
@@ -6389,7 +6379,7 @@ export const SecurityMonitoringRuleBulkExportAttributes =
 /** The type of the resource. */
 export type SecurityMonitoringRuleBulkExportDataType =
   "security_monitoring_rules_bulk_export";
-export const SecurityMonitoringRuleBulkExportDataType = /*@__PURE__*/ S.String;
+export const SecurityMonitoringRuleBulkExportDataType = S.String;
 
 /** Data for bulk exporting security monitoring rules. */
 export interface SecurityMonitoringRuleBulkExportData {
@@ -6440,7 +6430,7 @@ export type BulkExportSecurityMonitoringTerraformResourcesRequestResourceType =
   | "security_filters"
   | "rules";
 export const BulkExportSecurityMonitoringTerraformResourcesRequestResourceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of resource IDs to export. Maximum 1000 items. */
 export type SecurityMonitoringTerraformBulkExportAttributesResourceIdsList =
@@ -6589,7 +6579,7 @@ export type CaseBulkActionType =
   | "servicenow"
   | "linear"
   | "update_project";
-export const CaseBulkActionType = /*@__PURE__*/ S.String;
+export const CaseBulkActionType = S.String;
 
 /** Attributes for the bulk update, specifying which cases to update and the action to apply. */
 export interface CaseBulkUpdateRequestAttributes {
@@ -6611,7 +6601,7 @@ export const CaseBulkUpdateRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for bulk case operations. */
 export type CaseBulkResourceType = "bulk";
-export const CaseBulkResourceType = /*@__PURE__*/ S.String;
+export const CaseBulkResourceType = S.String;
 
 /** Data object wrapping the bulk update type and attributes. */
 export interface CaseBulkUpdateRequestData {
@@ -6685,7 +6675,7 @@ export const OrgGroupMembershipBulkUpdateAttributes = /*@__PURE__*/ S.suspend(
 
 /** Org groups resource type. */
 export type OrgGroupType = "org_groups";
-export const OrgGroupType = /*@__PURE__*/ S.String;
+export const OrgGroupType = S.String;
 
 /** A reference to an org group. */
 export interface OrgGroupRelationshipToOneData {
@@ -6732,7 +6722,7 @@ export const OrgGroupMembershipBulkUpdateRelationships =
 /** Org group membership bulk update resource type. */
 export type OrgGroupMembershipBulkUpdateType =
   "org_group_membership_bulk_updates";
-export const OrgGroupMembershipBulkUpdateType = /*@__PURE__*/ S.String;
+export const OrgGroupMembershipBulkUpdateType = S.String;
 
 /** Data for bulk updating org group memberships. */
 export interface OrgGroupMembershipBulkUpdateData {
@@ -6807,7 +6797,7 @@ export const OrgGroupMembershipRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Org group memberships resource type. */
 export type OrgGroupMembershipType = "org_group_memberships";
-export const OrgGroupMembershipType = /*@__PURE__*/ S.String;
+export const OrgGroupMembershipType = S.String;
 
 /** An org group membership resource. */
 export interface OrgGroupMembershipData {
@@ -6927,7 +6917,7 @@ export const OrgGroupMembershipListResponse = /*@__PURE__*/ S.suspend(() =>
 export type DatastoreItemConflictMode =
   | "fail_on_conflict"
   | "overwrite_on_conflict";
-export const DatastoreItemConflictMode = /*@__PURE__*/ S.String;
+export const DatastoreItemConflictMode = S.String;
 
 /** A single item's data as key-value pairs. Key names cannot exceed 63 characters. */
 export type DatastoreItemValuesItemMap = { [key: string]: unknown | undefined };
@@ -7246,7 +7236,7 @@ export const FleetDeploymentV2CancelAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of deployment resource. */
 export type FleetDeploymentResourceType = "deployment";
-export const FleetDeploymentResourceType = /*@__PURE__*/ S.String;
+export const FleetDeploymentResourceType = S.String;
 
 /** A deployment cancellation response. */
 export interface FleetDeploymentV2Cancel {
@@ -7363,7 +7353,7 @@ export const CloneFormDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type for a form. */
 export type FormType = "forms";
-export const FormType = /*@__PURE__*/ S.String;
+export const FormType = S.String;
 
 /** The data for cloning a form. */
 export interface CloneFormData {
@@ -7466,7 +7456,7 @@ export const FormDataDefinitionRequiredList = /*@__PURE__*/ S.Array(
 
 /** The root schema type. */
 export type FormDataDefinitionType = "object";
-export const FormDataDefinitionType = /*@__PURE__*/ S.String;
+export const FormDataDefinitionType = S.String;
 
 /** A JSON Schema definition that describes the form's data fields. */
 export interface FormDataDefinition {
@@ -7494,7 +7484,7 @@ export const FormDataDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** The state of a form version. */
 export type FormVersionState = "draft" | "frozen";
-export const FormVersionState = /*@__PURE__*/ S.String;
+export const FormVersionState = S.String;
 
 /** The order in which form fields are displayed. */
 export type FormUiDefinitionUiOrderList = Array<string>;
@@ -7513,7 +7503,7 @@ export type FormUiDefinitionUiThemePrimaryColor =
   | "dark-blue"
   | "magenta"
   | "indigo";
-export const FormUiDefinitionUiThemePrimaryColor = /*@__PURE__*/ S.String;
+export const FormUiDefinitionUiThemePrimaryColor = S.String;
 
 /** The visual theme applied to the form. */
 export interface FormUiDefinitionUiTheme {
@@ -7921,7 +7911,7 @@ export const TimelineCellAuthorUserContent = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of timeline cell author. Currently only `USER` is supported. */
 export type TimelineCellAuthorUserType = "USER";
-export const TimelineCellAuthorUserType = /*@__PURE__*/ S.String;
+export const TimelineCellAuthorUserType = S.String;
 
 /** A user who authored a timeline cell. */
 export interface TimelineCellAuthorUser {
@@ -7952,7 +7942,7 @@ export const TimelineCellContentComment = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of content in the timeline cell. Currently only `COMMENT` is supported in this endpoint. */
 export type TimelineCellType = "COMMENT";
-export const TimelineCellType = /*@__PURE__*/ S.String;
+export const TimelineCellType = S.String;
 
 /** Attributes of a timeline cell, representing a single event in a case's chronological activity log (for example, a comment, status change, or assignment update). */
 export interface TimelineCell {
@@ -7979,7 +7969,7 @@ export const TimelineCell = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for timeline cells. */
 export type TimelineCellResourceType = "timeline_cell";
-export const TimelineCellResourceType = /*@__PURE__*/ S.String;
+export const TimelineCellResourceType = S.String;
 
 /** A timeline cell resource representing a single entry in a case's activity timeline. */
 export interface TimelineCellResource {
@@ -8076,7 +8066,7 @@ export type SecurityMonitoringRuleSeverity =
   | "medium"
   | "high"
   | "critical";
-export const SecurityMonitoringRuleSeverity = /*@__PURE__*/ S.String;
+export const SecurityMonitoringRuleSeverity = S.String;
 
 /** Attributes for converting historical job results to signals. */
 export interface ConvertJobResultsToSignalsAttributes {
@@ -8103,7 +8093,7 @@ export const ConvertJobResultsToSignalsAttributes = /*@__PURE__*/ S.suspend(
 /** Type of payload. */
 export type ConvertJobResultsToSignalsDataType =
   "historicalDetectionsJobResultSignalConversion";
-export const ConvertJobResultsToSignalsDataType = /*@__PURE__*/ S.String;
+export const ConvertJobResultsToSignalsDataType = S.String;
 
 /** Data for converting historical job results to signals. */
 export interface ConvertJobResultsToSignalsData {
@@ -8171,8 +8161,7 @@ export const SecurityMonitoringStandardRulePayloadCalculatedFieldsList =
 export type SecurityMonitoringRuleCaseActionOptionsFlaggedIPType =
   | "SUSPICIOUS"
   | "FLAGGED";
-export const SecurityMonitoringRuleCaseActionOptionsFlaggedIPType =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringRuleCaseActionOptionsFlaggedIPType = S.String;
 
 /** Options for the rule action */
 export interface SecurityMonitoringRuleCaseActionOptions {
@@ -8202,7 +8191,7 @@ export type SecurityMonitoringRuleCaseActionType =
   | "block_user"
   | "user_behavior"
   | "flag_ip";
-export const SecurityMonitoringRuleCaseActionType = /*@__PURE__*/ S.String;
+export const SecurityMonitoringRuleCaseActionType = S.String;
 
 /** Action to perform when a signal is triggered. Only available for Application Security rule type. */
 export interface SecurityMonitoringRuleCaseAction {
@@ -8269,7 +8258,7 @@ export const SecurityMonitoringStandardRulePayloadCasesList =
 
 /** The type of filtering action. */
 export type SecurityMonitoringFilterAction = "require" | "suppress";
-export const SecurityMonitoringFilterAction = /*@__PURE__*/ S.String;
+export const SecurityMonitoringFilterAction = S.String;
 
 /** The rule's suppression filter. */
 export interface SecurityMonitoringFilter {
@@ -8311,7 +8300,7 @@ export type SecurityMonitoringRuleAnomalyDetectionOptionsBucketDuration =
   | 3600
   | 10800;
 export const SecurityMonitoringRuleAnomalyDetectionOptionsBucketDuration =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 /** An optional parameter that sets how permissive anomaly detection is. Higher values require higher deviations before triggering a signal. */
 export type SecurityMonitoringRuleAnomalyDetectionOptionsDetectionTolerance =
@@ -8321,7 +8310,7 @@ export type SecurityMonitoringRuleAnomalyDetectionOptionsDetectionTolerance =
   | 4
   | 5;
 export const SecurityMonitoringRuleAnomalyDetectionOptionsDetectionTolerance =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 /** Learning duration in hours. Anomaly detection waits for at least this amount of historical data before it starts evaluating. */
 export type SecurityMonitoringRuleAnomalyDetectionOptionsLearningDuration =
@@ -8333,7 +8322,7 @@ export type SecurityMonitoringRuleAnomalyDetectionOptionsLearningDuration =
   | 168
   | 336;
 export const SecurityMonitoringRuleAnomalyDetectionOptionsLearningDuration =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 /** Options on anomaly detection method. */
 export interface SecurityMonitoringRuleAnomalyDetectionOptions {
@@ -8421,7 +8410,7 @@ export type SecurityMonitoringRuleDetectionMethod =
   | "third_party"
   | "anomaly_threshold"
   | "sequence_detection";
-export const SecurityMonitoringRuleDetectionMethod = /*@__PURE__*/ S.String;
+export const SecurityMonitoringRuleDetectionMethod = S.String;
 
 /** A time window is specified to match when at least one of the cases matches true. This is a sliding window and evaluates in real time. For third party detection method, this field is not used. */
 export type SecurityMonitoringRuleEvaluationWindow =
@@ -8437,12 +8426,11 @@ export type SecurityMonitoringRuleEvaluationWindow =
   | 21600
   | 43200
   | 86400;
-export const SecurityMonitoringRuleEvaluationWindow = /*@__PURE__*/ S.Number;
+export const SecurityMonitoringRuleEvaluationWindow = S.Number;
 
 /** Hardcoded evaluator type. */
 export type SecurityMonitoringRuleHardcodedEvaluatorType = "log4shell";
-export const SecurityMonitoringRuleHardcodedEvaluatorType =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringRuleHardcodedEvaluatorType = S.String;
 
 /** Options on impossible travel detection method. */
 export interface SecurityMonitoringRuleImpossibleTravelOptions {
@@ -8473,7 +8461,7 @@ export type SecurityMonitoringRuleKeepAlive =
   | 21600
   | 43200
   | 86400;
-export const SecurityMonitoringRuleKeepAlive = /*@__PURE__*/ S.Number;
+export const SecurityMonitoringRuleKeepAlive = S.Number;
 
 /** A signal will "close" regardless of the query being matched once the time exceeds the maximum duration. This time is calculated from the first seen timestamp. */
 export type SecurityMonitoringRuleMaxSignalDuration =
@@ -8489,19 +8477,17 @@ export type SecurityMonitoringRuleMaxSignalDuration =
   | 21600
   | 43200
   | 86400;
-export const SecurityMonitoringRuleMaxSignalDuration = /*@__PURE__*/ S.Number;
+export const SecurityMonitoringRuleMaxSignalDuration = S.Number;
 
 /** The learning method used to determine when signals should be generated for values that weren't learned. */
 export type SecurityMonitoringRuleNewValueOptionsLearningMethod =
   | "duration"
   | "threshold";
-export const SecurityMonitoringRuleNewValueOptionsLearningMethod =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringRuleNewValueOptionsLearningMethod = S.String;
 
 /** A number of occurrences after which signals will be generated for values that weren't learned. */
 export type SecurityMonitoringRuleNewValueOptionsLearningThreshold = 0 | 1;
-export const SecurityMonitoringRuleNewValueOptionsLearningThreshold =
-  /*@__PURE__*/ S.Number;
+export const SecurityMonitoringRuleNewValueOptionsLearningThreshold = S.Number;
 
 /** Options on new value detection method. */
 export interface SecurityMonitoringRuleNewValueOptions {
@@ -8730,7 +8716,7 @@ export type SecurityMonitoringRuleQueryAggregation =
   | "geo_data"
   | "event_count"
   | "none";
-export const SecurityMonitoringRuleQueryAggregation = /*@__PURE__*/ S.String;
+export const SecurityMonitoringRuleQueryAggregation = S.String;
 
 /** Source of events, either logs, audit trail, security signals, or Datadog events. `app_sec_spans` is deprecated in favor of `spans`. */
 export type SecurityMonitoringStandardDataSource =
@@ -8742,7 +8728,7 @@ export type SecurityMonitoringStandardDataSource =
   | "network"
   | "events"
   | "security_signals";
-export const SecurityMonitoringStandardDataSource = /*@__PURE__*/ S.String;
+export const SecurityMonitoringStandardDataSource = S.String;
 
 /** Field for which the cardinality is measured. Sent as an array. */
 export type SecurityMonitoringStandardRuleQueryDistinctFieldsList =
@@ -8936,7 +8922,7 @@ export type SecurityMonitoringRuleTypeCreate =
   | "log_detection"
   | "workload_activity"
   | "workload_security";
-export const SecurityMonitoringRuleTypeCreate = /*@__PURE__*/ S.String;
+export const SecurityMonitoringRuleTypeCreate = S.String;
 
 /** The payload of a rule. */
 export interface SecurityMonitoringStandardRulePayload {
@@ -9084,7 +9070,7 @@ export const SecurityMonitoringSignalRulePayloadTagsList =
 
 /** The rule type. */
 export type SecurityMonitoringSignalRuleType = "signal_correlation";
-export const SecurityMonitoringSignalRuleType = /*@__PURE__*/ S.String;
+export const SecurityMonitoringSignalRuleType = S.String;
 
 /** The payload of a signal correlation rule. */
 export interface SecurityMonitoringSignalRulePayload {
@@ -9135,7 +9121,7 @@ export type SecurityMonitoringRuleConvertPayload =
   | SecurityMonitoringStandardRulePayload
   | SecurityMonitoringSignalRulePayload;
 export const SecurityMonitoringRuleConvertPayload =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityMonitoringRuleConvertPayload>;
+  S.Unknown as any as S.Schema<SecurityMonitoringRuleConvertPayload>;
 
 export interface ConvertSecurityMonitoringRuleFromJSONToTerraformRequest {
   body: SecurityMonitoringRuleConvertPayload;
@@ -9162,7 +9148,7 @@ export type ConvertSecurityMonitoringTerraformResourceRequestResourceType =
   | "security_filters"
   | "rules";
 export const ConvertSecurityMonitoringTerraformResourceRequestResourceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource attributes as a JSON object, matching the structure returned by the corresponding Datadog API (for example, the attributes of a suppression rule). */
 export type SecurityMonitoringTerraformConvertAttributesResourceJsonMap = {
@@ -9391,7 +9377,7 @@ export const CaseCountResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of `AWSAssumeRoleType` object. */
 export type AWSAssumeRoleType = "AWSAssumeRole";
-export const AWSAssumeRoleType = /*@__PURE__*/ S.String;
+export const AWSAssumeRoleType = S.String;
 
 /** The definition of `AWSAssumeRole` object. */
 export interface AWSAssumeRoleInput {
@@ -9413,7 +9399,7 @@ export const AWSAssumeRoleInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of `AWSIntegrationType` object. */
 export type AWSIntegrationType = "AWS";
-export const AWSIntegrationType = /*@__PURE__*/ S.String;
+export const AWSIntegrationType = S.String;
 
 /** The definition of `AWSIntegration` object. */
 export interface AWSIntegrationInput {
@@ -9431,7 +9417,7 @@ export const AWSIntegrationInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `AnthropicAPIKey` object. */
 export type AnthropicAPIKeyType = "AnthropicAPIKey";
-export const AnthropicAPIKeyType = /*@__PURE__*/ S.String;
+export const AnthropicAPIKeyType = S.String;
 
 /** The definition of the `AnthropicAPIKey` object. */
 export interface AnthropicAPIKey {
@@ -9450,7 +9436,7 @@ export const AnthropicAPIKey = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `AnthropicIntegrationType` object. */
 export type AnthropicIntegrationType = "Anthropic";
-export const AnthropicIntegrationType = /*@__PURE__*/ S.String;
+export const AnthropicIntegrationType = S.String;
 
 /** The definition of the `AnthropicIntegration` object. */
 export interface AnthropicIntegration {
@@ -9468,7 +9454,7 @@ export const AnthropicIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `AsanaAccessToken` object. */
 export type AsanaAccessTokenType = "AsanaAccessToken";
-export const AsanaAccessTokenType = /*@__PURE__*/ S.String;
+export const AsanaAccessTokenType = S.String;
 
 /** The definition of the `AsanaAccessToken` object. */
 export interface AsanaAccessToken {
@@ -9487,7 +9473,7 @@ export const AsanaAccessToken = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `AsanaIntegrationType` object. */
 export type AsanaIntegrationType = "Asana";
-export const AsanaIntegrationType = /*@__PURE__*/ S.String;
+export const AsanaIntegrationType = S.String;
 
 /** The definition of the `AsanaIntegration` object. */
 export interface AsanaIntegration {
@@ -9505,7 +9491,7 @@ export const AsanaIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `AzureTenant` object. */
 export type AzureTenantType = "AzureTenant";
-export const AzureTenantType = /*@__PURE__*/ S.String;
+export const AzureTenantType = S.String;
 
 /** The definition of the `AzureTenant` object. */
 export interface AzureTenant {
@@ -9531,7 +9517,7 @@ export const AzureTenant = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `AzureIntegrationType` object. */
 export type AzureIntegrationType = "Azure";
-export const AzureIntegrationType = /*@__PURE__*/ S.String;
+export const AzureIntegrationType = S.String;
 
 /** The definition of the `AzureIntegration` object. */
 export interface AzureIntegration {
@@ -9549,7 +9535,7 @@ export const AzureIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `CircleCIAPIKey` object. */
 export type CircleCIAPIKeyType = "CircleCIAPIKey";
-export const CircleCIAPIKeyType = /*@__PURE__*/ S.String;
+export const CircleCIAPIKeyType = S.String;
 
 /** The definition of the `CircleCIAPIKey` object. */
 export interface CircleCIAPIKey {
@@ -9566,7 +9552,7 @@ export const CircleCIAPIKey = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `CircleCIIntegrationType` object. */
 export type CircleCIIntegrationType = "CircleCI";
-export const CircleCIIntegrationType = /*@__PURE__*/ S.String;
+export const CircleCIIntegrationType = S.String;
 
 /** The definition of the `CircleCIIntegration` object. */
 export interface CircleCIIntegration {
@@ -9584,7 +9570,7 @@ export const CircleCIIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `ClickupAPIKey` object. */
 export type ClickupAPIKeyType = "ClickupAPIKey";
-export const ClickupAPIKeyType = /*@__PURE__*/ S.String;
+export const ClickupAPIKeyType = S.String;
 
 /** The definition of the `ClickupAPIKey` object. */
 export interface ClickupAPIKey {
@@ -9601,7 +9587,7 @@ export const ClickupAPIKey = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `ClickupIntegrationType` object. */
 export type ClickupIntegrationType = "Clickup";
-export const ClickupIntegrationType = /*@__PURE__*/ S.String;
+export const ClickupIntegrationType = S.String;
 
 /** The definition of the `ClickupIntegration` object. */
 export interface ClickupIntegration {
@@ -9619,7 +9605,7 @@ export const ClickupIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `CloudflareAPIToken` object. */
 export type CloudflareAPITokenType = "CloudflareAPIToken";
-export const CloudflareAPITokenType = /*@__PURE__*/ S.String;
+export const CloudflareAPITokenType = S.String;
 
 /** The definition of the `CloudflareAPIToken` object. */
 export interface CloudflareAPIToken {
@@ -9638,7 +9624,7 @@ export const CloudflareAPIToken = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `CloudflareGlobalAPIToken` object. */
 export type CloudflareGlobalAPITokenType = "CloudflareGlobalAPIToken";
-export const CloudflareGlobalAPITokenType = /*@__PURE__*/ S.String;
+export const CloudflareGlobalAPITokenType = S.String;
 
 /** The definition of the `CloudflareGlobalAPIToken` object. */
 export interface CloudflareGlobalAPIToken {
@@ -9663,11 +9649,11 @@ export type CloudflareCredentials =
   | CloudflareAPIToken
   | CloudflareGlobalAPIToken;
 export const CloudflareCredentials =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CloudflareCredentials>;
+  S.Unknown as any as S.Schema<CloudflareCredentials>;
 
 /** The definition of the `CloudflareIntegrationType` object. */
 export type CloudflareIntegrationType = "Cloudflare";
-export const CloudflareIntegrationType = /*@__PURE__*/ S.String;
+export const CloudflareIntegrationType = S.String;
 
 /** The definition of the `CloudflareIntegration` object. */
 export interface CloudflareIntegration {
@@ -9685,7 +9671,7 @@ export const CloudflareIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `ConfigCatSDKKey` object. */
 export type ConfigCatSDKKeyType = "ConfigCatSDKKey";
-export const ConfigCatSDKKeyType = /*@__PURE__*/ S.String;
+export const ConfigCatSDKKeyType = S.String;
 
 /** The definition of the `ConfigCatSDKKey` object. */
 export interface ConfigCatSDKKey {
@@ -9710,7 +9696,7 @@ export const ConfigCatSDKKey = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `ConfigCatIntegrationType` object. */
 export type ConfigCatIntegrationType = "ConfigCat";
-export const ConfigCatIntegrationType = /*@__PURE__*/ S.String;
+export const ConfigCatIntegrationType = S.String;
 
 /** The definition of the `ConfigCatIntegration` object. */
 export interface ConfigCatIntegration {
@@ -9728,7 +9714,7 @@ export const ConfigCatIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `DatadogAPIKey` object. */
 export type DatadogAPIKeyType = "DatadogAPIKey";
-export const DatadogAPIKeyType = /*@__PURE__*/ S.String;
+export const DatadogAPIKeyType = S.String;
 
 /** The definition of the `DatadogAPIKey` object. */
 export interface DatadogAPIKey {
@@ -9754,7 +9740,7 @@ export const DatadogAPIKey = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `DatadogIntegrationType` object. */
 export type DatadogIntegrationType = "Datadog";
-export const DatadogIntegrationType = /*@__PURE__*/ S.String;
+export const DatadogIntegrationType = S.String;
 
 /** The definition of the `DatadogIntegration` object. */
 export interface DatadogIntegration {
@@ -9772,7 +9758,7 @@ export const DatadogIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `FastlyAPIKey` object. */
 export type FastlyAPIKeyType = "FastlyAPIKey";
-export const FastlyAPIKeyType = /*@__PURE__*/ S.String;
+export const FastlyAPIKeyType = S.String;
 
 /** The definition of the `FastlyAPIKey` object. */
 export interface FastlyAPIKey {
@@ -9789,7 +9775,7 @@ export const FastlyAPIKey = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `FastlyIntegrationType` object. */
 export type FastlyIntegrationType = "Fastly";
-export const FastlyIntegrationType = /*@__PURE__*/ S.String;
+export const FastlyIntegrationType = S.String;
 
 /** The definition of the `FastlyIntegration` object. */
 export interface FastlyIntegration {
@@ -9807,7 +9793,7 @@ export const FastlyIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `FreshserviceAPIKey` object. */
 export type FreshserviceAPIKeyType = "FreshserviceAPIKey";
-export const FreshserviceAPIKeyType = /*@__PURE__*/ S.String;
+export const FreshserviceAPIKeyType = S.String;
 
 /** The definition of the `FreshserviceAPIKey` object. */
 export interface FreshserviceAPIKey {
@@ -9829,7 +9815,7 @@ export const FreshserviceAPIKey = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `FreshserviceIntegrationType` object. */
 export type FreshserviceIntegrationType = "Freshservice";
-export const FreshserviceIntegrationType = /*@__PURE__*/ S.String;
+export const FreshserviceIntegrationType = S.String;
 
 /** The definition of the `FreshserviceIntegration` object. */
 export interface FreshserviceIntegration {
@@ -9847,7 +9833,7 @@ export const FreshserviceIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `GCPServiceAccount` object. */
 export type GCPServiceAccountCredentialType = "GCPServiceAccount";
-export const GCPServiceAccountCredentialType = /*@__PURE__*/ S.String;
+export const GCPServiceAccountCredentialType = S.String;
 
 /** The definition of the `GCPServiceAccount` object. */
 export interface GCPServiceAccount {
@@ -9869,7 +9855,7 @@ export const GCPServiceAccount = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `GCPIntegrationType` object. */
 export type GCPIntegrationType = "GCP";
-export const GCPIntegrationType = /*@__PURE__*/ S.String;
+export const GCPIntegrationType = S.String;
 
 /** The definition of the `GCPIntegration` object. */
 export interface GCPIntegration {
@@ -9885,7 +9871,7 @@ export const GCPIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `GeminiAPIKey` object. */
 export type GeminiAPIKeyType = "GeminiAPIKey";
-export const GeminiAPIKeyType = /*@__PURE__*/ S.String;
+export const GeminiAPIKeyType = S.String;
 
 /** The definition of the `GeminiAPIKey` object. */
 export interface GeminiAPIKey {
@@ -9902,7 +9888,7 @@ export const GeminiAPIKey = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `GeminiIntegrationType` object. */
 export type GeminiIntegrationType = "Gemini";
-export const GeminiIntegrationType = /*@__PURE__*/ S.String;
+export const GeminiIntegrationType = S.String;
 
 /** The definition of the `GeminiIntegration` object. */
 export interface GeminiIntegration {
@@ -9920,7 +9906,7 @@ export const GeminiIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `GitlabAPIKey` object. */
 export type GitlabAPIKeyType = "GitlabAPIKey";
-export const GitlabAPIKeyType = /*@__PURE__*/ S.String;
+export const GitlabAPIKeyType = S.String;
 
 /** The definition of the `GitlabAPIKey` object. */
 export interface GitlabAPIKey {
@@ -9937,7 +9923,7 @@ export const GitlabAPIKey = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `GitlabIntegrationType` object. */
 export type GitlabIntegrationType = "Gitlab";
-export const GitlabIntegrationType = /*@__PURE__*/ S.String;
+export const GitlabIntegrationType = S.String;
 
 /** The definition of the `GitlabIntegration` object. */
 export interface GitlabIntegration {
@@ -9955,7 +9941,7 @@ export const GitlabIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `GreyNoiseAPIKey` object. */
 export type GreyNoiseAPIKeyType = "GreyNoiseAPIKey";
-export const GreyNoiseAPIKeyType = /*@__PURE__*/ S.String;
+export const GreyNoiseAPIKeyType = S.String;
 
 /** The definition of the `GreyNoiseAPIKey` object. */
 export interface GreyNoiseAPIKey {
@@ -9974,7 +9960,7 @@ export const GreyNoiseAPIKey = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `GreyNoiseIntegrationType` object. */
 export type GreyNoiseIntegrationType = "GreyNoise";
-export const GreyNoiseIntegrationType = /*@__PURE__*/ S.String;
+export const GreyNoiseIntegrationType = S.String;
 
 /** The definition of the `GreyNoiseIntegration` object. */
 export interface GreyNoiseIntegration {
@@ -10026,7 +10012,7 @@ export const HTTPTokenAuthHeadersList = /*@__PURE__*/ S.Array(
 
 /** The definition of `TokenType` object. */
 export type TokenType = "SECRET";
-export const TokenType = /*@__PURE__*/ S.String;
+export const TokenType = S.String;
 
 /** The definition of `HTTPToken` object. */
 export interface HTTPToken {
@@ -10052,7 +10038,7 @@ export const HTTPTokenAuthTokensList = /*@__PURE__*/ S.Array(
 
 /** The definition of `HTTPTokenAuthType` object. */
 export type HTTPTokenAuthType = "HTTPTokenAuth";
-export const HTTPTokenAuthType = /*@__PURE__*/ S.String;
+export const HTTPTokenAuthType = S.String;
 
 /** The definition of `UrlParam` object. */
 export interface UrlParam {
@@ -10096,7 +10082,7 @@ export const HTTPTokenAuth = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of `HTTPIntegrationType` object. */
 export type HTTPIntegrationType = "HTTP";
-export const HTTPIntegrationType = /*@__PURE__*/ S.String;
+export const HTTPIntegrationType = S.String;
 
 /** The definition of `HTTPIntegration` object. */
 export interface HTTPIntegration {
@@ -10117,7 +10103,7 @@ export const HTTPIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `LaunchDarklyAPIKey` object. */
 export type LaunchDarklyAPIKeyType = "LaunchDarklyAPIKey";
-export const LaunchDarklyAPIKeyType = /*@__PURE__*/ S.String;
+export const LaunchDarklyAPIKeyType = S.String;
 
 /** The definition of the `LaunchDarklyAPIKey` object. */
 export interface LaunchDarklyAPIKey {
@@ -10136,7 +10122,7 @@ export const LaunchDarklyAPIKey = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `LaunchDarklyIntegrationType` object. */
 export type LaunchDarklyIntegrationType = "LaunchDarkly";
-export const LaunchDarklyIntegrationType = /*@__PURE__*/ S.String;
+export const LaunchDarklyIntegrationType = S.String;
 
 /** The definition of the `LaunchDarklyIntegration` object. */
 export interface LaunchDarklyIntegration {
@@ -10154,7 +10140,7 @@ export const LaunchDarklyIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `NotionAPIKey` object. */
 export type NotionAPIKeyType = "NotionAPIKey";
-export const NotionAPIKeyType = /*@__PURE__*/ S.String;
+export const NotionAPIKeyType = S.String;
 
 /** The definition of the `NotionAPIKey` object. */
 export interface NotionAPIKey {
@@ -10171,7 +10157,7 @@ export const NotionAPIKey = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `NotionIntegrationType` object. */
 export type NotionIntegrationType = "Notion";
-export const NotionIntegrationType = /*@__PURE__*/ S.String;
+export const NotionIntegrationType = S.String;
 
 /** The definition of the `NotionIntegration` object. */
 export interface NotionIntegration {
@@ -10189,7 +10175,7 @@ export const NotionIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `OktaAPIToken` object. */
 export type OktaAPITokenType = "OktaAPIToken";
-export const OktaAPITokenType = /*@__PURE__*/ S.String;
+export const OktaAPITokenType = S.String;
 
 /** The definition of the `OktaAPIToken` object. */
 export interface OktaAPIToken {
@@ -10209,7 +10195,7 @@ export const OktaAPIToken = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `OktaIntegrationType` object. */
 export type OktaIntegrationType = "Okta";
-export const OktaIntegrationType = /*@__PURE__*/ S.String;
+export const OktaIntegrationType = S.String;
 
 /** The definition of the `OktaIntegration` object. */
 export interface OktaIntegration {
@@ -10227,7 +10213,7 @@ export const OktaIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `OpenAIAPIKey` object. */
 export type OpenAIAPIKeyType = "OpenAIAPIKey";
-export const OpenAIAPIKeyType = /*@__PURE__*/ S.String;
+export const OpenAIAPIKeyType = S.String;
 
 /** The definition of the `OpenAIAPIKey` object. */
 export interface OpenAIAPIKey {
@@ -10244,7 +10230,7 @@ export const OpenAIAPIKey = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `OpenAIIntegrationType` object. */
 export type OpenAIIntegrationType = "OpenAI";
-export const OpenAIIntegrationType = /*@__PURE__*/ S.String;
+export const OpenAIIntegrationType = S.String;
 
 /** The definition of the `OpenAIIntegration` object. */
 export interface OpenAIIntegration {
@@ -10262,7 +10248,7 @@ export const OpenAIIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `ServiceNowBasicAuth` object. */
 export type ServiceNowBasicAuthType = "ServiceNowBasicAuth";
-export const ServiceNowBasicAuthType = /*@__PURE__*/ S.String;
+export const ServiceNowBasicAuthType = S.String;
 
 /** The definition of the `ServiceNowBasicAuth` object. */
 export interface ServiceNowBasicAuth {
@@ -10287,7 +10273,7 @@ export const ServiceNowBasicAuth = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `ServiceNowIntegrationType` object. */
 export type ServiceNowIntegrationType = "ServiceNow";
-export const ServiceNowIntegrationType = /*@__PURE__*/ S.String;
+export const ServiceNowIntegrationType = S.String;
 
 /** The definition of the `ServiceNowIntegration` object. */
 export interface ServiceNowIntegration {
@@ -10305,7 +10291,7 @@ export const ServiceNowIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `SplitAPIKey` object. */
 export type SplitAPIKeyType = "SplitAPIKey";
-export const SplitAPIKeyType = /*@__PURE__*/ S.String;
+export const SplitAPIKeyType = S.String;
 
 /** The definition of the `SplitAPIKey` object. */
 export interface SplitAPIKey {
@@ -10322,7 +10308,7 @@ export const SplitAPIKey = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `SplitIntegrationType` object. */
 export type SplitIntegrationType = "Split";
-export const SplitIntegrationType = /*@__PURE__*/ S.String;
+export const SplitIntegrationType = S.String;
 
 /** The definition of the `SplitIntegration` object. */
 export interface SplitIntegration {
@@ -10340,7 +10326,7 @@ export const SplitIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `StatsigAPIKey` object. */
 export type StatsigAPIKeyType = "StatsigAPIKey";
-export const StatsigAPIKeyType = /*@__PURE__*/ S.String;
+export const StatsigAPIKeyType = S.String;
 
 /** The definition of the `StatsigAPIKey` object. */
 export interface StatsigAPIKey {
@@ -10357,7 +10343,7 @@ export const StatsigAPIKey = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `StatsigIntegrationType` object. */
 export type StatsigIntegrationType = "Statsig";
-export const StatsigIntegrationType = /*@__PURE__*/ S.String;
+export const StatsigIntegrationType = S.String;
 
 /** The definition of the `StatsigIntegration` object. */
 export interface StatsigIntegration {
@@ -10375,7 +10361,7 @@ export const StatsigIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `VirusTotalAPIKey` object. */
 export type VirusTotalAPIKeyType = "VirusTotalAPIKey";
-export const VirusTotalAPIKeyType = /*@__PURE__*/ S.String;
+export const VirusTotalAPIKeyType = S.String;
 
 /** The definition of the `VirusTotalAPIKey` object. */
 export interface VirusTotalAPIKey {
@@ -10394,7 +10380,7 @@ export const VirusTotalAPIKey = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the `VirusTotalIntegrationType` object. */
 export type VirusTotalIntegrationType = "VirusTotal";
-export const VirusTotalIntegrationType = /*@__PURE__*/ S.String;
+export const VirusTotalIntegrationType = S.String;
 
 /** The definition of the `VirusTotalIntegration` object. */
 export interface VirusTotalIntegration {
@@ -10437,7 +10423,7 @@ export type ActionConnectionIntegrationInput =
   | StatsigIntegration
   | VirusTotalIntegration;
 export const ActionConnectionIntegrationInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionConnectionIntegrationInput>;
+  S.Unknown as any as S.Schema<ActionConnectionIntegrationInput>;
 
 /** Tags associated with the connection. Each tag must follow the `key:value` format. The `default` tag key is reserved. */
 export type ActionConnectionAttributesInputTagsList = Array<string>;
@@ -10465,7 +10451,7 @@ export const ActionConnectionAttributesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of `ActionConnectionDataType` object. */
 export type ActionConnectionDataType = "action_connection";
-export const ActionConnectionDataType = /*@__PURE__*/ S.String;
+export const ActionConnectionDataType = S.String;
 
 /** Data related to the connection. */
 export interface ActionConnectionDataInput {
@@ -10555,7 +10541,7 @@ export type ActionConnectionIntegration =
   | StatsigIntegration
   | VirusTotalIntegration;
 export const ActionConnectionIntegration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionConnectionIntegration>;
+  S.Unknown as any as S.Schema<ActionConnectionIntegration>;
 
 /** Tags associated with the connection. Each tag must follow the `key:value` format. The `default` tag key is reserved. */
 export type ActionConnectionAttributesTagsList = Array<string>;
@@ -10625,7 +10611,7 @@ export const AiCustomRuleRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** AI custom rule resource type. */
 export type AiCustomRuleDataType = "ai_rule";
-export const AiCustomRuleDataType = /*@__PURE__*/ S.String;
+export const AiCustomRuleDataType = S.String;
 
 /** Request data for creating an AI custom rule. */
 export interface AiCustomRuleRequestData {
@@ -10671,7 +10657,7 @@ export type CustomRuleRevisionAttributesCategory =
   | "CODE_STYLE"
   | "ERROR_PRONE"
   | "PERFORMANCE";
-export const CustomRuleRevisionAttributesCategory = /*@__PURE__*/ S.String;
+export const CustomRuleRevisionAttributesCategory = S.String;
 
 /** Directory patterns this rule applies to. */
 export type AiCustomRuleRevisionResponseAttributesDirectoriesList =
@@ -10683,7 +10669,7 @@ export const AiCustomRuleRevisionResponseAttributesDirectoriesList =
 
 /** The execution mode for an AI rule revision. */
 export type AiCustomRuleRevisionExecutionMode = "auto" | "manual" | "always";
-export const AiCustomRuleRevisionExecutionMode = /*@__PURE__*/ S.String;
+export const AiCustomRuleRevisionExecutionMode = S.String;
 
 /** File glob patterns this rule applies to. */
 export type AiCustomRuleRevisionResponseAttributesGlobsList = Array<string>;
@@ -10697,7 +10683,7 @@ export type CustomRuleRevisionAttributesSeverity =
   | "ERROR"
   | "WARNING"
   | "NOTICE";
-export const CustomRuleRevisionAttributesSeverity = /*@__PURE__*/ S.String;
+export const CustomRuleRevisionAttributesSeverity = S.String;
 
 /** Response attributes of an AI custom rule revision. */
 export interface AiCustomRuleRevisionResponseAttributes {
@@ -10867,7 +10853,7 @@ export const AiCustomRuleRevisionRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** AI custom rule revision resource type. */
 export type AiCustomRuleRevisionDataType = "ai_rule_revision";
-export const AiCustomRuleRevisionDataType = /*@__PURE__*/ S.String;
+export const AiCustomRuleRevisionDataType = S.String;
 
 /** Request data for creating an AI custom rule revision. */
 export interface AiCustomRuleRevisionRequestData {
@@ -10937,7 +10923,7 @@ export const AiCustomRulesetRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** AI custom ruleset resource type. */
 export type AiCustomRulesetDataType = "ai_ruleset";
-export const AiCustomRulesetDataType = /*@__PURE__*/ S.String;
+export const AiCustomRulesetDataType = S.String;
 
 /** Request data for creating an AI custom ruleset. */
 export interface AiCustomRulesetRequestData {
@@ -11039,7 +11025,7 @@ export const AiCustomRulesetResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of AI memory violation result indicating whether it is a true positive or false positive. */
 export type AiMemoryViolationType = "TP" | "FP";
-export const AiMemoryViolationType = /*@__PURE__*/ S.String;
+export const AiMemoryViolationType = S.String;
 
 /** Attributes for creating an AI memory violation result. */
 export interface AiMemoryViolationResultRequestAttributes {
@@ -11074,7 +11060,7 @@ export const AiMemoryViolationResultRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** AI memory violation result resource type. */
 export type AiMemoryViolationResultDataType = "ai_memory_violation_result";
-export const AiMemoryViolationResultDataType = /*@__PURE__*/ S.String;
+export const AiMemoryViolationResultDataType = S.String;
 
 /** Request data for creating an AI memory violation result. */
 export interface AiMemoryViolationResultRequestData {
@@ -11120,7 +11106,7 @@ export const CreateAiMemoryViolationResultResponse = /*@__PURE__*/ S.suspend(
 
 /** The progression strategy used by a progressive rollout. */
 export type RolloutStrategy = "UNIFORM_INTERVALS" | "NO_ROLLOUT";
-export const RolloutStrategy = /*@__PURE__*/ S.String;
+export const RolloutStrategy = S.String;
 
 /** Rollout options request payload. */
 export interface RolloutOptionsRequest {
@@ -11201,7 +11187,7 @@ export const ExposureScheduleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Action to perform when a guardrail threshold is triggered. */
 export type GuardrailTriggerAction = "PAUSE" | "ABORT";
-export const GuardrailTriggerAction = /*@__PURE__*/ S.String;
+export const GuardrailTriggerAction = S.String;
 
 /** Guardrail metric request payload. */
 export interface GuardrailMetricRequest {
@@ -11238,7 +11224,7 @@ export type ConditionOperator =
   | "NOT_ONE_OF"
   | "IS_NULL"
   | "EQUALS";
-export const ConditionOperator = /*@__PURE__*/ S.String;
+export const ConditionOperator = S.String;
 
 /** Values used by the selected operator. Required for inline conditions; omit when `saved_filter_id` is set. */
 export type ConditionRequestValueList = Array<string>;
@@ -11295,7 +11281,7 @@ export const UpsertAllocationRequestTargetingRulesList = /*@__PURE__*/ S.Array(
 
 /** The type of targeting rule (called allocation in the API model). */
 export type AllocationType = "FEATURE_GATE" | "CANARY";
-export const AllocationType = /*@__PURE__*/ S.String;
+export const AllocationType = S.String;
 
 /** Variant weight request payload. */
 export interface VariantWeightRequest {
@@ -11360,7 +11346,7 @@ export const UpsertAllocationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type. */
 export type AllocationDataType = "allocations";
-export const AllocationDataType = /*@__PURE__*/ S.String;
+export const AllocationDataType = S.String;
 
 /** Data wrapper for allocation request payloads. */
 export interface AllocationDataRequest {
@@ -11805,11 +11791,11 @@ export type AnnotationColor =
   | "green"
   | "yellow"
   | "red";
-export const AnnotationColor = /*@__PURE__*/ S.String;
+export const AnnotationColor = S.String;
 
 /** Kind of annotation. `pointInTime` annotations mark a single moment in time, while `timeRegion` annotations span a window of time and require an `end_time`. */
 export type AnnotationKind = "pointInTime" | "timeRegion";
-export const AnnotationKind = /*@__PURE__*/ S.String;
+export const AnnotationKind = S.String;
 
 /** IDs of widgets the annotation is associated with. When empty or omitted, the annotation applies to the whole page. */
 export type AnnotationCreateAttributesWidgetIdsList = Array<string>;
@@ -11848,7 +11834,7 @@ export const AnnotationCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Annotation resource type. */
 export type AnnotationType = "annotation";
-export const AnnotationType = /*@__PURE__*/ S.String;
+export const AnnotationType = S.String;
 
 /** Data for creating an annotation. */
 export interface AnnotationRequestData {
@@ -11967,7 +11953,7 @@ export const APIKeyCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** API Keys resource type. */
 export type APIKeysType = "api_keys";
-export const APIKeysType = /*@__PURE__*/ S.String;
+export const APIKeysType = S.String;
 
 /** Object used to create an API key. */
 export interface APIKeyCreateData {
@@ -12093,7 +12079,7 @@ export const LeakedKeyAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of LeakedKeyType object. */
 export type LeakedKeyType = "leaked_keys";
-export const LeakedKeyType = /*@__PURE__*/ S.String;
+export const LeakedKeyType = S.String;
 
 /** The definition of LeakedKey object. */
 export interface LeakedKey {
@@ -12113,7 +12099,7 @@ export const LeakedKey = /*@__PURE__*/ S.suspend(() =>
 /** An object related to an API key. */
 export type APIKeyResponseIncludedItem = User | LeakedKey;
 export const APIKeyResponseIncludedItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<APIKeyResponseIncludedItem>;
+  S.Unknown as any as S.Schema<APIKeyResponseIncludedItem>;
 
 /** Array of objects related to the API key. */
 export type APIKeyResponseIncludedList = Array<APIKeyResponseIncludedItem>;
@@ -12149,7 +12135,7 @@ export const SpansFilterCreate = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of retention filter. The value should always be spans-sampling-processor. */
 export type RetentionFilterType = "spans-sampling-processor";
-export const RetentionFilterType = /*@__PURE__*/ S.String;
+export const RetentionFilterType = S.String;
 
 /** The object describing the configuration of the retention filter to create/update. */
 export interface RetentionFilterCreateAttributes {
@@ -12179,7 +12165,7 @@ export const RetentionFilterCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. */
 export type ApmRetentionFilterType = "apm_retention_filter";
-export const ApmRetentionFilterType = /*@__PURE__*/ S.String;
+export const ApmRetentionFilterType = S.String;
 
 /** The body of the retention filter to be created. */
 export interface RetentionFilterCreateData {
@@ -12308,7 +12294,7 @@ export type AppBuilderEventName =
   | "close"
   | "open"
   | "executionFinished";
-export const AppBuilderEventName = /*@__PURE__*/ S.String;
+export const AppBuilderEventName = S.String;
 
 /** The response to the event. */
 export type AppBuilderEventType =
@@ -12320,7 +12306,7 @@ export type AppBuilderEventType =
   | "openUrl"
   | "downloadFile"
   | "setStateVariableValue";
-export const AppBuilderEventType = /*@__PURE__*/ S.String;
+export const AppBuilderEventType = S.String;
 
 /** An event on a UI component that triggers a response or action in an app. */
 export interface AppBuilderEvent {
@@ -12357,7 +12343,7 @@ export const ComponentPropertiesChildrenList = /*@__PURE__*/ S.Array(
 /** Whether the UI component is visible. If this is a string, it must be a valid JavaScript expression that evaluates to a boolean. */
 export type ComponentPropertiesIsVisible = boolean | string;
 export const ComponentPropertiesIsVisible =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ComponentPropertiesIsVisible>;
+  S.Unknown as any as S.Schema<ComponentPropertiesIsVisible>;
 
 /** Properties of a UI component. Different component types can have their own additional unique properties. See the [components documentation](https://docs.datadoghq.com/service_management/app_builder/components/) for more detail on each component type and its properties. */
 export interface ComponentProperties {
@@ -12396,7 +12382,7 @@ export type ComponentType =
   | "search"
   | "container"
   | "calloutValue";
-export const ComponentType = /*@__PURE__*/ S.String;
+export const ComponentType = S.String;
 
 /** [Definition of a UI component in the app](https://docs.datadoghq.com/service_management/app_builder/components/) */
 export interface Component {
@@ -12428,7 +12414,7 @@ export const ComponentGridPropertiesChildrenList = /*@__PURE__*/ S.Array(
 /** Whether the grid component and its children are visible. If a string, it must be a valid JavaScript expression that evaluates to a boolean. */
 export type ComponentGridPropertiesIsVisible = string | boolean;
 export const ComponentGridPropertiesIsVisible =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ComponentGridPropertiesIsVisible>;
+  S.Unknown as any as S.Schema<ComponentGridPropertiesIsVisible>;
 
 /** Properties of a grid component. */
 export interface ComponentGridProperties {
@@ -12450,7 +12436,7 @@ export const ComponentGridProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The grid component type. */
 export type ComponentGridType = "grid";
-export const ComponentGridType = /*@__PURE__*/ S.String;
+export const ComponentGridType = S.String;
 
 /** A grid component. The grid component is the root canvas for an app and contains all other components. */
 export interface ComponentGrid {
@@ -12489,17 +12475,17 @@ export const ActionQueryEventsList = /*@__PURE__*/ S.Array(
 /** Whether to run this query. If specified, the query will only run if this condition evaluates to `true` in JavaScript and all other conditions are also met. */
 export type ActionQueryCondition = boolean | string;
 export const ActionQueryCondition =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionQueryCondition>;
+  S.Unknown as any as S.Schema<ActionQueryCondition>;
 
 /** The minimum time in milliseconds that must pass before the query can be triggered again. This is useful for preventing accidental double-clicks from triggering the query multiple times. */
 export type ActionQueryDebounceInMs = number | string;
 export const ActionQueryDebounceInMs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionQueryDebounceInMs>;
+  S.Unknown as any as S.Schema<ActionQueryDebounceInMs>;
 
 /** Whether to enable the mocked outputs for testing. */
 export type ActionQueryMockedOutputsEnabled = boolean | string;
 export const ActionQueryMockedOutputsEnabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionQueryMockedOutputsEnabled>;
+  S.Unknown as any as S.Schema<ActionQueryMockedOutputsEnabled>;
 
 /** The mocked outputs of the action query. */
 export interface ActionQueryMockedOutputsObject {
@@ -12519,27 +12505,27 @@ export const ActionQueryMockedOutputsObject = /*@__PURE__*/ S.suspend(() =>
 /** The mocked outputs of the action query. This is useful for testing the app without actually running the action. */
 export type ActionQueryMockedOutputs = string | ActionQueryMockedOutputsObject;
 export const ActionQueryMockedOutputs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionQueryMockedOutputs>;
+  S.Unknown as any as S.Schema<ActionQueryMockedOutputs>;
 
 /** Determines when this query is executed. If set to `false`, the query will run when the app loads and whenever any query arguments change. If set to `true`, the query will only run when manually triggered from elsewhere in the app. */
 export type ActionQueryOnlyTriggerManually = boolean | string;
 export const ActionQueryOnlyTriggerManually =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionQueryOnlyTriggerManually>;
+  S.Unknown as any as S.Schema<ActionQueryOnlyTriggerManually>;
 
 /** If specified, the app will poll the query at the specified interval in milliseconds. The minimum polling interval is 15 seconds. The query will only poll when the app's browser tab is active. */
 export type ActionQueryPollingIntervalInMs = number | string;
 export const ActionQueryPollingIntervalInMs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionQueryPollingIntervalInMs>;
+  S.Unknown as any as S.Schema<ActionQueryPollingIntervalInMs>;
 
 /** Whether to prompt the user to confirm this query before it runs. */
 export type ActionQueryRequiresConfirmation = boolean | string;
 export const ActionQueryRequiresConfirmation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionQueryRequiresConfirmation>;
+  S.Unknown as any as S.Schema<ActionQueryRequiresConfirmation>;
 
 /** Whether to display a toast to the user when the query returns an error. */
 export type ActionQueryShowToastOnError = boolean | string;
 export const ActionQueryShowToastOnError =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionQueryShowToastOnError>;
+  S.Unknown as any as S.Schema<ActionQueryShowToastOnError>;
 
 /** The tags of the connection group. */
 export type ActionQuerySpecConnectionGroupTagsList = Array<string>;
@@ -12573,7 +12559,7 @@ export const ActionQuerySpecInput = /*@__PURE__*/ S.Record(
 /** The inputs to the action query. These are the values that are passed to the action when it is triggered. */
 export type ActionQuerySpecInputs = string | ActionQuerySpecInput;
 export const ActionQuerySpecInputs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionQuerySpecInputs>;
+  S.Unknown as any as S.Schema<ActionQuerySpecInputs>;
 
 /** The action query spec object. */
 export interface ActionQuerySpecObject {
@@ -12597,8 +12583,7 @@ export const ActionQuerySpecObject = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of the action query. */
 export type ActionQuerySpec = string | ActionQuerySpecObject;
-export const ActionQuerySpec =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionQuerySpec>;
+export const ActionQuerySpec = S.Unknown as any as S.Schema<ActionQuerySpec>;
 
 /** The properties of the action query. */
 export interface ActionQueryProperties {
@@ -12631,7 +12616,7 @@ export const ActionQueryProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The action query type. */
 export type ActionQueryType = "action";
-export const ActionQueryType = /*@__PURE__*/ S.String;
+export const ActionQueryType = S.String;
 
 /** An action query. This query type is used to trigger an action, such as sending a HTTP request. */
 export interface ActionQuery {
@@ -12669,7 +12654,7 @@ export const DataTransformProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The data transform type. */
 export type DataTransformType = "dataTransform";
-export const DataTransformType = /*@__PURE__*/ S.String;
+export const DataTransformType = S.String;
 
 /** A data transformer, which is custom JavaScript code that executes and transforms data when its inputs change. */
 export interface DataTransform {
@@ -12704,7 +12689,7 @@ export const StateVariableProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The state variable type. */
 export type StateVariableType = "stateVariable";
-export const StateVariableType = /*@__PURE__*/ S.String;
+export const StateVariableType = S.String;
 
 /** A variable, which can be set and read by other components in the app. */
 export interface StateVariable {
@@ -12726,7 +12711,7 @@ export const StateVariable = /*@__PURE__*/ S.suspend(() =>
 
 /** A data query used by an app. This can take the form of an external action, a data transformation, or a state variable. */
 export type Query = ActionQuery | DataTransform | StateVariable;
-export const Query = /*@__PURE__*/ S.Unknown as any as S.Schema<Query>;
+export const Query = S.Unknown as any as S.Schema<Query>;
 
 /** An array of queries, such as external actions and state variables, that the app uses. */
 export type CreateAppRequestDataAttributesQueriesList = Array<Query>;
@@ -12770,7 +12755,7 @@ export const CreateAppRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The app definition type. */
 export type AppDefinitionType = "appDefinitions";
-export const AppDefinitionType = /*@__PURE__*/ S.String;
+export const AppDefinitionType = S.String;
 
 /** The data object containing the app definition. */
 export interface CreateAppRequestData {
@@ -12830,8 +12815,7 @@ export const CreateAppResponse = /*@__PURE__*/ S.suspend(() =>
 export type ApplicationSecurityWafCustomRuleActionAction =
   | "redirect_request"
   | "block_request";
-export const ApplicationSecurityWafCustomRuleActionAction =
-  /*@__PURE__*/ S.String;
+export const ApplicationSecurityWafCustomRuleActionAction = S.String;
 
 /** The definition of `ApplicationSecurityWafCustomRuleActionParameters` object. */
 export interface ApplicationSecurityWafCustomRuleActionParameters {
@@ -12882,8 +12866,7 @@ export type ApplicationSecurityWafCustomRuleConditionOperator =
   | "!exists"
   | "equals"
   | "!equals";
-export const ApplicationSecurityWafCustomRuleConditionOperator =
-  /*@__PURE__*/ S.String;
+export const ApplicationSecurityWafCustomRuleConditionOperator = S.String;
 
 /** Input from the request on which the condition should apply. */
 export type ApplicationSecurityWafCustomRuleConditionInputAddress =
@@ -12921,8 +12904,7 @@ export type ApplicationSecurityWafCustomRuleConditionInputAddress =
   | "_dd.appsec.fp.http.network"
   | "_dd.appsec.fp.session"
   | "_dd.appsec.fp.http.endpoint";
-export const ApplicationSecurityWafCustomRuleConditionInputAddress =
-  /*@__PURE__*/ S.String;
+export const ApplicationSecurityWafCustomRuleConditionInputAddress = S.String;
 
 /** Specific path for the input. */
 export type ApplicationSecurityWafCustomRuleConditionInputKeyPathList =
@@ -12992,8 +12974,7 @@ export type ApplicationSecurityWafCustomRuleConditionParametersType =
   | "unsigned"
   | "float"
   | "string";
-export const ApplicationSecurityWafCustomRuleConditionParametersType =
-  /*@__PURE__*/ S.String;
+export const ApplicationSecurityWafCustomRuleConditionParametersType = S.String;
 
 /** The scope of the WAF custom rule. */
 export interface ApplicationSecurityWafCustomRuleConditionParameters {
@@ -13082,8 +13063,7 @@ export type ApplicationSecurityWafCustomRuleTagsCategory =
   | "attack_attempt"
   | "business_logic"
   | "security_response";
-export const ApplicationSecurityWafCustomRuleTagsCategory =
-  /*@__PURE__*/ S.String;
+export const ApplicationSecurityWafCustomRuleTagsCategory = S.String;
 
 /** Tags associated with the WAF Custom Rule. The concatenation of category and type will form the security activity field associated with the traces. */
 export interface ApplicationSecurityWafCustomRuleTags {
@@ -13139,7 +13119,7 @@ export const ApplicationSecurityWafCustomRuleCreateAttributes =
 
 /** The type of the resource. The value should always be `custom_rule`. */
 export type ApplicationSecurityWafCustomRuleType = "custom_rule";
-export const ApplicationSecurityWafCustomRuleType = /*@__PURE__*/ S.String;
+export const ApplicationSecurityWafCustomRuleType = S.String;
 
 /** Object for a single WAF custom rule. */
 export interface ApplicationSecurityWafCustomRuleCreateData {
@@ -13295,8 +13275,7 @@ export const ApplicationSecurityWafExclusionFilterCreateAttributesIpListList =
 
 /** The action taken when the exclusion filter matches. When set to `monitor`, security traces are emitted but the requests are not blocked. By default, security traces are not emitted and the requests are not blocked. */
 export type ApplicationSecurityWafExclusionFilterOnMatch = "monitor";
-export const ApplicationSecurityWafExclusionFilterOnMatch =
-  /*@__PURE__*/ S.String;
+export const ApplicationSecurityWafExclusionFilterOnMatch = S.String;
 
 /** A list of parameters matched by the exclusion filter in the HTTP query string and HTTP request body. Nested parameters can be matched by joining fields with a dot character. */
 export type ApplicationSecurityWafExclusionFilterCreateAttributesParametersList =
@@ -13416,7 +13395,7 @@ export const ApplicationSecurityWafExclusionFilterCreateAttributes =
 
 /** Type of the resource. The value should always be `exclusion_filter`. */
 export type ApplicationSecurityWafExclusionFilterType = "exclusion_filter";
-export const ApplicationSecurityWafExclusionFilterType = /*@__PURE__*/ S.String;
+export const ApplicationSecurityWafExclusionFilterType = S.String;
 
 /** Object for creating a single WAF exclusion filter. */
 export interface ApplicationSecurityWafExclusionFilterCreateData {
@@ -13727,7 +13706,7 @@ export const ApplicationSecurityPolicyCreateAttributes =
 
 /** The type of the resource. The value should always be `policy`. */
 export type ApplicationSecurityPolicyType = "policy";
-export const ApplicationSecurityPolicyType = /*@__PURE__*/ S.String;
+export const ApplicationSecurityPolicyType = S.String;
 
 /** Object for a single WAF policy. */
 export interface ApplicationSecurityPolicyCreateData {
@@ -13972,11 +13951,11 @@ export type AuthNMappingCreateRelationships =
   | AuthNMappingRelationshipToRole
   | AuthNMappingRelationshipToTeam;
 export const AuthNMappingCreateRelationships =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AuthNMappingCreateRelationships>;
+  S.Unknown as any as S.Schema<AuthNMappingCreateRelationships>;
 
 /** AuthN Mappings resource type. */
 export type AuthNMappingsType = "authn_mappings";
-export const AuthNMappingsType = /*@__PURE__*/ S.String;
+export const AuthNMappingsType = S.String;
 
 /** Data for creating an AuthN Mapping. */
 export interface AuthNMappingCreateData {
@@ -14032,7 +14011,7 @@ export const AuthNMappingAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** SAML assertion attributes resource type. */
 export type SAMLAssertionAttributesType = "saml_assertion_attributes";
-export const SAMLAssertionAttributesType = /*@__PURE__*/ S.String;
+export const SAMLAssertionAttributesType = S.String;
 
 /** Data of AuthN Mapping relationship to SAML Assertion Attribute. */
 export interface RelationshipToSAMLAssertionAttributeData {
@@ -14171,7 +14150,7 @@ export type AuthNMappingIncluded =
   | Role
   | AuthNMappingTeam;
 export const AuthNMappingIncluded =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AuthNMappingIncluded>;
+  S.Unknown as any as S.Schema<AuthNMappingIncluded>;
 
 /** Included data in the AuthN Mapping response. */
 export type AuthNMappingResponseIncludedList = Array<AuthNMappingIncluded>;
@@ -14234,12 +14213,11 @@ export const AWSAuthConfigRole = /*@__PURE__*/ S.suspend(() =>
 
 /** AWS Authentication config. */
 export type AWSAuthConfig = AWSAuthConfigKeys | AWSAuthConfigRole;
-export const AWSAuthConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AWSAuthConfig>;
+export const AWSAuthConfig = S.Unknown as any as S.Schema<AWSAuthConfig>;
 
 /** AWS partition your AWS account is scoped to. Defaults to `aws`. See [Partitions](https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/partitions.html) in the AWS documentation for more information. */
 export type AWSAccountPartition = "aws" | "aws-cn" | "aws-us-gov";
-export const AWSAccountPartition = /*@__PURE__*/ S.String;
+export const AWSAccountPartition = S.String;
 
 /** Include all regions. Defaults to `true`. */
 export interface AWSRegionsIncludeAll {
@@ -14275,8 +14253,7 @@ export const AWSRegionsIncludeOnly = /*@__PURE__*/ S.suspend(() =>
 
 /** AWS Regions to collect data from. Defaults to `include_all`. */
 export type AWSRegions = AWSRegionsIncludeAll | AWSRegionsIncludeOnly;
-export const AWSRegions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AWSRegions>;
+export const AWSRegions = S.Unknown as any as S.Schema<AWSRegions>;
 
 /** List of Datadog Lambda Log Forwarder ARNs in your AWS account. Defaults to `[]`. */
 export type AWSLambdaForwarderConfigLambdasList = Array<string>;
@@ -14415,7 +14392,7 @@ export type AWSMetricNameFilters =
   | AWSMetricNameFiltersIncludeOnly
   | AWSMetricNameFiltersExcludeOnly;
 export const AWSMetricNameFilters =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AWSMetricNameFilters>;
+  S.Unknown as any as S.Schema<AWSMetricNameFilters>;
 
 /** AWS CloudWatch metric name filters. Each filter applies to a single namespace. Exactly one of `include_only` or `exclude_only` must be set on each filter. */
 export type AWSMetricsConfigMetricNameFiltersList = Array<AWSMetricNameFilters>;
@@ -14468,7 +14445,7 @@ export type AWSNamespaceFilters =
   | AWSNamespaceFiltersExcludeOnly
   | AWSNamespaceFiltersIncludeOnly;
 export const AWSNamespaceFilters =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AWSNamespaceFilters>;
+  S.Unknown as any as S.Schema<AWSNamespaceFilters>;
 
 /** The AWS resource tags to filter on for the service specified by `namespace`. */
 export type AWSNamespaceTagFilterTagsList = Array<string>;
@@ -14578,8 +14555,7 @@ export const XRayServicesIncludeOnly = /*@__PURE__*/ S.suspend(() =>
 
 /** AWS X-Ray services to collect traces from. Defaults to `include_only`. */
 export type XRayServicesList = XRayServicesIncludeAll | XRayServicesIncludeOnly;
-export const XRayServicesList =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<XRayServicesList>;
+export const XRayServicesList = S.Unknown as any as S.Schema<XRayServicesList>;
 
 /** AWS Traces Collection config. */
 export interface AWSTracesConfig {
@@ -14623,7 +14599,7 @@ export const AWSAccountCreateRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** AWS Account resource type. */
 export type AWSAccountType = "account";
-export const AWSAccountType = /*@__PURE__*/ S.String;
+export const AWSAccountType = S.String;
 
 /** AWS Account Create Request data. */
 export interface AWSAccountCreateRequestData {
@@ -14672,7 +14648,7 @@ export const AWSAuthConfigKeysOutput = /*@__PURE__*/ S.suspend(() =>
 /** AWS Authentication config. */
 export type AWSAuthConfigOutput = AWSAuthConfigKeysOutput | AWSAuthConfigRole;
 export const AWSAuthConfigOutput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AWSAuthConfigOutput>;
+  S.Unknown as any as S.Schema<AWSAuthConfigOutput>;
 
 /** AWS Account response attributes. */
 export interface AWSAccountResponseAttributesOutput {
@@ -14792,7 +14768,7 @@ export const AWSCcmConfigRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** AWS CCM Config resource type. */
 export type AWSCcmConfigType = "ccm_config";
-export const AWSCcmConfigType = /*@__PURE__*/ S.String;
+export const AWSCcmConfigType = S.String;
 
 /** AWS CCM Config Create/Update Request data. */
 export interface AWSCcmConfigRequestData {
@@ -14898,7 +14874,7 @@ export const AWSCloudAuthPersonaMappingCreateAttributes =
 
 /** Type identifier for AWS cloud authentication persona mapping */
 export type AWSCloudAuthPersonaMappingType = "aws_cloud_auth_config";
-export const AWSCloudAuthPersonaMappingType = /*@__PURE__*/ S.String;
+export const AWSCloudAuthPersonaMappingType = S.String;
 
 /** Data for creating an AWS cloud authentication persona mapping */
 export interface AWSCloudAuthPersonaMappingCreateData {
@@ -15007,7 +14983,7 @@ export const AWSEventBridgeCreateRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** Amazon EventBridge resource type. */
 export type AWSEventBridgeType = "event_bridge";
-export const AWSEventBridgeType = /*@__PURE__*/ S.String;
+export const AWSEventBridgeType = S.String;
 
 /** Amazon EventBridge create request data. */
 export interface AWSEventBridgeCreateRequestData {
@@ -15042,7 +15018,7 @@ export const CreateAWSEventBridgeSourceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The event source status "created". */
 export type AWSEventBridgeCreateStatus = "created";
-export const AWSEventBridgeCreateStatus = /*@__PURE__*/ S.String;
+export const AWSEventBridgeCreateStatus = S.String;
 
 /** A created EventBridge source. */
 export interface AWSEventBridgeCreateResponseAttributes {
@@ -15110,7 +15086,7 @@ export const AwsOnDemandCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the on demand task. The value should always be `aws_resource`. */
 export type AwsOnDemandType = "aws_resource";
-export const AwsOnDemandType = /*@__PURE__*/ S.String;
+export const AwsOnDemandType = S.String;
 
 /** Object for a single AWS on demand task. */
 export interface AwsOnDemandCreateData {
@@ -15221,7 +15197,7 @@ export const AwsScanOptionsCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value should always be `aws_scan_options`. */
 export type AwsScanOptionsType = "aws_scan_options";
-export const AwsScanOptionsType = /*@__PURE__*/ S.String;
+export const AwsScanOptionsType = S.String;
 
 /** Object for the scan options of a single AWS account. */
 export interface AwsScanOptionsCreateData {
@@ -15334,7 +15310,7 @@ export const AzureScanOptionsDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value should always be `azure_scan_options`. */
 export type AzureScanOptionsDataType = "azure_scan_options";
-export const AzureScanOptionsDataType = /*@__PURE__*/ S.String;
+export const AzureScanOptionsDataType = S.String;
 
 /** Single Azure scan options entry. */
 export interface AzureScanOptionsData {
@@ -15389,7 +15365,7 @@ export type StatusPagesComponentDataAttributesStatus =
   | "partial_outage"
   | "major_outage"
   | "maintenance";
-export const StatusPagesComponentDataAttributesStatus = /*@__PURE__*/ S.String;
+export const StatusPagesComponentDataAttributesStatus = S.String;
 
 /** A component affected by a degradation. */
 export interface CreateDegradationRequestDataAttributesComponentsAffectedItemsInput {
@@ -15422,8 +15398,7 @@ export type CreateDegradationRequestDataAttributesStatus =
   | "identified"
   | "monitoring"
   | "resolved";
-export const CreateDegradationRequestDataAttributesStatus =
-  /*@__PURE__*/ S.String;
+export const CreateDegradationRequestDataAttributesStatus = S.String;
 
 /** A backfilled degradation update entry. */
 export interface CreateBackfilledDegradationRequestDataAttributesUpdatesItemsInput {
@@ -15477,7 +15452,7 @@ export const CreateBackfilledDegradationRequestDataAttributesInput =
 
 /** Degradation templates resource type. */
 export type PatchDegradationTemplateRequestDataType = "degradation_templates";
-export const PatchDegradationTemplateRequestDataType = /*@__PURE__*/ S.String;
+export const PatchDegradationTemplateRequestDataType = S.String;
 
 /** The data object identifying the template used to create the backfilled degradation. */
 export interface CreateBackfilledDegradationRequestDataRelationshipsTemplateData {
@@ -15527,7 +15502,7 @@ export const CreateBackfilledDegradationRequestDataRelationships =
 
 /** Degradations resource type. */
 export type PatchDegradationRequestDataType = "degradations";
-export const PatchDegradationRequestDataType = /*@__PURE__*/ S.String;
+export const PatchDegradationRequestDataType = S.String;
 
 /** The data object for creating a backfilled degradation. */
 export interface CreateBackfilledDegradationRequestDataInput {
@@ -15602,7 +15577,7 @@ export const DegradationDataAttributesComponentsAffectedList =
 
 /** The type of the source. */
 export type DegradationDataAttributesSourceType = "incident";
-export const DegradationDataAttributesSourceType = /*@__PURE__*/ S.String;
+export const DegradationDataAttributesSourceType = S.String;
 
 /** The source of the degradation. */
 export interface DegradationDataAttributesSource {
@@ -15738,7 +15713,7 @@ export const DegradationDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Users resource type. */
 export type StatusPagesUserType = "users";
-export const StatusPagesUserType = /*@__PURE__*/ S.String;
+export const StatusPagesUserType = S.String;
 
 /** The data object identifying the Datadog user who created the degradation. */
 export interface DegradationDataRelationshipsCreatedByUserData {
@@ -15800,7 +15775,7 @@ export const DegradationDataRelationshipsLastModifiedByUser =
 
 /** Status pages resource type. */
 export type StatusPageDataType = "status_pages";
-export const StatusPageDataType = /*@__PURE__*/ S.String;
+export const StatusPageDataType = S.String;
 
 /** The data object identifying the status page the degradation belongs to. */
 export interface DegradationDataRelationshipsStatusPageData {
@@ -15953,13 +15928,12 @@ export type StatusPagesComponentGroupAttributesComponentsItemsStatus =
   | "major_outage"
   | "maintenance";
 export const StatusPagesComponentGroupAttributesComponentsItemsStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of the component. */
 export type StatusPagesComponentGroupAttributesComponentsItemsType =
   "component";
-export const StatusPagesComponentGroupAttributesComponentsItemsType =
-  /*@__PURE__*/ S.String;
+export const StatusPagesComponentGroupAttributesComponentsItemsType = S.String;
 
 /** A grouped component within a status page component group. */
 export interface StatusPageAsIncludedAttributesComponentsItemsComponentsItems {
@@ -15997,7 +15971,7 @@ export const StatusPageAsIncludedAttributesComponentsItemsComponentsList =
 
 /** The type of the component. */
 export type CreateComponentRequestDataAttributesType = "component" | "group";
-export const CreateComponentRequestDataAttributesType = /*@__PURE__*/ S.String;
+export const CreateComponentRequestDataAttributesType = S.String;
 
 /** A component displayed on an included status page. */
 export interface StatusPageAsIncludedAttributesComponentsItems {
@@ -16040,15 +16014,14 @@ export const StatusPageAsIncludedAttributesComponentsList =
 
 /** The type of the status page controlling how the status page is accessed. */
 export type CreateStatusPageRequestDataAttributesType = "public" | "internal";
-export const CreateStatusPageRequestDataAttributesType = /*@__PURE__*/ S.String;
+export const CreateStatusPageRequestDataAttributesType = S.String;
 
 /** The visualization type of the status page. */
 export type CreateStatusPageRequestDataAttributesVisualizationType =
   | "bars_and_uptime_percentage"
   | "bars_only"
   | "component_name_only";
-export const CreateStatusPageRequestDataAttributesVisualizationType =
-  /*@__PURE__*/ S.String;
+export const CreateStatusPageRequestDataAttributesVisualizationType = S.String;
 
 /** The attributes of a status page. */
 export interface StatusPageAsIncludedAttributes {
@@ -16209,7 +16182,7 @@ export const StatusPageAsIncluded = /*@__PURE__*/ S.suspend(() =>
 /** An included resource related to a degradation or maintenance. */
 export type DegradationIncluded = StatusPagesUser | StatusPageAsIncluded;
 export const DegradationIncluded =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DegradationIncluded>;
+  S.Unknown as any as S.Schema<DegradationIncluded>;
 
 /** The included related resources of a degradation. Client must explicitly request these resources by name in the `include` query parameter. */
 export type DegradationIncludedList = Array<DegradationIncluded>;
@@ -16235,7 +16208,7 @@ export type PatchMaintenanceRequestDataAttributesComponentsAffectedItemsStatus =
   | "operational"
   | "maintenance";
 export const PatchMaintenanceRequestDataAttributesComponentsAffectedItemsStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A component affected by a maintenance. */
 export interface CreateMaintenanceRequestDataAttributesComponentsAffectedItemsInput {
@@ -16270,7 +16243,7 @@ export type CreateMaintenanceRequestDataAttributesUpdatesItemsStatus =
   | "in_progress"
   | "completed";
 export const CreateMaintenanceRequestDataAttributesUpdatesItemsStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A backfilled maintenance update entry. */
 export interface CreateBackfilledMaintenanceRequestDataAttributesUpdatesItemsInput {
@@ -16326,7 +16299,7 @@ export const CreateBackfilledMaintenanceRequestDataAttributesInput =
 
 /** Maintenance templates resource type. */
 export type PatchMaintenanceTemplateRequestDataType = "maintenance_templates";
-export const PatchMaintenanceTemplateRequestDataType = /*@__PURE__*/ S.String;
+export const PatchMaintenanceTemplateRequestDataType = S.String;
 
 /** The data object identifying the template used to create the backfilled maintenance. */
 export interface CreateBackfilledMaintenanceRequestDataRelationshipsTemplateData {
@@ -16376,7 +16349,7 @@ export const CreateBackfilledMaintenanceRequestDataRelationships =
 
 /** Maintenances resource type. */
 export type PatchMaintenanceRequestDataType = "maintenances";
-export const PatchMaintenanceRequestDataType = /*@__PURE__*/ S.String;
+export const PatchMaintenanceRequestDataType = S.String;
 
 /** The data object for creating a backfilled maintenance. */
 export interface CreateBackfilledMaintenanceRequestDataInput {
@@ -16455,7 +16428,7 @@ export type MaintenanceDataAttributesStatus =
   | "scheduled"
   | "in_progress"
   | "completed";
-export const MaintenanceDataAttributesStatus = /*@__PURE__*/ S.String;
+export const MaintenanceDataAttributesStatus = S.String;
 
 /** A component affected at the time of a maintenance update. */
 export interface MaintenanceDataAttributesUpdatesItemsComponentsAffectedItems {
@@ -16834,7 +16807,7 @@ export const AutomationRuleActionData = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of automated action to perform when the rule triggers. `EXECUTE_WORKFLOW` runs a Datadog workflow; `ASSIGN_AGENT` assigns an AI agent to the case. */
 export type AutomationRuleActionType = "EXECUTE_WORKFLOW" | "ASSIGN_AGENT";
-export const AutomationRuleActionType = /*@__PURE__*/ S.String;
+export const AutomationRuleActionType = S.String;
 
 /** Defines what happens when the rule triggers. Combines an action type with action-specific configuration data. */
 export interface AutomationRuleAction {
@@ -16852,7 +16825,7 @@ export const AutomationRuleAction = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the automation rule is active. Enabled rules trigger on matching case events; disabled rules are inactive but preserve their configuration. */
 export type CaseAutomationRuleState = "ENABLED" | "DISABLED";
-export const CaseAutomationRuleState = /*@__PURE__*/ S.String;
+export const CaseAutomationRuleState = S.String;
 
 /** Additional configuration for the trigger, dependent on the trigger type. For `STATUS_TRANSITIONED` triggers, specify `from_status_name` and `to_status_name`. For `ATTRIBUTE_VALUE_CHANGED` triggers, specify `field` and `change_type`. */
 export interface AutomationRuleTriggerData {
@@ -16887,7 +16860,7 @@ export type AutomationRuleTriggerType =
   | "EVENT_CORRELATION_SIGNAL_CORRELATED"
   | "CASE_REVIEW_APPROVED"
   | "COMMENT_ADDED";
-export const AutomationRuleTriggerType = /*@__PURE__*/ S.String;
+export const AutomationRuleTriggerType = S.String;
 
 /** Defines when the rule activates. Combines a trigger type (the case event to listen for) with optional trigger data (conditions that narrow when the trigger fires). */
 export interface AutomationRuleTrigger {
@@ -16924,7 +16897,7 @@ export const AutomationRuleCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for case automation rules. */
 export type CaseAutomationRuleResourceType = "rule";
-export const CaseAutomationRuleResourceType = /*@__PURE__*/ S.String;
+export const CaseAutomationRuleResourceType = S.String;
 
 /** Data object for creating an automation rule. */
 export interface AutomationRuleCreate {
@@ -17061,7 +17034,7 @@ export const JiraIssueCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Jira issue resource type */
 export type JiraIssueResourceType = "issues";
-export const JiraIssueResourceType = /*@__PURE__*/ S.String;
+export const JiraIssueResourceType = S.String;
 
 /** Jira issue creation data */
 export interface JiraIssueCreateData {
@@ -17131,7 +17104,7 @@ export const CaseLinkAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for case links. */
 export type CaseLinkResourceType = "link";
-export const CaseLinkResourceType = /*@__PURE__*/ S.String;
+export const CaseLinkResourceType = S.String;
 
 /** Data object for creating a case link. */
 export interface CaseLinkCreate {
@@ -17185,7 +17158,7 @@ export const CaseLinkResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Notebook resource type */
 export type NotebookResourceType = "notebook";
-export const NotebookResourceType = /*@__PURE__*/ S.String;
+export const NotebookResourceType = S.String;
 
 /** Notebook creation data */
 export interface NotebookCreateData {
@@ -17341,7 +17314,7 @@ export const ServiceNowTicketCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** ServiceNow ticket resource type */
 export type ServiceNowTicketResourceType = "tickets";
-export const ServiceNowTicketResourceType = /*@__PURE__*/ S.String;
+export const ServiceNowTicketResourceType = S.String;
 
 /** ServiceNow ticket creation data */
 export interface ServiceNowTicketCreateData {
@@ -17405,7 +17378,7 @@ export const CaseTypeResourceAttributesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for case types. */
 export type CaseTypeResourceType = "case_type";
-export const CaseTypeResourceType = /*@__PURE__*/ S.String;
+export const CaseTypeResourceType = S.String;
 
 /** Data object for creating a case type. */
 export interface CaseTypeCreateInput {
@@ -17507,7 +17480,7 @@ export const CaseViewCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for case views. */
 export type CaseViewResourceType = "view";
-export const CaseViewResourceType = /*@__PURE__*/ S.String;
+export const CaseViewResourceType = S.String;
 
 /** Data object for creating a case view. */
 export interface CaseViewCreate {
@@ -17604,11 +17577,11 @@ export const CaseViewResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The risk level of the change request. */
 export type ChangeRequestRiskLevel = "UNDEFINED" | "LOW" | "MEDIUM" | "HIGH";
-export const ChangeRequestRiskLevel = /*@__PURE__*/ S.String;
+export const ChangeRequestRiskLevel = S.String;
 
 /** The type of the change request. */
 export type ChangeRequestChangeType = "NORMAL" | "STANDARD" | "EMERGENCY";
-export const ChangeRequestChangeType = /*@__PURE__*/ S.String;
+export const ChangeRequestChangeType = S.String;
 
 /** A list of team handles to request decisions from. */
 export type ChangeRequestCreateAttributesRequestedTeamsList = Array<string>;
@@ -17662,7 +17635,7 @@ export const ChangeRequestCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Change request resource type. */
 export type ChangeRequestResourceType = "change_request";
-export const ChangeRequestResourceType = /*@__PURE__*/ S.String;
+export const ChangeRequestResourceType = S.String;
 
 /** Data object to create a change request. */
 export interface ChangeRequestCreateData {
@@ -17781,7 +17754,7 @@ export const ChangeRequestResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Change request decision resource type. */
 export type ChangeRequestDecisionResourceType = "change_request_decision";
-export const ChangeRequestDecisionResourceType = /*@__PURE__*/ S.String;
+export const ChangeRequestDecisionResourceType = S.String;
 
 /** Change request decision relationship data. */
 export interface ChangeRequestDecisionRelationshipData {
@@ -17924,7 +17897,7 @@ export type ChangeRequestDecisionStatusType =
   | "REQUESTED"
   | "APPROVED"
   | "DECLINED";
-export const ChangeRequestDecisionStatusType = /*@__PURE__*/ S.String;
+export const ChangeRequestDecisionStatusType = S.String;
 
 /** Attributes of a change request decision in a response. */
 export interface ChangeRequestDecisionResponseAttributes {
@@ -17994,7 +17967,7 @@ export type ChangeRequestIncludedItem =
   | ChangeRequestIncludedUser
   | ChangeRequestIncludedDecision;
 export const ChangeRequestIncludedItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ChangeRequestIncludedItem>;
+  S.Unknown as any as S.Schema<ChangeRequestIncludedItem>;
 
 /** Included resources related to the change request. */
 export type ChangeRequestIncluded = Array<ChangeRequestIncludedItem>;
@@ -18034,7 +18007,7 @@ export const ChangeRequestBranchCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Change request branch resource type. */
 export type ChangeRequestBranchResourceType = "change_request_branch";
-export const ChangeRequestBranchResourceType = /*@__PURE__*/ S.String;
+export const ChangeRequestBranchResourceType = S.String;
 
 /** Data object to create a change request branch. */
 export interface ChangeRequestBranchCreateData {
@@ -18072,7 +18045,7 @@ export const CreateChangeRequestBranchRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Error category used to differentiate between issues related to the developer or provider environments. */
 export type CIAppCIErrorDomain = "provider" | "user" | "unknown";
-export const CIAppCIErrorDomain = /*@__PURE__*/ S.String;
+export const CIAppCIErrorDomain = S.String;
 
 /** Contains information of the CI error. */
 export interface CIAppCIError {
@@ -18139,7 +18112,7 @@ export const CIAppGitInfo = /*@__PURE__*/ S.suspend(() =>
 
 /** Used to distinguish between pipelines, stages, jobs, and steps. */
 export type CIAppPipelineEventPipelineLevel = "pipeline";
-export const CIAppPipelineEventPipelineLevel = /*@__PURE__*/ S.String;
+export const CIAppPipelineEventPipelineLevel = S.String;
 
 /** A list of user-defined metrics. The metrics must follow the `key:value` pattern and the value must be numeric. */
 export type CIAppPipelineEventMetrics = Array<string>;
@@ -18211,7 +18184,7 @@ export type CIAppPipelineEventPipelineStatus =
   | "canceled"
   | "skipped"
   | "blocked";
-export const CIAppPipelineEventPipelineStatus = /*@__PURE__*/ S.String;
+export const CIAppPipelineEventPipelineStatus = S.String;
 
 /** A list of user-defined tags. The tags must follow the `key:value` pattern. */
 export type CIAppPipelineEventTags = Array<string>;
@@ -18281,8 +18254,7 @@ export const CIAppPipelineEventFinishedPipeline = /*@__PURE__*/ S.suspend(() =>
 
 /** The in progress status of the pipeline. */
 export type CIAppPipelineEventPipelineInProgressStatus = "running";
-export const CIAppPipelineEventPipelineInProgressStatus =
-  /*@__PURE__*/ S.String;
+export const CIAppPipelineEventPipelineInProgressStatus = S.String;
 
 /** Details of a running pipeline. */
 export interface CIAppPipelineEventInProgressPipeline {
@@ -18347,7 +18319,7 @@ export type CIAppPipelineEventPipeline =
   | CIAppPipelineEventFinishedPipeline
   | CIAppPipelineEventInProgressPipeline;
 export const CIAppPipelineEventPipeline =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CIAppPipelineEventPipeline>;
+  S.Unknown as any as S.Schema<CIAppPipelineEventPipeline>;
 
 /** A list of stage IDs that this stage depends on. */
 export type CIAppPipelineEventStageDependenciesList = Array<string>;
@@ -18357,7 +18329,7 @@ export const CIAppPipelineEventStageDependenciesList = /*@__PURE__*/ S.Array(
 
 /** Used to distinguish between pipelines, stages, jobs and steps. */
 export type CIAppPipelineEventStageLevel = "stage";
-export const CIAppPipelineEventStageLevel = /*@__PURE__*/ S.String;
+export const CIAppPipelineEventStageLevel = S.String;
 
 /** The final status of the stage. */
 export type CIAppPipelineEventStageStatus =
@@ -18365,7 +18337,7 @@ export type CIAppPipelineEventStageStatus =
   | "error"
   | "canceled"
   | "skipped";
-export const CIAppPipelineEventStageStatus = /*@__PURE__*/ S.String;
+export const CIAppPipelineEventStageStatus = S.String;
 
 /** Details of a CI stage. */
 export interface CIAppPipelineEventStage {
@@ -18426,7 +18398,7 @@ export const CIAppPipelineEventFinishedJobDependenciesList =
 
 /** Used to distinguish between pipelines, stages, jobs, and steps. */
 export type CIAppPipelineEventJobLevel = "job";
-export const CIAppPipelineEventJobLevel = /*@__PURE__*/ S.String;
+export const CIAppPipelineEventJobLevel = S.String;
 
 /** The final status of the job. */
 export type CIAppPipelineEventJobStatus =
@@ -18434,7 +18406,7 @@ export type CIAppPipelineEventJobStatus =
   | "error"
   | "canceled"
   | "skipped";
-export const CIAppPipelineEventJobStatus = /*@__PURE__*/ S.String;
+export const CIAppPipelineEventJobStatus = S.String;
 
 /** Details of a finished CI job. */
 export interface CIAppPipelineEventFinishedJob {
@@ -18506,7 +18478,7 @@ export const CIAppPipelineEventInProgressJobDependenciesList =
 
 /** The in-progress status of the job. */
 export type CIAppPipelineEventJobInProgressStatus = "running";
-export const CIAppPipelineEventJobInProgressStatus = /*@__PURE__*/ S.String;
+export const CIAppPipelineEventJobInProgressStatus = S.String;
 
 /** Details of a running CI job. */
 export interface CIAppPipelineEventInProgressJob {
@@ -18571,15 +18543,15 @@ export type CIAppPipelineEventJob =
   | CIAppPipelineEventFinishedJob
   | CIAppPipelineEventInProgressJob;
 export const CIAppPipelineEventJob =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CIAppPipelineEventJob>;
+  S.Unknown as any as S.Schema<CIAppPipelineEventJob>;
 
 /** Used to distinguish between pipelines, stages, jobs and steps. */
 export type CIAppPipelineEventStepLevel = "step";
-export const CIAppPipelineEventStepLevel = /*@__PURE__*/ S.String;
+export const CIAppPipelineEventStepLevel = S.String;
 
 /** The final status of the step. */
 export type CIAppPipelineEventStepStatus = "success" | "error";
-export const CIAppPipelineEventStepStatus = /*@__PURE__*/ S.String;
+export const CIAppPipelineEventStepStatus = S.String;
 
 /** Details of a CI step. */
 export interface CIAppPipelineEventStep {
@@ -18647,7 +18619,7 @@ export type CIAppCreatePipelineEventRequestAttributesResource =
   | CIAppPipelineEventJob
   | CIAppPipelineEventStep;
 export const CIAppCreatePipelineEventRequestAttributesResource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CIAppCreatePipelineEventRequestAttributesResource>;
+  S.Unknown as any as S.Schema<CIAppCreatePipelineEventRequestAttributesResource>;
 
 /** Attributes of the pipeline event to create. */
 export interface CIAppCreatePipelineEventRequestAttributes {
@@ -18674,7 +18646,7 @@ export const CIAppCreatePipelineEventRequestAttributes =
 /** Type of the event. */
 export type CIAppCreatePipelineEventRequestDataType =
   "cipipeline_resource_request";
-export const CIAppCreatePipelineEventRequestDataType = /*@__PURE__*/ S.String;
+export const CIAppCreatePipelineEventRequestDataType = S.String;
 
 /** Data of the pipeline event to create. */
 export interface CIAppCreatePipelineEventRequestData {
@@ -18702,7 +18674,7 @@ export type CIAppCreatePipelineEventRequestDataSingleOrArray =
   | CIAppCreatePipelineEventRequestData
   | CIAppCreatePipelineEventRequestDataArray;
 export const CIAppCreatePipelineEventRequestDataSingleOrArray =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CIAppCreatePipelineEventRequestDataSingleOrArray>;
+  S.Unknown as any as S.Schema<CIAppCreatePipelineEventRequestDataSingleOrArray>;
 
 export interface CreateCIAppPipelineEventRequest {
   data?: CIAppCreatePipelineEventRequestDataSingleOrArray;
@@ -18767,7 +18739,7 @@ export const CloudflareAccountCreateRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** The JSON:API type for this API. Should always be `cloudflare-accounts`. */
 export type CloudflareAccountType = "cloudflare-accounts";
-export const CloudflareAccountType = /*@__PURE__*/ S.String;
+export const CloudflareAccountType = S.String;
 
 /** Data object for creating a Cloudflare account. */
 export interface CloudflareAccountCreateRequestData {
@@ -18918,7 +18890,7 @@ export type CloudWorkloadSecurityAgentRuleActionSetValue =
   | number
   | boolean;
 export const CloudWorkloadSecurityAgentRuleActionSetValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CloudWorkloadSecurityAgentRuleActionSetValue>;
+  S.Unknown as any as S.Schema<CloudWorkloadSecurityAgentRuleActionSetValue>;
 
 /** The set action applied on the scope matching the rule */
 export interface CloudWorkloadSecurityAgentRuleActionSet {
@@ -19090,7 +19062,7 @@ export const CloudWorkloadSecurityAgentRuleCreateAttributes =
 
 /** The type of the resource, must always be `agent_rule` */
 export type CloudWorkloadSecurityAgentRuleType = "agent_rule";
-export const CloudWorkloadSecurityAgentRuleType = /*@__PURE__*/ S.String;
+export const CloudWorkloadSecurityAgentRuleType = S.String;
 
 /** Object for a single Agent rule */
 export interface CloudWorkloadSecurityAgentRuleCreateData {
@@ -19353,7 +19325,7 @@ export const CreateComponentRequestDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** Components resource type. */
 export type StatusPagesComponentGroupType = "components";
-export const StatusPagesComponentGroupType = /*@__PURE__*/ S.String;
+export const StatusPagesComponentGroupType = S.String;
 
 /** The data object identifying the group to create the component within. */
 export interface CreateComponentRequestDataRelationshipsGroupData {
@@ -19852,7 +19824,7 @@ export type StatusPagesComponentArrayIncluded =
   | StatusPageAsIncluded
   | StatusPagesComponentGroup;
 export const StatusPagesComponentArrayIncluded =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StatusPagesComponentArrayIncluded>;
+  S.Unknown as any as S.Schema<StatusPagesComponentArrayIncluded>;
 
 /** The included related resources of a component. Client must explicitly request these resources by name in the `include` query parameter. */
 export type StatusPagesComponentIncludedList =
@@ -19946,7 +19918,7 @@ export const ConfluentAccountCreateRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** The JSON:API type for this API. Should always be `confluent-cloud-accounts`. */
 export type ConfluentAccountType = "confluent-cloud-accounts";
-export const ConfluentAccountType = /*@__PURE__*/ S.String;
+export const ConfluentAccountType = S.String;
 
 /** The data body for adding a Confluent account. */
 export interface ConfluentAccountCreateRequestData {
@@ -20097,7 +20069,7 @@ export const ConfluentResourceRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for this request. */
 export type ConfluentResourceType = "confluent-cloud-resources";
-export const ConfluentResourceType = /*@__PURE__*/ S.String;
+export const ConfluentResourceType = S.String;
 
 /** JSON:API request for updating a Confluent resource. */
 export interface ConfluentResourceRequestData {
@@ -20250,7 +20222,7 @@ export const CreateConnectionRequestDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** Connection id resource type. */
 export type UpdateConnectionRequestDataType = "connection_id";
-export const UpdateConnectionRequestDataType = /*@__PURE__*/ S.String;
+export const UpdateConnectionRequestDataType = S.String;
 
 /** The data object containing the resource type and attributes for creating a new connection. */
 export interface CreateConnectionRequestData {
@@ -20359,7 +20331,7 @@ export const AwsCURConfigPostRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of AWS CUR config Post Request. */
 export type AwsCURConfigPostRequestType = "aws_cur_config_post_request";
-export const AwsCURConfigPostRequestType = /*@__PURE__*/ S.String;
+export const AwsCURConfigPostRequestType = S.String;
 
 /** AWS CUR config Post data. */
 export interface AwsCURConfigPostData {
@@ -20486,7 +20458,7 @@ export const AwsCurConfigResponseDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** AWS CUR config resource type. */
 export type AwsCurConfigResponseDataType = "aws_cur_config";
-export const AwsCurConfigResponseDataType = /*@__PURE__*/ S.String;
+export const AwsCurConfigResponseDataType = S.String;
 
 /** The definition of `AwsCurConfigResponseData` object. */
 export interface AwsCurConfigResponseData {
@@ -20562,7 +20534,7 @@ export const AzureUCConfigPostRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of Azure config Post Request. */
 export type AzureUCConfigPostRequestType = "azure_uc_config_post_request";
-export const AzureUCConfigPostRequestType = /*@__PURE__*/ S.String;
+export const AzureUCConfigPostRequestType = S.String;
 
 /** Azure config Post data. */
 export interface AzureUCConfigPostData {
@@ -20674,7 +20646,7 @@ export const AzureUCConfigPairAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of Azure config pair. */
 export type AzureUCConfigPairType = "azure_uc_configs";
-export const AzureUCConfigPairType = /*@__PURE__*/ S.String;
+export const AzureUCConfigPairType = S.String;
 
 /** Azure config pair. */
 export interface AzureUCConfigPair {
@@ -20736,7 +20708,7 @@ export const GCPUsageCostConfigPostRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** Type of Google Cloud Usage Cost config post request. */
 export type GCPUsageCostConfigPostRequestType = "gcp_uc_config_post_request";
-export const GCPUsageCostConfigPostRequestType = /*@__PURE__*/ S.String;
+export const GCPUsageCostConfigPostRequestType = S.String;
 
 /** Google Cloud Usage Cost config post data. */
 export interface GCPUsageCostConfigPostData {
@@ -20825,7 +20797,7 @@ export const GCPUsageCostConfigAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of Google Cloud Usage Cost config. */
 export type GCPUsageCostConfigType = "gcp_uc_config";
-export const GCPUsageCostConfigType = /*@__PURE__*/ S.String;
+export const GCPUsageCostConfigType = S.String;
 
 /** Google Cloud Usage Cost config. */
 export interface GCPUsageCostConfig {
@@ -20912,7 +20884,7 @@ export const CloudWorkloadSecurityAgentPolicyCreateAttributes =
 
 /** The type of the resource, must always be `policy` */
 export type CloudWorkloadSecurityAgentPolicyType = "policy";
-export const CloudWorkloadSecurityAgentPolicyType = /*@__PURE__*/ S.String;
+export const CloudWorkloadSecurityAgentPolicyType = S.String;
 
 /** Object for a single Agent rule */
 export interface CloudWorkloadSecurityAgentPolicyCreateData {
@@ -21139,7 +21111,7 @@ export const ApplicationKeyCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Application Keys resource type. */
 export type ApplicationKeysType = "application_keys";
-export const ApplicationKeysType = /*@__PURE__*/ S.String;
+export const ApplicationKeysType = S.String;
 
 /** Object used to create an application key. */
 export interface ApplicationKeyCreateData {
@@ -21241,7 +21213,7 @@ export const FullApplicationKey = /*@__PURE__*/ S.suspend(() =>
 /** An object related to an application key. */
 export type ApplicationKeyResponseIncludedItem = User | Role | LeakedKey;
 export const ApplicationKeyResponseIncludedItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ApplicationKeyResponseIncludedItem>;
+  S.Unknown as any as S.Schema<ApplicationKeyResponseIncludedItem>;
 
 /** Array of objects related to the application key. */
 export type ApplicationKeyResponseIncludedList =
@@ -21615,7 +21587,7 @@ export const ArbitraryCostUpsertRequestDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** Upsert arbitrary rule resource type. */
 export type ArbitraryCostUpsertRequestDataType = "upsert_arbitrary_rule";
-export const ArbitraryCostUpsertRequestDataType = /*@__PURE__*/ S.String;
+export const ArbitraryCostUpsertRequestDataType = S.String;
 
 /** The definition of `ArbitraryCostUpsertRequestData` object. */
 export interface ArbitraryCostUpsertRequestData {
@@ -21996,7 +21968,7 @@ export const ArbitraryRuleResponseDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Arbitrary rule resource type. */
 export type ArbitraryRuleResponseDataType = "arbitrary_rule";
-export const ArbitraryRuleResponseDataType = /*@__PURE__*/ S.String;
+export const ArbitraryRuleResponseDataType = S.String;
 
 /** The definition of `ArbitraryRuleResponseData` object. */
 export interface ArbitraryRuleResponseData {
@@ -22054,7 +22026,7 @@ export const CustomAttributeConfigAttributesCreate = /*@__PURE__*/ S.suspend(
 
 /** JSON:API resource type for custom attribute configurations. */
 export type CustomAttributeConfigResourceType = "custom_attribute";
-export const CustomAttributeConfigResourceType = /*@__PURE__*/ S.String;
+export const CustomAttributeConfigResourceType = S.String;
 
 /** Data object for creating a custom attribute configuration. */
 export interface CustomAttributeConfigCreate {
@@ -22230,7 +22202,7 @@ export const CustomFrameworkDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value must be `custom_framework`. */
 export type CustomFrameworkType = "custom_framework";
-export const CustomFrameworkType = /*@__PURE__*/ S.String;
+export const CustomFrameworkType = S.String;
 
 /** Contains type and attributes for custom frameworks. */
 export interface CustomFrameworkData {
@@ -22324,7 +22296,7 @@ export const CustomRuleRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type */
 export type CustomRuleDataType = "custom_rule";
-export const CustomRuleDataType = /*@__PURE__*/ S.String;
+export const CustomRuleDataType = S.String;
 
 /** Data object for a custom rule create or update request. */
 export interface CustomRuleRequestData {
@@ -22396,7 +22368,7 @@ export type Language =
   | "PHP"
   | "KOTLIN"
   | "SWIFT";
-export const Language = /*@__PURE__*/ S.String;
+export const Language = S.String;
 
 /** Rule tags */
 export type CustomRuleRevisionAttributesTagsList = Array<string>;
@@ -22499,7 +22471,7 @@ export const CustomRuleRevisionAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type */
 export type CustomRuleRevisionDataType = "custom_rule_revision";
-export const CustomRuleRevisionDataType = /*@__PURE__*/ S.String;
+export const CustomRuleRevisionDataType = S.String;
 
 /** A specific revision of a custom static analysis rule. */
 export interface CustomRuleRevision {
@@ -22723,7 +22695,7 @@ export const CustomRulesetRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type */
 export type CustomRulesetDataType = "custom_ruleset";
-export const CustomRulesetDataType = /*@__PURE__*/ S.String;
+export const CustomRulesetDataType = S.String;
 
 /** Data object for a custom ruleset create or update request. */
 export interface CustomRulesetRequestData {
@@ -22827,7 +22799,7 @@ export type DashboardType =
   | "integration_screenboard"
   | "integration_timeboard"
   | "host_timeboard";
-export const DashboardType = /*@__PURE__*/ S.String;
+export const DashboardType = S.String;
 
 /** A dashboard within a list. */
 export interface DashboardListItemRequest {
@@ -22921,7 +22893,7 @@ export type SecureEmbedGlobalTimeLiveSpan =
   | "1w"
   | "1mo"
   | "3mo";
-export const SecureEmbedGlobalTimeLiveSpan = /*@__PURE__*/ S.String;
+export const SecureEmbedGlobalTimeLiveSpan = S.String;
 
 /** Default time range configuration for the secure embed. */
 export interface SecureEmbedGlobalTime {
@@ -22988,11 +22960,11 @@ export const SecureEmbedCreateRequestAttributesSelectableTemplateVarsList =
 
 /** The status of the secure embed share. Active means the shared dashboard is available. Paused means it is not. */
 export type SecureEmbedStatus = "active" | "paused";
-export const SecureEmbedStatus = /*@__PURE__*/ S.String;
+export const SecureEmbedStatus = S.String;
 
 /** The theme of the shared dashboard view. `system` follows the viewer's system default. */
 export type SecureEmbedViewingPreferencesTheme = "system" | "light" | "dark";
-export const SecureEmbedViewingPreferencesTheme = /*@__PURE__*/ S.String;
+export const SecureEmbedViewingPreferencesTheme = S.String;
 
 /** Display settings for the secure embed shared dashboard. */
 export interface SecureEmbedViewingPreferences {
@@ -23037,7 +23009,7 @@ export const SecureEmbedCreateRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type for secure embed create requests. */
 export type SecureEmbedRequestType = "secure_embed_request";
-export const SecureEmbedRequestType = /*@__PURE__*/ S.String;
+export const SecureEmbedRequestType = S.String;
 
 /** Data object for creating a secure embed. */
 export interface SecureEmbedCreateRequestData {
@@ -23083,7 +23055,7 @@ export const SecureEmbedCreateResponseAttributesSelectableTemplateVarsList =
 
 /** The type of share. Always `secure_embed`. */
 export type SecureEmbedShareType = "secure_embed";
-export const SecureEmbedShareType = /*@__PURE__*/ S.String;
+export const SecureEmbedShareType = S.String;
 
 /** Attributes of a newly created secure embed shared dashboard. */
 export interface SecureEmbedCreateResponseAttributes {
@@ -23134,7 +23106,7 @@ export const SecureEmbedCreateResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type for secure embed create responses. */
 export type SecureEmbedCreateResponseType = "secure_embed_create_response";
-export const SecureEmbedCreateResponseType = /*@__PURE__*/ S.String;
+export const SecureEmbedCreateResponseType = S.String;
 
 /** Data object for a secure embed create response. */
 export interface SecureEmbedCreateResponseData {
@@ -23210,7 +23182,7 @@ export const CreateDataDeletionRequestBodyAttributes = /*@__PURE__*/ S.suspend(
 
 /** The deletion request type. */
 export type CreateDataDeletionRequestBodyDataType = "create_deletion_req";
-export const CreateDataDeletionRequestBodyDataType = /*@__PURE__*/ S.String;
+export const CreateDataDeletionRequestBodyDataType = S.String;
 
 /** Data needed to create a data deletion request. */
 export interface CreateDataDeletionRequestBodyData {
@@ -23316,7 +23288,7 @@ export const DatasetAttributesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type, always set to `dataset`. */
 export type DatasetType = "dataset";
-export const DatasetType = /*@__PURE__*/ S.String;
+export const DatasetType = S.String;
 
 /** **Datasets Object Constraints** - **Tag limit per dataset**: - Each restricted dataset supports a maximum of 10 key:value pairs per product. - **Tag key rules per telemetry type**: - Only one tag key or attribute may be used to define access within a single telemetry type. - The same or different tag key may be used across different telemetry types. - **Tag value uniqueness**: - Tag values must be unique within a single dataset. - A tag value used in one dataset cannot be reused in another dataset of the same telemetry type. */
 export interface DatasetRequest {
@@ -23414,12 +23386,11 @@ export type CreateAppsDatastoreRequestDataAttributesOrgAccess =
   | "contributor"
   | "viewer"
   | "manager";
-export const CreateAppsDatastoreRequestDataAttributesOrgAccess =
-  /*@__PURE__*/ S.String;
+export const CreateAppsDatastoreRequestDataAttributesOrgAccess = S.String;
 
 /** Can be set to `uuid` to automatically generate primary keys when new items are added. Default value is `none`, which requires you to supply a primary key for each new item. */
 export type DatastorePrimaryKeyGenerationStrategy = "none" | "uuid";
-export const DatastorePrimaryKeyGenerationStrategy = /*@__PURE__*/ S.String;
+export const DatastorePrimaryKeyGenerationStrategy = S.String;
 
 /** Configuration and metadata to create a new datastore. */
 export interface CreateAppsDatastoreRequestDataAttributes {
@@ -23452,7 +23423,7 @@ export const CreateAppsDatastoreRequestDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** The resource type for datastores. */
 export type DatastoreDataType = "datastores";
-export const DatastoreDataType = /*@__PURE__*/ S.String;
+export const DatastoreDataType = S.String;
 
 /** Data wrapper containing the configuration needed to create a new datastore. */
 export interface CreateAppsDatastoreRequestData {
@@ -23636,7 +23607,7 @@ export type PatchDegradationTemplateRequestDataAttributesComponentsAffectedItems
   | "partial_outage"
   | "major_outage";
 export const PatchDegradationTemplateRequestDataAttributesComponentsAffectedItemsStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A component affected by a degradation created from this template. */
 export interface CreateDegradationTemplateRequestDataAttributesComponentsAffectedItemsInput {
@@ -23998,7 +23969,7 @@ export const CreateDeploymentGateParamsDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** Deployment gate resource type. */
 export type DeploymentGateDataType = "deployment_gate";
-export const DeploymentGateDataType = /*@__PURE__*/ S.String;
+export const DeploymentGateDataType = S.String;
 
 /** Parameters for creating a deployment gate. */
 export interface CreateDeploymentGateParamsData {
@@ -24199,7 +24170,7 @@ export type DeploymentRulesOptions =
   | DeploymentRuleOptionsFaultyDeploymentDetection
   | DeploymentRuleOptionsMonitor;
 export const DeploymentRulesOptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DeploymentRulesOptions>;
+  S.Unknown as any as S.Schema<DeploymentRulesOptions>;
 
 /** Parameters for creating a deployment rule. */
 export interface CreateDeploymentRuleParamsDataAttributes {
@@ -24225,7 +24196,7 @@ export const CreateDeploymentRuleParamsDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** Deployment rule resource type. */
 export type DeploymentRuleDataType = "deployment_rule";
-export const DeploymentRuleDataType = /*@__PURE__*/ S.String;
+export const DeploymentRuleDataType = S.String;
 
 /** Parameters for creating a deployment rule. */
 export interface CreateDeploymentRuleParamsData {
@@ -24271,7 +24242,7 @@ export const DeploymentRuleResponseDataAttributesCreatedBy =
 export type DeploymentRuleResponseDataAttributesType =
   | "faulty_deployment_detection"
   | "monitor";
-export const DeploymentRuleResponseDataAttributesType = /*@__PURE__*/ S.String;
+export const DeploymentRuleResponseDataAttributesType = S.String;
 
 /** Information about the user who updated the deployment rule. */
 export type DeploymentRuleResponseDataAttributesUpdatedBy =
@@ -24422,7 +24393,7 @@ export const CreateDORADeploymentRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API type for DORA deployment events. */
 export type DORADeploymentType = "dora_deployment";
-export const DORADeploymentType = /*@__PURE__*/ S.String;
+export const DORADeploymentType = S.String;
 
 /** The JSON:API data. */
 export interface DORADeploymentResponseData {
@@ -24523,7 +24494,7 @@ export const CreateDORAFailureRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API type for DORA incident events. */
 export type DORAFailureType = "dora_failure";
-export const DORAFailureType = /*@__PURE__*/ S.String;
+export const DORAFailureType = S.String;
 
 /** Response after receiving a DORA incident event. */
 export interface DORAFailureResponseData {
@@ -24590,11 +24561,11 @@ export type DowntimeMonitorIdentifier =
   | DowntimeMonitorIdentifierId
   | DowntimeMonitorIdentifierTags;
 export const DowntimeMonitorIdentifier =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DowntimeMonitorIdentifier>;
+  S.Unknown as any as S.Schema<DowntimeMonitorIdentifier>;
 
 /** State that will trigger a monitor notification when the `notify_end_types` action occurs. */
 export type DowntimeNotifyEndStateTypes = "alert" | "no data" | "warn";
-export const DowntimeNotifyEndStateTypes = /*@__PURE__*/ S.String;
+export const DowntimeNotifyEndStateTypes = S.String;
 
 /** States that will trigger a monitor notification when the `notify_end_types` action occurs. */
 export type DowntimeNotifyEndStates = Array<
@@ -24606,7 +24577,7 @@ export const DowntimeNotifyEndStates = /*@__PURE__*/ S.Array(
 
 /** Action that will trigger a monitor notification if the downtime is in the `notify_end_types` state. */
 export type DowntimeNotifyEndStateActions = "canceled" | "expired";
-export const DowntimeNotifyEndStateActions = /*@__PURE__*/ S.String;
+export const DowntimeNotifyEndStateActions = S.String;
 
 /** Actions that will trigger a monitor notification if the downtime is in the `notify_end_types` state. */
 export type DowntimeNotifyEndTypes = Array<
@@ -24681,7 +24652,7 @@ export type DowntimeScheduleCreateRequest =
   | DowntimeScheduleRecurrencesCreateRequest
   | DowntimeScheduleOneTimeCreateUpdateRequest;
 export const DowntimeScheduleCreateRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DowntimeScheduleCreateRequest>;
+  S.Unknown as any as S.Schema<DowntimeScheduleCreateRequest>;
 
 /** Downtime details. */
 export interface DowntimeCreateRequestAttributes {
@@ -24711,7 +24682,7 @@ export const DowntimeCreateRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Downtime resource type. */
 export type DowntimeResourceType = "downtime";
-export const DowntimeResourceType = /*@__PURE__*/ S.String;
+export const DowntimeResourceType = S.String;
 
 /** Object to create a downtime. */
 export interface DowntimeCreateRequestData {
@@ -24819,11 +24790,11 @@ export type DowntimeScheduleResponse =
   | DowntimeScheduleRecurrencesResponse
   | DowntimeScheduleOneTimeResponse;
 export const DowntimeScheduleResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DowntimeScheduleResponse>;
+  S.Unknown as any as S.Schema<DowntimeScheduleResponse>;
 
 /** The current status of the downtime. */
 export type DowntimeStatus = "active" | "canceled" | "ended" | "scheduled";
-export const DowntimeStatus = /*@__PURE__*/ S.String;
+export const DowntimeStatus = S.String;
 
 /** Downtime details. */
 export interface DowntimeResponseAttributes {
@@ -24891,7 +24862,7 @@ export const DowntimeRelationshipsCreatedBy = /*@__PURE__*/ S.suspend(() =>
 
 /** Monitor resource type. */
 export type DowntimeIncludedMonitorType = "monitors";
-export const DowntimeIncludedMonitorType = /*@__PURE__*/ S.String;
+export const DowntimeIncludedMonitorType = S.String;
 
 /** Data for the monitor. */
 export interface DowntimeRelationshipsMonitorData {
@@ -24986,7 +24957,7 @@ export const DowntimeMonitorIncludedItem = /*@__PURE__*/ S.suspend(() =>
 /** An object related to a downtime. */
 export type DowntimeResponseIncludedItem = User | DowntimeMonitorIncludedItem;
 export const DowntimeResponseIncludedItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DowntimeResponseIncludedItem>;
+  S.Unknown as any as S.Schema<DowntimeResponseIncludedItem>;
 
 /** Array of objects related to the downtime that the user requested. */
 export type DowntimeResponseIncludedList = Array<DowntimeResponseIncludedItem>;
@@ -25011,7 +24982,7 @@ export const DowntimeResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The authentication method type. */
 export type IntegrationAccountBasicAuthType = "basic";
-export const IntegrationAccountBasicAuthType = /*@__PURE__*/ S.String;
+export const IntegrationAccountBasicAuthType = S.String;
 
 /** Username and password authentication. */
 export interface IntegrationAccountBasicAuthRequest {
@@ -25173,7 +25144,7 @@ export const ElasticCloudIntegrationAccountCreateAttributes =
 
 /** The type of the integration account resource. Always `integration-account`. */
 export type IntegrationAccountType = "integration-account";
-export const IntegrationAccountType = /*@__PURE__*/ S.String;
+export const IntegrationAccountType = S.String;
 
 /** Data envelope for creating an Elastic Cloud integration account. */
 export interface ElasticCloudIntegrationAccountCreateData {
@@ -25228,7 +25199,7 @@ export type IntegrationAccountDataflowHealth =
   | "DATAFLOW_HEALTH_OK"
   | "DATAFLOW_HEALTH_BROKEN"
   | "DATAFLOW_HEALTH_UNKNOWN";
-export const IntegrationAccountDataflowHealth = /*@__PURE__*/ S.String;
+export const IntegrationAccountDataflowHealth = S.String;
 
 /** Read-only collection status of a dataflow. */
 export interface IntegrationAccountDataflowStatus {
@@ -25428,7 +25399,7 @@ export type ChangeEventCustomAttributesAuthorType =
   | "system"
   | "api"
   | "automation";
-export const ChangeEventCustomAttributesAuthorType = /*@__PURE__*/ S.String;
+export const ChangeEventCustomAttributesAuthorType = S.String;
 
 /** The entity that made the change. Optional, if provided it must include `type` and `name`. */
 export interface ChangeEventCustomAttributesAuthor {
@@ -25459,8 +25430,7 @@ export const ChangeEventCustomAttributesChangeMetadataMap =
 export type ChangeEventCustomAttributesChangedResourceType =
   | "feature_flag"
   | "configuration";
-export const ChangeEventCustomAttributesChangedResourceType =
-  /*@__PURE__*/ S.String;
+export const ChangeEventCustomAttributesChangedResourceType = S.String;
 
 /** A uniquely identified resource. */
 export interface ChangeEventCustomAttributesChangedResource {
@@ -25480,8 +25450,7 @@ export const ChangeEventCustomAttributesChangedResource =
 
 /** The type of the impacted resource. */
 export type ChangeEventCustomAttributesImpactedResourcesItemsType = "service";
-export const ChangeEventCustomAttributesImpactedResourcesItemsType =
-  /*@__PURE__*/ S.String;
+export const ChangeEventCustomAttributesImpactedResourcesItemsType = S.String;
 
 /** Object representing a uniquely identified resource. */
 export interface ChangeEventCustomAttributesImpactedResourcesItems {
@@ -25568,8 +25537,7 @@ export type AlertEventCustomAttributesLinksItemsCategory =
   | "documentation"
   | "dashboard"
   | "resource";
-export const AlertEventCustomAttributesLinksItemsCategory =
-  /*@__PURE__*/ S.String;
+export const AlertEventCustomAttributesLinksItemsCategory = S.String;
 
 /** A link. */
 export interface AlertEventCustomAttributesLinksItems {
@@ -25599,11 +25567,11 @@ export const AlertEventCustomAttributesLinks = /*@__PURE__*/ S.Array(
 
 /** The priority of the alert. */
 export type AlertEventCustomAttributesPriority = "1" | "2" | "3" | "4" | "5";
-export const AlertEventCustomAttributesPriority = /*@__PURE__*/ S.String;
+export const AlertEventCustomAttributesPriority = S.String;
 
 /** The status of the alert. */
 export type AlertEventCustomAttributesStatus = "warn" | "error" | "ok";
-export const AlertEventCustomAttributesStatus = /*@__PURE__*/ S.String;
+export const AlertEventCustomAttributesStatus = S.String;
 
 /** Alert event attributes. */
 export interface AlertEventCustomAttributes {
@@ -25628,15 +25596,15 @@ export type EventPayloadAttributes =
   | ChangeEventCustomAttributes
   | AlertEventCustomAttributes;
 export const EventPayloadAttributes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventPayloadAttributes>;
+  S.Unknown as any as S.Schema<EventPayloadAttributes>;
 
 /** Event category identifying the type of event. */
 export type EventCategory = "change" | "alert";
-export const EventCategory = /*@__PURE__*/ S.String;
+export const EventCategory = S.String;
 
 /** Integration ID sourced from integration manifests. */
 export type EventPayloadIntegrationId = "custom-events";
-export const EventPayloadIntegrationId = /*@__PURE__*/ S.String;
+export const EventPayloadIntegrationId = S.String;
 
 /** A list of tags associated with the event. Maximum of 100 tags allowed. Refer to [Tags docs](https://docs.datadoghq.com/getting_started/tagging/). */
 export type EventPayloadTagsList = Array<string>;
@@ -25678,7 +25646,7 @@ export const EventPayload = /*@__PURE__*/ S.suspend(() =>
 
 /** Entity type. */
 export type EventCreateRequestType = "event";
-export const EventCreateRequestType = /*@__PURE__*/ S.String;
+export const EventCreateRequestType = S.String;
 
 /** An event object. */
 export interface EventCreateRequest {
@@ -25721,7 +25689,7 @@ export type RumExclusionFilterEventType =
   | "resource"
   | "long_task"
   | "vital";
-export const RumExclusionFilterEventType = /*@__PURE__*/ S.String;
+export const RumExclusionFilterEventType = S.String;
 
 /** The attributes of an exclusion filter to create. */
 export interface RumExclusionFilterCreateAttributes {
@@ -25744,7 +25712,7 @@ export const RumExclusionFilterCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type. The value must be `exclusion_filters`. */
 export type RumExclusionFilterType = "exclusion_filters";
-export const RumExclusionFilterType = /*@__PURE__*/ S.String;
+export const RumExclusionFilterType = S.String;
 
 /** The new exclusion filter properties to create. */
 export interface RumExclusionFilterCreateData {
@@ -25859,7 +25827,7 @@ export type ExecutionPolicyIntegration =
   | "INTEGRATION_KUBERNETES"
   | "INTEGRATION_SCRIPT"
   | "INTEGRATION_REMOTE_ACTION";
-export const ExecutionPolicyIntegration = /*@__PURE__*/ S.String;
+export const ExecutionPolicyIntegration = S.String;
 
 /** The set of actions this policy applies to. */
 export interface ExecutionPolicyActionPattern {
@@ -25878,7 +25846,7 @@ export const ExecutionPolicyActionPattern = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the policy allows or denies matching actions. */
 export type ExecutionPolicyEffect = "allow" | "deny";
-export const ExecutionPolicyEffect = /*@__PURE__*/ S.String;
+export const ExecutionPolicyEffect = S.String;
 
 /** The Kubernetes namespaces this rule applies to. */
 export type ExecutionPolicyKubernetesScopeRuleTargetNamespacesList =
@@ -25925,7 +25893,7 @@ export const ExecutionPolicyKubernetesScope = /*@__PURE__*/ S.suspend(() =>
 export type ExecutionPolicyRemoteActionRshellAccess =
   | "read_only"
   | "read_write";
-export const ExecutionPolicyRemoteActionRshellAccess = /*@__PURE__*/ S.String;
+export const ExecutionPolicyRemoteActionRshellAccess = S.String;
 
 /** The file system paths this rule applies to. */
 export type ExecutionPolicyRemoteActionRshellScopeRuleTargetPathsList =
@@ -26082,7 +26050,7 @@ export const ExecutionPolicyWriteAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value should always be `execution_policy`. */
 export type ExecutionPolicyType = "execution_policy";
-export const ExecutionPolicyType = /*@__PURE__*/ S.String;
+export const ExecutionPolicyType = S.String;
 
 /** Object for a single execution policy. */
 export interface ExecutionPolicyCreateRequestData {
@@ -26237,7 +26205,7 @@ export const FastlyAccountCreateRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** The JSON:API type for this API. Should always be `fastly-accounts`. */
 export type FastlyAccountType = "fastly-accounts";
-export const FastlyAccountType = /*@__PURE__*/ S.String;
+export const FastlyAccountType = S.String;
 
 /** Data object for creating a Fastly account. */
 export interface FastlyAccountCreateRequestData {
@@ -26342,7 +26310,7 @@ export const FastlyServiceAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for this API. Should always be `fastly-services`. */
 export type FastlyServiceType = "fastly-services";
-export const FastlyServiceType = /*@__PURE__*/ S.String;
+export const FastlyServiceType = S.String;
 
 /** Data object for Fastly service requests. */
 export interface FastlyServiceData {
@@ -26501,7 +26469,7 @@ export const CreateEnvironmentAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type. */
 export type CreateEnvironmentDataType = "environments";
-export const CreateEnvironmentDataType = /*@__PURE__*/ S.String;
+export const CreateEnvironmentDataType = S.String;
 
 /** Data for creating a new environment. */
 export interface CreateEnvironmentData {
@@ -26604,7 +26572,7 @@ export const EnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of file operation to perform on the target configuration file. - `merge-patch`: Merges the provided patch data with the existing configuration file. Creates the file if it doesn't exist. - `delete`: Removes the specified configuration file from the target hosts. */
 export type FleetDeploymentFileOp = "merge-patch" | "delete";
-export const FleetDeploymentFileOp = /*@__PURE__*/ S.String;
+export const FleetDeploymentFileOp = S.String;
 
 /** Patch data in JSON format to apply to the configuration file. When using `merge-patch`, this object is merged with the existing configuration, allowing you to add, update, or override specific fields without replacing the entire file. The structure must match the target configuration file format (for example, YAML structure for Datadog Agent config). Not applicable when using the `delete` operation. */
 export type FleetDeploymentOperationPatchMap = {
@@ -27010,7 +26978,7 @@ export const FleetScheduleRecurrenceRule = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the schedule. - `active`: The schedule is active and will create deployments according to its recurrence rule. - `inactive`: The schedule is inactive and will not create any deployments. */
 export type FleetScheduleStatus = "active" | "inactive";
-export const FleetScheduleStatus = /*@__PURE__*/ S.String;
+export const FleetScheduleStatus = S.String;
 
 /** Attributes for creating a new schedule. */
 export interface FleetScheduleCreateAttributes {
@@ -27037,7 +27005,7 @@ export const FleetScheduleCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of schedule resource. */
 export type FleetScheduleResourceType = "schedule";
-export const FleetScheduleResourceType = /*@__PURE__*/ S.String;
+export const FleetScheduleResourceType = S.String;
 
 /** Data for creating a new schedule. */
 export interface FleetScheduleCreate {
@@ -27163,7 +27131,7 @@ export const GcpScanOptionsDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** GCP scan options resource type. */
 export type GcpScanOptionsDataType = "gcp_scan_options";
-export const GcpScanOptionsDataType = /*@__PURE__*/ S.String;
+export const GcpScanOptionsDataType = S.String;
 
 /** Single GCP scan options entry. */
 export interface GcpScanOptionsData {
@@ -27275,7 +27243,7 @@ export type GCPMonitoredResourceConfigType =
   | "cloud_function"
   | "cloud_run_revision"
   | "gce_instance";
-export const GCPMonitoredResourceConfigType = /*@__PURE__*/ S.String;
+export const GCPMonitoredResourceConfigType = S.String;
 
 /** Configuration for a GCP monitored resource. */
 export interface GCPMonitoredResourceConfig {
@@ -27370,7 +27338,7 @@ export const GCPSTSServiceAccountAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of account. */
 export type GCPServiceAccountType = "gcp_service_account";
-export const GCPServiceAccountType = /*@__PURE__*/ S.String;
+export const GCPServiceAccountType = S.String;
 
 /** Additional metadata on your generated service account. */
 export interface GCPSTSServiceAccountData {
@@ -27534,7 +27502,7 @@ export const IncidentHandleRelationshipsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Incident handle resource type */
 export type IncidentHandleType = "incidents_handles";
-export const IncidentHandleType = /*@__PURE__*/ S.String;
+export const IncidentHandleType = S.String;
 
 /** Data object representing an incident handle in a create or update request. */
 export interface IncidentHandleDataRequest {
@@ -27677,7 +27645,7 @@ export const IncidentUserData = /*@__PURE__*/ S.suspend(() =>
 
 /** When set to `servicenow`, incidents will display the ServiceNow record ID instead of the public ID. If no ServiceNow integration exists, the public ID will be displayed. */
 export type IncidentTypeSlugSource = "default" | "servicenow";
-export const IncidentTypeSlugSource = /*@__PURE__*/ S.String;
+export const IncidentTypeSlugSource = S.String;
 
 /** The incident-type-scoped behavior settings. All fields are optional on update. Any field omitted from a PATCH request keeps its current value. This object is read-only on the incident type resource itself and is only mutated through the update (PATCH) endpoint. */
 export interface IncidentTypeConfiguration {
@@ -27861,7 +27829,7 @@ export const IncidentTypeRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Incident type resource type. */
 export type IncidentTypeType = "incident_types";
-export const IncidentTypeType = /*@__PURE__*/ S.String;
+export const IncidentTypeType = S.String;
 
 /** Incident type response data. */
 export interface IncidentTypeObject {
@@ -27887,7 +27855,7 @@ export type IncidentHandleIncludedItemResponse =
   | IncidentUserData
   | IncidentTypeObject;
 export const IncidentHandleIncludedItemResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IncidentHandleIncludedItemResponse>;
+  S.Unknown as any as S.Schema<IncidentHandleIncludedItemResponse>;
 
 /** Included related resources */
 export type IncidentHandleIncludedResponse =
@@ -27929,7 +27897,7 @@ export const GoogleChatTargetAudienceCreateRequestAttributes =
 
 /** Google Chat target audience resource type. */
 export type GoogleChatTargetAudienceType = "google-chat-target-audience";
-export const GoogleChatTargetAudienceType = /*@__PURE__*/ S.String;
+export const GoogleChatTargetAudienceType = S.String;
 
 /** Data for a create target audience request. */
 export interface GoogleChatTargetAudienceCreateRequestData {
@@ -28004,7 +27972,7 @@ export const GoogleChatTargetAudienceResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the HAMR connection: - 0: UNSPECIFIED - Connection status not specified - 1: ONBOARDING - Initial setup of HAMR connection - 2: PASSIVE - Secondary organization in passive standby mode - 3: FAILOVER - Liminal status between PASSIVE and ACTIVE - 4: ACTIVE - Organization is an active failover - 5: RECOVERY - Recovery operation in progress */
 export type HamrOrgConnectionStatus = 0 | 1 | 2 | 3 | 4 | 5;
-export const HamrOrgConnectionStatus = /*@__PURE__*/ S.Number;
+export const HamrOrgConnectionStatus = S.Number;
 
 /** Attributes for a HAMR organization connection request. */
 export interface HamrOrgConnectionAttributesRequest {
@@ -28035,7 +28003,7 @@ export const HamrOrgConnectionAttributesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the HAMR organization connection resource. */
 export type HamrOrgConnectionType = "hamr_org_connections";
-export const HamrOrgConnectionType = /*@__PURE__*/ S.String;
+export const HamrOrgConnectionType = S.String;
 
 /** Data object for a HAMR organization connection request. */
 export interface HamrOrgConnectionDataRequest {
@@ -28127,7 +28095,7 @@ export const HamrOrgConnectionResponse = /*@__PURE__*/ S.suspend(() =>
 /** The historical metrics configuration resource type. */
 export type HistoricalMetricsConfigurationType =
   "historical_metrics_configurations";
-export const HistoricalMetricsConfigurationType = /*@__PURE__*/ S.String;
+export const HistoricalMetricsConfigurationType = S.String;
 
 /** Data object for enabling historical metrics ingestion for a metric. */
 export interface HistoricalMetricsConfigurationCreateData {
@@ -28209,7 +28177,7 @@ export const HistoricalMetricsConfigurationResponse = /*@__PURE__*/ S.suspend(
 
 /** Type of the single value field definitions. */
 export type IncidentFieldAttributesSingleValueType = "dropdown" | "textbox";
-export const IncidentFieldAttributesSingleValueType = /*@__PURE__*/ S.String;
+export const IncidentFieldAttributesSingleValueType = S.String;
 
 /** A field with a single value selected. */
 export interface IncidentFieldAttributesSingleValue {
@@ -28232,7 +28200,7 @@ export type IncidentFieldAttributesValueType =
   | "textarray"
   | "metrictag"
   | "autocomplete";
-export const IncidentFieldAttributesValueType = /*@__PURE__*/ S.String;
+export const IncidentFieldAttributesValueType = S.String;
 
 /** The multiple values selected for this field. */
 export type IncidentFieldAttributesMultipleValueValueList = Array<string>;
@@ -28264,7 +28232,7 @@ export type IncidentFieldAttributes =
   | IncidentFieldAttributesSingleValue
   | IncidentFieldAttributesMultipleValue;
 export const IncidentFieldAttributes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IncidentFieldAttributes>;
+  S.Unknown as any as S.Schema<IncidentFieldAttributes>;
 
 /** A condensed view of the user-defined fields for which to create initial selections. */
 export type IncidentCreateAttributesFieldsMap = {
@@ -28277,7 +28245,7 @@ export const IncidentCreateAttributesFieldsMap = /*@__PURE__*/ S.Record(
 
 /** Type of the Markdown timeline cell. */
 export type IncidentTimelineCellMarkdownContentType = "markdown";
-export const IncidentTimelineCellMarkdownContentType = /*@__PURE__*/ S.String;
+export const IncidentTimelineCellMarkdownContentType = S.String;
 
 /** The Markdown timeline cell contents. */
 export interface IncidentTimelineCellMarkdownCreateAttributesContent {
@@ -28392,7 +28360,7 @@ export const IncidentCreateRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Incident resource type. */
 export type IncidentType = "incidents";
-export const IncidentType = /*@__PURE__*/ S.String;
+export const IncidentType = S.String;
 
 /** Incident data for a create request. */
 export interface IncidentCreateData {
@@ -28463,7 +28431,7 @@ export type IncidentSeverity =
   | "SEV-3"
   | "SEV-4"
   | "SEV-5";
-export const IncidentSeverity = /*@__PURE__*/ S.String;
+export const IncidentSeverity = S.String;
 
 /** The incident's attributes from a response. */
 export interface IncidentResponseAttributes {
@@ -28560,7 +28528,7 @@ export const IncidentResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The incident attachment resource type. */
 export type IncidentAttachmentType = "incident_attachments";
-export const IncidentAttachmentType = /*@__PURE__*/ S.String;
+export const IncidentAttachmentType = S.String;
 
 /** The attachment relationship data. */
 export interface RelationshipToIncidentAttachmentData {
@@ -28600,7 +28568,7 @@ export const RelationshipToIncidentAttachment = /*@__PURE__*/ S.suspend(() =>
 
 /** The incident impacts type. */
 export type IncidentImpactsType = "incident_impacts";
-export const IncidentImpactsType = /*@__PURE__*/ S.String;
+export const IncidentImpactsType = S.String;
 
 /** Relationship to impact object. */
 export interface RelationshipToIncidentImpactData {
@@ -28639,7 +28607,7 @@ export const RelationshipToIncidentImpacts = /*@__PURE__*/ S.suspend(() =>
 
 /** Integration metadata resource type. */
 export type IncidentIntegrationMetadataType = "incident_integrations";
-export const IncidentIntegrationMetadataType = /*@__PURE__*/ S.String;
+export const IncidentIntegrationMetadataType = S.String;
 
 /** A relationship reference for an integration metadata object. */
 export interface RelationshipToIncidentIntegrationMetadataData {
@@ -28681,7 +28649,7 @@ export const RelationshipToIncidentIntegrationMetadatas =
 
 /** The incident responders type. */
 export type IncidentRespondersType = "incident_responders";
-export const IncidentRespondersType = /*@__PURE__*/ S.String;
+export const IncidentRespondersType = S.String;
 
 /** Relationship to impact object. */
 export interface RelationshipToIncidentResponderData {
@@ -28720,7 +28688,7 @@ export const RelationshipToIncidentResponders = /*@__PURE__*/ S.suspend(() =>
 
 /** The incident user defined fields type. */
 export type IncidentUserDefinedFieldType = "user_defined_field";
-export const IncidentUserDefinedFieldType = /*@__PURE__*/ S.String;
+export const IncidentUserDefinedFieldType = S.String;
 
 /** Relationship to impact object. */
 export interface RelationshipToIncidentUserDefinedFieldData {
@@ -28825,7 +28793,7 @@ export const AttachmentDataAttributesAttachment = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the attachment. */
 export type AttachmentDataAttributesAttachmentType = "postmortem" | "link";
-export const AttachmentDataAttributesAttachmentType = /*@__PURE__*/ S.String;
+export const AttachmentDataAttributesAttachmentType = S.String;
 
 /** The attachment's attributes. */
 export interface AttachmentDataAttributes {
@@ -28905,7 +28873,7 @@ export const AttachmentData = /*@__PURE__*/ S.suspend(() =>
 /** An object related to an incident that is included in the response. */
 export type IncidentResponseIncludedItem = IncidentUserData | AttachmentData;
 export const IncidentResponseIncludedItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IncidentResponseIncludedItem>;
+  S.Unknown as any as S.Schema<IncidentResponseIncludedItem>;
 
 /** Included related resources that the user requested. */
 export type IncidentResponseIncludedList = Array<IncidentResponseIncludedItem>;
@@ -29033,7 +29001,7 @@ export const IncidentConfigurationDataAttributesRequest =
 
 /** Incident configuration resource type. */
 export type IncidentConfigurationType = "incidents_configurations";
-export const IncidentConfigurationType = /*@__PURE__*/ S.String;
+export const IncidentConfigurationType = S.String;
 
 /** Incident configuration data in a create request. */
 export interface IncidentConfigurationDataRequest {
@@ -29220,7 +29188,7 @@ export const IncidentGoogleChatConfigurationRelationshipsRequest =
 
 /** Google Chat configuration resource type. */
 export type IncidentGoogleChatConfigurationType = "google_chat_configurations";
-export const IncidentGoogleChatConfigurationType = /*@__PURE__*/ S.String;
+export const IncidentGoogleChatConfigurationType = S.String;
 
 /** Google Chat configuration data in a create request. */
 export interface IncidentGoogleChatConfigurationDataRequest {
@@ -29372,7 +29340,7 @@ export const IncidentGoogleMeetConfigurationRelationshipsRequest =
 
 /** Google Meet configuration resource type. */
 export type IncidentGoogleMeetConfigurationType = "google_meet_configurations";
-export const IncidentGoogleMeetConfigurationType = /*@__PURE__*/ S.String;
+export const IncidentGoogleMeetConfigurationType = S.String;
 
 /** Google Meet configuration data in a create request. */
 export interface IncidentGoogleMeetConfigurationDataRequest {
@@ -29487,7 +29455,7 @@ export type IncidentImpactRelatedObject =
   | "incident"
   | "created_by_user"
   | "last_modified_by_user";
-export const IncidentImpactRelatedObject = /*@__PURE__*/ S.String;
+export const IncidentImpactRelatedObject = S.String;
 
 export type CreateIncidentImpactRequestIncludeList = Array<
   IncidentImpactRelatedObject | (string & {})
@@ -29526,7 +29494,7 @@ export const IncidentImpactCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Incident impact resource type. */
 export type IncidentImpactType = "incident_impacts";
-export const IncidentImpactType = /*@__PURE__*/ S.String;
+export const IncidentImpactType = S.String;
 
 /** Incident impact data for a create request. */
 export interface IncidentImpactCreateData {
@@ -29687,7 +29655,7 @@ export type IncidentImpactFieldValueType =
   | "number"
   | "datetime"
   | "multiselect";
-export const IncidentImpactFieldValueType = /*@__PURE__*/ S.String;
+export const IncidentImpactFieldValueType = S.String;
 
 /** Attributes for creating an impact field. */
 export interface IncidentImpactFieldDataAttributesRequest {
@@ -29724,7 +29692,7 @@ export const IncidentImpactFieldRelationshipsRequest =
 
 /** Impact field resource type. */
 export type IncidentImpactFieldType = "impact_fields";
-export const IncidentImpactFieldType = /*@__PURE__*/ S.String;
+export const IncidentImpactFieldType = S.String;
 
 /** Impact field data in a create request. */
 export interface IncidentImpactFieldDataRequest {
@@ -29975,7 +29943,7 @@ export type IncidentIntegrationMetadataMetadata =
   | JiraIntegrationMetadata
   | MSTeamsIntegrationMetadata;
 export const IncidentIntegrationMetadataMetadata =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IncidentIntegrationMetadataMetadata>;
+  S.Unknown as any as S.Schema<IncidentIntegrationMetadataMetadata>;
 
 /** Incident integration metadata's attributes for a create request. */
 export interface IncidentIntegrationMetadataAttributesInput {
@@ -30158,8 +30126,7 @@ export type IncidentNotificationRuleCreateAttributesVisibility =
   | "all"
   | "organization"
   | "private";
-export const IncidentNotificationRuleCreateAttributesVisibility =
-  /*@__PURE__*/ S.String;
+export const IncidentNotificationRuleCreateAttributesVisibility = S.String;
 
 /** The attributes for creating a notification rule. */
 export interface IncidentNotificationRuleCreateAttributes {
@@ -30192,7 +30159,7 @@ export const IncidentNotificationRuleCreateAttributes = /*@__PURE__*/ S.suspend(
 
 /** Notification templates resource type. */
 export type IncidentNotificationTemplateType = "notification_templates";
-export const IncidentNotificationTemplateType = /*@__PURE__*/ S.String;
+export const IncidentNotificationTemplateType = S.String;
 
 /** The notification template relationship data. */
 export interface RelationshipToIncidentNotificationTemplateData {
@@ -30242,7 +30209,7 @@ export const IncidentNotificationRuleCreateDataRelationships =
 
 /** Notification rules resource type. */
 export type IncidentNotificationRuleType = "incident_notification_rules";
-export const IncidentNotificationRuleType = /*@__PURE__*/ S.String;
+export const IncidentNotificationRuleType = S.String;
 
 /** Notification rule data for a create request. */
 export interface IncidentNotificationRuleCreateData {
@@ -30283,8 +30250,7 @@ export type IncidentNotificationRuleAttributesVisibility =
   | "all"
   | "organization"
   | "private";
-export const IncidentNotificationRuleAttributesVisibility =
-  /*@__PURE__*/ S.String;
+export const IncidentNotificationRuleAttributesVisibility = S.String;
 
 /** The notification rule's attributes. */
 export interface IncidentNotificationRuleAttributes {
@@ -30417,7 +30383,7 @@ export type IncidentNotificationRuleIncludedItems =
   | IncidentTypeObject
   | IncidentNotificationTemplateObject;
 export const IncidentNotificationRuleIncludedItems =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IncidentNotificationRuleIncludedItems>;
+  S.Unknown as any as S.Schema<IncidentNotificationRuleIncludedItems>;
 
 /** Related objects that are included in the response. */
 export type IncidentNotificationRuleIncludedList =
@@ -30525,7 +30491,7 @@ export type IncidentNotificationTemplateIncludedItems =
   | User
   | IncidentTypeObject;
 export const IncidentNotificationTemplateIncludedItems =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IncidentNotificationTemplateIncludedItems>;
+  S.Unknown as any as S.Schema<IncidentNotificationTemplateIncludedItems>;
 
 /** Related objects that are included in the response. */
 export type IncidentNotificationTemplateIncludedList =
@@ -30576,7 +30542,7 @@ export const PostmortemCellAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The postmortem cell resource type. */
 export type PostmortemCellType = "markdown";
-export const PostmortemCellType = /*@__PURE__*/ S.String;
+export const PostmortemCellType = S.String;
 
 /** A cell in the postmortem */
 export interface PostmortemCell {
@@ -30699,7 +30665,7 @@ export type PostmortemTemplateLocation =
   | "datadog_notebooks"
   | "confluence"
   | "google_docs";
-export const PostmortemTemplateLocation = /*@__PURE__*/ S.String;
+export const PostmortemTemplateLocation = S.String;
 
 /** Attributes for creating or updating a postmortem template. */
 export interface PostmortemTemplateAttributesRequest {
@@ -30773,7 +30739,7 @@ export const PostmortemTemplateCreateRelationships = /*@__PURE__*/ S.suspend(
 export type PostmortemTemplateType =
   | "postmortem_templates"
   | "postmortem_template";
-export const PostmortemTemplateType = /*@__PURE__*/ S.String;
+export const PostmortemTemplateType = S.String;
 
 /** Data object for creating or updating a postmortem template. */
 export interface PostmortemTemplateDataRequest {
@@ -30946,7 +30912,7 @@ export const IncidentResponderRelationshipsRequest = /*@__PURE__*/ S.suspend(
 
 /** Incident responder resource type. */
 export type IncidentResponderType = "incident_responders";
-export const IncidentResponderType = /*@__PURE__*/ S.String;
+export const IncidentResponderType = S.String;
 
 /** Incident responder data in a create request. */
 export interface IncidentResponderDataRequest {
@@ -31171,7 +31137,7 @@ export const IncidentRuleDataAttributesRequestConditionsList =
 
 /** The execution type of an incident rule. */
 export type IncidentRuleExecutionType = 1 | 2;
-export const IncidentRuleExecutionType = /*@__PURE__*/ S.Number;
+export const IncidentRuleExecutionType = S.Number;
 
 /** The task ID for an incident rule. */
 export type IncidentRuleTaskIDType =
@@ -31187,14 +31153,14 @@ export type IncidentRuleTaskIDType =
   | "zoom-suppress-summarization-job"
   | "ms-teams-suppress-summarization-job"
   | "google-meet-suppress-summarization-job";
-export const IncidentRuleTaskIDType = /*@__PURE__*/ S.String;
+export const IncidentRuleTaskIDType = S.String;
 
 /** The trigger event for an incident rule. */
 export type IncidentRuleTriggerType =
   | "incident_saved_trigger"
   | "incident_created_trigger"
   | "incident_modified_trigger";
-export const IncidentRuleTriggerType = /*@__PURE__*/ S.String;
+export const IncidentRuleTriggerType = S.String;
 
 /** Attributes for creating an incident rule. */
 export interface IncidentRuleDataAttributesRequest {
@@ -31234,7 +31200,7 @@ export const IncidentRuleDataAttributesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Incident rule resource type. */
 export type IncidentRuleType = "incident_rules";
-export const IncidentRuleType = /*@__PURE__*/ S.String;
+export const IncidentRuleType = S.String;
 
 /** Incident rule data in a create request. */
 export interface IncidentRuleDataRequest {
@@ -31334,7 +31300,7 @@ export const IncidentRuleDataAttributesResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Incident rule response resource type. */
 export type IncidentRuleResponseType = "incidents_rules";
-export const IncidentRuleResponseType = /*@__PURE__*/ S.String;
+export const IncidentRuleResponseType = S.String;
 
 /** Incident rule data in a response. */
 export interface IncidentRuleDataResponse {
@@ -31391,7 +31357,7 @@ export const IncidentServiceNowRecordDataAttributesRequest =
 /** ServiceNow record prompt resource type. */
 export type IncidentServiceNowRecordPromptType =
   "incident_servicenow_record_prompt";
-export const IncidentServiceNowRecordPromptType = /*@__PURE__*/ S.String;
+export const IncidentServiceNowRecordPromptType = S.String;
 
 /** ServiceNow record data in a create request. */
 export interface IncidentServiceNowRecordDataRequest {
@@ -31434,7 +31400,7 @@ export type SalesforceIncidentsTemplatePriority =
   | "High"
   | "Moderate"
   | "Low";
-export const SalesforceIncidentsTemplatePriority = /*@__PURE__*/ S.String;
+export const SalesforceIncidentsTemplatePriority = S.String;
 
 /** Salesforce incident template attributes for a create request. */
 export interface SalesforceIncidentsTemplateCreateAttributes {
@@ -31467,7 +31433,7 @@ export const SalesforceIncidentsTemplateCreateAttributes =
 /** Salesforce incident template resource type. */
 export type SalesforceIncidentsTemplateType =
   "salesforce-incidents-incident-template";
-export const SalesforceIncidentsTemplateType = /*@__PURE__*/ S.String;
+export const SalesforceIncidentsTemplateType = S.String;
 
 /** Salesforce incident template data for a create request. */
 export interface SalesforceIncidentsTemplateCreateData {
@@ -31561,7 +31527,7 @@ export const SalesforceIncidentsTemplateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The source of the anonymous assignee. */
 export type IncidentTodoAnonymousAssigneeSource = "slack" | "microsoft_teams";
-export const IncidentTodoAnonymousAssigneeSource = /*@__PURE__*/ S.String;
+export const IncidentTodoAnonymousAssigneeSource = S.String;
 
 /** Anonymous assignee entity. */
 export interface IncidentTodoAnonymousAssignee {
@@ -31587,7 +31553,7 @@ export const IncidentTodoAnonymousAssignee = /*@__PURE__*/ S.suspend(() =>
 /** A todo assignee. */
 export type IncidentTodoAssignee = string | IncidentTodoAnonymousAssignee;
 export const IncidentTodoAssignee =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IncidentTodoAssignee>;
+  S.Unknown as any as S.Schema<IncidentTodoAssignee>;
 
 /** Array of todo assignees. */
 export type IncidentTodoAssigneeArray = Array<IncidentTodoAssignee>;
@@ -31621,7 +31587,7 @@ export const IncidentTodoAttributesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Todo resource type. */
 export type IncidentTodoType = "incident_todos";
-export const IncidentTodoType = /*@__PURE__*/ S.String;
+export const IncidentTodoType = S.String;
 
 /** Incident todo data for a create request. */
 export interface IncidentTodoCreateDataInput {
@@ -31797,7 +31763,7 @@ export const IncidentTypeResponse = /*@__PURE__*/ S.suspend(() =>
 export type IncidentUserDefinedFieldCategory =
   | "what_happened"
   | "why_it_happened";
-export const IncidentUserDefinedFieldCategory = /*@__PURE__*/ S.String;
+export const IncidentUserDefinedFieldCategory = S.String;
 
 /** The lifecycle stage at which the app prompts users to fill out this field. Cannot be set on required fields. */
 export type IncidentUserDefinedFieldCollected =
@@ -31805,11 +31771,11 @@ export type IncidentUserDefinedFieldCollected =
   | "stable"
   | "resolved"
   | "completed";
-export const IncidentUserDefinedFieldCollected = /*@__PURE__*/ S.String;
+export const IncidentUserDefinedFieldCollected = S.String;
 
 /** The data type of the field. 1=dropdown, 2=multiselect, 3=textbox, 4=textarray, 5=metrictag, 6=autocomplete, 7=number, 8=datetime. */
 export type IncidentUserDefinedFieldFieldType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-export const IncidentUserDefinedFieldFieldType = /*@__PURE__*/ S.Number;
+export const IncidentUserDefinedFieldFieldType = S.Number;
 
 /** A valid value for an incident user-defined field. */
 export interface IncidentUserDefinedFieldValidValue {
@@ -32151,7 +32117,7 @@ export const IncidentUserDefinedRoleRelationshipsRequest =
 
 /** Incident user-defined role resource type. */
 export type IncidentUserDefinedRoleType = "incident_user_defined_roles";
-export const IncidentUserDefinedRoleType = /*@__PURE__*/ S.String;
+export const IncidentUserDefinedRoleType = S.String;
 
 /** Data for creating an incident user-defined role. */
 export interface IncidentUserDefinedRoleDataRequest {
@@ -32258,7 +32224,7 @@ export type IncidentUserDefinedRoleIncludedItem =
   | IncidentUserData
   | IncidentTypeObject;
 export const IncidentUserDefinedRoleIncludedItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IncidentUserDefinedRoleIncludedItem>;
+  S.Unknown as any as S.Schema<IncidentUserDefinedRoleIncludedItem>;
 
 /** Included resources for an incident user-defined role response. */
 export type IncidentUserDefinedRoleIncludedResponse =
@@ -32283,7 +32249,7 @@ export const IncidentUserDefinedRoleResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Current triage state of the indicator. */
 export type IoCTriageState = "not_reviewed" | "reviewed";
-export const IoCTriageState = /*@__PURE__*/ S.String;
+export const IoCTriageState = S.String;
 
 /** Attributes for setting an indicator's triage state. */
 export interface IoCTriageWriteRequestAttributes {
@@ -32534,7 +32500,7 @@ export const JiraIssueTemplateCreateRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** Type identifier for Jira issue template resources */
 export type JiraIssueTemplateType = "jira-issue-template";
-export const JiraIssueTemplateType = /*@__PURE__*/ S.String;
+export const JiraIssueTemplateType = S.String;
 
 /** Data object for creating a Jira issue template */
 export interface JiraIssueTemplateCreateRequestData {
@@ -32619,7 +32585,7 @@ export const JiraAccountAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type identifier for Jira account resources */
 export type JiraAccountType = "jira-account";
-export const JiraAccountType = /*@__PURE__*/ S.String;
+export const JiraAccountType = S.String;
 
 /** Data object for a Jira account */
 export interface JiraAccountData {
@@ -32801,7 +32767,7 @@ export type LLMObsLabelSchemaType =
   | "categorical"
   | "boolean"
   | "text";
-export const LLMObsLabelSchemaType = /*@__PURE__*/ S.String;
+export const LLMObsLabelSchemaType = S.String;
 
 /** Allowed values for categorical-type labels. Must contain at least one non-empty, unique value. */
 export type LLMObsLabelSchemaValuesList = Array<string>;
@@ -32916,7 +32882,7 @@ export const LLMObsAnnotationQueueDataAttributesRequest =
 
 /** Resource type of an Agent Observability annotation queue. */
 export type LLMObsAnnotationQueueType = "queues";
-export const LLMObsAnnotationQueueType = /*@__PURE__*/ S.String;
+export const LLMObsAnnotationQueueType = S.String;
 
 /** Data object for creating an Agent Observability annotation queue. */
 export interface LLMObsAnnotationQueueDataRequest {
@@ -33042,7 +33008,7 @@ export type LLMObsTraceInteractionType =
   | "trace"
   | "experiment_trace"
   | "session";
-export const LLMObsTraceInteractionType = /*@__PURE__*/ S.String;
+export const LLMObsTraceInteractionType = S.String;
 
 /** An interaction that references an upstream trace, experiment trace, or session. */
 export interface LLMObsTraceInteractionItem {
@@ -33063,12 +33029,11 @@ export const LLMObsTraceInteractionItem = /*@__PURE__*/ S.suspend(() =>
 export type LLMObsContentBlockLLMObsTraceInteractionType =
   | "trace"
   | "experiment_trace";
-export const LLMObsContentBlockLLMObsTraceInteractionType =
-  /*@__PURE__*/ S.String;
+export const LLMObsContentBlockLLMObsTraceInteractionType = S.String;
 
 /** Visual size for a `header` block. */
 export type LLMObsContentBlockHeaderLevel = "sm" | "md" | "lg" | "xl";
-export const LLMObsContentBlockHeaderLevel = /*@__PURE__*/ S.String;
+export const LLMObsContentBlockHeaderLevel = S.String;
 
 /** Unix-millis time range used by chart blocks. */
 export interface LLMObsContentBlockTimeFrame {
@@ -33095,7 +33060,7 @@ export type LLMObsContentBlockType =
   | "image"
   | "widget"
   | "llmobs_trace";
-export const LLMObsContentBlockType = /*@__PURE__*/ S.String;
+export const LLMObsContentBlockType = S.String;
 
 /** A single content block rendered inside a `display_block` interaction. `type` discriminates which other fields are meaningful: - `markdown` / `text`: `content` must be a string. - `header`: `content` must be a string; `level`, when set, must be one of `sm`, `md`, `lg`, `xl`. - `json`: `content` must be a well-formed JSON value (object, array, or scalar). - `image`: `url` is required. - `widget`: `tileDef` is required (any well-formed JSON; the frontend owns the renderable schema). - `llmobs_trace`: `traceId` is required; `interactionType`, when set, must be `trace` or `experiment_trace`. `height`, when set, must be positive. */
 export interface LLMObsContentBlock {
@@ -33146,7 +33111,7 @@ export const LLMObsContentBlocks = /*@__PURE__*/ S.Array(
 
 /** Type discriminator for a `display_block` interaction. */
 export type LLMObsDisplayBlockInteractionType = "display_block";
-export const LLMObsDisplayBlockInteractionType = /*@__PURE__*/ S.String;
+export const LLMObsDisplayBlockInteractionType = S.String;
 
 /** An interaction whose rendered content is supplied directly as a list of display blocks. The server generates `content_id` deterministically from the block list. */
 export interface LLMObsDisplayBlockInteractionItem {
@@ -33167,7 +33132,7 @@ export type LLMObsAnnotationQueueInteractionItem =
   | LLMObsTraceInteractionItem
   | LLMObsDisplayBlockInteractionItem;
 export const LLMObsAnnotationQueueInteractionItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LLMObsAnnotationQueueInteractionItem>;
+  S.Unknown as any as S.Schema<LLMObsAnnotationQueueInteractionItem>;
 
 /** List of interactions to add to the queue. Must contain at least one item. */
 export type LLMObsAnnotationQueueInteractionsDataAttributesRequestInteractionsList =
@@ -33194,7 +33159,7 @@ export const LLMObsAnnotationQueueInteractionsDataAttributesRequest =
 
 /** Resource type for annotation queue interactions. */
 export type LLMObsAnnotationQueueInteractionsType = "interactions";
-export const LLMObsAnnotationQueueInteractionsType = /*@__PURE__*/ S.String;
+export const LLMObsAnnotationQueueInteractionsType = S.String;
 
 /** Data object for adding interactions to an annotation queue. */
 export interface LLMObsAnnotationQueueInteractionsDataRequest {
@@ -33288,7 +33253,7 @@ export type LLMObsAnnotationQueueInteractionResponseItem =
   | LLMObsTraceInteractionResponseItem
   | LLMObsDisplayBlockInteractionResponseItem;
 export const LLMObsAnnotationQueueInteractionResponseItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LLMObsAnnotationQueueInteractionResponseItem>;
+  S.Unknown as any as S.Schema<LLMObsAnnotationQueueInteractionResponseItem>;
 
 /** List of interactions that were processed. */
 export type LLMObsAnnotationQueueInteractionsDataAttributesResponseInteractionsList =
@@ -33460,7 +33425,7 @@ export const LLMObsDatasetRecordsDataAttributesRequest =
 
 /** Resource type of Agent Observability dataset records. */
 export type LLMObsRecordType = "records";
-export const LLMObsRecordType = /*@__PURE__*/ S.String;
+export const LLMObsRecordType = S.String;
 
 /** Data object for appending records to an Agent Observability dataset. */
 export interface LLMObsDatasetRecordsDataRequest {
@@ -33562,7 +33527,7 @@ export const LLMObsExperimentDataAttributesRequest = /*@__PURE__*/ S.suspend(
 
 /** Resource type of an Agent Observability experiment. */
 export type LLMObsExperimentType = "experiments";
-export const LLMObsExperimentType = /*@__PURE__*/ S.String;
+export const LLMObsExperimentType = S.String;
 
 /** Data object for creating an Agent Observability experiment. */
 export interface LLMObsExperimentDataRequest {
@@ -33656,7 +33621,7 @@ export type LLMObsExperimentStatus =
   | "completed"
   | "failed"
   | "interrupted";
-export const LLMObsExperimentStatus = /*@__PURE__*/ S.String;
+export const LLMObsExperimentStatus = S.String;
 
 /** Attributes of an Agent Observability experiment. */
 export interface LLMObsExperimentDataAttributesResponse {
@@ -33754,7 +33719,7 @@ export const LLMObsExperimentResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Assessment result for an Agent Observability experiment metric. */
 export type LLMObsMetricAssessment = "pass" | "fail";
-export const LLMObsMetricAssessment = /*@__PURE__*/ S.String;
+export const LLMObsMetricAssessment = S.String;
 
 /** Error details for an experiment metric evaluation. */
 export interface LLMObsExperimentMetricError {
@@ -33793,7 +33758,7 @@ export type LLMObsMetricScoreType =
   | "categorical"
   | "boolean"
   | "json";
-export const LLMObsMetricScoreType = /*@__PURE__*/ S.String;
+export const LLMObsMetricScoreType = S.String;
 
 /** List of tags associated with the metric. */
 export type LLMObsExperimentMetricTagsList = Array<string>;
@@ -33904,7 +33869,7 @@ export const LLMObsExperimentSpanMeta = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the span. */
 export type LLMObsExperimentSpanStatus = "ok" | "error";
-export const LLMObsExperimentSpanStatus = /*@__PURE__*/ S.String;
+export const LLMObsExperimentSpanStatus = S.String;
 
 /** List of tags associated with the span. */
 export type LLMObsExperimentSpanTagsList = Array<string>;
@@ -33979,7 +33944,7 @@ export const LLMObsExperimentEventsDataAttributesRequest =
 
 /** Resource type for Agent Observability experiment events. */
 export type LLMObsEventType = "events";
-export const LLMObsEventType = /*@__PURE__*/ S.String;
+export const LLMObsEventType = S.String;
 
 /** Data object for pushing experiment events. */
 export interface LLMObsExperimentEventsDataRequest {
@@ -34030,16 +33995,15 @@ export type CreateLLMObsIntegrationInferenceRequestIntegration =
   | "azure_openai"
   | "vertex_ai"
   | "llmproxy";
-export const CreateLLMObsIntegrationInferenceRequestIntegration =
-  /*@__PURE__*/ S.String;
+export const CreateLLMObsIntegrationInferenceRequestIntegration = S.String;
 
 /** The effort level for Anthropic inference. */
 export type LLMObsAnthropicEffort = "low" | "medium" | "high" | "max";
-export const LLMObsAnthropicEffort = /*@__PURE__*/ S.String;
+export const LLMObsAnthropicEffort = S.String;
 
 /** The thinking mode for Anthropic extended thinking. */
 export type LLMObsAnthropicThinkingType = "enabled" | "disabled" | "adaptive";
-export const LLMObsAnthropicThinkingType = /*@__PURE__*/ S.String;
+export const LLMObsAnthropicThinkingType = S.String;
 
 /** Configuration for Anthropic extended thinking feature. */
 export interface LLMObsAnthropicThinkingConfig {
@@ -34243,11 +34207,11 @@ export type LLMObsOpenAIReasoningEffort =
   | "medium"
   | "high"
   | "xhigh";
-export const LLMObsOpenAIReasoningEffort = /*@__PURE__*/ S.String;
+export const LLMObsOpenAIReasoningEffort = S.String;
 
 /** The verbosity of the reasoning summary. */
 export type LLMObsOpenAIReasoningSummary = "auto" | "concise" | "detailed";
-export const LLMObsOpenAIReasoningSummary = /*@__PURE__*/ S.String;
+export const LLMObsOpenAIReasoningSummary = S.String;
 
 /** OpenAI-specific metadata for an inference request. */
 export interface LLMObsOpenAIMetadata {
@@ -34572,7 +34536,7 @@ export const LLMObsProjectDataAttributesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type of an Agent Observability project. */
 export type LLMObsProjectType = "projects";
-export const LLMObsProjectType = /*@__PURE__*/ S.String;
+export const LLMObsProjectType = S.String;
 
 /** Data object for creating an Agent Observability project. */
 export interface LLMObsProjectDataRequest {
@@ -34660,7 +34624,7 @@ export const LLMObsCreatePromptDataAttributesEnvIdsList = /*@__PURE__*/ S.Array(
 
 /** A label attached to an Agent Observability prompt version. */
 export type LLMObsPromptVersionLabel = "production" | "development";
-export const LLMObsPromptVersionLabel = /*@__PURE__*/ S.String;
+export const LLMObsPromptVersionLabel = S.String;
 
 /** Optional labels to attach to the first version. Do not use this attribute for new integrations. */
 export type LLMObsCreatePromptDataAttributesLabelsList = Array<
@@ -34695,7 +34659,7 @@ export const LLMObsPromptChatTemplate = /*@__PURE__*/ S.Array(
 /** A text template or a list of chat messages. */
 export type LLMObsPromptTemplate = string | LLMObsPromptChatTemplate;
 export const LLMObsPromptTemplate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LLMObsPromptTemplate>;
+  S.Unknown as any as S.Schema<LLMObsPromptTemplate>;
 
 /** Attributes for creating an Agent Observability prompt and its first version. `prompt_id` and `template` are required; all other attributes are optional. */
 export interface LLMObsCreatePromptDataAttributes {
@@ -34729,7 +34693,7 @@ export const LLMObsCreatePromptDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type of an Agent Observability prompt. */
 export type LLMObsPromptType = "prompt-templates";
-export const LLMObsPromptType = /*@__PURE__*/ S.String;
+export const LLMObsPromptType = S.String;
 
 /** Data object for creating an Agent Observability prompt. */
 export interface LLMObsCreatePromptData {
@@ -34788,7 +34752,7 @@ export const LLMObsPromptDataAttributesMlAppsList = /*@__PURE__*/ S.Array(
 
 /** Whether the prompt was created from the registry or discovered from observed LLM calls. */
 export type LLMObsPromptResponseSource = "registry" | "code";
-export const LLMObsPromptResponseSource = /*@__PURE__*/ S.String;
+export const LLMObsPromptResponseSource = S.String;
 
 /** Tags observed on runs of this prompt. */
 export type LLMObsPromptDataAttributesTagsList = Array<string>;
@@ -34925,7 +34889,7 @@ export const LLMObsCreatePromptVersionDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** Resource type of an Agent Observability prompt version. */
 export type LLMObsPromptVersionType = "prompt-template-versions";
-export const LLMObsPromptVersionType = /*@__PURE__*/ S.String;
+export const LLMObsPromptVersionType = S.String;
 
 /** Data object for creating an Agent Observability prompt version. */
 export interface LLMObsCreatePromptVersionData {
@@ -35074,7 +35038,7 @@ export const LLMObsPromptVersionResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of compression for the archive. */
 export type LogsArchiveAttributesCompressionMethod = "GZIP" | "ZSTD";
-export const LogsArchiveAttributesCompressionMethod = /*@__PURE__*/ S.String;
+export const LogsArchiveAttributesCompressionMethod = S.String;
 
 /** The Azure archive's integration destination. */
 export interface LogsArchiveIntegrationAzure {
@@ -35094,7 +35058,7 @@ export const LogsArchiveIntegrationAzure = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the Azure archive destination. */
 export type LogsArchiveDestinationAzureType = "azure";
-export const LogsArchiveDestinationAzureType = /*@__PURE__*/ S.String;
+export const LogsArchiveDestinationAzureType = S.String;
 
 /** The Azure archive destination. */
 export interface LogsArchiveDestinationAzure {
@@ -35140,7 +35104,7 @@ export const LogsArchiveIntegrationGCS = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the GCS archive destination. */
 export type LogsArchiveDestinationGCSType = "gcs";
-export const LogsArchiveDestinationGCSType = /*@__PURE__*/ S.String;
+export const LogsArchiveDestinationGCSType = S.String;
 
 /** The GCS archive destination. */
 export interface LogsArchiveDestinationGCS {
@@ -35164,7 +35128,7 @@ export const LogsArchiveDestinationGCS = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of S3 encryption for a destination. */
 export type LogsArchiveEncryptionS3Type = "NO_OVERRIDE" | "SSE_S3" | "SSE_KMS";
-export const LogsArchiveEncryptionS3Type = /*@__PURE__*/ S.String;
+export const LogsArchiveEncryptionS3Type = S.String;
 
 /** The S3 encryption settings. */
 export interface LogsArchiveEncryptionS3 {
@@ -35215,7 +35179,7 @@ export type LogsArchiveIntegrationS3 =
   | LogsArchiveIntegrationS3AccessKey
   | LogsArchiveIntegrationS3Role;
 export const LogsArchiveIntegrationS3 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogsArchiveIntegrationS3>;
+  S.Unknown as any as S.Schema<LogsArchiveIntegrationS3>;
 
 /** The storage class where the archive will be stored. */
 export type LogsArchiveStorageClassS3Type =
@@ -35224,11 +35188,11 @@ export type LogsArchiveStorageClassS3Type =
   | "ONEZONE_IA"
   | "INTELLIGENT_TIERING"
   | "GLACIER_IR";
-export const LogsArchiveStorageClassS3Type = /*@__PURE__*/ S.String;
+export const LogsArchiveStorageClassS3Type = S.String;
 
 /** Type of the S3 archive destination. */
 export type LogsArchiveDestinationS3Type = "s3";
-export const LogsArchiveDestinationS3Type = /*@__PURE__*/ S.String;
+export const LogsArchiveDestinationS3Type = S.String;
 
 /** The S3 archive destination. */
 export interface LogsArchiveDestinationS3 {
@@ -35260,7 +35224,7 @@ export type LogsArchiveCreateRequestDestination =
   | LogsArchiveDestinationGCS
   | LogsArchiveDestinationS3;
 export const LogsArchiveCreateRequestDestination =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogsArchiveCreateRequestDestination>;
+  S.Unknown as any as S.Schema<LogsArchiveCreateRequestDestination>;
 
 /** An array of attributes to use as lookup keys for the archive. */
 export type LogsArchiveCreateRequestAttributesLookupAttributesList =
@@ -35361,7 +35325,7 @@ export type LogsArchiveDestination =
   | LogsArchiveDestinationGCS
   | LogsArchiveDestinationS3;
 export const LogsArchiveDestination =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogsArchiveDestination>;
+  S.Unknown as any as S.Schema<LogsArchiveDestination>;
 
 /** An array of attributes to use as lookup keys for the archive. */
 export type LogsArchiveAttributesLookupAttributesList = Array<string>;
@@ -35388,7 +35352,7 @@ export type LogsArchiveState =
   | "WORKING"
   | "FAILING"
   | "WORKING_AUTH_LEGACY";
-export const LogsArchiveState = /*@__PURE__*/ S.String;
+export const LogsArchiveState = S.String;
 
 /** The attributes associated with the archive. */
 export interface LogsArchiveAttributes {
@@ -35469,13 +35433,11 @@ export const CustomDestinationCreateRequestAttributesForwardTagsRestrictionListL
 export type CustomDestinationAttributeTagsRestrictionListType =
   | "ALLOW_LIST"
   | "BLOCK_LIST";
-export const CustomDestinationAttributeTagsRestrictionListType =
-  /*@__PURE__*/ S.String;
+export const CustomDestinationAttributeTagsRestrictionListType = S.String;
 
 /** Type of the basic access authentication. */
 export type CustomDestinationHttpDestinationAuthBasicType = "basic";
-export const CustomDestinationHttpDestinationAuthBasicType =
-  /*@__PURE__*/ S.String;
+export const CustomDestinationHttpDestinationAuthBasicType = S.String;
 
 /** Basic access authentication. */
 export interface CustomDestinationHttpDestinationAuthBasic {
@@ -35499,8 +35461,7 @@ export const CustomDestinationHttpDestinationAuthBasic =
 /** Type of the custom header access authentication. */
 export type CustomDestinationHttpDestinationAuthCustomHeaderType =
   "custom_header";
-export const CustomDestinationHttpDestinationAuthCustomHeaderType =
-  /*@__PURE__*/ S.String;
+export const CustomDestinationHttpDestinationAuthCustomHeaderType = S.String;
 
 /** Custom header access authentication. */
 export interface CustomDestinationHttpDestinationAuthCustomHeader {
@@ -35526,12 +35487,11 @@ export type CustomDestinationHttpDestinationAuth =
   | CustomDestinationHttpDestinationAuthBasic
   | CustomDestinationHttpDestinationAuthCustomHeader;
 export const CustomDestinationHttpDestinationAuth =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomDestinationHttpDestinationAuth>;
+  S.Unknown as any as S.Schema<CustomDestinationHttpDestinationAuth>;
 
 /** Type of the HTTP destination. */
 export type CustomDestinationForwardDestinationHttpType = "http";
-export const CustomDestinationForwardDestinationHttpType =
-  /*@__PURE__*/ S.String;
+export const CustomDestinationForwardDestinationHttpType = S.String;
 
 /** The HTTP destination. */
 export interface CustomDestinationForwardDestinationHttp {
@@ -35553,8 +35513,7 @@ export const CustomDestinationForwardDestinationHttp = /*@__PURE__*/ S.suspend(
 
 /** Type of the Splunk HTTP Event Collector (HEC) destination. */
 export type CustomDestinationForwardDestinationSplunkType = "splunk_hec";
-export const CustomDestinationForwardDestinationSplunkType =
-  /*@__PURE__*/ S.String;
+export const CustomDestinationForwardDestinationSplunkType = S.String;
 
 /** The Splunk HTTP Event Collector (HEC) destination. */
 export interface CustomDestinationForwardDestinationSplunk {
@@ -35598,8 +35557,7 @@ export const CustomDestinationElasticsearchDestinationAuth =
 /** Type of the Elasticsearch destination. */
 export type CustomDestinationForwardDestinationElasticsearchType =
   "elasticsearch";
-export const CustomDestinationForwardDestinationElasticsearchType =
-  /*@__PURE__*/ S.String;
+export const CustomDestinationForwardDestinationElasticsearchType = S.String;
 
 /** The Elasticsearch destination. */
 export interface CustomDestinationForwardDestinationElasticsearch {
@@ -35629,7 +35587,7 @@ export const CustomDestinationForwardDestinationElasticsearch =
 export type CustomDestinationForwardDestinationMicrosoftSentinelType =
   "microsoft_sentinel";
 export const CustomDestinationForwardDestinationMicrosoftSentinelType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The Microsoft Sentinel destination. */
 export interface CustomDestinationForwardDestinationMicrosoftSentinel {
@@ -35666,7 +35624,7 @@ export type CustomDestinationForwardDestination =
   | CustomDestinationForwardDestinationElasticsearch
   | CustomDestinationForwardDestinationMicrosoftSentinel;
 export const CustomDestinationForwardDestination =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomDestinationForwardDestination>;
+  S.Unknown as any as S.Schema<CustomDestinationForwardDestination>;
 
 /** The attributes associated with the custom destination. */
 export interface CustomDestinationCreateRequestAttributes {
@@ -35706,7 +35664,7 @@ export const CustomDestinationCreateRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** The type of the resource. The value should always be `custom_destination`. */
 export type CustomDestinationType = "custom_destination";
-export const CustomDestinationType = /*@__PURE__*/ S.String;
+export const CustomDestinationType = S.String;
 
 /** The definition of a custom destination. */
 export interface CustomDestinationCreateRequestDefinition {
@@ -35750,8 +35708,7 @@ export const CustomDestinationResponseAttributesOutputForwardTagsRestrictionList
 
 /** Type of the basic access authentication. */
 export type CustomDestinationResponseHttpDestinationAuthBasicType = "basic";
-export const CustomDestinationResponseHttpDestinationAuthBasicType =
-  /*@__PURE__*/ S.String;
+export const CustomDestinationResponseHttpDestinationAuthBasicType = S.String;
 
 /** Basic access authentication. */
 export interface CustomDestinationResponseHttpDestinationAuthBasic {
@@ -35770,7 +35727,7 @@ export const CustomDestinationResponseHttpDestinationAuthBasic =
 export type CustomDestinationResponseHttpDestinationAuthCustomHeaderType =
   "custom_header";
 export const CustomDestinationResponseHttpDestinationAuthCustomHeaderType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Custom header access authentication. */
 export interface CustomDestinationResponseHttpDestinationAuthCustomHeader {
@@ -35793,12 +35750,11 @@ export type CustomDestinationResponseHttpDestinationAuth =
   | CustomDestinationResponseHttpDestinationAuthBasic
   | CustomDestinationResponseHttpDestinationAuthCustomHeader;
 export const CustomDestinationResponseHttpDestinationAuth =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomDestinationResponseHttpDestinationAuth>;
+  S.Unknown as any as S.Schema<CustomDestinationResponseHttpDestinationAuth>;
 
 /** Type of the HTTP destination. */
 export type CustomDestinationResponseForwardDestinationHttpType = "http";
-export const CustomDestinationResponseForwardDestinationHttpType =
-  /*@__PURE__*/ S.String;
+export const CustomDestinationResponseForwardDestinationHttpType = S.String;
 
 /** The HTTP destination. */
 export interface CustomDestinationResponseForwardDestinationHttp {
@@ -35821,8 +35777,7 @@ export const CustomDestinationResponseForwardDestinationHttp =
 /** Type of the Splunk HTTP Event Collector (HEC) destination. */
 export type CustomDestinationResponseForwardDestinationSplunkType =
   "splunk_hec";
-export const CustomDestinationResponseForwardDestinationSplunkType =
-  /*@__PURE__*/ S.String;
+export const CustomDestinationResponseForwardDestinationSplunkType = S.String;
 
 /** The Splunk HTTP Event Collector (HEC) destination. */
 export interface CustomDestinationResponseForwardDestinationSplunk {
@@ -35857,7 +35812,7 @@ export const CustomDestinationResponseElasticsearchDestinationAuth =
 export type CustomDestinationResponseForwardDestinationElasticsearchType =
   "elasticsearch";
 export const CustomDestinationResponseForwardDestinationElasticsearchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The Elasticsearch destination. */
 export interface CustomDestinationResponseForwardDestinationElasticsearch {
@@ -35887,7 +35842,7 @@ export const CustomDestinationResponseForwardDestinationElasticsearch =
 export type CustomDestinationResponseForwardDestinationMicrosoftSentinelType =
   "microsoft_sentinel";
 export const CustomDestinationResponseForwardDestinationMicrosoftSentinelType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The Microsoft Sentinel destination. */
 export interface CustomDestinationResponseForwardDestinationMicrosoftSentinelOutput {
@@ -35922,7 +35877,7 @@ export type CustomDestinationResponseForwardDestinationOutput =
   | CustomDestinationResponseForwardDestinationElasticsearch
   | CustomDestinationResponseForwardDestinationMicrosoftSentinelOutput;
 export const CustomDestinationResponseForwardDestinationOutput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomDestinationResponseForwardDestinationOutput>;
+  S.Unknown as any as S.Schema<CustomDestinationResponseForwardDestinationOutput>;
 
 /** The attributes associated with the custom destination. */
 export interface CustomDestinationResponseAttributesOutput {
@@ -35992,7 +35947,7 @@ export const CustomDestinationResponseOutput = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of aggregation to use. */
 export type LogsMetricComputeAggregationType = "count" | "distribution";
-export const LogsMetricComputeAggregationType = /*@__PURE__*/ S.String;
+export const LogsMetricComputeAggregationType = S.String;
 
 /** The compute rule to compute the log-based metric. */
 export interface LogsMetricCompute {
@@ -36065,7 +36020,7 @@ export const LogsMetricCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value should always be logs_metrics. */
 export type LogsMetricType = "logs_metrics";
-export const LogsMetricType = /*@__PURE__*/ S.String;
+export const LogsMetricType = S.String;
 
 /** The new log-based metric properties. */
 export interface LogsMetricCreateData {
@@ -36098,7 +36053,7 @@ export const CreateLogsMetricRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of aggregation to use. */
 export type LogsMetricResponseComputeAggregationType = "count" | "distribution";
-export const LogsMetricResponseComputeAggregationType = /*@__PURE__*/ S.String;
+export const LogsMetricResponseComputeAggregationType = S.String;
 
 /** The compute rule to compute the log-based metric. */
 export interface LogsMetricResponseCompute {
@@ -36579,7 +36534,7 @@ export const MaintenanceWindowCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for maintenance windows. */
 export type MaintenanceWindowResourceType = "maintenance_window";
-export const MaintenanceWindowResourceType = /*@__PURE__*/ S.String;
+export const MaintenanceWindowResourceType = S.String;
 
 /** Data object for creating a maintenance window. */
 export interface MaintenanceWindowCreate {
@@ -36696,7 +36651,7 @@ export const MonitorConfigPolicyTagPolicyCreateRequest =
 
 /** The monitor configuration policy type. */
 export type MonitorConfigPolicyType = "tag";
-export const MonitorConfigPolicyType = /*@__PURE__*/ S.String;
+export const MonitorConfigPolicyType = S.String;
 
 /** Policy and policy type for a monitor configuration policy. */
 export interface MonitorConfigPolicyAttributeCreateRequest {
@@ -36715,7 +36670,7 @@ export const MonitorConfigPolicyAttributeCreateRequest =
 
 /** Monitor configuration policy resource type. */
 export type MonitorConfigPolicyResourceType = "monitor-config-policy";
-export const MonitorConfigPolicyResourceType = /*@__PURE__*/ S.String;
+export const MonitorConfigPolicyResourceType = S.String;
 
 /** A monitor configuration policy data. */
 export interface MonitorConfigPolicyCreateData {
@@ -36910,7 +36865,7 @@ export type MonitorNotificationRuleFilter =
   | MonitorNotificationRuleFilterTags
   | MonitorNotificationRuleFilterScope;
 export const MonitorNotificationRuleFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MonitorNotificationRuleFilter>;
+  S.Unknown as any as S.Schema<MonitorNotificationRuleFilter>;
 
 /** Attributes of the monitor notification rule. */
 export interface MonitorNotificationRuleAttributes {
@@ -36936,7 +36891,7 @@ export const MonitorNotificationRuleAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Monitor notification rule resource type. */
 export type MonitorNotificationRuleResourceType = "monitor-notification-rule";
-export const MonitorNotificationRuleResourceType = /*@__PURE__*/ S.String;
+export const MonitorNotificationRuleResourceType = S.String;
 
 /** Object to create a monitor notification rule. */
 export interface MonitorNotificationRuleCreateRequestData {
@@ -37175,7 +37130,7 @@ export const MonitorUserTemplateRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** Monitor user template resource type. */
 export type MonitorUserTemplateResourceType = "monitor-user-template";
-export const MonitorUserTemplateResourceType = /*@__PURE__*/ S.String;
+export const MonitorUserTemplateResourceType = S.String;
 
 /** Monitor user template data. */
 export interface MonitorUserTemplateCreateData {
@@ -37300,7 +37255,7 @@ export const AWSNewExternalIDResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The `AWSNewExternalIDResponseData` `type`. */
 export type AWSNewExternalIDResponseDataType = "external_id";
-export const AWSNewExternalIDResponseDataType = /*@__PURE__*/ S.String;
+export const AWSNewExternalIDResponseDataType = S.String;
 
 /** AWS External ID response body. */
 export interface AWSNewExternalIDResponseData {
@@ -37363,7 +37318,7 @@ export const WebhooksOAuth2ClientCredentialsCreateAttributes =
 /** OAuth2 client credentials resource type. */
 export type WebhooksOAuth2ClientCredentialsType =
   "webhooks-auth-method-oauth2-client-credentials";
-export const WebhooksOAuth2ClientCredentialsType = /*@__PURE__*/ S.String;
+export const WebhooksOAuth2ClientCredentialsType = S.String;
 
 /** OAuth2 client credentials data for a create request. */
 export interface WebhooksOAuth2ClientCredentialsCreateData {
@@ -37400,7 +37355,7 @@ export const CreateOAuth2ClientCredentialsRequest = /*@__PURE__*/ S.suspend(
 
 /** Authentication protocol used by the auth method. */
 export type WebhooksAuthMethodProtocol = "oauth2-client-credentials";
-export const WebhooksAuthMethodProtocol = /*@__PURE__*/ S.String;
+export const WebhooksAuthMethodProtocol = S.String;
 
 /** OAuth2 client credentials attributes returned by the API. The `client_secret` is never echoed. */
 export interface WebhooksOAuth2ClientCredentialsResponseAttributes {
@@ -37491,7 +37446,7 @@ export const OktaAccountAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Account type for an Okta account. */
 export type OktaAccountType = "okta-accounts";
-export const OktaAccountType = /*@__PURE__*/ S.String;
+export const OktaAccountType = S.String;
 
 /** Schema for an Okta account. */
 export interface OktaAccount {
@@ -37580,11 +37535,11 @@ export const OktaAccountResponseOutput = /*@__PURE__*/ S.suspend(() =>
 export type EscalationPolicyStepAttributesAssignment =
   | "default"
   | "round-robin";
-export const EscalationPolicyStepAttributesAssignment = /*@__PURE__*/ S.String;
+export const EscalationPolicyStepAttributesAssignment = S.String;
 
 /** Specifies the position of a schedule target (example `previous`, `current`, or `next`). */
 export type ScheduleTargetPosition = "previous" | "current" | "next";
-export const ScheduleTargetPosition = /*@__PURE__*/ S.String;
+export const ScheduleTargetPosition = S.String;
 
 /** Schedule-specific configuration for an escalation target. */
 export interface EscalationPolicyStepTargetConfigSchedule {
@@ -37613,7 +37568,7 @@ export const EscalationPolicyStepTargetConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the type of escalation target (example `users`, `schedules`, or `teams`). */
 export type EscalationPolicyStepTargetType = "users" | "schedules" | "teams";
-export const EscalationPolicyStepTargetType = /*@__PURE__*/ S.String;
+export const EscalationPolicyStepTargetType = S.String;
 
 /** Defines a single escalation target within a step for an escalation policy creation request. Contains `id`, `type`, and optional `config`. */
 export interface EscalationPolicyStepTarget {
@@ -37692,7 +37647,7 @@ export const EscalationPolicyCreateRequestDataAttributes =
 
 /** Teams resource type. */
 export type DataRelationshipsTeamsDataItemsType = "teams";
-export const DataRelationshipsTeamsDataItemsType = /*@__PURE__*/ S.String;
+export const DataRelationshipsTeamsDataItemsType = S.String;
 
 /** Relates a team to this schedule, identified by `id` and `type` (must be `teams`). */
 export interface DataRelationshipsTeamsDataItems {
@@ -37744,7 +37699,7 @@ export const EscalationPolicyCreateRequestDataRelationships =
 
 /** Indicates that the resource is of type `policies`. */
 export type EscalationPolicyCreateRequestDataType = "policies";
-export const EscalationPolicyCreateRequestDataType = /*@__PURE__*/ S.String;
+export const EscalationPolicyCreateRequestDataType = S.String;
 
 /** Represents the data for creating an escalation policy, including its attributes, relationships, and resource type. */
 export interface EscalationPolicyCreateRequestData {
@@ -37803,8 +37758,7 @@ export const EscalationPolicyDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the resource is of type `steps`. */
 export type EscalationPolicyDataRelationshipsStepsDataItemsType = "steps";
-export const EscalationPolicyDataRelationshipsStepsDataItemsType =
-  /*@__PURE__*/ S.String;
+export const EscalationPolicyDataRelationshipsStepsDataItemsType = S.String;
 
 /** Defines a relationship to a single step within an escalation policy. Contains the step's `id` and `type`. */
 export interface EscalationPolicyDataRelationshipsStepsDataItems {
@@ -37860,7 +37814,7 @@ export const EscalationPolicyDataRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the resource is of type `policies`. */
 export type EscalationPolicyDataType = "policies";
-export const EscalationPolicyDataType = /*@__PURE__*/ S.String;
+export const EscalationPolicyDataType = S.String;
 
 /** Represents the data for a single escalation policy, including its attributes, ID, relationships, and resource type. */
 export interface EscalationPolicyData {
@@ -37898,7 +37852,7 @@ export const EscalationPolicyStepAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the resource is of type `teams`. */
 export type TeamTargetType = "teams";
-export const TeamTargetType = /*@__PURE__*/ S.String;
+export const TeamTargetType = S.String;
 
 /** Represents a team target for an escalation policy step, including the team's ID and resource type. */
 export interface TeamTarget {
@@ -37915,7 +37869,7 @@ export const TeamTarget = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the resource is of type `users`. */
 export type UserTargetType = "users";
-export const UserTargetType = /*@__PURE__*/ S.String;
+export const UserTargetType = S.String;
 
 /** Represents a user target for an escalation policy step, including the user's ID and resource type. */
 export interface UserTarget {
@@ -37932,7 +37886,7 @@ export const UserTarget = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the resource is of type `schedules`. */
 export type ScheduleTargetType = "schedules";
-export const ScheduleTargetType = /*@__PURE__*/ S.String;
+export const ScheduleTargetType = S.String;
 
 /** Represents a schedule target for an escalation policy step, including its ID and resource type. This is a shortcut for a configured schedule target with position set to 'current'. */
 export interface ScheduleTarget {
@@ -37949,7 +37903,7 @@ export const ScheduleTarget = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the resource is of type `schedule_target`. */
 export type ConfiguredScheduleTargetType = "schedule_target";
-export const ConfiguredScheduleTargetType = /*@__PURE__*/ S.String;
+export const ConfiguredScheduleTargetType = S.String;
 
 /** Relationship reference to a configured schedule target. */
 export interface ConfiguredScheduleTarget {
@@ -37972,8 +37926,7 @@ export type EscalationTarget =
   | UserTarget
   | ScheduleTarget
   | ConfiguredScheduleTarget;
-export const EscalationTarget =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EscalationTarget>;
+export const EscalationTarget = S.Unknown as any as S.Schema<EscalationTarget>;
 
 /** The `EscalationTargets` `data`. */
 export type EscalationTargetsDataList = Array<EscalationTarget>;
@@ -38008,7 +37961,7 @@ export const EscalationPolicyStepRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the resource is of type `steps`. */
 export type EscalationPolicyStepType = "steps";
-export const EscalationPolicyStepType = /*@__PURE__*/ S.String;
+export const EscalationPolicyStepType = S.String;
 
 /** Represents a single step in an escalation policy, including its attributes, relationships, and resource type. */
 export interface EscalationPolicyStep {
@@ -38031,7 +37984,7 @@ export const EscalationPolicyStep = /*@__PURE__*/ S.suspend(() =>
 
 /** The user's status. */
 export type UserAttributesStatus = "active" | "deactivated" | "pending";
-export const UserAttributesStatus = /*@__PURE__*/ S.String;
+export const UserAttributesStatus = S.String;
 
 /** Provides basic user information for an escalation policy, including a name and email address. */
 export interface EscalationPolicyUserAttributes {
@@ -38053,7 +38006,7 @@ export const EscalationPolicyUserAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Users resource type. */
 export type EscalationPolicyUserType = "users";
-export const EscalationPolicyUserType = /*@__PURE__*/ S.String;
+export const EscalationPolicyUserType = S.String;
 
 /** Represents a user object in the context of an escalation policy, including their `id`, type, and basic attributes. */
 export interface EscalationPolicyUser {
@@ -38099,8 +38052,7 @@ export const ScheduleDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Layers resource type. */
 export type ScheduleDataRelationshipsLayersDataItemsType = "layers";
-export const ScheduleDataRelationshipsLayersDataItemsType =
-  /*@__PURE__*/ S.String;
+export const ScheduleDataRelationshipsLayersDataItemsType = S.String;
 
 /** Relates a layer to this schedule, identified by `id` and `type` (must be `layers`). */
 export interface ScheduleDataRelationshipsLayersDataItems {
@@ -38154,7 +38106,7 @@ export const ScheduleDataRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Schedules resource type. */
 export type ScheduleDataType = "schedules";
-export const ScheduleDataType = /*@__PURE__*/ S.String;
+export const ScheduleDataType = S.String;
 
 /** Represents the primary data object for a schedule, linking attributes and relationships. */
 export interface ScheduleData {
@@ -38254,7 +38206,7 @@ export const TeamReferenceAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Teams resource type. */
 export type TeamReferenceType = "teams";
-export const TeamReferenceType = /*@__PURE__*/ S.String;
+export const TeamReferenceType = S.String;
 
 /** Provides a reference to a team, including ID, type, and basic attributes/relationships. */
 export interface TeamReference {
@@ -38279,7 +38231,7 @@ export type EscalationPolicyIncluded =
   | ConfiguredSchedule
   | TeamReference;
 export const EscalationPolicyIncluded =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EscalationPolicyIncluded>;
+  S.Unknown as any as S.Schema<EscalationPolicyIncluded>;
 
 /** Provides any included related resources, such as steps or targets, returned with the policy. */
 export type EscalationPolicyIncludedList = Array<EscalationPolicyIncluded>;
@@ -38310,7 +38262,7 @@ export const CreatePageRequestDataAttributesTagsList = /*@__PURE__*/ S.Array(
 
 /** The kind of target, `team_id` | `team_handle` | `user_id`. */
 export type OnCallPageTargetType = "team_id" | "team_handle" | "user_id";
-export const OnCallPageTargetType = /*@__PURE__*/ S.String;
+export const OnCallPageTargetType = S.String;
 
 /** Information about the target to notify (such as a team or user). */
 export interface CreatePageRequestDataAttributesTarget {
@@ -38330,7 +38282,7 @@ export const CreatePageRequestDataAttributesTarget = /*@__PURE__*/ S.suspend(
 
 /** On-Call Page urgency level. */
 export type PageUrgency = "low" | "high";
-export const PageUrgency = /*@__PURE__*/ S.String;
+export const PageUrgency = S.String;
 
 /** Details about the On-Call Page you want to create. */
 export interface CreatePageRequestDataAttributes {
@@ -38357,7 +38309,7 @@ export const CreatePageRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of resource used when creating an On-Call Page. */
 export type CreatePageRequestDataType = "pages";
-export const CreatePageRequestDataType = /*@__PURE__*/ S.String;
+export const CreatePageRequestDataType = S.String;
 
 /** The main request body, including attributes and resource type. */
 export interface CreatePageRequestData {
@@ -38386,7 +38338,7 @@ export const CreateOnCallPageRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of resource used when creating an On-Call Page. */
 export type CreatePageResponseDataType = "pages";
-export const CreatePageResponseDataType = /*@__PURE__*/ S.String;
+export const CreatePageResponseDataType = S.String;
 
 /** The information returned after successfully creating a page. */
 export interface CreatePageResponseData {
@@ -38419,7 +38371,7 @@ export const CreatePageResponse = /*@__PURE__*/ S.suspend(() =>
 export type IncidentPageRoleType =
   | "incident_user_defined_roles"
   | "incident_reserved_roles";
-export const IncidentPageRoleType = /*@__PURE__*/ S.String;
+export const IncidentPageRoleType = S.String;
 
 /** A reference to an incident role for a page. */
 export interface IncidentPageRoleReference {
@@ -38454,7 +38406,7 @@ export const IncidentCreateOnCallPageDataAttributesRequestTagsList =
 
 /** The type of target for a page request. */
 export type IncidentPageTargetType = "team_handle" | "team_uuid" | "user_uuid";
-export const IncidentPageTargetType = /*@__PURE__*/ S.String;
+export const IncidentPageTargetType = S.String;
 
 /** The target recipient for a page. */
 export interface IncidentPageTarget {
@@ -38502,7 +38454,7 @@ export const IncidentCreateOnCallPageDataAttributesRequest =
 
 /** Resource type for a page creation request. */
 export type IncidentCreatePageFromIncidentType = "page";
-export const IncidentCreatePageFromIncidentType = /*@__PURE__*/ S.String;
+export const IncidentCreatePageFromIncidentType = S.String;
 
 /** On-call page data in a create request. */
 export interface IncidentCreateOnCallPageDataRequest {
@@ -38540,7 +38492,7 @@ export const CreateOnCallPageFromIncidentRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type for a page UUID response. */
 export type IncidentPageUUIDType = "page_uuid";
-export const IncidentPageUUIDType = /*@__PURE__*/ S.String;
+export const IncidentPageUUIDType = S.String;
 
 /** Page UUID data in a response. */
 export interface IncidentPageUUIDDataResponse {
@@ -38631,7 +38583,7 @@ export type Weekday =
   | "friday"
   | "saturday"
   | "sunday";
-export const Weekday = /*@__PURE__*/ S.String;
+export const Weekday = S.String;
 
 /** Defines a single time restriction rule with start and end times and the applicable weekdays. */
 export interface TimeRestriction {
@@ -38732,7 +38684,7 @@ export const ScheduleCreateRequestDataRelationships =
 
 /** Schedules resource type. */
 export type ScheduleCreateRequestDataType = "schedules";
-export const ScheduleCreateRequestDataType = /*@__PURE__*/ S.String;
+export const ScheduleCreateRequestDataType = S.String;
 
 /** The core data wrapper for creating a schedule, encompassing attributes, relationships, and the resource type. */
 export interface ScheduleCreateRequestData {
@@ -38804,7 +38756,7 @@ export const LayerAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Members resource type. */
 export type LayerRelationshipsMembersDataItemsType = "members";
-export const LayerRelationshipsMembersDataItemsType = /*@__PURE__*/ S.String;
+export const LayerRelationshipsMembersDataItemsType = S.String;
 
 /** Represents a single member object in a layer's `members` array, referencing a unique Datadog user ID. */
 export interface LayerRelationshipsMembersDataItems {
@@ -38855,7 +38807,7 @@ export const LayerRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Layers resource type. */
 export type LayerType = "layers";
-export const LayerType = /*@__PURE__*/ S.String;
+export const LayerType = S.String;
 
 /** Encapsulates a layer resource, holding attributes like rotation details, plus relationships to the members covering that layer. */
 export interface Layer {
@@ -38876,7 +38828,7 @@ export const Layer = /*@__PURE__*/ S.suspend(() =>
 
 /** Users resource type. */
 export type ScheduleMemberRelationshipsUserDataType = "users";
-export const ScheduleMemberRelationshipsUserDataType = /*@__PURE__*/ S.String;
+export const ScheduleMemberRelationshipsUserDataType = S.String;
 
 /** Points to the user data associated with this schedule member, including an ID and type. */
 export interface ScheduleMemberRelationshipsUserData {
@@ -38919,7 +38871,7 @@ export const ScheduleMemberRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Schedule Members resource type. */
 export type ScheduleMemberType = "members";
-export const ScheduleMemberType = /*@__PURE__*/ S.String;
+export const ScheduleMemberType = S.String;
 
 /** Represents a single member entry in a schedule, referencing a specific user. */
 export interface ScheduleMember {
@@ -38942,7 +38894,7 @@ export const ScheduleUserAttributes = EscalationPolicyUserAttributes;
 
 /** Users resource type. */
 export type ScheduleUserType = "users";
-export const ScheduleUserType = /*@__PURE__*/ S.String;
+export const ScheduleUserType = S.String;
 
 /** Represents a user object in the context of a schedule, including their `id`, type, and basic attributes. */
 export interface ScheduleUser {
@@ -38966,7 +38918,7 @@ export type ScheduleDataIncludedItem =
   | ScheduleMember
   | ScheduleUser;
 export const ScheduleDataIncludedItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ScheduleDataIncludedItem>;
+  S.Unknown as any as S.Schema<ScheduleDataIncludedItem>;
 
 /** Any additional resources related to this schedule, such as teams and layers. */
 export type ScheduleIncludedList = Array<ScheduleDataIncludedItem>;
@@ -38989,7 +38941,7 @@ export const Schedule = /*@__PURE__*/ S.suspend(() =>
 
 /** The region for the Opsgenie service. */
 export type OpsgenieServiceRegionType = "us" | "eu" | "custom";
-export const OpsgenieServiceRegionType = /*@__PURE__*/ S.String;
+export const OpsgenieServiceRegionType = S.String;
 
 /** The Opsgenie account attributes for a create request. */
 export interface OpsgenieAccountCreateAttributes {
@@ -39008,7 +38960,7 @@ export const OpsgenieAccountCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Opsgenie account resource type. */
 export type OpsgenieAccountType = "opsgenie-account";
-export const OpsgenieAccountType = /*@__PURE__*/ S.String;
+export const OpsgenieAccountType = S.String;
 
 /** Opsgenie account data for a create request. */
 export interface OpsgenieAccountCreateData {
@@ -39105,7 +39057,7 @@ export const OpsgenieServiceCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Opsgenie service resource type. */
 export type OpsgenieServiceType = "opsgenie-service";
-export const OpsgenieServiceType = /*@__PURE__*/ S.String;
+export const OpsgenieServiceType = S.String;
 
 /** Opsgenie service data for a create request. */
 export interface OpsgenieServiceCreateData {
@@ -39218,7 +39170,7 @@ export const GoogleChatCreateOrganizationHandleRequestData =
 /** Organization handle resource type. */
 export type GoogleChatOrganizationHandleType =
   "google-chat-organization-handle";
-export const GoogleChatOrganizationHandleType = /*@__PURE__*/ S.String;
+export const GoogleChatOrganizationHandleType = S.String;
 
 export interface CreateOrganizationHandleRequest {
   /** Your organization binding ID. */
@@ -39295,7 +39247,7 @@ export const GoogleChatOrganizationHandleResponse = /*@__PURE__*/ S.suspend(
 
 /** Available connection types between organizations. */
 export type OrgConnectionTypeEnum = "logs" | "metrics" | "audit";
-export const OrgConnectionTypeEnum = /*@__PURE__*/ S.String;
+export const OrgConnectionTypeEnum = S.String;
 
 /** List of connection types to establish. */
 export type OrgConnectionCreateAttributesConnectionTypesList = Array<
@@ -39321,7 +39273,7 @@ export const OrgConnectionCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the organization relationship. */
 export type OrgConnectionOrgRelationshipDataType = "orgs";
-export const OrgConnectionOrgRelationshipDataType = /*@__PURE__*/ S.String;
+export const OrgConnectionOrgRelationshipDataType = S.String;
 
 /** The definition of `OrgConnectionOrgRelationshipData` object. */
 export interface OrgConnectionOrgRelationshipData {
@@ -39367,7 +39319,7 @@ export const OrgConnectionCreateRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Org connection type. */
 export type OrgConnectionType = "org_connection";
-export const OrgConnectionType = /*@__PURE__*/ S.String;
+export const OrgConnectionType = S.String;
 
 /** Org connection creation data. */
 export interface OrgConnectionCreate {
@@ -39423,7 +39375,7 @@ export const OrgConnectionAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the user relationship. */
 export type OrgConnectionUserRelationshipDataType = "users";
-export const OrgConnectionUserRelationshipDataType = /*@__PURE__*/ S.String;
+export const OrgConnectionUserRelationshipDataType = S.String;
 
 /** The data for a user relationship. */
 export interface OrgConnectionUserRelationshipData {
@@ -39604,11 +39556,11 @@ export type OrgGroupPolicyEnforcementTier =
   | "OVERRIDE_ALLOWED"
   | "GROUP_MANAGED"
   | "DELEGATE";
-export const OrgGroupPolicyEnforcementTier = /*@__PURE__*/ S.String;
+export const OrgGroupPolicyEnforcementTier = S.String;
 
 /** The type of the policy. Only `org_config` is supported, indicating a policy backed by an organization configuration setting. */
 export type OrgGroupPolicyPolicyType = "org_config";
-export const OrgGroupPolicyPolicyType = /*@__PURE__*/ S.String;
+export const OrgGroupPolicyPolicyType = S.String;
 
 /** Attributes for creating an org group policy. If `policy_type` or `enforcement_tier` are not provided, they default to `org_config` and `DEFAULT` respectively. */
 export interface OrgGroupPolicyCreateAttributes {
@@ -39644,7 +39596,7 @@ export const OrgGroupPolicyCreateRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Org group policies resource type. */
 export type OrgGroupPolicyType = "org_group_policies";
-export const OrgGroupPolicyType = /*@__PURE__*/ S.String;
+export const OrgGroupPolicyType = S.String;
 
 /** Data for creating an org group policy. */
 export interface OrgGroupPolicyCreateData {
@@ -39803,7 +39755,7 @@ export const OrgGroupPolicyOverrideCreateRelationships =
 
 /** Org group policy overrides resource type. */
 export type OrgGroupPolicyOverrideType = "org_group_policy_overrides";
-export const OrgGroupPolicyOverrideType = /*@__PURE__*/ S.String;
+export const OrgGroupPolicyOverrideType = S.String;
 
 /** Data for creating an org group policy override. */
 export interface OrgGroupPolicyOverrideCreateData {
@@ -39962,7 +39914,7 @@ export const ServiceDefinitionV2Dot2ExtensionsMap = /*@__PURE__*/ S.Record(
 
 /** Opsgenie instance region. */
 export type ServiceDefinitionV2Dot2OpsgenieRegion = "US" | "EU";
-export const ServiceDefinitionV2Dot2OpsgenieRegion = /*@__PURE__*/ S.String;
+export const ServiceDefinitionV2Dot2OpsgenieRegion = S.String;
 
 /** Opsgenie integration for the service. */
 export interface ServiceDefinitionV2Dot2Opsgenie {
@@ -40043,7 +39995,7 @@ export const ServiceDefinitionV2Dot2LinksList = /*@__PURE__*/ S.Array(
 
 /** Schema version being used. */
 export type ServiceDefinitionV2Dot2Version = "v2.2";
-export const ServiceDefinitionV2Dot2Version = /*@__PURE__*/ S.String;
+export const ServiceDefinitionV2Dot2Version = S.String;
 
 /** A set of custom tags. */
 export type ServiceDefinitionV2Dot2TagsList = Array<string>;
@@ -40111,7 +40063,7 @@ export const ServiceDefinitionV2Dot2 = /*@__PURE__*/ S.suspend(() =>
 
 /** Contact type. */
 export type ServiceDefinitionV2Dot1EmailType = "email";
-export const ServiceDefinitionV2Dot1EmailType = /*@__PURE__*/ S.String;
+export const ServiceDefinitionV2Dot1EmailType = S.String;
 
 /** Service owner's email. */
 export interface ServiceDefinitionV2Dot1Email {
@@ -40133,7 +40085,7 @@ export const ServiceDefinitionV2Dot1Email = /*@__PURE__*/ S.suspend(() =>
 
 /** Contact type. */
 export type ServiceDefinitionV2Dot1SlackType = "slack";
-export const ServiceDefinitionV2Dot1SlackType = /*@__PURE__*/ S.String;
+export const ServiceDefinitionV2Dot1SlackType = S.String;
 
 /** Service owner's Slack channel. */
 export interface ServiceDefinitionV2Dot1Slack {
@@ -40155,7 +40107,7 @@ export const ServiceDefinitionV2Dot1Slack = /*@__PURE__*/ S.suspend(() =>
 
 /** Contact type. */
 export type ServiceDefinitionV2Dot1MSTeamsType = "microsoft-teams";
-export const ServiceDefinitionV2Dot1MSTeamsType = /*@__PURE__*/ S.String;
+export const ServiceDefinitionV2Dot1MSTeamsType = S.String;
 
 /** Service owner's Microsoft Teams. */
 export interface ServiceDefinitionV2Dot1MSTeams {
@@ -40181,7 +40133,7 @@ export type ServiceDefinitionV2Dot1Contact =
   | ServiceDefinitionV2Dot1Slack
   | ServiceDefinitionV2Dot1MSTeams;
 export const ServiceDefinitionV2Dot1Contact =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ServiceDefinitionV2Dot1Contact>;
+  S.Unknown as any as S.Schema<ServiceDefinitionV2Dot1Contact>;
 
 /** A list of contacts related to the services. */
 export type ServiceDefinitionV2Dot1ContactsList =
@@ -40201,7 +40153,7 @@ export const ServiceDefinitionV2Dot1ExtensionsMap = /*@__PURE__*/ S.Record(
 
 /** Opsgenie instance region. */
 export type ServiceDefinitionV2Dot1OpsgenieRegion = "US" | "EU";
-export const ServiceDefinitionV2Dot1OpsgenieRegion = /*@__PURE__*/ S.String;
+export const ServiceDefinitionV2Dot1OpsgenieRegion = S.String;
 
 /** Opsgenie integration for the service. */
 export interface ServiceDefinitionV2Dot1Opsgenie {
@@ -40244,7 +40196,7 @@ export type ServiceDefinitionV2Dot1LinkType =
   | "runbook"
   | "dashboard"
   | "other";
-export const ServiceDefinitionV2Dot1LinkType = /*@__PURE__*/ S.String;
+export const ServiceDefinitionV2Dot1LinkType = S.String;
 
 /** Service's external links. */
 export interface ServiceDefinitionV2Dot1Link {
@@ -40276,7 +40228,7 @@ export const ServiceDefinitionV2Dot1LinksList = /*@__PURE__*/ S.Array(
 
 /** Schema version being used. */
 export type ServiceDefinitionV2Dot1Version = "v2.1";
-export const ServiceDefinitionV2Dot1Version = /*@__PURE__*/ S.String;
+export const ServiceDefinitionV2Dot1Version = S.String;
 
 /** A set of custom tags. */
 export type ServiceDefinitionV2Dot1TagsList = Array<string>;
@@ -40332,7 +40284,7 @@ export const ServiceDefinitionV2Dot1 = /*@__PURE__*/ S.suspend(() =>
 
 /** Contact type. */
 export type ServiceDefinitionV2EmailType = "email";
-export const ServiceDefinitionV2EmailType = /*@__PURE__*/ S.String;
+export const ServiceDefinitionV2EmailType = S.String;
 
 /** Service owner's email. */
 export interface ServiceDefinitionV2Email {
@@ -40354,7 +40306,7 @@ export const ServiceDefinitionV2Email = /*@__PURE__*/ S.suspend(() =>
 
 /** Contact type. */
 export type ServiceDefinitionV2SlackType = "slack";
-export const ServiceDefinitionV2SlackType = /*@__PURE__*/ S.String;
+export const ServiceDefinitionV2SlackType = S.String;
 
 /** Service owner's Slack channel. */
 export interface ServiceDefinitionV2Slack {
@@ -40376,7 +40328,7 @@ export const ServiceDefinitionV2Slack = /*@__PURE__*/ S.suspend(() =>
 
 /** Contact type. */
 export type ServiceDefinitionV2MSTeamsType = "microsoft-teams";
-export const ServiceDefinitionV2MSTeamsType = /*@__PURE__*/ S.String;
+export const ServiceDefinitionV2MSTeamsType = S.String;
 
 /** Service owner's Microsoft Teams. */
 export interface ServiceDefinitionV2MSTeams {
@@ -40402,7 +40354,7 @@ export type ServiceDefinitionV2Contact =
   | ServiceDefinitionV2Slack
   | ServiceDefinitionV2MSTeams;
 export const ServiceDefinitionV2Contact =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ServiceDefinitionV2Contact>;
+  S.Unknown as any as S.Schema<ServiceDefinitionV2Contact>;
 
 /** A list of contacts related to the services. */
 export type ServiceDefinitionV2ContactsList = Array<ServiceDefinitionV2Contact>;
@@ -40446,7 +40398,7 @@ export const ServiceDefinitionV2ExtensionsMap = /*@__PURE__*/ S.Record(
 
 /** Opsgenie instance region. */
 export type ServiceDefinitionV2OpsgenieRegion = "US" | "EU";
-export const ServiceDefinitionV2OpsgenieRegion = /*@__PURE__*/ S.String;
+export const ServiceDefinitionV2OpsgenieRegion = S.String;
 
 /** Opsgenie integration for the service. */
 export interface ServiceDefinitionV2Opsgenie {
@@ -40488,7 +40440,7 @@ export type ServiceDefinitionV2LinkType =
   | "oncall"
   | "code"
   | "link";
-export const ServiceDefinitionV2LinkType = /*@__PURE__*/ S.String;
+export const ServiceDefinitionV2LinkType = S.String;
 
 /** Service's external links. */
 export interface ServiceDefinitionV2Link {
@@ -40541,7 +40493,7 @@ export const ServiceDefinitionV2ReposList = /*@__PURE__*/ S.Array(
 
 /** Schema version being used. */
 export type ServiceDefinitionV2Version = "v2";
-export const ServiceDefinitionV2Version = /*@__PURE__*/ S.String;
+export const ServiceDefinitionV2Version = S.String;
 
 /** A set of custom tags. */
 export type ServiceDefinitionV2TagsList = Array<string>;
@@ -40597,7 +40549,7 @@ export type ServiceDefinitionsCreateRequest =
   | ServiceDefinitionV2
   | string;
 export const ServiceDefinitionsCreateRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ServiceDefinitionsCreateRequest>;
+  S.Unknown as any as S.Schema<ServiceDefinitionsCreateRequest>;
 
 export interface CreateOrUpdateServiceDefinitionsRequest {
   body: ServiceDefinitionsCreateRequest;
@@ -40712,7 +40664,7 @@ export type ServiceDefinitionV1ResourceType =
   | "oncall"
   | "code"
   | "link";
-export const ServiceDefinitionV1ResourceType = /*@__PURE__*/ S.String;
+export const ServiceDefinitionV1ResourceType = S.String;
 
 /** Service's external links. */
 export interface ServiceDefinitionV1Resource {
@@ -40791,7 +40743,7 @@ export const ServiceDefinitionV1Org = /*@__PURE__*/ S.suspend(() =>
 
 /** Schema version being used. */
 export type ServiceDefinitionV1Version = "v1";
-export const ServiceDefinitionV1Version = /*@__PURE__*/ S.String;
+export const ServiceDefinitionV1Version = S.String;
 
 /** A set of custom tags. */
 export type ServiceDefinitionV1TagsList = Array<string>;
@@ -40839,7 +40791,7 @@ export type ServiceDefinitionSchema =
   | ServiceDefinitionV2Dot1
   | ServiceDefinitionV2Dot2;
 export const ServiceDefinitionSchema =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ServiceDefinitionSchema>;
+  S.Unknown as any as S.Schema<ServiceDefinitionSchema>;
 
 /** Service definition attributes. */
 export interface ServiceDefinitionDataAttributes {
@@ -40899,7 +40851,7 @@ export type CreateOwnershipFeedbackRequestOwnerType =
   | "team"
   | "service"
   | "unknown";
-export const CreateOwnershipFeedbackRequestOwnerType = /*@__PURE__*/ S.String;
+export const CreateOwnershipFeedbackRequestOwnerType = S.String;
 
 /** The feedback action to apply to an inference. */
 export type OwnershipFeedbackAction =
@@ -40907,7 +40859,7 @@ export type OwnershipFeedbackAction =
   | "reject"
   | "correct"
   | "persist";
-export const OwnershipFeedbackAction = /*@__PURE__*/ S.String;
+export const OwnershipFeedbackAction = S.String;
 
 /** The attributes of an ownership feedback request. */
 export interface OwnershipFeedbackRequestAttributes {
@@ -40941,7 +40893,7 @@ export const OwnershipFeedbackRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the ownership feedback request resource. The value should always be `ownership_feedback`. */
 export type OwnershipFeedbackType = "ownership_feedback";
-export const OwnershipFeedbackType = /*@__PURE__*/ S.String;
+export const OwnershipFeedbackType = S.String;
 
 /** The data wrapper for an ownership feedback request. */
 export interface OwnershipFeedbackRequestData {
@@ -40987,11 +40939,11 @@ export type OwnershipInferenceStatus =
   | "overridden"
   | "failed"
   | "unknown";
-export const OwnershipInferenceStatus = /*@__PURE__*/ S.String;
+export const OwnershipInferenceStatus = S.String;
 
 /** The owner type for an ownership inference. */
 export type OwnershipOwnerType = "user" | "team" | "service" | "unknown";
-export const OwnershipOwnerType = /*@__PURE__*/ S.String;
+export const OwnershipOwnerType = S.String;
 
 /** The attributes of an ownership feedback result. */
 export interface OwnershipFeedbackResultAttributes {
@@ -41022,7 +40974,7 @@ export const OwnershipFeedbackResultAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the ownership feedback result resource. The value should always be `ownership_feedback_result`. */
 export type OwnershipFeedbackResultType = "ownership_feedback_result";
-export const OwnershipFeedbackResultType = /*@__PURE__*/ S.String;
+export const OwnershipFeedbackResultType = S.String;
 
 /** The data wrapper for an ownership feedback result response. */
 export interface OwnershipFeedbackResultData {
@@ -41166,7 +41118,7 @@ export const PersonalAccessTokenCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Personal access tokens resource type. */
 export type PersonalAccessTokensType = "personal_access_tokens";
-export const PersonalAccessTokensType = /*@__PURE__*/ S.String;
+export const PersonalAccessTokensType = S.String;
 
 /** Object used to create an access token. */
 export interface PersonalAccessTokenCreateData {
@@ -41275,15 +41227,14 @@ export type ObservabilityPipelineElasticsearchDestinationApiVersion =
   | "v6"
   | "v7"
   | "v8";
-export const ObservabilityPipelineElasticsearchDestinationApiVersion =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineElasticsearchDestinationApiVersion = S.String;
 
 /** The authentication strategy to use. */
 export type ObservabilityPipelineAmazonOpenSearchDestinationAuthStrategy =
   | "basic"
   | "aws";
 export const ObservabilityPipelineAmazonOpenSearchDestinationAuthStrategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Authentication settings for the Elasticsearch destination. When `strategy` is `basic`, use `username_key` and `password_key` to reference credentials stored in environment variables or secrets. */
 export interface ObservabilityPipelineElasticsearchDestinationAuth {
@@ -41308,15 +41259,13 @@ export const ObservabilityPipelineElasticsearchDestinationAuth =
 
 /** The type of the buffer that will be configured, a disk buffer. */
 export type ObservabilityPipelineBufferOptionsDiskType = "disk";
-export const ObservabilityPipelineBufferOptionsDiskType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineBufferOptionsDiskType = S.String;
 
 /** Behavior when the buffer is full (block and stop accepting new events, or drop new events) */
 export type ObservabilityPipelineBufferOptionsWhenFull =
   | "block"
   | "drop_newest";
-export const ObservabilityPipelineBufferOptionsWhenFull =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineBufferOptionsWhenFull = S.String;
 
 /** Options for configuring a disk buffer. */
 export interface ObservabilityPipelineDiskBufferOptions {
@@ -41338,8 +41287,7 @@ export const ObservabilityPipelineDiskBufferOptions = /*@__PURE__*/ S.suspend(
 
 /** The type of the buffer that will be configured, a memory buffer. */
 export type ObservabilityPipelineBufferOptionsMemoryType = "memory";
-export const ObservabilityPipelineBufferOptionsMemoryType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineBufferOptionsMemoryType = S.String;
 
 /** Options for configuring a memory buffer by byte size. */
 export interface ObservabilityPipelineMemoryBufferOptions {
@@ -41383,7 +41331,7 @@ export type ObservabilityPipelineBufferOptions =
   | ObservabilityPipelineMemoryBufferOptions
   | ObservabilityPipelineMemoryBufferSizeOptions;
 export const ObservabilityPipelineBufferOptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineBufferOptions>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineBufferOptions>;
 
 /** The compression algorithm applied when sending data to Elasticsearch. */
 export type ObservabilityPipelineElasticsearchDestinationCompressionAlgorithm =
@@ -41393,7 +41341,7 @@ export type ObservabilityPipelineElasticsearchDestinationCompressionAlgorithm =
   | "zstd"
   | "snappy";
 export const ObservabilityPipelineElasticsearchDestinationCompressionAlgorithm =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Compression configuration for the Elasticsearch destination. */
 export interface ObservabilityPipelineElasticsearchDestinationCompression {
@@ -41472,8 +41420,7 @@ export const ObservabilityPipelineTls = /*@__PURE__*/ S.suspend(() =>
 
 /** The destination type. The value should always be `elasticsearch`. */
 export type ObservabilityPipelineElasticsearchDestinationType = "elasticsearch";
-export const ObservabilityPipelineElasticsearchDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineElasticsearchDestinationType = S.String;
 
 /** The `elasticsearch` destination writes logs or metrics to an Elasticsearch cluster. **Supported pipeline types:** logs, metrics */
 export interface ObservabilityPipelineElasticsearchDestination {
@@ -41534,14 +41481,13 @@ export type ObservabilityPipelineHttpClientDestinationAuthStrategy =
   | "none"
   | "basic"
   | "bearer";
-export const ObservabilityPipelineHttpClientDestinationAuthStrategy =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineHttpClientDestinationAuthStrategy = S.String;
 
 /** Compression algorithm. */
 export type ObservabilityPipelineHttpClientDestinationCompressionAlgorithm =
   "gzip";
 export const ObservabilityPipelineHttpClientDestinationCompressionAlgorithm =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Compression configuration for HTTP requests. */
 export interface ObservabilityPipelineHttpClientDestinationCompression {
@@ -41560,8 +41506,7 @@ export const ObservabilityPipelineHttpClientDestinationCompression =
 
 /** Encoding format for log events. */
 export type ObservabilityPipelineHttpClientDestinationEncoding = "json";
-export const ObservabilityPipelineHttpClientDestinationEncoding =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineHttpClientDestinationEncoding = S.String;
 
 /** A list of component IDs whose output is used as the input for this component. */
 export type ObservabilityPipelineHttpClientDestinationInputsList =
@@ -41598,8 +41543,7 @@ export const ObservabilityPipelineClientTls = /*@__PURE__*/ S.suspend(() =>
 
 /** The destination type. The value should always be `http_client`. */
 export type ObservabilityPipelineHttpClientDestinationType = "http_client";
-export const ObservabilityPipelineHttpClientDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineHttpClientDestinationType = S.String;
 
 /** The `http_client` destination sends data to an HTTP endpoint. **Supported pipeline types:** logs, metrics */
 export interface ObservabilityPipelineHttpClientDestination {
@@ -41689,8 +41633,7 @@ export const ObservabilityPipelineAmazonOpenSearchDestinationInputsList =
 /** The destination type. The value should always be `amazon_opensearch`. */
 export type ObservabilityPipelineAmazonOpenSearchDestinationType =
   "amazon_opensearch";
-export const ObservabilityPipelineAmazonOpenSearchDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAmazonOpenSearchDestinationType = S.String;
 
 /** The `amazon_opensearch` destination writes logs to Amazon OpenSearch. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineAmazonOpenSearchDestination {
@@ -41741,7 +41684,7 @@ export const ObservabilityPipelineAwsAuth = /*@__PURE__*/ S.suspend(() =>
 export type ObservabilityPipelineAmazonS3DestinationCompressionZstdType =
   "zstd";
 export const ObservabilityPipelineAmazonS3DestinationCompressionZstdType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Zstd compression. */
 export interface ObservabilityPipelineAmazonS3DestinationCompressionZstd {
@@ -41763,7 +41706,7 @@ export const ObservabilityPipelineAmazonS3DestinationCompressionZstd =
 export type ObservabilityPipelineAmazonS3DestinationCompressionGzipType =
   "gzip";
 export const ObservabilityPipelineAmazonS3DestinationCompressionGzipType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Gzip compression. */
 export interface ObservabilityPipelineAmazonS3DestinationCompressionGzip {
@@ -41786,7 +41729,7 @@ export type ObservabilityPipelineAmazonS3DestinationCompression =
   | ObservabilityPipelineAmazonS3DestinationCompressionZstd
   | ObservabilityPipelineAmazonS3DestinationCompressionGzip;
 export const ObservabilityPipelineAmazonS3DestinationCompression =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineAmazonS3DestinationCompression>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineAmazonS3DestinationCompression>;
 
 /** A list of component IDs whose output is used as the `input` for this component. */
 export type ObservabilityPipelineAmazonS3DestinationInputsList = Array<string>;
@@ -41800,7 +41743,7 @@ export type ObservabilityPipelineAmazonS3DestinationServerSideEncryption =
   | "aws:kms"
   | "AES256";
 export const ObservabilityPipelineAmazonS3DestinationServerSideEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** S3 storage class. */
 export type ObservabilityPipelineAmazonS3DestinationStorageClass =
@@ -41813,13 +41756,11 @@ export type ObservabilityPipelineAmazonS3DestinationStorageClass =
   | "GLACIER"
   | "GLACIER_IR"
   | "DEEP_ARCHIVE";
-export const ObservabilityPipelineAmazonS3DestinationStorageClass =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAmazonS3DestinationStorageClass = S.String;
 
 /** The destination type. Always `amazon_s3`. */
 export type ObservabilityPipelineAmazonS3DestinationType = "amazon_s3";
-export const ObservabilityPipelineAmazonS3DestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAmazonS3DestinationType = S.String;
 
 /** The `amazon_s3` destination sends your logs in Datadog-rehydratable format to an Amazon S3 bucket for archiving. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineAmazonS3Destination {
@@ -41891,8 +41832,7 @@ export const ObservabilityPipelineAmazonS3GenericBatchSettings =
 
 /** The compression type. Always `zstd`. */
 export type ObservabilityPipelineAmazonS3GenericCompressionZstdType = "zstd";
-export const ObservabilityPipelineAmazonS3GenericCompressionZstdType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAmazonS3GenericCompressionZstdType = S.String;
 
 /** Zstd compression. */
 export interface ObservabilityPipelineAmazonS3GenericCompressionZstd {
@@ -41912,8 +41852,7 @@ export const ObservabilityPipelineAmazonS3GenericCompressionZstd =
 
 /** The compression type. Always `gzip`. */
 export type ObservabilityPipelineAmazonS3GenericCompressionGzipType = "gzip";
-export const ObservabilityPipelineAmazonS3GenericCompressionGzipType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAmazonS3GenericCompressionGzipType = S.String;
 
 /** Gzip compression. */
 export interface ObservabilityPipelineAmazonS3GenericCompressionGzip {
@@ -41935,7 +41874,7 @@ export const ObservabilityPipelineAmazonS3GenericCompressionGzip =
 export type ObservabilityPipelineAmazonS3GenericCompressionSnappyType =
   "snappy";
 export const ObservabilityPipelineAmazonS3GenericCompressionSnappyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Snappy compression. */
 export interface ObservabilityPipelineAmazonS3GenericCompressionSnappy {
@@ -41956,12 +41895,11 @@ export type ObservabilityPipelineAmazonS3GenericCompression =
   | ObservabilityPipelineAmazonS3GenericCompressionGzip
   | ObservabilityPipelineAmazonS3GenericCompressionSnappy;
 export const ObservabilityPipelineAmazonS3GenericCompression =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineAmazonS3GenericCompression>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineAmazonS3GenericCompression>;
 
 /** The encoding type. Always `json`. */
 export type ObservabilityPipelineAmazonS3GenericEncodingJsonType = "json";
-export const ObservabilityPipelineAmazonS3GenericEncodingJsonType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAmazonS3GenericEncodingJsonType = S.String;
 
 /** JSON encoding. */
 export interface ObservabilityPipelineAmazonS3GenericEncodingJson {
@@ -41978,8 +41916,7 @@ export const ObservabilityPipelineAmazonS3GenericEncodingJson =
 
 /** The encoding type. Always `parquet`. */
 export type ObservabilityPipelineAmazonS3GenericEncodingParquetType = "parquet";
-export const ObservabilityPipelineAmazonS3GenericEncodingParquetType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAmazonS3GenericEncodingParquetType = S.String;
 
 /** Parquet encoding. */
 export interface ObservabilityPipelineAmazonS3GenericEncodingParquet {
@@ -41999,7 +41936,7 @@ export type ObservabilityPipelineAmazonS3GenericEncoding =
   | ObservabilityPipelineAmazonS3GenericEncodingJson
   | ObservabilityPipelineAmazonS3GenericEncodingParquet;
 export const ObservabilityPipelineAmazonS3GenericEncoding =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineAmazonS3GenericEncoding>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineAmazonS3GenericEncoding>;
 
 /** A list of component IDs whose output is used as the `input` for this component. */
 export type ObservabilityPipelineAmazonS3GenericDestinationInputsList =
@@ -42012,8 +41949,7 @@ export const ObservabilityPipelineAmazonS3GenericDestinationInputsList =
 /** The destination type. Always `amazon_s3_generic`. */
 export type ObservabilityPipelineAmazonS3GenericDestinationType =
   "amazon_s3_generic";
-export const ObservabilityPipelineAmazonS3GenericDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAmazonS3GenericDestinationType = S.String;
 
 /** The `amazon_s3_generic` destination sends your logs to an Amazon S3 bucket. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineAmazonS3GenericDestination {
@@ -42079,8 +42015,7 @@ export const ObservabilityPipelineAmazonSecurityLakeDestinationInputsList =
 /** The destination type. Always `amazon_security_lake`. */
 export type ObservabilityPipelineAmazonSecurityLakeDestinationType =
   "amazon_security_lake";
-export const ObservabilityPipelineAmazonSecurityLakeDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAmazonSecurityLakeDestinationType = S.String;
 
 /** The `amazon_security_lake` destination sends your logs to Amazon Security Lake. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineAmazonSecurityLakeDestination {
@@ -42120,7 +42055,7 @@ export const ObservabilityPipelineAmazonSecurityLakeDestination =
 export type ObservabilityPipelineAzureStorageDestinationCompressionZstdType =
   "zstd";
 export const ObservabilityPipelineAzureStorageDestinationCompressionZstdType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Zstd compression. */
 export interface ObservabilityPipelineAzureStorageDestinationCompressionZstd {
@@ -42143,7 +42078,7 @@ export const ObservabilityPipelineAzureStorageDestinationCompressionZstd =
 export type ObservabilityPipelineAzureStorageDestinationCompressionGzipType =
   "gzip";
 export const ObservabilityPipelineAzureStorageDestinationCompressionGzipType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Gzip compression. */
 export interface ObservabilityPipelineAzureStorageDestinationCompressionGzip {
@@ -42167,7 +42102,7 @@ export type ObservabilityPipelineAzureStorageDestinationCompression =
   | ObservabilityPipelineAzureStorageDestinationCompressionZstd
   | ObservabilityPipelineAzureStorageDestinationCompressionGzip;
 export const ObservabilityPipelineAzureStorageDestinationCompression =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineAzureStorageDestinationCompression>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineAzureStorageDestinationCompression>;
 
 /** A list of component IDs whose output is used as the `input` for this component. */
 export type AzureStorageDestinationInputsList = Array<string>;
@@ -42177,7 +42112,7 @@ export const AzureStorageDestinationInputsList = /*@__PURE__*/ S.Array(
 
 /** The destination type. The value should always be `azure_storage`. */
 export type AzureStorageDestinationType = "azure_storage";
-export const AzureStorageDestinationType = /*@__PURE__*/ S.String;
+export const AzureStorageDestinationType = S.String;
 
 /** The `azure_storage` destination forwards logs to an Azure Blob Storage container. **Supported pipeline types:** logs */
 export interface AzureStorageDestination {
@@ -42214,8 +42149,7 @@ export const AzureStorageDestination = /*@__PURE__*/ S.suspend(() =>
 
 /** The authentication strategy for ClickHouse HTTP requests. Only `basic` is supported. */
 export type ObservabilityPipelineClickhouseDestinationAuthStrategy = "basic";
-export const ObservabilityPipelineClickhouseDestinationAuthStrategy =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineClickhouseDestinationAuthStrategy = S.String;
 
 /** HTTP Basic Authentication credentials for the ClickHouse destination. When `strategy` is `basic`, provide `username_key` and `password_key` that reference environment variables or secrets containing the credentials. */
 export interface ObservabilityPipelineClickhouseDestinationAuth {
@@ -42259,7 +42193,7 @@ export const ObservabilityPipelineClickhouseDestinationBatch =
 export type ObservabilityPipelineClickhouseDestinationBatchEncodingCodec =
   "arrow_stream";
 export const ObservabilityPipelineClickhouseDestinationBatchEncodingCodec =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Batch encoding configuration for the ClickHouse destination. Required when `format` is `arrow_stream`. The `codec` field must be set to `arrow_stream`. */
 export interface ObservabilityPipelineClickhouseDestinationBatchEncoding {
@@ -42284,7 +42218,7 @@ export type ObservabilityPipelineClickhouseDestinationCompressionAlgorithm =
   | "gzip"
   | "none";
 export const ObservabilityPipelineClickhouseDestinationCompressionAlgorithm =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Structured compression configuration for the ClickHouse destination. Use `algorithm` to specify the compression type and `level` (optional, gzip only) to control compression strength. */
 export interface ObservabilityPipelineClickhouseDestinationCompressionObject {
@@ -42309,7 +42243,7 @@ export type ObservabilityPipelineClickhouseDestinationCompression =
   | ObservabilityPipelineClickhouseDestinationCompressionAlgorithm
   | ObservabilityPipelineClickhouseDestinationCompressionObject;
 export const ObservabilityPipelineClickhouseDestinationCompression =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineClickhouseDestinationCompression>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineClickhouseDestinationCompression>;
 
 /** Insert format for events sent to ClickHouse. - `json_each_row`: Maps event fields to columns by name (ClickHouse `JSONEachRow`). - `json_as_object`: Inserts each event into a single `Object('json')` / `JSON` column (ClickHouse `JSONAsObject`). - `json_as_string`: Inserts each event into a single `String`-typed column as raw JSON (ClickHouse `JSONAsString`). - `arrow_stream`: Batches events using Apache Arrow IPC streaming format. Requires `batch_encoding`. */
 export type ObservabilityPipelineClickhouseDestinationFormat =
@@ -42317,8 +42251,7 @@ export type ObservabilityPipelineClickhouseDestinationFormat =
   | "json_as_object"
   | "json_as_string"
   | "arrow_stream";
-export const ObservabilityPipelineClickhouseDestinationFormat =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineClickhouseDestinationFormat = S.String;
 
 /** A list of component IDs whose output is used as the `input` for this component. */
 export type ObservabilityPipelineClickhouseDestinationInputsList =
@@ -42330,8 +42263,7 @@ export const ObservabilityPipelineClickhouseDestinationInputsList =
 
 /** The destination type. The value must be `clickhouse`. */
 export type ObservabilityPipelineClickhouseDestinationType = "clickhouse";
-export const ObservabilityPipelineClickhouseDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineClickhouseDestinationType = S.String;
 
 /** The `clickhouse` destination sends log events to a ClickHouse database table over HTTP. **Supported pipeline types:** logs. */
 export interface ObservabilityPipelineClickhouseDestination {
@@ -42394,8 +42326,7 @@ export const ObservabilityPipelineCloudPremDestinationInputsList =
 
 /** The destination type. The value should always be `cloud_prem`. */
 export type ObservabilityPipelineCloudPremDestinationType = "cloud_prem";
-export const ObservabilityPipelineCloudPremDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineCloudPremDestinationType = S.String;
 
 /** The `cloud_prem` destination sends logs to Datadog CloudPrem. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineCloudPremDestination {
@@ -42429,7 +42360,7 @@ export type ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompressionAlg
   | "gzip"
   | "zlib";
 export const ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompressionAlgorithm =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Compression configuration for log events. */
 export interface ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression {
@@ -42456,7 +42387,7 @@ export type ObservabilityPipelineCrowdStrikeNextGenSiemDestinationEncoding =
   | "json"
   | "raw_message";
 export const ObservabilityPipelineCrowdStrikeNextGenSiemDestinationEncoding =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A list of component IDs whose output is used as the `input` for this component. */
 export type ObservabilityPipelineCrowdStrikeNextGenSiemDestinationInputsList =
@@ -42470,7 +42401,7 @@ export const ObservabilityPipelineCrowdStrikeNextGenSiemDestinationInputsList =
 export type ObservabilityPipelineCrowdStrikeNextGenSiemDestinationType =
   "crowdstrike_next_gen_siem";
 export const ObservabilityPipelineCrowdStrikeNextGenSiemDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The `crowdstrike_next_gen_siem` destination forwards logs to CrowdStrike Next Gen SIEM. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineCrowdStrikeNextGenSiemDestination {
@@ -42550,8 +42481,7 @@ export const ObservabilityPipelineDatadogLogsDestinationRoutesList =
 
 /** The destination type. The value should always be `datadog_logs`. */
 export type ObservabilityPipelineDatadogLogsDestinationType = "datadog_logs";
-export const ObservabilityPipelineDatadogLogsDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineDatadogLogsDestinationType = S.String;
 
 /** The `datadog_logs` destination forwards logs to Datadog Log Management. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineDatadogLogsDestination {
@@ -42594,8 +42524,7 @@ export const ObservabilityPipelineGcpAuth = /*@__PURE__*/ S.suspend(() =>
 export type ObservabilityPipelineGoogleChronicleDestinationEncoding =
   | "json"
   | "raw_message";
-export const ObservabilityPipelineGoogleChronicleDestinationEncoding =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineGoogleChronicleDestinationEncoding = S.String;
 
 /** A list of component IDs whose output is used as the `input` for this component. */
 export type ObservabilityPipelineGoogleChronicleDestinationInputsList =
@@ -42608,8 +42537,7 @@ export const ObservabilityPipelineGoogleChronicleDestinationInputsList =
 /** The destination type. The value should always be `google_chronicle`. */
 export type ObservabilityPipelineGoogleChronicleDestinationType =
   "google_chronicle";
-export const ObservabilityPipelineGoogleChronicleDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineGoogleChronicleDestinationType = S.String;
 
 /** The `google_chronicle` destination sends logs to Google Chronicle. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineGoogleChronicleDestination {
@@ -42657,14 +42585,13 @@ export type ObservabilityPipelineGoogleCloudStorageDestinationAcl =
   | "authenticated-read"
   | "bucket-owner-read"
   | "bucket-owner-full-control";
-export const ObservabilityPipelineGoogleCloudStorageDestinationAcl =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineGoogleCloudStorageDestinationAcl = S.String;
 
 /** The compression type. Always `zstd`. */
 export type ObservabilityPipelineGoogleCloudStorageDestinationCompressionZstdType =
   "zstd";
 export const ObservabilityPipelineGoogleCloudStorageDestinationCompressionZstdType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Zstd compression. */
 export interface ObservabilityPipelineGoogleCloudStorageDestinationCompressionZstd {
@@ -42688,7 +42615,7 @@ export const ObservabilityPipelineGoogleCloudStorageDestinationCompressionZstd =
 export type ObservabilityPipelineGoogleCloudStorageDestinationCompressionGzipType =
   "gzip";
 export const ObservabilityPipelineGoogleCloudStorageDestinationCompressionGzipType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Gzip compression. */
 export interface ObservabilityPipelineGoogleCloudStorageDestinationCompressionGzip {
@@ -42713,7 +42640,7 @@ export type ObservabilityPipelineGoogleCloudStorageDestinationCompression =
   | ObservabilityPipelineGoogleCloudStorageDestinationCompressionZstd
   | ObservabilityPipelineGoogleCloudStorageDestinationCompressionGzip;
 export const ObservabilityPipelineGoogleCloudStorageDestinationCompression =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineGoogleCloudStorageDestinationCompression>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineGoogleCloudStorageDestinationCompression>;
 
 /** A list of component IDs whose output is used as the `input` for this component. */
 export type ObservabilityPipelineGoogleCloudStorageDestinationInputsList =
@@ -42754,13 +42681,12 @@ export type ObservabilityPipelineGoogleCloudStorageDestinationStorageClass =
   | "COLDLINE"
   | "ARCHIVE";
 export const ObservabilityPipelineGoogleCloudStorageDestinationStorageClass =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The destination type. Always `google_cloud_storage`. */
 export type ObservabilityPipelineGoogleCloudStorageDestinationType =
   "google_cloud_storage";
-export const ObservabilityPipelineGoogleCloudStorageDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineGoogleCloudStorageDestinationType = S.String;
 
 /** The `google_cloud_storage` destination stores logs in a Google Cloud Storage (GCS) bucket. It requires a bucket name, Google Cloud authentication, and metadata fields. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineGoogleCloudStorageDestination {
@@ -42811,8 +42737,7 @@ export const ObservabilityPipelineGoogleCloudStorageDestination =
 export type ObservabilityPipelineGooglePubSubDestinationEncoding =
   | "json"
   | "raw_message";
-export const ObservabilityPipelineGooglePubSubDestinationEncoding =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineGooglePubSubDestinationEncoding = S.String;
 
 /** A list of component IDs whose output is used as the `input` for this component. */
 export type ObservabilityPipelineGooglePubSubDestinationInputsList =
@@ -42824,8 +42749,7 @@ export const ObservabilityPipelineGooglePubSubDestinationInputsList =
 
 /** The destination type. The value should always be `google_pubsub`. */
 export type ObservabilityPipelineGooglePubSubDestinationType = "google_pubsub";
-export const ObservabilityPipelineGooglePubSubDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineGooglePubSubDestinationType = S.String;
 
 /** The `google_pubsub` destination publishes logs to a Google Cloud Pub/Sub topic. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineGooglePubSubDestination {
@@ -42872,15 +42796,13 @@ export type ObservabilityPipelineKafkaDestinationCompression =
   | "snappy"
   | "lz4"
   | "zstd";
-export const ObservabilityPipelineKafkaDestinationCompression =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineKafkaDestinationCompression = S.String;
 
 /** Encoding format for log events. */
 export type ObservabilityPipelineKafkaDestinationEncoding =
   | "json"
   | "raw_message";
-export const ObservabilityPipelineKafkaDestinationEncoding =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineKafkaDestinationEncoding = S.String;
 
 /** A list of component IDs whose output is used as the `input` for this component. */
 export type ObservabilityPipelineKafkaDestinationInputsList = Array<string>;
@@ -42919,7 +42841,7 @@ export type ObservabilityPipelineKafkaSaslMechanism =
   | "PLAIN"
   | "SCRAM-SHA-256"
   | "SCRAM-SHA-512";
-export const ObservabilityPipelineKafkaSaslMechanism = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineKafkaSaslMechanism = S.String;
 
 /** Specifies the SASL mechanism for authenticating with a Kafka cluster. */
 export interface ObservabilityPipelineKafkaSasl {
@@ -42941,7 +42863,7 @@ export const ObservabilityPipelineKafkaSasl = /*@__PURE__*/ S.suspend(() =>
 
 /** The destination type. The value should always be `kafka`. */
 export type ObservabilityPipelineKafkaDestinationType = "kafka";
-export const ObservabilityPipelineKafkaDestinationType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineKafkaDestinationType = S.String;
 
 /** The `kafka` destination sends logs to Apache Kafka topics. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineKafkaDestination {
@@ -43011,7 +42933,7 @@ export const MicrosoftSentinelDestinationInputsList = /*@__PURE__*/ S.Array(
 
 /** The destination type. The value should always be `microsoft_sentinel`. */
 export type MicrosoftSentinelDestinationType = "microsoft_sentinel";
-export const MicrosoftSentinelDestinationType = /*@__PURE__*/ S.String;
+export const MicrosoftSentinelDestinationType = S.String;
 
 /** The `microsoft_sentinel` destination forwards logs to Microsoft Sentinel. **Supported pipeline types:** logs */
 export interface MicrosoftSentinelDestination {
@@ -43060,13 +42982,11 @@ export const ObservabilityPipelineNewRelicDestinationInputsList =
 
 /** The New Relic region. */
 export type ObservabilityPipelineNewRelicDestinationRegion = "us" | "eu";
-export const ObservabilityPipelineNewRelicDestinationRegion =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineNewRelicDestinationRegion = S.String;
 
 /** The destination type. The value should always be `new_relic`. */
 export type ObservabilityPipelineNewRelicDestinationType = "new_relic";
-export const ObservabilityPipelineNewRelicDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineNewRelicDestinationType = S.String;
 
 /** The `new_relic` destination sends logs to the New Relic platform. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineNewRelicDestination {
@@ -43127,8 +43047,7 @@ export const ObservabilityPipelineOpenSearchDestinationInputsList =
 
 /** The destination type. The value should always be `opensearch`. */
 export type ObservabilityPipelineOpenSearchDestinationType = "opensearch";
-export const ObservabilityPipelineOpenSearchDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineOpenSearchDestinationType = S.String;
 
 /** The `opensearch` destination writes logs to an OpenSearch cluster. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineOpenSearchDestination {
@@ -43172,8 +43091,7 @@ export const ObservabilityPipelineRsyslogDestinationInputsList =
 
 /** The destination type. The value should always be `rsyslog`. */
 export type ObservabilityPipelineRsyslogDestinationType = "rsyslog";
-export const ObservabilityPipelineRsyslogDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineRsyslogDestinationType = S.String;
 
 /** The `rsyslog` destination forwards logs to an external `rsyslog` server over TCP or UDP using the syslog protocol. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineRsyslogDestination {
@@ -43218,13 +43136,11 @@ export type ObservabilityPipelineSentinelOneDestinationRegion =
   | "eu"
   | "ca"
   | "data_set_us";
-export const ObservabilityPipelineSentinelOneDestinationRegion =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSentinelOneDestinationRegion = S.String;
 
 /** The destination type. The value should always be `sentinel_one`. */
 export type ObservabilityPipelineSentinelOneDestinationType = "sentinel_one";
-export const ObservabilityPipelineSentinelOneDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSentinelOneDestinationType = S.String;
 
 /** The `sentinel_one` destination sends logs to SentinelOne. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineSentinelOneDestination {
@@ -43256,14 +43172,13 @@ export const ObservabilityPipelineSentinelOneDestination =
 export type ObservabilityPipelineSocketDestinationEncoding =
   | "json"
   | "raw_message";
-export const ObservabilityPipelineSocketDestinationEncoding =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSocketDestinationEncoding = S.String;
 
 /** The definition of `ObservabilityPipelineSocketDestinationFramingNewlineDelimitedMethod` object. */
 export type ObservabilityPipelineSocketDestinationFramingNewlineDelimitedMethod =
   "newline_delimited";
 export const ObservabilityPipelineSocketDestinationFramingNewlineDelimitedMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Each log event is delimited by a newline character. */
 export interface ObservabilityPipelineSocketDestinationFramingNewlineDelimited {
@@ -43282,7 +43197,7 @@ export const ObservabilityPipelineSocketDestinationFramingNewlineDelimited =
 /** The definition of `ObservabilityPipelineSocketDestinationFramingBytesMethod` object. */
 export type ObservabilityPipelineSocketDestinationFramingBytesMethod = "bytes";
 export const ObservabilityPipelineSocketDestinationFramingBytesMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Event data is not delimited at all. */
 export interface ObservabilityPipelineSocketDestinationFramingBytes {
@@ -43301,7 +43216,7 @@ export const ObservabilityPipelineSocketDestinationFramingBytes =
 export type ObservabilityPipelineSocketDestinationFramingCharacterDelimitedMethod =
   "character_delimited";
 export const ObservabilityPipelineSocketDestinationFramingCharacterDelimitedMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Each log event is separated using the specified delimiter character. */
 export interface ObservabilityPipelineSocketDestinationFramingCharacterDelimited {
@@ -43327,7 +43242,7 @@ export type ObservabilityPipelineSocketDestinationFraming =
   | ObservabilityPipelineSocketDestinationFramingBytes
   | ObservabilityPipelineSocketDestinationFramingCharacterDelimited;
 export const ObservabilityPipelineSocketDestinationFraming =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineSocketDestinationFraming>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineSocketDestinationFraming>;
 
 /** A list of component IDs whose output is used as the `input` for this component. */
 export type ObservabilityPipelineSocketDestinationInputsList = Array<string>;
@@ -43338,13 +43253,11 @@ export const ObservabilityPipelineSocketDestinationInputsList =
 
 /** Protocol used to send logs. */
 export type ObservabilityPipelineSocketDestinationMode = "tcp" | "udp";
-export const ObservabilityPipelineSocketDestinationMode =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSocketDestinationMode = S.String;
 
 /** The destination type. The value should always be `socket`. */
 export type ObservabilityPipelineSocketDestinationType = "socket";
-export const ObservabilityPipelineSocketDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSocketDestinationType = S.String;
 
 /** The `socket` destination sends logs over TCP or UDP to a remote server. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineSocketDestination {
@@ -43383,15 +43296,13 @@ export const ObservabilityPipelineSocketDestination = /*@__PURE__*/ S.suspend(
 export type ObservabilityPipelineSplunkHecDestinationEncoding =
   | "json"
   | "raw_message";
-export const ObservabilityPipelineSplunkHecDestinationEncoding =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSplunkHecDestinationEncoding = S.String;
 
 /** The Splunk HEC endpoint to send events to. Use `event` to send structured events to the `/event` endpoint, or `raw` to send the raw message to the `/raw` endpoint. */
 export type ObservabilityPipelineSplunkHecDestinationEndpointTarget =
   | "event"
   | "raw";
-export const ObservabilityPipelineSplunkHecDestinationEndpointTarget =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSplunkHecDestinationEndpointTarget = S.String;
 
 /** List of log field names to send as indexed fields to Splunk HEC. Available only when `encoding` is `json`. */
 export type ObservabilityPipelineSplunkHecDestinationIndexedFieldsList =
@@ -43412,13 +43323,11 @@ export const ObservabilityPipelineSplunkHecDestinationInputsList =
 export type ObservabilityPipelineSplunkHecDestinationTokenStrategy =
   | "custom"
   | "from_source";
-export const ObservabilityPipelineSplunkHecDestinationTokenStrategy =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSplunkHecDestinationTokenStrategy = S.String;
 
 /** The destination type. Always `splunk_hec`. */
 export type ObservabilityPipelineSplunkHecDestinationType = "splunk_hec";
-export const ObservabilityPipelineSplunkHecDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSplunkHecDestinationType = S.String;
 
 /** The `splunk_hec` destination forwards logs to Splunk using the HTTP Event Collector (HEC). **Supported pipeline types:** logs */
 export interface ObservabilityPipelineSplunkHecDestination {
@@ -43480,8 +43389,7 @@ export type ObservabilityPipelineSumoLogicDestinationEncoding =
   | "json"
   | "raw_message"
   | "logfmt";
-export const ObservabilityPipelineSumoLogicDestinationEncoding =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSumoLogicDestinationEncoding = S.String;
 
 /** Single key-value pair used as a custom log header for Sumo Logic. */
 export interface ObservabilityPipelineSumoLogicDestinationHeaderCustomFieldsItem {
@@ -43518,8 +43426,7 @@ export const ObservabilityPipelineSumoLogicDestinationInputsList =
 
 /** The destination type. The value should always be `sumo_logic`. */
 export type ObservabilityPipelineSumoLogicDestinationType = "sumo_logic";
-export const ObservabilityPipelineSumoLogicDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSumoLogicDestinationType = S.String;
 
 /** The `sumo_logic` destination forwards logs to Sumo Logic. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineSumoLogicDestination {
@@ -43570,8 +43477,7 @@ export const ObservabilityPipelineSyslogNgDestinationInputsList =
 
 /** The destination type. The value should always be `syslog_ng`. */
 export type ObservabilityPipelineSyslogNgDestinationType = "syslog_ng";
-export const ObservabilityPipelineSyslogNgDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSyslogNgDestinationType = S.String;
 
 /** The `syslog_ng` destination forwards logs to an external `syslog-ng` server over TCP or UDP using the syslog protocol. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineSyslogNgDestination {
@@ -43630,8 +43536,7 @@ export const ObservabilityPipelineDatabricksZerobusDestinationInputsList =
 /** The destination type. The value must be `databricks_zerobus`. */
 export type ObservabilityPipelineDatabricksZerobusDestinationType =
   "databricks_zerobus";
-export const ObservabilityPipelineDatabricksZerobusDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineDatabricksZerobusDestinationType = S.String;
 
 /** The `databricks_zerobus` destination sends logs to Databricks using the Zerobus ingestion API, streaming data directly into your Databricks Lakehouse. **Supported pipeline types:** Logs, rehydration */
 export interface ObservabilityPipelineDatabricksZerobusDestination {
@@ -43676,8 +43581,7 @@ export const ObservabilityPipelineDatadogMetricsDestinationInputsList =
 /** The destination type. The value should always be `datadog_metrics`. */
 export type ObservabilityPipelineDatadogMetricsDestinationType =
   "datadog_metrics";
-export const ObservabilityPipelineDatadogMetricsDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineDatadogMetricsDestinationType = S.String;
 
 /** The `datadog_metrics` destination forwards metrics to Datadog. **Supported pipeline types:** metrics */
 export interface ObservabilityPipelineDatadogMetricsDestination {
@@ -43710,7 +43614,7 @@ export const ObservabilityPipelineOpentelemetryMetricsDestinationInputsList =
 export type ObservabilityPipelineOpentelemetryMetricsDestinationType =
   "opentelemetry";
 export const ObservabilityPipelineOpentelemetryMetricsDestinationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The `opentelemetry` destination forwards metrics using the OpenTelemetry Protocol (OTLP) over HTTP. **Supported pipeline types:** metrics */
 export interface ObservabilityPipelineOpentelemetryMetricsDestination {
@@ -43743,7 +43647,7 @@ export type ObservabilityPipelineSplunkHecMetricsDestinationCompression =
   | "none"
   | "gzip";
 export const ObservabilityPipelineSplunkHecMetricsDestinationCompression =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A list of component IDs whose output is used as the `input` for this component. */
 export type ObservabilityPipelineSplunkHecMetricsDestinationInputsList =
@@ -43756,8 +43660,7 @@ export const ObservabilityPipelineSplunkHecMetricsDestinationInputsList =
 /** The destination type. Always `splunk_hec_metrics`. */
 export type ObservabilityPipelineSplunkHecMetricsDestinationType =
   "splunk_hec_metrics";
-export const ObservabilityPipelineSplunkHecMetricsDestinationType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSplunkHecMetricsDestinationType = S.String;
 
 /** The `splunk_hec_metrics` destination forwards metrics to Splunk using the HTTP Event Collector (HEC). **Supported pipeline types:** metrics */
 export interface ObservabilityPipelineSplunkHecMetricsDestination {
@@ -43837,7 +43740,7 @@ export type ObservabilityPipelineConfigDestinationItem =
   | ObservabilityPipelineOpentelemetryMetricsDestination
   | ObservabilityPipelineSplunkHecMetricsDestination;
 export const ObservabilityPipelineConfigDestinationItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineConfigDestinationItem>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineConfigDestinationItem>;
 
 /** A list of destination components where processed logs are sent. */
 export type ObservabilityPipelineConfigDestinationsList =
@@ -43849,7 +43752,7 @@ export const ObservabilityPipelineConfigDestinationsList =
 
 /** The type of data being ingested. Defaults to `logs` if not specified. */
 export type ObservabilityPipelineConfigPipelineType = "logs" | "metrics";
-export const ObservabilityPipelineConfigPipelineType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineConfigPipelineType = S.String;
 
 /** A list of IDs for components whose output is used as the input for this processor group. */
 export type ObservabilityPipelineConfigProcessorGroupInputsList = Array<string>;
@@ -43860,7 +43763,7 @@ export const ObservabilityPipelineConfigProcessorGroupInputsList =
 
 /** The processor type. The value should always be `filter`. */
 export type ObservabilityPipelineFilterProcessorType = "filter";
-export const ObservabilityPipelineFilterProcessorType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineFilterProcessorType = S.String;
 
 /** The `filter` processor allows conditional processing of logs/metrics based on a Datadog search query. Logs/metrics that match the `include` query are passed through; others are discarded. **Supported pipeline types:** logs, metrics */
 export interface ObservabilityPipelineFilterProcessor {
@@ -43888,8 +43791,7 @@ export const ObservabilityPipelineFilterProcessor = /*@__PURE__*/ S.suspend(
 
 /** The processor type. The value should always be `add_env_vars`. */
 export type ObservabilityPipelineAddEnvVarsProcessorType = "add_env_vars";
-export const ObservabilityPipelineAddEnvVarsProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAddEnvVarsProcessorType = S.String;
 
 /** Defines a mapping between an environment variable and a log field. */
 export interface ObservabilityPipelineAddEnvVarsProcessorVariable {
@@ -43969,8 +43871,7 @@ export const ObservabilityPipelineAddFieldsProcessorFieldsList =
 
 /** The processor type. The value should always be `add_fields`. */
 export type ObservabilityPipelineAddFieldsProcessorType = "add_fields";
-export const ObservabilityPipelineAddFieldsProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAddFieldsProcessorType = S.String;
 
 /** The `add_fields` processor adds static key-value fields to logs. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineAddFieldsProcessor {
@@ -44001,8 +43902,7 @@ export const ObservabilityPipelineAddFieldsProcessor = /*@__PURE__*/ S.suspend(
 
 /** The processor type. The value should always be `add_hostname`. */
 export type ObservabilityPipelineAddHostnameProcessorType = "add_hostname";
-export const ObservabilityPipelineAddHostnameProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAddHostnameProcessorType = S.String;
 
 /** The `add_hostname` processor adds the hostname to log events. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineAddHostnameProcessor {
@@ -44064,7 +43964,7 @@ export const ObservabilityPipelineCustomProcessorRemapsList =
 
 /** The processor type. The value should always be `custom_processor`. */
 export type ObservabilityPipelineCustomProcessorType = "custom_processor";
-export const ObservabilityPipelineCustomProcessorType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineCustomProcessorType = S.String;
 
 /** The `custom_processor` processor transforms events using [Vector Remap Language (VRL)](https://vector.dev/docs/reference/vrl/) scripts with advanced filtering capabilities. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineCustomProcessor {
@@ -44097,8 +43997,7 @@ export const ObservabilityPipelineCustomProcessor = /*@__PURE__*/ S.suspend(
 export type ObservabilityPipelineDatadogTagsProcessorAction =
   | "include"
   | "exclude";
-export const ObservabilityPipelineDatadogTagsProcessorAction =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineDatadogTagsProcessorAction = S.String;
 
 /** A list of tag keys. */
 export type ObservabilityPipelineDatadogTagsProcessorKeysList = Array<string>;
@@ -44109,13 +44008,11 @@ export const ObservabilityPipelineDatadogTagsProcessorKeysList =
 
 /** The processing mode. */
 export type ObservabilityPipelineDatadogTagsProcessorMode = "filter";
-export const ObservabilityPipelineDatadogTagsProcessorMode =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineDatadogTagsProcessorMode = S.String;
 
 /** The processor type. The value should always be `datadog_tags`. */
 export type ObservabilityPipelineDatadogTagsProcessorType = "datadog_tags";
-export const ObservabilityPipelineDatadogTagsProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineDatadogTagsProcessorType = S.String;
 
 /** The `datadog_tags` processor includes or excludes specific Datadog tags in your logs. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineDatadogTagsProcessor {
@@ -44171,11 +44068,11 @@ export const ObservabilityPipelineDedupeProcessorFieldsList =
 
 /** The deduplication mode to apply to the fields. */
 export type ObservabilityPipelineDedupeProcessorMode = "match" | "ignore";
-export const ObservabilityPipelineDedupeProcessorMode = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineDedupeProcessorMode = S.String;
 
 /** The processor type. The value should always be `dedupe`. */
 export type ObservabilityPipelineDedupeProcessorType = "dedupe";
-export const ObservabilityPipelineDedupeProcessorType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineDedupeProcessorType = S.String;
 
 /** The `dedupe` processor removes duplicate fields in log events. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineDedupeProcessor {
@@ -44210,8 +44107,7 @@ export const ObservabilityPipelineDedupeProcessor = /*@__PURE__*/ S.suspend(
 
 /** Specifies the encoding format (e.g., CSV) used for enrichment tables. */
 export type ObservabilityPipelineEnrichmentTableFileEncodingType = "csv";
-export const ObservabilityPipelineEnrichmentTableFileEncodingType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineEnrichmentTableFileEncodingType = S.String;
 
 /** File encoding format. */
 export interface ObservabilityPipelineEnrichmentTableFileEncoding {
@@ -44236,7 +44132,7 @@ export const ObservabilityPipelineEnrichmentTableFileEncoding =
 export type ObservabilityPipelineEnrichmentTableFileKeyItemsComparison =
   "equals";
 export const ObservabilityPipelineEnrichmentTableFileKeyItemsComparison =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Looks up a value from a field path in the log event. */
 export interface ObservabilityPipelineEnrichmentTableFieldEventLookup {
@@ -44287,7 +44183,7 @@ export type ObservabilityPipelineEnrichmentTableFileKeyItemField =
   | ObservabilityPipelineEnrichmentTableFieldVrlLookup
   | ObservabilityPipelineEnrichmentTableFieldSecretLookup;
 export const ObservabilityPipelineEnrichmentTableFileKeyItemField =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineEnrichmentTableFileKeyItemField>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineEnrichmentTableFileKeyItemField>;
 
 /** Defines how to map log fields to enrichment table columns during lookups. */
 export interface ObservabilityPipelineEnrichmentTableFileKeyItems {
@@ -44325,8 +44221,7 @@ export type ObservabilityPipelineEnrichmentTableFileSchemaItemsType =
   | "float"
   | "date"
   | "timestamp";
-export const ObservabilityPipelineEnrichmentTableFileSchemaItemsType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineEnrichmentTableFileSchemaItemsType = S.String;
 
 /** Describes a single column and its type in an enrichment table schema. */
 export interface ObservabilityPipelineEnrichmentTableFileSchemaItems {
@@ -44430,8 +44325,7 @@ export const ObservabilityPipelineEnrichmentTableReferenceTable =
 /** The processor type. The value should always be `enrichment_table`. */
 export type ObservabilityPipelineEnrichmentTableProcessorType =
   "enrichment_table";
-export const ObservabilityPipelineEnrichmentTableProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineEnrichmentTableProcessorType = S.String;
 
 /** The `enrichment_table` processor enriches logs using a static CSV file, GeoIP database, or reference table. Exactly one of `file`, `geoip`, or `reference_table` must be configured. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineEnrichmentTableProcessor {
@@ -44480,14 +44374,13 @@ export type ObservabilityPipelineGeneratedMetricMetricType =
   | "count"
   | "gauge"
   | "distribution";
-export const ObservabilityPipelineGeneratedMetricMetricType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineGeneratedMetricMetricType = S.String;
 
 /** Increments the metric by 1 for each matching event. */
 export type ObservabilityPipelineGeneratedMetricIncrementByOneStrategy =
   "increment_by_one";
 export const ObservabilityPipelineGeneratedMetricIncrementByOneStrategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Strategy that increments a generated metric by one for each matching event. */
 export interface ObservabilityPipelineGeneratedMetricIncrementByOne {
@@ -44506,7 +44399,7 @@ export const ObservabilityPipelineGeneratedMetricIncrementByOne =
 export type ObservabilityPipelineGeneratedMetricIncrementByFieldStrategy =
   "increment_by_field";
 export const ObservabilityPipelineGeneratedMetricIncrementByFieldStrategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Strategy that increments a generated metric based on the value of a log field. */
 export interface ObservabilityPipelineGeneratedMetricIncrementByField {
@@ -44529,7 +44422,7 @@ export type ObservabilityPipelineMetricValue =
   | ObservabilityPipelineGeneratedMetricIncrementByOne
   | ObservabilityPipelineGeneratedMetricIncrementByField;
 export const ObservabilityPipelineMetricValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineMetricValue>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineMetricValue>;
 
 /** Defines a log-based custom metric, including its name, type, filter, value computation strategy, and optional grouping fields. */
 export interface ObservabilityPipelineGeneratedMetric {
@@ -44566,8 +44459,7 @@ export const ObservabilityPipelineGenerateMetricsProcessorMetricsList =
 /** The processor type. Always `generate_datadog_metrics`. */
 export type ObservabilityPipelineGenerateMetricsProcessorType =
   "generate_datadog_metrics";
-export const ObservabilityPipelineGenerateMetricsProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineGenerateMetricsProcessorType = S.String;
 
 /** The `generate_datadog_metrics` processor creates custom metrics from logs and sends them to Datadog. Metrics can be counters, gauges, or distributions and optionally grouped by log fields. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineGenerateMetricsProcessor {
@@ -44609,8 +44501,7 @@ export const ObservabilityPipelineGenerateMetricsV2ProcessorMetricsList =
 /** The processor type. Always `generate_metrics`. */
 export type ObservabilityPipelineGenerateMetricsV2ProcessorType =
   "generate_metrics";
-export const ObservabilityPipelineGenerateMetricsV2ProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineGenerateMetricsV2ProcessorType = S.String;
 
 /** The `generate_metrics` processor creates custom metrics from logs. Metrics can be counters, gauges, or distributions and optionally grouped by log fields. The generated metrics must be routed to a metrics destination using the input `<processor-id>.metrics`. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineGenerateMetricsV2Processor {
@@ -44654,7 +44545,7 @@ export type ObservabilityPipelineOcsfMappingLibrary =
   | "Microsoft 365 Defender UserLoggedIn"
   | "Okta System Log Authentication"
   | "Palo Alto Networks Firewall Traffic";
-export const ObservabilityPipelineOcsfMappingLibrary = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineOcsfMappingLibrary = S.String;
 
 /** A single entry in a lookup table for value transformation. */
 export interface ObservabilityPipelineOcsfMappingCustomLookupTableEntry {
@@ -44800,7 +44691,7 @@ export type ObservabilityPipelineOcsfMapperProcessorMappingMapping =
   | ObservabilityPipelineOcsfMappingLibrary
   | ObservabilityPipelineOcsfMappingCustom;
 export const ObservabilityPipelineOcsfMapperProcessorMappingMapping =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineOcsfMapperProcessorMappingMapping>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineOcsfMapperProcessorMappingMapping>;
 
 /** Defines how specific events are transformed to OCSF using a mapping configuration. */
 export interface ObservabilityPipelineOcsfMapperProcessorMapping {
@@ -44828,8 +44719,7 @@ export const ObservabilityPipelineOcsfMapperProcessorMappingsList =
 
 /** The processor type. The value should always be `ocsf_mapper`. */
 export type ObservabilityPipelineOcsfMapperProcessorType = "ocsf_mapper";
-export const ObservabilityPipelineOcsfMapperProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineOcsfMapperProcessorType = S.String;
 
 /** The `ocsf_mapper` processor transforms logs into the OCSF schema using a predefined mapping configuration. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineOcsfMapperProcessor {
@@ -44977,7 +44867,7 @@ export type ObservabilityPipelineParseGrokProcessorRuleItem =
   | ObservabilityPipelineParseGrokProcessorRule
   | ObservabilityPipelineParseGrokProcessorIncludeRule;
 export const ObservabilityPipelineParseGrokProcessorRuleItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineParseGrokProcessorRuleItem>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineParseGrokProcessorRuleItem>;
 
 /** The list of Grok parsing rules selected by either source field or include query. */
 export type ObservabilityPipelineParseGrokProcessorRulesList =
@@ -44989,8 +44879,7 @@ export const ObservabilityPipelineParseGrokProcessorRulesList =
 
 /** The processor type. The value should always be `parse_grok`. */
 export type ObservabilityPipelineParseGrokProcessorType = "parse_grok";
-export const ObservabilityPipelineParseGrokProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineParseGrokProcessorType = S.String;
 
 /** The `parse_grok` processor extracts structured fields from unstructured log messages using Grok patterns. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineParseGrokProcessor {
@@ -45027,8 +44916,7 @@ export const ObservabilityPipelineParseGrokProcessor = /*@__PURE__*/ S.suspend(
 
 /** The processor type. The value should always be `parse_json`. */
 export type ObservabilityPipelineParseJSONProcessorType = "parse_json";
-export const ObservabilityPipelineParseJSONProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineParseJSONProcessorType = S.String;
 
 /** The `parse_json` processor extracts JSON from a specified field and flattens it into the event. This is useful when logs contain embedded JSON as a string. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineParseJSONProcessor {
@@ -45059,8 +44947,7 @@ export const ObservabilityPipelineParseJSONProcessor = /*@__PURE__*/ S.suspend(
 
 /** The processor type. The value should always be `parse_xml`. */
 export type ObservabilityPipelineParseXMLProcessorType = "parse_xml";
-export const ObservabilityPipelineParseXMLProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineParseXMLProcessorType = S.String;
 
 /** The `parse_xml` processor parses XML from a specified field and extracts it into the event. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineParseXMLProcessor {
@@ -45114,8 +45001,7 @@ export const ObservabilityPipelineParseXMLProcessor = /*@__PURE__*/ S.suspend(
 export type ObservabilityPipelineQuotaProcessorLimitEnforceType =
   | "bytes"
   | "events";
-export const ObservabilityPipelineQuotaProcessorLimitEnforceType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineQuotaProcessorLimitEnforceType = S.String;
 
 /** The maximum amount of data or number of events allowed before the quota is enforced. Can be specified in bytes or events. */
 export interface ObservabilityPipelineQuotaProcessorLimit {
@@ -45138,8 +45024,7 @@ export type ObservabilityPipelineQuotaProcessorOverflowAction =
   | "drop"
   | "no_action"
   | "overflow_routing";
-export const ObservabilityPipelineQuotaProcessorOverflowAction =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineQuotaProcessorOverflowAction = S.String;
 
 /** A list of field matchers used to apply a specific override. If an event matches all listed key-value pairs, the corresponding override limit is enforced. */
 export type ObservabilityPipelineQuotaProcessorOverrideFieldsList =
@@ -45183,7 +45068,7 @@ export const ObservabilityPipelineQuotaProcessorPartitionFieldsList =
 
 /** The processor type. The value should always be `quota`. */
 export type ObservabilityPipelineQuotaProcessorType = "quota";
-export const ObservabilityPipelineQuotaProcessorType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineQuotaProcessorType = S.String;
 
 /** The `quota` processor measures logging traffic for logs that match a specified filter. When the configured daily quota is met, the processor can drop or alert. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineQuotaProcessor {
@@ -45261,7 +45146,7 @@ export type ObservabilityPipelineReduceProcessorMergeStrategyStrategy =
   | "longest_array"
   | "flat_unique";
 export const ObservabilityPipelineReduceProcessorMergeStrategyStrategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines how a specific field should be merged across grouped events. */
 export interface ObservabilityPipelineReduceProcessorMergeStrategy {
@@ -45291,7 +45176,7 @@ export const ObservabilityPipelineReduceProcessorMergeStrategiesList =
 
 /** The processor type. The value should always be `reduce`. */
 export type ObservabilityPipelineReduceProcessorType = "reduce";
-export const ObservabilityPipelineReduceProcessorType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineReduceProcessorType = S.String;
 
 /** The `reduce` processor aggregates and merges logs based on matching keys and merge strategies. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineReduceProcessor {
@@ -45333,8 +45218,7 @@ export const ObservabilityPipelineRemoveFieldsProcessorFieldsList =
 
 /** The processor type. The value should always be `remove_fields`. */
 export type ObservabilityPipelineRemoveFieldsProcessorType = "remove_fields";
-export const ObservabilityPipelineRemoveFieldsProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineRemoveFieldsProcessorType = S.String;
 
 /** The `remove_fields` processor deletes specified fields from logs. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineRemoveFieldsProcessor {
@@ -45393,8 +45277,7 @@ export const ObservabilityPipelineRenameFieldsProcessorFieldsList =
 
 /** The processor type. The value should always be `rename_fields`. */
 export type ObservabilityPipelineRenameFieldsProcessorType = "rename_fields";
-export const ObservabilityPipelineRenameFieldsProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineRenameFieldsProcessorType = S.String;
 
 /** The `rename_fields` processor changes field names. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineRenameFieldsProcessor {
@@ -45432,7 +45315,7 @@ export const ObservabilityPipelineSampleProcessorGroupByList =
 
 /** The processor type. The value should always be `sample`. */
 export type ObservabilityPipelineSampleProcessorType = "sample";
-export const ObservabilityPipelineSampleProcessorType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSampleProcessorType = S.String;
 
 /** The `sample` processor allows probabilistic sampling of logs at a fixed rate. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineSampleProcessor {
@@ -45495,7 +45378,7 @@ export const ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions =
 export type ObservabilityPipelineSensitiveDataScannerProcessorActionRedactAction =
   "redact";
 export const ObservabilityPipelineSensitiveDataScannerProcessorActionRedactAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for fully redacting sensitive data. */
 export interface ObservabilityPipelineSensitiveDataScannerProcessorActionRedactOptions {
@@ -45534,7 +45417,7 @@ export const ObservabilityPipelineSensitiveDataScannerProcessorActionRedact =
 export type ObservabilityPipelineSensitiveDataScannerProcessorActionHashAction =
   "hash";
 export const ObservabilityPipelineSensitiveDataScannerProcessorActionHashAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for hashing matched sensitive values. */
 export interface ObservabilityPipelineSensitiveDataScannerProcessorActionHash {
@@ -45557,14 +45440,14 @@ export const ObservabilityPipelineSensitiveDataScannerProcessorActionHash =
 export type ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactAction =
   "partial_redact";
 export const ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Indicates whether to redact characters from the first or last part of the matched value. */
 export type ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptionsDirection =
   | "first"
   | "last";
 export const ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptionsDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Controls how partial redaction is applied, including character count and direction. */
 export interface ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptions {
@@ -45610,7 +45493,7 @@ export type ObservabilityPipelineSensitiveDataScannerProcessorAction =
   | ObservabilityPipelineSensitiveDataScannerProcessorActionHash
   | ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedact;
 export const ObservabilityPipelineSensitiveDataScannerProcessorAction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineSensitiveDataScannerProcessorAction>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineSensitiveDataScannerProcessorAction>;
 
 /** Options for defining a custom regex pattern. */
 export interface ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternOptions {
@@ -45634,7 +45517,7 @@ export const ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternOpti
 export type ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternType =
   "custom";
 export const ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines a custom regex-based pattern for identifying sensitive data in logs. */
 export interface ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern {
@@ -45678,7 +45561,7 @@ export const ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOpt
 export type ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternType =
   "library";
 export const ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specifies a pattern from Datadog’s sensitive data detection library to match known sensitive data types. */
 export interface ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern {
@@ -45702,7 +45585,7 @@ export type ObservabilityPipelineSensitiveDataScannerProcessorPattern =
   | ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern
   | ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern;
 export const ObservabilityPipelineSensitiveDataScannerProcessorPattern =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineSensitiveDataScannerProcessorPattern>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineSensitiveDataScannerProcessorPattern>;
 
 /** List of log attribute names (field paths) to which the scope applies. Only these fields are included in or excluded from pattern matching. */
 export type ObservabilityPipelineSensitiveDataScannerProcessorScopeOptionsFieldsList =
@@ -45732,7 +45615,7 @@ export const ObservabilityPipelineSensitiveDataScannerProcessorScopeOptions =
 export type ObservabilityPipelineSensitiveDataScannerProcessorScopeIncludeTarget =
   "include";
 export const ObservabilityPipelineSensitiveDataScannerProcessorScopeIncludeTarget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Includes only specific fields for sensitive data scanning. */
 export interface ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude {
@@ -45755,7 +45638,7 @@ export const ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude =
 export type ObservabilityPipelineSensitiveDataScannerProcessorScopeExcludeTarget =
   "exclude";
 export const ObservabilityPipelineSensitiveDataScannerProcessorScopeExcludeTarget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Excludes specific fields from sensitive data scanning. */
 export interface ObservabilityPipelineSensitiveDataScannerProcessorScopeExclude {
@@ -45778,7 +45661,7 @@ export const ObservabilityPipelineSensitiveDataScannerProcessorScopeExclude =
 export type ObservabilityPipelineSensitiveDataScannerProcessorScopeAllTarget =
   "all";
 export const ObservabilityPipelineSensitiveDataScannerProcessorScopeAllTarget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Applies scanning across all available fields. */
 export interface ObservabilityPipelineSensitiveDataScannerProcessorScopeAll {
@@ -45799,7 +45682,7 @@ export type ObservabilityPipelineSensitiveDataScannerProcessorScope =
   | ObservabilityPipelineSensitiveDataScannerProcessorScopeExclude
   | ObservabilityPipelineSensitiveDataScannerProcessorScopeAll;
 export const ObservabilityPipelineSensitiveDataScannerProcessorScope =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineSensitiveDataScannerProcessorScope>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineSensitiveDataScannerProcessorScope>;
 
 /** Tags assigned to this rule for filtering and classification. */
 export type ObservabilityPipelineSensitiveDataScannerProcessorRuleTagsList =
@@ -45849,8 +45732,7 @@ export const ObservabilityPipelineSensitiveDataScannerProcessorRulesList =
 /** The processor type. The value should always be `sensitive_data_scanner`. */
 export type ObservabilityPipelineSensitiveDataScannerProcessorType =
   "sensitive_data_scanner";
-export const ObservabilityPipelineSensitiveDataScannerProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSensitiveDataScannerProcessorType = S.String;
 
 /** The `sensitive_data_scanner` processor detects and optionally redacts sensitive data in log events. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineSensitiveDataScannerProcessor {
@@ -45906,8 +45788,7 @@ export const ObservabilityPipelineSplitArrayProcessorArraysList =
 
 /** The processor type. The value should always be `split_array`. */
 export type ObservabilityPipelineSplitArrayProcessorType = "split_array";
-export const ObservabilityPipelineSplitArrayProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSplitArrayProcessorType = S.String;
 
 /** The `split_array` processor splits array fields into separate events based on configured rules. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineSplitArrayProcessor {
@@ -45945,8 +45826,7 @@ export const ObservabilityPipelineThrottleProcessorGroupByList =
 
 /** The processor type. The value should always be `throttle`. */
 export type ObservabilityPipelineThrottleProcessorType = "throttle";
-export const ObservabilityPipelineThrottleProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineThrottleProcessorType = S.String;
 
 /** The `throttle` processor limits the number of events that pass through over a given time window. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineThrottleProcessor {
@@ -45991,8 +45871,7 @@ export const ObservabilityPipelineAddMetricTagsProcessorTagsList =
 
 /** The processor type. The value must be `add_metric_tags`. */
 export type ObservabilityPipelineAddMetricTagsProcessorType = "add_metric_tags";
-export const ObservabilityPipelineAddMetricTagsProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAddMetricTagsProcessorType = S.String;
 
 /** The `add_metric_tags` processor adds static tags to metrics. **Supported pipeline types:** metrics */
 export interface ObservabilityPipelineAddMetricTagsProcessor {
@@ -46030,13 +45909,11 @@ export type ObservabilityPipelineAggregateProcessorMode =
   | "max"
   | "min"
   | "mean";
-export const ObservabilityPipelineAggregateProcessorMode =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAggregateProcessorMode = S.String;
 
 /** The processor type. The value must be `aggregate`. */
 export type ObservabilityPipelineAggregateProcessorType = "aggregate";
-export const ObservabilityPipelineAggregateProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAggregateProcessorType = S.String;
 
 /** The `aggregate` processor combines metrics that share the same name and tags into a single metric over a configurable interval. **Supported pipeline types:** metrics */
 export interface ObservabilityPipelineAggregateProcessor {
@@ -46071,8 +45948,7 @@ export const ObservabilityPipelineAggregateProcessor = /*@__PURE__*/ S.suspend(
 export type ObservabilityPipelineMetricTagsProcessorRuleAction =
   | "include"
   | "exclude";
-export const ObservabilityPipelineMetricTagsProcessorRuleAction =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineMetricTagsProcessorRuleAction = S.String;
 
 /** A list of tag keys to include or exclude. */
 export type ObservabilityPipelineMetricTagsProcessorRuleKeysList =
@@ -46084,8 +45960,7 @@ export const ObservabilityPipelineMetricTagsProcessorRuleKeysList =
 
 /** The processing mode for tag filtering. */
 export type ObservabilityPipelineMetricTagsProcessorRuleMode = "filter";
-export const ObservabilityPipelineMetricTagsProcessorRuleMode =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineMetricTagsProcessorRuleMode = S.String;
 
 /** Defines a rule for filtering metric tags based on key patterns. */
 export interface ObservabilityPipelineMetricTagsProcessorRule {
@@ -46118,8 +45993,7 @@ export const ObservabilityPipelineMetricTagsProcessorRulesList =
 
 /** The processor type. The value should always be `metric_tags`. */
 export type ObservabilityPipelineMetricTagsProcessorType = "metric_tags";
-export const ObservabilityPipelineMetricTagsProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineMetricTagsProcessorType = S.String;
 
 /** The `metric_tags` processor filters metrics based on their tags using Datadog tag key patterns. **Supported pipeline types:** metrics */
 export interface ObservabilityPipelineMetricTagsProcessor {
@@ -46176,8 +46050,7 @@ export const ObservabilityPipelineRenameMetricTagsProcessorTagsList =
 /** The processor type. The value must be `rename_metric_tags`. */
 export type ObservabilityPipelineRenameMetricTagsProcessorType =
   "rename_metric_tags";
-export const ObservabilityPipelineRenameMetricTagsProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineRenameMetricTagsProcessorType = S.String;
 
 /** The `rename_metric_tags` processor changes the keys of tags on metrics. **Supported pipeline types:** metrics */
 export interface ObservabilityPipelineRenameMetricTagsProcessor {
@@ -46210,15 +46083,14 @@ export const ObservabilityPipelineRenameMetricTagsProcessor =
 export type ObservabilityPipelineTagCardinalityLimitProcessorAction =
   | "drop_tag"
   | "drop_event";
-export const ObservabilityPipelineTagCardinalityLimitProcessorAction =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineTagCardinalityLimitProcessorAction = S.String;
 
 /** How the override is applied. `limit_override` enforces a custom limit; `excluded` omits the metric or tag from cardinality tracking. */
 export type ObservabilityPipelineTagCardinalityLimitProcessorOverrideType =
   | "limit_override"
   | "excluded";
 export const ObservabilityPipelineTagCardinalityLimitProcessorOverrideType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A cardinality override for a specific tag key within a per-metric limit. */
 export interface ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit {
@@ -46297,7 +46169,7 @@ export type ObservabilityPipelineTagCardinalityLimitProcessorTrackingModeMode =
   | "exact_fingerprint"
   | "probabilistic";
 export const ObservabilityPipelineTagCardinalityLimitProcessorTrackingModeMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Controls whether the processor uses exact or probabilistic tag tracking. */
 export interface ObservabilityPipelineTagCardinalityLimitProcessorTrackingMode {
@@ -46317,8 +46189,7 @@ export const ObservabilityPipelineTagCardinalityLimitProcessorTrackingMode =
 /** The processor type. The value must be `tag_cardinality_limit`. */
 export type ObservabilityPipelineTagCardinalityLimitProcessorType =
   "tag_cardinality_limit";
-export const ObservabilityPipelineTagCardinalityLimitProcessorType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineTagCardinalityLimitProcessorType = S.String;
 
 /** The `tag_cardinality_limit` processor caps the number of distinct tag value combinations on metrics, dropping tags or events once the limit is exceeded. **Supported pipeline types:** metrics */
 export interface ObservabilityPipelineTagCardinalityLimitProcessor {
@@ -46390,7 +46261,7 @@ export type ObservabilityPipelineConfigProcessorItem =
   | ObservabilityPipelineRenameMetricTagsProcessor
   | ObservabilityPipelineTagCardinalityLimitProcessor;
 export const ObservabilityPipelineConfigProcessorItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineConfigProcessorItem>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineConfigProcessorItem>;
 
 /** Processors applied sequentially within this group. Events flow through each processor in order. */
 export type ObservabilityPipelineConfigProcessorGroupProcessorsList =
@@ -46445,8 +46316,7 @@ export const ObservabilityPipelineConfigProcessorsList = /*@__PURE__*/ S.Array(
 
 /** The source type. The value should always be `datadog_agent`. */
 export type ObservabilityPipelineDatadogAgentSourceType = "datadog_agent";
-export const ObservabilityPipelineDatadogAgentSourceType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineDatadogAgentSourceType = S.String;
 
 /** The `datadog_agent` source collects logs/metrics from the Datadog Agent. **Supported pipeline types:** logs, metrics */
 export interface ObservabilityPipelineDatadogAgentSource {
@@ -46472,8 +46342,7 @@ export const ObservabilityPipelineDatadogAgentSource = /*@__PURE__*/ S.suspend(
 /** The source type. The value should always be `amazon_data_firehose`. */
 export type ObservabilityPipelineAmazonDataFirehoseSourceType =
   "amazon_data_firehose";
-export const ObservabilityPipelineAmazonDataFirehoseSourceType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAmazonDataFirehoseSourceType = S.String;
 
 /** The `amazon_data_firehose` source ingests logs from AWS Data Firehose. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineAmazonDataFirehoseSource {
@@ -46504,12 +46373,11 @@ export type ObservabilityPipelineAmazonS3SourceCompression =
   | "none"
   | "gzip"
   | "zstd";
-export const ObservabilityPipelineAmazonS3SourceCompression =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAmazonS3SourceCompression = S.String;
 
 /** The source type. Always `amazon_s3`. */
 export type ObservabilityPipelineAmazonS3SourceType = "amazon_s3";
-export const ObservabilityPipelineAmazonS3SourceType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineAmazonS3SourceType = S.String;
 
 /** The `amazon_s3` source ingests logs from an Amazon S3 bucket. It supports AWS authentication, TLS encryption, and configurable compression. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineAmazonS3Source {
@@ -46565,7 +46433,7 @@ export const ObservabilityPipelineMtlsServerTls = /*@__PURE__*/ S.suspend(() =>
 
 /** The source type. The value should always be `fluent_bit`. */
 export type ObservabilityPipelineFluentBitSourceType = "fluent_bit";
-export const ObservabilityPipelineFluentBitSourceType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineFluentBitSourceType = S.String;
 
 /** The `fluent_bit` source ingests logs from Fluent Bit. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineFluentBitSource {
@@ -46590,7 +46458,7 @@ export const ObservabilityPipelineFluentBitSource = /*@__PURE__*/ S.suspend(
 
 /** The source type. The value should always be `fluentd. */
 export type ObservabilityPipelineFluentdSourceType = "fluentd";
-export const ObservabilityPipelineFluentdSourceType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineFluentdSourceType = S.String;
 
 /** The `fluentd` source ingests logs from a Fluentd-compatible service. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineFluentdSource {
@@ -46618,12 +46486,11 @@ export type ObservabilityPipelineDecoding =
   | "gelf"
   | "json"
   | "syslog";
-export const ObservabilityPipelineDecoding = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineDecoding = S.String;
 
 /** The source type. The value should always be `google_pubsub`. */
 export type ObservabilityPipelineGooglePubSubSourceType = "google_pubsub";
-export const ObservabilityPipelineGooglePubSubSourceType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineGooglePubSubSourceType = S.String;
 
 /** The `google_pubsub` source ingests logs from a Google Cloud Pub/Sub subscription. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineGooglePubSubSource {
@@ -46659,12 +46526,11 @@ export type ObservabilityPipelineHttpClientSourceAuthStrategy =
   | "basic"
   | "bearer"
   | "custom";
-export const ObservabilityPipelineHttpClientSourceAuthStrategy =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineHttpClientSourceAuthStrategy = S.String;
 
 /** The source type. The value should always be `http_client`. */
 export type ObservabilityPipelineHttpClientSourceType = "http_client";
-export const ObservabilityPipelineHttpClientSourceType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineHttpClientSourceType = S.String;
 
 /** The `http_client` source scrapes logs from HTTP endpoints at regular intervals. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineHttpClientSource {
@@ -46717,12 +46583,11 @@ export const ObservabilityPipelineHttpClientSource = /*@__PURE__*/ S.suspend(
 export type ObservabilityPipelineHttpServerSourceAuthStrategy =
   | "none"
   | "plain";
-export const ObservabilityPipelineHttpServerSourceAuthStrategy =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineHttpServerSourceAuthStrategy = S.String;
 
 /** The source type. The value should always be `http_server`. */
 export type ObservabilityPipelineHttpServerSourceType = "http_server";
-export const ObservabilityPipelineHttpServerSourceType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineHttpServerSourceType = S.String;
 
 /** An optional metadata field that is attached to every event authenticated by the associated token. Both `key` and `value` must match `^[A-Za-z0-9_]+$`. */
 export interface ObservabilityPipelineSourceValidTokenFieldToAdd {
@@ -46746,7 +46611,7 @@ export type ObservabilityPipelineHttpServerSourceValidTokenPathToTokenLocation =
   | "path"
   | "address";
 export const ObservabilityPipelineHttpServerSourceValidTokenPathToTokenLocation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Extract the token from a specific HTTP request header. */
 export interface ObservabilityPipelineHttpServerSourceValidTokenPathToTokenHeader {
@@ -46768,7 +46633,7 @@ export type ObservabilityPipelineHttpServerSourceValidTokenPathToToken =
   | ObservabilityPipelineHttpServerSourceValidTokenPathToTokenLocation
   | ObservabilityPipelineHttpServerSourceValidTokenPathToTokenHeader;
 export const ObservabilityPipelineHttpServerSourceValidTokenPathToToken =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineHttpServerSourceValidTokenPathToToken>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineHttpServerSourceValidTokenPathToToken>;
 
 /** An accepted token used to authenticate incoming HTTP server requests. */
 export interface ObservabilityPipelineHttpServerSourceValidToken {
@@ -46858,7 +46723,7 @@ export const ObservabilityPipelineKafkaSourceTopicsList = /*@__PURE__*/ S.Array(
 
 /** The source type. The value should always be `kafka`. */
 export type ObservabilityPipelineKafkaSourceType = "kafka";
-export const ObservabilityPipelineKafkaSourceType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineKafkaSourceType = S.String;
 
 /** The `kafka` source ingests data from Apache Kafka topics. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineKafkaSource {
@@ -46895,7 +46760,7 @@ export const ObservabilityPipelineKafkaSource = /*@__PURE__*/ S.suspend(() =>
 
 /** The source type. The value should always be `logstash`. */
 export type ObservabilityPipelineLogstashSourceType = "logstash";
-export const ObservabilityPipelineLogstashSourceType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineLogstashSourceType = S.String;
 
 /** The `logstash` source ingests logs from a Logstash forwarder. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineLogstashSource {
@@ -46919,11 +46784,11 @@ export const ObservabilityPipelineLogstashSource = /*@__PURE__*/ S.suspend(() =>
 
 /** Protocol used by the syslog source to receive messages. */
 export type ObservabilityPipelineSyslogSourceMode = "tcp" | "udp";
-export const ObservabilityPipelineSyslogSourceMode = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSyslogSourceMode = S.String;
 
 /** The source type. The value should always be `rsyslog`. */
 export type ObservabilityPipelineRsyslogSourceType = "rsyslog";
-export const ObservabilityPipelineRsyslogSourceType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineRsyslogSourceType = S.String;
 
 /** The `rsyslog` source listens for logs over TCP or UDP from an `rsyslog` server using the syslog protocol. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineRsyslogSource {
@@ -46951,7 +46816,7 @@ export const ObservabilityPipelineRsyslogSource = /*@__PURE__*/ S.suspend(() =>
 export type ObservabilityPipelineSocketSourceFramingNewlineDelimitedMethod =
   "newline_delimited";
 export const ObservabilityPipelineSocketSourceFramingNewlineDelimitedMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Byte frames which are delimited by a newline character. */
 export interface ObservabilityPipelineSocketSourceFramingNewlineDelimited {
@@ -46968,8 +46833,7 @@ export const ObservabilityPipelineSocketSourceFramingNewlineDelimited =
 
 /** Byte frames are passed through as-is according to the underlying I/O boundaries (for example, split between messages or stream segments). */
 export type ObservabilityPipelineSocketSourceFramingBytesMethod = "bytes";
-export const ObservabilityPipelineSocketSourceFramingBytesMethod =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSocketSourceFramingBytesMethod = S.String;
 
 /** Byte frames are passed through as-is according to the underlying I/O boundaries (for example, split between messages or stream segments). */
 export interface ObservabilityPipelineSocketSourceFramingBytes {
@@ -46988,7 +46852,7 @@ export const ObservabilityPipelineSocketSourceFramingBytes =
 export type ObservabilityPipelineSocketSourceFramingCharacterDelimitedMethod =
   "character_delimited";
 export const ObservabilityPipelineSocketSourceFramingCharacterDelimitedMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Byte frames which are delimited by a chosen character. */
 export interface ObservabilityPipelineSocketSourceFramingCharacterDelimited {
@@ -47010,7 +46874,7 @@ export const ObservabilityPipelineSocketSourceFramingCharacterDelimited =
 export type ObservabilityPipelineSocketSourceFramingOctetCountingMethod =
   "octet_counting";
 export const ObservabilityPipelineSocketSourceFramingOctetCountingMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Byte frames according to the octet counting format as per RFC6587. */
 export interface ObservabilityPipelineSocketSourceFramingOctetCounting {
@@ -47029,7 +46893,7 @@ export const ObservabilityPipelineSocketSourceFramingOctetCounting =
 export type ObservabilityPipelineSocketSourceFramingChunkedGelfMethod =
   "chunked_gelf";
 export const ObservabilityPipelineSocketSourceFramingChunkedGelfMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Byte frames which are chunked GELF messages. */
 export interface ObservabilityPipelineSocketSourceFramingChunkedGelf {
@@ -47052,15 +46916,15 @@ export type ObservabilityPipelineSocketSourceFraming =
   | ObservabilityPipelineSocketSourceFramingOctetCounting
   | ObservabilityPipelineSocketSourceFramingChunkedGelf;
 export const ObservabilityPipelineSocketSourceFraming =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineSocketSourceFraming>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineSocketSourceFraming>;
 
 /** Protocol used to receive logs. */
 export type ObservabilityPipelineSocketSourceMode = "tcp" | "udp";
-export const ObservabilityPipelineSocketSourceMode = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSocketSourceMode = S.String;
 
 /** The source type. The value should always be `socket`. */
 export type ObservabilityPipelineSocketSourceType = "socket";
-export const ObservabilityPipelineSocketSourceType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSocketSourceType = S.String;
 
 /** The `socket` source ingests logs over TCP or UDP. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineSocketSource {
@@ -47089,7 +46953,7 @@ export const ObservabilityPipelineSocketSource = /*@__PURE__*/ S.suspend(() =>
 
 /** The source type. Always `splunk_hec`. */
 export type ObservabilityPipelineSplunkHecSourceType = "splunk_hec";
-export const ObservabilityPipelineSplunkHecSourceType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSplunkHecSourceType = S.String;
 
 /** An accepted HEC token used to authenticate incoming Splunk HEC requests. */
 export interface ObservabilityPipelineSplunkHecSourceValidToken {
@@ -47149,7 +47013,7 @@ export const ObservabilityPipelineSplunkHecSource = /*@__PURE__*/ S.suspend(
 
 /** The source type. Always `splunk_tcp`. */
 export type ObservabilityPipelineSplunkTcpSourceType = "splunk_tcp";
-export const ObservabilityPipelineSplunkTcpSourceType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSplunkTcpSourceType = S.String;
 
 /** The `splunk_tcp` source receives logs from a Splunk Universal Forwarder over TCP. TLS is supported for secure transmission. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineSplunkTcpSource {
@@ -47174,7 +47038,7 @@ export const ObservabilityPipelineSplunkTcpSource = /*@__PURE__*/ S.suspend(
 
 /** The source type. The value should always be `sumo_logic`. */
 export type ObservabilityPipelineSumoLogicSourceType = "sumo_logic";
-export const ObservabilityPipelineSumoLogicSourceType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSumoLogicSourceType = S.String;
 
 /** The `sumo_logic` source receives logs from Sumo Logic collectors. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineSumoLogicSource {
@@ -47197,7 +47061,7 @@ export const ObservabilityPipelineSumoLogicSource = /*@__PURE__*/ S.suspend(
 
 /** The source type. The value should always be `syslog_ng`. */
 export type ObservabilityPipelineSyslogNgSourceType = "syslog_ng";
-export const ObservabilityPipelineSyslogNgSourceType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineSyslogNgSourceType = S.String;
 
 /** The `syslog_ng` source listens for logs over TCP or UDP from a `syslog-ng` server using the syslog protocol. **Supported pipeline types:** logs */
 export interface ObservabilityPipelineSyslogNgSource {
@@ -47227,13 +47091,11 @@ export type ObservabilityPipelineWebsocketSourceAuthStrategy =
   | "basic"
   | "bearer"
   | "custom";
-export const ObservabilityPipelineWebsocketSourceAuthStrategy =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineWebsocketSourceAuthStrategy = S.String;
 
 /** TLS mode. Must be `enabled`. */
 export type ObservabilityPipelineWebsocketSourceTlsEnabledMode = "enabled";
-export const ObservabilityPipelineWebsocketSourceTlsEnabledMode =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineWebsocketSourceTlsEnabledMode = S.String;
 
 /** TLS configuration that enables encryption without a client certificate. Use this for standard `wss://` connections that do not require mutual TLS. */
 export interface ObservabilityPipelineWebsocketSourceTlsEnabled {
@@ -47252,7 +47114,7 @@ export const ObservabilityPipelineWebsocketSourceTlsEnabled =
 export type ObservabilityPipelineWebsocketSourceTlsWithClientCertMode =
   "with_client_cert";
 export const ObservabilityPipelineWebsocketSourceTlsWithClientCertMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** TLS configuration that enables encryption and presents a client certificate for mutual TLS authentication. */
 export interface ObservabilityPipelineWebsocketSourceTlsWithClientCert {
@@ -47284,11 +47146,11 @@ export type ObservabilityPipelineWebsocketSourceTls =
   | ObservabilityPipelineWebsocketSourceTlsEnabled
   | ObservabilityPipelineWebsocketSourceTlsWithClientCert;
 export const ObservabilityPipelineWebsocketSourceTls =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineWebsocketSourceTls>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineWebsocketSourceTls>;
 
 /** The source type. The value should always be `websocket`. */
 export type ObservabilityPipelineWebsocketSourceType = "websocket";
-export const ObservabilityPipelineWebsocketSourceType = /*@__PURE__*/ S.String;
+export const ObservabilityPipelineWebsocketSourceType = S.String;
 
 /** The `websocket` source ingests logs from a WebSocket server using the `ws://` or `wss://` protocol. **Supported pipeline types:** logs. */
 export interface ObservabilityPipelineWebsocketSource {
@@ -47331,8 +47193,7 @@ export const ObservabilityPipelineWebsocketSource = /*@__PURE__*/ S.suspend(
 
 /** The source type. The value should always be `opentelemetry`. */
 export type ObservabilityPipelineOpentelemetrySourceType = "opentelemetry";
-export const ObservabilityPipelineOpentelemetrySourceType =
-  /*@__PURE__*/ S.String;
+export const ObservabilityPipelineOpentelemetrySourceType = S.String;
 
 /** The `opentelemetry` source receives telemetry data using the OpenTelemetry Protocol (OTLP) over gRPC and HTTP. **Supported pipeline types:** logs, metrics */
 export interface ObservabilityPipelineOpentelemetrySource {
@@ -47379,7 +47240,7 @@ export type ObservabilityPipelineConfigSourceItem =
   | ObservabilityPipelineWebsocketSource
   | ObservabilityPipelineOpentelemetrySource;
 export const ObservabilityPipelineConfigSourceItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ObservabilityPipelineConfigSourceItem>;
+  S.Unknown as any as S.Schema<ObservabilityPipelineConfigSourceItem>;
 
 /** A list of configured data sources for the pipeline. */
 export type ObservabilityPipelineConfigSourcesList =
@@ -47593,7 +47454,7 @@ export type WidgetLiveSpan =
   | "6mo"
   | "1y"
   | "alert";
-export const WidgetLiveSpan = /*@__PURE__*/ S.String;
+export const WidgetLiveSpan = S.String;
 
 /** Powerpack group widget definition object. */
 export interface PowerpackGroupWidget {
@@ -48455,7 +48316,7 @@ export const ProjectAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Team link type */
 export type TeamLinkType = "team_links";
-export const TeamLinkType = /*@__PURE__*/ S.String;
+export const TeamLinkType = S.String;
 
 /** Relationship between a link and a team */
 export interface RelationshipToTeamLinkData {
@@ -48720,7 +48581,7 @@ export const CaseNotificationRuleCreateAttributes = /*@__PURE__*/ S.suspend(
 
 /** Notification rule resource type */
 export type CaseNotificationRuleResourceType = "notification_rule";
-export const CaseNotificationRuleResourceType = /*@__PURE__*/ S.String;
+export const CaseNotificationRuleResourceType = S.String;
 
 /** Notification rule create */
 export interface CaseNotificationRuleCreate {
@@ -48842,7 +48703,7 @@ export const CreatePublishRequestRequestDataAttributes =
 
 /** The publish-request resource type. */
 export type PublishRequestType = "publishRequest";
-export const PublishRequestType = /*@__PURE__*/ S.String;
+export const PublishRequestType = S.String;
 
 /** Data for creating a publish request. */
 export interface CreatePublishRequestRequestData {
@@ -48915,7 +48776,7 @@ export const DeploymentMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** The deployment type. */
 export type AppDeploymentType = "deployment";
-export const AppDeploymentType = /*@__PURE__*/ S.String;
+export const AppDeploymentType = S.String;
 
 /** The version of the app that was published. */
 export interface Deployment {
@@ -49078,11 +48939,11 @@ export type CreateTableRequestDataAttributesFileMetadata =
   | CreateTableRequestDataAttributesFileMetadataCloudStorage
   | CreateTableRequestDataAttributesFileMetadataLocalFile;
 export const CreateTableRequestDataAttributesFileMetadata =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateTableRequestDataAttributesFileMetadata>;
+  S.Unknown as any as S.Schema<CreateTableRequestDataAttributesFileMetadata>;
 
 /** The field type for reference table schema fields. */
 export type ReferenceTableSchemaFieldType = "STRING" | "INT32";
-export const ReferenceTableSchemaFieldType = /*@__PURE__*/ S.String;
+export const ReferenceTableSchemaFieldType = S.String;
 
 /** A single field (column) in the reference table schema to be created. */
 export interface CreateTableRequestDataAttributesSchemaFieldsItems {
@@ -49139,7 +49000,7 @@ export type ReferenceTableCreateSourceType =
   | "S3"
   | "GCS"
   | "AZURE";
-export const ReferenceTableCreateSourceType = /*@__PURE__*/ S.String;
+export const ReferenceTableCreateSourceType = S.String;
 
 /** Tags for organizing and filtering reference tables. */
 export type CreateTableRequestDataAttributesTagsList = Array<string>;
@@ -49174,7 +49035,7 @@ export const CreateTableRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Reference table resource type. */
 export type CreateTableRequestDataType = "reference_table";
-export const CreateTableRequestDataType = /*@__PURE__*/ S.String;
+export const CreateTableRequestDataType = S.String;
 
 /** The data object containing the table definition. */
 export interface CreateTableRequestData {
@@ -49314,7 +49175,7 @@ export type TableResultV2DataAttributesFileMetadataCloudStorageErrorType =
   | "OPERATION_ERROR"
   | "SYSTEM_ERROR";
 export const TableResultV2DataAttributesFileMetadataCloudStorageErrorType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata specifying where and how to access the reference table's data file. For cloud storage tables (S3/GCS/Azure): - sync_enabled and access_details will always be present - error fields (error_message, error_row_count, error_type) are present only when errors occur For local file tables: - error fields (error_message, error_row_count) are present only when errors occur - sync_enabled, access_details are never present */
 export interface TableResultV2DataAttributesFileMetadata {
@@ -49403,7 +49264,7 @@ export type ReferenceTableSourceType =
   | "SALESFORCE"
   | "DATABRICKS"
   | "SNOWFLAKE";
-export const ReferenceTableSourceType = /*@__PURE__*/ S.String;
+export const ReferenceTableSourceType = S.String;
 
 /** Tags for organizing and filtering reference tables. */
 export type TableResultV2DataAttributesTagsList = Array<string>;
@@ -49453,7 +49314,7 @@ export const TableResultV2DataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Reference table resource type. */
 export type TableResultV2DataType = "reference_table";
-export const TableResultV2DataType = /*@__PURE__*/ S.String;
+export const TableResultV2DataType = S.String;
 
 /** The data object containing the reference table configuration and state. */
 export interface TableResultV2Data {
@@ -49513,7 +49374,7 @@ export const CreateUploadRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Upload resource type. */
 export type CreateUploadRequestDataType = "upload";
-export const CreateUploadRequestDataType = /*@__PURE__*/ S.String;
+export const CreateUploadRequestDataType = S.String;
 
 /** Request data for creating an upload for a file to be ingested into a reference table. */
 export interface CreateUploadRequestData {
@@ -49568,7 +49429,7 @@ export const CreateUploadResponseDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Upload resource type. */
 export type CreateUploadResponseDataType = "upload";
-export const CreateUploadResponseDataType = /*@__PURE__*/ S.String;
+export const CreateUploadResponseDataType = S.String;
 
 /** Upload ID and attributes of the created upload. */
 export interface CreateUploadResponseData {
@@ -49638,7 +49499,7 @@ export const SnapshotCreateRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Snapshots resource type. */
 export type SnapshotUpdateRequestDataType = "snapshots";
-export const SnapshotUpdateRequestDataType = /*@__PURE__*/ S.String;
+export const SnapshotUpdateRequestDataType = S.String;
 
 /** Data object for a heatmap snapshot creation request, containing the resource type and attributes. */
 export interface SnapshotCreateRequestData {
@@ -49753,7 +49614,7 @@ export const Snapshot = /*@__PURE__*/ S.suspend(() =>
 
 /** How a PDF-export report is delivered. `pdf` attaches a PDF file, `png` embeds an inline PNG image, and `pdf_and_png` delivers both. */
 export type ReportScheduleDeliveryFormat = "pdf" | "png" | "pdf_and_png";
-export const ReportScheduleDeliveryFormat = /*@__PURE__*/ S.String;
+export const ReportScheduleDeliveryFormat = S.String;
 
 /** The recipients of the report. Each entry is an email address, a Slack channel reference in the form `slack:{team_id}.{channel_id}.{channel_name}`, or a Microsoft Teams channel reference in the form `teams:{tenant_id}|{team_id}|{channel_id}`. */
 export type ReportScheduleCreateRequestAttributesRecipientsList = Array<string>;
@@ -49764,7 +49625,7 @@ export const ReportScheduleCreateRequestAttributesRecipientsList =
 
 /** The type of dashboard resource the report schedule targets. */
 export type ReportScheduleResourceType = "dashboard" | "integration_dashboard";
-export const ReportScheduleResourceType = /*@__PURE__*/ S.String;
+export const ReportScheduleResourceType = S.String;
 
 /** The selected values for the template variable. */
 export type ReportScheduleTemplateVariableValuesList = Array<string>;
@@ -49841,7 +49702,7 @@ export const ReportScheduleCreateRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** JSON:API resource type for report schedules. */
 export type ReportScheduleType = "schedule";
-export const ReportScheduleType = /*@__PURE__*/ S.String;
+export const ReportScheduleType = S.String;
 
 /** The JSON:API data object for a report schedule creation request. */
 export interface ReportScheduleCreateRequestData {
@@ -49875,8 +49736,7 @@ export type ReportScheduleResponseAttributesDeliveryFormat =
   | "pdf"
   | "png"
   | "pdf_and_png";
-export const ReportScheduleResponseAttributesDeliveryFormat =
-  /*@__PURE__*/ S.String;
+export const ReportScheduleResponseAttributesDeliveryFormat = S.String;
 
 /** The recipients of the report (email addresses, Slack channel references, or Microsoft Teams channel references). */
 export type ReportScheduleResponseAttributesRecipientsList = Array<string>;
@@ -49887,7 +49747,7 @@ export const ReportScheduleResponseAttributesRecipientsList =
 
 /** Whether the schedule is currently delivering reports (`active`) or paused (`inactive`). */
 export type ReportScheduleStatus = "active" | "inactive";
-export const ReportScheduleStatus = /*@__PURE__*/ S.String;
+export const ReportScheduleStatus = S.String;
 
 /** The dashboard template variables applied when rendering the report. */
 export type ReportScheduleResponseAttributesTemplateVariablesList =
@@ -49947,7 +49807,7 @@ export const ReportScheduleResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for the included report author. */
 export type ReportScheduleAuthorType = "users";
-export const ReportScheduleAuthorType = /*@__PURE__*/ S.String;
+export const ReportScheduleAuthorType = S.String;
 
 /** Relationship data for the author of the report schedule. */
 export interface ReportScheduleAuthorRelationshipData {
@@ -50112,7 +49972,7 @@ export const ReportScheduleResourceAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for an included report resource. */
 export type ReportScheduleIncludedResourceType = "resource";
-export const ReportScheduleIncludedResourceType = /*@__PURE__*/ S.String;
+export const ReportScheduleIncludedResourceType = S.String;
 
 /** A report target resource included as a related JSON:API resource. */
 export interface ReportScheduleResource {
@@ -50136,7 +49996,7 @@ export type ReportScheduleIncludedResource =
   | ReportScheduleAuthor
   | ReportScheduleResource;
 export const ReportScheduleIncludedResource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReportScheduleIncludedResource>;
+  S.Unknown as any as S.Schema<ReportScheduleIncludedResource>;
 
 /** Related resources included with the report schedule, such as the author. */
 export type ReportScheduleResponseIncludedList =
@@ -50175,7 +50035,7 @@ export const RestrictionQueryCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Restriction query resource type. */
 export type LogsRestrictionQueriesType = "logs_restriction_queries";
-export const LogsRestrictionQueriesType = /*@__PURE__*/ S.String;
+export const LogsRestrictionQueriesType = S.String;
 
 /** Data related to the creation of a restriction query. */
 export interface RestrictionQueryCreateData {
@@ -50296,7 +50156,7 @@ export type RumRetentionFilterEventType =
   | "resource"
   | "long_task"
   | "vital";
-export const RumRetentionFilterEventType = /*@__PURE__*/ S.String;
+export const RumRetentionFilterEventType = S.String;
 
 /** The object describing attributes of a RUM retention filter to create. */
 export interface RumRetentionFilterCreateAttributes {
@@ -50322,7 +50182,7 @@ export const RumRetentionFilterCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value should always be retention_filters. */
 export type RumRetentionFilterType = "retention_filters";
-export const RumRetentionFilterType = /*@__PURE__*/ S.String;
+export const RumRetentionFilterType = S.String;
 
 /** The new RUM retention filter properties to create. */
 export interface RumRetentionFilterCreateData {
@@ -50545,11 +50405,11 @@ export const RoleCreateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Controls the retention policy for Product Analytics data derived from RUM events. */
 export type RUMProductAnalyticsRetentionState = "MAX" | "NONE";
-export const RUMProductAnalyticsRetentionState = /*@__PURE__*/ S.String;
+export const RUMProductAnalyticsRetentionState = S.String;
 
 /** Configures which RUM events are processed and stored for the application. */
 export type RUMEventProcessingState = "ALL" | "ERROR_FOCUSED_MODE" | "NONE";
-export const RUMEventProcessingState = /*@__PURE__*/ S.String;
+export const RUMEventProcessingState = S.String;
 
 /** RUM application creation attributes. */
 export interface RUMApplicationCreateAttributes {
@@ -50577,7 +50437,7 @@ export const RUMApplicationCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** RUM application creation type. */
 export type RUMApplicationCreateType = "rum_application_create";
-export const RUMApplicationCreateType = /*@__PURE__*/ S.String;
+export const RUMApplicationCreateType = S.String;
 
 /** RUM application creation. */
 export interface RUMApplicationCreate {
@@ -50705,7 +50565,7 @@ export const RUMApplicationAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** RUM application response type. */
 export type RUMApplicationType = "rum_application";
-export const RUMApplicationType = /*@__PURE__*/ S.String;
+export const RUMApplicationType = S.String;
 
 /** RUM application. */
 export interface RUMApplication {
@@ -50749,7 +50609,7 @@ export const RumConfigCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value should always be `rum_config`. */
 export type RumConfigType = "rum_config";
-export const RumConfigType = /*@__PURE__*/ S.String;
+export const RumConfigType = S.String;
 
 /** Object describing the RUM configuration to create. */
 export interface RumConfigCreateData {
@@ -50842,7 +50702,7 @@ export const RumConfigResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of aggregation to use. */
 export type RumMetricComputeAggregationType = "count" | "distribution";
-export const RumMetricComputeAggregationType = /*@__PURE__*/ S.String;
+export const RumMetricComputeAggregationType = S.String;
 
 /** The compute rule to compute the RUM-based metric. */
 export interface RumMetricCompute {
@@ -50870,7 +50730,7 @@ export type RumMetricEventType =
   | "resource"
   | "long_task"
   | "vital";
-export const RumMetricEventType = /*@__PURE__*/ S.String;
+export const RumMetricEventType = S.String;
 
 /** The RUM-based metric filter. Events matching this filter will be aggregated in this metric. */
 export interface RumMetricFilter {
@@ -50909,7 +50769,7 @@ export const RumMetricCreateAttributesGroupByList = /*@__PURE__*/ S.Array(
 
 /** When to count updatable events. `match` when the event is first seen, or `end` when the event is complete. */
 export type RumMetricUniquenessWhen = "match" | "end";
-export const RumMetricUniquenessWhen = /*@__PURE__*/ S.String;
+export const RumMetricUniquenessWhen = S.String;
 
 /** The rule to count updatable events. Is only set if `event_type` is `sessions` or `views`. */
 export interface RumMetricUniqueness {
@@ -50946,7 +50806,7 @@ export const RumMetricCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value should always be rum_metrics. */
 export type RumMetricType = "rum_metrics";
-export const RumMetricType = /*@__PURE__*/ S.String;
+export const RumMetricType = S.String;
 
 /** The new RUM-based metric properties. */
 export interface RumMetricCreateData {
@@ -51100,7 +50960,7 @@ export const RUMOperationRequestAttributesInputFeatureIdsList =
 
 /** The rule used to combine the composite rule's predicates. `all_of` requires every predicate to match, in any order. `in_order` requires every predicate to match in the given order. */
 export type RUMOperationJourneyCompositeRuleKind = "all_of" | "in_order";
-export const RUMOperationJourneyCompositeRuleKind = /*@__PURE__*/ S.String;
+export const RUMOperationJourneyCompositeRuleKind = S.String;
 
 /** A single predicate within a composite rule, matching RUM events with a query. */
 export interface RUMOperationJourneyPredicate {
@@ -51169,7 +51029,7 @@ export type RUMOperationJourneyStepType =
   | "stop"
   | "error"
   | "abandoned";
-export const RUMOperationJourneyStepType = /*@__PURE__*/ S.String;
+export const RUMOperationJourneyStepType = S.String;
 
 /** A single step of a RUM operation's journey. Matches RUM events either through a list of `nodes` or through a `composite` rule; the two are mutually exclusive. */
 export interface RUMOperationJourneyStepInput {
@@ -51249,7 +51109,7 @@ export const RUMOperationRequestAttributesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for RUM operation resources. */
 export type RUMOperationType = "operations";
-export const RUMOperationType = /*@__PURE__*/ S.String;
+export const RUMOperationType = S.String;
 
 /** The data object for creating a RUM operation. */
 export interface RUMOperationCreateRequestDataInput {
@@ -51478,7 +51338,7 @@ export const RUMOperationResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of a RUM operation strong link. */
 export type RUMOperationStrongLinkStatus = "DRAFT" | "CONFIRMED" | "REJECTED";
-export const RUMOperationStrongLinkStatus = /*@__PURE__*/ S.String;
+export const RUMOperationStrongLinkStatus = S.String;
 
 /** A list of tags associated with the strong link. */
 export type RUMOperationStrongLinkCreateRequestAttributesTagsList =
@@ -51521,7 +51381,7 @@ export const RUMOperationStrongLinkCreateRequestAttributes =
 
 /** The JSON:API type for RUM operation strong link resources. */
 export type RUMOperationStrongLinkType = "strong_links";
-export const RUMOperationStrongLinkType = /*@__PURE__*/ S.String;
+export const RUMOperationStrongLinkType = S.String;
 
 /** The data object for creating a RUM operation strong link. */
 export interface RUMOperationStrongLinkCreateRequestData {
@@ -51676,7 +51536,7 @@ export const PlaylistDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Rum replay playlist resource type. */
 export type PlaylistDataType = "rum_replay_playlist";
-export const PlaylistDataType = /*@__PURE__*/ S.String;
+export const PlaylistDataType = S.String;
 
 /** Data object representing a RUM replay playlist, including its identifier, type, and attributes. */
 export interface PlaylistData {
@@ -51740,7 +51600,7 @@ export const WatchDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Rum replay watch resource type. */
 export type WatchDataType = "rum_replay_watch";
-export const WatchDataType = /*@__PURE__*/ S.String;
+export const WatchDataType = S.String;
 
 /** Data object representing a session watch record, including its identifier, type, and attributes. */
 export interface WatchData {
@@ -51806,8 +51666,7 @@ export const SampleLogGenerationSubscriptionCreateAttributes =
 /** The type of the resource. The value should always be `subscription_requests`. */
 export type SampleLogGenerationSubscriptionRequestType =
   "subscription_requests";
-export const SampleLogGenerationSubscriptionRequestType =
-  /*@__PURE__*/ S.String;
+export const SampleLogGenerationSubscriptionRequestType = S.String;
 
 /** The subscription request body. */
 export interface SampleLogGenerationSubscriptionCreateData {
@@ -51887,7 +51746,7 @@ export const SensitiveDataScannerFilter = /*@__PURE__*/ S.suspend(() =>
 
 /** Datadog product onto which Sensitive Data Scanner can be activated. */
 export type SensitiveDataScannerProduct = "logs" | "rum" | "events" | "apm";
-export const SensitiveDataScannerProduct = /*@__PURE__*/ S.String;
+export const SensitiveDataScannerProduct = S.String;
 
 /** List of products the scanning group applies. */
 export type SensitiveDataScannerGroupAttributesProductListList = Array<
@@ -51953,7 +51812,7 @@ export const SensitiveDataScannerGroupAttributes = /*@__PURE__*/ S.suspend(() =>
 /** Sensitive Data Scanner configuration type. */
 export type SensitiveDataScannerConfigurationType =
   "sensitive_data_scanner_configuration";
-export const SensitiveDataScannerConfigurationType = /*@__PURE__*/ S.String;
+export const SensitiveDataScannerConfigurationType = S.String;
 
 /** A Sensitive Data Scanner configuration. */
 export interface SensitiveDataScannerConfiguration {
@@ -51985,7 +51844,7 @@ export const SensitiveDataScannerConfigurationData = /*@__PURE__*/ S.suspend(
 
 /** Sensitive Data Scanner rule type. */
 export type SensitiveDataScannerRuleType = "sensitive_data_scanner_rule";
-export const SensitiveDataScannerRuleType = /*@__PURE__*/ S.String;
+export const SensitiveDataScannerRuleType = S.String;
 
 /** Rule item included in the group. */
 export interface SensitiveDataScannerRule {
@@ -52039,7 +51898,7 @@ export const SensitiveDataScannerGroupRelationships = /*@__PURE__*/ S.suspend(
 
 /** Sensitive Data Scanner group type. */
 export type SensitiveDataScannerGroupType = "sensitive_data_scanner_group";
-export const SensitiveDataScannerGroupType = /*@__PURE__*/ S.String;
+export const SensitiveDataScannerGroupType = S.String;
 
 /** Data related to the creation of a group. */
 export interface SensitiveDataScannerGroupCreate {
@@ -52219,7 +52078,7 @@ export type SensitiveDataScannerTextReplacementType =
   | "replacement_string"
   | "partial_replacement_from_beginning"
   | "partial_replacement_from_end";
-export const SensitiveDataScannerTextReplacementType = /*@__PURE__*/ S.String;
+export const SensitiveDataScannerTextReplacementType = S.String;
 
 /** Object describing how the scanned event will be replaced. */
 export interface SensitiveDataScannerTextReplacement {
@@ -52316,7 +52175,7 @@ export const SensitiveDataScannerGroupData = /*@__PURE__*/ S.suspend(() =>
 /** Sensitive Data Scanner standard pattern type. */
 export type SensitiveDataScannerStandardPatternType =
   "sensitive_data_scanner_standard_pattern";
-export const SensitiveDataScannerStandardPatternType = /*@__PURE__*/ S.String;
+export const SensitiveDataScannerStandardPatternType = S.String;
 
 /** Data containing the standard pattern id. */
 export interface SensitiveDataScannerStandardPattern {
@@ -52455,7 +52314,7 @@ export const ResolveVulnerableSymbolsRequestDataAttributes =
 /** The type identifier for requests to resolve vulnerable symbols. */
 export type ResolveVulnerableSymbolsRequestDataType =
   "resolve-vulnerable-symbols-request";
-export const ResolveVulnerableSymbolsRequestDataType = /*@__PURE__*/ S.String;
+export const ResolveVulnerableSymbolsRequestDataType = S.String;
 
 /** The data object in a request to resolve vulnerable symbols, containing the package PURLs and request type. */
 export interface ResolveVulnerableSymbolsRequestData {
@@ -52594,7 +52453,7 @@ export const ResolveVulnerableSymbolsResponseDataAttributes =
 /** The type identifier for responses containing resolved vulnerable symbols. */
 export type ResolveVulnerableSymbolsResponseDataType =
   "resolve-vulnerable-symbols-response";
-export const ResolveVulnerableSymbolsResponseDataType = /*@__PURE__*/ S.String;
+export const ResolveVulnerableSymbolsResponseDataType = S.String;
 
 /** The data object in a response for resolving vulnerable symbols, containing the result attributes and response type. */
 export interface ResolveVulnerableSymbolsResponseData {
@@ -53082,7 +52941,7 @@ export const ScaRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type identifier for SCA dependency analysis requests. */
 export type ScaRequestDataType = "scarequests";
-export const ScaRequestDataType = /*@__PURE__*/ S.String;
+export const ScaRequestDataType = S.String;
 
 /** The data object in an SCA request, containing the dependency graph attributes and request type. */
 export interface ScaRequestData {
@@ -53197,7 +53056,7 @@ export const McpScanRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type identifier for MCP SCA scan requests. */
 export type McpScanRequestDataType = "mcpscanrequest";
-export const McpScanRequestDataType = /*@__PURE__*/ S.String;
+export const McpScanRequestDataType = S.String;
 
 /** The data object in an MCP SCA scan request, containing the scan attributes and request type. */
 export interface McpScanRequestData {
@@ -53248,7 +53107,7 @@ export const CreateCampaignRequestAttributesRuleIdsList = /*@__PURE__*/ S.Array(
 
 /** The status of the campaign. */
 export type CampaignStatus = "in_progress" | "not_started" | "completed";
-export const CampaignStatus = /*@__PURE__*/ S.String;
+export const CampaignStatus = S.String;
 
 /** Attributes for creating a new campaign. */
 export interface CreateCampaignRequestAttributes {
@@ -53291,7 +53150,7 @@ export const CreateCampaignRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for campaigns. */
 export type CampaignType = "campaign";
-export const CampaignType = /*@__PURE__*/ S.String;
+export const CampaignType = S.String;
 
 /** Data for creating a new campaign. */
 export interface CreateCampaignRequestData {
@@ -53424,7 +53283,7 @@ export const RuleAttributesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for scorecard rules. */
 export type RuleType = "rule";
-export const RuleType = /*@__PURE__*/ S.String;
+export const RuleType = S.String;
 
 /** Scorecard create rule request data. */
 export interface CreateRuleRequestData {
@@ -53495,7 +53354,7 @@ export const RuleAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for scorecard. */
 export type ScorecardType = "scorecard";
-export const ScorecardType = /*@__PURE__*/ S.String;
+export const ScorecardType = S.String;
 
 /** Rule relationship data. */
 export interface RelationshipToRuleDataObject {
@@ -53592,7 +53451,7 @@ export const SecurityFilterCreateAttributesExclusionFiltersList =
 
 /** The filtered data type. */
 export type SecurityFilterFilteredDataType = "logs";
-export const SecurityFilterFilteredDataType = /*@__PURE__*/ S.String;
+export const SecurityFilterFilteredDataType = S.String;
 
 /** Object containing the attributes of the security filter to be created. */
 export interface SecurityFilterCreateAttributes {
@@ -53620,7 +53479,7 @@ export const SecurityFilterCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value should always be `security_filters`. */
 export type SecurityFilterType = "security_filters";
-export const SecurityFilterType = /*@__PURE__*/ S.String;
+export const SecurityFilterType = S.String;
 
 /** Object for a single security filter. */
 export interface SecurityFilterCreateData {
@@ -53758,7 +53617,7 @@ export type DueDateSeverity =
   | "info"
   | "none"
   | "unknown";
-export const DueDateSeverity = /*@__PURE__*/ S.String;
+export const DueDateSeverity = S.String;
 
 /** A mapping of a severity level to the number of days until a finding is due. */
 export interface DueDatePerSeverityItem {
@@ -53783,7 +53642,7 @@ export const DueDatePerSeverityList = /*@__PURE__*/ S.Array(
 
 /** The reference point from which the due date is calculated. When `fix_available` is selected but not applicable to the finding type, `first_seen` is used instead. */
 export type DueDateFrom = "first_seen" | "fix_available";
-export const DueDateFrom = /*@__PURE__*/ S.String;
+export const DueDateFrom = S.String;
 
 /** The action to take when the due date rule matches a finding. */
 export interface DueDateRuleAction {
@@ -53815,7 +53674,7 @@ export type SecurityFindingType =
   | "secret"
   | "static_code_vulnerability"
   | "workload_activity";
-export const SecurityFindingType = /*@__PURE__*/ S.String;
+export const SecurityFindingType = S.String;
 
 /** The list of security finding types that the automation rule applies to. */
 export type SecurityFindingTypes = Array<SecurityFindingType | (string & {})>;
@@ -53860,7 +53719,7 @@ export const DueDateRuleAttributesCreate = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for due date rules. */
 export type DueDateRuleType = "due_date_rules";
-export const DueDateRuleType = /*@__PURE__*/ S.String;
+export const DueDateRuleType = S.String;
 
 /** The data object for a due date rule create or update request. */
 export interface DueDateRuleDataCreate {
@@ -53896,7 +53755,7 @@ export const CreateSecurityFindingsAutomationDueDateRuleRequest =
 
 /** Whether the actor is a user or the Datadog system. */
 export type AutomationRuleActorType = "user" | "system";
-export const AutomationRuleActorType = /*@__PURE__*/ S.String;
+export const AutomationRuleActorType = S.String;
 
 /** The user or Datadog system who created the rule. */
 export interface AutomationRuleCreatedBy {
@@ -53987,7 +53846,7 @@ export type MuteReason =
   | "other"
   | "pending_fix"
   | "risk_accepted";
-export const MuteReason = /*@__PURE__*/ S.String;
+export const MuteReason = S.String;
 
 /** The action to take when the mute rule matches a finding. */
 export interface MuteRuleAction {
@@ -54027,7 +53886,7 @@ export const MuteRuleAttributesCreate = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for mute rules. */
 export type MuteRuleType = "mute_rules";
-export const MuteRuleType = /*@__PURE__*/ S.String;
+export const MuteRuleType = S.String;
 
 /** The data object for a mute rule create or update request. */
 export interface MuteRuleDataCreate {
@@ -54127,11 +53986,11 @@ export type SeverityModifierSeverity =
   | "medium"
   | "high"
   | "critical";
-export const SeverityModifierSeverity = /*@__PURE__*/ S.String;
+export const SeverityModifierSeverity = S.String;
 
 /** The type of a severity modifier rule action that sets a fixed severity. */
 export type SeverityModifierRuleSetActionType = "set";
-export const SeverityModifierRuleSetActionType = /*@__PURE__*/ S.String;
+export const SeverityModifierRuleSetActionType = S.String;
 
 /** Sets matched findings to a fixed severity. */
 export interface SeverityModifierRuleSetAction {
@@ -54152,11 +54011,11 @@ export const SeverityModifierRuleSetAction = /*@__PURE__*/ S.suspend(() =>
 
 /** The direction in which to shift the severity of matched findings by one rank. */
 export type SeverityModifierSeverityDelta = "up_one" | "down_one";
-export const SeverityModifierSeverityDelta = /*@__PURE__*/ S.String;
+export const SeverityModifierSeverityDelta = S.String;
 
 /** The type of a severity modifier rule action that shifts the severity by one rank. */
 export type SeverityModifierRuleShiftActionType = "shift";
-export const SeverityModifierRuleShiftActionType = /*@__PURE__*/ S.String;
+export const SeverityModifierRuleShiftActionType = S.String;
 
 /** Shifts matched findings up or down by one severity rank. */
 export interface SeverityModifierRuleShiftAction {
@@ -54180,7 +54039,7 @@ export type SeverityModifierRuleAction =
   | SeverityModifierRuleSetAction
   | SeverityModifierRuleShiftAction;
 export const SeverityModifierRuleAction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SeverityModifierRuleAction>;
+  S.Unknown as any as S.Schema<SeverityModifierRuleAction>;
 
 /** Attributes for creating or updating a severity modifier rule. */
 export interface SeverityModifierRuleAttributesCreate {
@@ -54205,7 +54064,7 @@ export const SeverityModifierRuleAttributesCreate = /*@__PURE__*/ S.suspend(
 
 /** The JSON:API type for severity modifier rules. */
 export type SeverityModifierRuleType = "severity_modifier_rules";
-export const SeverityModifierRuleType = /*@__PURE__*/ S.String;
+export const SeverityModifierRuleType = S.String;
 
 /** The data object for a severity modifier rule create or update request. */
 export interface SeverityModifierRuleDataCreate {
@@ -54301,7 +54160,7 @@ export const SeverityModifierRuleResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The ticketing system to create tickets in. */
 export type TicketCreationTarget = "jira" | "case_management";
-export const TicketCreationTarget = /*@__PURE__*/ S.String;
+export const TicketCreationTarget = S.String;
 
 /** The action to take when the ticket creation rule matches a finding. */
 export interface TicketCreationRuleAction {
@@ -54349,7 +54208,7 @@ export const TicketCreationRuleAttributesCreate = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for ticket creation rules. */
 export type TicketCreationRuleType = "ticket_creation_rules";
-export const TicketCreationRuleType = /*@__PURE__*/ S.String;
+export const TicketCreationRuleType = S.String;
 
 /** The data object for a ticket creation rule create or update request. */
 export interface TicketCreationRuleDataCreate {
@@ -54480,7 +54339,7 @@ export type SecurityMonitoringCriticalAssetSeverity =
   | "increase"
   | "decrease"
   | "no-op";
-export const SecurityMonitoringCriticalAssetSeverity = /*@__PURE__*/ S.String;
+export const SecurityMonitoringCriticalAssetSeverity = S.String;
 
 /** List of tags associated with the critical asset. */
 export type SecurityMonitoringCriticalAssetCreateAttributesTagsList =
@@ -54520,7 +54379,7 @@ export const SecurityMonitoringCriticalAssetCreateAttributes =
 
 /** The type of the resource. The value should always be `critical_assets`. */
 export type SecurityMonitoringCriticalAssetType = "critical_assets";
-export const SecurityMonitoringCriticalAssetType = /*@__PURE__*/ S.String;
+export const SecurityMonitoringCriticalAssetType = S.String;
 
 /** Object for a single critical asset. */
 export interface SecurityMonitoringCriticalAssetCreateData {
@@ -54773,7 +54632,7 @@ export const SecurityMonitoringDatasetAttributesRequest =
 
 /** The type of resource for a dataset create request. */
 export type SecurityMonitoringDatasetCreateType = "datasetCreate";
-export const SecurityMonitoringDatasetCreateType = /*@__PURE__*/ S.String;
+export const SecurityMonitoringDatasetCreateType = S.String;
 
 /** The data wrapper of a dataset create request. */
 export interface SecurityMonitoringDatasetCreateData {
@@ -54809,7 +54668,7 @@ export const CreateSecurityMonitoringDatasetRequest = /*@__PURE__*/ S.suspend(
 
 /** The type of resource for a dataset response. */
 export type SecurityMonitoringDatasetType = "dataset";
-export const SecurityMonitoringDatasetType = /*@__PURE__*/ S.String;
+export const SecurityMonitoringDatasetType = S.String;
 
 /** The data wrapper of a dataset create response. */
 export interface SecurityMonitoringDatasetCreateResponseData {
@@ -54843,8 +54702,7 @@ export const SecurityMonitoringDatasetCreateResponse = /*@__PURE__*/ S.suspend(
 /** The source type for a Google Workspace entity context sync. */
 export type SecurityMonitoringIntegrationTypeGoogleWorkspace =
   "GOOGLE_WORKSPACE";
-export const SecurityMonitoringIntegrationTypeGoogleWorkspace =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringIntegrationTypeGoogleWorkspace = S.String;
 
 /** The Google Cloud service account JSON used to authenticate against the Google Workspace Admin SDK. Additional keys beyond those documented are preserved. */
 export interface SecurityMonitoringIntegrationConfigGoogleWorkspaceServiceAccount {
@@ -54913,7 +54771,7 @@ export const SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes 
 
 /** The source type for an Okta entity context sync. */
 export type SecurityMonitoringIntegrationTypeOkta = "OKTA";
-export const SecurityMonitoringIntegrationTypeOkta = /*@__PURE__*/ S.String;
+export const SecurityMonitoringIntegrationTypeOkta = S.String;
 
 /** Credentials for an Okta entity context sync. */
 export interface SecurityMonitoringIntegrationConfigOktaSecrets {
@@ -54954,7 +54812,7 @@ export const SecurityMonitoringOktaIntegrationConfigCreateAttributes =
 
 /** The source type for an Entra ID entity context sync. */
 export type SecurityMonitoringIntegrationTypeEntraId = "ENTRA_ID";
-export const SecurityMonitoringIntegrationTypeEntraId = /*@__PURE__*/ S.String;
+export const SecurityMonitoringIntegrationTypeEntraId = S.String;
 
 /** The attributes of an Entra ID entity context sync configuration to create. */
 export interface SecurityMonitoringEntraIdIntegrationConfigCreateAttributes {
@@ -54979,8 +54837,7 @@ export const SecurityMonitoringEntraIdIntegrationConfigCreateAttributes =
 
 /** The source type for a CrowdStrike entity context sync. */
 export type SecurityMonitoringIntegrationTypeCrowdStrike = "CROWDSTRIKE";
-export const SecurityMonitoringIntegrationTypeCrowdStrike =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringIntegrationTypeCrowdStrike = S.String;
 
 /** Credentials for a CrowdStrike entity context sync. */
 export interface SecurityMonitoringIntegrationConfigCrowdStrikeSecrets {
@@ -55025,8 +54882,7 @@ export const SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes =
 
 /** The source type for a SentinelOne entity context sync. */
 export type SecurityMonitoringIntegrationTypeSentinelOne = "SENTINELONE";
-export const SecurityMonitoringIntegrationTypeSentinelOne =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringIntegrationTypeSentinelOne = S.String;
 
 /** Credentials for a SentinelOne entity context sync. */
 export interface SecurityMonitoringIntegrationConfigSentinelOneSecrets {
@@ -55074,7 +54930,7 @@ export type SecurityMonitoringIntegrationConfigCreateAttributes =
   | SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes
   | SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes;
 export const SecurityMonitoringIntegrationConfigCreateAttributes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityMonitoringIntegrationConfigCreateAttributes>;
+  S.Unknown as any as S.Schema<SecurityMonitoringIntegrationConfigCreateAttributes>;
 
 /** The entity context sync configuration to create. */
 export interface SecurityMonitoringIntegrationConfigCreateData {
@@ -55415,7 +55271,7 @@ export const CloudConfigurationRuleCreatePayloadTagsList =
 
 /** The rule type. */
 export type CloudConfigurationRuleType = "cloud_configuration";
-export const CloudConfigurationRuleType = /*@__PURE__*/ S.String;
+export const CloudConfigurationRuleType = S.String;
 
 /** Create a new cloud configuration rule. */
 export interface CloudConfigurationRuleCreatePayload {
@@ -55457,7 +55313,7 @@ export type SecurityMonitoringRuleCreatePayload =
   | SecurityMonitoringSignalRuleCreatePayload
   | CloudConfigurationRuleCreatePayload;
 export const SecurityMonitoringRuleCreatePayload =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityMonitoringRuleCreatePayload>;
+  S.Unknown as any as S.Schema<SecurityMonitoringRuleCreatePayload>;
 
 export interface CreateSecurityMonitoringRuleRequest {
   body: SecurityMonitoringRuleCreatePayload;
@@ -55630,7 +55486,7 @@ export type SecurityMonitoringRuleTypeRead =
   | "application_security"
   | "api_security"
   | "workload_activity";
-export const SecurityMonitoringRuleTypeRead = /*@__PURE__*/ S.String;
+export const SecurityMonitoringRuleTypeRead = S.String;
 
 /** Rule. */
 export interface SecurityMonitoringStandardRuleResponse {
@@ -55917,7 +55773,7 @@ export type SecurityMonitoringRuleResponse =
   | SecurityMonitoringStandardRuleResponse
   | SecurityMonitoringSignalRuleResponse;
 export const SecurityMonitoringRuleResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityMonitoringRuleResponse>;
+  S.Unknown as any as S.Schema<SecurityMonitoringRuleResponse>;
 
 export type CreateSecurityMonitoringRuleResponse =
   SecurityMonitoringRuleResponse;
@@ -55975,7 +55831,7 @@ export const SecurityMonitoringSuppressionCreateAttributes =
 
 /** The type of the resource. The value should always be `suppressions`. */
 export type SecurityMonitoringSuppressionType = "suppressions";
-export const SecurityMonitoringSuppressionType = /*@__PURE__*/ S.String;
+export const SecurityMonitoringSuppressionType = S.String;
 
 /** Object for a single suppression rule. */
 export interface SecurityMonitoringSuppressionCreateData {
@@ -56211,7 +56067,7 @@ export const ServiceAccountAccessTokenCreateAttributes =
 
 /** Service access tokens resource type. */
 export type ServiceAccessTokensType = "service_access_tokens";
-export const ServiceAccessTokensType = /*@__PURE__*/ S.String;
+export const ServiceAccessTokensType = S.String;
 
 /** Object used to create a service account access token. */
 export interface ServiceAccountAccessTokenCreateData {
@@ -56284,7 +56140,7 @@ export const FullServiceAccessTokenAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Service account resource type. */
 export type ServiceAccountType = "service_account";
-export const ServiceAccountType = /*@__PURE__*/ S.String;
+export const ServiceAccountType = S.String;
 
 /** Relationship to service account object. */
 export interface RelationshipToServiceAccountData {
@@ -56423,7 +56279,7 @@ export const ServiceNowTemplateCreateRequestAttributes =
 
 /** Type identifier for ServiceNow template resources */
 export type ServiceNowTemplateType = "servicenow_templates";
-export const ServiceNowTemplateType = /*@__PURE__*/ S.String;
+export const ServiceNowTemplateType = S.String;
 
 /** Data object for creating a ServiceNow template */
 export interface ServiceNowTemplateCreateRequestData {
@@ -56609,7 +56465,7 @@ export const CreateServiceNowTicketsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The routing mode for the notification rule. `manual` sends notifications to the configured targets. */
 export type NotificationRuleRoutingMode = "manual";
-export const NotificationRuleRoutingMode = /*@__PURE__*/ S.String;
+export const NotificationRuleRoutingMode = S.String;
 
 /** Routing configuration for the notification rule. */
 export interface NotificationRuleRouting {
@@ -56643,7 +56499,7 @@ export type RuleTypesItems =
   | "sast_vulnerability"
   | "secret_vulnerability"
   | "workload_activity";
-export const RuleTypesItems = /*@__PURE__*/ S.String;
+export const RuleTypesItems = S.String;
 
 /** Security rule types used as filters in security rules. */
 export type RuleTypes = Array<RuleTypesItems | (string & {})>;
@@ -56659,7 +56515,7 @@ export type RuleSeverity =
   | "low"
   | "unknown"
   | "info";
-export const RuleSeverity = /*@__PURE__*/ S.String;
+export const RuleSeverity = S.String;
 
 /** The security rules severities to consider. */
 export type SelectorsSeveritiesList = Array<RuleSeverity | (string & {})>;
@@ -56669,7 +56525,7 @@ export const SelectorsSeveritiesList = /*@__PURE__*/ S.Array(
 
 /** The type of security issues on which the rule applies. Notification rules based on security signals need to use the trigger source "security_signals", while notification rules based on security vulnerabilities need to use the trigger source "security_findings". */
 export type TriggerSource = "security_findings" | "security_signals";
-export const TriggerSource = /*@__PURE__*/ S.String;
+export const TriggerSource = S.String;
 
 /** Selectors are used to filter security issues for which notifications should be generated. Users can specify rule severities, rule types, a query to filter security issues on tags and attributes, and the trigger source. Only the trigger_source field is required. */
 export interface Selectors {
@@ -56719,7 +56575,7 @@ export const CreateNotificationRuleParametersDataAttributes =
 
 /** The rule type associated to notification rules. */
 export type NotificationRulesType = "notification_rules";
-export const NotificationRulesType = /*@__PURE__*/ S.String;
+export const NotificationRulesType = S.String;
 
 /** Data of the notification rule create request: the rule type, and the rule attributes. All fields are required. */
 export interface CreateNotificationRuleParametersData {
@@ -56862,7 +56718,7 @@ export type CreateSnapshotTimeseriesLegendType =
   | "compact"
   | "expanded"
   | "none";
-export const CreateSnapshotTimeseriesLegendType = /*@__PURE__*/ S.String;
+export const CreateSnapshotTimeseriesLegendType = S.String;
 
 /** Additional configuration options for snapshot creation. */
 export interface CreateSnapshotAdditionalConfig {
@@ -56883,7 +56739,7 @@ export const CreateSnapshotAdditionalConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** The time-to-live for the snapshot. This value corresponds to storage lifecycle policies that automatically delete the snapshot after the specified period. */
 export type CreateSnapshotTTL = "30d" | "60d" | "90d" | "1y" | "2y" | "inf";
-export const CreateSnapshotTTL = /*@__PURE__*/ S.String;
+export const CreateSnapshotTTL = S.String;
 
 /** The widget definition to render as a snapshot. Must include a valid `type` field and non-empty `requests` array. */
 export type CreateSnapshotDataAttributesRequestWidgetDefinitionMap = {
@@ -56929,7 +56785,7 @@ export const CreateSnapshotDataAttributesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type identifier for snapshot creation resources. */
 export type CreateSnapshotType = "create_snapshot";
-export const CreateSnapshotType = /*@__PURE__*/ S.String;
+export const CreateSnapshotType = S.String;
 
 /** Data envelope for snapshot creation. */
 export interface CreateSnapshotDataRequest {
@@ -57001,7 +56857,7 @@ export const CreateSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of aggregation to use. */
 export type SpansMetricComputeAggregationType = "count" | "distribution";
-export const SpansMetricComputeAggregationType = /*@__PURE__*/ S.String;
+export const SpansMetricComputeAggregationType = S.String;
 
 /** The compute rule to compute the span-based metric. */
 export interface SpansMetricCompute {
@@ -57074,7 +56930,7 @@ export const SpansMetricCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of resource. The value should always be spans_metrics. */
 export type SpansMetricType = "spans_metrics";
-export const SpansMetricType = /*@__PURE__*/ S.String;
+export const SpansMetricType = S.String;
 
 /** The new span-based metric properties. */
 export interface SpansMetricCreateData {
@@ -57215,7 +57071,7 @@ export const GetAstRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Get AST request resource type. */
 export type GetAstRequestDataType = "get_ast_request";
-export const GetAstRequestDataType = /*@__PURE__*/ S.String;
+export const GetAstRequestDataType = S.String;
 
 /** The primary data object in the get-AST request. */
 export interface GetAstRequestData {
@@ -57275,7 +57131,7 @@ export const GetAstResponseDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Get AST response resource type. */
 export type GetAstResponseDataType = "get_ast_response";
-export const GetAstResponseDataType = /*@__PURE__*/ S.String;
+export const GetAstResponseDataType = S.String;
 
 /** The primary data object in the get-AST response. */
 export interface GetAstResponseData {
@@ -57377,7 +57233,7 @@ export const AnalysisRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Analysis request resource type. */
 export type AnalysisRequestDataType = "analysis_request";
-export const AnalysisRequestDataType = /*@__PURE__*/ S.String;
+export const AnalysisRequestDataType = S.String;
 
 /** The primary data object in the analysis request. */
 export interface AnalysisRequestData {
@@ -57444,7 +57300,7 @@ export const AnalysisPosition = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of code edit to apply when fixing a violation. */
 export type AnalysisEditType = "ADD" | "UPDATE" | "REMOVE";
-export const AnalysisEditType = /*@__PURE__*/ S.String;
+export const AnalysisEditType = S.String;
 
 /** A single edit operation within a fix suggestion for a rule violation. */
 export interface AnalysisEdit {
@@ -57576,7 +57432,7 @@ export const AnalysisResponseDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Analysis response resource type. */
 export type AnalysisResponseDataType = "server_request";
-export const AnalysisResponseDataType = /*@__PURE__*/ S.String;
+export const AnalysisResponseDataType = S.String;
 
 /** The primary data object in the analysis response. */
 export interface AnalysisResponseData {
@@ -57954,7 +57810,7 @@ export const StatuspageAccountCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Statuspage account resource type. */
 export type StatuspageAccountType = "statuspage-account";
-export const StatuspageAccountType = /*@__PURE__*/ S.String;
+export const StatuspageAccountType = S.String;
 
 /** Statuspage account data for a create request. */
 export interface StatuspageAccountCreateData {
@@ -58045,7 +57901,7 @@ export const StatuspageUrlSettingCreateAttributes = /*@__PURE__*/ S.suspend(
 
 /** Statuspage URL setting resource type. */
 export type StatuspageUrlSettingType = "statuspage-url-setting";
-export const StatuspageUrlSettingType = /*@__PURE__*/ S.String;
+export const StatuspageUrlSettingType = S.String;
 
 /** Statuspage URL setting data for a create request. */
 export interface StatuspageUrlSettingCreateData {
@@ -58237,15 +58093,15 @@ export type SyntheticsNetworkAssertionOperator =
   | "lessThanOrEqual"
   | "moreThan"
   | "moreThanOrEqual";
-export const SyntheticsNetworkAssertionOperator = /*@__PURE__*/ S.String;
+export const SyntheticsNetworkAssertionOperator = S.String;
 
 /** The associated assertion property. */
 export type SyntheticsNetworkAssertionProperty = "avg" | "max" | "min";
-export const SyntheticsNetworkAssertionProperty = /*@__PURE__*/ S.String;
+export const SyntheticsNetworkAssertionProperty = S.String;
 
 /** Type of the latency assertion. */
 export type SyntheticsNetworkAssertionLatencyType = "latency";
-export const SyntheticsNetworkAssertionLatencyType = /*@__PURE__*/ S.String;
+export const SyntheticsNetworkAssertionLatencyType = S.String;
 
 /** Network latency assertion for a Network Path test. */
 export interface SyntheticsNetworkAssertionLatency {
@@ -58268,8 +58124,7 @@ export const SyntheticsNetworkAssertionLatency = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the multi-network hop assertion. */
 export type SyntheticsNetworkAssertionMultiNetworkHopType = "multiNetworkHop";
-export const SyntheticsNetworkAssertionMultiNetworkHopType =
-  /*@__PURE__*/ S.String;
+export const SyntheticsNetworkAssertionMultiNetworkHopType = S.String;
 
 /** Multi-network hop assertion for a Network Path test. */
 export interface SyntheticsNetworkAssertionMultiNetworkHop {
@@ -58294,8 +58149,7 @@ export const SyntheticsNetworkAssertionMultiNetworkHop =
 /** Type of the packet loss percentage assertion. */
 export type SyntheticsNetworkAssertionPacketLossPercentageType =
   "packetLossPercentage";
-export const SyntheticsNetworkAssertionPacketLossPercentageType =
-  /*@__PURE__*/ S.String;
+export const SyntheticsNetworkAssertionPacketLossPercentageType = S.String;
 
 /** Packet loss percentage assertion for a Network Path test. */
 export interface SyntheticsNetworkAssertionPacketLossPercentage {
@@ -58317,7 +58171,7 @@ export const SyntheticsNetworkAssertionPacketLossPercentage =
 
 /** Type of the jitter assertion. */
 export type SyntheticsNetworkAssertionJitterType = "jitter";
-export const SyntheticsNetworkAssertionJitterType = /*@__PURE__*/ S.String;
+export const SyntheticsNetworkAssertionJitterType = S.String;
 
 /** Jitter assertion for a Network Path test. */
 export interface SyntheticsNetworkAssertionJitter {
@@ -58343,7 +58197,7 @@ export type SyntheticsNetworkAssertion =
   | SyntheticsNetworkAssertionPacketLossPercentage
   | SyntheticsNetworkAssertionJitter;
 export const SyntheticsNetworkAssertion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SyntheticsNetworkAssertion>;
+  S.Unknown as any as S.Schema<SyntheticsNetworkAssertion>;
 
 /** Array of assertions used for the test. */
 export type SyntheticsNetworkTestConfigAssertionsList =
@@ -58357,7 +58211,7 @@ export type SyntheticsNetworkTestRequestTCPMethod =
   | "prefer_sack"
   | "syn"
   | "sack";
-export const SyntheticsNetworkTestRequestTCPMethod = /*@__PURE__*/ S.String;
+export const SyntheticsNetworkTestRequestTCPMethod = S.String;
 
 /** Object describing the request for a Network Path test. */
 export interface SyntheticsNetworkTestRequest {
@@ -58426,7 +58280,7 @@ export type SyntheticsTestOptionsMonitorOptionsNotificationPresetName =
   | "show_only_snapshot"
   | "hide_handles_and_footer";
 export const SyntheticsTestOptionsMonitorOptionsNotificationPresetName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Object containing the options for a Synthetic test as a monitor (for example, renotification). */
 export interface SyntheticsTestOptionsMonitorOptions {
@@ -58554,11 +58408,11 @@ export const SyntheticsTestOptions = /*@__PURE__*/ S.suspend(() =>
 
 /** Define whether you want to start (`live`) or pause (`paused`) a Synthetic test. */
 export type SyntheticsTestPauseStatus = "live" | "paused";
-export const SyntheticsTestPauseStatus = /*@__PURE__*/ S.String;
+export const SyntheticsTestPauseStatus = S.String;
 
 /** Subtype of the Synthetic Network Path test: `tcp`, `udp`, or `icmp`. */
 export type SyntheticsNetworkTestSubType = "tcp" | "udp" | "icmp";
-export const SyntheticsNetworkTestSubType = /*@__PURE__*/ S.String;
+export const SyntheticsNetworkTestSubType = S.String;
 
 /** Array of tags attached to the test. */
 export type SyntheticsNetworkTestInputTagsList = Array<string>;
@@ -58568,7 +58422,7 @@ export const SyntheticsNetworkTestInputTagsList = /*@__PURE__*/ S.Array(
 
 /** Type of the Synthetic test, `network`. */
 export type SyntheticsNetworkTestType = "network";
-export const SyntheticsNetworkTestType = /*@__PURE__*/ S.String;
+export const SyntheticsNetworkTestType = S.String;
 
 /** Object containing details about a Network Path test. */
 export interface SyntheticsNetworkTestInput {
@@ -58685,7 +58539,7 @@ export const SyntheticsNetworkTest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of response, `network_test`. */
 export type SyntheticsNetworkTestResponseType = "network_test";
-export const SyntheticsNetworkTestResponseType = /*@__PURE__*/ S.String;
+export const SyntheticsNetworkTestResponseType = S.String;
 
 /** Network Path test response data. */
 export interface SyntheticsNetworkTestResponseData {
@@ -58737,7 +58591,7 @@ export const SyntheticsSuiteInputTagsList = /*@__PURE__*/ S.Array(
 
 /** Alerting criticality for each the test. */
 export type SyntheticsSuiteTestAlertingCriticality = "ignore" | "critical";
-export const SyntheticsSuiteTestAlertingCriticality = /*@__PURE__*/ S.String;
+export const SyntheticsSuiteTestAlertingCriticality = S.String;
 
 /** Object containing details about a Synthetic test included in a Synthetic suite. */
 export interface SyntheticsSuiteTest {
@@ -58762,7 +58616,7 @@ export const SyntheticsSuiteInputTestsList = /*@__PURE__*/ S.Array(
 
 /** Type of the Synthetic suite, `suite`. */
 export type SyntheticsSuiteType = "suite";
-export const SyntheticsSuiteType = /*@__PURE__*/ S.String;
+export const SyntheticsSuiteType = S.String;
 
 /** Object containing details about a Synthetic suite. */
 export interface SyntheticsSuiteInput {
@@ -58792,7 +58646,7 @@ export const SyntheticsSuiteInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Type for the Synthetics suites responses, `suites`. */
 export type SyntheticsSuiteTypes = "suites";
-export const SyntheticsSuiteTypes = /*@__PURE__*/ S.String;
+export const SyntheticsSuiteTypes = S.String;
 
 /** Data object for creating or editing a Synthetic test suite. */
 export interface SuiteCreateEditInput {
@@ -58896,7 +58750,7 @@ export const SyntheticsSuiteResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** A space aggregation for use in query. */
 export type MetricCustomSpaceAggregation = "avg" | "max" | "min" | "sum";
-export const MetricCustomSpaceAggregation = /*@__PURE__*/ S.String;
+export const MetricCustomSpaceAggregation = S.String;
 
 /** A time aggregation for use in query. */
 export type MetricCustomTimeAggregation =
@@ -58905,7 +58759,7 @@ export type MetricCustomTimeAggregation =
   | "max"
   | "min"
   | "sum";
-export const MetricCustomTimeAggregation = /*@__PURE__*/ S.String;
+export const MetricCustomTimeAggregation = S.String;
 
 /** A time and space aggregation combination for use in query. */
 export interface MetricCustomAggregation {
@@ -58933,7 +58787,7 @@ export type MetricTagConfigurationMetricTypes =
   | "count"
   | "rate"
   | "distribution";
-export const MetricTagConfigurationMetricTypes = /*@__PURE__*/ S.String;
+export const MetricTagConfigurationMetricTypes = S.String;
 
 /** A list of tag keys that will be queryable for your metric. */
 export type MetricTagConfigurationCreateAttributesTagsList = Array<string>;
@@ -58968,7 +58822,7 @@ export const MetricTagConfigurationCreateAttributes = /*@__PURE__*/ S.suspend(
 
 /** The metric tag configuration resource type. */
 export type MetricTagConfigurationType = "manage_tags";
-export const MetricTagConfigurationType = /*@__PURE__*/ S.String;
+export const MetricTagConfigurationType = S.String;
 
 /** Object for a single metric to be configure tags on. */
 export interface MetricTagConfigurationCreateData {
@@ -59043,7 +58897,7 @@ export const MetricTagConfigurationAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The metric ingested and indexed volume type. */
 export type MetricIngestedIndexedVolumeType = "metric_volumes";
-export const MetricIngestedIndexedVolumeType = /*@__PURE__*/ S.String;
+export const MetricIngestedIndexedVolumeType = S.String;
 
 /** Relationship data for a metric volume. */
 export interface MetricVolumesRelationshipData {
@@ -59248,7 +59102,7 @@ export const TagIndexingRuleCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The tag indexing rule resource type. */
 export type TagIndexingRuleType = "tag_indexing_rules";
-export const TagIndexingRuleType = /*@__PURE__*/ S.String;
+export const TagIndexingRuleType = S.String;
 
 /** Data object for creating a tag indexing rule. */
 export interface TagIndexingRuleCreateData {
@@ -59393,7 +59247,7 @@ export const TagIndexingRuleExemptionCreateAttributes = /*@__PURE__*/ S.suspend(
 
 /** The tag indexing rule exemption resource type. */
 export type TagIndexingRuleExemptionType = "tag_indexing_rule_exemptions";
-export const TagIndexingRuleExemptionType = /*@__PURE__*/ S.String;
+export const TagIndexingRuleExemptionType = S.String;
 
 /** Data object for creating a tag indexing rule exemption. */
 export interface TagIndexingRuleExemptionCreateData {
@@ -59486,7 +59340,7 @@ export type DataAttributesRulesItemsIfTagExists =
   | "append"
   | "do_not_apply"
   | "replace";
-export const DataAttributesRulesItemsIfTagExists = /*@__PURE__*/ S.String;
+export const DataAttributesRulesItemsIfTagExists = S.String;
 
 /** The `mapping` `source_keys`. */
 export type DataAttributesRulesItemsMappingSourceKeysList = Array<string>;
@@ -59685,7 +59539,7 @@ export const CreateRulesetRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Create ruleset resource type. */
 export type CreateRulesetRequestDataType = "create_ruleset";
-export const CreateRulesetRequestDataType = /*@__PURE__*/ S.String;
+export const CreateRulesetRequestDataType = S.String;
 
 /** The definition of `CreateRulesetRequestData` object. */
 export interface CreateRulesetRequestData {
@@ -59903,7 +59757,7 @@ export const RulesetRespDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Ruleset resource type. */
 export type RulesetRespDataType = "ruleset";
-export const RulesetRespDataType = /*@__PURE__*/ S.String;
+export const RulesetRespDataType = S.String;
 
 /** The definition of `RulesetRespData` object. */
 export interface RulesetRespData {
@@ -59934,11 +59788,11 @@ export const RulesetResp = /*@__PURE__*/ S.suspend(() =>
 
 /** The rule type allowed when creating a tag rule. Only `surfacing` is accepted at creation time. */
 export type TagRuleCreateType = "surfacing";
-export const TagRuleCreateType = /*@__PURE__*/ S.String;
+export const TagRuleCreateType = S.String;
 
 /** The telemetry source that a tag rule applies to. */
 export type TagRuleSource = "logs" | "spans" | "metrics" | "rum" | "feed";
-export const TagRuleSource = /*@__PURE__*/ S.String;
+export const TagRuleSource = S.String;
 
 /** One or more patterns that valid values for the tag key must match. At least one pattern is required. */
 export type TagRuleCreateAttributesTagValuePatternsList = Array<string>;
@@ -59984,7 +59838,7 @@ export const TagRuleCreateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for a tag rule. */
 export type TagRuleResourceType = "tag_rule";
-export const TagRuleResourceType = /*@__PURE__*/ S.String;
+export const TagRuleResourceType = S.String;
 
 /** Data object for creating a tag rule. */
 export interface TagRuleCreateData {
@@ -60015,7 +59869,7 @@ export const CreateTagRuleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** How the rule is enforced. `blocking` rejects telemetry that violates the rule. `surfacing` only highlights non-compliant telemetry without blocking it. */
 export type TagRuleType = "blocking" | "surfacing";
-export const TagRuleType = /*@__PURE__*/ S.String;
+export const TagRuleType = S.String;
 
 /** The patterns that valid values for the tag key must match. */
 export type TagRuleAttributesTagValuePatternsList = Array<string>;
@@ -60081,7 +59935,7 @@ export const TagRuleAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for a tag rule compliance score. */
 export type TagRuleScoreResourceType = "tag_rule_score";
-export const TagRuleScoreResourceType = /*@__PURE__*/ S.String;
+export const TagRuleScoreResourceType = S.String;
 
 /** Identifier of the related compliance score resource. */
 export interface TagRuleScoreRelationshipData {
@@ -60339,7 +60193,7 @@ export const TeamAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** User team permission type */
 export type UserTeamPermissionType = "user_team_permissions";
-export const UserTeamPermissionType = /*@__PURE__*/ S.String;
+export const UserTeamPermissionType = S.String;
 
 /** Related user team permission data */
 export interface RelationshipToUserTeamPermissionData {
@@ -60430,7 +60284,7 @@ export const TeamConnectionAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** External team resource type. */
 export type ConnectedTeamRefDataType = "github_team";
-export const ConnectedTeamRefDataType = /*@__PURE__*/ S.String;
+export const ConnectedTeamRefDataType = S.String;
 
 /** Reference to connected external team. */
 export interface ConnectedTeamRefData {
@@ -60461,7 +60315,7 @@ export const ConnectedTeamRef = /*@__PURE__*/ S.suspend(() =>
 
 /** Datadog team resource type. */
 export type TeamRefDataType = "team";
-export const TeamRefDataType = /*@__PURE__*/ S.String;
+export const TeamRefDataType = S.String;
 
 /** Reference to a Datadog team. */
 export interface TeamRefData {
@@ -60502,7 +60356,7 @@ export const TeamConnectionRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Team connection resource type. */
 export type TeamConnectionType = "team_connection";
-export const TeamConnectionType = /*@__PURE__*/ S.String;
+export const TeamConnectionType = S.String;
 
 /** Data for creating a team connection. */
 export interface TeamConnectionCreateData {
@@ -60725,7 +60579,7 @@ export const TeamLinkResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The user's role within the team */
 export type UserTeamRole = "admin";
-export const UserTeamRole = /*@__PURE__*/ S.String;
+export const UserTeamRole = S.String;
 
 /** Team membership attributes */
 export interface UserTeamAttributesInput {
@@ -60741,7 +60595,7 @@ export const UserTeamAttributesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** User team team type */
 export type UserTeamTeamType = "team";
-export const UserTeamTeamType = /*@__PURE__*/ S.String;
+export const UserTeamTeamType = S.String;
 
 /** The team associated with the membership */
 export interface RelationshipToUserTeamTeamData {
@@ -60772,7 +60626,7 @@ export const RelationshipToUserTeamTeam = /*@__PURE__*/ S.suspend(() =>
 
 /** User team user type */
 export type UserTeamUserType = "users";
-export const UserTeamUserType = /*@__PURE__*/ S.String;
+export const UserTeamUserType = S.String;
 
 /** A user's relationship with a team */
 export interface RelationshipToUserTeamUserData {
@@ -60817,7 +60671,7 @@ export const UserTeamRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Team membership type */
 export type UserTeamType = "team_memberships";
-export const UserTeamType = /*@__PURE__*/ S.String;
+export const UserTeamType = S.String;
 
 /** A user's relationship with a team */
 export interface UserTeamCreateInput {
@@ -60892,8 +60746,7 @@ export const UserTeam = /*@__PURE__*/ S.suspend(() =>
 
 /** Included resources related to the team membership */
 export type UserTeamIncluded = User | Team;
-export const UserTeamIncluded =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserTeamIncluded>;
+export const UserTeamIncluded = S.Unknown as any as S.Schema<UserTeamIncluded>;
 
 /** Resources related to the team memberships */
 export type UserTeamResponseIncludedList = Array<UserTeamIncluded>;
@@ -60993,7 +60846,7 @@ export const TeamNotificationRuleAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Team notification rule type */
 export type TeamNotificationRuleType = "team_notification_rules";
-export const TeamNotificationRuleType = /*@__PURE__*/ S.String;
+export const TeamNotificationRuleType = S.String;
 
 /** Team notification rule */
 export interface TeamNotificationRule {
@@ -61046,7 +60899,7 @@ export const TeamNotificationRuleResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** How the `view_name` is matched against RUM view names. */
 export type TeamsOwnershipMatchType = "exact" | "prefix";
-export const TeamsOwnershipMatchType = /*@__PURE__*/ S.String;
+export const TeamsOwnershipMatchType = S.String;
 
 /** The attributes of the teams ownership mapping to create. */
 export interface TeamsOwnershipMappingCreateDataAttributes {
@@ -61075,7 +60928,7 @@ export const TeamsOwnershipMappingCreateDataAttributes =
 
 /** The type of the resource. The value should always be teams_ownership_mappings. */
 export type TeamsOwnershipMappingType = "teams_ownership_mappings";
-export const TeamsOwnershipMappingType = /*@__PURE__*/ S.String;
+export const TeamsOwnershipMappingType = S.String;
 
 /** The JSON:API data envelope for a teams ownership mapping create request. */
 export interface TeamsOwnershipMappingCreateData {
@@ -61213,7 +61066,7 @@ export const TeamsOwnershipMappingBatchOperationData = /*@__PURE__*/ S.suspend(
 
 /** Whether this operation adds a new mapping or removes an existing one. */
 export type TeamsOwnershipMappingBatchOperationOp = "add" | "remove";
-export const TeamsOwnershipMappingBatchOperationOp = /*@__PURE__*/ S.String;
+export const TeamsOwnershipMappingBatchOperationOp = S.String;
 
 /** Identifies an existing mapping to remove. Required when `op` is `remove`. */
 export interface TeamsOwnershipMappingBatchOperationRef {
@@ -61584,7 +61437,7 @@ export const CreateTenancyConfigDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** OCI tenancy resource type. */
 export type UpdateTenancyConfigDataType = "oci_tenancy";
-export const UpdateTenancyConfigDataType = /*@__PURE__*/ S.String;
+export const UpdateTenancyConfigDataType = S.String;
 
 /** The data object for creating a new OCI tenancy integration configuration, including the tenancy ID, type, and configuration attributes. */
 export interface CreateTenancyConfigData {
@@ -61845,7 +61698,7 @@ export const MicrosoftTeamsTenantBasedHandleRequestAttributes =
 
 /** Specifies the tenant-based handle resource type. */
 export type MicrosoftTeamsTenantBasedHandleType = "tenant-based-handle";
-export const MicrosoftTeamsTenantBasedHandleType = /*@__PURE__*/ S.String;
+export const MicrosoftTeamsTenantBasedHandleType = S.String;
 
 /** Tenant-based handle data from a response. */
 export interface MicrosoftTeamsTenantBasedHandleRequestData {
@@ -61935,7 +61788,7 @@ export const MicrosoftTeamsTenantBasedHandleResponse = /*@__PURE__*/ S.suspend(
 
 /** The type of timestamp to override. */
 export type IncidentTimestampType = "detected" | "resolved" | "declared";
-export const IncidentTimestampType = /*@__PURE__*/ S.String;
+export const IncidentTimestampType = S.String;
 
 /** Attributes for creating a timestamp override. */
 export interface IncidentTimestampOverrideDataAttributesRequest {
@@ -61955,7 +61808,7 @@ export const IncidentTimestampOverrideDataAttributesRequest =
 
 /** Incident timestamp override resource type. */
 export type IncidentTimestampOverrideType = "incidents_timestamp_overrides";
-export const IncidentTimestampOverrideType = /*@__PURE__*/ S.String;
+export const IncidentTimestampOverrideType = S.String;
 
 /** Timestamp override data in a create request. */
 export interface IncidentTimestampOverrideDataRequest {
@@ -62398,7 +62251,7 @@ export const CreateUserRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the notification channel is a phone */
 export type NotificationChannelPhoneConfigType = "phone";
-export const NotificationChannelPhoneConfigType = /*@__PURE__*/ S.String;
+export const NotificationChannelPhoneConfigType = S.String;
 
 /** Configuration to create a phone notification channel */
 export interface CreatePhoneNotificationChannelConfig {
@@ -62418,7 +62271,7 @@ export const CreatePhoneNotificationChannelConfig = /*@__PURE__*/ S.suspend(
 
 /** Specifies the format of the e-mail that is sent for On-Call notifications */
 export type NotificationChannelEmailFormatType = "html" | "text";
-export const NotificationChannelEmailFormatType = /*@__PURE__*/ S.String;
+export const NotificationChannelEmailFormatType = S.String;
 
 /** Preferred content formats for notifications. */
 export type CreateEmailNotificationChannelConfigFormatsList = Array<
@@ -62431,7 +62284,7 @@ export const CreateEmailNotificationChannelConfigFormatsList =
 
 /** Indicates that the notification channel is an e-mail address */
 export type NotificationChannelEmailConfigType = "email";
-export const NotificationChannelEmailConfigType = /*@__PURE__*/ S.String;
+export const NotificationChannelEmailConfigType = S.String;
 
 /** Configuration to create an e-mail notification channel */
 export interface CreateEmailNotificationChannelConfig {
@@ -62457,7 +62310,7 @@ export type CreateNotificationChannelConfig =
   | CreatePhoneNotificationChannelConfig
   | CreateEmailNotificationChannelConfig;
 export const CreateNotificationChannelConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateNotificationChannelConfig>;
+  S.Unknown as any as S.Schema<CreateNotificationChannelConfig>;
 
 /** Attributes for creating an on-call notification channel. */
 export interface CreateNotificationChannelAttributes {
@@ -62474,7 +62327,7 @@ export const CreateNotificationChannelAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the resource is of type 'notification_channels'. */
 export type NotificationChannelType = "notification_channels";
-export const NotificationChannelType = /*@__PURE__*/ S.String;
+export const NotificationChannelType = S.String;
 
 /** Data for creating an on-call notification channel */
 export interface CreateNotificationChannelData {
@@ -62565,7 +62418,7 @@ export const NotificationChannelEmailConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the notification channel is a mobile device for push notifications */
 export type NotificationChannelPushConfigType = "push";
-export const NotificationChannelPushConfigType = /*@__PURE__*/ S.String;
+export const NotificationChannelPushConfigType = S.String;
 
 /** Push notification channel configuration */
 export interface NotificationChannelPushConfig {
@@ -62591,7 +62444,7 @@ export type NotificationChannelConfig =
   | NotificationChannelEmailConfig
   | NotificationChannelPushConfig;
 export const NotificationChannelConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NotificationChannelConfig>;
+  S.Unknown as any as S.Schema<NotificationChannelConfig>;
 
 /** Attributes for an on-call notification channel. */
 export interface NotificationChannelAttributes {
@@ -62640,11 +62493,11 @@ export const NotificationChannel = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the category a notification rule will apply to */
 export type OnCallNotificationRuleCategory = "high_urgency" | "low_urgency";
-export const OnCallNotificationRuleCategory = /*@__PURE__*/ S.String;
+export const OnCallNotificationRuleCategory = S.String;
 
 /** Specifies the method in which a phone is used in a notification rule */
 export type OnCallPhoneNotificationRuleMethod = "sms" | "voice";
-export const OnCallPhoneNotificationRuleMethod = /*@__PURE__*/ S.String;
+export const OnCallPhoneNotificationRuleMethod = S.String;
 
 /** Configuration for using a phone notification channel in a notification rule */
 export interface OnCallPhoneNotificationRuleSettings {
@@ -62724,7 +62577,7 @@ export const OnCallNotificationRuleRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the resource is of type 'notification_rules'. */
 export type OnCallNotificationRuleType = "notification_rules";
-export const OnCallNotificationRuleType = /*@__PURE__*/ S.String;
+export const OnCallNotificationRuleType = S.String;
 
 /** Data for creating an on-call notification rule */
 export interface CreateOnCallNotificationRuleRequestData {
@@ -62902,7 +62755,7 @@ export const WebIntegrationAccountCreateRequestAttributes =
 
 /** Account resource type. */
 export type WebIntegrationAccountType = "Account";
-export const WebIntegrationAccountType = /*@__PURE__*/ S.String;
+export const WebIntegrationAccountType = S.String;
 
 /** Data object for creating a web integration account. */
 export interface WebIntegrationAccountCreateRequestData {
@@ -62990,7 +62843,7 @@ export type CreateWidgetRequestExperienceType =
   | "logs_reports"
   | "csv_reports"
   | "product_analytics";
-export const CreateWidgetRequestExperienceType = /*@__PURE__*/ S.String;
+export const CreateWidgetRequestExperienceType = S.String;
 
 /** Widget types that are allowed to be stored as individual records. This is not a complete list of dashboard and notebook widget types. */
 export type WidgetType =
@@ -63009,7 +62862,7 @@ export type WidgetType =
   | "timeseries"
   | "toplist"
   | "treemap";
-export const WidgetType = /*@__PURE__*/ S.String;
+export const WidgetType = S.String;
 
 /** The definition of a widget, including its type and configuration. */
 export interface WidgetDefinition {
@@ -63350,7 +63203,7 @@ export const ConnectionEnvConnectionsList = /*@__PURE__*/ S.Array(
 
 /** The definition of `ConnectionEnvEnv` object. */
 export type ConnectionEnvEnv = "default";
-export const ConnectionEnvEnv = /*@__PURE__*/ S.String;
+export const ConnectionEnvEnv = S.String;
 
 /** A list of connections or connection groups used in the workflow. */
 export interface ConnectionEnv {
@@ -63384,7 +63237,7 @@ export type InputSchemaParametersType =
   | "ARRAY_NUMBER"
   | "ARRAY_BOOLEAN"
   | "ARRAY_OBJECT";
-export const InputSchemaParametersType = /*@__PURE__*/ S.String;
+export const InputSchemaParametersType = S.String;
 
 /** The definition of `InputSchemaParameters` object. */
 export interface InputSchemaParameters {
@@ -63443,7 +63296,7 @@ export type OutputSchemaParametersType =
   | "ARRAY_NUMBER"
   | "ARRAY_BOOLEAN"
   | "ARRAY_OBJECT";
-export const OutputSchemaParametersType = /*@__PURE__*/ S.String;
+export const OutputSchemaParametersType = S.String;
 
 /** The definition of `OutputSchemaParameters` object. */
 export interface OutputSchemaParameters {
@@ -63503,7 +63356,7 @@ export type CompletionConditionOperator =
   | "OPERATOR_IS_NOT_NULL"
   | "OPERATOR_IS_EMPTY"
   | "OPERATOR_IS_NOT_EMPTY";
-export const CompletionConditionOperator = /*@__PURE__*/ S.String;
+export const CompletionConditionOperator = S.String;
 
 /** The definition of `CompletionCondition` object. */
 export interface CompletionCondition {
@@ -63525,7 +63378,7 @@ export const CompletionCondition = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of `RetryStrategyKind` object. */
 export type RetryStrategyKind = "RETRY_STRATEGY_LINEAR";
-export const RetryStrategyKind = /*@__PURE__*/ S.String;
+export const RetryStrategyKind = S.String;
 
 /** The definition of `RetryStrategyLinear` object. */
 export interface RetryStrategyLinear {
@@ -63654,7 +63507,7 @@ export const StepParametersList = /*@__PURE__*/ S.Array(
 
 /** The definition of `ReadinessGateThresholdType` object. */
 export type ReadinessGateThresholdType = "ANY" | "ALL";
-export const ReadinessGateThresholdType = /*@__PURE__*/ S.String;
+export const ReadinessGateThresholdType = S.String;
 
 /** Used to merge multiple branches into a single branch. */
 export interface ReadinessGate {
@@ -63980,7 +63833,7 @@ export const OnCallTriggerWrapper = /*@__PURE__*/ S.suspend(() =>
 export type ScheduleTriggerOverlapBehavior =
   | "EXCLUSIVE_RUN"
   | "OVERLAP_ALLOWED";
-export const ScheduleTriggerOverlapBehavior = /*@__PURE__*/ S.String;
+export const ScheduleTriggerOverlapBehavior = S.String;
 
 /** Trigger a workflow from a Schedule. The workflow must be published. */
 export interface ScheduleTrigger {
@@ -64111,7 +63964,7 @@ export type Trigger =
   | SlackTriggerWrapper
   | SoftwareCatalogTriggerWrapper
   | WorkflowTriggerWrapper;
-export const Trigger = /*@__PURE__*/ S.Unknown as any as S.Schema<Trigger>;
+export const Trigger = S.Unknown as any as S.Schema<Trigger>;
 
 /** The list of triggers that activate this workflow. At least one trigger is required, and each trigger type may appear at most once. */
 export type SpecTriggersList = Array<Trigger>;
@@ -64181,7 +64034,7 @@ export const WorkflowDataAttributesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of `WorkflowDataType` object. */
 export type WorkflowDataType = "workflows";
-export const WorkflowDataType = /*@__PURE__*/ S.String;
+export const WorkflowDataType = S.String;
 
 /** Data related to the workflow. */
 export interface WorkflowDataInput {
@@ -64246,7 +64099,7 @@ export const WorkflowDataAttributesOutput = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of `WorkflowUserRelationshipType` object. */
 export type WorkflowUserRelationshipType = "users";
-export const WorkflowUserRelationshipType = /*@__PURE__*/ S.String;
+export const WorkflowUserRelationshipType = S.String;
 
 /** The definition of `WorkflowUserRelationshipData` object. */
 export interface WorkflowUserRelationshipData {
@@ -64407,7 +64260,7 @@ export const MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes =
 /** Specifies the Workflows webhook handle resource type. */
 export type MicrosoftTeamsWorkflowsWebhookHandleType =
   "workflows-webhook-handle";
-export const MicrosoftTeamsWorkflowsWebhookHandleType = /*@__PURE__*/ S.String;
+export const MicrosoftTeamsWorkflowsWebhookHandleType = S.String;
 
 /** Workflows Webhook handle data from a response. */
 export interface MicrosoftTeamsWorkflowsWebhookHandleRequestData {
@@ -65064,7 +64917,7 @@ export const DeleteAWSEventBridgeSourceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The event source status "empty". */
 export type AWSEventBridgeDeleteStatus = "empty";
-export const AWSEventBridgeDeleteStatus = /*@__PURE__*/ S.String;
+export const AWSEventBridgeDeleteStatus = S.String;
 
 /** The EventBridge source delete response attributes. */
 export interface AWSEventBridgeDeleteResponseAttributes {
@@ -67368,7 +67221,7 @@ export const LLMObsDeleteAnnotationsDataAttributesRequest =
 
 /** Resource type for Agent Observability annotations. */
 export type LLMObsAnnotationsType = "annotations";
-export const LLMObsAnnotationsType = /*@__PURE__*/ S.String;
+export const LLMObsAnnotationsType = S.String;
 
 /** Data object for deleting annotations. */
 export interface LLMObsDeleteAnnotationsDataRequest {
@@ -68846,7 +68699,7 @@ export const DeleteRUMOperationStrongLinkResponse = /*@__PURE__*/ S.suspend(
 
 /** The type of scope the retention quota configuration applies to. `application` is the only supported scope type. */
 export type DeleteRumQuotaConfigRequestScopeType = "application";
-export const DeleteRumQuotaConfigRequestScopeType = /*@__PURE__*/ S.String;
+export const DeleteRumQuotaConfigRequestScopeType = S.String;
 
 export interface DeleteRumQuotaConfigRequest {
   /** The type of scope the retention quota configuration applies to. `application` is the only supported scope type. */
@@ -69475,7 +69328,7 @@ export type SourcemapMapKind =
   | "elf"
   | "ndk"
   | "il2cpp";
-export const SourcemapMapKind = /*@__PURE__*/ S.String;
+export const SourcemapMapKind = S.String;
 
 export type DeleteSourcemapsRequestFilterServiceList = Array<string>;
 export const DeleteSourcemapsRequestFilterServiceList = /*@__PURE__*/ S.Array(
@@ -69705,7 +69558,7 @@ export const JSSourcemapAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type for source map objects. */
 export type SourcemapDataType = "sourcemaps";
-export const SourcemapDataType = /*@__PURE__*/ S.String;
+export const SourcemapDataType = S.String;
 
 /** JavaScript source map data object. */
 export interface JSSourcemapData {
@@ -70073,8 +69926,7 @@ export type SourcemapItem =
   | ELFSourcemapData
   | NDKSourcemapData
   | IL2CPPSourcemapData;
-export const SourcemapItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SourcemapItem>;
+export const SourcemapItem = S.Unknown as any as S.Schema<SourcemapItem>;
 
 /** List of source map data objects. */
 export type SourcemapsData = Array<SourcemapItem>;
@@ -70265,7 +70117,7 @@ export const DeletedSuitesRequestDeleteAttributes = /*@__PURE__*/ S.suspend(
 
 /** Type for the bulk delete Synthetic suites request, `delete_suites_request`. */
 export type DeletedSuitesRequestType = "delete_suites_request";
-export const DeletedSuitesRequestType = /*@__PURE__*/ S.String;
+export const DeletedSuitesRequestType = S.String;
 
 /** Data object for a bulk delete Synthetic test suites request. */
 export interface DeletedSuitesRequestDelete {
@@ -70378,7 +70230,7 @@ export const DeletedTestsRequestDeleteAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type for the bulk delete Synthetic tests request, `delete_tests_request`. */
 export type DeletedTestsRequestType = "delete_tests_request";
-export const DeletedTestsRequestType = /*@__PURE__*/ S.String;
+export const DeletedTestsRequestType = S.String;
 
 /** Data object for a bulk delete Synthetic tests request. */
 export interface DeletedTestsRequestDelete {
@@ -70432,7 +70284,7 @@ export const DeletedTestResponseDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type for the bulk delete Synthetic tests response, `delete_tests`. */
 export type DeletedTestsResponseType = "delete_tests";
-export const DeletedTestsResponseType = /*@__PURE__*/ S.String;
+export const DeletedTestsResponseType = S.String;
 
 /** Data object for a deleted Synthetic test. */
 export interface DeletedTestResponseData {
@@ -70870,8 +70722,7 @@ export const TestOptimizationDeleteServiceSettingsRequestAttributes =
 /** JSON:API type for delete service settings request. The value must always be `test_optimization_delete_service_settings_request`. */
 export type TestOptimizationDeleteServiceSettingsRequestDataType =
   "test_optimization_delete_service_settings_request";
-export const TestOptimizationDeleteServiceSettingsRequestDataType =
-  /*@__PURE__*/ S.String;
+export const TestOptimizationDeleteServiceSettingsRequestDataType = S.String;
 
 /** Data object for delete service settings request. */
 export interface TestOptimizationDeleteServiceSettingsRequestData {
@@ -71185,7 +71036,7 @@ export type DeleteWidgetRequestExperienceType =
   | "logs_reports"
   | "csv_reports"
   | "product_analytics";
-export const DeleteWidgetRequestExperienceType = /*@__PURE__*/ S.String;
+export const DeleteWidgetRequestExperienceType = S.String;
 
 export interface DeleteWidgetRequest {
   /** The experience type for the widget. */
@@ -71352,7 +71203,7 @@ export const CustomerOrgDisableRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for a customer org disable request. */
 export type CustomerOrgDisableType = "customer_org_disable";
-export const CustomerOrgDisableType = /*@__PURE__*/ S.String;
+export const CustomerOrgDisableType = S.String;
 
 /** Data object for a customer org disable request. */
 export interface CustomerOrgDisableRequestData {
@@ -71384,7 +71235,7 @@ export const DisableCustomerOrgRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Resulting lifecycle status of the organization after the disable action. */
 export type CustomerOrgDisableStatus = "disabled" | "pending_disable";
-export const CustomerOrgDisableStatus = /*@__PURE__*/ S.String;
+export const CustomerOrgDisableStatus = S.String;
 
 /** Attributes describing the outcome of the disable action on the customer organization. */
 export interface CustomerOrgDisableResponseAttributes {
@@ -71401,7 +71252,7 @@ export const CustomerOrgDisableResponseAttributes = /*@__PURE__*/ S.suspend(
 
 /** JSON:API resource type for a customer org disable response. */
 export type CustomerOrgDisableResponseType = "org_disable";
-export const CustomerOrgDisableResponseType = /*@__PURE__*/ S.String;
+export const CustomerOrgDisableResponseType = S.String;
 
 /** Data object returned after disabling the customer organization. */
 export interface CustomerOrgDisableResponseData {
@@ -71528,8 +71379,7 @@ export type PatchDegradationUpdateRequestDataAttributesStatus =
   | "investigating"
   | "identified"
   | "monitoring";
-export const PatchDegradationUpdateRequestDataAttributesStatus =
-  /*@__PURE__*/ S.String;
+export const PatchDegradationUpdateRequestDataAttributesStatus = S.String;
 
 /** Attributes for editing a degradation update. */
 export interface PatchDegradationUpdateRequestDataAttributes {
@@ -71549,7 +71399,7 @@ export const PatchDegradationUpdateRequestDataAttributes =
 
 /** Degradation updates resource type. */
 export type PatchDegradationUpdateRequestDataType = "degradation_updates";
-export const PatchDegradationUpdateRequestDataType = /*@__PURE__*/ S.String;
+export const PatchDegradationUpdateRequestDataType = S.String;
 
 /** The data object for editing a degradation update. */
 export interface PatchDegradationUpdateRequestData {
@@ -71771,7 +71621,7 @@ export type DegradationUpdateIncluded =
   | Degradation
   | StatusPageAsIncluded;
 export const DegradationUpdateIncluded =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DegradationUpdateIncluded>;
+  S.Unknown as any as S.Schema<DegradationUpdateIncluded>;
 
 /** Resources related to the degradation update. */
 export type DegradationUpdateIncludedList = Array<DegradationUpdateIncluded>;
@@ -71796,7 +71646,7 @@ export const DegradationUpdate = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of event. */
 export type SecurityMonitoringSignalMetadataType = "signal_metadata";
-export const SecurityMonitoringSignalMetadataType = /*@__PURE__*/ S.String;
+export const SecurityMonitoringSignalMetadataType = S.String;
 
 /** Data containing the triage state or assignee update for a security signal. */
 export interface SecurityMonitoringSignalUpdateDataInput {
@@ -72173,7 +72023,7 @@ export type MetricEstimateType =
   | "count_or_gauge"
   | "distribution"
   | "percentile";
-export const MetricEstimateType = /*@__PURE__*/ S.String;
+export const MetricEstimateType = S.String;
 
 /** Object containing the definition of a metric estimate attribute. */
 export interface MetricEstimateAttributes {
@@ -72195,7 +72045,7 @@ export const MetricEstimateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The metric estimate resource type. */
 export type MetricEstimateResourceType = "metric_cardinality_estimate";
-export const MetricEstimateResourceType = /*@__PURE__*/ S.String;
+export const MetricEstimateResourceType = S.String;
 
 /** Object for a metric cardinality estimate. */
 export interface MetricEstimate {
@@ -72259,7 +72109,7 @@ export const DdsqlTabularQueryRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for a DDSQL tabular query request. */
 export type DdsqlTabularQueryRequestType = "ddsql_query_request";
-export const DdsqlTabularQueryRequestType = /*@__PURE__*/ S.String;
+export const DdsqlTabularQueryRequestType = S.String;
 
 /** JSON:API resource object for a DDSQL tabular query execution request. */
 export interface DdsqlTabularQueryRequestData {
@@ -72321,7 +72171,7 @@ export const DdsqlTabularQueryColumns = /*@__PURE__*/ S.Array(
 
 /** Lifecycle state of a DDSQL tabular query response. `running` means the query is still executing and the client should poll the fetch endpoint with the returned `query_id`. `completed` means the result set is inlined in `columns` and no further polling is required. */
 export type DdsqlTabularQueryState = "running" | "completed";
-export const DdsqlTabularQueryState = /*@__PURE__*/ S.String;
+export const DdsqlTabularQueryState = S.String;
 
 /** Non-fatal messages emitted by the query engine while serving this response. */
 export type DdsqlTabularQueryWarnings = Array<string>;
@@ -72350,7 +72200,7 @@ export const DdsqlTabularQueryResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for a DDSQL tabular query response. */
 export type DdsqlTabularQueryResponseType = "ddsql_query_response";
-export const DdsqlTabularQueryResponseType = /*@__PURE__*/ S.String;
+export const DdsqlTabularQueryResponseType = S.String;
 
 /** JSON:API resource object for a DDSQL tabular query response. */
 export interface DdsqlTabularQueryResponseData {
@@ -72401,7 +72251,7 @@ export const DdsqlTabularQueryResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Supported export format for an Agent Observability dataset. */
 export type LLMObsDatasetExportFormat = "csv";
-export const LLMObsDatasetExportFormat = /*@__PURE__*/ S.String;
+export const LLMObsDatasetExportFormat = S.String;
 
 export interface ExportLLMObsDatasetRequest {
   /** The ID of the Agent Observability project. */
@@ -72444,7 +72294,7 @@ export type ExportSecurityMonitoringTerraformResourceRequestResourceType =
   | "security_filters"
   | "rules";
 export const ExportSecurityMonitoringTerraformResourceRequestResourceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ExportSecurityMonitoringTerraformResourceRequest {
   /** The type of security monitoring resource to export. */
@@ -72514,7 +72364,7 @@ export const DdsqlTabularQueryFetchRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** JSON:API resource type for a DDSQL tabular query fetch request. */
 export type DdsqlTabularQueryFetchRequestType = "ddsql_query_fetch_request";
-export const DdsqlTabularQueryFetchRequestType = /*@__PURE__*/ S.String;
+export const DdsqlTabularQueryFetchRequestType = S.String;
 
 /** JSON:API resource object for a DDSQL tabular query fetch request. */
 export interface DdsqlTabularQueryFetchRequestData {
@@ -72582,7 +72432,7 @@ export const GeneratedCostTagDescriptionAttributes = /*@__PURE__*/ S.suspend(
 
 /** Type of the AI-generated Cloud Cost Management tag description resource. */
 export type GeneratedCostTagDescriptionType = "cost_generated_tag_description";
-export const GeneratedCostTagDescriptionType = /*@__PURE__*/ S.String;
+export const GeneratedCostTagDescriptionType = S.String;
 
 /** AI-generated Cloud Cost Management tag key description returned by the generate endpoint. The result is returned to the client but is not persisted by this endpoint. */
 export interface GeneratedCostTagDescription {
@@ -72663,7 +72513,7 @@ export const FacetInfoRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Users facet info request resource type. */
 export type FacetInfoRequestDataType = "users_facet_info_request";
-export const FacetInfoRequestDataType = /*@__PURE__*/ S.String;
+export const FacetInfoRequestDataType = S.String;
 
 /** The data object containing the resource type and attributes for the facet info request. */
 export interface FacetInfoRequestData {
@@ -72771,7 +72621,7 @@ export const FacetInfoResponseDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Users facet info resource type. */
 export type FacetInfoResponseDataType = "users_facet_info";
-export const FacetInfoResponseDataType = /*@__PURE__*/ S.String;
+export const FacetInfoResponseDataType = S.String;
 
 /** The data object containing the resource type and attributes for the facet info response. */
 export interface FacetInfoResponseData {
@@ -72975,8 +72825,7 @@ export const SingleAggregatedConnectionResponseDataAttributes =
 /** Aggregated connection resource type. */
 export type SingleAggregatedConnectionResponseDataType =
   "aggregated_connection";
-export const SingleAggregatedConnectionResponseDataType =
-  /*@__PURE__*/ S.String;
+export const SingleAggregatedConnectionResponseDataType = S.String;
 
 /** Object describing an aggregated connection. */
 export interface SingleAggregatedConnectionResponseData {
@@ -73084,7 +72933,7 @@ export type DnsMetricKey =
   | "dns_responses.other"
   | "dns_success_latency_percentile"
   | "dns_failure_latency_percentile";
-export const DnsMetricKey = /*@__PURE__*/ S.String;
+export const DnsMetricKey = S.String;
 
 /** Metrics associated with an aggregated DNS flow. */
 export interface SingleAggregatedDnsResponseDataAttributesMetricsItems {
@@ -73131,7 +72980,7 @@ export const SingleAggregatedDnsResponseDataAttributes =
 
 /** Aggregated DNS resource type. */
 export type SingleAggregatedDnsResponseDataType = "aggregated_dns";
-export const SingleAggregatedDnsResponseDataType = /*@__PURE__*/ S.String;
+export const SingleAggregatedDnsResponseDataType = S.String;
 
 /** Object describing an aggregated DNS flow. */
 export interface SingleAggregatedDnsResponseData {
@@ -73339,7 +73188,7 @@ export const WebhooksAuthMethodRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Webhooks auth method resource type. */
 export type WebhooksAuthMethodType = "webhooks-auth-method";
-export const WebhooksAuthMethodType = /*@__PURE__*/ S.String;
+export const WebhooksAuthMethodType = S.String;
 
 /** Webhooks auth method data from a response. */
 export interface WebhooksAuthMethodResponseData {
@@ -73568,7 +73417,7 @@ export const SyntheticsApiMultistepParentTestAttributes =
 
 /** Type of the parent test resource. */
 export type SyntheticsApiMultistepParentTestType = "parent_test";
-export const SyntheticsApiMultistepParentTestType = /*@__PURE__*/ S.String;
+export const SyntheticsApiMultistepParentTestType = S.String;
 
 /** Data object for a parent API multistep test. */
 export interface SyntheticsApiMultistepParentTestData {
@@ -73647,7 +73496,7 @@ export const SyntheticsApiMultistepSubtestAttributes = /*@__PURE__*/ S.suspend(
 
 /** Type of the subtest resource. */
 export type SyntheticsApiMultistepSubtestType = "subtest";
-export const SyntheticsApiMultistepSubtestType = /*@__PURE__*/ S.String;
+export const SyntheticsApiMultistepSubtestType = S.String;
 
 /** Data object for a Synthetic API multistep subtest. */
 export interface SyntheticsApiMultistepSubtestData {
@@ -73711,7 +73560,7 @@ export type RetentionFilterAllType =
   | "spans-sampling-processor"
   | "spans-errors-sampling-processor"
   | "spans-appsec-sampling-processor";
-export const RetentionFilterAllType = /*@__PURE__*/ S.String;
+export const RetentionFilterAllType = S.String;
 
 /** The attributes of the retention filter. */
 export interface RetentionFilterAllAttributes {
@@ -73946,7 +73795,7 @@ export const CustomConnectionAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The custom connection type. */
 export type CustomConnectionType = "custom_connections";
-export const CustomConnectionType = /*@__PURE__*/ S.String;
+export const CustomConnectionType = S.String;
 
 /** A custom connection used by an app. */
 export interface CustomConnection {
@@ -74052,7 +73901,7 @@ export const GetAppKeyRegistrationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of `AppKeyRegistrationDataType` object. */
 export type AppKeyRegistrationDataType = "app_key_registration";
-export const AppKeyRegistrationDataType = /*@__PURE__*/ S.String;
+export const AppKeyRegistrationDataType = S.String;
 
 /** Data related to the app key registration. */
 export interface AppKeyRegistrationData {
@@ -74388,7 +74237,7 @@ export const ApplicationSecurityServiceAttributes = /*@__PURE__*/ S.suspend(
 
 /** The type of the resource. The value should always be `service_env`. */
 export type ApplicationSecurityServiceType = "service_env";
-export const ApplicationSecurityServiceType = /*@__PURE__*/ S.String;
+export const ApplicationSecurityServiceType = S.String;
 
 /** A JSON:API resource describing a service and its Application Security details. */
 export interface ApplicationSecurityServiceResource {
@@ -74555,8 +74404,7 @@ export const AWSIntegrationIamPermissionsResponseAttributes =
 
 /** The `AWSIntegrationIamPermissionsResponseData` `type`. */
 export type AWSIntegrationIamPermissionsResponseDataType = "permissions";
-export const AWSIntegrationIamPermissionsResponseDataType =
-  /*@__PURE__*/ S.String;
+export const AWSIntegrationIamPermissionsResponseDataType = S.String;
 
 /** AWS Integration IAM Permissions response data. */
 export interface AWSIntegrationIamPermissionsResponseData {
@@ -74752,7 +74600,7 @@ export const AWSMetricNameFilterPreviewResponseAttributes =
 
 /** The `AWSMetricNameFilterPreviewResponseData` `type`. */
 export type AWSMetricNameFilterPreviewType = "metric_name_filter_preview";
-export const AWSMetricNameFilterPreviewType = /*@__PURE__*/ S.String;
+export const AWSMetricNameFilterPreviewType = S.String;
 
 /** AWS metric name filter preview response data. */
 export interface AWSMetricNameFilterPreviewResponseData {
@@ -74992,7 +74840,7 @@ export const BlueprintAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type for a blueprint. */
 export type BlueprintDataType = "blueprint";
-export const BlueprintDataType = /*@__PURE__*/ S.String;
+export const BlueprintDataType = S.String;
 
 /** A blueprint resource. */
 export interface BlueprintData {
@@ -75433,7 +75281,7 @@ export const MicrosoftTeamsChannelInfoResponseAttributes =
 
 /** Channel info resource type. */
 export type MicrosoftTeamsChannelInfoType = "ms-teams-channel-info";
-export const MicrosoftTeamsChannelInfoType = /*@__PURE__*/ S.String;
+export const MicrosoftTeamsChannelInfoType = S.String;
 
 /** Channel data from a response. */
 export interface MicrosoftTeamsChannelInfoResponseData {
@@ -75526,7 +75374,7 @@ export const BranchCoverageSummaryRequestAttributes = /*@__PURE__*/ S.suspend(
 /** JSON:API type for branch coverage summary request. The value must always be `ci_app_coverage_branch_summary_request`. */
 export type BranchCoverageSummaryRequestType =
   "ci_app_coverage_branch_summary_request";
-export const BranchCoverageSummaryRequestType = /*@__PURE__*/ S.String;
+export const BranchCoverageSummaryRequestType = S.String;
 
 /** Data object for branch summary request. */
 export interface BranchCoverageSummaryRequestData {
@@ -75651,7 +75499,7 @@ export const CoverageSummaryAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API type for coverage summary response. The value must always be `ci_app_coverage_summary`. */
 export type CoverageSummaryType = "ci_app_coverage_summary";
-export const CoverageSummaryType = /*@__PURE__*/ S.String;
+export const CoverageSummaryType = S.String;
 
 /** Data object for coverage summary response. */
 export interface CoverageSummaryData {
@@ -75705,7 +75553,7 @@ export const CommitCoverageSummaryRequestAttributes = /*@__PURE__*/ S.suspend(
 /** JSON:API type for commit coverage summary request. The value must always be `ci_app_coverage_commit_summary_request`. */
 export type CommitCoverageSummaryRequestType =
   "ci_app_coverage_commit_summary_request";
-export const CommitCoverageSummaryRequestType = /*@__PURE__*/ S.String;
+export const CommitCoverageSummaryRequestType = S.String;
 
 /** Data object for commit summary request. */
 export interface CommitCoverageSummaryRequestData {
@@ -75740,11 +75588,11 @@ export const GetCodeCoverageCommitSummaryRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Cloud provider for commitment programs. */
 export type CommitmentsProvider = "aws" | "azure";
-export const CommitmentsProvider = /*@__PURE__*/ S.String;
+export const CommitmentsProvider = S.String;
 
 /** Type of commitment. ri for Reserved Instances, sp for Savings Plans. */
 export type CommitmentsCommitmentType = "ri" | "sp";
-export const CommitmentsCommitmentType = /*@__PURE__*/ S.String;
+export const CommitmentsCommitmentType = S.String;
 
 export interface GetCommitmentsCommitmentListRequest {
   /** Cloud provider for commitment programs (aws or azure). */
@@ -75954,7 +75802,7 @@ export const CommitmentsAwsSPCommitment = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of an Azure VM Reserved Instance. */
 export type CommitmentsAzureVMRIStatus = "running" | "expired" | "cancelled";
-export const CommitmentsAzureVMRIStatus = /*@__PURE__*/ S.String;
+export const CommitmentsAzureVMRIStatus = S.String;
 
 /** Azure Virtual Machine Reserved Instance commitment details. */
 export interface CommitmentsAzureVMRICommitment {
@@ -76035,7 +75883,7 @@ export type CommitmentsListItem =
   | CommitmentsAzureVMRICommitment
   | CommitmentsAzureComputeSPCommitment;
 export const CommitmentsListItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CommitmentsListItem>;
+  S.Unknown as any as S.Schema<CommitmentsListItem>;
 
 /** Array of commitment items. */
 export type CommitmentsListItems = Array<CommitmentsListItem>;
@@ -76141,7 +75989,7 @@ export const CommitmentsScalarColumnMeta = /*@__PURE__*/ S.suspend(() =>
 
 /** The column type. "group" for dimension columns, "number" for metric columns. */
 export type CommitmentsScalarColumnType = "group" | "number";
-export const CommitmentsScalarColumnType = /*@__PURE__*/ S.String;
+export const CommitmentsScalarColumnType = S.String;
 
 /** Values for a scalar column. Arrays of strings for group columns, numbers for value columns. */
 export type CommitmentsScalarColumnValueItems = Array<unknown>;
@@ -76631,7 +76479,7 @@ export type SecurityMonitoringContentPackActivation =
   | "never_activated"
   | "activated"
   | "deactivated";
-export const SecurityMonitoringContentPackActivation = /*@__PURE__*/ S.String;
+export const SecurityMonitoringContentPackActivation = S.String;
 
 /** Timestamp bucket indicating when logs were last collected. */
 export type SecurityMonitoringContentPackTimestampBucket =
@@ -76640,8 +76488,7 @@ export type SecurityMonitoringContentPackTimestampBucket =
   | "within_24_to_72_hours"
   | "over_72h_to_30d"
   | "over_30d";
-export const SecurityMonitoringContentPackTimestampBucket =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringContentPackTimestampBucket = S.String;
 
 /** The installation status of the related integration. */
 export type SecurityMonitoringContentPackIntegrationStatus =
@@ -76650,8 +76497,7 @@ export type SecurityMonitoringContentPackIntegrationStatus =
   | "partially_installed"
   | "detected"
   | "error";
-export const SecurityMonitoringContentPackIntegrationStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringContentPackIntegrationStatus = S.String;
 
 /** Details for a logs-based content pack. */
 export interface SecurityMonitoringContentPackLogsDetails {
@@ -76685,8 +76531,7 @@ export const SecurityMonitoringContentPackLogsDetails = /*@__PURE__*/ S.suspend(
 /** Type for threat intelligence content pack details. */
 export type SecurityMonitoringContentPackThreatIntelDetailsType =
   "threat_intel";
-export const SecurityMonitoringContentPackThreatIntelDetailsType =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringContentPackThreatIntelDetailsType = S.String;
 
 /** Details for a threat intelligence content pack. */
 export interface SecurityMonitoringContentPackThreatIntelDetails {
@@ -76710,8 +76555,7 @@ export const SecurityMonitoringContentPackThreatIntelDetails =
 
 /** Type for entity content pack details. */
 export type SecurityMonitoringContentPackEntityDetailsType = "entity";
-export const SecurityMonitoringContentPackEntityDetailsType =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringContentPackEntityDetailsType = S.String;
 
 /** Details for an entity or identity content pack. */
 export interface SecurityMonitoringContentPackEntityDetails {
@@ -76730,8 +76574,7 @@ export const SecurityMonitoringContentPackEntityDetails =
 
 /** Type for audit trail content pack details. */
 export type SecurityMonitoringContentPackAuditDetailsType = "audit";
-export const SecurityMonitoringContentPackAuditDetailsType =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringContentPackAuditDetailsType = S.String;
 
 /** Details for an audit trail content pack. */
 export interface SecurityMonitoringContentPackAuditDetails {
@@ -76748,8 +76591,7 @@ export const SecurityMonitoringContentPackAuditDetails =
 
 /** Type for Application Security content pack details. */
 export type SecurityMonitoringContentPackAppSecDetailsType = "appsec";
-export const SecurityMonitoringContentPackAppSecDetailsType =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringContentPackAppSecDetailsType = S.String;
 
 /** Details for an Application Security content pack. */
 export interface SecurityMonitoringContentPackAppSecDetails {
@@ -76767,8 +76609,7 @@ export const SecurityMonitoringContentPackAppSecDetails =
 /** Type for vulnerability content pack details. */
 export type SecurityMonitoringContentPackVulnerabilityDetailsType =
   "vulnerability";
-export const SecurityMonitoringContentPackVulnerabilityDetailsType =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringContentPackVulnerabilityDetailsType = S.String;
 
 /** Details for a vulnerability content pack. */
 export interface SecurityMonitoringContentPackVulnerabilityDetails {
@@ -76792,8 +76633,7 @@ export const SecurityMonitoringContentPackVulnerabilityDetails =
 
 /** Type for onboarding content pack details. */
 export type SecurityMonitoringContentPackOnboardingDetailsType = "onboarding";
-export const SecurityMonitoringContentPackOnboardingDetailsType =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringContentPackOnboardingDetailsType = S.String;
 
 /** Content pack details returned when Cloud SIEM is inactive for the requesting organization. */
 export interface SecurityMonitoringContentPackOnboardingDetails {
@@ -76825,7 +76665,7 @@ export type SecurityMonitoringContentPackStateDetails =
   | SecurityMonitoringContentPackVulnerabilityDetails
   | SecurityMonitoringContentPackOnboardingDetails;
 export const SecurityMonitoringContentPackStateDetails =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityMonitoringContentPackStateDetails>;
+  S.Unknown as any as S.Schema<SecurityMonitoringContentPackStateDetails>;
 
 /** The current operational status of a content pack. */
 export type SecurityMonitoringContentPackStatus =
@@ -76836,7 +76676,7 @@ export type SecurityMonitoringContentPackStatus =
   | "warning"
   | "broken"
   | "not_configured";
-export const SecurityMonitoringContentPackStatus = /*@__PURE__*/ S.String;
+export const SecurityMonitoringContentPackStatus = S.String;
 
 /** Attributes of a content pack state. */
 export interface SecurityMonitoringContentPackStateAttributes {
@@ -76855,7 +76695,7 @@ export const SecurityMonitoringContentPackStateAttributes =
 
 /** Type for content pack state object */
 export type SecurityMonitoringContentPackStateType = "content_pack_state";
-export const SecurityMonitoringContentPackStateType = /*@__PURE__*/ S.String;
+export const SecurityMonitoringContentPackStateType = S.String;
 
 /** Content pack state data. */
 export interface SecurityMonitoringContentPackStateData {
@@ -76890,7 +76730,7 @@ export type SecurityMonitoringSKU =
   | "add_on_2024"
   | "standalone_indexed"
   | "unknown";
-export const SecurityMonitoringSKU = /*@__PURE__*/ S.String;
+export const SecurityMonitoringSKU = S.String;
 
 /** Metadata for content pack states. */
 export interface SecurityMonitoringContentPackStateMeta {
@@ -76965,7 +76805,7 @@ export const AccountFiltersAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of account filters. */
 export type AccountFiltersType = "account_filters";
-export const AccountFiltersType = /*@__PURE__*/ S.String;
+export const AccountFiltersType = S.String;
 
 /** The account filters for a cloud account. */
 export interface AccountFilters {
@@ -77099,7 +76939,7 @@ export const CostAnomaly = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the cost anomalies collection resource. Must be `anomalies`. */
 export type CostAnomaliesResponseDataType = "anomalies";
-export const CostAnomaliesResponseDataType = /*@__PURE__*/ S.String;
+export const CostAnomaliesResponseDataType = S.String;
 
 /** Resource wrapper for a single cost anomaly. */
 export interface CostAnomalyResponseData {
@@ -77254,7 +77094,7 @@ export const UCConfigPairDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Azure UC configs resource type. */
 export type UCConfigPairDataType = "azure_uc_configs";
-export const UCConfigPairDataType = /*@__PURE__*/ S.String;
+export const UCConfigPairDataType = S.String;
 
 /** The definition of `UCConfigPairData` object. */
 export interface UCConfigPairData {
@@ -77361,7 +77201,7 @@ export const GcpUcConfigResponseDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Google Cloud Usage Cost config resource type. */
 export type GcpUcConfigResponseDataType = "gcp_uc_config";
-export const GcpUcConfigResponseDataType = /*@__PURE__*/ S.String;
+export const GcpUcConfigResponseDataType = S.String;
 
 /** The definition of `GcpUcConfigResponseData` object. */
 export interface GcpUcConfigResponseData {
@@ -77415,7 +77255,7 @@ export const GetCostTagDescriptionByKeyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Origin of the description. `human` indicates the description was written by a user, `ai_generated` was produced by AI, and `datadog` is a default supplied by Datadog. */
 export type CostTagDescriptionSource = "human" | "ai_generated" | "datadog";
-export const CostTagDescriptionSource = /*@__PURE__*/ S.String;
+export const CostTagDescriptionSource = S.String;
 
 /** Human-readable description and metadata attached to a Cloud Cost Management tag key, optionally scoped to a single cloud provider. */
 export interface CostTagDescriptionAttributes {
@@ -77446,7 +77286,7 @@ export const CostTagDescriptionAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the Cloud Cost Management tag description resource. */
 export type CostTagDescriptionType = "cost_tag_description";
-export const CostTagDescriptionType = /*@__PURE__*/ S.String;
+export const CostTagDescriptionType = S.String;
 
 /** A Cloud Cost Management tag key description, either cross-cloud or scoped to a single cloud provider. */
 export interface CostTagDescription {
@@ -77549,7 +77389,7 @@ export const CostTagKeyAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the Cloud Cost Management tag key resource. */
 export type CostTagKeyType = "cost_tag_key";
-export const CostTagKeyType = /*@__PURE__*/ S.String;
+export const CostTagKeyType = S.String;
 
 /** A Cloud Cost Management tag key. */
 export interface CostTagKey {
@@ -77601,7 +77441,7 @@ export const GetCostTagMetadataCurrencyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the Cloud Cost Management billing currency resource. */
 export type CostCurrencyType = "cost_currency";
-export const CostCurrencyType = /*@__PURE__*/ S.String;
+export const CostCurrencyType = S.String;
 
 /** A Cloud Cost Management billing currency entry. */
 export interface CostCurrency {
@@ -77749,7 +77589,7 @@ export const CsmHostFacetInfoMeta = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for facet info resources. The value should always be `facet_info`. */
 export type CsmFacetInfoType = "facet_info";
-export const CsmFacetInfoType = /*@__PURE__*/ S.String;
+export const CsmFacetInfoType = S.String;
 
 /** The data wrapper for a facet info response. */
 export interface CsmHostFacetInfoData {
@@ -78401,7 +78241,7 @@ export const CustomForecastResponseDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** The type of the custom forecast resource. Must be `custom_forecast`. */
 export type CustomForecastType = "custom_forecast";
-export const CustomForecastType = /*@__PURE__*/ S.String;
+export const CustomForecastType = S.String;
 
 /** Custom forecast resource wrapper in a response. */
 export interface CustomForecastResponseData {
@@ -78781,7 +78621,7 @@ export const SecureEmbedGetResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type for secure embed get responses. */
 export type SecureEmbedGetResponseType = "secure_embed_get_response";
-export const SecureEmbedGetResponseType = /*@__PURE__*/ S.String;
+export const SecureEmbedGetResponseType = S.String;
 
 /** Data object for a secure embed get response. */
 export interface SecureEmbedGetResponseData {
@@ -78931,7 +78771,7 @@ export const DashboardUsageAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. Always `dashboards-usages`. */
 export type DashboardUsageType = "dashboards-usages";
-export const DashboardUsageType = /*@__PURE__*/ S.String;
+export const DashboardUsageType = S.String;
 
 /** A single dashboard usage record. */
 export interface DashboardUsage {
@@ -79034,7 +78874,7 @@ export type DataObservabilityMonitorRunStatus =
   | "warn"
   | "alert"
   | "error";
-export const DataObservabilityMonitorRunStatus = /*@__PURE__*/ S.String;
+export const DataObservabilityMonitorRunStatus = S.String;
 
 /** The attributes of a data observability monitor run status response. */
 export interface GetDataObservabilityMonitorRunStatusResponseAttributes {
@@ -79054,7 +78894,7 @@ export const GetDataObservabilityMonitorRunStatusResponseAttributes =
 
 /** The JSON:API resource type for a data observability monitor run. */
 export type DataObservabilityMonitorRunType = "monitor_run";
-export const DataObservabilityMonitorRunType = /*@__PURE__*/ S.String;
+export const DataObservabilityMonitorRunType = S.String;
 
 /** The data object for a data observability monitor run status response. */
 export interface GetDataObservabilityMonitorRunStatusResponseData {
@@ -79285,7 +79125,7 @@ export const ListDeploymentRulesResponseDataAttributes =
 
 /** List deployment rule resource type. */
 export type ListDeploymentRulesDataType = "list_deployment_rules";
-export const ListDeploymentRulesDataType = /*@__PURE__*/ S.String;
+export const ListDeploymentRulesDataType = S.String;
 
 /** Data for a list of deployment rules. */
 export interface ListDeploymentRuleResponseData {
@@ -79341,7 +79181,7 @@ export type DeploymentGatesEvaluationResultResponseAttributesGateStatus =
   | "pass"
   | "fail";
 export const DeploymentGatesEvaluationResultResponseAttributesGateStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The result of a single rule evaluation. */
 export interface DeploymentGatesRuleResponse {
@@ -79405,8 +79245,7 @@ export const DeploymentGatesEvaluationResultResponseAttributes =
 /** JSON:API type for a deployment gate evaluation result response. */
 export type DeploymentGatesEvaluationResultResponseDataType =
   "deployment_gates_evaluation_result_response";
-export const DeploymentGatesEvaluationResultResponseDataType =
-  /*@__PURE__*/ S.String;
+export const DeploymentGatesEvaluationResultResponseDataType = S.String;
 
 /** Data for a deployment gate evaluation result response. */
 export interface DeploymentGatesEvaluationResultResponseData {
@@ -79614,7 +79453,7 @@ export const DomainAllowlistResponseDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** Email domain allowlist allowlist type. */
 export type DomainAllowlistType = "domain_allowlist";
-export const DomainAllowlistType = /*@__PURE__*/ S.String;
+export const DomainAllowlistType = S.String;
 
 /** The email domain allowlist response for an org. */
 export interface DomainAllowlistResponseData {
@@ -80058,7 +79897,7 @@ export const EntityIntegrationConfigAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for an entity integration configuration. Always `entity_integration_configs`. */
 export type EntityIntegrationConfigType = "entity_integration_configs";
-export const EntityIntegrationConfigType = /*@__PURE__*/ S.String;
+export const EntityIntegrationConfigType = S.String;
 
 /** JSON:API resource object for an entity integration configuration. */
 export interface EntityIntegrationConfigData {
@@ -80242,7 +80081,7 @@ export type SecurityEntityRiskScoreAttributesSeverity =
   | "medium"
   | "low"
   | "info";
-export const SecurityEntityRiskScoreAttributesSeverity = /*@__PURE__*/ S.String;
+export const SecurityEntityRiskScoreAttributesSeverity = S.String;
 
 /** Attributes of an entity risk score. */
 export interface SecurityEntityRiskScoreAttributes {
@@ -80301,7 +80140,7 @@ export const SecurityEntityRiskScoreAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type. */
 export type SecurityEntityRiskScoreType = "SecurityEntityRiskScore";
-export const SecurityEntityRiskScoreType = /*@__PURE__*/ S.String;
+export const SecurityEntityRiskScoreType = S.String;
 
 /** An entity risk score containing security risk assessment information */
 export interface SecurityEntityRiskScore {
@@ -80411,7 +80250,7 @@ export const SecurityMonitoringEntraIdAzureAppRegistrationsAttributes =
 export type SecurityMonitoringEntraIdAzureAppRegistrationsResourceType =
   "entra_id_azure_app_registrations";
 export const SecurityMonitoringEntraIdAzureAppRegistrationsResourceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The Azure App Registration prerequisites for the Entra ID integration. */
 export interface SecurityMonitoringEntraIdAzureAppRegistrationsData {
@@ -80446,7 +80285,7 @@ export const SecurityMonitoringEntraIdAzureAppRegistrationsResponse =
 
 /** Controls how costs are aggregated when using `start_date`. The `cumulative` option returns month-to-date running totals. */
 export type CostAggregationType = "cumulative";
-export const CostAggregationType = /*@__PURE__*/ S.String;
+export const CostAggregationType = S.String;
 
 export interface GetEstimatedCostByOrgRequest {
   /** String to specify whether cost is broken down at a parent-org level or at the sub-org level. Available views are `summary` and `sub-org`. Defaults to `summary`. */
@@ -80507,7 +80346,7 @@ export type ChangeEventAttributesAuthorType =
   | "system"
   | "api"
   | "automation";
-export const ChangeEventAttributesAuthorType = /*@__PURE__*/ S.String;
+export const ChangeEventAttributesAuthorType = S.String;
 
 /** The entity that made the change. */
 export interface ChangeEventAttributesAuthor {
@@ -80528,7 +80367,7 @@ export const ChangeEventAttributesAuthor = /*@__PURE__*/ S.suspend(() =>
 export type ChangeEventAttributesChangedResourceType =
   | "feature_flag"
   | "configuration";
-export const ChangeEventAttributesChangedResourceType = /*@__PURE__*/ S.String;
+export const ChangeEventAttributesChangedResourceType = S.String;
 
 /** A uniquely identified resource. */
 export interface ChangeEventAttributesChangedResource {
@@ -80548,11 +80387,11 @@ export const ChangeEventAttributesChangedResource = /*@__PURE__*/ S.suspend(
 
 /** Event category identifying the type of event. */
 export type EventSystemAttributesCategory = "change" | "alert";
-export const EventSystemAttributesCategory = /*@__PURE__*/ S.String;
+export const EventSystemAttributesCategory = S.String;
 
 /** Integration ID sourced from integration manifests. */
 export type EventSystemAttributesIntegrationId = "custom-events";
-export const EventSystemAttributesIntegrationId = /*@__PURE__*/ S.String;
+export const EventSystemAttributesIntegrationId = S.String;
 
 /** JSON object of event system attributes. */
 export interface EventSystemAttributes {
@@ -80579,8 +80418,7 @@ export const EventSystemAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the impacted resource. */
 export type ChangeEventAttributesImpactedResourcesItemType = "service";
-export const ChangeEventAttributesImpactedResourcesItemType =
-  /*@__PURE__*/ S.String;
+export const ChangeEventAttributesImpactedResourcesItemType = S.String;
 
 /** A uniquely identified resource. */
 export interface ChangeEventAttributesImpactedResourcesItem {
@@ -80646,7 +80484,7 @@ export type AlertEventAttributesLinksItemCategory =
   | "runbook"
   | "documentation"
   | "dashboard";
-export const AlertEventAttributesLinksItemCategory = /*@__PURE__*/ S.String;
+export const AlertEventAttributesLinksItemCategory = S.String;
 
 /** A link. */
 export interface AlertEventAttributesLinksItem {
@@ -80675,11 +80513,11 @@ export const AlertEventAttributesLinksList = /*@__PURE__*/ S.Array(
 
 /** The priority of the alert. */
 export type AlertEventAttributesPriority = "1" | "2" | "3" | "4" | "5";
-export const AlertEventAttributesPriority = /*@__PURE__*/ S.String;
+export const AlertEventAttributesPriority = S.String;
 
 /** The status of the alert. */
 export type AlertEventAttributesStatus = "warn" | "error" | "ok";
-export const AlertEventAttributesStatus = /*@__PURE__*/ S.String;
+export const AlertEventAttributesStatus = S.String;
 
 /** Alert event attributes. */
 export interface AlertEventAttributes {
@@ -80716,7 +80554,7 @@ export type V2EventAttributesAttributes =
   | ChangeEventAttributes
   | AlertEventAttributes;
 export const V2EventAttributesAttributes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<V2EventAttributesAttributes>;
+  S.Unknown as any as S.Schema<V2EventAttributesAttributes>;
 
 /** A list of tags associated with the event. */
 export type V2EventAttributesTagsList = Array<string>;
@@ -80910,7 +80748,7 @@ export const GetFindingRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The evaluation of the finding. */
 export type FindingEvaluation = "pass" | "fail";
-export const FindingEvaluation = /*@__PURE__*/ S.String;
+export const FindingEvaluation = S.String;
 
 /** The reason why this finding is muted or unmuted. */
 export type FindingMuteReason =
@@ -80921,7 +80759,7 @@ export type FindingMuteReason =
   | "HUMAN_ERROR"
   | "NO_LONGER_ACCEPTED_RISK"
   | "OTHER";
-export const FindingMuteReason = /*@__PURE__*/ S.String;
+export const FindingMuteReason = S.String;
 
 /** Information about the mute status of this finding. */
 export interface FindingMute {
@@ -80964,7 +80802,7 @@ export const FindingRule = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the finding. */
 export type FindingStatus = "critical" | "high" | "medium" | "low" | "info";
-export const FindingStatus = /*@__PURE__*/ S.String;
+export const FindingStatus = S.String;
 
 /** The tags associated with this finding. */
 export type FindingTags = Array<string>;
@@ -81008,7 +80846,7 @@ export const DetailedFindingAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for findings that have the message and resource configuration. */
 export type DetailedFindingType = "detailed_finding";
-export const DetailedFindingType = /*@__PURE__*/ S.String;
+export const DetailedFindingType = S.String;
 
 /** A single finding with with message and resource configuration. */
 export interface DetailedFinding {
@@ -81057,7 +80895,7 @@ export const TestOptimizationFlakyTestsManagementPoliciesGetRequestAttributes =
 export type TestOptimizationGetFlakyTestsManagementPoliciesRequestDataType =
   "test_optimization_get_flaky_tests_management_policies_request";
 export const TestOptimizationGetFlakyTestsManagementPoliciesRequestDataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Data object for get Flaky Tests Management policies request. */
 export interface TestOptimizationFlakyTestsManagementPoliciesGetRequestData {
@@ -81114,7 +80952,7 @@ export type TestOptimizationFlakyTestsManagementPoliciesDisabledStatus =
   | "active"
   | "quarantined";
 export const TestOptimizationFlakyTestsManagementPoliciesDisabledStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Automatic disable triggering rule based on a time window and test status. */
 export interface TestOptimizationFlakyTestsManagementPoliciesAutoDisableRule {
@@ -81365,8 +81203,7 @@ export const TestOptimizationFlakyTestsManagementPoliciesAttributes =
 /** JSON:API type for Flaky Tests Management policies response. The value must always be `test_optimization_flaky_tests_management_policies`. */
 export type TestOptimizationFlakyTestsManagementPoliciesType =
   "test_optimization_flaky_tests_management_policies";
-export const TestOptimizationFlakyTestsManagementPoliciesType =
-  /*@__PURE__*/ S.String;
+export const TestOptimizationFlakyTestsManagementPoliciesType = S.String;
 
 /** Data object for Flaky Tests Management policies response. */
 export interface TestOptimizationFlakyTestsManagementPoliciesData {
@@ -81865,7 +81702,7 @@ export const FleetAgentDetailV2Attributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the agent resource. */
 export type FleetAgentV2ResourceType = "agent";
-export const FleetAgentV2ResourceType = /*@__PURE__*/ S.String;
+export const FleetAgentV2ResourceType = S.String;
 
 /** Detailed information about a specific Datadog Agent. */
 export interface FleetAgentDetailV2 {
@@ -82295,7 +82132,7 @@ export const GCPSTSDelegateAccountAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of account. */
 export type GCPSTSDelegateAccountType = "gcp_sts_delegate";
-export const GCPSTSDelegateAccountType = /*@__PURE__*/ S.String;
+export const GCPSTSDelegateAccountType = S.String;
 
 /** Datadog principal service account info. */
 export interface GCPSTSDelegateAccount {
@@ -82361,7 +82198,7 @@ export const GlobalIncidentSettingsAttributesResponse = /*@__PURE__*/ S.suspend(
 
 /** Global incident settings resource type */
 export type GlobalIncidentSettingsType = "incidents_global_settings";
-export const GlobalIncidentSettingsType = /*@__PURE__*/ S.String;
+export const GlobalIncidentSettingsType = S.String;
 
 /** Data object in the global incident settings response. */
 export interface GlobalIncidentSettingsDataResponse {
@@ -82438,7 +82275,7 @@ export const GoogleChatDelegatedUserAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Google Chat delegated user resource type. */
 export type GoogleChatDelegatedUserType = "google-chat-delegated-user";
-export const GoogleChatDelegatedUserType = /*@__PURE__*/ S.String;
+export const GoogleChatDelegatedUserType = S.String;
 
 /** Google Chat delegated user data from a response. */
 export interface GoogleChatDelegatedUserData {
@@ -82548,7 +82385,7 @@ export const GoogleChatOrganizationRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Google Chat organization resource type. */
 export type GoogleChatOrganizationType = "google-chat-organization";
-export const GoogleChatOrganizationType = /*@__PURE__*/ S.String;
+export const GoogleChatOrganizationType = S.String;
 
 /** Google Chat organization data from a response. */
 export interface GoogleChatOrganizationData {
@@ -82635,7 +82472,7 @@ export const GovernanceConfigAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Governance console config resource type. */
 export type GovernanceConsoleConfigResourceType = "governance_console_config";
-export const GovernanceConsoleConfigResourceType = /*@__PURE__*/ S.String;
+export const GovernanceConsoleConfigResourceType = S.String;
 
 /** A Governance Console configuration resource. */
 export interface GovernanceConfigData {
@@ -82876,7 +82713,7 @@ export const GovernanceControlAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for a governance control. */
 export type GovernanceControlResourceType = "governance_control";
-export const GovernanceControlResourceType = /*@__PURE__*/ S.String;
+export const GovernanceControlResourceType = S.String;
 
 /** A governance control resource. */
 export interface GovernanceControlData {
@@ -82932,7 +82769,7 @@ export type ControlNotificationTargetType =
   | "slack"
   | "at_mention"
   | "case";
-export const ControlNotificationTargetType = /*@__PURE__*/ S.String;
+export const ControlNotificationTargetType = S.String;
 
 /** A destination that receives notifications for an event type. */
 export interface ControlNotificationTarget {
@@ -82996,7 +82833,7 @@ export const ControlNotificationSettingsAttributes = /*@__PURE__*/ S.suspend(
 /** Control notification settings resource type. */
 export type ControlNotificationSettingsResourceType =
   "control_notification_settings";
-export const ControlNotificationSettingsResourceType = /*@__PURE__*/ S.String;
+export const ControlNotificationSettingsResourceType = S.String;
 
 /** A control notification settings resource. */
 export interface ControlNotificationSettingsData {
@@ -83051,8 +82888,7 @@ export type GovernanceControlDetectionAssignmentSource =
   | "manual"
   | "reassigned"
   | "cleared";
-export const GovernanceControlDetectionAssignmentSource =
-  /*@__PURE__*/ S.String;
+export const GovernanceControlDetectionAssignmentSource = S.String;
 
 /** The current state of the detection. Possible values are `active`, `exception`, `mitigated`, `inactive`, `obsolete`, `resolved_externally`, and `mitigation_in_progress`. */
 export type GovernanceControlDetectionState =
@@ -83063,7 +82899,7 @@ export type GovernanceControlDetectionState =
   | "obsolete"
   | "resolved_externally"
   | "mitigation_in_progress";
-export const GovernanceControlDetectionState = /*@__PURE__*/ S.String;
+export const GovernanceControlDetectionState = S.String;
 
 /** The attributes of a governance control detection. */
 export interface GovernanceControlDetectionAttributes {
@@ -83125,7 +82961,7 @@ export const GovernanceControlDetectionAttributes = /*@__PURE__*/ S.suspend(
 /** Governance control detection resource type. */
 export type GovernanceControlDetectionResourceType =
   "governance_control_detection";
-export const GovernanceControlDetectionResourceType = /*@__PURE__*/ S.String;
+export const GovernanceControlDetectionResourceType = S.String;
 
 /** A governance control detection resource. */
 export interface GovernanceControlDetectionData {
@@ -83187,8 +83023,7 @@ export const GovernanceNotificationSettingsAttributes = /*@__PURE__*/ S.suspend(
 /** Governance notification settings resource type. */
 export type GovernanceNotificationSettingsResourceType =
   "governance_notification_settings";
-export const GovernanceNotificationSettingsResourceType =
-  /*@__PURE__*/ S.String;
+export const GovernanceNotificationSettingsResourceType = S.String;
 
 /** A governance notification settings resource. */
 export interface GovernanceNotificationSettingsData {
@@ -83535,7 +83370,7 @@ export const HistoricalJobResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of payload. */
 export type HistoricalJobDataType = "historicalDetectionsJob";
-export const HistoricalJobDataType = /*@__PURE__*/ S.String;
+export const HistoricalJobDataType = S.String;
 
 /** Historical job response data. */
 export interface HistoricalJobResponseData {
@@ -83646,7 +83481,7 @@ export const GetHourlyUsageResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Object related to an incident. */
 export type IncidentRelatedObject = "users" | "attachments";
-export const IncidentRelatedObject = /*@__PURE__*/ S.String;
+export const IncidentRelatedObject = S.String;
 
 export type GetIncidentRequestIncludeList = Array<
   IncidentRelatedObject | (string & {})
@@ -83726,7 +83561,7 @@ export const IncidentAIPostmortemDataAttributesResponse =
 /** AI postmortem response resource type. */
 export type IncidentAIPostmortemResponseType =
   "get_incident_ai_postmortem_response";
-export const IncidentAIPostmortemResponseType = /*@__PURE__*/ S.String;
+export const IncidentAIPostmortemResponseType = S.String;
 
 /** AI postmortem data in a response. */
 export interface IncidentAIPostmortemDataResponse {
@@ -84094,7 +83929,7 @@ export const IoCIndicatorDetailedLogSourcesList = /*@__PURE__*/ S.Array(
 
 /** Effect of a scoring factor on the indicator's threat score. */
 export type IoCScoreEffect = "RAISE_SCORE" | "LOWER_SCORE" | "NO_EFFECT";
-export const IoCScoreEffect = /*@__PURE__*/ S.String;
+export const IoCScoreEffect = S.String;
 
 /** Threat intelligence sources that flagged this indicator as malicious. */
 export type IoCIndicatorDetailedMaliciousSourcesList = Array<IoCSource>;
@@ -84357,7 +84192,7 @@ export const InterfaceAttributesIpAddressesList = /*@__PURE__*/ S.Array(
 
 /** The interface status */
 export type InterfaceAttributesStatus = "up" | "down" | "warning" | "off";
-export const InterfaceAttributesStatus = /*@__PURE__*/ S.String;
+export const InterfaceAttributesStatus = S.String;
 
 /** The interface attributes */
 export interface InterfaceAttributes {
@@ -84493,7 +84328,7 @@ export const GetInvestigationResponseDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** The resource type for investigations. */
 export type InvestigationType = "investigation";
-export const InvestigationType = /*@__PURE__*/ S.String;
+export const InvestigationType = S.String;
 
 /** Data for the get investigation response. */
 export interface GetInvestigationResponseData {
@@ -84608,8 +84443,7 @@ export const SecurityMonitoringSignalSuggestedActionAttributes =
 export type SecurityMonitoringSignalSuggestedActionType =
   | "investigation_log_queries"
   | "recommended_blog_posts";
-export const SecurityMonitoringSignalSuggestedActionType =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringSignalSuggestedActionType = S.String;
 
 /** A suggested action for a security signal. */
 export interface SecurityMonitoringSignalSuggestedAction {
@@ -84704,7 +84538,7 @@ export const UserInvitationRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** User invitations type. */
 export type UserInvitationsType = "user_invitations";
-export const UserInvitationsType = /*@__PURE__*/ S.String;
+export const UserInvitationsType = S.String;
 
 /** Object of a user invitation returned by the API. */
 export interface UserInvitationResponseData {
@@ -84770,7 +84604,7 @@ export const IPAllowlistEntryAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** IP allowlist Entry type. */
 export type IPAllowlistEntryType = "ip_allowlist_entry";
-export const IPAllowlistEntryType = /*@__PURE__*/ S.String;
+export const IPAllowlistEntryType = S.String;
 
 /** Data of the IP allowlist entry object. */
 export interface IPAllowlistEntryData {
@@ -84825,7 +84659,7 @@ export const IPAllowlistAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** IP allowlist type. */
 export type IPAllowlistType = "ip_allowlist";
-export const IPAllowlistType = /*@__PURE__*/ S.String;
+export const IPAllowlistType = S.String;
 
 /** IP allowlist data. */
 export interface IPAllowlistData {
@@ -84861,7 +84695,7 @@ export type GetIssueIncludeQueryParameterItem =
   | "assignee"
   | "case"
   | "team_owners";
-export const GetIssueIncludeQueryParameterItem = /*@__PURE__*/ S.String;
+export const GetIssueIncludeQueryParameterItem = S.String;
 
 export type GetIssueRequestIncludeList = Array<
   GetIssueIncludeQueryParameterItem | (string & {})
@@ -84920,7 +84754,7 @@ export type IssueLanguage =
   | "TERRAFORM"
   | "TYPESCRIPT"
   | "UNKNOWN";
-export const IssueLanguage = /*@__PURE__*/ S.String;
+export const IssueLanguage = S.String;
 
 /** Array of programming languages associated with the issue. */
 export type IssueAttributesLanguagesList = Array<IssueLanguage>;
@@ -84938,7 +84772,7 @@ export type IssuePlatform =
   | "REACT_NATIVE"
   | "ROKU"
   | "UNKNOWN";
-export const IssuePlatform = /*@__PURE__*/ S.String;
+export const IssuePlatform = S.String;
 
 /** Regression information for an issue that was previously resolved and then reopened. */
 export interface IssueRegression {
@@ -84966,7 +84800,7 @@ export type IssueState =
   | "RESOLVED"
   | "IGNORED"
   | "EXCLUDED";
-export const IssueState = /*@__PURE__*/ S.String;
+export const IssueState = S.String;
 
 /** Object containing the information of an issue. */
 export interface IssueAttributes {
@@ -85019,7 +84853,7 @@ export const IssueAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the object */
 export type IssueUserType = "user";
-export const IssueUserType = /*@__PURE__*/ S.String;
+export const IssueUserType = S.String;
 
 /** The user the issue is assigned to. */
 export interface IssueUserReference {
@@ -85050,7 +84884,7 @@ export const IssueAssigneeRelationship = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the object. */
 export type IssueCaseResourceType = "case";
-export const IssueCaseResourceType = /*@__PURE__*/ S.String;
+export const IssueCaseResourceType = S.String;
 
 /** The case the issue is attached to. */
 export interface IssueCaseReference {
@@ -85081,7 +84915,7 @@ export const IssueCaseRelationship = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the object. */
 export type IssueTeamType = "team";
-export const IssueTeamType = /*@__PURE__*/ S.String;
+export const IssueTeamType = S.String;
 
 /** A team that owns the issue. */
 export interface IssueTeamReference {
@@ -85135,7 +84969,7 @@ export const IssueRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the object. */
 export type IssueType = "issue";
-export const IssueType = /*@__PURE__*/ S.String;
+export const IssueType = S.String;
 
 /** The issue matching the request. */
 export interface Issue {
@@ -85410,8 +85244,7 @@ export const IssueTeam = /*@__PURE__*/ S.suspend(() =>
 
 /** An array of related resources, returned when the `include` query parameter is used. */
 export type IssueIncluded = IssueCase | IssueUser | IssueTeam;
-export const IssueIncluded =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IssueIncluded>;
+export const IssueIncluded = S.Unknown as any as S.Schema<IssueIncluded>;
 
 /** Array of resources related to the issue. */
 export type IssueResponseIncludedList = Array<IssueIncluded>;
@@ -85587,7 +85420,7 @@ export type LLMObsAnnotatedInteractionItem =
   | LLMObsTraceAnnotatedInteractionItem
   | LLMObsDisplayBlockAnnotatedInteractionItem;
 export const LLMObsAnnotatedInteractionItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LLMObsAnnotatedInteractionItem>;
+  S.Unknown as any as S.Schema<LLMObsAnnotatedInteractionItem>;
 
 /** List of interactions with their annotations. */
 export type LLMObsAnnotatedInteractionsDataAttributesResponseAnnotatedInteractionsList =
@@ -85614,7 +85447,7 @@ export const LLMObsAnnotatedInteractionsDataAttributesResponse =
 
 /** Resource type for annotated interactions. */
 export type LLMObsAnnotatedInteractionsType = "annotated_interactions";
-export const LLMObsAnnotatedInteractionsType = /*@__PURE__*/ S.String;
+export const LLMObsAnnotatedInteractionsType = S.String;
 
 /** Data object for annotated interactions. */
 export interface LLMObsAnnotatedInteractionsDataResponse {
@@ -85695,7 +85528,7 @@ export type LLMObsAnyInteractionType =
   | "experiment_trace"
   | "session"
   | "display_block";
-export const LLMObsAnyInteractionType = /*@__PURE__*/ S.String;
+export const LLMObsAnyInteractionType = S.String;
 
 /** An annotated interaction returned by the cross-queue lookup, including the source queue metadata. */
 export interface LLMObsAnnotatedInteractionByTraceItem {
@@ -85765,7 +85598,7 @@ export const LLMObsAnnotatedInteractionsByTraceDataAttributesResponse =
 /** Resource type for cross-queue annotated interactions lookup. */
 export type LLMObsAnnotatedInteractionsByTraceType =
   "annotated_interactions_by_trace";
-export const LLMObsAnnotatedInteractionsByTraceType = /*@__PURE__*/ S.String;
+export const LLMObsAnnotatedInteractionsByTraceType = S.String;
 
 /** Data object for the cross-queue annotated interactions response. */
 export interface LLMObsAnnotatedInteractionsByTraceDataResponse {
@@ -85969,7 +85802,7 @@ export type LLMObsCustomEvalConfigParsingType =
   | "structured_output"
   | "json"
   | "keyword_search";
-export const LLMObsCustomEvalConfigParsingType = /*@__PURE__*/ S.String;
+export const LLMObsCustomEvalConfigParsingType = S.String;
 
 /** A tool call within a prompt message. */
 export interface LLMObsCustomEvalConfigPromptToolCall {
@@ -86154,7 +85987,7 @@ export type LLMObsCustomEvalConfigIntegrationProvider =
   | "azure-openai"
   | "vertex-ai"
   | "llm-proxy";
-export const LLMObsCustomEvalConfigIntegrationProvider = /*@__PURE__*/ S.String;
+export const LLMObsCustomEvalConfigIntegrationProvider = S.String;
 
 /** Google Vertex AI-specific options for LLM provider configuration. */
 export interface LLMObsCustomEvalConfigVertexAIOptions {
@@ -86199,7 +86032,7 @@ export const LLMObsCustomEvalConfigLLMProvider = /*@__PURE__*/ S.suspend(() =>
 
 /** Scope at which to evaluate spans. */
 export type LLMObsCustomEvalConfigEvalScope = "span" | "trace" | "session";
-export const LLMObsCustomEvalConfigEvalScope = /*@__PURE__*/ S.String;
+export const LLMObsCustomEvalConfigEvalScope = S.String;
 
 /** Experiment project IDs this evaluator is scoped to. */
 export type LLMObsCustomEvalConfigTargetExperimentProjectIdsList =
@@ -86275,7 +86108,7 @@ export const LLMObsCustomEvalConfigAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the custom Agent Observability evaluator configuration resource. */
 export type LLMObsCustomEvalConfigType = "evaluator_config";
-export const LLMObsCustomEvalConfigType = /*@__PURE__*/ S.String;
+export const LLMObsCustomEvalConfigType = S.String;
 
 /** Data object for a custom Agent Observability evaluator configuration. */
 export interface LLMObsCustomEvalConfigData {
@@ -86370,7 +86203,7 @@ export const LLMObsDatasetDraftStateDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** Resource type of an Agent Observability dataset draft state. */
 export type LLMObsDatasetDraftStateType = "draft_state_data";
-export const LLMObsDatasetDraftStateType = /*@__PURE__*/ S.String;
+export const LLMObsDatasetDraftStateType = S.String;
 
 /** Data object for an Agent Observability dataset draft state. */
 export interface LLMObsDatasetDraftStateData {
@@ -86462,7 +86295,7 @@ export const LLMObsPatternsConfigAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type of an Agent Observability patterns configuration. */
 export type LLMObsPatternsConfigType = "topic_discovery_configs";
-export const LLMObsPatternsConfigType = /*@__PURE__*/ S.String;
+export const LLMObsPatternsConfigType = S.String;
 
 /** Data object of an Agent Observability patterns configuration. */
 export interface LLMObsPatternsConfigResponseData {
@@ -86560,7 +86393,7 @@ export const LLMObsPatternsRunStatusResponseAttributes =
 
 /** Resource type of an Agent Observability patterns run status. */
 export type LLMObsPatternsRunStatusType = "topic_discovery_run_status";
-export const LLMObsPatternsRunStatusType = /*@__PURE__*/ S.String;
+export const LLMObsPatternsRunStatusType = S.String;
 
 /** Data object of an Agent Observability patterns run status response. */
 export interface LLMObsPatternsRunStatusResponseData {
@@ -86756,7 +86589,7 @@ export const LogsArchiveOrderAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the archive order definition. */
 export type LogsArchiveOrderDefinitionType = "archive_order";
-export const LogsArchiveOrderDefinitionType = /*@__PURE__*/ S.String;
+export const LogsArchiveOrderDefinitionType = S.String;
 
 /** The definition of an archive order. */
 export interface LogsArchiveOrderDefinition {
@@ -86948,7 +86781,7 @@ export const GetMappingResponseDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Get mappings response resource type. */
 export type GetMappingResponseDataType = "get_mappings_response";
-export const GetMappingResponseDataType = /*@__PURE__*/ S.String;
+export const GetMappingResponseDataType = S.String;
 
 /** The data object containing the resource type and attributes for the get mapping response. */
 export interface GetMappingResponseData {
@@ -87170,7 +87003,7 @@ export const ModelLabProjectAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for a Model Lab project resource. */
 export type ModelLabProjectType = "projects";
-export const ModelLabProjectType = /*@__PURE__*/ S.String;
+export const ModelLabProjectType = S.String;
 
 /** A Model Lab project JSON:API resource object. */
 export interface ModelLabProjectData {
@@ -87294,7 +87127,7 @@ export type ModelLabRunStatus =
   | "killed"
   | "unresponsive"
   | "paused";
-export const ModelLabRunStatus = /*@__PURE__*/ S.String;
+export const ModelLabRunStatus = S.String;
 
 /** The list of tags associated with the run. */
 export type ModelLabRunAttributesTagsList = Array<ModelLabTag>;
@@ -87370,7 +87203,7 @@ export const ModelLabRunAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for a Model Lab run resource. */
 export type ModelLabRunType = "runs";
-export const ModelLabRunType = /*@__PURE__*/ S.String;
+export const ModelLabRunType = S.String;
 
 /** A Model Lab run JSON:API resource object. */
 export interface ModelLabRunData {
@@ -87638,7 +87471,7 @@ export const MonitorUserTemplateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The direction to sort by. */
 export type SortDirection = "desc" | "asc";
-export const SortDirection = /*@__PURE__*/ S.String;
+export const SortDirection = S.String;
 
 export interface GetMonthlyCostAttributionRequest {
   /** Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for cost beginning in this month. */
@@ -87738,7 +87571,7 @@ export const OAuth2WellKnownSitesAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for OAuth2 well-known sites environment. */
 export type OAuth2WellKnownSitesEnvType = "env";
-export const OAuth2WellKnownSitesEnvType = /*@__PURE__*/ S.String;
+export const OAuth2WellKnownSitesEnvType = S.String;
 
 /** Data object containing OAuth2 well-known sites information. */
 export interface OAuth2WellKnownSitesData {
@@ -87853,8 +87686,7 @@ export const GetOnCallTeamRoutingRulesRequest = /*@__PURE__*/ S.suspend(() =>
 /** Indicates that the resource is of type 'team_routing_rules'. */
 export type TeamRoutingRulesDataRelationshipsRulesDataItemsType =
   "team_routing_rules";
-export const TeamRoutingRulesDataRelationshipsRulesDataItemsType =
-  /*@__PURE__*/ S.String;
+export const TeamRoutingRulesDataRelationshipsRulesDataItemsType = S.String;
 
 /** Defines a relationship item to link a routing rule by its ID and type. */
 export interface TeamRoutingRulesDataRelationshipsRulesDataItems {
@@ -87908,7 +87740,7 @@ export const TeamRoutingRulesDataRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Team routing rules resource type. */
 export type TeamRoutingRulesDataType = "team_routing_rules";
-export const TeamRoutingRulesDataType = /*@__PURE__*/ S.String;
+export const TeamRoutingRulesDataType = S.String;
 
 /** Represents the top-level data object for team routing rules, containing the ID, relationships, and resource type. */
 export interface TeamRoutingRulesData {
@@ -87929,7 +87761,7 @@ export const TeamRoutingRulesData = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the action is a send Slack message action. */
 export type SendSlackMessageActionType = "send_slack_message";
-export const SendSlackMessageActionType = /*@__PURE__*/ S.String;
+export const SendSlackMessageActionType = S.String;
 
 /** Sends a message to a Slack channel. */
 export interface SendSlackMessageAction {
@@ -87951,7 +87783,7 @@ export const SendSlackMessageAction = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the action is a send Microsoft Teams message action. */
 export type SendTeamsMessageActionType = "send_teams_message";
-export const SendTeamsMessageActionType = /*@__PURE__*/ S.String;
+export const SendTeamsMessageActionType = S.String;
 
 /** Sends a message to a Microsoft Teams channel. */
 export interface SendTeamsMessageAction {
@@ -87976,7 +87808,7 @@ export const SendTeamsMessageAction = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the action triggers a Workflow Automation. */
 export type TriggerWorkflowAutomationActionType = "workflow";
-export const TriggerWorkflowAutomationActionType = /*@__PURE__*/ S.String;
+export const TriggerWorkflowAutomationActionType = S.String;
 
 /** Triggers a Workflow Automation. */
 export interface TriggerWorkflowAutomationAction {
@@ -88022,11 +87854,11 @@ export const RoutingRuleEscalationPolicyActionSupportHours =
 
 /** Indicates that the action pages an escalation policy. This action can be set once per routing rule item, and is mutually exclusive with the top-level `policy_id` field on the routing rule. */
 export type RoutingRuleEscalationPolicyActionType = "escalation_policy";
-export const RoutingRuleEscalationPolicyActionType = /*@__PURE__*/ S.String;
+export const RoutingRuleEscalationPolicyActionType = S.String;
 
 /** Specifies the level of urgency for a routing rule (low, high, or dynamic). */
 export type Urgency = "low" | "high" | "dynamic";
-export const Urgency = /*@__PURE__*/ S.String;
+export const Urgency = S.String;
 
 /** Triggers an escalation policy. */
 export interface RoutingRuleEscalationPolicyAction {
@@ -88057,7 +87889,7 @@ export type RoutingRuleAction =
   | TriggerWorkflowAutomationAction
   | RoutingRuleEscalationPolicyAction;
 export const RoutingRuleAction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RoutingRuleAction>;
+  S.Unknown as any as S.Schema<RoutingRuleAction>;
 
 /** Specifies the list of actions to perform when the routing rule matches. */
 export type RoutingRuleAttributesActionsList = Array<RoutingRuleAction>;
@@ -88109,7 +87941,7 @@ export const RoutingRuleAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the resource is of type 'policies'. */
 export type RoutingRuleRelationshipsPolicyDataType = "policies";
-export const RoutingRuleRelationshipsPolicyDataType = /*@__PURE__*/ S.String;
+export const RoutingRuleRelationshipsPolicyDataType = S.String;
 
 /** Represents the policy data reference, containing the policy's ID and resource type. */
 export interface RoutingRuleRelationshipsPolicyData {
@@ -88152,7 +87984,7 @@ export const RoutingRuleRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Team routing rules resource type. */
 export type RoutingRuleType = "team_routing_rules";
-export const RoutingRuleType = /*@__PURE__*/ S.String;
+export const RoutingRuleType = S.String;
 
 /** Represents a routing rule, including its attributes, relationships, and unique identifier. */
 export interface RoutingRule {
@@ -88220,7 +88052,7 @@ export const OnDemandConcurrencyCapAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** On-demand concurrency cap type. */
 export type OnDemandConcurrencyCapType = "on_demand_concurrency_cap";
-export const OnDemandConcurrencyCapType = /*@__PURE__*/ S.String;
+export const OnDemandConcurrencyCapType = S.String;
 
 /** On-demand concurrency cap. */
 export interface OnDemandConcurrencyCap {
@@ -88340,8 +88172,7 @@ export const OrgAuthorizedClientAttributes = /*@__PURE__*/ S.suspend(() =>
 /** OAuth2 client resource type. */
 export type OrgAuthorizedClientRelationshipOAuth2ClientDataType =
   "oauth2_clients";
-export const OrgAuthorizedClientRelationshipOAuth2ClientDataType =
-  /*@__PURE__*/ S.String;
+export const OrgAuthorizedClientRelationshipOAuth2ClientDataType = S.String;
 
 /** Data identifying the OAuth2 client associated with this org authorized client. */
 export interface OrgAuthorizedClientRelationshipOAuth2ClientData {
@@ -88376,7 +88207,7 @@ export const OrgAuthorizedClientRelationshipOAuth2Client =
 export type OrgAuthorizedClientRelationshipUserAuthorizedClientsDataType =
   "user_authorized_clients";
 export const OrgAuthorizedClientRelationshipUserAuthorizedClientsDataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Data identifying a user authorized client. */
 export interface OrgAuthorizedClientRelationshipUserAuthorizedClientsData {
@@ -88448,7 +88279,7 @@ export const OrgAuthorizedClientRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type for org authorized clients. */
 export type OrgAuthorizedClientType = "org_authorized_clients";
-export const OrgAuthorizedClientType = /*@__PURE__*/ S.String;
+export const OrgAuthorizedClientType = S.String;
 
 /** Data object representing an org authorized client. */
 export interface OrgAuthorizedClientData {
@@ -88526,7 +88357,7 @@ export const OrgConfigReadAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Data type of an Org Config. */
 export type OrgConfigType = "org_configs";
-export const OrgConfigType = /*@__PURE__*/ S.String;
+export const OrgConfigType = S.String;
 
 /** A single Org Config. */
 export interface OrgConfigRead {
@@ -88694,7 +88525,7 @@ export const IncidentOrgSettingsRelationships =
 
 /** Incident org settings resource type. */
 export type IncidentOrgSettingsType = "incident_org_settings";
-export const IncidentOrgSettingsType = /*@__PURE__*/ S.String;
+export const IncidentOrgSettingsType = S.String;
 
 /** Incident org settings data in a response. */
 export interface IncidentOrgSettingsDataResponse {
@@ -88735,7 +88566,7 @@ export type GetOwnershipEvidenceRequestOwnerType =
   | "team"
   | "service"
   | "unknown";
-export const GetOwnershipEvidenceRequestOwnerType = /*@__PURE__*/ S.String;
+export const GetOwnershipEvidenceRequestOwnerType = S.String;
 
 export interface GetOwnershipEvidenceRequest {
   /** The identifier of the resource to retrieve evidence for. */
@@ -88785,7 +88616,7 @@ export const OwnershipEvidenceAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the ownership evidence resource. The value should always be `ownership_evidence`. */
 export type OwnershipEvidenceType = "ownership_evidence";
-export const OwnershipEvidenceType = /*@__PURE__*/ S.String;
+export const OwnershipEvidenceType = S.String;
 
 /** The data wrapper for an ownership evidence response. */
 export interface OwnershipEvidenceData {
@@ -88822,7 +88653,7 @@ export type GetOwnershipInferenceRequestOwnerType =
   | "team"
   | "service"
   | "unknown";
-export const GetOwnershipInferenceRequestOwnerType = /*@__PURE__*/ S.String;
+export const GetOwnershipInferenceRequestOwnerType = S.String;
 
 export interface GetOwnershipInferenceRequest {
   /** The identifier of the resource to retrieve the ownership inference for. */
@@ -88896,7 +88727,7 @@ export const OwnershipInferenceAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the ownership inference resource. The value should always be `ownership_inference`. */
 export type OwnershipInferenceType = "ownership_inference";
-export const OwnershipInferenceType = /*@__PURE__*/ S.String;
+export const OwnershipInferenceType = S.String;
 
 /** The data wrapper for a single ownership inference response. */
 export interface OwnershipInferenceData {
@@ -88938,7 +88769,7 @@ export const GetOwnershipSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The ownership confidence level. */
 export type OwnershipConfidenceLevel = "high" | "medium" | "low";
-export const OwnershipConfidenceLevel = /*@__PURE__*/ S.String;
+export const OwnershipConfidenceLevel = S.String;
 
 /** The attributes of the ownership settings response. */
 export interface OwnershipSettingsAttributes {
@@ -88960,7 +88791,7 @@ export const OwnershipSettingsAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the ownership settings resource. The value should always be `ownership_settings`. */
 export type OwnershipSettingsType = "ownership_settings";
-export const OwnershipSettingsType = /*@__PURE__*/ S.String;
+export const OwnershipSettingsType = S.String;
 
 /** The data wrapper for an ownership settings response. */
 export interface OwnershipSettingsData {
@@ -89028,7 +88859,7 @@ export const OwnershipUntaggedFindingsAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the ownership untagged findings resource. The value should always be `ownership_untagged_findings`. */
 export type OwnershipUntaggedFindingsType = "ownership_untagged_findings";
-export const OwnershipUntaggedFindingsType = /*@__PURE__*/ S.String;
+export const OwnershipUntaggedFindingsType = S.String;
 
 /** The data wrapper for an ownership untagged findings response. */
 export interface OwnershipUntaggedFindingsData {
@@ -89178,7 +89009,7 @@ export const PageAnnotationsAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Page annotations resource type. */
 export type PageAnnotationsType = "page_annotations";
-export const PageAnnotationsType = /*@__PURE__*/ S.String;
+export const PageAnnotationsType = S.String;
 
 /** Annotations grouped by widget for a single page. */
 export interface PageAnnotationsData {
@@ -89214,8 +89045,7 @@ export type GetPermanentRetentionFilterRequestPermanentRfId =
   | "rum_apm_flat_sampling"
   | "synthetics_sessions"
   | "forced_replay_sessions";
-export const GetPermanentRetentionFilterRequestPermanentRfId =
-  /*@__PURE__*/ S.String;
+export const GetPermanentRetentionFilterRequestPermanentRfId = S.String;
 
 export interface GetPermanentRetentionFilterRequest {
   /** RUM application ID. */
@@ -89282,11 +89112,11 @@ export type RumPermanentRetentionFilterID =
   | "rum_apm_flat_sampling"
   | "synthetics_sessions"
   | "forced_replay_sessions";
-export const RumPermanentRetentionFilterID = /*@__PURE__*/ S.String;
+export const RumPermanentRetentionFilterID = S.String;
 
 /** The type of the resource. The value should always be `permanent_retention_filters`. */
 export type RumPermanentRetentionFilterType = "permanent_retention_filters";
-export const RumPermanentRetentionFilterType = /*@__PURE__*/ S.String;
+export const RumPermanentRetentionFilterType = S.String;
 
 /** A permanent RUM retention filter. */
 export interface RumPermanentRetentionFilterData {
@@ -89613,7 +89443,7 @@ export const SummarizedSpanChildrenList = /*@__PURE__*/ S.Array(
 
 /** Error flag for a span. `1` when the span is in error, `0` otherwise. */
 export type APMSpanErrorFlag = 0 | 1;
-export const APMSpanErrorFlag = /*@__PURE__*/ S.Number;
+export const APMSpanErrorFlag = S.Number;
 
 /** String-valued tags attached to the span. */
 export type SummarizedSpanMetaMap = { [key: string]: string | undefined };
@@ -89713,7 +89543,7 @@ export const PrunedTraceAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the pruned trace resource. The value is always `pruned_trace`. */
 export type PrunedTraceType = "pruned_trace";
-export const PrunedTraceType = /*@__PURE__*/ S.String;
+export const PrunedTraceType = S.String;
 
 /** A pruned trace resource document. */
 export interface PrunedTraceData {
@@ -89766,8 +89596,7 @@ export const GetReportScheduleRequest = /*@__PURE__*/ S.suspend(() =>
 export type GetReportSchedulesForResourceRequestResourceType =
   | "dashboard"
   | "integration_dashboard";
-export const GetReportSchedulesForResourceRequestResourceType =
-  /*@__PURE__*/ S.String;
+export const GetReportSchedulesForResourceRequestResourceType = S.String;
 
 export interface GetReportSchedulesForResourceRequest {
   /** The type of resource to fetch report schedules for. */
@@ -89961,7 +89790,7 @@ export const ReportScheduleListResponseLinks = /*@__PURE__*/ S.suspend(() =>
 
 /** The pagination type. */
 export type ReportScheduleListResponsePaginationType = "offset_limit";
-export const ReportScheduleListResponsePaginationType = /*@__PURE__*/ S.String;
+export const ReportScheduleListResponsePaginationType = S.String;
 
 /** Offset and limit pagination metadata for a report schedule list response. */
 export interface ReportScheduleListResponsePagination {
@@ -90097,7 +89926,7 @@ export const ResourceFilterAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Constant string to identify the request type. */
 export type ResourceFilterRequestType = "csm_resource_filter";
-export const ResourceFilterRequestType = /*@__PURE__*/ S.String;
+export const ResourceFilterRequestType = S.String;
 
 /** The definition of `GetResourceFilterResponseData` object. */
 export interface GetResourceEvaluationFiltersResponseData {
@@ -90192,7 +90021,7 @@ export const RestrictionPolicyAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Restriction policy type. */
 export type RestrictionPolicyType = "restriction_policy";
-export const RestrictionPolicyType = /*@__PURE__*/ S.String;
+export const RestrictionPolicyType = S.String;
 
 /** Restriction policy object. */
 export interface RestrictionPolicy {
@@ -90456,7 +90285,7 @@ export const GetRuleVersionHistoryRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of change. */
 export type VersionHistoryUpdateType = "create" | "update" | "delete";
-export const VersionHistoryUpdateType = /*@__PURE__*/ S.String;
+export const VersionHistoryUpdateType = S.String;
 
 /** A change in a rule version. */
 export interface VersionHistoryUpdate {
@@ -90522,7 +90351,7 @@ export const RuleVersionHistory = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of data. */
 export type GetRuleVersionHistoryDataType = "GetRuleVersionHistoryResponse";
-export const GetRuleVersionHistoryDataType = /*@__PURE__*/ S.String;
+export const GetRuleVersionHistoryDataType = S.String;
 
 /** Data for the rule version history. */
 export interface GetRuleVersionHistoryData {
@@ -90620,7 +90449,7 @@ export const RUMApplicationListAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** RUM application list type. */
 export type RUMApplicationListType = "rum_application";
-export const RUMApplicationListType = /*@__PURE__*/ S.String;
+export const RUMApplicationListType = S.String;
 
 /** RUM application list. */
 export interface RUMApplicationList {
@@ -90723,7 +90552,7 @@ export const GetRUMOperationByNameRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of scope the retention quota configuration applies to. `application` is the only supported scope type. */
 export type GetRumQuotaConfigRequestScopeType = "application";
-export const GetRumQuotaConfigRequestScopeType = /*@__PURE__*/ S.String;
+export const GetRumQuotaConfigRequestScopeType = S.String;
 
 export interface GetRumQuotaConfigRequest {
   /** The type of scope the retention quota configuration applies to. `application` is the only supported scope type. */
@@ -90748,11 +90577,11 @@ export const GetRumQuotaConfigRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The action to take when the session quota is reached. */
 export type RumRetentionQuotaReachedAction = "stop" | "slowdown";
-export const RumRetentionQuotaReachedAction = /*@__PURE__*/ S.String;
+export const RumRetentionQuotaReachedAction = S.String;
 
 /** The window type over which the session limit is enforced. */
 export type RumRetentionQuotaWindowType = "daily";
-export const RumRetentionQuotaWindowType = /*@__PURE__*/ S.String;
+export const RumRetentionQuotaWindowType = S.String;
 
 /** The configuration used when `mode` is `custom`. */
 export interface RumRetentionQuotaCustomConfig {
@@ -90779,7 +90608,7 @@ export const RumRetentionQuotaCustomConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** The retention quota mode. `custom` enforces a fixed session limit. `custom` is the only supported mode. */
 export type RumRetentionQuotaMode = "custom";
-export const RumRetentionQuotaMode = /*@__PURE__*/ S.String;
+export const RumRetentionQuotaMode = S.String;
 
 /** The RUM retention quota configuration properties. */
 export interface RumRetentionQuotaConfigAttributes {
@@ -90806,7 +90635,7 @@ export const RumRetentionQuotaConfigAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource, always `rum_quota_config`. */
 export type RumRetentionQuotaConfigType = "rum_quota_config";
-export const RumRetentionQuotaConfigType = /*@__PURE__*/ S.String;
+export const RumRetentionQuotaConfigType = S.String;
 
 /** The RUM retention quota configuration object. */
 export interface RumRetentionQuotaConfigData {
@@ -90875,7 +90704,7 @@ export const GetRumSdkConfigRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of match pattern, either a literal string or a regex. */
 export type RumSdkConfigMatchOptionSerializedType = "string" | "regex";
-export const RumSdkConfigMatchOptionSerializedType = /*@__PURE__*/ S.String;
+export const RumSdkConfigMatchOptionSerializedType = S.String;
 
 /** A match option used for URL or origin pattern matching. */
 export interface RumSdkConfigMatchOption {
@@ -90898,7 +90727,7 @@ export type RumSdkConfigTracingUrlPropagatorType =
   | "b3"
   | "b3multi"
   | "tracecontext";
-export const RumSdkConfigTracingUrlPropagatorType = /*@__PURE__*/ S.String;
+export const RumSdkConfigTracingUrlPropagatorType = S.String;
 
 /** The list of trace propagator types to use for this URL. */
 export type RumSdkConfigTracingUrlConfigPropagatorTypesList = Array<
@@ -90940,7 +90769,7 @@ export const RumSdkConfigAllowedTrackingOriginList = /*@__PURE__*/ S.Array(
 
 /** The type identifier for a serialized regex. Always `regex`. */
 export type RumSdkConfigSerializedRegexType = "regex";
-export const RumSdkConfigSerializedRegexType = /*@__PURE__*/ S.String;
+export const RumSdkConfigSerializedRegexType = S.String;
 
 /** A serialized regex used as an extractor in dynamic options. */
 export interface RumSdkConfigSerializedRegex {
@@ -90959,7 +90788,7 @@ export const RumSdkConfigSerializedRegex = /*@__PURE__*/ S.suspend(() =>
 
 /** The type identifier for a dynamic option. Always `dynamic`. */
 export type RumSdkConfigDynamicOptionSerializedType = "dynamic";
-export const RumSdkConfigDynamicOptionSerializedType = /*@__PURE__*/ S.String;
+export const RumSdkConfigDynamicOptionSerializedType = S.String;
 
 /** The strategy used to extract the dynamic value. */
 export type RumSdkConfigDynamicOptionStrategy =
@@ -90967,7 +90796,7 @@ export type RumSdkConfigDynamicOptionStrategy =
   | "cookie"
   | "dom"
   | "localStorage";
-export const RumSdkConfigDynamicOptionStrategy = /*@__PURE__*/ S.String;
+export const RumSdkConfigDynamicOptionStrategy = S.String;
 
 /** A dynamic configuration option that extracts a value at runtime using a specified strategy. */
 export interface RumSdkConfigDynamicOption {
@@ -91099,7 +90928,7 @@ export const RumSdkConfigMeta = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value should always be `rum_sdk_config`. */
 export type RumSdkConfigType = "rum_sdk_config";
-export const RumSdkConfigType = /*@__PURE__*/ S.String;
+export const RumSdkConfigType = S.String;
 
 /** The RUM SDK configuration data object. */
 export interface RumSdkConfigData {
@@ -91170,7 +90999,7 @@ export const SalesforceIncidentsOrganizationResponseAttributes =
 
 /** Salesforce organization resource type. */
 export type SalesforceIncidentsOrganizationType = "salesforce-incidents-org";
-export const SalesforceIncidentsOrganizationType = /*@__PURE__*/ S.String;
+export const SalesforceIncidentsOrganizationType = S.String;
 
 /** Salesforce organization data from a response. */
 export interface SalesforceIncidentsOrganizationResponseData {
@@ -91294,7 +91123,7 @@ export const SAMLConfigurationRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** SAML configurations resource type. */
 export type SAMLConfigurationsType = "saml_configurations";
-export const SAMLConfigurationsType = /*@__PURE__*/ S.String;
+export const SAMLConfigurationsType = S.String;
 
 /** A SAML configuration object. */
 export interface SAMLConfiguration {
@@ -91344,11 +91173,11 @@ export type GetSBOMRequestAssetType =
   | "HostImage"
   | "Image"
   | "ServerlessFunction";
-export const GetSBOMRequestAssetType = /*@__PURE__*/ S.String;
+export const GetSBOMRequestAssetType = S.String;
 
 /** The SBOM standard */
 export type SBOMFormat = "CycloneDX" | "SPDX";
-export const SBOMFormat = /*@__PURE__*/ S.String;
+export const SBOMFormat = S.String;
 
 export interface GetSBOMRequest {
   /** The type of the asset for the SBOM request. */
@@ -91457,7 +91286,7 @@ export type SBOMComponentType =
   | "machine-learning-model"
   | "operating-system"
   | "platform";
-export const SBOMComponentType = /*@__PURE__*/ S.String;
+export const SBOMComponentType = S.String;
 
 /** Software or hardware component. */
 export interface SBOMComponent {
@@ -91576,7 +91405,7 @@ export const SBOMMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** The version of the CycloneDX specification a BOM conforms to. */
 export type SpecVersion = "1.0" | "1.1" | "1.2" | "1.3" | "1.4" | "1.5" | "1.6";
-export const SpecVersion = /*@__PURE__*/ S.String;
+export const SpecVersion = S.String;
 
 /** The JSON:API attributes of the SBOM. */
 export interface SBOMAttributes {
@@ -91607,7 +91436,7 @@ export const SBOMAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type. */
 export type SBOMType = "sboms";
-export const SBOMType = /*@__PURE__*/ S.String;
+export const SBOMType = S.String;
 
 /** A single SBOM */
 export interface SBOM {
@@ -91706,7 +91535,7 @@ export const ScheduleOnCallRespondersDataAttributes = /*@__PURE__*/ S.suspend(
 export type ScheduleOnCallRespondersDataRelationshipsRespondersDataItemsType =
   "schedule_oncall_responder";
 export const ScheduleOnCallRespondersDataRelationshipsRespondersDataItemsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a reference to one position's (previous, current, or next) responder group. */
 export interface ScheduleOnCallRespondersDataRelationshipsRespondersDataItems {
@@ -91752,7 +91581,7 @@ export const ScheduleOnCallRespondersDataRelationshipsResponders =
 export type ScheduleOnCallRespondersDataRelationshipsScheduleDataType =
   "schedules";
 export const ScheduleOnCallRespondersDataRelationshipsScheduleDataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a reference to the schedule this on-call responders lookup was performed for. */
 export interface ScheduleOnCallRespondersDataRelationshipsScheduleData {
@@ -91802,7 +91631,7 @@ export const ScheduleOnCallRespondersDataRelationships =
 
 /** Represents the resource type for a schedule's grouped on-call responders across the previous, current, and next positions. */
 export type ScheduleOnCallRespondersDataType = "schedule_oncall_responders";
-export const ScheduleOnCallRespondersDataType = /*@__PURE__*/ S.String;
+export const ScheduleOnCallRespondersDataType = S.String;
 
 /** The main data object representing a schedule's on-call responders lookup, including relationships and metadata. */
 export interface ScheduleOnCallRespondersData {
@@ -91840,7 +91669,7 @@ export const ScheduleOnCallResponderDataAttributes = /*@__PURE__*/ S.suspend(
 export type ScheduleOnCallResponderDataRelationshipsShiftsDataItemsType =
   "shifts";
 export const ScheduleOnCallResponderDataRelationshipsShiftsDataItemsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a reference to one of the shifts satisfying this responder group's position. */
 export interface ScheduleOnCallResponderDataRelationshipsShiftsDataItems {
@@ -91895,7 +91724,7 @@ export const ScheduleOnCallResponderDataRelationships = /*@__PURE__*/ S.suspend(
 
 /** Represents the resource type for a single position's (previous, current, or next) group of on-call responder shifts. */
 export type ScheduleOnCallResponderDataType = "schedule_oncall_responder";
-export const ScheduleOnCallResponderDataType = /*@__PURE__*/ S.String;
+export const ScheduleOnCallResponderDataType = S.String;
 
 /** Represents one position's (previous, current, or next) group of on-call responder shifts. Positions with no matching shift are omitted entirely from the response. */
 export interface ScheduleOnCallResponderData {
@@ -91934,7 +91763,7 @@ export const ShiftDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the related resource is of type 'users'. */
 export type ShiftDataRelationshipsUserDataType = "users";
-export const ShiftDataRelationshipsUserDataType = /*@__PURE__*/ S.String;
+export const ShiftDataRelationshipsUserDataType = S.String;
 
 /** Represents a reference to the user assigned to this shift, containing the user's ID and resource type. */
 export interface ShiftDataRelationshipsUserData {
@@ -91977,7 +91806,7 @@ export const ShiftDataRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates that the resource is of type 'shifts'. */
 export type ShiftDataType = "shifts";
-export const ShiftDataType = /*@__PURE__*/ S.String;
+export const ShiftDataType = S.String;
 
 /** Data for an on-call shift. */
 export interface ShiftData {
@@ -92003,7 +91832,7 @@ export type ScheduleOnCallRespondersIncluded =
   | ScheduleData
   | User;
 export const ScheduleOnCallRespondersIncluded =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ScheduleOnCallRespondersIncluded>;
+  S.Unknown as any as S.Schema<ScheduleOnCallRespondersIncluded>;
 
 /** Related resources referenced in the responder groups' relationships, such as shifts, schedules, and users. */
 export type ScheduleOnCallRespondersIncludedList =
@@ -92055,7 +91884,7 @@ export const OAuthScopesRestrictionResponseAttributesRequiredPermissionScopesLis
 
 /** OIDC scope a client may be restricted to. */
 export type OAuthOidcScope = "openid" | "profile" | "email" | "offline_access";
-export const OAuthOidcScope = /*@__PURE__*/ S.String;
+export const OAuthOidcScope = S.String;
 
 /** OIDC scopes the client is restricted to. */
 export type OAuthScopesRestrictionOidcScopesList = Array<OAuthOidcScope>;
@@ -92105,7 +91934,7 @@ export const OAuthScopesRestrictionResponseAttributes = /*@__PURE__*/ S.suspend(
 
 /** JSON:API resource type for an OAuth2 client scopes restriction. */
 export type OAuthScopesRestrictionType = "scopes_restriction";
-export const OAuthScopesRestrictionType = /*@__PURE__*/ S.String;
+export const OAuthScopesRestrictionType = S.String;
 
 /** Data object of an OAuth2 client scopes restriction response. */
 export interface OAuthScopesRestrictionResponseData {
@@ -92199,7 +92028,7 @@ export const SeatUserDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Seat users resource type. */
 export type SeatUserDataType = "seat-users";
-export const SeatUserDataType = /*@__PURE__*/ S.String;
+export const SeatUserDataType = S.String;
 
 /** A seat user resource object containing its ID, type, and associated attributes. */
 export interface SeatUserData {
@@ -92420,7 +92249,7 @@ export const SecretRuleDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Secret rule resource type. */
 export type SecretRuleDataType = "secret_rule";
-export const SecretRuleDataType = /*@__PURE__*/ S.String;
+export const SecretRuleDataType = S.String;
 
 /** The data object representing a secret detection rule, including its attributes and resource type. */
 export interface SecretRuleData {
@@ -92783,8 +92612,7 @@ export const SecurityMonitoringDatasetVersionHistoryAttributes =
 /** The type of resource for a dataset version history response. */
 export type SecurityMonitoringDatasetVersionHistoryType =
   "dataset_version_history";
-export const SecurityMonitoringDatasetVersionHistoryType =
-  /*@__PURE__*/ S.String;
+export const SecurityMonitoringDatasetVersionHistoryType = S.String;
 
 /** The data wrapper of a dataset version history response. */
 export interface SecurityMonitoringDatasetVersionHistoryData {
@@ -92905,7 +92733,7 @@ export const SecurityMonitoringSignalResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The sort parameters used for querying security signals. */
 export type SecurityMonitoringSignalsSort = "timestamp" | "-timestamp";
-export const SecurityMonitoringSignalsSort = /*@__PURE__*/ S.String;
+export const SecurityMonitoringSignalsSort = S.String;
 
 export interface GetSecurityMonitoringHistsignalsByJobIdRequest {
   /** The ID of the job. */
@@ -93317,7 +93145,7 @@ export const PartialApplicationKeyResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Schema versions */
 export type ServiceDefinitionSchemaVersions = "v1" | "v2" | "v2.1" | "v2.2";
-export const ServiceDefinitionSchemaVersions = /*@__PURE__*/ S.String;
+export const ServiceDefinitionSchemaVersions = S.String;
 
 export interface GetServiceDefinitionRequest {
   /** The name of the service. */
@@ -93412,7 +93240,7 @@ export const ServiceListDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Services list resource type. */
 export type ServiceListDataType = "services_list";
-export const ServiceListDataType = /*@__PURE__*/ S.String;
+export const ServiceListDataType = S.String;
 
 /** A single data item in the service list response. */
 export interface ServiceListData {
@@ -93478,7 +93306,7 @@ export const ServiceRepositoryInfoRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** The resource type for service repository info objects. */
 export type ServiceRepositoryInfoDataType = "service_repository_info";
-export const ServiceRepositoryInfoDataType = /*@__PURE__*/ S.String;
+export const ServiceRepositoryInfoDataType = S.String;
 
 /** Data object for the service repository info request. */
 export interface ServiceRepositoryInfoRequestData {
@@ -93518,7 +93346,7 @@ export type ServiceRepositoryInfoStatus =
   | "no_repository"
   | "internal_error"
   | "unknown";
-export const ServiceRepositoryInfoStatus = /*@__PURE__*/ S.String;
+export const ServiceRepositoryInfoStatus = S.String;
 
 /** Attributes of the service repository information. */
 export interface ServiceRepositoryInfoResponseAttributes {
@@ -93618,7 +93446,7 @@ export const SignalEntitiesAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value should always be `entities`. */
 export type SignalEntitiesType = "entities";
-export const SignalEntitiesType = /*@__PURE__*/ S.String;
+export const SignalEntitiesType = S.String;
 
 /** Entities related to a security signal. */
 export interface SignalEntitiesData {
@@ -93801,7 +93629,7 @@ export const SloStatusDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the SLO status resource. */
 export type SloStatusType = "slo_status";
-export const SloStatusType = /*@__PURE__*/ S.String;
+export const SloStatusType = S.String;
 
 /** The data portion of the SLO status response. */
 export interface SloStatusData {
@@ -93909,7 +93737,7 @@ export const SourcemapFileAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type for source map file objects. */
 export type SourcemapFileDataType = "sourcemap_files";
-export const SourcemapFileDataType = /*@__PURE__*/ S.String;
+export const SourcemapFileDataType = S.String;
 
 /** JavaScript source map file data object. */
 export interface SourcemapFileData {
@@ -93986,7 +93814,7 @@ export const GoogleChatAppNamedSpaceResponseAttributes =
 
 /** Google Chat space resource type. */
 export type GoogleChatAppNamedSpaceType = "google-chat-app-named-space";
-export const GoogleChatAppNamedSpaceType = /*@__PURE__*/ S.String;
+export const GoogleChatAppNamedSpaceType = S.String;
 
 /** Google Chat space data from a response. */
 export interface GoogleChatAppNamedSpaceResponseData {
@@ -94126,7 +93954,7 @@ export const RecommendationAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for Spark Pod Autosizing recommendations. Identifies the Recommendation resource returned by SPA. */
 export type RecommendationType = "recommendation";
-export const RecommendationType = /*@__PURE__*/ S.String;
+export const RecommendationType = S.String;
 
 /** JSON:API resource object for SPA Recommendation. Includes type, optional ID, and resource attributes with structured recommendations. */
 export interface RecommendationData {
@@ -94224,7 +94052,7 @@ export const DefaultRulesetsPerLanguageDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** Default rulesets per language resource type. */
 export type DefaultRulesetsPerLanguageDataType = "defaultRulesetsPerLanguage";
-export const DefaultRulesetsPerLanguageDataType = /*@__PURE__*/ S.String;
+export const DefaultRulesetsPerLanguageDataType = S.String;
 
 /** The primary data object in the default rulesets per language response. */
 export interface DefaultRulesetsPerLanguageData {
@@ -94302,7 +94130,7 @@ export const NodeTypesResponseDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Get node types response resource type. */
 export type NodeTypesResponseDataType = "get_node_types_response";
-export const NodeTypesResponseDataType = /*@__PURE__*/ S.String;
+export const NodeTypesResponseDataType = S.String;
 
 /** The primary data object in the node types response. */
 export interface NodeTypesResponseData {
@@ -94387,7 +94215,7 @@ export const GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsArg
 export type GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsDataType =
   "rules";
 export const GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsDataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource identifier and type for a static analysis rule. */
 export interface GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItemsData {
@@ -94558,7 +94386,7 @@ export const SastRulesetDataAttributes = /*@__PURE__*/ S.suspend(() =>
 export type GetMultipleRulesetsResponseDataAttributesRulesetsItemsDataType =
   "rulesets";
 export const GetMultipleRulesetsResponseDataAttributesRulesetsItemsDataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The primary data object representing a SAST ruleset. */
 export interface SastRulesetData {
@@ -94688,7 +94516,7 @@ export const StegadographyWidgetAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Stegadography widget resource type. */
 export type StegadographyWidgetType = "widget";
-export const StegadographyWidgetType = /*@__PURE__*/ S.String;
+export const StegadographyWidgetType = S.String;
 
 /** A single watermarked widget resource recovered from an image. */
 export interface StegadographyWidget {
@@ -94875,7 +94703,7 @@ export const SuppressionVersionHistory = /*@__PURE__*/ S.suspend(() =>
 /** Type of data. */
 export type GetSuppressionVersionHistoryDataType =
   "suppression_version_history";
-export const GetSuppressionVersionHistoryDataType = /*@__PURE__*/ S.String;
+export const GetSuppressionVersionHistoryDataType = S.String;
 
 /** Data for the suppression version history. */
 export interface GetSuppressionVersionHistoryData {
@@ -96052,11 +95880,11 @@ export type SyntheticsTestResultRunType =
   | "fast"
   | "ci"
   | "triggered";
-export const SyntheticsTestResultRunType = /*@__PURE__*/ S.String;
+export const SyntheticsTestResultRunType = S.String;
 
 /** Status of a Synthetic test result. */
 export type SyntheticsTestResultStatus = "passed" | "failed" | "no_data";
-export const SyntheticsTestResultStatus = /*@__PURE__*/ S.String;
+export const SyntheticsTestResultStatus = S.String;
 
 /** Inner API test definition for browser `runApiTest` steps. */
 export type SyntheticsTestResultStepApiTestMap = {
@@ -96881,11 +96709,11 @@ export type SyntheticsTestSubType =
   | "tcp"
   | "udp"
   | "websocket";
-export const SyntheticsTestSubType = /*@__PURE__*/ S.String;
+export const SyntheticsTestSubType = S.String;
 
 /** Type of the Synthetic test that produced this result. */
 export type SyntheticsTestType = "api" | "browser" | "mobile" | "network";
-export const SyntheticsTestType = /*@__PURE__*/ S.String;
+export const SyntheticsTestType = S.String;
 
 /** Attributes of a Synthetic test result. */
 export interface SyntheticsTestResultAttributes {
@@ -96957,7 +96785,7 @@ export const SyntheticsTestResultRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the Synthetic test result resource, `result`. */
 export type SyntheticsTestResultType = "result";
-export const SyntheticsTestResultType = /*@__PURE__*/ S.String;
+export const SyntheticsTestResultType = S.String;
 
 /** Wrapper object for a Synthetic test result. */
 export interface SyntheticsTestResultData {
@@ -97171,11 +96999,11 @@ export type SyntheticsFastTestSubType =
   | "tcp"
   | "udp"
   | "websocket";
-export const SyntheticsFastTestSubType = /*@__PURE__*/ S.String;
+export const SyntheticsFastTestSubType = S.String;
 
 /** Type of the Synthetic fast test that produced this result. */
 export type SyntheticsFastTestType = "fast-api" | "fast-browser";
-export const SyntheticsFastTestType = /*@__PURE__*/ S.String;
+export const SyntheticsFastTestType = S.String;
 
 /** Attributes of the fast test result. */
 export interface SyntheticsFastTestResultAttributes {
@@ -97202,7 +97030,7 @@ export const SyntheticsFastTestResultAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API type for a fast test result. */
 export type SyntheticsFastTestResultType = "result";
-export const SyntheticsFastTestResultType = /*@__PURE__*/ S.String;
+export const SyntheticsFastTestResultType = S.String;
 
 /** Fast test result data object (JSON:API format). */
 export interface SyntheticsFastTestResultData {
@@ -97483,7 +97311,7 @@ export const SyntheticsTestVersionAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the version resource. */
 export type SyntheticsTestVersionType = "version";
-export const SyntheticsTestVersionType = /*@__PURE__*/ S.String;
+export const SyntheticsTestVersionType = S.String;
 
 /** Data object for a specific Synthetic test version. */
 export interface SyntheticsTestVersionData {
@@ -97588,7 +97416,7 @@ export const GetTagPipelinesRulesetRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** A related resource to include alongside a tag rule in the response. Currently the only supported value is `score`. */
 export type TagRuleInclude = "score";
-export const TagRuleInclude = /*@__PURE__*/ S.String;
+export const TagRuleInclude = S.String;
 
 export interface GetTagRuleRequest {
   /** The unique identifier of the tag rule. */
@@ -97745,7 +97573,7 @@ export type GetTeamMembershipsSort =
   | "-handle"
   | "email"
   | "-email";
-export const GetTeamMembershipsSort = /*@__PURE__*/ S.String;
+export const GetTeamMembershipsSort = S.String;
 
 export interface GetTeamMembershipsRequest {
   /** None */
@@ -98012,7 +97840,7 @@ export const GetTeamOnCallUsersRequest = /*@__PURE__*/ S.suspend(() =>
 export type TeamOnCallRespondersDataRelationshipsEscalationsDataItemsType =
   "escalation_policy_steps";
 export const TeamOnCallRespondersDataRelationshipsEscalationsDataItemsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a link to a specific escalation policy step associated with the on-call team. */
 export interface TeamOnCallRespondersDataRelationshipsEscalationsDataItems {
@@ -98058,7 +97886,7 @@ export const TeamOnCallRespondersDataRelationshipsEscalations =
 export type TeamOnCallRespondersDataRelationshipsRespondersDataItemsType =
   "users";
 export const TeamOnCallRespondersDataRelationshipsRespondersDataItemsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a user responder associated with the on-call team. */
 export interface TeamOnCallRespondersDataRelationshipsRespondersDataItems {
@@ -98115,7 +97943,7 @@ export const TeamOnCallRespondersDataRelationships = /*@__PURE__*/ S.suspend(
 
 /** Represents the resource type for a group of users assigned to handle on-call duties within a team. */
 export type TeamOnCallRespondersDataType = "team_oncall_responders";
-export const TeamOnCallRespondersDataType = /*@__PURE__*/ S.String;
+export const TeamOnCallRespondersDataType = S.String;
 
 /** Defines the main on-call responder object for a team, including relationships and metadata. */
 export interface TeamOnCallRespondersData {
@@ -98136,8 +97964,7 @@ export const TeamOnCallRespondersData = /*@__PURE__*/ S.suspend(() =>
 
 /** Represents the resource type for users assigned as responders in an escalation step. */
 export type EscalationRelationshipsRespondersDataItemsType = "users";
-export const EscalationRelationshipsRespondersDataItemsType =
-  /*@__PURE__*/ S.String;
+export const EscalationRelationshipsRespondersDataItemsType = S.String;
 
 /** Represents a user assigned to an escalation step. */
 export interface EscalationRelationshipsRespondersDataItems {
@@ -98189,7 +98016,7 @@ export const EscalationRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Represents the resource type for individual steps in an escalation policy used during incident response. */
 export type EscalationType = "escalation_policy_steps";
-export const EscalationType = /*@__PURE__*/ S.String;
+export const EscalationType = S.String;
 
 /** Represents an escalation policy step. */
 export interface Escalation {
@@ -98209,7 +98036,7 @@ export const Escalation = /*@__PURE__*/ S.suspend(() =>
 /** Represents an union of related resources included in the response, such as users and escalation steps. */
 export type TeamOnCallRespondersIncluded = User | Escalation;
 export const TeamOnCallRespondersIncluded =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TeamOnCallRespondersIncluded>;
+  S.Unknown as any as S.Schema<TeamOnCallRespondersIncluded>;
 
 /** The `TeamOnCallResponders` `included`. */
 export type TeamOnCallRespondersIncludedList =
@@ -98255,7 +98082,7 @@ export const GetTeamPermissionSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 export type TeamPermissionSettingSerializerAction =
   | "manage_membership"
   | "edit";
-export const TeamPermissionSettingSerializerAction = /*@__PURE__*/ S.String;
+export const TeamPermissionSettingSerializerAction = S.String;
 
 /** What type of user is allowed to perform the specified action */
 export type TeamPermissionSettingValue =
@@ -98264,7 +98091,7 @@ export type TeamPermissionSettingValue =
   | "organization"
   | "user_access_manage"
   | "teams_manage";
-export const TeamPermissionSettingValue = /*@__PURE__*/ S.String;
+export const TeamPermissionSettingValue = S.String;
 
 /** Possible values for action */
 export type TeamPermissionSettingValues = Array<TeamPermissionSettingValue>;
@@ -98296,7 +98123,7 @@ export const TeamPermissionSettingAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Team permission setting type */
 export type TeamPermissionSettingType = "team_permission_settings";
-export const TeamPermissionSettingType = /*@__PURE__*/ S.String;
+export const TeamPermissionSettingType = S.String;
 
 /** Team permission setting */
 export interface TeamPermissionSetting {
@@ -98355,7 +98182,7 @@ export const GetTeamsOwnershipMappingRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The external source platform for team synchronization. Only "github" is supported. */
 export type TeamSyncAttributesSource = "github";
-export const TeamSyncAttributesSource = /*@__PURE__*/ S.String;
+export const TeamSyncAttributesSource = S.String;
 
 export interface GetTeamSyncRequest {
   /** Filter by the external source platform for team synchronization */
@@ -98371,11 +98198,11 @@ export const GetTeamSyncRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** How often the sync process should be run. Defaults to `once` when not provided. */
 export type TeamSyncAttributesFrequency = "once" | "continuously" | "paused";
-export const TeamSyncAttributesFrequency = /*@__PURE__*/ S.String;
+export const TeamSyncAttributesFrequency = S.String;
 
 /** The type of external identifier for the selection state item. For GitHub synchronization, the allowed values are `team` and `organization`. */
 export type TeamSyncSelectionStateExternalIdType = "team" | "organization";
-export const TeamSyncSelectionStateExternalIdType = /*@__PURE__*/ S.String;
+export const TeamSyncSelectionStateExternalIdType = S.String;
 
 /** The external identifier for a team or organization in the source platform. */
 export interface TeamSyncSelectionStateExternalId {
@@ -98393,11 +98220,11 @@ export const TeamSyncSelectionStateExternalId = /*@__PURE__*/ S.suspend(() =>
 
 /** The operation to perform on the selected hierarchy. When set to `include`, synchronization covers the referenced teams or organizations. */
 export type TeamSyncSelectionStateOperation = "include";
-export const TeamSyncSelectionStateOperation = /*@__PURE__*/ S.String;
+export const TeamSyncSelectionStateOperation = S.String;
 
 /** The scope of the selection. When set to `subtree`, synchronization includes the referenced team or organization and everything nested under it. */
 export type TeamSyncSelectionStateScope = "subtree";
-export const TeamSyncSelectionStateScope = /*@__PURE__*/ S.String;
+export const TeamSyncSelectionStateScope = S.String;
 
 /** Identifies a team or organization hierarchy to include in synchronization. */
 export interface TeamSyncSelectionStateItem {
@@ -98424,7 +98251,7 @@ export const TeamSyncAttributesSelectionState = /*@__PURE__*/ S.Array(
 
 /** The type of synchronization operation. "link" connects teams by matching names. "provision" creates new teams when no match is found. */
 export type TeamSyncAttributesType = "link" | "provision";
-export const TeamSyncAttributesType = /*@__PURE__*/ S.String;
+export const TeamSyncAttributesType = S.String;
 
 /** Team sync attributes. */
 export interface TeamSyncAttributes {
@@ -98448,7 +98275,7 @@ export const TeamSyncAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Team sync bulk type. */
 export type TeamSyncBulkType = "team_sync_bulk";
-export const TeamSyncBulkType = /*@__PURE__*/ S.String;
+export const TeamSyncBulkType = S.String;
 
 /** A configuration governing syncing between Datadog teams and teams from an external system. */
 export interface TeamSyncData {
@@ -98591,7 +98418,7 @@ export type SyntheticsTestFileMultipartPresignedUrlsRequestBucketKeyPrefix =
   | "api-upload-file"
   | "browser-upload-file-step";
 export const SyntheticsTestFileMultipartPresignedUrlsRequestBucketKeyPrefix =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A part descriptor for initiating a multipart upload. */
 export interface SyntheticsTestFileMultipartPresignedUrlsPart {
@@ -98702,8 +98529,7 @@ export const TestOptimizationGetServiceSettingsRequestAttributes =
 /** JSON:API type for get service settings request. The value must always be `test_optimization_get_service_settings_request`. */
 export type TestOptimizationGetServiceSettingsRequestDataType =
   "test_optimization_get_service_settings_request";
-export const TestOptimizationGetServiceSettingsRequestDataType =
-  /*@__PURE__*/ S.String;
+export const TestOptimizationGetServiceSettingsRequestDataType = S.String;
 
 /** Data object for get service settings request. */
 export interface TestOptimizationGetServiceSettingsRequestData {
@@ -98794,7 +98620,7 @@ export const TestOptimizationServiceSettingsAttributes =
 /** JSON:API type for service settings response. The value must always be `test_optimization_service_settings`. */
 export type TestOptimizationServiceSettingsType =
   "test_optimization_service_settings";
-export const TestOptimizationServiceSettingsType = /*@__PURE__*/ S.String;
+export const TestOptimizationServiceSettingsType = S.String;
 
 /** Data object for Test Optimization service settings response. */
 export interface TestOptimizationServiceSettingsData {
@@ -98877,7 +98703,7 @@ export const SyntheticsTestParentSuiteAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the parent suite resource. */
 export type SyntheticsTestParentSuiteType = "parent_suite";
-export const SyntheticsTestParentSuiteType = /*@__PURE__*/ S.String;
+export const SyntheticsTestParentSuiteType = S.String;
 
 /** Data object for a parent suite. */
 export interface SyntheticsTestParentSuiteData {
@@ -99035,7 +98861,7 @@ export const TraceAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the trace resource. The value is always `trace`. */
 export type TraceType = "trace";
-export const TraceType = /*@__PURE__*/ S.String;
+export const TraceType = S.String;
 
 /** A trace resource document. */
 export interface TraceData {
@@ -99177,8 +99003,7 @@ export const UserAuthorizedClientAttributes = /*@__PURE__*/ S.suspend(() =>
 /** OAuth2 client resource type. */
 export type UserAuthorizedClientRelationshipOAuth2ClientDataType =
   "oauth2_clients";
-export const UserAuthorizedClientRelationshipOAuth2ClientDataType =
-  /*@__PURE__*/ S.String;
+export const UserAuthorizedClientRelationshipOAuth2ClientDataType = S.String;
 
 /** Data identifying the OAuth2 client that was authorized. */
 export interface UserAuthorizedClientRelationshipOAuth2ClientData {
@@ -99211,8 +99036,7 @@ export const UserAuthorizedClientRelationshipOAuth2Client =
 
 /** Scope resource type. */
 export type UserAuthorizedClientRelationshipScopeDataType = "scopes";
-export const UserAuthorizedClientRelationshipScopeDataType =
-  /*@__PURE__*/ S.String;
+export const UserAuthorizedClientRelationshipScopeDataType = S.String;
 
 /** Data identifying a scope granted to the OAuth2 client. */
 export interface UserAuthorizedClientRelationshipScopeData {
@@ -99253,8 +99077,7 @@ export const UserAuthorizedClientRelationshipScopes = /*@__PURE__*/ S.suspend(
 
 /** User resource type. */
 export type UserAuthorizedClientRelationshipUserDataType = "users";
-export const UserAuthorizedClientRelationshipUserDataType =
-  /*@__PURE__*/ S.String;
+export const UserAuthorizedClientRelationshipUserDataType = S.String;
 
 /** Data identifying the user who granted this authorization. */
 export interface UserAuthorizedClientRelationshipUserData {
@@ -99303,7 +99126,7 @@ export const UserAuthorizedClientRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type for user authorized clients. */
 export type UserAuthorizedClientType = "user_authorized_clients";
-export const UserAuthorizedClientType = /*@__PURE__*/ S.String;
+export const UserAuthorizedClientType = S.String;
 
 /** Data object representing a user authorized client. */
 export interface UserAuthorizedClientData {
@@ -99387,7 +99210,7 @@ export const UserOverrideIdentityProviderAttributes = /*@__PURE__*/ S.suspend(
 
 /** The resource type for identity providers. */
 export type UserOverrideIdentityProviderDataType = "identity_providers";
-export const UserOverrideIdentityProviderDataType = /*@__PURE__*/ S.String;
+export const UserOverrideIdentityProviderDataType = S.String;
 
 /** Data object representing a user identity provider override. */
 export interface UserOverrideIdentityProviderData {
@@ -99549,7 +99372,7 @@ export type GetWidgetRequestExperienceType =
   | "logs_reports"
   | "csv_reports"
   | "product_analytics";
-export const GetWidgetRequestExperienceType = /*@__PURE__*/ S.String;
+export const GetWidgetRequestExperienceType = S.String;
 
 export interface GetWidgetRequest {
   /** The experience type for the widget. */
@@ -99686,7 +99509,7 @@ export type IncidentImportRelatedObject =
   | "commander_user"
   | "declared_by_user"
   | "incident_type";
-export const IncidentImportRelatedObject = /*@__PURE__*/ S.String;
+export const IncidentImportRelatedObject = S.String;
 
 export type ImportIncidentRequestIncludeList = Array<
   IncidentImportRelatedObject | (string & {})
@@ -99737,7 +99560,7 @@ export type IncidentImportFieldAttributes =
   | IncidentImportFieldAttributesSingleValue
   | IncidentImportFieldAttributesMultipleValue;
 export const IncidentImportFieldAttributes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IncidentImportFieldAttributes>;
+  S.Unknown as any as S.Schema<IncidentImportFieldAttributes>;
 
 /** A condensed view of the user-defined fields for which to create initial selections. */
 export type IncidentImportRequestAttributesFieldsMap = {
@@ -99750,7 +99573,7 @@ export const IncidentImportRequestAttributesFieldsMap = /*@__PURE__*/ S.Record(
 
 /** The visibility of the incident. */
 export type IncidentImportVisibility = "organization" | "private";
-export const IncidentImportVisibility = /*@__PURE__*/ S.String;
+export const IncidentImportVisibility = S.String;
 
 /** The incident's attributes for an import request. */
 export interface IncidentImportRequestAttributes {
@@ -99981,7 +99804,7 @@ export type IncidentImportResponseIncludedItem =
   | IncidentUserData
   | IncidentTypeObject;
 export const IncidentImportResponseIncludedItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IncidentImportResponseIncludedItem>;
+  S.Unknown as any as S.Schema<IncidentImportResponseIncludedItem>;
 
 /** Included related resources that the user requested. */
 export type IncidentImportResponseIncludedList =
@@ -100010,7 +99833,7 @@ export type CycloneDXComponentType =
   | "library"
   | "application"
   | "operating-system";
-export const CycloneDXComponentType = /*@__PURE__*/ S.String;
+export const CycloneDXComponentType = S.String;
 
 /** A software component identified during scanning. */
 export interface CycloneDXComponent {
@@ -100320,7 +100143,7 @@ export const ImportSecurityVulnerabilitiesResponse = /*@__PURE__*/ S.suspend(
 
 /** Incident resource type */
 export type IncidentResourceType = "incidents";
-export const IncidentResourceType = /*@__PURE__*/ S.String;
+export const IncidentResourceType = S.String;
 
 /** Incident relationship data */
 export interface IncidentRelationshipData {
@@ -100448,7 +100271,7 @@ export const IncidentOnCallPageDataAttributesRequest = /*@__PURE__*/ S.suspend(
 
 /** On-call page resource type. */
 export type IncidentOnCallPageType = "page";
-export const IncidentOnCallPageType = /*@__PURE__*/ S.String;
+export const IncidentOnCallPageType = S.String;
 
 /** On-call page data in a link request. */
 export interface IncidentOnCallPageDataRequest {
@@ -100539,7 +100362,7 @@ export const MetricSuggestedTagsAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The metric actively queried configuration resource type. */
 export type MetricActiveConfigurationType = "actively_queried_configurations";
-export const MetricActiveConfigurationType = /*@__PURE__*/ S.String;
+export const MetricActiveConfigurationType = S.String;
 
 /** Object for a single metric's actively queried tags and aggregations. */
 export interface MetricSuggestedTagsAndAggregations {
@@ -100841,7 +100664,7 @@ export const AiPromptResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** AI prompt resource type. */
 export type AiPromptDataType = "ai_prompt";
-export const AiPromptDataType = /*@__PURE__*/ S.String;
+export const AiPromptDataType = S.String;
 
 /** Response data for an AI prompt. */
 export interface AiPromptResponseData {
@@ -100881,7 +100704,7 @@ export const AiPromptsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The sort direction for results. */
 export type OrderDirection = "asc" | "desc";
-export const OrderDirection = /*@__PURE__*/ S.String;
+export const OrderDirection = S.String;
 
 export interface ListAllCSMAgentsRequest {
   /** The page index for pagination (zero-based). */
@@ -100981,7 +100804,7 @@ export const CsmAgentsAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value should always be `datadog_agent`. */
 export type CSMAgentsType = "datadog_agent";
-export const CSMAgentsType = /*@__PURE__*/ S.String;
+export const CSMAgentsType = S.String;
 
 /** Single Agent Data. */
 export interface CsmAgentData {
@@ -101114,7 +100937,7 @@ export type APIKeysSort =
   | "-modified_at"
   | "name"
   | "-name";
-export const APIKeysSort = /*@__PURE__*/ S.String;
+export const APIKeysSort = S.String;
 
 export interface ListAPIKeysRequest {
   /** Number of items to return per page. The maximum allowed value is 100. */
@@ -101373,7 +101196,7 @@ export type ApplicationKeysSort =
   | "-last4"
   | "name"
   | "-name";
-export const ApplicationKeysSort = /*@__PURE__*/ S.String;
+export const ApplicationKeysSort = S.String;
 
 export interface ListApplicationKeysRequest {
   /** Number of items to return per page. The maximum allowed value is 100. */
@@ -101582,7 +101405,7 @@ export type AppsSortField =
   | "-created_at"
   | "-updated_at"
   | "-user_name";
-export const AppsSortField = /*@__PURE__*/ S.String;
+export const AppsSortField = S.String;
 
 export type ListAppsRequestSortList = Array<AppsSortField | (string & {})>;
 export const ListAppsRequestSortList = /*@__PURE__*/ S.Array(
@@ -101822,7 +101645,7 @@ export const AppVersionAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The app-version resource type. */
 export type AppVersionType = "appVersions";
-export const AppVersionType = /*@__PURE__*/ S.String;
+export const AppVersionType = S.String;
 
 /** A version of an app. */
 export interface AppVersion {
@@ -101905,7 +101728,7 @@ export type AssetType =
   | "HostImage"
   | "Image"
   | "ServerlessFunction";
-export const AssetType = /*@__PURE__*/ S.String;
+export const AssetType = S.String;
 
 /** The SBOM component license type. */
 export type SBOMComponentLicenseType =
@@ -101917,7 +101740,7 @@ export type SBOMComponentLicenseType =
   | "public_domain"
   | "strong_copyleft"
   | "weak_copyleft";
-export const SBOMComponentLicenseType = /*@__PURE__*/ S.String;
+export const SBOMComponentLicenseType = S.String;
 
 export interface ListAssetsSBOMsRequest {
   /** Its value must come from the `links` section of the response of the first request. Do not manually edit it. */
@@ -102029,7 +101852,7 @@ export const ListAssetsSBOMsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort parameters when querying events. */
 export type AuditLogsSort = "timestamp" | "-timestamp";
-export const AuditLogsSort = /*@__PURE__*/ S.String;
+export const AuditLogsSort = S.String;
 
 export interface ListAuditLogsRequest {
   /** Search query following Audit Logs syntax. */
@@ -102100,7 +101923,7 @@ export const AuditLogsEventAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the event. */
 export type AuditLogsEventType = "audit";
-export const AuditLogsEventType = /*@__PURE__*/ S.String;
+export const AuditLogsEventType = S.String;
 
 /** Object description of an Audit Logs event after it is processed and stored by Datadog. */
 export interface AuditLogsEvent {
@@ -102133,7 +101956,7 @@ export const AuditLogsResponsePage = CIAppResponsePage;
 
 /** The status of the response. */
 export type AuditLogsResponseStatus = "done" | "timeout";
-export const AuditLogsResponseStatus = /*@__PURE__*/ S.String;
+export const AuditLogsResponseStatus = S.String;
 
 /** Warning message indicating something that went wrong with the query. */
 export interface AuditLogsWarning {
@@ -102214,11 +102037,11 @@ export type AuthNMappingsSort =
   | "-saml_assertion_attribute.attribute_key"
   | "saml_assertion_attribute.attribute_value"
   | "-saml_assertion_attribute.attribute_value";
-export const AuthNMappingsSort = /*@__PURE__*/ S.String;
+export const AuthNMappingsSort = S.String;
 
 /** The type of resource being mapped to. */
 export type AuthNMappingResourceType = "role" | "team";
-export const AuthNMappingResourceType = /*@__PURE__*/ S.String;
+export const AuthNMappingResourceType = S.String;
 
 export interface ListAuthNMappingsRequest {
   /** Number of items to return per page. The maximum allowed value is 100. */
@@ -102496,7 +102319,7 @@ export const AWSLogsServicesResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The `AWSLogsServicesResponseData` `type`. */
 export type AWSLogsServicesResponseDataType = "logs_services";
-export const AWSLogsServicesResponseDataType = /*@__PURE__*/ S.String;
+export const AWSLogsServicesResponseDataType = S.String;
 
 /** AWS Logs Services response body */
 export interface AWSLogsServicesResponseData {
@@ -102562,7 +102385,7 @@ export const AWSNamespacesResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The `AWSNamespacesResponseData` `type`. */
 export type AWSNamespacesResponseDataType = "namespaces";
-export const AWSNamespacesResponseDataType = /*@__PURE__*/ S.String;
+export const AWSNamespacesResponseDataType = S.String;
 
 /** AWS Namespaces response data. */
 export interface AWSNamespacesResponseData {
@@ -103000,7 +102823,7 @@ export const CaseWatcherRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for case watchers. */
 export type CaseWatcherResourceType = "watcher";
-export const CaseWatcherResourceType = /*@__PURE__*/ S.String;
+export const CaseWatcherResourceType = S.String;
 
 /** Represents a user who is subscribed to notifications for a case. Watchers receive updates when the case's status, priority, assignee, or comments change. */
 export interface CaseWatcher {
@@ -103048,7 +102871,7 @@ export type RelationType =
   | "RelationTypeOtherOwnedBy"
   | "RelationTypeImplementedBy"
   | "RelationTypeImplements";
-export const RelationType = /*@__PURE__*/ S.String;
+export const RelationType = S.String;
 
 /** Supported include types. */
 export type IncludeType =
@@ -103057,7 +102880,7 @@ export type IncludeType =
   | "oncall"
   | "incident"
   | "relation";
-export const IncludeType = /*@__PURE__*/ S.String;
+export const IncludeType = S.String;
 
 export interface ListCatalogEntityRequest {
   /** Specific offset to use as the beginning of the returned page. */
@@ -103271,7 +103094,7 @@ export const EntityResponseData = /*@__PURE__*/ S.Array(
 
 /** The version of the schema data that was used to populate this entity's data. This could be via the API, Terraform, or YAML file in a repository. The field is known as schema-version in the previous version. */
 export type EntityV3APIVersion = "v3" | "v2.2" | "v2.1" | "v2";
-export const EntityV3APIVersion = /*@__PURE__*/ S.String;
+export const EntityV3APIVersion = S.String;
 
 /** The paths (glob) to the source code of the service. */
 export type EntityV3DatadogCodeLocationItemPathsList = Array<string>;
@@ -103446,7 +103269,7 @@ export const EntityV3Integrations = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of Entity V3 Service Kind object. */
 export type EntityV3ServiceKind = "service";
-export const EntityV3ServiceKind = /*@__PURE__*/ S.String;
+export const EntityV3ServiceKind = S.String;
 
 /** The definition of Entity V3 Metadata Additional Owners Items object. */
 export interface EntityV3MetadataAdditionalOwnersItems {
@@ -103682,7 +103505,7 @@ export const EntityV3DatastoreExtensionsMap = /*@__PURE__*/ S.Record(
 
 /** The definition of Entity V3 Datastore Kind object. */
 export type EntityV3DatastoreKind = "datastore";
-export const EntityV3DatastoreKind = /*@__PURE__*/ S.String;
+export const EntityV3DatastoreKind = S.String;
 
 /** A list of components the datastore is a part of */
 export type EntityV3DatastoreSpecComponentOfList = Array<string>;
@@ -103750,7 +103573,7 @@ export const EntityV3QueueExtensionsMap = /*@__PURE__*/ S.Record(
 
 /** The definition of Entity V3 Queue Kind object. */
 export type EntityV3QueueKind = "queue";
-export const EntityV3QueueKind = /*@__PURE__*/ S.String;
+export const EntityV3QueueKind = S.String;
 
 /** A list of components the queue is a part of */
 export type EntityV3QueueSpecComponentOfList = Array<string>;
@@ -103832,7 +103655,7 @@ export const EntityV3SystemExtensionsMap = /*@__PURE__*/ S.Record(
 
 /** The definition of Entity V3 System Kind object. */
 export type EntityV3SystemKind = "system";
-export const EntityV3SystemKind = /*@__PURE__*/ S.String;
+export const EntityV3SystemKind = S.String;
 
 /** A list of components belongs to the system. */
 export type EntityV3SystemSpecComponentsList = Array<string>;
@@ -103895,7 +103718,7 @@ export const EntityV3APIExtensionsMap = /*@__PURE__*/ S.Record(
 
 /** The definition of Entity V3 API Kind object. */
 export type EntityV3APIKind = "api";
-export const EntityV3APIKind = /*@__PURE__*/ S.String;
+export const EntityV3APIKind = S.String;
 
 /** Services which implemented the API. */
 export type EntityV3APISpecImplementedByList = Array<string>;
@@ -103934,7 +103757,7 @@ export type EntityV3APISpecInterface =
   | EntityV3APISpecInterfaceFileRef
   | EntityV3APISpecInterfaceDefinition;
 export const EntityV3APISpecInterface =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EntityV3APISpecInterface>;
+  S.Unknown as any as S.Schema<EntityV3APISpecInterface>;
 
 /** The definition of Entity V3 API Spec object. */
 export interface EntityV3APISpec {
@@ -103990,7 +103813,7 @@ export type EntityV3 =
   | EntityV3Queue
   | EntityV3System
   | EntityV3API;
-export const EntityV3 = /*@__PURE__*/ S.Unknown as any as S.Schema<EntityV3>;
+export const EntityV3 = S.Unknown as any as S.Schema<EntityV3>;
 
 /** Included schema. */
 export interface EntityResponseIncludedSchemaAttributes {
@@ -104007,7 +103830,7 @@ export const EntityResponseIncludedSchemaAttributes = /*@__PURE__*/ S.suspend(
 
 /** Schema type. */
 export type EntityResponseIncludedSchemaType = "schema";
-export const EntityResponseIncludedSchemaType = /*@__PURE__*/ S.String;
+export const EntityResponseIncludedSchemaType = S.String;
 
 /** Included detail entity schema. */
 export interface EntityResponseIncludedSchema {
@@ -104042,7 +103865,7 @@ export const EntityResponseIncludedRawSchemaAttributes =
 
 /** Raw schema type. */
 export type EntityResponseIncludedRawSchemaType = "rawSchema";
-export const EntityResponseIncludedRawSchemaType = /*@__PURE__*/ S.String;
+export const EntityResponseIncludedRawSchemaType = S.String;
 
 /** Included raw schema. */
 export interface EntityResponseIncludedRawSchema {
@@ -104109,7 +103932,7 @@ export const EntityResponseIncludedRelatedEntityMeta = /*@__PURE__*/ S.suspend(
 
 /** Related entity. */
 export type EntityResponseIncludedRelatedEntityType = "relatedEntity";
-export const EntityResponseIncludedRelatedEntityType = /*@__PURE__*/ S.String;
+export const EntityResponseIncludedRelatedEntityType = S.String;
 
 /** Included related entity. */
 export interface EntityResponseIncludedRelatedEntity {
@@ -104176,7 +103999,7 @@ export const EntityResponseIncludedRelatedOncallAttributes =
 
 /** Oncall type. */
 export type EntityResponseIncludedOncallType = "oncall";
-export const EntityResponseIncludedOncallType = /*@__PURE__*/ S.String;
+export const EntityResponseIncludedOncallType = S.String;
 
 /** Included oncall. */
 export interface EntityResponseIncludedOncall {
@@ -104223,7 +104046,7 @@ export const EntityResponseIncludedRelatedIncidentAttributes =
 
 /** Incident description. */
 export type EntityResponseIncludedIncidentType = "incident";
-export const EntityResponseIncludedIncidentType = /*@__PURE__*/ S.String;
+export const EntityResponseIncludedIncidentType = S.String;
 
 /** Included incident. */
 export interface EntityResponseIncludedIncident {
@@ -104250,7 +104073,7 @@ export type ListEntityCatalogResponseIncludedItem =
   | EntityResponseIncludedOncall
   | EntityResponseIncludedIncident;
 export const ListEntityCatalogResponseIncludedItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListEntityCatalogResponseIncludedItem>;
+  S.Unknown as any as S.Schema<ListEntityCatalogResponseIncludedItem>;
 
 /** List entity response included. */
 export type ListEntityCatalogResponseIncluded =
@@ -104417,7 +104240,7 @@ export const ListKindCatalogResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Supported include types for relations. */
 export type RelationIncludeType = "entity" | "schema";
-export const RelationIncludeType = /*@__PURE__*/ S.String;
+export const RelationIncludeType = S.String;
 
 export interface ListCatalogRelationRequest {
   /** Specific offset to use as the beginning of the returned page. */
@@ -104534,7 +104357,7 @@ export const RelationRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Relation type. */
 export type RelationResponseType = "relation";
-export const RelationResponseType = /*@__PURE__*/ S.String;
+export const RelationResponseType = S.String;
 
 /** Relation response data. */
 export interface RelationResponse {
@@ -104670,7 +104493,7 @@ export const CIAppGitHubAccountAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API type for the GitHub account resource. The value must always be `ci_github_account`. */
 export type CIAppGitHubAccountType = "ci_github_account";
-export const CIAppGitHubAccountType = /*@__PURE__*/ S.String;
+export const CIAppGitHubAccountType = S.String;
 
 /** Data object for a GitHub account. */
 export interface CIAppGitHubAccountData {
@@ -104708,7 +104531,7 @@ export const CIAppGitHubAccountsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort parameters when querying events. */
 export type CIAppSort = "timestamp" | "-timestamp";
-export const CIAppSort = /*@__PURE__*/ S.String;
+export const CIAppSort = S.String;
 
 export interface ListCIAppPipelineEventsRequest {
   /** Search query following log syntax. */
@@ -104755,7 +104578,7 @@ export type CIAppPipelineLevel =
   | "job"
   | "step"
   | "custom";
-export const CIAppPipelineLevel = /*@__PURE__*/ S.String;
+export const CIAppPipelineLevel = S.String;
 
 /** Array of tags associated with your event. */
 export type TagsEventAttribute = Array<string>;
@@ -104782,7 +104605,7 @@ export const CIAppPipelineEventAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the event. */
 export type CIAppPipelineEventTypeName = "cipipeline";
-export const CIAppPipelineEventTypeName = /*@__PURE__*/ S.String;
+export const CIAppPipelineEventTypeName = S.String;
 
 /** Object description of a pipeline event after being processed and stored by Datadog. */
 export interface CIAppPipelineEvent {
@@ -104862,7 +104685,7 @@ export const CIAppEventAttributesAttributesMap = /*@__PURE__*/ S.Record(
 
 /** Test run level. */
 export type CIAppTestLevel = "session" | "module" | "suite" | "test";
-export const CIAppTestLevel = /*@__PURE__*/ S.String;
+export const CIAppTestLevel = S.String;
 
 /** JSON object containing all event attributes and their associated values. */
 export interface CIAppEventAttributes {
@@ -104883,7 +104706,7 @@ export const CIAppEventAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the event. */
 export type CIAppTestEventTypeName = "citest";
-export const CIAppTestEventTypeName = /*@__PURE__*/ S.String;
+export const CIAppTestEventTypeName = S.String;
 
 /** Object description of test event after being processed and stored by Datadog. */
 export interface CIAppTestEvent {
@@ -105235,7 +105058,7 @@ export const ListConnectionsResponseDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** List connections response resource type. */
 export type ListConnectionsResponseDataType = "list_connections_response";
-export const ListConnectionsResponseDataType = /*@__PURE__*/ S.String;
+export const ListConnectionsResponseDataType = S.String;
 
 /** The data object containing the resource type and attributes for the list connections response. */
 export interface ListConnectionsResponseData {
@@ -105466,7 +105289,7 @@ export const ContainerImageAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of Container Image. */
 export type ContainerImageType = "container_image";
-export const ContainerImageType = /*@__PURE__*/ S.String;
+export const ContainerImageType = S.String;
 
 /** Container Image object. */
 export interface ContainerImage {
@@ -105551,7 +105374,7 @@ export const ContainerImageGroupRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of Container Image Group. */
 export type ContainerImageGroupType = "container_image_group";
-export const ContainerImageGroupType = /*@__PURE__*/ S.String;
+export const ContainerImageGroupType = S.String;
 
 /** Container Image Group object. */
 export interface ContainerImageGroup {
@@ -105575,7 +105398,7 @@ export const ContainerImageGroup = /*@__PURE__*/ S.suspend(() =>
 /** Possible Container Image models. */
 export type ContainerImageItem = ContainerImage | ContainerImageGroup;
 export const ContainerImageItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ContainerImageItem>;
+  S.Unknown as any as S.Schema<ContainerImageItem>;
 
 /** Array of Container Image objects. */
 export type ContainerImagesResponseDataList = Array<ContainerImageItem>;
@@ -105610,7 +105433,7 @@ export const ContainerImagesResponseLinks = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of Container Image pagination. */
 export type ContainerImageMetaPageType = "cursor_limit";
-export const ContainerImageMetaPageType = /*@__PURE__*/ S.String;
+export const ContainerImageMetaPageType = S.String;
 
 /** Paging attributes. */
 export interface ContainerImageMetaPage {
@@ -105746,7 +105569,7 @@ export const ContainerAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of container. */
 export type ContainerType = "container";
-export const ContainerType = /*@__PURE__*/ S.String;
+export const ContainerType = S.String;
 
 /** Container object. */
 export interface Container {
@@ -105826,7 +105649,7 @@ export const ContainerGroupRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of container group. */
 export type ContainerGroupType = "container_group";
-export const ContainerGroupType = /*@__PURE__*/ S.String;
+export const ContainerGroupType = S.String;
 
 /** Container group object. */
 export interface ContainerGroup {
@@ -105847,8 +105670,7 @@ export const ContainerGroup = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible Container models. */
 export type ContainerItem = Container | ContainerGroup;
-export const ContainerItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ContainerItem>;
+export const ContainerItem = S.Unknown as any as S.Schema<ContainerItem>;
 
 /** Array of Container objects. */
 export type ContainersResponseDataList = Array<ContainerItem>;
@@ -105862,7 +105684,7 @@ export const ContainersResponseLinks = ContainerImagesResponseLinks;
 
 /** Type of Container pagination. */
 export type ContainerMetaPageType = "cursor_limit";
-export const ContainerMetaPageType = /*@__PURE__*/ S.String;
+export const ContainerMetaPageType = S.String;
 
 /** Paging attributes. */
 export interface ContainerMetaPage {
@@ -106093,7 +105915,7 @@ export const AwsCURConfigAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of AWS CUR config. */
 export type AwsCURConfigType = "aws_cur_config";
-export const AwsCURConfigType = /*@__PURE__*/ S.String;
+export const AwsCURConfigType = S.String;
 
 /** AWS CUR config. */
 export interface AwsCURConfig {
@@ -106230,7 +106052,7 @@ export const OCIConfigAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of OCI config. */
 export type OCIConfigType = "oci_config";
-export const OCIConfigType = /*@__PURE__*/ S.String;
+export const OCIConfigType = S.String;
 
 /** OCI config. */
 export interface OCIConfig {
@@ -106388,7 +106210,7 @@ export const CostTagKeySourceAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the Cloud Cost Management tag source resource. */
 export type CostTagKeySourceType = "cost_tag_key_source";
-export const CostTagKeySourceType = /*@__PURE__*/ S.String;
+export const CostTagKeySourceType = S.String;
 
 /** A Cloud Cost Management tag key paired with the sources that produced it. */
 export interface CostTagKeySource {
@@ -106428,7 +106250,7 @@ export const CostTagKeySourcesResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Granularity for tag metadata results. `true` returns one row per day, `false` (or omitted) returns the monthly roll-up. */
 export type CostTagMetadataDailyFilter = "true" | "false";
-export const CostTagMetadataDailyFilter = /*@__PURE__*/ S.String;
+export const CostTagMetadataDailyFilter = S.String;
 
 export interface ListCostTagMetadataRequest {
   /** The month to scope the query to, in `YYYY-MM` format. */
@@ -106520,7 +106342,7 @@ export const CostTagKeyMetadataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the Cloud Cost Management tag key metadata resource. */
 export type CostTagKeyMetadataType = "cost_tag_key_metadata";
-export const CostTagKeyMetadataType = /*@__PURE__*/ S.String;
+export const CostTagKeyMetadataType = S.String;
 
 /** A Cloud Cost Management tag key metadata entry, aggregating coverage and example values for a single tag key, metric, and period. */
 export interface CostTagKeyMetadata {
@@ -106581,7 +106403,7 @@ export const ListCostTagMetadataMetricsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the Cloud Cost Management available metric resource. */
 export type CostMetricType = "cost_metric";
-export const CostMetricType = /*@__PURE__*/ S.String;
+export const CostMetricType = S.String;
 
 /** A Cloud Cost Management metric that has data for the requested period. */
 export interface CostMetric {
@@ -106635,7 +106457,7 @@ export const ListCostTagMetadataMonthsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the Cloud Cost Management tag metadata month resource. */
 export type CostTagMetadataMonthType = "cost_tag_metadata_month";
-export const CostTagMetadataMonthType = /*@__PURE__*/ S.String;
+export const CostTagMetadataMonthType = S.String;
 
 /** A month that has Cloud Cost Management tag metadata available for a given provider. */
 export interface CostTagMetadataMonth {
@@ -106695,7 +106517,7 @@ export const ListCostTagMetadataOrchestratorsRequest = /*@__PURE__*/ S.suspend(
 
 /** Type of the Cloud Cost Management orchestrator resource. */
 export type CostOrchestratorType = "cost_orchestrator";
-export const CostOrchestratorType = /*@__PURE__*/ S.String;
+export const CostOrchestratorType = S.String;
 
 /** A container orchestrator detected in Cloud Cost Management data. */
 export interface CostOrchestrator {
@@ -106793,7 +106615,7 @@ export const CostTagAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the Cloud Cost Management tag resource. */
 export type CostTagType = "cost_tag";
-export const CostTagType = /*@__PURE__*/ S.String;
+export const CostTagType = S.String;
 
 /** A Cloud Cost Management tag. */
 export interface CostTag {
@@ -106908,7 +106730,7 @@ export const CsmAgentlessHostFacetAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for agentless host facet resources. The value should always be `agentless_host_facet`. */
 export type CsmAgentlessHostFacetType = "agentless_host_facet";
-export const CsmAgentlessHostFacetType = /*@__PURE__*/ S.String;
+export const CsmAgentlessHostFacetType = S.String;
 
 /** A single agentless host facet resource. */
 export interface CsmAgentlessHostFacetData {
@@ -106971,7 +106793,7 @@ export const ListCSMAgentlessHostsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The cloud provider of a host resource. */
 export type CsmCloudProvider = "aws" | "gcp" | "azure" | "oci";
-export const CsmCloudProvider = /*@__PURE__*/ S.String;
+export const CsmCloudProvider = S.String;
 
 /** The type of cloud resource for an agentless host. */
 export type CsmAgentlessHostResourceType =
@@ -106979,7 +106801,7 @@ export type CsmAgentlessHostResourceType =
   | "azure_virtual_machine_instance"
   | "gcp_compute_instance"
   | "oci_instance";
-export const CsmAgentlessHostResourceType = /*@__PURE__*/ S.String;
+export const CsmAgentlessHostResourceType = S.String;
 
 /** Attributes of an agentless host. */
 export interface CsmAgentlessHostAttributes {
@@ -107006,7 +106828,7 @@ export const CsmAgentlessHostAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for agentless host resources. The value should always be `agentless_host`. */
 export type CsmAgentlessHostType = "agentless_host";
-export const CsmAgentlessHostType = /*@__PURE__*/ S.String;
+export const CsmAgentlessHostType = S.String;
 
 /** A single agentless host resource. */
 export interface CsmAgentlessHostData {
@@ -107132,7 +106954,7 @@ export const ListCSMUnifiedHostFacetsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for unified host facet resources. The value should always be `unified_host_facet`. */
 export type CsmUnifiedHostFacetType = "unified_host_facet";
-export const CsmUnifiedHostFacetType = /*@__PURE__*/ S.String;
+export const CsmUnifiedHostFacetType = S.String;
 
 /** A single unified host facet resource. */
 export interface CsmUnifiedHostFacetData {
@@ -107197,7 +107019,7 @@ export const CsmUnifiedHostAttributesEnvList = /*@__PURE__*/ S.Array(
 
 /** The source of a unified host entry, indicating whether it was discovered via agent, agentless scanning, or both. */
 export type CsmUnifiedHostSource = "agent" | "agentless" | "both";
-export const CsmUnifiedHostSource = /*@__PURE__*/ S.String;
+export const CsmUnifiedHostSource = S.String;
 
 /** Attributes of a unified host, combining data from agent and agentless sources. */
 export interface CsmUnifiedHostAttributes {
@@ -107259,7 +107081,7 @@ export const CsmUnifiedHostAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for unified host resources. The value should always be `unified_host`. */
 export type CsmUnifiedHostType = "unified_host";
-export const CsmUnifiedHostType = /*@__PURE__*/ S.String;
+export const CsmUnifiedHostType = S.String;
 
 /** A single unified host resource, combining agent and agentless data. */
 export interface CsmUnifiedHostData {
@@ -107435,7 +107257,7 @@ export const ArbitraryRuleStatusResponseDataAttributes =
 
 /** Custom allocation rule status resource type. */
 export type ArbitraryRuleStatusResponseDataType = "arbitrary_rule_status";
-export const ArbitraryRuleStatusResponseDataType = /*@__PURE__*/ S.String;
+export const ArbitraryRuleStatusResponseDataType = S.String;
 
 /** Processing status for a custom allocation rule. */
 export interface ArbitraryRuleStatusResponseData {
@@ -107767,7 +107589,7 @@ export const ListDashboardsUsageResponseLinks = /*@__PURE__*/ S.suspend(() =>
 
 /** The pagination type used for offset-based pagination. */
 export type PaginationMetaPageType = "offset_limit";
-export const PaginationMetaPageType = /*@__PURE__*/ S.String;
+export const PaginationMetaPageType = S.String;
 
 /** Offset-based pagination schema. */
 export interface PaginationMetaPage {
@@ -107859,7 +107681,7 @@ export const DatasetReportScheduleResponseAttributesRecipientsList =
 
 /** The type of resource targeted by a dataset report schedule. */
 export type DatasetReportScheduleResourceType = "widget_dataset_list";
-export const DatasetReportScheduleResourceType = /*@__PURE__*/ S.String;
+export const DatasetReportScheduleResourceType = S.String;
 
 /** The configuration and derived state of a report schedule for a published dataset. */
 export interface DatasetReportScheduleResponseAttributes {
@@ -108640,7 +108462,7 @@ export const DORAListDeploymentsRequestAttributes = /*@__PURE__*/ S.suspend(
 /** The definition of `DORAListDeploymentsRequestDataType` object. */
 export type DORAListDeploymentsRequestDataType =
   "dora_deployments_list_request";
-export const DORAListDeploymentsRequestDataType = /*@__PURE__*/ S.String;
+export const DORAListDeploymentsRequestDataType = S.String;
 
 /** The JSON:API data. */
 export interface DORAListDeploymentsRequestData {
@@ -108696,7 +108518,7 @@ export const DORAListFailuresRequestAttributes =
 
 /** The definition of `DORAListFailuresRequestDataType` object. */
 export type DORAListFailuresRequestDataType = "dora_failures_list_request";
-export const DORAListFailuresRequestDataType = /*@__PURE__*/ S.String;
+export const DORAListFailuresRequestDataType = S.String;
 
 /** The JSON:API data. */
 export interface DORAListFailuresRequestData {
@@ -108945,7 +108767,7 @@ export const SecurityEntityRiskScoresResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The sort parameters when querying events. */
 export type EventsSort = "timestamp" | "-timestamp";
-export const EventsSort = /*@__PURE__*/ S.String;
+export const EventsSort = S.String;
 
 export interface ListEventsRequest {
   /** Search query following events syntax. */
@@ -109055,7 +108877,7 @@ export const EventAttributesMonitorGroupsList = /*@__PURE__*/ S.Array(
 
 /** The priority of the event's monitor. For example, `normal` or `low`. */
 export type EventPriority = "normal" | "low";
-export const EventPriority = /*@__PURE__*/ S.String;
+export const EventPriority = S.String;
 
 /** If an alert event is enabled, its status is one of the following: `failure`, `error`, `warning`, `info`, `success`, `user_update`, `recommendation`, or `snapshot`. */
 export type EventStatusType =
@@ -109067,7 +108889,7 @@ export type EventStatusType =
   | "user_update"
   | "recommendation"
   | "snapshot";
-export const EventStatusType = /*@__PURE__*/ S.String;
+export const EventStatusType = S.String;
 
 /** A list of tags to apply to the event. */
 export type EventAttributesTagsList = Array<string>;
@@ -109167,7 +108989,7 @@ export const EventResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the event. */
 export type EventType = "event";
-export const EventType = /*@__PURE__*/ S.String;
+export const EventType = S.String;
 
 /** The object description of an event after being processed and stored by Datadog. */
 export interface EventResponse {
@@ -109770,7 +109592,7 @@ export type FindingVulnerabilityType =
   | "attack_path"
   | "identity_risk"
   | "api_security";
-export const FindingVulnerabilityType = /*@__PURE__*/ S.String;
+export const FindingVulnerabilityType = S.String;
 
 export type ListFindingsRequestFilterVulnerabilityTypeList = Array<
   FindingVulnerabilityType | (string & {})
@@ -109892,7 +109714,7 @@ export const FindingAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for findings. */
 export type FindingType = "finding";
-export const FindingType = /*@__PURE__*/ S.String;
+export const FindingType = S.String;
 
 /** A single finding without the message and resource configuration. */
 export interface Finding {
@@ -110006,8 +109828,7 @@ export const FleetAgentV2AttributesFleetPoliciesList = /*@__PURE__*/ S.Array(
 
 /** The single-step instrumentation status of the Agent. */
 export type FleetAgentV2AttributesInstrumentationStatus = "success" | "failure";
-export const FleetAgentV2AttributesInstrumentationStatus =
-  /*@__PURE__*/ S.String;
+export const FleetAgentV2AttributesInstrumentationStatus = S.String;
 
 /** Names of integrations configured on the agent. */
 export type FleetAgentV2AttributesIntegrationsList = Array<string>;
@@ -110419,7 +110240,7 @@ export const FleetAgentVersionV2Attributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the agent version resource. */
 export type FleetAgentVersionV2ResourceType = "agent_version";
-export const FleetAgentVersionV2ResourceType = /*@__PURE__*/ S.String;
+export const FleetAgentVersionV2ResourceType = S.String;
 
 /** An available Datadog Agent version resource. */
 export interface FleetAgentVersionV2 {
@@ -110839,7 +110660,7 @@ export const GlobalOrgAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type for global user organizations. */
 export type GlobalOrgType = "global_user_orgs";
-export const GlobalOrgType = /*@__PURE__*/ S.String;
+export const GlobalOrgType = S.String;
 
 /** An organization associated with the authenticated user. */
 export interface GlobalOrgData {
@@ -110880,7 +110701,7 @@ export const GlobalOrgsLinks = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of global orgs pagination. */
 export type GlobalOrgsMetaPageType = "cursor";
-export const GlobalOrgsMetaPageType = /*@__PURE__*/ S.String;
+export const GlobalOrgsMetaPageType = S.String;
 
 /** Paging attributes. */
 export interface GlobalOrgsMetaPage {
@@ -111236,7 +111057,7 @@ export type GovernanceInsightDirectionality =
   | "neutral"
   | "increase_better"
   | "decrease_better";
-export const GovernanceInsightDirectionality = /*@__PURE__*/ S.String;
+export const GovernanceInsightDirectionality = S.String;
 
 /** Query execution context for running insight queries directly. */
 export interface GovernanceInsightQueryConfig {
@@ -111320,7 +111141,7 @@ export const GovernanceInsightAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for a governance insight. */
 export type GovernanceInsightResourceType = "insight";
-export const GovernanceInsightResourceType = /*@__PURE__*/ S.String;
+export const GovernanceInsightResourceType = S.String;
 
 /** A governance insight resource. */
 export interface GovernanceInsightData {
@@ -111446,7 +111267,7 @@ export const IdentityProviderAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type for identity providers. */
 export type IdentityProviderType = "identity_providers";
-export const IdentityProviderType = /*@__PURE__*/ S.String;
+export const IdentityProviderType = S.String;
 
 /** Data object representing an organization identity provider. */
 export interface IdentityProviderData {
@@ -111485,7 +111306,7 @@ export const IdentityProvidersResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Direction of sort. */
 export type QuerySortOrder = "asc" | "desc";
-export const QuerySortOrder = /*@__PURE__*/ S.String;
+export const QuerySortOrder = S.String;
 
 export interface ListIdentityProviderUsersRequest {
   /** The ID of the identity provider. */
@@ -112584,7 +112405,7 @@ export const IntegrationLinks = /*@__PURE__*/ S.suspend(() =>
 
 /** Integration resource type. */
 export type IntegrationType = "integration";
-export const IntegrationType = /*@__PURE__*/ S.String;
+export const IntegrationType = S.String;
 
 /** Integration resource object. */
 export interface Integration {
@@ -113119,7 +112940,7 @@ export const LLMObsDatasetVersionDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type of an Agent Observability dataset version. */
 export type LLMObsDatasetVersionType = "dataset_version";
-export const LLMObsDatasetVersionType = /*@__PURE__*/ S.String;
+export const LLMObsDatasetVersionType = S.String;
 
 /** Data object for an Agent Observability dataset version. */
 export interface LLMObsDatasetVersionData {
@@ -113370,7 +113191,7 @@ export const LLMObsExperimentEventsV2DataAttributesResponse =
 
 /** Resource type for an experiment events collection. */
 export type LLMObsExperimentEventsType = "experiment_events";
-export const LLMObsExperimentEventsType = /*@__PURE__*/ S.String;
+export const LLMObsExperimentEventsType = S.String;
 
 /** JSON:API data object for an experiment events response. */
 export interface LLMObsExperimentEventsV2DataResponse {
@@ -113495,8 +113316,7 @@ export type ListLLMObsIntegrationAccountsRequestIntegration =
   | "azure_openai"
   | "vertex_ai"
   | "llmproxy";
-export const ListLLMObsIntegrationAccountsRequestIntegration =
-  /*@__PURE__*/ S.String;
+export const ListLLMObsIntegrationAccountsRequestIntegration = S.String;
 
 export interface ListLLMObsIntegrationAccountsRequest {
   /** The name of the LLM integration. */
@@ -113571,8 +113391,7 @@ export type ListLLMObsIntegrationModelsRequestIntegration =
   | "azure_openai"
   | "vertex_ai"
   | "llmproxy";
-export const ListLLMObsIntegrationModelsRequestIntegration =
-  /*@__PURE__*/ S.String;
+export const ListLLMObsIntegrationModelsRequestIntegration = S.String;
 
 export interface ListLLMObsIntegrationModelsRequest {
   /** The name of the LLM integration. */
@@ -113748,7 +113567,7 @@ export const LLMObsPatternsClusteredPointsResponseAttributes =
 
 /** Resource type of an Agent Observability patterns clustered points response. */
 export type LLMObsPatternsClusteredPointsType = "clustered_points_response";
-export const LLMObsPatternsClusteredPointsType = /*@__PURE__*/ S.String;
+export const LLMObsPatternsClusteredPointsType = S.String;
 
 /** Data object of an Agent Observability patterns clustered points response. */
 export interface LLMObsPatternsClusteredPointsResponseData {
@@ -113865,7 +113684,7 @@ export const LLMObsPatternsConfigsResponseAttributes = /*@__PURE__*/ S.suspend(
 /** Resource type of a list of Agent Observability patterns configurations. */
 export type LLMObsPatternsConfigsListType =
   "list_topic_discovery_configs_response";
-export const LLMObsPatternsConfigsListType = /*@__PURE__*/ S.String;
+export const LLMObsPatternsConfigsListType = S.String;
 
 /** Data object of a list of Agent Observability patterns configurations. */
 export interface LLMObsPatternsConfigsResponseData {
@@ -113990,7 +113809,7 @@ export const LLMObsPatternsRunsResponseAttributes = /*@__PURE__*/ S.suspend(
 
 /** Resource type of a list of Agent Observability patterns runs. */
 export type LLMObsPatternsRunsListType = "list_topic_discovery_runs_response";
-export const LLMObsPatternsRunsListType = /*@__PURE__*/ S.String;
+export const LLMObsPatternsRunsListType = S.String;
 
 /** Data object of an Agent Observability patterns runs response. */
 export interface LLMObsPatternsRunsResponseData {
@@ -114120,7 +113939,7 @@ export const LLMObsPatternsTopicsResponseAttributes = /*@__PURE__*/ S.suspend(
 
 /** Resource type of an Agent Observability patterns topics response. */
 export type LLMObsPatternsTopicsType = "get_topics_response";
-export const LLMObsPatternsTopicsType = /*@__PURE__*/ S.String;
+export const LLMObsPatternsTopicsType = S.String;
 
 /** Data object of an Agent Observability patterns topics response. */
 export interface LLMObsPatternsTopicsResponseData {
@@ -114311,8 +114130,7 @@ export const LLMObsPatternsTopicsWithClusteredPointsResponseAttributes =
 /** Resource type of an Agent Observability patterns topics-with-clustered-points response. */
 export type LLMObsPatternsTopicsWithClusteredPointsType =
   "get_topics_with_cluster_points_response";
-export const LLMObsPatternsTopicsWithClusteredPointsType =
-  /*@__PURE__*/ S.String;
+export const LLMObsPatternsTopicsWithClusteredPointsType = S.String;
 
 /** Data object of an Agent Observability patterns topics-with-clustered-points response. */
 export interface LLMObsPatternsTopicsWithClusteredPointsResponseData {
@@ -114892,7 +114710,7 @@ export const LLMObsSpanAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type for an Agent Observability span. */
 export type LLMObsSpanType = "span";
-export const LLMObsSpanType = /*@__PURE__*/ S.String;
+export const LLMObsSpanType = S.String;
 
 /** A single Agent Observability span. */
 export interface LLMObsSpanData {
@@ -114997,7 +114815,7 @@ export const LogsListRequestPage = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort parameters when querying logs. */
 export type LogsSort = "timestamp" | "-timestamp";
-export const LogsSort = /*@__PURE__*/ S.String;
+export const LogsSort = S.String;
 
 export interface ListLogsRequest {
   filter?: LogsQueryFilter;
@@ -115062,7 +114880,7 @@ export const LogAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the event. */
 export type LogType = "log";
-export const LogType = /*@__PURE__*/ S.String;
+export const LogType = S.String;
 
 /** Object description of a log after being processed and stored by Datadog. */
 export interface Log {
@@ -115395,7 +115213,7 @@ export const ListMetricAssetsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Dashboard resource type. */
 export type MetricDashboardType = "dashboards";
-export const MetricDashboardType = /*@__PURE__*/ S.String;
+export const MetricDashboardType = S.String;
 
 /** An object of type `dashboard` that can be referenced in the `included` data. */
 export interface MetricAssetDashboardRelationship {
@@ -115433,7 +115251,7 @@ export const MetricAssetDashboardRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Monitor resource type. */
 export type MetricMonitorType = "monitors";
-export const MetricMonitorType = /*@__PURE__*/ S.String;
+export const MetricMonitorType = S.String;
 
 /** An object of type `monitor` that can be referenced in the `included` data. */
 export interface MetricAssetMonitorRelationship {
@@ -115471,7 +115289,7 @@ export const MetricAssetMonitorRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Notebook resource type. */
 export type MetricNotebookType = "notebooks";
-export const MetricNotebookType = /*@__PURE__*/ S.String;
+export const MetricNotebookType = S.String;
 
 /** An object of type `notebook` that can be referenced in the `included` data. */
 export interface MetricAssetNotebookRelationship {
@@ -115509,7 +115327,7 @@ export const MetricAssetNotebookRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** SLO resource type. */
 export type MetricSLOType = "slos";
-export const MetricSLOType = /*@__PURE__*/ S.String;
+export const MetricSLOType = S.String;
 
 /** An object of type `slos` that can be referenced in the `included` data. */
 export interface MetricAssetSLORelationship {
@@ -115565,7 +115383,7 @@ export const MetricAssetResponseRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** The metric resource type. */
 export type MetricType = "metrics";
-export const MetricType = /*@__PURE__*/ S.String;
+export const MetricType = S.String;
 
 /** Metric assets response data. */
 export interface MetricAssetResponseData {
@@ -115705,7 +115523,7 @@ export type MetricAssetResponseIncluded =
   | MetricNotebookAsset
   | MetricSLOAsset;
 export const MetricAssetResponseIncluded =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricAssetResponseIncluded>;
+  S.Unknown as any as S.Schema<MetricAssetResponseIncluded>;
 
 /** Array of objects related to the metric assets. */
 export type MetricAssetsResponseIncludedList =
@@ -115792,7 +115610,7 @@ export const ModelLabProjectArtifactsAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for a project artifacts resource. */
 export type ModelLabProjectArtifactsType = "project_files";
-export const ModelLabProjectArtifactsType = /*@__PURE__*/ S.String;
+export const ModelLabProjectArtifactsType = S.String;
 
 /** A project artifacts JSON:API resource object. */
 export interface ModelLabProjectArtifactsData {
@@ -115875,7 +115693,7 @@ export const ModelLabFacetKeysAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for a facet keys resource. */
 export type ModelLabFacetKeysType = "facet_keys";
-export const ModelLabFacetKeysType = /*@__PURE__*/ S.String;
+export const ModelLabFacetKeysType = S.String;
 
 /** A facet keys JSON:API resource object. */
 export interface ModelLabFacetKeysData {
@@ -115908,7 +115726,7 @@ export const ModelLabFacetKeysResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of facet for filtering Model Lab projects. */
 export type ModelLabProjectFacetType = "tag";
-export const ModelLabProjectFacetType = /*@__PURE__*/ S.String;
+export const ModelLabProjectFacetType = S.String;
 
 export interface ListModelLabProjectFacetValuesRequest {
   /** Facet type. Valid values: tag. */
@@ -116009,7 +115827,7 @@ export const ModelLabFacetValuesAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for a facet values resource. */
 export type ModelLabFacetValuesType = "facet_values";
-export const ModelLabFacetValuesType = /*@__PURE__*/ S.String;
+export const ModelLabFacetValuesType = S.String;
 
 /** A facet values JSON:API resource object. */
 export interface ModelLabFacetValuesData {
@@ -116207,7 +116025,7 @@ export const ModelLabRunArtifactsAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for a run artifacts resource. */
 export type ModelLabRunArtifactsType = "artifacts";
-export const ModelLabRunArtifactsType = /*@__PURE__*/ S.String;
+export const ModelLabRunArtifactsType = S.String;
 
 /** A run artifacts JSON:API resource object. */
 export interface ModelLabRunArtifactsData {
@@ -116258,7 +116076,7 @@ export const ListModelLabRunFacetKeysRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of facet for filtering Model Lab runs. */
 export type ModelLabFacetType = "parameter" | "attribute" | "tag" | "metric";
-export const ModelLabFacetType = /*@__PURE__*/ S.String;
+export const ModelLabFacetType = S.String;
 
 export interface ListModelLabRunFacetValuesRequest {
   /** Filter by project ID. */
@@ -116450,7 +116268,7 @@ export const MonitorDowntimeMatchResponseAttributes = /*@__PURE__*/ S.suspend(
 
 /** Monitor Downtime Match resource type. */
 export type MonitorDowntimeMatchResourceType = "downtime_match";
-export const MonitorDowntimeMatchResourceType = /*@__PURE__*/ S.String;
+export const MonitorDowntimeMatchResourceType = S.String;
 
 /** A downtime match. */
 export interface MonitorDowntimeMatchResponseData {
@@ -116553,7 +116371,7 @@ export const GetMultipleRulesetsRequestDataAttributes = /*@__PURE__*/ S.suspend(
 /** Get multiple rulesets request resource type. */
 export type GetMultipleRulesetsRequestDataType =
   "get_multiple_rulesets_request";
-export const GetMultipleRulesetsRequestDataType = /*@__PURE__*/ S.String;
+export const GetMultipleRulesetsRequestDataType = S.String;
 
 /** The primary data object in the get-multiple-rulesets request, containing request attributes and resource type. */
 export interface GetMultipleRulesetsRequestData {
@@ -116667,7 +116485,7 @@ export const GetMultipleRulesetsResponseDataAttributes =
 /** Get multiple rulesets response resource type. */
 export type GetMultipleRulesetsResponseDataType =
   "get_multiple_rulesets_response";
-export const GetMultipleRulesetsResponseDataType = /*@__PURE__*/ S.String;
+export const GetMultipleRulesetsResponseDataType = S.String;
 
 /** The primary data object in the get-multiple-rulesets response, containing the response attributes and resource type. */
 export interface GetMultipleRulesetsResponseData {
@@ -116728,7 +116546,7 @@ export type NetworkHealthInsightFailureType =
   | "expired"
   | "expiring_soon"
   | "denied";
-export const NetworkHealthInsightFailureType = /*@__PURE__*/ S.String;
+export const NetworkHealthInsightFailureType = S.String;
 
 /** Network traffic volume metrics between the client and server services during the query window. */
 export interface NetworkHealthInsightTrafficVolume {
@@ -116755,7 +116573,7 @@ export type NetworkHealthInsightCategory =
   | "tcp"
   | "tls-cert"
   | "security-group";
-export const NetworkHealthInsightCategory = /*@__PURE__*/ S.String;
+export const NetworkHealthInsightCategory = S.String;
 
 /** Detailed attributes of a network health insight. */
 export interface NetworkHealthInsightAttributes {
@@ -116820,7 +116638,7 @@ export const NetworkHealthInsightAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type for network health insights. Always `network-health-insights`. */
 export type NetworkHealthInsightsType = "network-health-insights";
-export const NetworkHealthInsightsType = /*@__PURE__*/ S.String;
+export const NetworkHealthInsightsType = S.String;
 
 /** A single network health insight describing a service-to-service connectivity issue. */
 export interface NetworkHealthInsight {
@@ -117073,7 +116891,7 @@ export type OrgAuthorizedClientUserAuthorizationsSort =
   | "user.name"
   | "user.email"
   | "oauth2_client.name";
-export const OrgAuthorizedClientUserAuthorizationsSort = /*@__PURE__*/ S.String;
+export const OrgAuthorizedClientUserAuthorizationsSort = S.String;
 
 export interface ListOrgAuthorizedClientUserAuthorizationsRequest {
   /** The ID of the org authorized client. */
@@ -117243,7 +117061,7 @@ export const OrgConnectionListResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Field to sort memberships by. */
 export type OrgGroupMembershipSortOption = "name" | "-name" | "uuid" | "-uuid";
-export const OrgGroupMembershipSortOption = /*@__PURE__*/ S.String;
+export const OrgGroupMembershipSortOption = S.String;
 
 export interface ListOrgGroupMembershipsRequest {
   /** Filter memberships by org group ID. Required when `filter[org_uuid]` is not provided. */
@@ -117275,7 +117093,7 @@ export const ListOrgGroupMembershipsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Field to sort policies by. */
 export type OrgGroupPolicySortOption = "id" | "-id" | "name" | "-name";
-export const OrgGroupPolicySortOption = /*@__PURE__*/ S.String;
+export const OrgGroupPolicySortOption = S.String;
 
 export interface ListOrgGroupPoliciesRequest {
   /** Filter policies by org group ID. */
@@ -117375,7 +117193,7 @@ export const OrgGroupPolicyConfigAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Org group policy configs resource type. */
 export type OrgGroupPolicyConfigType = "org_group_policy_configs";
-export const OrgGroupPolicyConfigType = /*@__PURE__*/ S.String;
+export const OrgGroupPolicyConfigType = S.String;
 
 /** An org group policy config resource. */
 export interface OrgGroupPolicyConfigData {
@@ -117420,7 +117238,7 @@ export type OrgGroupPolicyOverrideSortOption =
   | "-id"
   | "org_uuid"
   | "-org_uuid";
-export const OrgGroupPolicyOverrideSortOption = /*@__PURE__*/ S.String;
+export const OrgGroupPolicyOverrideSortOption = S.String;
 
 export interface ListOrgGroupPolicyOverridesRequest {
   /** Filter policy overrides by org group ID. */
@@ -117500,7 +117318,7 @@ export type OrgGroupPolicySuggestionStatus =
   | "pending"
   | "accepted"
   | "dismissed";
-export const OrgGroupPolicySuggestionStatus = /*@__PURE__*/ S.String;
+export const OrgGroupPolicySuggestionStatus = S.String;
 
 /** Attributes of an org group policy suggestion. */
 export interface OrgGroupPolicySuggestionAttributes {
@@ -117531,7 +117349,7 @@ export const OrgGroupPolicySuggestionRelationships =
 
 /** Org group policy suggestions resource type. */
 export type OrgGroupPolicySuggestionType = "org_group_policy_suggestions";
-export const OrgGroupPolicySuggestionType = /*@__PURE__*/ S.String;
+export const OrgGroupPolicySuggestionType = S.String;
 
 /** An org group policy suggestion resource. */
 export interface OrgGroupPolicySuggestionData {
@@ -117576,7 +117394,7 @@ export const OrgGroupPolicySuggestionListResponse = /*@__PURE__*/ S.suspend(
 
 /** Field to sort org groups by. */
 export type OrgGroupSortOption = "name" | "-name" | "uuid" | "-uuid";
-export const OrgGroupSortOption = /*@__PURE__*/ S.String;
+export const OrgGroupSortOption = S.String;
 
 export interface ListOrgGroupsRequest {
   /** The page number to return. */
@@ -117633,7 +117451,7 @@ export const ListOrgsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type for organizations. */
 export type OrgResourceType = "orgs";
-export const OrgResourceType = /*@__PURE__*/ S.String;
+export const OrgResourceType = S.String;
 
 /** Reference to an organization resource. */
 export interface OrgRelationshipData {
@@ -117697,7 +117515,7 @@ export const ManagedOrgsRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type for managed organizations. */
 export type ManagedOrgsType = "managed_orgs";
-export const ManagedOrgsType = /*@__PURE__*/ S.String;
+export const ManagedOrgsType = S.String;
 
 /** The managed organizations resource. */
 export interface ManagedOrgsData {
@@ -117941,7 +117759,7 @@ export const OwnershipHistoryAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the ownership history resource. The value should always be `ownership_history`. */
 export type OwnershipHistoryType = "ownership_history";
-export const OwnershipHistoryType = /*@__PURE__*/ S.String;
+export const OwnershipHistoryType = S.String;
 
 /** The data wrapper for an ownership history response. */
 export interface OwnershipHistoryData {
@@ -117978,8 +117796,7 @@ export type ListOwnershipHistoryByOwnerTypeRequestOwnerType =
   | "team"
   | "service"
   | "unknown";
-export const ListOwnershipHistoryByOwnerTypeRequestOwnerType =
-  /*@__PURE__*/ S.String;
+export const ListOwnershipHistoryByOwnerTypeRequestOwnerType = S.String;
 
 export interface ListOwnershipHistoryByOwnerTypeRequest {
   /** The identifier of the resource to retrieve inference history for. */
@@ -118088,7 +117905,7 @@ export const OwnershipInferenceListAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the ownership inferences collection resource. The value should always be `ownership_inferences`. */
 export type OwnershipInferencesType = "ownership_inferences";
-export const OwnershipInferencesType = /*@__PURE__*/ S.String;
+export const OwnershipInferencesType = S.String;
 
 /** The data wrapper for the ownership inferences collection response. */
 export interface OwnershipInferenceListData {
@@ -118179,7 +117996,7 @@ export type PersonalAccessTokensSort =
   | "-expires_at"
   | "last_used_at"
   | "-last_used_at";
-export const PersonalAccessTokensSort = /*@__PURE__*/ S.String;
+export const PersonalAccessTokensSort = S.String;
 
 export type ListPersonalAccessTokensRequestFilterOwnedByList = Array<string>;
 export const ListPersonalAccessTokensRequestFilterOwnedByList =
@@ -118219,7 +118036,7 @@ export const ListPersonalAccessTokensRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Owner resource type. Either a user or a service account. */
 export type AccessTokenOwnerType = "users" | "service_account";
-export const AccessTokenOwnerType = /*@__PURE__*/ S.String;
+export const AccessTokenOwnerType = S.String;
 
 /** Relationship to the access token's owner. */
 export interface RelationshipToAccessTokenOwnerData {
@@ -118264,7 +118081,7 @@ export const AccessTokenListItemRelationships = /*@__PURE__*/ S.suspend(() =>
 export type AccessTokensType =
   | "personal_access_tokens"
   | "service_access_tokens";
-export const AccessTokensType = /*@__PURE__*/ S.String;
+export const AccessTokensType = S.String;
 
 /** An access token entry returned by the personal access tokens list endpoint. May represent either a personal or a service access token. */
 export interface AccessTokenListItem {
@@ -118574,7 +118391,7 @@ export const ProcessSummaryAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of process summary. */
 export type ProcessSummaryType = "process";
-export const ProcessSummaryType = /*@__PURE__*/ S.String;
+export const ProcessSummaryType = S.String;
 
 /** Process summary object. */
 export interface ProcessSummary {
@@ -118745,7 +118562,7 @@ export const ProductAnalyticsAnalyticsListQueryColumnsList =
 
 /** The data source identifier. */
 export type ProductAnalyticsEventQueryDataSource = "product_analytics";
-export const ProductAnalyticsEventQueryDataSource = /*@__PURE__*/ S.String;
+export const ProductAnalyticsEventQueryDataSource = S.String;
 
 /** Search parameters for an event query. */
 export interface ProductAnalyticsEventSearch {
@@ -118777,7 +118594,7 @@ export const ProductAnalyticsEventQuery = /*@__PURE__*/ S.suspend(() =>
 /** The data source identifier for occurrence queries. */
 export type ProductAnalyticsOccurrenceQueryDataSource =
   "product_analytics_occurrence";
-export const ProductAnalyticsOccurrenceQueryDataSource = /*@__PURE__*/ S.String;
+export const ProductAnalyticsOccurrenceQueryDataSource = S.String;
 
 /** Additional metadata. */
 export type ProductAnalyticsOccurrenceFilterMetaMap = {
@@ -118841,11 +118658,11 @@ export type ProductAnalyticsBaseQuery =
   | ProductAnalyticsEventQuery
   | ProductAnalyticsOccurrenceQuery;
 export const ProductAnalyticsBaseQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductAnalyticsBaseQuery>;
+  S.Unknown as any as S.Schema<ProductAnalyticsBaseQuery>;
 
 /** The direction rows are sorted in. */
 export type ProductAnalyticsAnalyticsListSortOrder = "asc" | "desc";
-export const ProductAnalyticsAnalyticsListSortOrder = /*@__PURE__*/ S.String;
+export const ProductAnalyticsAnalyticsListSortOrder = S.String;
 
 /** The sort applied to the returned event rows. */
 export interface ProductAnalyticsAnalyticsListSort {
@@ -118906,7 +118723,7 @@ export const ProductAnalyticsAnalyticsListRequestAttributes =
 /** The resource type for analytics list requests. */
 export type ProductAnalyticsAnalyticsListRequestType =
   "formula_analytics_extended_list_request";
-export const ProductAnalyticsAnalyticsListRequestType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsAnalyticsListRequestType = S.String;
 
 /** Data object for an analytics list request. */
 export interface ProductAnalyticsAnalyticsListRequestData {
@@ -118978,7 +118795,7 @@ export const ProductAnalyticsAnalyticsListResponseAttributes =
 
 /** The resource type identifier for an analytics list response. */
 export type ProductAnalyticsAnalyticsListResponseType = "list_response";
-export const ProductAnalyticsAnalyticsListResponseType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsAnalyticsListResponseType = S.String;
 
 /** Data object for an analytics list response. */
 export interface ProductAnalyticsAnalyticsListResponseData {
@@ -119000,7 +118817,7 @@ export const ProductAnalyticsAnalyticsListResponseData =
 
 /** The execution status of a Product Analytics query. */
 export type ProductAnalyticsResponseMetaStatus = "done" | "running" | "timeout";
-export const ProductAnalyticsResponseMetaStatus = /*@__PURE__*/ S.String;
+export const ProductAnalyticsResponseMetaStatus = S.String;
 
 /** Metadata for a Product Analytics query response. */
 export interface ProductAnalyticsResponseMeta {
@@ -119035,7 +118852,7 @@ export const ProductAnalyticsAnalyticsListResponse = /*@__PURE__*/ S.suspend(
 /** Name of a computed column to add to each row. */
 export type ProductAnalyticsJourneyComputedColumnName =
   "first_conversion_timestamps";
-export const ProductAnalyticsJourneyComputedColumnName = /*@__PURE__*/ S.String;
+export const ProductAnalyticsJourneyComputedColumnName = S.String;
 
 /** A computed column added to each row. Requesting `first_conversion_timestamps` adds one `<node alias>_timestamp` key per step. */
 export interface ProductAnalyticsJourneyComputedColumn {
@@ -119060,7 +118877,7 @@ export const ProductAnalyticsJourneyListQueryComputedColumnsList =
 
 /** Whether to return the entities that converted at the target step, or those that dropped off. */
 export type ProductAnalyticsJourneyConversionType = "conversion" | "drop-off";
-export const ProductAnalyticsJourneyConversionType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsJourneyConversionType = S.String;
 
 /** Attribute columns to return for each row, in addition to the identity join key and `timestamp`. */
 export type ProductAnalyticsJourneyListQueryEntityColumnsList = Array<string>;
@@ -119091,11 +118908,11 @@ export const ProductAnalyticsGroupBySort = /*@__PURE__*/ S.suspend(() =>
 export type ProductAnalyticsGraphQueryGroupBySource =
   | "product_analytics_audience_filters.users"
   | "product_analytics_audience_filters.accounts";
-export const ProductAnalyticsGraphQueryGroupBySource = /*@__PURE__*/ S.String;
+export const ProductAnalyticsGraphQueryGroupBySource = S.String;
 
 /** The discriminator identifying a target that references a single step. */
 export type ProductAnalyticsJourneyNodeTargetType = "node";
-export const ProductAnalyticsJourneyNodeTargetType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsJourneyNodeTargetType = S.String;
 
 /** A reference to a single step of the journey. */
 export interface ProductAnalyticsJourneyNodeTarget {
@@ -119114,7 +118931,7 @@ export const ProductAnalyticsJourneyNodeTarget = /*@__PURE__*/ S.suspend(() =>
 
 /** The discriminator identifying a target that references a range of steps. */
 export type ProductAnalyticsJourneyPathTargetType = "path";
-export const ProductAnalyticsJourneyPathTargetType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsJourneyPathTargetType = S.String;
 
 /** A reference to the range of steps between two nodes of the journey. */
 export interface ProductAnalyticsJourneyPathTarget {
@@ -119139,7 +118956,7 @@ export type ProductAnalyticsJourneyTarget =
   | ProductAnalyticsJourneyNodeTarget
   | ProductAnalyticsJourneyPathTarget;
 export const ProductAnalyticsJourneyTarget =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductAnalyticsJourneyTarget>;
+  S.Unknown as any as S.Schema<ProductAnalyticsJourneyTarget>;
 
 /** Restricts the results to these facet values. */
 export type ProductAnalyticsGraphQueryGroupByValueFiltersList = Array<string>;
@@ -119289,8 +119106,7 @@ export type ProductAnalyticsJourneySearchGraphFilterName =
   | "__dd.time_to_convert"
   | "__dd.session"
   | "__dd.dropoff_rate";
-export const ProductAnalyticsJourneySearchGraphFilterName =
-  /*@__PURE__*/ S.String;
+export const ProductAnalyticsJourneySearchGraphFilterName = S.String;
 
 /** Comparison operator applied to the graph filter value. */
 export type ProductAnalyticsJourneySearchGraphFilterOperator =
@@ -119299,8 +119115,7 @@ export type ProductAnalyticsJourneySearchGraphFilterOperator =
   | ">"
   | "<="
   | ">=";
-export const ProductAnalyticsJourneySearchGraphFilterOperator =
-  /*@__PURE__*/ S.String;
+export const ProductAnalyticsJourneySearchGraphFilterOperator = S.String;
 
 /** A filter applied to a step, or a range of steps, of the journey graph. */
 export interface ProductAnalyticsJourneySearchGraphFilter {
@@ -119476,7 +119291,7 @@ export const ProductAnalyticsJourneyListRequestAttributes =
 
 /** The resource type identifier for a journey list request. */
 export type ProductAnalyticsJourneyListRequestType = "journey_list_request";
-export const ProductAnalyticsJourneyListRequestType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsJourneyListRequestType = S.String;
 
 /** The single JSON:API resource carrying a journey list query. Its attributes hold the time window and the journey whose matching entities should be listed, one row each. */
 export interface ProductAnalyticsJourneyListRequestData {
@@ -119513,7 +119328,7 @@ export const ListQueryProductAnalyticsJourneyRequest = /*@__PURE__*/ S.suspend(
 
 /** The kind of entity returned by a journey list query. */
 export type ProductAnalyticsJourneyEntity = "session" | "user" | "account";
-export const ProductAnalyticsJourneyEntity = /*@__PURE__*/ S.String;
+export const ProductAnalyticsJourneyEntity = S.String;
 
 /** A single row. Keys are the returned column names: the identity join key, `timestamp`, each entry of `entity_columns`, and any computed columns. A value is null when the column has no value for that row. */
 export type ProductAnalyticsJourneyListRecord = {
@@ -119553,7 +119368,7 @@ export const ProductAnalyticsJourneyListResponseAttributes =
 
 /** The resource type identifier for a journey list response. */
 export type ProductAnalyticsJourneyListResponseType = "journey_list_response";
-export const ProductAnalyticsJourneyListResponseType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsJourneyListResponseType = S.String;
 
 /** The single JSON:API resource holding the entities matching a journey. Its attributes contain the returned rows and the total number of rows that matched, ignoring `limit`. */
 export interface ProductAnalyticsJourneyListResponseData {
@@ -119621,7 +119436,7 @@ export const ProductAnalyticsRetentionListQueryColumnsList =
 
 /** The discriminator identifying a target selected by index. */
 export type ProductAnalyticsRetentionIndexTargetType = "index";
-export const ProductAnalyticsRetentionIndexTargetType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionIndexTargetType = S.String;
 
 /** Selects a cohort or return period by its zero-based position in the grid. */
 export interface ProductAnalyticsRetentionIndexTarget {
@@ -119641,8 +119456,7 @@ export const ProductAnalyticsRetentionIndexTarget = /*@__PURE__*/ S.suspend(
 
 /** The discriminator identifying a target selected by aggregation. */
 export type ProductAnalyticsRetentionAggregationTargetType = "aggregation";
-export const ProductAnalyticsRetentionAggregationTargetType =
-  /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionAggregationTargetType = S.String;
 
 /** Selects the rolled-up row that aggregates every cohort, rather than a single cohort. */
 export interface ProductAnalyticsRetentionAggregationTarget {
@@ -119665,11 +119479,11 @@ export type ProductAnalyticsRetentionCohortTarget =
   | ProductAnalyticsRetentionIndexTarget
   | ProductAnalyticsRetentionAggregationTarget;
 export const ProductAnalyticsRetentionCohortTarget =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductAnalyticsRetentionCohortTarget>;
+  S.Unknown as any as S.Schema<ProductAnalyticsRetentionCohortTarget>;
 
 /** The discriminator identifying a scope narrowed to one grid cell. */
 export type ProductAnalyticsRetentionCellScopeType = "cell";
-export const ProductAnalyticsRetentionCellScopeType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionCellScopeType = S.String;
 
 /** Narrows a retention query to a single cell, at the intersection of one cohort and one return period. */
 export interface ProductAnalyticsRetentionCellScope {
@@ -119689,8 +119503,7 @@ export const ProductAnalyticsRetentionCellScope = /*@__PURE__*/ S.suspend(() =>
 
 /** The discriminator identifying a calendar-aligned retention interval. */
 export type ProductAnalyticsRetentionCalendarTimeIntervalType = "calendar";
-export const ProductAnalyticsRetentionCalendarTimeIntervalType =
-  /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionCalendarTimeIntervalType = S.String;
 
 /** Calendar unit used to bucket cohorts. */
 export type ProductAnalyticsCalendarIntervalType =
@@ -119701,7 +119514,7 @@ export type ProductAnalyticsCalendarIntervalType =
   | "month"
   | "quarter"
   | "year";
-export const ProductAnalyticsCalendarIntervalType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsCalendarIntervalType = S.String;
 
 /** A calendar-aligned bucket definition, such as "every 1 week starting on Monday". */
 export interface ProductAnalyticsCalendarInterval {
@@ -119741,16 +119554,14 @@ export const ProductAnalyticsRetentionCalendarTimeInterval =
 
 /** The discriminator identifying a fixed-length retention interval. */
 export type ProductAnalyticsRetentionFixedTimeIntervalType = "fixed";
-export const ProductAnalyticsRetentionFixedTimeIntervalType =
-  /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionFixedTimeIntervalType = S.String;
 
 /** Time unit for a fixed-length retention interval. */
 export type ProductAnalyticsRetentionFixedTimeIntervalUnit =
   | "day"
   | "week"
   | "month";
-export const ProductAnalyticsRetentionFixedTimeIntervalUnit =
-  /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionFixedTimeIntervalUnit = S.String;
 
 /** A retention interval of fixed length, such as "7 days". */
 export interface ProductAnalyticsRetentionFixedTimeInterval {
@@ -119775,7 +119586,7 @@ export type ProductAnalyticsRetentionTimeInterval =
   | ProductAnalyticsRetentionCalendarTimeInterval
   | ProductAnalyticsRetentionFixedTimeInterval;
 export const ProductAnalyticsRetentionTimeInterval =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductAnalyticsRetentionTimeInterval>;
+  S.Unknown as any as S.Schema<ProductAnalyticsRetentionTimeInterval>;
 
 /** Defines the event that places an entity into a cohort, and how cohorts are bucketed over time. */
 export interface ProductAnalyticsRetentionCohortCriteria {
@@ -119809,13 +119620,13 @@ export const ProductAnalyticsRetentionFilters = /*@__PURE__*/ S.suspend(() =>
 
 /** The entity whose retention is measured. */
 export type ProductAnalyticsRetentionEntity = "@usr.id" | "@account.id";
-export const ProductAnalyticsRetentionEntity = /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionEntity = S.String;
 
 /** When an entity counts as having returned. Use `conversion_on` to count only entities that returned during the period itself, or `conversion_on_or_after` to also count later returns. */
 export type ProductAnalyticsRetentionReturnCondition =
   | "conversion_on"
   | "conversion_on_or_after";
-export const ProductAnalyticsRetentionReturnCondition = /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionReturnCondition = S.String;
 
 /** Defines the event that counts as a return, and the window in which it must occur. */
 export interface ProductAnalyticsRetentionReturnCriteria {
@@ -119893,7 +119704,7 @@ export const ProductAnalyticsRetentionListRequestAttributes =
 
 /** The resource type identifier for a retention list request. */
 export type ProductAnalyticsRetentionListRequestType = "retention_list_request";
-export const ProductAnalyticsRetentionListRequestType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionListRequestType = S.String;
 
 /** The single JSON:API resource carrying a retention list query. Its attributes hold the time window, the cell to list, and the columns to return for each entity. */
 export interface ProductAnalyticsRetentionListRequestData {
@@ -119967,7 +119778,7 @@ export const ProductAnalyticsRetentionListResponseAttributes =
 /** The resource type identifier for a retention list response. */
 export type ProductAnalyticsRetentionListResponseType =
   "retention_list_response";
-export const ProductAnalyticsRetentionListResponseType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionListResponseType = S.String;
 
 /** The single JSON:API resource holding the entities behind one retention cell. Its attributes contain the entity whose retention was measured and one row per matching entity. */
 export interface ProductAnalyticsRetentionListResponseData {
@@ -120302,7 +120113,7 @@ export type RolesSort =
   | "-modified_at"
   | "user_count"
   | "-user_count";
-export const RolesSort = /*@__PURE__*/ S.String;
+export const RolesSort = S.String;
 
 export interface ListRolesRequest {
   /** Number of items to return per page. The maximum allowed value is 100. */
@@ -120355,7 +120166,7 @@ export const RoleTemplateDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Roles resource type. */
 export type RoleTemplateDataType = "roles";
-export const RoleTemplateDataType = /*@__PURE__*/ S.String;
+export const RoleTemplateDataType = S.String;
 
 /** The definition of `RoleTemplateData` object. */
 export interface RoleTemplateData {
@@ -120421,7 +120232,7 @@ export const ListRoleUsersRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort parameters when querying events. */
 export type RUMSort = "timestamp" | "-timestamp";
-export const RUMSort = /*@__PURE__*/ S.String;
+export const RUMSort = S.String;
 
 export interface ListRUMEventsRequest {
   /** Search query following RUM syntax. */
@@ -120489,7 +120300,7 @@ export const RUMEventAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the event. */
 export type RUMEventType = "rum";
-export const RUMEventType = /*@__PURE__*/ S.String;
+export const RUMEventType = S.String;
 
 /** Object description of a RUM event after being processed and stored by Datadog. */
 export interface RUMEvent {
@@ -120859,7 +120670,7 @@ export const WatcherDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Rum replay watcher resource type. */
 export type WatcherDataType = "rum_replay_watcher";
-export const WatcherDataType = /*@__PURE__*/ S.String;
+export const WatcherDataType = S.String;
 
 /** Data object representing a session watcher, including their identifier, type, and attributes. */
 export interface WatcherData {
@@ -121051,8 +120862,7 @@ export const SAMLConfigurationsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Filter that controls whether to return only active subscriptions or every subscription on record. */
 export type SampleLogGenerationSubscriptionsStatusFilter = "active" | "all";
-export const SampleLogGenerationSubscriptionsStatusFilter =
-  /*@__PURE__*/ S.String;
+export const SampleLogGenerationSubscriptionsStatusFilter = S.String;
 
 export interface ListSampleLogGenerationSubscriptionsRequest {
   /** Filter the subscriptions by status. Use `active` to return only currently active subscriptions, or `all` to return every subscription including expired ones. Ignored when `start_timestamp` is provided. Defaults to `active`. */
@@ -121173,7 +120983,7 @@ export const LicensesListResponseDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type identifier for license list responses. */
 export type LicensesListResponseDataType = "licenserequest";
-export const LicensesListResponseDataType = /*@__PURE__*/ S.String;
+export const LicensesListResponseDataType = S.String;
 
 /** The data object in a licenses list response, containing the list of SPDX licenses. */
 export interface LicensesListResponseData {
@@ -121206,7 +121016,7 @@ export const LicensesListResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The cloud asset type */
 export type CloudAssetType = "Host" | "HostImage" | "Image";
-export const CloudAssetType = /*@__PURE__*/ S.String;
+export const CloudAssetType = S.String;
 
 export interface ListScannedAssetsMetadataRequest {
   /** Its value must come from the `links` section of the response of the first request. Do not manually edit it. */
@@ -121308,7 +121118,7 @@ export const ScannedAssetMetadataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type. */
 export type ScannedAssetMetadataType = "scanned-assets-metadata";
-export const ScannedAssetMetadataType = /*@__PURE__*/ S.String;
+export const ScannedAssetMetadataType = S.String;
 
 /** The metadata of a scanned asset. */
 export interface ScannedAssetMetadata {
@@ -121450,7 +121260,7 @@ export type SensitiveDataScannerGetConfigIncludedItem =
   | SensitiveDataScannerRuleResponse
   | SensitiveDataScannerGroupResponse;
 export const SensitiveDataScannerGetConfigIncludedItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SensitiveDataScannerGetConfigIncludedItem>;
+  S.Unknown as any as S.Schema<SensitiveDataScannerGetConfigIncludedItem>;
 
 /** Included objects from relationships. */
 export type SensitiveDataScannerGetConfigIncludedArray =
@@ -121629,7 +121439,7 @@ export const ListScorecardOutcomesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The state of the rule evaluation. */
 export type State = "pass" | "fail" | "skip";
-export const State = /*@__PURE__*/ S.String;
+export const State = S.String;
 
 /** The JSON:API attributes for an outcome. */
 export interface OutcomesBatchResponseAttributes {
@@ -121695,7 +121505,7 @@ export const RuleOutcomeRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for an outcome. */
 export type OutcomeType = "outcome";
-export const OutcomeType = /*@__PURE__*/ S.String;
+export const OutcomeType = S.String;
 
 /** A single rule outcome. */
 export interface OutcomesResponseDataItem {
@@ -121930,7 +121740,7 @@ export const ScorecardListResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for scorecard list. */
 export type ScorecardListType = "scorecard";
-export const ScorecardListType = /*@__PURE__*/ S.String;
+export const ScorecardListType = S.String;
 
 /** Scorecard data. */
 export interface ScorecardListResponseData {
@@ -121974,7 +121784,7 @@ export type ListScorecardScoresRequestAggregation =
   | "by-scorecard"
   | "by-team"
   | "by-kind";
-export const ListScorecardScoresRequestAggregation = /*@__PURE__*/ S.String;
+export const ListScorecardScoresRequestAggregation = S.String;
 
 export interface ListScorecardScoresRequest {
   /** The type of scores being requested. */
@@ -122038,7 +121848,7 @@ export type ScorecardScoresAggregation =
   | "by-scorecard"
   | "by-team"
   | "by-kind";
-export const ScorecardScoresAggregation = /*@__PURE__*/ S.String;
+export const ScorecardScoresAggregation = S.String;
 
 /** Attributes of a scorecard score. */
 export interface ScorecardScoreAttributes {
@@ -122129,7 +121939,7 @@ export const ScorecardScoreRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API resource type. */
 export type ScorecardScoreDataType = "score";
-export const ScorecardScoreDataType = /*@__PURE__*/ S.String;
+export const ScorecardScoreDataType = S.String;
 
 /** A scorecard score object for a single entity, rule, scorecard, service, or team. */
 export interface ScorecardScoreData {
@@ -122311,7 +122121,7 @@ export const SecurityFilterVersionAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value should always be `security_filters_configuration`. */
 export type SecurityFilterVersionType = "security_filters_configuration";
-export const SecurityFilterVersionType = /*@__PURE__*/ S.String;
+export const SecurityFilterVersionType = S.String;
 
 /** A snapshot of all security filters at a specific configuration version. */
 export interface SecurityFilterVersion {
@@ -122354,7 +122164,7 @@ export const SecurityFilterVersionsResponse = /*@__PURE__*/ S.suspend(() =>
 export type SecurityFindingsSort =
   | "@detection_changed_at"
   | "-@detection_changed_at";
-export const SecurityFindingsSort = /*@__PURE__*/ S.String;
+export const SecurityFindingsSort = S.String;
 
 export interface ListSecurityFindingsRequest {
   /** The search query following log search syntax. */
@@ -122415,7 +122225,7 @@ export const SecurityFindingsAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the security finding resource. */
 export type SecurityFindingsDataType = "finding";
-export const SecurityFindingsDataType = /*@__PURE__*/ S.String;
+export const SecurityFindingsDataType = S.String;
 
 /** A single security finding. */
 export interface SecurityFindingsData {
@@ -122468,7 +122278,7 @@ export const SecurityFindingsPage = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the response. */
 export type SecurityFindingsStatus = "done" | "timeout";
-export const SecurityFindingsStatus = /*@__PURE__*/ S.String;
+export const SecurityFindingsStatus = S.String;
 
 /** Metadata about the response. */
 export interface SecurityFindingsMeta {
@@ -122903,7 +122713,7 @@ export type SecurityMonitoringRuleSort =
   | "-type"
   | "-highest_severity"
   | "-source";
-export const SecurityMonitoringRuleSort = /*@__PURE__*/ S.String;
+export const SecurityMonitoringRuleSort = S.String;
 
 export interface ListSecurityMonitoringRulesRequest {
   /** Number of items to return per page. The maximum allowed value is 100. */
@@ -123002,7 +122812,7 @@ export type SecurityMonitoringSuppressionSort =
   | "-update_date"
   | "-creation_date"
   | "-enabled";
-export const SecurityMonitoringSuppressionSort = /*@__PURE__*/ S.String;
+export const SecurityMonitoringSuppressionSort = S.String;
 
 export interface ListSecurityMonitoringSuppressionsRequest {
   /** Query string. */
@@ -123271,7 +123081,7 @@ export const ServiceNowAssignmentGroupAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type identifier for ServiceNow assignment group resources */
 export type ServiceNowAssignmentGroupType = "assignment_groups";
-export const ServiceNowAssignmentGroupType = /*@__PURE__*/ S.String;
+export const ServiceNowAssignmentGroupType = S.String;
 
 /** Data object for a ServiceNow assignment group */
 export interface ServiceNowAssignmentGroupData {
@@ -123349,7 +123159,7 @@ export const ServiceNowBusinessServiceAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type identifier for ServiceNow business service resources */
 export type ServiceNowBusinessServiceType = "business_services";
-export const ServiceNowBusinessServiceType = /*@__PURE__*/ S.String;
+export const ServiceNowBusinessServiceType = S.String;
 
 /** Data object for a ServiceNow business service */
 export interface ServiceNowBusinessServiceData {
@@ -123415,7 +123225,7 @@ export const ServiceNowInstanceAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type identifier for ServiceNow instance resources */
 export type ServiceNowInstanceType = "instance";
-export const ServiceNowInstanceType = /*@__PURE__*/ S.String;
+export const ServiceNowInstanceType = S.String;
 
 /** Data object for a ServiceNow instance */
 export interface ServiceNowInstanceData {
@@ -123528,7 +123338,7 @@ export const ServiceNowUserAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type identifier for ServiceNow user resources */
 export type ServiceNowUserType = "users";
-export const ServiceNowUserType = /*@__PURE__*/ S.String;
+export const ServiceNowUserType = S.String;
 
 /** Data object for a ServiceNow user */
 export interface ServiceNowUserData {
@@ -123686,18 +123496,18 @@ export type SharedDashboardShareType =
   | "invite"
   | "embed"
   | "secure-embed";
-export const SharedDashboardShareType = /*@__PURE__*/ S.String;
+export const SharedDashboardShareType = S.String;
 
 /** Status of the shared dashboard. */
 export type SharedDashboardStatus = "active" | "paused";
-export const SharedDashboardStatus = /*@__PURE__*/ S.String;
+export const SharedDashboardStatus = S.String;
 
 /** The theme of the shared dashboard view. `system` follows the viewer's system default. */
 export type SharedDashboardViewingPreferencesTheme =
   | "system"
   | "light"
   | "dark";
-export const SharedDashboardViewingPreferencesTheme = /*@__PURE__*/ S.String;
+export const SharedDashboardViewingPreferencesTheme = S.String;
 
 /** Display settings for the shared dashboard. */
 export interface SharedDashboardViewingPreferences {
@@ -123768,7 +123578,7 @@ export const SharedDashboardResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Included dashboard resource type. */
 export type SharedDashboardIncludedDashboardType = "dashboard";
-export const SharedDashboardIncludedDashboardType = /*@__PURE__*/ S.String;
+export const SharedDashboardIncludedDashboardType = S.String;
 
 /** Dashboard relationship data. */
 export interface SharedDashboardRelationshipDashboardData {
@@ -123819,7 +123629,7 @@ export const SharedDashboardRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Shared dashboard resource type. */
 export type SharedDashboardType = "shared_dashboard";
-export const SharedDashboardType = /*@__PURE__*/ S.String;
+export const SharedDashboardType = S.String;
 
 /** A shared dashboard response resource. */
 export interface SharedDashboardResponse {
@@ -123917,7 +123727,7 @@ export type SharedDashboardIncluded =
   | SharedDashboardIncludedDashboard
   | SharedDashboardIncludedUser;
 export const SharedDashboardIncluded =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SharedDashboardIncluded>;
+  S.Unknown as any as S.Schema<SharedDashboardIncluded>;
 
 /** Users and dashboards related to the shared dashboards. */
 export type ListSharedDashboardsResponseIncludedList =
@@ -123962,7 +123772,7 @@ export const ListSlackUserBindingsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Slack user binding resource type. */
 export type SlackUserBindingType = "team_id";
-export const SlackUserBindingType = /*@__PURE__*/ S.String;
+export const SlackUserBindingType = S.String;
 
 /** Slack team ID data from a response. */
 export interface SlackUserBindingData {
@@ -124235,7 +124045,7 @@ export const SpansListRequestPage = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort parameters when querying spans. */
 export type SpansSort = "timestamp" | "-timestamp";
-export const SpansSort = /*@__PURE__*/ S.String;
+export const SpansSort = S.String;
 
 /** The object containing all the query parameters. */
 export interface SpansListRequestAttributes {
@@ -124257,7 +124067,7 @@ export const SpansListRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of resource. The value should always be search_request. */
 export type SpansListRequestType = "search_request";
-export const SpansListRequestType = /*@__PURE__*/ S.String;
+export const SpansListRequestType = S.String;
 
 /** The object containing the query content. */
 export interface SpansListRequestData {
@@ -124371,7 +124181,7 @@ export const SpansAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the span. */
 export type SpansType = "spans";
-export const SpansType = /*@__PURE__*/ S.String;
+export const SpansType = S.String;
 
 /** Object description of a spans after being processed and stored by Datadog. */
 export interface Span {
@@ -124887,7 +124697,7 @@ export const SyntheticsTestResultSummaryAttributes = /*@__PURE__*/ S.suspend(
 
 /** Type of the Synthetic test result summary resource, `result_summary`. */
 export type SyntheticsTestResultSummaryType = "result_summary";
-export const SyntheticsTestResultSummaryType = /*@__PURE__*/ S.String;
+export const SyntheticsTestResultSummaryType = S.String;
 
 /** Wrapper object for a Synthetic test result summary. */
 export interface SyntheticsTestResultSummaryData {
@@ -125087,7 +124897,7 @@ export const SyntheticsTestVersionChangeAttributes = /*@__PURE__*/ S.suspend(
 
 /** Type of the version metadata resource. */
 export type SyntheticsTestVersionChangeType = "version_metadata";
-export const SyntheticsTestVersionChangeType = /*@__PURE__*/ S.String;
+export const SyntheticsTestVersionChangeType = S.String;
 
 /** Data object for a version change record. */
 export interface SyntheticsTestVersionChangeData {
@@ -125154,7 +124964,7 @@ export type ReferenceTableSortType =
   | "-updated_at"
   | "-table_name"
   | "-status";
-export const ReferenceTableSortType = /*@__PURE__*/ S.String;
+export const ReferenceTableSortType = S.String;
 
 export interface ListTablesRequest {
   /** Number of tables to return. */
@@ -125234,7 +125044,7 @@ export const ListTagConfigurationByNameRequest = /*@__PURE__*/ S.suspend(() =>
 export type MetricTagConfigurationMetricTypeCategory =
   | "non_distribution"
   | "distribution";
-export const MetricTagConfigurationMetricTypeCategory = /*@__PURE__*/ S.String;
+export const MetricTagConfigurationMetricTypeCategory = S.String;
 
 export interface ListTagConfigurationsRequest {
   /** Only return custom metrics that have been configured (`true`) or not configured (`false`) with Metrics Without Limits. */
@@ -125322,7 +125132,7 @@ export const Metric = /*@__PURE__*/ S.suspend(() =>
 /** Object for a metrics and metric tag configurations. */
 export type MetricsAndMetricTagConfigurations = Metric | MetricTagConfiguration;
 export const MetricsAndMetricTagConfigurations =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsAndMetricTagConfigurations>;
+  S.Unknown as any as S.Schema<MetricsAndMetricTagConfigurations>;
 
 /** Array of metrics and metric tag configurations. */
 export type MetricsAndMetricTagConfigurationsResponseDataList =
@@ -125379,7 +125189,7 @@ export const MetricsListResponseLinks = ContainerImagesResponseLinks;
 
 /** Type of metric pagination. */
 export type MetricMetaPageType = "cursor_limit";
-export const MetricMetaPageType = /*@__PURE__*/ S.String;
+export const MetricMetaPageType = S.String;
 
 /** Paging attributes. Only present if pagination query parameters were provided. */
 export interface MetricMetaPage {
@@ -125571,7 +125381,7 @@ export const RulesetStatusRespDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Ruleset status resource type. */
 export type RulesetStatusRespDataType = "ruleset_status";
-export const RulesetStatusRespDataType = /*@__PURE__*/ S.String;
+export const RulesetStatusRespDataType = S.String;
 
 /** Processing status for a tag pipeline ruleset. */
 export interface RulesetStatusRespData {
@@ -125669,7 +125479,7 @@ export const ListTagsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type for a tag. */
 export type TagDataType = "tag";
-export const TagDataType = /*@__PURE__*/ S.String;
+export const TagDataType = S.String;
 
 /** A tag resource associated with an app. */
 export interface TagData {
@@ -125973,11 +125783,11 @@ export const TeamHierarchyLinksResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the order of the returned teams */
 export type ListTeamsSort = "name" | "-name" | "user_count" | "-user_count";
-export const ListTeamsSort = /*@__PURE__*/ S.String;
+export const ListTeamsSort = S.String;
 
 /** Included related resources optionally requested. */
 export type ListTeamsInclude = "team_links" | "user_team_permissions";
-export const ListTeamsInclude = /*@__PURE__*/ S.String;
+export const ListTeamsInclude = S.String;
 
 export type ListTeamsRequestIncludeList = Array<
   ListTeamsInclude | (string & {})
@@ -126003,7 +125813,7 @@ export type TeamsField =
   | "link_count"
   | "team_links"
   | "user_team_permissions";
-export const TeamsField = /*@__PURE__*/ S.String;
+export const TeamsField = S.String;
 
 export type ListTeamsRequestFieldsTeamList = Array<TeamsField | (string & {})>;
 export const ListTeamsRequestFieldsTeamList = /*@__PURE__*/ S.Array(
@@ -126080,8 +125890,7 @@ export const UserTeamPermission = /*@__PURE__*/ S.suspend(() =>
 
 /** Included resources related to the team */
 export type TeamIncluded = User | TeamLink | UserTeamPermission;
-export const TeamIncluded =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TeamIncluded>;
+export const TeamIncluded = S.Unknown as any as S.Schema<TeamIncluded>;
 
 /** Resources related to the team */
 export type TeamsResponseIncludedList = Array<TeamIncluded>;
@@ -126315,7 +126124,7 @@ export const TeamsOwnershipRuleResponseAttributes = /*@__PURE__*/ S.suspend(
 
 /** The type of the resource. The value should always be teams_ownership_grouped_mappings. */
 export type TeamsOwnershipRuleType = "teams_ownership_grouped_mappings";
-export const TeamsOwnershipRuleType = /*@__PURE__*/ S.String;
+export const TeamsOwnershipRuleType = S.String;
 
 /** The JSON:API data envelope for a teams ownership rule. */
 export interface TeamsOwnershipRuleResponseData {
@@ -126411,7 +126220,7 @@ export const TenancyProductsDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** OCI tenancy product resource type. */
 export type TenancyProductsDataType = "oci_tenancy_product";
-export const TenancyProductsDataType = /*@__PURE__*/ S.String;
+export const TenancyProductsDataType = S.String;
 
 /** A single OCI tenancy product resource object containing the tenancy ID, type, and product attributes. */
 export interface TenancyProductsData {
@@ -126505,7 +126314,7 @@ export const MicrosoftTeamsTenantBasedHandleInfoResponseAttributes =
 /** Tenant-based handle resource type. */
 export type MicrosoftTeamsTenantBasedHandleInfoType =
   "ms-teams-tenant-based-handle-info";
-export const MicrosoftTeamsTenantBasedHandleInfoType = /*@__PURE__*/ S.String;
+export const MicrosoftTeamsTenantBasedHandleInfoType = S.String;
 
 /** Tenant-based handle data from a response. */
 export interface MicrosoftTeamsTenantBasedHandleInfoResponseData {
@@ -126677,7 +126486,7 @@ export const ListUserCaseProjectFavoritesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for project favorites. */
 export type ProjectFavoriteResourceType = "project_favorite";
-export const ProjectFavoriteResourceType = /*@__PURE__*/ S.String;
+export const ProjectFavoriteResourceType = S.String;
 
 /** Represents a case project that the current user has bookmarked for quick access. Favorited projects appear prominently in the Case Management UI. */
 export interface ProjectFavorite {
@@ -126915,7 +126724,7 @@ export const MetricDistinctVolumeAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The metric distinct volume type. */
 export type MetricDistinctVolumeType = "distinct_metric_volumes";
-export const MetricDistinctVolumeType = /*@__PURE__*/ S.String;
+export const MetricDistinctVolumeType = S.String;
 
 /** Object for a single metric's distinct volume. */
 export interface MetricDistinctVolume {
@@ -126935,8 +126744,7 @@ export const MetricDistinctVolume = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible response objects for a metric's volume. */
 export type MetricVolumes = MetricDistinctVolume | MetricIngestedIndexedVolume;
-export const MetricVolumes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricVolumes>;
+export const MetricVolumes = S.Unknown as any as S.Schema<MetricVolumes>;
 
 /** Response object which includes a single metric's volume. */
 export interface MetricVolumesResponse {
@@ -127138,7 +126946,7 @@ export const AssetAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type. */
 export type AssetEntityType = "assets";
-export const AssetEntityType = /*@__PURE__*/ S.String;
+export const AssetEntityType = S.String;
 
 /** A single vulnerable asset */
 export interface Asset {
@@ -127623,7 +127431,7 @@ export type MuteFindingsReason =
   | "NO_PENDING_FIX"
   | "HUMAN_ERROR"
   | "NO_LONGER_ACCEPTED_RISK";
-export const MuteFindingsReason = /*@__PURE__*/ S.String;
+export const MuteFindingsReason = S.String;
 
 /** Mute properties to apply to the findings. */
 export interface MuteFindingsMuteAttributes {
@@ -127675,7 +127483,7 @@ export const MuteFindingsRequestDataRelationships = /*@__PURE__*/ S.suspend(
 
 /** Mute resource type. */
 export type MuteDataType = "mute";
-export const MuteDataType = /*@__PURE__*/ S.String;
+export const MuteDataType = S.String;
 
 /** Data of the mute request. */
 export interface MuteFindingsRequestData {
@@ -127784,7 +127592,7 @@ export const RumRetentionFiltersOrderResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of remediation action taken. Required when the failed deployment must be linked to a remediation deployment. */
 export type DORADeploymentPatchRemediationType = "rollback" | "rollforward";
-export const DORADeploymentPatchRemediationType = /*@__PURE__*/ S.String;
+export const DORADeploymentPatchRemediationType = S.String;
 
 /** Remediation details identified by the ID of the remediation deployment. */
 export interface DORADeploymentPatchByVersionRemediationByID {
@@ -127823,7 +127631,7 @@ export type DORADeploymentPatchByVersionRemediation =
   | DORADeploymentPatchByVersionRemediationByID
   | DORADeploymentPatchByVersionRemediationByVersion;
 export const DORADeploymentPatchByVersionRemediation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DORADeploymentPatchByVersionRemediation>;
+  S.Unknown as any as S.Schema<DORADeploymentPatchByVersionRemediation>;
 
 /** Attributes for patching a DORA deployment event identified by service, environment, and version. */
 export interface DORADeploymentPatchByVersionRequestAttributes {
@@ -127853,7 +127661,7 @@ export const DORADeploymentPatchByVersionRequestAttributes =
 /** JSON:API type for DORA deployment patch request. */
 export type DORADeploymentPatchRequestDataType =
   "dora_deployment_patch_request";
-export const DORADeploymentPatchRequestDataType = /*@__PURE__*/ S.String;
+export const DORADeploymentPatchRequestDataType = S.String;
 
 /** The JSON:API data for patching a deployment identified by service, environment, and version. */
 export interface DORADeploymentPatchByVersionRequestData {
@@ -127898,7 +127706,7 @@ export type JsonPatchOperationOp =
   | "move"
   | "copy"
   | "test";
-export const JsonPatchOperationOp = /*@__PURE__*/ S.String;
+export const JsonPatchOperationOp = S.String;
 
 /** A JSON Patch operation as per RFC 6902. */
 export interface JsonPatchOperation {
@@ -127944,7 +127752,7 @@ export const GlobalVariableJsonPatchRequestDataAttributes =
 
 /** Global variable JSON Patch type. */
 export type GlobalVariableJsonPatchType = "global_variables_json_patch";
-export const GlobalVariableJsonPatchType = /*@__PURE__*/ S.String;
+export const GlobalVariableJsonPatchType = S.String;
 
 /** Data object for a JSON Patch request on a Synthetic global variable. */
 export interface GlobalVariableJsonPatchRequestData {
@@ -127998,7 +127806,7 @@ export type SyntheticsGlobalVariableParserType =
   | "json_path"
   | "regex"
   | "x_path";
-export const SyntheticsGlobalVariableParserType = /*@__PURE__*/ S.String;
+export const SyntheticsGlobalVariableParserType = S.String;
 
 /** Details of the parser to use for the global variable. */
 export interface SyntheticsVariableParser {
@@ -128021,8 +127829,7 @@ export type SyntheticsGlobalVariableParseTestOptionsType =
   | "http_header"
   | "http_status_code"
   | "local_variable";
-export const SyntheticsGlobalVariableParseTestOptionsType =
-  /*@__PURE__*/ S.String;
+export const SyntheticsGlobalVariableParseTestOptionsType = S.String;
 
 /** Parser options to use for retrieving a Synthetic global variable from a Synthetic test. Used in conjunction with `parse_test_public_id`. */
 export interface SyntheticsGlobalVariableParseTestOptions {
@@ -128137,7 +127944,7 @@ export const SyntheticsGlobalVariable = /*@__PURE__*/ S.suspend(() =>
 
 /** Global variable type. */
 export type GlobalVariableType = "global_variables";
-export const GlobalVariableType = /*@__PURE__*/ S.String;
+export const GlobalVariableType = S.String;
 
 /** Synthetics global variable data. Wrapper around the global variable object. */
 export interface GlobalVariableData {
@@ -128184,7 +127991,7 @@ export const PatchMaintenanceUpdateRequestDataAttributes =
 
 /** Maintenance updates resource type. */
 export type PatchMaintenanceUpdateRequestDataType = "maintenance_updates";
-export const PatchMaintenanceUpdateRequestDataType = /*@__PURE__*/ S.String;
+export const PatchMaintenanceUpdateRequestDataType = S.String;
 
 /** The data object for editing a maintenance update. */
 export interface PatchMaintenanceUpdateRequestData {
@@ -128249,7 +128056,7 @@ export type MaintenanceUpdateDataAttributesStatus =
   | "in_progress"
   | "completed"
   | "canceled";
-export const MaintenanceUpdateDataAttributesStatus = /*@__PURE__*/ S.String;
+export const MaintenanceUpdateDataAttributesStatus = S.String;
 
 /** Attributes of a maintenance update resource. */
 export interface MaintenanceUpdateDataAttributes {
@@ -128559,7 +128366,7 @@ export const SuiteJsonPatchRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type for a JSON Patch request on a Synthetic test suite, `suites_json_patch`. */
 export type SuiteJsonPatchType = "suites_json_patch";
-export const SuiteJsonPatchType = /*@__PURE__*/ S.String;
+export const SuiteJsonPatchType = S.String;
 
 /** Data object for a JSON Patch request on a Synthetic test suite. */
 export interface SuiteJsonPatchRequestData {
@@ -128637,7 +128444,7 @@ export const PauseExposureScheduleRequest = /*@__PURE__*/ S.suspend(() =>
 /** The resource type for progressive rollout schedules. */
 export type AllocationExposureScheduleDataType =
   "allocation_exposure_schedules";
-export const AllocationExposureScheduleDataType = /*@__PURE__*/ S.String;
+export const AllocationExposureScheduleDataType = S.String;
 
 /** Data wrapper for progressive rollout schedule responses. */
 export interface AllocationExposureScheduleData {
@@ -128906,7 +128713,7 @@ export const PrintReportRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** JSON:API resource type for a print-only report. */
 export type PrintReportType = "report";
-export const PrintReportType = /*@__PURE__*/ S.String;
+export const PrintReportType = S.String;
 
 /** The JSON:API data object for a print report request. */
 export interface PrintReportRequestData {
@@ -129038,7 +128845,7 @@ export const PublishFormDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type for a form publication. */
 export type FormPublicationType = "form_publications";
-export const FormPublicationType = /*@__PURE__*/ S.String;
+export const FormPublicationType = S.String;
 
 /** The data for publishing a form version. */
 export interface PublishFormData {
@@ -129180,7 +128987,7 @@ export const QueryAccountRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Query account request resource type. */
 export type QueryAccountRequestDataType = "query_account_request";
-export const QueryAccountRequestDataType = /*@__PURE__*/ S.String;
+export const QueryAccountRequestDataType = S.String;
 
 /** The data object containing the resource type and attributes for querying accounts. */
 export interface QueryAccountRequestData {
@@ -129250,7 +129057,7 @@ export const QueryResponseDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Query response resource type. */
 export type QueryResponseDataType = "query_response";
-export const QueryResponseDataType = /*@__PURE__*/ S.String;
+export const QueryResponseDataType = S.String;
 
 /** The data object containing the resource type and attributes of the query response. */
 export interface QueryResponseData {
@@ -129285,8 +129092,7 @@ export type AggregatedWaterfallPerformanceCriteriaMetric =
   | "largest_contentful_paint"
   | "first_contentful_paint"
   | "interaction_to_next_paint";
-export const AggregatedWaterfallPerformanceCriteriaMetric =
-  /*@__PURE__*/ S.String;
+export const AggregatedWaterfallPerformanceCriteriaMetric = S.String;
 
 /** Performance criteria to filter view instances by a metric threshold. */
 export interface AggregatedWaterfallPerformanceCriteria {
@@ -129340,7 +129146,7 @@ export const AggregatedLongTasksRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** The JSON:API type for aggregated long tasks requests. */
 export type AggregatedLongTasksRequestType = "aggregated_long_tasks";
-export const AggregatedLongTasksRequestType = /*@__PURE__*/ S.String;
+export const AggregatedLongTasksRequestType = S.String;
 
 /** Data envelope for an aggregated long tasks request. */
 export interface AggregatedLongTasksRequestData {
@@ -129611,7 +129417,7 @@ export const AggregatedSignalsProblemsRequestAttributes =
 /** The JSON:API type for aggregated signals and problems requests. */
 export type AggregatedSignalsProblemsRequestType =
   "aggregated_signals_problems";
-export const AggregatedSignalsProblemsRequestType = /*@__PURE__*/ S.String;
+export const AggregatedSignalsProblemsRequestType = S.String;
 
 /** Data envelope for an aggregated signals and problems request. */
 export interface AggregatedSignalsProblemsRequestData {
@@ -130097,7 +129903,7 @@ export const AggregatedWaterfallRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** The JSON:API type for aggregated waterfall requests. */
 export type AggregatedWaterfallRequestType = "aggregated_waterfall";
-export const AggregatedWaterfallRequestType = /*@__PURE__*/ S.String;
+export const AggregatedWaterfallRequestType = S.String;
 
 /** Data envelope for an aggregated waterfall request. */
 export interface AggregatedWaterfallRequestData {
@@ -130385,7 +130191,7 @@ export const QueryEventFilteredUsersRequestDataAttributes =
 /** Query event filtered users request resource type. */
 export type QueryEventFilteredUsersRequestDataType =
   "query_event_filtered_users_request";
-export const QueryEventFilteredUsersRequestDataType = /*@__PURE__*/ S.String;
+export const QueryEventFilteredUsersRequestDataType = S.String;
 
 /** The data object containing the resource type and attributes for querying event-filtered users. */
 export interface QueryEventFilteredUsersRequestData {
@@ -130487,7 +130293,7 @@ export const ProductAnalyticsJourneyFunnelRequestAttributes =
 
 /** The resource type identifier for a journey funnel request. */
 export type ProductAnalyticsJourneyRequestType = "journey_request";
-export const ProductAnalyticsJourneyRequestType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsJourneyRequestType = S.String;
 
 /** The single JSON:API resource carrying a funnel query. Its attributes hold the time window to query and the journey whose step-to-step conversion should be measured. */
 export interface ProductAnalyticsJourneyFunnelRequestData {
@@ -130635,7 +130441,7 @@ export const ProductAnalyticsJourneyFunnelResponseAttributes =
 
 /** The resource type identifier for a journey funnel response. */
 export type ProductAnalyticsJourneyFunnelResponseType = "funnel_response";
-export const ProductAnalyticsJourneyFunnelResponseType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsJourneyFunnelResponseType = S.String;
 
 /** The single JSON:API resource holding a computed funnel. Its attributes contain the number of entities that entered, the end-to-end conversion, and one entry per funnel step. */
 export interface ProductAnalyticsJourneyFunnelResponseData {
@@ -130737,7 +130543,7 @@ export const ProductAnalyticsJourneyScalarRequestAttributes =
 /** The resource type identifier for a journey timeseries or scalar request. */
 export type ProductAnalyticsFormulaJourneyRequestType =
   "formula_journey_request";
-export const ProductAnalyticsFormulaJourneyRequestType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsFormulaJourneyRequestType = S.String;
 
 /** The single JSON:API resource carrying a journey scalar query. Its attributes hold the time window and the journey metric to reduce to one value over that window. */
 export interface ProductAnalyticsJourneyScalarRequestData {
@@ -130822,7 +130628,7 @@ export const ProductAnalyticsScalarColumnMeta = /*@__PURE__*/ S.suspend(() =>
 
 /** Column type. */
 export type ProductAnalyticsScalarColumnType = "number" | "group";
-export const ProductAnalyticsScalarColumnType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsScalarColumnType = S.String;
 
 /** Column values. */
 export type ProductAnalyticsScalarColumnValuesList = Array<unknown>;
@@ -130875,7 +130681,7 @@ export const ProductAnalyticsScalarResponseAttributes = /*@__PURE__*/ S.suspend(
 /** The resource type identifier for a journey scalar response. */
 export type ProductAnalyticsJourneyScalarResponseType =
   "journey_scalar_response";
-export const ProductAnalyticsJourneyScalarResponseType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsJourneyScalarResponseType = S.String;
 
 /** The single JSON:API resource holding journey scalar results. Its attributes contain one value per group, suitable for a query value or top list widget. */
 export interface ProductAnalyticsJourneyScalarResponseData {
@@ -131143,8 +130949,7 @@ export const ProductAnalyticsTimeseriesResponseAttributes =
 /** The resource type identifier for a journey timeseries response. */
 export type ProductAnalyticsJourneyTimeseriesResponseType =
   "journey_timeseries_response";
-export const ProductAnalyticsJourneyTimeseriesResponseType =
-  /*@__PURE__*/ S.String;
+export const ProductAnalyticsJourneyTimeseriesResponseType = S.String;
 
 /** The single JSON:API resource holding journey timeseries results. Its attributes contain one series per group along with the timestamps the points fall on. */
 export interface ProductAnalyticsJourneyTimeseriesResponseData {
@@ -131179,7 +130984,7 @@ export const ProductAnalyticsJourneyTimeseriesResponse =
 
 /** The discriminator identifying a scope narrowed to one cohort. */
 export type ProductAnalyticsRetentionCohortScopeType = "cohort";
-export const ProductAnalyticsRetentionCohortScopeType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionCohortScopeType = S.String;
 
 /** Narrows a retention query to a single cohort row. */
 export interface ProductAnalyticsRetentionCohortScope {
@@ -131198,8 +131003,7 @@ export const ProductAnalyticsRetentionCohortScope = /*@__PURE__*/ S.suspend(
 
 /** The discriminator identifying a scope narrowed to one return period. */
 export type ProductAnalyticsRetentionReturnPeriodScopeType = "return_period";
-export const ProductAnalyticsRetentionReturnPeriodScopeType =
-  /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionReturnPeriodScopeType = S.String;
 
 /** Narrows a retention query to a single return-period column. */
 export interface ProductAnalyticsRetentionReturnPeriodScope {
@@ -131222,13 +131026,13 @@ export type ProductAnalyticsRetentionScope =
   | ProductAnalyticsRetentionReturnPeriodScope
   | ProductAnalyticsRetentionCellScope;
 export const ProductAnalyticsRetentionScope =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductAnalyticsRetentionScope>;
+  S.Unknown as any as S.Schema<ProductAnalyticsRetentionScope>;
 
 /** The retention metric to compute, either an absolute count or a rate. */
 export type ProductAnalyticsRetentionComputeMetric =
   | "__dd.retention"
   | "__dd.retention_rate";
-export const ProductAnalyticsRetentionComputeMetric = /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionComputeMetric = S.String;
 
 /** The metric and aggregation applied to a retention query. */
 export interface ProductAnalyticsRetentionCompute {
@@ -131247,7 +131051,7 @@ export const ProductAnalyticsRetentionCompute = /*@__PURE__*/ S.suspend(() =>
 
 /** Which axis of the retention grid a group-by applies to. */
 export type ProductAnalyticsRetentionGroupByTarget = "cohort" | "return_period";
-export const ProductAnalyticsRetentionGroupByTarget = /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionGroupByTarget = S.String;
 
 /** Splits retention results by the values of a facet. */
 export interface ProductAnalyticsRetentionGroupBy {
@@ -131326,7 +131130,7 @@ export const ProductAnalyticsRetentionGridRequestAttributes =
 
 /** The resource type identifier for a retention grid request. */
 export type ProductAnalyticsRetentionGridRequestType = "retention_grid_request";
-export const ProductAnalyticsRetentionGridRequestType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionGridRequestType = S.String;
 
 /** The single JSON:API resource carrying a retention grid query. Its attributes hold the time window to query and the cohort and return criteria that define the grid. */
 export interface ProductAnalyticsRetentionGridRequestData {
@@ -131363,7 +131167,7 @@ export const QueryProductAnalyticsRetentionGridRequest =
 
 /** Whether the row holds one cohort's own numbers, or the weighted roll-up across every cohort. */
 export type ProductAnalyticsRetentionGridCohortType = "raw" | "aggregated";
-export const ProductAnalyticsRetentionGridCohortType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionGridCohortType = S.String;
 
 /** One cell of the retention grid, holding the result for a single cohort over a single return period. Aggregated rows omit the time and count fields. */
 export interface ProductAnalyticsRetentionGridCohortCell {
@@ -131531,7 +131335,7 @@ export const ProductAnalyticsRetentionGridResponseAttributes =
 /** The resource type identifier for a retention grid response. */
 export type ProductAnalyticsRetentionGridResponseType =
   "retention_grid_response";
-export const ProductAnalyticsRetentionGridResponseType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsRetentionGridResponseType = S.String;
 
 /** The single JSON:API resource holding a computed retention grid. Its attributes contain the return periods forming the columns and the cohorts forming the rows. */
 export interface ProductAnalyticsRetentionGridResponseData {
@@ -131617,8 +131421,7 @@ export const ProductAnalyticsFormulaRetentionRequestAttributes =
 /** The resource type identifier for a retention scalar or retention timeseries request. */
 export type ProductAnalyticsFormulaRetentionRequestType =
   "formula_retention_request";
-export const ProductAnalyticsFormulaRetentionRequestType =
-  /*@__PURE__*/ S.String;
+export const ProductAnalyticsFormulaRetentionRequestType = S.String;
 
 /** The single JSON:API resource carrying a retention scalar or timeseries query. Its attributes hold the time window to query and the retention query definition to evaluate. */
 export interface ProductAnalyticsFormulaRetentionRequestData {
@@ -131655,7 +131458,7 @@ export const QueryProductAnalyticsRetentionScalarRequest =
 
 /** The resource type identifier for a scalar analytics response. */
 export type ProductAnalyticsScalarResponseType = "scalar_response";
-export const ProductAnalyticsScalarResponseType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsScalarResponseType = S.String;
 
 /** Data object for a scalar response. */
 export interface ProductAnalyticsScalarResponseData {
@@ -131708,7 +131511,7 @@ export const QueryProductAnalyticsRetentionTimeseriesRequest =
 
 /** The resource type identifier for a timeseries analytics response. */
 export type ProductAnalyticsTimeseriesResponseType = "timeseries_response";
-export const ProductAnalyticsTimeseriesResponseType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsTimeseriesResponseType = S.String;
 
 /** Data object for a timeseries analytics response. */
 export interface ProductAnalyticsTimeseriesResponseData {
@@ -131816,7 +131619,7 @@ export const ProductAnalyticsSankeyRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** The resource type identifier for a Sankey request. */
 export type ProductAnalyticsSankeyRequestType = "sankey_request";
-export const ProductAnalyticsSankeyRequestType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsSankeyRequestType = S.String;
 
 /** The single JSON:API resource carrying a Sankey query. Its attributes hold the time window to query, the search that selects the sessions, and the definition of the diagram to build. */
 export interface ProductAnalyticsSankeyRequestData {
@@ -131884,7 +131687,7 @@ export const ProductAnalyticsSankeyResponseAttributesLinksList =
 
 /** The resource type identifier for a node rolled up into an aggregated node. */
 export type ProductAnalyticsSankeyAggregatedNodeType = "aggregated";
-export const ProductAnalyticsSankeyAggregatedNodeType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsSankeyAggregatedNodeType = S.String;
 
 /** One of the nodes rolled up into an aggregated node, retained so the roll-up can be broken down. */
 export interface ProductAnalyticsSankeyAggregatedNode {
@@ -131924,7 +131727,7 @@ export const ProductAnalyticsSankeyNodeAggregatedNodesList =
 
 /** The kind of node. `regular` is a single facet value, `other` rolls up the values that did not fit within `entries_per_step`, and `dropoff` collects the sessions that ended at this column. */
 export type ProductAnalyticsSankeyNodeType = "regular" | "other" | "dropoff";
-export const ProductAnalyticsSankeyNodeType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsSankeyNodeType = S.String;
 
 /** A node of the Sankey diagram, representing one facet value in one column. */
 export interface ProductAnalyticsSankeyNode {
@@ -131989,7 +131792,7 @@ export const ProductAnalyticsSankeyResponseAttributes = /*@__PURE__*/ S.suspend(
 
 /** The resource type identifier for a Sankey response. */
 export type ProductAnalyticsSankeyResponseType = "sankey_response";
-export const ProductAnalyticsSankeyResponseType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsSankeyResponseType = S.String;
 
 /** The single JSON:API resource holding a computed Sankey diagram. Its attributes contain the nodes of every column and the links that carry sessions between them. */
 export interface ProductAnalyticsSankeyResponseData {
@@ -132026,7 +131829,7 @@ export type ProductAnalyticsExecutionType =
   | "background"
   | "trino-multistep"
   | "materialized-view";
-export const ProductAnalyticsExecutionType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsExecutionType = S.String;
 
 /** A compute rule for aggregating data. */
 export interface ProductAnalyticsCompute {
@@ -132134,7 +131937,7 @@ export const ProductAnalyticsAnalyticsRequestAttributes =
 /** The resource type for analytics requests. */
 export type ProductAnalyticsAnalyticsRequestType =
   "formula_analytics_extended_request";
-export const ProductAnalyticsAnalyticsRequestType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsAnalyticsRequestType = S.String;
 
 /** Data object for an analytics request. */
 export interface ProductAnalyticsAnalyticsRequestData {
@@ -132229,7 +132032,7 @@ export type MetricsAggregator =
   | "mean"
   | "l2norm"
   | "area";
-export const MetricsAggregator = /*@__PURE__*/ S.String;
+export const MetricsAggregator = S.String;
 
 /** Organization UUIDs to query when using [cross-organization visibility](/account_management/org_settings/cross_org_visibility/). Limited to one organization UUID. */
 export type CrossOrgUuids = Array<string>;
@@ -132239,7 +132042,7 @@ export const CrossOrgUuids = /*@__PURE__*/ S.Array(
 
 /** A data source that is powered by the Metrics platform. */
 export type MetricsDataSource = "metrics" | "cloud_cost";
-export const MetricsDataSource = /*@__PURE__*/ S.String;
+export const MetricsDataSource = S.String;
 
 /** A query against Datadog custom metrics or Cloud Cost data sources. */
 export interface MetricsScalarQuery {
@@ -132276,7 +132079,7 @@ export type EventsAggregation =
   | "min"
   | "max"
   | "avg";
-export const EventsAggregation = /*@__PURE__*/ S.String;
+export const EventsAggregation = S.String;
 
 /** The instructions for what to compute for this query. */
 export interface EventsCompute {
@@ -132310,11 +132113,11 @@ export type EventsDataSource =
   | "product_analytics"
   | "on_call_events"
   | "dora";
-export const EventsDataSource = /*@__PURE__*/ S.String;
+export const EventsDataSource = S.String;
 
 /** The type of sort to use on the calculated value. */
 export type EventsSortType = "alphabetical" | "measure";
-export const EventsSortType = /*@__PURE__*/ S.String;
+export const EventsSortType = S.String;
 
 /** The dimension by which to sort a query's results. */
 export interface EventsGroupBySort {
@@ -132402,7 +132205,7 @@ export const EventsScalarQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** A data source for APM resource statistics queries. */
 export type ApmResourceStatsDataSource = "apm_resource_stats";
-export const ApmResourceStatsDataSource = /*@__PURE__*/ S.String;
+export const ApmResourceStatsDataSource = S.String;
 
 /** Tag keys to group results by. */
 export type ApmResourceStatsQueryGroupByList = Array<string>;
@@ -132424,7 +132227,7 @@ export type ApmResourceStatName =
   | "latency_p99"
   | "latency_distribution"
   | "total_time";
-export const ApmResourceStatName = /*@__PURE__*/ S.String;
+export const ApmResourceStatName = S.String;
 
 /** A query for APM resource statistics such as latency, error rate, and hit count, grouped by resource name. */
 export interface ApmResourceStatsQuery {
@@ -132468,7 +132271,7 @@ export const ApmResourceStatsQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** A data source for APM metrics queries. */
 export type ApmMetricsDataSource = "apm_metrics";
-export const ApmMetricsDataSource = /*@__PURE__*/ S.String;
+export const ApmMetricsDataSource = S.String;
 
 /** Optional fields to group the query results by. */
 export type ApmMetricsQueryGroupByList = Array<string>;
@@ -132489,7 +132292,7 @@ export type ApmMetricsSpanKind =
   | "client"
   | "producer"
   | "internal";
-export const ApmMetricsSpanKind = /*@__PURE__*/ S.String;
+export const ApmMetricsSpanKind = S.String;
 
 /** The APM metric statistic to query. */
 export type ApmMetricsStat =
@@ -132509,7 +132312,7 @@ export type ApmMetricsStat =
   | "latency_p999"
   | "latency_distribution"
   | "total_time";
-export const ApmMetricsStat = /*@__PURE__*/ S.String;
+export const ApmMetricsStat = S.String;
 
 /** A query for APM trace metrics such as hits, errors, and latency percentiles, aggregated across services. */
 export interface ApmMetricsQuery {
@@ -132558,7 +132361,7 @@ export const ApmMetricsQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** A data source for APM dependency statistics queries. */
 export type ApmDependencyStatsDataSource = "apm_dependency_stats";
-export const ApmDependencyStatsDataSource = /*@__PURE__*/ S.String;
+export const ApmDependencyStatsDataSource = S.String;
 
 /** The APM dependency statistic to query. */
 export type ApmDependencyStatName =
@@ -132569,7 +132372,7 @@ export type ApmDependencyStatName =
   | "pct_exec_time"
   | "pct_of_traces"
   | "total_traces_count";
-export const ApmDependencyStatName = /*@__PURE__*/ S.String;
+export const ApmDependencyStatName = S.String;
 
 /** A query for APM dependency statistics between services, such as call latency and error rates. */
 export interface ApmDependencyStatsQuery {
@@ -132613,11 +132416,11 @@ export const ApmDependencyStatsQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** A data source for SLO queries. */
 export type SloDataSource = "slo";
-export const SloDataSource = /*@__PURE__*/ S.String;
+export const SloDataSource = S.String;
 
 /** How SLO results are grouped in the response. */
 export type SlosGroupMode = "overall" | "components";
-export const SlosGroupMode = /*@__PURE__*/ S.String;
+export const SlosGroupMode = S.String;
 
 /** The SLO measurement to retrieve. */
 export type SlosMeasure =
@@ -132631,11 +132434,11 @@ export type SlosMeasure =
   | "slo_status_history"
   | "good_minutes"
   | "bad_minutes";
-export const SlosMeasure = /*@__PURE__*/ S.String;
+export const SlosMeasure = S.String;
 
 /** The type of SLO definition being queried. */
 export type SlosQueryType = "metric" | "time_slice" | "monitor";
-export const SlosQueryType = /*@__PURE__*/ S.String;
+export const SlosQueryType = S.String;
 
 /** A query for SLO status, error budget, and burn rate metrics. */
 export interface SloQuery {
@@ -132666,7 +132469,7 @@ export const SloQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** A data source for process-level infrastructure metrics. */
 export type ProcessDataSource = "process";
-export const ProcessDataSource = /*@__PURE__*/ S.String;
+export const ProcessDataSource = S.String;
 
 /** Tag filters to narrow down processes. */
 export type ProcessScalarQueryTagFiltersList = Array<string>;
@@ -132712,7 +132515,7 @@ export const ProcessScalarQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** A data source for container-level infrastructure metrics. */
 export type ContainerDataSource = "container";
-export const ContainerDataSource = /*@__PURE__*/ S.String;
+export const ContainerDataSource = S.String;
 
 /** Tag filters to narrow down containers. */
 export type ContainerScalarQueryTagFiltersList = Array<string>;
@@ -132766,8 +132569,7 @@ export type ScalarQuery =
   | SloQuery
   | ProcessScalarQuery
   | ContainerScalarQuery;
-export const ScalarQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ScalarQuery>;
+export const ScalarQuery = S.Unknown as any as S.Schema<ScalarQuery>;
 
 /** List of queries to be run and used as inputs to the formulas. */
 export type ScalarFormulaRequestQueries = Array<ScalarQuery>;
@@ -132798,7 +132600,7 @@ export const ScalarFormulaRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value should always be scalar_request. */
 export type ScalarFormulaRequestType = "scalar_request";
-export const ScalarFormulaRequestType = /*@__PURE__*/ S.String;
+export const ScalarFormulaRequestType = S.String;
 
 /** A single scalar query to be executed. */
 export interface ScalarFormulaRequest {
@@ -132827,7 +132629,7 @@ export const QueryScalarDataRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of column present for groups. */
 export type ScalarColumnTypeGroup = "group";
-export const ScalarColumnTypeGroup = /*@__PURE__*/ S.String;
+export const ScalarColumnTypeGroup = S.String;
 
 /** An individual tag value for a given group column. */
 export type GroupScalarColumnValuesItemList = Array<string>;
@@ -132902,7 +132704,7 @@ export const ScalarMeta = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of column present for numbers. */
 export type ScalarColumnTypeNumber = "number";
-export const ScalarColumnTypeNumber = /*@__PURE__*/ S.String;
+export const ScalarColumnTypeNumber = S.String;
 
 /** The array of numerical values for one formula or query. */
 export type DataScalarColumnValuesList = Array<number>;
@@ -132932,8 +132734,7 @@ export const DataScalarColumn = /*@__PURE__*/ S.suspend(() =>
 
 /** A single column in a scalar query response. */
 export type ScalarColumn = GroupScalarColumn | DataScalarColumn;
-export const ScalarColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ScalarColumn>;
+export const ScalarColumn = S.Unknown as any as S.Schema<ScalarColumn>;
 
 /** List of response columns, each corresponding to an individual formula or query in the request and with values in parallel arrays matching the series list. */
 export type ScalarFormulaResponseAtrributesColumnsList = Array<ScalarColumn>;
@@ -132956,7 +132757,7 @@ export const ScalarFormulaResponseAtrributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value should always be scalar_response. */
 export type ScalarFormulaResponseType = "scalar_response";
-export const ScalarFormulaResponseType = /*@__PURE__*/ S.String;
+export const ScalarFormulaResponseType = S.String;
 
 /** A message containing the response to a scalar query. */
 export interface ScalarResponse {
@@ -133135,8 +132936,7 @@ export type TimeseriesQuery =
   | SloQuery
   | ProcessTimeseriesQuery
   | ContainerTimeseriesQuery;
-export const TimeseriesQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TimeseriesQuery>;
+export const TimeseriesQuery = S.Unknown as any as S.Schema<TimeseriesQuery>;
 
 /** List of queries to be run and used as inputs to the formulas. */
 export type TimeseriesFormulaRequestQueries = Array<TimeseriesQuery>;
@@ -133170,7 +132970,7 @@ export const TimeseriesFormulaRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value should always be timeseries_request. */
 export type TimeseriesFormulaRequestType = "timeseries_request";
-export const TimeseriesFormulaRequestType = /*@__PURE__*/ S.String;
+export const TimeseriesFormulaRequestType = S.String;
 
 /** A single timeseries query to be executed. */
 export interface TimeseriesFormulaRequest {
@@ -133271,7 +133071,7 @@ export const TimeseriesResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource. The value should always be timeseries_response. */
 export type TimeseriesFormulaResponseType = "timeseries_response";
-export const TimeseriesFormulaResponseType = /*@__PURE__*/ S.String;
+export const TimeseriesFormulaResponseType = S.String;
 
 /** A message containing the response to a timeseries query. */
 export interface TimeseriesResponse {
@@ -133353,7 +133153,7 @@ export const QueryUsersRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Query users request resource type. */
 export type QueryUsersRequestDataType = "query_users_request";
-export const QueryUsersRequestDataType = /*@__PURE__*/ S.String;
+export const QueryUsersRequestDataType = S.String;
 
 /** The data object containing the resource type and attributes for querying users. */
 export interface QueryUsersRequestData {
@@ -133423,7 +133223,7 @@ export const RegisterAppKeyResponse = /*@__PURE__*/ S.suspend(() =>
 export type OAuthClientRegistrationGrantType =
   | "authorization_code"
   | "refresh_token";
-export const OAuthClientRegistrationGrantType = /*@__PURE__*/ S.String;
+export const OAuthClientRegistrationGrantType = S.String;
 
 /** OAuth 2.0 grant types the client may use. Defaults to `authorization_code` and `refresh_token` when omitted. */
 export type RegisterOAuthClientRequestGrantTypesList = Array<
@@ -133441,7 +133241,7 @@ export const RegisterOAuthClientRequestRedirectUrisList = /*@__PURE__*/ S.Array(
 
 /** OAuth 2.0 response type that a registered client may use. */
 export type OAuthClientRegistrationResponseType = "code";
-export const OAuthClientRegistrationResponseType = /*@__PURE__*/ S.String;
+export const OAuthClientRegistrationResponseType = S.String;
 
 /** OAuth 2.0 response types the client may use. Only `code` is supported. */
 export type RegisterOAuthClientRequestResponseTypesList = Array<
@@ -133786,7 +133586,7 @@ export const ReorderApmRetentionFiltersResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Arbitrary rule resource type. */
 export type ReorderRuleResourceDataType = "arbitrary_rule";
-export const ReorderRuleResourceDataType = /*@__PURE__*/ S.String;
+export const ReorderRuleResourceDataType = S.String;
 
 /** The definition of `ReorderRuleResourceData` object. */
 export interface ReorderRuleResourceData {
@@ -134150,7 +133950,7 @@ export const ReorderTagIndexingRulesResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Ruleset resource type. */
 export type ReorderRulesetResourceDataType = "ruleset";
-export const ReorderRulesetResourceDataType = /*@__PURE__*/ S.String;
+export const ReorderRulesetResourceDataType = S.String;
 
 /** The definition of `ReorderRulesetResourceData` object. */
 export interface ReorderRulesetResourceData {
@@ -134685,7 +134485,7 @@ export const RevertCustomRuleRevisionRequestDataAttributes =
 /** Request type */
 export type RevertCustomRuleRevisionDataType =
   "revert_custom_rule_revision_request";
-export const RevertCustomRuleRevisionDataType = /*@__PURE__*/ S.String;
+export const RevertCustomRuleRevisionDataType = S.String;
 
 /** Data object for a request to revert a custom rule to a previous revision. */
 export interface RevertCustomRuleRevisionRequestData {
@@ -134887,7 +134687,7 @@ export const RunHistoricalJobRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of data. */
 export type RunHistoricalJobRequestDataType = "historicalDetectionsJobCreate";
-export const RunHistoricalJobRequestDataType = /*@__PURE__*/ S.String;
+export const RunHistoricalJobRequestDataType = S.String;
 
 /** Data for running a historical job request. */
 export interface RunHistoricalJobRequestData {
@@ -135007,7 +134807,7 @@ export const SearchAuditLogsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Case field that can be sorted on */
 export type CaseSortableField = "created_at" | "priority" | "status";
-export const CaseSortableField = /*@__PURE__*/ S.String;
+export const CaseSortableField = S.String;
 
 export interface SearchCasesRequest {
   /** Number of items to return per page. The maximum allowed value is 100. */
@@ -135237,7 +135037,7 @@ export const CostRecommendationDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Recommendation resource type. */
 export type CostRecommendationDataType = "recommendation";
-export const CostRecommendationDataType = /*@__PURE__*/ S.String;
+export const CostRecommendationDataType = S.String;
 
 /** A single cost recommendation entry in JSON:API form. */
 export interface CostRecommendationData {
@@ -135425,7 +135225,7 @@ export type FlakyTestsSearchSort =
   | "-pipelines_failed"
   | "pipelines_duration_lost"
   | "-pipelines_duration_lost";
-export const FlakyTestsSearchSort = /*@__PURE__*/ S.String;
+export const FlakyTestsSearchSort = S.String;
 
 /** Attributes for the flaky tests search request. */
 export interface FlakyTestsSearchRequestAttributes {
@@ -135445,7 +135245,7 @@ export const FlakyTestsSearchRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of `FlakyTestsSearchRequestDataType` object. */
 export type FlakyTestsSearchRequestDataType = "search_flaky_tests_request";
-export const FlakyTestsSearchRequestDataType = /*@__PURE__*/ S.String;
+export const FlakyTestsSearchRequestDataType = S.String;
 
 /** The JSON:API data for flaky tests search request. */
 export interface FlakyTestsSearchRequestData {
@@ -135496,7 +135296,7 @@ export type FlakyTestAttributesFlakyState =
   | "fixed"
   | "quarantined"
   | "disabled";
-export const FlakyTestAttributesFlakyState = /*@__PURE__*/ S.String;
+export const FlakyTestAttributesFlakyState = S.String;
 
 /** The policy that triggered this status change. */
 export type FlakyTestHistoryPolicyId =
@@ -135509,7 +135309,7 @@ export type FlakyTestHistoryPolicyId =
   | "ftm_policy.quarantine.branch_flake"
   | "ftm_policy.quarantine.days_active"
   | "unknown";
-export const FlakyTestHistoryPolicyId = /*@__PURE__*/ S.String;
+export const FlakyTestHistoryPolicyId = S.String;
 
 /** Branches where the test was flaky at the time of the status change. */
 export type FlakyTestHistoryPolicyMetaBranchesList = Array<string>;
@@ -135636,7 +135436,7 @@ export const FlakyTestAttributesHistoryList = /*@__PURE__*/ S.Array(
 
 /** The impact level of the flaky test, derived from its impact score. */
 export type FlakyTestImpactLevel = "low" | "medium" | "high";
-export const FlakyTestImpactLevel = /*@__PURE__*/ S.String;
+export const FlakyTestImpactLevel = S.String;
 
 /** CI pipeline related statistics for the flaky test. This information is only available if test runs are associated with CI pipeline events from CI Visibility. */
 export interface FlakyTestPipelineStats {
@@ -135769,7 +135569,7 @@ export const FlakyTestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the flaky test from Flaky Test Management. */
 export type FlakyTestType = "flaky_test";
-export const FlakyTestType = /*@__PURE__*/ S.String;
+export const FlakyTestType = S.String;
 
 /** A flaky test object. */
 export interface FlakyTest {
@@ -135834,7 +135634,7 @@ export const FlakyTestsSearchResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The ways searched incidents can be sorted. */
 export type IncidentSearchSortOrder = "created" | "-created";
-export const IncidentSearchSortOrder = /*@__PURE__*/ S.String;
+export const IncidentSearchSortOrder = S.String;
 
 export interface SearchIncidentsRequest {
   /** Specifies which types of related objects should be included in the response. */
@@ -136136,7 +135936,7 @@ export const IncidentSearchResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Incident search result type. */
 export type IncidentSearchResultsType = "incidents_search_results";
-export const IncidentSearchResultsType = /*@__PURE__*/ S.String;
+export const IncidentSearchResultsType = S.String;
 
 /** Data returned by an incident search. */
 export interface IncidentSearchResponseData {
@@ -136186,7 +135986,7 @@ export type SearchIssuesIncludeQueryParameterItem =
   | "issue.assignee"
   | "issue.case"
   | "issue.team_owners";
-export const SearchIssuesIncludeQueryParameterItem = /*@__PURE__*/ S.String;
+export const SearchIssuesIncludeQueryParameterItem = S.String;
 
 export type SearchIssuesRequestIncludeList = Array<
   SearchIssuesIncludeQueryParameterItem | (string & {})
@@ -136208,7 +136008,7 @@ export type IssuesSearchRequestDataAttributesOrderBy =
   | "FIRST_SEEN"
   | "IMPACTED_SESSIONS"
   | "PRIORITY";
-export const IssuesSearchRequestDataAttributesOrderBy = /*@__PURE__*/ S.String;
+export const IssuesSearchRequestDataAttributesOrderBy = S.String;
 
 /** Persona for the search. Either track(s) or persona(s) must be specified. */
 export type IssuesSearchRequestDataAttributesPersona =
@@ -136216,7 +136016,7 @@ export type IssuesSearchRequestDataAttributesPersona =
   | "BROWSER"
   | "MOBILE"
   | "BACKEND";
-export const IssuesSearchRequestDataAttributesPersona = /*@__PURE__*/ S.String;
+export const IssuesSearchRequestDataAttributesPersona = S.String;
 
 /** Filter issues by state. Multiple values are combined with OR logic. */
 export type IssuesSearchRequestDataAttributesStatesList = Array<
@@ -136236,7 +136036,7 @@ export const IssuesSearchRequestDataAttributesTeamIdsList =
 
 /** Track of the events to query. Either track(s) or persona(s) must be specified. */
 export type IssuesSearchRequestDataAttributesTrack = "trace" | "logs" | "rum";
-export const IssuesSearchRequestDataAttributesTrack = /*@__PURE__*/ S.String;
+export const IssuesSearchRequestDataAttributesTrack = S.String;
 
 /** Object describing a search issue request. */
 export interface IssuesSearchRequestDataAttributes {
@@ -136274,7 +136074,7 @@ export const IssuesSearchRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the object. */
 export type IssuesSearchRequestDataType = "search_request";
-export const IssuesSearchRequestDataType = /*@__PURE__*/ S.String;
+export const IssuesSearchRequestDataType = S.String;
 
 /** Search issues request. */
 export interface IssuesSearchRequestData {
@@ -136368,7 +136168,7 @@ export const IssuesSearchResultRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the object. */
 export type IssuesSearchResultType = "error_tracking_search_result";
-export const IssuesSearchResultType = /*@__PURE__*/ S.String;
+export const IssuesSearchResultType = S.String;
 
 /** Result matching the search query. */
 export interface IssuesSearchResult {
@@ -136398,7 +136198,7 @@ export const IssuesSearchResponseDataList = /*@__PURE__*/ S.Array(
 /** An array of related resources, returned when the `include` query parameter is used. */
 export type IssuesSearchResultIncluded = Issue | Case | IssueUser | IssueTeam;
 export const IssuesSearchResultIncluded =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IssuesSearchResultIncluded>;
+  S.Unknown as any as S.Schema<IssuesSearchResultIncluded>;
 
 /** Array of resources related to the search results. */
 export type IssuesSearchResponseIncludedList =
@@ -136788,7 +136588,7 @@ export const LLMObsSearchSpansRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type for an Agent Observability spans search request. */
 export type LLMObsSearchSpansRequestType = "spans";
-export const LLMObsSearchSpansRequestType = /*@__PURE__*/ S.String;
+export const LLMObsSearchSpansRequestType = S.String;
 
 /** Data object for an Agent Observability spans search request. */
 export interface LLMObsSearchSpansRequestData {
@@ -137041,7 +136841,7 @@ export const SyntheticsSuiteSearchResponseDataAttributes =
 
 /** Type for the Synthetics suites search response, `suites_search`. */
 export type SuiteSearchResponseType = "suites_search";
-export const SuiteSearchResponseType = /*@__PURE__*/ S.String;
+export const SuiteSearchResponseType = S.String;
 
 /** Synthetics suite search response data */
 export interface SyntheticsSuiteSearchResponseData {
@@ -137078,7 +136878,7 @@ export type SearchWidgetsRequestExperienceType =
   | "logs_reports"
   | "csv_reports"
   | "product_analytics";
-export const SearchWidgetsRequestExperienceType = /*@__PURE__*/ S.String;
+export const SearchWidgetsRequestExperienceType = S.String;
 
 export interface SearchWidgetsRequest {
   /** The experience type for the widget. */
@@ -137256,7 +137056,7 @@ export type NotificationRulePreviewNotificationStatus =
   | "SUCCESS"
   | "DEFAULT"
   | "ERROR";
-export const NotificationRulePreviewNotificationStatus = /*@__PURE__*/ S.String;
+export const NotificationRulePreviewNotificationStatus = S.String;
 
 /** The preview result for a single rule type. */
 export interface NotificationRulePreviewResult {
@@ -137295,7 +137095,7 @@ export const NotificationRulePreviewResponseAttributes =
 /** The type of the notification preview response. */
 export type NotificationRulePreviewResponseType =
   "notification_preview_response";
-export const NotificationRulePreviewResponseType = /*@__PURE__*/ S.String;
+export const NotificationRulePreviewResponseType = S.String;
 
 /** The notification preview response data. */
 export interface NotificationRulePreviewResponseData {
@@ -137379,7 +137179,7 @@ export const TeamRoutingRulesRequestDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** Team routing rules resource type. */
 export type TeamRoutingRulesRequestDataType = "team_routing_rules";
-export const TeamRoutingRulesRequestDataType = /*@__PURE__*/ S.String;
+export const TeamRoutingRulesRequestDataType = S.String;
 
 /** Holds the data necessary to create or update team routing rules, including attributes, ID, and resource type. */
 export interface TeamRoutingRulesRequestData {
@@ -137457,7 +137257,7 @@ export const LLMObsExperimentationNumberPage = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort direction. */
 export type LLMObsExperimentationSortFieldDirection = "asc" | "desc";
-export const LLMObsExperimentationSortFieldDirection = /*@__PURE__*/ S.String;
+export const LLMObsExperimentationSortFieldDirection = S.String;
 
 /** A field and direction to sort results by. */
 export interface LLMObsExperimentationSortField {
@@ -137813,7 +137613,7 @@ export const MetricSeriesTagsList = /*@__PURE__*/ S.Array(
 
 /** The type of metric. The available types are `0` (unspecified), `1` (count), `2` (rate), and `3` (gauge). */
 export type MetricIntakeType = 0 | 1 | 2 | 3;
-export const MetricIntakeType = /*@__PURE__*/ S.Number;
+export const MetricIntakeType = S.Number;
 
 /** A metric to submit to Datadog. See [Datadog metrics](https://docs.datadoghq.com/developers/metrics/#custom-metrics-properties). */
 export interface MetricSeries {
@@ -137931,7 +137731,7 @@ export const ProductAnalyticsServerSideEventItemSession =
 
 /** The type of Product Analytics event. Must be `server` for server-side events. */
 export type ProductAnalyticsServerSideEventItemType = "server";
-export const ProductAnalyticsServerSideEventItemType = /*@__PURE__*/ S.String;
+export const ProductAnalyticsServerSideEventItemType = S.String;
 
 /** The user linked to your event. */
 export interface ProductAnalyticsServerSideEventItemUsr {
@@ -138058,7 +137858,7 @@ export const SecurityMonitoringStandardRuleTestPayloadThirdPartyCasesList =
 
 /** The rule type. */
 export type SecurityMonitoringRuleTypeTest = "log_detection";
-export const SecurityMonitoringRuleTypeTest = /*@__PURE__*/ S.String;
+export const SecurityMonitoringRuleTypeTest = S.String;
 
 /** The payload of a rule to test */
 export interface SecurityMonitoringStandardRuleTestPayload {
@@ -138316,7 +138116,7 @@ export const DeploymentGatesMonitorRuleOptions = /*@__PURE__*/ S.suspend(() =>
 
 /** The type identifier for a monitor rule. */
 export type DeploymentGatesMonitorRuleType = "monitor";
-export const DeploymentGatesMonitorRuleType = /*@__PURE__*/ S.String;
+export const DeploymentGatesMonitorRuleType = S.String;
 
 /** A monitor rule to evaluate as part of a deployment gate evaluation. */
 export interface DeploymentGatesMonitorRule {
@@ -138377,7 +138177,7 @@ export const DeploymentGatesFDDRuleOptions = /*@__PURE__*/ S.suspend(() =>
 
 /** The type identifier for a faulty deployment detection rule. */
 export type DeploymentGatesFDDRuleType = "faulty_deployment_detection";
-export const DeploymentGatesFDDRuleType = /*@__PURE__*/ S.String;
+export const DeploymentGatesFDDRuleType = S.String;
 
 /** A faulty deployment detection rule to evaluate as part of a deployment gate evaluation. */
 export interface DeploymentGatesFDDRule {
@@ -138404,7 +138204,7 @@ export type DeploymentGatesEvaluationRule =
   | DeploymentGatesMonitorRule
   | DeploymentGatesFDDRule;
 export const DeploymentGatesEvaluationRule =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DeploymentGatesEvaluationRule>;
+  S.Unknown as any as S.Schema<DeploymentGatesEvaluationRule>;
 
 /** The list of rules to evaluate. At least one rule is required. */
 export type DeploymentGatesEvaluationConfigurationRulesList =
@@ -138462,7 +138262,7 @@ export const DeploymentGatesEvaluationRequestAttributes =
 /** JSON:API type for a deployment gate evaluation request. */
 export type DeploymentGatesEvaluationRequestDataType =
   "deployment_gates_evaluation_request";
-export const DeploymentGatesEvaluationRequestDataType = /*@__PURE__*/ S.String;
+export const DeploymentGatesEvaluationRequestDataType = S.String;
 
 /** Data for a deployment gate evaluation request. */
 export interface DeploymentGatesEvaluationRequestData {
@@ -138690,7 +138490,7 @@ export const MonitorAlertTriggerAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of trigger for the investigation. */
 export type TriggerType = "monitor_alert_trigger";
-export const TriggerType = /*@__PURE__*/ S.String;
+export const TriggerType = S.String;
 
 /** The trigger definition for starting an investigation. */
 export interface TriggerAttributes {
@@ -138721,7 +138521,7 @@ export const TriggerInvestigationRequestDataAttributes =
 
 /** The resource type for trigger investigation requests. */
 export type TriggerInvestigationRequestType = "trigger_investigation_request";
-export const TriggerInvestigationRequestType = /*@__PURE__*/ S.String;
+export const TriggerInvestigationRequestType = S.String;
 
 /** Data for the trigger investigation request. */
 export interface TriggerInvestigationRequestData {
@@ -138770,7 +138570,7 @@ export const TriggerInvestigationResponseDataAttributes =
 
 /** The resource type for trigger investigation responses. */
 export type TriggerInvestigationResponseType = "trigger_investigation_response";
-export const TriggerInvestigationResponseType = /*@__PURE__*/ S.String;
+export const TriggerInvestigationResponseType = S.String;
 
 /** Data for the trigger investigation response. */
 export interface TriggerInvestigationResponseData {
@@ -138817,7 +138617,7 @@ export const LLMObsPatternsTriggerRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** Resource type for triggering an Agent Observability patterns run. */
 export type LLMObsPatternsRequestType = "topic_discovery";
-export const LLMObsPatternsRequestType = /*@__PURE__*/ S.String;
+export const LLMObsPatternsRequestType = S.String;
 
 /** Data object for triggering an Agent Observability patterns run. */
 export interface LLMObsPatternsTriggerRequestData {
@@ -139441,7 +139241,7 @@ export type CloudflareCredentialsUpdate =
   | CloudflareAPITokenUpdate
   | CloudflareGlobalAPITokenUpdate;
 export const CloudflareCredentialsUpdate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CloudflareCredentialsUpdate>;
+  S.Unknown as any as S.Schema<CloudflareCredentialsUpdate>;
 
 /** The definition of the `CloudflareIntegrationUpdate` object. */
 export interface CloudflareIntegrationUpdate {
@@ -140092,7 +139892,7 @@ export type ActionConnectionIntegrationUpdate =
   | StatsigIntegrationUpdate
   | VirusTotalIntegrationUpdate;
 export const ActionConnectionIntegrationUpdate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionConnectionIntegrationUpdate>;
+  S.Unknown as any as S.Schema<ActionConnectionIntegrationUpdate>;
 
 /** Tags associated with the connection. Each tag must follow the `key:value` format. The `default` tag key is reserved. */
 export type ActionConnectionAttributesUpdateTagsList = Array<string>;
@@ -140518,7 +140318,7 @@ export const UpdateAppFavoriteRequestDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** The favorite resource type. */
 export type AppFavoriteType = "favorites";
-export const AppFavoriteType = /*@__PURE__*/ S.String;
+export const AppFavoriteType = S.String;
 
 /** Data for updating an app's favorite status. */
 export interface UpdateAppFavoriteRequestData {
@@ -140939,7 +140739,7 @@ export const UpdateAppSelfServiceRequestDataAttributes =
 
 /** The self-service resource type. */
 export type AppSelfServiceType = "selfService";
-export const AppSelfServiceType = /*@__PURE__*/ S.String;
+export const AppSelfServiceType = S.String;
 
 /** Data for updating an app's self-service status. */
 export interface UpdateAppSelfServiceRequestData {
@@ -141003,7 +140803,7 @@ export const UpdateAppTagsRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The tags resource type. */
 export type AppTagsType = "tags";
-export const AppTagsType = /*@__PURE__*/ S.String;
+export const AppTagsType = S.String;
 
 /** Data for replacing an app's tags. */
 export interface UpdateAppTagsRequestData {
@@ -141062,7 +140862,7 @@ export const UpdateAppVersionNameRequestDataAttributes =
 
 /** The version-name resource type. */
 export type AppVersionNameType = "versionNames";
-export const AppVersionNameType = /*@__PURE__*/ S.String;
+export const AppVersionNameType = S.String;
 
 /** Data for naming a specific app version. */
 export interface UpdateAppVersionNameRequestData {
@@ -141163,7 +140963,7 @@ export type AuthNMappingUpdateRelationships =
   | AuthNMappingRelationshipToRole
   | AuthNMappingRelationshipToTeam;
 export const AuthNMappingUpdateRelationships =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AuthNMappingUpdateRelationships>;
+  S.Unknown as any as S.Schema<AuthNMappingUpdateRelationships>;
 
 /** Data for updating an AuthN Mapping. */
 export interface AuthNMappingUpdateData {
@@ -141343,7 +141143,7 @@ export const AzureScanOptionsInputUpdateDataAttributes =
 
 /** Azure scan options resource type. */
 export type AzureScanOptionsInputUpdateDataType = "azure_scan_options";
-export const AzureScanOptionsInputUpdateDataType = /*@__PURE__*/ S.String;
+export const AzureScanOptionsInputUpdateDataType = S.String;
 
 /** Data object for updating the scan options of a single Azure subscription. */
 export interface AzureScanOptionsInputUpdateData {
@@ -142541,7 +142341,7 @@ export const AccountFiltersPatchRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** Type of account filters patch request. */
 export type AccountFiltersPatchRequestType = "account_filters_patch_request";
-export const AccountFiltersPatchRequestType = /*@__PURE__*/ S.String;
+export const AccountFiltersPatchRequestType = S.String;
 
 /** Account filters patch data. */
 export interface AccountFiltersPatchData {
@@ -142594,7 +142394,7 @@ export const AwsCURConfigPatchRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of AWS CUR config Patch Request. */
 export type AwsCURConfigPatchRequestType = "aws_cur_config_patch_request";
-export const AwsCURConfigPatchRequestType = /*@__PURE__*/ S.String;
+export const AwsCURConfigPatchRequestType = S.String;
 
 /** AWS CUR config Patch data. */
 export interface AwsCURConfigPatchData {
@@ -142645,7 +142445,7 @@ export const AzureUCConfigPatchRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of Azure config Patch Request. */
 export type AzureUCConfigPatchRequestType = "azure_uc_config_patch_request";
-export const AzureUCConfigPatchRequestType = /*@__PURE__*/ S.String;
+export const AzureUCConfigPatchRequestType = S.String;
 
 /** Azure config Patch data. */
 export interface AzureUCConfigPatchData {
@@ -142689,7 +142489,7 @@ export const GCPUsageCostConfigPatchRequestAttributes =
 
 /** Type of Google Cloud Usage Cost config patch request. */
 export type GCPUsageCostConfigPatchRequestType = "gcp_uc_config_patch_request";
-export const GCPUsageCostConfigPatchRequestType = /*@__PURE__*/ S.String;
+export const GCPUsageCostConfigPatchRequestType = S.String;
 
 /** Google Cloud Usage Cost config patch data. */
 export interface GCPUsageCostConfigPatchData {
@@ -143164,7 +142964,7 @@ export const SecureEmbedUpdateRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type for secure embed update requests. */
 export type SecureEmbedUpdateRequestType = "secure_embed_update_request";
-export const SecureEmbedUpdateRequestType = /*@__PURE__*/ S.String;
+export const SecureEmbedUpdateRequestType = S.String;
 
 /** Data object for updating a secure embed. */
 export interface SecureEmbedUpdateRequestData {
@@ -143260,7 +143060,7 @@ export const SecureEmbedUpdateResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type for secure embed update responses. */
 export type SecureEmbedUpdateResponseType = "secure_embed_update_response";
-export const SecureEmbedUpdateResponseType = /*@__PURE__*/ S.String;
+export const SecureEmbedUpdateResponseType = S.String;
 
 /** Data object for a secure embed update response. */
 export interface SecureEmbedUpdateResponseData {
@@ -143408,7 +143208,7 @@ export const UpdateAppsDatastoreItemRequestDataAttributes =
 
 /** The resource type for datastore items. */
 export type UpdateAppsDatastoreItemRequestDataType = "items";
-export const UpdateAppsDatastoreItemRequestDataType = /*@__PURE__*/ S.String;
+export const UpdateAppsDatastoreItemRequestDataType = S.String;
 
 /** Data wrapper containing the item identifier and the changes to apply during the update operation. */
 export interface UpdateAppsDatastoreItemRequestData {
@@ -143477,8 +143277,7 @@ export type PatchDegradationRequestDataAttributesStatus =
   | "identified"
   | "monitoring"
   | "resolved";
-export const PatchDegradationRequestDataAttributesStatus =
-  /*@__PURE__*/ S.String;
+export const PatchDegradationRequestDataAttributesStatus = S.String;
 
 /** The supported attributes for updating a degradation. */
 export interface PatchDegradationRequestDataAttributesInput {
@@ -143959,7 +143758,7 @@ export type DowntimeScheduleUpdateRequest =
   | DowntimeScheduleRecurrencesUpdateRequest
   | DowntimeScheduleOneTimeCreateUpdateRequest;
 export const DowntimeScheduleUpdateRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DowntimeScheduleUpdateRequest>;
+  S.Unknown as any as S.Schema<DowntimeScheduleUpdateRequest>;
 
 /** Attributes of the downtime to update. */
 export interface DowntimeUpdateRequestAttributes {
@@ -144134,7 +143933,7 @@ export const EntityIntegrationConfigRequestAttributes = /*@__PURE__*/ S.suspend(
 /** JSON:API resource type for the entity integration configuration create or update request. Always `entity_integration_config_requests`. */
 export type EntityIntegrationConfigRequestType =
   "entity_integration_config_requests";
-export const EntityIntegrationConfigRequestType = /*@__PURE__*/ S.String;
+export const EntityIntegrationConfigRequestType = S.String;
 
 /** JSON:API resource object used in a request to create or update an entity integration configuration. */
 export interface EntityIntegrationConfigRequestData {
@@ -144361,7 +144160,7 @@ export const UpdateFeatureFlagAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type. */
 export type UpdateFeatureFlagDataType = "feature-flags";
-export const UpdateFeatureFlagDataType = /*@__PURE__*/ S.String;
+export const UpdateFeatureFlagDataType = S.String;
 
 /** Data for updating a feature flag. */
 export interface UpdateFeatureFlagData {
@@ -144427,7 +144226,7 @@ export const UpdateEnvironmentAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type. */
 export type UpdateEnvironmentDataType = "environments";
-export const UpdateEnvironmentDataType = /*@__PURE__*/ S.String;
+export const UpdateEnvironmentDataType = S.String;
 
 /** Data for updating an environment. */
 export interface UpdateEnvironmentData {
@@ -144492,7 +144291,7 @@ export const AssigneeRequestDataRelationships = /*@__PURE__*/ S.suspend(() =>
 
 /** Assignee resource type. */
 export type AssigneeDataType = "assignee";
-export const AssigneeDataType = /*@__PURE__*/ S.String;
+export const AssigneeDataType = S.String;
 
 /** Data of the assignee request. */
 export interface AssigneeRequestData {
@@ -144543,7 +144342,7 @@ export type UpdateFlakyTestsRequestTestNewState =
   | "quarantined"
   | "disabled"
   | "fixed";
-export const UpdateFlakyTestsRequestTestNewState = /*@__PURE__*/ S.String;
+export const UpdateFlakyTestsRequestTestNewState = S.String;
 
 /** Details of what tests to update and their new attributes. */
 export interface UpdateFlakyTestsRequestTest {
@@ -144582,7 +144381,7 @@ export const UpdateFlakyTestsRequestAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The definition of `UpdateFlakyTestsRequestDataType` object. */
 export type UpdateFlakyTestsRequestDataType = "update_flaky_test_state_request";
-export const UpdateFlakyTestsRequestDataType = /*@__PURE__*/ S.String;
+export const UpdateFlakyTestsRequestDataType = S.String;
 
 /** The JSON:API data for updating flaky test states. */
 export interface UpdateFlakyTestsRequestData {
@@ -144661,7 +144460,7 @@ export const UpdateFlakyTestsResponseAttributes = /*@__PURE__*/ S.suspend(() =>
 /** The definition of `UpdateFlakyTestsResponseDataType` object. */
 export type UpdateFlakyTestsResponseDataType =
   "update_flaky_test_state_response";
-export const UpdateFlakyTestsResponseDataType = /*@__PURE__*/ S.String;
+export const UpdateFlakyTestsResponseDataType = S.String;
 
 /** Summary of the update operations. Tells whether a test succeeded or failed to be updated. */
 export interface UpdateFlakyTestsResponseData {
@@ -144723,7 +144522,7 @@ export const TestOptimizationFlakyTestsManagementPoliciesUpdateRequestAttributes
 export type TestOptimizationUpdateFlakyTestsManagementPoliciesRequestDataType =
   "test_optimization_update_flaky_tests_management_policies_request";
 export const TestOptimizationUpdateFlakyTestsManagementPoliciesRequestDataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Data object for update Flaky Tests Management policies request. */
 export interface TestOptimizationFlakyTestsManagementPoliciesUpdateRequestData {
@@ -144887,7 +144686,7 @@ export const GcpScanOptionsInputUpdateDataAttributes =
 
 /** GCP scan options resource type. */
 export type GcpScanOptionsInputUpdateDataType = "gcp_scan_options";
-export const GcpScanOptionsInputUpdateDataType = /*@__PURE__*/ S.String;
+export const GcpScanOptionsInputUpdateDataType = S.String;
 
 /** Data object for updating the scan options of a single GCP project. */
 export interface GcpScanOptionsInputUpdateData {
@@ -145187,7 +144986,7 @@ export const UpdateGovernanceControlNotificationSettingsRequest =
 
 /** The new state to set for the detection. Set to `exception` to acknowledge the detection and exclude it from active counts, or `active` to reopen it. */
 export type GovernanceControlDetectionUpdateState = "exception" | "active";
-export const GovernanceControlDetectionUpdateState = /*@__PURE__*/ S.String;
+export const GovernanceControlDetectionUpdateState = S.String;
 
 /** The attributes of a governance control detection that can be updated. Only the attributes present in the request are modified. */
 export interface GovernanceControlDetectionUpdateAttributes {
@@ -145417,7 +145216,7 @@ export const IncidentUpdateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Incident postmortem resource type. */
 export type IncidentPostmortemType = "incident_postmortems";
-export const IncidentPostmortemType = /*@__PURE__*/ S.String;
+export const IncidentPostmortemType = S.String;
 
 /** The postmortem relationship data. */
 export interface RelationshipToIncidentPostmortemData {
@@ -146474,7 +146273,7 @@ export const UpdateIPAllowlistRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the object. */
 export type IssueUpdateAssigneeRequestDataType = "assignee";
-export const IssueUpdateAssigneeRequestDataType = /*@__PURE__*/ S.String;
+export const IssueUpdateAssigneeRequestDataType = S.String;
 
 /** Update issue assignee request. */
 export interface IssueUpdateAssigneeRequestData {
@@ -146526,7 +146325,7 @@ export const IssueUpdateStateRequestDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** Type of the object. */
 export type IssueUpdateStateRequestDataType = "error_tracking_issue";
-export const IssueUpdateStateRequestDataType = /*@__PURE__*/ S.String;
+export const IssueUpdateStateRequestDataType = S.String;
 
 /** Update issue state request. */
 export interface IssueUpdateStateRequestData {
@@ -147227,7 +147026,7 @@ export const MaxSessionDurationUpdateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Data type of a maximum session duration update. */
 export type MaxSessionDurationType = "max_session_duration";
-export const MaxSessionDurationType = /*@__PURE__*/ S.String;
+export const MaxSessionDurationType = S.String;
 
 /** The data object for a maximum session duration update request. */
 export interface MaxSessionDurationUpdateData {
@@ -148032,7 +147831,7 @@ export const EscalationPolicyUpdateRequestDataRelationships =
 
 /** Indicates that the resource is of type `policies`. */
 export type EscalationPolicyUpdateRequestDataType = "policies";
-export const EscalationPolicyUpdateRequestDataType = /*@__PURE__*/ S.String;
+export const EscalationPolicyUpdateRequestDataType = S.String;
 
 /** Represents the data for updating an existing escalation policy, including its ID, attributes, relationships, and resource type. */
 export interface EscalationPolicyUpdateRequestData {
@@ -148166,7 +147965,7 @@ export const ScheduleUpdateRequestDataRelationships =
 
 /** Schedules resource type. */
 export type ScheduleUpdateRequestDataType = "schedules";
-export const ScheduleUpdateRequestDataType = /*@__PURE__*/ S.String;
+export const ScheduleUpdateRequestDataType = S.String;
 
 /** Contains all data needed to update an existing schedule, including its attributes (such as name and time zone) and any relationships to teams. */
 export interface ScheduleUpdateRequestData {
@@ -148746,7 +148545,7 @@ export const OrgSAMLPreferencesAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** SAML preferences resource type. */
 export type OrgSAMLPreferencesType = "saml_preferences";
-export const OrgSAMLPreferencesType = /*@__PURE__*/ S.String;
+export const OrgSAMLPreferencesType = S.String;
 
 /** Data for updating an organization's SAML preferences. */
 export interface OrgSAMLPreferencesData {
@@ -148794,8 +148593,7 @@ export type UpdatePermanentRetentionFilterRequestPermanentRfId =
   | "rum_apm_flat_sampling"
   | "synthetics_sessions"
   | "forced_replay_sessions";
-export const UpdatePermanentRetentionFilterRequestPermanentRfId =
-  /*@__PURE__*/ S.String;
+export const UpdatePermanentRetentionFilterRequestPermanentRfId = S.String;
 
 /** The configuration for cross-product retention filters. All fields are optional for partial updates. */
 export type RumCrossProductSamplingUpdate = RumCrossProductSampling;
@@ -149116,7 +148914,7 @@ export const UpdateProjectNotificationRuleResponse = /*@__PURE__*/ S.suspend(
 
 /** The publication protection level of the app. `approval_required` means changes must go through an approval workflow before being published. */
 export type AppProtectionLevel = "direct_publish" | "approval_required";
-export const AppProtectionLevel = /*@__PURE__*/ S.String;
+export const AppProtectionLevel = S.String;
 
 /** Attributes for updating an app's publication protection level. */
 export interface UpdateAppProtectionLevelRequestDataAttributes {
@@ -149133,7 +148931,7 @@ export const UpdateAppProtectionLevelRequestDataAttributes =
 
 /** The protection-level resource type. */
 export type AppProtectionLevelType = "protectionLevel";
-export const AppProtectionLevelType = /*@__PURE__*/ S.String;
+export const AppProtectionLevelType = S.String;
 
 /** Data for updating an app's publication protection level. */
 export interface UpdateAppProtectionLevelRequestData {
@@ -149222,7 +149020,7 @@ export type PatchTableRequestDataAttributesFileMetadata =
   | PatchTableRequestDataAttributesFileMetadataCloudStorage
   | CreateTableRequestDataAttributesFileMetadataLocalFile;
 export const PatchTableRequestDataAttributesFileMetadata =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchTableRequestDataAttributesFileMetadata>;
+  S.Unknown as any as S.Schema<PatchTableRequestDataAttributesFileMetadata>;
 
 /** A single field (column) in the reference table schema to be updated. Schema fields cannot be deleted or renamed. */
 export type PatchTableRequestDataAttributesSchemaFieldsItems =
@@ -149291,7 +149089,7 @@ export const PatchTableRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Reference table resource type. */
 export type PatchTableRequestDataType = "reference_table";
-export const PatchTableRequestDataType = /*@__PURE__*/ S.String;
+export const PatchTableRequestDataType = S.String;
 
 /** The data object containing the partial table definition updates. */
 export interface PatchTableRequestData {
@@ -149722,7 +149520,7 @@ export const RUMApplicationUpdateAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** RUM application update type. */
 export type RUMApplicationUpdateType = "rum_application_update";
-export const RUMApplicationUpdateType = /*@__PURE__*/ S.String;
+export const RUMApplicationUpdateType = S.String;
 
 /** RUM application update. */
 export interface RUMApplicationUpdate {
@@ -149882,7 +149680,7 @@ export const UpdateRUMOperationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of a RUM operation strong link. Can only be set to `CONFIRMED` or `REJECTED`. */
 export type RUMOperationStrongLinkUpdateStatus = "CONFIRMED" | "REJECTED";
-export const RUMOperationStrongLinkUpdateStatus = /*@__PURE__*/ S.String;
+export const RUMOperationStrongLinkUpdateStatus = S.String;
 
 /** Attributes for updating a RUM operation strong link. */
 export interface RUMOperationStrongLinkUpdateRequestAttributes {
@@ -150339,7 +150137,7 @@ export const UpdateOutcomesAsyncAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The JSON:API type for scorecard outcomes. */
 export type UpdateOutcomesAsyncType = "batched-outcome";
-export const UpdateOutcomesAsyncType = /*@__PURE__*/ S.String;
+export const UpdateOutcomesAsyncType = S.String;
 
 /** Scorecard outcomes batch request data. */
 export interface UpdateOutcomesAsyncRequestData {
@@ -150647,7 +150445,7 @@ export const UpdateSecurityMonitoringCriticalAssetRequest =
 
 /** The type of resource for a dataset update request. */
 export type SecurityMonitoringDatasetUpdateType = "datasetUpdate";
-export const SecurityMonitoringDatasetUpdateType = /*@__PURE__*/ S.String;
+export const SecurityMonitoringDatasetUpdateType = S.String;
 
 /** The data wrapper of a dataset update request. */
 export interface SecurityMonitoringDatasetUpdateData {
@@ -150836,7 +150634,7 @@ export type SecurityMonitoringIntegrationConfigUpdateAttributes =
   | SecurityMonitoringCrowdStrikeIntegrationConfigUpdateAttributes
   | SecurityMonitoringSentinelOneIntegrationConfigUpdateAttributes;
 export const SecurityMonitoringIntegrationConfigUpdateAttributes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityMonitoringIntegrationConfigUpdateAttributes>;
+  S.Unknown as any as S.Schema<SecurityMonitoringIntegrationConfigUpdateAttributes>;
 
 /** The entity context sync configuration fields to update. */
 export interface SecurityMonitoringIntegrationConfigUpdateData {
@@ -150911,7 +150709,7 @@ export type SecurityMonitoringRuleQuery =
   | SecurityMonitoringStandardRuleQuery
   | SecurityMonitoringSignalRuleQuery;
 export const SecurityMonitoringRuleQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityMonitoringRuleQuery>;
+  S.Unknown as any as S.Schema<SecurityMonitoringRuleQuery>;
 
 /** Queries for selecting logs which are part of the rule. */
 export type UpdateSecurityMonitoringRuleRequestQueriesList =
@@ -151895,7 +151693,7 @@ export const UpdateRulesetRequestDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Update ruleset resource type. */
 export type UpdateRulesetRequestDataType = "update_ruleset";
-export const UpdateRulesetRequestDataType = /*@__PURE__*/ S.String;
+export const UpdateRulesetRequestDataType = S.String;
 
 /** The definition of `UpdateRulesetRequestData` object. */
 export interface UpdateRulesetRequestData {
@@ -152537,8 +152335,7 @@ export const TestOptimizationUpdateServiceSettingsRequestAttributes =
 /** JSON:API type for update service settings request. The value must always be `test_optimization_update_service_settings_request`. */
 export type TestOptimizationUpdateServiceSettingsRequestDataType =
   "test_optimization_update_service_settings_request";
-export const TestOptimizationUpdateServiceSettingsRequestDataType =
-  /*@__PURE__*/ S.String;
+export const TestOptimizationUpdateServiceSettingsRequestDataType = S.String;
 
 /** Data object for update service settings request. */
 export interface TestOptimizationUpdateServiceSettingsRequestData {
@@ -152723,7 +152520,7 @@ export const UpdateUserRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The resource type for identity providers. */
 export type UserRelationshipIdentityProviderDataType = "identity_providers";
-export const UserRelationshipIdentityProviderDataType = /*@__PURE__*/ S.String;
+export const UserRelationshipIdentityProviderDataType = S.String;
 
 /** Resource identifier for an identity provider in a relationship update. */
 export interface UserRelationshipIdentityProviderData {
@@ -152916,7 +152713,7 @@ export type UpdateWidgetRequestExperienceType =
   | "logs_reports"
   | "csv_reports"
   | "product_analytics";
-export const UpdateWidgetRequestExperienceType = /*@__PURE__*/ S.String;
+export const UpdateWidgetRequestExperienceType = S.String;
 
 export interface UpdateWidgetRequest {
   /** The experience type for the widget. */
@@ -153361,7 +153158,7 @@ export const UpsertAndPublishFormVersionDataAttributes =
 
 /** The resource type for a form version. */
 export type FormVersionType = "form_versions";
-export const FormVersionType = /*@__PURE__*/ S.String;
+export const FormVersionType = S.String;
 
 /** The data for upserting and publishing a form version. */
 export interface UpsertAndPublishFormVersionData {
@@ -153411,7 +153208,7 @@ export const UpsertBudgetRequest = /*@__PURE__*/ S.suspend(() =>
 /** Create or update entity request. */
 export type UpsertCatalogEntityRequest = EntityV3 | string;
 export const UpsertCatalogEntityRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpsertCatalogEntityRequest>;
+  S.Unknown as any as S.Schema<UpsertCatalogEntityRequest>;
 
 export interface UpsertCatalogEntityRequest2 {
   body: UpsertCatalogEntityRequest;
@@ -153451,7 +153248,7 @@ export const KindObj = /*@__PURE__*/ S.suspend(() =>
 /** Create or update kind request. */
 export type UpsertCatalogKindRequest = KindObj | string;
 export const UpsertCatalogKindRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpsertCatalogKindRequest>;
+  S.Unknown as any as S.Schema<UpsertCatalogKindRequest>;
 
 export interface UpsertCatalogKindRequest2 {
   body: UpsertCatalogKindRequest;
@@ -153594,7 +153391,7 @@ export const UpsertCustomForecastRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The policy for matching the latest form version during an upsert operation. */
 export type LatestVersionMatchPolicy = "none" | "if_etag_match";
-export const LatestVersionMatchPolicy = /*@__PURE__*/ S.String;
+export const LatestVersionMatchPolicy = S.String;
 
 /** Concurrency control parameters for the form version upsert operation. */
 export interface UpsertFormVersionUpsertParams {
@@ -153697,7 +153494,7 @@ export const FormVersionResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Assessment result for a label value. */
 export type LLMObsAnnotationAssessment = "pass" | "fail";
-export const LLMObsAnnotationAssessment = /*@__PURE__*/ S.String;
+export const LLMObsAnnotationAssessment = S.String;
 
 /** For categorical-type labels allowing multiple selections. */
 export type LLMObsAnnotationLabelValueStringArray = Array<string>;
@@ -153712,7 +153509,7 @@ export type LLMObsAnnotationLabelValueValue =
   | LLMObsAnnotationLabelValueStringArray
   | boolean;
 export const LLMObsAnnotationLabelValueValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LLMObsAnnotationLabelValueValue>;
+  S.Unknown as any as S.Schema<LLMObsAnnotationLabelValueValue>;
 
 /** A single label value entry in an annotation. The `value` type must match the label schema type: - `score`: a number within the schema `min`/`max` range (integer if `is_integer` is `true`). - `categorical`: a string that is one of the schema `values`. - `boolean`: `true` or `false`. - `text`: any non-empty string. */
 export interface LLMObsAnnotationLabelValue {
@@ -153887,7 +153684,7 @@ export const LLMObsAnnotationsDataAttributesResponseAnnotationsList =
 
 /** Stable error code. `permission_denied` indicates the item was rejected by queue access rules. */
 export type LLMObsAnnotationErrorCode = "permission_denied";
-export const LLMObsAnnotationErrorCode = /*@__PURE__*/ S.String;
+export const LLMObsAnnotationErrorCode = S.String;
 
 /** A partial error for a single annotation that could not be processed. */
 export interface LLMObsAnnotationError {
@@ -154043,7 +153840,7 @@ export const UpsertLLMObsPatternsConfigRequest = /*@__PURE__*/ S.suspend(() =>
 /** Types allowed for Reference Table row values. */
 export type BatchUpsertRowsRequestDataAttributesValue = string | number;
 export const BatchUpsertRowsRequestDataAttributesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BatchUpsertRowsRequestDataAttributesValue>;
+  S.Unknown as any as S.Schema<BatchUpsertRowsRequestDataAttributesValue>;
 
 /** Key-value pairs representing row data, where keys are schema field names and values match the corresponding column types. */
 export type BatchUpsertRowsRequestDataAttributesValuesMap = {
@@ -154122,7 +153919,7 @@ export const UpsertRowsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of scope the retention quota configuration applies to. `application` is the only supported scope type. */
 export type UpsertRumQuotaConfigRequestScopeType = "application";
-export const UpsertRumQuotaConfigRequestScopeType = /*@__PURE__*/ S.String;
+export const UpsertRumQuotaConfigRequestScopeType = S.String;
 
 /** The RUM retention quota configuration properties to create or update. */
 export interface RumRetentionQuotaConfigUpdateAttributes {
@@ -154219,7 +154016,7 @@ export const UpsertOAuthScopesRestrictionDataAttributes =
 
 /** JSON:API resource type for an upsert OAuth2 client scopes restriction request. */
 export type UpsertOAuthScopesRestrictionType = "upsert_scopes_restriction";
-export const UpsertOAuthScopesRestrictionType = /*@__PURE__*/ S.String;
+export const UpsertOAuthScopesRestrictionType = S.String;
 
 /** Data object of an upsert OAuth2 scopes restriction request. */
 export interface UpsertOAuthScopesRestrictionData {
@@ -154349,11 +154146,11 @@ export const UpsertCloudInventorySyncConfigRequestAttributes =
 
 /** Cloud provider for this sync configuration (`aws`, `gcp`, or `azure`). For requests, must match the provider block supplied under `attributes`. */
 export type CloudInventoryCloudProviderId = "aws" | "gcp" | "azure";
-export const CloudInventoryCloudProviderId = /*@__PURE__*/ S.String;
+export const CloudInventoryCloudProviderId = S.String;
 
 /** Always `cloud_provider`. */
 export type CloudInventoryCloudProviderRequestType = "cloud_provider";
-export const CloudInventoryCloudProviderRequestType = /*@__PURE__*/ S.String;
+export const CloudInventoryCloudProviderRequestType = S.String;
 
 /** Storage Management configuration data for the create or update request. */
 export interface UpsertCloudInventorySyncConfigRequestData {
@@ -154442,7 +154239,7 @@ export const CloudInventorySyncConfigAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Always `sync_configs`. */
 export type CloudInventorySyncConfigResourceType = "sync_configs";
-export const CloudInventorySyncConfigResourceType = /*@__PURE__*/ S.String;
+export const CloudInventorySyncConfigResourceType = S.String;
 
 /** Storage Management configuration data. */
 export interface CloudInventorySyncConfigResponseData {
@@ -154510,7 +154307,7 @@ export const ValidateV2Attributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource type for the API key validation response. */
 export type ValidateV2Type = "validate_v2";
-export const ValidateV2Type = /*@__PURE__*/ S.String;
+export const ValidateV2Type = S.String;
 
 /** Data object containing the API key validation result. */
 export interface ValidateV2Data {
@@ -154550,7 +154347,7 @@ export const ValidateAPIKeyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the validation. Always `ok` when both the API key and the application key are valid. */
 export type ValidateAPIKeyStatus = "ok";
-export const ValidateAPIKeyStatus = /*@__PURE__*/ S.String;
+export const ValidateAPIKeyStatus = S.String;
 
 /** Response object for the API and application key validation status check. */
 export interface ValidateAPIKeyResponse {
@@ -154592,7 +154389,7 @@ export const AWSCcmConfigValidationRequestAttributes = /*@__PURE__*/ S.suspend(
 
 /** AWS CCM config validation resource type. */
 export type AWSCcmConfigValidationType = "ccm_config_validation";
-export const AWSCcmConfigValidationType = /*@__PURE__*/ S.String;
+export const AWSCcmConfigValidationType = S.String;
 
 /** AWS CCM config validation request data. */
 export interface AWSCcmConfigValidationRequestData {
@@ -154644,7 +154441,7 @@ export type AWSCcmConfigValidationIssueCode =
   | "REFRESH_CADENCE_INVALID"
   | "OVERWRITE_MODE_INVALID"
   | "QUERY_STATEMENT_INVALID";
-export const AWSCcmConfigValidationIssueCode = /*@__PURE__*/ S.String;
+export const AWSCcmConfigValidationIssueCode = S.String;
 
 /** A single validation issue found while validating an AWS Cost and Usage Report (CUR) 2.0 configuration. */
 export interface AWSCcmConfigValidationIssue {
@@ -154764,7 +154561,7 @@ export const BudgetWithEntriesDataAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** Budget resource type. */
 export type BudgetWithEntriesDataType = "budget";
-export const BudgetWithEntriesDataType = /*@__PURE__*/ S.String;
+export const BudgetWithEntriesDataType = S.String;
 
 /** The data object for a budget validation request, containing the resource type, ID, and budget attributes to validate. */
 export interface BudgetValidationRequestData {
@@ -154822,7 +154619,7 @@ export const BudgetValidationResponseDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** Budget validation resource type. */
 export type BudgetValidationResponseDataType = "budget_validation";
-export const BudgetValidationResponseDataType = /*@__PURE__*/ S.String;
+export const BudgetValidationResponseDataType = S.String;
 
 /** The data object for a budget validation response, containing the resource type, ID, and validation attributes. */
 export interface BudgetValidationResponseData {
@@ -155003,7 +154800,7 @@ export const RulesValidateQueryRequestDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** Validate query resource type. */
 export type RulesValidateQueryRequestDataType = "validate_query";
-export const RulesValidateQueryRequestDataType = /*@__PURE__*/ S.String;
+export const RulesValidateQueryRequestDataType = S.String;
 
 /** The definition of `RulesValidateQueryRequestData` object. */
 export interface RulesValidateQueryRequestData {
@@ -155055,7 +154852,7 @@ export const RulesValidateQueryResponseDataAttributes = /*@__PURE__*/ S.suspend(
 
 /** Validate response resource type. */
 export type RulesValidateQueryResponseDataType = "validate_response";
-export const RulesValidateQueryResponseDataType = /*@__PURE__*/ S.String;
+export const RulesValidateQueryResponseDataType = S.String;
 
 /** The definition of `RulesValidateQueryResponseData` object. */
 export interface RulesValidateQueryResponseData {
@@ -155212,7 +155009,7 @@ export type SecurityMonitoringIntegrationCredentialsValidateAttributes =
   | SecurityMonitoringCrowdStrikeIntegrationCredentialsValidateAttributes
   | SecurityMonitoringSentinelOneIntegrationCredentialsValidateAttributes;
 export const SecurityMonitoringIntegrationCredentialsValidateAttributes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityMonitoringIntegrationCredentialsValidateAttributes>;
+  S.Unknown as any as S.Schema<SecurityMonitoringIntegrationCredentialsValidateAttributes>;
 
 /** The credentials to validate. */
 export interface SecurityMonitoringIntegrationCredentialsValidateData {
@@ -155319,7 +155116,7 @@ export type SecurityMonitoringRuleValidatePayload =
   | SecurityMonitoringSignalRulePayload
   | CloudConfigurationRulePayload;
 export const SecurityMonitoringRuleValidatePayload =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityMonitoringRuleValidatePayload>;
+  S.Unknown as any as S.Schema<SecurityMonitoringRuleValidatePayload>;
 
 export interface ValidateSecurityMonitoringRuleRequest {
   body: SecurityMonitoringRuleValidatePayload;

@@ -76,7 +76,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -84,7 +84,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -130,11 +130,11 @@ export type ProvisioningState =
   | "Failed"
   | "Succeeded"
   | "Updating";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** FipsValidatedModules determines if FIPS is used. */
 export type FipsValidatedModules = "Disabled" | "Enabled";
-export const FipsValidatedModules = /*@__PURE__*/ S.String;
+export const FipsValidatedModules = S.String;
 
 /** ClusterProfile represents a cluster profile. */
 export interface ClusterProfile {
@@ -238,7 +238,7 @@ export const PlatformWorkloadIdentityProfile = /*@__PURE__*/ S.suspend(() =>
 
 /** The outbound routing strategy used to provide your cluster egress to the internet. */
 export type OutboundType = "Loadbalancer" | "UserDefinedRouting";
-export const OutboundType = /*@__PURE__*/ S.String;
+export const OutboundType = S.String;
 
 /** ManagedOutboundIPs represents the desired managed outbound IPs for the cluster public load balancer. */
 export interface ManagedOutboundIPs {
@@ -294,7 +294,7 @@ export const LoadBalancerProfile = /*@__PURE__*/ S.suspend(() =>
 
 /** PreconfiguredNSG represents whether customers want to use their own NSG attached to the subnets */
 export type PreconfiguredNSG = "Disabled" | "Enabled";
-export const PreconfiguredNSG = /*@__PURE__*/ S.String;
+export const PreconfiguredNSG = S.String;
 
 /** NetworkProfile represents a network profile. */
 export interface NetworkProfile {
@@ -321,7 +321,7 @@ export const NetworkProfile = /*@__PURE__*/ S.suspend(() =>
 
 /** EncryptionAtHost represents encryption at host state */
 export type EncryptionAtHost = "Disabled" | "Enabled";
-export const EncryptionAtHost = /*@__PURE__*/ S.String;
+export const EncryptionAtHost = S.String;
 
 /** MasterProfile represents a master profile. */
 export interface MasterProfile {
@@ -389,7 +389,7 @@ export const OpenShiftClusterPropertiesWorkerProfilesStatusList =
 
 /** Visibility represents visibility. */
 export type Visibility = "Private" | "Public";
-export const Visibility = /*@__PURE__*/ S.String;
+export const Visibility = S.String;
 
 /** APIServerProfile represents an API server profile. */
 export interface APIServerProfile {
@@ -488,7 +488,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {

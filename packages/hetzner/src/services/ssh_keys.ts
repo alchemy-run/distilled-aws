@@ -172,7 +172,7 @@ export type ListSshKeysRequestSortItem =
   | "name"
   | "name:asc"
   | "name:desc";
-export const ListSshKeysRequestSortItem = /*@__PURE__*/ S.String;
+export const ListSshKeysRequestSortItem = S.String;
 
 export type ListSshKeysRequestSortList = Array<
   ListSshKeysRequestSortItem | (string & {})

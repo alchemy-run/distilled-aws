@@ -237,7 +237,7 @@ export const EnvironmentEnvGroupIdsList = /*@__PURE__*/ S.Array(
 
 /** Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments. */
 export type ProtectedStatus = "unprotected" | "protected";
-export const ProtectedStatus = /*@__PURE__*/ S.String;
+export const ProtectedStatus = S.String;
 
 export interface Environment {
   id: string;
@@ -267,7 +267,7 @@ export const Environment = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Environment" }) as any as S.Schema<Environment>;
 
 export type RouteType = "redirect" | "rewrite";
-export const RouteType = /*@__PURE__*/ S.String;
+export const RouteType = S.String;
 
 export interface AddRouteRequest {
   /** The ID of the service */
@@ -475,7 +475,7 @@ export type DeployStatus =
   | "canceled"
   | "pre_deploy_in_progress"
   | "pre_deploy_failed";
-export const DeployStatus = /*@__PURE__*/ S.String;
+export const DeployStatus = S.String;
 
 export type DeployTrigger =
   | "api"
@@ -488,7 +488,7 @@ export type DeployTrigger =
   | "rollback"
   | "service_resumed"
   | "service_updated";
-export const DeployTrigger = /*@__PURE__*/ S.String;
+export const DeployTrigger = S.String;
 
 export interface Deploy {
   id: string;
@@ -543,7 +543,7 @@ export type Items2 =
   | "succeeded"
   | "failed"
   | "canceled";
-export const Items2 = /*@__PURE__*/ S.String;
+export const Items2 = S.String;
 
 export interface Schema7 {
   id: string;
@@ -610,10 +610,10 @@ export const CreateCustomDomainRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateCustomDomainRequest>;
 
 export type CustomDomainDomainType = "apex" | "subdomain";
-export const CustomDomainDomainType = /*@__PURE__*/ S.String;
+export const CustomDomainDomainType = S.String;
 
 export type CustomDomainVerificationStatus = "verified" | "unverified";
-export const CustomDomainVerificationStatus = /*@__PURE__*/ S.String;
+export const CustomDomainVerificationStatus = S.String;
 
 export interface CustomDomainServer {
   id?: string;
@@ -665,7 +665,7 @@ export const CreateCustomDomainResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Defaults to "oregon" */
 export type Region = "frankfurt" | "oregon" | "ohio" | "singapore" | "virginia";
-export const Region = /*@__PURE__*/ S.String;
+export const Region = S.String;
 
 /** Environments to scope the dedicated IP set to. If omitted or empty, it applies to all services in the workspace within its region. */
 export type CreateDedicatedIpRequestEnvironmentIdsList = Array<string>;
@@ -717,7 +717,7 @@ export type DedicatedIPStatus =
   | "FAILED"
   | "DELETING"
   | "DELETED";
-export const DedicatedIPStatus = /*@__PURE__*/ S.String;
+export const DedicatedIPStatus = S.String;
 
 export interface DedicatedIP {
   /** Unique identifier for this dedicated IP set. */
@@ -756,11 +756,11 @@ export const DedicatedIP = /*@__PURE__*/ S.suspend(() =>
 
 /** If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build. */
 export type CreateDeployRequestClearCache = "clear" | "do_not_clear";
-export const CreateDeployRequestClearCache = /*@__PURE__*/ S.String;
+export const CreateDeployRequestClearCache = S.String;
 
 /** Controls deployment behavior when triggering a deploy. - `deploy_only`: Deploy the last successful build without rebuilding (minimizes downtime) - `build_and_deploy`: Build new code and deploy it (default behavior when not specified) **Note:** `deploy_only` cannot be combined with `commitId`, `imageUrl` or `clearCache` parameters, as those are build related fields. */
 export type DeployMode = "deploy_only" | "build_and_deploy";
-export const DeployMode = /*@__PURE__*/ S.String;
+export const DeployMode = S.String;
 
 export interface CreateDeployRequest {
   /** The ID of the service */
@@ -816,8 +816,7 @@ export const SchemaItemCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SchemaItemCase1>;
 
 export type SchemaItem = SchemaItemCase0 | SchemaItemCase1;
-export const SchemaItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SchemaItem>;
+export const SchemaItem = S.Unknown as any as S.Schema<SchemaItem>;
 
 export type Schema6 = Array<SchemaItem>;
 export const Schema6 = /*@__PURE__*/ S.Array(
@@ -867,7 +866,7 @@ export const CreateEnvGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateEnvGroupRequest>;
 
 export type ServiceTypeShort = "static" | "web" | "pserv" | "worker" | "cron";
-export const ServiceTypeShort = /*@__PURE__*/ S.String;
+export const ServiceTypeShort = S.String;
 
 export interface EnvGroupLink {
   id: string;
@@ -975,7 +974,7 @@ export type KeyValuePlan =
   | "10g"
   | "20g"
   | "40g";
-export const KeyValuePlan = /*@__PURE__*/ S.String;
+export const KeyValuePlan = S.String;
 
 /** The eviction policy for the Key Value instance */
 export type MaxmemoryPolicy =
@@ -987,11 +986,11 @@ export type MaxmemoryPolicy =
   | "volatile_lru"
   | "volatile_random"
   | "volatile_ttl";
-export const MaxmemoryPolicy = /*@__PURE__*/ S.String;
+export const MaxmemoryPolicy = S.String;
 
 /** The persistence mode for the Key Value instance. The default for paid instances is journal_snapshot (both journaling and snapshots). Only turn off persistence if you're using this Key Value instance as a cache and are okay with losing data. Free instances do not have persistence. */
 export type PersistenceMode = "journal_snapshot" | "snapshot" | "off";
-export const PersistenceMode = /*@__PURE__*/ S.String;
+export const PersistenceMode = S.String;
 
 export type CreateKeyValueRequestIpAllowListList =
   Array<CidrBlockAndDescription>;
@@ -1038,7 +1037,7 @@ export type DatabaseStatus =
   | "recovery_in_progress"
   | "unknown"
   | "updating_instance";
-export const DatabaseStatus = /*@__PURE__*/ S.String;
+export const DatabaseStatus = S.String;
 
 export type OwnerIpAllowListList = Array<CidrBlockAndDescription>;
 export const OwnerIpAllowListList = /*@__PURE__*/ S.Array(
@@ -1046,7 +1045,7 @@ export const OwnerIpAllowListList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<OwnerIpAllowListList>;
 
 export type OwnerType = "user" | "team";
-export const OwnerType = /*@__PURE__*/ S.String;
+export const OwnerType = S.String;
 
 export interface Owner {
   id: string;
@@ -1095,7 +1094,7 @@ export type Items4 =
   | "cancelled"
   | "succeeded"
   | "failed";
-export const Items4 = /*@__PURE__*/ S.String;
+export const Items4 = S.String;
 
 export interface Maintenance {
   id: string;
@@ -1208,7 +1207,7 @@ export type CreatePostgresRequestPlan =
   | "96c-768g"
   | "128c-512g"
   | "128c-1024g";
-export const CreatePostgresRequestPlan = /*@__PURE__*/ S.String;
+export const CreatePostgresRequestPlan = S.String;
 
 export type CreatePostgresRequestIpAllowListList =
   Array<CidrBlockAndDescription>;
@@ -1251,7 +1250,7 @@ export type PostgresVersion =
   | "16"
   | "17"
   | "18";
-export const PostgresVersion = /*@__PURE__*/ S.String;
+export const PostgresVersion = S.String;
 
 export interface CreatePostgresRequest {
   databaseName?: string;
@@ -1359,7 +1358,7 @@ export type Plan2 =
   | "96c-768g"
   | "128c-512g"
   | "128c-1024g";
-export const Plan2 = /*@__PURE__*/ S.String;
+export const Plan2 = S.String;
 
 export interface ReadReplica {
   /** The replica instance identifier. */
@@ -1382,10 +1381,10 @@ export const ReadReplicas = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ReadReplicas>;
 
 export type DatabaseRole = "primary" | "replica";
-export const DatabaseRole = /*@__PURE__*/ S.String;
+export const DatabaseRole = S.String;
 
 export type PostgresDetailSuspended = "suspended" | "not_suspended";
-export const PostgresDetailSuspended = /*@__PURE__*/ S.String;
+export const PostgresDetailSuspended = S.String;
 
 export type SuspenderType =
   | "admin"
@@ -1395,7 +1394,7 @@ export type SuspenderType =
   | "stuck_crashlooping"
   | "hipaa_enablement"
   | "unknown";
-export const SuspenderType = /*@__PURE__*/ S.String;
+export const SuspenderType = S.String;
 
 export type PostgresDetailSuspendersList = Array<SuspenderType>;
 export const PostgresDetailSuspendersList = /*@__PURE__*/ S.Array(
@@ -1595,7 +1594,7 @@ export type RegistryCredentialRegistry =
   | "DOCKER"
   | "GOOGLE_ARTIFACT"
   | "AWS_ECR";
-export const RegistryCredentialRegistry = /*@__PURE__*/ S.String;
+export const RegistryCredentialRegistry = S.String;
 
 export interface CreateRegistryCredentialRequest {
   registry: RegistryCredentialRegistry | (string & {});
@@ -1645,10 +1644,10 @@ export type ServiceType =
   | "private_service"
   | "background_worker"
   | "cron_job";
-export const ServiceType = /*@__PURE__*/ S.String;
+export const ServiceType = S.String;
 
 export type AutoDeploy = "yes" | "no";
-export const AutoDeploy = /*@__PURE__*/ S.String;
+export const AutoDeploy = S.String;
 
 export interface Image {
   /** The ID of the owner for this image. This should match the owner of the service as well as the owner of any specified registry credential. */
@@ -1715,11 +1714,11 @@ export const StaticSiteDetailsPOSTHeadersList = /*@__PURE__*/ S.Array(
 
 /** This field has been deprecated. previews.generation should be used in its place. */
 export type PullRequestPreviewsEnabled = "yes" | "no";
-export const PullRequestPreviewsEnabled = /*@__PURE__*/ S.String;
+export const PullRequestPreviewsEnabled = S.String;
 
 /** Defaults to "off" */
 export type PreviewsGeneration = "off" | "manual" | "automatic";
-export const PreviewsGeneration = /*@__PURE__*/ S.String;
+export const PreviewsGeneration = S.String;
 
 export interface Previews {
   /** Defaults to "off" */
@@ -1754,7 +1753,7 @@ export const StaticSiteDetailsPOSTRoutesList = /*@__PURE__*/ S.Array(
 
 /** Controls whether render.com subdomains are available for the service */
 export type RenderSubdomainPolicy = "enabled" | "disabled";
-export const RenderSubdomainPolicy = /*@__PURE__*/ S.String;
+export const RenderSubdomainPolicy = S.String;
 
 export type StaticSiteDetailsPOSTIpAllowListList =
   Array<CidrBlockAndDescription>;
@@ -1812,7 +1811,7 @@ export type ServiceEnv =
   | "ruby"
   | "rust"
   | "image";
-export const ServiceEnv = /*@__PURE__*/ S.String;
+export const ServiceEnv = S.String;
 
 /** Runtime */
 export type ServiceRuntime =
@@ -1824,7 +1823,7 @@ export type ServiceRuntime =
   | "ruby"
   | "rust"
   | "image";
-export const ServiceRuntime = /*@__PURE__*/ S.String;
+export const ServiceRuntime = S.String;
 
 export interface DockerDetailsPOST {
   dockerCommand?: string;
@@ -1862,7 +1861,7 @@ export type EnvSpecificDetailsPOST =
   | DockerDetailsPOST
   | NativeEnvironmentDetailsPOST;
 export const EnvSpecificDetailsPOST =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnvSpecificDetailsPOST>;
+  S.Unknown as any as S.Schema<EnvSpecificDetailsPOST>;
 
 export interface MaintenanceMode {
   enabled: boolean;
@@ -1909,7 +1908,7 @@ export type Plan =
   | "12c-24g"
   | "12c-48g"
   | "12c-96g";
-export const Plan = /*@__PURE__*/ S.String;
+export const Plan = S.String;
 
 export type WebServiceDetailsPOSTIpAllowListList =
   Array<CidrBlockAndDescription>;
@@ -1982,7 +1981,7 @@ export type PaidPlan =
   | "12c-24g"
   | "12c-48g"
   | "12c-96g";
-export const PaidPlan = /*@__PURE__*/ S.String;
+export const PaidPlan = S.String;
 
 export interface PrivateServiceDetailsPOST {
   autoscaling?: Schema5;
@@ -2055,7 +2054,7 @@ export const NativeEnvironmentDetails = /*@__PURE__*/ S.suspend(() =>
 
 export type EnvSpecificDetails = DockerDetails | NativeEnvironmentDetails;
 export const EnvSpecificDetails =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnvSpecificDetails>;
+  S.Unknown as any as S.Schema<EnvSpecificDetails>;
 
 export interface CronJobDetailsPOST {
   env?: ServiceEnv | (string & {});
@@ -2085,7 +2084,7 @@ export type CreateServiceRequestServiceDetails =
   | PrivateServiceDetailsPOST
   | CronJobDetailsPOST;
 export const CreateServiceRequestServiceDetails =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateServiceRequestServiceDetails>;
+  S.Unknown as any as S.Schema<CreateServiceRequestServiceDetails>;
 
 export interface CreateServiceRequest {
   type: ServiceType | (string & {});
@@ -2128,7 +2127,7 @@ export const CreateServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateServiceRequest>;
 
 export type NotifySetting = "default" | "notify" | "ignore";
-export const NotifySetting = /*@__PURE__*/ S.String;
+export const NotifySetting = S.String;
 
 export interface RegistryCredentialSummary {
   id: string;
@@ -2144,7 +2143,7 @@ export const RegistryCredentialSummary = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RegistryCredentialSummary>;
 
 export type ServiceSuspended = "suspended" | "not_suspended";
-export const ServiceSuspended = /*@__PURE__*/ S.String;
+export const ServiceSuspended = S.String;
 
 export type ServiceSuspendersList = Array<SuspenderType>;
 export const ServiceSuspendersList = /*@__PURE__*/ S.Array(
@@ -2160,7 +2159,7 @@ export type Resource = RegistryCredentialSummary;
 export const Resource = RegistryCredentialSummary;
 
 export type BuildPlan = "starter" | "performance";
-export const BuildPlan = /*@__PURE__*/ S.String;
+export const BuildPlan = S.String;
 
 export interface StaticSiteDetails {
   buildCommand: string;
@@ -2193,7 +2192,7 @@ export type CacheProfile =
   | "no-cache"
   | "origin-controlled"
   | "origin-controlled-all";
-export const CacheProfile = /*@__PURE__*/ S.String;
+export const CacheProfile = S.String;
 
 export interface Cache {
   profile: CacheProfile | (string & {});
@@ -2227,7 +2226,7 @@ export const WebServiceDetailsIpAllowListList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<WebServiceDetailsIpAllowListList>;
 
 export type ServerPortProtocol = "TCP" | "UDP";
-export const ServerPortProtocol = /*@__PURE__*/ S.String;
+export const ServerPortProtocol = S.String;
 
 export interface ServerPort {
   port: number;
@@ -2415,7 +2414,7 @@ export type ServiceServiceDetails =
   | BackgroundWorkerDetails
   | CronJobDetails;
 export const ServiceServiceDetails =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ServiceServiceDetails>;
+  S.Unknown as any as S.Schema<ServiceServiceDetails>;
 
 export interface Service {
   id: string;
@@ -2498,7 +2497,7 @@ export type CreateTaskRequestInput =
   | CreateTaskRequestInputCase0List
   | CreateTaskRequestInputCase1Map;
 export const CreateTaskRequestInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateTaskRequestInput>;
+  S.Unknown as any as S.Schema<CreateTaskRequestInput>;
 
 export interface CreateTaskRequest {
   /** A task slug in the format workflow-slug/task-name. An optional version can be appended (workflow-slug/task-name:version). If no version is provided, the latest version is used. Cannot be blank. */
@@ -2523,7 +2522,7 @@ export type Status2 =
   | "failed"
   | "canceled"
   | "paused";
-export const Status2 = /*@__PURE__*/ S.String;
+export const Status2 = S.String;
 
 export interface CreateTaskResponseAttemptsItem {
   /** The ID of the task run this attempt belongs to. */
@@ -2652,7 +2651,7 @@ export type Type =
   | "key_value_available"
   | "key_value_config_restart"
   | "key_value_unhealthy";
-export const Type = /*@__PURE__*/ S.String;
+export const Type = S.String;
 
 /** The event types that will trigger the webhook. An empty list means all event types will trigger the webhook. */
 export type CreateWebhookRequestEventFilterList = Array<Type | (string & {})>;
@@ -2710,7 +2709,7 @@ export const CreateWebhookResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The runtime environment for the workflow (e.g., node, python, etc.). */
 export type Runtime = "elixir" | "go" | "node" | "python" | "ruby";
-export const Runtime = /*@__PURE__*/ S.String;
+export const Runtime = S.String;
 
 export interface CreateWorkflowRequestBuildConfig {
   /** The branch to use for the build, if applicable. */
@@ -2742,14 +2741,14 @@ export type CreateWorkflowRequestRegion =
   | "ohio"
   | "singapore"
   | "virginia";
-export const CreateWorkflowRequestRegion = /*@__PURE__*/ S.String;
+export const CreateWorkflowRequestRegion = S.String;
 
 /** Controls autodeploy behavior. "commit" deploys when a commit is pushed to the branch. "checksPass" waits for CI checks to pass before deploying. "off" disables autodeploy. */
 export type CreateWorkflowRequestAutoDeployTrigger =
   | "commit"
   | "off"
   | "checksPass";
-export const CreateWorkflowRequestAutoDeployTrigger = /*@__PURE__*/ S.String;
+export const CreateWorkflowRequestAutoDeployTrigger = S.String;
 
 export interface CreateWorkflowRequest {
   name: string;
@@ -2805,11 +2804,11 @@ export type Region2 =
   | "ohio"
   | "singapore"
   | "virginia";
-export const Region2 = /*@__PURE__*/ S.String;
+export const Region2 = S.String;
 
 /** Controls autodeploy behavior. "commit" deploys when a commit is pushed to the branch. "checksPass" waits for CI checks to pass before deploying. "off" disables autodeploy. */
 export type AutoDeployTrigger = "commit" | "off" | "checksPass";
-export const AutoDeployTrigger = /*@__PURE__*/ S.String;
+export const AutoDeployTrigger = S.String;
 
 export interface CreateWorkflowResponse {
   id: string;
@@ -3689,8 +3688,7 @@ export type GetBandwidthSourcesResponseDataItemLabelsTrafficSource =
   | "websocket"
   | "nat"
   | "privatelink";
-export const GetBandwidthSourcesResponseDataItemLabelsTrafficSource =
-  /*@__PURE__*/ S.String;
+export const GetBandwidthSourcesResponseDataItemLabelsTrafficSource = S.String;
 
 export interface GetBandwidthSourcesResponseDataItemLabels {
   resource?: string;
@@ -3779,7 +3777,7 @@ export type GetBlueprintResponseStatus =
   | "in_sync"
   | "syncing"
   | "error";
-export const GetBlueprintResponseStatus = /*@__PURE__*/ S.String;
+export const GetBlueprintResponseStatus = S.String;
 
 /** type of the resource (ex. web_service or postgres) */
 export type GetBlueprintResponseResourcesItemType =
@@ -3793,7 +3791,7 @@ export type GetBlueprintResponseResourcesItemType =
   | "postgres"
   | "environment_group"
   | "artifact_source";
-export const GetBlueprintResponseResourcesItemType = /*@__PURE__*/ S.String;
+export const GetBlueprintResponseResourcesItemType = S.String;
 
 export interface GetBlueprintResponseResourcesItem {
   id: string;
@@ -3845,7 +3843,7 @@ export const GetBlueprintResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBlueprintResponse>;
 
 export type GetCpuRequestAggregationMethod = "AVG" | "MAX" | "MIN";
-export const GetCpuRequestAggregationMethod = /*@__PURE__*/ S.String;
+export const GetCpuRequestAggregationMethod = S.String;
 
 export interface GetCpuRequest {
   /** Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`. */
@@ -4609,7 +4607,7 @@ export type GetEventResponseType =
   | "key_value_available"
   | "key_value_config_restart"
   | "key_value_unhealthy";
-export const GetEventResponseType = /*@__PURE__*/ S.String;
+export const GetEventResponseType = S.String;
 
 export interface GetEventResponseDetailsCase0Case0 {
   artifactId: string;
@@ -4703,8 +4701,7 @@ export type GetEventResponseDetailsCase0Case6BuildStatus =
   | "succeeded"
   | "failed"
   | "canceled";
-export const GetEventResponseDetailsCase0Case6BuildStatus =
-  /*@__PURE__*/ S.String;
+export const GetEventResponseDetailsCase0Case6BuildStatus = S.String;
 
 export interface NewBuild {
   id: string;
@@ -4874,7 +4871,7 @@ export type GetEventResponseDetailsCase0Case9Status =
   | "pending"
   | "successful"
   | "unsuccessful";
-export const GetEventResponseDetailsCase0Case9Status = /*@__PURE__*/ S.String;
+export const GetEventResponseDetailsCase0Case9Status = S.String;
 
 export type GetEventResponseDetailsCase0Case9ReasonOomKilled = ReasonOomKilled;
 export const GetEventResponseDetailsCase0Case9ReasonOomKilled = ReasonOomKilled;
@@ -4922,7 +4919,7 @@ export type Reason2 = GetEventResponseDetailsCase0Case6Reason;
 export const Reason2 = GetEventResponseDetailsCase0Case6Reason;
 
 export type BuildStatus = "succeeded" | "failed" | "canceled";
-export const BuildStatus = /*@__PURE__*/ S.String;
+export const BuildStatus = S.String;
 
 export interface GetEventResponseDetailsCase0Case11 {
   deployId: string;
@@ -5283,7 +5280,7 @@ export const GetEventResponseDetailsCase0Case43 =
 
 /** The auto-deploy trigger value after it was re-enabled */
 export type NewTrigger = "commit" | "off" | "checksPass";
-export const NewTrigger = /*@__PURE__*/ S.String;
+export const NewTrigger = S.String;
 
 export interface GetEventResponseDetailsCase0Case44 {
   /** Why auto-deploy was disabled (manual_deploy, rollback, or setting_change) */
@@ -5305,8 +5302,7 @@ export type GetEventResponseDetailsCase0Case45NewTrigger =
   | "commit"
   | "off"
   | "checksPass";
-export const GetEventResponseDetailsCase0Case45NewTrigger =
-  /*@__PURE__*/ S.String;
+export const GetEventResponseDetailsCase0Case45NewTrigger = S.String;
 
 export interface GetEventResponseDetailsCase0Case45 {
   /** The auto-deploy trigger value after it was re-enabled */
@@ -5363,7 +5359,7 @@ export type GetEventResponseDetailsCase0 =
   | GetEventResponseDetailsCase0Case44
   | GetEventResponseDetailsCase0Case45;
 export const GetEventResponseDetailsCase0 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEventResponseDetailsCase0>;
+  S.Unknown as any as S.Schema<GetEventResponseDetailsCase0>;
 
 export interface GetEventResponseDetailsCase1Case4 {
   leaderId?: string;
@@ -5508,7 +5504,7 @@ export type GetEventResponseDetailsCase1 =
   | GetEventResponseDetailsCase1Case14
   | GetEventResponseDetailsCase1Case13;
 export const GetEventResponseDetailsCase1 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEventResponseDetailsCase1>;
+  S.Unknown as any as S.Schema<GetEventResponseDetailsCase1>;
 
 export interface GetEventResponseDetailsCase2Case1 {
   reason: string;
@@ -5527,14 +5523,14 @@ export type GetEventResponseDetailsCase2 =
   | unknown
   | GetEventResponseDetailsCase2Case1;
 export const GetEventResponseDetailsCase2 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEventResponseDetailsCase2>;
+  S.Unknown as any as S.Schema<GetEventResponseDetailsCase2>;
 
 export type GetEventResponseDetails =
   | GetEventResponseDetailsCase0
   | GetEventResponseDetailsCase1
   | GetEventResponseDetailsCase2;
 export const GetEventResponseDetails =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEventResponseDetails>;
+  S.Unknown as any as S.Schema<GetEventResponseDetails>;
 
 export interface GetEventResponse {
   id: string;
@@ -5647,7 +5643,7 @@ export const GetHttpLatencyResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetHttpLatencyResponse>;
 
 export type GetHttpRequestsRequestAggregateBy = "statusCode" | "host";
-export const GetHttpRequestsRequestAggregateBy = /*@__PURE__*/ S.String;
+export const GetHttpRequestsRequestAggregateBy = S.String;
 
 export interface GetHttpRequestsRequest {
   /** Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`. */
@@ -6209,7 +6205,7 @@ export const GetOwnerLogStreamRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether to send logs or drop them. */
 export type Preview = "send" | "drop";
-export const Preview = /*@__PURE__*/ S.String;
+export const Preview = S.String;
 
 export interface GetOwnerLogStreamResponse {
   /** The ID of the owner. */
@@ -6243,7 +6239,7 @@ export const GetOwnerMembersRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOwnerMembersRequest>;
 
 export type TeamMemberStatus = "active" | "inactive";
-export const TeamMemberStatus = /*@__PURE__*/ S.String;
+export const TeamMemberStatus = S.String;
 
 /** The member's workspace role. Values are always returned in uppercase. */
 export type TeamMemberRole =
@@ -6252,7 +6248,7 @@ export type TeamMemberRole =
   | "WORKSPACE_CONTRIBUTOR"
   | "WORKSPACE_BILLING"
   | "WORKSPACE_VIEWER";
-export const TeamMemberRole = /*@__PURE__*/ S.String;
+export const TeamMemberRole = S.String;
 
 export interface TeamMember {
   userId: string;
@@ -6310,7 +6306,7 @@ export type Provider =
   | "GROUNDCOVER"
   | "LOGFIRE"
   | "CUSTOM";
-export const Provider = /*@__PURE__*/ S.String;
+export const Provider = S.String;
 
 export interface Schema10 {
   /** The ID of the owner */
@@ -6346,7 +6342,7 @@ export const GetOwnerNotificationSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOwnerNotificationSettingsRequest>;
 
 export type NotificationsToSend = "none" | "failure" | "all";
-export const NotificationsToSend = /*@__PURE__*/ S.String;
+export const NotificationsToSend = S.String;
 
 export interface GetOwnerNotificationSettingsResponse {
   ownerId: string;
@@ -6439,8 +6435,7 @@ export type GetPostgresRecoveryInfoResponseRecoveryStatus =
   | "AVAILABLE"
   | "BACKUP_NOT_READY"
   | "NOT_AVAILABLE";
-export const GetPostgresRecoveryInfoResponseRecoveryStatus =
-  /*@__PURE__*/ S.String;
+export const GetPostgresRecoveryInfoResponseRecoveryStatus = S.String;
 
 export interface GetPostgresRecoveryInfoResponse {
   /** Availability of point-in-time recovery. */
@@ -6588,7 +6583,7 @@ export const GetResourceLogStreamRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether to send logs or drop them. */
 export type Items3 = "send" | "drop";
-export const Items3 = /*@__PURE__*/ S.String;
+export const Items3 = S.String;
 
 export interface GetResourceLogStreamResponse {
   /** The ID of the resource. */
@@ -6660,10 +6655,10 @@ export const GetServiceNotificationOverridesRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetServiceNotificationOverridesRequest>;
 
 export type PreviewNotificationsEnabled = "default" | "false" | "true";
-export const PreviewNotificationsEnabled = /*@__PURE__*/ S.String;
+export const PreviewNotificationsEnabled = S.String;
 
 export type NotificationsToSend2 = "default" | "none" | "failure" | "all";
-export const NotificationsToSend2 = /*@__PURE__*/ S.String;
+export const NotificationsToSend2 = S.String;
 
 export interface GetServiceNotificationOverridesResponse {
   serviceId: string;
@@ -6701,7 +6696,7 @@ export const GetServiceOutboundIpsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** `dedicated` if a dedicated IP set applies to the resource, `shared` if its traffic originates from the shared Render IPs for its region. */
 export type OutboundIpsType = "shared" | "dedicated";
-export const OutboundIpsType = /*@__PURE__*/ S.String;
+export const OutboundIpsType = S.String;
 
 /** The IP addresses the resource's outbound traffic originates from. */
 export type OutboundIpsIpsList = Array<string>;
@@ -6774,7 +6769,7 @@ export type GetTaskRunResponseStatus =
   | "failed"
   | "canceled"
   | "paused";
-export const GetTaskRunResponseStatus = /*@__PURE__*/ S.String;
+export const GetTaskRunResponseStatus = S.String;
 
 export type GetTaskRunResponseResultsList = Array<unknown>;
 export const GetTaskRunResponseResultsList = /*@__PURE__*/ S.Array(
@@ -6796,7 +6791,7 @@ export const InputCase1Map = /*@__PURE__*/ S.Record(
 
 /** Input data for a task. Can be either an array (for positional arguments) or an object (for named parameters). */
 export type Input = InputCase0List | InputCase1Map;
-export const Input = /*@__PURE__*/ S.Unknown as any as S.Schema<Input>;
+export const Input = S.Unknown as any as S.Schema<Input>;
 
 export type Results = Array<unknown>;
 export const Results = /*@__PURE__*/ S.Array(
@@ -6875,10 +6870,10 @@ export const GetTaskRunResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetTaskRunResponse>;
 
 export type GetTaskRunsCompletedRequestState = "succeeded" | "failed";
-export const GetTaskRunsCompletedRequestState = /*@__PURE__*/ S.String;
+export const GetTaskRunsCompletedRequestState = S.String;
 
 export type GetTaskRunsCompletedRequestAggregateBy = "state";
-export const GetTaskRunsCompletedRequestAggregateBy = /*@__PURE__*/ S.String;
+export const GetTaskRunsCompletedRequestAggregateBy = S.String;
 
 export interface GetTaskRunsCompletedRequest {
   /** Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`. */
@@ -7169,7 +7164,7 @@ export type GetWorkflowVersionResponseStatus =
   | "build_failed"
   | "registration_failed"
   | "ready";
-export const GetWorkflowVersionResponseStatus = /*@__PURE__*/ S.String;
+export const GetWorkflowVersionResponseStatus = S.String;
 
 export interface GetWorkflowVersionResponse {
   id: string;
@@ -7284,8 +7279,7 @@ export const ListApplicationFilterValuesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListApplicationFilterValuesRequest>;
 
 export type ListApplicationFilterValuesResponseBodyItemFilter = "instance";
-export const ListApplicationFilterValuesResponseBodyItemFilter =
-  /*@__PURE__*/ S.String;
+export const ListApplicationFilterValuesResponseBodyItemFilter = S.String;
 
 export type ListApplicationFilterValuesResponseBodyItemValuesList =
   Array<string>;
@@ -7348,7 +7342,7 @@ export const ListBlueprintsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListBlueprintsRequest>;
 
 export type Status = "created" | "paused" | "in_sync" | "syncing" | "error";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 export interface Schema {
   id: string;
@@ -7432,7 +7426,7 @@ export type SyncWithCursorSyncState =
   | "running"
   | "error"
   | "success";
-export const SyncWithCursorSyncState = /*@__PURE__*/ S.String;
+export const SyncWithCursorSyncState = S.String;
 
 export interface SyncWithCursorSync {
   id: string;
@@ -7483,13 +7477,12 @@ export const ListCustomDomainsRequestNameList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListCustomDomainsRequestNameList>;
 
 export type ListCustomDomainsRequestDomainType = "apex" | "subdomain";
-export const ListCustomDomainsRequestDomainType = /*@__PURE__*/ S.String;
+export const ListCustomDomainsRequestDomainType = S.String;
 
 export type ListCustomDomainsRequestVerificationStatus =
   | "verified"
   | "unverified";
-export const ListCustomDomainsRequestVerificationStatus =
-  /*@__PURE__*/ S.String;
+export const ListCustomDomainsRequestVerificationStatus = S.String;
 
 export interface ListCustomDomainsRequest {
   /** The ID of the service */
@@ -7963,7 +7956,7 @@ export type ListEventsRequestType =
   | "zero_downtime_redeploy_started"
   | "auto_deploy_disabled"
   | "auto_deploy_enabled";
-export const ListEventsRequestType = /*@__PURE__*/ S.String;
+export const ListEventsRequestType = S.String;
 
 export interface ListEventsRequest {
   /** The ID of the service */
@@ -8038,7 +8031,7 @@ export type _0 =
   | "zero_downtime_redeploy_started"
   | "auto_deploy_disabled"
   | "auto_deploy_enabled";
-export const _0 = /*@__PURE__*/ S.String;
+export const _0 = S.String;
 
 export type _0Case0 = GetEventResponseDetailsCase0Case0;
 export const _0Case0 = GetEventResponseDetailsCase0Case0;
@@ -8059,7 +8052,7 @@ export type _0Case5 = GetEventResponseDetailsCase0Case5;
 export const _0Case5 = GetEventResponseDetailsCase0Case5;
 
 export type _0Case6BuildStatus = "succeeded" | "failed" | "canceled";
-export const _0Case6BuildStatus = /*@__PURE__*/ S.String;
+export const _0Case6BuildStatus = S.String;
 
 export type _0Case6ReasonNewBuild = NewBuild;
 export const _0Case6ReasonNewBuild = NewBuild;
@@ -8096,7 +8089,7 @@ export type _0Case9Status =
   | "pending"
   | "successful"
   | "unsuccessful";
-export const _0Case9Status = /*@__PURE__*/ S.String;
+export const _0Case9Status = S.String;
 
 export type _0Case9ReasonOomKilled = ReasonOomKilled;
 export const _0Case9ReasonOomKilled = ReasonOomKilled;
@@ -8219,7 +8212,7 @@ export const _0Case44 = GetEventResponseDetailsCase0Case44;
 
 /** The auto-deploy trigger value after it was re-enabled */
 export type _0Case45NewTrigger = "commit" | "off" | "checksPass";
-export const _0Case45NewTrigger = /*@__PURE__*/ S.String;
+export const _0Case45NewTrigger = S.String;
 
 export interface _0Case45 {
   /** The auto-deploy trigger value after it was re-enabled */
@@ -8273,7 +8266,7 @@ export type _02 =
   | GetEventResponseDetailsCase0Case41
   | GetEventResponseDetailsCase0Case44
   | _0Case45;
-export const _02 = /*@__PURE__*/ S.Unknown as any as S.Schema<_02>;
+export const _02 = S.Unknown as any as S.Schema<_02>;
 
 export interface ServiceEventWithCursorEvent {
   id: string;
@@ -8418,8 +8411,7 @@ export const ListHttpFilterValuesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListHttpFilterValuesRequest>;
 
 export type ListHttpFilterValuesResponseBodyItemFilter = "host" | "statusCode";
-export const ListHttpFilterValuesResponseBodyItemFilter =
-  /*@__PURE__*/ S.String;
+export const ListHttpFilterValuesResponseBodyItemFilter = S.String;
 
 export type ListHttpFilterValuesResponseBodyItemValuesList = Array<string>;
 export const ListHttpFilterValuesResponseBodyItemValuesList =
@@ -8504,7 +8496,7 @@ export type ListJobRequestStatusItem =
   | "succeeded"
   | "failed"
   | "canceled";
-export const ListJobRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListJobRequestStatusItem = S.String;
 
 export type ListJobRequestStatusList = Array<
   ListJobRequestStatusItem | (string & {})
@@ -8710,7 +8702,7 @@ export const ListKeyValueResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListKeyValueResponse>;
 
 export type ListLogsRequestDirection = "forward" | "backward";
-export const ListLogsRequestDirection = /*@__PURE__*/ S.String;
+export const ListLogsRequestDirection = S.String;
 
 export type ListLogsRequestResourceList = Array<string>;
 export const ListLogsRequestResourceList = /*@__PURE__*/ S.Array(
@@ -8849,7 +8841,7 @@ export type SchemaLabelsItemName =
   | "text"
   | "path"
   | "blocked";
-export const SchemaLabelsItemName = /*@__PURE__*/ S.String;
+export const SchemaLabelsItemName = S.String;
 
 /** A log label */
 export interface SchemaLabelsItem {
@@ -8923,10 +8915,10 @@ export type ListLogsValuesRequestLabel =
   | "method"
   | "level"
   | "type";
-export const ListLogsValuesRequestLabel = /*@__PURE__*/ S.String;
+export const ListLogsValuesRequestLabel = S.String;
 
 export type ListLogsValuesRequestDirection = "forward" | "backward";
-export const ListLogsValuesRequestDirection = /*@__PURE__*/ S.String;
+export const ListLogsValuesRequestDirection = S.String;
 
 export type ListLogsValuesRequestResourceList = Array<string>;
 export const ListLogsValuesRequestResourceList = /*@__PURE__*/ S.Array(
@@ -9080,7 +9072,7 @@ export type ListMaintenanceRequestStateItem =
   | "cancelled"
   | "succeeded"
   | "failed";
-export const ListMaintenanceRequestStateItem = /*@__PURE__*/ S.String;
+export const ListMaintenanceRequestStateItem = S.String;
 
 export type ListMaintenanceRequestStateList = Array<
   ListMaintenanceRequestStateItem | (string & {})
@@ -9226,7 +9218,7 @@ export const ListNotificationOverridesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListNotificationOverridesResponse>;
 
 export type ListOrganizationAuditLogsRequestDirection = "forward" | "backward";
-export const ListOrganizationAuditLogsRequestDirection = /*@__PURE__*/ S.String;
+export const ListOrganizationAuditLogsRequestDirection = S.String;
 
 export interface ListOrganizationAuditLogsRequest {
   /** The unique identifier of the organization */
@@ -9345,15 +9337,15 @@ export type AuditLogEvent =
   | "ViewEnvVarValuesEvent"
   | "GrantOAuthAccessEvent"
   | "RevokeOAuthAccessEvent";
-export const AuditLogEvent = /*@__PURE__*/ S.String;
+export const AuditLogEvent = S.String;
 
 /** The status of the event */
 export type AuditLogStatus = "success" | "error";
-export const AuditLogStatus = /*@__PURE__*/ S.String;
+export const AuditLogStatus = S.String;
 
 /** The type of actor that performed the action */
 export type AuditLogActorType = "user" | "rest_api" | "system";
-export const AuditLogActorType = /*@__PURE__*/ S.String;
+export const AuditLogActorType = S.String;
 
 export interface AuditLogActor {
   /** The type of actor that performed the action */
@@ -9430,7 +9422,7 @@ export const ListOrganizationAuditLogsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOrganizationAuditLogsResponse>;
 
 export type ListOwnerAuditLogsRequestDirection = "forward" | "backward";
-export const ListOwnerAuditLogsRequestDirection = /*@__PURE__*/ S.String;
+export const ListOwnerAuditLogsRequestDirection = S.String;
 
 export interface ListOwnerAuditLogsRequest {
   /** The ID of the workspace to return resources for */
@@ -9586,7 +9578,7 @@ export const ListPostgresRequestRegionList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListPostgresRequestRegionList>;
 
 export type ListPostgresRequestSuspendedItem = "suspended" | "not_suspended";
-export const ListPostgresRequestSuspendedItem = /*@__PURE__*/ S.String;
+export const ListPostgresRequestSuspendedItem = S.String;
 
 export type ListPostgresRequestSuspendedList = Array<
   ListPostgresRequestSuspendedItem | (string & {})
@@ -9658,7 +9650,7 @@ export const PostgresIpAllowListList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PostgresIpAllowListList>;
 
 export type PostgresSuspended = "suspended" | "not_suspended";
-export const PostgresSuspended = /*@__PURE__*/ S.String;
+export const PostgresSuspended = S.String;
 
 export type PostgresSuspendersList = Array<SuspenderType>;
 export const PostgresSuspendersList = /*@__PURE__*/ S.Array(
@@ -10267,7 +10259,7 @@ export const ListResourceLogStreamsRequestResourceIdList =
 
 /** Whether to send logs or drop them. */
 export type ListResourceLogStreamsRequestSettingItem = "send" | "drop";
-export const ListResourceLogStreamsRequestSettingItem = /*@__PURE__*/ S.String;
+export const ListResourceLogStreamsRequestSettingItem = S.String;
 
 export type ListResourceLogStreamsRequestSettingList = Array<
   ListResourceLogStreamsRequestSettingItem | (string & {})
@@ -10341,7 +10333,7 @@ export const ListResourceLogStreamsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListResourceLogStreamsResponse>;
 
 export type ListRoutesRequestTypeItem = "redirect" | "rewrite";
-export const ListRoutesRequestTypeItem = /*@__PURE__*/ S.String;
+export const ListRoutesRequestTypeItem = S.String;
 
 export type ListRoutesRequestTypeList = Array<
   ListRoutesRequestTypeItem | (string & {})
@@ -10491,7 +10483,7 @@ export const ListServicesRequestRegionList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListServicesRequestRegionList>;
 
 export type ListServicesRequestSuspendedItem = "suspended" | "not_suspended";
-export const ListServicesRequestSuspendedItem = /*@__PURE__*/ S.String;
+export const ListServicesRequestSuspendedItem = S.String;
 
 export type ListServicesRequestSuspendedList = Array<
   ListServicesRequestSuspendedItem | (string & {})
@@ -11081,7 +11073,7 @@ export type SchemaStatus =
   | "build_failed"
   | "registration_failed"
   | "ready";
-export const SchemaStatus = /*@__PURE__*/ S.String;
+export const SchemaStatus = S.String;
 
 export interface Schema14 {
   id: string;
@@ -11131,7 +11123,7 @@ export type PatchOwnerNotificationSettingsRequestNotificationsToSend =
   | "failure"
   | "all";
 export const PatchOwnerNotificationSettingsRequestNotificationsToSend =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PatchOwnerNotificationSettingsRequest {
   /** The ID of the workspace to return resources for */
@@ -11219,7 +11211,7 @@ export type PatchServiceNotificationOverridesRequestPreviewNotificationsEnabled 
   | "false"
   | "true";
 export const PatchServiceNotificationOverridesRequestPreviewNotificationsEnabled =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchServiceNotificationOverridesRequestNotificationsToSend =
   | "default"
@@ -11227,7 +11219,7 @@ export type PatchServiceNotificationOverridesRequestNotificationsToSend =
   | "failure"
   | "all";
 export const PatchServiceNotificationOverridesRequestNotificationsToSend =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PatchServiceNotificationOverridesRequest {
   /** The ID of the service */
@@ -11681,7 +11673,7 @@ export type CronJobRunStatus =
   | "successful"
   | "unsuccessful"
   | "canceled";
-export const CronJobRunStatus = /*@__PURE__*/ S.String;
+export const CronJobRunStatus = S.String;
 
 /** A run of a cron job */
 export interface CronJobRun {
@@ -11754,7 +11746,7 @@ export const StreamTaskRunsEventsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StreamTaskRunsEventsResponse>;
 
 export type SubscribeLogsRequestDirection = "forward" | "backward";
-export const SubscribeLogsRequestDirection = /*@__PURE__*/ S.String;
+export const SubscribeLogsRequestDirection = S.String;
 
 export type SubscribeLogsRequestResourceList = Array<string>;
 export const SubscribeLogsRequestResourceList = /*@__PURE__*/ S.Array(
@@ -12173,7 +12165,7 @@ export const EnvVarGenerateValue = /*@__PURE__*/ S.suspend(() =>
 
 export type AddUpdateEnvVarInput = EnvVarValue | EnvVarGenerateValue;
 export const AddUpdateEnvVarInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddUpdateEnvVarInput>;
+  S.Unknown as any as S.Schema<AddUpdateEnvVarInput>;
 
 export interface UpdateEnvGroupEnvVarRequest {
   /** Filter for resources that belong to an environment group */
@@ -12377,7 +12369,7 @@ export type UpdateEnvVarsForServiceRequestBodyItem =
   | SchemaItemCase0
   | SchemaItemCase1;
 export const UpdateEnvVarsForServiceRequestBodyItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateEnvVarsForServiceRequestBodyItem>;
+  S.Unknown as any as S.Schema<UpdateEnvVarsForServiceRequestBodyItem>;
 
 export type UpdateEnvVarsForServiceRequestBodyList =
   Array<UpdateEnvVarsForServiceRequestBodyItem>;
@@ -12504,7 +12496,7 @@ export const UpdateMaintenanceResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether to send logs or drop them. */
 export type UpdateOwnerLogStreamRequestPreview = "send" | "drop";
-export const UpdateOwnerLogStreamRequestPreview = /*@__PURE__*/ S.String;
+export const UpdateOwnerLogStreamRequestPreview = S.String;
 
 export interface UpdateOwnerLogStreamRequest {
   /** The ID of the workspace to update log stream information for */
@@ -12775,7 +12767,7 @@ export type EnvSpecificDetailsPATCH =
   | DockerDetailsPATCH
   | NativeEnvironmentDetailsPATCH;
 export const EnvSpecificDetailsPATCH =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnvSpecificDetailsPATCH>;
+  S.Unknown as any as S.Schema<EnvSpecificDetailsPATCH>;
 
 export type WebServiceDetailsPATCHIpAllowListList =
   Array<CidrBlockAndDescription>;
@@ -12866,7 +12858,7 @@ export type UpdateServiceRequestServiceDetails =
   | PrivateServiceDetailsPATCH
   | CronJobDetailsPATCH;
 export const UpdateServiceRequestServiceDetails =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateServiceRequestServiceDetails>;
+  S.Unknown as any as S.Schema<UpdateServiceRequestServiceDetails>;
 
 export interface UpdateServiceRequest {
   /** The ID of the service */
@@ -12923,7 +12915,7 @@ export type UpdateWorkflowRequestBuildConfigRuntime =
   | "node"
   | "python"
   | "ruby";
-export const UpdateWorkflowRequestBuildConfigRuntime = /*@__PURE__*/ S.String;
+export const UpdateWorkflowRequestBuildConfigRuntime = S.String;
 
 /** A partial update to a workflow's build config. Every field is optional; omitted fields are left unchanged. */
 export interface UpdateWorkflowRequestBuildConfig {
@@ -13008,7 +13000,7 @@ export type UpsertOwnerMetricsStreamRequestProvider =
   | "GROUNDCOVER"
   | "LOGFIRE"
   | "CUSTOM";
-export const UpsertOwnerMetricsStreamRequestProvider = /*@__PURE__*/ S.String;
+export const UpsertOwnerMetricsStreamRequestProvider = S.String;
 
 export interface UpsertOwnerMetricsStreamRequest {
   /** The ID of the workspace to return metrics stream information for */

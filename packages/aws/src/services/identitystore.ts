@@ -518,7 +518,7 @@ export const DescribeUserRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeUserRequest",
 }) as any as S.Schema<DescribeUserRequest>;
 export type UserStatus = "ENABLED" | "DISABLED" | (string & {});
-export const UserStatus = /*@__PURE__*/ S.String;
+export const UserStatus = S.String;
 
 export interface DescribeUserResponse {
   IdentityStoreId: string;
@@ -1014,7 +1014,7 @@ export type ConflictExceptionReason =
   | "UNIQUENESS_CONSTRAINT_VIOLATION"
   | "CONCURRENT_MODIFICATION"
   | (string & {});
-export const ConflictExceptionReason = /*@__PURE__*/ S.String;
+export const ConflictExceptionReason = S.String;
 
 export type ResourceType =
   | "GROUP"
@@ -1023,12 +1023,12 @@ export type ResourceType =
   | "GROUP_MEMBERSHIP"
   | "RESOURCE_POLICY"
   | (string & {});
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 export type ResourceNotFoundExceptionReason =
   | "KMS_KEY_NOT_FOUND"
   | (string & {});
-export const ResourceNotFoundExceptionReason = /*@__PURE__*/ S.String;
+export const ResourceNotFoundExceptionReason = S.String;
 
 export type ValidationExceptionReason =
   | "KMS_INVALID_ARN"
@@ -1036,7 +1036,7 @@ export type ValidationExceptionReason =
   | "KMS_INVALID_STATE"
   | "KMS_DISABLED"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export type CreateGroupError =
   | ConflictException

@@ -93,7 +93,7 @@ export type PoliciesCreateRequestAction =
   | "allow"
   | "log"
   | "add_reporting_directives";
-export const PoliciesCreateRequestAction = /*@__PURE__*/ S.String;
+export const PoliciesCreateRequestAction = S.String;
 
 export interface CreatePolicyRequest {
   /** Identifier */
@@ -134,7 +134,7 @@ export type PoliciesCreateResponseAction =
   | "allow"
   | "log"
   | "add_reporting_directives";
-export const PoliciesCreateResponseAction = /*@__PURE__*/ S.String;
+export const PoliciesCreateResponseAction = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreatePolicyResponse {
@@ -309,7 +309,7 @@ export const GetCookyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCookyRequest>;
 
 export type CookiesGetResponseType = "first_party" | "unknown";
-export const CookiesGetResponseType = /*@__PURE__*/ S.String;
+export const CookiesGetResponseType = S.String;
 
 export type CookiesGetResponsePageUrlsList = Array<string>;
 export const CookiesGetResponsePageUrlsList = /*@__PURE__*/ S.Array(
@@ -317,7 +317,7 @@ export const CookiesGetResponsePageUrlsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CookiesGetResponsePageUrlsList>;
 
 export type CookiesGetResponseSameSiteAttribute = "lax" | "strict" | "none";
-export const CookiesGetResponseSameSiteAttribute = /*@__PURE__*/ S.String;
+export const CookiesGetResponseSameSiteAttribute = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetCookyResponse {
@@ -443,7 +443,7 @@ export type PoliciesGetResponseAction =
   | "allow"
   | "log"
   | "add_reporting_directives";
-export const PoliciesGetResponseAction = /*@__PURE__*/ S.String;
+export const PoliciesGetResponseAction = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetPolicyResponse {
@@ -650,13 +650,13 @@ export const GetScriptResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetScriptResponse>;
 
 export type ConnectionsListRequestDirection = "asc" | "desc";
-export const ConnectionsListRequestDirection = /*@__PURE__*/ S.String;
+export const ConnectionsListRequestDirection = S.String;
 
 export type ConnectionsListRequestExport = "csv";
-export const ConnectionsListRequestExport = /*@__PURE__*/ S.String;
+export const ConnectionsListRequestExport = S.String;
 
 export type ConnectionsListRequestOrderBy = "first_seen_at" | "last_seen_at";
-export const ConnectionsListRequestOrderBy = /*@__PURE__*/ S.String;
+export const ConnectionsListRequestOrderBy = S.String;
 
 export interface ListConnectionsRequest {
   /** Identifier */
@@ -807,19 +807,19 @@ export const ListConnectionsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListConnectionsResponse>;
 
 export type CookiesListRequestDirection = "asc" | "desc";
-export const CookiesListRequestDirection = /*@__PURE__*/ S.String;
+export const CookiesListRequestDirection = S.String;
 
 export type CookiesListRequestExport = "csv";
-export const CookiesListRequestExport = /*@__PURE__*/ S.String;
+export const CookiesListRequestExport = S.String;
 
 export type CookiesListRequestOrderBy = "first_seen_at" | "last_seen_at";
-export const CookiesListRequestOrderBy = /*@__PURE__*/ S.String;
+export const CookiesListRequestOrderBy = S.String;
 
 export type CookiesListRequestSameSite = "lax" | "strict" | "none";
-export const CookiesListRequestSameSite = /*@__PURE__*/ S.String;
+export const CookiesListRequestSameSite = S.String;
 
 export type CookiesListRequestType = "first_party" | "unknown";
-export const CookiesListRequestType = /*@__PURE__*/ S.String;
+export const CookiesListRequestType = S.String;
 
 export interface ListCookiesRequest {
   /** Identifier */
@@ -884,7 +884,7 @@ export const ListCookiesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListCookiesRequest>;
 
 export type CookiesListResultItemType = "first_party" | "unknown";
-export const CookiesListResultItemType = /*@__PURE__*/ S.String;
+export const CookiesListResultItemType = S.String;
 
 export type CookiesListResultItemPageUrlsList = Array<string>;
 export const CookiesListResultItemPageUrlsList = /*@__PURE__*/ S.Array(
@@ -892,7 +892,7 @@ export const CookiesListResultItemPageUrlsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CookiesListResultItemPageUrlsList>;
 
 export type CookiesListResultItemSameSiteAttribute = "lax" | "strict" | "none";
-export const CookiesListResultItemSameSiteAttribute = /*@__PURE__*/ S.String;
+export const CookiesListResultItemSameSiteAttribute = S.String;
 
 export interface CookiesListResultItem {
   /** Identifier */
@@ -994,7 +994,7 @@ export type PoliciesListResultItemAction =
   | "allow"
   | "log"
   | "add_reporting_directives";
-export const PoliciesListResultItemAction = /*@__PURE__*/ S.String;
+export const PoliciesListResultItemAction = S.String;
 
 export interface PoliciesListResultItem {
   /** Identifier */
@@ -1044,13 +1044,13 @@ export const ListPoliciesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListPoliciesResponse>;
 
 export type ScriptsListRequestDirection = "asc" | "desc";
-export const ScriptsListRequestDirection = /*@__PURE__*/ S.String;
+export const ScriptsListRequestDirection = S.String;
 
 export type ScriptsListRequestExport = "csv";
-export const ScriptsListRequestExport = /*@__PURE__*/ S.String;
+export const ScriptsListRequestExport = S.String;
 
 export type ScriptsListRequestOrderBy = "first_seen_at" | "last_seen_at";
-export const ScriptsListRequestOrderBy = /*@__PURE__*/ S.String;
+export const ScriptsListRequestOrderBy = S.String;
 
 export interface ListScriptsRequest {
   /** Identifier */
@@ -1293,7 +1293,7 @@ export type PoliciesUpdateRequestAction =
   | "allow"
   | "log"
   | "add_reporting_directives";
-export const PoliciesUpdateRequestAction = /*@__PURE__*/ S.String;
+export const PoliciesUpdateRequestAction = S.String;
 
 export interface UpdatePolicyRequest {
   /** Identifier */
@@ -1337,7 +1337,7 @@ export type PoliciesUpdateResponseAction =
   | "allow"
   | "log"
   | "add_reporting_directives";
-export const PoliciesUpdateResponseAction = /*@__PURE__*/ S.String;
+export const PoliciesUpdateResponseAction = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdatePolicyResponse {

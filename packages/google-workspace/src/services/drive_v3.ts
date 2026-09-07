@@ -133,7 +133,7 @@ export type ReviewerResponseResponseEnum =
   | "NO_RESPONSE"
   | "APPROVED"
   | "DECLINED";
-export const ReviewerResponseResponseEnum = /*@__PURE__*/ S.String;
+export const ReviewerResponseResponseEnum = S.String;
 
 /** A response on an approval made by a specific reviewer. */
 export interface ReviewerResponse {
@@ -165,13 +165,13 @@ export type ApprovalStatusEnum =
   | "APPROVED"
   | "CANCELLED"
   | "DECLINED";
-export const ApprovalStatusEnum = /*@__PURE__*/ S.String;
+export const ApprovalStatusEnum = S.String;
 
 export type ApprovalFileContentChangeBehaviorEnum =
   | "FILE_CONTENT_CHANGE_BEHAVIOR_UNSPECIFIED"
   | "RESET_APPROVAL"
   | "NO_APPROVAL_ACTION";
-export const ApprovalFileContentChangeBehaviorEnum = /*@__PURE__*/ S.String;
+export const ApprovalFileContentChangeBehaviorEnum = S.String;
 
 /** Metadata for an approval. An approval is a review or approve process for a Drive item. */
 export interface Approval {
@@ -3276,7 +3276,7 @@ export const DriveList = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "DriveList" }) as any as S.Schema<DriveList>;
 
 export type ListFilesCorpusEnum = "domain" | "user";
-export const ListFilesCorpusEnum = /*@__PURE__*/ S.String;
+export const ListFilesCorpusEnum = S.String;
 
 export interface ListFilesRequest {
   /** A comma-separated list of spaces to query within the corpora. Supported values are `drive` and `appDataFolder`. For more information, see [File organization](https://developers.google.com/workspace/drive/api/guides/about-files#file-organization). */
@@ -3802,7 +3802,7 @@ export type ResolveAccessProposalRequestActionEnum =
   | "ACTION_UNSPECIFIED"
   | "ACCEPT"
   | "DENY";
-export const ResolveAccessProposalRequestActionEnum = /*@__PURE__*/ S.String;
+export const ResolveAccessProposalRequestActionEnum = S.String;
 
 /** Request message for resolving an AccessProposal on a file. */
 export interface ResolveAccessProposalRequest {
@@ -3861,8 +3861,7 @@ export type StartApprovalRequestFileContentChangeBehaviorEnum =
   | "FILE_CONTENT_CHANGE_BEHAVIOR_UNSPECIFIED"
   | "RESET_APPROVAL"
   | "NO_APPROVAL_ACTION";
-export const StartApprovalRequestFileContentChangeBehaviorEnum =
-  /*@__PURE__*/ S.String;
+export const StartApprovalRequestFileContentChangeBehaviorEnum = S.String;
 
 /** Allows creating an approval on a file. */
 export interface StartApprovalRequest {

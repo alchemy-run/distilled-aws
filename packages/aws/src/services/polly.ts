@@ -287,7 +287,7 @@ export type Engine =
   | "long-form"
   | "generative"
   | (string & {});
-export const Engine = /*@__PURE__*/ S.String;
+export const Engine = S.String;
 
 export type LanguageCode =
   | "arb"
@@ -333,7 +333,7 @@ export type LanguageCode =
   | "de-CH"
   | "en-SG"
   | (string & {});
-export const LanguageCode = /*@__PURE__*/ S.String;
+export const LanguageCode = S.String;
 
 export type IncludeAdditionalLanguageCodes = boolean;
 export type NextToken = string;
@@ -366,7 +366,7 @@ export const DescribeVoicesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeVoicesInput",
 }) as any as S.Schema<DescribeVoicesInput>;
 export type Gender = "Female" | "Male" | (string & {});
-export const Gender = /*@__PURE__*/ S.String;
+export const Gender = S.String;
 
 export type VoiceId =
   | "Aditi"
@@ -476,7 +476,7 @@ export type VoiceId =
   | "Lorenzo"
   | "Tiffany"
   | (string & {});
-export const VoiceId = /*@__PURE__*/ S.String;
+export const VoiceId = S.String;
 
 export type LanguageName = string;
 export type VoiceName = string;
@@ -609,7 +609,7 @@ export type TaskStatus =
   | "completed"
   | "failed"
   | (string & {});
-export const TaskStatus = /*@__PURE__*/ S.String;
+export const TaskStatus = S.String;
 
 export type TaskStatusReason = string;
 export type OutputUri = string;
@@ -626,7 +626,7 @@ export type OutputFormat =
   | "mulaw"
   | "alaw"
   | (string & {});
-export const OutputFormat = /*@__PURE__*/ S.String;
+export const OutputFormat = S.String;
 
 export type SampleRate = string;
 export type SpeechMarkType =
@@ -635,12 +635,12 @@ export type SpeechMarkType =
   | "viseme"
   | "word"
   | (string & {});
-export const SpeechMarkType = /*@__PURE__*/ S.String;
+export const SpeechMarkType = S.String;
 
 export type SpeechMarkTypeList = SpeechMarkType[];
 export const SpeechMarkTypeList = /*@__PURE__*/ S.Array(SpeechMarkType);
 export type TextType = "ssml" | "text" | (string & {});
-export const TextType = /*@__PURE__*/ S.String;
+export const TextType = S.String;
 
 export interface SynthesisTask {
   Engine?: Engine;
@@ -903,7 +903,7 @@ export type ValidationExceptionReason =
   | "other"
   | "invalidInboundEvent"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export type ValidationExceptionFieldName = string;
 export type ValidationExceptionFieldMessage = string;
@@ -924,10 +924,10 @@ export type QuotaCode =
   | "input-stream-inbound-event-timeout"
   | "input-stream-timeout"
   | (string & {});
-export const QuotaCode = /*@__PURE__*/ S.String;
+export const QuotaCode = S.String;
 
 export type ServiceCode = "polly" | (string & {});
-export const ServiceCode = /*@__PURE__*/ S.String;
+export const ServiceCode = S.String;
 
 export type AvailabilityErrorMessage = string;
 export type CoralAvailabilityThrottlingReason = string;

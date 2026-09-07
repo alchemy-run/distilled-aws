@@ -129,15 +129,15 @@ export const GetSupportChannelRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The perspective to filter support channels by. */
 export type SupportChannelView = "all" | "admin" | "customer";
-export const SupportChannelView = /*@__PURE__*/ S.String;
+export const SupportChannelView = S.String;
 
 /** The direction of the sort. */
 export type Direction = "asc" | "desc";
-export const Direction = /*@__PURE__*/ S.String;
+export const Direction = S.String;
 
 /** Sort options for message channels */
 export type MessageChannelOrder = "created_at" | "last_post_sent_at";
-export const MessageChannelOrder = /*@__PURE__*/ S.String;
+export const MessageChannelOrder = S.String;
 
 export interface ListSupportChannelRequest {
   after?: string;

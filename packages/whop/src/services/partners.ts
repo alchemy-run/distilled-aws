@@ -95,66 +95,66 @@ export type AccountCapabilitiesAcceptBankPayments =
   | "active"
   | "inactive"
   | "pending";
-export const AccountCapabilitiesAcceptBankPayments = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesAcceptBankPayments = S.String;
 
 /** Buy-now-pay-later payins; requires approval */
 export type AccountCapabilitiesAcceptBnplPayments =
   | "active"
   | "inactive"
   | "pending";
-export const AccountCapabilitiesAcceptBnplPayments = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesAcceptBnplPayments = S.String;
 
 /** Card payins, including Apple Pay and Google Pay */
 export type AccountCapabilitiesAcceptCardPayments =
   | "active"
   | "inactive"
   | "pending";
-export const AccountCapabilitiesAcceptCardPayments = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesAcceptCardPayments = S.String;
 
 /** Deposits by bank wire or ACH to the account's virtual bank account */
 export type AccountCapabilitiesBankDeposit = "active" | "inactive" | "pending";
-export const AccountCapabilitiesBankDeposit = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesBankDeposit = S.String;
 
 /** Balance top-ups by charging a stored payment method */
 export type AccountCapabilitiesCardDeposit = "active" | "inactive" | "pending";
-export const AccountCapabilitiesCardDeposit = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesCardDeposit = S.String;
 
 /** Issuing Whop cards; requires card application approval */
 export type AccountCapabilitiesCardIssuing = "active" | "inactive" | "pending";
-export const AccountCapabilitiesCardIssuing = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesCardIssuing = S.String;
 
 /** On-chain deposits to the account's crypto wallet */
 export type AccountCapabilitiesCryptoDeposit =
   | "active"
   | "inactive"
   | "pending";
-export const AccountCapabilitiesCryptoDeposit = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesCryptoDeposit = S.String;
 
 /** On-chain payouts to a crypto wallet */
 export type AccountCapabilitiesCryptoPayout = "active" | "inactive" | "pending";
-export const AccountCapabilitiesCryptoPayout = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesCryptoPayout = S.String;
 
 /** Instant payouts to an eligible payout destination */
 export type AccountCapabilitiesInstantPayout =
   | "active"
   | "inactive"
   | "pending";
-export const AccountCapabilitiesInstantPayout = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesInstantPayout = S.String;
 
 /** Launching ad campaigns through Whop Ads. `inactive` while a requested ads services agreement is awaiting the account's signature. */
 export type AccountCapabilitiesRunAds = "active" | "inactive" | "pending";
-export const AccountCapabilitiesRunAds = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesRunAds = S.String;
 
 /** Standard payouts to an external payout destination */
 export type AccountCapabilitiesStandardPayout =
   | "active"
   | "inactive"
   | "pending";
-export const AccountCapabilitiesStandardPayout = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesStandardPayout = S.String;
 
 /** Transfers to other accounts */
 export type AccountCapabilitiesTransfer = "active" | "inactive" | "pending";
-export const AccountCapabilitiesTransfer = /*@__PURE__*/ S.String;
+export const AccountCapabilitiesTransfer = S.String;
 
 export interface AccountCapabilities {
   /** Bank payins: debits, transfers, and local bank rails */
@@ -223,7 +223,7 @@ export type AccountRecommendedActionAction =
   | "enable_tax_collection"
   | "create_card"
   | "apply_for_financing";
-export const AccountRecommendedActionAction = /*@__PURE__*/ S.String;
+export const AccountRecommendedActionAction = S.String;
 
 export type AccountRecommendedActionBlockedCapabilitiesList = Array<string>;
 export const AccountRecommendedActionBlockedCapabilitiesList =
@@ -233,7 +233,7 @@ export const AccountRecommendedActionBlockedCapabilitiesList =
 
 /** Always optional — never blocking */
 export type AccountRecommendedActionStatus = "optional";
-export const AccountRecommendedActionStatus = /*@__PURE__*/ S.String;
+export const AccountRecommendedActionStatus = S.String;
 
 export interface AccountRecommendedAction {
   /** The recommendation; new values may be added, so handle unknown actions gracefully */
@@ -294,7 +294,7 @@ export type AccountRequiredActionAction =
   | "setup_apple_pay_domains"
   | "configure_tax_remitter"
   | "add_vat_registration";
-export const AccountRequiredActionAction = /*@__PURE__*/ S.String;
+export const AccountRequiredActionAction = S.String;
 
 export type AccountRequiredActionBlockedCapabilitiesList = Array<string>;
 export const AccountRequiredActionBlockedCapabilitiesList =
@@ -304,7 +304,7 @@ export const AccountRequiredActionBlockedCapabilitiesList =
 
 /** required (act now) or pending (under review) */
 export type AccountRequiredActionStatus = "required" | "pending";
-export const AccountRequiredActionStatus = /*@__PURE__*/ S.String;
+export const AccountRequiredActionStatus = S.String;
 
 export interface AccountRequiredAction {
   /** What the holder must do; new values may be added, so handle unknown actions gracefully */
@@ -438,10 +438,10 @@ export const GetPartnerBusinessResponseFirstTierPartner =
 
 /** Which tier the caller earns on for this business: `first` (they referred the owner) or `second` (they referred the first-tier partner). */
 export type GetPartnerBusinessResponseMyPartnerTier = "first" | "second";
-export const GetPartnerBusinessResponseMyPartnerTier = /*@__PURE__*/ S.String;
+export const GetPartnerBusinessResponseMyPartnerTier = S.String;
 
 export type GetPartnerBusinessResponseObject = "partner_business";
-export const GetPartnerBusinessResponseObject = /*@__PURE__*/ S.String;
+export const GetPartnerBusinessResponseObject = S.String;
 
 /** The user's profile picture. */
 export type GetPartnerBusinessResponseOwnerProfilePicture =
@@ -492,7 +492,7 @@ export const GetPartnerBusinessResponseSecondTierPartner =
 
 /** Current referral status. */
 export type GetPartnerBusinessResponseStatus = "active" | "removed";
-export const GetPartnerBusinessResponseStatus = /*@__PURE__*/ S.String;
+export const GetPartnerBusinessResponseStatus = S.String;
 
 export interface GetPartnerBusinessResponseVolumeUsd {
   /** Credited GMV (awaiting_settlement + settled); excludes canceled and reversed, in USD. */
@@ -566,7 +566,7 @@ export type GetPartnerLeaderboardRequestPeriod =
   | "year"
   | "last_30_days"
   | "all_time";
-export const GetPartnerLeaderboardRequestPeriod = /*@__PURE__*/ S.String;
+export const GetPartnerLeaderboardRequestPeriod = S.String;
 
 export interface GetPartnerLeaderboardRequest {
   /** Time window for the rankings. `day`, `month`, and `year` count earnings since the start of the current calendar day, month, or year; `last_30_days` counts earnings over the trailing 30 days; `all_time` ranks lifetime earnings. */
@@ -688,15 +688,14 @@ export type ListPartnerBusinessEarningsRequestStatus =
   | "completed"
   | "canceled"
   | "reversed";
-export const ListPartnerBusinessEarningsRequestStatus = /*@__PURE__*/ S.String;
+export const ListPartnerBusinessEarningsRequestStatus = S.String;
 
 export type ListPartnerBusinessEarningsRequestIncomeSourceItem =
   | "sales"
   | "ad_spend"
   | "transfer"
   | "card_interchange";
-export const ListPartnerBusinessEarningsRequestIncomeSourceItem =
-  /*@__PURE__*/ S.String;
+export const ListPartnerBusinessEarningsRequestIncomeSourceItem = S.String;
 
 export type ListPartnerBusinessEarningsRequestIncomeSourceList = Array<
   ListPartnerBusinessEarningsRequestIncomeSourceItem | (string & {})
@@ -711,11 +710,10 @@ export type ListPartnerBusinessEarningsRequestOrder =
   | "commission_amount"
   | "transaction_amount"
   | "payout_at";
-export const ListPartnerBusinessEarningsRequestOrder = /*@__PURE__*/ S.String;
+export const ListPartnerBusinessEarningsRequestOrder = S.String;
 
 export type ListPartnerBusinessEarningsRequestDirection = "asc" | "desc";
-export const ListPartnerBusinessEarningsRequestDirection =
-  /*@__PURE__*/ S.String;
+export const ListPartnerBusinessEarningsRequestDirection = S.String;
 
 export interface ListPartnerBusinessEarningsRequest {
   /** The partner business ID (a coma_ identifier). */
@@ -795,7 +793,7 @@ export type ListPartnerBusinessEarningsResponseDataItemFinancialActivityItemType
   | "income"
   | "expense";
 export const ListPartnerBusinessEarningsResponseDataItemFinancialActivityItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListPartnerBusinessEarningsResponseDataItemFinancialActivityItem {
   /** Line amount in its native currency. */
@@ -839,13 +837,11 @@ export type ListPartnerBusinessEarningsResponseDataItemIncomeSource =
   | "ad_spend"
   | "transfer"
   | "card_interchange";
-export const ListPartnerBusinessEarningsResponseDataItemIncomeSource =
-  /*@__PURE__*/ S.String;
+export const ListPartnerBusinessEarningsResponseDataItemIncomeSource = S.String;
 
 export type ListPartnerBusinessEarningsResponseDataItemObject =
   "partner_business_earning";
-export const ListPartnerBusinessEarningsResponseDataItemObject =
-  /*@__PURE__*/ S.String;
+export const ListPartnerBusinessEarningsResponseDataItemObject = S.String;
 
 export interface ListPartnerBusinessEarningsResponseDataItemProduct {
   id: string;
@@ -881,7 +877,7 @@ export const ListPartnerBusinessEarningsResponseDataItemResourceCase0Alternative
 export type ListPartnerBusinessEarningsResponseDataItemResourceCase0Object =
   "receipt";
 export const ListPartnerBusinessEarningsResponseDataItemResourceCase0Object =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListPartnerBusinessEarningsResponseDataItemResourceCase0 {
   alternative_payment_method: ListPartnerBusinessEarningsResponseDataItemResourceCase0AlternativePaymentMethod | null;
@@ -916,7 +912,7 @@ export const ListPartnerBusinessEarningsResponseDataItemResourceCase0 =
 export type ListPartnerBusinessEarningsResponseDataItemResourceCase1Object =
   "transfer";
 export const ListPartnerBusinessEarningsResponseDataItemResourceCase1Object =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListPartnerBusinessEarningsResponseDataItemResourceCase1 {
   created_at: string;
@@ -939,7 +935,7 @@ export const ListPartnerBusinessEarningsResponseDataItemResourceCase1 =
 export type ListPartnerBusinessEarningsResponseDataItemResourceCase2Object =
   "card_transaction";
 export const ListPartnerBusinessEarningsResponseDataItemResourceCase2Object =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListPartnerBusinessEarningsResponseDataItemResourceCase2 {
   created_at: string;
@@ -967,7 +963,7 @@ export type ListPartnerBusinessEarningsResponseDataItemResource =
   | ListPartnerBusinessEarningsResponseDataItemResourceCase1
   | ListPartnerBusinessEarningsResponseDataItemResourceCase2;
 export const ListPartnerBusinessEarningsResponseDataItemResource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListPartnerBusinessEarningsResponseDataItemResource>;
+  S.Unknown as any as S.Schema<ListPartnerBusinessEarningsResponseDataItemResource>;
 
 /** Current status of the earning. */
 export type ListPartnerBusinessEarningsResponseDataItemStatus =
@@ -976,8 +972,7 @@ export type ListPartnerBusinessEarningsResponseDataItemStatus =
   | "completed"
   | "canceled"
   | "reversed";
-export const ListPartnerBusinessEarningsResponseDataItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListPartnerBusinessEarningsResponseDataItemStatus = S.String;
 
 export interface ListPartnerBusinessEarningsResponseDataItem {
   /** Referred account. */
@@ -1070,7 +1065,7 @@ export const ListPartnerBusinessEarningsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListPartnerBusinessEarningsResponse>;
 
 export type ListPartnerBusinessesRequestStatus = "active" | "removed";
-export const ListPartnerBusinessesRequestStatus = /*@__PURE__*/ S.String;
+export const ListPartnerBusinessesRequestStatus = S.String;
 
 export type ListPartnerBusinessesRequestOrder =
   | "created_at"
@@ -1079,13 +1074,13 @@ export type ListPartnerBusinessesRequestOrder =
   | "payout_percentage"
   | "volume_usd"
   | "earnings_usd";
-export const ListPartnerBusinessesRequestOrder = /*@__PURE__*/ S.String;
+export const ListPartnerBusinessesRequestOrder = S.String;
 
 export type ListPartnerBusinessesRequestDirection = "asc" | "desc";
-export const ListPartnerBusinessesRequestDirection = /*@__PURE__*/ S.String;
+export const ListPartnerBusinessesRequestDirection = S.String;
 
 export type ListPartnerBusinessesRequestTier = "first" | "second";
-export const ListPartnerBusinessesRequestTier = /*@__PURE__*/ S.String;
+export const ListPartnerBusinessesRequestTier = S.String;
 
 export interface ListPartnerBusinessesRequest {
   /** Filter by referral status. */
@@ -1164,12 +1159,10 @@ export const ListPartnerBusinessesResponseDataItemFirstTierPartner =
 export type ListPartnerBusinessesResponseDataItemMyPartnerTier =
   | "first"
   | "second";
-export const ListPartnerBusinessesResponseDataItemMyPartnerTier =
-  /*@__PURE__*/ S.String;
+export const ListPartnerBusinessesResponseDataItemMyPartnerTier = S.String;
 
 export type ListPartnerBusinessesResponseDataItemObject = "partner_business";
-export const ListPartnerBusinessesResponseDataItemObject =
-  /*@__PURE__*/ S.String;
+export const ListPartnerBusinessesResponseDataItemObject = S.String;
 
 /** The user's profile picture. */
 export type ListPartnerBusinessesResponseDataItemOwnerProfilePicture =
@@ -1203,8 +1196,7 @@ export const ListPartnerBusinessesResponseDataItemSecondTierPartner =
 
 /** Current referral status. */
 export type ListPartnerBusinessesResponseDataItemStatus = "active" | "removed";
-export const ListPartnerBusinessesResponseDataItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListPartnerBusinessesResponseDataItemStatus = S.String;
 
 export type ListPartnerBusinessesResponseDataItemVolumeUsd =
   GetPartnerBusinessResponseVolumeUsd;

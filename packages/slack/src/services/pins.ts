@@ -48,7 +48,7 @@ export const ListPinsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListPinsRequest>;
 
 export type ListPinsResponseItemsItemType = "file" | "message" | "file_comment";
-export const ListPinsResponseItemsItemType = /*@__PURE__*/ S.String;
+export const ListPinsResponseItemsItemType = S.String;
 
 export interface ListPinsResponseItemsItem {
   type: ListPinsResponseItemsItemType;

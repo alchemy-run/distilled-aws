@@ -72,7 +72,7 @@ export type GoogleSecuritySafebrowsingV4ThreatHitThreatSourceTypeEnum =
   | "TAB_REDIRECT"
   | "TAB_RESOURCE";
 export const GoogleSecuritySafebrowsingV4ThreatHitThreatSourceTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A single resource related to a threat hit. */
 export interface GoogleSecuritySafebrowsingV4ThreatHitThreatSource {
@@ -181,8 +181,7 @@ export type GoogleSecuritySafebrowsingV4ThreatHitThreatTypeEnum =
   | "TRICK_TO_BILL"
   | "HIGH_CONFIDENCE_ALLOWLIST"
   | "ACCURACY_TIPS";
-export const GoogleSecuritySafebrowsingV4ThreatHitThreatTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleSecuritySafebrowsingV4ThreatHitThreatTypeEnum = S.String;
 
 export type GoogleSecuritySafebrowsingV4ThreatHitPlatformTypeEnum =
   | "PLATFORM_TYPE_UNSPECIFIED"
@@ -194,8 +193,7 @@ export type GoogleSecuritySafebrowsingV4ThreatHitPlatformTypeEnum =
   | "ANY_PLATFORM"
   | "ALL_PLATFORMS"
   | "CHROME";
-export const GoogleSecuritySafebrowsingV4ThreatHitPlatformTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleSecuritySafebrowsingV4ThreatHitPlatformTypeEnum = S.String;
 
 export interface GoogleSecuritySafebrowsingV4ThreatHit {
   /** The resources related to the threat hit. */
@@ -272,7 +270,7 @@ export type GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateR
   | "ALL_PLATFORMS"
   | "CHROME";
 export const GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestPlatformTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestThreatEntryTypeEnum =
   | "THREAT_ENTRY_TYPE_UNSPECIFIED"
@@ -283,14 +281,14 @@ export type GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateR
   | "FILENAME"
   | "CERT";
 export const GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestThreatEntryTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraintsSupportedCompressionsItemEnum =
   | "COMPRESSION_TYPE_UNSPECIFIED"
   | "RAW"
   | "RICE";
 export const GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraintsSupportedCompressionsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraintsSupportedCompressionsItemEnumList =
   Array<
@@ -354,7 +352,7 @@ export type GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateR
   | "HIGH_CONFIDENCE_ALLOWLIST"
   | "ACCURACY_TIPS";
 export const GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestThreatTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A single list update request. */
 export interface GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest {
@@ -481,7 +479,7 @@ export type GoogleSecuritySafebrowsingV4ThreatEntrySetCompressionTypeEnum =
   | "RAW"
   | "RICE";
 export const GoogleSecuritySafebrowsingV4ThreatEntrySetCompressionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The Rice-Golomb encoded data. Used for sending compressed 4-byte hashes or compressed removal indices. */
 export interface GoogleSecuritySafebrowsingV4RiceDeltaEncoding {
@@ -565,7 +563,7 @@ export type GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdate
   | "PARTIAL_UPDATE"
   | "FULL_UPDATE";
 export const GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponseResponseTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponsePlatformTypeEnum =
   | "PLATFORM_TYPE_UNSPECIFIED"
@@ -578,7 +576,7 @@ export type GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdate
   | "ALL_PLATFORMS"
   | "CHROME";
 export const GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponsePlatformTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponseThreatTypeEnum =
   | "THREAT_TYPE_UNSPECIFIED"
@@ -600,7 +598,7 @@ export type GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdate
   | "HIGH_CONFIDENCE_ALLOWLIST"
   | "ACCURACY_TIPS";
 export const GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponseThreatTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponseThreatEntryTypeEnum =
   | "THREAT_ENTRY_TYPE_UNSPECIFIED"
@@ -611,7 +609,7 @@ export type GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdate
   | "FILENAME"
   | "CERT";
 export const GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponseThreatEntryTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An update to an individual list. */
 export interface GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponse {
@@ -707,7 +705,7 @@ export type GoogleSecuritySafebrowsingV4ThreatInfoThreatTypesItemEnum =
   | "HIGH_CONFIDENCE_ALLOWLIST"
   | "ACCURACY_TIPS";
 export const GoogleSecuritySafebrowsingV4ThreatInfoThreatTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV4ThreatInfoThreatTypesItemEnumList =
   Array<
@@ -729,7 +727,7 @@ export type GoogleSecuritySafebrowsingV4ThreatInfoPlatformTypesItemEnum =
   | "ALL_PLATFORMS"
   | "CHROME";
 export const GoogleSecuritySafebrowsingV4ThreatInfoPlatformTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV4ThreatInfoPlatformTypesItemEnumList =
   Array<
@@ -749,7 +747,7 @@ export type GoogleSecuritySafebrowsingV4ThreatInfoThreatEntryTypesItemEnum =
   | "FILENAME"
   | "CERT";
 export const GoogleSecuritySafebrowsingV4ThreatInfoThreatEntryTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV4ThreatInfoThreatEntryTypesItemEnumList =
   Array<
@@ -889,7 +887,7 @@ export type GoogleSecuritySafebrowsingV4ThreatMatchThreatEntryTypeEnum =
   | "FILENAME"
   | "CERT";
 export const GoogleSecuritySafebrowsingV4ThreatMatchThreatEntryTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV4ThreatMatchPlatformTypeEnum =
   | "PLATFORM_TYPE_UNSPECIFIED"
@@ -901,8 +899,7 @@ export type GoogleSecuritySafebrowsingV4ThreatMatchPlatformTypeEnum =
   | "ANY_PLATFORM"
   | "ALL_PLATFORMS"
   | "CHROME";
-export const GoogleSecuritySafebrowsingV4ThreatMatchPlatformTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleSecuritySafebrowsingV4ThreatMatchPlatformTypeEnum = S.String;
 
 export type GoogleSecuritySafebrowsingV4ThreatMatchThreatTypeEnum =
   | "THREAT_TYPE_UNSPECIFIED"
@@ -923,8 +920,7 @@ export type GoogleSecuritySafebrowsingV4ThreatMatchThreatTypeEnum =
   | "TRICK_TO_BILL"
   | "HIGH_CONFIDENCE_ALLOWLIST"
   | "ACCURACY_TIPS";
-export const GoogleSecuritySafebrowsingV4ThreatMatchThreatTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleSecuritySafebrowsingV4ThreatMatchThreatTypeEnum = S.String;
 
 /** A match when checking a threat entry in the Safe Browsing threat lists. */
 export interface GoogleSecuritySafebrowsingV4ThreatMatch {
@@ -1111,7 +1107,7 @@ export type GoogleSecuritySafebrowsingV4ThreatListDescriptorPlatformTypeEnum =
   | "ALL_PLATFORMS"
   | "CHROME";
 export const GoogleSecuritySafebrowsingV4ThreatListDescriptorPlatformTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV4ThreatListDescriptorThreatEntryTypeEnum =
   | "THREAT_ENTRY_TYPE_UNSPECIFIED"
@@ -1122,7 +1118,7 @@ export type GoogleSecuritySafebrowsingV4ThreatListDescriptorThreatEntryTypeEnum 
   | "FILENAME"
   | "CERT";
 export const GoogleSecuritySafebrowsingV4ThreatListDescriptorThreatEntryTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleSecuritySafebrowsingV4ThreatListDescriptorThreatTypeEnum =
   | "THREAT_TYPE_UNSPECIFIED"
@@ -1144,7 +1140,7 @@ export type GoogleSecuritySafebrowsingV4ThreatListDescriptorThreatTypeEnum =
   | "HIGH_CONFIDENCE_ALLOWLIST"
   | "ACCURACY_TIPS";
 export const GoogleSecuritySafebrowsingV4ThreatListDescriptorThreatTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Describes an individual threat list. A list is defined by three parameters: the type of threat posed, the type of platform targeted by the threat, and the type of entries in the list. */
 export interface GoogleSecuritySafebrowsingV4ThreatListDescriptor {

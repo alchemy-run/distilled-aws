@@ -275,7 +275,7 @@ export type IsolineZoneCategory =
   | "Environmental"
   | "Vignette"
   | (string & {});
-export const IsolineZoneCategory = /*@__PURE__*/ S.String;
+export const IsolineZoneCategory = S.String;
 
 export interface IsolineAvoidanceZoneCategory {
   Category?: IsolineZoneCategory;
@@ -328,7 +328,7 @@ export type MatchingStrategy =
   | "MatchAny"
   | "MatchMostSignificantRoad"
   | (string & {});
-export const MatchingStrategy = /*@__PURE__*/ S.String;
+export const MatchingStrategy = S.String;
 
 export interface IsolineMatchingOptions {
   NameHint?: string | redacted.Redacted<string>;
@@ -350,7 +350,7 @@ export type SideOfStreetMatchingStrategy =
   | "AnyStreet"
   | "DividedStreetOnly"
   | (string & {});
-export const SideOfStreetMatchingStrategy = /*@__PURE__*/ S.String;
+export const SideOfStreetMatchingStrategy = S.String;
 
 export interface IsolineSideOfStreetOptions {
   Position: number[];
@@ -381,7 +381,7 @@ export const IsolineDestinationOptions = /*@__PURE__*/ S.suspend(() =>
   identifier: "IsolineDestinationOptions",
 }) as any as S.Schema<IsolineDestinationOptions>;
 export type GeometryFormat = "FlexiblePolyline" | "Simple" | (string & {});
-export const GeometryFormat = /*@__PURE__*/ S.String;
+export const GeometryFormat = S.String;
 
 export interface IsolineGranularityOptions {
   MaxPoints?: number;
@@ -401,10 +401,10 @@ export type IsolineOptimizationObjective =
   | "BalancedCalculation"
   | "FastCalculation"
   | (string & {});
-export const IsolineOptimizationObjective = /*@__PURE__*/ S.String;
+export const IsolineOptimizationObjective = S.String;
 
 export type RoutingObjective = "FastestRoute" | "ShortestRoute" | (string & {});
-export const RoutingObjective = /*@__PURE__*/ S.String;
+export const RoutingObjective = S.String;
 
 export interface IsolineOriginOptions {
   AvoidActionsForDistance?: number;
@@ -443,7 +443,7 @@ export type TrafficUsage =
   | "IgnoreTrafficData"
   | "UseTrafficData"
   | (string & {});
-export const TrafficUsage = /*@__PURE__*/ S.String;
+export const TrafficUsage = S.String;
 
 export interface IsolineTrafficOptions {
   FlowEventThresholdOverride?: number;
@@ -463,14 +463,14 @@ export type IsolineTravelMode =
   | "Scooter"
   | "Truck"
   | (string & {});
-export const IsolineTravelMode = /*@__PURE__*/ S.String;
+export const IsolineTravelMode = S.String;
 
 export type IsolineEngineType =
   | "Electric"
   | "InternalCombustion"
   | "PluginHybrid"
   | (string & {});
-export const IsolineEngineType = /*@__PURE__*/ S.String;
+export const IsolineEngineType = S.String;
 
 export interface IsolineVehicleLicensePlate {
   LastCharacter?: string;
@@ -528,7 +528,7 @@ export type IsolineHazardousCargoType =
   | "PoisonousInhalation"
   | "Radioactive"
   | (string & {});
-export const IsolineHazardousCargoType = /*@__PURE__*/ S.String;
+export const IsolineHazardousCargoType = S.String;
 
 export type IsolineHazardousCargoTypeList = IsolineHazardousCargoType[];
 export const IsolineHazardousCargoTypeList = /*@__PURE__*/ S.Array(
@@ -552,7 +552,7 @@ export type IsolineTruckType =
   | "StraightTruck"
   | "Tractor"
   | (string & {});
-export const IsolineTruckType = /*@__PURE__*/ S.String;
+export const IsolineTruckType = S.String;
 
 export type TunnelRestrictionCode = string | redacted.Redacted<string>;
 export interface WeightPerAxleGroup {
@@ -807,7 +807,7 @@ export type RouteMatrixZoneCategory =
   | "Environmental"
   | "Vignette"
   | (string & {});
-export const RouteMatrixZoneCategory = /*@__PURE__*/ S.String;
+export const RouteMatrixZoneCategory = S.String;
 
 export interface RouteMatrixAvoidanceZoneCategory {
   Category?: RouteMatrixZoneCategory;
@@ -1016,7 +1016,7 @@ export type RouteMatrixTravelMode =
   | "Scooter"
   | "Truck"
   | (string & {});
-export const RouteMatrixTravelMode = /*@__PURE__*/ S.String;
+export const RouteMatrixTravelMode = S.String;
 
 export interface RouteMatrixVehicleLicensePlate {
   LastCharacter?: string;
@@ -1067,7 +1067,7 @@ export type RouteMatrixHazardousCargoType =
   | "PoisonousInhalation"
   | "Radioactive"
   | (string & {});
-export const RouteMatrixHazardousCargoType = /*@__PURE__*/ S.String;
+export const RouteMatrixHazardousCargoType = S.String;
 
 export type RouteMatrixHazardousCargoTypeList = RouteMatrixHazardousCargoType[];
 export const RouteMatrixHazardousCargoTypeList = /*@__PURE__*/ S.Array(
@@ -1086,7 +1086,7 @@ export type RouteMatrixTruckType =
   | "StraightTruck"
   | "Tractor"
   | (string & {});
-export const RouteMatrixTruckType = /*@__PURE__*/ S.String;
+export const RouteMatrixTruckType = S.String;
 
 export interface RouteMatrixTruckOptions {
   AxleCount?: number;
@@ -1196,7 +1196,7 @@ export type RouteMatrixErrorCode =
   | "Other"
   | "Violation"
   | (string & {});
-export const RouteMatrixErrorCode = /*@__PURE__*/ S.String;
+export const RouteMatrixErrorCode = S.String;
 
 export interface RouteMatrixEntry {
   Distance: number;
@@ -1282,7 +1282,7 @@ export type RouteZoneCategory =
   | "Environmental"
   | "Vignette"
   | (string & {});
-export const RouteZoneCategory = /*@__PURE__*/ S.String;
+export const RouteZoneCategory = S.String;
 
 export interface RouteAvoidanceZoneCategory {
   Category: RouteZoneCategory;
@@ -1406,7 +1406,7 @@ export const RouteExclusionOptions = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteExclusionOptions",
 }) as any as S.Schema<RouteExclusionOptions>;
 export type MeasurementSystem = "Metric" | "Imperial" | (string & {});
-export const MeasurementSystem = /*@__PURE__*/ S.String;
+export const MeasurementSystem = S.String;
 
 export type LanguageTag = string;
 export type LanguageTagList = string[];
@@ -1425,7 +1425,7 @@ export type RouteLegAdditionalFeature =
   | "IntermediateStops"
   | "NextDepartures"
   | (string & {});
-export const RouteLegAdditionalFeature = /*@__PURE__*/ S.String;
+export const RouteLegAdditionalFeature = S.String;
 
 export type RouteLegAdditionalFeatureList = RouteLegAdditionalFeature[];
 export const RouteLegAdditionalFeatureList = /*@__PURE__*/ S.Array(
@@ -1475,7 +1475,7 @@ export type RouteSpanAdditionalFeature =
   | "Zones"
   | "Consumption"
   | (string & {});
-export const RouteSpanAdditionalFeature = /*@__PURE__*/ S.String;
+export const RouteSpanAdditionalFeature = S.String;
 
 export type RouteSpanAdditionalFeatureList = RouteSpanAdditionalFeature[];
 export const RouteSpanAdditionalFeatureList = /*@__PURE__*/ S.Array(
@@ -1495,7 +1495,7 @@ export const RouteEmissionType = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteEmissionType",
 }) as any as S.Schema<RouteEmissionType>;
 export type RouteTollVehicleCategory = "Minibus" | (string & {});
-export const RouteTollVehicleCategory = /*@__PURE__*/ S.String;
+export const RouteTollVehicleCategory = S.String;
 
 export interface RouteTollOptions {
   AllTransponders?: boolean;
@@ -1535,14 +1535,14 @@ export type RouteTravelMode =
   | "Intermodal"
   | "Transit"
   | (string & {});
-export const RouteTravelMode = /*@__PURE__*/ S.String;
+export const RouteTravelMode = S.String;
 
 export type RouteEngineType =
   | "Electric"
   | "InternalCombustion"
   | "PluginHybrid"
   | (string & {});
-export const RouteEngineType = /*@__PURE__*/ S.String;
+export const RouteEngineType = S.String;
 
 export interface RouteVehicleLicensePlate {
   LastCharacter?: string | redacted.Redacted<string>;
@@ -1605,7 +1605,7 @@ export type RouteHazardousCargoType =
   | "PoisonousInhalation"
   | "Radioactive"
   | (string & {});
-export const RouteHazardousCargoType = /*@__PURE__*/ S.String;
+export const RouteHazardousCargoType = S.String;
 
 export type RouteHazardousCargoTypeList = RouteHazardousCargoType[];
 export const RouteHazardousCargoTypeList = /*@__PURE__*/ S.Array(
@@ -1628,7 +1628,7 @@ export type RouteTruckType =
   | "StraightTruck"
   | "Tractor"
   | (string & {});
-export const RouteTruckType = /*@__PURE__*/ S.String;
+export const RouteTruckType = S.String;
 
 export interface RouteTruckOptions {
   AxleCount?: number;
@@ -1677,7 +1677,7 @@ export const RouteTruckOptions = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteTruckOptions",
 }) as any as S.Schema<RouteTruckOptions>;
 export type RouteAccessibilityAttribute = "Wheelchair" | (string & {});
-export const RouteAccessibilityAttribute = /*@__PURE__*/ S.String;
+export const RouteAccessibilityAttribute = S.String;
 
 export type RouteAccessibilityAttributeList = RouteAccessibilityAttribute[];
 export const RouteAccessibilityAttributeList = /*@__PURE__*/ S.Array(
@@ -1693,7 +1693,7 @@ export const RouteIntermodalPedestrianOptions = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteIntermodalPedestrianOptions",
 }) as any as S.Schema<RouteIntermodalPedestrianOptions>;
 export type RouteRentalMode = "All" | "Car" | (string & {});
-export const RouteRentalMode = /*@__PURE__*/ S.String;
+export const RouteRentalMode = S.String;
 
 export type RouteRentalModeList = RouteRentalMode[];
 export const RouteRentalModeList = /*@__PURE__*/ S.Array(RouteRentalMode);
@@ -1703,7 +1703,7 @@ export type RouteIntermodalEnabledLegs =
   | "EntireRoute"
   | "None"
   | (string & {});
-export const RouteIntermodalEnabledLegs = /*@__PURE__*/ S.String;
+export const RouteIntermodalEnabledLegs = S.String;
 
 export type RouteIntermodalEnabledLegsList = RouteIntermodalEnabledLegs[];
 export const RouteIntermodalEnabledLegsList = /*@__PURE__*/ S.Array(
@@ -1724,7 +1724,7 @@ export const RouteIntermodalRentalOptions = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteIntermodalRentalOptions",
 }) as any as S.Schema<RouteIntermodalRentalOptions>;
 export type RouteTaxiMode = "All" | "Car" | (string & {});
-export const RouteTaxiMode = /*@__PURE__*/ S.String;
+export const RouteTaxiMode = S.String;
 
 export type RouteTaxiModeList = RouteTaxiMode[];
 export const RouteTaxiModeList = /*@__PURE__*/ S.Array(RouteTaxiMode);
@@ -1760,7 +1760,7 @@ export type RouteTransitMode =
   | "RegionalTrain"
   | "Subway"
   | (string & {});
-export const RouteTransitMode = /*@__PURE__*/ S.String;
+export const RouteTransitMode = S.String;
 
 export type RouteTransitModeList = RouteTransitMode[];
 export const RouteTransitModeList = /*@__PURE__*/ S.Array(RouteTransitMode);
@@ -1779,7 +1779,7 @@ export const RouteIntermodalTransitOptions = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteIntermodalTransitOptions",
 }) as any as S.Schema<RouteIntermodalTransitOptions>;
 export type RouteVehicleMode = "All" | "Car" | (string & {});
-export const RouteVehicleMode = /*@__PURE__*/ S.String;
+export const RouteVehicleMode = S.String;
 
 export type RouteVehicleModeList = RouteVehicleMode[];
 export const RouteVehicleModeList = /*@__PURE__*/ S.Array(RouteVehicleMode);
@@ -1867,7 +1867,7 @@ export const RouteTravelModeOptions = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteTravelModeOptions",
 }) as any as S.Schema<RouteTravelModeOptions>;
 export type RouteTravelStepType = "Default" | "TurnByTurn" | (string & {});
-export const RouteTravelStepType = /*@__PURE__*/ S.String;
+export const RouteTravelStepType = S.String;
 
 export interface RouteWaypoint {
   AvoidActionsForDistance?: number;
@@ -1968,10 +1968,10 @@ export type RouteResponseNoticeCode =
   | "TransitRouteUnavailable"
   | "NoTransitStationsFound"
   | (string & {});
-export const RouteResponseNoticeCode = /*@__PURE__*/ S.String;
+export const RouteResponseNoticeCode = S.String;
 
 export type RouteNoticeImpact = "High" | "Low" | (string & {});
-export const RouteNoticeImpact = /*@__PURE__*/ S.String;
+export const RouteNoticeImpact = S.String;
 
 export interface RouteResponseNotice {
   Code: RouteResponseNoticeCode;
@@ -1989,7 +1989,7 @@ export type RouteResponseNoticeList = RouteResponseNotice[];
 export const RouteResponseNoticeList =
   /*@__PURE__*/ S.Array(RouteResponseNotice);
 export type RouteFerryAfterTravelStepType = "Deboard" | (string & {});
-export const RouteFerryAfterTravelStepType = /*@__PURE__*/ S.String;
+export const RouteFerryAfterTravelStepType = S.String;
 
 export interface RouteFerryAfterTravelStep {
   Duration: number;
@@ -2037,7 +2037,7 @@ export const RouteFerryArrival = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteFerryArrival",
 }) as any as S.Schema<RouteFerryArrival>;
 export type RouteFerryBeforeTravelStepType = "Board" | (string & {});
-export const RouteFerryBeforeTravelStepType = /*@__PURE__*/ S.String;
+export const RouteFerryBeforeTravelStepType = S.String;
 
 export interface RouteFerryBeforeTravelStep {
   Duration: number;
@@ -2077,7 +2077,7 @@ export type RouteFerryNoticeCode =
   | "ViolatedAvoidAreas"
   | "ViolatedVehicleRestriction"
   | (string & {});
-export const RouteFerryNoticeCode = /*@__PURE__*/ S.String;
+export const RouteFerryNoticeCode = S.String;
 
 export interface RouteFerryNotice {
   Code: RouteFerryNoticeCode;
@@ -2189,7 +2189,7 @@ export type RouteFerryTravelStepType =
   | "Continue"
   | "Arrive"
   | (string & {});
-export const RouteFerryTravelStepType = /*@__PURE__*/ S.String;
+export const RouteFerryTravelStepType = S.String;
 
 export interface RouteFerryTravelStep {
   Distance?: number;
@@ -2253,7 +2253,7 @@ export const RouteLegGeometry = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteLegGeometry",
 }) as any as S.Schema<RouteLegGeometry>;
 export type RoutePedestrianAfterTravelStepType = "Wait" | (string & {});
-export const RoutePedestrianAfterTravelStepType = /*@__PURE__*/ S.String;
+export const RoutePedestrianAfterTravelStepType = S.String;
 
 export interface RoutePedestrianAfterTravelStep {
   Duration: number;
@@ -2280,7 +2280,7 @@ export type RouteAccessibilityAvailability =
   | "Unavailable"
   | "Unknown"
   | (string & {});
-export const RouteAccessibilityAvailability = /*@__PURE__*/ S.String;
+export const RouteAccessibilityAvailability = S.String;
 
 export interface RouteAccessibilityAvailabilityDetails {
   Wheelchair?: RouteAccessibilityAvailability;
@@ -2301,7 +2301,7 @@ export const RouteAccessPointDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteAccessPointDetails",
 }) as any as S.Schema<RouteAccessPointDetails>;
 export type RouteSideOfStreet = "Left" | "Right" | (string & {});
-export const RouteSideOfStreet = /*@__PURE__*/ S.String;
+export const RouteSideOfStreet = S.String;
 
 export interface RouteStationDetails {
   Accessibility?: RouteAccessibilityAvailabilityDetails;
@@ -2323,7 +2323,7 @@ export type RoutePedestrianPlaceType =
   | "ParkingLot"
   | "Station"
   | (string & {});
-export const RoutePedestrianPlaceType = /*@__PURE__*/ S.String;
+export const RoutePedestrianPlaceType = S.String;
 
 export interface RoutePedestrianPlace {
   AccessPointDetails?: RouteAccessPointDetails;
@@ -2375,7 +2375,7 @@ export type RoutePedestrianNoticeCode =
   | "ViolatedPedestrianOption"
   | "ViolatedAvoidAreas"
   | (string & {});
-export const RoutePedestrianNoticeCode = /*@__PURE__*/ S.String;
+export const RoutePedestrianNoticeCode = S.String;
 
 export interface RoutePedestrianNotice {
   Code: RoutePedestrianNoticeCode;
@@ -2417,7 +2417,7 @@ export type RouteSpanPedestrianAccessAttribute =
   | "Stairs"
   | "TollRoad"
   | (string & {});
-export const RouteSpanPedestrianAccessAttribute = /*@__PURE__*/ S.String;
+export const RouteSpanPedestrianAccessAttribute = S.String;
 
 export type RouteSpanPedestrianAccessAttributeList =
   RouteSpanPedestrianAccessAttribute[];
@@ -2438,7 +2438,7 @@ export type RouteSpanRoadAttribute =
   | "Tunnel"
   | "UnderConstruction"
   | (string & {});
-export const RouteSpanRoadAttribute = /*@__PURE__*/ S.String;
+export const RouteSpanRoadAttribute = S.String;
 
 export type RouteSpanRoadAttributeList = RouteSpanRoadAttribute[];
 export const RouteSpanRoadAttributeList = /*@__PURE__*/ S.Array(
@@ -2450,7 +2450,7 @@ export type RouteDirection =
   | "South"
   | "West"
   | (string & {});
-export const RouteDirection = /*@__PURE__*/ S.String;
+export const RouteDirection = S.String;
 
 export interface RouteNumber {
   Direction?: RouteDirection;
@@ -2557,7 +2557,7 @@ export const RouteContinueStepDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteContinueStepDetails",
 }) as any as S.Schema<RouteContinueStepDetails>;
 export type RouteRoadType = "Highway" | "Rural" | "Urban" | (string & {});
-export const RouteRoadType = /*@__PURE__*/ S.String;
+export const RouteRoadType = S.String;
 
 export interface RouteRoad {
   RoadName: LocalizedString[];
@@ -2578,11 +2578,11 @@ export type RouteSteeringDirection =
   | "Right"
   | "Straight"
   | (string & {});
-export const RouteSteeringDirection = /*@__PURE__*/ S.String;
+export const RouteSteeringDirection = S.String;
 
 export type TurnAngle = number;
 export type RouteTurnIntensity = "Sharp" | "Slight" | "Typical" | (string & {});
-export const RouteTurnIntensity = /*@__PURE__*/ S.String;
+export const RouteTurnIntensity = S.String;
 
 export interface RouteKeepStepDetails {
   Intersection: LocalizedString[];
@@ -2695,7 +2695,7 @@ export type RoutePedestrianTravelStepType =
   | "RoundaboutPass"
   | "Turn"
   | (string & {});
-export const RoutePedestrianTravelStepType = /*@__PURE__*/ S.String;
+export const RoutePedestrianTravelStepType = S.String;
 
 export interface RoutePedestrianTravelStep {
   ContinueStepDetails?: RouteContinueStepDetails;
@@ -2785,7 +2785,7 @@ export type RouteLegTravelMode =
   | "RegionalTrain"
   | "Subway"
   | (string & {});
-export const RouteLegTravelMode = /*@__PURE__*/ S.String;
+export const RouteLegTravelMode = S.String;
 
 export type RouteLegType =
   | "Ferry"
@@ -2795,7 +2795,7 @@ export type RouteLegType =
   | "Taxi"
   | "Transit"
   | (string & {});
-export const RouteLegType = /*@__PURE__*/ S.String;
+export const RouteLegType = S.String;
 
 export type EnergyKilowattHours = number;
 export type PowerKilowatts = number;
@@ -2814,7 +2814,7 @@ export const RouteChargeStepDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteChargeStepDetails",
 }) as any as S.Schema<RouteChargeStepDetails>;
 export type RouteVehicleAfterTravelStepType = "Park" | (string & {});
-export const RouteVehicleAfterTravelStepType = /*@__PURE__*/ S.String;
+export const RouteVehicleAfterTravelStepType = S.String;
 
 export interface RouteVehicleAfterTravelStep {
   ChargeStepDetails?: RouteChargeStepDetails;
@@ -2842,7 +2842,7 @@ export type RouteVehiclePlaceType =
   | "ParkingLot"
   | "Station"
   | (string & {});
-export const RouteVehiclePlaceType = /*@__PURE__*/ S.String;
+export const RouteVehiclePlaceType = S.String;
 
 export interface RouteVehiclePlace {
   Name?: string | redacted.Redacted<string>;
@@ -2892,7 +2892,7 @@ export type RouteVehicleIncidentSeverity =
   | "Medium"
   | "Low"
   | (string & {});
-export const RouteVehicleIncidentSeverity = /*@__PURE__*/ S.String;
+export const RouteVehicleIncidentSeverity = S.String;
 
 export type RouteVehicleIncidentType =
   | "Accident"
@@ -2907,7 +2907,7 @@ export type RouteVehicleIncidentType =
   | "RoadHazard"
   | "Weather"
   | (string & {});
-export const RouteVehicleIncidentType = /*@__PURE__*/ S.String;
+export const RouteVehicleIncidentType = S.String;
 
 export interface RouteVehicleIncident {
   Description?: string | redacted.Redacted<string>;
@@ -2960,7 +2960,7 @@ export type RouteVehicleNoticeCode =
   | "ViolatedZoneRestriction"
   | "TravelTimeExceedsDriverWorkHours"
   | (string & {});
-export const RouteVehicleNoticeCode = /*@__PURE__*/ S.String;
+export const RouteVehicleNoticeCode = S.String;
 
 export interface RouteNoticeDetailRange {
   Min?: number;
@@ -2976,7 +2976,7 @@ export type RouteWeightConstraintType =
   | "Gross"
   | "Unknown"
   | (string & {});
-export const RouteWeightConstraintType = /*@__PURE__*/ S.String;
+export const RouteWeightConstraintType = S.String;
 
 export interface RouteWeightConstraint {
   Type: RouteWeightConstraintType;
@@ -3070,7 +3070,7 @@ export type RouteSpanCarAccessAttribute =
   | "NoThroughTraffic"
   | "TollRoad"
   | (string & {});
-export const RouteSpanCarAccessAttribute = /*@__PURE__*/ S.String;
+export const RouteSpanCarAccessAttribute = S.String;
 
 export type RouteSpanCarAccessAttributeList = RouteSpanCarAccessAttribute[];
 export const RouteSpanCarAccessAttributeList = /*@__PURE__*/ S.Array(
@@ -3081,20 +3081,20 @@ export type RouteSpanGateAttribute =
   | "KeyAccess"
   | "PermissionRequired"
   | (string & {});
-export const RouteSpanGateAttribute = /*@__PURE__*/ S.String;
+export const RouteSpanGateAttribute = S.String;
 
 export type RouteSpanRailwayCrossingAttribute =
   | "Protected"
   | "Unprotected"
   | (string & {});
-export const RouteSpanRailwayCrossingAttribute = /*@__PURE__*/ S.String;
+export const RouteSpanRailwayCrossingAttribute = S.String;
 
 export type RouteSpanScooterAccessAttribute =
   | "Allowed"
   | "NoThroughTraffic"
   | "TollRoad"
   | (string & {});
-export const RouteSpanScooterAccessAttribute = /*@__PURE__*/ S.String;
+export const RouteSpanScooterAccessAttribute = S.String;
 
 export type RouteSpanScooterAccessAttributeList =
   RouteSpanScooterAccessAttribute[];
@@ -3106,7 +3106,7 @@ export type RouteSpanTruckAccessAttribute =
   | "NoThroughTraffic"
   | "TollRoad"
   | (string & {});
-export const RouteSpanTruckAccessAttribute = /*@__PURE__*/ S.String;
+export const RouteSpanTruckAccessAttribute = S.String;
 
 export type RouteSpanTruckAccessAttributeList = RouteSpanTruckAccessAttribute[];
 export const RouteSpanTruckAccessAttributeList = /*@__PURE__*/ S.Array(
@@ -3256,7 +3256,7 @@ export type RouteTollPassValidityPeriodType =
   | "Minutes"
   | "Months"
   | (string & {});
-export const RouteTollPassValidityPeriodType = /*@__PURE__*/ S.String;
+export const RouteTollPassValidityPeriodType = S.String;
 
 export interface RouteTollPassValidityPeriod {
   Period: RouteTollPassValidityPeriodType;
@@ -3296,7 +3296,7 @@ export type RouteTollPaymentMethod =
   | "Transponder"
   | "VideoToll"
   | (string & {});
-export const RouteTollPaymentMethod = /*@__PURE__*/ S.String;
+export const RouteTollPaymentMethod = S.String;
 
 export type RouteTollPaymentMethodList = RouteTollPaymentMethod[];
 export const RouteTollPaymentMethodList = /*@__PURE__*/ S.Array(
@@ -3443,7 +3443,7 @@ export type RouteVehicleTravelStepType =
   | "Turn"
   | "UTurn"
   | (string & {});
-export const RouteVehicleTravelStepType = /*@__PURE__*/ S.String;
+export const RouteVehicleTravelStepType = S.String;
 
 export interface RouteUTurnStepDetails {
   Intersection: LocalizedString[];
@@ -3560,7 +3560,7 @@ export const RouteVehicleLegDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteVehicleLegDetails",
 }) as any as S.Schema<RouteVehicleLegDetails>;
 export type RouteRentalAfterTravelStepType = "Park" | (string & {});
-export const RouteRentalAfterTravelStepType = /*@__PURE__*/ S.String;
+export const RouteRentalAfterTravelStepType = S.String;
 
 export interface RouteRentalAfterTravelStep {
   Duration: number;
@@ -3595,7 +3595,7 @@ export type RouteRentalPlaceType =
   | "ParkingLot"
   | "Station"
   | (string & {});
-export const RouteRentalPlaceType = /*@__PURE__*/ S.String;
+export const RouteRentalPlaceType = S.String;
 
 export interface RouteRentalPlace {
   AccessPointDetails?: RouteAccessPointDetails;
@@ -3629,10 +3629,10 @@ export const RouteRentalArrival = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteRentalArrival",
 }) as any as S.Schema<RouteRentalArrival>;
 export type RouteAttributionType = "Disclaimer" | "Tariff" | (string & {});
-export const RouteAttributionType = /*@__PURE__*/ S.String;
+export const RouteAttributionType = S.String;
 
 export type RouteWebLinkDeviceType = "Android" | "Ios" | "Web" | (string & {});
-export const RouteWebLinkDeviceType = /*@__PURE__*/ S.String;
+export const RouteWebLinkDeviceType = S.String;
 
 export interface RouteWebLink {
   AnchorText?: string | redacted.Redacted<string>;
@@ -3663,7 +3663,7 @@ export const RouteAttribution = /*@__PURE__*/ S.suspend(() =>
 export type RouteAttributionList = RouteAttribution[];
 export const RouteAttributionList = /*@__PURE__*/ S.Array(RouteAttribution);
 export type RouteRentalBeforeTravelStepType = "Setup" | (string & {});
-export const RouteRentalBeforeTravelStepType = /*@__PURE__*/ S.String;
+export const RouteRentalBeforeTravelStepType = S.String;
 
 export interface RouteRentalBeforeTravelStep {
   Duration: number;
@@ -3762,7 +3762,7 @@ export type RouteRentalTravelStepType =
   | "Turn"
   | "UTurn"
   | (string & {});
-export const RouteRentalTravelStepType = /*@__PURE__*/ S.String;
+export const RouteRentalTravelStepType = S.String;
 
 export interface RouteRentalTravelStep {
   ContinueStepDetails?: RouteContinueStepDetails;
@@ -3833,7 +3833,7 @@ export const RouteRentalLegDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteRentalLegDetails",
 }) as any as S.Schema<RouteRentalLegDetails>;
 export type RouteTaxiAfterTravelStepType = "Park" | (string & {});
-export const RouteTaxiAfterTravelStepType = /*@__PURE__*/ S.String;
+export const RouteTaxiAfterTravelStepType = S.String;
 
 export interface RouteTaxiAfterTravelStep {
   Duration: number;
@@ -3863,7 +3863,7 @@ export const RouteTaxiAgency = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteTaxiAgency",
 }) as any as S.Schema<RouteTaxiAgency>;
 export type RouteTaxiPlaceType = "AccessPoint" | "Station" | (string & {});
-export const RouteTaxiPlaceType = /*@__PURE__*/ S.String;
+export const RouteTaxiPlaceType = S.String;
 
 export interface RouteTaxiPlace {
   AccessPointDetails?: RouteAccessPointDetails;
@@ -3895,7 +3895,7 @@ export const RouteTaxiArrival = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteTaxiArrival",
 }) as any as S.Schema<RouteTaxiArrival>;
 export type RouteTaxiBeforeTravelStepType = "Wait" | (string & {});
-export const RouteTaxiBeforeTravelStepType = /*@__PURE__*/ S.String;
+export const RouteTaxiBeforeTravelStepType = S.String;
 
 export interface RouteTaxiBeforeTravelStep {
   Duration: number;
@@ -3928,7 +3928,7 @@ export type RouteTaxiNoticeCode =
   | "AccuratePolylineUnavailable"
   | "Other"
   | (string & {});
-export const RouteTaxiNoticeCode = /*@__PURE__*/ S.String;
+export const RouteTaxiNoticeCode = S.String;
 
 export interface RouteTaxiNotice {
   Code: RouteTaxiNoticeCode;
@@ -4012,7 +4012,7 @@ export type RouteTaxiTravelStepType =
   | "Turn"
   | "UTurn"
   | (string & {});
-export const RouteTaxiTravelStepType = /*@__PURE__*/ S.String;
+export const RouteTaxiTravelStepType = S.String;
 
 export interface RouteTaxiTravelStep {
   ContinueStepDetails?: RouteContinueStepDetails;
@@ -4084,7 +4084,7 @@ export const RouteTaxiLegDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteTaxiLegDetails",
 }) as any as S.Schema<RouteTaxiLegDetails>;
 export type RouteTransitAfterTravelStepType = "Deboard" | (string & {});
-export const RouteTransitAfterTravelStepType = /*@__PURE__*/ S.String;
+export const RouteTransitAfterTravelStepType = S.String;
 
 export interface RouteTransitAfterTravelStep {
   Duration: number;
@@ -4114,7 +4114,7 @@ export const RouteTransitAgency = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteTransitAgency",
 }) as any as S.Schema<RouteTransitAgency>;
 export type RouteTransitPlaceType = "Station" | (string & {});
-export const RouteTransitPlaceType = /*@__PURE__*/ S.String;
+export const RouteTransitPlaceType = S.String;
 
 export interface RouteTransitPlace {
   Name?: string | redacted.Redacted<string>;
@@ -4142,7 +4142,7 @@ export type RouteTransitTripStatus =
   | "Replaced"
   | "Scheduled"
   | (string & {});
-export const RouteTransitTripStatus = /*@__PURE__*/ S.String;
+export const RouteTransitTripStatus = S.String;
 
 export interface RouteTransitArrival {
   Delay?: number;
@@ -4161,7 +4161,7 @@ export const RouteTransitArrival = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteTransitArrival",
 }) as any as S.Schema<RouteTransitArrival>;
 export type RouteTransitBeforeTravelStepType = "Board" | (string & {});
-export const RouteTransitBeforeTravelStepType = /*@__PURE__*/ S.String;
+export const RouteTransitBeforeTravelStepType = S.String;
 
 export interface RouteTransitBeforeTravelStep {
   Duration: number;
@@ -4207,7 +4207,7 @@ export type RouteTransitIncidentEffect =
   | "ServiceReduced"
   | "StopMoved"
   | (string & {});
-export const RouteTransitIncidentEffect = /*@__PURE__*/ S.String;
+export const RouteTransitIncidentEffect = S.String;
 
 export type RouteTransitIncidentType =
   | "Accident"
@@ -4222,7 +4222,7 @@ export type RouteTransitIncidentType =
   | "TechnicalProblem"
   | "Weather"
   | (string & {});
-export const RouteTransitIncidentType = /*@__PURE__*/ S.String;
+export const RouteTransitIncidentType = S.String;
 
 export interface RouteTransitIncident {
   Description?: string | redacted.Redacted<string>;
@@ -4251,7 +4251,7 @@ export type RouteTransitIntermediateStopAttribute =
   | "NoEntry"
   | "NoExit"
   | (string & {});
-export const RouteTransitIntermediateStopAttribute = /*@__PURE__*/ S.String;
+export const RouteTransitIntermediateStopAttribute = S.String;
 
 export type RouteTransitIntermediateStopAttributeList =
   RouteTransitIntermediateStopAttribute[];
@@ -4341,7 +4341,7 @@ export type RouteTransitNoticeCode =
   | "ViolatedVehicleRestriction"
   | "ViolatedAvoidAreas"
   | (string & {});
-export const RouteTransitNoticeCode = /*@__PURE__*/ S.String;
+export const RouteTransitNoticeCode = S.String;
 
 export interface RouteTransitNotice {
   Code: RouteTransitNoticeCode;
@@ -4409,7 +4409,7 @@ export const RouteTransitSummary = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteTransitSummary",
 }) as any as S.Schema<RouteTransitSummary>;
 export type RouteTransitTravelStepType = "Depart" | (string & {});
-export const RouteTransitTravelStepType = /*@__PURE__*/ S.String;
+export const RouteTransitTravelStepType = S.String;
 
 export interface RouteTransitTravelStep {
   Distance?: number;
@@ -4635,7 +4635,7 @@ export type WaypointOptimizationClusteringAlgorithm =
   | "DrivingDistance"
   | "TopologySegment"
   | (string & {});
-export const WaypointOptimizationClusteringAlgorithm = /*@__PURE__*/ S.String;
+export const WaypointOptimizationClusteringAlgorithm = S.String;
 
 export type WaypointOptimizationDrivingDistance = number;
 export interface WaypointOptimizationDrivingDistanceOptions {
@@ -4671,7 +4671,7 @@ export type DayOfWeek =
   | "Saturday"
   | "Sunday"
   | (string & {});
-export const DayOfWeek = /*@__PURE__*/ S.String;
+export const DayOfWeek = S.String;
 
 export type TimeOfDay = string | redacted.Redacted<string>;
 export interface WaypointOptimizationAccessHoursEntry {
@@ -4763,7 +4763,7 @@ export type WaypointOptimizationServiceTimeTreatment =
   | "Rest"
   | "Work"
   | (string & {});
-export const WaypointOptimizationServiceTimeTreatment = /*@__PURE__*/ S.String;
+export const WaypointOptimizationServiceTimeTreatment = S.String;
 
 export interface WaypointOptimizationDriverOptions {
   RestCycles?: WaypointOptimizationRestCycles;
@@ -4791,7 +4791,7 @@ export type WaypointOptimizationSequencingObjective =
   | "FastestRoute"
   | "ShortestRoute"
   | (string & {});
-export const WaypointOptimizationSequencingObjective = /*@__PURE__*/ S.String;
+export const WaypointOptimizationSequencingObjective = S.String;
 
 export interface WaypointOptimizationOriginOptions {
   Id?: string;
@@ -4815,7 +4815,7 @@ export type WaypointOptimizationTravelMode =
   | "Scooter"
   | "Truck"
   | (string & {});
-export const WaypointOptimizationTravelMode = /*@__PURE__*/ S.String;
+export const WaypointOptimizationTravelMode = S.String;
 
 export interface WaypointOptimizationPedestrianOptions {
   Speed?: number;
@@ -4838,7 +4838,7 @@ export type WaypointOptimizationHazardousCargoType =
   | "PoisonousInhalation"
   | "Radioactive"
   | (string & {});
-export const WaypointOptimizationHazardousCargoType = /*@__PURE__*/ S.String;
+export const WaypointOptimizationHazardousCargoType = S.String;
 
 export type WaypointOptimizationHazardousCargoTypeList =
   WaypointOptimizationHazardousCargoType[];
@@ -4857,7 +4857,7 @@ export type WaypointOptimizationTruckType =
   | "StraightTruck"
   | "Tractor"
   | (string & {});
-export const WaypointOptimizationTruckType = /*@__PURE__*/ S.String;
+export const WaypointOptimizationTruckType = S.String;
 
 export interface WaypointOptimizationTruckOptions {
   GrossWeight?: number;
@@ -5009,7 +5009,7 @@ export type WaypointOptimizationConstraint =
   | "ServiceDuration"
   | "SideOfStreet"
   | (string & {});
-export const WaypointOptimizationConstraint = /*@__PURE__*/ S.String;
+export const WaypointOptimizationConstraint = S.String;
 
 export interface WaypointOptimizationFailedConstraint {
   Constraint?: WaypointOptimizationConstraint;
@@ -5136,7 +5136,7 @@ export type RoadSnapTravelMode =
   | "Scooter"
   | "Truck"
   | (string & {});
-export const RoadSnapTravelMode = /*@__PURE__*/ S.String;
+export const RoadSnapTravelMode = S.String;
 
 export type RoadSnapHazardousCargoType =
   | "Combustible"
@@ -5151,7 +5151,7 @@ export type RoadSnapHazardousCargoType =
   | "PoisonousInhalation"
   | "Radioactive"
   | (string & {});
-export const RoadSnapHazardousCargoType = /*@__PURE__*/ S.String;
+export const RoadSnapHazardousCargoType = S.String;
 
 export type RoadSnapHazardousCargoTypeList = RoadSnapHazardousCargoType[];
 export const RoadSnapHazardousCargoTypeList = /*@__PURE__*/ S.Array(
@@ -5233,7 +5233,7 @@ export type RoadSnapNoticeCode =
   | "TracePointsSpeedEstimated"
   | "TracePointsSpeedIgnored"
   | (string & {});
-export const RoadSnapNoticeCode = /*@__PURE__*/ S.String;
+export const RoadSnapNoticeCode = S.String;
 
 export type RoadSnapTracePointIndexList = number[];
 export const RoadSnapTracePointIndexList = /*@__PURE__*/ S.Array(S.Number);
@@ -5307,7 +5307,7 @@ export type ValidationExceptionReason =
   | "Other"
   | "UnknownField"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   Name: string;

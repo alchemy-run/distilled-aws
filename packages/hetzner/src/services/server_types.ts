@@ -89,17 +89,15 @@ export const GetServerTypeResponseServerTypePricesList = /*@__PURE__*/ S.Array(
 
 /** Type of Server boot drive. Local has higher speed. Network has better availability. */
 export type GetServerTypeResponseServerTypeStorageType = "local" | "network";
-export const GetServerTypeResponseServerTypeStorageType =
-  /*@__PURE__*/ S.String;
+export const GetServerTypeResponseServerTypeStorageType = S.String;
 
 /** Type of cpu. */
 export type GetServerTypeResponseServerTypeCpuType = "shared" | "dedicated";
-export const GetServerTypeResponseServerTypeCpuType = /*@__PURE__*/ S.String;
+export const GetServerTypeResponseServerTypeCpuType = S.String;
 
 /** CPU architecture of the Server Type. */
 export type GetServerTypeResponseServerTypeArchitecture = "x86" | "arm";
-export const GetServerTypeResponseServerTypeArchitecture =
-  /*@__PURE__*/ S.String;
+export const GetServerTypeResponseServerTypeArchitecture = S.String;
 
 /** This field is deprecated. Use the `deprecation` object in the `locations` field instead (`.locations[].deprecation`). */
 export interface GetServerTypeResponseServerTypeDeprecation {
@@ -275,20 +273,17 @@ export const ListServerTypesResponseServerTypesItemPricesList =
 export type ListServerTypesResponseServerTypesItemStorageType =
   | "local"
   | "network";
-export const ListServerTypesResponseServerTypesItemStorageType =
-  /*@__PURE__*/ S.String;
+export const ListServerTypesResponseServerTypesItemStorageType = S.String;
 
 /** Type of cpu. */
 export type ListServerTypesResponseServerTypesItemCpuType =
   | "shared"
   | "dedicated";
-export const ListServerTypesResponseServerTypesItemCpuType =
-  /*@__PURE__*/ S.String;
+export const ListServerTypesResponseServerTypesItemCpuType = S.String;
 
 /** CPU architecture of the Server Type. */
 export type ListServerTypesResponseServerTypesItemArchitecture = "x86" | "arm";
-export const ListServerTypesResponseServerTypesItemArchitecture =
-  /*@__PURE__*/ S.String;
+export const ListServerTypesResponseServerTypesItemArchitecture = S.String;
 
 /** This field is deprecated. Use the `deprecation` object in the `locations` field instead (`.locations[].deprecation`). */
 export type ListServerTypesResponseServerTypesItemDeprecation =

@@ -228,7 +228,7 @@ export const GetConfigurationInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetConfigurationInput",
 }) as any as S.Schema<GetConfigurationInput>;
 export type StatusType = "Deployment" | "AsyncExecutions" | (string & {});
-export const StatusType = /*@__PURE__*/ S.String;
+export const StatusType = S.String;
 
 export type Status =
   | "INITIALIZING"
@@ -242,7 +242,7 @@ export type Status =
   | "STOP_FAILED"
   | "NONE"
   | (string & {});
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 export type StatusDetails = { [key: string]: string | undefined };
 export const StatusDetails = /*@__PURE__*/ S.Record(

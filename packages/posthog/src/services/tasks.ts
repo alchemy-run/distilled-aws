@@ -71,7 +71,7 @@ export type TaskOriginProductEnum =
   | "signals_chat"
   | "task_analysis"
   | "workflow";
-export const TaskOriginProductEnum = /*@__PURE__*/ S.String;
+export const TaskOriginProductEnum = S.String;
 
 /** GitHub repositories available to this task, each in `organization/repo` format. */
 export type CreateTaskRequestRepositoriesList = Array<string>;
@@ -81,7 +81,7 @@ export const CreateTaskRequestRepositoriesList = /*@__PURE__*/ S.Array(
 
 /** * `claude` - claude * `codex` - codex */
 export type RuntimeAdapterEnum = "claude" | "codex";
-export const RuntimeAdapterEnum = /*@__PURE__*/ S.String;
+export const RuntimeAdapterEnum = S.String;
 
 /** * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
 export type ReasoningEffortEnum =
@@ -91,7 +91,7 @@ export type ReasoningEffortEnum =
   | "xhigh"
   | "max"
   | "ultracode";
-export const ReasoningEffortEnum = /*@__PURE__*/ S.String;
+export const ReasoningEffortEnum = S.String;
 
 /** * `default` - default * `acceptEdits` - acceptEdits * `plan` - plan * `bypassPermissions` - bypassPermissions * `auto` - auto * `read-only` - read-only * `full-access` - full-access */
 export type TaskRunBootstrapCreateRequestInitialPermissionModeEnum =
@@ -102,8 +102,7 @@ export type TaskRunBootstrapCreateRequestInitialPermissionModeEnum =
   | "auto"
   | "read-only"
   | "full-access";
-export const TaskRunBootstrapCreateRequestInitialPermissionModeEnum =
-  /*@__PURE__*/ S.String;
+export const TaskRunBootstrapCreateRequestInitialPermissionModeEnum = S.String;
 
 /** Run artifact ids (already uploaded to the pre-warmed Run) to attach to the forwarded first message when creation reuses that warm Run, e.g. skill bundles or file attachments. If any id is missing from the warm Run's manifest, warm reuse is skipped and the task is created cold. Ignored when no warm Run is matched. */
 export type CreateTaskRequestPendingUserArtifactIdsList = Array<string>;
@@ -114,7 +113,7 @@ export const CreateTaskRequestPendingUserArtifactIdsList =
 
 /** * `acp` - ACP * `pi` - Pi */
 export type TaskRuntimeEnum = "acp" | "pi";
-export const TaskRuntimeEnum = /*@__PURE__*/ S.String;
+export const TaskRuntimeEnum = S.String;
 
 export interface CreateTaskRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -232,7 +231,7 @@ export const TaskDetailDTOJsonSchemaMap = /*@__PURE__*/ S.Record(
 
 /** * `anthropic` - anthropic * `openai` - openai */
 export type TaskRunDetailDTOProviderEnum = "anthropic" | "openai";
-export const TaskRunDetailDTOProviderEnum = /*@__PURE__*/ S.String;
+export const TaskRunDetailDTOProviderEnum = S.String;
 
 /** * `off` - off * `minimal` - minimal * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
 export type TaskRunReasoningEffortEnum =
@@ -244,7 +243,7 @@ export type TaskRunReasoningEffortEnum =
   | "xhigh"
   | "max"
   | "ultracode";
-export const TaskRunReasoningEffortEnum = /*@__PURE__*/ S.String;
+export const TaskRunReasoningEffortEnum = S.String;
 
 export type TaskRunDetailDTOOutputMap = { [key: string]: unknown | undefined };
 export const TaskRunDetailDTOOutputMap = /*@__PURE__*/ S.Record(
@@ -260,11 +259,11 @@ export const TaskRunDetailDTOStateMap = /*@__PURE__*/ S.Record(
 
 /** * `user` - user * `repo` - repo * `marketplace` - marketplace * `codex` - codex */
 export type SkillSourceEnum = "user" | "repo" | "marketplace" | "codex";
-export const SkillSourceEnum = /*@__PURE__*/ S.String;
+export const SkillSourceEnum = S.String;
 
 /** * `zip` - zip */
 export type BundleFormatEnum = "zip";
-export const BundleFormatEnum = /*@__PURE__*/ S.String;
+export const BundleFormatEnum = S.String;
 
 export interface TaskRunSkillBundleMetadata {
   /** Name of the local skill included in a skill_bundle artifact. */
@@ -292,7 +291,7 @@ export const TaskRunSkillBundleMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** * `posthog_object` - posthog_object */
 export type ReferenceTypeEnum = "posthog_object";
-export const ReferenceTypeEnum = /*@__PURE__*/ S.String;
+export const ReferenceTypeEnum = S.String;
 
 /** * `insight` - insight * `hogql` - hogql * `dashboard` - dashboard * `error` - error * `replay` - replay * `flag` - flag * `experiment` - experiment * `survey` - survey * `ticket` - ticket * `trace` - trace * `eval` - eval * `event` - event * `cohort` - cohort * `action` - action * `person` - person */
 export type ObjectKindEnum =
@@ -311,7 +310,7 @@ export type ObjectKindEnum =
   | "cohort"
   | "action"
   | "person";
-export const ObjectKindEnum = /*@__PURE__*/ S.String;
+export const ObjectKindEnum = S.String;
 
 /** Completed assistant message identifiers that referenced the object. */
 export type TaskRunPostHogReferenceMetadataSourceMessageIdsList = Array<string>;
@@ -348,11 +347,11 @@ export type TaskRunArtifactMetadata =
   | TaskRunSkillBundleMetadata
   | TaskRunPostHogReferenceMetadata;
 export const TaskRunArtifactMetadata =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TaskRunArtifactMetadata>;
+  S.Unknown as any as S.Schema<TaskRunArtifactMetadata>;
 
 /** * `agent` - agent * `user` - user */
 export type UploadedByEnum = "agent" | "user";
-export const UploadedByEnum = /*@__PURE__*/ S.String;
+export const UploadedByEnum = S.String;
 
 export interface TaskRunArtifactResponse {
   /** Stable identifier for the artifact within this run */
@@ -693,7 +692,7 @@ export const CreateTasksMeConfigRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `user` - user * `team` - team * `none` - none */
 export type TasksResolvedAIRunDefaultsSourceEnum = "user" | "team" | "none";
-export const TasksResolvedAIRunDefaultsSourceEnum = /*@__PURE__*/ S.String;
+export const TasksResolvedAIRunDefaultsSourceEnum = S.String;
 
 /** The AI run triple a new run will effectively use when the caller pins nothing, plus which preference level supplied it. */
 export interface TasksResolvedAIRunDefaults {
@@ -803,7 +802,7 @@ export const CreateTasksPresenceResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** * `http` - http * `sse` - sse */
 export type ImportedMcpServerTypeEnum = "http" | "sse";
-export const ImportedMcpServerTypeEnum = /*@__PURE__*/ S.String;
+export const ImportedMcpServerTypeEnum = S.String;
 
 export interface ImportedMcpServerHeader {
   name: string;
@@ -870,24 +869,23 @@ export const CreateTasksRunRequestRelayedMcpServersList = /*@__PURE__*/ S.Array(
 
 /** * `local` - local * `cloud` - cloud */
 export type TaskRunBootstrapCreateRequestEnvironmentEnum = "local" | "cloud";
-export const TaskRunBootstrapCreateRequestEnvironmentEnum =
-  /*@__PURE__*/ S.String;
+export const TaskRunBootstrapCreateRequestEnvironmentEnum = S.String;
 
 /** * `interactive` - interactive * `background` - background */
 export type TaskExecutionModeEnum = "interactive" | "background";
-export const TaskExecutionModeEnum = /*@__PURE__*/ S.String;
+export const TaskExecutionModeEnum = S.String;
 
 /** * `user` - user * `bot` - bot */
 export type PrAuthorshipModeEnum = "user" | "bot";
-export const PrAuthorshipModeEnum = /*@__PURE__*/ S.String;
+export const PrAuthorshipModeEnum = S.String;
 
 /** * `manual` - manual * `signal_report` - signal_report */
 export type RunSourceEnum = "manual" | "signal_report";
-export const RunSourceEnum = /*@__PURE__*/ S.String;
+export const RunSourceEnum = S.String;
 
 /** * `200k` - 200k * `1m` - 1m */
 export type ContextWindowEnum = "200k" | "1m";
-export const ContextWindowEnum = /*@__PURE__*/ S.String;
+export const ContextWindowEnum = S.String;
 
 export interface CreateTasksRunRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -982,14 +980,14 @@ export type NoFindingsReasonEnum =
   | "run_was_efficient"
   | "too_short_to_judge"
   | "insufficient_visibility";
-export const NoFindingsReasonEnum = /*@__PURE__*/ S.String;
+export const NoFindingsReasonEnum = S.String;
 
 /** * `transcript_quote` - transcript_quote * `command_output` - command_output * `measured_count` - measured_count */
 export type EvidenceTypeEnum =
   | "transcript_quote"
   | "command_output"
   | "measured_count";
-export const EvidenceTypeEnum = /*@__PURE__*/ S.String;
+export const EvidenceTypeEnum = S.String;
 
 export interface TaskAnalysisEvidence {
   /** Verbatim span copied from the analysed run log. */
@@ -1024,7 +1022,7 @@ export type TaskRunAnalysisInsightRequestCategoryEnum =
   | "instruction_gap"
   | "wasted_retry"
   | "other";
-export const TaskRunAnalysisInsightRequestCategoryEnum = /*@__PURE__*/ S.String;
+export const TaskRunAnalysisInsightRequestCategoryEnum = S.String;
 
 export interface TaskAnalysisWastedEffort {
   /** Wasted tool calls, counted from the log. */
@@ -1052,11 +1050,11 @@ export type RecurrenceEnum =
   | "every_run_in_this_repo"
   | "runs_touching_this_area"
   | "one_off";
-export const RecurrenceEnum = /*@__PURE__*/ S.String;
+export const RecurrenceEnum = S.String;
 
 /** * `directly_observed` - directly_observed * `inferred` - inferred */
 export type ConfidenceBasisEnum = "directly_observed" | "inferred";
-export const ConfidenceBasisEnum = /*@__PURE__*/ S.String;
+export const ConfidenceBasisEnum = S.String;
 
 /** Single-line commands only; these may become image build steps. */
 export type TaskAnalysisSuggestedFixSetupCommandsList = Array<string>;
@@ -1254,11 +1252,11 @@ export type TaskRunArtifactTypeEnum =
   | "tree_snapshot"
   | "user_attachment"
   | "skill_bundle";
-export const TaskRunArtifactTypeEnum = /*@__PURE__*/ S.String;
+export const TaskRunArtifactTypeEnum = S.String;
 
 /** * `utf-8` - utf-8 * `base64` - base64 */
 export type ContentEncodingEnum = "utf-8" | "base64";
-export const ContentEncodingEnum = /*@__PURE__*/ S.String;
+export const ContentEncodingEnum = S.String;
 
 export interface TaskRunArtifactUpload {
   /** File name to associate with the artifact */
@@ -1541,7 +1539,7 @@ export const CreateTasksRunsClearConversationRequest = /*@__PURE__*/ S.suspend(
 
 /** * `2.0` - 2.0 */
 export type JsonrpcEnum = "2.0";
-export const JsonrpcEnum = /*@__PURE__*/ S.String;
+export const JsonrpcEnum = S.String;
 
 /** * `user_message` - user_message * `cancel` - cancel * `close` - close * `permission_response` - permission_response * `set_config_option` - set_config_option * `mcp_response` - mcp_response * `pi/rpc` - pi/rpc * `queue_get` - queue_get * `queue_clear` - queue_clear * `side_question` - side_question */
 export type TaskRunCommandRequestMethodEnum =
@@ -1555,7 +1553,7 @@ export type TaskRunCommandRequestMethodEnum =
   | "queue_get"
   | "queue_clear"
   | "side_question";
-export const TaskRunCommandRequestMethodEnum = /*@__PURE__*/ S.String;
+export const TaskRunCommandRequestMethodEnum = S.String;
 
 /** Parameters for the command */
 export type CreateTasksRunsCommandRequestParamsMap = {
@@ -1637,7 +1635,7 @@ export type ArtifactTypeEnum =
   | "dashboard"
   | "file"
   | "github_pr";
-export const ArtifactTypeEnum = /*@__PURE__*/ S.String;
+export const ArtifactTypeEnum = S.String;
 
 /** * `slack_message` - slack_message * `slack_canvas` - slack_canvas * `slack_file` - slack_file * `document_connector` - document_connector * `github_pr` - github_pr */
 export type AdapterEnum =
@@ -1646,7 +1644,7 @@ export type AdapterEnum =
   | "slack_file"
   | "document_connector"
   | "github_pr";
-export const AdapterEnum = /*@__PURE__*/ S.String;
+export const AdapterEnum = S.String;
 
 /** Optional metadata to persist with the living artifact. */
 export type CreateTasksRunsLivingArtifactRequestMetadataMap = {
@@ -1710,7 +1708,7 @@ export const CreateTasksRunsLivingArtifactRequest = /*@__PURE__*/ S.suspend(
 
 /** * `active` - active * `failed` - failed */
 export type TaskArtifactStatusEnum = "active" | "failed";
-export const TaskArtifactStatusEnum = /*@__PURE__*/ S.String;
+export const TaskArtifactStatusEnum = S.String;
 
 export type TaskRunLivingArtifactResponseVersionsItemMap = {
   [key: string]: unknown | undefined;
@@ -1818,7 +1816,7 @@ export const CreateTasksRunsPeersMessageRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `accepted` - accepted * `target_finished` - target_finished * `rejected` - rejected */
 export type ResultEnum = "accepted" | "target_finished" | "rejected";
-export const ResultEnum = /*@__PURE__*/ S.String;
+export const ResultEnum = S.String;
 
 export interface TaskRunPeerMessageResponse {
   /** Send outcome: 'accepted' (queued for delivery — not a delivery confirmation), 'target_finished' (the peer's workflow is gone), or 'rejected' (throttled or invalid). * `accepted` - accepted * `target_finished` - target_finished * `rejected` - rejected */
@@ -1970,11 +1968,11 @@ export type TaskRunStatusEnum =
   | "completed"
   | "failed"
   | "cancelled";
-export const TaskRunStatusEnum = /*@__PURE__*/ S.String;
+export const TaskRunStatusEnum = S.String;
 
 /** * `local` - Local * `cloud` - Cloud */
 export type TaskRunEnvironmentEnum = "local" | "cloud";
-export const TaskRunEnvironmentEnum = /*@__PURE__*/ S.String;
+export const TaskRunEnvironmentEnum = S.String;
 
 export interface TaskRunSummary {
   /** ID of the latest run. */
@@ -2106,7 +2104,7 @@ export const CreateTasksWarmRequestRepositoriesList = /*@__PURE__*/ S.Array(
 
 /** * `user_created` - user_created * `posthog_ai` - posthog_ai */
 export type WarmTaskRequestOriginProductEnum = "user_created" | "posthog_ai";
-export const WarmTaskRequestOriginProductEnum = /*@__PURE__*/ S.String;
+export const WarmTaskRequestOriginProductEnum = S.String;
 
 export interface CreateTasksWarmRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2283,7 +2281,7 @@ export const GetDesktopAccessRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `startup_plan` - startup_plan * `prepaid_credits` - prepaid_credits */
 export type DesktopAccessReasonEnum = "startup_plan" | "prepaid_credits";
-export const DesktopAccessReasonEnum = /*@__PURE__*/ S.String;
+export const DesktopAccessReasonEnum = S.String;
 
 export interface DesktopAccessResponse {
   /** Whether the selected project can use PostHog Desktop. */
@@ -2678,7 +2676,7 @@ export type CapabilityStateStateEnum =
   | "ready"
   | "not_applicable"
   | "unknown";
-export const CapabilityStateStateEnum = /*@__PURE__*/ S.String;
+export const CapabilityStateStateEnum = S.String;
 
 /** Supporting evidence */
 export type CapabilityStateEvidenceMap = { [key: string]: unknown | undefined };
@@ -3370,14 +3368,14 @@ export const TaskUsageResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TaskUsageResponse>;
 
 export type ListTasksRequestArchived = "true" | "false" | "all";
-export const ListTasksRequestArchived = /*@__PURE__*/ S.String;
+export const ListTasksRequestArchived = S.String;
 
 export type ListTasksRequestCiStatus =
   | "passing"
   | "failing"
   | "pending"
   | "none";
-export const ListTasksRequestCiStatus = /*@__PURE__*/ S.String;
+export const ListTasksRequestCiStatus = S.String;
 
 export type ListTasksRequestExcludeOriginProduct =
   | "onboarding"
@@ -3401,16 +3399,16 @@ export type ListTasksRequestExcludeOriginProduct =
   | "signals_chat"
   | "task_analysis"
   | "workflow";
-export const ListTasksRequestExcludeOriginProduct = /*@__PURE__*/ S.String;
+export const ListTasksRequestExcludeOriginProduct = S.String;
 
 export type ListTasksRequestInternal = "true" | "false" | "all";
-export const ListTasksRequestInternal = /*@__PURE__*/ S.String;
+export const ListTasksRequestInternal = S.String;
 
 export type ListTasksRequestOrdering = "-created_at" | "-last_activity_at";
-export const ListTasksRequestOrdering = /*@__PURE__*/ S.String;
+export const ListTasksRequestOrdering = S.String;
 
 export type ListTasksRequestPrState = "open" | "draft" | "merged" | "closed";
-export const ListTasksRequestPrState = /*@__PURE__*/ S.String;
+export const ListTasksRequestPrState = S.String;
 
 export type ListTasksRequestStatus =
   | "not_started"
@@ -3419,7 +3417,7 @@ export type ListTasksRequestStatus =
   | "completed"
   | "failed"
   | "cancelled";
-export const ListTasksRequestStatus = /*@__PURE__*/ S.String;
+export const ListTasksRequestStatus = S.String;
 
 export interface ListTasksRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -3948,7 +3946,7 @@ export const ClaudeTaskRunCreateSchemaPendingUserArtifactIdsList =
 
 /** * `claude` - claude */
 export type ClaudeRuntimeAdapterEnum = "claude";
-export const ClaudeRuntimeAdapterEnum = /*@__PURE__*/ S.String;
+export const ClaudeRuntimeAdapterEnum = S.String;
 
 /** * `default` - default * `acceptEdits` - acceptEdits * `plan` - plan * `bypassPermissions` - bypassPermissions * `auto` - auto */
 export type InitialPermissionModeEnum =
@@ -3957,7 +3955,7 @@ export type InitialPermissionModeEnum =
   | "plan"
   | "bypassPermissions"
   | "auto";
-export const InitialPermissionModeEnum = /*@__PURE__*/ S.String;
+export const InitialPermissionModeEnum = S.String;
 
 /** Request body for creating a new task run */
 export interface ClaudeTaskRunCreateSchema {
@@ -4066,7 +4064,7 @@ export const CodexTaskRunCreateSchemaPendingUserArtifactIdsList =
 
 /** * `codex` - codex */
 export type CodexRuntimeAdapterEnum = "codex";
-export const CodexRuntimeAdapterEnum = /*@__PURE__*/ S.String;
+export const CodexRuntimeAdapterEnum = S.String;
 
 /** * `plan` - plan * `auto` - auto * `read-only` - read-only * `full-access` - full-access */
 export type CodexTaskRunCreateSchemaInitialPermissionModeEnum =
@@ -4074,8 +4072,7 @@ export type CodexTaskRunCreateSchemaInitialPermissionModeEnum =
   | "auto"
   | "read-only"
   | "full-access";
-export const CodexTaskRunCreateSchemaInitialPermissionModeEnum =
-  /*@__PURE__*/ S.String;
+export const CodexTaskRunCreateSchemaInitialPermissionModeEnum = S.String;
 
 /** Request body for creating a new task run */
 export interface CodexTaskRunCreateSchema {
@@ -4207,7 +4204,7 @@ export type TaskRunCreateRequestSchema =
   | CodexTaskRunCreateSchema
   | TaskRunResumeRequestSchema;
 export const TaskRunCreateRequestSchema =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TaskRunCreateRequestSchema>;
+  S.Unknown as any as S.Schema<TaskRunCreateRequestSchema>;
 
 export interface TasksRunCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -4804,7 +4801,7 @@ export type TaskSearchResultKindEnum =
   | "pull_request"
   | "artifact"
   | "channel";
-export const TaskSearchResultKindEnum = /*@__PURE__*/ S.String;
+export const TaskSearchResultKindEnum = S.String;
 
 export interface TaskSearchResult {
   /** Search document identifier. */
@@ -5416,7 +5413,7 @@ export type RunStatusEnum =
   | "completed"
   | "failed"
   | "cancelled";
-export const RunStatusEnum = /*@__PURE__*/ S.String;
+export const RunStatusEnum = S.String;
 
 /** State keys to remove atomically before applying any state updates. */
 export type UpdateTasksRunsPartialRequestStateRemoveKeysList = Array<string>;

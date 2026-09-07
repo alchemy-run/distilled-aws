@@ -261,7 +261,7 @@ export type FeatureType =
   | "SIGNATURES"
   | "LAYOUT"
   | (string & {});
-export const FeatureType = /*@__PURE__*/ S.String;
+export const FeatureType = S.String;
 
 export type FeatureTypes = FeatureType[];
 export const FeatureTypes = /*@__PURE__*/ S.Array(FeatureType);
@@ -271,7 +271,7 @@ export type ContentClassifier =
   | "FreeOfPersonallyIdentifiableInformation"
   | "FreeOfAdultContent"
   | (string & {});
-export const ContentClassifier = /*@__PURE__*/ S.String;
+export const ContentClassifier = S.String;
 
 export type ContentClassifiers = ContentClassifier[];
 export const ContentClassifiers = /*@__PURE__*/ S.Array(ContentClassifier);
@@ -401,11 +401,11 @@ export type BlockType =
   | "LAYOUT_TABLE"
   | "LAYOUT_KEY_VALUE"
   | (string & {});
-export const BlockType = /*@__PURE__*/ S.String;
+export const BlockType = S.String;
 
 export type Percent = number;
 export type TextType = "HANDWRITING" | "PRINTED" | (string & {});
-export const TextType = /*@__PURE__*/ S.String;
+export const TextType = S.String;
 
 export interface BoundingBox {
   Width?: number;
@@ -455,7 +455,7 @@ export type RelationshipType =
   | "TABLE_TITLE"
   | "TABLE_FOOTER"
   | (string & {});
-export const RelationshipType = /*@__PURE__*/ S.String;
+export const RelationshipType = S.String;
 
 export type IdList = string[];
 export const IdList = /*@__PURE__*/ S.Array(S.String);
@@ -479,12 +479,12 @@ export type EntityType =
   | "STRUCTURED_TABLE"
   | "SEMI_STRUCTURED_TABLE"
   | (string & {});
-export const EntityType = /*@__PURE__*/ S.String;
+export const EntityType = S.String;
 
 export type EntityTypes = EntityType[];
 export const EntityTypes = /*@__PURE__*/ S.Array(EntityType);
 export type SelectionStatus = "SELECTED" | "NOT_SELECTED" | (string & {});
-export const SelectionStatus = /*@__PURE__*/ S.String;
+export const SelectionStatus = S.String;
 
 export interface Block {
   BlockType?: BlockType;
@@ -697,7 +697,7 @@ export const AnalyzeIDRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AnalyzeIDRequest",
 }) as any as S.Schema<AnalyzeIDRequest>;
 export type ValueType = "DATE" | (string & {});
-export const ValueType = /*@__PURE__*/ S.String;
+export const ValueType = S.String;
 
 export interface NormalizedValue {
   Value?: string;
@@ -772,7 +772,7 @@ export type AdapterName = string;
 export type ClientRequestToken = string;
 export type AdapterDescription = string;
 export type AutoUpdate = "ENABLED" | "DISABLED" | (string & {});
-export const AutoUpdate = /*@__PURE__*/ S.String;
+export const AutoUpdate = S.String;
 
 export type TagKey = string;
 export type TagValue = string;
@@ -968,7 +968,7 @@ export type AdapterVersionStatus =
   | "CREATION_ERROR"
   | "CREATION_IN_PROGRESS"
   | (string & {});
-export const AdapterVersionStatus = /*@__PURE__*/ S.String;
+export const AdapterVersionStatus = S.String;
 
 export type AdapterVersionStatusMessage = string;
 export interface EvaluationMetric {
@@ -1058,7 +1058,7 @@ export type JobStatus =
   | "FAILED"
   | "PARTIAL_SUCCESS"
   | (string & {});
-export const JobStatus = /*@__PURE__*/ S.String;
+export const JobStatus = S.String;
 
 export type ErrorCode = string;
 export type Pages = number[];

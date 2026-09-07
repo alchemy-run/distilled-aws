@@ -40,7 +40,7 @@ export const CheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The reason why the given name is not available. */
 export type CheckNameAvailabilityResponseReason = "Invalid" | "AlreadyExists";
-export const CheckNameAvailabilityResponseReason = /*@__PURE__*/ S.String;
+export const CheckNameAvailabilityResponseReason = S.String;
 
 export interface CheckNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
@@ -71,8 +71,7 @@ export const CreateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
 export type CreateAccountRequestPropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const CreateAccountRequestPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const CreateAccountRequestPropertiesPublicNetworkAccess = S.String;
 
 /** The Private Endpoint resource. */
 export interface PrivateEndpointInput {}
@@ -87,7 +86,7 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
@@ -162,7 +161,7 @@ export const CreateAccountRequestPropertiesPrivateEndpointConnectionsList =
 
 /** Device Update Sku */
 export type CreateAccountRequestPropertiesSku = "Free" | "Standard";
-export const CreateAccountRequestPropertiesSku = /*@__PURE__*/ S.String;
+export const CreateAccountRequestPropertiesSku = S.String;
 
 /** The CMK encryption settings on the Device Update account. */
 export interface Encryption {
@@ -212,7 +211,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export type UserAssignedIdentityInput = PrivateEndpointInput;
@@ -284,7 +283,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -292,7 +291,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -337,15 +336,13 @@ export type CreateAccountResponsePropertiesProvisioningState =
   | "Canceled"
   | "Accepted"
   | "Creating";
-export const CreateAccountResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const CreateAccountResponsePropertiesProvisioningState = S.String;
 
 /** Whether or not public network access is allowed for the account. */
 export type CreateAccountResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const CreateAccountResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const CreateAccountResponsePropertiesPublicNetworkAccess = S.String;
 
 /** The Private Endpoint resource. */
 export interface PrivateEndpoint {
@@ -373,8 +370,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Properties of the PrivateEndpointConnectProperties. */
 export interface PrivateEndpointConnectionProperties {
@@ -434,11 +430,11 @@ export const CreateAccountResponsePropertiesPrivateEndpointConnectionsList =
 
 /** Device Update Sku */
 export type CreateAccountResponsePropertiesSku = "Free" | "Standard";
-export const CreateAccountResponsePropertiesSku = /*@__PURE__*/ S.String;
+export const CreateAccountResponsePropertiesSku = S.String;
 
 /** Whether the location is primary or failover */
 export type LocationRole = "Primary" | "Failover";
-export const LocationRole = /*@__PURE__*/ S.String;
+export const LocationRole = S.String;
 
 export interface Location {
   name?: string;
@@ -602,8 +598,7 @@ export const CreateInstanceRequestPropertiesIotHubsList = /*@__PURE__*/ S.Array(
 
 /** Authentication Type */
 export type DiagnosticStoragePropertiesAuthenticationType = "KeyBased";
-export const DiagnosticStoragePropertiesAuthenticationType =
-  /*@__PURE__*/ S.String;
+export const DiagnosticStoragePropertiesAuthenticationType = S.String;
 
 /** Customer-initiated diagnostic log collection storage properties */
 export interface DiagnosticStorageProperties {
@@ -698,8 +693,7 @@ export type CreateInstanceResponsePropertiesProvisioningState =
   | "Canceled"
   | "Accepted"
   | "Creating";
-export const CreateInstanceResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const CreateInstanceResponsePropertiesProvisioningState = S.String;
 
 /** List of IoT Hubs associated with the account. */
 export type CreateInstanceResponsePropertiesIotHubsList = Array<IotHubSettings>;
@@ -942,15 +936,13 @@ export type GetAccountResponsePropertiesProvisioningState =
   | "Canceled"
   | "Accepted"
   | "Creating";
-export const GetAccountResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const GetAccountResponsePropertiesProvisioningState = S.String;
 
 /** Whether or not public network access is allowed for the account. */
 export type GetAccountResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const GetAccountResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const GetAccountResponsePropertiesPublicNetworkAccess = S.String;
 
 /** The Private Endpoint Connection resource. */
 export type GetAccountResponsePropertiesPrivateEndpointConnectionsItem =
@@ -968,7 +960,7 @@ export const GetAccountResponsePropertiesPrivateEndpointConnectionsList =
 
 /** Device Update Sku */
 export type GetAccountResponsePropertiesSku = "Free" | "Standard";
-export const GetAccountResponsePropertiesSku = /*@__PURE__*/ S.String;
+export const GetAccountResponsePropertiesSku = S.String;
 
 /** Device Update account primary and failover location details */
 export type GetAccountResponsePropertiesLocationsList = Array<Location>;
@@ -1093,8 +1085,7 @@ export type GetInstanceResponsePropertiesProvisioningState =
   | "Canceled"
   | "Accepted"
   | "Creating";
-export const GetInstanceResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const GetInstanceResponsePropertiesProvisioningState = S.String;
 
 /** List of IoT Hubs associated with the account. */
 export type GetInstanceResponsePropertiesIotHubsList = Array<IotHubSettings>;
@@ -1478,8 +1469,7 @@ export type PrivateEndpointConnectionProxyProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionProxyProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProxyProvisioningState = S.String;
 
 /** Private endpoint connection proxy object property bag. */
 export interface GetPrivateEndpointConnectionProxyResponseProperties {
@@ -1580,8 +1570,7 @@ export type GroupInformationPropertiesProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const GroupInformationPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const GroupInformationPropertiesProvisioningState = S.String;
 
 /** The properties for a group information object */
 export interface GroupInformationProperties {
@@ -1668,11 +1657,11 @@ export type AccountPropertiesProvisioningState =
   | "Canceled"
   | "Accepted"
   | "Creating";
-export const AccountPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const AccountPropertiesProvisioningState = S.String;
 
 /** Whether or not public network access is allowed for the account. */
 export type AccountPropertiesPublicNetworkAccess = "Enabled" | "Disabled";
-export const AccountPropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const AccountPropertiesPublicNetworkAccess = S.String;
 
 /** The Private Endpoint Connection resource. */
 export type AccountPropertiesPrivateEndpointConnectionsItem =
@@ -1690,7 +1679,7 @@ export const AccountPropertiesPrivateEndpointConnectionsList =
 
 /** Device Update Sku */
 export type AccountPropertiesSku = "Free" | "Standard";
-export const AccountPropertiesSku = /*@__PURE__*/ S.String;
+export const AccountPropertiesSku = S.String;
 
 /** Device Update account primary and failover location details */
 export type AccountPropertiesLocationsList = Array<Location>;
@@ -1846,7 +1835,7 @@ export type InstancePropertiesProvisioningState =
   | "Canceled"
   | "Accepted"
   | "Creating";
-export const InstancePropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const InstancePropertiesProvisioningState = S.String;
 
 /** List of IoT Hubs associated with the account. */
 export type InstancePropertiesIotHubsList = Array<IotHubSettings>;
@@ -1965,11 +1954,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -2593,15 +2582,13 @@ export type UpdateAccountResponsePropertiesProvisioningState =
   | "Canceled"
   | "Accepted"
   | "Creating";
-export const UpdateAccountResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const UpdateAccountResponsePropertiesProvisioningState = S.String;
 
 /** Whether or not public network access is allowed for the account. */
 export type UpdateAccountResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const UpdateAccountResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const UpdateAccountResponsePropertiesPublicNetworkAccess = S.String;
 
 /** The Private Endpoint Connection resource. */
 export type UpdateAccountResponsePropertiesPrivateEndpointConnectionsItem =
@@ -2619,7 +2606,7 @@ export const UpdateAccountResponsePropertiesPrivateEndpointConnectionsList =
 
 /** Device Update Sku */
 export type UpdateAccountResponsePropertiesSku = "Free" | "Standard";
-export const UpdateAccountResponsePropertiesSku = /*@__PURE__*/ S.String;
+export const UpdateAccountResponsePropertiesSku = S.String;
 
 /** Device Update account primary and failover location details */
 export type UpdateAccountResponsePropertiesLocationsList = Array<Location>;
@@ -2759,8 +2746,7 @@ export type UpdateInstanceResponsePropertiesProvisioningState =
   | "Canceled"
   | "Accepted"
   | "Creating";
-export const UpdateInstanceResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const UpdateInstanceResponsePropertiesProvisioningState = S.String;
 
 /** List of IoT Hubs associated with the account. */
 export type UpdateInstanceResponsePropertiesIotHubsList = Array<IotHubSettings>;

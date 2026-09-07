@@ -220,8 +220,7 @@ export type NewSpotInstancesConfigTerminationActionEnum =
   | "TERMINATION_ACTION_UNSPECIFIED"
   | "STOP"
   | "DELETE";
-export const NewSpotInstancesConfigTerminationActionEnum =
-  /*@__PURE__*/ S.String;
+export const NewSpotInstancesConfigTerminationActionEnum = S.String;
 
 /** When set in a ComputeResourceConfig, indicates that [spot VM](https://cloud.google.com/compute/docs/instances/spot) instances should be created. */
 export interface NewSpotInstancesConfig {
@@ -557,7 +556,7 @@ export type NewFilestoreConfigTierEnum =
   | "TIER_UNSPECIFIED"
   | "ZONAL"
   | "REGIONAL";
-export const NewFilestoreConfigTierEnum = /*@__PURE__*/ S.String;
+export const NewFilestoreConfigTierEnum = S.String;
 
 /** Message describing filestore configuration */
 export interface FileShareConfig {
@@ -584,7 +583,7 @@ export type NewFilestoreConfigProtocolEnum =
   | "PROTOCOL_UNSPECIFIED"
   | "NFSV3"
   | "NFSV41";
-export const NewFilestoreConfigProtocolEnum = /*@__PURE__*/ S.String;
+export const NewFilestoreConfigProtocolEnum = S.String;
 
 /** When set in a StorageResourceConfig, indicates that a new [Filestore](https://cloud.google.com/filestore) instance should be created. */
 export interface NewFilestoreConfig {
@@ -631,14 +630,13 @@ export type NewBucketConfigStorageClassEnum =
   | "COLDLINE"
   | "ARCHIVE"
   | "RAPID";
-export const NewBucketConfigStorageClassEnum = /*@__PURE__*/ S.String;
+export const NewBucketConfigStorageClassEnum = S.String;
 
 export type GcsAutoclassConfigTerminalStorageClassEnum =
   | "TERMINAL_STORAGE_CLASS_UNSPECIFIED"
   | "NEARLINE"
   | "ARCHIVE";
-export const GcsAutoclassConfigTerminalStorageClassEnum =
-  /*@__PURE__*/ S.String;
+export const GcsAutoclassConfigTerminalStorageClassEnum = S.String;
 
 /** Message describing Google Cloud Storage autoclass configuration */
 export interface GcsAutoclassConfig {

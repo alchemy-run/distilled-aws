@@ -67,7 +67,7 @@ const stripeSpec: SdkSpec = {
   // through verbatim (wire names ARE the TS names for Stripe).
   union: ({ name, caseTargets, tsRef }) => [
     `export type ${name} = ${caseTargets.map(tsRef).join(" | ") || "unknown"};`,
-    `export const ${name} = /*@__PURE__*/ S.Unknown as any as S.Schema<${name}>;\n`,
+    `export const ${name} = S.Unknown as any as S.Schema<${name}>;\n`,
   ],
 
   // One pagination profile: the GET */search endpoints. The converter

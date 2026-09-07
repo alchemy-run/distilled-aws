@@ -150,7 +150,7 @@ export type ItemRevisionStatusStateEnum =
   | "PUBLISHED_TO_TESTERS"
   | "REJECTED"
   | "CANCELLED";
-export const ItemRevisionStatusStateEnum = /*@__PURE__*/ S.String;
+export const ItemRevisionStatusStateEnum = S.String;
 
 /** Details on the status of an item revision. */
 export interface ItemRevisionStatus {
@@ -174,8 +174,7 @@ export type FetchItemStatusResponseLastAsyncUploadStateEnum =
   | "IN_PROGRESS"
   | "FAILED"
   | "NOT_FOUND";
-export const FetchItemStatusResponseLastAsyncUploadStateEnum =
-  /*@__PURE__*/ S.String;
+export const FetchItemStatusResponseLastAsyncUploadStateEnum = S.String;
 
 /** Response message for `FetchItemStatus`. */
 export interface FetchItemStatusResponse {
@@ -217,7 +216,7 @@ export type PublishItemRequestPublishTypeEnum =
   | "PUBLISH_TYPE_UNSPECIFIED"
   | "DEFAULT_PUBLISH"
   | "STAGED_PUBLISH";
-export const PublishItemRequestPublishTypeEnum = /*@__PURE__*/ S.String;
+export const PublishItemRequestPublishTypeEnum = S.String;
 
 /** Deployment information for a specific release channel. Used in requests to update deployment parameters. */
 export interface DeployInfo {
@@ -316,7 +315,7 @@ export type PublishItemResponseStateEnum =
   | "PUBLISHED_TO_TESTERS"
   | "REJECTED"
   | "CANCELLED";
-export const PublishItemResponseStateEnum = /*@__PURE__*/ S.String;
+export const PublishItemResponseStateEnum = S.String;
 
 /** Response message for `PublishItem`. */
 export interface PublishItemResponse {
@@ -414,7 +413,7 @@ export type UploadItemPackageResponseUploadStateEnum =
   | "IN_PROGRESS"
   | "FAILED"
   | "NOT_FOUND";
-export const UploadItemPackageResponseUploadStateEnum = /*@__PURE__*/ S.String;
+export const UploadItemPackageResponseUploadStateEnum = S.String;
 
 /** Response message for `UploadItemPackage`. */
 export interface UploadItemPackageResponse {

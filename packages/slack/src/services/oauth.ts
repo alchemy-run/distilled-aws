@@ -303,7 +303,7 @@ export const V2AccessRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of access token. Only present if a bot token was requested at the start of the auth flow. */
 export type V2AccessResponseTokenType = "granular_bot";
-export const V2AccessResponseTokenType = /*@__PURE__*/ S.String;
+export const V2AccessResponseTokenType = S.String;
 
 /** Details about the installing user, and the user token if one was requested at the start of the auth flow. */
 export interface V2AccessResponseTeam {
@@ -339,7 +339,7 @@ export const V2AccessResponseEnterprise = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the access token. Only present if a user token was requested at the start of the auth flow. */
 export type V2AccessResponseAuthedUserTokenType = "user";
-export const V2AccessResponseAuthedUserTokenType = /*@__PURE__*/ S.String;
+export const V2AccessResponseAuthedUserTokenType = S.String;
 
 /** Details about the installing user, and the user token if one was requested at the start of the auth flow. */
 export interface V2AccessResponseAuthedUser {
@@ -464,7 +464,7 @@ export const V2ExchangeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of access token. */
 export type V2ExchangeResponseTokenType = "bot" | "user";
-export const V2ExchangeResponseTokenType = /*@__PURE__*/ S.String;
+export const V2ExchangeResponseTokenType = S.String;
 
 export interface V2ExchangeResponse {
   /** Always `true` (a failed call raises a typed error instead). */
@@ -547,7 +547,7 @@ export const V2UserAccessRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of access token. */
 export type V2UserAccessResponseTokenType = "user";
-export const V2UserAccessResponseTokenType = /*@__PURE__*/ S.String;
+export const V2UserAccessResponseTokenType = S.String;
 
 /** Details about the team. */
 export type V2UserAccessResponseTeam = V2AccessResponseTeam;

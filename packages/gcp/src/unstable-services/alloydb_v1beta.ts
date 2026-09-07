@@ -94,7 +94,7 @@ export type EncryptionInfoEncryptionTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "GOOGLE_DEFAULT_ENCRYPTION"
   | "CUSTOMER_MANAGED_ENCRYPTION";
-export const EncryptionInfoEncryptionTypeEnum = /*@__PURE__*/ S.String;
+export const EncryptionInfoEncryptionTypeEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -140,7 +140,7 @@ export type BackupStateEnum =
   | "CREATING"
   | "FAILED"
   | "DELETING";
-export const BackupStateEnum = /*@__PURE__*/ S.String;
+export const BackupStateEnum = S.String;
 
 export type BackupDatabaseVersionEnum =
   | "DATABASE_VERSION_UNSPECIFIED"
@@ -150,7 +150,7 @@ export type BackupDatabaseVersionEnum =
   | "POSTGRES_16"
   | "POSTGRES_17"
   | "POSTGRES_18";
-export const BackupDatabaseVersionEnum = /*@__PURE__*/ S.String;
+export const BackupDatabaseVersionEnum = S.String;
 
 /** A backup's position in a quantity-based retention queue, of backups with the same source cluster and type, with length, retention, specified by the backup's retention policy. Once the position is greater than the retention, the backup is eligible to be garbage collected. Example: 5 backups from the same source cluster and type with a quantity-based retention of 3 and denoted by backup_id (position, retention). Safe: backup_5 (1, 3), backup_4, (2, 3), backup_3 (3, 3). Awaiting garbage collection: backup_2 (4, 3), backup_1 (5, 3) */
 export interface QuantityBasedExpiry {
@@ -173,7 +173,7 @@ export type BackupTypeEnum =
   | "ON_DEMAND"
   | "AUTOMATED"
   | "CONTINUOUS";
-export const BackupTypeEnum = /*@__PURE__*/ S.String;
+export const BackupTypeEnum = S.String;
 
 /** Message describing Backup object */
 export interface Backup {
@@ -415,7 +415,7 @@ export type WeeklyScheduleDaysOfWeekItemEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const WeeklyScheduleDaysOfWeekItemEnum = /*@__PURE__*/ S.String;
+export const WeeklyScheduleDaysOfWeekItemEnum = S.String;
 
 export type WeeklyScheduleDaysOfWeekItemEnumList = Array<
   WeeklyScheduleDaysOfWeekItemEnum | (string & {})
@@ -583,7 +583,7 @@ export type ClusterDatabaseVersionEnum =
   | "POSTGRES_16"
   | "POSTGRES_17"
   | "POSTGRES_18";
-export const ClusterDatabaseVersionEnum = /*@__PURE__*/ S.String;
+export const ClusterDatabaseVersionEnum = S.String;
 
 /** Configuration for the primary cluster. It has the list of clusters that are replicating from this cluster. This should be set if and only if the cluster is of type PRIMARY. */
 export interface PrimaryConfig {
@@ -632,7 +632,7 @@ export const CloudSQLBackupRunSource = /*@__PURE__*/ S.suspend(() =>
 export type SslConfigCaSourceEnum =
   | "CA_SOURCE_UNSPECIFIED"
   | "CA_SOURCE_MANAGED";
-export const SslConfigCaSourceEnum = /*@__PURE__*/ S.String;
+export const SslConfigCaSourceEnum = S.String;
 
 export type SslConfigSslModeEnum =
   | "SSL_MODE_UNSPECIFIED"
@@ -641,7 +641,7 @@ export type SslConfigSslModeEnum =
   | "SSL_MODE_VERIFY_CA"
   | "ALLOW_UNENCRYPTED_AND_ENCRYPTED"
   | "ENCRYPTED_ONLY";
-export const SslConfigSslModeEnum = /*@__PURE__*/ S.String;
+export const SslConfigSslModeEnum = S.String;
 
 /** SSL configuration. */
 export interface SslConfig {
@@ -661,14 +661,13 @@ export type ClusterMaintenanceVersionSelectionPolicyEnum =
   | "MAINTENANCE_VERSION_SELECTION_POLICY_UNSPECIFIED"
   | "MAINTENANCE_VERSION_SELECTION_POLICY_LATEST"
   | "MAINTENANCE_VERSION_SELECTION_POLICY_DEFAULT";
-export const ClusterMaintenanceVersionSelectionPolicyEnum =
-  /*@__PURE__*/ S.String;
+export const ClusterMaintenanceVersionSelectionPolicyEnum = S.String;
 
 export type ClusterSubscriptionTypeEnum =
   | "SUBSCRIPTION_TYPE_UNSPECIFIED"
   | "STANDARD"
   | "TRIAL";
-export const ClusterSubscriptionTypeEnum = /*@__PURE__*/ S.String;
+export const ClusterSubscriptionTypeEnum = S.String;
 
 export type ClusterStateEnum =
   | "STATE_UNSPECIFIED"
@@ -683,13 +682,13 @@ export type ClusterStateEnum =
   | "PROMOTING"
   | "SWITCHOVER"
   | "RECREATING";
-export const ClusterStateEnum = /*@__PURE__*/ S.String;
+export const ClusterStateEnum = S.String;
 
 export type ClusterClusterTypeEnum =
   | "CLUSTER_TYPE_UNSPECIFIED"
   | "PRIMARY"
   | "SECONDARY";
-export const ClusterClusterTypeEnum = /*@__PURE__*/ S.String;
+export const ClusterClusterTypeEnum = S.String;
 
 /** ContinuousBackupConfig describes the continuous backups recovery configurations of a cluster. */
 export interface ContinuousBackupConfig {
@@ -719,7 +718,7 @@ export type MaintenanceWindowDayEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const MaintenanceWindowDayEnum = /*@__PURE__*/ S.String;
+export const MaintenanceWindowDayEnum = S.String;
 
 /** MaintenanceWindow specifies a preferred day and time for maintenance. */
 export interface MaintenanceWindow {
@@ -840,7 +839,7 @@ export const SecondaryConfig = /*@__PURE__*/ S.suspend(() =>
 export type MigrationSourceSourceTypeEnum =
   | "MIGRATION_SOURCE_TYPE_UNSPECIFIED"
   | "DMS";
-export const MigrationSourceSourceTypeEnum = /*@__PURE__*/ S.String;
+export const MigrationSourceSourceTypeEnum = S.String;
 
 /** Subset of the source instance configuration that is available when reading the cluster resource. */
 export interface MigrationSource {
@@ -897,7 +896,7 @@ export type ContinuousBackupInfoScheduleItemEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const ContinuousBackupInfoScheduleItemEnum = /*@__PURE__*/ S.String;
+export const ContinuousBackupInfoScheduleItemEnum = S.String;
 
 export type ContinuousBackupInfoScheduleItemEnumList = Array<
   ContinuousBackupInfoScheduleItemEnum | (string & {})
@@ -1095,7 +1094,7 @@ export type UpdatePolicyModeEnum =
   | "MODE_UNSPECIFIED"
   | "DEFAULT"
   | "FORCE_APPLY";
-export const UpdatePolicyModeEnum = /*@__PURE__*/ S.String;
+export const UpdatePolicyModeEnum = S.String;
 
 /** Policy to be used while updating the instance. */
 export interface UpdatePolicy {
@@ -1116,7 +1115,7 @@ export type InstanceActivationPolicyEnum =
   | "ACTIVATION_POLICY_UNSPECIFIED"
   | "ALWAYS"
   | "NEVER";
-export const InstanceActivationPolicyEnum = /*@__PURE__*/ S.String;
+export const InstanceActivationPolicyEnum = S.String;
 
 /** Information about the Private Service Connect (PSC) for the instance. */
 export interface PscInstanceInfo {
@@ -1144,7 +1143,7 @@ export type InstanceDataApiAccessEnum =
   | "DEFAULT_DATA_API_ENABLED_FOR_GOOGLE_CLOUD_SERVICES"
   | "DISABLED"
   | "ENABLED";
-export const InstanceDataApiAccessEnum = /*@__PURE__*/ S.String;
+export const InstanceDataApiAccessEnum = S.String;
 
 /** Observability Instance specific configuration. */
 export interface ObservabilityInstanceConfig {
@@ -1410,7 +1409,7 @@ export const MachineConfig = /*@__PURE__*/ S.suspend(() =>
 export type GCAInstanceConfigGcaEntitlementEnum =
   | "GCA_ENTITLEMENT_TYPE_UNSPECIFIED"
   | "GCA_STANDARD";
-export const GCAInstanceConfigGcaEntitlementEnum = /*@__PURE__*/ S.String;
+export const GCAInstanceConfigGcaEntitlementEnum = S.String;
 
 /** Instance level configuration parameters related to the Gemini Cloud Assist product. */
 export interface GCAInstanceConfig {
@@ -1430,28 +1429,27 @@ export type InstanceInstanceTypeEnum =
   | "PRIMARY"
   | "READ_POOL"
   | "SECONDARY";
-export const InstanceInstanceTypeEnum = /*@__PURE__*/ S.String;
+export const InstanceInstanceTypeEnum = S.String;
 
 export type InstanceAvailabilityTypeEnum =
   | "AVAILABILITY_TYPE_UNSPECIFIED"
   | "ZONAL"
   | "REGIONAL";
-export const InstanceAvailabilityTypeEnum = /*@__PURE__*/ S.String;
+export const InstanceAvailabilityTypeEnum = S.String;
 
 export type ConnectionPoolConfigAuthproxyPoolerScalingTypeEnum =
   | "POOLER_SCALING_TYPE_UNSPECIFIED"
   | "POOLER_NONE"
   | "POOLER_MACHINE_SIZED"
   | "POOLER_MANUAL_OVERRIDE";
-export const ConnectionPoolConfigAuthproxyPoolerScalingTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ConnectionPoolConfigAuthproxyPoolerScalingTypeEnum = S.String;
 
 export type ConnectionPoolConfigPoolerScalingTypeEnum =
   | "POOLER_SCALING_TYPE_UNSPECIFIED"
   | "POOLER_NONE"
   | "POOLER_MACHINE_SIZED"
   | "POOLER_MANUAL_OVERRIDE";
-export const ConnectionPoolConfigPoolerScalingTypeEnum = /*@__PURE__*/ S.String;
+export const ConnectionPoolConfigPoolerScalingTypeEnum = S.String;
 
 /** Configuration for Managed Connection Pool (MCP). */
 export interface ConnectionPoolConfig {
@@ -1489,8 +1487,7 @@ export type PscInstanceConfigPscAutoConnectionPolicyStateEnum =
   | "PSC_AUTO_CONNECTION_POLICY_STATE_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED";
-export const PscInstanceConfigPscAutoConnectionPolicyStateEnum =
-  /*@__PURE__*/ S.String;
+export const PscInstanceConfigPscAutoConnectionPolicyStateEnum = S.String;
 
 /** Configuration for setting up a PSC interface to enable outbound connectivity. */
 export interface PscInterfaceConfig {
@@ -1544,7 +1541,7 @@ export type PscInstanceConfigPscAutoDnsStateEnum =
   | "PSC_AUTO_DNS_STATE_UNSPECIFIED"
   | "PSC_AUTO_DNS_STATE_ENABLED"
   | "PSC_AUTO_DNS_STATE_DISABLED";
-export const PscInstanceConfigPscAutoDnsStateEnum = /*@__PURE__*/ S.String;
+export const PscInstanceConfigPscAutoDnsStateEnum = S.String;
 
 /** PscInstanceConfig contains PSC related configuration at an instance level. */
 export interface PscInstanceConfig {
@@ -1594,7 +1591,7 @@ export type InstanceStateEnum =
   | "SWITCHOVER"
   | "STOPPING"
   | "STARTING";
-export const InstanceStateEnum = /*@__PURE__*/ S.String;
+export const InstanceStateEnum = S.String;
 
 /** An Instance is a computing unit that an end customer can connect to. It's the main unit of computing resources in AlloyDB. */
 export interface Instance {
@@ -1750,7 +1747,7 @@ export type UserUserTypeEnum =
   | "ALLOYDB_IAM_GROUP"
   | "ALLOYDB_IAM_GROUP_USER"
   | "ALLOYDB_IAM_GROUP_SERVICE_ACCOUNT";
-export const UserUserTypeEnum = /*@__PURE__*/ S.String;
+export const UserUserTypeEnum = S.String;
 
 /** Message describing User object. */
 export interface User {
@@ -1810,7 +1807,7 @@ export type EndpointEndpointTypeEnum =
   | "ENDPOINT_TYPE_UNSPECIFIED"
   | "WRITE_ENDPOINT"
   | "READ_ENDPOINT";
-export const EndpointEndpointTypeEnum = /*@__PURE__*/ S.String;
+export const EndpointEndpointTypeEnum = S.String;
 
 export type EndpointStateEnum =
   | "STATE_UNSPECIFIED"
@@ -1818,7 +1815,7 @@ export type EndpointStateEnum =
   | "CREATING"
   | "UPDATING"
   | "DELETING";
-export const EndpointStateEnum = /*@__PURE__*/ S.String;
+export const EndpointStateEnum = S.String;
 
 /** The DNS config for the endpoint, containing the DNS record name, type and targets. */
 export interface DNSConfig {
@@ -2371,7 +2368,7 @@ export type GetProjectsLocationsBackupsViewEnum =
   | "BACKUP_VIEW_UNSPECIFIED"
   | "BACKUP_VIEW_BASIC"
   | "BACKUP_VIEW_CLUSTER_DELETED";
-export const GetProjectsLocationsBackupsViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsBackupsViewEnum = S.String;
 
 export interface GetProjectsLocationsBackupsRequest {
   /** Required. Name of the resource */
@@ -2398,7 +2395,7 @@ export type GetProjectsLocationsClustersViewEnum =
   | "CLUSTER_VIEW_UNSPECIFIED"
   | "CLUSTER_VIEW_BASIC"
   | "CLUSTER_VIEW_CONTINUOUS_BACKUP";
-export const GetProjectsLocationsClustersViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsClustersViewEnum = S.String;
 
 export interface GetProjectsLocationsClustersRequest {
   /** Required. The name of the resource. For the required format, see the comment on the Cluster.name field. */
@@ -2425,8 +2422,7 @@ export type GetProjectsLocationsClustersInstancesViewEnum =
   | "INSTANCE_VIEW_UNSPECIFIED"
   | "INSTANCE_VIEW_BASIC"
   | "INSTANCE_VIEW_FULL";
-export const GetProjectsLocationsClustersInstancesViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsClustersInstancesViewEnum = S.String;
 
 export interface GetProjectsLocationsClustersInstancesRequest {
   /** Required. The name of the resource. For the required format, see the comment on the Instance.name field. */
@@ -2592,7 +2588,7 @@ export const ImportProjectsLocationsClustersRequest = /*@__PURE__*/ S.suspend(
 export type InjectFaultRequestFaultTypeEnum =
   | "FAULT_TYPE_UNSPECIFIED"
   | "STOP_VM";
-export const InjectFaultRequestFaultTypeEnum = /*@__PURE__*/ S.String;
+export const InjectFaultRequestFaultTypeEnum = S.String;
 
 /** Message for triggering fault injection on an instance */
 export interface InjectFaultRequest {
@@ -2692,7 +2688,7 @@ export type ListProjectsLocationsBackupsViewEnum =
   | "BACKUP_VIEW_UNSPECIFIED"
   | "BACKUP_VIEW_BASIC"
   | "BACKUP_VIEW_CLUSTER_DELETED";
-export const ListProjectsLocationsBackupsViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsLocationsBackupsViewEnum = S.String;
 
 export interface ListProjectsLocationsBackupsRequest {
   /** A token identifying a page of results the server should return. */
@@ -3030,8 +3026,7 @@ export type ListProjectsLocationsSupportedDatabaseFlagsScopeEnum =
   | "SCOPE_UNSPECIFIED"
   | "DATABASE"
   | "CONNECTION_POOL";
-export const ListProjectsLocationsSupportedDatabaseFlagsScopeEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsSupportedDatabaseFlagsScopeEnum = S.String;
 
 export interface ListProjectsLocationsSupportedDatabaseFlagsRequest {
   /** Optional. The scope for which supported flags are requested. If not specified, default is DATABASE. */
@@ -3071,8 +3066,7 @@ export type SupportedDatabaseFlagSupportedDbVersionsItemEnum =
   | "POSTGRES_16"
   | "POSTGRES_17"
   | "POSTGRES_18";
-export const SupportedDatabaseFlagSupportedDbVersionsItemEnum =
-  /*@__PURE__*/ S.String;
+export const SupportedDatabaseFlagSupportedDbVersionsItemEnum = S.String;
 
 export type SupportedDatabaseFlagSupportedDbVersionsItemEnumList =
   Array<SupportedDatabaseFlagSupportedDbVersionsItemEnum>;
@@ -3119,13 +3113,13 @@ export type SupportedDatabaseFlagValueTypeEnum =
   | "INTEGER"
   | "FLOAT"
   | "NONE";
-export const SupportedDatabaseFlagValueTypeEnum = /*@__PURE__*/ S.String;
+export const SupportedDatabaseFlagValueTypeEnum = S.String;
 
 export type SupportedDatabaseFlagScopeEnum =
   | "SCOPE_UNSPECIFIED"
   | "DATABASE"
   | "CONNECTION_POOL";
-export const SupportedDatabaseFlagScopeEnum = /*@__PURE__*/ S.String;
+export const SupportedDatabaseFlagScopeEnum = S.String;
 
 /** SupportedDatabaseFlag gives general information about a database flag, like type and allowed values. This is a static value that is defined on the server side, and it cannot be modified by callers. To set the Database flags on a particular Instance, a caller should modify the Instance.database_flags field. */
 export interface SupportedDatabaseFlag {
@@ -3621,7 +3615,7 @@ export type UpgradeClusterRequestVersionEnum =
   | "POSTGRES_16"
   | "POSTGRES_17"
   | "POSTGRES_18";
-export const UpgradeClusterRequestVersionEnum = /*@__PURE__*/ S.String;
+export const UpgradeClusterRequestVersionEnum = S.String;
 
 /** Upgrades a cluster. */
 export interface UpgradeClusterRequest {

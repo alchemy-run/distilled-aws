@@ -50,11 +50,11 @@ export class NotFound
 
 /** * `draft` - Draft * `active` - Active * `archived` - Archived */
 export type HogFlowStateEnum = "draft" | "active" | "archived";
-export const HogFlowStateEnum = /*@__PURE__*/ S.String;
+export const HogFlowStateEnum = S.String;
 
 /** * `loops` - Loops */
 export type HogFlowOriginProductEnum = "loops";
-export const HogFlowOriginProductEnum = /*@__PURE__*/ S.String;
+export const HogFlowOriginProductEnum = S.String;
 
 export interface HogFlowMasking {
   /** Seconds (60 to ~94M / 3y) to suppress repeat firings of the same hash. */
@@ -97,7 +97,7 @@ export type HogFunctionFiltersSourceEnum =
   | "person-updates"
   | "data-warehouse-table"
   | "data-warehouse-view";
-export const HogFunctionFiltersSourceEnum = /*@__PURE__*/ S.String;
+export const HogFunctionFiltersSourceEnum = S.String;
 
 export type HogFunctionFiltersActionsItemMap = {
   [key: string]: unknown | undefined;
@@ -227,11 +227,11 @@ export type ExitConditionEnum =
   | "exit_on_trigger_not_matched"
   | "exit_on_trigger_not_matched_or_conversion"
   | "exit_only_at_end";
-export const ExitConditionEnum = /*@__PURE__*/ S.String;
+export const ExitConditionEnum = S.String;
 
 /** * `minute` - minute * `hour` - hour */
 export type PeriodEnum = "minute" | "hour";
-export const PeriodEnum = /*@__PURE__*/ S.String;
+export const PeriodEnum = S.String;
 
 export interface HogFlowEmailSendingRateLimit {
   /** Maximum number of emails this workflow sends per period. */
@@ -250,7 +250,7 @@ export const HogFlowEmailSendingRateLimit = /*@__PURE__*/ S.suspend(() =>
 
 /** * `continue` - continue * `branch` - branch */
 export type HogFlowEdgeTypeEnum = "continue" | "branch";
-export const HogFlowEdgeTypeEnum = /*@__PURE__*/ S.String;
+export const HogFlowEdgeTypeEnum = S.String;
 
 export interface HogFlowEdge {
   /** Target action id. */
@@ -279,7 +279,7 @@ export const CreateHogFlowRequestEdgesList = /*@__PURE__*/ S.Array(
 
 /** * `continue` - continue * `abort` - abort */
 export type OnErrorEnum = "continue" | "abort";
-export const OnErrorEnum = /*@__PURE__*/ S.String;
+export const OnErrorEnum = S.String;
 
 /** * `trigger` - trigger * `function` - function * `function_email` - function_email * `function_sms` - function_sms * `function_push` - function_push * `delay` - delay * `wait_until_condition` - wait_until_condition * `wait_until_time_window` - wait_until_time_window * `conditional_branch` - conditional_branch * `random_cohort_branch` - random_cohort_branch * `exit` - exit */
 export type HogFlowActionTypeEnum =
@@ -294,7 +294,7 @@ export type HogFlowActionTypeEnum =
   | "conditional_branch"
   | "random_cohort_branch"
   | "exit";
-export const HogFlowActionTypeEnum = /*@__PURE__*/ S.String;
+export const HogFlowActionTypeEnum = S.String;
 
 /** Config for every action type except wait_until_condition — see the field description for per-type shapes. */
 export type HogFlowActionConfigCase0Map = {
@@ -367,7 +367,7 @@ export type HogFlowActionConfig =
   | HogFlowActionConfigCase0Map
   | HogFlowActionConfigCase1;
 export const HogFlowActionConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<HogFlowActionConfig>;
+  S.Unknown as any as S.Schema<HogFlowActionConfig>;
 
 export interface HogFlowAction {
   /** Unique node ID within the workflow. */
@@ -498,14 +498,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -559,7 +559,7 @@ export const HogFlowVariablesList = /*@__PURE__*/ S.Array(
 
 /** * `active` - Active * `paused` - Paused * `completed` - Completed */
 export type HogFlowScheduleStatusEnum = "active" | "paused" | "completed";
-export const HogFlowScheduleStatusEnum = /*@__PURE__*/ S.String;
+export const HogFlowScheduleStatusEnum = S.String;
 
 export interface HogFlowSchedule {
   id?: string;
@@ -689,7 +689,7 @@ export type HogFlowBatchJobStateEnum =
   | "completed"
   | "cancelled"
   | "failed";
-export const HogFlowBatchJobStateEnum = /*@__PURE__*/ S.String;
+export const HogFlowBatchJobStateEnum = S.String;
 
 export interface CreateHogFlowsBatchJobRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -899,7 +899,7 @@ export type HogInvocationRerunFilterStatusEnum =
   | "succeeded"
   | "failed"
   | "canceled";
-export const HogInvocationRerunFilterStatusEnum = /*@__PURE__*/ S.String;
+export const HogInvocationRerunFilterStatusEnum = S.String;
 
 /** Restrict to invocations whose latest status is one of these. Defaults to ['failed']. */
 export type HogInvocationRerunFilterStatusList = Array<
@@ -1091,7 +1091,7 @@ export const CreateHogFlowsUserBlastRadiusRequestFiltersMap =
 
 /** * `email` - email */
 export type DedupeKeyEnum = "email";
-export const DedupeKeyEnum = /*@__PURE__*/ S.String;
+export const DedupeKeyEnum = S.String;
 
 export interface CreateHogFlowsUserBlastRadiusRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1594,10 +1594,10 @@ export const GetHogFlowsLogResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetHogFlowsLogResponse>;
 
 export type GetHogFlowsMetricsRequestBreakdownBy = "name" | "kind";
-export const GetHogFlowsMetricsRequestBreakdownBy = /*@__PURE__*/ S.String;
+export const GetHogFlowsMetricsRequestBreakdownBy = S.String;
 
 export type GetHogFlowsMetricsRequestInterval = "hour" | "day" | "week";
-export const GetHogFlowsMetricsRequestInterval = /*@__PURE__*/ S.String;
+export const GetHogFlowsMetricsRequestInterval = S.String;
 
 export interface GetHogFlowsMetricsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1740,10 +1740,10 @@ export const GetHogFlowsMetricsGlobalResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetHogFlowsMetricsGlobalResponse>;
 
 export type GetHogFlowsMetricsTotalRequestBreakdownBy = "name" | "kind";
-export const GetHogFlowsMetricsTotalRequestBreakdownBy = /*@__PURE__*/ S.String;
+export const GetHogFlowsMetricsTotalRequestBreakdownBy = S.String;
 
 export type GetHogFlowsMetricsTotalRequestInterval = "hour" | "day" | "week";
-export const GetHogFlowsMetricsTotalRequestInterval = /*@__PURE__*/ S.String;
+export const GetHogFlowsMetricsTotalRequestInterval = S.String;
 
 export interface GetHogFlowsMetricsTotalRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1837,11 +1837,11 @@ export type AwsTenantReputationHealthEnum =
   | "warning"
   | "critical"
   | "suspended";
-export const AwsTenantReputationHealthEnum = /*@__PURE__*/ S.String;
+export const AwsTenantReputationHealthEnum = S.String;
 
 /** * `ENABLED` - ENABLED * `REINSTATED` - REINSTATED * `DISABLED` - DISABLED */
 export type SendingStatusEnum = "ENABLED" | "REINSTATED" | "DISABLED";
-export const SendingStatusEnum = /*@__PURE__*/ S.String;
+export const SendingStatusEnum = S.String;
 
 /** * `DKIM` - DKIM * `DMARC` - DMARC * `SPF` - SPF * `BIMI` - BIMI * `COMPLAINT` - COMPLAINT * `BOUNCE` - BOUNCE * `FEEDBACK_3P` - FEEDBACK_3P * `IP_LISTING` - IP_LISTING */
 export type FindingTypeEnum =
@@ -1853,11 +1853,11 @@ export type FindingTypeEnum =
   | "BOUNCE"
   | "FEEDBACK_3P"
   | "IP_LISTING";
-export const FindingTypeEnum = /*@__PURE__*/ S.String;
+export const FindingTypeEnum = S.String;
 
 /** * `LOW` - LOW * `HIGH` - HIGH */
 export type ImpactEnum = "LOW" | "HIGH";
-export const ImpactEnum = /*@__PURE__*/ S.String;
+export const ImpactEnum = S.String;
 
 /** An open reputation finding AWS SES raised for this project's email sending. */
 export interface AwsTenantFinding {
@@ -2616,13 +2616,13 @@ export const HogFlowsSchedulesDestroyResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<HogFlowsSchedulesDestroyResponse>;
 
 export type ListHogFlowsRequestOriginProduct = "loops";
-export const ListHogFlowsRequestOriginProduct = /*@__PURE__*/ S.String;
+export const ListHogFlowsRequestOriginProduct = S.String;
 
 export type ListHogFlowsRequestStatus = "active" | "archived" | "draft";
-export const ListHogFlowsRequestStatus = /*@__PURE__*/ S.String;
+export const ListHogFlowsRequestStatus = S.String;
 
 export type ListHogFlowsRequestType = "automation" | "messaging";
-export const ListHogFlowsRequestType = /*@__PURE__*/ S.String;
+export const ListHogFlowsRequestType = S.String;
 
 export interface ListHogFlowsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -3088,7 +3088,7 @@ export type EmailTemplateDesignOperationEnum =
   | "move_content"
   | "add_row"
   | "remove_row";
-export const EmailTemplateDesignOperationEnum = /*@__PURE__*/ S.String;
+export const EmailTemplateDesignOperationEnum = S.String;
 
 export interface DesignOperation {
   /** Design edit. update_content {id, patch}: deep-merge patch into the content block's fields (a null leaf deletes that key) — the surgical path, e.g. change just values.text. update_row / update_column {id, patch} and update_body {patch}: same deep-merge for row/column/body-level settings. add_content {column_id, content, index?}: insert a content block into a column (id and Unlayer numbering are filled in for you). remove_content {id} / move_content {id, column_id, index?}: delete or relocate a block. add_row {row, index?} / remove_row {id}: add or delete a row. * `update_content` - update_content * `update_column` - update_column * `update_row` - update_row * `update_body` - update_body * `add_content` - add_content * `remove_content` - remove_content * `move_content` - move_content * `add_row` - add_row * `remove_row` - remove_row */
@@ -3172,7 +3172,7 @@ export type HogFlowGraphOperationOpEnum =
   | "add_edge"
   | "remove_edge"
   | "replace_action_edges";
-export const HogFlowGraphOperationOpEnum = /*@__PURE__*/ S.String;
+export const HogFlowGraphOperationOpEnum = S.String;
 
 /** replace_action_edges: the complete set of the action's outgoing edges (incoming edges are preserved). add_action: optional edges to wire the new node in the same op. */
 export type HogFlowGraphOperationEdgesList = Array<HogFlowEdge>;

@@ -116,7 +116,7 @@ export type ArtifactType =
   | "JSON"
   | "YAML"
   | (string & {});
-export const ArtifactType = /*@__PURE__*/ S.String;
+export const ArtifactType = S.String;
 
 export interface AddArtifactInput {
   agentSpaceId: string;
@@ -344,7 +344,7 @@ export type AuthenticationProviderType =
   | "AWS_IAM_ROLE"
   | "AWS_INTERNAL"
   | (string & {});
-export const AuthenticationProviderType = /*@__PURE__*/ S.String;
+export const AuthenticationProviderType = S.String;
 
 export interface Authentication {
   providerType?: AuthenticationProviderType;
@@ -501,7 +501,7 @@ export type RiskType =
   | "OUTBOUND_SERVICE_REQUEST"
   | "UNKNOWN"
   | (string & {});
-export const RiskType = /*@__PURE__*/ S.String;
+export const RiskType = S.String;
 
 export type RiskTypeList = RiskType[];
 export const RiskTypeList = /*@__PURE__*/ S.Array(RiskType);
@@ -533,10 +533,10 @@ export const VpcConfig = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "VpcConfig" }) as any as S.Schema<VpcConfig>;
 export type NetworkTrafficRuleEffect = "ALLOW" | "DENY" | (string & {});
-export const NetworkTrafficRuleEffect = /*@__PURE__*/ S.String;
+export const NetworkTrafficRuleEffect = S.String;
 
 export type NetworkTrafficRuleType = "URL" | (string & {});
-export const NetworkTrafficRuleType = /*@__PURE__*/ S.String;
+export const NetworkTrafficRuleType = S.String;
 
 export interface NetworkTrafficRule {
   effect?: NetworkTrafficRuleEffect;
@@ -576,19 +576,19 @@ export const NetworkTrafficConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "NetworkTrafficConfig",
 }) as any as S.Schema<NetworkTrafficConfig>;
 export type CodeRemediationStrategy = "AUTOMATIC" | "DISABLED" | (string & {});
-export const CodeRemediationStrategy = /*@__PURE__*/ S.String;
+export const CodeRemediationStrategy = S.String;
 
 export type CleanUpStrategy =
   | "BEST_EFFORT_DELETE"
   | "RETAIN_ALL"
   | (string & {});
-export const CleanUpStrategy = /*@__PURE__*/ S.String;
+export const CleanUpStrategy = S.String;
 
 export type SkillType =
   | "FINDING_PERSONALIZATION"
   | "LOGIN_OPTIMIZATION"
   | (string & {});
-export const SkillType = /*@__PURE__*/ S.String;
+export const SkillType = S.String;
 
 export type SkillTypeList = SkillType[];
 export const SkillTypeList = /*@__PURE__*/ S.Array(SkillType);
@@ -926,7 +926,7 @@ export type JobStatus =
   | "FAILED"
   | "COMPLETED"
   | (string & {});
-export const JobStatus = /*@__PURE__*/ S.String;
+export const JobStatus = S.String;
 
 export type StepName =
   | "PREFLIGHT"
@@ -935,7 +935,7 @@ export type StepName =
   | "FINALIZING"
   | "VALIDATION"
   | (string & {});
-export const StepName = /*@__PURE__*/ S.String;
+export const StepName = S.String;
 
 export type StepStatus =
   | "NOT_STARTED"
@@ -944,7 +944,7 @@ export type StepStatus =
   | "FAILED"
   | "STOPPED"
   | (string & {});
-export const StepStatus = /*@__PURE__*/ S.String;
+export const StepStatus = S.String;
 
 export interface Step {
   name?: StepName;
@@ -972,7 +972,7 @@ export type ContextType =
   | "WARNING"
   | "INFO"
   | (string & {});
-export const ContextType = /*@__PURE__*/ S.String;
+export const ContextType = S.String;
 
 export interface ExecutionContext {
   contextType?: ContextType;
@@ -997,7 +997,7 @@ export type ErrorCode =
   | "INTERNAL_ERROR"
   | "STOPPED_BY_USER"
   | (string & {});
-export const ErrorCode = /*@__PURE__*/ S.String;
+export const ErrorCode = S.String;
 
 export interface ErrorInformation {
   code?: ErrorCode;
@@ -1102,10 +1102,10 @@ export type TaskExecutionStatus =
   | "INTERNAL_ERROR"
   | "FAILED"
   | (string & {});
-export const TaskExecutionStatus = /*@__PURE__*/ S.String;
+export const TaskExecutionStatus = S.String;
 
 export type LogType = "CLOUDWATCH" | (string & {});
-export const LogType = /*@__PURE__*/ S.String;
+export const LogType = S.String;
 
 export interface LogLocation {
   logType?: LogType;
@@ -1186,7 +1186,7 @@ export const BatchGetCodeReviewsInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "BatchGetCodeReviewsInput",
 }) as any as S.Schema<BatchGetCodeReviewsInput>;
 export type ValidationMode = "DISABLED" | "SIMULATED" | (string & {});
-export const ValidationMode = /*@__PURE__*/ S.String;
+export const ValidationMode = S.String;
 
 export interface CodeReview {
   codeReviewId: string;
@@ -1260,7 +1260,7 @@ export type FindingStatus =
   | "ACCEPTED"
   | "FALSE_POSITIVE"
   | (string & {});
-export const FindingStatus = /*@__PURE__*/ S.String;
+export const FindingStatus = S.String;
 
 export type RiskLevel =
   | "UNKNOWN"
@@ -1270,7 +1270,7 @@ export type RiskLevel =
   | "HIGH"
   | "CRITICAL"
   | (string & {});
-export const RiskLevel = /*@__PURE__*/ S.String;
+export const RiskLevel = S.String;
 
 export type ConfidenceLevel =
   | "FALSE_POSITIVE"
@@ -1279,7 +1279,7 @@ export type ConfidenceLevel =
   | "MEDIUM"
   | "HIGH"
   | (string & {});
-export const ConfidenceLevel = /*@__PURE__*/ S.String;
+export const ConfidenceLevel = S.String;
 
 export type ValidationStatus =
   | "CONFIRMED"
@@ -1288,14 +1288,14 @@ export type ValidationStatus =
   | "VALIDATING"
   | "NOT_VALIDATED"
   | (string & {});
-export const ValidationStatus = /*@__PURE__*/ S.String;
+export const ValidationStatus = S.String;
 
 export type CodeRemediationTaskStatus =
   | "IN_PROGRESS"
   | "COMPLETED"
   | "FAILED"
   | (string & {});
-export const CodeRemediationTaskStatus = /*@__PURE__*/ S.String;
+export const CodeRemediationTaskStatus = S.String;
 
 export interface CodeRemediationTaskDetails {
   repoName?: string;
@@ -1475,7 +1475,7 @@ export const BatchGetPentestJobsInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "BatchGetPentestJobsInput",
 }) as any as S.Schema<BatchGetPentestJobsInput>;
 export type JobType = "FULL" | "REVALIDATION" | (string & {});
-export const JobType = /*@__PURE__*/ S.String;
+export const JobType = S.String;
 
 export interface PentestJob {
   pentestJobId?: string;
@@ -1742,17 +1742,17 @@ export type TargetDomainStatus =
   | "FAILED"
   | "UNREACHABLE"
   | (string & {});
-export const TargetDomainStatus = /*@__PURE__*/ S.String;
+export const TargetDomainStatus = S.String;
 
 export type DomainVerificationMethod =
   | "DNS_TXT"
   | "HTTP_ROUTE"
   | "PRIVATE_VPC"
   | (string & {});
-export const DomainVerificationMethod = /*@__PURE__*/ S.String;
+export const DomainVerificationMethod = S.String;
 
 export type DNSRecordType = "TXT" | (string & {});
-export const DNSRecordType = /*@__PURE__*/ S.String;
+export const DNSRecordType = S.String;
 
 export interface DnsVerification {
   token?: string;
@@ -2063,10 +2063,10 @@ export type ThreatSeverity =
   | "LOW"
   | "INFO"
   | (string & {});
-export const ThreatSeverity = /*@__PURE__*/ S.String;
+export const ThreatSeverity = S.String;
 
 export type ThreatStatus = "OPEN" | "RESOLVED" | "DISMISSED" | (string & {});
-export const ThreatStatus = /*@__PURE__*/ S.String;
+export const ThreatStatus = S.String;
 
 export interface ThreatAnchorShape {
   kind?: string;
@@ -2101,12 +2101,12 @@ export type StrideCategory =
   | "DENIAL_OF_SERVICE"
   | "ELEVATION_OF_PRIVILEGE"
   | (string & {});
-export const StrideCategory = /*@__PURE__*/ S.String;
+export const StrideCategory = S.String;
 
 export type StrideCategoryList = StrideCategory[];
 export const StrideCategoryList = /*@__PURE__*/ S.Array(StrideCategory);
 export type ThreatActor = "CUSTOMER" | "AGENT" | (string & {});
-export const ThreatActor = /*@__PURE__*/ S.String;
+export const ThreatActor = S.String;
 
 export interface Threat {
   threatId?: string;
@@ -2411,7 +2411,7 @@ export type Provider =
   | "BITBUCKET"
   | "CONFLUENCE"
   | (string & {});
-export const Provider = /*@__PURE__*/ S.String;
+export const Provider = S.String;
 
 export type AuthCode = string;
 export type CsrfState = string;
@@ -2436,7 +2436,7 @@ export const GitHubIntegrationInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GitHubIntegrationInput>;
 export type AccessToken = string | redacted.Redacted<string>;
 export type GitLabTokenType = "PERSONAL" | "GROUP" | (string & {});
-export const GitLabTokenType = /*@__PURE__*/ S.String;
+export const GitLabTokenType = S.String;
 
 export interface GitLabIntegrationInput {
   accessToken: string | redacted.Redacted<string>;
@@ -2562,10 +2562,10 @@ export const CreateIntegrationOutput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateIntegrationOutput>;
 export type MembershipId = string;
 export type MembershipType = "USER" | (string & {});
-export const MembershipType = /*@__PURE__*/ S.String;
+export const MembershipType = S.String;
 
 export type UserRole = "MEMBER" | (string & {});
-export const UserRole = /*@__PURE__*/ S.String;
+export const UserRole = S.String;
 
 export interface UserConfig {
   role?: UserRole;
@@ -2690,7 +2690,7 @@ export const PrivateConnectionSecurityGroupIds = /*@__PURE__*/ S.Array(
   S.String,
 );
 export type IpAddressType = "IPV4" | "IPV6" | "DUAL_STACK" | (string & {});
-export const IpAddressType = /*@__PURE__*/ S.String;
+export const IpAddressType = S.String;
 
 export type MaxIpv4AddressesPerEni = number;
 export type PortRange = string;
@@ -2698,7 +2698,7 @@ export type PortRanges = string[];
 export const PortRanges = /*@__PURE__*/ S.Array(S.String);
 export type CertificateChain = string | redacted.Redacted<string>;
 export type ResourceConfigDnsResolution = "PUBLIC" | "IN_VPC" | (string & {});
-export const ResourceConfigDnsResolution = /*@__PURE__*/ S.String;
+export const ResourceConfigDnsResolution = S.String;
 
 export interface ServiceManagedInput {
   hostAddress: string;
@@ -2773,7 +2773,7 @@ export type PrivateConnectionType =
   | "SERVICE_MANAGED"
   | "SELF_MANAGED"
   | (string & {});
-export const PrivateConnectionType = /*@__PURE__*/ S.String;
+export const PrivateConnectionType = S.String;
 
 export type PrivateConnectionStatus =
   | "ACTIVE"
@@ -2782,7 +2782,7 @@ export type PrivateConnectionStatus =
   | "DELETE_IN_PROGRESS"
   | "DELETE_FAILED"
   | (string & {});
-export const PrivateConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateConnectionStatus = S.String;
 
 export type ResourceGatewayId = string;
 export interface CreatePrivateConnectionOutput {
@@ -2822,7 +2822,7 @@ export type SecurityRequirementPackStatus =
   | "ENABLED"
   | "DISABLED"
   | (string & {});
-export const SecurityRequirementPackStatus = /*@__PURE__*/ S.String;
+export const SecurityRequirementPackStatus = S.String;
 
 export interface CreateSecurityRequirementPackInput {
   name: string;
@@ -3482,7 +3482,7 @@ export const GetIntegrationInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetIntegrationInput",
 }) as any as S.Schema<GetIntegrationInput>;
 export type ProviderType = "SOURCE_CODE" | "DOCUMENTATION" | (string & {});
-export const ProviderType = /*@__PURE__*/ S.String;
+export const ProviderType = S.String;
 
 export interface GetIntegrationOutput {
   integrationId: string;
@@ -3526,7 +3526,7 @@ export const GetSecurityRequirementPackInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSecurityRequirementPackInput",
 }) as any as S.Schema<GetSecurityRequirementPackInput>;
 export type ManagementType = "AWS_MANAGED" | "CUSTOMER_MANAGED" | (string & {});
-export const ManagementType = /*@__PURE__*/ S.String;
+export const ManagementType = S.String;
 
 export type SecurityRequirementPackImportStatus =
   | "PENDING"
@@ -3534,7 +3534,7 @@ export type SecurityRequirementPackImportStatus =
   | "FAILED"
   | "COMPLETED"
   | (string & {});
-export const SecurityRequirementPackImportStatus = /*@__PURE__*/ S.String;
+export const SecurityRequirementPackImportStatus = S.String;
 
 export interface GetSecurityRequirementPackOutput {
   packId: string;
@@ -3572,7 +3572,7 @@ export type SecurityRequirementArtifactFormat =
   | "DOCX"
   | "DOC"
   | (string & {});
-export const SecurityRequirementArtifactFormat = /*@__PURE__*/ S.String;
+export const SecurityRequirementArtifactFormat = S.String;
 
 export type SecurityRequirementDocumentContent =
   | Uint8Array
@@ -4168,7 +4168,7 @@ export const ListFindingsOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListFindingsOutput",
 }) as any as S.Schema<ListFindingsOutput>;
 export type ResourceType = "CODE_REPOSITORY" | "DOCUMENT" | (string & {});
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 export interface ListIntegratedResourcesInput {
   agentSpaceId: string;
@@ -4201,7 +4201,7 @@ export type ProviderResourceName = string;
 export type ProviderResourceId = string;
 export type GitHubOwner = string;
 export type AccessType = "PRIVATE" | "PUBLIC" | (string & {});
-export const AccessType = /*@__PURE__*/ S.String;
+export const AccessType = S.String;
 
 export interface GitHubRepositoryMetadata {
   name: string;
@@ -4481,7 +4481,7 @@ export const ListIntegrationsOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListIntegrationsOutput",
 }) as any as S.Schema<ListIntegrationsOutput>;
 export type MembershipTypeFilter = "USER" | "ALL" | (string & {});
-export const MembershipTypeFilter = /*@__PURE__*/ S.String;
+export const MembershipTypeFilter = S.String;
 
 export interface ListMembershipsRequest {
   applicationId: string;

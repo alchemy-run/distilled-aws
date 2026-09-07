@@ -14,7 +14,7 @@ export type { AzureOpError, AzureOpContext };
 
 /** The action type in requests for bulk upload or download of a DNS resolver domain list. */
 export type Action = "Upload" | "Download";
-export const Action = /*@__PURE__*/ S.String;
+export const Action = S.String;
 
 /** Describes DNS resolver domain list properties for bulk UPLOAD or DOWNLOAD operations. */
 export interface DnsResolverDomainListBulkProperties {
@@ -66,7 +66,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -74,7 +74,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -125,7 +125,7 @@ export type ProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Represents the properties of a DNS resolver domain list. */
 export interface DnsResolverDomainListProperties {
@@ -1072,7 +1072,7 @@ export const DnsResolversCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The current status of the DNS resolver. This is a read-only property and any attempt to set this value will be ignored. */
 export type DnsResolverState = "Connected" | "Disconnected";
-export const DnsResolverState = /*@__PURE__*/ S.String;
+export const DnsResolverState = S.String;
 
 /** Represents the properties of a DNS resolver. */
 export interface DnsResolverProperties {
@@ -1141,7 +1141,7 @@ export const DnsSecurityRulesCreateOrUpdateRequestTagsMap =
 
 /** The type of action to take. */
 export type ActionType = "Allow" | "Alert" | "Block";
-export const ActionType = /*@__PURE__*/ S.String;
+export const ActionType = S.String;
 
 /** The action to take on DNS requests that match the DNS security rule. */
 export interface DnsSecurityRuleAction {
@@ -1166,7 +1166,7 @@ export const DnsSecurityRulePropertiesDnsResolverDomainListsList =
 
 /** The state of DNS security rule. */
 export type DnsSecurityRuleState = "Enabled" | "Disabled";
-export const DnsSecurityRuleState = /*@__PURE__*/ S.String;
+export const DnsSecurityRuleState = S.String;
 
 /** Represents the properties of a DNS security rule. */
 export interface DnsSecurityRuleProperties {
@@ -1310,7 +1310,7 @@ export const ForwardingRulePropertiesMetadataMap = /*@__PURE__*/ S.Record(
 
 /** The state of forwarding rule. */
 export type ForwardingRuleState = "Enabled" | "Disabled";
-export const ForwardingRuleState = /*@__PURE__*/ S.String;
+export const ForwardingRuleState = S.String;
 
 /** Represents the properties of a forwarding rule within a DNS forwarding ruleset. */
 export interface ForwardingRuleProperties {
@@ -1902,7 +1902,7 @@ export const GetInboundEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Private IP address allocation method. */
 export type IpConfigurationPrivateIpAllocationMethod = "Static" | "Dynamic";
-export const IpConfigurationPrivateIpAllocationMethod = /*@__PURE__*/ S.String;
+export const IpConfigurationPrivateIpAllocationMethod = S.String;
 
 /** IP configuration. */
 export interface IpConfiguration {
@@ -4089,8 +4089,7 @@ export const ForwardingRulePatchPropertiesMetadataMap = /*@__PURE__*/ S.Record(
 export type ForwardingRulePatchPropertiesForwardingRuleState =
   | "Enabled"
   | "Disabled";
-export const ForwardingRulePatchPropertiesForwardingRuleState =
-  /*@__PURE__*/ S.String;
+export const ForwardingRulePatchPropertiesForwardingRuleState = S.String;
 
 /** Represents the updatable properties of a forwarding rule within a DNS forwarding ruleset. */
 export interface ForwardingRulePatchProperties {

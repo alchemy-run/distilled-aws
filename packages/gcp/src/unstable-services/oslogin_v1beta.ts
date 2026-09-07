@@ -152,7 +152,7 @@ export type GetLoginProfileUsersViewEnum =
   | "LOGIN_PROFILE_VIEW_UNSPECIFIED"
   | "BASIC"
   | "SECURITY_KEY";
-export const GetLoginProfileUsersViewEnum = /*@__PURE__*/ S.String;
+export const GetLoginProfileUsersViewEnum = S.String;
 
 export interface GetLoginProfileUsersRequest {
   /** Required. The project ID of the Google Cloud Platform project. */
@@ -237,7 +237,7 @@ export type PosixAccountOperatingSystemTypeEnum =
   | "OPERATING_SYSTEM_TYPE_UNSPECIFIED"
   | "LINUX"
   | "WINDOWS";
-export const PosixAccountOperatingSystemTypeEnum = /*@__PURE__*/ S.String;
+export const PosixAccountOperatingSystemTypeEnum = S.String;
 
 /** The POSIX account information associated with a Google account. */
 export interface PosixAccount {
@@ -338,7 +338,7 @@ export type ImportSshPublicKeyUsersViewEnum =
   | "LOGIN_PROFILE_VIEW_UNSPECIFIED"
   | "BASIC"
   | "SECURITY_KEY";
-export const ImportSshPublicKeyUsersViewEnum = /*@__PURE__*/ S.String;
+export const ImportSshPublicKeyUsersViewEnum = S.String;
 
 export interface ImportSshPublicKeyUsersRequest {
   /** The project ID of the Google Cloud Platform project. */

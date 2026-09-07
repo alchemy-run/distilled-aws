@@ -16,7 +16,7 @@ export type ProductsEnum =
   | "conversations"
   | "error_tracking"
   | "session_replay";
-export const ProductsEnum = /*@__PURE__*/ S.String;
+export const ProductsEnum = S.String;
 
 /** Products to turn on for this project, each enabled with server-owned conservative defaults. */
 export type CreateProductEnablementRequestProductsList = Array<

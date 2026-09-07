@@ -43,7 +43,7 @@ export type GetProtectedResourcesSummaryProjectsLocationsKeyRingsCryptoKeysFallb
   | "FALLBACK_SCOPE_UNSPECIFIED"
   | "FALLBACK_SCOPE_PROJECT";
 export const GetProtectedResourcesSummaryProjectsLocationsKeyRingsCryptoKeysFallbackScopeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProtectedResourcesSummaryProjectsLocationsKeyRingsCryptoKeysRequest {
   /** Required. The resource name of the CryptoKey. */
@@ -85,8 +85,7 @@ export type GoogleCloudKmsInventoryV1WarningWarningCodeEnum =
   | "INSUFFICIENT_PERMISSIONS_PARTIAL_DATA"
   | "RESOURCE_LIMIT_EXCEEDED_PARTIAL_DATA"
   | "ORG_LESS_PROJECT_PARTIAL_DATA";
-export const GoogleCloudKmsInventoryV1WarningWarningCodeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudKmsInventoryV1WarningWarningCodeEnum = S.String;
 
 /** A warning message that indicates potential problems with the response data. */
 export interface GoogleCloudKmsInventoryV1Warning {
@@ -216,8 +215,7 @@ export type GoogleCloudKmsV1KeyOperationAttestationFormatEnum =
   | "CAVIUM_V1_COMPRESSED"
   | "CAVIUM_V2_COMPRESSED"
   | "CAVIUM_V209";
-export const GoogleCloudKmsV1KeyOperationAttestationFormatEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudKmsV1KeyOperationAttestationFormatEnum = S.String;
 
 /** Contains an HSM-generated attestation about a key operation. For more information, see [Verifying attestations] (https://cloud.google.com/kms/docs/attest-key). */
 export interface GoogleCloudKmsV1KeyOperationAttestation {
@@ -248,8 +246,7 @@ export type GoogleCloudKmsV1CryptoKeyVersionProtectionLevelEnum =
   | "EXTERNAL"
   | "EXTERNAL_VPC"
   | "HSM_SINGLE_TENANT";
-export const GoogleCloudKmsV1CryptoKeyVersionProtectionLevelEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudKmsV1CryptoKeyVersionProtectionLevelEnum = S.String;
 
 export type GoogleCloudKmsV1CryptoKeyVersionStateEnum =
   | "CRYPTO_KEY_VERSION_STATE_UNSPECIFIED"
@@ -263,7 +260,7 @@ export type GoogleCloudKmsV1CryptoKeyVersionStateEnum =
   | "GENERATION_FAILED"
   | "PENDING_EXTERNAL_DESTRUCTION"
   | "EXTERNAL_DESTRUCTION_FAILED";
-export const GoogleCloudKmsV1CryptoKeyVersionStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudKmsV1CryptoKeyVersionStateEnum = S.String;
 
 export type GoogleCloudKmsV1CryptoKeyVersionAlgorithmEnum =
   | "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED"
@@ -316,8 +313,7 @@ export type GoogleCloudKmsV1CryptoKeyVersionAlgorithmEnum =
   | "KEM_ECDH_P256"
   | "KEM_ECDH_P384"
   | "AES_256_KWP";
-export const GoogleCloudKmsV1CryptoKeyVersionAlgorithmEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudKmsV1CryptoKeyVersionAlgorithmEnum = S.String;
 
 /** A CryptoKeyVersion represents an individual cryptographic key, and the associated key material. An ENABLED version can be used for cryptographic operations. For security reasons, the raw cryptographic key material represented by a CryptoKeyVersion can never be viewed or exported. It can only be used to encrypt, decrypt, or sign data when an authorized user or application invokes Cloud KMS. */
 export interface GoogleCloudKmsV1CryptoKeyVersion {
@@ -395,7 +391,7 @@ export type GoogleCloudKmsV1CryptoKeyVersionTemplateProtectionLevelEnum =
   | "EXTERNAL_VPC"
   | "HSM_SINGLE_TENANT";
 export const GoogleCloudKmsV1CryptoKeyVersionTemplateProtectionLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudKmsV1CryptoKeyVersionTemplateAlgorithmEnum =
   | "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED"
@@ -448,8 +444,7 @@ export type GoogleCloudKmsV1CryptoKeyVersionTemplateAlgorithmEnum =
   | "KEM_ECDH_P256"
   | "KEM_ECDH_P384"
   | "AES_256_KWP";
-export const GoogleCloudKmsV1CryptoKeyVersionTemplateAlgorithmEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudKmsV1CryptoKeyVersionTemplateAlgorithmEnum = S.String;
 
 /** A CryptoKeyVersionTemplate specifies the properties to use when creating a new CryptoKeyVersion, either manually with CreateCryptoKeyVersion or automatically as a result of auto-rotation. */
 export interface GoogleCloudKmsV1CryptoKeyVersionTemplate {
@@ -486,7 +481,7 @@ export type GoogleCloudKmsV1KeyAccessJustificationsPolicyAllowedAccessReasonsIte
   | "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT"
   | "CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING";
 export const GoogleCloudKmsV1KeyAccessJustificationsPolicyAllowedAccessReasonsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudKmsV1KeyAccessJustificationsPolicyAllowedAccessReasonsItemEnumList =
   Array<GoogleCloudKmsV1KeyAccessJustificationsPolicyAllowedAccessReasonsItemEnum>;
@@ -520,7 +515,7 @@ export type GoogleCloudKmsV1CryptoKeyPurposeEnum =
   | "MAC"
   | "KEY_ENCAPSULATION"
   | "AES_WRAPPING";
-export const GoogleCloudKmsV1CryptoKeyPurposeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudKmsV1CryptoKeyPurposeEnum = S.String;
 
 /** A CryptoKey represents a logical key that can be used for cryptographic operations. A CryptoKey is made up of zero or more versions, which represent the actual key material used in cryptographic operations. */
 export interface GoogleCloudKmsV1CryptoKey {

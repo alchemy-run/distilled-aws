@@ -124,11 +124,11 @@ export type PropertyOperator =
   | "semver_wildcard"
   | "icontains_multi"
   | "not_icontains_multi";
-export const PropertyOperator = /*@__PURE__*/ S.String;
+export const PropertyOperator = S.String;
 
 export type EventPropertyFilterValueCase0Item = string | number | boolean;
 export const EventPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<EventPropertyFilterValueCase0Item>;
 
 export type EventPropertyFilterValueCase0List =
   Array<EventPropertyFilterValueCase0Item>;
@@ -142,7 +142,7 @@ export type EventPropertyFilterValue =
   | number
   | boolean;
 export const EventPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventPropertyFilterValue>;
+  S.Unknown as any as S.Schema<EventPropertyFilterValue>;
 
 export interface EventPropertyFilter {
   key?: string;
@@ -166,7 +166,7 @@ export const EventPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type PersonPropertyFilterValueCase0Item = string | number | boolean;
 export const PersonPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<PersonPropertyFilterValueCase0Item>;
 
 export type PersonPropertyFilterValueCase0List =
   Array<PersonPropertyFilterValueCase0Item>;
@@ -180,7 +180,7 @@ export type PersonPropertyFilterValue =
   | number
   | boolean;
 export const PersonPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonPropertyFilterValue>;
+  S.Unknown as any as S.Schema<PersonPropertyFilterValue>;
 
 export interface PersonPropertyFilter {
   key?: string;
@@ -207,7 +207,7 @@ export type PersonMetadataPropertyFilterValueCase0Item =
   | number
   | boolean;
 export const PersonMetadataPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonMetadataPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<PersonMetadataPropertyFilterValueCase0Item>;
 
 export type PersonMetadataPropertyFilterValueCase0List =
   Array<PersonMetadataPropertyFilterValueCase0Item>;
@@ -221,7 +221,7 @@ export type PersonMetadataPropertyFilterValue =
   | number
   | boolean;
 export const PersonMetadataPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonMetadataPropertyFilterValue>;
+  S.Unknown as any as S.Schema<PersonMetadataPropertyFilterValue>;
 
 export interface PersonMetadataPropertyFilter {
   key: string;
@@ -244,11 +244,11 @@ export const PersonMetadataPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PersonMetadataPropertyFilter>;
 
 export type Key10 = "tag_name" | "text" | "href" | "selector";
-export const Key10 = /*@__PURE__*/ S.String;
+export const Key10 = S.String;
 
 export type ElementPropertyFilterValueCase0Item = string | number | boolean;
 export const ElementPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ElementPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<ElementPropertyFilterValueCase0Item>;
 
 export type ElementPropertyFilterValueCase0List =
   Array<ElementPropertyFilterValueCase0Item>;
@@ -262,7 +262,7 @@ export type ElementPropertyFilterValue =
   | number
   | boolean;
 export const ElementPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ElementPropertyFilterValue>;
+  S.Unknown as any as S.Schema<ElementPropertyFilterValue>;
 
 export interface ElementPropertyFilter {
   key?: Key10 | (string & {});
@@ -288,7 +288,7 @@ export type EventMetadataPropertyFilterValueCase0Item =
   | number
   | boolean;
 export const EventMetadataPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventMetadataPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<EventMetadataPropertyFilterValueCase0Item>;
 
 export type EventMetadataPropertyFilterValueCase0List =
   Array<EventMetadataPropertyFilterValueCase0Item>;
@@ -302,7 +302,7 @@ export type EventMetadataPropertyFilterValue =
   | number
   | boolean;
 export const EventMetadataPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventMetadataPropertyFilterValue>;
+  S.Unknown as any as S.Schema<EventMetadataPropertyFilterValue>;
 
 export interface EventMetadataPropertyFilter {
   key?: string;
@@ -325,7 +325,7 @@ export const EventMetadataPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type SessionPropertyFilterValueCase0Item = string | number | boolean;
 export const SessionPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<SessionPropertyFilterValueCase0Item>;
 
 export type SessionPropertyFilterValueCase0List =
   Array<SessionPropertyFilterValueCase0Item>;
@@ -339,7 +339,7 @@ export type SessionPropertyFilterValue =
   | number
   | boolean;
 export const SessionPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionPropertyFilterValue>;
+  S.Unknown as any as S.Schema<SessionPropertyFilterValue>;
 
 export interface SessionPropertyFilter {
   key?: string;
@@ -382,15 +382,15 @@ export const CohortPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CohortPropertyFilter>;
 
 export type DurationType = "duration" | "active_seconds" | "inactive_seconds";
-export const DurationType = /*@__PURE__*/ S.String;
+export const DurationType = S.String;
 
 export type RecordingPropertyFilterKey = DurationType | string;
 export const RecordingPropertyFilterKey =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RecordingPropertyFilterKey>;
+  S.Unknown as any as S.Schema<RecordingPropertyFilterKey>;
 
 export type RecordingPropertyFilterValueCase0Item = string | number | boolean;
 export const RecordingPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RecordingPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<RecordingPropertyFilterValueCase0Item>;
 
 export type RecordingPropertyFilterValueCase0List =
   Array<RecordingPropertyFilterValueCase0Item>;
@@ -404,7 +404,7 @@ export type RecordingPropertyFilterValue =
   | number
   | boolean;
 export const RecordingPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RecordingPropertyFilterValue>;
+  S.Unknown as any as S.Schema<RecordingPropertyFilterValue>;
 
 export interface RecordingPropertyFilter {
   key?: RecordingPropertyFilterKey;
@@ -427,7 +427,7 @@ export const RecordingPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type LogEntryPropertyFilterValueCase0Item = string | number | boolean;
 export const LogEntryPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogEntryPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<LogEntryPropertyFilterValueCase0Item>;
 
 export type LogEntryPropertyFilterValueCase0List =
   Array<LogEntryPropertyFilterValueCase0Item>;
@@ -441,7 +441,7 @@ export type LogEntryPropertyFilterValue =
   | number
   | boolean;
 export const LogEntryPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogEntryPropertyFilterValue>;
+  S.Unknown as any as S.Schema<LogEntryPropertyFilterValue>;
 
 export interface LogEntryPropertyFilter {
   key?: string;
@@ -472,7 +472,7 @@ export const GroupPropertyFilterGroupKeyNamesMap = /*@__PURE__*/ S.Record(
 
 export type GroupPropertyFilterValueCase0Item = string | number | boolean;
 export const GroupPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GroupPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<GroupPropertyFilterValueCase0Item>;
 
 export type GroupPropertyFilterValueCase0List =
   Array<GroupPropertyFilterValueCase0Item>;
@@ -486,7 +486,7 @@ export type GroupPropertyFilterValue =
   | number
   | boolean;
 export const GroupPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GroupPropertyFilterValue>;
+  S.Unknown as any as S.Schema<GroupPropertyFilterValue>;
 
 export interface GroupPropertyFilter {
   group_key_names?: GroupPropertyFilterGroupKeyNamesMap | null;
@@ -513,7 +513,7 @@ export const GroupPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type FeaturePropertyFilterValueCase0Item = string | number | boolean;
 export const FeaturePropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeaturePropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<FeaturePropertyFilterValueCase0Item>;
 
 export type FeaturePropertyFilterValueCase0List =
   Array<FeaturePropertyFilterValueCase0Item>;
@@ -527,7 +527,7 @@ export type FeaturePropertyFilterValue =
   | number
   | boolean;
 export const FeaturePropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeaturePropertyFilterValue>;
+  S.Unknown as any as S.Schema<FeaturePropertyFilterValue>;
 
 export interface FeaturePropertyFilter {
   key?: string;
@@ -552,7 +552,7 @@ export const FeaturePropertyFilter = /*@__PURE__*/ S.suspend(() =>
 /** The value can be true, false, or a variant name */
 export type FlagPropertyFilterValue = boolean | string;
 export const FlagPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlagPropertyFilterValue>;
+  S.Unknown as any as S.Schema<FlagPropertyFilterValue>;
 
 export interface FlagPropertyFilter {
   /** The key should be the flag ID */
@@ -579,7 +579,7 @@ export const FlagPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type HogQLPropertyFilterValueCase0Item = string | number | boolean;
 export const HogQLPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<HogQLPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<HogQLPropertyFilterValueCase0Item>;
 
 export type HogQLPropertyFilterValueCase0List =
   Array<HogQLPropertyFilterValueCase0Item>;
@@ -593,7 +593,7 @@ export type HogQLPropertyFilterValue =
   | number
   | boolean;
 export const HogQLPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<HogQLPropertyFilterValue>;
+  S.Unknown as any as S.Schema<HogQLPropertyFilterValue>;
 
 export interface HogQLPropertyFilter {
   key?: string;
@@ -628,7 +628,7 @@ export type DataWarehousePropertyFilterValueCase0Item =
   | number
   | boolean;
 export const DataWarehousePropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataWarehousePropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<DataWarehousePropertyFilterValueCase0Item>;
 
 export type DataWarehousePropertyFilterValueCase0List =
   Array<DataWarehousePropertyFilterValueCase0Item>;
@@ -642,7 +642,7 @@ export type DataWarehousePropertyFilterValue =
   | number
   | boolean;
 export const DataWarehousePropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataWarehousePropertyFilterValue>;
+  S.Unknown as any as S.Schema<DataWarehousePropertyFilterValue>;
 
 export interface DataWarehousePropertyFilter {
   key?: string;
@@ -668,7 +668,7 @@ export type DataWarehousePersonPropertyFilterValueCase0Item =
   | number
   | boolean;
 export const DataWarehousePersonPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataWarehousePersonPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<DataWarehousePersonPropertyFilterValueCase0Item>;
 
 export type DataWarehousePersonPropertyFilterValueCase0List =
   Array<DataWarehousePersonPropertyFilterValueCase0Item>;
@@ -683,7 +683,7 @@ export type DataWarehousePersonPropertyFilterValue =
   | number
   | boolean;
 export const DataWarehousePersonPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataWarehousePersonPropertyFilterValue>;
+  S.Unknown as any as S.Schema<DataWarehousePersonPropertyFilterValue>;
 
 export interface DataWarehousePersonPropertyFilter {
   key?: string;
@@ -706,7 +706,7 @@ export const DataWarehousePersonPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type ErrorTrackingIssueFilterValueCase0Item = string | number | boolean;
 export const ErrorTrackingIssueFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ErrorTrackingIssueFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<ErrorTrackingIssueFilterValueCase0Item>;
 
 export type ErrorTrackingIssueFilterValueCase0List =
   Array<ErrorTrackingIssueFilterValueCase0Item>;
@@ -720,7 +720,7 @@ export type ErrorTrackingIssueFilterValue =
   | number
   | boolean;
 export const ErrorTrackingIssueFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ErrorTrackingIssueFilterValue>;
+  S.Unknown as any as S.Schema<ErrorTrackingIssueFilterValue>;
 
 export interface ErrorTrackingIssueFilter {
   key?: string;
@@ -745,11 +745,11 @@ export type LogPropertyFilterType =
   | "log"
   | "log_attribute"
   | "log_resource_attribute";
-export const LogPropertyFilterType = /*@__PURE__*/ S.String;
+export const LogPropertyFilterType = S.String;
 
 export type LogPropertyFilterValueCase0Item = string | number | boolean;
 export const LogPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<LogPropertyFilterValueCase0Item>;
 
 export type LogPropertyFilterValueCase0List =
   Array<LogPropertyFilterValueCase0Item>;
@@ -763,7 +763,7 @@ export type LogPropertyFilterValue =
   | number
   | boolean;
 export const LogPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogPropertyFilterValue>;
+  S.Unknown as any as S.Schema<LogPropertyFilterValue>;
 
 export interface LogPropertyFilter {
   key?: string;
@@ -786,7 +786,7 @@ export const LogPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type MetricPropertyFilterValueCase0Item = string | number | boolean;
 export const MetricPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<MetricPropertyFilterValueCase0Item>;
 
 export type MetricPropertyFilterValueCase0List =
   Array<MetricPropertyFilterValueCase0Item>;
@@ -800,7 +800,7 @@ export type MetricPropertyFilterValue =
   | number
   | boolean;
 export const MetricPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPropertyFilterValue>;
+  S.Unknown as any as S.Schema<MetricPropertyFilterValue>;
 
 export interface MetricPropertyFilter {
   key: string;
@@ -825,11 +825,11 @@ export type SpanPropertyFilterType =
   | "span"
   | "span_attribute"
   | "span_resource_attribute";
-export const SpanPropertyFilterType = /*@__PURE__*/ S.String;
+export const SpanPropertyFilterType = S.String;
 
 export type SpanPropertyFilterValueCase0Item = string | number | boolean;
 export const SpanPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SpanPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<SpanPropertyFilterValueCase0Item>;
 
 export type SpanPropertyFilterValueCase0List =
   Array<SpanPropertyFilterValueCase0Item>;
@@ -843,7 +843,7 @@ export type SpanPropertyFilterValue =
   | number
   | boolean;
 export const SpanPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SpanPropertyFilterValue>;
+  S.Unknown as any as S.Schema<SpanPropertyFilterValue>;
 
 export interface SpanPropertyFilter {
   key?: string;
@@ -869,7 +869,7 @@ export type RevenueAnalyticsPropertyFilterValueCase0Item =
   | number
   | boolean;
 export const RevenueAnalyticsPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RevenueAnalyticsPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<RevenueAnalyticsPropertyFilterValueCase0Item>;
 
 export type RevenueAnalyticsPropertyFilterValueCase0List =
   Array<RevenueAnalyticsPropertyFilterValueCase0Item>;
@@ -884,7 +884,7 @@ export type RevenueAnalyticsPropertyFilterValue =
   | number
   | boolean;
 export const RevenueAnalyticsPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RevenueAnalyticsPropertyFilterValue>;
+  S.Unknown as any as S.Schema<RevenueAnalyticsPropertyFilterValue>;
 
 export interface RevenueAnalyticsPropertyFilter {
   key?: string;
@@ -910,7 +910,7 @@ export type AccountCustomPropertyFilterValueCase0Item =
   | number
   | boolean;
 export const AccountCustomPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AccountCustomPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<AccountCustomPropertyFilterValueCase0Item>;
 
 export type AccountCustomPropertyFilterValueCase0List =
   Array<AccountCustomPropertyFilterValueCase0Item>;
@@ -924,7 +924,7 @@ export type AccountCustomPropertyFilterValue =
   | number
   | boolean;
 export const AccountCustomPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AccountCustomPropertyFilterValue>;
+  S.Unknown as any as S.Schema<AccountCustomPropertyFilterValue>;
 
 export interface AccountCustomPropertyFilter {
   key: string;
@@ -951,7 +951,7 @@ export type WorkflowVariablePropertyFilterValueCase0Item =
   | number
   | boolean;
 export const WorkflowVariablePropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WorkflowVariablePropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<WorkflowVariablePropertyFilterValueCase0Item>;
 
 export type WorkflowVariablePropertyFilterValueCase0List =
   Array<WorkflowVariablePropertyFilterValueCase0Item>;
@@ -966,7 +966,7 @@ export type WorkflowVariablePropertyFilterValue =
   | number
   | boolean;
 export const WorkflowVariablePropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WorkflowVariablePropertyFilterValue>;
+  S.Unknown as any as S.Schema<WorkflowVariablePropertyFilterValue>;
 
 export interface WorkflowVariablePropertyFilter {
   key?: string;
@@ -994,7 +994,7 @@ export type BehavioralPropertyFilterEventFiltersItem =
   | FeaturePropertyFilter
   | HogQLPropertyFilter;
 export const BehavioralPropertyFilterEventFiltersItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BehavioralPropertyFilterEventFiltersItem>;
+  S.Unknown as any as S.Schema<BehavioralPropertyFilterEventFiltersItem>;
 
 export type BehavioralPropertyFilterEventFiltersList =
   Array<BehavioralPropertyFilterEventFiltersItem>;
@@ -1003,15 +1003,15 @@ export const BehavioralPropertyFilterEventFiltersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<BehavioralPropertyFilterEventFiltersList>;
 
 export type BehavioralEventSource = "events" | "actions";
-export const BehavioralEventSource = /*@__PURE__*/ S.String;
+export const BehavioralEventSource = S.String;
 
 export type TimeUnitType = "day" | "week" | "month" | "year";
-export const TimeUnitType = /*@__PURE__*/ S.String;
+export const TimeUnitType = S.String;
 
 export type InlineBehavioralType =
   | "performed_event"
   | "performed_event_multiple";
-export const InlineBehavioralType = /*@__PURE__*/ S.String;
+export const InlineBehavioralType = S.String;
 
 export interface BehavioralPropertyFilter {
   /** Extra property filters the matching events must satisfy. Deliberately excludes nested behavioral/cohort filters and groups */
@@ -1084,7 +1084,7 @@ export type ConversionGoalFilter1FixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ConversionGoalFilter1FixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter1FixedPropertiesItem>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter1FixedPropertiesItem>;
 
 export type ConversionGoalFilter1FixedPropertiesList =
   Array<ConversionGoalFilter1FixedPropertiesItem>;
@@ -1100,13 +1100,13 @@ export type BaseMathType =
   | "unique_session"
   | "first_time_for_user"
   | "first_matching_event_for_user";
-export const BaseMathType = /*@__PURE__*/ S.String;
+export const BaseMathType = S.String;
 
 export type FunnelMathType =
   | "total"
   | "first_time_for_user"
   | "first_time_for_user_with_filters";
-export const FunnelMathType = /*@__PURE__*/ S.String;
+export const FunnelMathType = S.String;
 
 export type PropertyMathType =
   | "avg"
@@ -1118,7 +1118,7 @@ export type PropertyMathType =
   | "p90"
   | "p95"
   | "p99";
-export const PropertyMathType = /*@__PURE__*/ S.String;
+export const PropertyMathType = S.String;
 
 export type CountPerActorMathType =
   | "avg_count_per_actor"
@@ -1129,13 +1129,13 @@ export type CountPerActorMathType =
   | "p90_count_per_actor"
   | "p95_count_per_actor"
   | "p99_count_per_actor";
-export const CountPerActorMathType = /*@__PURE__*/ S.String;
+export const CountPerActorMathType = S.String;
 
 export type GroupMathType =
   | "unique_group"
   | "first_time_for_group"
   | "first_matching_event_for_group";
-export const GroupMathType = /*@__PURE__*/ S.String;
+export const GroupMathType = S.String;
 
 export type ExperimentMetricMathType =
   | "total"
@@ -1147,10 +1147,10 @@ export type ExperimentMetricMathType =
   | "dau"
   | "unique_group"
   | "hogql";
-export const ExperimentMetricMathType = /*@__PURE__*/ S.String;
+export const ExperimentMetricMathType = S.String;
 
 export type CalendarHeatmapMathType = "total" | "dau";
-export const CalendarHeatmapMathType = /*@__PURE__*/ S.String;
+export const CalendarHeatmapMathType = S.String;
 
 export type ConversionGoalFilter1Math =
   | BaseMathType
@@ -1162,10 +1162,10 @@ export type ConversionGoalFilter1Math =
   | CalendarHeatmapMathType
   | string;
 export const ConversionGoalFilter1Math =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter1Math>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter1Math>;
 
 export type MathGroupTypeIndex = 0 | 1 | 2 | 3 | 4;
-export const MathGroupTypeIndex = /*@__PURE__*/ S.Number;
+export const MathGroupTypeIndex = S.Number;
 
 export type CurrencyCode =
   | "AED"
@@ -1320,7 +1320,7 @@ export type CurrencyCode =
   | "YER"
   | "ZAR"
   | "ZMW";
-export const CurrencyCode = /*@__PURE__*/ S.String;
+export const CurrencyCode = S.String;
 
 export interface RevenueCurrencyPropertyConfig {
   property?: string | null;
@@ -1366,7 +1366,7 @@ export type ConversionGoalFilter1PropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ConversionGoalFilter1PropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter1PropertiesItem>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter1PropertiesItem>;
 
 export type ConversionGoalFilter1PropertiesList =
   Array<ConversionGoalFilter1PropertiesItem>;
@@ -1384,7 +1384,7 @@ export const ConversionGoalFilter1ResponseMap = /*@__PURE__*/ S.Record(
 
 export type ConversionGoalFilter1SchemaMapValue = string | unknown;
 export const ConversionGoalFilter1SchemaMapValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter1SchemaMapValue>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter1SchemaMapValue>;
 
 export type ConversionGoalFilter1SchemaMapMap = {
   [key: string]: ConversionGoalFilter1SchemaMapValue | undefined;
@@ -1486,7 +1486,7 @@ export type ConversionGoalFilter2FixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ConversionGoalFilter2FixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter2FixedPropertiesItem>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter2FixedPropertiesItem>;
 
 export type ConversionGoalFilter2FixedPropertiesList =
   Array<ConversionGoalFilter2FixedPropertiesItem>;
@@ -1504,7 +1504,7 @@ export type ConversionGoalFilter2Math =
   | CalendarHeatmapMathType
   | string;
 export const ConversionGoalFilter2Math =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter2Math>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter2Math>;
 
 export type ConversionGoalFilter2PropertiesItem =
   | EventPropertyFilter
@@ -1532,7 +1532,7 @@ export type ConversionGoalFilter2PropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ConversionGoalFilter2PropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter2PropertiesItem>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter2PropertiesItem>;
 
 export type ConversionGoalFilter2PropertiesList =
   Array<ConversionGoalFilter2PropertiesItem>;
@@ -1550,7 +1550,7 @@ export const ConversionGoalFilter2ResponseMap = /*@__PURE__*/ S.Record(
 
 export type ConversionGoalFilter2SchemaMapValue = string | unknown;
 export const ConversionGoalFilter2SchemaMapValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter2SchemaMapValue>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter2SchemaMapValue>;
 
 export type ConversionGoalFilter2SchemaMapMap = {
   [key: string]: ConversionGoalFilter2SchemaMapValue | undefined;
@@ -1646,7 +1646,7 @@ export type ConversionGoalFilter3FixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ConversionGoalFilter3FixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter3FixedPropertiesItem>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter3FixedPropertiesItem>;
 
 export type ConversionGoalFilter3FixedPropertiesList =
   Array<ConversionGoalFilter3FixedPropertiesItem>;
@@ -1664,7 +1664,7 @@ export type ConversionGoalFilter3Math =
   | CalendarHeatmapMathType
   | string;
 export const ConversionGoalFilter3Math =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter3Math>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter3Math>;
 
 export type ConversionGoalFilter3PropertiesItem =
   | EventPropertyFilter
@@ -1692,7 +1692,7 @@ export type ConversionGoalFilter3PropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ConversionGoalFilter3PropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter3PropertiesItem>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter3PropertiesItem>;
 
 export type ConversionGoalFilter3PropertiesList =
   Array<ConversionGoalFilter3PropertiesItem>;
@@ -1710,7 +1710,7 @@ export const ConversionGoalFilter3ResponseMap = /*@__PURE__*/ S.Record(
 
 export type ConversionGoalFilter3SchemaMapValue = string | unknown;
 export const ConversionGoalFilter3SchemaMapValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter3SchemaMapValue>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter3SchemaMapValue>;
 
 export type ConversionGoalFilter3SchemaMapMap = {
   [key: string]: ConversionGoalFilter3SchemaMapValue | undefined;
@@ -1795,15 +1795,14 @@ export type ConversionGoal =
   | ConversionGoalFilter1
   | ConversionGoalFilter2
   | ConversionGoalFilter3;
-export const ConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoal>;
+export const ConversionGoal = S.Unknown as any as S.Schema<ConversionGoal>;
 
 export type ConversionGoalWrittenListItem =
   | ConversionGoalFilter1
   | ConversionGoalFilter2
   | ConversionGoalFilter3;
 export const ConversionGoalWrittenListItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalWrittenListItem>;
+  S.Unknown as any as S.Schema<ConversionGoalWrittenListItem>;
 
 /** List wrapper for OpenAPI schema generation - the response carries every configured goal. */
 export type ConversionGoalWrittenList = Array<ConversionGoalWrittenListItem>;
@@ -1850,7 +1849,7 @@ export type ConversionGoalKindEnum =
   | "EventsNode"
   | "ActionsNode"
   | "DataWarehouseNode";
-export const ConversionGoalKindEnum = /*@__PURE__*/ S.String;
+export const ConversionGoalKindEnum = S.String;
 
 export interface ConversionGoalSummary {
   /** Id of the goal. Pass this to the explain, update and delete endpoints. */
@@ -2975,7 +2974,7 @@ export const GetMarketingAnalyticsUtmAuditRequest = /*@__PURE__*/ S.suspend(
 
 /** * `error` - error * `warning` - warning */
 export type DiagnosticSeverityEnum = "error" | "warning";
-export const DiagnosticSeverityEnum = /*@__PURE__*/ S.String;
+export const DiagnosticSeverityEnum = S.String;
 
 /** * `not_linked` - not_linked * `name_collision` - name_collision * `no_tagged_events` - no_tagged_events * `unknown_source` - unknown_source * `missing_source` - missing_source */
 export type UtmIssueKindEnum =
@@ -2984,7 +2983,7 @@ export type UtmIssueKindEnum =
   | "no_tagged_events"
   | "unknown_source"
   | "missing_source";
-export const UtmIssueKindEnum = /*@__PURE__*/ S.String;
+export const UtmIssueKindEnum = S.String;
 
 export interface UtmAlternativeSource {
   /** A utm_source value found on this campaign's pageviews */
@@ -3019,7 +3018,7 @@ export type SuggestedActionsEnum =
   | "add_source_mapping"
   | "switch_to_id_match"
   | "add_campaign_name_mapping";
-export const SuggestedActionsEnum = /*@__PURE__*/ S.String;
+export const SuggestedActionsEnum = S.String;
 
 /** Recommended remediations, most-recommended first. fix_platform_urls cures the tagging bug itself; the others are workarounds that leave the bad URLs in place. */
 export type UtmIssueSuggestedActionsList = Array<SuggestedActionsEnum>;
@@ -3111,7 +3110,7 @@ export const UtmAuditResponseResultsList = /*@__PURE__*/ S.Array(
 
 /** * `none` - none * `auto` - auto * `mapped` - mapped */
 export type SourceMatchEnum = "none" | "auto" | "mapped";
-export const SourceMatchEnum = /*@__PURE__*/ S.String;
+export const SourceMatchEnum = S.String;
 
 export interface UtmEvent {
   /** UTM campaign value from pageview events */
@@ -3181,7 +3180,7 @@ export const MarketingAnalyticsApplySetupOpsCreateRequestOpsList =
 
 /** * `setup_tab` - setup_tab * `apply_all_safe` - apply_all_safe * `mcp` - mcp */
 export type ApplySetupOpsSourceEnum = "setup_tab" | "apply_all_safe" | "mcp";
-export const ApplySetupOpsSourceEnum = /*@__PURE__*/ S.String;
+export const ApplySetupOpsSourceEnum = S.String;
 
 export interface MarketingAnalyticsApplySetupOpsCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -3286,7 +3285,7 @@ export type PartialConversionGoalFilter1FixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const PartialConversionGoalFilter1FixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PartialConversionGoalFilter1FixedPropertiesItem>;
+  S.Unknown as any as S.Schema<PartialConversionGoalFilter1FixedPropertiesItem>;
 
 export type PartialConversionGoalFilter1FixedPropertiesList =
   Array<PartialConversionGoalFilter1FixedPropertiesItem>;
@@ -3305,7 +3304,7 @@ export type PartialConversionGoalFilter1Math =
   | CalendarHeatmapMathType
   | string;
 export const PartialConversionGoalFilter1Math =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PartialConversionGoalFilter1Math>;
+  S.Unknown as any as S.Schema<PartialConversionGoalFilter1Math>;
 
 export type PartialConversionGoalFilter1OrderByList = Array<string>;
 export const PartialConversionGoalFilter1OrderByList = /*@__PURE__*/ S.Array(
@@ -3338,7 +3337,7 @@ export type PartialConversionGoalFilter1PropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const PartialConversionGoalFilter1PropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PartialConversionGoalFilter1PropertiesItem>;
+  S.Unknown as any as S.Schema<PartialConversionGoalFilter1PropertiesItem>;
 
 export type PartialConversionGoalFilter1PropertiesList =
   Array<PartialConversionGoalFilter1PropertiesItem>;
@@ -3356,7 +3355,7 @@ export const PartialConversionGoalFilter1ResponseMap = /*@__PURE__*/ S.Record(
 
 export type PartialConversionGoalFilter1SchemaMapValue = string | unknown;
 export const PartialConversionGoalFilter1SchemaMapValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PartialConversionGoalFilter1SchemaMapValue>;
+  S.Unknown as any as S.Schema<PartialConversionGoalFilter1SchemaMapValue>;
 
 export type PartialConversionGoalFilter1SchemaMapMap = {
   [key: string]: PartialConversionGoalFilter1SchemaMapValue | undefined;
@@ -3454,7 +3453,7 @@ export type PartialConversionGoalFilter2FixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const PartialConversionGoalFilter2FixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PartialConversionGoalFilter2FixedPropertiesItem>;
+  S.Unknown as any as S.Schema<PartialConversionGoalFilter2FixedPropertiesItem>;
 
 export type PartialConversionGoalFilter2FixedPropertiesList =
   Array<PartialConversionGoalFilter2FixedPropertiesItem>;
@@ -3473,7 +3472,7 @@ export type PartialConversionGoalFilter2Math =
   | CalendarHeatmapMathType
   | string;
 export const PartialConversionGoalFilter2Math =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PartialConversionGoalFilter2Math>;
+  S.Unknown as any as S.Schema<PartialConversionGoalFilter2Math>;
 
 export type PartialConversionGoalFilter2PropertiesItem =
   | EventPropertyFilter
@@ -3501,7 +3500,7 @@ export type PartialConversionGoalFilter2PropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const PartialConversionGoalFilter2PropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PartialConversionGoalFilter2PropertiesItem>;
+  S.Unknown as any as S.Schema<PartialConversionGoalFilter2PropertiesItem>;
 
 export type PartialConversionGoalFilter2PropertiesList =
   Array<PartialConversionGoalFilter2PropertiesItem>;
@@ -3519,7 +3518,7 @@ export const PartialConversionGoalFilter2ResponseMap = /*@__PURE__*/ S.Record(
 
 export type PartialConversionGoalFilter2SchemaMapValue = string | unknown;
 export const PartialConversionGoalFilter2SchemaMapValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PartialConversionGoalFilter2SchemaMapValue>;
+  S.Unknown as any as S.Schema<PartialConversionGoalFilter2SchemaMapValue>;
 
 export type PartialConversionGoalFilter2SchemaMapMap = {
   [key: string]: PartialConversionGoalFilter2SchemaMapValue | undefined;
@@ -3613,7 +3612,7 @@ export type PartialConversionGoalFilter3FixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const PartialConversionGoalFilter3FixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PartialConversionGoalFilter3FixedPropertiesItem>;
+  S.Unknown as any as S.Schema<PartialConversionGoalFilter3FixedPropertiesItem>;
 
 export type PartialConversionGoalFilter3FixedPropertiesList =
   Array<PartialConversionGoalFilter3FixedPropertiesItem>;
@@ -3632,7 +3631,7 @@ export type PartialConversionGoalFilter3Math =
   | CalendarHeatmapMathType
   | string;
 export const PartialConversionGoalFilter3Math =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PartialConversionGoalFilter3Math>;
+  S.Unknown as any as S.Schema<PartialConversionGoalFilter3Math>;
 
 export type PartialConversionGoalFilter3PropertiesItem =
   | EventPropertyFilter
@@ -3660,7 +3659,7 @@ export type PartialConversionGoalFilter3PropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const PartialConversionGoalFilter3PropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PartialConversionGoalFilter3PropertiesItem>;
+  S.Unknown as any as S.Schema<PartialConversionGoalFilter3PropertiesItem>;
 
 export type PartialConversionGoalFilter3PropertiesList =
   Array<PartialConversionGoalFilter3PropertiesItem>;
@@ -3678,7 +3677,7 @@ export const PartialConversionGoalFilter3ResponseMap = /*@__PURE__*/ S.Record(
 
 export type PartialConversionGoalFilter3SchemaMapValue = string | unknown;
 export const PartialConversionGoalFilter3SchemaMapValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PartialConversionGoalFilter3SchemaMapValue>;
+  S.Unknown as any as S.Schema<PartialConversionGoalFilter3SchemaMapValue>;
 
 export type PartialConversionGoalFilter3SchemaMapMap = {
   [key: string]: PartialConversionGoalFilter3SchemaMapValue | undefined;
@@ -3761,7 +3760,7 @@ export type ConversionGoalPatch =
   | PartialConversionGoalFilter2
   | PartialConversionGoalFilter3;
 export const ConversionGoalPatch =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalPatch>;
+  S.Unknown as any as S.Schema<ConversionGoalPatch>;
 
 export interface MarketingAnalyticsConversionGoalsUpdatePartialUpdateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

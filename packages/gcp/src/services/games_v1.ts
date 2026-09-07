@@ -239,7 +239,7 @@ export type RevisionCheckResponseRevisionStatusEnum =
   | "OK"
   | "DEPRECATED"
   | "INVALID";
-export const RevisionCheckResponseRevisionStatusEnum = /*@__PURE__*/ S.String;
+export const RevisionCheckResponseRevisionStatusEnum = S.String;
 
 /** A third party checking a revision response. */
 export interface RevisionCheckResponse {
@@ -426,7 +426,7 @@ export const GenerateRecallPlayGroupingApiTokenResponse =
   }) as any as S.Schema<GenerateRecallPlayGroupingApiTokenResponse>;
 
 export type GetApplicationsPlatformTypeEnum = "ANDROID" | "IOS" | "WEB_APP";
-export const GetApplicationsPlatformTypeEnum = /*@__PURE__*/ S.String;
+export const GetApplicationsPlatformTypeEnum = S.String;
 
 export interface GetApplicationsRequest {
   /** The application ID from the Google Play developer console. */
@@ -472,7 +472,7 @@ export const ApplicationCategory = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ApplicationCategory>;
 
 export type ApplicationEnabledFeaturesItemEnum = "SNAPSHOTS";
-export const ApplicationEnabledFeaturesItemEnum = /*@__PURE__*/ S.String;
+export const ApplicationEnabledFeaturesItemEnum = S.String;
 
 export type ApplicationEnabledFeaturesItemEnumList =
   Array<ApplicationEnabledFeaturesItemEnum>;
@@ -509,7 +509,7 @@ export const ImageAssetList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ImageAssetList>;
 
 export type InstancePlatformTypeEnum = "ANDROID" | "IOS" | "WEB_APP";
-export const InstancePlatformTypeEnum = /*@__PURE__*/ S.String;
+export const InstancePlatformTypeEnum = S.String;
 
 /** The iOS details resource. */
 export interface InstanceIosDetails {
@@ -673,7 +673,7 @@ export const Application = /*@__PURE__*/ S.suspend(() =>
 export type GetEndPointApplicationsEndPointTypeEnum =
   | "PROFILE_CREATION"
   | "PROFILE_SETTINGS";
-export const GetEndPointApplicationsEndPointTypeEnum = /*@__PURE__*/ S.String;
+export const GetEndPointApplicationsEndPointTypeEnum = S.String;
 
 export interface GetEndPointApplicationsRequest {
   /** The application ID from the Google Play developer console. */
@@ -731,7 +731,7 @@ export const GetLeaderboardsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetLeaderboardsRequest>;
 
 export type LeaderboardOrderEnum = "LARGER_IS_BETTER" | "SMALLER_IS_BETTER";
-export const LeaderboardOrderEnum = /*@__PURE__*/ S.String;
+export const LeaderboardOrderEnum = S.String;
 
 /** The Leaderboard resource. */
 export interface Leaderboard {
@@ -909,7 +909,7 @@ export type ProfileSettingsFriendsListVisibilityEnum =
   | "VISIBLE"
   | "REQUEST_REQUIRED"
   | "UNAVAILABLE";
-export const ProfileSettingsFriendsListVisibilityEnum = /*@__PURE__*/ S.String;
+export const ProfileSettingsFriendsListVisibilityEnum = S.String;
 
 /** Profile settings */
 export interface ProfileSettings {
@@ -955,7 +955,7 @@ export const PlayerExperienceInfo = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PlayerExperienceInfo>;
 
 export type PlayerFriendStatusEnum = "NO_RELATIONSHIP" | "FRIEND";
-export const PlayerFriendStatusEnum = /*@__PURE__*/ S.String;
+export const PlayerFriendStatusEnum = S.String;
 
 /** A Player resource. */
 export interface Player {
@@ -1038,10 +1038,10 @@ export type GetScoresIncludeRankTypeEnum =
   | "PUBLIC"
   | "SOCIAL"
   | "FRIENDS";
-export const GetScoresIncludeRankTypeEnum = /*@__PURE__*/ S.String;
+export const GetScoresIncludeRankTypeEnum = S.String;
 
 export type GetScoresTimeSpanEnum = "ALL" | "ALL_TIME" | "WEEKLY" | "DAILY";
-export const GetScoresTimeSpanEnum = /*@__PURE__*/ S.String;
+export const GetScoresTimeSpanEnum = S.String;
 
 export interface GetScoresRequest {
   /** A player ID. A value of `me` may be used in place of the authenticated player's ID. */
@@ -1108,7 +1108,7 @@ export type PlayerLeaderboardScoreTimeSpanEnum =
   | "ALL_TIME"
   | "WEEKLY"
   | "DAILY";
-export const PlayerLeaderboardScoreTimeSpanEnum = /*@__PURE__*/ S.String;
+export const PlayerLeaderboardScoreTimeSpanEnum = S.String;
 
 /** A player leaderboard score object. */
 export interface PlayerLeaderboardScore {
@@ -1199,7 +1199,7 @@ export const GetSnapshotsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSnapshotsRequest>;
 
 export type SnapshotTypeEnum = "SAVE_GAME";
-export const SnapshotTypeEnum = /*@__PURE__*/ S.String;
+export const SnapshotTypeEnum = S.String;
 
 /** An image of a snapshot. */
 export interface SnapshotImage {
@@ -1433,14 +1433,12 @@ export const RetrieveDeveloperGamesLastPlayerTokenResponse =
 
 export type LinkPersonaRequestCardinalityConstraintEnum =
   "ONE_PERSONA_TO_ONE_PLAYER";
-export const LinkPersonaRequestCardinalityConstraintEnum =
-  /*@__PURE__*/ S.String;
+export const LinkPersonaRequestCardinalityConstraintEnum = S.String;
 
 export type LinkPersonaRequestConflictingLinksResolutionPolicyEnum =
   | "KEEP_EXISTING_LINKS"
   | "CREATE_NEW_LINK";
-export const LinkPersonaRequestConflictingLinksResolutionPolicyEnum =
-  /*@__PURE__*/ S.String;
+export const LinkPersonaRequestConflictingLinksResolutionPolicyEnum = S.String;
 
 /** Request to link an in-game account with a PGS principal (encoded in the session id). */
 export interface LinkPersonaRequest {
@@ -1502,7 +1500,7 @@ export const LinkPersonaRecallRequest = /*@__PURE__*/ S.suspend(() =>
 export type LinkPersonaResponseStateEnum =
   | "LINK_CREATED"
   | "PERSONA_OR_PLAYER_ALREADY_LINKED";
-export const LinkPersonaResponseStateEnum = /*@__PURE__*/ S.String;
+export const LinkPersonaResponseStateEnum = S.String;
 
 /** Outcome of a persona linking attempt. */
 export interface LinkPersonaResponse {
@@ -1544,20 +1542,19 @@ export const ListAchievementDefinitionsRequest = /*@__PURE__*/ S.suspend(() =>
 export type AchievementDefinitionAchievementTypeEnum =
   | "STANDARD"
   | "INCREMENTAL";
-export const AchievementDefinitionAchievementTypeEnum = /*@__PURE__*/ S.String;
+export const AchievementDefinitionAchievementTypeEnum = S.String;
 
 export type AchievementDefinitionAchievementLifecycleStateEnum =
   | "ACHIEVEMENT_LIFECYCLE_STATE_UNSPECIFIED"
   | "ACHIEVEMENT_LIFECYCLE_STATE_ACTIVE"
   | "ACHIEVEMENT_LIFECYCLE_STATE_ARCHIVED";
-export const AchievementDefinitionAchievementLifecycleStateEnum =
-  /*@__PURE__*/ S.String;
+export const AchievementDefinitionAchievementLifecycleStateEnum = S.String;
 
 export type AchievementDefinitionInitialStateEnum =
   | "HIDDEN"
   | "REVEALED"
   | "UNLOCKED";
-export const AchievementDefinitionInitialStateEnum = /*@__PURE__*/ S.String;
+export const AchievementDefinitionInitialStateEnum = S.String;
 
 /** An achievement definition object. */
 export interface AchievementDefinition {
@@ -1642,7 +1639,7 @@ export type ListAchievementsStateEnum =
   | "HIDDEN"
   | "REVEALED"
   | "UNLOCKED";
-export const ListAchievementsStateEnum = /*@__PURE__*/ S.String;
+export const ListAchievementsStateEnum = S.String;
 
 export interface ListAchievementsRequest {
   /** The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified `maxResults`. */
@@ -1678,7 +1675,7 @@ export type PlayerAchievementAchievementStateEnum =
   | "HIDDEN"
   | "REVEALED"
   | "UNLOCKED";
-export const PlayerAchievementAchievementStateEnum = /*@__PURE__*/ S.String;
+export const PlayerAchievementAchievementStateEnum = S.String;
 
 /** An achievement object. */
 export interface PlayerAchievement {
@@ -1807,8 +1804,7 @@ export const PlayerEventListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PlayerEventListResponse>;
 
 export type ListCategoriesByPlayerMetagameCollectionEnum = "ALL";
-export const ListCategoriesByPlayerMetagameCollectionEnum =
-  /*@__PURE__*/ S.String;
+export const ListCategoriesByPlayerMetagameCollectionEnum = S.String;
 
 export interface ListCategoriesByPlayerMetagameRequest {
   /** The token returned by the previous request. */
@@ -1907,7 +1903,7 @@ export const ListDefinitionsEventsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDefinitionsEventsRequest>;
 
 export type EventDefinitionVisibilityEnum = "REVEALED" | "HIDDEN";
-export const EventDefinitionVisibilityEnum = /*@__PURE__*/ S.String;
+export const EventDefinitionVisibilityEnum = S.String;
 
 /** An event child relationship resource. */
 export interface EventChild {
@@ -2035,7 +2031,7 @@ export const LeaderboardListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LeaderboardListResponse>;
 
 export type ListPlayersCollectionEnum = "CONNECTED" | "VISIBLE" | "FRIENDS_ALL";
-export const ListPlayersCollectionEnum = /*@__PURE__*/ S.String;
+export const ListPlayersCollectionEnum = S.String;
 
 export interface ListPlayersRequest {
   /** The preferred language to use for strings returned by this method. */
@@ -2089,10 +2085,10 @@ export const PlayerListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PlayerListResponse>;
 
 export type ListScoresCollectionEnum = "PUBLIC" | "SOCIAL" | "FRIENDS";
-export const ListScoresCollectionEnum = /*@__PURE__*/ S.String;
+export const ListScoresCollectionEnum = S.String;
 
 export type ListScoresTimeSpanEnum = "ALL_TIME" | "WEEKLY" | "DAILY";
-export const ListScoresTimeSpanEnum = /*@__PURE__*/ S.String;
+export const ListScoresTimeSpanEnum = S.String;
 
 export interface ListScoresRequest {
   /** The token returned by the previous request. */
@@ -2128,7 +2124,7 @@ export const ListScoresRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListScoresRequest>;
 
 export type LeaderboardEntryTimeSpanEnum = "ALL_TIME" | "WEEKLY" | "DAILY";
-export const LeaderboardEntryTimeSpanEnum = /*@__PURE__*/ S.String;
+export const LeaderboardEntryTimeSpanEnum = S.String;
 
 /** The Leaderboard Entry resource. */
 export interface LeaderboardEntry {
@@ -2252,10 +2248,10 @@ export const SnapshotListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SnapshotListResponse>;
 
 export type ListWindowScoresTimeSpanEnum = "ALL_TIME" | "WEEKLY" | "DAILY";
-export const ListWindowScoresTimeSpanEnum = /*@__PURE__*/ S.String;
+export const ListWindowScoresTimeSpanEnum = S.String;
 
 export type ListWindowScoresCollectionEnum = "PUBLIC" | "SOCIAL" | "FRIENDS";
-export const ListWindowScoresCollectionEnum = /*@__PURE__*/ S.String;
+export const ListWindowScoresCollectionEnum = S.String;
 
 export interface ListWindowScoresRequest {
   /** Required. The time span for the scores and ranks you're requesting. */
@@ -2429,7 +2425,7 @@ export const RecordEventsRequest = /*@__PURE__*/ S.suspend(() =>
 export type EventRecordFailureFailureCauseEnum =
   | "NOT_FOUND"
   | "INVALID_UPDATE_VALUE";
-export const EventRecordFailureFailureCauseEnum = /*@__PURE__*/ S.String;
+export const EventRecordFailureFailureCauseEnum = S.String;
 
 /** An event update failure resource. */
 export interface EventRecordFailure {
@@ -2462,7 +2458,7 @@ export type EventBatchRecordFailureFailureCauseEnum =
   | "TIME_PERIOD_LONG"
   | "ALREADY_UPDATED"
   | "RECORD_RATE_HIGH";
-export const EventBatchRecordFailureFailureCauseEnum = /*@__PURE__*/ S.String;
+export const EventBatchRecordFailureFailureCauseEnum = S.String;
 
 /** A batch update failure resource. */
 export interface EventBatchRecordFailure {
@@ -2573,7 +2569,7 @@ export const RevealAchievementsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RevealAchievementsRequest>;
 
 export type AchievementRevealResponseCurrentStateEnum = "REVEALED" | "UNLOCKED";
-export const AchievementRevealResponseCurrentStateEnum = /*@__PURE__*/ S.String;
+export const AchievementRevealResponseCurrentStateEnum = S.String;
 
 /** An achievement reveal response */
 export interface AchievementRevealResponse {
@@ -2699,7 +2695,7 @@ export const SubmitMultipleScoresRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SubmitMultipleScoresRequest>;
 
 export type PlayerScoreTimeSpanEnum = "ALL_TIME" | "WEEKLY" | "DAILY";
-export const PlayerScoreTimeSpanEnum = /*@__PURE__*/ S.String;
+export const PlayerScoreTimeSpanEnum = S.String;
 
 /** A player score. */
 export interface PlayerScore {
@@ -2733,8 +2729,7 @@ export type PlayerScoreResponseBeatenScoreTimeSpansItemEnum =
   | "ALL_TIME"
   | "WEEKLY"
   | "DAILY";
-export const PlayerScoreResponseBeatenScoreTimeSpansItemEnum =
-  /*@__PURE__*/ S.String;
+export const PlayerScoreResponseBeatenScoreTimeSpansItemEnum = S.String;
 
 export type PlayerScoreResponseBeatenScoreTimeSpansItemEnumList =
   Array<PlayerScoreResponseBeatenScoreTimeSpansItemEnum>;
@@ -2945,7 +2940,7 @@ export type AchievementUpdateRequestUpdateTypeEnum =
   | "UNLOCK"
   | "INCREMENT"
   | "SET_STEPS_AT_LEAST";
-export const AchievementUpdateRequestUpdateTypeEnum = /*@__PURE__*/ S.String;
+export const AchievementUpdateRequestUpdateTypeEnum = S.String;
 
 /** A request to update an achievement. */
 export interface AchievementUpdateRequest {
@@ -3015,7 +3010,7 @@ export type AchievementUpdateResponseCurrentStateEnum =
   | "HIDDEN"
   | "REVEALED"
   | "UNLOCKED";
-export const AchievementUpdateResponseCurrentStateEnum = /*@__PURE__*/ S.String;
+export const AchievementUpdateResponseCurrentStateEnum = S.String;
 
 /** An updated achievement. */
 export interface AchievementUpdateResponse {

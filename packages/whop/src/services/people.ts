@@ -113,7 +113,7 @@ export type GetPersonResponseFirstSourceType =
   | "external_ad_click"
   | "referrer"
   | "utm";
-export const GetPersonResponseFirstSourceType = /*@__PURE__*/ S.String;
+export const GetPersonResponseFirstSourceType = S.String;
 
 /** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
 export interface GetPersonResponseFirstSource {
@@ -159,7 +159,7 @@ export type GetPersonResponseLastSourceType =
   | "external_ad_click"
   | "referrer"
   | "utm";
-export const GetPersonResponseLastSourceType = /*@__PURE__*/ S.String;
+export const GetPersonResponseLastSourceType = S.String;
 
 /** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
 export interface GetPersonResponseLastSource {
@@ -277,7 +277,7 @@ export type GetPersonResponseSourcesItemType =
   | "external_ad_click"
   | "referrer"
   | "utm";
-export const GetPersonResponseSourcesItemType = /*@__PURE__*/ S.String;
+export const GetPersonResponseSourcesItemType = S.String;
 
 /** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
 export interface GetPersonResponseSourcesItem {
@@ -543,7 +543,7 @@ export const ListPeopleRequestSourceList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListPeopleRequestSourceList>;
 
 export type ListPeopleRequestAttributionModel = "last_touch" | "first_touch";
-export const ListPeopleRequestAttributionModel = /*@__PURE__*/ S.String;
+export const ListPeopleRequestAttributionModel = S.String;
 
 export type ListPeopleRequestEventNameList = Array<string>;
 export const ListPeopleRequestEventNameList = /*@__PURE__*/ S.Array(
@@ -561,10 +561,10 @@ export type ListPeopleRequestOrder =
   | "aov"
   | "name"
   | "email";
-export const ListPeopleRequestOrder = /*@__PURE__*/ S.String;
+export const ListPeopleRequestOrder = S.String;
 
 export type ListPeopleRequestDirection = "asc" | "desc";
-export const ListPeopleRequestDirection = /*@__PURE__*/ S.String;
+export const ListPeopleRequestDirection = S.String;
 
 export interface ListPeopleRequest {
   /** Account ID, prefixed `biz_`. Optional for account API keys; required for credentials that can access multiple accounts. */
@@ -679,7 +679,7 @@ export type ListPeopleResponseDataItemFirstSourceType =
   | "external_ad_click"
   | "referrer"
   | "utm";
-export const ListPeopleResponseDataItemFirstSourceType = /*@__PURE__*/ S.String;
+export const ListPeopleResponseDataItemFirstSourceType = S.String;
 
 /** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
 export interface ListPeopleResponseDataItemFirstSource {
@@ -729,7 +729,7 @@ export type ListPeopleResponseDataItemLastSourceType =
   | "external_ad_click"
   | "referrer"
   | "utm";
-export const ListPeopleResponseDataItemLastSourceType = /*@__PURE__*/ S.String;
+export const ListPeopleResponseDataItemLastSourceType = S.String;
 
 /** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
 export interface ListPeopleResponseDataItemLastSource {

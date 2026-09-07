@@ -42,7 +42,7 @@ export class UnprocessableEntity
 
 /** The person's name type. */
 export type PersonNameType = "LEGAL";
-export const PersonNameType = /*@__PURE__*/ S.String;
+export const PersonNameType = S.String;
 
 export interface PersonName {
   /** The prefix, or title, to the party's name. */
@@ -106,7 +106,7 @@ export const AddressDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** The address type under which the provided address is tagged. */
 export type PersonAddressType = "HOME";
-export const PersonAddressType = /*@__PURE__*/ S.String;
+export const PersonAddressType = S.String;
 
 export interface PersonAddressDetail {
   /** The first line of the address. For example, number or street. For example, `173 Drury Lane`. Required for data entry and compliance and risk checks. Must contain the full address. */
@@ -156,7 +156,7 @@ export const PersonAddressDetailList = /*@__PURE__*/ S.Array(
 
 /** The phone type. */
 export type PhoneType = "FAX" | "HOME" | "MOBILE" | "OTHER" | "PAGER";
-export const PhoneType = /*@__PURE__*/ S.String;
+export const PhoneType = S.String;
 
 export interface PersonPhoneDetail {
   /** The country calling code (CC), in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the CC and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN). */
@@ -243,7 +243,7 @@ export type PersonDocumentType =
   | "CPF"
   | "PAN"
   | "NATIONAL_ID_CARD";
-export const PersonDocumentType = /*@__PURE__*/ S.String;
+export const PersonDocumentType = S.String;
 
 export interface PersonDocumentInput {
   labels?: LabelsList;
@@ -284,7 +284,7 @@ export const PersonDocumentListInput = /*@__PURE__*/ S.Array(
 
 /** Role of the person party played in the account. */
 export type IndividualOwnerType = "PRIMARY";
-export const IndividualOwnerType = /*@__PURE__*/ S.String;
+export const IndividualOwnerType = S.String;
 
 export interface IndividualOwnerInput {
   names?: PersonNameList;
@@ -344,7 +344,7 @@ export type BusinessType =
   | "PUBLIC_CORPORATION"
   | "PUBLIC_PARTNERSHIP"
   | "REGISTERED_COOPERATIVE";
-export const BusinessType = /*@__PURE__*/ S.String;
+export const BusinessType = S.String;
 
 /** Sub classification of the business type */
 export type BusinessSubType =
@@ -355,7 +355,7 @@ export type BusinessSubType =
   | "GOVT_TYPE_ESTD_COMM"
   | "GOVT_TYPE_ESTD_FC"
   | "GOVT_TYPE_ESTD_ST_TR";
-export const BusinessSubType = /*@__PURE__*/ S.String;
+export const BusinessSubType = S.String;
 
 /** The type and subtype of the business. */
 export interface BusinessTypeInfo {
@@ -411,7 +411,7 @@ export const BusinessEntityInputBusinessIncorporation = /*@__PURE__*/ S.suspend(
 
 /** Business name type */
 export type BusinessNameType = "DOING_BUSINESS_AS" | "LEGAL_NAME";
-export const BusinessNameType = /*@__PURE__*/ S.String;
+export const BusinessNameType = S.String;
 
 export interface BusinessNameDetail {
   /** Required. The business name of the party. */
@@ -436,7 +436,7 @@ export const BusinessNameDetailList = /*@__PURE__*/ S.Array(
 
 /** The role of the email address. */
 export type EmailType = "CUSTOMER_SERVICE";
-export const EmailType = /*@__PURE__*/ S.String;
+export const EmailType = S.String;
 
 /** An email address at which the person or business can be contacted. */
 export interface Email {
@@ -459,7 +459,7 @@ export const EmailList = /*@__PURE__*/ S.Array(
 
 /** Address type under which the provided address is tagged */
 export type BusinessAddressType = "WORK";
-export const BusinessAddressType = /*@__PURE__*/ S.String;
+export const BusinessAddressType = S.String;
 
 export interface BusinessAddressDetail {
   /** The first line of the address. For example, number or street. For example, `173 Drury Lane`. Required for data entry and compliance and risk checks. Must contain the full address. */
@@ -509,7 +509,7 @@ export const BusinessAddressDetailList = /*@__PURE__*/ S.Array(
 
 /** The type of phone number provided. For example, home, work, or mobile. */
 export type BusinessPhoneType = "CUSTOMER_SERVICE" | "BUSINESS";
-export const BusinessPhoneType = /*@__PURE__*/ S.String;
+export const BusinessPhoneType = S.String;
 
 export interface BusinessPhoneDetail {
   /** The country calling code (CC), in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the CC and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN). */
@@ -550,7 +550,7 @@ export type BusinessDocumentType =
   | "CPF"
   | "PAN"
   | "BUSINESS_REGISTRATION";
-export const BusinessDocumentType = /*@__PURE__*/ S.String;
+export const BusinessDocumentType = S.String;
 
 export interface BusinessDocumentInput {
   labels?: LabelsList;
@@ -783,7 +783,7 @@ export const PartnerConfigOverride = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of bank account. */
 export type BankAccountType = "CHECKING" | "SAVINGS";
-export const BankAccountType = /*@__PURE__*/ S.String;
+export const BankAccountType = S.String;
 
 /** The bank account ID type. */
 export type IdentifierType =
@@ -800,7 +800,7 @@ export type IdentifierType =
   | "BBAN_ENCRYPTED"
   | "BBAN_HMAC"
   | "AGGREGATOR_YODLEE";
-export const IdentifierType = /*@__PURE__*/ S.String;
+export const IdentifierType = S.String;
 
 /** The bank account ID. An ID with `ROUTING_NUMBER_1` is required. */
 export interface Identifier {
@@ -914,18 +914,18 @@ export type OperationOperation =
   | "CONTEXTUAL_MARKETING_CONSENT"
   | "OFFLINE_ONBOARDING"
   | "SALESFORCE_REFERRAL";
-export const OperationOperation = /*@__PURE__*/ S.String;
+export const OperationOperation = S.String;
 
 /** The REST-credential integration method. */
 export type RestApiIntegrationIntegrationMethod =
   | "BRAINTREE"
   | "PAYPAL"
   | "SDK";
-export const RestApiIntegrationIntegrationMethod = /*@__PURE__*/ S.String;
+export const RestApiIntegrationIntegrationMethod = S.String;
 
 /** The type of REST-endpoint integration. To integrate with Braintree v.zero for PayPal REST endpoints, specify `third_party_details`. */
 export type RestApiIntegrationIntegrationType = "FIRST_PARTY" | "THIRD_PARTY";
-export const RestApiIntegrationIntegrationType = /*@__PURE__*/ S.String;
+export const RestApiIntegrationIntegrationType = S.String;
 
 /** The REST endpoint. */
 export type RestEndpointFeaturesEnum =
@@ -953,7 +953,7 @@ export type RestEndpointFeaturesEnum =
   | "TRANSACTION_RISK_DATA"
   | "PAYPAL_BALANCE"
   | "EXCHANGE_CURRENCY";
-export const RestEndpointFeaturesEnum = /*@__PURE__*/ S.String;
+export const RestEndpointFeaturesEnum = S.String;
 
 /** An array of features that partner can access, or use, in PayPal on behalf of the seller. The seller grants permission for these features to the partner. */
 export type RestEndpointFeaturesEnumList = Array<
@@ -989,7 +989,7 @@ export const RestApiIntegrationRestEndpointFeaturesEnumList =
 
 /** Signup Mode to be used for sellers for third party integration. */
 export type SignupMode = "VERIFY_WITH_PAYPAL";
-export const SignupMode = /*@__PURE__*/ S.String;
+export const SignupMode = S.String;
 
 /** The integration details for PayPal REST endpoints. */
 export interface ThirdPartyDetails {
@@ -1128,7 +1128,7 @@ export type Product =
   | "ZETTLE"
   | "PAYPAL_COMMERCE_PLATFORM_BUSINESS"
   | "HYPERWALLET_PAYOUTS";
-export const Product = /*@__PURE__*/ S.String;
+export const Product = S.String;
 
 /** An array of PayPal products to which the partner wants to onboard the customer. */
 export type ProductList = Array<Product | (string & {})>;
@@ -1142,7 +1142,7 @@ export type Capabilities =
   | "PAY_UPON_INVOICE"
   | "APPLE_PAY"
   | "GOOGLE_PAY";
-export const Capabilities = /*@__PURE__*/ S.String;
+export const Capabilities = S.String;
 
 /** An array of capabilities which the partner wants to enable for the selected products. Supported only when products are specified. */
 export type CapabilitiesList = Array<Capabilities | (string & {})>;
@@ -1158,7 +1158,7 @@ export const DependentProcessList = /*@__PURE__*/ S.Array(
 
 /** The type of consent. `SHARE_DATA_CONSENT` gives consent to you to share your customer's data with PayPal. */
 export type LegalConsentType = "SHARE_DATA_CONSENT";
-export const LegalConsentType = /*@__PURE__*/ S.String;
+export const LegalConsentType = S.String;
 
 /** The customer-provided consent. */
 export interface LegalConsent {
@@ -1186,7 +1186,7 @@ export type TransferMethodTransferMethodType =
   | "PAYPAL"
   | "VENMO"
   | "WIRE_ACCOUNT";
-export const TransferMethodTransferMethodType = /*@__PURE__*/ S.String;
+export const TransferMethodTransferMethodType = S.String;
 
 /** Requested Currencies for a Transfer Method. */
 export type CurrencyCodeList = Array<string>;
@@ -1317,7 +1317,7 @@ export type LinkDescriptionMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const LinkDescriptionMethod = /*@__PURE__*/ S.String;
+export const LinkDescriptionMethod = S.String;
 
 /** The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information. */
 export interface LinkDescription {

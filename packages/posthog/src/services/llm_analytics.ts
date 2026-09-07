@@ -84,7 +84,7 @@ export const ClusteringConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** * `trace` - trace * `generation` - generation * `evaluation` - evaluation */
 export type AnalysisLevelEnum = "trace" | "generation" | "evaluation";
-export const AnalysisLevelEnum = /*@__PURE__*/ S.String;
+export const AnalysisLevelEnum = S.String;
 
 export type CreateLlmAnalyticsClusteringJobRequestEventFiltersItemMap = {
   [key: string]: unknown | undefined;
@@ -172,19 +172,19 @@ export const ClusteringJob = /*@__PURE__*/ S.suspend(() =>
 
 /** * `none` - none * `l2` - l2 */
 export type EmbeddingNormalizationEnum = "none" | "l2";
-export const EmbeddingNormalizationEnum = /*@__PURE__*/ S.String;
+export const EmbeddingNormalizationEnum = S.String;
 
 /** * `none` - none * `umap` - umap * `pca` - pca */
 export type DimensionalityReductionMethodEnum = "none" | "umap" | "pca";
-export const DimensionalityReductionMethodEnum = /*@__PURE__*/ S.String;
+export const DimensionalityReductionMethodEnum = S.String;
 
 /** * `hdbscan` - hdbscan * `kmeans` - kmeans */
 export type ClusteringMethodEnum = "hdbscan" | "kmeans";
-export const ClusteringMethodEnum = /*@__PURE__*/ S.String;
+export const ClusteringMethodEnum = S.String;
 
 /** * `umap` - umap * `pca` - pca * `tsne` - tsne */
 export type VisualizationMethodEnum = "umap" | "pca" | "tsne";
-export const VisualizationMethodEnum = /*@__PURE__*/ S.String;
+export const VisualizationMethodEnum = S.String;
 
 export type CreateLlmAnalyticsClusteringRunRequestEventFiltersItemMap = {
   [key: string]: unknown | undefined;
@@ -372,11 +372,11 @@ export type LLMProviderEnum =
   | "together_ai"
   | "minimax"
   | "zeabur";
-export const LLMProviderEnum = /*@__PURE__*/ S.String;
+export const LLMProviderEnum = S.String;
 
 /** * `unknown` - Unknown * `ok` - Ok * `invalid` - Invalid * `error` - Error */
 export type LLMProviderKeyStateEnum = "unknown" | "ok" | "invalid" | "error";
-export const LLMProviderKeyStateEnum = /*@__PURE__*/ S.String;
+export const LLMProviderKeyStateEnum = S.String;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -395,14 +395,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -482,7 +482,7 @@ export const EvaluationConfigOutput = /*@__PURE__*/ S.suspend(() =>
 
 /** * `scheduled` - Scheduled * `every_n` - Every N */
 export type EvaluationReportFrequencyEnum = "scheduled" | "every_n";
-export const EvaluationReportFrequencyEnum = /*@__PURE__*/ S.String;
+export const EvaluationReportFrequencyEnum = S.String;
 
 export interface CreateLlmAnalyticsEvaluationReportRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -818,7 +818,7 @@ export const ReviewQueueItem = /*@__PURE__*/ S.suspend(() =>
 
 /** * `categorical` - categorical * `numeric` - numeric * `boolean` - boolean */
 export type ScoreDefinitionKindEnum = "categorical" | "numeric" | "boolean";
-export const ScoreDefinitionKindEnum = /*@__PURE__*/ S.String;
+export const ScoreDefinitionKindEnum = S.String;
 
 export interface CategoricalScoreOption {
   /** Stable option key. Use lowercase letters, numbers, underscores, or hyphens. */
@@ -845,7 +845,7 @@ export const CategoricalScoreDefinitionConfigOptionsList =
 
 /** * `single` - single * `multiple` - multiple */
 export type SelectionModeEnum = "single" | "multiple";
-export const SelectionModeEnum = /*@__PURE__*/ S.String;
+export const SelectionModeEnum = S.String;
 
 export interface CategoricalScoreDefinitionConfig {
   /** Ordered categorical options available to the scorer. */
@@ -906,7 +906,7 @@ export type ScoreDefinitionConfig =
   | NumericScoreDefinitionConfig
   | BooleanScoreDefinitionConfig;
 export const ScoreDefinitionConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ScoreDefinitionConfig>;
+  S.Unknown as any as S.Schema<ScoreDefinitionConfig>;
 
 export interface CreateLlmAnalyticsScoreDefinitionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1280,7 +1280,7 @@ export type GetLlmAnalyticsModelRequestProvider =
   | "openrouter"
   | "together_ai"
   | "zeabur";
-export const GetLlmAnalyticsModelRequestProvider = /*@__PURE__*/ S.String;
+export const GetLlmAnalyticsModelRequestProvider = S.String;
 
 export interface GetLlmAnalyticsModelRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1661,7 +1661,7 @@ export const ListLlmAnalyticsEvaluationReportsRunsRequest =
 
 /** * `generation` - Generation * `trace` - Trace * `session` - Session */
 export type EvaluationTargetEnum = "generation" | "trace" | "session";
-export const EvaluationTargetEnum = /*@__PURE__*/ S.String;
+export const EvaluationTargetEnum = S.String;
 
 export interface EvaluationReportSection {
   /** Agent-generated section heading. */
@@ -1715,11 +1715,11 @@ export const EvaluationReportRunContentCitationsList = /*@__PURE__*/ S.Array(
 
 /** * `completed` - completed * `metrics_unavailable` - metrics_unavailable */
 export type GenerationStatusEnum = "completed" | "metrics_unavailable";
-export const GenerationStatusEnum = /*@__PURE__*/ S.String;
+export const GenerationStatusEnum = S.String;
 
 /** * `boolean` - Boolean (Pass/Fail) * `sentiment` - Sentiment */
 export type OutputTypeEnum = "boolean" | "sentiment";
-export const OutputTypeEnum = /*@__PURE__*/ S.String;
+export const OutputTypeEnum = S.String;
 
 /** Count by output-specific result label, such as pass/fail/N/A or positive/neutral/negative. */
 export type EvaluationReportMetricsResultCountsMap = {
@@ -1839,7 +1839,7 @@ export type EvaluationReportRunDeliveryStatusEnum =
   | "delivered"
   | "partial_failure"
   | "failed";
-export const EvaluationReportRunDeliveryStatusEnum = /*@__PURE__*/ S.String;
+export const EvaluationReportRunDeliveryStatusEnum = S.String;
 
 /** Delivery error messages. Empty when all configured deliveries succeeded. */
 export type EvaluationReportRunDeliveryErrorsList = Array<string>;

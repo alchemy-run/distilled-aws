@@ -15,7 +15,7 @@ export type { AzureOpError, AzureOpContext };
 
 /** Type of verification. */
 export type VerificationType = "Domain" | "SPF" | "DKIM" | "DKIM2" | "DMARC";
-export const VerificationType = /*@__PURE__*/ S.String;
+export const VerificationType = S.String;
 
 export interface CancelDomainVerificationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -85,8 +85,7 @@ export const CheckCommunicationServiceNameAvailabilityRequest =
 export type CheckCommunicationServiceNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const CheckCommunicationServiceNameAvailabilityResponseReason =
-  /*@__PURE__*/ S.String;
+export const CheckCommunicationServiceNameAvailabilityResponseReason = S.String;
 
 export interface CheckCommunicationServiceNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
@@ -130,8 +129,7 @@ export type CommunicationServicePropertiesInputPublicNetworkAccess =
   | "Enabled"
   | "Disabled"
   | "SecuredByPerimeter";
-export const CommunicationServicePropertiesInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const CommunicationServicePropertiesInputPublicNetworkAccess = S.String;
 
 /** A class that describes the properties of the CommunicationService. */
 export interface CommunicationServicePropertiesInput {
@@ -165,7 +163,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentityInput {}
@@ -246,7 +244,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -254,7 +252,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -303,15 +301,14 @@ export type CommunicationServicesProvisioningState =
   | "Updating"
   | "Deleting"
   | "Moving";
-export const CommunicationServicesProvisioningState = /*@__PURE__*/ S.String;
+export const CommunicationServicesProvisioningState = S.String;
 
 /** Allow, disallow, or let network security perimeter configuration control public network access to the protected resource. Value is optional but if passed in, it must be 'Enabled', 'Disabled' or 'SecuredByPerimeter'. */
 export type CommunicationServicePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled"
   | "SecuredByPerimeter";
-export const CommunicationServicePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const CommunicationServicePropertiesPublicNetworkAccess = S.String;
 
 /** A class that describes the properties of the CommunicationService. */
 export interface CommunicationServiceProperties {
@@ -745,11 +742,11 @@ export type DomainManagement =
   | "AzureManaged"
   | "CustomerManaged"
   | "CustomerManagedInExchangeOnline";
-export const DomainManagement = /*@__PURE__*/ S.String;
+export const DomainManagement = S.String;
 
 /** Describes whether user engagement tracking is enabled or disabled. */
 export type UserEngagementTracking = "Disabled" | "Enabled";
-export const UserEngagementTracking = /*@__PURE__*/ S.String;
+export const UserEngagementTracking = S.String;
 
 /** A class that describes the properties of a Domains resource. */
 export interface DomainPropertiesInput {
@@ -824,7 +821,7 @@ export type DomainsProvisioningState =
   | "Updating"
   | "Deleting"
   | "Moving";
-export const DomainsProvisioningState = /*@__PURE__*/ S.String;
+export const DomainsProvisioningState = S.String;
 
 /** Status of the verification operation. */
 export type VerificationStatus =
@@ -834,7 +831,7 @@ export type VerificationStatus =
   | "VerificationFailed"
   | "Verified"
   | "CancellationRequested";
-export const VerificationStatus = /*@__PURE__*/ S.String;
+export const VerificationStatus = S.String;
 
 /** A class that represents a VerificationStatus record. */
 export interface VerificationStatusRecord {
@@ -1044,7 +1041,7 @@ export type EmailServicesProvisioningState =
   | "Updating"
   | "Deleting"
   | "Moving";
-export const EmailServicesProvisioningState = /*@__PURE__*/ S.String;
+export const EmailServicesProvisioningState = S.String;
 
 /** A class that describes the properties of the EmailService. */
 export interface EmailServiceProperties {
@@ -1408,7 +1405,7 @@ export type ProvisioningState =
   | "Updating"
   | "Deleting"
   | "Moving";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** A class that describes the properties of a SenderUsername resource. */
 export interface SenderUsernameProperties {
@@ -2140,11 +2137,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -2498,7 +2495,7 @@ export const SuppressionListResourceCollection = /*@__PURE__*/ S.suspend(() =>
 
 /** The keyType to regenerate. Must be either 'primary' or 'secondary'(case-insensitive). */
 export type KeyType = "Primary" | "Secondary";
-export const KeyType = /*@__PURE__*/ S.String;
+export const KeyType = S.String;
 
 export interface RegenerateCommunicationServiceKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2833,8 +2830,7 @@ export type CommunicationServiceUpdatePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled"
   | "SecuredByPerimeter";
-export const CommunicationServiceUpdatePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const CommunicationServiceUpdatePropertiesPublicNetworkAccess = S.String;
 
 /** A class that describes the properties that can be updated for CommunicationService resource. */
 export interface CommunicationServiceUpdateProperties {

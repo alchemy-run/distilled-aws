@@ -1050,7 +1050,7 @@ export type QueryStatus =
   | "CANCELLED"
   | "TIMED_OUT"
   | (string & {});
-export const QueryStatus = /*@__PURE__*/ S.String;
+export const QueryStatus = S.String;
 
 export interface CancelQueryResponse {
   QueryId: string;
@@ -1072,7 +1072,7 @@ export type DestinationType =
   | "EVENT_DATA_STORE"
   | "AWS_SERVICE"
   | (string & {});
-export const DestinationType = /*@__PURE__*/ S.String;
+export const DestinationType = S.String;
 
 export type Location = string;
 export interface Destination {
@@ -1131,7 +1131,7 @@ export const CreateChannelResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateChannelResponse>;
 export type DashboardName = string;
 export type RefreshScheduleFrequencyUnit = "HOURS" | "DAYS" | (string & {});
-export const RefreshScheduleFrequencyUnit = /*@__PURE__*/ S.String;
+export const RefreshScheduleFrequencyUnit = S.String;
 
 export type RefreshScheduleFrequencyValue = number;
 export interface RefreshScheduleFrequency {
@@ -1147,7 +1147,7 @@ export const RefreshScheduleFrequency = /*@__PURE__*/ S.suspend(() =>
   identifier: "RefreshScheduleFrequency",
 }) as any as S.Schema<RefreshScheduleFrequency>;
 export type RefreshScheduleStatus = "ENABLED" | "DISABLED" | (string & {});
-export const RefreshScheduleStatus = /*@__PURE__*/ S.String;
+export const RefreshScheduleStatus = S.String;
 
 export type TimeOfDay = string;
 export interface RefreshSchedule {
@@ -1220,7 +1220,7 @@ export const CreateDashboardRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDashboardRequest>;
 export type DashboardArn = string;
 export type DashboardType = "MANAGED" | "CUSTOM" | (string & {});
-export const DashboardType = /*@__PURE__*/ S.String;
+export const DashboardType = S.String;
 
 export type QueryAlias = string;
 export interface Widget {
@@ -1315,7 +1315,7 @@ export type BillingMode =
   | "EXTENDABLE_RETENTION_PRICING"
   | "FIXED_RETENTION_PRICING"
   | (string & {});
-export const BillingMode = /*@__PURE__*/ S.String;
+export const BillingMode = S.String;
 
 export interface CreateEventDataStoreRequest {
   Name: string;
@@ -1363,7 +1363,7 @@ export type EventDataStoreStatus =
   | "STOPPING_INGESTION"
   | "STOPPED_INGESTION"
   | (string & {});
-export const EventDataStoreStatus = /*@__PURE__*/ S.String;
+export const EventDataStoreStatus = S.String;
 
 export interface CreateEventDataStoreResponse {
   EventDataStoreArn?: string;
@@ -1684,7 +1684,7 @@ export type DeliveryStatus =
   | "CANCELLED"
   | "UNKNOWN"
   | (string & {});
-export const DeliveryStatus = /*@__PURE__*/ S.String;
+export const DeliveryStatus = S.String;
 
 export type Prompt = string;
 export interface DescribeQueryResponse {
@@ -1809,7 +1809,7 @@ export type FederationStatus =
   | "DISABLING"
   | "DISABLED"
   | (string & {});
-export const FederationStatus = /*@__PURE__*/ S.String;
+export const FederationStatus = S.String;
 
 export interface DisableFederationResponse {
   EventDataStoreArn?: string;
@@ -1987,7 +1987,7 @@ export type DashboardStatus =
   | "UPDATED"
   | "DELETING"
   | (string & {});
-export const DashboardStatus = /*@__PURE__*/ S.String;
+export const DashboardStatus = S.String;
 
 export interface GetDashboardResponse {
   DashboardArn?: string;
@@ -2044,10 +2044,10 @@ export const GetEventConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetEventConfigurationRequest",
 }) as any as S.Schema<GetEventConfigurationRequest>;
 export type MaxEventSize = "Standard" | "Large" | (string & {});
-export const MaxEventSize = /*@__PURE__*/ S.String;
+export const MaxEventSize = S.String;
 
 export type Type = "TagContext" | "RequestContext" | (string & {});
-export const Type = /*@__PURE__*/ S.String;
+export const Type = S.String;
 
 export type OperatorTargetListMember = string;
 export type OperatorTargetList = string[];
@@ -2068,12 +2068,12 @@ export type Template =
   | "RESOURCE_ACCESS"
   | "USER_ACTIONS"
   | (string & {});
-export const Template = /*@__PURE__*/ S.String;
+export const Template = S.String;
 
 export type Templates = Template[];
 export const Templates = /*@__PURE__*/ S.Array(Template);
 export type EventCategoryAggregation = "Data" | (string & {});
-export const EventCategoryAggregation = /*@__PURE__*/ S.String;
+export const EventCategoryAggregation = S.String;
 
 export interface AggregationConfiguration {
   Templates: Template[];
@@ -2196,7 +2196,7 @@ export const GetEventSelectorsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetEventSelectorsRequest",
 }) as any as S.Schema<GetEventSelectorsRequest>;
 export type ReadWriteType = "ReadOnly" | "WriteOnly" | "All" | (string & {});
-export const ReadWriteType = /*@__PURE__*/ S.String;
+export const ReadWriteType = S.String;
 
 export type DataResourceValues = string[];
 export const DataResourceValues = /*@__PURE__*/ S.Array(S.String);
@@ -2289,7 +2289,7 @@ export type ImportStatus =
   | "STOPPED"
   | "COMPLETED"
   | (string & {});
-export const ImportStatus = /*@__PURE__*/ S.String;
+export const ImportStatus = S.String;
 
 export interface ImportStatistics {
   PrefixesFound?: number;
@@ -2365,10 +2365,10 @@ export type InsightType =
   | "ApiCallRateInsight"
   | "ApiErrorRateInsight"
   | (string & {});
-export const InsightType = /*@__PURE__*/ S.String;
+export const InsightType = S.String;
 
 export type SourceEventCategory = "Management" | "Data" | (string & {});
-export const SourceEventCategory = /*@__PURE__*/ S.String;
+export const SourceEventCategory = S.String;
 
 export type SourceEventCategories = SourceEventCategory[];
 export const SourceEventCategories = /*@__PURE__*/ S.Array(SourceEventCategory);
@@ -2800,7 +2800,7 @@ export type ImportFailureStatus =
   | "RETRY"
   | "SUCCEEDED"
   | (string & {});
-export const ImportFailureStatus = /*@__PURE__*/ S.String;
+export const ImportFailureStatus = S.String;
 
 export interface ImportFailureListItem {
   Location?: string;
@@ -2900,14 +2900,14 @@ export const ListImportsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListImportsResponse",
 }) as any as S.Schema<ListImportsResponse>;
 export type ListInsightsDataType = "InsightsEvents" | (string & {});
-export const ListInsightsDataType = /*@__PURE__*/ S.String;
+export const ListInsightsDataType = S.String;
 
 export type ListInsightsDataDimensionKey =
   | "EventId"
   | "EventName"
   | "EventSource"
   | (string & {});
-export const ListInsightsDataDimensionKey = /*@__PURE__*/ S.String;
+export const ListInsightsDataDimensionKey = S.String;
 
 export type ListInsightsDataDimensionValue = string;
 export type ListInsightsDataDimensions = {
@@ -3008,7 +3008,7 @@ export type InsightsMetricDataType =
   | "FillWithZeros"
   | "NonZeroData"
   | (string & {});
-export const InsightsMetricDataType = /*@__PURE__*/ S.String;
+export const InsightsMetricDataType = S.String;
 
 export type InsightsMetricMaxResults = number;
 export type InsightsMetricNextToken = string;
@@ -3298,7 +3298,7 @@ export type LookupAttributeKey =
   | "EventSource"
   | "AccessKeyId"
   | (string & {});
-export const LookupAttributeKey = /*@__PURE__*/ S.String;
+export const LookupAttributeKey = S.String;
 
 export type LookupAttributeValue = string;
 export interface LookupAttribute {
@@ -3313,7 +3313,7 @@ export const LookupAttribute = /*@__PURE__*/ S.suspend(() =>
 export type LookupAttributesList = LookupAttribute[];
 export const LookupAttributesList = /*@__PURE__*/ S.Array(LookupAttribute);
 export type EventCategory = "insight" | (string & {});
-export const EventCategory = /*@__PURE__*/ S.String;
+export const EventCategory = S.String;
 
 export type MaxResults = number;
 export type NextToken = string;

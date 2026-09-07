@@ -60,8 +60,7 @@ export type AddressPrefixSetPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const AddressPrefixSetPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AddressPrefixSetPropertiesFormatProvisioningState = S.String;
 
 /** Properties of address prefix set. */
 export interface AddressPrefixSetPropertiesFormat {
@@ -173,7 +172,7 @@ export type AdminRuleCollectionPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const AdminRuleCollectionPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines the admin rule collection properties. */
 export interface AdminRuleCollectionPropertiesFormatInput {
@@ -251,8 +250,7 @@ export type AdminRuleCollectionPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const AdminRuleCollectionPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AdminRuleCollectionPropertiesFormatProvisioningState = S.String;
 
 /** Defines the admin rule collection properties. */
 export interface AdminRuleCollectionPropertiesFormat {
@@ -285,7 +283,7 @@ export type AdminRuleCollectionsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const AdminRuleCollectionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type AdminRuleCollectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -294,7 +292,7 @@ export type AdminRuleCollectionsCreateOrUpdateResponseSystemDataLastModifiedByTy
   | "ManagedIdentity"
   | "Key";
 export const AdminRuleCollectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface AdminRuleCollectionsCreateOrUpdateResponseSystemData {
@@ -361,7 +359,7 @@ export const AdminRuleCollectionsCreateOrUpdateResponse =
 
 /** Whether the rule is custom or default. */
 export type AdminRulesCreateOrUpdateRequestKind = "Custom" | "Default";
-export const AdminRulesCreateOrUpdateRequestKind = /*@__PURE__*/ S.String;
+export const AdminRulesCreateOrUpdateRequestKind = S.String;
 
 export interface AdminRulesCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -406,8 +404,7 @@ export type AdminRulesCreateOrUpdateResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AdminRulesCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const AdminRulesCreateOrUpdateResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type AdminRulesCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -416,7 +413,7 @@ export type AdminRulesCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const AdminRulesCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface AdminRulesCreateOrUpdateResponseSystemData {
@@ -453,7 +450,7 @@ export const AdminRulesCreateOrUpdateResponseSystemData =
 
 /** Whether the rule is custom or default. */
 export type AdminRulesCreateOrUpdateResponseKind = "Custom" | "Default";
-export const AdminRulesCreateOrUpdateResponseKind = /*@__PURE__*/ S.String;
+export const AdminRulesCreateOrUpdateResponseKind = S.String;
 
 export interface AdminRulesCreateOrUpdateResponse {
   /** Resource ID. */
@@ -590,7 +587,7 @@ export type NetworkInterfaceTapConfigurationPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const NetworkInterfaceTapConfigurationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of Virtual Network Tap configuration. */
 export interface NetworkInterfaceTapConfigurationPropertiesFormat {
@@ -656,8 +653,7 @@ export type VirtualNetworkTapPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VirtualNetworkTapPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkTapPropertiesFormatProvisioningState = S.String;
 
 /** IPConfiguration in a network interface. */
 export interface VirtualNetworkTapPropertiesFormatDestinationNetworkInterfaceIPConfiguration {
@@ -749,14 +745,14 @@ export type FrontendIPConfigurationPropertiesFormatPrivateIPAllocationMethod =
   | "Static"
   | "Dynamic";
 export const FrontendIPConfigurationPropertiesFormatPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** IP address version. */
 export type FrontendIPConfigurationPropertiesFormatPrivateIPAddressVersion =
   | "IPv4"
   | "IPv6";
 export const FrontendIPConfigurationPropertiesFormatPrivateIPAddressVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of address prefixes for the subnet. */
 export type SubnetPropertiesFormatAddressPrefixesList = Array<string>;
@@ -779,7 +775,7 @@ export type SecurityRulePropertiesFormatProtocol =
   | "Esp"
   | "*"
   | "Ah";
-export const SecurityRulePropertiesFormatProtocol = /*@__PURE__*/ S.String;
+export const SecurityRulePropertiesFormatProtocol = S.String;
 
 /** The CIDR or source IP ranges. */
 export type SecurityRulePropertiesFormatSourceAddressPrefixesList =
@@ -830,11 +826,11 @@ export const SecurityRulePropertiesFormatDestinationPortRangesList =
 
 /** Whether network traffic is allowed or denied. */
 export type SecurityRulePropertiesFormatAccess = "Allow" | "Deny";
-export const SecurityRulePropertiesFormatAccess = /*@__PURE__*/ S.String;
+export const SecurityRulePropertiesFormatAccess = S.String;
 
 /** The direction of the rule. The direction specifies if rule will be evaluated on incoming or outgoing traffic. */
 export type SecurityRulePropertiesFormatDirection = "Inbound" | "Outbound";
-export const SecurityRulePropertiesFormatDirection = /*@__PURE__*/ S.String;
+export const SecurityRulePropertiesFormatDirection = S.String;
 
 /** Provisioning states of a resource. */
 export type SecurityRulePropertiesFormatProvisioningState =
@@ -844,8 +840,7 @@ export type SecurityRulePropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const SecurityRulePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const SecurityRulePropertiesFormatProvisioningState = S.String;
 
 /** Security rule resource. */
 export interface SecurityRulePropertiesFormat {
@@ -1017,12 +1012,11 @@ export type NetworkInterfacePropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const NetworkInterfacePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const NetworkInterfacePropertiesFormatProvisioningState = S.String;
 
 /** Type of Network Interface resource. */
 export type NetworkInterfacePropertiesFormatNicType = "Standard" | "Elastic";
-export const NetworkInterfacePropertiesFormatNicType = /*@__PURE__*/ S.String;
+export const NetworkInterfacePropertiesFormatNicType = S.String;
 
 /** Migration phase of Network Interface resource. */
 export type NetworkInterfacePropertiesFormatMigrationPhase =
@@ -1031,8 +1025,7 @@ export type NetworkInterfacePropertiesFormatMigrationPhase =
   | "Commit"
   | "Abort"
   | "Committed";
-export const NetworkInterfacePropertiesFormatMigrationPhase =
-  /*@__PURE__*/ S.String;
+export const NetworkInterfacePropertiesFormatMigrationPhase = S.String;
 
 /** Auxiliary mode of Network Interface resource. */
 export type NetworkInterfacePropertiesFormatAuxiliaryMode =
@@ -1040,8 +1033,7 @@ export type NetworkInterfacePropertiesFormatAuxiliaryMode =
   | "MaxConnections"
   | "Floating"
   | "AcceleratedConnections";
-export const NetworkInterfacePropertiesFormatAuxiliaryMode =
-  /*@__PURE__*/ S.String;
+export const NetworkInterfacePropertiesFormatAuxiliaryMode = S.String;
 
 /** Auxiliary sku of Network Interface resource. */
 export type NetworkInterfacePropertiesFormatAuxiliarySku =
@@ -1050,8 +1042,7 @@ export type NetworkInterfacePropertiesFormatAuxiliarySku =
   | "A2"
   | "A4"
   | "A8";
-export const NetworkInterfacePropertiesFormatAuxiliarySku =
-  /*@__PURE__*/ S.String;
+export const NetworkInterfacePropertiesFormatAuxiliarySku = S.String;
 
 /** NetworkInterface properties. */
 export interface NetworkInterfacePropertiesFormat {
@@ -1144,7 +1135,7 @@ export const NetworkInterfacePropertiesFormat = /*@__PURE__*/ S.suspend(() =>
 
 /** The supported ExtendedLocation types. Currently only EdgeZone is supported in Microsoft.Network resources. */
 export type ExtendedLocationTypes = "EdgeZone";
-export const ExtendedLocationTypes = /*@__PURE__*/ S.String;
+export const ExtendedLocationTypes = S.String;
 
 /** ExtendedLocation complex type. */
 export interface NetworkInterfaceExtendedLocation {
@@ -1297,7 +1288,7 @@ export type FlowLogPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const FlowLogPropertiesFormatProvisioningState = /*@__PURE__*/ S.String;
+export const FlowLogPropertiesFormatProvisioningState = S.String;
 
 /** Parameters that define the configuration of flow log. */
 export interface FlowLogPropertiesFormat {
@@ -1345,7 +1336,7 @@ export type ResourceIdentityType =
   | "UserAssigned"
   | "SystemAssigned, UserAssigned"
   | "None";
-export const ResourceIdentityType = /*@__PURE__*/ S.String;
+export const ResourceIdentityType = S.String;
 
 export interface ManagedServiceIdentityUserAssignedIdentities {
   /** The principal id of user assigned identity. */
@@ -1450,8 +1441,7 @@ export type NetworkSecurityGroupPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const NetworkSecurityGroupPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const NetworkSecurityGroupPropertiesFormatProvisioningState = S.String;
 
 /** Network Security Group resource. */
 export interface NetworkSecurityGroupPropertiesFormat {
@@ -1542,7 +1532,7 @@ export type RoutePropertiesFormatNextHopType =
   | "VirtualAppliance"
   | "VirtualApplianceEcmp"
   | "None";
-export const RoutePropertiesFormatNextHopType = /*@__PURE__*/ S.String;
+export const RoutePropertiesFormatNextHopType = S.String;
 
 /** Provisioning states of a resource. */
 export type RoutePropertiesFormatProvisioningState =
@@ -1552,7 +1542,7 @@ export type RoutePropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const RoutePropertiesFormatProvisioningState = /*@__PURE__*/ S.String;
+export const RoutePropertiesFormatProvisioningState = S.String;
 
 /** Route resource. */
 export interface RoutePropertiesFormat {
@@ -1619,8 +1609,7 @@ export const RouteTablePropertiesFormatSubnetsList = /*@__PURE__*/ S.Array(
 
 /** Whether to disable the routes learned by peering on the route table. */
 export type RouteTablePropertiesFormatDisablePeeringRoute = "None" | "All";
-export const RouteTablePropertiesFormatDisablePeeringRoute =
-  /*@__PURE__*/ S.String;
+export const RouteTablePropertiesFormatDisablePeeringRoute = S.String;
 
 /** Provisioning states of a resource. */
 export type RouteTablePropertiesFormatProvisioningState =
@@ -1630,8 +1619,7 @@ export type RouteTablePropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const RouteTablePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const RouteTablePropertiesFormatProvisioningState = S.String;
 
 /** Route Table resource. */
 export interface RouteTablePropertiesFormat {
@@ -1719,8 +1707,7 @@ export type ServiceEndpointPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ServiceEndpointPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ServiceEndpointPropertiesFormatProvisioningState = S.String;
 
 /** The service endpoint properties. */
 export interface ServiceEndpointPropertiesFormat {
@@ -1784,7 +1771,7 @@ export type ServiceEndpointPolicyDefinitionPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ServiceEndpointPolicyDefinitionPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Service Endpoint policy definition resource. */
 export interface ServiceEndpointPolicyDefinitionPropertiesFormat {
@@ -1867,8 +1854,7 @@ export type ServiceEndpointPolicyPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ServiceEndpointPolicyPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ServiceEndpointPolicyPropertiesFormatProvisioningState = S.String;
 
 /** A collection of contextual service endpoint policy. */
 export type ServiceEndpointPolicyPropertiesFormatContextualServiceEndpointPoliciesList =
@@ -1969,7 +1955,7 @@ export type IPConfigurationPropertiesFormatPrivateIPAllocationMethod =
   | "Static"
   | "Dynamic";
 export const IPConfigurationPropertiesFormatPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Resource tags. */
 export type PublicIPAddressTagsMap = { [key: string]: string | undefined };
@@ -1982,15 +1968,13 @@ export const PublicIPAddressTagsMap = /*@__PURE__*/ S.Record(
 export type PublicIPAddressPropertiesFormatPublicIPAllocationMethod =
   | "Static"
   | "Dynamic";
-export const PublicIPAddressPropertiesFormatPublicIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+export const PublicIPAddressPropertiesFormatPublicIPAllocationMethod = S.String;
 
 /** IP address version. */
 export type PublicIPAddressPropertiesFormatPublicIPAddressVersion =
   | "IPv4"
   | "IPv6";
-export const PublicIPAddressPropertiesFormatPublicIPAddressVersion =
-  /*@__PURE__*/ S.String;
+export const PublicIPAddressPropertiesFormatPublicIPAddressVersion = S.String;
 
 /** The list of tags associated with the public IP address. */
 export type PublicIPAddressPropertiesFormatIpTagsList = Array<unknown>;
@@ -2012,8 +1996,7 @@ export type PublicIPAddressPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const PublicIPAddressPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PublicIPAddressPropertiesFormatProvisioningState = S.String;
 
 /** Migration phase of Public IP Address. */
 export type PublicIPAddressPropertiesFormatMigrationPhase =
@@ -2022,13 +2005,11 @@ export type PublicIPAddressPropertiesFormatMigrationPhase =
   | "Commit"
   | "Abort"
   | "Committed";
-export const PublicIPAddressPropertiesFormatMigrationPhase =
-  /*@__PURE__*/ S.String;
+export const PublicIPAddressPropertiesFormatMigrationPhase = S.String;
 
 /** Specify what happens to the public IP address when the VM using it is deleted */
 export type PublicIPAddressPropertiesFormatDeleteOption = "Delete" | "Detach";
-export const PublicIPAddressPropertiesFormatDeleteOption =
-  /*@__PURE__*/ S.String;
+export const PublicIPAddressPropertiesFormatDeleteOption = S.String;
 
 /** Public IP address properties. */
 export interface PublicIPAddressPropertiesFormat {
@@ -2103,11 +2084,11 @@ export const PublicIPAddressExtendedLocation = NetworkInterfaceExtendedLocation;
 
 /** Name of a public IP address SKU. */
 export type PublicIPAddressSkuName = "Basic" | "Standard" | "StandardV2";
-export const PublicIPAddressSkuName = /*@__PURE__*/ S.String;
+export const PublicIPAddressSkuName = S.String;
 
 /** Tier of a public IP address SKU. */
 export type PublicIPAddressSkuTier = "Regional" | "Global";
-export const PublicIPAddressSkuTier = /*@__PURE__*/ S.String;
+export const PublicIPAddressSkuTier = S.String;
 
 /** SKU of a public IP address. */
 export interface PublicIPAddressSku {
@@ -2179,8 +2160,7 @@ export type IPConfigurationPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const IPConfigurationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const IPConfigurationPropertiesFormatProvisioningState = S.String;
 
 /** Properties of IP configuration. */
 export interface IPConfigurationPropertiesFormat {
@@ -2247,8 +2227,7 @@ export type IPConfigurationProfilePropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const IPConfigurationProfilePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const IPConfigurationProfilePropertiesFormatProvisioningState = S.String;
 
 /** IP configuration profile properties. */
 export interface IPConfigurationProfilePropertiesFormat {
@@ -2323,8 +2302,7 @@ export type ResourceNavigationLinkFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ResourceNavigationLinkFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ResourceNavigationLinkFormatProvisioningState = S.String;
 
 /** Properties of ResourceNavigationLink. */
 export interface ResourceNavigationLinkFormat {
@@ -2388,8 +2366,7 @@ export type ServiceAssociationLinkPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ServiceAssociationLinkPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ServiceAssociationLinkPropertiesFormatProvisioningState = S.String;
 
 /** A list of locations. */
 export type ServiceAssociationLinkPropertiesFormatLocationsList = Array<string>;
@@ -2476,8 +2453,7 @@ export type ServiceDelegationPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ServiceDelegationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ServiceDelegationPropertiesFormatProvisioningState = S.String;
 
 /** Properties of a service delegation. */
 export interface ServiceDelegationPropertiesFormat {
@@ -2537,7 +2513,7 @@ export type SubnetPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const SubnetPropertiesFormatProvisioningState = /*@__PURE__*/ S.String;
+export const SubnetPropertiesFormatProvisioningState = S.String;
 
 /** Enable or Disable apply network policies on private end point in the subnet. */
 export type SubnetPropertiesFormatPrivateEndpointNetworkPolicies =
@@ -2545,15 +2521,13 @@ export type SubnetPropertiesFormatPrivateEndpointNetworkPolicies =
   | "Disabled"
   | "NetworkSecurityGroupEnabled"
   | "RouteTableEnabled";
-export const SubnetPropertiesFormatPrivateEndpointNetworkPolicies =
-  /*@__PURE__*/ S.String;
+export const SubnetPropertiesFormatPrivateEndpointNetworkPolicies = S.String;
 
 /** Enable or Disable apply network policies on private link service in the subnet. */
 export type SubnetPropertiesFormatPrivateLinkServiceNetworkPolicies =
   | "Enabled"
   | "Disabled";
-export const SubnetPropertiesFormatPrivateLinkServiceNetworkPolicies =
-  /*@__PURE__*/ S.String;
+export const SubnetPropertiesFormatPrivateLinkServiceNetworkPolicies = S.String;
 
 /** Reference to another subresource. */
 export type ApplicationGatewayIPConfigurationPropertiesFormatSubnet =
@@ -2570,7 +2544,7 @@ export type ApplicationGatewayIPConfigurationPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayIPConfigurationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of IP configuration of an application gateway. */
 export interface ApplicationGatewayIPConfigurationPropertiesFormat {
@@ -2631,7 +2605,7 @@ export const SubnetPropertiesFormatApplicationGatewayIPConfigurationsList =
 
 /** Set this property to Tenant to allow sharing subnet with other subscriptions in your AAD tenant. This property can only be set if defaultOutboundAccess is set to false, both properties can only be set if subnet is empty. */
 export type SubnetPropertiesFormatSharingScope = "Tenant" | "DelegatedServices";
-export const SubnetPropertiesFormatSharingScope = /*@__PURE__*/ S.String;
+export const SubnetPropertiesFormatSharingScope = S.String;
 
 export interface IpamPoolPrefixAllocationPool {
   /** Resource id of the associated Azure IpamPool resource. */
@@ -2902,7 +2876,7 @@ export type FrontendIPConfigurationPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const FrontendIPConfigurationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type SubResource =
@@ -3162,15 +3136,14 @@ export type GatewayLoadBalancerTunnelInterfaceProtocol =
   | "None"
   | "Native"
   | "VXLAN";
-export const GatewayLoadBalancerTunnelInterfaceProtocol =
-  /*@__PURE__*/ S.String;
+export const GatewayLoadBalancerTunnelInterfaceProtocol = S.String;
 
 /** Traffic type of gateway load balancer tunnel interface. */
 export type GatewayLoadBalancerTunnelInterfaceType =
   | "None"
   | "Internal"
   | "External";
-export const GatewayLoadBalancerTunnelInterfaceType = /*@__PURE__*/ S.String;
+export const GatewayLoadBalancerTunnelInterfaceType = S.String;
 
 /** Gateway load balancer tunnel interface of a load balancer backend address pool. */
 export interface GatewayLoadBalancerTunnelInterface {
@@ -3258,8 +3231,7 @@ export type LoadBalancerBackendAddressPropertiesFormatAdminState =
   | "None"
   | "Up"
   | "Down";
-export const LoadBalancerBackendAddressPropertiesFormatAdminState =
-  /*@__PURE__*/ S.String;
+export const LoadBalancerBackendAddressPropertiesFormatAdminState = S.String;
 
 /** Properties of the load balancer backend addresses. */
 export interface LoadBalancerBackendAddressPropertiesFormat {
@@ -3399,8 +3371,7 @@ export type BackendAddressPoolPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const BackendAddressPoolPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const BackendAddressPoolPropertiesFormatProvisioningState = S.String;
 
 /** Reference to another subresource. */
 export type BackendAddressPoolPropertiesFormatVirtualNetwork =
@@ -3410,8 +3381,7 @@ export const BackendAddressPoolPropertiesFormatVirtualNetwork =
 
 /** Backend address synchronous mode for the backend pool */
 export type BackendAddressPoolPropertiesFormatSyncMode = "Automatic" | "Manual";
-export const BackendAddressPoolPropertiesFormatSyncMode =
-  /*@__PURE__*/ S.String;
+export const BackendAddressPoolPropertiesFormatSyncMode = S.String;
 
 /** Properties of the backend address pool. */
 export interface BackendAddressPoolPropertiesFormat {
@@ -3530,7 +3500,7 @@ export type InboundNatRulePropertiesFormatProtocol =
   | "Tcp"
   | "All"
   | "Quic";
-export const InboundNatRulePropertiesFormatProtocol = /*@__PURE__*/ S.String;
+export const InboundNatRulePropertiesFormatProtocol = S.String;
 
 /** Reference to another subresource. */
 export type InboundNatRulePropertiesFormatBackendAddressPool =
@@ -3546,8 +3516,7 @@ export type InboundNatRulePropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const InboundNatRulePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const InboundNatRulePropertiesFormatProvisioningState = S.String;
 
 /** Properties of the inbound NAT rule. */
 export interface InboundNatRulePropertiesFormat {
@@ -3643,14 +3612,14 @@ export type NetworkInterfaceIPConfigurationPropertiesFormatPrivateIPAllocationMe
   | "Static"
   | "Dynamic";
 export const NetworkInterfaceIPConfigurationPropertiesFormatPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** IP address version. */
 export type NetworkInterfaceIPConfigurationPropertiesFormatPrivateIPAddressVersion =
   | "IPv4"
   | "IPv6";
 export const NetworkInterfaceIPConfigurationPropertiesFormatPrivateIPAddressVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Resource tags. */
 export type ApplicationSecurityGroupTagsMap = {
@@ -3670,7 +3639,7 @@ export type ApplicationSecurityGroupPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationSecurityGroupPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Application security group properties. */
 export interface ApplicationSecurityGroupPropertiesFormat {
@@ -3739,7 +3708,7 @@ export type NetworkInterfaceIPConfigurationPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const NetworkInterfaceIPConfigurationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of FQDNs for current private link connection. */
 export type NetworkInterfaceIPConfigurationPrivateLinkConnectionPropertiesFqdnsList =
@@ -3916,7 +3885,7 @@ export type ApplicationGatewayBackendAddressPoolPropertiesFormatProvisioningStat
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayBackendAddressPoolPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of Backend Address Pool of an application gateway. */
 export interface ApplicationGatewayBackendAddressPoolPropertiesFormat {
@@ -3979,14 +3948,14 @@ export type ApplicationGatewayBackendHttpSettingsPropertiesFormatProtocol =
   | "Tcp"
   | "Tls";
 export const ApplicationGatewayBackendHttpSettingsPropertiesFormatProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Cookie based affinity. */
 export type ApplicationGatewayBackendHttpSettingsPropertiesFormatCookieBasedAffinity =
   | "Enabled"
   | "Disabled";
 export const ApplicationGatewayBackendHttpSettingsPropertiesFormatCookieBasedAffinity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type ApplicationGatewayBackendHttpSettingsPropertiesFormatProbe =
@@ -4048,7 +4017,7 @@ export type ApplicationGatewayBackendHttpSettingsPropertiesFormatProvisioningSta
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayBackendHttpSettingsPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of Backend address pool settings of an application gateway. */
 export interface ApplicationGatewayBackendHttpSettingsPropertiesFormat {
@@ -4174,8 +4143,7 @@ export type ApplicationGatewayBackendHealthServerHealth =
   | "Down"
   | "Partial"
   | "Draining";
-export const ApplicationGatewayBackendHealthServerHealth =
-  /*@__PURE__*/ S.String;
+export const ApplicationGatewayBackendHealthServerHealth = S.String;
 
 /** Application gateway backendhealth http settings. */
 export interface ApplicationGatewayBackendHealthServer {
@@ -4284,8 +4252,7 @@ export type ApplicationGatewaysBackendHealthOnDemandRequestProtocol =
   | "Https"
   | "Tcp"
   | "Tls";
-export const ApplicationGatewaysBackendHealthOnDemandRequestProtocol =
-  /*@__PURE__*/ S.String;
+export const ApplicationGatewaysBackendHealthOnDemandRequestProtocol = S.String;
 
 /** Allowed ranges of healthy status codes. Default range of healthy status codes is 200-399. */
 export type ApplicationGatewayProbeHealthResponseMatchStatusCodesList =
@@ -4429,7 +4396,7 @@ export type ApplicationGatewaySkuName =
   | "Standard_v2"
   | "WAF_v2"
   | "Basic";
-export const ApplicationGatewaySkuName = /*@__PURE__*/ S.String;
+export const ApplicationGatewaySkuName = S.String;
 
 /** Tier of an application gateway. */
 export type ApplicationGatewaySkuTier =
@@ -4438,11 +4405,11 @@ export type ApplicationGatewaySkuTier =
   | "Standard_v2"
   | "WAF_v2"
   | "Basic";
-export const ApplicationGatewaySkuTier = /*@__PURE__*/ S.String;
+export const ApplicationGatewaySkuTier = S.String;
 
 /** Family of an application gateway SKU. */
 export type ApplicationGatewaySkuFamily = "Generation_1" | "Generation_2";
-export const ApplicationGatewaySkuFamily = /*@__PURE__*/ S.String;
+export const ApplicationGatewaySkuFamily = S.String;
 
 /** SKU of an application gateway. */
 export interface ApplicationGatewaySku {
@@ -4472,8 +4439,7 @@ export type ApplicationGatewaySslPolicyDisabledSslProtocolsItem =
   | "TLSv1_1"
   | "TLSv1_2"
   | "TLSv1_3";
-export const ApplicationGatewaySslPolicyDisabledSslProtocolsItem =
-  /*@__PURE__*/ S.String;
+export const ApplicationGatewaySslPolicyDisabledSslProtocolsItem = S.String;
 
 /** Ssl protocols to be disabled on application gateway. */
 export type ApplicationGatewaySslPolicyDisabledSslProtocolsList = Array<
@@ -4489,7 +4455,7 @@ export type ApplicationGatewaySslPolicyPolicyType =
   | "Predefined"
   | "Custom"
   | "CustomV2";
-export const ApplicationGatewaySslPolicyPolicyType = /*@__PURE__*/ S.String;
+export const ApplicationGatewaySslPolicyPolicyType = S.String;
 
 /** Ssl predefined policy name enums. */
 export type ApplicationGatewaySslPolicyPolicyName =
@@ -4498,7 +4464,7 @@ export type ApplicationGatewaySslPolicyPolicyName =
   | "AppGwSslPolicy20170401S"
   | "AppGwSslPolicy20220101"
   | "AppGwSslPolicy20220101S";
-export const ApplicationGatewaySslPolicyPolicyName = /*@__PURE__*/ S.String;
+export const ApplicationGatewaySslPolicyPolicyName = S.String;
 
 /** Ssl cipher suites enums. */
 export type ApplicationGatewaySslPolicyCipherSuitesItem =
@@ -4530,8 +4496,7 @@ export type ApplicationGatewaySslPolicyCipherSuitesItem =
   | "TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA"
   | "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
   | "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384";
-export const ApplicationGatewaySslPolicyCipherSuitesItem =
-  /*@__PURE__*/ S.String;
+export const ApplicationGatewaySslPolicyCipherSuitesItem = S.String;
 
 /** Ssl cipher suites to be enabled in the specified order to application gateway. */
 export type ApplicationGatewaySslPolicyCipherSuitesList = Array<
@@ -4548,8 +4513,7 @@ export type ApplicationGatewaySslPolicyMinProtocolVersion =
   | "TLSv1_1"
   | "TLSv1_2"
   | "TLSv1_3";
-export const ApplicationGatewaySslPolicyMinProtocolVersion =
-  /*@__PURE__*/ S.String;
+export const ApplicationGatewaySslPolicyMinProtocolVersion = S.String;
 
 /** Application Gateway Ssl policy. */
 export interface ApplicationGatewaySslPolicy {
@@ -4588,8 +4552,7 @@ export type ApplicationGatewayPropertiesFormatInputOperationalState =
   | "Starting"
   | "Running"
   | "Stopping";
-export const ApplicationGatewayPropertiesFormatInputOperationalState =
-  /*@__PURE__*/ S.String;
+export const ApplicationGatewayPropertiesFormatInputOperationalState = S.String;
 
 /** IP configuration of an application gateway. Currently 1 public and 1 private IP configuration is allowed. */
 export interface ApplicationGatewayIPConfigurationInput {
@@ -4628,7 +4591,7 @@ export type ApplicationGatewayAuthenticationCertificatePropertiesFormatProvision
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayAuthenticationCertificatePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Authentication certificates properties of an application gateway. */
 export interface ApplicationGatewayAuthenticationCertificatePropertiesFormat {
@@ -4690,7 +4653,7 @@ export type ApplicationGatewayTrustedRootCertificatePropertiesFormatProvisioning
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayTrustedRootCertificatePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Trusted Root certificates properties of an application gateway. */
 export interface ApplicationGatewayTrustedRootCertificatePropertiesFormat {
@@ -4755,7 +4718,7 @@ export type ApplicationGatewayTrustedClientCertificatePropertiesFormatInputProvi
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayTrustedClientCertificatePropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Trusted client certificates properties of an application gateway. */
 export interface ApplicationGatewayTrustedClientCertificatePropertiesFormatInput {
@@ -4834,7 +4797,7 @@ export type ApplicationGatewaySslCertificatePropertiesFormatInputProvisioningSta
   | "Updating"
   | "Deleting";
 export const ApplicationGatewaySslCertificatePropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of SSL certificates of an application gateway. */
 export interface ApplicationGatewaySslCertificatePropertiesFormatInput {
@@ -4901,7 +4864,7 @@ export type ApplicationGatewayFrontendIPConfigurationPropertiesFormatPrivateIPAl
   | "Static"
   | "Dynamic";
 export const ApplicationGatewayFrontendIPConfigurationPropertiesFormatPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type ApplicationGatewayFrontendIPConfigurationPropertiesFormatSubnet =
@@ -4930,7 +4893,7 @@ export type ApplicationGatewayFrontendIPConfigurationPropertiesFormatProvisionin
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayFrontendIPConfigurationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of Frontend IP configuration of an application gateway. */
 export interface ApplicationGatewayFrontendIPConfigurationPropertiesFormat {
@@ -5014,7 +4977,7 @@ export type ApplicationGatewayFrontendPortPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayFrontendPortPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of Frontend port of an application gateway. */
 export interface ApplicationGatewayFrontendPortPropertiesFormat {
@@ -5070,8 +5033,7 @@ export type ApplicationGatewayProbePropertiesFormatProtocol =
   | "Https"
   | "Tcp"
   | "Tls";
-export const ApplicationGatewayProbePropertiesFormatProtocol =
-  /*@__PURE__*/ S.String;
+export const ApplicationGatewayProbePropertiesFormatProtocol = S.String;
 
 /** Provisioning states of a resource. */
 export type ApplicationGatewayProbePropertiesFormatProvisioningState =
@@ -5082,7 +5044,7 @@ export type ApplicationGatewayProbePropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayProbePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of probe of an application gateway. */
 export interface ApplicationGatewayProbePropertiesFormat {
@@ -5182,7 +5144,7 @@ export type ApplicationGatewayBackendAddressPoolPropertiesFormatInputProvisionin
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayBackendAddressPoolPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of Backend Address Pool of an application gateway. */
 export interface ApplicationGatewayBackendAddressPoolPropertiesFormatInput {
@@ -5274,7 +5236,7 @@ export type ApplicationGatewayBackendSettingsPropertiesFormatProtocol =
   | "Tcp"
   | "Tls";
 export const ApplicationGatewayBackendSettingsPropertiesFormatProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type ApplicationGatewayBackendSettingsPropertiesFormatProbe =
@@ -5305,7 +5267,7 @@ export type ApplicationGatewayBackendSettingsPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayBackendSettingsPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of Backend address pool settings of an application gateway. */
 export interface ApplicationGatewayBackendSettingsPropertiesFormat {
@@ -5403,8 +5365,7 @@ export type ApplicationGatewayHttpListenerPropertiesFormatProtocol =
   | "Https"
   | "Tcp"
   | "Tls";
-export const ApplicationGatewayHttpListenerPropertiesFormatProtocol =
-  /*@__PURE__*/ S.String;
+export const ApplicationGatewayHttpListenerPropertiesFormatProtocol = S.String;
 
 /** Reference to another subresource. */
 export type ApplicationGatewayHttpListenerPropertiesFormatSslCertificate =
@@ -5427,7 +5388,7 @@ export type ApplicationGatewayHttpListenerPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayHttpListenerPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Status code of the application gateway custom error. */
 export type ApplicationGatewayCustomErrorStatusCode =
@@ -5440,7 +5401,7 @@ export type ApplicationGatewayCustomErrorStatusCode =
   | "HttpStatus502"
   | "HttpStatus503"
   | "HttpStatus504";
-export const ApplicationGatewayCustomErrorStatusCode = /*@__PURE__*/ S.String;
+export const ApplicationGatewayCustomErrorStatusCode = S.String;
 
 /** Custom error of an application gateway. */
 export interface ApplicationGatewayCustomError {
@@ -5591,8 +5552,7 @@ export type ApplicationGatewayListenerPropertiesFormatProtocol =
   | "Https"
   | "Tcp"
   | "Tls";
-export const ApplicationGatewayListenerPropertiesFormatProtocol =
-  /*@__PURE__*/ S.String;
+export const ApplicationGatewayListenerPropertiesFormatProtocol = S.String;
 
 /** Reference to another subresource. */
 export type ApplicationGatewayListenerPropertiesFormatSslCertificate =
@@ -5615,7 +5575,7 @@ export type ApplicationGatewayListenerPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayListenerPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of Server Name Indications(SNI) for TLS Multi-site Listener that allows special wildcard characters as well. */
 export type ApplicationGatewayListenerPropertiesFormatHostNamesList =
@@ -5717,14 +5677,14 @@ export type ApplicationGatewayClientAuthConfigurationVerifyClientRevocation =
   | "None"
   | "OCSP";
 export const ApplicationGatewayClientAuthConfigurationVerifyClientRevocation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Verify client Authentication mode. */
 export type ApplicationGatewayClientAuthConfigurationVerifyClientAuthMode =
   | "Strict"
   | "Passthrough";
 export const ApplicationGatewayClientAuthConfigurationVerifyClientAuthMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Application gateway client authentication configuration. */
 export interface ApplicationGatewayClientAuthConfiguration {
@@ -5763,7 +5723,7 @@ export type ApplicationGatewaySslProfilePropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationGatewaySslProfilePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of SSL profile of an application gateway. */
 export interface ApplicationGatewaySslProfilePropertiesFormat {
@@ -5899,7 +5859,7 @@ export type ApplicationGatewayPathRulePropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayPathRulePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type ApplicationGatewayPathRulePropertiesFormatFirewallPolicy =
@@ -5994,7 +5954,7 @@ export type ApplicationGatewayUrlPathMapPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayUrlPathMapPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of UrlPathMap of the application gateway. */
 export interface ApplicationGatewayUrlPathMapPropertiesFormatInput {
@@ -6076,7 +6036,7 @@ export type ApplicationGatewayRequestRoutingRulePropertiesFormatRuleType =
   | "Basic"
   | "PathBasedRouting";
 export const ApplicationGatewayRequestRoutingRulePropertiesFormatRuleType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type ApplicationGatewayRequestRoutingRulePropertiesFormatBackendAddressPool =
@@ -6135,7 +6095,7 @@ export type ApplicationGatewayRequestRoutingRulePropertiesFormatProvisioningStat
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayRequestRoutingRulePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of request routing rule of the application gateway. */
 export interface ApplicationGatewayRequestRoutingRulePropertiesFormat {
@@ -6239,8 +6199,7 @@ export const ApplicationGatewayPropertiesFormatInputRequestRoutingRulesList =
 export type ApplicationGatewayRoutingRulePropertiesFormatRuleType =
   | "Basic"
   | "PathBasedRouting";
-export const ApplicationGatewayRoutingRulePropertiesFormatRuleType =
-  /*@__PURE__*/ S.String;
+export const ApplicationGatewayRoutingRulePropertiesFormatRuleType = S.String;
 
 /** Reference to another subresource. */
 export type ApplicationGatewayRoutingRulePropertiesFormatBackendAddressPool =
@@ -6269,7 +6228,7 @@ export type ApplicationGatewayRoutingRulePropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayRoutingRulePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of routing rule of the application gateway. */
 export interface ApplicationGatewayRoutingRulePropertiesFormat {
@@ -6509,7 +6468,7 @@ export type ApplicationGatewayRewriteRuleSetPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayRewriteRuleSetPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of rewrite rule set of the application gateway. */
 export interface ApplicationGatewayRewriteRuleSetPropertiesFormat {
@@ -6569,7 +6528,7 @@ export type ApplicationGatewayRedirectConfigurationPropertiesFormatRedirectType 
   | "SeeOther"
   | "Temporary";
 export const ApplicationGatewayRedirectConfigurationPropertiesFormatRedirectType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type ApplicationGatewayRedirectConfigurationPropertiesFormatTargetListener =
@@ -6701,7 +6660,7 @@ export type ApplicationGatewayWebApplicationFirewallConfigurationFirewallMode =
   | "Detection"
   | "Prevention";
 export const ApplicationGatewayWebApplicationFirewallConfigurationFirewallMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of rules that will be disabled. If null, all rules of the rule group will be disabled. */
 export type ApplicationGatewayFirewallDisabledRuleGroupRulesList =
@@ -6839,7 +6798,7 @@ export type ApplicationGatewayPrivateLinkIpConfigurationPropertiesPrivateIPAlloc
   | "Static"
   | "Dynamic";
 export const ApplicationGatewayPrivateLinkIpConfigurationPropertiesPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type ApplicationGatewayPrivateLinkIpConfigurationPropertiesSubnet =
@@ -6856,7 +6815,7 @@ export type ApplicationGatewayPrivateLinkIpConfigurationPropertiesProvisioningSt
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayPrivateLinkIpConfigurationPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of an application gateway private link IP configuration. */
 export interface ApplicationGatewayPrivateLinkIpConfigurationProperties {
@@ -6933,7 +6892,7 @@ export type ApplicationGatewayPrivateLinkConfigurationPropertiesInputProvisionin
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayPrivateLinkConfigurationPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of private link configuration on an application gateway. */
 export interface ApplicationGatewayPrivateLinkConfigurationPropertiesInput {
@@ -6997,7 +6956,7 @@ export type ApplicationGatewayPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Custom error configurations of the application gateway resource. */
 export type ApplicationGatewayPropertiesFormatInputCustomErrorConfigurationsList =
@@ -7067,7 +7026,7 @@ export type ApplicationGatewayLoadDistributionPolicyPropertiesFormatInputLoadDis
   | "LeastConnections"
   | "IpHash";
 export const ApplicationGatewayLoadDistributionPolicyPropertiesFormatInputLoadDistributionAlgorithm =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type ApplicationGatewayLoadDistributionPolicyPropertiesFormatInputProvisioningState =
@@ -7078,7 +7037,7 @@ export type ApplicationGatewayLoadDistributionPolicyPropertiesFormatInputProvisi
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayLoadDistributionPolicyPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of Load Distribution Policy of an application gateway. */
 export interface ApplicationGatewayLoadDistributionPolicyPropertiesFormatInput {
@@ -7145,7 +7104,7 @@ export type ApplicationGatewayEntraJWTValidationConfigPropertiesFormatUnAuthoriz
   | "Deny"
   | "Allow";
 export const ApplicationGatewayEntraJWTValidationConfigPropertiesFormatUnAuthorizedRequestAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of acceptable audience claims that can be present in the token (aud claim). A maximum of 5 audiences are permitted. */
 export type ApplicationGatewayEntraJWTValidationConfigPropertiesFormatAudiencesList =
@@ -7164,7 +7123,7 @@ export type ApplicationGatewayEntraJWTValidationConfigPropertiesFormatProvisioni
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayEntraJWTValidationConfigPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of entra jwt validation configuration of the application gateway. */
 export interface ApplicationGatewayEntraJWTValidationConfigPropertiesFormat {
@@ -7260,7 +7219,7 @@ export type ApplicationGatewayPropertiesFormatInputDefaultPredefinedSslPolicy =
   | "AppGwSslPolicy20220101"
   | "AppGwSslPolicy20220101S";
 export const ApplicationGatewayPropertiesFormatInputDefaultPredefinedSslPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the application gateway. */
 export interface ApplicationGatewayPropertiesFormatInput {
@@ -7545,8 +7504,7 @@ export type ApplicationGatewayPropertiesFormatOperationalState =
   | "Starting"
   | "Running"
   | "Stopping";
-export const ApplicationGatewayPropertiesFormatOperationalState =
-  /*@__PURE__*/ S.String;
+export const ApplicationGatewayPropertiesFormatOperationalState = S.String;
 
 /** IP configuration of an application gateway. Currently 1 public and 1 private IP configuration is allowed. */
 export type ApplicationGatewayIPConfiguration =
@@ -7643,7 +7601,7 @@ export type ApplicationGatewayTrustedClientCertificatePropertiesFormatProvisioni
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayTrustedClientCertificatePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Trusted client certificates properties of an application gateway. */
 export interface ApplicationGatewayTrustedClientCertificatePropertiesFormat {
@@ -7715,7 +7673,7 @@ export type ApplicationGatewaySslCertificatePropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationGatewaySslCertificatePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of SSL certificates of an application gateway. */
 export interface ApplicationGatewaySslCertificatePropertiesFormat {
@@ -8103,7 +8061,7 @@ export type ApplicationGatewayUrlPathMapPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayUrlPathMapPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of UrlPathMap of the application gateway. */
 export interface ApplicationGatewayUrlPathMapPropertiesFormat {
@@ -8370,7 +8328,7 @@ export type ApplicationGatewayPrivateLinkConfigurationPropertiesProvisioningStat
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayPrivateLinkConfigurationPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of private link configuration on an application gateway. */
 export interface ApplicationGatewayPrivateLinkConfigurationProperties {
@@ -8454,15 +8412,14 @@ export type PrivateEndpointPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const PrivateEndpointPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointPropertiesProvisioningState = S.String;
 
 /** Specifies the IP version type for the private IPs of the private endpoint. If not defined, this defaults to IPv4. */
 export type PrivateEndpointPropertiesIpVersionType =
   | "IPv4"
   | "IPv6"
   | "DualStack";
-export const PrivateEndpointPropertiesIpVersionType = /*@__PURE__*/ S.String;
+export const PrivateEndpointPropertiesIpVersionType = S.String;
 
 /** Provisioning states of a resource. */
 export type PrivateLinkServiceConnectionPropertiesProvisioningState =
@@ -8472,8 +8429,7 @@ export type PrivateLinkServiceConnectionPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const PrivateLinkServiceConnectionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateLinkServiceConnectionPropertiesProvisioningState = S.String;
 
 /** The ID(s) of the group(s) obtained from the remote resource that this private endpoint should connect to. */
 export type PrivateLinkServiceConnectionPropertiesGroupIdsList = Array<string>;
@@ -8665,7 +8621,7 @@ export const PrivateEndpointPropertiesIpConfigurationsList =
 
 /** The billing sku of the private endpoint. */
 export type PrivateEndpointPropertiesBillingSku = "PayAsYouGo" | "Fixed";
-export const PrivateEndpointPropertiesBillingSku = /*@__PURE__*/ S.String;
+export const PrivateEndpointPropertiesBillingSku = S.String;
 
 /** Properties of the private endpoint. */
 export interface PrivateEndpointProperties {
@@ -8777,7 +8733,7 @@ export type ApplicationGatewayPrivateEndpointConnectionPropertiesProvisioningSta
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayPrivateEndpointConnectionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of Private Link Resource of an application gateway. */
 export interface ApplicationGatewayPrivateEndpointConnectionProperties {
@@ -8852,8 +8808,7 @@ export type ApplicationGatewayPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ApplicationGatewayPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ApplicationGatewayPropertiesFormatProvisioningState = S.String;
 
 /** Custom error configurations of the application gateway resource. */
 export type ApplicationGatewayPropertiesFormatCustomErrorConfigurationsList =
@@ -8905,7 +8860,7 @@ export type ApplicationGatewayLoadDistributionPolicyPropertiesFormatLoadDistribu
   | "LeastConnections"
   | "IpHash";
 export const ApplicationGatewayLoadDistributionPolicyPropertiesFormatLoadDistributionAlgorithm =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type ApplicationGatewayLoadDistributionPolicyPropertiesFormatProvisioningState =
@@ -8916,7 +8871,7 @@ export type ApplicationGatewayLoadDistributionPolicyPropertiesFormatProvisioning
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayLoadDistributionPolicyPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of Load Distribution Policy of an application gateway. */
 export interface ApplicationGatewayLoadDistributionPolicyPropertiesFormat {
@@ -9021,7 +8976,7 @@ export type ApplicationGatewayPropertiesFormatDefaultPredefinedSslPolicy =
   | "AppGwSslPolicy20220101"
   | "AppGwSslPolicy20220101S";
 export const ApplicationGatewayPropertiesFormatDefaultPredefinedSslPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the application gateway. */
 export interface ApplicationGatewayPropertiesFormat {
@@ -9293,7 +9248,7 @@ export type ApplicationSecurityGroupPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationSecurityGroupPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Application security group properties. */
 export interface ApplicationSecurityGroupPropertiesFormatInput {
@@ -9404,7 +9359,7 @@ export const AzureFirewallsCreateOrUpdateRequestTagsMap =
 
 /** The action type of a rule collection. */
 export type AzureFirewallRCActionType = "Allow" | "Deny";
-export const AzureFirewallRCActionType = /*@__PURE__*/ S.String;
+export const AzureFirewallRCActionType = S.String;
 
 /** Properties of the AzureFirewallRCAction. */
 export interface AzureFirewallRCAction {
@@ -9431,8 +9386,7 @@ export type AzureFirewallApplicationRuleProtocolProtocolType =
   | "Http"
   | "Https"
   | "Mssql";
-export const AzureFirewallApplicationRuleProtocolProtocolType =
-  /*@__PURE__*/ S.String;
+export const AzureFirewallApplicationRuleProtocolProtocolType = S.String;
 
 /** Properties of the application rule protocol. */
 export interface AzureFirewallApplicationRuleProtocol {
@@ -9532,7 +9486,7 @@ export type AzureFirewallApplicationRuleCollectionPropertiesFormatProvisioningSt
   | "Updating"
   | "Deleting";
 export const AzureFirewallApplicationRuleCollectionPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the application rule collection. */
 export interface AzureFirewallApplicationRuleCollectionPropertiesFormat {
@@ -9595,7 +9549,7 @@ export const AzureFirewallPropertiesFormatInputApplicationRuleCollectionsList =
 
 /** The action type of a NAT rule collection. */
 export type AzureFirewallNatRCActionType = "Snat" | "Dnat";
-export const AzureFirewallNatRCActionType = /*@__PURE__*/ S.String;
+export const AzureFirewallNatRCActionType = S.String;
 
 /** AzureFirewall NAT Rule Collection Action. */
 export interface AzureFirewallNatRCAction {
@@ -9631,7 +9585,7 @@ export const AzureFirewallNatRuleDestinationPortsList = /*@__PURE__*/ S.Array(
 
 /** The protocol of a Network Rule resource. */
 export type AzureFirewallNatRuleProtocolsItem = "TCP" | "UDP" | "Any" | "ICMP";
-export const AzureFirewallNatRuleProtocolsItem = /*@__PURE__*/ S.String;
+export const AzureFirewallNatRuleProtocolsItem = S.String;
 
 /** Array of AzureFirewallNetworkRuleProtocols applicable to this NAT rule. */
 export type AzureFirewallNatRuleProtocolsList = Array<
@@ -9706,7 +9660,7 @@ export type AzureFirewallNatRuleCollectionPropertiesProvisioningState =
   | "Updating"
   | "Deleting";
 export const AzureFirewallNatRuleCollectionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the NAT rule collection. */
 export interface AzureFirewallNatRuleCollectionProperties {
@@ -9768,7 +9722,7 @@ export type AzureFirewallNetworkRuleProtocolsItem =
   | "UDP"
   | "Any"
   | "ICMP";
-export const AzureFirewallNetworkRuleProtocolsItem = /*@__PURE__*/ S.String;
+export const AzureFirewallNetworkRuleProtocolsItem = S.String;
 
 /** Array of AzureFirewallNetworkRuleProtocols. */
 export type AzureFirewallNetworkRuleProtocolsList = Array<
@@ -9877,7 +9831,7 @@ export type AzureFirewallNetworkRuleCollectionPropertiesFormatProvisioningState 
   | "Updating"
   | "Deleting";
 export const AzureFirewallNetworkRuleCollectionPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the network rule collection. */
 export interface AzureFirewallNetworkRuleCollectionPropertiesFormat {
@@ -9959,7 +9913,7 @@ export type AzureFirewallIPConfigurationPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const AzureFirewallIPConfigurationPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of IP configuration of an Azure Firewall. */
 export interface AzureFirewallIPConfigurationPropertiesFormatInput {
@@ -10024,16 +9978,14 @@ export type AzureFirewallPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const AzureFirewallPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AzureFirewallPropertiesFormatInputProvisioningState = S.String;
 
 /** The operation mode for Threat Intel. */
 export type AzureFirewallPropertiesFormatInputThreatIntelMode =
   | "Alert"
   | "Deny"
   | "Off";
-export const AzureFirewallPropertiesFormatInputThreatIntelMode =
-  /*@__PURE__*/ S.String;
+export const AzureFirewallPropertiesFormatInputThreatIntelMode = S.String;
 
 /** Reference to another subresource. */
 export type AzureFirewallPropertiesFormatInputVirtualHub =
@@ -10099,11 +10051,11 @@ export const HubIPAddresses = /*@__PURE__*/ S.suspend(() =>
 
 /** Name of an Azure Firewall SKU. */
 export type AzureFirewallSkuName = "AZFW_VNet" | "AZFW_Hub";
-export const AzureFirewallSkuName = /*@__PURE__*/ S.String;
+export const AzureFirewallSkuName = S.String;
 
 /** Tier of an Azure Firewall. */
 export type AzureFirewallSkuTier = "Standard" | "Premium" | "Basic";
-export const AzureFirewallSkuTier = /*@__PURE__*/ S.String;
+export const AzureFirewallSkuTier = S.String;
 
 /** SKU of an Azure Firewall. */
 export interface AzureFirewallSku {
@@ -10414,7 +10366,7 @@ export type AzureFirewallIPConfigurationPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const AzureFirewallIPConfigurationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of IP configuration of an Azure Firewall. */
 export interface AzureFirewallIPConfigurationPropertiesFormat {
@@ -10486,16 +10438,14 @@ export type AzureFirewallPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const AzureFirewallPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AzureFirewallPropertiesFormatProvisioningState = S.String;
 
 /** The operation mode for Threat Intel. */
 export type AzureFirewallPropertiesFormatThreatIntelMode =
   | "Alert"
   | "Deny"
   | "Off";
-export const AzureFirewallPropertiesFormatThreatIntelMode =
-  /*@__PURE__*/ S.String;
+export const AzureFirewallPropertiesFormatThreatIntelMode = S.String;
 
 /** Reference to another subresource. */
 export type AzureFirewallPropertiesFormatVirtualHub =
@@ -10682,8 +10632,7 @@ export type AzureFirewallsPacketCaptureOperationRequestProtocol =
   | "UDP"
   | "Any"
   | "ICMP";
-export const AzureFirewallsPacketCaptureOperationRequestProtocol =
-  /*@__PURE__*/ S.String;
+export const AzureFirewallsPacketCaptureOperationRequestProtocol = S.String;
 
 /** The flags type to be captured. */
 export type AzureFirewallPacketCaptureFlagsType =
@@ -10693,7 +10642,7 @@ export type AzureFirewallPacketCaptureFlagsType =
   | "push"
   | "ack"
   | "urg";
-export const AzureFirewallPacketCaptureFlagsType = /*@__PURE__*/ S.String;
+export const AzureFirewallPacketCaptureFlagsType = S.String;
 
 /** Properties of the AzureFirewallRCAction. */
 export interface AzureFirewallPacketCaptureFlags {
@@ -10770,8 +10719,7 @@ export type AzureFirewallsPacketCaptureOperationRequestOperation =
   | "Start"
   | "Status"
   | "Stop";
-export const AzureFirewallsPacketCaptureOperationRequestOperation =
-  /*@__PURE__*/ S.String;
+export const AzureFirewallsPacketCaptureOperationRequestOperation = S.String;
 
 export interface AzureFirewallsPacketCaptureOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -10843,8 +10791,7 @@ export type AzureFirewallPacketCaptureResponseStatusCode =
   | "AzureFirewallPacketCaptureStopSucceeded"
   | "AzureFirewallPacketCaptureFailed"
   | "AzureFirewallPacketCaptureCompleted";
-export const AzureFirewallPacketCaptureResponseStatusCode =
-  /*@__PURE__*/ S.String;
+export const AzureFirewallPacketCaptureResponseStatusCode = S.String;
 
 /** Response of an Azure Firewall Packet Capture Operation. */
 export interface AzureFirewallPacketCaptureResponse {
@@ -10892,14 +10839,14 @@ export type BastionHostIPConfigurationPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const BastionHostIPConfigurationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** IP address allocation method. */
 export type BastionHostIPConfigurationPropertiesFormatPrivateIPAllocationMethod =
   | "Static"
   | "Dynamic";
 export const BastionHostIPConfigurationPropertiesFormatPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of IP configuration of an Bastion Host. */
 export interface BastionHostIPConfigurationPropertiesFormat {
@@ -11006,8 +10953,7 @@ export type BastionHostPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const BastionHostPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const BastionHostPropertiesFormatInputProvisioningState = S.String;
 
 /** Properties of the Bastion Host. */
 export interface BastionHostPropertiesFormatInput {
@@ -11076,7 +11022,7 @@ export const BastionHostsCreateOrUpdateRequestZonesList = /*@__PURE__*/ S.Array(
 
 /** The name of the sku of this Bastion Host. */
 export type SkuName = "Basic" | "Standard" | "Developer" | "Premium";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** The sku of this Bastion Host. */
 export interface Sku {
@@ -11188,8 +11134,7 @@ export type BastionHostPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const BastionHostPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const BastionHostPropertiesFormatProvisioningState = S.String;
 
 /** Properties of the Bastion Host. */
 export interface BastionHostPropertiesFormat {
@@ -11295,8 +11240,7 @@ export type CaptureAzureFirewallsPacketRequestProtocol =
   | "UDP"
   | "Any"
   | "ICMP";
-export const CaptureAzureFirewallsPacketRequestProtocol =
-  /*@__PURE__*/ S.String;
+export const CaptureAzureFirewallsPacketRequestProtocol = S.String;
 
 /** The tcp-flag type to be captured. Used with protocol TCP */
 export type CaptureAzureFirewallsPacketRequestFlagsList =
@@ -11319,8 +11263,7 @@ export type CaptureAzureFirewallsPacketRequestOperation =
   | "Start"
   | "Status"
   | "Stop";
-export const CaptureAzureFirewallsPacketRequestOperation =
-  /*@__PURE__*/ S.String;
+export const CaptureAzureFirewallsPacketRequestOperation = S.String;
 
 export interface CaptureAzureFirewallsPacketRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11457,12 +11400,11 @@ export type CheckNetworkWatcherConnectivityRequestProtocol =
   | "Http"
   | "Https"
   | "Icmp";
-export const CheckNetworkWatcherConnectivityRequestProtocol =
-  /*@__PURE__*/ S.String;
+export const CheckNetworkWatcherConnectivityRequestProtocol = S.String;
 
 /** HTTP method. */
 export type HTTPConfigurationMethod = "Get";
-export const HTTPConfigurationMethod = /*@__PURE__*/ S.String;
+export const HTTPConfigurationMethod = S.String;
 
 /** The HTTP header. */
 export interface HTTPHeader {
@@ -11527,7 +11469,7 @@ export type CheckNetworkWatcherConnectivityRequestPreferredIPVersion =
   | "IPv4"
   | "IPv6";
 export const CheckNetworkWatcherConnectivityRequestPreferredIPVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CheckNetworkWatcherConnectivityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11607,11 +11549,11 @@ export const HopLinkProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The origin of the issue. */
 export type ConnectivityIssueOrigin = "Local" | "Inbound" | "Outbound";
-export const ConnectivityIssueOrigin = /*@__PURE__*/ S.String;
+export const ConnectivityIssueOrigin = S.String;
 
 /** The severity of the issue. */
 export type ConnectivityIssueSeverity = "Error" | "Warning";
-export const ConnectivityIssueSeverity = /*@__PURE__*/ S.String;
+export const ConnectivityIssueSeverity = S.String;
 
 /** The type of issue. */
 export type ConnectivityIssueType =
@@ -11624,7 +11566,7 @@ export type ConnectivityIssueType =
   | "UserDefinedRoute"
   | "PortThrottled"
   | "Platform";
-export const ConnectivityIssueType = /*@__PURE__*/ S.String;
+export const ConnectivityIssueType = S.String;
 
 export type ConnectivityIssueContextItemMap = {
   [key: string]: string | undefined;
@@ -11769,7 +11711,7 @@ export type ConnectivityInformationConnectionStatus =
   | "Connected"
   | "Disconnected"
   | "Degraded";
-export const ConnectivityInformationConnectionStatus = /*@__PURE__*/ S.String;
+export const ConnectivityInformationConnectionStatus = S.String;
 
 /** Information on the connectivity status. */
 export interface ConnectivityInformation {
@@ -11933,7 +11875,7 @@ export type NetworkVirtualApplianceCommitMigrationPropertiesMigrationType =
   | "MigrateToNewOSVersion"
   | "MigrateToNewILBArchitecture";
 export const NetworkVirtualApplianceCommitMigrationPropertiesMigrationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties supplied to commit the migration of a Network Virtual Appliance. */
 export interface NetworkVirtualApplianceCommitMigrationProperties {
@@ -11995,7 +11937,7 @@ export type CommitPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const CommitPropertiesInputProvisioningState = /*@__PURE__*/ S.String;
+export const CommitPropertiesInputProvisioningState = S.String;
 
 /** Configuration Deployment Type. */
 export type CommitPropertiesInputCommitType =
@@ -12003,7 +11945,7 @@ export type CommitPropertiesInputCommitType =
   | "Connectivity"
   | "SecurityUser"
   | "Routing";
-export const CommitPropertiesInputCommitType = /*@__PURE__*/ S.String;
+export const CommitPropertiesInputCommitType = S.String;
 
 /** List of configuration IDs. */
 export type CommitPropertiesInputConfigurationIdsList = Array<string>;
@@ -12084,7 +12026,7 @@ export type CommitPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const CommitPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const CommitPropertiesProvisioningState = S.String;
 
 /** Configuration Deployment Type. */
 export type CommitPropertiesCommitType =
@@ -12092,7 +12034,7 @@ export type CommitPropertiesCommitType =
   | "Connectivity"
   | "SecurityUser"
   | "Routing";
-export const CommitPropertiesCommitType = /*@__PURE__*/ S.String;
+export const CommitPropertiesCommitType = S.String;
 
 /** List of configuration IDs. */
 export type CommitPropertiesConfigurationIdsList = Array<string>;
@@ -12152,8 +12094,7 @@ export type CommitsCreateOrUpdateResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CommitsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const CommitsCreateOrUpdateResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type CommitsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -12162,7 +12103,7 @@ export type CommitsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const CommitsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CommitsCreateOrUpdateResponseSystemData {
@@ -12229,8 +12170,7 @@ export type VpnServerConfigurationPolicyGroupMemberAttributeType =
   | "CertificateGroupId"
   | "AADGroupId"
   | "RadiusAzureGroupId";
-export const VpnServerConfigurationPolicyGroupMemberAttributeType =
-  /*@__PURE__*/ S.String;
+export const VpnServerConfigurationPolicyGroupMemberAttributeType = S.String;
 
 /** VpnServerConfiguration PolicyGroup member */
 export interface VpnServerConfigurationPolicyGroupMember {
@@ -12273,7 +12213,7 @@ export type VpnServerConfigurationPolicyGroupPropertiesInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const VpnServerConfigurationPolicyGroupPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Parameters for VpnServerConfigurationPolicyGroup. */
 export interface VpnServerConfigurationPolicyGroupPropertiesInput {
@@ -12373,7 +12313,7 @@ export type VpnServerConfigurationPolicyGroupPropertiesProvisioningState =
   | "Updating"
   | "Deleting";
 export const VpnServerConfigurationPolicyGroupPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Parameters for VpnServerConfigurationPolicyGroup. */
 export interface VpnServerConfigurationPolicyGroupProperties {
@@ -12488,15 +12428,15 @@ export type ConnectionMonitorEndpointType =
   | "AzureArcVM"
   | "AzureVMSS"
   | "AzureArcNetwork";
-export const ConnectionMonitorEndpointType = /*@__PURE__*/ S.String;
+export const ConnectionMonitorEndpointType = S.String;
 
 /** The behavior of the endpoint filter. Currently only 'Include' is supported. */
 export type ConnectionMonitorEndpointFilterType = "Include";
-export const ConnectionMonitorEndpointFilterType = /*@__PURE__*/ S.String;
+export const ConnectionMonitorEndpointFilterType = S.String;
 
 /** The type of item included in the filter. Currently only 'AgentAddress' is supported. */
 export type ConnectionMonitorEndpointFilterItemType = "AgentAddress";
-export const ConnectionMonitorEndpointFilterItemType = /*@__PURE__*/ S.String;
+export const ConnectionMonitorEndpointFilterItemType = S.String;
 
 /** Describes the connection monitor endpoint filter item. */
 export interface ConnectionMonitorEndpointFilterItem {
@@ -12588,7 +12528,7 @@ export type ConnectionMonitorEndpointCoverageLevel =
   | "Average"
   | "AboveAverage"
   | "Full";
-export const ConnectionMonitorEndpointCoverageLevel = /*@__PURE__*/ S.String;
+export const ConnectionMonitorEndpointCoverageLevel = S.String;
 
 /** Connection monitor endpoint location details only being used for 'AzureArcNetwork' type endpoints, which contains the region details. */
 export interface ConnectionMonitorEndpointLocationDetails {
@@ -12653,19 +12593,17 @@ export type ConnectionMonitorTestConfigurationProtocol =
   | "Tcp"
   | "Http"
   | "Icmp";
-export const ConnectionMonitorTestConfigurationProtocol =
-  /*@__PURE__*/ S.String;
+export const ConnectionMonitorTestConfigurationProtocol = S.String;
 
 /** The preferred IP version to use in test evaluation. The connection monitor may choose to use a different version depending on other parameters. */
 export type ConnectionMonitorTestConfigurationPreferredIPVersion =
   | "IPv4"
   | "IPv6";
-export const ConnectionMonitorTestConfigurationPreferredIPVersion =
-  /*@__PURE__*/ S.String;
+export const ConnectionMonitorTestConfigurationPreferredIPVersion = S.String;
 
 /** The HTTP method to use. */
 export type ConnectionMonitorHttpConfigurationMethod = "Get" | "Post";
-export const ConnectionMonitorHttpConfigurationMethod = /*@__PURE__*/ S.String;
+export const ConnectionMonitorHttpConfigurationMethod = S.String;
 
 /** The HTTP headers to transmit with the request. */
 export type ConnectionMonitorHttpConfigurationRequestHeadersList =
@@ -12720,7 +12658,7 @@ export type ConnectionMonitorTcpConfigurationDestinationPortBehavior =
   | "None"
   | "ListenIfAvailable";
 export const ConnectionMonitorTcpConfigurationDestinationPortBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Describes the TCP configuration. */
 export interface ConnectionMonitorTcpConfiguration {
@@ -12873,7 +12811,7 @@ export const ConnectionMonitorParametersTestGroupsList = /*@__PURE__*/ S.Array(
 
 /** Connection monitor output destination type. Currently, only "Workspace" is supported. */
 export type ConnectionMonitorOutputType = "Workspace";
-export const ConnectionMonitorOutputType = /*@__PURE__*/ S.String;
+export const ConnectionMonitorOutputType = S.String;
 
 /** Describes the settings for producing output into a log analytics workspace. */
 export interface ConnectionMonitorWorkspaceSettings {
@@ -13041,15 +12979,13 @@ export type ConnectionMonitorResultPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ConnectionMonitorResultPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ConnectionMonitorResultPropertiesProvisioningState = S.String;
 
 /** Type of connection monitor. */
 export type ConnectionMonitorResultPropertiesConnectionMonitorType =
   | "MultiEndpoint"
   | "SingleSourceDestination";
-export const ConnectionMonitorResultPropertiesConnectionMonitorType =
-  /*@__PURE__*/ S.String;
+export const ConnectionMonitorResultPropertiesConnectionMonitorType = S.String;
 
 /** Describes the properties of a connection monitor. */
 export interface ConnectionMonitorResultProperties {
@@ -13182,8 +13118,7 @@ export const PropagatedRouteTable = /*@__PURE__*/ S.suspend(() =>
 export type StaticRoutesConfigVnetLocalRouteOverrideCriteria =
   | "Contains"
   | "Equal";
-export const StaticRoutesConfigVnetLocalRouteOverrideCriteria =
-  /*@__PURE__*/ S.String;
+export const StaticRoutesConfigVnetLocalRouteOverrideCriteria = S.String;
 
 /** Configuration for static routes on this HubVnetConnectionConfiguration for static routes on this HubVnetConnection. */
 export interface StaticRoutesConfig {
@@ -13299,8 +13234,7 @@ export type ConnectionPolicyPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ConnectionPolicyPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ConnectionPolicyPropertiesInputProvisioningState = S.String;
 
 /** Properties of the ConnectionPolicy resource. */
 export interface ConnectionPolicyPropertiesInput {
@@ -13453,8 +13387,7 @@ export type ConnectionPolicyPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ConnectionPolicyPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ConnectionPolicyPropertiesProvisioningState = S.String;
 
 /** List of connection names (e.g. VpnConnection, HubVirtualNetworkConnection) associated with this ConnectionPolicy. These are resource names, not Azure resource IDs, consistent with the established VirtualWAN pattern used by HubRouteTable.associatedConnections. */
 export type ConnectionPolicyPropertiesAssociatedConnectionsList = Array<string>;
@@ -13517,7 +13450,7 @@ export type ConnectivityConfigurationPropertiesInputConnectivityTopology =
   | "HubAndSpoke"
   | "Mesh";
 export const ConnectivityConfigurationPropertiesInputConnectivityTopology =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Hub Item. */
 export interface Hub {
@@ -13542,29 +13475,28 @@ export const ConnectivityConfigurationPropertiesInputHubsList =
 
 /** Flag if global mesh is supported. */
 export type ConnectivityConfigurationPropertiesInputIsGlobal = "False" | "True";
-export const ConnectivityConfigurationPropertiesInputIsGlobal =
-  /*@__PURE__*/ S.String;
+export const ConnectivityConfigurationPropertiesInputIsGlobal = S.String;
 
 /** Option indicating the scale of private endpoints allowed in the connected group of the connectivity configuration. */
 export type ConnectivityConfigurationPropertiesConnectivityCapabilitiesConnectedGroupPrivateEndpointsScale =
   | "Standard"
   | "HighScale";
 export const ConnectivityConfigurationPropertiesConnectivityCapabilitiesConnectedGroupPrivateEndpointsScale =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Behavior to handle overlapped IP address space among members of the connected group of the connectivity configuration. */
 export type ConnectivityConfigurationPropertiesConnectivityCapabilitiesConnectedGroupAddressOverlap =
   | "Allowed"
   | "Disallowed";
 export const ConnectivityConfigurationPropertiesConnectivityCapabilitiesConnectedGroupAddressOverlap =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Option indicating enforcement of peerings created by the connectivity configuration. */
 export type ConnectivityConfigurationPropertiesConnectivityCapabilitiesPeeringEnforcement =
   | "Unenforced"
   | "Enforced";
 export const ConnectivityConfigurationPropertiesConnectivityCapabilitiesPeeringEnforcement =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Collection of additional settings to enhance specific topology behaviors of the connectivity configuration resource. */
 export interface ConnectivityConfigurationPropertiesConnectivityCapabilities {
@@ -13597,17 +13529,17 @@ export const ConnectivityConfigurationPropertiesConnectivityCapabilities =
 
 /** Flag if need to use hub gateway. */
 export type ConnectivityGroupItemUseHubGateway = "False" | "True";
-export const ConnectivityGroupItemUseHubGateway = /*@__PURE__*/ S.String;
+export const ConnectivityGroupItemUseHubGateway = S.String;
 
 /** Flag if global mesh is supported. */
 export type ConnectivityGroupItemIsGlobal = "False" | "True";
-export const ConnectivityGroupItemIsGlobal = /*@__PURE__*/ S.String;
+export const ConnectivityGroupItemIsGlobal = S.String;
 
 /** Group connectivity type. */
 export type ConnectivityGroupItemGroupConnectivity =
   | "None"
   | "DirectlyConnected";
-export const ConnectivityGroupItemGroupConnectivity = /*@__PURE__*/ S.String;
+export const ConnectivityGroupItemGroupConnectivity = S.String;
 
 /** Connectivity group item. */
 export interface ConnectivityGroupItem {
@@ -13648,14 +13580,14 @@ export type ConnectivityConfigurationPropertiesInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const ConnectivityConfigurationPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Flag if need to remove current existing peerings. */
 export type ConnectivityConfigurationPropertiesInputDeleteExistingPeering =
   | "False"
   | "True";
 export const ConnectivityConfigurationPropertiesInputDeleteExistingPeering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of network manager connectivity configuration */
 export interface ConnectivityConfigurationPropertiesInput {
@@ -13742,8 +13674,7 @@ export const ConnectivityConfigurationsCreateOrUpdateRequest =
 export type ConnectivityConfigurationPropertiesConnectivityTopology =
   | "HubAndSpoke"
   | "Mesh";
-export const ConnectivityConfigurationPropertiesConnectivityTopology =
-  /*@__PURE__*/ S.String;
+export const ConnectivityConfigurationPropertiesConnectivityTopology = S.String;
 
 /** List of hubItems */
 export type ConnectivityConfigurationPropertiesHubsList = Array<Hub>;
@@ -13754,8 +13685,7 @@ export const ConnectivityConfigurationPropertiesHubsList =
 
 /** Flag if global mesh is supported. */
 export type ConnectivityConfigurationPropertiesIsGlobal = "False" | "True";
-export const ConnectivityConfigurationPropertiesIsGlobal =
-  /*@__PURE__*/ S.String;
+export const ConnectivityConfigurationPropertiesIsGlobal = S.String;
 
 /** Groups for configuration */
 export type ConnectivityConfigurationPropertiesAppliesToGroupsList =
@@ -13773,15 +13703,14 @@ export type ConnectivityConfigurationPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ConnectivityConfigurationPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ConnectivityConfigurationPropertiesProvisioningState = S.String;
 
 /** Flag if need to remove current existing peerings. */
 export type ConnectivityConfigurationPropertiesDeleteExistingPeering =
   | "False"
   | "True";
 export const ConnectivityConfigurationPropertiesDeleteExistingPeering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of network manager connectivity configuration */
 export interface ConnectivityConfigurationProperties {
@@ -13834,7 +13763,7 @@ export type ConnectivityConfigurationsCreateOrUpdateResponseSystemDataCreatedByT
   | "ManagedIdentity"
   | "Key";
 export const ConnectivityConfigurationsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type ConnectivityConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -13843,7 +13772,7 @@ export type ConnectivityConfigurationsCreateOrUpdateResponseSystemDataLastModifi
   | "ManagedIdentity"
   | "Key";
 export const ConnectivityConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ConnectivityConfigurationsCreateOrUpdateResponseSystemData {
@@ -13931,7 +13860,7 @@ export type IpamPoolPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const IpamPoolPropertiesInputProvisioningState = /*@__PURE__*/ S.String;
+export const IpamPoolPropertiesInputProvisioningState = S.String;
 
 /** Properties of IpamPool resource properties which are specific to the Pool resource. */
 export interface IpamPoolPropertiesInput {
@@ -14000,8 +13929,7 @@ export type CreateIpamPoolResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CreateIpamPoolResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const CreateIpamPoolResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type CreateIpamPoolResponseSystemDataLastModifiedByType =
@@ -14009,8 +13937,7 @@ export type CreateIpamPoolResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CreateIpamPoolResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const CreateIpamPoolResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CreateIpamPoolResponseSystemData {
@@ -14053,7 +13980,7 @@ export const CreateIpamPoolResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Enumeration to indicate the IP type. */
 export type IpamPoolPropertiesIpAddressTypeItem = "IPv4" | "IPv6";
-export const IpamPoolPropertiesIpAddressTypeItem = /*@__PURE__*/ S.String;
+export const IpamPoolPropertiesIpAddressTypeItem = S.String;
 
 /** List of IP address type for the IpamPool. */
 export type IpamPoolPropertiesIpAddressTypeList =
@@ -14076,7 +14003,7 @@ export type IpamPoolPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const IpamPoolPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const IpamPoolPropertiesProvisioningState = S.String;
 
 /** Properties of IpamPool resource properties which are specific to the Pool resource. */
 export interface IpamPoolProperties {
@@ -14155,7 +14082,7 @@ export type ConnectionAnalyzerEndpointType =
   | "ExternalAddress"
   | "BastionHost"
   | "ApplicationGateway";
-export const ConnectionAnalyzerEndpointType = /*@__PURE__*/ S.String;
+export const ConnectionAnalyzerEndpointType = S.String;
 
 /** Describes a source or destination endpoint of a connection analyzer. The schema is intentionally permissive (a flat object) because the set of valid fields is determined by `type` and is enforced server-side by the Network Resource Provider. The required and allowed fields per `type` are: - `VM`, `VMSS`, `BastionHost`, `ApplicationGateway`: `resourceId` is required and must be the ARM resource ID of the corresponding resource (a virtual machine, virtual machine scale set or VMSS instance, Azure Bastion host, or Application Gateway, respectively); `address` is not used; `port` is optional. - `ExternalAddress`: `address` is required and must be an IP address or FQDN reachable from outside Azure; `resourceId` is not used; `port` is optional. Requests that supply fields not allowed for the chosen `type`, or omit a required field, are rejected by the service with a validation error. This follows the same convention used by `ConnectivitySource` and `ConnectivityDestination` on Network Watcher. */
 export interface ConnectionAnalyzerEndpoint {
@@ -14187,7 +14114,7 @@ export type ConnectionAnalyzerPropertiesInputDiagnosticOperationsItem =
   | "ConnectivityCheck"
   | "ExpressRouteDiagnostic";
 export const ConnectionAnalyzerPropertiesInputDiagnosticOperationsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of diagnostic operations to run. */
 export type ConnectionAnalyzerPropertiesInputDiagnosticOperationsList = Array<
@@ -14200,7 +14127,7 @@ export const ConnectionAnalyzerPropertiesInputDiagnosticOperationsList =
 
 /** Network protocol. */
 export type ProtocolSettingsProtocol = "Tcp" | "Http" | "Https" | "Icmp";
-export const ProtocolSettingsProtocol = /*@__PURE__*/ S.String;
+export const ProtocolSettingsProtocol = S.String;
 
 /** Protocol-level settings for the connection analyzer. */
 export interface ProtocolSettings {
@@ -14220,8 +14147,7 @@ export const ProtocolSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** The preferred IP version to use in test evaluation. The connection monitor may choose to use a different version depending on other parameters. */
 export type ConnectivityCheckSettingsPreferredIPVersion = "IPv4" | "IPv6";
-export const ConnectivityCheckSettingsPreferredIPVersion =
-  /*@__PURE__*/ S.String;
+export const ConnectivityCheckSettingsPreferredIPVersion = S.String;
 
 /** Settings that control how connectivity checks are performed by the connection analyzer. */
 export interface ConnectivityCheckSettings {
@@ -14310,8 +14236,7 @@ export type ConnectionAnalyzerPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ConnectionAnalyzerPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ConnectionAnalyzerPropertiesInputProvisioningState = S.String;
 
 /** Current execution status of the connection analyzer. */
 export type ConnectionAnalyzerPropertiesInputStatus =
@@ -14319,7 +14244,7 @@ export type ConnectionAnalyzerPropertiesInputStatus =
   | "Running"
   | "Succeeded"
   | "Failed";
-export const ConnectionAnalyzerPropertiesInputStatus = /*@__PURE__*/ S.String;
+export const ConnectionAnalyzerPropertiesInputStatus = S.String;
 
 /** Properties of a connection analyzer. */
 export interface ConnectionAnalyzerPropertiesInput {
@@ -14414,7 +14339,7 @@ export type ConnectionAnalyzerSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConnectionAnalyzerSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const ConnectionAnalyzerSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ConnectionAnalyzerSystemDataLastModifiedByType =
@@ -14422,8 +14347,7 @@ export type ConnectionAnalyzerSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConnectionAnalyzerSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const ConnectionAnalyzerSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ConnectionAnalyzerSystemData {
@@ -14462,8 +14386,7 @@ export type ConnectionAnalyzerPropertiesDiagnosticOperationsItem =
   | "PortScan"
   | "ConnectivityCheck"
   | "ExpressRouteDiagnostic";
-export const ConnectionAnalyzerPropertiesDiagnosticOperationsItem =
-  /*@__PURE__*/ S.String;
+export const ConnectionAnalyzerPropertiesDiagnosticOperationsItem = S.String;
 
 /** List of diagnostic operations to run. */
 export type ConnectionAnalyzerPropertiesDiagnosticOperationsList =
@@ -14481,8 +14404,7 @@ export type ConnectionAnalyzerPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ConnectionAnalyzerPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ConnectionAnalyzerPropertiesProvisioningState = S.String;
 
 /** Current execution status of the connection analyzer. */
 export type ConnectionAnalyzerPropertiesStatus =
@@ -14490,7 +14412,7 @@ export type ConnectionAnalyzerPropertiesStatus =
   | "Running"
   | "Succeeded"
   | "Failed";
-export const ConnectionAnalyzerPropertiesStatus = /*@__PURE__*/ S.String;
+export const ConnectionAnalyzerPropertiesStatus = S.String;
 
 /** Properties of a connection analyzer. */
 export interface ConnectionAnalyzerProperties {
@@ -14598,7 +14520,7 @@ export const PacketCaptureMachineScope = /*@__PURE__*/ S.suspend(() =>
 
 /** Target type of the resource provided. */
 export type PacketCaptureParametersTargetType = "AzureVM" | "AzureVMSS";
-export const PacketCaptureParametersTargetType = /*@__PURE__*/ S.String;
+export const PacketCaptureParametersTargetType = S.String;
 
 /** The storage location for a packet capture session. */
 export interface PacketCaptureStorageLocation {
@@ -14624,7 +14546,7 @@ export const PacketCaptureStorageLocation = /*@__PURE__*/ S.suspend(() =>
 
 /** Protocol to be filtered on. */
 export type PacketCaptureFilterProtocol = "TCP" | "UDP" | "Any";
-export const PacketCaptureFilterProtocol = /*@__PURE__*/ S.String;
+export const PacketCaptureFilterProtocol = S.String;
 
 /** Filter that is applied to packet capture request. Multiple filters can be applied. */
 export interface PacketCaptureFilter {
@@ -14749,7 +14671,7 @@ export const CreatePacketCaptureRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Target type of the resource provided. */
 export type PacketCaptureResultPropertiesTargetType = "AzureVM" | "AzureVMSS";
-export const PacketCaptureResultPropertiesTargetType = /*@__PURE__*/ S.String;
+export const PacketCaptureResultPropertiesTargetType = S.String;
 
 /** A list of packet capture filters. */
 export type PacketCaptureResultPropertiesFiltersList =
@@ -14766,8 +14688,7 @@ export type PacketCaptureResultPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const PacketCaptureResultPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PacketCaptureResultPropertiesProvisioningState = S.String;
 
 /** The properties of a packet capture session. */
 export interface PacketCaptureResultProperties {
@@ -14844,8 +14765,7 @@ export type ReachabilityAnalysisIntentPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ReachabilityAnalysisIntentPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ReachabilityAnalysisIntentPropertiesProvisioningState = S.String;
 
 /** List of source IP addresses of the traffic.. */
 export type IPTrafficSourceIpsList = Array<string>;
@@ -14873,7 +14793,7 @@ export const IPTrafficDestinationPortsList = /*@__PURE__*/ S.Array(
 
 /** Network Protocol. */
 export type IPTrafficProtocolsItem = "Any" | "TCP" | "UDP" | "ICMP";
-export const IPTrafficProtocolsItem = /*@__PURE__*/ S.String;
+export const IPTrafficProtocolsItem = S.String;
 
 export type IPTrafficProtocolsList = Array<
   IPTrafficProtocolsItem | (string & {})
@@ -14975,7 +14895,7 @@ export type CreateReachabilityAnalysisIntentResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const CreateReachabilityAnalysisIntentResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type CreateReachabilityAnalysisIntentResponseSystemDataLastModifiedByType =
@@ -14984,7 +14904,7 @@ export type CreateReachabilityAnalysisIntentResponseSystemDataLastModifiedByType
   | "ManagedIdentity"
   | "Key";
 export const CreateReachabilityAnalysisIntentResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CreateReachabilityAnalysisIntentResponseSystemData {
@@ -15054,8 +14974,7 @@ export type ReachabilityAnalysisRunPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ReachabilityAnalysisRunPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ReachabilityAnalysisRunPropertiesInputProvisioningState = S.String;
 
 /** Represents the Reachability Analysis Run properties. */
 export interface ReachabilityAnalysisRunPropertiesInput {
@@ -15122,7 +15041,7 @@ export type CreateReachabilityAnalysisRunResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const CreateReachabilityAnalysisRunResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type CreateReachabilityAnalysisRunResponseSystemDataLastModifiedByType =
@@ -15131,7 +15050,7 @@ export type CreateReachabilityAnalysisRunResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const CreateReachabilityAnalysisRunResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CreateReachabilityAnalysisRunResponseSystemData {
@@ -15193,8 +15112,7 @@ export type ReachabilityAnalysisRunPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ReachabilityAnalysisRunPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ReachabilityAnalysisRunPropertiesProvisioningState = S.String;
 
 /** Represents the Reachability Analysis Run properties. */
 export interface ReachabilityAnalysisRunProperties {
@@ -15263,8 +15181,7 @@ export type StaticCidrPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const StaticCidrPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const StaticCidrPropertiesInputProvisioningState = S.String;
 
 /** Properties of static CIDR resource. */
 export interface StaticCidrPropertiesInput {
@@ -15328,8 +15245,7 @@ export type CreateStaticCidrResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CreateStaticCidrResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const CreateStaticCidrResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type CreateStaticCidrResponseSystemDataLastModifiedByType =
@@ -15337,8 +15253,7 @@ export type CreateStaticCidrResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CreateStaticCidrResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const CreateStaticCidrResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CreateStaticCidrResponseSystemData {
@@ -15384,7 +15299,7 @@ export type StaticCidrPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const StaticCidrPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const StaticCidrPropertiesProvisioningState = S.String;
 
 /** Properties of static CIDR resource. */
 export interface StaticCidrProperties {
@@ -15451,8 +15366,7 @@ export type VerifierWorkspacePropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VerifierWorkspacePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VerifierWorkspacePropertiesProvisioningState = S.String;
 
 /** Properties of Verifier Workspace resource. */
 export interface VerifierWorkspaceProperties {
@@ -15514,8 +15428,7 @@ export type CreateVerifierWorkspaceResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CreateVerifierWorkspaceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const CreateVerifierWorkspaceResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type CreateVerifierWorkspaceResponseSystemDataLastModifiedByType =
@@ -15524,7 +15437,7 @@ export type CreateVerifierWorkspaceResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const CreateVerifierWorkspaceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CreateVerifierWorkspaceResponseSystemData {
@@ -15602,11 +15515,11 @@ export const CreateVerifierWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateVerifierWorkspaceResponse>;
 
 export type CreateVipSwapRequestSingletonResource = "swap";
-export const CreateVipSwapRequestSingletonResource = /*@__PURE__*/ S.String;
+export const CreateVipSwapRequestSingletonResource = S.String;
 
 /** Specifies slot info on a cloud service */
 export type SwapResourcePropertiesSlotType = "Production" | "Staging";
-export const SwapResourcePropertiesSlotType = /*@__PURE__*/ S.String;
+export const SwapResourcePropertiesSlotType = S.String;
 
 /** Swap resource properties */
 export interface SwapResourceProperties {
@@ -15684,8 +15597,7 @@ export type CustomIpPrefixPropertiesFormatInputCommissionedState =
   | "Decommissioning"
   | "Deprovisioning"
   | "Deprovisioned";
-export const CustomIpPrefixPropertiesFormatInputCommissionedState =
-  /*@__PURE__*/ S.String;
+export const CustomIpPrefixPropertiesFormatInputCommissionedState = S.String;
 
 /** The Geo for CIDR advertising. Should be an Geo code. */
 export type CustomIpPrefixPropertiesFormatInputGeo =
@@ -15698,15 +15610,14 @@ export type CustomIpPrefixPropertiesFormatInputGeo =
   | "ME"
   | "OCEANIA"
   | "AQ";
-export const CustomIpPrefixPropertiesFormatInputGeo = /*@__PURE__*/ S.String;
+export const CustomIpPrefixPropertiesFormatInputGeo = S.String;
 
 /** Type of custom IP prefix. Should be Singular, Parent, or Child. */
 export type CustomIpPrefixPropertiesFormatInputPrefixType =
   | "Singular"
   | "Parent"
   | "Child";
-export const CustomIpPrefixPropertiesFormatInputPrefixType =
-  /*@__PURE__*/ S.String;
+export const CustomIpPrefixPropertiesFormatInputPrefixType = S.String;
 
 /** Provisioning states of a resource. */
 export type CustomIpPrefixPropertiesFormatInputProvisioningState =
@@ -15716,8 +15627,7 @@ export type CustomIpPrefixPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const CustomIpPrefixPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const CustomIpPrefixPropertiesFormatInputProvisioningState = S.String;
 
 /** Custom IP prefix properties. */
 export interface CustomIpPrefixPropertiesFormatInput {
@@ -15871,8 +15781,7 @@ export type CustomIpPrefixPropertiesFormatCommissionedState =
   | "Decommissioning"
   | "Deprovisioning"
   | "Deprovisioned";
-export const CustomIpPrefixPropertiesFormatCommissionedState =
-  /*@__PURE__*/ S.String;
+export const CustomIpPrefixPropertiesFormatCommissionedState = S.String;
 
 /** The Geo for CIDR advertising. Should be an Geo code. */
 export type CustomIpPrefixPropertiesFormatGeo =
@@ -15885,14 +15794,14 @@ export type CustomIpPrefixPropertiesFormatGeo =
   | "ME"
   | "OCEANIA"
   | "AQ";
-export const CustomIpPrefixPropertiesFormatGeo = /*@__PURE__*/ S.String;
+export const CustomIpPrefixPropertiesFormatGeo = S.String;
 
 /** Type of custom IP prefix. Should be Singular, Parent, or Child. */
 export type CustomIpPrefixPropertiesFormatPrefixType =
   | "Singular"
   | "Parent"
   | "Child";
-export const CustomIpPrefixPropertiesFormatPrefixType = /*@__PURE__*/ S.String;
+export const CustomIpPrefixPropertiesFormatPrefixType = S.String;
 
 /** Reference to another subresource. */
 export type CustomIpPrefixPropertiesFormatPublicIpPrefixesItem =
@@ -15916,8 +15825,7 @@ export type CustomIpPrefixPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const CustomIpPrefixPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const CustomIpPrefixPropertiesFormatProvisioningState = S.String;
 
 /** Custom IP prefix properties. */
 export interface CustomIpPrefixPropertiesFormat {
@@ -16052,8 +15960,7 @@ export type DdosCustomPolicyPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const DdosCustomPolicyPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const DdosCustomPolicyPropertiesFormatInputProvisioningState = S.String;
 
 /** Provisioning states of a resource. */
 export type DdosDetectionRulePropertiesFormatProvisioningState =
@@ -16063,17 +15970,15 @@ export type DdosDetectionRulePropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const DdosDetectionRulePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const DdosDetectionRulePropertiesFormatProvisioningState = S.String;
 
 /** The detection mode for the DDoS detection rule. */
 export type DdosDetectionRulePropertiesFormatDetectionMode = "TrafficThreshold";
-export const DdosDetectionRulePropertiesFormatDetectionMode =
-  /*@__PURE__*/ S.String;
+export const DdosDetectionRulePropertiesFormatDetectionMode = S.String;
 
 /** The traffic type (one of Tcp, Udp, TcpSyn) that the detection rule will be applied upon. */
 export type TrafficDetectionRuleTrafficType = "Tcp" | "Udp" | "TcpSyn";
-export const TrafficDetectionRuleTrafficType = /*@__PURE__*/ S.String;
+export const TrafficDetectionRuleTrafficType = S.String;
 
 /** Ddos Custom Policy traffic detection rule. */
 export interface TrafficDetectionRule {
@@ -16241,8 +16146,7 @@ export type DdosCustomPolicyPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const DdosCustomPolicyPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const DdosCustomPolicyPropertiesFormatProvisioningState = S.String;
 
 /** A DDoS detection rule resource. */
 export interface DdosDetectionRule {
@@ -16388,7 +16292,7 @@ export type DdosProtectionPlanPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const DdosProtectionPlanPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** DDoS protection plan properties. */
 export interface DdosProtectionPlanPropertiesFormatInput {
@@ -16461,8 +16365,7 @@ export type DdosProtectionPlanPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const DdosProtectionPlanPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const DdosProtectionPlanPropertiesFormatProvisioningState = S.String;
 
 /** Reference to another subresource. */
 export type DdosProtectionPlanPropertiesFormatPublicIPAddressesItem =
@@ -21073,8 +20976,7 @@ export type DscpConfigurationPropertiesFormatInputProtocol =
   | "Ah"
   | "Vxlan"
   | "All";
-export const DscpConfigurationPropertiesFormatInputProtocol =
-  /*@__PURE__*/ S.String;
+export const DscpConfigurationPropertiesFormatInputProtocol = S.String;
 
 /** List of markings to be used in the configuration. */
 export type QosDefinitionMarkingsList = Array<number>;
@@ -21117,7 +21019,7 @@ export type QosDefinitionProtocol =
   | "Ah"
   | "Vxlan"
   | "All";
-export const QosDefinitionProtocol = /*@__PURE__*/ S.String;
+export const QosDefinitionProtocol = S.String;
 
 /** Quality of Service defines the traffic configuration between endpoints. Mandatory to have one marking. */
 export interface QosDefinition {
@@ -21161,8 +21063,7 @@ export type DscpConfigurationPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const DscpConfigurationPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const DscpConfigurationPropertiesFormatInputProvisioningState = S.String;
 
 /** Differentiated Services Code Point configuration properties. */
 export interface DscpConfigurationPropertiesFormatInput {
@@ -21311,7 +21212,7 @@ export type DscpConfigurationPropertiesFormatProtocol =
   | "Ah"
   | "Vxlan"
   | "All";
-export const DscpConfigurationPropertiesFormatProtocol = /*@__PURE__*/ S.String;
+export const DscpConfigurationPropertiesFormatProtocol = S.String;
 
 /** QoS object definitions */
 export type DscpConfigurationPropertiesFormatQosDefinitionCollectionList =
@@ -21936,8 +21837,7 @@ export type PublicIPAddressDnsSettingsDomainNameLabelScope =
   | "SubscriptionReuse"
   | "ResourceGroupReuse"
   | "NoReuse";
-export const PublicIPAddressDnsSettingsDomainNameLabelScope =
-  /*@__PURE__*/ S.String;
+export const PublicIPAddressDnsSettingsDomainNameLabelScope = S.String;
 
 /** Contains FQDN of the DNS record associated with the public IP address. */
 export interface PublicIPAddressDnsSettings {
@@ -21970,7 +21870,7 @@ export type DdosSettingsProtectionMode =
   | "VirtualNetworkInherited"
   | "Enabled"
   | "Disabled";
-export const DdosSettingsProtectionMode = /*@__PURE__*/ S.String;
+export const DdosSettingsProtectionMode = S.String;
 
 /** Reference to another subresource. */
 export type DdosSettingsDdosCustomPolicy =
@@ -22125,7 +22025,7 @@ export const NatGatewayPropertiesFormatServiceGateway =
 
 /** Whether Nat64 is enabled for the NAT gateway resource. */
 export type NatGatewayPropertiesFormatNat64 = "None" | "Enabled" | "Disabled";
-export const NatGatewayPropertiesFormatNat64 = /*@__PURE__*/ S.String;
+export const NatGatewayPropertiesFormatNat64 = S.String;
 
 /** Provisioning states of a resource. */
 export type NatGatewayPropertiesFormatProvisioningState =
@@ -22135,8 +22035,7 @@ export type NatGatewayPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const NatGatewayPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const NatGatewayPropertiesFormatProvisioningState = S.String;
 
 /** Nat Gateway properties. */
 export interface NatGatewayPropertiesFormat_4 {
@@ -22195,7 +22094,7 @@ export const NatGatewayPropertiesFormat_4 = /*@__PURE__*/ S.suspend(() =>
 
 /** Name of Nat Gateway SKU. */
 export type NatGatewaySkuName = "Standard" | "StandardV2";
-export const NatGatewaySkuName = /*@__PURE__*/ S.String;
+export const NatGatewaySkuName = S.String;
 
 /** SKU of nat gateway. */
 export interface NatGatewaySku {
@@ -22616,7 +22515,7 @@ export const RetentionPolicyParameters_7 = /*@__PURE__*/ S.suspend(() =>
 
 /** The file type of flow log. */
 export type FlowLogFormatParametersType = "JSON";
-export const FlowLogFormatParametersType = /*@__PURE__*/ S.String;
+export const FlowLogFormatParametersType = S.String;
 
 /** Parameters that define the flow log format. */
 export interface FlowLogFormatParameters_7 {
@@ -23766,7 +23665,7 @@ export type PrivateLinkServiceIpConfigurationPropertiesPrivateIPAllocationMethod
   | "Static"
   | "Dynamic";
 export const PrivateLinkServiceIpConfigurationPropertiesPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type PrivateLinkServiceIpConfigurationPropertiesProvisioningState =
@@ -23777,14 +23676,14 @@ export type PrivateLinkServiceIpConfigurationPropertiesProvisioningState =
   | "Updating"
   | "Deleting";
 export const PrivateLinkServiceIpConfigurationPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** IP address version. */
 export type PrivateLinkServiceIpConfigurationPropertiesPrivateIPAddressVersion =
   | "IPv4"
   | "IPv6";
 export const PrivateLinkServiceIpConfigurationPropertiesPrivateIPAddressVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of private link service IP configuration. */
 export interface PrivateLinkServiceIpConfigurationProperties_5 {
@@ -23856,7 +23755,7 @@ export const PrivateLinkServicePropertiesIpConfigurationsList_5 =
 
 /** The access mode of the private link service. */
 export type PrivateLinkServicePropertiesAccessMode = "Default" | "Restricted";
-export const PrivateLinkServicePropertiesAccessMode = /*@__PURE__*/ S.String;
+export const PrivateLinkServicePropertiesAccessMode = S.String;
 
 /** An array of references to the network interfaces created for this private link service. */
 export type PrivateLinkServicePropertiesNetworkInterfacesList_5 =
@@ -23874,8 +23773,7 @@ export type PrivateLinkServicePropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const PrivateLinkServicePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateLinkServicePropertiesProvisioningState = S.String;
 
 /** Provisioning states of a resource. */
 export type PrivateEndpointConnectionPropertiesProvisioningState =
@@ -23885,8 +23783,7 @@ export type PrivateEndpointConnectionPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const PrivateEndpointConnectionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionPropertiesProvisioningState = S.String;
 
 /** Properties of the PrivateEndpointConnectProperties. */
 export interface PrivateEndpointConnectionProperties_5 {
@@ -24211,8 +24108,7 @@ export type DscpConfigurationPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const DscpConfigurationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const DscpConfigurationPropertiesFormatProvisioningState = S.String;
 
 /** Differentiated Services Code Point configuration properties. */
 export interface DscpConfigurationPropertiesFormat {
@@ -24307,7 +24203,7 @@ export type NetworkVirtualApplianceExecuteMigrationPropertiesMigrationType =
   | "MigrateToNewOSVersion"
   | "MigrateToNewILBArchitecture";
 export const NetworkVirtualApplianceExecuteMigrationPropertiesMigrationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties supplied to execute the migration of a Network Virtual Appliance. */
 export interface NetworkVirtualApplianceExecuteMigrationProperties {
@@ -24366,7 +24262,7 @@ export type AuthorizationPropertiesFormatInputAuthorizationUseStatus =
   | "Available"
   | "InUse";
 export const AuthorizationPropertiesFormatInputAuthorizationUseStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type AuthorizationPropertiesFormatInputProvisioningState =
@@ -24376,8 +24272,7 @@ export type AuthorizationPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const AuthorizationPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AuthorizationPropertiesFormatInputProvisioningState = S.String;
 
 /** Properties of ExpressRouteCircuitAuthorization. */
 export interface AuthorizationPropertiesFormatInput {
@@ -24448,8 +24343,7 @@ export const ExpressRouteCircuitAuthorizationsCreateOrUpdateRequest =
 export type AuthorizationPropertiesFormatAuthorizationUseStatus =
   | "Available"
   | "InUse";
-export const AuthorizationPropertiesFormatAuthorizationUseStatus =
-  /*@__PURE__*/ S.String;
+export const AuthorizationPropertiesFormatAuthorizationUseStatus = S.String;
 
 /** Provisioning states of a resource. */
 export type AuthorizationPropertiesFormatProvisioningState =
@@ -24459,8 +24353,7 @@ export type AuthorizationPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const AuthorizationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AuthorizationPropertiesFormatProvisioningState = S.String;
 
 /** Properties of ExpressRouteCircuitAuthorization. */
 export interface AuthorizationPropertiesFormat {
@@ -24530,8 +24423,7 @@ export type Ipv6CircuitConnectionConfigCircuitConnectionStatus =
   | "Connected"
   | "Connecting"
   | "Disconnected";
-export const Ipv6CircuitConnectionConfigCircuitConnectionStatus =
-  /*@__PURE__*/ S.String;
+export const Ipv6CircuitConnectionConfigCircuitConnectionStatus = S.String;
 
 /** IPv6 Circuit Connection properties for global reach. */
 export interface Ipv6CircuitConnectionConfig {
@@ -24559,7 +24451,7 @@ export type ExpressRouteCircuitConnectionPropertiesFormatCircuitConnectionStatus
   | "Connecting"
   | "Disconnected";
 export const ExpressRouteCircuitConnectionPropertiesFormatCircuitConnectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type ExpressRouteCircuitConnectionPropertiesFormatProvisioningState =
@@ -24570,7 +24462,7 @@ export type ExpressRouteCircuitConnectionPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ExpressRouteCircuitConnectionPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the express route circuit connection. */
 export interface ExpressRouteCircuitConnectionPropertiesFormat {
@@ -24688,14 +24580,13 @@ export type ExpressRouteCircuitPeeringPropertiesFormatInputPeeringType =
   | "AzurePrivatePeering"
   | "MicrosoftPeering";
 export const ExpressRouteCircuitPeeringPropertiesFormatInputPeeringType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The state of peering. */
 export type ExpressRouteCircuitPeeringPropertiesFormatInputState =
   | "Disabled"
   | "Enabled";
-export const ExpressRouteCircuitPeeringPropertiesFormatInputState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteCircuitPeeringPropertiesFormatInputState = S.String;
 
 /** The reference to AdvertisedPublicPrefixes. */
 export type ExpressRouteCircuitPeeringConfigAdvertisedPublicPrefixesList =
@@ -24720,7 +24611,7 @@ export type ExpressRouteCircuitPeeringConfigAdvertisedPublicPrefixesState =
   | "Configured"
   | "ValidationNeeded";
 export const ExpressRouteCircuitPeeringConfigAdvertisedPublicPrefixesState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Advertised Public Prefix State that denotes if the prefix is validated or not. */
 export type AdvertisedPublicPrefixPropertiesValidationState =
@@ -24734,8 +24625,7 @@ export type AdvertisedPublicPrefixPropertiesValidationState =
   | "CertificateMissingInRoutingRegistry"
   | "InvalidSignatureEncoding"
   | "SignatureVerificationFailed";
-export const AdvertisedPublicPrefixPropertiesValidationState =
-  /*@__PURE__*/ S.String;
+export const AdvertisedPublicPrefixPropertiesValidationState = S.String;
 
 /** Prefix properties required to perform validation using openssl signature. */
 export interface AdvertisedPublicPrefixProperties {
@@ -24843,7 +24733,7 @@ export type ExpressRouteCircuitPeeringPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const ExpressRouteCircuitPeeringPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type ExpressRouteCircuitPeeringPropertiesFormatInputRouteFilter =
@@ -24859,7 +24749,7 @@ export const Ipv6ExpressRouteCircuitPeeringConfigRouteFilter =
 
 /** The state of peering. */
 export type Ipv6ExpressRouteCircuitPeeringConfigState = "Disabled" | "Enabled";
-export const Ipv6ExpressRouteCircuitPeeringConfigState = /*@__PURE__*/ S.String;
+export const Ipv6ExpressRouteCircuitPeeringConfigState = S.String;
 
 /** Contains IPv6 peering config. */
 export interface Ipv6ExpressRouteCircuitPeeringConfig {
@@ -25044,15 +24934,13 @@ export type ExpressRouteCircuitPeeringPropertiesFormatPeeringType =
   | "AzurePublicPeering"
   | "AzurePrivatePeering"
   | "MicrosoftPeering";
-export const ExpressRouteCircuitPeeringPropertiesFormatPeeringType =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteCircuitPeeringPropertiesFormatPeeringType = S.String;
 
 /** The state of peering. */
 export type ExpressRouteCircuitPeeringPropertiesFormatState =
   | "Disabled"
   | "Enabled";
-export const ExpressRouteCircuitPeeringPropertiesFormatState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteCircuitPeeringPropertiesFormatState = S.String;
 
 /** Provisioning states of a resource. */
 export type ExpressRouteCircuitPeeringPropertiesFormatProvisioningState =
@@ -25063,7 +24951,7 @@ export type ExpressRouteCircuitPeeringPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ExpressRouteCircuitPeeringPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type ExpressRouteCircuitPeeringPropertiesFormatRouteFilter =
@@ -25137,7 +25025,7 @@ export type PeerExpressRouteCircuitConnectionPropertiesFormatCircuitConnectionSt
   | "Connecting"
   | "Disconnected";
 export const PeerExpressRouteCircuitConnectionPropertiesFormatCircuitConnectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type PeerExpressRouteCircuitConnectionPropertiesFormatProvisioningState =
@@ -25148,7 +25036,7 @@ export type PeerExpressRouteCircuitConnectionPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const PeerExpressRouteCircuitConnectionPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the peer express route circuit connection. */
 export interface PeerExpressRouteCircuitConnectionPropertiesFormat {
@@ -25349,7 +25237,7 @@ export type ExpressRouteCircuitPropertiesFormatInputServiceProviderProvisioningS
   | "Deprovisioning"
   | "DeProvisioned";
 export const ExpressRouteCircuitPropertiesFormatInputServiceProviderProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Authorization in an ExpressRouteCircuit resource. */
 export interface ExpressRouteCircuitAuthorizationInput {
@@ -25437,8 +25325,7 @@ export type ExpressRouteCircuitPropertiesFormatInputResiliencyLevel =
   | "Standard"
   | "High"
   | "Maximum";
-export const ExpressRouteCircuitPropertiesFormatInputResiliencyLevel =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteCircuitPropertiesFormatInputResiliencyLevel = S.String;
 
 /** Provisioning states of a resource. */
 export type ExpressRouteCircuitPropertiesFormatInputProvisioningState =
@@ -25449,7 +25336,7 @@ export type ExpressRouteCircuitPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const ExpressRouteCircuitPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of ExpressRouteCircuit. */
 export interface ExpressRouteCircuitPropertiesFormatInput {
@@ -25543,11 +25430,11 @@ export type ExpressRouteCircuitSkuTier =
   | "Basic"
   | "Local"
   | "MultiCloud";
-export const ExpressRouteCircuitSkuTier = /*@__PURE__*/ S.String;
+export const ExpressRouteCircuitSkuTier = S.String;
 
 /** The family of the SKU. */
 export type ExpressRouteCircuitSkuFamily = "UnlimitedData" | "MeteredData";
-export const ExpressRouteCircuitSkuFamily = /*@__PURE__*/ S.String;
+export const ExpressRouteCircuitSkuFamily = S.String;
 
 /** Contains SKU in an ExpressRouteCircuit. */
 export interface ExpressRouteCircuitSku {
@@ -25627,7 +25514,7 @@ export type ExpressRouteCircuitPropertiesFormatServiceProviderProvisioningState 
   | "Deprovisioning"
   | "DeProvisioned";
 export const ExpressRouteCircuitPropertiesFormatServiceProviderProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Authorization in an ExpressRouteCircuit resource. */
 export interface ExpressRouteCircuitAuthorization {
@@ -25706,8 +25593,7 @@ export type ExpressRouteCircuitPropertiesFormatResiliencyLevel =
   | "Standard"
   | "High"
   | "Maximum";
-export const ExpressRouteCircuitPropertiesFormatResiliencyLevel =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteCircuitPropertiesFormatResiliencyLevel = S.String;
 
 /** Provisioning states of a resource. */
 export type ExpressRouteCircuitPropertiesFormatProvisioningState =
@@ -25717,8 +25603,7 @@ export type ExpressRouteCircuitPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ExpressRouteCircuitPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteCircuitPropertiesFormatProvisioningState = S.String;
 
 /** Properties of ExpressRouteCircuit. */
 export interface ExpressRouteCircuitPropertiesFormat {
@@ -25844,8 +25729,7 @@ export type ExpressRouteConnectionPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ExpressRouteConnectionPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteConnectionPropertiesInputProvisioningState = S.String;
 
 /** ExpressRoute circuit peering identifier. */
 export interface ExpressRouteCircuitPeeringId {
@@ -25945,8 +25829,7 @@ export type ExpressRouteConnectionPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ExpressRouteConnectionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteConnectionPropertiesProvisioningState = S.String;
 
 /** Properties of the ExpressRouteConnection subresource. */
 export interface ExpressRouteConnectionProperties {
@@ -26009,14 +25892,13 @@ export type ExpressRouteCrossConnectionPeeringPropertiesInputPeeringType =
   | "AzurePrivatePeering"
   | "MicrosoftPeering";
 export const ExpressRouteCrossConnectionPeeringPropertiesInputPeeringType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The state of peering. */
 export type ExpressRouteCrossConnectionPeeringPropertiesInputState =
   | "Disabled"
   | "Enabled";
-export const ExpressRouteCrossConnectionPeeringPropertiesInputState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteCrossConnectionPeeringPropertiesInputState = S.String;
 
 /** Provisioning states of a resource. */
 export type ExpressRouteCrossConnectionPeeringPropertiesInputProvisioningState =
@@ -26027,7 +25909,7 @@ export type ExpressRouteCrossConnectionPeeringPropertiesInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const ExpressRouteCrossConnectionPeeringPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of express route cross connection peering. */
 export interface ExpressRouteCrossConnectionPeeringPropertiesInput {
@@ -26126,15 +26008,13 @@ export type ExpressRouteCrossConnectionPeeringPropertiesPeeringType =
   | "AzurePublicPeering"
   | "AzurePrivatePeering"
   | "MicrosoftPeering";
-export const ExpressRouteCrossConnectionPeeringPropertiesPeeringType =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteCrossConnectionPeeringPropertiesPeeringType = S.String;
 
 /** The state of peering. */
 export type ExpressRouteCrossConnectionPeeringPropertiesState =
   | "Disabled"
   | "Enabled";
-export const ExpressRouteCrossConnectionPeeringPropertiesState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteCrossConnectionPeeringPropertiesState = S.String;
 
 /** Provisioning states of a resource. */
 export type ExpressRouteCrossConnectionPeeringPropertiesProvisioningState =
@@ -26145,7 +26025,7 @@ export type ExpressRouteCrossConnectionPeeringPropertiesProvisioningState =
   | "Updating"
   | "Deleting";
 export const ExpressRouteCrossConnectionPeeringPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of express route cross connection peering. */
 export interface ExpressRouteCrossConnectionPeeringProperties {
@@ -26260,7 +26140,7 @@ export type ExpressRouteCrossConnectionPropertiesInputServiceProviderProvisionin
   | "Deprovisioning"
   | "DeProvisioned";
 export const ExpressRouteCrossConnectionPropertiesInputServiceProviderProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type ExpressRouteCrossConnectionPropertiesInputProvisioningState =
@@ -26271,7 +26151,7 @@ export type ExpressRouteCrossConnectionPropertiesInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const ExpressRouteCrossConnectionPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Peering in an ExpressRoute Cross Connection resource. */
 export interface ExpressRouteCrossConnectionPeeringInput {
@@ -26395,7 +26275,7 @@ export type ExpressRouteCrossConnectionPropertiesServiceProviderProvisioningStat
   | "Deprovisioning"
   | "DeProvisioned";
 export const ExpressRouteCrossConnectionPropertiesServiceProviderProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type ExpressRouteCrossConnectionPropertiesProvisioningState =
@@ -26405,8 +26285,7 @@ export type ExpressRouteCrossConnectionPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ExpressRouteCrossConnectionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteCrossConnectionPropertiesProvisioningState = S.String;
 
 /** Peering in an ExpressRoute Cross Connection resource. */
 export interface ExpressRouteCrossConnectionPeering {
@@ -26594,8 +26473,7 @@ export type ExpressRouteGatewayPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ExpressRouteGatewayPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteGatewayPropertiesInputProvisioningState = S.String;
 
 /** Virtual Hub identifier. */
 export interface VirtualHubId {
@@ -26724,8 +26602,7 @@ export type ExpressRouteGatewayPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ExpressRouteGatewayPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteGatewayPropertiesProvisioningState = S.String;
 
 /** ExpressRoute gateway resource properties. */
 export interface ExpressRouteGatewayProperties {
@@ -26803,15 +26680,13 @@ export const ExpressRouteLagsCreateOrUpdateRequestTagsMap =
 export type ExpressRouteLagPropertiesFormatInputEncapsulation =
   | "Dot1Q"
   | "QinQ";
-export const ExpressRouteLagPropertiesFormatInputEncapsulation =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLagPropertiesFormatInputEncapsulation = S.String;
 
 /** Administrative state of the physical port. */
 export type ExpressRouteLagLinkPropertiesFormatInputAdminState =
   | "Enabled"
   | "Disabled";
-export const ExpressRouteLagLinkPropertiesFormatInputAdminState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLagLinkPropertiesFormatInputAdminState = S.String;
 
 /** Provisioning states of a resource. */
 export type ExpressRouteLagLinkPropertiesFormatInputProvisioningState =
@@ -26822,7 +26697,7 @@ export type ExpressRouteLagLinkPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const ExpressRouteLagLinkPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Mac security cipher. */
 export type ExpressRouteLinkMacSecConfigCipher =
@@ -26830,11 +26705,11 @@ export type ExpressRouteLinkMacSecConfigCipher =
   | "GcmAes128"
   | "GcmAesXpn128"
   | "GcmAesXpn256";
-export const ExpressRouteLinkMacSecConfigCipher = /*@__PURE__*/ S.String;
+export const ExpressRouteLinkMacSecConfigCipher = S.String;
 
 /** Sci mode enabled/disabled. */
 export type ExpressRouteLinkMacSecConfigSciState = "Disabled" | "Enabled";
-export const ExpressRouteLinkMacSecConfigSciState = /*@__PURE__*/ S.String;
+export const ExpressRouteLinkMacSecConfigSciState = S.String;
 
 /** ExpressRouteLink Mac Security Configuration. */
 export interface ExpressRouteLinkMacSecConfig {
@@ -26862,15 +26737,13 @@ export const ExpressRouteLinkMacSecConfig = /*@__PURE__*/ S.suspend(() =>
 export type ExpressRouteLagMemberPropertiesFormatInputConnectorType =
   | "LC"
   | "SC";
-export const ExpressRouteLagMemberPropertiesFormatInputConnectorType =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLagMemberPropertiesFormatInputConnectorType = S.String;
 
 /** Administrative state of the physical port. */
 export type ExpressRouteLagMemberPropertiesFormatInputAdminState =
   | "Enabled"
   | "Disabled";
-export const ExpressRouteLagMemberPropertiesFormatInputAdminState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLagMemberPropertiesFormatInputAdminState = S.String;
 
 /** Provisioning states of a resource. */
 export type ExpressRouteLagMemberPropertiesFormatInputProvisioningState =
@@ -26881,7 +26754,7 @@ export type ExpressRouteLagMemberPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const ExpressRouteLagMemberPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties specific to ExpressRouteLagMember resources. */
 export interface ExpressRouteLagMemberPropertiesFormatInput {
@@ -27002,20 +26875,17 @@ export type ExpressRouteLagPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ExpressRouteLagPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLagPropertiesFormatInputProvisioningState = S.String;
 
 /** The billing type of the ExpressRouteLag resource. */
 export type ExpressRouteLagPropertiesFormatInputBillingType =
   | "MeteredData"
   | "UnlimitedData";
-export const ExpressRouteLagPropertiesFormatInputBillingType =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLagPropertiesFormatInputBillingType = S.String;
 
 /** LACP timer configuration. */
 export type ExpressRouteLagPropertiesFormatInputLacpTimer = "Fast" | "Slow";
-export const ExpressRouteLagPropertiesFormatInputLacpTimer =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLagPropertiesFormatInputLacpTimer = S.String;
 
 /** Properties specific to ExpressRouteLag resources. */
 export interface ExpressRouteLagPropertiesFormatInput {
@@ -27148,15 +27018,13 @@ export const ExpressRouteLagsCreateOrUpdateResponseTagsMap =
 
 /** Encapsulation method on LAG. */
 export type ExpressRouteLagPropertiesFormatEncapsulation = "Dot1Q" | "QinQ";
-export const ExpressRouteLagPropertiesFormatEncapsulation =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLagPropertiesFormatEncapsulation = S.String;
 
 /** Administrative state of the physical port. */
 export type ExpressRouteLagLinkPropertiesFormatAdminState =
   | "Enabled"
   | "Disabled";
-export const ExpressRouteLagLinkPropertiesFormatAdminState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLagLinkPropertiesFormatAdminState = S.String;
 
 /** Provisioning states of a resource. */
 export type ExpressRouteLagLinkPropertiesFormatProvisioningState =
@@ -27166,20 +27034,17 @@ export type ExpressRouteLagLinkPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ExpressRouteLagLinkPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLagLinkPropertiesFormatProvisioningState = S.String;
 
 /** Physical fiber port type. */
 export type ExpressRouteLagMemberPropertiesFormatConnectorType = "LC" | "SC";
-export const ExpressRouteLagMemberPropertiesFormatConnectorType =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLagMemberPropertiesFormatConnectorType = S.String;
 
 /** Administrative state of the physical port. */
 export type ExpressRouteLagMemberPropertiesFormatAdminState =
   | "Enabled"
   | "Disabled";
-export const ExpressRouteLagMemberPropertiesFormatAdminState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLagMemberPropertiesFormatAdminState = S.String;
 
 /** Provisioning states of a resource. */
 export type ExpressRouteLagMemberPropertiesFormatProvisioningState =
@@ -27189,8 +27054,7 @@ export type ExpressRouteLagMemberPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ExpressRouteLagMemberPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLagMemberPropertiesFormatProvisioningState = S.String;
 
 /** Properties specific to ExpressRouteLagMember resources. */
 export interface ExpressRouteLagMemberPropertiesFormat {
@@ -27331,19 +27195,17 @@ export type ExpressRouteLagPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ExpressRouteLagPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLagPropertiesFormatProvisioningState = S.String;
 
 /** The billing type of the ExpressRouteLag resource. */
 export type ExpressRouteLagPropertiesFormatBillingType =
   | "MeteredData"
   | "UnlimitedData";
-export const ExpressRouteLagPropertiesFormatBillingType =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLagPropertiesFormatBillingType = S.String;
 
 /** LACP timer configuration. */
 export type ExpressRouteLagPropertiesFormatLacpTimer = "Fast" | "Slow";
-export const ExpressRouteLagPropertiesFormatLacpTimer = /*@__PURE__*/ S.String;
+export const ExpressRouteLagPropertiesFormatLacpTimer = S.String;
 
 /** Properties specific to ExpressRouteLag resources. */
 export interface ExpressRouteLagPropertiesFormat {
@@ -27477,7 +27339,7 @@ export type ExpressRoutePortAuthorizationPropertiesFormatInputAuthorizationUseSt
   | "Available"
   | "InUse";
 export const ExpressRoutePortAuthorizationPropertiesFormatInputAuthorizationUseStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type ExpressRoutePortAuthorizationPropertiesFormatInputProvisioningState =
@@ -27488,7 +27350,7 @@ export type ExpressRoutePortAuthorizationPropertiesFormatInputProvisioningState 
   | "Updating"
   | "Deleting";
 export const ExpressRoutePortAuthorizationPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of ExpressRoutePort Authorization. */
 export interface ExpressRoutePortAuthorizationPropertiesFormatInput {
@@ -27560,7 +27422,7 @@ export type ExpressRoutePortAuthorizationPropertiesFormatAuthorizationUseStatus 
   | "Available"
   | "InUse";
 export const ExpressRoutePortAuthorizationPropertiesFormatAuthorizationUseStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type ExpressRoutePortAuthorizationPropertiesFormatProvisioningState =
@@ -27571,7 +27433,7 @@ export type ExpressRoutePortAuthorizationPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ExpressRoutePortAuthorizationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of ExpressRoutePort Authorization. */
 export interface ExpressRoutePortAuthorizationPropertiesFormat {
@@ -27639,20 +27501,17 @@ export const ExpressRoutePortsCreateOrUpdateRequestTagsMap =
 export type ExpressRoutePortPropertiesFormatInputEncapsulation =
   | "Dot1Q"
   | "QinQ";
-export const ExpressRoutePortPropertiesFormatInputEncapsulation =
-  /*@__PURE__*/ S.String;
+export const ExpressRoutePortPropertiesFormatInputEncapsulation = S.String;
 
 /** Physical fiber port type. */
 export type ExpressRouteLinkPropertiesFormatInputConnectorType = "LC" | "SC";
-export const ExpressRouteLinkPropertiesFormatInputConnectorType =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLinkPropertiesFormatInputConnectorType = S.String;
 
 /** Administrative state of the physical port. */
 export type ExpressRouteLinkPropertiesFormatInputAdminState =
   | "Enabled"
   | "Disabled";
-export const ExpressRouteLinkPropertiesFormatInputAdminState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLinkPropertiesFormatInputAdminState = S.String;
 
 /** Provisioning states of a resource. */
 export type ExpressRouteLinkPropertiesFormatInputProvisioningState =
@@ -27662,8 +27521,7 @@ export type ExpressRouteLinkPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ExpressRouteLinkPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLinkPropertiesFormatInputProvisioningState = S.String;
 
 /** Properties specific to ExpressRouteLink resources. */
 export interface ExpressRouteLinkPropertiesFormatInput {
@@ -27731,15 +27589,13 @@ export type ExpressRoutePortPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ExpressRoutePortPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ExpressRoutePortPropertiesFormatInputProvisioningState = S.String;
 
 /** The billing type of the ExpressRoutePort resource. */
 export type ExpressRoutePortPropertiesFormatInputBillingType =
   | "MeteredData"
   | "UnlimitedData";
-export const ExpressRoutePortPropertiesFormatInputBillingType =
-  /*@__PURE__*/ S.String;
+export const ExpressRoutePortPropertiesFormatInputBillingType = S.String;
 
 /** Properties specific to ExpressRoutePort resources. */
 export interface ExpressRoutePortPropertiesFormatInput {
@@ -27865,18 +27721,15 @@ export const ExpressRoutePortsCreateOrUpdateResponseTagsMap =
 
 /** Encapsulation method on physical ports. */
 export type ExpressRoutePortPropertiesFormatEncapsulation = "Dot1Q" | "QinQ";
-export const ExpressRoutePortPropertiesFormatEncapsulation =
-  /*@__PURE__*/ S.String;
+export const ExpressRoutePortPropertiesFormatEncapsulation = S.String;
 
 /** Physical fiber port type. */
 export type ExpressRouteLinkPropertiesFormatConnectorType = "LC" | "SC";
-export const ExpressRouteLinkPropertiesFormatConnectorType =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLinkPropertiesFormatConnectorType = S.String;
 
 /** Administrative state of the physical port. */
 export type ExpressRouteLinkPropertiesFormatAdminState = "Enabled" | "Disabled";
-export const ExpressRouteLinkPropertiesFormatAdminState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLinkPropertiesFormatAdminState = S.String;
 
 /** Provisioning states of a resource. */
 export type ExpressRouteLinkPropertiesFormatProvisioningState =
@@ -27886,8 +27739,7 @@ export type ExpressRouteLinkPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ExpressRouteLinkPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLinkPropertiesFormatProvisioningState = S.String;
 
 /** Properties specific to ExpressRouteLink resources. */
 export interface ExpressRouteLinkPropertiesFormat {
@@ -27978,15 +27830,13 @@ export type ExpressRoutePortPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ExpressRoutePortPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ExpressRoutePortPropertiesFormatProvisioningState = S.String;
 
 /** The billing type of the ExpressRoutePort resource. */
 export type ExpressRoutePortPropertiesFormatBillingType =
   | "MeteredData"
   | "UnlimitedData";
-export const ExpressRoutePortPropertiesFormatBillingType =
-  /*@__PURE__*/ S.String;
+export const ExpressRoutePortPropertiesFormatBillingType = S.String;
 
 /** Properties specific to ExpressRoutePort resources. */
 export interface ExpressRoutePortPropertiesFormat {
@@ -28217,8 +28067,7 @@ export type FirewallPolicyPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const FirewallPolicyPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const FirewallPolicyPropertiesFormatInputProvisioningState = S.String;
 
 /** Reference to another subresource. */
 export type FirewallPolicyPropertiesFormatInputBasePolicy =
@@ -28231,8 +28080,7 @@ export type FirewallPolicyPropertiesFormatInputThreatIntelMode =
   | "Alert"
   | "Deny"
   | "Off";
-export const FirewallPolicyPropertiesFormatInputThreatIntelMode =
-  /*@__PURE__*/ S.String;
+export const FirewallPolicyPropertiesFormatInputThreatIntelMode = S.String;
 
 /** List of IP addresses for the ThreatIntel Whitelist. */
 export type FirewallPolicyThreatIntelWhitelistIpAddressesList = Array<string>;
@@ -28347,7 +28195,7 @@ export const FirewallPolicySNATPrivateRangesList = /*@__PURE__*/ S.Array(
 
 /** The operation mode for automatically learning private ranges to not be SNAT */
 export type FirewallPolicySNATAutoLearnPrivateRanges = "Enabled" | "Disabled";
-export const FirewallPolicySNATAutoLearnPrivateRanges = /*@__PURE__*/ S.String;
+export const FirewallPolicySNATAutoLearnPrivateRanges = S.String;
 
 /** The private IP addresses/IP ranges to which traffic will not be SNAT. */
 export interface FirewallPolicySNAT {
@@ -28433,7 +28281,7 @@ export const ExplicitProxy = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible state values. */
 export type FirewallPolicyIntrusionDetectionMode = "Off" | "Alert" | "Deny";
-export const FirewallPolicyIntrusionDetectionMode = /*@__PURE__*/ S.String;
+export const FirewallPolicyIntrusionDetectionMode = S.String;
 
 /** Specifies the Intrusion Detection signature profile to apply. Values: - Off: IDPS profiles disabled; uses the same signature set that existed before profiles. - Emerging: Signatures of the newest, most recent threats. - Core: Complete, modern, standard set of signatures. - Extended: Core signatures plus older legacy signatures for maximum coverage. */
 export type FirewallPolicyIntrusionDetectionProfile =
@@ -28441,7 +28289,7 @@ export type FirewallPolicyIntrusionDetectionProfile =
   | "Emerging"
   | "Core"
   | "Extended";
-export const FirewallPolicyIntrusionDetectionProfile = /*@__PURE__*/ S.String;
+export const FirewallPolicyIntrusionDetectionProfile = S.String;
 
 /** Possible state values. */
 export type FirewallPolicyIntrusionDetectionSignatureSpecificationMode =
@@ -28449,7 +28297,7 @@ export type FirewallPolicyIntrusionDetectionSignatureSpecificationMode =
   | "Alert"
   | "Deny";
 export const FirewallPolicyIntrusionDetectionSignatureSpecificationMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Intrusion detection signatures specification states. */
 export interface FirewallPolicyIntrusionDetectionSignatureSpecification {
@@ -28487,7 +28335,7 @@ export type FirewallPolicyIntrusionDetectionBypassTrafficSpecificationsProtocol 
   | "ICMP"
   | "ANY";
 export const FirewallPolicyIntrusionDetectionBypassTrafficSpecificationsProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of source IP addresses or ranges for this rule. */
 export type FirewallPolicyIntrusionDetectionBypassTrafficSpecificationsSourceAddressesList =
@@ -28670,7 +28518,7 @@ export const FirewallPolicyTransportSecurity = /*@__PURE__*/ S.suspend(() =>
 
 /** Tier of Firewall Policy. */
 export type FirewallPolicySkuTier = "Standard" | "Premium" | "Basic";
-export const FirewallPolicySkuTier = /*@__PURE__*/ S.String;
+export const FirewallPolicySkuTier = S.String;
 
 /** SKU of Firewall policy. */
 export interface FirewallPolicySku {
@@ -28863,8 +28711,7 @@ export type FirewallPolicyPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const FirewallPolicyPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const FirewallPolicyPropertiesFormatProvisioningState = S.String;
 
 /** Reference to another subresource. */
 export type FirewallPolicyPropertiesFormatBasePolicy =
@@ -28905,8 +28752,7 @@ export type FirewallPolicyPropertiesFormatThreatIntelMode =
   | "Alert"
   | "Deny"
   | "Off";
-export const FirewallPolicyPropertiesFormatThreatIntelMode =
-  /*@__PURE__*/ S.String;
+export const FirewallPolicyPropertiesFormatThreatIntelMode = S.String;
 
 /** Firewall Policy definition. */
 export interface FirewallPolicyPropertiesFormat {
@@ -29074,8 +28920,7 @@ export type FirewallPolicyDraftPropertiesThreatIntelMode =
   | "Alert"
   | "Deny"
   | "Off";
-export const FirewallPolicyDraftPropertiesThreatIntelMode =
-  /*@__PURE__*/ S.String;
+export const FirewallPolicyDraftPropertiesThreatIntelMode = S.String;
 
 export interface FirewallPolicyDraftProperties {
   /** Reference to another subresource. */
@@ -29208,7 +29053,7 @@ export type LabelSelectorExpressionOperator =
   | "NotIn"
   | "Exists"
   | "DoesNotExist";
-export const LabelSelectorExpressionOperator = /*@__PURE__*/ S.String;
+export const LabelSelectorExpressionOperator = S.String;
 
 /** values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. */
 export type LabelSelectorExpressionValuesList = Array<string>;
@@ -29267,7 +29112,7 @@ export type FirewallPolicyKubeSelectorGroupPropertiesProvisioningState =
   | "Updating"
   | "Deleting";
 export const FirewallPolicyKubeSelectorGroupPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the Kubernetes Selector Group. */
 export interface FirewallPolicyKubeSelectorGroupProperties {
@@ -29360,8 +29205,7 @@ export const FirewallPolicyKubeSelectorGroupsCreateOrUpdateResponse =
 export type FirewallPolicyRuleCollectionRuleCollectionType =
   | "FirewallPolicyNatRuleCollection"
   | "FirewallPolicyFilterRuleCollection";
-export const FirewallPolicyRuleCollectionRuleCollectionType =
-  /*@__PURE__*/ S.String;
+export const FirewallPolicyRuleCollectionRuleCollectionType = S.String;
 
 /** Properties of the rule collection. */
 export interface FirewallPolicyRuleCollection {
@@ -29520,7 +29364,7 @@ export type FirewallPolicyRuleCollectionGroupPropertiesInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const FirewallPolicyRuleCollectionGroupPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the rule collection group. */
 export interface FirewallPolicyRuleCollectionGroupPropertiesInput {
@@ -29603,7 +29447,7 @@ export type FirewallPolicyRuleCollectionGroupPropertiesProvisioningState =
   | "Updating"
   | "Deleting";
 export const FirewallPolicyRuleCollectionGroupPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the rule collection group. */
 export interface FirewallPolicyRuleCollectionGroupProperties {
@@ -29676,7 +29520,7 @@ export type FirstPartyServiceTagPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const FirstPartyServiceTagPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the first party service tag. */
 export interface FirstPartyServiceTagPropertiesFormatInput {
@@ -29755,8 +29599,7 @@ export type FirstPartyServiceTagPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const FirstPartyServiceTagPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const FirstPartyServiceTagPropertiesFormatProvisioningState = S.String;
 
 /** Properties of the first party service tag. */
 export interface FirstPartyServiceTagPropertiesFormat {
@@ -29855,8 +29698,7 @@ export type FlowLogPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const FlowLogPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const FlowLogPropertiesFormatInputProvisioningState = S.String;
 
 /** Parameters that define the configuration of flow log. */
 export interface FlowLogPropertiesFormatInput {
@@ -30190,7 +30032,7 @@ export type GenerateP2sVpnGatewayVpnProfileRequestAuthenticationMethod =
   | "EAPTLS"
   | "EAPMSCHAPv2";
 export const GenerateP2sVpnGatewayVpnProfileRequestAuthenticationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GenerateP2sVpnGatewayVpnProfileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -30243,14 +30085,14 @@ export type GenerateVirtualNetworkGatewayVpnProfileRequestProcessorArchitecture 
   | "Amd64"
   | "X86";
 export const GenerateVirtualNetworkGatewayVpnProfileRequestProcessorArchitecture =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** VPN client authentication method. */
 export type GenerateVirtualNetworkGatewayVpnProfileRequestAuthenticationMethod =
   | "EAPTLS"
   | "EAPMSCHAPv2";
 export const GenerateVirtualNetworkGatewayVpnProfileRequestAuthenticationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A list of client root certificates public certificate data encoded as Base-64 strings. Optional parameter for external radius based authentication with EAPTLS. */
 export type GenerateVirtualNetworkGatewayVpnProfileRequestClientRootCertificatesList =
@@ -30319,7 +30161,7 @@ export type GeneratevirtualwanvpnserverconfigurationvpnprofileRequestAuthenticat
   | "EAPTLS"
   | "EAPMSCHAPv2";
 export const GeneratevirtualwanvpnserverconfigurationvpnprofileRequestAuthenticationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GeneratevirtualwanvpnserverconfigurationvpnprofileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -30384,7 +30226,7 @@ export const GetActiveSessionsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The protocol used to connect to the target. */
 export type BastionActiveSessionProtocol = "SSH" | "RDP";
-export const BastionActiveSessionProtocol = /*@__PURE__*/ S.String;
+export const BastionActiveSessionProtocol = S.String;
 
 /** The session detail for a target. */
 export interface BastionActiveSession {
@@ -30544,8 +30386,7 @@ export type GetAdminRuleResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetAdminRuleResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetAdminRuleResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetAdminRuleResponseSystemDataLastModifiedByType =
@@ -30553,8 +30394,7 @@ export type GetAdminRuleResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetAdminRuleResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetAdminRuleResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetAdminRuleResponseSystemData {
@@ -30588,7 +30428,7 @@ export const GetAdminRuleResponseSystemData = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the rule is custom or default. */
 export type GetAdminRuleResponseKind = "Custom" | "Default";
-export const GetAdminRuleResponseKind = /*@__PURE__*/ S.String;
+export const GetAdminRuleResponseKind = S.String;
 
 export interface GetAdminRuleResponse {
   /** Resource ID. */
@@ -30654,8 +30494,7 @@ export type GetAdminRuleCollectionResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetAdminRuleCollectionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetAdminRuleCollectionResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetAdminRuleCollectionResponseSystemDataLastModifiedByType =
@@ -30664,7 +30503,7 @@ export type GetAdminRuleCollectionResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetAdminRuleCollectionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetAdminRuleCollectionResponseSystemData {
@@ -30947,7 +30786,7 @@ export type ApplicationGatewaySslPredefinedPolicyPropertiesFormatCipherSuitesIte
   | "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
   | "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384";
 export const ApplicationGatewaySslPredefinedPolicyPropertiesFormatCipherSuitesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Ssl cipher suites to be enabled in the specified order for application gateway. */
 export type ApplicationGatewaySslPredefinedPolicyPropertiesFormatCipherSuitesList =
@@ -30964,7 +30803,7 @@ export type ApplicationGatewaySslPredefinedPolicyPropertiesFormatMinProtocolVers
   | "TLSv1_2"
   | "TLSv1_3";
 export const ApplicationGatewaySslPredefinedPolicyPropertiesFormatMinProtocolVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of ApplicationGatewaySslPredefinedPolicy. */
 export interface ApplicationGatewaySslPredefinedPolicyPropertiesFormat {
@@ -31053,16 +30892,14 @@ export type ApplicationGatewayFirewallManifestRuleSetStatus =
   | "GA"
   | "Supported"
   | "Deprecated";
-export const ApplicationGatewayFirewallManifestRuleSetStatus =
-  /*@__PURE__*/ S.String;
+export const ApplicationGatewayFirewallManifestRuleSetStatus = S.String;
 
 export type ApplicationGatewayFirewallManifestRuleSetTiersItem =
   | "Standard"
   | "WAF"
   | "Standard_v2"
   | "WAF_v2";
-export const ApplicationGatewayFirewallManifestRuleSetTiersItem =
-  /*@__PURE__*/ S.String;
+export const ApplicationGatewayFirewallManifestRuleSetTiersItem = S.String;
 
 /** Tier of an application gateway that support the rule set. */
 export type ApplicationGatewayFirewallManifestRuleSetTiersList =
@@ -31074,7 +30911,7 @@ export const ApplicationGatewayFirewallManifestRuleSetTiersList =
 
 /** The string representation of the web application firewall rule state. */
 export type ApplicationGatewayFirewallRuleState = "Enabled" | "Disabled";
-export const ApplicationGatewayFirewallRuleState = /*@__PURE__*/ S.String;
+export const ApplicationGatewayFirewallRuleState = S.String;
 
 /** The string representation of the web application firewall rule action. */
 export type ApplicationGatewayFirewallRuleAction =
@@ -31083,14 +30920,14 @@ export type ApplicationGatewayFirewallRuleAction =
   | "Allow"
   | "Block"
   | "Log";
-export const ApplicationGatewayFirewallRuleAction = /*@__PURE__*/ S.String;
+export const ApplicationGatewayFirewallRuleAction = S.String;
 
 /** The string representation of the web application firewall rule sensitivity. */
 export type ApplicationGatewayFirewallRuleSensitivity =
   | "Low"
   | "Medium"
   | "High";
-export const ApplicationGatewayFirewallRuleSensitivity = /*@__PURE__*/ S.String;
+export const ApplicationGatewayFirewallRuleSensitivity = S.String;
 
 /** A web application firewall rule. */
 export interface ApplicationGatewayFirewallRule {
@@ -31672,7 +31509,7 @@ export type GetCommitResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetCommitResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const GetCommitResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetCommitResponseSystemDataLastModifiedByType =
@@ -31680,8 +31517,7 @@ export type GetCommitResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetCommitResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetCommitResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetCommitResponseSystemData {
@@ -31946,7 +31782,7 @@ export type GetConnectivityConfigurationResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetConnectivityConfigurationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetConnectivityConfigurationResponseSystemDataLastModifiedByType =
@@ -31955,7 +31791,7 @@ export type GetConnectivityConfigurationResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetConnectivityConfigurationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetConnectivityConfigurationResponseSystemData {
@@ -32512,16 +32348,14 @@ export type ExpressRouteLinkFailoverAllTestsDetailsStatus =
   | "StopFailed"
   | "Invalid"
   | "Expired";
-export const ExpressRouteLinkFailoverAllTestsDetailsStatus =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLinkFailoverAllTestsDetailsStatus = S.String;
 
 /** The type of failover test */
 export type ExpressRouteLinkFailoverAllTestsDetailsTestType =
   | "SingleSiteFailover"
   | "MultiSiteFailover"
   | "All";
-export const ExpressRouteLinkFailoverAllTestsDetailsTestType =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLinkFailoverAllTestsDetailsTestType = S.String;
 
 /** A list of all issues with the test. */
 export type ExpressRouteLinkFailoverAllTestsDetailsIssuesList = Array<string>;
@@ -32535,30 +32369,28 @@ export type ExpressRouteLinkFailoverAllTestsDetailsCircuitTestCategory =
   | "BgpDisconnect"
   | "ASPathPrepend";
 export const ExpressRouteLinkFailoverAllTestsDetailsCircuitTestCategory =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The link on which the failover test is being performed. */
 export type ExpressRouteLinkFailoverAllTestsDetailsLinkType =
   | "Primary"
   | "Secondary";
-export const ExpressRouteLinkFailoverAllTestsDetailsLinkType =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLinkFailoverAllTestsDetailsLinkType = S.String;
 
 /** The address family type for BGP status. */
 export type ExpressRouteLinkFailoverTestBgpStatusType = "IPv4" | "IPv6";
-export const ExpressRouteLinkFailoverTestBgpStatusType = /*@__PURE__*/ S.String;
+export const ExpressRouteLinkFailoverTestBgpStatusType = S.String;
 
 /** The link on which the failover test is being performed. */
 export type ExpressRouteLinkFailoverTestBgpStatusLink = "Primary" | "Secondary";
-export const ExpressRouteLinkFailoverTestBgpStatusLink = /*@__PURE__*/ S.String;
+export const ExpressRouteLinkFailoverTestBgpStatusLink = S.String;
 
 /** The BGP status of an ExpressRoute link failover. */
 export type ExpressRouteLinkFailoverTestBgpStatusStatus =
   | "Undefined"
   | "Connected"
   | "Disconnected";
-export const ExpressRouteLinkFailoverTestBgpStatusStatus =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLinkFailoverTestBgpStatusStatus = S.String;
 
 /** Represents the BGP status of an ExpressRoute link failover test. */
 export interface ExpressRouteLinkFailoverTestBgpStatus {
@@ -32702,22 +32534,20 @@ export type ExpressRouteLinkFailoverSingleTestDetailsStatus =
   | "StopFailed"
   | "Invalid"
   | "Expired";
-export const ExpressRouteLinkFailoverSingleTestDetailsStatus =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLinkFailoverSingleTestDetailsStatus = S.String;
 
 /** The link on which the failover test is being performed. */
 export type ExpressRouteLinkFailoverSingleTestDetailsLinkType =
   | "Primary"
   | "Secondary";
-export const ExpressRouteLinkFailoverSingleTestDetailsLinkType =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteLinkFailoverSingleTestDetailsLinkType = S.String;
 
 /** The type of maintenance that can occur during an ExpressRoute failover test. */
 export type ExpressRouteLinkFailoverSingleTestDetailsCircuitTestCategory =
   | "BgpDisconnect"
   | "ASPathPrepend";
 export const ExpressRouteLinkFailoverSingleTestDetailsCircuitTestCategory =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a failover route for an ExpressRoute link. */
 export interface ExpressRouteLinkFailoverRoute {
@@ -33313,14 +33143,13 @@ export type GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemStatus 
   | "Invalid"
   | "Expired";
 export const GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The current status of the connection */
 export type ExpressRouteFailoverConnectionResourceDetailsStatus =
   | "Connected"
   | "Disconnected";
-export const ExpressRouteFailoverConnectionResourceDetailsStatus =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteFailoverConnectionResourceDetailsStatus = S.String;
 
 export interface ExpressRouteFailoverConnectionResourceDetails {
   /** NRP Resource URI of the connection */
@@ -33358,7 +33187,7 @@ export type GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemTestTyp
   | "MultiSiteFailover"
   | "All";
 export const GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemTestType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A list of all issues with the test */
 export type GetExpressRouteGatewayFailoverAllTestsDetailsResponseBodyItemIssuesList =
@@ -33478,7 +33307,7 @@ export type GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemStatu
   | "Invalid"
   | "Expired";
 export const GetExpressRouteGatewayFailoverSingleTestDetailsResponseBodyItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A list of all the peering locations for the redundant routes */
 export type ExpressRouteFailoverRedundantRoutePeeringLocationsList =
@@ -34372,7 +34201,7 @@ export type ExpressRoutePortsLocationPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ExpressRoutePortsLocationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties specific to ExpressRoutePorts peering location resources. */
 export interface ExpressRoutePortsLocationPropertiesFormat {
@@ -35081,7 +34910,7 @@ export type HubRouteTablePropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const HubRouteTablePropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const HubRouteTablePropertiesProvisioningState = S.String;
 
 /** Parameters for RouteTable. */
 export interface HubRouteTableProperties {
@@ -35181,7 +35010,7 @@ export type HubVirtualNetworkConnectionPropertiesEnableOnlyIpv6Peering =
   | "Enabled"
   | "Disabled";
 export const HubVirtualNetworkConnectionPropertiesEnableOnlyIpv6Peering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type HubVirtualNetworkConnectionPropertiesProvisioningState =
@@ -35191,8 +35020,7 @@ export type HubVirtualNetworkConnectionPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const HubVirtualNetworkConnectionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const HubVirtualNetworkConnectionPropertiesProvisioningState = S.String;
 
 /** Parameters for HubVirtualNetworkConnection. */
 export interface HubVirtualNetworkConnectionProperties {
@@ -37849,11 +37677,11 @@ export const GetInboundSecurityRuleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Rule Type. This should be either AutoExpire or Permanent. Auto Expire Rule only creates NSG rules. Permanent Rule creates NSG rule and SLB LB Rule. */
 export type InboundSecurityRulePropertiesRuleType = "AutoExpire" | "Permanent";
-export const InboundSecurityRulePropertiesRuleType = /*@__PURE__*/ S.String;
+export const InboundSecurityRulePropertiesRuleType = S.String;
 
 /** Protocol. This should be either TCP or UDP. */
 export type InboundSecurityRulesProtocol = "TCP" | "UDP";
-export const InboundSecurityRulesProtocol = /*@__PURE__*/ S.String;
+export const InboundSecurityRulesProtocol = S.String;
 
 /** NVA port ranges to be opened up. One can provide a range of ports. Allowed port value between 0 and 65535. */
 export type InboundSecurityRulesDestinationPortRangesList = Array<string>;
@@ -37913,8 +37741,7 @@ export type InboundSecurityRulePropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const InboundSecurityRulePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const InboundSecurityRulePropertiesProvisioningState = S.String;
 
 /** Properties of the Inbound Security Rules resource. */
 export interface InboundSecurityRuleProperties {
@@ -37999,7 +37826,7 @@ export const GetInterconnectGroupResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Scope of an interconnect group resource. */
 export type InterconnectGroupPropertiesFormatScope = "None" | "InfiniBand";
-export const InterconnectGroupPropertiesFormatScope = /*@__PURE__*/ S.String;
+export const InterconnectGroupPropertiesFormatScope = S.String;
 
 /** Reference to another subresource. */
 export type SubgroupPropertiesInterconnectBlock =
@@ -38028,7 +37855,7 @@ export type SubgroupPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const SubgroupPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const SubgroupPropertiesProvisioningState = S.String;
 
 /** Properties of subgroup. */
 export interface SubgroupProperties {
@@ -38089,12 +37916,11 @@ export type InterconnectGroupPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const InterconnectGroupPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const InterconnectGroupPropertiesFormatProvisioningState = S.String;
 
 /** Scope of the subgroup profile. */
 export type SubgroupProfileScope = "None" | "VerticalConnect";
-export const SubgroupProfileScope = /*@__PURE__*/ S.String;
+export const SubgroupProfileScope = S.String;
 
 /** Subgroup profile of the interconnect group resource. */
 export interface SubgroupProfile {
@@ -38297,11 +38123,11 @@ export const IpAllocationPropertiesFormatVirtualNetwork =
 
 /** IpAllocation type. */
 export type IpAllocationPropertiesFormatType = "Undefined" | "Hypernet";
-export const IpAllocationPropertiesFormatType = /*@__PURE__*/ S.String;
+export const IpAllocationPropertiesFormatType = S.String;
 
 /** IP address version. */
 export type IpAllocationPropertiesFormatPrefixType = "IPv4" | "IPv6";
-export const IpAllocationPropertiesFormatPrefixType = /*@__PURE__*/ S.String;
+export const IpAllocationPropertiesFormatPrefixType = S.String;
 
 /** IpAllocation tags. */
 export type IpAllocationPropertiesFormatAllocationTagsMap = {
@@ -38415,8 +38241,7 @@ export type GetIpamPoolResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetIpamPoolResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetIpamPoolResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetIpamPoolResponseSystemDataLastModifiedByType =
@@ -38424,8 +38249,7 @@ export type GetIpamPoolResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetIpamPoolResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetIpamPoolResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetIpamPoolResponseSystemData {
@@ -38653,7 +38477,7 @@ export type IpGroupPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const IpGroupPropertiesFormatProvisioningState = /*@__PURE__*/ S.String;
+export const IpGroupPropertiesFormatProvisioningState = S.String;
 
 /** IpAddresses/IpAddressPrefixes in the IpGroups resource. */
 export type IpGroupPropertiesFormatIpAddressesList = Array<string>;
@@ -38741,7 +38565,7 @@ export const GetIpGroupResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetIpGroupResponse>;
 
 export type GetLoadBalancerRequestDetailLevel = "Reduced";
-export const GetLoadBalancerRequestDetailLevel = /*@__PURE__*/ S.String;
+export const GetLoadBalancerRequestDetailLevel = S.String;
 
 export interface GetLoadBalancerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -38877,15 +38701,14 @@ export type LoadBalancingRulePropertiesFormatProtocol =
   | "Tcp"
   | "All"
   | "Quic";
-export const LoadBalancingRulePropertiesFormatProtocol = /*@__PURE__*/ S.String;
+export const LoadBalancingRulePropertiesFormatProtocol = S.String;
 
 /** The load distribution policy for this rule. */
 export type LoadBalancingRulePropertiesFormatLoadDistribution =
   | "Default"
   | "SourceIP"
   | "SourceIPProtocol";
-export const LoadBalancingRulePropertiesFormatLoadDistribution =
-  /*@__PURE__*/ S.String;
+export const LoadBalancingRulePropertiesFormatLoadDistribution = S.String;
 
 /** Provisioning states of a resource. */
 export type LoadBalancingRulePropertiesFormatProvisioningState =
@@ -38895,8 +38718,7 @@ export type LoadBalancingRulePropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const LoadBalancingRulePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const LoadBalancingRulePropertiesFormatProvisioningState = S.String;
 
 /** Properties of the load balancer. */
 export interface LoadBalancingRulePropertiesFormat {
@@ -39015,14 +38837,13 @@ export const ProbePropertiesFormatLoadBalancingRulesList =
 
 /** The protocol of the end point. If 'Tcp' is specified, a received ACK is required for the probe to be successful. If 'Http' or 'Https' is specified, a 200 OK response from the specifies URI is required for the probe to be successful. */
 export type ProbePropertiesFormatProtocol = "Http" | "Tcp" | "Https";
-export const ProbePropertiesFormatProtocol = /*@__PURE__*/ S.String;
+export const ProbePropertiesFormatProtocol = S.String;
 
 /** Determines how new connections are handled by the load balancer when all backend instances are probed down. */
 export type ProbePropertiesFormatNoHealthyBackendsBehavior =
   | "AllProbedDown"
   | "AllProbedUp";
-export const ProbePropertiesFormatNoHealthyBackendsBehavior =
-  /*@__PURE__*/ S.String;
+export const ProbePropertiesFormatNoHealthyBackendsBehavior = S.String;
 
 /** Provisioning states of a resource. */
 export type ProbePropertiesFormatProvisioningState =
@@ -39032,7 +38853,7 @@ export type ProbePropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ProbePropertiesFormatProvisioningState = /*@__PURE__*/ S.String;
+export const ProbePropertiesFormatProvisioningState = S.String;
 
 /** Load balancer probe resource. */
 export interface ProbePropertiesFormat {
@@ -39145,7 +38966,7 @@ export type InboundNatPoolPropertiesFormatProtocol =
   | "Tcp"
   | "All"
   | "Quic";
-export const InboundNatPoolPropertiesFormatProtocol = /*@__PURE__*/ S.String;
+export const InboundNatPoolPropertiesFormatProtocol = S.String;
 
 /** Provisioning states of a resource. */
 export type InboundNatPoolPropertiesFormatProvisioningState =
@@ -39155,8 +38976,7 @@ export type InboundNatPoolPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const InboundNatPoolPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const InboundNatPoolPropertiesFormatProvisioningState = S.String;
 
 /** Properties of Inbound NAT pool. */
 export interface InboundNatPoolPropertiesFormat {
@@ -39260,12 +39080,11 @@ export type OutboundRulePropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const OutboundRulePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const OutboundRulePropertiesFormatProvisioningState = S.String;
 
 /** The protocol for the outbound rule in load balancer. */
 export type OutboundRulePropertiesFormatProtocol = "Tcp" | "Udp" | "All";
-export const OutboundRulePropertiesFormatProtocol = /*@__PURE__*/ S.String;
+export const OutboundRulePropertiesFormatProtocol = S.String;
 
 /** Outbound rule of the load balancer. */
 export interface OutboundRulePropertiesFormat {
@@ -39342,16 +39161,15 @@ export type LoadBalancerPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const LoadBalancerPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const LoadBalancerPropertiesFormatProvisioningState = S.String;
 
 /** Indicates the scope of the load balancer: external (Public) or internal (Private). */
 export type LoadBalancerPropertiesFormatScope = "Public" | "Private";
-export const LoadBalancerPropertiesFormatScope = /*@__PURE__*/ S.String;
+export const LoadBalancerPropertiesFormatScope = S.String;
 
 /** The load balancer mode. Set to `Advanced` to enable additional capabilities on a Standard SKU load balancer. Advanced mode must be specified at creation and cannot be changed afterward. */
 export type LoadBalancerPropertiesFormatMode = "Advanced";
-export const LoadBalancerPropertiesFormatMode = /*@__PURE__*/ S.String;
+export const LoadBalancerPropertiesFormatMode = S.String;
 
 /** Properties of the load balancer. */
 export interface LoadBalancerPropertiesFormat {
@@ -39416,11 +39234,11 @@ export const GetLoadBalancerResponseExtendedLocation =
 
 /** Name of a load balancer SKU. */
 export type LoadBalancerSkuName = "Basic" | "Standard" | "Gateway" | "Service";
-export const LoadBalancerSkuName = /*@__PURE__*/ S.String;
+export const LoadBalancerSkuName = S.String;
 
 /** Tier of a load balancer SKU. */
 export type LoadBalancerSkuTier = "Regional" | "Global";
-export const LoadBalancerSkuTier = /*@__PURE__*/ S.String;
+export const LoadBalancerSkuTier = S.String;
 
 /** SKU of a load balancer. */
 export interface LoadBalancerSku {
@@ -39911,8 +39729,7 @@ export type LocalNetworkGatewayPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const LocalNetworkGatewayPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const LocalNetworkGatewayPropertiesFormatProvisioningState = S.String;
 
 /** LocalNetworkGateway properties. */
 export interface LocalNetworkGatewayPropertiesFormat {
@@ -40006,8 +39823,7 @@ export type NetworkManagerConnectionPropertiesConnectionState =
   | "Conflict"
   | "Revoked"
   | "Rejected";
-export const NetworkManagerConnectionPropertiesConnectionState =
-  /*@__PURE__*/ S.String;
+export const NetworkManagerConnectionPropertiesConnectionState = S.String;
 
 /** Information about the network manager connection. */
 export interface NetworkManagerConnectionProperties {
@@ -40039,7 +39855,7 @@ export type GetManagementGroupNetworkManagerConnectionResponseSystemDataCreatedB
   | "ManagedIdentity"
   | "Key";
 export const GetManagementGroupNetworkManagerConnectionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetManagementGroupNetworkManagerConnectionResponseSystemDataLastModifiedByType =
@@ -40048,7 +39864,7 @@ export type GetManagementGroupNetworkManagerConnectionResponseSystemDataLastModi
   | "ManagedIdentity"
   | "Key";
 export const GetManagementGroupNetworkManagerConnectionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetManagementGroupNetworkManagerConnectionResponseSystemData {
@@ -40228,16 +40044,15 @@ export type VpnGatewayNatRulePropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VpnGatewayNatRulePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VpnGatewayNatRulePropertiesProvisioningState = S.String;
 
 /** The type of NAT rule for VPN NAT. */
 export type VpnGatewayNatRulePropertiesType = "Static" | "Dynamic";
-export const VpnGatewayNatRulePropertiesType = /*@__PURE__*/ S.String;
+export const VpnGatewayNatRulePropertiesType = S.String;
 
 /** The Source NAT direction of a VPN NAT. */
 export type VpnGatewayNatRulePropertiesMode = "EgressSnat" | "IngressSnat";
-export const VpnGatewayNatRulePropertiesMode = /*@__PURE__*/ S.String;
+export const VpnGatewayNatRulePropertiesMode = S.String;
 
 /** Vpn NatRule mapping. */
 export interface VpnNatRuleMapping {
@@ -40395,7 +40210,7 @@ export const GetNetworkGroupRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Network Group member type */
 export type NetworkGroupPropertiesMemberType = "VirtualNetwork" | "Subnet";
-export const NetworkGroupPropertiesMemberType = /*@__PURE__*/ S.String;
+export const NetworkGroupPropertiesMemberType = S.String;
 
 /** Provisioning states of a resource. */
 export type NetworkGroupPropertiesProvisioningState =
@@ -40405,7 +40220,7 @@ export type NetworkGroupPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const NetworkGroupPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const NetworkGroupPropertiesProvisioningState = S.String;
 
 /** Properties of network group */
 export interface NetworkGroupProperties {
@@ -40435,8 +40250,7 @@ export type GetNetworkGroupResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetNetworkGroupResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetNetworkGroupResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetNetworkGroupResponseSystemDataLastModifiedByType =
@@ -40444,8 +40258,7 @@ export type GetNetworkGroupResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetNetworkGroupResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetNetworkGroupResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetNetworkGroupResponseSystemData {
@@ -40699,11 +40512,11 @@ export type EffectiveRouteSource =
   | "User"
   | "VirtualNetworkGateway"
   | "Default";
-export const EffectiveRouteSource = /*@__PURE__*/ S.String;
+export const EffectiveRouteSource = S.String;
 
 /** The value of effective route. */
 export type EffectiveRouteState = "Active" | "Invalid";
-export const EffectiveRouteState = /*@__PURE__*/ S.String;
+export const EffectiveRouteState = S.String;
 
 /** The address prefixes of the effective routes in CIDR notation. */
 export type EffectiveRouteAddressPrefixList = Array<string>;
@@ -40725,7 +40538,7 @@ export type EffectiveRouteNextHopType =
   | "VirtualAppliance"
   | "VirtualApplianceEcmp"
   | "None";
-export const EffectiveRouteNextHopType = /*@__PURE__*/ S.String;
+export const EffectiveRouteNextHopType = S.String;
 
 /** Effective Route. */
 export interface EffectiveRoute {
@@ -41009,8 +40822,7 @@ export type NetworkManagerPropertiesNetworkManagerScopeAccessesItem =
   | "Connectivity"
   | "SecurityUser"
   | "Routing";
-export const NetworkManagerPropertiesNetworkManagerScopeAccessesItem =
-  /*@__PURE__*/ S.String;
+export const NetworkManagerPropertiesNetworkManagerScopeAccessesItem = S.String;
 
 /** Scope Access. */
 export type NetworkManagerPropertiesNetworkManagerScopeAccessesList =
@@ -41028,7 +40840,7 @@ export type NetworkManagerPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const NetworkManagerPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const NetworkManagerPropertiesProvisioningState = S.String;
 
 /** Properties of Managed Network */
 export interface NetworkManagerProperties {
@@ -41063,8 +40875,7 @@ export type GetNetworkManagerResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetNetworkManagerResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetNetworkManagerResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetNetworkManagerResponseSystemDataLastModifiedByType =
@@ -41072,8 +40883,7 @@ export type GetNetworkManagerResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetNetworkManagerResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetNetworkManagerResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetNetworkManagerResponseSystemData {
@@ -41176,14 +40986,14 @@ export type NetworkManagerRoutingConfigurationPropertiesFormatProvisioningState 
   | "Updating"
   | "Deleting";
 export const NetworkManagerRoutingConfigurationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Route table usage mode defines which route table will be used by the configuration. If not defined, this will default to 'ManagedOnly'. */
 export type NetworkManagerRoutingConfigurationPropertiesFormatRouteTableUsageMode =
   | "ManagedOnly"
   | "UseExisting";
 export const NetworkManagerRoutingConfigurationPropertiesFormatRouteTableUsageMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines the routing configuration properties. */
 export interface NetworkManagerRoutingConfigurationPropertiesFormat {
@@ -41219,7 +41029,7 @@ export type GetNetworkManagerRoutingConfigurationResponseSystemDataCreatedByType
   | "ManagedIdentity"
   | "Key";
 export const GetNetworkManagerRoutingConfigurationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetNetworkManagerRoutingConfigurationResponseSystemDataLastModifiedByType =
@@ -41228,7 +41038,7 @@ export type GetNetworkManagerRoutingConfigurationResponseSystemDataLastModifiedB
   | "ManagedIdentity"
   | "Key";
 export const GetNetworkManagerRoutingConfigurationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetNetworkManagerRoutingConfigurationResponseSystemData {
@@ -41363,7 +41173,7 @@ export type ContainerNetworkInterfaceConfigurationPropertiesFormatProvisioningSt
   | "Updating"
   | "Deleting";
 export const ContainerNetworkInterfaceConfigurationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Container network interface configuration properties. */
 export interface ContainerNetworkInterfaceConfigurationPropertiesFormat {
@@ -41434,7 +41244,7 @@ export type ContainerNetworkInterfaceIpConfigurationPropertiesFormatProvisioning
   | "Updating"
   | "Deleting";
 export const ContainerNetworkInterfaceIpConfigurationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the container network interface IP configuration. */
 export interface ContainerNetworkInterfaceIpConfigurationPropertiesFormat {
@@ -41494,7 +41304,7 @@ export type ContainerNetworkInterfacePropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ContainerNetworkInterfacePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of container network interface. */
 export interface ContainerNetworkInterfacePropertiesFormat {
@@ -41576,8 +41386,7 @@ export type NetworkProfilePropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const NetworkProfilePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const NetworkProfilePropertiesFormatProvisioningState = S.String;
 
 /** Network profile properties. */
 export interface NetworkProfilePropertiesFormat {
@@ -41736,7 +41545,7 @@ export type GetNetworkSecurityPerimeterResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetNetworkSecurityPerimeterResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetNetworkSecurityPerimeterResponseSystemDataLastModifiedByType =
@@ -41745,7 +41554,7 @@ export type GetNetworkSecurityPerimeterResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetNetworkSecurityPerimeterResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetNetworkSecurityPerimeterResponseSystemData {
@@ -41798,8 +41607,7 @@ export type NetworkSecurityPerimeterPropertiesProvisioningState =
   | "Deleting"
   | "Accepted"
   | "Failed";
-export const NetworkSecurityPerimeterPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const NetworkSecurityPerimeterPropertiesProvisioningState = S.String;
 
 /** Properties of network security perimeter. */
 export interface NetworkSecurityPerimeterProperties {
@@ -41888,7 +41696,7 @@ export type GetNetworkSecurityPerimeterAccessRuleResponseSystemDataCreatedByType
   | "ManagedIdentity"
   | "Key";
 export const GetNetworkSecurityPerimeterAccessRuleResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetNetworkSecurityPerimeterAccessRuleResponseSystemDataLastModifiedByType =
@@ -41897,7 +41705,7 @@ export type GetNetworkSecurityPerimeterAccessRuleResponseSystemDataLastModifiedB
   | "ManagedIdentity"
   | "Key";
 export const GetNetworkSecurityPerimeterAccessRuleResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetNetworkSecurityPerimeterAccessRuleResponseSystemData {
@@ -41940,11 +41748,11 @@ export type NspAccessRulePropertiesProvisioningState =
   | "Deleting"
   | "Accepted"
   | "Failed";
-export const NspAccessRulePropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const NspAccessRulePropertiesProvisioningState = S.String;
 
 /** Direction that specifies whether the access rules is inbound/outbound. */
 export type NspAccessRulePropertiesDirection = "Inbound" | "Outbound";
-export const NspAccessRulePropertiesDirection = /*@__PURE__*/ S.String;
+export const NspAccessRulePropertiesDirection = S.String;
 
 /** Inbound address prefixes (IPv4/IPv6) */
 export type NspAccessRulePropertiesAddressPrefixesList = Array<string>;
@@ -42124,7 +41932,7 @@ export type GetNetworkSecurityPerimeterAssociationResponseSystemDataCreatedByTyp
   | "ManagedIdentity"
   | "Key";
 export const GetNetworkSecurityPerimeterAssociationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetNetworkSecurityPerimeterAssociationResponseSystemDataLastModifiedByType =
@@ -42133,7 +41941,7 @@ export type GetNetworkSecurityPerimeterAssociationResponseSystemDataLastModified
   | "ManagedIdentity"
   | "Key";
 export const GetNetworkSecurityPerimeterAssociationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetNetworkSecurityPerimeterAssociationResponseSystemData {
@@ -42176,7 +41984,7 @@ export type NspAssociationPropertiesProvisioningState =
   | "Deleting"
   | "Accepted"
   | "Failed";
-export const NspAssociationPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const NspAssociationPropertiesProvisioningState = S.String;
 
 /** Reference to another subresource. */
 export type NspAssociationPropertiesPrivateLinkResource =
@@ -42195,7 +42003,7 @@ export type NspAssociationPropertiesAccessMode =
   | "Learning"
   | "Enforced"
   | "Audit";
-export const NspAssociationPropertiesAccessMode = /*@__PURE__*/ S.String;
+export const NspAssociationPropertiesAccessMode = S.String;
 
 export interface NspAssociationProperties {
   /** The current provisioning state. */
@@ -42288,7 +42096,7 @@ export type GetNetworkSecurityPerimeterLinkResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetNetworkSecurityPerimeterLinkResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetNetworkSecurityPerimeterLinkResponseSystemDataLastModifiedByType =
@@ -42297,7 +42105,7 @@ export type GetNetworkSecurityPerimeterLinkResponseSystemDataLastModifiedByType 
   | "ManagedIdentity"
   | "Key";
 export const GetNetworkSecurityPerimeterLinkResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetNetworkSecurityPerimeterLinkResponseSystemData {
@@ -42341,7 +42149,7 @@ export type NspLinkPropertiesProvisioningState =
   | "Accepted"
   | "Failed"
   | "WaitForRemoteCompletion";
-export const NspLinkPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const NspLinkPropertiesProvisioningState = S.String;
 
 /** Local Inbound profile names to which Inbound is allowed. Use ['*'] to allow inbound to all profiles. */
 export type NspLinkPropertiesLocalInboundProfilesList = Array<string>;
@@ -42374,7 +42182,7 @@ export type NspLinkPropertiesStatus =
   | "Pending"
   | "Rejected"
   | "Disconnected";
-export const NspLinkPropertiesStatus = /*@__PURE__*/ S.String;
+export const NspLinkPropertiesStatus = S.String;
 
 /** Properties of NSP Link resource. */
 export interface NspLinkProperties {
@@ -42483,7 +42291,7 @@ export type GetNetworkSecurityPerimeterLinkReferenceResponseSystemDataCreatedByT
   | "ManagedIdentity"
   | "Key";
 export const GetNetworkSecurityPerimeterLinkReferenceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetNetworkSecurityPerimeterLinkReferenceResponseSystemDataLastModifiedByType =
@@ -42492,7 +42300,7 @@ export type GetNetworkSecurityPerimeterLinkReferenceResponseSystemDataLastModifi
   | "ManagedIdentity"
   | "Key";
 export const GetNetworkSecurityPerimeterLinkReferenceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetNetworkSecurityPerimeterLinkReferenceResponseSystemData {
@@ -42536,8 +42344,7 @@ export type NspLinkReferencePropertiesProvisioningState =
   | "Accepted"
   | "Failed"
   | "WaitForRemoteCompletion";
-export const NspLinkReferencePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const NspLinkReferencePropertiesProvisioningState = S.String;
 
 /** Local Inbound profile names to which Inbound is allowed. Use ['*'] to allow inbound to all profiles. */
 export type NspLinkReferencePropertiesLocalInboundProfilesList = Array<string>;
@@ -42574,7 +42381,7 @@ export type NspLinkReferencePropertiesStatus =
   | "Pending"
   | "Rejected"
   | "Disconnected";
-export const NspLinkReferencePropertiesStatus = /*@__PURE__*/ S.String;
+export const NspLinkReferencePropertiesStatus = S.String;
 
 /** Properties of NSP LinkReference resource. */
 export interface NspLinkReferenceProperties {
@@ -42687,7 +42494,7 @@ export type GetNetworkSecurityPerimeterLoggingConfigurationResponseSystemDataCre
   | "ManagedIdentity"
   | "Key";
 export const GetNetworkSecurityPerimeterLoggingConfigurationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetNetworkSecurityPerimeterLoggingConfigurationResponseSystemDataLastModifiedByType =
@@ -42696,7 +42503,7 @@ export type GetNetworkSecurityPerimeterLoggingConfigurationResponseSystemDataLas
   | "ManagedIdentity"
   | "Key";
 export const GetNetworkSecurityPerimeterLoggingConfigurationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetNetworkSecurityPerimeterLoggingConfigurationResponseSystemData {
@@ -42988,7 +42795,7 @@ export type GetNetworkSecurityPerimeterProfileResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetNetworkSecurityPerimeterProfileResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetNetworkSecurityPerimeterProfileResponseSystemDataLastModifiedByType =
@@ -42997,7 +42804,7 @@ export type GetNetworkSecurityPerimeterProfileResponseSystemDataLastModifiedByTy
   | "ManagedIdentity"
   | "Key";
 export const GetNetworkSecurityPerimeterProfileResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetNetworkSecurityPerimeterProfileResponseSystemData {
@@ -43158,7 +42965,7 @@ export type VirtualApplianceNicPropertiesNicType =
   | "PublicNic"
   | "PrivateNic"
   | "AdditionalNic";
-export const VirtualApplianceNicPropertiesNicType = /*@__PURE__*/ S.String;
+export const VirtualApplianceNicPropertiesNicType = S.String;
 
 /** Network Virtual Appliance NIC properties. */
 export interface VirtualApplianceNicProperties {
@@ -43203,8 +43010,7 @@ export const NetworkVirtualAppliancePropertiesFormatVirtualApplianceNicsList =
 export type VirtualApplianceNetworkInterfaceConfigurationType =
   | "PublicNic"
   | "PrivateNic";
-export const VirtualApplianceNetworkInterfaceConfigurationType =
-  /*@__PURE__*/ S.String;
+export const VirtualApplianceNetworkInterfaceConfigurationType = S.String;
 
 /** Represents a single IP configuration properties. */
 export interface VirtualApplianceIPConfigurationProperties {
@@ -43396,7 +43202,7 @@ export type NetworkVirtualAppliancePropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const NetworkVirtualAppliancePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type DelegationPropertiesProvisioningState =
@@ -43406,7 +43212,7 @@ export type DelegationPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const DelegationPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const DelegationPropertiesProvisioningState = S.String;
 
 /** Properties of the delegation. */
 export interface DelegationProperties {
@@ -43461,8 +43267,7 @@ export type NvaInterfaceConfigurationsPropertiesTypeItem =
   | "PublicNic"
   | "AdditionalPrivateNic"
   | "AdditionalPublicNic";
-export const NvaInterfaceConfigurationsPropertiesTypeItem =
-  /*@__PURE__*/ S.String;
+export const NvaInterfaceConfigurationsPropertiesTypeItem = S.String;
 
 /** Specifies the NIC types for the NVA interface configuration. Allowed values: PrivateNic, PublicNic, AdditionalPrivateNic, AdditionalPublicNic. Only the combination of PrivateNic and PublicNic is currently supported. */
 export type NvaInterfaceConfigurationsPropertiesTypeList = Array<
@@ -43506,7 +43311,7 @@ export type NetworkVirtualAppliancePropertiesFormatAddressFamilyItem =
   | "IPv4"
   | "IPv6";
 export const NetworkVirtualAppliancePropertiesFormatAddressFamilyItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The address families to deploy the NVA in. ["IPv4", "IPv6"] deploys a dual-stack NVA (the vHub/VNet must also be dual-stack). ["IPv4"], an empty array, or omitting the field deploys an IPv4-only NVA. The value "IPv6" may only appear in combination with "IPv4"; standalone ["IPv6"] is reserved for future use and is rejected by the service today. */
 export type NetworkVirtualAppliancePropertiesFormatAddressFamilyList =
@@ -43520,8 +43325,7 @@ export const NetworkVirtualAppliancePropertiesFormatAddressFamilyList =
 export type NetworkVirtualApplianceMigrationStatusMigrationType =
   | "MigrateToNewOSVersion"
   | "MigrateToNewILBArchitecture";
-export const NetworkVirtualApplianceMigrationStatusMigrationType =
-  /*@__PURE__*/ S.String;
+export const NetworkVirtualApplianceMigrationStatusMigrationType = S.String;
 
 /** The migration status of a Network Virtual Appliance. */
 export interface NetworkVirtualApplianceMigrationStatus {
@@ -43808,7 +43612,7 @@ export type NetworkVirtualApplianceConnectionPropertiesProvisioningState =
   | "Updating"
   | "Deleting";
 export const NetworkVirtualApplianceConnectionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of bgpPeerAddresses for the NVA instances */
 export type NetworkVirtualApplianceConnectionPropertiesBgpPeerAddressList =
@@ -43915,8 +43719,7 @@ export type NetworkWatcherPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const NetworkWatcherPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const NetworkWatcherPropertiesFormatProvisioningState = S.String;
 
 /** The network watcher properties. */
 export interface NetworkWatcherPropertiesFormat {
@@ -44233,14 +44036,13 @@ export type GetNetworkWatcherNetworkConfigurationDiagnosticRequestVerbosityLevel
   | "Minimum"
   | "Full";
 export const GetNetworkWatcherNetworkConfigurationDiagnosticRequestVerbosityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The direction of the traffic. */
 export type NetworkConfigurationDiagnosticProfileDirection =
   | "Inbound"
   | "Outbound";
-export const NetworkConfigurationDiagnosticProfileDirection =
-  /*@__PURE__*/ S.String;
+export const NetworkConfigurationDiagnosticProfileDirection = S.String;
 
 /** Parameters to compare with network configuration. */
 export interface NetworkConfigurationDiagnosticProfile {
@@ -44320,8 +44122,7 @@ export const GetNetworkWatcherNetworkConfigurationDiagnosticRequest =
 export type NetworkSecurityGroupResultSecurityRuleAccessResult =
   | "Allow"
   | "Deny";
-export const NetworkSecurityGroupResultSecurityRuleAccessResult =
-  /*@__PURE__*/ S.String;
+export const NetworkSecurityGroupResultSecurityRuleAccessResult = S.String;
 
 /** Matched rule. */
 export interface MatchedRule {
@@ -44511,7 +44312,7 @@ export type NextHopResultNextHopType =
   | "HyperNetGateway"
   | "VirtualApplianceEcmp"
   | "None";
-export const NextHopResultNextHopType = /*@__PURE__*/ S.String;
+export const NextHopResultNextHopType = S.String;
 
 /** The information about next hop from the specified VM. */
 export interface NextHopResult {
@@ -44611,7 +44412,7 @@ export const GetNetworkWatcherTopologyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The association type of the child resource to the parent resource. */
 export type TopologyAssociationAssociationType = "Associated" | "Contains";
-export const TopologyAssociationAssociationType = /*@__PURE__*/ S.String;
+export const TopologyAssociationAssociationType = S.String;
 
 /** Resources that have an association with the parent resource. */
 export interface TopologyAssociation {
@@ -45095,7 +44896,7 @@ export type SecurityRuleAssociationsEffectiveSecurityRulesItemProtocol =
   | "Udp"
   | "All";
 export const SecurityRuleAssociationsEffectiveSecurityRulesItemProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The source port ranges. Expected values include a single integer between 0 and 65535, a range using '-' as separator (e.g. 100-400), or an asterisk (*). */
 export type SecurityRuleAssociationsEffectiveSecurityRulesItemSourcePortRangesList =
@@ -45150,14 +44951,14 @@ export type SecurityRuleAssociationsEffectiveSecurityRulesItemAccess =
   | "Allow"
   | "Deny";
 export const SecurityRuleAssociationsEffectiveSecurityRulesItemAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The direction of the rule. The direction specifies if rule will be evaluated on incoming or outgoing traffic. */
 export type SecurityRuleAssociationsEffectiveSecurityRulesItemDirection =
   | "Inbound"
   | "Outbound";
 export const SecurityRuleAssociationsEffectiveSecurityRulesItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Effective network security rules. */
 export interface SecurityRuleAssociationsEffectiveSecurityRulesItem {
@@ -45436,8 +45237,7 @@ export type P2SConnectionConfigurationPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const P2SConnectionConfigurationPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const P2SConnectionConfigurationPropertiesProvisioningState = S.String;
 
 /** Parameters for P2SConnectionConfiguration. */
 export interface P2SConnectionConfigurationProperties {
@@ -45514,7 +45314,7 @@ export type P2SVpnGatewayPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const P2SVpnGatewayPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const P2SVpnGatewayPropertiesProvisioningState = S.String;
 
 /** Reference to another subresource. */
 export type P2SVpnGatewayPropertiesVpnServerConfiguration =
@@ -45815,8 +45615,7 @@ export type PacketCaptureQueryStatusResultPacketCaptureStatus =
   | "Stopped"
   | "Error"
   | "Unknown";
-export const PacketCaptureQueryStatusResultPacketCaptureStatus =
-  /*@__PURE__*/ S.String;
+export const PacketCaptureQueryStatusResultPacketCaptureStatus = S.String;
 
 export type PacketCaptureQueryStatusResultPacketCaptureErrorItem =
   | "InternalError"
@@ -45824,8 +45623,7 @@ export type PacketCaptureQueryStatusResultPacketCaptureErrorItem =
   | "CaptureFailed"
   | "LocalFileFailed"
   | "StorageFailed";
-export const PacketCaptureQueryStatusResultPacketCaptureErrorItem =
-  /*@__PURE__*/ S.String;
+export const PacketCaptureQueryStatusResultPacketCaptureErrorItem = S.String;
 
 /** List of errors of packet capture session. */
 export type PacketCaptureQueryStatusResultPacketCaptureErrorList =
@@ -45960,8 +45758,7 @@ export type PrivateDnsZoneGroupPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const PrivateDnsZoneGroupPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateDnsZoneGroupPropertiesFormatProvisioningState = S.String;
 
 /** Provisioning states of a resource. */
 export type RecordSetProvisioningState =
@@ -45971,7 +45768,7 @@ export type RecordSetProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const RecordSetProvisioningState = /*@__PURE__*/ S.String;
+export const RecordSetProvisioningState = S.String;
 
 /** The private ip address of the private endpoint. */
 export type RecordSetIpAddressesList = Array<string>;
@@ -46540,8 +46337,7 @@ export const GetPublicIPPrefixResponseTagsMap = /*@__PURE__*/ S.Record(
 export type PublicIPPrefixPropertiesFormatPublicIPAddressVersion =
   | "IPv4"
   | "IPv6";
-export const PublicIPPrefixPropertiesFormatPublicIPAddressVersion =
-  /*@__PURE__*/ S.String;
+export const PublicIPPrefixPropertiesFormatPublicIPAddressVersion = S.String;
 
 /** The list of tags associated with the public IP prefix. */
 export type PublicIPPrefixPropertiesFormatIpTagsList = Array<IpTag>;
@@ -46590,8 +46386,7 @@ export type PublicIPPrefixPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const PublicIPPrefixPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PublicIPPrefixPropertiesFormatProvisioningState = S.String;
 
 /** Public IP prefix properties. */
 export interface PublicIPPrefixPropertiesFormat {
@@ -46654,11 +46449,11 @@ export const GetPublicIPPrefixResponseExtendedLocation =
 
 /** Name of a public IP prefix SKU. */
 export type PublicIPPrefixSkuName = "Standard" | "StandardV2";
-export const PublicIPPrefixSkuName = /*@__PURE__*/ S.String;
+export const PublicIPPrefixSkuName = S.String;
 
 /** Tier of a public IP prefix SKU. */
 export type PublicIPPrefixSkuTier = "Regional" | "Global";
-export const PublicIPPrefixSkuTier = /*@__PURE__*/ S.String;
+export const PublicIPPrefixSkuTier = S.String;
 
 /** SKU of a public IP prefix. */
 export interface PublicIPPrefixSku {
@@ -46760,7 +46555,7 @@ export type GetReachabilityAnalysisIntentResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetReachabilityAnalysisIntentResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetReachabilityAnalysisIntentResponseSystemDataLastModifiedByType =
@@ -46769,7 +46564,7 @@ export type GetReachabilityAnalysisIntentResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetReachabilityAnalysisIntentResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetReachabilityAnalysisIntentResponseSystemData {
@@ -46867,7 +46662,7 @@ export type GetReachabilityAnalysisRunResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetReachabilityAnalysisRunResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetReachabilityAnalysisRunResponseSystemDataLastModifiedByType =
@@ -46876,7 +46671,7 @@ export type GetReachabilityAnalysisRunResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetReachabilityAnalysisRunResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetReachabilityAnalysisRunResponseSystemData {
@@ -47026,12 +46821,11 @@ export const GetRouteFilterResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Access to be allowed or denied. */
 export type RouteFilterRulePropertiesFormatAccess = "Allow" | "Deny";
-export const RouteFilterRulePropertiesFormatAccess = /*@__PURE__*/ S.String;
+export const RouteFilterRulePropertiesFormatAccess = S.String;
 
 /** The rule type of the rule. */
 export type RouteFilterRulePropertiesFormatRouteFilterRuleType = "Community";
-export const RouteFilterRulePropertiesFormatRouteFilterRuleType =
-  /*@__PURE__*/ S.String;
+export const RouteFilterRulePropertiesFormatRouteFilterRuleType = S.String;
 
 /** The collection for bgp community values to filter on. e.g. ['12076:5010','12076:5020']. */
 export type RouteFilterRulePropertiesFormatCommunitiesList = Array<string>;
@@ -47048,8 +46842,7 @@ export type RouteFilterRulePropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const RouteFilterRulePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const RouteFilterRulePropertiesFormatProvisioningState = S.String;
 
 /** Route Filter Rule Resource. */
 export interface RouteFilterRulePropertiesFormat {
@@ -47133,8 +46926,7 @@ export type RouteFilterPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const RouteFilterPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const RouteFilterPropertiesFormatProvisioningState = S.String;
 
 /** Route Filter Resource. */
 export interface RouteFilterPropertiesFormat {
@@ -47307,7 +47099,7 @@ export type CriterionMatchCondition =
   | "Equals"
   | "NotContains"
   | "NotEquals";
-export const CriterionMatchCondition = /*@__PURE__*/ S.String;
+export const CriterionMatchCondition = S.String;
 
 /** A matching criteria which matches routes based on route prefix, community, and AS path. */
 export interface Criterion {
@@ -47337,7 +47129,7 @@ export const RouteMapRuleMatchCriteriaList = /*@__PURE__*/ S.Array(
 
 /** Kind of actions which can be taken on a matched route. Add, Replace, Remove refer to parameters on the route, like community or prefix */
 export type ActionType = "Unknown" | "Remove" | "Add" | "Replace" | "Drop";
-export const ActionType = /*@__PURE__*/ S.String;
+export const ActionType = S.String;
 
 /** List of route prefixes. */
 export type ParameterRoutePrefixList = Array<string>;
@@ -47405,7 +47197,7 @@ export type RouteMapRuleNextStepIfMatched =
   | "Unknown"
   | "Continue"
   | "Terminate";
-export const RouteMapRuleNextStepIfMatched = /*@__PURE__*/ S.String;
+export const RouteMapRuleNextStepIfMatched = S.String;
 
 /** A RouteMap Rule. */
 export interface RouteMapRule {
@@ -47441,7 +47233,7 @@ export type RouteMapPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const RouteMapPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const RouteMapPropertiesProvisioningState = S.String;
 
 /** Properties of RouteMap resource */
 export interface RouteMapProperties {
@@ -47625,7 +47417,7 @@ export type RoutingIntentPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const RoutingIntentPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const RoutingIntentPropertiesProvisioningState = S.String;
 
 /** The properties of a RoutingIntent resource. */
 export interface RoutingIntentProperties {
@@ -47709,12 +47501,11 @@ export type RoutingRulePropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const RoutingRulePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const RoutingRulePropertiesFormatProvisioningState = S.String;
 
 /** Routing rule destination type. */
 export type RoutingRuleRouteDestinationType = "AddressPrefix" | "ServiceTag";
-export const RoutingRuleRouteDestinationType = /*@__PURE__*/ S.String;
+export const RoutingRuleRouteDestinationType = S.String;
 
 /** Route destination. */
 export interface RoutingRuleRouteDestination {
@@ -47739,7 +47530,7 @@ export type RoutingRuleNextHopNextHopType =
   | "VirtualAppliance"
   | "VirtualNetworkGateway"
   | "VnetLocal";
-export const RoutingRuleNextHopNextHopType = /*@__PURE__*/ S.String;
+export const RoutingRuleNextHopNextHopType = S.String;
 
 /** Next hop. */
 export interface RoutingRuleNextHop {
@@ -47788,8 +47579,7 @@ export type GetRoutingRuleResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetRoutingRuleResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetRoutingRuleResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetRoutingRuleResponseSystemDataLastModifiedByType =
@@ -47797,8 +47587,7 @@ export type GetRoutingRuleResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetRoutingRuleResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetRoutingRuleResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetRoutingRuleResponseSystemData {
@@ -47896,8 +47685,7 @@ export type RoutingRuleCollectionPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const RoutingRuleCollectionPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const RoutingRuleCollectionPropertiesFormatProvisioningState = S.String;
 
 /** Network manager routing group item. */
 export type NetworkManagerRoutingGroupItem = NetworkManagerSecurityGroupItem;
@@ -47916,7 +47704,7 @@ export type RoutingRuleCollectionPropertiesFormatDisableBgpRoutePropagation =
   | "False"
   | "True";
 export const RoutingRuleCollectionPropertiesFormatDisableBgpRoutePropagation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines the routing rule collection properties. */
 export interface RoutingRuleCollectionPropertiesFormat {
@@ -47954,8 +47742,7 @@ export type GetRoutingRuleCollectionResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetRoutingRuleCollectionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetRoutingRuleCollectionResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetRoutingRuleCollectionResponseSystemDataLastModifiedByType =
@@ -47964,7 +47751,7 @@ export type GetRoutingRuleCollectionResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetRoutingRuleCollectionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetRoutingRuleCollectionResponseSystemData {
@@ -48061,7 +47848,7 @@ export type ScopeConnectionPropertiesConnectionState =
   | "Conflict"
   | "Revoked"
   | "Rejected";
-export const ScopeConnectionPropertiesConnectionState = /*@__PURE__*/ S.String;
+export const ScopeConnectionPropertiesConnectionState = S.String;
 
 /** Scope connection. */
 export interface ScopeConnectionProperties {
@@ -48091,8 +47878,7 @@ export type GetScopeConnectionResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetScopeConnectionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetScopeConnectionResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetScopeConnectionResponseSystemDataLastModifiedByType =
@@ -48100,8 +47886,7 @@ export type GetScopeConnectionResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetScopeConnectionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetScopeConnectionResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetScopeConnectionResponseSystemData {
@@ -48198,7 +47983,7 @@ export type SecurityAdminConfigurationPropertiesFormatApplyOnNetworkIntentPolicy
   | "All"
   | "AllowRulesOnly";
 export const SecurityAdminConfigurationPropertiesFormatApplyOnNetworkIntentPolicyBasedServicesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Enum list of network intent policy based services. */
 export type SecurityAdminConfigurationPropertiesFormatApplyOnNetworkIntentPolicyBasedServicesList =
@@ -48213,7 +47998,7 @@ export type SecurityAdminConfigurationPropertiesFormatNetworkGroupAddressSpaceAg
   | "None"
   | "Manual";
 export const SecurityAdminConfigurationPropertiesFormatNetworkGroupAddressSpaceAggregationOption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type SecurityAdminConfigurationPropertiesFormatProvisioningState =
@@ -48224,7 +48009,7 @@ export type SecurityAdminConfigurationPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const SecurityAdminConfigurationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines the security admin configuration properties. */
 export interface SecurityAdminConfigurationPropertiesFormat {
@@ -48265,7 +48050,7 @@ export type GetSecurityAdminConfigurationResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetSecurityAdminConfigurationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetSecurityAdminConfigurationResponseSystemDataLastModifiedByType =
@@ -48274,7 +48059,7 @@ export type GetSecurityAdminConfigurationResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetSecurityAdminConfigurationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetSecurityAdminConfigurationResponseSystemData {
@@ -48380,7 +48165,7 @@ export type SecurityPartnerProviderPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const SecurityPartnerProviderPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The Security Providers. */
 export type SecurityPartnerProviderPropertiesFormatSecurityProviderName =
@@ -48388,7 +48173,7 @@ export type SecurityPartnerProviderPropertiesFormatSecurityProviderName =
   | "IBoss"
   | "Checkpoint";
 export const SecurityPartnerProviderPropertiesFormatSecurityProviderName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The current state of the connection with Security Partner Provider. */
 export type SecurityPartnerProviderPropertiesFormatConnectionStatus =
@@ -48396,8 +48181,7 @@ export type SecurityPartnerProviderPropertiesFormatConnectionStatus =
   | "PartiallyConnected"
   | "Connected"
   | "NotConnected";
-export const SecurityPartnerProviderPropertiesFormatConnectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityPartnerProviderPropertiesFormatConnectionStatus = S.String;
 
 /** Reference to another subresource. */
 export type SecurityPartnerProviderPropertiesFormatVirtualHub =
@@ -48561,7 +48345,7 @@ export type SecurityUserConfigurationPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const SecurityUserConfigurationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines the security user configuration properties. */
 export interface SecurityUserConfigurationPropertiesFormat {
@@ -48592,7 +48376,7 @@ export type GetSecurityUserConfigurationResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetSecurityUserConfigurationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetSecurityUserConfigurationResponseSystemDataLastModifiedByType =
@@ -48601,7 +48385,7 @@ export type GetSecurityUserConfigurationResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetSecurityUserConfigurationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetSecurityUserConfigurationResponseSystemData {
@@ -48706,14 +48490,14 @@ export type SecurityUserRulePropertiesFormatProtocol =
   | "Esp"
   | "Any"
   | "Ah";
-export const SecurityUserRulePropertiesFormatProtocol = /*@__PURE__*/ S.String;
+export const SecurityUserRulePropertiesFormatProtocol = S.String;
 
 /** Address prefix type. */
 export type AddressPrefixItemAddressPrefixType =
   | "IPPrefix"
   | "ServiceTag"
   | "NetworkGroup";
-export const AddressPrefixItemAddressPrefixType = /*@__PURE__*/ S.String;
+export const AddressPrefixItemAddressPrefixType = S.String;
 
 /** Address prefix item. */
 export interface AddressPrefixItem {
@@ -48765,7 +48549,7 @@ export const SecurityUserRulePropertiesFormatDestinationPortRangesList =
 
 /** The direction of the rule. The direction specifies if the rule will be evaluated on incoming or outgoing traffic. */
 export type SecurityUserRulePropertiesFormatDirection = "Inbound" | "Outbound";
-export const SecurityUserRulePropertiesFormatDirection = /*@__PURE__*/ S.String;
+export const SecurityUserRulePropertiesFormatDirection = S.String;
 
 /** Provisioning states of a resource. */
 export type SecurityUserRulePropertiesFormatProvisioningState =
@@ -48775,8 +48559,7 @@ export type SecurityUserRulePropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const SecurityUserRulePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const SecurityUserRulePropertiesFormatProvisioningState = S.String;
 
 /** Security rule resource. */
 export interface SecurityUserRulePropertiesFormat {
@@ -48827,8 +48610,7 @@ export type GetSecurityUserRuleResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetSecurityUserRuleResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetSecurityUserRuleResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetSecurityUserRuleResponseSystemDataLastModifiedByType =
@@ -48836,8 +48618,7 @@ export type GetSecurityUserRuleResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetSecurityUserRuleResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetSecurityUserRuleResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetSecurityUserRuleResponseSystemData {
@@ -48952,7 +48733,7 @@ export type SecurityUserRuleCollectionPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const SecurityUserRuleCollectionPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines the security user rule collection properties. */
 export interface SecurityUserRuleCollectionPropertiesFormat {
@@ -48987,7 +48768,7 @@ export type GetSecurityUserRuleCollectionResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetSecurityUserRuleCollectionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetSecurityUserRuleCollectionResponseSystemDataLastModifiedByType =
@@ -48996,7 +48777,7 @@ export type GetSecurityUserRuleCollectionResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetSecurityUserRuleCollectionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetSecurityUserRuleCollectionResponseSystemData {
@@ -51602,8 +51383,7 @@ export type GetServiceGatewayResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetServiceGatewayResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetServiceGatewayResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetServiceGatewayResponseSystemDataLastModifiedByType =
@@ -51611,8 +51391,7 @@ export type GetServiceGatewayResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetServiceGatewayResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetServiceGatewayResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetServiceGatewayResponseSystemData {
@@ -54055,7 +53834,7 @@ export const VirtualNetworkBgpCommunities = /*@__PURE__*/ S.suspend(() =>
 export type VirtualNetworkEncryptionEnforcement =
   | "DropUnencrypted"
   | "AllowUnencrypted";
-export const VirtualNetworkEncryptionEnforcement = /*@__PURE__*/ S.String;
+export const VirtualNetworkEncryptionEnforcement = S.String;
 
 /** Indicates if encryption is enabled on virtual network and if VM without encryption is allowed in encrypted VNet. */
 export interface VirtualNetworkEncryption {
@@ -54078,8 +53857,7 @@ export type VirtualNetworkPeeringPropertiesFormatPeeringState =
   | "Initiated"
   | "Connected"
   | "Disconnected";
-export const VirtualNetworkPeeringPropertiesFormatPeeringState =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkPeeringPropertiesFormatPeeringState = S.String;
 
 /** The peering sync status of the virtual network peering. */
 export type VirtualNetworkPeeringPropertiesFormatPeeringSyncLevel =
@@ -54087,8 +53865,7 @@ export type VirtualNetworkPeeringPropertiesFormatPeeringSyncLevel =
   | "RemoteNotInSync"
   | "LocalNotInSync"
   | "LocalAndRemoteNotInSync";
-export const VirtualNetworkPeeringPropertiesFormatPeeringSyncLevel =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkPeeringPropertiesFormatPeeringSyncLevel = S.String;
 
 /** Provisioning states of a resource. */
 export type VirtualNetworkPeeringPropertiesFormatProvisioningState =
@@ -54098,8 +53875,7 @@ export type VirtualNetworkPeeringPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VirtualNetworkPeeringPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkPeeringPropertiesFormatProvisioningState = S.String;
 
 /** List of local subnet names that are subnet peered with remote virtual network. */
 export type VirtualNetworkPeeringPropertiesFormatLocalSubnetNamesList =
@@ -54241,8 +54017,7 @@ export type VirtualNetworkPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VirtualNetworkPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkPropertiesFormatProvisioningState = S.String;
 
 /** Reference to another subresource. */
 export type VirtualNetworkPropertiesFormatDdosProtectionPlan =
@@ -54355,7 +54130,7 @@ export type VirtualNetworkPropertiesFormatPrivateEndpointVNetPolicies =
   | "Disabled"
   | "Basic";
 export const VirtualNetworkPropertiesFormatPrivateEndpointVNetPolicies =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type VirtualNetworkPropertiesFormatDefaultPublicNatGateway =
@@ -54484,7 +54259,7 @@ export type RouteTargetAddressPropertiesFormatPrivateIPAllocationMethod =
   | "Static"
   | "Dynamic";
 export const RouteTargetAddressPropertiesFormatPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of route target address */
 export interface RouteTargetAddressPropertiesFormat {
@@ -54515,8 +54290,7 @@ export type ServiceGatewayPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ServiceGatewayPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ServiceGatewayPropertiesFormatProvisioningState = S.String;
 
 /** Properties of the service gateway. */
 export interface ServiceGatewayPropertiesFormat {
@@ -54547,11 +54321,11 @@ export const ServiceGatewayPropertiesFormat = /*@__PURE__*/ S.suspend(() =>
 
 /** Name of a service gateway SKU. */
 export type ServiceGatewaySkuName = "Standard";
-export const ServiceGatewaySkuName = /*@__PURE__*/ S.String;
+export const ServiceGatewaySkuName = S.String;
 
 /** Tier of a service gateway SKU. */
 export type ServiceGatewaySkuTier = "Regional";
-export const ServiceGatewaySkuTier = /*@__PURE__*/ S.String;
+export const ServiceGatewaySkuTier = S.String;
 
 /** SKU of a service gateway. */
 export interface ServiceGatewaySku {
@@ -54742,8 +54516,7 @@ export type ServiceGatewayServicePropertiesFormatServiceType =
   | "Inbound"
   | "Outbound"
   | "InboundOutbound";
-export const ServiceGatewayServicePropertiesFormatServiceType =
-  /*@__PURE__*/ S.String;
+export const ServiceGatewayServicePropertiesFormatServiceType = S.String;
 
 /** Pool of backend IP addresses. */
 export type ServiceGatewayServicePropertiesFormatLoadBalancerBackendPoolsItem =
@@ -54860,8 +54633,7 @@ export type GetStaticCidrResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetStaticCidrResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetStaticCidrResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetStaticCidrResponseSystemDataLastModifiedByType =
@@ -54869,8 +54641,7 @@ export type GetStaticCidrResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetStaticCidrResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetStaticCidrResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetStaticCidrResponseSystemData {
@@ -54965,7 +54736,7 @@ export type StaticMemberPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const StaticMemberPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const StaticMemberPropertiesProvisioningState = S.String;
 
 /** Properties of static member. */
 export interface StaticMemberProperties {
@@ -54992,8 +54763,7 @@ export type GetStaticMemberResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetStaticMemberResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetStaticMemberResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetStaticMemberResponseSystemDataLastModifiedByType =
@@ -55001,8 +54771,7 @@ export type GetStaticMemberResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetStaticMemberResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetStaticMemberResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetStaticMemberResponseSystemData {
@@ -55195,7 +54964,7 @@ export type GetSubscriptionNetworkManagerConnectionResponseSystemDataCreatedByTy
   | "ManagedIdentity"
   | "Key";
 export const GetSubscriptionNetworkManagerConnectionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetSubscriptionNetworkManagerConnectionResponseSystemDataLastModifiedByType =
@@ -55204,7 +54973,7 @@ export type GetSubscriptionNetworkManagerConnectionResponseSystemDataLastModifie
   | "ManagedIdentity"
   | "Key";
 export const GetSubscriptionNetworkManagerConnectionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetSubscriptionNetworkManagerConnectionResponseSystemData {
@@ -55303,8 +55072,7 @@ export type GetVerifierWorkspaceResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetVerifierWorkspaceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetVerifierWorkspaceResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetVerifierWorkspaceResponseSystemDataLastModifiedByType =
@@ -55313,7 +55081,7 @@ export type GetVerifierWorkspaceResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetVerifierWorkspaceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetVerifierWorkspaceResponseSystemData {
@@ -55391,7 +55159,7 @@ export const GetVerifierWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVerifierWorkspaceResponse>;
 
 export type GetVipSwapRequestSingletonResource = "swap";
-export const GetVipSwapRequestSingletonResource = /*@__PURE__*/ S.String;
+export const GetVipSwapRequestSingletonResource = S.String;
 
 export interface GetVipSwapRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -55509,8 +55277,7 @@ export type VirtualApplianceSitePropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VirtualApplianceSitePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VirtualApplianceSitePropertiesProvisioningState = S.String;
 
 /** Properties of the rule group. */
 export interface VirtualApplianceSiteProperties {
@@ -55795,7 +55562,7 @@ export type VirtualHubPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VirtualHubPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const VirtualHubPropertiesProvisioningState = S.String;
 
 /** List of all destinations. */
 export type VirtualHubRouteV2DestinationsList = Array<string>;
@@ -55854,8 +55621,7 @@ export type VirtualHubRouteTableV2PropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VirtualHubRouteTableV2PropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VirtualHubRouteTableV2PropertiesProvisioningState = S.String;
 
 /** Parameters for VirtualHubRouteTableV2. */
 export interface VirtualHubRouteTableV2Properties {
@@ -55918,7 +55684,7 @@ export type VirtualHubPropertiesRoutingState =
   | "Provisioned"
   | "Provisioning"
   | "Failed";
-export const VirtualHubPropertiesRoutingState = /*@__PURE__*/ S.String;
+export const VirtualHubPropertiesRoutingState = S.String;
 
 /** Reference to another subresource. */
 export type VirtualHubPropertiesBgpConnectionsItem =
@@ -55976,15 +55742,14 @@ export type VirtualHubPropertiesPreferredRoutingGateway =
   | "ExpressRoute"
   | "VpnGateway"
   | "None";
-export const VirtualHubPropertiesPreferredRoutingGateway =
-  /*@__PURE__*/ S.String;
+export const VirtualHubPropertiesPreferredRoutingGateway = S.String;
 
 /** The hub routing preference gateway types */
 export type VirtualHubPropertiesHubRoutingPreference =
   | "ExpressRoute"
   | "VpnGateway"
   | "ASPath";
-export const VirtualHubPropertiesHubRoutingPreference = /*@__PURE__*/ S.String;
+export const VirtualHubPropertiesHubRoutingPreference = S.String;
 
 /** The VirtualHub Router autoscale configuration. */
 export interface VirtualRouterAutoScaleConfiguration {
@@ -56174,7 +55939,7 @@ export type BgpConnectionPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const BgpConnectionPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const BgpConnectionPropertiesProvisioningState = S.String;
 
 /** The current state of the VirtualHub to Peer. */
 export type BgpConnectionPropertiesConnectionState =
@@ -56182,7 +55947,7 @@ export type BgpConnectionPropertiesConnectionState =
   | "Connecting"
   | "Connected"
   | "NotConnected";
-export const BgpConnectionPropertiesConnectionState = /*@__PURE__*/ S.String;
+export const BgpConnectionPropertiesConnectionState = S.String;
 
 /** Properties of the bgp connection. */
 export interface BgpConnectionProperties {
@@ -56430,7 +56195,7 @@ export type HubIPConfigurationPropertiesFormatPrivateIPAllocationMethod =
   | "Static"
   | "Dynamic";
 export const HubIPConfigurationPropertiesFormatPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The CIDR or source IP ranges. */
 export type SecurityRulePropertiesFormatSourceAddressPrefixesList_9 =
@@ -58949,8 +58714,7 @@ export type HubIPConfigurationPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const HubIPConfigurationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const HubIPConfigurationPropertiesFormatProvisioningState = S.String;
 
 /** Properties of IP configuration. */
 export interface HubIPConfigurationPropertiesFormat {
@@ -59281,7 +59045,7 @@ export type VirtualNetworkApplianceIpConfigurationPropertiesPrivateIPAllocationM
   | "Static"
   | "Dynamic";
 export const VirtualNetworkApplianceIpConfigurationPropertiesPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type VirtualNetworkApplianceIpConfigurationPropertiesProvisioningState =
@@ -59292,14 +59056,14 @@ export type VirtualNetworkApplianceIpConfigurationPropertiesProvisioningState =
   | "Updating"
   | "Deleting";
 export const VirtualNetworkApplianceIpConfigurationPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** IP address version. */
 export type VirtualNetworkApplianceIpConfigurationPropertiesPrivateIPAddressVersion =
   | "IPv4"
   | "IPv6";
 export const VirtualNetworkApplianceIpConfigurationPropertiesPrivateIPAddressVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of virtual network appliance IP configuration. */
 export interface VirtualNetworkApplianceIpConfigurationProperties {
@@ -59372,7 +59136,7 @@ export type VirtualNetworkAppliancePropertiesFormatPrivateIPAddressVersion =
   | "IPv4"
   | "DualStack";
 export const VirtualNetworkAppliancePropertiesFormatPrivateIPAddressVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type VirtualNetworkAppliancePropertiesFormatProvisioningState =
@@ -59383,7 +59147,7 @@ export type VirtualNetworkAppliancePropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const VirtualNetworkAppliancePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The CIDR or source IP ranges. */
 export type SecurityRulePropertiesFormatSourceAddressPrefixesList_8 =
@@ -61949,7 +61713,7 @@ export type VirtualNetworkGatewayIPConfigurationPropertiesFormatPrivateIPAllocat
   | "Static"
   | "Dynamic";
 export const VirtualNetworkGatewayIPConfigurationPropertiesFormatPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type VirtualNetworkGatewayIPConfigurationPropertiesFormatSubnet =
@@ -61972,7 +61736,7 @@ export type VirtualNetworkGatewayIPConfigurationPropertiesFormatProvisioningStat
   | "Updating"
   | "Deleting";
 export const VirtualNetworkGatewayIPConfigurationPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of VirtualNetworkGatewayIPConfiguration. */
 export interface VirtualNetworkGatewayIPConfigurationPropertiesFormat {
@@ -62046,15 +61810,13 @@ export type VirtualNetworkGatewayPropertiesFormatGatewayType =
   | "Vpn"
   | "ExpressRoute"
   | "LocalGateway";
-export const VirtualNetworkGatewayPropertiesFormatGatewayType =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewayPropertiesFormatGatewayType = S.String;
 
 /** The type of this virtual network gateway. */
 export type VirtualNetworkGatewayPropertiesFormatVpnType =
   | "PolicyBased"
   | "RouteBased";
-export const VirtualNetworkGatewayPropertiesFormatVpnType =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewayPropertiesFormatVpnType = S.String;
 
 /** The generation for this VirtualNetworkGateway. Must be None if gatewayType is not VPN. */
 export type VirtualNetworkGatewayPropertiesFormatVpnGatewayGeneration =
@@ -62062,7 +61824,7 @@ export type VirtualNetworkGatewayPropertiesFormatVpnGatewayGeneration =
   | "Generation1"
   | "Generation2";
 export const VirtualNetworkGatewayPropertiesFormatVpnGatewayGeneration =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represent the current state of gateway migration. */
 export type VirtualNetworkGatewayMigrationStatusState =
@@ -62070,7 +61832,7 @@ export type VirtualNetworkGatewayMigrationStatusState =
   | "InProgress"
   | "Succeeded"
   | "Failed";
-export const VirtualNetworkGatewayMigrationStatusState = /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewayMigrationStatusState = S.String;
 
 /** Represent the current migration phase of gateway. */
 export type VirtualNetworkGatewayMigrationStatusPhase =
@@ -62083,7 +61845,7 @@ export type VirtualNetworkGatewayMigrationStatusPhase =
   | "CommitSucceeded"
   | "AbortSucceeded"
   | "Abort";
-export const VirtualNetworkGatewayMigrationStatusPhase = /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewayMigrationStatusPhase = S.String;
 
 /** Migration status for the Virtual Network Gateway. */
 export interface VirtualNetworkGatewayMigrationStatus {
@@ -62131,7 +61893,7 @@ export type VirtualNetworkGatewaySkuName =
   | "ErGw2AZ"
   | "ErGw3AZ"
   | "ErGwScale";
-export const VirtualNetworkGatewaySkuName = /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewaySkuName = S.String;
 
 /** Gateway SKU tier. */
 export type VirtualNetworkGatewaySkuTier =
@@ -62153,7 +61915,7 @@ export type VirtualNetworkGatewaySkuTier =
   | "ErGw2AZ"
   | "ErGw3AZ"
   | "ErGwScale";
-export const VirtualNetworkGatewaySkuTier = /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewaySkuTier = S.String;
 
 /** VirtualNetworkGatewaySku details. */
 export interface VirtualNetworkGatewaySku {
@@ -62220,7 +61982,7 @@ export type VpnClientRootCertificatePropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const VpnClientRootCertificatePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of SSL certificates of application gateway. */
 export interface VpnClientRootCertificatePropertiesFormat {
@@ -62282,7 +62044,7 @@ export type VpnClientRevokedCertificatePropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const VpnClientRevokedCertificatePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the revoked VPN client certificate of virtual network gateway. */
 export interface VpnClientRevokedCertificatePropertiesFormat {
@@ -62340,8 +62102,7 @@ export type VpnClientConfigurationVpnClientProtocolsItem =
   | "IkeV2"
   | "SSTP"
   | "OpenVPN";
-export const VpnClientConfigurationVpnClientProtocolsItem =
-  /*@__PURE__*/ S.String;
+export const VpnClientConfigurationVpnClientProtocolsItem = S.String;
 
 /** VpnClientProtocols for Virtual network gateway. */
 export type VpnClientConfigurationVpnClientProtocolsList =
@@ -62356,8 +62117,7 @@ export type VpnClientConfigurationVpnAuthenticationTypesItem =
   | "Certificate"
   | "Radius"
   | "AAD";
-export const VpnClientConfigurationVpnAuthenticationTypesItem =
-  /*@__PURE__*/ S.String;
+export const VpnClientConfigurationVpnAuthenticationTypesItem = S.String;
 
 /** VPN authentication types for the virtual network gateway.. */
 export type VpnClientConfigurationVpnAuthenticationTypesList =
@@ -62378,7 +62138,7 @@ export type IpsecPolicyIpsecEncryption =
   | "GCMAES128"
   | "GCMAES192"
   | "GCMAES256";
-export const IpsecPolicyIpsecEncryption = /*@__PURE__*/ S.String;
+export const IpsecPolicyIpsecEncryption = S.String;
 
 /** The IPSec integrity algorithm (IKE phase 1). */
 export type IpsecPolicyIpsecIntegrity =
@@ -62388,7 +62148,7 @@ export type IpsecPolicyIpsecIntegrity =
   | "GCMAES128"
   | "GCMAES192"
   | "GCMAES256";
-export const IpsecPolicyIpsecIntegrity = /*@__PURE__*/ S.String;
+export const IpsecPolicyIpsecIntegrity = S.String;
 
 /** The IKE encryption algorithm (IKE phase 2). */
 export type IpsecPolicyIkeEncryption =
@@ -62399,7 +62159,7 @@ export type IpsecPolicyIkeEncryption =
   | "AES256"
   | "GCMAES256"
   | "GCMAES128";
-export const IpsecPolicyIkeEncryption = /*@__PURE__*/ S.String;
+export const IpsecPolicyIkeEncryption = S.String;
 
 /** The IKE integrity algorithm (IKE phase 2). */
 export type IpsecPolicyIkeIntegrity =
@@ -62409,7 +62169,7 @@ export type IpsecPolicyIkeIntegrity =
   | "SHA384"
   | "GCMAES256"
   | "GCMAES128";
-export const IpsecPolicyIkeIntegrity = /*@__PURE__*/ S.String;
+export const IpsecPolicyIkeIntegrity = S.String;
 
 /** The DH Groups used in IKE Phase 1 for initial SA. */
 export type IpsecPolicyDhGroup =
@@ -62421,7 +62181,7 @@ export type IpsecPolicyDhGroup =
   | "ECP256"
   | "ECP384"
   | "DHGroup24";
-export const IpsecPolicyDhGroup = /*@__PURE__*/ S.String;
+export const IpsecPolicyDhGroup = S.String;
 
 /** The Pfs Groups used in IKE Phase 2 for new child SA. */
 export type IpsecPolicyPfsGroup =
@@ -62434,7 +62194,7 @@ export type IpsecPolicyPfsGroup =
   | "PFS24"
   | "PFS14"
   | "PFSMM";
-export const IpsecPolicyPfsGroup = /*@__PURE__*/ S.String;
+export const IpsecPolicyPfsGroup = S.String;
 
 /** An IPSec Policy configuration for a virtual network gateway connection. */
 export interface IpsecPolicy {
@@ -62560,7 +62320,7 @@ export type VngClientConnectionConfigurationPropertiesProvisioningState =
   | "Updating"
   | "Deleting";
 export const VngClientConnectionConfigurationPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of VngClientConnectionConfiguration. */
 export interface VngClientConnectionConfigurationProperties {
@@ -62684,8 +62444,7 @@ export type VirtualNetworkGatewayPolicyGroupMemberAttributeType =
   | "CertificateGroupId"
   | "AADGroupId"
   | "RadiusAzureGroupId";
-export const VirtualNetworkGatewayPolicyGroupMemberAttributeType =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewayPolicyGroupMemberAttributeType = S.String;
 
 /** Vpn Client Connection configuration PolicyGroup member */
 export interface VirtualNetworkGatewayPolicyGroupMember {
@@ -62742,7 +62501,7 @@ export type VirtualNetworkGatewayPolicyGroupPropertiesProvisioningState =
   | "Updating"
   | "Deleting";
 export const VirtualNetworkGatewayPolicyGroupPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of VirtualNetworkGatewayPolicyGroup. */
 export interface VirtualNetworkGatewayPolicyGroupProperties {
@@ -62850,8 +62609,7 @@ export type VirtualNetworkGatewayPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VirtualNetworkGatewayPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewayPropertiesFormatProvisioningState = S.String;
 
 /** Provisioning states of a resource. */
 export type VirtualNetworkGatewayNatRulePropertiesProvisioningState =
@@ -62861,20 +62619,17 @@ export type VirtualNetworkGatewayNatRulePropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VirtualNetworkGatewayNatRulePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewayNatRulePropertiesProvisioningState = S.String;
 
 /** The type of NAT rule for VPN NAT. */
 export type VirtualNetworkGatewayNatRulePropertiesType = "Static" | "Dynamic";
-export const VirtualNetworkGatewayNatRulePropertiesType =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewayNatRulePropertiesType = S.String;
 
 /** The Source NAT direction of a VPN NAT. */
 export type VirtualNetworkGatewayNatRulePropertiesMode =
   | "EgressSnat"
   | "IngressSnat";
-export const VirtualNetworkGatewayNatRulePropertiesMode =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewayNatRulePropertiesMode = S.String;
 
 /** Vpn NatRule mapping. */
 export type VirtualNetworkGatewayNatRulePropertiesInternalMappingsItem =
@@ -62978,15 +62733,13 @@ export const VirtualNetworkGatewayPropertiesFormatNatRulesList =
 export type VirtualNetworkGatewayPropertiesFormatAdminState =
   | "Enabled"
   | "Disabled";
-export const VirtualNetworkGatewayPropertiesFormatAdminState =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewayPropertiesFormatAdminState = S.String;
 
 /** Property to indicate if the Express Route Gateway has resiliency model of MultiHomed or SingleHomed */
 export type VirtualNetworkGatewayPropertiesFormatResiliencyModel =
   | "SingleHomed"
   | "MultiHomed";
-export const VirtualNetworkGatewayPropertiesFormatResiliencyModel =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewayPropertiesFormatResiliencyModel = S.String;
 
 /** VirtualNetworkGateway properties. */
 export interface VirtualNetworkGatewayPropertiesFormat {
@@ -63295,7 +63048,7 @@ export type BgpPeerStatusState =
   | "Idle"
   | "Connecting"
   | "Connected";
-export const BgpPeerStatusState = /*@__PURE__*/ S.String;
+export const BgpPeerStatusState = S.String;
 
 /** BGP peer status details. */
 export interface BgpPeerStatus {
@@ -63543,14 +63296,14 @@ export type VirtualNetworkGatewayConnectionPropertiesFormatConnectionType =
   | "ExpressRoute"
   | "VPNClient";
 export const VirtualNetworkGatewayConnectionPropertiesFormatConnectionType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Gateway connection protocol. */
 export type VirtualNetworkGatewayConnectionPropertiesFormatConnectionProtocol =
   | "IKEv2"
   | "IKEv1";
 export const VirtualNetworkGatewayConnectionPropertiesFormatConnectionProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Gateway connection type. */
 export type VirtualNetworkGatewayConnectionPropertiesFormatConnectionMode =
@@ -63558,7 +63311,7 @@ export type VirtualNetworkGatewayConnectionPropertiesFormatConnectionMode =
   | "ResponderOnly"
   | "InitiatorOnly";
 export const VirtualNetworkGatewayConnectionPropertiesFormatConnectionMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VirtualNetworkGatewayConnectionTunnelProperties {
   /** Tunnel remote IP address */
@@ -63591,7 +63344,7 @@ export type VirtualNetworkGatewayConnectionPropertiesFormatConnectionStatus =
   | "Connected"
   | "NotConnected";
 export const VirtualNetworkGatewayConnectionPropertiesFormatConnectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Virtual Network Gateway connection status. */
 export type TunnelConnectionHealthConnectionStatus =
@@ -63599,7 +63352,7 @@ export type TunnelConnectionHealthConnectionStatus =
   | "Connecting"
   | "Connected"
   | "NotConnected";
-export const TunnelConnectionHealthConnectionStatus = /*@__PURE__*/ S.String;
+export const TunnelConnectionHealthConnectionStatus = S.String;
 
 /** VirtualNetworkGatewayConnection properties. */
 export interface TunnelConnectionHealth {
@@ -63720,14 +63473,14 @@ export type VirtualNetworkGatewayConnectionPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const VirtualNetworkGatewayConnectionPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Gateway connection authentication type. */
 export type VirtualNetworkGatewayConnectionPropertiesFormatAuthenticationType =
   | "PSK"
   | "Certificate";
 export const VirtualNetworkGatewayConnectionPropertiesFormatAuthenticationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Inbound authentication certificate public keys. */
 export type CertificateAuthenticationInboundAuthCertificateChainList =
@@ -64055,7 +63808,7 @@ export type GatewayEffectiveRouteNextHopType =
   | "Tunnel"
   | "VirtualNetwork"
   | "Unknown";
-export const GatewayEffectiveRouteNextHopType = /*@__PURE__*/ S.String;
+export const GatewayEffectiveRouteNextHopType = S.String;
 
 /** Gateway effective routing details. */
 export interface GatewayEffectiveRoute {
@@ -64150,7 +63903,7 @@ export type ExpressRouteFailoverTestDetailsStatus =
   | "StopFailed"
   | "Invalid"
   | "Expired";
-export const ExpressRouteFailoverTestDetailsStatus = /*@__PURE__*/ S.String;
+export const ExpressRouteFailoverTestDetailsStatus = S.String;
 
 /** All connections to the circuits in the peering location */
 export type ExpressRouteFailoverTestDetailsConnectionsList =
@@ -64165,7 +63918,7 @@ export type ExpressRouteFailoverTestDetailsTestType =
   | "SingleSiteFailover"
   | "MultiSiteFailover"
   | "All";
-export const ExpressRouteFailoverTestDetailsTestType = /*@__PURE__*/ S.String;
+export const ExpressRouteFailoverTestDetailsTestType = S.String;
 
 /** A list of all issues with the test */
 export type ExpressRouteFailoverTestDetailsIssuesList = Array<string>;
@@ -64271,8 +64024,7 @@ export type ExpressRouteFailoverSingleTestDetailsStatus =
   | "StopFailed"
   | "Invalid"
   | "Expired";
-export const ExpressRouteFailoverSingleTestDetailsStatus =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteFailoverSingleTestDetailsStatus = S.String;
 
 /** List of routes received from this peering as well as some other peering location */
 export type ExpressRouteFailoverSingleTestDetailsRedundantRoutesList =
@@ -64707,7 +64459,7 @@ export type VpnClientIPsecParametersIpsecEncryption =
   | "GCMAES128"
   | "GCMAES192"
   | "GCMAES256";
-export const VpnClientIPsecParametersIpsecEncryption = /*@__PURE__*/ S.String;
+export const VpnClientIPsecParametersIpsecEncryption = S.String;
 
 /** The IPSec integrity algorithm (IKE phase 1). */
 export type VpnClientIPsecParametersIpsecIntegrity =
@@ -64717,7 +64469,7 @@ export type VpnClientIPsecParametersIpsecIntegrity =
   | "GCMAES128"
   | "GCMAES192"
   | "GCMAES256";
-export const VpnClientIPsecParametersIpsecIntegrity = /*@__PURE__*/ S.String;
+export const VpnClientIPsecParametersIpsecIntegrity = S.String;
 
 /** The IKE encryption algorithm (IKE phase 2). */
 export type VpnClientIPsecParametersIkeEncryption =
@@ -64728,7 +64480,7 @@ export type VpnClientIPsecParametersIkeEncryption =
   | "AES256"
   | "GCMAES256"
   | "GCMAES128";
-export const VpnClientIPsecParametersIkeEncryption = /*@__PURE__*/ S.String;
+export const VpnClientIPsecParametersIkeEncryption = S.String;
 
 /** The IKE integrity algorithm (IKE phase 2). */
 export type VpnClientIPsecParametersIkeIntegrity =
@@ -64738,7 +64490,7 @@ export type VpnClientIPsecParametersIkeIntegrity =
   | "SHA384"
   | "GCMAES256"
   | "GCMAES128";
-export const VpnClientIPsecParametersIkeIntegrity = /*@__PURE__*/ S.String;
+export const VpnClientIPsecParametersIkeIntegrity = S.String;
 
 /** The DH Groups used in IKE Phase 1 for initial SA. */
 export type VpnClientIPsecParametersDhGroup =
@@ -64750,7 +64502,7 @@ export type VpnClientIPsecParametersDhGroup =
   | "ECP256"
   | "ECP384"
   | "DHGroup24";
-export const VpnClientIPsecParametersDhGroup = /*@__PURE__*/ S.String;
+export const VpnClientIPsecParametersDhGroup = S.String;
 
 /** The Pfs Groups used in IKE Phase 2 for new child SA. */
 export type VpnClientIPsecParametersPfsGroup =
@@ -64763,7 +64515,7 @@ export type VpnClientIPsecParametersPfsGroup =
   | "PFS24"
   | "PFS14"
   | "PFSMM";
-export const VpnClientIPsecParametersPfsGroup = /*@__PURE__*/ S.String;
+export const VpnClientIPsecParametersPfsGroup = S.String;
 
 /** An IPSec parameters for a virtual network gateway P2S connection. */
 export interface VpnClientIPsecParameters {
@@ -67451,8 +67203,7 @@ export type VirtualRouterPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VirtualRouterPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VirtualRouterPropertiesFormatProvisioningState = S.String;
 
 /** Virtual Router definition. */
 export interface VirtualRouterPropertiesFormat {
@@ -67556,8 +67307,7 @@ export type VirtualRouterPeeringPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VirtualRouterPeeringPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VirtualRouterPeeringPropertiesProvisioningState = S.String;
 
 /** Properties of the rule group. */
 export interface VirtualRouterPeeringProperties {
@@ -67672,8 +67422,7 @@ export type VirtualWanPropertiesOffice365LocalBreakoutCategory =
   | "OptimizeAndAllow"
   | "All"
   | "None";
-export const VirtualWanPropertiesOffice365LocalBreakoutCategory =
-  /*@__PURE__*/ S.String;
+export const VirtualWanPropertiesOffice365LocalBreakoutCategory = S.String;
 
 /** Provisioning states of a resource. */
 export type VirtualWanPropertiesProvisioningState =
@@ -67683,7 +67432,7 @@ export type VirtualWanPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VirtualWanPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const VirtualWanPropertiesProvisioningState = S.String;
 
 /** Parameters for VirtualWAN. */
 export interface VirtualWanProperties {
@@ -67791,14 +67540,13 @@ export type VpnConnectionPropertiesConnectionStatus =
   | "Connecting"
   | "Connected"
   | "NotConnected";
-export const VpnConnectionPropertiesConnectionStatus = /*@__PURE__*/ S.String;
+export const VpnConnectionPropertiesConnectionStatus = S.String;
 
 /** Gateway connection protocol. */
 export type VpnConnectionPropertiesVpnConnectionProtocolType =
   | "IKEv2"
   | "IKEv1";
-export const VpnConnectionPropertiesVpnConnectionProtocolType =
-  /*@__PURE__*/ S.String;
+export const VpnConnectionPropertiesVpnConnectionProtocolType = S.String;
 
 /** The IPSec encryption algorithm (IKE phase 1). */
 export type VpnConnectionPropertiesIpsecPoliciesItemIpsecEncryption =
@@ -67811,8 +67559,7 @@ export type VpnConnectionPropertiesIpsecPoliciesItemIpsecEncryption =
   | "GCMAES128"
   | "GCMAES192"
   | "GCMAES256";
-export const VpnConnectionPropertiesIpsecPoliciesItemIpsecEncryption =
-  /*@__PURE__*/ S.String;
+export const VpnConnectionPropertiesIpsecPoliciesItemIpsecEncryption = S.String;
 
 /** The IPSec integrity algorithm (IKE phase 1). */
 export type VpnConnectionPropertiesIpsecPoliciesItemIpsecIntegrity =
@@ -67822,8 +67569,7 @@ export type VpnConnectionPropertiesIpsecPoliciesItemIpsecIntegrity =
   | "GCMAES128"
   | "GCMAES192"
   | "GCMAES256";
-export const VpnConnectionPropertiesIpsecPoliciesItemIpsecIntegrity =
-  /*@__PURE__*/ S.String;
+export const VpnConnectionPropertiesIpsecPoliciesItemIpsecIntegrity = S.String;
 
 /** The IKE encryption algorithm (IKE phase 2). */
 export type VpnConnectionPropertiesIpsecPoliciesItemIkeEncryption =
@@ -67834,8 +67580,7 @@ export type VpnConnectionPropertiesIpsecPoliciesItemIkeEncryption =
   | "AES256"
   | "GCMAES256"
   | "GCMAES128";
-export const VpnConnectionPropertiesIpsecPoliciesItemIkeEncryption =
-  /*@__PURE__*/ S.String;
+export const VpnConnectionPropertiesIpsecPoliciesItemIkeEncryption = S.String;
 
 /** The IKE integrity algorithm (IKE phase 2). */
 export type VpnConnectionPropertiesIpsecPoliciesItemIkeIntegrity =
@@ -67845,8 +67590,7 @@ export type VpnConnectionPropertiesIpsecPoliciesItemIkeIntegrity =
   | "SHA384"
   | "GCMAES256"
   | "GCMAES128";
-export const VpnConnectionPropertiesIpsecPoliciesItemIkeIntegrity =
-  /*@__PURE__*/ S.String;
+export const VpnConnectionPropertiesIpsecPoliciesItemIkeIntegrity = S.String;
 
 /** The DH Groups used in IKE Phase 1 for initial SA. */
 export type VpnConnectionPropertiesIpsecPoliciesItemDhGroup =
@@ -67858,8 +67602,7 @@ export type VpnConnectionPropertiesIpsecPoliciesItemDhGroup =
   | "ECP256"
   | "ECP384"
   | "DHGroup24";
-export const VpnConnectionPropertiesIpsecPoliciesItemDhGroup =
-  /*@__PURE__*/ S.String;
+export const VpnConnectionPropertiesIpsecPoliciesItemDhGroup = S.String;
 
 /** The Pfs Groups used in IKE Phase 2 for new child SA. */
 export type VpnConnectionPropertiesIpsecPoliciesItemPfsGroup =
@@ -67872,8 +67615,7 @@ export type VpnConnectionPropertiesIpsecPoliciesItemPfsGroup =
   | "PFS24"
   | "PFS14"
   | "PFSMM";
-export const VpnConnectionPropertiesIpsecPoliciesItemPfsGroup =
-  /*@__PURE__*/ S.String;
+export const VpnConnectionPropertiesIpsecPoliciesItemPfsGroup = S.String;
 
 /** An IPSec Policy configuration for a virtual network gateway connection. */
 export interface VpnConnectionPropertiesIpsecPoliciesItem {
@@ -67968,7 +67710,7 @@ export type VpnConnectionPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VpnConnectionPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const VpnConnectionPropertiesProvisioningState = S.String;
 
 /** Reference to another subresource. */
 export type VpnSiteLinkConnectionPropertiesVpnSiteLink =
@@ -67981,8 +67723,7 @@ export type VpnSiteLinkConnectionPropertiesVpnLinkConnectionMode =
   | "Default"
   | "ResponderOnly"
   | "InitiatorOnly";
-export const VpnSiteLinkConnectionPropertiesVpnLinkConnectionMode =
-  /*@__PURE__*/ S.String;
+export const VpnSiteLinkConnectionPropertiesVpnLinkConnectionMode = S.String;
 
 /** The current state of the vpn connection. */
 export type VpnSiteLinkConnectionPropertiesConnectionStatus =
@@ -67990,15 +67731,14 @@ export type VpnSiteLinkConnectionPropertiesConnectionStatus =
   | "Connecting"
   | "Connected"
   | "NotConnected";
-export const VpnSiteLinkConnectionPropertiesConnectionStatus =
-  /*@__PURE__*/ S.String;
+export const VpnSiteLinkConnectionPropertiesConnectionStatus = S.String;
 
 /** Gateway connection protocol. */
 export type VpnSiteLinkConnectionPropertiesVpnConnectionProtocolType =
   | "IKEv2"
   | "IKEv1";
 export const VpnSiteLinkConnectionPropertiesVpnConnectionProtocolType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** GatewayCustomBgpIpAddressIpConfiguration for a virtual network gateway connection. */
 export type VpnSiteLinkConnectionPropertiesVpnGatewayCustomBgpAddressesItem =
@@ -68026,7 +67766,7 @@ export type VpnSiteLinkConnectionPropertiesIpsecPoliciesItemIpsecEncryption =
   | "GCMAES192"
   | "GCMAES256";
 export const VpnSiteLinkConnectionPropertiesIpsecPoliciesItemIpsecEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IPSec integrity algorithm (IKE phase 1). */
 export type VpnSiteLinkConnectionPropertiesIpsecPoliciesItemIpsecIntegrity =
@@ -68037,7 +67777,7 @@ export type VpnSiteLinkConnectionPropertiesIpsecPoliciesItemIpsecIntegrity =
   | "GCMAES192"
   | "GCMAES256";
 export const VpnSiteLinkConnectionPropertiesIpsecPoliciesItemIpsecIntegrity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IKE encryption algorithm (IKE phase 2). */
 export type VpnSiteLinkConnectionPropertiesIpsecPoliciesItemIkeEncryption =
@@ -68049,7 +67789,7 @@ export type VpnSiteLinkConnectionPropertiesIpsecPoliciesItemIkeEncryption =
   | "GCMAES256"
   | "GCMAES128";
 export const VpnSiteLinkConnectionPropertiesIpsecPoliciesItemIkeEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IKE integrity algorithm (IKE phase 2). */
 export type VpnSiteLinkConnectionPropertiesIpsecPoliciesItemIkeIntegrity =
@@ -68060,7 +67800,7 @@ export type VpnSiteLinkConnectionPropertiesIpsecPoliciesItemIkeIntegrity =
   | "GCMAES256"
   | "GCMAES128";
 export const VpnSiteLinkConnectionPropertiesIpsecPoliciesItemIkeIntegrity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The DH Groups used in IKE Phase 1 for initial SA. */
 export type VpnSiteLinkConnectionPropertiesIpsecPoliciesItemDhGroup =
@@ -68072,8 +67812,7 @@ export type VpnSiteLinkConnectionPropertiesIpsecPoliciesItemDhGroup =
   | "ECP256"
   | "ECP384"
   | "DHGroup24";
-export const VpnSiteLinkConnectionPropertiesIpsecPoliciesItemDhGroup =
-  /*@__PURE__*/ S.String;
+export const VpnSiteLinkConnectionPropertiesIpsecPoliciesItemDhGroup = S.String;
 
 /** The Pfs Groups used in IKE Phase 2 for new child SA. */
 export type VpnSiteLinkConnectionPropertiesIpsecPoliciesItemPfsGroup =
@@ -68087,7 +67826,7 @@ export type VpnSiteLinkConnectionPropertiesIpsecPoliciesItemPfsGroup =
   | "PFS14"
   | "PFSMM";
 export const VpnSiteLinkConnectionPropertiesIpsecPoliciesItemPfsGroup =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An IPSec Policy configuration for a virtual network gateway connection. */
 export interface VpnSiteLinkConnectionPropertiesIpsecPoliciesItem {
@@ -68144,8 +67883,7 @@ export type VpnSiteLinkConnectionPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VpnSiteLinkConnectionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VpnSiteLinkConnectionPropertiesProvisioningState = S.String;
 
 /** Reference to another subresource. */
 export type VpnSiteLinkConnectionPropertiesIngressNatRulesItem =
@@ -68493,7 +68231,7 @@ export type VpnGatewayPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VpnGatewayPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const VpnGatewayPropertiesProvisioningState = S.String;
 
 /** IP Configuration of a VPN Gateway Resource. */
 export interface VpnGatewayIpConfiguration {
@@ -68661,7 +68399,7 @@ export type SharedKeyPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const SharedKeyPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const SharedKeyPropertiesProvisioningState = S.String;
 
 /** Parameters for SharedKey. */
 export interface SharedKeyProperties {
@@ -68857,8 +68595,7 @@ export const GetVpnServerConfigurationResponseTagsMap = /*@__PURE__*/ S.Record(
 export type VpnServerConfigurationPropertiesVpnProtocolsItem =
   | "IkeV2"
   | "OpenVPN";
-export const VpnServerConfigurationPropertiesVpnProtocolsItem =
-  /*@__PURE__*/ S.String;
+export const VpnServerConfigurationPropertiesVpnProtocolsItem = S.String;
 
 /** VPN protocols for the VpnServerConfiguration. */
 export type VpnServerConfigurationPropertiesVpnProtocolsList =
@@ -68874,7 +68611,7 @@ export type VpnServerConfigurationPropertiesVpnAuthenticationTypesItem =
   | "Radius"
   | "AAD";
 export const VpnServerConfigurationPropertiesVpnAuthenticationTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** VPN authentication types for the VpnServerConfiguration. */
 export type VpnServerConfigurationPropertiesVpnAuthenticationTypesList =
@@ -68985,7 +68722,7 @@ export type VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemIpsecEncry
   | "GCMAES192"
   | "GCMAES256";
 export const VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemIpsecEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IPSec integrity algorithm (IKE phase 1). */
 export type VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemIpsecIntegrity =
@@ -68996,7 +68733,7 @@ export type VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemIpsecInteg
   | "GCMAES192"
   | "GCMAES256";
 export const VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemIpsecIntegrity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IKE encryption algorithm (IKE phase 2). */
 export type VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemIkeEncryption =
@@ -69008,7 +68745,7 @@ export type VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemIkeEncrypt
   | "GCMAES256"
   | "GCMAES128";
 export const VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemIkeEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IKE integrity algorithm (IKE phase 2). */
 export type VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemIkeIntegrity =
@@ -69019,7 +68756,7 @@ export type VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemIkeIntegri
   | "GCMAES256"
   | "GCMAES128";
 export const VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemIkeIntegrity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The DH Groups used in IKE Phase 1 for initial SA. */
 export type VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemDhGroup =
@@ -69032,7 +68769,7 @@ export type VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemDhGroup =
   | "ECP384"
   | "DHGroup24";
 export const VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemDhGroup =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The Pfs Groups used in IKE Phase 2 for new child SA. */
 export type VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemPfsGroup =
@@ -69046,7 +68783,7 @@ export type VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemPfsGroup =
   | "PFS14"
   | "PFSMM";
 export const VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItemPfsGroup =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An IPSec Policy configuration for a virtual network gateway connection. */
 export interface VpnServerConfigurationPropertiesVpnClientIpsecPoliciesItem {
@@ -69418,7 +69155,7 @@ export type VpnSitePropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VpnSitePropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const VpnSitePropertiesProvisioningState = S.String;
 
 /** List of properties of a link provider. */
 export interface VpnLinkProviderProperties {
@@ -69460,7 +69197,7 @@ export type VpnSiteLinkPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VpnSiteLinkPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const VpnSiteLinkPropertiesProvisioningState = S.String;
 
 /** Parameters for VpnSite. */
 export interface VpnSiteLinkProperties {
@@ -69765,15 +69502,15 @@ export const GetWebApplicationFirewallPolicyResponseTagsMap =
 
 /** The state of the policy. */
 export type PolicySettingsState = "Disabled" | "Enabled";
-export const PolicySettingsState = /*@__PURE__*/ S.String;
+export const PolicySettingsState = S.String;
 
 /** The mode of the policy. */
 export type PolicySettingsMode = "Prevention" | "Detection";
-export const PolicySettingsMode = /*@__PURE__*/ S.String;
+export const PolicySettingsMode = S.String;
 
 /** State of the log scrubbing config. Default value is Enabled. */
 export type PolicySettingsLogScrubbingState = "Disabled" | "Enabled";
-export const PolicySettingsLogScrubbingState = /*@__PURE__*/ S.String;
+export const PolicySettingsLogScrubbingState = S.String;
 
 /** The variable to be scrubbed from the logs. */
 export type WebApplicationFirewallScrubbingRulesMatchVariable =
@@ -69783,19 +69520,18 @@ export type WebApplicationFirewallScrubbingRulesMatchVariable =
   | "RequestPostArgNames"
   | "RequestJSONArgNames"
   | "RequestIPAddress";
-export const WebApplicationFirewallScrubbingRulesMatchVariable =
-  /*@__PURE__*/ S.String;
+export const WebApplicationFirewallScrubbingRulesMatchVariable = S.String;
 
 /** When matchVariable is a collection, operate on the selector to specify which elements in the collection this rule applies to. */
 export type WebApplicationFirewallScrubbingRulesSelectorMatchOperator =
   | "Equals"
   | "EqualsAny";
 export const WebApplicationFirewallScrubbingRulesSelectorMatchOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines the state of log scrubbing rule. Default value is Enabled. */
 export type WebApplicationFirewallScrubbingRulesState = "Enabled" | "Disabled";
-export const WebApplicationFirewallScrubbingRulesState = /*@__PURE__*/ S.String;
+export const WebApplicationFirewallScrubbingRulesState = S.String;
 
 /** Allow certain variables to be scrubbed on WAF logs */
 export interface WebApplicationFirewallScrubbingRules {
@@ -69898,21 +69634,20 @@ export const PolicySettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Describes if the custom rule is in enabled or disabled state. Defaults to Enabled if not specified. */
 export type WebApplicationFirewallCustomRuleState = "Disabled" | "Enabled";
-export const WebApplicationFirewallCustomRuleState = /*@__PURE__*/ S.String;
+export const WebApplicationFirewallCustomRuleState = S.String;
 
 /** Duration over which Rate Limit policy will be applied. Applies only when ruleType is RateLimitRule. */
 export type WebApplicationFirewallCustomRuleRateLimitDuration =
   | "OneMin"
   | "FiveMins";
-export const WebApplicationFirewallCustomRuleRateLimitDuration =
-  /*@__PURE__*/ S.String;
+export const WebApplicationFirewallCustomRuleRateLimitDuration = S.String;
 
 /** The rule type. */
 export type WebApplicationFirewallCustomRuleRuleType =
   | "MatchRule"
   | "RateLimitRule"
   | "Invalid";
-export const WebApplicationFirewallCustomRuleRuleType = /*@__PURE__*/ S.String;
+export const WebApplicationFirewallCustomRuleRuleType = S.String;
 
 /** Match Variable. */
 export type MatchVariableVariableName =
@@ -69924,7 +69659,7 @@ export type MatchVariableVariableName =
   | "RequestHeaders"
   | "RequestBody"
   | "RequestCookies";
-export const MatchVariableVariableName = /*@__PURE__*/ S.String;
+export const MatchVariableVariableName = S.String;
 
 /** Define match variables. */
 export interface MatchVariable {
@@ -69960,7 +69695,7 @@ export type MatchConditionOperator =
   | "Regex"
   | "GeoMatch"
   | "Any";
-export const MatchConditionOperator = /*@__PURE__*/ S.String;
+export const MatchConditionOperator = S.String;
 
 /** Match value. */
 export type MatchConditionMatchValuesList = Array<string>;
@@ -69977,7 +69712,7 @@ export type MatchConditionTransformsItem =
   | "UrlEncode"
   | "RemoveNulls"
   | "HtmlEntityDecode";
-export const MatchConditionTransformsItem = /*@__PURE__*/ S.String;
+export const MatchConditionTransformsItem = S.String;
 
 /** List of transforms. */
 export type MatchConditionTransformsList = Array<
@@ -70025,7 +69760,7 @@ export type GroupByVariableVariableName =
   | "None"
   | "ClientAddrXFFHeader"
   | "GeoLocationXFFHeader";
-export const GroupByVariableVariableName = /*@__PURE__*/ S.String;
+export const GroupByVariableVariableName = S.String;
 
 /** Define user session group by clause variables. */
 export interface GroupByVariable {
@@ -70074,7 +69809,7 @@ export type WebApplicationFirewallCustomRuleAction =
   | "Log"
   | "JSChallenge"
   | "CAPTCHA";
-export const WebApplicationFirewallCustomRuleAction = /*@__PURE__*/ S.String;
+export const WebApplicationFirewallCustomRuleAction = S.String;
 
 /** Defines contents of a web application rule. */
 export interface WebApplicationFirewallCustomRule {
@@ -70229,7 +69964,7 @@ export type WebApplicationFirewallPolicyPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const WebApplicationFirewallPolicyPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Resource status of the policy. */
 export type WebApplicationFirewallPolicyPropertiesFormatResourceState =
@@ -70240,14 +69975,14 @@ export type WebApplicationFirewallPolicyPropertiesFormatResourceState =
   | "Disabled"
   | "Deleting";
 export const WebApplicationFirewallPolicyPropertiesFormatResourceState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The variable on which we evaluate the exception condition */
 export type ExceptionEntryMatchVariable =
   | "RequestURI"
   | "RemoteAddr"
   | "RequestHeader";
-export const ExceptionEntryMatchVariable = /*@__PURE__*/ S.String;
+export const ExceptionEntryMatchVariable = S.String;
 
 /** Allowed values for the matchVariable */
 export type ExceptionEntryValuesList = Array<string>;
@@ -70262,7 +69997,7 @@ export type ExceptionEntryValueMatchOperator =
   | "StartsWith"
   | "EndsWith"
   | "IPMatch";
-export const ExceptionEntryValueMatchOperator = /*@__PURE__*/ S.String;
+export const ExceptionEntryValueMatchOperator = S.String;
 
 /** When the matchVariable points to a key-value pair (e.g, RequestHeader), this operates on the selector */
 export type ExceptionEntrySelectorMatchOperator =
@@ -70270,7 +70005,7 @@ export type ExceptionEntrySelectorMatchOperator =
   | "Contains"
   | "StartsWith"
   | "EndsWith";
-export const ExceptionEntrySelectorMatchOperator = /*@__PURE__*/ S.String;
+export const ExceptionEntrySelectorMatchOperator = S.String;
 
 /** Defines a managed rule to use for exclusion. */
 export interface ExclusionManagedRule {
@@ -70385,7 +70120,7 @@ export type OwaspCrsExclusionEntryMatchVariable =
   | "RequestCookieValues"
   | "RequestArgKeys"
   | "RequestArgValues";
-export const OwaspCrsExclusionEntryMatchVariable = /*@__PURE__*/ S.String;
+export const OwaspCrsExclusionEntryMatchVariable = S.String;
 
 /** When matchVariable is a collection, operate on the selector to specify which elements in the collection this exclusion applies to. */
 export type OwaspCrsExclusionEntrySelectorMatchOperator =
@@ -70394,8 +70129,7 @@ export type OwaspCrsExclusionEntrySelectorMatchOperator =
   | "StartsWith"
   | "EndsWith"
   | "EqualsAny";
-export const OwaspCrsExclusionEntrySelectorMatchOperator =
-  /*@__PURE__*/ S.String;
+export const OwaspCrsExclusionEntrySelectorMatchOperator = S.String;
 
 /** The managed rule sets that are associated with the exclusion. */
 export type OwaspCrsExclusionEntryExclusionManagedRuleSetsList =
@@ -70440,7 +70174,7 @@ export const ManagedRulesDefinitionExclusionsList = /*@__PURE__*/ S.Array(
 
 /** The state of the managed rule. Defaults to Disabled if not specified. */
 export type ManagedRuleOverrideState = "Disabled" | "Enabled";
-export const ManagedRuleOverrideState = /*@__PURE__*/ S.String;
+export const ManagedRuleOverrideState = S.String;
 
 /** Defines the action to take on rule match. */
 export type ManagedRuleOverrideAction =
@@ -70450,11 +70184,11 @@ export type ManagedRuleOverrideAction =
   | "Log"
   | "JSChallenge"
   | "CAPTCHA";
-export const ManagedRuleOverrideAction = /*@__PURE__*/ S.String;
+export const ManagedRuleOverrideAction = S.String;
 
 /** Defines the sensitivity for the rule. */
 export type ManagedRuleOverrideSensitivity = "Low" | "Medium" | "High";
-export const ManagedRuleOverrideSensitivity = /*@__PURE__*/ S.String;
+export const ManagedRuleOverrideSensitivity = S.String;
 
 /** Defines a managed rule group override setting. */
 export interface ManagedRuleOverride {
@@ -70796,8 +70530,7 @@ export type HubRouteTablePropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const HubRouteTablePropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const HubRouteTablePropertiesInputProvisioningState = S.String;
 
 /** Parameters for RouteTable. */
 export interface HubRouteTablePropertiesInput {
@@ -70901,7 +70634,7 @@ export type HubVirtualNetworkConnectionPropertiesInputEnableOnlyIpv6Peering =
   | "Enabled"
   | "Disabled";
 export const HubVirtualNetworkConnectionPropertiesInputEnableOnlyIpv6Peering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type HubVirtualNetworkConnectionPropertiesInputProvisioningState =
@@ -70912,7 +70645,7 @@ export type HubVirtualNetworkConnectionPropertiesInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const HubVirtualNetworkConnectionPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Parameters for HubVirtualNetworkConnection. */
 export interface HubVirtualNetworkConnectionPropertiesInput {
@@ -71049,8 +70782,7 @@ export type VirtualNetworkTapPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VirtualNetworkTapPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkTapPropertiesFormatInputProvisioningState = S.String;
 
 /** IPConfiguration in a network interface. */
 export interface VirtualNetworkTapPropertiesFormatInputDestinationNetworkInterfaceIPConfiguration {
@@ -71080,14 +70812,14 @@ export type FrontendIPConfigurationPropertiesFormatInputPrivateIPAllocationMetho
   | "Static"
   | "Dynamic";
 export const FrontendIPConfigurationPropertiesFormatInputPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** IP address version. */
 export type FrontendIPConfigurationPropertiesFormatInputPrivateIPAddressVersion =
   | "IPv4"
   | "IPv6";
 export const FrontendIPConfigurationPropertiesFormatInputPrivateIPAddressVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of address prefixes for the subnet. */
 export type SubnetPropertiesFormatInputAddressPrefixesList = Array<string>;
@@ -71113,7 +70845,7 @@ export type SecurityRulePropertiesFormatInputProtocol =
   | "Esp"
   | "*"
   | "Ah";
-export const SecurityRulePropertiesFormatInputProtocol = /*@__PURE__*/ S.String;
+export const SecurityRulePropertiesFormatInputProtocol = S.String;
 
 /** The CIDR or source IP ranges. */
 export type SecurityRulePropertiesFormatInputSourceAddressPrefixesList =
@@ -71196,12 +70928,11 @@ export const SecurityRulePropertiesFormatInputDestinationPortRangesList =
 
 /** Whether network traffic is allowed or denied. */
 export type SecurityRulePropertiesFormatInputAccess = "Allow" | "Deny";
-export const SecurityRulePropertiesFormatInputAccess = /*@__PURE__*/ S.String;
+export const SecurityRulePropertiesFormatInputAccess = S.String;
 
 /** The direction of the rule. The direction specifies if rule will be evaluated on incoming or outgoing traffic. */
 export type SecurityRulePropertiesFormatInputDirection = "Inbound" | "Outbound";
-export const SecurityRulePropertiesFormatInputDirection =
-  /*@__PURE__*/ S.String;
+export const SecurityRulePropertiesFormatInputDirection = S.String;
 
 /** Provisioning states of a resource. */
 export type SecurityRulePropertiesFormatInputProvisioningState =
@@ -71211,8 +70942,7 @@ export type SecurityRulePropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const SecurityRulePropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const SecurityRulePropertiesFormatInputProvisioningState = S.String;
 
 /** Security rule resource. */
 export interface SecurityRulePropertiesFormatInput {
@@ -71324,7 +71054,7 @@ export type NetworkSecurityGroupPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const NetworkSecurityGroupPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Network Security Group resource. */
 export interface NetworkSecurityGroupPropertiesFormatInput {
@@ -71389,7 +71119,7 @@ export type RoutePropertiesFormatInputNextHopType =
   | "VirtualAppliance"
   | "VirtualApplianceEcmp"
   | "None";
-export const RoutePropertiesFormatInputNextHopType = /*@__PURE__*/ S.String;
+export const RoutePropertiesFormatInputNextHopType = S.String;
 
 /** Provisioning states of a resource. */
 export type RoutePropertiesFormatInputProvisioningState =
@@ -71399,8 +71129,7 @@ export type RoutePropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const RoutePropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const RoutePropertiesFormatInputProvisioningState = S.String;
 
 /** Route resource. */
 export interface RoutePropertiesFormatInput_2 {
@@ -71455,8 +71184,7 @@ export const RouteTablePropertiesFormatInputRoutesList_2 =
 
 /** Whether to disable the routes learned by peering on the route table. */
 export type RouteTablePropertiesFormatInputDisablePeeringRoute = "None" | "All";
-export const RouteTablePropertiesFormatInputDisablePeeringRoute =
-  /*@__PURE__*/ S.String;
+export const RouteTablePropertiesFormatInputDisablePeeringRoute = S.String;
 
 /** Provisioning states of a resource. */
 export type RouteTablePropertiesFormatInputProvisioningState =
@@ -71466,8 +71194,7 @@ export type RouteTablePropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const RouteTablePropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const RouteTablePropertiesFormatInputProvisioningState = S.String;
 
 /** Route Table resource. */
 export interface RouteTablePropertiesFormatInput_2 {
@@ -71582,7 +71309,7 @@ export type ServiceEndpointPolicyPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const ServiceEndpointPolicyPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A collection of contextual service endpoint policy. */
 export type ServiceEndpointPolicyPropertiesFormatInputContextualServiceEndpointPoliciesList =
@@ -71678,8 +71405,7 @@ export type ServiceDelegationPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ServiceDelegationPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ServiceDelegationPropertiesFormatInputProvisioningState = S.String;
 
 /** Properties of a service delegation. */
 export interface ServiceDelegationPropertiesFormatInput {
@@ -71738,8 +71464,7 @@ export type SubnetPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const SubnetPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const SubnetPropertiesFormatInputProvisioningState = S.String;
 
 /** Enable or Disable apply network policies on private end point in the subnet. */
 export type SubnetPropertiesFormatInputPrivateEndpointNetworkPolicies =
@@ -71748,14 +71473,14 @@ export type SubnetPropertiesFormatInputPrivateEndpointNetworkPolicies =
   | "NetworkSecurityGroupEnabled"
   | "RouteTableEnabled";
 export const SubnetPropertiesFormatInputPrivateEndpointNetworkPolicies =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Enable or Disable apply network policies on private link service in the subnet. */
 export type SubnetPropertiesFormatInputPrivateLinkServiceNetworkPolicies =
   | "Enabled"
   | "Disabled";
 export const SubnetPropertiesFormatInputPrivateLinkServiceNetworkPolicies =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** IP configuration of an application gateway. Currently 1 public and 1 private IP configuration is allowed. */
 export type SubnetPropertiesFormatInputApplicationGatewayIPConfigurationsItem =
@@ -71775,7 +71500,7 @@ export const SubnetPropertiesFormatInputApplicationGatewayIPConfigurationsList =
 export type SubnetPropertiesFormatInputSharingScope =
   | "Tenant"
   | "DelegatedServices";
-export const SubnetPropertiesFormatInputSharingScope = /*@__PURE__*/ S.String;
+export const SubnetPropertiesFormatInputSharingScope = S.String;
 
 /** IpamPool prefix allocation reference. */
 export interface IpamPoolPrefixAllocationInput {
@@ -71923,14 +71648,14 @@ export type PublicIPAddressPropertiesFormatInputPublicIPAllocationMethod =
   | "Static"
   | "Dynamic";
 export const PublicIPAddressPropertiesFormatInputPublicIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** IP address version. */
 export type PublicIPAddressPropertiesFormatInputPublicIPAddressVersion =
   | "IPv4"
   | "IPv6";
 export const PublicIPAddressPropertiesFormatInputPublicIPAddressVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of tags associated with the public IP address. */
 export type PublicIPAddressPropertiesFormatInputIpTagsList = Array<IpTag>;
@@ -71953,8 +71678,7 @@ export type PublicIPAddressPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const PublicIPAddressPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PublicIPAddressPropertiesFormatInputProvisioningState = S.String;
 
 /** Resource tags. */
 export type PublicIPAddressInputTagsMap = { [key: string]: string | undefined };
@@ -72090,7 +71814,7 @@ export type NatGatewayPropertiesFormatInputNat64 =
   | "None"
   | "Enabled"
   | "Disabled";
-export const NatGatewayPropertiesFormatInputNat64 = /*@__PURE__*/ S.String;
+export const NatGatewayPropertiesFormatInputNat64 = S.String;
 
 /** Provisioning states of a resource. */
 export type NatGatewayPropertiesFormatInputProvisioningState =
@@ -72100,8 +71824,7 @@ export type NatGatewayPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const NatGatewayPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const NatGatewayPropertiesFormatInputProvisioningState = S.String;
 
 /** Nat Gateway properties. */
 export interface NatGatewayPropertiesFormatInput {
@@ -72197,15 +71920,13 @@ export type PublicIPAddressPropertiesFormatInputMigrationPhase =
   | "Commit"
   | "Abort"
   | "Committed";
-export const PublicIPAddressPropertiesFormatInputMigrationPhase =
-  /*@__PURE__*/ S.String;
+export const PublicIPAddressPropertiesFormatInputMigrationPhase = S.String;
 
 /** Specify what happens to the public IP address when the VM using it is deleted */
 export type PublicIPAddressPropertiesFormatInputDeleteOption =
   | "Delete"
   | "Detach";
-export const PublicIPAddressPropertiesFormatInputDeleteOption =
-  /*@__PURE__*/ S.String;
+export const PublicIPAddressPropertiesFormatInputDeleteOption = S.String;
 
 /** Public IP address properties. */
 export interface PublicIPAddressPropertiesFormatInput {
@@ -72355,7 +72076,7 @@ export type FrontendIPConfigurationPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const FrontendIPConfigurationPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** DDoS protection settings for a frontend IP configuration. */
 export type FrontendIPConfigurationPropertiesFormatInputDdosSettings =
@@ -72575,7 +72296,7 @@ export type LoadBalancerBackendAddressPropertiesFormatInputAdminState =
   | "Up"
   | "Down";
 export const LoadBalancerBackendAddressPropertiesFormatInputAdminState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the load balancer backend addresses. */
 export interface LoadBalancerBackendAddressPropertiesFormatInput {
@@ -72657,7 +72378,7 @@ export type BackendAddressPoolPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const BackendAddressPoolPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type BackendAddressPoolPropertiesFormatInputVirtualNetwork =
@@ -72669,8 +72390,7 @@ export const BackendAddressPoolPropertiesFormatInputVirtualNetwork =
 export type BackendAddressPoolPropertiesFormatInputSyncMode =
   | "Automatic"
   | "Manual";
-export const BackendAddressPoolPropertiesFormatInputSyncMode =
-  /*@__PURE__*/ S.String;
+export const BackendAddressPoolPropertiesFormatInputSyncMode = S.String;
 
 /** Properties of the backend address pool. */
 export interface BackendAddressPoolPropertiesFormatInput {
@@ -72784,14 +72504,14 @@ export type NetworkInterfaceIPConfigurationPropertiesFormatInputPrivateIPAllocat
   | "Static"
   | "Dynamic";
 export const NetworkInterfaceIPConfigurationPropertiesFormatInputPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** IP address version. */
 export type NetworkInterfaceIPConfigurationPropertiesFormatInputPrivateIPAddressVersion =
   | "IPv4"
   | "IPv6";
 export const NetworkInterfaceIPConfigurationPropertiesFormatInputPrivateIPAddressVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Subnet in a virtual network resource. */
 export type SubnetInput_2 = FrontendIPConfigurationPropertiesFormatInputSubnet;
@@ -72814,7 +72534,7 @@ export type NetworkInterfaceIPConfigurationPropertiesFormatInputProvisioningStat
   | "Updating"
   | "Deleting";
 export const NetworkInterfaceIPConfigurationPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of IP configuration. */
 export interface NetworkInterfaceIPConfigurationPropertiesFormatInput {
@@ -72921,8 +72641,7 @@ export type InboundNatRulePropertiesFormatInputProtocol =
   | "Tcp"
   | "All"
   | "Quic";
-export const InboundNatRulePropertiesFormatInputProtocol =
-  /*@__PURE__*/ S.String;
+export const InboundNatRulePropertiesFormatInputProtocol = S.String;
 
 /** Reference to another subresource. */
 export type InboundNatRulePropertiesFormatInputBackendAddressPool =
@@ -72938,8 +72657,7 @@ export type InboundNatRulePropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const InboundNatRulePropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const InboundNatRulePropertiesFormatInputProvisioningState = S.String;
 
 /** Properties of the inbound NAT rule. */
 export interface InboundNatRulePropertiesFormatInput {
@@ -73135,8 +72853,7 @@ export const InterconnectGroupsCreateOrUpdateRequestTagsMap =
 
 /** Scope of an interconnect group resource. */
 export type InterconnectGroupPropertiesFormatInputScope = "None" | "InfiniBand";
-export const InterconnectGroupPropertiesFormatInputScope =
-  /*@__PURE__*/ S.String;
+export const InterconnectGroupPropertiesFormatInputScope = S.String;
 
 /** Provisioning states of a resource. */
 export type InterconnectGroupPropertiesFormatInputProvisioningState =
@@ -73146,8 +72863,7 @@ export type InterconnectGroupPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const InterconnectGroupPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const InterconnectGroupPropertiesFormatInputProvisioningState = S.String;
 
 /** Interconnect group properties. */
 export interface InterconnectGroupPropertiesFormatInput {
@@ -73320,7 +73036,7 @@ export const InvokeVirtualNetworkGatewayCommitMigrationResponse =
 export type InvokeVirtualNetworkGatewayPrepareMigrationRequestMigrationType =
   "UpgradeDeploymentToStandardIP";
 export const InvokeVirtualNetworkGatewayPrepareMigrationRequestMigrationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InvokeVirtualNetworkGatewayPrepareMigrationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -73466,8 +73182,7 @@ export type IpGroupPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const IpGroupPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const IpGroupPropertiesFormatInputProvisioningState = S.String;
 
 /** IpAddresses/IpAddressPrefixes in the IpGroups resource. */
 export type IpGroupPropertiesFormatInputIpAddressesList = Array<string>;
@@ -73751,7 +73466,7 @@ export const ActiveBaseSecurityAdminRuleRuleGroupsList = /*@__PURE__*/ S.Array(
 
 /** Whether the rule is custom or default. */
 export type ActiveBaseSecurityAdminRuleKind = "Custom" | "Default";
-export const ActiveBaseSecurityAdminRuleKind = /*@__PURE__*/ S.String;
+export const ActiveBaseSecurityAdminRuleKind = S.String;
 
 /** Network base admin rule. */
 export interface ActiveBaseSecurityAdminRule {
@@ -73925,8 +73640,7 @@ export type AdminRuleCollectionSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AdminRuleCollectionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const AdminRuleCollectionSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type AdminRuleCollectionSystemDataLastModifiedByType =
@@ -73934,8 +73648,7 @@ export type AdminRuleCollectionSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AdminRuleCollectionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const AdminRuleCollectionSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface AdminRuleCollectionSystemData {
@@ -74060,7 +73773,7 @@ export type BaseAdminRuleSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const BaseAdminRuleSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const BaseAdminRuleSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type BaseAdminRuleSystemDataLastModifiedByType =
@@ -74068,7 +73781,7 @@ export type BaseAdminRuleSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const BaseAdminRuleSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const BaseAdminRuleSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface BaseAdminRuleSystemData {
@@ -74100,7 +73813,7 @@ export const BaseAdminRuleSystemData = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the rule is custom or default. */
 export type BaseAdminRuleKind = "Custom" | "Default";
-export const BaseAdminRuleKind = /*@__PURE__*/ S.String;
+export const BaseAdminRuleKind = S.String;
 
 /** Network base admin rule. */
 export interface BaseAdminRule {
@@ -74357,7 +74070,7 @@ export type ApplicationGatewayAvailableSslOptionsPropertiesFormatDefaultPolicy =
   | "AppGwSslPolicy20220101"
   | "AppGwSslPolicy20220101S";
 export const ApplicationGatewayAvailableSslOptionsPropertiesFormatDefaultPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Ssl cipher suites enums. */
 export type ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesItem =
@@ -74390,7 +74103,7 @@ export type ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipher
   | "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
   | "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384";
 export const ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of available Ssl cipher suites. */
 export type ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableCipherSuitesList =
@@ -74407,7 +74120,7 @@ export type ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtoc
   | "TLSv1_2"
   | "TLSv1_3";
 export const ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of available Ssl protocols. */
 export type ApplicationGatewayAvailableSslOptionsPropertiesFormatAvailableProtocolsList =
@@ -74585,7 +74298,7 @@ export type ApplicationGatewayFirewallRuleSetPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayFirewallRuleSetPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The rule groups of the web application firewall rule set. */
 export type ApplicationGatewayFirewallRuleSetPropertiesFormatRuleGroupsList =
@@ -74601,7 +74314,7 @@ export type ApplicationGatewayFirewallRuleSetPropertiesFormatTiersItem =
   | "Standard_v2"
   | "WAF_v2";
 export const ApplicationGatewayFirewallRuleSetPropertiesFormatTiersItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Tier of an application gateway that support the rule set. */
 export type ApplicationGatewayFirewallRuleSetPropertiesFormatTiersList =
@@ -75432,8 +75145,7 @@ export type AzureFirewallFqdnTagPropertiesFormatProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const AzureFirewallFqdnTagPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AzureFirewallFqdnTagPropertiesFormatProvisioningState = S.String;
 
 /** Azure Firewall FQDN Tag Properties. */
 export interface AzureFirewallFqdnTagPropertiesFormat {
@@ -75856,7 +75568,7 @@ export type CommitSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CommitSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const CommitSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type CommitSystemDataLastModifiedByType =
@@ -75864,7 +75576,7 @@ export type CommitSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CommitSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const CommitSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CommitSystemData {
@@ -76191,8 +75903,7 @@ export type ConnectivityConfigurationSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConnectivityConfigurationSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const ConnectivityConfigurationSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ConnectivityConfigurationSystemDataLastModifiedByType =
@@ -76200,8 +75911,7 @@ export type ConnectivityConfigurationSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConnectivityConfigurationSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const ConnectivityConfigurationSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ConnectivityConfigurationSystemData {
@@ -78441,7 +78151,7 @@ export type ExpressRouteServiceProviderPropertiesFormatProvisioningState =
   | "Updating"
   | "Deleting";
 export const ExpressRouteServiceProviderPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of ExpressRouteServiceProvider. */
 export interface ExpressRouteServiceProviderPropertiesFormat {
@@ -78688,7 +78398,7 @@ export const ListFirewallPolicyIdpsSignaturesRequestFiltersList =
 
 /** Describes if results should be in ascending/descending order */
 export type OrderByOrder = "Ascending" | "Descending";
-export const OrderByOrder = /*@__PURE__*/ S.String;
+export const OrderByOrder = S.String;
 
 /** Describes a column to sort */
 export interface OrderBy {
@@ -78747,15 +78457,15 @@ export const ListFirewallPolicyIdpsSignaturesRequest = /*@__PURE__*/ S.suspend(
 
 /** The current mode enforced, 0 - Disabled, 1 - Alert, 2 -Deny */
 export type SingleQueryResultMode = 0 | 1 | 2;
-export const SingleQueryResultMode = /*@__PURE__*/ S.Number;
+export const SingleQueryResultMode = S.Number;
 
 /** Describes the severity of signature: 1 - High, 2 - Medium, 3 - Low */
 export type SingleQueryResultSeverity = 1 | 2 | 3;
-export const SingleQueryResultSeverity = /*@__PURE__*/ S.Number;
+export const SingleQueryResultSeverity = S.Number;
 
 /** Describes in which direction signature is being enforced: 0 - OutBound, 1 - InBound, 2 - Any, 3 - Internal, 4 - InternalOutbound, 5 - InternalInbound */
 export type SingleQueryResultDirection = 0 | 1 | 2 | 3 | 4 | 5;
-export const SingleQueryResultDirection = /*@__PURE__*/ S.Number;
+export const SingleQueryResultDirection = S.Number;
 
 /** Describes the list of source ports related to this signature */
 export type SingleQueryResultSourcePortsList = Array<string>;
@@ -79860,7 +79570,7 @@ export type IpamPoolSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const IpamPoolSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const IpamPoolSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type IpamPoolSystemDataLastModifiedByType =
@@ -79868,7 +79578,7 @@ export type IpamPoolSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const IpamPoolSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const IpamPoolSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface IpamPoolSystemData {
@@ -80289,7 +79999,7 @@ export const ListLoadBalancerInboundNatRulePortMappingsRequest =
 
 /** The transport protocol for the endpoint. */
 export type InboundNatRulePortMappingProtocol = "Udp" | "Tcp" | "All" | "Quic";
-export const InboundNatRulePortMappingProtocol = /*@__PURE__*/ S.String;
+export const InboundNatRulePortMappingProtocol = S.String;
 
 /** Individual port mappings for inbound NAT rule created for backend pool. */
 export interface InboundNatRulePortMapping {
@@ -80632,8 +80342,7 @@ export type NetworkManagerConnectionSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NetworkManagerConnectionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const NetworkManagerConnectionSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type NetworkManagerConnectionSystemDataLastModifiedByType =
@@ -80641,8 +80350,7 @@ export type NetworkManagerConnectionSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NetworkManagerConnectionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const NetworkManagerConnectionSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NetworkManagerConnectionSystemData {
@@ -80873,7 +80581,7 @@ export type NetworkGroupSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NetworkGroupSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const NetworkGroupSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type NetworkGroupSystemDataLastModifiedByType =
@@ -80881,7 +80589,7 @@ export type NetworkGroupSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NetworkGroupSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const NetworkGroupSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NetworkGroupSystemData {
@@ -81134,7 +80842,7 @@ export const EffectiveNetworkSecurityGroupAssociation = /*@__PURE__*/ S.suspend(
 
 /** The network protocol this rule applies to. */
 export type EffectiveNetworkSecurityRuleProtocol = "Tcp" | "Udp" | "All";
-export const EffectiveNetworkSecurityRuleProtocol = /*@__PURE__*/ S.String;
+export const EffectiveNetworkSecurityRuleProtocol = S.String;
 
 /** The source port ranges. Expected values include a single integer between 0 and 65535, a range using '-' as separator (e.g. 100-400), or an asterisk (*). */
 export type EffectiveNetworkSecurityRuleSourcePortRangesList = Array<string>;
@@ -81185,11 +80893,11 @@ export const EffectiveNetworkSecurityRuleExpandedDestinationAddressPrefixList =
 
 /** Whether network traffic is allowed or denied. */
 export type EffectiveNetworkSecurityRuleAccess = "Allow" | "Deny";
-export const EffectiveNetworkSecurityRuleAccess = /*@__PURE__*/ S.String;
+export const EffectiveNetworkSecurityRuleAccess = S.String;
 
 /** The direction of the rule. The direction specifies if rule will be evaluated on incoming or outgoing traffic. */
 export type EffectiveNetworkSecurityRuleDirection = "Inbound" | "Outbound";
-export const EffectiveNetworkSecurityRuleDirection = /*@__PURE__*/ S.String;
+export const EffectiveNetworkSecurityRuleDirection = S.String;
 
 /** Effective network security rules. */
 export interface EffectiveNetworkSecurityRule {
@@ -81719,7 +81427,7 @@ export type NetworkManagerSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NetworkManagerSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const NetworkManagerSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type NetworkManagerSystemDataLastModifiedByType =
@@ -81727,8 +81435,7 @@ export type NetworkManagerSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NetworkManagerSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const NetworkManagerSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NetworkManagerSystemData {
@@ -81827,7 +81534,7 @@ export type ListNetworkManagerDeploymentStatusRequestDeploymentTypesItem =
   | "SecurityUser"
   | "Routing";
 export const ListNetworkManagerDeploymentStatusRequestDeploymentTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of deployment types. */
 export type ListNetworkManagerDeploymentStatusRequestDeploymentTypesList =
@@ -81885,8 +81592,7 @@ export type NetworkManagerDeploymentStatusDeploymentStatus =
   | "Deploying"
   | "Deployed"
   | "Failed";
-export const NetworkManagerDeploymentStatusDeploymentStatus =
-  /*@__PURE__*/ S.String;
+export const NetworkManagerDeploymentStatusDeploymentStatus = S.String;
 
 /** List of configuration ids. */
 export type NetworkManagerDeploymentStatusConfigurationIdsList = Array<string>;
@@ -81901,8 +81607,7 @@ export type NetworkManagerDeploymentStatusDeploymentType =
   | "Connectivity"
   | "SecurityUser"
   | "Routing";
-export const NetworkManagerDeploymentStatusDeploymentType =
-  /*@__PURE__*/ S.String;
+export const NetworkManagerDeploymentStatusDeploymentType = S.String;
 
 /** Network Manager Deployment Status. */
 export interface NetworkManagerDeploymentStatus {
@@ -82099,7 +81804,7 @@ export const EffectiveBaseSecurityAdminRuleRuleGroupsList =
 
 /** Whether the rule is custom or default. */
 export type EffectiveBaseSecurityAdminRuleKind = "Custom" | "Default";
-export const EffectiveBaseSecurityAdminRuleKind = /*@__PURE__*/ S.String;
+export const EffectiveBaseSecurityAdminRuleKind = S.String;
 
 /** Network base admin rule. */
 export interface EffectiveBaseSecurityAdminRule {
@@ -82197,7 +81902,7 @@ export type NetworkManagerRoutingConfigurationSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const NetworkManagerRoutingConfigurationSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type NetworkManagerRoutingConfigurationSystemDataLastModifiedByType =
@@ -82206,7 +81911,7 @@ export type NetworkManagerRoutingConfigurationSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const NetworkManagerRoutingConfigurationSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NetworkManagerRoutingConfigurationSystemData {
@@ -82526,7 +82231,7 @@ export type NspAccessRuleSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NspAccessRuleSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const NspAccessRuleSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type NspAccessRuleSystemDataLastModifiedByType =
@@ -82534,7 +82239,7 @@ export type NspAccessRuleSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NspAccessRuleSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const NspAccessRuleSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NspAccessRuleSystemData {
@@ -82654,8 +82359,7 @@ export type PerimeterAssociableResourcePropertiesReadinessState =
   | "Preview"
   | "GA"
   | "NotReady";
-export const PerimeterAssociableResourcePropertiesReadinessState =
-  /*@__PURE__*/ S.String;
+export const PerimeterAssociableResourcePropertiesReadinessState = S.String;
 
 /** Properties of the perimeter associable resources. */
 export interface PerimeterAssociableResourceProperties {
@@ -82780,7 +82484,7 @@ export type NspAssociationSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NspAssociationSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const NspAssociationSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type NspAssociationSystemDataLastModifiedByType =
@@ -82788,8 +82492,7 @@ export type NspAssociationSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NspAssociationSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const NspAssociationSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NspAssociationSystemData {
@@ -82896,8 +82599,7 @@ export type NetworkSecurityPerimeterSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NetworkSecurityPerimeterSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const NetworkSecurityPerimeterSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type NetworkSecurityPerimeterSystemDataLastModifiedByType =
@@ -82905,8 +82607,7 @@ export type NetworkSecurityPerimeterSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NetworkSecurityPerimeterSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const NetworkSecurityPerimeterSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NetworkSecurityPerimeterSystemData {
@@ -83040,7 +82741,7 @@ export type NspLinkReferenceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NspLinkReferenceSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const NspLinkReferenceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type NspLinkReferenceSystemDataLastModifiedByType =
@@ -83048,8 +82749,7 @@ export type NspLinkReferenceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NspLinkReferenceSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const NspLinkReferenceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NspLinkReferenceSystemData {
@@ -83166,7 +82866,7 @@ export type NspLinkSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NspLinkSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const NspLinkSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type NspLinkSystemDataLastModifiedByType =
@@ -83174,7 +82874,7 @@ export type NspLinkSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NspLinkSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const NspLinkSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NspLinkSystemData {
@@ -83281,8 +82981,7 @@ export type NspLoggingConfigurationSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NspLoggingConfigurationSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const NspLoggingConfigurationSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type NspLoggingConfigurationSystemDataLastModifiedByType =
@@ -83290,8 +82989,7 @@ export type NspLoggingConfigurationSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NspLoggingConfigurationSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const NspLoggingConfigurationSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NspLoggingConfigurationSystemData {
@@ -83409,7 +83107,7 @@ export type NspProfileSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NspProfileSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const NspProfileSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type NspProfileSystemDataLastModifiedByType =
@@ -83417,7 +83115,7 @@ export type NspProfileSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NspProfileSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const NspProfileSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NspProfileSystemData {
@@ -85138,8 +84836,7 @@ export type ReachabilityAnalysisIntentSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ReachabilityAnalysisIntentSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const ReachabilityAnalysisIntentSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ReachabilityAnalysisIntentSystemDataLastModifiedByType =
@@ -85147,8 +84844,7 @@ export type ReachabilityAnalysisIntentSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ReachabilityAnalysisIntentSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const ReachabilityAnalysisIntentSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ReachabilityAnalysisIntentSystemData {
@@ -85282,8 +84978,7 @@ export type ReachabilityAnalysisRunSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ReachabilityAnalysisRunSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const ReachabilityAnalysisRunSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ReachabilityAnalysisRunSystemDataLastModifiedByType =
@@ -85291,8 +84986,7 @@ export type ReachabilityAnalysisRunSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ReachabilityAnalysisRunSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const ReachabilityAnalysisRunSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ReachabilityAnalysisRunSystemData {
@@ -85861,8 +85555,7 @@ export type RoutingRuleCollectionSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const RoutingRuleCollectionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const RoutingRuleCollectionSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type RoutingRuleCollectionSystemDataLastModifiedByType =
@@ -85870,8 +85563,7 @@ export type RoutingRuleCollectionSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const RoutingRuleCollectionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const RoutingRuleCollectionSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface RoutingRuleCollectionSystemData {
@@ -85997,7 +85689,7 @@ export type RoutingRuleSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const RoutingRuleSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const RoutingRuleSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type RoutingRuleSystemDataLastModifiedByType =
@@ -86005,7 +85697,7 @@ export type RoutingRuleSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const RoutingRuleSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const RoutingRuleSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface RoutingRuleSystemData {
@@ -86120,7 +85812,7 @@ export type ScopeConnectionSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ScopeConnectionSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const ScopeConnectionSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ScopeConnectionSystemDataLastModifiedByType =
@@ -86128,8 +85820,7 @@ export type ScopeConnectionSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ScopeConnectionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const ScopeConnectionSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ScopeConnectionSystemData {
@@ -86247,8 +85938,7 @@ export type SecurityAdminConfigurationSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SecurityAdminConfigurationSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const SecurityAdminConfigurationSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SecurityAdminConfigurationSystemDataLastModifiedByType =
@@ -86256,8 +85946,7 @@ export type SecurityAdminConfigurationSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SecurityAdminConfigurationSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const SecurityAdminConfigurationSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SecurityAdminConfigurationSystemData {
@@ -86513,8 +86202,7 @@ export type SecurityUserConfigurationSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SecurityUserConfigurationSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const SecurityUserConfigurationSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SecurityUserConfigurationSystemDataLastModifiedByType =
@@ -86522,8 +86210,7 @@ export type SecurityUserConfigurationSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SecurityUserConfigurationSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const SecurityUserConfigurationSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SecurityUserConfigurationSystemData {
@@ -86648,8 +86335,7 @@ export type SecurityUserRuleCollectionSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SecurityUserRuleCollectionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const SecurityUserRuleCollectionSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SecurityUserRuleCollectionSystemDataLastModifiedByType =
@@ -86657,8 +86343,7 @@ export type SecurityUserRuleCollectionSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SecurityUserRuleCollectionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const SecurityUserRuleCollectionSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SecurityUserRuleCollectionSystemData {
@@ -86789,7 +86474,7 @@ export type SecurityUserRuleSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SecurityUserRuleSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SecurityUserRuleSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SecurityUserRuleSystemDataLastModifiedByType =
@@ -86797,8 +86482,7 @@ export type SecurityUserRuleSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SecurityUserRuleSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const SecurityUserRuleSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SecurityUserRuleSystemData {
@@ -87115,7 +86799,7 @@ export type ServiceGatewaySystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ServiceGatewaySystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const ServiceGatewaySystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ServiceGatewaySystemDataLastModifiedByType =
@@ -87123,8 +86807,7 @@ export type ServiceGatewaySystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ServiceGatewaySystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const ServiceGatewaySystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ServiceGatewaySystemData {
@@ -87466,7 +87149,7 @@ export type StaticCidrSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const StaticCidrSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const StaticCidrSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type StaticCidrSystemDataLastModifiedByType =
@@ -87474,7 +87157,7 @@ export type StaticCidrSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const StaticCidrSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const StaticCidrSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface StaticCidrSystemData {
@@ -87587,7 +87270,7 @@ export type StaticMemberSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const StaticMemberSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const StaticMemberSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type StaticMemberSystemDataLastModifiedByType =
@@ -87595,7 +87278,7 @@ export type StaticMemberSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const StaticMemberSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const StaticMemberSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface StaticMemberSystemData {
@@ -87817,7 +87500,7 @@ export const ListUsagesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** An enum describing the unit of measurement. */
 export type UsageUnit = "Count";
-export const UsageUnit = /*@__PURE__*/ S.String;
+export const UsageUnit = S.String;
 
 /** The usage names. */
 export interface UsageName {
@@ -87924,7 +87607,7 @@ export type VerifierWorkspaceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const VerifierWorkspaceSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const VerifierWorkspaceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type VerifierWorkspaceSystemDataLastModifiedByType =
@@ -87932,8 +87615,7 @@ export type VerifierWorkspaceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const VerifierWorkspaceSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const VerifierWorkspaceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface VerifierWorkspaceSystemData {
@@ -88916,8 +88598,7 @@ export const ListVirtualNetworkDdosProtectionStatusRequest =
 export type PublicIpDdosProtectionStatusResultIsWorkloadProtected =
   | "False"
   | "True";
-export const PublicIpDdosProtectionStatusResultIsWorkloadProtected =
-  /*@__PURE__*/ S.String;
+export const PublicIpDdosProtectionStatusResultIsWorkloadProtected = S.String;
 
 /** Response for GetPublicIpAddressDdosProtectionStatusOperation API service call. */
 export interface PublicIpDdosProtectionStatusResult {
@@ -89113,14 +88794,14 @@ export type VirtualNetworkGatewayConnectionListEntityPropertiesFormatConnectionT
   | "ExpressRoute"
   | "VPNClient";
 export const VirtualNetworkGatewayConnectionListEntityPropertiesFormatConnectionType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Gateway connection protocol. */
 export type VirtualNetworkGatewayConnectionListEntityPropertiesFormatConnectionProtocol =
   | "IKEv2"
   | "IKEv1";
 export const VirtualNetworkGatewayConnectionListEntityPropertiesFormatConnectionProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Gateway connection type. */
 export type VirtualNetworkGatewayConnectionListEntityPropertiesFormatConnectionMode =
@@ -89128,7 +88809,7 @@ export type VirtualNetworkGatewayConnectionListEntityPropertiesFormatConnectionM
   | "ResponderOnly"
   | "InitiatorOnly";
 export const VirtualNetworkGatewayConnectionListEntityPropertiesFormatConnectionMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Virtual Network Gateway connection status. */
 export type VirtualNetworkGatewayConnectionListEntityPropertiesFormatConnectionStatus =
@@ -89137,7 +88818,7 @@ export type VirtualNetworkGatewayConnectionListEntityPropertiesFormatConnectionS
   | "Connected"
   | "NotConnected";
 export const VirtualNetworkGatewayConnectionListEntityPropertiesFormatConnectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Collection of all tunnels' connection health status. */
 export type VirtualNetworkGatewayConnectionListEntityPropertiesFormatTunnelConnectionStatusList =
@@ -89186,7 +88867,7 @@ export type VirtualNetworkGatewayConnectionListEntityPropertiesFormatProvisionin
   | "Updating"
   | "Deleting";
 export const VirtualNetworkGatewayConnectionListEntityPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type VirtualNetworkGatewayConnectionListEntityPropertiesFormatRoutingConfigurationAssociatedRouteTable =
@@ -91079,14 +90760,13 @@ export const LoadBalancerPropertiesFormatInputLoadBalancingRulesList =
 
 /** The protocol of the end point. If 'Tcp' is specified, a received ACK is required for the probe to be successful. If 'Http' or 'Https' is specified, a 200 OK response from the specifies URI is required for the probe to be successful. */
 export type ProbePropertiesFormatInputProtocol = "Http" | "Tcp" | "Https";
-export const ProbePropertiesFormatInputProtocol = /*@__PURE__*/ S.String;
+export const ProbePropertiesFormatInputProtocol = S.String;
 
 /** Determines how new connections are handled by the load balancer when all backend instances are probed down. */
 export type ProbePropertiesFormatInputNoHealthyBackendsBehavior =
   | "AllProbedDown"
   | "AllProbedUp";
-export const ProbePropertiesFormatInputNoHealthyBackendsBehavior =
-  /*@__PURE__*/ S.String;
+export const ProbePropertiesFormatInputNoHealthyBackendsBehavior = S.String;
 
 /** Provisioning states of a resource. */
 export type ProbePropertiesFormatInputProvisioningState =
@@ -91096,8 +90776,7 @@ export type ProbePropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ProbePropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ProbePropertiesFormatInputProvisioningState = S.String;
 
 /** Load balancer probe resource. */
 export interface ProbePropertiesFormatInput {
@@ -91252,16 +90931,15 @@ export type LoadBalancerPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const LoadBalancerPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const LoadBalancerPropertiesFormatInputProvisioningState = S.String;
 
 /** Indicates the scope of the load balancer: external (Public) or internal (Private). */
 export type LoadBalancerPropertiesFormatInputScope = "Public" | "Private";
-export const LoadBalancerPropertiesFormatInputScope = /*@__PURE__*/ S.String;
+export const LoadBalancerPropertiesFormatInputScope = S.String;
 
 /** The load balancer mode. Set to `Advanced` to enable additional capabilities on a Standard SKU load balancer. Advanced mode must be specified at creation and cannot be changed afterward. */
 export type LoadBalancerPropertiesFormatInputMode = "Advanced";
-export const LoadBalancerPropertiesFormatInputMode = /*@__PURE__*/ S.String;
+export const LoadBalancerPropertiesFormatInputMode = S.String;
 
 /** Properties of the load balancer. */
 export interface LoadBalancerPropertiesFormatInput {
@@ -91535,7 +91213,7 @@ export type LocalNetworkGatewayPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const LocalNetworkGatewayPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** LocalNetworkGateway properties. */
 export interface LocalNetworkGatewayPropertiesFormatInput {
@@ -91681,7 +91359,7 @@ export type ManagementGroupNetworkManagerConnectionsCreateOrUpdateResponseSystem
   | "ManagedIdentity"
   | "Key";
 export const ManagementGroupNetworkManagerConnectionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type ManagementGroupNetworkManagerConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -91690,7 +91368,7 @@ export type ManagementGroupNetworkManagerConnectionsCreateOrUpdateResponseSystem
   | "ManagedIdentity"
   | "Key";
 export const ManagementGroupNetworkManagerConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ManagementGroupNetworkManagerConnectionsCreateOrUpdateResponseSystemData {
@@ -91999,16 +91677,15 @@ export type VpnGatewayNatRulePropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VpnGatewayNatRulePropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VpnGatewayNatRulePropertiesInputProvisioningState = S.String;
 
 /** The type of NAT rule for VPN NAT. */
 export type VpnGatewayNatRulePropertiesInputType = "Static" | "Dynamic";
-export const VpnGatewayNatRulePropertiesInputType = /*@__PURE__*/ S.String;
+export const VpnGatewayNatRulePropertiesInputType = S.String;
 
 /** The Source NAT direction of a VPN NAT. */
 export type VpnGatewayNatRulePropertiesInputMode = "EgressSnat" | "IngressSnat";
-export const VpnGatewayNatRulePropertiesInputMode = /*@__PURE__*/ S.String;
+export const VpnGatewayNatRulePropertiesInputMode = S.String;
 
 /** The private IP address internal mapping for NAT. */
 export type VpnGatewayNatRulePropertiesInputInternalMappingsList =
@@ -92125,7 +91802,7 @@ export const NatRulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Network Group member type */
 export type NetworkGroupPropertiesInputMemberType = "VirtualNetwork" | "Subnet";
-export const NetworkGroupPropertiesInputMemberType = /*@__PURE__*/ S.String;
+export const NetworkGroupPropertiesInputMemberType = S.String;
 
 /** Provisioning states of a resource. */
 export type NetworkGroupPropertiesInputProvisioningState =
@@ -92135,8 +91812,7 @@ export type NetworkGroupPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const NetworkGroupPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const NetworkGroupPropertiesInputProvisioningState = S.String;
 
 /** Properties of network group */
 export interface NetworkGroupPropertiesInput {
@@ -92197,7 +91873,7 @@ export type NetworkGroupsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const NetworkGroupsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type NetworkGroupsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -92206,7 +91882,7 @@ export type NetworkGroupsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const NetworkGroupsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NetworkGroupsCreateOrUpdateResponseSystemData {
@@ -92335,15 +92011,13 @@ export type NetworkInterfacePropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const NetworkInterfacePropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const NetworkInterfacePropertiesFormatInputProvisioningState = S.String;
 
 /** Type of Network Interface resource. */
 export type NetworkInterfacePropertiesFormatInputNicType =
   | "Standard"
   | "Elastic";
-export const NetworkInterfacePropertiesFormatInputNicType =
-  /*@__PURE__*/ S.String;
+export const NetworkInterfacePropertiesFormatInputNicType = S.String;
 
 /** Resource tags. */
 export type PrivateLinkServiceInputTagsMap = {
@@ -92401,7 +92075,7 @@ export type PrivateLinkServiceIpConfigurationPropertiesInputPrivateIPAllocationM
   | "Static"
   | "Dynamic";
 export const PrivateLinkServiceIpConfigurationPropertiesInputPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Route resource. */
 export type RoutePropertiesFormatInput_5 = RoutePropertiesFormatInput_2;
@@ -92671,14 +92345,14 @@ export type PrivateLinkServiceIpConfigurationPropertiesInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const PrivateLinkServiceIpConfigurationPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** IP address version. */
 export type PrivateLinkServiceIpConfigurationPropertiesInputPrivateIPAddressVersion =
   | "IPv4"
   | "IPv6";
 export const PrivateLinkServiceIpConfigurationPropertiesInputPrivateIPAddressVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of private link service IP configuration. */
 export interface PrivateLinkServiceIpConfigurationPropertiesInput {
@@ -92753,8 +92427,7 @@ export const PrivateLinkServicePropertiesInputIpConfigurationsList =
 export type PrivateLinkServicePropertiesInputAccessMode =
   | "Default"
   | "Restricted";
-export const PrivateLinkServicePropertiesInputAccessMode =
-  /*@__PURE__*/ S.String;
+export const PrivateLinkServicePropertiesInputAccessMode = S.String;
 
 /** Provisioning states of a resource. */
 export type PrivateLinkServicePropertiesInputProvisioningState =
@@ -92764,8 +92437,7 @@ export type PrivateLinkServicePropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const PrivateLinkServicePropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateLinkServicePropertiesInputProvisioningState = S.String;
 
 /** The list of Fqdn. */
 export type PrivateLinkServicePropertiesInputFqdnsList = Array<string>;
@@ -92858,8 +92530,7 @@ export type NetworkInterfacePropertiesFormatInputMigrationPhase =
   | "Commit"
   | "Abort"
   | "Committed";
-export const NetworkInterfacePropertiesFormatInputMigrationPhase =
-  /*@__PURE__*/ S.String;
+export const NetworkInterfacePropertiesFormatInputMigrationPhase = S.String;
 
 /** Auxiliary mode of Network Interface resource. */
 export type NetworkInterfacePropertiesFormatInputAuxiliaryMode =
@@ -92867,8 +92538,7 @@ export type NetworkInterfacePropertiesFormatInputAuxiliaryMode =
   | "MaxConnections"
   | "Floating"
   | "AcceleratedConnections";
-export const NetworkInterfacePropertiesFormatInputAuxiliaryMode =
-  /*@__PURE__*/ S.String;
+export const NetworkInterfacePropertiesFormatInputAuxiliaryMode = S.String;
 
 /** Auxiliary sku of Network Interface resource. */
 export type NetworkInterfacePropertiesFormatInputAuxiliarySku =
@@ -92877,8 +92547,7 @@ export type NetworkInterfacePropertiesFormatInputAuxiliarySku =
   | "A2"
   | "A4"
   | "A8";
-export const NetworkInterfacePropertiesFormatInputAuxiliarySku =
-  /*@__PURE__*/ S.String;
+export const NetworkInterfacePropertiesFormatInputAuxiliarySku = S.String;
 
 /** NetworkInterface properties. */
 export interface NetworkInterfacePropertiesFormatInput {
@@ -93101,7 +92770,7 @@ export type NetworkInterfaceTapConfigurationPropertiesFormatInputProvisioningSta
   | "Updating"
   | "Deleting";
 export const NetworkInterfaceTapConfigurationPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of Virtual Network Tap configuration. */
 export interface NetworkInterfaceTapConfigurationPropertiesFormatInput {
@@ -93202,14 +92871,14 @@ export type NetworkManagerRoutingConfigurationPropertiesFormatInputProvisioningS
   | "Updating"
   | "Deleting";
 export const NetworkManagerRoutingConfigurationPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Route table usage mode defines which route table will be used by the configuration. If not defined, this will default to 'ManagedOnly'. */
 export type NetworkManagerRoutingConfigurationPropertiesFormatInputRouteTableUsageMode =
   | "ManagedOnly"
   | "UseExisting";
 export const NetworkManagerRoutingConfigurationPropertiesFormatInputRouteTableUsageMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines the routing configuration properties. */
 export interface NetworkManagerRoutingConfigurationPropertiesFormatInput {
@@ -93280,7 +92949,7 @@ export type NetworkManagerRoutingConfigurationsCreateOrUpdateResponseSystemDataC
   | "ManagedIdentity"
   | "Key";
 export const NetworkManagerRoutingConfigurationsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type NetworkManagerRoutingConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -93289,7 +92958,7 @@ export type NetworkManagerRoutingConfigurationsCreateOrUpdateResponseSystemDataL
   | "ManagedIdentity"
   | "Key";
 export const NetworkManagerRoutingConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NetworkManagerRoutingConfigurationsCreateOrUpdateResponseSystemData {
@@ -93411,7 +93080,7 @@ export type NetworkManagerPropertiesInputNetworkManagerScopeAccessesItem =
   | "SecurityUser"
   | "Routing";
 export const NetworkManagerPropertiesInputNetworkManagerScopeAccessesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Scope Access. */
 export type NetworkManagerPropertiesInputNetworkManagerScopeAccessesList =
@@ -93431,8 +93100,7 @@ export type NetworkManagerPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const NetworkManagerPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const NetworkManagerPropertiesInputProvisioningState = S.String;
 
 /** Properties of Managed Network */
 export interface NetworkManagerPropertiesInput {
@@ -93517,7 +93185,7 @@ export type NetworkManagersCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const NetworkManagersCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type NetworkManagersCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -93526,7 +93194,7 @@ export type NetworkManagersCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const NetworkManagersCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NetworkManagersCreateOrUpdateResponseSystemData {
@@ -93614,7 +93282,7 @@ export type IPConfigurationProfilePropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const IPConfigurationProfilePropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** IP configuration profile properties. */
 export interface IPConfigurationProfilePropertiesFormatInput {
@@ -93687,7 +93355,7 @@ export type ContainerNetworkInterfaceConfigurationPropertiesFormatInputProvision
   | "Updating"
   | "Deleting";
 export const ContainerNetworkInterfaceConfigurationPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Container network interface configuration properties. */
 export interface ContainerNetworkInterfaceConfigurationPropertiesFormatInput {
@@ -93755,8 +93423,7 @@ export type NetworkProfilePropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const NetworkProfilePropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const NetworkProfilePropertiesFormatInputProvisioningState = S.String;
 
 /** Network profile properties. */
 export interface NetworkProfilePropertiesFormatInput {
@@ -93956,12 +93623,11 @@ export type NspAccessRulePropertiesInputProvisioningState =
   | "Deleting"
   | "Accepted"
   | "Failed";
-export const NspAccessRulePropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const NspAccessRulePropertiesInputProvisioningState = S.String;
 
 /** Direction that specifies whether the access rules is inbound/outbound. */
 export type NspAccessRulePropertiesInputDirection = "Inbound" | "Outbound";
-export const NspAccessRulePropertiesInputDirection = /*@__PURE__*/ S.String;
+export const NspAccessRulePropertiesInputDirection = S.String;
 
 /** Inbound address prefixes (IPv4/IPv6) */
 export type NspAccessRulePropertiesInputAddressPrefixesList = Array<string>;
@@ -94091,7 +93757,7 @@ export type NetworkSecurityPerimeterAccessRulesCreateOrUpdateResponseSystemDataC
   | "ManagedIdentity"
   | "Key";
 export const NetworkSecurityPerimeterAccessRulesCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type NetworkSecurityPerimeterAccessRulesCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -94100,7 +93766,7 @@ export type NetworkSecurityPerimeterAccessRulesCreateOrUpdateResponseSystemDataL
   | "ManagedIdentity"
   | "Key";
 export const NetworkSecurityPerimeterAccessRulesCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NetworkSecurityPerimeterAccessRulesCreateOrUpdateResponseSystemData {
@@ -94209,8 +93875,7 @@ export type NspAssociationPropertiesInputProvisioningState =
   | "Deleting"
   | "Accepted"
   | "Failed";
-export const NspAssociationPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const NspAssociationPropertiesInputProvisioningState = S.String;
 
 /** Reference to another subresource. */
 export type NspAssociationPropertiesInputPrivateLinkResource =
@@ -94229,7 +93894,7 @@ export type NspAssociationPropertiesInputAccessMode =
   | "Learning"
   | "Enforced"
   | "Audit";
-export const NspAssociationPropertiesInputAccessMode = /*@__PURE__*/ S.String;
+export const NspAssociationPropertiesInputAccessMode = S.String;
 
 export interface NspAssociationPropertiesInput {
   /** The current provisioning state. */
@@ -94299,7 +93964,7 @@ export type NetworkSecurityPerimeterAssociationsCreateOrUpdateResponseSystemData
   | "ManagedIdentity"
   | "Key";
 export const NetworkSecurityPerimeterAssociationsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type NetworkSecurityPerimeterAssociationsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -94308,7 +93973,7 @@ export type NetworkSecurityPerimeterAssociationsCreateOrUpdateResponseSystemData
   | "ManagedIdentity"
   | "Key";
 export const NetworkSecurityPerimeterAssociationsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NetworkSecurityPerimeterAssociationsCreateOrUpdateResponseSystemData {
@@ -94415,7 +94080,7 @@ export type NspLinkPropertiesInputProvisioningState =
   | "Accepted"
   | "Failed"
   | "WaitForRemoteCompletion";
-export const NspLinkPropertiesInputProvisioningState = /*@__PURE__*/ S.String;
+export const NspLinkPropertiesInputProvisioningState = S.String;
 
 /** Local Inbound profile names to which Inbound is allowed. Use ['*'] to allow inbound to all profiles. */
 export type NspLinkPropertiesInputLocalInboundProfilesList = Array<string>;
@@ -94437,7 +94102,7 @@ export type NspLinkPropertiesInputStatus =
   | "Pending"
   | "Rejected"
   | "Disconnected";
-export const NspLinkPropertiesInputStatus = /*@__PURE__*/ S.String;
+export const NspLinkPropertiesInputStatus = S.String;
 
 /** Properties of NSP Link resource. */
 export interface NspLinkPropertiesInput {
@@ -94510,7 +94175,7 @@ export type NetworkSecurityPerimeterLinksCreateOrUpdateResponseSystemDataCreated
   | "ManagedIdentity"
   | "Key";
 export const NetworkSecurityPerimeterLinksCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type NetworkSecurityPerimeterLinksCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -94519,7 +94184,7 @@ export type NetworkSecurityPerimeterLinksCreateOrUpdateResponseSystemDataLastMod
   | "ManagedIdentity"
   | "Key";
 export const NetworkSecurityPerimeterLinksCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NetworkSecurityPerimeterLinksCreateOrUpdateResponseSystemData {
@@ -94621,7 +94286,7 @@ export type NetworkSecurityPerimeterLoggingConfigurationsCreateOrUpdateResponseS
   | "ManagedIdentity"
   | "Key";
 export const NetworkSecurityPerimeterLoggingConfigurationsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type NetworkSecurityPerimeterLoggingConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -94630,7 +94295,7 @@ export type NetworkSecurityPerimeterLoggingConfigurationsCreateOrUpdateResponseS
   | "ManagedIdentity"
   | "Key";
 export const NetworkSecurityPerimeterLoggingConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NetworkSecurityPerimeterLoggingConfigurationsCreateOrUpdateResponseSystemData {
@@ -94739,7 +94404,7 @@ export type NetworkSecurityPerimeterProfilesCreateOrUpdateResponseSystemDataCrea
   | "ManagedIdentity"
   | "Key";
 export const NetworkSecurityPerimeterProfilesCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type NetworkSecurityPerimeterProfilesCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -94748,7 +94413,7 @@ export type NetworkSecurityPerimeterProfilesCreateOrUpdateResponseSystemDataLast
   | "ManagedIdentity"
   | "Key";
 export const NetworkSecurityPerimeterProfilesCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NetworkSecurityPerimeterProfilesCreateOrUpdateResponseSystemData {
@@ -94830,7 +94495,7 @@ export type NetworkSecurityPerimeterPropertiesInputProvisioningState =
   | "Accepted"
   | "Failed";
 export const NetworkSecurityPerimeterPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of network security perimeter. */
 export interface NetworkSecurityPerimeterPropertiesInput {
@@ -94892,7 +94557,7 @@ export type NetworkSecurityPerimetersCreateOrUpdateResponseSystemDataCreatedByTy
   | "ManagedIdentity"
   | "Key";
 export const NetworkSecurityPerimetersCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type NetworkSecurityPerimetersCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -94901,7 +94566,7 @@ export type NetworkSecurityPerimetersCreateOrUpdateResponseSystemDataLastModifie
   | "ManagedIdentity"
   | "Key";
 export const NetworkSecurityPerimetersCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NetworkSecurityPerimetersCreateOrUpdateResponseSystemData {
@@ -94988,7 +94653,7 @@ export type NetworkVirtualApplianceConnectionPropertiesInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const NetworkVirtualApplianceConnectionPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of bgpPeerAddresses for the NVA instances */
 export type NetworkVirtualApplianceConnectionPropertiesInputBgpPeerAddressList =
@@ -95149,7 +94814,7 @@ export type NetworkVirtualAppliancePropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const NetworkVirtualAppliancePropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the partner managed resource. Only appliable for SaaS NVA. */
 export type PartnerManagedResourcePropertiesInput =
@@ -95170,7 +94835,7 @@ export type NetworkVirtualAppliancePropertiesFormatInputAddressFamilyItem =
   | "IPv4"
   | "IPv6";
 export const NetworkVirtualAppliancePropertiesFormatInputAddressFamilyItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The address families to deploy the NVA in. ["IPv4", "IPv6"] deploys a dual-stack NVA (the vHub/VNet must also be dual-stack). ["IPv4"], an empty array, or omitting the field deploys an IPv4-only NVA. The value "IPv6" may only appear in combination with "IPv4"; standalone ["IPv6"] is reserved for future use and is rejected by the service today. */
 export type NetworkVirtualAppliancePropertiesFormatInputAddressFamilyList =
@@ -95421,7 +95086,7 @@ export type NetworkVirtualAppliancePrepareMigrationPropertiesMigrationType =
   | "MigrateToNewOSVersion"
   | "MigrateToNewILBArchitecture";
 export const NetworkVirtualAppliancePrepareMigrationPropertiesMigrationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties supplied to prepare the migration of a Network Virtual Appliance. */
 export interface NetworkVirtualAppliancePrepareMigrationProperties {
@@ -95573,7 +95238,7 @@ export type ConnectionAnalyzerQueryStatusResultConnectionAnalyzerStatus =
   | "Succeeded"
   | "Failed";
 export const ConnectionAnalyzerQueryStatusResultConnectionAnalyzerStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of diagnostic operation to run on a connection analyzer. */
 export type DiagnosticOperationResultDiagnosticOperation =
@@ -95582,8 +95247,7 @@ export type DiagnosticOperationResultDiagnosticOperation =
   | "PortScan"
   | "ConnectivityCheck"
   | "ExpressRouteDiagnostic";
-export const DiagnosticOperationResultDiagnosticOperation =
-  /*@__PURE__*/ S.String;
+export const DiagnosticOperationResultDiagnosticOperation = S.String;
 
 /** Result of an individual diagnostic operation run by a connection analyzer. */
 export interface DiagnosticOperationResult {
@@ -95853,7 +95517,7 @@ export type P2SConnectionConfigurationPropertiesInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const P2SConnectionConfigurationPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Parameters for P2SConnectionConfiguration. */
 export interface P2SConnectionConfigurationPropertiesInput {
@@ -95924,8 +95588,7 @@ export type P2SVpnGatewayPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const P2SVpnGatewayPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const P2SVpnGatewayPropertiesInputProvisioningState = S.String;
 
 /** Reference to another subresource. */
 export type P2SVpnGatewayPropertiesInputVpnServerConfiguration =
@@ -96173,8 +95836,7 @@ export type PatchNetworkManagerResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PatchNetworkManagerResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const PatchNetworkManagerResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type PatchNetworkManagerResponseSystemDataLastModifiedByType =
@@ -96182,8 +95844,7 @@ export type PatchNetworkManagerResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PatchNetworkManagerResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const PatchNetworkManagerResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PatchNetworkManagerResponseSystemData {
@@ -96297,7 +95958,7 @@ export type PatchNetworkSecurityPerimeterResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const PatchNetworkSecurityPerimeterResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PatchNetworkSecurityPerimeterResponseSystemDataLastModifiedByType =
@@ -96306,7 +95967,7 @@ export type PatchNetworkSecurityPerimeterResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const PatchNetworkSecurityPerimeterResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PatchNetworkSecurityPerimeterResponseSystemData {
@@ -96402,7 +96063,7 @@ export type PostNetworkManagerCommitRequestCommitType =
   | "Connectivity"
   | "SecurityUser"
   | "Routing";
-export const PostNetworkManagerCommitRequestCommitType = /*@__PURE__*/ S.String;
+export const PostNetworkManagerCommitRequestCommitType = S.String;
 
 export interface PostNetworkManagerCommitRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -96458,7 +96119,7 @@ export type NetworkManagerCommitCommitType =
   | "Connectivity"
   | "SecurityUser"
   | "Routing";
-export const NetworkManagerCommitCommitType = /*@__PURE__*/ S.String;
+export const NetworkManagerCommitCommitType = S.String;
 
 /** Network Manager Commit. */
 export interface NetworkManagerCommit {
@@ -96491,7 +96152,7 @@ export type PrivateDnsZoneGroupPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const PrivateDnsZoneGroupPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the private dns zone configuration resource. */
 export interface PrivateDnsZonePropertiesFormatInput {
@@ -96631,16 +96292,14 @@ export type PrivateEndpointPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const PrivateEndpointPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointPropertiesInputProvisioningState = S.String;
 
 /** Specifies the IP version type for the private IPs of the private endpoint. If not defined, this defaults to IPv4. */
 export type PrivateEndpointPropertiesInputIpVersionType =
   | "IPv4"
   | "IPv6"
   | "DualStack";
-export const PrivateEndpointPropertiesInputIpVersionType =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointPropertiesInputIpVersionType = S.String;
 
 /** PrivateLinkServiceConnection resource. */
 export interface PrivateLinkServiceConnectionInput {
@@ -96719,7 +96378,7 @@ export const PrivateEndpointPropertiesInputIpConfigurationsList =
 
 /** The billing sku of the private endpoint. */
 export type PrivateEndpointPropertiesInputBillingSku = "PayAsYouGo" | "Fixed";
-export const PrivateEndpointPropertiesInputBillingSku = /*@__PURE__*/ S.String;
+export const PrivateEndpointPropertiesInputBillingSku = S.String;
 
 /** Properties of the private endpoint. */
 export interface PrivateEndpointPropertiesInput_2 {
@@ -97247,7 +96906,7 @@ export type PublicIPAddressesReserveCloudServicePublicIpAddressRequestIsRollback
   | "true"
   | "false";
 export const PublicIPAddressesReserveCloudServicePublicIpAddressRequestIsRollback =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PublicIPAddressesReserveCloudServicePublicIpAddressRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -97363,7 +97022,7 @@ export type PublicIPPrefixPropertiesFormatInputPublicIPAddressVersion =
   | "IPv4"
   | "IPv6";
 export const PublicIPPrefixPropertiesFormatInputPublicIPAddressVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of tags associated with the public IP prefix. */
 export type PublicIPPrefixPropertiesFormatInputIpTagsList = Array<IpTag>;
@@ -97392,8 +97051,7 @@ export type PublicIPPrefixPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const PublicIPPrefixPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PublicIPPrefixPropertiesFormatInputProvisioningState = S.String;
 
 /** Public IP prefix properties. */
 export interface PublicIPPrefixPropertiesFormatInput {
@@ -98198,8 +97856,7 @@ export type RouteFilterPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const RouteFilterPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const RouteFilterPropertiesFormatInputProvisioningState = S.String;
 
 /** Route Filter Resource. */
 export interface RouteFilterPropertiesFormatInput {
@@ -98568,7 +98225,7 @@ export type RoutingRuleCollectionPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const RoutingRuleCollectionPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Groups for configuration */
 export type RoutingRuleCollectionPropertiesFormatInputAppliesToList =
@@ -98583,7 +98240,7 @@ export type RoutingRuleCollectionPropertiesFormatInputDisableBgpRoutePropagation
   | "False"
   | "True";
 export const RoutingRuleCollectionPropertiesFormatInputDisableBgpRoutePropagation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines the routing rule collection properties. */
 export interface RoutingRuleCollectionPropertiesFormatInput {
@@ -98658,7 +98315,7 @@ export type RoutingRuleCollectionsCreateOrUpdateResponseSystemDataCreatedByType 
   | "ManagedIdentity"
   | "Key";
 export const RoutingRuleCollectionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type RoutingRuleCollectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -98667,7 +98324,7 @@ export type RoutingRuleCollectionsCreateOrUpdateResponseSystemDataLastModifiedBy
   | "ManagedIdentity"
   | "Key";
 export const RoutingRuleCollectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface RoutingRuleCollectionsCreateOrUpdateResponseSystemData {
@@ -98740,8 +98397,7 @@ export type RoutingRulePropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const RoutingRulePropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const RoutingRulePropertiesFormatInputProvisioningState = S.String;
 
 /** Routing rule resource. */
 export interface RoutingRulePropertiesFormatInput {
@@ -98813,7 +98469,7 @@ export type RoutingRulesCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const RoutingRulesCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type RoutingRulesCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -98822,7 +98478,7 @@ export type RoutingRulesCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const RoutingRulesCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface RoutingRulesCreateOrUpdateResponseSystemData {
@@ -98923,7 +98579,7 @@ export type ScopeConnectionsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const ScopeConnectionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type ScopeConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -98932,7 +98588,7 @@ export type ScopeConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const ScopeConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ScopeConnectionsCreateOrUpdateResponseSystemData {
@@ -99001,7 +98657,7 @@ export type SecurityAdminConfigurationPropertiesFormatInputApplyOnNetworkIntentP
   | "All"
   | "AllowRulesOnly";
 export const SecurityAdminConfigurationPropertiesFormatInputApplyOnNetworkIntentPolicyBasedServicesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Enum list of network intent policy based services. */
 export type SecurityAdminConfigurationPropertiesFormatInputApplyOnNetworkIntentPolicyBasedServicesList =
@@ -99019,7 +98675,7 @@ export type SecurityAdminConfigurationPropertiesFormatInputNetworkGroupAddressSp
   | "None"
   | "Manual";
 export const SecurityAdminConfigurationPropertiesFormatInputNetworkGroupAddressSpaceAggregationOption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type SecurityAdminConfigurationPropertiesFormatInputProvisioningState =
@@ -99030,7 +98686,7 @@ export type SecurityAdminConfigurationPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const SecurityAdminConfigurationPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines the security admin configuration properties. */
 export interface SecurityAdminConfigurationPropertiesFormatInput {
@@ -99104,7 +98760,7 @@ export type SecurityAdminConfigurationsCreateOrUpdateResponseSystemDataCreatedBy
   | "ManagedIdentity"
   | "Key";
 export const SecurityAdminConfigurationsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type SecurityAdminConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -99113,7 +98769,7 @@ export type SecurityAdminConfigurationsCreateOrUpdateResponseSystemDataLastModif
   | "ManagedIdentity"
   | "Key";
 export const SecurityAdminConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SecurityAdminConfigurationsCreateOrUpdateResponseSystemData {
@@ -99337,7 +98993,7 @@ export type SecurityUserConfigurationPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const SecurityUserConfigurationPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines the security user configuration properties. */
 export interface SecurityUserConfigurationPropertiesFormatInput {
@@ -99399,7 +99055,7 @@ export type SecurityUserConfigurationsCreateOrUpdateResponseSystemDataCreatedByT
   | "ManagedIdentity"
   | "Key";
 export const SecurityUserConfigurationsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type SecurityUserConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -99408,7 +99064,7 @@ export type SecurityUserConfigurationsCreateOrUpdateResponseSystemDataLastModifi
   | "ManagedIdentity"
   | "Key";
 export const SecurityUserConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SecurityUserConfigurationsCreateOrUpdateResponseSystemData {
@@ -99490,7 +99146,7 @@ export type SecurityUserRuleCollectionPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const SecurityUserRuleCollectionPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines the security user rule collection properties. */
 export interface SecurityUserRuleCollectionPropertiesFormatInput {
@@ -99559,7 +99215,7 @@ export type SecurityUserRuleCollectionsCreateOrUpdateResponseSystemDataCreatedBy
   | "ManagedIdentity"
   | "Key";
 export const SecurityUserRuleCollectionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type SecurityUserRuleCollectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -99568,7 +99224,7 @@ export type SecurityUserRuleCollectionsCreateOrUpdateResponseSystemDataLastModif
   | "ManagedIdentity"
   | "Key";
 export const SecurityUserRuleCollectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SecurityUserRuleCollectionsCreateOrUpdateResponseSystemData {
@@ -99641,8 +99297,7 @@ export type SecurityUserRulePropertiesFormatInputProtocol =
   | "Esp"
   | "Any"
   | "Ah";
-export const SecurityUserRulePropertiesFormatInputProtocol =
-  /*@__PURE__*/ S.String;
+export const SecurityUserRulePropertiesFormatInputProtocol = S.String;
 
 /** The CIDR or source IP ranges. */
 export type SecurityUserRulePropertiesFormatInputSourcesList =
@@ -99680,8 +99335,7 @@ export const SecurityUserRulePropertiesFormatInputDestinationPortRangesList =
 export type SecurityUserRulePropertiesFormatInputDirection =
   | "Inbound"
   | "Outbound";
-export const SecurityUserRulePropertiesFormatInputDirection =
-  /*@__PURE__*/ S.String;
+export const SecurityUserRulePropertiesFormatInputDirection = S.String;
 
 /** Provisioning states of a resource. */
 export type SecurityUserRulePropertiesFormatInputProvisioningState =
@@ -99691,8 +99345,7 @@ export type SecurityUserRulePropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const SecurityUserRulePropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const SecurityUserRulePropertiesFormatInputProvisioningState = S.String;
 
 /** Security rule resource. */
 export interface SecurityUserRulePropertiesFormatInput {
@@ -99784,7 +99437,7 @@ export type SecurityUserRulesCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const SecurityUserRulesCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type SecurityUserRulesCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -99793,7 +99446,7 @@ export type SecurityUserRulesCreateOrUpdateResponseSystemDataLastModifiedByType 
   | "ManagedIdentity"
   | "Key";
 export const SecurityUserRulesCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SecurityUserRulesCreateOrUpdateResponseSystemData {
@@ -100413,8 +100066,7 @@ export type VirtualNetworkPeeringPropertiesFormatInputPeeringState =
   | "Initiated"
   | "Connected"
   | "Disconnected";
-export const VirtualNetworkPeeringPropertiesFormatInputPeeringState =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkPeeringPropertiesFormatInputPeeringState = S.String;
 
 /** The peering sync status of the virtual network peering. */
 export type VirtualNetworkPeeringPropertiesFormatInputPeeringSyncLevel =
@@ -100423,7 +100075,7 @@ export type VirtualNetworkPeeringPropertiesFormatInputPeeringSyncLevel =
   | "LocalNotInSync"
   | "LocalAndRemoteNotInSync";
 export const VirtualNetworkPeeringPropertiesFormatInputPeeringSyncLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type VirtualNetworkPeeringPropertiesFormatInputProvisioningState =
@@ -100434,7 +100086,7 @@ export type VirtualNetworkPeeringPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const VirtualNetworkPeeringPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of local subnet names that are subnet peered with remote virtual network. */
 export type VirtualNetworkPeeringPropertiesFormatInputLocalSubnetNamesList =
@@ -100570,8 +100222,7 @@ export type VirtualNetworkPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VirtualNetworkPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkPropertiesFormatInputProvisioningState = S.String;
 
 /** Reference to another subresource. */
 export type VirtualNetworkPropertiesFormatInputDdosProtectionPlan =
@@ -100598,7 +100249,7 @@ export type VirtualNetworkPropertiesFormatInputPrivateEndpointVNetPolicies =
   | "Disabled"
   | "Basic";
 export const VirtualNetworkPropertiesFormatInputPrivateEndpointVNetPolicies =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type VirtualNetworkPropertiesFormatInputDefaultPublicNatGateway =
@@ -100722,7 +100373,7 @@ export type RouteTargetAddressPropertiesFormatInputPrivateIPAllocationMethod =
   | "Static"
   | "Dynamic";
 export const RouteTargetAddressPropertiesFormatInputPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of route target address */
 export interface RouteTargetAddressPropertiesFormatInput {
@@ -100756,8 +100407,7 @@ export type ServiceGatewayPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ServiceGatewayPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ServiceGatewayPropertiesFormatInputProvisioningState = S.String;
 
 /** Properties of the service gateway. */
 export interface ServiceGatewayPropertiesFormatInput {
@@ -100842,7 +100492,7 @@ export type ServiceGatewaysCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const ServiceGatewaysCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type ServiceGatewaysCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -100851,7 +100501,7 @@ export type ServiceGatewaysCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const ServiceGatewaysCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ServiceGatewaysCreateOrUpdateResponseSystemData {
@@ -101075,7 +100725,7 @@ export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecEncrypti
   | "GCMAES192"
   | "GCMAES256";
 export const SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IPSec integrity algorithm (IKE phase 1). */
 export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecIntegrity =
@@ -101086,7 +100736,7 @@ export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecIntegrit
   | "GCMAES192"
   | "GCMAES256";
 export const SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIpsecIntegrity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IKE encryption algorithm (IKE phase 2). */
 export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeEncryption =
@@ -101098,7 +100748,7 @@ export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeEncryption
   | "GCMAES256"
   | "GCMAES128";
 export const SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IKE integrity algorithm (IKE phase 2). */
 export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeIntegrity =
@@ -101109,7 +100759,7 @@ export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeIntegrity 
   | "GCMAES256"
   | "GCMAES128";
 export const SetVirtualNetworkGatewayVpnclientIpsecParametersRequestIkeIntegrity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The DH Groups used in IKE Phase 1 for initial SA. */
 export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestDhGroup =
@@ -101122,7 +100772,7 @@ export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestDhGroup =
   | "ECP384"
   | "DHGroup24";
 export const SetVirtualNetworkGatewayVpnclientIpsecParametersRequestDhGroup =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The Pfs Groups used in IKE Phase 2 for new child SA. */
 export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestPfsGroup =
@@ -101136,7 +100786,7 @@ export type SetVirtualNetworkGatewayVpnclientIpsecParametersRequestPfsGroup =
   | "PFS14"
   | "PFSMM";
 export const SetVirtualNetworkGatewayVpnclientIpsecParametersRequestPfsGroup =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SetVirtualNetworkGatewayVpnclientIpsecParametersRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -101512,8 +101162,7 @@ export type StaticMemberPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const StaticMemberPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const StaticMemberPropertiesInputProvisioningState = S.String;
 
 /** Properties of static member. */
 export interface StaticMemberPropertiesInput {
@@ -101574,7 +101223,7 @@ export type StaticMembersCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const StaticMembersCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type StaticMembersCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -101583,7 +101232,7 @@ export type StaticMembersCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const StaticMembersCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface StaticMembersCreateOrUpdateResponseSystemData {
@@ -102283,7 +101932,7 @@ export type SubscriptionNetworkManagerConnectionsCreateOrUpdateResponseSystemDat
   | "ManagedIdentity"
   | "Key";
 export const SubscriptionNetworkManagerConnectionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type SubscriptionNetworkManagerConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -102292,7 +101941,7 @@ export type SubscriptionNetworkManagerConnectionsCreateOrUpdateResponseSystemDat
   | "ManagedIdentity"
   | "Key";
 export const SubscriptionNetworkManagerConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SubscriptionNetworkManagerConnectionsCreateOrUpdateResponseSystemData {
@@ -102385,7 +102034,7 @@ export const SupportedSecurityProvidersRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The virtual wan security provider type. */
 export type VirtualWanSecurityProviderType = "External" | "Native";
-export const VirtualWanSecurityProviderType = /*@__PURE__*/ S.String;
+export const VirtualWanSecurityProviderType = S.String;
 
 /** Collection of SecurityProviders. */
 export interface VirtualWanSecurityProvider {
@@ -102921,7 +102570,7 @@ export type ApplicationGatewayPrivateEndpointConnectionPropertiesInputProvisioni
   | "Updating"
   | "Deleting";
 export const ApplicationGatewayPrivateEndpointConnectionPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of Private Link Resource of an application gateway. */
 export interface ApplicationGatewayPrivateEndpointConnectionPropertiesInput {
@@ -104763,8 +104412,7 @@ export type UpdateIpamPoolResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateIpamPoolResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateIpamPoolResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateIpamPoolResponseSystemDataLastModifiedByType =
@@ -104772,8 +104420,7 @@ export type UpdateIpamPoolResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateIpamPoolResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateIpamPoolResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateIpamPoolResponseSystemData {
@@ -105698,7 +105345,7 @@ export type PrivateEndpointConnectionPropertiesInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const PrivateEndpointConnectionPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the PrivateEndpointConnectProperties. */
 export interface PrivateEndpointConnectionPropertiesInput {
@@ -106299,15 +105946,13 @@ export const UpdateServiceEndpointPolicyTagsResponse = /*@__PURE__*/ S.suspend(
 export type UpdateServiceGatewayAddressLocationsRequestAction =
   | "FullUpdate"
   | "PartialUpdate";
-export const UpdateServiceGatewayAddressLocationsRequestAction =
-  /*@__PURE__*/ S.String;
+export const UpdateServiceGatewayAddressLocationsRequestAction = S.String;
 
 /** Specifies the type of update operation to perform on addresses within the address location of service gateway. - FullUpdate: Replaces all existing address data with the new list provided in the request. Any previously defined addresses not included will be removed. - PartialUpdate: Updates only the specified addresses. */
 export type ServiceGatewayAddressLocationAddressUpdateAction =
   | "FullUpdate"
   | "PartialUpdate";
-export const ServiceGatewayAddressLocationAddressUpdateAction =
-  /*@__PURE__*/ S.String;
+export const ServiceGatewayAddressLocationAddressUpdateAction = S.String;
 
 /** An array of addresses to create or update in locations. */
 export type ServiceGatewayAddressLocationAddressesList =
@@ -106398,15 +106043,14 @@ export const UpdateServiceGatewayAddressLocationsResponse =
 export type UpdateServiceGatewayServicesRequestAction =
   | "FullUpdate"
   | "PartialUpdate";
-export const UpdateServiceGatewayServicesRequestAction = /*@__PURE__*/ S.String;
+export const UpdateServiceGatewayServicesRequestAction = S.String;
 
 /** Name of the service. */
 export type ServiceGatewayServicePropertiesFormatInputServiceType =
   | "Inbound"
   | "Outbound"
   | "InboundOutbound";
-export const ServiceGatewayServicePropertiesFormatInputServiceType =
-  /*@__PURE__*/ S.String;
+export const ServiceGatewayServicePropertiesFormatInputServiceType = S.String;
 
 /** Pool of backend IP addresses. */
 export type ServiceGatewayServicePropertiesFormatInputLoadBalancerBackendPoolsItem =
@@ -106580,8 +106224,7 @@ export type UpdateServiceGatewayTagsResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateServiceGatewayTagsResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateServiceGatewayTagsResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateServiceGatewayTagsResponseSystemDataLastModifiedByType =
@@ -106590,7 +106233,7 @@ export type UpdateServiceGatewayTagsResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateServiceGatewayTagsResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateServiceGatewayTagsResponseSystemData {
@@ -106740,8 +106383,7 @@ export type UpdateVerifierWorkspaceResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateVerifierWorkspaceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateVerifierWorkspaceResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateVerifierWorkspaceResponseSystemDataLastModifiedByType =
@@ -106750,7 +106392,7 @@ export type UpdateVerifierWorkspaceResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateVerifierWorkspaceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateVerifierWorkspaceResponseSystemData {
@@ -107666,12 +107308,11 @@ export const UpdateVpnSiteTagsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The direction of the traffic. */
 export type VerifyNetworkWatcherIPFlowRequestDirection = "Inbound" | "Outbound";
-export const VerifyNetworkWatcherIPFlowRequestDirection =
-  /*@__PURE__*/ S.String;
+export const VerifyNetworkWatcherIPFlowRequestDirection = S.String;
 
 /** Protocol to be verified on. */
 export type VerifyNetworkWatcherIPFlowRequestProtocol = "TCP" | "UDP";
-export const VerifyNetworkWatcherIPFlowRequestProtocol = /*@__PURE__*/ S.String;
+export const VerifyNetworkWatcherIPFlowRequestProtocol = S.String;
 
 export interface VerifyNetworkWatcherIPFlowRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -107724,7 +107365,7 @@ export const VerifyNetworkWatcherIPFlowRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Access to be allowed or denied. */
 export type VerificationIPFlowResultAccess = "Allow" | "Deny";
-export const VerificationIPFlowResultAccess = /*@__PURE__*/ S.String;
+export const VerificationIPFlowResultAccess = S.String;
 
 /** Results of IP flow verification on the target resource. */
 export interface VerificationIPFlowResult {
@@ -107819,8 +107460,7 @@ export type BgpConnectionPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const BgpConnectionPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const BgpConnectionPropertiesInputProvisioningState = S.String;
 
 /** The current state of the VirtualHub to Peer. */
 export type BgpConnectionPropertiesInputConnectionState =
@@ -107828,8 +107468,7 @@ export type BgpConnectionPropertiesInputConnectionState =
   | "Connecting"
   | "Connected"
   | "NotConnected";
-export const BgpConnectionPropertiesInputConnectionState =
-  /*@__PURE__*/ S.String;
+export const BgpConnectionPropertiesInputConnectionState = S.String;
 
 /** Properties of the bgp connection. */
 export interface BgpConnectionPropertiesInput {
@@ -107933,7 +107572,7 @@ export type HubIPConfigurationPropertiesFormatInputPrivateIPAllocationMethod =
   | "Static"
   | "Dynamic";
 export const HubIPConfigurationPropertiesFormatInputPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Route resource. */
 export type RoutePropertiesFormatInput_7 = RoutePropertiesFormatInput_2;
@@ -108378,7 +108017,7 @@ export type HubIPConfigurationPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const HubIPConfigurationPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of IP configuration. */
 export interface HubIPConfigurationPropertiesFormatInput {
@@ -108592,8 +108231,7 @@ export type VirtualHubPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VirtualHubPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VirtualHubPropertiesInputProvisioningState = S.String;
 
 /** VirtualHubRouteTableV2 Resource. */
 export interface VirtualHubRouteTableV2Input {
@@ -108628,7 +108266,7 @@ export type VirtualHubPropertiesInputRoutingState =
   | "Provisioned"
   | "Provisioning"
   | "Failed";
-export const VirtualHubPropertiesInputRoutingState = /*@__PURE__*/ S.String;
+export const VirtualHubPropertiesInputRoutingState = S.String;
 
 /** VirtualRouter IPs. */
 export type VirtualHubPropertiesInputVirtualRouterIpsList = Array<string>;
@@ -108649,16 +108287,14 @@ export type VirtualHubPropertiesInputPreferredRoutingGateway =
   | "ExpressRoute"
   | "VpnGateway"
   | "None";
-export const VirtualHubPropertiesInputPreferredRoutingGateway =
-  /*@__PURE__*/ S.String;
+export const VirtualHubPropertiesInputPreferredRoutingGateway = S.String;
 
 /** The hub routing preference gateway types */
 export type VirtualHubPropertiesInputHubRoutingPreference =
   | "ExpressRoute"
   | "VpnGateway"
   | "ASPath";
-export const VirtualHubPropertiesInputHubRoutingPreference =
-  /*@__PURE__*/ S.String;
+export const VirtualHubPropertiesInputHubRoutingPreference = S.String;
 
 /** Parameters for VirtualHub. */
 export interface VirtualHubPropertiesInput {
@@ -108855,7 +108491,7 @@ export type VirtualNetworkAppliancePropertiesFormatInputPrivateIPAddressVersion 
   | "IPv4"
   | "DualStack";
 export const VirtualNetworkAppliancePropertiesFormatInputPrivateIPAddressVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning states of a resource. */
 export type VirtualNetworkAppliancePropertiesFormatInputProvisioningState =
@@ -108866,7 +108502,7 @@ export type VirtualNetworkAppliancePropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const VirtualNetworkAppliancePropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Route resource. */
 export type RoutePropertiesFormatInput_6 = RoutePropertiesFormatInput_2;
@@ -109264,7 +108900,7 @@ export type VirtualNetworkGatewayIPConfigurationPropertiesFormatInputPrivateIPAl
   | "Static"
   | "Dynamic";
 export const VirtualNetworkGatewayIPConfigurationPropertiesFormatInputPrivateIPAllocationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type VirtualNetworkGatewayIPConfigurationPropertiesFormatInputSubnet =
@@ -109287,7 +108923,7 @@ export type VirtualNetworkGatewayIPConfigurationPropertiesFormatInputProvisionin
   | "Updating"
   | "Deleting";
 export const VirtualNetworkGatewayIPConfigurationPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of VirtualNetworkGatewayIPConfiguration. */
 export interface VirtualNetworkGatewayIPConfigurationPropertiesFormatInput {
@@ -109359,15 +108995,13 @@ export type VirtualNetworkGatewayPropertiesFormatInputGatewayType =
   | "Vpn"
   | "ExpressRoute"
   | "LocalGateway";
-export const VirtualNetworkGatewayPropertiesFormatInputGatewayType =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewayPropertiesFormatInputGatewayType = S.String;
 
 /** The type of this virtual network gateway. */
 export type VirtualNetworkGatewayPropertiesFormatInputVpnType =
   | "PolicyBased"
   | "RouteBased";
-export const VirtualNetworkGatewayPropertiesFormatInputVpnType =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewayPropertiesFormatInputVpnType = S.String;
 
 /** The generation for this VirtualNetworkGateway. Must be None if gatewayType is not VPN. */
 export type VirtualNetworkGatewayPropertiesFormatInputVpnGatewayGeneration =
@@ -109375,7 +109009,7 @@ export type VirtualNetworkGatewayPropertiesFormatInputVpnGatewayGeneration =
   | "Generation1"
   | "Generation2";
 export const VirtualNetworkGatewayPropertiesFormatInputVpnGatewayGeneration =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type VirtualNetworkGatewayPropertiesFormatInputGatewayDefaultSite =
@@ -109403,7 +109037,7 @@ export type VirtualNetworkGatewaySkuInputName =
   | "ErGw2AZ"
   | "ErGw3AZ"
   | "ErGwScale";
-export const VirtualNetworkGatewaySkuInputName = /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewaySkuInputName = S.String;
 
 /** Gateway SKU tier. */
 export type VirtualNetworkGatewaySkuInputTier =
@@ -109425,7 +109059,7 @@ export type VirtualNetworkGatewaySkuInputTier =
   | "ErGw2AZ"
   | "ErGw3AZ"
   | "ErGwScale";
-export const VirtualNetworkGatewaySkuInputTier = /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewaySkuInputTier = S.String;
 
 /** VirtualNetworkGatewaySku details. */
 export interface VirtualNetworkGatewaySkuInput {
@@ -109539,8 +109173,7 @@ export type VpnClientConfigurationInputVpnClientProtocolsItem =
   | "IkeV2"
   | "SSTP"
   | "OpenVPN";
-export const VpnClientConfigurationInputVpnClientProtocolsItem =
-  /*@__PURE__*/ S.String;
+export const VpnClientConfigurationInputVpnClientProtocolsItem = S.String;
 
 /** VpnClientProtocols for Virtual network gateway. */
 export type VpnClientConfigurationInputVpnClientProtocolsList = Array<
@@ -109556,8 +109189,7 @@ export type VpnClientConfigurationInputVpnAuthenticationTypesItem =
   | "Certificate"
   | "Radius"
   | "AAD";
-export const VpnClientConfigurationInputVpnAuthenticationTypesItem =
-  /*@__PURE__*/ S.String;
+export const VpnClientConfigurationInputVpnAuthenticationTypesItem = S.String;
 
 /** VPN authentication types for the virtual network gateway.. */
 export type VpnClientConfigurationInputVpnAuthenticationTypesList = Array<
@@ -109644,7 +109276,7 @@ export type VngClientConnectionConfigurationPropertiesInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const VngClientConnectionConfigurationPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of VngClientConnectionConfiguration. */
 export interface VngClientConnectionConfigurationPropertiesInput {
@@ -109780,7 +109412,7 @@ export type VirtualNetworkGatewayPolicyGroupPropertiesInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const VirtualNetworkGatewayPolicyGroupPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of VirtualNetworkGatewayPolicyGroup. */
 export interface VirtualNetworkGatewayPolicyGroupPropertiesInput {
@@ -109884,7 +109516,7 @@ export type VirtualNetworkGatewayPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const VirtualNetworkGatewayPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** VirtualNetworkGatewayNatRule Resource. */
 export interface VirtualNetworkGatewayNatRuleInput {
@@ -109917,15 +109549,14 @@ export const VirtualNetworkGatewayPropertiesFormatInputNatRulesList =
 export type VirtualNetworkGatewayPropertiesFormatInputAdminState =
   | "Enabled"
   | "Disabled";
-export const VirtualNetworkGatewayPropertiesFormatInputAdminState =
-  /*@__PURE__*/ S.String;
+export const VirtualNetworkGatewayPropertiesFormatInputAdminState = S.String;
 
 /** Property to indicate if the Express Route Gateway has resiliency model of MultiHomed or SingleHomed */
 export type VirtualNetworkGatewayPropertiesFormatInputResiliencyModel =
   | "SingleHomed"
   | "MultiHomed";
 export const VirtualNetworkGatewayPropertiesFormatInputResiliencyModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** VirtualNetworkGateway properties. */
 export interface VirtualNetworkGatewayPropertiesFormatInput {
@@ -110180,14 +109811,14 @@ export type VirtualNetworkGatewayConnectionPropertiesFormatInputConnectionType =
   | "ExpressRoute"
   | "VPNClient";
 export const VirtualNetworkGatewayConnectionPropertiesFormatInputConnectionType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Gateway connection protocol. */
 export type VirtualNetworkGatewayConnectionPropertiesFormatInputConnectionProtocol =
   | "IKEv2"
   | "IKEv1";
 export const VirtualNetworkGatewayConnectionPropertiesFormatInputConnectionProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Gateway connection type. */
 export type VirtualNetworkGatewayConnectionPropertiesFormatInputConnectionMode =
@@ -110195,7 +109826,7 @@ export type VirtualNetworkGatewayConnectionPropertiesFormatInputConnectionMode =
   | "ResponderOnly"
   | "InitiatorOnly";
 export const VirtualNetworkGatewayConnectionPropertiesFormatInputConnectionMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Tunnel properties for virtual network gateway connection */
 export type VirtualNetworkGatewayConnectionPropertiesFormatInputTunnelPropertiesList =
@@ -110212,7 +109843,7 @@ export type VirtualNetworkGatewayConnectionPropertiesFormatInputConnectionStatus
   | "Connected"
   | "NotConnected";
 export const VirtualNetworkGatewayConnectionPropertiesFormatInputConnectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type VirtualNetworkGatewayConnectionPropertiesFormatInputPeer =
@@ -110253,14 +109884,14 @@ export type VirtualNetworkGatewayConnectionPropertiesFormatInputProvisioningStat
   | "Updating"
   | "Deleting";
 export const VirtualNetworkGatewayConnectionPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Gateway connection authentication type. */
 export type VirtualNetworkGatewayConnectionPropertiesFormatInputAuthenticationType =
   | "PSK"
   | "Certificate";
 export const VirtualNetworkGatewayConnectionPropertiesFormatInputAuthenticationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Reference to another subresource. */
 export type VirtualNetworkGatewayConnectionPropertiesFormatInputRoutingConfigurationAssociatedRouteTable =
@@ -110749,14 +110380,14 @@ export type VirtualNetworkGatewaysGeneratevpnclientpackageRequestProcessorArchit
   | "Amd64"
   | "X86";
 export const VirtualNetworkGatewaysGeneratevpnclientpackageRequestProcessorArchitecture =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** VPN client authentication method. */
 export type VirtualNetworkGatewaysGeneratevpnclientpackageRequestAuthenticationMethod =
   | "EAPTLS"
   | "EAPMSCHAPv2";
 export const VirtualNetworkGatewaysGeneratevpnclientpackageRequestAuthenticationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A list of client root certificates public certificate data encoded as Base-64 strings. Optional parameter for external radius based authentication with EAPTLS. */
 export type VirtualNetworkGatewaysGeneratevpnclientpackageRequestClientRootCertificatesList =
@@ -110928,7 +110559,7 @@ export const VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse =
 export type VirtualNetworkPeeringsCreateOrUpdateRequestSyncRemoteAddressSpace =
   "true";
 export const VirtualNetworkPeeringsCreateOrUpdateRequestSyncRemoteAddressSpace =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VirtualNetworkPeeringsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -112072,8 +111703,7 @@ export type VirtualRouterPropertiesFormatInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VirtualRouterPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VirtualRouterPropertiesFormatInputProvisioningState = S.String;
 
 /** Virtual Router definition. */
 export interface VirtualRouterPropertiesFormatInput {
@@ -112203,8 +111833,7 @@ export type VirtualWanPropertiesInputOffice365LocalBreakoutCategory =
   | "OptimizeAndAllow"
   | "All"
   | "None";
-export const VirtualWanPropertiesInputOffice365LocalBreakoutCategory =
-  /*@__PURE__*/ S.String;
+export const VirtualWanPropertiesInputOffice365LocalBreakoutCategory = S.String;
 
 /** Provisioning states of a resource. */
 export type VirtualWanPropertiesInputProvisioningState =
@@ -112214,8 +111843,7 @@ export type VirtualWanPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VirtualWanPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VirtualWanPropertiesInputProvisioningState = S.String;
 
 /** Parameters for VirtualWAN. */
 export interface VirtualWanPropertiesInput {
@@ -112339,15 +111967,13 @@ export type VpnConnectionPropertiesInputConnectionStatus =
   | "Connecting"
   | "Connected"
   | "NotConnected";
-export const VpnConnectionPropertiesInputConnectionStatus =
-  /*@__PURE__*/ S.String;
+export const VpnConnectionPropertiesInputConnectionStatus = S.String;
 
 /** Gateway connection protocol. */
 export type VpnConnectionPropertiesInputVpnConnectionProtocolType =
   | "IKEv2"
   | "IKEv1";
-export const VpnConnectionPropertiesInputVpnConnectionProtocolType =
-  /*@__PURE__*/ S.String;
+export const VpnConnectionPropertiesInputVpnConnectionProtocolType = S.String;
 
 /** The IPSec encryption algorithm (IKE phase 1). */
 export type VpnConnectionPropertiesInputIpsecPoliciesItemIpsecEncryption =
@@ -112361,7 +111987,7 @@ export type VpnConnectionPropertiesInputIpsecPoliciesItemIpsecEncryption =
   | "GCMAES192"
   | "GCMAES256";
 export const VpnConnectionPropertiesInputIpsecPoliciesItemIpsecEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IPSec integrity algorithm (IKE phase 1). */
 export type VpnConnectionPropertiesInputIpsecPoliciesItemIpsecIntegrity =
@@ -112372,7 +111998,7 @@ export type VpnConnectionPropertiesInputIpsecPoliciesItemIpsecIntegrity =
   | "GCMAES192"
   | "GCMAES256";
 export const VpnConnectionPropertiesInputIpsecPoliciesItemIpsecIntegrity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IKE encryption algorithm (IKE phase 2). */
 export type VpnConnectionPropertiesInputIpsecPoliciesItemIkeEncryption =
@@ -112384,7 +112010,7 @@ export type VpnConnectionPropertiesInputIpsecPoliciesItemIkeEncryption =
   | "GCMAES256"
   | "GCMAES128";
 export const VpnConnectionPropertiesInputIpsecPoliciesItemIkeEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IKE integrity algorithm (IKE phase 2). */
 export type VpnConnectionPropertiesInputIpsecPoliciesItemIkeIntegrity =
@@ -112395,7 +112021,7 @@ export type VpnConnectionPropertiesInputIpsecPoliciesItemIkeIntegrity =
   | "GCMAES256"
   | "GCMAES128";
 export const VpnConnectionPropertiesInputIpsecPoliciesItemIkeIntegrity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The DH Groups used in IKE Phase 1 for initial SA. */
 export type VpnConnectionPropertiesInputIpsecPoliciesItemDhGroup =
@@ -112407,8 +112033,7 @@ export type VpnConnectionPropertiesInputIpsecPoliciesItemDhGroup =
   | "ECP256"
   | "ECP384"
   | "DHGroup24";
-export const VpnConnectionPropertiesInputIpsecPoliciesItemDhGroup =
-  /*@__PURE__*/ S.String;
+export const VpnConnectionPropertiesInputIpsecPoliciesItemDhGroup = S.String;
 
 /** The Pfs Groups used in IKE Phase 2 for new child SA. */
 export type VpnConnectionPropertiesInputIpsecPoliciesItemPfsGroup =
@@ -112421,8 +112046,7 @@ export type VpnConnectionPropertiesInputIpsecPoliciesItemPfsGroup =
   | "PFS24"
   | "PFS14"
   | "PFSMM";
-export const VpnConnectionPropertiesInputIpsecPoliciesItemPfsGroup =
-  /*@__PURE__*/ S.String;
+export const VpnConnectionPropertiesInputIpsecPoliciesItemPfsGroup = S.String;
 
 /** An IPSec Policy configuration for a virtual network gateway connection. */
 export interface VpnConnectionPropertiesInputIpsecPoliciesItem {
@@ -112530,8 +112154,7 @@ export type VpnConnectionPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VpnConnectionPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VpnConnectionPropertiesInputProvisioningState = S.String;
 
 /** Reference to another subresource. */
 export type VpnSiteLinkConnectionPropertiesInputVpnSiteLink =
@@ -112545,7 +112168,7 @@ export type VpnSiteLinkConnectionPropertiesInputVpnLinkConnectionMode =
   | "ResponderOnly"
   | "InitiatorOnly";
 export const VpnSiteLinkConnectionPropertiesInputVpnLinkConnectionMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The current state of the vpn connection. */
 export type VpnSiteLinkConnectionPropertiesInputConnectionStatus =
@@ -112553,15 +112176,14 @@ export type VpnSiteLinkConnectionPropertiesInputConnectionStatus =
   | "Connecting"
   | "Connected"
   | "NotConnected";
-export const VpnSiteLinkConnectionPropertiesInputConnectionStatus =
-  /*@__PURE__*/ S.String;
+export const VpnSiteLinkConnectionPropertiesInputConnectionStatus = S.String;
 
 /** Gateway connection protocol. */
 export type VpnSiteLinkConnectionPropertiesInputVpnConnectionProtocolType =
   | "IKEv2"
   | "IKEv1";
 export const VpnSiteLinkConnectionPropertiesInputVpnConnectionProtocolType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** GatewayCustomBgpIpAddressIpConfiguration for a virtual network gateway connection. */
 export type VpnSiteLinkConnectionPropertiesInputVpnGatewayCustomBgpAddressesItem =
@@ -112589,7 +112211,7 @@ export type VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemIpsecEncryption
   | "GCMAES192"
   | "GCMAES256";
 export const VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemIpsecEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IPSec integrity algorithm (IKE phase 1). */
 export type VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemIpsecIntegrity =
@@ -112600,7 +112222,7 @@ export type VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemIpsecIntegrity 
   | "GCMAES192"
   | "GCMAES256";
 export const VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemIpsecIntegrity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IKE encryption algorithm (IKE phase 2). */
 export type VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemIkeEncryption =
@@ -112612,7 +112234,7 @@ export type VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemIkeEncryption =
   | "GCMAES256"
   | "GCMAES128";
 export const VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemIkeEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IKE integrity algorithm (IKE phase 2). */
 export type VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemIkeIntegrity =
@@ -112623,7 +112245,7 @@ export type VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemIkeIntegrity =
   | "GCMAES256"
   | "GCMAES128";
 export const VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemIkeIntegrity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The DH Groups used in IKE Phase 1 for initial SA. */
 export type VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemDhGroup =
@@ -112636,7 +112258,7 @@ export type VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemDhGroup =
   | "ECP384"
   | "DHGroup24";
 export const VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemDhGroup =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The Pfs Groups used in IKE Phase 2 for new child SA. */
 export type VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemPfsGroup =
@@ -112650,7 +112272,7 @@ export type VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemPfsGroup =
   | "PFS14"
   | "PFSMM";
 export const VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItemPfsGroup =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An IPSec Policy configuration for a virtual network gateway connection. */
 export interface VpnSiteLinkConnectionPropertiesInputIpsecPoliciesItem {
@@ -112719,8 +112341,7 @@ export type VpnSiteLinkConnectionPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VpnSiteLinkConnectionPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VpnSiteLinkConnectionPropertiesInputProvisioningState = S.String;
 
 /** Reference to another subresource. */
 export type VpnSiteLinkConnectionPropertiesInputIngressNatRulesItem =
@@ -113083,8 +112704,7 @@ export type VpnGatewayPropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VpnGatewayPropertiesInputProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VpnGatewayPropertiesInputProvisioningState = S.String;
 
 /** VpnGatewayNatRule Resource. */
 export interface VpnGatewayNatRuleInput {
@@ -113303,8 +112923,7 @@ export const VpnServerConfigurationsCreateOrUpdateRequestTagsMap =
 export type VpnServerConfigurationPropertiesInputVpnProtocolsItem =
   | "IkeV2"
   | "OpenVPN";
-export const VpnServerConfigurationPropertiesInputVpnProtocolsItem =
-  /*@__PURE__*/ S.String;
+export const VpnServerConfigurationPropertiesInputVpnProtocolsItem = S.String;
 
 /** VPN protocols for the VpnServerConfiguration. */
 export type VpnServerConfigurationPropertiesInputVpnProtocolsList = Array<
@@ -113321,7 +112940,7 @@ export type VpnServerConfigurationPropertiesInputVpnAuthenticationTypesItem =
   | "Radius"
   | "AAD";
 export const VpnServerConfigurationPropertiesInputVpnAuthenticationTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** VPN authentication types for the VpnServerConfiguration. */
 export type VpnServerConfigurationPropertiesInputVpnAuthenticationTypesList =
@@ -113378,7 +112997,7 @@ export type VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemIpsec
   | "GCMAES192"
   | "GCMAES256";
 export const VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemIpsecEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IPSec integrity algorithm (IKE phase 1). */
 export type VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemIpsecIntegrity =
@@ -113389,7 +113008,7 @@ export type VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemIpsec
   | "GCMAES192"
   | "GCMAES256";
 export const VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemIpsecIntegrity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IKE encryption algorithm (IKE phase 2). */
 export type VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemIkeEncryption =
@@ -113401,7 +113020,7 @@ export type VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemIkeEn
   | "GCMAES256"
   | "GCMAES128";
 export const VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemIkeEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The IKE integrity algorithm (IKE phase 2). */
 export type VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemIkeIntegrity =
@@ -113412,7 +113031,7 @@ export type VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemIkeIn
   | "GCMAES256"
   | "GCMAES128";
 export const VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemIkeIntegrity =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The DH Groups used in IKE Phase 1 for initial SA. */
 export type VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemDhGroup =
@@ -113425,7 +113044,7 @@ export type VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemDhGro
   | "ECP384"
   | "DHGroup24";
 export const VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemDhGroup =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The Pfs Groups used in IKE Phase 2 for new child SA. */
 export type VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemPfsGroup =
@@ -113439,7 +113058,7 @@ export type VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemPfsGr
   | "PFS14"
   | "PFSMM";
 export const VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItemPfsGroup =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An IPSec Policy configuration for a virtual network gateway connection. */
 export interface VpnServerConfigurationPropertiesInputVpnClientIpsecPoliciesItem {
@@ -113786,7 +113405,7 @@ export type VpnSitePropertiesInputProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const VpnSitePropertiesInputProvisioningState = /*@__PURE__*/ S.String;
+export const VpnSitePropertiesInputProvisioningState = S.String;
 
 /** VpnSiteLink Resource. */
 export interface VpnSiteLinkInput {
@@ -113943,23 +113562,20 @@ export const WebApplicationFirewallPoliciesCreateOrUpdateRequestTagsMap =
 
 /** Describes if the custom rule is in enabled or disabled state. Defaults to Enabled if not specified. */
 export type WebApplicationFirewallCustomRuleInputState = "Disabled" | "Enabled";
-export const WebApplicationFirewallCustomRuleInputState =
-  /*@__PURE__*/ S.String;
+export const WebApplicationFirewallCustomRuleInputState = S.String;
 
 /** Duration over which Rate Limit policy will be applied. Applies only when ruleType is RateLimitRule. */
 export type WebApplicationFirewallCustomRuleInputRateLimitDuration =
   | "OneMin"
   | "FiveMins";
-export const WebApplicationFirewallCustomRuleInputRateLimitDuration =
-  /*@__PURE__*/ S.String;
+export const WebApplicationFirewallCustomRuleInputRateLimitDuration = S.String;
 
 /** The rule type. */
 export type WebApplicationFirewallCustomRuleInputRuleType =
   | "MatchRule"
   | "RateLimitRule"
   | "Invalid";
-export const WebApplicationFirewallCustomRuleInputRuleType =
-  /*@__PURE__*/ S.String;
+export const WebApplicationFirewallCustomRuleInputRuleType = S.String;
 
 /** List of match conditions. */
 export type WebApplicationFirewallCustomRuleInputMatchConditionsList =
@@ -113984,8 +113600,7 @@ export type WebApplicationFirewallCustomRuleInputAction =
   | "Log"
   | "JSChallenge"
   | "CAPTCHA";
-export const WebApplicationFirewallCustomRuleInputAction =
-  /*@__PURE__*/ S.String;
+export const WebApplicationFirewallCustomRuleInputAction = S.String;
 
 /** Defines contents of a web application rule. */
 export interface WebApplicationFirewallCustomRuleInput {
@@ -114048,7 +113663,7 @@ export type WebApplicationFirewallPolicyPropertiesFormatInputProvisioningState =
   | "Updating"
   | "Deleting";
 export const WebApplicationFirewallPolicyPropertiesFormatInputProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Resource status of the policy. */
 export type WebApplicationFirewallPolicyPropertiesFormatInputResourceState =
@@ -114059,7 +113674,7 @@ export type WebApplicationFirewallPolicyPropertiesFormatInputResourceState =
   | "Disabled"
   | "Deleting";
 export const WebApplicationFirewallPolicyPropertiesFormatInputResourceState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The exceptions that are applied on the policy. */
 export type ManagedRulesDefinitionInputExceptionsList = Array<ExceptionEntry>;

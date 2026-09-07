@@ -43,7 +43,7 @@ export class NotFound
 
 /** PKCE challenge method. Only S256 is supported. */
 export type ApikeyRequestRequestCodeChallengeMethod = "S256";
-export const ApikeyRequestRequestCodeChallengeMethod = /*@__PURE__*/ S.String;
+export const ApikeyRequestRequestCodeChallengeMethod = S.String;
 
 export interface ApikeyRequestRequest {
   /** Human-readable name for the application/integration requesting access. Optional but strongly recommended: it is shown to the account holder on the approval screen so they know what they're granting access to. If omitted, the approval page shows "No application name was provided." */
@@ -71,7 +71,7 @@ export const ApikeyRequestRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Which delivery flow this request uses. 'pkce' when a codeChallenge was supplied (the secret is returned once via /apikey/retrieve to the verifier holder); 'legacy' otherwise (the secret is shown only in the browser). */
 export type ApikeyRequestResponseDeliveryMode = "legacy" | "pkce";
-export const ApikeyRequestResponseDeliveryMode = /*@__PURE__*/ S.String;
+export const ApikeyRequestResponseDeliveryMode = S.String;
 
 export interface ApikeyRequestResponse {
   status?: string;
@@ -149,7 +149,7 @@ export type CreateDnsRequestType =
   | "SSHFP"
   | "HTTPS"
   | "SVCB";
-export const CreateDnsRequestType = /*@__PURE__*/ S.String;
+export const CreateDnsRequestType = S.String;
 
 export interface CreateDnsRequest {
   domain: string;
@@ -199,7 +199,7 @@ export const CreateDnsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Must be 'yes' or '1' to confirm agreement to the Domain Name Registration Agreement, Product Terms of Service, Privacy Policy, and automatic renewal terms. */
 export type CreateDomainRequestAgreeToTerms = "yes" | "1";
-export const CreateDomainRequestAgreeToTerms = /*@__PURE__*/ S.String;
+export const CreateDomainRequestAgreeToTerms = S.String;
 
 export interface CreateDomainRequest {
   domain: string;
@@ -320,7 +320,7 @@ export type DryRunPreviewResponseOperation =
   | "registration"
   | "renewal"
   | "transfer";
-export const DryRunPreviewResponseOperation = /*@__PURE__*/ S.String;
+export const DryRunPreviewResponseOperation = S.String;
 
 /** Returned (HTTP 200) by /domain/create, /domain/renew, and /domain/transfer when the request includes `dryRun: true`. All validation has run but nothing was created or charged. All money amounts are in pennies (USD cents). */
 export interface DryRunPreviewResponse {
@@ -386,7 +386,7 @@ export type CreateDomainResponseBody =
   | CreateDomainResponse
   | DryRunPreviewResponse;
 export const CreateDomainResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDomainResponseBody>;
+  S.Unknown as any as S.Schema<CreateDomainResponseBody>;
 
 export type CreateDomainResponse2 = CreateDomainResponseBody;
 export const CreateDomainResponse2 = /*@__PURE__*/ S.suspend(() =>
@@ -399,10 +399,10 @@ export const CreateDomainResponse2 = /*@__PURE__*/ S.suspend(() =>
 export type CreateHostingRequestSku =
   | "PIXIESECURESTATICM2"
   | "PIXIESECURESTATICY2";
-export const CreateHostingRequestSku = /*@__PURE__*/ S.String;
+export const CreateHostingRequestSku = S.String;
 
 export type CreateHostingRequestAgreeToTerms = "yes";
-export const CreateHostingRequestAgreeToTerms = /*@__PURE__*/ S.String;
+export const CreateHostingRequestAgreeToTerms = S.String;
 
 export interface CreateHostingRequest {
   domain: string;
@@ -432,7 +432,7 @@ export const CreateHostingRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateHostingRequest>;
 
 export type CreateHostingResponseHostingStatus = "ACTIVE" | "PENDING";
-export const CreateHostingResponseHostingStatus = /*@__PURE__*/ S.String;
+export const CreateHostingResponseHostingStatus = S.String;
 
 export interface CreateHostingResponseHosting {
   domain?: string;
@@ -527,7 +527,7 @@ export const WebhookEndpointEventsList = /*@__PURE__*/ S.Array(
 
 /** ACTIVE or DISABLED. */
 export type WebhookEndpointStatus = "ACTIVE" | "DISABLED";
-export const WebhookEndpointStatus = /*@__PURE__*/ S.String;
+export const WebhookEndpointStatus = S.String;
 
 export interface WebhookEndpoint {
   /** Numeric endpoint id. */
@@ -598,7 +598,7 @@ export const DeleteDnsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteDnsRequest>;
 
 export type BasicResponseStatus = "SUCCESS" | "ERROR";
-export const BasicResponseStatus = /*@__PURE__*/ S.String;
+export const BasicResponseStatus = S.String;
 
 export interface BasicResponse {
   status: BasicResponseStatus;
@@ -926,7 +926,7 @@ export const DnsRetrieveByIdRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether Cloudflare proxy is enabled for this domain */
 export type DnsRecordsResponseCloudflare = "enabled" | "disabled";
-export const DnsRecordsResponseCloudflare = /*@__PURE__*/ S.String;
+export const DnsRecordsResponseCloudflare = S.String;
 
 export interface DnsRecordsResponseRecordsItem {
   /** Numeric record ID */
@@ -1008,7 +1008,7 @@ export type DomainAddUrlForwardRequestType =
   | "temporary"
   | "permanent"
   | "masked";
-export const DomainAddUrlForwardRequestType = /*@__PURE__*/ S.String;
+export const DomainAddUrlForwardRequestType = S.String;
 
 /** Optional. The exact redirect type; takes precedence over `type` when supplied. 301 = permanent, 302 or 307 = temporary (this is how you request 307), masked = URL masking. Omit to derive from `type` (temporary->302, permanent->301). */
 export type DomainAddUrlForwardRequestRedirectType =
@@ -1016,15 +1016,15 @@ export type DomainAddUrlForwardRequestRedirectType =
   | "302"
   | "307"
   | "masked";
-export const DomainAddUrlForwardRequestRedirectType = /*@__PURE__*/ S.String;
+export const DomainAddUrlForwardRequestRedirectType = S.String;
 
 /** Whether to append the request URI path to the forwarding destination */
 export type DomainAddUrlForwardRequestIncludePath = "yes" | "no";
-export const DomainAddUrlForwardRequestIncludePath = /*@__PURE__*/ S.String;
+export const DomainAddUrlForwardRequestIncludePath = S.String;
 
 /** Whether to also forward all subdomains of the forwarded subdomain */
 export type DomainAddUrlForwardRequestWildcard = "yes" | "no";
-export const DomainAddUrlForwardRequestWildcard = /*@__PURE__*/ S.String;
+export const DomainAddUrlForwardRequestWildcard = S.String;
 
 export interface DomainAddUrlForwardRequest {
   domain: string;
@@ -1076,15 +1076,15 @@ export const DomainCheckDomainRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the domain is available for registration */
 export type CheckDomainResponseResponseAvail = "yes" | "no";
-export const CheckDomainResponseResponseAvail = /*@__PURE__*/ S.String;
+export const CheckDomainResponseResponseAvail = S.String;
 
 /** Whether the returned price is a first-year promotional price */
 export type CheckDomainResponseResponseFirstYearPromo = "yes" | "no";
-export const CheckDomainResponseResponseFirstYearPromo = /*@__PURE__*/ S.String;
+export const CheckDomainResponseResponseFirstYearPromo = S.String;
 
 /** Whether this is a premium domain */
 export type CheckDomainResponseResponsePremium = "yes" | "no";
-export const CheckDomainResponseResponsePremium = /*@__PURE__*/ S.String;
+export const CheckDomainResponseResponsePremium = S.String;
 
 export interface CheckDomainResponseResponseAdditionalRenewal {
   type?: string;
@@ -1496,7 +1496,7 @@ export type GetUrlForwardingResponseForwardsItemType =
   | "permanent"
   | "temporary"
   | "masked";
-export const GetUrlForwardingResponseForwardsItemType = /*@__PURE__*/ S.String;
+export const GetUrlForwardingResponseForwardsItemType = S.String;
 
 /** The exact stored redirect type. Distinguishes 302 from 307 (both report as 'temporary' in `type`); round-trips directly into addUrlForward's `redirectType`. */
 export type GetUrlForwardingResponseForwardsItemRedirectType =
@@ -1504,16 +1504,13 @@ export type GetUrlForwardingResponseForwardsItemRedirectType =
   | "302"
   | "307"
   | "masked";
-export const GetUrlForwardingResponseForwardsItemRedirectType =
-  /*@__PURE__*/ S.String;
+export const GetUrlForwardingResponseForwardsItemRedirectType = S.String;
 
 export type GetUrlForwardingResponseForwardsItemIncludePath = "yes" | "no";
-export const GetUrlForwardingResponseForwardsItemIncludePath =
-  /*@__PURE__*/ S.String;
+export const GetUrlForwardingResponseForwardsItemIncludePath = S.String;
 
 export type GetUrlForwardingResponseForwardsItemWildcard = "yes" | "no";
-export const GetUrlForwardingResponseForwardsItemWildcard =
-  /*@__PURE__*/ S.String;
+export const GetUrlForwardingResponseForwardsItemWildcard = S.String;
 
 export interface GetUrlForwardingResponseForwardsItem {
   /** Numeric record ID */
@@ -1566,7 +1563,7 @@ export const GetUrlForwardingResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Auto-renew status to set */
 export type DomainUpdateAutoRenewRequestStatus = "on" | "off";
-export const DomainUpdateAutoRenewRequestStatus = /*@__PURE__*/ S.String;
+export const DomainUpdateAutoRenewRequestStatus = S.String;
 
 /** Array of additional domain names to update. Combined with the domain in the URL path if provided. */
 export type DomainUpdateAutoRenewRequestDomainsList = Array<string>;
@@ -1645,8 +1642,7 @@ export const DomainUpdateContactsRequestContacts =
 export type DomainUpdateContactsRequestAddressValidationChoice =
   | "accept_suggestion"
   | "use_as_entered";
-export const DomainUpdateContactsRequestAddressValidationChoice =
-  /*@__PURE__*/ S.String;
+export const DomainUpdateContactsRequestAddressValidationChoice = S.String;
 
 export interface DomainUpdateContactsRequest {
   domain: string;
@@ -1761,7 +1757,7 @@ export type EditDnsRequestType =
   | "SSHFP"
   | "HTTPS"
   | "SVCB";
-export const EditDnsRequestType = /*@__PURE__*/ S.String;
+export const EditDnsRequestType = S.String;
 
 export interface EditDnsRequest {
   domain: string;
@@ -1827,8 +1823,7 @@ export type GetAccountInviteStatusResponseInviteStatus =
   | "PENDING"
   | "ACCEPTED"
   | "EXPIRED";
-export const GetAccountInviteStatusResponseInviteStatus =
-  /*@__PURE__*/ S.String;
+export const GetAccountInviteStatusResponseInviteStatus = S.String;
 
 export interface GetAccountInviteStatusResponse {
   status: string;
@@ -1863,7 +1858,7 @@ export const GetApikeyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApikeyRequest>;
 
 export type GetApikeyResponseStatus = "SUCCESS" | "PENDING" | "ERROR";
-export const GetApikeyResponseStatus = /*@__PURE__*/ S.String;
+export const GetApikeyResponseStatus = S.String;
 
 export interface GetApikeyResponse {
   status?: GetApikeyResponseStatus;
@@ -1897,7 +1892,7 @@ export const GetApiSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApiSettingsRequest>;
 
 export type ApiSettingsResponseStatus = "SUCCESS" | "ERROR";
-export const ApiSettingsResponseStatus = /*@__PURE__*/ S.String;
+export const ApiSettingsResponseStatus = S.String;
 
 export interface ApiSettingsResponseSettings {
   /** Maximum API spend per calendar month in cents. `null` means no limit. */
@@ -1949,7 +1944,7 @@ export const GetBalanceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBalanceRequest>;
 
 export type BalanceResponseStatus = "SUCCESS" | "ERROR";
-export const BalanceResponseStatus = /*@__PURE__*/ S.String;
+export const BalanceResponseStatus = S.String;
 
 export interface BalanceResponse {
   status?: BalanceResponseStatus;
@@ -2069,7 +2064,7 @@ export const GetDnssecRecordsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDnssecRecordsResponse>;
 
 export type GetDomainRequestIncludeLabels = "yes" | "no";
-export const GetDomainRequestIncludeLabels = /*@__PURE__*/ S.String;
+export const GetDomainRequestIncludeLabels = S.String;
 
 export interface GetDomainRequest {
   /** Fully qualified domain name in the authenticated account. */
@@ -2198,7 +2193,7 @@ export const GetDomainNsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDomainNsResponse>;
 
 export type GetDomainsRequestIncludeLabels = "yes" | "no";
-export const GetDomainsRequestIncludeLabels = /*@__PURE__*/ S.String;
+export const GetDomainsRequestIncludeLabels = S.String;
 
 export type GetDomainsRequestTldsList = Array<string>;
 export const GetDomainsRequestTldsList = /*@__PURE__*/ S.Array(
@@ -2206,20 +2201,20 @@ export const GetDomainsRequestTldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetDomainsRequestTldsList>;
 
 export type GetDomainsRequestAutoRenew = "yes" | "no";
-export const GetDomainsRequestAutoRenew = /*@__PURE__*/ S.String;
+export const GetDomainsRequestAutoRenew = S.String;
 
 export type GetDomainsRequestApiAccess = "yes" | "no";
-export const GetDomainsRequestApiAccess = /*@__PURE__*/ S.String;
+export const GetDomainsRequestApiAccess = S.String;
 
 export type GetDomainsRequestSortName =
   | "domain"
   | "tld"
   | "create_date"
   | "expire_date";
-export const GetDomainsRequestSortName = /*@__PURE__*/ S.String;
+export const GetDomainsRequestSortName = S.String;
 
 export type GetDomainsRequestSortDirection = "asc" | "desc";
-export const GetDomainsRequestSortDirection = /*@__PURE__*/ S.String;
+export const GetDomainsRequestSortDirection = S.String;
 
 export interface GetDomainsRequest {
   /** Zero-based offset for pagination. Returns up to 1000 domains per call. */
@@ -2480,8 +2475,7 @@ export const GetPricingRequest = /*@__PURE__*/ S.suspend(() =>
 export type GetPricingResponsePricingValueCouponsValueFirstYearOnly =
   | "yes"
   | "no";
-export const GetPricingResponsePricingValueCouponsValueFirstYearOnly =
-  /*@__PURE__*/ S.String;
+export const GetPricingResponsePricingValueCouponsValueFirstYearOnly = S.String;
 
 export interface GetPricingResponsePricingValueCouponsValue {
   code?: string;
@@ -2569,7 +2563,7 @@ export type GetPricingGetResponsePricingValueCouponsValueFirstYearOnly =
   | "yes"
   | "no";
 export const GetPricingGetResponsePricingValueCouponsValueFirstYearOnly =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetPricingGetResponsePricingValueCouponsValue {
   code?: string;
@@ -2720,7 +2714,7 @@ export const GetTransferGetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetTransferGetRequest>;
 
 export type GetTransferResponseStatus = "SUCCESS" | "ERROR";
-export const GetTransferResponseStatus = /*@__PURE__*/ S.String;
+export const GetTransferResponseStatus = S.String;
 
 export type GetTransferResponseTransferStatus =
   | "NEW"
@@ -2730,7 +2724,7 @@ export type GetTransferResponseTransferStatus =
   | "DONE"
   | "CANCELED"
   | "INIT";
-export const GetTransferResponseTransferStatus = /*@__PURE__*/ S.String;
+export const GetTransferResponseTransferStatus = S.String;
 
 export interface GetTransferResponseTransfer {
   domain?: string;
@@ -2777,7 +2771,7 @@ export const GetWebhookRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Least privilege by default. `editor` = content only (recommended for agents). `administrator` = full control incl. plugin install; requires acknowledgeFullAccess. */
 export type HostingCreateWpCredentialsRequestRole = "editor" | "administrator";
-export const HostingCreateWpCredentialsRequestRole = /*@__PURE__*/ S.String;
+export const HostingCreateWpCredentialsRequestRole = S.String;
 
 export interface HostingCreateWpCredentialsRequest {
   domain: string;
@@ -3073,7 +3067,7 @@ export const HostingPlansResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Return label metadata for each domain. Defaults to no. */
 export type ListDomainsRequestIncludeLabels = "yes" | "no";
-export const ListDomainsRequestIncludeLabels = /*@__PURE__*/ S.String;
+export const ListDomainsRequestIncludeLabels = S.String;
 
 /** Limit to these TLDs (without leading dot). */
 export type ListDomainsRequestTldsList = Array<string>;
@@ -3083,11 +3077,11 @@ export const ListDomainsRequestTldsList = /*@__PURE__*/ S.Array(
 
 /** Filter to domains with auto-renew on or off. */
 export type ListDomainsRequestAutoRenew = "yes" | "no";
-export const ListDomainsRequestAutoRenew = /*@__PURE__*/ S.String;
+export const ListDomainsRequestAutoRenew = S.String;
 
 /** Filter to domains opted in to API access (yes) or not (no). Useful for finding domains an API key can actually operate on. */
 export type ListDomainsRequestApiAccess = "yes" | "no";
-export const ListDomainsRequestApiAccess = /*@__PURE__*/ S.String;
+export const ListDomainsRequestApiAccess = S.String;
 
 /** Field to sort by. Default: `expire_date` ascending. */
 export type ListDomainsRequestSortName =
@@ -3095,11 +3089,11 @@ export type ListDomainsRequestSortName =
   | "tld"
   | "create_date"
   | "expire_date";
-export const ListDomainsRequestSortName = /*@__PURE__*/ S.String;
+export const ListDomainsRequestSortName = S.String;
 
 /** Sort direction. Default: asc. */
 export type ListDomainsRequestSortDirection = "asc" | "desc";
-export const ListDomainsRequestSortDirection = /*@__PURE__*/ S.String;
+export const ListDomainsRequestSortDirection = S.String;
 
 export interface ListDomainsRequest {
   /** Zero-based offset for pagination (default: 0). Returns up to 1000 domains per call. */
@@ -3152,12 +3146,11 @@ export type ListMarketplaceListingsRequestSortName =
   | "tld"
   | "price"
   | "sld_length";
-export const ListMarketplaceListingsRequestSortName = /*@__PURE__*/ S.String;
+export const ListMarketplaceListingsRequestSortName = S.String;
 
 /** Sort direction. Defaults vary by `sortName`. */
 export type ListMarketplaceListingsRequestSortDirection = "asc" | "desc";
-export const ListMarketplaceListingsRequestSortDirection =
-  /*@__PURE__*/ S.String;
+export const ListMarketplaceListingsRequestSortDirection = S.String;
 
 export interface ListMarketplaceListingsRequest {
   /** Pagination offset (unfiltered mode only). Default 0. */
@@ -3250,11 +3243,10 @@ export type ListMarketplaceListingsGetRequestSortName =
   | "tld"
   | "price"
   | "sld_length";
-export const ListMarketplaceListingsGetRequestSortName = /*@__PURE__*/ S.String;
+export const ListMarketplaceListingsGetRequestSortName = S.String;
 
 export type ListMarketplaceListingsGetRequestSortDirection = "asc" | "desc";
-export const ListMarketplaceListingsGetRequestSortDirection =
-  /*@__PURE__*/ S.String;
+export const ListMarketplaceListingsGetRequestSortDirection = S.String;
 
 export interface ListMarketplaceListingsGetRequest {
   /** SLD substring search. Multi-word; prefix a term with `-` to exclude. Example: `ai -test`. */
@@ -3349,7 +3341,7 @@ export const ListTransfersGetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTransfersGetRequest>;
 
 export type ListTransfersResponseStatus = "SUCCESS" | "ERROR";
-export const ListTransfersResponseStatus = /*@__PURE__*/ S.String;
+export const ListTransfersResponseStatus = S.String;
 
 export type ListTransfersResponseTransfersItemStatus =
   | "NEW"
@@ -3359,7 +3351,7 @@ export type ListTransfersResponseTransfersItemStatus =
   | "DONE"
   | "CANCELED"
   | "INIT";
-export const ListTransfersResponseTransfersItemStatus = /*@__PURE__*/ S.String;
+export const ListTransfersResponseTransfersItemStatus = S.String;
 
 export interface ListTransfersResponseTransfersItem {
   domain?: string;
@@ -3472,7 +3464,7 @@ export const MockDirectoryResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MockDirectoryResponse>;
 
 export type MockEndpointRequestStatus = "error";
-export const MockEndpointRequestStatus = /*@__PURE__*/ S.String;
+export const MockEndpointRequestStatus = S.String;
 
 export interface MockEndpointRequest {
   /** The real endpoint path to mock, e.g. `domain/listAll`. */
@@ -3604,7 +3596,7 @@ export type RenewDomainResponseBody =
   | RenewDomainResponse
   | DryRunPreviewResponse;
 export const RenewDomainResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RenewDomainResponseBody>;
+  S.Unknown as any as S.Schema<RenewDomainResponseBody>;
 
 export type RenewDomainResponse2 = RenewDomainResponseBody;
 export const RenewDomainResponse2 = /*@__PURE__*/ S.suspend(() =>
@@ -3631,7 +3623,7 @@ export type WebhookDeliveryStatus =
   | "PROCESSING"
   | "DELIVERED"
   | "FAILED";
-export const WebhookDeliveryStatus = /*@__PURE__*/ S.String;
+export const WebhookDeliveryStatus = S.String;
 
 export interface WebhookDelivery {
   /** Delivery id. */
@@ -3763,7 +3755,7 @@ export type SandboxTriggerWebhookRequestEventType =
   | "dns.record.created"
   | "dns.record.updated"
   | "dns.record.deleted";
-export const SandboxTriggerWebhookRequestEventType = /*@__PURE__*/ S.String;
+export const SandboxTriggerWebhookRequestEventType = S.String;
 
 export interface SandboxTriggerWebhookRequest {
   /** Event type to emit. */
@@ -3855,7 +3847,7 @@ export const TransferDomainRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TransferDomainRequest>;
 
 export type TransferDomainResponseStatus = "SUCCESS" | "ERROR";
-export const TransferDomainResponseStatus = /*@__PURE__*/ S.String;
+export const TransferDomainResponseStatus = S.String;
 
 export interface TransferDomainResponseLimits {
   attempts?: unknown;
@@ -3903,7 +3895,7 @@ export type TransferDomainResponseBody =
   | TransferDomainResponse
   | DryRunPreviewResponse;
 export const TransferDomainResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TransferDomainResponseBody>;
+  S.Unknown as any as S.Schema<TransferDomainResponseBody>;
 
 export type TransferDomainResponse2 = TransferDomainResponseBody;
 export const TransferDomainResponse2 = /*@__PURE__*/ S.suspend(() =>
@@ -3920,7 +3912,7 @@ export const UpdateWebhookRequestEventsList = /*@__PURE__*/ S.Array(
 
 /** Set ACTIVE to resume (also clears the failure counter) or DISABLED to pause (optional). */
 export type UpdateWebhookRequestStatus = "ACTIVE" | "DISABLED";
-export const UpdateWebhookRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateWebhookRequestStatus = S.String;
 
 export interface UpdateWebhookRequest {
   /** Endpoint id to update. */
@@ -3948,7 +3940,7 @@ export type WebhookDeliveriesRequestStatus =
   | "PROCESSING"
   | "DELIVERED"
   | "FAILED";
-export const WebhookDeliveriesRequestStatus = /*@__PURE__*/ S.String;
+export const WebhookDeliveriesRequestStatus = S.String;
 
 export interface WebhookDeliveriesRequest {
   /** Only deliveries for this endpoint. */

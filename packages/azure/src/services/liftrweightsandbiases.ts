@@ -75,7 +75,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -83,7 +83,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -124,7 +124,7 @@ export type LiftrBaseMarketplaceSubscriptionStatus =
   | "Subscribed"
   | "Suspended"
   | "Unsubscribed";
-export const LiftrBaseMarketplaceSubscriptionStatus = /*@__PURE__*/ S.String;
+export const LiftrBaseMarketplaceSubscriptionStatus = S.String;
 
 /** Offer details for the marketplace that is selected by the user */
 export interface LiftrBaseOfferDetails {
@@ -203,8 +203,7 @@ export type AzureResourceManagerResourceProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const AzureResourceManagerResourceProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AzureResourceManagerResourceProvisioningState = S.String;
 
 /** The available regions */
 export type Region =
@@ -214,7 +213,7 @@ export type Region =
   | "westeurope"
   | "japaneast"
   | "koreacentral";
-export const Region = /*@__PURE__*/ S.String;
+export const Region = S.String;
 
 /** Partner's specific Properties */
 export interface PartnerProperties {
@@ -234,11 +233,11 @@ export const PartnerProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** Defines the type of Single Sign-On (SSO) mechanism being used */
 export type LiftrBaseSingleSignOnType = "Saml" | "OpenId";
-export const LiftrBaseSingleSignOnType = /*@__PURE__*/ S.String;
+export const LiftrBaseSingleSignOnType = S.String;
 
 /** Various states of the SSO resource */
 export type LiftrBaseSingleSignOnStates = "Initial" | "Enable" | "Disable";
-export const LiftrBaseSingleSignOnStates = /*@__PURE__*/ S.String;
+export const LiftrBaseSingleSignOnStates = S.String;
 
 /** List of AAD domains fetched from Microsoft Graph for user. */
 export type LiftrBaseSingleSignOnPropertiesV2AadDomainsList = Array<string>;
@@ -305,7 +304,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
@@ -679,11 +678,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -745,7 +744,7 @@ export type AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputType
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
 export const AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** User assigned identity properties */
 export type AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputUserAssignedIdentitiesValue =

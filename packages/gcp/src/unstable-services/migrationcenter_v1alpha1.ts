@@ -490,7 +490,7 @@ export type DatabaseObjectsCategoryEnum =
   | "VIEWS"
   | "SOURCE_CODE"
   | "OTHER";
-export const DatabaseObjectsCategoryEnum = /*@__PURE__*/ S.String;
+export const DatabaseObjectsCategoryEnum = S.String;
 
 /** Details of a group of database objects. */
 export interface DatabaseObjects {
@@ -526,7 +526,7 @@ export type MySqlStorageEngineDetailsEngineEnum =
   | "FEDERATED"
   | "EXAMPLE"
   | "OTHER";
-export const MySqlStorageEngineDetailsEngineEnum = /*@__PURE__*/ S.String;
+export const MySqlStorageEngineDetailsEngineEnum = S.String;
 
 /** Mysql storage engine tables. */
 export interface MySqlStorageEngineDetails {
@@ -698,7 +698,7 @@ export type AwsS3BucketDetailsStorageClassTypeEnum =
   | "GLACIER_IR"
   | "REDUCED_REDUNDANCY"
   | "EXPRESS_ONEZONE";
-export const AwsS3BucketDetailsStorageClassTypeEnum = /*@__PURE__*/ S.String;
+export const AwsS3BucketDetailsStorageClassTypeEnum = S.String;
 
 /** Details about storage class. */
 export interface AwsS3BucketDetailsStorageClass {
@@ -847,21 +847,21 @@ export type CloudSqlForMySqlShapeEditionEnum =
   | "CLOUD_SQL_EDITION_UNSPECIFIED"
   | "CLOUD_SQL_EDITION_ENTERPRISE"
   | "CLOUD_SQL_EDITION_ENTERPRISE_PLUS";
-export const CloudSqlForMySqlShapeEditionEnum = /*@__PURE__*/ S.String;
+export const CloudSqlForMySqlShapeEditionEnum = S.String;
 
 export type CloudSqlForMySqlShapeVersionEnum =
   | "MY_SQL_VERSION_UNSPECIFIED"
   | "MY_SQL_VERSION_5_6"
   | "MY_SQL_VERSION_5_7"
   | "MY_SQL_VERSION_8_0";
-export const CloudSqlForMySqlShapeVersionEnum = /*@__PURE__*/ S.String;
+export const CloudSqlForMySqlShapeVersionEnum = S.String;
 
 export type ComputeStorageDescriptorTypeEnum =
   | "PERSISTENT_DISK_TYPE_UNSPECIFIED"
   | "PERSISTENT_DISK_TYPE_STANDARD"
   | "PERSISTENT_DISK_TYPE_BALANCED"
   | "PERSISTENT_DISK_TYPE_SSD";
-export const ComputeStorageDescriptorTypeEnum = /*@__PURE__*/ S.String;
+export const ComputeStorageDescriptorTypeEnum = S.String;
 
 /** Compute Engine storage option descriptor. */
 export interface ComputeStorageDescriptor {
@@ -883,7 +883,7 @@ export type CloudSqlForMySqlShapeZoneAvailabilityEnum =
   | "CLOUD_SQL_ZONE_AVAILABILITY_UNSPECIFIED"
   | "CLOUD_SQL_ZONE_AVAILABILITY_ZONAL"
   | "CLOUD_SQL_ZONE_AVAILABILITY_REGIONAL";
-export const CloudSqlForMySqlShapeZoneAvailabilityEnum = /*@__PURE__*/ S.String;
+export const CloudSqlForMySqlShapeZoneAvailabilityEnum = S.String;
 
 /** Cloud SQL for MySQL database shape. */
 export interface CloudSqlForMySqlShape {
@@ -923,8 +923,7 @@ export type CloudSqlForSqlServerShapeZoneAvailabilityEnum =
   | "CLOUD_SQL_ZONE_AVAILABILITY_UNSPECIFIED"
   | "CLOUD_SQL_ZONE_AVAILABILITY_ZONAL"
   | "CLOUD_SQL_ZONE_AVAILABILITY_REGIONAL";
-export const CloudSqlForSqlServerShapeZoneAvailabilityEnum =
-  /*@__PURE__*/ S.String;
+export const CloudSqlForSqlServerShapeZoneAvailabilityEnum = S.String;
 
 export type CloudSqlForSqlServerShapeVersionEnum =
   | "SQL_SERVER_VERSION_UNSPECIFIED"
@@ -940,13 +939,13 @@ export type CloudSqlForSqlServerShapeVersionEnum =
   | "SQL_SERVER_VERSION_2022_WEB"
   | "SQL_SERVER_VERSION_2022_STANDARD"
   | "SQL_SERVER_VERSION_2022_ENTERPRISE";
-export const CloudSqlForSqlServerShapeVersionEnum = /*@__PURE__*/ S.String;
+export const CloudSqlForSqlServerShapeVersionEnum = S.String;
 
 export type CloudSqlForSqlServerShapeEditionEnum =
   | "CLOUD_SQL_EDITION_UNSPECIFIED"
   | "CLOUD_SQL_EDITION_ENTERPRISE"
   | "CLOUD_SQL_EDITION_ENTERPRISE_PLUS";
-export const CloudSqlForSqlServerShapeEditionEnum = /*@__PURE__*/ S.String;
+export const CloudSqlForSqlServerShapeEditionEnum = S.String;
 
 /** Cloud SQL for SQL Server database shape. */
 export interface CloudSqlForSqlServerShape {
@@ -996,20 +995,19 @@ export type CloudSqlForPostgreSqlShapeVersionEnum =
   | "POSTGRESQL_VERSION_13"
   | "POSTGRESQL_VERSION_14"
   | "POSTGRESQL_VERSION_15";
-export const CloudSqlForPostgreSqlShapeVersionEnum = /*@__PURE__*/ S.String;
+export const CloudSqlForPostgreSqlShapeVersionEnum = S.String;
 
 export type CloudSqlForPostgreSqlShapeZoneAvailabilityEnum =
   | "CLOUD_SQL_ZONE_AVAILABILITY_UNSPECIFIED"
   | "CLOUD_SQL_ZONE_AVAILABILITY_ZONAL"
   | "CLOUD_SQL_ZONE_AVAILABILITY_REGIONAL";
-export const CloudSqlForPostgreSqlShapeZoneAvailabilityEnum =
-  /*@__PURE__*/ S.String;
+export const CloudSqlForPostgreSqlShapeZoneAvailabilityEnum = S.String;
 
 export type CloudSqlForPostgreSqlShapeEditionEnum =
   | "CLOUD_SQL_EDITION_UNSPECIFIED"
   | "CLOUD_SQL_EDITION_ENTERPRISE"
   | "CLOUD_SQL_EDITION_ENTERPRISE_PLUS";
-export const CloudSqlForPostgreSqlShapeEditionEnum = /*@__PURE__*/ S.String;
+export const CloudSqlForPostgreSqlShapeEditionEnum = S.String;
 
 /** Cloud SQL for PostgreSQL database shape. */
 export interface CloudSqlForPostgreSqlShape {
@@ -1073,7 +1071,7 @@ export type FitDescriptorFitLevelEnum =
   | "FIT"
   | "NO_FIT"
   | "REQUIRES_EFFORT";
-export const FitDescriptorFitLevelEnum = /*@__PURE__*/ S.String;
+export const FitDescriptorFitLevelEnum = S.String;
 
 /** Describes the fit level of an asset for migration to a specific target. */
 export interface FitDescriptor {
@@ -1151,15 +1149,14 @@ export type IssueCompatibilityIssueCategoryEnum =
   | "CATEGORY_UNSPECIFIED"
   | "DATABASE_FLAG"
   | "DATABASE_FEATURE";
-export const IssueCompatibilityIssueCategoryEnum = /*@__PURE__*/ S.String;
+export const IssueCompatibilityIssueCategoryEnum = S.String;
 
 export type IssueCompatibilityIssueAssociatedObjectTypeEnum =
   | "OBJECT_TYPE_UNSPECIFIED"
   | "DATABASE_DEPLOYMENT"
   | "DATABASE"
   | "SCHEMA";
-export const IssueCompatibilityIssueAssociatedObjectTypeEnum =
-  /*@__PURE__*/ S.String;
+export const IssueCompatibilityIssueAssociatedObjectTypeEnum = S.String;
 
 /** Details about a compatibility issue. */
 export interface IssueCompatibilityIssue {
@@ -1330,7 +1327,7 @@ export type AwsEc2PlatformDetailsHyperthreadingEnum =
   | "HYPERTHREADING_STATUS_UNSPECIFIED"
   | "HYPERTHREADING_STATUS_DISABLED"
   | "HYPERTHREADING_STATUS_ENABLED";
-export const AwsEc2PlatformDetailsHyperthreadingEnum = /*@__PURE__*/ S.String;
+export const AwsEc2PlatformDetailsHyperthreadingEnum = S.String;
 
 /** AWS EC2 specific details. */
 export interface AwsEc2PlatformDetails {
@@ -1355,7 +1352,7 @@ export type PhysicalPlatformDetailsHyperthreadingEnum =
   | "HYPERTHREADING_STATUS_UNSPECIFIED"
   | "HYPERTHREADING_STATUS_DISABLED"
   | "HYPERTHREADING_STATUS_ENABLED";
-export const PhysicalPlatformDetailsHyperthreadingEnum = /*@__PURE__*/ S.String;
+export const PhysicalPlatformDetailsHyperthreadingEnum = S.String;
 
 /** Platform specific details for Physical Machines. */
 export interface PhysicalPlatformDetails {
@@ -1377,7 +1374,7 @@ export type GenericPlatformDetailsHyperthreadingEnum =
   | "HYPERTHREADING_STATUS_UNSPECIFIED"
   | "HYPERTHREADING_STATUS_DISABLED"
   | "HYPERTHREADING_STATUS_ENABLED";
-export const GenericPlatformDetailsHyperthreadingEnum = /*@__PURE__*/ S.String;
+export const GenericPlatformDetailsHyperthreadingEnum = S.String;
 
 /** Generic platform details. */
 export interface GenericPlatformDetails {
@@ -1399,7 +1396,7 @@ export type AzureVmPlatformDetailsHyperthreadingEnum =
   | "HYPERTHREADING_STATUS_UNSPECIFIED"
   | "HYPERTHREADING_STATUS_DISABLED"
   | "HYPERTHREADING_STATUS_ENABLED";
-export const AzureVmPlatformDetailsHyperthreadingEnum = /*@__PURE__*/ S.String;
+export const AzureVmPlatformDetailsHyperthreadingEnum = S.String;
 
 /** Azure VM specific details. */
 export interface AzureVmPlatformDetails {
@@ -1427,8 +1424,7 @@ export type VmwarePlatformDetailsEsxHyperthreadingEnum =
   | "HYPERTHREADING_STATUS_UNSPECIFIED"
   | "HYPERTHREADING_STATUS_DISABLED"
   | "HYPERTHREADING_STATUS_ENABLED";
-export const VmwarePlatformDetailsEsxHyperthreadingEnum =
-  /*@__PURE__*/ S.String;
+export const VmwarePlatformDetailsEsxHyperthreadingEnum = S.String;
 
 /** VMware specific details. */
 export interface VmwarePlatformDetails {
@@ -1493,7 +1489,7 @@ export type GuestOsDetailsFamilyEnum =
   | "OS_FAMILY_WINDOWS"
   | "OS_FAMILY_LINUX"
   | "OS_FAMILY_UNIX";
-export const GuestOsDetailsFamilyEnum = /*@__PURE__*/ S.String;
+export const GuestOsDetailsFamilyEnum = S.String;
 
 /** Single fstab entry. */
 export interface FstabEntry {
@@ -1572,7 +1568,7 @@ export type GuestConfigDetailsSelinuxModeEnum =
   | "SE_LINUX_MODE_DISABLED"
   | "SE_LINUX_MODE_PERMISSIVE"
   | "SE_LINUX_MODE_ENFORCING";
-export const GuestConfigDetailsSelinuxModeEnum = /*@__PURE__*/ S.String;
+export const GuestConfigDetailsSelinuxModeEnum = S.String;
 
 /** NFS export. */
 export interface NfsExport {
@@ -2168,13 +2164,13 @@ export type MachineDetailsPowerStateEnum =
   | "SUSPENDED"
   | "DELETING"
   | "DELETED";
-export const MachineDetailsPowerStateEnum = /*@__PURE__*/ S.String;
+export const MachineDetailsPowerStateEnum = S.String;
 
 export type NetworkAddressAssignmentEnum =
   | "ADDRESS_ASSIGNMENT_UNSPECIFIED"
   | "ADDRESS_ASSIGNMENT_STATIC"
   | "ADDRESS_ASSIGNMENT_DHCP";
-export const NetworkAddressAssignmentEnum = /*@__PURE__*/ S.String;
+export const NetworkAddressAssignmentEnum = S.String;
 
 /** Details of network address. */
 export interface NetworkAddress {
@@ -2289,8 +2285,7 @@ export type MachineArchitectureDetailsFirmwareTypeEnum =
   | "FIRMWARE_TYPE_UNSPECIFIED"
   | "BIOS"
   | "EFI";
-export const MachineArchitectureDetailsFirmwareTypeEnum =
-  /*@__PURE__*/ S.String;
+export const MachineArchitectureDetailsFirmwareTypeEnum = S.String;
 
 /** Details about the BIOS. */
 export interface BiosDetails {
@@ -2331,8 +2326,7 @@ export type MachineArchitectureDetailsHyperthreadingEnum =
   | "CPU_HYPER_THREADING_UNSPECIFIED"
   | "DISABLED"
   | "ENABLED";
-export const MachineArchitectureDetailsHyperthreadingEnum =
-  /*@__PURE__*/ S.String;
+export const MachineArchitectureDetailsHyperthreadingEnum = S.String;
 
 /** Details of the machine architecture. */
 export interface MachineArchitectureDetails {
@@ -2478,7 +2472,7 @@ export type VirtualMachineDetailsOsFamilyEnum =
   | "OS_FAMILY_WINDOWS"
   | "OS_FAMILY_LINUX"
   | "OS_FAMILY_UNIX";
-export const VirtualMachineDetailsOsFamilyEnum = /*@__PURE__*/ S.String;
+export const VirtualMachineDetailsOsFamilyEnum = S.String;
 
 /** Details of network adapters and settings. */
 export interface VirtualMachineNetworkDetails {
@@ -2509,8 +2503,7 @@ export type VirtualMachineArchitectureDetailsHyperthreadingEnum =
   | "HYPER_THREADING_UNSPECIFIED"
   | "HYPER_THREADING_DISABLED"
   | "HYPER_THREADING_ENABLED";
-export const VirtualMachineArchitectureDetailsHyperthreadingEnum =
-  /*@__PURE__*/ S.String;
+export const VirtualMachineArchitectureDetailsHyperthreadingEnum = S.String;
 
 /** Details of the VM architecture. */
 export interface VirtualMachineArchitectureDetails {
@@ -2837,7 +2830,7 @@ export type SqlServerTraceFlagScopeEnum =
   | "OFF"
   | "GLOBAL"
   | "SESSION";
-export const SqlServerTraceFlagScopeEnum = /*@__PURE__*/ S.String;
+export const SqlServerTraceFlagScopeEnum = S.String;
 
 /** SQL Server trace flag details. */
 export interface SqlServerTraceFlag {
@@ -3085,7 +3078,7 @@ export type DatabaseInstanceRoleEnum =
   | "PRIMARY"
   | "SECONDARY"
   | "ARBITER";
-export const DatabaseInstanceRoleEnum = /*@__PURE__*/ S.String;
+export const DatabaseInstanceRoleEnum = S.String;
 
 /** Details of a database instance. */
 export interface DatabaseInstance {
@@ -3463,7 +3456,7 @@ export type SignedUriDestinationFileFormatEnum =
   | "FILE_FORMAT_UNSPECIFIED"
   | "CSV"
   | "XLSX";
-export const SignedUriDestinationFileFormatEnum = /*@__PURE__*/ S.String;
+export const SignedUriDestinationFileFormatEnum = S.String;
 
 /** Signed URI destination configuration. */
 export interface SignedUriDestination {
@@ -3761,7 +3754,7 @@ export type DiscoveryClientStateEnum =
   | "OFFLINE"
   | "DEGRADED"
   | "EXPIRED";
-export const DiscoveryClientStateEnum = /*@__PURE__*/ S.String;
+export const DiscoveryClientStateEnum = S.String;
 
 /** Represents an installed Migration Center Discovery Client instance. */
 export interface DiscoveryClient {
@@ -3914,7 +3907,7 @@ export type GCSPayloadInfoFormatEnum =
   | "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV"
   | "IMPORT_JOB_FORMAT_MANUAL_CSV"
   | "IMPORT_JOB_FORMAT_DATABASE_ZIP";
-export const GCSPayloadInfoFormatEnum = /*@__PURE__*/ S.String;
+export const GCSPayloadInfoFormatEnum = S.String;
 
 /** A resource that represents a payload hosted on Google Cloud Storage. */
 export interface GCSPayloadInfo {
@@ -3935,7 +3928,7 @@ export type ImportErrorSeverityEnum =
   | "ERROR"
   | "WARNING"
   | "INFO";
-export const ImportErrorSeverityEnum = /*@__PURE__*/ S.String;
+export const ImportErrorSeverityEnum = S.String;
 
 /** A resource that reports the errors encountered while processing an import job. */
 export interface ImportError {
@@ -4112,7 +4105,7 @@ export type ImportJobStateEnum =
   | "IMPORT_JOB_STATE_VALIDATING"
   | "IMPORT_JOB_STATE_FAILED_VALIDATION"
   | "IMPORT_JOB_STATE_READY";
-export const ImportJobStateEnum = /*@__PURE__*/ S.String;
+export const ImportJobStateEnum = S.String;
 
 export type InlinePayloadInfoFormatEnum =
   | "IMPORT_JOB_FORMAT_UNSPECIFIED"
@@ -4123,7 +4116,7 @@ export type InlinePayloadInfoFormatEnum =
   | "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV"
   | "IMPORT_JOB_FORMAT_MANUAL_CSV"
   | "IMPORT_JOB_FORMAT_DATABASE_ZIP";
-export const InlinePayloadInfoFormatEnum = /*@__PURE__*/ S.String;
+export const InlinePayloadInfoFormatEnum = S.String;
 
 /** Payload file for inline import job payload. */
 export interface PayloadFile {
@@ -4236,7 +4229,7 @@ export type ImportDataFileStateEnum =
   | "STATE_UNSPECIFIED"
   | "CREATING"
   | "ACTIVE";
-export const ImportDataFileStateEnum = /*@__PURE__*/ S.String;
+export const ImportDataFileStateEnum = S.String;
 
 export type ImportDataFileFormatEnum =
   | "IMPORT_JOB_FORMAT_UNSPECIFIED"
@@ -4247,7 +4240,7 @@ export type ImportDataFileFormatEnum =
   | "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV"
   | "IMPORT_JOB_FORMAT_MANUAL_CSV"
   | "IMPORT_JOB_FORMAT_DATABASE_ZIP";
-export const ImportDataFileFormatEnum = /*@__PURE__*/ S.String;
+export const ImportDataFileFormatEnum = S.String;
 
 /** A resource that contains a URI to which a data file can be uploaded. */
 export interface UploadFileInfo {
@@ -4341,14 +4334,13 @@ export type VmwareEnginePreferencesServiceTypeEnum =
   | "SERVICE_TYPE_UNSPECIFIED"
   | "SERVICE_TYPE_FULLY_LICENSED"
   | "SERVICE_TYPE_PORTABLE_LICENSE";
-export const VmwareEnginePreferencesServiceTypeEnum = /*@__PURE__*/ S.String;
+export const VmwareEnginePreferencesServiceTypeEnum = S.String;
 
 export type VMwareEngineMachinePreferencesProtectedNodesEnum =
   | "PROTECTED_NODES_UNSPECIFIED"
   | "PROTECTED_NODES_ENABLED"
   | "PROTECTED_NODES_DISABLED";
-export const VMwareEngineMachinePreferencesProtectedNodesEnum =
-  /*@__PURE__*/ S.String;
+export const VMwareEngineMachinePreferencesProtectedNodesEnum = S.String;
 
 /** A machine series, for a target product (e.g. Compute Engine, Google Cloud VMware Engine). */
 export interface MachineSeries {
@@ -4370,8 +4362,7 @@ export type VMwareEngineMachinePreferencesStorageOnlyNodesEnum =
   | "STORAGE_ONLY_NODES_UNSPECIFIED"
   | "STORAGE_ONLY_NODES_ENABLED"
   | "STORAGE_ONLY_NODES_DISABLED";
-export const VMwareEngineMachinePreferencesStorageOnlyNodesEnum =
-  /*@__PURE__*/ S.String;
+export const VMwareEngineMachinePreferencesStorageOnlyNodesEnum = S.String;
 
 /** The type of machines to consider when calculating virtual machine migration insights and recommendations for VMware Engine. Not all machine types are available in all zones and regions. */
 export interface VMwareEngineMachinePreferences {
@@ -4409,7 +4400,7 @@ export type VmwareEnginePreferencesCommitmentPlanEnum =
   | "COMMITMENT_3_YEAR_UPFRONT_PAYMENT"
   | "COMMITMENT_FLEXIBLE_3_YEAR_MONTHLY_PAYMENTS"
   | "COMMITMENT_FLEXIBLE_3_YEAR_UPFRONT_PAYMENT";
-export const VmwareEnginePreferencesCommitmentPlanEnum = /*@__PURE__*/ S.String;
+export const VmwareEnginePreferencesCommitmentPlanEnum = S.String;
 
 /** The user preferences relating to Google Cloud VMware Engine target platform. */
 export interface VmwareEnginePreferences {
@@ -4460,8 +4451,7 @@ export type SoleTenancyPreferencesHostMaintenancePolicyEnum =
   | "HOST_MAINTENANCE_POLICY_DEFAULT"
   | "HOST_MAINTENANCE_POLICY_RESTART_IN_PLACE"
   | "HOST_MAINTENANCE_POLICY_MIGRATE_WITHIN_NODE_GROUP";
-export const SoleTenancyPreferencesHostMaintenancePolicyEnum =
-  /*@__PURE__*/ S.String;
+export const SoleTenancyPreferencesHostMaintenancePolicyEnum = S.String;
 
 export type SoleTenancyPreferencesCommitmentPlanEnum =
   | "COMMITMENT_PLAN_UNSPECIFIED"
@@ -4470,7 +4460,7 @@ export type SoleTenancyPreferencesCommitmentPlanEnum =
   | "COMMITMENT_3_YEAR"
   | "COMMITMENT_FLEXIBLE_1_YEAR"
   | "COMMITMENT_FLEXIBLE_3_YEAR";
-export const SoleTenancyPreferencesCommitmentPlanEnum = /*@__PURE__*/ S.String;
+export const SoleTenancyPreferencesCommitmentPlanEnum = S.String;
 
 export type OperatingSystemPricingPreferencesOperatingSystemPricingCommitmentPlanEnum =
   | "COMMITMENT_PLAN_UNSPECIFIED"
@@ -4478,14 +4468,14 @@ export type OperatingSystemPricingPreferencesOperatingSystemPricingCommitmentPla
   | "COMMITMENT_PLAN_1_YEAR"
   | "COMMITMENT_PLAN_3_YEAR";
 export const OperatingSystemPricingPreferencesOperatingSystemPricingCommitmentPlanEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OperatingSystemPricingPreferencesOperatingSystemPricingLicenseTypeEnum =
   | "LICENSE_TYPE_UNSPECIFIED"
   | "LICENSE_TYPE_DEFAULT"
   | "LICENSE_TYPE_BRING_YOUR_OWN_LICENSE";
 export const OperatingSystemPricingPreferencesOperatingSystemPricingLicenseTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Pricing options of an OS image. */
 export interface OperatingSystemPricingPreferencesOperatingSystemPricing {
@@ -4590,8 +4580,7 @@ export type VirtualMachinePreferencesTargetProductEnum =
   | "COMPUTE_MIGRATION_TARGET_PRODUCT_COMPUTE_ENGINE"
   | "COMPUTE_MIGRATION_TARGET_PRODUCT_VMWARE_ENGINE"
   | "COMPUTE_MIGRATION_TARGET_PRODUCT_SOLE_TENANCY";
-export const VirtualMachinePreferencesTargetProductEnum =
-  /*@__PURE__*/ S.String;
+export const VirtualMachinePreferencesTargetProductEnum = S.String;
 
 export type VirtualMachinePreferencesSizingOptimizationCustomParametersAggregationMethodEnum =
   | "AGGREGATION_METHOD_UNSPECIFIED"
@@ -4600,7 +4589,7 @@ export type VirtualMachinePreferencesSizingOptimizationCustomParametersAggregati
   | "AGGREGATION_METHOD_NINETY_FIFTH_PERCENTILE"
   | "AGGREGATION_METHOD_PEAK";
 export const VirtualMachinePreferencesSizingOptimizationCustomParametersAggregationMethodEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Custom data to use for sizing optimizations. */
 export interface VirtualMachinePreferencesSizingOptimizationCustomParameters {
@@ -4647,22 +4636,20 @@ export type ComputeEnginePreferencesPersistentDiskTypeEnum =
   | "PERSISTENT_DISK_TYPE_STANDARD"
   | "PERSISTENT_DISK_TYPE_BALANCED"
   | "PERSISTENT_DISK_TYPE_SSD";
-export const ComputeEnginePreferencesPersistentDiskTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ComputeEnginePreferencesPersistentDiskTypeEnum = S.String;
 
 export type ComputeEnginePreferencesLicenseTypeEnum =
   | "LICENSE_TYPE_UNSPECIFIED"
   | "LICENSE_TYPE_DEFAULT"
   | "LICENSE_TYPE_BRING_YOUR_OWN_LICENSE";
-export const ComputeEnginePreferencesLicenseTypeEnum = /*@__PURE__*/ S.String;
+export const ComputeEnginePreferencesLicenseTypeEnum = S.String;
 
 export type ComputeEnginePreferencesMultithreadingEnum =
   | "MULTITHREADING_UNSPECIFIED"
   | "MULTITHREADING_DISABLED"
   | "MULTITHREADING_ENABLED"
   | "MULTITHREADING_DISABLED_WITH_COMPENSATION";
-export const ComputeEnginePreferencesMultithreadingEnum =
-  /*@__PURE__*/ S.String;
+export const ComputeEnginePreferencesMultithreadingEnum = S.String;
 
 /** The user preferences relating to Compute Engine target platform. */
 export interface ComputeEnginePreferences {
@@ -4700,8 +4687,7 @@ export type VirtualMachinePreferencesCommitmentPlanEnum =
   | "COMMITMENT_PLAN_THREE_YEARS"
   | "COMMITMENT_PLAN_FLEXIBLE_ONE_YEAR"
   | "COMMITMENT_PLAN_FLEXIBLE_THREE_YEARS";
-export const VirtualMachinePreferencesCommitmentPlanEnum =
-  /*@__PURE__*/ S.String;
+export const VirtualMachinePreferencesCommitmentPlanEnum = S.String;
 
 /** Parameters that affect network cost estimations. */
 export interface VirtualMachinePreferencesNetworkCostParameters {
@@ -4723,8 +4709,7 @@ export type VirtualMachinePreferencesSizingOptimizationStrategyEnum =
   | "SIZING_OPTIMIZATION_STRATEGY_MODERATE"
   | "SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE"
   | "SIZING_OPTIMIZATION_STRATEGY_CUSTOM";
-export const VirtualMachinePreferencesSizingOptimizationStrategyEnum =
-  /*@__PURE__*/ S.String;
+export const VirtualMachinePreferencesSizingOptimizationStrategyEnum = S.String;
 
 /** VirtualMachinePreferences enables you to create sets of preferences, for example, a geographical location and pricing track, for your migrated virtual machines. The set of preferences influence recommendations for migrating virtual machine assets. */
 export interface VirtualMachinePreferences {
@@ -4778,8 +4763,7 @@ export type DatabasePreferencesCloudSqlCommonBackupBackupModeEnum =
   | "BACKUP_MODE_UNSPECIFIED"
   | "BACKUP_MODE_DISABLED"
   | "BACKUP_MODE_ENABLED";
-export const DatabasePreferencesCloudSqlCommonBackupBackupModeEnum =
-  /*@__PURE__*/ S.String;
+export const DatabasePreferencesCloudSqlCommonBackupBackupModeEnum = S.String;
 
 /** Preferences for database backups. */
 export interface DatabasePreferencesCloudSqlCommonBackup {
@@ -4806,15 +4790,14 @@ export type DatabasePreferencesCloudSqlCommonSizingOptimizationStrategyEnum =
   | "SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE"
   | "SIZING_OPTIMIZATION_STRATEGY_CUSTOM";
 export const DatabasePreferencesCloudSqlCommonSizingOptimizationStrategyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DatabasePreferencesCloudSqlCommonPersistentDiskTypeEnum =
   | "PERSISTENT_DISK_TYPE_UNSPECIFIED"
   | "PERSISTENT_DISK_TYPE_STANDARD"
   | "PERSISTENT_DISK_TYPE_BALANCED"
   | "PERSISTENT_DISK_TYPE_SSD";
-export const DatabasePreferencesCloudSqlCommonPersistentDiskTypeEnum =
-  /*@__PURE__*/ S.String;
+export const DatabasePreferencesCloudSqlCommonPersistentDiskTypeEnum = S.String;
 
 export type DatabasePreferencesCloudSqlCommonCommitmentPlanEnum =
   | "COMMITMENT_PLAN_UNSPECIFIED"
@@ -4823,22 +4806,19 @@ export type DatabasePreferencesCloudSqlCommonCommitmentPlanEnum =
   | "COMMITMENT_PLAN_THREE_YEARS"
   | "COMMITMENT_PLAN_FLEXIBLE_ONE_YEAR"
   | "COMMITMENT_PLAN_FLEXIBLE_THREE_YEARS";
-export const DatabasePreferencesCloudSqlCommonCommitmentPlanEnum =
-  /*@__PURE__*/ S.String;
+export const DatabasePreferencesCloudSqlCommonCommitmentPlanEnum = S.String;
 
 export type DatabasePreferencesCloudSqlCommonEditionEnum =
   | "CLOUD_SQL_EDITION_UNSPECIFIED"
   | "CLOUD_SQL_EDITION_ENTERPRISE"
   | "CLOUD_SQL_EDITION_ENTERPRISE_PLUS";
-export const DatabasePreferencesCloudSqlCommonEditionEnum =
-  /*@__PURE__*/ S.String;
+export const DatabasePreferencesCloudSqlCommonEditionEnum = S.String;
 
 export type DatabasePreferencesCloudSqlCommonZoneAvailabilityEnum =
   | "CLOUD_SQL_ZONE_AVAILABILITY_UNSPECIFIED"
   | "CLOUD_SQL_ZONE_AVAILABILITY_ZONAL"
   | "CLOUD_SQL_ZONE_AVAILABILITY_REGIONAL";
-export const DatabasePreferencesCloudSqlCommonZoneAvailabilityEnum =
-  /*@__PURE__*/ S.String;
+export const DatabasePreferencesCloudSqlCommonZoneAvailabilityEnum = S.String;
 
 /** Preferences common to Cloud SQL databases. */
 export interface DatabasePreferencesCloudSqlCommon {
@@ -4910,16 +4890,14 @@ export type DatabasePreferencesCloudSqlSqlServerVersionTypeEnum =
   | "VERSION_TYPE_WEB"
   | "VERSION_TYPE_STANDARD"
   | "VERSION_TYPE_ENTERPRISE";
-export const DatabasePreferencesCloudSqlSqlServerVersionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const DatabasePreferencesCloudSqlSqlServerVersionTypeEnum = S.String;
 
 export type DatabasePreferencesCloudSqlSqlServerMultithreadingEnum =
   | "MULTITHREADING_UNSPECIFIED"
   | "MULTITHREADING_DISABLED"
   | "MULTITHREADING_ENABLED"
   | "MULTITHREADING_DISABLED_WITH_COMPENSATION";
-export const DatabasePreferencesCloudSqlSqlServerMultithreadingEnum =
-  /*@__PURE__*/ S.String;
+export const DatabasePreferencesCloudSqlSqlServerMultithreadingEnum = S.String;
 
 /** Preferences for SQL Server on Cloud SQL. */
 export interface DatabasePreferencesCloudSqlSqlServer {
@@ -5359,8 +5337,7 @@ export type ReportSummaryMachineFindingAllocatedDiskTypesItemEnum =
   | "PERSISTENT_DISK_TYPE_STANDARD"
   | "PERSISTENT_DISK_TYPE_BALANCED"
   | "PERSISTENT_DISK_TYPE_SSD";
-export const ReportSummaryMachineFindingAllocatedDiskTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const ReportSummaryMachineFindingAllocatedDiskTypesItemEnum = S.String;
 
 export type ReportSummaryMachineFindingAllocatedDiskTypesItemEnumList = Array<
   ReportSummaryMachineFindingAllocatedDiskTypesItemEnum | (string & {})
@@ -5565,13 +5542,13 @@ export type ReportSummaryGroupFindingDatabaseTypeEnum =
   | "SQL_SERVER"
   | "MYSQL"
   | "POSTGRES";
-export const ReportSummaryGroupFindingDatabaseTypeEnum = /*@__PURE__*/ S.String;
+export const ReportSummaryGroupFindingDatabaseTypeEnum = S.String;
 
 export type ReportSummaryGroupFindingAssetTypeEnum =
   | "ASSET_TYPE_UNSPECIFIED"
   | "VIRTUAL_MACHINE"
   | "DATABASE";
-export const ReportSummaryGroupFindingAssetTypeEnum = /*@__PURE__*/ S.String;
+export const ReportSummaryGroupFindingAssetTypeEnum = S.String;
 
 /** Summary Findings for a specific Group. */
 export interface ReportSummaryGroupFinding {
@@ -5635,14 +5612,14 @@ export const ReportSummary = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ReportSummary" }) as any as S.Schema<ReportSummary>;
 
 export type ReportTypeEnum = "TYPE_UNSPECIFIED" | "TOTAL_COST_OF_OWNERSHIP";
-export const ReportTypeEnum = /*@__PURE__*/ S.String;
+export const ReportTypeEnum = S.String;
 
 export type ReportStateEnum =
   | "STATE_UNSPECIFIED"
   | "PENDING"
   | "SUCCEEDED"
   | "FAILED";
-export const ReportStateEnum = /*@__PURE__*/ S.String;
+export const ReportStateEnum = S.String;
 
 /** Report represents a point-in-time rendering of the ReportConfig results. */
 export interface Report {
@@ -5809,7 +5786,7 @@ export type SourceStateEnum =
   | "ACTIVE"
   | "DELETING"
   | "INVALID";
-export const SourceStateEnum = /*@__PURE__*/ S.String;
+export const SourceStateEnum = S.String;
 
 export type SourceTypeEnum =
   | "SOURCE_TYPE_UNKNOWN"
@@ -5818,7 +5795,7 @@ export type SourceTypeEnum =
   | "SOURCE_TYPE_INVENTORY_SCAN"
   | "SOURCE_TYPE_CUSTOM"
   | "SOURCE_TYPE_DISCOVERY_CLIENT";
-export const SourceTypeEnum = /*@__PURE__*/ S.String;
+export const SourceTypeEnum = S.String;
 
 /** Source represents an object from which asset information is streamed to Migration Center. */
 export interface Source {
@@ -6200,7 +6177,7 @@ export type GetProjectsLocationsAssetsViewEnum =
   | "ASSET_VIEW_BASIC"
   | "ASSET_VIEW_FULL"
   | "ASSET_VIEW_STANDARD";
-export const GetProjectsLocationsAssetsViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsAssetsViewEnum = S.String;
 
 export interface GetProjectsLocationsAssetsRequest {
   /** Required. Name of the resource. */
@@ -6283,7 +6260,7 @@ export type GetProjectsLocationsImportJobsViewEnum =
   | "IMPORT_JOB_VIEW_UNSPECIFIED"
   | "IMPORT_JOB_VIEW_BASIC"
   | "IMPORT_JOB_VIEW_FULL";
-export const GetProjectsLocationsImportJobsViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsImportJobsViewEnum = S.String;
 
 export interface GetProjectsLocationsImportJobsRequest {
   /** Required. Name of the resource. */
@@ -6387,7 +6364,7 @@ export type RelationTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "LOGICAL_DATABASE"
   | "DATABASE_DEPLOYMENT_HOSTING_SERVER";
-export const RelationTypeEnum = /*@__PURE__*/ S.String;
+export const RelationTypeEnum = S.String;
 
 /** Message representing a relation between 2 resource. */
 export interface Relation {
@@ -6436,8 +6413,7 @@ export type GetProjectsLocationsReportConfigsReportsViewEnum =
   | "REPORT_VIEW_BASIC"
   | "REPORT_VIEW_FULL"
   | "REPORT_VIEW_STANDARD";
-export const GetProjectsLocationsReportConfigsReportsViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsReportConfigsReportsViewEnum = S.String;
 
 export interface GetProjectsLocationsReportConfigsReportsRequest {
   /** Required. Name of the resource. */
@@ -6505,8 +6481,7 @@ export type GetProjectsLocationsSourcesErrorFramesViewEnum =
   | "ERROR_FRAME_VIEW_UNSPECIFIED"
   | "ERROR_FRAME_VIEW_BASIC"
   | "ERROR_FRAME_VIEW_FULL";
-export const GetProjectsLocationsSourcesErrorFramesViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsSourcesErrorFramesViewEnum = S.String;
 
 export interface GetProjectsLocationsSourcesErrorFramesRequest {
   /** Required. The name of the frame to retrieve. Format: projects/{project}/locations/{location}/sources/{source}/errorFrames/{error_frame} */
@@ -6539,7 +6514,7 @@ export type AssetFrameCollectionTypeEnum =
   | "SOURCE_TYPE_INVENTORY_SCAN"
   | "SOURCE_TYPE_CUSTOM"
   | "SOURCE_TYPE_DISCOVERY_CLIENT";
-export const AssetFrameCollectionTypeEnum = /*@__PURE__*/ S.String;
+export const AssetFrameCollectionTypeEnum = S.String;
 
 /** Memory usage sample. */
 export interface MemoryUsageSample {
@@ -6896,7 +6871,7 @@ export type ListProjectsLocationsAssetsViewEnum =
   | "ASSET_VIEW_BASIC"
   | "ASSET_VIEW_FULL"
   | "ASSET_VIEW_STANDARD";
-export const ListProjectsLocationsAssetsViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsLocationsAssetsViewEnum = S.String;
 
 export interface ListProjectsLocationsAssetsRequest {
   /** Filtering results. */
@@ -7112,7 +7087,7 @@ export type ListProjectsLocationsImportJobsViewEnum =
   | "IMPORT_JOB_VIEW_UNSPECIFIED"
   | "IMPORT_JOB_VIEW_BASIC"
   | "IMPORT_JOB_VIEW_FULL";
-export const ListProjectsLocationsImportJobsViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsLocationsImportJobsViewEnum = S.String;
 
 export interface ListProjectsLocationsImportJobsRequest {
   /** Filtering results. */
@@ -7446,8 +7421,7 @@ export type ListProjectsLocationsReportConfigsReportsViewEnum =
   | "REPORT_VIEW_BASIC"
   | "REPORT_VIEW_FULL"
   | "REPORT_VIEW_STANDARD";
-export const ListProjectsLocationsReportConfigsReportsViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsReportConfigsReportsViewEnum = S.String;
 
 export interface ListProjectsLocationsReportConfigsReportsRequest {
   /** Determines what information to retrieve for each Report. */
@@ -7614,8 +7588,7 @@ export type ListProjectsLocationsSourcesErrorFramesViewEnum =
   | "ERROR_FRAME_VIEW_UNSPECIFIED"
   | "ERROR_FRAME_VIEW_BASIC"
   | "ERROR_FRAME_VIEW_FULL";
-export const ListProjectsLocationsSourcesErrorFramesViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsSourcesErrorFramesViewEnum = S.String;
 
 export interface ListProjectsLocationsSourcesErrorFramesRequest {
   /** Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. */

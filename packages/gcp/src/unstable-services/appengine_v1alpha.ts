@@ -79,7 +79,7 @@ export type ManagedCertificateStatusEnum =
   | "FAILED_PERMANENTLY_NOT_VISIBLE"
   | "FAILED_RETRYING_CAA_FORBIDDEN"
   | "FAILED_RETRYING_CAA_CHECKING";
-export const ManagedCertificateStatusEnum = /*@__PURE__*/ S.String;
+export const ManagedCertificateStatusEnum = S.String;
 
 /** A certificate managed by App Engine. */
 export interface ManagedCertificate {
@@ -176,8 +176,7 @@ export type CreateAppsDomainMappingsOverrideStrategyEnum =
   | "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY"
   | "STRICT"
   | "OVERRIDE";
-export const CreateAppsDomainMappingsOverrideStrategyEnum =
-  /*@__PURE__*/ S.String;
+export const CreateAppsDomainMappingsOverrideStrategyEnum = S.String;
 
 /** SSL configuration for a DomainMapping resource. */
 export interface SslSettings {
@@ -194,7 +193,7 @@ export const SslSettings = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SslSettings" }) as any as S.Schema<SslSettings>;
 
 export type ResourceRecordTypeEnum = "A" | "AAAA" | "CNAME";
-export const ResourceRecordTypeEnum = /*@__PURE__*/ S.String;
+export const ResourceRecordTypeEnum = S.String;
 
 /** A DNS resource record. */
 export interface ResourceRecord {
@@ -354,7 +353,7 @@ export type CreateProjectsLocationsApplicationsDomainMappingsOverrideStrategyEnu
   | "STRICT"
   | "OVERRIDE";
 export const CreateProjectsLocationsApplicationsDomainMappingsOverrideStrategyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateProjectsLocationsApplicationsDomainMappingsRequest {
   /** Whether the domain creation should override any existing mappings for this domain. By default, overrides are rejected. */
@@ -505,7 +504,7 @@ export const DeleteProjectsLocationsApplicationsDomainMappingsRequest =
 export type GetAppsAuthorizedCertificatesViewEnum =
   | "BASIC_CERTIFICATE"
   | "FULL_CERTIFICATE";
-export const GetAppsAuthorizedCertificatesViewEnum = /*@__PURE__*/ S.String;
+export const GetAppsAuthorizedCertificatesViewEnum = S.String;
 
 export interface GetAppsAuthorizedCertificatesRequest {
   /** Part of `name`. Required. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345. */
@@ -649,7 +648,7 @@ export type GetProjectsLocationsApplicationsAuthorizedCertificatesViewEnum =
   | "BASIC_CERTIFICATE"
   | "FULL_CERTIFICATE";
 export const GetProjectsLocationsApplicationsAuthorizedCertificatesViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectsLocationsApplicationsAuthorizedCertificatesRequest {
   /** Part of `name`. Required. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345. */
@@ -744,7 +743,7 @@ export const GetProjectsLocationsOperationsRequest = /*@__PURE__*/ S.suspend(
 export type ListAppsAuthorizedCertificatesViewEnum =
   | "BASIC_CERTIFICATE"
   | "FULL_CERTIFICATE";
-export const ListAppsAuthorizedCertificatesViewEnum = /*@__PURE__*/ S.String;
+export const ListAppsAuthorizedCertificatesViewEnum = S.String;
 
 export interface ListAppsAuthorizedCertificatesRequest {
   /** Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp. */
@@ -1040,7 +1039,7 @@ export type ListProjectsLocationsApplicationsAuthorizedCertificatesViewEnum =
   | "BASIC_CERTIFICATE"
   | "FULL_CERTIFICATE";
 export const ListProjectsLocationsApplicationsAuthorizedCertificatesViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListProjectsLocationsApplicationsAuthorizedCertificatesRequest {
   /** Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp. */

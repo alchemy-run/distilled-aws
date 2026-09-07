@@ -65,19 +65,19 @@ export type GenerationLanguage =
   | "ruby"
   | "rust"
   | "swift";
-export const GenerationLanguage = /*@__PURE__*/ S.String;
+export const GenerationLanguage = S.String;
 
 /** The mode of generation to be used for generating Dockerfiles. */
 export type DockerfileGenerationMode = "enabled" | "disabled";
-export const DockerfileGenerationMode = /*@__PURE__*/ S.String;
+export const DockerfileGenerationMode = S.String;
 
 /** The mode of generation to be used for generating Manifest. */
 export type ManifestGenerationMode = "enabled" | "disabled";
-export const ManifestGenerationMode = /*@__PURE__*/ S.String;
+export const ManifestGenerationMode = S.String;
 
 /** Determines the type of manifests to be generated. */
 export type GenerationManifestType = "helm" | "kube";
-export const GenerationManifestType = /*@__PURE__*/ S.String;
+export const GenerationManifestType = S.String;
 
 export interface GeneratePreviewArtifactsRequest {
   /** The ID of the target subscription. */
@@ -184,7 +184,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -192,7 +192,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -229,7 +229,7 @@ export const GetWorkflowResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Determines the type of manifests within the repository. */
 export type ManifestType = "helm" | "kube" | "kustomize";
-export const ManifestType = /*@__PURE__*/ S.String;
+export const ManifestType = S.String;
 
 export type DeploymentPropertiesKubeManifestLocationsList = Array<string>;
 export const DeploymentPropertiesKubeManifestLocationsList =
@@ -309,11 +309,11 @@ export const GitHubWorkflowProfileOidcCredentials = /*@__PURE__*/ S.suspend(
 
 /** The status of the Pull Request submitted against the users repository. */
 export type PullRequestStatus = "unknown" | "submitted" | "merged" | "removed";
-export const PullRequestStatus = /*@__PURE__*/ S.String;
+export const PullRequestStatus = S.String;
 
 /** Describes the status of the workflow run */
 export type WorkflowRunStatus = "queued" | "inprogress" | "completed";
-export const WorkflowRunStatus = /*@__PURE__*/ S.String;
+export const WorkflowRunStatus = S.String;
 
 export interface WorkflowRun {
   /** Describes if the workflow run succeeded. */
@@ -335,7 +335,7 @@ export const WorkflowRun = /*@__PURE__*/ S.suspend(() =>
 
 /** Determines the authorization status of requests. */
 export type AuthorizationStatus = "Authorized" | "NotFound" | "Error";
-export const AuthorizationStatus = /*@__PURE__*/ S.String;
+export const AuthorizationStatus = S.String;
 
 /** GitHub Workflow Profile */
 export interface GitHubWorkflowProfile {
@@ -688,11 +688,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {

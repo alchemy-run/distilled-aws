@@ -41,7 +41,7 @@ export class NotFound
 
 /** Library to add this image to. Omit to upload without joining a library (as dashboard text cards and notebooks do). */
 export type CreateUploadedMediaRequestPurpose = "email" | "canvas";
-export const CreateUploadedMediaRequestPurpose = /*@__PURE__*/ S.String;
+export const CreateUploadedMediaRequestPurpose = S.String;
 
 export interface CreateUploadedMediaRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -84,7 +84,7 @@ export const CreateUploadedMediaResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateUploadedMediaResponse>;
 
 export type ListUploadedMediaRequestPurpose = "canvas" | "email";
-export const ListUploadedMediaRequestPurpose = /*@__PURE__*/ S.String;
+export const ListUploadedMediaRequestPurpose = S.String;
 
 export interface ListUploadedMediaRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

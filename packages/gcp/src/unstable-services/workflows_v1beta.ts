@@ -72,7 +72,7 @@ export const StringMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<StringMap>;
 
 export type WorkflowStateEnum = "STATE_UNSPECIFIED" | "ACTIVE";
-export const WorkflowStateEnum = /*@__PURE__*/ S.String;
+export const WorkflowStateEnum = S.String;
 
 /** Workflow program to be executed by Workflows. */
 export interface Workflow {

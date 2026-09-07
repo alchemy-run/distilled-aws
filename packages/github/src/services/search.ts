@@ -40,10 +40,10 @@ export class UnprocessableEntity
   ) {}
 
 export type CodeRequestSort = "indexed";
-export const CodeRequestSort = /*@__PURE__*/ S.String;
+export const CodeRequestSort = S.String;
 
 export type CodeRequestOrder = "desc" | "asc";
-export const CodeRequestOrder = /*@__PURE__*/ S.String;
+export const CodeRequestOrder = S.String;
 
 export interface CodeRequest {
   /** The query contains one or more search keywords and qualifiers. Qualifiers allow you to limit your search to specific areas of GitHub. The REST API supports the same qualifiers as the web interface for GitHub. To learn more about the format of the query, see [Constructing a search query](https://docs.github.com/rest/search/search#constructing-a-search-query). See "[Searching code](https://docs.github.com/search-github/searching-on-github/searching-code)" for a detailed list of qualifiers. */
@@ -128,8 +128,7 @@ export const MinimalRepositoryTopicsList = /*@__PURE__*/ S.Array(
 export type MinimalRepositoryPullRequestCreationPolicy =
   | "all"
   | "collaborators_only";
-export const MinimalRepositoryPullRequestCreationPolicy =
-  /*@__PURE__*/ S.String;
+export const MinimalRepositoryPullRequestCreationPolicy = S.String;
 
 export interface MinimalRepositoryPermissions {
   admin?: boolean;
@@ -188,7 +187,7 @@ export const MinimalRepositoryLicense = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MinimalRepositoryLicense>;
 
 export type SecurityAndAnalysisAdvancedSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisAdvancedSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisAdvancedSecurityStatus = S.String;
 
 /** Enable or disable GitHub Advanced Security for the repository. For standalone Code Scanning or Secret Protection products, this parameter cannot be used. */
 export interface SecurityAndAnalysisAdvancedSecurity {
@@ -203,7 +202,7 @@ export const SecurityAndAnalysisAdvancedSecurity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecurityAndAnalysisAdvancedSecurity>;
 
 export type SecurityAndAnalysisCodeSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisCodeSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisCodeSecurityStatus = S.String;
 
 export interface SecurityAndAnalysisCodeSecurity {
   status?: SecurityAndAnalysisCodeSecurityStatus;
@@ -220,8 +219,7 @@ export const SecurityAndAnalysisCodeSecurity = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisDependabotSecurityUpdatesStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisDependabotSecurityUpdatesStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisDependabotSecurityUpdatesStatus = S.String;
 
 /** Enable or disable Dependabot security updates for the repository. */
 export interface SecurityAndAnalysisDependabotSecurityUpdates {
@@ -238,7 +236,7 @@ export const SecurityAndAnalysisDependabotSecurityUpdates =
   }) as any as S.Schema<SecurityAndAnalysisDependabotSecurityUpdates>;
 
 export type SecurityAndAnalysisSecretScanningStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisSecretScanningStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanning {
   status?: SecurityAndAnalysisSecretScanningStatus;
@@ -254,8 +252,7 @@ export const SecurityAndAnalysisSecretScanning = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisSecretScanningPushProtectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningPushProtectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningPushProtectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningPushProtection {
   status?: SecurityAndAnalysisSecretScanningPushProtectionStatus;
@@ -273,7 +270,7 @@ export type SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningNonProviderPatterns {
   status?: SecurityAndAnalysisSecretScanningNonProviderPatternsStatus;
@@ -292,8 +289,7 @@ export const SecurityAndAnalysisSecretScanningNonProviderPatterns =
 export type SecurityAndAnalysisSecretScanningAiDetectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningAiDetectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningAiDetectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningAiDetection {
   status?: SecurityAndAnalysisSecretScanningAiDetectionStatus;
@@ -311,7 +307,7 @@ export type SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedAlertDismissal {
   status?: SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus;
@@ -330,8 +326,7 @@ export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissal =
 export type SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypass {
   status?: SecurityAndAnalysisSecretScanningDelegatedBypassStatus;
@@ -352,14 +347,14 @@ export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem
   | "TEAM"
   | "ROLE";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The bypass mode for the reviewer */
 export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
   | "ALWAYS"
   | "EXEMPT";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem {
   /** The ID of the team or role selected as a bypass reviewer */
@@ -766,10 +761,10 @@ export const CodeResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "CodeResponse" }) as any as S.Schema<CodeResponse>;
 
 export type CommitsRequestSort = "author-date" | "committer-date";
-export const CommitsRequestSort = /*@__PURE__*/ S.String;
+export const CommitsRequestSort = S.String;
 
 export type CommitsRequestOrder = "desc" | "asc";
-export const CommitsRequestOrder = /*@__PURE__*/ S.String;
+export const CommitsRequestOrder = S.String;
 
 export interface CommitsRequest {
   /** The query contains one or more search keywords and qualifiers. Qualifiers allow you to limit your search to specific areas of GitHub. The REST API supports the same qualifiers as the web interface for GitHub. To learn more about the format of the query, see [Constructing a search query](https://docs.github.com/rest/search/search#constructing-a-search-query). See "[Searching commits](https://docs.github.com/search-github/searching-on-github/searching-commits)" for a detailed list of qualifiers. */
@@ -968,13 +963,13 @@ export type IssuesAndPullRequestsRequestSort =
   | "interactions"
   | "created"
   | "updated";
-export const IssuesAndPullRequestsRequestSort = /*@__PURE__*/ S.String;
+export const IssuesAndPullRequestsRequestSort = S.String;
 
 export type IssuesAndPullRequestsRequestOrder = "desc" | "asc";
-export const IssuesAndPullRequestsRequestOrder = /*@__PURE__*/ S.String;
+export const IssuesAndPullRequestsRequestOrder = S.String;
 
 export type IssuesAndPullRequestsRequestSearchType = "semantic" | "hybrid";
-export const IssuesAndPullRequestsRequestSearchType = /*@__PURE__*/ S.String;
+export const IssuesAndPullRequestsRequestSearchType = S.String;
 
 export interface IssuesAndPullRequestsRequest {
   /** The query contains one or more search keywords and qualifiers. Qualifiers allow you to limit your search to specific areas of GitHub. The REST API supports the same qualifiers as the web interface for GitHub. To learn more about the format of the query, see [Constructing a search query](https://docs.github.com/rest/search/search#constructing-a-search-query). See "[Searching issues and pull requests](https://docs.github.com/search-github/searching-on-github/searching-issues-and-pull-requests)" for a detailed list of qualifiers. */
@@ -1081,12 +1076,12 @@ export type IssueFieldValueDataType =
   | "multi_select"
   | "number"
   | "date";
-export const IssueFieldValueDataType = /*@__PURE__*/ S.String;
+export const IssueFieldValueDataType = S.String;
 
 /** The value of the issue field */
 export type IssueFieldValueValue = string | number | number;
 export const IssueFieldValueValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IssueFieldValueValue>;
+  S.Unknown as any as S.Schema<IssueFieldValueValue>;
 
 /** Details about the selected option (only present for single_select fields) */
 export interface IssueFieldValueSingleSelectOption {
@@ -1160,7 +1155,7 @@ export const IssueSearchResultItemIssueFieldValuesList = /*@__PURE__*/ S.Array(
 
 /** The state of the milestone. */
 export type NullableMilestoneState = "open" | "closed";
-export const NullableMilestoneState = /*@__PURE__*/ S.String;
+export const NullableMilestoneState = S.String;
 
 /** A collection of related issues and pull requests. */
 export interface NullableMilestone {
@@ -1236,7 +1231,7 @@ export type AuthorAssociation =
   | "MEMBER"
   | "NONE"
   | "OWNER";
-export const AuthorAssociation = /*@__PURE__*/ S.String;
+export const AuthorAssociation = S.String;
 
 /** License Simple */
 export interface NullableLicenseSimple {
@@ -1286,28 +1281,28 @@ export const RepositoryTopicsList = /*@__PURE__*/ S.Array(
 
 /** The policy controlling who can create pull requests: all or collaborators_only. */
 export type RepositoryPullRequestCreationPolicy = "all" | "collaborators_only";
-export const RepositoryPullRequestCreationPolicy = /*@__PURE__*/ S.String;
+export const RepositoryPullRequestCreationPolicy = S.String;
 
 /** The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit). */
 export type RepositorySquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const RepositorySquashMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type RepositorySquashMergeCommitMessage =
   | "PR_BODY"
   | "COMMIT_MESSAGES"
   | "BLANK";
-export const RepositorySquashMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitMessage = S.String;
 
 /** The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type RepositoryMergeCommitTitle = "PR_TITLE" | "MERGE_MESSAGE";
-export const RepositoryMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type RepositoryMergeCommitMessage = "PR_BODY" | "PR_TITLE" | "BLANK";
-export const RepositoryMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitMessage = S.String;
 
 /** The status of the code search index for this repository */
 export interface RepositoryCodeSearchIndexStatus {
@@ -1570,7 +1565,7 @@ export type IssueTypeColor =
   | "red"
   | "pink"
   | "purple";
-export const IssueTypeColor = /*@__PURE__*/ S.String;
+export const IssueTypeColor = S.String;
 
 /** The type assigned to the issue. This is only present for issues in repositories where issue types are supported. */
 export interface IssueType {
@@ -1639,7 +1634,7 @@ export const Enterprise = /*@__PURE__*/ S.suspend(() =>
 
 export type NullableIntegrationOwner = SimpleUser | Enterprise;
 export const NullableIntegrationOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NullableIntegrationOwner>;
+  S.Unknown as any as S.Schema<NullableIntegrationOwner>;
 
 /** The set of permissions for the GitHub app */
 export interface NullableIntegrationPermissions {
@@ -1911,7 +1906,7 @@ export type IssuesAndPullRequestsResponseSearchType =
   | "lexical"
   | "semantic"
   | "hybrid";
-export const IssuesAndPullRequestsResponseSearchType = /*@__PURE__*/ S.String;
+export const IssuesAndPullRequestsResponseSearchType = S.String;
 
 export type IssuesAndPullRequestsResponseLexicalFallbackReasonItem =
   | "no_text_terms"
@@ -1922,8 +1917,7 @@ export type IssuesAndPullRequestsResponseLexicalFallbackReasonItem =
   | "server_error"
   | "only_non_semantic_fields_requested"
   | "service_unavailable";
-export const IssuesAndPullRequestsResponseLexicalFallbackReasonItem =
-  /*@__PURE__*/ S.String;
+export const IssuesAndPullRequestsResponseLexicalFallbackReasonItem = S.String;
 
 /** When a semantic or hybrid search falls back to lexical search, this field contains the reasons for the fallback. Only present when a fallback occurred. */
 export type IssuesAndPullRequestsResponseLexicalFallbackReasonList =
@@ -1957,10 +1951,10 @@ export const IssuesAndPullRequestsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IssuesAndPullRequestsResponse>;
 
 export type LabelsRequestSort = "created" | "updated";
-export const LabelsRequestSort = /*@__PURE__*/ S.String;
+export const LabelsRequestSort = S.String;
 
 export type LabelsRequestOrder = "desc" | "asc";
-export const LabelsRequestOrder = /*@__PURE__*/ S.String;
+export const LabelsRequestOrder = S.String;
 
 export interface LabelsRequest {
   /** The id of the repository. */
@@ -2038,10 +2032,10 @@ export type ReposRequestSort =
   | "forks"
   | "help-wanted-issues"
   | "updated";
-export const ReposRequestSort = /*@__PURE__*/ S.String;
+export const ReposRequestSort = S.String;
 
 export type ReposRequestOrder = "desc" | "asc";
-export const ReposRequestOrder = /*@__PURE__*/ S.String;
+export const ReposRequestOrder = S.String;
 
 export interface ReposRequest {
   /** The query contains one or more search keywords and qualifiers. Qualifiers allow you to limit your search to specific areas of GitHub. The REST API supports the same qualifiers as the web interface for GitHub. To learn more about the format of the query, see [Constructing a search query](https://docs.github.com/rest/search/search#constructing-a-search-query). See "[Searching for repositories](https://docs.github.com/articles/searching-for-repositories/)" for a detailed list of qualifiers. */
@@ -2074,8 +2068,7 @@ export const RepoSearchResultItemTopicsList = /*@__PURE__*/ S.Array(
 export type RepoSearchResultItemPullRequestCreationPolicy =
   | "all"
   | "collaborators_only";
-export const RepoSearchResultItemPullRequestCreationPolicy =
-  /*@__PURE__*/ S.String;
+export const RepoSearchResultItemPullRequestCreationPolicy = S.String;
 
 export interface RepoSearchResultItemPermissions {
   admin: boolean;
@@ -2438,10 +2431,10 @@ export const TopicsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "TopicsResponse" }) as any as S.Schema<TopicsResponse>;
 
 export type UsersRequestSort = "followers" | "repositories" | "joined";
-export const UsersRequestSort = /*@__PURE__*/ S.String;
+export const UsersRequestSort = S.String;
 
 export type UsersRequestOrder = "desc" | "asc";
-export const UsersRequestOrder = /*@__PURE__*/ S.String;
+export const UsersRequestOrder = S.String;
 
 export interface UsersRequest {
   /** The query contains one or more search keywords and qualifiers. Qualifiers allow you to limit your search to specific areas of GitHub. The REST API supports the same qualifiers as the web interface for GitHub. To learn more about the format of the query, see [Constructing a search query](https://docs.github.com/rest/search/search#constructing-a-search-query). See "[Searching users](https://docs.github.com/search-github/searching-on-github/searching-users)" for a detailed list of qualifiers. */

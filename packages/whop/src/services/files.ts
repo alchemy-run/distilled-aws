@@ -106,11 +106,11 @@ export const FileMultipartUploadUrlsList = /*@__PURE__*/ S.Array(
 
 /** Where the file is in its upload lifecycle. */
 export type FileUploadStatus = "pending" | "processing" | "ready" | "failed";
-export const FileUploadStatus = /*@__PURE__*/ S.String;
+export const FileUploadStatus = S.String;
 
 /** `public` files are served via an unsigned CDN URL; `private` files via a signed, expiring URL. */
 export type FileVisibility = "public" | "private";
-export const FileVisibility = /*@__PURE__*/ S.String;
+export const FileVisibility = S.String;
 
 export interface File {
   /** The file's MIME type, e.g. `application/pdf`. */
@@ -162,7 +162,7 @@ export const File = /*@__PURE__*/ S.suspend(() =>
 
 /** `public` files are served via an unsigned CDN URL — use for assets anyone may see. `private` files are served via a signed, expiring URL — use for sensitive documents. Defaults to `private`. */
 export type CreateFileRequestVisibility = "public" | "private";
-export const CreateFileRequestVisibility = /*@__PURE__*/ S.String;
+export const CreateFileRequestVisibility = S.String;
 
 export interface CreateFileRequest {
   /** The file's size in bytes. Required when `multipart` is `true`. Multipart uploads support at most 10,000 parts of 5MB each (about 50 GB). */
@@ -204,10 +204,10 @@ export const ListFilesRequestFileIdsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListFilesRequestFileIdsList>;
 
 export type ListFilesRequestOrder = "created_at";
-export const ListFilesRequestOrder = /*@__PURE__*/ S.String;
+export const ListFilesRequestOrder = S.String;
 
 export type ListFilesRequestDirection = "asc" | "desc";
-export const ListFilesRequestDirection = /*@__PURE__*/ S.String;
+export const ListFilesRequestDirection = S.String;
 
 export interface ListFilesRequest {
   /** The files to return, each prefixed `file_`. Repeat the parameter to pass several, up to 250 per request. Batches of up to 100 answer in one page by default; larger batches page at up to 100 per response. */

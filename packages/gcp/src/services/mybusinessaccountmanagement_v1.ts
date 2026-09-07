@@ -105,7 +105,7 @@ export type AccountVettedStateEnum =
   | "NOT_VETTED"
   | "VETTED"
   | "INVALID";
-export const AccountVettedStateEnum = /*@__PURE__*/ S.String;
+export const AccountVettedStateEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -177,7 +177,7 @@ export type AccountVerificationStateEnum =
   | "VERIFIED"
   | "UNVERIFIED"
   | "VERIFICATION_REQUESTED";
-export const AccountVerificationStateEnum = /*@__PURE__*/ S.String;
+export const AccountVerificationStateEnum = S.String;
 
 export type AccountRoleEnum =
   | "ACCOUNT_ROLE_UNSPECIFIED"
@@ -185,13 +185,13 @@ export type AccountRoleEnum =
   | "OWNER"
   | "MANAGER"
   | "SITE_MANAGER";
-export const AccountRoleEnum = /*@__PURE__*/ S.String;
+export const AccountRoleEnum = S.String;
 
 export type AccountPermissionLevelEnum =
   | "PERMISSION_LEVEL_UNSPECIFIED"
   | "OWNER_LEVEL"
   | "MEMBER_LEVEL";
-export const AccountPermissionLevelEnum = /*@__PURE__*/ S.String;
+export const AccountPermissionLevelEnum = S.String;
 
 export type AccountTypeEnum =
   | "ACCOUNT_TYPE_UNSPECIFIED"
@@ -199,7 +199,7 @@ export type AccountTypeEnum =
   | "LOCATION_GROUP"
   | "USER_GROUP"
   | "ORGANIZATION";
-export const AccountTypeEnum = /*@__PURE__*/ S.String;
+export const AccountTypeEnum = S.String;
 
 /** An account is a container for your location. If you are the only user who manages locations for your business, you can use your personal Google Account. To share management of locations with multiple users, [create a business account] (https://support.google.com/business/answer/6085339?ref_topic=6085325). */
 export interface Account {
@@ -263,7 +263,7 @@ export type AdminRoleEnum =
   | "OWNER"
   | "MANAGER"
   | "SITE_MANAGER";
-export const AdminRoleEnum = /*@__PURE__*/ S.String;
+export const AdminRoleEnum = S.String;
 
 /** An administrator of an Account or a location. */
 export interface Admin {
@@ -520,13 +520,13 @@ export type InvitationRoleEnum =
   | "OWNER"
   | "MANAGER"
   | "SITE_MANAGER";
-export const InvitationRoleEnum = /*@__PURE__*/ S.String;
+export const InvitationRoleEnum = S.String;
 
 export type InvitationTargetTypeEnum =
   | "TARGET_TYPE_UNSPECIFIED"
   | "ACCOUNTS_ONLY"
   | "LOCATIONS_ONLY";
-export const InvitationTargetTypeEnum = /*@__PURE__*/ S.String;
+export const InvitationTargetTypeEnum = S.String;
 
 /** Represents a target location for a pending invitation. */
 export interface TargetLocation {

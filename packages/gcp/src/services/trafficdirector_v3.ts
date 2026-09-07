@@ -93,7 +93,7 @@ export const EnvoyInternalAddress = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EnvoyInternalAddress>;
 
 export type SocketAddressProtocolEnum = "TCP" | "UDP";
-export const SocketAddressProtocolEnum = /*@__PURE__*/ S.String;
+export const SocketAddressProtocolEnum = S.String;
 
 /** [#next-free-field: 8] */
 export interface SocketAddress {
@@ -575,7 +575,7 @@ export type GenericXdsConfigClientStatusEnum =
   | "NACKED"
   | "RECEIVED_ERROR"
   | "TIMEOUT";
-export const GenericXdsConfigClientStatusEnum = /*@__PURE__*/ S.String;
+export const GenericXdsConfigClientStatusEnum = S.String;
 
 export type GenericXdsConfigConfigStatusEnum =
   | "UNKNOWN"
@@ -583,7 +583,7 @@ export type GenericXdsConfigConfigStatusEnum =
   | "NOT_SENT"
   | "STALE"
   | "ERROR";
-export const GenericXdsConfigConfigStatusEnum = /*@__PURE__*/ S.String;
+export const GenericXdsConfigConfigStatusEnum = S.String;
 
 /** GenericXdsConfig is used to specify the config status and the dump of any xDS resource identified by their type URL. It is the generalized version of the now deprecated ListenersConfigDump, ClustersConfigDump etc [#next-free-field: 10] */
 export interface GenericXdsConfig {
@@ -654,7 +654,7 @@ export type DynamicClusterClientStatusEnum =
   | "NACKED"
   | "RECEIVED_ERROR"
   | "TIMEOUT";
-export const DynamicClusterClientStatusEnum = /*@__PURE__*/ S.String;
+export const DynamicClusterClientStatusEnum = S.String;
 
 /** Describes a dynamically loaded cluster via the CDS API. [#next-free-field: 6] */
 export interface DynamicCluster {
@@ -742,7 +742,7 @@ export type DynamicScopedRouteConfigsClientStatusEnum =
   | "NACKED"
   | "RECEIVED_ERROR"
   | "TIMEOUT";
-export const DynamicScopedRouteConfigsClientStatusEnum = /*@__PURE__*/ S.String;
+export const DynamicScopedRouteConfigsClientStatusEnum = S.String;
 
 /** [#next-free-field: 7] */
 export interface DynamicScopedRouteConfigs {
@@ -821,7 +821,7 @@ export type DynamicEndpointConfigClientStatusEnum =
   | "NACKED"
   | "RECEIVED_ERROR"
   | "TIMEOUT";
-export const DynamicEndpointConfigClientStatusEnum = /*@__PURE__*/ S.String;
+export const DynamicEndpointConfigClientStatusEnum = S.String;
 
 /** [#next-free-field: 6] */
 export interface DynamicEndpointConfig {
@@ -877,7 +877,7 @@ export type DynamicListenerClientStatusEnum =
   | "NACKED"
   | "RECEIVED_ERROR"
   | "TIMEOUT";
-export const DynamicListenerClientStatusEnum = /*@__PURE__*/ S.String;
+export const DynamicListenerClientStatusEnum = S.String;
 
 export interface DynamicListenerState {
   /** The listener config. */
@@ -974,7 +974,7 @@ export type PerXdsConfigStatusEnum =
   | "NOT_SENT"
   | "STALE"
   | "ERROR";
-export const PerXdsConfigStatusEnum = /*@__PURE__*/ S.String;
+export const PerXdsConfigStatusEnum = S.String;
 
 export type PerXdsConfigClientStatusEnum =
   | "CLIENT_UNKNOWN"
@@ -982,7 +982,7 @@ export type PerXdsConfigClientStatusEnum =
   | "CLIENT_ACKED"
   | "CLIENT_NACKED"
   | "CLIENT_RECEIVED_ERROR";
-export const PerXdsConfigClientStatusEnum = /*@__PURE__*/ S.String;
+export const PerXdsConfigClientStatusEnum = S.String;
 
 export interface StaticRouteConfig {
   /** The timestamp when the Route was last updated. */
@@ -1012,7 +1012,7 @@ export type DynamicRouteConfigClientStatusEnum =
   | "NACKED"
   | "RECEIVED_ERROR"
   | "TIMEOUT";
-export const DynamicRouteConfigClientStatusEnum = /*@__PURE__*/ S.String;
+export const DynamicRouteConfigClientStatusEnum = S.String;
 
 /** [#next-free-field: 6] */
 export interface DynamicRouteConfig {

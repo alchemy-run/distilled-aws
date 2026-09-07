@@ -135,7 +135,7 @@ export type IssueSignalsSignalEnum =
   | "SIGNAL_FRESH"
   | "SIGNAL_REGRESSED"
   | "SIGNAL_REPETITIVE";
-export const IssueSignalsSignalEnum = /*@__PURE__*/ S.String;
+export const IssueSignalsSignalEnum = S.String;
 
 /** Distinctive characteristics assigned by the Crashlytics analyzer. */
 export interface IssueSignals {
@@ -161,10 +161,10 @@ export type IssueErrorTypeEnum =
   | "FATAL"
   | "NON_FATAL"
   | "ANR";
-export const IssueErrorTypeEnum = /*@__PURE__*/ S.String;
+export const IssueErrorTypeEnum = S.String;
 
 export type IssueStateEnum = "STATE_UNSPECIFIED" | "OPEN" | "CLOSED" | "MUTED";
-export const IssueStateEnum = /*@__PURE__*/ S.String;
+export const IssueStateEnum = S.String;
 
 /** A variant is a subgroup of an issue where all events have very similar stack traces. Issues may contain one or more variants. */
 export interface IssueVariant {
@@ -251,7 +251,7 @@ export type DeviceFormFactorEnum =
   | "DESKTOP"
   | "TV"
   | "WATCH";
-export const DeviceFormFactorEnum = /*@__PURE__*/ S.String;
+export const DeviceFormFactorEnum = S.String;
 
 /** Mobile device metadata. */
 export interface Device {
@@ -297,7 +297,7 @@ export type ThreadThreadStateEnum =
   | "THREAD_STATE_NEW"
   | "THREAD_STATE_NATIVE_RUNNABLE"
   | "THREAD_STATE_NATIVE_WAITING";
-export const ThreadThreadStateEnum = /*@__PURE__*/ S.String;
+export const ThreadThreadStateEnum = S.String;
 
 /** An application thread. */
 export interface Thread {
@@ -498,7 +498,7 @@ export type PlayTrackTypeEnum =
   | "TRACK_TYPE_OPEN_TESTING"
   | "TRACK_TYPE_CLOSED_TESTING"
   | "TRACK_TYPE_EARLY_ACCESS";
-export const PlayTrackTypeEnum = /*@__PURE__*/ S.String;
+export const PlayTrackTypeEnum = S.String;
 
 /** Describes a release track in the Play Developer Console. */
 export interface PlayTrack {
@@ -916,8 +916,7 @@ export type GetProjectsAppsReportsFilter_issue_errorTypesEnum =
   | "FATAL"
   | "NON_FATAL"
   | "ANR";
-export const GetProjectsAppsReportsFilter_issue_errorTypesEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsAppsReportsFilter_issue_errorTypesEnum = S.String;
 
 export type GetProjectsAppsReportsFilter_issue_errorTypesEnumList = Array<
   GetProjectsAppsReportsFilter_issue_errorTypesEnum | (string & {})
@@ -933,8 +932,7 @@ export type GetProjectsAppsReportsFilter_issue_signalsEnum =
   | "SIGNAL_FRESH"
   | "SIGNAL_REGRESSED"
   | "SIGNAL_REPETITIVE";
-export const GetProjectsAppsReportsFilter_issue_signalsEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsAppsReportsFilter_issue_signalsEnum = S.String;
 
 export type GetProjectsAppsReportsFilter_issue_signalsEnumList = Array<
   GetProjectsAppsReportsFilter_issue_signalsEnum | (string & {})
@@ -949,15 +947,14 @@ export type GetProjectsAppsReportsFilter_issue_stateEnum =
   | "OPEN"
   | "CLOSED"
   | "MUTED";
-export const GetProjectsAppsReportsFilter_issue_stateEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsAppsReportsFilter_issue_stateEnum = S.String;
 
 export type GetProjectsAppsReportsGranularityEnum =
   | "TIME_GRANULARITY_UNSPECIFIED"
   | "TIME_GRANULARITY_NONE"
   | "TIME_GRANULARITY_HOUR"
   | "TIME_GRANULARITY_DAY";
-export const GetProjectsAppsReportsGranularityEnum = /*@__PURE__*/ S.String;
+export const GetProjectsAppsReportsGranularityEnum = S.String;
 
 export type GetProjectsAppsReportsFilter_device_formFactorsEnum =
   | "FORM_FACTOR_UNSPECIFIED"
@@ -966,8 +963,7 @@ export type GetProjectsAppsReportsFilter_device_formFactorsEnum =
   | "DESKTOP"
   | "TV"
   | "WATCH";
-export const GetProjectsAppsReportsFilter_device_formFactorsEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsAppsReportsFilter_device_formFactorsEnum = S.String;
 
 export type GetProjectsAppsReportsFilter_device_formFactorsEnumList = Array<
   GetProjectsAppsReportsFilter_device_formFactorsEnum | (string & {})
@@ -982,8 +978,7 @@ export type GetProjectsAppsReportsFilter_issue_statesEnum =
   | "OPEN"
   | "CLOSED"
   | "MUTED";
-export const GetProjectsAppsReportsFilter_issue_statesEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsAppsReportsFilter_issue_statesEnum = S.String;
 
 export type GetProjectsAppsReportsFilter_issue_statesEnumList = Array<
   GetProjectsAppsReportsFilter_issue_statesEnum | (string & {})
@@ -1193,8 +1188,7 @@ export type ListProjectsAppsEventsFilter_issue_signalsEnum =
   | "SIGNAL_FRESH"
   | "SIGNAL_REGRESSED"
   | "SIGNAL_REPETITIVE";
-export const ListProjectsAppsEventsFilter_issue_signalsEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsAppsEventsFilter_issue_signalsEnum = S.String;
 
 export type ListProjectsAppsEventsFilter_issue_signalsEnumList = Array<
   ListProjectsAppsEventsFilter_issue_signalsEnum | (string & {})
@@ -1209,8 +1203,7 @@ export type ListProjectsAppsEventsFilter_issue_errorTypesEnum =
   | "FATAL"
   | "NON_FATAL"
   | "ANR";
-export const ListProjectsAppsEventsFilter_issue_errorTypesEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsAppsEventsFilter_issue_errorTypesEnum = S.String;
 
 export type ListProjectsAppsEventsFilter_issue_errorTypesEnumList = Array<
   ListProjectsAppsEventsFilter_issue_errorTypesEnum | (string & {})
@@ -1225,16 +1218,14 @@ export type ListProjectsAppsEventsFilter_issue_stateEnum =
   | "OPEN"
   | "CLOSED"
   | "MUTED";
-export const ListProjectsAppsEventsFilter_issue_stateEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsAppsEventsFilter_issue_stateEnum = S.String;
 
 export type ListProjectsAppsEventsFilter_issue_statesEnum =
   | "STATE_UNSPECIFIED"
   | "OPEN"
   | "CLOSED"
   | "MUTED";
-export const ListProjectsAppsEventsFilter_issue_statesEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsAppsEventsFilter_issue_statesEnum = S.String;
 
 export type ListProjectsAppsEventsFilter_issue_statesEnumList = Array<
   ListProjectsAppsEventsFilter_issue_statesEnum | (string & {})
@@ -1251,8 +1242,7 @@ export type ListProjectsAppsEventsFilter_device_formFactorsEnum =
   | "DESKTOP"
   | "TV"
   | "WATCH";
-export const ListProjectsAppsEventsFilter_device_formFactorsEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsAppsEventsFilter_device_formFactorsEnum = S.String;
 
 export type ListProjectsAppsEventsFilter_device_formFactorsEnumList = Array<
   ListProjectsAppsEventsFilter_device_formFactorsEnum | (string & {})

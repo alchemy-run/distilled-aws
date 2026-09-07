@@ -32,7 +32,7 @@ export type StoragePropertiesProvisioningState =
   | "Deleting"
   | "Canceled"
   | "Migrating";
-export const StoragePropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const StoragePropertiesProvisioningState = S.String;
 
 /** Describes the billing related details of the AzureBareMetalStorageInstance. */
 export interface StorageBillingProperties {
@@ -150,7 +150,7 @@ export type CreateAzureBareMetalStorageInstanceResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const CreateAzureBareMetalStorageInstanceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type CreateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType =
@@ -159,7 +159,7 @@ export type CreateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByT
   | "ManagedIdentity"
   | "Key";
 export const CreateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CreateAzureBareMetalStorageInstanceResponseSystemData {
@@ -295,7 +295,7 @@ export const GetAzureBareMetalInstanceResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Name of the hardware type (vendor and/or their product name) */
 export type HardwareProfileHardwareType = "Cisco_UCS" | "HPE";
-export const HardwareProfileHardwareType = /*@__PURE__*/ S.String;
+export const HardwareProfileHardwareType = S.String;
 
 /** Specifies the AzureBareMetal instance SKU. */
 export type HardwareProfileAzureBareMetalInstanceSize =
@@ -342,7 +342,7 @@ export type HardwareProfileAzureBareMetalInstanceSize =
   | "S896oom"
   | "S896ooo"
   | "S960m";
-export const HardwareProfileAzureBareMetalInstanceSize = /*@__PURE__*/ S.String;
+export const HardwareProfileAzureBareMetalInstanceSize = S.String;
 
 /** Specifies the hardware settings for the AzureBareMetal instance. */
 export interface HardwareProfile {
@@ -458,8 +458,7 @@ export type AzureBareMetalInstancePropertiesPowerState =
   | "stopped"
   | "restarting"
   | "unknown";
-export const AzureBareMetalInstancePropertiesPowerState =
-  /*@__PURE__*/ S.String;
+export const AzureBareMetalInstancePropertiesPowerState = S.String;
 
 /** State of provisioning of the AzureBareMetalInstance */
 export type AzureBareMetalInstancePropertiesProvisioningState =
@@ -470,8 +469,7 @@ export type AzureBareMetalInstancePropertiesProvisioningState =
   | "Succeeded"
   | "Deleting"
   | "Migrating";
-export const AzureBareMetalInstancePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AzureBareMetalInstancePropertiesProvisioningState = S.String;
 
 /** Describes the properties of an AzureBareMetal instance. */
 export interface AzureBareMetalInstanceProperties {
@@ -522,7 +520,7 @@ export type GetAzureBareMetalInstanceResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetAzureBareMetalInstanceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetAzureBareMetalInstanceResponseSystemDataLastModifiedByType =
@@ -531,7 +529,7 @@ export type GetAzureBareMetalInstanceResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetAzureBareMetalInstanceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetAzureBareMetalInstanceResponseSystemData {
@@ -639,7 +637,7 @@ export type GetAzureBareMetalStorageInstanceResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetAzureBareMetalStorageInstanceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType =
@@ -648,7 +646,7 @@ export type GetAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType
   | "ManagedIdentity"
   | "Key";
 export const GetAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetAzureBareMetalStorageInstanceResponseSystemData {
@@ -754,8 +752,7 @@ export type AzureBareMetalInstanceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AzureBareMetalInstanceSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const AzureBareMetalInstanceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type AzureBareMetalInstanceSystemDataLastModifiedByType =
@@ -763,8 +760,7 @@ export type AzureBareMetalInstanceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AzureBareMetalInstanceSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const AzureBareMetalInstanceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface AzureBareMetalInstanceSystemData {
@@ -908,8 +904,7 @@ export type AzureBareMetalStorageInstanceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AzureBareMetalStorageInstanceSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const AzureBareMetalStorageInstanceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type AzureBareMetalStorageInstanceSystemDataLastModifiedByType =
@@ -918,7 +913,7 @@ export type AzureBareMetalStorageInstanceSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const AzureBareMetalStorageInstanceSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface AzureBareMetalStorageInstanceSystemData {
@@ -1152,7 +1147,7 @@ export type UpdateAzureBareMetalInstanceResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateAzureBareMetalInstanceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateAzureBareMetalInstanceResponseSystemDataLastModifiedByType =
@@ -1161,7 +1156,7 @@ export type UpdateAzureBareMetalInstanceResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateAzureBareMetalInstanceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateAzureBareMetalInstanceResponseSystemData {
@@ -1283,7 +1278,7 @@ export type UpdateAzureBareMetalStorageInstanceResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateAzureBareMetalStorageInstanceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType =
@@ -1292,7 +1287,7 @@ export type UpdateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByT
   | "ManagedIdentity"
   | "Key";
 export const UpdateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateAzureBareMetalStorageInstanceResponseSystemData {

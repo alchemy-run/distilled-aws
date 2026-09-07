@@ -232,7 +232,7 @@ export const LanguagesListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LanguagesListResponse>;
 
 export type ListTranslationsFormatEnum = "html" | "text";
-export const ListTranslationsFormatEnum = /*@__PURE__*/ S.String;
+export const ListTranslationsFormatEnum = S.String;
 
 export interface ListTranslationsRequest {
   /** OAuth bearer token. */

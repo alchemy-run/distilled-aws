@@ -173,7 +173,7 @@ export const InternalTracker = /*@__PURE__*/ S.suspend(() =>
 
 /** ObjectFormatName of the underlying git repository */
 export type RepositoryObjectFormatName = "sha1" | "sha256";
-export const RepositoryObjectFormatName = /*@__PURE__*/ S.String;
+export const RepositoryObjectFormatName = S.String;
 
 /** User represents a user */
 export interface User {
@@ -295,7 +295,7 @@ export const Organization = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Organization" }) as any as S.Schema<Organization>;
 
 export type TeamPermission = "none" | "read" | "write" | "admin" | "owner";
-export const TeamPermission = /*@__PURE__*/ S.String;
+export const TeamPermission = S.String;
 
 export type TeamUnitsList = Array<string>;
 export const TeamUnitsList = /*@__PURE__*/ S.Array(
@@ -625,8 +625,7 @@ export const ConvertRepoRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** ObjectFormatName of the underlying git repository */
 export type CreateCurrentUserRepoRequestObjectFormatName = "sha1" | "sha256";
-export const CreateCurrentUserRepoRequestObjectFormatName =
-  /*@__PURE__*/ S.String;
+export const CreateCurrentUserRepoRequestObjectFormatName = S.String;
 
 /** TrustModel of the repository */
 export type CreateCurrentUserRepoRequestTrustModel =
@@ -634,7 +633,7 @@ export type CreateCurrentUserRepoRequestTrustModel =
   | "collaborator"
   | "committer"
   | "collaboratorcommitter";
-export const CreateCurrentUserRepoRequestTrustModel = /*@__PURE__*/ S.String;
+export const CreateCurrentUserRepoRequestTrustModel = S.String;
 
 export interface CreateCurrentUserRepoRequest {
   /** Whether the repository should be auto-initialized? */
@@ -1540,7 +1539,7 @@ export const ActionRunnerLabelsList = /*@__PURE__*/ S.Array(
 
 /** Status indicates whether this runner is offline, or active, for example. */
 export type ActionRunnerStatus = "offline" | "idle" | "active";
-export const ActionRunnerStatus = /*@__PURE__*/ S.String;
+export const ActionRunnerStatus = S.String;
 
 /** ActionRunner represents a runner */
 export interface ActionRunner {
@@ -1974,7 +1973,7 @@ export type ListActionRunsRequestStatusItem =
   | "cancelled"
   | "skipped"
   | "blocked";
-export const ListActionRunsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListActionRunsRequestStatusItem = S.String;
 
 export type ListActionRunsRequestStatusList = Array<
   ListActionRunsRequestStatusItem | (string & {})
@@ -2056,7 +2055,7 @@ export type ListActionTasksRequestStatusItem =
   | "cancelled"
   | "skipped"
   | "blocked";
-export const ListActionTasksRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListActionTasksRequestStatusItem = S.String;
 
 export type ListActionTasksRequestStatusList = Array<
   ListActionTasksRequestStatusItem | (string & {})
@@ -2194,7 +2193,7 @@ export type MigrateRepoRequestService =
   | "codebase"
   | "forgejo"
   | "pagure";
-export const MigrateRepoRequestService = /*@__PURE__*/ S.String;
+export const MigrateRepoRequestService = S.String;
 
 export interface MigrateRepoRequest {
   auth_password?: string | Redacted.Redacted<string>;
@@ -2314,7 +2313,7 @@ export const RejectRepoTransferRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RejectRepoTransferRequest>;
 
 export type RepoAddCollaboratorRequestPermission = "read" | "write" | "admin";
-export const RepoAddCollaboratorRequestPermission = /*@__PURE__*/ S.String;
+export const RepoAddCollaboratorRequestPermission = S.String;
 
 export interface RepoAddCollaboratorRequest {
   /** owner of the repo */
@@ -2737,7 +2736,7 @@ export const RepoCancelScheduledAutoMergeResponse = /*@__PURE__*/ S.suspend(
 
 /** indicates what to do with the file */
 export type ChangeFileOperationOperation = "create" | "update" | "delete";
-export const ChangeFileOperationOperation = /*@__PURE__*/ S.String;
+export const ChangeFileOperationOperation = S.String;
 
 /** ChangeFileOperation for creating, updating or deleting a file */
 export interface ChangeFileOperation {
@@ -3474,7 +3473,7 @@ export type RepoCreateHookRequestType =
   | "feishu"
   | "wechatwork"
   | "packagist";
-export const RepoCreateHookRequestType = /*@__PURE__*/ S.String;
+export const RepoCreateHookRequestType = S.String;
 
 export interface RepoCreateHookRequest {
   /** owner of the repo */
@@ -4097,7 +4096,7 @@ export const RepoCreateReleaseRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepoCreateReleaseRequest>;
 
 export type AttachmentType = "attachment" | "external";
-export const AttachmentType = /*@__PURE__*/ S.String;
+export const AttachmentType = S.String;
 
 /** Attachment a generic attachment */
 export interface Attachment {
@@ -5184,8 +5183,7 @@ export const RepoDeleteWikiPageResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepoDeleteWikiPageResponse>;
 
 export type RepoDownloadCommitDiffOrPatchRequestDiffType = "diff" | "patch";
-export const RepoDownloadCommitDiffOrPatchRequestDiffType =
-  /*@__PURE__*/ S.String;
+export const RepoDownloadCommitDiffOrPatchRequestDiffType = S.String;
 
 export interface RepoDownloadCommitDiffOrPatchRequest {
   /** owner of the repo */
@@ -5223,8 +5221,7 @@ export const RepoDownloadCommitDiffOrPatchResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RepoDownloadCommitDiffOrPatchResponse>;
 
 export type RepoDownloadPullDiffOrPatchRequestDiffType = "diff" | "patch";
-export const RepoDownloadPullDiffOrPatchRequestDiffType =
-  /*@__PURE__*/ S.String;
+export const RepoDownloadPullDiffOrPatchRequestDiffType = S.String;
 
 export interface RepoDownloadPullDiffOrPatchRequest {
   /** owner of the repo */
@@ -6545,7 +6542,7 @@ export type RepoGetPullRequestFilesRequestWhitespace =
   | "ignore-change"
   | "ignore-eol"
   | "show-all";
-export const RepoGetPullRequestFilesRequestWhitespace = /*@__PURE__*/ S.String;
+export const RepoGetPullRequestFilesRequestWhitespace = S.String;
 
 export interface RepoGetPullRequestFilesRequest {
   /** owner of the repo */
@@ -7287,7 +7284,7 @@ export type ActivityOpType =
   | "pull_review_dismissed"
   | "pull_request_ready_for_review"
   | "auto_merge_pull_request";
-export const ActivityOpType = /*@__PURE__*/ S.String;
+export const ActivityOpType = S.String;
 
 export interface Activity {
   act_user?: User;
@@ -7839,7 +7836,7 @@ export const RepoListPinnedPullRequestsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepoListPinnedPullRequestsResponse>;
 
 export type RepoListPullRequestsRequestState = "open" | "closed" | "all";
-export const RepoListPullRequestsRequestState = /*@__PURE__*/ S.String;
+export const RepoListPullRequestsRequestState = S.String;
 
 export type RepoListPullRequestsRequestSort =
   | "oldest"
@@ -7849,7 +7846,7 @@ export type RepoListPullRequestsRequestSort =
   | "mostcomment"
   | "leastcomment"
   | "priority";
-export const RepoListPullRequestsRequestSort = /*@__PURE__*/ S.String;
+export const RepoListPullRequestsRequestSort = S.String;
 
 export type RepoListPullRequestsRequestLabelsList = Array<number>;
 export const RepoListPullRequestsRequestLabelsList = /*@__PURE__*/ S.Array(
@@ -8119,7 +8116,7 @@ export type RepoListStatusesRequestSort =
   | "leastupdate"
   | "leastindex"
   | "highestindex";
-export const RepoListStatusesRequestSort = /*@__PURE__*/ S.String;
+export const RepoListStatusesRequestSort = S.String;
 
 export type RepoListStatusesRequestState =
   | "pending"
@@ -8127,7 +8124,7 @@ export type RepoListStatusesRequestState =
   | "error"
   | "failure"
   | "warning";
-export const RepoListStatusesRequestState = /*@__PURE__*/ S.String;
+export const RepoListStatusesRequestState = S.String;
 
 export interface RepoListStatusesRequest {
   /** owner of the repo */
@@ -8183,7 +8180,7 @@ export type RepoListStatusesByRefRequestSort =
   | "leastupdate"
   | "leastindex"
   | "highestindex";
-export const RepoListStatusesByRefRequestSort = /*@__PURE__*/ S.String;
+export const RepoListStatusesByRefRequestSort = S.String;
 
 export type RepoListStatusesByRefRequestState =
   | "pending"
@@ -8191,7 +8188,7 @@ export type RepoListStatusesByRefRequestState =
   | "error"
   | "failure"
   | "warning";
-export const RepoListStatusesByRefRequestState = /*@__PURE__*/ S.String;
+export const RepoListStatusesByRefRequestState = S.String;
 
 export interface RepoListStatusesByRefRequest {
   /** owner of the repo */
@@ -8424,7 +8421,7 @@ export type RepoMergePullRequestRequestDo =
   | "squash"
   | "fast-forward-only"
   | "manually-merged";
-export const RepoMergePullRequestRequestDo = /*@__PURE__*/ S.String;
+export const RepoMergePullRequestRequestDo = S.String;
 
 export interface RepoMergePullRequestRequest {
   /** owner of the repo */
@@ -9061,7 +9058,7 @@ export const RepoUpdateFileRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepoUpdateFileRequest>;
 
 export type RepoUpdatePullRequestRequestStyle = "merge" | "rebase";
-export const RepoUpdatePullRequestRequestStyle = /*@__PURE__*/ S.String;
+export const RepoUpdatePullRequestRequestStyle = S.String;
 
 export interface RepoUpdatePullRequestRequest {
   /** owner of the repo */
@@ -9232,10 +9229,10 @@ export type SearchRepoRequestSort =
   | "id"
   | "stars"
   | "forks";
-export const SearchRepoRequestSort = /*@__PURE__*/ S.String;
+export const SearchRepoRequestSort = S.String;
 
 export type SearchRepoRequestOrder = "asc" | "desc";
-export const SearchRepoRequestOrder = /*@__PURE__*/ S.String;
+export const SearchRepoRequestOrder = S.String;
 
 export interface SearchRepoRequest {
   /** keyword */

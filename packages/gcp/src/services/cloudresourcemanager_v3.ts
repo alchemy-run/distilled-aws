@@ -75,7 +75,7 @@ export type FolderStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DELETE_REQUESTED";
-export const FolderStateEnum = /*@__PURE__*/ S.String;
+export const FolderStateEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -240,7 +240,7 @@ export type ProjectStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DELETE_REQUESTED";
-export const ProjectStateEnum = /*@__PURE__*/ S.String;
+export const ProjectStateEnum = S.String;
 
 /** A project is a high-level Google Cloud entity. It is a container for ACLs, APIs, App Engine Apps, VMs, and other Google Cloud Platform resources. */
 export interface Project {
@@ -352,7 +352,7 @@ export type TagKeyPurposeEnum =
   | "PURPOSE_UNSPECIFIED"
   | "GCE_FIREWALL"
   | "DATA_GOVERNANCE";
-export const TagKeyPurposeEnum = /*@__PURE__*/ S.String;
+export const TagKeyPurposeEnum = S.String;
 
 /** A TagKey, used to group a set of TagValues. */
 export interface TagKey {
@@ -841,7 +841,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -1158,7 +1158,7 @@ export type OrganizationStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DELETE_REQUESTED";
-export const OrganizationStateEnum = /*@__PURE__*/ S.String;
+export const OrganizationStateEnum = S.String;
 
 /** The root node in the resource hierarchy to which a particular entity's (a company, for example) resources belong. */
 export interface Organization {

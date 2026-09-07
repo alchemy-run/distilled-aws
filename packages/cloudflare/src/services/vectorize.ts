@@ -106,7 +106,7 @@ export type IndexesCreateRequestConfigIndexDimensionConfigurationMetric =
   | "euclidean"
   | "dot-product";
 export const IndexesCreateRequestConfigIndexDimensionConfigurationMetric =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IndexesCreateRequestConfigIndexDimensionConfiguration {
   /** Specifies the number of dimensions for the index */
@@ -133,7 +133,7 @@ export type IndexesCreateRequestConfigVectorizeIndexPresetConfigurationPreset =
   | "openai/text-embedding-ada-002"
   | "cohere/embed-multilingual-v2.0";
 export const IndexesCreateRequestConfigVectorizeIndexPresetConfigurationPreset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IndexesCreateRequestConfigVectorizeIndexPresetConfiguration {
   /** Specifies the preset to use for the index. */
@@ -189,7 +189,7 @@ export type IndexesCreateResponseConfigMetric =
   | "cosine"
   | "euclidean"
   | "dot-product";
-export const IndexesCreateResponseConfigMetric = /*@__PURE__*/ S.String;
+export const IndexesCreateResponseConfigMetric = S.String;
 
 export interface IndexesCreateResponseConfig {
   /** Specifies the number of dimensions for the index */
@@ -233,8 +233,7 @@ export type IndexesMetadataIndexCreateRequestIndexType =
   | "string"
   | "number"
   | "boolean";
-export const IndexesMetadataIndexCreateRequestIndexType =
-  /*@__PURE__*/ S.String;
+export const IndexesMetadataIndexCreateRequestIndexType = S.String;
 
 export interface CreateIndexMetadataIndexRequest {
   /** Identifier */
@@ -450,7 +449,7 @@ export type IndexesGetResponseConfigMetric =
   | "cosine"
   | "euclidean"
   | "dot-product";
-export const IndexesGetResponseConfigMetric = /*@__PURE__*/ S.String;
+export const IndexesGetResponseConfigMetric = S.String;
 
 export interface IndexesGetResponseConfig {
   /** Specifies the number of dimensions for the index */
@@ -491,7 +490,7 @@ export const GetIndexResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetIndexResponse>;
 
 export type IndexesInsertRequestUnparsableBehavior = "error" | "discard";
-export const IndexesInsertRequestUnparsableBehavior = /*@__PURE__*/ S.String;
+export const IndexesInsertRequestUnparsableBehavior = S.String;
 
 export interface InsertIndexRequest {
   /** Identifier */
@@ -563,7 +562,7 @@ export type IndexesListResultItemConfigMetric =
   | "cosine"
   | "euclidean"
   | "dot-product";
-export const IndexesListResultItemConfigMetric = /*@__PURE__*/ S.String;
+export const IndexesListResultItemConfigMetric = S.String;
 
 export interface IndexesListResultItemConfig {
   /** Specifies the number of dimensions for the index */
@@ -649,7 +648,7 @@ export type IndexesMetadataIndexListResponseMetadataIndexesItemIndexType =
   | "number"
   | "boolean";
 export const IndexesMetadataIndexListResponseMetadataIndexesItemIndexType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IndexesMetadataIndexListResponseMetadataIndexesItem {
   /** Specifies the type of indexed metadata property. */
@@ -741,7 +740,7 @@ export const IndexesQueryRequestVectorList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<IndexesQueryRequestVectorList>;
 
 export type IndexesQueryRequestReturnMetadata = "none" | "indexed" | "all";
-export const IndexesQueryRequestReturnMetadata = /*@__PURE__*/ S.String;
+export const IndexesQueryRequestReturnMetadata = S.String;
 
 export interface ListQueryRequest {
   /** Identifier */
@@ -904,7 +903,7 @@ export const ListVectorsIndexResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListVectorsIndexResponse>;
 
 export type IndexesUpsertRequestUnparsableBehavior = "error" | "discard";
-export const IndexesUpsertRequestUnparsableBehavior = /*@__PURE__*/ S.String;
+export const IndexesUpsertRequestUnparsableBehavior = S.String;
 
 export interface UpsertIndexRequest {
   /** Identifier */

@@ -21,7 +21,7 @@ export type ExternalDataDestinationTypeEnum =
   | "Databricks"
   | "AzureBlob"
   | "S3";
-export const ExternalDataDestinationTypeEnum = /*@__PURE__*/ S.String;
+export const ExternalDataDestinationTypeEnum = S.String;
 
 export interface CreateExternalDataDestinationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

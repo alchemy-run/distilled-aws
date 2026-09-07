@@ -94,7 +94,7 @@ export const CreateCustomNameserverRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateCustomNameserverRequest>;
 
 export type CreateResponseDnsRecordsItemType = "A" | "AAAA";
-export const CreateResponseDnsRecordsItemType = /*@__PURE__*/ S.String;
+export const CreateResponseDnsRecordsItemType = S.String;
 
 export interface CreateResponseDnsRecordsItem {
   /** DNS record type. */
@@ -117,7 +117,7 @@ export const CreateResponseDnsRecordsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateResponseDnsRecordsList>;
 
 export type CreateResponseStatus = "moved" | "pending" | "verified";
-export const CreateResponseStatus = /*@__PURE__*/ S.String;
+export const CreateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateCustomNameserverResponse {
@@ -208,7 +208,7 @@ export const GetCustomNameserverRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCustomNameserverRequest>;
 
 export type GetResultItemDnsRecordsItemType = "A" | "AAAA";
-export const GetResultItemDnsRecordsItemType = /*@__PURE__*/ S.String;
+export const GetResultItemDnsRecordsItemType = S.String;
 
 export interface GetResultItemDnsRecordsItem {
   /** DNS record type. */
@@ -231,7 +231,7 @@ export const GetResultItemDnsRecordsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetResultItemDnsRecordsList>;
 
 export type GetResultItemStatus = "moved" | "pending" | "verified";
-export const GetResultItemStatus = /*@__PURE__*/ S.String;
+export const GetResultItemStatus = S.String;
 
 export interface GetResultItem {
   /** A and AAAA records associated with the nameserver. */

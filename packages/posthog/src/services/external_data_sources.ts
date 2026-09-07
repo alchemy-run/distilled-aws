@@ -1380,7 +1380,7 @@ export type ExternalDataSourceTypeEnum =
   | "Medusa"
   | "Membrain"
   | "RecallAI";
-export const ExternalDataSourceTypeEnum = /*@__PURE__*/ S.String;
+export const ExternalDataSourceTypeEnum = S.String;
 
 /** Connection credentials. Keys depend on source_type. Add a 'schemas' array to pick which tables sync; omit it and every discovered table syncs with default settings. */
 export type CreateExternalDataSourceRequestPayloadMap = {
@@ -1393,11 +1393,11 @@ export const CreateExternalDataSourceRequestPayloadMap = /*@__PURE__*/ S.Record(
 
 /** * `warehouse` - warehouse * `direct` - direct */
 export type ExternalDataSourceAccessMethodEnum = "warehouse" | "direct";
-export const ExternalDataSourceAccessMethodEnum = /*@__PURE__*/ S.String;
+export const ExternalDataSourceAccessMethodEnum = S.String;
 
 /** * `web` - web * `api` - api * `mcp` - mcp */
 export type ExternalDataSourceCreateCreatedViaEnum = "web" | "api" | "mcp";
-export const ExternalDataSourceCreateCreatedViaEnum = /*@__PURE__*/ S.String;
+export const ExternalDataSourceCreateCreatedViaEnum = S.String;
 
 /** Destinations every table on this source writes to. Set here rather than afterwards, so the opening sync already carries them. Omit to write to the PostHog warehouse only. */
 export type CreateExternalDataSourceRequestDestinationIdsList = Array<string>;
@@ -1511,7 +1511,7 @@ export type ExternalDataSourceCreatedViaEnum =
   | "mcp"
   | "wizard"
   | "self_driving";
-export const ExternalDataSourceCreatedViaEnum = /*@__PURE__*/ S.String;
+export const ExternalDataSourceCreatedViaEnum = S.String;
 
 /** Optional fnmatch-style globs (`*` and `?` wildcards) restricting which newly discovered schema names auto-sync, matched case-insensitively against both the qualified and bare table name. Null or empty means every new schema qualifies. Only used when `auto_sync_new_schemas` is true. */
 export type CreateExternalDataSourcesCheckCdcPrerequisitesForSourceRequestAutoSyncSchemaPatternsList =
@@ -1635,7 +1635,7 @@ export const CreateExternalDataSourcesDraftCustomManifestRequest =
 
 /** * `ok` - ok * `invalid` - invalid * `model_error` - model_error */
 export type DraftStatusEnum = "ok" | "invalid" | "model_error";
-export const DraftStatusEnum = /*@__PURE__*/ S.String;
+export const DraftStatusEnum = S.String;
 
 /** Names of the resources (tables) the validated manifest exposes. Empty unless draft_status is 'ok'. */
 export type DraftCustomManifestResponseResourceNamesList = Array<string>;
@@ -2076,7 +2076,7 @@ export type ExternalDataSchemaSyncTypeEnum =
   | "webhook"
   | "cdc"
   | "xmin";
-export const ExternalDataSchemaSyncTypeEnum = /*@__PURE__*/ S.String;
+export const ExternalDataSchemaSyncTypeEnum = S.String;
 
 /** Column names for primary key deduplication. */
 export type ExternalDataSourceBulkUpdateSchemaPrimaryKeyColumnsList =
@@ -2088,7 +2088,7 @@ export const ExternalDataSourceBulkUpdateSchemaPrimaryKeyColumnsList =
 
 /** * `consolidated` - consolidated * `cdc_only` - cdc_only * `both` - both */
 export type CdcTableModeEnum = "consolidated" | "cdc_only" | "both";
-export const CdcTableModeEnum = /*@__PURE__*/ S.String;
+export const CdcTableModeEnum = S.String;
 
 /** Columns to sync. Null means sync all columns. */
 export type ExternalDataSourceBulkUpdateSchemaEnabledColumnsList =
@@ -2234,7 +2234,7 @@ export type IncrementalFieldTypeEnum =
   | "timestamp"
   | "objectid"
   | "xid";
-export const IncrementalFieldTypeEnum = /*@__PURE__*/ S.String;
+export const IncrementalFieldTypeEnum = S.String;
 
 /** * `never` - never * `5min` - 5min * `15min` - 15min * `30min` - 30min * `1hour` - 1hour * `6hour` - 6hour * `12hour` - 12hour * `24hour` - 24hour * `7day` - 7day * `30day` - 30day */
 export type ExternalDataSchemaSyncFrequencyEnum =
@@ -2248,7 +2248,7 @@ export type ExternalDataSchemaSyncFrequencyEnum =
   | "24hour"
   | "7day"
   | "30day";
-export const ExternalDataSchemaSyncFrequencyEnum = /*@__PURE__*/ S.String;
+export const ExternalDataSchemaSyncFrequencyEnum = S.String;
 
 /** Column names for primary key deduplication. */
 export type ExternalDataSchemaPrimaryKeyColumnsList = Array<string>;
@@ -2482,7 +2482,7 @@ export const ExternalDataSourcesConnectLinkRetrieveRequest =
 
 /** * `oauth` - oauth * `credentials` - credentials */
 export type AuthMethodEnum = "oauth" | "credentials";
-export const AuthMethodEnum = /*@__PURE__*/ S.String;
+export const AuthMethodEnum = S.String;
 
 export interface SourceConnectLink {
   /** The source type the link is for. */
@@ -3040,7 +3040,7 @@ export type EngineEnum =
   | "clickhouse"
   | "motherduck"
   | "trino";
-export const EngineEnum = /*@__PURE__*/ S.String;
+export const EngineEnum = S.String;
 
 export type ExternalDataSourceSerializersOutputSchemasItemMap = {
   [key: string]: unknown | undefined;

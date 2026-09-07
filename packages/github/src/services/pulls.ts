@@ -140,7 +140,7 @@ export type PullRequestStackPullRequestBase = PullRequestStackPullRequestHead;
 export const PullRequestStackPullRequestBase = PullRequestStackPullRequestHead;
 
 export type PullRequestStackPullRequestState = "open" | "closed";
-export const PullRequestStackPullRequestState = /*@__PURE__*/ S.String;
+export const PullRequestStackPullRequestState = S.String;
 
 /** A GitHub user. */
 export interface NullableSimpleUser {
@@ -334,7 +334,7 @@ export const CreateRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** State of this Pull Request. Either `open` or `closed`. */
 export type PullRequestState = "open" | "closed";
-export const PullRequestState = /*@__PURE__*/ S.String;
+export const PullRequestState = S.String;
 
 /** A GitHub user. */
 export type SimpleUser = NullableSimpleUser;
@@ -370,7 +370,7 @@ export const PullRequestLabelsList = /*@__PURE__*/ S.Array(
 
 /** The state of the milestone. */
 export type NullableMilestoneState = "open" | "closed";
-export const NullableMilestoneState = /*@__PURE__*/ S.String;
+export const NullableMilestoneState = S.String;
 
 /** A collection of related issues and pull requests. */
 export interface NullableMilestone {
@@ -429,7 +429,7 @@ export const PullRequestRequestedReviewersList = /*@__PURE__*/ S.Array(
 
 /** The ownership type of the team */
 export type TeamSimpleType = "enterprise" | "organization";
-export const TeamSimpleType = /*@__PURE__*/ S.String;
+export const TeamSimpleType = S.String;
 
 /** Groups of organization members that gives permissions on specified repositories. */
 export interface TeamSimple {
@@ -535,28 +535,28 @@ export const RepositoryTopicsList = /*@__PURE__*/ S.Array(
 
 /** The policy controlling who can create pull requests: all or collaborators_only. */
 export type RepositoryPullRequestCreationPolicy = "all" | "collaborators_only";
-export const RepositoryPullRequestCreationPolicy = /*@__PURE__*/ S.String;
+export const RepositoryPullRequestCreationPolicy = S.String;
 
 /** The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit). */
 export type RepositorySquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const RepositorySquashMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type RepositorySquashMergeCommitMessage =
   | "PR_BODY"
   | "COMMIT_MESSAGES"
   | "BLANK";
-export const RepositorySquashMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitMessage = S.String;
 
 /** The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type RepositoryMergeCommitTitle = "PR_TITLE" | "MERGE_MESSAGE";
-export const RepositoryMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type RepositoryMergeCommitMessage = "PR_BODY" | "PR_TITLE" | "BLANK";
-export const RepositoryMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitMessage = S.String;
 
 /** The status of the code search index for this repository */
 export interface RepositoryCodeSearchIndexStatus {
@@ -876,11 +876,11 @@ export type AuthorAssociation =
   | "MEMBER"
   | "NONE"
   | "OWNER";
-export const AuthorAssociation = /*@__PURE__*/ S.String;
+export const AuthorAssociation = S.String;
 
 /** The merge method to use. */
 export type AutoMergeMergeMethod = "merge" | "squash" | "rebase";
-export const AutoMergeMergeMethod = /*@__PURE__*/ S.String;
+export const AutoMergeMergeMethod = S.String;
 
 /** The status of auto merging a pull request. */
 export interface AutoMerge {
@@ -1172,15 +1172,15 @@ export const PullRequestReviewCommentLinks = /*@__PURE__*/ S.suspend(() =>
 
 /** The side of the first line of the range for a multi-line comment. */
 export type PullRequestReviewCommentStartSide = "LEFT" | "RIGHT";
-export const PullRequestReviewCommentStartSide = /*@__PURE__*/ S.String;
+export const PullRequestReviewCommentStartSide = S.String;
 
 /** The side of the diff to which the comment applies. The side of the last line of the range for a multi-line comment */
 export type PullRequestReviewCommentSide = "LEFT" | "RIGHT";
-export const PullRequestReviewCommentSide = /*@__PURE__*/ S.String;
+export const PullRequestReviewCommentSide = S.String;
 
 /** The level at which the comment is targeted, can be a diff line or a file. */
 export type PullRequestReviewCommentSubjectType = "line" | "file";
-export const PullRequestReviewCommentSubjectType = /*@__PURE__*/ S.String;
+export const PullRequestReviewCommentSubjectType = S.String;
 
 export interface ReactionRollup {
   url: string;
@@ -1303,7 +1303,7 @@ export type CreateReviewRequestEvent =
   | "APPROVE"
   | "REQUEST_CHANGES"
   | "COMMENT";
-export const CreateReviewRequestEvent = /*@__PURE__*/ S.String;
+export const CreateReviewRequestEvent = S.String;
 
 export interface CreateReviewRequestCommentsItem {
   /** The relative path to the file that necessitates a review comment. */
@@ -1434,15 +1434,15 @@ export const PullRequestReview = /*@__PURE__*/ S.suspend(() =>
 
 /** In a split diff view, the side of the diff that the pull request's changes appear on. Can be `LEFT` or `RIGHT`. Use `LEFT` for deletions that appear in red. Use `RIGHT` for additions that appear in green or unchanged lines that appear in white and are shown for context. For a multi-line comment, side represents whether the last line of the comment range is a deletion or addition. For more information, see "[Diff view options](https://docs.github.com/articles/about-comparing-branches-in-pull-requests#diff-view-options)" in the GitHub Help documentation. */
 export type CreateReviewCommentRequestSide = "LEFT" | "RIGHT";
-export const CreateReviewCommentRequestSide = /*@__PURE__*/ S.String;
+export const CreateReviewCommentRequestSide = S.String;
 
 /** **Required when using multi-line comments unless using `in_reply_to`**. The `start_side` is the starting side of the diff that the comment applies to. Can be `LEFT` or `RIGHT`. To learn more about multi-line comments, see "[Commenting on a pull request](https://docs.github.com/articles/commenting-on-a-pull-request#adding-line-comments-to-a-pull-request)" in the GitHub Help documentation. See `side` in this table for additional context. */
 export type CreateReviewCommentRequestStartSide = "LEFT" | "RIGHT" | "side";
-export const CreateReviewCommentRequestStartSide = /*@__PURE__*/ S.String;
+export const CreateReviewCommentRequestStartSide = S.String;
 
 /** The level at which the comment is targeted. */
 export type CreateReviewCommentRequestSubjectType = "line" | "file";
-export const CreateReviewCommentRequestSubjectType = /*@__PURE__*/ S.String;
+export const CreateReviewCommentRequestSubjectType = S.String;
 
 export interface CreateReviewCommentRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -1557,7 +1557,7 @@ export const DeleteReviewCommentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteReviewCommentResponse>;
 
 export type DismissReviewRequestEvent = "DISMISS";
-export const DismissReviewRequestEvent = /*@__PURE__*/ S.String;
+export const DismissReviewRequestEvent = S.String;
 
 export interface DismissReviewRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -1645,22 +1645,20 @@ export type PullRequestMergeAsyncResultStatus =
   | "merged"
   | "enqueued"
   | "failed";
-export const PullRequestMergeAsyncResultStatus = /*@__PURE__*/ S.String;
+export const PullRequestMergeAsyncResultStatus = S.String;
 
 export type PullRequestMergeAsyncResultDetailsCase0MergeMethod =
   | "default"
   | "merge"
   | "squash"
   | "rebase";
-export const PullRequestMergeAsyncResultDetailsCase0MergeMethod =
-  /*@__PURE__*/ S.String;
+export const PullRequestMergeAsyncResultDetailsCase0MergeMethod = S.String;
 
 export type PullRequestMergeAsyncResultDetailsCase0MergeAction =
   | "default"
   | "merge_queue"
   | "direct_merge";
-export const PullRequestMergeAsyncResultDetailsCase0MergeAction =
-  /*@__PURE__*/ S.String;
+export const PullRequestMergeAsyncResultDetailsCase0MergeAction = S.String;
 
 /** When an asynchronous merge request was created or already existed */
 export interface PullRequestMergeAsyncResultDetailsCase0 {
@@ -1717,7 +1715,7 @@ export type PullRequestMergeAsyncResultDetails =
   | PullRequestMergeAsyncResultDetailsCase1
   | PullRequestMergeAsyncResultDetailsCase2;
 export const PullRequestMergeAsyncResultDetails =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PullRequestMergeAsyncResultDetails>;
+  S.Unknown as any as S.Schema<PullRequestMergeAsyncResultDetails>;
 
 /** Pull Request Merge Async Result */
 export interface PullRequestMergeAsyncResult {
@@ -1845,17 +1843,17 @@ export const GetReviewCommentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetReviewCommentRequest>;
 
 export type ListRequestState = "open" | "closed" | "all";
-export const ListRequestState = /*@__PURE__*/ S.String;
+export const ListRequestState = S.String;
 
 export type ListRequestSort =
   | "created"
   | "updated"
   | "popularity"
   | "long-running";
-export const ListRequestSort = /*@__PURE__*/ S.String;
+export const ListRequestSort = S.String;
 
 export type ListRequestDirection = "asc" | "desc";
-export const ListRequestDirection = /*@__PURE__*/ S.String;
+export const ListRequestDirection = S.String;
 
 export interface ListRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -1952,15 +1950,15 @@ export const TeamPermissions = /*@__PURE__*/ S.suspend(() =>
 
 /** The ownership type of the team */
 export type TeamType = "enterprise" | "organization";
-export const TeamType = /*@__PURE__*/ S.String;
+export const TeamType = S.String;
 
 /** How the team's access to the repository was granted. This property is only present when the team is returned in a repository context, such as `GET /repos/{owner}/{repo}/teams`. */
 export type TeamAccessSource = "direct" | "organization" | "enterprise";
-export const TeamAccessSource = /*@__PURE__*/ S.String;
+export const TeamAccessSource = S.String;
 
 /** The ownership type of the team */
 export type NullableTeamSimpleType = "enterprise" | "organization";
-export const NullableTeamSimpleType = /*@__PURE__*/ S.String;
+export const NullableTeamSimpleType = S.String;
 
 /** Groups of organization members that gives permissions on specified repositories. */
 export interface NullableTeamSimple {
@@ -2226,15 +2224,15 @@ export const ReviewCommentLinks = PullRequestReviewCommentLinks;
 
 /** The side of the first line of the range for a multi-line comment. */
 export type ReviewCommentSide = "LEFT" | "RIGHT";
-export const ReviewCommentSide = /*@__PURE__*/ S.String;
+export const ReviewCommentSide = S.String;
 
 /** The side of the first line of the range for a multi-line comment. */
 export type ReviewCommentStartSide = "LEFT" | "RIGHT";
-export const ReviewCommentStartSide = /*@__PURE__*/ S.String;
+export const ReviewCommentStartSide = S.String;
 
 /** The level at which the comment is targeted, can be a diff line or a file. */
 export type ReviewCommentSubjectType = "line" | "file";
-export const ReviewCommentSubjectType = /*@__PURE__*/ S.String;
+export const ReviewCommentSubjectType = S.String;
 
 /** Legacy Review Comment */
 export interface ReviewComment {
@@ -2420,12 +2418,10 @@ export const CommitCommit = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "CommitCommit" }) as any as S.Schema<CommitCommit>;
 
 export type CommitAuthor = NullableSimpleUser | unknown;
-export const CommitAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CommitAuthor>;
+export const CommitAuthor = S.Unknown as any as S.Schema<CommitAuthor>;
 
 export type CommitCommitter = NullableSimpleUser | unknown;
-export const CommitCommitter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CommitCommitter>;
+export const CommitCommitter = S.Unknown as any as S.Schema<CommitCommitter>;
 
 export interface CommitParentsItem {
   sha: string;
@@ -2468,7 +2464,7 @@ export type DiffEntryStatus =
   | "copied"
   | "changed"
   | "unchanged";
-export const DiffEntryStatus = /*@__PURE__*/ S.String;
+export const DiffEntryStatus = S.String;
 
 /** Diff Entry */
 export interface DiffEntry {
@@ -2619,8 +2615,7 @@ export type PullRequestStackMinimalBase = AddPullRequestStackResponseBase;
 export const PullRequestStackMinimalBase = AddPullRequestStackResponseBase;
 
 export type PullRequestStackMinimalPullRequestsItemState = "open" | "closed";
-export const PullRequestStackMinimalPullRequestsItemState =
-  /*@__PURE__*/ S.String;
+export const PullRequestStackMinimalPullRequestsItemState = S.String;
 
 export interface PullRequestStackMinimalPullRequestsItemHead {
   ref: string;
@@ -2751,10 +2746,10 @@ export const PullRequestReviewRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PullRequestReviewRequest>;
 
 export type ListReviewCommentsRequestSort = "created" | "updated";
-export const ListReviewCommentsRequestSort = /*@__PURE__*/ S.String;
+export const ListReviewCommentsRequestSort = S.String;
 
 export type ListReviewCommentsRequestDirection = "asc" | "desc";
-export const ListReviewCommentsRequestDirection = /*@__PURE__*/ S.String;
+export const ListReviewCommentsRequestDirection = S.String;
 
 export interface ListReviewCommentsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -2812,10 +2807,10 @@ export type ListReviewCommentsForRepoRequestSort =
   | "created"
   | "updated"
   | "created_at";
-export const ListReviewCommentsForRepoRequestSort = /*@__PURE__*/ S.String;
+export const ListReviewCommentsForRepoRequestSort = S.String;
 
 export type ListReviewCommentsForRepoRequestDirection = "asc" | "desc";
-export const ListReviewCommentsForRepoRequestDirection = /*@__PURE__*/ S.String;
+export const ListReviewCommentsForRepoRequestDirection = S.String;
 
 export interface ListReviewCommentsForRepoRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -2912,7 +2907,7 @@ export const ListReviewsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The merge method to use. */
 export type MergeRequestMergeMethod = "merge" | "squash" | "rebase";
-export const MergeRequestMergeMethod = /*@__PURE__*/ S.String;
+export const MergeRequestMergeMethod = S.String;
 
 export interface MergeRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -2966,14 +2961,14 @@ export const PullRequestMergeResult = /*@__PURE__*/ S.suspend(() =>
 
 /** The merge method to use. */
 export type MergeAsyncRequestMergeMethod = "merge" | "squash" | "rebase";
-export const MergeAsyncRequestMergeMethod = /*@__PURE__*/ S.String;
+export const MergeAsyncRequestMergeMethod = S.String;
 
 /** The action that will be taken to merge the pull request. `direct_merge` merges the pull request directly without using a merge queue; `merge_queue` adds the pull request to a merge queue; `default` selects the most appropriate option. */
 export type MergeAsyncRequestMergeAction =
   | "default"
   | "direct_merge"
   | "merge_queue";
-export const MergeAsyncRequestMergeAction = /*@__PURE__*/ S.String;
+export const MergeAsyncRequestMergeAction = S.String;
 
 export interface MergeAsyncRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -3169,7 +3164,7 @@ export type SubmitReviewRequestEvent =
   | "APPROVE"
   | "REQUEST_CHANGES"
   | "COMMENT";
-export const SubmitReviewRequestEvent = /*@__PURE__*/ S.String;
+export const SubmitReviewRequestEvent = S.String;
 
 export interface SubmitReviewRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -3206,7 +3201,7 @@ export const SubmitReviewRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** State of this Pull Request. Either `open` or `closed`. */
 export type UpdateRequestState = "open" | "closed";
-export const UpdateRequestState = /*@__PURE__*/ S.String;
+export const UpdateRequestState = S.String;
 
 export interface UpdateRequest {
   /** The account owner of the repository. The name is not case sensitive. */

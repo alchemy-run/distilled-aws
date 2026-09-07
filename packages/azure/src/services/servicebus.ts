@@ -49,7 +49,7 @@ export type UnavailableReason =
   | "NameInUse"
   | "NameInLockdown"
   | "TooManyNamespaceInCurrentSubscription";
-export const UnavailableReason = /*@__PURE__*/ S.String;
+export const UnavailableReason = S.String;
 
 /** Description of a Check Name availability request properties. */
 export interface CheckNameAvailabilityResult {
@@ -94,8 +94,7 @@ export const CheckNamespaceNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CheckNamespaceNameAvailabilityRequest>;
 
 export type CompleteMigrationConfigMigrationRequestConfigName = "$default";
-export const CompleteMigrationConfigMigrationRequestConfigName =
-  /*@__PURE__*/ S.String;
+export const CompleteMigrationConfigMigrationRequestConfigName = S.String;
 
 export interface CompleteMigrationConfigMigrationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -171,7 +170,7 @@ export const DeleteDisasterRecoveryConfigResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DeleteDisasterRecoveryConfigResponse>;
 
 export type DeleteMigrationConfigRequestConfigName = "$default";
-export const DeleteMigrationConfigRequestConfigName = /*@__PURE__*/ S.String;
+export const DeleteMigrationConfigRequestConfigName = S.String;
 
 export interface DeleteMigrationConfigRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -626,7 +625,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -634,7 +633,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -664,14 +663,14 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 
 /** Provisioning state of the Alias(Disaster Recovery configuration) - possible values 'Accepted' or 'Succeeded' or 'Failed' */
 export type ProvisioningStateDR = "Accepted" | "Succeeded" | "Failed";
-export const ProvisioningStateDR = /*@__PURE__*/ S.String;
+export const ProvisioningStateDR = S.String;
 
 /** role of namespace in GEO DR - possible values 'Primary' or 'PrimaryNotReplicating' or 'Secondary' */
 export type RoleDisasterRecovery =
   | "Primary"
   | "PrimaryNotReplicating"
   | "Secondary";
-export const RoleDisasterRecovery = /*@__PURE__*/ S.String;
+export const RoleDisasterRecovery = S.String;
 
 /** Properties required to the Create Or Update Alias(Disaster Recovery configurations) */
 export interface ArmDisasterRecoveryProperties {
@@ -866,7 +865,7 @@ export const GetDisasterRecoveryConfigAuthorizationRuleRequest =
   }) as any as S.Schema<GetDisasterRecoveryConfigAuthorizationRuleRequest>;
 
 export type AccessRights = "Manage" | "Send" | "Listen";
-export const AccessRights = /*@__PURE__*/ S.String;
+export const AccessRights = S.String;
 
 /** The rights associated with the rule. */
 export type SBAuthorizationRulePropertiesRightsList = Array<
@@ -918,7 +917,7 @@ export const GetDisasterRecoveryConfigAuthorizationRuleResponse =
   }) as any as S.Schema<GetDisasterRecoveryConfigAuthorizationRuleResponse>;
 
 export type GetMigrationConfigRequestConfigName = "$default";
-export const GetMigrationConfigRequestConfigName = /*@__PURE__*/ S.String;
+export const GetMigrationConfigRequestConfigName = S.String;
 
 export interface GetMigrationConfigRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1034,7 +1033,7 @@ export const GetNamespaceResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The minimum TLS version for the cluster to support, e.g. '1.3' */
 export type TlsVersion = "1.0" | "1.1" | "1.2" | "1.3";
-export const TlsVersion = /*@__PURE__*/ S.String;
+export const TlsVersion = S.String;
 
 export interface UserAssignedIdentityProperties {
   /** ARM ID of user Identity selected for encryption */
@@ -1077,7 +1076,7 @@ export const EncryptionKeyVaultPropertiesList = /*@__PURE__*/ S.Array(
 
 /** Enumerates the possible value of keySource for Encryption */
 export type EncryptionKeySource = "Microsoft.KeyVault";
-export const EncryptionKeySource = /*@__PURE__*/ S.String;
+export const EncryptionKeySource = S.String;
 
 /** Properties to configure Encryption */
 export interface Encryption {
@@ -1115,7 +1114,7 @@ export type PrivateLinkConnectionStatus =
   | "Approved"
   | "Rejected"
   | "Disconnected";
-export const PrivateLinkConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateLinkConnectionStatus = S.String;
 
 /** ConnectionState information. */
 export interface ConnectionState {
@@ -1141,7 +1140,7 @@ export type EndPointProvisioningState =
   | "Succeeded"
   | "Canceled"
   | "Failed";
-export const EndPointProvisioningState = /*@__PURE__*/ S.String;
+export const EndPointProvisioningState = S.String;
 
 /** Properties of the private endpoint connection resource. */
 export interface PrivateEndpointConnectionProperties {
@@ -1203,11 +1202,11 @@ export type SBNamespacePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled"
   | "SecuredByPerimeter";
-export const SBNamespacePropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const SBNamespacePropertiesPublicNetworkAccess = S.String;
 
 /** Setting to Enable or Disable Confidential Compute */
 export type Mode = "Disabled" | "Enabled";
-export const Mode = /*@__PURE__*/ S.String;
+export const Mode = S.String;
 
 export interface ConfidentialCompute {
   /** Setting to Enable or Disable Confidential Compute */
@@ -1234,7 +1233,7 @@ export const PlatformCapabilities = /*@__PURE__*/ S.suspend(() =>
 
 /** GeoDR Role Types */
 export type GeoDRRoleType = "Primary" | "Secondary";
-export const GeoDRRoleType = /*@__PURE__*/ S.String;
+export const GeoDRRoleType = S.String;
 
 /** Namespace replication properties */
 export interface NamespaceReplicaLocation {
@@ -1277,7 +1276,7 @@ export const GeoDataReplicationProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The IP address type for the namespace. Determines whether the namespace supports IPv4 only or both IPv4 and IPv6 (dual stack). */
 export type IpAddressType = "IPv4" | "DualStack";
-export const IpAddressType = /*@__PURE__*/ S.String;
+export const IpAddressType = S.String;
 
 /** Properties of the namespace. */
 export interface SBNamespaceProperties {
@@ -1343,11 +1342,11 @@ export const SBNamespaceProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** Name of this SKU. */
 export type SkuName = "Basic" | "Standard" | "Premium";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** The billing tier of this particular SKU. */
 export type SkuTier = "Basic" | "Standard" | "Premium";
-export const SkuTier = /*@__PURE__*/ S.String;
+export const SkuTier = S.String;
 
 /** SKU of the namespace. */
 export interface SBSku {
@@ -1372,7 +1371,7 @@ export type ManagedServiceIdentityType =
   | "UserAssigned"
   | "SystemAssigned, UserAssigned"
   | "None";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** Recognized Dictionary value. */
 export interface UserAssignedIdentity {
@@ -1539,7 +1538,7 @@ export const GetNamespaceNetworkRuleSetRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Default Action for Network Rule Set */
 export type DefaultAction = "Allow" | "Deny";
-export const DefaultAction = /*@__PURE__*/ S.String;
+export const DefaultAction = S.String;
 
 /** Properties supplied for Subnet */
 export interface Subnet {
@@ -1578,7 +1577,7 @@ export const NetworkRuleSetPropertiesVirtualNetworkRulesList =
 
 /** The IP Filter Action */
 export type NWRuleSetIpRulesAction = "Allow";
-export const NWRuleSetIpRulesAction = /*@__PURE__*/ S.String;
+export const NWRuleSetIpRulesAction = S.String;
 
 /** Description of NetWorkRuleSet - IpRules resource. */
 export interface NWRuleSetIpRules {
@@ -1606,8 +1605,7 @@ export const NetworkRuleSetPropertiesIpRulesList = /*@__PURE__*/ S.Array(
 export type NetworkRuleSetPropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const NetworkRuleSetPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const NetworkRuleSetPropertiesPublicNetworkAccess = S.String;
 
 /** NetworkRuleSet properties */
 export interface NetworkRuleSetProperties {
@@ -1710,8 +1708,7 @@ export type NetworkSecurityPerimeterConfigurationProvisioningState =
   | "Deleting"
   | "Deleted"
   | "Canceled";
-export const NetworkSecurityPerimeterConfigurationProvisioningState =
-  /*@__PURE__*/ S.String;
+export const NetworkSecurityPerimeterConfigurationProvisioningState = S.String;
 
 /** Properties of Provisioning Issue */
 export interface ProvisioningIssueProperties {
@@ -1779,7 +1776,7 @@ export type ResourceAssociationAccessMode =
   | "LearningMode"
   | "AuditMode"
   | "UnspecifiedMode";
-export const ResourceAssociationAccessMode = /*@__PURE__*/ S.String;
+export const ResourceAssociationAccessMode = S.String;
 
 /** Information about resource association */
 export interface NetworkSecurityPerimeterConfigurationPropertiesResourceAssociation {
@@ -1801,7 +1798,7 @@ export const NetworkSecurityPerimeterConfigurationPropertiesResourceAssociation 
 
 /** Direction of Access Rule */
 export type NspAccessRuleDirection = "Inbound" | "Outbound";
-export const NspAccessRuleDirection = /*@__PURE__*/ S.String;
+export const NspAccessRuleDirection = S.String;
 
 /** Address prefixes in the CIDR format for inbound rules */
 export type NspAccessRulePropertiesAddressPrefixesList = Array<string>;
@@ -2236,7 +2233,7 @@ export type EntityStatus =
   | "Deleting"
   | "Renaming"
   | "Unknown";
-export const EntityStatus = /*@__PURE__*/ S.String;
+export const EntityStatus = S.String;
 
 /** The Queue Properties definition. */
 export interface SBQueueProperties {
@@ -2453,7 +2450,7 @@ export const Action = /*@__PURE__*/ S.suspend(() =>
 
 /** Rule filter types */
 export type FilterType = "SqlFilter" | "CorrelationFilter";
-export const FilterType = /*@__PURE__*/ S.String;
+export const FilterType = S.String;
 
 /** Represents a filter which is a composition of an expression and an action that is executed in the pub/sub pipeline. */
 export interface SqlFilter {
@@ -4070,7 +4067,7 @@ export const ListTopicKeysRequest = /*@__PURE__*/ S.suspend(() =>
 export type MigrationConfigsCreateAndStartMigrationRequestConfigName =
   "$default";
 export const MigrationConfigsCreateAndStartMigrationRequestConfigName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties required to the Create Migration Configuration */
 export interface MigrationConfigPropertiesPropertiesInput {
@@ -4154,7 +4151,7 @@ export const MigrationConfigsCreateAndStartMigrationResponse =
   }) as any as S.Schema<MigrationConfigsCreateAndStartMigrationResponse>;
 
 export type MigrationConfigsRevertRequestConfigName = "$default";
-export const MigrationConfigsRevertRequestConfigName = /*@__PURE__*/ S.String;
+export const MigrationConfigsRevertRequestConfigName = S.String;
 
 export interface MigrationConfigsRevertRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4226,8 +4223,7 @@ export type SBNamespacePropertiesInputPublicNetworkAccess =
   | "Enabled"
   | "Disabled"
   | "SecuredByPerimeter";
-export const SBNamespacePropertiesInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const SBNamespacePropertiesInputPublicNetworkAccess = S.String;
 
 /** Properties of the namespace. */
 export interface SBNamespacePropertiesInput {
@@ -4838,7 +4834,7 @@ export const QueuesCreateOrUpdateAuthorizationRuleResponse =
 
 /** The access key to regenerate. */
 export type KeyType = "PrimaryKey" | "SecondaryKey";
-export const KeyType = /*@__PURE__*/ S.String;
+export const KeyType = S.String;
 
 export interface RegenerateNamespaceKeysRequest {
   /** The ID of the target subscription. The value must be an UUID. */

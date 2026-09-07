@@ -127,7 +127,7 @@ export type SubscriptionStatus =
   | "INACTIVE"
   | "DELETED"
   | (string & {});
-export const SubscriptionStatus = /*@__PURE__*/ S.String;
+export const SubscriptionStatus = S.String;
 
 export interface SubscriptionDescription {
   domainId: string;
@@ -210,7 +210,7 @@ export type EncryptionType =
   | "AWS_OWNED_KEY"
   | "CUSTOMER_MANAGED_KEY"
   | (string & {});
-export const EncryptionType = /*@__PURE__*/ S.String;
+export const EncryptionType = S.String;
 
 export interface EncryptionContext {
   encryptionType: EncryptionType;
@@ -222,7 +222,7 @@ export const EncryptionContext = /*@__PURE__*/ S.suspend(() =>
   identifier: "EncryptionContext",
 }) as any as S.Schema<EncryptionContext>;
 export type DomainStatus = "ACTIVE" | "DELETING" | "DELETED" | (string & {});
-export const DomainStatus = /*@__PURE__*/ S.String;
+export const DomainStatus = S.String;
 
 export type WebAppUrl = string;
 export interface WebAppConfiguration {
@@ -437,18 +437,18 @@ export const GetMedicalScribeListeningSessionInput = /*@__PURE__*/ S.suspend(
   identifier: "GetMedicalScribeListeningSessionInput",
 }) as any as S.Schema<GetMedicalScribeListeningSessionInput>;
 export type MedicalScribeLanguageCode = "en-US" | (string & {});
-export const MedicalScribeLanguageCode = /*@__PURE__*/ S.String;
+export const MedicalScribeLanguageCode = S.String;
 
 export type MedicalScribeMediaSampleRateHertz = number;
 export type MedicalScribeMediaEncoding = "pcm" | "flac" | (string & {});
-export const MedicalScribeMediaEncoding = /*@__PURE__*/ S.String;
+export const MedicalScribeMediaEncoding = S.String;
 
 export type MedicalScribeChannelId = number;
 export type MedicalScribeParticipantRole =
   | "PATIENT"
   | "CLINICIAN"
   | (string & {});
-export const MedicalScribeParticipantRole = /*@__PURE__*/ S.String;
+export const MedicalScribeParticipantRole = S.String;
 
 export interface MedicalScribeChannelDefinition {
   channelId: number;
@@ -476,7 +476,7 @@ export type ManagedNoteTemplate =
   | "BEHAVIORAL_SOAP"
   | "PHYSICAL_SOAP"
   | (string & {});
-export const ManagedNoteTemplate = /*@__PURE__*/ S.String;
+export const ManagedNoteTemplate = S.String;
 
 export interface ManagedTemplateResponse {
   templateType?: ManagedNoteTemplate;
@@ -494,7 +494,7 @@ export type CustomTemplateBase =
   | "BIRP"
   | "BEHAVIORAL_SOAP"
   | (string & {});
-export const CustomTemplateBase = /*@__PURE__*/ S.String;
+export const CustomTemplateBase = S.String;
 
 export interface CustomTemplateResponse {
   templateType?: CustomTemplateBase;
@@ -541,7 +541,7 @@ export type PostStreamArtifactGenerationStatus =
   | "FAILED"
   | "COMPLETED"
   | (string & {});
-export const PostStreamArtifactGenerationStatus = /*@__PURE__*/ S.String;
+export const PostStreamArtifactGenerationStatus = S.String;
 
 export type ErrorMessage = string;
 export interface ArtifactDetails {
@@ -590,7 +590,7 @@ export type MedicalScribeStreamStatus =
   | "FAILED"
   | "COMPLETED"
   | (string & {});
-export const MedicalScribeStreamStatus = /*@__PURE__*/ S.String;
+export const MedicalScribeStreamStatus = S.String;
 
 export interface MedicalScribeListeningSessionDetails {
   sessionId?: string;
@@ -678,7 +678,7 @@ export type JobStatus =
   | "FAILED"
   | "SUCCEEDED"
   | (string & {});
-export const JobStatus = /*@__PURE__*/ S.String;
+export const JobStatus = S.String;
 
 export interface InsightsOutput {
   uri: string;
@@ -690,7 +690,7 @@ export type NonEmptyString = string;
 export type SensitiveNonEmptyString = string | redacted.Redacted<string>;
 export type SensitiveIsoDateString = string | redacted.Redacted<string>;
 export type Pronouns = "HE_HIM" | "SHE_HER" | "THEY_THEM" | (string & {});
-export const Pronouns = /*@__PURE__*/ S.String;
+export const Pronouns = S.String;
 
 export interface PatientInsightsPatientContext {
   patientId: string | redacted.Redacted<string>;
@@ -707,7 +707,7 @@ export const PatientInsightsPatientContext = /*@__PURE__*/ S.suspend(() =>
   identifier: "PatientInsightsPatientContext",
 }) as any as S.Schema<PatientInsightsPatientContext>;
 export type InsightsType = "PRE_VISIT" | (string & {});
-export const InsightsType = /*@__PURE__*/ S.String;
+export const InsightsType = S.String;
 
 export interface InsightsContext {
   insightsType: InsightsType;
@@ -726,10 +726,10 @@ export const PatientInsightsEncounterContext = /*@__PURE__*/ S.suspend(() =>
   identifier: "PatientInsightsEncounterContext",
 }) as any as S.Schema<PatientInsightsEncounterContext>;
 export type ProviderRole = "CLINICIAN" | (string & {});
-export const ProviderRole = /*@__PURE__*/ S.String;
+export const ProviderRole = S.String;
 
 export type Specialty = "PRIMARY_CARE" | (string & {});
-export const Specialty = /*@__PURE__*/ S.String;
+export const Specialty = S.String;
 
 export interface UserContext {
   role: ProviderRole;
@@ -980,7 +980,7 @@ export const MedicalScribeBinaryAudioEvent = /*@__PURE__*/ S.suspend(() =>
 export type MedicalScribeSessionControlEventType =
   | "END_OF_SESSION"
   | (string & {});
-export const MedicalScribeSessionControlEventType = /*@__PURE__*/ S.String;
+export const MedicalScribeSessionControlEventType = S.String;
 
 export interface MedicalScribeSessionControlEvent {
   type?: MedicalScribeSessionControlEventType;

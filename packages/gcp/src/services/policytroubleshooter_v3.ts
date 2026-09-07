@@ -256,7 +256,7 @@ export type GoogleCloudPolicytroubleshooterIamV3TroubleshootIamPolicyResponseOve
   | "UNKNOWN_INFO"
   | "UNKNOWN_CONDITIONAL";
 export const GoogleCloudPolicytroubleshooterIamV3TroubleshootIamPolicyResponseOverallAccessStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudPolicytroubleshooterIamV3AllowPolicyExplanationAllowAccessStateEnum =
   | "ALLOW_ACCESS_STATE_UNSPECIFIED"
@@ -265,14 +265,14 @@ export type GoogleCloudPolicytroubleshooterIamV3AllowPolicyExplanationAllowAcces
   | "ALLOW_ACCESS_STATE_UNKNOWN_CONDITIONAL"
   | "ALLOW_ACCESS_STATE_UNKNOWN_INFO";
 export const GoogleCloudPolicytroubleshooterIamV3AllowPolicyExplanationAllowAccessStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudPolicytroubleshooterIamV3AllowPolicyExplanationRelevanceEnum =
   | "HEURISTIC_RELEVANCE_UNSPECIFIED"
   | "HEURISTIC_RELEVANCE_NORMAL"
   | "HEURISTIC_RELEVANCE_HIGH";
 export const GoogleCloudPolicytroubleshooterIamV3AllowPolicyExplanationRelevanceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationAnnotatedAllowMembershipMembershipEnum =
   | "MEMBERSHIP_MATCHING_STATE_UNSPECIFIED"
@@ -281,14 +281,14 @@ export type GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationAnnotated
   | "MEMBERSHIP_UNKNOWN_INFO"
   | "MEMBERSHIP_UNKNOWN_UNSUPPORTED";
 export const GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationAnnotatedAllowMembershipMembershipEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationAnnotatedAllowMembershipRelevanceEnum =
   | "HEURISTIC_RELEVANCE_UNSPECIFIED"
   | "HEURISTIC_RELEVANCE_NORMAL"
   | "HEURISTIC_RELEVANCE_HIGH";
 export const GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationAnnotatedAllowMembershipRelevanceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details about whether the role binding includes the principal. */
 export interface GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationAnnotatedAllowMembership {
@@ -317,7 +317,7 @@ export type GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationRolePermi
   | "HEURISTIC_RELEVANCE_NORMAL"
   | "HEURISTIC_RELEVANCE_HIGH";
 export const GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationRolePermissionRelevanceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationRolePermissionEnum =
   | "ROLE_PERMISSION_INCLUSION_STATE_UNSPECIFIED"
@@ -325,7 +325,7 @@ export type GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationRolePermi
   | "ROLE_PERMISSION_NOT_INCLUDED"
   | "ROLE_PERMISSION_UNKNOWN_INFO";
 export const GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationRolePermissionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationAllowAccessStateEnum =
   | "ALLOW_ACCESS_STATE_UNSPECIFIED"
@@ -334,7 +334,7 @@ export type GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationAllowAcce
   | "ALLOW_ACCESS_STATE_UNKNOWN_CONDITIONAL"
   | "ALLOW_ACCESS_STATE_UNKNOWN_INFO";
 export const GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationAllowAccessStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationAnnotatedAllowMembershipMap =
   {
@@ -353,7 +353,7 @@ export type GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationRelevance
   | "HEURISTIC_RELEVANCE_NORMAL"
   | "HEURISTIC_RELEVANCE_HIGH";
 export const GoogleCloudPolicytroubleshooterIamV3AllowBindingExplanationRelevanceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information. */
 export interface GoogleTypeExpr {
@@ -532,7 +532,7 @@ export type GoogleIamV1AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const GoogleIamV1AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleIamV1AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface GoogleIamV1AuditLogConfig {
@@ -629,14 +629,14 @@ export type GoogleCloudPolicytroubleshooterIamV3ExplainedAllowPolicyAllowAccessS
   | "ALLOW_ACCESS_STATE_UNKNOWN_CONDITIONAL"
   | "ALLOW_ACCESS_STATE_UNKNOWN_INFO";
 export const GoogleCloudPolicytroubleshooterIamV3ExplainedAllowPolicyAllowAccessStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudPolicytroubleshooterIamV3ExplainedAllowPolicyRelevanceEnum =
   | "HEURISTIC_RELEVANCE_UNSPECIFIED"
   | "HEURISTIC_RELEVANCE_NORMAL"
   | "HEURISTIC_RELEVANCE_HIGH";
 export const GoogleCloudPolicytroubleshooterIamV3ExplainedAllowPolicyRelevanceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details about how a specific IAM allow policy contributed to the final access state. */
 export interface GoogleCloudPolicytroubleshooterIamV3ExplainedAllowPolicy {
@@ -710,28 +710,28 @@ export type GoogleCloudPolicytroubleshooterIamV3DenyPolicyExplanationDenyAccessS
   | "DENY_ACCESS_STATE_UNKNOWN_CONDITIONAL"
   | "DENY_ACCESS_STATE_UNKNOWN_INFO";
 export const GoogleCloudPolicytroubleshooterIamV3DenyPolicyExplanationDenyAccessStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudPolicytroubleshooterIamV3DenyPolicyExplanationRelevanceEnum =
   | "HEURISTIC_RELEVANCE_UNSPECIFIED"
   | "HEURISTIC_RELEVANCE_NORMAL"
   | "HEURISTIC_RELEVANCE_HIGH";
 export const GoogleCloudPolicytroubleshooterIamV3DenyPolicyExplanationRelevanceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedPermissionMatchingRelevanceEnum =
   | "HEURISTIC_RELEVANCE_UNSPECIFIED"
   | "HEURISTIC_RELEVANCE_NORMAL"
   | "HEURISTIC_RELEVANCE_HIGH";
 export const GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedPermissionMatchingRelevanceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedPermissionMatchingPermissionMatchingStateEnum =
   | "PERMISSION_PATTERN_MATCHING_STATE_UNSPECIFIED"
   | "PERMISSION_PATTERN_MATCHED"
   | "PERMISSION_PATTERN_NOT_MATCHED";
 export const GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedPermissionMatchingPermissionMatchingStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details about whether the permission in the request is denied by the deny rule. */
 export interface GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedPermissionMatching {
@@ -772,7 +772,7 @@ export type GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationRelevanceEnum
   | "HEURISTIC_RELEVANCE_NORMAL"
   | "HEURISTIC_RELEVANCE_HIGH";
 export const GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationRelevanceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationDenyAccessStateEnum =
   | "DENY_ACCESS_STATE_UNSPECIFIED"
@@ -781,14 +781,14 @@ export type GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationDenyAccessSta
   | "DENY_ACCESS_STATE_UNKNOWN_CONDITIONAL"
   | "DENY_ACCESS_STATE_UNKNOWN_INFO";
 export const GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationDenyAccessStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedDenyPrincipalMatchingRelevanceEnum =
   | "HEURISTIC_RELEVANCE_UNSPECIFIED"
   | "HEURISTIC_RELEVANCE_NORMAL"
   | "HEURISTIC_RELEVANCE_HIGH";
 export const GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedDenyPrincipalMatchingRelevanceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedDenyPrincipalMatchingMembershipEnum =
   | "MEMBERSHIP_MATCHING_STATE_UNSPECIFIED"
@@ -797,7 +797,7 @@ export type GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedDeny
   | "MEMBERSHIP_UNKNOWN_INFO"
   | "MEMBERSHIP_UNKNOWN_UNSUPPORTED";
 export const GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedDenyPrincipalMatchingMembershipEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details about whether the principal in the request is listed as a denied principal in the deny rule, either directly or through membership in a principal set. */
 export interface GoogleCloudPolicytroubleshooterIamV3DenyRuleExplanationAnnotatedDenyPrincipalMatching {
@@ -916,14 +916,14 @@ export type GoogleCloudPolicytroubleshooterIamV3ExplainedDenyPolicyDenyAccessSta
   | "DENY_ACCESS_STATE_UNKNOWN_CONDITIONAL"
   | "DENY_ACCESS_STATE_UNKNOWN_INFO";
 export const GoogleCloudPolicytroubleshooterIamV3ExplainedDenyPolicyDenyAccessStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudPolicytroubleshooterIamV3ExplainedDenyPolicyRelevanceEnum =
   | "HEURISTIC_RELEVANCE_UNSPECIFIED"
   | "HEURISTIC_RELEVANCE_NORMAL"
   | "HEURISTIC_RELEVANCE_HIGH";
 export const GoogleCloudPolicytroubleshooterIamV3ExplainedDenyPolicyRelevanceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -1058,7 +1058,7 @@ export type GoogleCloudPolicytroubleshooterIamV3ExplainedDenyResourceRelevanceEn
   | "HEURISTIC_RELEVANCE_NORMAL"
   | "HEURISTIC_RELEVANCE_HIGH";
 export const GoogleCloudPolicytroubleshooterIamV3ExplainedDenyResourceRelevanceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudPolicytroubleshooterIamV3ExplainedDenyResourceDenyAccessStateEnum =
   | "DENY_ACCESS_STATE_UNSPECIFIED"
@@ -1067,7 +1067,7 @@ export type GoogleCloudPolicytroubleshooterIamV3ExplainedDenyResourceDenyAccessS
   | "DENY_ACCESS_STATE_UNKNOWN_CONDITIONAL"
   | "DENY_ACCESS_STATE_UNKNOWN_INFO";
 export const GoogleCloudPolicytroubleshooterIamV3ExplainedDenyResourceDenyAccessStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details about how a specific resource contributed to the deny policy evaluation. */
 export interface GoogleCloudPolicytroubleshooterIamV3ExplainedDenyResource {

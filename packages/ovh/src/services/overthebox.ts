@@ -172,7 +172,7 @@ export const CreateOverTheBoxDeviceActionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of a task. */
 export type OverTheBoxActionStatusEnum = "doing" | "done" | "error" | "todo";
-export const OverTheBoxActionStatusEnum = /*@__PURE__*/ S.String;
+export const OverTheBoxActionStatusEnum = S.String;
 
 /** Device action */
 export interface OverTheBoxDeviceAction {
@@ -433,7 +433,7 @@ export type OverTheBoxRemoteAccessStatusEnum =
   | "recreating"
   | "toDelete"
   | "toRecreate";
-export const OverTheBoxRemoteAccessStatusEnum = /*@__PURE__*/ S.String;
+export const OverTheBoxRemoteAccessStatusEnum = S.String;
 
 /** If authorized, a remote access will expose a port, allowing an access to the device remotely */
 export interface OverTheBoxRemoteAccess {
@@ -596,11 +596,11 @@ export const GetOverTheBoxRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the service */
 export type OverTheBoxAvailableStatusEnum = "disabled" | "enabled";
-export const OverTheBoxAvailableStatusEnum = /*@__PURE__*/ S.String;
+export const OverTheBoxAvailableStatusEnum = S.String;
 
 /** Configuration mode of the service */
 export type OverTheBoxServiceConfigurationModeEnum = "autoconfigure" | "local";
-export const OverTheBoxServiceConfigurationModeEnum = /*@__PURE__*/ S.String;
+export const OverTheBoxServiceConfigurationModeEnum = S.String;
 
 /** Parameters required to query metrics from OpenTSDB */
 export interface OverTheBoxGraphEndpoint {
@@ -658,14 +658,14 @@ export type OverTheBoxServiceStatusEnum =
   | "suspended"
   | "toCreate"
   | "toDelete";
-export const OverTheBoxServiceStatusEnum = /*@__PURE__*/ S.String;
+export const OverTheBoxServiceStatusEnum = S.String;
 
 /** Tunnel mode of the service. */
 export type OverTheBoxTunnelModeEnum =
   | "glorytun"
   | "glorytun_hybrid"
   | "glorytun_mud";
-export const OverTheBoxTunnelModeEnum = /*@__PURE__*/ S.String;
+export const OverTheBoxTunnelModeEnum = S.String;
 
 /** Service */
 export interface OverTheBoxServiceWithIAM {
@@ -793,7 +793,7 @@ export type OverTheBoxMultipathStatusEnum =
   | "master"
   | "off"
   | "on";
-export const OverTheBoxMultipathStatusEnum = /*@__PURE__*/ S.String;
+export const OverTheBoxMultipathStatusEnum = S.String;
 
 /** Infos about a network interface */
 export interface OverTheBoxDeviceInterface {
@@ -1046,7 +1046,7 @@ export const GetOverTheBoxIpsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** IP geolocation */
 export type OtbServiceIpGeolocationEnum = "fr";
-export const OtbServiceIpGeolocationEnum = /*@__PURE__*/ S.String;
+export const OtbServiceIpGeolocationEnum = S.String;
 
 /** IP status */
 export type OtbServiceIpStatusEnum =
@@ -1055,11 +1055,11 @@ export type OtbServiceIpStatusEnum =
   | "pendingRelease"
   | "released"
   | "reserved";
-export const OtbServiceIpStatusEnum = /*@__PURE__*/ S.String;
+export const OtbServiceIpStatusEnum = S.String;
 
 /** IP version */
 export type OtbServiceIpVersionEnum = "v4" | "v6";
-export const OtbServiceIpVersionEnum = /*@__PURE__*/ S.String;
+export const OtbServiceIpVersionEnum = S.String;
 
 /** Service IP details */
 export interface OtbServiceIp {
@@ -1164,7 +1164,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 export type ServiceStateEnum =
   | "autorenewInProgress"
@@ -1173,7 +1173,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -1239,7 +1239,7 @@ export const GetOverTheBoxTaskRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of a task. */
 export type OverTheBoxTaskStatusEnum = "doing" | "done" | "error" | "todo";
-export const OverTheBoxTaskStatusEnum = /*@__PURE__*/ S.String;
+export const OverTheBoxTaskStatusEnum = S.String;
 
 /** Task */
 export interface OverTheBoxTask {
@@ -1316,7 +1316,7 @@ export const ListOverTheBoxAvailableOffersRequest = /*@__PURE__*/ S.suspend(
 
 /** Enum of Offers */
 export type PriceOverTheBoxOfferEnum = "business.v1" | "plus.v1" | "starter.v1";
-export const PriceOverTheBoxOfferEnum = /*@__PURE__*/ S.String;
+export const PriceOverTheBoxOfferEnum = S.String;
 
 export type ListOverTheBoxAvailableOffersResponseBodyList =
   Array<PriceOverTheBoxOfferEnum>;
@@ -1624,7 +1624,7 @@ export type OrderCurrencyCodeEnum =
   | "USD"
   | "XOF"
   | "points";
-export const OrderCurrencyCodeEnum = /*@__PURE__*/ S.String;
+export const OrderCurrencyCodeEnum = S.String;
 
 /** Price with it's currency and textual representation */
 export interface OrderPrice {
@@ -1753,7 +1753,7 @@ export const ListOverTheBoxRemoteAccessesResponse = /*@__PURE__*/ S.suspend(
 
 /** Serie Name */
 export type OtbDeviceStatisticsTypeEnum = "load" | "memory_free" | "traffic";
-export const OtbDeviceStatisticsTypeEnum = /*@__PURE__*/ S.String;
+export const OtbDeviceStatisticsTypeEnum = S.String;
 
 /** Statistics Period */
 export type OtbDeviceStatisticsPeriodEnum =
@@ -1761,7 +1761,7 @@ export type OtbDeviceStatisticsPeriodEnum =
   | "hourly"
   | "monthly"
   | "weekly";
-export const OtbDeviceStatisticsPeriodEnum = /*@__PURE__*/ S.String;
+export const OtbDeviceStatisticsPeriodEnum = S.String;
 
 export interface ListOverTheBoxStatisticsRequest {
   /** The internal name of your overTheBox offer */
@@ -1833,7 +1833,7 @@ export const OtbDeviceStatisticsTagsList = /*@__PURE__*/ S.Array(
 
 /** Serie Unit */
 export type OtbDeviceStatisticsUnitEnum = "bps" | "byte" | "n/a";
-export const OtbDeviceStatisticsUnitEnum = /*@__PURE__*/ S.String;
+export const OtbDeviceStatisticsUnitEnum = S.String;
 
 /** Device Statistics Datapoints */
 export interface OtbDeviceStatistics {

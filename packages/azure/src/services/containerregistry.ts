@@ -51,7 +51,7 @@ export const CancelRunResponse = /*@__PURE__*/ S.suspend(() =>
 /** The resource type for Container Registry. */
 export type ContainerRegistryResourceType =
   "Microsoft.ContainerRegistry/registries";
-export const ContainerRegistryResourceType = /*@__PURE__*/ S.String;
+export const ContainerRegistryResourceType = S.String;
 
 export interface CheckRegistryNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -154,7 +154,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -162,7 +162,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -198,7 +198,7 @@ export type ProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** The properties of a cache rule. */
 export interface CacheRuleProperties {
@@ -255,7 +255,7 @@ export type ConnectedRegistryMode =
   | "ReadOnly"
   | "Registry"
   | "Mirror";
-export const ConnectedRegistryMode = /*@__PURE__*/ S.String;
+export const ConnectedRegistryMode = S.String;
 
 /** The sync properties of the connected registry with its parent. */
 export interface SyncPropertiesInput {
@@ -317,11 +317,11 @@ export type LoggingPropertiesLogLevel =
   | "Warning"
   | "Error"
   | "None";
-export const LoggingPropertiesLogLevel = /*@__PURE__*/ S.String;
+export const LoggingPropertiesLogLevel = S.String;
 
 /** Indicates whether audit logs are enabled on the connected registry. */
 export type LoggingPropertiesAuditLogStatus = "Enabled" | "Disabled";
-export const LoggingPropertiesAuditLogStatus = /*@__PURE__*/ S.String;
+export const LoggingPropertiesAuditLogStatus = S.String;
 
 /** The logging properties of the connected registry. */
 export interface LoggingProperties {
@@ -431,11 +431,11 @@ export const CreateConnectedRegistryRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The current connection state of the connected registry. */
 export type ConnectionState = "Online" | "Offline" | "Syncing" | "Unhealthy";
-export const ConnectionState = /*@__PURE__*/ S.String;
+export const ConnectionState = S.String;
 
 /** The activation status of the connected registry. */
 export type ActivationStatus = "Active" | "Inactive";
-export const ActivationStatus = /*@__PURE__*/ S.String;
+export const ActivationStatus = S.String;
 
 /** The activation properties of the connected registry. */
 export interface ActivationProperties {
@@ -501,11 +501,11 @@ export const ConnectedRegistryPropertiesClientTokenIdsList =
 
 /** Indicates whether HTTPS is enabled for the login server. */
 export type TlsStatus = "Enabled" | "Disabled";
-export const TlsStatus = /*@__PURE__*/ S.String;
+export const TlsStatus = S.String;
 
 /** The type of certificate location. */
 export type CertificateType = "LocalDirectory";
-export const CertificateType = /*@__PURE__*/ S.String;
+export const CertificateType = S.String;
 
 /** The TLS certificate properties of the connected registry login server. */
 export interface TlsCertificateProperties {
@@ -670,11 +670,11 @@ export const CreateConnectedRegistryResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The name of the credential. */
 export type CredentialName = "Credential1";
-export const CredentialName = /*@__PURE__*/ S.String;
+export const CredentialName = S.String;
 
 /** The health status of credential. */
 export type CredentialHealthStatus = "Healthy" | "Unhealthy";
-export const CredentialHealthStatus = /*@__PURE__*/ S.String;
+export const CredentialHealthStatus = S.String;
 
 /** The health of the auth credential. */
 export interface CredentialHealth {
@@ -747,7 +747,7 @@ export type ResourceIdentityType =
   | "UserAssigned"
   | "SystemAssigned, UserAssigned"
   | "None";
-export const ResourceIdentityType = /*@__PURE__*/ S.String;
+export const ResourceIdentityType = S.String;
 
 export type UserIdentityPropertiesInput = LoginServerPropertiesInput;
 export const UserIdentityPropertiesInput = LoginServerPropertiesInput;
@@ -929,11 +929,11 @@ export const CreateRegistryRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** The default action of allow or deny when no other rules match. */
 export type NetworkRuleSetDefaultAction = "Allow" | "Deny";
-export const NetworkRuleSetDefaultAction = /*@__PURE__*/ S.String;
+export const NetworkRuleSetDefaultAction = S.String;
 
 /** The action of IP ACL rule. */
 export type IPRuleAction = "Allow";
-export const IPRuleAction = /*@__PURE__*/ S.String;
+export const IPRuleAction = S.String;
 
 /** IP rule with specific IP or IP range in CIDR format. */
 export interface IPRule {
@@ -971,7 +971,7 @@ export const NetworkRuleSet = /*@__PURE__*/ S.suspend(() =>
 
 /** The value that indicates whether the policy is enabled or not. */
 export type QuarantinePolicyStatus = "enabled" | "disabled";
-export const QuarantinePolicyStatus = /*@__PURE__*/ S.String;
+export const QuarantinePolicyStatus = S.String;
 
 /** The quarantine policy for a container registry. */
 export interface QuarantinePolicy {
@@ -988,11 +988,11 @@ export const QuarantinePolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of trust policy. */
 export type TrustPolicyType = "Notary";
-export const TrustPolicyType = /*@__PURE__*/ S.String;
+export const TrustPolicyType = S.String;
 
 /** The value that indicates whether the policy is enabled or not. */
 export type TrustPolicyStatus = "enabled" | "disabled";
-export const TrustPolicyStatus = /*@__PURE__*/ S.String;
+export const TrustPolicyStatus = S.String;
 
 /** The content trust policy for a container registry. */
 export interface TrustPolicy {
@@ -1010,7 +1010,7 @@ export const TrustPolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** The value that indicates whether the policy is enabled or not. */
 export type RetentionPolicyInputStatus = "enabled" | "disabled";
-export const RetentionPolicyInputStatus = /*@__PURE__*/ S.String;
+export const RetentionPolicyInputStatus = S.String;
 
 /** The retention policy for a container registry. */
 export interface RetentionPolicyInput {
@@ -1030,7 +1030,7 @@ export const RetentionPolicyInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The value that indicates whether the policy is enabled or not. */
 export type ExportPolicyStatus = "enabled" | "disabled";
-export const ExportPolicyStatus = /*@__PURE__*/ S.String;
+export const ExportPolicyStatus = S.String;
 
 /** The export policy for a container registry. */
 export interface ExportPolicy {
@@ -1045,7 +1045,7 @@ export const ExportPolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** The value that indicates whether the policy is enabled or not. */
 export type AzureADAuthenticationAsArmPolicyStatus = "enabled" | "disabled";
-export const AzureADAuthenticationAsArmPolicyStatus = /*@__PURE__*/ S.String;
+export const AzureADAuthenticationAsArmPolicyStatus = S.String;
 
 /** The policy for using Azure Resource Manager audience token for a container registry. */
 export interface AzureADAuthenticationAsArmPolicy {
@@ -1087,7 +1087,7 @@ export const PoliciesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether or not the encryption is enabled for container registry. */
 export type EncryptionStatus = "enabled" | "disabled";
-export const EncryptionStatus = /*@__PURE__*/ S.String;
+export const EncryptionStatus = S.String;
 
 export interface KeyVaultPropertiesInput {
   /** Key vault uri to access the encryption key. */
@@ -1121,25 +1121,23 @@ export const EncryptionPropertyInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether or not public network access is allowed for the container registry. */
 export type RegistryPropertiesInputPublicNetworkAccess = "Enabled" | "Disabled";
-export const RegistryPropertiesInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const RegistryPropertiesInputPublicNetworkAccess = S.String;
 
 /** Whether to allow trusted Azure services to access a network restricted registry. */
 export type RegistryPropertiesInputNetworkRuleBypassOptions =
   | "AzureServices"
   | "None";
-export const RegistryPropertiesInputNetworkRuleBypassOptions =
-  /*@__PURE__*/ S.String;
+export const RegistryPropertiesInputNetworkRuleBypassOptions = S.String;
 
 /** Whether or not zone redundancy is enabled for this container registry */
 export type RegistryPropertiesInputZoneRedundancy = "Enabled" | "Disabled";
-export const RegistryPropertiesInputZoneRedundancy = /*@__PURE__*/ S.String;
+export const RegistryPropertiesInputZoneRedundancy = S.String;
 
 /** Determines registry role assignment mode. */
 export type RegistryPropertiesInputRoleAssignmentMode =
   | "AbacRepositoryPermissions"
   | "LegacyRegistryPermissions";
-export const RegistryPropertiesInputRoleAssignmentMode = /*@__PURE__*/ S.String;
+export const RegistryPropertiesInputRoleAssignmentMode = S.String;
 
 /** The properties of a container registry. */
 export interface RegistryPropertiesInput {
@@ -1194,11 +1192,11 @@ export const RegistryPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The SKU name of the container registry. Required for registry creation. */
 export type SkuName = "Classic" | "Basic" | "Standard" | "Premium";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** The SKU tier based on the SKU name. */
 export type SkuTier = "Classic" | "Basic" | "Standard" | "Premium";
-export const SkuTier = /*@__PURE__*/ S.String;
+export const SkuTier = S.String;
 
 /** The SKU of a container registry. */
 export interface Sku {
@@ -1282,7 +1280,7 @@ export const Status = /*@__PURE__*/ S.suspend(() =>
 
 /** The value that indicates whether the policy is enabled or not. */
 export type RetentionPolicyStatus = "enabled" | "disabled";
-export const RetentionPolicyStatus = /*@__PURE__*/ S.String;
+export const RetentionPolicyStatus = S.String;
 
 /** The retention policy for a container registry. */
 export interface RetentionPolicy {
@@ -1393,11 +1391,11 @@ export type ConnectionStatus =
   | "Pending"
   | "Rejected"
   | "Disconnected";
-export const ConnectionStatus = /*@__PURE__*/ S.String;
+export const ConnectionStatus = S.String;
 
 /** A message indicating if changes on the service provider require any updates on the consumer. */
 export type ActionsRequired = "None" | "Recreate";
-export const ActionsRequired = /*@__PURE__*/ S.String;
+export const ActionsRequired = S.String;
 
 /** The state of a private link service connection. */
 export interface PrivateLinkServiceConnectionState {
@@ -1474,24 +1472,23 @@ export const RegistryPropertiesPrivateEndpointConnectionsList =
 
 /** Whether or not public network access is allowed for the container registry. */
 export type RegistryPropertiesPublicNetworkAccess = "Enabled" | "Disabled";
-export const RegistryPropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const RegistryPropertiesPublicNetworkAccess = S.String;
 
 /** Whether to allow trusted Azure services to access a network restricted registry. */
 export type RegistryPropertiesNetworkRuleBypassOptions =
   | "AzureServices"
   | "None";
-export const RegistryPropertiesNetworkRuleBypassOptions =
-  /*@__PURE__*/ S.String;
+export const RegistryPropertiesNetworkRuleBypassOptions = S.String;
 
 /** Whether or not zone redundancy is enabled for this container registry */
 export type RegistryPropertiesZoneRedundancy = "Enabled" | "Disabled";
-export const RegistryPropertiesZoneRedundancy = /*@__PURE__*/ S.String;
+export const RegistryPropertiesZoneRedundancy = S.String;
 
 /** Determines registry role assignment mode. */
 export type RegistryPropertiesRoleAssignmentMode =
   | "AbacRepositoryPermissions"
   | "LegacyRegistryPermissions";
-export const RegistryPropertiesRoleAssignmentMode = /*@__PURE__*/ S.String;
+export const RegistryPropertiesRoleAssignmentMode = S.String;
 
 /** The properties of a container registry. */
 export interface RegistryProperties {
@@ -1607,7 +1604,7 @@ export const CreateReplicationRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Whether or not zone redundancy is enabled for this container registry replication */
 export type ReplicationPropertiesInputZoneRedundancy = "Enabled" | "Disabled";
-export const ReplicationPropertiesInputZoneRedundancy = /*@__PURE__*/ S.String;
+export const ReplicationPropertiesInputZoneRedundancy = S.String;
 
 /** The properties of a replication. */
 export interface ReplicationPropertiesInput {
@@ -1673,7 +1670,7 @@ export const CreateReplicationResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Whether or not zone redundancy is enabled for this container registry replication */
 export type ReplicationPropertiesZoneRedundancy = "Enabled" | "Disabled";
-export const ReplicationPropertiesZoneRedundancy = /*@__PURE__*/ S.String;
+export const ReplicationPropertiesZoneRedundancy = S.String;
 
 /** The properties of a replication. */
 export interface ReplicationProperties {
@@ -1848,7 +1845,7 @@ export type IdentityPropertiesType =
   | "UserAssigned"
   | "SystemAssigned, UserAssigned"
   | "None";
-export const IdentityPropertiesType = /*@__PURE__*/ S.String;
+export const IdentityPropertiesType = S.String;
 
 /** The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/ providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
 export type IdentityPropertiesUserAssignedIdentitiesMap_2 = {
@@ -1886,19 +1883,19 @@ export const IdentityProperties_2 = /*@__PURE__*/ S.suspend(() =>
 
 /** The current status of task. */
 export type TaskPropertiesInputStatus = "Disabled" | "Enabled";
-export const TaskPropertiesInputStatus = /*@__PURE__*/ S.String;
+export const TaskPropertiesInputStatus = S.String;
 
 /** The operating system type required for the run. */
 export type PlatformPropertiesOs = "Windows" | "Linux";
-export const PlatformPropertiesOs = /*@__PURE__*/ S.String;
+export const PlatformPropertiesOs = S.String;
 
 /** The OS architecture. */
 export type PlatformPropertiesArchitecture = "amd64" | "x86" | "arm";
-export const PlatformPropertiesArchitecture = /*@__PURE__*/ S.String;
+export const PlatformPropertiesArchitecture = S.String;
 
 /** Variant of the CPU. */
 export type PlatformPropertiesVariant = "v6" | "v7" | "v8";
-export const PlatformPropertiesVariant = /*@__PURE__*/ S.String;
+export const PlatformPropertiesVariant = S.String;
 
 /** The platform properties against which the run has to happen. */
 export interface PlatformProperties {
@@ -1934,7 +1931,7 @@ export const AgentProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the step. */
 export type TaskStepPropertiesInputType = "Docker" | "FileTask" | "EncodedTask";
-export const TaskStepPropertiesInputType = /*@__PURE__*/ S.String;
+export const TaskStepPropertiesInputType = S.String;
 
 /** Base properties for any task step. */
 export interface TaskStepPropertiesInput {
@@ -1957,7 +1954,7 @@ export const TaskStepPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The current status of trigger. */
 export type TimerTriggerStatus = "Disabled" | "Enabled";
-export const TimerTriggerStatus = /*@__PURE__*/ S.String;
+export const TimerTriggerStatus = S.String;
 
 /** The properties of a timer trigger. */
 export interface TimerTrigger {
@@ -1986,11 +1983,11 @@ export const TriggerPropertiesTimerTriggersList = /*@__PURE__*/ S.Array(
 export type SourcePropertiesSourceControlType =
   | "Github"
   | "VisualStudioTeamService";
-export const SourcePropertiesSourceControlType = /*@__PURE__*/ S.String;
+export const SourcePropertiesSourceControlType = S.String;
 
 /** The type of Auth token. */
 export type AuthInfoTokenType = "PAT" | "OAuth";
-export const AuthInfoTokenType = /*@__PURE__*/ S.String;
+export const AuthInfoTokenType = S.String;
 
 /** The authorization properties for accessing the source code repository. */
 export interface AuthInfo {
@@ -2038,7 +2035,7 @@ export const SourceProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SourceProperties>;
 
 export type SourceTriggerSourceTriggerEventsItem = "commit" | "pullrequest";
-export const SourceTriggerSourceTriggerEventsItem = /*@__PURE__*/ S.String;
+export const SourceTriggerSourceTriggerEventsItem = S.String;
 
 /** The source event corresponding to the trigger. */
 export type SourceTriggerSourceTriggerEventsList = Array<
@@ -2050,7 +2047,7 @@ export const SourceTriggerSourceTriggerEventsList = /*@__PURE__*/ S.Array(
 
 /** The current status of trigger. */
 export type SourceTriggerStatus = "Disabled" | "Enabled";
-export const SourceTriggerStatus = /*@__PURE__*/ S.String;
+export const SourceTriggerStatus = S.String;
 
 /** The properties of a source based trigger. */
 export interface SourceTrigger {
@@ -2080,11 +2077,11 @@ export const TriggerPropertiesSourceTriggersList = /*@__PURE__*/ S.Array(
 
 /** The type of the auto trigger for base image dependency updates. */
 export type BaseImageTriggerBaseImageTriggerType = "All" | "Runtime";
-export const BaseImageTriggerBaseImageTriggerType = /*@__PURE__*/ S.String;
+export const BaseImageTriggerBaseImageTriggerType = S.String;
 
 /** The current status of trigger. */
 export type BaseImageTriggerStatus = "Disabled" | "Enabled";
-export const BaseImageTriggerStatus = /*@__PURE__*/ S.String;
+export const BaseImageTriggerStatus = S.String;
 
 /** The trigger based on base image dependency. */
 export interface BaseImageTrigger {
@@ -2126,7 +2123,7 @@ export const TriggerProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The authentication mode which determines the source registry login scope. The credentials for the source registry will be generated using the given scope. These credentials will be used to login to the source registry during the run. */
 export type SourceRegistryCredentialsLoginMode = "None" | "Default";
-export const SourceRegistryCredentialsLoginMode = /*@__PURE__*/ S.String;
+export const SourceRegistryCredentialsLoginMode = S.String;
 
 /** Describes the credential parameters for accessing the source registry. */
 export interface SourceRegistryCredentials {
@@ -2143,7 +2140,7 @@ export const SourceRegistryCredentials = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the secret object which determines how the value of the secret object has to be interpreted. */
 export type SecretObjectType = "Opaque" | "Vaultsecret";
-export const SecretObjectType = /*@__PURE__*/ S.String;
+export const SecretObjectType = S.String;
 
 /** Describes the properties of a secret object value. */
 export interface SecretObject {
@@ -2287,19 +2284,19 @@ export type TaskPropertiesProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const TaskPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const TaskPropertiesProvisioningState = S.String;
 
 /** The current status of task. */
 export type TaskPropertiesStatus = "Disabled" | "Enabled";
-export const TaskPropertiesStatus = /*@__PURE__*/ S.String;
+export const TaskPropertiesStatus = S.String;
 
 /** The type of the step. */
 export type TaskStepPropertiesType = "Docker" | "FileTask" | "EncodedTask";
-export const TaskStepPropertiesType = /*@__PURE__*/ S.String;
+export const TaskStepPropertiesType = S.String;
 
 /** The type of the base image dependency. */
 export type BaseImageDependencyType = "BuildTime" | "RunTime";
-export const BaseImageDependencyType = /*@__PURE__*/ S.String;
+export const BaseImageDependencyType = S.String;
 
 /** Properties that describe a base image dependency. */
 export interface BaseImageDependency {
@@ -2424,7 +2421,7 @@ export const CreateTaskResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateTaskResponse>;
 
 export type TokenCertificateName = "certificate1" | "certificate2";
-export const TokenCertificateName = /*@__PURE__*/ S.String;
+export const TokenCertificateName = S.String;
 
 /** The properties of a certificate used for authenticating a token. */
 export interface TokenCertificate {
@@ -2456,7 +2453,7 @@ export const TokenCredentialsPropertiesInputCertificatesList =
 
 /** The password name "password1" or "password2" */
 export type TokenPasswordName = "password1" | "password2";
-export const TokenPasswordName = /*@__PURE__*/ S.String;
+export const TokenPasswordName = S.String;
 
 /** The password that will be used for authenticating the token of a container registry. */
 export interface TokenPasswordInput {
@@ -2500,7 +2497,7 @@ export const TokenCredentialsPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the token example enabled or disabled. */
 export type TokenStatus = "enabled" | "disabled";
-export const TokenStatus = /*@__PURE__*/ S.String;
+export const TokenStatus = S.String;
 
 /** The properties of a token. */
 export interface TokenPropertiesInput {
@@ -2665,7 +2662,7 @@ export const WebhookPropertiesCreateParametersCustomHeadersMap =
 
 /** The status of the webhook at the time the operation was called. */
 export type WebhookStatus = "enabled" | "disabled";
-export const WebhookStatus = /*@__PURE__*/ S.String;
+export const WebhookStatus = S.String;
 
 export type WebhookAction =
   | "push"
@@ -2673,7 +2670,7 @@ export type WebhookAction =
   | "quarantine"
   | "chart_push"
   | "chart_delete";
-export const WebhookAction = /*@__PURE__*/ S.String;
+export const WebhookAction = S.String;
 
 /** The list of actions that trigger the webhook to post notifications. */
 export type WebhookPropertiesCreateParametersActionsList = Array<
@@ -3728,7 +3725,7 @@ export type RunPropertiesStatus =
   | "Canceled"
   | "Error"
   | "Timeout";
-export const RunPropertiesStatus = /*@__PURE__*/ S.String;
+export const RunPropertiesStatus = S.String;
 
 /** The type of run. */
 export type RunPropertiesRunType =
@@ -3736,7 +3733,7 @@ export type RunPropertiesRunType =
   | "QuickRun"
   | "AutoBuild"
   | "AutoRun";
-export const RunPropertiesRunType = /*@__PURE__*/ S.String;
+export const RunPropertiesRunType = S.String;
 
 /** Properties for a registry image. */
 export interface ImageDescriptor {
@@ -3836,7 +3833,7 @@ export type RunPropertiesProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const RunPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const RunPropertiesProvisioningState = S.String;
 
 export interface TimerTriggerDescriptor {
   /** The timer trigger name that caused the run. */
@@ -4378,7 +4375,7 @@ export const ImportRegistryImageRequestUntaggedTargetRepositoriesList =
 
 /** When Force, any existing target tags will be overwritten. When NoForce, any existing target tags will fail the operation before any copying begins. */
 export type ImportRegistryImageRequestMode = "NoForce" | "Force";
-export const ImportRegistryImageRequestMode = /*@__PURE__*/ S.String;
+export const ImportRegistryImageRequestMode = S.String;
 
 export interface ImportRegistryImageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5007,7 +5004,7 @@ export const ListRegistryCredentialsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The password name. */
 export type PasswordName = "password" | "password2";
-export const PasswordName = /*@__PURE__*/ S.String;
+export const PasswordName = S.String;
 
 /** The login password for the container registry. */
 export interface RegistryPassword {
@@ -5150,7 +5147,7 @@ export const ListRegistryUsagesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The unit of measurement. */
 export type RegistryUsageUnit = "Count" | "Bytes";
-export const RegistryUsageUnit = /*@__PURE__*/ S.String;
+export const RegistryUsageUnit = S.String;
 
 /** The quota usage for a container registry. */
 export interface RegistryUsage {
@@ -6395,20 +6392,20 @@ export const UpdateRegistryRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Whether or not public network access is allowed for the container registry. */
 export type PublicNetworkAccess = "Enabled" | "Disabled";
-export const PublicNetworkAccess = /*@__PURE__*/ S.String;
+export const PublicNetworkAccess = S.String;
 
 /** Whether to allow trusted Azure services to access a network restricted registry. */
 export type RegistryPropertiesUpdateParametersInputNetworkRuleBypassOptions =
   | "AzureServices"
   | "None";
 export const RegistryPropertiesUpdateParametersInputNetworkRuleBypassOptions =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Determines registry role assignment mode. */
 export type RoleAssignmentMode =
   | "AbacRepositoryPermissions"
   | "LegacyRegistryPermissions";
-export const RoleAssignmentMode = /*@__PURE__*/ S.String;
+export const RoleAssignmentMode = S.String;
 
 /** The parameters for updating the properties of a container registry. */
 export interface RegistryPropertiesUpdateParametersInput {
@@ -6764,19 +6761,19 @@ export const UpdateScopeMapResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The current status of task. */
 export type TaskPropertiesUpdateParametersStatus = "Disabled" | "Enabled";
-export const TaskPropertiesUpdateParametersStatus = /*@__PURE__*/ S.String;
+export const TaskPropertiesUpdateParametersStatus = S.String;
 
 /** The operating system type required for the run. */
 export type PlatformUpdateParametersOs = "Windows" | "Linux";
-export const PlatformUpdateParametersOs = /*@__PURE__*/ S.String;
+export const PlatformUpdateParametersOs = S.String;
 
 /** The OS architecture. */
 export type PlatformUpdateParametersArchitecture = "amd64" | "x86" | "arm";
-export const PlatformUpdateParametersArchitecture = /*@__PURE__*/ S.String;
+export const PlatformUpdateParametersArchitecture = S.String;
 
 /** Variant of the CPU. */
 export type PlatformUpdateParametersVariant = "v6" | "v7" | "v8";
-export const PlatformUpdateParametersVariant = /*@__PURE__*/ S.String;
+export const PlatformUpdateParametersVariant = S.String;
 
 /** The properties for updating the platform configuration. */
 export interface PlatformUpdateParameters {
@@ -6802,7 +6799,7 @@ export type TaskStepUpdateParametersType =
   | "Docker"
   | "FileTask"
   | "EncodedTask";
-export const TaskStepUpdateParametersType = /*@__PURE__*/ S.String;
+export const TaskStepUpdateParametersType = S.String;
 
 /** Base properties for updating any task step. */
 export interface TaskStepUpdateParameters {
@@ -6825,7 +6822,7 @@ export const TaskStepUpdateParameters = /*@__PURE__*/ S.suspend(() =>
 
 /** The current status of trigger. */
 export type TimerTriggerUpdateParametersStatus = "Disabled" | "Enabled";
-export const TimerTriggerUpdateParametersStatus = /*@__PURE__*/ S.String;
+export const TimerTriggerUpdateParametersStatus = S.String;
 
 /** The properties for updating a timer trigger. */
 export interface TimerTriggerUpdateParameters {
@@ -6857,11 +6854,11 @@ export const TriggerUpdateParametersTimerTriggersList = /*@__PURE__*/ S.Array(
 export type SourceUpdateParametersSourceControlType =
   | "Github"
   | "VisualStudioTeamService";
-export const SourceUpdateParametersSourceControlType = /*@__PURE__*/ S.String;
+export const SourceUpdateParametersSourceControlType = S.String;
 
 /** The type of Auth token. */
 export type AuthInfoUpdateParametersTokenType = "PAT" | "OAuth";
-export const AuthInfoUpdateParametersTokenType = /*@__PURE__*/ S.String;
+export const AuthInfoUpdateParametersTokenType = S.String;
 
 /** The authorization properties for accessing the source code repository. */
 export interface AuthInfoUpdateParameters {
@@ -6913,8 +6910,7 @@ export const SourceUpdateParameters = /*@__PURE__*/ S.suspend(() =>
 export type SourceTriggerUpdateParametersSourceTriggerEventsItem =
   | "commit"
   | "pullrequest";
-export const SourceTriggerUpdateParametersSourceTriggerEventsItem =
-  /*@__PURE__*/ S.String;
+export const SourceTriggerUpdateParametersSourceTriggerEventsItem = S.String;
 
 /** The source event corresponding to the trigger. */
 export type SourceTriggerUpdateParametersSourceTriggerEventsList = Array<
@@ -6927,7 +6923,7 @@ export const SourceTriggerUpdateParametersSourceTriggerEventsList =
 
 /** The current status of trigger. */
 export type SourceTriggerUpdateParametersStatus = "Disabled" | "Enabled";
-export const SourceTriggerUpdateParametersStatus = /*@__PURE__*/ S.String;
+export const SourceTriggerUpdateParametersStatus = S.String;
 
 /** The properties for updating a source based trigger. */
 export interface SourceTriggerUpdateParameters {
@@ -6964,12 +6960,11 @@ export const TriggerUpdateParametersSourceTriggersList = /*@__PURE__*/ S.Array(
 export type BaseImageTriggerUpdateParametersBaseImageTriggerType =
   | "All"
   | "Runtime";
-export const BaseImageTriggerUpdateParametersBaseImageTriggerType =
-  /*@__PURE__*/ S.String;
+export const BaseImageTriggerUpdateParametersBaseImageTriggerType = S.String;
 
 /** The current status of trigger. */
 export type BaseImageTriggerUpdateParametersStatus = "Disabled" | "Enabled";
-export const BaseImageTriggerUpdateParametersStatus = /*@__PURE__*/ S.String;
+export const BaseImageTriggerUpdateParametersStatus = S.String;
 
 /** The properties for updating base image dependency trigger. */
 export interface BaseImageTriggerUpdateParameters {

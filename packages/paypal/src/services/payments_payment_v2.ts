@@ -112,14 +112,13 @@ export type AuthorizationsReauthorizeResponseStatus =
   | "PARTIALLY_CAPTURED"
   | "VOIDED"
   | "PENDING";
-export const AuthorizationsReauthorizeResponseStatus = /*@__PURE__*/ S.String;
+export const AuthorizationsReauthorizeResponseStatus = S.String;
 
 /** The reason why the authorized status is `PENDING`. */
 export type AuthorizationsReauthorizeResponseStatusDetailsReason =
   | "PENDING_REVIEW"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
-export const AuthorizationsReauthorizeResponseStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+export const AuthorizationsReauthorizeResponseStatusDetailsReason = S.String;
 
 export interface AuthorizationsReauthorizeResponseStatusDetails {
   /** The reason why the authorized status is `PENDING`. */
@@ -224,15 +223,14 @@ export type AuthorizationsReauthorizeResponseSellerProtectionStatus =
   | "ELIGIBLE"
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
-export const AuthorizationsReauthorizeResponseSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
+export const AuthorizationsReauthorizeResponseSellerProtectionStatus = S.String;
 
 /** The condition that is covered for the transaction. */
 export type AuthorizationsReauthorizeResponseSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
 export const AuthorizationsReauthorizeResponseSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type AuthorizationsReauthorizeResponseSellerProtectionDisputeCategoriesList =
@@ -272,8 +270,7 @@ export type AuthorizationsReauthorizeResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const AuthorizationsReauthorizeResponseLinksItemMethod =
-  /*@__PURE__*/ S.String;
+export const AuthorizationsReauthorizeResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type AuthorizationsReauthorizeResponseLinksItemSchemaAllOfList =
@@ -731,7 +728,7 @@ export type CaptureAuthorizationResponseStatus =
   | "PENDING"
   | "REFUNDED"
   | "FAILED";
-export const CaptureAuthorizationResponseStatus = /*@__PURE__*/ S.String;
+export const CaptureAuthorizationResponseStatus = S.String;
 
 /** The reason why the captured payment status is `PENDING` or `DENIED`. */
 export type CaptureAuthorizationResponseStatusDetailsReason =
@@ -747,8 +744,7 @@ export type CaptureAuthorizationResponseStatusDetailsReason =
   | "UNILATERAL"
   | "VERIFICATION_REQUIRED"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
-export const CaptureAuthorizationResponseStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+export const CaptureAuthorizationResponseStatusDetailsReason = S.String;
 
 export interface CaptureAuthorizationResponseStatusDetails {
   /** The reason why the captured payment status is `PENDING` or `DENIED`. */
@@ -773,15 +769,14 @@ export type CaptureAuthorizationResponseSellerProtectionStatus =
   | "ELIGIBLE"
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
-export const CaptureAuthorizationResponseSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
+export const CaptureAuthorizationResponseSellerProtectionStatus = S.String;
 
 /** The condition that is covered for the transaction. */
 export type CaptureAuthorizationResponseSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
 export const CaptureAuthorizationResponseSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type CaptureAuthorizationResponseSellerProtectionDisputeCategoriesList =
@@ -908,7 +903,7 @@ export const CaptureAuthorizationResponseSellerReceivableBreakdown =
 
 /** The funds that are held on behalf of the merchant. */
 export type DisbursementMode = "INSTANT" | "DELAYED";
-export const DisbursementMode = /*@__PURE__*/ S.String;
+export const DisbursementMode = S.String;
 
 /** The HTTP method required to make the related call. */
 export type CaptureAuthorizationResponseLinksItemMethod =
@@ -920,8 +915,7 @@ export type CaptureAuthorizationResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const CaptureAuthorizationResponseLinksItemMethod =
-  /*@__PURE__*/ S.String;
+export const CaptureAuthorizationResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type CaptureAuthorizationResponseLinksItemSchemaAllOfList =
@@ -1178,8 +1172,7 @@ export type CaptureAuthorizationResponseProcessorResponseAvsCode =
   | "2"
   | "3"
   | "4";
-export const CaptureAuthorizationResponseProcessorResponseAvsCode =
-  /*@__PURE__*/ S.String;
+export const CaptureAuthorizationResponseProcessorResponseAvsCode = S.String;
 
 /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
 export type CaptureAuthorizationResponseProcessorResponseCvvCode =
@@ -1197,8 +1190,7 @@ export type CaptureAuthorizationResponseProcessorResponseCvvCode =
   | "2"
   | "3"
   | "4";
-export const CaptureAuthorizationResponseProcessorResponseCvvCode =
-  /*@__PURE__*/ S.String;
+export const CaptureAuthorizationResponseProcessorResponseCvvCode = S.String;
 
 /** Processor response code for the non-PayPal payment processor errors. */
 export type CaptureAuthorizationResponseProcessorResponseResponseCode =
@@ -1357,7 +1349,7 @@ export type CaptureAuthorizationResponseProcessorResponseResponseCode =
   | "PPVE"
   | "PPVT";
 export const CaptureAuthorizationResponseProcessorResponseResponseCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
 export type CaptureAuthorizationResponseProcessorResponsePaymentAdviceCode =
@@ -1377,7 +1369,7 @@ export type CaptureAuthorizationResponseProcessorResponsePaymentAdviceCode =
   | "40"
   | "43";
 export const CaptureAuthorizationResponseProcessorResponsePaymentAdviceCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureAuthorizationResponseProcessorResponse {
   /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
@@ -1574,15 +1566,14 @@ export type FindEligibleMethodsRequestPreferencesPaymentFlow =
   | "RECURRING_PAYMENT"
   | "VAULT_WITH_PAYMENT"
   | "VAULT_WITHOUT_PAYMENT";
-export const FindEligibleMethodsRequestPreferencesPaymentFlow =
-  /*@__PURE__*/ S.String;
+export const FindEligibleMethodsRequestPreferencesPaymentFlow = S.String;
 
 /** Constraint type defines whether given payment sources needs to be included or excluded. */
 export type FindEligibleMethodsRequestPreferencesPaymentSourceConstraintConstraintType =
   | "INCLUDE"
   | "EXCLUDE";
 export const FindEligibleMethodsRequestPreferencesPaymentSourceConstraintConstraintType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Set of unique payment methods. */
 export type PaymentMethod =
@@ -1590,7 +1581,7 @@ export type PaymentMethod =
   | "VENMO"
   | "PAYPAL_CREDIT"
   | "PAYPAL_PAY_LATER";
-export const PaymentMethod = /*@__PURE__*/ S.String;
+export const PaymentMethod = S.String;
 
 /** Set of unique payment methods that will be included/excluded for eligibility assessment. */
 export type FindEligibleMethodsRequestPreferencesPaymentSourceConstraintPaymentSourcesList =
@@ -1814,7 +1805,7 @@ export type LinkDescriptionMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const LinkDescriptionMethod = /*@__PURE__*/ S.String;
+export const LinkDescriptionMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type LinkDescriptionSchemaAllOfList = Array<unknown>;
@@ -2093,14 +2084,13 @@ export type GetAuthorizationResponseStatus =
   | "PARTIALLY_CAPTURED"
   | "VOIDED"
   | "PENDING";
-export const GetAuthorizationResponseStatus = /*@__PURE__*/ S.String;
+export const GetAuthorizationResponseStatus = S.String;
 
 /** The reason why the authorized status is `PENDING`. */
 export type GetAuthorizationResponseStatusDetailsReason =
   | "PENDING_REVIEW"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
-export const GetAuthorizationResponseStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+export const GetAuthorizationResponseStatusDetailsReason = S.String;
 
 export interface GetAuthorizationResponseStatusDetails {
   /** The reason why the authorized status is `PENDING`. */
@@ -2125,15 +2115,14 @@ export type GetAuthorizationResponseSellerProtectionStatus =
   | "ELIGIBLE"
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
-export const GetAuthorizationResponseSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
+export const GetAuthorizationResponseSellerProtectionStatus = S.String;
 
 /** The condition that is covered for the transaction. */
 export type GetAuthorizationResponseSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
 export const GetAuthorizationResponseSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type GetAuthorizationResponseSellerProtectionDisputeCategoriesList =
@@ -2171,7 +2160,7 @@ export type GetAuthorizationResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const GetAuthorizationResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const GetAuthorizationResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type GetAuthorizationResponseLinksItemSchemaAllOfList = Array<unknown>;
@@ -2472,7 +2461,7 @@ export type GetCaptureResponseStatus =
   | "PENDING"
   | "REFUNDED"
   | "FAILED";
-export const GetCaptureResponseStatus = /*@__PURE__*/ S.String;
+export const GetCaptureResponseStatus = S.String;
 
 /** The reason why the captured payment status is `PENDING` or `DENIED`. */
 export type GetCaptureResponseStatusDetailsReason =
@@ -2488,7 +2477,7 @@ export type GetCaptureResponseStatusDetailsReason =
   | "UNILATERAL"
   | "VERIFICATION_REQUIRED"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
-export const GetCaptureResponseStatusDetailsReason = /*@__PURE__*/ S.String;
+export const GetCaptureResponseStatusDetailsReason = S.String;
 
 export interface GetCaptureResponseStatusDetails {
   /** The reason why the captured payment status is `PENDING` or `DENIED`. */
@@ -2510,14 +2499,13 @@ export type GetCaptureResponseSellerProtectionStatus =
   | "ELIGIBLE"
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
-export const GetCaptureResponseSellerProtectionStatus = /*@__PURE__*/ S.String;
+export const GetCaptureResponseSellerProtectionStatus = S.String;
 
 /** The condition that is covered for the transaction. */
 export type GetCaptureResponseSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
-export const GetCaptureResponseSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+export const GetCaptureResponseSellerProtectionDisputeCategoriesItem = S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type GetCaptureResponseSellerProtectionDisputeCategoriesList =
@@ -2638,7 +2626,7 @@ export type GetCaptureResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const GetCaptureResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const GetCaptureResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type GetCaptureResponseLinksItemSchemaAllOfList = Array<unknown>;
@@ -2870,8 +2858,7 @@ export type GetCaptureResponseProcessorResponseAvsCode =
   | "2"
   | "3"
   | "4";
-export const GetCaptureResponseProcessorResponseAvsCode =
-  /*@__PURE__*/ S.String;
+export const GetCaptureResponseProcessorResponseAvsCode = S.String;
 
 /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
 export type GetCaptureResponseProcessorResponseCvvCode =
@@ -2889,8 +2876,7 @@ export type GetCaptureResponseProcessorResponseCvvCode =
   | "2"
   | "3"
   | "4";
-export const GetCaptureResponseProcessorResponseCvvCode =
-  /*@__PURE__*/ S.String;
+export const GetCaptureResponseProcessorResponseCvvCode = S.String;
 
 /** Processor response code for the non-PayPal payment processor errors. */
 export type GetCaptureResponseProcessorResponseResponseCode =
@@ -3048,8 +3034,7 @@ export type GetCaptureResponseProcessorResponseResponseCode =
   | "PPVC"
   | "PPVE"
   | "PPVT";
-export const GetCaptureResponseProcessorResponseResponseCode =
-  /*@__PURE__*/ S.String;
+export const GetCaptureResponseProcessorResponseResponseCode = S.String;
 
 /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
 export type GetCaptureResponseProcessorResponsePaymentAdviceCode =
@@ -3068,8 +3053,7 @@ export type GetCaptureResponseProcessorResponsePaymentAdviceCode =
   | "30"
   | "40"
   | "43";
-export const GetCaptureResponseProcessorResponsePaymentAdviceCode =
-  /*@__PURE__*/ S.String;
+export const GetCaptureResponseProcessorResponsePaymentAdviceCode = S.String;
 
 export interface GetCaptureResponseProcessorResponse {
   /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
@@ -3189,11 +3173,11 @@ export type GetRefundResponseStatus =
   | "FAILED"
   | "PENDING"
   | "COMPLETED";
-export const GetRefundResponseStatus = /*@__PURE__*/ S.String;
+export const GetRefundResponseStatus = S.String;
 
 /** The reason why the refund has the `PENDING` or `FAILED` status. */
 export type GetRefundResponseStatusDetailsReason = "ECHECK";
-export const GetRefundResponseStatusDetailsReason = /*@__PURE__*/ S.String;
+export const GetRefundResponseStatusDetailsReason = S.String;
 
 export interface GetRefundResponseStatusDetails {
   /** The reason why the refund has the `PENDING` or `FAILED` status. */
@@ -3354,7 +3338,7 @@ export type GetRefundResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const GetRefundResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const GetRefundResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type GetRefundResponseLinksItemSchemaAllOfList = Array<unknown>;
@@ -3695,11 +3679,11 @@ export type RefundCaptureResponseStatus =
   | "FAILED"
   | "PENDING"
   | "COMPLETED";
-export const RefundCaptureResponseStatus = /*@__PURE__*/ S.String;
+export const RefundCaptureResponseStatus = S.String;
 
 /** The reason why the refund has the `PENDING` or `FAILED` status. */
 export type RefundCaptureResponseStatusDetailsReason = "ECHECK";
-export const RefundCaptureResponseStatusDetailsReason = /*@__PURE__*/ S.String;
+export const RefundCaptureResponseStatusDetailsReason = S.String;
 
 export interface RefundCaptureResponseStatusDetails {
   /** The reason why the refund has the `PENDING` or `FAILED` status. */
@@ -3850,7 +3834,7 @@ export type RefundCaptureResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const RefundCaptureResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const RefundCaptureResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type RefundCaptureResponseLinksItemSchemaAllOfList = Array<unknown>;
@@ -4148,14 +4132,13 @@ export type VoidAuthorizationResponseStatus =
   | "PARTIALLY_CAPTURED"
   | "VOIDED"
   | "PENDING";
-export const VoidAuthorizationResponseStatus = /*@__PURE__*/ S.String;
+export const VoidAuthorizationResponseStatus = S.String;
 
 /** The reason why the authorized status is `PENDING`. */
 export type VoidAuthorizationResponseStatusDetailsReason =
   | "PENDING_REVIEW"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
-export const VoidAuthorizationResponseStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+export const VoidAuthorizationResponseStatusDetailsReason = S.String;
 
 export interface VoidAuthorizationResponseStatusDetails {
   /** The reason why the authorized status is `PENDING`. */
@@ -4180,15 +4163,14 @@ export type VoidAuthorizationResponseSellerProtectionStatus =
   | "ELIGIBLE"
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
-export const VoidAuthorizationResponseSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
+export const VoidAuthorizationResponseSellerProtectionStatus = S.String;
 
 /** The condition that is covered for the transaction. */
 export type VoidAuthorizationResponseSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
 export const VoidAuthorizationResponseSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type VoidAuthorizationResponseSellerProtectionDisputeCategoriesList =
@@ -4226,7 +4208,7 @@ export type VoidAuthorizationResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const VoidAuthorizationResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const VoidAuthorizationResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type VoidAuthorizationResponseLinksItemSchemaAllOfList = Array<unknown>;

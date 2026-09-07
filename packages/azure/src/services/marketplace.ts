@@ -108,7 +108,7 @@ export const ApprovePrivateStoreCollectionAllItemsRequest =
 
 /** The type of identity that creates/modifies resources */
 export type IdentityType = "User" | "Application" | "ManagedIdentity" | "Key";
-export const IdentityType = /*@__PURE__*/ S.String;
+export const IdentityType = S.String;
 
 /** Read only system data */
 export interface SystemData {
@@ -144,7 +144,7 @@ export const CollectionPropertiesSubscriptionsListList = /*@__PURE__*/ S.Array(
 
 /** Rule type */
 export type RuleType = "PrivateProducts" | "TermsAndCondition";
-export const RuleType = /*@__PURE__*/ S.String;
+export const RuleType = S.String;
 
 export type RuleValueList = Array<string>;
 export const RuleValueList = /*@__PURE__*/ S.Array(
@@ -403,7 +403,7 @@ export const CreatePrivateStoreApprovalRequestRequest = /*@__PURE__*/ S.suspend(
 
 /** Gets the plan status */
 export type Status = "Pending" | "Rejected" | "Approved" | "None";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** Return plan with request details */
 export interface PlanDetails {
@@ -604,7 +604,7 @@ export type SubscriptionState =
   | "PastDue"
   | "Disabled"
   | "Deleted";
-export const SubscriptionState = /*@__PURE__*/ S.String;
+export const SubscriptionState = S.String;
 
 /** Subscription information. */
 export interface Subscription {
@@ -672,7 +672,7 @@ export const GetPrivateStoreRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates private store availability */
 export type Availability = "enabled" | "disabled";
-export const Availability = /*@__PURE__*/ S.String;
+export const Availability = S.String;
 
 /** Gets list of associated collection ids */
 export type PrivateStorePropertiesCollectionIdsList = Array<string>;
@@ -818,7 +818,7 @@ export const GetPrivateStoreAdminRequestApprovalRequest =
 
 /** Gets or sets admin action */
 export type AdminAction = "Approved" | "Rejected";
-export const AdminAction = /*@__PURE__*/ S.String;
+export const AdminAction = S.String;
 
 /** Gets or sets Approved plans ids, empty in case of rejected */
 export type AdminRequestApprovalPropertiesApprovedPlansList = Array<string>;
@@ -1050,7 +1050,7 @@ export type Accessibility =
   | "Public"
   | "PrivateTenantOnLevel"
   | "PrivateSubscriptionOnLevel";
-export const Accessibility = /*@__PURE__*/ S.String;
+export const Accessibility = S.String;
 
 export interface Plan {
   /** Identifier for this plan */
@@ -1790,7 +1790,7 @@ export type Operation =
   | "DeletePrivateStoreCollection"
   | "DeletePrivateStoreCollectionOffer"
   | "Ping";
-export const Operation = /*@__PURE__*/ S.String;
+export const Operation = S.String;
 
 export interface PostPrivateStoreCollectionRequest {
   /** The store ID - must use the tenant ID */

@@ -161,7 +161,7 @@ export type DirectConnectGatewayAssociationState =
   | "disassociated"
   | "updating"
   | (string & {});
-export const DirectConnectGatewayAssociationState = /*@__PURE__*/ S.String;
+export const DirectConnectGatewayAssociationState = S.String;
 
 export type StateChangeError = string;
 export type GatewayIdentifier = string;
@@ -169,7 +169,7 @@ export type GatewayType =
   | "virtualPrivateGateway"
   | "transitGateway"
   | (string & {});
-export const GatewayType = /*@__PURE__*/ S.String;
+export const GatewayType = S.String;
 
 export type Region = string;
 export interface AssociatedGateway {
@@ -295,7 +295,7 @@ export type ConnectionState =
   | "rejected"
   | "unknown"
   | (string & {});
-export const ConnectionState = /*@__PURE__*/ S.String;
+export const ConnectionState = S.String;
 
 export type LocationCode = string;
 export type PartnerName = string;
@@ -306,7 +306,7 @@ export type JumboFrameCapable = boolean;
 export type AwsDeviceV2 = string;
 export type AwsLogicalDeviceId = string;
 export type HasLogicalRedundancy = "unknown" | "yes" | "no" | (string & {});
-export const HasLogicalRedundancy = /*@__PURE__*/ S.String;
+export const HasLogicalRedundancy = S.String;
 
 export type TagKey = string;
 export type TagValue = string;
@@ -462,7 +462,7 @@ export type MTU = number;
 export type BGPAuthKey = string;
 export type AmazonAddress = string;
 export type AddressFamily = "ipv4" | "ipv6" | (string & {});
-export const AddressFamily = /*@__PURE__*/ S.String;
+export const AddressFamily = S.String;
 
 export type CustomerAddress = string;
 export type RateLimit = string;
@@ -537,7 +537,7 @@ export type VirtualInterfaceState =
   | "rejected"
   | "unknown"
   | (string & {});
-export const VirtualInterfaceState = /*@__PURE__*/ S.String;
+export const VirtualInterfaceState = S.String;
 
 export type RouterConfig = string;
 export type BGPPeerId = string;
@@ -548,10 +548,10 @@ export type BGPPeerState =
   | "deleting"
   | "deleted"
   | (string & {});
-export const BGPPeerState = /*@__PURE__*/ S.String;
+export const BGPPeerState = S.String;
 
 export type BGPStatus = "up" | "down" | "unknown" | (string & {});
-export const BGPStatus = /*@__PURE__*/ S.String;
+export const BGPStatus = S.String;
 
 export interface BGPPeer {
   bgpPeerId?: string;
@@ -1135,7 +1135,7 @@ export type DirectConnectGatewayState =
   | "deleting"
   | "deleted"
   | (string & {});
-export const DirectConnectGatewayState = /*@__PURE__*/ S.String;
+export const DirectConnectGatewayState = S.String;
 
 export interface DirectConnectGateway {
   directConnectGatewayId?: string;
@@ -1250,8 +1250,7 @@ export type DirectConnectGatewayAssociationProposalState =
   | "accepted"
   | "deleted"
   | (string & {});
-export const DirectConnectGatewayAssociationProposalState =
-  /*@__PURE__*/ S.String;
+export const DirectConnectGatewayAssociationProposalState = S.String;
 
 export interface DirectConnectGatewayAssociationProposal {
   proposalId?: string;
@@ -1335,7 +1334,7 @@ export type InterconnectState =
   | "deleted"
   | "unknown"
   | (string & {});
-export const InterconnectState = /*@__PURE__*/ S.String;
+export const InterconnectState = S.String;
 
 export interface Interconnect {
   interconnectId?: string;
@@ -1427,7 +1426,7 @@ export type LagState =
   | "deleted"
   | "unknown"
   | (string & {});
-export const LagState = /*@__PURE__*/ S.String;
+export const LagState = S.String;
 
 export type ConnectionList = Connection[];
 export const ConnectionList = /*@__PURE__*/ S.Array(Connection);
@@ -1898,7 +1897,7 @@ export const DeleteVirtualInterfaceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteVirtualInterfaceResponse",
 }) as any as S.Schema<DeleteVirtualInterfaceResponse>;
 export type LoaContentType = "application/pdf" | (string & {});
-export const LoaContentType = /*@__PURE__*/ S.String;
+export const LoaContentType = S.String;
 
 export interface DescribeConnectionLoaRequest {
   connectionId: string;
@@ -2029,7 +2028,7 @@ export const CustomerAgreement = /*@__PURE__*/ S.suspend(() =>
 export type AgreementList = CustomerAgreement[];
 export const AgreementList = /*@__PURE__*/ S.Array(CustomerAgreement);
 export type NniPartnerType = "v1" | "v2" | "nonPartner" | (string & {});
-export const NniPartnerType = /*@__PURE__*/ S.String;
+export const NniPartnerType = S.String;
 
 export interface DescribeCustomerMetadataResponse {
   agreements?: CustomerAgreement[];
@@ -2177,13 +2176,13 @@ export type DirectConnectGatewayAttachmentState =
   | "detaching"
   | "detached"
   | (string & {});
-export const DirectConnectGatewayAttachmentState = /*@__PURE__*/ S.String;
+export const DirectConnectGatewayAttachmentState = S.String;
 
 export type DirectConnectGatewayAttachmentType =
   | "TransitVirtualInterface"
   | "PrivateVirtualInterface"
   | (string & {});
-export const DirectConnectGatewayAttachmentType = /*@__PURE__*/ S.String;
+export const DirectConnectGatewayAttachmentType = S.String;
 
 export interface DirectConnectGatewayAttachment {
   directConnectGatewayId?: string;
@@ -2697,7 +2696,7 @@ export const DisassociateMacSecKeyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DisassociateMacSecKeyResponse",
 }) as any as S.Schema<DisassociateMacSecKeyResponse>;
 export type RouteDirection = "accepted" | "advertised" | (string & {});
-export const RouteDirection = /*@__PURE__*/ S.String;
+export const RouteDirection = S.String;
 
 export type RouteFilterCidrString = string;
 export type RouteFilterCidrStringList = string[];
@@ -2751,7 +2750,7 @@ export const ListVirtualInterfaceRoutesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListVirtualInterfaceRoutesRequest>;
 export type RouteCidr = string;
 export type AsPathType = "seq" | "set" | (string & {});
-export const AsPathType = /*@__PURE__*/ S.String;
+export const AsPathType = S.String;
 
 export interface AsPathSegment {
   pathType?: AsPathType;

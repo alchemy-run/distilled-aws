@@ -39,7 +39,7 @@ export type ChangeImageProtectionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeImageProtectionResponseActionStatus = /*@__PURE__*/ S.String;
+export const ChangeImageProtectionResponseActionStatus = S.String;
 
 export interface ChangeImageProtectionResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -143,7 +143,7 @@ export type GetImagesActionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const GetImagesActionResponseActionStatus = /*@__PURE__*/ S.String;
+export const GetImagesActionResponseActionStatus = S.String;
 
 export type GetImagesActionResponseActionResourcesItem =
   ChangeImageProtectionResponseActionResourcesItem;
@@ -223,7 +223,7 @@ export type ListImageActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListImageActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListImageActionsRequestSortItem = S.String;
 
 export type ListImageActionsRequestSortList = Array<
   ListImageActionsRequestSortItem | (string & {})
@@ -234,7 +234,7 @@ export const ListImageActionsRequestSortList = /*@__PURE__*/ S.Array(
 
 /** Status of the Action. */
 export type ListImageActionsRequestStatusItem = "running" | "success" | "error";
-export const ListImageActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListImageActionsRequestStatusItem = S.String;
 
 export type ListImageActionsRequestStatusList = Array<
   ListImageActionsRequestStatusItem | (string & {})
@@ -272,7 +272,7 @@ export type ListImageActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListImageActionsResponseActionsItemStatus = /*@__PURE__*/ S.String;
+export const ListImageActionsResponseActionsItemStatus = S.String;
 
 export type ListImageActionsResponseActionsItemResourcesItem =
   ChangeImageProtectionResponseActionResourcesItem;
@@ -407,7 +407,7 @@ export type ListImagesActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListImagesActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListImagesActionsRequestSortItem = S.String;
 
 export type ListImagesActionsRequestSortList = Array<
   ListImagesActionsRequestSortItem | (string & {})
@@ -421,7 +421,7 @@ export type ListImagesActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListImagesActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListImagesActionsRequestStatusItem = S.String;
 
 export type ListImagesActionsRequestStatusList = Array<
   ListImagesActionsRequestStatusItem | (string & {})
@@ -459,8 +459,7 @@ export type ListImagesActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListImagesActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListImagesActionsResponseActionsItemStatus = S.String;
 
 export type ListImagesActionsResponseActionsItemResourcesItem =
   ChangeImageProtectionResponseActionResourcesItem;

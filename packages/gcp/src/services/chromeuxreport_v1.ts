@@ -70,7 +70,7 @@ export type QueryHistoryRequestFormFactorEnum =
   | "PHONE"
   | "DESKTOP"
   | "TABLET";
-export const QueryHistoryRequestFormFactorEnum = /*@__PURE__*/ S.String;
+export const QueryHistoryRequestFormFactorEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -165,7 +165,7 @@ export type HistoryKeyFormFactorEnum =
   | "PHONE"
   | "DESKTOP"
   | "TABLET";
-export const HistoryKeyFormFactorEnum = /*@__PURE__*/ S.String;
+export const HistoryKeyFormFactorEnum = S.String;
 
 /** Key defines all the dimensions that identify this record as unique. */
 export interface HistoryKey {
@@ -331,7 +331,7 @@ export type QueryRequestFormFactorEnum =
   | "PHONE"
   | "DESKTOP"
   | "TABLET";
-export const QueryRequestFormFactorEnum = /*@__PURE__*/ S.String;
+export const QueryRequestFormFactorEnum = S.String;
 
 /** Request payload sent by a physical web client. This request includes all necessary context to load a particular user experience record. */
 export interface QueryRequest {
@@ -439,7 +439,7 @@ export type KeyFormFactorEnum =
   | "PHONE"
   | "DESKTOP"
   | "TABLET";
-export const KeyFormFactorEnum = /*@__PURE__*/ S.String;
+export const KeyFormFactorEnum = S.String;
 
 /** Key defines all the dimensions that identify this record as unique. */
 export interface Key {

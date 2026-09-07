@@ -198,7 +198,7 @@ export const AnalysisSchema = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ referencedTables: S.optional(QueryTables) }),
 ).annotate({ identifier: "AnalysisSchema" }) as any as S.Schema<AnalysisSchema>;
 export type AnalysisFormat = "SQL" | "PYSPARK_1_0" | (string & {});
-export const AnalysisFormat = /*@__PURE__*/ S.String;
+export const AnalysisFormat = S.String;
 
 export type AnalysisTemplateText = string | redacted.Redacted<string>;
 export interface S3Location {
@@ -299,7 +299,7 @@ export type ParameterType =
   | "TIMESTAMP_NTZ"
   | "TINYINT"
   | (string & {});
-export const ParameterType = /*@__PURE__*/ S.String;
+export const ParameterType = S.String;
 
 export type ParameterValue = string;
 export interface AnalysisParameter {
@@ -321,14 +321,14 @@ export const AnalysisParameterList = /*@__PURE__*/ S.Array(AnalysisParameter);
 export type AnalysisTemplateValidationType =
   | "DIFFERENTIAL_PRIVACY"
   | (string & {});
-export const AnalysisTemplateValidationType = /*@__PURE__*/ S.String;
+export const AnalysisTemplateValidationType = S.String;
 
 export type AnalysisTemplateValidationStatus =
   | "VALID"
   | "INVALID"
   | "UNABLE_TO_VALIDATE"
   | (string & {});
-export const AnalysisTemplateValidationStatus = /*@__PURE__*/ S.String;
+export const AnalysisTemplateValidationStatus = S.String;
 
 export interface AnalysisTemplateValidationStatusReason {
   message: string;
@@ -364,7 +364,7 @@ export const AnalysisTemplateValidationStatusDetailList = /*@__PURE__*/ S.Array(
   AnalysisTemplateValidationStatusDetail,
 );
 export type ErrorMessageType = "DETAILED" | (string & {});
-export const ErrorMessageType = /*@__PURE__*/ S.String;
+export const ErrorMessageType = S.String;
 
 export interface ErrorMessageConfiguration {
   type: ErrorMessageType;
@@ -380,7 +380,7 @@ export type SyntheticDataColumnType =
   | "CATEGORICAL"
   | "NUMERICAL"
   | (string & {});
-export const SyntheticDataColumnType = /*@__PURE__*/ S.String;
+export const SyntheticDataColumnType = S.String;
 
 export interface SyntheticDataColumnProperties {
   columnName: string;
@@ -547,7 +547,7 @@ export type AnalysisRuleType =
   | "CUSTOM"
   | "ID_MAPPING_TABLE"
   | (string & {});
-export const AnalysisRuleType = /*@__PURE__*/ S.String;
+export const AnalysisRuleType = S.String;
 
 export type AnalysisRuleTypeList = AnalysisRuleType[];
 export const AnalysisRuleTypeList = /*@__PURE__*/ S.Array(AnalysisRuleType);
@@ -556,13 +556,13 @@ export type AnalysisMethod =
   | "DIRECT_JOB"
   | "MULTIPLE"
   | (string & {});
-export const AnalysisMethod = /*@__PURE__*/ S.String;
+export const AnalysisMethod = S.String;
 
 export type SelectedAnalysisMethod =
   | "DIRECT_QUERY"
   | "DIRECT_JOB"
   | (string & {});
-export const SelectedAnalysisMethod = /*@__PURE__*/ S.String;
+export const SelectedAnalysisMethod = S.String;
 
 export type SelectedAnalysisMethods = SelectedAnalysisMethod[];
 export const SelectedAnalysisMethods = /*@__PURE__*/ S.Array(
@@ -574,10 +574,10 @@ export type SchemaType =
   | "ID_MAPPING_TABLE"
   | "INTERMEDIATE_TABLE"
   | (string & {});
-export const SchemaType = /*@__PURE__*/ S.String;
+export const SchemaType = S.String;
 
 export type SchemaStatus = "READY" | "NOT_READY" | (string & {});
-export const SchemaStatus = /*@__PURE__*/ S.String;
+export const SchemaStatus = S.String;
 
 export type SchemaStatusReasonCode =
   | "ANALYSIS_RULE_MISSING"
@@ -598,7 +598,7 @@ export type SchemaStatusReasonCode =
   | "INTERMEDIATE_TABLE_DISALLOWED_BY_DATA_PROVIDER"
   | "INTERMEDIATE_TABLE_RETENTION_PERIOD_EXPIRED"
   | (string & {});
-export const SchemaStatusReasonCode = /*@__PURE__*/ S.String;
+export const SchemaStatusReasonCode = S.String;
 
 export interface SchemaStatusReason {
   code: SchemaStatusReasonCode;
@@ -612,7 +612,7 @@ export const SchemaStatusReason = /*@__PURE__*/ S.suspend(() =>
 export type SchemaStatusReasonList = SchemaStatusReason[];
 export const SchemaStatusReasonList = /*@__PURE__*/ S.Array(SchemaStatusReason);
 export type SchemaConfiguration = "DIFFERENTIAL_PRIVACY" | (string & {});
-export const SchemaConfiguration = /*@__PURE__*/ S.String;
+export const SchemaConfiguration = S.String;
 
 export type SchemaConfigurationList = SchemaConfiguration[];
 export const SchemaConfigurationList =
@@ -621,7 +621,7 @@ export type AnalysisType =
   | "DIRECT_ANALYSIS"
   | "ADDITIONAL_ANALYSIS"
   | (string & {});
-export const AnalysisType = /*@__PURE__*/ S.String;
+export const AnalysisType = S.String;
 
 export interface SchemaStatusDetail {
   status: SchemaStatus;
@@ -645,7 +645,7 @@ export type SchemaStatusDetailList = SchemaStatusDetail[];
 export const SchemaStatusDetailList = /*@__PURE__*/ S.Array(SchemaStatusDetail);
 export type SchemaResourceArn = string;
 export type IdNamespaceType = "SOURCE" | "TARGET" | (string & {});
-export const IdNamespaceType = /*@__PURE__*/ S.String;
+export const IdNamespaceType = S.String;
 
 export interface IdMappingTableInputSource {
   idNamespaceAssociationId: string;
@@ -824,7 +824,7 @@ export type AdditionalAnalyses =
   | "REQUIRED"
   | "NOT_ALLOWED"
   | (string & {});
-export const AdditionalAnalyses = /*@__PURE__*/ S.String;
+export const AdditionalAnalyses = S.String;
 
 export interface AnalysisRuleList {
   joinColumns: string[];
@@ -925,7 +925,7 @@ export const DifferentialPrivacyConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "DifferentialPrivacyConfiguration",
 }) as any as S.Schema<DifferentialPrivacyConfiguration>;
 export type AggregationThresholdType = "COUNT_DISTINCT" | (string & {});
-export const AggregationThresholdType = /*@__PURE__*/ S.String;
+export const AggregationThresholdType = S.String;
 
 export interface OutputColumnThreshold {
   outputColumnName: string;
@@ -944,7 +944,7 @@ export type AllowedAggregateExpressionType =
   | "COLUMNS_ONLY"
   | "ANY_EXPRESSION"
   | (string & {});
-export const AllowedAggregateExpressionType = /*@__PURE__*/ S.String;
+export const AllowedAggregateExpressionType = S.String;
 
 export interface AggregationThreshold {
   identityColumns: string[];
@@ -1396,7 +1396,7 @@ export type MemberAbility =
   | "CAN_RUN_JOB"
   | "CAN_EXPORT_QUERY_ANALYSIS_LOG"
   | (string & {});
-export const MemberAbility = /*@__PURE__*/ S.String;
+export const MemberAbility = S.String;
 
 export type MemberAbilities = MemberAbility[];
 export const MemberAbilities = /*@__PURE__*/ S.Array(MemberAbility);
@@ -1404,7 +1404,7 @@ export type CustomMLMemberAbility =
   | "CAN_RECEIVE_MODEL_OUTPUT"
   | "CAN_RECEIVE_INFERENCE_OUTPUT"
   | (string & {});
-export const CustomMLMemberAbility = /*@__PURE__*/ S.String;
+export const CustomMLMemberAbility = S.String;
 
 export type CustomMLMemberAbilities = CustomMLMemberAbility[];
 export const CustomMLMemberAbilities = /*@__PURE__*/ S.Array(
@@ -1529,13 +1529,13 @@ export type CollaborationQueryLogStatus =
   | "ENABLED"
   | "DISABLED"
   | (string & {});
-export const CollaborationQueryLogStatus = /*@__PURE__*/ S.String;
+export const CollaborationQueryLogStatus = S.String;
 
 export type CollaborationJobLogStatus = "ENABLED" | "DISABLED" | (string & {});
-export const CollaborationJobLogStatus = /*@__PURE__*/ S.String;
+export const CollaborationJobLogStatus = S.String;
 
 export type AnalyticsEngine = "SPARK" | "CLEAN_ROOMS_SQL" | (string & {});
-export const AnalyticsEngine = /*@__PURE__*/ S.String;
+export const AnalyticsEngine = S.String;
 
 export type AutoApprovedChangeType =
   | "ADD_MEMBER"
@@ -1544,7 +1544,7 @@ export type AutoApprovedChangeType =
   | "GRANT_EXPORT_QUERY_ANALYSIS_LOG_ABILITY"
   | "REVOKE_EXPORT_QUERY_ANALYSIS_LOG_ABILITY"
   | (string & {});
-export const AutoApprovedChangeType = /*@__PURE__*/ S.String;
+export const AutoApprovedChangeType = S.String;
 
 export type AutoApprovedChangeTypeList = AutoApprovedChangeType[];
 export const AutoApprovedChangeTypeList = /*@__PURE__*/ S.Array(
@@ -1585,7 +1585,7 @@ export type SupportedS3Region =
   | "sa-east-1"
   | "mx-central-1"
   | (string & {});
-export const SupportedS3Region = /*@__PURE__*/ S.String;
+export const SupportedS3Region = S.String;
 
 export type AllowedResultRegions = SupportedS3Region[];
 export const AllowedResultRegions = /*@__PURE__*/ S.Array(SupportedS3Region);
@@ -1691,7 +1691,7 @@ export type ChangeSpecificationType =
   | "MEMBER"
   | "COLLABORATION"
   | (string & {});
-export const ChangeSpecificationType = /*@__PURE__*/ S.String;
+export const ChangeSpecificationType = S.String;
 
 export interface MemberChangeSpecification {
   accountId: string;
@@ -1772,7 +1772,7 @@ export type ChangeRequestStatus =
   | "DENIED"
   | "COMMITTED"
   | (string & {});
-export const ChangeRequestStatus = /*@__PURE__*/ S.String;
+export const ChangeRequestStatus = S.String;
 
 export type ChangeType =
   | "ADD_MEMBER"
@@ -1788,7 +1788,7 @@ export type ChangeType =
   | "GRANT_EXPORT_QUERY_ANALYSIS_LOG_ABILITY"
   | "REVOKE_EXPORT_QUERY_ANALYSIS_LOG_ABILITY"
   | (string & {});
-export const ChangeType = /*@__PURE__*/ S.String;
+export const ChangeType = S.String;
 
 export type ChangeTypeList = ChangeType[];
 export const ChangeTypeList = /*@__PURE__*/ S.Array(ChangeType);
@@ -1807,7 +1807,7 @@ export const Change = /*@__PURE__*/ S.suspend(() =>
 export type ChangeList = Change[];
 export const ChangeList = /*@__PURE__*/ S.Array(Change);
 export type ApprovalStatus = "APPROVED" | "DENIED" | "PENDING" | (string & {});
-export const ApprovalStatus = /*@__PURE__*/ S.String;
+export const ApprovalStatus = S.String;
 
 export interface ApprovalStatusDetails {
   status: ApprovalStatus;
@@ -1971,7 +1971,7 @@ export type CommercialRegion =
   | "mx-central-1"
   | "ap-east-2"
   | (string & {});
-export const CommercialRegion = /*@__PURE__*/ S.String;
+export const CommercialRegion = S.String;
 
 export type GlueTableName = string;
 export type GlueDatabaseName = string;
@@ -2104,7 +2104,7 @@ export type ConfiguredTableAnalysisRuleType =
   | "LIST"
   | "CUSTOM"
   | (string & {});
-export const ConfiguredTableAnalysisRuleType = /*@__PURE__*/ S.String;
+export const ConfiguredTableAnalysisRuleType = S.String;
 
 export type ConfiguredTableAnalysisRuleTypeList =
   ConfiguredTableAnalysisRuleType[];
@@ -2261,15 +2261,14 @@ export type ConfiguredTableAssociationAnalysisRuleType =
   | "LIST"
   | "CUSTOM"
   | (string & {});
-export const ConfiguredTableAssociationAnalysisRuleType =
-  /*@__PURE__*/ S.String;
+export const ConfiguredTableAssociationAnalysisRuleType = S.String;
 
 export type ConfiguredTableAssociationAnalysisRuleTypeList =
   ConfiguredTableAssociationAnalysisRuleType[];
 export const ConfiguredTableAssociationAnalysisRuleTypeList =
   /*@__PURE__*/ S.Array(ConfiguredTableAssociationAnalysisRuleType);
 export type ChildResourceType = "INTERMEDIATE_TABLE" | (string & {});
-export const ChildResourceType = /*@__PURE__*/ S.String;
+export const ChildResourceType = S.String;
 
 export type ResourceStatus =
   | "CREATED"
@@ -2280,7 +2279,7 @@ export type ResourceStatus =
   | "BASE_TABLE_REMOVED"
   | "RETENTION_PERIOD_EXPIRED"
   | (string & {});
-export const ResourceStatus = /*@__PURE__*/ S.String;
+export const ResourceStatus = S.String;
 
 export interface ChildResource {
   resourceId?: string;
@@ -2678,17 +2677,17 @@ export type IntermediateTableStatus =
   | "BASE_TABLE_REMOVED"
   | "RETENTION_PERIOD_EXPIRED"
   | (string & {});
-export const IntermediateTableStatus = /*@__PURE__*/ S.String;
+export const IntermediateTableStatus = S.String;
 
 export type BaseTableDependencyType =
   | "TABLE"
   | "INTERMEDIATE_TABLE"
   | "ID_MAPPING_TABLE"
   | (string & {});
-export const BaseTableDependencyType = /*@__PURE__*/ S.String;
+export const BaseTableDependencyType = S.String;
 
 export type BaseTableParentType = "DIRECT" | "INDIRECT" | (string & {});
-export const BaseTableParentType = /*@__PURE__*/ S.String;
+export const BaseTableParentType = S.String;
 
 export interface IntermediateTableDependency {
   id: string;
@@ -2714,7 +2713,7 @@ export const DependencyList = /*@__PURE__*/ S.Array(
 );
 export type AnalysisIdentifier = string;
 export type PopulateIntermediateTableAnalysisType = "QUERY" | (string & {});
-export const PopulateIntermediateTableAnalysisType = /*@__PURE__*/ S.String;
+export const PopulateIntermediateTableAnalysisType = S.String;
 
 export type ParameterMap = { [key: string]: string | undefined };
 export const ParameterMap = /*@__PURE__*/ S.Record(
@@ -2903,7 +2902,7 @@ export const IntermediateTableActiveVersion = /*@__PURE__*/ S.suspend(() =>
   identifier: "IntermediateTableActiveVersion",
 }) as any as S.Schema<IntermediateTableActiveVersion>;
 export type IntermediateTableAnalysisRuleType = "CUSTOM" | (string & {});
-export const IntermediateTableAnalysisRuleType = /*@__PURE__*/ S.String;
+export const IntermediateTableAnalysisRuleType = S.String;
 
 export type IntermediateTableAnalysisRuleTypeList =
   IntermediateTableAnalysisRuleType[];
@@ -3074,13 +3073,13 @@ export const CreateIntermediateTableAnalysisRuleOutput =
     identifier: "CreateIntermediateTableAnalysisRuleOutput",
   }) as any as S.Schema<CreateIntermediateTableAnalysisRuleOutput>;
 export type MembershipQueryLogStatus = "ENABLED" | "DISABLED" | (string & {});
-export const MembershipQueryLogStatus = /*@__PURE__*/ S.String;
+export const MembershipQueryLogStatus = S.String;
 
 export type MembershipJobLogStatus = "ENABLED" | "DISABLED" | (string & {});
-export const MembershipJobLogStatus = /*@__PURE__*/ S.String;
+export const MembershipJobLogStatus = S.String;
 
 export type ResultFormat = "CSV" | "PARQUET" | (string & {});
-export const ResultFormat = /*@__PURE__*/ S.String;
+export const ResultFormat = S.String;
 
 export type KeyPrefix = string;
 export interface ProtectedQueryS3OutputConfiguration {
@@ -3314,13 +3313,13 @@ export type PrivacyBudgetTemplateAutoRefresh =
   | "CALENDAR_MONTH"
   | "NONE"
   | (string & {});
-export const PrivacyBudgetTemplateAutoRefresh = /*@__PURE__*/ S.String;
+export const PrivacyBudgetTemplateAutoRefresh = S.String;
 
 export type PrivacyBudgetType =
   | "DIFFERENTIAL_PRIVACY"
   | "ACCESS_BUDGET"
   | (string & {});
-export const PrivacyBudgetType = /*@__PURE__*/ S.String;
+export const PrivacyBudgetType = S.String;
 
 export type Epsilon = number;
 export type UsersNoisePerQuery = number;
@@ -3340,11 +3339,11 @@ export type AccessBudgetType =
   | "CALENDAR_WEEK"
   | "LIFETIME"
   | (string & {});
-export const AccessBudgetType = /*@__PURE__*/ S.String;
+export const AccessBudgetType = S.String;
 
 export type Budget = number;
 export type AutoRefreshMode = "ENABLED" | "DISABLED" | (string & {});
-export const AutoRefreshMode = /*@__PURE__*/ S.String;
+export const AutoRefreshMode = S.String;
 
 export interface BudgetParameter {
   type: AccessBudgetType;
@@ -4000,14 +3999,14 @@ export const GetAnalysisLogExportInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetAnalysisLogExportInput",
 }) as any as S.Schema<GetAnalysisLogExportInput>;
 export type LogExportAnalysisType = "PROTECTED_QUERY" | (string & {});
-export const LogExportAnalysisType = /*@__PURE__*/ S.String;
+export const LogExportAnalysisType = S.String;
 
 export type AnalysisLogExportStatus =
   | "IN_PROGRESS"
   | "SUCCESS"
   | "FAILED"
   | (string & {});
-export const AnalysisLogExportStatus = /*@__PURE__*/ S.String;
+export const AnalysisLogExportStatus = S.String;
 
 export interface AnalysisLogExportS3OutputConfiguration {
   bucket: string;
@@ -4862,7 +4861,7 @@ export type ProtectedJobStatus =
   | "FAILED"
   | "SUCCESS"
   | (string & {});
-export const ProtectedJobStatus = /*@__PURE__*/ S.String;
+export const ProtectedJobStatus = S.String;
 
 export interface ProtectedJobS3OutputConfigurationOutput {
   bucket: string;
@@ -4961,7 +4960,7 @@ export const ProtectedJobError = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProtectedJobError",
 }) as any as S.Schema<ProtectedJobError>;
 export type ProtectedJobWorkerComputeType = "CR.1X" | "CR.4X" | (string & {});
-export const ProtectedJobWorkerComputeType = /*@__PURE__*/ S.String;
+export const ProtectedJobWorkerComputeType = S.String;
 
 export type SparkPropertyKey = string;
 export type SparkPropertyValue = string;
@@ -5250,7 +5249,7 @@ export type DifferentialPrivacyAggregationType =
   | "SUM"
   | "STDDEV"
   | (string & {});
-export const DifferentialPrivacyAggregationType = /*@__PURE__*/ S.String;
+export const DifferentialPrivacyAggregationType = S.String;
 
 export type DifferentialPrivacyAggregationExpression = string;
 export interface DifferentialPrivacySensitivityParameters {
@@ -5287,7 +5286,7 @@ export const DifferentialPrivacyParameters = /*@__PURE__*/ S.suspend(() =>
   identifier: "DifferentialPrivacyParameters",
 }) as any as S.Schema<DifferentialPrivacyParameters>;
 export type WorkerComputeType = "CR.1X" | "CR.4X" | "CR.8X" | (string & {});
-export const WorkerComputeType = /*@__PURE__*/ S.String;
+export const WorkerComputeType = S.String;
 
 export interface WorkerComputeConfiguration {
   type?: WorkerComputeType;
@@ -6640,7 +6639,7 @@ export type IntermediateTableVersionStatus =
   | "POPULATE_FAILED"
   | "RETENTION_PERIOD_EXPIRED"
   | (string & {});
-export const IntermediateTableVersionStatus = /*@__PURE__*/ S.String;
+export const IntermediateTableVersionStatus = S.String;
 
 export interface IntermediateTableVersionSummary {
   versionId: string;
@@ -6996,7 +6995,7 @@ export const ListProtectedJobsInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListProtectedJobsInput",
 }) as any as S.Schema<ListProtectedJobsInput>;
 export type ProtectedJobAnalysisType = "DIRECT_ANALYSIS" | (string & {});
-export const ProtectedJobAnalysisType = /*@__PURE__*/ S.String;
+export const ProtectedJobAnalysisType = S.String;
 
 export type ProtectedJobReceiverAccountIds = string[];
 export const ProtectedJobReceiverAccountIds = /*@__PURE__*/ S.Array(S.String);
@@ -7277,7 +7276,7 @@ export const ListTagsForResourceOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTagsForResourceOutput",
 }) as any as S.Schema<ListTagsForResourceOutput>;
 export type JobType = "BATCH" | "INCREMENTAL" | "DELETE_ONLY" | (string & {});
-export const JobType = /*@__PURE__*/ S.String;
+export const JobType = S.String;
 
 export interface PopulateIdMappingTableInput {
   idMappingTableIdentifier: string;
@@ -7481,7 +7480,7 @@ export const StartAnalysisLogExportOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "StartAnalysisLogExportOutput",
 }) as any as S.Schema<StartAnalysisLogExportOutput>;
 export type ProtectedJobType = "PYSPARK" | (string & {});
-export const ProtectedJobType = /*@__PURE__*/ S.String;
+export const ProtectedJobType = S.String;
 
 export interface ProtectedJobMemberOutputConfigurationInput {
   accountId: string;
@@ -7721,7 +7720,7 @@ export type ChangeRequestAction =
   | "CANCEL"
   | "COMMIT"
   | (string & {});
-export const ChangeRequestAction = /*@__PURE__*/ S.String;
+export const ChangeRequestAction = S.String;
 
 export interface UpdateCollaborationChangeRequestInput {
   collaborationIdentifier: string;
@@ -8276,7 +8275,7 @@ export const UpdatePrivacyBudgetTemplateOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdatePrivacyBudgetTemplateOutput",
 }) as any as S.Schema<UpdatePrivacyBudgetTemplateOutput>;
 export type TargetProtectedJobStatus = "CANCELLED" | (string & {});
-export const TargetProtectedJobStatus = /*@__PURE__*/ S.String;
+export const TargetProtectedJobStatus = S.String;
 
 export interface UpdateProtectedJobInput {
   membershipIdentifier: string;

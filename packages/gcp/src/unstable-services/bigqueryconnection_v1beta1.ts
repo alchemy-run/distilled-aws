@@ -69,7 +69,7 @@ export type CloudSqlPropertiesTypeEnum =
   | "DATABASE_TYPE_UNSPECIFIED"
   | "POSTGRES"
   | "MYSQL";
-export const CloudSqlPropertiesTypeEnum = /*@__PURE__*/ S.String;
+export const CloudSqlPropertiesTypeEnum = S.String;
 
 /** Credential info for the Cloud SQL. */
 export interface CloudSqlCredential {
@@ -244,7 +244,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(

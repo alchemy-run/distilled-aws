@@ -190,7 +190,7 @@ export const RulesCreateRequestBodyBlockRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RulesCreateRequestBodyBlockRule>;
 
 export type RulesCreateRequestBodyChallengeRuleAction = "challenge";
-export const RulesCreateRequestBodyChallengeRuleAction = /*@__PURE__*/ S.String;
+export const RulesCreateRequestBodyChallengeRuleAction = S.String;
 
 export type RulesCreateRequestBodyChallengeRuleCategoriesList = Array<string>;
 export const RulesCreateRequestBodyChallengeRuleCategoriesList =
@@ -505,8 +505,7 @@ export const RulesCreateRequestBodyForceConnectionCloseRule =
 
 export type RulesCreateRequestBodyJavaScriptChallengeRuleAction =
   "js_challenge";
-export const RulesCreateRequestBodyJavaScriptChallengeRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateRequestBodyJavaScriptChallengeRuleAction = S.String;
 
 export type RulesCreateRequestBodyJavaScriptChallengeRuleCategoriesList =
   Array<string>;
@@ -945,14 +944,13 @@ export const RulesCreateRequestBodyServeErrorRule = /*@__PURE__*/ S.suspend(
 
 export type RulesCreateRequestBodySetCacheControlRuleAction =
   "set_cache_control";
-export const RulesCreateRequestBodySetCacheControlRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateRequestBodySetCacheControlRuleAction = S.String;
 
 export type RulesCreateRequestBodySetCacheControlRuleActionParametersImmutableSetDirectiveOperation =
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersImmutableSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersImmutableSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -978,7 +976,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersImmutableRe
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersImmutableRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersImmutableRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1015,7 +1013,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersMaxAgeSetDi
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersMaxAgeSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersMaxAgeSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1044,7 +1042,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersMaxAgeRemov
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersMaxAgeRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersMaxAgeRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1081,7 +1079,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersMustRevalid
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersMustRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersMustRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1107,7 +1105,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersMustRevalid
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersMustRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersMustRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1144,7 +1142,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersMustUnderst
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersMustUnderstandSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersMustUnderstandSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1170,7 +1168,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersMustUnderst
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersMustUnderstandRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersMustUnderstandRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1207,7 +1205,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersNoCacheSetD
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersNoCacheSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateRequestBodySetCacheControlRuleActionParametersNoCacheSetDirectiveQualifiersList =
   Array<string>;
@@ -1245,7 +1243,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersNoCacheRemo
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersNoCacheRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersNoCacheRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1282,7 +1280,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersNoStoreSetD
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersNoStoreSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersNoStoreSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1308,7 +1306,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersNoStoreRemo
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersNoStoreRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersNoStoreRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1345,7 +1343,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersNoTransform
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersNoTransformSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersNoTransformSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1371,7 +1369,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersNoTransform
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersNoTransformRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersNoTransformRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1408,7 +1406,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersPrivateSetD
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersPrivateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateRequestBodySetCacheControlRuleActionParametersPrivateSetDirectiveQualifiersList =
   Array<string>;
@@ -1446,7 +1444,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersPrivateRemo
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersPrivateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersPrivateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1483,7 +1481,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersProxyRevali
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersProxyRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersProxyRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1509,7 +1507,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersProxyRevali
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersProxyRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersProxyRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1546,7 +1544,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersPublicSetDi
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersPublicSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersPublicSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1572,7 +1570,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersPublicRemov
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersPublicRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersPublicRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1609,7 +1607,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersSMaxageSetD
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersSMaxageSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersSMaxageSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1638,7 +1636,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersSMaxageRemo
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersSMaxageRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersSMaxageRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1675,7 +1673,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersStaleIfErro
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersStaleIfErrorSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersStaleIfErrorSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1704,7 +1702,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersStaleIfErro
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersStaleIfErrorRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersStaleIfErrorRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1741,7 +1739,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersStaleWhileR
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersStaleWhileRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersStaleWhileRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -1770,7 +1768,7 @@ export type RulesCreateRequestBodySetCacheControlRuleActionParametersStaleWhileR
   | "set"
   | "remove";
 export const RulesCreateRequestBodySetCacheControlRuleActionParametersStaleWhileRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheControlRuleActionParametersStaleWhileRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -2080,15 +2078,14 @@ export const RulesCreateRequestBodySetCacheSettingsRule =
   }) as any as S.Schema<RulesCreateRequestBodySetCacheSettingsRule>;
 
 export type RulesCreateRequestBodySetCacheTagsRuleAction = "set_cache_tags";
-export const RulesCreateRequestBodySetCacheTagsRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateRequestBodySetCacheTagsRuleAction = S.String;
 
 export type RulesCreateRequestBodySetCacheTagsRuleActionParametersAddCacheTagsValuesOperation =
   | "add"
   | "remove"
   | "set";
 export const RulesCreateRequestBodySetCacheTagsRuleActionParametersAddCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateRequestBodySetCacheTagsRuleActionParametersAddCacheTagsValuesValuesList =
   Array<string>;
@@ -2123,7 +2120,7 @@ export type RulesCreateRequestBodySetCacheTagsRuleActionParametersAddCacheTagsEx
   | "remove"
   | "set";
 export const RulesCreateRequestBodySetCacheTagsRuleActionParametersAddCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheTagsRuleActionParametersAddCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -2150,7 +2147,7 @@ export type RulesCreateRequestBodySetCacheTagsRuleActionParametersRemoveCacheTag
   | "remove"
   | "set";
 export const RulesCreateRequestBodySetCacheTagsRuleActionParametersRemoveCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateRequestBodySetCacheTagsRuleActionParametersRemoveCacheTagsValuesValuesList =
   Array<string>;
@@ -2185,7 +2182,7 @@ export type RulesCreateRequestBodySetCacheTagsRuleActionParametersRemoveCacheTag
   | "remove"
   | "set";
 export const RulesCreateRequestBodySetCacheTagsRuleActionParametersRemoveCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheTagsRuleActionParametersRemoveCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -2212,7 +2209,7 @@ export type RulesCreateRequestBodySetCacheTagsRuleActionParametersSetCacheTagsVa
   | "remove"
   | "set";
 export const RulesCreateRequestBodySetCacheTagsRuleActionParametersSetCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateRequestBodySetCacheTagsRuleActionParametersSetCacheTagsValuesValuesList =
   Array<string>;
@@ -2247,7 +2244,7 @@ export type RulesCreateRequestBodySetCacheTagsRuleActionParametersSetCacheTagsEx
   | "remove"
   | "set";
 export const RulesCreateRequestBodySetCacheTagsRuleActionParametersSetCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateRequestBodySetCacheTagsRuleActionParametersSetCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -2507,8 +2504,7 @@ export const RulesCreateRequestBodySkipRule = /*@__PURE__*/ S.suspend(() =>
 
 export type RulesCreateRequestBodyTransformResponseHTMLRuleAction =
   "transform_response_html";
-export const RulesCreateRequestBodyTransformResponseHTMLRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateRequestBodyTransformResponseHTMLRuleAction = S.String;
 
 export interface RulesCreateRequestBodyTransformResponseHTMLRuleActionParameters {
   /** Enables the link maze transformation on the response. */
@@ -2813,7 +2809,7 @@ export const CreateRuleForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRuleForAccountRequest>;
 
 export type RulesCreateResponseKind = "managed" | "custom" | "root" | "zone";
-export const RulesCreateResponseKind = /*@__PURE__*/ S.String;
+export const RulesCreateResponseKind = S.String;
 
 export type RulesCreateResponsePhase =
   | "ddos_l4"
@@ -2840,11 +2836,10 @@ export type RulesCreateResponsePhase =
   | "magic_transit_ids_managed"
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
-export const RulesCreateResponsePhase = /*@__PURE__*/ S.String;
+export const RulesCreateResponsePhase = S.String;
 
 export type RulesCreateResponseRulesItemBlockRuleAction = "block";
-export const RulesCreateResponseRulesItemBlockRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemBlockRuleAction = S.String;
 
 export interface RulesCreateResponseRulesItemBlockRuleActionParametersResponse {
   /** The content to return. */
@@ -3012,8 +3007,7 @@ export const RulesCreateResponseRulesItemBlockRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesCreateResponseRulesItemBlockRule>;
 
 export type RulesCreateResponseRulesItemChallengeAction = "challenge";
-export const RulesCreateResponseRulesItemChallengeAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemChallengeAction = S.String;
 
 export type RulesCreateResponseRulesItemChallengeCategoriesList = Array<string>;
 export const RulesCreateResponseRulesItemChallengeCategoriesList =
@@ -3141,8 +3135,7 @@ export const RulesCreateResponseRulesItemChallenge = /*@__PURE__*/ S.suspend(
 
 export type RulesCreateResponseRulesItemCompressResponseRuleAction =
   "compress_response";
-export const RulesCreateResponseRulesItemCompressResponseRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemCompressResponseRuleAction = S.String;
 
 export type RulesCreateResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
   | "none"
@@ -3152,7 +3145,7 @@ export type RulesCreateResponseRulesItemCompressResponseRuleActionParametersAlgo
   | "brotli"
   | "zstd";
 export const RulesCreateResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItem {
   /** Name of the compression algorithm to enable. */
@@ -3326,8 +3319,7 @@ export const RulesCreateResponseRulesItemCompressResponseRule =
   }) as any as S.Schema<RulesCreateResponseRulesItemCompressResponseRule>;
 
 export type RulesCreateResponseRulesItemDDoSDynamicRuleAction = "ddos_dynamic";
-export const RulesCreateResponseRulesItemDDoSDynamicRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemDDoSDynamicRuleAction = S.String;
 
 export type RulesCreateResponseRulesItemDDoSDynamicRuleCategoriesList =
   Array<string>;
@@ -3457,8 +3449,7 @@ export const RulesCreateResponseRulesItemDDoSDynamicRule =
   }) as any as S.Schema<RulesCreateResponseRulesItemDDoSDynamicRule>;
 
 export type RulesCreateResponseRulesItemExecuteRuleAction = "execute";
-export const RulesCreateResponseRulesItemExecuteRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemExecuteRuleAction = S.String;
 
 export interface RulesCreateResponseRulesItemExecuteRuleActionParametersMatchedData {
   /** The public key to encrypt matched data logs with. */
@@ -3480,7 +3471,7 @@ export type RulesCreateResponseRulesItemExecuteRuleActionParametersOverridesCate
   | "low"
   | "eoff";
 export const RulesCreateResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItem {
   /** The name of the category to override. */
@@ -3522,7 +3513,7 @@ export type RulesCreateResponseRulesItemExecuteRuleActionParametersOverridesRule
   | "low"
   | "eoff";
 export const RulesCreateResponseRulesItemExecuteRuleActionParametersOverridesRulesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemExecuteRuleActionParametersOverridesRulesItem {
   /** The ID of the rule to override. */
@@ -3569,7 +3560,7 @@ export type RulesCreateResponseRulesItemExecuteRuleActionParametersOverridesSens
   | "low"
   | "eoff";
 export const RulesCreateResponseRulesItemExecuteRuleActionParametersOverridesSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemExecuteRuleActionParametersOverrides {
   /** An action to override all rules with. This option has lower precedence than rule and category overrides. */
@@ -3768,7 +3759,7 @@ export const RulesCreateResponseRulesItemExecuteRule = /*@__PURE__*/ S.suspend(
 export type RulesCreateResponseRulesItemForceConnectionCloseRuleAction =
   "force_connection_close";
 export const RulesCreateResponseRulesItemForceConnectionCloseRuleAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateResponseRulesItemForceConnectionCloseRuleCategoriesList =
   Array<string>;
@@ -3900,8 +3891,7 @@ export const RulesCreateResponseRulesItemForceConnectionCloseRule =
   }) as any as S.Schema<RulesCreateResponseRulesItemForceConnectionCloseRule>;
 
 export type RulesCreateResponseRulesItemJSChallengeAction = "js_challenge";
-export const RulesCreateResponseRulesItemJSChallengeAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemJSChallengeAction = S.String;
 
 export type RulesCreateResponseRulesItemJSChallengeCategoriesList =
   Array<string>;
@@ -4031,7 +4021,7 @@ export const RulesCreateResponseRulesItemJSChallenge = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesCreateResponseRulesItemJSChallenge>;
 
 export type RulesCreateResponseRulesItemLogRuleAction = "log";
-export const RulesCreateResponseRulesItemLogRuleAction = /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemLogRuleAction = S.String;
 
 export type RulesCreateResponseRulesItemLogRuleCategoriesList = Array<string>;
 export const RulesCreateResponseRulesItemLogRuleCategoriesList =
@@ -4158,8 +4148,7 @@ export const RulesCreateResponseRulesItemLogRule = /*@__PURE__*/ S.suspend(() =>
 
 export type RulesCreateResponseRulesItemLogCustomFieldRuleAction =
   "log_custom_field";
-export const RulesCreateResponseRulesItemLogCustomFieldRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemLogCustomFieldRuleAction = S.String;
 
 export interface RulesCreateResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem {
   /** The name of the cookie. */
@@ -4430,8 +4419,7 @@ export const RulesCreateResponseRulesItemLogCustomFieldRule =
 
 export type RulesCreateResponseRulesItemManagedChallengeRuleAction =
   "managed_challenge";
-export const RulesCreateResponseRulesItemManagedChallengeRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemManagedChallengeRuleAction = S.String;
 
 export type RulesCreateResponseRulesItemManagedChallengeRuleCategoriesList =
   Array<string>;
@@ -4563,8 +4551,7 @@ export const RulesCreateResponseRulesItemManagedChallengeRule =
   }) as any as S.Schema<RulesCreateResponseRulesItemManagedChallengeRule>;
 
 export type RulesCreateResponseRulesItemRedirectRuleAction = "redirect";
-export const RulesCreateResponseRulesItemRedirectRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemRedirectRuleAction = S.String;
 
 export interface RulesCreateResponseRulesItemRedirectRuleActionParametersFromList {
   /** An expression that evaluates to the list lookup key. */
@@ -4607,7 +4594,7 @@ export type RulesCreateResponseRulesItemRedirectRuleActionParametersFromValueSta
   | 307
   | 308;
 export const RulesCreateResponseRulesItemRedirectRuleActionParametersFromValueStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface RulesCreateResponseRulesItemRedirectRuleActionParametersFromValue {
   /** A URL to redirect the request to. */
@@ -4792,13 +4779,12 @@ export const RulesCreateResponseRulesItemRedirectRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesCreateResponseRulesItemRedirectRule>;
 
 export type RulesCreateResponseRulesItemRewriteRuleAction = "rewrite";
-export const RulesCreateResponseRulesItemRewriteRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemRewriteRuleAction = S.String;
 
 export type RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
   "add";
 export const RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeader {
   /** The operation to perform on the header. */
@@ -4821,7 +4807,7 @@ export const RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersAddSt
 export type RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
   "add";
 export const RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -4844,7 +4830,7 @@ export const RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersAddDy
 export type RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
   "set";
 export const RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeader {
   /** The operation to perform on the header. */
@@ -4867,7 +4853,7 @@ export const RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersSetSt
 export type RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
   "set";
 export const RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -4890,7 +4876,7 @@ export const RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersSetDy
 export type RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
   "remove";
 export const RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeader {
   /** The operation to perform on the header. */
@@ -5156,8 +5142,7 @@ export const RulesCreateResponseRulesItemRewriteRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesCreateResponseRulesItemRewriteRule>;
 
 export type RulesCreateResponseRulesItemRouteRuleAction = "route";
-export const RulesCreateResponseRulesItemRouteRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemRouteRuleAction = S.String;
 
 export interface RulesCreateResponseRulesItemRouteRuleActionParametersOrigin {
   /** A resolved host to route to. */
@@ -5338,8 +5323,7 @@ export const RulesCreateResponseRulesItemRouteRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesCreateResponseRulesItemRouteRule>;
 
 export type RulesCreateResponseRulesItemScoreRuleAction = "score";
-export const RulesCreateResponseRulesItemScoreRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemScoreRuleAction = S.String;
 
 export interface RulesCreateResponseRulesItemScoreRuleActionParameters {
   /** A delta to change the score by, which can be either positive or negative. */
@@ -5481,8 +5465,7 @@ export const RulesCreateResponseRulesItemScoreRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesCreateResponseRulesItemScoreRule>;
 
 export type RulesCreateResponseRulesItemServeErrorRuleAction = "serve_error";
-export const RulesCreateResponseRulesItemServeErrorRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemServeErrorRuleAction = S.String;
 
 export type RulesCreateResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
   | "application/json"
@@ -5490,7 +5473,7 @@ export type RulesCreateResponseRulesItemServeErrorRuleActionParametersActionPara
   | "text/plain"
   | "text/xml";
 export const RulesCreateResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemServeErrorRuleActionParametersActionParametersContent {
   /** The response content. */
@@ -5522,7 +5505,7 @@ export type RulesCreateResponseRulesItemServeErrorRuleActionParametersActionPara
   | "text/plain"
   | "text/xml";
 export const RulesCreateResponseRulesItemServeErrorRuleActionParametersActionParametersAssetContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemServeErrorRuleActionParametersActionParametersAsset {
   /** The name of a custom asset to serve as the error response. */
@@ -5690,14 +5673,13 @@ export const RulesCreateResponseRulesItemServeErrorRule =
 
 export type RulesCreateResponseRulesItemSetCacheControlAction =
   "set_cache_control";
-export const RulesCreateResponseRulesItemSetCacheControlAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemSetCacheControlAction = S.String;
 
 export type RulesCreateResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersImmutableSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -5723,7 +5705,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersImmutable
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -5760,7 +5742,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersMaxAgeSet
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -5789,7 +5771,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersMaxAgeRem
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -5826,7 +5808,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersMustReval
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -5852,7 +5834,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersMustReval
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -5889,7 +5871,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersMustUnder
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -5915,7 +5897,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersMustUnder
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -5952,7 +5934,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersNoCacheSe
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveQualifiersList =
   Array<string>;
@@ -5992,7 +5974,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersNoCacheRe
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -6029,7 +6011,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersNoStoreSe
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersNoStoreSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersNoStoreSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -6055,7 +6037,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersNoStoreRe
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -6092,7 +6074,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersNoTransfo
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersNoTransformSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersNoTransformSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -6118,7 +6100,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersNoTransfo
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -6155,7 +6137,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersPrivateSe
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveQualifiersList =
   Array<string>;
@@ -6195,7 +6177,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersPrivateRe
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -6232,7 +6214,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersProxyReva
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -6258,7 +6240,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersProxyReva
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -6295,7 +6277,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersPublicSet
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersPublicSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersPublicSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -6321,7 +6303,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersPublicRem
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersPublicRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersPublicRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -6358,7 +6340,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersSMaxageSe
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersSMaxageSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersSMaxageSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -6387,7 +6369,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersSMaxageRe
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -6424,7 +6406,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersStaleIfEr
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -6453,7 +6435,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersStaleIfEr
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -6490,7 +6472,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersStaleWhil
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -6519,7 +6501,7 @@ export type RulesCreateResponseRulesItemSetCacheControlActionParametersStaleWhil
   | "set"
   | "remove";
 export const RulesCreateResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -6784,8 +6766,7 @@ export const RulesCreateResponseRulesItemSetCacheControl =
 
 export type RulesCreateResponseRulesItemSetCacheSettingsRuleAction =
   "set_cache_settings";
-export const RulesCreateResponseRulesItemSetCacheSettingsRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemSetCacheSettingsRuleAction = S.String;
 
 export type RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersAdditionalCacheablePortsList =
   Array<number>;
@@ -6800,7 +6781,7 @@ export type RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersBrow
   | "override_origin"
   | "bypass";
 export const RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtl {
   /** The browser TTL mode. */
@@ -7146,7 +7127,7 @@ export type RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersEdge
   | "bypass_by_default"
   | "override_origin";
 export const RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange {
   /** The lower bound of the range. */
@@ -7255,7 +7236,7 @@ export type RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersVary
   | "passthrough"
   | "normalize";
 export const RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefaultAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefault {
   /** How the header value is treated when building the cache key. */
@@ -7277,7 +7258,7 @@ export type RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersVary
   | "passthrough"
   | "normalize";
 export const RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueLanguagesList =
   Array<string>;
@@ -7592,15 +7573,14 @@ export const RulesCreateResponseRulesItemSetCacheSettingsRule =
   }) as any as S.Schema<RulesCreateResponseRulesItemSetCacheSettingsRule>;
 
 export type RulesCreateResponseRulesItemSetCacheTagsAction = "set_cache_tags";
-export const RulesCreateResponseRulesItemSetCacheTagsAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemSetCacheTagsAction = S.String;
 
 export type RulesCreateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
   | "add"
   | "remove"
   | "set";
 export const RulesCreateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesValuesList =
   Array<string>;
@@ -7633,7 +7613,7 @@ export type RulesCreateResponseRulesItemSetCacheTagsActionParametersAddCacheTags
   | "remove"
   | "set";
 export const RulesCreateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -7658,7 +7638,7 @@ export type RulesCreateResponseRulesItemSetCacheTagsActionParametersRemoveCacheT
   | "remove"
   | "set";
 export const RulesCreateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesValuesList =
   Array<string>;
@@ -7691,7 +7671,7 @@ export type RulesCreateResponseRulesItemSetCacheTagsActionParametersRemoveCacheT
   | "remove"
   | "set";
 export const RulesCreateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -7716,7 +7696,7 @@ export type RulesCreateResponseRulesItemSetCacheTagsActionParametersSetCacheTags
   | "remove"
   | "set";
 export const RulesCreateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesValuesList =
   Array<string>;
@@ -7749,7 +7729,7 @@ export type RulesCreateResponseRulesItemSetCacheTagsActionParametersSetCacheTags
   | "remove"
   | "set";
 export const RulesCreateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -7918,8 +7898,7 @@ export const RulesCreateResponseRulesItemSetCacheTags = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesCreateResponseRulesItemSetCacheTags>;
 
 export type RulesCreateResponseRulesItemSetConfigRuleAction = "set_config";
-export const RulesCreateResponseRulesItemSetConfigRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemSetConfigRuleAction = S.String;
 
 export interface RulesCreateResponseRulesItemSetConfigRuleActionParametersAutominify {
   /** Whether to minify CSS files. */
@@ -7947,20 +7926,20 @@ export type RulesCreateResponseRulesItemSetConfigRuleActionParametersPolish =
   | "lossy"
   | "webp";
 export const RulesCreateResponseRulesItemSetConfigRuleActionParametersPolish =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
   | "none"
   | "standard"
   | "full";
 export const RulesCreateResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
   | "none"
   | "standard";
 export const RulesCreateResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "off"
@@ -7970,7 +7949,7 @@ export type RulesCreateResponseRulesItemSetConfigRuleActionParametersSecurityLev
   | "high"
   | "under_attack";
 export const RulesCreateResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateResponseRulesItemSetConfigRuleActionParametersSsl =
   | "off"
@@ -7979,7 +7958,7 @@ export type RulesCreateResponseRulesItemSetConfigRuleActionParametersSsl =
   | "strict"
   | "origin_pull";
 export const RulesCreateResponseRulesItemSetConfigRuleActionParametersSsl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesCreateResponseRulesItemSetConfigRuleActionParameters {
   /** Whether to enable Automatic HTTPS Rewrites. */
@@ -8229,13 +8208,12 @@ export const RulesCreateResponseRulesItemSetConfigRule =
   }) as any as S.Schema<RulesCreateResponseRulesItemSetConfigRule>;
 
 export type RulesCreateResponseRulesItemSkipRuleAction = "skip";
-export const RulesCreateResponseRulesItemSkipRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemSkipRuleAction = S.String;
 
 export type RulesCreateResponseRulesItemSkipRuleActionParametersPhase =
   "current";
 export const RulesCreateResponseRulesItemSkipRuleActionParametersPhase =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "ddos_l4"
@@ -8263,7 +8241,7 @@ export type RulesCreateResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
 export const RulesCreateResponseRulesItemSkipRuleActionParametersPhasesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateResponseRulesItemSkipRuleActionParametersPhasesList =
   Array<RulesCreateResponseRulesItemSkipRuleActionParametersPhasesItem>;
@@ -8281,7 +8259,7 @@ export type RulesCreateResponseRulesItemSkipRuleActionParametersProductsItem =
   | "waf"
   | "zoneLockdown";
 export const RulesCreateResponseRulesItemSkipRuleActionParametersProductsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateResponseRulesItemSkipRuleActionParametersProductsList =
   Array<RulesCreateResponseRulesItemSkipRuleActionParametersProductsItem>;
@@ -8311,7 +8289,7 @@ export const RulesCreateResponseRulesItemSkipRuleActionParametersRulesMap =
 export type RulesCreateResponseRulesItemSkipRuleActionParametersRuleset =
   "current";
 export const RulesCreateResponseRulesItemSkipRuleActionParametersRuleset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesCreateResponseRulesItemSkipRuleActionParametersRulesetsList =
   Array<string>;
@@ -8494,8 +8472,7 @@ export const RulesCreateResponseRulesItemSkipRule = /*@__PURE__*/ S.suspend(
 
 export type RulesCreateResponseRulesItemTransformResponseHTMLAction =
   "transform_response_html";
-export const RulesCreateResponseRulesItemTransformResponseHTMLAction =
-  /*@__PURE__*/ S.String;
+export const RulesCreateResponseRulesItemTransformResponseHTMLAction = S.String;
 
 export type RulesCreateResponseRulesItemTransformResponseHTMLActionParameters =
   RulesCreateRequestBodyTransformResponseHTMLRuleActionParameters;
@@ -9040,7 +9017,7 @@ export const CreateRuleForZoneRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRuleForZoneRequest>;
 
 export type CreateRequestKind = "managed" | "custom" | "root" | "zone";
-export const CreateRequestKind = /*@__PURE__*/ S.String;
+export const CreateRequestKind = S.String;
 
 export type CreateRequestPhase =
   | "ddos_l4"
@@ -9067,10 +9044,10 @@ export type CreateRequestPhase =
   | "magic_transit_ids_managed"
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
-export const CreateRequestPhase = /*@__PURE__*/ S.String;
+export const CreateRequestPhase = S.String;
 
 export type CreateRequestRulesItemBlockRuleAction = "block";
-export const CreateRequestRulesItemBlockRuleAction = /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemBlockRuleAction = S.String;
 
 export type CreateRequestRulesItemBlockRuleActionParametersResponse =
   RulesCreateResponseRulesItemBlockRuleActionParametersResponse;
@@ -9211,7 +9188,7 @@ export const CreateRequestRulesItemBlockRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRequestRulesItemBlockRule>;
 
 export type CreateRequestRulesItemChallengeAction = "challenge";
-export const CreateRequestRulesItemChallengeAction = /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemChallengeAction = S.String;
 
 export type CreateRequestRulesItemChallengeCategoriesList = Array<string>;
 export const CreateRequestRulesItemChallengeCategoriesList =
@@ -9324,8 +9301,7 @@ export const CreateRequestRulesItemChallenge = /*@__PURE__*/ S.suspend(() =>
 
 export type CreateRequestRulesItemCompressResponseRuleAction =
   "compress_response";
-export const CreateRequestRulesItemCompressResponseRuleAction =
-  /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemCompressResponseRuleAction = S.String;
 
 export type CreateRequestRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
   | "none"
@@ -9335,7 +9311,7 @@ export type CreateRequestRulesItemCompressResponseRuleActionParametersAlgorithms
   | "brotli"
   | "zstd";
 export const CreateRequestRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemCompressResponseRuleActionParametersAlgorithmsItem {
   /** Name of the compression algorithm to enable. */
@@ -9496,8 +9472,7 @@ export const CreateRequestRulesItemCompressResponseRule =
   }) as any as S.Schema<CreateRequestRulesItemCompressResponseRule>;
 
 export type CreateRequestRulesItemDDoSDynamicRuleAction = "ddos_dynamic";
-export const CreateRequestRulesItemDDoSDynamicRuleAction =
-  /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemDDoSDynamicRuleAction = S.String;
 
 export type CreateRequestRulesItemDDoSDynamicRuleCategoriesList = Array<string>;
 export const CreateRequestRulesItemDDoSDynamicRuleCategoriesList =
@@ -9612,7 +9587,7 @@ export const CreateRequestRulesItemDDoSDynamicRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateRequestRulesItemDDoSDynamicRule>;
 
 export type CreateRequestRulesItemExecuteRuleAction = "execute";
-export const CreateRequestRulesItemExecuteRuleAction = /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemExecuteRuleAction = S.String;
 
 export type CreateRequestRulesItemExecuteRuleActionParametersMatchedData =
   RulesCreateResponseRulesItemExecuteRuleActionParametersMatchedData;
@@ -9625,7 +9600,7 @@ export type CreateRequestRulesItemExecuteRuleActionParametersOverridesCategories
   | "low"
   | "eoff";
 export const CreateRequestRulesItemExecuteRuleActionParametersOverridesCategoriesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemExecuteRuleActionParametersOverridesCategoriesItem {
   /** The name of the category to override. */
@@ -9669,7 +9644,7 @@ export type CreateRequestRulesItemExecuteRuleActionParametersOverridesRulesItemS
   | "low"
   | "eoff";
 export const CreateRequestRulesItemExecuteRuleActionParametersOverridesRulesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemExecuteRuleActionParametersOverridesRulesItem {
   /** The ID of the rule to override. */
@@ -9716,7 +9691,7 @@ export type CreateRequestRulesItemExecuteRuleActionParametersOverridesSensitivit
   | "low"
   | "eoff";
 export const CreateRequestRulesItemExecuteRuleActionParametersOverridesSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemExecuteRuleActionParametersOverrides {
   /** An action to override all rules with. This option has lower precedence than rule and category overrides. */
@@ -9893,8 +9868,7 @@ export const CreateRequestRulesItemExecuteRule = /*@__PURE__*/ S.suspend(() =>
 
 export type CreateRequestRulesItemForceConnectionCloseRuleAction =
   "force_connection_close";
-export const CreateRequestRulesItemForceConnectionCloseRuleAction =
-  /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemForceConnectionCloseRuleAction = S.String;
 
 export type CreateRequestRulesItemForceConnectionCloseRuleCategoriesList =
   Array<string>;
@@ -10012,7 +9986,7 @@ export const CreateRequestRulesItemForceConnectionCloseRule =
   }) as any as S.Schema<CreateRequestRulesItemForceConnectionCloseRule>;
 
 export type CreateRequestRulesItemJSChallengeAction = "js_challenge";
-export const CreateRequestRulesItemJSChallengeAction = /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemJSChallengeAction = S.String;
 
 export type CreateRequestRulesItemJSChallengeCategoriesList = Array<string>;
 export const CreateRequestRulesItemJSChallengeCategoriesList =
@@ -10124,7 +10098,7 @@ export const CreateRequestRulesItemJSChallenge = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRequestRulesItemJSChallenge>;
 
 export type CreateRequestRulesItemLogRuleAction = "log";
-export const CreateRequestRulesItemLogRuleAction = /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemLogRuleAction = S.String;
 
 export type CreateRequestRulesItemLogRuleCategoriesList = Array<string>;
 export const CreateRequestRulesItemLogRuleCategoriesList =
@@ -10236,8 +10210,7 @@ export const CreateRequestRulesItemLogRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRequestRulesItemLogRule>;
 
 export type CreateRequestRulesItemLogCustomFieldRuleAction = "log_custom_field";
-export const CreateRequestRulesItemLogCustomFieldRuleAction =
-  /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemLogCustomFieldRuleAction = S.String;
 
 export type CreateRequestRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem =
   RulesCreateResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem;
@@ -10477,8 +10450,7 @@ export const CreateRequestRulesItemLogCustomFieldRule = /*@__PURE__*/ S.suspend(
 
 export type CreateRequestRulesItemManagedChallengeRuleAction =
   "managed_challenge";
-export const CreateRequestRulesItemManagedChallengeRuleAction =
-  /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemManagedChallengeRuleAction = S.String;
 
 export type CreateRequestRulesItemManagedChallengeRuleCategoriesList =
   Array<string>;
@@ -10596,7 +10568,7 @@ export const CreateRequestRulesItemManagedChallengeRule =
   }) as any as S.Schema<CreateRequestRulesItemManagedChallengeRule>;
 
 export type CreateRequestRulesItemRedirectRuleAction = "redirect";
-export const CreateRequestRulesItemRedirectRuleAction = /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemRedirectRuleAction = S.String;
 
 export type CreateRequestRulesItemRedirectRuleActionParametersFromList =
   RulesCreateResponseRulesItemRedirectRuleActionParametersFromList;
@@ -10627,7 +10599,7 @@ export type CreateRequestRulesItemRedirectRuleActionParametersFromValueStatusCod
   | 307
   | 308;
 export const CreateRequestRulesItemRedirectRuleActionParametersFromValueStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface CreateRequestRulesItemRedirectRuleActionParametersFromValue {
   /** A URL to redirect the request to. */
@@ -10797,12 +10769,12 @@ export const CreateRequestRulesItemRedirectRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRequestRulesItemRedirectRule>;
 
 export type CreateRequestRulesItemRewriteRuleAction = "rewrite";
-export const CreateRequestRulesItemRewriteRuleAction = /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemRewriteRuleAction = S.String;
 
 export type CreateRequestRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
   "add";
 export const CreateRequestRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemRewriteRuleActionParametersHeadersAddStaticHeader {
   /** The operation to perform on the header. */
@@ -10825,7 +10797,7 @@ export const CreateRequestRulesItemRewriteRuleActionParametersHeadersAddStaticHe
 export type CreateRequestRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
   "add";
 export const CreateRequestRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemRewriteRuleActionParametersHeadersAddDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -10848,7 +10820,7 @@ export const CreateRequestRulesItemRewriteRuleActionParametersHeadersAddDynamicH
 export type CreateRequestRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
   "set";
 export const CreateRequestRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemRewriteRuleActionParametersHeadersSetStaticHeader {
   /** The operation to perform on the header. */
@@ -10871,7 +10843,7 @@ export const CreateRequestRulesItemRewriteRuleActionParametersHeadersSetStaticHe
 export type CreateRequestRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
   "set";
 export const CreateRequestRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemRewriteRuleActionParametersHeadersSetDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -10894,7 +10866,7 @@ export const CreateRequestRulesItemRewriteRuleActionParametersHeadersSetDynamicH
 export type CreateRequestRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
   "remove";
 export const CreateRequestRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemRewriteRuleActionParametersHeadersRemoveHeader {
   /** The operation to perform on the header. */
@@ -11137,7 +11109,7 @@ export const CreateRequestRulesItemRewriteRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRequestRulesItemRewriteRule>;
 
 export type CreateRequestRulesItemRouteRuleAction = "route";
-export const CreateRequestRulesItemRouteRuleAction = /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemRouteRuleAction = S.String;
 
 export interface CreateRequestRulesItemRouteRuleActionParametersOrigin {
   /** A resolved host to route to. */
@@ -11293,7 +11265,7 @@ export const CreateRequestRulesItemRouteRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRequestRulesItemRouteRule>;
 
 export type CreateRequestRulesItemScoreRuleAction = "score";
-export const CreateRequestRulesItemScoreRuleAction = /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemScoreRuleAction = S.String;
 
 export type CreateRequestRulesItemScoreRuleActionParameters =
   RulesCreateResponseRulesItemScoreRuleActionParameters;
@@ -11414,8 +11386,7 @@ export const CreateRequestRulesItemScoreRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRequestRulesItemScoreRule>;
 
 export type CreateRequestRulesItemServeErrorRuleAction = "serve_error";
-export const CreateRequestRulesItemServeErrorRuleAction =
-  /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemServeErrorRuleAction = S.String;
 
 export type CreateRequestRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
   | "application/json"
@@ -11423,7 +11394,7 @@ export type CreateRequestRulesItemServeErrorRuleActionParametersActionParameters
   | "text/plain"
   | "text/xml";
 export const CreateRequestRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemServeErrorRuleActionParametersActionParametersContent {
   /** The response content. */
@@ -11457,7 +11428,7 @@ export type CreateRequestRulesItemServeErrorRuleActionParametersActionParameters
   | "text/plain"
   | "text/xml";
 export const CreateRequestRulesItemServeErrorRuleActionParametersActionParametersAssetContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemServeErrorRuleActionParametersActionParametersAsset {
   /** The name of a custom asset to serve as the error response. */
@@ -11613,14 +11584,13 @@ export const CreateRequestRulesItemServeErrorRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateRequestRulesItemServeErrorRule>;
 
 export type CreateRequestRulesItemSetCacheControlAction = "set_cache_control";
-export const CreateRequestRulesItemSetCacheControlAction =
-  /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemSetCacheControlAction = S.String;
 
 export type CreateRequestRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersImmutableSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -11646,7 +11616,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersImmutableRemove
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersImmutableRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersImmutableRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -11683,7 +11653,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersMaxAgeSetDirect
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersMaxAgeSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersMaxAgeSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -11712,7 +11682,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersMaxAgeRemoveDir
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersMaxAgeRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersMaxAgeRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -11749,7 +11719,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersMustRevalidateS
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersMustRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersMustRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -11775,7 +11745,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersMustRevalidateR
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -11812,7 +11782,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersMustUnderstandS
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersMustUnderstandSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersMustUnderstandSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -11838,7 +11808,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersMustUnderstandR
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -11875,7 +11845,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersNoCacheSetDirec
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersNoCacheSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRequestRulesItemSetCacheControlActionParametersNoCacheSetDirectiveQualifiersList =
   Array<string>;
@@ -11913,7 +11883,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersNoCacheRemoveDi
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersNoCacheRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersNoCacheRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -11950,7 +11920,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersNoStoreSetDirec
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersNoStoreSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersNoStoreSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -11976,7 +11946,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersNoStoreRemoveDi
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersNoStoreRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersNoStoreRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -12013,7 +11983,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersNoTransformSetD
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersNoTransformSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersNoTransformSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -12039,7 +12009,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersNoTransformRemo
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersNoTransformRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersNoTransformRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -12076,7 +12046,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersPrivateSetDirec
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersPrivateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRequestRulesItemSetCacheControlActionParametersPrivateSetDirectiveQualifiersList =
   Array<string>;
@@ -12114,7 +12084,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersPrivateRemoveDi
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersPrivateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersPrivateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -12151,7 +12121,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersProxyRevalidate
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersProxyRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersProxyRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -12177,7 +12147,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersProxyRevalidate
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -12214,7 +12184,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersPublicSetDirect
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersPublicSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersPublicSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -12240,7 +12210,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersPublicRemoveDir
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersPublicRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersPublicRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -12277,7 +12247,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersSMaxageSetDirec
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersSMaxageSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersSMaxageSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -12306,7 +12276,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersSMaxageRemoveDi
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersSMaxageRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersSMaxageRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -12343,7 +12313,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersStaleIfErrorSet
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersStaleIfErrorSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersStaleIfErrorSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -12372,7 +12342,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersStaleIfErrorRem
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -12409,7 +12379,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersStaleWhileReval
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -12438,7 +12408,7 @@ export type CreateRequestRulesItemSetCacheControlActionParametersStaleWhileReval
   | "set"
   | "remove";
 export const CreateRequestRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -12684,8 +12654,7 @@ export const CreateRequestRulesItemSetCacheControl = /*@__PURE__*/ S.suspend(
 
 export type CreateRequestRulesItemSetCacheSettingsRuleAction =
   "set_cache_settings";
-export const CreateRequestRulesItemSetCacheSettingsRuleAction =
-  /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemSetCacheSettingsRuleAction = S.String;
 
 export type CreateRequestRulesItemSetCacheSettingsRuleActionParametersAdditionalCacheablePortsList =
   Array<number>;
@@ -12700,7 +12669,7 @@ export type CreateRequestRulesItemSetCacheSettingsRuleActionParametersBrowserTtl
   | "override_origin"
   | "bypass";
 export const CreateRequestRulesItemSetCacheSettingsRuleActionParametersBrowserTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheSettingsRuleActionParametersBrowserTtl {
   /** The browser TTL mode. */
@@ -13022,7 +12991,7 @@ export type CreateRequestRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMod
   | "bypass_by_default"
   | "override_origin";
 export const CreateRequestRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange {
   /** The lower bound of the range. */
@@ -13124,7 +13093,7 @@ export type CreateRequestRulesItemSetCacheSettingsRuleActionParametersVaryDefaul
   | "passthrough"
   | "normalize";
 export const CreateRequestRulesItemSetCacheSettingsRuleActionParametersVaryDefaultAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheSettingsRuleActionParametersVaryDefault {
   /** How the header value is treated when building the cache key. */
@@ -13148,7 +13117,7 @@ export type CreateRequestRulesItemSetCacheSettingsRuleActionParametersVaryHeader
   | "passthrough"
   | "normalize";
 export const CreateRequestRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRequestRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueLanguagesList =
   Array<string>;
@@ -13442,14 +13411,14 @@ export const CreateRequestRulesItemSetCacheSettingsRule =
   }) as any as S.Schema<CreateRequestRulesItemSetCacheSettingsRule>;
 
 export type CreateRequestRulesItemSetCacheTagsAction = "set_cache_tags";
-export const CreateRequestRulesItemSetCacheTagsAction = /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemSetCacheTagsAction = S.String;
 
 export type CreateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
   | "add"
   | "remove"
   | "set";
 export const CreateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsValuesValuesList =
   Array<string>;
@@ -13484,7 +13453,7 @@ export type CreateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsExpres
   | "remove"
   | "set";
 export const CreateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -13511,7 +13480,7 @@ export type CreateRequestRulesItemSetCacheTagsActionParametersRemoveCacheTagsVal
   | "remove"
   | "set";
 export const CreateRequestRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRequestRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesValuesList =
   Array<string>;
@@ -13546,7 +13515,7 @@ export type CreateRequestRulesItemSetCacheTagsActionParametersRemoveCacheTagsExp
   | "remove"
   | "set";
 export const CreateRequestRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -13573,7 +13542,7 @@ export type CreateRequestRulesItemSetCacheTagsActionParametersSetCacheTagsValues
   | "remove"
   | "set";
 export const CreateRequestRulesItemSetCacheTagsActionParametersSetCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRequestRulesItemSetCacheTagsActionParametersSetCacheTagsValuesValuesList =
   Array<string>;
@@ -13608,7 +13577,7 @@ export type CreateRequestRulesItemSetCacheTagsActionParametersSetCacheTagsExpres
   | "remove"
   | "set";
 export const CreateRequestRulesItemSetCacheTagsActionParametersSetCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemSetCacheTagsActionParametersSetCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -13763,7 +13732,7 @@ export const CreateRequestRulesItemSetCacheTags = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRequestRulesItemSetCacheTags>;
 
 export type CreateRequestRulesItemSetConfigRuleAction = "set_config";
-export const CreateRequestRulesItemSetConfigRuleAction = /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemSetConfigRuleAction = S.String;
 
 export interface CreateRequestRulesItemSetConfigRuleActionParametersAutominify {
   /** Whether to minify CSS files. */
@@ -13790,20 +13759,20 @@ export type CreateRequestRulesItemSetConfigRuleActionParametersPolish =
   | "lossy"
   | "webp";
 export const CreateRequestRulesItemSetConfigRuleActionParametersPolish =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRequestRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
   | "none"
   | "standard"
   | "full";
 export const CreateRequestRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRequestRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
   | "none"
   | "standard";
 export const CreateRequestRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRequestRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "off"
@@ -13813,7 +13782,7 @@ export type CreateRequestRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "high"
   | "under_attack";
 export const CreateRequestRulesItemSetConfigRuleActionParametersSecurityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRequestRulesItemSetConfigRuleActionParametersSsl =
   | "off"
@@ -13821,8 +13790,7 @@ export type CreateRequestRulesItemSetConfigRuleActionParametersSsl =
   | "full"
   | "strict"
   | "origin_pull";
-export const CreateRequestRulesItemSetConfigRuleActionParametersSsl =
-  /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemSetConfigRuleActionParametersSsl = S.String;
 
 export interface CreateRequestRulesItemSetConfigRuleActionParameters {
   /** Whether to enable Automatic HTTPS Rewrites. */
@@ -14050,11 +14018,10 @@ export const CreateRequestRulesItemSetConfigRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRequestRulesItemSetConfigRule>;
 
 export type CreateRequestRulesItemSkipRuleAction = "skip";
-export const CreateRequestRulesItemSkipRuleAction = /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemSkipRuleAction = S.String;
 
 export type CreateRequestRulesItemSkipRuleActionParametersPhase = "current";
-export const CreateRequestRulesItemSkipRuleActionParametersPhase =
-  /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemSkipRuleActionParametersPhase = S.String;
 
 export type CreateRequestRulesItemSkipRuleActionParametersPhasesItem =
   | "ddos_l4"
@@ -14082,7 +14049,7 @@ export type CreateRequestRulesItemSkipRuleActionParametersPhasesItem =
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
 export const CreateRequestRulesItemSkipRuleActionParametersPhasesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRequestRulesItemSkipRuleActionParametersPhasesList = Array<
   CreateRequestRulesItemSkipRuleActionParametersPhasesItem | (string & {})
@@ -14101,7 +14068,7 @@ export type CreateRequestRulesItemSkipRuleActionParametersProductsItem =
   | "waf"
   | "zoneLockdown";
 export const CreateRequestRulesItemSkipRuleActionParametersProductsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRequestRulesItemSkipRuleActionParametersProductsList = Array<
   CreateRequestRulesItemSkipRuleActionParametersProductsItem | (string & {})
@@ -14130,8 +14097,7 @@ export const CreateRequestRulesItemSkipRuleActionParametersRulesMap =
   ) as any as S.Schema<CreateRequestRulesItemSkipRuleActionParametersRulesMap>;
 
 export type CreateRequestRulesItemSkipRuleActionParametersRuleset = "current";
-export const CreateRequestRulesItemSkipRuleActionParametersRuleset =
-  /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemSkipRuleActionParametersRuleset = S.String;
 
 export type CreateRequestRulesItemSkipRuleActionParametersRulesetsList =
   Array<string>;
@@ -14293,8 +14259,7 @@ export const CreateRequestRulesItemSkipRule = /*@__PURE__*/ S.suspend(() =>
 
 export type CreateRequestRulesItemTransformResponseHTMLAction =
   "transform_response_html";
-export const CreateRequestRulesItemTransformResponseHTMLAction =
-  /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemTransformResponseHTMLAction = S.String;
 
 export type CreateRequestRulesItemTransformResponseHTMLActionParameters =
   RulesCreateRequestBodyTransformResponseHTMLRuleActionParameters;
@@ -14761,7 +14726,7 @@ export const CreateRulesetForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRulesetForAccountRequest>;
 
 export type CreateResponseKind = "managed" | "custom" | "root" | "zone";
-export const CreateResponseKind = /*@__PURE__*/ S.String;
+export const CreateResponseKind = S.String;
 
 export type CreateResponsePhase =
   | "ddos_l4"
@@ -14788,10 +14753,10 @@ export type CreateResponsePhase =
   | "magic_transit_ids_managed"
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
-export const CreateResponsePhase = /*@__PURE__*/ S.String;
+export const CreateResponsePhase = S.String;
 
 export type CreateResponseRulesItemBlockRuleAction = "block";
-export const CreateResponseRulesItemBlockRuleAction = /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemBlockRuleAction = S.String;
 
 export type CreateResponseRulesItemBlockRuleActionParametersResponse =
   RulesCreateResponseRulesItemBlockRuleActionParametersResponse;
@@ -14932,7 +14897,7 @@ export const CreateResponseRulesItemBlockRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateResponseRulesItemBlockRule>;
 
 export type CreateResponseRulesItemChallengeAction = "challenge";
-export const CreateResponseRulesItemChallengeAction = /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemChallengeAction = S.String;
 
 export type CreateResponseRulesItemChallengeCategoriesList = Array<string>;
 export const CreateResponseRulesItemChallengeCategoriesList =
@@ -15057,8 +15022,7 @@ export const CreateResponseRulesItemChallenge = /*@__PURE__*/ S.suspend(() =>
 
 export type CreateResponseRulesItemCompressResponseRuleAction =
   "compress_response";
-export const CreateResponseRulesItemCompressResponseRuleAction =
-  /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemCompressResponseRuleAction = S.String;
 
 export type CreateResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
   | "none"
@@ -15068,7 +15032,7 @@ export type CreateResponseRulesItemCompressResponseRuleActionParametersAlgorithm
   | "brotli"
   | "zstd";
 export const CreateResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItem {
   /** Name of the compression algorithm to enable. */
@@ -15239,8 +15203,7 @@ export const CreateResponseRulesItemCompressResponseRule =
   }) as any as S.Schema<CreateResponseRulesItemCompressResponseRule>;
 
 export type CreateResponseRulesItemDDoSDynamicRuleAction = "ddos_dynamic";
-export const CreateResponseRulesItemDDoSDynamicRuleAction =
-  /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemDDoSDynamicRuleAction = S.String;
 
 export type CreateResponseRulesItemDDoSDynamicRuleCategoriesList =
   Array<string>;
@@ -15370,7 +15333,7 @@ export const CreateResponseRulesItemDDoSDynamicRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateResponseRulesItemDDoSDynamicRule>;
 
 export type CreateResponseRulesItemExecuteRuleAction = "execute";
-export const CreateResponseRulesItemExecuteRuleAction = /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemExecuteRuleAction = S.String;
 
 export type CreateResponseRulesItemExecuteRuleActionParametersMatchedData =
   RulesCreateResponseRulesItemExecuteRuleActionParametersMatchedData;
@@ -15383,7 +15346,7 @@ export type CreateResponseRulesItemExecuteRuleActionParametersOverridesCategorie
   | "low"
   | "eoff";
 export const CreateResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItem {
   /** The name of the category to override. */
@@ -15425,7 +15388,7 @@ export type CreateResponseRulesItemExecuteRuleActionParametersOverridesRulesItem
   | "low"
   | "eoff";
 export const CreateResponseRulesItemExecuteRuleActionParametersOverridesRulesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemExecuteRuleActionParametersOverridesRulesItem {
   /** The ID of the rule to override. */
@@ -15472,7 +15435,7 @@ export type CreateResponseRulesItemExecuteRuleActionParametersOverridesSensitivi
   | "low"
   | "eoff";
 export const CreateResponseRulesItemExecuteRuleActionParametersOverridesSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemExecuteRuleActionParametersOverrides {
   /** An action to override all rules with. This option has lower precedence than rule and category overrides. */
@@ -15663,8 +15626,7 @@ export const CreateResponseRulesItemExecuteRule = /*@__PURE__*/ S.suspend(() =>
 
 export type CreateResponseRulesItemForceConnectionCloseRuleAction =
   "force_connection_close";
-export const CreateResponseRulesItemForceConnectionCloseRuleAction =
-  /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemForceConnectionCloseRuleAction = S.String;
 
 export type CreateResponseRulesItemForceConnectionCloseRuleCategoriesList =
   Array<string>;
@@ -15794,7 +15756,7 @@ export const CreateResponseRulesItemForceConnectionCloseRule =
   }) as any as S.Schema<CreateResponseRulesItemForceConnectionCloseRule>;
 
 export type CreateResponseRulesItemJSChallengeAction = "js_challenge";
-export const CreateResponseRulesItemJSChallengeAction = /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemJSChallengeAction = S.String;
 
 export type CreateResponseRulesItemJSChallengeCategoriesList = Array<string>;
 export const CreateResponseRulesItemJSChallengeCategoriesList =
@@ -15920,7 +15882,7 @@ export const CreateResponseRulesItemJSChallenge = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateResponseRulesItemJSChallenge>;
 
 export type CreateResponseRulesItemLogRuleAction = "log";
-export const CreateResponseRulesItemLogRuleAction = /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemLogRuleAction = S.String;
 
 export type CreateResponseRulesItemLogRuleCategoriesList = Array<string>;
 export const CreateResponseRulesItemLogRuleCategoriesList =
@@ -16045,8 +16007,7 @@ export const CreateResponseRulesItemLogRule = /*@__PURE__*/ S.suspend(() =>
 
 export type CreateResponseRulesItemLogCustomFieldRuleAction =
   "log_custom_field";
-export const CreateResponseRulesItemLogCustomFieldRuleAction =
-  /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemLogCustomFieldRuleAction = S.String;
 
 export type CreateResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem =
   RulesCreateResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem;
@@ -16284,8 +16245,7 @@ export const CreateResponseRulesItemLogCustomFieldRule =
 
 export type CreateResponseRulesItemManagedChallengeRuleAction =
   "managed_challenge";
-export const CreateResponseRulesItemManagedChallengeRuleAction =
-  /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemManagedChallengeRuleAction = S.String;
 
 export type CreateResponseRulesItemManagedChallengeRuleCategoriesList =
   Array<string>;
@@ -16415,7 +16375,7 @@ export const CreateResponseRulesItemManagedChallengeRule =
   }) as any as S.Schema<CreateResponseRulesItemManagedChallengeRule>;
 
 export type CreateResponseRulesItemRedirectRuleAction = "redirect";
-export const CreateResponseRulesItemRedirectRuleAction = /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemRedirectRuleAction = S.String;
 
 export type CreateResponseRulesItemRedirectRuleActionParametersFromList =
   RulesCreateResponseRulesItemRedirectRuleActionParametersFromList;
@@ -16434,7 +16394,7 @@ export type CreateResponseRulesItemRedirectRuleActionParametersFromValueStatusCo
   | 307
   | 308;
 export const CreateResponseRulesItemRedirectRuleActionParametersFromValueStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface CreateResponseRulesItemRedirectRuleActionParametersFromValue {
   /** A URL to redirect the request to. */
@@ -16614,12 +16574,12 @@ export const CreateResponseRulesItemRedirectRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateResponseRulesItemRedirectRule>;
 
 export type CreateResponseRulesItemRewriteRuleAction = "rewrite";
-export const CreateResponseRulesItemRewriteRuleAction = /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemRewriteRuleAction = S.String;
 
 export type CreateResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
   "add";
 export const CreateResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeader {
   /** The operation to perform on the header. */
@@ -16642,7 +16602,7 @@ export const CreateResponseRulesItemRewriteRuleActionParametersHeadersAddStaticH
 export type CreateResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
   "add";
 export const CreateResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -16665,7 +16625,7 @@ export const CreateResponseRulesItemRewriteRuleActionParametersHeadersAddDynamic
 export type CreateResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
   "set";
 export const CreateResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeader {
   /** The operation to perform on the header. */
@@ -16688,7 +16648,7 @@ export const CreateResponseRulesItemRewriteRuleActionParametersHeadersSetStaticH
 export type CreateResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
   "set";
 export const CreateResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -16711,7 +16671,7 @@ export const CreateResponseRulesItemRewriteRuleActionParametersHeadersSetDynamic
 export type CreateResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
   "remove";
 export const CreateResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeader {
   /** The operation to perform on the header. */
@@ -16922,7 +16882,7 @@ export const CreateResponseRulesItemRewriteRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateResponseRulesItemRewriteRule>;
 
 export type CreateResponseRulesItemRouteRuleAction = "route";
-export const CreateResponseRulesItemRouteRuleAction = /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemRouteRuleAction = S.String;
 
 export type CreateResponseRulesItemRouteRuleActionParametersOrigin =
   RulesCreateResponseRulesItemRouteRuleActionParametersOrigin;
@@ -17063,7 +17023,7 @@ export const CreateResponseRulesItemRouteRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateResponseRulesItemRouteRule>;
 
 export type CreateResponseRulesItemScoreRuleAction = "score";
-export const CreateResponseRulesItemScoreRuleAction = /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemScoreRuleAction = S.String;
 
 export type CreateResponseRulesItemScoreRuleActionParameters =
   RulesCreateResponseRulesItemScoreRuleActionParameters;
@@ -17194,8 +17154,7 @@ export const CreateResponseRulesItemScoreRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateResponseRulesItemScoreRule>;
 
 export type CreateResponseRulesItemServeErrorRuleAction = "serve_error";
-export const CreateResponseRulesItemServeErrorRuleAction =
-  /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemServeErrorRuleAction = S.String;
 
 export type CreateResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
   | "application/json"
@@ -17203,7 +17162,7 @@ export type CreateResponseRulesItemServeErrorRuleActionParametersActionParameter
   | "text/plain"
   | "text/xml";
 export const CreateResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemServeErrorRuleActionParametersActionParametersContent {
   /** The response content. */
@@ -17235,7 +17194,7 @@ export type CreateResponseRulesItemServeErrorRuleActionParametersActionParameter
   | "text/plain"
   | "text/xml";
 export const CreateResponseRulesItemServeErrorRuleActionParametersActionParametersAssetContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemServeErrorRuleActionParametersActionParametersAsset {
   /** The name of a custom asset to serve as the error response. */
@@ -17399,14 +17358,13 @@ export const CreateResponseRulesItemServeErrorRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateResponseRulesItemServeErrorRule>;
 
 export type CreateResponseRulesItemSetCacheControlAction = "set_cache_control";
-export const CreateResponseRulesItemSetCacheControlAction =
-  /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemSetCacheControlAction = S.String;
 
 export type CreateResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersImmutableSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -17432,7 +17390,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersImmutableRemov
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -17469,7 +17427,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirec
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -17498,7 +17456,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDi
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -17535,7 +17493,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersMustRevalidate
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -17561,7 +17519,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersMustRevalidate
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -17598,7 +17556,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersMustUnderstand
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -17624,7 +17582,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersMustUnderstand
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -17661,7 +17619,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersNoCacheSetDire
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveQualifiersList =
   Array<string>;
@@ -17701,7 +17659,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersNoCacheRemoveD
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -17738,7 +17696,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersNoStoreSetDire
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersNoStoreSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersNoStoreSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -17764,7 +17722,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersNoStoreRemoveD
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -17801,7 +17759,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersNoTransformSet
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersNoTransformSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersNoTransformSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -17827,7 +17785,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersNoTransformRem
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -17864,7 +17822,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersPrivateSetDire
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveQualifiersList =
   Array<string>;
@@ -17904,7 +17862,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersPrivateRemoveD
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -17941,7 +17899,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersProxyRevalidat
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -17967,7 +17925,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersProxyRevalidat
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -18004,7 +17962,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersPublicSetDirec
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersPublicSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersPublicSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -18030,7 +17988,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersPublicRemoveDi
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersPublicRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersPublicRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -18067,7 +18025,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersSMaxageSetDire
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersSMaxageSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersSMaxageSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -18096,7 +18054,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersSMaxageRemoveD
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -18133,7 +18091,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersStaleIfErrorSe
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -18162,7 +18120,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersStaleIfErrorRe
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -18199,7 +18157,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersStaleWhileReva
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -18228,7 +18186,7 @@ export type CreateResponseRulesItemSetCacheControlActionParametersStaleWhileReva
   | "set"
   | "remove";
 export const CreateResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -18489,8 +18447,7 @@ export const CreateResponseRulesItemSetCacheControl = /*@__PURE__*/ S.suspend(
 
 export type CreateResponseRulesItemSetCacheSettingsRuleAction =
   "set_cache_settings";
-export const CreateResponseRulesItemSetCacheSettingsRuleAction =
-  /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemSetCacheSettingsRuleAction = S.String;
 
 export type CreateResponseRulesItemSetCacheSettingsRuleActionParametersAdditionalCacheablePortsList =
   Array<number>;
@@ -18505,7 +18462,7 @@ export type CreateResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTt
   | "override_origin"
   | "bypass";
 export const CreateResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtl {
   /** The browser TTL mode. */
@@ -18813,7 +18770,7 @@ export type CreateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMo
   | "bypass_by_default"
   | "override_origin";
 export const CreateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange =
   RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange;
@@ -18871,7 +18828,7 @@ export type CreateResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefau
   | "passthrough"
   | "normalize";
 export const CreateResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefaultAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefault {
   /** How the header value is treated when building the cache key. */
@@ -18893,7 +18850,7 @@ export type CreateResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeade
   | "passthrough"
   | "normalize";
 export const CreateResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueLanguagesList =
   Array<string>;
@@ -19205,14 +19162,14 @@ export const CreateResponseRulesItemSetCacheSettingsRule =
   }) as any as S.Schema<CreateResponseRulesItemSetCacheSettingsRule>;
 
 export type CreateResponseRulesItemSetCacheTagsAction = "set_cache_tags";
-export const CreateResponseRulesItemSetCacheTagsAction = /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemSetCacheTagsAction = S.String;
 
 export type CreateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
   | "add"
   | "remove"
   | "set";
 export const CreateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesValuesList =
   Array<string>;
@@ -19245,7 +19202,7 @@ export type CreateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpre
   | "remove"
   | "set";
 export const CreateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -19270,7 +19227,7 @@ export type CreateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsVa
   | "remove"
   | "set";
 export const CreateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesValuesList =
   Array<string>;
@@ -19303,7 +19260,7 @@ export type CreateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsEx
   | "remove"
   | "set";
 export const CreateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -19328,7 +19285,7 @@ export type CreateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValue
   | "remove"
   | "set";
 export const CreateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesValuesList =
   Array<string>;
@@ -19361,7 +19318,7 @@ export type CreateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpre
   | "remove"
   | "set";
 export const CreateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -19526,8 +19483,7 @@ export const CreateResponseRulesItemSetCacheTags = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateResponseRulesItemSetCacheTags>;
 
 export type CreateResponseRulesItemSetConfigRuleAction = "set_config";
-export const CreateResponseRulesItemSetConfigRuleAction =
-  /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemSetConfigRuleAction = S.String;
 
 export type CreateResponseRulesItemSetConfigRuleActionParametersAutominify =
   RulesCreateResponseRulesItemSetConfigRuleActionParametersAutominify;
@@ -19540,20 +19496,20 @@ export type CreateResponseRulesItemSetConfigRuleActionParametersPolish =
   | "lossy"
   | "webp";
 export const CreateResponseRulesItemSetConfigRuleActionParametersPolish =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
   | "none"
   | "standard"
   | "full";
 export const CreateResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
   | "none"
   | "standard";
 export const CreateResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "off"
@@ -19563,7 +19519,7 @@ export type CreateResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "high"
   | "under_attack";
 export const CreateResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateResponseRulesItemSetConfigRuleActionParametersSsl =
   | "off"
@@ -19571,8 +19527,7 @@ export type CreateResponseRulesItemSetConfigRuleActionParametersSsl =
   | "full"
   | "strict"
   | "origin_pull";
-export const CreateResponseRulesItemSetConfigRuleActionParametersSsl =
-  /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemSetConfigRuleActionParametersSsl = S.String;
 
 export interface CreateResponseRulesItemSetConfigRuleActionParameters {
   /** Whether to enable Automatic HTTPS Rewrites. */
@@ -19817,11 +19772,10 @@ export const CreateResponseRulesItemSetConfigRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateResponseRulesItemSetConfigRule>;
 
 export type CreateResponseRulesItemSkipRuleAction = "skip";
-export const CreateResponseRulesItemSkipRuleAction = /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemSkipRuleAction = S.String;
 
 export type CreateResponseRulesItemSkipRuleActionParametersPhase = "current";
-export const CreateResponseRulesItemSkipRuleActionParametersPhase =
-  /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemSkipRuleActionParametersPhase = S.String;
 
 export type CreateResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "ddos_l4"
@@ -19849,7 +19803,7 @@ export type CreateResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
 export const CreateResponseRulesItemSkipRuleActionParametersPhasesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateResponseRulesItemSkipRuleActionParametersPhasesList =
   Array<CreateResponseRulesItemSkipRuleActionParametersPhasesItem>;
@@ -19867,7 +19821,7 @@ export type CreateResponseRulesItemSkipRuleActionParametersProductsItem =
   | "waf"
   | "zoneLockdown";
 export const CreateResponseRulesItemSkipRuleActionParametersProductsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateResponseRulesItemSkipRuleActionParametersProductsList =
   Array<CreateResponseRulesItemSkipRuleActionParametersProductsItem>;
@@ -19895,8 +19849,7 @@ export const CreateResponseRulesItemSkipRuleActionParametersRulesMap =
   ) as any as S.Schema<CreateResponseRulesItemSkipRuleActionParametersRulesMap>;
 
 export type CreateResponseRulesItemSkipRuleActionParametersRuleset = "current";
-export const CreateResponseRulesItemSkipRuleActionParametersRuleset =
-  /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemSkipRuleActionParametersRuleset = S.String;
 
 export type CreateResponseRulesItemSkipRuleActionParametersRulesetsList =
   Array<string>;
@@ -20070,8 +20023,7 @@ export const CreateResponseRulesItemSkipRule = /*@__PURE__*/ S.suspend(() =>
 
 export type CreateResponseRulesItemTransformResponseHTMLAction =
   "transform_response_html";
-export const CreateResponseRulesItemTransformResponseHTMLAction =
-  /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemTransformResponseHTMLAction = S.String;
 
 export type CreateResponseRulesItemTransformResponseHTMLActionParameters =
   RulesCreateRequestBodyTransformResponseHTMLRuleActionParameters;
@@ -20646,7 +20598,7 @@ export const DeleteRuleForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteRuleForAccountRequest>;
 
 export type RulesDeleteResponseKind = "managed" | "custom" | "root" | "zone";
-export const RulesDeleteResponseKind = /*@__PURE__*/ S.String;
+export const RulesDeleteResponseKind = S.String;
 
 export type RulesDeleteResponsePhase =
   | "ddos_l4"
@@ -20673,11 +20625,10 @@ export type RulesDeleteResponsePhase =
   | "magic_transit_ids_managed"
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
-export const RulesDeleteResponsePhase = /*@__PURE__*/ S.String;
+export const RulesDeleteResponsePhase = S.String;
 
 export type RulesDeleteResponseRulesItemBlockRuleAction = "block";
-export const RulesDeleteResponseRulesItemBlockRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemBlockRuleAction = S.String;
 
 export type RulesDeleteResponseRulesItemBlockRuleActionParametersResponse =
   RulesCreateResponseRulesItemBlockRuleActionParametersResponse;
@@ -20821,8 +20772,7 @@ export const RulesDeleteResponseRulesItemBlockRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesDeleteResponseRulesItemBlockRule>;
 
 export type RulesDeleteResponseRulesItemChallengeAction = "challenge";
-export const RulesDeleteResponseRulesItemChallengeAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemChallengeAction = S.String;
 
 export type RulesDeleteResponseRulesItemChallengeCategoriesList = Array<string>;
 export const RulesDeleteResponseRulesItemChallengeCategoriesList =
@@ -20950,8 +20900,7 @@ export const RulesDeleteResponseRulesItemChallenge = /*@__PURE__*/ S.suspend(
 
 export type RulesDeleteResponseRulesItemCompressResponseRuleAction =
   "compress_response";
-export const RulesDeleteResponseRulesItemCompressResponseRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemCompressResponseRuleAction = S.String;
 
 export type RulesDeleteResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
   | "none"
@@ -20961,7 +20910,7 @@ export type RulesDeleteResponseRulesItemCompressResponseRuleActionParametersAlgo
   | "brotli"
   | "zstd";
 export const RulesDeleteResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItem {
   /** Name of the compression algorithm to enable. */
@@ -21135,8 +21084,7 @@ export const RulesDeleteResponseRulesItemCompressResponseRule =
   }) as any as S.Schema<RulesDeleteResponseRulesItemCompressResponseRule>;
 
 export type RulesDeleteResponseRulesItemDDoSDynamicRuleAction = "ddos_dynamic";
-export const RulesDeleteResponseRulesItemDDoSDynamicRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemDDoSDynamicRuleAction = S.String;
 
 export type RulesDeleteResponseRulesItemDDoSDynamicRuleCategoriesList =
   Array<string>;
@@ -21266,8 +21214,7 @@ export const RulesDeleteResponseRulesItemDDoSDynamicRule =
   }) as any as S.Schema<RulesDeleteResponseRulesItemDDoSDynamicRule>;
 
 export type RulesDeleteResponseRulesItemExecuteRuleAction = "execute";
-export const RulesDeleteResponseRulesItemExecuteRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemExecuteRuleAction = S.String;
 
 export type RulesDeleteResponseRulesItemExecuteRuleActionParametersMatchedData =
   RulesCreateResponseRulesItemExecuteRuleActionParametersMatchedData;
@@ -21280,7 +21227,7 @@ export type RulesDeleteResponseRulesItemExecuteRuleActionParametersOverridesCate
   | "low"
   | "eoff";
 export const RulesDeleteResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItem {
   /** The name of the category to override. */
@@ -21322,7 +21269,7 @@ export type RulesDeleteResponseRulesItemExecuteRuleActionParametersOverridesRule
   | "low"
   | "eoff";
 export const RulesDeleteResponseRulesItemExecuteRuleActionParametersOverridesRulesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemExecuteRuleActionParametersOverridesRulesItem {
   /** The ID of the rule to override. */
@@ -21369,7 +21316,7 @@ export type RulesDeleteResponseRulesItemExecuteRuleActionParametersOverridesSens
   | "low"
   | "eoff";
 export const RulesDeleteResponseRulesItemExecuteRuleActionParametersOverridesSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemExecuteRuleActionParametersOverrides {
   /** An action to override all rules with. This option has lower precedence than rule and category overrides. */
@@ -21568,7 +21515,7 @@ export const RulesDeleteResponseRulesItemExecuteRule = /*@__PURE__*/ S.suspend(
 export type RulesDeleteResponseRulesItemForceConnectionCloseRuleAction =
   "force_connection_close";
 export const RulesDeleteResponseRulesItemForceConnectionCloseRuleAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesDeleteResponseRulesItemForceConnectionCloseRuleCategoriesList =
   Array<string>;
@@ -21700,8 +21647,7 @@ export const RulesDeleteResponseRulesItemForceConnectionCloseRule =
   }) as any as S.Schema<RulesDeleteResponseRulesItemForceConnectionCloseRule>;
 
 export type RulesDeleteResponseRulesItemJSChallengeAction = "js_challenge";
-export const RulesDeleteResponseRulesItemJSChallengeAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemJSChallengeAction = S.String;
 
 export type RulesDeleteResponseRulesItemJSChallengeCategoriesList =
   Array<string>;
@@ -21831,7 +21777,7 @@ export const RulesDeleteResponseRulesItemJSChallenge = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesDeleteResponseRulesItemJSChallenge>;
 
 export type RulesDeleteResponseRulesItemLogRuleAction = "log";
-export const RulesDeleteResponseRulesItemLogRuleAction = /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemLogRuleAction = S.String;
 
 export type RulesDeleteResponseRulesItemLogRuleCategoriesList = Array<string>;
 export const RulesDeleteResponseRulesItemLogRuleCategoriesList =
@@ -21958,8 +21904,7 @@ export const RulesDeleteResponseRulesItemLogRule = /*@__PURE__*/ S.suspend(() =>
 
 export type RulesDeleteResponseRulesItemLogCustomFieldRuleAction =
   "log_custom_field";
-export const RulesDeleteResponseRulesItemLogCustomFieldRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemLogCustomFieldRuleAction = S.String;
 
 export type RulesDeleteResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem =
   RulesCreateResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem;
@@ -22198,8 +22143,7 @@ export const RulesDeleteResponseRulesItemLogCustomFieldRule =
 
 export type RulesDeleteResponseRulesItemManagedChallengeRuleAction =
   "managed_challenge";
-export const RulesDeleteResponseRulesItemManagedChallengeRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemManagedChallengeRuleAction = S.String;
 
 export type RulesDeleteResponseRulesItemManagedChallengeRuleCategoriesList =
   Array<string>;
@@ -22331,8 +22275,7 @@ export const RulesDeleteResponseRulesItemManagedChallengeRule =
   }) as any as S.Schema<RulesDeleteResponseRulesItemManagedChallengeRule>;
 
 export type RulesDeleteResponseRulesItemRedirectRuleAction = "redirect";
-export const RulesDeleteResponseRulesItemRedirectRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemRedirectRuleAction = S.String;
 
 export type RulesDeleteResponseRulesItemRedirectRuleActionParametersFromList =
   RulesCreateResponseRulesItemRedirectRuleActionParametersFromList;
@@ -22351,7 +22294,7 @@ export type RulesDeleteResponseRulesItemRedirectRuleActionParametersFromValueSta
   | 307
   | 308;
 export const RulesDeleteResponseRulesItemRedirectRuleActionParametersFromValueStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface RulesDeleteResponseRulesItemRedirectRuleActionParametersFromValue {
   /** A URL to redirect the request to. */
@@ -22536,13 +22479,12 @@ export const RulesDeleteResponseRulesItemRedirectRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesDeleteResponseRulesItemRedirectRule>;
 
 export type RulesDeleteResponseRulesItemRewriteRuleAction = "rewrite";
-export const RulesDeleteResponseRulesItemRewriteRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemRewriteRuleAction = S.String;
 
 export type RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
   "add";
 export const RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeader {
   /** The operation to perform on the header. */
@@ -22565,7 +22507,7 @@ export const RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersAddSt
 export type RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
   "add";
 export const RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -22588,7 +22530,7 @@ export const RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersAddDy
 export type RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
   "set";
 export const RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeader {
   /** The operation to perform on the header. */
@@ -22611,7 +22553,7 @@ export const RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersSetSt
 export type RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
   "set";
 export const RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -22634,7 +22576,7 @@ export const RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersSetDy
 export type RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
   "remove";
 export const RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeader {
   /** The operation to perform on the header. */
@@ -22851,8 +22793,7 @@ export const RulesDeleteResponseRulesItemRewriteRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesDeleteResponseRulesItemRewriteRule>;
 
 export type RulesDeleteResponseRulesItemRouteRuleAction = "route";
-export const RulesDeleteResponseRulesItemRouteRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemRouteRuleAction = S.String;
 
 export type RulesDeleteResponseRulesItemRouteRuleActionParametersOrigin =
   RulesCreateResponseRulesItemRouteRuleActionParametersOrigin;
@@ -22996,8 +22937,7 @@ export const RulesDeleteResponseRulesItemRouteRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesDeleteResponseRulesItemRouteRule>;
 
 export type RulesDeleteResponseRulesItemScoreRuleAction = "score";
-export const RulesDeleteResponseRulesItemScoreRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemScoreRuleAction = S.String;
 
 export type RulesDeleteResponseRulesItemScoreRuleActionParameters =
   RulesCreateResponseRulesItemScoreRuleActionParameters;
@@ -23131,8 +23071,7 @@ export const RulesDeleteResponseRulesItemScoreRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesDeleteResponseRulesItemScoreRule>;
 
 export type RulesDeleteResponseRulesItemServeErrorRuleAction = "serve_error";
-export const RulesDeleteResponseRulesItemServeErrorRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemServeErrorRuleAction = S.String;
 
 export type RulesDeleteResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
   | "application/json"
@@ -23140,7 +23079,7 @@ export type RulesDeleteResponseRulesItemServeErrorRuleActionParametersActionPara
   | "text/plain"
   | "text/xml";
 export const RulesDeleteResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemServeErrorRuleActionParametersActionParametersContent {
   /** The response content. */
@@ -23172,7 +23111,7 @@ export type RulesDeleteResponseRulesItemServeErrorRuleActionParametersActionPara
   | "text/plain"
   | "text/xml";
 export const RulesDeleteResponseRulesItemServeErrorRuleActionParametersActionParametersAssetContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemServeErrorRuleActionParametersActionParametersAsset {
   /** The name of a custom asset to serve as the error response. */
@@ -23340,14 +23279,13 @@ export const RulesDeleteResponseRulesItemServeErrorRule =
 
 export type RulesDeleteResponseRulesItemSetCacheControlAction =
   "set_cache_control";
-export const RulesDeleteResponseRulesItemSetCacheControlAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemSetCacheControlAction = S.String;
 
 export type RulesDeleteResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersImmutableSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23373,7 +23311,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersImmutable
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23410,7 +23348,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersMaxAgeSet
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23439,7 +23377,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersMaxAgeRem
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23476,7 +23414,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersMustReval
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23502,7 +23440,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersMustReval
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23539,7 +23477,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersMustUnder
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23565,7 +23503,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersMustUnder
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23602,7 +23540,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersNoCacheSe
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesDeleteResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveQualifiersList =
   Array<string>;
@@ -23642,7 +23580,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersNoCacheRe
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23679,7 +23617,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersNoStoreSe
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersNoStoreSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersNoStoreSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23705,7 +23643,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersNoStoreRe
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23742,7 +23680,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersNoTransfo
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersNoTransformSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersNoTransformSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23768,7 +23706,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersNoTransfo
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23805,7 +23743,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersPrivateSe
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesDeleteResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveQualifiersList =
   Array<string>;
@@ -23845,7 +23783,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersPrivateRe
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23882,7 +23820,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersProxyReva
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23908,7 +23846,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersProxyReva
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23945,7 +23883,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersPublicSet
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersPublicSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersPublicSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -23971,7 +23909,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersPublicRem
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersPublicRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersPublicRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -24008,7 +23946,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersSMaxageSe
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersSMaxageSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersSMaxageSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -24037,7 +23975,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersSMaxageRe
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -24074,7 +24012,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersStaleIfEr
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -24103,7 +24041,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersStaleIfEr
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -24140,7 +24078,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersStaleWhil
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -24169,7 +24107,7 @@ export type RulesDeleteResponseRulesItemSetCacheControlActionParametersStaleWhil
   | "set"
   | "remove";
 export const RulesDeleteResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -24434,8 +24372,7 @@ export const RulesDeleteResponseRulesItemSetCacheControl =
 
 export type RulesDeleteResponseRulesItemSetCacheSettingsRuleAction =
   "set_cache_settings";
-export const RulesDeleteResponseRulesItemSetCacheSettingsRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemSetCacheSettingsRuleAction = S.String;
 
 export type RulesDeleteResponseRulesItemSetCacheSettingsRuleActionParametersAdditionalCacheablePortsList =
   Array<number>;
@@ -24450,7 +24387,7 @@ export type RulesDeleteResponseRulesItemSetCacheSettingsRuleActionParametersBrow
   | "override_origin"
   | "bypass";
 export const RulesDeleteResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtl {
   /** The browser TTL mode. */
@@ -24758,7 +24695,7 @@ export type RulesDeleteResponseRulesItemSetCacheSettingsRuleActionParametersEdge
   | "bypass_by_default"
   | "override_origin";
 export const RulesDeleteResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesDeleteResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange =
   RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange;
@@ -24816,7 +24753,7 @@ export type RulesDeleteResponseRulesItemSetCacheSettingsRuleActionParametersVary
   | "passthrough"
   | "normalize";
 export const RulesDeleteResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefaultAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefault {
   /** How the header value is treated when building the cache key. */
@@ -24838,7 +24775,7 @@ export type RulesDeleteResponseRulesItemSetCacheSettingsRuleActionParametersVary
   | "passthrough"
   | "normalize";
 export const RulesDeleteResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesDeleteResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueLanguagesList =
   Array<string>;
@@ -25153,15 +25090,14 @@ export const RulesDeleteResponseRulesItemSetCacheSettingsRule =
   }) as any as S.Schema<RulesDeleteResponseRulesItemSetCacheSettingsRule>;
 
 export type RulesDeleteResponseRulesItemSetCacheTagsAction = "set_cache_tags";
-export const RulesDeleteResponseRulesItemSetCacheTagsAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemSetCacheTagsAction = S.String;
 
 export type RulesDeleteResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
   | "add"
   | "remove"
   | "set";
 export const RulesDeleteResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesDeleteResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesValuesList =
   Array<string>;
@@ -25194,7 +25130,7 @@ export type RulesDeleteResponseRulesItemSetCacheTagsActionParametersAddCacheTags
   | "remove"
   | "set";
 export const RulesDeleteResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -25219,7 +25155,7 @@ export type RulesDeleteResponseRulesItemSetCacheTagsActionParametersRemoveCacheT
   | "remove"
   | "set";
 export const RulesDeleteResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesDeleteResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesValuesList =
   Array<string>;
@@ -25252,7 +25188,7 @@ export type RulesDeleteResponseRulesItemSetCacheTagsActionParametersRemoveCacheT
   | "remove"
   | "set";
 export const RulesDeleteResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -25277,7 +25213,7 @@ export type RulesDeleteResponseRulesItemSetCacheTagsActionParametersSetCacheTags
   | "remove"
   | "set";
 export const RulesDeleteResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesDeleteResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesValuesList =
   Array<string>;
@@ -25310,7 +25246,7 @@ export type RulesDeleteResponseRulesItemSetCacheTagsActionParametersSetCacheTags
   | "remove"
   | "set";
 export const RulesDeleteResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -25479,8 +25415,7 @@ export const RulesDeleteResponseRulesItemSetCacheTags = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesDeleteResponseRulesItemSetCacheTags>;
 
 export type RulesDeleteResponseRulesItemSetConfigRuleAction = "set_config";
-export const RulesDeleteResponseRulesItemSetConfigRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemSetConfigRuleAction = S.String;
 
 export type RulesDeleteResponseRulesItemSetConfigRuleActionParametersAutominify =
   RulesCreateResponseRulesItemSetConfigRuleActionParametersAutominify;
@@ -25493,20 +25428,20 @@ export type RulesDeleteResponseRulesItemSetConfigRuleActionParametersPolish =
   | "lossy"
   | "webp";
 export const RulesDeleteResponseRulesItemSetConfigRuleActionParametersPolish =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesDeleteResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
   | "none"
   | "standard"
   | "full";
 export const RulesDeleteResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesDeleteResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
   | "none"
   | "standard";
 export const RulesDeleteResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesDeleteResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "off"
@@ -25516,7 +25451,7 @@ export type RulesDeleteResponseRulesItemSetConfigRuleActionParametersSecurityLev
   | "high"
   | "under_attack";
 export const RulesDeleteResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesDeleteResponseRulesItemSetConfigRuleActionParametersSsl =
   | "off"
@@ -25525,7 +25460,7 @@ export type RulesDeleteResponseRulesItemSetConfigRuleActionParametersSsl =
   | "strict"
   | "origin_pull";
 export const RulesDeleteResponseRulesItemSetConfigRuleActionParametersSsl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesDeleteResponseRulesItemSetConfigRuleActionParameters {
   /** Whether to enable Automatic HTTPS Rewrites. */
@@ -25775,13 +25710,12 @@ export const RulesDeleteResponseRulesItemSetConfigRule =
   }) as any as S.Schema<RulesDeleteResponseRulesItemSetConfigRule>;
 
 export type RulesDeleteResponseRulesItemSkipRuleAction = "skip";
-export const RulesDeleteResponseRulesItemSkipRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemSkipRuleAction = S.String;
 
 export type RulesDeleteResponseRulesItemSkipRuleActionParametersPhase =
   "current";
 export const RulesDeleteResponseRulesItemSkipRuleActionParametersPhase =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesDeleteResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "ddos_l4"
@@ -25809,7 +25743,7 @@ export type RulesDeleteResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
 export const RulesDeleteResponseRulesItemSkipRuleActionParametersPhasesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesDeleteResponseRulesItemSkipRuleActionParametersPhasesList =
   Array<RulesDeleteResponseRulesItemSkipRuleActionParametersPhasesItem>;
@@ -25827,7 +25761,7 @@ export type RulesDeleteResponseRulesItemSkipRuleActionParametersProductsItem =
   | "waf"
   | "zoneLockdown";
 export const RulesDeleteResponseRulesItemSkipRuleActionParametersProductsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesDeleteResponseRulesItemSkipRuleActionParametersProductsList =
   Array<RulesDeleteResponseRulesItemSkipRuleActionParametersProductsItem>;
@@ -25857,7 +25791,7 @@ export const RulesDeleteResponseRulesItemSkipRuleActionParametersRulesMap =
 export type RulesDeleteResponseRulesItemSkipRuleActionParametersRuleset =
   "current";
 export const RulesDeleteResponseRulesItemSkipRuleActionParametersRuleset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesDeleteResponseRulesItemSkipRuleActionParametersRulesetsList =
   Array<string>;
@@ -26040,8 +25974,7 @@ export const RulesDeleteResponseRulesItemSkipRule = /*@__PURE__*/ S.suspend(
 
 export type RulesDeleteResponseRulesItemTransformResponseHTMLAction =
   "transform_response_html";
-export const RulesDeleteResponseRulesItemTransformResponseHTMLAction =
-  /*@__PURE__*/ S.String;
+export const RulesDeleteResponseRulesItemTransformResponseHTMLAction = S.String;
 
 export type RulesDeleteResponseRulesItemTransformResponseHTMLActionParameters =
   RulesCreateRequestBodyTransformResponseHTMLRuleActionParameters;
@@ -26736,7 +26669,7 @@ export const GetPhasForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPhasForAccountRequest>;
 
 export type PhasesGetResponseKind = "managed" | "custom" | "root" | "zone";
-export const PhasesGetResponseKind = /*@__PURE__*/ S.String;
+export const PhasesGetResponseKind = S.String;
 
 export type PhasesGetResponsePhase =
   | "ddos_l4"
@@ -26763,10 +26696,10 @@ export type PhasesGetResponsePhase =
   | "magic_transit_ids_managed"
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
-export const PhasesGetResponsePhase = /*@__PURE__*/ S.String;
+export const PhasesGetResponsePhase = S.String;
 
 export type PhasesGetResponseRulesItemBlockRuleAction = "block";
-export const PhasesGetResponseRulesItemBlockRuleAction = /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemBlockRuleAction = S.String;
 
 export type PhasesGetResponseRulesItemBlockRuleActionParametersResponse =
   RulesCreateResponseRulesItemBlockRuleActionParametersResponse;
@@ -26909,7 +26842,7 @@ export const PhasesGetResponseRulesItemBlockRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PhasesGetResponseRulesItemBlockRule>;
 
 export type PhasesGetResponseRulesItemChallengeAction = "challenge";
-export const PhasesGetResponseRulesItemChallengeAction = /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemChallengeAction = S.String;
 
 export type PhasesGetResponseRulesItemChallengeCategoriesList = Array<string>;
 export const PhasesGetResponseRulesItemChallengeCategoriesList =
@@ -27036,8 +26969,7 @@ export const PhasesGetResponseRulesItemChallenge = /*@__PURE__*/ S.suspend(() =>
 
 export type PhasesGetResponseRulesItemCompressResponseRuleAction =
   "compress_response";
-export const PhasesGetResponseRulesItemCompressResponseRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemCompressResponseRuleAction = S.String;
 
 export type PhasesGetResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
   | "none"
@@ -27047,7 +26979,7 @@ export type PhasesGetResponseRulesItemCompressResponseRuleActionParametersAlgori
   | "brotli"
   | "zstd";
 export const PhasesGetResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItem {
   /** Name of the compression algorithm to enable. */
@@ -27219,8 +27151,7 @@ export const PhasesGetResponseRulesItemCompressResponseRule =
   }) as any as S.Schema<PhasesGetResponseRulesItemCompressResponseRule>;
 
 export type PhasesGetResponseRulesItemDDoSDynamicRuleAction = "ddos_dynamic";
-export const PhasesGetResponseRulesItemDDoSDynamicRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemDDoSDynamicRuleAction = S.String;
 
 export type PhasesGetResponseRulesItemDDoSDynamicRuleCategoriesList =
   Array<string>;
@@ -27350,8 +27281,7 @@ export const PhasesGetResponseRulesItemDDoSDynamicRule =
   }) as any as S.Schema<PhasesGetResponseRulesItemDDoSDynamicRule>;
 
 export type PhasesGetResponseRulesItemExecuteRuleAction = "execute";
-export const PhasesGetResponseRulesItemExecuteRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemExecuteRuleAction = S.String;
 
 export type PhasesGetResponseRulesItemExecuteRuleActionParametersMatchedData =
   RulesCreateResponseRulesItemExecuteRuleActionParametersMatchedData;
@@ -27364,7 +27294,7 @@ export type PhasesGetResponseRulesItemExecuteRuleActionParametersOverridesCatego
   | "low"
   | "eoff";
 export const PhasesGetResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItem {
   /** The name of the category to override. */
@@ -27406,7 +27336,7 @@ export type PhasesGetResponseRulesItemExecuteRuleActionParametersOverridesRulesI
   | "low"
   | "eoff";
 export const PhasesGetResponseRulesItemExecuteRuleActionParametersOverridesRulesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemExecuteRuleActionParametersOverridesRulesItem {
   /** The ID of the rule to override. */
@@ -27453,7 +27383,7 @@ export type PhasesGetResponseRulesItemExecuteRuleActionParametersOverridesSensit
   | "low"
   | "eoff";
 export const PhasesGetResponseRulesItemExecuteRuleActionParametersOverridesSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemExecuteRuleActionParametersOverrides {
   /** An action to override all rules with. This option has lower precedence than rule and category overrides. */
@@ -27649,7 +27579,7 @@ export const PhasesGetResponseRulesItemExecuteRule = /*@__PURE__*/ S.suspend(
 export type PhasesGetResponseRulesItemForceConnectionCloseRuleAction =
   "force_connection_close";
 export const PhasesGetResponseRulesItemForceConnectionCloseRuleAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesGetResponseRulesItemForceConnectionCloseRuleCategoriesList =
   Array<string>;
@@ -27781,8 +27711,7 @@ export const PhasesGetResponseRulesItemForceConnectionCloseRule =
   }) as any as S.Schema<PhasesGetResponseRulesItemForceConnectionCloseRule>;
 
 export type PhasesGetResponseRulesItemJSChallengeAction = "js_challenge";
-export const PhasesGetResponseRulesItemJSChallengeAction =
-  /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemJSChallengeAction = S.String;
 
 export type PhasesGetResponseRulesItemJSChallengeCategoriesList = Array<string>;
 export const PhasesGetResponseRulesItemJSChallengeCategoriesList =
@@ -27909,7 +27838,7 @@ export const PhasesGetResponseRulesItemJSChallenge = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesGetResponseRulesItemJSChallenge>;
 
 export type PhasesGetResponseRulesItemLogRuleAction = "log";
-export const PhasesGetResponseRulesItemLogRuleAction = /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemLogRuleAction = S.String;
 
 export type PhasesGetResponseRulesItemLogRuleCategoriesList = Array<string>;
 export const PhasesGetResponseRulesItemLogRuleCategoriesList =
@@ -28034,8 +27963,7 @@ export const PhasesGetResponseRulesItemLogRule = /*@__PURE__*/ S.suspend(() =>
 
 export type PhasesGetResponseRulesItemLogCustomFieldRuleAction =
   "log_custom_field";
-export const PhasesGetResponseRulesItemLogCustomFieldRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemLogCustomFieldRuleAction = S.String;
 
 export type PhasesGetResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem =
   RulesCreateResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem;
@@ -28273,8 +28201,7 @@ export const PhasesGetResponseRulesItemLogCustomFieldRule =
 
 export type PhasesGetResponseRulesItemManagedChallengeRuleAction =
   "managed_challenge";
-export const PhasesGetResponseRulesItemManagedChallengeRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemManagedChallengeRuleAction = S.String;
 
 export type PhasesGetResponseRulesItemManagedChallengeRuleCategoriesList =
   Array<string>;
@@ -28404,8 +28331,7 @@ export const PhasesGetResponseRulesItemManagedChallengeRule =
   }) as any as S.Schema<PhasesGetResponseRulesItemManagedChallengeRule>;
 
 export type PhasesGetResponseRulesItemRedirectRuleAction = "redirect";
-export const PhasesGetResponseRulesItemRedirectRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemRedirectRuleAction = S.String;
 
 export type PhasesGetResponseRulesItemRedirectRuleActionParametersFromList =
   RulesCreateResponseRulesItemRedirectRuleActionParametersFromList;
@@ -28424,7 +28350,7 @@ export type PhasesGetResponseRulesItemRedirectRuleActionParametersFromValueStatu
   | 307
   | 308;
 export const PhasesGetResponseRulesItemRedirectRuleActionParametersFromValueStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface PhasesGetResponseRulesItemRedirectRuleActionParametersFromValue {
   /** A URL to redirect the request to. */
@@ -28609,13 +28535,12 @@ export const PhasesGetResponseRulesItemRedirectRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesGetResponseRulesItemRedirectRule>;
 
 export type PhasesGetResponseRulesItemRewriteRuleAction = "rewrite";
-export const PhasesGetResponseRulesItemRewriteRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemRewriteRuleAction = S.String;
 
 export type PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
   "add";
 export const PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeader {
   /** The operation to perform on the header. */
@@ -28638,7 +28563,7 @@ export const PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersAddStat
 export type PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
   "add";
 export const PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -28661,7 +28586,7 @@ export const PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersAddDyna
 export type PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
   "set";
 export const PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeader {
   /** The operation to perform on the header. */
@@ -28684,7 +28609,7 @@ export const PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersSetStat
 export type PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
   "set";
 export const PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -28707,7 +28632,7 @@ export const PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersSetDyna
 export type PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
   "remove";
 export const PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeader {
   /** The operation to perform on the header. */
@@ -28919,7 +28844,7 @@ export const PhasesGetResponseRulesItemRewriteRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesGetResponseRulesItemRewriteRule>;
 
 export type PhasesGetResponseRulesItemRouteRuleAction = "route";
-export const PhasesGetResponseRulesItemRouteRuleAction = /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemRouteRuleAction = S.String;
 
 export type PhasesGetResponseRulesItemRouteRuleActionParametersOrigin =
   RulesCreateResponseRulesItemRouteRuleActionParametersOrigin;
@@ -29062,7 +28987,7 @@ export const PhasesGetResponseRulesItemRouteRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PhasesGetResponseRulesItemRouteRule>;
 
 export type PhasesGetResponseRulesItemScoreRuleAction = "score";
-export const PhasesGetResponseRulesItemScoreRuleAction = /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemScoreRuleAction = S.String;
 
 export type PhasesGetResponseRulesItemScoreRuleActionParameters =
   RulesCreateResponseRulesItemScoreRuleActionParameters;
@@ -29195,8 +29120,7 @@ export const PhasesGetResponseRulesItemScoreRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PhasesGetResponseRulesItemScoreRule>;
 
 export type PhasesGetResponseRulesItemServeErrorRuleAction = "serve_error";
-export const PhasesGetResponseRulesItemServeErrorRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemServeErrorRuleAction = S.String;
 
 export type PhasesGetResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
   | "application/json"
@@ -29204,7 +29128,7 @@ export type PhasesGetResponseRulesItemServeErrorRuleActionParametersActionParame
   | "text/plain"
   | "text/xml";
 export const PhasesGetResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemServeErrorRuleActionParametersActionParametersContent {
   /** The response content. */
@@ -29236,7 +29160,7 @@ export type PhasesGetResponseRulesItemServeErrorRuleActionParametersActionParame
   | "text/plain"
   | "text/xml";
 export const PhasesGetResponseRulesItemServeErrorRuleActionParametersActionParametersAssetContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemServeErrorRuleActionParametersActionParametersAsset {
   /** The name of a custom asset to serve as the error response. */
@@ -29404,14 +29328,13 @@ export const PhasesGetResponseRulesItemServeErrorRule = /*@__PURE__*/ S.suspend(
 
 export type PhasesGetResponseRulesItemSetCacheControlAction =
   "set_cache_control";
-export const PhasesGetResponseRulesItemSetCacheControlAction =
-  /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemSetCacheControlAction = S.String;
 
 export type PhasesGetResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersImmutableSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -29437,7 +29360,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersImmutableRe
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -29474,7 +29397,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersMaxAgeSetDi
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -29503,7 +29426,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersMaxAgeRemov
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -29540,7 +29463,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersMustRevalid
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -29566,7 +29489,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersMustRevalid
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -29603,7 +29526,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersMustUnderst
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -29629,7 +29552,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersMustUnderst
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -29666,7 +29589,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersNoCacheSetD
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesGetResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveQualifiersList =
   Array<string>;
@@ -29706,7 +29629,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersNoCacheRemo
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -29743,7 +29666,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersNoStoreSetD
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersNoStoreSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersNoStoreSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -29769,7 +29692,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersNoStoreRemo
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -29806,7 +29729,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersNoTransform
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersNoTransformSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersNoTransformSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -29832,7 +29755,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersNoTransform
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -29869,7 +29792,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersPrivateSetD
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesGetResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveQualifiersList =
   Array<string>;
@@ -29909,7 +29832,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersPrivateRemo
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -29946,7 +29869,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersProxyRevali
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -29972,7 +29895,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersProxyRevali
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -30009,7 +29932,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersPublicSetDi
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersPublicSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersPublicSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -30035,7 +29958,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersPublicRemov
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersPublicRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersPublicRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -30072,7 +29995,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersSMaxageSetD
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersSMaxageSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersSMaxageSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -30101,7 +30024,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersSMaxageRemo
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -30138,7 +30061,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersStaleIfErro
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -30167,7 +30090,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersStaleIfErro
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -30204,7 +30127,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersStaleWhileR
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -30233,7 +30156,7 @@ export type PhasesGetResponseRulesItemSetCacheControlActionParametersStaleWhileR
   | "set"
   | "remove";
 export const PhasesGetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -30498,8 +30421,7 @@ export const PhasesGetResponseRulesItemSetCacheControl =
 
 export type PhasesGetResponseRulesItemSetCacheSettingsRuleAction =
   "set_cache_settings";
-export const PhasesGetResponseRulesItemSetCacheSettingsRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemSetCacheSettingsRuleAction = S.String;
 
 export type PhasesGetResponseRulesItemSetCacheSettingsRuleActionParametersAdditionalCacheablePortsList =
   Array<number>;
@@ -30514,7 +30436,7 @@ export type PhasesGetResponseRulesItemSetCacheSettingsRuleActionParametersBrowse
   | "override_origin"
   | "bypass";
 export const PhasesGetResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtl {
   /** The browser TTL mode. */
@@ -30822,7 +30744,7 @@ export type PhasesGetResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTt
   | "bypass_by_default"
   | "override_origin";
 export const PhasesGetResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesGetResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange =
   RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange;
@@ -30880,7 +30802,7 @@ export type PhasesGetResponseRulesItemSetCacheSettingsRuleActionParametersVaryDe
   | "passthrough"
   | "normalize";
 export const PhasesGetResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefaultAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefault {
   /** How the header value is treated when building the cache key. */
@@ -30902,7 +30824,7 @@ export type PhasesGetResponseRulesItemSetCacheSettingsRuleActionParametersVaryHe
   | "passthrough"
   | "normalize";
 export const PhasesGetResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesGetResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueLanguagesList =
   Array<string>;
@@ -31215,15 +31137,14 @@ export const PhasesGetResponseRulesItemSetCacheSettingsRule =
   }) as any as S.Schema<PhasesGetResponseRulesItemSetCacheSettingsRule>;
 
 export type PhasesGetResponseRulesItemSetCacheTagsAction = "set_cache_tags";
-export const PhasesGetResponseRulesItemSetCacheTagsAction =
-  /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemSetCacheTagsAction = S.String;
 
 export type PhasesGetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
   | "add"
   | "remove"
   | "set";
 export const PhasesGetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesGetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesValuesList =
   Array<string>;
@@ -31256,7 +31177,7 @@ export type PhasesGetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsEx
   | "remove"
   | "set";
 export const PhasesGetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -31281,7 +31202,7 @@ export type PhasesGetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTag
   | "remove"
   | "set";
 export const PhasesGetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesGetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesValuesList =
   Array<string>;
@@ -31314,7 +31235,7 @@ export type PhasesGetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTag
   | "remove"
   | "set";
 export const PhasesGetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -31339,7 +31260,7 @@ export type PhasesGetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsVa
   | "remove"
   | "set";
 export const PhasesGetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesGetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesValuesList =
   Array<string>;
@@ -31372,7 +31293,7 @@ export type PhasesGetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsEx
   | "remove"
   | "set";
 export const PhasesGetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -31541,8 +31462,7 @@ export const PhasesGetResponseRulesItemSetCacheTags = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesGetResponseRulesItemSetCacheTags>;
 
 export type PhasesGetResponseRulesItemSetConfigRuleAction = "set_config";
-export const PhasesGetResponseRulesItemSetConfigRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemSetConfigRuleAction = S.String;
 
 export type PhasesGetResponseRulesItemSetConfigRuleActionParametersAutominify =
   RulesCreateResponseRulesItemSetConfigRuleActionParametersAutominify;
@@ -31555,20 +31475,20 @@ export type PhasesGetResponseRulesItemSetConfigRuleActionParametersPolish =
   | "lossy"
   | "webp";
 export const PhasesGetResponseRulesItemSetConfigRuleActionParametersPolish =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesGetResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
   | "none"
   | "standard"
   | "full";
 export const PhasesGetResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesGetResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
   | "none"
   | "standard";
 export const PhasesGetResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesGetResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "off"
@@ -31578,7 +31498,7 @@ export type PhasesGetResponseRulesItemSetConfigRuleActionParametersSecurityLevel
   | "high"
   | "under_attack";
 export const PhasesGetResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesGetResponseRulesItemSetConfigRuleActionParametersSsl =
   | "off"
@@ -31587,7 +31507,7 @@ export type PhasesGetResponseRulesItemSetConfigRuleActionParametersSsl =
   | "strict"
   | "origin_pull";
 export const PhasesGetResponseRulesItemSetConfigRuleActionParametersSsl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesGetResponseRulesItemSetConfigRuleActionParameters {
   /** Whether to enable Automatic HTTPS Rewrites. */
@@ -31835,11 +31755,10 @@ export const PhasesGetResponseRulesItemSetConfigRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesGetResponseRulesItemSetConfigRule>;
 
 export type PhasesGetResponseRulesItemSkipRuleAction = "skip";
-export const PhasesGetResponseRulesItemSkipRuleAction = /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemSkipRuleAction = S.String;
 
 export type PhasesGetResponseRulesItemSkipRuleActionParametersPhase = "current";
-export const PhasesGetResponseRulesItemSkipRuleActionParametersPhase =
-  /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemSkipRuleActionParametersPhase = S.String;
 
 export type PhasesGetResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "ddos_l4"
@@ -31867,7 +31786,7 @@ export type PhasesGetResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
 export const PhasesGetResponseRulesItemSkipRuleActionParametersPhasesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesGetResponseRulesItemSkipRuleActionParametersPhasesList =
   Array<PhasesGetResponseRulesItemSkipRuleActionParametersPhasesItem>;
@@ -31885,7 +31804,7 @@ export type PhasesGetResponseRulesItemSkipRuleActionParametersProductsItem =
   | "waf"
   | "zoneLockdown";
 export const PhasesGetResponseRulesItemSkipRuleActionParametersProductsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesGetResponseRulesItemSkipRuleActionParametersProductsList =
   Array<PhasesGetResponseRulesItemSkipRuleActionParametersProductsItem>;
@@ -31915,7 +31834,7 @@ export const PhasesGetResponseRulesItemSkipRuleActionParametersRulesMap =
 export type PhasesGetResponseRulesItemSkipRuleActionParametersRuleset =
   "current";
 export const PhasesGetResponseRulesItemSkipRuleActionParametersRuleset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesGetResponseRulesItemSkipRuleActionParametersRulesetsList =
   Array<string>;
@@ -32095,8 +32014,7 @@ export const PhasesGetResponseRulesItemSkipRule = /*@__PURE__*/ S.suspend(() =>
 
 export type PhasesGetResponseRulesItemTransformResponseHTMLAction =
   "transform_response_html";
-export const PhasesGetResponseRulesItemTransformResponseHTMLAction =
-  /*@__PURE__*/ S.String;
+export const PhasesGetResponseRulesItemTransformResponseHTMLAction = S.String;
 
 export type PhasesGetResponseRulesItemTransformResponseHTMLActionParameters =
   RulesCreateRequestBodyTransformResponseHTMLRuleActionParameters;
@@ -32667,7 +32585,7 @@ export type PhasesVersionsGetResponseKind =
   | "custom"
   | "root"
   | "zone";
-export const PhasesVersionsGetResponseKind = /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponseKind = S.String;
 
 export type PhasesVersionsGetResponsePhase =
   | "ddos_l4"
@@ -32694,11 +32612,10 @@ export type PhasesVersionsGetResponsePhase =
   | "magic_transit_ids_managed"
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
-export const PhasesVersionsGetResponsePhase = /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponsePhase = S.String;
 
 export type PhasesVersionsGetResponseRulesItemBlockRuleAction = "block";
-export const PhasesVersionsGetResponseRulesItemBlockRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponseRulesItemBlockRuleAction = S.String;
 
 export type PhasesVersionsGetResponseRulesItemBlockRuleActionParametersResponse =
   RulesCreateResponseRulesItemBlockRuleActionParametersResponse;
@@ -32845,8 +32762,7 @@ export const PhasesVersionsGetResponseRulesItemBlockRule =
   }) as any as S.Schema<PhasesVersionsGetResponseRulesItemBlockRule>;
 
 export type PhasesVersionsGetResponseRulesItemChallengeAction = "challenge";
-export const PhasesVersionsGetResponseRulesItemChallengeAction =
-  /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponseRulesItemChallengeAction = S.String;
 
 export type PhasesVersionsGetResponseRulesItemChallengeCategoriesList =
   Array<string>;
@@ -32978,7 +32894,7 @@ export const PhasesVersionsGetResponseRulesItemChallenge =
 export type PhasesVersionsGetResponseRulesItemCompressResponseRuleAction =
   "compress_response";
 export const PhasesVersionsGetResponseRulesItemCompressResponseRuleAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
   | "none"
@@ -32988,7 +32904,7 @@ export type PhasesVersionsGetResponseRulesItemCompressResponseRuleActionParamete
   | "brotli"
   | "zstd";
 export const PhasesVersionsGetResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItem {
   /** Name of the compression algorithm to enable. */
@@ -33166,8 +33082,7 @@ export const PhasesVersionsGetResponseRulesItemCompressResponseRule =
 
 export type PhasesVersionsGetResponseRulesItemDDoSDynamicRuleAction =
   "ddos_dynamic";
-export const PhasesVersionsGetResponseRulesItemDDoSDynamicRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponseRulesItemDDoSDynamicRuleAction = S.String;
 
 export type PhasesVersionsGetResponseRulesItemDDoSDynamicRuleCategoriesList =
   Array<string>;
@@ -33299,8 +33214,7 @@ export const PhasesVersionsGetResponseRulesItemDDoSDynamicRule =
   }) as any as S.Schema<PhasesVersionsGetResponseRulesItemDDoSDynamicRule>;
 
 export type PhasesVersionsGetResponseRulesItemExecuteRuleAction = "execute";
-export const PhasesVersionsGetResponseRulesItemExecuteRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponseRulesItemExecuteRuleAction = S.String;
 
 export type PhasesVersionsGetResponseRulesItemExecuteRuleActionParametersMatchedData =
   RulesCreateResponseRulesItemExecuteRuleActionParametersMatchedData;
@@ -33313,7 +33227,7 @@ export type PhasesVersionsGetResponseRulesItemExecuteRuleActionParametersOverrid
   | "low"
   | "eoff";
 export const PhasesVersionsGetResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItem {
   /** The name of the category to override. */
@@ -33355,7 +33269,7 @@ export type PhasesVersionsGetResponseRulesItemExecuteRuleActionParametersOverrid
   | "low"
   | "eoff";
 export const PhasesVersionsGetResponseRulesItemExecuteRuleActionParametersOverridesRulesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemExecuteRuleActionParametersOverridesRulesItem {
   /** The ID of the rule to override. */
@@ -33402,7 +33316,7 @@ export type PhasesVersionsGetResponseRulesItemExecuteRuleActionParametersOverrid
   | "low"
   | "eoff";
 export const PhasesVersionsGetResponseRulesItemExecuteRuleActionParametersOverridesSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemExecuteRuleActionParametersOverrides {
   /** An action to override all rules with. This option has lower precedence than rule and category overrides. */
@@ -33601,7 +33515,7 @@ export const PhasesVersionsGetResponseRulesItemExecuteRule =
 export type PhasesVersionsGetResponseRulesItemForceConnectionCloseRuleAction =
   "force_connection_close";
 export const PhasesVersionsGetResponseRulesItemForceConnectionCloseRuleAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemForceConnectionCloseRuleCategoriesList =
   Array<string>;
@@ -33739,8 +33653,7 @@ export const PhasesVersionsGetResponseRulesItemForceConnectionCloseRule =
 
 export type PhasesVersionsGetResponseRulesItemJSChallengeAction =
   "js_challenge";
-export const PhasesVersionsGetResponseRulesItemJSChallengeAction =
-  /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponseRulesItemJSChallengeAction = S.String;
 
 export type PhasesVersionsGetResponseRulesItemJSChallengeCategoriesList =
   Array<string>;
@@ -33870,8 +33783,7 @@ export const PhasesVersionsGetResponseRulesItemJSChallenge =
   }) as any as S.Schema<PhasesVersionsGetResponseRulesItemJSChallenge>;
 
 export type PhasesVersionsGetResponseRulesItemLogRuleAction = "log";
-export const PhasesVersionsGetResponseRulesItemLogRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponseRulesItemLogRuleAction = S.String;
 
 export type PhasesVersionsGetResponseRulesItemLogRuleCategoriesList =
   Array<string>;
@@ -34003,7 +33915,7 @@ export const PhasesVersionsGetResponseRulesItemLogRule =
 export type PhasesVersionsGetResponseRulesItemLogCustomFieldRuleAction =
   "log_custom_field";
 export const PhasesVersionsGetResponseRulesItemLogCustomFieldRuleAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem =
   RulesCreateResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem;
@@ -34245,7 +34157,7 @@ export const PhasesVersionsGetResponseRulesItemLogCustomFieldRule =
 export type PhasesVersionsGetResponseRulesItemManagedChallengeRuleAction =
   "managed_challenge";
 export const PhasesVersionsGetResponseRulesItemManagedChallengeRuleAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemManagedChallengeRuleCategoriesList =
   Array<string>;
@@ -34380,8 +34292,7 @@ export const PhasesVersionsGetResponseRulesItemManagedChallengeRule =
   }) as any as S.Schema<PhasesVersionsGetResponseRulesItemManagedChallengeRule>;
 
 export type PhasesVersionsGetResponseRulesItemRedirectRuleAction = "redirect";
-export const PhasesVersionsGetResponseRulesItemRedirectRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponseRulesItemRedirectRuleAction = S.String;
 
 export type PhasesVersionsGetResponseRulesItemRedirectRuleActionParametersFromList =
   RulesCreateResponseRulesItemRedirectRuleActionParametersFromList;
@@ -34400,7 +34311,7 @@ export type PhasesVersionsGetResponseRulesItemRedirectRuleActionParametersFromVa
   | 307
   | 308;
 export const PhasesVersionsGetResponseRulesItemRedirectRuleActionParametersFromValueStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface PhasesVersionsGetResponseRulesItemRedirectRuleActionParametersFromValue {
   /** A URL to redirect the request to. */
@@ -34586,13 +34497,12 @@ export const PhasesVersionsGetResponseRulesItemRedirectRule =
   }) as any as S.Schema<PhasesVersionsGetResponseRulesItemRedirectRule>;
 
 export type PhasesVersionsGetResponseRulesItemRewriteRuleAction = "rewrite";
-export const PhasesVersionsGetResponseRulesItemRewriteRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponseRulesItemRewriteRuleAction = S.String;
 
 export type PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
   "add";
 export const PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeader {
   /** The operation to perform on the header. */
@@ -34615,7 +34525,7 @@ export const PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeader
 export type PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
   "add";
 export const PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -34638,7 +34548,7 @@ export const PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeader
 export type PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
   "set";
 export const PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeader {
   /** The operation to perform on the header. */
@@ -34661,7 +34571,7 @@ export const PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeader
 export type PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
   "set";
 export const PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -34684,7 +34594,7 @@ export const PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeader
 export type PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
   "remove";
 export const PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeader {
   /** The operation to perform on the header. */
@@ -34903,8 +34813,7 @@ export const PhasesVersionsGetResponseRulesItemRewriteRule =
   }) as any as S.Schema<PhasesVersionsGetResponseRulesItemRewriteRule>;
 
 export type PhasesVersionsGetResponseRulesItemRouteRuleAction = "route";
-export const PhasesVersionsGetResponseRulesItemRouteRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponseRulesItemRouteRuleAction = S.String;
 
 export type PhasesVersionsGetResponseRulesItemRouteRuleActionParametersOrigin =
   RulesCreateResponseRulesItemRouteRuleActionParametersOrigin;
@@ -35051,8 +34960,7 @@ export const PhasesVersionsGetResponseRulesItemRouteRule =
   }) as any as S.Schema<PhasesVersionsGetResponseRulesItemRouteRule>;
 
 export type PhasesVersionsGetResponseRulesItemScoreRuleAction = "score";
-export const PhasesVersionsGetResponseRulesItemScoreRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponseRulesItemScoreRuleAction = S.String;
 
 export type PhasesVersionsGetResponseRulesItemScoreRuleActionParameters =
   RulesCreateResponseRulesItemScoreRuleActionParameters;
@@ -35190,8 +35098,7 @@ export const PhasesVersionsGetResponseRulesItemScoreRule =
 
 export type PhasesVersionsGetResponseRulesItemServeErrorRuleAction =
   "serve_error";
-export const PhasesVersionsGetResponseRulesItemServeErrorRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponseRulesItemServeErrorRuleAction = S.String;
 
 export type PhasesVersionsGetResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
   | "application/json"
@@ -35199,7 +35106,7 @@ export type PhasesVersionsGetResponseRulesItemServeErrorRuleActionParametersActi
   | "text/plain"
   | "text/xml";
 export const PhasesVersionsGetResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemServeErrorRuleActionParametersActionParametersContent {
   /** The response content. */
@@ -35231,7 +35138,7 @@ export type PhasesVersionsGetResponseRulesItemServeErrorRuleActionParametersActi
   | "text/plain"
   | "text/xml";
 export const PhasesVersionsGetResponseRulesItemServeErrorRuleActionParametersActionParametersAssetContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemServeErrorRuleActionParametersActionParametersAsset {
   /** The name of a custom asset to serve as the error response. */
@@ -35401,14 +35308,13 @@ export const PhasesVersionsGetResponseRulesItemServeErrorRule =
 
 export type PhasesVersionsGetResponseRulesItemSetCacheControlAction =
   "set_cache_control";
-export const PhasesVersionsGetResponseRulesItemSetCacheControlAction =
-  /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponseRulesItemSetCacheControlAction = S.String;
 
 export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersImmutableSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -35434,7 +35340,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersImm
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -35471,7 +35377,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMax
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -35500,7 +35406,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMax
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -35537,7 +35443,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMus
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -35563,7 +35469,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMus
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -35600,7 +35506,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMus
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -35626,7 +35532,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMus
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -35663,7 +35569,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoC
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveQualifiersList =
   Array<string>;
@@ -35703,7 +35609,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoC
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -35740,7 +35646,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoS
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoStoreSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoStoreSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -35766,7 +35672,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoS
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -35803,7 +35709,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoT
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoTransformSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoTransformSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -35829,7 +35735,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoT
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -35866,7 +35772,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersPri
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveQualifiersList =
   Array<string>;
@@ -35906,7 +35812,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersPri
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -35943,7 +35849,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersPro
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -35969,7 +35875,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersPro
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -36006,7 +35912,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersPub
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersPublicSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersPublicSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -36032,7 +35938,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersPub
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersPublicRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersPublicRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -36069,7 +35975,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersSMa
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersSMaxageSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersSMaxageSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -36098,7 +36004,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersSMa
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -36135,7 +36041,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersSta
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -36164,7 +36070,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersSta
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -36201,7 +36107,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersSta
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -36230,7 +36136,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersSta
   | "set"
   | "remove";
 export const PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -36499,7 +36405,7 @@ export const PhasesVersionsGetResponseRulesItemSetCacheControl =
 export type PhasesVersionsGetResponseRulesItemSetCacheSettingsRuleAction =
   "set_cache_settings";
 export const PhasesVersionsGetResponseRulesItemSetCacheSettingsRuleAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersAdditionalCacheablePortsList =
   Array<number>;
@@ -36514,7 +36420,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheSettingsRuleActionParamete
   | "override_origin"
   | "bypass";
 export const PhasesVersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtl {
   /** The browser TTL mode. */
@@ -36822,7 +36728,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheSettingsRuleActionParamete
   | "bypass_by_default"
   | "override_origin";
 export const PhasesVersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange =
   RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange;
@@ -36880,7 +36786,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheSettingsRuleActionParamete
   | "passthrough"
   | "normalize";
 export const PhasesVersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefaultAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefault {
   /** How the header value is treated when building the cache key. */
@@ -36902,7 +36808,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheSettingsRuleActionParamete
   | "passthrough"
   | "normalize";
 export const PhasesVersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueLanguagesList =
   Array<string>;
@@ -37221,15 +37127,14 @@ export const PhasesVersionsGetResponseRulesItemSetCacheSettingsRule =
 
 export type PhasesVersionsGetResponseRulesItemSetCacheTagsAction =
   "set_cache_tags";
-export const PhasesVersionsGetResponseRulesItemSetCacheTagsAction =
-  /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponseRulesItemSetCacheTagsAction = S.String;
 
 export type PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
   | "add"
   | "remove"
   | "set";
 export const PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesValuesList =
   Array<string>;
@@ -37262,7 +37167,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersAddCac
   | "remove"
   | "set";
 export const PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -37287,7 +37192,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersRemove
   | "remove"
   | "set";
 export const PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesValuesList =
   Array<string>;
@@ -37320,7 +37225,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersRemove
   | "remove"
   | "set";
 export const PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -37345,7 +37250,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersSetCac
   | "remove"
   | "set";
 export const PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesValuesList =
   Array<string>;
@@ -37378,7 +37283,7 @@ export type PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersSetCac
   | "remove"
   | "set";
 export const PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -37548,8 +37453,7 @@ export const PhasesVersionsGetResponseRulesItemSetCacheTags =
 
 export type PhasesVersionsGetResponseRulesItemSetConfigRuleAction =
   "set_config";
-export const PhasesVersionsGetResponseRulesItemSetConfigRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponseRulesItemSetConfigRuleAction = S.String;
 
 export type PhasesVersionsGetResponseRulesItemSetConfigRuleActionParametersAutominify =
   RulesCreateResponseRulesItemSetConfigRuleActionParametersAutominify;
@@ -37562,20 +37466,20 @@ export type PhasesVersionsGetResponseRulesItemSetConfigRuleActionParametersPolis
   | "lossy"
   | "webp";
 export const PhasesVersionsGetResponseRulesItemSetConfigRuleActionParametersPolish =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
   | "none"
   | "standard"
   | "full";
 export const PhasesVersionsGetResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
   | "none"
   | "standard";
 export const PhasesVersionsGetResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "off"
@@ -37585,7 +37489,7 @@ export type PhasesVersionsGetResponseRulesItemSetConfigRuleActionParametersSecur
   | "high"
   | "under_attack";
 export const PhasesVersionsGetResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemSetConfigRuleActionParametersSsl =
   | "off"
@@ -37594,7 +37498,7 @@ export type PhasesVersionsGetResponseRulesItemSetConfigRuleActionParametersSsl =
   | "strict"
   | "origin_pull";
 export const PhasesVersionsGetResponseRulesItemSetConfigRuleActionParametersSsl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesVersionsGetResponseRulesItemSetConfigRuleActionParameters {
   /** Whether to enable Automatic HTTPS Rewrites. */
@@ -37847,13 +37751,12 @@ export const PhasesVersionsGetResponseRulesItemSetConfigRule =
   }) as any as S.Schema<PhasesVersionsGetResponseRulesItemSetConfigRule>;
 
 export type PhasesVersionsGetResponseRulesItemSkipRuleAction = "skip";
-export const PhasesVersionsGetResponseRulesItemSkipRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesVersionsGetResponseRulesItemSkipRuleAction = S.String;
 
 export type PhasesVersionsGetResponseRulesItemSkipRuleActionParametersPhase =
   "current";
 export const PhasesVersionsGetResponseRulesItemSkipRuleActionParametersPhase =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "ddos_l4"
@@ -37881,7 +37784,7 @@ export type PhasesVersionsGetResponseRulesItemSkipRuleActionParametersPhasesItem
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
 export const PhasesVersionsGetResponseRulesItemSkipRuleActionParametersPhasesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemSkipRuleActionParametersPhasesList =
   Array<PhasesVersionsGetResponseRulesItemSkipRuleActionParametersPhasesItem>;
@@ -37899,7 +37802,7 @@ export type PhasesVersionsGetResponseRulesItemSkipRuleActionParametersProductsIt
   | "waf"
   | "zoneLockdown";
 export const PhasesVersionsGetResponseRulesItemSkipRuleActionParametersProductsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemSkipRuleActionParametersProductsList =
   Array<PhasesVersionsGetResponseRulesItemSkipRuleActionParametersProductsItem>;
@@ -37930,7 +37833,7 @@ export const PhasesVersionsGetResponseRulesItemSkipRuleActionParametersRulesMap 
 export type PhasesVersionsGetResponseRulesItemSkipRuleActionParametersRuleset =
   "current";
 export const PhasesVersionsGetResponseRulesItemSkipRuleActionParametersRuleset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemSkipRuleActionParametersRulesetsList =
   Array<string>;
@@ -38123,7 +38026,7 @@ export const PhasesVersionsGetResponseRulesItemSkipRule =
 export type PhasesVersionsGetResponseRulesItemTransformResponseHTMLAction =
   "transform_response_html";
 export const PhasesVersionsGetResponseRulesItemTransformResponseHTMLAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesVersionsGetResponseRulesItemTransformResponseHTMLActionParameters =
   RulesCreateRequestBodyTransformResponseHTMLRuleActionParameters;
@@ -38696,7 +38599,7 @@ export const GetRulesetForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetRulesetForAccountRequest>;
 
 export type GetResponseKind = "managed" | "custom" | "root" | "zone";
-export const GetResponseKind = /*@__PURE__*/ S.String;
+export const GetResponseKind = S.String;
 
 export type GetResponsePhase =
   | "ddos_l4"
@@ -38723,10 +38626,10 @@ export type GetResponsePhase =
   | "magic_transit_ids_managed"
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
-export const GetResponsePhase = /*@__PURE__*/ S.String;
+export const GetResponsePhase = S.String;
 
 export type GetResponseRulesItemBlockRuleAction = "block";
-export const GetResponseRulesItemBlockRuleAction = /*@__PURE__*/ S.String;
+export const GetResponseRulesItemBlockRuleAction = S.String;
 
 export type GetResponseRulesItemBlockRuleActionParametersResponse =
   RulesCreateResponseRulesItemBlockRuleActionParametersResponse;
@@ -38867,7 +38770,7 @@ export const GetResponseRulesItemBlockRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseRulesItemBlockRule>;
 
 export type GetResponseRulesItemChallengeAction = "challenge";
-export const GetResponseRulesItemChallengeAction = /*@__PURE__*/ S.String;
+export const GetResponseRulesItemChallengeAction = S.String;
 
 export type GetResponseRulesItemChallengeCategoriesList = Array<string>;
 export const GetResponseRulesItemChallengeCategoriesList =
@@ -38992,8 +38895,7 @@ export const GetResponseRulesItemChallenge = /*@__PURE__*/ S.suspend(() =>
 
 export type GetResponseRulesItemCompressResponseRuleAction =
   "compress_response";
-export const GetResponseRulesItemCompressResponseRuleAction =
-  /*@__PURE__*/ S.String;
+export const GetResponseRulesItemCompressResponseRuleAction = S.String;
 
 export type GetResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
   | "none"
@@ -39003,7 +38905,7 @@ export type GetResponseRulesItemCompressResponseRuleActionParametersAlgorithmsIt
   | "brotli"
   | "zstd";
 export const GetResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItem {
   /** Name of the compression algorithm to enable. */
@@ -39174,7 +39076,7 @@ export const GetResponseRulesItemCompressResponseRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetResponseRulesItemCompressResponseRule>;
 
 export type GetResponseRulesItemDDoSDynamicRuleAction = "ddos_dynamic";
-export const GetResponseRulesItemDDoSDynamicRuleAction = /*@__PURE__*/ S.String;
+export const GetResponseRulesItemDDoSDynamicRuleAction = S.String;
 
 export type GetResponseRulesItemDDoSDynamicRuleCategoriesList = Array<string>;
 export const GetResponseRulesItemDDoSDynamicRuleCategoriesList =
@@ -39300,7 +39202,7 @@ export const GetResponseRulesItemDDoSDynamicRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseRulesItemDDoSDynamicRule>;
 
 export type GetResponseRulesItemExecuteRuleAction = "execute";
-export const GetResponseRulesItemExecuteRuleAction = /*@__PURE__*/ S.String;
+export const GetResponseRulesItemExecuteRuleAction = S.String;
 
 export type GetResponseRulesItemExecuteRuleActionParametersMatchedData =
   RulesCreateResponseRulesItemExecuteRuleActionParametersMatchedData;
@@ -39313,7 +39215,7 @@ export type GetResponseRulesItemExecuteRuleActionParametersOverridesCategoriesIt
   | "low"
   | "eoff";
 export const GetResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItem {
   /** The name of the category to override. */
@@ -39355,7 +39257,7 @@ export type GetResponseRulesItemExecuteRuleActionParametersOverridesRulesItemSen
   | "low"
   | "eoff";
 export const GetResponseRulesItemExecuteRuleActionParametersOverridesRulesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemExecuteRuleActionParametersOverridesRulesItem {
   /** The ID of the rule to override. */
@@ -39402,7 +39304,7 @@ export type GetResponseRulesItemExecuteRuleActionParametersOverridesSensitivityL
   | "low"
   | "eoff";
 export const GetResponseRulesItemExecuteRuleActionParametersOverridesSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemExecuteRuleActionParametersOverrides {
   /** An action to override all rules with. This option has lower precedence than rule and category overrides. */
@@ -39591,8 +39493,7 @@ export const GetResponseRulesItemExecuteRule = /*@__PURE__*/ S.suspend(() =>
 
 export type GetResponseRulesItemForceConnectionCloseRuleAction =
   "force_connection_close";
-export const GetResponseRulesItemForceConnectionCloseRuleAction =
-  /*@__PURE__*/ S.String;
+export const GetResponseRulesItemForceConnectionCloseRuleAction = S.String;
 
 export type GetResponseRulesItemForceConnectionCloseRuleCategoriesList =
   Array<string>;
@@ -39722,7 +39623,7 @@ export const GetResponseRulesItemForceConnectionCloseRule =
   }) as any as S.Schema<GetResponseRulesItemForceConnectionCloseRule>;
 
 export type GetResponseRulesItemJSChallengeAction = "js_challenge";
-export const GetResponseRulesItemJSChallengeAction = /*@__PURE__*/ S.String;
+export const GetResponseRulesItemJSChallengeAction = S.String;
 
 export type GetResponseRulesItemJSChallengeCategoriesList = Array<string>;
 export const GetResponseRulesItemJSChallengeCategoriesList =
@@ -39846,7 +39747,7 @@ export const GetResponseRulesItemJSChallenge = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseRulesItemJSChallenge>;
 
 export type GetResponseRulesItemLogRuleAction = "log";
-export const GetResponseRulesItemLogRuleAction = /*@__PURE__*/ S.String;
+export const GetResponseRulesItemLogRuleAction = S.String;
 
 export type GetResponseRulesItemLogRuleCategoriesList = Array<string>;
 export const GetResponseRulesItemLogRuleCategoriesList = /*@__PURE__*/ S.Array(
@@ -39966,8 +39867,7 @@ export const GetResponseRulesItemLogRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseRulesItemLogRule>;
 
 export type GetResponseRulesItemLogCustomFieldRuleAction = "log_custom_field";
-export const GetResponseRulesItemLogCustomFieldRuleAction =
-  /*@__PURE__*/ S.String;
+export const GetResponseRulesItemLogCustomFieldRuleAction = S.String;
 
 export type GetResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem =
   RulesCreateResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem;
@@ -40205,8 +40105,7 @@ export const GetResponseRulesItemLogCustomFieldRule = /*@__PURE__*/ S.suspend(
 
 export type GetResponseRulesItemManagedChallengeRuleAction =
   "managed_challenge";
-export const GetResponseRulesItemManagedChallengeRuleAction =
-  /*@__PURE__*/ S.String;
+export const GetResponseRulesItemManagedChallengeRuleAction = S.String;
 
 export type GetResponseRulesItemManagedChallengeRuleCategoriesList =
   Array<string>;
@@ -40336,7 +40235,7 @@ export const GetResponseRulesItemManagedChallengeRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetResponseRulesItemManagedChallengeRule>;
 
 export type GetResponseRulesItemRedirectRuleAction = "redirect";
-export const GetResponseRulesItemRedirectRuleAction = /*@__PURE__*/ S.String;
+export const GetResponseRulesItemRedirectRuleAction = S.String;
 
 export type GetResponseRulesItemRedirectRuleActionParametersFromList =
   RulesCreateResponseRulesItemRedirectRuleActionParametersFromList;
@@ -40355,7 +40254,7 @@ export type GetResponseRulesItemRedirectRuleActionParametersFromValueStatusCode 
   | 307
   | 308;
 export const GetResponseRulesItemRedirectRuleActionParametersFromValueStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface GetResponseRulesItemRedirectRuleActionParametersFromValue {
   /** A URL to redirect the request to. */
@@ -40533,12 +40432,12 @@ export const GetResponseRulesItemRedirectRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseRulesItemRedirectRule>;
 
 export type GetResponseRulesItemRewriteRuleAction = "rewrite";
-export const GetResponseRulesItemRewriteRuleAction = /*@__PURE__*/ S.String;
+export const GetResponseRulesItemRewriteRuleAction = S.String;
 
 export type GetResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
   "add";
 export const GetResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeader {
   /** The operation to perform on the header. */
@@ -40561,7 +40460,7 @@ export const GetResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHead
 export type GetResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
   "add";
 export const GetResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -40584,7 +40483,7 @@ export const GetResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHea
 export type GetResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
   "set";
 export const GetResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeader {
   /** The operation to perform on the header. */
@@ -40607,7 +40506,7 @@ export const GetResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHead
 export type GetResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
   "set";
 export const GetResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -40630,7 +40529,7 @@ export const GetResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHea
 export type GetResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
   "remove";
 export const GetResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeader {
   /** The operation to perform on the header. */
@@ -40839,7 +40738,7 @@ export const GetResponseRulesItemRewriteRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseRulesItemRewriteRule>;
 
 export type GetResponseRulesItemRouteRuleAction = "route";
-export const GetResponseRulesItemRouteRuleAction = /*@__PURE__*/ S.String;
+export const GetResponseRulesItemRouteRuleAction = S.String;
 
 export type GetResponseRulesItemRouteRuleActionParametersOrigin =
   RulesCreateResponseRulesItemRouteRuleActionParametersOrigin;
@@ -40980,7 +40879,7 @@ export const GetResponseRulesItemRouteRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseRulesItemRouteRule>;
 
 export type GetResponseRulesItemScoreRuleAction = "score";
-export const GetResponseRulesItemScoreRuleAction = /*@__PURE__*/ S.String;
+export const GetResponseRulesItemScoreRuleAction = S.String;
 
 export type GetResponseRulesItemScoreRuleActionParameters =
   RulesCreateResponseRulesItemScoreRuleActionParameters;
@@ -41111,7 +41010,7 @@ export const GetResponseRulesItemScoreRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseRulesItemScoreRule>;
 
 export type GetResponseRulesItemServeErrorRuleAction = "serve_error";
-export const GetResponseRulesItemServeErrorRuleAction = /*@__PURE__*/ S.String;
+export const GetResponseRulesItemServeErrorRuleAction = S.String;
 
 export type GetResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
   | "application/json"
@@ -41119,7 +41018,7 @@ export type GetResponseRulesItemServeErrorRuleActionParametersActionParametersCo
   | "text/plain"
   | "text/xml";
 export const GetResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemServeErrorRuleActionParametersActionParametersContent {
   /** The response content. */
@@ -41151,7 +41050,7 @@ export type GetResponseRulesItemServeErrorRuleActionParametersActionParametersAs
   | "text/plain"
   | "text/xml";
 export const GetResponseRulesItemServeErrorRuleActionParametersActionParametersAssetContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemServeErrorRuleActionParametersActionParametersAsset {
   /** The name of a custom asset to serve as the error response. */
@@ -41314,13 +41213,13 @@ export const GetResponseRulesItemServeErrorRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseRulesItemServeErrorRule>;
 
 export type GetResponseRulesItemSetCacheControlAction = "set_cache_control";
-export const GetResponseRulesItemSetCacheControlAction = /*@__PURE__*/ S.String;
+export const GetResponseRulesItemSetCacheControlAction = S.String;
 
 export type GetResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersImmutableSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41346,7 +41245,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersImmutableRemoveDi
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41383,7 +41282,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirectiv
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41412,7 +41311,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirec
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41449,7 +41348,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersMustRevalidateSet
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41475,7 +41374,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersMustRevalidateRem
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41512,7 +41411,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersMustUnderstandSet
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41538,7 +41437,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersMustUnderstandRem
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41575,7 +41474,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersNoCacheSetDirecti
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveQualifiersList =
   Array<string>;
@@ -41615,7 +41514,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDire
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41652,7 +41551,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersNoStoreSetDirecti
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersNoStoreSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersNoStoreSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41678,7 +41577,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDire
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41715,7 +41614,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersNoTransformSetDir
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersNoTransformSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersNoTransformSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41741,7 +41640,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersNoTransformRemove
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41778,7 +41677,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersPrivateSetDirecti
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveQualifiersList =
   Array<string>;
@@ -41818,7 +41717,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersPrivateRemoveDire
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41855,7 +41754,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersProxyRevalidateSe
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41881,7 +41780,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersProxyRevalidateRe
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41918,7 +41817,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersPublicSetDirectiv
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersPublicSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersPublicSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41944,7 +41843,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersPublicRemoveDirec
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersPublicRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersPublicRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -41981,7 +41880,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersSMaxageSetDirecti
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersSMaxageSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersSMaxageSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -42010,7 +41909,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDire
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -42047,7 +41946,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDi
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -42076,7 +41975,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemov
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -42113,7 +42012,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalid
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -42142,7 +42041,7 @@ export type GetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalid
   | "set"
   | "remove";
 export const GetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -42397,8 +42296,7 @@ export const GetResponseRulesItemSetCacheControl = /*@__PURE__*/ S.suspend(() =>
 
 export type GetResponseRulesItemSetCacheSettingsRuleAction =
   "set_cache_settings";
-export const GetResponseRulesItemSetCacheSettingsRuleAction =
-  /*@__PURE__*/ S.String;
+export const GetResponseRulesItemSetCacheSettingsRuleAction = S.String;
 
 export type GetResponseRulesItemSetCacheSettingsRuleActionParametersAdditionalCacheablePortsList =
   Array<number>;
@@ -42413,7 +42311,7 @@ export type GetResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtlMo
   | "override_origin"
   | "bypass";
 export const GetResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtl {
   /** The browser TTL mode. */
@@ -42721,7 +42619,7 @@ export type GetResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMode 
   | "bypass_by_default"
   | "override_origin";
 export const GetResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange =
   RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange;
@@ -42779,7 +42677,7 @@ export type GetResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefaultA
   | "passthrough"
   | "normalize";
 export const GetResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefaultAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefault {
   /** How the header value is treated when building the cache key. */
@@ -42801,7 +42699,7 @@ export type GetResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersV
   | "passthrough"
   | "normalize";
 export const GetResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueLanguagesList =
   Array<string>;
@@ -43110,14 +43008,14 @@ export const GetResponseRulesItemSetCacheSettingsRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetResponseRulesItemSetCacheSettingsRule>;
 
 export type GetResponseRulesItemSetCacheTagsAction = "set_cache_tags";
-export const GetResponseRulesItemSetCacheTagsAction = /*@__PURE__*/ S.String;
+export const GetResponseRulesItemSetCacheTagsAction = S.String;
 
 export type GetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
   | "add"
   | "remove"
   | "set";
 export const GetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesValuesList =
   Array<string>;
@@ -43150,7 +43048,7 @@ export type GetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpressi
   | "remove"
   | "set";
 export const GetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -43175,7 +43073,7 @@ export type GetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValue
   | "remove"
   | "set";
 export const GetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesValuesList =
   Array<string>;
@@ -43208,7 +43106,7 @@ export type GetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpre
   | "remove"
   | "set";
 export const GetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -43233,7 +43131,7 @@ export type GetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesOp
   | "remove"
   | "set";
 export const GetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesValuesList =
   Array<string>;
@@ -43266,7 +43164,7 @@ export type GetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpressi
   | "remove"
   | "set";
 export const GetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -43429,7 +43327,7 @@ export const GetResponseRulesItemSetCacheTags = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseRulesItemSetCacheTags>;
 
 export type GetResponseRulesItemSetConfigRuleAction = "set_config";
-export const GetResponseRulesItemSetConfigRuleAction = /*@__PURE__*/ S.String;
+export const GetResponseRulesItemSetConfigRuleAction = S.String;
 
 export type GetResponseRulesItemSetConfigRuleActionParametersAutominify =
   RulesCreateResponseRulesItemSetConfigRuleActionParametersAutominify;
@@ -43441,21 +43339,20 @@ export type GetResponseRulesItemSetConfigRuleActionParametersPolish =
   | "lossless"
   | "lossy"
   | "webp";
-export const GetResponseRulesItemSetConfigRuleActionParametersPolish =
-  /*@__PURE__*/ S.String;
+export const GetResponseRulesItemSetConfigRuleActionParametersPolish = S.String;
 
 export type GetResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
   | "none"
   | "standard"
   | "full";
 export const GetResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
   | "none"
   | "standard";
 export const GetResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "off"
@@ -43465,7 +43362,7 @@ export type GetResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "high"
   | "under_attack";
 export const GetResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResponseRulesItemSetConfigRuleActionParametersSsl =
   | "off"
@@ -43473,8 +43370,7 @@ export type GetResponseRulesItemSetConfigRuleActionParametersSsl =
   | "full"
   | "strict"
   | "origin_pull";
-export const GetResponseRulesItemSetConfigRuleActionParametersSsl =
-  /*@__PURE__*/ S.String;
+export const GetResponseRulesItemSetConfigRuleActionParametersSsl = S.String;
 
 export interface GetResponseRulesItemSetConfigRuleActionParameters {
   /** Whether to enable Automatic HTTPS Rewrites. */
@@ -43716,11 +43612,10 @@ export const GetResponseRulesItemSetConfigRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseRulesItemSetConfigRule>;
 
 export type GetResponseRulesItemSkipRuleAction = "skip";
-export const GetResponseRulesItemSkipRuleAction = /*@__PURE__*/ S.String;
+export const GetResponseRulesItemSkipRuleAction = S.String;
 
 export type GetResponseRulesItemSkipRuleActionParametersPhase = "current";
-export const GetResponseRulesItemSkipRuleActionParametersPhase =
-  /*@__PURE__*/ S.String;
+export const GetResponseRulesItemSkipRuleActionParametersPhase = S.String;
 
 export type GetResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "ddos_l4"
@@ -43747,8 +43642,7 @@ export type GetResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "magic_transit_ids_managed"
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
-export const GetResponseRulesItemSkipRuleActionParametersPhasesItem =
-  /*@__PURE__*/ S.String;
+export const GetResponseRulesItemSkipRuleActionParametersPhasesItem = S.String;
 
 export type GetResponseRulesItemSkipRuleActionParametersPhasesList =
   Array<GetResponseRulesItemSkipRuleActionParametersPhasesItem>;
@@ -43766,7 +43660,7 @@ export type GetResponseRulesItemSkipRuleActionParametersProductsItem =
   | "waf"
   | "zoneLockdown";
 export const GetResponseRulesItemSkipRuleActionParametersProductsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResponseRulesItemSkipRuleActionParametersProductsList =
   Array<GetResponseRulesItemSkipRuleActionParametersProductsItem>;
@@ -43794,8 +43688,7 @@ export const GetResponseRulesItemSkipRuleActionParametersRulesMap =
   ) as any as S.Schema<GetResponseRulesItemSkipRuleActionParametersRulesMap>;
 
 export type GetResponseRulesItemSkipRuleActionParametersRuleset = "current";
-export const GetResponseRulesItemSkipRuleActionParametersRuleset =
-  /*@__PURE__*/ S.String;
+export const GetResponseRulesItemSkipRuleActionParametersRuleset = S.String;
 
 export type GetResponseRulesItemSkipRuleActionParametersRulesetsList =
   Array<string>;
@@ -43967,8 +43860,7 @@ export const GetResponseRulesItemSkipRule = /*@__PURE__*/ S.suspend(() =>
 
 export type GetResponseRulesItemTransformResponseHTMLAction =
   "transform_response_html";
-export const GetResponseRulesItemTransformResponseHTMLAction =
-  /*@__PURE__*/ S.String;
+export const GetResponseRulesItemTransformResponseHTMLAction = S.String;
 
 export type GetResponseRulesItemTransformResponseHTMLActionParameters =
   RulesCreateRequestBodyTransformResponseHTMLRuleActionParameters;
@@ -44535,7 +44427,7 @@ export const GetVersionForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVersionForAccountRequest>;
 
 export type VersionsGetResponseKind = "managed" | "custom" | "root" | "zone";
-export const VersionsGetResponseKind = /*@__PURE__*/ S.String;
+export const VersionsGetResponseKind = S.String;
 
 export type VersionsGetResponsePhase =
   | "ddos_l4"
@@ -44562,11 +44454,10 @@ export type VersionsGetResponsePhase =
   | "magic_transit_ids_managed"
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
-export const VersionsGetResponsePhase = /*@__PURE__*/ S.String;
+export const VersionsGetResponsePhase = S.String;
 
 export type VersionsGetResponseRulesItemBlockRuleAction = "block";
-export const VersionsGetResponseRulesItemBlockRuleAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemBlockRuleAction = S.String;
 
 export type VersionsGetResponseRulesItemBlockRuleActionParametersResponse =
   RulesCreateResponseRulesItemBlockRuleActionParametersResponse;
@@ -44710,8 +44601,7 @@ export const VersionsGetResponseRulesItemBlockRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<VersionsGetResponseRulesItemBlockRule>;
 
 export type VersionsGetResponseRulesItemChallengeAction = "challenge";
-export const VersionsGetResponseRulesItemChallengeAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemChallengeAction = S.String;
 
 export type VersionsGetResponseRulesItemChallengeCategoriesList = Array<string>;
 export const VersionsGetResponseRulesItemChallengeCategoriesList =
@@ -44839,8 +44729,7 @@ export const VersionsGetResponseRulesItemChallenge = /*@__PURE__*/ S.suspend(
 
 export type VersionsGetResponseRulesItemCompressResponseRuleAction =
   "compress_response";
-export const VersionsGetResponseRulesItemCompressResponseRuleAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemCompressResponseRuleAction = S.String;
 
 export type VersionsGetResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
   | "none"
@@ -44850,7 +44739,7 @@ export type VersionsGetResponseRulesItemCompressResponseRuleActionParametersAlgo
   | "brotli"
   | "zstd";
 export const VersionsGetResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItem {
   /** Name of the compression algorithm to enable. */
@@ -45024,8 +44913,7 @@ export const VersionsGetResponseRulesItemCompressResponseRule =
   }) as any as S.Schema<VersionsGetResponseRulesItemCompressResponseRule>;
 
 export type VersionsGetResponseRulesItemDDoSDynamicRuleAction = "ddos_dynamic";
-export const VersionsGetResponseRulesItemDDoSDynamicRuleAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemDDoSDynamicRuleAction = S.String;
 
 export type VersionsGetResponseRulesItemDDoSDynamicRuleCategoriesList =
   Array<string>;
@@ -45155,8 +45043,7 @@ export const VersionsGetResponseRulesItemDDoSDynamicRule =
   }) as any as S.Schema<VersionsGetResponseRulesItemDDoSDynamicRule>;
 
 export type VersionsGetResponseRulesItemExecuteRuleAction = "execute";
-export const VersionsGetResponseRulesItemExecuteRuleAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemExecuteRuleAction = S.String;
 
 export type VersionsGetResponseRulesItemExecuteRuleActionParametersMatchedData =
   RulesCreateResponseRulesItemExecuteRuleActionParametersMatchedData;
@@ -45169,7 +45056,7 @@ export type VersionsGetResponseRulesItemExecuteRuleActionParametersOverridesCate
   | "low"
   | "eoff";
 export const VersionsGetResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItem {
   /** The name of the category to override. */
@@ -45211,7 +45098,7 @@ export type VersionsGetResponseRulesItemExecuteRuleActionParametersOverridesRule
   | "low"
   | "eoff";
 export const VersionsGetResponseRulesItemExecuteRuleActionParametersOverridesRulesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemExecuteRuleActionParametersOverridesRulesItem {
   /** The ID of the rule to override. */
@@ -45258,7 +45145,7 @@ export type VersionsGetResponseRulesItemExecuteRuleActionParametersOverridesSens
   | "low"
   | "eoff";
 export const VersionsGetResponseRulesItemExecuteRuleActionParametersOverridesSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemExecuteRuleActionParametersOverrides {
   /** An action to override all rules with. This option has lower precedence than rule and category overrides. */
@@ -45457,7 +45344,7 @@ export const VersionsGetResponseRulesItemExecuteRule = /*@__PURE__*/ S.suspend(
 export type VersionsGetResponseRulesItemForceConnectionCloseRuleAction =
   "force_connection_close";
 export const VersionsGetResponseRulesItemForceConnectionCloseRuleAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VersionsGetResponseRulesItemForceConnectionCloseRuleCategoriesList =
   Array<string>;
@@ -45589,8 +45476,7 @@ export const VersionsGetResponseRulesItemForceConnectionCloseRule =
   }) as any as S.Schema<VersionsGetResponseRulesItemForceConnectionCloseRule>;
 
 export type VersionsGetResponseRulesItemJSChallengeAction = "js_challenge";
-export const VersionsGetResponseRulesItemJSChallengeAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemJSChallengeAction = S.String;
 
 export type VersionsGetResponseRulesItemJSChallengeCategoriesList =
   Array<string>;
@@ -45720,7 +45606,7 @@ export const VersionsGetResponseRulesItemJSChallenge = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<VersionsGetResponseRulesItemJSChallenge>;
 
 export type VersionsGetResponseRulesItemLogRuleAction = "log";
-export const VersionsGetResponseRulesItemLogRuleAction = /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemLogRuleAction = S.String;
 
 export type VersionsGetResponseRulesItemLogRuleCategoriesList = Array<string>;
 export const VersionsGetResponseRulesItemLogRuleCategoriesList =
@@ -45847,8 +45733,7 @@ export const VersionsGetResponseRulesItemLogRule = /*@__PURE__*/ S.suspend(() =>
 
 export type VersionsGetResponseRulesItemLogCustomFieldRuleAction =
   "log_custom_field";
-export const VersionsGetResponseRulesItemLogCustomFieldRuleAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemLogCustomFieldRuleAction = S.String;
 
 export type VersionsGetResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem =
   RulesCreateResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem;
@@ -46087,8 +45972,7 @@ export const VersionsGetResponseRulesItemLogCustomFieldRule =
 
 export type VersionsGetResponseRulesItemManagedChallengeRuleAction =
   "managed_challenge";
-export const VersionsGetResponseRulesItemManagedChallengeRuleAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemManagedChallengeRuleAction = S.String;
 
 export type VersionsGetResponseRulesItemManagedChallengeRuleCategoriesList =
   Array<string>;
@@ -46220,8 +46104,7 @@ export const VersionsGetResponseRulesItemManagedChallengeRule =
   }) as any as S.Schema<VersionsGetResponseRulesItemManagedChallengeRule>;
 
 export type VersionsGetResponseRulesItemRedirectRuleAction = "redirect";
-export const VersionsGetResponseRulesItemRedirectRuleAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemRedirectRuleAction = S.String;
 
 export type VersionsGetResponseRulesItemRedirectRuleActionParametersFromList =
   RulesCreateResponseRulesItemRedirectRuleActionParametersFromList;
@@ -46240,7 +46123,7 @@ export type VersionsGetResponseRulesItemRedirectRuleActionParametersFromValueSta
   | 307
   | 308;
 export const VersionsGetResponseRulesItemRedirectRuleActionParametersFromValueStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface VersionsGetResponseRulesItemRedirectRuleActionParametersFromValue {
   /** A URL to redirect the request to. */
@@ -46425,13 +46308,12 @@ export const VersionsGetResponseRulesItemRedirectRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<VersionsGetResponseRulesItemRedirectRule>;
 
 export type VersionsGetResponseRulesItemRewriteRuleAction = "rewrite";
-export const VersionsGetResponseRulesItemRewriteRuleAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemRewriteRuleAction = S.String;
 
 export type VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
   "add";
 export const VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeader {
   /** The operation to perform on the header. */
@@ -46454,7 +46336,7 @@ export const VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersAddSt
 export type VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
   "add";
 export const VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -46477,7 +46359,7 @@ export const VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersAddDy
 export type VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
   "set";
 export const VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeader {
   /** The operation to perform on the header. */
@@ -46500,7 +46382,7 @@ export const VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersSetSt
 export type VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
   "set";
 export const VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -46523,7 +46405,7 @@ export const VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersSetDy
 export type VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
   "remove";
 export const VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeader {
   /** The operation to perform on the header. */
@@ -46740,8 +46622,7 @@ export const VersionsGetResponseRulesItemRewriteRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<VersionsGetResponseRulesItemRewriteRule>;
 
 export type VersionsGetResponseRulesItemRouteRuleAction = "route";
-export const VersionsGetResponseRulesItemRouteRuleAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemRouteRuleAction = S.String;
 
 export type VersionsGetResponseRulesItemRouteRuleActionParametersOrigin =
   RulesCreateResponseRulesItemRouteRuleActionParametersOrigin;
@@ -46885,8 +46766,7 @@ export const VersionsGetResponseRulesItemRouteRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<VersionsGetResponseRulesItemRouteRule>;
 
 export type VersionsGetResponseRulesItemScoreRuleAction = "score";
-export const VersionsGetResponseRulesItemScoreRuleAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemScoreRuleAction = S.String;
 
 export type VersionsGetResponseRulesItemScoreRuleActionParameters =
   RulesCreateResponseRulesItemScoreRuleActionParameters;
@@ -47020,8 +46900,7 @@ export const VersionsGetResponseRulesItemScoreRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<VersionsGetResponseRulesItemScoreRule>;
 
 export type VersionsGetResponseRulesItemServeErrorRuleAction = "serve_error";
-export const VersionsGetResponseRulesItemServeErrorRuleAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemServeErrorRuleAction = S.String;
 
 export type VersionsGetResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
   | "application/json"
@@ -47029,7 +46908,7 @@ export type VersionsGetResponseRulesItemServeErrorRuleActionParametersActionPara
   | "text/plain"
   | "text/xml";
 export const VersionsGetResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemServeErrorRuleActionParametersActionParametersContent {
   /** The response content. */
@@ -47061,7 +46940,7 @@ export type VersionsGetResponseRulesItemServeErrorRuleActionParametersActionPara
   | "text/plain"
   | "text/xml";
 export const VersionsGetResponseRulesItemServeErrorRuleActionParametersActionParametersAssetContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemServeErrorRuleActionParametersActionParametersAsset {
   /** The name of a custom asset to serve as the error response. */
@@ -47229,14 +47108,13 @@ export const VersionsGetResponseRulesItemServeErrorRule =
 
 export type VersionsGetResponseRulesItemSetCacheControlAction =
   "set_cache_control";
-export const VersionsGetResponseRulesItemSetCacheControlAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemSetCacheControlAction = S.String;
 
 export type VersionsGetResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersImmutableSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47262,7 +47140,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersImmutable
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47299,7 +47177,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersMaxAgeSet
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47328,7 +47206,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersMaxAgeRem
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47365,7 +47243,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersMustReval
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47391,7 +47269,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersMustReval
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47428,7 +47306,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersMustUnder
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47454,7 +47332,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersMustUnder
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47491,7 +47369,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersNoCacheSe
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VersionsGetResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveQualifiersList =
   Array<string>;
@@ -47531,7 +47409,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersNoCacheRe
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47568,7 +47446,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersNoStoreSe
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersNoStoreSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersNoStoreSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47594,7 +47472,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersNoStoreRe
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47631,7 +47509,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersNoTransfo
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersNoTransformSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersNoTransformSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47657,7 +47535,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersNoTransfo
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47694,7 +47572,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersPrivateSe
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VersionsGetResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveQualifiersList =
   Array<string>;
@@ -47734,7 +47612,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersPrivateRe
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47771,7 +47649,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersProxyReva
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47797,7 +47675,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersProxyReva
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47834,7 +47712,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersPublicSet
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersPublicSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersPublicSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47860,7 +47738,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersPublicRem
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersPublicRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersPublicRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47897,7 +47775,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersSMaxageSe
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersSMaxageSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersSMaxageSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47926,7 +47804,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersSMaxageRe
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47963,7 +47841,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersStaleIfEr
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -47992,7 +47870,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersStaleIfEr
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -48029,7 +47907,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersStaleWhil
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -48058,7 +47936,7 @@ export type VersionsGetResponseRulesItemSetCacheControlActionParametersStaleWhil
   | "set"
   | "remove";
 export const VersionsGetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -48323,8 +48201,7 @@ export const VersionsGetResponseRulesItemSetCacheControl =
 
 export type VersionsGetResponseRulesItemSetCacheSettingsRuleAction =
   "set_cache_settings";
-export const VersionsGetResponseRulesItemSetCacheSettingsRuleAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemSetCacheSettingsRuleAction = S.String;
 
 export type VersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersAdditionalCacheablePortsList =
   Array<number>;
@@ -48339,7 +48216,7 @@ export type VersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersBrow
   | "override_origin"
   | "bypass";
 export const VersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtl {
   /** The browser TTL mode. */
@@ -48647,7 +48524,7 @@ export type VersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersEdge
   | "bypass_by_default"
   | "override_origin";
 export const VersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange =
   RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange;
@@ -48705,7 +48582,7 @@ export type VersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersVary
   | "passthrough"
   | "normalize";
 export const VersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefaultAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefault {
   /** How the header value is treated when building the cache key. */
@@ -48727,7 +48604,7 @@ export type VersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersVary
   | "passthrough"
   | "normalize";
 export const VersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VersionsGetResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueLanguagesList =
   Array<string>;
@@ -49042,15 +48919,14 @@ export const VersionsGetResponseRulesItemSetCacheSettingsRule =
   }) as any as S.Schema<VersionsGetResponseRulesItemSetCacheSettingsRule>;
 
 export type VersionsGetResponseRulesItemSetCacheTagsAction = "set_cache_tags";
-export const VersionsGetResponseRulesItemSetCacheTagsAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemSetCacheTagsAction = S.String;
 
 export type VersionsGetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
   | "add"
   | "remove"
   | "set";
 export const VersionsGetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VersionsGetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesValuesList =
   Array<string>;
@@ -49083,7 +48959,7 @@ export type VersionsGetResponseRulesItemSetCacheTagsActionParametersAddCacheTags
   | "remove"
   | "set";
 export const VersionsGetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -49108,7 +48984,7 @@ export type VersionsGetResponseRulesItemSetCacheTagsActionParametersRemoveCacheT
   | "remove"
   | "set";
 export const VersionsGetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VersionsGetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesValuesList =
   Array<string>;
@@ -49141,7 +49017,7 @@ export type VersionsGetResponseRulesItemSetCacheTagsActionParametersRemoveCacheT
   | "remove"
   | "set";
 export const VersionsGetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -49166,7 +49042,7 @@ export type VersionsGetResponseRulesItemSetCacheTagsActionParametersSetCacheTags
   | "remove"
   | "set";
 export const VersionsGetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VersionsGetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesValuesList =
   Array<string>;
@@ -49199,7 +49075,7 @@ export type VersionsGetResponseRulesItemSetCacheTagsActionParametersSetCacheTags
   | "remove"
   | "set";
 export const VersionsGetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -49368,8 +49244,7 @@ export const VersionsGetResponseRulesItemSetCacheTags = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<VersionsGetResponseRulesItemSetCacheTags>;
 
 export type VersionsGetResponseRulesItemSetConfigRuleAction = "set_config";
-export const VersionsGetResponseRulesItemSetConfigRuleAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemSetConfigRuleAction = S.String;
 
 export type VersionsGetResponseRulesItemSetConfigRuleActionParametersAutominify =
   RulesCreateResponseRulesItemSetConfigRuleActionParametersAutominify;
@@ -49382,20 +49257,20 @@ export type VersionsGetResponseRulesItemSetConfigRuleActionParametersPolish =
   | "lossy"
   | "webp";
 export const VersionsGetResponseRulesItemSetConfigRuleActionParametersPolish =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VersionsGetResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
   | "none"
   | "standard"
   | "full";
 export const VersionsGetResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VersionsGetResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
   | "none"
   | "standard";
 export const VersionsGetResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VersionsGetResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "off"
@@ -49405,7 +49280,7 @@ export type VersionsGetResponseRulesItemSetConfigRuleActionParametersSecurityLev
   | "high"
   | "under_attack";
 export const VersionsGetResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VersionsGetResponseRulesItemSetConfigRuleActionParametersSsl =
   | "off"
@@ -49414,7 +49289,7 @@ export type VersionsGetResponseRulesItemSetConfigRuleActionParametersSsl =
   | "strict"
   | "origin_pull";
 export const VersionsGetResponseRulesItemSetConfigRuleActionParametersSsl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VersionsGetResponseRulesItemSetConfigRuleActionParameters {
   /** Whether to enable Automatic HTTPS Rewrites. */
@@ -49664,13 +49539,12 @@ export const VersionsGetResponseRulesItemSetConfigRule =
   }) as any as S.Schema<VersionsGetResponseRulesItemSetConfigRule>;
 
 export type VersionsGetResponseRulesItemSkipRuleAction = "skip";
-export const VersionsGetResponseRulesItemSkipRuleAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemSkipRuleAction = S.String;
 
 export type VersionsGetResponseRulesItemSkipRuleActionParametersPhase =
   "current";
 export const VersionsGetResponseRulesItemSkipRuleActionParametersPhase =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VersionsGetResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "ddos_l4"
@@ -49698,7 +49572,7 @@ export type VersionsGetResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
 export const VersionsGetResponseRulesItemSkipRuleActionParametersPhasesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VersionsGetResponseRulesItemSkipRuleActionParametersPhasesList =
   Array<VersionsGetResponseRulesItemSkipRuleActionParametersPhasesItem>;
@@ -49716,7 +49590,7 @@ export type VersionsGetResponseRulesItemSkipRuleActionParametersProductsItem =
   | "waf"
   | "zoneLockdown";
 export const VersionsGetResponseRulesItemSkipRuleActionParametersProductsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VersionsGetResponseRulesItemSkipRuleActionParametersProductsList =
   Array<VersionsGetResponseRulesItemSkipRuleActionParametersProductsItem>;
@@ -49746,7 +49620,7 @@ export const VersionsGetResponseRulesItemSkipRuleActionParametersRulesMap =
 export type VersionsGetResponseRulesItemSkipRuleActionParametersRuleset =
   "current";
 export const VersionsGetResponseRulesItemSkipRuleActionParametersRuleset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type VersionsGetResponseRulesItemSkipRuleActionParametersRulesetsList =
   Array<string>;
@@ -49929,8 +49803,7 @@ export const VersionsGetResponseRulesItemSkipRule = /*@__PURE__*/ S.suspend(
 
 export type VersionsGetResponseRulesItemTransformResponseHTMLAction =
   "transform_response_html";
-export const VersionsGetResponseRulesItemTransformResponseHTMLAction =
-  /*@__PURE__*/ S.String;
+export const VersionsGetResponseRulesItemTransformResponseHTMLAction = S.String;
 
 export type VersionsGetResponseRulesItemTransformResponseHTMLActionParameters =
   RulesCreateRequestBodyTransformResponseHTMLRuleActionParameters;
@@ -50503,7 +50376,7 @@ export type PhasesVersionsListResultItemKind =
   | "custom"
   | "root"
   | "zone";
-export const PhasesVersionsListResultItemKind = /*@__PURE__*/ S.String;
+export const PhasesVersionsListResultItemKind = S.String;
 
 export type PhasesVersionsListResultItemPhase =
   | "ddos_l4"
@@ -50530,7 +50403,7 @@ export type PhasesVersionsListResultItemPhase =
   | "magic_transit_ids_managed"
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
-export const PhasesVersionsListResultItemPhase = /*@__PURE__*/ S.String;
+export const PhasesVersionsListResultItemPhase = S.String;
 
 export interface PhasesVersionsListResultItem {
   /** The unique ID of the ruleset. */
@@ -50632,7 +50505,7 @@ export const ListRulesetsForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListRulesetsForAccountRequest>;
 
 export type ListResultItemKind = "managed" | "custom" | "root" | "zone";
-export const ListResultItemKind = /*@__PURE__*/ S.String;
+export const ListResultItemKind = S.String;
 
 export type ListResultItemPhase =
   | "ddos_l4"
@@ -50659,7 +50532,7 @@ export type ListResultItemPhase =
   | "magic_transit_ids_managed"
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
-export const ListResultItemPhase = /*@__PURE__*/ S.String;
+export const ListResultItemPhase = S.String;
 
 export interface ListResultItem {
   /** The unique ID of the ruleset. */
@@ -50755,7 +50628,7 @@ export const ListVersionsForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListVersionsForAccountRequest>;
 
 export type VersionsListResultItemKind = "managed" | "custom" | "root" | "zone";
-export const VersionsListResultItemKind = /*@__PURE__*/ S.String;
+export const VersionsListResultItemKind = S.String;
 
 export type VersionsListResultItemPhase =
   | "ddos_l4"
@@ -50782,7 +50655,7 @@ export type VersionsListResultItemPhase =
   | "magic_transit_ids_managed"
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
-export const VersionsListResultItemPhase = /*@__PURE__*/ S.String;
+export const VersionsListResultItemPhase = S.String;
 
 export interface VersionsListResultItem {
   /** The unique ID of the ruleset. */
@@ -50894,7 +50767,7 @@ export const RulesEditRequestBodyBlockRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RulesEditRequestBodyBlockRule>;
 
 export type RulesEditRequestBodyChallengeRuleAction = "challenge";
-export const RulesEditRequestBodyChallengeRuleAction = /*@__PURE__*/ S.String;
+export const RulesEditRequestBodyChallengeRuleAction = S.String;
 
 export type RulesEditRequestBodyChallengeRuleCategoriesList = Array<string>;
 export const RulesEditRequestBodyChallengeRuleCategoriesList =
@@ -51186,8 +51059,7 @@ export const RulesEditRequestBodyForceConnectionCloseRule =
   }) as any as S.Schema<RulesEditRequestBodyForceConnectionCloseRule>;
 
 export type RulesEditRequestBodyJavaScriptChallengeRuleAction = "js_challenge";
-export const RulesEditRequestBodyJavaScriptChallengeRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditRequestBodyJavaScriptChallengeRuleAction = S.String;
 
 export type RulesEditRequestBodyJavaScriptChallengeRuleCategoriesList =
   Array<string>;
@@ -51621,14 +51493,13 @@ export const RulesEditRequestBodyServeErrorRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RulesEditRequestBodyServeErrorRule>;
 
 export type RulesEditRequestBodySetCacheControlRuleAction = "set_cache_control";
-export const RulesEditRequestBodySetCacheControlRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditRequestBodySetCacheControlRuleAction = S.String;
 
 export type RulesEditRequestBodySetCacheControlRuleActionParametersImmutableSetDirectiveOperation =
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersImmutableSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersImmutableSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -51654,7 +51525,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersImmutableRemo
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersImmutableRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersImmutableRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -51691,7 +51562,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersMaxAgeSetDire
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersMaxAgeSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersMaxAgeSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -51720,7 +51591,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersMaxAgeRemoveD
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersMaxAgeRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersMaxAgeRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -51757,7 +51628,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersMustRevalidat
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersMustRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersMustRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -51783,7 +51654,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersMustRevalidat
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersMustRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersMustRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -51820,7 +51691,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersMustUnderstan
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersMustUnderstandSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersMustUnderstandSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -51846,7 +51717,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersMustUnderstan
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersMustUnderstandRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersMustUnderstandRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -51883,7 +51754,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersNoCacheSetDir
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersNoCacheSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditRequestBodySetCacheControlRuleActionParametersNoCacheSetDirectiveQualifiersList =
   Array<string>;
@@ -51921,7 +51792,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersNoCacheRemove
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersNoCacheRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersNoCacheRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -51958,7 +51829,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersNoStoreSetDir
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersNoStoreSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersNoStoreSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -51984,7 +51855,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersNoStoreRemove
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersNoStoreRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersNoStoreRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -52021,7 +51892,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersNoTransformSe
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersNoTransformSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersNoTransformSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -52047,7 +51918,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersNoTransformRe
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersNoTransformRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersNoTransformRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -52084,7 +51955,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersPrivateSetDir
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersPrivateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditRequestBodySetCacheControlRuleActionParametersPrivateSetDirectiveQualifiersList =
   Array<string>;
@@ -52122,7 +51993,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersPrivateRemove
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersPrivateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersPrivateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -52159,7 +52030,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersProxyRevalida
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersProxyRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersProxyRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -52185,7 +52056,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersProxyRevalida
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersProxyRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersProxyRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -52222,7 +52093,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersPublicSetDire
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersPublicSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersPublicSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -52248,7 +52119,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersPublicRemoveD
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersPublicRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersPublicRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -52285,7 +52156,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersSMaxageSetDir
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersSMaxageSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersSMaxageSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -52314,7 +52185,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersSMaxageRemove
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersSMaxageRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersSMaxageRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -52351,7 +52222,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersStaleIfErrorS
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersStaleIfErrorSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersStaleIfErrorSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -52380,7 +52251,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersStaleIfErrorR
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersStaleIfErrorRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersStaleIfErrorRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -52417,7 +52288,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersStaleWhileRev
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersStaleWhileRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersStaleWhileRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -52446,7 +52317,7 @@ export type RulesEditRequestBodySetCacheControlRuleActionParametersStaleWhileRev
   | "set"
   | "remove";
 export const RulesEditRequestBodySetCacheControlRuleActionParametersStaleWhileRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheControlRuleActionParametersStaleWhileRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -52756,15 +52627,14 @@ export const RulesEditRequestBodySetCacheSettingsRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesEditRequestBodySetCacheSettingsRule>;
 
 export type RulesEditRequestBodySetCacheTagsRuleAction = "set_cache_tags";
-export const RulesEditRequestBodySetCacheTagsRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditRequestBodySetCacheTagsRuleAction = S.String;
 
 export type RulesEditRequestBodySetCacheTagsRuleActionParametersAddCacheTagsValuesOperation =
   | "add"
   | "remove"
   | "set";
 export const RulesEditRequestBodySetCacheTagsRuleActionParametersAddCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditRequestBodySetCacheTagsRuleActionParametersAddCacheTagsValuesValuesList =
   Array<string>;
@@ -52799,7 +52669,7 @@ export type RulesEditRequestBodySetCacheTagsRuleActionParametersAddCacheTagsExpr
   | "remove"
   | "set";
 export const RulesEditRequestBodySetCacheTagsRuleActionParametersAddCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheTagsRuleActionParametersAddCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -52826,7 +52696,7 @@ export type RulesEditRequestBodySetCacheTagsRuleActionParametersRemoveCacheTagsV
   | "remove"
   | "set";
 export const RulesEditRequestBodySetCacheTagsRuleActionParametersRemoveCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditRequestBodySetCacheTagsRuleActionParametersRemoveCacheTagsValuesValuesList =
   Array<string>;
@@ -52861,7 +52731,7 @@ export type RulesEditRequestBodySetCacheTagsRuleActionParametersRemoveCacheTagsE
   | "remove"
   | "set";
 export const RulesEditRequestBodySetCacheTagsRuleActionParametersRemoveCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheTagsRuleActionParametersRemoveCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -52888,7 +52758,7 @@ export type RulesEditRequestBodySetCacheTagsRuleActionParametersSetCacheTagsValu
   | "remove"
   | "set";
 export const RulesEditRequestBodySetCacheTagsRuleActionParametersSetCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditRequestBodySetCacheTagsRuleActionParametersSetCacheTagsValuesValuesList =
   Array<string>;
@@ -52923,7 +52793,7 @@ export type RulesEditRequestBodySetCacheTagsRuleActionParametersSetCacheTagsExpr
   | "remove"
   | "set";
 export const RulesEditRequestBodySetCacheTagsRuleActionParametersSetCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditRequestBodySetCacheTagsRuleActionParametersSetCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -53182,8 +53052,7 @@ export const RulesEditRequestBodySkipRule = /*@__PURE__*/ S.suspend(() =>
 
 export type RulesEditRequestBodyTransformResponseHTMLRuleAction =
   "transform_response_html";
-export const RulesEditRequestBodyTransformResponseHTMLRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditRequestBodyTransformResponseHTMLRuleAction = S.String;
 
 export type RulesEditRequestBodyTransformResponseHTMLRuleActionParameters =
   RulesCreateRequestBodyTransformResponseHTMLRuleActionParameters;
@@ -53480,7 +53349,7 @@ export const PatchRuleForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchRuleForAccountRequest>;
 
 export type RulesEditResponseKind = "managed" | "custom" | "root" | "zone";
-export const RulesEditResponseKind = /*@__PURE__*/ S.String;
+export const RulesEditResponseKind = S.String;
 
 export type RulesEditResponsePhase =
   | "ddos_l4"
@@ -53507,10 +53376,10 @@ export type RulesEditResponsePhase =
   | "magic_transit_ids_managed"
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
-export const RulesEditResponsePhase = /*@__PURE__*/ S.String;
+export const RulesEditResponsePhase = S.String;
 
 export type RulesEditResponseRulesItemBlockRuleAction = "block";
-export const RulesEditResponseRulesItemBlockRuleAction = /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemBlockRuleAction = S.String;
 
 export type RulesEditResponseRulesItemBlockRuleActionParametersResponse =
   RulesCreateResponseRulesItemBlockRuleActionParametersResponse;
@@ -53653,7 +53522,7 @@ export const RulesEditResponseRulesItemBlockRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RulesEditResponseRulesItemBlockRule>;
 
 export type RulesEditResponseRulesItemChallengeAction = "challenge";
-export const RulesEditResponseRulesItemChallengeAction = /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemChallengeAction = S.String;
 
 export type RulesEditResponseRulesItemChallengeCategoriesList = Array<string>;
 export const RulesEditResponseRulesItemChallengeCategoriesList =
@@ -53780,8 +53649,7 @@ export const RulesEditResponseRulesItemChallenge = /*@__PURE__*/ S.suspend(() =>
 
 export type RulesEditResponseRulesItemCompressResponseRuleAction =
   "compress_response";
-export const RulesEditResponseRulesItemCompressResponseRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemCompressResponseRuleAction = S.String;
 
 export type RulesEditResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
   | "none"
@@ -53791,7 +53659,7 @@ export type RulesEditResponseRulesItemCompressResponseRuleActionParametersAlgori
   | "brotli"
   | "zstd";
 export const RulesEditResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItem {
   /** Name of the compression algorithm to enable. */
@@ -53963,8 +53831,7 @@ export const RulesEditResponseRulesItemCompressResponseRule =
   }) as any as S.Schema<RulesEditResponseRulesItemCompressResponseRule>;
 
 export type RulesEditResponseRulesItemDDoSDynamicRuleAction = "ddos_dynamic";
-export const RulesEditResponseRulesItemDDoSDynamicRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemDDoSDynamicRuleAction = S.String;
 
 export type RulesEditResponseRulesItemDDoSDynamicRuleCategoriesList =
   Array<string>;
@@ -54094,8 +53961,7 @@ export const RulesEditResponseRulesItemDDoSDynamicRule =
   }) as any as S.Schema<RulesEditResponseRulesItemDDoSDynamicRule>;
 
 export type RulesEditResponseRulesItemExecuteRuleAction = "execute";
-export const RulesEditResponseRulesItemExecuteRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemExecuteRuleAction = S.String;
 
 export type RulesEditResponseRulesItemExecuteRuleActionParametersMatchedData =
   RulesCreateResponseRulesItemExecuteRuleActionParametersMatchedData;
@@ -54108,7 +53974,7 @@ export type RulesEditResponseRulesItemExecuteRuleActionParametersOverridesCatego
   | "low"
   | "eoff";
 export const RulesEditResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItem {
   /** The name of the category to override. */
@@ -54150,7 +54016,7 @@ export type RulesEditResponseRulesItemExecuteRuleActionParametersOverridesRulesI
   | "low"
   | "eoff";
 export const RulesEditResponseRulesItemExecuteRuleActionParametersOverridesRulesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemExecuteRuleActionParametersOverridesRulesItem {
   /** The ID of the rule to override. */
@@ -54197,7 +54063,7 @@ export type RulesEditResponseRulesItemExecuteRuleActionParametersOverridesSensit
   | "low"
   | "eoff";
 export const RulesEditResponseRulesItemExecuteRuleActionParametersOverridesSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemExecuteRuleActionParametersOverrides {
   /** An action to override all rules with. This option has lower precedence than rule and category overrides. */
@@ -54393,7 +54259,7 @@ export const RulesEditResponseRulesItemExecuteRule = /*@__PURE__*/ S.suspend(
 export type RulesEditResponseRulesItemForceConnectionCloseRuleAction =
   "force_connection_close";
 export const RulesEditResponseRulesItemForceConnectionCloseRuleAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditResponseRulesItemForceConnectionCloseRuleCategoriesList =
   Array<string>;
@@ -54525,8 +54391,7 @@ export const RulesEditResponseRulesItemForceConnectionCloseRule =
   }) as any as S.Schema<RulesEditResponseRulesItemForceConnectionCloseRule>;
 
 export type RulesEditResponseRulesItemJSChallengeAction = "js_challenge";
-export const RulesEditResponseRulesItemJSChallengeAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemJSChallengeAction = S.String;
 
 export type RulesEditResponseRulesItemJSChallengeCategoriesList = Array<string>;
 export const RulesEditResponseRulesItemJSChallengeCategoriesList =
@@ -54653,7 +54518,7 @@ export const RulesEditResponseRulesItemJSChallenge = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesEditResponseRulesItemJSChallenge>;
 
 export type RulesEditResponseRulesItemLogRuleAction = "log";
-export const RulesEditResponseRulesItemLogRuleAction = /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemLogRuleAction = S.String;
 
 export type RulesEditResponseRulesItemLogRuleCategoriesList = Array<string>;
 export const RulesEditResponseRulesItemLogRuleCategoriesList =
@@ -54778,8 +54643,7 @@ export const RulesEditResponseRulesItemLogRule = /*@__PURE__*/ S.suspend(() =>
 
 export type RulesEditResponseRulesItemLogCustomFieldRuleAction =
   "log_custom_field";
-export const RulesEditResponseRulesItemLogCustomFieldRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemLogCustomFieldRuleAction = S.String;
 
 export type RulesEditResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem =
   RulesCreateResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem;
@@ -55017,8 +54881,7 @@ export const RulesEditResponseRulesItemLogCustomFieldRule =
 
 export type RulesEditResponseRulesItemManagedChallengeRuleAction =
   "managed_challenge";
-export const RulesEditResponseRulesItemManagedChallengeRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemManagedChallengeRuleAction = S.String;
 
 export type RulesEditResponseRulesItemManagedChallengeRuleCategoriesList =
   Array<string>;
@@ -55148,8 +55011,7 @@ export const RulesEditResponseRulesItemManagedChallengeRule =
   }) as any as S.Schema<RulesEditResponseRulesItemManagedChallengeRule>;
 
 export type RulesEditResponseRulesItemRedirectRuleAction = "redirect";
-export const RulesEditResponseRulesItemRedirectRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemRedirectRuleAction = S.String;
 
 export type RulesEditResponseRulesItemRedirectRuleActionParametersFromList =
   RulesCreateResponseRulesItemRedirectRuleActionParametersFromList;
@@ -55168,7 +55030,7 @@ export type RulesEditResponseRulesItemRedirectRuleActionParametersFromValueStatu
   | 307
   | 308;
 export const RulesEditResponseRulesItemRedirectRuleActionParametersFromValueStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface RulesEditResponseRulesItemRedirectRuleActionParametersFromValue {
   /** A URL to redirect the request to. */
@@ -55353,13 +55215,12 @@ export const RulesEditResponseRulesItemRedirectRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesEditResponseRulesItemRedirectRule>;
 
 export type RulesEditResponseRulesItemRewriteRuleAction = "rewrite";
-export const RulesEditResponseRulesItemRewriteRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemRewriteRuleAction = S.String;
 
 export type RulesEditResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
   "add";
 export const RulesEditResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeader {
   /** The operation to perform on the header. */
@@ -55382,7 +55243,7 @@ export const RulesEditResponseRulesItemRewriteRuleActionParametersHeadersAddStat
 export type RulesEditResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
   "add";
 export const RulesEditResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -55405,7 +55266,7 @@ export const RulesEditResponseRulesItemRewriteRuleActionParametersHeadersAddDyna
 export type RulesEditResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
   "set";
 export const RulesEditResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeader {
   /** The operation to perform on the header. */
@@ -55428,7 +55289,7 @@ export const RulesEditResponseRulesItemRewriteRuleActionParametersHeadersSetStat
 export type RulesEditResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
   "set";
 export const RulesEditResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -55451,7 +55312,7 @@ export const RulesEditResponseRulesItemRewriteRuleActionParametersHeadersSetDyna
 export type RulesEditResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
   "remove";
 export const RulesEditResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeader {
   /** The operation to perform on the header. */
@@ -55663,7 +55524,7 @@ export const RulesEditResponseRulesItemRewriteRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesEditResponseRulesItemRewriteRule>;
 
 export type RulesEditResponseRulesItemRouteRuleAction = "route";
-export const RulesEditResponseRulesItemRouteRuleAction = /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemRouteRuleAction = S.String;
 
 export type RulesEditResponseRulesItemRouteRuleActionParametersOrigin =
   RulesCreateResponseRulesItemRouteRuleActionParametersOrigin;
@@ -55806,7 +55667,7 @@ export const RulesEditResponseRulesItemRouteRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RulesEditResponseRulesItemRouteRule>;
 
 export type RulesEditResponseRulesItemScoreRuleAction = "score";
-export const RulesEditResponseRulesItemScoreRuleAction = /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemScoreRuleAction = S.String;
 
 export type RulesEditResponseRulesItemScoreRuleActionParameters =
   RulesCreateResponseRulesItemScoreRuleActionParameters;
@@ -55939,8 +55800,7 @@ export const RulesEditResponseRulesItemScoreRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RulesEditResponseRulesItemScoreRule>;
 
 export type RulesEditResponseRulesItemServeErrorRuleAction = "serve_error";
-export const RulesEditResponseRulesItemServeErrorRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemServeErrorRuleAction = S.String;
 
 export type RulesEditResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
   | "application/json"
@@ -55948,7 +55808,7 @@ export type RulesEditResponseRulesItemServeErrorRuleActionParametersActionParame
   | "text/plain"
   | "text/xml";
 export const RulesEditResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemServeErrorRuleActionParametersActionParametersContent {
   /** The response content. */
@@ -55980,7 +55840,7 @@ export type RulesEditResponseRulesItemServeErrorRuleActionParametersActionParame
   | "text/plain"
   | "text/xml";
 export const RulesEditResponseRulesItemServeErrorRuleActionParametersActionParametersAssetContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemServeErrorRuleActionParametersActionParametersAsset {
   /** The name of a custom asset to serve as the error response. */
@@ -56148,14 +56008,13 @@ export const RulesEditResponseRulesItemServeErrorRule = /*@__PURE__*/ S.suspend(
 
 export type RulesEditResponseRulesItemSetCacheControlAction =
   "set_cache_control";
-export const RulesEditResponseRulesItemSetCacheControlAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemSetCacheControlAction = S.String;
 
 export type RulesEditResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersImmutableSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56181,7 +56040,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersImmutableRe
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56218,7 +56077,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersMaxAgeSetDi
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56247,7 +56106,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersMaxAgeRemov
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56284,7 +56143,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersMustRevalid
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56310,7 +56169,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersMustRevalid
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56347,7 +56206,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersMustUnderst
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56373,7 +56232,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersMustUnderst
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56410,7 +56269,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersNoCacheSetD
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveQualifiersList =
   Array<string>;
@@ -56450,7 +56309,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersNoCacheRemo
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56487,7 +56346,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersNoStoreSetD
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersNoStoreSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersNoStoreSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56513,7 +56372,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersNoStoreRemo
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56550,7 +56409,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersNoTransform
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersNoTransformSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersNoTransformSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56576,7 +56435,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersNoTransform
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56613,7 +56472,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersPrivateSetD
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveQualifiersList =
   Array<string>;
@@ -56653,7 +56512,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersPrivateRemo
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56690,7 +56549,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersProxyRevali
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56716,7 +56575,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersProxyRevali
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56753,7 +56612,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersPublicSetDi
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersPublicSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersPublicSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56779,7 +56638,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersPublicRemov
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersPublicRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersPublicRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56816,7 +56675,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersSMaxageSetD
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersSMaxageSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersSMaxageSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56845,7 +56704,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersSMaxageRemo
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56882,7 +56741,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersStaleIfErro
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56911,7 +56770,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersStaleIfErro
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56948,7 +56807,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersStaleWhileR
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -56977,7 +56836,7 @@ export type RulesEditResponseRulesItemSetCacheControlActionParametersStaleWhileR
   | "set"
   | "remove";
 export const RulesEditResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -57242,8 +57101,7 @@ export const RulesEditResponseRulesItemSetCacheControl =
 
 export type RulesEditResponseRulesItemSetCacheSettingsRuleAction =
   "set_cache_settings";
-export const RulesEditResponseRulesItemSetCacheSettingsRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemSetCacheSettingsRuleAction = S.String;
 
 export type RulesEditResponseRulesItemSetCacheSettingsRuleActionParametersAdditionalCacheablePortsList =
   Array<number>;
@@ -57258,7 +57116,7 @@ export type RulesEditResponseRulesItemSetCacheSettingsRuleActionParametersBrowse
   | "override_origin"
   | "bypass";
 export const RulesEditResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtl {
   /** The browser TTL mode. */
@@ -57566,7 +57424,7 @@ export type RulesEditResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTt
   | "bypass_by_default"
   | "override_origin";
 export const RulesEditResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange =
   RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange;
@@ -57624,7 +57482,7 @@ export type RulesEditResponseRulesItemSetCacheSettingsRuleActionParametersVaryDe
   | "passthrough"
   | "normalize";
 export const RulesEditResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefaultAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefault {
   /** How the header value is treated when building the cache key. */
@@ -57646,7 +57504,7 @@ export type RulesEditResponseRulesItemSetCacheSettingsRuleActionParametersVaryHe
   | "passthrough"
   | "normalize";
 export const RulesEditResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueLanguagesList =
   Array<string>;
@@ -57959,15 +57817,14 @@ export const RulesEditResponseRulesItemSetCacheSettingsRule =
   }) as any as S.Schema<RulesEditResponseRulesItemSetCacheSettingsRule>;
 
 export type RulesEditResponseRulesItemSetCacheTagsAction = "set_cache_tags";
-export const RulesEditResponseRulesItemSetCacheTagsAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemSetCacheTagsAction = S.String;
 
 export type RulesEditResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
   | "add"
   | "remove"
   | "set";
 export const RulesEditResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesValuesList =
   Array<string>;
@@ -58000,7 +57857,7 @@ export type RulesEditResponseRulesItemSetCacheTagsActionParametersAddCacheTagsEx
   | "remove"
   | "set";
 export const RulesEditResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -58025,7 +57882,7 @@ export type RulesEditResponseRulesItemSetCacheTagsActionParametersRemoveCacheTag
   | "remove"
   | "set";
 export const RulesEditResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesValuesList =
   Array<string>;
@@ -58058,7 +57915,7 @@ export type RulesEditResponseRulesItemSetCacheTagsActionParametersRemoveCacheTag
   | "remove"
   | "set";
 export const RulesEditResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -58083,7 +57940,7 @@ export type RulesEditResponseRulesItemSetCacheTagsActionParametersSetCacheTagsVa
   | "remove"
   | "set";
 export const RulesEditResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesValuesList =
   Array<string>;
@@ -58116,7 +57973,7 @@ export type RulesEditResponseRulesItemSetCacheTagsActionParametersSetCacheTagsEx
   | "remove"
   | "set";
 export const RulesEditResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -58285,8 +58142,7 @@ export const RulesEditResponseRulesItemSetCacheTags = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesEditResponseRulesItemSetCacheTags>;
 
 export type RulesEditResponseRulesItemSetConfigRuleAction = "set_config";
-export const RulesEditResponseRulesItemSetConfigRuleAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemSetConfigRuleAction = S.String;
 
 export type RulesEditResponseRulesItemSetConfigRuleActionParametersAutominify =
   RulesCreateResponseRulesItemSetConfigRuleActionParametersAutominify;
@@ -58299,20 +58155,20 @@ export type RulesEditResponseRulesItemSetConfigRuleActionParametersPolish =
   | "lossy"
   | "webp";
 export const RulesEditResponseRulesItemSetConfigRuleActionParametersPolish =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
   | "none"
   | "standard"
   | "full";
 export const RulesEditResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
   | "none"
   | "standard";
 export const RulesEditResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "off"
@@ -58322,7 +58178,7 @@ export type RulesEditResponseRulesItemSetConfigRuleActionParametersSecurityLevel
   | "high"
   | "under_attack";
 export const RulesEditResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditResponseRulesItemSetConfigRuleActionParametersSsl =
   | "off"
@@ -58331,7 +58187,7 @@ export type RulesEditResponseRulesItemSetConfigRuleActionParametersSsl =
   | "strict"
   | "origin_pull";
 export const RulesEditResponseRulesItemSetConfigRuleActionParametersSsl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RulesEditResponseRulesItemSetConfigRuleActionParameters {
   /** Whether to enable Automatic HTTPS Rewrites. */
@@ -58579,11 +58435,10 @@ export const RulesEditResponseRulesItemSetConfigRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RulesEditResponseRulesItemSetConfigRule>;
 
 export type RulesEditResponseRulesItemSkipRuleAction = "skip";
-export const RulesEditResponseRulesItemSkipRuleAction = /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemSkipRuleAction = S.String;
 
 export type RulesEditResponseRulesItemSkipRuleActionParametersPhase = "current";
-export const RulesEditResponseRulesItemSkipRuleActionParametersPhase =
-  /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemSkipRuleActionParametersPhase = S.String;
 
 export type RulesEditResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "ddos_l4"
@@ -58611,7 +58466,7 @@ export type RulesEditResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
 export const RulesEditResponseRulesItemSkipRuleActionParametersPhasesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditResponseRulesItemSkipRuleActionParametersPhasesList =
   Array<RulesEditResponseRulesItemSkipRuleActionParametersPhasesItem>;
@@ -58629,7 +58484,7 @@ export type RulesEditResponseRulesItemSkipRuleActionParametersProductsItem =
   | "waf"
   | "zoneLockdown";
 export const RulesEditResponseRulesItemSkipRuleActionParametersProductsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditResponseRulesItemSkipRuleActionParametersProductsList =
   Array<RulesEditResponseRulesItemSkipRuleActionParametersProductsItem>;
@@ -58659,7 +58514,7 @@ export const RulesEditResponseRulesItemSkipRuleActionParametersRulesMap =
 export type RulesEditResponseRulesItemSkipRuleActionParametersRuleset =
   "current";
 export const RulesEditResponseRulesItemSkipRuleActionParametersRuleset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RulesEditResponseRulesItemSkipRuleActionParametersRulesetsList =
   Array<string>;
@@ -58839,8 +58694,7 @@ export const RulesEditResponseRulesItemSkipRule = /*@__PURE__*/ S.suspend(() =>
 
 export type RulesEditResponseRulesItemTransformResponseHTMLAction =
   "transform_response_html";
-export const RulesEditResponseRulesItemTransformResponseHTMLAction =
-  /*@__PURE__*/ S.String;
+export const RulesEditResponseRulesItemTransformResponseHTMLAction = S.String;
 
 export type RulesEditResponseRulesItemTransformResponseHTMLActionParameters =
   RulesCreateRequestBodyTransformResponseHTMLRuleActionParameters;
@@ -59386,8 +59240,7 @@ export const PatchRuleForZoneRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchRuleForZoneRequest>;
 
 export type PhasesUpdateRequestRulesItemBlockRuleAction = "block";
-export const PhasesUpdateRequestRulesItemBlockRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemBlockRuleAction = S.String;
 
 export type PhasesUpdateRequestRulesItemBlockRuleActionParametersResponse =
   RulesCreateResponseRulesItemBlockRuleActionParametersResponse;
@@ -59521,8 +59374,7 @@ export const PhasesUpdateRequestRulesItemBlockRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesUpdateRequestRulesItemBlockRule>;
 
 export type PhasesUpdateRequestRulesItemChallengeAction = "challenge";
-export const PhasesUpdateRequestRulesItemChallengeAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemChallengeAction = S.String;
 
 export type PhasesUpdateRequestRulesItemChallengeCategoriesList = Array<string>;
 export const PhasesUpdateRequestRulesItemChallengeCategoriesList =
@@ -59638,8 +59490,7 @@ export const PhasesUpdateRequestRulesItemChallenge = /*@__PURE__*/ S.suspend(
 
 export type PhasesUpdateRequestRulesItemCompressResponseRuleAction =
   "compress_response";
-export const PhasesUpdateRequestRulesItemCompressResponseRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemCompressResponseRuleAction = S.String;
 
 export type PhasesUpdateRequestRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
   | "none"
@@ -59649,7 +59500,7 @@ export type PhasesUpdateRequestRulesItemCompressResponseRuleActionParametersAlgo
   | "brotli"
   | "zstd";
 export const PhasesUpdateRequestRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemCompressResponseRuleActionParametersAlgorithmsItem {
   /** Name of the compression algorithm to enable. */
@@ -59815,8 +59666,7 @@ export const PhasesUpdateRequestRulesItemCompressResponseRule =
   }) as any as S.Schema<PhasesUpdateRequestRulesItemCompressResponseRule>;
 
 export type PhasesUpdateRequestRulesItemDDoSDynamicRuleAction = "ddos_dynamic";
-export const PhasesUpdateRequestRulesItemDDoSDynamicRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemDDoSDynamicRuleAction = S.String;
 
 export type PhasesUpdateRequestRulesItemDDoSDynamicRuleCategoriesList =
   Array<string>;
@@ -59934,8 +59784,7 @@ export const PhasesUpdateRequestRulesItemDDoSDynamicRule =
   }) as any as S.Schema<PhasesUpdateRequestRulesItemDDoSDynamicRule>;
 
 export type PhasesUpdateRequestRulesItemExecuteRuleAction = "execute";
-export const PhasesUpdateRequestRulesItemExecuteRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemExecuteRuleAction = S.String;
 
 export type PhasesUpdateRequestRulesItemExecuteRuleActionParametersMatchedData =
   RulesCreateResponseRulesItemExecuteRuleActionParametersMatchedData;
@@ -59948,7 +59797,7 @@ export type PhasesUpdateRequestRulesItemExecuteRuleActionParametersOverridesCate
   | "low"
   | "eoff";
 export const PhasesUpdateRequestRulesItemExecuteRuleActionParametersOverridesCategoriesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemExecuteRuleActionParametersOverridesCategoriesItem {
   /** The name of the category to override. */
@@ -59992,7 +59841,7 @@ export type PhasesUpdateRequestRulesItemExecuteRuleActionParametersOverridesRule
   | "low"
   | "eoff";
 export const PhasesUpdateRequestRulesItemExecuteRuleActionParametersOverridesRulesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemExecuteRuleActionParametersOverridesRulesItem {
   /** The ID of the rule to override. */
@@ -60039,7 +59888,7 @@ export type PhasesUpdateRequestRulesItemExecuteRuleActionParametersOverridesSens
   | "low"
   | "eoff";
 export const PhasesUpdateRequestRulesItemExecuteRuleActionParametersOverridesSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemExecuteRuleActionParametersOverrides {
   /** An action to override all rules with. This option has lower precedence than rule and category overrides. */
@@ -60222,7 +60071,7 @@ export const PhasesUpdateRequestRulesItemExecuteRule = /*@__PURE__*/ S.suspend(
 export type PhasesUpdateRequestRulesItemForceConnectionCloseRuleAction =
   "force_connection_close";
 export const PhasesUpdateRequestRulesItemForceConnectionCloseRuleAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateRequestRulesItemForceConnectionCloseRuleCategoriesList =
   Array<string>;
@@ -60344,8 +60193,7 @@ export const PhasesUpdateRequestRulesItemForceConnectionCloseRule =
   }) as any as S.Schema<PhasesUpdateRequestRulesItemForceConnectionCloseRule>;
 
 export type PhasesUpdateRequestRulesItemJSChallengeAction = "js_challenge";
-export const PhasesUpdateRequestRulesItemJSChallengeAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemJSChallengeAction = S.String;
 
 export type PhasesUpdateRequestRulesItemJSChallengeCategoriesList =
   Array<string>;
@@ -60461,7 +60309,7 @@ export const PhasesUpdateRequestRulesItemJSChallenge = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesUpdateRequestRulesItemJSChallenge>;
 
 export type PhasesUpdateRequestRulesItemLogRuleAction = "log";
-export const PhasesUpdateRequestRulesItemLogRuleAction = /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemLogRuleAction = S.String;
 
 export type PhasesUpdateRequestRulesItemLogRuleCategoriesList = Array<string>;
 export const PhasesUpdateRequestRulesItemLogRuleCategoriesList =
@@ -60574,8 +60422,7 @@ export const PhasesUpdateRequestRulesItemLogRule = /*@__PURE__*/ S.suspend(() =>
 
 export type PhasesUpdateRequestRulesItemLogCustomFieldRuleAction =
   "log_custom_field";
-export const PhasesUpdateRequestRulesItemLogCustomFieldRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemLogCustomFieldRuleAction = S.String;
 
 export type PhasesUpdateRequestRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem =
   RulesCreateResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem;
@@ -60804,8 +60651,7 @@ export const PhasesUpdateRequestRulesItemLogCustomFieldRule =
 
 export type PhasesUpdateRequestRulesItemManagedChallengeRuleAction =
   "managed_challenge";
-export const PhasesUpdateRequestRulesItemManagedChallengeRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemManagedChallengeRuleAction = S.String;
 
 export type PhasesUpdateRequestRulesItemManagedChallengeRuleCategoriesList =
   Array<string>;
@@ -60927,8 +60773,7 @@ export const PhasesUpdateRequestRulesItemManagedChallengeRule =
   }) as any as S.Schema<PhasesUpdateRequestRulesItemManagedChallengeRule>;
 
 export type PhasesUpdateRequestRulesItemRedirectRuleAction = "redirect";
-export const PhasesUpdateRequestRulesItemRedirectRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemRedirectRuleAction = S.String;
 
 export type PhasesUpdateRequestRulesItemRedirectRuleActionParametersFromList =
   RulesCreateResponseRulesItemRedirectRuleActionParametersFromList;
@@ -60947,7 +60792,7 @@ export type PhasesUpdateRequestRulesItemRedirectRuleActionParametersFromValueSta
   | 307
   | 308;
 export const PhasesUpdateRequestRulesItemRedirectRuleActionParametersFromValueStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface PhasesUpdateRequestRulesItemRedirectRuleActionParametersFromValue {
   /** A URL to redirect the request to. */
@@ -61122,13 +60967,12 @@ export const PhasesUpdateRequestRulesItemRedirectRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesUpdateRequestRulesItemRedirectRule>;
 
 export type PhasesUpdateRequestRulesItemRewriteRuleAction = "rewrite";
-export const PhasesUpdateRequestRulesItemRewriteRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemRewriteRuleAction = S.String;
 
 export type PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
   "add";
 export const PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersAddStaticHeader {
   /** The operation to perform on the header. */
@@ -61151,7 +60995,7 @@ export const PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersAddSt
 export type PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
   "add";
 export const PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersAddDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -61174,7 +61018,7 @@ export const PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersAddDy
 export type PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
   "set";
 export const PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersSetStaticHeader {
   /** The operation to perform on the header. */
@@ -61197,7 +61041,7 @@ export const PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersSetSt
 export type PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
   "set";
 export const PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersSetDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -61220,7 +61064,7 @@ export const PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersSetDy
 export type PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
   "remove";
 export const PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemRewriteRuleActionParametersHeadersRemoveHeader {
   /** The operation to perform on the header. */
@@ -61423,8 +61267,7 @@ export const PhasesUpdateRequestRulesItemRewriteRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesUpdateRequestRulesItemRewriteRule>;
 
 export type PhasesUpdateRequestRulesItemRouteRuleAction = "route";
-export const PhasesUpdateRequestRulesItemRouteRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemRouteRuleAction = S.String;
 
 export type PhasesUpdateRequestRulesItemRouteRuleActionParametersOrigin =
   CreateRequestRulesItemRouteRuleActionParametersOrigin;
@@ -61558,8 +61401,7 @@ export const PhasesUpdateRequestRulesItemRouteRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesUpdateRequestRulesItemRouteRule>;
 
 export type PhasesUpdateRequestRulesItemScoreRuleAction = "score";
-export const PhasesUpdateRequestRulesItemScoreRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemScoreRuleAction = S.String;
 
 export type PhasesUpdateRequestRulesItemScoreRuleActionParameters =
   RulesCreateResponseRulesItemScoreRuleActionParameters;
@@ -61683,8 +61525,7 @@ export const PhasesUpdateRequestRulesItemScoreRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesUpdateRequestRulesItemScoreRule>;
 
 export type PhasesUpdateRequestRulesItemServeErrorRuleAction = "serve_error";
-export const PhasesUpdateRequestRulesItemServeErrorRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemServeErrorRuleAction = S.String;
 
 export type PhasesUpdateRequestRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
   | "application/json"
@@ -61692,7 +61533,7 @@ export type PhasesUpdateRequestRulesItemServeErrorRuleActionParametersActionPara
   | "text/plain"
   | "text/xml";
 export const PhasesUpdateRequestRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemServeErrorRuleActionParametersActionParametersContent {
   /** The response content. */
@@ -61726,7 +61567,7 @@ export type PhasesUpdateRequestRulesItemServeErrorRuleActionParametersActionPara
   | "text/plain"
   | "text/xml";
 export const PhasesUpdateRequestRulesItemServeErrorRuleActionParametersActionParametersAssetContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemServeErrorRuleActionParametersActionParametersAsset {
   /** The name of a custom asset to serve as the error response. */
@@ -61886,14 +61727,13 @@ export const PhasesUpdateRequestRulesItemServeErrorRule =
 
 export type PhasesUpdateRequestRulesItemSetCacheControlAction =
   "set_cache_control";
-export const PhasesUpdateRequestRulesItemSetCacheControlAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemSetCacheControlAction = S.String;
 
 export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersImmutableSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -61919,7 +61759,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersImmutable
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersImmutableRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersImmutableRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -61956,7 +61796,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersMaxAgeSet
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersMaxAgeSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersMaxAgeSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -61985,7 +61825,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersMaxAgeRem
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersMaxAgeRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersMaxAgeRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62022,7 +61862,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersMustReval
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersMustRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersMustRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62048,7 +61888,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersMustReval
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62085,7 +61925,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersMustUnder
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersMustUnderstandSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersMustUnderstandSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62111,7 +61951,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersMustUnder
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62148,7 +61988,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoCacheSe
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoCacheSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoCacheSetDirectiveQualifiersList =
   Array<string>;
@@ -62186,7 +62026,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoCacheRe
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoCacheRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoCacheRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62223,7 +62063,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoStoreSe
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoStoreSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoStoreSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62249,7 +62089,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoStoreRe
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoStoreRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoStoreRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62286,7 +62126,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoTransfo
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoTransformSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoTransformSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62312,7 +62152,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoTransfo
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoTransformRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersNoTransformRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62349,7 +62189,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersPrivateSe
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersPrivateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersPrivateSetDirectiveQualifiersList =
   Array<string>;
@@ -62387,7 +62227,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersPrivateRe
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersPrivateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersPrivateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62424,7 +62264,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersProxyReva
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersProxyRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersProxyRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62450,7 +62290,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersProxyReva
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62487,7 +62327,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersPublicSet
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersPublicSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersPublicSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62513,7 +62353,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersPublicRem
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersPublicRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersPublicRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62550,7 +62390,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersSMaxageSe
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersSMaxageSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersSMaxageSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62579,7 +62419,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersSMaxageRe
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersSMaxageRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersSMaxageRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62616,7 +62456,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersStaleIfEr
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersStaleIfErrorSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersStaleIfErrorSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62645,7 +62485,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersStaleIfEr
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62682,7 +62522,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersStaleWhil
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62711,7 +62551,7 @@ export type PhasesUpdateRequestRulesItemSetCacheControlActionParametersStaleWhil
   | "set"
   | "remove";
 export const PhasesUpdateRequestRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -62960,8 +62800,7 @@ export const PhasesUpdateRequestRulesItemSetCacheControl =
 
 export type PhasesUpdateRequestRulesItemSetCacheSettingsRuleAction =
   "set_cache_settings";
-export const PhasesUpdateRequestRulesItemSetCacheSettingsRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemSetCacheSettingsRuleAction = S.String;
 
 export type PhasesUpdateRequestRulesItemSetCacheSettingsRuleActionParametersAdditionalCacheablePortsList =
   Array<number>;
@@ -62976,7 +62815,7 @@ export type PhasesUpdateRequestRulesItemSetCacheSettingsRuleActionParametersBrow
   | "override_origin"
   | "bypass";
 export const PhasesUpdateRequestRulesItemSetCacheSettingsRuleActionParametersBrowserTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheSettingsRuleActionParametersBrowserTtl {
   /** The browser TTL mode. */
@@ -63262,7 +63101,7 @@ export type PhasesUpdateRequestRulesItemSetCacheSettingsRuleActionParametersEdge
   | "bypass_by_default"
   | "override_origin";
 export const PhasesUpdateRequestRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateRequestRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange =
   CreateRequestRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange;
@@ -63322,7 +63161,7 @@ export type PhasesUpdateRequestRulesItemSetCacheSettingsRuleActionParametersVary
   | "passthrough"
   | "normalize";
 export const PhasesUpdateRequestRulesItemSetCacheSettingsRuleActionParametersVaryDefaultAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheSettingsRuleActionParametersVaryDefault {
   /** How the header value is treated when building the cache key. */
@@ -63346,7 +63185,7 @@ export type PhasesUpdateRequestRulesItemSetCacheSettingsRuleActionParametersVary
   | "passthrough"
   | "normalize";
 export const PhasesUpdateRequestRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateRequestRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueLanguagesList =
   Array<string>;
@@ -63645,15 +63484,14 @@ export const PhasesUpdateRequestRulesItemSetCacheSettingsRule =
   }) as any as S.Schema<PhasesUpdateRequestRulesItemSetCacheSettingsRule>;
 
 export type PhasesUpdateRequestRulesItemSetCacheTagsAction = "set_cache_tags";
-export const PhasesUpdateRequestRulesItemSetCacheTagsAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemSetCacheTagsAction = S.String;
 
 export type PhasesUpdateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
   | "add"
   | "remove"
   | "set";
 export const PhasesUpdateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsValuesValuesList =
   Array<string>;
@@ -63688,7 +63526,7 @@ export type PhasesUpdateRequestRulesItemSetCacheTagsActionParametersAddCacheTags
   | "remove"
   | "set";
 export const PhasesUpdateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -63715,7 +63553,7 @@ export type PhasesUpdateRequestRulesItemSetCacheTagsActionParametersRemoveCacheT
   | "remove"
   | "set";
 export const PhasesUpdateRequestRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateRequestRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesValuesList =
   Array<string>;
@@ -63750,7 +63588,7 @@ export type PhasesUpdateRequestRulesItemSetCacheTagsActionParametersRemoveCacheT
   | "remove"
   | "set";
 export const PhasesUpdateRequestRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -63777,7 +63615,7 @@ export type PhasesUpdateRequestRulesItemSetCacheTagsActionParametersSetCacheTags
   | "remove"
   | "set";
 export const PhasesUpdateRequestRulesItemSetCacheTagsActionParametersSetCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateRequestRulesItemSetCacheTagsActionParametersSetCacheTagsValuesValuesList =
   Array<string>;
@@ -63812,7 +63650,7 @@ export type PhasesUpdateRequestRulesItemSetCacheTagsActionParametersSetCacheTags
   | "remove"
   | "set";
 export const PhasesUpdateRequestRulesItemSetCacheTagsActionParametersSetCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetCacheTagsActionParametersSetCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -63971,8 +63809,7 @@ export const PhasesUpdateRequestRulesItemSetCacheTags = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesUpdateRequestRulesItemSetCacheTags>;
 
 export type PhasesUpdateRequestRulesItemSetConfigRuleAction = "set_config";
-export const PhasesUpdateRequestRulesItemSetConfigRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemSetConfigRuleAction = S.String;
 
 export type PhasesUpdateRequestRulesItemSetConfigRuleActionParametersAutominify =
   CreateRequestRulesItemSetConfigRuleActionParametersAutominify;
@@ -63985,20 +63822,20 @@ export type PhasesUpdateRequestRulesItemSetConfigRuleActionParametersPolish =
   | "lossy"
   | "webp";
 export const PhasesUpdateRequestRulesItemSetConfigRuleActionParametersPolish =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateRequestRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
   | "none"
   | "standard"
   | "full";
 export const PhasesUpdateRequestRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateRequestRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
   | "none"
   | "standard";
 export const PhasesUpdateRequestRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateRequestRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "off"
@@ -64008,7 +63845,7 @@ export type PhasesUpdateRequestRulesItemSetConfigRuleActionParametersSecurityLev
   | "high"
   | "under_attack";
 export const PhasesUpdateRequestRulesItemSetConfigRuleActionParametersSecurityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateRequestRulesItemSetConfigRuleActionParametersSsl =
   | "off"
@@ -64017,7 +63854,7 @@ export type PhasesUpdateRequestRulesItemSetConfigRuleActionParametersSsl =
   | "strict"
   | "origin_pull";
 export const PhasesUpdateRequestRulesItemSetConfigRuleActionParametersSsl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateRequestRulesItemSetConfigRuleActionParameters {
   /** Whether to enable Automatic HTTPS Rewrites. */
@@ -64253,13 +64090,12 @@ export const PhasesUpdateRequestRulesItemSetConfigRule =
   }) as any as S.Schema<PhasesUpdateRequestRulesItemSetConfigRule>;
 
 export type PhasesUpdateRequestRulesItemSkipRuleAction = "skip";
-export const PhasesUpdateRequestRulesItemSkipRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemSkipRuleAction = S.String;
 
 export type PhasesUpdateRequestRulesItemSkipRuleActionParametersPhase =
   "current";
 export const PhasesUpdateRequestRulesItemSkipRuleActionParametersPhase =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateRequestRulesItemSkipRuleActionParametersPhasesItem =
   | "ddos_l4"
@@ -64287,7 +64123,7 @@ export type PhasesUpdateRequestRulesItemSkipRuleActionParametersPhasesItem =
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
 export const PhasesUpdateRequestRulesItemSkipRuleActionParametersPhasesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateRequestRulesItemSkipRuleActionParametersPhasesList =
   Array<
@@ -64308,7 +64144,7 @@ export type PhasesUpdateRequestRulesItemSkipRuleActionParametersProductsItem =
   | "waf"
   | "zoneLockdown";
 export const PhasesUpdateRequestRulesItemSkipRuleActionParametersProductsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateRequestRulesItemSkipRuleActionParametersProductsList =
   Array<
@@ -64341,7 +64177,7 @@ export const PhasesUpdateRequestRulesItemSkipRuleActionParametersRulesMap =
 export type PhasesUpdateRequestRulesItemSkipRuleActionParametersRuleset =
   "current";
 export const PhasesUpdateRequestRulesItemSkipRuleActionParametersRuleset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateRequestRulesItemSkipRuleActionParametersRulesetsList =
   Array<string>;
@@ -64512,8 +64348,7 @@ export const PhasesUpdateRequestRulesItemSkipRule = /*@__PURE__*/ S.suspend(
 
 export type PhasesUpdateRequestRulesItemTransformResponseHTMLAction =
   "transform_response_html";
-export const PhasesUpdateRequestRulesItemTransformResponseHTMLAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateRequestRulesItemTransformResponseHTMLAction = S.String;
 
 export type PhasesUpdateRequestRulesItemTransformResponseHTMLActionParameters =
   RulesCreateRequestBodyTransformResponseHTMLRuleActionParameters;
@@ -64981,7 +64816,7 @@ export const PutPhasForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutPhasForAccountRequest>;
 
 export type PhasesUpdateResponseKind = "managed" | "custom" | "root" | "zone";
-export const PhasesUpdateResponseKind = /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseKind = S.String;
 
 export type PhasesUpdateResponsePhase =
   | "ddos_l4"
@@ -65008,11 +64843,10 @@ export type PhasesUpdateResponsePhase =
   | "magic_transit_ids_managed"
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
-export const PhasesUpdateResponsePhase = /*@__PURE__*/ S.String;
+export const PhasesUpdateResponsePhase = S.String;
 
 export type PhasesUpdateResponseRulesItemBlockRuleAction = "block";
-export const PhasesUpdateResponseRulesItemBlockRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemBlockRuleAction = S.String;
 
 export type PhasesUpdateResponseRulesItemBlockRuleActionParametersResponse =
   RulesCreateResponseRulesItemBlockRuleActionParametersResponse;
@@ -65159,8 +64993,7 @@ export const PhasesUpdateResponseRulesItemBlockRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesUpdateResponseRulesItemBlockRule>;
 
 export type PhasesUpdateResponseRulesItemChallengeAction = "challenge";
-export const PhasesUpdateResponseRulesItemChallengeAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemChallengeAction = S.String;
 
 export type PhasesUpdateResponseRulesItemChallengeCategoriesList =
   Array<string>;
@@ -65291,8 +65124,7 @@ export const PhasesUpdateResponseRulesItemChallenge = /*@__PURE__*/ S.suspend(
 
 export type PhasesUpdateResponseRulesItemCompressResponseRuleAction =
   "compress_response";
-export const PhasesUpdateResponseRulesItemCompressResponseRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemCompressResponseRuleAction = S.String;
 
 export type PhasesUpdateResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
   | "none"
@@ -65302,7 +65134,7 @@ export type PhasesUpdateResponseRulesItemCompressResponseRuleActionParametersAlg
   | "brotli"
   | "zstd";
 export const PhasesUpdateResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItem {
   /** Name of the compression algorithm to enable. */
@@ -65476,8 +65308,7 @@ export const PhasesUpdateResponseRulesItemCompressResponseRule =
   }) as any as S.Schema<PhasesUpdateResponseRulesItemCompressResponseRule>;
 
 export type PhasesUpdateResponseRulesItemDDoSDynamicRuleAction = "ddos_dynamic";
-export const PhasesUpdateResponseRulesItemDDoSDynamicRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemDDoSDynamicRuleAction = S.String;
 
 export type PhasesUpdateResponseRulesItemDDoSDynamicRuleCategoriesList =
   Array<string>;
@@ -65607,8 +65438,7 @@ export const PhasesUpdateResponseRulesItemDDoSDynamicRule =
   }) as any as S.Schema<PhasesUpdateResponseRulesItemDDoSDynamicRule>;
 
 export type PhasesUpdateResponseRulesItemExecuteRuleAction = "execute";
-export const PhasesUpdateResponseRulesItemExecuteRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemExecuteRuleAction = S.String;
 
 export type PhasesUpdateResponseRulesItemExecuteRuleActionParametersMatchedData =
   RulesCreateResponseRulesItemExecuteRuleActionParametersMatchedData;
@@ -65621,7 +65451,7 @@ export type PhasesUpdateResponseRulesItemExecuteRuleActionParametersOverridesCat
   | "low"
   | "eoff";
 export const PhasesUpdateResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItem {
   /** The name of the category to override. */
@@ -65663,7 +65493,7 @@ export type PhasesUpdateResponseRulesItemExecuteRuleActionParametersOverridesRul
   | "low"
   | "eoff";
 export const PhasesUpdateResponseRulesItemExecuteRuleActionParametersOverridesRulesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemExecuteRuleActionParametersOverridesRulesItem {
   /** The ID of the rule to override. */
@@ -65710,7 +65540,7 @@ export type PhasesUpdateResponseRulesItemExecuteRuleActionParametersOverridesSen
   | "low"
   | "eoff";
 export const PhasesUpdateResponseRulesItemExecuteRuleActionParametersOverridesSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemExecuteRuleActionParametersOverrides {
   /** An action to override all rules with. This option has lower precedence than rule and category overrides. */
@@ -65909,7 +65739,7 @@ export const PhasesUpdateResponseRulesItemExecuteRule = /*@__PURE__*/ S.suspend(
 export type PhasesUpdateResponseRulesItemForceConnectionCloseRuleAction =
   "force_connection_close";
 export const PhasesUpdateResponseRulesItemForceConnectionCloseRuleAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemForceConnectionCloseRuleCategoriesList =
   Array<string>;
@@ -66044,8 +65874,7 @@ export const PhasesUpdateResponseRulesItemForceConnectionCloseRule =
   }) as any as S.Schema<PhasesUpdateResponseRulesItemForceConnectionCloseRule>;
 
 export type PhasesUpdateResponseRulesItemJSChallengeAction = "js_challenge";
-export const PhasesUpdateResponseRulesItemJSChallengeAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemJSChallengeAction = S.String;
 
 export type PhasesUpdateResponseRulesItemJSChallengeCategoriesList =
   Array<string>;
@@ -66175,8 +66004,7 @@ export const PhasesUpdateResponseRulesItemJSChallenge = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesUpdateResponseRulesItemJSChallenge>;
 
 export type PhasesUpdateResponseRulesItemLogRuleAction = "log";
-export const PhasesUpdateResponseRulesItemLogRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemLogRuleAction = S.String;
 
 export type PhasesUpdateResponseRulesItemLogRuleCategoriesList = Array<string>;
 export const PhasesUpdateResponseRulesItemLogRuleCategoriesList =
@@ -66304,8 +66132,7 @@ export const PhasesUpdateResponseRulesItemLogRule = /*@__PURE__*/ S.suspend(
 
 export type PhasesUpdateResponseRulesItemLogCustomFieldRuleAction =
   "log_custom_field";
-export const PhasesUpdateResponseRulesItemLogCustomFieldRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemLogCustomFieldRuleAction = S.String;
 
 export type PhasesUpdateResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem =
   RulesCreateResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem;
@@ -66544,8 +66371,7 @@ export const PhasesUpdateResponseRulesItemLogCustomFieldRule =
 
 export type PhasesUpdateResponseRulesItemManagedChallengeRuleAction =
   "managed_challenge";
-export const PhasesUpdateResponseRulesItemManagedChallengeRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemManagedChallengeRuleAction = S.String;
 
 export type PhasesUpdateResponseRulesItemManagedChallengeRuleCategoriesList =
   Array<string>;
@@ -66677,8 +66503,7 @@ export const PhasesUpdateResponseRulesItemManagedChallengeRule =
   }) as any as S.Schema<PhasesUpdateResponseRulesItemManagedChallengeRule>;
 
 export type PhasesUpdateResponseRulesItemRedirectRuleAction = "redirect";
-export const PhasesUpdateResponseRulesItemRedirectRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemRedirectRuleAction = S.String;
 
 export type PhasesUpdateResponseRulesItemRedirectRuleActionParametersFromList =
   RulesCreateResponseRulesItemRedirectRuleActionParametersFromList;
@@ -66697,7 +66522,7 @@ export type PhasesUpdateResponseRulesItemRedirectRuleActionParametersFromValueSt
   | 307
   | 308;
 export const PhasesUpdateResponseRulesItemRedirectRuleActionParametersFromValueStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface PhasesUpdateResponseRulesItemRedirectRuleActionParametersFromValue {
   /** A URL to redirect the request to. */
@@ -66882,13 +66707,12 @@ export const PhasesUpdateResponseRulesItemRedirectRule =
   }) as any as S.Schema<PhasesUpdateResponseRulesItemRedirectRule>;
 
 export type PhasesUpdateResponseRulesItemRewriteRuleAction = "rewrite";
-export const PhasesUpdateResponseRulesItemRewriteRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemRewriteRuleAction = S.String;
 
 export type PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
   "add";
 export const PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeader {
   /** The operation to perform on the header. */
@@ -66911,7 +66735,7 @@ export const PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersAddS
 export type PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
   "add";
 export const PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -66934,7 +66758,7 @@ export const PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersAddD
 export type PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
   "set";
 export const PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeader {
   /** The operation to perform on the header. */
@@ -66957,7 +66781,7 @@ export const PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersSetS
 export type PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
   "set";
 export const PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -66980,7 +66804,7 @@ export const PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersSetD
 export type PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
   "remove";
 export const PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeader {
   /** The operation to perform on the header. */
@@ -67197,8 +67021,7 @@ export const PhasesUpdateResponseRulesItemRewriteRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesUpdateResponseRulesItemRewriteRule>;
 
 export type PhasesUpdateResponseRulesItemRouteRuleAction = "route";
-export const PhasesUpdateResponseRulesItemRouteRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemRouteRuleAction = S.String;
 
 export type PhasesUpdateResponseRulesItemRouteRuleActionParametersOrigin =
   RulesCreateResponseRulesItemRouteRuleActionParametersOrigin;
@@ -67345,8 +67168,7 @@ export const PhasesUpdateResponseRulesItemRouteRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesUpdateResponseRulesItemRouteRule>;
 
 export type PhasesUpdateResponseRulesItemScoreRuleAction = "score";
-export const PhasesUpdateResponseRulesItemScoreRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemScoreRuleAction = S.String;
 
 export type PhasesUpdateResponseRulesItemScoreRuleActionParameters =
   RulesCreateResponseRulesItemScoreRuleActionParameters;
@@ -67483,8 +67305,7 @@ export const PhasesUpdateResponseRulesItemScoreRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PhasesUpdateResponseRulesItemScoreRule>;
 
 export type PhasesUpdateResponseRulesItemServeErrorRuleAction = "serve_error";
-export const PhasesUpdateResponseRulesItemServeErrorRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemServeErrorRuleAction = S.String;
 
 export type PhasesUpdateResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
   | "application/json"
@@ -67492,7 +67313,7 @@ export type PhasesUpdateResponseRulesItemServeErrorRuleActionParametersActionPar
   | "text/plain"
   | "text/xml";
 export const PhasesUpdateResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemServeErrorRuleActionParametersActionParametersContent {
   /** The response content. */
@@ -67524,7 +67345,7 @@ export type PhasesUpdateResponseRulesItemServeErrorRuleActionParametersActionPar
   | "text/plain"
   | "text/xml";
 export const PhasesUpdateResponseRulesItemServeErrorRuleActionParametersActionParametersAssetContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemServeErrorRuleActionParametersActionParametersAsset {
   /** The name of a custom asset to serve as the error response. */
@@ -67692,14 +67513,13 @@ export const PhasesUpdateResponseRulesItemServeErrorRule =
 
 export type PhasesUpdateResponseRulesItemSetCacheControlAction =
   "set_cache_control";
-export const PhasesUpdateResponseRulesItemSetCacheControlAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemSetCacheControlAction = S.String;
 
 export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersImmutableSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -67725,7 +67545,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersImmutabl
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -67762,7 +67582,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersMaxAgeSe
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -67791,7 +67611,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersMaxAgeRe
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -67828,7 +67648,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersMustReva
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -67854,7 +67674,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersMustReva
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -67891,7 +67711,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersMustUnde
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -67917,7 +67737,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersMustUnde
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -67954,7 +67774,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoCacheS
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveQualifiersList =
   Array<string>;
@@ -67994,7 +67814,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoCacheR
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -68031,7 +67851,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoStoreS
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoStoreSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoStoreSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -68057,7 +67877,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoStoreR
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -68094,7 +67914,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoTransf
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoTransformSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoTransformSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -68120,7 +67940,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoTransf
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -68157,7 +67977,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersPrivateS
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveQualifiersList =
   Array<string>;
@@ -68197,7 +68017,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersPrivateR
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -68234,7 +68054,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersProxyRev
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -68260,7 +68080,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersProxyRev
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -68297,7 +68117,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersPublicSe
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersPublicSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersPublicSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -68323,7 +68143,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersPublicRe
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersPublicRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersPublicRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -68360,7 +68180,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersSMaxageS
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersSMaxageSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersSMaxageSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -68389,7 +68209,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersSMaxageR
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -68426,7 +68246,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersStaleIfE
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -68455,7 +68275,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersStaleIfE
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -68492,7 +68312,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersStaleWhi
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -68521,7 +68341,7 @@ export type PhasesUpdateResponseRulesItemSetCacheControlActionParametersStaleWhi
   | "set"
   | "remove";
 export const PhasesUpdateResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -68786,8 +68606,7 @@ export const PhasesUpdateResponseRulesItemSetCacheControl =
 
 export type PhasesUpdateResponseRulesItemSetCacheSettingsRuleAction =
   "set_cache_settings";
-export const PhasesUpdateResponseRulesItemSetCacheSettingsRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemSetCacheSettingsRuleAction = S.String;
 
 export type PhasesUpdateResponseRulesItemSetCacheSettingsRuleActionParametersAdditionalCacheablePortsList =
   Array<number>;
@@ -68802,7 +68621,7 @@ export type PhasesUpdateResponseRulesItemSetCacheSettingsRuleActionParametersBro
   | "override_origin"
   | "bypass";
 export const PhasesUpdateResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtl {
   /** The browser TTL mode. */
@@ -69110,7 +68929,7 @@ export type PhasesUpdateResponseRulesItemSetCacheSettingsRuleActionParametersEdg
   | "bypass_by_default"
   | "override_origin";
 export const PhasesUpdateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange =
   RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange;
@@ -69168,7 +68987,7 @@ export type PhasesUpdateResponseRulesItemSetCacheSettingsRuleActionParametersVar
   | "passthrough"
   | "normalize";
 export const PhasesUpdateResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefaultAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefault {
   /** How the header value is treated when building the cache key. */
@@ -69190,7 +69009,7 @@ export type PhasesUpdateResponseRulesItemSetCacheSettingsRuleActionParametersVar
   | "passthrough"
   | "normalize";
 export const PhasesUpdateResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueLanguagesList =
   Array<string>;
@@ -69505,15 +69324,14 @@ export const PhasesUpdateResponseRulesItemSetCacheSettingsRule =
   }) as any as S.Schema<PhasesUpdateResponseRulesItemSetCacheSettingsRule>;
 
 export type PhasesUpdateResponseRulesItemSetCacheTagsAction = "set_cache_tags";
-export const PhasesUpdateResponseRulesItemSetCacheTagsAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemSetCacheTagsAction = S.String;
 
 export type PhasesUpdateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
   | "add"
   | "remove"
   | "set";
 export const PhasesUpdateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesValuesList =
   Array<string>;
@@ -69546,7 +69364,7 @@ export type PhasesUpdateResponseRulesItemSetCacheTagsActionParametersAddCacheTag
   | "remove"
   | "set";
 export const PhasesUpdateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -69571,7 +69389,7 @@ export type PhasesUpdateResponseRulesItemSetCacheTagsActionParametersRemoveCache
   | "remove"
   | "set";
 export const PhasesUpdateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesValuesList =
   Array<string>;
@@ -69604,7 +69422,7 @@ export type PhasesUpdateResponseRulesItemSetCacheTagsActionParametersRemoveCache
   | "remove"
   | "set";
 export const PhasesUpdateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -69629,7 +69447,7 @@ export type PhasesUpdateResponseRulesItemSetCacheTagsActionParametersSetCacheTag
   | "remove"
   | "set";
 export const PhasesUpdateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesValuesList =
   Array<string>;
@@ -69662,7 +69480,7 @@ export type PhasesUpdateResponseRulesItemSetCacheTagsActionParametersSetCacheTag
   | "remove"
   | "set";
 export const PhasesUpdateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -69831,8 +69649,7 @@ export const PhasesUpdateResponseRulesItemSetCacheTags =
   }) as any as S.Schema<PhasesUpdateResponseRulesItemSetCacheTags>;
 
 export type PhasesUpdateResponseRulesItemSetConfigRuleAction = "set_config";
-export const PhasesUpdateResponseRulesItemSetConfigRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemSetConfigRuleAction = S.String;
 
 export type PhasesUpdateResponseRulesItemSetConfigRuleActionParametersAutominify =
   RulesCreateResponseRulesItemSetConfigRuleActionParametersAutominify;
@@ -69845,20 +69662,20 @@ export type PhasesUpdateResponseRulesItemSetConfigRuleActionParametersPolish =
   | "lossy"
   | "webp";
 export const PhasesUpdateResponseRulesItemSetConfigRuleActionParametersPolish =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
   | "none"
   | "standard"
   | "full";
 export const PhasesUpdateResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
   | "none"
   | "standard";
 export const PhasesUpdateResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "off"
@@ -69868,7 +69685,7 @@ export type PhasesUpdateResponseRulesItemSetConfigRuleActionParametersSecurityLe
   | "high"
   | "under_attack";
 export const PhasesUpdateResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemSetConfigRuleActionParametersSsl =
   | "off"
@@ -69877,7 +69694,7 @@ export type PhasesUpdateResponseRulesItemSetConfigRuleActionParametersSsl =
   | "strict"
   | "origin_pull";
 export const PhasesUpdateResponseRulesItemSetConfigRuleActionParametersSsl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PhasesUpdateResponseRulesItemSetConfigRuleActionParameters {
   /** Whether to enable Automatic HTTPS Rewrites. */
@@ -70127,13 +69944,12 @@ export const PhasesUpdateResponseRulesItemSetConfigRule =
   }) as any as S.Schema<PhasesUpdateResponseRulesItemSetConfigRule>;
 
 export type PhasesUpdateResponseRulesItemSkipRuleAction = "skip";
-export const PhasesUpdateResponseRulesItemSkipRuleAction =
-  /*@__PURE__*/ S.String;
+export const PhasesUpdateResponseRulesItemSkipRuleAction = S.String;
 
 export type PhasesUpdateResponseRulesItemSkipRuleActionParametersPhase =
   "current";
 export const PhasesUpdateResponseRulesItemSkipRuleActionParametersPhase =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "ddos_l4"
@@ -70161,7 +69977,7 @@ export type PhasesUpdateResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
 export const PhasesUpdateResponseRulesItemSkipRuleActionParametersPhasesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemSkipRuleActionParametersPhasesList =
   Array<PhasesUpdateResponseRulesItemSkipRuleActionParametersPhasesItem>;
@@ -70179,7 +69995,7 @@ export type PhasesUpdateResponseRulesItemSkipRuleActionParametersProductsItem =
   | "waf"
   | "zoneLockdown";
 export const PhasesUpdateResponseRulesItemSkipRuleActionParametersProductsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemSkipRuleActionParametersProductsList =
   Array<PhasesUpdateResponseRulesItemSkipRuleActionParametersProductsItem>;
@@ -70209,7 +70025,7 @@ export const PhasesUpdateResponseRulesItemSkipRuleActionParametersRulesMap =
 export type PhasesUpdateResponseRulesItemSkipRuleActionParametersRuleset =
   "current";
 export const PhasesUpdateResponseRulesItemSkipRuleActionParametersRuleset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemSkipRuleActionParametersRulesetsList =
   Array<string>;
@@ -70393,7 +70209,7 @@ export const PhasesUpdateResponseRulesItemSkipRule = /*@__PURE__*/ S.suspend(
 export type PhasesUpdateResponseRulesItemTransformResponseHTMLAction =
   "transform_response_html";
 export const PhasesUpdateResponseRulesItemTransformResponseHTMLAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PhasesUpdateResponseRulesItemTransformResponseHTMLActionParameters =
   RulesCreateRequestBodyTransformResponseHTMLRuleActionParameters;
@@ -70946,7 +70762,7 @@ export const PutPhasForZoneRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutPhasForZoneRequest>;
 
 export type UpdateRequestKind = "managed" | "custom" | "root" | "zone";
-export const UpdateRequestKind = /*@__PURE__*/ S.String;
+export const UpdateRequestKind = S.String;
 
 export type UpdateRequestPhase =
   | "ddos_l4"
@@ -70973,10 +70789,10 @@ export type UpdateRequestPhase =
   | "magic_transit_ids_managed"
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
-export const UpdateRequestPhase = /*@__PURE__*/ S.String;
+export const UpdateRequestPhase = S.String;
 
 export type UpdateRequestRulesItemBlockRuleAction = "block";
-export const UpdateRequestRulesItemBlockRuleAction = /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemBlockRuleAction = S.String;
 
 export type UpdateRequestRulesItemBlockRuleActionParametersResponse =
   RulesCreateResponseRulesItemBlockRuleActionParametersResponse;
@@ -71107,7 +70923,7 @@ export const UpdateRequestRulesItemBlockRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRequestRulesItemBlockRule>;
 
 export type UpdateRequestRulesItemChallengeAction = "challenge";
-export const UpdateRequestRulesItemChallengeAction = /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemChallengeAction = S.String;
 
 export type UpdateRequestRulesItemChallengeCategoriesList = Array<string>;
 export const UpdateRequestRulesItemChallengeCategoriesList =
@@ -71220,8 +71036,7 @@ export const UpdateRequestRulesItemChallenge = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateRequestRulesItemCompressResponseRuleAction =
   "compress_response";
-export const UpdateRequestRulesItemCompressResponseRuleAction =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemCompressResponseRuleAction = S.String;
 
 export type UpdateRequestRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
   | "none"
@@ -71231,7 +71046,7 @@ export type UpdateRequestRulesItemCompressResponseRuleActionParametersAlgorithms
   | "brotli"
   | "zstd";
 export const UpdateRequestRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemCompressResponseRuleActionParametersAlgorithmsItem {
   /** Name of the compression algorithm to enable. */
@@ -71392,8 +71207,7 @@ export const UpdateRequestRulesItemCompressResponseRule =
   }) as any as S.Schema<UpdateRequestRulesItemCompressResponseRule>;
 
 export type UpdateRequestRulesItemDDoSDynamicRuleAction = "ddos_dynamic";
-export const UpdateRequestRulesItemDDoSDynamicRuleAction =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemDDoSDynamicRuleAction = S.String;
 
 export type UpdateRequestRulesItemDDoSDynamicRuleCategoriesList = Array<string>;
 export const UpdateRequestRulesItemDDoSDynamicRuleCategoriesList =
@@ -71508,7 +71322,7 @@ export const UpdateRequestRulesItemDDoSDynamicRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateRequestRulesItemDDoSDynamicRule>;
 
 export type UpdateRequestRulesItemExecuteRuleAction = "execute";
-export const UpdateRequestRulesItemExecuteRuleAction = /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemExecuteRuleAction = S.String;
 
 export type UpdateRequestRulesItemExecuteRuleActionParametersMatchedData =
   RulesCreateResponseRulesItemExecuteRuleActionParametersMatchedData;
@@ -71521,7 +71335,7 @@ export type UpdateRequestRulesItemExecuteRuleActionParametersOverridesCategories
   | "low"
   | "eoff";
 export const UpdateRequestRulesItemExecuteRuleActionParametersOverridesCategoriesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemExecuteRuleActionParametersOverridesCategoriesItem {
   /** The name of the category to override. */
@@ -71565,7 +71379,7 @@ export type UpdateRequestRulesItemExecuteRuleActionParametersOverridesRulesItemS
   | "low"
   | "eoff";
 export const UpdateRequestRulesItemExecuteRuleActionParametersOverridesRulesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemExecuteRuleActionParametersOverridesRulesItem {
   /** The ID of the rule to override. */
@@ -71612,7 +71426,7 @@ export type UpdateRequestRulesItemExecuteRuleActionParametersOverridesSensitivit
   | "low"
   | "eoff";
 export const UpdateRequestRulesItemExecuteRuleActionParametersOverridesSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemExecuteRuleActionParametersOverrides {
   /** An action to override all rules with. This option has lower precedence than rule and category overrides. */
@@ -71789,8 +71603,7 @@ export const UpdateRequestRulesItemExecuteRule = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateRequestRulesItemForceConnectionCloseRuleAction =
   "force_connection_close";
-export const UpdateRequestRulesItemForceConnectionCloseRuleAction =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemForceConnectionCloseRuleAction = S.String;
 
 export type UpdateRequestRulesItemForceConnectionCloseRuleCategoriesList =
   Array<string>;
@@ -71908,7 +71721,7 @@ export const UpdateRequestRulesItemForceConnectionCloseRule =
   }) as any as S.Schema<UpdateRequestRulesItemForceConnectionCloseRule>;
 
 export type UpdateRequestRulesItemJSChallengeAction = "js_challenge";
-export const UpdateRequestRulesItemJSChallengeAction = /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemJSChallengeAction = S.String;
 
 export type UpdateRequestRulesItemJSChallengeCategoriesList = Array<string>;
 export const UpdateRequestRulesItemJSChallengeCategoriesList =
@@ -72020,7 +71833,7 @@ export const UpdateRequestRulesItemJSChallenge = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRequestRulesItemJSChallenge>;
 
 export type UpdateRequestRulesItemLogRuleAction = "log";
-export const UpdateRequestRulesItemLogRuleAction = /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemLogRuleAction = S.String;
 
 export type UpdateRequestRulesItemLogRuleCategoriesList = Array<string>;
 export const UpdateRequestRulesItemLogRuleCategoriesList =
@@ -72132,8 +71945,7 @@ export const UpdateRequestRulesItemLogRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRequestRulesItemLogRule>;
 
 export type UpdateRequestRulesItemLogCustomFieldRuleAction = "log_custom_field";
-export const UpdateRequestRulesItemLogCustomFieldRuleAction =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemLogCustomFieldRuleAction = S.String;
 
 export type UpdateRequestRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem =
   RulesCreateResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem;
@@ -72359,8 +72171,7 @@ export const UpdateRequestRulesItemLogCustomFieldRule = /*@__PURE__*/ S.suspend(
 
 export type UpdateRequestRulesItemManagedChallengeRuleAction =
   "managed_challenge";
-export const UpdateRequestRulesItemManagedChallengeRuleAction =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemManagedChallengeRuleAction = S.String;
 
 export type UpdateRequestRulesItemManagedChallengeRuleCategoriesList =
   Array<string>;
@@ -72478,7 +72289,7 @@ export const UpdateRequestRulesItemManagedChallengeRule =
   }) as any as S.Schema<UpdateRequestRulesItemManagedChallengeRule>;
 
 export type UpdateRequestRulesItemRedirectRuleAction = "redirect";
-export const UpdateRequestRulesItemRedirectRuleAction = /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemRedirectRuleAction = S.String;
 
 export type UpdateRequestRulesItemRedirectRuleActionParametersFromList =
   RulesCreateResponseRulesItemRedirectRuleActionParametersFromList;
@@ -72497,7 +72308,7 @@ export type UpdateRequestRulesItemRedirectRuleActionParametersFromValueStatusCod
   | 307
   | 308;
 export const UpdateRequestRulesItemRedirectRuleActionParametersFromValueStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface UpdateRequestRulesItemRedirectRuleActionParametersFromValue {
   /** A URL to redirect the request to. */
@@ -72667,12 +72478,12 @@ export const UpdateRequestRulesItemRedirectRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRequestRulesItemRedirectRule>;
 
 export type UpdateRequestRulesItemRewriteRuleAction = "rewrite";
-export const UpdateRequestRulesItemRewriteRuleAction = /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemRewriteRuleAction = S.String;
 
 export type UpdateRequestRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
   "add";
 export const UpdateRequestRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemRewriteRuleActionParametersHeadersAddStaticHeader {
   /** The operation to perform on the header. */
@@ -72695,7 +72506,7 @@ export const UpdateRequestRulesItemRewriteRuleActionParametersHeadersAddStaticHe
 export type UpdateRequestRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
   "add";
 export const UpdateRequestRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemRewriteRuleActionParametersHeadersAddDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -72718,7 +72529,7 @@ export const UpdateRequestRulesItemRewriteRuleActionParametersHeadersAddDynamicH
 export type UpdateRequestRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
   "set";
 export const UpdateRequestRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemRewriteRuleActionParametersHeadersSetStaticHeader {
   /** The operation to perform on the header. */
@@ -72741,7 +72552,7 @@ export const UpdateRequestRulesItemRewriteRuleActionParametersHeadersSetStaticHe
 export type UpdateRequestRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
   "set";
 export const UpdateRequestRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemRewriteRuleActionParametersHeadersSetDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -72764,7 +72575,7 @@ export const UpdateRequestRulesItemRewriteRuleActionParametersHeadersSetDynamicH
 export type UpdateRequestRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
   "remove";
 export const UpdateRequestRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemRewriteRuleActionParametersHeadersRemoveHeader {
   /** The operation to perform on the header. */
@@ -72961,7 +72772,7 @@ export const UpdateRequestRulesItemRewriteRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRequestRulesItemRewriteRule>;
 
 export type UpdateRequestRulesItemRouteRuleAction = "route";
-export const UpdateRequestRulesItemRouteRuleAction = /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemRouteRuleAction = S.String;
 
 export type UpdateRequestRulesItemRouteRuleActionParametersOrigin =
   CreateRequestRulesItemRouteRuleActionParametersOrigin;
@@ -73092,7 +72903,7 @@ export const UpdateRequestRulesItemRouteRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRequestRulesItemRouteRule>;
 
 export type UpdateRequestRulesItemScoreRuleAction = "score";
-export const UpdateRequestRulesItemScoreRuleAction = /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemScoreRuleAction = S.String;
 
 export type UpdateRequestRulesItemScoreRuleActionParameters =
   RulesCreateResponseRulesItemScoreRuleActionParameters;
@@ -73213,8 +73024,7 @@ export const UpdateRequestRulesItemScoreRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRequestRulesItemScoreRule>;
 
 export type UpdateRequestRulesItemServeErrorRuleAction = "serve_error";
-export const UpdateRequestRulesItemServeErrorRuleAction =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemServeErrorRuleAction = S.String;
 
 export type UpdateRequestRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
   | "application/json"
@@ -73222,7 +73032,7 @@ export type UpdateRequestRulesItemServeErrorRuleActionParametersActionParameters
   | "text/plain"
   | "text/xml";
 export const UpdateRequestRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemServeErrorRuleActionParametersActionParametersContent {
   /** The response content. */
@@ -73256,7 +73066,7 @@ export type UpdateRequestRulesItemServeErrorRuleActionParametersActionParameters
   | "text/plain"
   | "text/xml";
 export const UpdateRequestRulesItemServeErrorRuleActionParametersActionParametersAssetContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemServeErrorRuleActionParametersActionParametersAsset {
   /** The name of a custom asset to serve as the error response. */
@@ -73412,14 +73222,13 @@ export const UpdateRequestRulesItemServeErrorRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateRequestRulesItemServeErrorRule>;
 
 export type UpdateRequestRulesItemSetCacheControlAction = "set_cache_control";
-export const UpdateRequestRulesItemSetCacheControlAction =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemSetCacheControlAction = S.String;
 
 export type UpdateRequestRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersImmutableSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -73445,7 +73254,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersImmutableRemove
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersImmutableRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersImmutableRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -73482,7 +73291,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersMaxAgeSetDirect
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersMaxAgeSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersMaxAgeSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -73511,7 +73320,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersMaxAgeRemoveDir
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersMaxAgeRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersMaxAgeRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -73548,7 +73357,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersMustRevalidateS
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersMustRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersMustRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -73574,7 +73383,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersMustRevalidateR
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -73611,7 +73420,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersMustUnderstandS
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersMustUnderstandSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersMustUnderstandSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -73637,7 +73446,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersMustUnderstandR
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -73674,7 +73483,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersNoCacheSetDirec
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersNoCacheSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRequestRulesItemSetCacheControlActionParametersNoCacheSetDirectiveQualifiersList =
   Array<string>;
@@ -73712,7 +73521,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersNoCacheRemoveDi
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersNoCacheRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersNoCacheRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -73749,7 +73558,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersNoStoreSetDirec
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersNoStoreSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersNoStoreSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -73775,7 +73584,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersNoStoreRemoveDi
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersNoStoreRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersNoStoreRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -73812,7 +73621,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersNoTransformSetD
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersNoTransformSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersNoTransformSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -73838,7 +73647,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersNoTransformRemo
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersNoTransformRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersNoTransformRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -73875,7 +73684,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersPrivateSetDirec
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersPrivateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRequestRulesItemSetCacheControlActionParametersPrivateSetDirectiveQualifiersList =
   Array<string>;
@@ -73913,7 +73722,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersPrivateRemoveDi
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersPrivateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersPrivateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -73950,7 +73759,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersProxyRevalidate
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersProxyRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersProxyRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -73976,7 +73785,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersProxyRevalidate
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -74013,7 +73822,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersPublicSetDirect
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersPublicSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersPublicSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -74039,7 +73848,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersPublicRemoveDir
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersPublicRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersPublicRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -74076,7 +73885,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersSMaxageSetDirec
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersSMaxageSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersSMaxageSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -74105,7 +73914,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersSMaxageRemoveDi
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersSMaxageRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersSMaxageRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -74142,7 +73951,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersStaleIfErrorSet
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersStaleIfErrorSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersStaleIfErrorSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -74171,7 +73980,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersStaleIfErrorRem
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -74208,7 +74017,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersStaleWhileReval
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -74237,7 +74046,7 @@ export type UpdateRequestRulesItemSetCacheControlActionParametersStaleWhileReval
   | "set"
   | "remove";
 export const UpdateRequestRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -74483,8 +74292,7 @@ export const UpdateRequestRulesItemSetCacheControl = /*@__PURE__*/ S.suspend(
 
 export type UpdateRequestRulesItemSetCacheSettingsRuleAction =
   "set_cache_settings";
-export const UpdateRequestRulesItemSetCacheSettingsRuleAction =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemSetCacheSettingsRuleAction = S.String;
 
 export type UpdateRequestRulesItemSetCacheSettingsRuleActionParametersAdditionalCacheablePortsList =
   Array<number>;
@@ -74499,7 +74307,7 @@ export type UpdateRequestRulesItemSetCacheSettingsRuleActionParametersBrowserTtl
   | "override_origin"
   | "bypass";
 export const UpdateRequestRulesItemSetCacheSettingsRuleActionParametersBrowserTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheSettingsRuleActionParametersBrowserTtl {
   /** The browser TTL mode. */
@@ -74785,7 +74593,7 @@ export type UpdateRequestRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMod
   | "bypass_by_default"
   | "override_origin";
 export const UpdateRequestRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRequestRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange =
   CreateRequestRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange;
@@ -74845,7 +74653,7 @@ export type UpdateRequestRulesItemSetCacheSettingsRuleActionParametersVaryDefaul
   | "passthrough"
   | "normalize";
 export const UpdateRequestRulesItemSetCacheSettingsRuleActionParametersVaryDefaultAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheSettingsRuleActionParametersVaryDefault {
   /** How the header value is treated when building the cache key. */
@@ -74869,7 +74677,7 @@ export type UpdateRequestRulesItemSetCacheSettingsRuleActionParametersVaryHeader
   | "passthrough"
   | "normalize";
 export const UpdateRequestRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRequestRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueLanguagesList =
   Array<string>;
@@ -75163,14 +74971,14 @@ export const UpdateRequestRulesItemSetCacheSettingsRule =
   }) as any as S.Schema<UpdateRequestRulesItemSetCacheSettingsRule>;
 
 export type UpdateRequestRulesItemSetCacheTagsAction = "set_cache_tags";
-export const UpdateRequestRulesItemSetCacheTagsAction = /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemSetCacheTagsAction = S.String;
 
 export type UpdateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
   | "add"
   | "remove"
   | "set";
 export const UpdateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsValuesValuesList =
   Array<string>;
@@ -75205,7 +75013,7 @@ export type UpdateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsExpres
   | "remove"
   | "set";
 export const UpdateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheTagsActionParametersAddCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -75232,7 +75040,7 @@ export type UpdateRequestRulesItemSetCacheTagsActionParametersRemoveCacheTagsVal
   | "remove"
   | "set";
 export const UpdateRequestRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRequestRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesValuesList =
   Array<string>;
@@ -75267,7 +75075,7 @@ export type UpdateRequestRulesItemSetCacheTagsActionParametersRemoveCacheTagsExp
   | "remove"
   | "set";
 export const UpdateRequestRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -75294,7 +75102,7 @@ export type UpdateRequestRulesItemSetCacheTagsActionParametersSetCacheTagsValues
   | "remove"
   | "set";
 export const UpdateRequestRulesItemSetCacheTagsActionParametersSetCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRequestRulesItemSetCacheTagsActionParametersSetCacheTagsValuesValuesList =
   Array<string>;
@@ -75329,7 +75137,7 @@ export type UpdateRequestRulesItemSetCacheTagsActionParametersSetCacheTagsExpres
   | "remove"
   | "set";
 export const UpdateRequestRulesItemSetCacheTagsActionParametersSetCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemSetCacheTagsActionParametersSetCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -75484,7 +75292,7 @@ export const UpdateRequestRulesItemSetCacheTags = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRequestRulesItemSetCacheTags>;
 
 export type UpdateRequestRulesItemSetConfigRuleAction = "set_config";
-export const UpdateRequestRulesItemSetConfigRuleAction = /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemSetConfigRuleAction = S.String;
 
 export type UpdateRequestRulesItemSetConfigRuleActionParametersAutominify =
   CreateRequestRulesItemSetConfigRuleActionParametersAutominify;
@@ -75497,20 +75305,20 @@ export type UpdateRequestRulesItemSetConfigRuleActionParametersPolish =
   | "lossy"
   | "webp";
 export const UpdateRequestRulesItemSetConfigRuleActionParametersPolish =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRequestRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
   | "none"
   | "standard"
   | "full";
 export const UpdateRequestRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRequestRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
   | "none"
   | "standard";
 export const UpdateRequestRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRequestRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "off"
@@ -75520,7 +75328,7 @@ export type UpdateRequestRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "high"
   | "under_attack";
 export const UpdateRequestRulesItemSetConfigRuleActionParametersSecurityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRequestRulesItemSetConfigRuleActionParametersSsl =
   | "off"
@@ -75528,8 +75336,7 @@ export type UpdateRequestRulesItemSetConfigRuleActionParametersSsl =
   | "full"
   | "strict"
   | "origin_pull";
-export const UpdateRequestRulesItemSetConfigRuleActionParametersSsl =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemSetConfigRuleActionParametersSsl = S.String;
 
 export interface UpdateRequestRulesItemSetConfigRuleActionParameters {
   /** Whether to enable Automatic HTTPS Rewrites. */
@@ -75757,11 +75564,10 @@ export const UpdateRequestRulesItemSetConfigRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRequestRulesItemSetConfigRule>;
 
 export type UpdateRequestRulesItemSkipRuleAction = "skip";
-export const UpdateRequestRulesItemSkipRuleAction = /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemSkipRuleAction = S.String;
 
 export type UpdateRequestRulesItemSkipRuleActionParametersPhase = "current";
-export const UpdateRequestRulesItemSkipRuleActionParametersPhase =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemSkipRuleActionParametersPhase = S.String;
 
 export type UpdateRequestRulesItemSkipRuleActionParametersPhasesItem =
   | "ddos_l4"
@@ -75789,7 +75595,7 @@ export type UpdateRequestRulesItemSkipRuleActionParametersPhasesItem =
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
 export const UpdateRequestRulesItemSkipRuleActionParametersPhasesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRequestRulesItemSkipRuleActionParametersPhasesList = Array<
   UpdateRequestRulesItemSkipRuleActionParametersPhasesItem | (string & {})
@@ -75808,7 +75614,7 @@ export type UpdateRequestRulesItemSkipRuleActionParametersProductsItem =
   | "waf"
   | "zoneLockdown";
 export const UpdateRequestRulesItemSkipRuleActionParametersProductsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRequestRulesItemSkipRuleActionParametersProductsList = Array<
   UpdateRequestRulesItemSkipRuleActionParametersProductsItem | (string & {})
@@ -75837,8 +75643,7 @@ export const UpdateRequestRulesItemSkipRuleActionParametersRulesMap =
   ) as any as S.Schema<UpdateRequestRulesItemSkipRuleActionParametersRulesMap>;
 
 export type UpdateRequestRulesItemSkipRuleActionParametersRuleset = "current";
-export const UpdateRequestRulesItemSkipRuleActionParametersRuleset =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemSkipRuleActionParametersRuleset = S.String;
 
 export type UpdateRequestRulesItemSkipRuleActionParametersRulesetsList =
   Array<string>;
@@ -76000,8 +75805,7 @@ export const UpdateRequestRulesItemSkipRule = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateRequestRulesItemTransformResponseHTMLAction =
   "transform_response_html";
-export const UpdateRequestRulesItemTransformResponseHTMLAction =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemTransformResponseHTMLAction = S.String;
 
 export type UpdateRequestRulesItemTransformResponseHTMLActionParameters =
   RulesCreateRequestBodyTransformResponseHTMLRuleActionParameters;
@@ -76471,7 +76275,7 @@ export const UpdateRulesetForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRulesetForAccountRequest>;
 
 export type UpdateResponseKind = "managed" | "custom" | "root" | "zone";
-export const UpdateResponseKind = /*@__PURE__*/ S.String;
+export const UpdateResponseKind = S.String;
 
 export type UpdateResponsePhase =
   | "ddos_l4"
@@ -76498,10 +76302,10 @@ export type UpdateResponsePhase =
   | "magic_transit_ids_managed"
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
-export const UpdateResponsePhase = /*@__PURE__*/ S.String;
+export const UpdateResponsePhase = S.String;
 
 export type UpdateResponseRulesItemBlockRuleAction = "block";
-export const UpdateResponseRulesItemBlockRuleAction = /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemBlockRuleAction = S.String;
 
 export type UpdateResponseRulesItemBlockRuleActionParametersResponse =
   RulesCreateResponseRulesItemBlockRuleActionParametersResponse;
@@ -76642,7 +76446,7 @@ export const UpdateResponseRulesItemBlockRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateResponseRulesItemBlockRule>;
 
 export type UpdateResponseRulesItemChallengeAction = "challenge";
-export const UpdateResponseRulesItemChallengeAction = /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemChallengeAction = S.String;
 
 export type UpdateResponseRulesItemChallengeCategoriesList = Array<string>;
 export const UpdateResponseRulesItemChallengeCategoriesList =
@@ -76767,8 +76571,7 @@ export const UpdateResponseRulesItemChallenge = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateResponseRulesItemCompressResponseRuleAction =
   "compress_response";
-export const UpdateResponseRulesItemCompressResponseRuleAction =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemCompressResponseRuleAction = S.String;
 
 export type UpdateResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
   | "none"
@@ -76778,7 +76581,7 @@ export type UpdateResponseRulesItemCompressResponseRuleActionParametersAlgorithm
   | "brotli"
   | "zstd";
 export const UpdateResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItemName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemCompressResponseRuleActionParametersAlgorithmsItem {
   /** Name of the compression algorithm to enable. */
@@ -76949,8 +76752,7 @@ export const UpdateResponseRulesItemCompressResponseRule =
   }) as any as S.Schema<UpdateResponseRulesItemCompressResponseRule>;
 
 export type UpdateResponseRulesItemDDoSDynamicRuleAction = "ddos_dynamic";
-export const UpdateResponseRulesItemDDoSDynamicRuleAction =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemDDoSDynamicRuleAction = S.String;
 
 export type UpdateResponseRulesItemDDoSDynamicRuleCategoriesList =
   Array<string>;
@@ -77080,7 +76882,7 @@ export const UpdateResponseRulesItemDDoSDynamicRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateResponseRulesItemDDoSDynamicRule>;
 
 export type UpdateResponseRulesItemExecuteRuleAction = "execute";
-export const UpdateResponseRulesItemExecuteRuleAction = /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemExecuteRuleAction = S.String;
 
 export type UpdateResponseRulesItemExecuteRuleActionParametersMatchedData =
   RulesCreateResponseRulesItemExecuteRuleActionParametersMatchedData;
@@ -77093,7 +76895,7 @@ export type UpdateResponseRulesItemExecuteRuleActionParametersOverridesCategorie
   | "low"
   | "eoff";
 export const UpdateResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemExecuteRuleActionParametersOverridesCategoriesItem {
   /** The name of the category to override. */
@@ -77135,7 +76937,7 @@ export type UpdateResponseRulesItemExecuteRuleActionParametersOverridesRulesItem
   | "low"
   | "eoff";
 export const UpdateResponseRulesItemExecuteRuleActionParametersOverridesRulesItemSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemExecuteRuleActionParametersOverridesRulesItem {
   /** The ID of the rule to override. */
@@ -77182,7 +76984,7 @@ export type UpdateResponseRulesItemExecuteRuleActionParametersOverridesSensitivi
   | "low"
   | "eoff";
 export const UpdateResponseRulesItemExecuteRuleActionParametersOverridesSensitivityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemExecuteRuleActionParametersOverrides {
   /** An action to override all rules with. This option has lower precedence than rule and category overrides. */
@@ -77373,8 +77175,7 @@ export const UpdateResponseRulesItemExecuteRule = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateResponseRulesItemForceConnectionCloseRuleAction =
   "force_connection_close";
-export const UpdateResponseRulesItemForceConnectionCloseRuleAction =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemForceConnectionCloseRuleAction = S.String;
 
 export type UpdateResponseRulesItemForceConnectionCloseRuleCategoriesList =
   Array<string>;
@@ -77504,7 +77305,7 @@ export const UpdateResponseRulesItemForceConnectionCloseRule =
   }) as any as S.Schema<UpdateResponseRulesItemForceConnectionCloseRule>;
 
 export type UpdateResponseRulesItemJSChallengeAction = "js_challenge";
-export const UpdateResponseRulesItemJSChallengeAction = /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemJSChallengeAction = S.String;
 
 export type UpdateResponseRulesItemJSChallengeCategoriesList = Array<string>;
 export const UpdateResponseRulesItemJSChallengeCategoriesList =
@@ -77630,7 +77431,7 @@ export const UpdateResponseRulesItemJSChallenge = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateResponseRulesItemJSChallenge>;
 
 export type UpdateResponseRulesItemLogRuleAction = "log";
-export const UpdateResponseRulesItemLogRuleAction = /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemLogRuleAction = S.String;
 
 export type UpdateResponseRulesItemLogRuleCategoriesList = Array<string>;
 export const UpdateResponseRulesItemLogRuleCategoriesList =
@@ -77755,8 +77556,7 @@ export const UpdateResponseRulesItemLogRule = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateResponseRulesItemLogCustomFieldRuleAction =
   "log_custom_field";
-export const UpdateResponseRulesItemLogCustomFieldRuleAction =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemLogCustomFieldRuleAction = S.String;
 
 export type UpdateResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem =
   RulesCreateResponseRulesItemLogCustomFieldRuleActionParametersCookieFieldsItem;
@@ -77994,8 +77794,7 @@ export const UpdateResponseRulesItemLogCustomFieldRule =
 
 export type UpdateResponseRulesItemManagedChallengeRuleAction =
   "managed_challenge";
-export const UpdateResponseRulesItemManagedChallengeRuleAction =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemManagedChallengeRuleAction = S.String;
 
 export type UpdateResponseRulesItemManagedChallengeRuleCategoriesList =
   Array<string>;
@@ -78125,7 +77924,7 @@ export const UpdateResponseRulesItemManagedChallengeRule =
   }) as any as S.Schema<UpdateResponseRulesItemManagedChallengeRule>;
 
 export type UpdateResponseRulesItemRedirectRuleAction = "redirect";
-export const UpdateResponseRulesItemRedirectRuleAction = /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemRedirectRuleAction = S.String;
 
 export type UpdateResponseRulesItemRedirectRuleActionParametersFromList =
   RulesCreateResponseRulesItemRedirectRuleActionParametersFromList;
@@ -78144,7 +77943,7 @@ export type UpdateResponseRulesItemRedirectRuleActionParametersFromValueStatusCo
   | 307
   | 308;
 export const UpdateResponseRulesItemRedirectRuleActionParametersFromValueStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface UpdateResponseRulesItemRedirectRuleActionParametersFromValue {
   /** A URL to redirect the request to. */
@@ -78324,12 +78123,12 @@ export const UpdateResponseRulesItemRedirectRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateResponseRulesItemRedirectRule>;
 
 export type UpdateResponseRulesItemRewriteRuleAction = "rewrite";
-export const UpdateResponseRulesItemRewriteRuleAction = /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemRewriteRuleAction = S.String;
 
 export type UpdateResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
   "add";
 export const UpdateResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemRewriteRuleActionParametersHeadersAddStaticHeader {
   /** The operation to perform on the header. */
@@ -78352,7 +78151,7 @@ export const UpdateResponseRulesItemRewriteRuleActionParametersHeadersAddStaticH
 export type UpdateResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
   "add";
 export const UpdateResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemRewriteRuleActionParametersHeadersAddDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -78375,7 +78174,7 @@ export const UpdateResponseRulesItemRewriteRuleActionParametersHeadersAddDynamic
 export type UpdateResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
   "set";
 export const UpdateResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemRewriteRuleActionParametersHeadersSetStaticHeader {
   /** The operation to perform on the header. */
@@ -78398,7 +78197,7 @@ export const UpdateResponseRulesItemRewriteRuleActionParametersHeadersSetStaticH
 export type UpdateResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
   "set";
 export const UpdateResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemRewriteRuleActionParametersHeadersSetDynamicHeader {
   /** An expression that evaluates to a value for the header. */
@@ -78421,7 +78220,7 @@ export const UpdateResponseRulesItemRewriteRuleActionParametersHeadersSetDynamic
 export type UpdateResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
   "remove";
 export const UpdateResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeaderOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemRewriteRuleActionParametersHeadersRemoveHeader {
   /** The operation to perform on the header. */
@@ -78632,7 +78431,7 @@ export const UpdateResponseRulesItemRewriteRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateResponseRulesItemRewriteRule>;
 
 export type UpdateResponseRulesItemRouteRuleAction = "route";
-export const UpdateResponseRulesItemRouteRuleAction = /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemRouteRuleAction = S.String;
 
 export type UpdateResponseRulesItemRouteRuleActionParametersOrigin =
   RulesCreateResponseRulesItemRouteRuleActionParametersOrigin;
@@ -78773,7 +78572,7 @@ export const UpdateResponseRulesItemRouteRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateResponseRulesItemRouteRule>;
 
 export type UpdateResponseRulesItemScoreRuleAction = "score";
-export const UpdateResponseRulesItemScoreRuleAction = /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemScoreRuleAction = S.String;
 
 export type UpdateResponseRulesItemScoreRuleActionParameters =
   RulesCreateResponseRulesItemScoreRuleActionParameters;
@@ -78904,8 +78703,7 @@ export const UpdateResponseRulesItemScoreRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateResponseRulesItemScoreRule>;
 
 export type UpdateResponseRulesItemServeErrorRuleAction = "serve_error";
-export const UpdateResponseRulesItemServeErrorRuleAction =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemServeErrorRuleAction = S.String;
 
 export type UpdateResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
   | "application/json"
@@ -78913,7 +78711,7 @@ export type UpdateResponseRulesItemServeErrorRuleActionParametersActionParameter
   | "text/plain"
   | "text/xml";
 export const UpdateResponseRulesItemServeErrorRuleActionParametersActionParametersContentContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemServeErrorRuleActionParametersActionParametersContent {
   /** The response content. */
@@ -78945,7 +78743,7 @@ export type UpdateResponseRulesItemServeErrorRuleActionParametersActionParameter
   | "text/plain"
   | "text/xml";
 export const UpdateResponseRulesItemServeErrorRuleActionParametersActionParametersAssetContentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemServeErrorRuleActionParametersActionParametersAsset {
   /** The name of a custom asset to serve as the error response. */
@@ -79109,14 +78907,13 @@ export const UpdateResponseRulesItemServeErrorRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateResponseRulesItemServeErrorRule>;
 
 export type UpdateResponseRulesItemSetCacheControlAction = "set_cache_control";
-export const UpdateResponseRulesItemSetCacheControlAction =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemSetCacheControlAction = S.String;
 
 export type UpdateResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersImmutableSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersImmutableSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79142,7 +78939,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersImmutableRemov
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersImmutableRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79179,7 +78976,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirec
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersMaxAgeSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79208,7 +79005,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDi
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersMaxAgeRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79245,7 +79042,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersMustRevalidate
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersMustRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79271,7 +79068,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersMustRevalidate
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersMustRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79308,7 +79105,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersMustUnderstand
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersMustUnderstandSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79334,7 +79131,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersMustUnderstand
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersMustUnderstandRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79371,7 +79168,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersNoCacheSetDire
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResponseRulesItemSetCacheControlActionParametersNoCacheSetDirectiveQualifiersList =
   Array<string>;
@@ -79411,7 +79208,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersNoCacheRemoveD
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersNoCacheRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79448,7 +79245,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersNoStoreSetDire
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersNoStoreSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersNoStoreSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79474,7 +79271,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersNoStoreRemoveD
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersNoStoreRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79511,7 +79308,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersNoTransformSet
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersNoTransformSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersNoTransformSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79537,7 +79334,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersNoTransformRem
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersNoTransformRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79574,7 +79371,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersPrivateSetDire
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResponseRulesItemSetCacheControlActionParametersPrivateSetDirectiveQualifiersList =
   Array<string>;
@@ -79614,7 +79411,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersPrivateRemoveD
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersPrivateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79651,7 +79448,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersProxyRevalidat
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersProxyRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79677,7 +79474,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersProxyRevalidat
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersProxyRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79714,7 +79511,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersPublicSetDirec
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersPublicSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersPublicSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79740,7 +79537,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersPublicRemoveDi
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersPublicRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersPublicRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79777,7 +79574,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersSMaxageSetDire
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersSMaxageSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersSMaxageSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79806,7 +79603,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersSMaxageRemoveD
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersSMaxageRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79843,7 +79640,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersStaleIfErrorSe
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersStaleIfErrorSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79872,7 +79669,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersStaleIfErrorRe
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersStaleIfErrorRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79909,7 +79706,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersStaleWhileReva
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateSetDirective {
   /** The operation to perform on the cache-control directive. */
@@ -79938,7 +79735,7 @@ export type UpdateResponseRulesItemSetCacheControlActionParametersStaleWhileReva
   | "set"
   | "remove";
 export const UpdateResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirectiveOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheControlActionParametersStaleWhileRevalidateRemoveDirective {
   /** The operation to perform on the cache-control directive. */
@@ -80199,8 +79996,7 @@ export const UpdateResponseRulesItemSetCacheControl = /*@__PURE__*/ S.suspend(
 
 export type UpdateResponseRulesItemSetCacheSettingsRuleAction =
   "set_cache_settings";
-export const UpdateResponseRulesItemSetCacheSettingsRuleAction =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemSetCacheSettingsRuleAction = S.String;
 
 export type UpdateResponseRulesItemSetCacheSettingsRuleActionParametersAdditionalCacheablePortsList =
   Array<number>;
@@ -80215,7 +80011,7 @@ export type UpdateResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTt
   | "override_origin"
   | "bypass";
 export const UpdateResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheSettingsRuleActionParametersBrowserTtl {
   /** The browser TTL mode. */
@@ -80523,7 +80319,7 @@ export type UpdateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMo
   | "bypass_by_default"
   | "override_origin";
 export const UpdateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange =
   RulesCreateResponseRulesItemSetCacheSettingsRuleActionParametersEdgeTtlStatusCodeTtlItemStatusCodeRange;
@@ -80581,7 +80377,7 @@ export type UpdateResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefau
   | "passthrough"
   | "normalize";
 export const UpdateResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefaultAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheSettingsRuleActionParametersVaryDefault {
   /** How the header value is treated when building the cache key. */
@@ -80603,7 +80399,7 @@ export type UpdateResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeade
   | "passthrough"
   | "normalize";
 export const UpdateResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResponseRulesItemSetCacheSettingsRuleActionParametersVaryHeadersValueLanguagesList =
   Array<string>;
@@ -80915,14 +80711,14 @@ export const UpdateResponseRulesItemSetCacheSettingsRule =
   }) as any as S.Schema<UpdateResponseRulesItemSetCacheSettingsRule>;
 
 export type UpdateResponseRulesItemSetCacheTagsAction = "set_cache_tags";
-export const UpdateResponseRulesItemSetCacheTagsAction = /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemSetCacheTagsAction = S.String;
 
 export type UpdateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
   | "add"
   | "remove"
   | "set";
 export const UpdateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsValuesValuesList =
   Array<string>;
@@ -80955,7 +80751,7 @@ export type UpdateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpre
   | "remove"
   | "set";
 export const UpdateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheTagsActionParametersAddCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -80980,7 +80776,7 @@ export type UpdateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsVa
   | "remove"
   | "set";
 export const UpdateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsValuesValuesList =
   Array<string>;
@@ -81013,7 +80809,7 @@ export type UpdateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsEx
   | "remove"
   | "set";
 export const UpdateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheTagsActionParametersRemoveCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -81038,7 +80834,7 @@ export type UpdateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValue
   | "remove"
   | "set";
 export const UpdateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsValuesValuesList =
   Array<string>;
@@ -81071,7 +80867,7 @@ export type UpdateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpre
   | "remove"
   | "set";
 export const UpdateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpressionOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemSetCacheTagsActionParametersSetCacheTagsExpression {
   /** An expression that evaluates to an array of cache tag values. */
@@ -81236,8 +81032,7 @@ export const UpdateResponseRulesItemSetCacheTags = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateResponseRulesItemSetCacheTags>;
 
 export type UpdateResponseRulesItemSetConfigRuleAction = "set_config";
-export const UpdateResponseRulesItemSetConfigRuleAction =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemSetConfigRuleAction = S.String;
 
 export type UpdateResponseRulesItemSetConfigRuleActionParametersAutominify =
   RulesCreateResponseRulesItemSetConfigRuleActionParametersAutominify;
@@ -81250,20 +81045,20 @@ export type UpdateResponseRulesItemSetConfigRuleActionParametersPolish =
   | "lossy"
   | "webp";
 export const UpdateResponseRulesItemSetConfigRuleActionParametersPolish =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
   | "none"
   | "standard"
   | "full";
 export const UpdateResponseRulesItemSetConfigRuleActionParametersRequestBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
   | "none"
   | "standard";
 export const UpdateResponseRulesItemSetConfigRuleActionParametersResponseBodyBuffering =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "off"
@@ -81273,7 +81068,7 @@ export type UpdateResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
   | "high"
   | "under_attack";
 export const UpdateResponseRulesItemSetConfigRuleActionParametersSecurityLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResponseRulesItemSetConfigRuleActionParametersSsl =
   | "off"
@@ -81281,8 +81076,7 @@ export type UpdateResponseRulesItemSetConfigRuleActionParametersSsl =
   | "full"
   | "strict"
   | "origin_pull";
-export const UpdateResponseRulesItemSetConfigRuleActionParametersSsl =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemSetConfigRuleActionParametersSsl = S.String;
 
 export interface UpdateResponseRulesItemSetConfigRuleActionParameters {
   /** Whether to enable Automatic HTTPS Rewrites. */
@@ -81527,11 +81321,10 @@ export const UpdateResponseRulesItemSetConfigRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateResponseRulesItemSetConfigRule>;
 
 export type UpdateResponseRulesItemSkipRuleAction = "skip";
-export const UpdateResponseRulesItemSkipRuleAction = /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemSkipRuleAction = S.String;
 
 export type UpdateResponseRulesItemSkipRuleActionParametersPhase = "current";
-export const UpdateResponseRulesItemSkipRuleActionParametersPhase =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemSkipRuleActionParametersPhase = S.String;
 
 export type UpdateResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "ddos_l4"
@@ -81559,7 +81352,7 @@ export type UpdateResponseRulesItemSkipRuleActionParametersPhasesItem =
   | "magic_transit_managed"
   | "magic_transit_ratelimit";
 export const UpdateResponseRulesItemSkipRuleActionParametersPhasesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResponseRulesItemSkipRuleActionParametersPhasesList =
   Array<UpdateResponseRulesItemSkipRuleActionParametersPhasesItem>;
@@ -81577,7 +81370,7 @@ export type UpdateResponseRulesItemSkipRuleActionParametersProductsItem =
   | "waf"
   | "zoneLockdown";
 export const UpdateResponseRulesItemSkipRuleActionParametersProductsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResponseRulesItemSkipRuleActionParametersProductsList =
   Array<UpdateResponseRulesItemSkipRuleActionParametersProductsItem>;
@@ -81605,8 +81398,7 @@ export const UpdateResponseRulesItemSkipRuleActionParametersRulesMap =
   ) as any as S.Schema<UpdateResponseRulesItemSkipRuleActionParametersRulesMap>;
 
 export type UpdateResponseRulesItemSkipRuleActionParametersRuleset = "current";
-export const UpdateResponseRulesItemSkipRuleActionParametersRuleset =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemSkipRuleActionParametersRuleset = S.String;
 
 export type UpdateResponseRulesItemSkipRuleActionParametersRulesetsList =
   Array<string>;
@@ -81780,8 +81572,7 @@ export const UpdateResponseRulesItemSkipRule = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateResponseRulesItemTransformResponseHTMLAction =
   "transform_response_html";
-export const UpdateResponseRulesItemTransformResponseHTMLAction =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemTransformResponseHTMLAction = S.String;
 
 export type UpdateResponseRulesItemTransformResponseHTMLActionParameters =
   RulesCreateRequestBodyTransformResponseHTMLRuleActionParameters;

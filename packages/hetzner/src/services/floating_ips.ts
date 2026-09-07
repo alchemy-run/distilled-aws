@@ -15,12 +15,12 @@ export type { HetznerOpError, HetznerOpContext };
 
 /** The Floating IP type. */
 export type CreateFloatingIpRequestType = "ipv4" | "ipv6";
-export const CreateFloatingIpRequestType = /*@__PURE__*/ S.String;
+export const CreateFloatingIpRequestType = S.String;
 
 /** Home [Location](#tag/locations) for the [Floating IP](#tag/floating-ips). Either the ID or the name of the [Location](#tag/locations). Only optional if no [Server](#tag/servers) is provided. Routing is optimized for this [Locations](#tag/locations). */
 export type CreateFloatingIpRequestHomeLocation = string | number;
 export const CreateFloatingIpRequestHomeLocation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFloatingIpRequestHomeLocation>;
+  S.Unknown as any as S.Schema<CreateFloatingIpRequestHomeLocation>;
 
 /** User-defined labels (`key/value` pairs) for the Resource. For more information, see "[Labels](#description/labels)". */
 export type CreateFloatingIpRequestLabelsMap = {
@@ -60,7 +60,7 @@ export const CreateFloatingIpRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The Floating IP type. */
 export type CreateFloatingIpResponseFloatingIpType = "ipv4" | "ipv6";
-export const CreateFloatingIpResponseFloatingIpType = /*@__PURE__*/ S.String;
+export const CreateFloatingIpResponseFloatingIpType = S.String;
 
 export interface CreateFloatingIpResponseFloatingIpDnsPtrItem {
   /** Single IPv4 or IPv6 address of the record. */
@@ -193,7 +193,7 @@ export type CreateFloatingIpResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const CreateFloatingIpResponseActionStatus = /*@__PURE__*/ S.String;
+export const CreateFloatingIpResponseActionStatus = S.String;
 
 export interface CreateFloatingIpResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -316,7 +316,7 @@ export const GetFloatingIpRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The Floating IP type. */
 export type GetFloatingIpResponseFloatingIpType = "ipv4" | "ipv6";
-export const GetFloatingIpResponseFloatingIpType = /*@__PURE__*/ S.String;
+export const GetFloatingIpResponseFloatingIpType = S.String;
 
 export type GetFloatingIpResponseFloatingIpDnsPtrItem =
   CreateFloatingIpResponseFloatingIpDnsPtrItem;
@@ -412,7 +412,7 @@ export type ListFloatingIpsRequestSortItem =
   | "created"
   | "created:asc"
   | "created:desc";
-export const ListFloatingIpsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListFloatingIpsRequestSortItem = S.String;
 
 export type ListFloatingIpsRequestSortList = Array<
   ListFloatingIpsRequestSortItem | (string & {})
@@ -447,8 +447,7 @@ export const ListFloatingIpsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The Floating IP type. */
 export type ListFloatingIpsResponseFloatingIpsItemType = "ipv4" | "ipv6";
-export const ListFloatingIpsResponseFloatingIpsItemType =
-  /*@__PURE__*/ S.String;
+export const ListFloatingIpsResponseFloatingIpsItemType = S.String;
 
 export type ListFloatingIpsResponseFloatingIpsItemDnsPtrItem =
   CreateFloatingIpResponseFloatingIpDnsPtrItem;
@@ -621,7 +620,7 @@ export const UpdateFloatingIpRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The Floating IP type. */
 export type UpdateFloatingIpResponseFloatingIpType = "ipv4" | "ipv6";
-export const UpdateFloatingIpResponseFloatingIpType = /*@__PURE__*/ S.String;
+export const UpdateFloatingIpResponseFloatingIpType = S.String;
 
 export type UpdateFloatingIpResponseFloatingIpDnsPtrItem =
   CreateFloatingIpResponseFloatingIpDnsPtrItem;

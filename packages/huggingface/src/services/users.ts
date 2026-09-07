@@ -451,7 +451,7 @@ export type GetUserUsageResponseUsageValueItemProduct =
   | "endpoints/gcp/v5e/1x1"
   | "endpoints/gcp/v5e/2x2"
   | "endpoints/gcp/v5e/2x4";
-export const GetUserUsageResponseUsageValueItemProduct = /*@__PURE__*/ S.String;
+export const GetUserUsageResponseUsageValueItemProduct = S.String;
 
 export interface GetUserUsageResponseUsageValueItem {
   entityId: string;
@@ -501,7 +501,7 @@ export const GetUserUsageResponseUsageMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<GetUserUsageResponseUsageMap>;
 
 export type GetUserUsageResponsePeriodEntityType = "user" | "org";
-export const GetUserUsageResponsePeriodEntityType = /*@__PURE__*/ S.String;
+export const GetUserUsageResponsePeriodEntityType = S.String;
 
 export type GetUserUsageResponsePeriodInvoiceCase0Status =
   | "draft"
@@ -510,14 +510,12 @@ export type GetUserUsageResponsePeriodInvoiceCase0Status =
   | "uncollectible"
   | "void"
   | "unpaid";
-export const GetUserUsageResponsePeriodInvoiceCase0Status =
-  /*@__PURE__*/ S.String;
+export const GetUserUsageResponsePeriodInvoiceCase0Status = S.String;
 
 export type GetUserUsageResponsePeriodInvoiceCase0CollectionMethod =
   | "charge_automatically"
   | "send_invoice";
-export const GetUserUsageResponsePeriodInvoiceCase0CollectionMethod =
-  /*@__PURE__*/ S.String;
+export const GetUserUsageResponsePeriodInvoiceCase0CollectionMethod = S.String;
 
 export interface GetUserUsageResponsePeriodInvoiceCase0 {
   type: unknown;
@@ -563,12 +561,11 @@ export type GetUserUsageResponsePeriodInvoice =
   | GetUserUsageResponsePeriodInvoiceCase0
   | GetUserUsageResponsePeriodInvoiceCase1;
 export const GetUserUsageResponsePeriodInvoice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetUserUsageResponsePeriodInvoice>;
+  S.Unknown as any as S.Schema<GetUserUsageResponsePeriodInvoice>;
 
 export type GetUserUsageResponsePeriodChargesItemBilledThrough =
   "stripe-payment-intent";
-export const GetUserUsageResponsePeriodChargesItemBilledThrough =
-  /*@__PURE__*/ S.String;
+export const GetUserUsageResponsePeriodChargesItemBilledThrough = S.String;
 
 export type GetUserUsageResponsePeriodChargesItemPaymentIntentStatus =
   | "canceled"
@@ -579,7 +576,7 @@ export type GetUserUsageResponsePeriodChargesItemPaymentIntentStatus =
   | "requires_payment_method"
   | "succeeded";
 export const GetUserUsageResponsePeriodChargesItemPaymentIntentStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetUserUsageResponsePeriodChargesItem {
   _id: string;
@@ -700,16 +697,14 @@ export type ListFollowedOrganizationsResponseBodyItemOrgType =
   | "non-profit"
   | "government"
   | "community";
-export const ListFollowedOrganizationsResponseBodyItemOrgType =
-  /*@__PURE__*/ S.String;
+export const ListFollowedOrganizationsResponseBodyItemOrgType = S.String;
 
 export type ListFollowedOrganizationsResponseBodyItemPlan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const ListFollowedOrganizationsResponseBodyItemPlan =
-  /*@__PURE__*/ S.String;
+export const ListFollowedOrganizationsResponseBodyItemPlan = S.String;
 
 export interface ListFollowedOrganizationsResponseBodyItemEmailDomainsItem {
   domain: string;
@@ -918,7 +913,7 @@ export const ListFollowedUsersResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListFollowedUsersResponse>;
 
 export type ListUserFollowersRequestExpandItem = "followedAt";
-export const ListUserFollowersRequestExpandItem = /*@__PURE__*/ S.String;
+export const ListUserFollowersRequestExpandItem = S.String;
 
 export type ListUserFollowersRequestExpandList = Array<
   ListUserFollowersRequestExpandItem | (string & {})
@@ -1048,7 +1043,7 @@ export type ListUserFollowersResponseBodyItem =
   | ListUserFollowersResponseBodyItemCase0
   | ListUserFollowersResponseBodyItemCase1;
 export const ListUserFollowersResponseBodyItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListUserFollowersResponseBodyItem>;
+  S.Unknown as any as S.Schema<ListUserFollowersResponseBodyItem>;
 
 export type ListUserFollowersResponseBodyList =
   Array<ListUserFollowersResponseBodyItem>;
@@ -1086,7 +1081,7 @@ export type ListUserLikesResponseBodyItemRepoType =
   | "space"
   | "bucket"
   | "kernel";
-export const ListUserLikesResponseBodyItemRepoType = /*@__PURE__*/ S.String;
+export const ListUserLikesResponseBodyItemRepoType = S.String;
 
 export interface ListUserLikesResponseBodyItemRepo {
   name: string;
@@ -1134,15 +1129,15 @@ export type ListUserRepositoriesRequestType =
   | "space"
   | "bucket"
   | "kernel";
-export const ListUserRepositoriesRequestType = /*@__PURE__*/ S.String;
+export const ListUserRepositoriesRequestType = S.String;
 
 /** Sort field (default: storage) */
 export type ListUserRepositoriesRequestSort = "storage" | "updatedAt";
-export const ListUserRepositoriesRequestSort = /*@__PURE__*/ S.String;
+export const ListUserRepositoriesRequestSort = S.String;
 
 /** Sort direction (default: desc) */
 export type ListUserRepositoriesRequestDirection = "asc" | "desc";
-export const ListUserRepositoriesRequestDirection = /*@__PURE__*/ S.String;
+export const ListUserRepositoriesRequestDirection = S.String;
 
 export interface ListUserRepositoriesRequest {
   search?: string;
@@ -1171,14 +1166,13 @@ export type ListUserRepositoriesResponseBodyItemType =
   | "space"
   | "bucket"
   | "kernel";
-export const ListUserRepositoriesResponseBodyItemType = /*@__PURE__*/ S.String;
+export const ListUserRepositoriesResponseBodyItemType = S.String;
 
 export type ListUserRepositoriesResponseBodyItemVisibility =
   | "public"
   | "private"
   | "protected";
-export const ListUserRepositoriesResponseBodyItemVisibility =
-  /*@__PURE__*/ S.String;
+export const ListUserRepositoriesResponseBodyItemVisibility = S.String;
 
 export interface ListUserRepositoriesResponseBodyItem {
   id: string;

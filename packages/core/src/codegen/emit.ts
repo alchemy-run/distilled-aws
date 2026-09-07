@@ -18,11 +18,7 @@
  */
 import { q } from "./naming.ts";
 
-/**
- * The PURE annotation emitted before generated schema consts. A single
- * `/*@__PURE__*​/` — Rolldown 1.1+ warns on the `/*#__PURE__*​/` form
- * (distilled #374).
- */
+/** PURE annotates calls, never property reads. Both @ and # forms are supported. */
 export const PURE = "/*@__PURE__*/ ";
 
 /** `export interface X { … }` (or the empty-body form). */
@@ -101,7 +97,7 @@ export const enumDecl = (o: EnumDeclOptions): string[] => {
   const union = o.values.length ? o.values.map(q).join(" | ") : "string";
   return [
     `export type ${o.name} = ${union};`,
-    `export const ${o.name} = ${o.pure ?? ""}${o.schemaExpr ?? "S.String"};\n`,
+    `export const ${o.name} = ${o.schemaExpr ? `${o.pure ?? ""}${o.schemaExpr}` : "S.String"};\n`,
   ];
 };
 

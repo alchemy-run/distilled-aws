@@ -67,7 +67,7 @@ export const CreateAppBuildRequestAttachment = /*@__PURE__*/ S.suspend(() =>
 
 /** The target platform for the build. */
 export type CreateAppBuildRequestPlatform = "ios" | "android" | "web";
-export const CreateAppBuildRequestPlatform = /*@__PURE__*/ S.String;
+export const CreateAppBuildRequestPlatform = S.String;
 
 /** An optional compressed archive (.zip or .gz) of the source code that produced this build, stored alongside the build so it can be downloaded later. Referenced like `attachment`, and must be a different file. */
 export type CreateAppBuildRequestSourceAttachment =
@@ -83,8 +83,7 @@ export type CreateAppBuildRequestSupportedAppViewTypesItem =
   | "analytics"
   | "skills"
   | "openapi";
-export const CreateAppBuildRequestSupportedAppViewTypesItem =
-  /*@__PURE__*/ S.String;
+export const CreateAppBuildRequestSupportedAppViewTypesItem = S.String;
 
 /** The view types this build supports. Only list the ones its code implements. */
 export type CreateAppBuildRequestSupportedAppViewTypesList = Array<
@@ -132,11 +131,11 @@ export const CreateAppBuildRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The target platform for this build. */
 export type AppBuildPlatform = "ios" | "android" | "web";
-export const AppBuildPlatform = /*@__PURE__*/ S.String;
+export const AppBuildPlatform = S.String;
 
 /** The build's review status. */
 export type AppBuildStatus = "draft" | "pending" | "approved" | "rejected";
-export const AppBuildStatus = /*@__PURE__*/ S.String;
+export const AppBuildStatus = S.String;
 
 /** The view types this build supports, as declared by the developer. */
 export type AppBuildSupportedAppViewTypesItem =
@@ -147,7 +146,7 @@ export type AppBuildSupportedAppViewTypesItem =
   | "analytics"
   | "skills"
   | "openapi";
-export const AppBuildSupportedAppViewTypesItem = /*@__PURE__*/ S.String;
+export const AppBuildSupportedAppViewTypesItem = S.String;
 
 export type AppBuildSupportedAppViewTypesList =
   Array<AppBuildSupportedAppViewTypesItem>;
@@ -204,14 +203,14 @@ export const GetAppBuildRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAppBuildRequest>;
 
 export type ListAppBuildsRequestPlatform = "ios" | "android" | "web";
-export const ListAppBuildsRequestPlatform = /*@__PURE__*/ S.String;
+export const ListAppBuildsRequestPlatform = S.String;
 
 export type ListAppBuildsRequestStatus =
   | "draft"
   | "pending"
   | "approved"
   | "rejected";
-export const ListAppBuildsRequestStatus = /*@__PURE__*/ S.String;
+export const ListAppBuildsRequestStatus = S.String;
 
 export interface ListAppBuildsRequest {
   /** The app to list builds for, prefixed `app_`. */

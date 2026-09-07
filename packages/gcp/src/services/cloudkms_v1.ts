@@ -206,8 +206,7 @@ export type AsymmetricDecryptResponseProtectionLevelEnum =
   | "EXTERNAL"
   | "EXTERNAL_VPC"
   | "HSM_SINGLE_TENANT";
-export const AsymmetricDecryptResponseProtectionLevelEnum =
-  /*@__PURE__*/ S.String;
+export const AsymmetricDecryptResponseProtectionLevelEnum = S.String;
 
 /** Response message for KeyManagementService.AsymmetricDecrypt. */
 export interface AsymmetricDecryptResponse {
@@ -303,7 +302,7 @@ export type AsymmetricSignResponseProtectionLevelEnum =
   | "EXTERNAL"
   | "EXTERNAL_VPC"
   | "HSM_SINGLE_TENANT";
-export const AsymmetricSignResponseProtectionLevelEnum = /*@__PURE__*/ S.String;
+export const AsymmetricSignResponseProtectionLevelEnum = S.String;
 
 /** Response message for KeyManagementService.AsymmetricSign. */
 export interface AsymmetricSignResponse {
@@ -409,7 +408,7 @@ export type EkmConnectionKeyManagementModeEnum =
   | "KEY_MANAGEMENT_MODE_UNSPECIFIED"
   | "MANUAL"
   | "CLOUD_KMS";
-export const EkmConnectionKeyManagementModeEnum = /*@__PURE__*/ S.String;
+export const EkmConnectionKeyManagementModeEnum = S.String;
 
 /** An EkmConnection represents an individual EKM connection. It can be used for creating CryptoKeys and CryptoKeyVersions with a ProtectionLevel of EXTERNAL_VPC, as well as performing cryptographic operations using keys created within the EkmConnection. */
 export interface EkmConnection {
@@ -612,7 +611,7 @@ export type CryptoKeyVersionStateEnum =
   | "GENERATION_FAILED"
   | "PENDING_EXTERNAL_DESTRUCTION"
   | "EXTERNAL_DESTRUCTION_FAILED";
-export const CryptoKeyVersionStateEnum = /*@__PURE__*/ S.String;
+export const CryptoKeyVersionStateEnum = S.String;
 
 /** ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level and EXTERNAL_VPC protection levels. */
 export interface ExternalProtectionLevelOptions {
@@ -657,7 +656,7 @@ export type KeyOperationAttestationFormatEnum =
   | "CAVIUM_V1_COMPRESSED"
   | "CAVIUM_V2_COMPRESSED"
   | "CAVIUM_V209";
-export const KeyOperationAttestationFormatEnum = /*@__PURE__*/ S.String;
+export const KeyOperationAttestationFormatEnum = S.String;
 
 /** Contains an HSM-generated attestation about a key operation. For more information, see [Verifying attestations] (https://cloud.google.com/kms/docs/attest-key). */
 export interface KeyOperationAttestation {
@@ -685,7 +684,7 @@ export type CryptoKeyVersionProtectionLevelEnum =
   | "EXTERNAL"
   | "EXTERNAL_VPC"
   | "HSM_SINGLE_TENANT";
-export const CryptoKeyVersionProtectionLevelEnum = /*@__PURE__*/ S.String;
+export const CryptoKeyVersionProtectionLevelEnum = S.String;
 
 export type CryptoKeyVersionAlgorithmEnum =
   | "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED"
@@ -738,7 +737,7 @@ export type CryptoKeyVersionAlgorithmEnum =
   | "KEM_ECDH_P256"
   | "KEM_ECDH_P384"
   | "AES_256_KWP";
-export const CryptoKeyVersionAlgorithmEnum = /*@__PURE__*/ S.String;
+export const CryptoKeyVersionAlgorithmEnum = S.String;
 
 /** A CryptoKeyVersion represents an individual cryptographic key, and the associated key material. An ENABLED version can be used for cryptographic operations. For security reasons, the raw cryptographic key material represented by a CryptoKeyVersion can never be viewed or exported. It can only be used to encrypt, decrypt, or sign data when an authorized user or application invokes Cloud KMS. */
 export interface CryptoKeyVersion {
@@ -813,7 +812,7 @@ export type CryptoKeyPurposeEnum =
   | "MAC"
   | "KEY_ENCAPSULATION"
   | "AES_WRAPPING";
-export const CryptoKeyPurposeEnum = /*@__PURE__*/ S.String;
+export const CryptoKeyPurposeEnum = S.String;
 
 export type KeyAccessJustificationsPolicyAllowedAccessReasonsItemEnum =
   | "REASON_UNSPECIFIED"
@@ -829,7 +828,7 @@ export type KeyAccessJustificationsPolicyAllowedAccessReasonsItemEnum =
   | "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT"
   | "CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING";
 export const KeyAccessJustificationsPolicyAllowedAccessReasonsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type KeyAccessJustificationsPolicyAllowedAccessReasonsItemEnumList =
   Array<
@@ -906,7 +905,7 @@ export type CryptoKeyVersionTemplateAlgorithmEnum =
   | "KEM_ECDH_P256"
   | "KEM_ECDH_P384"
   | "AES_256_KWP";
-export const CryptoKeyVersionTemplateAlgorithmEnum = /*@__PURE__*/ S.String;
+export const CryptoKeyVersionTemplateAlgorithmEnum = S.String;
 
 export type CryptoKeyVersionTemplateProtectionLevelEnum =
   | "PROTECTION_LEVEL_UNSPECIFIED"
@@ -915,8 +914,7 @@ export type CryptoKeyVersionTemplateProtectionLevelEnum =
   | "EXTERNAL"
   | "EXTERNAL_VPC"
   | "HSM_SINGLE_TENANT";
-export const CryptoKeyVersionTemplateProtectionLevelEnum =
-  /*@__PURE__*/ S.String;
+export const CryptoKeyVersionTemplateProtectionLevelEnum = S.String;
 
 /** A CryptoKeyVersionTemplate specifies the properties to use when creating a new CryptoKeyVersion, either manually with CreateCryptoKeyVersion or automatically as a result of auto-rotation. */
 export interface CryptoKeyVersionTemplate {
@@ -1038,14 +1036,14 @@ export type ImportJobPublicKeyFormatEnum =
   | "DER"
   | "NIST_PQC"
   | "XWING_RAW_BYTES";
-export const ImportJobPublicKeyFormatEnum = /*@__PURE__*/ S.String;
+export const ImportJobPublicKeyFormatEnum = S.String;
 
 export type ImportJobStateEnum =
   | "IMPORT_JOB_STATE_UNSPECIFIED"
   | "PENDING_GENERATION"
   | "ACTIVE"
   | "EXPIRED";
-export const ImportJobStateEnum = /*@__PURE__*/ S.String;
+export const ImportJobStateEnum = S.String;
 
 export type ImportJobProtectionLevelEnum =
   | "PROTECTION_LEVEL_UNSPECIFIED"
@@ -1054,7 +1052,7 @@ export type ImportJobProtectionLevelEnum =
   | "EXTERNAL"
   | "EXTERNAL_VPC"
   | "HSM_SINGLE_TENANT";
-export const ImportJobProtectionLevelEnum = /*@__PURE__*/ S.String;
+export const ImportJobProtectionLevelEnum = S.String;
 
 export type ImportJobImportMethodEnum =
   | "IMPORT_METHOD_UNSPECIFIED"
@@ -1067,7 +1065,7 @@ export type ImportJobImportMethodEnum =
   | "HPKE_KEM_ML_KEM_768_HKDF_SHA256_AES_256_GCM"
   | "HPKE_KEM_ML_KEM_1024_HKDF_SHA256_AES_256_GCM"
   | "HPKE_KEM_XWING_HKDF_SHA256_AES_256_GCM";
-export const ImportJobImportMethodEnum = /*@__PURE__*/ S.String;
+export const ImportJobImportMethodEnum = S.String;
 
 /** The public key component of the wrapping key. For details of the type of key this public key corresponds to, see the ImportMethod. */
 export interface WrappingPublicKey {
@@ -1181,7 +1179,7 @@ export type SingleTenantHsmInstanceStateEnum =
   | "DELETING"
   | "DELETED"
   | "FAILED";
-export const SingleTenantHsmInstanceStateEnum = /*@__PURE__*/ S.String;
+export const SingleTenantHsmInstanceStateEnum = S.String;
 
 /** A SingleTenantHsmInstance represents a single-tenant HSM instance. It can be used for creating CryptoKeys with a ProtectionLevel of HSM_SINGLE_TENANT, as well as performing cryptographic operations using keys created within the SingleTenantHsmInstance. */
 export interface SingleTenantHsmInstance {
@@ -1305,7 +1303,7 @@ export type SingleTenantHsmInstanceProposalStateEnum =
   | "SUCCEEDED"
   | "FAILED"
   | "DELETED";
-export const SingleTenantHsmInstanceProposalStateEnum = /*@__PURE__*/ S.String;
+export const SingleTenantHsmInstanceProposalStateEnum = S.String;
 
 /** Refreshes the SingleTenantHsmInstance. This operation must be performed periodically to keep the SingleTenantHsmInstance active. This operation must be performed before unrefreshed_duration_until_disable has passed. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation. */
 export interface RefreshSingleTenantHsmInstance {}
@@ -1527,7 +1525,7 @@ export type DecapsulateResponseProtectionLevelEnum =
   | "EXTERNAL"
   | "EXTERNAL_VPC"
   | "HSM_SINGLE_TENANT";
-export const DecapsulateResponseProtectionLevelEnum = /*@__PURE__*/ S.String;
+export const DecapsulateResponseProtectionLevelEnum = S.String;
 
 /** Response message for KeyManagementService.Decapsulate. */
 export interface DecapsulateResponse {
@@ -1603,7 +1601,7 @@ export type DecryptResponseProtectionLevelEnum =
   | "EXTERNAL"
   | "EXTERNAL_VPC"
   | "HSM_SINGLE_TENANT";
-export const DecryptResponseProtectionLevelEnum = /*@__PURE__*/ S.String;
+export const DecryptResponseProtectionLevelEnum = S.String;
 
 /** Response message for KeyManagementService.Decrypt. */
 export interface DecryptResponse {
@@ -1787,7 +1785,7 @@ export type EncryptResponseProtectionLevelEnum =
   | "EXTERNAL"
   | "EXTERNAL_VPC"
   | "HSM_SINGLE_TENANT";
-export const EncryptResponseProtectionLevelEnum = /*@__PURE__*/ S.String;
+export const EncryptResponseProtectionLevelEnum = S.String;
 
 /** Response message for KeyManagementService.Encrypt. */
 export interface EncryptResponse {
@@ -1893,8 +1891,7 @@ export type GenerateRandomBytesRequestProtectionLevelEnum =
   | "EXTERNAL"
   | "EXTERNAL_VPC"
   | "HSM_SINGLE_TENANT";
-export const GenerateRandomBytesRequestProtectionLevelEnum =
-  /*@__PURE__*/ S.String;
+export const GenerateRandomBytesRequestProtectionLevelEnum = S.String;
 
 /** Request message for KeyManagementService.GenerateRandomBytes. */
 export interface GenerateRandomBytesRequest {
@@ -1975,7 +1972,7 @@ export type AutokeyConfigKeyProjectResolutionModeEnum =
   | "DEDICATED_KEY_PROJECT"
   | "RESOURCE_PROJECT"
   | "DISABLED";
-export const AutokeyConfigKeyProjectResolutionModeEnum = /*@__PURE__*/ S.String;
+export const AutokeyConfigKeyProjectResolutionModeEnum = S.String;
 
 export type AutokeyConfigStateEnum =
   | "STATE_UNSPECIFIED"
@@ -1983,7 +1980,7 @@ export type AutokeyConfigStateEnum =
   | "KEY_PROJECT_DELETED"
   | "UNINITIALIZED"
   | "KEY_PROJECT_PERMISSION_DENIED";
-export const AutokeyConfigStateEnum = /*@__PURE__*/ S.String;
+export const AutokeyConfigStateEnum = S.String;
 
 /** Cloud KMS Autokey configuration for a project or folder. */
 export interface AutokeyConfig {
@@ -2055,7 +2052,7 @@ export type ShowEffectiveAutokeyConfigResponseKeyProjectResolutionModeEnum =
   | "RESOURCE_PROJECT"
   | "DISABLED";
 export const ShowEffectiveAutokeyConfigResponseKeyProjectResolutionModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Source of the effective AutokeyConfig. */
 export interface Source {
@@ -2322,7 +2319,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -2668,7 +2665,7 @@ export type GetProjectsLocationsKeyRingsImportJobsPublicKeyFormatEnum =
   | "NIST_PQC"
   | "XWING_RAW_BYTES";
 export const GetProjectsLocationsKeyRingsImportJobsPublicKeyFormatEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectsLocationsKeyRingsImportJobsRequest {
   /** Optional. Specifies the WrappingPublicKey format. If not specified: * For RSA-based import methods, the wrapping key will be returned in PEM format * For pure ML-KEM-based import methods, the wrapping key will be returned in the raw bytes format specified in FIPS-203 * For X-Wing-based import methods, the wrapping key will be returned in the raw bytes format specified in https://datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem. */
@@ -2803,7 +2800,7 @@ export type GetPublicKeyProjectsLocationsKeyRingsCryptoKeysCryptoKeyVersionsPubl
   | "NIST_PQC"
   | "XWING_RAW_BYTES";
 export const GetPublicKeyProjectsLocationsKeyRingsCryptoKeysCryptoKeyVersionsPublicKeyFormatEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetPublicKeyProjectsLocationsKeyRingsCryptoKeysCryptoKeyVersionsRequest {
   /** Optional. The PublicKey format specified by the user. This field is required for PQC algorithms. If specified, the public key will be exported through the public_key field in the requested format. Otherwise, the pem field will be populated for non-PQC algorithms, and an error will be returned for PQC algorithms. */
@@ -2841,7 +2838,7 @@ export type PublicKeyProtectionLevelEnum =
   | "EXTERNAL"
   | "EXTERNAL_VPC"
   | "HSM_SINGLE_TENANT";
-export const PublicKeyProtectionLevelEnum = /*@__PURE__*/ S.String;
+export const PublicKeyProtectionLevelEnum = S.String;
 
 export type PublicKeyPublicKeyFormatEnum =
   | "PUBLIC_KEY_FORMAT_UNSPECIFIED"
@@ -2849,7 +2846,7 @@ export type PublicKeyPublicKeyFormatEnum =
   | "DER"
   | "NIST_PQC"
   | "XWING_RAW_BYTES";
-export const PublicKeyPublicKeyFormatEnum = /*@__PURE__*/ S.String;
+export const PublicKeyPublicKeyFormatEnum = S.String;
 
 /** Data with integrity verification field. */
 export interface ChecksummedData {
@@ -2918,7 +2915,7 @@ export type PublicKeyAlgorithmEnum =
   | "KEM_ECDH_P256"
   | "KEM_ECDH_P384"
   | "AES_256_KWP";
-export const PublicKeyAlgorithmEnum = /*@__PURE__*/ S.String;
+export const PublicKeyAlgorithmEnum = S.String;
 
 /** The public keys for a given CryptoKeyVersion. Obtained via GetPublicKey. */
 export interface PublicKey {
@@ -3000,8 +2997,7 @@ export type ImportCryptoKeyVersionRequestAlgorithmEnum =
   | "KEM_ECDH_P256"
   | "KEM_ECDH_P384"
   | "AES_256_KWP";
-export const ImportCryptoKeyVersionRequestAlgorithmEnum =
-  /*@__PURE__*/ S.String;
+export const ImportCryptoKeyVersionRequestAlgorithmEnum = S.String;
 
 /** Request message for KeyManagementService.ImportCryptoKeyVersion. */
 export interface ImportCryptoKeyVersionRequest {
@@ -3106,7 +3102,7 @@ export type ImportTrustedKeyWrappedCryptoKeyVersionRequestAlgorithmEnum =
   | "KEM_ECDH_P384"
   | "AES_256_KWP";
 export const ImportTrustedKeyWrappedCryptoKeyVersionRequestAlgorithmEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for KeyManagementService.ImportTrustedKeyWrappedCryptoKeyVersion. */
 export interface ImportTrustedKeyWrappedCryptoKeyVersionRequest {
@@ -3373,8 +3369,7 @@ export const ListKeyRingsResponse = /*@__PURE__*/ S.suspend(() =>
 export type ListProjectsLocationsKeyRingsCryptoKeysVersionViewEnum =
   | "CRYPTO_KEY_VERSION_VIEW_UNSPECIFIED"
   | "FULL";
-export const ListProjectsLocationsKeyRingsCryptoKeysVersionViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsKeyRingsCryptoKeysVersionViewEnum = S.String;
 
 export interface ListProjectsLocationsKeyRingsCryptoKeysRequest {
   /** Optional. Optional pagination token, returned earlier via ListCryptoKeysResponse.next_page_token. */
@@ -3442,7 +3437,7 @@ export type ListProjectsLocationsKeyRingsCryptoKeysCryptoKeyVersionsViewEnum =
   | "CRYPTO_KEY_VERSION_VIEW_UNSPECIFIED"
   | "FULL";
 export const ListProjectsLocationsKeyRingsCryptoKeysCryptoKeyVersionsViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListProjectsLocationsKeyRingsCryptoKeysCryptoKeyVersionsRequest {
   /** Optional. Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default. */
@@ -3778,7 +3773,7 @@ export type MacSignResponseProtectionLevelEnum =
   | "EXTERNAL"
   | "EXTERNAL_VPC"
   | "HSM_SINGLE_TENANT";
-export const MacSignResponseProtectionLevelEnum = /*@__PURE__*/ S.String;
+export const MacSignResponseProtectionLevelEnum = S.String;
 
 /** Response message for KeyManagementService.MacSign. */
 export interface MacSignResponse {
@@ -3857,7 +3852,7 @@ export type MacVerifyResponseProtectionLevelEnum =
   | "EXTERNAL"
   | "EXTERNAL_VPC"
   | "HSM_SINGLE_TENANT";
-export const MacVerifyResponseProtectionLevelEnum = /*@__PURE__*/ S.String;
+export const MacVerifyResponseProtectionLevelEnum = S.String;
 
 /** Response message for KeyManagementService.MacVerify. */
 export interface MacVerifyResponse {
@@ -4024,7 +4019,7 @@ export type RawDecryptResponseProtectionLevelEnum =
   | "EXTERNAL"
   | "EXTERNAL_VPC"
   | "HSM_SINGLE_TENANT";
-export const RawDecryptResponseProtectionLevelEnum = /*@__PURE__*/ S.String;
+export const RawDecryptResponseProtectionLevelEnum = S.String;
 
 /** Response message for KeyManagementService.RawDecrypt. */
 export interface RawDecryptResponse {
@@ -4112,7 +4107,7 @@ export type RawEncryptResponseProtectionLevelEnum =
   | "EXTERNAL"
   | "EXTERNAL_VPC"
   | "HSM_SINGLE_TENANT";
-export const RawEncryptResponseProtectionLevelEnum = /*@__PURE__*/ S.String;
+export const RawEncryptResponseProtectionLevelEnum = S.String;
 
 /** Response message for KeyManagementService.RawEncrypt. */
 export interface RawEncryptResponse {

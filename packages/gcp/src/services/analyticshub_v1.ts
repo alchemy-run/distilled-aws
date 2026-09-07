@@ -101,12 +101,12 @@ export type QueryTemplateStateEnum =
   | "PENDING"
   | "DELETED"
   | "APPROVED";
-export const QueryTemplateStateEnum = /*@__PURE__*/ S.String;
+export const QueryTemplateStateEnum = S.String;
 
 export type RoutineRoutineTypeEnum =
   | "ROUTINE_TYPE_UNSPECIFIED"
   | "TABLE_VALUED_FUNCTION";
-export const RoutineRoutineTypeEnum = /*@__PURE__*/ S.String;
+export const RoutineRoutineTypeEnum = S.String;
 
 /** Represents a bigquery routine. */
 export interface Routine {
@@ -200,7 +200,7 @@ export type DataExchangeDiscoveryTypeEnum =
   | "DISCOVERY_TYPE_UNSPECIFIED"
   | "DISCOVERY_TYPE_PRIVATE"
   | "DISCOVERY_TYPE_PUBLIC";
-export const DataExchangeDiscoveryTypeEnum = /*@__PURE__*/ S.String;
+export const DataExchangeDiscoveryTypeEnum = S.String;
 
 /** A data exchange is a container that lets you share data. Along with the descriptive information about the data exchange, it contains listings that reference shared datasets. */
 export interface DataExchange {
@@ -269,7 +269,7 @@ export type StoredProcedureConfigAllowedStoredProcedureTypesItemEnum =
   | "STORED_PROCEDURE_TYPE_UNSPECIFIED"
   | "SQL_PROCEDURE";
 export const StoredProcedureConfigAllowedStoredProcedureTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type StoredProcedureConfigAllowedStoredProcedureTypesItemEnumList =
   Array<
@@ -299,7 +299,7 @@ export const StoredProcedureConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StoredProcedureConfig>;
 
 export type ListingStateEnum = "STATE_UNSPECIFIED" | "ACTIVE";
-export const ListingStateEnum = /*@__PURE__*/ S.String;
+export const ListingStateEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -309,13 +309,13 @@ export const StringList = /*@__PURE__*/ S.Array(
 export type ReplicaPrimaryStateEnum =
   | "PRIMARY_STATE_UNSPECIFIED"
   | "PRIMARY_REPLICA";
-export const ReplicaPrimaryStateEnum = /*@__PURE__*/ S.String;
+export const ReplicaPrimaryStateEnum = S.String;
 
 export type ReplicaReplicaStateEnum =
   | "REPLICA_STATE_UNSPECIFIED"
   | "READY_TO_USE"
   | "UNAVAILABLE";
-export const ReplicaReplicaStateEnum = /*@__PURE__*/ S.String;
+export const ReplicaReplicaStateEnum = S.String;
 
 /** Represents the state of a replica of a shared dataset. It includes the geographic location of the replica and system-computed, output-only fields indicating its replication state and whether it is the primary replica. */
 export interface Replica {
@@ -426,7 +426,7 @@ export type ListingCategoriesItemEnum =
   | "CATEGORY_TRANSPORTATION_AND_LOGISTICS"
   | "CATEGORY_TRAVEL_AND_TOURISM"
   | "CATEGORY_GOOGLE_EARTH_ENGINE";
-export const ListingCategoriesItemEnum = /*@__PURE__*/ S.String;
+export const ListingCategoriesItemEnum = S.String;
 
 export type ListingCategoriesItemEnumList = Array<
   ListingCategoriesItemEnum | (string & {})
@@ -453,7 +453,7 @@ export type ListingResourceTypeEnum =
   | "SHARED_RESOURCE_TYPE_UNSPECIFIED"
   | "BIGQUERY_DATASET"
   | "PUBSUB_TOPIC";
-export const ListingResourceTypeEnum = /*@__PURE__*/ S.String;
+export const ListingResourceTypeEnum = S.String;
 
 /** Contains details of the listing publisher. */
 export interface Publisher {
@@ -490,7 +490,7 @@ export type GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfoGoogleCloudMar
   | "ONBOARDING"
   | "ACTIVE";
 export const GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfoGoogleCloudMarketplaceInfoCommercialStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specifies the details of the Marketplace Data Product associated with the Listing. */
 export interface GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfoGoogleCloudMarketplaceInfo {
@@ -534,7 +534,7 @@ export type ListingDiscoveryTypeEnum =
   | "DISCOVERY_TYPE_UNSPECIFIED"
   | "DISCOVERY_TYPE_PRIVATE"
   | "DISCOVERY_TYPE_PUBLIC";
-export const ListingDiscoveryTypeEnum = /*@__PURE__*/ S.String;
+export const ListingDiscoveryTypeEnum = S.String;
 
 /** Restricted export config, used to configure restricted export on linked dataset. */
 export interface RestrictedExportConfig {
@@ -864,7 +864,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -1091,13 +1091,13 @@ export type SubscriptionStateEnum =
   | "STATE_ACTIVE"
   | "STATE_STALE"
   | "STATE_INACTIVE";
-export const SubscriptionStateEnum = /*@__PURE__*/ S.String;
+export const SubscriptionStateEnum = S.String;
 
 export type SubscriptionResourceTypeEnum =
   | "SHARED_RESOURCE_TYPE_UNSPECIFIED"
   | "BIGQUERY_DATASET"
   | "PUBSUB_TOPIC";
-export const SubscriptionResourceTypeEnum = /*@__PURE__*/ S.String;
+export const SubscriptionResourceTypeEnum = S.String;
 
 /** Cloud Marketplace commercial metadata for this subscription. */
 export interface GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfoGoogleCloudMarketplaceInfo {
@@ -2062,13 +2062,13 @@ export const BigtableConfig = /*@__PURE__*/ S.suspend(() =>
 export type CompressionCompressionAlgorithmEnum =
   | "COMPRESSION_ALGORITHM_UNSPECIFIED"
   | "ZLIB";
-export const CompressionCompressionAlgorithmEnum = /*@__PURE__*/ S.String;
+export const CompressionCompressionAlgorithmEnum = S.String;
 
 export type CompressionCompressionModeEnum =
   | "COMPRESSION_MODE_UNSPECIFIED"
   | "COMPRESS"
   | "DECOMPRESS";
-export const CompressionCompressionModeEnum = /*@__PURE__*/ S.String;
+export const CompressionCompressionModeEnum = S.String;
 
 /** Configuration for compressing/decompressing message data using a user-specified compression algorithm. */
 export interface Compression {

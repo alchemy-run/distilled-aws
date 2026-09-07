@@ -194,7 +194,7 @@ export type FleetObservabilityRoutingConfigModeEnum =
   | "MODE_UNSPECIFIED"
   | "COPY"
   | "MOVE";
-export const FleetObservabilityRoutingConfigModeEnum = /*@__PURE__*/ S.String;
+export const FleetObservabilityRoutingConfigModeEnum = S.String;
 
 /** RoutingConfig configures the behaviour of fleet logging feature. */
 export interface FleetObservabilityRoutingConfig {
@@ -343,7 +343,7 @@ export type MultiClusterIngressFeatureSpecBillingEnum =
   | "BILLING_UNSPECIFIED"
   | "PAY_AS_YOU_GO"
   | "ANTHOS_LICENSE";
-export const MultiClusterIngressFeatureSpecBillingEnum = /*@__PURE__*/ S.String;
+export const MultiClusterIngressFeatureSpecBillingEnum = S.String;
 
 /** **Multi-cluster Ingress**: The configuration for the MultiClusterIngress feature. */
 export interface MultiClusterIngressFeatureSpec {
@@ -378,15 +378,13 @@ export type ServiceMeshFeatureSpecModernizationCompatibilityEnum =
   | "MODERNIZATION_COMPATIBILITY_UNSPECIFIED"
   | "VALIDATION_ENABLED"
   | "VALIDATION_DISABLED";
-export const ServiceMeshFeatureSpecModernizationCompatibilityEnum =
-  /*@__PURE__*/ S.String;
+export const ServiceMeshFeatureSpecModernizationCompatibilityEnum = S.String;
 
 export type ServiceMeshFeatureSpecModernizationStrategyEnum =
   | "MODERNIZATION_STRATEGY_UNSPECIFIED"
   | "AUTOMATIC"
   | "DEFERRED";
-export const ServiceMeshFeatureSpecModernizationStrategyEnum =
-  /*@__PURE__*/ S.String;
+export const ServiceMeshFeatureSpecModernizationStrategyEnum = S.String;
 
 /** **Service Mesh**: Spec for the fleet for the servicemesh feature */
 export interface ServiceMeshFeatureSpec {
@@ -451,7 +449,7 @@ export type OriginTypeEnum =
   | "FLEET"
   | "FLEET_OUT_OF_SYNC"
   | "USER";
-export const OriginTypeEnum = /*@__PURE__*/ S.String;
+export const OriginTypeEnum = S.String;
 
 /** Origin defines where this MembershipFeatureSpec originated from. */
 export interface Origin {
@@ -468,8 +466,7 @@ export type ConfigManagementMembershipSpecManagementEnum =
   | "MANAGEMENT_UNSPECIFIED"
   | "MANAGEMENT_AUTOMATIC"
   | "MANAGEMENT_MANUAL";
-export const ConfigManagementMembershipSpecManagementEnum =
-  /*@__PURE__*/ S.String;
+export const ConfigManagementMembershipSpecManagementEnum = S.String;
 
 /** Configuration for Hierarchy Controller */
 export interface ConfigManagementHierarchyControllerConfig {
@@ -496,7 +493,7 @@ export type ConfigManagementPolicyControllerMonitoringBackendsItemEnum =
   | "PROMETHEUS"
   | "CLOUD_MONITORING";
 export const ConfigManagementPolicyControllerMonitoringBackendsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigManagementPolicyControllerMonitoringBackendsItemEnumList =
   Array<
@@ -761,7 +758,7 @@ export type MembershipSpecSecurityPolicyEnum =
   | "SECURITY_POLICY_UNSPECIFIED"
   | "NON_PRIVILEGED"
   | "PRIVILEGED";
-export const MembershipSpecSecurityPolicyEnum = /*@__PURE__*/ S.String;
+export const MembershipSpecSecurityPolicyEnum = S.String;
 
 /** **Cloud Build**: Configurations for each Cloud Build enabled cluster. */
 export interface MembershipSpec {
@@ -1112,7 +1109,7 @@ export type PolicyControllerPolicyControllerDeploymentConfigPodAffinityEnum =
   | "NO_AFFINITY"
   | "ANTI_AFFINITY";
 export const PolicyControllerPolicyControllerDeploymentConfigPodAffinityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Toleration of a node taint. */
 export interface PolicyControllerToleration {
@@ -1217,8 +1214,7 @@ export type PolicyControllerMonitoringConfigBackendsItemEnum =
   | "MONITORING_BACKEND_UNSPECIFIED"
   | "PROMETHEUS"
   | "CLOUD_MONITORING";
-export const PolicyControllerMonitoringConfigBackendsItemEnum =
-  /*@__PURE__*/ S.String;
+export const PolicyControllerMonitoringConfigBackendsItemEnum = S.String;
 
 export type PolicyControllerMonitoringConfigBackendsItemEnumList = Array<
   PolicyControllerMonitoringConfigBackendsItemEnum | (string & {})
@@ -1247,14 +1243,13 @@ export type PolicyControllerHubConfigInstallSpecEnum =
   | "INSTALL_SPEC_ENABLED"
   | "INSTALL_SPEC_SUSPENDED"
   | "INSTALL_SPEC_DETACHED";
-export const PolicyControllerHubConfigInstallSpecEnum = /*@__PURE__*/ S.String;
+export const PolicyControllerHubConfigInstallSpecEnum = S.String;
 
 export type PolicyControllerTemplateLibraryConfigInstallationEnum =
   | "INSTALLATION_UNSPECIFIED"
   | "NOT_INSTALLED"
   | "ALL";
-export const PolicyControllerTemplateLibraryConfigInstallationEnum =
-  /*@__PURE__*/ S.String;
+export const PolicyControllerTemplateLibraryConfigInstallationEnum = S.String;
 
 /** The config specifying which default library templates to install. */
 export interface PolicyControllerTemplateLibraryConfig {
@@ -1374,19 +1369,19 @@ export type ServiceMeshMembershipSpecManagementEnum =
   | "MANAGEMENT_AUTOMATIC"
   | "MANAGEMENT_MANUAL"
   | "MANAGEMENT_NOT_INSTALLED";
-export const ServiceMeshMembershipSpecManagementEnum = /*@__PURE__*/ S.String;
+export const ServiceMeshMembershipSpecManagementEnum = S.String;
 
 export type ServiceMeshMembershipSpecConfigApiEnum =
   | "CONFIG_API_UNSPECIFIED"
   | "CONFIG_API_ISTIO"
   | "CONFIG_API_GATEWAY";
-export const ServiceMeshMembershipSpecConfigApiEnum = /*@__PURE__*/ S.String;
+export const ServiceMeshMembershipSpecConfigApiEnum = S.String;
 
 export type ServiceMeshMembershipSpecControlPlaneEnum =
   | "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED"
   | "AUTOMATIC"
   | "MANUAL";
-export const ServiceMeshMembershipSpecControlPlaneEnum = /*@__PURE__*/ S.String;
+export const ServiceMeshMembershipSpecControlPlaneEnum = S.String;
 
 /** **Service Mesh**: Spec for a single Membership for the servicemesh feature */
 export interface ServiceMeshMembershipSpec {
@@ -1453,7 +1448,7 @@ export type FeatureResourceStateStateEnum =
   | "DISABLING"
   | "UPDATING"
   | "SERVICE_UPDATING";
-export const FeatureResourceStateStateEnum = /*@__PURE__*/ S.String;
+export const FeatureResourceStateStateEnum = S.String;
 
 /** FeatureResourceState describes the state of a Feature *resource* in the GkeHub API. See `FeatureState` for the "running state" of the Feature in the Fleet and across Memberships. */
 export interface FeatureResourceState {
@@ -1469,7 +1464,7 @@ export const FeatureResourceState = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FeatureResourceState>;
 
 export type StatusCodeEnum = "CODE_UNSPECIFIED" | "OK" | "FAILED" | "UNKNOWN";
-export const StatusCodeEnum = /*@__PURE__*/ S.String;
+export const StatusCodeEnum = S.String;
 
 /** Status specifies state for the subcomponent. */
 export interface Status {
@@ -1503,7 +1498,7 @@ export type FleetObservabilityFleetObservabilityBaseFeatureStateCodeEnum =
   | "OK"
   | "ERROR";
 export const FleetObservabilityFleetObservabilityBaseFeatureStateCodeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** All error details of the fleet observability feature. */
 export interface FleetObservabilityFeatureError {
@@ -1661,7 +1656,7 @@ export type ClusterUpgradeUpgradeStatusCodeEnum =
   | "SOAKING"
   | "FORCED_SOAKING"
   | "COMPLETE";
-export const ClusterUpgradeUpgradeStatusCodeEnum = /*@__PURE__*/ S.String;
+export const ClusterUpgradeUpgradeStatusCodeEnum = S.String;
 
 /** UpgradeStatus provides status information for each upgrade. */
 export interface ClusterUpgradeUpgradeStatus {
@@ -1747,8 +1742,7 @@ export type WorkloadIdentityWorkloadIdentityPoolStateDetailCodeEnum =
   | "WORKLOAD_IDENTITY_POOL_STATE_UNSPECIFIED"
   | "WORKLOAD_IDENTITY_POOL_STATE_OK"
   | "WORKLOAD_IDENTITY_POOL_STATE_ERROR";
-export const WorkloadIdentityWorkloadIdentityPoolStateDetailCodeEnum =
-  /*@__PURE__*/ S.String;
+export const WorkloadIdentityWorkloadIdentityPoolStateDetailCodeEnum = S.String;
 
 /** WorkloadIdentityPoolStateDetail represents the state of the Workload Identity Pools for the fleet. */
 export interface WorkloadIdentityWorkloadIdentityPoolStateDetail {
@@ -1782,8 +1776,7 @@ export type WorkloadIdentityNamespaceStateDetailCodeEnum =
   | "NAMESPACE_STATE_UNSPECIFIED"
   | "NAMESPACE_STATE_OK"
   | "NAMESPACE_STATE_ERROR";
-export const WorkloadIdentityNamespaceStateDetailCodeEnum =
-  /*@__PURE__*/ S.String;
+export const WorkloadIdentityNamespaceStateDetailCodeEnum = S.String;
 
 /** NamespaceStateDetail represents the state of a IAM namespace. */
 export interface WorkloadIdentityNamespaceStateDetail {
@@ -1814,8 +1807,7 @@ export type WorkloadIdentityFeatureStateNamespaceStatesValueEnum =
   | "NAMESPACE_STATE_UNSPECIFIED"
   | "NAMESPACE_STATE_OK"
   | "NAMESPACE_STATE_ERROR";
-export const WorkloadIdentityFeatureStateNamespaceStatesValueEnum =
-  /*@__PURE__*/ S.String;
+export const WorkloadIdentityFeatureStateNamespaceStatesValueEnum = S.String;
 
 export type WorkloadIdentityFeatureStateNamespaceStatesValueEnumMap = {
   [key: string]:
@@ -1863,7 +1855,7 @@ export type FeatureStateCodeEnum =
   | "OK"
   | "WARNING"
   | "ERROR";
-export const FeatureStateCodeEnum = /*@__PURE__*/ S.String;
+export const FeatureStateCodeEnum = S.String;
 
 /** FeatureState describes the high-level state of a Feature. It may be used to describe a Feature's state at the environ-level, or per-membershop, depending on the context. */
 export interface FeatureState {
@@ -1952,14 +1944,14 @@ export type ServiceMeshFeatureConditionCodeEnum =
   | "MODERNIZATION_INCOMPATIBLE"
   | "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE"
   | "MODERNIZATION_INCOMPATIBLE_FLEET_QUOTA";
-export const ServiceMeshFeatureConditionCodeEnum = /*@__PURE__*/ S.String;
+export const ServiceMeshFeatureConditionCodeEnum = S.String;
 
 export type ServiceMeshFeatureConditionSeverityEnum =
   | "SEVERITY_UNSPECIFIED"
   | "ERROR"
   | "WARNING"
   | "INFO";
-export const ServiceMeshFeatureConditionSeverityEnum = /*@__PURE__*/ S.String;
+export const ServiceMeshFeatureConditionSeverityEnum = S.String;
 
 /** Condition being reported. */
 export interface ServiceMeshFeatureCondition {
@@ -2070,8 +2062,7 @@ export type WorkloadIdentityIdentityProviderStateDetailCodeEnum =
   | "IDENTITY_PROVIDER_STATE_UNSPECIFIED"
   | "IDENTITY_PROVIDER_STATE_OK"
   | "IDENTITY_PROVIDER_STATE_ERROR";
-export const WorkloadIdentityIdentityProviderStateDetailCodeEnum =
-  /*@__PURE__*/ S.String;
+export const WorkloadIdentityIdentityProviderStateDetailCodeEnum = S.String;
 
 /** IdentityProviderStateDetail represents the state of an Identity Provider. */
 export interface WorkloadIdentityIdentityProviderStateDetail {
@@ -2128,7 +2119,7 @@ export type PolicyControllerOnClusterStateStateEnum =
   | "HUB_ERROR"
   | "SUSPENDED"
   | "DETACHED";
-export const PolicyControllerOnClusterStateStateEnum = /*@__PURE__*/ S.String;
+export const PolicyControllerOnClusterStateStateEnum = S.String;
 
 /** OnClusterState represents the state of a sub-component of Policy Controller. */
 export interface PolicyControllerOnClusterState {
@@ -2184,7 +2175,7 @@ export type PolicyControllerMembershipStateStateEnum =
   | "HUB_ERROR"
   | "SUSPENDED"
   | "DETACHED";
-export const PolicyControllerMembershipStateStateEnum = /*@__PURE__*/ S.String;
+export const PolicyControllerMembershipStateStateEnum = S.String;
 
 /** **Policy Controller**: State for a single cluster. */
 export interface PolicyControllerMembershipState {
@@ -2253,7 +2244,7 @@ export type IdentityServiceMembershipStateStateEnum =
   | "DEPLOYMENT_STATE_UNSPECIFIED"
   | "OK"
   | "ERROR";
-export const IdentityServiceMembershipStateStateEnum = /*@__PURE__*/ S.String;
+export const IdentityServiceMembershipStateStateEnum = S.String;
 
 /** **Anthos Identity Service**: State for a single Membership. */
 export interface IdentityServiceMembershipState {
@@ -2283,8 +2274,7 @@ export type ConfigManagementConfigSyncStateReposyncCrdEnum =
   | "INSTALLED"
   | "TERMINATING"
   | "INSTALLING";
-export const ConfigManagementConfigSyncStateReposyncCrdEnum =
-  /*@__PURE__*/ S.String;
+export const ConfigManagementConfigSyncStateReposyncCrdEnum = S.String;
 
 export type ConfigManagementConfigSyncDeploymentStateOtelCollectorEnum =
   | "DEPLOYMENT_STATE_UNSPECIFIED"
@@ -2293,7 +2283,7 @@ export type ConfigManagementConfigSyncDeploymentStateOtelCollectorEnum =
   | "ERROR"
   | "PENDING";
 export const ConfigManagementConfigSyncDeploymentStateOtelCollectorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigManagementConfigSyncDeploymentStateImporterEnum =
   | "DEPLOYMENT_STATE_UNSPECIFIED"
@@ -2301,8 +2291,7 @@ export type ConfigManagementConfigSyncDeploymentStateImporterEnum =
   | "INSTALLED"
   | "ERROR"
   | "PENDING";
-export const ConfigManagementConfigSyncDeploymentStateImporterEnum =
-  /*@__PURE__*/ S.String;
+export const ConfigManagementConfigSyncDeploymentStateImporterEnum = S.String;
 
 export type ConfigManagementConfigSyncDeploymentStateSyncerEnum =
   | "DEPLOYMENT_STATE_UNSPECIFIED"
@@ -2310,8 +2299,7 @@ export type ConfigManagementConfigSyncDeploymentStateSyncerEnum =
   | "INSTALLED"
   | "ERROR"
   | "PENDING";
-export const ConfigManagementConfigSyncDeploymentStateSyncerEnum =
-  /*@__PURE__*/ S.String;
+export const ConfigManagementConfigSyncDeploymentStateSyncerEnum = S.String;
 
 export type ConfigManagementConfigSyncDeploymentStateReconcilerManagerEnum =
   | "DEPLOYMENT_STATE_UNSPECIFIED"
@@ -2320,7 +2308,7 @@ export type ConfigManagementConfigSyncDeploymentStateReconcilerManagerEnum =
   | "ERROR"
   | "PENDING";
 export const ConfigManagementConfigSyncDeploymentStateReconcilerManagerEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigManagementConfigSyncDeploymentStateResourceGroupControllerManagerEnum =
   | "DEPLOYMENT_STATE_UNSPECIFIED"
@@ -2329,7 +2317,7 @@ export type ConfigManagementConfigSyncDeploymentStateResourceGroupControllerMana
   | "ERROR"
   | "PENDING";
 export const ConfigManagementConfigSyncDeploymentStateResourceGroupControllerManagerEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigManagementConfigSyncDeploymentStateAdmissionWebhookEnum =
   | "DEPLOYMENT_STATE_UNSPECIFIED"
@@ -2338,7 +2326,7 @@ export type ConfigManagementConfigSyncDeploymentStateAdmissionWebhookEnum =
   | "ERROR"
   | "PENDING";
 export const ConfigManagementConfigSyncDeploymentStateAdmissionWebhookEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigManagementConfigSyncDeploymentStateMonitorEnum =
   | "DEPLOYMENT_STATE_UNSPECIFIED"
@@ -2346,8 +2334,7 @@ export type ConfigManagementConfigSyncDeploymentStateMonitorEnum =
   | "INSTALLED"
   | "ERROR"
   | "PENDING";
-export const ConfigManagementConfigSyncDeploymentStateMonitorEnum =
-  /*@__PURE__*/ S.String;
+export const ConfigManagementConfigSyncDeploymentStateMonitorEnum = S.String;
 
 export type ConfigManagementConfigSyncDeploymentStateRootReconcilerEnum =
   | "DEPLOYMENT_STATE_UNSPECIFIED"
@@ -2356,7 +2343,7 @@ export type ConfigManagementConfigSyncDeploymentStateRootReconcilerEnum =
   | "ERROR"
   | "PENDING";
 export const ConfigManagementConfigSyncDeploymentStateRootReconcilerEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigManagementConfigSyncDeploymentStateGitSyncEnum =
   | "DEPLOYMENT_STATE_UNSPECIFIED"
@@ -2364,8 +2351,7 @@ export type ConfigManagementConfigSyncDeploymentStateGitSyncEnum =
   | "INSTALLED"
   | "ERROR"
   | "PENDING";
-export const ConfigManagementConfigSyncDeploymentStateGitSyncEnum =
-  /*@__PURE__*/ S.String;
+export const ConfigManagementConfigSyncDeploymentStateGitSyncEnum = S.String;
 
 /** The state of ConfigSync's deployment on a cluster */
 export interface ConfigManagementConfigSyncDeploymentState {
@@ -2513,7 +2499,7 @@ export type ConfigManagementSyncStateCodeEnum =
   | "NOT_INSTALLED"
   | "UNAUTHORIZED"
   | "UNREACHABLE";
-export const ConfigManagementSyncStateCodeEnum = /*@__PURE__*/ S.String;
+export const ConfigManagementSyncStateCodeEnum = S.String;
 
 /** State indicating an ACM's progress syncing configurations to a cluster */
 export interface ConfigManagementSyncState {
@@ -2552,7 +2538,7 @@ export type ConfigManagementConfigSyncStateClusterLevelStopSyncingStateEnum =
   | "PENDING"
   | "STOPPED";
 export const ConfigManagementConfigSyncStateClusterLevelStopSyncingStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specific versioning information pertaining to ConfigSync's Pods */
 export interface ConfigManagementConfigSyncVersion {
@@ -2597,7 +2583,7 @@ export type ConfigManagementConfigSyncStateStateEnum =
   | "CONFIG_SYNC_INSTALLED"
   | "CONFIG_SYNC_ERROR"
   | "CONFIG_SYNC_PENDING";
-export const ConfigManagementConfigSyncStateStateEnum = /*@__PURE__*/ S.String;
+export const ConfigManagementConfigSyncStateStateEnum = S.String;
 
 /** Errors pertaining to the installation of Config Sync */
 export interface ConfigManagementConfigSyncError {
@@ -2624,8 +2610,7 @@ export type ConfigManagementConfigSyncStateRootsyncCrdEnum =
   | "INSTALLED"
   | "TERMINATING"
   | "INSTALLING";
-export const ConfigManagementConfigSyncStateRootsyncCrdEnum =
-  /*@__PURE__*/ S.String;
+export const ConfigManagementConfigSyncStateRootsyncCrdEnum = S.String;
 
 /** State information for ConfigSync */
 export interface ConfigManagementConfigSyncState {
@@ -2684,8 +2669,7 @@ export type ConfigManagementOperatorStateDeploymentStateEnum =
   | "INSTALLED"
   | "ERROR"
   | "PENDING";
-export const ConfigManagementOperatorStateDeploymentStateEnum =
-  /*@__PURE__*/ S.String;
+export const ConfigManagementOperatorStateDeploymentStateEnum = S.String;
 
 /** State information for an ACM's Operator */
 export interface ConfigManagementOperatorState {
@@ -2716,7 +2700,7 @@ export type ConfigManagementBinauthzStateWebhookEnum =
   | "INSTALLED"
   | "ERROR"
   | "PENDING";
-export const ConfigManagementBinauthzStateWebhookEnum = /*@__PURE__*/ S.String;
+export const ConfigManagementBinauthzStateWebhookEnum = S.String;
 
 /** The version of binauthz. */
 export interface ConfigManagementBinauthzVersion {
@@ -2771,7 +2755,7 @@ export type ConfigManagementHierarchyControllerDeploymentStateHncEnum =
   | "ERROR"
   | "PENDING";
 export const ConfigManagementHierarchyControllerDeploymentStateHncEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigManagementHierarchyControllerDeploymentStateExtensionEnum =
   | "DEPLOYMENT_STATE_UNSPECIFIED"
@@ -2780,7 +2764,7 @@ export type ConfigManagementHierarchyControllerDeploymentStateExtensionEnum =
   | "ERROR"
   | "PENDING";
 export const ConfigManagementHierarchyControllerDeploymentStateExtensionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Deployment state for Hierarchy Controller */
 export interface ConfigManagementHierarchyControllerDeploymentState {
@@ -2845,7 +2829,7 @@ export type ConfigManagementGatekeeperDeploymentStateGatekeeperMutationEnum =
   | "ERROR"
   | "PENDING";
 export const ConfigManagementGatekeeperDeploymentStateGatekeeperMutationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigManagementGatekeeperDeploymentStateGatekeeperControllerManagerStateEnum =
   | "DEPLOYMENT_STATE_UNSPECIFIED"
@@ -2854,7 +2838,7 @@ export type ConfigManagementGatekeeperDeploymentStateGatekeeperControllerManager
   | "ERROR"
   | "PENDING";
 export const ConfigManagementGatekeeperDeploymentStateGatekeeperControllerManagerStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigManagementGatekeeperDeploymentStateGatekeeperAuditEnum =
   | "DEPLOYMENT_STATE_UNSPECIFIED"
@@ -2863,7 +2847,7 @@ export type ConfigManagementGatekeeperDeploymentStateGatekeeperAuditEnum =
   | "ERROR"
   | "PENDING";
 export const ConfigManagementGatekeeperDeploymentStateGatekeeperAuditEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** State of Policy Controller installation. */
 export interface ConfigManagementGatekeeperDeploymentState {
@@ -2901,8 +2885,7 @@ export type ConfigManagementPolicyControllerMigrationStageEnum =
   | "STAGE_UNSPECIFIED"
   | "ACM_MANAGED"
   | "POCO_MANAGED";
-export const ConfigManagementPolicyControllerMigrationStageEnum =
-  /*@__PURE__*/ S.String;
+export const ConfigManagementPolicyControllerMigrationStageEnum = S.String;
 
 /** State for the migration of PolicyController from ACM -> PoCo Hub. */
 export interface ConfigManagementPolicyControllerMigration {
@@ -2982,8 +2965,7 @@ export type ServiceMeshControlPlaneManagementImplementationEnum =
   | "ISTIOD"
   | "TRAFFIC_DIRECTOR"
   | "UPDATING";
-export const ServiceMeshControlPlaneManagementImplementationEnum =
-  /*@__PURE__*/ S.String;
+export const ServiceMeshControlPlaneManagementImplementationEnum = S.String;
 
 /** Structured and human-readable details for a status. */
 export interface ServiceMeshStatusDetails {
@@ -3016,8 +2998,7 @@ export type ServiceMeshControlPlaneManagementStateEnum =
   | "NEEDS_ATTENTION"
   | "DEGRADED"
   | "DEPROVISIONING";
-export const ServiceMeshControlPlaneManagementStateEnum =
-  /*@__PURE__*/ S.String;
+export const ServiceMeshControlPlaneManagementStateEnum = S.String;
 
 /** Status of control plane management. */
 export interface ServiceMeshControlPlaneManagement {
@@ -3052,7 +3033,7 @@ export type ServiceMeshDataPlaneManagementStateEnum =
   | "NEEDS_ATTENTION"
   | "DEGRADED"
   | "DEPROVISIONING";
-export const ServiceMeshDataPlaneManagementStateEnum = /*@__PURE__*/ S.String;
+export const ServiceMeshDataPlaneManagementStateEnum = S.String;
 
 /** Status of data plane management. Only reported per-member. */
 export interface ServiceMeshDataPlaneManagement {
@@ -3075,7 +3056,7 @@ export type ServiceMeshConditionSeverityEnum =
   | "ERROR"
   | "WARNING"
   | "INFO";
-export const ServiceMeshConditionSeverityEnum = /*@__PURE__*/ S.String;
+export const ServiceMeshConditionSeverityEnum = S.String;
 
 export type ServiceMeshConditionCodeEnum =
   | "CODE_UNSPECIFIED"
@@ -3143,7 +3124,7 @@ export type ServiceMeshConditionCodeEnum =
   | "MODERNIZATION_INCOMPATIBLE"
   | "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE"
   | "MODERNIZATION_INCOMPATIBLE_FLEET_QUOTA";
-export const ServiceMeshConditionCodeEnum = /*@__PURE__*/ S.String;
+export const ServiceMeshConditionCodeEnum = S.String;
 
 /** Condition being reported. */
 export interface ServiceMeshCondition {
@@ -3359,7 +3340,7 @@ export type CompliancePostureConfigModeEnum =
   | "MODE_UNSPECIFIED"
   | "DISABLED"
   | "ENABLED";
-export const CompliancePostureConfigModeEnum = /*@__PURE__*/ S.String;
+export const CompliancePostureConfigModeEnum = S.String;
 
 export interface ComplianceStandard {
   /** Name of the compliance standard. */
@@ -3399,15 +3380,14 @@ export type SecurityPostureConfigVulnerabilityModeEnum =
   | "VULNERABILITY_DISABLED"
   | "VULNERABILITY_BASIC"
   | "VULNERABILITY_ENTERPRISE";
-export const SecurityPostureConfigVulnerabilityModeEnum =
-  /*@__PURE__*/ S.String;
+export const SecurityPostureConfigVulnerabilityModeEnum = S.String;
 
 export type SecurityPostureConfigModeEnum =
   | "MODE_UNSPECIFIED"
   | "DISABLED"
   | "BASIC"
   | "ENTERPRISE";
-export const SecurityPostureConfigModeEnum = /*@__PURE__*/ S.String;
+export const SecurityPostureConfigModeEnum = S.String;
 
 /** SecurityPostureConfig defines the flags needed to enable/disable features for the Security Posture API. */
 export interface SecurityPostureConfig {
@@ -3447,8 +3427,7 @@ export type BinaryAuthorizationConfigEvaluationModeEnum =
   | "EVALUATION_MODE_UNSPECIFIED"
   | "DISABLED"
   | "POLICY_BINDINGS";
-export const BinaryAuthorizationConfigEvaluationModeEnum =
-  /*@__PURE__*/ S.String;
+export const BinaryAuthorizationConfigEvaluationModeEnum = S.String;
 
 /** BinaryAuthorizationConfig defines the fleet level configuration of binary authorization feature. */
 export interface BinaryAuthorizationConfig {
@@ -3491,7 +3470,7 @@ export type FleetLifecycleStateCodeEnum =
   | "READY"
   | "DELETING"
   | "UPDATING";
-export const FleetLifecycleStateCodeEnum = /*@__PURE__*/ S.String;
+export const FleetLifecycleStateCodeEnum = S.String;
 
 /** FleetLifecycleState describes the state of a Fleet resource. */
 export interface FleetLifecycleState {
@@ -3566,7 +3545,7 @@ export const CreateProjectsLocationsFleetsRequest = /*@__PURE__*/ S.suspend(
 export type MembershipMembershipTypeEnum =
   | "MEMBERSHIP_TYPE_UNSPECIFIED"
   | "LIGHTWEIGHT";
-export const MembershipMembershipTypeEnum = /*@__PURE__*/ S.String;
+export const MembershipMembershipTypeEnum = S.String;
 
 /** Authority encodes how Google will recognize identities from this Membership. See the workload identity documentation for more details: https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity */
 export interface Authority {
@@ -3650,7 +3629,7 @@ export type OnPremClusterClusterTypeEnum =
   | "HYBRID"
   | "STANDALONE"
   | "USER";
-export const OnPremClusterClusterTypeEnum = /*@__PURE__*/ S.String;
+export const OnPremClusterClusterTypeEnum = S.String;
 
 /** OnPremCluster contains information specific to GKE On-Prem clusters. */
 export interface OnPremCluster {
@@ -3835,7 +3814,7 @@ export type MembershipStateCodeEnum =
   | "DELETING"
   | "UPDATING"
   | "SERVICE_UPDATING";
-export const MembershipStateCodeEnum = /*@__PURE__*/ S.String;
+export const MembershipStateCodeEnum = S.String;
 
 /** MembershipState describes the state of a Membership resource. */
 export interface MembershipState {
@@ -3854,7 +3833,7 @@ export type MembershipClusterTierEnum =
   | "CLUSTER_TIER_UNSPECIFIED"
   | "STANDARD"
   | "ENTERPRISE";
-export const MembershipClusterTierEnum = /*@__PURE__*/ S.String;
+export const MembershipClusterTierEnum = S.String;
 
 /** Membership contains information about a member cluster. */
 export interface Membership {
@@ -3943,7 +3922,7 @@ export type MembershipBindingLifecycleStateCodeEnum =
   | "READY"
   | "DELETING"
   | "UPDATING";
-export const MembershipBindingLifecycleStateCodeEnum = /*@__PURE__*/ S.String;
+export const MembershipBindingLifecycleStateCodeEnum = S.String;
 
 /** MembershipBindingLifecycleState describes the state of a Binding resource. */
 export interface MembershipBindingLifecycleState {
@@ -4023,7 +4002,7 @@ export type RolePredefinedRoleEnum =
   | "EDIT"
   | "VIEW"
   | "ANTHOS_SUPPORT";
-export const RolePredefinedRoleEnum = /*@__PURE__*/ S.String;
+export const RolePredefinedRoleEnum = S.String;
 
 /** Role is the type for Kubernetes roles */
 export interface Role {
@@ -4045,7 +4024,7 @@ export type RBACRoleBindingLifecycleStateCodeEnum =
   | "READY"
   | "DELETING"
   | "UPDATING";
-export const RBACRoleBindingLifecycleStateCodeEnum = /*@__PURE__*/ S.String;
+export const RBACRoleBindingLifecycleStateCodeEnum = S.String;
 
 /** RBACRoleBindingLifecycleState describes the state of a RbacRoleBinding resource. */
 export interface RBACRoleBindingLifecycleState {
@@ -4131,7 +4110,7 @@ export type RolloutCreationScopeUpgradeTypesItemEnum =
   | "CONTROL_PLANE_PATCH"
   | "NODE_MINOR"
   | "NODE_PATCH";
-export const RolloutCreationScopeUpgradeTypesItemEnum = /*@__PURE__*/ S.String;
+export const RolloutCreationScopeUpgradeTypesItemEnum = S.String;
 
 export type RolloutCreationScopeUpgradeTypesItemEnumList = Array<
   RolloutCreationScopeUpgradeTypesItemEnum | (string & {})
@@ -4189,7 +4168,7 @@ export type OperationalStateStateEnum =
   | "WARNING"
   | "ERROR"
   | "INITIALIZING";
-export const OperationalStateStateEnum = /*@__PURE__*/ S.String;
+export const OperationalStateStateEnum = S.String;
 
 export type OperationalStateReasonsItemEnum =
   | "REASON_UNSPECIFIED"
@@ -4199,7 +4178,7 @@ export type OperationalStateReasonsItemEnum =
   | "MIXED_RELEASE_CHANNELS_WARNING"
   | "INTERNAL_ERROR"
   | "NO_CLUSTERS_IN_SEQUENCE";
-export const OperationalStateReasonsItemEnum = /*@__PURE__*/ S.String;
+export const OperationalStateReasonsItemEnum = S.String;
 
 export type OperationalStateReasonsItemEnumList = Array<
   OperationalStateReasonsItemEnum | (string & {})
@@ -4234,7 +4213,7 @@ export type RolloutSequenceComputedReleaseChannelEnum =
   | "STABLE"
   | "EXTENDED"
   | "NO_CHANNEL";
-export const RolloutSequenceComputedReleaseChannelEnum = /*@__PURE__*/ S.String;
+export const RolloutSequenceComputedReleaseChannelEnum = S.String;
 
 /** Rollout stage. */
 export interface Stage {
@@ -4357,7 +4336,7 @@ export type ScopeLifecycleStateCodeEnum =
   | "READY"
   | "DELETING"
   | "UPDATING";
-export const ScopeLifecycleStateCodeEnum = /*@__PURE__*/ S.String;
+export const ScopeLifecycleStateCodeEnum = S.String;
 
 /** ScopeLifecycleState describes the state of a Scope resource. */
 export interface ScopeLifecycleState {
@@ -4435,7 +4414,7 @@ export type NamespaceLifecycleStateCodeEnum =
   | "READY"
   | "DELETING"
   | "UPDATING";
-export const NamespaceLifecycleStateCodeEnum = /*@__PURE__*/ S.String;
+export const NamespaceLifecycleStateCodeEnum = S.String;
 
 /** NamespaceLifecycleState describes the state of a Namespace resource. */
 export interface NamespaceLifecycleState {
@@ -4946,7 +4925,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -5272,13 +5251,13 @@ export type RolloutIntentEnum =
   | "CONTROL_PLANE_PATCH_ENFORCEMENT"
   | "END_OF_SUPPORT_ENFORCEMENT"
   | "PARTIAL_PATCH";
-export const RolloutIntentEnum = /*@__PURE__*/ S.String;
+export const RolloutIntentEnum = S.String;
 
 export type VersionUpgradeTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "TYPE_CONTROL_PLANE"
   | "TYPE_NODE_POOL";
-export const VersionUpgradeTypeEnum = /*@__PURE__*/ S.String;
+export const VersionUpgradeTypeEnum = S.String;
 
 /** Config for version upgrade of clusters. */
 export interface VersionUpgrade {
@@ -5304,7 +5283,7 @@ export type RolloutStateReasonTypeEnum =
   | "CANCELLED_SUPERSEDED"
   | "CANCELLED_INCOMPATIBLE_ROLLOUT_SEQUENCE"
   | "CANCELLED_SUPERSEDED_BY_USER_ROLLOUT";
-export const RolloutStateReasonTypeEnum = /*@__PURE__*/ S.String;
+export const RolloutStateReasonTypeEnum = S.String;
 
 export type RolloutTargetStateEnum =
   | "STATE_UNSPECIFIED"
@@ -5316,7 +5295,7 @@ export type RolloutTargetStateEnum =
   | "REMOVED"
   | "INELIGIBLE"
   | "SKIPPED";
-export const RolloutTargetStateEnum = /*@__PURE__*/ S.String;
+export const RolloutTargetStateEnum = S.String;
 
 /** Metadata about the status of targets (clusters or node pools) involved in the Rollout. */
 export interface RolloutTarget {
@@ -5379,10 +5358,10 @@ export type RolloutStateEnum =
   | "PAUSED"
   | "CANCELLED"
   | "COMPLETED";
-export const RolloutStateEnum = /*@__PURE__*/ S.String;
+export const RolloutStateEnum = S.String;
 
 export type RolloutTriggerEnum = "ROLLOUT_TRIGGER_UNSPECIFIED" | "USER" | "GKE";
-export const RolloutTriggerEnum = /*@__PURE__*/ S.String;
+export const RolloutTriggerEnum = S.String;
 
 export type RolloutStageStateEnum =
   | "STATE_UNSPECIFIED"
@@ -5391,7 +5370,7 @@ export type RolloutStageStateEnum =
   | "SOAKING"
   | "COMPLETED"
   | "PAUSED";
-export const RolloutStageStateEnum = /*@__PURE__*/ S.String;
+export const RolloutStageStateEnum = S.String;
 
 /** Stage represents a single stage in the Rollout. */
 export interface RolloutStage {
@@ -6750,8 +6729,7 @@ export type UpgradeRolloutSequenceRequestUpgradeTypeEnum =
   | "UPGRADE_TYPE_UNSPECIFIED"
   | "CONTROL_PLANE"
   | "NODE";
-export const UpgradeRolloutSequenceRequestUpgradeTypeEnum =
-  /*@__PURE__*/ S.String;
+export const UpgradeRolloutSequenceRequestUpgradeTypeEnum = S.String;
 
 /** Configuration for per-stage soak duration overrides. */
 export interface PerStageSoakDurationOverrides {

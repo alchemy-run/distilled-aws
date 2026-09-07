@@ -15,7 +15,7 @@ export type { AzureOpError, AzureOpContext };
 
 /** Addon type. */
 export type AddonType = "IotEdge" | "ArcForKubernetes";
-export const AddonType = /*@__PURE__*/ S.String;
+export const AddonType = S.String;
 
 export interface AddonsCreateOrUpdateRequest {
   /** The ID of the target subscription. */
@@ -57,7 +57,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -65,7 +65,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -125,7 +125,7 @@ export type DayOfWeek =
   | "Thursday"
   | "Friday"
   | "Saturday";
-export const DayOfWeek = /*@__PURE__*/ S.String;
+export const DayOfWeek = S.String;
 
 /** The days of the week when this schedule is applicable. */
 export type BandwidthSchedulePropertiesDaysList = Array<
@@ -323,7 +323,7 @@ export const CheckDeviceCapacityCheckResourceCreationFeasibilityResponse =
 
 /** Storage format used for the file represented by the share. */
 export type AzureContainerDataFormat = "BlockBlob" | "PageBlob" | "AzureFile";
-export const AzureContainerDataFormat = /*@__PURE__*/ S.String;
+export const AzureContainerDataFormat = S.String;
 
 /** The container properties. */
 export interface ContainerPropertiesInput {
@@ -379,7 +379,7 @@ export type ContainerStatus =
   | "Unknown"
   | "Updating"
   | "NeedsAttention";
-export const ContainerStatus = /*@__PURE__*/ S.String;
+export const ContainerStatus = S.String;
 
 /** Fields for tracking refresh job on the share or container. */
 export interface RefreshDetails {
@@ -879,7 +879,7 @@ export const DevicesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** DataResidencyType enum */
 export type DataResidencyType = "GeoZoneReplication" | "ZoneReplication";
-export const DataResidencyType = /*@__PURE__*/ S.String;
+export const DataResidencyType = S.String;
 
 /** Wraps data-residency related information for edge-resource and this should be used with ARM layer. */
 export interface DataResidency {
@@ -936,11 +936,11 @@ export type SkuName =
   | "EP2_128_GPU1_Mx1_W"
   | "EP2_256_GPU2_Mx1"
   | "EdgeMR_TCP";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** The Sku tier. */
 export type SkuTier = "Standard";
-export const SkuTier = /*@__PURE__*/ S.String;
+export const SkuTier = S.String;
 
 /** The SKU type. */
 export interface Sku {
@@ -958,7 +958,7 @@ export const Sku = /*@__PURE__*/ S.suspend(() =>
 
 /** Identity type */
 export type MsiIdentityType = "None" | "SystemAssigned" | "UserAssigned";
-export const MsiIdentityType = /*@__PURE__*/ S.String;
+export const MsiIdentityType = S.String;
 
 /** Msi identity details of the resource */
 export interface ResourceIdentityInput {
@@ -1031,8 +1031,7 @@ export type DataBoxEdgeDevicePropertiesSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DataBoxEdgeDevicePropertiesSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const DataBoxEdgeDevicePropertiesSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type DataBoxEdgeDevicePropertiesSystemDataLastModifiedByType =
@@ -1040,8 +1039,7 @@ export type DataBoxEdgeDevicePropertiesSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DataBoxEdgeDevicePropertiesSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const DataBoxEdgeDevicePropertiesSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface DataBoxEdgeDevicePropertiesSystemData {
@@ -1085,11 +1083,11 @@ export type DataBoxEdgeDeviceStatus =
   | "Disconnected"
   | "PartiallyDisconnected"
   | "Maintenance";
-export const DataBoxEdgeDeviceStatus = /*@__PURE__*/ S.String;
+export const DataBoxEdgeDeviceStatus = S.String;
 
 /** The type of the Data Box Edge/Gateway device. */
 export type DeviceType = "DataBoxEdgeDevice";
-export const DeviceType = /*@__PURE__*/ S.String;
+export const DeviceType = S.String;
 
 export type RoleTypes =
   | "IOT"
@@ -1099,7 +1097,7 @@ export type RoleTypes =
   | "MEC"
   | "CloudEdgeManagement"
   | "Kubernetes";
-export const RoleTypes = /*@__PURE__*/ S.String;
+export const RoleTypes = S.String;
 
 /** Type of compute roles configured. */
 export type DataBoxEdgeDevicePropertiesConfiguredRoleTypesList =
@@ -1114,7 +1112,7 @@ export type ResourceMoveStatus =
   | "None"
   | "ResourceMoveInProgress"
   | "ResourceMoveFailed";
-export const ResourceMoveStatus = /*@__PURE__*/ S.String;
+export const ResourceMoveStatus = S.String;
 
 /** Fields for tracking resource move */
 export interface ResourceMoveDetails {
@@ -1138,7 +1136,7 @@ export type SubscriptionState =
   | "Suspended"
   | "Deleted"
   | "Unregistered";
-export const SubscriptionState = /*@__PURE__*/ S.String;
+export const SubscriptionState = S.String;
 
 export interface SubscriptionRegisteredFeatures {
   name?: string;
@@ -1310,7 +1308,7 @@ export type DataBoxEdgeDeviceKind =
   | "AzureStackEdge"
   | "AzureStackHub"
   | "AzureModularDataCentre";
-export const DataBoxEdgeDeviceKind = /*@__PURE__*/ S.String;
+export const DataBoxEdgeDeviceKind = S.String;
 
 export interface DevicesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1356,7 +1354,7 @@ export const DevicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The algorithm used to encrypt "Value". */
 export type EncryptionAlgorithm = "None" | "AES256" | "RSAES_PKCS1_v_1_5";
-export const EncryptionAlgorithm = /*@__PURE__*/ S.String;
+export const EncryptionAlgorithm = S.String;
 
 /** Represent the secrets intended for encryption with asymmetric key pair. */
 export interface AsymmetricEncryptedSecret {
@@ -1459,18 +1457,18 @@ export type JobStatus =
   | "Canceled"
   | "Paused"
   | "Scheduled";
-export const JobStatus = /*@__PURE__*/ S.String;
+export const JobStatus = S.String;
 
 /** Indicates if updates are available and at least one of the updates needs a reboot. */
 export type InstallRebootBehavior =
   | "NeverReboots"
   | "RequiresReboot"
   | "RequestReboot";
-export const InstallRebootBehavior = /*@__PURE__*/ S.String;
+export const InstallRebootBehavior = S.String;
 
 /** The current update operation. */
 export type UpdateOperation = "None" | "Scan" | "Download" | "Install";
-export const UpdateOperation = /*@__PURE__*/ S.String;
+export const UpdateOperation = S.String;
 
 /** The list of updates available for install. */
 export type UpdateSummaryPropertiesUpdateTitlesList = Array<string>;
@@ -1480,14 +1478,14 @@ export const UpdateSummaryPropertiesUpdateTitlesList = /*@__PURE__*/ S.Array(
 
 /** Type of the Update */
 export type UpdateType = "Software" | "Kubernetes" | "Firmware";
-export const UpdateType = /*@__PURE__*/ S.String;
+export const UpdateType = S.String;
 
 /** Impact of Installing an updateType */
 export type InstallationImpact =
   | "None"
   | "DeviceRebooted"
   | "KubernetesWorkloadsDown";
-export const InstallationImpact = /*@__PURE__*/ S.String;
+export const InstallationImpact = S.String;
 
 /** Status of the update. */
 export type UpdateStatus =
@@ -1496,7 +1494,7 @@ export type UpdateStatus =
   | "DownloadCompleted"
   | "InstallStarted"
   | "InstallCompleted";
-export const UpdateStatus = /*@__PURE__*/ S.String;
+export const UpdateStatus = S.String;
 
 /** Update Specific attributes */
 export interface UpdateDetails {
@@ -1841,7 +1839,7 @@ export const GetAlertRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Severity of the alert. */
 export type AlertSeverity = "Informational" | "Warning" | "Critical";
-export const AlertSeverity = /*@__PURE__*/ S.String;
+export const AlertSeverity = S.String;
 
 /** Error details for the alert. */
 export interface AlertErrorDetails {
@@ -2430,7 +2428,7 @@ export type KeyVaultSyncStatus =
   | "KeyVaultSyncPending"
   | "KeyVaultSyncing"
   | "KeyVaultNotSynced";
-export const KeyVaultSyncStatus = /*@__PURE__*/ S.String;
+export const KeyVaultSyncStatus = S.String;
 
 /** Holds device secret either as a KeyVault reference or as an encrypted value. */
 export interface Secret {
@@ -2458,7 +2456,7 @@ export const DataBoxEdgeDeviceExtendedInfoPropertiesDeviceSecretsMap =
 
 /** Cluster Witness Type */
 export type ClusterWitnessType = "None" | "Cloud" | "FileShare";
-export const ClusterWitnessType = /*@__PURE__*/ S.String;
+export const ClusterWitnessType = S.String;
 
 /** The properties of the Data Box Edge/Gateway device extended info. */
 export interface DataBoxEdgeDeviceExtendedInfoProperties {
@@ -2525,7 +2523,7 @@ export type GetDeviceExtendedInformationResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetDeviceExtendedInformationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetDeviceExtendedInformationResponseSystemDataLastModifiedByType =
@@ -2534,7 +2532,7 @@ export type GetDeviceExtendedInformationResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetDeviceExtendedInformationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetDeviceExtendedInformationResponseSystemData {
@@ -2621,7 +2619,7 @@ export const GetDeviceNetworkSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The network group. */
 export type NetworkGroup = "None" | "NonRDMA" | "RDMA";
-export const NetworkGroup = /*@__PURE__*/ S.String;
+export const NetworkGroup = S.String;
 
 /** The network adapter position. */
 export interface NetworkAdapterPosition {
@@ -2641,15 +2639,15 @@ export const NetworkAdapterPosition = /*@__PURE__*/ S.suspend(() =>
 
 /** Value indicating whether this adapter is valid. */
 export type NetworkAdapterStatus = "Inactive" | "Active";
-export const NetworkAdapterStatus = /*@__PURE__*/ S.String;
+export const NetworkAdapterStatus = S.String;
 
 /** Value indicating whether this adapter is RDMA capable. */
 export type NetworkAdapterRDMAStatus = "Incapable" | "Capable";
-export const NetworkAdapterRDMAStatus = /*@__PURE__*/ S.String;
+export const NetworkAdapterRDMAStatus = S.String;
 
 /** Value indicating whether this adapter has DHCP enabled. */
 export type NetworkAdapterDHCPStatus = "Disabled" | "Enabled";
-export const NetworkAdapterDHCPStatus = /*@__PURE__*/ S.String;
+export const NetworkAdapterDHCPStatus = S.String;
 
 /** Details related to the IPv4 address configuration. */
 export interface Ipv4Config {
@@ -2818,7 +2816,7 @@ export const GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsReques
 
 /** Proactive diagnostic collection consent flag */
 export type ProactiveDiagnosticsConsent = "Enabled" | "Disabled";
-export const ProactiveDiagnosticsConsent = /*@__PURE__*/ S.String;
+export const ProactiveDiagnosticsConsent = S.String;
 
 /** The properties of proactive log collection settings. */
 export interface ProactiveLogCollectionSettingsProperties {
@@ -2892,11 +2890,11 @@ export type RemoteApplicationType =
   | "WAC"
   | "LocalUI"
   | "AllApplications";
-export const RemoteApplicationType = /*@__PURE__*/ S.String;
+export const RemoteApplicationType = S.String;
 
 /** Access level allowed for this remote application type */
 export type AccessLevel = "None" | "ReadOnly" | "ReadWrite" | "FullAccess";
-export const AccessLevel = /*@__PURE__*/ S.String;
+export const AccessLevel = S.String;
 
 /** RemoteApplicationType for which remote support settings is being modified */
 export interface RemoteSupportSettings {
@@ -3003,7 +3001,7 @@ export type JobType =
   | "Backup"
   | "Restore"
   | "TriggerSupportPackage";
-export const JobType = /*@__PURE__*/ S.String;
+export const JobType = S.String;
 
 /** Current stage of the update operation. */
 export type UpdateOperationStage =
@@ -3024,7 +3022,7 @@ export type UpdateOperationStage =
   | "RescanStarted"
   | "RescanComplete"
   | "RescanFailed";
-export const UpdateOperationStage = /*@__PURE__*/ S.String;
+export const UpdateOperationStage = S.String;
 
 /** The download phase. */
 export type DownloadPhase =
@@ -3032,7 +3030,7 @@ export type DownloadPhase =
   | "Initializing"
   | "Downloading"
   | "Verifying";
-export const DownloadPhase = /*@__PURE__*/ S.String;
+export const DownloadPhase = S.String;
 
 /** Details about the download progress of update. */
 export interface UpdateDownloadProgress {
@@ -3534,7 +3532,7 @@ export type OrderState =
   | "AwaitingPickup"
   | "PickupCompleted"
   | "AwaitingDrop";
-export const OrderState = /*@__PURE__*/ S.String;
+export const OrderState = S.String;
 
 /** Tracking courier information. */
 export interface TrackingInfo {
@@ -3607,7 +3605,7 @@ export const OrderPropertiesReturnTrackingInfoList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<OrderPropertiesReturnTrackingInfoList>;
 
 export type ShipmentType = "NotApplicable" | "ShippedToCustomer" | "SelfPickup";
-export const ShipmentType = /*@__PURE__*/ S.String;
+export const ShipmentType = S.String;
 
 /** Order properties. */
 export interface OrderProperties {
@@ -3758,11 +3756,11 @@ export type ShareStatus =
   | "OK"
   | "Updating"
   | "NeedsAttention";
-export const ShareStatus = /*@__PURE__*/ S.String;
+export const ShareStatus = S.String;
 
 /** Current monitoring status of the share. */
 export type MonitoringStatus = "Enabled" | "Disabled";
-export const MonitoringStatus = /*@__PURE__*/ S.String;
+export const MonitoringStatus = S.String;
 
 /** Azure container mapping of the endpoint. */
 export interface AzureContainerInfo {
@@ -3785,11 +3783,11 @@ export const AzureContainerInfo = /*@__PURE__*/ S.suspend(() =>
 
 /** Access protocol to be used by the share. */
 export type ShareAccessProtocol = "SMB" | "NFS";
-export const ShareAccessProtocol = /*@__PURE__*/ S.String;
+export const ShareAccessProtocol = S.String;
 
 /** Type of access to be allowed on the share for this user. */
 export type ShareAccessType = "Change" | "Read" | "Custom";
-export const ShareAccessType = /*@__PURE__*/ S.String;
+export const ShareAccessType = S.String;
 
 /** The mapping between a particular user and the access type on the SMB share. */
 export interface UserAccessRight {
@@ -3815,7 +3813,7 @@ export const SharePropertiesUserAccessRightsList = /*@__PURE__*/ S.Array(
 
 /** Type of access to be allowed for the client. */
 export type ClientPermissionType = "NoAccess" | "ReadOnly" | "ReadWrite";
-export const ClientPermissionType = /*@__PURE__*/ S.String;
+export const ClientPermissionType = S.String;
 
 /** The mapping between a particular client IP and the type of access client has on the NFS share. */
 export interface ClientAccessRight {
@@ -3841,7 +3839,7 @@ export const SharePropertiesClientAccessRightsList = /*@__PURE__*/ S.Array(
 
 /** Mounting type. */
 export type MountType = "Volume" | "HostPath";
-export const MountType = /*@__PURE__*/ S.String;
+export const MountType = S.String;
 
 /** The share mount point. */
 export interface MountPointMap {
@@ -3874,7 +3872,7 @@ export const SharePropertiesShareMappingsList = /*@__PURE__*/ S.Array(
 
 /** Data policy of the share. */
 export type DataPolicy = "Cloud" | "Local";
-export const DataPolicy = /*@__PURE__*/ S.String;
+export const DataPolicy = S.String;
 
 /** The share properties. */
 export interface ShareProperties {
@@ -3975,7 +3973,7 @@ export type StorageAccountStatus =
   | "Unknown"
   | "Updating"
   | "NeedsAttention";
-export const StorageAccountStatus = /*@__PURE__*/ S.String;
+export const StorageAccountStatus = S.String;
 
 /** The storage account properties. */
 export interface StorageAccountProperties {
@@ -4059,11 +4057,11 @@ export const GetStorageAccountCredentialsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Signifies whether SSL needs to be enabled or not. */
 export type SSLStatus = "Enabled" | "Disabled";
-export const SSLStatus = /*@__PURE__*/ S.String;
+export const SSLStatus = S.String;
 
 /** Type of storage accessed on the storage account. */
 export type AccountType = "GeneralPurposeStorage" | "BlobStorage";
-export const AccountType = /*@__PURE__*/ S.String;
+export const AccountType = S.String;
 
 /** The storage account credential properties. */
 export interface StorageAccountCredentialProperties {
@@ -4154,7 +4152,7 @@ export const GetTriggerRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Trigger Kind. */
 export type TriggerEventType = "FileEvent" | "PeriodicTimerEvent";
-export const TriggerEventType = /*@__PURE__*/ S.String;
+export const TriggerEventType = S.String;
 
 export interface GetTriggerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -4230,7 +4228,7 @@ export const UserPropertiesShareAccessRightsList = /*@__PURE__*/ S.Array(
 
 /** Type of the user. */
 export type UserType = "Share" | "LocalManagement" | "ARM";
-export const UserType = /*@__PURE__*/ S.String;
+export const UserType = S.String;
 
 /** The user properties. */
 export interface UserProperties {
@@ -4537,15 +4535,15 @@ export const DataBoxEdgeSkuCostsList = /*@__PURE__*/ S.Array(
 
 /** Sku can be signed up by customer or not. */
 export type SkuSignupOption = "None" | "Available";
-export const SkuSignupOption = /*@__PURE__*/ S.String;
+export const SkuSignupOption = S.String;
 
 /** Availability of the Sku as preview/stable. */
 export type SkuVersion = "Stable" | "Preview";
-export const SkuVersion = /*@__PURE__*/ S.String;
+export const SkuVersion = S.String;
 
 /** Links to the next set of results */
 export type SkuAvailability = "Available" | "Unavailable";
-export const SkuAvailability = /*@__PURE__*/ S.String;
+export const SkuAvailability = S.String;
 
 /** List of Shipment Types supported by this SKU */
 export type DataBoxEdgeSkuShipmentTypesList = Array<ShipmentType>;
@@ -5020,7 +5018,7 @@ export type NodeStatus =
   | "Down"
   | "Rebooting"
   | "ShuttingDown";
-export const NodeStatus = /*@__PURE__*/ S.String;
+export const NodeStatus = S.String;
 
 /** This class represents the nodes in a highly available cluster */
 export interface NodeProperties {
@@ -5137,7 +5135,7 @@ export type MetricUnit =
   | "Bytes"
   | "BytesPerSecond"
   | "CountPerSecond";
-export const MetricUnit = /*@__PURE__*/ S.String;
+export const MetricUnit = S.String;
 
 /** Metric aggregation type. */
 export type MetricAggregationType =
@@ -5148,7 +5146,7 @@ export type MetricAggregationType =
   | "Maximum"
   | "Total"
   | "Count";
-export const MetricAggregationType = /*@__PURE__*/ S.String;
+export const MetricAggregationType = S.String;
 
 /** Metric Dimension v1. */
 export interface MetricDimensionV1 {
@@ -5177,7 +5175,7 @@ export const MetricSpecificationV1DimensionsList = /*@__PURE__*/ S.Array(
 
 /** Metric category. */
 export type MetricCategory = "Capacity" | "Transaction";
-export const MetricCategory = /*@__PURE__*/ S.String;
+export const MetricCategory = S.String;
 
 export type TimeGrain =
   | "PT1M"
@@ -5188,7 +5186,7 @@ export type TimeGrain =
   | "PT6H"
   | "PT12H"
   | "PT1D";
-export const TimeGrain = /*@__PURE__*/ S.String;
+export const TimeGrain = S.String;
 
 /** Support granularity of metrics. */
 export type MetricSpecificationV1SupportedTimeGrainTypesList = Array<TimeGrain>;
@@ -6659,7 +6657,7 @@ export type UpdateDeviceExtendedInformationResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateDeviceExtendedInformationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateDeviceExtendedInformationResponseSystemDataLastModifiedByType =
@@ -6668,7 +6666,7 @@ export type UpdateDeviceExtendedInformationResponseSystemDataLastModifiedByType 
   | "ManagedIdentity"
   | "Key";
 export const UpdateDeviceExtendedInformationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateDeviceExtendedInformationResponseSystemData {
@@ -6842,7 +6840,7 @@ export const UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse =
 
 /** The authentication type. */
 export type AuthenticationType = "Invalid" | "AzureActiveDirectory";
-export const AuthenticationType = /*@__PURE__*/ S.String;
+export const AuthenticationType = S.String;
 
 /** Raw Certificate Data. */
 export interface RawCertificateData {

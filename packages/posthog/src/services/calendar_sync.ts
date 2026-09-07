@@ -36,7 +36,7 @@ export const CreateCalendarSyncSyncNowRequest = /*@__PURE__*/ S.suspend(() =>
 export type CalendarSyncTriggerResponseStatusEnum =
   | "started"
   | "already_running";
-export const CalendarSyncTriggerResponseStatusEnum = /*@__PURE__*/ S.String;
+export const CalendarSyncTriggerResponseStatusEnum = S.String;
 
 /** Response of the calendar sync-now trigger. */
 export interface CalendarSyncTriggerResponse {

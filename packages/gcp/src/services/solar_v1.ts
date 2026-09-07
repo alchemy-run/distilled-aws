@@ -42,8 +42,7 @@ export class NotFound
 export type FindClosestBuildingInsightsAdditionalInsightsEnum =
   | "ADDITIONAL_INSIGHTS_UNSPECIFIED"
   | "DETECTED_ARRAYS";
-export const FindClosestBuildingInsightsAdditionalInsightsEnum =
-  /*@__PURE__*/ S.String;
+export const FindClosestBuildingInsightsAdditionalInsightsEnum = S.String;
 
 export type FindClosestBuildingInsightsAdditionalInsightsEnumList = Array<
   FindClosestBuildingInsightsAdditionalInsightsEnum | (string & {})
@@ -56,8 +55,7 @@ export const FindClosestBuildingInsightsAdditionalInsightsEnumList =
 export type FindClosestBuildingInsightsExperimentsEnum =
   | "EXPERIMENT_UNSPECIFIED"
   | "EXPANDED_COVERAGE";
-export const FindClosestBuildingInsightsExperimentsEnum =
-  /*@__PURE__*/ S.String;
+export const FindClosestBuildingInsightsExperimentsEnum = S.String;
 
 export type FindClosestBuildingInsightsExperimentsEnumList = Array<
   FindClosestBuildingInsightsExperimentsEnum | (string & {})
@@ -73,8 +71,7 @@ export type FindClosestBuildingInsightsRequiredQualityEnum =
   | "MEDIUM"
   | "LOW"
   | "BASE";
-export const FindClosestBuildingInsightsRequiredQualityEnum =
-  /*@__PURE__*/ S.String;
+export const FindClosestBuildingInsightsRequiredQualityEnum = S.String;
 
 export interface FindClosestBuildingInsightsRequest {
   /** Optional. A list of additional_insights to be included in the response. */
@@ -367,7 +364,7 @@ export type SolarPanelOrientationEnum =
   | "SOLAR_PANEL_ORIENTATION_UNSPECIFIED"
   | "LANDSCAPE"
   | "PORTRAIT";
-export const SolarPanelOrientationEnum = /*@__PURE__*/ S.String;
+export const SolarPanelOrientationEnum = S.String;
 
 /** SolarPanel describes the position, orientation, and production of a single solar panel. See the panel_height_meters, panel_width_meters, and panel_capacity_watts fields in SolarPotential for information on the parameters of the panel. */
 export interface SolarPanel {
@@ -552,15 +549,14 @@ export type BuildingInsightsImageryQualityEnum =
   | "MEDIUM"
   | "LOW"
   | "BASE";
-export const BuildingInsightsImageryQualityEnum = /*@__PURE__*/ S.String;
+export const BuildingInsightsImageryQualityEnum = S.String;
 
 export type BuildingInsightsDetectedArraysDetectionStatusEnum =
   | "DETECTION_STATUS_UNSPECIFIED"
   | "DETECTION_STATUS_DATA_UNAVAILABLE"
   | "DETECTION_STATUS_ARRAYS_DETECTED"
   | "DETECTION_STATUS_NO_ARRAYS_DETECTED";
-export const BuildingInsightsDetectedArraysDetectionStatusEnum =
-  /*@__PURE__*/ S.String;
+export const BuildingInsightsDetectedArraysDetectionStatusEnum = S.String;
 
 /** Information about solar arrays detected on the building. */
 export interface BuildingInsightsDetectedArrays {
@@ -633,7 +629,7 @@ export type GetDataLayersViewEnum =
   | "IMAGERY_AND_ANNUAL_FLUX_LAYERS"
   | "IMAGERY_AND_ALL_FLUX_LAYERS"
   | "FULL_LAYERS";
-export const GetDataLayersViewEnum = /*@__PURE__*/ S.String;
+export const GetDataLayersViewEnum = S.String;
 
 export type GetDataLayersRequiredQualityEnum =
   | "IMAGERY_QUALITY_UNSPECIFIED"
@@ -641,12 +637,12 @@ export type GetDataLayersRequiredQualityEnum =
   | "MEDIUM"
   | "LOW"
   | "BASE";
-export const GetDataLayersRequiredQualityEnum = /*@__PURE__*/ S.String;
+export const GetDataLayersRequiredQualityEnum = S.String;
 
 export type GetDataLayersExperimentsEnum =
   | "EXPERIMENT_UNSPECIFIED"
   | "EXPANDED_COVERAGE";
-export const GetDataLayersExperimentsEnum = /*@__PURE__*/ S.String;
+export const GetDataLayersExperimentsEnum = S.String;
 
 export type GetDataLayersExperimentsEnumList = Array<
   GetDataLayersExperimentsEnum | (string & {})
@@ -702,7 +698,7 @@ export type DataLayersImageryQualityEnum =
   | "MEDIUM"
   | "LOW"
   | "BASE";
-export const DataLayersImageryQualityEnum = /*@__PURE__*/ S.String;
+export const DataLayersImageryQualityEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(

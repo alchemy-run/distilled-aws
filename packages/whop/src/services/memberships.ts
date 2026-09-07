@@ -88,11 +88,11 @@ export type CancelOptions =
   | "bad_experience"
   | "other"
   | "testing";
-export const CancelOptions = /*@__PURE__*/ S.String;
+export const CancelOptions = S.String;
 
 /** The state of a membership after a customer provides a cancelation reason. */
 export type CancelationStatus = "won_back" | "left" | "canceling";
-export const CancelationStatus = /*@__PURE__*/ S.String;
+export const CancelationStatus = S.String;
 
 /** The company this membership belongs to. */
 export interface LegacyMembershipCompany {
@@ -202,7 +202,7 @@ export type Currencies =
   | "awg"
   | "whop_usd"
   | "xau";
-export const Currencies = /*@__PURE__*/ S.String;
+export const Currencies = S.String;
 
 /** The response from a custom field on checkout */
 export interface LegacyMembershipCustomFieldResponsesItem {
@@ -330,7 +330,7 @@ export type MembershipStatus2 =
   | "unresolved"
   | "drafted"
   | "canceling";
-export const MembershipStatus2 = /*@__PURE__*/ S.String;
+export const MembershipStatus2 = S.String;
 
 /** The user who owns this membership. Null if the user account has been deleted. */
 export interface LegacyMembershipUser {
@@ -494,7 +494,7 @@ export const MembershipAccount = /*@__PURE__*/ S.suspend(() =>
 
 /** What the member can reach on the account: `customer` for paying members, `admin` for team members, `no_access` once every grant has lapsed. */
 export type MembershipMemberAccessLevel = "no_access" | "admin" | "customer";
-export const MembershipMemberAccessLevel = /*@__PURE__*/ S.String;
+export const MembershipMemberAccessLevel = S.String;
 
 export interface MembershipMember {
   /** What the member can reach on the account: `customer` for paying members, `admin` for team members, `no_access` once every grant has lapsed. */
@@ -523,7 +523,7 @@ export type MembershipStatus =
   | "canceled"
   | "expired"
   | "unresolved";
-export const MembershipStatus = /*@__PURE__*/ S.String;
+export const MembershipStatus = S.String;
 
 export interface Membership {
   /** The account (seller) this membership belongs to. */
@@ -641,13 +641,13 @@ export type ListMembershipsRequestStatus =
   | "expired"
   | "canceling"
   | "paused";
-export const ListMembershipsRequestStatus = /*@__PURE__*/ S.String;
+export const ListMembershipsRequestStatus = S.String;
 
 export type ListMembershipsRequestOrder = "created_at";
-export const ListMembershipsRequestOrder = /*@__PURE__*/ S.String;
+export const ListMembershipsRequestOrder = S.String;
 
 export type ListMembershipsRequestDirection = "asc" | "desc";
-export const ListMembershipsRequestDirection = /*@__PURE__*/ S.String;
+export const ListMembershipsRequestDirection = S.String;
 
 export interface ListMembershipsRequest {
   /** Narrow to one account (`biz_` tag). With read access to the account this lists all of its memberships; without, only the caller's own memberships in it. */

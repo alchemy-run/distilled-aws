@@ -40,7 +40,7 @@ export type ProxyIpStatus =
   | "PROXY_IP_STATUS_ONLINE"
   | "PROXY_IP_STATUS_TERMINATED"
   | "PROXY_IP_STATUS_UNHEALTHY";
-export const ProxyIpStatus = /*@__PURE__*/ S.String;
+export const ProxyIpStatus = S.String;
 
 export interface ProxyIp {
   proxyIp?: string;
@@ -210,7 +210,7 @@ export type ObjectCreationType =
   | "OBJECT_CREATION_TYPE_CREATE_OVERWRITE_IF_EXISTS"
   | "OBJECT_CREATION_TYPE_ANONYMOUS_OWNED_BY_APP"
   | "OBJECT_CREATION_TYPE_EPHEMERAL";
-export const ObjectCreationType = /*@__PURE__*/ S.String;
+export const ObjectCreationType = S.String;
 
 export interface ProxyGetOrCreateRequest {
   deploymentName?: string;

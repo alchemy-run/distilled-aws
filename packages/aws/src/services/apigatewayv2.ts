@@ -158,11 +158,11 @@ export const Cors = /*@__PURE__*/ S.suspend(() =>
 export type Arn = string;
 export type StringWithLengthBetween0And1024 = string;
 export type IpAddressType = "ipv4" | "dualstack" | (string & {});
-export const IpAddressType = /*@__PURE__*/ S.String;
+export const IpAddressType = S.String;
 
 export type StringWithLengthBetween1And128 = string;
 export type ProtocolType = "WEBSOCKET" | "HTTP" | (string & {});
-export const ProtocolType = /*@__PURE__*/ S.String;
+export const ProtocolType = S.String;
 
 export type SelectionKey = string;
 export type StringWithLengthBetween1And1600 = string;
@@ -362,7 +362,7 @@ export const CreateApiMappingResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateApiMappingResponse>;
 export type IntegerWithLengthBetween0And3600 = number;
 export type AuthorizerType = "REQUEST" | "JWT" | (string & {});
-export const AuthorizerType = /*@__PURE__*/ S.String;
+export const AuthorizerType = S.String;
 
 export type IdentitySourceList = string[];
 export const IdentitySourceList = /*@__PURE__*/ S.Array(S.String);
@@ -506,7 +506,7 @@ export type DeploymentStatus =
   | "FAILED"
   | "DEPLOYED"
   | (string & {});
-export const DeploymentStatus = /*@__PURE__*/ S.String;
+export const DeploymentStatus = S.String;
 
 export interface CreateDeploymentResponse {
   AutoDeployed?: boolean;
@@ -546,13 +546,13 @@ export type DomainNameStatus =
   | "PENDING_CERTIFICATE_REIMPORT"
   | "PENDING_OWNERSHIP_VERIFICATION"
   | (string & {});
-export const DomainNameStatus = /*@__PURE__*/ S.String;
+export const DomainNameStatus = S.String;
 
 export type EndpointType = "REGIONAL" | "EDGE" | (string & {});
-export const EndpointType = /*@__PURE__*/ S.String;
+export const EndpointType = S.String;
 
 export type SecurityPolicy = "TLS_1_0" | "TLS_1_2" | (string & {});
-export const SecurityPolicy = /*@__PURE__*/ S.String;
+export const SecurityPolicy = S.String;
 
 export interface DomainNameConfiguration {
   ApiGatewayDomainName?: string;
@@ -627,7 +627,7 @@ export type RoutingMode =
   | "ROUTING_RULE_ONLY"
   | "ROUTING_RULE_THEN_API_MAPPING"
   | (string & {});
-export const RoutingMode = /*@__PURE__*/ S.String;
+export const RoutingMode = S.String;
 
 export interface CreateDomainNameRequest {
   DomainName?: string;
@@ -720,13 +720,13 @@ export const CreateDomainNameResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDomainNameResponse>;
 export type StringWithLengthBetween1And1024 = string;
 export type ConnectionType = "INTERNET" | "VPC_LINK" | (string & {});
-export const ConnectionType = /*@__PURE__*/ S.String;
+export const ConnectionType = S.String;
 
 export type ContentHandlingStrategy =
   | "CONVERT_TO_BINARY"
   | "CONVERT_TO_TEXT"
   | (string & {});
-export const ContentHandlingStrategy = /*@__PURE__*/ S.String;
+export const ContentHandlingStrategy = S.String;
 
 export type IntegrationType =
   | "AWS"
@@ -735,14 +735,14 @@ export type IntegrationType =
   | "HTTP_PROXY"
   | "AWS_PROXY"
   | (string & {});
-export const IntegrationType = /*@__PURE__*/ S.String;
+export const IntegrationType = S.String;
 
 export type PassthroughBehavior =
   | "WHEN_NO_MATCH"
   | "NEVER"
   | "WHEN_NO_TEMPLATES"
   | (string & {});
-export const PassthroughBehavior = /*@__PURE__*/ S.String;
+export const PassthroughBehavior = S.String;
 
 export type IntegrationParameters = { [key: string]: string | undefined };
 export const IntegrationParameters = /*@__PURE__*/ S.Record(
@@ -1273,7 +1273,7 @@ export type PublishStatus =
   | "DISABLE_FAILED"
   | "DISABLED"
   | (string & {});
-export const PublishStatus = /*@__PURE__*/ S.String;
+export const PublishStatus = S.String;
 
 export type __stringMin1Max2048 = string;
 export interface StatusException {
@@ -1604,7 +1604,7 @@ export const RestEndpointIdentifier = /*@__PURE__*/ S.suspend(() =>
   identifier: "RestEndpointIdentifier",
 }) as any as S.Schema<RestEndpointIdentifier>;
 export type TryItState = "ENABLED" | "DISABLED" | (string & {});
-export const TryItState = /*@__PURE__*/ S.String;
+export const TryItState = S.String;
 
 export interface CreateProductRestEndpointPageRequest {
   DisplayContent?: EndpointDisplayContent;
@@ -1664,7 +1664,7 @@ export const EndpointDisplayContentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EndpointDisplayContentResponse",
 }) as any as S.Schema<EndpointDisplayContentResponse>;
 export type Status = "AVAILABLE" | "IN_PROGRESS" | "FAILED" | (string & {});
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 export interface CreateProductRestEndpointPageResponse {
   DisplayContent?: EndpointDisplayContentResponse & {
@@ -1721,7 +1721,7 @@ export type AuthorizationType =
   | "CUSTOM"
   | "JWT"
   | (string & {});
-export const AuthorizationType = /*@__PURE__*/ S.String;
+export const AuthorizationType = S.String;
 
 export type RouteModels = { [key: string]: string | undefined };
 export const RouteModels = /*@__PURE__*/ S.Record(
@@ -2101,7 +2101,7 @@ export const AccessLogSettings = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccessLogSettings",
 }) as any as S.Schema<AccessLogSettings>;
 export type LoggingLevel = "ERROR" | "INFO" | "OFF" | (string & {});
-export const LoggingLevel = /*@__PURE__*/ S.String;
+export const LoggingLevel = S.String;
 
 export interface RouteSettings {
   DataTraceEnabled?: boolean;
@@ -2294,10 +2294,10 @@ export type VpcLinkStatus =
   | "FAILED"
   | "INACTIVE"
   | (string & {});
-export const VpcLinkStatus = /*@__PURE__*/ S.String;
+export const VpcLinkStatus = S.String;
 
 export type VpcLinkVersion = "V2" | (string & {});
-export const VpcLinkVersion = /*@__PURE__*/ S.String;
+export const VpcLinkVersion = S.String;
 
 export interface CreateVpcLinkResponse {
   CreatedDate?: Date;
@@ -4192,7 +4192,7 @@ export type PreviewStatus =
   | "PREVIEW_FAILED"
   | "PREVIEW_READY"
   | (string & {});
-export const PreviewStatus = /*@__PURE__*/ S.String;
+export const PreviewStatus = S.String;
 
 export interface Preview {
   PreviewStatus?: PreviewStatus;

@@ -235,14 +235,14 @@ export type DatasourcePackage =
   | "EKS_AUDIT"
   | "ASFF_SECURITYHUB_FINDING"
   | (string & {});
-export const DatasourcePackage = /*@__PURE__*/ S.String;
+export const DatasourcePackage = S.String;
 
 export type DatasourcePackageIngestState =
   | "STARTED"
   | "STOPPED"
   | "DISABLED"
   | (string & {});
-export const DatasourcePackageIngestState = /*@__PURE__*/ S.String;
+export const DatasourcePackageIngestState = S.String;
 
 export interface TimestampForCollection {
   Timestamp?: Date;
@@ -438,18 +438,18 @@ export type MemberStatus =
   | "ENABLED"
   | "ACCEPTED_BUT_DISABLED"
   | (string & {});
-export const MemberStatus = /*@__PURE__*/ S.String;
+export const MemberStatus = S.String;
 
 export type MemberDisabledReason =
   | "VOLUME_TOO_HIGH"
   | "VOLUME_UNKNOWN"
   | (string & {});
-export const MemberDisabledReason = /*@__PURE__*/ S.String;
+export const MemberDisabledReason = S.String;
 
 export type ByteValue = number;
 export type Percentage = number;
 export type InvitationType = "INVITATION" | "ORGANIZATION" | (string & {});
-export const InvitationType = /*@__PURE__*/ S.String;
+export const InvitationType = S.String;
 
 export interface DatasourcePackageUsageInfo {
   VolumeUsageInBytes?: number;
@@ -718,10 +718,10 @@ export const GetInvestigationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetInvestigationRequest>;
 export type EntityArn = string;
 export type EntityType = "IAM_ROLE" | "IAM_USER" | (string & {});
-export const EntityType = /*@__PURE__*/ S.String;
+export const EntityType = S.String;
 
 export type Status = "RUNNING" | "FAILED" | "SUCCESSFUL" | (string & {});
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 export type Severity =
   | "INFORMATIONAL"
@@ -730,10 +730,10 @@ export type Severity =
   | "HIGH"
   | "CRITICAL"
   | (string & {});
-export const Severity = /*@__PURE__*/ S.String;
+export const Severity = S.String;
 
 export type State = "ACTIVE" | "ARCHIVED" | (string & {});
-export const State = /*@__PURE__*/ S.String;
+export const State = S.String;
 
 export interface GetInvestigationResponse {
   GraphArn?: string;
@@ -914,7 +914,7 @@ export type IndicatorType =
   | "RELATED_FINDING"
   | "RELATED_FINDING_GROUP"
   | (string & {});
-export const IndicatorType = /*@__PURE__*/ S.String;
+export const IndicatorType = S.String;
 
 export type AiPaginationToken = string;
 export type MaxResults = number;
@@ -995,7 +995,7 @@ export const ImpossibleTravelDetail = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImpossibleTravelDetail",
 }) as any as S.Schema<ImpossibleTravelDetail>;
 export type Reason = "AWS_THREAT_INTELLIGENCE" | (string & {});
-export const Reason = /*@__PURE__*/ S.String;
+export const Reason = S.String;
 
 export interface FlaggedIpAddressDetail {
   IpAddress?: string;
@@ -1155,10 +1155,10 @@ export const FilterCriteria = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "FilterCriteria" }) as any as S.Schema<FilterCriteria>;
 export type Field = "SEVERITY" | "STATUS" | "CREATED_TIME" | (string & {});
-export const Field = /*@__PURE__*/ S.String;
+export const Field = S.String;
 
 export type SortOrder = "ASC" | "DESC" | (string & {});
-export const SortOrder = /*@__PURE__*/ S.String;
+export const SortOrder = S.String;
 
 export interface SortCriteria {
   Field?: Field;
@@ -1607,7 +1607,7 @@ export type ErrorCode =
   | "INVALID_REQUEST_BODY"
   | "INTERNAL_ERROR"
   | (string & {});
-export const ErrorCode = /*@__PURE__*/ S.String;
+export const ErrorCode = S.String;
 
 export type ErrorCodeReason = string;
 export type Resource = string;

@@ -48,7 +48,7 @@ export const AbortWorkflowResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AbortWorkflowResponse>;
 
 export type Type = "Microsoft.StorageSync/storageSyncServices";
-export const Type = /*@__PURE__*/ S.String;
+export const Type = S.String;
 
 export interface CheckStorageSyncServiceNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -81,7 +81,7 @@ export const CheckStorageSyncServiceNameAvailabilityRequest =
 
 /** Gets the reason that a Storage Sync Service name could not be used. The Reason element is only returned if NameAvailable is false. */
 export type NameAvailabilityReason = "Invalid" | "AlreadyExists";
-export const NameAvailabilityReason = /*@__PURE__*/ S.String;
+export const NameAvailabilityReason = S.String;
 
 /** The CheckNameAvailability operation response. */
 export interface CheckNameAvailabilityResult {
@@ -385,7 +385,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -393,7 +393,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -454,15 +454,13 @@ export const CloudEndpointLastChangeEnumerationStatus = /*@__PURE__*/ S.suspend(
 export type CloudEndpointChangeEnumerationActivityState =
   | "InitialEnumerationInProgress"
   | "EnumerationInProgress";
-export const CloudEndpointChangeEnumerationActivityState =
-  /*@__PURE__*/ S.String;
+export const CloudEndpointChangeEnumerationActivityState = S.String;
 
 /** State of the total counts of change enumeration activity */
 export type CloudEndpointChangeEnumerationTotalCountsState =
   | "Calculating"
   | "Final";
-export const CloudEndpointChangeEnumerationTotalCountsState =
-  /*@__PURE__*/ S.String;
+export const CloudEndpointChangeEnumerationTotalCountsState = S.String;
 
 /** Cloud endpoint change enumeration activity object */
 export interface CloudEndpointChangeEnumerationActivity {
@@ -618,7 +616,7 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
@@ -714,8 +712,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Properties of the private endpoint connection. */
 export interface PrivateEndpointConnectionProperties {
@@ -845,11 +842,11 @@ export type RegisteredServerAgentVersionStatus =
   | "NearExpiry"
   | "Expired"
   | "Blocked";
-export const RegisteredServerAgentVersionStatus = /*@__PURE__*/ S.String;
+export const RegisteredServerAgentVersionStatus = S.String;
 
 /** Type of the Server Auth type */
 export type ServerAuthType = "Certificate" | "ManagedIdentity";
-export const ServerAuthType = /*@__PURE__*/ S.String;
+export const ServerAuthType = S.String;
 
 /** RegisteredServer Properties object. */
 export interface RegisteredServerProperties {
@@ -968,7 +965,7 @@ export const CreateRegisteredServerResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the Feature Status */
 export type FeatureStatus = "on" | "off";
-export const FeatureStatus = /*@__PURE__*/ S.String;
+export const FeatureStatus = S.String;
 
 /** Policy for how namespace and files are recalled during FastDr. */
 export type ServerEndpointCreateParametersPropertiesInitialDownloadPolicy =
@@ -976,21 +973,20 @@ export type ServerEndpointCreateParametersPropertiesInitialDownloadPolicy =
   | "NamespaceThenModifiedFiles"
   | "AvoidTieredFiles";
 export const ServerEndpointCreateParametersPropertiesInitialDownloadPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Policy for enabling follow-the-sun business models: link local cache to cloud behavior to pre-populate before local access. */
 export type ServerEndpointCreateParametersPropertiesLocalCacheMode =
   | "DownloadNewAndModifiedFiles"
   | "UpdateLocallyCachedFiles";
-export const ServerEndpointCreateParametersPropertiesLocalCacheMode =
-  /*@__PURE__*/ S.String;
+export const ServerEndpointCreateParametersPropertiesLocalCacheMode = S.String;
 
 /** Policy for how the initial upload sync session is performed. */
 export type ServerEndpointCreateParametersPropertiesInitialUploadPolicy =
   | "ServerAuthoritative"
   | "Merge";
 export const ServerEndpointCreateParametersPropertiesInitialUploadPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** ServerEndpoint Properties object. */
 export interface ServerEndpointCreateParametersProperties {
@@ -1084,14 +1080,14 @@ export const CreateServerEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the server endpoint health state */
 export type ServerEndpointHealthState = "Unavailable" | "Healthy" | "Error";
-export const ServerEndpointHealthState = /*@__PURE__*/ S.String;
+export const ServerEndpointHealthState = S.String;
 
 /** Type of the sync activity state */
 export type ServerEndpointSyncActivityState =
   | "Upload"
   | "Download"
   | "UploadAndDownload";
-export const ServerEndpointSyncActivityState = /*@__PURE__*/ S.String;
+export const ServerEndpointSyncActivityState = S.String;
 
 /** Files not syncing error object */
 export interface ServerEndpointFilesNotSyncingError {
@@ -1127,7 +1123,7 @@ export type ServerEndpointSyncMode =
   | "InitialUpload"
   | "SnapshotUpload"
   | "InitialFullDownload";
-export const ServerEndpointSyncMode = /*@__PURE__*/ S.String;
+export const ServerEndpointSyncMode = S.String;
 
 /** Sync Session status object. */
 export interface ServerEndpointSyncSessionStatus {
@@ -1169,7 +1165,7 @@ export const ServerEndpointSyncSessionStatus = /*@__PURE__*/ S.suspend(() =>
 export type ServerEndpointSyncSessionWarningType =
   | "NoWarning"
   | "BlockedByLargeFile";
-export const ServerEndpointSyncSessionWarningType = /*@__PURE__*/ S.String;
+export const ServerEndpointSyncSessionWarningType = S.String;
 
 /** Sync Session status object. */
 export interface ServerEndpointSyncActivityStatus {
@@ -1244,7 +1240,7 @@ export type ServerEndpointOfflineDataTransferState =
   | "Stopping"
   | "NotRunning"
   | "Complete";
-export const ServerEndpointOfflineDataTransferState = /*@__PURE__*/ S.String;
+export const ServerEndpointOfflineDataTransferState = S.String;
 
 /** Background data download activity object */
 export interface ServerEndpointBackgroundDataDownloadActivity {
@@ -1448,7 +1444,7 @@ export const CloudTieringDatePolicyStatus = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the cloud tiering low disk mode state */
 export type CloudTieringLowDiskModeState = "Enabled" | "Disabled";
-export const CloudTieringLowDiskModeState = /*@__PURE__*/ S.String;
+export const CloudTieringLowDiskModeState = S.String;
 
 /** Information regarding the low disk mode state */
 export interface CloudTieringLowDiskMode {
@@ -1558,21 +1554,19 @@ export type ServerEndpointPropertiesInitialDownloadPolicy =
   | "NamespaceOnly"
   | "NamespaceThenModifiedFiles"
   | "AvoidTieredFiles";
-export const ServerEndpointPropertiesInitialDownloadPolicy =
-  /*@__PURE__*/ S.String;
+export const ServerEndpointPropertiesInitialDownloadPolicy = S.String;
 
 /** Policy for enabling follow-the-sun business models: link local cache to cloud behavior to pre-populate before local access. */
 export type ServerEndpointPropertiesLocalCacheMode =
   | "DownloadNewAndModifiedFiles"
   | "UpdateLocallyCachedFiles";
-export const ServerEndpointPropertiesLocalCacheMode = /*@__PURE__*/ S.String;
+export const ServerEndpointPropertiesLocalCacheMode = S.String;
 
 /** Policy for how the initial upload sync session is performed. */
 export type ServerEndpointPropertiesInitialUploadPolicy =
   | "ServerAuthoritative"
   | "Merge";
-export const ServerEndpointPropertiesInitialUploadPolicy =
-  /*@__PURE__*/ S.String;
+export const ServerEndpointPropertiesInitialUploadPolicy = S.String;
 
 /** Server provisioning status */
 export type ServerProvisioningStatus =
@@ -1581,7 +1575,7 @@ export type ServerProvisioningStatus =
   | "Ready_SyncNotFunctional"
   | "Ready_SyncFunctional"
   | "Error";
-export const ServerProvisioningStatus = /*@__PURE__*/ S.String;
+export const ServerProvisioningStatus = S.String;
 
 /** Additional information for the provisioning step */
 export type ServerEndpointProvisioningStepStatusAdditionalInformationMap = {
@@ -1777,7 +1771,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export type UserAssignedIdentityInput = PrivateEndpointInput;
@@ -1811,7 +1805,7 @@ export const CreateStorageSyncServiceRequestIdentity = /*@__PURE__*/ S.suspend(
 export type IncomingTrafficPolicy =
   | "AllowAllTraffic"
   | "AllowVirtualNetworksOnly";
-export const IncomingTrafficPolicy = /*@__PURE__*/ S.String;
+export const IncomingTrafficPolicy = S.String;
 
 /** StorageSyncService Properties object. */
 export interface StorageSyncServiceCreateParametersProperties {
@@ -2822,11 +2816,11 @@ export type WorkflowStatus =
   | "succeeded"
   | "aborted"
   | "failed";
-export const WorkflowStatus = /*@__PURE__*/ S.String;
+export const WorkflowStatus = S.String;
 
 /** Type of the Operation Direction */
 export type OperationDirection = "do" | "undo" | "cancel";
-export const OperationDirection = /*@__PURE__*/ S.String;
+export const OperationDirection = S.String;
 
 /** Workflow Properties object. */
 export interface WorkflowProperties {
@@ -3955,7 +3949,7 @@ export const ServerEndpointsRecallActionResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Change Detection Mode. Applies to a directory specified in directoryPath parameter. */
 export type ChangeDetectionMode = "Default" | "Recursive";
-export const ChangeDetectionMode = /*@__PURE__*/ S.String;
+export const ChangeDetectionMode = S.String;
 
 /** Array of relative paths on the Azure File share to be included in the change detection. Can be files and directories. */
 export type TriggerCloudEndpointChangeDetectionRequestPathsList = Array<string>;
@@ -4196,8 +4190,7 @@ export const UpdateRegisteredServerResponse = /*@__PURE__*/ S.suspend(() =>
 export type ServerEndpointUpdatePropertiesLocalCacheMode =
   | "DownloadNewAndModifiedFiles"
   | "UpdateLocallyCachedFiles";
-export const ServerEndpointUpdatePropertiesLocalCacheMode =
-  /*@__PURE__*/ S.String;
+export const ServerEndpointUpdatePropertiesLocalCacheMode = S.String;
 
 /** ServerEndpoint Update Properties object. */
 export interface ServerEndpointUpdateProperties {

@@ -15,7 +15,7 @@ export type { AzureOpError, AzureOpContext };
 
 /** Gets or sets the SKU name of the account. */
 export type SkuNameEnum = "Free" | "Basic";
-export const SkuNameEnum = /*@__PURE__*/ S.String;
+export const SkuNameEnum = S.String;
 
 /** The account SKU. */
 export interface Sku {
@@ -57,7 +57,7 @@ export const KeyVaultProperties = /*@__PURE__*/ S.suspend(() =>
 export type EncryptionKeySourceType =
   | "Microsoft.Automation"
   | "Microsoft.Keyvault";
-export const EncryptionKeySourceType = /*@__PURE__*/ S.String;
+export const EncryptionKeySourceType = S.String;
 
 /** User identity used for CMK. */
 export interface EncryptionPropertiesIdentity {
@@ -120,7 +120,7 @@ export type ResourceIdentityType =
   | "UserAssigned"
   | "SystemAssigned, UserAssigned"
   | "None";
-export const ResourceIdentityType = /*@__PURE__*/ S.String;
+export const ResourceIdentityType = S.String;
 
 export interface UserAssignedIdentitiesPropertiesInput {}
 export const UserAssignedIdentitiesPropertiesInput = /*@__PURE__*/ S.suspend(
@@ -209,7 +209,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -217,7 +217,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -257,7 +257,7 @@ export const AutomationAccountCreateOrUpdateResponseTagsMap =
 
 /** Gets status of account. */
 export type AutomationAccountState = "Ok" | "Unavailable" | "Suspended";
-export const AutomationAccountState = /*@__PURE__*/ S.String;
+export const AutomationAccountState = S.String;
 
 /** Private endpoint which the connection belongs to. */
 export interface PrivateEndpointProperty {
@@ -869,7 +869,7 @@ export const ConnectionTypeCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 
 /** Runbook Type */
 export type GraphRunbookType = "GraphPowerShell" | "GraphPowerShellWorkflow";
-export const GraphRunbookType = /*@__PURE__*/ S.String;
+export const GraphRunbookType = S.String;
 
 /** Raw Graphical Runbook content */
 export interface RawGraphicalRunbookContent {
@@ -996,7 +996,7 @@ export const CreateHybridRunbookWorkerResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Type of the HybridWorker. */
 export type WorkerType = "HybridV1" | "HybridV2";
-export const WorkerType = /*@__PURE__*/ S.String;
+export const WorkerType = S.String;
 
 /** Definition of hybrid runbook worker property. */
 export interface HybridRunbookWorkerProperties {
@@ -1130,7 +1130,7 @@ export const CreateHybridRunbookWorkerGroupResponseTagsMap =
 
 /** Type of the HybridWorkerGroup. */
 export type GroupTypeEnum = "User" | "System";
-export const GroupTypeEnum = /*@__PURE__*/ S.String;
+export const GroupTypeEnum = S.String;
 
 /** Definition of hybrid runbook worker group property. */
 export interface HybridRunbookWorkerGroupProperties {
@@ -1278,7 +1278,7 @@ export type JobStatus =
   | "Stopping"
   | "Resuming"
   | "Removing";
-export const JobStatus = /*@__PURE__*/ S.String;
+export const JobStatus = S.String;
 
 /** Gets or sets the parameters of the job. */
 export type JobPropertiesParametersMap = { [key: string]: string | undefined };
@@ -1293,7 +1293,7 @@ export type JobProvisioningState =
   | "Succeeded"
   | "Suspended"
   | "Processing";
-export const JobProvisioningState = /*@__PURE__*/ S.String;
+export const JobProvisioningState = S.String;
 
 /** Definition of job properties. */
 export interface JobProperties {
@@ -1637,7 +1637,7 @@ export const CreateRuntimeEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Target operating system for the software update configuration. */
 export type OperatingSystemType = "Windows" | "Linux";
-export const OperatingSystemType = /*@__PURE__*/ S.String;
+export const OperatingSystemType = S.String;
 
 /** Update classification included in the software update configuration. A comma separated string with required values */
 export type WindowsUpdateClasses =
@@ -1650,7 +1650,7 @@ export type WindowsUpdateClasses =
   | "Definition"
   | "Tools"
   | "Updates";
-export const WindowsUpdateClasses = /*@__PURE__*/ S.String;
+export const WindowsUpdateClasses = S.String;
 
 /** KB numbers excluded from the software update configuration. */
 export type WindowsPropertiesExcludedKbNumbersList = Array<string>;
@@ -1692,7 +1692,7 @@ export type LinuxUpdateClasses =
   | "Critical"
   | "Security"
   | "Other";
-export const LinuxUpdateClasses = /*@__PURE__*/ S.String;
+export const LinuxUpdateClasses = S.String;
 
 /** packages excluded from the software update configuration. */
 export type LinuxPropertiesExcludedPackageNameMasksList = Array<string>;
@@ -1776,7 +1776,7 @@ export const TagSettingsPropertiesTagsMap = /*@__PURE__*/ S.Record(
 
 /** Filter VMs by Any or All specified tags. */
 export type TagOperators = "All" | "Any";
-export const TagOperators = /*@__PURE__*/ S.String;
+export const TagOperators = S.String;
 
 /** Tag filter information for the VM. */
 export interface TagSettingsProperties {
@@ -1901,7 +1901,7 @@ export type ScheduleFrequency =
   | "Week"
   | "Month"
   | "Minute";
-export const ScheduleFrequency = /*@__PURE__*/ S.String;
+export const ScheduleFrequency = S.String;
 
 /** Days of the week that the job should execute on. */
 export type AdvancedScheduleWeekDaysList = Array<string>;
@@ -1924,7 +1924,7 @@ export type ScheduleDay =
   | "Friday"
   | "Saturday"
   | "Sunday";
-export const ScheduleDay = /*@__PURE__*/ S.String;
+export const ScheduleDay = S.String;
 
 /** The properties of the create advanced schedule monthly occurrence. */
 export interface AdvancedScheduleMonthlyOccurrence {
@@ -2290,11 +2290,11 @@ export const CreateSourceControlSyncJobRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The provisioning state of the job. */
 export type ProvisioningState = "Completed" | "Failed" | "Running";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** The sync type. */
 export type SyncType = "PartialSync" | "FullSync";
-export const SyncType = /*@__PURE__*/ S.String;
+export const SyncType = S.String;
 
 /** Definition of source control sync job properties. */
 export interface SourceControlSyncJobProperties {
@@ -3400,7 +3400,7 @@ export const ContentHash = /*@__PURE__*/ S.suspend(() =>
 
 /** Gets or sets the content source type. */
 export type ContentSourceType = "embeddedContent" | "uri";
-export const ContentSourceType = /*@__PURE__*/ S.String;
+export const ContentSourceType = S.String;
 
 /** Definition of the content source. */
 export interface ContentSource {
@@ -3545,8 +3545,7 @@ export const DscConfigurationCreateOrUpdateResponseTagsMap =
 
 /** Gets or sets the provisioning state of the configuration. */
 export type DscConfigurationPropertiesProvisioningState = "Succeeded";
-export const DscConfigurationPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const DscConfigurationPropertiesProvisioningState = S.String;
 
 /** Gets or sets the configuration parameters. */
 export type DscConfigurationPropertiesParametersMap = {
@@ -3559,7 +3558,7 @@ export const DscConfigurationPropertiesParametersMap = /*@__PURE__*/ S.Record(
 
 /** Gets or sets the state of the configuration. */
 export type DscConfigurationState = "New" | "Edit" | "Published";
-export const DscConfigurationState = /*@__PURE__*/ S.String;
+export const DscConfigurationState = S.String;
 
 /** Definition of the configuration property type. */
 export interface DscConfigurationProperties {
@@ -3800,7 +3799,7 @@ export type HttpStatusCode =
   | "ServiceUnavailable"
   | "GatewayTimeout"
   | "HttpVersionNotSupported";
-export const HttpStatusCode = /*@__PURE__*/ S.String;
+export const HttpStatusCode = S.String;
 
 /** The response model for the undo edit runbook operation. */
 export interface EditRunbookDraftUndoResult {
@@ -5041,7 +5040,7 @@ export type JobStreamType =
   | "Debug"
   | "Verbose"
   | "Any";
-export const JobStreamType = /*@__PURE__*/ S.String;
+export const JobStreamType = S.String;
 
 /** Gets or sets the values of the job stream. */
 export type JobStreamPropertiesValueMap = {
@@ -5185,7 +5184,7 @@ export type ModuleProvisioningState =
   | "Failed"
   | "Canceled"
   | "Updating";
-export const ModuleProvisioningState = /*@__PURE__*/ S.String;
+export const ModuleProvisioningState = S.String;
 
 /** Definition of the content link. */
 export interface ContentLink {
@@ -5299,7 +5298,7 @@ export const GetModuleResponse = /*@__PURE__*/ S.suspend(() =>
 export type GetNodeCountInformationRequestCountType =
   | "status"
   | "nodeconfiguration";
-export const GetNodeCountInformationRequestCountType = /*@__PURE__*/ S.String;
+export const GetNodeCountInformationRequestCountType = S.String;
 
 export interface GetNodeCountInformationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5704,7 +5703,7 @@ export type PackageProvisioningState =
   | "Failed"
   | "Canceled"
   | "Updating";
-export const PackageProvisioningState = /*@__PURE__*/ S.String;
+export const PackageProvisioningState = S.String;
 
 /** Definition of the package error info type. */
 export interface PackageErrorInfo {
@@ -5728,7 +5727,7 @@ export type PackagePropertiesAllOfCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PackagePropertiesAllOfCreatedByType = /*@__PURE__*/ S.String;
+export const PackagePropertiesAllOfCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type PackagePropertiesAllOfLastModifiedByType =
@@ -5736,7 +5735,7 @@ export type PackagePropertiesAllOfLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PackagePropertiesAllOfLastModifiedByType = /*@__PURE__*/ S.String;
+export const PackagePropertiesAllOfLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PackagePropertiesAllOf {
@@ -6067,11 +6066,11 @@ export type RunbookTypeEnum =
   | "Python3"
   | "Python"
   | "PowerShell72";
-export const RunbookTypeEnum = /*@__PURE__*/ S.String;
+export const RunbookTypeEnum = S.String;
 
 /** Gets or sets the state of the runbook. */
 export type RunbookState = "New" | "Edit" | "Published";
-export const RunbookState = /*@__PURE__*/ S.String;
+export const RunbookState = S.String;
 
 /** Definition of the runbook parameter type. */
 export type RunbookParameter = DscConfigurationParameter;
@@ -6134,7 +6133,7 @@ export const RunbookDraft = /*@__PURE__*/ S.suspend(() =>
 
 /** Gets or sets the provisioning state of the runbook. */
 export type RunbookPropertiesProvisioningState = "Succeeded";
-export const RunbookPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const RunbookPropertiesProvisioningState = S.String;
 
 /** Definition of the runbook property type. */
 export interface RunbookProperties {
@@ -6846,7 +6845,7 @@ export const GetSourceControlRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The source type. Must be one of VsoGit, VsoTfvc, GitHub. */
 export type SourceType = "VsoGit" | "VsoTfvc" | "GitHub";
-export const SourceType = /*@__PURE__*/ S.String;
+export const SourceType = S.String;
 
 /** Definition of the source control properties */
 export interface SourceControlProperties {
@@ -7024,7 +7023,7 @@ export const GetSourceControlSyncJobStreamRequest = /*@__PURE__*/ S.suspend(
 
 /** The type of the sync job stream. */
 export type StreamType = "Error" | "Output";
-export const StreamType = /*@__PURE__*/ S.String;
+export const StreamType = S.String;
 
 /** The values of the job stream. */
 export type SourceControlSyncJobStreamByIdPropertiesValueMap = {
@@ -8864,11 +8863,11 @@ export const ListKeyByAutomationAccountRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Automation key name. */
 export type AutomationKeyName = "Primary" | "Secondary";
-export const AutomationKeyName = /*@__PURE__*/ S.String;
+export const AutomationKeyName = S.String;
 
 /** Automation key permissions. */
 export type AutomationKeyPermissions = "Read" | "Full";
-export const AutomationKeyPermissions = /*@__PURE__*/ S.String;
+export const AutomationKeyPermissions = S.String;
 
 /** Automation key which is used to register a DSC Node */
 export interface Key {
@@ -11363,7 +11362,7 @@ export const Python3PackageCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 
 /** Gets or sets the agent registration key name - primary or secondary. */
 export type AgentRegistrationKeyName = "primary" | "secondary";
-export const AgentRegistrationKeyName = /*@__PURE__*/ S.String;
+export const AgentRegistrationKeyName = S.String;
 
 export interface RegenerateAgentRegistrationInformationKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11717,7 +11716,7 @@ export const ScheduleCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The token type. Must be either PersonalAccessToken or Oauth. */
 export type TokenType = "PersonalAccessToken" | "Oauth";
-export const TokenType = /*@__PURE__*/ S.String;
+export const TokenType = S.String;
 
 export interface SourceControlSecurityTokenProperties {
   /** The access token. */

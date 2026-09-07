@@ -195,7 +195,7 @@ export type GoogleCloudRunV2InstanceLaunchStageEnum =
   | "BETA"
   | "GA"
   | "DEPRECATED";
-export const GoogleCloudRunV2InstanceLaunchStageEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2InstanceLaunchStageEnum = S.String;
 
 export type GoogleCloudRunV2InstanceIngressEnum =
   | "INGRESS_TRAFFIC_UNSPECIFIED"
@@ -203,13 +203,13 @@ export type GoogleCloudRunV2InstanceIngressEnum =
   | "INGRESS_TRAFFIC_INTERNAL_ONLY"
   | "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER"
   | "INGRESS_TRAFFIC_NONE";
-export const GoogleCloudRunV2InstanceIngressEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2InstanceIngressEnum = S.String;
 
 export type GoogleCloudRunV2VpcAccessEgressEnum =
   | "VPC_EGRESS_UNSPECIFIED"
   | "ALL_TRAFFIC"
   | "PRIVATE_RANGES_ONLY";
-export const GoogleCloudRunV2VpcAccessEgressEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2VpcAccessEgressEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -649,7 +649,7 @@ export type GoogleCloudRunV2InstanceRestartPolicyEnum =
   | "ALWAYS"
   | "ON_FAILURE"
   | "NEVER";
-export const GoogleCloudRunV2InstanceRestartPolicyEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2InstanceRestartPolicyEnum = S.String;
 
 export type GoogleCloudRunV2ConditionInstanceReasonEnum =
   | "INSTANCE_REASON_UNSPECIFIED"
@@ -657,8 +657,7 @@ export type GoogleCloudRunV2ConditionInstanceReasonEnum =
   | "INSTANCE_STOPPED"
   | "INSTANCE_STOPPING"
   | "INSTANCE_NON_ZERO_EXIT_CODE";
-export const GoogleCloudRunV2ConditionInstanceReasonEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2ConditionInstanceReasonEnum = S.String;
 
 export type GoogleCloudRunV2ConditionExecutionReasonEnum =
   | "EXECUTION_REASON_UNDEFINED"
@@ -669,8 +668,7 @@ export type GoogleCloudRunV2ConditionExecutionReasonEnum =
   | "DELETED"
   | "DELAYED_START_PENDING"
   | "DELAYED_EXECUTION_EXCEEDING_DURATION_LIMIT";
-export const GoogleCloudRunV2ConditionExecutionReasonEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2ConditionExecutionReasonEnum = S.String;
 
 export type GoogleCloudRunV2ConditionRevisionReasonEnum =
   | "REVISION_REASON_UNDEFINED"
@@ -686,8 +684,7 @@ export type GoogleCloudRunV2ConditionRevisionReasonEnum =
   | "NO_DEPLOYMENT"
   | "HEALTH_CHECK_SKIPPED"
   | "MIN_INSTANCES_WARMING";
-export const GoogleCloudRunV2ConditionRevisionReasonEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2ConditionRevisionReasonEnum = S.String;
 
 export type GoogleCloudRunV2ConditionReasonEnum =
   | "COMMON_REASON_UNDEFINED"
@@ -706,14 +703,14 @@ export type GoogleCloudRunV2ConditionReasonEnum =
   | "POSTPONED_RETRY"
   | "INTERNAL"
   | "VPC_NETWORK_NOT_FOUND";
-export const GoogleCloudRunV2ConditionReasonEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2ConditionReasonEnum = S.String;
 
 export type GoogleCloudRunV2ConditionSeverityEnum =
   | "SEVERITY_UNSPECIFIED"
   | "ERROR"
   | "WARNING"
   | "INFO";
-export const GoogleCloudRunV2ConditionSeverityEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2ConditionSeverityEnum = S.String;
 
 export type GoogleCloudRunV2ConditionStateEnum =
   | "STATE_UNSPECIFIED"
@@ -721,7 +718,7 @@ export type GoogleCloudRunV2ConditionStateEnum =
   | "CONDITION_RECONCILING"
   | "CONDITION_FAILED"
   | "CONDITION_SUCCEEDED";
-export const GoogleCloudRunV2ConditionStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2ConditionStateEnum = S.String;
 
 /** Defines a status condition for a resource. */
 export interface GoogleCloudRunV2Condition {
@@ -794,14 +791,13 @@ export type GoogleCloudRunV2InstanceEncryptionKeyRevocationActionEnum =
   | "PREVENT_NEW"
   | "SHUTDOWN";
 export const GoogleCloudRunV2InstanceEncryptionKeyRevocationActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRunV2EmptyDirVolumeSourceMediumEnum =
   | "MEDIUM_UNSPECIFIED"
   | "MEMORY"
   | "DISK";
-export const GoogleCloudRunV2EmptyDirVolumeSourceMediumEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2EmptyDirVolumeSourceMediumEnum = S.String;
 
 /** In memory (tmpfs) ephemeral storage. It is ephemeral in the sense that when the sandbox is taken down, the data is destroyed with it (it does not persist across sandbox runs). */
 export interface GoogleCloudRunV2EmptyDirVolumeSource {
@@ -1111,8 +1107,7 @@ export type GoogleCloudRunV2ExecutionReferenceCompletionStatusEnum =
   | "EXECUTION_RUNNING"
   | "EXECUTION_PENDING"
   | "EXECUTION_CANCELLED";
-export const GoogleCloudRunV2ExecutionReferenceCompletionStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2ExecutionReferenceCompletionStatusEnum = S.String;
 
 /** Reference to an Execution. Use /Executions.GetExecution with the given name to get full execution including the latest status. */
 export interface GoogleCloudRunV2ExecutionReference {
@@ -1147,8 +1142,7 @@ export type GoogleCloudRunV2TaskTemplateExecutionEnvironmentEnum =
   | "EXECUTION_ENVIRONMENT_UNSPECIFIED"
   | "EXECUTION_ENVIRONMENT_GEN1"
   | "EXECUTION_ENVIRONMENT_GEN2";
-export const GoogleCloudRunV2TaskTemplateExecutionEnvironmentEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2TaskTemplateExecutionEnvironmentEnum = S.String;
 
 /** TaskTemplate describes the data a task should have when created from a template. */
 export interface GoogleCloudRunV2TaskTemplate {
@@ -1237,7 +1231,7 @@ export type GoogleCloudRunV2JobLaunchStageEnum =
   | "BETA"
   | "GA"
   | "DEPRECATED";
-export const GoogleCloudRunV2JobLaunchStageEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2JobLaunchStageEnum = S.String;
 
 /** Job represents the configuration of a single job, which references a container image that is run to completion. */
 export interface GoogleCloudRunV2Job {
@@ -1358,8 +1352,7 @@ export type GoogleCloudRunV2TrafficTargetStatusTypeEnum =
   | "TRAFFIC_TARGET_ALLOCATION_TYPE_UNSPECIFIED"
   | "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST"
   | "TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION";
-export const GoogleCloudRunV2TrafficTargetStatusTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2TrafficTargetStatusTypeEnum = S.String;
 
 /** Represents the observed state of a single `TrafficTarget` entry. */
 export interface GoogleCloudRunV2TrafficTargetStatus {
@@ -1401,14 +1394,14 @@ export type GoogleCloudRunV2ServiceLaunchStageEnum =
   | "BETA"
   | "GA"
   | "DEPRECATED";
-export const GoogleCloudRunV2ServiceLaunchStageEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2ServiceLaunchStageEnum = S.String;
 
 export type GoogleCloudRunV2RevisionTemplateEncryptionKeyRevocationActionEnum =
   | "ENCRYPTION_KEY_REVOCATION_ACTION_UNSPECIFIED"
   | "PREVENT_NEW"
   | "SHUTDOWN";
 export const GoogleCloudRunV2RevisionTemplateEncryptionKeyRevocationActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Settings for revision-level scaling settings. */
 export interface GoogleCloudRunV2RevisionScaling {
@@ -1450,7 +1443,7 @@ export type GoogleCloudRunV2RevisionTemplateExecutionEnvironmentEnum =
   | "EXECUTION_ENVIRONMENT_GEN1"
   | "EXECUTION_ENVIRONMENT_GEN2";
 export const GoogleCloudRunV2RevisionTemplateExecutionEnvironmentEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** RevisionTemplate describes the data a revision should have when created from a template. */
 export interface GoogleCloudRunV2RevisionTemplate {
@@ -1537,8 +1530,7 @@ export type GoogleCloudRunV2ServiceScalingScalingModeEnum =
   | "SCALING_MODE_UNSPECIFIED"
   | "AUTOMATIC"
   | "MANUAL";
-export const GoogleCloudRunV2ServiceScalingScalingModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2ServiceScalingScalingModeEnum = S.String;
 
 /** Scaling settings applied at the service level rather than at the revision level. */
 export interface GoogleCloudRunV2ServiceScaling {
@@ -1603,7 +1595,7 @@ export type GoogleCloudRunV2TrafficTargetTypeEnum =
   | "TRAFFIC_TARGET_ALLOCATION_TYPE_UNSPECIFIED"
   | "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST"
   | "TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION";
-export const GoogleCloudRunV2TrafficTargetTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2TrafficTargetTypeEnum = S.String;
 
 /** Holds a single traffic routing entry for the Service. Allocations can be done to a specific Revision name, or pointing to the latest Ready Revision. */
 export interface GoogleCloudRunV2TrafficTarget {
@@ -1655,7 +1647,7 @@ export type GoogleCloudRunV2ServiceIngressEnum =
   | "INGRESS_TRAFFIC_INTERNAL_ONLY"
   | "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER"
   | "INGRESS_TRAFFIC_NONE";
-export const GoogleCloudRunV2ServiceIngressEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2ServiceIngressEnum = S.String;
 
 /** Service acts as a top-level container that manages a set of configurations and revision templates which implement a network service. Service exists to provide a singular abstraction which can be access controlled, reasoned about, and which encapsulates software lifecycle decisions such as rollout policy and team resource ownership. */
 export interface GoogleCloudRunV2Service {
@@ -1816,7 +1808,7 @@ export type GoogleCloudRunV2InstanceSplitTypeEnum =
   | "INSTANCE_SPLIT_ALLOCATION_TYPE_UNSPECIFIED"
   | "INSTANCE_SPLIT_ALLOCATION_TYPE_LATEST"
   | "INSTANCE_SPLIT_ALLOCATION_TYPE_REVISION";
-export const GoogleCloudRunV2InstanceSplitTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2InstanceSplitTypeEnum = S.String;
 
 /** Holds a single instance split entry for the Worker. Allocations can be done to a specific Revision name, or pointing to the latest Ready Revision. */
 export interface GoogleCloudRunV2InstanceSplit {
@@ -1860,8 +1852,7 @@ export type GoogleCloudRunV2InstanceSplitStatusTypeEnum =
   | "INSTANCE_SPLIT_ALLOCATION_TYPE_UNSPECIFIED"
   | "INSTANCE_SPLIT_ALLOCATION_TYPE_LATEST"
   | "INSTANCE_SPLIT_ALLOCATION_TYPE_REVISION";
-export const GoogleCloudRunV2InstanceSplitStatusTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2InstanceSplitStatusTypeEnum = S.String;
 
 /** Represents the observed state of a single `InstanceSplit` entry. */
 export interface GoogleCloudRunV2InstanceSplitStatus {
@@ -1893,7 +1884,7 @@ export type GoogleCloudRunV2WorkerPoolRevisionTemplateEncryptionKeyRevocationAct
   | "PREVENT_NEW"
   | "SHUTDOWN";
 export const GoogleCloudRunV2WorkerPoolRevisionTemplateEncryptionKeyRevocationActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** WorkerPoolRevisionTemplate describes the data a worker pool revision should have when created from a template. */
 export interface GoogleCloudRunV2WorkerPoolRevisionTemplate {
@@ -1964,7 +1955,7 @@ export type GoogleCloudRunV2WorkerPoolLaunchStageEnum =
   | "BETA"
   | "GA"
   | "DEPRECATED";
-export const GoogleCloudRunV2WorkerPoolLaunchStageEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2WorkerPoolLaunchStageEnum = S.String;
 
 /** WorkerPool acts as a top-level container that manages a set of configurations and revision templates which implement a pull-based workload. WorkerPool exists to provide a singular abstraction which can be access controlled, reasoned about, and which encapsulates software lifecycle decisions such as rollout policy and team resource ownership. */
 export interface GoogleCloudRunV2WorkerPool {
@@ -2438,8 +2429,7 @@ export type GoogleCloudRunV2ExportStatusResponseOperationStateEnum =
   | "OPERATION_STATE_UNSPECIFIED"
   | "IN_PROGRESS"
   | "FINISHED";
-export const GoogleCloudRunV2ExportStatusResponseOperationStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2ExportStatusResponseOperationStateEnum = S.String;
 
 /** This is proto2's version of MessageSet. DEPRECATED: DO NOT USE FOR NEW FIELDS. If you are using editions or proto2, please make your own extendable messages for your use case. If you are using proto3, please use `Any` instead. MessageSet was the implementation of extensions for proto1. When proto2 was introduced, extensions were implemented as a first-class feature. This schema for MessageSet was meant to be a "bridge" solution to migrate MessageSet-bearing messages from proto1 to proto2. This schema has been open-sourced only to facilitate the migration of Google products with MessageSet-bearing messages to open-source environments. */
 export interface Proto2BridgeMessageSet {}
@@ -2478,8 +2468,7 @@ export type GoogleCloudRunV2ImageExportStatusExportJobStateEnum =
   | "EXPORT_JOB_STATE_UNSPECIFIED"
   | "IN_PROGRESS"
   | "FINISHED";
-export const GoogleCloudRunV2ImageExportStatusExportJobStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2ImageExportStatusExportJobStateEnum = S.String;
 
 /** The status of an image export job. */
 export interface GoogleCloudRunV2ImageExportStatus {
@@ -2582,7 +2571,7 @@ export type GoogleIamV1AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const GoogleIamV1AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleIamV1AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface GoogleIamV1AuditLogConfig {
@@ -2823,7 +2812,7 @@ export type GoogleCloudRunV2ExecutionLaunchStageEnum =
   | "BETA"
   | "GA"
   | "DEPRECATED";
-export const GoogleCloudRunV2ExecutionLaunchStageEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2ExecutionLaunchStageEnum = S.String;
 
 /** Execution represents the configuration of a single execution. A execution an immutable resource that references a container image which is run to completion. */
 export interface GoogleCloudRunV2Execution {
@@ -2967,8 +2956,7 @@ export type GoogleCloudRunV2TaskExecutionEnvironmentEnum =
   | "EXECUTION_ENVIRONMENT_UNSPECIFIED"
   | "EXECUTION_ENVIRONMENT_GEN1"
   | "EXECUTION_ENVIRONMENT_GEN2";
-export const GoogleCloudRunV2TaskExecutionEnvironmentEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2TaskExecutionEnvironmentEnum = S.String;
 
 /** Task represents a single run of a container to completion. */
 export interface GoogleCloudRunV2Task {
@@ -3146,14 +3134,14 @@ export type GoogleCloudRunV2RevisionLaunchStageEnum =
   | "BETA"
   | "GA"
   | "DEPRECATED";
-export const GoogleCloudRunV2RevisionLaunchStageEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2RevisionLaunchStageEnum = S.String;
 
 export type GoogleCloudRunV2RevisionEncryptionKeyRevocationActionEnum =
   | "ENCRYPTION_KEY_REVOCATION_ACTION_UNSPECIFIED"
   | "PREVENT_NEW"
   | "SHUTDOWN";
 export const GoogleCloudRunV2RevisionEncryptionKeyRevocationActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Effective settings for the current revision */
 export interface GoogleCloudRunV2RevisionScalingStatus {
@@ -3173,8 +3161,7 @@ export type GoogleCloudRunV2RevisionExecutionEnvironmentEnum =
   | "EXECUTION_ENVIRONMENT_UNSPECIFIED"
   | "EXECUTION_ENVIRONMENT_GEN1"
   | "EXECUTION_ENVIRONMENT_GEN2";
-export const GoogleCloudRunV2RevisionExecutionEnvironmentEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2RevisionExecutionEnvironmentEnum = S.String;
 
 /** A Revision is an immutable snapshot of code and configuration. A Revision references a container image. Revisions are only created by updates to its parent Service. */
 export interface GoogleCloudRunV2Revision {
@@ -4185,8 +4172,7 @@ export type GoogleCloudRunV2SubmitBuildRequestReleaseTrackEnum =
   | "BETA"
   | "GA"
   | "DEPRECATED";
-export const GoogleCloudRunV2SubmitBuildRequestReleaseTrackEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRunV2SubmitBuildRequestReleaseTrackEnum = S.String;
 
 /** Build the source using Docker. This means the source has a Dockerfile. */
 export type GoogleCloudRunV2DockerBuild = Proto2BridgeMessageSet;

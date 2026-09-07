@@ -15,7 +15,7 @@ export type { AzureOpError, AzureOpContext };
 /** fully qualified resource type which includes provider namespace */
 export type CheckNameAvailabilityRequestType =
   "Microsoft.Management/managementGroups";
-export const CheckNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+export const CheckNameAvailabilityRequestType = S.String;
 
 export interface CheckNameAvailabilityRequest {
   /** the name to check for availability */
@@ -41,7 +41,7 @@ export const CheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Required if nameAvailable == false. Invalid indicates the name provided does not match the resource provider's naming requirements (incorrect length, unsupported characters, etc.) AlreadyExists indicates that the name is already in use and is therefore unavailable. */
 export type Reason = "Invalid" | "AlreadyExists";
-export const Reason = /*@__PURE__*/ S.String;
+export const Reason = S.String;
 
 /** Describes the result of the request to check management group name availability. */
 export interface CheckNameAvailabilityResult {
@@ -91,7 +91,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -99,7 +99,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -195,7 +195,7 @@ export type ProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** The attributes of the serviceGroup. */
 export interface ServiceGroupAttributes {
@@ -491,7 +491,7 @@ export const GetHierarchySettingsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetHierarchySettingsResponse>;
 
 export type GetManagementGroupRequestExpand = "children" | "path" | "ancestors";
-export const GetManagementGroupRequestExpand = /*@__PURE__*/ S.String;
+export const GetManagementGroupRequestExpand = S.String;
 
 export interface GetManagementGroupRequest {
   /** Management Group ID. */
@@ -618,7 +618,7 @@ export const ManagementGroupDetails = /*@__PURE__*/ S.suspend(() =>
 export type ManagementGroupChildType =
   | "Microsoft.Management/managementGroups"
   | "/subscriptions";
-export const ManagementGroupChildType = /*@__PURE__*/ S.String;
+export const ManagementGroupChildType = S.String;
 
 /** The list of children. */
 export type ManagementGroupChildInfoChildrenList =
@@ -1039,14 +1039,14 @@ export type ListEntitiesRequestSearch =
   | "ParentAndFirstLevelChildren"
   | "ParentOnly"
   | "ChildrenOnly";
-export const ListEntitiesRequestSearch = /*@__PURE__*/ S.String;
+export const ListEntitiesRequestSearch = S.String;
 
 export type ListEntitiesRequestView =
   | "FullHierarchy"
   | "GroupsOnly"
   | "SubscriptionsOnly"
   | "Audit";
-export const ListEntitiesRequestView = /*@__PURE__*/ S.String;
+export const ListEntitiesRequestView = S.String;
 
 export interface ListEntitiesRequest {
   /** Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls. */
@@ -1094,7 +1094,7 @@ export const EntityParentGroupInfo = DescendantParentGroupInfo;
 
 /** The users specific permissions to this item. */
 export type Permissions = "noaccess" | "view" | "edit" | "delete";
-export const Permissions = /*@__PURE__*/ S.String;
+export const Permissions = S.String;
 
 /** The parent display name chain from the root group to the immediate parent */
 export type EntityInfoPropertiesParentDisplayNameChainList = Array<string>;
@@ -1378,11 +1378,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -1535,7 +1535,7 @@ export type Status =
   | "Failed"
   | "Cancelled"
   | "Completed";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** The tenant backfill status */
 export interface TenantBackfillStatusResult {

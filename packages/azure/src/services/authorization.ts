@@ -21,8 +21,7 @@ export type RoleAssignmentPropertiesInputPrincipalType =
   | "Device"
   | "AgentUser"
   | "AgentServicePrincipal";
-export const RoleAssignmentPropertiesInputPrincipalType =
-  /*@__PURE__*/ S.String;
+export const RoleAssignmentPropertiesInputPrincipalType = S.String;
 
 /** Role assignment properties. */
 export interface RoleAssignmentPropertiesInput {
@@ -86,7 +85,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -94,7 +93,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -131,7 +130,7 @@ export type RoleAssignmentPropertiesPrincipalType =
   | "Device"
   | "AgentUser"
   | "AgentServicePrincipal";
-export const RoleAssignmentPropertiesPrincipalType = /*@__PURE__*/ S.String;
+export const RoleAssignmentPropertiesPrincipalType = S.String;
 
 /** Role assignment properties. */
 export interface RoleAssignmentProperties {

@@ -594,7 +594,7 @@ export type GoogleChromePolicyVersionsV1PolicySchemaSupportedPlatformsItemEnum =
   | "CHROME_BROWSER_FOR_ANDROID"
   | "CHROME_BROWSER_FOR_IOS";
 export const GoogleChromePolicyVersionsV1PolicySchemaSupportedPlatformsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromePolicyVersionsV1PolicySchemaSupportedPlatformsItemEnumList =
   Array<GoogleChromePolicyVersionsV1PolicySchemaSupportedPlatformsItemEnum>;
@@ -657,7 +657,7 @@ export type GoogleChromePolicyVersionsV1PolicyApiLifecyclePolicyApiLifecycleStag
   | "API_CURRENT"
   | "API_DEPRECATED";
 export const GoogleChromePolicyVersionsV1PolicyApiLifecyclePolicyApiLifecycleStageEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -696,7 +696,7 @@ export type Proto2DescriptorProtoVisibilityEnum =
   | "VISIBILITY_UNSET"
   | "VISIBILITY_LOCAL"
   | "VISIBILITY_EXPORT";
-export const Proto2DescriptorProtoVisibilityEnum = /*@__PURE__*/ S.String;
+export const Proto2DescriptorProtoVisibilityEnum = S.String;
 
 /** Describes a value within an enum. */
 export interface Proto2EnumValueDescriptorProto {
@@ -722,7 +722,7 @@ export type Proto2EnumDescriptorProtoVisibilityEnum =
   | "VISIBILITY_UNSET"
   | "VISIBILITY_LOCAL"
   | "VISIBILITY_EXPORT";
-export const Proto2EnumDescriptorProtoVisibilityEnum = /*@__PURE__*/ S.String;
+export const Proto2EnumDescriptorProtoVisibilityEnum = S.String;
 
 /** Describes an enum type. */
 export interface Proto2EnumDescriptorProto {
@@ -765,13 +765,13 @@ export type Proto2FieldDescriptorProtoTypeEnum =
   | "TYPE_SFIXED64"
   | "TYPE_SINT32"
   | "TYPE_SINT64";
-export const Proto2FieldDescriptorProtoTypeEnum = /*@__PURE__*/ S.String;
+export const Proto2FieldDescriptorProtoTypeEnum = S.String;
 
 export type Proto2FieldDescriptorProtoLabelEnum =
   | "LABEL_OPTIONAL"
   | "LABEL_REPEATED"
   | "LABEL_REQUIRED";
-export const Proto2FieldDescriptorProtoLabelEnum = /*@__PURE__*/ S.String;
+export const Proto2FieldDescriptorProtoLabelEnum = S.String;
 
 /** Describes a field within a message. */
 export interface Proto2FieldDescriptorProto {
@@ -918,7 +918,7 @@ export type GoogleChromePolicyVersionsV1UploadedFileConstraintsSupportedContentT
   | "CONTENT_TYPE_YAML"
   | "CONTENT_TYPE_IMAGE_WEBP";
 export const GoogleChromePolicyVersionsV1UploadedFileConstraintsSupportedContentTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromePolicyVersionsV1UploadedFileConstraintsSupportedContentTypesItemEnumList =
   Array<GoogleChromePolicyVersionsV1UploadedFileConstraintsSupportedContentTypesItemEnum>;
@@ -1113,7 +1113,7 @@ export type GoogleChromePolicyVersionsV1PolicySchemaValidTargetResourcesItemEnum
   | "ORG_UNIT"
   | "GROUP";
 export const GoogleChromePolicyVersionsV1PolicySchemaValidTargetResourcesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromePolicyVersionsV1PolicySchemaValidTargetResourcesItemEnumList =
   Array<GoogleChromePolicyVersionsV1PolicySchemaValidTargetResourcesItemEnum>;

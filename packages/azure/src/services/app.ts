@@ -123,7 +123,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -131,7 +131,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -166,7 +166,7 @@ export type ConnectorProvisioningState =
   | "Canceled"
   | "InProgress"
   | "Deleting";
-export const ConnectorProvisioningState = /*@__PURE__*/ S.String;
+export const ConnectorProvisioningState = S.String;
 
 /** Additional properties for the data connector which can be used to store custom key-value pairs */
 export type AgentConnectorPropertiesExtendedPropertiesMap = {
@@ -275,11 +275,11 @@ export const KnowledgeGraphConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** Agent mode */
 export type AgentMode = "Autonomous" | "Review" | "ReadOnly";
-export const AgentMode = /*@__PURE__*/ S.String;
+export const AgentMode = S.String;
 
 /** Agent access level */
 export type AgentAccessLevel = "Low" | "High";
-export const AgentAccessLevel = /*@__PURE__*/ S.String;
+export const AgentAccessLevel = S.String;
 
 /** Configuration for action */
 export interface ActionConfiguration {
@@ -358,7 +358,7 @@ export const IncidentManagementConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** Upgrade channel for Agent */
 export type UpgradeChannel = "Preview" | "Stable";
-export const UpgradeChannel = /*@__PURE__*/ S.String;
+export const UpgradeChannel = S.String;
 
 /** Agent identity configuration */
 export interface AgentIdentityInput {
@@ -429,7 +429,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentityInput {}
@@ -519,11 +519,11 @@ export type AgentProvisioningState =
   | "Canceled"
   | "InProgress"
   | "Deleting";
-export const AgentProvisioningState = /*@__PURE__*/ S.String;
+export const AgentProvisioningState = S.String;
 
 /** Power state of the Agent */
 export type AgentPowerState = "Running" | "Stopped";
-export const AgentPowerState = /*@__PURE__*/ S.String;
+export const AgentPowerState = S.String;
 
 /** Agent identity configuration */
 export interface AgentIdentity {
@@ -821,7 +821,7 @@ export const AgentSpacesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Geneva Action authentication mode */
 export type GenevaActionAuthenticationMode = "OAuth" | "WS-Trust";
-export const GenevaActionAuthenticationMode = /*@__PURE__*/ S.String;
+export const GenevaActionAuthenticationMode = S.String;
 
 /** Parameter for a Geneva action */
 export interface GenevaActionParameter {
@@ -1018,7 +1018,7 @@ export type AgentSpaceProvisioningState =
   | "Canceled"
   | "InProgress"
   | "Deleting";
-export const AgentSpaceProvisioningState = /*@__PURE__*/ S.String;
+export const AgentSpaceProvisioningState = S.String;
 
 /** List of agents referencing the Agent Space */
 export type AgentSpacePropertiesMemberAgentsList = Array<string>;
@@ -1305,7 +1305,7 @@ export type CertificateProvisioningState =
   | "DeleteFailed"
   | "Pending"
   | "Deleting";
-export const CertificateProvisioningState = /*@__PURE__*/ S.String;
+export const CertificateProvisioningState = S.String;
 
 /** Subject alternative names the certificate applies to. */
 export type CertificatePropertiesSubjectAlternativeNamesList = Array<string>;
@@ -1431,8 +1431,7 @@ export const CheckConnectedEnvironmentNameAvailabilityRequest =
 export type CheckConnectedEnvironmentNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const CheckConnectedEnvironmentNameAvailabilityResponseReason =
-  /*@__PURE__*/ S.String;
+export const CheckConnectedEnvironmentNameAvailabilityResponseReason = S.String;
 
 export interface CheckConnectedEnvironmentNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
@@ -1569,8 +1568,7 @@ export const CheckNamespaceNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
 export type CheckNamespaceNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const CheckNamespaceNameAvailabilityResponseReason =
-  /*@__PURE__*/ S.String;
+export const CheckNamespaceNameAvailabilityResponseReason = S.String;
 
 export interface CheckNamespaceNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
@@ -1737,7 +1735,7 @@ export const ConnectedEnvironmentPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of extendedLocation. */
 export type ExtendedLocationTypes = "CustomLocation";
-export const ExtendedLocationTypes = /*@__PURE__*/ S.String;
+export const ExtendedLocationTypes = S.String;
 
 /** The complex type of the extended location. */
 export interface ExtendedLocation {
@@ -1813,7 +1811,7 @@ export type ConnectedEnvironmentProvisioningState =
   | "InfrastructureSetupInProgress"
   | "InfrastructureSetupComplete"
   | "ScheduledForDelete";
-export const ConnectedEnvironmentProvisioningState = /*@__PURE__*/ S.String;
+export const ConnectedEnvironmentProvisioningState = S.String;
 
 /** Configuration properties for apps environment custom domain */
 export interface CustomDomainConfiguration {
@@ -2057,7 +2055,7 @@ export type DaprComponentProvisioningState =
   | "Canceled"
   | "InProgress"
   | "Deleting";
-export const DaprComponentProvisioningState = /*@__PURE__*/ S.String;
+export const DaprComponentProvisioningState = S.String;
 
 /** Dapr Component resource specific properties */
 export interface DaprComponentProperties {
@@ -2142,7 +2140,7 @@ export const SecretKeyVaultProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** Access mode for storage */
 export type AccessMode = "ReadOnly" | "ReadWrite";
-export const AccessMode = /*@__PURE__*/ S.String;
+export const AccessMode = S.String;
 
 /** Azure File Properties. */
 export interface AzureFileProperties {
@@ -2222,8 +2220,7 @@ export type ConnectedEnvironmentStorageProvisioningState =
   | "Canceled"
   | "InProgress"
   | "Deleting";
-export const ConnectedEnvironmentStorageProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ConnectedEnvironmentStorageProvisioningState = S.String;
 
 /** Storage properties */
 export interface ConnectedEnvironmentStorageProperties {
@@ -2282,7 +2279,7 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Approved"
   | "Rejected"
   | "Disconnected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
@@ -2381,8 +2378,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Updating"
   | "Deleting"
   | "Pending";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Properties of the private endpoint connection. */
 export interface PrivateEndpointConnectionProperties {
@@ -2451,7 +2447,7 @@ export type UnauthenticatedClientActionV2 =
   | "AllowAnonymous"
   | "Return401"
   | "Return403";
-export const UnauthenticatedClientActionV2 = /*@__PURE__*/ S.String;
+export const UnauthenticatedClientActionV2 = S.String;
 
 /** The paths for which unauthenticated flow would not be redirected to the login page. */
 export type GlobalValidationExcludedPathsList = Array<string>;
@@ -2874,7 +2870,7 @@ export const AzureStaticWebApps = /*@__PURE__*/ S.suspend(() =>
 
 /** The method that should be used to authenticate the user. */
 export type OpenIdConnectClientCredentialMethod = "ClientSecretPost";
-export const OpenIdConnectClientCredentialMethod = /*@__PURE__*/ S.String;
+export const OpenIdConnectClientCredentialMethod = S.String;
 
 /** The authentication client credentials of the custom Open ID Connect provider. */
 export interface OpenIdConnectClientCredential {
@@ -3083,7 +3079,7 @@ export const LoginAllowedExternalRedirectUrlsList = /*@__PURE__*/ S.Array(
 export type CookieExpirationConvention =
   | "FixedTime"
   | "IdentityProviderDerived";
-export const CookieExpirationConvention = /*@__PURE__*/ S.String;
+export const CookieExpirationConvention = S.String;
 
 /** The configuration settings of the session cookie's expiration. */
 export interface CookieExpiration {
@@ -3158,7 +3154,7 @@ export const HttpSettingsRoutes = /*@__PURE__*/ S.suspend(() =>
 
 /** The convention used to determine the url of the request made. */
 export type ForwardProxyConvention = "NoProxy" | "Standard" | "Custom";
-export const ForwardProxyConvention = /*@__PURE__*/ S.String;
+export const ForwardProxyConvention = S.String;
 
 /** The configuration settings of a forward proxy used to make the requests. */
 export interface ForwardProxy {
@@ -3325,11 +3321,11 @@ export const ConfigurationInputSecretsList = /*@__PURE__*/ S.Array(
 
 /** ActiveRevisionsMode controls how active revisions are handled for the Container app: <list><item>Multiple: multiple revisions can be active.</item><item>Single: Only one revision can be active at a time. Revision weights can not be used in this mode. If no value if provided, this is the default.</item></list> */
 export type ConfigurationInputActiveRevisionsMode = "Multiple" | "Single";
-export const ConfigurationInputActiveRevisionsMode = /*@__PURE__*/ S.String;
+export const ConfigurationInputActiveRevisionsMode = S.String;
 
 /** Ingress transport protocol */
 export type IngressInputTransport = "auto" | "http" | "http2" | "tcp";
-export const IngressInputTransport = /*@__PURE__*/ S.String;
+export const IngressInputTransport = S.String;
 
 /** Traffic weight assigned to a revision */
 export interface TrafficWeight {
@@ -3359,7 +3355,7 @@ export const IngressInputTrafficList = /*@__PURE__*/ S.Array(
 
 /** Custom Domain binding type. */
 export type BindingType = "Disabled" | "SniEnabled" | "Auto";
-export const BindingType = /*@__PURE__*/ S.String;
+export const BindingType = S.String;
 
 /** Custom Domain of a Container App */
 export interface CustomDomain {
@@ -3386,7 +3382,7 @@ export const IngressInputCustomDomainsList = /*@__PURE__*/ S.Array(
 
 /** Allow or Deny rules to determine for incoming IP. Note: Rules can only consist of ALL Allow or ALL Deny */
 export type Action = "Allow" | "Deny";
-export const Action = /*@__PURE__*/ S.String;
+export const Action = S.String;
 
 /** Rule to restrict incoming IP address. */
 export interface IpSecurityRestrictionRule {
@@ -3419,7 +3415,7 @@ export const IngressInputIpSecurityRestrictionsList = /*@__PURE__*/ S.Array(
 
 /** Sticky Session Affinity */
 export type Affinity = "sticky" | "none";
-export const Affinity = /*@__PURE__*/ S.String;
+export const Affinity = S.String;
 
 /** Sticky Sessions for Single Revision Mode */
 export interface IngressStickySessions {
@@ -3436,7 +3432,7 @@ export const IngressStickySessions = /*@__PURE__*/ S.suspend(() =>
 
 /** Client certificate mode for mTLS authentication. Ignore indicates server drops client certificate on forwarding. Accept indicates server forwards client certificate but does not require a client certificate. Require indicates server requires a client certificate. */
 export type IngressClientCertificateMode = "ignore" | "accept" | "require";
-export const IngressClientCertificateMode = /*@__PURE__*/ S.String;
+export const IngressClientCertificateMode = S.String;
 
 /** Specifies the content for the access-control-allow-origins header */
 export type CorsPolicyAllowedOriginsList = Array<string>;
@@ -3587,11 +3583,11 @@ export const ConfigurationInputRegistriesList = /*@__PURE__*/ S.Array(
 
 /** Tells Dapr which protocol your application is using. Valid options are http and grpc. Default is http */
 export type DaprAppProtocol = "http" | "grpc";
-export const DaprAppProtocol = /*@__PURE__*/ S.String;
+export const DaprAppProtocol = S.String;
 
 /** Sets the log level for the Dapr sidecar. Allowed values are debug, info, warn, error. Default is info. */
 export type LogLevel = "info" | "debug" | "warn" | "error";
-export const LogLevel = /*@__PURE__*/ S.String;
+export const LogLevel = S.String;
 
 /** Dapr application health check configuration */
 export interface DaprAppHealth {
@@ -3689,7 +3685,7 @@ export const Service = /*@__PURE__*/ S.suspend(() =>
 
 /** Use to select the lifecycle stages of a Container App during which the Managed Identity should be available. */
 export type IdentitySettingsLifecycle = "None" | "Main" | "Init" | "All";
-export const IdentitySettingsLifecycle = /*@__PURE__*/ S.String;
+export const IdentitySettingsLifecycle = S.String;
 
 /** Optional settings for a Managed Identity that is assigned to the Container App. */
 export interface IdentitySettings {
@@ -3911,7 +3907,7 @@ export const ContainerAppProbeHttpGetHttpHeadersList = /*@__PURE__*/ S.Array(
 
 /** Scheme to use for connecting to the host. Defaults to HTTP. */
 export type Scheme = "HTTP" | "HTTPS";
-export const Scheme = /*@__PURE__*/ S.String;
+export const Scheme = S.String;
 
 /** HTTPGet specifies the http request to perform. */
 export interface ContainerAppProbeHttpGet {
@@ -3956,7 +3952,7 @@ export const ContainerAppProbeTcpSocket = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of probe. */
 export type Type = "Liveness" | "Readiness" | "Startup";
-export const Type = /*@__PURE__*/ S.String;
+export const Type = S.String;
 
 /** Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic. */
 export interface ContainerAppProbe {
@@ -4234,7 +4230,7 @@ export const Scale = /*@__PURE__*/ S.suspend(() =>
 
 /** Storage type for the volume. If not provided, use EmptyDir. */
 export type StorageType = "AzureFile" | "EmptyDir" | "Secret" | "NfsAzureFile";
-export const StorageType = /*@__PURE__*/ S.String;
+export const StorageType = S.String;
 
 /** Secret to be added to volume. */
 export interface SecretVolumeItem {
@@ -4390,7 +4386,7 @@ export const ContainerAppsCreateOrUpdateRequestIdentity =
 
 /** Metadata to represent the container app kind, representing if a container app is workflowapp or functionapp. */
 export type Kind = "workflowapp" | "functionapp";
-export const Kind = /*@__PURE__*/ S.String;
+export const Kind = S.String;
 
 export interface ContainerAppsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4455,7 +4451,7 @@ export type ContainerAppProvisioningState =
   | "Failed"
   | "Canceled"
   | "Deleting";
-export const ContainerAppProvisioningState = /*@__PURE__*/ S.String;
+export const ContainerAppProvisioningState = S.String;
 
 /** Running status of the Container App. */
 export type ContainerAppRunningStatus =
@@ -4464,7 +4460,7 @@ export type ContainerAppRunningStatus =
   | "Stopped"
   | "Suspended"
   | "Ready";
-export const ContainerAppRunningStatus = /*@__PURE__*/ S.String;
+export const ContainerAppRunningStatus = S.String;
 
 /** Collection of secrets used by a Container app */
 export type ConfigurationSecretsList = Array<Secret>;
@@ -4474,11 +4470,11 @@ export const ConfigurationSecretsList = /*@__PURE__*/ S.Array(
 
 /** ActiveRevisionsMode controls how active revisions are handled for the Container app: <list><item>Multiple: multiple revisions can be active.</item><item>Single: Only one revision can be active at a time. Revision weights can not be used in this mode. If no value if provided, this is the default.</item></list> */
 export type ConfigurationActiveRevisionsMode = "Multiple" | "Single";
-export const ConfigurationActiveRevisionsMode = /*@__PURE__*/ S.String;
+export const ConfigurationActiveRevisionsMode = S.String;
 
 /** Ingress transport protocol */
 export type IngressTransport = "auto" | "http" | "http2" | "tcp";
-export const IngressTransport = /*@__PURE__*/ S.String;
+export const IngressTransport = S.String;
 
 /** Traffic weights for app's revisions */
 export type IngressTrafficList = Array<TrafficWeight>;
@@ -4931,11 +4927,11 @@ export const ContainerAppsSessionPoolsCreateOrUpdateRequestTagsMap =
 
 /** The container type of the sessions. You can use your own container to build the session pool, or you can use a predefined container to run workload with specific language. */
 export type ContainerType = "CustomContainer" | "PythonLTS";
-export const ContainerType = /*@__PURE__*/ S.String;
+export const ContainerType = S.String;
 
 /** The pool management type of the session pool. */
 export type PoolManagementType = "Manual" | "Dynamic";
-export const PoolManagementType = /*@__PURE__*/ S.String;
+export const PoolManagementType = S.String;
 
 /** Scale configuration. */
 export interface ScaleConfiguration {
@@ -4977,7 +4973,7 @@ export const SessionPoolPropertiesInputSecretsList = /*@__PURE__*/ S.Array(
 
 /** The lifecycle type of the session pool. */
 export type LifecycleType = "Timed" | "OnContainerExit";
-export const LifecycleType = /*@__PURE__*/ S.String;
+export const LifecycleType = S.String;
 
 /** The lifecycle configuration properties of a session in the dynamic session pool */
 export interface LifecycleConfiguration {
@@ -5057,7 +5053,7 @@ export const SessionContainerResources = ContainerResourcesInput;
 
 /** Denotes the type of probe. Can be Liveness or Startup, Readiness probe is not supported in sessions. Type must be unique for each probe within the context of a list of probes (SessionProbes). */
 export type SessionProbeType = "Liveness" | "Startup";
-export const SessionProbeType = /*@__PURE__*/ S.String;
+export const SessionProbeType = S.String;
 
 /** HTTPHeader describes a custom header to be used in HTTP probes */
 export type SessionProbeHttpGetHttpHeadersItem =
@@ -5211,7 +5207,7 @@ export const CustomContainerTemplate = /*@__PURE__*/ S.suspend(() =>
 
 /** Network status for the sessions. */
 export type SessionNetworkStatus = "EgressEnabled" | "EgressDisabled";
-export const SessionNetworkStatus = /*@__PURE__*/ S.String;
+export const SessionNetworkStatus = S.String;
 
 /** Session network configuration. */
 export interface SessionNetworkConfiguration {
@@ -5228,7 +5224,7 @@ export const SessionNetworkConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** Use to select the lifecycle stages of a Session Pool during which the Managed Identity should be available. */
 export type ManagedIdentitySettingLifecycle = "None" | "Main";
-export const ManagedIdentitySettingLifecycle = /*@__PURE__*/ S.String;
+export const ManagedIdentitySettingLifecycle = S.String;
 
 /** Optional settings for a Managed Identity that is assigned to the Session pool. */
 export interface ManagedIdentitySetting {
@@ -5360,7 +5356,7 @@ export type SessionPoolProvisioningState =
   | "Failed"
   | "Canceled"
   | "Deleting";
-export const SessionPoolProvisioningState = /*@__PURE__*/ S.String;
+export const SessionPoolProvisioningState = S.String;
 
 /** Optional settings for a Managed Identity that is assigned to the Session pool. */
 export type SessionPoolPropertiesManagedIdentitySettingsList =
@@ -5464,7 +5460,7 @@ export type SourceControlOperationState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const SourceControlOperationState = /*@__PURE__*/ S.String;
+export const SourceControlOperationState = S.String;
 
 /** Container App registry information. */
 export interface RegistryInfo {
@@ -6890,7 +6886,7 @@ export const DeleteVnetConnectionResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the .NET Component. */
 export type DotNetComponentType = "AspireDashboard";
-export const DotNetComponentType = /*@__PURE__*/ S.String;
+export const DotNetComponentType = S.String;
 
 /** Provisioning state of the .NET Component. */
 export type DotNetComponentProvisioningState =
@@ -6899,7 +6895,7 @@ export type DotNetComponentProvisioningState =
   | "Canceled"
   | "Deleting"
   | "InProgress";
-export const DotNetComponentProvisioningState = /*@__PURE__*/ S.String;
+export const DotNetComponentProvisioningState = S.String;
 
 /** Configuration properties for a .NET Component */
 export interface DotNetComponentConfigurationProperty {
@@ -7354,7 +7350,7 @@ export const GetAvailableWorkloadProfileRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** indicates whether the profile is default for the location. */
 export type Applicability = "LocationDefault" | "Custom";
-export const Applicability = /*@__PURE__*/ S.String;
+export const Applicability = S.String;
 
 /** Revision resource specific properties */
 export interface AvailableWorkloadProfileProperties {
@@ -8520,7 +8516,7 @@ export const GetContainerAppsDiagnosticRevisionRequest =
 
 /** Current health State of the revision */
 export type RevisionHealthState = "Healthy" | "Unhealthy" | "None";
-export const RevisionHealthState = /*@__PURE__*/ S.String;
+export const RevisionHealthState = S.String;
 
 /** Current provisioning State of the revision */
 export type RevisionProvisioningState =
@@ -8529,7 +8525,7 @@ export type RevisionProvisioningState =
   | "Failed"
   | "Deprovisioning"
   | "Deprovisioned";
-export const RevisionProvisioningState = /*@__PURE__*/ S.String;
+export const RevisionProvisioningState = S.String;
 
 /** Current running state of the revision */
 export type RevisionRunningState =
@@ -8539,7 +8535,7 @@ export type RevisionRunningState =
   | "Degraded"
   | "Failed"
   | "Unknown";
-export const RevisionRunningState = /*@__PURE__*/ S.String;
+export const RevisionRunningState = S.String;
 
 /** Revision resource specific properties */
 export interface RevisionProperties {
@@ -8724,7 +8720,7 @@ export const GetContainerAppsFunctionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The state of a Container App function. */
 export type ContainerAppsFunctionState = "Enabled" | "Disabled";
-export const ContainerAppsFunctionState = /*@__PURE__*/ S.String;
+export const ContainerAppsFunctionState = S.String;
 
 /** Function resource specific properties */
 export interface ContainerAppsFunctionProperties {
@@ -8806,7 +8802,7 @@ export const GetContainerAppsLabelHistoryLabelHistoryRequest =
 
 /** Status of the label history record. */
 export type Status = "Succeeded" | "Failed" | "Starting";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** Container App Label History Item resource specific properties */
 export interface LabelHistoryRecordItem {
@@ -8968,14 +8964,14 @@ export type ContainerAppReplicaRunningState =
   | "Running"
   | "NotRunning"
   | "Unknown";
-export const ContainerAppReplicaRunningState = /*@__PURE__*/ S.String;
+export const ContainerAppReplicaRunningState = S.String;
 
 /** Current running state of the container */
 export type ContainerAppContainerRunningState =
   | "Running"
   | "Terminated"
   | "Waiting";
-export const ContainerAppContainerRunningState = /*@__PURE__*/ S.String;
+export const ContainerAppContainerRunningState = S.String;
 
 /** Container object under Container App Revision Replica. */
 export interface ReplicaContainer {
@@ -9486,7 +9482,7 @@ export type HttpRouteProvisioningState =
   | "Updating"
   | "Deleting"
   | "Pending";
-export const HttpRouteProvisioningState = /*@__PURE__*/ S.String;
+export const HttpRouteProvisioningState = S.String;
 
 /** List of provisioning errors for a Http Route Config object */
 export interface HttpRouteProvisioningErrors {
@@ -9703,7 +9699,7 @@ export type JavaComponentType =
   | "SpringBootAdmin"
   | "SpringCloudEureka"
   | "SpringCloudConfig";
-export const JavaComponentType = /*@__PURE__*/ S.String;
+export const JavaComponentType = S.String;
 
 /** Provisioning state of the Java Component. */
 export type JavaComponentProvisioningState =
@@ -9712,7 +9708,7 @@ export type JavaComponentProvisioningState =
   | "Canceled"
   | "Deleting"
   | "InProgress";
-export const JavaComponentProvisioningState = /*@__PURE__*/ S.String;
+export const JavaComponentProvisioningState = S.String;
 
 /** Configuration properties for a Java Component */
 export type JavaComponentConfigurationProperty =
@@ -9840,11 +9836,11 @@ export type JobProvisioningState =
   | "Failed"
   | "Canceled"
   | "Deleting";
-export const JobProvisioningState = /*@__PURE__*/ S.String;
+export const JobProvisioningState = S.String;
 
 /** Current running state of the job */
 export type JobRunningState = "Ready" | "Progressing" | "Suspended";
-export const JobRunningState = /*@__PURE__*/ S.String;
+export const JobRunningState = S.String;
 
 /** Collection of secrets used by a Container Apps Job */
 export type JobConfigurationSecretsList = Array<Secret>;
@@ -9854,7 +9850,7 @@ export const JobConfigurationSecretsList = /*@__PURE__*/ S.Array(
 
 /** Trigger type of the job */
 export type JobConfigurationTriggerType = "Schedule" | "Event" | "Manual";
-export const JobConfigurationTriggerType = /*@__PURE__*/ S.String;
+export const JobConfigurationTriggerType = S.String;
 
 /** Manual trigger configuration for a single execution job. Properties replicaCompletionCount and parallelism would be set to 1 by default */
 export interface JobConfigurationManualTriggerConfig {
@@ -10339,7 +10335,7 @@ export type WorkflowState =
   | "Disabled"
   | "Deleted"
   | "Suspended";
-export const WorkflowState = /*@__PURE__*/ S.String;
+export const WorkflowState = S.String;
 
 /** Gets or sets the workflow health state. */
 export type WorkflowHealthState =
@@ -10347,7 +10343,7 @@ export type WorkflowHealthState =
   | "Healthy"
   | "Unhealthy"
   | "Unknown";
-export const WorkflowHealthState = /*@__PURE__*/ S.String;
+export const WorkflowHealthState = S.String;
 
 /** Parameters for the template. */
 export type ErrorEntityParametersList = Array<string>;
@@ -10434,7 +10430,7 @@ export const WorkflowEnvelopeProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** Gets the logic app hybrid workflow kind. */
 export type WorkflowKind = "Stateful" | "Stateless" | "Agentic";
-export const WorkflowKind = /*@__PURE__*/ S.String;
+export const WorkflowKind = S.String;
 
 export interface GetLogicAppWorkflowResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -10500,7 +10496,7 @@ export type WeekDay =
   | "Friday"
   | "Saturday"
   | "Sunday";
-export const WeekDay = /*@__PURE__*/ S.String;
+export const WeekDay = S.String;
 
 /** Maintenance schedule entry for a managed environment. */
 export interface ScheduledEntry {
@@ -10604,7 +10600,7 @@ export type ManagedCertificateDomainControlValidation =
   | "CNAME"
   | "HTTP"
   | "TXT";
-export const ManagedCertificateDomainControlValidation = /*@__PURE__*/ S.String;
+export const ManagedCertificateDomainControlValidation = S.String;
 
 /** Certificate resource specific properties */
 export interface ManagedCertificateProperties {
@@ -10709,7 +10705,7 @@ export type EnvironmentProvisioningState =
   | "ScheduledForDelete"
   | "UpgradeRequested"
   | "UpgradeFailed";
-export const EnvironmentProvisioningState = /*@__PURE__*/ S.String;
+export const EnvironmentProvisioningState = S.String;
 
 /** Configuration properties for apps environment to join a Virtual Network */
 export interface VnetConfiguration {
@@ -11090,7 +11086,7 @@ export type ManagedEnvironmentMode =
   | "WorkloadProfiles"
   | "Express"
   | "Archived";
-export const ManagedEnvironmentMode = /*@__PURE__*/ S.String;
+export const ManagedEnvironmentMode = S.String;
 
 /** The Private Endpoint Connection resource. */
 export interface PrivateEndpointConnection {
@@ -11127,7 +11123,7 @@ export const ManagedEnvironmentPropertiesPrivateEndpointConnectionsList =
 
 /** Property to allow or block all public traffic. Allowed Values: 'Enabled', 'Disabled'. */
 export type PublicNetworkAccess = "Enabled" | "Disabled";
-export const PublicNetworkAccess = /*@__PURE__*/ S.String;
+export const PublicNetworkAccess = S.String;
 
 /** Managed environment resource specific properties */
 export interface ManagedEnvironmentProperties {
@@ -11701,7 +11697,7 @@ export type SandboxGroupProvisioningState =
   | "InProgress"
   | "Updating"
   | "Deleting";
-export const SandboxGroupProvisioningState = /*@__PURE__*/ S.String;
+export const SandboxGroupProvisioningState = S.String;
 
 /** SandboxGroup resource specific properties. */
 export interface SandboxGroupProperties {
@@ -11787,7 +11783,7 @@ export type VnetConnectionProvisioningState =
   | "InProgress"
   | "Updating"
   | "Deleting";
-export const VnetConnectionProvisioningState = /*@__PURE__*/ S.String;
+export const VnetConnectionProvisioningState = S.String;
 
 /** VnetConnection resource specific properties. */
 export interface VnetConnectionProperties {
@@ -12046,7 +12042,7 @@ export type JobExecutionRunningState =
   | "Failed"
   | "Unknown"
   | "Succeeded";
-export const JobExecutionRunningState = /*@__PURE__*/ S.String;
+export const JobExecutionRunningState = S.String;
 
 /** Container start command. */
 export type JobExecutionContainerCommandList = Array<string>;
@@ -13663,7 +13659,7 @@ export const ListContainerAppCustomHostNameAnalysisRequest =
 
 /** DNS verification test result. */
 export type DnsVerificationTestResult = "Passed" | "Failed" | "Skipped";
-export const DnsVerificationTestResult = /*@__PURE__*/ S.String;
+export const DnsVerificationTestResult = S.String;
 
 /** Detailed errors. */
 export interface CustomHostnameAnalysisResultCustomDomainVerificationFailureInfoDetailsItem {
@@ -15828,7 +15824,7 @@ export const ListManagedEnvironmentUsagesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** An enum describing the unit of usage measurement. */
 export type UsageUnit = "Count";
-export const UsageUnit = /*@__PURE__*/ S.String;
+export const UsageUnit = S.String;
 
 /** The Usage Names. */
 export interface UsageName {

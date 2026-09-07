@@ -100,7 +100,7 @@ export type MonitorLocalResourceType =
   | "AWS::Region"
   | "AWS::EKS::Cluster"
   | (string & {});
-export const MonitorLocalResourceType = /*@__PURE__*/ S.String;
+export const MonitorLocalResourceType = S.String;
 
 export interface MonitorLocalResource {
   type: MonitorLocalResourceType;
@@ -121,7 +121,7 @@ export type MonitorRemoteResourceType =
   | "AWS::AWSService"
   | "AWS::Region"
   | (string & {});
-export const MonitorRemoteResourceType = /*@__PURE__*/ S.String;
+export const MonitorRemoteResourceType = S.String;
 
 export interface MonitorRemoteResource {
   type: MonitorRemoteResourceType;
@@ -182,7 +182,7 @@ export type MonitorStatus =
   | "ERROR"
   | "DELETING"
   | (string & {});
-export const MonitorStatus = /*@__PURE__*/ S.String;
+export const MonitorStatus = S.String;
 
 export type Iso8601Timestamp = Date;
 export interface CreateMonitorOutput {
@@ -215,7 +215,7 @@ export const TargetId = /*@__PURE__*/ S.Union([
   S.Struct({ accountId: S.String }),
 ]);
 export type TargetType = "ACCOUNT" | (string & {});
-export const TargetType = /*@__PURE__*/ S.String;
+export const TargetType = S.String;
 
 export interface TargetIdentifier {
   targetId: TargetId;
@@ -267,7 +267,7 @@ export type ScopeStatus =
   | "DEACTIVATING"
   | "DEACTIVATED"
   | (string & {});
-export const ScopeStatus = /*@__PURE__*/ S.String;
+export const ScopeStatus = S.String;
 
 export interface CreateScopeOutput {
   scopeId: string;
@@ -430,7 +430,7 @@ export type MetricUnit =
   | "Count/Second"
   | "None"
   | (string & {});
-export const MetricUnit = /*@__PURE__*/ S.String;
+export const MetricUnit = S.String;
 
 export type InstanceId = string;
 export type VpcId = string;
@@ -445,7 +445,7 @@ export type DestinationCategory =
   | "AMAZON_DYNAMODB"
   | "INTER_REGION"
   | (string & {});
-export const DestinationCategory = /*@__PURE__*/ S.String;
+export const DestinationCategory = S.String;
 
 export type Component = string;
 export type ComponentType = string;
@@ -744,7 +744,7 @@ export type QueryStatus =
   | "FAILED"
   | "CANCELED"
   | (string & {});
-export const QueryStatus = /*@__PURE__*/ S.String;
+export const QueryStatus = S.String;
 
 export interface GetQueryStatusMonitorTopContributorsOutput {
   status: QueryStatus;
@@ -966,7 +966,7 @@ export type MonitorMetric =
   | "RETRANSMISSIONS"
   | "DATA_TRANSFERRED"
   | (string & {});
-export const MonitorMetric = /*@__PURE__*/ S.String;
+export const MonitorMetric = S.String;
 
 export type Limit = number;
 export interface StartQueryMonitorTopContributorsInput {
@@ -1015,7 +1015,7 @@ export type WorkloadInsightsMetric =
   | "RETRANSMISSIONS"
   | "DATA_TRANSFERRED"
   | (string & {});
-export const WorkloadInsightsMetric = /*@__PURE__*/ S.String;
+export const WorkloadInsightsMetric = S.String;
 
 export interface StartQueryWorkloadInsightsTopContributorsInput {
   scopeId: string;

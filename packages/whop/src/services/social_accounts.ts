@@ -51,10 +51,10 @@ export class NotFound
 
 /** The platform to connect the social account on. Supported options are `meta_business` and `tiktok`. */
 export type ConnectSocialAccountRequestPlatform = "meta_business" | "tiktok";
-export const ConnectSocialAccountRequestPlatform = /*@__PURE__*/ S.String;
+export const ConnectSocialAccountRequestPlatform = S.String;
 
 export type ConnectSocialAccountRequestScopesItem = "advertise";
-export const ConnectSocialAccountRequestScopesItem = /*@__PURE__*/ S.String;
+export const ConnectSocialAccountRequestScopesItem = S.String;
 
 /** Capabilities to grant for the connected social account. Use `advertise` when connecting a Meta Business or TikTok account for ads. */
 export type ConnectSocialAccountRequestScopesList = Array<
@@ -104,7 +104,7 @@ export const ConnectSocialAccountResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The platform to create the social account on. `facebook` requires the account's `banner_image`, `logo`, and `description`; configure them with [Update Account](/api-reference/beta/accounts/update-account). */
 export type CreateSocialAccountRequestPlatform = "facebook";
-export const CreateSocialAccountRequestPlatform = /*@__PURE__*/ S.String;
+export const CreateSocialAccountRequestPlatform = S.String;
 
 export interface CreateSocialAccountRequest {
   /** The Account (biz_ identifier) to create the social account for. An account-scoped API key may omit this to default to its own account. Account API keys cannot update their own account's branding through Update Account; use a user-authenticated path. */
@@ -133,7 +133,7 @@ export type SocialAccountParentPlatform =
   | "facebook"
   | "discord"
   | "telegram";
-export const SocialAccountParentPlatform = /*@__PURE__*/ S.String;
+export const SocialAccountParentPlatform = S.String;
 
 export interface SocialAccountParent {
   /** The platform-specific ID for the parent social account. */
@@ -174,7 +174,7 @@ export type SocialAccountPlatform =
   | "facebook"
   | "discord"
   | "telegram";
-export const SocialAccountPlatform = /*@__PURE__*/ S.String;
+export const SocialAccountPlatform = S.String;
 
 export type SocialAccountScopesList = Array<string>;
 export const SocialAccountScopesList = /*@__PURE__*/ S.Array(
@@ -343,7 +343,7 @@ export const AdLeadFormDisclaimer = /*@__PURE__*/ S.suspend(() =>
 
 /** `more_volume` is quickest to submit; `higher_intent` adds a confirmation step before submission. */
 export type SocialAccountLeadFormFormType = "more_volume" | "higher_intent";
-export const SocialAccountLeadFormFormType = /*@__PURE__*/ S.String;
+export const SocialAccountLeadFormFormType = S.String;
 
 export interface AdLeadFormIntro {
   /** Body text under the headline. */
@@ -370,7 +370,7 @@ export type AdLeadFormOptionLogicAction =
   | "go_to_question"
   | "submit_form"
   | "close_form";
-export const AdLeadFormOptionLogicAction = /*@__PURE__*/ S.String;
+export const AdLeadFormOptionLogicAction = S.String;
 
 export interface AdLeadFormOptionLogic {
   /** What happens when the choice is selected. */
@@ -557,7 +557,7 @@ export type SocialAccountPostCallToAction =
   | "event_rsvp"
   | "see_details"
   | "view_instagram_profile";
-export const SocialAccountPostCallToAction = /*@__PURE__*/ S.String;
+export const SocialAccountPostCallToAction = S.String;
 
 /** Ways this post can't be used on an ad. `lead_form_ineligible`: post can't be used in lead form ads. `promotion_ineligible`: the platform won't promote this post at all — always present when that's true, alongside a reason code when one is identified. `copyrighted_music`: post uses music the platform does not allow for ads. `messenger_destination`, `instagram_destination`, `whatsapp_destination`: the post's own button opens that chat app, so the post can only run in an ad group that sends people to the same one — always accompanied by `lead_form_ineligible`. Empty when the post has no restrictions. */
 export type SocialAccountPostRestrictionsItem =
@@ -567,7 +567,7 @@ export type SocialAccountPostRestrictionsItem =
   | "messenger_destination"
   | "instagram_destination"
   | "whatsapp_destination";
-export const SocialAccountPostRestrictionsItem = /*@__PURE__*/ S.String;
+export const SocialAccountPostRestrictionsItem = S.String;
 
 export type SocialAccountPostRestrictionsList =
   Array<SocialAccountPostRestrictionsItem>;
@@ -644,10 +644,10 @@ export type ListSocialAccountsRequestPlatform =
   | "facebook"
   | "discord"
   | "telegram";
-export const ListSocialAccountsRequestPlatform = /*@__PURE__*/ S.String;
+export const ListSocialAccountsRequestPlatform = S.String;
 
 export type ListSocialAccountsRequestScopesItem = "advertise";
-export const ListSocialAccountsRequestScopesItem = /*@__PURE__*/ S.String;
+export const ListSocialAccountsRequestScopesItem = S.String;
 
 export type ListSocialAccountsRequestScopesList = Array<
   ListSocialAccountsRequestScopesItem | (string & {})
@@ -657,10 +657,10 @@ export const ListSocialAccountsRequestScopesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListSocialAccountsRequestScopesList>;
 
 export type ListSocialAccountsRequestOrder = "display_order" | "created_at";
-export const ListSocialAccountsRequestOrder = /*@__PURE__*/ S.String;
+export const ListSocialAccountsRequestOrder = S.String;
 
 export type ListSocialAccountsRequestDirection = "asc" | "desc";
-export const ListSocialAccountsRequestDirection = /*@__PURE__*/ S.String;
+export const ListSocialAccountsRequestDirection = S.String;
 
 export interface ListSocialAccountsRequest {
   /** The Account that the social accounts are connected to. Provide either this or user_id. */

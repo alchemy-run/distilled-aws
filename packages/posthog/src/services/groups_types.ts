@@ -41,11 +41,11 @@ export class NotFound
 
 /** * `numeric` - numeric * `currency` - currency */
 export type GroupUsageMetricFormatEnum = "numeric" | "currency";
-export const GroupUsageMetricFormatEnum = /*@__PURE__*/ S.String;
+export const GroupUsageMetricFormatEnum = S.String;
 
 /** * `number` - number * `sparkline` - sparkline */
 export type GroupUsageMetricDisplayEnum = "number" | "sparkline";
-export const GroupUsageMetricDisplayEnum = /*@__PURE__*/ S.String;
+export const GroupUsageMetricDisplayEnum = S.String;
 
 /** Filter definition for the metric. Two shapes are accepted, discriminated by an optional `source` key. **Events** (default, when `source` is missing or `"events"`): HogFunction filter shape — `events: [...]`, optional `actions: [...]`, `properties: [...]`, `filter_test_accounts: bool`. **Data warehouse** (`source: "data_warehouse"`): `table_name` (synced DW table), `timestamp_field` (timestamp column or HogQL expression), `key_field` (column whose value matches the entity key). Currently DW metrics only render on group profiles — person profiles are not yet supported. */
 export type CreateGroupsTypesMetricsRequestFiltersMap = {
@@ -58,7 +58,7 @@ export const CreateGroupsTypesMetricsRequestFiltersMap = /*@__PURE__*/ S.Record(
 
 /** * `count` - count * `sum` - sum */
 export type GroupUsageMetricMathEnum = "count" | "sum";
-export const GroupUsageMetricMathEnum = /*@__PURE__*/ S.String;
+export const GroupUsageMetricMathEnum = S.String;
 
 export interface CreateGroupsTypesMetricsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

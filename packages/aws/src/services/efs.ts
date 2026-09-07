@@ -517,7 +517,7 @@ export type LifeCycleState =
   | "deleted"
   | "error"
   | (string & {});
-export const LifeCycleState = /*@__PURE__*/ S.String;
+export const LifeCycleState = S.String;
 
 export interface AccessPointDescription {
   ClientToken?: string;
@@ -549,7 +549,7 @@ export const AccessPointDescription = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AccessPointDescription>;
 export type CreationToken = string;
 export type PerformanceMode = "generalPurpose" | "maxIO" | (string & {});
-export const PerformanceMode = /*@__PURE__*/ S.String;
+export const PerformanceMode = S.String;
 
 export type Encrypted = boolean;
 export type KmsKeyId = string;
@@ -558,7 +558,7 @@ export type ThroughputMode =
   | "provisioned"
   | "elastic"
   | (string & {});
-export const ThroughputMode = /*@__PURE__*/ S.String;
+export const ThroughputMode = S.String;
 
 export type ProvisionedThroughputInMibps = number;
 export type AvailabilityZoneName = string;
@@ -624,7 +624,7 @@ export type ReplicationOverwriteProtection =
   | "DISABLED"
   | "REPLICATING"
   | (string & {});
-export const ReplicationOverwriteProtection = /*@__PURE__*/ S.String;
+export const ReplicationOverwriteProtection = S.String;
 
 export interface FileSystemProtectionDescription {
   ReplicationOverwriteProtection?: ReplicationOverwriteProtection;
@@ -688,7 +688,7 @@ export type IpAddressType =
   | "IPV6_ONLY"
   | "DUAL_STACK"
   | (string & {});
-export const IpAddressType = /*@__PURE__*/ S.String;
+export const IpAddressType = S.String;
 
 export type SecurityGroup = string;
 export type SecurityGroups = string[];
@@ -810,7 +810,7 @@ export type ReplicationStatus =
   | "PAUSED"
   | "PAUSING"
   | (string & {});
-export const ReplicationStatus = /*@__PURE__*/ S.String;
+export const ReplicationStatus = S.String;
 
 export type StatusMessage = string;
 export interface Destination {
@@ -994,7 +994,7 @@ export type DeletionMode =
   | "ALL_CONFIGURATIONS"
   | "LOCAL_CONFIGURATION_ONLY"
   | (string & {});
-export const DeletionMode = /*@__PURE__*/ S.String;
+export const DeletionMode = S.String;
 
 export interface DeleteReplicationConfigurationRequest {
   SourceFileSystemId: string;
@@ -1121,10 +1121,10 @@ export const DescribeAccountPreferencesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeAccountPreferencesRequest",
 }) as any as S.Schema<DescribeAccountPreferencesRequest>;
 export type ResourceIdType = "LONG_ID" | "SHORT_ID" | (string & {});
-export const ResourceIdType = /*@__PURE__*/ S.String;
+export const ResourceIdType = S.String;
 
 export type Resource = "FILE_SYSTEM" | "MOUNT_TARGET" | (string & {});
-export const Resource = /*@__PURE__*/ S.String;
+export const Resource = S.String;
 
 export type Resources = Resource[];
 export const Resources = /*@__PURE__*/ S.Array(Resource);
@@ -1178,7 +1178,7 @@ export type Status =
   | "DISABLED"
   | "DISABLING"
   | (string & {});
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 export interface BackupPolicy {
   Status: Status;
@@ -1304,12 +1304,12 @@ export type TransitionToIARules =
   | "AFTER_270_DAYS"
   | "AFTER_365_DAYS"
   | (string & {});
-export const TransitionToIARules = /*@__PURE__*/ S.String;
+export const TransitionToIARules = S.String;
 
 export type TransitionToPrimaryStorageClassRules =
   | "AFTER_1_ACCESS"
   | (string & {});
-export const TransitionToPrimaryStorageClassRules = /*@__PURE__*/ S.String;
+export const TransitionToPrimaryStorageClassRules = S.String;
 
 export type TransitionToArchiveRules =
   | "AFTER_1_DAY"
@@ -1322,7 +1322,7 @@ export type TransitionToArchiveRules =
   | "AFTER_270_DAYS"
   | "AFTER_365_DAYS"
   | (string & {});
-export const TransitionToArchiveRules = /*@__PURE__*/ S.String;
+export const TransitionToArchiveRules = S.String;
 
 export interface LifecyclePolicy {
   TransitionToIA?: TransitionToIARules;

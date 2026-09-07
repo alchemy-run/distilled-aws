@@ -96,7 +96,7 @@ export type OrderCurrencyCodeEnum =
   | "USD"
   | "XOF"
   | "points";
-export const OrderCurrencyCodeEnum = /*@__PURE__*/ S.String;
+export const OrderCurrencyCodeEnum = S.String;
 
 /** Price with it's currency and textual representation */
 export interface OrderPrice {
@@ -153,8 +153,7 @@ export type ConnectivityEligibilityOfferProductProviderEnum =
   | "REFERENCE"
   | "SFR"
   | "TF";
-export const ConnectivityEligibilityOfferProductProviderEnum =
-  /*@__PURE__*/ S.String;
+export const ConnectivityEligibilityOfferProductProviderEnum = S.String;
 
 /** Available option for the offer */
 export interface PackXdslMigrationOfferAvailableOption {
@@ -337,7 +336,7 @@ export type PackXdslServiceNameEnum =
   | "voipLine"
   | "voipTrunk"
   | "xdslAccess";
-export const PackXdslServiceNameEnum = /*@__PURE__*/ S.String;
+export const PackXdslServiceNameEnum = S.String;
 
 /** Sub service to delete */
 export interface PackXdslMigrationSubServiceToDelete {
@@ -454,7 +453,7 @@ export const PackXdslAddressMoveMoveOfferResponse = /*@__PURE__*/ S.suspend(
 
 /** AsyncTask status */
 export type PackXdslAsyncTaskStatusEnum = "error" | "ok" | "pending";
-export const PackXdslAsyncTaskStatusEnum = /*@__PURE__*/ S.String;
+export const PackXdslAsyncTaskStatusEnum = S.String;
 
 /** Async task */
 export interface PackXdslAsyncTaskPackXdslAddressMoveMoveOfferResponse {
@@ -645,7 +644,7 @@ export const CreatePackXdslChangeContactResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Domain action */
 export type PackXdslDomainActionEnum = "create" | "trade" | "transfer";
-export const PackXdslDomainActionEnum = /*@__PURE__*/ S.String;
+export const PackXdslDomainActionEnum = S.String;
 
 export interface CreatePackXdslDomainServiceRequest {
   /** The internal name of your pack */
@@ -685,7 +684,7 @@ export type PackXdslTaskStatusEnum =
   | "error"
   | "problem"
   | "todo";
-export const PackXdslTaskStatusEnum = /*@__PURE__*/ S.String;
+export const PackXdslTaskStatusEnum = S.String;
 
 /** Describes the current status of a task */
 export interface PackXdslTask {
@@ -837,7 +836,7 @@ export const ConnectivityEligibilityBuildingStairsList = /*@__PURE__*/ S.Array(
 
 /** Building type */
 export type ConnectivityEligibilityBuildingTypeEnum = "BUILDING" | "HOUSE";
-export const ConnectivityEligibilityBuildingTypeEnum = /*@__PURE__*/ S.String;
+export const ConnectivityEligibilityBuildingTypeEnum = S.String;
 
 /** Details of a Building */
 export interface ConnectivityEligibilityBuilding {
@@ -1127,7 +1126,7 @@ export type PackXdslResiliationReasonEnum =
   | "other"
   | "price"
   | "technicalProblems";
-export const PackXdslResiliationReasonEnum = /*@__PURE__*/ S.String;
+export const PackXdslResiliationReasonEnum = S.String;
 
 /** Information about the reason for the resiliation */
 export interface PackXdslResiliationSurvey {
@@ -1760,7 +1759,7 @@ export type NichandleCountryEnum =
   | "ZA"
   | "ZM"
   | "ZW";
-export const NichandleCountryEnum = /*@__PURE__*/ S.String;
+export const NichandleCountryEnum = S.String;
 
 /** Information about the contact */
 export interface PackXdslContactInfos {
@@ -1952,7 +1951,7 @@ export const GetPackXdslHostedEmailServiceAccountRequest =
 
 /** Available offers */
 export type PackXdslHostedEmailAccountOfferEnum = "individual";
-export const PackXdslHostedEmailAccountOfferEnum = /*@__PURE__*/ S.String;
+export const PackXdslHostedEmailAccountOfferEnum = S.String;
 
 /** A numeric value tagged with its unit */
 export interface ComplexTypeUnitAndValueLong {
@@ -2130,7 +2129,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 export type ServiceStateEnum =
   | "autorenewInProgress"
@@ -2139,7 +2138,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -2668,8 +2667,7 @@ export type PackXdslHostedEmailConfigurationServiceEnum =
   | "smtp"
   | "smtps"
   | "submission";
-export const PackXdslHostedEmailConfigurationServiceEnum =
-  /*@__PURE__*/ S.String;
+export const PackXdslHostedEmailConfigurationServiceEnum = S.String;
 
 /** HostedEmail configuration service */
 export interface PackXdslHostedEmailConfigurationService {
@@ -2710,8 +2708,7 @@ export const PackXdslHostedEmailConfigurationServicesList =
 
 /** Available configuration statuses */
 export type PackXdslHostedEmailConfigurationStatusEnum = "active" | "suspended";
-export const PackXdslHostedEmailConfigurationStatusEnum =
-  /*@__PURE__*/ S.String;
+export const PackXdslHostedEmailConfigurationStatusEnum = S.String;
 
 /** HostedEmail configuration */
 export interface PackXdslHostedEmailConfiguration {
@@ -2858,7 +2855,7 @@ export type PackXdslPromotionCodeReasonCodes =
   | "serviceNotInOkState"
   | "stillEngaged"
   | "taskInProgress";
-export const PackXdslPromotionCodeReasonCodes = /*@__PURE__*/ S.String;
+export const PackXdslPromotionCodeReasonCodes = S.String;
 
 /** Enum of the possible errors */
 export type PackXdslPromotionCodeCapabilitiesReasonCodesList =
@@ -2904,7 +2901,7 @@ export const ListPackXdslSearchRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible DSL technologies */
 export type XdslDslTypeEnum = "adsl" | "ftte" | "ftth" | "sdsl" | "vdsl";
-export const XdslDslTypeEnum = /*@__PURE__*/ S.String;
+export const XdslDslTypeEnum = S.String;
 
 /** Information about pack xdsl */
 export interface PackXdslPackDetail {
@@ -2990,7 +2987,7 @@ export const ListPackXdslServicesResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Allowed contexts when looking for shipping addresses */
 export type PackXdslShippingAddressContextEnum = "migration" | "voipLine";
-export const PackXdslShippingAddressContextEnum = /*@__PURE__*/ S.String;
+export const PackXdslShippingAddressContextEnum = S.String;
 
 export interface ListPackXdslShippingAddressesRequest {
   /** The internal name of your pack */
@@ -3359,8 +3356,7 @@ export type ConnectivityEligibilityInstallationTypeEnum =
   | "activate_undefined"
   | "create"
   | "multiOtp";
-export const ConnectivityEligibilityInstallationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ConnectivityEligibilityInstallationTypeEnum = S.String;
 
 /** Represents a time slot for a meeting */
 export interface XdslEligibilityMeetingSlot {
@@ -3405,7 +3401,7 @@ export const XdslEligibilityBookMeetingSlot = /*@__PURE__*/ S.suspend(() =>
 
 /** modem type */
 export type PackXdslModemOptionEnum = "no" | "recycled" | "yes";
-export const PackXdslModemOptionEnum = /*@__PURE__*/ S.String;
+export const PackXdslModemOptionEnum = S.String;
 
 /** Options wanted in the new offer */
 export type MigratePackXdslMigrationRequestOptionsList =

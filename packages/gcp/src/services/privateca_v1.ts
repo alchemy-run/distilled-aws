@@ -231,7 +231,7 @@ export type PublishingOptionsEncodingFormatEnum =
   | "ENCODING_FORMAT_UNSPECIFIED"
   | "PEM"
   | "DER";
-export const PublishingOptionsEncodingFormatEnum = /*@__PURE__*/ S.String;
+export const PublishingOptionsEncodingFormatEnum = S.String;
 
 /** Options relating to the publication of each CertificateAuthority's CA certificate and CRLs and their inclusion as extensions in issued Certificates. The options set here apply to certificates issued by any CertificateAuthority in the CaPool. */
 export interface PublishingOptions {
@@ -253,7 +253,7 @@ export const PublishingOptions = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PublishingOptions>;
 
 export type CaPoolTierEnum = "TIER_UNSPECIFIED" | "ENTERPRISE" | "DEVOPS";
-export const CaPoolTierEnum = /*@__PURE__*/ S.String;
+export const CaPoolTierEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -266,7 +266,7 @@ export type EcKeyTypeSignatureAlgorithmEnum =
   | "ECDSA_P256"
   | "ECDSA_P384"
   | "EDDSA_25519";
-export const EcKeyTypeSignatureAlgorithmEnum = /*@__PURE__*/ S.String;
+export const EcKeyTypeSignatureAlgorithmEnum = S.String;
 
 /** Describes an Elliptic Curve key that may be used in a Certificate issued from a CaPool. */
 export interface EcKeyType {
@@ -575,8 +575,7 @@ export type CertificateExtensionConstraintsKnownExtensionsItemEnum =
   | "POLICY_IDS"
   | "AIA_OCSP_SERVERS"
   | "NAME_CONSTRAINTS";
-export const CertificateExtensionConstraintsKnownExtensionsItemEnum =
-  /*@__PURE__*/ S.String;
+export const CertificateExtensionConstraintsKnownExtensionsItemEnum = S.String;
 
 export type CertificateExtensionConstraintsKnownExtensionsItemEnumList = Array<
   CertificateExtensionConstraintsKnownExtensionsItemEnum | (string & {})
@@ -722,7 +721,7 @@ export type AttributeTypeAndValueTypeEnum =
   | "PROVINCE"
   | "STREET_ADDRESS"
   | "POSTAL_CODE";
-export const AttributeTypeAndValueTypeEnum = /*@__PURE__*/ S.String;
+export const AttributeTypeAndValueTypeEnum = S.String;
 
 /** AttributeTypeAndValue specifies an attribute type and value. It can use either a OID or enum value to specify the attribute type. */
 export interface AttributeTypeAndValue {
@@ -868,7 +867,7 @@ export const CertificateFingerprint = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CertificateFingerprint>;
 
 export type PublicKeyFormatEnum = "KEY_FORMAT_UNSPECIFIED" | "PEM";
-export const PublicKeyFormatEnum = /*@__PURE__*/ S.String;
+export const PublicKeyFormatEnum = S.String;
 
 /** A PublicKey describes a public key. */
 export interface PublicKey {
@@ -936,7 +935,7 @@ export type KeyVersionSpecAlgorithmEnum =
   | "RSA_PKCS1_4096_SHA256"
   | "EC_P256_SHA256"
   | "EC_P384_SHA384";
-export const KeyVersionSpecAlgorithmEnum = /*@__PURE__*/ S.String;
+export const KeyVersionSpecAlgorithmEnum = S.String;
 
 /** A Cloud KMS key configuration that a CertificateAuthority will use. */
 export interface KeyVersionSpec {
@@ -956,7 +955,7 @@ export type CertificateAuthorityTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "SELF_SIGNED"
   | "SUBORDINATE";
-export const CertificateAuthorityTypeEnum = /*@__PURE__*/ S.String;
+export const CertificateAuthorityTypeEnum = S.String;
 
 /** User-defined URLs for accessing content published by this CertificateAuthority. */
 export interface UserDefinedAccessUrls {
@@ -978,7 +977,7 @@ export type CertificateAuthorityTierEnum =
   | "TIER_UNSPECIFIED"
   | "ENTERPRISE"
   | "DEVOPS";
-export const CertificateAuthorityTierEnum = /*@__PURE__*/ S.String;
+export const CertificateAuthorityTierEnum = S.String;
 
 /** A KeyId identifies a specific public key, usually by hashing the public key. */
 export interface CertificateConfigKeyId {
@@ -1036,7 +1035,7 @@ export type CertificateAuthorityStateEnum =
   | "STAGED"
   | "AWAITING_USER_ACTIVATION"
   | "DELETED";
-export const CertificateAuthorityStateEnum = /*@__PURE__*/ S.String;
+export const CertificateAuthorityStateEnum = S.String;
 
 /** URLs where a CertificateAuthority will publish content. */
 export interface AccessUrls {
@@ -1160,7 +1159,7 @@ export type RevocationDetailsRevocationStateEnum =
   | "CERTIFICATE_HOLD"
   | "PRIVILEGE_WITHDRAWN"
   | "ATTRIBUTE_AUTHORITY_COMPROMISE";
-export const RevocationDetailsRevocationStateEnum = /*@__PURE__*/ S.String;
+export const RevocationDetailsRevocationStateEnum = S.String;
 
 /** Describes fields that are relavent to the revocation of a Certificate. */
 export interface RevocationDetails {
@@ -1183,7 +1182,7 @@ export type CertificateSubjectModeEnum =
   | "DEFAULT"
   | "RDN_SEQUENCE"
   | "REFLECTED_SPIFFE";
-export const CertificateSubjectModeEnum = /*@__PURE__*/ S.String;
+export const CertificateSubjectModeEnum = S.String;
 
 /** A Certificate corresponds to a signed X.509 certificate issued by a CertificateAuthority. */
 export interface Certificate {
@@ -1621,7 +1620,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -1850,7 +1849,7 @@ export type CertificateRevocationListStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "SUPERSEDED";
-export const CertificateRevocationListStateEnum = /*@__PURE__*/ S.String;
+export const CertificateRevocationListStateEnum = S.String;
 
 export type RevokedCertificateRevocationReasonEnum =
   | "REVOCATION_REASON_UNSPECIFIED"
@@ -1862,7 +1861,7 @@ export type RevokedCertificateRevocationReasonEnum =
   | "CERTIFICATE_HOLD"
   | "PRIVILEGE_WITHDRAWN"
   | "ATTRIBUTE_AUTHORITY_COMPROMISE";
-export const RevokedCertificateRevocationReasonEnum = /*@__PURE__*/ S.String;
+export const RevokedCertificateRevocationReasonEnum = S.String;
 
 /** Describes a revoked Certificate. */
 export interface RevokedCertificate {
@@ -2518,7 +2517,7 @@ export type RevokeCertificateRequestReasonEnum =
   | "CERTIFICATE_HOLD"
   | "PRIVILEGE_WITHDRAWN"
   | "ATTRIBUTE_AUTHORITY_COMPROMISE";
-export const RevokeCertificateRequestReasonEnum = /*@__PURE__*/ S.String;
+export const RevokeCertificateRequestReasonEnum = S.String;
 
 /** Request message for CertificateAuthorityService.RevokeCertificate. */
 export interface RevokeCertificateRequest {

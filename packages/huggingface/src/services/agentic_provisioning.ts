@@ -50,8 +50,7 @@ export type CreateAccountRequestRequestKycVerifiedFieldsItem =
   | "email"
   | "phone"
   | "country";
-export const CreateAccountRequestRequestKycVerifiedFieldsItem =
-  /*@__PURE__*/ S.String;
+export const CreateAccountRequestRequestKycVerifiedFieldsItem = S.String;
 
 export type CreateAccountRequestRequestKycVerifiedFieldsList = Array<
   CreateAccountRequestRequestKycVerifiedFieldsItem | (string & {})
@@ -76,8 +75,7 @@ export type CreateAccountRequestRequestClientCapabilitiesItem =
   | "browser"
   | "email"
   | "sms";
-export const CreateAccountRequestRequestClientCapabilitiesItem =
-  /*@__PURE__*/ S.String;
+export const CreateAccountRequestRequestClientCapabilitiesItem = S.String;
 
 export type CreateAccountRequestRequestClientCapabilitiesList = Array<
   CreateAccountRequestRequestClientCapabilitiesItem | (string & {})
@@ -269,7 +267,7 @@ export type CreateAccountRequestResponseBody =
   | CreateAccountRequestResponseBodyCase0
   | CreateAccountRequestResponseBodyCase1;
 export const CreateAccountRequestResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateAccountRequestResponseBody>;
+  S.Unknown as any as S.Schema<CreateAccountRequestResponseBody>;
 
 export type CreateAccountRequestResponse = CreateAccountRequestResponseBody;
 export const CreateAccountRequestResponse = /*@__PURE__*/ S.suspend(() =>
@@ -437,7 +435,7 @@ export type GetResourceByIdResponseBody =
   | GetResourceByIdResponseBodyCase1
   | GetResourceByIdResponseBodyCase3;
 export const GetResourceByIdResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetResourceByIdResponseBody>;
+  S.Unknown as any as S.Schema<GetResourceByIdResponseBody>;
 
 export type GetResourceByIdResponse = GetResourceByIdResponseBody;
 export const GetResourceByIdResponse = /*@__PURE__*/ S.suspend(() =>
@@ -476,7 +474,7 @@ export type GetServicesResponseDataItemCategoriesItem =
   | "ci"
   | "feature_flags"
   | "ai";
-export const GetServicesResponseDataItemCategoriesItem = /*@__PURE__*/ S.String;
+export const GetServicesResponseDataItemCategoriesItem = S.String;
 
 export type GetServicesResponseDataItemCategoriesList =
   Array<GetServicesResponseDataItemCategoriesItem>;
@@ -485,7 +483,7 @@ export const GetServicesResponseDataItemCategoriesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetServicesResponseDataItemCategoriesList>;
 
 export type GetServicesResponseDataItemKind = "deployable" | "plan";
-export const GetServicesResponseDataItemKind = /*@__PURE__*/ S.String;
+export const GetServicesResponseDataItemKind = S.String;
 
 export interface GetServicesResponseDataItemPricingCase0 {
   type: unknown;
@@ -563,7 +561,7 @@ export type GetServicesResponseDataItemPricingCase1PaidCase0 =
   | GetServicesResponseDataItemPricingCase1PaidCase0Case0
   | GetServicesResponseDataItemPricingCase1PaidCase0Case1;
 export const GetServicesResponseDataItemPricingCase1PaidCase0 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetServicesResponseDataItemPricingCase1PaidCase0>;
+  S.Unknown as any as S.Schema<GetServicesResponseDataItemPricingCase1PaidCase0>;
 
 export type GetServicesResponseDataItemPricingCase1PaidCase1ItemCase0ConfigurationMap =
   { [key: string]: unknown | undefined };
@@ -629,7 +627,7 @@ export type GetServicesResponseDataItemPricingCase1PaidCase1Item =
   | GetServicesResponseDataItemPricingCase1PaidCase1ItemCase0
   | GetServicesResponseDataItemPricingCase1PaidCase1ItemCase1;
 export const GetServicesResponseDataItemPricingCase1PaidCase1Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetServicesResponseDataItemPricingCase1PaidCase1Item>;
+  S.Unknown as any as S.Schema<GetServicesResponseDataItemPricingCase1PaidCase1Item>;
 
 export type GetServicesResponseDataItemPricingCase1PaidCase1List =
   Array<GetServicesResponseDataItemPricingCase1PaidCase1Item>;
@@ -642,7 +640,7 @@ export type GetServicesResponseDataItemPricingCase1Paid =
   | GetServicesResponseDataItemPricingCase1PaidCase0
   | GetServicesResponseDataItemPricingCase1PaidCase1List;
 export const GetServicesResponseDataItemPricingCase1Paid =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetServicesResponseDataItemPricingCase1Paid>;
+  S.Unknown as any as S.Schema<GetServicesResponseDataItemPricingCase1Paid>;
 
 export interface GetServicesResponseDataItemPricingCase1 {
   type: unknown;
@@ -750,7 +748,7 @@ export type GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1Paid
   | GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1PaidCase0
   | GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1PaidCase1;
 export const GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1Paid =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1Paid>;
+  S.Unknown as any as S.Schema<GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1Paid>;
 
 export type GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1ParentServiceIdsList =
   Array<string>;
@@ -784,7 +782,7 @@ export type GetServicesResponseDataItemPricingCase2ComponentOptionsItem =
   | GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase0
   | GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1;
 export const GetServicesResponseDataItemPricingCase2ComponentOptionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetServicesResponseDataItemPricingCase2ComponentOptionsItem>;
+  S.Unknown as any as S.Schema<GetServicesResponseDataItemPricingCase2ComponentOptionsItem>;
 
 export type GetServicesResponseDataItemPricingCase2ComponentOptionsList =
   Array<GetServicesResponseDataItemPricingCase2ComponentOptionsItem>;
@@ -824,18 +822,17 @@ export type GetServicesResponseDataItemPricing =
   | GetServicesResponseDataItemPricingCase1
   | GetServicesResponseDataItemPricingCase2;
 export const GetServicesResponseDataItemPricing =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetServicesResponseDataItemPricing>;
+  S.Unknown as any as S.Schema<GetServicesResponseDataItemPricing>;
 
 export type GetServicesResponseDataItemScope = "project" | "account";
-export const GetServicesResponseDataItemScope = /*@__PURE__*/ S.String;
+export const GetServicesResponseDataItemScope = S.String;
 
 export type GetServicesResponseDataItemKycRequiredFieldsItem =
   | "name"
   | "email"
   | "phone"
   | "country";
-export const GetServicesResponseDataItemKycRequiredFieldsItem =
-  /*@__PURE__*/ S.String;
+export const GetServicesResponseDataItemKycRequiredFieldsItem = S.String;
 
 export type GetServicesResponseDataItemKycRequiredFieldsList =
   Array<GetServicesResponseDataItemKycRequiredFieldsItem>;
@@ -882,8 +879,7 @@ export type GetServicesResponseDataItemAllowedUpdatesItemDirection =
   | "any"
   | "up"
   | "down";
-export const GetServicesResponseDataItemAllowedUpdatesItemDirection =
-  /*@__PURE__*/ S.String;
+export const GetServicesResponseDataItemAllowedUpdatesItemDirection = S.String;
 
 export interface GetServicesResponseDataItemAllowedUpdatesItem {
   service: string;
@@ -1011,7 +1007,7 @@ export type ProvisionResourceRequestBodyCase1ConfigurationVisibility =
   | "public"
   | "private";
 export const ProvisionResourceRequestBodyCase1ConfigurationVisibility =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProvisionResourceRequestBodyCase1Configuration {
   /** The name of the repository (defaults to a random name if not provided) */
@@ -1111,7 +1107,7 @@ export type ProvisionResourceRequestBody =
   | ProvisionResourceRequestBodyCase2
   | ProvisionResourceRequestBodyCase2;
 export const ProvisionResourceRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProvisionResourceRequestBody>;
+  S.Unknown as any as S.Schema<ProvisionResourceRequestBody>;
 
 export interface ProvisionResourceRequest {
   body?: ProvisionResourceRequestBody;
@@ -1188,7 +1184,7 @@ export type ProvisionResourceResponseBody =
   | GetResourceByIdResponseBodyCase1
   | GetResourceByIdResponseBodyCase3;
 export const ProvisionResourceResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProvisionResourceResponseBody>;
+  S.Unknown as any as S.Schema<ProvisionResourceResponseBody>;
 
 export type ProvisionResourceResponse = ProvisionResourceResponseBody;
 export const ProvisionResourceResponse = /*@__PURE__*/ S.suspend(() =>
@@ -1230,7 +1226,7 @@ export type RemoveResourceResponseBody =
   | GetResourceByIdResponseBodyCase1
   | GetResourceByIdResponseBodyCase3;
 export const RemoveResourceResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RemoveResourceResponseBody>;
+  S.Unknown as any as S.Schema<RemoveResourceResponseBody>;
 
 export type RemoveResourceResponse = RemoveResourceResponseBody;
 export const RemoveResourceResponse = /*@__PURE__*/ S.suspend(() =>
@@ -1309,7 +1305,7 @@ export type RotateResourceCredentialsResponseBody =
   | RotateResourceCredentialsResponseBodyCase0
   | GetResourceByIdResponseBodyCase3;
 export const RotateResourceCredentialsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RotateResourceCredentialsResponseBody>;
+  S.Unknown as any as S.Schema<RotateResourceCredentialsResponseBody>;
 
 export type RotateResourceCredentialsResponse =
   RotateResourceCredentialsResponseBody;
@@ -1430,7 +1426,7 @@ export type UpdateResourceServiceResponseBody =
   | GetResourceByIdResponseBodyCase1
   | GetResourceByIdResponseBodyCase3;
 export const UpdateResourceServiceResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateResourceServiceResponseBody>;
+  S.Unknown as any as S.Schema<UpdateResourceServiceResponseBody>;
 
 export type UpdateResourceServiceResponse = UpdateResourceServiceResponseBody;
 export const UpdateResourceServiceResponse = /*@__PURE__*/ S.suspend(() =>

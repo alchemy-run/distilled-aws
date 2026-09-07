@@ -30,7 +30,7 @@ export type AddZoneRrsetRecordsRequestRrType =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const AddZoneRrsetRecordsRequestRrType = /*@__PURE__*/ S.String;
+export const AddZoneRrsetRecordsRequestRrType = S.String;
 
 /** Record of a [RRSet](#tag/zone-rrsets). The `value` is used to identify the record in an [RRSet](#tag/zone-rrsets). */
 export interface AddZoneRrsetRecordsRequestRecordsItem {
@@ -89,7 +89,7 @@ export type AddZoneRrsetRecordsResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const AddZoneRrsetRecordsResponseActionStatus = /*@__PURE__*/ S.String;
+export const AddZoneRrsetRecordsResponseActionStatus = S.String;
 
 export interface AddZoneRrsetRecordsResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -194,7 +194,7 @@ export type ChangeZoneRrsetProtectionRequestRrType =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const ChangeZoneRrsetProtectionRequestRrType = /*@__PURE__*/ S.String;
+export const ChangeZoneRrsetProtectionRequestRrType = S.String;
 
 export interface ChangeZoneRrsetProtectionRequest {
   /** ID or Name of the Zone. */
@@ -226,8 +226,7 @@ export type ChangeZoneRrsetProtectionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeZoneRrsetProtectionResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const ChangeZoneRrsetProtectionResponseActionStatus = S.String;
 
 export type ChangeZoneRrsetProtectionResponseActionResourcesItem =
   AddZoneRrsetRecordsResponseActionResourcesItem;
@@ -311,7 +310,7 @@ export type ChangeZoneRrsetTtlRequestRrType =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const ChangeZoneRrsetTtlRequestRrType = /*@__PURE__*/ S.String;
+export const ChangeZoneRrsetTtlRequestRrType = S.String;
 
 export interface ChangeZoneRrsetTtlRequest {
   /** ID or Name of the Zone. */
@@ -343,7 +342,7 @@ export type ChangeZoneRrsetTtlResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeZoneRrsetTtlResponseActionStatus = /*@__PURE__*/ S.String;
+export const ChangeZoneRrsetTtlResponseActionStatus = S.String;
 
 export type ChangeZoneRrsetTtlResponseActionResourcesItem =
   AddZoneRrsetRecordsResponseActionResourcesItem;
@@ -426,7 +425,7 @@ export type RemoveZoneRrsetRecordsRequestRrType =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const RemoveZoneRrsetRecordsRequestRrType = /*@__PURE__*/ S.String;
+export const RemoveZoneRrsetRecordsRequestRrType = S.String;
 
 /** Record of a [RRSet](#tag/zone-rrsets). The `value` is used to identify the record in an [RRSet](#tag/zone-rrsets). */
 export type RemoveZoneRrsetRecordsRequestRecordsItem =
@@ -471,8 +470,7 @@ export type RemoveZoneRrsetRecordsResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const RemoveZoneRrsetRecordsResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const RemoveZoneRrsetRecordsResponseActionStatus = S.String;
 
 export type RemoveZoneRrsetRecordsResponseActionResourcesItem =
   AddZoneRrsetRecordsResponseActionResourcesItem;
@@ -556,7 +554,7 @@ export type SetZoneRrsetRecordsRequestRrType =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const SetZoneRrsetRecordsRequestRrType = /*@__PURE__*/ S.String;
+export const SetZoneRrsetRecordsRequestRrType = S.String;
 
 /** Record of a [RRSet](#tag/zone-rrsets). The `value` is used to identify the record in an [RRSet](#tag/zone-rrsets). */
 export type SetZoneRrsetRecordsRequestRecordsItem =
@@ -601,7 +599,7 @@ export type SetZoneRrsetRecordsResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const SetZoneRrsetRecordsResponseActionStatus = /*@__PURE__*/ S.String;
+export const SetZoneRrsetRecordsResponseActionStatus = S.String;
 
 export type SetZoneRrsetRecordsResponseActionResourcesItem =
   AddZoneRrsetRecordsResponseActionResourcesItem;
@@ -684,7 +682,7 @@ export type UpdateZoneRrsetRecordsRequestRrType =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const UpdateZoneRrsetRecordsRequestRrType = /*@__PURE__*/ S.String;
+export const UpdateZoneRrsetRecordsRequestRrType = S.String;
 
 /** Record of a [RRSet](#tag/zone-rrsets). The `value` is used to identify the record in an [RRSet](#tag/zone-rrsets). */
 export interface UpdateZoneRrsetRecordsRequestRecordsItem {
@@ -740,8 +738,7 @@ export type UpdateZoneRrsetRecordsResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const UpdateZoneRrsetRecordsResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const UpdateZoneRrsetRecordsResponseActionStatus = S.String;
 
 export type UpdateZoneRrsetRecordsResponseActionResourcesItem =
   AddZoneRrsetRecordsResponseActionResourcesItem;

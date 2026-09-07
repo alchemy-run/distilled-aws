@@ -210,14 +210,13 @@ export type FlightEmissionsDetailsContrailsImpactBucketEnum =
   | "CONTRAILS_IMPACT_NEGLIGIBLE"
   | "CONTRAILS_IMPACT_MODERATE"
   | "CONTRAILS_IMPACT_SEVERE";
-export const FlightEmissionsDetailsContrailsImpactBucketEnum =
-  /*@__PURE__*/ S.String;
+export const FlightEmissionsDetailsContrailsImpactBucketEnum = S.String;
 
 export type FlightEmissionsDetailsSourceEnum =
   | "SOURCE_UNSPECIFIED"
   | "TIM"
   | "EASA";
-export const FlightEmissionsDetailsSourceEnum = /*@__PURE__*/ S.String;
+export const FlightEmissionsDetailsSourceEnum = S.String;
 
 /** Details about the specific flight's emissions. */
 export interface FlightEmissionsDetails {
@@ -270,16 +269,14 @@ export type EmissionsProvenanceEntryDistanceAdjustmentStrategyEnum =
   | "ORIGIN_DESTINATION"
   | "COUNTRY_PAIR"
   | "DEFAULT";
-export const EmissionsProvenanceEntryDistanceAdjustmentStrategyEnum =
-  /*@__PURE__*/ S.String;
+export const EmissionsProvenanceEntryDistanceAdjustmentStrategyEnum = S.String;
 
 export type EmissionsProvenanceEntryFuelBurnEeaStrategyEnum =
   | "STRATEGY_UNSPECIFIED"
   | "AIRCRAFT_MAPPING_FALLBACK_WITH_CORRECTION_FACTOR"
   | "AIRCRAFT_MAPPING_EXACT"
   | "AIRCRAFT_MAPPING_FALLBACK";
-export const EmissionsProvenanceEntryFuelBurnEeaStrategyEnum =
-  /*@__PURE__*/ S.String;
+export const EmissionsProvenanceEntryFuelBurnEeaStrategyEnum = S.String;
 
 export type EmissionsProvenanceEntryCargoMassFractionT100StrategyEnum =
   | "STRATEGY_UNSPECIFIED"
@@ -288,7 +285,7 @@ export type EmissionsProvenanceEntryCargoMassFractionT100StrategyEnum =
   | "DISTANCE_AIRCRAFT_CLASS"
   | "ACTUAL_CARRIER_ROUTE_YEAR_MONTH_AIRCRAFT_CLASS";
 export const EmissionsProvenanceEntryCargoMassFractionT100StrategyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type EmissionsProvenanceEntrySourceEnum =
   | "DATA_SOURCE_UNSPECIFIED"
@@ -301,14 +298,13 @@ export type EmissionsProvenanceEntrySourceEnum =
   | "GLOBAL_DEFAULT"
   | "IATA"
   | "ICL";
-export const EmissionsProvenanceEntrySourceEnum = /*@__PURE__*/ S.String;
+export const EmissionsProvenanceEntrySourceEnum = S.String;
 
 export type EmissionsProvenanceEntrySeatAreaRatioIataStrategyEnum =
   | "STRATEGY_UNSPECIFIED"
   | "NARROW_AIRCRAFT_BODY"
   | "WIDE_AIRCRAFT_BODY";
-export const EmissionsProvenanceEntrySeatAreaRatioIataStrategyEnum =
-  /*@__PURE__*/ S.String;
+export const EmissionsProvenanceEntrySeatAreaRatioIataStrategyEnum = S.String;
 
 export type EmissionsProvenanceEntryProvenanceEntryTypeEnum =
   | "EMISSIONS_PROVENANCE_ENTRY_TYPE_UNSPECIFIED"
@@ -318,30 +314,28 @@ export type EmissionsProvenanceEntryProvenanceEntryTypeEnum =
   | "SEATING_CONFIG"
   | "SEAT_AREA_RATIOS"
   | "DISTANCE_ADJUSTMENT";
-export const EmissionsProvenanceEntryProvenanceEntryTypeEnum =
-  /*@__PURE__*/ S.String;
+export const EmissionsProvenanceEntryProvenanceEntryTypeEnum = S.String;
 
 export type EmissionsProvenanceEntryDataCategoryEnum =
   | "DATA_CATEGORY_UNSPECIFIED"
   | "PRIMARY"
   | "MODELED"
   | "DEFAULT";
-export const EmissionsProvenanceEntryDataCategoryEnum = /*@__PURE__*/ S.String;
+export const EmissionsProvenanceEntryDataCategoryEnum = S.String;
 
 export type EmissionsProvenanceEntryLoadFactorsChAviationStrategyEnum =
   | "STRATEGY_UNSPECIFIED"
   | "CARRIER_MONTH"
   | "ACTUAL_CARRIER_YEAR_MONTH";
 export const EmissionsProvenanceEntryLoadFactorsChAviationStrategyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type EmissionsProvenanceEntryLoadFactorsT100StrategyEnum =
   | "STRATEGY_UNSPECIFIED"
   | "CARRIER_ROUTE_MONTH"
   | "CARRIER_MONTH"
   | "ACTUAL_CARRIER_ROUTE_YEAR_MONTH";
-export const EmissionsProvenanceEntryLoadFactorsT100StrategyEnum =
-  /*@__PURE__*/ S.String;
+export const EmissionsProvenanceEntryLoadFactorsT100StrategyEnum = S.String;
 
 /** Details about a single contributing factor in emissions calculations. Each entry represents a single factor where `provenance_entry_type` acts as the key identifying the factor, and the other fields describe it and may or may not be populated. */
 export interface EmissionsProvenanceEntry {
@@ -517,14 +511,13 @@ export type FlightWithEmissionsContrailsImpactBucketEnum =
   | "CONTRAILS_IMPACT_NEGLIGIBLE"
   | "CONTRAILS_IMPACT_MODERATE"
   | "CONTRAILS_IMPACT_SEVERE";
-export const FlightWithEmissionsContrailsImpactBucketEnum =
-  /*@__PURE__*/ S.String;
+export const FlightWithEmissionsContrailsImpactBucketEnum = S.String;
 
 export type FlightWithEmissionsSourceEnum =
   | "SOURCE_UNSPECIFIED"
   | "TIM"
   | "EASA";
-export const FlightWithEmissionsSourceEnum = /*@__PURE__*/ S.String;
+export const FlightWithEmissionsSourceEnum = S.String;
 
 /** Direct flight with emission estimates. */
 export interface FlightWithEmissions {
@@ -580,7 +573,7 @@ export type Scope3FlightSegmentCabinClassEnum =
   | "PREMIUM_ECONOMY"
   | "BUSINESS"
   | "FIRST";
-export const Scope3FlightSegmentCabinClassEnum = /*@__PURE__*/ S.String;
+export const Scope3FlightSegmentCabinClassEnum = S.String;
 
 /** Flight parameters with which the Scope 3 emissions are fetched. */
 export interface Scope3FlightSegment {
@@ -658,7 +651,7 @@ export type Scope3FlightEmissionsSourceEnum =
   | "TIM_EMISSIONS"
   | "TYPICAL_FLIGHT_EMISSIONS"
   | "DISTANCE_BASED_EMISSIONS";
-export const Scope3FlightEmissionsSourceEnum = /*@__PURE__*/ S.String;
+export const Scope3FlightEmissionsSourceEnum = S.String;
 
 /** Scope 3 flight with emission estimates. */
 export interface Scope3FlightEmissions {

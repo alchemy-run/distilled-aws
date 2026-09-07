@@ -447,8 +447,7 @@ export type ProjectsCreateRequestDeploymentConfigsPreviewUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const ProjectsCreateRequestDeploymentConfigsPreviewUsageModel =
-  /*@__PURE__*/ S.String;
+export const ProjectsCreateRequestDeploymentConfigsPreviewUsageModel = S.String;
 
 export interface ProjectsCreateRequestDeploymentConfigsPreviewVectorizeBindingsValue {
   indexName: string;
@@ -790,7 +789,7 @@ export type ProjectsCreateRequestDeploymentConfigsProductionUsageModel =
   | "bundled"
   | "unbound";
 export const ProjectsCreateRequestDeploymentConfigsProductionUsageModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProjectsCreateRequestDeploymentConfigsProductionVectorizeBindingsValue =
   ProjectsCreateRequestDeploymentConfigsPreviewVectorizeBindingsValue;
@@ -996,7 +995,7 @@ export type ProjectsCreateRequestSourceConfigPreviewDeploymentSetting =
   | "none"
   | "custom";
 export const ProjectsCreateRequestSourceConfigPreviewDeploymentSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsCreateRequestSourceConfig {
   /** Whether to enable automatic deployments when pushing to the source repository. */
@@ -1075,7 +1074,7 @@ export const ProjectsCreateRequestSourceConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProjectsCreateRequestSourceConfig>;
 
 export type ProjectsCreateRequestSourceType = "github" | "gitlab";
-export const ProjectsCreateRequestSourceType = /*@__PURE__*/ S.String;
+export const ProjectsCreateRequestSourceType = S.String;
 
 export interface ProjectsCreateRequestSource {
   config: ProjectsCreateRequestSourceConfig;
@@ -1199,7 +1198,7 @@ export type ProjectsCreateResponseCanonicalDeploymentDeploymentTriggerType =
   | "ad_hoc"
   | "deploy_hook";
 export const ProjectsCreateResponseCanonicalDeploymentDeploymentTriggerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsCreateResponseCanonicalDeploymentDeploymentTrigger {
   /** Additional info about the trigger. */
@@ -1221,8 +1220,7 @@ export const ProjectsCreateResponseCanonicalDeploymentDeploymentTrigger =
 export type ProjectsCreateResponseCanonicalDeploymentEnvironment =
   | "preview"
   | "production";
-export const ProjectsCreateResponseCanonicalDeploymentEnvironment =
-  /*@__PURE__*/ S.String;
+export const ProjectsCreateResponseCanonicalDeploymentEnvironment = S.String;
 
 export type ProjectsCreateResponseCanonicalDeploymentLatestStageName =
   | "queued"
@@ -1231,7 +1229,7 @@ export type ProjectsCreateResponseCanonicalDeploymentLatestStageName =
   | "build"
   | "deploy";
 export const ProjectsCreateResponseCanonicalDeploymentLatestStageName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProjectsCreateResponseCanonicalDeploymentLatestStageStatus =
   | "success"
@@ -1240,7 +1238,7 @@ export type ProjectsCreateResponseCanonicalDeploymentLatestStageStatus =
   | "failure"
   | "canceled";
 export const ProjectsCreateResponseCanonicalDeploymentLatestStageStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsCreateResponseCanonicalDeploymentLatestStage {
   /** When the stage ended. */
@@ -1297,7 +1295,7 @@ export type ProjectsCreateResponseCanonicalDeploymentSourceConfigPreviewDeployme
   | "none"
   | "custom";
 export const ProjectsCreateResponseCanonicalDeploymentSourceConfigPreviewDeploymentSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsCreateResponseCanonicalDeploymentSourceConfig {
   /** Whether to enable automatic deployments when pushing to the source repository. */
@@ -1368,8 +1366,7 @@ export const ProjectsCreateResponseCanonicalDeploymentSourceConfig =
 export type ProjectsCreateResponseCanonicalDeploymentSourceType =
   | "github"
   | "gitlab";
-export const ProjectsCreateResponseCanonicalDeploymentSourceType =
-  /*@__PURE__*/ S.String;
+export const ProjectsCreateResponseCanonicalDeploymentSourceType = S.String;
 
 export interface ProjectsCreateResponseCanonicalDeploymentSource {
   config: ProjectsCreateResponseCanonicalDeploymentSourceConfig;
@@ -1497,7 +1494,7 @@ export type ProjectsCreateResponseDeploymentConfigsPreviewUsageModel =
   | "bundled"
   | "unbound";
 export const ProjectsCreateResponseDeploymentConfigsPreviewUsageModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProjectsCreateResponseDeploymentConfigsPreviewAiBindingsValue =
   ProjectsCreateRequestDeploymentConfigsPreviewAiBindingsValue;
@@ -1839,7 +1836,7 @@ export type ProjectsCreateResponseDeploymentConfigsProductionUsageModel =
   | "bundled"
   | "unbound";
 export const ProjectsCreateResponseDeploymentConfigsProductionUsageModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProjectsCreateResponseDeploymentConfigsProductionAiBindingsValue =
   ProjectsCreateRequestDeploymentConfigsPreviewAiBindingsValue;
@@ -2214,7 +2211,7 @@ export type ProjectsCreateResponseSourceConfigPreviewDeploymentSetting =
   | "none"
   | "custom";
 export const ProjectsCreateResponseSourceConfigPreviewDeploymentSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsCreateResponseSourceConfig {
   /** Whether to enable automatic deployments when pushing to the source repository. */
@@ -2280,7 +2277,7 @@ export const ProjectsCreateResponseSourceConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProjectsCreateResponseSourceConfig>;
 
 export type ProjectsCreateResponseSourceType = "github" | "gitlab";
-export const ProjectsCreateResponseSourceType = /*@__PURE__*/ S.String;
+export const ProjectsCreateResponseSourceType = S.String;
 
 export interface ProjectsCreateResponseSource {
   config: ProjectsCreateResponseSourceConfig;
@@ -2442,8 +2439,7 @@ export type ProjectsDeploymentsCreateResponseDeploymentTriggerType =
   | "github:push"
   | "ad_hoc"
   | "deploy_hook";
-export const ProjectsDeploymentsCreateResponseDeploymentTriggerType =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsCreateResponseDeploymentTriggerType = S.String;
 
 export interface ProjectsDeploymentsCreateResponseDeploymentTrigger {
   /** Additional info about the trigger. */
@@ -2465,8 +2461,7 @@ export const ProjectsDeploymentsCreateResponseDeploymentTrigger =
 export type ProjectsDeploymentsCreateResponseEnvironment =
   | "preview"
   | "production";
-export const ProjectsDeploymentsCreateResponseEnvironment =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsCreateResponseEnvironment = S.String;
 
 export type ProjectsDeploymentsCreateResponseLatestStageName =
   | "queued"
@@ -2474,8 +2469,7 @@ export type ProjectsDeploymentsCreateResponseLatestStageName =
   | "clone_repo"
   | "build"
   | "deploy";
-export const ProjectsDeploymentsCreateResponseLatestStageName =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsCreateResponseLatestStageName = S.String;
 
 export type ProjectsDeploymentsCreateResponseLatestStageStatus =
   | "success"
@@ -2483,8 +2477,7 @@ export type ProjectsDeploymentsCreateResponseLatestStageStatus =
   | "active"
   | "failure"
   | "canceled";
-export const ProjectsDeploymentsCreateResponseLatestStageStatus =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsCreateResponseLatestStageStatus = S.String;
 
 export interface ProjectsDeploymentsCreateResponseLatestStage {
   /** When the stage ended. */
@@ -2541,7 +2534,7 @@ export type ProjectsDeploymentsCreateResponseSourceConfigPreviewDeploymentSettin
   | "none"
   | "custom";
 export const ProjectsDeploymentsCreateResponseSourceConfigPreviewDeploymentSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsDeploymentsCreateResponseSourceConfig {
   /** Whether to enable automatic deployments when pushing to the source repository. */
@@ -2610,8 +2603,7 @@ export const ProjectsDeploymentsCreateResponseSourceConfig =
   }) as any as S.Schema<ProjectsDeploymentsCreateResponseSourceConfig>;
 
 export type ProjectsDeploymentsCreateResponseSourceType = "github" | "gitlab";
-export const ProjectsDeploymentsCreateResponseSourceType =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsCreateResponseSourceType = S.String;
 
 export interface ProjectsDeploymentsCreateResponseSource {
   config: ProjectsDeploymentsCreateResponseSourceConfig;
@@ -2738,8 +2730,7 @@ export const CreateProjectDomainRequest = /*@__PURE__*/ S.suspend(() =>
 export type ProjectsDomainsCreateResponseCertificateAuthority =
   | "google"
   | "lets_encrypt";
-export const ProjectsDomainsCreateResponseCertificateAuthority =
-  /*@__PURE__*/ S.String;
+export const ProjectsDomainsCreateResponseCertificateAuthority = S.String;
 
 export type ProjectsDomainsCreateResponseStatus =
   | "initializing"
@@ -2748,11 +2739,10 @@ export type ProjectsDomainsCreateResponseStatus =
   | "deactivated"
   | "blocked"
   | "error";
-export const ProjectsDomainsCreateResponseStatus = /*@__PURE__*/ S.String;
+export const ProjectsDomainsCreateResponseStatus = S.String;
 
 export type ProjectsDomainsCreateResponseValidationDataMethod = "http" | "txt";
-export const ProjectsDomainsCreateResponseValidationDataMethod =
-  /*@__PURE__*/ S.String;
+export const ProjectsDomainsCreateResponseValidationDataMethod = S.String;
 
 export type ProjectsDomainsCreateResponseValidationDataStatus =
   | "initializing"
@@ -2760,8 +2750,7 @@ export type ProjectsDomainsCreateResponseValidationDataStatus =
   | "active"
   | "deactivated"
   | "error";
-export const ProjectsDomainsCreateResponseValidationDataStatus =
-  /*@__PURE__*/ S.String;
+export const ProjectsDomainsCreateResponseValidationDataStatus = S.String;
 
 export interface ProjectsDomainsCreateResponseValidationData {
   method: ProjectsDomainsCreateResponseValidationDataMethod;
@@ -2791,8 +2780,7 @@ export type ProjectsDomainsCreateResponseVerificationDataStatus =
   | "deactivated"
   | "blocked"
   | "error";
-export const ProjectsDomainsCreateResponseVerificationDataStatus =
-  /*@__PURE__*/ S.String;
+export const ProjectsDomainsCreateResponseVerificationDataStatus = S.String;
 
 export interface ProjectsDomainsCreateResponseVerificationData {
   status: ProjectsDomainsCreateResponseVerificationDataStatus;
@@ -2989,7 +2977,7 @@ export type ProjectsGetResponseCanonicalDeploymentDeploymentTriggerType =
   | "ad_hoc"
   | "deploy_hook";
 export const ProjectsGetResponseCanonicalDeploymentDeploymentTriggerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsGetResponseCanonicalDeploymentDeploymentTrigger {
   /** Additional info about the trigger. */
@@ -3011,8 +2999,7 @@ export const ProjectsGetResponseCanonicalDeploymentDeploymentTrigger =
 export type ProjectsGetResponseCanonicalDeploymentEnvironment =
   | "preview"
   | "production";
-export const ProjectsGetResponseCanonicalDeploymentEnvironment =
-  /*@__PURE__*/ S.String;
+export const ProjectsGetResponseCanonicalDeploymentEnvironment = S.String;
 
 export type ProjectsGetResponseCanonicalDeploymentLatestStageName =
   | "queued"
@@ -3020,8 +3007,7 @@ export type ProjectsGetResponseCanonicalDeploymentLatestStageName =
   | "clone_repo"
   | "build"
   | "deploy";
-export const ProjectsGetResponseCanonicalDeploymentLatestStageName =
-  /*@__PURE__*/ S.String;
+export const ProjectsGetResponseCanonicalDeploymentLatestStageName = S.String;
 
 export type ProjectsGetResponseCanonicalDeploymentLatestStageStatus =
   | "success"
@@ -3029,8 +3015,7 @@ export type ProjectsGetResponseCanonicalDeploymentLatestStageStatus =
   | "active"
   | "failure"
   | "canceled";
-export const ProjectsGetResponseCanonicalDeploymentLatestStageStatus =
-  /*@__PURE__*/ S.String;
+export const ProjectsGetResponseCanonicalDeploymentLatestStageStatus = S.String;
 
 export interface ProjectsGetResponseCanonicalDeploymentLatestStage {
   /** When the stage ended. */
@@ -3087,7 +3072,7 @@ export type ProjectsGetResponseCanonicalDeploymentSourceConfigPreviewDeploymentS
   | "none"
   | "custom";
 export const ProjectsGetResponseCanonicalDeploymentSourceConfigPreviewDeploymentSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsGetResponseCanonicalDeploymentSourceConfig {
   /** Whether to enable automatic deployments when pushing to the source repository. */
@@ -3158,8 +3143,7 @@ export const ProjectsGetResponseCanonicalDeploymentSourceConfig =
 export type ProjectsGetResponseCanonicalDeploymentSourceType =
   | "github"
   | "gitlab";
-export const ProjectsGetResponseCanonicalDeploymentSourceType =
-  /*@__PURE__*/ S.String;
+export const ProjectsGetResponseCanonicalDeploymentSourceType = S.String;
 
 export interface ProjectsGetResponseCanonicalDeploymentSource {
   config: ProjectsGetResponseCanonicalDeploymentSourceConfig;
@@ -3269,8 +3253,7 @@ export type ProjectsGetResponseDeploymentConfigsPreviewUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const ProjectsGetResponseDeploymentConfigsPreviewUsageModel =
-  /*@__PURE__*/ S.String;
+export const ProjectsGetResponseDeploymentConfigsPreviewUsageModel = S.String;
 
 export type ProjectsGetResponseDeploymentConfigsPreviewAiBindingsValue =
   ProjectsCreateRequestDeploymentConfigsPreviewAiBindingsValue;
@@ -3595,7 +3578,7 @@ export type ProjectsGetResponseDeploymentConfigsProductionUsageModel =
   | "bundled"
   | "unbound";
 export const ProjectsGetResponseDeploymentConfigsProductionUsageModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProjectsGetResponseDeploymentConfigsProductionAiBindingsValue =
   ProjectsCreateRequestDeploymentConfigsPreviewAiBindingsValue;
@@ -3967,8 +3950,7 @@ export type ProjectsGetResponseSourceConfigPreviewDeploymentSetting =
   | "all"
   | "none"
   | "custom";
-export const ProjectsGetResponseSourceConfigPreviewDeploymentSetting =
-  /*@__PURE__*/ S.String;
+export const ProjectsGetResponseSourceConfigPreviewDeploymentSetting = S.String;
 
 export interface ProjectsGetResponseSourceConfig {
   /** Whether to enable automatic deployments when pushing to the source repository. */
@@ -4034,7 +4016,7 @@ export const ProjectsGetResponseSourceConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProjectsGetResponseSourceConfig>;
 
 export type ProjectsGetResponseSourceType = "github" | "gitlab";
-export const ProjectsGetResponseSourceType = /*@__PURE__*/ S.String;
+export const ProjectsGetResponseSourceType = S.String;
 
 export interface ProjectsGetResponseSource {
   config: ProjectsGetResponseSourceConfig;
@@ -4163,8 +4145,7 @@ export type ProjectsDeploymentsGetResponseDeploymentTriggerType =
   | "github:push"
   | "ad_hoc"
   | "deploy_hook";
-export const ProjectsDeploymentsGetResponseDeploymentTriggerType =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsGetResponseDeploymentTriggerType = S.String;
 
 export interface ProjectsDeploymentsGetResponseDeploymentTrigger {
   /** Additional info about the trigger. */
@@ -4186,7 +4167,7 @@ export const ProjectsDeploymentsGetResponseDeploymentTrigger =
 export type ProjectsDeploymentsGetResponseEnvironment =
   | "preview"
   | "production";
-export const ProjectsDeploymentsGetResponseEnvironment = /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsGetResponseEnvironment = S.String;
 
 export type ProjectsDeploymentsGetResponseLatestStageName =
   | "queued"
@@ -4194,8 +4175,7 @@ export type ProjectsDeploymentsGetResponseLatestStageName =
   | "clone_repo"
   | "build"
   | "deploy";
-export const ProjectsDeploymentsGetResponseLatestStageName =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsGetResponseLatestStageName = S.String;
 
 export type ProjectsDeploymentsGetResponseLatestStageStatus =
   | "success"
@@ -4203,8 +4183,7 @@ export type ProjectsDeploymentsGetResponseLatestStageStatus =
   | "active"
   | "failure"
   | "canceled";
-export const ProjectsDeploymentsGetResponseLatestStageStatus =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsGetResponseLatestStageStatus = S.String;
 
 export interface ProjectsDeploymentsGetResponseLatestStage {
   /** When the stage ended. */
@@ -4261,7 +4240,7 @@ export type ProjectsDeploymentsGetResponseSourceConfigPreviewDeploymentSetting =
   | "none"
   | "custom";
 export const ProjectsDeploymentsGetResponseSourceConfigPreviewDeploymentSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsDeploymentsGetResponseSourceConfig {
   /** Whether to enable automatic deployments when pushing to the source repository. */
@@ -4330,7 +4309,7 @@ export const ProjectsDeploymentsGetResponseSourceConfig =
   }) as any as S.Schema<ProjectsDeploymentsGetResponseSourceConfig>;
 
 export type ProjectsDeploymentsGetResponseSourceType = "github" | "gitlab";
-export const ProjectsDeploymentsGetResponseSourceType = /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsGetResponseSourceType = S.String;
 
 export interface ProjectsDeploymentsGetResponseSource {
   config: ProjectsDeploymentsGetResponseSourceConfig;
@@ -4521,8 +4500,7 @@ export const GetProjectDomainRequest = /*@__PURE__*/ S.suspend(() =>
 export type ProjectsDomainsGetResponseCertificateAuthority =
   | "google"
   | "lets_encrypt";
-export const ProjectsDomainsGetResponseCertificateAuthority =
-  /*@__PURE__*/ S.String;
+export const ProjectsDomainsGetResponseCertificateAuthority = S.String;
 
 export type ProjectsDomainsGetResponseStatus =
   | "initializing"
@@ -4531,11 +4509,10 @@ export type ProjectsDomainsGetResponseStatus =
   | "deactivated"
   | "blocked"
   | "error";
-export const ProjectsDomainsGetResponseStatus = /*@__PURE__*/ S.String;
+export const ProjectsDomainsGetResponseStatus = S.String;
 
 export type ProjectsDomainsGetResponseValidationDataMethod = "http" | "txt";
-export const ProjectsDomainsGetResponseValidationDataMethod =
-  /*@__PURE__*/ S.String;
+export const ProjectsDomainsGetResponseValidationDataMethod = S.String;
 
 export type ProjectsDomainsGetResponseValidationDataStatus =
   | "initializing"
@@ -4543,8 +4520,7 @@ export type ProjectsDomainsGetResponseValidationDataStatus =
   | "active"
   | "deactivated"
   | "error";
-export const ProjectsDomainsGetResponseValidationDataStatus =
-  /*@__PURE__*/ S.String;
+export const ProjectsDomainsGetResponseValidationDataStatus = S.String;
 
 export interface ProjectsDomainsGetResponseValidationData {
   method: ProjectsDomainsGetResponseValidationDataMethod;
@@ -4574,8 +4550,7 @@ export type ProjectsDomainsGetResponseVerificationDataStatus =
   | "deactivated"
   | "blocked"
   | "error";
-export const ProjectsDomainsGetResponseVerificationDataStatus =
-  /*@__PURE__*/ S.String;
+export const ProjectsDomainsGetResponseVerificationDataStatus = S.String;
 
 export interface ProjectsDomainsGetResponseVerificationData {
   status: ProjectsDomainsGetResponseVerificationDataStatus;
@@ -4629,7 +4604,7 @@ export const GetProjectDomainResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProjectDomainResponse>;
 
 export type ProjectsDeploymentsListRequestEnv = "production" | "preview";
-export const ProjectsDeploymentsListRequestEnv = /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsListRequestEnv = S.String;
 
 export interface ListProjectDeploymentsRequest {
   /** Identifier. */
@@ -4683,8 +4658,7 @@ export type ProjectsDeploymentsListResultItemDeploymentTriggerType =
   | "github:push"
   | "ad_hoc"
   | "deploy_hook";
-export const ProjectsDeploymentsListResultItemDeploymentTriggerType =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsListResultItemDeploymentTriggerType = S.String;
 
 export interface ProjectsDeploymentsListResultItemDeploymentTrigger {
   /** Additional info about the trigger. */
@@ -4706,8 +4680,7 @@ export const ProjectsDeploymentsListResultItemDeploymentTrigger =
 export type ProjectsDeploymentsListResultItemEnvironment =
   | "preview"
   | "production";
-export const ProjectsDeploymentsListResultItemEnvironment =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsListResultItemEnvironment = S.String;
 
 export type ProjectsDeploymentsListResultItemLatestStageName =
   | "queued"
@@ -4715,8 +4688,7 @@ export type ProjectsDeploymentsListResultItemLatestStageName =
   | "clone_repo"
   | "build"
   | "deploy";
-export const ProjectsDeploymentsListResultItemLatestStageName =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsListResultItemLatestStageName = S.String;
 
 export type ProjectsDeploymentsListResultItemLatestStageStatus =
   | "success"
@@ -4724,8 +4696,7 @@ export type ProjectsDeploymentsListResultItemLatestStageStatus =
   | "active"
   | "failure"
   | "canceled";
-export const ProjectsDeploymentsListResultItemLatestStageStatus =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsListResultItemLatestStageStatus = S.String;
 
 export interface ProjectsDeploymentsListResultItemLatestStage {
   /** When the stage ended. */
@@ -4782,7 +4753,7 @@ export type ProjectsDeploymentsListResultItemSourceConfigPreviewDeploymentSettin
   | "none"
   | "custom";
 export const ProjectsDeploymentsListResultItemSourceConfigPreviewDeploymentSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsDeploymentsListResultItemSourceConfig {
   /** Whether to enable automatic deployments when pushing to the source repository. */
@@ -4851,8 +4822,7 @@ export const ProjectsDeploymentsListResultItemSourceConfig =
   }) as any as S.Schema<ProjectsDeploymentsListResultItemSourceConfig>;
 
 export type ProjectsDeploymentsListResultItemSourceType = "github" | "gitlab";
-export const ProjectsDeploymentsListResultItemSourceType =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsListResultItemSourceType = S.String;
 
 export interface ProjectsDeploymentsListResultItemSource {
   config: ProjectsDeploymentsListResultItemSourceConfig;
@@ -4996,8 +4966,7 @@ export const ListProjectDomainsRequest = /*@__PURE__*/ S.suspend(() =>
 export type ProjectsDomainsListResultItemCertificateAuthority =
   | "google"
   | "lets_encrypt";
-export const ProjectsDomainsListResultItemCertificateAuthority =
-  /*@__PURE__*/ S.String;
+export const ProjectsDomainsListResultItemCertificateAuthority = S.String;
 
 export type ProjectsDomainsListResultItemStatus =
   | "initializing"
@@ -5006,11 +4975,10 @@ export type ProjectsDomainsListResultItemStatus =
   | "deactivated"
   | "blocked"
   | "error";
-export const ProjectsDomainsListResultItemStatus = /*@__PURE__*/ S.String;
+export const ProjectsDomainsListResultItemStatus = S.String;
 
 export type ProjectsDomainsListResultItemValidationDataMethod = "http" | "txt";
-export const ProjectsDomainsListResultItemValidationDataMethod =
-  /*@__PURE__*/ S.String;
+export const ProjectsDomainsListResultItemValidationDataMethod = S.String;
 
 export type ProjectsDomainsListResultItemValidationDataStatus =
   | "initializing"
@@ -5018,8 +4986,7 @@ export type ProjectsDomainsListResultItemValidationDataStatus =
   | "active"
   | "deactivated"
   | "error";
-export const ProjectsDomainsListResultItemValidationDataStatus =
-  /*@__PURE__*/ S.String;
+export const ProjectsDomainsListResultItemValidationDataStatus = S.String;
 
 export interface ProjectsDomainsListResultItemValidationData {
   method: ProjectsDomainsListResultItemValidationDataMethod;
@@ -5049,8 +5016,7 @@ export type ProjectsDomainsListResultItemVerificationDataStatus =
   | "deactivated"
   | "blocked"
   | "error";
-export const ProjectsDomainsListResultItemVerificationDataStatus =
-  /*@__PURE__*/ S.String;
+export const ProjectsDomainsListResultItemVerificationDataStatus = S.String;
 
 export interface ProjectsDomainsListResultItemVerificationData {
   status: ProjectsDomainsListResultItemVerificationDataStatus;
@@ -5172,7 +5138,7 @@ export type ProjectsListResultItemCanonicalDeploymentDeploymentTriggerType =
   | "ad_hoc"
   | "deploy_hook";
 export const ProjectsListResultItemCanonicalDeploymentDeploymentTriggerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsListResultItemCanonicalDeploymentDeploymentTrigger {
   /** Additional info about the trigger. */
@@ -5194,8 +5160,7 @@ export const ProjectsListResultItemCanonicalDeploymentDeploymentTrigger =
 export type ProjectsListResultItemCanonicalDeploymentEnvironment =
   | "preview"
   | "production";
-export const ProjectsListResultItemCanonicalDeploymentEnvironment =
-  /*@__PURE__*/ S.String;
+export const ProjectsListResultItemCanonicalDeploymentEnvironment = S.String;
 
 export type ProjectsListResultItemCanonicalDeploymentLatestStageName =
   | "queued"
@@ -5204,7 +5169,7 @@ export type ProjectsListResultItemCanonicalDeploymentLatestStageName =
   | "build"
   | "deploy";
 export const ProjectsListResultItemCanonicalDeploymentLatestStageName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProjectsListResultItemCanonicalDeploymentLatestStageStatus =
   | "success"
@@ -5213,7 +5178,7 @@ export type ProjectsListResultItemCanonicalDeploymentLatestStageStatus =
   | "failure"
   | "canceled";
 export const ProjectsListResultItemCanonicalDeploymentLatestStageStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsListResultItemCanonicalDeploymentLatestStage {
   /** When the stage ended. */
@@ -5270,7 +5235,7 @@ export type ProjectsListResultItemCanonicalDeploymentSourceConfigPreviewDeployme
   | "none"
   | "custom";
 export const ProjectsListResultItemCanonicalDeploymentSourceConfigPreviewDeploymentSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsListResultItemCanonicalDeploymentSourceConfig {
   /** Whether to enable automatic deployments when pushing to the source repository. */
@@ -5341,8 +5306,7 @@ export const ProjectsListResultItemCanonicalDeploymentSourceConfig =
 export type ProjectsListResultItemCanonicalDeploymentSourceType =
   | "github"
   | "gitlab";
-export const ProjectsListResultItemCanonicalDeploymentSourceType =
-  /*@__PURE__*/ S.String;
+export const ProjectsListResultItemCanonicalDeploymentSourceType = S.String;
 
 export interface ProjectsListResultItemCanonicalDeploymentSource {
   config: ProjectsListResultItemCanonicalDeploymentSourceConfig;
@@ -5453,7 +5417,7 @@ export type ProjectsListResultItemDeploymentConfigsPreviewUsageModel =
   | "bundled"
   | "unbound";
 export const ProjectsListResultItemDeploymentConfigsPreviewUsageModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProjectsListResultItemDeploymentConfigsPreviewAiBindingsValue =
   ProjectsCreateRequestDeploymentConfigsPreviewAiBindingsValue;
@@ -5781,7 +5745,7 @@ export type ProjectsListResultItemDeploymentConfigsProductionUsageModel =
   | "bundled"
   | "unbound";
 export const ProjectsListResultItemDeploymentConfigsProductionUsageModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProjectsListResultItemDeploymentConfigsProductionAiBindingsValue =
   ProjectsCreateRequestDeploymentConfigsPreviewAiBindingsValue;
@@ -6156,7 +6120,7 @@ export type ProjectsListResultItemSourceConfigPreviewDeploymentSetting =
   | "none"
   | "custom";
 export const ProjectsListResultItemSourceConfigPreviewDeploymentSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsListResultItemSourceConfig {
   /** Whether to enable automatic deployments when pushing to the source repository. */
@@ -6222,7 +6186,7 @@ export const ProjectsListResultItemSourceConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProjectsListResultItemSourceConfig>;
 
 export type ProjectsListResultItemSourceType = "github" | "gitlab";
-export const ProjectsListResultItemSourceType = /*@__PURE__*/ S.String;
+export const ProjectsListResultItemSourceType = S.String;
 
 export interface ProjectsListResultItemSource {
   config: ProjectsListResultItemSourceConfig;
@@ -6499,8 +6463,7 @@ export type ProjectsEditRequestDeploymentConfigsPreviewUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const ProjectsEditRequestDeploymentConfigsPreviewUsageModel =
-  /*@__PURE__*/ S.String;
+export const ProjectsEditRequestDeploymentConfigsPreviewUsageModel = S.String;
 
 export type ProjectsEditRequestDeploymentConfigsPreviewVectorizeBindingsValue =
   ProjectsCreateRequestDeploymentConfigsPreviewVectorizeBindingsValue;
@@ -6832,7 +6795,7 @@ export type ProjectsEditRequestDeploymentConfigsProductionUsageModel =
   | "bundled"
   | "unbound";
 export const ProjectsEditRequestDeploymentConfigsProductionUsageModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProjectsEditRequestDeploymentConfigsProductionVectorizeBindingsValue =
   ProjectsCreateRequestDeploymentConfigsPreviewVectorizeBindingsValue;
@@ -7037,8 +7000,7 @@ export type ProjectsEditRequestSourceConfigPreviewDeploymentSetting =
   | "all"
   | "none"
   | "custom";
-export const ProjectsEditRequestSourceConfigPreviewDeploymentSetting =
-  /*@__PURE__*/ S.String;
+export const ProjectsEditRequestSourceConfigPreviewDeploymentSetting = S.String;
 
 export interface ProjectsEditRequestSourceConfig {
   /** Whether to enable automatic deployments when pushing to the source repository. */
@@ -7117,7 +7079,7 @@ export const ProjectsEditRequestSourceConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProjectsEditRequestSourceConfig>;
 
 export type ProjectsEditRequestSourceType = "github" | "gitlab";
-export const ProjectsEditRequestSourceType = /*@__PURE__*/ S.String;
+export const ProjectsEditRequestSourceType = S.String;
 
 export interface ProjectsEditRequestSource {
   config: ProjectsEditRequestSourceConfig;
@@ -7196,7 +7158,7 @@ export type ProjectsEditResponseCanonicalDeploymentDeploymentTriggerType =
   | "ad_hoc"
   | "deploy_hook";
 export const ProjectsEditResponseCanonicalDeploymentDeploymentTriggerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsEditResponseCanonicalDeploymentDeploymentTrigger {
   /** Additional info about the trigger. */
@@ -7218,8 +7180,7 @@ export const ProjectsEditResponseCanonicalDeploymentDeploymentTrigger =
 export type ProjectsEditResponseCanonicalDeploymentEnvironment =
   | "preview"
   | "production";
-export const ProjectsEditResponseCanonicalDeploymentEnvironment =
-  /*@__PURE__*/ S.String;
+export const ProjectsEditResponseCanonicalDeploymentEnvironment = S.String;
 
 export type ProjectsEditResponseCanonicalDeploymentLatestStageName =
   | "queued"
@@ -7227,8 +7188,7 @@ export type ProjectsEditResponseCanonicalDeploymentLatestStageName =
   | "clone_repo"
   | "build"
   | "deploy";
-export const ProjectsEditResponseCanonicalDeploymentLatestStageName =
-  /*@__PURE__*/ S.String;
+export const ProjectsEditResponseCanonicalDeploymentLatestStageName = S.String;
 
 export type ProjectsEditResponseCanonicalDeploymentLatestStageStatus =
   | "success"
@@ -7237,7 +7197,7 @@ export type ProjectsEditResponseCanonicalDeploymentLatestStageStatus =
   | "failure"
   | "canceled";
 export const ProjectsEditResponseCanonicalDeploymentLatestStageStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsEditResponseCanonicalDeploymentLatestStage {
   /** When the stage ended. */
@@ -7294,7 +7254,7 @@ export type ProjectsEditResponseCanonicalDeploymentSourceConfigPreviewDeployment
   | "none"
   | "custom";
 export const ProjectsEditResponseCanonicalDeploymentSourceConfigPreviewDeploymentSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsEditResponseCanonicalDeploymentSourceConfig {
   /** Whether to enable automatic deployments when pushing to the source repository. */
@@ -7365,8 +7325,7 @@ export const ProjectsEditResponseCanonicalDeploymentSourceConfig =
 export type ProjectsEditResponseCanonicalDeploymentSourceType =
   | "github"
   | "gitlab";
-export const ProjectsEditResponseCanonicalDeploymentSourceType =
-  /*@__PURE__*/ S.String;
+export const ProjectsEditResponseCanonicalDeploymentSourceType = S.String;
 
 export interface ProjectsEditResponseCanonicalDeploymentSource {
   config: ProjectsEditResponseCanonicalDeploymentSourceConfig;
@@ -7476,8 +7435,7 @@ export type ProjectsEditResponseDeploymentConfigsPreviewUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const ProjectsEditResponseDeploymentConfigsPreviewUsageModel =
-  /*@__PURE__*/ S.String;
+export const ProjectsEditResponseDeploymentConfigsPreviewUsageModel = S.String;
 
 export type ProjectsEditResponseDeploymentConfigsPreviewAiBindingsValue =
   ProjectsCreateRequestDeploymentConfigsPreviewAiBindingsValue;
@@ -7803,7 +7761,7 @@ export type ProjectsEditResponseDeploymentConfigsProductionUsageModel =
   | "bundled"
   | "unbound";
 export const ProjectsEditResponseDeploymentConfigsProductionUsageModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProjectsEditResponseDeploymentConfigsProductionAiBindingsValue =
   ProjectsCreateRequestDeploymentConfigsPreviewAiBindingsValue;
@@ -8177,7 +8135,7 @@ export type ProjectsEditResponseSourceConfigPreviewDeploymentSetting =
   | "none"
   | "custom";
 export const ProjectsEditResponseSourceConfigPreviewDeploymentSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsEditResponseSourceConfig {
   /** Whether to enable automatic deployments when pushing to the source repository. */
@@ -8243,7 +8201,7 @@ export const ProjectsEditResponseSourceConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProjectsEditResponseSourceConfig>;
 
 export type ProjectsEditResponseSourceType = "github" | "gitlab";
-export const ProjectsEditResponseSourceType = /*@__PURE__*/ S.String;
+export const ProjectsEditResponseSourceType = S.String;
 
 export interface ProjectsEditResponseSource {
   config: ProjectsEditResponseSourceConfig;
@@ -8356,8 +8314,7 @@ export const PatchProjectDomainRequest = /*@__PURE__*/ S.suspend(() =>
 export type ProjectsDomainsEditResponseCertificateAuthority =
   | "google"
   | "lets_encrypt";
-export const ProjectsDomainsEditResponseCertificateAuthority =
-  /*@__PURE__*/ S.String;
+export const ProjectsDomainsEditResponseCertificateAuthority = S.String;
 
 export type ProjectsDomainsEditResponseStatus =
   | "initializing"
@@ -8366,11 +8323,10 @@ export type ProjectsDomainsEditResponseStatus =
   | "deactivated"
   | "blocked"
   | "error";
-export const ProjectsDomainsEditResponseStatus = /*@__PURE__*/ S.String;
+export const ProjectsDomainsEditResponseStatus = S.String;
 
 export type ProjectsDomainsEditResponseValidationDataMethod = "http" | "txt";
-export const ProjectsDomainsEditResponseValidationDataMethod =
-  /*@__PURE__*/ S.String;
+export const ProjectsDomainsEditResponseValidationDataMethod = S.String;
 
 export type ProjectsDomainsEditResponseValidationDataStatus =
   | "initializing"
@@ -8378,8 +8334,7 @@ export type ProjectsDomainsEditResponseValidationDataStatus =
   | "active"
   | "deactivated"
   | "error";
-export const ProjectsDomainsEditResponseValidationDataStatus =
-  /*@__PURE__*/ S.String;
+export const ProjectsDomainsEditResponseValidationDataStatus = S.String;
 
 export interface ProjectsDomainsEditResponseValidationData {
   method: ProjectsDomainsEditResponseValidationDataMethod;
@@ -8409,8 +8364,7 @@ export type ProjectsDomainsEditResponseVerificationDataStatus =
   | "deactivated"
   | "blocked"
   | "error";
-export const ProjectsDomainsEditResponseVerificationDataStatus =
-  /*@__PURE__*/ S.String;
+export const ProjectsDomainsEditResponseVerificationDataStatus = S.String;
 
 export interface ProjectsDomainsEditResponseVerificationData {
   status: ProjectsDomainsEditResponseVerificationDataStatus;
@@ -8539,8 +8493,7 @@ export type ProjectsDeploymentsRetryResponseDeploymentTriggerType =
   | "github:push"
   | "ad_hoc"
   | "deploy_hook";
-export const ProjectsDeploymentsRetryResponseDeploymentTriggerType =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsRetryResponseDeploymentTriggerType = S.String;
 
 export interface ProjectsDeploymentsRetryResponseDeploymentTrigger {
   /** Additional info about the trigger. */
@@ -8562,8 +8515,7 @@ export const ProjectsDeploymentsRetryResponseDeploymentTrigger =
 export type ProjectsDeploymentsRetryResponseEnvironment =
   | "preview"
   | "production";
-export const ProjectsDeploymentsRetryResponseEnvironment =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsRetryResponseEnvironment = S.String;
 
 export type ProjectsDeploymentsRetryResponseLatestStageName =
   | "queued"
@@ -8571,8 +8523,7 @@ export type ProjectsDeploymentsRetryResponseLatestStageName =
   | "clone_repo"
   | "build"
   | "deploy";
-export const ProjectsDeploymentsRetryResponseLatestStageName =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsRetryResponseLatestStageName = S.String;
 
 export type ProjectsDeploymentsRetryResponseLatestStageStatus =
   | "success"
@@ -8580,8 +8531,7 @@ export type ProjectsDeploymentsRetryResponseLatestStageStatus =
   | "active"
   | "failure"
   | "canceled";
-export const ProjectsDeploymentsRetryResponseLatestStageStatus =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsRetryResponseLatestStageStatus = S.String;
 
 export interface ProjectsDeploymentsRetryResponseLatestStage {
   /** When the stage ended. */
@@ -8638,7 +8588,7 @@ export type ProjectsDeploymentsRetryResponseSourceConfigPreviewDeploymentSetting
   | "none"
   | "custom";
 export const ProjectsDeploymentsRetryResponseSourceConfigPreviewDeploymentSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsDeploymentsRetryResponseSourceConfig {
   /** Whether to enable automatic deployments when pushing to the source repository. */
@@ -8707,8 +8657,7 @@ export const ProjectsDeploymentsRetryResponseSourceConfig =
   }) as any as S.Schema<ProjectsDeploymentsRetryResponseSourceConfig>;
 
 export type ProjectsDeploymentsRetryResponseSourceType = "github" | "gitlab";
-export const ProjectsDeploymentsRetryResponseSourceType =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsRetryResponseSourceType = S.String;
 
 export interface ProjectsDeploymentsRetryResponseSource {
   config: ProjectsDeploymentsRetryResponseSourceConfig;
@@ -8852,7 +8801,7 @@ export type ProjectsDeploymentsRollbackResponseDeploymentTriggerType =
   | "ad_hoc"
   | "deploy_hook";
 export const ProjectsDeploymentsRollbackResponseDeploymentTriggerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsDeploymentsRollbackResponseDeploymentTrigger {
   /** Additional info about the trigger. */
@@ -8874,8 +8823,7 @@ export const ProjectsDeploymentsRollbackResponseDeploymentTrigger =
 export type ProjectsDeploymentsRollbackResponseEnvironment =
   | "preview"
   | "production";
-export const ProjectsDeploymentsRollbackResponseEnvironment =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsRollbackResponseEnvironment = S.String;
 
 export type ProjectsDeploymentsRollbackResponseLatestStageName =
   | "queued"
@@ -8883,8 +8831,7 @@ export type ProjectsDeploymentsRollbackResponseLatestStageName =
   | "clone_repo"
   | "build"
   | "deploy";
-export const ProjectsDeploymentsRollbackResponseLatestStageName =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsRollbackResponseLatestStageName = S.String;
 
 export type ProjectsDeploymentsRollbackResponseLatestStageStatus =
   | "success"
@@ -8892,8 +8839,7 @@ export type ProjectsDeploymentsRollbackResponseLatestStageStatus =
   | "active"
   | "failure"
   | "canceled";
-export const ProjectsDeploymentsRollbackResponseLatestStageStatus =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsRollbackResponseLatestStageStatus = S.String;
 
 export interface ProjectsDeploymentsRollbackResponseLatestStage {
   /** When the stage ended. */
@@ -8950,7 +8896,7 @@ export type ProjectsDeploymentsRollbackResponseSourceConfigPreviewDeploymentSett
   | "none"
   | "custom";
 export const ProjectsDeploymentsRollbackResponseSourceConfigPreviewDeploymentSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectsDeploymentsRollbackResponseSourceConfig {
   /** Whether to enable automatic deployments when pushing to the source repository. */
@@ -9019,8 +8965,7 @@ export const ProjectsDeploymentsRollbackResponseSourceConfig =
   }) as any as S.Schema<ProjectsDeploymentsRollbackResponseSourceConfig>;
 
 export type ProjectsDeploymentsRollbackResponseSourceType = "github" | "gitlab";
-export const ProjectsDeploymentsRollbackResponseSourceType =
-  /*@__PURE__*/ S.String;
+export const ProjectsDeploymentsRollbackResponseSourceType = S.String;
 
 export interface ProjectsDeploymentsRollbackResponseSource {
   config: ProjectsDeploymentsRollbackResponseSourceConfig;

@@ -70,7 +70,7 @@ export type SmsBatchStatusEnum =
   | "INSERTING"
   | "PENDING"
   | "TO_CANCEL";
-export const SmsBatchStatusEnum = /*@__PURE__*/ S.String;
+export const SmsBatchStatusEnum = S.String;
 
 /** Batch of SMS to send */
 export interface SmsBatch {
@@ -133,7 +133,7 @@ export const SmsBatch = /*@__PURE__*/ S.suspend(() =>
 
 /** SMS classes */
 export type SmsBatchClassEnum = "FLASH" | "PHONE" | "SIM";
-export const SmsBatchClassEnum = /*@__PURE__*/ S.String;
+export const SmsBatchClassEnum = S.String;
 
 /** SMS receivers list. Either "to" or "slotID" must be passed */
 export type CreateSmsBatchRequestToList = Array<string>;
@@ -187,7 +187,7 @@ export const CreateSmsBatchRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** All existing types for a given sender */
 export type SmsTypeSenderEnum = "alpha" | "numeric" | "shortcode" | "virtual";
-export const SmsTypeSenderEnum = /*@__PURE__*/ S.String;
+export const SmsTypeSenderEnum = S.String;
 
 export interface CreateSmsEstimateRequest {
   /** The message to send */
@@ -209,7 +209,7 @@ export const CreateSmsEstimateRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The SMS available characters class */
 export type SmsEncodingEnum = "7bits" | "unicode";
-export const SmsEncodingEnum = /*@__PURE__*/ S.String;
+export const SmsEncodingEnum = S.String;
 
 /** A structure describing the encoding, length and number of SMS parts of a text message */
 export interface SmsJobEstimate {
@@ -292,19 +292,19 @@ export const SmsSmsSendingReport = /*@__PURE__*/ S.suspend(() =>
 
 /** The charset format */
 export type SmsCharsetEnum = "UTF-8";
-export const SmsCharsetEnum = /*@__PURE__*/ S.String;
+export const SmsCharsetEnum = S.String;
 
 /** Deprecated: The sms class of sms sending job */
 export type SmsClassEnum = "flash" | "phoneDisplay" | "sim" | "toolkit";
-export const SmsClassEnum = /*@__PURE__*/ S.String;
+export const SmsClassEnum = S.String;
 
 /** The sms coding */
 export type SmsCodingEnum = "7bit" | "8bit";
-export const SmsCodingEnum = /*@__PURE__*/ S.String;
+export const SmsCodingEnum = S.String;
 
 /** The priority of an sms sending */
 export type SmsPriorityEnum = "high" | "low" | "medium" | "veryLow";
-export const SmsPriorityEnum = /*@__PURE__*/ S.String;
+export const SmsPriorityEnum = S.String;
 
 /** The receivers list */
 export type CreateSmsJobRequestReceiversList = Array<string>;
@@ -655,7 +655,7 @@ export type SmsTypeTemplateEnum =
   | "alerting"
   | "authentification"
   | "transactional";
-export const SmsTypeTemplateEnum = /*@__PURE__*/ S.String;
+export const SmsTypeTemplateEnum = S.String;
 
 export interface CreateSmsTemplatesControlRequest {
   /** The internal name of your SMS offer */
@@ -1570,11 +1570,11 @@ export type SmsPackQuantityAutomaticRecreditEnum =
   | 1000
   | 5000
   | 10000;
-export const SmsPackQuantityAutomaticRecreditEnum = /*@__PURE__*/ S.Number;
+export const SmsPackQuantityAutomaticRecreditEnum = S.Number;
 
 /** In case of smpp the channel can not be "both" */
 export type SmsChannelEnum = "both" | "marketing" | "transactional";
-export const SmsChannelEnum = /*@__PURE__*/ S.String;
+export const SmsChannelEnum = S.String;
 
 /** Resource tags. Tags that were internally computed are prefixed with ovh: */
 export type IamResourceMetadataTagsMap = { [key: string]: string | undefined };
@@ -1607,11 +1607,11 @@ export const IamResourceMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** Response type */
 export type SmsResponseTypeEnum = "cgi" | "none" | "text";
-export const SmsResponseTypeEnum = /*@__PURE__*/ S.String;
+export const SmsResponseTypeEnum = S.String;
 
 /** The tracking media response */
 export type SmsResponseTrackingMediaEnum = "email" | "sms" | "voice";
-export const SmsResponseTrackingMediaEnum = /*@__PURE__*/ S.String;
+export const SmsResponseTrackingMediaEnum = S.String;
 
 /** The tracking media response */
 export interface SmsResponseTrackingOptions {
@@ -1656,7 +1656,7 @@ export const SmsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Account status */
 export type SmsStatusAccountEnum = "disable" | "enable";
-export const SmsStatusAccountEnum = /*@__PURE__*/ S.String;
+export const SmsStatusAccountEnum = S.String;
 
 /** A structure describing all information about templates informations */
 export interface SmsTemplates {
@@ -1846,7 +1846,7 @@ export const SmsBlacklist = /*@__PURE__*/ S.suspend(() =>
 
 /** Way type */
 export type SmsDocumentWayTypeEnum = "incoming" | "outgoing";
-export const SmsDocumentWayTypeEnum = /*@__PURE__*/ S.String;
+export const SmsDocumentWayTypeEnum = S.String;
 
 export interface GetSmsDocumentRequest {
   /** The internal name of your SMS offer */
@@ -1907,7 +1907,7 @@ export const GetSmsHlrRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The sms coding */
 export type SmsHlrStatuses = "doing" | "done" | "error" | "todo";
-export const SmsHlrStatuses = /*@__PURE__*/ S.String;
+export const SmsHlrStatuses = S.String;
 
 /** Home Location Register informations. Give informations about a given cellular phone. */
 export interface SmsHlrLookupNumber {
@@ -2223,7 +2223,7 @@ export const SmsPhonebook = /*@__PURE__*/ S.suspend(() =>
 
 /** Export file format */
 export type TelephonyContactsExportFormatsEnum = "csv";
-export const TelephonyContactsExportFormatsEnum = /*@__PURE__*/ S.String;
+export const TelephonyContactsExportFormatsEnum = S.String;
 
 export interface GetSmsPhonebookExportRequest {
   /** The internal name of your SMS offer */
@@ -2251,7 +2251,7 @@ export const GetSmsPhonebookExportRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** File providing task status */
 export type TelephonyPcsFileStatusEnum = "doing" | "done" | "error" | "todo";
-export const TelephonyPcsFileStatusEnum = /*@__PURE__*/ S.String;
+export const TelephonyPcsFileStatusEnum = S.String;
 
 /** Telephony API related file hosted */
 export interface TelephonyPcsFile {
@@ -2347,7 +2347,7 @@ export type SmsPttDurationTypeEnum =
   | "indeterminated"
   | "permanent"
   | "temporary";
-export const SmsPttDurationTypeEnum = /*@__PURE__*/ S.String;
+export const SmsPttDurationTypeEnum = S.String;
 
 /** A structure describing ptt details */
 export interface SmsPttDetails {
@@ -2368,7 +2368,7 @@ export const SmsPttDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** Countries where we sell SMS credits */
 export type SmsBillingCountryEnum = "es" | "fr" | "gb" | "ie" | "it" | "pl";
-export const SmsBillingCountryEnum = /*@__PURE__*/ S.String;
+export const SmsBillingCountryEnum = S.String;
 
 /** All country suffixes accessible for sms services and "all" available */
 export type SmsCountryEnum =
@@ -2580,7 +2580,7 @@ export type SmsCountryEnum =
   | "za"
   | "zm"
   | "zw";
-export const SmsCountryEnum = /*@__PURE__*/ S.String;
+export const SmsCountryEnum = S.String;
 
 export interface GetSmsRateDestinationsRequest {
   /** Country where you buy credits */
@@ -2613,7 +2613,7 @@ export type OrderCurrencyCodeEnum =
   | "USD"
   | "XOF"
   | "points";
-export const OrderCurrencyCodeEnum = /*@__PURE__*/ S.String;
+export const OrderCurrencyCodeEnum = S.String;
 
 /** Price with it's currency and textual representation */
 export interface OrderPrice {
@@ -2729,7 +2729,7 @@ export type SmsRefererSenderEnum =
   | "nic"
   | "owner"
   | "virtual";
-export const SmsRefererSenderEnum = /*@__PURE__*/ S.String;
+export const SmsRefererSenderEnum = S.String;
 
 /** All existing status for a given referer */
 export type SmsStatusSenderEnum =
@@ -2737,7 +2737,7 @@ export type SmsStatusSenderEnum =
   | "enable"
   | "refused"
   | "waitingValidation";
-export const SmsStatusSenderEnum = /*@__PURE__*/ S.String;
+export const SmsStatusSenderEnum = S.String;
 
 /** SMS senders */
 export interface SmsSender {
@@ -2851,7 +2851,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 export type ServiceStateEnum =
   | "autorenewInProgress"
@@ -2860,7 +2860,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -2951,7 +2951,7 @@ export type SmsSettingsStatusEnum =
   | "UNKNOWN"
   | "UPDATING_IP"
   | "WAITING_IP";
-export const SmsSettingsStatusEnum = /*@__PURE__*/ S.String;
+export const SmsSettingsStatusEnum = S.String;
 
 /** SMPP settings */
 export interface SmsSettings {
@@ -2998,7 +2998,7 @@ export const GetSmsTaskRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The task function */
 export type SmsTodoGeneralPublicFunctionsEnum = "cleanSmsReceivers";
-export const SmsTodoGeneralPublicFunctionsEnum = /*@__PURE__*/ S.String;
+export const SmsTodoGeneralPublicFunctionsEnum = S.String;
 
 /** Task status */
 export type TelephonyTaskStatusEnum =
@@ -3007,7 +3007,7 @@ export type TelephonyTaskStatusEnum =
   | "error"
   | "pause"
   | "todo";
-export const TelephonyTaskStatusEnum = /*@__PURE__*/ S.String;
+export const TelephonyTaskStatusEnum = S.String;
 
 /** The task step */
 export type SmsTodoGeneralPublicStepsEnum =
@@ -3017,7 +3017,7 @@ export type SmsTodoGeneralPublicStepsEnum =
   | "sendMailReport"
   | "starting"
   | "waitForHlrs";
-export const SmsTodoGeneralPublicStepsEnum = /*@__PURE__*/ S.String;
+export const SmsTodoGeneralPublicStepsEnum = S.String;
 
 /** Operation on a SMS service */
 export interface SmsTask {
@@ -3110,7 +3110,7 @@ export const GetSmsUserRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The media support used to be contacted in case of alert */
 export type SmsSupportEnum = "both" | "mail" | "sms";
-export const SmsSupportEnum = /*@__PURE__*/ S.String;
+export const SmsSupportEnum = S.String;
 
 /** A structure describing all information about alert threshold informations */
 export interface SmsAlertThreshold {
@@ -3137,7 +3137,7 @@ export const SmsUserIpRestrictionsList = /*@__PURE__*/ S.Array(
 
 /** Current quota status */
 export type SmsQuotaStatusUserEnum = "active" | "inactive";
-export const SmsQuotaStatusUserEnum = /*@__PURE__*/ S.String;
+export const SmsQuotaStatusUserEnum = S.String;
 
 /** A structure describing all information about quota informations */
 export interface SmsQuota {
@@ -3393,7 +3393,7 @@ export type SmsVirtualNumberIsoCountryCodeEnum =
   | "es"
   | "fr"
   | "uk";
-export const SmsVirtualNumberIsoCountryCodeEnum = /*@__PURE__*/ S.String;
+export const SmsVirtualNumberIsoCountryCodeEnum = S.String;
 
 /** Virtual numbers */
 export interface SmsVirtualNumberGenericServiceWithIAM {
@@ -3801,7 +3801,7 @@ export type SmsRestrictionCodeEnum =
   | "DLR"
   | "FLASHONLY"
   | "MSISDN";
-export const SmsRestrictionCodeEnum = /*@__PURE__*/ S.String;
+export const SmsRestrictionCodeEnum = S.String;
 
 /** Sms reach list */
 export interface SmsException {
@@ -4170,7 +4170,7 @@ export type ReferenceCountryEnum =
   | "sn"
   | "tn"
   | "we";
-export const ReferenceCountryEnum = /*@__PURE__*/ S.String;
+export const ReferenceCountryEnum = S.String;
 
 /** Pack quantity levels */
 export type SmsPackQuantityEnum =
@@ -4186,7 +4186,7 @@ export type SmsPackQuantityEnum =
   | 50000
   | 100000
   | 1000000;
-export const SmsPackQuantityEnum = /*@__PURE__*/ S.Number;
+export const SmsPackQuantityEnum = S.Number;
 
 export interface ListSmsSeeOffersRequest {
   /** The internal name of your SMS offer */
@@ -4309,7 +4309,7 @@ export const ListSmsSendersResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The referer of the available sender */
 export type SmsSenderRefererEnum = "domain" | "nichandle";
-export const SmsSenderRefererEnum = /*@__PURE__*/ S.String;
+export const SmsSenderRefererEnum = S.String;
 
 export interface ListSmsSendersAvailableForValidationRequest {
   /** The internal name of your SMS offer */
@@ -5135,7 +5135,7 @@ export const PutSmsServiceInfosResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Smpp allowed IPs action */
 export type SmsAllowedIPsActionEnum = "add" | "remove";
-export const SmsAllowedIPsActionEnum = /*@__PURE__*/ S.String;
+export const SmsAllowedIPsActionEnum = S.String;
 
 /** List of IPs to add or remove */
 export type PutSmsSmppAllowedIPsRequestIpsList = Array<string>;

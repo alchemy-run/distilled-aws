@@ -43,10 +43,10 @@ export type GetFinancialReportRequestReportType =
   | "balance_summary"
   | "income_statement"
   | "balance_activity";
-export const GetFinancialReportRequestReportType = /*@__PURE__*/ S.String;
+export const GetFinancialReportRequestReportType = S.String;
 
 export type GetFinancialReportRequestGroupBy = "day" | "week" | "month";
-export const GetFinancialReportRequestGroupBy = /*@__PURE__*/ S.String;
+export const GetFinancialReportRequestGroupBy = S.String;
 
 export interface GetFinancialReportRequest {
   /** The owning account ID (a biz_ identifier), or `global` for a platform-wide report across all ledger accounts (requires internal admin access). */
@@ -104,7 +104,7 @@ export type GetFinancialReportResponseReportType =
   | "balance_summary"
   | "income_statement"
   | "balance_activity";
-export const GetFinancialReportResponseReportType = /*@__PURE__*/ S.String;
+export const GetFinancialReportResponseReportType = S.String;
 
 /** The family the row's `line_category` rolls up into. Balance summary rows are always `balance`. */
 export type GetFinancialReportResponseRowsItemGrouping =
@@ -128,8 +128,7 @@ export type GetFinancialReportResponseRowsItemGrouping =
   | "transfers"
   | "wallets_and_balance"
   | "withdrawals";
-export const GetFinancialReportResponseRowsItemGrouping =
-  /*@__PURE__*/ S.String;
+export const GetFinancialReportResponseRowsItemGrouping = S.String;
 
 /** The ledger line category the row aggregates. Balance summary rows carry the balance bucket instead. */
 export type GetFinancialReportResponseRowsItemLineCategory =
@@ -412,15 +411,13 @@ export type GetFinancialReportResponseRowsItemLineCategory =
   | "withdrawal_reclassification"
   | "withdrawal_reversal"
   | "withdrawal_topup_adjustment";
-export const GetFinancialReportResponseRowsItemLineCategory =
-  /*@__PURE__*/ S.String;
+export const GetFinancialReportResponseRowsItemLineCategory = S.String;
 
 /** Which side of the income statement the category falls on, or `null` when it is not a P&L category. */
 export type GetFinancialReportResponseRowsItemProfitAndLossSection =
   | "revenue"
   | "cost_of_revenue";
-export const GetFinancialReportResponseRowsItemProfitAndLossSection =
-  /*@__PURE__*/ S.String;
+export const GetFinancialReportResponseRowsItemProfitAndLossSection = S.String;
 
 export interface GetFinancialReportResponseRowsItem {
   account_ik_path?: string | null;
@@ -587,7 +584,7 @@ export type ListFinancialActivityRequestLineTypesItem =
   | "withdrawal_clawback_reversal"
   | "withdrawal_reclassification"
   | "withdrawal_reversal";
-export const ListFinancialActivityRequestLineTypesItem = /*@__PURE__*/ S.String;
+export const ListFinancialActivityRequestLineTypesItem = S.String;
 
 export type ListFinancialActivityRequestLineTypesList = Array<
   ListFinancialActivityRequestLineTypesItem | (string & {})
@@ -644,7 +641,7 @@ export const ListFinancialActivityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListFinancialActivityRequest>;
 
 export type LedgerActivityAccountCase0Object = "account";
-export const LedgerActivityAccountCase0Object = /*@__PURE__*/ S.String;
+export const LedgerActivityAccountCase0Object = S.String;
 
 export interface LedgerActivityAccountCase0 {
   /** Account ID. */
@@ -670,7 +667,7 @@ export const LedgerActivityAccountCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LedgerActivityAccountCase0>;
 
 export type LedgerActivityAccountCase1Object = "user";
-export const LedgerActivityAccountCase1Object = /*@__PURE__*/ S.String;
+export const LedgerActivityAccountCase1Object = S.String;
 
 export interface LedgerActivityAccountCase1 {
   /** User ID. */
@@ -700,7 +697,7 @@ export type LedgerActivityAccount =
   | LedgerActivityAccountCase0
   | LedgerActivityAccountCase1;
 export const LedgerActivityAccount =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LedgerActivityAccount>;
+  S.Unknown as any as S.Schema<LedgerActivityAccount>;
 
 /** Currency for this ledger activity. */
 export interface LedgerActivityCurrency {
@@ -817,10 +814,10 @@ export type LedgerActivityLineType =
   | "withdrawal_clawback_reversal"
   | "withdrawal_reclassification"
   | "withdrawal_reversal";
-export const LedgerActivityLineType = /*@__PURE__*/ S.String;
+export const LedgerActivityLineType = S.String;
 
 export type LedgerActivityObject = "ledger_activity";
-export const LedgerActivityObject = /*@__PURE__*/ S.String;
+export const LedgerActivityObject = S.String;
 
 export interface Money {
   /** The amount in major units, as an exact decimal string — `"10.00"` is ten dollars. A string so no float rounds it in transit. */
@@ -842,7 +839,7 @@ export const Money = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Money" }) as any as S.Schema<Money>;
 
 export type LedgerActivityPaymentObject = "payment";
-export const LedgerActivityPaymentObject = /*@__PURE__*/ S.String;
+export const LedgerActivityPaymentObject = S.String;
 
 /** Plan associated with the payment, when applicable. */
 export interface LedgerActivityPaymentPlan {
@@ -937,7 +934,7 @@ export const LedgerActivityPayment = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LedgerActivityPayment>;
 
 export type LedgerActivityResourceCase0Object = "account";
-export const LedgerActivityResourceCase0Object = /*@__PURE__*/ S.String;
+export const LedgerActivityResourceCase0Object = S.String;
 
 export interface LedgerActivityResourceCase0 {
   /** Account ID. */
@@ -963,7 +960,7 @@ export const LedgerActivityResourceCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LedgerActivityResourceCase0>;
 
 export type LedgerActivityResourceCase1Object = "user";
-export const LedgerActivityResourceCase1Object = /*@__PURE__*/ S.String;
+export const LedgerActivityResourceCase1Object = S.String;
 
 export interface LedgerActivityResourceCase1 {
   /** User ID. */
@@ -989,7 +986,7 @@ export const LedgerActivityResourceCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LedgerActivityResourceCase1>;
 
 export type LedgerActivityResourceCase2Object = "bounty";
-export const LedgerActivityResourceCase2Object = /*@__PURE__*/ S.String;
+export const LedgerActivityResourceCase2Object = S.String;
 
 export interface LedgerActivityResourceCase2 {
   /** Bounty ID. */
@@ -1012,11 +1009,10 @@ export const LedgerActivityResourceCase2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LedgerActivityResourceCase2>;
 
 export type LedgerActivityResourceCase3Object = "ledger_account";
-export const LedgerActivityResourceCase3Object = /*@__PURE__*/ S.String;
+export const LedgerActivityResourceCase3Object = S.String;
 
 export type LedgerActivityResourceCase3OwnerCase0Object = "account";
-export const LedgerActivityResourceCase3OwnerCase0Object =
-  /*@__PURE__*/ S.String;
+export const LedgerActivityResourceCase3OwnerCase0Object = S.String;
 
 export interface LedgerActivityResourceCase3OwnerCase0 {
   /** Account ID. */
@@ -1043,8 +1039,7 @@ export const LedgerActivityResourceCase3OwnerCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<LedgerActivityResourceCase3OwnerCase0>;
 
 export type LedgerActivityResourceCase3OwnerCase1Object = "user";
-export const LedgerActivityResourceCase3OwnerCase1Object =
-  /*@__PURE__*/ S.String;
+export const LedgerActivityResourceCase3OwnerCase1Object = S.String;
 
 export interface LedgerActivityResourceCase3OwnerCase1 {
   /** User ID. */
@@ -1074,7 +1069,7 @@ export type LedgerActivityResourceCase3Owner =
   | LedgerActivityResourceCase3OwnerCase0
   | LedgerActivityResourceCase3OwnerCase1;
 export const LedgerActivityResourceCase3Owner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LedgerActivityResourceCase3Owner>;
+  S.Unknown as any as S.Schema<LedgerActivityResourceCase3Owner>;
 
 export interface LedgerActivityResourceCase3 {
   /** Ledger account ID. */
@@ -1135,7 +1130,7 @@ export const LedgerActivityResourceCase4Card = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LedgerActivityResourceCase4Card>;
 
 export type LedgerActivityResourceCase4Object = "payment_method";
-export const LedgerActivityResourceCase4Object = /*@__PURE__*/ S.String;
+export const LedgerActivityResourceCase4Object = S.String;
 
 export interface LedgerActivityResourceCase4 {
   bank: LedgerActivityResourceCase4Bank | null;
@@ -1165,7 +1160,7 @@ export const LedgerActivityResourceCase4 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LedgerActivityResourceCase4>;
 
 export type LedgerActivityResourceCase5Object = "payout_method";
-export const LedgerActivityResourceCase5Object = /*@__PURE__*/ S.String;
+export const LedgerActivityResourceCase5Object = S.String;
 
 export interface LedgerActivityResourceCase5 {
   /** Masked account reference. */
@@ -1197,7 +1192,7 @@ export const LedgerActivityResourceCase5 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LedgerActivityResourceCase5>;
 
 export type LedgerActivityResourceCase6Object = "card_transaction";
-export const LedgerActivityResourceCase6Object = /*@__PURE__*/ S.String;
+export const LedgerActivityResourceCase6Object = S.String;
 
 export interface LedgerActivityResourceCase6 {
   /** ISO 8601 timestamp the transaction was authorized. */
@@ -1259,7 +1254,7 @@ export type LedgerActivityResource =
   | LedgerActivityResourceCase5
   | LedgerActivityResourceCase6;
 export const LedgerActivityResource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LedgerActivityResource>;
+  S.Unknown as any as S.Schema<LedgerActivityResource>;
 
 /** Payout destination display info (payout sources only). */
 export interface LedgerActivitySourcePayoutDestination {

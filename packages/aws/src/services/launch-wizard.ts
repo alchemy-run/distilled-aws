@@ -192,7 +192,7 @@ export type DeploymentStatus =
   | "UPDATE_ROLLBACK_COMPLETED"
   | "UPDATE_ROLLBACK_FAILED"
   | (string & {});
-export const DeploymentStatus = /*@__PURE__*/ S.String;
+export const DeploymentStatus = S.String;
 
 export interface DeleteDeploymentOutput {
   status?: DeploymentStatus;
@@ -336,7 +336,7 @@ export type WorkloadStatus =
   | "DISABLED"
   | "DELETED"
   | (string & {});
-export const WorkloadStatus = /*@__PURE__*/ S.String;
+export const WorkloadStatus = S.String;
 
 export interface ManagementAccountConstraint {}
 export const ManagementAccountConstraint = /*@__PURE__*/ S.suspend(() =>
@@ -417,7 +417,7 @@ export type WorkloadDeploymentPatternStatus =
   | "DISABLED"
   | "DELETED"
   | (string & {});
-export const WorkloadDeploymentPatternStatus = /*@__PURE__*/ S.String;
+export const WorkloadDeploymentPatternStatus = S.String;
 
 export type AllowedValues = string[];
 export const AllowedValues = /*@__PURE__*/ S.Array(S.String);
@@ -534,7 +534,7 @@ export type EventStatus =
   | "PENDING"
   | "TIMED_OUT"
   | (string & {});
-export const EventStatus = /*@__PURE__*/ S.String;
+export const EventStatus = S.String;
 
 export type DeploymentEventMetadataKey = string;
 export type DeploymentEventMetadataValue = string;
@@ -583,7 +583,7 @@ export type MaxWorkloadResults = number;
 export type DeploymentPatternVersionFilterKey =
   | "updateFromVersion"
   | (string & {});
-export const DeploymentPatternVersionFilterKey = /*@__PURE__*/ S.String;
+export const DeploymentPatternVersionFilterKey = S.String;
 
 export type DeploymentPatternVersionFilterValue = string;
 export type DeploymentPatternVersionFilterValues = string[];
@@ -654,7 +654,7 @@ export type DeploymentFilterKey =
   | "WORKLOAD_NAME"
   | "DEPLOYMENT_STATUS"
   | (string & {});
-export const DeploymentFilterKey = /*@__PURE__*/ S.String;
+export const DeploymentFilterKey = S.String;
 
 export type DeploymentFilterValue = string;
 export type DeploymentFilterValues = string[];

@@ -117,13 +117,13 @@ export type BackupSourceInstanceTierEnum =
   | "ENTERPRISE"
   | "ZONAL"
   | "REGIONAL";
-export const BackupSourceInstanceTierEnum = /*@__PURE__*/ S.String;
+export const BackupSourceInstanceTierEnum = S.String;
 
 export type BackupFileSystemProtocolEnum =
   | "FILE_PROTOCOL_UNSPECIFIED"
   | "NFS_V3"
   | "NFS_V4_1";
-export const BackupFileSystemProtocolEnum = /*@__PURE__*/ S.String;
+export const BackupFileSystemProtocolEnum = S.String;
 
 export type BackupStateEnum =
   | "STATE_UNSPECIFIED"
@@ -132,7 +132,7 @@ export type BackupStateEnum =
   | "READY"
   | "DELETING"
   | "INVALID";
-export const BackupStateEnum = /*@__PURE__*/ S.String;
+export const BackupStateEnum = S.String;
 
 /** A Filestore backup. */
 export interface Backup {
@@ -276,13 +276,13 @@ export type NetworkConfigConnectModeEnum =
   | "DIRECT_PEERING"
   | "PRIVATE_SERVICE_ACCESS"
   | "PRIVATE_SERVICE_CONNECT";
-export const NetworkConfigConnectModeEnum = /*@__PURE__*/ S.String;
+export const NetworkConfigConnectModeEnum = S.String;
 
 export type NetworkConfigModesItemEnum =
   | "ADDRESS_MODE_UNSPECIFIED"
   | "MODE_IPV4"
   | "MODE_IPV6";
-export const NetworkConfigModesItemEnum = /*@__PURE__*/ S.String;
+export const NetworkConfigModesItemEnum = S.String;
 
 export type NetworkConfigModesItemEnumList = Array<
   NetworkConfigModesItemEnum | (string & {})
@@ -340,12 +340,12 @@ export type InstanceProtocolEnum =
   | "FILE_PROTOCOL_UNSPECIFIED"
   | "NFS_V3"
   | "NFS_V4_1";
-export const InstanceProtocolEnum = /*@__PURE__*/ S.String;
+export const InstanceProtocolEnum = S.String;
 
 export type InstanceSuspensionReasonsItemEnum =
   | "SUSPENSION_REASON_UNSPECIFIED"
   | "KMS_KEY_ISSUE";
-export const InstanceSuspensionReasonsItemEnum = /*@__PURE__*/ S.String;
+export const InstanceSuspensionReasonsItemEnum = S.String;
 
 export type InstanceSuspensionReasonsItemEnumList = Array<
   InstanceSuspensionReasonsItemEnum | (string & {})
@@ -358,13 +358,13 @@ export type NfsExportOptionsSquashModeEnum =
   | "SQUASH_MODE_UNSPECIFIED"
   | "NO_ROOT_SQUASH"
   | "ROOT_SQUASH";
-export const NfsExportOptionsSquashModeEnum = /*@__PURE__*/ S.String;
+export const NfsExportOptionsSquashModeEnum = S.String;
 
 export type NfsExportOptionsAccessModeEnum =
   | "ACCESS_MODE_UNSPECIFIED"
   | "READ_ONLY"
   | "READ_WRITE";
-export const NfsExportOptionsAccessModeEnum = /*@__PURE__*/ S.String;
+export const NfsExportOptionsAccessModeEnum = S.String;
 
 /** NFS export options specifications. */
 export interface NfsExportOptions {
@@ -439,7 +439,7 @@ export type InstanceTierEnum =
   | "ENTERPRISE"
   | "ZONAL"
   | "REGIONAL";
-export const InstanceTierEnum = /*@__PURE__*/ S.String;
+export const InstanceTierEnum = S.String;
 
 /** LdapConfig contains all the parameters for connecting to LDAP servers. */
 export interface LdapConfig {
@@ -525,7 +525,7 @@ export type InstanceStateEnum =
   | "RESUMING"
   | "REVERTING"
   | "PROMOTING";
-export const InstanceStateEnum = /*@__PURE__*/ S.String;
+export const InstanceStateEnum = S.String;
 
 /** The enforced performance limits, calculated from the instance's performance configuration. */
 export interface PerformanceLimits {
@@ -553,7 +553,7 @@ export const PerformanceLimits = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PerformanceLimits>;
 
 export type ReplicationRoleEnum = "ROLE_UNSPECIFIED" | "ACTIVE" | "STANDBY";
-export const ReplicationRoleEnum = /*@__PURE__*/ S.String;
+export const ReplicationRoleEnum = S.String;
 
 export type ReplicaConfigStateEnum =
   | "STATE_UNSPECIFIED"
@@ -565,7 +565,7 @@ export type ReplicaConfigStateEnum =
   | "PAUSING"
   | "PAUSED"
   | "RESUMING";
-export const ReplicaConfigStateEnum = /*@__PURE__*/ S.String;
+export const ReplicaConfigStateEnum = S.String;
 
 export type ReplicaConfigStateReasonsItemEnum =
   | "STATE_REASON_UNSPECIFIED"
@@ -573,7 +573,7 @@ export type ReplicaConfigStateReasonsItemEnum =
   | "REMOVE_FAILED"
   | "PAUSE_FAILED"
   | "RESUME_FAILED";
-export const ReplicaConfigStateReasonsItemEnum = /*@__PURE__*/ S.String;
+export const ReplicaConfigStateReasonsItemEnum = S.String;
 
 export type ReplicaConfigStateReasonsItemEnumList = Array<
   ReplicaConfigStateReasonsItemEnum | (string & {})
@@ -740,7 +740,7 @@ export type SnapshotStateEnum =
   | "CREATING"
   | "READY"
   | "DELETING";
-export const SnapshotStateEnum = /*@__PURE__*/ S.String;
+export const SnapshotStateEnum = S.String;
 
 /** A Filestore snapshot. */
 export interface Snapshot {

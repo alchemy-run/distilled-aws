@@ -74,7 +74,7 @@ export type CreateVaultItemRequestCategory =
   | "MEDICAL_RECORD"
   | "SSH_KEY"
   | "CUSTOM";
-export const CreateVaultItemRequestCategory = /*@__PURE__*/ S.String;
+export const CreateVaultItemRequestCategory = S.String;
 
 export interface CreateVaultItemRequestUrlsItem {
   label?: string;
@@ -141,14 +141,14 @@ export type FieldInputType =
   | "DATE"
   | "MONTH_YEAR"
   | "MENU";
-export const FieldInputType = /*@__PURE__*/ S.String;
+export const FieldInputType = S.String;
 
 /** Some item types, Login and Password, have fields used for autofill. This property indicates that purpose and is required for some item types. */
 export type FieldInputPurpose = "" | "USERNAME" | "PASSWORD" | "NOTES";
-export const FieldInputPurpose = /*@__PURE__*/ S.String;
+export const FieldInputPurpose = S.String;
 
 export type GeneratorRecipeCharacterSetsItem = "LETTERS" | "DIGITS" | "SYMBOLS";
-export const GeneratorRecipeCharacterSetsItem = /*@__PURE__*/ S.String;
+export const GeneratorRecipeCharacterSetsItem = S.String;
 
 export type GeneratorRecipeCharacterSetsList = Array<
   GeneratorRecipeCharacterSetsItem | (string & {})
@@ -298,7 +298,7 @@ export type CreateVaultItemResponseCategory =
   | "MEDICAL_RECORD"
   | "SSH_KEY"
   | "CUSTOM";
-export const CreateVaultItemResponseCategory = /*@__PURE__*/ S.String;
+export const CreateVaultItemResponseCategory = S.String;
 
 export type CreateVaultItemResponseUrlsItem = CreateVaultItemRequestUrlsItem;
 export const CreateVaultItemResponseUrlsItem = CreateVaultItemRequestUrlsItem;
@@ -315,7 +315,7 @@ export const CreateVaultItemResponseTagsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateVaultItemResponseTagsList>;
 
 export type CreateVaultItemResponseState = "ARCHIVED" | "DELETED";
-export const CreateVaultItemResponseState = /*@__PURE__*/ S.String;
+export const CreateVaultItemResponseState = S.String;
 
 export type CreateVaultItemResponseSectionsItem =
   CreateVaultItemRequestSectionsItem;
@@ -340,11 +340,11 @@ export type FieldType =
   | "DATE"
   | "MONTH_YEAR"
   | "MENU";
-export const FieldType = /*@__PURE__*/ S.String;
+export const FieldType = S.String;
 
 /** Some item types, Login and Password, have fields used for autofill. This property indicates that purpose and is required for some item types. */
 export type FieldPurpose = "" | "USERNAME" | "PASSWORD" | "NOTES";
-export const FieldPurpose = /*@__PURE__*/ S.String;
+export const FieldPurpose = S.String;
 
 export interface Field {
   id: string;
@@ -527,10 +527,10 @@ export const GetApiActivityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApiActivityRequest>;
 
 export type APIRequestAction = "READ" | "CREATE" | "UPDATE" | "DELETE";
-export const APIRequestAction = /*@__PURE__*/ S.String;
+export const APIRequestAction = S.String;
 
 export type APIRequestResult = "SUCCESS" | "DENY";
-export const APIRequestResult = /*@__PURE__*/ S.String;
+export const APIRequestResult = S.String;
 
 export interface APIRequestActor {
   id?: string;
@@ -552,7 +552,7 @@ export const APIRequestActor = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<APIRequestActor>;
 
 export type APIRequestResourceType = "ITEM" | "VAULT";
-export const APIRequestResourceType = /*@__PURE__*/ S.String;
+export const APIRequestResourceType = S.String;
 
 export type APIRequestResourceVault = FieldInputSection;
 export const APIRequestResourceVault = FieldInputSection;
@@ -760,7 +760,7 @@ export const GetVaultByIdRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVaultByIdRequest>;
 
 export type VaultType = "USER_CREATED" | "PERSONAL" | "EVERYONE" | "TRANSFER";
-export const VaultType = /*@__PURE__*/ S.String;
+export const VaultType = S.String;
 
 export interface Vault {
   id?: string;
@@ -837,7 +837,7 @@ export type GetVaultItemByIdResponseCategory =
   | "MEDICAL_RECORD"
   | "SSH_KEY"
   | "CUSTOM";
-export const GetVaultItemByIdResponseCategory = /*@__PURE__*/ S.String;
+export const GetVaultItemByIdResponseCategory = S.String;
 
 export type GetVaultItemByIdResponseUrlsItem = CreateVaultItemRequestUrlsItem;
 export const GetVaultItemByIdResponseUrlsItem = CreateVaultItemRequestUrlsItem;
@@ -854,7 +854,7 @@ export const GetVaultItemByIdResponseTagsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetVaultItemByIdResponseTagsList>;
 
 export type GetVaultItemByIdResponseState = "ARCHIVED" | "DELETED";
-export const GetVaultItemByIdResponseState = /*@__PURE__*/ S.String;
+export const GetVaultItemByIdResponseState = S.String;
 
 export type GetVaultItemByIdResponseSectionsItem =
   CreateVaultItemRequestSectionsItem;
@@ -959,7 +959,7 @@ export type ItemCategory =
   | "MEDICAL_RECORD"
   | "SSH_KEY"
   | "CUSTOM";
-export const ItemCategory = /*@__PURE__*/ S.String;
+export const ItemCategory = S.String;
 
 export type ItemUrlsItem = CreateVaultItemRequestUrlsItem;
 export const ItemUrlsItem = CreateVaultItemRequestUrlsItem;
@@ -975,7 +975,7 @@ export const ItemTagsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ItemTagsList>;
 
 export type ItemState = "ARCHIVED" | "DELETED";
-export const ItemState = /*@__PURE__*/ S.String;
+export const ItemState = S.String;
 
 export interface Item {
   id?: string;
@@ -1070,7 +1070,7 @@ export type UpdateVaultItemRequestCategory =
   | "MEDICAL_RECORD"
   | "SSH_KEY"
   | "CUSTOM";
-export const UpdateVaultItemRequestCategory = /*@__PURE__*/ S.String;
+export const UpdateVaultItemRequestCategory = S.String;
 
 export type UpdateVaultItemRequestUrlsItem = CreateVaultItemRequestUrlsItem;
 export const UpdateVaultItemRequestUrlsItem = CreateVaultItemRequestUrlsItem;
@@ -1176,7 +1176,7 @@ export type UpdateVaultItemResponseCategory =
   | "MEDICAL_RECORD"
   | "SSH_KEY"
   | "CUSTOM";
-export const UpdateVaultItemResponseCategory = /*@__PURE__*/ S.String;
+export const UpdateVaultItemResponseCategory = S.String;
 
 export type UpdateVaultItemResponseUrlsItem = CreateVaultItemRequestUrlsItem;
 export const UpdateVaultItemResponseUrlsItem = CreateVaultItemRequestUrlsItem;
@@ -1193,7 +1193,7 @@ export const UpdateVaultItemResponseTagsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateVaultItemResponseTagsList>;
 
 export type UpdateVaultItemResponseState = "ARCHIVED" | "DELETED";
-export const UpdateVaultItemResponseState = /*@__PURE__*/ S.String;
+export const UpdateVaultItemResponseState = S.String;
 
 export type UpdateVaultItemResponseSectionsItem =
   CreateVaultItemRequestSectionsItem;
@@ -1256,7 +1256,7 @@ export const UpdateVaultItemResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVaultItemResponse>;
 
 export type PatchItemOp = "add" | "remove" | "replace";
-export const PatchItemOp = /*@__PURE__*/ S.String;
+export const PatchItemOp = S.String;
 
 export interface PatchItem {
   op: PatchItemOp | (string & {});
@@ -1326,7 +1326,7 @@ export type UpdateVaultItemByItemUuidResponseCategory =
   | "MEDICAL_RECORD"
   | "SSH_KEY"
   | "CUSTOM";
-export const UpdateVaultItemByItemUuidResponseCategory = /*@__PURE__*/ S.String;
+export const UpdateVaultItemByItemUuidResponseCategory = S.String;
 
 export type UpdateVaultItemByItemUuidResponseUrlsItem =
   CreateVaultItemRequestUrlsItem;
@@ -1345,7 +1345,7 @@ export const UpdateVaultItemByItemUuidResponseTagsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateVaultItemByItemUuidResponseTagsList>;
 
 export type UpdateVaultItemByItemUuidResponseState = "ARCHIVED" | "DELETED";
-export const UpdateVaultItemByItemUuidResponseState = /*@__PURE__*/ S.String;
+export const UpdateVaultItemByItemUuidResponseState = S.String;
 
 export type UpdateVaultItemByItemUuidResponseSectionsItem =
   CreateVaultItemRequestSectionsItem;

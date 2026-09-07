@@ -78,7 +78,7 @@ export type CreateRequestCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const CreateRequestCheckRegionsItem = /*@__PURE__*/ S.String;
+export const CreateRequestCheckRegionsItem = S.String;
 
 export type CreateRequestCheckRegionsList = Array<
   CreateRequestCheckRegionsItem | (string & {})
@@ -106,7 +106,7 @@ export const CreateRequestHttpConfigHeaderMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CreateRequestHttpConfigHeaderMap>;
 
 export type CreateRequestHttpConfigMethod = "GET" | "HEAD";
-export const CreateRequestHttpConfigMethod = /*@__PURE__*/ S.String;
+export const CreateRequestHttpConfigMethod = S.String;
 
 export interface CreateRequestHttpConfig {
   /** Do not validate the certificate when the health check uses HTTPS. */
@@ -144,7 +144,7 @@ export const CreateRequestHttpConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRequestHttpConfig>;
 
 export type CreateRequestTcpConfigMethod = "connection_established";
-export const CreateRequestTcpConfigMethod = /*@__PURE__*/ S.String;
+export const CreateRequestTcpConfigMethod = S.String;
 
 export interface CreateRequestTcpConfig {
   /** The TCP connection method to use for the health check. */
@@ -239,7 +239,7 @@ export type CreateResponseCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const CreateResponseCheckRegionsItem = /*@__PURE__*/ S.String;
+export const CreateResponseCheckRegionsItem = S.String;
 
 export type CreateResponseCheckRegionsList =
   Array<CreateResponseCheckRegionsItem>;
@@ -266,7 +266,7 @@ export const CreateResponseHttpConfigHeaderMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CreateResponseHttpConfigHeaderMap>;
 
 export type CreateResponseHttpConfigMethod = "GET" | "HEAD";
-export const CreateResponseHttpConfigMethod = /*@__PURE__*/ S.String;
+export const CreateResponseHttpConfigMethod = S.String;
 
 export interface CreateResponseHttpConfig {
   /** Do not validate the certificate when the health check uses HTTPS. */
@@ -314,10 +314,10 @@ export type CreateResponseStatus =
   | "healthy"
   | "unhealthy"
   | "suspended";
-export const CreateResponseStatus = /*@__PURE__*/ S.String;
+export const CreateResponseStatus = S.String;
 
 export type CreateResponseTcpConfigMethod = "connection_established";
-export const CreateResponseTcpConfigMethod = /*@__PURE__*/ S.String;
+export const CreateResponseTcpConfigMethod = S.String;
 
 export interface CreateResponseTcpConfig {
   /** The TCP connection method to use for the health check. */
@@ -423,7 +423,7 @@ export type PreviewsCreateRequestCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const PreviewsCreateRequestCheckRegionsItem = /*@__PURE__*/ S.String;
+export const PreviewsCreateRequestCheckRegionsItem = S.String;
 
 export type PreviewsCreateRequestCheckRegionsList = Array<
   PreviewsCreateRequestCheckRegionsItem | (string & {})
@@ -453,7 +453,7 @@ export const PreviewsCreateRequestHttpConfigHeaderMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<PreviewsCreateRequestHttpConfigHeaderMap>;
 
 export type PreviewsCreateRequestHttpConfigMethod = "GET" | "HEAD";
-export const PreviewsCreateRequestHttpConfigMethod = /*@__PURE__*/ S.String;
+export const PreviewsCreateRequestHttpConfigMethod = S.String;
 
 export interface PreviewsCreateRequestHttpConfig {
   /** Do not validate the certificate when the health check uses HTTPS. */
@@ -493,7 +493,7 @@ export const PreviewsCreateRequestHttpConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PreviewsCreateRequestHttpConfig>;
 
 export type PreviewsCreateRequestTcpConfigMethod = "connection_established";
-export const PreviewsCreateRequestTcpConfigMethod = /*@__PURE__*/ S.String;
+export const PreviewsCreateRequestTcpConfigMethod = S.String;
 
 export interface PreviewsCreateRequestTcpConfig {
   /** The TCP connection method to use for the health check. */
@@ -592,7 +592,7 @@ export type PreviewsCreateResponseCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const PreviewsCreateResponseCheckRegionsItem = /*@__PURE__*/ S.String;
+export const PreviewsCreateResponseCheckRegionsItem = S.String;
 
 export type PreviewsCreateResponseCheckRegionsList =
   Array<PreviewsCreateResponseCheckRegionsItem>;
@@ -621,7 +621,7 @@ export const PreviewsCreateResponseHttpConfigHeaderMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<PreviewsCreateResponseHttpConfigHeaderMap>;
 
 export type PreviewsCreateResponseHttpConfigMethod = "GET" | "HEAD";
-export const PreviewsCreateResponseHttpConfigMethod = /*@__PURE__*/ S.String;
+export const PreviewsCreateResponseHttpConfigMethod = S.String;
 
 export interface PreviewsCreateResponseHttpConfig {
   /** Do not validate the certificate when the health check uses HTTPS. */
@@ -669,10 +669,10 @@ export type PreviewsCreateResponseStatus =
   | "healthy"
   | "unhealthy"
   | "suspended";
-export const PreviewsCreateResponseStatus = /*@__PURE__*/ S.String;
+export const PreviewsCreateResponseStatus = S.String;
 
 export type PreviewsCreateResponseTcpConfigMethod = "connection_established";
-export const PreviewsCreateResponseTcpConfigMethod = /*@__PURE__*/ S.String;
+export const PreviewsCreateResponseTcpConfigMethod = S.String;
 
 export interface PreviewsCreateResponseTcpConfig {
   /** The TCP connection method to use for the health check. */
@@ -875,7 +875,7 @@ export type GetResponseCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const GetResponseCheckRegionsItem = /*@__PURE__*/ S.String;
+export const GetResponseCheckRegionsItem = S.String;
 
 export type GetResponseCheckRegionsList = Array<GetResponseCheckRegionsItem>;
 export const GetResponseCheckRegionsList = /*@__PURE__*/ S.Array(
@@ -901,7 +901,7 @@ export const GetResponseHttpConfigHeaderMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<GetResponseHttpConfigHeaderMap>;
 
 export type GetResponseHttpConfigMethod = "GET" | "HEAD";
-export const GetResponseHttpConfigMethod = /*@__PURE__*/ S.String;
+export const GetResponseHttpConfigMethod = S.String;
 
 export interface GetResponseHttpConfig {
   /** Do not validate the certificate when the health check uses HTTPS. */
@@ -949,10 +949,10 @@ export type GetResponseStatus =
   | "healthy"
   | "unhealthy"
   | "suspended";
-export const GetResponseStatus = /*@__PURE__*/ S.String;
+export const GetResponseStatus = S.String;
 
 export type GetResponseTcpConfigMethod = "connection_established";
-export const GetResponseTcpConfigMethod = /*@__PURE__*/ S.String;
+export const GetResponseTcpConfigMethod = S.String;
 
 export interface GetResponseTcpConfig {
   /** The TCP connection method to use for the health check. */
@@ -1081,7 +1081,7 @@ export type PreviewsGetResponseCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const PreviewsGetResponseCheckRegionsItem = /*@__PURE__*/ S.String;
+export const PreviewsGetResponseCheckRegionsItem = S.String;
 
 export type PreviewsGetResponseCheckRegionsList =
   Array<PreviewsGetResponseCheckRegionsItem>;
@@ -1110,7 +1110,7 @@ export const PreviewsGetResponseHttpConfigHeaderMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<PreviewsGetResponseHttpConfigHeaderMap>;
 
 export type PreviewsGetResponseHttpConfigMethod = "GET" | "HEAD";
-export const PreviewsGetResponseHttpConfigMethod = /*@__PURE__*/ S.String;
+export const PreviewsGetResponseHttpConfigMethod = S.String;
 
 export interface PreviewsGetResponseHttpConfig {
   /** Do not validate the certificate when the health check uses HTTPS. */
@@ -1158,10 +1158,10 @@ export type PreviewsGetResponseStatus =
   | "healthy"
   | "unhealthy"
   | "suspended";
-export const PreviewsGetResponseStatus = /*@__PURE__*/ S.String;
+export const PreviewsGetResponseStatus = S.String;
 
 export type PreviewsGetResponseTcpConfigMethod = "connection_established";
-export const PreviewsGetResponseTcpConfigMethod = /*@__PURE__*/ S.String;
+export const PreviewsGetResponseTcpConfigMethod = S.String;
 
 export interface PreviewsGetResponseTcpConfig {
   /** The TCP connection method to use for the health check. */
@@ -1295,7 +1295,7 @@ export type ListResultItemCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const ListResultItemCheckRegionsItem = /*@__PURE__*/ S.String;
+export const ListResultItemCheckRegionsItem = S.String;
 
 export type ListResultItemCheckRegionsList =
   Array<ListResultItemCheckRegionsItem>;
@@ -1322,7 +1322,7 @@ export const ListResultItemHttpConfigHeaderMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<ListResultItemHttpConfigHeaderMap>;
 
 export type ListResultItemHttpConfigMethod = "GET" | "HEAD";
-export const ListResultItemHttpConfigMethod = /*@__PURE__*/ S.String;
+export const ListResultItemHttpConfigMethod = S.String;
 
 export interface ListResultItemHttpConfig {
   /** Do not validate the certificate when the health check uses HTTPS. */
@@ -1370,10 +1370,10 @@ export type ListResultItemStatus =
   | "healthy"
   | "unhealthy"
   | "suspended";
-export const ListResultItemStatus = /*@__PURE__*/ S.String;
+export const ListResultItemStatus = S.String;
 
 export type ListResultItemTcpConfigMethod = "connection_established";
-export const ListResultItemTcpConfigMethod = /*@__PURE__*/ S.String;
+export const ListResultItemTcpConfigMethod = S.String;
 
 export interface ListResultItemTcpConfig {
   /** The TCP connection method to use for the health check. */
@@ -1496,7 +1496,7 @@ export type EditRequestCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const EditRequestCheckRegionsItem = /*@__PURE__*/ S.String;
+export const EditRequestCheckRegionsItem = S.String;
 
 export type EditRequestCheckRegionsList = Array<
   EditRequestCheckRegionsItem | (string & {})
@@ -1524,7 +1524,7 @@ export const EditRequestHttpConfigHeaderMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<EditRequestHttpConfigHeaderMap>;
 
 export type EditRequestHttpConfigMethod = "GET" | "HEAD";
-export const EditRequestHttpConfigMethod = /*@__PURE__*/ S.String;
+export const EditRequestHttpConfigMethod = S.String;
 
 export interface EditRequestHttpConfig {
   /** Do not validate the certificate when the health check uses HTTPS. */
@@ -1562,7 +1562,7 @@ export const EditRequestHttpConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EditRequestHttpConfig>;
 
 export type EditRequestTcpConfigMethod = "connection_established";
-export const EditRequestTcpConfigMethod = /*@__PURE__*/ S.String;
+export const EditRequestTcpConfigMethod = S.String;
 
 export interface EditRequestTcpConfig {
   /** The TCP connection method to use for the health check. */
@@ -1660,7 +1660,7 @@ export type EditResponseCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const EditResponseCheckRegionsItem = /*@__PURE__*/ S.String;
+export const EditResponseCheckRegionsItem = S.String;
 
 export type EditResponseCheckRegionsList = Array<EditResponseCheckRegionsItem>;
 export const EditResponseCheckRegionsList = /*@__PURE__*/ S.Array(
@@ -1686,7 +1686,7 @@ export const EditResponseHttpConfigHeaderMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<EditResponseHttpConfigHeaderMap>;
 
 export type EditResponseHttpConfigMethod = "GET" | "HEAD";
-export const EditResponseHttpConfigMethod = /*@__PURE__*/ S.String;
+export const EditResponseHttpConfigMethod = S.String;
 
 export interface EditResponseHttpConfig {
   /** Do not validate the certificate when the health check uses HTTPS. */
@@ -1734,10 +1734,10 @@ export type EditResponseStatus =
   | "healthy"
   | "unhealthy"
   | "suspended";
-export const EditResponseStatus = /*@__PURE__*/ S.String;
+export const EditResponseStatus = S.String;
 
 export type EditResponseTcpConfigMethod = "connection_established";
-export const EditResponseTcpConfigMethod = /*@__PURE__*/ S.String;
+export const EditResponseTcpConfigMethod = S.String;
 
 export interface EditResponseTcpConfig {
   /** The TCP connection method to use for the health check. */
@@ -1843,7 +1843,7 @@ export type UpdateRequestCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const UpdateRequestCheckRegionsItem = /*@__PURE__*/ S.String;
+export const UpdateRequestCheckRegionsItem = S.String;
 
 export type UpdateRequestCheckRegionsList = Array<
   UpdateRequestCheckRegionsItem | (string & {})
@@ -1871,7 +1871,7 @@ export const UpdateRequestHttpConfigHeaderMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UpdateRequestHttpConfigHeaderMap>;
 
 export type UpdateRequestHttpConfigMethod = "GET" | "HEAD";
-export const UpdateRequestHttpConfigMethod = /*@__PURE__*/ S.String;
+export const UpdateRequestHttpConfigMethod = S.String;
 
 export interface UpdateRequestHttpConfig {
   /** Do not validate the certificate when the health check uses HTTPS. */
@@ -1909,7 +1909,7 @@ export const UpdateRequestHttpConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRequestHttpConfig>;
 
 export type UpdateRequestTcpConfigMethod = "connection_established";
-export const UpdateRequestTcpConfigMethod = /*@__PURE__*/ S.String;
+export const UpdateRequestTcpConfigMethod = S.String;
 
 export interface UpdateRequestTcpConfig {
   /** The TCP connection method to use for the health check. */
@@ -2007,7 +2007,7 @@ export type UpdateResponseCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const UpdateResponseCheckRegionsItem = /*@__PURE__*/ S.String;
+export const UpdateResponseCheckRegionsItem = S.String;
 
 export type UpdateResponseCheckRegionsList =
   Array<UpdateResponseCheckRegionsItem>;
@@ -2034,7 +2034,7 @@ export const UpdateResponseHttpConfigHeaderMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UpdateResponseHttpConfigHeaderMap>;
 
 export type UpdateResponseHttpConfigMethod = "GET" | "HEAD";
-export const UpdateResponseHttpConfigMethod = /*@__PURE__*/ S.String;
+export const UpdateResponseHttpConfigMethod = S.String;
 
 export interface UpdateResponseHttpConfig {
   /** Do not validate the certificate when the health check uses HTTPS. */
@@ -2082,10 +2082,10 @@ export type UpdateResponseStatus =
   | "healthy"
   | "unhealthy"
   | "suspended";
-export const UpdateResponseStatus = /*@__PURE__*/ S.String;
+export const UpdateResponseStatus = S.String;
 
 export type UpdateResponseTcpConfigMethod = "connection_established";
-export const UpdateResponseTcpConfigMethod = /*@__PURE__*/ S.String;
+export const UpdateResponseTcpConfigMethod = S.String;
 
 export interface UpdateResponseTcpConfig {
   /** The TCP connection method to use for the health check. */

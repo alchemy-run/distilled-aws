@@ -82,11 +82,11 @@ export type CreateAdGroupRequestBidType =
   | "minimum_cost"
   | "average_target"
   | "maximum_target";
-export const CreateAdGroupRequestBidType = /*@__PURE__*/ S.String;
+export const CreateAdGroupRequestBidType = S.String;
 
 /** Whether budget_amount is spent per day (`daily`) or over the ad group's full run (`lifetime`). */
 export type CreateAdGroupRequestBudgetType = "daily" | "lifetime";
-export const CreateAdGroupRequestBudgetType = /*@__PURE__*/ S.String;
+export const CreateAdGroupRequestBudgetType = S.String;
 
 export type ConversionEventCase0 =
   | "purchase"
@@ -105,12 +105,11 @@ export type ConversionEventCase0 =
   | "start_trial"
   | "submit_application"
   | "subscribe";
-export const ConversionEventCase0 = /*@__PURE__*/ S.String;
+export const ConversionEventCase0 = S.String;
 
 /** The pixel event optimized for. A standard event, or any custom pixel event name. */
 export type ConversionEvent = ConversionEventCase0 | string;
-export const ConversionEvent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionEvent>;
+export const ConversionEvent = S.Unknown as any as S.Schema<ConversionEvent>;
 
 /** Where the outcome being optimized for occurs, such as a website visit, social-profile visit, messaging conversation, ad interaction, or lead-form submission. The lead form itself is set on the ad. */
 export type CreateAdGroupRequestConversionLocation =
@@ -123,11 +122,11 @@ export type CreateAdGroupRequestConversionLocation =
   | "instant_forms"
   | "instant_forms_and_messenger"
   | "website_and_instant_forms";
-export const CreateAdGroupRequestConversionLocation = /*@__PURE__*/ S.String;
+export const CreateAdGroupRequestConversionLocation = S.String;
 
 /** Gender to target. */
 export type AdGroupDemographicsBodyGender = "all" | "male" | "female";
-export const AdGroupDemographicsBodyGender = /*@__PURE__*/ S.String;
+export const AdGroupDemographicsBodyGender = S.String;
 
 /** Age, gender, and automatic-audience targeting. */
 export interface AdGroupDemographicsBody {
@@ -156,8 +155,7 @@ export type AdGroupDetailedTargetingBodyBehaviorsItemBehaviorType =
   | "video"
   | "creator"
   | "hashtag";
-export const AdGroupDetailedTargetingBodyBehaviorsItemBehaviorType =
-  /*@__PURE__*/ S.String;
+export const AdGroupDetailedTargetingBodyBehaviorsItemBehaviorType = S.String;
 
 export interface AdGroupDetailedTargetingBodyBehaviorsItem {
   /** On ad platforms that scope behavior categories, what this one is measured on. Send back the value the targeting_options endpoint returned alongside the id. */
@@ -202,8 +200,7 @@ export type AdGroupDetailedTargetingBodyDemographicsItemType =
   | "work_positions"
   | "education_schools"
   | "education_majors";
-export const AdGroupDetailedTargetingBodyDemographicsItemType =
-  /*@__PURE__*/ S.String;
+export const AdGroupDetailedTargetingBodyDemographicsItemType = S.String;
 
 export interface AdGroupDetailedTargetingBodyDemographicsItem {
   /** The ad platform's ID for the category in its targeting taxonomy. */
@@ -276,7 +273,7 @@ export const AdGroupDetailedTargetingBody = /*@__PURE__*/ S.suspend(() =>
 
 /** Operating system to target. */
 export type AdGroupDevicesBodyOperatingSystemsItemOs = "ios" | "android";
-export const AdGroupDevicesBodyOperatingSystemsItemOs = /*@__PURE__*/ S.String;
+export const AdGroupDevicesBodyOperatingSystemsItemOs = S.String;
 
 export interface AdGroupDevicesBodyOperatingSystemsItem {
   /** Lowest OS version to target, such as `18.0`. Omit to target any version. */
@@ -302,7 +299,7 @@ export const AdGroupDevicesBodyOperatingSystemsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<AdGroupDevicesBodyOperatingSystemsList>;
 
 export type AdGroupDevicesBodyPlatformsItem = "mobile" | "desktop";
-export const AdGroupDevicesBodyPlatformsItem = /*@__PURE__*/ S.String;
+export const AdGroupDevicesBodyPlatformsItem = S.String;
 
 /** Device types to target. Empty targets all devices. */
 export type AdGroupDevicesBodyPlatformsList = Array<
@@ -354,7 +351,7 @@ export type CreateAdGroupRequestMessageAppsItem =
   | "messenger"
   | "instagram"
   | "whatsapp";
-export const CreateAdGroupRequestMessageAppsItem = /*@__PURE__*/ S.String;
+export const CreateAdGroupRequestMessageAppsItem = S.String;
 
 /** Apps the conversation opens in. Required when setting `conversion_location` to `messaging`, and rejected unless the ad group's conversion location is `messaging`. */
 export type CreateAdGroupRequestMessageAppsList = Array<
@@ -384,10 +381,10 @@ export type CreateAdGroupRequestOptimizationGoal =
   | "quality_lead"
   | "value"
   | "profile_and_page_engagement";
-export const CreateAdGroupRequestOptimizationGoal = /*@__PURE__*/ S.String;
+export const CreateAdGroupRequestOptimizationGoal = S.String;
 
 export type CreateAdGroupRequestPlacementsCase0 = "automatic";
-export const CreateAdGroupRequestPlacementsCase0 = /*@__PURE__*/ S.String;
+export const CreateAdGroupRequestPlacementsCase0 = S.String;
 
 /** Platform the ads run on. */
 export type CreateAdGroupRequestPlacementsCase1ItemPlatform =
@@ -397,8 +394,7 @@ export type CreateAdGroupRequestPlacementsCase1ItemPlatform =
   | "audience_network"
   | "threads"
   | "whatsapp";
-export const CreateAdGroupRequestPlacementsCase1ItemPlatform =
-  /*@__PURE__*/ S.String;
+export const CreateAdGroupRequestPlacementsCase1ItemPlatform = S.String;
 
 /** Positions to target within the platform, such as `feed` or `story`. Omit to target all of the platform's positions. */
 export type CreateAdGroupRequestPlacementsCase1ItemPositionsList =
@@ -437,7 +433,7 @@ export type CreateAdGroupRequestPlacements =
   | CreateAdGroupRequestPlacementsCase0
   | CreateAdGroupRequestPlacementsCase1List;
 export const CreateAdGroupRequestPlacements =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateAdGroupRequestPlacements>;
+  S.Unknown as any as S.Schema<CreateAdGroupRequestPlacements>;
 
 export interface AdGroupGeoLocationsBodyCitiesItem {
   /** The ad platform's key for the city in its location taxonomy. */
@@ -477,8 +473,7 @@ export const AdGroupGeoLocationsBodyCountryGroupsList = /*@__PURE__*/ S.Array(
 export type AdGroupGeoLocationsBodyCustomLocationsItemDistanceUnit =
   | "mile"
   | "kilometer";
-export const AdGroupGeoLocationsBodyCustomLocationsItemDistanceUnit =
-  /*@__PURE__*/ S.String;
+export const AdGroupGeoLocationsBodyCustomLocationsItemDistanceUnit = S.String;
 
 export interface AdGroupGeoLocationsBodyCustomLocationsItem {
   /** Unit for `radius`. Defaults to `mile`. */
@@ -539,7 +534,7 @@ export type AdGroupGeoLocationsBodyZipsItem =
   | string
   | AdGroupGeoLocationsBodyZipsItemCase1;
 export const AdGroupGeoLocationsBodyZipsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AdGroupGeoLocationsBodyZipsItem>;
+  S.Unknown as any as S.Schema<AdGroupGeoLocationsBodyZipsItem>;
 
 /** ZIP and postal codes, keyed by the ad platform's location taxonomy. Meta keys these `COUNTRY:CODE`, as `US:78756` — a bare code is ambiguous, because the same one exists in several countries. TikTok takes the bare code. */
 export type AdGroupGeoLocationsBodyZipsList =
@@ -593,7 +588,7 @@ export const AdGroupRegionsBody = /*@__PURE__*/ S.suspend(() =>
 
 /** Initial status (default: `active`). */
 export type CreateAdGroupRequestStatus = "active" | "paused";
-export const CreateAdGroupRequestStatus = /*@__PURE__*/ S.String;
+export const CreateAdGroupRequestStatus = S.String;
 
 export interface CreateAdGroupRequest {
   /** The ad campaign to create the ad group in, prefixed `adcamp_`. */
@@ -715,11 +710,11 @@ export type AdGroupBidType =
   | "minimum_cost"
   | "average_target"
   | "maximum_target";
-export const AdGroupBidType = /*@__PURE__*/ S.String;
+export const AdGroupBidType = S.String;
 
 /** Whether `budget_amount` is spent per day (`daily`) or over the ad group's full run (`lifetime`). */
 export type AdGroupBudgetType = "daily" | "lifetime";
-export const AdGroupBudgetType = /*@__PURE__*/ S.String;
+export const AdGroupBudgetType = S.String;
 
 /** Where the outcome being optimized for occurs, such as a website visit, social-profile visit, messaging conversation, ad interaction, or lead-form submission. */
 export type AdGroupConversionLocation =
@@ -732,7 +727,7 @@ export type AdGroupConversionLocation =
   | "instant_forms"
   | "instant_forms_and_messenger"
   | "website_and_instant_forms";
-export const AdGroupConversionLocation = /*@__PURE__*/ S.String;
+export const AdGroupConversionLocation = S.String;
 
 /** Whether ads in this ad group are delivering right now, and if not, why. When several states apply at once, the highest-precedence one is returned. */
 export type AdGroupDeliveryStatus =
@@ -750,11 +745,11 @@ export type AdGroupDeliveryStatus =
   | "learning_limited"
   | "learning"
   | "active";
-export const AdGroupDeliveryStatus = /*@__PURE__*/ S.String;
+export const AdGroupDeliveryStatus = S.String;
 
 /** Gender targeted. */
 export type AdGroupDemographicsGender = "all" | "male" | "female";
-export const AdGroupDemographicsGender = /*@__PURE__*/ S.String;
+export const AdGroupDemographicsGender = S.String;
 
 export interface AdGroupDemographics {
   /** Whether automatic audience targeting is on (Advantage+ on Meta). When `true`, the platform can deliver beyond the ages, genders, and detailed targeting you set, treating them as suggestions. */
@@ -782,7 +777,7 @@ export type AdGroupBehaviorCategoryBehaviorType =
   | "video"
   | "creator"
   | "hashtag";
-export const AdGroupBehaviorCategoryBehaviorType = /*@__PURE__*/ S.String;
+export const AdGroupBehaviorCategoryBehaviorType = S.String;
 
 export interface AdGroupBehaviorCategory {
   /** On ad platforms that scope behavior categories, what this one is measured on. Send back the value the targeting_options endpoint returned alongside the id. Absent on platforms that don't scope them. */
@@ -821,7 +816,7 @@ export type AdGroupDemographicCategoryType =
   | "work_positions"
   | "education_schools"
   | "education_majors";
-export const AdGroupDemographicCategoryType = /*@__PURE__*/ S.String;
+export const AdGroupDemographicCategoryType = S.String;
 
 export interface AdGroupDemographicCategory {
   /** The ad platform's ID for the category in its targeting taxonomy. */
@@ -875,7 +870,7 @@ export const AdGroupDetailedTargeting = /*@__PURE__*/ S.suspend(() =>
 
 /** Operating system targeted. */
 export type AdGroupOperatingSystemOs = "ios" | "android";
-export const AdGroupOperatingSystemOs = /*@__PURE__*/ S.String;
+export const AdGroupOperatingSystemOs = S.String;
 
 export interface AdGroupOperatingSystem {
   /** Lowest OS version targeted, such as `18.0`. Absent when any version qualifies. */
@@ -899,7 +894,7 @@ export const AdGroupDevicesOperatingSystemsList = /*@__PURE__*/ S.Array(
 
 /** Device types targeted. Empty targets all devices. */
 export type AdGroupDevicesPlatformsItem = "mobile" | "desktop";
-export const AdGroupDevicesPlatformsItem = /*@__PURE__*/ S.String;
+export const AdGroupDevicesPlatformsItem = S.String;
 
 export type AdGroupDevicesPlatformsList = Array<AdGroupDevicesPlatformsItem>;
 export const AdGroupDevicesPlatformsList = /*@__PURE__*/ S.Array(
@@ -934,7 +929,7 @@ export const AdGroupFrequencyCap = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of resource the issue is attached to. */
 export type AdPlatformIssueResourceType = "ad_campaign" | "ad_group" | "ad";
-export const AdPlatformIssueResourceType = /*@__PURE__*/ S.String;
+export const AdPlatformIssueResourceType = S.String;
 
 export interface AdPlatformIssue {
   /** Unique identifier for the issue. */
@@ -969,7 +964,7 @@ export const AdGroupLanguagesList = /*@__PURE__*/ S.Array(
 
 /** Apps the conversation opens in when `conversion_location` is `messaging`. Empty for other conversion locations. */
 export type AdGroupMessageAppsItem = "messenger" | "instagram" | "whatsapp";
-export const AdGroupMessageAppsItem = /*@__PURE__*/ S.String;
+export const AdGroupMessageAppsItem = S.String;
 
 export type AdGroupMessageAppsList = Array<AdGroupMessageAppsItem>;
 export const AdGroupMessageAppsList = /*@__PURE__*/ S.Array(
@@ -996,7 +991,7 @@ export type AdGroupOptimizationGoal =
   | "quality_lead"
   | "value"
   | "profile_and_page_engagement";
-export const AdGroupOptimizationGoal = /*@__PURE__*/ S.String;
+export const AdGroupOptimizationGoal = S.String;
 
 /** Publisher platform where the ad is eligible to appear. */
 export type AdGroupPlacementPlatform =
@@ -1006,7 +1001,7 @@ export type AdGroupPlacementPlatform =
   | "audience_network"
   | "threads"
   | "whatsapp";
-export const AdGroupPlacementPlatform = /*@__PURE__*/ S.String;
+export const AdGroupPlacementPlatform = S.String;
 
 export type AdGroupPlacementPositionsList = Array<string>;
 export const AdGroupPlacementPositionsList = /*@__PURE__*/ S.Array(
@@ -1062,7 +1057,7 @@ export const AdGroupGeoLocationsCountryGroupsList = /*@__PURE__*/ S.Array(
 
 /** Unit for `radius`. */
 export type AdGroupCustomLocationDistanceUnit = "mile" | "kilometer";
-export const AdGroupCustomLocationDistanceUnit = /*@__PURE__*/ S.String;
+export const AdGroupCustomLocationDistanceUnit = S.String;
 
 export interface AdGroupCustomLocation {
   /** Unit for `radius`. */
@@ -1150,11 +1145,11 @@ export type AdGroupResultEvent =
   | "add_to_cart"
   | "custom"
   | "messaging_conversation";
-export const AdGroupResultEvent = /*@__PURE__*/ S.String;
+export const AdGroupResultEvent = S.String;
 
 /** Whether the ad group is enabled. `active` and `paused` are set by you; `rejected` means it failed ad review; `duplicating` is a copy still being filled in. */
 export type AdGroupStatus = "active" | "paused" | "rejected" | "duplicating";
-export const AdGroupStatus = /*@__PURE__*/ S.String;
+export const AdGroupStatus = S.String;
 
 export interface AdGroup {
   /** The ad campaign this ad group belongs to. */
@@ -1451,7 +1446,7 @@ export const EstimateAdGroupReachRequestLanguagesList = /*@__PURE__*/ S.Array(
 
 /** The ad network the estimate runs on. */
 export type EstimateAdGroupReachRequestPlatform = "meta";
-export const EstimateAdGroupReachRequestPlatform = /*@__PURE__*/ S.String;
+export const EstimateAdGroupReachRequestPlatform = S.String;
 
 export interface EstimateAdGroupReachRequest {
   /** Account to estimate on behalf of. Defaults to the authenticated account. */
@@ -1505,7 +1500,7 @@ export const ReachEstimate = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ReachEstimate" }) as any as S.Schema<ReachEstimate>;
 
 export type GetAdGroupRequestAttributionModel = "last_touch" | "first_touch";
-export const GetAdGroupRequestAttributionModel = /*@__PURE__*/ S.String;
+export const GetAdGroupRequestAttributionModel = S.String;
 
 export interface GetAdGroupRequest {
   /** The ad group ID. */
@@ -1543,7 +1538,7 @@ export type ListAdGroupsRequestStatus =
   | "paused"
   | "rejected"
   | "duplicating";
-export const ListAdGroupsRequestStatus = /*@__PURE__*/ S.String;
+export const ListAdGroupsRequestStatus = S.String;
 
 export type ListAdGroupsRequestOrder =
   | "created_at"
@@ -1560,13 +1555,13 @@ export type ListAdGroupsRequestOrder =
   | "cost_per_click"
   | "cost_per_result"
   | "return_on_ad_spend";
-export const ListAdGroupsRequestOrder = /*@__PURE__*/ S.String;
+export const ListAdGroupsRequestOrder = S.String;
 
 export type ListAdGroupsRequestDirection = "asc" | "desc";
-export const ListAdGroupsRequestDirection = /*@__PURE__*/ S.String;
+export const ListAdGroupsRequestDirection = S.String;
 
 export type ListAdGroupsRequestAttributionModel = "last_touch" | "first_touch";
-export const ListAdGroupsRequestAttributionModel = /*@__PURE__*/ S.String;
+export const ListAdGroupsRequestAttributionModel = S.String;
 
 export interface ListAdGroupsRequest {
   /** Account whose ad groups to list. Defaults to the authenticated account. */
@@ -1683,8 +1678,7 @@ export const PauseAdGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PauseAdGroupRequest>;
 
 export type SearchAdGroupTargetingOptionsRequestPlatform = "meta";
-export const SearchAdGroupTargetingOptionsRequestPlatform =
-  /*@__PURE__*/ S.String;
+export const SearchAdGroupTargetingOptionsRequestPlatform = S.String;
 
 export type SearchAdGroupTargetingOptionsRequestTypesItem =
   | "interests"
@@ -1699,8 +1693,7 @@ export type SearchAdGroupTargetingOptionsRequestTypesItem =
   | "education_majors"
   | "languages"
   | "locations";
-export const SearchAdGroupTargetingOptionsRequestTypesItem =
-  /*@__PURE__*/ S.String;
+export const SearchAdGroupTargetingOptionsRequestTypesItem = S.String;
 
 export type SearchAdGroupTargetingOptionsRequestTypesList = Array<
   SearchAdGroupTargetingOptionsRequestTypesItem | (string & {})
@@ -1718,8 +1711,7 @@ export type SearchAdGroupTargetingOptionsRequestLocationTypesItem =
   | "neighborhood"
   | "subcity"
   | "medium_geo_area";
-export const SearchAdGroupTargetingOptionsRequestLocationTypesItem =
-  /*@__PURE__*/ S.String;
+export const SearchAdGroupTargetingOptionsRequestLocationTypesItem = S.String;
 
 export type SearchAdGroupTargetingOptionsRequestLocationTypesList = Array<
   SearchAdGroupTargetingOptionsRequestLocationTypesItem | (string & {})
@@ -1735,7 +1727,7 @@ export type SearchAdGroupTargetingOptionsRequestSpecialAdCategoriesItem =
   | "financial_products"
   | "politics";
 export const SearchAdGroupTargetingOptionsRequestSpecialAdCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type SearchAdGroupTargetingOptionsRequestSpecialAdCategoriesList = Array<
   SearchAdGroupTargetingOptionsRequestSpecialAdCategoriesItem | (string & {})
@@ -1794,7 +1786,7 @@ export type DetailedTargetingOptionBehaviorType =
   | "video"
   | "creator"
   | "hashtag";
-export const DetailedTargetingOptionBehaviorType = /*@__PURE__*/ S.String;
+export const DetailedTargetingOptionBehaviorType = S.String;
 
 /** Which detailed-targeting field the option belongs in: `interests` and `behaviors` go in the matching `detailed_targeting` field; demographic categories (`life_events`, `industries`, `income`, `family_statuses`, `work_employers`, `work_positions`, `education_schools`, `education_majors`) go in `detailed_targeting.demographics` with this value as the entry's `type`. */
 export type DetailedTargetingOptionType =
@@ -1808,7 +1800,7 @@ export type DetailedTargetingOptionType =
   | "work_positions"
   | "education_schools"
   | "education_majors";
-export const DetailedTargetingOptionType = /*@__PURE__*/ S.String;
+export const DetailedTargetingOptionType = S.String;
 
 export interface DetailedTargetingOption {
   /** Low end of the ad platform's estimate of how many people this option can reach. Null when the platform doesn't publish one. */
@@ -1842,7 +1834,7 @@ export const DetailedTargetingOption = /*@__PURE__*/ S.suspend(() =>
 
 /** Always `languages`. The option goes in the ad-group `languages` field. */
 export type LanguageTargetingOptionType = "languages";
-export const LanguageTargetingOptionType = /*@__PURE__*/ S.String;
+export const LanguageTargetingOptionType = S.String;
 
 export interface LanguageTargetingOption {
   /** ISO 639 code the ad-group `languages` field takes, such as `en`. */
@@ -1873,11 +1865,11 @@ export type LocationTargetingOptionLocationType =
   | "medium_geo_area"
   | "district"
   | "dma";
-export const LocationTargetingOptionLocationType = /*@__PURE__*/ S.String;
+export const LocationTargetingOptionLocationType = S.String;
 
 /** Always `locations`. The option goes in the ad-group `regions` field. */
 export type LocationTargetingOptionType = "locations";
-export const LocationTargetingOptionType = /*@__PURE__*/ S.String;
+export const LocationTargetingOptionType = S.String;
 
 export interface LocationTargetingOption {
   /** The standardized code the ad-group `regions` field takes: an ISO 3166-1 code for countries (`US`) or an ISO 3166-2 code for states and provinces (`US-CA`, `CA-ON`). Null for a location that has no standard code, such as a city or a metro area — target those by `key` in the `regions` cities list instead. */
@@ -1917,8 +1909,7 @@ export type TargetingOption =
   | DetailedTargetingOption
   | LanguageTargetingOption
   | LocationTargetingOption;
-export const TargetingOption =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TargetingOption>;
+export const TargetingOption = S.Unknown as any as S.Schema<TargetingOption>;
 
 export type SearchAdGroupTargetingOptionsResponseDataList =
   Array<TargetingOption>;
@@ -1961,11 +1952,11 @@ export type UpdateAdGroupRequestBidType =
   | "minimum_cost"
   | "average_target"
   | "maximum_target";
-export const UpdateAdGroupRequestBidType = /*@__PURE__*/ S.String;
+export const UpdateAdGroupRequestBidType = S.String;
 
 /** Whether budget_amount is spent per day (`daily`) or over the ad group's full run (`lifetime`). */
 export type UpdateAdGroupRequestBudgetType = "daily" | "lifetime";
-export const UpdateAdGroupRequestBudgetType = /*@__PURE__*/ S.String;
+export const UpdateAdGroupRequestBudgetType = S.String;
 
 /** Where the outcome being optimized for occurs, such as a website visit, social-profile visit, messaging conversation, ad interaction, or lead-form submission. The lead form itself is set on the ad. */
 export type UpdateAdGroupRequestConversionLocation =
@@ -1978,7 +1969,7 @@ export type UpdateAdGroupRequestConversionLocation =
   | "instant_forms"
   | "instant_forms_and_messenger"
   | "website_and_instant_forms";
-export const UpdateAdGroupRequestConversionLocation = /*@__PURE__*/ S.String;
+export const UpdateAdGroupRequestConversionLocation = S.String;
 
 /** Cap on how often one person sees ads from this ad group. Only available on campaigns with the `awareness` objective. */
 export type UpdateAdGroupRequestFrequencyCap = CreateAdGroupRequestFrequencyCap;
@@ -1995,7 +1986,7 @@ export type UpdateAdGroupRequestMessageAppsItem =
   | "messenger"
   | "instagram"
   | "whatsapp";
-export const UpdateAdGroupRequestMessageAppsItem = /*@__PURE__*/ S.String;
+export const UpdateAdGroupRequestMessageAppsItem = S.String;
 
 /** Apps the conversation opens in. Required when setting `conversion_location` to `messaging`, and rejected unless the ad group's conversion location is `messaging`. */
 export type UpdateAdGroupRequestMessageAppsList = Array<
@@ -2025,10 +2016,10 @@ export type UpdateAdGroupRequestOptimizationGoal =
   | "quality_lead"
   | "value"
   | "profile_and_page_engagement";
-export const UpdateAdGroupRequestOptimizationGoal = /*@__PURE__*/ S.String;
+export const UpdateAdGroupRequestOptimizationGoal = S.String;
 
 export type UpdateAdGroupRequestPlacementsCase0 = "automatic";
-export const UpdateAdGroupRequestPlacementsCase0 = /*@__PURE__*/ S.String;
+export const UpdateAdGroupRequestPlacementsCase0 = S.String;
 
 /** Platform the ads run on. */
 export type UpdateAdGroupRequestPlacementsCase1ItemPlatform =
@@ -2038,8 +2029,7 @@ export type UpdateAdGroupRequestPlacementsCase1ItemPlatform =
   | "audience_network"
   | "threads"
   | "whatsapp";
-export const UpdateAdGroupRequestPlacementsCase1ItemPlatform =
-  /*@__PURE__*/ S.String;
+export const UpdateAdGroupRequestPlacementsCase1ItemPlatform = S.String;
 
 /** Positions to target within the platform, such as `feed` or `story`. Omit to target all of the platform's positions. */
 export type UpdateAdGroupRequestPlacementsCase1ItemPositionsList =
@@ -2078,11 +2068,11 @@ export type UpdateAdGroupRequestPlacements =
   | UpdateAdGroupRequestPlacementsCase0
   | UpdateAdGroupRequestPlacementsCase1List;
 export const UpdateAdGroupRequestPlacements =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateAdGroupRequestPlacements>;
+  S.Unknown as any as S.Schema<UpdateAdGroupRequestPlacements>;
 
 /** Initial status (default: `active`). */
 export type UpdateAdGroupRequestStatus = "active" | "paused";
-export const UpdateAdGroupRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateAdGroupRequestStatus = S.String;
 
 export interface UpdateAdGroupRequest {
   /** The ad group ID. */

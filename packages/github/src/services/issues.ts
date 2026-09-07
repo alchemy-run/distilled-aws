@@ -62,8 +62,7 @@ export type AddAssigneesRequestAssigneesItemCase1Confidence =
   | "low"
   | "medium"
   | "high";
-export const AddAssigneesRequestAssigneesItemCase1Confidence =
-  /*@__PURE__*/ S.String;
+export const AddAssigneesRequestAssigneesItemCase1Confidence = S.String;
 
 export interface AddAssigneesRequestAssigneesItemCase1 {
   /** The login of the user to assign. */
@@ -91,7 +90,7 @@ export type AddAssigneesRequestAssigneesItem =
   | string
   | AddAssigneesRequestAssigneesItemCase1;
 export const AddAssigneesRequestAssigneesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddAssigneesRequestAssigneesItem>;
+  S.Unknown as any as S.Schema<AddAssigneesRequestAssigneesItem>;
 
 /** Usernames of people to assign this issue to. _NOTE: Only users with push access can add assignees to an issue. Assignees are silently ignored otherwise._ */
 export type AddAssigneesRequestAssigneesList =
@@ -133,7 +132,7 @@ export type IssueStateReason =
   | "reopened"
   | "not_planned"
   | "duplicate";
-export const IssueStateReason = /*@__PURE__*/ S.String;
+export const IssueStateReason = S.String;
 
 /** A GitHub user. */
 export interface NullableSimpleUser {
@@ -213,8 +212,7 @@ export const IssueLabelsItemCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IssueLabelsItemCase1>;
 
 export type IssueLabelsItem = string | IssueLabelsItemCase1;
-export const IssueLabelsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IssueLabelsItem>;
+export const IssueLabelsItem = S.Unknown as any as S.Schema<IssueLabelsItem>;
 
 /** Labels to associate with this issue; pass one or more label names to replace the set of labels on this issue; send an empty array to clear all labels from the issue; note that the labels are silently dropped for users without push access to the repository */
 export type IssueLabelsList = Array<IssueLabelsItem>;
@@ -233,7 +231,7 @@ export const IssueAssigneesList = /*@__PURE__*/ S.Array(
 
 /** The state of the milestone. */
 export type NullableMilestoneState = "open" | "closed";
-export const NullableMilestoneState = /*@__PURE__*/ S.String;
+export const NullableMilestoneState = S.String;
 
 /** A collection of related issues and pull requests. */
 export interface NullableMilestone {
@@ -309,7 +307,7 @@ export type IssueTypeColor =
   | "red"
   | "pink"
   | "purple";
-export const IssueTypeColor = /*@__PURE__*/ S.String;
+export const IssueTypeColor = S.String;
 
 /** The type assigned to the issue. This is only present for issues in repositories where issue types are supported. */
 export interface IssueType {
@@ -391,28 +389,28 @@ export const RepositoryTopicsList = /*@__PURE__*/ S.Array(
 
 /** The policy controlling who can create pull requests: all or collaborators_only. */
 export type RepositoryPullRequestCreationPolicy = "all" | "collaborators_only";
-export const RepositoryPullRequestCreationPolicy = /*@__PURE__*/ S.String;
+export const RepositoryPullRequestCreationPolicy = S.String;
 
 /** The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit). */
 export type RepositorySquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const RepositorySquashMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type RepositorySquashMergeCommitMessage =
   | "PR_BODY"
   | "COMMIT_MESSAGES"
   | "BLANK";
-export const RepositorySquashMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitMessage = S.String;
 
 /** The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type RepositoryMergeCommitTitle = "PR_TITLE" | "MERGE_MESSAGE";
-export const RepositoryMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type RepositoryMergeCommitMessage = "PR_BODY" | "PR_TITLE" | "BLANK";
-export const RepositoryMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitMessage = S.String;
 
 /** The status of the code search index for this repository */
 export interface RepositoryCodeSearchIndexStatus {
@@ -700,7 +698,7 @@ export const Enterprise = /*@__PURE__*/ S.suspend(() =>
 
 export type NullableIntegrationOwner = NullableSimpleUser | Enterprise;
 export const NullableIntegrationOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NullableIntegrationOwner>;
+  S.Unknown as any as S.Schema<NullableIntegrationOwner>;
 
 /** The set of permissions for the GitHub app */
 export interface NullableIntegrationPermissions {
@@ -782,7 +780,7 @@ export type AuthorAssociation =
   | "MEMBER"
   | "NONE"
   | "OWNER";
-export const AuthorAssociation = /*@__PURE__*/ S.String;
+export const AuthorAssociation = S.String;
 
 export interface ReactionRollup {
   url: string;
@@ -922,12 +920,12 @@ export type IssueFieldValueDataType =
   | "multi_select"
   | "number"
   | "date";
-export const IssueFieldValueDataType = /*@__PURE__*/ S.String;
+export const IssueFieldValueDataType = S.String;
 
 /** The value of the issue field */
 export type IssueFieldValueValue = string | number | number;
 export const IssueFieldValueValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IssueFieldValueValue>;
+  S.Unknown as any as S.Schema<IssueFieldValueValue>;
 
 /** Details about the selected option (only present for single_select fields) */
 export interface IssueFieldValueSingleSelectOption {
@@ -1136,7 +1134,7 @@ export type AddIssueFieldValuesRequestIssueFieldValuesItemValue =
   | number
   | AddIssueFieldValuesRequestIssueFieldValuesItemValueCase2List;
 export const AddIssueFieldValuesRequestIssueFieldValuesItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddIssueFieldValuesRequestIssueFieldValuesItemValue>;
+  S.Unknown as any as S.Schema<AddIssueFieldValuesRequestIssueFieldValuesItemValue>;
 
 export interface AddIssueFieldValuesRequestIssueFieldValuesItem {
   /** The ID of the issue field to set */
@@ -1209,8 +1207,7 @@ export type AddLabelsRequestBodyCase0LabelsItemCase1Confidence =
   | "low"
   | "medium"
   | "high";
-export const AddLabelsRequestBodyCase0LabelsItemCase1Confidence =
-  /*@__PURE__*/ S.String;
+export const AddLabelsRequestBodyCase0LabelsItemCase1Confidence = S.String;
 
 export interface AddLabelsRequestBodyCase0LabelsItemCase1 {
   /** The name of the label to add. */
@@ -1242,7 +1239,7 @@ export type AddLabelsRequestBodyCase0LabelsItem =
   | string
   | AddLabelsRequestBodyCase0LabelsItemCase1;
 export const AddLabelsRequestBodyCase0LabelsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddLabelsRequestBodyCase0LabelsItem>;
+  S.Unknown as any as S.Schema<AddLabelsRequestBodyCase0LabelsItem>;
 
 /** The labels to add to the issue's existing labels. You can also pass an `array` of labels directly, but GitHub recommends passing an object with the `labels` key. To replace all of the labels for an issue, use "[Set labels for an issue](https://docs.github.com/rest/issues/labels#set-labels-for-an-issue)." */
 export type AddLabelsRequestBodyCase0LabelsList =
@@ -1270,7 +1267,7 @@ export const AddLabelsRequestBodyCase1List = /*@__PURE__*/ S.Array(
 
 /** The confidence level for this label choice. */
 export type AddLabelsRequestBodyCase2ItemConfidence = "low" | "medium" | "high";
-export const AddLabelsRequestBodyCase2ItemConfidence = /*@__PURE__*/ S.String;
+export const AddLabelsRequestBodyCase2ItemConfidence = S.String;
 
 export interface AddLabelsRequestBodyCase2Item {
   name: string;
@@ -1303,7 +1300,7 @@ export type AddLabelsRequestBody =
   | AddLabelsRequestBodyCase1List
   | AddLabelsRequestBodyCase2List;
 export const AddLabelsRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddLabelsRequestBody>;
+  S.Unknown as any as S.Schema<AddLabelsRequestBody>;
 
 export interface AddLabelsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -1435,7 +1432,7 @@ export type IssueSuggestionAction =
   | "add_field"
   | "add_assignee"
   | "close_issue";
-export const IssueSuggestionAction = /*@__PURE__*/ S.String;
+export const IssueSuggestionAction = S.String;
 
 /** The suggestion's lifecycle state. */
 export type IssueSuggestionState =
@@ -1445,7 +1442,7 @@ export type IssueSuggestionState =
   | "dismissed"
   | "replaced"
   | "invalidated";
-export const IssueSuggestionState = /*@__PURE__*/ S.String;
+export const IssueSuggestionState = S.String;
 
 export type IssueSuggestionTargetValueCase3List = Array<string>;
 export const IssueSuggestionTargetValueCase3List = /*@__PURE__*/ S.Array(
@@ -1459,11 +1456,11 @@ export type IssueSuggestionTargetValue =
   | boolean
   | IssueSuggestionTargetValueCase3List;
 export const IssueSuggestionTargetValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IssueSuggestionTargetValue>;
+  S.Unknown as any as S.Schema<IssueSuggestionTargetValue>;
 
 /** The actor's confidence level in the suggestion. */
 export type IssueSuggestionConfidence = "LOW" | "MEDIUM" | "HIGH";
-export const IssueSuggestionConfidence = /*@__PURE__*/ S.String;
+export const IssueSuggestionConfidence = S.String;
 
 /** An agent-proposed change to an issue that a maintainer can approve or dismiss. */
 export interface IssueSuggestion {
@@ -1581,11 +1578,11 @@ export const CheckUserCanBeAssignedToIssueResponse = /*@__PURE__*/ S.suspend(
 /** The title of the issue. */
 export type CreateRequestTitle = string | number;
 export const CreateRequestTitle =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateRequestTitle>;
+  S.Unknown as any as S.Schema<CreateRequestTitle>;
 
 export type CreateRequestMilestone = string | number;
 export const CreateRequestMilestone =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateRequestMilestone>;
+  S.Unknown as any as S.Schema<CreateRequestMilestone>;
 
 export interface CreateRequestLabelsItemCase1 {
   id?: number;
@@ -1606,7 +1603,7 @@ export const CreateRequestLabelsItemCase1 = /*@__PURE__*/ S.suspend(() =>
 
 export type CreateRequestLabelsItem = string | CreateRequestLabelsItemCase1;
 export const CreateRequestLabelsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateRequestLabelsItem>;
+  S.Unknown as any as S.Schema<CreateRequestLabelsItem>;
 
 /** Labels to associate with this issue. _NOTE: Only users with push access can set labels for new issues. Labels are silently dropped otherwise._ */
 export type CreateRequestLabelsList = Array<CreateRequestLabelsItem>;
@@ -1632,7 +1629,7 @@ export type CreateRequestIssueFieldValuesItemValue =
   | number
   | CreateRequestIssueFieldValuesItemValueCase2List;
 export const CreateRequestIssueFieldValuesItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateRequestIssueFieldValuesItemValue>;
+  S.Unknown as any as S.Schema<CreateRequestIssueFieldValuesItemValue>;
 
 export interface CreateRequestIssueFieldValuesItem {
   /** The ID of the issue field to set */
@@ -1795,7 +1792,7 @@ export const CreateLabelRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The state of the milestone. Either `open` or `closed`. */
 export type CreateMilestoneRequestState = "open" | "closed";
-export const CreateMilestoneRequestState = /*@__PURE__*/ S.String;
+export const CreateMilestoneRequestState = S.String;
 
 export interface CreateMilestoneRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -1832,7 +1829,7 @@ export const CreateMilestoneRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The state of the milestone. */
 export type MilestoneState = "open" | "closed";
-export const MilestoneState = /*@__PURE__*/ S.String;
+export const MilestoneState = S.String;
 
 /** A collection of related issues and pull requests. */
 export interface Milestone {
@@ -2105,14 +2102,14 @@ export type NullableIssueStateReason =
   | "reopened"
   | "not_planned"
   | "duplicate";
-export const NullableIssueStateReason = /*@__PURE__*/ S.String;
+export const NullableIssueStateReason = S.String;
 
 export type NullableIssueLabelsItemCase1 = IssueLabelsItemCase1;
 export const NullableIssueLabelsItemCase1 = IssueLabelsItemCase1;
 
 export type NullableIssueLabelsItem = string | IssueLabelsItemCase1;
 export const NullableIssueLabelsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NullableIssueLabelsItem>;
+  S.Unknown as any as S.Schema<NullableIssueLabelsItem>;
 
 /** Labels to associate with this issue; pass one or more label names to replace the set of labels on this issue; send an empty array to clear all labels from the issue; note that the labels are silently dropped for users without push access to the repository */
 export type NullableIssueLabelsList = Array<NullableIssueLabelsItem>;
@@ -2264,15 +2261,15 @@ export const TeamPermissions = /*@__PURE__*/ S.suspend(() =>
 
 /** The ownership type of the team */
 export type TeamType = "enterprise" | "organization";
-export const TeamType = /*@__PURE__*/ S.String;
+export const TeamType = S.String;
 
 /** How the team's access to the repository was granted. This property is only present when the team is returned in a repository context, such as `GET /repos/{owner}/{repo}/teams`. */
 export type TeamAccessSource = "direct" | "organization" | "enterprise";
-export const TeamAccessSource = /*@__PURE__*/ S.String;
+export const TeamAccessSource = S.String;
 
 /** The ownership type of the team */
 export type NullableTeamSimpleType = "enterprise" | "organization";
-export const NullableTeamSimpleType = /*@__PURE__*/ S.String;
+export const NullableTeamSimpleType = S.String;
 
 /** Groups of organization members that gives permissions on specified repositories. */
 export interface NullableTeamSimple {
@@ -2450,7 +2447,7 @@ export type IssueTypeWebhookColor =
   | "red"
   | "pink"
   | "purple";
-export const IssueTypeWebhookColor = /*@__PURE__*/ S.String;
+export const IssueTypeWebhookColor = S.String;
 
 /** The type of issue. */
 export interface IssueTypeWebhook {
@@ -2669,7 +2666,7 @@ export const NullableIssueReference = /*@__PURE__*/ S.suspend(() =>
 
 /** The confidence level the agent had when performing this action. */
 export type NullableIssueEventIntentConfidence = "LOW" | "MEDIUM" | "HIGH";
-export const NullableIssueEventIntentConfidence = /*@__PURE__*/ S.String;
+export const NullableIssueEventIntentConfidence = S.String;
 
 /** The intent behind an agent's action on an issue, including the rationale and confidence. Present (and `null` when the event carried no agent intent) on supported event types while the issue suggestions feature is enabled for the repository; the property is omitted entirely when the feature is disabled or the event type does not support intent. */
 export interface NullableIssueEventIntent {
@@ -2831,16 +2828,16 @@ export type ListRequestFilter =
   | "subscribed"
   | "repos"
   | "all";
-export const ListRequestFilter = /*@__PURE__*/ S.String;
+export const ListRequestFilter = S.String;
 
 export type ListRequestState = "open" | "closed" | "all";
-export const ListRequestState = /*@__PURE__*/ S.String;
+export const ListRequestState = S.String;
 
 export type ListRequestSort = "created" | "updated" | "comments";
-export const ListRequestSort = /*@__PURE__*/ S.String;
+export const ListRequestSort = S.String;
 
 export type ListRequestDirection = "asc" | "desc";
-export const ListRequestDirection = /*@__PURE__*/ S.String;
+export const ListRequestDirection = S.String;
 
 export interface ListRequest {
   /** Indicates which sorts of issues to return. `assigned` means issues assigned to you. `created` means issues created by you. `mentioned` means issues mentioning you. `subscribed` means issues you're subscribed to updates for. `all` or `repos` means all issues you can see, regardless of participation or creation. */
@@ -2976,10 +2973,10 @@ export const ListCommentsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListCommentsResponse>;
 
 export type ListCommentsForRepoRequestSort = "created" | "updated";
-export const ListCommentsForRepoRequestSort = /*@__PURE__*/ S.String;
+export const ListCommentsForRepoRequestSort = S.String;
 
 export type ListCommentsForRepoRequestDirection = "asc" | "desc";
-export const ListCommentsForRepoRequestDirection = /*@__PURE__*/ S.String;
+export const ListCommentsForRepoRequestDirection = S.String;
 
 export interface ListCommentsForRepoRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -3198,8 +3195,7 @@ export type UnlabeledIssueEvent = LabeledIssueEvent;
 export const UnlabeledIssueEvent = LabeledIssueEvent;
 
 export type IntegrationOwner = NullableSimpleUser | Enterprise;
-export const IntegrationOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationOwner>;
+export const IntegrationOwner = S.Unknown as any as S.Schema<IntegrationOwner>;
 
 /** The set of permissions for the GitHub app */
 export type IntegrationPermissions = NullableIntegrationPermissions;
@@ -3875,7 +3871,7 @@ export type IssueEventForIssue =
   | BlockingAddedIssueEvent
   | BlockingAddedIssueEvent;
 export const IssueEventForIssue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IssueEventForIssue>;
+  S.Unknown as any as S.Schema<IssueEventForIssue>;
 
 export type ListEventsResponseBodyList = Array<IssueEventForIssue>;
 export const ListEventsResponseBodyList = /*@__PURE__*/ S.Array(
@@ -4257,15 +4253,15 @@ export const PullRequestReviewCommentLinks = /*@__PURE__*/ S.suspend(() =>
 
 /** The side of the first line of the range for a multi-line comment. */
 export type PullRequestReviewCommentStartSide = "LEFT" | "RIGHT";
-export const PullRequestReviewCommentStartSide = /*@__PURE__*/ S.String;
+export const PullRequestReviewCommentStartSide = S.String;
 
 /** The side of the diff to which the comment applies. The side of the last line of the range for a multi-line comment */
 export type PullRequestReviewCommentSide = "LEFT" | "RIGHT";
-export const PullRequestReviewCommentSide = /*@__PURE__*/ S.String;
+export const PullRequestReviewCommentSide = S.String;
 
 /** The level at which the comment is targeted, can be a diff line or a file. */
 export type PullRequestReviewCommentSubjectType = "line" | "file";
-export const PullRequestReviewCommentSubjectType = /*@__PURE__*/ S.String;
+export const PullRequestReviewCommentSubjectType = S.String;
 
 /** Pull Request Review Comments are comments on a portion of the Pull Request's diff. */
 export interface PullRequestReviewComment {
@@ -4601,7 +4597,7 @@ export type TimelineIssueEvents =
   | TimelineConnectedEvent
   | TimelineConnectedEvent;
 export const TimelineIssueEvents =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TimelineIssueEvents>;
+  S.Unknown as any as S.Schema<TimelineIssueEvents>;
 
 export type ListEventsForTimelineResponseBodyList = Array<TimelineIssueEvents>;
 export const ListEventsForTimelineResponseBodyList = /*@__PURE__*/ S.Array(
@@ -4623,19 +4619,19 @@ export type ListForAuthenticatedUserRequestFilter =
   | "subscribed"
   | "repos"
   | "all";
-export const ListForAuthenticatedUserRequestFilter = /*@__PURE__*/ S.String;
+export const ListForAuthenticatedUserRequestFilter = S.String;
 
 export type ListForAuthenticatedUserRequestState = "open" | "closed" | "all";
-export const ListForAuthenticatedUserRequestState = /*@__PURE__*/ S.String;
+export const ListForAuthenticatedUserRequestState = S.String;
 
 export type ListForAuthenticatedUserRequestSort =
   | "created"
   | "updated"
   | "comments";
-export const ListForAuthenticatedUserRequestSort = /*@__PURE__*/ S.String;
+export const ListForAuthenticatedUserRequestSort = S.String;
 
 export type ListForAuthenticatedUserRequestDirection = "asc" | "desc";
-export const ListForAuthenticatedUserRequestDirection = /*@__PURE__*/ S.String;
+export const ListForAuthenticatedUserRequestDirection = S.String;
 
 export interface ListForAuthenticatedUserRequest {
   /** Indicates which sorts of issues to return. `assigned` means issues assigned to you. `created` means issues created by you. `mentioned` means issues mentioning you. `subscribed` means issues you're subscribed to updates for. `all` or `repos` means all issues you can see, regardless of participation or creation. */
@@ -4692,16 +4688,16 @@ export type ListForOrgRequestFilter =
   | "subscribed"
   | "repos"
   | "all";
-export const ListForOrgRequestFilter = /*@__PURE__*/ S.String;
+export const ListForOrgRequestFilter = S.String;
 
 export type ListForOrgRequestState = "open" | "closed" | "all";
-export const ListForOrgRequestState = /*@__PURE__*/ S.String;
+export const ListForOrgRequestState = S.String;
 
 export type ListForOrgRequestSort = "created" | "updated" | "comments";
-export const ListForOrgRequestSort = /*@__PURE__*/ S.String;
+export const ListForOrgRequestSort = S.String;
 
 export type ListForOrgRequestDirection = "asc" | "desc";
-export const ListForOrgRequestDirection = /*@__PURE__*/ S.String;
+export const ListForOrgRequestDirection = S.String;
 
 export interface ListForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -4755,13 +4751,13 @@ export const ListForOrgResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListForOrgResponse>;
 
 export type ListForRepoRequestState = "open" | "closed" | "all";
-export const ListForRepoRequestState = /*@__PURE__*/ S.String;
+export const ListForRepoRequestState = S.String;
 
 export type ListForRepoRequestSort = "created" | "updated" | "comments";
-export const ListForRepoRequestSort = /*@__PURE__*/ S.String;
+export const ListForRepoRequestSort = S.String;
 
 export type ListForRepoRequestDirection = "asc" | "desc";
-export const ListForRepoRequestDirection = /*@__PURE__*/ S.String;
+export const ListForRepoRequestDirection = S.String;
 
 export interface ListForRepoRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -4997,13 +4993,13 @@ export const ListLabelsOnIssueResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListLabelsOnIssueResponse>;
 
 export type ListMilestonesRequestState = "open" | "closed" | "all";
-export const ListMilestonesRequestState = /*@__PURE__*/ S.String;
+export const ListMilestonesRequestState = S.String;
 
 export type ListMilestonesRequestSort = "due_on" | "completeness";
-export const ListMilestonesRequestSort = /*@__PURE__*/ S.String;
+export const ListMilestonesRequestSort = S.String;
 
 export type ListMilestonesRequestDirection = "asc" | "desc";
-export const ListMilestonesRequestDirection = /*@__PURE__*/ S.String;
+export const ListMilestonesRequestDirection = S.String;
 
 export interface ListMilestonesRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -5103,7 +5099,7 @@ export type ListSuggestionsRequestState =
   | "replaced"
   | "invalidated"
   | "all";
-export const ListSuggestionsRequestState = /*@__PURE__*/ S.String;
+export const ListSuggestionsRequestState = S.String;
 
 export type ListSuggestionsRequestAction =
   | "set_type"
@@ -5111,7 +5107,7 @@ export type ListSuggestionsRequestAction =
   | "add_field"
   | "add_assignee"
   | "close_issue";
-export const ListSuggestionsRequestAction = /*@__PURE__*/ S.String;
+export const ListSuggestionsRequestAction = S.String;
 
 export interface ListSuggestionsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -5167,7 +5163,7 @@ export type LockRequestLockReason =
   | "too heated"
   | "resolved"
   | "spam";
-export const LockRequestLockReason = /*@__PURE__*/ S.String;
+export const LockRequestLockReason = S.String;
 
 export interface LockRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -5417,7 +5413,7 @@ export type SetIssueFieldValuesRequestIssueFieldValuesItemValue =
   | string
   | number;
 export const SetIssueFieldValuesRequestIssueFieldValuesItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SetIssueFieldValuesRequestIssueFieldValuesItemValue>;
+  S.Unknown as any as S.Schema<SetIssueFieldValuesRequestIssueFieldValuesItemValue>;
 
 export interface SetIssueFieldValuesRequestIssueFieldValuesItem {
   /** The ID of the issue field to set */
@@ -5553,7 +5549,7 @@ export type SetLabelsRequestBody =
   | SetLabelsRequestBodyCase3List
   | string;
 export const SetLabelsRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SetLabelsRequestBody>;
+  S.Unknown as any as S.Schema<SetLabelsRequestBody>;
 
 export interface SetLabelsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -5654,11 +5650,11 @@ export const UnpinCommentResponse = /*@__PURE__*/ S.suspend(() =>
 /** The title of the issue. */
 export type UpdateRequestTitle = string | number;
 export const UpdateRequestTitle =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateRequestTitle>;
+  S.Unknown as any as S.Schema<UpdateRequestTitle>;
 
 /** The open or closed state of the issue. */
 export type UpdateRequestState = "open" | "closed";
-export const UpdateRequestState = /*@__PURE__*/ S.String;
+export const UpdateRequestState = S.String;
 
 /** The reason for the state change. Ignored unless `state` is changed. */
 export type UpdateRequestStateReason =
@@ -5666,15 +5662,15 @@ export type UpdateRequestStateReason =
   | "not_planned"
   | "duplicate"
   | "reopened";
-export const UpdateRequestStateReason = /*@__PURE__*/ S.String;
+export const UpdateRequestStateReason = S.String;
 
 export type UpdateRequestMilestone = string | number;
 export const UpdateRequestMilestone =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateRequestMilestone>;
+  S.Unknown as any as S.Schema<UpdateRequestMilestone>;
 
 /** The confidence level for this label choice. */
 export type UpdateRequestLabelsItemCase1Confidence = "low" | "medium" | "high";
-export const UpdateRequestLabelsItemCase1Confidence = /*@__PURE__*/ S.String;
+export const UpdateRequestLabelsItemCase1Confidence = S.String;
 
 export interface UpdateRequestLabelsItemCase1 {
   id?: number;
@@ -5704,7 +5700,7 @@ export const UpdateRequestLabelsItemCase1 = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateRequestLabelsItem = string | UpdateRequestLabelsItemCase1;
 export const UpdateRequestLabelsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateRequestLabelsItem>;
+  S.Unknown as any as S.Schema<UpdateRequestLabelsItem>;
 
 /** Labels to associate with this issue. Pass one or more labels to _replace_ the set of labels on this issue. Send an empty array (`[]`) to clear all labels from the issue. Only users with push access can set labels for issues. Without push access to the repository, label changes are silently dropped. */
 export type UpdateRequestLabelsList = Array<UpdateRequestLabelsItem>;
@@ -5717,7 +5713,7 @@ export type UpdateRequestAssigneesItemCase1Confidence =
   | "low"
   | "medium"
   | "high";
-export const UpdateRequestAssigneesItemCase1Confidence = /*@__PURE__*/ S.String;
+export const UpdateRequestAssigneesItemCase1Confidence = S.String;
 
 export interface UpdateRequestAssigneesItemCase1 {
   login?: string;
@@ -5743,7 +5739,7 @@ export type UpdateRequestAssigneesItem =
   | string
   | UpdateRequestAssigneesItemCase1;
 export const UpdateRequestAssigneesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateRequestAssigneesItem>;
+  S.Unknown as any as S.Schema<UpdateRequestAssigneesItem>;
 
 /** Usernames to assign to this issue. Pass one or more user logins to _replace_ the set of assignees on this issue. Send an empty array (`[]`) to clear all assignees from the issue. Only users with push access can set assignees for new issues. Without push access to the repository, assignee changes are silently dropped. */
 export type UpdateRequestAssigneesList = Array<UpdateRequestAssigneesItem>;
@@ -5763,15 +5759,14 @@ export type UpdateRequestIssueFieldValuesItemValue =
   | number
   | UpdateRequestIssueFieldValuesItemValueCase2List;
 export const UpdateRequestIssueFieldValuesItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateRequestIssueFieldValuesItemValue>;
+  S.Unknown as any as S.Schema<UpdateRequestIssueFieldValuesItemValue>;
 
 /** The confidence level for this field value choice. */
 export type UpdateRequestIssueFieldValuesItemConfidence =
   | "low"
   | "medium"
   | "high";
-export const UpdateRequestIssueFieldValuesItemConfidence =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestIssueFieldValuesItemConfidence = S.String;
 
 export interface UpdateRequestIssueFieldValuesItem {
   /** The ID of the issue field to set */
@@ -5806,7 +5801,7 @@ export const UpdateRequestIssueFieldValuesList = /*@__PURE__*/ S.Array(
 
 /** The confidence level for this type choice. */
 export type UpdateRequestTypeCase1Confidence = "low" | "medium" | "high";
-export const UpdateRequestTypeCase1Confidence = /*@__PURE__*/ S.String;
+export const UpdateRequestTypeCase1Confidence = S.String;
 
 /** The issue type with optional metadata. */
 export interface UpdateRequestTypeCase1 {
@@ -5833,7 +5828,7 @@ export const UpdateRequestTypeCase1 = /*@__PURE__*/ S.suspend(() =>
 /** The issue type to associate with this issue. Only users with push access can set the type for issues. Without push access to the repository, type changes are silently dropped. */
 export type UpdateRequestType = string | UpdateRequestTypeCase1;
 export const UpdateRequestType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateRequestType>;
+  S.Unknown as any as S.Schema<UpdateRequestType>;
 
 export interface UpdateRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -5895,14 +5890,14 @@ export type UpdateResponseStateReason =
   | "reopened"
   | "not_planned"
   | "duplicate";
-export const UpdateResponseStateReason = /*@__PURE__*/ S.String;
+export const UpdateResponseStateReason = S.String;
 
 export type UpdateResponseLabelsItemCase1 = IssueLabelsItemCase1;
 export const UpdateResponseLabelsItemCase1 = IssueLabelsItemCase1;
 
 export type UpdateResponseLabelsItem = string | IssueLabelsItemCase1;
 export const UpdateResponseLabelsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateResponseLabelsItem>;
+  S.Unknown as any as S.Schema<UpdateResponseLabelsItem>;
 
 /** Labels to associate with this issue; pass one or more label names to replace the set of labels on this issue; send an empty array to clear all labels from the issue; note that the labels are silently dropped for users without push access to the repository */
 export type UpdateResponseLabelsList = Array<UpdateResponseLabelsItem>;
@@ -5927,14 +5922,12 @@ export type UpdateResponseSuggestionsTypeItemConfidence =
   | "low"
   | "medium"
   | "high";
-export const UpdateResponseSuggestionsTypeItemConfidence =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseSuggestionsTypeItemConfidence = S.String;
 
 export type UpdateResponseSuggestionsTypeItemIgnoredReason =
   | "already_applied"
   | "issue_already_closed";
-export const UpdateResponseSuggestionsTypeItemIgnoredReason =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseSuggestionsTypeItemIgnoredReason = S.String;
 
 export interface UpdateResponseSuggestionsTypeItem {
   value?: string;
@@ -5975,20 +5968,19 @@ export type UpdateResponseSuggestionsIssueFieldValuesItemValue =
   | number
   | UpdateResponseSuggestionsIssueFieldValuesItemValueCase2List;
 export const UpdateResponseSuggestionsIssueFieldValuesItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateResponseSuggestionsIssueFieldValuesItemValue>;
+  S.Unknown as any as S.Schema<UpdateResponseSuggestionsIssueFieldValuesItemValue>;
 
 export type UpdateResponseSuggestionsIssueFieldValuesItemConfidence =
   | "low"
   | "medium"
   | "high";
-export const UpdateResponseSuggestionsIssueFieldValuesItemConfidence =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseSuggestionsIssueFieldValuesItemConfidence = S.String;
 
 export type UpdateResponseSuggestionsIssueFieldValuesItemIgnoredReason =
   | "already_applied"
   | "issue_already_closed";
 export const UpdateResponseSuggestionsIssueFieldValuesItemIgnoredReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseSuggestionsIssueFieldValuesItem {
   field_id?: number;
@@ -6029,14 +6021,12 @@ export type UpdateResponseSuggestionsLabelsItemConfidence =
   | "low"
   | "medium"
   | "high";
-export const UpdateResponseSuggestionsLabelsItemConfidence =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseSuggestionsLabelsItemConfidence = S.String;
 
 export type UpdateResponseSuggestionsLabelsItemIgnoredReason =
   | "already_applied"
   | "issue_already_closed";
-export const UpdateResponseSuggestionsLabelsItemIgnoredReason =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseSuggestionsLabelsItemIgnoredReason = S.String;
 
 export interface UpdateResponseSuggestionsLabelsItem {
   name?: string;
@@ -6071,14 +6061,12 @@ export type UpdateResponseSuggestionsAssigneesItemConfidence =
   | "low"
   | "medium"
   | "high";
-export const UpdateResponseSuggestionsAssigneesItemConfidence =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseSuggestionsAssigneesItemConfidence = S.String;
 
 export type UpdateResponseSuggestionsAssigneesItemIgnoredReason =
   | "already_applied"
   | "issue_already_closed";
-export const UpdateResponseSuggestionsAssigneesItemIgnoredReason =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseSuggestionsAssigneesItemIgnoredReason = S.String;
 
 export interface UpdateResponseSuggestionsAssigneesItem {
   login?: string;
@@ -6114,14 +6102,12 @@ export type UpdateResponseSuggestionsStateItemConfidence =
   | "low"
   | "medium"
   | "high";
-export const UpdateResponseSuggestionsStateItemConfidence =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseSuggestionsStateItemConfidence = S.String;
 
 export type UpdateResponseSuggestionsStateItemIgnoredReason =
   | "already_applied"
   | "issue_already_closed";
-export const UpdateResponseSuggestionsStateItemIgnoredReason =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseSuggestionsStateItemIgnoredReason = S.String;
 
 export interface UpdateResponseSuggestionsStateItem {
   value?: string;
@@ -6338,7 +6324,7 @@ export const UpdateLabelRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The state of the milestone. Either `open` or `closed`. */
 export type UpdateMilestoneRequestState = "open" | "closed";
-export const UpdateMilestoneRequestState = /*@__PURE__*/ S.String;
+export const UpdateMilestoneRequestState = S.String;
 
 export interface UpdateMilestoneRequest {
   /** The account owner of the repository. The name is not case sensitive. */

@@ -161,7 +161,7 @@ export type LinkTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "CHILD_LINKED_SPAN"
   | "PARENT_LINKED_SPAN";
-export const LinkTypeEnum = /*@__PURE__*/ S.String;
+export const LinkTypeEnum = S.String;
 
 /** The allowed types for `[VALUE]` in a `[KEY]:[VALUE]` attribute. */
 export interface AttributeValue {
@@ -246,7 +246,7 @@ export type SpanSpanKindEnum =
   | "CLIENT"
   | "PRODUCER"
   | "CONSUMER";
-export const SpanSpanKindEnum = /*@__PURE__*/ S.String;
+export const SpanSpanKindEnum = S.String;
 
 export type DocumentMap = { [key: string]: unknown | undefined };
 export const DocumentMap = /*@__PURE__*/ S.Record(
@@ -291,7 +291,7 @@ export const Annotation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Annotation" }) as any as S.Schema<Annotation>;
 
 export type MessageEventTypeEnum = "TYPE_UNSPECIFIED" | "SENT" | "RECEIVED";
-export const MessageEventTypeEnum = /*@__PURE__*/ S.String;
+export const MessageEventTypeEnum = S.String;
 
 /** An event describing a message sent/received between Spans. */
 export interface MessageEvent {

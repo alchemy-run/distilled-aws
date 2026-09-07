@@ -50,16 +50,16 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicInputRoleAtOrganization =
   | RoleAtOrganizationEnum
   | BlankEnum;
 export const UserBasicInputRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicInputRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicInputRoleAtOrganization>;
 
 export interface UserBasicInput {
   distinct_id?: string | null;
@@ -133,7 +133,7 @@ export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -335,10 +335,10 @@ export const ListAdvancedActivityLogsRequestItemIdsList = /*@__PURE__*/ S.Array(
 export type ListAdvancedActivityLogsRequestOrdering =
   | "-created_at"
   | "created_at";
-export const ListAdvancedActivityLogsRequestOrdering = /*@__PURE__*/ S.String;
+export const ListAdvancedActivityLogsRequestOrdering = S.String;
 
 export type ListAdvancedActivityLogsRequestSchema = "ocsf";
-export const ListAdvancedActivityLogsRequestSchema = /*@__PURE__*/ S.String;
+export const ListAdvancedActivityLogsRequestSchema = S.String;
 
 export type ListAdvancedActivityLogsRequestScopesList = Array<string>;
 export const ListAdvancedActivityLogsRequestScopesList = /*@__PURE__*/ S.Array(

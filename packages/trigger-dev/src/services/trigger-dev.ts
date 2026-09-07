@@ -68,7 +68,7 @@ export const ActivateScheduleV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ActivateScheduleV1Request>;
 
 export type ScheduleObjectGeneratorType = "CRON";
-export const ScheduleObjectGeneratorType = /*@__PURE__*/ S.String;
+export const ScheduleObjectGeneratorType = S.String;
 
 export interface ScheduleObjectGenerator {
   type?: ScheduleObjectGeneratorType;
@@ -149,7 +149,7 @@ export const RunTagsCase1List = /*@__PURE__*/ S.Array(
 
 /** One or more tags to attach to a run. Runs can have a maximum of 10 tags. */
 export type RunTags = string | RunTagsCase1List;
-export const RunTags = /*@__PURE__*/ S.Unknown as any as S.Schema<RunTags>;
+export const RunTags = S.Unknown as any as S.Schema<RunTags>;
 
 export interface AddRunTagsV1Request {
   /** The ID of an run, starts with `run_`. The run ID will be returned when you trigger a run on a task. */
@@ -419,7 +419,7 @@ export const CompleteWaitpointTokenV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CompleteWaitpointTokenV1Request>;
 
 export type CreateBulkActionRequestBodyCase0Action = "cancel";
-export const CreateBulkActionRequestBodyCase0Action = /*@__PURE__*/ S.String;
+export const CreateBulkActionRequestBodyCase0Action = S.String;
 
 export type BulkActionFilterStatusCase0 =
   | "PENDING_VERSION"
@@ -433,7 +433,7 @@ export type BulkActionFilterStatusCase0 =
   | "CRASHED"
   | "INTERRUPTED"
   | "SYSTEM_FAILURE";
-export const BulkActionFilterStatusCase0 = /*@__PURE__*/ S.String;
+export const BulkActionFilterStatusCase0 = S.String;
 
 export type BulkActionFilterStatusCase1Item =
   | "PENDING_VERSION"
@@ -447,7 +447,7 @@ export type BulkActionFilterStatusCase1Item =
   | "CRASHED"
   | "INTERRUPTED"
   | "SYSTEM_FAILURE";
-export const BulkActionFilterStatusCase1Item = /*@__PURE__*/ S.String;
+export const BulkActionFilterStatusCase1Item = S.String;
 
 export type BulkActionFilterStatusCase1List = Array<
   BulkActionFilterStatusCase1Item | (string & {})
@@ -460,7 +460,7 @@ export type BulkActionFilterStatus =
   | BulkActionFilterStatusCase0
   | BulkActionFilterStatusCase1List;
 export const BulkActionFilterStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BulkActionFilterStatus>;
+  S.Unknown as any as S.Schema<BulkActionFilterStatus>;
 
 export type BulkActionFilterTaskIdentifierCase1List = Array<string>;
 export const BulkActionFilterTaskIdentifierCase1List = /*@__PURE__*/ S.Array(
@@ -472,7 +472,7 @@ export type BulkActionFilterTaskIdentifier =
   | string
   | BulkActionFilterTaskIdentifierCase1List;
 export const BulkActionFilterTaskIdentifier =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BulkActionFilterTaskIdentifier>;
+  S.Unknown as any as S.Schema<BulkActionFilterTaskIdentifier>;
 
 export type BulkActionFilterVersionCase1List = Array<string>;
 export const BulkActionFilterVersionCase1List = /*@__PURE__*/ S.Array(
@@ -482,17 +482,17 @@ export const BulkActionFilterVersionCase1List = /*@__PURE__*/ S.Array(
 /** The worker version that executed the run. */
 export type BulkActionFilterVersion = string | BulkActionFilterVersionCase1List;
 export const BulkActionFilterVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BulkActionFilterVersion>;
+  S.Unknown as any as S.Schema<BulkActionFilterVersion>;
 
 /** Start of the time range as an ISO date string or Unix timestamp in milliseconds. */
 export type BulkActionFilterFrom = string | number;
 export const BulkActionFilterFrom =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BulkActionFilterFrom>;
+  S.Unknown as any as S.Schema<BulkActionFilterFrom>;
 
 /** End of the time range as an ISO date string or Unix timestamp in milliseconds. */
 export type BulkActionFilterTo = string | number;
 export const BulkActionFilterTo =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BulkActionFilterTo>;
+  S.Unknown as any as S.Schema<BulkActionFilterTo>;
 
 export type BulkActionFilterTagCase1List = Array<string>;
 export const BulkActionFilterTagCase1List = /*@__PURE__*/ S.Array(
@@ -502,10 +502,10 @@ export const BulkActionFilterTagCase1List = /*@__PURE__*/ S.Array(
 /** Select runs with one or more tags. */
 export type BulkActionFilterTag = string | BulkActionFilterTagCase1List;
 export const BulkActionFilterTag =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BulkActionFilterTag>;
+  S.Unknown as any as S.Schema<BulkActionFilterTag>;
 
 export type QueueTypeNameType = "task" | "custom";
-export const QueueTypeNameType = /*@__PURE__*/ S.String;
+export const QueueTypeNameType = S.String;
 
 export interface QueueTypeName {
   type: QueueTypeNameType | (string & {});
@@ -527,7 +527,7 @@ export type BulkActionFilterQueue =
   | QueueTypeName
   | BulkActionFilterQueueCase1List;
 export const BulkActionFilterQueue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BulkActionFilterQueue>;
+  S.Unknown as any as S.Schema<BulkActionFilterQueue>;
 
 export type BulkActionFilterMachineCase1List = Array<string>;
 export const BulkActionFilterMachineCase1List = /*@__PURE__*/ S.Array(
@@ -537,7 +537,7 @@ export const BulkActionFilterMachineCase1List = /*@__PURE__*/ S.Array(
 /** Select runs by machine preset. */
 export type BulkActionFilterMachine = string | BulkActionFilterMachineCase1List;
 export const BulkActionFilterMachine =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BulkActionFilterMachine>;
+  S.Unknown as any as S.Schema<BulkActionFilterMachine>;
 
 export type BulkActionFilterRegionCase1List = Array<string>;
 export const BulkActionFilterRegionCase1List = /*@__PURE__*/ S.Array(
@@ -547,7 +547,7 @@ export const BulkActionFilterRegionCase1List = /*@__PURE__*/ S.Array(
 /** Select runs by region. */
 export type BulkActionFilterRegion = string | BulkActionFilterRegionCase1List;
 export const BulkActionFilterRegion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BulkActionFilterRegion>;
+  S.Unknown as any as S.Schema<BulkActionFilterRegion>;
 
 /** Selects runs using SDK-style run-list filter fields, excluding pagination fields. In HTTP requests these fields are sent as JSON body properties, so time fields are top-level (`from`, `to`, `period`) instead of nested under `createdAt`. Provide at least one property. */
 export interface BulkActionFilter {
@@ -615,7 +615,7 @@ export const CreateBulkActionRequestBodyCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateBulkActionRequestBodyCase0>;
 
 export type CreateBulkActionRequestBodyCase1Action = "cancel";
-export const CreateBulkActionRequestBodyCase1Action = /*@__PURE__*/ S.String;
+export const CreateBulkActionRequestBodyCase1Action = S.String;
 
 export type CreateBulkActionRequestBodyCase1RunIdsList = Array<string>;
 export const CreateBulkActionRequestBodyCase1RunIdsList = /*@__PURE__*/ S.Array(
@@ -638,7 +638,7 @@ export const CreateBulkActionRequestBodyCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateBulkActionRequestBodyCase1>;
 
 export type CreateBulkActionRequestBodyCase2Action = "replay";
-export const CreateBulkActionRequestBodyCase2Action = /*@__PURE__*/ S.String;
+export const CreateBulkActionRequestBodyCase2Action = S.String;
 
 export interface CreateBulkActionRequestBodyCase2 {
   action: CreateBulkActionRequestBodyCase2Action;
@@ -659,7 +659,7 @@ export const CreateBulkActionRequestBodyCase2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateBulkActionRequestBodyCase2>;
 
 export type CreateBulkActionRequestBodyCase3Action = "replay";
-export const CreateBulkActionRequestBodyCase3Action = /*@__PURE__*/ S.String;
+export const CreateBulkActionRequestBodyCase3Action = S.String;
 
 export type CreateBulkActionRequestBodyCase3RunIdsList = Array<string>;
 export const CreateBulkActionRequestBodyCase3RunIdsList = /*@__PURE__*/ S.Array(
@@ -690,7 +690,7 @@ export type CreateBulkActionRequestBody =
   | CreateBulkActionRequestBodyCase2
   | CreateBulkActionRequestBodyCase3;
 export const CreateBulkActionRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateBulkActionRequestBody>;
+  S.Unknown as any as S.Schema<CreateBulkActionRequestBody>;
 
 export interface CreateBulkActionV1Request {
   body: CreateBulkActionRequestBody;
@@ -711,7 +711,7 @@ export const CreateBulkActionV1Response = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateBulkActionV1Response>;
 
 export type CreateProjectEnvvarV1RequestEnv = "dev" | "staging" | "prod";
-export const CreateProjectEnvvarV1RequestEnv = /*@__PURE__*/ S.String;
+export const CreateProjectEnvvarV1RequestEnv = S.String;
 
 export interface CreateProjectEnvvarV1Request {
   /** The external ref of the project. You can find this in the project settings. Starts with `proj_`. */
@@ -892,7 +892,7 @@ export type CreateWaitpointTokenV1RequestTags =
   | string
   | CreateWaitpointTokenV1RequestTagsCase1List;
 export const CreateWaitpointTokenV1RequestTags =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateWaitpointTokenV1RequestTags>;
+  S.Unknown as any as S.Schema<CreateWaitpointTokenV1RequestTags>;
 
 export interface CreateWaitpointTokenV1Request {
   /** An optional idempotency key. If you pass the same key twice before it expires, you will receive the original token back. The returned token may already be completed, in which case `wait.forToken()` will continue immediately. */
@@ -954,7 +954,7 @@ export const DeactivateScheduleV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeactivateScheduleV1Request>;
 
 export type DeleteProjectEnvvarV1RequestEnv = "dev" | "staging" | "prod";
-export const DeleteProjectEnvvarV1RequestEnv = /*@__PURE__*/ S.String;
+export const DeleteProjectEnvvarV1RequestEnv = S.String;
 
 export interface DeleteProjectEnvvarV1Request {
   /** The external ref of the project. You can find this in the project settings. Starts with `proj_`. */
@@ -1010,11 +1010,11 @@ export type ExecuteQueryV1RequestScope =
   | "environment"
   | "project"
   | "organization";
-export const ExecuteQueryV1RequestScope = /*@__PURE__*/ S.String;
+export const ExecuteQueryV1RequestScope = S.String;
 
 /** Response format - "json" returns structured data (default), "csv" returns CSV string */
 export type ExecuteQueryV1RequestFormat = "json" | "csv";
-export const ExecuteQueryV1RequestFormat = /*@__PURE__*/ S.String;
+export const ExecuteQueryV1RequestFormat = S.String;
 
 export interface ExecuteQueryV1Request {
   /** The TRQL query to execute */
@@ -1044,7 +1044,7 @@ export const ExecuteQueryV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ExecuteQueryV1Request>;
 
 export type ExecuteQueryResponseCase0Format = "json";
-export const ExecuteQueryResponseCase0Format = /*@__PURE__*/ S.String;
+export const ExecuteQueryResponseCase0Format = S.String;
 
 /** Array of result rows */
 export type ExecuteQueryResponseCase0ResultsList = Array<unknown>;
@@ -1068,7 +1068,7 @@ export const ExecuteQueryResponseCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ExecuteQueryResponseCase0>;
 
 export type ExecuteQueryResponseCase1Format = "csv";
-export const ExecuteQueryResponseCase1Format = /*@__PURE__*/ S.String;
+export const ExecuteQueryResponseCase1Format = S.String;
 
 /** CSV format response */
 export interface ExecuteQueryResponseCase1 {
@@ -1089,7 +1089,7 @@ export type ExecuteQueryResponse =
   | ExecuteQueryResponseCase0
   | ExecuteQueryResponseCase1;
 export const ExecuteQueryResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExecuteQueryResponse>;
+  S.Unknown as any as S.Schema<ExecuteQueryResponse>;
 
 export type ExecuteQueryV1Response = ExecuteQueryResponse;
 export const ExecuteQueryV1Response = /*@__PURE__*/ S.suspend(() =>
@@ -1201,7 +1201,7 @@ export type GetBatchV1ResponseStatus =
   | "COMPLETED"
   | "PARTIAL_FAILED"
   | "ABORTED";
-export const GetBatchV1ResponseStatus = /*@__PURE__*/ S.String;
+export const GetBatchV1ResponseStatus = S.String;
 
 /** Array of run IDs in the batch. */
 export type GetBatchV1ResponseRunsList = Array<string>;
@@ -1292,10 +1292,10 @@ export const GetBulkActionV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBulkActionV1Request>;
 
 export type BulkActionObjectType = "CANCEL" | "REPLAY";
-export const BulkActionObjectType = /*@__PURE__*/ S.String;
+export const BulkActionObjectType = S.String;
 
 export type BulkActionObjectStatus = "PENDING" | "COMPLETED" | "ABORTED";
-export const BulkActionObjectStatus = /*@__PURE__*/ S.String;
+export const BulkActionObjectStatus = S.String;
 
 export interface BulkActionObjectCounts {
   /** The number of runs selected when the bulk action was created. */
@@ -1368,7 +1368,7 @@ export type GetDeploymentV1ResponseStatus =
   | "FAILED"
   | "CANCELED"
   | "TIMED_OUT";
-export const GetDeploymentV1ResponseStatus = /*@__PURE__*/ S.String;
+export const GetDeploymentV1ResponseStatus = S.String;
 
 export interface GetDeploymentV1ResponseWorkerTasksItem {
   id?: string;
@@ -1470,7 +1470,7 @@ export const ErrorObjectAffectedVersionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ErrorObjectAffectedVersionsList>;
 
 export type ErrorObjectStatus = "unresolved" | "resolved" | "ignored";
-export const ErrorObjectStatus = /*@__PURE__*/ S.String;
+export const ErrorObjectStatus = S.String;
 
 export interface ErrorObject {
   /** The unique ID of the error group, prefixed with `error_` */
@@ -1544,7 +1544,7 @@ export type GetLatestDeploymentV1ResponseStatus =
   | "FAILED"
   | "CANCELED"
   | "TIMED_OUT";
-export const GetLatestDeploymentV1ResponseStatus = /*@__PURE__*/ S.String;
+export const GetLatestDeploymentV1ResponseStatus = S.String;
 
 export interface GetLatestDeploymentV1Response {
   /** The deployment ID */
@@ -1577,7 +1577,7 @@ export const GetLatestDeploymentV1Response = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetLatestDeploymentV1Response>;
 
 export type GetProjectEnvvarV1RequestEnv = "dev" | "staging" | "prod";
-export const GetProjectEnvvarV1RequestEnv = /*@__PURE__*/ S.String;
+export const GetProjectEnvvarV1RequestEnv = S.String;
 
 export interface GetProjectEnvvarV1Request {
   /** The external ref of the project. You can find this in the project settings. Starts with `proj_`. */
@@ -1704,7 +1704,7 @@ export const GetQuerySchemaV1Response = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetQuerySchemaV1Response>;
 
 export type GetQueueV1RequestType = "id" | "task" | "custom";
-export const GetQueueV1RequestType = /*@__PURE__*/ S.String;
+export const GetQueueV1RequestType = S.String;
 
 export interface GetQueueV1Request {
   /** The queue ID (e.g., `queue_1234`), or the name of the queue when using the `type` query parameter. */
@@ -1725,7 +1725,7 @@ export const GetQueueV1Request = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of queue: - `task`: Created automatically for each task - `custom`: Created explicitly in your code using `queue()` */
 export type QueueObjectType = "task" | "custom";
-export const QueueObjectType = /*@__PURE__*/ S.String;
+export const QueueObjectType = S.String;
 
 /** Detailed concurrency information */
 export interface QueueObjectConcurrency {
@@ -1805,7 +1805,7 @@ export type GetRunEventsV1ResponseEventsItemLevel =
   | "INFO"
   | "WARN"
   | "ERROR";
-export const GetRunEventsV1ResponseEventsItemLevel = /*@__PURE__*/ S.String;
+export const GetRunEventsV1ResponseEventsItemLevel = S.String;
 
 /** The kind of span event. */
 export type GetRunEventsV1ResponseEventsItemKind =
@@ -1817,7 +1817,7 @@ export type GetRunEventsV1ResponseEventsItemKind =
   | "CONSUMER"
   | "UNRECOGNIZED"
   | "LOG";
-export const GetRunEventsV1ResponseEventsItemKind = /*@__PURE__*/ S.String;
+export const GetRunEventsV1ResponseEventsItemKind = S.String;
 
 export interface GetRunEventsV1ResponseEventsItemEventsItem {
   /** The event name (e.g. "exception", "cancellation", "attempt_failed"). */
@@ -1846,8 +1846,7 @@ export const GetRunEventsV1ResponseEventsItemEventsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetRunEventsV1ResponseEventsItemEventsList>;
 
 export type GetRunEventsV1ResponseEventsItemStyleAccessoryStyle = "codepath";
-export const GetRunEventsV1ResponseEventsItemStyleAccessoryStyle =
-  /*@__PURE__*/ S.String;
+export const GetRunEventsV1ResponseEventsItemStyleAccessoryStyle = S.String;
 
 /** Accessory display element. */
 export interface GetRunEventsV1ResponseEventsItemStyleAccessory {
@@ -2026,7 +2025,7 @@ export type SpanDetailedSummaryDataLevel =
   | "INFO"
   | "WARN"
   | "ERROR";
-export const SpanDetailedSummaryDataLevel = /*@__PURE__*/ S.String;
+export const SpanDetailedSummaryDataLevel = S.String;
 
 export type SpanDetailedSummaryDataEventsItem =
   GetRunEventsV1ResponseEventsItemEventsItem;
@@ -2158,7 +2157,7 @@ export type GetRunV1ResponseStatus =
   | "CRASHED"
   | "INTERRUPTED"
   | "SYSTEM_FAILURE";
-export const GetRunV1ResponseStatus = /*@__PURE__*/ S.String;
+export const GetRunV1ResponseStatus = S.String;
 
 /** Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`) */
 export type GetRunV1ResponseTagsList = Array<string>;
@@ -2172,7 +2171,7 @@ export type GetRunV1ResponseTriggerFunction =
   | "triggerAndWait"
   | "batchTrigger"
   | "batchTriggerAndWait";
-export const GetRunV1ResponseTriggerFunction = /*@__PURE__*/ S.String;
+export const GetRunV1ResponseTriggerFunction = S.String;
 
 /** The status of the run */
 export type CommonRunObjectStatus =
@@ -2188,7 +2187,7 @@ export type CommonRunObjectStatus =
   | "CRASHED"
   | "INTERRUPTED"
   | "SYSTEM_FAILURE";
-export const CommonRunObjectStatus = /*@__PURE__*/ S.String;
+export const CommonRunObjectStatus = S.String;
 
 /** Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`) */
 export type CommonRunObjectTagsList = Array<string>;
@@ -2202,7 +2201,7 @@ export type CommonRunObjectTriggerFunction =
   | "triggerAndWait"
   | "batchTrigger"
   | "batchTriggerAndWait";
-export const CommonRunObjectTriggerFunction = /*@__PURE__*/ S.String;
+export const CommonRunObjectTriggerFunction = S.String;
 
 export interface CommonRunObject {
   /** The unique ID of the run, prefixed with `run_` */
@@ -2298,7 +2297,7 @@ export const GetRunV1ResponseRelatedRuns = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetRunV1ResponseRelatedRuns>;
 
 export type GetRunV1ResponseScheduleGeneratorType = "CRON";
-export const GetRunV1ResponseScheduleGeneratorType = /*@__PURE__*/ S.String;
+export const GetRunV1ResponseScheduleGeneratorType = S.String;
 
 export interface GetRunV1ResponseScheduleGenerator {
   type?: GetRunV1ResponseScheduleGeneratorType;
@@ -2345,7 +2344,7 @@ export type GetRunV1ResponseAttemptsItemStatus =
   | "COMPLETED"
   | "FAILED"
   | "CANCELED";
-export const GetRunV1ResponseAttemptsItemStatus = /*@__PURE__*/ S.String;
+export const GetRunV1ResponseAttemptsItemStatus = S.String;
 
 export interface SerializedError {
   message: string;
@@ -2559,7 +2558,7 @@ export const GetWaitpointTokenV1Request = /*@__PURE__*/ S.suspend(() =>
 
 /** The current status of the waitpoint token. */
 export type WaitpointTokenObjectStatus = "WAITING" | "COMPLETED" | "TIMED_OUT";
-export const WaitpointTokenObjectStatus = /*@__PURE__*/ S.String;
+export const WaitpointTokenObjectStatus = S.String;
 
 /** Tags attached to the waitpoint. */
 export type WaitpointTokenObjectTagsList = Array<string>;
@@ -2719,8 +2718,7 @@ export type ListDashboardsV1ResponseDashboardsItemWidgetsItemType =
   | "bignumber"
   | "chart"
   | "table";
-export const ListDashboardsV1ResponseDashboardsItemWidgetsItemType =
-  /*@__PURE__*/ S.String;
+export const ListDashboardsV1ResponseDashboardsItemWidgetsItemType = S.String;
 
 export interface ListDashboardsV1ResponseDashboardsItemWidgetsItem {
   /** Widget identifier */
@@ -2794,7 +2792,7 @@ export type ListDeploymentsV1RequestStatus =
   | "FAILED"
   | "CANCELED"
   | "TIMED_OUT";
-export const ListDeploymentsV1RequestStatus = /*@__PURE__*/ S.String;
+export const ListDeploymentsV1RequestStatus = S.String;
 
 export interface ListDeploymentsV1Request {
   /** The deployment ID to start the search from, to get the next page. */
@@ -2832,7 +2830,7 @@ export type ListDeploymentsV1ResponseDataItemStatus =
   | "FAILED"
   | "CANCELED"
   | "TIMED_OUT";
-export const ListDeploymentsV1ResponseDataItemStatus = /*@__PURE__*/ S.String;
+export const ListDeploymentsV1ResponseDataItemStatus = S.String;
 
 export interface ListDeploymentsV1ResponseDataItem {
   /** The deployment ID */
@@ -2935,7 +2933,7 @@ export const ErrorsFilterVersionList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ErrorsFilterVersionList>;
 
 export type ErrorsFilterStatusItem = "unresolved" | "resolved" | "ignored";
-export const ErrorsFilterStatusItem = /*@__PURE__*/ S.String;
+export const ErrorsFilterStatusItem = S.String;
 
 /** The lifecycle status of the error group */
 export type ErrorsFilterStatusList = Array<
@@ -2989,7 +2987,7 @@ export const ListErrorsV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListErrorsV1Request>;
 
 export type ErrorListItemStatus = "unresolved" | "resolved" | "ignored";
-export const ErrorListItemStatus = /*@__PURE__*/ S.String;
+export const ErrorListItemStatus = S.String;
 
 export interface ErrorListItem {
   /** The unique ID of the error group, prefixed with `error_` */
@@ -3062,7 +3060,7 @@ export const ListErrorsResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListErrorsResult>;
 
 export type ListProjectEnvvarsV1RequestEnv = "dev" | "staging" | "prod";
-export const ListProjectEnvvarsV1RequestEnv = /*@__PURE__*/ S.String;
+export const ListProjectEnvvarsV1RequestEnv = S.String;
 
 export interface ListProjectEnvvarsV1Request {
   /** The external ref of the project. You can find this in the project settings. Starts with `proj_`. */
@@ -3158,7 +3156,7 @@ export type ListProjectRunsV1RequestFilterStatusItem =
   | "CRASHED"
   | "INTERRUPTED"
   | "SYSTEM_FAILURE";
-export const ListProjectRunsV1RequestFilterStatusItem = /*@__PURE__*/ S.String;
+export const ListProjectRunsV1RequestFilterStatusItem = S.String;
 
 export type ListProjectRunsV1RequestFilterStatusList = Array<
   ListProjectRunsV1RequestFilterStatusItem | (string & {})
@@ -3188,7 +3186,7 @@ export const ListProjectRunsV1RequestFilterTagList = /*@__PURE__*/ S.Array(
 
 /** The environment of the project */
 export type ListProjectRunsV1RequestFilterEnvItem = "dev" | "staging" | "prod";
-export const ListProjectRunsV1RequestFilterEnvItem = /*@__PURE__*/ S.String;
+export const ListProjectRunsV1RequestFilterEnvItem = S.String;
 
 export type ListProjectRunsV1RequestFilterEnvList = Array<
   ListProjectRunsV1RequestFilterEnvItem | (string & {})
@@ -3272,7 +3270,7 @@ export type ListRunItemStatus =
   | "CRASHED"
   | "INTERRUPTED"
   | "SYSTEM_FAILURE";
-export const ListRunItemStatus = /*@__PURE__*/ S.String;
+export const ListRunItemStatus = S.String;
 
 /** The environment of the run */
 export interface ListRunItemEnv {
@@ -3459,7 +3457,7 @@ export type CommonRunsFilterStatusItem =
   | "CRASHED"
   | "INTERRUPTED"
   | "SYSTEM_FAILURE";
-export const CommonRunsFilterStatusItem = /*@__PURE__*/ S.String;
+export const CommonRunsFilterStatusItem = S.String;
 
 export type CommonRunsFilterStatusList = Array<
   CommonRunsFilterStatusItem | (string & {})
@@ -3620,7 +3618,7 @@ export const SessionsFilterTaskIdentifierList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SessionsFilterTaskIdentifierList>;
 
 export type SessionsFilterStatusItem = "ACTIVE" | "CLOSED" | "EXPIRED";
-export const SessionsFilterStatusItem = /*@__PURE__*/ S.String;
+export const SessionsFilterStatusItem = S.String;
 
 /** The lifecycle status(es) to filter by. */
 export type SessionsFilterStatusList = Array<
@@ -3803,7 +3801,7 @@ export const ListWaitpointTokensResult = /*@__PURE__*/ S.suspend(() =>
 
 /** How to interpret the `queueParam` path parameter: - `id`: Treat as a queue ID (default) - `task`: Treat as a task ID to get the task's default queue - `custom`: Treat as a custom queue name */
 export type OverrideQueueConcurrencyV1RequestType = "id" | "task" | "custom";
-export const OverrideQueueConcurrencyV1RequestType = /*@__PURE__*/ S.String;
+export const OverrideQueueConcurrencyV1RequestType = S.String;
 
 export interface OverrideQueueConcurrencyV1Request {
   /** The queue ID (e.g., `queue_1234`), or the name of the queue when using the `type` body parameter. */
@@ -3831,11 +3829,11 @@ export const OverrideQueueConcurrencyV1Request = /*@__PURE__*/ S.suspend(() =>
 
 /** How to interpret the `queueParam` path parameter: - `id`: Treat as a queue ID (default) - `task`: Treat as a task ID to get the task's default queue - `custom`: Treat as a custom queue name */
 export type PauseQueueV1RequestType = "id" | "task" | "custom";
-export const PauseQueueV1RequestType = /*@__PURE__*/ S.String;
+export const PauseQueueV1RequestType = S.String;
 
 /** Whether to pause or resume the queue */
 export type PauseQueueV1RequestAction = "pause" | "resume";
-export const PauseQueueV1RequestAction = /*@__PURE__*/ S.String;
+export const PauseQueueV1RequestAction = S.String;
 
 export interface PauseQueueV1Request {
   /** The queue ID (e.g., `queue_1234`), or the name of the queue when using the `type` body parameter. */
@@ -3899,7 +3897,7 @@ export const PromoteDeploymentV1Response = /*@__PURE__*/ S.suspend(() =>
 
 /** How to interpret the `queueParam` path parameter: - `id`: Treat as a queue ID (default) - `task`: Treat as a task ID to get the task's default queue - `custom`: Treat as a custom queue name */
 export type ResetQueueConcurrencyV1RequestType = "id" | "task" | "custom";
-export const ResetQueueConcurrencyV1RequestType = /*@__PURE__*/ S.String;
+export const ResetQueueConcurrencyV1RequestType = S.String;
 
 export interface ResetQueueConcurrencyV1Request {
   /** The queue ID (e.g., `queue_1234`), or the name of the queue when using the `type` body parameter. */
@@ -4003,7 +4001,7 @@ export type RunRescheduleV1ResponseStatus =
   | "CRASHED"
   | "INTERRUPTED"
   | "SYSTEM_FAILURE";
-export const RunRescheduleV1ResponseStatus = /*@__PURE__*/ S.String;
+export const RunRescheduleV1ResponseStatus = S.String;
 
 /** Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`) */
 export type RunRescheduleV1ResponseTagsList = Array<string>;
@@ -4017,7 +4015,7 @@ export type RunRescheduleV1ResponseTriggerFunction =
   | "triggerAndWait"
   | "batchTrigger"
   | "batchTriggerAndWait";
-export const RunRescheduleV1ResponseTriggerFunction = /*@__PURE__*/ S.String;
+export const RunRescheduleV1ResponseTriggerFunction = S.String;
 
 /** The immediate children of the run. Will be omitted if the run has no children */
 export type RunRescheduleV1ResponseRelatedRunsChildrenList =
@@ -4046,8 +4044,7 @@ export const RunRescheduleV1ResponseRelatedRuns = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RunRescheduleV1ResponseRelatedRuns>;
 
 export type RunRescheduleV1ResponseScheduleGeneratorType = "CRON";
-export const RunRescheduleV1ResponseScheduleGeneratorType =
-  /*@__PURE__*/ S.String;
+export const RunRescheduleV1ResponseScheduleGeneratorType = S.String;
 
 export interface RunRescheduleV1ResponseScheduleGenerator {
   type?: RunRescheduleV1ResponseScheduleGeneratorType;
@@ -4095,7 +4092,7 @@ export type RunRescheduleV1ResponseAttemptsItemStatus =
   | "COMPLETED"
   | "FAILED"
   | "CANCELED";
-export const RunRescheduleV1ResponseAttemptsItemStatus = /*@__PURE__*/ S.String;
+export const RunRescheduleV1ResponseAttemptsItemStatus = S.String;
 
 export interface RunRescheduleV1ResponseAttemptsItem {
   /** The unique ID of the attempt, prefixed with `attempt_` */
@@ -4237,7 +4234,7 @@ export type TriggerTaskRequestBodyOptionsMachine =
   | "medium-2x"
   | "large-1x"
   | "large-2x";
-export const TriggerTaskRequestBodyOptionsMachine = /*@__PURE__*/ S.String;
+export const TriggerTaskRequestBodyOptionsMachine = S.String;
 
 export interface TriggerTaskRequestBodyOptions {
   queue?: QueueOptions;
@@ -4341,8 +4338,7 @@ export type BatchTriggerTaskRequestBodyItemOptionsMachine =
   | "medium-2x"
   | "large-1x"
   | "large-2x";
-export const BatchTriggerTaskRequestBodyItemOptionsMachine =
-  /*@__PURE__*/ S.String;
+export const BatchTriggerTaskRequestBodyItemOptionsMachine = S.String;
 
 export interface BatchTriggerTaskRequestBodyItemOptions {
   queue?: QueueOptions;
@@ -4420,7 +4416,7 @@ export type TriggerTaskV1RequestOptionsMachine =
   | "medium-2x"
   | "large-1x"
   | "large-2x";
-export const TriggerTaskV1RequestOptionsMachine = /*@__PURE__*/ S.String;
+export const TriggerTaskV1RequestOptionsMachine = S.String;
 
 export interface TriggerTaskV1RequestOptions {
   queue?: QueueOptions;
@@ -4506,7 +4502,7 @@ export const UnresolveErrorV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UnresolveErrorV1Request>;
 
 export type UpdateProjectEnvvarV1RequestEnv = "dev" | "staging" | "prod";
-export const UpdateProjectEnvvarV1RequestEnv = /*@__PURE__*/ S.String;
+export const UpdateProjectEnvvarV1RequestEnv = S.String;
 
 export interface UpdateProjectEnvvarV1Request {
   /** The external ref of the project. You can find this in the project settings. Starts with `proj_`. */
@@ -4629,7 +4625,7 @@ export const UpdateSessionV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSessionV1Request>;
 
 export type UploadProjectEnvvarsV1RequestEnv = "dev" | "staging" | "prod";
-export const UploadProjectEnvvarsV1RequestEnv = /*@__PURE__*/ S.String;
+export const UploadProjectEnvvarsV1RequestEnv = S.String;
 
 export type UploadProjectEnvvarsV1RequestVariablesList = Array<EnvVar>;
 export const UploadProjectEnvvarsV1RequestVariablesList = /*@__PURE__*/ S.Array(

@@ -50,14 +50,14 @@ export type GetImageResponseImageType =
   | "app"
   | "snapshot"
   | "backup";
-export const GetImageResponseImageType = /*@__PURE__*/ S.String;
+export const GetImageResponseImageType = S.String;
 
 /** Status of the Image. */
 export type GetImageResponseImageStatus =
   | "available"
   | "creating"
   | "unavailable";
-export const GetImageResponseImageStatus = /*@__PURE__*/ S.String;
+export const GetImageResponseImageStatus = S.String;
 
 /** Information about the Server the Image was created from. */
 export interface GetImageResponseImageCreatedFrom {
@@ -85,7 +85,7 @@ export type GetImageResponseImageOsFlavor =
   | "alma"
   | "opensuse"
   | "unknown";
-export const GetImageResponseImageOsFlavor = /*@__PURE__*/ S.String;
+export const GetImageResponseImageOsFlavor = S.String;
 
 /** Protection configuration for the Resource. */
 export interface GetImageResponseImageProtection {
@@ -111,7 +111,7 @@ export const GetImageResponseImageLabelsMap = /*@__PURE__*/ S.Record(
 
 /** CPU architecture compatible with the Image. */
 export type GetImageResponseImageArchitecture = "x86" | "arm";
-export const GetImageResponseImageArchitecture = /*@__PURE__*/ S.String;
+export const GetImageResponseImageArchitecture = S.String;
 
 export interface GetImageResponseImage {
   /** ID of the [Image](#tag/images). */
@@ -197,7 +197,7 @@ export type ListImagesRequestSortItem =
   | "created"
   | "created:asc"
   | "created:desc";
-export const ListImagesRequestSortItem = /*@__PURE__*/ S.String;
+export const ListImagesRequestSortItem = S.String;
 
 export type ListImagesRequestSortList = Array<
   ListImagesRequestSortItem | (string & {})
@@ -212,7 +212,7 @@ export type ListImagesRequestTypeItem =
   | "app"
   | "snapshot"
   | "backup";
-export const ListImagesRequestTypeItem = /*@__PURE__*/ S.String;
+export const ListImagesRequestTypeItem = S.String;
 
 export type ListImagesRequestTypeList = Array<
   ListImagesRequestTypeItem | (string & {})
@@ -226,7 +226,7 @@ export type ListImagesRequestStatusItem =
   | "available"
   | "creating"
   | "unavailable";
-export const ListImagesRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListImagesRequestStatusItem = S.String;
 
 export type ListImagesRequestStatusList = Array<
   ListImagesRequestStatusItem | (string & {})
@@ -242,7 +242,7 @@ export const ListImagesRequestBoundToList = /*@__PURE__*/ S.Array(
 
 /** CPU architecture of the Resource. */
 export type ListImagesRequestArchitecture = "x86" | "arm";
-export const ListImagesRequestArchitecture = /*@__PURE__*/ S.String;
+export const ListImagesRequestArchitecture = S.String;
 
 export interface ListImagesRequest {
   /** Sort resources by field and direction. May be used multiple times. For more information, see "[Sorting](#description/sorting)". */
@@ -289,14 +289,14 @@ export type ListImagesResponseImagesItemType =
   | "app"
   | "snapshot"
   | "backup";
-export const ListImagesResponseImagesItemType = /*@__PURE__*/ S.String;
+export const ListImagesResponseImagesItemType = S.String;
 
 /** Status of the Image. */
 export type ListImagesResponseImagesItemStatus =
   | "available"
   | "creating"
   | "unavailable";
-export const ListImagesResponseImagesItemStatus = /*@__PURE__*/ S.String;
+export const ListImagesResponseImagesItemStatus = S.String;
 
 /** Information about the Server the Image was created from. */
 export type ListImagesResponseImagesItemCreatedFrom =
@@ -314,7 +314,7 @@ export type ListImagesResponseImagesItemOsFlavor =
   | "alma"
   | "opensuse"
   | "unknown";
-export const ListImagesResponseImagesItemOsFlavor = /*@__PURE__*/ S.String;
+export const ListImagesResponseImagesItemOsFlavor = S.String;
 
 /** Protection configuration for the Resource. */
 export type ListImagesResponseImagesItemProtection =
@@ -333,7 +333,7 @@ export const ListImagesResponseImagesItemLabelsMap = /*@__PURE__*/ S.Record(
 
 /** CPU architecture compatible with the Image. */
 export type ListImagesResponseImagesItemArchitecture = "x86" | "arm";
-export const ListImagesResponseImagesItemArchitecture = /*@__PURE__*/ S.String;
+export const ListImagesResponseImagesItemArchitecture = S.String;
 
 export interface ListImagesResponseImagesItem {
   /** ID of the [Image](#tag/images). */
@@ -458,7 +458,7 @@ export const ListImagesResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Destination Image type to convert to. */
 export type UpdateImageRequestType = "snapshot";
-export const UpdateImageRequestType = /*@__PURE__*/ S.String;
+export const UpdateImageRequestType = S.String;
 
 /** User-defined labels (`key/value` pairs) for the Resource. Note that the set of [Labels](#description/labels) provided in the request will overwrite the existing one. For more information, see "[Labels](#description/labels)". */
 export type UpdateImageRequestLabelsMap = { [key: string]: string | undefined };
@@ -494,14 +494,14 @@ export type UpdateImageResponseImageType =
   | "app"
   | "snapshot"
   | "backup";
-export const UpdateImageResponseImageType = /*@__PURE__*/ S.String;
+export const UpdateImageResponseImageType = S.String;
 
 /** Status of the Image. */
 export type UpdateImageResponseImageStatus =
   | "available"
   | "creating"
   | "unavailable";
-export const UpdateImageResponseImageStatus = /*@__PURE__*/ S.String;
+export const UpdateImageResponseImageStatus = S.String;
 
 /** Information about the Server the Image was created from. */
 export type UpdateImageResponseImageCreatedFrom =
@@ -519,7 +519,7 @@ export type UpdateImageResponseImageOsFlavor =
   | "alma"
   | "opensuse"
   | "unknown";
-export const UpdateImageResponseImageOsFlavor = /*@__PURE__*/ S.String;
+export const UpdateImageResponseImageOsFlavor = S.String;
 
 /** Protection configuration for the Resource. */
 export type UpdateImageResponseImageProtection =
@@ -538,7 +538,7 @@ export const UpdateImageResponseImageLabelsMap = /*@__PURE__*/ S.Record(
 
 /** CPU architecture compatible with the Image. */
 export type UpdateImageResponseImageArchitecture = "x86" | "arm";
-export const UpdateImageResponseImageArchitecture = /*@__PURE__*/ S.String;
+export const UpdateImageResponseImageArchitecture = S.String;
 
 export interface UpdateImageResponseImage {
   /** ID of the [Image](#tag/images). */

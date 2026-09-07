@@ -43,7 +43,7 @@ export const CheckWorkspaceCollectionNameAvailabilityRequest =
 
 /** Reason why the workspace collection name cannot be used. */
 export type CheckNameResponseReason = "Unavailable" | "Invalid";
-export const CheckNameResponseReason = /*@__PURE__*/ S.String;
+export const CheckNameResponseReason = S.String;
 
 export interface CheckNameResponse {
   /** Specifies a Boolean value that indicates whether the specified Power BI Workspace Collection name is available to use. */
@@ -73,11 +73,11 @@ export const CreateWorkspaceCollectionRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** SKU name */
 export type AzureSkuName = "S1";
-export const AzureSkuName = /*@__PURE__*/ S.String;
+export const AzureSkuName = S.String;
 
 /** SKU tier */
 export type AzureSkuTier = "Standard";
-export const AzureSkuTier = /*@__PURE__*/ S.String;
+export const AzureSkuTier = S.String;
 
 export interface AzureSku {
   /** SKU name */
@@ -477,8 +477,7 @@ export const MigrateWorkspaceCollectionResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Key name */
 export type RegenerateWorkspaceCollectionKeyRequestKeyName = "key1" | "key2";
-export const RegenerateWorkspaceCollectionKeyRequestKeyName =
-  /*@__PURE__*/ S.String;
+export const RegenerateWorkspaceCollectionKeyRequestKeyName = S.String;
 
 export interface RegenerateWorkspaceCollectionKeyRequest {
   /** Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */

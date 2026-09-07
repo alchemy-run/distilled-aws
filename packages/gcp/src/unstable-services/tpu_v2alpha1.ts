@@ -136,13 +136,13 @@ export type UpcomingMaintenanceTypeEnum =
   | "UNKNOWN_TYPE"
   | "SCHEDULED"
   | "UNSCHEDULED";
-export const UpcomingMaintenanceTypeEnum = /*@__PURE__*/ S.String;
+export const UpcomingMaintenanceTypeEnum = S.String;
 
 export type UpcomingMaintenanceMaintenanceStatusEnum =
   | "UNKNOWN"
   | "PENDING"
   | "ONGOING";
-export const UpcomingMaintenanceMaintenanceStatusEnum = /*@__PURE__*/ S.String;
+export const UpcomingMaintenanceMaintenanceStatusEnum = S.String;
 
 /** Upcoming Maintenance notification information. */
 export interface UpcomingMaintenance {
@@ -177,7 +177,7 @@ export type SchedulingConfigProvisioningModelEnum =
   | "STANDARD"
   | "SPOT"
   | "RESERVATION_BOUND";
-export const SchedulingConfigProvisioningModelEnum = /*@__PURE__*/ S.String;
+export const SchedulingConfigProvisioningModelEnum = S.String;
 
 /** Sets the scheduling options for this node. */
 export interface SchedulingConfig {
@@ -213,7 +213,7 @@ export type NodeHealthEnum =
   | "TIMEOUT"
   | "UNHEALTHY_TENSORFLOW"
   | "UNHEALTHY_MAINTENANCE";
-export const NodeHealthEnum = /*@__PURE__*/ S.String;
+export const NodeHealthEnum = S.String;
 
 export type SymptomSymptomTypeEnum =
   | "SYMPTOM_TYPE_UNSPECIFIED"
@@ -223,7 +223,7 @@ export type SymptomSymptomTypeEnum =
   | "MESH_BUILD_FAIL"
   | "HBM_OUT_OF_MEMORY"
   | "PROJECT_ABUSE";
-export const SymptomSymptomTypeEnum = /*@__PURE__*/ S.String;
+export const SymptomSymptomTypeEnum = S.String;
 
 /** A Symptom instance. */
 export interface Symptom {
@@ -267,7 +267,7 @@ export type NodeStateEnum =
   | "HIDDEN"
   | "UNHIDING"
   | "UNKNOWN";
-export const NodeStateEnum = /*@__PURE__*/ S.String;
+export const NodeStateEnum = S.String;
 
 /** Network related configurations. */
 export interface NetworkConfig {
@@ -323,7 +323,7 @@ export type AcceleratorConfigTypeEnum =
   | "V5LITE_POD"
   | "V5P"
   | "V6E";
-export const AcceleratorConfigTypeEnum = /*@__PURE__*/ S.String;
+export const AcceleratorConfigTypeEnum = S.String;
 
 /** A TPU accelerator configuration. */
 export interface AcceleratorConfig {
@@ -359,7 +359,7 @@ export type AttachedDiskModeEnum =
   | "DISK_MODE_UNSPECIFIED"
   | "READ_WRITE"
   | "READ_ONLY";
-export const AttachedDiskModeEnum = /*@__PURE__*/ S.String;
+export const AttachedDiskModeEnum = S.String;
 
 /** A node-attached disk resource. */
 export interface AttachedDisk {
@@ -388,7 +388,7 @@ export type NodeApiVersionEnum =
   | "V1_ALPHA1"
   | "V1"
   | "V2_ALPHA1";
-export const NodeApiVersionEnum = /*@__PURE__*/ S.String;
+export const NodeApiVersionEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -607,7 +607,7 @@ export type QueuedResourceProvisioningModelEnum =
   | "SPOT"
   | "RESERVATION_BOUND"
   | "FLEX_START";
-export const QueuedResourceProvisioningModelEnum = /*@__PURE__*/ S.String;
+export const QueuedResourceProvisioningModelEnum = S.String;
 
 /** Defines the maximum lifetime of the requested resource. */
 export interface RunDuration {
@@ -647,7 +647,7 @@ export type MultiNodeParamsWorkloadTypeEnum =
   | "WORKLOAD_TYPE_UNSPECIFIED"
   | "THROUGHPUT_OPTIMIZED"
   | "AVAILABILITY_OPTIMIZED";
-export const MultiNodeParamsWorkloadTypeEnum = /*@__PURE__*/ S.String;
+export const MultiNodeParamsWorkloadTypeEnum = S.String;
 
 /** Parameters to specify for multi-node QueuedResource requests. This field must be populated in case of multi-node requests instead of node_id. It's an error to specify both node_id and multi_node_params. */
 export interface MultiNodeParams {
@@ -779,13 +779,13 @@ export type QueuedResourceStateStateEnum =
   | "SUSPENDING"
   | "SUSPENDED"
   | "WAITING_FOR_RESOURCES";
-export const QueuedResourceStateStateEnum = /*@__PURE__*/ S.String;
+export const QueuedResourceStateStateEnum = S.String;
 
 export type QueuedResourceStateStateInitiatorEnum =
   | "STATE_INITIATOR_UNSPECIFIED"
   | "USER"
   | "SERVICE";
-export const QueuedResourceStateStateInitiatorEnum = /*@__PURE__*/ S.String;
+export const QueuedResourceStateStateInitiatorEnum = S.String;
 
 /** Further data for the provisioning state. */
 export type ProvisioningData = BestEffort;
@@ -1659,13 +1659,13 @@ export type ReservationStateEnum =
   | "DEPROVISIONING"
   | "EXPIRED"
   | "FAILED";
-export const ReservationStateEnum = /*@__PURE__*/ S.String;
+export const ReservationStateEnum = S.String;
 
 export type StandardCapacityUnitsEnum =
   | "CAPACITY_UNITS_UNSPECIFIED"
   | "CORES"
   | "CHIPS";
-export const StandardCapacityUnitsEnum = /*@__PURE__*/ S.String;
+export const StandardCapacityUnitsEnum = S.String;
 
 /** Usage details of a reservation. */
 export interface Usage {

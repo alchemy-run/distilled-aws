@@ -140,7 +140,7 @@ export type DeliveryStreamType =
   | "MSKAsSource"
   | "DatabaseAsSource"
   | (string & {});
-export const DeliveryStreamType = /*@__PURE__*/ S.String;
+export const DeliveryStreamType = S.String;
 
 export type ThroughputHintInMBs = number;
 export interface DirectPutSourceConfiguration {
@@ -164,7 +164,7 @@ export const KinesisStreamSourceConfiguration = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<KinesisStreamSourceConfiguration>;
 export type AWSKMSKeyARNForSSE = string;
 export type KeyType = "AWS_OWNED_CMK" | "CUSTOMER_MANAGED_CMK" | (string & {});
-export const KeyType = /*@__PURE__*/ S.String;
+export const KeyType = S.String;
 
 export interface DeliveryStreamEncryptionConfigurationInput {
   KeyARN?: string;
@@ -198,10 +198,10 @@ export type CompressionFormat =
   | "Snappy"
   | "HADOOP_SNAPPY"
   | (string & {});
-export const CompressionFormat = /*@__PURE__*/ S.String;
+export const CompressionFormat = S.String;
 
 export type NoEncryptionConfig = "NoEncryption" | (string & {});
-export const NoEncryptionConfig = /*@__PURE__*/ S.String;
+export const NoEncryptionConfig = S.String;
 
 export type AWSKMSKeyARN = string;
 export interface KMSEncryptionConfig {
@@ -272,7 +272,7 @@ export type ProcessorType =
   | "MetadataExtraction"
   | "AppendDelimiterToRecord"
   | (string & {});
-export const ProcessorType = /*@__PURE__*/ S.String;
+export const ProcessorType = S.String;
 
 export type ProcessorParameterName =
   | "LambdaArn"
@@ -287,7 +287,7 @@ export type ProcessorParameterName =
   | "CompressionFormat"
   | "DataMessageExtraction"
   | (string & {});
-export const ProcessorParameterName = /*@__PURE__*/ S.String;
+export const ProcessorParameterName = S.String;
 
 export type ProcessorParameterValue = string;
 export interface ProcessorParameter {
@@ -326,7 +326,7 @@ export const ProcessingConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProcessingConfiguration",
 }) as any as S.Schema<ProcessingConfiguration>;
 export type S3BackupMode = "Disabled" | "Enabled" | (string & {});
-export const S3BackupMode = /*@__PURE__*/ S.String;
+export const S3BackupMode = S.String;
 
 export type NonEmptyStringWithoutWhitespace = string;
 export interface SchemaConfiguration {
@@ -400,11 +400,11 @@ export type ParquetCompression =
   | "GZIP"
   | "SNAPPY"
   | (string & {});
-export const ParquetCompression = /*@__PURE__*/ S.String;
+export const ParquetCompression = S.String;
 
 export type NonNegativeIntegerObject = number;
 export type ParquetWriterVersion = "V1" | "V2" | (string & {});
-export const ParquetWriterVersion = /*@__PURE__*/ S.String;
+export const ParquetWriterVersion = S.String;
 
 export interface ParquetSerDe {
   BlockSizeBytes?: number;
@@ -428,14 +428,14 @@ export type OrcStripeSizeBytes = number;
 export type OrcRowIndexStride = number;
 export type Proportion = number;
 export type OrcCompression = "NONE" | "ZLIB" | "SNAPPY" | (string & {});
-export const OrcCompression = /*@__PURE__*/ S.String;
+export const OrcCompression = S.String;
 
 export type ListOfNonEmptyStringsWithoutWhitespace = string[];
 export const ListOfNonEmptyStringsWithoutWhitespace = /*@__PURE__*/ S.Array(
   S.String,
 );
 export type OrcFormatVersion = "V0_11" | "V0_12" | (string & {});
-export const OrcFormatVersion = /*@__PURE__*/ S.String;
+export const OrcFormatVersion = S.String;
 
 export interface OrcSerDe {
   StripeSizeBytes?: number;
@@ -588,7 +588,7 @@ export const RedshiftRetryOptions = /*@__PURE__*/ S.suspend(() =>
   identifier: "RedshiftRetryOptions",
 }) as any as S.Schema<RedshiftRetryOptions>;
 export type RedshiftS3BackupMode = "Disabled" | "Enabled" | (string & {});
-export const RedshiftS3BackupMode = /*@__PURE__*/ S.String;
+export const RedshiftS3BackupMode = S.String;
 
 export type SecretARN = string;
 export interface SecretsManagerConfiguration {
@@ -648,7 +648,7 @@ export type ElasticsearchIndexRotationPeriod =
   | "OneWeek"
   | "OneMonth"
   | (string & {});
-export const ElasticsearchIndexRotationPeriod = /*@__PURE__*/ S.String;
+export const ElasticsearchIndexRotationPeriod = S.String;
 
 export type ElasticsearchBufferingIntervalInSeconds = number;
 export type ElasticsearchBufferingSizeInMBs = number;
@@ -677,7 +677,7 @@ export type ElasticsearchS3BackupMode =
   | "FailedDocumentsOnly"
   | "AllDocuments"
   | (string & {});
-export const ElasticsearchS3BackupMode = /*@__PURE__*/ S.String;
+export const ElasticsearchS3BackupMode = S.String;
 
 export type SubnetIdList = string[];
 export const SubnetIdList = /*@__PURE__*/ S.Array(S.String);
@@ -701,7 +701,7 @@ export type DefaultDocumentIdFormat =
   | "FIREHOSE_DEFAULT"
   | "NO_DOCUMENT_ID"
   | (string & {});
-export const DefaultDocumentIdFormat = /*@__PURE__*/ S.String;
+export const DefaultDocumentIdFormat = S.String;
 
 export interface DocumentIdOptions {
   DefaultDocumentIdFormat: DefaultDocumentIdFormat;
@@ -759,8 +759,7 @@ export type AmazonopensearchserviceIndexRotationPeriod =
   | "OneWeek"
   | "OneMonth"
   | (string & {});
-export const AmazonopensearchserviceIndexRotationPeriod =
-  /*@__PURE__*/ S.String;
+export const AmazonopensearchserviceIndexRotationPeriod = S.String;
 
 export type AmazonopensearchserviceBufferingIntervalInSeconds = number;
 export type AmazonopensearchserviceBufferingSizeInMBs = number;
@@ -790,7 +789,7 @@ export type AmazonopensearchserviceS3BackupMode =
   | "FailedDocumentsOnly"
   | "AllDocuments"
   | (string & {});
-export const AmazonopensearchserviceS3BackupMode = /*@__PURE__*/ S.String;
+export const AmazonopensearchserviceS3BackupMode = S.String;
 
 export interface AmazonopensearchserviceDestinationConfiguration {
   RoleARN: string;
@@ -833,7 +832,7 @@ export const AmazonopensearchserviceDestinationConfiguration =
   }) as any as S.Schema<AmazonopensearchserviceDestinationConfiguration>;
 export type HECEndpoint = string;
 export type HECEndpointType = "Raw" | "Event" | (string & {});
-export const HECEndpointType = /*@__PURE__*/ S.String;
+export const HECEndpointType = S.String;
 
 export type HECToken = string;
 export type HECAcknowledgmentTimeoutInSeconds = number;
@@ -850,7 +849,7 @@ export type SplunkS3BackupMode =
   | "FailedEventsOnly"
   | "AllEvents"
   | (string & {});
-export const SplunkS3BackupMode = /*@__PURE__*/ S.String;
+export const SplunkS3BackupMode = S.String;
 
 export type SplunkBufferingIntervalInSeconds = number;
 export type SplunkBufferingSizeInMBs = number;
@@ -928,7 +927,7 @@ export const HttpEndpointBufferingHints = /*@__PURE__*/ S.suspend(() =>
   identifier: "HttpEndpointBufferingHints",
 }) as any as S.Schema<HttpEndpointBufferingHints>;
 export type ContentEncoding = "NONE" | "GZIP" | (string & {});
-export const ContentEncoding = /*@__PURE__*/ S.String;
+export const ContentEncoding = S.String;
 
 export type HttpEndpointAttributeName = string | redacted.Redacted<string>;
 export type HttpEndpointAttributeValue = string | redacted.Redacted<string>;
@@ -970,7 +969,7 @@ export type HttpEndpointS3BackupMode =
   | "FailedDataOnly"
   | "AllData"
   | (string & {});
-export const HttpEndpointS3BackupMode = /*@__PURE__*/ S.String;
+export const HttpEndpointS3BackupMode = S.String;
 
 export interface HttpEndpointDestinationConfiguration {
   EndpointConfiguration: HttpEndpointConfiguration;
@@ -1042,7 +1041,7 @@ export type AmazonOpenSearchServerlessS3BackupMode =
   | "FailedDocumentsOnly"
   | "AllDocuments"
   | (string & {});
-export const AmazonOpenSearchServerlessS3BackupMode = /*@__PURE__*/ S.String;
+export const AmazonOpenSearchServerlessS3BackupMode = S.String;
 
 export interface AmazonOpenSearchServerlessDestinationConfiguration {
   RoleARN: string;
@@ -1076,7 +1075,7 @@ export const AmazonOpenSearchServerlessDestinationConfiguration =
 export type MSKClusterARN = string;
 export type TopicName = string;
 export type Connectivity = "PUBLIC" | "PRIVATE" | (string & {});
-export const Connectivity = /*@__PURE__*/ S.String;
+export const Connectivity = S.String;
 
 export interface AuthenticationConfiguration {
   RoleARN: string;
@@ -1131,7 +1130,7 @@ export type SnowflakeDataLoadingOption =
   | "VARIANT_CONTENT_MAPPING"
   | "VARIANT_CONTENT_AND_METADATA_MAPPING"
   | (string & {});
-export const SnowflakeDataLoadingOption = /*@__PURE__*/ S.String;
+export const SnowflakeDataLoadingOption = S.String;
 
 export type SnowflakeMetaDataColumnName = string | redacted.Redacted<string>;
 export type SnowflakeContentColumnName = string | redacted.Redacted<string>;
@@ -1157,7 +1156,7 @@ export type SnowflakeS3BackupMode =
   | "FailedDataOnly"
   | "AllData"
   | (string & {});
-export const SnowflakeS3BackupMode = /*@__PURE__*/ S.String;
+export const SnowflakeS3BackupMode = S.String;
 
 export type SnowflakeBufferingSizeInMBs = number;
 export type SnowflakeBufferingIntervalInSeconds = number;
@@ -1275,7 +1274,7 @@ export const TableCreationConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "TableCreationConfiguration",
 }) as any as S.Schema<TableCreationConfiguration>;
 export type IcebergS3BackupMode = "FailedDataOnly" | "AllData" | (string & {});
-export const IcebergS3BackupMode = /*@__PURE__*/ S.String;
+export const IcebergS3BackupMode = S.String;
 
 export type GlueDataCatalogARN = string;
 export type WarehouseLocation = string;
@@ -1326,12 +1325,12 @@ export const IcebergDestinationConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "IcebergDestinationConfiguration",
 }) as any as S.Schema<IcebergDestinationConfiguration>;
 export type DatabaseType = "MySQL" | "PostgreSQL" | (string & {});
-export const DatabaseType = /*@__PURE__*/ S.String;
+export const DatabaseType = S.String;
 
 export type DatabaseEndpoint = string;
 export type DatabasePort = number;
 export type SSLMode = "Disabled" | "Enabled" | (string & {});
-export const SSLMode = /*@__PURE__*/ S.String;
+export const SSLMode = S.String;
 
 export type DatabaseName = string;
 export type DatabaseIncludeOrExcludeList = string[];
@@ -1575,7 +1574,7 @@ export type DeliveryStreamStatus =
   | "DELETING_FAILED"
   | "ACTIVE"
   | (string & {});
-export const DeliveryStreamStatus = /*@__PURE__*/ S.String;
+export const DeliveryStreamStatus = S.String;
 
 export type DeliveryStreamFailureType =
   | "VPC_ENDPOINT_SERVICE_NAME_NOT_FOUND"
@@ -1596,7 +1595,7 @@ export type DeliveryStreamFailureType =
   | "SECURITY_GROUP_ACCESS_DENIED"
   | "UNKNOWN_ERROR"
   | (string & {});
-export const DeliveryStreamFailureType = /*@__PURE__*/ S.String;
+export const DeliveryStreamFailureType = S.String;
 
 export interface FailureDescription {
   Type: DeliveryStreamFailureType;
@@ -1615,7 +1614,7 @@ export type DeliveryStreamEncryptionStatus =
   | "DISABLING"
   | "DISABLING_FAILED"
   | (string & {});
-export const DeliveryStreamEncryptionStatus = /*@__PURE__*/ S.String;
+export const DeliveryStreamEncryptionStatus = S.String;
 
 export interface DeliveryStreamEncryptionConfiguration {
   KeyARN?: string;
@@ -1683,14 +1682,14 @@ export const MSKSourceDescription = /*@__PURE__*/ S.suspend(() =>
   identifier: "MSKSourceDescription",
 }) as any as S.Schema<MSKSourceDescription>;
 export type SnapshotRequestedBy = "USER" | "FIREHOSE" | (string & {});
-export const SnapshotRequestedBy = /*@__PURE__*/ S.String;
+export const SnapshotRequestedBy = S.String;
 
 export type SnapshotStatus =
   | "IN_PROGRESS"
   | "COMPLETE"
   | "SUSPENDED"
   | (string & {});
-export const SnapshotStatus = /*@__PURE__*/ S.String;
+export const SnapshotStatus = S.String;
 
 export interface DatabaseSnapshotInfo {
   Id: string;

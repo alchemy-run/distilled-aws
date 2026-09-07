@@ -83,7 +83,7 @@ export type Kind =
   | "networkTopologyChange"
   | "dsrUpdate"
   | "dsrClear";
-export const Kind = /*@__PURE__*/ S.String;
+export const Kind = S.String;
 
 export type CancelTasksRequestTypesList = Array<Kind | (string & {})>;
 export const CancelTasksRequestTypesList = /*@__PURE__*/ S.Array(
@@ -97,7 +97,7 @@ export type Status =
   | "succeeded"
   | "failed"
   | "canceled";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 export type CancelTasksRequestStatusesList = Array<Status | (string & {})>;
 export const CancelTasksRequestStatusesList = /*@__PURE__*/ S.Array(
@@ -207,10 +207,10 @@ export type ChatCompletionRequestDeveloperMessageContent =
   | string
   | ChatCompletionRequestDeveloperMessageContentCase1List;
 export const ChatCompletionRequestDeveloperMessageContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ChatCompletionRequestDeveloperMessageContent>;
+  S.Unknown as any as S.Schema<ChatCompletionRequestDeveloperMessageContent>;
 
 export type ChatCompletionRequestMessageCase0Role = "developer";
-export const ChatCompletionRequestMessageCase0Role = /*@__PURE__*/ S.String;
+export const ChatCompletionRequestMessageCase0Role = S.String;
 
 export interface ChatCompletionRequestMessageCase0 {
   /** The contents of the developer message. */
@@ -230,8 +230,7 @@ export const ChatCompletionRequestMessageCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ChatCompletionRequestMessageCase0>;
 
 export type ChatCompletionRequestSystemMessageContentPartType = "text";
-export const ChatCompletionRequestSystemMessageContentPartType =
-  /*@__PURE__*/ S.String;
+export const ChatCompletionRequestSystemMessageContentPartType = S.String;
 
 export interface ChatCompletionRequestSystemMessageContentPart {
   text: string;
@@ -260,10 +259,10 @@ export type ChatCompletionRequestSystemMessageContent =
   | string
   | ChatCompletionRequestSystemMessageContentCase1List;
 export const ChatCompletionRequestSystemMessageContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ChatCompletionRequestSystemMessageContent>;
+  S.Unknown as any as S.Schema<ChatCompletionRequestSystemMessageContent>;
 
 export type ChatCompletionRequestMessageCase1Role = "system";
-export const ChatCompletionRequestMessageCase1Role = /*@__PURE__*/ S.String;
+export const ChatCompletionRequestMessageCase1Role = S.String;
 
 export interface ChatCompletionRequestMessageCase1 {
   /** The contents of the system message. */
@@ -283,8 +282,7 @@ export const ChatCompletionRequestMessageCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ChatCompletionRequestMessageCase1>;
 
 export type ChatCompletionRequestUserMessageContentPartCase0Type = "text";
-export const ChatCompletionRequestUserMessageContentPartCase0Type =
-  /*@__PURE__*/ S.String;
+export const ChatCompletionRequestUserMessageContentPartCase0Type = S.String;
 
 export interface ChatCompletionRequestUserMessageContentPartCase0 {
   text: string;
@@ -302,7 +300,7 @@ export const ChatCompletionRequestUserMessageContentPartCase0 =
 
 /** Specifies the detail level of the image. */
 export type ImageDetail = "auto" | "low" | "high";
-export const ImageDetail = /*@__PURE__*/ S.String;
+export const ImageDetail = S.String;
 
 /** An image URL with optional detail level. */
 export interface ImageUrl {
@@ -318,8 +316,7 @@ export const ImageUrl = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ImageUrl" }) as any as S.Schema<ImageUrl>;
 
 export type ChatCompletionRequestUserMessageContentPartCase1Type = "image_url";
-export const ChatCompletionRequestUserMessageContentPartCase1Type =
-  /*@__PURE__*/ S.String;
+export const ChatCompletionRequestUserMessageContentPartCase1Type = S.String;
 
 export interface ChatCompletionRequestUserMessageContentPartCase1 {
   image_url: ImageUrl;
@@ -337,7 +334,7 @@ export const ChatCompletionRequestUserMessageContentPartCase1 =
 
 /** The format of the encoded audio data. */
 export type InputAudioFormat = "wav" | "mp3";
-export const InputAudioFormat = /*@__PURE__*/ S.String;
+export const InputAudioFormat = S.String;
 
 /** Input audio data for an audio content part. */
 export interface InputAudio {
@@ -355,8 +352,7 @@ export const InputAudio = /*@__PURE__*/ S.suspend(() =>
 
 export type ChatCompletionRequestUserMessageContentPartCase2Type =
   "input_audio";
-export const ChatCompletionRequestUserMessageContentPartCase2Type =
-  /*@__PURE__*/ S.String;
+export const ChatCompletionRequestUserMessageContentPartCase2Type = S.String;
 
 export interface ChatCompletionRequestUserMessageContentPartCase2 {
   input_audio: InputAudio;
@@ -378,7 +374,7 @@ export type ChatCompletionRequestUserMessageContentPart =
   | ChatCompletionRequestUserMessageContentPartCase1
   | ChatCompletionRequestUserMessageContentPartCase2;
 export const ChatCompletionRequestUserMessageContentPart =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ChatCompletionRequestUserMessageContentPart>;
+  S.Unknown as any as S.Schema<ChatCompletionRequestUserMessageContentPart>;
 
 /** An array of content parts with a defined type. Supported options differ based on the [model](https://platform.openai.com/docs/models) being used to generate the response. Can contain text, image, or audio inputs. */
 export type ChatCompletionRequestUserMessageContentCase1List =
@@ -393,10 +389,10 @@ export type ChatCompletionRequestUserMessageContent =
   | string
   | ChatCompletionRequestUserMessageContentCase1List;
 export const ChatCompletionRequestUserMessageContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ChatCompletionRequestUserMessageContent>;
+  S.Unknown as any as S.Schema<ChatCompletionRequestUserMessageContent>;
 
 export type ChatCompletionRequestMessageCase2Role = "user";
-export const ChatCompletionRequestMessageCase2Role = /*@__PURE__*/ S.String;
+export const ChatCompletionRequestMessageCase2Role = S.String;
 
 export interface ChatCompletionRequestMessageCase2 {
   /** The contents of the user message. */
@@ -417,7 +413,7 @@ export const ChatCompletionRequestMessageCase2 = /*@__PURE__*/ S.suspend(() =>
 
 export type ChatCompletionRequestAssistantMessageContentPartCase0Type = "text";
 export const ChatCompletionRequestAssistantMessageContentPartCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ChatCompletionRequestAssistantMessageContentPartCase0 {
   text: string;
@@ -436,7 +432,7 @@ export const ChatCompletionRequestAssistantMessageContentPartCase0 =
 export type ChatCompletionRequestAssistantMessageContentPartCase1Type =
   "refusal";
 export const ChatCompletionRequestAssistantMessageContentPartCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ChatCompletionRequestAssistantMessageContentPartCase1 {
   /** The refusal message generated by the model. */
@@ -458,7 +454,7 @@ export type ChatCompletionRequestAssistantMessageContentPart =
   | ChatCompletionRequestAssistantMessageContentPartCase0
   | ChatCompletionRequestAssistantMessageContentPartCase1;
 export const ChatCompletionRequestAssistantMessageContentPart =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ChatCompletionRequestAssistantMessageContentPart>;
+  S.Unknown as any as S.Schema<ChatCompletionRequestAssistantMessageContentPart>;
 
 /** An array of content parts with a defined type. Can be one or more of type `text`, or exactly one of type `refusal`. */
 export type ChatCompletionRequestAssistantMessageContentCase1List =
@@ -473,7 +469,7 @@ export type ChatCompletionRequestAssistantMessageContent =
   | string
   | ChatCompletionRequestAssistantMessageContentCase1List;
 export const ChatCompletionRequestAssistantMessageContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ChatCompletionRequestAssistantMessageContent>;
+  S.Unknown as any as S.Schema<ChatCompletionRequestAssistantMessageContent>;
 
 /** Data about a previous audio response from the model, used in multi-turn conversations. */
 export interface ChatCompletionRequestAssistantMessageAudio {
@@ -491,7 +487,7 @@ export const ChatCompletionRequestAssistantMessageAudio =
 
 /** The type of a tool. Currently, only `function` is supported. */
 export type ChatCompletionToolType = "function";
-export const ChatCompletionToolType = /*@__PURE__*/ S.String;
+export const ChatCompletionToolType = S.String;
 
 /** The name and arguments of a function that should be called, as generated by the model. */
 export interface FunctionCall {
@@ -533,7 +529,7 @@ export const ChatCompletionRequestMessageCase3ToolCallsList =
   ) as any as S.Schema<ChatCompletionRequestMessageCase3ToolCallsList>;
 
 export type ChatCompletionRequestMessageCase3Role = "assistant";
-export const ChatCompletionRequestMessageCase3Role = /*@__PURE__*/ S.String;
+export const ChatCompletionRequestMessageCase3Role = S.String;
 
 export interface ChatCompletionRequestMessageCase3 {
   content?: ChatCompletionRequestAssistantMessageContent | null;
@@ -563,8 +559,7 @@ export const ChatCompletionRequestMessageCase3 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ChatCompletionRequestMessageCase3>;
 
 export type ChatCompletionRequestToolMessageContentPartType = "text";
-export const ChatCompletionRequestToolMessageContentPartType =
-  /*@__PURE__*/ S.String;
+export const ChatCompletionRequestToolMessageContentPartType = S.String;
 
 export interface ChatCompletionRequestToolMessageContentPart {
   text: string;
@@ -593,10 +588,10 @@ export type ChatCompletionRequestToolMessageContent =
   | string
   | ChatCompletionRequestToolMessageContentCase1List;
 export const ChatCompletionRequestToolMessageContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ChatCompletionRequestToolMessageContent>;
+  S.Unknown as any as S.Schema<ChatCompletionRequestToolMessageContent>;
 
 export type ChatCompletionRequestMessageCase4Role = "tool";
-export const ChatCompletionRequestMessageCase4Role = /*@__PURE__*/ S.String;
+export const ChatCompletionRequestMessageCase4Role = S.String;
 
 export interface ChatCompletionRequestMessageCase4 {
   /** The contents of the tool message. */
@@ -615,7 +610,7 @@ export const ChatCompletionRequestMessageCase4 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ChatCompletionRequestMessageCase4>;
 
 export type ChatCompletionRequestMessageCase5Role = "function";
-export const ChatCompletionRequestMessageCase5Role = /*@__PURE__*/ S.String;
+export const ChatCompletionRequestMessageCase5Role = S.String;
 
 export interface ChatCompletionRequestMessageCase5 {
   /** The return value from the function call, to return to the model. */
@@ -643,7 +638,7 @@ export type ChatCompletionRequestMessage =
   | ChatCompletionRequestMessageCase4
   | ChatCompletionRequestMessageCase5;
 export const ChatCompletionRequestMessage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ChatCompletionRequestMessage>;
+  S.Unknown as any as S.Schema<ChatCompletionRequestMessage>;
 
 /** A list of messages comprising the conversation so far. Depending on the [model](https://platform.openai.com/docs/models) you use, different message types (modalities) are supported, like [text](https://platform.openai.com/docs/guides/text-generation), [images](https://platform.openai.com/docs/guides/vision), and [audio](https://platform.openai.com/docs/guides/audio). */
 export type ChatRequestMessagesList = Array<ChatCompletionRequestMessage>;
@@ -653,7 +648,7 @@ export const ChatRequestMessagesList = /*@__PURE__*/ S.Array(
 
 /** Constrains effort on reasoning for reasoning models. Supported values are `low`, `medium`, and `high`. */
 export type ReasoningEffort = "low" | "medium" | "high";
-export const ReasoningEffort = /*@__PURE__*/ S.String;
+export const ReasoningEffort = S.String;
 
 /** Modify the likelihood of specified tokens appearing in the completion. Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. */
 export type ChatRequestLogitBiasMap = { [key: string]: unknown | undefined };
@@ -664,7 +659,7 @@ export const ChatRequestLogitBiasMap = /*@__PURE__*/ S.Record(
 
 /** Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default: `["text"]` The `gpt-4o-audio-preview` model can also be used to [generate audio](https://platform.openai.com/docs/guides/audio). To request that this model generate both text and audio responses, you can use: `["text", "audio"]` */
 export type ChatCompletionModalities = "text" | "audio";
-export const ChatCompletionModalities = /*@__PURE__*/ S.String;
+export const ChatCompletionModalities = S.String;
 
 /** Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default: `["text"]`. */
 export type ChatRequestModalitiesList = Array<
@@ -686,10 +681,10 @@ export type PredictionContentContent =
   | string
   | PredictionContentContentCase1List;
 export const PredictionContentContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PredictionContentContent>;
+  S.Unknown as any as S.Schema<PredictionContentContent>;
 
 export type PredictionContentType = "content";
-export const PredictionContentType = /*@__PURE__*/ S.String;
+export const PredictionContentType = S.String;
 
 /** The type of the predicted content you want to provide. This type is currently always `content`. */
 export interface PredictionContent {
@@ -716,7 +711,7 @@ export type ChatCompletionAudioVoice =
   | "sage"
   | "shimmer"
   | "verse";
-export const ChatCompletionAudioVoice = /*@__PURE__*/ S.String;
+export const ChatCompletionAudioVoice = S.String;
 
 /** Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`. */
 export type ChatCompletionAudioFormat =
@@ -725,7 +720,7 @@ export type ChatCompletionAudioFormat =
   | "flac"
   | "opus"
   | "pcm16";
-export const ChatCompletionAudioFormat = /*@__PURE__*/ S.String;
+export const ChatCompletionAudioFormat = S.String;
 
 /** Parameters for audio output. Required when audio output is requested with `modalities: ["audio"]`. */
 export interface ChatCompletionAudio {
@@ -744,7 +739,7 @@ export const ChatCompletionAudio = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ChatCompletionAudio>;
 
 export type ResponseFormatCase0Type = "text";
-export const ResponseFormatCase0Type = /*@__PURE__*/ S.String;
+export const ResponseFormatCase0Type = S.String;
 
 /** The type of response format being defined: `text` */
 export interface ResponseFormatCase0 {
@@ -759,7 +754,7 @@ export const ResponseFormatCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ResponseFormatCase0>;
 
 export type ResponseFormatCase1Type = "json_object";
-export const ResponseFormatCase1Type = /*@__PURE__*/ S.String;
+export const ResponseFormatCase1Type = S.String;
 
 /** The type of response format being defined: `json_object` */
 export interface ResponseFormatCase1 {
@@ -796,7 +791,7 @@ export const ResponseFormatJsonSchema = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ResponseFormatJsonSchema>;
 
 export type ResponseFormatCase2Type = "json_schema";
-export const ResponseFormatCase2Type = /*@__PURE__*/ S.String;
+export const ResponseFormatCase2Type = S.String;
 
 /** The type of response format being defined: `json_schema` */
 export interface ResponseFormatCase2 {
@@ -817,12 +812,11 @@ export type ResponseFormat =
   | ResponseFormatCase0
   | ResponseFormatCase1
   | ResponseFormatCase2;
-export const ResponseFormat =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ResponseFormat>;
+export const ResponseFormat = S.Unknown as any as S.Schema<ResponseFormat>;
 
 /** Specifies the latency tier to use for processing the request. */
 export type ServiceTier = "auto" | "default";
-export const ServiceTier = /*@__PURE__*/ S.String;
+export const ServiceTier = S.String;
 
 export type StopCase1List = Array<string>;
 export const StopCase1List = /*@__PURE__*/ S.Array(
@@ -831,7 +825,7 @@ export const StopCase1List = /*@__PURE__*/ S.Array(
 
 /** Up to 4 sequences where the API will stop generating further tokens. */
 export type Stop = string | StopCase1List;
-export const Stop = /*@__PURE__*/ S.Unknown as any as S.Schema<Stop>;
+export const Stop = S.Unknown as any as S.Schema<Stop>;
 
 /** Options for streaming response. Only set this when you set `stream: true`. */
 export interface ChatCompletionStreamOptions {
@@ -887,13 +881,13 @@ export const ChatRequestToolsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ChatRequestToolsList>;
 
 export type ChatCompletionToolChoiceOptionCase0 = "none";
-export const ChatCompletionToolChoiceOptionCase0 = /*@__PURE__*/ S.String;
+export const ChatCompletionToolChoiceOptionCase0 = S.String;
 
 export type ChatCompletionToolChoiceOptionCase1 = "auto";
-export const ChatCompletionToolChoiceOptionCase1 = /*@__PURE__*/ S.String;
+export const ChatCompletionToolChoiceOptionCase1 = S.String;
 
 export type ChatCompletionToolChoiceOptionCase2 = "required";
-export const ChatCompletionToolChoiceOptionCase2 = /*@__PURE__*/ S.String;
+export const ChatCompletionToolChoiceOptionCase2 = S.String;
 
 /** A wrapper for a function name reference. */
 export interface FunctionName {
@@ -939,15 +933,15 @@ export type ChatCompletionToolChoiceOption =
   | ChatCompletionToolChoiceOptionCase2
   | ChatCompletionToolChoiceOptionCase3;
 export const ChatCompletionToolChoiceOption =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ChatCompletionToolChoiceOption>;
+  S.Unknown as any as S.Schema<ChatCompletionToolChoiceOption>;
 
 /** The model does not call a function, and responds to the end-user. */
 export type ChatCompletionFunctionCallCase0 = "none";
-export const ChatCompletionFunctionCallCase0 = /*@__PURE__*/ S.String;
+export const ChatCompletionFunctionCallCase0 = S.String;
 
 /** The model can pick between an end-user or calling a function. */
 export type ChatCompletionFunctionCallCase1 = "auto";
-export const ChatCompletionFunctionCallCase1 = /*@__PURE__*/ S.String;
+export const ChatCompletionFunctionCallCase1 = S.String;
 
 /** Forces the model to call the specified function. */
 export interface ChatCompletionFunctionCallCase2Function {
@@ -981,7 +975,7 @@ export type ChatCompletionFunctionCall =
   | ChatCompletionFunctionCallCase1
   | ChatCompletionFunctionCallCase2;
 export const ChatCompletionFunctionCall =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ChatCompletionFunctionCall>;
+  S.Unknown as any as S.Schema<ChatCompletionFunctionCall>;
 
 /** Deprecated: A function the model may generate JSON inputs for. Use `ChatCompletionTool` instead. */
 export interface ChatCompletionFunctions {
@@ -1114,7 +1108,7 @@ export const ChatCompletionResponseMessageToolCallsList = /*@__PURE__*/ S.Array(
 
 /** The role of the author of a message. */
 export type Role = "system" | "user" | "assistant" | "tool" | "function";
-export const Role = /*@__PURE__*/ S.String;
+export const Role = S.String;
 
 /** Audio data in a chat completion response message. */
 export interface ChatCompletionResponseMessageAudio {
@@ -1173,7 +1167,7 @@ export type FinishReason =
   | "tool_calls"
   | "content_filter"
   | "function_call";
-export const FinishReason = /*@__PURE__*/ S.String;
+export const FinishReason = S.String;
 
 /** A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be `null` if there is no bytes representation for the token. */
 export type ChatCompletionTokenLogprobBytesList = Array<number>;
@@ -1283,7 +1277,7 @@ export const CreateChatCompletionResponseChoicesList = /*@__PURE__*/ S.Array(
 
 /** The service tier used for processing the request, as returned in the response. */
 export type ServiceTierResponse = "scale" | "default" | "auto";
-export const ServiceTierResponse = /*@__PURE__*/ S.String;
+export const ServiceTierResponse = S.String;
 
 /** Breakdown of tokens used in a completion. */
 export interface PromptTokensDetails {
@@ -1532,7 +1526,7 @@ export type Action =
   | "dynamicSearchRules.update"
   | "dynamicSearchRules.delete"
   | "dynamicSearchRules.*";
-export const Action = /*@__PURE__*/ S.String;
+export const Action = S.String;
 
 /** A list of actions permitted for the key. `["*"]` for all actions. The `*` character can be used as a wildcard when located at the last position. e.g. `documents.*` to authorize access on all documents endpoints. Valid actions include: `search`, `documents.add`, `documents.get`, `documents.delete`, `indexes.create`, `indexes.get`, `indexes.update`, `indexes.delete`, `indexes.swap`, `tasks.get`, `tasks.cancel`, `tasks.delete`, `settings.get`, `settings.update`, `stats.get`, `dumps.create`, `snapshots.create`, `version`, `keys.get`, `keys.create`, `keys.update`, `keys.delete`. Use `*` to grant all actions. */
 export type CreateApiKeyRequestActionsList = Array<Action | (string & {})>;
@@ -1766,7 +1760,7 @@ export const FieldRankingRuleConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FieldRankingRuleConfig>;
 
 export type FacetValuesSort = "alpha" | "count";
-export const FacetValuesSort = /*@__PURE__*/ S.String;
+export const FacetValuesSort = S.String;
 
 export interface FieldFilterableConfig {
   enabled: boolean;
@@ -2885,7 +2879,7 @@ export const FilterableAttributesPatterns = /*@__PURE__*/ S.suspend(() =>
 
 export type FilterableAttributesRule = string | FilterableAttributesPatterns;
 export const FilterableAttributesRule =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FilterableAttributesRule>;
+  S.Unknown as any as S.Schema<FilterableAttributesRule>;
 
 /** Attributes that can be used as [filters](https://www.meilisearch.com/docs/learn/filtering_and_sorting/filter_search_results) and [facets](https://www.meilisearch.com/docs/learn/filtering_and_sorting/search_with_facet_filters). Strings or objects with `attributePatterns` and `features`. */
 export type SettingsUncheckedFilterableAttributesList =
@@ -3060,10 +3054,10 @@ export type EmbedderSource =
   | "userProvided"
   | "rest"
   | "composite";
-export const EmbedderSource = /*@__PURE__*/ S.String;
+export const EmbedderSource = S.String;
 
 export type OverridePooling = "useModel" | "forceCls" | "forceMean";
-export const OverridePooling = /*@__PURE__*/ S.String;
+export const OverridePooling = S.String;
 
 /** Fragments (with [Liquid](https://shopify.github.io/liquid/)) sent to the embedder at indexing time. For `rest` with multimodal; key is fragment name, value the payload. See also [Image search with multimodal embeddings](https://www.meilisearch.com/docs/learn/ai_powered_search/image_search_with_multimodal_embeddings) - 🏗️ When a fragment is deleted by passing `null` to its name, the corresponding embeddings are removed from documents. - 🏗️ When a fragment is modified, the corresponding embeddings are regenerated if their rendered version changes. */
 export type EmbeddingSettingsIndexingFragmentsMap = {
@@ -3404,7 +3398,7 @@ export type Locale =
   | "zho"
   | "zul"
   | "cmn";
-export const Locale = /*@__PURE__*/ S.String;
+export const Locale = S.String;
 
 /** The list of locales (languages) to apply to matching attributes. When these attributes are indexed, Meilisearch will use language-specific tokenization rules. Examples: `["en", "fr"]` or `["jpn", "zho"]`. */
 export type LocalizedAttributesRuleViewLocalesList = Array<
@@ -3438,7 +3432,7 @@ export const SettingsUncheckedLocalizedAttributesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SettingsUncheckedLocalizedAttributesList>;
 
 export type PrefixSearchSettings = "indexingTime" | "disabled";
-export const PrefixSearchSettings = /*@__PURE__*/ S.String;
+export const PrefixSearchSettings = S.String;
 
 /** Hybrid search: balance between keyword and semantic search. */
 export interface HybridQuery {
@@ -3462,7 +3456,7 @@ export const ChatSearchParamsSortList = /*@__PURE__*/ S.Array(
 
 /** Strategy used to match query terms within documents */
 export type MatchingStrategy = "last" | "all" | "frequency";
-export const MatchingStrategy = /*@__PURE__*/ S.String;
+export const MatchingStrategy = S.String;
 
 /** Attributes on which to run the search. If unset, all searchable attributes are used. */
 export type ChatSearchParamsAttributesToSearchOnList = Array<string>;
@@ -4454,7 +4448,7 @@ export const GetHealthRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetHealthRequest>;
 
 export type HealthStatus = "available" | "mustRestart";
-export const HealthStatus = /*@__PURE__*/ S.String;
+export const HealthStatus = S.String;
 
 export interface HealthResponse {
   /** The status of the instance. */
@@ -4499,7 +4493,7 @@ export const IndexView = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "IndexView" }) as any as S.Schema<IndexView>;
 
 export type SizeFormat = "human" | "raw";
-export const SizeFormat = /*@__PURE__*/ S.String;
+export const SizeFormat = S.String;
 
 export interface GetIndexStatsRequest {
   /** Unique identifier of the index. */
@@ -4522,7 +4516,7 @@ export const GetIndexStatsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetIndexStatsRequest>;
 
 export type Size = number | string;
-export const Size = /*@__PURE__*/ S.Unknown as any as S.Schema<Size>;
+export const Size = S.Unknown as any as S.Schema<Size>;
 
 /** Size of all the internal databases for the index. Database names can change from version to version. */
 export type IndexStatsInternalDatabaseSizesMap = {
@@ -4614,7 +4608,7 @@ export const GetlocalizedAttributesResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Format for log output */
 export type LogMode = "human" | "json" | "profile";
-export const LogMode = /*@__PURE__*/ S.String;
+export const LogMode = S.String;
 
 export interface GetLogsRequest {
   /** Log targets to filter. Format: code_part=log_level (e.g., milli=trace,actix_web=off) */
@@ -4833,7 +4827,7 @@ export const GetproximityPrecisionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetproximityPrecisionRequest>;
 
 export type ProximityPrecisionView = "byWord" | "byAttribute";
-export const ProximityPrecisionView = /*@__PURE__*/ S.String;
+export const ProximityPrecisionView = S.String;
 
 export type GetproximityPrecisionResponse = ProximityPrecisionView;
 export const GetproximityPrecisionResponse = /*@__PURE__*/ S.suspend(() =>
@@ -4862,35 +4856,35 @@ export const GetrankingRulesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Sorted by decreasing number of matched query terms. */
 export type RankingRuleViewCase0 = "words";
-export const RankingRuleViewCase0 = /*@__PURE__*/ S.String;
+export const RankingRuleViewCase0 = S.String;
 
 /** Sorted by increasing number of typos. */
 export type RankingRuleViewCase1 = "typo";
-export const RankingRuleViewCase1 = /*@__PURE__*/ S.String;
+export const RankingRuleViewCase1 = S.String;
 
 /** Sorted by increasing distance between matched query terms. */
 export type RankingRuleViewCase2 = "proximity";
-export const RankingRuleViewCase2 = /*@__PURE__*/ S.String;
+export const RankingRuleViewCase2 = S.String;
 
 /** Documents with query words contained in more important attributes and at a closer-to-the-front position in it are considered better. */
 export type RankingRuleViewCase3 = "attribute";
-export const RankingRuleViewCase3 = /*@__PURE__*/ S.String;
+export const RankingRuleViewCase3 = S.String;
 
 /** Documents with query words contained in more important attributes are considered better. Position of the query words in an attribute is not considered. */
 export type RankingRuleViewCase4 = "attributeRank";
-export const RankingRuleViewCase4 = /*@__PURE__*/ S.String;
+export const RankingRuleViewCase4 = S.String;
 
 /** Documents with query words that are closer to the front of an attribute are considered better. Attribute rank is not considered. */
 export type RankingRuleViewCase5 = "wordPosition";
-export const RankingRuleViewCase5 = /*@__PURE__*/ S.String;
+export const RankingRuleViewCase5 = S.String;
 
 /** Dynamically sort at query time the documents. None, one or multiple Asc/Desc sortable attributes can be used in place of this criterion at query time. */
 export type RankingRuleViewCase6 = "sort";
-export const RankingRuleViewCase6 = /*@__PURE__*/ S.String;
+export const RankingRuleViewCase6 = S.String;
 
 /** Sorted by the similarity of the matched words with the query words. */
 export type RankingRuleViewCase7 = "exactness";
-export const RankingRuleViewCase7 = /*@__PURE__*/ S.String;
+export const RankingRuleViewCase7 = S.String;
 
 /** Sorted by the increasing value of the field specified. */
 export interface RankingRuleViewCase8 {
@@ -4929,8 +4923,7 @@ export type RankingRuleView =
   | RankingRuleViewCase7
   | RankingRuleViewCase8
   | RankingRuleViewCase9;
-export const RankingRuleView =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RankingRuleView>;
+export const RankingRuleView = S.Unknown as any as S.Schema<RankingRuleView>;
 
 export type GetrankingRulesResponseBodyList = Array<RankingRuleView>;
 export const GetrankingRulesResponseBodyList = /*@__PURE__*/ S.Array(
@@ -5799,10 +5792,10 @@ export type Code =
   | "invalid_dynamic_search_rule_filter_query"
   | "invalid_dynamic_search_rule_filter_active"
   | "dynamic_search_rule_not_found";
-export const Code = /*@__PURE__*/ S.String;
+export const Code = S.String;
 
 export type ErrorType = "internal" | "invalid_request" | "auth" | "system";
-export const ErrorType = /*@__PURE__*/ S.String;
+export const ErrorType = S.String;
 
 export interface ResponseError {
   /** The error message. */
@@ -5922,8 +5915,7 @@ export type DbTaskNetwork =
   | DbTaskNetworkCase0
   | DbTaskNetworkCase1
   | DbTaskNetworkCase2;
-export const DbTaskNetwork =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DbTaskNetwork>;
+export const DbTaskNetwork = S.Unknown as any as S.Schema<DbTaskNetwork>;
 
 /** Represents the current state and details of an asynchronous task. Tasks are created when you perform operations like adding documents, updating settings, or creating indexes. Use this view to monitor task progress and check for errors. */
 export interface TaskView {
@@ -7226,7 +7218,7 @@ export type ChatCompletionSource =
   | "mistral"
   | "azureOpenAi"
   | "vLlm";
-export const ChatCompletionSource = /*@__PURE__*/ S.String;
+export const ChatCompletionSource = S.String;
 
 /** Custom prompts for chat completions */
 export interface PatchSettingsRequestPrompts {
@@ -7418,7 +7410,7 @@ export const PostDocumentsByQueryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PostDocumentsByQueryRequest>;
 
 export type MessageCase0Type = "exportNoIndexForRemote";
-export const MessageCase0Type = /*@__PURE__*/ S.String;
+export const MessageCase0Type = S.String;
 
 /** The specified remote will not longer export any document to this instance. Send this message to remotes that are blocked waiting on the specified remote to export its documents. */
 export interface MessageCase0 {
@@ -7434,7 +7426,7 @@ export const MessageCase0 = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "MessageCase0" }) as any as S.Schema<MessageCase0>;
 
 export type MessageCase1Type = "importFinishedForRemote";
-export const MessageCase1Type = /*@__PURE__*/ S.String;
+export const MessageCase1Type = S.String;
 
 /** The specified remote is finished importing its documents. Send this message to remotes that are blocked waiting on the specified remote to finish importing its documents. */
 export interface MessageCase1 {
@@ -7453,7 +7445,7 @@ export const MessageCase1 = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "MessageCase1" }) as any as S.Schema<MessageCase1>;
 
 export type MessageCase2Type = "statusChangeForRemote";
-export const MessageCase2Type = /*@__PURE__*/ S.String;
+export const MessageCase2Type = S.String;
 
 /** The specified remote will see it's status change. Send this message to change the accessiblity of a remote. */
 export interface MessageCase2 {
@@ -7472,7 +7464,7 @@ export const MessageCase2 = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "MessageCase2" }) as any as S.Schema<MessageCase2>;
 
 export type Message = MessageCase0 | MessageCase1 | MessageCase2;
-export const Message = /*@__PURE__*/ S.Unknown as any as S.Schema<Message>;
+export const Message = S.Unknown as any as S.Schema<Message>;
 
 export interface PostNetworkChangeRequest {
   /** The origin of this message Get it in the details of the network topology change task that is currently processing. */
@@ -7503,7 +7495,7 @@ export type RenderQueryTemplateKind =
   | "searchFragment"
   | "inlineDocumentTemplate"
   | "inlineFragment";
-export const RenderQueryTemplateKind = /*@__PURE__*/ S.String;
+export const RenderQueryTemplateKind = S.String;
 
 export interface RenderQueryTemplate {
   /** Kind of template or fragment to fetch. Determines which other parameters are allowed and mandatory. */
@@ -7535,7 +7527,7 @@ export type RenderQueryInputKind =
   | "indexDocument"
   | "inlineDocument"
   | "inlineSearch";
-export const RenderQueryInputKind = /*@__PURE__*/ S.String;
+export const RenderQueryInputKind = S.String;
 
 export interface RenderQueryInput {
   kind: RenderQueryInputKind | (string & {});

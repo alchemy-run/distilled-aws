@@ -162,7 +162,7 @@ export const GetCatalogRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Represent the billing plans. */
 export type ReservationBillingPlan = "Upfront" | "Monthly";
-export const ReservationBillingPlan = /*@__PURE__*/ S.String;
+export const ReservationBillingPlan = S.String;
 
 export type CatalogBillingPlansValueList = Array<ReservationBillingPlan>;
 export const CatalogBillingPlansValueList = /*@__PURE__*/ S.Array(
@@ -180,7 +180,7 @@ export const CatalogBillingPlansMap = /*@__PURE__*/ S.Record(
 
 /** Represent the term of reservation. */
 export type ReservationTerm = "P1Y" | "P3Y" | "P5Y";
-export const ReservationTerm = /*@__PURE__*/ S.String;
+export const ReservationTerm = S.String;
 
 /** Available reservation terms for this resource */
 export type CatalogTermsList = Array<ReservationTerm>;
@@ -370,7 +370,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -378,7 +378,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -434,11 +434,11 @@ export type ReservedResourceType =
   | "AzureFiles"
   | "SqlEdge"
   | "VirtualMachineSoftware";
-export const ReservedResourceType = /*@__PURE__*/ S.String;
+export const ReservedResourceType = S.String;
 
 /** Turning this on will apply the reservation discount to other VMs in the same VM size group. Only specify for VirtualMachines reserved resource type. */
 export type InstanceFlexibility = "On" | "Off";
-export const InstanceFlexibility = /*@__PURE__*/ S.String;
+export const InstanceFlexibility = S.String;
 
 /** The list of applied scopes */
 export type ReservationsPropertiesAppliedScopesList = Array<string>;
@@ -448,7 +448,7 @@ export const ReservationsPropertiesAppliedScopesList = /*@__PURE__*/ S.Array(
 
 /** Type of the Applied Scope. */
 export type AppliedScopeType = "Single" | "Shared" | "ManagementGroup";
-export const AppliedScopeType = /*@__PURE__*/ S.String;
+export const AppliedScopeType = S.String;
 
 /** Represent the current state of the Reservation. */
 export type ProvisioningState =
@@ -465,7 +465,7 @@ export type ProvisioningState =
   | "Failed"
   | "Split"
   | "Merged";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 export type ReservationStatusCode =
   | "None"
@@ -478,7 +478,7 @@ export type ReservationStatusCode =
   | "Merged"
   | "Expired"
   | "Succeeded";
-export const ReservationStatusCode = /*@__PURE__*/ S.String;
+export const ReservationStatusCode = S.String;
 
 export interface ExtendedStatusInfo {
   statusCode?: ReservationStatusCode;
@@ -869,7 +869,7 @@ export const ReservationsProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource Provider type to be reserved. */
 export type GetReservationResponseKind = "Microsoft.Compute";
-export const GetReservationResponseKind = /*@__PURE__*/ S.String;
+export const GetReservationResponseKind = S.String;
 
 export interface GetReservationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -930,7 +930,7 @@ export const GetReservationOrderRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Describes whether the payment is completed, failed, cancelled or scheduled in the future. */
 export type PaymentStatus = "Succeeded" | "Failed" | "Scheduled" | "Cancelled";
-export const PaymentStatus = /*@__PURE__*/ S.String;
+export const PaymentStatus = S.String;
 
 /** Information about payment related to a reservation order. */
 export interface PaymentDetail {
@@ -993,7 +993,7 @@ export const ReservationOrderBillingPlanInformation = /*@__PURE__*/ S.suspend(
 
 /** Resource Provider type to be reserved. */
 export type ReservationResponseKind = "Microsoft.Compute";
-export const ReservationResponseKind = /*@__PURE__*/ S.String;
+export const ReservationResponseKind = S.String;
 
 /** The definition of the reservation. */
 export interface ReservationResponse {
@@ -1470,15 +1470,15 @@ export const CalculateExchangeRequestPropertiesReservationsToPurchaseList =
 
 /** Represent savings plan term in ISO 8601 format. */
 export type SavingsPlanTerm = "P1Y" | "P3Y";
-export const SavingsPlanTerm = /*@__PURE__*/ S.String;
+export const SavingsPlanTerm = S.String;
 
 /** Represents the billing plan in ISO 8601 format. Required only for monthly billing plans. */
 export type BillingPlan = "P1M";
-export const BillingPlan = /*@__PURE__*/ S.String;
+export const BillingPlan = S.String;
 
 /** Commitment grain. */
 export type CommitmentGrain = "Hourly";
-export const CommitmentGrain = /*@__PURE__*/ S.String;
+export const CommitmentGrain = S.String;
 
 /** Commitment towards the benefit. */
 export interface Commitment {
@@ -1626,7 +1626,7 @@ export type CalculateExchangeOperationResultStatus =
   | "Failed"
   | "Cancelled"
   | "Pending";
-export const CalculateExchangeOperationResultStatus = /*@__PURE__*/ S.String;
+export const CalculateExchangeOperationResultStatus = S.String;
 
 /** Reservation purchase details */
 export interface ReservationToPurchaseCalculateExchange {
@@ -1943,7 +1943,7 @@ export type ErrorResponseCode =
   | "AppliedScopesSameAsExisting"
   | "SelfServiceRefundNotSupported"
   | "RefundLimitExceeded";
-export const ErrorResponseCode = /*@__PURE__*/ S.String;
+export const ErrorResponseCode = S.String;
 
 /** error details */
 export interface RefundPolicyError {
@@ -2110,11 +2110,11 @@ export type ExchangeOperationResultStatus =
   | "Cancelled"
   | "PendingRefunds"
   | "PendingPurchases";
-export const ExchangeOperationResultStatus = /*@__PURE__*/ S.String;
+export const ExchangeOperationResultStatus = S.String;
 
 /** Status of the individual operation. */
 export type OperationStatus = "Succeeded" | "Failed" | "Cancelled" | "Pending";
-export const OperationStatus = /*@__PURE__*/ S.String;
+export const OperationStatus = S.String;
 
 /** Reservation purchase details */
 export interface ReservationToPurchaseExchange {
@@ -2831,7 +2831,7 @@ export const UpdateReservationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource Provider type to be reserved. */
 export type UpdateReservationResponseKind = "Microsoft.Compute";
-export const UpdateReservationResponseKind = /*@__PURE__*/ S.String;
+export const UpdateReservationResponseKind = S.String;
 
 export interface UpdateReservationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */

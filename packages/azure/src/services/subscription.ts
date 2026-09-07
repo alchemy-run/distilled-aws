@@ -91,11 +91,11 @@ export const AcceptSubscriptionOwnershipStatusRequest = /*@__PURE__*/ S.suspend(
 
 /** The accept ownership state of the resource. */
 export type AcceptOwnershipState = "Pending" | "Completed" | "Expired";
-export const AcceptOwnershipState = /*@__PURE__*/ S.String;
+export const AcceptOwnershipState = S.String;
 
 /** The provisioning state of the resource. */
 export type ProvisioningState = "Pending" | "Accepted" | "Succeeded";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Tags for the subscription */
 export type AcceptOwnershipStatusResponseTagsMap = {
@@ -169,7 +169,7 @@ export const CanceledSubscriptionId = /*@__PURE__*/ S.suspend(() =>
 
 /** The workload type of the subscription. It can be either Production or DevTest. */
 export type Workload = "Production" | "DevTest";
-export const Workload = /*@__PURE__*/ S.String;
+export const Workload = S.String;
 
 /** Tags for the subscription */
 export type PutAliasRequestAdditionalPropertiesTagsMap = {
@@ -256,8 +256,7 @@ export type SubscriptionAliasResponsePropertiesProvisioningState =
   | "Accepted"
   | "Succeeded"
   | "Failed";
-export const SubscriptionAliasResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const SubscriptionAliasResponsePropertiesProvisioningState = S.String;
 
 /** Tags for the subscription */
 export type SubscriptionAliasResponsePropertiesTagsMap = {
@@ -320,8 +319,7 @@ export type SubscriptionAliasResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SubscriptionAliasResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const SubscriptionAliasResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SubscriptionAliasResponseSystemDataLastModifiedByType =
@@ -329,8 +327,7 @@ export type SubscriptionAliasResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SubscriptionAliasResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const SubscriptionAliasResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SubscriptionAliasResponseSystemData {
@@ -532,8 +529,7 @@ export type BillingAccountPoliciesResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const BillingAccountPoliciesResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const BillingAccountPoliciesResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type BillingAccountPoliciesResponseSystemDataLastModifiedByType =
@@ -542,7 +538,7 @@ export type BillingAccountPoliciesResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const BillingAccountPoliciesResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface BillingAccountPoliciesResponseSystemData {
@@ -681,8 +677,7 @@ export type GetTenantPolicyResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetTenantPolicyResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetTenantPolicyResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetTenantPolicyResponseSystemDataLastModifiedByType =
@@ -690,8 +685,7 @@ export type GetTenantPolicyResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetTenantPolicyResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetTenantPolicyResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetTenantPolicyResponseSystemData {

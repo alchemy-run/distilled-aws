@@ -249,7 +249,7 @@ export type FilterType =
   | "ANY_OF"
   | "NONE_OF"
   | (string & {});
-export const FilterType = /*@__PURE__*/ S.String;
+export const FilterType = S.String;
 
 export type Field = string;
 export type Value = string;

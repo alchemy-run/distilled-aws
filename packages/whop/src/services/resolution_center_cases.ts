@@ -122,7 +122,7 @@ export type ResolutionCenterCaseAvailableActionsItem =
   | "reply"
   | "appeal"
   | "withdraw";
-export const ResolutionCenterCaseAvailableActionsItem = /*@__PURE__*/ S.String;
+export const ResolutionCenterCaseAvailableActionsItem = S.String;
 
 export type ResolutionCenterCaseAvailableActionsList =
   Array<ResolutionCenterCaseAvailableActionsItem>;
@@ -159,7 +159,7 @@ export type ResolutionCenterCaseOutcome =
   | "customer_won"
   | "merchant_won"
   | "withdrawn";
-export const ResolutionCenterCaseOutcome = /*@__PURE__*/ S.String;
+export const ResolutionCenterCaseOutcome = S.String;
 
 export interface ResolutionPayment {
   /** Card brand, when the customer paid by card. */
@@ -192,11 +192,11 @@ export type ResolutionCenterCaseReason =
   | "not_as_described"
   | "product_unacceptable"
   | "subscription_canceled";
-export const ResolutionCenterCaseReason = /*@__PURE__*/ S.String;
+export const ResolutionCenterCaseReason = S.String;
 
 /** Whether money moved and off whose balance: `none`, `merchant`, or `platform` (Whop refunded the customer and the merchant kept the funds). Independent of `outcome` — a case the merchant won can still carry a platform refund. `null` while the case is open, and on older closed cases that predate this being recorded. */
 export type ResolutionCenterCaseRefund = "none" | "merchant" | "platform";
-export const ResolutionCenterCaseRefund = /*@__PURE__*/ S.String;
+export const ResolutionCenterCaseRefund = S.String;
 
 /** Who the case is waiting on. `awaiting_merchant` and `awaiting_customer` name the side that owes a response, `under_review` means Whop is deciding, and `closed` means it is settled — read `outcome` for how. */
 export type ResolutionCenterCaseStatus =
@@ -204,7 +204,7 @@ export type ResolutionCenterCaseStatus =
   | "awaiting_customer"
   | "under_review"
   | "closed";
-export const ResolutionCenterCaseStatus = /*@__PURE__*/ S.String;
+export const ResolutionCenterCaseStatus = S.String;
 
 export interface ResolutionCenterCase {
   /** The account the case was filed against. */
@@ -327,7 +327,7 @@ export type CreateResolutionCenterCaseRequestReason =
   | "not_as_described"
   | "product_unacceptable"
   | "subscription_canceled";
-export const CreateResolutionCenterCaseRequestReason = /*@__PURE__*/ S.String;
+export const CreateResolutionCenterCaseRequestReason = S.String;
 
 export interface CreateResolutionCenterCaseRequest {
   attachments?: CreateResolutionCenterCaseRequestAttachmentsList;
@@ -412,8 +412,7 @@ export type GetResolutionCenterCaseSummaryRequestGroupsItem =
   | "status"
   | "reason"
   | "outcome";
-export const GetResolutionCenterCaseSummaryRequestGroupsItem =
-  /*@__PURE__*/ S.String;
+export const GetResolutionCenterCaseSummaryRequestGroupsItem = S.String;
 
 export type GetResolutionCenterCaseSummaryRequestGroupsList = Array<
   GetResolutionCenterCaseSummaryRequestGroupsItem | (string & {})
@@ -428,8 +427,7 @@ export type GetResolutionCenterCaseSummaryRequestStatusItem =
   | "awaiting_customer"
   | "under_review"
   | "closed";
-export const GetResolutionCenterCaseSummaryRequestStatusItem =
-  /*@__PURE__*/ S.String;
+export const GetResolutionCenterCaseSummaryRequestStatusItem = S.String;
 
 export type GetResolutionCenterCaseSummaryRequestStatusList = Array<
   GetResolutionCenterCaseSummaryRequestStatusItem | (string & {})
@@ -445,8 +443,7 @@ export type GetResolutionCenterCaseSummaryRequestReasonItem =
   | "not_as_described"
   | "product_unacceptable"
   | "subscription_canceled";
-export const GetResolutionCenterCaseSummaryRequestReasonItem =
-  /*@__PURE__*/ S.String;
+export const GetResolutionCenterCaseSummaryRequestReasonItem = S.String;
 
 export type GetResolutionCenterCaseSummaryRequestReasonList = Array<
   GetResolutionCenterCaseSummaryRequestReasonItem | (string & {})
@@ -460,8 +457,7 @@ export type GetResolutionCenterCaseSummaryRequestOutcomeItem =
   | "customer_won"
   | "merchant_won"
   | "withdrawn";
-export const GetResolutionCenterCaseSummaryRequestOutcomeItem =
-  /*@__PURE__*/ S.String;
+export const GetResolutionCenterCaseSummaryRequestOutcomeItem = S.String;
 
 export type GetResolutionCenterCaseSummaryRequestOutcomeList = Array<
   GetResolutionCenterCaseSummaryRequestOutcomeItem | (string & {})
@@ -656,7 +652,7 @@ export type ResolutionEventAction =
   | "dispute_opened"
   | "dispute_customer_won"
   | "dispute_merchant_won";
-export const ResolutionEventAction = /*@__PURE__*/ S.String;
+export const ResolutionEventAction = S.String;
 
 export interface ResolutionAttachment {
   /** The file's MIME type. */
@@ -690,7 +686,7 @@ export type ResolutionEventReporterType =
   | "customer"
   | "platform"
   | "system";
-export const ResolutionEventReporterType = /*@__PURE__*/ S.String;
+export const ResolutionEventReporterType = S.String;
 
 export interface ResolutionEvent {
   /** The action recorded in this event. */
@@ -766,18 +762,17 @@ export const ListResolutionCenterCaseEventsResponse = /*@__PURE__*/ S.suspend(
 export type ListResolutionCenterCasesRequestOrder =
   | "created_at"
   | "response_due_at";
-export const ListResolutionCenterCasesRequestOrder = /*@__PURE__*/ S.String;
+export const ListResolutionCenterCasesRequestOrder = S.String;
 
 export type ListResolutionCenterCasesRequestDirection = "asc" | "desc";
-export const ListResolutionCenterCasesRequestDirection = /*@__PURE__*/ S.String;
+export const ListResolutionCenterCasesRequestDirection = S.String;
 
 export type ListResolutionCenterCasesRequestStatusItem =
   | "awaiting_merchant"
   | "awaiting_customer"
   | "under_review"
   | "closed";
-export const ListResolutionCenterCasesRequestStatusItem =
-  /*@__PURE__*/ S.String;
+export const ListResolutionCenterCasesRequestStatusItem = S.String;
 
 export type ListResolutionCenterCasesRequestStatusList = Array<
   ListResolutionCenterCasesRequestStatusItem | (string & {})
@@ -792,8 +787,7 @@ export type ListResolutionCenterCasesRequestReasonItem =
   | "not_as_described"
   | "product_unacceptable"
   | "subscription_canceled";
-export const ListResolutionCenterCasesRequestReasonItem =
-  /*@__PURE__*/ S.String;
+export const ListResolutionCenterCasesRequestReasonItem = S.String;
 
 export type ListResolutionCenterCasesRequestReasonList = Array<
   ListResolutionCenterCasesRequestReasonItem | (string & {})
@@ -806,8 +800,7 @@ export type ListResolutionCenterCasesRequestOutcomeItem =
   | "customer_won"
   | "merchant_won"
   | "withdrawn";
-export const ListResolutionCenterCasesRequestOutcomeItem =
-  /*@__PURE__*/ S.String;
+export const ListResolutionCenterCasesRequestOutcomeItem = S.String;
 
 export type ListResolutionCenterCasesRequestOutcomeList = Array<
   ListResolutionCenterCasesRequestOutcomeItem | (string & {})

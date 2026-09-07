@@ -151,19 +151,19 @@ export type Currencies =
   | "awg"
   | "whop_usd"
   | "xau";
-export const Currencies = /*@__PURE__*/ S.String;
+export const Currencies = S.String;
 
 /** The type of plan that can be attached to a product */
 export type PlanTypes = "renewal" | "one_time";
-export const PlanTypes = /*@__PURE__*/ S.String;
+export const PlanTypes = S.String;
 
 /** The different statuses of the global affiliate program for a product. */
 export type GlobalAffiliateStatuses = "enabled" | "disabled";
-export const GlobalAffiliateStatuses = /*@__PURE__*/ S.String;
+export const GlobalAffiliateStatuses = S.String;
 
 /** Visibility of a resource */
 export type Visibility = "visible" | "hidden" | "archived" | "quick_link";
-export const Visibility = /*@__PURE__*/ S.String;
+export const Visibility = S.String;
 
 /** Pass this object to create a new product for this plan. We will use the product external identifier to find or create an existing product. */
 export interface CreatePaymentRequestBodyCase0PlanProduct {
@@ -449,7 +449,7 @@ export type CreatePaymentRequestBody =
   | CreatePaymentRequestBodyCase2
   | CreatePaymentRequestBodyCase3;
 export const CreatePaymentRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreatePaymentRequestBody>;
+  S.Unknown as any as S.Schema<CreatePaymentRequestBody>;
 
 export interface CreatePaymentRequest {
   body: CreatePaymentRequestBody;
@@ -529,7 +529,7 @@ export type BillingReasons =
   | "one_time"
   | "manual"
   | "subscription";
-export const BillingReasons = /*@__PURE__*/ S.String;
+export const BillingReasons = S.String;
 
 /** Possible card brands that a payment token can have */
 export type CardBrands =
@@ -579,7 +579,7 @@ export type CardBrands =
   | "pulse"
   | "star"
   | "unknown";
-export const CardBrands = /*@__PURE__*/ S.String;
+export const CardBrands = S.String;
 
 /** The company for the payment. */
 export interface CreatePaymentResponseCompany {
@@ -688,7 +688,7 @@ export type PaymentDeclineCodes =
   | "sepa_disputed"
   | "sepa_refused_by_customer"
   | "sepa_generic_decline";
-export const PaymentDeclineCodes = /*@__PURE__*/ S.String;
+export const PaymentDeclineCodes = S.String;
 
 /** The possible statuses of a dispute */
 export type DisputeStatuses =
@@ -701,7 +701,7 @@ export type DisputeStatuses =
   | "lost"
   | "closed"
   | "other";
-export const DisputeStatuses = /*@__PURE__*/ S.String;
+export const DisputeStatuses = S.String;
 
 /** A dispute is a chargeback or payment challenge filed against a company, including evidence and response status. */
 export interface CreatePaymentResponseDisputesItem {
@@ -757,7 +757,7 @@ export type PaymentTransactionStatuses =
   | "lost"
   | "prevented"
   | "canceled";
-export const PaymentTransactionStatuses = /*@__PURE__*/ S.String;
+export const PaymentTransactionStatuses = S.String;
 
 /** The different types of payment transactions. */
 export type PaymentTransactionTypes =
@@ -773,7 +773,7 @@ export type PaymentTransactionTypes =
   | "fraud_screening"
   | "authorization"
   | "installment";
-export const PaymentTransactionTypes = /*@__PURE__*/ S.String;
+export const PaymentTransactionTypes = S.String;
 
 /** A payment transaction. */
 export interface CreatePaymentResponseFinancingTransactionsItem {
@@ -836,7 +836,7 @@ export type MembershipStatus =
   | "unresolved"
   | "drafted"
   | "canceling";
-export const MembershipStatus = /*@__PURE__*/ S.String;
+export const MembershipStatus = S.String;
 
 /** The membership attached to this payment. */
 export interface CreatePaymentResponseMembership {
@@ -1135,7 +1135,7 @@ export type PaymentMethodTypes =
   | "zip"
   | "coinflow"
   | "unknown";
-export const PaymentMethodTypes = /*@__PURE__*/ S.String;
+export const PaymentMethodTypes = S.String;
 
 /** The tokenized payment method reference used for this payment. Null if no token was used. */
 export interface CreatePaymentResponsePaymentMethod {
@@ -1220,7 +1220,7 @@ export const CreatePaymentResponseProduct = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of promo code used to discount a plan */
 export type PromoTypes = "percentage" | "flat_amount";
-export const PromoTypes = /*@__PURE__*/ S.String;
+export const PromoTypes = S.String;
 
 /** The promo code used for this payment. */
 export interface CreatePaymentResponsePromoCode {
@@ -1257,7 +1257,7 @@ export type RefundStatuses =
   | "succeeded"
   | "failed"
   | "canceled";
-export const RefundStatuses = /*@__PURE__*/ S.String;
+export const RefundStatuses = S.String;
 
 /** A refund represents a full or partial reversal of a payment, including the amount, status, and payment provider. */
 export interface CreatePaymentResponseRefundsItem {
@@ -1296,7 +1296,7 @@ export type ResolutionCenterCaseCustomerResponses =
   | "respond"
   | "appeal"
   | "withdraw";
-export const ResolutionCenterCaseCustomerResponses = /*@__PURE__*/ S.String;
+export const ResolutionCenterCaseCustomerResponses = S.String;
 
 /** The list of actions currently available to the customer. */
 export type CreatePaymentResponseResolutionsItemCustomerResponseActionsList =
@@ -1313,7 +1313,7 @@ export type ResolutionCenterCaseIssueTypes =
   | "significantly_not_as_described"
   | "unauthorized_transaction"
   | "product_unacceptable";
-export const ResolutionCenterCaseIssueTypes = /*@__PURE__*/ S.String;
+export const ResolutionCenterCaseIssueTypes = S.String;
 
 /** The types of responses a merchant can make to a resolution. */
 export type ResolutionCenterCaseMerchantResponses =
@@ -1322,7 +1322,7 @@ export type ResolutionCenterCaseMerchantResponses =
   | "request_more_info"
   | "appeal"
   | "respond";
-export const ResolutionCenterCaseMerchantResponses = /*@__PURE__*/ S.String;
+export const ResolutionCenterCaseMerchantResponses = S.String;
 
 /** The list of actions currently available to the merchant. */
 export type CreatePaymentResponseResolutionsItemMerchantResponseActionsList =
@@ -1338,7 +1338,7 @@ export type ResolutionCenterCasePlatformResponses =
   | "request_merchant_info"
   | "merchant_wins"
   | "merchant_refund";
-export const ResolutionCenterCasePlatformResponses = /*@__PURE__*/ S.String;
+export const ResolutionCenterCasePlatformResponses = S.String;
 
 /** The list of actions currently available to the Whop platform for moderating this resolution. */
 export type CreatePaymentResponseResolutionsItemPlatformResponseActionsList =
@@ -1358,7 +1358,7 @@ export type ResolutionCenterCaseStatuses =
   | "customer_won"
   | "merchant_won"
   | "customer_withdrew";
-export const ResolutionCenterCaseStatuses = /*@__PURE__*/ S.String;
+export const ResolutionCenterCaseStatuses = S.String;
 
 /** A resolution center case is a dispute or support case between a user and a company, tracking the issue, status, and outcome. */
 export interface CreatePaymentResponseResolutionsItem {
@@ -1429,7 +1429,7 @@ export type ShipmentStatuses =
   | "failure"
   | "cancelled"
   | "error";
-export const ShipmentStatuses = /*@__PURE__*/ S.String;
+export const ShipmentStatuses = S.String;
 
 /** The shipment attached to this payment. */
 export interface CreatePaymentResponseShipment {
@@ -1471,7 +1471,7 @@ export type ReceiptStatus =
   | "uncollectible"
   | "unresolved"
   | "void";
-export const ReceiptStatus = /*@__PURE__*/ S.String;
+export const ReceiptStatus = S.String;
 
 /** The friendly status of a payment. This is a derived status that provides a human-readable summary of the payment state, combining the underlying status and substatus fields. */
 export type FriendlyReceiptStatus =
@@ -1503,7 +1503,7 @@ export type FriendlyReceiptStatus =
   | "unresolved"
   | "open_dispute"
   | "open_resolution";
-export const FriendlyReceiptStatus = /*@__PURE__*/ S.String;
+export const FriendlyReceiptStatus = S.String;
 
 /** The type of tax inclusivity applied to the receipt, for determining whether the tax is included in the final price, or paid on top. */
 export type ReceiptTaxBehaviors =
@@ -1511,7 +1511,7 @@ export type ReceiptTaxBehaviors =
   | "inclusive"
   | "unspecified"
   | "unable_to_collect";
-export const ReceiptTaxBehaviors = /*@__PURE__*/ S.String;
+export const ReceiptTaxBehaviors = S.String;
 
 /** The user that made this payment. */
 export interface CreatePaymentResponseUser {
@@ -1810,7 +1810,7 @@ export type SpecificFeeOrigins =
   | "revshare_percentage_fee"
   | "application_fee"
   | "high_risk_merchant_fee";
-export const SpecificFeeOrigins = /*@__PURE__*/ S.String;
+export const SpecificFeeOrigins = S.String;
 
 /** Represents a fee related to a payment */
 export interface FeesPaymentResponseDataItem {
@@ -2485,7 +2485,7 @@ export type PaymentLastPaymentErrorDeclineCode =
   | "sepa_disputed"
   | "sepa_refused_by_customer"
   | "sepa_generic_decline";
-export const PaymentLastPaymentErrorDeclineCode = /*@__PURE__*/ S.String;
+export const PaymentLastPaymentErrorDeclineCode = S.String;
 
 export interface PaymentLastPaymentError {
   /** A machine-readable classification of the failure. */
@@ -2522,7 +2522,7 @@ export const PaymentNextActionRedirectData = /*@__PURE__*/ S.suspend(() =>
 
 /** Where this step can be presented: `inline` inside your own page, `full_page` as a top-level navigation. Pick whichever listed mode suits your surface. */
 export type PaymentNextActionRedirectRenderItem = "inline" | "full_page";
-export const PaymentNextActionRedirectRenderItem = /*@__PURE__*/ S.String;
+export const PaymentNextActionRedirectRenderItem = S.String;
 
 export type PaymentNextActionRedirectRenderList =
   Array<PaymentNextActionRedirectRenderItem>;
@@ -2532,7 +2532,7 @@ export const PaymentNextActionRedirectRenderList = /*@__PURE__*/ S.Array(
 
 /** Always `redirect`: send the buyer to `data.url`. The provider hands them back to `return_url` when they are done. */
 export type PaymentNextActionRedirectType = "redirect";
-export const PaymentNextActionRedirectType = /*@__PURE__*/ S.String;
+export const PaymentNextActionRedirectType = S.String;
 
 export interface PaymentNextActionRedirect {
   /** Where to send the buyer. */
@@ -2553,7 +2553,7 @@ export const PaymentNextActionRedirect = /*@__PURE__*/ S.suspend(() =>
 
 /** Always `voucher`: a code the buyer pays in person, at a convenience store or bank counter. */
 export type PaymentVoucherInstructionsKind = "voucher";
-export const PaymentVoucherInstructionsKind = /*@__PURE__*/ S.String;
+export const PaymentVoucherInstructionsKind = S.String;
 
 export interface Money {
   /** The amount in major units, as an exact decimal string — `"10.00"` is ten dollars. A string so no float rounds it in transit. */
@@ -2625,7 +2625,7 @@ export const PaymentVoucherInstructions = /*@__PURE__*/ S.suspend(() =>
 
 /** Always `qr`: a code the buyer scans with their banking app. */
 export type PaymentQrInstructionsKind = "qr";
-export const PaymentQrInstructionsKind = /*@__PURE__*/ S.String;
+export const PaymentQrInstructionsKind = S.String;
 
 export interface PaymentQr {
   /** Exactly what the buyer must pay, in the charged currency. */
@@ -2732,7 +2732,7 @@ export const PaymentBankTransfer = /*@__PURE__*/ S.suspend(() =>
 
 /** Always `bank_transfer`: account details the buyer sends money to from their own bank. */
 export type PaymentBankTransferInstructionsKind = "bank_transfer";
-export const PaymentBankTransferInstructionsKind = /*@__PURE__*/ S.String;
+export const PaymentBankTransferInstructionsKind = S.String;
 
 export interface PaymentBankTransferInstructions {
   /** The account details to show. */
@@ -2755,14 +2755,13 @@ export type PaymentInstructions =
   | PaymentQrInstructions
   | PaymentBankTransferInstructions;
 export const PaymentInstructions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentInstructions>;
+  S.Unknown as any as S.Schema<PaymentInstructions>;
 
 /** Where this step can be presented: `inline` inside your own page, `full_page` as a top-level navigation. Pick whichever listed mode suits your surface. */
 export type PaymentNextActionDisplayInstructionsRenderItem =
   | "inline"
   | "full_page";
-export const PaymentNextActionDisplayInstructionsRenderItem =
-  /*@__PURE__*/ S.String;
+export const PaymentNextActionDisplayInstructionsRenderItem = S.String;
 
 export type PaymentNextActionDisplayInstructionsRenderList =
   Array<PaymentNextActionDisplayInstructionsRenderItem>;
@@ -2773,7 +2772,7 @@ export const PaymentNextActionDisplayInstructionsRenderList =
 
 /** Always `display_instructions`: show the buyer `data` — what to pay, where, and by when. The payment completes once they pay and the rail confirms it, so keep polling `status`. */
 export type PaymentNextActionDisplayInstructionsType = "display_instructions";
-export const PaymentNextActionDisplayInstructionsType = /*@__PURE__*/ S.String;
+export const PaymentNextActionDisplayInstructionsType = S.String;
 
 export interface PaymentNextActionDisplayInstructions {
   /** The instructions. `kind` picks the shape, and the details sit under the key named for it: `voucher`, `qr`, or `bank_transfer`. */
@@ -2810,8 +2809,7 @@ export const PaymentNextActionAwaitConfirmationData = /*@__PURE__*/ S.suspend(
 export type PaymentNextActionAwaitConfirmationRenderItem =
   | "inline"
   | "full_page";
-export const PaymentNextActionAwaitConfirmationRenderItem =
-  /*@__PURE__*/ S.String;
+export const PaymentNextActionAwaitConfirmationRenderItem = S.String;
 
 export type PaymentNextActionAwaitConfirmationRenderList =
   Array<PaymentNextActionAwaitConfirmationRenderItem>;
@@ -2822,7 +2820,7 @@ export const PaymentNextActionAwaitConfirmationRenderList =
 
 /** Always `await_confirmation`: nothing to show — the buyer has done their part and the rail settles out of band. Poll `status` until it moves. */
 export type PaymentNextActionAwaitConfirmationType = "await_confirmation";
-export const PaymentNextActionAwaitConfirmationType = /*@__PURE__*/ S.String;
+export const PaymentNextActionAwaitConfirmationType = S.String;
 
 export interface PaymentNextActionAwaitConfirmation {
   /** How long the wait can last. */
@@ -2847,7 +2845,7 @@ export type PaymentNextAction =
   | PaymentNextActionDisplayInstructions
   | PaymentNextActionAwaitConfirmation;
 export const PaymentNextAction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentNextAction>;
+  S.Unknown as any as S.Schema<PaymentNextAction>;
 
 export interface PaymentProcessingDetails {
   /** When the payment is expected to settle, as an ISO 8601 timestamp. */
@@ -2869,7 +2867,7 @@ export type PaymentStatusStatus =
   | "processing"
   | "succeeded"
   | "canceled";
-export const PaymentStatusStatus = /*@__PURE__*/ S.String;
+export const PaymentStatusStatus = S.String;
 
 export interface PaymentStatus {
   /** The payment this status describes, prefixed `pay_`. */
@@ -2901,11 +2899,11 @@ export const PaymentStatus = /*@__PURE__*/ S.suspend(() =>
 
 /** The direction of the sort. */
 export type Direction = "asc" | "desc";
-export const Direction = /*@__PURE__*/ S.String;
+export const Direction = S.String;
 
 /** The order to sort the results by. */
 export type ReceiptV2Order = "final_amount" | "created_at" | "paid_at";
-export const ReceiptV2Order = /*@__PURE__*/ S.String;
+export const ReceiptV2Order = S.String;
 
 /** Filter payments to only those associated with these specific product identifiers. */
 export type ListPaymentRequestProductIdsList = Array<string>;

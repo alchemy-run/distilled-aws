@@ -132,8 +132,7 @@ export const MarketplaceRegistrationDefinitionPropertiesAuthorizationsList =
 
 /** The multi-factor authorization provider to be used for just-in-time access requests. */
 export type JustInTimeAccessPolicyMultiFactorAuthProvider = "Azure" | "None";
-export const JustInTimeAccessPolicyMultiFactorAuthProvider =
-  /*@__PURE__*/ S.String;
+export const JustInTimeAccessPolicyMultiFactorAuthProvider = S.String;
 
 /** Defines the Azure Active Directory principal that can approve any just-in-time access requests by the principal defined in the EligibleAuthorization. */
 export interface EligibleApprover {
@@ -349,8 +348,7 @@ export type RegistrationAssignmentPropertiesProvisioningState =
   | "Failed"
   | "Succeeded"
   | "Updating";
-export const RegistrationAssignmentPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const RegistrationAssignmentPropertiesProvisioningState = S.String;
 
 /** The collection of authorization objects describing the access Azure Active Directory principals in the managedBy tenant will receive on the delegated resource in the managed tenant. */
 export type RegistrationAssignmentPropertiesRegistrationDefinitionPropertiesAuthorizationsList =
@@ -383,7 +381,7 @@ export type RegistrationAssignmentPropertiesRegistrationDefinitionPropertiesProv
   | "Succeeded"
   | "Updating";
 export const RegistrationAssignmentPropertiesRegistrationDefinitionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of the registration definition associated with the registration assignment. */
 export interface RegistrationAssignmentPropertiesRegistrationDefinitionProperties {
@@ -437,7 +435,7 @@ export type RegistrationAssignmentPropertiesRegistrationDefinitionSystemDataCrea
   | "ManagedIdentity"
   | "Key";
 export const RegistrationAssignmentPropertiesRegistrationDefinitionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type RegistrationAssignmentPropertiesRegistrationDefinitionSystemDataLastModifiedByType =
@@ -446,7 +444,7 @@ export type RegistrationAssignmentPropertiesRegistrationDefinitionSystemDataLast
   | "ManagedIdentity"
   | "Key";
 export const RegistrationAssignmentPropertiesRegistrationDefinitionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface RegistrationAssignmentPropertiesRegistrationDefinitionSystemData {
@@ -544,8 +542,7 @@ export type RegistrationAssignmentSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const RegistrationAssignmentSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const RegistrationAssignmentSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type RegistrationAssignmentSystemDataLastModifiedByType =
@@ -553,8 +550,7 @@ export type RegistrationAssignmentSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const RegistrationAssignmentSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const RegistrationAssignmentSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface RegistrationAssignmentSystemData {
@@ -663,8 +659,7 @@ export type RegistrationDefinitionPropertiesProvisioningState =
   | "Failed"
   | "Succeeded"
   | "Updating";
-export const RegistrationDefinitionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const RegistrationDefinitionPropertiesProvisioningState = S.String;
 
 /** The properties of a registration definition. */
 export interface RegistrationDefinitionProperties {
@@ -713,8 +708,7 @@ export type RegistrationDefinitionSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const RegistrationDefinitionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const RegistrationDefinitionSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type RegistrationDefinitionSystemDataLastModifiedByType =
@@ -722,8 +716,7 @@ export type RegistrationDefinitionSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const RegistrationDefinitionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const RegistrationDefinitionSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface RegistrationDefinitionSystemData {

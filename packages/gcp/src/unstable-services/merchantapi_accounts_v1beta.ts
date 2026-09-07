@@ -142,8 +142,7 @@ export const Required = /*@__PURE__*/ S.suspend(() =>
 export type TermsOfServiceAgreementStateTermsOfServiceKindEnum =
   | "TERMS_OF_SERVICE_KIND_UNSPECIFIED"
   | "MERCHANT_CENTER";
-export const TermsOfServiceAgreementStateTermsOfServiceKindEnum =
-  /*@__PURE__*/ S.String;
+export const TermsOfServiceAgreementStateTermsOfServiceKindEnum = S.String;
 
 /** This resource represents the agreement state for a given account and terms of service kind. The state is as follows: * If the business has accepted a terms of service, `accepted` will be populated, otherwise it will be empty * If the business must sign a terms of service, `required` will be populated, otherwise it will be empty. Note that both `required` and `accepted` can be present. In this case the `accepted` terms of services will have an expiration date set in the `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services we expect third-party providers to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`). The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource. `valid_until` field. */
 export interface TermsOfServiceAgreementState {
@@ -230,7 +229,7 @@ export type HandshakeActorEnum =
   | "ACTOR_UNSPECIFIED"
   | "ACCOUNT"
   | "OTHER_PARTY";
-export const HandshakeActorEnum = /*@__PURE__*/ S.String;
+export const HandshakeActorEnum = S.String;
 
 export type HandshakeApprovalStateEnum =
   | "APPROVAL_STATE_UNSPECIFIED"
@@ -238,7 +237,7 @@ export type HandshakeApprovalStateEnum =
   | "WAITING"
   | "ESTABLISHED"
   | "REJECTED";
-export const HandshakeApprovalStateEnum = /*@__PURE__*/ S.String;
+export const HandshakeApprovalStateEnum = S.String;
 
 /** The current status of establishing of the service. (for example, pending approval, approved, established). */
 export interface Handshake {
@@ -258,7 +257,7 @@ export type AccountServiceMutabilityEnum =
   | "MUTABILITY_UNSPECIFIED"
   | "MUTABLE"
   | "IMMUTABLE";
-export const AccountServiceMutabilityEnum = /*@__PURE__*/ S.String;
+export const AccountServiceMutabilityEnum = S.String;
 
 /** `AccountAggregation` payload. */
 export type AccountAggregation = ApproveAccountServiceRequest;
@@ -373,7 +372,7 @@ export type InventoryVerificationContactStateEnum =
   | "FAILED"
   | "RUNNING"
   | "ACTION_REQUIRED";
-export const InventoryVerificationContactStateEnum = /*@__PURE__*/ S.String;
+export const InventoryVerificationContactStateEnum = S.String;
 
 export type InventoryVerificationStateEnum =
   | "STATE_UNSPECIFIED"
@@ -382,7 +381,7 @@ export type InventoryVerificationStateEnum =
   | "RUNNING"
   | "SUCCEEDED"
   | "SUSPENDED";
-export const InventoryVerificationStateEnum = /*@__PURE__*/ S.String;
+export const InventoryVerificationStateEnum = S.String;
 
 /** Collection of information related to [inventory verification](https://support.google.com/merchants/answer/14684499?ref_topic=15145634&sjid=6892280366904591178-NC). */
 export interface InventoryVerification {
@@ -412,7 +411,7 @@ export type OnDisplayToOrderStateEnum =
   | "FAILED"
   | "RUNNING"
   | "ACTION_REQUIRED";
-export const OnDisplayToOrderStateEnum = /*@__PURE__*/ S.String;
+export const OnDisplayToOrderStateEnum = S.String;
 
 /** Collection of information related to the on display to order ([ODO](https://support.google.com/merchants/answer/14615056?ref_topic=15145747&sjid=6892280366904591178-NC)). */
 export interface OnDisplayToOrder {
@@ -435,7 +434,7 @@ export type OmnichannelSettingLsfTypeEnum =
   | "GHLSF"
   | "MHLSF_BASIC"
   | "MHLSF_FULL";
-export const OmnichannelSettingLsfTypeEnum = /*@__PURE__*/ S.String;
+export const OmnichannelSettingLsfTypeEnum = S.String;
 
 export type AboutStateEnum =
   | "STATE_UNSPECIFIED"
@@ -443,7 +442,7 @@ export type AboutStateEnum =
   | "FAILED"
   | "RUNNING"
   | "ACTION_REQUIRED";
-export const AboutStateEnum = /*@__PURE__*/ S.String;
+export const AboutStateEnum = S.String;
 
 /** Collection of information related to the about page ([impressum](https://support.google.com/merchants/answer/14675634?ref_topic=15145634&sjid=6892280366904591178-NC)). */
 export interface About {
@@ -465,7 +464,7 @@ export type LfpLinkStateEnum =
   | "FAILED"
   | "RUNNING"
   | "ACTION_REQUIRED";
-export const LfpLinkStateEnum = /*@__PURE__*/ S.String;
+export const LfpLinkStateEnum = S.String;
 
 /** Collection of information related to the LFP link. */
 export interface LfpLink {
@@ -490,7 +489,7 @@ export type InStockStateEnum =
   | "FAILED"
   | "RUNNING"
   | "ACTION_REQUIRED";
-export const InStockStateEnum = /*@__PURE__*/ S.String;
+export const InStockStateEnum = S.String;
 
 /** Collection of information related to InStock. */
 export interface InStock {
@@ -512,7 +511,7 @@ export type PickupStateEnum =
   | "FAILED"
   | "RUNNING"
   | "ACTION_REQUIRED";
-export const PickupStateEnum = /*@__PURE__*/ S.String;
+export const PickupStateEnum = S.String;
 
 /** Collection of information related to Pickup. */
 export interface Pickup {
@@ -648,7 +647,7 @@ export type OnlineReturnPolicyItemConditionsItemEnum =
   | "ITEM_CONDITION_UNSPECIFIED"
   | "NEW"
   | "USED";
-export const OnlineReturnPolicyItemConditionsItemEnum = /*@__PURE__*/ S.String;
+export const OnlineReturnPolicyItemConditionsItemEnum = S.String;
 
 export type OnlineReturnPolicyItemConditionsItemEnumList = Array<
   OnlineReturnPolicyItemConditionsItemEnum | (string & {})
@@ -668,7 +667,7 @@ export type PolicyTypeEnum =
   | "NUMBER_OF_DAYS_AFTER_DELIVERY"
   | "NO_RETURNS"
   | "LIFETIME_RETURNS";
-export const PolicyTypeEnum = /*@__PURE__*/ S.String;
+export const PolicyTypeEnum = S.String;
 
 /** The available policies. */
 export interface Policy {
@@ -688,7 +687,7 @@ export type ReturnShippingFeeTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "FIXED"
   | "CUSTOMER_PAYING_ACTUAL_FEE";
-export const ReturnShippingFeeTypeEnum = /*@__PURE__*/ S.String;
+export const ReturnShippingFeeTypeEnum = S.String;
 
 /** The return shipping fee. This can either be a fixed fee or a boolean to indicate that the customer pays the actual shipping cost. */
 export interface ReturnShippingFee {
@@ -711,7 +710,7 @@ export type OnlineReturnPolicyReturnMethodsItemEnum =
   | "BY_MAIL"
   | "IN_STORE"
   | "AT_A_KIOSK";
-export const OnlineReturnPolicyReturnMethodsItemEnum = /*@__PURE__*/ S.String;
+export const OnlineReturnPolicyReturnMethodsItemEnum = S.String;
 
 export type OnlineReturnPolicyReturnMethodsItemEnumList = Array<
   OnlineReturnPolicyReturnMethodsItemEnum | (string & {})
@@ -726,7 +725,7 @@ export type OnlineReturnPolicyReturnLabelSourceEnum =
   | "DOWNLOAD_AND_PRINT"
   | "IN_THE_PACKAGE"
   | "CUSTOMER_RESPONSIBILITY";
-export const OnlineReturnPolicyReturnLabelSourceEnum = /*@__PURE__*/ S.String;
+export const OnlineReturnPolicyReturnLabelSourceEnum = S.String;
 
 /** [Online return policy](https://support.google.com/merchants/answer/10220642) object. This is currently used to represent return policies for ads and free listings programs. */
 export interface OnlineReturnPolicy {
@@ -810,21 +809,21 @@ export type CheckoutSettingsReviewStateEnum =
   | "IN_REVIEW"
   | "APPROVED"
   | "DISAPPROVED";
-export const CheckoutSettingsReviewStateEnum = /*@__PURE__*/ S.String;
+export const CheckoutSettingsReviewStateEnum = S.String;
 
 export type CheckoutSettingsEffectiveReviewStateEnum =
   | "CHECKOUT_REVIEW_STATE_UNSPECIFIED"
   | "IN_REVIEW"
   | "APPROVED"
   | "DISAPPROVED";
-export const CheckoutSettingsEffectiveReviewStateEnum = /*@__PURE__*/ S.String;
+export const CheckoutSettingsEffectiveReviewStateEnum = S.String;
 
 export type CheckoutSettingsEnrollmentStateEnum =
   | "CHECKOUT_ENROLLMENT_STATE_UNSPECIFIED"
   | "INACTIVE"
   | "ENROLLED"
   | "OPTED_OUT";
-export const CheckoutSettingsEnrollmentStateEnum = /*@__PURE__*/ S.String;
+export const CheckoutSettingsEnrollmentStateEnum = S.String;
 
 /** URL settings for cart or checkout URL. */
 export interface UriSettings {
@@ -854,8 +853,7 @@ export type CheckoutSettingsEligibleDestinationsItemEnum =
   | "VEHICLE_ADS"
   | "CLOUD_RETAIL"
   | "LOCAL_CLOUD_RETAIL";
-export const CheckoutSettingsEligibleDestinationsItemEnum =
-  /*@__PURE__*/ S.String;
+export const CheckoutSettingsEligibleDestinationsItemEnum = S.String;
 
 export type CheckoutSettingsEligibleDestinationsItemEnumList = Array<
   CheckoutSettingsEligibleDestinationsItemEnum | (string & {})
@@ -870,8 +868,7 @@ export type CheckoutSettingsEffectiveEnrollmentStateEnum =
   | "INACTIVE"
   | "ENROLLED"
   | "OPTED_OUT";
-export const CheckoutSettingsEffectiveEnrollmentStateEnum =
-  /*@__PURE__*/ S.String;
+export const CheckoutSettingsEffectiveEnrollmentStateEnum = S.String;
 
 /** [CheckoutSettings](https://support.google.com/merchants/answer/13945960) for a specific merchant. */
 export interface CheckoutSettings {
@@ -987,7 +984,7 @@ export type RadiusAreaRadiusUnitsEnum =
   | "RADIUS_UNITS_UNSPECIFIED"
   | "MILES"
   | "KILOMETERS";
-export const RadiusAreaRadiusUnitsEnum = /*@__PURE__*/ S.String;
+export const RadiusAreaRadiusUnitsEnum = S.String;
 
 /** An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges. */
 export interface LatLng {
@@ -1077,7 +1074,7 @@ export const CreateAccountsRegionsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateAccountsRegionsRequest>;
 
 export type UserStateEnum = "STATE_UNSPECIFIED" | "PENDING" | "VERIFIED";
-export const UserStateEnum = /*@__PURE__*/ S.String;
+export const UserStateEnum = S.String;
 
 export type UserAccessRightsItemEnum =
   | "ACCESS_RIGHT_UNSPECIFIED"
@@ -1086,7 +1083,7 @@ export type UserAccessRightsItemEnum =
   | "ADMIN"
   | "PERFORMANCE_REPORTING"
   | "API_DEVELOPER";
-export const UserAccessRightsItemEnum = /*@__PURE__*/ S.String;
+export const UserAccessRightsItemEnum = S.String;
 
 export type UserAccessRightsItemEnumList = Array<
   UserAccessRightsItemEnum | (string & {})
@@ -1240,8 +1237,7 @@ export type VerificationMailSettingsVerificationMailModeEnum =
   | "VERIFICATION_MAIL_MODE_UNSPECIFIED"
   | "SEND_VERIFICATION_MAIL"
   | "SUPPRESS_VERIFICATION_MAIL";
-export const VerificationMailSettingsVerificationMailModeEnum =
-  /*@__PURE__*/ S.String;
+export const VerificationMailSettingsVerificationMailModeEnum = S.String;
 
 /** Settings related to the verification email that is sent after adding a user. */
 export interface VerificationMailSettings {
@@ -1523,7 +1519,7 @@ export type ProgramStateEnum =
   | "NOT_ELIGIBLE"
   | "ELIGIBLE"
   | "ENABLED";
-export const ProgramStateEnum = /*@__PURE__*/ S.String;
+export const ProgramStateEnum = S.String;
 
 /** Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `checkout` * `free-listings` * `product-ratings` * `shopping-ads` * `ucp-integration` (limited access) * `youtube-affiliate` * `youtube-shopping-checkout` */
 export interface Program {
@@ -2046,7 +2042,7 @@ export type IdentityAttributeIdentityDeclarationEnum =
   | "IDENTITY_DECLARATION_UNSPECIFIED"
   | "SELF_IDENTIFIES_AS"
   | "DOES_NOT_SELF_IDENTIFY_AS";
-export const IdentityAttributeIdentityDeclarationEnum = /*@__PURE__*/ S.String;
+export const IdentityAttributeIdentityDeclarationEnum = S.String;
 
 /** All information related to an identity attribute. */
 export interface IdentityAttribute {
@@ -2067,7 +2063,7 @@ export type BusinessIdentityPromotionsConsentEnum =
   | "PROMOTIONS_CONSENT_UNSPECIFIED"
   | "PROMOTIONS_CONSENT_GIVEN"
   | "PROMOTIONS_CONSENT_DENIED";
-export const BusinessIdentityPromotionsConsentEnum = /*@__PURE__*/ S.String;
+export const BusinessIdentityPromotionsConsentEnum = S.String;
 
 /** Collection of information related to the [identity of a business](https://support.google.com/merchants/answer/12564247). */
 export interface BusinessIdentity {
@@ -2123,7 +2119,7 @@ export type BusinessInfoPhoneVerificationStateEnum =
   | "PHONE_VERIFICATION_STATE_UNSPECIFIED"
   | "PHONE_VERIFICATION_STATE_VERIFIED"
   | "PHONE_VERIFICATION_STATE_UNVERIFIED";
-export const BusinessInfoPhoneVerificationStateEnum = /*@__PURE__*/ S.String;
+export const BusinessInfoPhoneVerificationStateEnum = S.String;
 
 /** An object representing a short code, which is a phone number that is typically much shorter than regular phone numbers and can be used to address messages in MMS and SMS systems, as well as for abbreviated dialing (For example "Text 611 to see how many minutes you have remaining on your plan."). Short codes are restricted to a region and are not internationally dialable, which means the same short code can exist in different regions, with different usage and pricing, even if those regions share the same country calling code (For example: US and CA). */
 export interface ShortCode {
@@ -2322,7 +2318,7 @@ export type EmailPreferencesNewsAndTipsEnum =
   | "OPTED_OUT"
   | "OPTED_IN"
   | "UNCONFIRMED";
-export const EmailPreferencesNewsAndTipsEnum = /*@__PURE__*/ S.String;
+export const EmailPreferencesNewsAndTipsEnum = S.String;
 
 /** The categories of notifications the user opted into / opted out of. The email preferences do not include mandatory announcements as users can't opt out of them. */
 export interface EmailPreferences {
@@ -2418,7 +2414,7 @@ export type StoreConfigStoreServiceTypeEnum =
   | "STORE_SERVICE_TYPE_UNSPECIFIED"
   | "ALL_STORES"
   | "SELECTED_STORES";
-export const StoreConfigStoreServiceTypeEnum = /*@__PURE__*/ S.String;
+export const StoreConfigStoreServiceTypeEnum = S.String;
 
 /** Time that local delivery ends for the day. */
 export interface LocalCutoffTime {
@@ -2454,7 +2450,7 @@ export const CutoffConfig = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "CutoffConfig" }) as any as S.Schema<CutoffConfig>;
 
 export type DistanceUnitEnum = "UNIT_UNSPECIFIED" | "MILES" | "KILOMETERS";
-export const DistanceUnitEnum = /*@__PURE__*/ S.String;
+export const DistanceUnitEnum = S.String;
 
 /** Maximum delivery radius. This is only required for the local delivery shipment type. */
 export interface Distance {
@@ -2507,7 +2503,7 @@ export const LocationIdSetList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<LocationIdSetList>;
 
 export type WeightUnitEnum = "WEIGHT_UNIT_UNSPECIFIED" | "POUND" | "KILOGRAM";
-export const WeightUnitEnum = /*@__PURE__*/ S.String;
+export const WeightUnitEnum = S.String;
 
 /** The weight represented as the value in string and the unit. */
 export interface Weight {
@@ -2789,7 +2785,7 @@ export type BusinessDayConfigBusinessDaysItemEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const BusinessDayConfigBusinessDaysItemEnum = /*@__PURE__*/ S.String;
+export const BusinessDayConfigBusinessDaysItemEnum = S.String;
 
 export type BusinessDayConfigBusinessDaysItemEnumList = Array<
   BusinessDayConfigBusinessDaysItemEnum | (string & {})
@@ -2885,7 +2881,7 @@ export type ServiceShipmentTypeEnum =
   | "DELIVERY"
   | "LOCAL_DELIVERY"
   | "COLLECTION_POINT";
-export const ServiceShipmentTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceShipmentTypeEnum = S.String;
 
 /** Shipping service. */
 export interface Service {
@@ -3043,7 +3039,7 @@ export const GetTermsOfServiceRequest = /*@__PURE__*/ S.suspend(() =>
 export type TermsOfServiceKindEnum =
   | "TERMS_OF_SERVICE_KIND_UNSPECIFIED"
   | "MERCHANT_CENTER";
-export const TermsOfServiceKindEnum = /*@__PURE__*/ S.String;
+export const TermsOfServiceKindEnum = S.String;
 
 /** The `TermsOfService` message represents a specific version of the terms of service that merchants must accept to access certain features or services. For more information, see [Terms of Service](https://support.google.com/merchants/answer/160173). This message is important for the onboarding process, ensuring that merchants agree to the necessary legal agreements for using the service. Merchants can retrieve the latest terms of service for a given `kind` and `region` through `RetrieveLatestTermsOfService`, and accept them as required through `AcceptTermsOfService`. */
 export interface TermsOfService {
@@ -3259,7 +3255,7 @@ export type GbpAccountTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "USER"
   | "BUSINESS_ACCOUNT";
-export const GbpAccountTypeEnum = /*@__PURE__*/ S.String;
+export const GbpAccountTypeEnum = S.String;
 
 /** Collection of information related to a Google Business Profile (GBP) account. */
 export interface GbpAccount {
@@ -3340,7 +3336,7 @@ export type AccountIssueSeverityEnum =
   | "CRITICAL"
   | "ERROR"
   | "SUGGESTION";
-export const AccountIssueSeverityEnum = /*@__PURE__*/ S.String;
+export const AccountIssueSeverityEnum = S.String;
 
 export type ImpactedDestinationReportingContextEnum =
   | "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
@@ -3363,14 +3359,14 @@ export type ImpactedDestinationReportingContextEnum =
   | "PRODUCT_REVIEWS"
   | "MERCHANT_REVIEWS"
   | "YOUTUBE_CHECKOUT";
-export const ImpactedDestinationReportingContextEnum = /*@__PURE__*/ S.String;
+export const ImpactedDestinationReportingContextEnum = S.String;
 
 export type ImpactSeverityEnum =
   | "SEVERITY_UNSPECIFIED"
   | "CRITICAL"
   | "ERROR"
   | "SUGGESTION";
-export const ImpactSeverityEnum = /*@__PURE__*/ S.String;
+export const ImpactSeverityEnum = S.String;
 
 /** The impact of the issue on a region. */
 export interface Impact {
@@ -4123,7 +4119,7 @@ export const RetrieveForApplicationAccountsTermsOfServiceAgreementStatesRequest 
 export type RetrieveLatestTermsOfServiceKindEnum =
   | "TERMS_OF_SERVICE_KIND_UNSPECIFIED"
   | "MERCHANT_CENTER";
-export const RetrieveLatestTermsOfServiceKindEnum = /*@__PURE__*/ S.String;
+export const RetrieveLatestTermsOfServiceKindEnum = S.String;
 
 export interface RetrieveLatestTermsOfServiceRequest {
   /** Required. The Kind this terms of service version applies to. */

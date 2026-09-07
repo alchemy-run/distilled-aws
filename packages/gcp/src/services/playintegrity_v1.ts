@@ -104,7 +104,7 @@ export type AccountDetailsAppLicensingVerdictEnum =
   | "LICENSED"
   | "UNLICENSED"
   | "UNEVALUATED";
-export const AccountDetailsAppLicensingVerdictEnum = /*@__PURE__*/ S.String;
+export const AccountDetailsAppLicensingVerdictEnum = S.String;
 
 export type AccountActivityActivityLevelEnum =
   | "ACTIVITY_LEVEL_UNSPECIFIED"
@@ -113,7 +113,7 @@ export type AccountActivityActivityLevelEnum =
   | "UNKNOWN"
   | "TYPICAL_BASIC"
   | "TYPICAL_STRONG";
-export const AccountActivityActivityLevelEnum = /*@__PURE__*/ S.String;
+export const AccountActivityActivityLevelEnum = S.String;
 
 /** (Restricted Access) Contains a signal helping apps differentiating between likely genuine and likely non-genuine user traffic. */
 export interface AccountActivity {
@@ -150,7 +150,7 @@ export type EnvironmentDetailsPlayProtectVerdictEnum =
   | "MEDIUM_RISK"
   | "HIGH_RISK"
   | "POSSIBLE_RISK";
-export const EnvironmentDetailsPlayProtectVerdictEnum = /*@__PURE__*/ S.String;
+export const EnvironmentDetailsPlayProtectVerdictEnum = S.String;
 
 export type AppAccessRiskVerdictAppsDetectedItemEnum =
   | "APPS_DETECTED_UNSPECIFIED"
@@ -162,7 +162,7 @@ export type AppAccessRiskVerdictAppsDetectedItemEnum =
   | "UNKNOWN_CAPTURING"
   | "UNKNOWN_OVERLAYS"
   | "UNKNOWN_CONTROLLING";
-export const AppAccessRiskVerdictAppsDetectedItemEnum = /*@__PURE__*/ S.String;
+export const AppAccessRiskVerdictAppsDetectedItemEnum = S.String;
 
 export type AppAccessRiskVerdictAppsDetectedItemEnumList =
   Array<AppAccessRiskVerdictAppsDetectedItemEnum>;
@@ -225,7 +225,7 @@ export type AppIntegrityAppRecognitionVerdictEnum =
   | "PLAY_RECOGNIZED"
   | "UNRECOGNIZED_VERSION"
   | "UNEVALUATED";
-export const AppIntegrityAppRecognitionVerdictEnum = /*@__PURE__*/ S.String;
+export const AppIntegrityAppRecognitionVerdictEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -331,8 +331,7 @@ export type RecentDeviceActivityDeviceActivityLevelEnum =
   | "LEVEL_2"
   | "LEVEL_3"
   | "LEVEL_4";
-export const RecentDeviceActivityDeviceActivityLevelEnum =
-  /*@__PURE__*/ S.String;
+export const RecentDeviceActivityDeviceActivityLevelEnum = S.String;
 
 /** Recent device activity can help developers identify devices that have exhibited hyperactive attestation activity, which could be a sign of an attack or token farming. */
 export interface RecentDeviceActivity {
@@ -355,8 +354,7 @@ export type DeviceIntegrityDeviceRecognitionVerdictItemEnum =
   | "MEETS_DEVICE_INTEGRITY"
   | "MEETS_STRONG_INTEGRITY"
   | "MEETS_VIRTUAL_INTEGRITY";
-export const DeviceIntegrityDeviceRecognitionVerdictItemEnum =
-  /*@__PURE__*/ S.String;
+export const DeviceIntegrityDeviceRecognitionVerdictItemEnum = S.String;
 
 export type DeviceIntegrityDeviceRecognitionVerdictItemEnumList =
   Array<DeviceIntegrityDeviceRecognitionVerdictItemEnum>;
@@ -371,8 +369,7 @@ export type DeviceIntegrityLegacyDeviceRecognitionVerdictItemEnum =
   | "MEETS_DEVICE_INTEGRITY"
   | "MEETS_STRONG_INTEGRITY"
   | "MEETS_VIRTUAL_INTEGRITY";
-export const DeviceIntegrityLegacyDeviceRecognitionVerdictItemEnum =
-  /*@__PURE__*/ S.String;
+export const DeviceIntegrityLegacyDeviceRecognitionVerdictItemEnum = S.String;
 
 export type DeviceIntegrityLegacyDeviceRecognitionVerdictItemEnumList =
   Array<DeviceIntegrityLegacyDeviceRecognitionVerdictItemEnum>;
@@ -479,8 +476,7 @@ export const DecodePcIntegrityTokenV1Request = /*@__PURE__*/ S.suspend(() =>
 export type PcDeviceIntegrityDeviceRecognitionVerdictItemEnum =
   | "DEVICE_RECOGNITION_VERDICT_UNSPECIFIED"
   | "MEETS_PC_INTEGRITY";
-export const PcDeviceIntegrityDeviceRecognitionVerdictItemEnum =
-  /*@__PURE__*/ S.String;
+export const PcDeviceIntegrityDeviceRecognitionVerdictItemEnum = S.String;
 
 export type PcDeviceIntegrityDeviceRecognitionVerdictItemEnumList =
   Array<PcDeviceIntegrityDeviceRecognitionVerdictItemEnum>;
@@ -509,7 +505,7 @@ export type PcAccountDetailsAppLicensingVerdictEnum =
   | "LICENSED"
   | "UNLICENSED"
   | "UNEVALUATED";
-export const PcAccountDetailsAppLicensingVerdictEnum = /*@__PURE__*/ S.String;
+export const PcAccountDetailsAppLicensingVerdictEnum = S.String;
 
 /** Contains the account information such as the licensing status for the user in the scope. */
 export interface PcAccountDetails {

@@ -237,7 +237,7 @@ export const CreateDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDatabaseResponse>;
 
 export type CreateUserRequestRole = "schema_admin" | "writer" | "reader";
-export const CreateUserRequestRole = /*@__PURE__*/ S.String;
+export const CreateUserRequestRole = S.String;
 
 export interface CreateUserRequest {
   id: string;
@@ -842,7 +842,7 @@ export const RestoreBackupResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RestoreBackupResponse>;
 
 export type UpdateUserRoleRequestRole = "schema_admin" | "writer" | "reader";
-export const UpdateUserRoleRequestRole = /*@__PURE__*/ S.String;
+export const UpdateUserRoleRequestRole = S.String;
 
 export interface UpdateUserRoleRequest {
   id: string;

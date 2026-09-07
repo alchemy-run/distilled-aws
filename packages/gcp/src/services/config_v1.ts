@@ -143,7 +143,7 @@ export type DeploymentGroupStateEnum =
   | "FAILED"
   | "SUSPENDED"
   | "DELETED";
-export const DeploymentGroupStateEnum = /*@__PURE__*/ S.String;
+export const DeploymentGroupStateEnum = S.String;
 
 export type DeploymentGroupProvisioningStateEnum =
   | "PROVISIONING_STATE_UNSPECIFIED"
@@ -153,7 +153,7 @@ export type DeploymentGroupProvisioningStateEnum =
   | "DEPROVISIONING"
   | "DEPROVISIONED"
   | "FAILED_TO_DEPROVISION";
-export const DeploymentGroupProvisioningStateEnum = /*@__PURE__*/ S.String;
+export const DeploymentGroupProvisioningStateEnum = S.String;
 
 export type DocumentMap = { [key: string]: unknown | undefined };
 export const DocumentMap = /*@__PURE__*/ S.Record(
@@ -285,12 +285,12 @@ export type DeploymentLockStateEnum =
   | "UNLOCKING"
   | "LOCK_FAILED"
   | "UNLOCK_FAILED";
-export const DeploymentLockStateEnum = /*@__PURE__*/ S.String;
+export const DeploymentLockStateEnum = S.String;
 
 export type ProviderConfigSourceTypeEnum =
   | "PROVIDER_SOURCE_UNSPECIFIED"
   | "SERVICE_MAINTAINED";
-export const ProviderConfigSourceTypeEnum = /*@__PURE__*/ S.String;
+export const ProviderConfigSourceTypeEnum = S.String;
 
 /** ProviderConfig contains the provider configurations. */
 export interface ProviderConfig {
@@ -312,13 +312,13 @@ export type DeploymentErrorCodeEnum =
   | "BUCKET_CREATION_PERMISSION_DENIED"
   | "BUCKET_CREATION_FAILED"
   | "EXTERNAL_VALUE_SOURCE_IMPORT_FAILED";
-export const DeploymentErrorCodeEnum = /*@__PURE__*/ S.String;
+export const DeploymentErrorCodeEnum = S.String;
 
 export type DeploymentQuotaValidationEnum =
   | "QUOTA_VALIDATION_UNSPECIFIED"
   | "ENABLED"
   | "ENFORCED";
-export const DeploymentQuotaValidationEnum = /*@__PURE__*/ S.String;
+export const DeploymentQuotaValidationEnum = S.String;
 
 /** A Terraform input variable. */
 export interface TerraformVariable {
@@ -490,7 +490,7 @@ export type DeploymentStateEnum =
   | "FAILED"
   | "SUSPENDED"
   | "DELETED";
-export const DeploymentStateEnum = /*@__PURE__*/ S.String;
+export const DeploymentStateEnum = S.String;
 
 /** A Deployment is a group of resources and configs managed and provisioned by Infra Manager. */
 export interface Deployment {
@@ -609,7 +609,7 @@ export type PreviewStateEnum =
   | "DELETING"
   | "FAILED"
   | "DELETED";
-export const PreviewStateEnum = /*@__PURE__*/ S.String;
+export const PreviewStateEnum = S.String;
 
 /** Artifacts created by preview. */
 export interface PreviewArtifacts {
@@ -636,13 +636,13 @@ export type PreviewErrorCodeEnum =
   | "PREVIEW_BUILD_API_FAILED"
   | "PREVIEW_BUILD_RUN_FAILED"
   | "EXTERNAL_VALUE_SOURCE_IMPORT_FAILED";
-export const PreviewErrorCodeEnum = /*@__PURE__*/ S.String;
+export const PreviewErrorCodeEnum = S.String;
 
 export type PreviewPreviewModeEnum =
   | "PREVIEW_MODE_UNSPECIFIED"
   | "DEFAULT"
   | "DELETE";
-export const PreviewPreviewModeEnum = /*@__PURE__*/ S.String;
+export const PreviewPreviewModeEnum = S.String;
 
 /** A preview represents a set of actions Infra Manager would perform to move the resources towards the desired state as specified in the configuration. */
 export interface Preview {
@@ -749,7 +749,7 @@ export type DeleteProjectsLocationsDeploymentGroupsDeploymentReferencePolicyEnum
   | "FAIL_IF_METADATA_REFERENCES_EXIST"
   | "IGNORE_DEPLOYMENT_REFERENCES";
 export const DeleteProjectsLocationsDeploymentGroupsDeploymentReferencePolicyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DeleteProjectsLocationsDeploymentGroupsRequest {
   /** Optional. If set to true, any revisions for this deployment group will also be deleted. (Otherwise, the request will only work if the deployment group has no revisions.) */
@@ -789,8 +789,7 @@ export type DeleteProjectsLocationsDeploymentsDeletePolicyEnum =
   | "DELETE_POLICY_UNSPECIFIED"
   | "DELETE"
   | "ABANDON";
-export const DeleteProjectsLocationsDeploymentsDeletePolicyEnum =
-  /*@__PURE__*/ S.String;
+export const DeleteProjectsLocationsDeploymentsDeletePolicyEnum = S.String;
 
 export interface DeleteProjectsLocationsDeploymentsRequest {
   /** Optional. If set to true, any revisions for this deployment will also be deleted. (Otherwise, the request will only work if the deployment has no revisions.) */
@@ -904,8 +903,7 @@ export type DeprovisionDeploymentGroupRequestDeletePolicyEnum =
   | "DELETE_POLICY_UNSPECIFIED"
   | "DELETE"
   | "ABANDON";
-export const DeprovisionDeploymentGroupRequestDeletePolicyEnum =
-  /*@__PURE__*/ S.String;
+export const DeprovisionDeploymentGroupRequestDeletePolicyEnum = S.String;
 
 /** The request message for the DeprovisionDeploymentGroup method. */
 export interface DeprovisionDeploymentGroupRequest {
@@ -1182,7 +1180,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -1428,14 +1426,14 @@ export type RevisionStateEnum =
   | "APPLYING"
   | "APPLIED"
   | "FAILED";
-export const RevisionStateEnum = /*@__PURE__*/ S.String;
+export const RevisionStateEnum = S.String;
 
 export type RevisionActionEnum =
   | "ACTION_UNSPECIFIED"
   | "CREATE"
   | "UPDATE"
   | "DELETE";
-export const RevisionActionEnum = /*@__PURE__*/ S.String;
+export const RevisionActionEnum = S.String;
 
 export type RevisionErrorCodeEnum =
   | "ERROR_CODE_UNSPECIFIED"
@@ -1444,13 +1442,13 @@ export type RevisionErrorCodeEnum =
   | "APPLY_BUILD_RUN_FAILED"
   | "QUOTA_VALIDATION_FAILED"
   | "EXTERNAL_VALUE_SOURCE_IMPORT_FAILED";
-export const RevisionErrorCodeEnum = /*@__PURE__*/ S.String;
+export const RevisionErrorCodeEnum = S.String;
 
 export type RevisionQuotaValidationEnum =
   | "QUOTA_VALIDATION_UNSPECIFIED"
   | "ENABLED"
   | "ENFORCED";
-export const RevisionQuotaValidationEnum = /*@__PURE__*/ S.String;
+export const RevisionQuotaValidationEnum = S.String;
 
 /** A child resource of a Deployment generated by a 'CreateDeployment' or 'UpdateDeployment' call. Each Revision contains metadata pertaining to a snapshot of a particular Deployment. */
 export interface Revision {
@@ -1549,7 +1547,7 @@ export type ResourceIntentEnum =
   | "DELETE"
   | "RECREATE"
   | "UNCHANGED";
-export const ResourceIntentEnum = /*@__PURE__*/ S.String;
+export const ResourceIntentEnum = S.String;
 
 export type ResourceStateEnum =
   | "STATE_UNSPECIFIED"
@@ -1557,7 +1555,7 @@ export type ResourceStateEnum =
   | "IN_PROGRESS"
   | "RECONCILED"
   | "FAILED";
-export const ResourceStateEnum = /*@__PURE__*/ S.String;
+export const ResourceStateEnum = S.String;
 
 /** CAI info of a Resource. */
 export interface ResourceCAIInfo {
@@ -1708,7 +1706,7 @@ export type ResourceChangeIntentEnum =
   | "DELETE"
   | "RECREATE"
   | "UNCHANGED";
-export const ResourceChangeIntentEnum = /*@__PURE__*/ S.String;
+export const ResourceChangeIntentEnum = S.String;
 
 /** A property change represents a change to a property in the state file. */
 export interface PropertyChange {
@@ -1868,7 +1866,7 @@ export type TerraformVersionStateEnum =
   | "ACTIVE"
   | "DEPRECATED"
   | "OBSOLETE";
-export const TerraformVersionStateEnum = /*@__PURE__*/ S.String;
+export const TerraformVersionStateEnum = S.String;
 
 /** A TerraformVersion represents the support state the corresponding Terraform version. */
 export interface TerraformVersion {

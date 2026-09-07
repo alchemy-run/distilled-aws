@@ -594,7 +594,7 @@ export const NFSFileShareDefaults = /*@__PURE__*/ S.suspend(() =>
   identifier: "NFSFileShareDefaults",
 }) as any as S.Schema<NFSFileShareDefaults>;
 export type EncryptionType = "SseS3" | "SseKms" | "DsseKms" | (string & {});
-export const EncryptionType = /*@__PURE__*/ S.String;
+export const EncryptionType = S.String;
 
 export type Role = string;
 export type LocationARN = string;
@@ -608,7 +608,7 @@ export type ObjectACL =
   | "bucket-owner-full-control"
   | "aws-exec-read"
   | (string & {});
-export const ObjectACL = /*@__PURE__*/ S.String;
+export const ObjectACL = S.String;
 
 export type Ipv4OrIpv6AddressCIDR = string;
 export type FileShareClientList = string[];
@@ -696,7 +696,7 @@ export type CaseSensitivity =
   | "ClientSpecified"
   | "CaseSensitive"
   | (string & {});
-export const CaseSensitivity = /*@__PURE__*/ S.String;
+export const CaseSensitivity = S.String;
 
 export interface CreateSMBFileShareInput {
   ClientToken: string;
@@ -907,14 +907,14 @@ export const CreateStorediSCSIVolumeOutput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateStorediSCSIVolumeOutput>;
 export type PoolName = string;
 export type TapeStorageClass = "DEEP_ARCHIVE" | "GLACIER" | (string & {});
-export const TapeStorageClass = /*@__PURE__*/ S.String;
+export const TapeStorageClass = S.String;
 
 export type RetentionLockType =
   | "COMPLIANCE"
   | "GOVERNANCE"
   | "NONE"
   | (string & {});
-export const RetentionLockType = /*@__PURE__*/ S.String;
+export const RetentionLockType = S.String;
 
 export type RetentionLockTimeInDays = number;
 export interface CreateTapePoolInput {
@@ -1378,7 +1378,7 @@ export type AvailabilityMonitorTestStatus =
   | "FAILED"
   | "PENDING"
   | (string & {});
-export const AvailabilityMonitorTestStatus = /*@__PURE__*/ S.String;
+export const AvailabilityMonitorTestStatus = S.String;
 
 export interface DescribeAvailabilityMonitorTestOutput {
   GatewayARN?: string;
@@ -1647,14 +1647,14 @@ export type CacheReportStatus =
   | "FAILED"
   | "ERROR"
   | (string & {});
-export const CacheReportStatus = /*@__PURE__*/ S.String;
+export const CacheReportStatus = S.String;
 
 export type ReportCompletionPercent = number;
 export type CacheReportFilterName =
   | "UploadState"
   | "UploadFailureReason"
   | (string & {});
-export const CacheReportFilterName = /*@__PURE__*/ S.String;
+export const CacheReportFilterName = S.String;
 
 export type CacheReportFilterValue = string;
 export type CacheReportFilterValues = string[];
@@ -1881,13 +1881,13 @@ export type HostEnvironment =
   | "OTHER"
   | "SNOWBALL"
   | (string & {});
-export const HostEnvironment = /*@__PURE__*/ S.String;
+export const HostEnvironment = S.String;
 
 export type EndpointType = string;
 export type SoftwareUpdatesEndDate = string;
 export type DeprecationDate = string;
 export type GatewayCapacity = "Small" | "Medium" | "Large" | (string & {});
-export const GatewayCapacity = /*@__PURE__*/ S.String;
+export const GatewayCapacity = S.String;
 
 export type SupportedGatewayCapacities = GatewayCapacity[];
 export const SupportedGatewayCapacities =
@@ -1969,7 +1969,7 @@ export type AutomaticUpdatePolicy =
   | "ALL_VERSIONS"
   | "EMERGENCY_VERSIONS_ONLY"
   | (string & {});
-export const AutomaticUpdatePolicy = /*@__PURE__*/ S.String;
+export const AutomaticUpdatePolicy = S.String;
 
 export interface SoftwareUpdatePreferences {
   AutomaticUpdatePolicy?: AutomaticUpdatePolicy;
@@ -2217,7 +2217,7 @@ export type ActiveDirectoryStatus =
   | "UNKNOWN_ERROR"
   | "INSUFFICIENT_PERMISSIONS"
   | (string & {});
-export const ActiveDirectoryStatus = /*@__PURE__*/ S.String;
+export const ActiveDirectoryStatus = S.String;
 
 export type SMBSecurityStrategy =
   | "ClientSpecified"
@@ -2225,7 +2225,7 @@ export type SMBSecurityStrategy =
   | "MandatoryEncryption"
   | "MandatoryEncryptionNoAes128"
   | (string & {});
-export const SMBSecurityStrategy = /*@__PURE__*/ S.String;
+export const SMBSecurityStrategy = S.String;
 
 export interface SMBLocalGroups {
   GatewayAdmins?: string[];
@@ -3009,7 +3009,7 @@ export const ListFileSharesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListFileSharesInput",
 }) as any as S.Schema<ListFileSharesInput>;
 export type FileShareType = "NFS" | "SMB" | (string & {});
-export const FileShareType = /*@__PURE__*/ S.String;
+export const FileShareType = S.String;
 
 export interface FileShareInfo {
   FileShareType?: FileShareType;
@@ -3288,7 +3288,7 @@ export const ListTapePoolsInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTapePoolsInput",
 }) as any as S.Schema<ListTapePoolsInput>;
 export type PoolStatus = "ACTIVE" | "DELETED" | (string & {});
-export const PoolStatus = /*@__PURE__*/ S.String;
+export const PoolStatus = S.String;
 
 export interface PoolInfo {
   PoolARN?: string;
@@ -4489,7 +4489,7 @@ export type ErrorCode =
   | "VolumeNotFound"
   | "VolumeNotReady"
   | (string & {});
-export const ErrorCode = /*@__PURE__*/ S.String;
+export const ErrorCode = S.String;
 
 export type ErrorDetails = { [key: string]: string | undefined };
 export const ErrorDetails = /*@__PURE__*/ S.Record(

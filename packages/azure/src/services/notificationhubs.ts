@@ -24,7 +24,7 @@ export const CheckNamespaceAvailabilityRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Namespace SKU name. */
 export type SkuName = "Free" | "Basic" | "Standard";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** The Sku description for a namespace */
 export interface Sku {
@@ -87,7 +87,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -95,7 +95,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -479,15 +479,15 @@ export type OperationProvisioningState =
   | "Canceled"
   | "Pending"
   | "Disabled";
-export const OperationProvisioningState = /*@__PURE__*/ S.String;
+export const OperationProvisioningState = S.String;
 
 /** Namespace status. */
 export type NamespaceStatus = "Created" | "Creating" | "Suspended" | "Deleting";
-export const NamespaceStatus = /*@__PURE__*/ S.String;
+export const NamespaceStatus = S.String;
 
 /** Defines values for NamespaceType. */
 export type NamespaceType = "Messaging" | "NotificationHub";
-export const NamespaceType = /*@__PURE__*/ S.String;
+export const NamespaceType = S.String;
 
 /** Allowed replication region */
 export type ReplicationRegion =
@@ -499,15 +499,15 @@ export type ReplicationRegion =
   | "SouthEastAsia"
   | "SouthAfricaNorth"
   | "None";
-export const ReplicationRegion = /*@__PURE__*/ S.String;
+export const ReplicationRegion = S.String;
 
 /** Namespace SKU name. */
 export type ZoneRedundancyPreference = "Disabled" | "Enabled";
-export const ZoneRedundancyPreference = /*@__PURE__*/ S.String;
+export const ZoneRedundancyPreference = S.String;
 
 /** Defines values for AccessRights. */
 export type AccessRights = "Manage" | "Send" | "Listen";
-export const AccessRights = /*@__PURE__*/ S.String;
+export const AccessRights = S.String;
 
 /** List of access rights. */
 export type IpRuleRightsList = Array<AccessRights | (string & {})>;
@@ -856,8 +856,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Deleting"
   | "DeletingByProxy"
   | "Deleted";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Represents a Private Endpoint that is connected to Notification Hubs namespace using Private Endpoint Connection. */
 export interface RemotePrivateEndpointConnection {
@@ -885,7 +884,7 @@ export type PrivateLinkConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected";
-export const PrivateLinkConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateLinkConnectionStatus = S.String;
 
 /** State of the Private Link Service connection. */
 export interface RemotePrivateLinkServiceConnectionState {
@@ -961,7 +960,7 @@ export const NamespacePropertiesPrivateEndpointConnectionsList =
 
 /** Type of public network access. */
 export type PublicNetworkAccess = "Enabled" | "Disabled";
-export const PublicNetworkAccess = /*@__PURE__*/ S.String;
+export const PublicNetworkAccess = S.String;
 
 /** Represents namespace properties. */
 export interface NamespaceProperties {
@@ -2816,7 +2815,7 @@ export const NotificationHubsCreateOrUpdateAuthorizationRuleResponse =
 
 /** Type of Shared Access Policy Key (primary or secondary). */
 export type PolicyKeyType = "PrimaryKey" | "SecondaryKey";
-export const PolicyKeyType = /*@__PURE__*/ S.String;
+export const PolicyKeyType = S.String;
 
 export interface RegenerateNamespaceKeysRequest {
   /** The ID of the target subscription. The value must be an UUID. */

@@ -273,7 +273,7 @@ export type ServiceQuotaTemplateAssociationStatus =
   | "ASSOCIATED"
   | "DISASSOCIATED"
   | (string & {});
-export const ServiceQuotaTemplateAssociationStatus = /*@__PURE__*/ S.String;
+export const ServiceQuotaTemplateAssociationStatus = S.String;
 
 export interface GetAssociationForServiceQuotaTemplateResponse {
   ServiceQuotaTemplateAssociationStatus?: ServiceQuotaTemplateAssociationStatus;
@@ -298,14 +298,14 @@ export const GetAutoManagementConfigurationRequest = /*@__PURE__*/ S.suspend(
   identifier: "GetAutoManagementConfigurationRequest",
 }) as any as S.Schema<GetAutoManagementConfigurationRequest>;
 export type OptInLevel = "ACCOUNT" | (string & {});
-export const OptInLevel = /*@__PURE__*/ S.String;
+export const OptInLevel = S.String;
 
 export type OptInType = "NotifyOnly" | "NotifyAndAdjust" | (string & {});
-export const OptInType = /*@__PURE__*/ S.String;
+export const OptInType = S.String;
 
 export type AmazonResourceName = string;
 export type OptInStatus = "ENABLED" | "DISABLED" | (string & {});
-export const OptInStatus = /*@__PURE__*/ S.String;
+export const OptInStatus = S.String;
 
 export type ExcludedService = string;
 export type QuotaName = string;
@@ -398,7 +398,7 @@ export type PeriodUnit =
   | "DAY"
   | "WEEK"
   | (string & {});
-export const PeriodUnit = /*@__PURE__*/ S.String;
+export const PeriodUnit = S.String;
 
 export interface QuotaPeriod {
   PeriodValue?: number;
@@ -416,7 +416,7 @@ export type ErrorCode =
   | "DEPENDENCY_SERVICE_ERROR"
   | "SERVICE_QUOTA_NOT_AVAILABLE_ERROR"
   | (string & {});
-export const ErrorCode = /*@__PURE__*/ S.String;
+export const ErrorCode = S.String;
 
 export type ErrorMessage = string;
 export interface ErrorReason {
@@ -430,10 +430,10 @@ export const ErrorReason = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ErrorReason" }) as any as S.Schema<ErrorReason>;
 export type AppliedLevelEnum = "ACCOUNT" | "RESOURCE" | "ALL" | (string & {});
-export const AppliedLevelEnum = /*@__PURE__*/ S.String;
+export const AppliedLevelEnum = S.String;
 
 export type QuotaContextScope = "RESOURCE" | "ACCOUNT" | (string & {});
-export const QuotaContextScope = /*@__PURE__*/ S.String;
+export const QuotaContextScope = S.String;
 
 export type QuotaContextScopeType = string;
 export type QuotaContextId = string;
@@ -521,7 +521,7 @@ export type ReportStatus =
   | "COMPLETED"
   | "FAILED"
   | (string & {});
-export const ReportStatus = /*@__PURE__*/ S.String;
+export const ReportStatus = S.String;
 
 export type TotalCount = number;
 export type UtilizationPct = number;
@@ -594,7 +594,7 @@ export const GetRequestedServiceQuotaChangeRequest = /*@__PURE__*/ S.suspend(
   identifier: "GetRequestedServiceQuotaChangeRequest",
 }) as any as S.Schema<GetRequestedServiceQuotaChangeRequest>;
 export type RequestType = "AutomaticManagement" | (string & {});
-export const RequestType = /*@__PURE__*/ S.String;
+export const RequestType = S.String;
 
 export type CustomerServiceEngagementId = string;
 export type RequestStatus =
@@ -606,7 +606,7 @@ export type RequestStatus =
   | "NOT_APPROVED"
   | "INVALID_REQUEST"
   | (string & {});
-export const RequestStatus = /*@__PURE__*/ S.String;
+export const RequestStatus = S.String;
 
 export type Requester = string;
 export interface RequestedServiceQuotaChange {

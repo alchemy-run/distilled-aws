@@ -39,7 +39,7 @@ export const CheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The reason why the given name is not available. */
 export type CheckNameAvailabilityResponseReason = "Invalid" | "AlreadyExists";
-export const CheckNameAvailabilityResponseReason = /*@__PURE__*/ S.String;
+export const CheckNameAvailabilityResponseReason = S.String;
 
 export interface CheckNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
@@ -73,19 +73,19 @@ export type RunningState =
   | "Unknown"
   | "Pausing"
   | "Resuming";
-export const RunningState = /*@__PURE__*/ S.String;
+export const RunningState = S.String;
 
 /** Type of the ledger. Private means transaction data is encrypted. */
 export type LedgerType = "Unknown" | "Public" | "Private";
-export const LedgerType = /*@__PURE__*/ S.String;
+export const LedgerType = S.String;
 
 /** SKU associated with the ledger resource */
 export type LedgerSku = "Standard" | "Basic" | "Unknown";
-export const LedgerSku = /*@__PURE__*/ S.String;
+export const LedgerSku = S.String;
 
 /** LedgerRole associated with the Security Principal of Ledger */
 export type LedgerRoleName = "Reader" | "Contributor" | "Administrator";
-export const LedgerRoleName = /*@__PURE__*/ S.String;
+export const LedgerRoleName = S.String;
 
 /** AAD based security principal with associated Ledger RoleName */
 export interface AADBasedSecurityPrincipal {
@@ -140,7 +140,7 @@ export const LedgerPropertiesInputCertBasedSecurityPrincipalsList =
 
 /** Object representing the application type of the Confidential Ledger. Defaults to ConfidentialLedger. */
 export type ApplicationType = "ConfidentialLedger" | "CodeTransparency";
-export const ApplicationType = /*@__PURE__*/ S.String;
+export const ApplicationType = S.String;
 
 /** Additional Confidential Ledger properties. */
 export interface LedgerPropertiesInput {
@@ -235,7 +235,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -243,7 +243,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -287,7 +287,7 @@ export type ProvisioningState =
   | "Creating"
   | "Deleting"
   | "Updating";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Array of all AAD based Security Principals. */
 export type LedgerPropertiesAadBasedSecurityPrincipalsList =
@@ -307,7 +307,7 @@ export const LedgerPropertiesCertBasedSecurityPrincipalsList =
 
 /** Object representing the enclave platform for the Confidential Ledger application. Defaults to IntelSgx. */
 export type EnclavePlatform = "IntelSgx" | "AmdSevSnp";
-export const EnclavePlatform = /*@__PURE__*/ S.String;
+export const EnclavePlatform = S.String;
 
 /** Additional Confidential Ledger properties. */
 export interface LedgerProperties {

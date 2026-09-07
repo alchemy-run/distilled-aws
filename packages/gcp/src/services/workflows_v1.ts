@@ -77,7 +77,7 @@ export const StringList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<StringList>;
 
 export type StateErrorTypeEnum = "TYPE_UNSPECIFIED" | "KMS_ERROR";
-export const StateErrorTypeEnum = /*@__PURE__*/ S.String;
+export const StateErrorTypeEnum = S.String;
 
 /** Describes an error related to the current state of the workflow. */
 export interface StateError {
@@ -98,16 +98,16 @@ export type WorkflowCallLogLevelEnum =
   | "LOG_ALL_CALLS"
   | "LOG_ERRORS_ONLY"
   | "LOG_NONE";
-export const WorkflowCallLogLevelEnum = /*@__PURE__*/ S.String;
+export const WorkflowCallLogLevelEnum = S.String;
 
 export type WorkflowStateEnum = "STATE_UNSPECIFIED" | "ACTIVE" | "UNAVAILABLE";
-export const WorkflowStateEnum = /*@__PURE__*/ S.String;
+export const WorkflowStateEnum = S.String;
 
 export type WorkflowExecutionHistoryLevelEnum =
   | "EXECUTION_HISTORY_LEVEL_UNSPECIFIED"
   | "EXECUTION_HISTORY_BASIC"
   | "EXECUTION_HISTORY_DETAILED";
-export const WorkflowExecutionHistoryLevelEnum = /*@__PURE__*/ S.String;
+export const WorkflowExecutionHistoryLevelEnum = S.String;
 
 /** Workflow program to be executed by Workflows. */
 export interface Workflow {

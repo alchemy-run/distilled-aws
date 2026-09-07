@@ -687,7 +687,7 @@ export type TimezoneEnum =
   | "W-SU"
   | "WET"
   | "Zulu";
-export const TimezoneEnum = /*@__PURE__*/ S.String;
+export const TimezoneEnum = S.String;
 
 export type EnvironmentsAddProductIntentPartialUpdateRequestPersonDisplayNamePropertiesList =
   Array<string>;
@@ -719,11 +719,11 @@ export const EnvironmentsAddProductIntentPartialUpdateRequestSessionRecordingEve
 
 /** * `30d` - 30 Days * `90d` - 90 Days * `1y` - 1 Year * `5y` - 5 Years */
 export type SessionRecordingRetentionPeriodEnum = "30d" | "90d" | "1y" | "5y";
-export const SessionRecordingRetentionPeriodEnum = /*@__PURE__*/ S.String;
+export const SessionRecordingRetentionPeriodEnum = S.String;
 
 /** * `0` - Sunday * `1` - Monday */
 export type WeekStartDayEnum = 0 | 1;
-export const WeekStartDayEnum = /*@__PURE__*/ S.Number;
+export const WeekStartDayEnum = S.Number;
 
 export type EnvironmentsAddProductIntentPartialUpdateRequestLiveEventsColumnsList =
   Array<string>;
@@ -741,7 +741,7 @@ export const EnvironmentsAddProductIntentPartialUpdateRequestRecordingDomainsLis
 
 /** * `0` - Disabled * `1` - Stateless * `2` - Stateful */
 export type CookielessServerHashModeEnum = 0 | 1 | 2;
-export const CookielessServerHashModeEnum = /*@__PURE__*/ S.Number;
+export const CookielessServerHashModeEnum = S.Number;
 
 export interface TeamFeatureFlagPolicyConfig {
   /** When enabled, a new feature flag needs at least one tag, and a tagged flag cannot lose its last one. A create that declares it comes from a survey, experiment, early access feature, product tour, or web experiment is exempt, because those forms have no tag input. The caller sets that declaration, so a flag can still be created without a tag. */
@@ -909,7 +909,7 @@ export type BaseCurrencyEnum =
   | "YER"
   | "ZAR"
   | "ZMW";
-export const BaseCurrencyEnum = /*@__PURE__*/ S.String;
+export const BaseCurrencyEnum = S.String;
 
 export interface TeamRevenueAnalyticsConfig {
   base_currency?: BaseCurrencyEnum | (string & {});
@@ -978,13 +978,13 @@ export type BaseMathType =
   | "unique_session"
   | "first_time_for_user"
   | "first_matching_event_for_user";
-export const BaseMathType = /*@__PURE__*/ S.String;
+export const BaseMathType = S.String;
 
 export type FunnelMathType =
   | "total"
   | "first_time_for_user"
   | "first_time_for_user_with_filters";
-export const FunnelMathType = /*@__PURE__*/ S.String;
+export const FunnelMathType = S.String;
 
 export type PropertyMathType =
   | "avg"
@@ -996,7 +996,7 @@ export type PropertyMathType =
   | "p90"
   | "p95"
   | "p99";
-export const PropertyMathType = /*@__PURE__*/ S.String;
+export const PropertyMathType = S.String;
 
 export type CountPerActorMathType =
   | "avg_count_per_actor"
@@ -1007,13 +1007,13 @@ export type CountPerActorMathType =
   | "p90_count_per_actor"
   | "p95_count_per_actor"
   | "p99_count_per_actor";
-export const CountPerActorMathType = /*@__PURE__*/ S.String;
+export const CountPerActorMathType = S.String;
 
 export type GroupMathType =
   | "unique_group"
   | "first_time_for_group"
   | "first_matching_event_for_group";
-export const GroupMathType = /*@__PURE__*/ S.String;
+export const GroupMathType = S.String;
 
 export type ExperimentMetricMathType =
   | "total"
@@ -1025,10 +1025,10 @@ export type ExperimentMetricMathType =
   | "dau"
   | "unique_group"
   | "hogql";
-export const ExperimentMetricMathType = /*@__PURE__*/ S.String;
+export const ExperimentMetricMathType = S.String;
 
 export type CalendarHeatmapMathType = "total" | "dau";
-export const CalendarHeatmapMathType = /*@__PURE__*/ S.String;
+export const CalendarHeatmapMathType = S.String;
 
 export type MarketingAnalyticsEventConversionGoalMath =
   | BaseMathType
@@ -1040,10 +1040,10 @@ export type MarketingAnalyticsEventConversionGoalMath =
   | CalendarHeatmapMathType
   | string;
 export const MarketingAnalyticsEventConversionGoalMath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsEventConversionGoalMath>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsEventConversionGoalMath>;
 
 export type MathGroupTypeIndex = 0 | 1 | 2 | 3 | 4;
-export const MathGroupTypeIndex = /*@__PURE__*/ S.Number;
+export const MathGroupTypeIndex = S.Number;
 
 export type CurrencyCode =
   | "AED"
@@ -1198,7 +1198,7 @@ export type CurrencyCode =
   | "YER"
   | "ZAR"
   | "ZMW";
-export const CurrencyCode = /*@__PURE__*/ S.String;
+export const CurrencyCode = S.String;
 
 export interface RevenueCurrencyPropertyConfig {
   property?: string | null;
@@ -1258,11 +1258,11 @@ export type PropertyOperator =
   | "semver_wildcard"
   | "icontains_multi"
   | "not_icontains_multi";
-export const PropertyOperator = /*@__PURE__*/ S.String;
+export const PropertyOperator = S.String;
 
 export type EventPropertyFilterValueCase0Item = string | number | boolean;
 export const EventPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<EventPropertyFilterValueCase0Item>;
 
 export type EventPropertyFilterValueCase0List =
   Array<EventPropertyFilterValueCase0Item>;
@@ -1276,7 +1276,7 @@ export type EventPropertyFilterValue =
   | number
   | boolean;
 export const EventPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventPropertyFilterValue>;
+  S.Unknown as any as S.Schema<EventPropertyFilterValue>;
 
 export interface EventPropertyFilter {
   key?: string;
@@ -1300,7 +1300,7 @@ export const EventPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type PersonPropertyFilterValueCase0Item = string | number | boolean;
 export const PersonPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<PersonPropertyFilterValueCase0Item>;
 
 export type PersonPropertyFilterValueCase0List =
   Array<PersonPropertyFilterValueCase0Item>;
@@ -1314,7 +1314,7 @@ export type PersonPropertyFilterValue =
   | number
   | boolean;
 export const PersonPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonPropertyFilterValue>;
+  S.Unknown as any as S.Schema<PersonPropertyFilterValue>;
 
 export interface PersonPropertyFilter {
   key?: string;
@@ -1358,11 +1358,11 @@ export const CohortPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CohortPropertyFilter>;
 
 export type Key10 = "tag_name" | "text" | "href" | "selector";
-export const Key10 = /*@__PURE__*/ S.String;
+export const Key10 = S.String;
 
 export type ElementPropertyFilterValueCase0Item = string | number | boolean;
 export const ElementPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ElementPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<ElementPropertyFilterValueCase0Item>;
 
 export type ElementPropertyFilterValueCase0List =
   Array<ElementPropertyFilterValueCase0Item>;
@@ -1376,7 +1376,7 @@ export type ElementPropertyFilterValue =
   | number
   | boolean;
 export const ElementPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ElementPropertyFilterValue>;
+  S.Unknown as any as S.Schema<ElementPropertyFilterValue>;
 
 export interface ElementPropertyFilter {
   key?: Key10 | (string & {});
@@ -1399,7 +1399,7 @@ export const ElementPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type HogQLPropertyFilterValueCase0Item = string | number | boolean;
 export const HogQLPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<HogQLPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<HogQLPropertyFilterValueCase0Item>;
 
 export type HogQLPropertyFilterValueCase0List =
   Array<HogQLPropertyFilterValueCase0Item>;
@@ -1413,7 +1413,7 @@ export type HogQLPropertyFilterValue =
   | number
   | boolean;
 export const HogQLPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<HogQLPropertyFilterValue>;
+  S.Unknown as any as S.Schema<HogQLPropertyFilterValue>;
 
 export interface HogQLPropertyFilter {
   key?: string;
@@ -1437,7 +1437,7 @@ export type DataWarehousePropertyFilterValueCase0Item =
   | number
   | boolean;
 export const DataWarehousePropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataWarehousePropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<DataWarehousePropertyFilterValueCase0Item>;
 
 export type DataWarehousePropertyFilterValueCase0List =
   Array<DataWarehousePropertyFilterValueCase0Item>;
@@ -1451,7 +1451,7 @@ export type DataWarehousePropertyFilterValue =
   | number
   | boolean;
 export const DataWarehousePropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataWarehousePropertyFilterValue>;
+  S.Unknown as any as S.Schema<DataWarehousePropertyFilterValue>;
 
 export interface DataWarehousePropertyFilter {
   key?: string;
@@ -1480,7 +1480,7 @@ export type MarketingAnalyticsEventConversionGoalPropertiesItem =
   | HogQLPropertyFilter
   | DataWarehousePropertyFilter;
 export const MarketingAnalyticsEventConversionGoalPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsEventConversionGoalPropertiesItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsEventConversionGoalPropertiesItem>;
 
 export type MarketingAnalyticsEventConversionGoalPropertiesList =
   Array<MarketingAnalyticsEventConversionGoalPropertiesItem>;
@@ -1502,7 +1502,7 @@ export type MarketingAnalyticsEventConversionGoalSchemaMapValue =
   | string
   | unknown;
 export const MarketingAnalyticsEventConversionGoalSchemaMapValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsEventConversionGoalSchemaMapValue>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsEventConversionGoalSchemaMapValue>;
 
 export type MarketingAnalyticsEventConversionGoalSchemaMapMap = {
   [key: string]:
@@ -1593,7 +1593,7 @@ export type MarketingAnalyticsActionConversionGoalMath =
   | CalendarHeatmapMathType
   | string;
 export const MarketingAnalyticsActionConversionGoalMath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsActionConversionGoalMath>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsActionConversionGoalMath>;
 
 export type MarketingAnalyticsActionConversionGoalPropertiesItem =
   | EventPropertyFilter
@@ -1603,7 +1603,7 @@ export type MarketingAnalyticsActionConversionGoalPropertiesItem =
   | HogQLPropertyFilter
   | DataWarehousePropertyFilter;
 export const MarketingAnalyticsActionConversionGoalPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsActionConversionGoalPropertiesItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsActionConversionGoalPropertiesItem>;
 
 export type MarketingAnalyticsActionConversionGoalPropertiesList =
   Array<MarketingAnalyticsActionConversionGoalPropertiesItem>;
@@ -1625,7 +1625,7 @@ export type MarketingAnalyticsActionConversionGoalSchemaMapValue =
   | string
   | unknown;
 export const MarketingAnalyticsActionConversionGoalSchemaMapValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsActionConversionGoalSchemaMapValue>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsActionConversionGoalSchemaMapValue>;
 
 export type MarketingAnalyticsActionConversionGoalSchemaMapMap = {
   [key: string]:
@@ -1708,7 +1708,7 @@ export type MarketingAnalyticsWarehouseConversionGoalMath =
   | CalendarHeatmapMathType
   | string;
 export const MarketingAnalyticsWarehouseConversionGoalMath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsWarehouseConversionGoalMath>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsWarehouseConversionGoalMath>;
 
 export type MarketingAnalyticsWarehouseConversionGoalPropertiesItem =
   | EventPropertyFilter
@@ -1718,7 +1718,7 @@ export type MarketingAnalyticsWarehouseConversionGoalPropertiesItem =
   | HogQLPropertyFilter
   | DataWarehousePropertyFilter;
 export const MarketingAnalyticsWarehouseConversionGoalPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsWarehouseConversionGoalPropertiesItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsWarehouseConversionGoalPropertiesItem>;
 
 export type MarketingAnalyticsWarehouseConversionGoalPropertiesList =
   Array<MarketingAnalyticsWarehouseConversionGoalPropertiesItem>;
@@ -1740,7 +1740,7 @@ export type MarketingAnalyticsWarehouseConversionGoalSchemaMapValue =
   | string
   | unknown;
 export const MarketingAnalyticsWarehouseConversionGoalSchemaMapValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsWarehouseConversionGoalSchemaMapValue>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsWarehouseConversionGoalSchemaMapValue>;
 
 export type MarketingAnalyticsWarehouseConversionGoalSchemaMapMap = {
   [key: string]:
@@ -1828,7 +1828,7 @@ export type MarketingAnalyticsConversionGoalListItem =
   | MarketingAnalyticsActionConversionGoal
   | MarketingAnalyticsWarehouseConversionGoal;
 export const MarketingAnalyticsConversionGoalListItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsConversionGoalListItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsConversionGoalListItem>;
 
 /** The conversion goals configured for marketing analytics, in display order. */
 export type MarketingAnalyticsConversionGoalList =
@@ -1844,7 +1844,7 @@ export type AttributionModeEnum =
   | "linear"
   | "time_decay"
   | "position_based";
-export const AttributionModeEnum = /*@__PURE__*/ S.String;
+export const AttributionModeEnum = S.String;
 
 export type MarketingAnalyticsCampaignNameMappingsValueValueList =
   Array<string>;
@@ -1889,7 +1889,7 @@ export const MarketingAnalyticsCustomSourceMappings = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<MarketingAnalyticsCustomSourceMappings>;
 
 export type MatchField = "campaign_name" | "campaign_id";
-export const MatchField = /*@__PURE__*/ S.String;
+export const MatchField = S.String;
 
 export interface CampaignFieldPreference {
   match_field: MatchField | (string & {});
@@ -1973,21 +1973,21 @@ export const TeamCustomerAnalyticsConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** * `b2b` - B2B * `b2c` - B2C * `other` - Other */
 export type BusinessModelEnum = "b2b" | "b2c" | "other";
-export const BusinessModelEnum = /*@__PURE__*/ S.String;
+export const BusinessModelEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 /** Whether this project serves B2B or B2C customers, used to optimize the UI layout. * `b2b` - B2B * `b2c` - B2C * `other` - Other */
 export type EnvironmentsAddProductIntentPartialUpdateRequestBusinessModel =
   | BusinessModelEnum
   | BlankEnum;
 export const EnvironmentsAddProductIntentPartialUpdateRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnvironmentsAddProductIntentPartialUpdateRequestBusinessModel>;
+  S.Unknown as any as S.Schema<EnvironmentsAddProductIntentPartialUpdateRequestBusinessModel>;
 
 /** * `off` - Off * `opt_out` - Opt Out * `opt_in` - Opt In */
 export type EmailTrackingConsentModeEnum = "off" | "opt_out" | "opt_in";
-export const EmailTrackingConsentModeEnum = /*@__PURE__*/ S.String;
+export const EmailTrackingConsentModeEnum = S.String;
 
 export interface TeamWorkflowsConfig {
   /** When enabled, workflows engagement activity (email sends, opens, clicks, bounces, spam reports, unsubscribes) is captured as standard PostHog events ($workflows_email_*) alongside the existing workflow metrics. */
@@ -2268,7 +2268,7 @@ export type EnvironmentsDeleteSecretTokenBackupPartialUpdateRequestBusinessModel
   | BusinessModelEnum
   | BlankEnum;
 export const EnvironmentsDeleteSecretTokenBackupPartialUpdateRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnvironmentsDeleteSecretTokenBackupPartialUpdateRequestBusinessModel>;
+  S.Unknown as any as S.Schema<EnvironmentsDeleteSecretTokenBackupPartialUpdateRequestBusinessModel>;
 
 export interface EnvironmentsDeleteSecretTokenBackupPartialUpdateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2561,7 +2561,7 @@ export type EnvironmentsGenerateConversationsPublicTokenCreateRequestBusinessMod
   | BusinessModelEnum
   | BlankEnum;
 export const EnvironmentsGenerateConversationsPublicTokenCreateRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnvironmentsGenerateConversationsPublicTokenCreateRequestBusinessModel>;
+  S.Unknown as any as S.Schema<EnvironmentsGenerateConversationsPublicTokenCreateRequestBusinessModel>;
 
 export interface EnvironmentsGenerateConversationsPublicTokenCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2829,7 +2829,7 @@ export type EnvironmentsResetTokenPartialUpdateRequestBusinessModel =
   | BusinessModelEnum
   | BlankEnum;
 export const EnvironmentsResetTokenPartialUpdateRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnvironmentsResetTokenPartialUpdateRequestBusinessModel>;
+  S.Unknown as any as S.Schema<EnvironmentsResetTokenPartialUpdateRequestBusinessModel>;
 
 export interface EnvironmentsResetTokenPartialUpdateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -3095,7 +3095,7 @@ export type EnvironmentsRotateSecretTokenPartialUpdateRequestBusinessModel =
   | BusinessModelEnum
   | BlankEnum;
 export const EnvironmentsRotateSecretTokenPartialUpdateRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnvironmentsRotateSecretTokenPartialUpdateRequestBusinessModel>;
+  S.Unknown as any as S.Schema<EnvironmentsRotateSecretTokenPartialUpdateRequestBusinessModel>;
 
 export interface EnvironmentsRotateSecretTokenPartialUpdateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -3479,7 +3479,7 @@ export type RestrictionTypeEnum =
   | "force_overflow_from_ingestion"
   | "redirect_to_dlq"
   | "redirect_to_topic";
-export const RestrictionTypeEnum = /*@__PURE__*/ S.String;
+export const RestrictionTypeEnum = S.String;
 
 /** Distinct IDs the restriction applies to. Empty means it is not filtered by distinct ID. */
 export type EventIngestionRestrictionDistinctIdsList = Array<string>;
@@ -3512,7 +3512,7 @@ export type IngestionPipelineEnum =
   | "errortracking"
   | "clientwarnings"
   | "ai";
-export const IngestionPipelineEnum = /*@__PURE__*/ S.String;
+export const IngestionPipelineEnum = S.String;
 
 /** Ingestion pipelines the restriction applies to. Filters combine with AND; values within a filter combine with OR. */
 export type EventIngestionRestrictionPipelinesList =
@@ -3620,7 +3620,7 @@ export type UpdateEnvironmentsCompleteProductOnboardingPartialRequestBusinessMod
   | BusinessModelEnum
   | BlankEnum;
 export const UpdateEnvironmentsCompleteProductOnboardingPartialRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateEnvironmentsCompleteProductOnboardingPartialRequestBusinessModel>;
+  S.Unknown as any as S.Schema<UpdateEnvironmentsCompleteProductOnboardingPartialRequestBusinessModel>;
 
 export interface UpdateEnvironmentsCompleteProductOnboardingPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -3888,7 +3888,7 @@ export type UpdateEnvironmentsExperimentsConfigPartialRequestBusinessModel =
   | BusinessModelEnum
   | BlankEnum;
 export const UpdateEnvironmentsExperimentsConfigPartialRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateEnvironmentsExperimentsConfigPartialRequestBusinessModel>;
+  S.Unknown as any as S.Schema<UpdateEnvironmentsExperimentsConfigPartialRequestBusinessModel>;
 
 export interface UpdateEnvironmentsExperimentsConfigPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -4156,7 +4156,7 @@ export type UpdateEnvironmentsLogsConfigPartialRequestBusinessModel =
   | BusinessModelEnum
   | BlankEnum;
 export const UpdateEnvironmentsLogsConfigPartialRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateEnvironmentsLogsConfigPartialRequestBusinessModel>;
+  S.Unknown as any as S.Schema<UpdateEnvironmentsLogsConfigPartialRequestBusinessModel>;
 
 export interface UpdateEnvironmentsLogsConfigPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

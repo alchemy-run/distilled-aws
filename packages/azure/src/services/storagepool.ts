@@ -227,7 +227,7 @@ export type ProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Logical zone for Disk Pool resource; example: ["1"]. */
 export type DiskPoolPropertiesAvailabilityZonesList = Array<string>;
@@ -245,7 +245,7 @@ export type OperationalStatus =
   | "Running"
   | "Stopped"
   | "Stopped (deallocated)";
-export const OperationalStatus = /*@__PURE__*/ S.String;
+export const OperationalStatus = S.String;
 
 /** List of Azure Managed Disks to attach to a Disk Pool. */
 export type DiskPoolPropertiesDisksList = Array<Disk>;
@@ -296,7 +296,7 @@ export type SystemMetadataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemMetadataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemMetadataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemMetadataLastModifiedByType =
@@ -304,7 +304,7 @@ export type SystemMetadataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemMetadataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemMetadataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemMetadata {
@@ -536,7 +536,7 @@ export const GetIscsiTargetRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** ACL mode for iSCSI Target. */
 export type AclMode = "Dynamic" | "Static";
-export const AclMode = /*@__PURE__*/ S.String;
+export const AclMode = S.String;
 
 /** List of LUN names mapped to the ACL. */
 export type AclMappedLunsList = Array<string>;
@@ -1348,7 +1348,7 @@ export const ResourceSkuLocationInfo = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of restrictions. */
 export type ResourceSkuRestrictionsType = "Location" | "Zone";
-export const ResourceSkuRestrictionsType = /*@__PURE__*/ S.String;
+export const ResourceSkuRestrictionsType = S.String;
 
 /** The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted. */
 export type ResourceSkuRestrictionsValuesList = Array<string>;
@@ -1388,7 +1388,7 @@ export const ResourceSkuRestrictionInfo = /*@__PURE__*/ S.suspend(() =>
 export type ResourceSkuRestrictionsReasonCode =
   | "QuotaId"
   | "NotAvailableForSubscription";
-export const ResourceSkuRestrictionsReasonCode = /*@__PURE__*/ S.String;
+export const ResourceSkuRestrictionsReasonCode = S.String;
 
 /** Describes scaling information of a SKU. */
 export interface ResourceSkuRestrictions {

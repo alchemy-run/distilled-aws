@@ -106,7 +106,7 @@ export const AuthenticateTokenResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AuthenticateTokenResponse>;
 
 export type RessetAction = 1 | 2 | 4 | 8 | 16 | 31 | 0;
-export const RessetAction = /*@__PURE__*/ S.Number;
+export const RessetAction = S.Number;
 
 /** Command is the command being executed on a machine. If this is specified, the Machine must be set. */
 export type MainTokenAccessCommandList = Array<string>;
@@ -249,7 +249,7 @@ export const CheckAppCertificateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CheckAppCertificateRequest>;
 
 export type IssuedCertificateType = "rsa" | "ecdsa";
-export const IssuedCertificateType = /*@__PURE__*/ S.String;
+export const IssuedCertificateType = S.String;
 
 export interface IssuedCertificate {
   certificate_authority?: string;
@@ -272,13 +272,13 @@ export const CertificateEntryIssuedList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CertificateEntryIssuedList>;
 
 export type CertificateEntrySource = "custom" | "fly";
-export const CertificateEntrySource = /*@__PURE__*/ S.String;
+export const CertificateEntrySource = S.String;
 
 export type CertificateEntryStatus =
   | "active"
   | "pending_ownership"
   | "pending_validation";
-export const CertificateEntryStatus = /*@__PURE__*/ S.String;
+export const CertificateEntryStatus = S.String;
 
 export interface CertificateEntry {
   created_at?: string;
@@ -650,7 +650,7 @@ export type IPAssignmentType =
   | "egress_v4"
   | "egress_v6"
   | "egress_pair";
-export const IPAssignmentType = /*@__PURE__*/ S.String;
+export const IPAssignmentType = S.String;
 
 export interface CreateAppIPAssignmentRequest {
   /** Fly App Name */
@@ -755,7 +755,7 @@ export const FlyMachineCheckHeadersList = /*@__PURE__*/ S.Array(
 
 /** Kind of the check (informational, readiness) */
 export type FlyMachineCheckKind = "informational" | "readiness";
-export const FlyMachineCheckKind = /*@__PURE__*/ S.String;
+export const FlyMachineCheckKind = S.String;
 
 export interface FlyMachineCheck {
   /** The time to wait after a VM starts before checking its health */
@@ -820,7 +820,7 @@ export type FlyContainerDependencyCondition =
   | "exited_successfully"
   | "healthy"
   | "started";
-export const FlyContainerDependencyCondition = /*@__PURE__*/ S.String;
+export const FlyContainerDependencyCondition = S.String;
 
 export interface FlyContainerDependency {
   condition?: FlyContainerDependencyCondition | (string & {});
@@ -862,7 +862,7 @@ export type FlyEnvFromFieldRef =
   | "private_ip"
   | "region"
   | "image";
-export const FlyEnvFromFieldRef = /*@__PURE__*/ S.String;
+export const FlyEnvFromFieldRef = S.String;
 
 /** EnvVar defines an environment variable to be populated from a machine field, env_var */
 export interface FlyEnvFrom {
@@ -944,7 +944,7 @@ export const FlyHTTPHealthcheckHeadersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FlyHTTPHealthcheckHeadersList>;
 
 export type FlyContainerHealthcheckScheme = "http" | "https";
-export const FlyContainerHealthcheckScheme = /*@__PURE__*/ S.String;
+export const FlyContainerHealthcheckScheme = S.String;
 
 export interface FlyHTTPHealthcheck {
   /** Additional headers to send with the request */
@@ -977,7 +977,7 @@ export const FlyHTTPHealthcheck = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlyHTTPHealthcheck>;
 
 export type FlyContainerHealthcheckKind = "readiness" | "liveness";
-export const FlyContainerHealthcheckKind = /*@__PURE__*/ S.String;
+export const FlyContainerHealthcheckKind = S.String;
 
 export interface FlyTCPHealthcheck {
   /** The port to connect to, often the same as internal_port */
@@ -992,7 +992,7 @@ export const FlyTCPHealthcheck = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlyTCPHealthcheck>;
 
 export type FlyUnhealthyPolicy = "stop";
-export const FlyUnhealthyPolicy = /*@__PURE__*/ S.String;
+export const FlyUnhealthyPolicy = S.String;
 
 export interface FlyContainerHealthcheck {
   exec?: FlyExecHealthcheck;
@@ -1045,7 +1045,7 @@ export type FlyMachineRestartPolicy =
   | "always"
   | "on-failure"
   | "spot-price";
-export const FlyMachineRestartPolicy = /*@__PURE__*/ S.String;
+export const FlyMachineRestartPolicy = S.String;
 
 /** The Machine restart policy defines whether and how flyd restarts a Machine after its main process exits. See https://fly.io/docs/machines/guides-examples/machine-restart-policy/. */
 export interface FlyMachineRestart {
@@ -1096,7 +1096,7 @@ export type FlyStopConfigSignal =
   | "SIGUSR1"
   | "SIGUSR2"
   | "SIGTERM";
-export const FlyStopConfigSignal = /*@__PURE__*/ S.String;
+export const FlyStopConfigSignal = S.String;
 
 export interface FlyStopConfig {
   signal?: FlyStopConfigSignal | (string & {});
@@ -1250,7 +1250,7 @@ export const FlyMachineGuestKernelArgsList = /*@__PURE__*/ S.Array(
 
 /** Deprecated: use MachineConfig.Rootfs instead */
 export type FlyMachineGuestPersistRootfs = "never" | "always" | "restart";
-export const FlyMachineGuestPersistRootfs = /*@__PURE__*/ S.String;
+export const FlyMachineGuestPersistRootfs = S.String;
 
 export interface FlyMachineGuest {
   cpu_kind?: string;
@@ -1437,7 +1437,7 @@ export const FlyMachineConfigProcessesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FlyMachineConfigProcessesList>;
 
 export type FlyMachineRootfsPersist = "never" | "always" | "restart";
-export const FlyMachineRootfsPersist = /*@__PURE__*/ S.String;
+export const FlyMachineRootfsPersist = S.String;
 
 export interface FlyMachineRootfs {
   persist?: FlyMachineRootfsPersist | (string & {});
@@ -1454,7 +1454,7 @@ export const FlyMachineRootfs = /*@__PURE__*/ S.suspend(() =>
 
 /** Accepts a string (new format) or a boolean (old format). For backward compatibility with older clients, the API continues to use booleans for "off" and "stop" in responses. * "off" or false - Do not autostop the Machine. * "stop" or true - Automatically stop the Machine. * "suspend" - Automatically suspend the Machine, falling back to a full stop if this is not possible. */
 export type FlyMachineServiceAutostop = "off" | "stop" | "suspend";
-export const FlyMachineServiceAutostop = /*@__PURE__*/ S.String;
+export const FlyMachineServiceAutostop = S.String;
 
 export type FlyMachineServiceCheckHeadersList = Array<FlyMachineHTTPHeader>;
 export const FlyMachineServiceCheckHeadersList = /*@__PURE__*/ S.Array(
@@ -1530,7 +1530,7 @@ export const FlyMachinePortHandlersList = /*@__PURE__*/ S.Array(
 
 /** Currently either "cookie" or "header" */
 export type FlyReplayCacheType = "cookie" | "header";
-export const FlyReplayCacheType = /*@__PURE__*/ S.String;
+export const FlyReplayCacheType = S.String;
 
 export interface FlyReplayCache {
   allow_bypass?: boolean;
@@ -1873,7 +1873,7 @@ export const MachineEventsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<MachineEventsList>;
 
 export type MachineHostStatus = "ok" | "unknown" | "unreachable";
-export const MachineHostStatus = /*@__PURE__*/ S.String;
+export const MachineHostStatus = S.String;
 
 export type ImageRefLabelsMap = { [key: string]: string | undefined };
 export const ImageRefLabelsMap = /*@__PURE__*/ S.Record(
@@ -2005,7 +2005,7 @@ export const Lease = /*@__PURE__*/ S.suspend(() =>
 
 /** Postgres major version. */
 export type CreatePostgresRequestPgMajorVersion = "16" | "17";
-export const CreatePostgresRequestPgMajorVersion = /*@__PURE__*/ S.String;
+export const CreatePostgresRequestPgMajorVersion = S.String;
 
 /** Plan slug selecting CPU, memory, and disk sizing. */
 export type CreatePostgresRequestPlan =
@@ -2014,11 +2014,11 @@ export type CreatePostgresRequestPlan =
   | "launch"
   | "scale"
   | "Performance";
-export const CreatePostgresRequestPlan = /*@__PURE__*/ S.String;
+export const CreatePostgresRequestPlan = S.String;
 
 /** Connection pooler mode. */
 export type CreatePostgresRequestPoolMode = "session" | "transaction";
-export const CreatePostgresRequestPoolMode = /*@__PURE__*/ S.String;
+export const CreatePostgresRequestPoolMode = S.String;
 
 export interface CreatePostgresRequest {
   /** Disk size in gigabytes. */
@@ -2073,7 +2073,7 @@ export const PostgresClusterAttachedAppsList = /*@__PURE__*/ S.Array(
 
 /** CPU class. */
 export type PostgresClusterCpuKind = "shared" | "performance";
-export const PostgresClusterCpuKind = /*@__PURE__*/ S.String;
+export const PostgresClusterCpuKind = S.String;
 
 export interface PostgresEndpoint {
   /** Hostname to connect to. */
@@ -2134,7 +2134,7 @@ export const OrganizationRef = /*@__PURE__*/ S.suspend(() =>
 
 /** Postgres major version. */
 export type PostgresClusterPgMajorVersion = "16" | "17";
-export const PostgresClusterPgMajorVersion = /*@__PURE__*/ S.String;
+export const PostgresClusterPgMajorVersion = S.String;
 
 /** Plan slug. */
 export type PostgresClusterPlan =
@@ -2143,7 +2143,7 @@ export type PostgresClusterPlan =
   | "launch"
   | "scale"
   | "Performance";
-export const PostgresClusterPlan = /*@__PURE__*/ S.String;
+export const PostgresClusterPlan = S.String;
 
 /** Current lifecycle status. */
 export type PostgresClusterStatus =
@@ -2153,7 +2153,7 @@ export type PostgresClusterStatus =
   | "deleting"
   | "deleted"
   | "failed";
-export const PostgresClusterStatus = /*@__PURE__*/ S.String;
+export const PostgresClusterStatus = S.String;
 
 export interface PostgresCluster {
   /** Apps attached to the cluster. */
@@ -2274,7 +2274,7 @@ export const CreatePostgresAttachmentResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Backup type. */
 export type CreatePostgresBackupRequestType = "full" | "incr" | "diff";
-export const CreatePostgresBackupRequestType = /*@__PURE__*/ S.String;
+export const CreatePostgresBackupRequestType = S.String;
 
 export interface CreatePostgresBackupRequest {
   /** Managed Postgres Cluster ID */
@@ -2353,7 +2353,7 @@ export type CreatePostgresUserRequestRole =
   | "schema_admin"
   | "writer"
   | "reader";
-export const CreatePostgresUserRequestRole = /*@__PURE__*/ S.String;
+export const CreatePostgresUserRequestRole = S.String;
 
 export interface CreatePostgresUserRequest {
   /** Managed Postgres Cluster ID */
@@ -2381,7 +2381,7 @@ export const CreatePostgresUserRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** User role. */
 export type PostgresUserRole = "schema_admin" | "writer" | "reader";
-export const PostgresUserRole = /*@__PURE__*/ S.String;
+export const PostgresUserRole = S.String;
 
 export interface PostgresUser {
   /** User role. */
@@ -2498,10 +2498,10 @@ export const CreateVolumeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateVolumeRequest>;
 
 export type VolumeHostStatus = "ok" | "unknown" | "unreachable";
-export const VolumeHostStatus = /*@__PURE__*/ S.String;
+export const VolumeHostStatus = S.String;
 
 export type VolumeType = "local" | "cache";
-export const VolumeType = /*@__PURE__*/ S.String;
+export const VolumeType = S.String;
 
 export interface Volume {
   attached_alloc_id?: string;
@@ -4349,7 +4349,7 @@ export type PostgresClusterSummaryPlan =
   | "launch"
   | "scale"
   | "Performance";
-export const PostgresClusterSummaryPlan = /*@__PURE__*/ S.String;
+export const PostgresClusterSummaryPlan = S.String;
 
 /** Current lifecycle status. */
 export type PostgresClusterSummaryStatus =
@@ -4359,7 +4359,7 @@ export type PostgresClusterSummaryStatus =
   | "deleting"
   | "deleted"
   | "failed";
-export const PostgresClusterSummaryStatus = /*@__PURE__*/ S.String;
+export const PostgresClusterSummaryStatus = S.String;
 
 export interface PostgresClusterSummary {
   /** Apps attached to the cluster. */
@@ -4431,7 +4431,7 @@ export const ListPostgresBackupsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Backup type. */
 export type PostgresBackupType = "full" | "incr" | "diff";
-export const PostgresBackupType = /*@__PURE__*/ S.String;
+export const PostgresBackupType = S.String;
 
 export interface PostgresBackup {
   /** RFC 3339 stop timestamp. */
@@ -4805,10 +4805,10 @@ export const ListVolumesOrgRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListVolumesOrgRequest>;
 
 export type OrgVolumeHostStatus = "ok" | "unknown" | "unreachable";
-export const OrgVolumeHostStatus = /*@__PURE__*/ S.String;
+export const OrgVolumeHostStatus = S.String;
 
 export type OrgVolumeType = "local" | "cache";
-export const OrgVolumeType = /*@__PURE__*/ S.String;
+export const OrgVolumeType = S.String;
 
 export interface OrgVolume {
   app_name?: string;
@@ -5080,7 +5080,7 @@ export type RestartMachineRequestSignal =
   | "SIGUSR1"
   | "SIGUSR2"
   | "SIGTERM";
-export const RestartMachineRequestSignal = /*@__PURE__*/ S.String;
+export const RestartMachineRequestSignal = S.String;
 
 export interface RestartMachineRequest {
   /** Fly App Name */
@@ -5246,7 +5246,7 @@ export type SignalMachineRequestSignal =
   | "SIGTRAP"
   | "SIGUSR1"
   | "SIGUSR2";
-export const SignalMachineRequestSignal = /*@__PURE__*/ S.String;
+export const SignalMachineRequestSignal = S.String;
 
 export interface SignalMachineRequest {
   /** Fly App Name */
@@ -5351,7 +5351,7 @@ export type StopMachineRequestSignal =
   | "SIGUSR1"
   | "SIGUSR2"
   | "SIGTERM";
-export const StopMachineRequestSignal = /*@__PURE__*/ S.String;
+export const StopMachineRequestSignal = S.String;
 
 export interface StopMachineRequest {
   /** Fly App Name */
@@ -5530,7 +5530,7 @@ export type UpdatePostgresUserRoleRequestRole =
   | "schema_admin"
   | "writer"
   | "reader";
-export const UpdatePostgresUserRoleRequestRole = /*@__PURE__*/ S.String;
+export const UpdatePostgresUserRoleRequestRole = S.String;
 
 export interface UpdatePostgresUserRoleRequest {
   /** Managed Postgres Cluster ID */
@@ -5710,7 +5710,7 @@ export type WaitMachineRequestState =
   | "destroyed"
   | "failed"
   | "settled";
-export const WaitMachineRequestState = /*@__PURE__*/ S.String;
+export const WaitMachineRequestState = S.String;
 
 export interface WaitMachineRequest {
   /** Fly App Name */

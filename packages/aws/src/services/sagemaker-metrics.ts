@@ -97,7 +97,7 @@ export type MetricStatistic =
   | "StdDev"
   | "Last"
   | (string & {});
-export const MetricStatistic = /*@__PURE__*/ S.String;
+export const MetricStatistic = S.String;
 
 export type Period =
   | "OneMinute"
@@ -105,10 +105,10 @@ export type Period =
   | "OneHour"
   | "IterationNumber"
   | (string & {});
-export const Period = /*@__PURE__*/ S.String;
+export const Period = S.String;
 
 export type XAxisType = "IterationNumber" | "Timestamp" | (string & {});
-export const XAxisType = /*@__PURE__*/ S.String;
+export const XAxisType = S.String;
 
 export interface MetricQuery {
   MetricName?: string;
@@ -155,7 +155,7 @@ export type MetricQueryResultStatus =
   | "InternalError"
   | "ValidationError"
   | (string & {});
-export const MetricQueryResultStatus = /*@__PURE__*/ S.String;
+export const MetricQueryResultStatus = S.String;
 
 export type Message = string;
 export type XAxisValues = number[];
@@ -237,7 +237,7 @@ export type PutMetricsErrorCode =
   | "VALIDATION_ERROR"
   | "CONFLICT_ERROR"
   | (string & {});
-export const PutMetricsErrorCode = /*@__PURE__*/ S.String;
+export const PutMetricsErrorCode = S.String;
 
 export interface BatchPutMetricsError_ {
   Code?: PutMetricsErrorCode;

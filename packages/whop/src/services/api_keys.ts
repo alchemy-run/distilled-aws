@@ -81,7 +81,7 @@ export type CreateApiKeyRequestApiVersionDate =
   | "2026-08-25"
   | "2026-08-25-1"
   | "2026-08-25-2";
-export const CreateApiKeyRequestApiVersionDate = /*@__PURE__*/ S.String;
+export const CreateApiKeyRequestApiVersionDate = S.String;
 
 /** IPv4/IPv6 CIDR ranges allowed to use this key, for example `["203.0.113.0/24"]`. Empty or `null` allows any IP. */
 export type CreateApiKeyRequestIpAllowlistList = Array<string>;
@@ -141,7 +141,7 @@ export type CreateApiKeyRequestPermissionsSystemRole =
   | "moderator"
   | "sales_manager"
   | "advertiser";
-export const CreateApiKeyRequestPermissionsSystemRole = /*@__PURE__*/ S.String;
+export const CreateApiKeyRequestPermissionsSystemRole = S.String;
 
 /** The permissions policy for the API key: explicit permission statements, or a system role to inherit from. Statements without a `resources` array default to the owning account (Account API keys) or every key-addressable resource (App API keys). */
 export interface CreateApiKeyRequestPermissions {
@@ -161,7 +161,7 @@ export const CreateApiKeyRequestPermissions = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of resource that will own this API key. */
 export type CreateApiKeyRequestResourceType = "account" | "app";
-export const CreateApiKeyRequestResourceType = /*@__PURE__*/ S.String;
+export const CreateApiKeyRequestResourceType = S.String;
 
 export interface CreateApiKeyRequest {
   /** Dated API version used when requests authenticated with this key omit the `Api-Version-Date` header. New keys default to the latest version. */
@@ -227,7 +227,7 @@ export type ApiKeyApiVersionDate =
   | "2026-08-25"
   | "2026-08-25-1"
   | "2026-08-25-2";
-export const ApiKeyApiVersionDate = /*@__PURE__*/ S.String;
+export const ApiKeyApiVersionDate = S.String;
 
 export interface ApiKeyGrantAction {
   /** The permission action's identifier, for example `company:basic:read`. */
@@ -281,7 +281,7 @@ export type ApiKeySystemRole =
   | "moderator"
   | "sales_manager"
   | "advertiser";
-export const ApiKeySystemRole = /*@__PURE__*/ S.String;
+export const ApiKeySystemRole = S.String;
 
 export interface ApiKey {
   /** Dated API version used when requests authenticated with this key omit the `Api-Version-Date` header. */
@@ -379,7 +379,7 @@ export type PermissionGrantedToSystemRolesItem =
   | "moderator"
   | "sales_manager"
   | "advertiser";
-export const PermissionGrantedToSystemRolesItem = /*@__PURE__*/ S.String;
+export const PermissionGrantedToSystemRolesItem = S.String;
 
 export type PermissionGrantedToSystemRolesList =
   Array<PermissionGrantedToSystemRolesItem>;
@@ -454,13 +454,13 @@ export const ListApiKeyPermissionsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListApiKeyPermissionsResponse>;
 
 export type ListApiKeysRequestResourceType = "account" | "app";
-export const ListApiKeysRequestResourceType = /*@__PURE__*/ S.String;
+export const ListApiKeysRequestResourceType = S.String;
 
 export type ListApiKeysRequestOrder = "created_at";
-export const ListApiKeysRequestOrder = /*@__PURE__*/ S.String;
+export const ListApiKeysRequestOrder = S.String;
 
 export type ListApiKeysRequestDirection = "asc" | "desc";
-export const ListApiKeysRequestDirection = /*@__PURE__*/ S.String;
+export const ListApiKeysRequestDirection = S.String;
 
 export interface ListApiKeysRequest {
   /** The account (`biz_`) or app (`app_`) tag to list API keys for. */
@@ -569,7 +569,7 @@ export type UpdateApiKeyRequestApiVersionDate =
   | "2026-08-25"
   | "2026-08-25-1"
   | "2026-08-25-2";
-export const UpdateApiKeyRequestApiVersionDate = /*@__PURE__*/ S.String;
+export const UpdateApiKeyRequestApiVersionDate = S.String;
 
 /** IPv4/IPv6 CIDR ranges allowed to use this key, for example `["203.0.113.0/24"]`. Empty or `null` allows any IP. */
 export type UpdateApiKeyRequestIpAllowlistList = Array<string>;
@@ -629,7 +629,7 @@ export type UpdateApiKeyRequestPermissionsSystemRole =
   | "moderator"
   | "sales_manager"
   | "advertiser";
-export const UpdateApiKeyRequestPermissionsSystemRole = /*@__PURE__*/ S.String;
+export const UpdateApiKeyRequestPermissionsSystemRole = S.String;
 
 /** The permissions policy for the API key: explicit permission statements, or a system role to inherit from. Statements without a `resources` array default to the owning account (Account API keys) or every key-addressable resource (App API keys). */
 export interface UpdateApiKeyRequestPermissions {

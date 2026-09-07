@@ -177,7 +177,7 @@ export type ConfiguredInsightOrganizationsLocationsInsightsAggregationEnum =
   | "MONTHLY"
   | "CUSTOM_DATE_RANGE";
 export const ConfiguredInsightOrganizationsLocationsInsightsAggregationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfiguredInsightOrganizationsLocationsInsightsRequest {
   /** Optional. Group id of the available groupings for the insight. Available groupings could be fetched by calling insight list and get APIs in `BASIC` view. */
@@ -310,7 +310,7 @@ export type GoogleCloudBeyondcorpSaasplatformInsightsV1alphaAppliedConfigAggrega
   | "MONTHLY"
   | "CUSTOM_DATE_RANGE";
 export const GoogleCloudBeyondcorpSaasplatformInsightsV1alphaAppliedConfigAggregationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration that was applied to generate the result. */
 export interface GoogleCloudBeyondcorpSaasplatformInsightsV1alphaAppliedConfig {
@@ -376,7 +376,7 @@ export type ConfiguredInsightProjectsLocationsInsightsAggregationEnum =
   | "MONTHLY"
   | "CUSTOM_DATE_RANGE";
 export const ConfiguredInsightProjectsLocationsInsightsAggregationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfiguredInsightProjectsLocationsInsightsRequest {
   /** Required. Aggregation type. Available aggregation could be fetched by calling insight list and get APIs in `BASIC` view. */
@@ -436,7 +436,7 @@ export type GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscriptionSub
   | "OFFLINE"
   | "CEP_TRIAL";
 export const GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscriptionSubscriberTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscriptionStateEnum =
   | "STATE_UNSPECIFIED"
@@ -444,13 +444,13 @@ export type GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscriptionSta
   | "INACTIVE"
   | "COMPLETED";
 export const GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscriptionStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscriptionSkuEnum =
   | "SKU_UNSPECIFIED"
   | "BCE_STANDARD_SKU";
 export const GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscriptionSkuEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscriptionTypeEnum =
   | "TYPE_UNSPECIFIED"
@@ -458,7 +458,7 @@ export type GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscriptionTyp
   | "PAID"
   | "ALLOWLIST";
 export const GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscriptionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A BeyondCorp Subscription resource represents BeyondCorp Enterprise Subscription. BeyondCorp Enterprise Subscription enables BeyondCorp Enterprise permium features for an organization. */
 export interface GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription {
@@ -557,7 +557,7 @@ export type GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "TCP_PROXY";
 export const GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** ApplicationEndpoint represents a remote application endpoint. */
 export interface GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionApplicationEndpoint {
@@ -581,7 +581,7 @@ export type GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionGatewayTypeEn
   | "TYPE_UNSPECIFIED"
   | "GCP_REGIONAL_MIG";
 export const GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionGatewayTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Gateway represents a user facing component that serves as an entrance to enable connectivity. */
 export interface GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionGateway {
@@ -622,7 +622,7 @@ export type GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionStateEnum =
   | "DELETING"
   | "DOWN";
 export const GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -828,7 +828,7 @@ export type GoogleCloudBeyondcorpAppconnectorsV1alphaResourceInfoStatusEnum =
   | "UNRESPONSIVE"
   | "DEGRADED";
 export const GoogleCloudBeyondcorpAppconnectorsV1alphaResourceInfoStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** ResourceInfo represents the information or status of an app connector resource component that's used to report on various parts of the system. For example, ResourceInfo can be used to convey the status of a remote_agent, including the status of an appgateway for an runtime environment in a container instance. */
 export interface GoogleCloudBeyondcorpAppconnectorsV1alphaResourceInfo {
@@ -870,7 +870,7 @@ export type GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorStateEnum =
   | "DELETING"
   | "DOWN";
 export const GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A BeyondCorp connector resource that represents an application facing component deployed proximal to and with direct access to the application instances. It is used to establish connectivity between the remote enterprise environment and GCP. It initiates connections to the applications and can proxy the data from users over the connection. */
 export interface GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnector {
@@ -960,7 +960,7 @@ export type AppGatewayStateEnum =
   | "UPDATING"
   | "DELETING"
   | "DOWN";
-export const AppGatewayStateEnum = /*@__PURE__*/ S.String;
+export const AppGatewayStateEnum = S.String;
 
 /** Allocated connection of the AppGateway. */
 export interface AllocatedConnection {
@@ -986,10 +986,10 @@ export const AllocatedConnectionList = /*@__PURE__*/ S.Array(
 export type AppGatewayHostTypeEnum =
   | "HOST_TYPE_UNSPECIFIED"
   | "GCP_REGIONAL_MIG";
-export const AppGatewayHostTypeEnum = /*@__PURE__*/ S.String;
+export const AppGatewayHostTypeEnum = S.String;
 
 export type AppGatewayTypeEnum = "TYPE_UNSPECIFIED" | "TCP_PROXY";
-export const AppGatewayTypeEnum = /*@__PURE__*/ S.String;
+export const AppGatewayTypeEnum = S.String;
 
 /** A BeyondCorp AppGateway resource represents a BeyondCorp protected AppGateway to a remote application. It creates all the necessary GCP components needed for creating a BeyondCorp protected AppGateway. Multiple connectors can be authorised for a single AppGateway. */
 export interface AppGateway {
@@ -1070,7 +1070,7 @@ export const CreateProjectsLocationsAppGatewaysRequest =
   }) as any as S.Schema<CreateProjectsLocationsAppGatewaysRequest>;
 
 export type GatewayTypeEnum = "TYPE_UNSPECIFIED" | "GCP_REGIONAL_MIG";
-export const GatewayTypeEnum = /*@__PURE__*/ S.String;
+export const GatewayTypeEnum = S.String;
 
 /** Gateway represents a user facing component that serves as an entrance to enable connectivity. */
 export interface Gateway {
@@ -1102,10 +1102,10 @@ export type ConnectionStateEnum =
   | "UPDATING"
   | "DELETING"
   | "DOWN";
-export const ConnectionStateEnum = /*@__PURE__*/ S.String;
+export const ConnectionStateEnum = S.String;
 
 export type ConnectionTypeEnum = "TYPE_UNSPECIFIED" | "TCP_PROXY";
-export const ConnectionTypeEnum = /*@__PURE__*/ S.String;
+export const ConnectionTypeEnum = S.String;
 
 /** A BeyondCorp Connection resource represents a BeyondCorp protected connection to a remote application. It creates all the necessary GCP components needed for creating a BeyondCorp protected connection. Multiple connectors can be authorised for a single Connection. */
 export interface Connection {
@@ -1188,7 +1188,7 @@ export type ConnectorStateEnum =
   | "UPDATING"
   | "DELETING"
   | "DOWN";
-export const ConnectorStateEnum = /*@__PURE__*/ S.String;
+export const ConnectorStateEnum = S.String;
 
 /** ServiceAccount represents a GCP service account. */
 export type ServiceAccount =
@@ -1208,7 +1208,7 @@ export type ResourceInfoStatusEnum =
   | "UNHEALTHY"
   | "UNRESPONSIVE"
   | "DEGRADED";
-export const ResourceInfoStatusEnum = /*@__PURE__*/ S.String;
+export const ResourceInfoStatusEnum = S.String;
 
 export type ResourceInfoList = Array<ResourceInfo>;
 export const ResourceInfoList = /*@__PURE__*/ S.Array(
@@ -1315,7 +1315,7 @@ export type GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGatewayStateEnum
   | "DOWN"
   | "ERROR";
 export const GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGatewayStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDeviceInfoOutputTypeEnum =
   | "OUTPUT_TYPE_UNSPECIFIED"
@@ -1323,7 +1323,7 @@ export type GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegat
   | "JSON"
   | "NONE";
 export const GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDeviceInfoOutputTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The delegated device information configuration. */
 export interface GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDeviceInfo {
@@ -1350,7 +1350,7 @@ export type GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersOutputT
   | "JSON"
   | "NONE";
 export const GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersOutputTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedUserInfoOutputTypeEnum =
   | "OUTPUT_TYPE_UNSPECIFIED"
@@ -1358,7 +1358,7 @@ export type GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegat
   | "JSON"
   | "NONE";
 export const GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedUserInfoOutputTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration information for the delegated user. */
 export interface GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedUserInfo {
@@ -1385,7 +1385,7 @@ export type GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegat
   | "JSON"
   | "NONE";
 export const GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDispatchInfoOutputTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The delegated dispatch information configuration. */
 export interface GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDispatchInfo {
@@ -1412,7 +1412,7 @@ export type GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegat
   | "JSON"
   | "NONE";
 export const GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedGroupInfoOutputTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The delegated group configuration details. */
 export interface GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedGroupInfo {
@@ -1475,7 +1475,7 @@ export type GoogleCloudBeyondcorpSecuritygatewaysV1alphaProxyProtocolConfigGatew
   | "GATEWAY_IDENTITY_UNSPECIFIED"
   | "RESOURCE_NAME";
 export const GoogleCloudBeyondcorpSecuritygatewaysV1alphaProxyProtocolConfigGatewayIdentityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration for the proxy. */
 export interface GoogleCloudBeyondcorpSecuritygatewaysV1alphaProxyProtocolConfig {
@@ -1830,7 +1830,7 @@ export type GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationSchemaEnum =
   | "PROXY_GATEWAY"
   | "API_GATEWAY";
 export const GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationSchemaEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The information about an application resource. */
 export interface GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplication {
@@ -2188,7 +2188,7 @@ export type GoogleIamV1AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const GoogleIamV1AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleIamV1AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface GoogleIamV1AuditLogConfig {
@@ -2435,7 +2435,7 @@ export type GetOrganizationsLocationsInsightsViewEnum =
   | "INSIGHT_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetOrganizationsLocationsInsightsViewEnum = /*@__PURE__*/ S.String;
+export const GetOrganizationsLocationsInsightsViewEnum = S.String;
 
 export interface GetOrganizationsLocationsInsightsRequest {
   /** Required. The resource name of the insight using the form: `organizations/{organization_id}/locations/{location_id}/insights/{insight_id}` `projects/{project_id}/locations/{location_id}/insights/{insight_id}` */
@@ -2469,7 +2469,7 @@ export type GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightMetadataAggre
   | "MONTHLY"
   | "CUSTOM_DATE_RANGE";
 export const GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightMetadataAggregationsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightMetadataAggregationsItemEnumList =
   Array<GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightMetadataAggregationsItemEnum>;
@@ -2759,7 +2759,7 @@ export type GetProjectsLocationsInsightsViewEnum =
   | "INSIGHT_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsInsightsViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsInsightsViewEnum = S.String;
 
 export interface GetProjectsLocationsInsightsRequest {
   /** Required. Metadata only or full data view. */
@@ -2846,15 +2846,13 @@ export type ListOrganizationsLocationsInsightsAggregationEnum =
   | "WEEKLY"
   | "MONTHLY"
   | "CUSTOM_DATE_RANGE";
-export const ListOrganizationsLocationsInsightsAggregationEnum =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationsLocationsInsightsAggregationEnum = S.String;
 
 export type ListOrganizationsLocationsInsightsViewEnum =
   | "INSIGHT_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListOrganizationsLocationsInsightsViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationsLocationsInsightsViewEnum = S.String;
 
 export interface ListOrganizationsLocationsInsightsRequest {
   /** Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. NOTE: Default page size is 50. */
@@ -3387,14 +3385,13 @@ export type ListProjectsLocationsInsightsAggregationEnum =
   | "WEEKLY"
   | "MONTHLY"
   | "CUSTOM_DATE_RANGE";
-export const ListProjectsLocationsInsightsAggregationEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsInsightsAggregationEnum = S.String;
 
 export type ListProjectsLocationsInsightsViewEnum =
   | "INSIGHT_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListProjectsLocationsInsightsViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsLocationsInsightsViewEnum = S.String;
 
 export interface ListProjectsLocationsInsightsRequest {
   /** Optional. Aggregation type. The default is 'DAILY'. */

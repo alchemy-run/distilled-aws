@@ -163,7 +163,7 @@ export type HostedZoneAssociationStatus =
   | "OPERATIONAL"
   | "DELETING"
   | (string & {});
-export const HostedZoneAssociationStatus = /*@__PURE__*/ S.String;
+export const HostedZoneAssociationStatus = S.String;
 
 export interface AssociateHostedZoneOutput {
   id: string;
@@ -190,10 +190,10 @@ export const AssociateHostedZoneOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "AssociateHostedZoneOutput",
 }) as any as S.Schema<AssociateHostedZoneOutput>;
 export type FirewallRuleAction = "ALLOW" | "ALERT" | "BLOCK" | (string & {});
-export const FirewallRuleAction = /*@__PURE__*/ S.String;
+export const FirewallRuleAction = S.String;
 
 export type BlockOverrideDnsQueryType = "CNAME" | (string & {});
-export const BlockOverrideDnsQueryType = /*@__PURE__*/ S.String;
+export const BlockOverrideDnsQueryType = S.String;
 
 export type Domain = string;
 export type BlockOverrideTtl = number;
@@ -202,11 +202,11 @@ export type FirewallBlockResponse =
   | "NXDOMAIN"
   | "OVERRIDE"
   | (string & {});
-export const FirewallBlockResponse = /*@__PURE__*/ S.String;
+export const FirewallBlockResponse = S.String;
 
 export type ClientToken = string;
 export type ConfidenceThreshold = "LOW" | "MEDIUM" | "HIGH" | (string & {});
-export const ConfidenceThreshold = /*@__PURE__*/ S.String;
+export const ConfidenceThreshold = S.String;
 
 export type ResourceDescription = string;
 export type DnsAdvancedProtection =
@@ -214,7 +214,7 @@ export type DnsAdvancedProtection =
   | "DNS_TUNNELING"
   | "DICTIONARY_DGA"
   | (string & {});
-export const DnsAdvancedProtection = /*@__PURE__*/ S.String;
+export const DnsAdvancedProtection = S.String;
 
 export type FirewallRulePriority = number;
 export type DnsQueryType = string;
@@ -282,7 +282,7 @@ export type CRResourceStatus =
   | "UPDATING"
   | "DELETING"
   | (string & {});
-export const CRResourceStatus = /*@__PURE__*/ S.String;
+export const CRResourceStatus = S.String;
 
 export interface BatchCreateFirewallRuleResult {
   action: FirewallRuleAction;
@@ -575,11 +575,11 @@ export const BatchUpdateFirewallRuleOutput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BatchUpdateFirewallRuleOutput>;
 export type Cidr = string;
 export type IpAddressType = "IPV4" | "IPV6" | (string & {});
-export const IpAddressType = /*@__PURE__*/ S.String;
+export const IpAddressType = S.String;
 
 export type ResourceNameShort = string;
 export type DnsProtocol = "DO53" | "DOH" | "DOT" | (string & {});
-export const DnsProtocol = /*@__PURE__*/ S.String;
+export const DnsProtocol = S.String;
 
 export type TagKey = string;
 export type TagValue = string;
@@ -678,7 +678,7 @@ export type TokenStatus =
   | "OPERATIONAL"
   | "DELETING"
   | (string & {});
-export const TokenStatus = /*@__PURE__*/ S.String;
+export const TokenStatus = S.String;
 
 export type AccessTokenValue = string | redacted.Redacted<string>;
 export interface CreateAccessTokenOutput {
@@ -708,13 +708,13 @@ export const CreateAccessTokenOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateAccessTokenOutput",
 }) as any as S.Schema<CreateAccessTokenOutput>;
 export type DnsSecValidationType = "ENABLED" | "DISABLED" | (string & {});
-export const DnsSecValidationType = /*@__PURE__*/ S.String;
+export const DnsSecValidationType = S.String;
 
 export type EdnsClientSubnetType = "ENABLED" | "DISABLED" | (string & {});
-export const EdnsClientSubnetType = /*@__PURE__*/ S.String;
+export const EdnsClientSubnetType = S.String;
 
 export type FirewallRulesFailOpenType = "ENABLED" | "DISABLED" | (string & {});
-export const FirewallRulesFailOpenType = /*@__PURE__*/ S.String;
+export const FirewallRulesFailOpenType = S.String;
 
 export interface CreateDNSViewInput {
   globalResolverId: string;
@@ -758,7 +758,7 @@ export type ProfileResourceStatus =
   | "DISABLED"
   | "DELETING"
   | (string & {});
-export const ProfileResourceStatus = /*@__PURE__*/ S.String;
+export const ProfileResourceStatus = S.String;
 
 export interface CreateDNSViewOutput {
   id: string;
@@ -936,7 +936,7 @@ export const CreateFirewallRuleOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateFirewallRuleOutput",
 }) as any as S.Schema<CreateFirewallRuleOutput>;
 export type GlobalResolverIpAddressType = "IPV4" | "DUAL_STACK" | (string & {});
-export const GlobalResolverIpAddressType = /*@__PURE__*/ S.String;
+export const GlobalResolverIpAddressType = S.String;
 
 export type Region = string;
 export type Regions = string[];
@@ -2978,7 +2978,7 @@ export type ValidationExceptionReason =
   | "FIELD_VALIDATION_FAILED"
   | "OTHER"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   name: string;

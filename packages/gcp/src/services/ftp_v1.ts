@@ -229,7 +229,7 @@ export type ServerAccessTypeEnum =
   | "ACCESS_TYPE_UNSPECIFIED"
   | "EXTERNAL"
   | "INTERNAL";
-export const ServerAccessTypeEnum = /*@__PURE__*/ S.String;
+export const ServerAccessTypeEnum = S.String;
 
 export type ServerStateEnum =
   | "STATE_UNSPECIFIED"
@@ -241,7 +241,7 @@ export type ServerStateEnum =
   | "DELETING"
   | "ERROR"
   | "UPDATING";
-export const ServerStateEnum = /*@__PURE__*/ S.String;
+export const ServerStateEnum = S.String;
 
 /** Message describing Server object */
 export interface Server {
@@ -373,7 +373,7 @@ export type StorageDirectoryMappingPermissionEnum =
   | "PERMISSION_UNSPECIFIED"
   | "READ_ONLY"
   | "READ_WRITE";
-export const StorageDirectoryMappingPermissionEnum = /*@__PURE__*/ S.String;
+export const StorageDirectoryMappingPermissionEnum = S.String;
 
 /** Mapping of backing Cloud Storage path to the directory where the user lands in the SFTP server. If directory is not specified, it'll default to '/'. Eg 1 - (bucket_name: bucket, bucket_prefix: path1/path2, directory: /abc/def/username) The user will land at /abcd/def/username, and the view there will match that of /bucket/path1/path2. The user will not be aware of Cloud Storage prefix '/bucket/path1' and there will be no such directory in the view. Eg 2 - (bucket_name: bucket, bucket_prefix: path1/path2, directory: '') The user will land at '/', and the view there will match that of /bucket/path1/path2. The user will not be aware of Cloud Storage prefix '/bucket/path1/path2' and there will be no such directory in the view. */
 export interface StorageDirectoryMapping {
@@ -405,7 +405,7 @@ export const StorageDirectoryMappingList = /*@__PURE__*/ S.Array(
 export type UserCredentialCredentialTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "PUBLIC_KEY";
-export const UserCredentialCredentialTypeEnum = /*@__PURE__*/ S.String;
+export const UserCredentialCredentialTypeEnum = S.String;
 
 /** Message describing UserCredential object */
 export interface UserCredential {
@@ -436,7 +436,7 @@ export type UserStateEnum =
   | "ERROR"
   | "UPDATING"
   | "DELETING";
-export const UserStateEnum = /*@__PURE__*/ S.String;
+export const UserStateEnum = S.String;
 
 /** Message describing User object */
 export interface User {
@@ -625,7 +625,7 @@ export type GetProjectsLocationsServersViewEnum =
   | "SERVER_VIEW_UNSPECIFIED"
   | "SERVER_VIEW_BASIC"
   | "SERVER_VIEW_FULL";
-export const GetProjectsLocationsServersViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsServersViewEnum = S.String;
 
 export interface GetProjectsLocationsServersRequest {
   /** Required. Name of the resource */
@@ -652,7 +652,7 @@ export type GetProjectsLocationsServersUsersViewEnum =
   | "USER_VIEW_UNSPECIFIED"
   | "USER_VIEW_BASIC"
   | "USER_VIEW_FULL";
-export const GetProjectsLocationsServersUsersViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsServersUsersViewEnum = S.String;
 
 export interface GetProjectsLocationsServersUsersRequest {
   /** Required. Name of the resource */
@@ -788,7 +788,7 @@ export type ListProjectsLocationsServersViewEnum =
   | "SERVER_VIEW_UNSPECIFIED"
   | "SERVER_VIEW_BASIC"
   | "SERVER_VIEW_FULL";
-export const ListProjectsLocationsServersViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsLocationsServersViewEnum = S.String;
 
 export interface ListProjectsLocationsServersRequest {
   /** Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. */
@@ -851,7 +851,7 @@ export type ListProjectsLocationsServersUsersViewEnum =
   | "USER_VIEW_UNSPECIFIED"
   | "USER_VIEW_BASIC"
   | "USER_VIEW_FULL";
-export const ListProjectsLocationsServersUsersViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsLocationsServersUsersViewEnum = S.String;
 
 export interface ListProjectsLocationsServersUsersRequest {
   /** Required. Parent value for ListUsersRequest */

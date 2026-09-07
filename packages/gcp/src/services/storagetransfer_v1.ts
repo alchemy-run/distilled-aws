@@ -116,7 +116,7 @@ export type AgentPoolStateEnum =
   | "CREATING"
   | "CREATED"
   | "DELETING";
-export const AgentPoolStateEnum = /*@__PURE__*/ S.String;
+export const AgentPoolStateEnum = S.String;
 
 /** Represents an agent pool. */
 export interface AgentPool {
@@ -167,7 +167,7 @@ export type LoggingConfigLogActionsItemEnum =
   | "FIND"
   | "DELETE"
   | "COPY";
-export const LoggingConfigLogActionsItemEnum = /*@__PURE__*/ S.String;
+export const LoggingConfigLogActionsItemEnum = S.String;
 
 export type LoggingConfigLogActionsItemEnumList = Array<
   LoggingConfigLogActionsItemEnum | (string & {})
@@ -181,7 +181,7 @@ export type LoggingConfigLogActionStatesItemEnum =
   | "SUCCEEDED"
   | "FAILED"
   | "SKIPPED";
-export const LoggingConfigLogActionStatesItemEnum = /*@__PURE__*/ S.String;
+export const LoggingConfigLogActionStatesItemEnum = S.String;
 
 export type LoggingConfigLogActionStatesItemEnumList = Array<
   LoggingConfigLogActionStatesItemEnum | (string & {})
@@ -229,7 +229,7 @@ export type TransferJobStatusEnum =
   | "ENABLED"
   | "DISABLED"
   | "DELETED";
-export const TransferJobStatusEnum = /*@__PURE__*/ S.String;
+export const TransferJobStatusEnum = S.String;
 
 /** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
 export interface Storagetransfer_Date {
@@ -336,19 +336,19 @@ export type MetadataOptionsGidEnum =
   | "GID_UNSPECIFIED"
   | "GID_SKIP"
   | "GID_NUMBER";
-export const MetadataOptionsGidEnum = /*@__PURE__*/ S.String;
+export const MetadataOptionsGidEnum = S.String;
 
 export type MetadataOptionsSymlinkEnum =
   | "SYMLINK_UNSPECIFIED"
   | "SYMLINK_SKIP"
   | "SYMLINK_PRESERVE";
-export const MetadataOptionsSymlinkEnum = /*@__PURE__*/ S.String;
+export const MetadataOptionsSymlinkEnum = S.String;
 
 export type MetadataOptionsKmsKeyEnum =
   | "KMS_KEY_UNSPECIFIED"
   | "KMS_KEY_DESTINATION_BUCKET_DEFAULT"
   | "KMS_KEY_PRESERVE";
-export const MetadataOptionsKmsKeyEnum = /*@__PURE__*/ S.String;
+export const MetadataOptionsKmsKeyEnum = S.String;
 
 export type MetadataOptionsStorageClassEnum =
   | "STORAGE_CLASS_UNSPECIFIED"
@@ -358,37 +358,37 @@ export type MetadataOptionsStorageClassEnum =
   | "STORAGE_CLASS_NEARLINE"
   | "STORAGE_CLASS_COLDLINE"
   | "STORAGE_CLASS_ARCHIVE";
-export const MetadataOptionsStorageClassEnum = /*@__PURE__*/ S.String;
+export const MetadataOptionsStorageClassEnum = S.String;
 
 export type MetadataOptionsTimeCreatedEnum =
   | "TIME_CREATED_UNSPECIFIED"
   | "TIME_CREATED_SKIP"
   | "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME";
-export const MetadataOptionsTimeCreatedEnum = /*@__PURE__*/ S.String;
+export const MetadataOptionsTimeCreatedEnum = S.String;
 
 export type MetadataOptionsUidEnum =
   | "UID_UNSPECIFIED"
   | "UID_SKIP"
   | "UID_NUMBER";
-export const MetadataOptionsUidEnum = /*@__PURE__*/ S.String;
+export const MetadataOptionsUidEnum = S.String;
 
 export type MetadataOptionsTemporaryHoldEnum =
   | "TEMPORARY_HOLD_UNSPECIFIED"
   | "TEMPORARY_HOLD_SKIP"
   | "TEMPORARY_HOLD_PRESERVE";
-export const MetadataOptionsTemporaryHoldEnum = /*@__PURE__*/ S.String;
+export const MetadataOptionsTemporaryHoldEnum = S.String;
 
 export type MetadataOptionsModeEnum =
   | "MODE_UNSPECIFIED"
   | "MODE_SKIP"
   | "MODE_PRESERVE";
-export const MetadataOptionsModeEnum = /*@__PURE__*/ S.String;
+export const MetadataOptionsModeEnum = S.String;
 
 export type MetadataOptionsAclEnum =
   | "ACL_UNSPECIFIED"
   | "ACL_DESTINATION_BUCKET_DEFAULT"
   | "ACL_PRESERVE";
-export const MetadataOptionsAclEnum = /*@__PURE__*/ S.String;
+export const MetadataOptionsAclEnum = S.String;
 
 /** Specifies the metadata options for running a transfer. */
 export interface MetadataOptions {
@@ -432,7 +432,7 @@ export type TransferOptionsOverwriteWhenEnum =
   | "DIFFERENT"
   | "NEVER"
   | "ALWAYS";
-export const TransferOptionsOverwriteWhenEnum = /*@__PURE__*/ S.String;
+export const TransferOptionsOverwriteWhenEnum = S.String;
 
 /** TransferOptions define the actions to be performed on objects in a transfer. */
 export interface TransferOptions {
@@ -503,7 +503,7 @@ export type NotificationConfigEventTypesItemEnum =
   | "TRANSFER_OPERATION_SUCCESS"
   | "TRANSFER_OPERATION_FAILED"
   | "TRANSFER_OPERATION_ABORTED";
-export const NotificationConfigEventTypesItemEnum = /*@__PURE__*/ S.String;
+export const NotificationConfigEventTypesItemEnum = S.String;
 
 export type NotificationConfigEventTypesItemEnumList = Array<
   NotificationConfigEventTypesItemEnum | (string & {})
@@ -516,7 +516,7 @@ export type NotificationConfigPayloadFormatEnum =
   | "PAYLOAD_FORMAT_UNSPECIFIED"
   | "NONE"
   | "JSON";
-export const NotificationConfigPayloadFormatEnum = /*@__PURE__*/ S.String;
+export const NotificationConfigPayloadFormatEnum = S.String;
 
 /** Specification to configure notifications published to Pub/Sub. Notifications are published to the customer-provided topic using the following `PubsubMessage.attributes`: * `"eventType"`: one of the EventType values * `"payloadFormat"`: one of the PayloadFormat values * `"projectId"`: the project_id of the `TransferOperation` * `"transferJobName"`: the transfer_job_name of the `TransferOperation` * `"transferOperationName"`: the name of the `TransferOperation` The `PubsubMessage.data` contains a TransferOperation resource formatted according to the specified `PayloadFormat`. */
 export interface NotificationConfig {
@@ -682,25 +682,25 @@ export type S3CompatibleMetadataProtocolEnum =
   | "NETWORK_PROTOCOL_UNSPECIFIED"
   | "NETWORK_PROTOCOL_HTTPS"
   | "NETWORK_PROTOCOL_HTTP";
-export const S3CompatibleMetadataProtocolEnum = /*@__PURE__*/ S.String;
+export const S3CompatibleMetadataProtocolEnum = S.String;
 
 export type S3CompatibleMetadataListApiEnum =
   | "LIST_API_UNSPECIFIED"
   | "LIST_OBJECTS_V2"
   | "LIST_OBJECTS";
-export const S3CompatibleMetadataListApiEnum = /*@__PURE__*/ S.String;
+export const S3CompatibleMetadataListApiEnum = S.String;
 
 export type S3CompatibleMetadataAuthMethodEnum =
   | "AUTH_METHOD_UNSPECIFIED"
   | "AUTH_METHOD_AWS_SIGNATURE_V4"
   | "AUTH_METHOD_AWS_SIGNATURE_V2";
-export const S3CompatibleMetadataAuthMethodEnum = /*@__PURE__*/ S.String;
+export const S3CompatibleMetadataAuthMethodEnum = S.String;
 
 export type S3CompatibleMetadataRequestModelEnum =
   | "REQUEST_MODEL_UNSPECIFIED"
   | "REQUEST_MODEL_VIRTUAL_HOSTED_STYLE"
   | "REQUEST_MODEL_PATH_STYLE";
-export const S3CompatibleMetadataRequestModelEnum = /*@__PURE__*/ S.String;
+export const S3CompatibleMetadataRequestModelEnum = S.String;
 
 /** S3CompatibleMetadata contains the metadata fields that apply to the basic types of S3-compatible data providers. */
 export interface S3CompatibleMetadata {

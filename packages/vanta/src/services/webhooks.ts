@@ -314,8 +314,7 @@ export type V1EvidenceStatusChangedRequestEvidenceOldStatus =
   | "NA"
   | "NOT_READY_FOR_AUDIT"
   | "READY_FOR_AUDIT";
-export const V1EvidenceStatusChangedRequestEvidenceOldStatus =
-  /*@__PURE__*/ S.String;
+export const V1EvidenceStatusChangedRequestEvidenceOldStatus = S.String;
 
 /** The status the evidence item is in after the change. A value of `READY_FOR_AUDIT` means the customer has provided evidence for the item and it is ready for the auditor to review. `INITIALIZED` is an internal status and is never delivered. */
 export type V1EvidenceStatusChangedRequestEvidenceNewStatus =
@@ -325,8 +324,7 @@ export type V1EvidenceStatusChangedRequestEvidenceNewStatus =
   | "NA"
   | "NOT_READY_FOR_AUDIT"
   | "READY_FOR_AUDIT";
-export const V1EvidenceStatusChangedRequestEvidenceNewStatus =
-  /*@__PURE__*/ S.String;
+export const V1EvidenceStatusChangedRequestEvidenceNewStatus = S.String;
 
 export interface V1EvidenceStatusChangedRequestEvidence {
   /** The unique identifier of the evidence. */
@@ -581,7 +579,7 @@ export type V1InformationRequestStatusChangedRequestInformationRequestOldStatus 
   | "AUDITOR_APPROVED"
   | "AUDITOR_FLAGGED";
 export const V1InformationRequestStatusChangedRequestInformationRequestOldStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The status the information request is in after the change. A value of `READY_FOR_AUDIT` means the customer has submitted the request and it is ready for the auditor to review. */
 export type V1InformationRequestStatusChangedRequestInformationRequestNewStatus =
@@ -590,7 +588,7 @@ export type V1InformationRequestStatusChangedRequestInformationRequestNewStatus 
   | "AUDITOR_APPROVED"
   | "AUDITOR_FLAGGED";
 export const V1InformationRequestStatusChangedRequestInformationRequestNewStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface V1InformationRequestStatusChangedRequestInformationRequest {
   /** The unique identifier of the information request. */
@@ -720,8 +718,7 @@ export const V1QuestionnaireExportCompletedRequestQuestionnaire =
 export type V1QuestionnaireExportCompletedRequestExportFormat =
   | "original"
   | "csv";
-export const V1QuestionnaireExportCompletedRequestExportFormat =
-  /*@__PURE__*/ S.String;
+export const V1QuestionnaireExportCompletedRequestExportFormat = S.String;
 
 export interface V1QuestionnaireExportCompletedRequestExport {
   /** The unique identifier of the export job. */
@@ -779,8 +776,7 @@ export const V1QuestionnaireExportFailedRequestQuestionnaire =
 
 /** The export format. */
 export type V1QuestionnaireExportFailedRequestExportFormat = "original" | "csv";
-export const V1QuestionnaireExportFailedRequestExportFormat =
-  /*@__PURE__*/ S.String;
+export const V1QuestionnaireExportFailedRequestExportFormat = S.String;
 
 export interface V1QuestionnaireExportFailedRequestExport {
   /** The unique identifier of the export job. */
@@ -852,8 +848,7 @@ export type V1QuestionnaireStatusChangedRequestQuestionnaireStatus =
   | "DETECTING_COLUMNS"
   | "ON_HOLD"
   | "NO_LONGER_NEEDED";
-export const V1QuestionnaireStatusChangedRequestQuestionnaireStatus =
-  /*@__PURE__*/ S.String;
+export const V1QuestionnaireStatusChangedRequestQuestionnaireStatus = S.String;
 
 export interface V1QuestionnaireStatusChangedRequestQuestionnaire {
   /** The questionnaire ID. */
@@ -1042,8 +1037,7 @@ export type V1VendorDecisionCreatedRequestVendorDecisionStatus =
   | "APPROVED"
   | "CONDITIONALLY_APPROVED"
   | "NOT_APPROVED";
-export const V1VendorDecisionCreatedRequestVendorDecisionStatus =
-  /*@__PURE__*/ S.String;
+export const V1VendorDecisionCreatedRequestVendorDecisionStatus = S.String;
 
 export interface V1VendorDecisionCreatedRequestVendorDecision {
   /** The vendor decision status. */

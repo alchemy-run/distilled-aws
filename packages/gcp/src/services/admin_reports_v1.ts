@@ -254,7 +254,7 @@ export const UsageReports = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UsageReports" }) as any as S.Schema<UsageReports>;
 
 export type GetEntityUsageReportsEntityTypeEnum = "gplus_communities";
-export const GetEntityUsageReportsEntityTypeEnum = /*@__PURE__*/ S.String;
+export const GetEntityUsageReportsEntityTypeEnum = S.String;
 
 export interface GetEntityUsageReportsRequest {
   /** Token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. In your follow-on request getting the next page of the report, enter the `nextPageToken` value in the `pageToken` query string. */
@@ -379,7 +379,7 @@ export type ListActivitiesApplicationNameEnum =
   | "voice"
   | "chrome_sync"
   | "workspace_studio";
-export const ListActivitiesApplicationNameEnum = /*@__PURE__*/ S.String;
+export const ListActivitiesApplicationNameEnum = S.String;
 
 export interface ListActivitiesRequest {
   /** Sets the end of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The default value is the approximate time of the API request. An API report has three basic time concepts: - *Date of the API's request for a report*: When the API created and retrieved the report. - *Report's start time*: The beginning of the timespan shown in the report. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. - *Report's end time*: The end of the timespan shown in the report. For example, the timespan of events summarized in a report can start in April and end in May. The report itself can be requested in August. If the `endTime` is not specified, the report returns all activities from the `startTime` until the current time or the most recent 180 days if the `startTime` is more than 180 days in the past. For Gmail requests, `startTime` and `endTime` must be provided and the difference must not be greater than 30 days. */
@@ -1301,7 +1301,7 @@ export type WatchActivitiesApplicationNameEnum =
   | "data_studio"
   | "keep"
   | "classroom";
-export const WatchActivitiesApplicationNameEnum = /*@__PURE__*/ S.String;
+export const WatchActivitiesApplicationNameEnum = S.String;
 
 export interface WatchActivitiesRequest {
   /** Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique Google Workspace profile ID or their primary email address. Must not be a deleted user. For a deleted user, call `users.list` in Directory API with `showDeleted=true`, then use the returned `ID` as the `userKey`. */

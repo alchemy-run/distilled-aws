@@ -167,7 +167,7 @@ export type TaggableResourceType =
   | "Evaluation"
   | "MLModel"
   | (string & {});
-export const TaggableResourceType = /*@__PURE__*/ S.String;
+export const TaggableResourceType = S.String;
 
 export interface AddTagsInput {
   Tags: Tag[];
@@ -502,7 +502,7 @@ export type MLModelType =
   | "BINARY"
   | "MULTICLASS"
   | (string & {});
-export const MLModelType = /*@__PURE__*/ S.String;
+export const MLModelType = S.String;
 
 export type StringType = string;
 export type TrainingParameters = { [key: string]: string | undefined };
@@ -578,7 +578,7 @@ export type RealtimeEndpointStatus =
   | "UPDATING"
   | "FAILED"
   | (string & {});
-export const RealtimeEndpointStatus = /*@__PURE__*/ S.String;
+export const RealtimeEndpointStatus = S.String;
 
 export interface RealtimeEndpointInfo {
   PeakRequestsPerSecond?: number;
@@ -790,11 +790,11 @@ export type BatchPredictionFilterVariable =
   | "DataSourceId"
   | "DataURI"
   | (string & {});
-export const BatchPredictionFilterVariable = /*@__PURE__*/ S.String;
+export const BatchPredictionFilterVariable = S.String;
 
 export type ComparatorValue = string;
 export type SortOrder = "asc" | "dsc" | (string & {});
-export const SortOrder = /*@__PURE__*/ S.String;
+export const SortOrder = S.String;
 
 export type PageLimit = number;
 export interface DescribeBatchPredictionsInput {
@@ -845,7 +845,7 @@ export type EntityStatus =
   | "COMPLETED"
   | "DELETED"
   | (string & {});
-export const EntityStatus = /*@__PURE__*/ S.String;
+export const EntityStatus = S.String;
 
 export type Message = string;
 export type LongType = number;
@@ -911,7 +911,7 @@ export type DataSourceFilterVariable =
   | "DataLocationS3"
   | "IAMUser"
   | (string & {});
-export const DataSourceFilterVariable = /*@__PURE__*/ S.String;
+export const DataSourceFilterVariable = S.String;
 
 export interface DescribeDataSourcesInput {
   FilterVariable?: DataSourceFilterVariable;
@@ -1052,7 +1052,7 @@ export type EvaluationFilterVariable =
   | "DataSourceId"
   | "DataURI"
   | (string & {});
-export const EvaluationFilterVariable = /*@__PURE__*/ S.String;
+export const EvaluationFilterVariable = S.String;
 
 export interface DescribeEvaluationsInput {
   FilterVariable?: EvaluationFilterVariable;
@@ -1171,7 +1171,7 @@ export type MLModelFilterVariable =
   | "Algorithm"
   | "TrainingDataURI"
   | (string & {});
-export const MLModelFilterVariable = /*@__PURE__*/ S.String;
+export const MLModelFilterVariable = S.String;
 
 export interface DescribeMLModelsInput {
   FilterVariable?: MLModelFilterVariable;
@@ -1215,7 +1215,7 @@ export const DescribeMLModelsInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DescribeMLModelsInput>;
 export type MLModelName = string;
 export type Algorithm = "sgd" | (string & {});
-export const Algorithm = /*@__PURE__*/ S.String;
+export const Algorithm = S.String;
 
 export type ScoreThreshold = number;
 export interface MLModel {
@@ -1608,7 +1608,7 @@ export type DetailsAttributes =
   | "PredictiveModelType"
   | "Algorithm"
   | (string & {});
-export const DetailsAttributes = /*@__PURE__*/ S.String;
+export const DetailsAttributes = S.String;
 
 export type DetailsValue = string;
 export type DetailsMap = { [key in DetailsAttributes]?: string };

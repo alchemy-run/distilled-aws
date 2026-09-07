@@ -80,7 +80,7 @@ export type PlatformPlatformTypeEnum =
   | "LACROS_ARM64"
   | "FUCHSIA"
   | "WIN_ARM64";
-export const PlatformPlatformTypeEnum = /*@__PURE__*/ S.String;
+export const PlatformPlatformTypeEnum = S.String;
 
 /** Each Platform is owned by a Product and owns a collection of channels. Available platforms are listed in Platform enum below. Not all Channels are available for every Platform (e.g. CANARY does not exist for LINUX). */
 export interface Platform {
@@ -152,7 +152,7 @@ export type ChannelChannelTypeEnum =
   | "EXTENDED"
   | "LTS"
   | "LTC";
-export const ChannelChannelTypeEnum = /*@__PURE__*/ S.String;
+export const ChannelChannelTypeEnum = S.String;
 
 /** Each Channel is owned by a Platform and owns a collection of versions. Possible Channels are listed in the Channel enum below. Not all Channels are available for every Platform (e.g. CANARY does not exist for LINUX). */
 export interface Channel {

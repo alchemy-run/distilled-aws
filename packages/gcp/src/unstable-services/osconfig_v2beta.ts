@@ -159,7 +159,7 @@ export type GoogleCloudOsconfigV2beta_PolicyOrchestrator_IterationStateStateEnum
   | "CANCELLED"
   | "UNKNOWN";
 export const GoogleCloudOsconfigV2beta_PolicyOrchestrator_IterationStateStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DocumentMap = { [key: string]: unknown | undefined };
 export const DocumentMap = /*@__PURE__*/ S.Record(
@@ -412,8 +412,7 @@ export type OSPolicyResourcePackageResourceDesiredStateEnum =
   | "DESIRED_STATE_UNSPECIFIED"
   | "INSTALLED"
   | "REMOVED";
-export const OSPolicyResourcePackageResourceDesiredStateEnum =
-  /*@__PURE__*/ S.String;
+export const OSPolicyResourcePackageResourceDesiredStateEnum = S.String;
 
 /** A package managed by Zypper. - install: `zypper -y install package` - remove: `zypper -y rm package` */
 export type OSPolicyResourcePackageResourceZypper =
@@ -513,7 +512,7 @@ export type OSPolicyResourceRepositoryResourceAptRepositoryArchiveTypeEnum =
   | "DEB"
   | "DEB_SRC";
 export const OSPolicyResourceRepositoryResourceAptRepositoryArchiveTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a single apt package repository. These will be added to a repo file that will be managed at `/etc/apt/sources.list.d/google_osconfig.list`. */
 export interface OSPolicyResourceRepositoryResourceAptRepository {
@@ -612,7 +611,7 @@ export type OSPolicyResourceFileResourceStateEnum =
   | "PRESENT"
   | "ABSENT"
   | "CONTENTS_MATCH";
-export const OSPolicyResourceFileResourceStateEnum = /*@__PURE__*/ S.String;
+export const OSPolicyResourceFileResourceStateEnum = S.String;
 
 /** A resource that manages the state of a file. */
 export interface OSPolicyResourceFileResource {
@@ -644,8 +643,7 @@ export type OSPolicyResourceExecResourceExecInterpreterEnum =
   | "NONE"
   | "SHELL"
   | "POWERSHELL";
-export const OSPolicyResourceExecResourceExecInterpreterEnum =
-  /*@__PURE__*/ S.String;
+export const OSPolicyResourceExecResourceExecInterpreterEnum = S.String;
 
 /** A file or script to execute. */
 export interface OSPolicyResourceExecResourceExec {
@@ -743,7 +741,7 @@ export type OSPolicyModeEnum =
   | "MODE_UNSPECIFIED"
   | "VALIDATION"
   | "ENFORCEMENT";
-export const OSPolicyModeEnum = /*@__PURE__*/ S.String;
+export const OSPolicyModeEnum = S.String;
 
 /** An OS policy defines the desired state configuration for a VM. */
 export interface OSPolicy {
@@ -779,7 +777,7 @@ export type OSPolicyAssignmentRolloutStateEnum =
   | "CANCELLING"
   | "CANCELLED"
   | "SUCCEEDED";
-export const OSPolicyAssignmentRolloutStateEnum = /*@__PURE__*/ S.String;
+export const OSPolicyAssignmentRolloutStateEnum = S.String;
 
 /** VM inventory details. */
 export type OSPolicyAssignmentInstanceFilterInventory = OSPolicyInventoryFilter;

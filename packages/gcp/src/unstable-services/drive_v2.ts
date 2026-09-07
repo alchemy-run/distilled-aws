@@ -66,7 +66,7 @@ export class NotFound
   ) {}
 
 export type CopyFilesVisibilityEnum = "DEFAULT" | "PRIVATE";
-export const CopyFilesVisibilityEnum = /*@__PURE__*/ S.String;
+export const CopyFilesVisibilityEnum = S.String;
 
 export interface FileCapabilities {
   /** Output only. Whether the current user can add or modify content restrictions which are owner restricted. */
@@ -2569,7 +2569,7 @@ export const GetDrivesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDrivesRequest>;
 
 export type GetFilesProjectionEnum = "BASIC" | "FULL";
-export const GetFilesProjectionEnum = /*@__PURE__*/ S.String;
+export const GetFilesProjectionEnum = S.String;
 
 export interface GetFilesRequest {
   /** Specifies which additional view's permissions to include in the response. Only `published` is supported. */
@@ -2982,7 +2982,7 @@ export const InsertDrivesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InsertDrivesRequest>;
 
 export type InsertFilesVisibilityEnum = "DEFAULT" | "PRIVATE";
-export const InsertFilesVisibilityEnum = /*@__PURE__*/ S.String;
+export const InsertFilesVisibilityEnum = S.String;
 
 export interface InsertFilesRequest {
   /** A comma-separated list of IDs of labels to include in the `labelInfo` part of the response. */
@@ -3498,10 +3498,10 @@ export const DriveList = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "DriveList" }) as any as S.Schema<DriveList>;
 
 export type ListFilesCorpusEnum = "DEFAULT" | "DOMAIN";
-export const ListFilesCorpusEnum = /*@__PURE__*/ S.String;
+export const ListFilesCorpusEnum = S.String;
 
 export type ListFilesProjectionEnum = "BASIC" | "FULL";
-export const ListFilesProjectionEnum = /*@__PURE__*/ S.String;
+export const ListFilesProjectionEnum = S.String;
 
 export interface ListFilesRequest {
   /** Bodies of items (files/documents) to which the query applies. Supported bodies are `default`, `domain`, `drive` and `allDrives`. Prefer `default` or `drive` to `allDrives` for efficiency. */
@@ -4082,7 +4082,7 @@ export type PatchFilesModifiedDateBehaviorEnum =
   | "noChange"
   | "now"
   | "nowIfNeeded";
-export const PatchFilesModifiedDateBehaviorEnum = /*@__PURE__*/ S.String;
+export const PatchFilesModifiedDateBehaviorEnum = S.String;
 
 export interface PatchFilesRequest {
   /** Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the [Drive Help Center](https://support.google.com/drive/answer/2409045). Note that this field is ignored if there is no payload in the request. */
@@ -4507,7 +4507,7 @@ export type UpdateFilesModifiedDateBehaviorEnum =
   | "noChange"
   | "now"
   | "nowIfNeeded";
-export const UpdateFilesModifiedDateBehaviorEnum = /*@__PURE__*/ S.String;
+export const UpdateFilesModifiedDateBehaviorEnum = S.String;
 
 export interface UpdateFilesRequest {
   /** A comma-separated list of IDs of labels to include in the `labelInfo` part of the response. */
@@ -4794,7 +4794,7 @@ export const WatchChangesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WatchChangesRequest>;
 
 export type WatchFilesProjectionEnum = "BASIC" | "FULL";
-export const WatchFilesProjectionEnum = /*@__PURE__*/ S.String;
+export const WatchFilesProjectionEnum = S.String;
 
 export interface WatchFilesRequest {
   /** Whether the requesting application supports both My Drives and shared drives. */

@@ -149,7 +149,7 @@ export type Dimension =
   | "REGION"
   | "SERVICE"
   | (string & {});
-export const Dimension = /*@__PURE__*/ S.String;
+export const Dimension = S.String;
 
 export type DimensionList = Dimension[];
 export const DimensionList = /*@__PURE__*/ S.Array(Dimension);
@@ -178,7 +178,7 @@ export type EmissionsType =
   | "TOTAL_SCOPE_3_LBM_CARBON_EMISSIONS"
   | "TOTAL_SCOPE_3_MBM_CARBON_EMISSIONS"
   | (string & {});
-export const EmissionsType = /*@__PURE__*/ S.String;
+export const EmissionsType = S.String;
 
 export type EmissionsTypeList = EmissionsType[];
 export const EmissionsTypeList = /*@__PURE__*/ S.Array(EmissionsType);
@@ -189,7 +189,7 @@ export type TimeGranularity =
   | "QUARTERLY_FISCAL"
   | "MONTHLY"
   | (string & {});
-export const TimeGranularity = /*@__PURE__*/ S.String;
+export const TimeGranularity = S.String;
 
 export type Month = number;
 export interface GranularityConfiguration {
@@ -242,7 +242,7 @@ export const DimensionsMap = /*@__PURE__*/ S.Record(
 );
 export type ModelVersion = string;
 export type EmissionsUnit = "MTCO2e" | (string & {});
-export const EmissionsUnit = /*@__PURE__*/ S.String;
+export const EmissionsUnit = S.String;
 
 export interface Emissions {
   Value: number;
@@ -340,7 +340,7 @@ export const GetEstimatedCarbonEmissionsDimensionValuesResponse =
     identifier: "GetEstimatedCarbonEmissionsDimensionValuesResponse",
   }) as any as S.Schema<GetEstimatedCarbonEmissionsDimensionValuesResponse>;
 export type WaterAllocationType = "TOTAL_WATER_WITHDRAWALS" | (string & {});
-export const WaterAllocationType = /*@__PURE__*/ S.String;
+export const WaterAllocationType = S.String;
 
 export type WaterAllocationTypeList = WaterAllocationType[];
 export const WaterAllocationTypeList =
@@ -377,7 +377,7 @@ export const GetEstimatedWaterAllocationRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetEstimatedWaterAllocationRequest",
 }) as any as S.Schema<GetEstimatedWaterAllocationRequest>;
 export type WaterAllocationUnit = "m3" | (string & {});
-export const WaterAllocationUnit = /*@__PURE__*/ S.String;
+export const WaterAllocationUnit = S.String;
 
 export interface WaterAllocation {
   Value: number;

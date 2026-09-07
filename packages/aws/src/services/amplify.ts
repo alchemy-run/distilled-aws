@@ -133,7 +133,7 @@ export type Name = string;
 export type Description = string;
 export type Repository = string;
 export type Platform = "WEB" | "WEB_DYNAMIC" | "WEB_COMPUTE" | (string & {});
-export const Platform = /*@__PURE__*/ S.String;
+export const Platform = S.String;
 
 export type ComputeRoleArn = string;
 export type ServiceRoleArn = string;
@@ -190,7 +190,7 @@ export type Stage =
   | "EXPERIMENTAL"
   | "PULL_REQUEST"
   | (string & {});
-export const Stage = /*@__PURE__*/ S.String;
+export const Stage = S.String;
 
 export type Framework = string;
 export type EnableAutoBuild = boolean;
@@ -230,7 +230,7 @@ export type BuildComputeType =
   | "LARGE_16GB"
   | "XLARGE_72GB"
   | (string & {});
-export const BuildComputeType = /*@__PURE__*/ S.String;
+export const BuildComputeType = S.String;
 
 export interface JobConfig {
   buildComputeType: BuildComputeType;
@@ -242,7 +242,7 @@ export type CacheConfigType =
   | "AMPLIFY_MANAGED"
   | "AMPLIFY_MANAGED_NO_COOKIES"
   | (string & {});
-export const CacheConfigType = /*@__PURE__*/ S.String;
+export const CacheConfigType = S.String;
 
 export interface CacheConfig {
   type: CacheConfigType;
@@ -337,7 +337,7 @@ export const ProductionBranch = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProductionBranch",
 }) as any as S.Schema<ProductionBranch>;
 export type RepositoryCloneMethod = "SSH" | "TOKEN" | "SIGV4" | (string & {});
-export const RepositoryCloneMethod = /*@__PURE__*/ S.String;
+export const RepositoryCloneMethod = S.String;
 
 export type WebhookCreateTime = Date;
 export type WebAclArn = string;
@@ -348,7 +348,7 @@ export type WafStatus =
   | "DISASSOCIATING"
   | "DISASSOCIATION_FAILED"
   | (string & {});
-export const WafStatus = /*@__PURE__*/ S.String;
+export const WafStatus = S.String;
 
 export type StatusReason = string;
 export interface WafConfiguration {
@@ -725,7 +725,7 @@ export type AutoSubDomainCreationPatterns = string[];
 export const AutoSubDomainCreationPatterns = /*@__PURE__*/ S.Array(S.String);
 export type AutoSubDomainIAMRole = string;
 export type CertificateType = "AMPLIFY_MANAGED" | "CUSTOM" | (string & {});
-export const CertificateType = /*@__PURE__*/ S.String;
+export const CertificateType = S.String;
 
 export type CertificateArn = string;
 export interface CertificateSettings {
@@ -785,7 +785,7 @@ export type DomainStatus =
   | "REQUESTING_CERTIFICATE"
   | "UPDATING"
   | (string & {});
-export const DomainStatus = /*@__PURE__*/ S.String;
+export const DomainStatus = S.String;
 
 export type UpdateStatus =
   | "REQUESTING_CERTIFICATE"
@@ -796,7 +796,7 @@ export type UpdateStatus =
   | "UPDATE_COMPLETE"
   | "UPDATE_FAILED"
   | (string & {});
-export const UpdateStatus = /*@__PURE__*/ S.String;
+export const UpdateStatus = S.String;
 
 export type CertificateVerificationDNSRecord = string;
 export type Verified = boolean;
@@ -1083,7 +1083,7 @@ export type JobStatus =
   | "CANCELLING"
   | "CANCELLED"
   | (string & {});
-export const JobStatus = /*@__PURE__*/ S.String;
+export const JobStatus = S.String;
 
 export type EndTime = Date;
 export type JobType =
@@ -1092,11 +1092,11 @@ export type JobType =
   | "MANUAL"
   | "WEB_HOOK"
   | (string & {});
-export const JobType = /*@__PURE__*/ S.String;
+export const JobType = S.String;
 
 export type SourceUrl = string;
 export type SourceUrlType = "ZIP" | "BUCKET_PREFIX" | (string & {});
-export const SourceUrlType = /*@__PURE__*/ S.String;
+export const SourceUrlType = S.String;
 
 export interface JobSummary {
   jobArn: string;

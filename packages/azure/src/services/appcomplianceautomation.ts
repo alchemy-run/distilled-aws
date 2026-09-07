@@ -39,8 +39,7 @@ export const CheckProviderActionNameAvailabilityRequest =
 export type CheckProviderActionNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const CheckProviderActionNameAvailabilityResponseReason =
-  /*@__PURE__*/ S.String;
+export const CheckProviderActionNameAvailabilityResponseReason = S.String;
 
 export interface CheckProviderActionNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
@@ -235,7 +234,7 @@ export type DownloadType =
   | "CompliancePdfReport"
   | "ComplianceDetailedPdfReport"
   | "ResourceList";
-export const DownloadType = /*@__PURE__*/ S.String;
+export const DownloadType = S.String;
 
 export interface DownloadSnapshotRequest {
   /** Report Name. */
@@ -300,15 +299,15 @@ export type ControlStatus =
   | "Failed"
   | "NotApplicable"
   | "PendingApproval";
-export const ControlStatus = /*@__PURE__*/ S.String;
+export const ControlStatus = S.String;
 
 /** Resource Origin. */
 export type ResourceOrigin = "Azure" | "AWS" | "GCP";
-export const ResourceOrigin = /*@__PURE__*/ S.String;
+export const ResourceOrigin = S.String;
 
 /** Indicates the resource status. */
 export type ResourceStatus = "Healthy" | "Unhealthy";
-export const ResourceStatus = /*@__PURE__*/ S.String;
+export const ResourceStatus = S.String;
 
 /** Object that includes all the content for single compliance result. */
 export interface ComplianceReportItem {
@@ -415,7 +414,7 @@ export const DownloadResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Evidence type */
 export type EvidenceType = "File" | "AutoCollectedEvidence" | "Data";
-export const EvidenceType = /*@__PURE__*/ S.String;
+export const EvidenceType = S.String;
 
 /** Evidence's properties. */
 export interface EvidencePropertiesInput {
@@ -479,7 +478,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -487,7 +486,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -525,7 +524,7 @@ export type ProvisioningState =
   | "Fixing"
   | "Verifying"
   | "Updating";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Evidence's properties. */
 export interface EvidenceProperties {
@@ -763,7 +762,7 @@ export const ReportPropertiesResourcesList = /*@__PURE__*/ S.Array(
 
 /** Report status. */
 export type ReportStatus = "Active" | "Failed" | "Reviewing" | "Disabled";
-export const ReportStatus = /*@__PURE__*/ S.String;
+export const ReportStatus = S.String;
 
 /** List of report error codes. */
 export type ReportPropertiesErrorsList = Array<string>;
@@ -996,7 +995,7 @@ export type InputType =
   | "MultiSelectDropdownCustom"
   | "Group"
   | "Upload";
-export const InputType = /*@__PURE__*/ S.String;
+export const InputType = S.String;
 
 /** Option id list. */
 export type ScopingQuestionOptionIdsList = Array<string>;
@@ -1020,7 +1019,7 @@ export type Rule =
   | "DynamicDropdown"
   | "PreventNonEnglishChar"
   | "ValidEmail";
-export const Rule = /*@__PURE__*/ S.String;
+export const Rule = S.String;
 
 /** The rule of the question. */
 export type ScopingQuestionRulesList = Array<Rule>;
@@ -1191,8 +1190,7 @@ export type SnapshotPropertiesReportSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SnapshotPropertiesReportSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const SnapshotPropertiesReportSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SnapshotPropertiesReportSystemDataLastModifiedByType =
@@ -1200,8 +1198,7 @@ export type SnapshotPropertiesReportSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SnapshotPropertiesReportSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const SnapshotPropertiesReportSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SnapshotPropertiesReportSystemData {
@@ -1239,7 +1236,7 @@ export type CategoryStatus =
   | "Failed"
   | "NotApplicable"
   | "PendingApproval";
-export const CategoryStatus = /*@__PURE__*/ S.String;
+export const CategoryStatus = S.String;
 
 /** Indicates the control family status. */
 export type ControlFamilyStatus =
@@ -1247,15 +1244,15 @@ export type ControlFamilyStatus =
   | "Failed"
   | "NotApplicable"
   | "PendingApproval";
-export const ControlFamilyStatus = /*@__PURE__*/ S.String;
+export const ControlFamilyStatus = S.String;
 
 /** Indicates the customer responsibility type. */
 export type ResponsibilityType = "Automated" | "ScopedManual" | "Manual";
-export const ResponsibilityType = /*@__PURE__*/ S.String;
+export const ResponsibilityType = S.String;
 
 /** Indicates the customer responsibility severity. */
 export type ResponsibilitySeverity = "High" | "Medium" | "Low";
-export const ResponsibilitySeverity = /*@__PURE__*/ S.String;
+export const ResponsibilitySeverity = S.String;
 
 /** Indicates the customer responsibility status. */
 export type ResponsibilityStatus =
@@ -1263,11 +1260,11 @@ export type ResponsibilityStatus =
   | "Failed"
   | "NotApplicable"
   | "PendingApproval";
-export const ResponsibilityStatus = /*@__PURE__*/ S.String;
+export const ResponsibilityStatus = S.String;
 
 /** Indicates the customer responsibility supported cloud environment. */
 export type ResponsibilityEnvironment = "Azure" | "AWS" | "GCP" | "General";
-export const ResponsibilityEnvironment = /*@__PURE__*/ S.String;
+export const ResponsibilityEnvironment = S.String;
 
 /** List of recommendation id. */
 export type ResponsibilityResourceRecommendationIdsList = Array<string>;
@@ -1315,7 +1312,7 @@ export const ResponsibilityResourceListList = /*@__PURE__*/ S.Array(
 
 /** Indicates whether this solution is the recommended. */
 export type IsRecommendSolution = "true" | "false";
-export const IsRecommendSolution = /*@__PURE__*/ S.String;
+export const IsRecommendSolution = S.String;
 
 /** A class represent the recommendation solution. */
 export interface RecommendationSolution {
@@ -1609,11 +1606,11 @@ export const GetWebhookRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Webhook status. */
 export type WebhookStatus = "Enabled" | "Disabled";
-export const WebhookStatus = /*@__PURE__*/ S.String;
+export const WebhookStatus = S.String;
 
 /** whether to send notification under any event. */
 export type SendAllEvents = "true" | "false";
-export const SendAllEvents = /*@__PURE__*/ S.String;
+export const SendAllEvents = S.String;
 
 /** notification event. */
 export type NotificationEvent =
@@ -1622,7 +1619,7 @@ export type NotificationEvent =
   | "assessment_failure"
   | "report_configuration_changes"
   | "report_deletion";
-export const NotificationEvent = /*@__PURE__*/ S.String;
+export const NotificationEvent = S.String;
 
 /** under which event notification should be sent. */
 export type WebhookPropertiesEventsList = Array<NotificationEvent>;
@@ -1632,23 +1629,23 @@ export const WebhookPropertiesEventsList = /*@__PURE__*/ S.Array(
 
 /** content type */
 export type ContentType = "application/json";
-export const ContentType = /*@__PURE__*/ S.String;
+export const ContentType = S.String;
 
 /** whether to update webhookKey. */
 export type UpdateWebhookKey = "true" | "false";
-export const UpdateWebhookKey = /*@__PURE__*/ S.String;
+export const UpdateWebhookKey = S.String;
 
 /** whether webhookKey is enabled. */
 export type WebhookKeyEnabled = "true" | "false";
-export const WebhookKeyEnabled = /*@__PURE__*/ S.String;
+export const WebhookKeyEnabled = S.String;
 
 /** whether to enable ssl verification */
 export type EnableSslVerification = "true" | "false";
-export const EnableSslVerification = /*@__PURE__*/ S.String;
+export const EnableSslVerification = S.String;
 
 /** webhook deliveryStatus */
 export type DeliveryStatus = "Succeeded" | "Failed" | "NotStarted";
-export const DeliveryStatus = /*@__PURE__*/ S.String;
+export const DeliveryStatus = S.String;
 
 /** Webhook properties. */
 export interface WebhookProperties {
@@ -1848,11 +1845,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -2419,7 +2416,7 @@ export const ReportFixRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether the fix action is Succeeded or Failed. */
 export type Result = "Succeeded" | "Failed";
-export const Result = /*@__PURE__*/ S.String;
+export const Result = S.String;
 
 /** Report fix result. */
 export interface ReportFixResult {
@@ -2467,8 +2464,7 @@ export const ReportNestedResourceCheckNameAvailabilityRequest =
 export type ReportNestedResourceCheckNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const ReportNestedResourceCheckNameAvailabilityResponseReason =
-  /*@__PURE__*/ S.String;
+export const ReportNestedResourceCheckNameAvailabilityResponseReason = S.String;
 
 export interface ReportNestedResourceCheckNameAvailabilityResponse {
   /** Indicates if the resource name is available. */

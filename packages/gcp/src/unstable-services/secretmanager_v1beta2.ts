@@ -186,7 +186,7 @@ export type SecretVersionStateEnum =
   | "ENABLED"
   | "DISABLED"
   | "DESTROYED";
-export const SecretVersionStateEnum = /*@__PURE__*/ S.String;
+export const SecretVersionStateEnum = S.String;
 
 /** The replication status of a SecretVersion using automatic replication. Only populated if the parent Secret has an automatic replication policy. */
 export interface AutomaticStatus {
@@ -784,7 +784,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {

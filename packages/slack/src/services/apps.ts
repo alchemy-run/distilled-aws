@@ -619,7 +619,7 @@ export const GetDatastoreResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The direction you want the data sorted by (always by timestamp) */
 export type ListActivitiesRequestSortDirection = "asc" | "desc";
-export const ListActivitiesRequestSortDirection = /*@__PURE__*/ S.String;
+export const ListActivitiesRequestSortDirection = S.String;
 
 export interface ListActivitiesRequest {
   /** The id of the app to get activities from. */
@@ -979,7 +979,7 @@ export const UpdateManifestResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The status that should be set for the user. */
 export type UpdateUserConnectionRequestStatus = "connected" | "disconnected";
-export const UpdateUserConnectionRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateUserConnectionRequestStatus = S.String;
 
 export interface UpdateUserConnectionRequest {
   /** The ID of the user for the status update. */

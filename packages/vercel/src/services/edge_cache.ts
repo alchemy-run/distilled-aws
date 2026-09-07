@@ -98,10 +98,10 @@ export type DangerouslyDeleteByTagsRequestTags =
   | DangerouslyDeleteByTagsRequestTagsCase0List
   | string;
 export const DangerouslyDeleteByTagsRequestTags =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DangerouslyDeleteByTagsRequestTags>;
+  S.Unknown as any as S.Schema<DangerouslyDeleteByTagsRequestTags>;
 
 export type DangerouslyDeleteByTagsRequestTarget = "production" | "preview";
-export const DangerouslyDeleteByTagsRequestTarget = /*@__PURE__*/ S.String;
+export const DangerouslyDeleteByTagsRequestTarget = S.String;
 
 export interface DangerouslyDeleteByTagsRequest {
   projectIdOrName: string;
@@ -185,10 +185,10 @@ export type InvalidateByTagsRequestTags =
   | InvalidateByTagsRequestTagsCase0List
   | string;
 export const InvalidateByTagsRequestTags =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InvalidateByTagsRequestTags>;
+  S.Unknown as any as S.Schema<InvalidateByTagsRequestTags>;
 
 export type InvalidateByTagsRequestTarget = "production" | "preview";
-export const InvalidateByTagsRequestTarget = /*@__PURE__*/ S.String;
+export const InvalidateByTagsRequestTarget = S.String;
 
 export interface InvalidateByTagsRequest {
   projectIdOrName: string;

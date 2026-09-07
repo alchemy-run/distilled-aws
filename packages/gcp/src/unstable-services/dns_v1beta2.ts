@@ -74,8 +74,7 @@ export type RRSetRoutingPolicyLoadBalancerTargetIpProtocolEnum =
   | "undefined"
   | "tcp"
   | "udp";
-export const RRSetRoutingPolicyLoadBalancerTargetIpProtocolEnum =
-  /*@__PURE__*/ S.String;
+export const RRSetRoutingPolicyLoadBalancerTargetIpProtocolEnum = S.String;
 
 export type RRSetRoutingPolicyLoadBalancerTargetLoadBalancerTypeEnum =
   | "none"
@@ -83,7 +82,7 @@ export type RRSetRoutingPolicyLoadBalancerTargetLoadBalancerTypeEnum =
   | "regionalL4ilb"
   | "regionalL7ilb";
 export const RRSetRoutingPolicyLoadBalancerTargetLoadBalancerTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration for an individual load balancer to health check. */
 export interface RRSetRoutingPolicyLoadBalancerTarget {
@@ -329,7 +328,7 @@ export const ResourceRecordSetList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ResourceRecordSetList>;
 
 export type ChangeStatusEnum = "pending" | "done";
-export const ChangeStatusEnum = /*@__PURE__*/ S.String;
+export const ChangeStatusEnum = S.String;
 
 /** A Change represents a set of `ResourceRecordSet` additions and deletions applied atomically to a ManagedZone. ResourceRecordSets within a ManagedZone are modified by creating a new Change element in the Changes collection. In turn the Changes collection also records the past modifications to the `ResourceRecordSets` in a `ManagedZone`. The current state of the `ManagedZone` is the sum effect of applying all `Change` elements in the `Changes` collection in sequence. */
 export interface Change {
@@ -420,7 +419,7 @@ export const ManagedZoneServiceDirectoryConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ManagedZoneServiceDirectoryConfig>;
 
 export type ManagedZoneVisibilityEnum = "public" | "private";
-export const ManagedZoneVisibilityEnum = /*@__PURE__*/ S.String;
+export const ManagedZoneVisibilityEnum = S.String;
 
 export interface ManagedZonePrivateVisibilityConfigNetwork {
   /** The fully qualified URL of the VPC network to bind to. Format this URL like `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}` */
@@ -534,7 +533,7 @@ export type ManagedZoneForwardingConfigNameServerTargetForwardingPathEnum =
   | "default"
   | "private";
 export const ManagedZoneForwardingConfigNameServerTargetForwardingPathEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ManagedZoneForwardingConfigNameServerTarget {
   /** Forwarding path for this NameServerTarget. If unset or set to DEFAULT, Cloud DNS makes forwarding decisions based on IP address ranges; that is, RFC1918 addresses go to the VPC network, non-RFC1918 addresses go to the internet. When set to PRIVATE, Cloud DNS always sends queries through the VPC network for this target. */
@@ -594,10 +593,10 @@ export const StringMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<StringMap>;
 
 export type ManagedZoneDnsSecConfigNonExistenceEnum = "nsec" | "nsec3";
-export const ManagedZoneDnsSecConfigNonExistenceEnum = /*@__PURE__*/ S.String;
+export const ManagedZoneDnsSecConfigNonExistenceEnum = S.String;
 
 export type DnsKeySpecKeyTypeEnum = "keySigning" | "zoneSigning";
-export const DnsKeySpecKeyTypeEnum = /*@__PURE__*/ S.String;
+export const DnsKeySpecKeyTypeEnum = S.String;
 
 export type DnsKeySpecAlgorithmEnum =
   | "rsasha1"
@@ -605,7 +604,7 @@ export type DnsKeySpecAlgorithmEnum =
   | "rsasha512"
   | "ecdsap256sha256"
   | "ecdsap384sha384";
-export const DnsKeySpecAlgorithmEnum = /*@__PURE__*/ S.String;
+export const DnsKeySpecAlgorithmEnum = S.String;
 
 /** Parameters for DnsKey key generation. Used for generating initial keys for a new ManagedZone and as default when adding a new DnsKey. */
 export interface DnsKeySpec {
@@ -632,7 +631,7 @@ export const DnsKeySpecList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DnsKeySpecList>;
 
 export type ManagedZoneDnsSecConfigStateEnum = "off" | "on" | "transfer";
-export const ManagedZoneDnsSecConfigStateEnum = /*@__PURE__*/ S.String;
+export const ManagedZoneDnsSecConfigStateEnum = S.String;
 
 export interface ManagedZoneDnsSecConfig {
   kind?: string;
@@ -750,7 +749,7 @@ export type PolicyAlternativeNameServerConfigTargetNameServerForwardingPathEnum 
   | "default"
   | "private";
 export const PolicyAlternativeNameServerConfigTargetNameServerForwardingPathEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PolicyAlternativeNameServerConfigTargetNameServer {
   /** IPv6 address to forward to. Does not accept both fields (ipv4 & ipv6) being populated. Public preview as of November 2022. */
@@ -1024,7 +1023,7 @@ export const CreateResponsePoliciesRequest = /*@__PURE__*/ S.suspend(() =>
 export type ResponsePolicyRuleBehaviorEnum =
   | "behaviorUnspecified"
   | "bypassResponsePolicy";
-export const ResponsePolicyRuleBehaviorEnum = /*@__PURE__*/ S.String;
+export const ResponsePolicyRuleBehaviorEnum = S.String;
 
 export interface ResponsePolicyRuleLocalData {
   /** All resource record sets for this selector, one per resource record type. The name must match the dns_name. */
@@ -1311,7 +1310,7 @@ export const GetDnsKeysRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDnsKeysRequest>;
 
 export type DnsKeyDigestTypeEnum = "sha1" | "sha256" | "sha384";
-export const DnsKeyDigestTypeEnum = /*@__PURE__*/ S.String;
+export const DnsKeyDigestTypeEnum = S.String;
 
 export interface DnsKeyDigest {
   /** Specifies the algorithm used to calculate this digest. */
@@ -1332,7 +1331,7 @@ export const DnsKeyDigestList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DnsKeyDigestList>;
 
 export type DnsKeyTypeEnum = "keySigning" | "zoneSigning";
-export const DnsKeyTypeEnum = /*@__PURE__*/ S.String;
+export const DnsKeyTypeEnum = S.String;
 
 export type DnsKeyAlgorithmEnum =
   | "rsasha1"
@@ -1340,7 +1339,7 @@ export type DnsKeyAlgorithmEnum =
   | "rsasha512"
   | "ecdsap256sha256"
   | "ecdsap384sha384";
-export const DnsKeyAlgorithmEnum = /*@__PURE__*/ S.String;
+export const DnsKeyAlgorithmEnum = S.String;
 
 /** A DNSSEC key pair. */
 export interface DnsKey {
@@ -1478,7 +1477,7 @@ export type GoogleIamV1AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const GoogleIamV1AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleIamV1AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface GoogleIamV1AuditLogConfig {
@@ -1602,7 +1601,7 @@ export const OperationDnsKeyContext = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OperationDnsKeyContext>;
 
 export type OperationStatusEnum = "pending" | "done";
-export const OperationStatusEnum = /*@__PURE__*/ S.String;
+export const OperationStatusEnum = S.String;
 
 /** An operation represents a successful mutation performed on a Cloud DNS resource. Operations provide: - An audit log of server resource mutations. - A way to recover/retry API calls in the case where the response is never received by the caller. Use the caller specified client_operation_id. */
 export interface Operation {
@@ -1889,7 +1888,7 @@ export const GetResponsePolicyRulesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponsePolicyRulesRequest>;
 
 export type ListChangesSortByEnum = "changeSequence";
-export const ListChangesSortByEnum = /*@__PURE__*/ S.String;
+export const ListChangesSortByEnum = S.String;
 
 export interface ListChangesRequest {
   /** Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return. */
@@ -2003,7 +2002,7 @@ export const DnsKeysListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DnsKeysListResponse>;
 
 export type ListManagedZoneOperationsSortByEnum = "startTime" | "id";
-export const ListManagedZoneOperationsSortByEnum = /*@__PURE__*/ S.String;
+export const ListManagedZoneOperationsSortByEnum = S.String;
 
 export interface ListManagedZoneOperationsRequest {
   /** Identifies the project addressed by this request. */

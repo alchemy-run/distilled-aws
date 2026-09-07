@@ -192,7 +192,7 @@ export type ProviderType =
   | "GitLab"
   | "GitLabSelfManaged"
   | (string & {});
-export const ProviderType = /*@__PURE__*/ S.String;
+export const ProviderType = S.String;
 
 export type ConnectionName = string;
 export type TagKey = string;
@@ -350,16 +350,16 @@ export type DeploymentFilePath = string;
 export type ResourceName = string;
 export type IamRoleArn = string;
 export type SyncConfigurationType = "CFN_STACK_SYNC" | (string & {});
-export const SyncConfigurationType = /*@__PURE__*/ S.String;
+export const SyncConfigurationType = S.String;
 
 export type PublishDeploymentStatus = "ENABLED" | "DISABLED" | (string & {});
-export const PublishDeploymentStatus = /*@__PURE__*/ S.String;
+export const PublishDeploymentStatus = S.String;
 
 export type TriggerResourceUpdateOn =
   | "ANY_CHANGE"
   | "FILE_CHANGE"
   | (string & {});
-export const TriggerResourceUpdateOn = /*@__PURE__*/ S.String;
+export const TriggerResourceUpdateOn = S.String;
 
 export interface CreateSyncConfigurationInput {
   Branch: string;
@@ -506,7 +506,7 @@ export type ConnectionStatus =
   | "AVAILABLE"
   | "ERROR"
   | (string & {});
-export const ConnectionStatus = /*@__PURE__*/ S.String;
+export const ConnectionStatus = S.String;
 
 export interface Connection {
   ConnectionName?: string;
@@ -600,7 +600,7 @@ export type RepositorySyncStatus =
   | "SUCCEEDED"
   | "QUEUED"
   | (string & {});
-export const RepositorySyncStatus = /*@__PURE__*/ S.String;
+export const RepositorySyncStatus = S.String;
 
 export type Event = string;
 export type ExternalId = string;
@@ -701,7 +701,7 @@ export type ResourceSyncStatus =
   | "IN_PROGRESS"
   | "SUCCEEDED"
   | (string & {});
-export const ResourceSyncStatus = /*@__PURE__*/ S.String;
+export const ResourceSyncStatus = S.String;
 
 export type Target = string;
 export interface ResourceSyncAttempt {
@@ -751,10 +751,10 @@ export const GetSyncBlockerSummaryInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSyncBlockerSummaryInput>;
 export type Id = string;
 export type BlockerType = "AUTOMATED" | (string & {});
-export const BlockerType = /*@__PURE__*/ S.String;
+export const BlockerType = S.String;
 
 export type BlockerStatus = "ACTIVE" | "RESOLVED" | (string & {});
-export const BlockerStatus = /*@__PURE__*/ S.String;
+export const BlockerStatus = S.String;
 
 export type CreatedReason = string;
 export type SyncBlockerContextKey = string;

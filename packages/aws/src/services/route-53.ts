@@ -684,7 +684,7 @@ export const ActivateKeySigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ActivateKeySigningKeyRequest",
 }) as any as S.Schema<ActivateKeySigningKeyRequest>;
 export type ChangeStatus = "PENDING" | "INSYNC" | (string & {});
-export const ChangeStatus = /*@__PURE__*/ S.String;
+export const ChangeStatus = S.String;
 
 export type ResourceDescription = string;
 export interface ChangeInfo {
@@ -757,7 +757,7 @@ export type VPCRegion =
   | "us-isob-west-1"
   | "eusc-de-east-1"
   | (string & {});
-export const VPCRegion = /*@__PURE__*/ S.String;
+export const VPCRegion = S.String;
 
 export type VPCId = string;
 export interface VPC {
@@ -810,7 +810,7 @@ export type CidrCollectionChangeAction =
   | "PUT"
   | "DELETE_IF_EXISTS"
   | (string & {});
-export const CidrCollectionChangeAction = /*@__PURE__*/ S.String;
+export const CidrCollectionChangeAction = S.String;
 
 export type Cidr = string;
 export type CidrList = string[];
@@ -866,7 +866,7 @@ export const ChangeCidrCollectionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ChangeCidrCollectionResponse",
 }) as any as S.Schema<ChangeCidrCollectionResponse>;
 export type ChangeAction = "CREATE" | "DELETE" | "UPSERT" | (string & {});
-export const ChangeAction = /*@__PURE__*/ S.String;
+export const ChangeAction = S.String;
 
 export type DNSName = string;
 export type RRType =
@@ -888,7 +888,7 @@ export type RRType =
   | "SVCB"
   | "HTTPS"
   | (string & {});
-export const RRType = /*@__PURE__*/ S.String;
+export const RRType = S.String;
 
 export type ResourceRecordSetIdentifier = string;
 export type ResourceRecordSetWeight = number;
@@ -933,7 +933,7 @@ export type ResourceRecordSetRegion =
   | "ap-southeast-6"
   | "eusc-de-east-1"
   | (string & {});
-export const ResourceRecordSetRegion = /*@__PURE__*/ S.String;
+export const ResourceRecordSetRegion = S.String;
 
 export type GeoLocationContinentCode = string;
 export type GeoLocationCountryCode = string;
@@ -951,7 +951,7 @@ export const GeoLocation = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "GeoLocation" }) as any as S.Schema<GeoLocation>;
 export type ResourceRecordSetFailover = "PRIMARY" | "SECONDARY" | (string & {});
-export const ResourceRecordSetFailover = /*@__PURE__*/ S.String;
+export const ResourceRecordSetFailover = S.String;
 
 export type ResourceRecordSetMultiValueAnswer = boolean;
 export type TTL = number;
@@ -1111,7 +1111,7 @@ export const ChangeResourceRecordSetsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ChangeResourceRecordSetsResponse",
 }) as any as S.Schema<ChangeResourceRecordSetsResponse>;
 export type TagResourceType = "healthcheck" | "hostedzone" | (string & {});
-export const TagResourceType = /*@__PURE__*/ S.String;
+export const TagResourceType = S.String;
 
 export type TagResourceId = string;
 export type TagKey = string;
@@ -1228,7 +1228,7 @@ export type HealthCheckType =
   | "CLOUDWATCH_METRIC"
   | "RECOVERY_CONTROL"
   | (string & {});
-export const HealthCheckType = /*@__PURE__*/ S.String;
+export const HealthCheckType = S.String;
 
 export type ResourcePath = string;
 export type FullyQualifiedDomainName = string;
@@ -1254,7 +1254,7 @@ export type HealthCheckRegion =
   | "ap-northeast-1"
   | "sa-east-1"
   | (string & {});
-export const HealthCheckRegion = /*@__PURE__*/ S.String;
+export const HealthCheckRegion = S.String;
 
 export type HealthCheckRegionList = HealthCheckRegion[];
 export const HealthCheckRegionList = /*@__PURE__*/ S.Array(
@@ -1308,7 +1308,7 @@ export type CloudWatchRegion =
   | "us-isob-west-1"
   | "eusc-de-east-1"
   | (string & {});
-export const CloudWatchRegion = /*@__PURE__*/ S.String;
+export const CloudWatchRegion = S.String;
 
 export type AlarmName = string;
 export interface AlarmIdentifier {
@@ -1325,7 +1325,7 @@ export type InsufficientDataHealthStatus =
   | "Unhealthy"
   | "LastKnownStatus"
   | (string & {});
-export const InsufficientDataHealthStatus = /*@__PURE__*/ S.String;
+export const InsufficientDataHealthStatus = S.String;
 
 export type RoutingControlArn = string;
 export interface HealthCheckConfig {
@@ -1414,7 +1414,7 @@ export type ComparisonOperator =
   | "LessThanThreshold"
   | "LessThanOrEqualToThreshold"
   | (string & {});
-export const ComparisonOperator = /*@__PURE__*/ S.String;
+export const ComparisonOperator = S.String;
 
 export type Period = number;
 export type MetricName = string;
@@ -1426,7 +1426,7 @@ export type Statistic =
   | "Maximum"
   | "Minimum"
   | (string & {});
-export const Statistic = /*@__PURE__*/ S.String;
+export const Statistic = S.String;
 
 export type DimensionField = string;
 export interface Dimension {
@@ -1547,7 +1547,7 @@ export type AcceleratedRecoveryStatus =
   | "DISABLED"
   | "DISABLING_HOSTED_ZONE_LOCKED"
   | (string & {});
-export const AcceleratedRecoveryStatus = /*@__PURE__*/ S.String;
+export const AcceleratedRecoveryStatus = S.String;
 
 export type FailureReason = string;
 export interface HostedZoneFailureReasons {
@@ -2374,7 +2374,7 @@ export type AccountLimitType =
   | "MAX_REUSABLE_DELEGATION_SETS_BY_OWNER"
   | "MAX_TRAFFIC_POLICIES_BY_OWNER"
   | (string & {});
-export const AccountLimitType = /*@__PURE__*/ S.String;
+export const AccountLimitType = S.String;
 
 export interface GetAccountLimitRequest {
   Type: AccountLimitType;
@@ -2771,7 +2771,7 @@ export type HostedZoneLimitType =
   | "MAX_RRSETS_BY_ZONE"
   | "MAX_VPCS_ASSOCIATED_BY_ZONE"
   | (string & {});
-export const HostedZoneLimitType = /*@__PURE__*/ S.String;
+export const HostedZoneLimitType = S.String;
 
 export interface GetHostedZoneLimitRequest {
   Type: HostedZoneLimitType;
@@ -2871,7 +2871,7 @@ export const GetReusableDelegationSetResponse = /*@__PURE__*/ S.suspend(() =>
 export type ReusableDelegationSetLimitType =
   | "MAX_ZONES_BY_REUSABLE_DELEGATION_SET"
   | (string & {});
-export const ReusableDelegationSetLimitType = /*@__PURE__*/ S.String;
+export const ReusableDelegationSetLimitType = S.String;
 
 export interface GetReusableDelegationSetLimitRequest {
   Type: ReusableDelegationSetLimitType;
@@ -3270,7 +3270,7 @@ export const ListHealthChecksResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListHealthChecksResponse",
 }) as any as S.Schema<ListHealthChecksResponse>;
 export type HostedZoneType = "PrivateHostedZone" | (string & {});
-export const HostedZoneType = /*@__PURE__*/ S.String;
+export const HostedZoneType = S.String;
 
 export interface ListHostedZonesRequest {
   Marker?: string;
@@ -4068,7 +4068,7 @@ export type ResettableElementName =
   | "ResourcePath"
   | "ChildHealthChecks"
   | (string & {});
-export const ResettableElementName = /*@__PURE__*/ S.String;
+export const ResettableElementName = S.String;
 
 export type ResettableElementNameList = ResettableElementName[];
 export const ResettableElementNameList = /*@__PURE__*/ S.Array(

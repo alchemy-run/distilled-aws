@@ -139,7 +139,7 @@ export type CertificateIssuanceConfigKeyAlgorithmEnum =
   | "KEY_ALGORITHM_UNSPECIFIED"
   | "RSA_2048"
   | "ECDSA_P256";
-export const CertificateIssuanceConfigKeyAlgorithmEnum = /*@__PURE__*/ S.String;
+export const CertificateIssuanceConfigKeyAlgorithmEnum = S.String;
 
 /** CertificateIssuanceConfig specifies how to issue and manage a certificate. */
 export interface CertificateIssuanceConfig {
@@ -363,13 +363,13 @@ export const StringList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<StringList>;
 
 export type CertificateMapEntryMatcherEnum = "MATCHER_UNSPECIFIED" | "PRIMARY";
-export const CertificateMapEntryMatcherEnum = /*@__PURE__*/ S.String;
+export const CertificateMapEntryMatcherEnum = S.String;
 
 export type CertificateMapEntryStateEnum =
   | "SERVING_STATE_UNSPECIFIED"
   | "ACTIVE"
   | "PENDING";
-export const CertificateMapEntryStateEnum = /*@__PURE__*/ S.String;
+export const CertificateMapEntryStateEnum = S.String;
 
 /** Defines a certificate map entry. */
 export interface CertificateMapEntry {
@@ -471,13 +471,13 @@ export type CertificateScopeEnum =
   | "EDGE_CACHE"
   | "ALL_REGIONS"
   | "CLIENT_AUTH";
-export const CertificateScopeEnum = /*@__PURE__*/ S.String;
+export const CertificateScopeEnum = S.String;
 
 export type ProvisioningIssueReasonEnum =
   | "REASON_UNSPECIFIED"
   | "AUTHORIZATION_ISSUE"
   | "RATE_LIMITED";
-export const ProvisioningIssueReasonEnum = /*@__PURE__*/ S.String;
+export const ProvisioningIssueReasonEnum = S.String;
 
 /** Information about issues with provisioning a Managed Certificate. */
 export interface ProvisioningIssue {
@@ -500,7 +500,7 @@ export type ManagedIdentityCertificateStateEnum =
   | "PROVISIONING"
   | "FAILED"
   | "ACTIVE";
-export const ManagedIdentityCertificateStateEnum = /*@__PURE__*/ S.String;
+export const ManagedIdentityCertificateStateEnum = S.String;
 
 /** Configuration and state of a Managed Identity Certificate. Certificate Manager provisions and renews Managed Identity Certificates automatically, for as long as it's authorized to do so. */
 export interface ManagedIdentityCertificate {
@@ -526,14 +526,14 @@ export type AuthorizationAttemptInfoFailureReasonEnum =
   | "CONFIG"
   | "CAA"
   | "RATE_LIMITED";
-export const AuthorizationAttemptInfoFailureReasonEnum = /*@__PURE__*/ S.String;
+export const AuthorizationAttemptInfoFailureReasonEnum = S.String;
 
 export type AuthorizationAttemptInfoStateEnum =
   | "STATE_UNSPECIFIED"
   | "AUTHORIZING"
   | "AUTHORIZED"
   | "FAILED";
-export const AuthorizationAttemptInfoStateEnum = /*@__PURE__*/ S.String;
+export const AuthorizationAttemptInfoStateEnum = S.String;
 
 export type TroubleshootingIssuesItemEnum =
   | "ISSUE_UNSPECIFIED"
@@ -542,7 +542,7 @@ export type TroubleshootingIssuesItemEnum =
   | "RESOLVED_TO_SERVING_ON_ALT_PORTS"
   | "NO_RESOLVED_IPS"
   | "CERTIFICATE_NOT_ATTACHED";
-export const TroubleshootingIssuesItemEnum = /*@__PURE__*/ S.String;
+export const TroubleshootingIssuesItemEnum = S.String;
 
 export type TroubleshootingIssuesItemEnumList = Array<
   TroubleshootingIssuesItemEnum | (string & {})
@@ -642,7 +642,7 @@ export type ManagedCertificateStateEnum =
   | "PROVISIONING"
   | "FAILED"
   | "ACTIVE";
-export const ManagedCertificateStateEnum = /*@__PURE__*/ S.String;
+export const ManagedCertificateStateEnum = S.String;
 
 /** Configuration and state of a Managed Certificate. Certificate Manager provisions and renews Managed Certificates automatically, for as long as it's authorized to do so. */
 export interface ManagedCertificate {
@@ -751,7 +751,7 @@ export type DnsAuthorizationTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "FIXED_RECORD"
   | "PER_PROJECT_RECORD";
-export const DnsAuthorizationTypeEnum = /*@__PURE__*/ S.String;
+export const DnsAuthorizationTypeEnum = S.String;
 
 /** The structure describing the DNS Resource Record that needs to be added to DNS configuration for the authorization to be usable by certificate. */
 export interface DnsResourceRecord {

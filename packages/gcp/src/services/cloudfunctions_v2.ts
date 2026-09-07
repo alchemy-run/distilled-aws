@@ -202,14 +202,13 @@ export type ServiceConfigVpcConnectorEgressSettingsEnum =
   | "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED"
   | "PRIVATE_RANGES_ONLY"
   | "ALL_TRAFFIC";
-export const ServiceConfigVpcConnectorEgressSettingsEnum =
-  /*@__PURE__*/ S.String;
+export const ServiceConfigVpcConnectorEgressSettingsEnum = S.String;
 
 export type ServiceConfigSecurityLevelEnum =
   | "SECURITY_LEVEL_UNSPECIFIED"
   | "SECURE_ALWAYS"
   | "SECURE_OPTIONAL";
-export const ServiceConfigSecurityLevelEnum = /*@__PURE__*/ S.String;
+export const ServiceConfigSecurityLevelEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -250,7 +249,7 @@ export type ServiceConfigDirectVpcEgressEnum =
   | "DIRECT_VPC_EGRESS_UNSPECIFIED"
   | "VPC_EGRESS_PRIVATE_RANGES_ONLY"
   | "VPC_EGRESS_ALL_TRAFFIC";
-export const ServiceConfigDirectVpcEgressEnum = /*@__PURE__*/ S.String;
+export const ServiceConfigDirectVpcEgressEnum = S.String;
 
 /** Configuration for a secret environment variable. It has the information necessary to fetch the secret value from secret manager and expose it as an environment variable. */
 export interface SecretEnvVar {
@@ -282,7 +281,7 @@ export type ServiceConfigIngressSettingsEnum =
   | "ALLOW_ALL"
   | "ALLOW_INTERNAL_ONLY"
   | "ALLOW_INTERNAL_AND_GCLB";
-export const ServiceConfigIngressSettingsEnum = /*@__PURE__*/ S.String;
+export const ServiceConfigIngressSettingsEnum = S.String;
 
 /** Configuration for a single version. */
 export interface SecretVersion {
@@ -407,7 +406,7 @@ export type EventTriggerRetryPolicyEnum =
   | "RETRY_POLICY_UNSPECIFIED"
   | "RETRY_POLICY_DO_NOT_RETRY"
   | "RETRY_POLICY_RETRY";
-export const EventTriggerRetryPolicyEnum = /*@__PURE__*/ S.String;
+export const EventTriggerRetryPolicyEnum = S.String;
 
 /** Filters events based on exact matches on the CloudEvents attributes. */
 export interface EventFilter {
@@ -483,7 +482,7 @@ export type BuildConfigDockerRegistryEnum =
   | "DOCKER_REGISTRY_UNSPECIFIED"
   | "CONTAINER_REGISTRY"
   | "ARTIFACT_REGISTRY";
-export const BuildConfigDockerRegistryEnum = /*@__PURE__*/ S.String;
+export const BuildConfigDockerRegistryEnum = S.String;
 
 /** Location of the source in a Google Cloud Source Repository. */
 export interface RepoSource {
@@ -631,7 +630,7 @@ export type UpgradeInfoUpgradeStateEnum =
   | "COMMIT_FUNCTION_UPGRADE_ERROR_ROLLBACK_SAFE"
   | "COMMIT_FUNCTION_UPGRADE_AS_GEN2_SUCCESSFUL"
   | "COMMIT_FUNCTION_UPGRADE_AS_GEN2_ERROR";
-export const UpgradeInfoUpgradeStateEnum = /*@__PURE__*/ S.String;
+export const UpgradeInfoUpgradeStateEnum = S.String;
 
 /** Information related to: * A function's eligibility for 1st Gen to 2nd Gen migration. * Current state of migration for function undergoing migration. */
 export interface UpgradeInfo {
@@ -662,15 +661,14 @@ export type Cloudfunctions_FunctionStateEnum =
   | "UNKNOWN"
   | "DETACHING"
   | "DETACH_FAILED";
-export const Cloudfunctions_FunctionStateEnum = /*@__PURE__*/ S.String;
+export const Cloudfunctions_FunctionStateEnum = S.String;
 
 export type GoogleCloudFunctionsV2StateMessageSeverityEnum =
   | "SEVERITY_UNSPECIFIED"
   | "ERROR"
   | "WARNING"
   | "INFO";
-export const GoogleCloudFunctionsV2StateMessageSeverityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudFunctionsV2StateMessageSeverityEnum = S.String;
 
 /** Informational messages about the state of the Cloud Function or Operation. */
 export interface GoogleCloudFunctionsV2StateMessage {
@@ -701,7 +699,7 @@ export type Cloudfunctions_FunctionEnvironmentEnum =
   | "ENVIRONMENT_UNSPECIFIED"
   | "GEN_1"
   | "GEN_2";
-export const Cloudfunctions_FunctionEnvironmentEnum = /*@__PURE__*/ S.String;
+export const Cloudfunctions_FunctionEnvironmentEnum = S.String;
 
 /** Describes a Cloud Function that contains user computation executed in response to an event. It encapsulates function and trigger configurations. */
 export interface Cloudfunctions_Function {
@@ -874,7 +872,7 @@ export type GenerateUploadUrlRequestEnvironmentEnum =
   | "ENVIRONMENT_UNSPECIFIED"
   | "GEN_1"
   | "GEN_2";
-export const GenerateUploadUrlRequestEnvironmentEnum = /*@__PURE__*/ S.String;
+export const GenerateUploadUrlRequestEnvironmentEnum = S.String;
 
 /** Request of `GenerateSourceUploadUrl` method. */
 export interface GenerateUploadUrlRequest {
@@ -957,7 +955,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -1333,13 +1331,13 @@ export type RuntimeStageEnum =
   | "GA"
   | "DEPRECATED"
   | "DECOMMISSIONED";
-export const RuntimeStageEnum = /*@__PURE__*/ S.String;
+export const RuntimeStageEnum = S.String;
 
 export type RuntimeEnvironmentEnum =
   | "ENVIRONMENT_UNSPECIFIED"
   | "GEN_1"
   | "GEN_2";
-export const RuntimeEnvironmentEnum = /*@__PURE__*/ S.String;
+export const RuntimeEnvironmentEnum = S.String;
 
 /** Describes a runtime and any special information (e.g., deprecation status) related to it. */
 export interface Runtime {

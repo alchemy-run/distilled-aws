@@ -129,7 +129,7 @@ export type GoogleChromeManagementVersionsV1CheckEnablementStatusResponseInsight
   | "INSIGHTS_ENABLED"
   | "INSIGHTS_DISABLED";
 export const GoogleChromeManagementVersionsV1CheckEnablementStatusResponseInsightsStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Response from checking the enablement status of insights for the customer. */
 export interface GoogleChromeManagementVersionsV1CheckEnablementStatusResponse {
@@ -507,7 +507,7 @@ export type GoogleChromeManagementV1DeviceAueCountReportAueMonthEnum =
   | "NOVEMBER"
   | "DECEMBER";
 export const GoogleChromeManagementV1DeviceAueCountReportAueMonthEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Report for CountChromeDevicesPerAueDateResponse, contains the count of devices of a specific model and auto update expiration range. */
 export interface GoogleChromeManagementV1DeviceAueCountReport {
@@ -731,8 +731,7 @@ export type GoogleChromeManagementV1BrowserVersionChannelEnum =
   | "DEV"
   | "BETA"
   | "STABLE";
-export const GoogleChromeManagementV1BrowserVersionChannelEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1BrowserVersionChannelEnum = S.String;
 
 export type GoogleChromeManagementV1BrowserVersionSystemEnum =
   | "DEVICE_SYSTEM_UNSPECIFIED"
@@ -743,8 +742,7 @@ export type GoogleChromeManagementV1BrowserVersionSystemEnum =
   | "SYSTEM_WINDOWS"
   | "SYSTEM_MAC"
   | "SYSTEM_LINUX";
-export const GoogleChromeManagementV1BrowserVersionSystemEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1BrowserVersionSystemEnum = S.String;
 
 /** Describes a browser version and its install count. */
 export interface GoogleChromeManagementV1BrowserVersion {
@@ -1000,8 +998,7 @@ export type GoogleChromeManagementV1InstalledAppAppSourceEnum =
   | "APP_SOURCE_UNSPECIFIED"
   | "CHROME_WEBSTORE"
   | "PLAY_STORE";
-export const GoogleChromeManagementV1InstalledAppAppSourceEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1InstalledAppAppSourceEnum = S.String;
 
 export type GoogleChromeManagementV1InstalledAppAppTypeEnum =
   | "APP_TYPE_UNSPECIFIED"
@@ -1010,8 +1007,7 @@ export type GoogleChromeManagementV1InstalledAppAppTypeEnum =
   | "THEME"
   | "HOSTED_APP"
   | "ANDROID_APP";
-export const GoogleChromeManagementV1InstalledAppAppTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1InstalledAppAppTypeEnum = S.String;
 
 export type GoogleChromeManagementV1RiskAssessmentDataOverallRiskLevelEnum =
   | "RISK_LEVEL_UNSPECIFIED"
@@ -1019,7 +1015,7 @@ export type GoogleChromeManagementV1RiskAssessmentDataOverallRiskLevelEnum =
   | "RISK_LEVEL_MEDIUM"
   | "RISK_LEVEL_HIGH";
 export const GoogleChromeManagementV1RiskAssessmentDataOverallRiskLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementV1RiskAssessmentEntryRiskLevelEnum =
   | "RISK_LEVEL_UNSPECIFIED"
@@ -1027,7 +1023,7 @@ export type GoogleChromeManagementV1RiskAssessmentEntryRiskLevelEnum =
   | "RISK_LEVEL_MEDIUM"
   | "RISK_LEVEL_HIGH";
 export const GoogleChromeManagementV1RiskAssessmentEntryRiskLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Risk assessment for a Chrome extension. */
 export interface GoogleChromeManagementV1RiskAssessment {
@@ -1055,8 +1051,7 @@ export type GoogleChromeManagementV1RiskAssessmentEntryProviderEnum =
   | "RISK_ASSESSMENT_PROVIDER_SPIN_AI"
   | "RISK_ASSESSMENT_PROVIDER_LAYERX"
   | "RISK_ASSESSMENT_PROVIDER_SPIN_AI_V2";
-export const GoogleChromeManagementV1RiskAssessmentEntryProviderEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1RiskAssessmentEntryProviderEnum = S.String;
 
 /** One risk assessment entry. */
 export interface GoogleChromeManagementV1RiskAssessmentEntry {
@@ -1121,8 +1116,7 @@ export type GoogleChromeManagementV1InstalledAppAppInstallTypeEnum =
   | "DEVELOPMENT"
   | "SIDELOAD"
   | "OTHER";
-export const GoogleChromeManagementV1InstalledAppAppInstallTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1InstalledAppAppInstallTypeEnum = S.String;
 
 /** Describes an installed app. */
 export interface GoogleChromeManagementV1InstalledApp {
@@ -1383,7 +1377,7 @@ export type GoogleChromeManagementVersionsV1ConnectorConfigStatusStateEnum =
   | "ENABLED"
   | "DISABLED_BY_FAILURES";
 export const GoogleChromeManagementVersionsV1ConnectorConfigStatusStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The status of the connector config. */
 export interface GoogleChromeManagementVersionsV1ConnectorConfigStatus {
@@ -1417,7 +1411,7 @@ export type GoogleChromeManagementVersionsV1ReportingSettingsEnabledOptInEventsI
   | "URL_NAVIGATION_EVENT"
   | "EXTENSION_TELEMETRY_EVENT";
 export const GoogleChromeManagementVersionsV1ReportingSettingsEnabledOptInEventsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementVersionsV1ReportingSettingsEnabledOptInEventsItemEnumList =
   Array<
@@ -1437,7 +1431,7 @@ export type GoogleChromeManagementVersionsV1ReportingSettingsEnabledDeviceEvents
   | "CRD_EVENT"
   | "PERIPHERAL_EVENT";
 export const GoogleChromeManagementVersionsV1ReportingSettingsEnabledDeviceEventsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementVersionsV1ReportingSettingsEnabledDeviceEventsItemEnumList =
   Array<
@@ -1465,7 +1459,7 @@ export type GoogleChromeManagementVersionsV1ReportingSettingsEnabledDefaultEvent
   | "UNSAFE_SITE_VISIT_EVENT"
   | "URL_FILTERING_INTERSTITIAL_EVENT";
 export const GoogleChromeManagementVersionsV1ReportingSettingsEnabledDefaultEventsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementVersionsV1ReportingSettingsEnabledDefaultEventsItemEnumList =
   Array<
@@ -1545,7 +1539,7 @@ export type GoogleChromeManagementVersionsV1DeviceTrustConfigServiceProviderEnum
   | "OMNISSA"
   | "JUMPCLOUD";
 export const GoogleChromeManagementVersionsV1DeviceTrustConfigServiceProviderEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementVersionsV1DeviceTrustConfigScopeEnum =
   | "BROWSER_ENFORCEMENT_SCOPE_UNSPECIFIED"
@@ -1553,7 +1547,7 @@ export type GoogleChromeManagementVersionsV1DeviceTrustConfigScopeEnum =
   | "PROFILES_ONLY"
   | "BROWSERS_AND_PROFILES";
 export const GoogleChromeManagementVersionsV1DeviceTrustConfigScopeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Device trust config for device trust connectors. */
 export interface GoogleChromeManagementVersionsV1DeviceTrustConfig {
@@ -1828,8 +1822,7 @@ export type GoogleChromeManagementVersionsV1ConnectorConfigTypeEnum =
   | "CERTIFICATE_AUTHORITY"
   | "ROOT_STORE"
   | "CONTENT_ANALYSIS";
-export const GoogleChromeManagementVersionsV1ConnectorConfigTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementVersionsV1ConnectorConfigTypeEnum = S.String;
 
 /** A representation of a connector config. */
 export interface GoogleChromeManagementVersionsV1ConnectorConfig {
@@ -1894,7 +1887,7 @@ export type GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandCommandSt
   | "EXPIRED"
   | "EXECUTED_BY_CLIENT";
 export const GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandCommandStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandCommandResultResultTypeEnum =
   | "COMMAND_RESULT_TYPE_UNSPECIFIED"
@@ -1902,7 +1895,7 @@ export type GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandCommandRe
   | "FAILURE"
   | "SUCCESS";
 export const GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandCommandResultResultTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Result of the execution of a command. */
 export interface GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandCommandResult {
@@ -2016,7 +2009,7 @@ export type GoogleChromeManagementV1TelemetryEventNotificationFilterEventTypesIt
   | "EXTERNAL_DISPLAY_CONNECTED"
   | "EXTERNAL_DISPLAY_DISCONNECTED";
 export const GoogleChromeManagementV1TelemetryEventNotificationFilterEventTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementV1TelemetryEventNotificationFilterEventTypesItemEnumList =
   Array<
@@ -2228,7 +2221,7 @@ export type GoogleChromeManagementVersionsV1DisableInsightsResponseInsightsState
   | "INSIGHTS_ENABLED"
   | "INSIGHTS_DISABLED";
 export const GoogleChromeManagementVersionsV1DisableInsightsResponseInsightsStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Response from disabling insights for the customer. */
 export interface GoogleChromeManagementVersionsV1DisableInsightsResponse {
@@ -2291,7 +2284,7 @@ export type GoogleChromeManagementVersionsV1EnableInsightsResponseInsightsStateE
   | "INSIGHTS_ENABLED"
   | "INSIGHTS_DISABLED";
 export const GoogleChromeManagementVersionsV1EnableInsightsResponseInsightsStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Response from enabling insights for the customer. */
 export interface GoogleChromeManagementVersionsV1EnableInsightsResponse {
@@ -2347,23 +2340,21 @@ export type GoogleChromeManagementV1PrintJobColorModeEnum =
   | "COLOR_MODE_UNSPECIFIED"
   | "BLACK_AND_WHITE"
   | "COLOR";
-export const GoogleChromeManagementV1PrintJobColorModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1PrintJobColorModeEnum = S.String;
 
 export type GoogleChromeManagementV1PrintJobDuplexModeEnum =
   | "DUPLEX_MODE_UNSPECIFIED"
   | "ONE_SIDED"
   | "TWO_SIDED_LONG_EDGE"
   | "TWO_SIDED_SHORT_EDGE";
-export const GoogleChromeManagementV1PrintJobDuplexModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1PrintJobDuplexModeEnum = S.String;
 
 export type GoogleChromeManagementV1PrintJobStateEnum =
   | "STATE_UNSPECIFIED"
   | "PRINTED"
   | "CANCELLED"
   | "FAILED";
-export const GoogleChromeManagementV1PrintJobStateEnum = /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1PrintJobStateEnum = S.String;
 
 /** Represents a request to print a document that has been submitted to a printer. */
 export interface GoogleChromeManagementV1PrintJob {
@@ -2602,8 +2593,7 @@ export type FindInstalledAppDevicesCustomersReportsAppTypeEnum =
   | "THEME"
   | "HOSTED_APP"
   | "ANDROID_APP";
-export const FindInstalledAppDevicesCustomersReportsAppTypeEnum =
-  /*@__PURE__*/ S.String;
+export const FindInstalledAppDevicesCustomersReportsAppTypeEnum = S.String;
 
 export interface FindInstalledAppDevicesCustomersReportsRequest {
   /** The ID of the organizational unit. */
@@ -2696,8 +2686,7 @@ export type FindInstalledAppProfilesCustomersReportsAppTypeEnum =
   | "THEME"
   | "HOSTED_APP"
   | "ANDROID_APP";
-export const FindInstalledAppProfilesCustomersReportsAppTypeEnum =
-  /*@__PURE__*/ S.String;
+export const FindInstalledAppProfilesCustomersReportsAppTypeEnum = S.String;
 
 export interface FindInstalledAppProfilesCustomersReportsRequest {
   /** Optional. Maximum number of results to return. Maximum and default are 100. */
@@ -2815,8 +2804,7 @@ export type GoogleChromeManagementV1ChromeAppInfoTypeEnum =
   | "ITEM_TYPE_UNSPECIFIED"
   | "EXTENSION"
   | "OTHERS";
-export const GoogleChromeManagementV1ChromeAppInfoTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1ChromeAppInfoTypeEnum = S.String;
 
 /** Permission requested by a Chrome app or extension. */
 export interface GoogleChromeManagementV1ChromeAppPermission {
@@ -2918,8 +2906,7 @@ export type GoogleChromeManagementV1AppDetailsTypeEnum =
   | "CHROME"
   | "ANDROID"
   | "WEB";
-export const GoogleChromeManagementV1AppDetailsTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1AppDetailsTypeEnum = S.String;
 
 /** Permission requested by an Android app. */
 export interface GoogleChromeManagementV1AndroidAppPermission {
@@ -3149,7 +3136,7 @@ export type GoogleChromeManagementVersionsV1CertificateProvisioningProcessSignat
   | "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256"
   | "SIGNATURE_ALGORITHM_ECDSA_SHA256";
 export const GoogleChromeManagementVersionsV1CertificateProvisioningProcessSignatureAlgorithmEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Describes a generic certificate provisioning profile. */
 export interface GoogleChromeManagementVersionsV1GenericProfile {
@@ -3191,8 +3178,7 @@ export type GoogleChromeManagementVersionsV1SubjectAltNameTypeEnum =
   | "DNS_NAME"
   | "OTHER_NAME_USER_PRINCIPAL_NAME"
   | "UNIFORM_RESOURCE_IDENTIFIER";
-export const GoogleChromeManagementVersionsV1SubjectAltNameTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementVersionsV1SubjectAltNameTypeEnum = S.String;
 
 /** Describes a subject alternative name. */
 export interface GoogleChromeManagementVersionsV1SubjectAltName {
@@ -3223,7 +3209,7 @@ export type GoogleChromeManagementVersionsV1ScepProfileKeyUsagesItemEnum =
   | "KEY_USAGE_SIGNING"
   | "KEY_USAGE_KEY_ENCIPHERMENT";
 export const GoogleChromeManagementVersionsV1ScepProfileKeyUsagesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementVersionsV1ScepProfileKeyUsagesItemEnumList =
   Array<GoogleChromeManagementVersionsV1ScepProfileKeyUsagesItemEnum>;
@@ -3428,14 +3414,14 @@ export type GoogleChromeManagementVersionsV1AttestationCredentialKeyTypeEnum =
   | "RSA_KEY"
   | "EC_KEY";
 export const GoogleChromeManagementVersionsV1AttestationCredentialKeyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementVersionsV1AttestationCredentialKeyTrustLevelEnum =
   | "KEY_TRUST_LEVEL_UNSPECIFIED"
   | "CHROME_BROWSER_HW_KEY"
   | "CHROME_BROWSER_OS_KEY";
 export const GoogleChromeManagementVersionsV1AttestationCredentialKeyTrustLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information of public key associated with a Chrome browser profile. */
 export interface GoogleChromeManagementVersionsV1AttestationCredential {
@@ -3472,20 +3458,20 @@ export type GoogleChromeManagementVersionsV1ChromeBrowserProfileAffiliationState
   | "UNAFFILIATED_CLOUD_MACHINE"
   | "AFFILIATED_CLOUD_MANAGED";
 export const GoogleChromeManagementVersionsV1ChromeBrowserProfileAffiliationStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementVersionsV1ChromeBrowserProfileIdentityProviderEnum =
   | "IDENTITY_PROVIDER_UNSPECIFIED"
   | "GOOGLE_IDENTITY_PROVIDER"
   | "EXTERNAL_IDENTITY_PROVIDER";
 export const GoogleChromeManagementVersionsV1ChromeBrowserProfileIdentityProviderEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementVersionsV1DeviceInfoDeviceTypeEnum =
   | "DEVICE_TYPE_UNSPECIFIED"
   | "CHROME_BROWSER";
 export const GoogleChromeManagementVersionsV1DeviceInfoDeviceTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information of a device that runs a Chrome browser profile. */
 export interface GoogleChromeManagementVersionsV1DeviceInfo {
@@ -3520,7 +3506,7 @@ export type GoogleChromeManagementVersionsV1ReportingDataPolicyDataSourceEnum =
   | "USER_CLOUD"
   | "MACHINE_MERGED";
 export const GoogleChromeManagementVersionsV1ReportingDataPolicyDataSourceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementVersionsV1ReportingDataConflictingPolicyDataSourceEnum =
   | "POLICY_SOURCE_UNSPECIFIED"
@@ -3530,7 +3516,7 @@ export type GoogleChromeManagementVersionsV1ReportingDataConflictingPolicyDataSo
   | "USER_CLOUD"
   | "MACHINE_MERGED";
 export const GoogleChromeManagementVersionsV1ReportingDataConflictingPolicyDataSourceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information of conflicting policy applied on a Chrome browser profile. */
 export interface GoogleChromeManagementVersionsV1ReportingDataConflictingPolicyData {
@@ -3630,7 +3616,7 @@ export type GoogleChromeManagementVersionsV1ReportingDataExtensionDataExtensionT
   | "THEME"
   | "HOSTED_APP";
 export const GoogleChromeManagementVersionsV1ReportingDataExtensionDataExtensionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementVersionsV1ReportingDataExtensionDataInstallationTypeEnum =
   | "INSTALLATION_TYPE_UNSPECIFIED"
@@ -3641,7 +3627,7 @@ export type GoogleChromeManagementVersionsV1ReportingDataExtensionDataInstallati
   | "SIDELOAD"
   | "OTHER";
 export const GoogleChromeManagementVersionsV1ReportingDataExtensionDataInstallationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information of an extension installed on a Chrome browser profile. */
 export interface GoogleChromeManagementVersionsV1ReportingDataExtensionData {
@@ -3978,8 +3964,7 @@ export type GoogleChromeManagementV1OsUpdateStatusUpdateStateEnum =
   | "OS_IMAGE_DOWNLOAD_NOT_STARTED"
   | "OS_IMAGE_DOWNLOAD_IN_PROGRESS"
   | "OS_UPDATE_NEED_REBOOT";
-export const GoogleChromeManagementV1OsUpdateStatusUpdateStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1OsUpdateStatusUpdateStateEnum = S.String;
 
 /** Contains information regarding the current OS update status. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceOsUpdateStatus](https://chromeenterprise.google/policies/#ReportDeviceOsUpdateStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_OS_REPORT */
 export interface GoogleChromeManagementV1OsUpdateStatus {
@@ -4035,8 +4020,7 @@ export type GoogleChromeManagementV1AppUsageDataAppTypeEnum =
   | "APPLICATION_TYPE_EXTENSION"
   | "APPLICATION_TYPE_STANDALONE_BROWSER_EXTENSION"
   | "APPLICATION_TYPE_BRUSCHETTA";
-export const GoogleChromeManagementV1AppUsageDataAppTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1AppUsageDataAppTypeEnum = S.String;
 
 /** App usage data. */
 export interface GoogleChromeManagementV1AppUsageData {
@@ -4096,7 +4080,7 @@ export type GoogleChromeManagementV1TotalMemoryEncryptionInfoEncryptionStateEnum
   | "MEMORY_ENCRYPTION_STATE_TME"
   | "MEMORY_ENCRYPTION_STATE_MKTME";
 export const GoogleChromeManagementV1TotalMemoryEncryptionInfoEncryptionStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementV1TotalMemoryEncryptionInfoEncryptionAlgorithmEnum =
   | "MEMORY_ENCRYPTION_ALGORITHM_UNSPECIFIED"
@@ -4104,7 +4088,7 @@ export type GoogleChromeManagementV1TotalMemoryEncryptionInfoEncryptionAlgorithm
   | "MEMORY_ENCRYPTION_ALGORITHM_AES_XTS_128"
   | "MEMORY_ENCRYPTION_ALGORITHM_AES_XTS_256";
 export const GoogleChromeManagementV1TotalMemoryEncryptionInfoEncryptionAlgorithmEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Memory encryption information of a device. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceMemoryInfo](https://chromeenterprise.google/policies/#ReportDeviceMemoryInfo) * Data Collection Frequency: At device startup * Default Data Reporting Frequency: At device startup - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A */
 export interface GoogleChromeManagementV1TotalMemoryEncryptionInfo {
@@ -4160,8 +4144,7 @@ export type GoogleChromeManagementV1HeartbeatStatusReportStateEnum =
   | "ONLINE"
   | "OFFLINE"
   | "DEVICE_OUTDATED";
-export const GoogleChromeManagementV1HeartbeatStatusReportStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1HeartbeatStatusReportStateEnum = S.String;
 
 /** Heartbeat status report of a device. * Available for Kiosks * This field provides online/offline/unknown status of a device and will only be included if the status has changed (e.g. Online -> Offline) * Data for this field is controlled via policy: [HeartbeatEnabled](https://chromeenterprise.google/policies/#HeartbeatEnabled) [More Info](https://support.google.com/chrome/a/answer/6179663#:~:text=On%20the%20Chrome,device%20status%20alerts) * Heartbeat Frequency: 2 mins * Note: If a device goes offline, it can take up to 12 minutes for the online status of the device to be updated * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: N/A * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_DEVICE_ACTIVITY_REPORT */
 export interface GoogleChromeManagementV1HeartbeatStatusReport {
@@ -4190,8 +4173,7 @@ export const GoogleChromeManagementV1HeartbeatStatusReportList =
 export type GoogleChromeManagementV1CpuInfoArchitectureEnum =
   | "ARCHITECTURE_UNSPECIFIED"
   | "X64";
-export const GoogleChromeManagementV1CpuInfoArchitectureEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1CpuInfoArchitectureEnum = S.String;
 
 /** CPU specifications for the device * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceCpuInfo](https://chromeenterprise.google/policies/#ReportDeviceCpuInfo) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_CPU_INFO */
 export interface GoogleChromeManagementV1CpuInfo {
@@ -4458,7 +4440,7 @@ export type GoogleChromeManagementV1BootPerformanceReportShutdownReasonEnum =
   | "LOW_BATTERY"
   | "OTHER";
 export const GoogleChromeManagementV1BootPerformanceReportShutdownReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Boot performance report of a device. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceBootMode](https://chromeenterprise.google/policies/#ReportDeviceBootMode) * Data Collection Frequency: On every boot up event * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_OS_REPORT */
 export interface GoogleChromeManagementV1BootPerformanceReport {
@@ -4566,8 +4548,7 @@ export type GoogleChromeManagementV1NetworkDeviceTypeEnum =
   | "CELLULAR_DEVICE"
   | "ETHERNET_DEVICE"
   | "WIFI_DEVICE";
-export const GoogleChromeManagementV1NetworkDeviceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1NetworkDeviceTypeEnum = S.String;
 
 /** Details about the network device. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportNetworkDeviceConfiguration](https://chromeenterprise.google/policies/#ReportNetworkDeviceConfiguration) * Data Collection Frequency: At device startup * Default Data Reporting Frequency: At device startup - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A */
 export interface GoogleChromeManagementV1NetworkDevice {
@@ -4625,7 +4606,7 @@ export type GoogleChromeManagementV1NetworkStatusReportConnectionStateEnum =
   | "CONNECTING"
   | "NOT_CONNECTED";
 export const GoogleChromeManagementV1NetworkStatusReportConnectionStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementV1NetworkStatusReportConnectionTypeEnum =
   | "NETWORK_TYPE_UNSPECIFIED"
@@ -4635,7 +4616,7 @@ export type GoogleChromeManagementV1NetworkStatusReportConnectionTypeEnum =
   | "VPN"
   | "WIFI";
 export const GoogleChromeManagementV1NetworkStatusReportConnectionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** State of visible/configured networks. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportNetworkStatus](https://chromeenterprise.google/policies/#ReportNetworkStatus) * Data Collection Frequency: 60 minutes * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: Yes * Granular permission needed: TELEMETRY_API_NETWORK_REPORT */
 export interface GoogleChromeManagementV1NetworkStatusReport {
@@ -4722,7 +4703,7 @@ export type GoogleChromeManagementV1ThunderboltInfoSecurityLevelEnum =
   | "THUNDERBOLT_SECURITY_USB_ONLY_LEVEL"
   | "THUNDERBOLT_SECURITY_NO_PCIE_LEVEL";
 export const GoogleChromeManagementV1ThunderboltInfoSecurityLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Thunderbolt bus info. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceSecurityStatus](https://chromeenterprise.google/policies/#ReportDeviceSecurityStatus) * Data Collection Frequency: At device startup * Default Data Reporting Frequency: At device startup - Policy Controlled: No * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_BUS_DEVICE_INFO */
 export interface GoogleChromeManagementV1ThunderboltInfo {
@@ -4795,7 +4776,7 @@ export type GoogleChromeManagementV1BatteryStatusReportBatteryHealthEnum =
   | "BATTERY_REPLACE_SOON"
   | "BATTERY_REPLACE_NOW";
 export const GoogleChromeManagementV1BatteryStatusReportBatteryHealthEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Status data for battery. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDevicePowerStatus](https://chromeenterprise.google/policies/#ReportDevicePowerStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_BATTERY_REPORT */
 export interface GoogleChromeManagementV1BatteryStatusReport {
@@ -4876,7 +4857,7 @@ export type GoogleChromeManagementV1HttpsLatencyRoutineDataProblemEnum =
   | "HIGH_LATENCY"
   | "VERY_HIGH_LATENCY";
 export const GoogleChromeManagementV1HttpsLatencyRoutineDataProblemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Data that describes the result of the HTTPS latency diagnostics routine, with the HTTPS requests issued to Google websites. */
 export interface GoogleChromeManagementV1HttpsLatencyRoutineData {
@@ -5275,7 +5256,7 @@ export type GoogleChromeManagementV1DeviceActivityReportDeviceActivityStateEnum 
   | "IDLE"
   | "LOCKED";
 export const GoogleChromeManagementV1DeviceActivityReportDeviceActivityStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Device activity report. * Granular permission needed: TELEMETRY_API_DEVICE_ACTIVITY_REPORT */
 export interface GoogleChromeManagementV1DeviceActivityReport {
@@ -5659,15 +5640,14 @@ export type GoogleChromeManagementV1TelemetryEventEventTypeEnum =
   | "OS_CRASH"
   | "EXTERNAL_DISPLAY_CONNECTED"
   | "EXTERNAL_DISPLAY_DISCONNECTED";
-export const GoogleChromeManagementV1TelemetryEventEventTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleChromeManagementV1TelemetryEventEventTypeEnum = S.String;
 
 export type GoogleChromeManagementV1TelemetryOsCrashEventCrashTypeEnum =
   | "CRASH_TYPE_UNSPECIFIED"
   | "CRASH_TYPE_KERNEL"
   | "CRASH_TYPE_EMBEDDED_CONTROLLER";
 export const GoogleChromeManagementV1TelemetryOsCrashEventCrashTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementV1TelemetryOsCrashEventSessionTypeEnum =
   | "SESSION_TYPE_UNSPECIFIED"
@@ -5676,7 +5656,7 @@ export type GoogleChromeManagementV1TelemetryOsCrashEventSessionTypeEnum =
   | "SESSION_TYPE_MANAGED_GUEST"
   | "SESSION_TYPE_ACTIVE_DIRECTORY";
 export const GoogleChromeManagementV1TelemetryOsCrashEventSessionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** OS crash data. */
 export interface GoogleChromeManagementV1TelemetryOsCrashEvent {
@@ -5710,7 +5690,7 @@ export type GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEventCo
   | "CONNECTING"
   | "NOT_CONNECTED";
 export const GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEventConnectionStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** `TelemetryNetworkConnectionStateChangeEvent` is triggered on network connection state changes. * Granular permission needed: TELEMETRY_API_NETWORK_REPORT */
 export interface GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent {
@@ -5750,14 +5730,14 @@ export type GoogleChromeManagementV1TelemetryAppInstallEventAppTypeEnum =
   | "APPLICATION_TYPE_STANDALONE_BROWSER_EXTENSION"
   | "APPLICATION_TYPE_BRUSCHETTA";
 export const GoogleChromeManagementV1TelemetryAppInstallEventAppTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementV1TelemetryAppInstallEventAppInstallTimeEnum =
   | "APPLICATION_INSTALL_TIME_UNSPECIFIED"
   | "APPLICATION_INSTALL_TIME_INIT"
   | "APPLICATION_INSTALL_TIME_RUNNING";
 export const GoogleChromeManagementV1TelemetryAppInstallEventAppInstallTimeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementV1TelemetryAppInstallEventAppInstallReasonEnum =
   | "APPLICATION_INSTALL_REASON_UNSPECIFIED"
@@ -5771,7 +5751,7 @@ export type GoogleChromeManagementV1TelemetryAppInstallEventAppInstallReasonEnum
   | "APPLICATION_INSTALL_REASON_KIOSK"
   | "APPLICATION_INSTALL_REASON_COMMAND_LINE";
 export const GoogleChromeManagementV1TelemetryAppInstallEventAppInstallReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementV1TelemetryAppInstallEventAppInstallSourceEnum =
   | "APPLICATION_INSTALL_SOURCE_UNSPECIFIED"
@@ -5781,7 +5761,7 @@ export type GoogleChromeManagementV1TelemetryAppInstallEventAppInstallSourceEnum
   | "APPLICATION_INSTALL_SOURCE_CHROME_WEB_STORE"
   | "APPLICATION_INSTALL_SOURCE_BROWSER";
 export const GoogleChromeManagementV1TelemetryAppInstallEventAppInstallSourceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** App installation data. */
 export interface GoogleChromeManagementV1TelemetryAppInstallEvent {
@@ -5880,7 +5860,7 @@ export type GoogleChromeManagementV1TelemetryHttpsLatencyChangeEventHttpsLatency
   | "RECOVERY"
   | "PROBLEM";
 export const GoogleChromeManagementV1TelemetryHttpsLatencyChangeEventHttpsLatencyStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Https latency routine is run periodically and `TelemetryHttpsLatencyChangeEvent` is triggered if a latency problem was detected or if the device has recovered from a latency problem. * Granular permission needed: TELEMETRY_API_NETWORK_REPORT */
 export interface GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent {
@@ -5960,7 +5940,7 @@ export type GoogleChromeManagementV1TelemetryAppUninstallEventAppUninstallSource
   | "APPLICATION_UNINSTALL_SOURCE_SHELF"
   | "APPLICATION_UNINSTALL_SOURCE_MIGRATION";
 export const GoogleChromeManagementV1TelemetryAppUninstallEventAppUninstallSourceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementV1TelemetryAppUninstallEventAppTypeEnum =
   | "TELEMETRY_APPLICATION_TYPE_UNSPECIFIED"
@@ -5980,7 +5960,7 @@ export type GoogleChromeManagementV1TelemetryAppUninstallEventAppTypeEnum =
   | "APPLICATION_TYPE_STANDALONE_BROWSER_EXTENSION"
   | "APPLICATION_TYPE_BRUSCHETTA";
 export const GoogleChromeManagementV1TelemetryAppUninstallEventAppTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** App uninstall data. */
 export interface GoogleChromeManagementV1TelemetryAppUninstallEvent {
@@ -6024,7 +6004,7 @@ export type GoogleChromeManagementV1TelemetryAppLaunchEventAppTypeEnum =
   | "APPLICATION_TYPE_STANDALONE_BROWSER_EXTENSION"
   | "APPLICATION_TYPE_BRUSCHETTA";
 export const GoogleChromeManagementV1TelemetryAppLaunchEventAppTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleChromeManagementV1TelemetryAppLaunchEventAppLaunchSourceEnum =
   | "APPLICATION_LAUNCH_SOURCE_UNSPECIFIED"
@@ -6072,7 +6052,7 @@ export type GoogleChromeManagementV1TelemetryAppLaunchEventAppLaunchSourceEnum =
   | "APPLICATION_LAUNCH_SOURCE_NAVIGATION_CAPTURING"
   | "APPLICATION_LAUNCH_SOURCE_WEB_INSTALL_API";
 export const GoogleChromeManagementV1TelemetryAppLaunchEventAppLaunchSourceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** App launch data. */
 export interface GoogleChromeManagementV1TelemetryAppLaunchEvent {
@@ -6475,7 +6455,7 @@ export type QueryContentTransfersBreakdownsCustomersEnterpriseSecurityInsightsMe
   | "CONTENT_TRANSFERS_METRIC_SENSITIVE_DOWNLOADS"
   | "CONTENT_TRANSFERS_METRIC_SENSITIVE_PRINTS";
 export const QueryContentTransfersBreakdownsCustomersEnterpriseSecurityInsightsMetricEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type QueryContentTransfersBreakdownsCustomersEnterpriseSecurityInsightsFixedTimeRangeEnum =
   | "FIXED_TIME_RANGE_UNSPECIFIED"
@@ -6484,7 +6464,7 @@ export type QueryContentTransfersBreakdownsCustomersEnterpriseSecurityInsightsFi
   | "FIXED_TIME_RANGE_ONE_WEEK"
   | "FIXED_TIME_RANGE_FOUR_WEEKS";
 export const QueryContentTransfersBreakdownsCustomersEnterpriseSecurityInsightsFixedTimeRangeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type QueryContentTransfersBreakdownsCustomersEnterpriseSecurityInsightsBreakdownEnum =
   | "CONTENT_TRANSFERS_BREAKDOWN_DIMENSION_UNSPECIFIED"
@@ -6492,7 +6472,7 @@ export type QueryContentTransfersBreakdownsCustomersEnterpriseSecurityInsightsBr
   | "EVENT_DOMAIN"
   | "CONTENT_CATEGORY";
 export const QueryContentTransfersBreakdownsCustomersEnterpriseSecurityInsightsBreakdownEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface QueryContentTransfersBreakdownsCustomersEnterpriseSecurityInsightsRequest {
   /** Optional. The metric to return the breakdowns for. Defaults to CONTENT_TRANSFERS_METRIC_TOTAL_TRANSFERS. */
@@ -6561,7 +6541,7 @@ export type GoogleChromeManagementVersionsV1ContentTransfersSummaryMetricEnum =
   | "CONTENT_TRANSFERS_METRIC_SENSITIVE_DOWNLOADS"
   | "CONTENT_TRANSFERS_METRIC_SENSITIVE_PRINTS";
 export const GoogleChromeManagementVersionsV1ContentTransfersSummaryMetricEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Summary of content transfers for a given metric. */
 export interface GoogleChromeManagementVersionsV1ContentTransfersSummary {
@@ -6685,7 +6665,7 @@ export type QueryUrlVisitsBreakdownsCustomersEnterpriseSecurityInsightsBreakdown
   | "USER"
   | "EVENT_DOMAIN";
 export const QueryUrlVisitsBreakdownsCustomersEnterpriseSecurityInsightsBreakdownEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type QueryUrlVisitsBreakdownsCustomersEnterpriseSecurityInsightsFixedTimeRangeEnum =
   | "FIXED_TIME_RANGE_UNSPECIFIED"
@@ -6694,7 +6674,7 @@ export type QueryUrlVisitsBreakdownsCustomersEnterpriseSecurityInsightsFixedTime
   | "FIXED_TIME_RANGE_ONE_WEEK"
   | "FIXED_TIME_RANGE_FOUR_WEEKS";
 export const QueryUrlVisitsBreakdownsCustomersEnterpriseSecurityInsightsFixedTimeRangeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type QueryUrlVisitsBreakdownsCustomersEnterpriseSecurityInsightsMetricEnum =
   | "URL_VISITS_METRIC_UNSPECIFIED"
@@ -6703,7 +6683,7 @@ export type QueryUrlVisitsBreakdownsCustomersEnterpriseSecurityInsightsMetricEnu
   | "URL_VISITS_METRIC_MEDIUM_RISK_URL_VISITS"
   | "URL_VISITS_METRIC_LOW_RISK_URL_VISITS";
 export const QueryUrlVisitsBreakdownsCustomersEnterpriseSecurityInsightsMetricEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface QueryUrlVisitsBreakdownsCustomersEnterpriseSecurityInsightsRequest {
   /** Optional. The filter to apply to the request. For syntax, see AIP-160. Data is not available for events older than 180 days or more recent than 48 hours ago. If `event_time` is not specified, results will end 48 hours ago. Supported fields for filtering: - `user` - `event_domain` - `event_time` Filtering by `user` or `event_domain` requires the `breakdown` dimension to be set to the corresponding value (e.g., you must set `breakdown = USER` to filter by `user`). Supported operators: - `=` for `user` and `event_domain`. - `<=` for `event_time`. Supported conjunctions: - `AND` Example: `user = "testuser" AND event_time <= "2024-01-02T00:00:00Z"` */
@@ -6768,7 +6748,7 @@ export type GoogleChromeManagementVersionsV1UrlVisitsSummaryMetricEnum =
   | "URL_VISITS_METRIC_MEDIUM_RISK_URL_VISITS"
   | "URL_VISITS_METRIC_LOW_RISK_URL_VISITS";
 export const GoogleChromeManagementVersionsV1UrlVisitsSummaryMetricEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Summary of URL visits for a given metric. */
 export interface GoogleChromeManagementVersionsV1UrlVisitsSummary {
@@ -6931,7 +6911,7 @@ export type GoogleChromeManagementVersionsV1SignDataRequestSignatureAlgorithmEnu
   | "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256"
   | "SIGNATURE_ALGORITHM_ECDSA_SHA256";
 export const GoogleChromeManagementVersionsV1SignDataRequestSignatureAlgorithmEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for requesting a signature from the client that initated a certificate provisioning process. */
 export interface GoogleChromeManagementVersionsV1SignDataRequest {

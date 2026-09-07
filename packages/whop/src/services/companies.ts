@@ -100,7 +100,7 @@ export type PermissionSystemRoles =
   | "moderator"
   | "sales_manager"
   | "advertiser";
-export const PermissionSystemRoles = /*@__PURE__*/ S.String;
+export const PermissionSystemRoles = S.String;
 
 export interface CreateApiKeyCompanyRequest {
   /** The unique identifier of the parent platform company (e.g. 'biz_xxx'). */
@@ -396,7 +396,7 @@ export type Countries =
   | "zm"
   | "zw"
   | "sy";
-export const Countries = /*@__PURE__*/ S.String;
+export const Countries = S.String;
 
 /** The company's logo image. Accepts PNG, JPEG, or GIF format. */
 export interface CreateCompanyRequestLogo {
@@ -517,7 +517,7 @@ export type SocialLinkWebsites =
   | "twitch"
   | "website"
   | "custom";
-export const SocialLinkWebsites = /*@__PURE__*/ S.String;
+export const SocialLinkWebsites = S.String;
 
 /** A social link attached to a resource on the site. */
 export interface CompanySocialLinksItem {
@@ -617,7 +617,7 @@ export const GetCompanyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The direction of the sort. */
 export type Direction = "asc" | "desc";
-export const Direction = /*@__PURE__*/ S.String;
+export const Direction = S.String;
 
 export interface ListCompanyRequest {
   after?: string;

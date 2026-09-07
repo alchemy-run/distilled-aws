@@ -14,7 +14,7 @@ export type { AzureOpError, AzureOpContext };
 
 /** The type of the resource whose name is to be validated. This value must always be 'searchServices'. */
 export type CheckServiceNameAvailabilityRequestType = "searchServices";
-export const CheckServiceNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+export const CheckServiceNameAvailabilityRequestType = S.String;
 
 export interface CheckServiceNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -43,7 +43,7 @@ export const CheckServiceNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The reason why the name is not available. 'Invalid' indicates the name provided does not match the naming requirements (incorrect length, unsupported characters, etc.). 'AlreadyExists' indicates that the name is already in use and is therefore unavailable. */
 export type UnavailableNameReason = "Invalid" | "AlreadyExists";
-export const UnavailableNameReason = /*@__PURE__*/ S.String;
+export const UnavailableNameReason = S.String;
 
 /** Output of check name availability API. */
 export interface CheckNameAvailabilityOutput {
@@ -141,7 +141,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -149,7 +149,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -197,7 +197,7 @@ export type PrivateLinkServiceConnectionStatus =
   | "Approved"
   | "Rejected"
   | "Disconnected";
-export const PrivateLinkServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateLinkServiceConnectionStatus = S.String;
 
 /** Describes the current state of an existing Azure Private Link service connection to the private endpoint. */
 export interface PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState {
@@ -228,8 +228,7 @@ export type PrivateLinkServiceConnectionProvisioningState =
   | "Succeeded"
   | "Incomplete"
   | "Canceled";
-export const PrivateLinkServiceConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateLinkServiceConnectionProvisioningState = S.String;
 
 /** Describes the properties of an existing private endpoint connection to the search service. */
 export interface PrivateEndpointConnectionProperties {
@@ -466,8 +465,7 @@ export type NetworkSecurityPerimeterConfigurationProvisioningState =
   | "Accepted"
   | "Failed"
   | "Canceled";
-export const NetworkSecurityPerimeterConfigurationProvisioningState =
-  /*@__PURE__*/ S.String;
+export const NetworkSecurityPerimeterConfigurationProvisioningState = S.String;
 
 /** Type of issue */
 export type ProvisioningIssuePropertiesIssueType =
@@ -475,11 +473,11 @@ export type ProvisioningIssuePropertiesIssueType =
   | "ConfigurationPropagationFailure"
   | "MissingPerimeterConfiguration"
   | "MissingIdentityConfiguration";
-export const ProvisioningIssuePropertiesIssueType = /*@__PURE__*/ S.String;
+export const ProvisioningIssuePropertiesIssueType = S.String;
 
 /** Severity of the issue. */
 export type ProvisioningIssuePropertiesSeverity = "Warning" | "Error";
-export const ProvisioningIssuePropertiesSeverity = /*@__PURE__*/ S.String;
+export const ProvisioningIssuePropertiesSeverity = S.String;
 
 /** Fully qualified resource IDs of suggested resources that can be associated to the network security perimeter (NSP) to remediate the issue. */
 export type ProvisioningIssuePropertiesSuggestedResourceIdsList = Array<string>;
@@ -490,7 +488,7 @@ export const ProvisioningIssuePropertiesSuggestedResourceIdsList =
 
 /** Direction of Access Rule */
 export type AccessRuleDirection = "Inbound" | "Outbound";
-export const AccessRuleDirection = /*@__PURE__*/ S.String;
+export const AccessRuleDirection = S.String;
 
 /** Address prefixes in the CIDR format for inbound rules */
 export type AccessRulePropertiesAddressPrefixesList = Array<string>;
@@ -674,7 +672,7 @@ export const NetworkSecurityPerimeterConfigurationPropertiesProvisioningIssuesLi
 
 /** Access mode of the resource association */
 export type ResourceAssociationAccessMode = "Enforced" | "Learning" | "Audit";
-export const ResourceAssociationAccessMode = /*@__PURE__*/ S.String;
+export const ResourceAssociationAccessMode = S.String;
 
 /** Information about resource association */
 export interface ResourceAssociation {
@@ -868,19 +866,18 @@ export const GetServiceResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Applicable only for the standard3 SKU. You can set this property to enable up to 3 high density partitions that allow up to 1000 indexes, which is much higher than the maximum indexes allowed for any other SKU. For the standard3 SKU, the value is either 'Default' or 'HighDensity'. For all other SKUs, this value must be 'Default'. */
 export type SearchServicePropertiesHostingMode = "Default" | "HighDensity";
-export const SearchServicePropertiesHostingMode = /*@__PURE__*/ S.String;
+export const SearchServicePropertiesHostingMode = S.String;
 
 /** Configure this property to support the search service using either the Default Compute or Azure Confidential Compute. */
 export type ComputeType = "Default" | "Confidential";
-export const ComputeType = /*@__PURE__*/ S.String;
+export const ComputeType = S.String;
 
 /** This value can be set to 'Enabled' to avoid breaking changes on existing customer resources and templates. If set to 'Disabled', traffic over public interface is not allowed, and private endpoint connections would be the exclusive access method. */
 export type SearchServicePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled"
   | "SecuredByPerimeter";
-export const SearchServicePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const SearchServicePropertiesPublicNetworkAccess = S.String;
 
 /** The status of the search service. Possible values include: 'running': The search service is running and no provisioning operations are underway. 'provisioning': The search service is being provisioned or scaled up or down. 'deleting': The search service is being deleted. 'degraded': The search service is degraded. This can occur when the underlying search units are not healthy. The search service is most likely operational, but performance might be slow and some requests might be dropped. 'disabled': The search service is disabled. In this state, the service will reject all API requests. 'error': The search service is in an error state. 'stopped': The search service is in a subscription that's disabled. If your service is in the degraded, disabled, or error states, it means the Azure AI Search team is actively investigating the underlying issue. Dedicated services in these states are still chargeable based on the number of search units provisioned. */
 export type SearchServiceStatus =
@@ -891,11 +888,11 @@ export type SearchServiceStatus =
   | "disabled"
   | "error"
   | "stopped";
-export const SearchServiceStatus = /*@__PURE__*/ S.String;
+export const SearchServiceStatus = S.String;
 
 /** The state of the last provisioning operation performed on the search service. Provisioning is an intermediate state that occurs while service capacity is being established. After capacity is set up, provisioningState changes to either 'Succeeded' or 'Failed'. Client applications can poll provisioning status (the recommended polling interval is from 30 seconds to one minute) by using the Get Search Service operation to see when an operation is completed. If you are using the free service, this value tends to come back as 'Succeeded' directly in the call to Create search service. This is because the free service uses capacity that is already set up. */
 export type ProvisioningState = "succeeded" | "provisioning" | "failed";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** The IP restriction rule of the Azure AI Search service. */
 export interface IpRule {
@@ -916,7 +913,7 @@ export const NetworkRuleSetIpRulesList = /*@__PURE__*/ S.Array(
 
 /** Possible origins of inbound traffic that can bypass the rules defined in the 'ipRules' section. */
 export type SearchBypass = "None" | "AzureServices";
-export const SearchBypass = /*@__PURE__*/ S.String;
+export const SearchBypass = S.String;
 
 /** Network specific rules that determine how the Azure AI Search service may be reached. */
 export interface NetworkRuleSet {
@@ -934,7 +931,7 @@ export const NetworkRuleSet = /*@__PURE__*/ S.suspend(() =>
 
 /** A specific data exfiltration scenario that is disabled for the service. */
 export type SearchDataExfiltrationProtection = "BlockAll";
-export const SearchDataExfiltrationProtection = /*@__PURE__*/ S.String;
+export const SearchDataExfiltrationProtection = S.String;
 
 /** A list of data exfiltration scenarios that are explicitly disallowed for the search service. Currently, the only supported value is 'All' to disable all possible data export scenarios with more fine grained controls planned for the future. */
 export type SearchServicePropertiesDataExfiltrationProtectionsList =
@@ -946,11 +943,11 @@ export const SearchServicePropertiesDataExfiltrationProtectionsList =
 
 /** Describes how a search service should enforce compliance if it finds objects that aren't encrypted with the customer-managed key. */
 export type SearchEncryptionWithCmk = "Disabled" | "Enabled" | "Unspecified";
-export const SearchEncryptionWithCmk = /*@__PURE__*/ S.String;
+export const SearchEncryptionWithCmk = S.String;
 
 /** Returns the status of search service compliance with respect to non-CMK-encrypted objects. If a service has more than one unencrypted object, and enforcement is enabled, the service is marked as noncompliant. */
 export type SearchEncryptionComplianceStatus = "Compliant" | "NonCompliant";
-export const SearchEncryptionComplianceStatus = /*@__PURE__*/ S.String;
+export const SearchEncryptionComplianceStatus = S.String;
 
 /** Describes a policy that determines how resources within the search service are to be encrypted with customer managed keys. */
 export interface EncryptionWithCmk {
@@ -970,7 +967,7 @@ export const EncryptionWithCmk = /*@__PURE__*/ S.suspend(() =>
 
 /** Describes what response the data plane API of a search service would send for requests that failed authentication. */
 export type AadAuthFailureMode = "http403" | "http401WithBearerChallenge";
-export const AadAuthFailureMode = /*@__PURE__*/ S.String;
+export const AadAuthFailureMode = S.String;
 
 /** Indicates that either the API key or an access token from a Microsoft Entra ID tenant can be used for authentication. */
 export interface DataPlaneAadOrApiKeyAuthOption {
@@ -1003,7 +1000,7 @@ export const DataPlaneAuthOptions = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the availability and billing plan for semantic search on the Azure AI Search service. This configuration is only available for certain pricing tiers in certain regions. */
 export type SearchSemanticSearch = "disabled" | "free" | "standard";
-export const SearchSemanticSearch = /*@__PURE__*/ S.String;
+export const SearchSemanticSearch = S.String;
 
 /** Describes an existing private endpoint connection to the Azure AI Search service. */
 export interface PrivateEndpointConnection {
@@ -1044,7 +1041,7 @@ export type SharedPrivateLinkResourceStatus =
   | "Approved"
   | "Rejected"
   | "Disconnected";
-export const SharedPrivateLinkResourceStatus = /*@__PURE__*/ S.String;
+export const SharedPrivateLinkResourceStatus = S.String;
 
 /** The provisioning state of the shared private link resource. Valid values are Updating, Deleting, Failed, Succeeded or Incomplete. */
 export type SharedPrivateLinkResourceProvisioningState =
@@ -1053,8 +1050,7 @@ export type SharedPrivateLinkResourceProvisioningState =
   | "Failed"
   | "Succeeded"
   | "Incomplete";
-export const SharedPrivateLinkResourceProvisioningState =
-  /*@__PURE__*/ S.String;
+export const SharedPrivateLinkResourceProvisioningState = S.String;
 
 /** Describes the properties of an existing shared private link resource managed by the Azure AI Search service. */
 export interface SharedPrivateLinkResourceProperties {
@@ -1121,7 +1117,7 @@ export const SearchServicePropertiesSharedPrivateLinkResourcesList =
 
 /** Indicates if the dedicated search service has an upgrade available. */
 export type UpgradeAvailable = "notAvailable" | "available";
-export const UpgradeAvailable = /*@__PURE__*/ S.String;
+export const UpgradeAvailable = S.String;
 
 /** Properties of the search service. */
 export interface SearchServiceProperties {
@@ -1208,7 +1204,7 @@ export type SkuName =
   | "standard3"
   | "storage_optimized_l1"
   | "storage_optimized_l2";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** Defines the SKU of a search service, which determines billing rate and capacity limits. */
 export interface Sku {
@@ -1227,7 +1223,7 @@ export type IdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned, UserAssigned";
-export const IdentityType = /*@__PURE__*/ S.String;
+export const IdentityType = S.String;
 
 /** User assigned identity properties */
 export interface IdentityUserAssignedIdentitiesValue {
@@ -1480,11 +1476,11 @@ export type OperationListResultValueItemOrigin =
   | "user"
   | "system"
   | "user,system";
-export const OperationListResultValueItemOrigin = /*@__PURE__*/ S.String;
+export const OperationListResultValueItemOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationListResultValueItemActionType = "Internal";
-export const OperationListResultValueItemActionType = /*@__PURE__*/ S.String;
+export const OperationListResultValueItemActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface OperationListResultValueItem {
@@ -2065,7 +2061,7 @@ export const ListQueryKeysResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListQueryKeysResult>;
 
 export type RegenerateAdminKeyRequestKeyKind = "primary" | "secondary";
-export const RegenerateAdminKeyRequestKeyKind = /*@__PURE__*/ S.String;
+export const RegenerateAdminKeyRequestKeyKind = S.String;
 
 export interface RegenerateAdminKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2106,15 +2102,14 @@ export const ServicesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Applicable only for the standard3 SKU. You can set this property to enable up to 3 high density partitions that allow up to 1000 indexes, which is much higher than the maximum indexes allowed for any other SKU. For the standard3 SKU, the value is either 'Default' or 'HighDensity'. For all other SKUs, this value must be 'Default'. */
 export type SearchServicePropertiesInputHostingMode = "Default" | "HighDensity";
-export const SearchServicePropertiesInputHostingMode = /*@__PURE__*/ S.String;
+export const SearchServicePropertiesInputHostingMode = S.String;
 
 /** This value can be set to 'Enabled' to avoid breaking changes on existing customer resources and templates. If set to 'Disabled', traffic over public interface is not allowed, and private endpoint connections would be the exclusive access method. */
 export type SearchServicePropertiesInputPublicNetworkAccess =
   | "Enabled"
   | "Disabled"
   | "SecuredByPerimeter";
-export const SearchServicePropertiesInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const SearchServicePropertiesInputPublicNetworkAccess = S.String;
 
 /** A list of data exfiltration scenarios that are explicitly disallowed for the search service. Currently, the only supported value is 'All' to disable all possible data export scenarios with more fine grained controls planned for the future. */
 export type SearchServicePropertiesInputDataExfiltrationProtectionsList = Array<

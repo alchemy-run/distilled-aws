@@ -70,13 +70,13 @@ export type AggregateEventsRequestByItemCase0 =
   | "eventName"
   | "flags"
   | "eventData";
-export const AggregateEventsRequestByItemCase0 = /*@__PURE__*/ S.String;
+export const AggregateEventsRequestByItemCase0 = S.String;
 
 export type AggregateEventsRequestByItem =
   | AggregateEventsRequestByItemCase0
   | unknown;
 export const AggregateEventsRequestByItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AggregateEventsRequestByItem>;
+  S.Unknown as any as S.Schema<AggregateEventsRequestByItem>;
 
 /** Up to two dimensions used to break down results. At most one time granularity is allowed: hour, day, week, month, year. Other dimensions: country, deviceType, environment, requestPath, referrerHostname, osName, browserName, route, utmSource, utmMedium, utmCampaign, utmContent, utmTerm, eventName. JSON dimensions: flags, eventData. Used bare, they break down results by key, for example flags returns one group per flag name. With a key, they break down results by that key's value, for example eventData/plan. Wrap keys containing characters other than letters, digits, and underscores in single quotes, for example flags/'my-flag'. */
 export type AggregateEventsRequestByList = Array<AggregateEventsRequestByItem>;
@@ -87,12 +87,12 @@ export const AggregateEventsRequestByList = /*@__PURE__*/ S.Array(
 /** Timestamp in milliseconds, or a valid Date string. Selects data from (including) this date and time. Will be adjusted according to the desired time granularity. */
 export type AggregateEventsRequestSince = number | string;
 export const AggregateEventsRequestSince =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AggregateEventsRequestSince>;
+  S.Unknown as any as S.Schema<AggregateEventsRequestSince>;
 
 /** Timestamp in milliseconds, or a valid Date string. Selects data until (including) this date. Will be adjusted according to the desired time granularity. */
 export type AggregateEventsRequestUntil = number | string;
 export const AggregateEventsRequestUntil =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AggregateEventsRequestUntil>;
+  S.Unknown as any as S.Schema<AggregateEventsRequestUntil>;
 
 export interface AggregateEventsRequest {
   /** The project identifier or the project name */
@@ -150,14 +150,13 @@ export type AggregateEventsResponseQueryGroupByItemCase1 =
   | "utmMedium"
   | "utmSource"
   | "utmTerm";
-export const AggregateEventsResponseQueryGroupByItemCase1 =
-  /*@__PURE__*/ S.String;
+export const AggregateEventsResponseQueryGroupByItemCase1 = S.String;
 
 export type AggregateEventsResponseQueryGroupByItem =
   | string
   | AggregateEventsResponseQueryGroupByItemCase1;
 export const AggregateEventsResponseQueryGroupByItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AggregateEventsResponseQueryGroupByItem>;
+  S.Unknown as any as S.Schema<AggregateEventsResponseQueryGroupByItem>;
 
 export type AggregateEventsResponseQueryGroupByList =
   Array<AggregateEventsResponseQueryGroupByItem>;
@@ -1102,7 +1101,7 @@ export type AggregateEventsResponseData =
   | AggregateEventsResponseDataCase0List
   | AggregateEventsResponseDataCase1List;
 export const AggregateEventsResponseData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AggregateEventsResponseData>;
+  S.Unknown as any as S.Schema<AggregateEventsResponseData>;
 
 export interface AggregateEventsResponse {
   version: number;
@@ -1139,13 +1138,13 @@ export type AggregatePageviewsRequestByItemCase0 =
   | "utmContent"
   | "utmTerm"
   | "flags";
-export const AggregatePageviewsRequestByItemCase0 = /*@__PURE__*/ S.String;
+export const AggregatePageviewsRequestByItemCase0 = S.String;
 
 export type AggregatePageviewsRequestByItem =
   | AggregatePageviewsRequestByItemCase0
   | unknown;
 export const AggregatePageviewsRequestByItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AggregatePageviewsRequestByItem>;
+  S.Unknown as any as S.Schema<AggregatePageviewsRequestByItem>;
 
 /** Up to two dimensions used to break down results. At most one time granularity is allowed: hour, day, week, month, year. Other dimensions: country, deviceType, environment, requestPath, referrerHostname, osName, browserName, route, utmSource, utmMedium, utmCampaign, utmContent, utmTerm. JSON dimensions: flags. Used bare, it breaks down results by key, for example flags returns one group per flag name. With a key, it breaks down results by that key's value, for example flags/beta_banner. Wrap keys containing characters other than letters, digits, and underscores in single quotes, for example flags/'my-flag'. */
 export type AggregatePageviewsRequestByList =
@@ -1157,12 +1156,12 @@ export const AggregatePageviewsRequestByList = /*@__PURE__*/ S.Array(
 /** Timestamp in milliseconds, or a valid Date string. Selects data from (including) this date and time. Will be adjusted according to the desired time granularity. */
 export type AggregatePageviewsRequestSince = number | string;
 export const AggregatePageviewsRequestSince =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AggregatePageviewsRequestSince>;
+  S.Unknown as any as S.Schema<AggregatePageviewsRequestSince>;
 
 /** Timestamp in milliseconds, or a valid Date string. Selects data until (including) this date. Will be adjusted according to the desired time granularity. */
 export type AggregatePageviewsRequestUntil = number | string;
 export const AggregatePageviewsRequestUntil =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AggregatePageviewsRequestUntil>;
+  S.Unknown as any as S.Schema<AggregatePageviewsRequestUntil>;
 
 export interface AggregatePageviewsRequest {
   /** The project identifier or the project name */
@@ -1218,14 +1217,13 @@ export type AggregatePageviewsResponseQueryGroupByItemCase1 =
   | "utmMedium"
   | "utmSource"
   | "utmTerm";
-export const AggregatePageviewsResponseQueryGroupByItemCase1 =
-  /*@__PURE__*/ S.String;
+export const AggregatePageviewsResponseQueryGroupByItemCase1 = S.String;
 
 export type AggregatePageviewsResponseQueryGroupByItem =
   | string
   | AggregatePageviewsResponseQueryGroupByItemCase1;
 export const AggregatePageviewsResponseQueryGroupByItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AggregatePageviewsResponseQueryGroupByItem>;
+  S.Unknown as any as S.Schema<AggregatePageviewsResponseQueryGroupByItem>;
 
 export type AggregatePageviewsResponseQueryGroupByList =
   Array<AggregatePageviewsResponseQueryGroupByItem>;
@@ -1278,7 +1276,7 @@ export type AggregatePageviewsResponseData =
   | AggregatePageviewsResponseDataCase0List
   | AggregatePageviewsResponseDataCase1List;
 export const AggregatePageviewsResponseData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AggregatePageviewsResponseData>;
+  S.Unknown as any as S.Schema<AggregatePageviewsResponseData>;
 
 export interface AggregatePageviewsResponse {
   version: number;
@@ -1298,12 +1296,12 @@ export const AggregatePageviewsResponse = /*@__PURE__*/ S.suspend(() =>
 /** Timestamp in milliseconds, or a valid Date string. Selects data from (including) this date and time. Will be adjusted according to the desired time granularity. */
 export type CountEventsRequestSince = number | string;
 export const CountEventsRequestSince =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CountEventsRequestSince>;
+  S.Unknown as any as S.Schema<CountEventsRequestSince>;
 
 /** Timestamp in milliseconds, or a valid Date string. Selects data until (including) this date. Will be adjusted according to the desired time granularity. */
 export type CountEventsRequestUntil = number | string;
 export const CountEventsRequestUntil =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CountEventsRequestUntil>;
+  S.Unknown as any as S.Schema<CountEventsRequestUntil>;
 
 export interface CountEventsRequest {
   /** The project identifier or the project name */
@@ -1374,7 +1372,7 @@ export type CountEventsResponseData =
   | AggregateEventsResponseDataCase1Item
   | CountEventsResponseDataCase1;
 export const CountEventsResponseData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CountEventsResponseData>;
+  S.Unknown as any as S.Schema<CountEventsResponseData>;
 
 export interface CountEventsResponse {
   version: number;
@@ -1394,12 +1392,12 @@ export const CountEventsResponse = /*@__PURE__*/ S.suspend(() =>
 /** Timestamp in milliseconds, or a valid Date string. Selects data from (including) this date and time. Will be adjusted according to the desired time granularity. */
 export type CountPageviewsRequestSince = number | string;
 export const CountPageviewsRequestSince =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CountPageviewsRequestSince>;
+  S.Unknown as any as S.Schema<CountPageviewsRequestSince>;
 
 /** Timestamp in milliseconds, or a valid Date string. Selects data until (including) this date. Will be adjusted according to the desired time granularity. */
 export type CountPageviewsRequestUntil = number | string;
 export const CountPageviewsRequestUntil =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CountPageviewsRequestUntil>;
+  S.Unknown as any as S.Schema<CountPageviewsRequestUntil>;
 
 export interface CountPageviewsRequest {
   /** The project identifier or the project name */
@@ -1459,7 +1457,7 @@ export type CountPageviewsResponseData =
   | AggregateEventsResponseDataCase1Item
   | CountPageviewsResponseDataCase1;
 export const CountPageviewsResponseData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CountPageviewsResponseData>;
+  S.Unknown as any as S.Schema<CountPageviewsResponseData>;
 
 export interface CountPageviewsResponse {
   version: number;

@@ -19,7 +19,7 @@ export type ServiceTerminationFutureUseEnum =
   | "SUBSCRIBE_AN_OTHER_SERVICE"
   | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
   | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationFutureUseEnum = S.String;
 
 /** All reasons you can provide for a service termination */
 export type ServiceTerminationReasonEnum =
@@ -37,7 +37,7 @@ export type ServiceTerminationReasonEnum =
   | "TOO_EXPENSIVE"
   | "TOO_HARD_TO_USE"
   | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationReasonEnum = S.String;
 
 export interface ConfirmIpServiceTerminationRequest {
   /** The internal name of your IP services */
@@ -115,7 +115,7 @@ export type IpTaskFunctionEnum =
   | "checkAndReleaseIp"
   | "genericMoveFloatingIp"
   | "supernetByoipFailoverPartitioning";
-export const IpTaskFunctionEnum = /*@__PURE__*/ S.String;
+export const IpTaskFunctionEnum = S.String;
 
 /** different task status */
 export type IpTaskStatusEnum =
@@ -126,7 +126,7 @@ export type IpTaskStatusEnum =
   | "init"
   | "ovhError"
   | "todo";
-export const IpTaskStatusEnum = /*@__PURE__*/ S.String;
+export const IpTaskStatusEnum = S.String;
 
 /** IP tasks */
 export interface IpIpTask {
@@ -235,7 +235,7 @@ export type IpFirewallStateEnum =
   | "disableFirewallPending"
   | "enableFirewallPending"
   | "ok";
-export const IpFirewallStateEnum = /*@__PURE__*/ S.String;
+export const IpFirewallStateEnum = S.String;
 
 /** Your IP on firewall */
 export interface IpFirewallIp {
@@ -254,7 +254,7 @@ export const IpFirewallIp = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for action */
 export type IpFirewallActionEnum = "deny" | "permit";
-export const IpFirewallActionEnum = /*@__PURE__*/ S.String;
+export const IpFirewallActionEnum = S.String;
 
 /** Possible values for protocol */
 export type IpFirewallProtocolEnum =
@@ -265,7 +265,7 @@ export type IpFirewallProtocolEnum =
   | "ipv4"
   | "tcp"
   | "udp";
-export const IpFirewallProtocolEnum = /*@__PURE__*/ S.String;
+export const IpFirewallProtocolEnum = S.String;
 
 /** Possible values for action */
 export type IpFirewallSequenceRangeEnum =
@@ -289,11 +289,11 @@ export type IpFirewallSequenceRangeEnum =
   | 17
   | 18
   | 19;
-export const IpFirewallSequenceRangeEnum = /*@__PURE__*/ S.Number;
+export const IpFirewallSequenceRangeEnum = S.Number;
 
 /** Possible values for TCP option - only for TCP protocol */
 export type IpFirewallTCPOptionEnum = "established" | "syn";
-export const IpFirewallTCPOptionEnum = /*@__PURE__*/ S.String;
+export const IpFirewallTCPOptionEnum = S.String;
 
 /** Possible option for TCP */
 export interface IpFirewallOptionTCP {
@@ -356,7 +356,7 @@ export type IpFirewallRuleStateEnum =
   | "creationPending"
   | "ok"
   | "removalPending";
-export const IpFirewallRuleStateEnum = /*@__PURE__*/ S.String;
+export const IpFirewallRuleStateEnum = S.String;
 
 /** Rule on ip */
 export interface IpFirewallNetworkRule {
@@ -436,7 +436,7 @@ export type IpGameMitigationRuleProtocolEnum =
   | "teamspeak3"
   | "trackmaniaShootmania"
   | "valheim";
-export const IpGameMitigationRuleProtocolEnum = /*@__PURE__*/ S.String;
+export const IpGameMitigationRuleProtocolEnum = S.String;
 
 export interface CreateIpGameRuleRequest {
   ip: string;
@@ -464,7 +464,7 @@ export type IpGameMitigationRuleStateEnum =
   | "createRulePending"
   | "deleteRulePending"
   | "ok";
-export const IpGameMitigationRuleStateEnum = /*@__PURE__*/ S.String;
+export const IpGameMitigationRuleStateEnum = S.String;
 
 /** Rule on ip:ports */
 export interface IpGameMitigationRule {
@@ -533,7 +533,7 @@ export const CreateIpMitigationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for mitigation state */
 export type IpMitigationStateEnum = "creationPending" | "ok" | "removalPending";
-export const IpMitigationStateEnum = /*@__PURE__*/ S.String;
+export const IpMitigationStateEnum = S.String;
 
 /** Your IP on mitigation */
 export interface IpMitigationIp {
@@ -561,8 +561,7 @@ export type IpMitigationProfileAutoMitigationTimeOutEnum =
   | 60
   | 360
   | 1560;
-export const IpMitigationProfileAutoMitigationTimeOutEnum =
-  /*@__PURE__*/ S.Number;
+export const IpMitigationProfileAutoMitigationTimeOutEnum = S.Number;
 
 export interface CreateIpMitigationProfileRequest {
   ip: string;
@@ -586,7 +585,7 @@ export const CreateIpMitigationProfileRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for mitigation profile state */
 export type IpMitigationProfileStateEnum = "ok" | "tasksPending";
-export const IpMitigationProfileStateEnum = /*@__PURE__*/ S.String;
+export const IpMitigationProfileStateEnum = S.String;
 
 /** Mitigation profile for your ip */
 export interface IpMitigationProfile {
@@ -1125,7 +1124,7 @@ export type CoreTypesCountryEnum =
   | "za"
   | "zm"
   | "zw";
-export const CoreTypesCountryEnum = /*@__PURE__*/ S.String;
+export const CoreTypesCountryEnum = S.String;
 
 /** Resource tags. Tags that were internally computed are prefixed with ovh: */
 export type IamResourceMetadataTagsMap = { [key: string]: string | undefined };
@@ -1214,7 +1213,7 @@ export type CoreTypesRegionCodenameEnum =
   | "us-west-lz-pao"
   | "us-west-lz-phx"
   | "us-west-lz-sea";
-export const CoreTypesRegionCodenameEnum = /*@__PURE__*/ S.String;
+export const CoreTypesRegionCodenameEnum = S.String;
 
 /** Where is the IP used/usable, in the form of region codenames (alpha) */
 export type IpIpWithIAMRegionsList = Array<CoreTypesRegionCodenameEnum>;
@@ -1240,11 +1239,11 @@ export type IpIpTypeEnum =
   | "vps"
   | "vrack"
   | "xdsl";
-export const IpIpTypeEnum = /*@__PURE__*/ S.String;
+export const IpIpTypeEnum = S.String;
 
 /** Possible values for IP version */
 export type IpIpVersionEnum = 4 | 6;
-export const IpIpVersionEnum = /*@__PURE__*/ S.Number;
+export const IpIpVersionEnum = S.Number;
 
 /** Your IP */
 export interface IpIpWithIAM {
@@ -1310,7 +1309,7 @@ export const GetIpAntihackRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for IP state */
 export type IpBlockedIpStateEnum = "blocked" | "unblocking";
-export const IpBlockedIpStateEnum = /*@__PURE__*/ S.String;
+export const IpBlockedIpStateEnum = S.String;
 
 /** Blocked IP information */
 export interface IpBlockedIp {
@@ -1353,7 +1352,7 @@ export const GetIpArpRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for IP state */
 export type IpArpStateEnum = "blocked" | "unblocking";
-export const IpArpStateEnum = /*@__PURE__*/ S.String;
+export const IpArpStateEnum = S.String;
 
 /** ARP blocked IP information */
 export interface IpArpBlockedIp {
@@ -1455,7 +1454,7 @@ export type IpGameMitigationStateEnum =
   | "firewallModeDisablePending"
   | "firewallModeEnablePending"
   | "ok";
-export const IpGameMitigationStateEnum = /*@__PURE__*/ S.String;
+export const IpGameMitigationStateEnum = S.String;
 
 /** List of protocols available on this IP */
 export type IpGameMitigationSupportedProtocolsList =
@@ -1578,7 +1577,7 @@ export type IpAntiphishingStateEnum =
   | "blocking"
   | "unblocked"
   | "unblocking";
-export const IpAntiphishingStateEnum = /*@__PURE__*/ S.String;
+export const IpAntiphishingStateEnum = S.String;
 
 /** Phishing URLs hosted on your IP */
 export interface IpAntiphishing {
@@ -1744,7 +1743,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 export type ServiceStateEnum =
   | "autorenewInProgress"
@@ -1753,7 +1752,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -1814,7 +1813,7 @@ export const GetIpSpamRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for spam state */
 export type IpSpamStateEnum = "blockedForSpam" | "unblocked" | "unblocking";
-export const IpSpamStateEnum = /*@__PURE__*/ S.String;
+export const IpSpamStateEnum = S.String;
 
 /** Your IP spam stats */
 export interface IpSpamIp {
@@ -2140,7 +2139,7 @@ export type DedicatedDatacenterEnum =
   | "waw1"
   | "ynm1"
   | "yyz01";
-export const DedicatedDatacenterEnum = /*@__PURE__*/ S.String;
+export const DedicatedDatacenterEnum = S.String;
 
 /** List of datacenters in the campus */
 export type IpCampusDatacentersList = Array<DedicatedDatacenterEnum>;
@@ -2164,7 +2163,7 @@ export type IpCampusEnum =
   | "WAW"
   | "YNM"
   | "YYZ";
-export const IpCampusEnum = /*@__PURE__*/ S.String;
+export const IpCampusEnum = S.String;
 
 /** Campus of an IP address */
 export interface IpCampus {

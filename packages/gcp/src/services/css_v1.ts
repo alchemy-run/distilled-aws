@@ -69,7 +69,7 @@ export type AccountLabelLabelTypeEnum =
   | "LABEL_TYPE_UNSPECIFIED"
   | "MANUAL"
   | "AUTOMATIC";
-export const AccountLabelLabelTypeEnum = /*@__PURE__*/ S.String;
+export const AccountLabelLabelTypeEnum = S.String;
 
 /** Label assigned by CSS domain or CSS group to one of its sub-accounts. */
 export interface AccountLabel {
@@ -200,7 +200,7 @@ export type AccountAccountTypeEnum =
   | "MC_OTHER_MCA"
   | "MC_STANDALONE"
   | "MC_MCA_SUBACCOUNT";
-export const AccountAccountTypeEnum = /*@__PURE__*/ S.String;
+export const AccountAccountTypeEnum = S.String;
 
 /** Information about CSS/MC account. */
 export interface Account {
@@ -441,7 +441,7 @@ export type HeadlineOfferSubscriptionCostPeriodEnum =
   | "SUBSCRIPTION_PERIOD_UNSPECIFIED"
   | "MONTH"
   | "YEAR";
-export const HeadlineOfferSubscriptionCostPeriodEnum = /*@__PURE__*/ S.String;
+export const HeadlineOfferSubscriptionCostPeriodEnum = S.String;
 
 /** The SubscriptionCost of the product. */
 export interface HeadlineOfferSubscriptionCost {

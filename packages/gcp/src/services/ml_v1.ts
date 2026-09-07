@@ -150,7 +150,7 @@ export type GoogleCloudMlV1__TrialStateEnum =
   | "ACTIVE"
   | "COMPLETED"
   | "STOPPING";
-export const GoogleCloudMlV1__TrialStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__TrialStateEnum = S.String;
 
 /** A message representing a parameter to be tuned. Contains the name of the parameter and the suggested value to use for this trial. */
 export interface GoogleCloudMlV1_Trial_Parameter {
@@ -434,8 +434,7 @@ export type GoogleCloudMlV1__PredictionInputOutputDataFormatEnum =
   | "TF_RECORD"
   | "TF_RECORD_GZIP"
   | "CSV";
-export const GoogleCloudMlV1__PredictionInputOutputDataFormatEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__PredictionInputOutputDataFormatEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -449,8 +448,7 @@ export type GoogleCloudMlV1__PredictionInputDataFormatEnum =
   | "TF_RECORD"
   | "TF_RECORD_GZIP"
   | "CSV";
-export const GoogleCloudMlV1__PredictionInputDataFormatEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__PredictionInputDataFormatEnum = S.String;
 
 /** Represents input parameters for a prediction job. */
 export interface GoogleCloudMlV1__PredictionInput {
@@ -547,8 +545,7 @@ export type GoogleCloudMlV1__HyperparameterSpecAlgorithmEnum =
   | "ALGORITHM_UNSPECIFIED"
   | "GRID_SEARCH"
   | "RANDOM_SEARCH";
-export const GoogleCloudMlV1__HyperparameterSpecAlgorithmEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__HyperparameterSpecAlgorithmEnum = S.String;
 
 export type DoubleList = Array<number>;
 export const DoubleList = /*@__PURE__*/ S.Array(
@@ -561,15 +558,14 @@ export type GoogleCloudMlV1__ParameterSpecTypeEnum =
   | "INTEGER"
   | "CATEGORICAL"
   | "DISCRETE";
-export const GoogleCloudMlV1__ParameterSpecTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__ParameterSpecTypeEnum = S.String;
 
 export type GoogleCloudMlV1__ParameterSpecScaleTypeEnum =
   | "NONE"
   | "UNIT_LINEAR_SCALE"
   | "UNIT_LOG_SCALE"
   | "UNIT_REVERSE_LOG_SCALE";
-export const GoogleCloudMlV1__ParameterSpecScaleTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__ParameterSpecScaleTypeEnum = S.String;
 
 /** Represents a single hyperparameter to optimize. */
 export interface GoogleCloudMlV1__ParameterSpec {
@@ -612,8 +608,7 @@ export type GoogleCloudMlV1__HyperparameterSpecGoalEnum =
   | "GOAL_TYPE_UNSPECIFIED"
   | "MAXIMIZE"
   | "MINIMIZE";
-export const GoogleCloudMlV1__HyperparameterSpecGoalEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__HyperparameterSpecGoalEnum = S.String;
 
 /** Represents a set of hyperparameters to optimize. */
 export interface GoogleCloudMlV1__HyperparameterSpec {
@@ -678,8 +673,7 @@ export type GoogleCloudMlV1__AcceleratorConfigTypeEnum =
   | "TPU_V2_POD"
   | "TPU_V3_POD"
   | "TPU_V4_POD";
-export const GoogleCloudMlV1__AcceleratorConfigTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__AcceleratorConfigTypeEnum = S.String;
 
 /** Represents a hardware accelerator request config. Note that the AcceleratorConfig can be used in both Jobs and Versions. Learn more about [accelerators for training](/ml-engine/docs/using-gpus) and [accelerators for online prediction](/ml-engine/docs/machine-types-online-prediction#gpus). */
 export interface GoogleCloudMlV1__AcceleratorConfig {
@@ -748,8 +742,7 @@ export type GoogleCloudMlV1__TrainingInputScaleTierEnum =
   | "BASIC_GPU"
   | "BASIC_TPU"
   | "CUSTOM";
-export const GoogleCloudMlV1__TrainingInputScaleTierEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__TrainingInputScaleTierEnum = S.String;
 
 /** Represents input parameters for a training job. When using the gcloud command to submit your training job, you can specify the input parameters as command-line arguments and/or in a YAML configuration file referenced from the --config command-line argument. For details, see the guide to [submitting a training job](/ai-platform/training/docs/training-jobs). */
 export interface GoogleCloudMlV1__TrainingInput {
@@ -848,7 +841,7 @@ export type GoogleCloudMlV1__JobStateEnum =
   | "FAILED"
   | "CANCELLING"
   | "CANCELLED";
-export const GoogleCloudMlV1__JobStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__JobStateEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -912,8 +905,7 @@ export type GoogleCloudMlV1__HyperparameterOutputStateEnum =
   | "FAILED"
   | "CANCELLING"
   | "CANCELLED";
-export const GoogleCloudMlV1__HyperparameterOutputStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__HyperparameterOutputStateEnum = S.String;
 
 /** Represents the result of a single hyperparameter tuning trial from a training job. The TrainingOutput object that is returned on successful completion of a training job with hyperparameter tuning includes a list of HyperparameterOutput objects, one for each successful trial. */
 export interface GoogleCloudMlV1__HyperparameterOutput {
@@ -1078,8 +1070,7 @@ export type GoogleCloudMlV1_StudyConfig_ParameterSpecTypeEnum =
   | "INTEGER"
   | "CATEGORICAL"
   | "DISCRETE";
-export const GoogleCloudMlV1_StudyConfig_ParameterSpecTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1_StudyConfig_ParameterSpecTypeEnum = S.String;
 
 export interface GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec {
   /** Must be specified if type is `INTEGER`. Maximum value of the parameter. */
@@ -1158,8 +1149,7 @@ export type GoogleCloudMlV1_StudyConfig_ParameterSpecScaleTypeEnum =
   | "UNIT_LINEAR_SCALE"
   | "UNIT_LOG_SCALE"
   | "UNIT_REVERSE_LOG_SCALE";
-export const GoogleCloudMlV1_StudyConfig_ParameterSpecScaleTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1_StudyConfig_ParameterSpecScaleTypeEnum = S.String;
 
 /** Represents the spec to match integer values from parent parameter. */
 export interface GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentIntValueSpec {
@@ -1313,14 +1303,13 @@ export type GoogleCloudMlV1__StudyConfigAlgorithmEnum =
   | "GAUSSIAN_PROCESS_BANDIT"
   | "GRID_SEARCH"
   | "RANDOM_SEARCH";
-export const GoogleCloudMlV1__StudyConfigAlgorithmEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__StudyConfigAlgorithmEnum = S.String;
 
 export type GoogleCloudMlV1_StudyConfig_MetricSpecGoalEnum =
   | "GOAL_TYPE_UNSPECIFIED"
   | "MAXIMIZE"
   | "MINIMIZE";
-export const GoogleCloudMlV1_StudyConfig_MetricSpecGoalEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1_StudyConfig_MetricSpecGoalEnum = S.String;
 
 /** Represents a metric to optimize. */
 export interface GoogleCloudMlV1_StudyConfig_MetricSpec {
@@ -1374,7 +1363,7 @@ export type GoogleCloudMlV1__StudyStateEnum =
   | "ACTIVE"
   | "INACTIVE"
   | "COMPLETED";
-export const GoogleCloudMlV1__StudyStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__StudyStateEnum = S.String;
 
 /** A message representing a Study. */
 export interface GoogleCloudMlV1__Study {
@@ -1517,7 +1506,7 @@ export type GoogleCloudMlV1__MetricSpecNameEnum =
   | "METRIC_NAME_UNSPECIFIED"
   | "CPU_USAGE"
   | "GPU_DUTY_CYCLE";
-export const GoogleCloudMlV1__MetricSpecNameEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__MetricSpecNameEnum = S.String;
 
 /** MetricSpec contains the specifications to use to calculate the desired nodes count when autoscaling is enabled. */
 export interface GoogleCloudMlV1__MetricSpec {
@@ -1667,7 +1656,7 @@ export type GoogleCloudMlV1__VersionFrameworkEnum =
   | "TENSORFLOW"
   | "SCIKIT_LEARN"
   | "XGBOOST";
-export const GoogleCloudMlV1__VersionFrameworkEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__VersionFrameworkEnum = S.String;
 
 export type GoogleCloudMlV1__VersionStateEnum =
   | "UNKNOWN"
@@ -1676,7 +1665,7 @@ export type GoogleCloudMlV1__VersionStateEnum =
   | "FAILED"
   | "DELETING"
   | "UPDATING";
-export const GoogleCloudMlV1__VersionStateEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__VersionStateEnum = S.String;
 
 /** Represents a version of the model. Each version is a trained model deployed in the cloud, ready to handle prediction requests. A model can have multiple versions. You can get information about all of the versions of a given model by calling projects.models.versions.list. */
 export interface GoogleCloudMlV1__Version {
@@ -2043,7 +2032,7 @@ export type GoogleIamV1__AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const GoogleIamV1__AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleIamV1__AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface GoogleIamV1__AuditLogConfig {
@@ -2218,7 +2207,7 @@ export type GoogleCloudMlV1__CapabilityTypeEnum =
   | "TRAINING"
   | "BATCH_PREDICTION"
   | "ONLINE_PREDICTION";
-export const GoogleCloudMlV1__CapabilityTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudMlV1__CapabilityTypeEnum = S.String;
 
 export type GoogleCloudMlV1__CapabilityAvailableAcceleratorsItemEnum =
   | "ACCELERATOR_TYPE_UNSPECIFIED"
@@ -2234,7 +2223,7 @@ export type GoogleCloudMlV1__CapabilityAvailableAcceleratorsItemEnum =
   | "TPU_V3_POD"
   | "TPU_V4_POD";
 export const GoogleCloudMlV1__CapabilityAvailableAcceleratorsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudMlV1__CapabilityAvailableAcceleratorsItemEnumList =
   Array<GoogleCloudMlV1__CapabilityAvailableAcceleratorsItemEnum>;

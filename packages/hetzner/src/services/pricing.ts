@@ -21,8 +21,7 @@ export const GetPricingRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of [Primary IP](#tag/primary-ips) the price is for. */
 export type GetPricingResponsePricingPrimaryIpsItemType = "ipv4" | "ipv6";
-export const GetPricingResponsePricingPrimaryIpsItemType =
-  /*@__PURE__*/ S.String;
+export const GetPricingResponsePricingPrimaryIpsItemType = S.String;
 
 /** Hourly price in this [Location](#tag/locations). */
 export interface GetPricingResponsePricingPrimaryIpsItemPricesItemPriceHourly {
@@ -101,8 +100,7 @@ export const GetPricingResponsePricingPrimaryIpsList = /*@__PURE__*/ S.Array(
 
 /** Type of [Floating IP](#tag/floating-ips) the price is for. */
 export type GetPricingResponsePricingFloatingIpsItemType = "ipv4" | "ipv6";
-export const GetPricingResponsePricingFloatingIpsItemType =
-  /*@__PURE__*/ S.String;
+export const GetPricingResponsePricingFloatingIpsItemType = S.String;
 
 /** Monthly price in this [Location](#tag/locations). */
 export type GetPricingResponsePricingFloatingIpsItemPricesItemPriceMonthly =

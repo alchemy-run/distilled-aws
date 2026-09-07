@@ -14,7 +14,7 @@ import * as Retry from "../retry.ts";
 export type { SlackOpError, SlackOpContext };
 
 export type AccessLogsRequestBeforeCase0 = "now";
-export const AccessLogsRequestBeforeCase0 = /*@__PURE__*/ S.String;
+export const AccessLogsRequestBeforeCase0 = S.String;
 
 export type AccessLogsRequestBefore =
   | AccessLogsRequestBeforeCase0
@@ -241,7 +241,7 @@ export const DisconnectExternalTeamResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DisconnectExternalTeamResponse>;
 
 export type GetProfileRequestVisibility = "all" | "visible" | "hidden";
-export const GetProfileRequestVisibility = /*@__PURE__*/ S.String;
+export const GetProfileRequestVisibility = S.String;
 
 export interface GetProfileRequest {
   /** Filter by visibility. */
@@ -298,7 +298,7 @@ export type IntegrationLogsRequestChangeType =
   | "enabled"
   | "disabled"
   | "updated";
-export const IntegrationLogsRequestChangeType = /*@__PURE__*/ S.String;
+export const IntegrationLogsRequestChangeType = S.String;
 
 export interface IntegrationLogsRequest {
   /** Filter logs to this Slack app. Defaults to all logs. */
@@ -362,10 +362,10 @@ export type ListExternalTeamsRequestSortField =
   | "team_name"
   | "last_active_timestamp"
   | "connection_status";
-export const ListExternalTeamsRequestSortField = /*@__PURE__*/ S.String;
+export const ListExternalTeamsRequestSortField = S.String;
 
 export type ListExternalTeamsRequestSortDirection = "asc" | "desc";
-export const ListExternalTeamsRequestSortDirection = /*@__PURE__*/ S.String;
+export const ListExternalTeamsRequestSortDirection = S.String;
 
 export type ListExternalTeamsRequestSlackConnectPrefFilterItem =
   | "approved_orgs_only"
@@ -378,8 +378,7 @@ export type ListExternalTeamsRequestSlackConnectPrefFilterItem =
   | "external_awareness_context_bar"
   | "interact_with_externally_owned_workflows"
   | "external_teams_interact_with_locally_owned_workflows";
-export const ListExternalTeamsRequestSlackConnectPrefFilterItem =
-  /*@__PURE__*/ S.String;
+export const ListExternalTeamsRequestSlackConnectPrefFilterItem = S.String;
 
 export type ListExternalTeamsRequestSlackConnectPrefFilterList = Array<
   ListExternalTeamsRequestSlackConnectPrefFilterItem | (string & {})
@@ -400,8 +399,7 @@ export type ListExternalTeamsRequestConnectionStatusFilter =
   | "DISCONNECTED"
   | "BLOCKED"
   | "IN_REVIEW";
-export const ListExternalTeamsRequestConnectionStatusFilter =
-  /*@__PURE__*/ S.String;
+export const ListExternalTeamsRequestConnectionStatusFilter = S.String;
 
 export interface ListExternalTeamsRequest {
   /** The maximum number of items to return per page */
@@ -476,7 +474,7 @@ export type ListExternalTeamsResponseOrganizationsItemConnectionStatus =
   | "IN_REVIEW"
   | "DISCONNECTING";
 export const ListExternalTeamsResponseOrganizationsItemConnectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListExternalTeamsResponseOrganizationsItemCanvasOwnershipDetailsItem {
   team_id: string;

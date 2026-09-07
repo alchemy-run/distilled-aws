@@ -72,7 +72,7 @@ export type ContainerUsageContextItemEnum =
   | "androidSdk5"
   | "iosSdk5"
   | "amp";
-export const ContainerUsageContextItemEnum = /*@__PURE__*/ S.String;
+export const ContainerUsageContextItemEnum = S.String;
 
 export type ContainerUsageContextItemEnumList = Array<
   ContainerUsageContextItemEnum | (string & {})
@@ -190,7 +190,7 @@ export type ContainerEnabledBuiltInVariableItemEnum =
   | "analyticsClientId"
   | "analyticsSessionId"
   | "analyticsSessionNumber";
-export const ContainerEnabledBuiltInVariableItemEnum = /*@__PURE__*/ S.String;
+export const ContainerEnabledBuiltInVariableItemEnum = S.String;
 
 export type ContainerEnabledBuiltInVariableItemEnumList = Array<
   ContainerEnabledBuiltInVariableItemEnum | (string & {})
@@ -270,7 +270,7 @@ export const CreateAccountsContainersRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateAccountsContainersRequest>;
 
 export type EnvironmentTypeEnum = "user" | "live" | "latest" | "draft";
-export const EnvironmentTypeEnum = /*@__PURE__*/ S.String;
+export const EnvironmentTypeEnum = S.String;
 
 /** Represents a Google Tag Manager Environment. Note that a user can create, delete and update environments of type USER, but can only update the enable_debug and url fields of environments of other types. */
 export interface Environment {
@@ -419,7 +419,7 @@ export type ParameterTypeEnum =
   | "map"
   | "triggerReference"
   | "tagReference";
-export const ParameterTypeEnum = /*@__PURE__*/ S.String;
+export const ParameterTypeEnum = S.String;
 
 /** Represents a Google Tag Manager Parameter. */
 export interface Parameter {
@@ -448,7 +448,7 @@ export type TagTagFiringOptionEnum =
   | "unlimited"
   | "oncePerEvent"
   | "oncePerLoad";
-export const TagTagFiringOptionEnum = /*@__PURE__*/ S.String;
+export const TagTagFiringOptionEnum = S.String;
 
 export interface SetupTag {
   /** If true, fire the main tag if and only if the setup tag fires successfully. If false, fire the main tag regardless of setup tag firing status. */
@@ -577,7 +577,7 @@ export type TriggerTypeEnum =
   | "youTubeVideo"
   | "scrollDepth"
   | "elementVisibility";
-export const TriggerTypeEnum = /*@__PURE__*/ S.String;
+export const TriggerTypeEnum = S.String;
 
 export type ConditionTypeEnum =
   | "equals"
@@ -591,7 +591,7 @@ export type ConditionTypeEnum =
   | "lessOrEquals"
   | "cssSelector"
   | "urlMatches";
-export const ConditionTypeEnum = /*@__PURE__*/ S.String;
+export const ConditionTypeEnum = S.String;
 
 /** Represents a predicate. */
 export interface Condition {
@@ -935,7 +935,7 @@ export type ContainerAccessPermissionItemEnum =
   | "delete"
   | "manage"
   | "editWorkspace";
-export const ContainerAccessPermissionItemEnum = /*@__PURE__*/ S.String;
+export const ContainerAccessPermissionItemEnum = S.String;
 
 export type ContainerAccessPermissionItemEnumList = Array<
   ContainerAccessPermissionItemEnum | (string & {})
@@ -972,7 +972,7 @@ export type AccountAccessPermissionItemEnum =
   | "delete"
   | "manage"
   | "editWorkspace";
-export const AccountAccessPermissionItemEnum = /*@__PURE__*/ S.String;
+export const AccountAccessPermissionItemEnum = S.String;
 
 export type AccountAccessPermissionItemEnumList = Array<
   AccountAccessPermissionItemEnum | (string & {})

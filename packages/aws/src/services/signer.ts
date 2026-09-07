@@ -297,10 +297,10 @@ export const SigningMaterial = /*@__PURE__*/ S.suspend(() =>
 export type PlatformId = string;
 export type DisplayName = string;
 export type EncryptionAlgorithm = "RSA" | "ECDSA" | (string & {});
-export const EncryptionAlgorithm = /*@__PURE__*/ S.String;
+export const EncryptionAlgorithm = S.String;
 
 export type HashAlgorithm = "SHA1" | "SHA256" | (string & {});
-export const HashAlgorithm = /*@__PURE__*/ S.String;
+export const HashAlgorithm = S.String;
 
 export interface SigningConfigurationOverrides {
   encryptionAlgorithm?: EncryptionAlgorithm;
@@ -319,7 +319,7 @@ export type ImageFormat =
   | "JSONEmbedded"
   | "JSONDetached"
   | (string & {});
-export const ImageFormat = /*@__PURE__*/ S.String;
+export const ImageFormat = S.String;
 
 export interface SigningPlatformOverrides {
   signingConfiguration?: SigningConfigurationOverrides;
@@ -346,7 +346,7 @@ export type SigningStatus =
   | "Failed"
   | "Succeeded"
   | (string & {});
-export const SigningStatus = /*@__PURE__*/ S.String;
+export const SigningStatus = S.String;
 
 export type StatusReason = string;
 export interface SigningJobRevocationRecord {
@@ -485,7 +485,7 @@ export const GetSigningPlatformRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSigningPlatformRequest",
 }) as any as S.Schema<GetSigningPlatformRequest>;
 export type Category = "AWSIoT" | (string & {});
-export const Category = /*@__PURE__*/ S.String;
+export const Category = S.String;
 
 export type EncryptionAlgorithms = EncryptionAlgorithm[];
 export const EncryptionAlgorithms = /*@__PURE__*/ S.Array(EncryptionAlgorithm);
@@ -600,7 +600,7 @@ export const SigningProfileRevocationRecord = /*@__PURE__*/ S.suspend(() =>
   identifier: "SigningProfileRevocationRecord",
 }) as any as S.Schema<SigningProfileRevocationRecord>;
 export type ValidityType = "DAYS" | "MONTHS" | "YEARS" | (string & {});
-export const ValidityType = /*@__PURE__*/ S.String;
+export const ValidityType = S.String;
 
 export interface SignatureValidityPeriod {
   value?: number;
@@ -616,7 +616,7 @@ export type SigningProfileStatus =
   | "Canceled"
   | "Revoked"
   | (string & {});
-export const SigningProfileStatus = /*@__PURE__*/ S.String;
+export const SigningProfileStatus = S.String;
 
 export type TagKey = string;
 export type TagValue = string;

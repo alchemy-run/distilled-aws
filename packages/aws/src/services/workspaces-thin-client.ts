@@ -168,10 +168,10 @@ export type SoftwareSetUpdateSchedule =
   | "USE_MAINTENANCE_WINDOW"
   | "APPLY_IMMEDIATELY"
   | (string & {});
-export const SoftwareSetUpdateSchedule = /*@__PURE__*/ S.String;
+export const SoftwareSetUpdateSchedule = S.String;
 
 export type MaintenanceWindowType = "SYSTEM" | "CUSTOM" | (string & {});
-export const MaintenanceWindowType = /*@__PURE__*/ S.String;
+export const MaintenanceWindowType = S.String;
 
 export type Hour = number;
 export type Minute = number;
@@ -184,12 +184,12 @@ export type DayOfWeek =
   | "SATURDAY"
   | "SUNDAY"
   | (string & {});
-export const DayOfWeek = /*@__PURE__*/ S.String;
+export const DayOfWeek = S.String;
 
 export type DayOfWeekList = DayOfWeek[];
 export const DayOfWeekList = /*@__PURE__*/ S.Array(DayOfWeek);
 export type ApplyTimeOf = "UTC" | "DEVICE" | (string & {});
-export const ApplyTimeOf = /*@__PURE__*/ S.String;
+export const ApplyTimeOf = S.String;
 
 export interface MaintenanceWindow {
   type: MaintenanceWindowType;
@@ -217,7 +217,7 @@ export type SoftwareSetUpdateMode =
   | "USE_LATEST"
   | "USE_DESIRED"
   | (string & {});
-export const SoftwareSetUpdateMode = /*@__PURE__*/ S.String;
+export const SoftwareSetUpdateMode = S.String;
 
 export type SoftwareSetId = string;
 export type KmsKeyArn = string;
@@ -279,7 +279,7 @@ export type DesktopType =
   | "appstream"
   | "workspaces-web"
   | (string & {});
-export const DesktopType = /*@__PURE__*/ S.String;
+export const DesktopType = S.String;
 
 export type ActivationCode = string | redacted.Redacted<string>;
 export interface EnvironmentSummary {
@@ -388,7 +388,7 @@ export const DeleteEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteEnvironmentResponse",
 }) as any as S.Schema<DeleteEnvironmentResponse>;
 export type TargetDeviceStatus = "DEREGISTERED" | "ARCHIVED" | (string & {});
-export const TargetDeviceStatus = /*@__PURE__*/ S.String;
+export const TargetDeviceStatus = S.String;
 
 export interface DeregisterDeviceRequest {
   id: string;
@@ -443,21 +443,21 @@ export type DeviceStatus =
   | "DEREGISTERED"
   | "ARCHIVED"
   | (string & {});
-export const DeviceStatus = /*@__PURE__*/ S.String;
+export const DeviceStatus = S.String;
 
 export type DeviceSoftwareSetComplianceStatus =
   | "NONE"
   | "COMPLIANT"
   | "NOT_COMPLIANT"
   | (string & {});
-export const DeviceSoftwareSetComplianceStatus = /*@__PURE__*/ S.String;
+export const DeviceSoftwareSetComplianceStatus = S.String;
 
 export type SoftwareSetUpdateStatus =
   | "AVAILABLE"
   | "IN_PROGRESS"
   | "UP_TO_DATE"
   | (string & {});
-export const SoftwareSetUpdateStatus = /*@__PURE__*/ S.String;
+export const SoftwareSetUpdateStatus = S.String;
 
 export type UserId = string | redacted.Redacted<string>;
 export interface Device {
@@ -540,7 +540,7 @@ export type EnvironmentSoftwareSetComplianceStatus =
   | "COMPLIANT"
   | "NOT_COMPLIANT"
   | (string & {});
-export const EnvironmentSoftwareSetComplianceStatus = /*@__PURE__*/ S.String;
+export const EnvironmentSoftwareSetComplianceStatus = S.String;
 
 export interface Environment {
   id?: string;
@@ -617,7 +617,7 @@ export type SoftwareSetValidationStatus =
   | "VALIDATED"
   | "NOT_VALIDATED"
   | (string & {});
-export const SoftwareSetValidationStatus = /*@__PURE__*/ S.String;
+export const SoftwareSetValidationStatus = S.String;
 
 export interface Software {
   name?: string;
@@ -1020,7 +1020,7 @@ export type ValidationExceptionReason =
   | "fieldValidationFailed"
   | "other"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export type FieldName = string;
 export interface ValidationExceptionField {

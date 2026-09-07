@@ -45,7 +45,7 @@ export type ServiceTerminationFutureUseEnum =
   | "SUBSCRIBE_AN_OTHER_SERVICE"
   | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
   | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationFutureUseEnum = S.String;
 
 /** All reasons you can provide for a service termination */
 export type ServiceTerminationReasonEnum =
@@ -63,7 +63,7 @@ export type ServiceTerminationReasonEnum =
   | "TOO_EXPENSIVE"
   | "TOO_HARD_TO_USE"
   | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationReasonEnum = S.String;
 
 export interface ConfirmVpsTerminationRequest {
   /** Service name */
@@ -134,7 +134,7 @@ export type VpsTaskStateEnum =
   | "paused"
   | "todo"
   | "waitingAck";
-export const VpsTaskStateEnum = /*@__PURE__*/ S.String;
+export const VpsTaskStateEnum = S.String;
 
 /** All type a VPS task can be */
 export type VpsTaskTypeEnum =
@@ -162,7 +162,7 @@ export type VpsTaskTypeEnum =
   | "startVm"
   | "stopVm"
   | "upgradeVm";
-export const VpsTaskTypeEnum = /*@__PURE__*/ S.String;
+export const VpsTaskTypeEnum = S.String;
 
 /** Operation on a VPS Virtual Machine */
 export interface VpsTask {
@@ -255,7 +255,7 @@ export type DedicatedTaskFunctionEnum =
   | "testIPMIping"
   | "virtualMacAdd"
   | "virtualMacDelete";
-export const DedicatedTaskFunctionEnum = /*@__PURE__*/ S.String;
+export const DedicatedTaskFunctionEnum = S.String;
 
 /** different task status */
 export type DedicatedTaskStatusEnum =
@@ -266,7 +266,7 @@ export type DedicatedTaskStatusEnum =
   | "init"
   | "ovhError"
   | "todo";
-export const DedicatedTaskStatusEnum = /*@__PURE__*/ S.String;
+export const DedicatedTaskStatusEnum = S.String;
 
 /** complexType.SafeKeyValueCanBeNull_string */
 export interface ComplexTypeSafeKeyValueCanBeNullString {
@@ -417,7 +417,7 @@ export const CreateVpsMigration2018Request = /*@__PURE__*/ S.suspend(() =>
 
 /** All supported VNC protocols by VPS */
 export type VpsVncProtocolEnum = "VNC" | "VNCOverWebSocket";
-export const VpsVncProtocolEnum = /*@__PURE__*/ S.String;
+export const VpsVncProtocolEnum = S.String;
 
 export interface CreateVpsOpenConsoleAccessRequest {
   /** Service name */
@@ -740,7 +740,7 @@ export const IamResourceMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** All values keymap can be in */
 export type VpsVpsKeymapEnum = "fr" | "us";
-export const VpsVpsKeymapEnum = /*@__PURE__*/ S.String;
+export const VpsVpsKeymapEnum = S.String;
 
 /** All options a VPS can have */
 export type VpsVpsOptionEnum =
@@ -752,7 +752,7 @@ export type VpsVpsOptionEnum =
   | "snapshot"
   | "veeam"
   | "windows";
-export const VpsVpsOptionEnum = /*@__PURE__*/ S.String;
+export const VpsVpsOptionEnum = S.String;
 
 export type VpsModelAvailableOptionsList = Array<VpsVpsOptionEnum>;
 export const VpsModelAvailableOptionsList = /*@__PURE__*/ S.Array(
@@ -775,7 +775,7 @@ export type VpsVpsVersionEnum =
   | "2018v1"
   | "2018v2"
   | "2019v1";
-export const VpsVpsVersionEnum = /*@__PURE__*/ S.String;
+export const VpsVpsVersionEnum = S.String;
 
 /** A structure describing characteristics of a VPS model */
 export interface VpsModel {
@@ -812,7 +812,7 @@ export const VpsVPSWithIAMMonitoringIpBlocksList = /*@__PURE__*/ S.Array(
 
 /** All values a VPS netboot mode can be in */
 export type VpsVpsNetbootEnum = "local" | "rescue";
-export const VpsVpsNetbootEnum = /*@__PURE__*/ S.String;
+export const VpsVpsNetbootEnum = S.String;
 
 /** All offers a VPS can have */
 export type VpsVpsOfferEnum =
@@ -823,7 +823,7 @@ export type VpsVpsOfferEnum =
   | "game-classic"
   | "lowlat"
   | "ssd";
-export const VpsVpsOfferEnum = /*@__PURE__*/ S.String;
+export const VpsVpsOfferEnum = S.String;
 
 /** All states a VPS can be in */
 export type VpsVpsStateEnum =
@@ -836,11 +836,11 @@ export type VpsVpsStateEnum =
   | "stopped"
   | "stopping"
   | "upgrading";
-export const VpsVpsStateEnum = /*@__PURE__*/ S.String;
+export const VpsVpsStateEnum = S.String;
 
 /** Enum values for zone type */
 export type VpsZoneTypeEnum = "localzone" | "region";
-export const VpsZoneTypeEnum = /*@__PURE__*/ S.String;
+export const VpsZoneTypeEnum = S.String;
 
 /** VPS Virtual Machine */
 export interface VpsVPSWithIAM {
@@ -905,7 +905,7 @@ export const GetVpsAutomatedBackupRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Available AutomatedBackup states */
 export type VpsBackupStateEnum = "disabled" | "enabled";
-export const VpsBackupStateEnum = /*@__PURE__*/ S.String;
+export const VpsBackupStateEnum = S.String;
 
 /** Backup your VPS */
 export interface VpsAutomatedBackup {
@@ -1324,7 +1324,7 @@ export type CoreTypesCountryEnum =
   | "za"
   | "zm"
   | "zw";
-export const CoreTypesCountryEnum = /*@__PURE__*/ S.String;
+export const CoreTypesCountryEnum = S.String;
 
 /** Information about a datacenter of a VPS Virtual Machine */
 export interface VpsDatacenter {
@@ -1362,11 +1362,11 @@ export const GetVpsDiskRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible states the disk can be in */
 export type VpsDiskStateEnum = "connected" | "disconnected" | "pending";
-export const VpsDiskStateEnum = /*@__PURE__*/ S.String;
+export const VpsDiskStateEnum = S.String;
 
 /** Possible type a disk can be in */
 export type VpsDiskTypeEnum = "additional" | "primary";
-export const VpsDiskTypeEnum = /*@__PURE__*/ S.String;
+export const VpsDiskTypeEnum = S.String;
 
 /** Information about a disk of a VPS Virtual Machine */
 export interface VpsDisk {
@@ -1397,7 +1397,7 @@ export const VpsDisk = /*@__PURE__*/ S.suspend(() =>
 
 /** Available types for the Disk monitoring and use */
 export type VpsDiskStatisticTypeEnum = "max" | "used";
-export const VpsDiskStatisticTypeEnum = /*@__PURE__*/ S.String;
+export const VpsDiskStatisticTypeEnum = S.String;
 
 export interface GetVpsDiskUseRequest {
   /** Service name */
@@ -1462,7 +1462,7 @@ export const VpsTemplateAvailableLanguageList = /*@__PURE__*/ S.Array(
 
 /** Bitness of a VPS template */
 export type VpsTemplateBitFormatEnum = 32 | 64;
-export const VpsTemplateBitFormatEnum = /*@__PURE__*/ S.Number;
+export const VpsTemplateBitFormatEnum = S.Number;
 
 /** Installation template for a VPS Virtual Machine */
 export interface VpsTemplate {
@@ -1507,11 +1507,11 @@ export const GetVpsDistributionSoftwareRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Available Status for a vps Software */
 export type VpsSoftwareStatusEnum = "deprecated" | "stable" | "testing";
-export const VpsSoftwareStatusEnum = /*@__PURE__*/ S.String;
+export const VpsSoftwareStatusEnum = S.String;
 
 /** Available Type for a vps Software */
 export type VpsSoftwareTypeEnum = "database" | "environment" | "webserver";
-export const VpsSoftwareTypeEnum = /*@__PURE__*/ S.String;
+export const VpsSoftwareTypeEnum = S.String;
 
 /** Available softwares on a Template */
 export interface VpsSoftware {
@@ -1622,15 +1622,15 @@ export type VpsIpGeolocationEnum =
   | "sg"
   | "uk"
   | "us";
-export const VpsIpGeolocationEnum = /*@__PURE__*/ S.String;
+export const VpsIpGeolocationEnum = S.String;
 
 /** Ip types on a VPS */
 export type VpsIpTypeEnum = "additional" | "primary";
-export const VpsIpTypeEnum = /*@__PURE__*/ S.String;
+export const VpsIpTypeEnum = S.String;
 
 /** Ip versions */
 export type CoreTypesIpVersionEnum = "v4" | "v6";
-export const CoreTypesIpVersionEnum = /*@__PURE__*/ S.String;
+export const CoreTypesIpVersionEnum = S.String;
 
 /** Information about an IP address for a VPS Virtual Machine */
 export interface VpsIp {
@@ -1665,7 +1665,7 @@ export type GetVpsOptionRequestOption =
   | "snapshot"
   | "veeam"
   | "windows";
-export const GetVpsOptionRequestOption = /*@__PURE__*/ S.String;
+export const GetVpsOptionRequestOption = S.String;
 
 export interface GetVpsOptionRequest {
   /** Service name */
@@ -1690,7 +1690,7 @@ export const GetVpsOptionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** All states a VPS Option can be in */
 export type VpsVpsOptionStateEnum = "released" | "subscribed";
-export const VpsVpsOptionStateEnum = /*@__PURE__*/ S.String;
+export const VpsVpsOptionStateEnum = S.String;
 
 /** Information about the options of a VPS Virtual Machine */
 export interface VpsOption {
@@ -1865,7 +1865,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 /** service.StateEnum */
 export type ServiceStateEnum =
@@ -1875,7 +1875,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -1998,7 +1998,7 @@ export const GetVpsStatusRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible states of a service (ping, port) */
 export type VpsIpServiceStatusStateEnum = "down" | "up";
-export const VpsIpServiceStatusStateEnum = /*@__PURE__*/ S.String;
+export const VpsIpServiceStatusStateEnum = S.String;
 
 /** Port and state of a service on an IP */
 export interface VpsIpServiceStatusService {
@@ -2170,7 +2170,7 @@ export type VpsVeeamStateEnum =
   | "restoring"
   | "unmounted"
   | "unmounting";
-export const VpsVeeamStateEnum = /*@__PURE__*/ S.String;
+export const VpsVeeamStateEnum = S.String;
 
 /** Currently restored backup */
 export interface VpsVeeamRestoredBackup {
@@ -2370,7 +2370,7 @@ export const ListVpsAutomatedBackupAttachedBackupResponse =
 
 /** Available restore state */
 export type VpsRestoreStateEnum = "available" | "restored" | "restoring";
-export const VpsRestoreStateEnum = /*@__PURE__*/ S.String;
+export const VpsRestoreStateEnum = S.String;
 
 export interface ListVpsAutomatedBackupRestorePointsRequest {
   /** Service name */
@@ -2765,7 +2765,7 @@ export type NichandleCountryEnum =
   | "ZA"
   | "ZM"
   | "ZW";
-export const NichandleCountryEnum = /*@__PURE__*/ S.String;
+export const NichandleCountryEnum = S.String;
 
 export interface ListVpsDatacenterRequest {
   /** Country targeted */
@@ -2798,7 +2798,7 @@ export type VpsVpsMonitoringPeriodEnum =
   | "lastweek"
   | "lastyear"
   | "today";
-export const VpsVpsMonitoringPeriodEnum = /*@__PURE__*/ S.String;
+export const VpsVpsMonitoringPeriodEnum = S.String;
 
 export interface ListVpsDiskMonitoringRequest {
   /** Service name */
@@ -3038,7 +3038,7 @@ export type VpsMigrationDatacenterEnum =
   | "SYD"
   | "UK"
   | "WAW";
-export const VpsMigrationDatacenterEnum = /*@__PURE__*/ S.String;
+export const VpsMigrationDatacenterEnum = S.String;
 
 /** Mapping between a VPS 2016 option code and a VPS 2020 option code */
 export interface VpsMigrationOptionOptionMapping2016 {
@@ -3131,7 +3131,7 @@ export type VpsMigrationStatusEnum =
   | "ongoing"
   | "planned"
   | "toPlan";
-export const VpsMigrationStatusEnum = /*@__PURE__*/ S.String;
+export const VpsMigrationStatusEnum = S.String;
 
 /** A structure describing a migration from VPS 2016/2018 to VPS 2020 */
 export interface VpsMigrationVPS2018to2020 {
@@ -3225,7 +3225,7 @@ export type NichandleOvhSubsidiaryEnum =
   | "PT"
   | "SN"
   | "TN";
-export const NichandleOvhSubsidiaryEnum = /*@__PURE__*/ S.String;
+export const NichandleOvhSubsidiaryEnum = S.String;
 
 export interface ListVpsOrderRuleDatacenterRequest {
   /** VPS OS selection in order api */
@@ -3249,7 +3249,7 @@ export const ListVpsOrderRuleDatacenterRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for datacenter status */
 export type VpsOrderRuleDatacenterStatusEnum = "available" | "out-of-stock";
-export const VpsOrderRuleDatacenterStatusEnum = /*@__PURE__*/ S.String;
+export const VpsOrderRuleDatacenterStatusEnum = S.String;
 
 /** Datacenter rules */
 export interface VpsOrderRuleDatacenter {
@@ -3305,7 +3305,7 @@ export type VpsOrderRuleOSChoiceStatusEnum =
   | "available"
   | "checked-by-default"
   | "unavailable";
-export const VpsOrderRuleOSChoiceStatusEnum = /*@__PURE__*/ S.String;
+export const VpsOrderRuleOSChoiceStatusEnum = S.String;
 
 /** OS choice rules */
 export interface VpsOrderRuleOSChoice {
@@ -3745,7 +3745,7 @@ export const RebuildVpsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Available restore types */
 export type VpsRestoreTypeEnum = "file" | "full";
-export const VpsRestoreTypeEnum = /*@__PURE__*/ S.String;
+export const VpsRestoreTypeEnum = S.String;
 
 export interface RestoreVpsAutomatedBackupRequest {
   /** Service name */
@@ -3776,7 +3776,7 @@ export const RestoreVpsAutomatedBackupRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** A structure describing a Veeam backup's export options */
 export type VpsVeeamExportTypeEnum = "nfs" | "smb";
-export const VpsVeeamExportTypeEnum = /*@__PURE__*/ S.String;
+export const VpsVeeamExportTypeEnum = S.String;
 
 export interface RestoreVpsVeeamRestorePointRequest {
   /** Service name */

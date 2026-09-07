@@ -202,7 +202,7 @@ export const CreateDiscovererRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateDiscovererRequest",
 }) as any as S.Schema<CreateDiscovererRequest>;
 export type DiscovererState = "STARTED" | "STOPPED" | (string & {});
-export const DiscovererState = /*@__PURE__*/ S.String;
+export const DiscovererState = S.String;
 
 export interface CreateDiscovererResponse {
   Description?: string;
@@ -269,7 +269,7 @@ export const CreateRegistryResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRegistryResponse>;
 export type __stringMin1Max100000 = string;
 export type Type = "OpenApi3" | "JSONSchemaDraft4" | (string & {});
-export const Type = /*@__PURE__*/ S.String;
+export const Type = S.String;
 
 export interface CreateSchemaRequest {
   Content?: string;
@@ -500,7 +500,7 @@ export type CodeGenerationStatus =
   | "CREATE_COMPLETE"
   | "CREATE_FAILED"
   | (string & {});
-export const CodeGenerationStatus = /*@__PURE__*/ S.String;
+export const CodeGenerationStatus = S.String;
 
 export interface DescribeCodeBindingResponse {
   CreationDate?: Date;

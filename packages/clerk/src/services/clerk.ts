@@ -78,7 +78,7 @@ export const AddDomainRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AddDomainRequest>;
 
 export type DomainObject = "domain";
-export const DomainObject = /*@__PURE__*/ S.String;
+export const DomainObject = S.String;
 
 export interface CNameTarget {
   host: string;
@@ -159,10 +159,10 @@ export const AddRolesToRoleSetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AddRolesToRoleSetRequest>;
 
 export type RoleSetObject = "role_set";
-export const RoleSetObject = /*@__PURE__*/ S.String;
+export const RoleSetObject = S.String;
 
 export type RoleSetItemObject = "role_set_item";
-export const RoleSetItemObject = /*@__PURE__*/ S.String;
+export const RoleSetItemObject = S.String;
 
 /** A role within a role set */
 export interface RoleSetItem {
@@ -206,10 +206,10 @@ export const RoleSetRolesList = /*@__PURE__*/ S.Array(
 
 /** The type of the role set ("initial" or "custom") */
 export type RoleSetType = "initial" | "custom";
-export const RoleSetType = /*@__PURE__*/ S.String;
+export const RoleSetType = S.String;
 
 export type RoleSetMigrationObject = "role_set_migration";
-export const RoleSetMigrationObject = /*@__PURE__*/ S.String;
+export const RoleSetMigrationObject = S.String;
 
 /** Role key mappings from source to destination roles */
 export type RoleSetMigrationMappingsMap = { [key: string]: string | undefined };
@@ -316,8 +316,7 @@ export const RoleSet = /*@__PURE__*/ S.suspend(() =>
 export type AdjustOrganizationBillingCreditBalanceRequestAction =
   | "increase"
   | "decrease";
-export const AdjustOrganizationBillingCreditBalanceRequestAction =
-  /*@__PURE__*/ S.String;
+export const AdjustOrganizationBillingCreditBalanceRequestAction = S.String;
 
 export interface AdjustOrganizationBillingCreditBalanceRequest {
   /** The ID of the organization whose credit balance to adjust */
@@ -411,8 +410,7 @@ export const CommerceCreditLedgerResponse = /*@__PURE__*/ S.suspend(() =>
 export type AdjustUserBillingCreditBalanceRequestAction =
   | "increase"
   | "decrease";
-export const AdjustUserBillingCreditBalanceRequestAction =
-  /*@__PURE__*/ S.String;
+export const AdjustUserBillingCreditBalanceRequestAction = S.String;
 
 export interface AdjustUserBillingCreditBalanceRequest {
   /** The ID of the user whose credit balance to adjust */
@@ -473,27 +471,27 @@ export const ApplyBillingSubscriptionItemDiscountRequest =
 /** String representing the object's type. Objects of the same type share the same value. */
 export type CommerceDiscountRedemptionResponseObject =
   "commerce_discount_redemption";
-export const CommerceDiscountRedemptionResponseObject = /*@__PURE__*/ S.String;
+export const CommerceDiscountRedemptionResponseObject = S.String;
 
 /** How the discount was applied to the subscription item. */
 export type CommerceDiscountRedemptionResponseSource =
   | "promotion"
   | "manual"
   | "promo_code";
-export const CommerceDiscountRedemptionResponseSource = /*@__PURE__*/ S.String;
+export const CommerceDiscountRedemptionResponseSource = S.String;
 
 /** The snapshotted discount effect. */
 export type CommerceDiscountRedemptionResponseEffect =
   | "percentage"
   | "fixed_amount";
-export const CommerceDiscountRedemptionResponseEffect = /*@__PURE__*/ S.String;
+export const CommerceDiscountRedemptionResponseEffect = S.String;
 
 /** Current status of the discount redemption. */
 export type CommerceDiscountRedemptionResponseStatus =
   | "active"
   | "exhausted"
   | "removed";
-export const CommerceDiscountRedemptionResponseStatus = /*@__PURE__*/ S.String;
+export const CommerceDiscountRedemptionResponseStatus = S.String;
 
 export interface CommerceDiscountRedemptionResponse {
   /** String representing the object's type. Objects of the same type share the same value. */
@@ -575,10 +573,10 @@ export const AssignPermissionToOrganizationRoleRequest =
   }) as any as S.Schema<AssignPermissionToOrganizationRoleRequest>;
 
 export type RoleObject = "role";
-export const RoleObject = /*@__PURE__*/ S.String;
+export const RoleObject = S.String;
 
 export type PermissionObject = "permission";
-export const PermissionObject = /*@__PURE__*/ S.String;
+export const PermissionObject = S.String;
 
 export interface Permission {
   object: PermissionObject;
@@ -762,7 +760,7 @@ export const BanUserRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type UserObject = "user";
-export const UserObject = /*@__PURE__*/ S.String;
+export const UserObject = S.String;
 
 export type UserPublicMetadataMap = { [key: string]: unknown | undefined };
 export const UserPublicMetadataMap = /*@__PURE__*/ S.Record(
@@ -784,23 +782,23 @@ export const UserUnsafeMetadataMap = /*@__PURE__*/ S.Record(
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type EmailAddressObject = "email_address";
-export const EmailAddressObject = /*@__PURE__*/ S.String;
+export const EmailAddressObject = S.String;
 
 export type VerificationOtpObject = "verification_otp";
-export const VerificationOtpObject = /*@__PURE__*/ S.String;
+export const VerificationOtpObject = S.String;
 
 export type VerificationOtpStatus =
   | "unverified"
   | "verified"
   | "failed"
   | "expired";
-export const VerificationOtpStatus = /*@__PURE__*/ S.String;
+export const VerificationOtpStatus = S.String;
 
 export type VerificationOtpStrategy =
   | "phone_code"
   | "email_code"
   | "reset_password_email_code";
-export const VerificationOtpStrategy = /*@__PURE__*/ S.String;
+export const VerificationOtpStrategy = S.String;
 
 export interface VerificationOtp {
   object?: VerificationOtpObject;
@@ -827,13 +825,13 @@ export const VerificationOtp = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VerificationOtp>;
 
 export type VerificationAdminObject = "verification_admin";
-export const VerificationAdminObject = /*@__PURE__*/ S.String;
+export const VerificationAdminObject = S.String;
 
 export type VerificationAdminStatus = "verified";
-export const VerificationAdminStatus = /*@__PURE__*/ S.String;
+export const VerificationAdminStatus = S.String;
 
 export type VerificationAdminStrategy = "admin";
-export const VerificationAdminStrategy = /*@__PURE__*/ S.String;
+export const VerificationAdminStrategy = S.String;
 
 export interface VerificationAdmin {
   object?: VerificationAdminObject;
@@ -857,10 +855,10 @@ export const VerificationAdmin = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VerificationAdmin>;
 
 export type VerificationFromOauthObject = "verification_from_oauth";
-export const VerificationFromOauthObject = /*@__PURE__*/ S.String;
+export const VerificationFromOauthObject = S.String;
 
 export type VerificationFromOauthStatus = "unverified" | "verified";
-export const VerificationFromOauthStatus = /*@__PURE__*/ S.String;
+export const VerificationFromOauthStatus = S.String;
 
 export type ClerkErrorMetaMap = { [key: string]: unknown | undefined };
 export const ClerkErrorMetaMap = /*@__PURE__*/ S.Record(
@@ -907,13 +905,13 @@ export const VerificationFromOauth = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VerificationFromOauth>;
 
 export type VerificationTicketObject = "verification_ticket";
-export const VerificationTicketObject = /*@__PURE__*/ S.String;
+export const VerificationTicketObject = S.String;
 
 export type VerificationTicketStatus = "unverified" | "verified" | "expired";
-export const VerificationTicketStatus = /*@__PURE__*/ S.String;
+export const VerificationTicketStatus = S.String;
 
 export type VerificationTicketStrategy = "ticket";
-export const VerificationTicketStrategy = /*@__PURE__*/ S.String;
+export const VerificationTicketStrategy = S.String;
 
 export interface VerificationTicket {
   object?: VerificationTicketObject;
@@ -937,7 +935,7 @@ export const VerificationTicket = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VerificationTicket>;
 
 export type VerificationSamlObject = "verification_saml";
-export const VerificationSamlObject = /*@__PURE__*/ S.String;
+export const VerificationSamlObject = S.String;
 
 export type VerificationSamlStatus =
   | "unverified"
@@ -945,10 +943,10 @@ export type VerificationSamlStatus =
   | "failed"
   | "expired"
   | "transferable";
-export const VerificationSamlStatus = /*@__PURE__*/ S.String;
+export const VerificationSamlStatus = S.String;
 
 export type VerificationSamlStrategy = "saml";
-export const VerificationSamlStrategy = /*@__PURE__*/ S.String;
+export const VerificationSamlStrategy = S.String;
 
 export interface VerificationSaml {
   object?: VerificationSamlObject;
@@ -976,17 +974,17 @@ export const VerificationSaml = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VerificationSaml>;
 
 export type VerificationEmailLinkObject = "verification_email_link";
-export const VerificationEmailLinkObject = /*@__PURE__*/ S.String;
+export const VerificationEmailLinkObject = S.String;
 
 export type VerificationEmailLinkStatus =
   | "unverified"
   | "verified"
   | "failed"
   | "expired";
-export const VerificationEmailLinkStatus = /*@__PURE__*/ S.String;
+export const VerificationEmailLinkStatus = S.String;
 
 export type VerificationEmailLinkStrategy = "email_link";
-export const VerificationEmailLinkStrategy = /*@__PURE__*/ S.String;
+export const VerificationEmailLinkStrategy = S.String;
 
 export interface VerificationEmailLink {
   object?: VerificationEmailLinkObject;
@@ -1010,13 +1008,13 @@ export const VerificationEmailLink = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VerificationEmailLink>;
 
 export type VerificationScimObject = "verification_scim";
-export const VerificationScimObject = /*@__PURE__*/ S.String;
+export const VerificationScimObject = S.String;
 
 export type VerificationScimStatus = "verified";
-export const VerificationScimStatus = /*@__PURE__*/ S.String;
+export const VerificationScimStatus = S.String;
 
 export type VerificationScimStrategy = "scim";
-export const VerificationScimStrategy = /*@__PURE__*/ S.String;
+export const VerificationScimStrategy = S.String;
 
 export interface VerificationScim {
   object?: VerificationScimObject;
@@ -1046,7 +1044,7 @@ export type EmailAddressVerification =
   | VerificationEmailLink
   | VerificationScim;
 export const EmailAddressVerification =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EmailAddressVerification>;
+  S.Unknown as any as S.Schema<EmailAddressVerification>;
 
 export interface IdentificationLink {
   type: string;
@@ -1102,11 +1100,11 @@ export const UserEmailAddressesList = /*@__PURE__*/ S.Array(
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type PhoneNumberObject = "phone_number";
-export const PhoneNumberObject = /*@__PURE__*/ S.String;
+export const PhoneNumberObject = S.String;
 
 export type PhoneNumberVerification = VerificationOtp | VerificationAdmin;
 export const PhoneNumberVerification =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PhoneNumberVerification>;
+  S.Unknown as any as S.Schema<PhoneNumberVerification>;
 
 export type PhoneNumberLinkedToList = Array<IdentificationLink>;
 export const PhoneNumberLinkedToList = /*@__PURE__*/ S.Array(
@@ -1157,17 +1155,17 @@ export const UserPhoneNumbersList = /*@__PURE__*/ S.Array(
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type Web3WalletObject = "web3_wallet";
-export const Web3WalletObject = /*@__PURE__*/ S.String;
+export const Web3WalletObject = S.String;
 
 export type VerificationWeb3Object = "verification_web3";
-export const VerificationWeb3Object = /*@__PURE__*/ S.String;
+export const VerificationWeb3Object = S.String;
 
 export type VerificationWeb3Status =
   | "unverified"
   | "verified"
   | "failed"
   | "expired";
-export const VerificationWeb3Status = /*@__PURE__*/ S.String;
+export const VerificationWeb3Status = S.String;
 
 export type VerificationWeb3Strategy =
   | "web3_metamask_signature"
@@ -1175,7 +1173,7 @@ export type VerificationWeb3Strategy =
   | "web3_coinbase_wallet_signature"
   | "web3_okx_wallet_signature"
   | "web3_solana_signature";
-export const VerificationWeb3Strategy = /*@__PURE__*/ S.String;
+export const VerificationWeb3Strategy = S.String;
 
 export interface VerificationWeb3 {
   object?: VerificationWeb3Object;
@@ -1204,7 +1202,7 @@ export const VerificationWeb3 = /*@__PURE__*/ S.suspend(() =>
 
 export type Web3WalletVerification = VerificationWeb3 | VerificationAdmin;
 export const Web3WalletVerification =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Web3WalletVerification>;
+  S.Unknown as any as S.Schema<Web3WalletVerification>;
 
 export interface Web3Wallet {
   id?: string;
@@ -1235,19 +1233,19 @@ export const UserWeb3WalletsList = /*@__PURE__*/ S.Array(
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type PasskeyObject = "passkey";
-export const PasskeyObject = /*@__PURE__*/ S.String;
+export const PasskeyObject = S.String;
 
 export type VerificationPasskeyObject = "verification_passkey";
-export const VerificationPasskeyObject = /*@__PURE__*/ S.String;
+export const VerificationPasskeyObject = S.String;
 
 export type VerificationPasskeyStatus = "verified";
-export const VerificationPasskeyStatus = /*@__PURE__*/ S.String;
+export const VerificationPasskeyStatus = S.String;
 
 export type VerificationPasskeyStrategy = "passkey";
-export const VerificationPasskeyStrategy = /*@__PURE__*/ S.String;
+export const VerificationPasskeyStrategy = S.String;
 
 export type VerificationPasskeyNonce = "nonce";
-export const VerificationPasskeyNonce = /*@__PURE__*/ S.String;
+export const VerificationPasskeyNonce = S.String;
 
 export interface VerificationPasskey {
   object?: VerificationPasskeyObject;
@@ -1303,7 +1301,7 @@ export type ExternalAccountWithVerificationObject =
   | "external_account"
   | "facebook_account"
   | "google_account";
-export const ExternalAccountWithVerificationObject = /*@__PURE__*/ S.String;
+export const ExternalAccountWithVerificationObject = S.String;
 
 export type ExternalAccountWithVerificationPublicMetadataMap = {
   [key: string]: unknown | undefined;
@@ -1315,7 +1313,7 @@ export const ExternalAccountWithVerificationPublicMetadataMap =
   ) as any as S.Schema<ExternalAccountWithVerificationPublicMetadataMap>;
 
 export type VerificationOauthObject = "verification_oauth";
-export const VerificationOauthObject = /*@__PURE__*/ S.String;
+export const VerificationOauthObject = S.String;
 
 export type VerificationOauthStatus =
   | "unverified"
@@ -1323,7 +1321,7 @@ export type VerificationOauthStatus =
   | "failed"
   | "expired"
   | "transferable";
-export const VerificationOauthStatus = /*@__PURE__*/ S.String;
+export const VerificationOauthStatus = S.String;
 
 export interface VerificationOauth {
   object?: VerificationOauthObject;
@@ -1351,13 +1349,13 @@ export const VerificationOauth = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VerificationOauth>;
 
 export type VerificationGoogleOneTapObject = "verification_google_one_tap";
-export const VerificationGoogleOneTapObject = /*@__PURE__*/ S.String;
+export const VerificationGoogleOneTapObject = S.String;
 
 export type VerificationGoogleOneTapStatus = "unverified" | "verified";
-export const VerificationGoogleOneTapStatus = /*@__PURE__*/ S.String;
+export const VerificationGoogleOneTapStatus = S.String;
 
 export type VerificationGoogleOneTapStrategy = "google_one_tap";
-export const VerificationGoogleOneTapStrategy = /*@__PURE__*/ S.String;
+export const VerificationGoogleOneTapStrategy = S.String;
 
 export interface VerificationGoogleOneTap {
   object?: VerificationGoogleOneTapObject;
@@ -1386,7 +1384,7 @@ export type ExternalAccountWithVerificationVerification =
   | VerificationOauth
   | VerificationGoogleOneTap;
 export const ExternalAccountWithVerificationVerification =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExternalAccountWithVerificationVerification>;
+  S.Unknown as any as S.Schema<ExternalAccountWithVerificationVerification>;
 
 export interface ExternalAccountWithVerification {
   /** String representing the object's type. Objects of the same type share the same value. */
@@ -1448,7 +1446,7 @@ export const UserExternalAccountsList = /*@__PURE__*/ S.Array(
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type SAMLAccountObject = "saml_account";
-export const SAMLAccountObject = /*@__PURE__*/ S.String;
+export const SAMLAccountObject = S.String;
 
 export type SAMLAccountPublicMetadataMap = {
   [key: string]: unknown | undefined;
@@ -1460,7 +1458,7 @@ export const SAMLAccountPublicMetadataMap = /*@__PURE__*/ S.Record(
 
 export type SAMLAccountVerification = VerificationSaml | VerificationTicket;
 export const SAMLAccountVerification =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SAMLAccountVerification>;
+  S.Unknown as any as S.Schema<SAMLAccountVerification>;
 
 export interface SAMLAccount {
   id: string;
@@ -1502,11 +1500,11 @@ export const UserSamlAccountsList = /*@__PURE__*/ S.Array(
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type EnterpriseAccountObject = "enterprise_account";
-export const EnterpriseAccountObject = /*@__PURE__*/ S.String;
+export const EnterpriseAccountObject = S.String;
 
 /** The authentication protocol used to sign in. */
 export type EnterpriseAccountProtocol = "oauth" | "saml";
-export const EnterpriseAccountProtocol = /*@__PURE__*/ S.String;
+export const EnterpriseAccountProtocol = S.String;
 
 export type EnterpriseAccountPublicMetadataMap = {
   [key: string]: unknown | undefined;
@@ -1521,7 +1519,7 @@ export type EnterpriseAccountVerification =
   | VerificationSaml
   | VerificationOauth;
 export const EnterpriseAccountVerification =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnterpriseAccountVerification>;
+  S.Unknown as any as S.Schema<EnterpriseAccountVerification>;
 
 export interface EnterpriseAccount {
   id: string;
@@ -1571,7 +1569,7 @@ export const UserEnterpriseAccountsList = /*@__PURE__*/ S.Array(
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type OrganizationMembershipObject = "organization_membership";
-export const OrganizationMembershipObject = /*@__PURE__*/ S.String;
+export const OrganizationMembershipObject = S.String;
 
 export type OrganizationMembershipPermissionsList = Array<string>;
 export const OrganizationMembershipPermissionsList = /*@__PURE__*/ S.Array(
@@ -1597,7 +1595,7 @@ export const OrganizationMembershipPrivateMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<OrganizationMembershipPrivateMetadataMap>;
 
 export type OrganizationObject = "organization";
-export const OrganizationObject = /*@__PURE__*/ S.String;
+export const OrganizationObject = S.String;
 
 export type OrganizationPublicMetadataMap = {
   [key: string]: unknown | undefined;
@@ -1925,7 +1923,7 @@ export const CancelCommerceSubscriptionItemRequest = /*@__PURE__*/ S.suspend(
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type CommerceSubscriptionItemObject = "commerce_subscription_item";
-export const CommerceSubscriptionItemObject = /*@__PURE__*/ S.String;
+export const CommerceSubscriptionItemObject = S.String;
 
 /** Current status of the subscription item. */
 export type CommerceSubscriptionItemStatus =
@@ -1937,7 +1935,7 @@ export type CommerceSubscriptionItemStatus =
   | "upcoming"
   | "incomplete"
   | "abandoned";
-export const CommerceSubscriptionItemStatus = /*@__PURE__*/ S.String;
+export const CommerceSubscriptionItemStatus = S.String;
 
 export interface CommerceSubscriptionCreditResponse {
   /** Credit amount. */
@@ -2002,11 +2000,11 @@ export const CommerceCreditsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type CommercePlanObject = "commerce_plan";
-export const CommercePlanObject = /*@__PURE__*/ S.String;
+export const CommercePlanObject = S.String;
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type FeatureResponseObject = "feature";
-export const FeatureResponseObject = /*@__PURE__*/ S.String;
+export const FeatureResponseObject = S.String;
 
 export interface FeatureResponse {
   /** String representing the object's type. Objects of the same type share the same value. */
@@ -2152,22 +2150,22 @@ export const CommercePlan = /*@__PURE__*/ S.suspend(() =>
 
 /** The billing period for this subscription item. */
 export type CommerceSubscriptionItemPlanPeriod = "month" | "annual";
-export const CommerceSubscriptionItemPlanPeriod = /*@__PURE__*/ S.String;
+export const CommerceSubscriptionItemPlanPeriod = S.String;
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type CommercePaymentMethodResponseObject = "commerce_payment_method";
-export const CommercePaymentMethodResponseObject = /*@__PURE__*/ S.String;
+export const CommercePaymentMethodResponseObject = S.String;
 
 /** The payment method type. */
 export type CommercePaymentMethodResponsePaymentType =
   | "card"
   | "link"
   | "payer-credits";
-export const CommercePaymentMethodResponsePaymentType = /*@__PURE__*/ S.String;
+export const CommercePaymentMethodResponsePaymentType = S.String;
 
 /** Status of the payment method. */
 export type CommercePaymentMethodResponseStatus = "active" | "disconnected";
-export const CommercePaymentMethodResponseStatus = /*@__PURE__*/ S.String;
+export const CommercePaymentMethodResponseStatus = S.String;
 
 export interface CommercePaymentMethodResponse {
   /** String representing the object's type. Objects of the same type share the same value. */
@@ -2364,7 +2362,7 @@ export const CommerceSubscriptionItemNextPaymentResponse =
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type CommercePayerResponseObject = "commerce_payer";
-export const CommercePayerResponseObject = /*@__PURE__*/ S.String;
+export const CommercePayerResponseObject = S.String;
 
 export interface CommercePayerResponse {
   /** String representing the object's type. Objects of the same type share the same value. */
@@ -2695,10 +2693,10 @@ export const CreateActorTokenRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateActorTokenRequest>;
 
 export type ActorTokenObject = "actor_token";
-export const ActorTokenObject = /*@__PURE__*/ S.String;
+export const ActorTokenObject = S.String;
 
 export type ActorTokenStatus = "pending" | "accepted" | "revoked";
-export const ActorTokenStatus = /*@__PURE__*/ S.String;
+export const ActorTokenStatus = S.String;
 
 export interface ActorToken {
   object: ActorTokenObject;
@@ -2754,7 +2752,7 @@ export const CreateAdminPortalLinkTokenRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type CreateAdminPortalLinkTokenResponseObject =
   "admin_portal_link_token";
-export const CreateAdminPortalLinkTokenResponseObject = /*@__PURE__*/ S.String;
+export const CreateAdminPortalLinkTokenResponseObject = S.String;
 
 /** Caller-provided scopes for this token. */
 export type CreateAdminPortalLinkTokenResponseScopesList = Array<string>;
@@ -2826,7 +2824,7 @@ export const CreateAgentTaskRequestOnBehalfOf = /*@__PURE__*/ S.suspend(() =>
 
 /** The permissions granted to the agent task. Must be "*" (all permissions). */
 export type CreateAgentTaskRequestPermissions = "*";
-export const CreateAgentTaskRequestPermissions = /*@__PURE__*/ S.String;
+export const CreateAgentTaskRequestPermissions = S.String;
 
 export interface CreateAgentTaskRequest {
   /** Identifies the user on whose behalf the agent task is created. Exactly one of user_id or identifier must be provided. */
@@ -2856,7 +2854,7 @@ export const CreateAgentTaskRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateAgentTaskRequest>;
 
 export type AgentTaskObject = "agent_task";
-export const AgentTaskObject = /*@__PURE__*/ S.String;
+export const AgentTaskObject = S.String;
 
 export interface AgentTask {
   object: AgentTaskObject;
@@ -2896,13 +2894,13 @@ export const CreateAllowlistIdentifierRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type AllowlistIdentifierObject = "allowlist_identifier";
-export const AllowlistIdentifierObject = /*@__PURE__*/ S.String;
+export const AllowlistIdentifierObject = S.String;
 
 export type AllowlistIdentifierIdentifierType =
   | "email_address"
   | "phone_number"
   | "web3_wallet";
-export const AllowlistIdentifierIdentifierType = /*@__PURE__*/ S.String;
+export const AllowlistIdentifierIdentifierType = S.String;
 
 export interface AllowlistIdentifier {
   /** String representing the object's type. Objects of the same type share the same value. */
@@ -2964,7 +2962,7 @@ export const CreateApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateApiKeyRequest>;
 
 export type CreateApiKeyResponseObject = "api_key";
-export const CreateApiKeyResponseObject = /*@__PURE__*/ S.String;
+export const CreateApiKeyResponseObject = S.String;
 
 export type CreateApiKeyResponseScopesList = Array<string>;
 export const CreateApiKeyResponseScopesList = /*@__PURE__*/ S.Array(
@@ -3023,8 +3021,7 @@ export type CreateBillingPriceRequestSupportedBillingPeriods =
   | "month"
   | "annual"
   | "both";
-export const CreateBillingPriceRequestSupportedBillingPeriods =
-  /*@__PURE__*/ S.String;
+export const CreateBillingPriceRequestSupportedBillingPeriods = S.String;
 
 export interface CreateBillingPriceRequest {
   /** The ID of the plan this price belongs to. */
@@ -3059,15 +3056,14 @@ export const CreateBillingPriceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type BillingPriceResponseObject = "commerce_price";
-export const BillingPriceResponseObject = /*@__PURE__*/ S.String;
+export const BillingPriceResponseObject = S.String;
 
 /** Which billing periods this price supports. */
 export type BillingPriceResponseSupportedBillingPeriods =
   | "month"
   | "annual"
   | "both";
-export const BillingPriceResponseSupportedBillingPeriods =
-  /*@__PURE__*/ S.String;
+export const BillingPriceResponseSupportedBillingPeriods = S.String;
 
 export interface BillingPriceResponse {
   /** String representing the object's type. Objects of the same type share the same value. */
@@ -3144,11 +3140,11 @@ export const CreateBillingPriceTransitionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type CommercePriceTransitionResponseObject = "commerce_price_transition";
-export const CommercePriceTransitionResponseObject = /*@__PURE__*/ S.String;
+export const CommercePriceTransitionResponseObject = S.String;
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type CommerceSubscriptionItem2Object = "commerce_subscription_item";
-export const CommerceSubscriptionItem2Object = /*@__PURE__*/ S.String;
+export const CommerceSubscriptionItem2Object = S.String;
 
 /** Current status of the subscription item. */
 export type CommerceSubscriptionItem2Status =
@@ -3158,11 +3154,11 @@ export type CommerceSubscriptionItem2Status =
   | "upcoming"
   | "incomplete"
   | "abandoned";
-export const CommerceSubscriptionItem2Status = /*@__PURE__*/ S.String;
+export const CommerceSubscriptionItem2Status = S.String;
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type CommercePlan2Object = "commerce_plan";
-export const CommercePlan2Object = /*@__PURE__*/ S.String;
+export const CommercePlan2Object = S.String;
 
 /** The types of payers that can use this plan. */
 export type CommercePlan2PayerTypeList = Array<string>;
@@ -3172,7 +3168,7 @@ export const CommercePlan2PayerTypeList = /*@__PURE__*/ S.Array(
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type FeatureResponse2Object = "feature";
-export const FeatureResponse2Object = /*@__PURE__*/ S.String;
+export const FeatureResponse2Object = S.String;
 
 export interface FeatureResponse2 {
   /** String representing the object's type. Objects of the same type share the same value. */
@@ -3300,23 +3296,22 @@ export const CommercePlan2 = /*@__PURE__*/ S.suspend(() =>
 
 /** The billing period for this subscription. */
 export type CommerceSubscriptionItem2PlanPeriod = "month" | "annual";
-export const CommerceSubscriptionItem2PlanPeriod = /*@__PURE__*/ S.String;
+export const CommerceSubscriptionItem2PlanPeriod = S.String;
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type CommercePaymentSourceResponseObject = "commerce_source";
-export const CommercePaymentSourceResponseObject = /*@__PURE__*/ S.String;
+export const CommercePaymentSourceResponseObject = S.String;
 
 /** The payment method type. */
 export type CommercePaymentSourceResponsePaymentMethod =
   | "card"
   | "apple_pay"
   | "google_pay";
-export const CommercePaymentSourceResponsePaymentMethod =
-  /*@__PURE__*/ S.String;
+export const CommercePaymentSourceResponsePaymentMethod = S.String;
 
 /** Status of the payment source. */
 export type CommercePaymentSourceResponseStatus = "active" | "disconnected";
-export const CommercePaymentSourceResponseStatus = /*@__PURE__*/ S.String;
+export const CommercePaymentSourceResponseStatus = S.String;
 
 export interface CommercePaymentSourceResponse {
   /** String representing the object's type. Objects of the same type share the same value. */
@@ -3380,7 +3375,7 @@ export const CommercePaymentSourceResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type CommercePayerResponse2Object = "commerce_payer";
-export const CommercePayerResponse2Object = /*@__PURE__*/ S.String;
+export const CommercePayerResponse2Object = S.String;
 
 export interface CommercePayerResponse2 {
   /** String representing the object's type. Objects of the same type share the same value. */
@@ -3525,8 +3520,7 @@ export const CommerceSubscriptionItem2 = /*@__PURE__*/ S.suspend(() =>
 export type CommercePriceTransitionDetailsEffectiveMode =
   | "immediate"
   | "end_of_period";
-export const CommercePriceTransitionDetailsEffectiveMode =
-  /*@__PURE__*/ S.String;
+export const CommercePriceTransitionDetailsEffectiveMode = S.String;
 
 /** The status of the previous subscription item after transition. */
 export type CommercePriceTransitionDetailsPreviousSubscriptionItemStatus =
@@ -3534,7 +3528,7 @@ export type CommercePriceTransitionDetailsPreviousSubscriptionItemStatus =
   | "ended"
   | "abandoned";
 export const CommercePriceTransitionDetailsPreviousSubscriptionItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CommercePriceTransitionDetails {
   previous_plan: CommercePlan2;
@@ -3601,13 +3595,13 @@ export const CreateBlocklistIdentifierRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type BlocklistIdentifierObject = "blocklist_identifier";
-export const BlocklistIdentifierObject = /*@__PURE__*/ S.String;
+export const BlocklistIdentifierObject = S.String;
 
 export type BlocklistIdentifierIdentifierType =
   | "email_address"
   | "phone_number"
   | "web3_wallet";
-export const BlocklistIdentifierIdentifierType = /*@__PURE__*/ S.String;
+export const BlocklistIdentifierIdentifierType = S.String;
 
 export interface BlocklistIdentifier {
   /** String representing the object's type. Objects of the same type share the same value. */
@@ -3650,8 +3644,7 @@ export const CreateBulkInvitationsRequestBodyItemPublicMetadataMap =
 export type CreateBulkInvitationsRequestBodyItemTemplateSlug =
   | "invitation"
   | "waitlist_invitation";
-export const CreateBulkInvitationsRequestBodyItemTemplateSlug =
-  /*@__PURE__*/ S.String;
+export const CreateBulkInvitationsRequestBodyItemTemplateSlug = S.String;
 
 export interface CreateBulkInvitationsRequestBodyItem {
   /** The email address the invitation will be sent to */
@@ -3708,7 +3701,7 @@ export const CreateBulkInvitationsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateBulkInvitationsRequest>;
 
 export type InvitationObject = "invitation";
-export const InvitationObject = /*@__PURE__*/ S.String;
+export const InvitationObject = S.String;
 
 export type InvitationPublicMetadataMap = {
   [key: string]: unknown | undefined;
@@ -3719,7 +3712,7 @@ export const InvitationPublicMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<InvitationPublicMetadataMap>;
 
 export type InvitationStatus = "pending" | "accepted" | "revoked" | "expired";
-export const InvitationStatus = /*@__PURE__*/ S.String;
+export const InvitationStatus = S.String;
 
 export interface Invitation {
   object: InvitationObject;
@@ -3800,14 +3793,14 @@ export const CreateBulkWaitlistEntriesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateBulkWaitlistEntriesRequest>;
 
 export type WaitlistEntryObject = "waitlist_entry";
-export const WaitlistEntryObject = /*@__PURE__*/ S.String;
+export const WaitlistEntryObject = S.String;
 
 export type WaitlistEntryStatus =
   | "pending"
   | "invited"
   | "rejected"
   | "completed";
-export const WaitlistEntryStatus = /*@__PURE__*/ S.String;
+export const WaitlistEntryStatus = S.String;
 
 export interface WaitlistEntry {
   object: WaitlistEntryObject;
@@ -3909,7 +3902,7 @@ export const CreateDirectoryRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Always "directory". */
 export type DirectoryObject = "directory";
-export const DirectoryObject = /*@__PURE__*/ S.String;
+export const DirectoryObject = S.String;
 
 /** Mapping of user attributes to the directory attribute paths they are extracted from. */
 export type DirectoryAttributeMappingMap = {
@@ -4034,7 +4027,7 @@ export const CreateDirectoryGroupRoleMappingRequest = /*@__PURE__*/ S.suspend(
 
 /** String representing the object's type. Always "directory_group_role_mapping". */
 export type DirectoryGroupRoleMappingObject = "directory_group_role_mapping";
-export const DirectoryGroupRoleMappingObject = /*@__PURE__*/ S.String;
+export const DirectoryGroupRoleMappingObject = S.String;
 
 /** A mapping from a directory group to an organization role. Members of the group are assigned the role; the lowest-precedence match wins when a user belongs to multiple mapped groups. */
 export interface DirectoryGroupRoleMapping {
@@ -4114,7 +4107,7 @@ export type CreateEnterpriseConnectionRequestProvider =
   | "oidc_custom"
   | "oidc_github_enterprise"
   | "oidc_gitlab";
-export const CreateEnterpriseConnectionRequestProvider = /*@__PURE__*/ S.String;
+export const CreateEnterpriseConnectionRequestProvider = S.String;
 
 /** Domains associated with the enterprise connection (required; at least one). Values are normalized to lowercase. Each domain must be a valid fully qualified domain name. */
 export type CreateEnterpriseConnectionRequestDomainsList = Array<string>;
@@ -4147,8 +4140,7 @@ export type CreateEnterpriseConnectionRequestSamlLoginHintMode =
   | "email_address"
   | "custom_attribute"
   | "off";
-export const CreateEnterpriseConnectionRequestSamlLoginHintMode =
-  /*@__PURE__*/ S.String;
+export const CreateEnterpriseConnectionRequestSamlLoginHintMode = S.String;
 
 /** Configuration for the login_hint sent to the IdP on SSO sign-in */
 export interface CreateEnterpriseConnectionRequestSamlLoginHint {
@@ -4318,7 +4310,7 @@ export const CreateEnterpriseConnectionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateEnterpriseConnectionRequest>;
 
 export type EnterpriseConnectionObject = "enterprise_connection";
-export const EnterpriseConnectionObject = /*@__PURE__*/ S.String;
+export const EnterpriseConnectionObject = S.String;
 
 /** Domains associated with the enterprise connection */
 export type EnterpriseConnectionDomainsList = Array<string>;
@@ -4366,8 +4358,7 @@ export type EnterpriseConnectionSamlConnectionLoginHintMode =
   | "email_address"
   | "custom_attribute"
   | "off";
-export const EnterpriseConnectionSamlConnectionLoginHintMode =
-  /*@__PURE__*/ S.String;
+export const EnterpriseConnectionSamlConnectionLoginHintMode = S.String;
 
 /** Configuration for the login_hint sent to the IdP on SSO sign-in */
 export interface EnterpriseConnectionSamlConnectionLoginHint {
@@ -4579,7 +4570,7 @@ export const CreateInvitationRequestPublicMetadataMap = /*@__PURE__*/ S.Record(
 export type CreateInvitationRequestTemplateSlug =
   | "invitation"
   | "waitlist_invitation";
-export const CreateInvitationRequestTemplateSlug = /*@__PURE__*/ S.String;
+export const CreateInvitationRequestTemplateSlug = S.String;
 
 export interface CreateInvitationRequest {
   /** The email address the invitation will be sent to */
@@ -4642,7 +4633,7 @@ export const CreateJWTTemplateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateJWTTemplateRequest>;
 
 export type JWTTemplateObject = "jwt_template";
-export const JWTTemplateObject = /*@__PURE__*/ S.String;
+export const JWTTemplateObject = S.String;
 
 export interface JWTTemplate {
   object: JWTTemplateObject;
@@ -4674,7 +4665,7 @@ export const JWTTemplate = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "JWTTemplate" }) as any as S.Schema<JWTTemplate>;
 
 export type CreateM2MTokenRequestTokenFormat = "opaque" | "jwt";
-export const CreateM2MTokenRequestTokenFormat = /*@__PURE__*/ S.String;
+export const CreateM2MTokenRequestTokenFormat = S.String;
 
 export interface CreateM2MTokenRequest {
   token_format?: CreateM2MTokenRequestTokenFormat | (string & {});
@@ -4695,7 +4686,7 @@ export const CreateM2MTokenRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateM2MTokenRequest>;
 
 export type CreateM2MTokenResponseObject = "machine_to_machine_token";
-export const CreateM2MTokenResponseObject = /*@__PURE__*/ S.String;
+export const CreateM2MTokenResponseObject = S.String;
 
 export type CreateM2MTokenResponseScopesList = Array<string>;
 export const CreateM2MTokenResponseScopesList = /*@__PURE__*/ S.Array(
@@ -4766,10 +4757,10 @@ export const CreateMachineRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateMachineRequest>;
 
 export type CreateMachineResponseObject = "machine";
-export const CreateMachineResponseObject = /*@__PURE__*/ S.String;
+export const CreateMachineResponseObject = S.String;
 
 export type MachineWithoutScopedMachinesObject = "machine";
-export const MachineWithoutScopedMachinesObject = /*@__PURE__*/ S.String;
+export const MachineWithoutScopedMachinesObject = S.String;
 
 export interface MachineWithoutScopedMachines {
   object: MachineWithoutScopedMachinesObject;
@@ -4860,7 +4851,7 @@ export const CreateMachineScopeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateMachineScopeRequest>;
 
 export type MachineScopeObject = "machine_scope";
-export const MachineScopeObject = /*@__PURE__*/ S.String;
+export const MachineScopeObject = S.String;
 
 export interface MachineScope {
   object: MachineScopeObject;
@@ -4920,7 +4911,7 @@ export const CreateOAuthApplicationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateOAuthApplicationRequest>;
 
 export type CreateOAuthApplicationResponseObject = "oauth_application";
-export const CreateOAuthApplicationResponseObject = /*@__PURE__*/ S.String;
+export const CreateOAuthApplicationResponseObject = S.String;
 
 export type CreateOAuthApplicationResponseRedirectUrisList = Array<string>;
 export const CreateOAuthApplicationResponseRedirectUrisList =
@@ -5071,7 +5062,7 @@ export const CreateOrganizationDomainRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. Always `organization_domain` */
 export type OrganizationDomainObject = "organization_domain";
-export const OrganizationDomainObject = /*@__PURE__*/ S.String;
+export const OrganizationDomainObject = S.String;
 
 /** Mode of enrollment for the domain */
 export type OrganizationDomainEnrollmentMode =
@@ -5079,7 +5070,7 @@ export type OrganizationDomainEnrollmentMode =
   | "automatic_invitation"
   | "automatic_suggestion"
   | "enterprise_sso";
-export const OrganizationDomainEnrollmentMode = /*@__PURE__*/ S.String;
+export const OrganizationDomainEnrollmentMode = S.String;
 
 /** The verification object from an organization domain */
 export interface OrganizationDomainVerification {
@@ -5248,7 +5239,7 @@ export const CreateOrganizationInvitationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type OrganizationInvitationObject = "organization_invitation";
-export const OrganizationInvitationObject = /*@__PURE__*/ S.String;
+export const OrganizationInvitationObject = S.String;
 
 /** An organization inviter's public user data */
 export interface OrganizationInvitationPublicUserData {
@@ -5585,7 +5576,7 @@ export const CreateRedirectURLRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRedirectURLRequest>;
 
 export type RedirectURLObject = "redirect_url";
-export const RedirectURLObject = /*@__PURE__*/ S.String;
+export const RedirectURLObject = S.String;
 
 export interface RedirectURL {
   object: RedirectURLObject;
@@ -5608,7 +5599,7 @@ export const RedirectURL = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the role set. "initial" role sets are the default for new organizations. Only one role set can be "initial" per instance. */
 export type CreateRoleSetRequestType = "initial" | "custom";
-export const CreateRoleSetRequestType = /*@__PURE__*/ S.String;
+export const CreateRoleSetRequestType = S.String;
 
 /** Array of role keys to include in the role set. Must contain at least one role and no more than 10 roles. */
 export type CreateRoleSetRequestRolesList = Array<string>;
@@ -5701,7 +5692,7 @@ export const CreateSCIMDirectoryRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Always "scim_directory". */
 export type SCIMDirectoryObject = "scim_directory";
-export const SCIMDirectoryObject = /*@__PURE__*/ S.String;
+export const SCIMDirectoryObject = S.String;
 
 /** Mapping of user attributes to the SCIM attribute paths they are extracted from. */
 export type SCIMDirectoryAttributeMappingMap = {
@@ -5822,7 +5813,7 @@ export const CreateSCIMGroupRoleMappingRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Always "scim_group_role_mapping". */
 export type SCIMGroupRoleMappingObject = "scim_group_role_mapping";
-export const SCIMGroupRoleMappingObject = /*@__PURE__*/ S.String;
+export const SCIMGroupRoleMappingObject = S.String;
 
 /** A mapping from a SCIM group to an organization role. Members of the group are assigned the role; the lowest-precedence match wins when a user belongs to multiple mapped groups. */
 export interface SCIMGroupRoleMapping {
@@ -5886,7 +5877,7 @@ export const CreateSessionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type SessionObject = "session";
-export const SessionObject = /*@__PURE__*/ S.String;
+export const SessionObject = S.String;
 
 export type SessionStatus =
   | "active"
@@ -5897,7 +5888,7 @@ export type SessionStatus =
   | "abandoned"
   | "replaced"
   | "pending";
-export const SessionStatus = /*@__PURE__*/ S.String;
+export const SessionStatus = S.String;
 
 export interface SessionActivityResponse {
   object: string;
@@ -5998,7 +5989,7 @@ export const CreateSessionTokenRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSessionTokenRequest>;
 
 export type CreateSessionTokenResponseObject = "token";
-export const CreateSessionTokenResponseObject = /*@__PURE__*/ S.String;
+export const CreateSessionTokenResponseObject = S.String;
 
 export interface CreateSessionTokenResponse {
   object?: CreateSessionTokenResponseObject;
@@ -6039,8 +6030,7 @@ export const CreateSessionTokenFromTemplateRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateSessionTokenFromTemplateRequest>;
 
 export type CreateSessionTokenFromTemplateResponseObject = "token";
-export const CreateSessionTokenFromTemplateResponseObject =
-  /*@__PURE__*/ S.String;
+export const CreateSessionTokenFromTemplateResponseObject = S.String;
 
 export interface CreateSessionTokenFromTemplateResponse {
   object?: CreateSessionTokenFromTemplateResponseObject;
@@ -6075,10 +6065,10 @@ export const CreateSignInTokenRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSignInTokenRequest>;
 
 export type SignInTokenObject = "sign_in_token";
-export const SignInTokenObject = /*@__PURE__*/ S.String;
+export const SignInTokenObject = S.String;
 
 export type SignInTokenStatus = "pending" | "accepted" | "revoked";
-export const SignInTokenStatus = /*@__PURE__*/ S.String;
+export const SignInTokenStatus = S.String;
 
 export interface SignInToken {
   object: SignInTokenObject;
@@ -6133,7 +6123,7 @@ export const CreateTestingTokenRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateTestingTokenRequest>;
 
 export type TestingTokenObject = "testing_token";
-export const TestingTokenObject = /*@__PURE__*/ S.String;
+export const TestingTokenObject = S.String;
 
 export interface TestingToken {
   object: TestingTokenObject;
@@ -6159,8 +6149,7 @@ export const CreateUserRequestEmailAddressList = /*@__PURE__*/ S.Array(
 export type CreateUserRequestEmailAddressIdentificationStatusItem =
   | "verified"
   | "reserved";
-export const CreateUserRequestEmailAddressIdentificationStatusItem =
-  /*@__PURE__*/ S.String;
+export const CreateUserRequestEmailAddressIdentificationStatusItem = S.String;
 
 /** Controls the status each email address is created with. Runs parallel to `email_address`: when provided, it must contain exactly one item per email address, applied by position. When omitted or empty, every email address is created `verified`. Set an item to `reserved` to create the corresponding email address reserved instead (unverified but usable for sign-in and locked so no other user can claim it). */
 export type CreateUserRequestEmailAddressIdentificationStatusList = Array<
@@ -6180,8 +6169,7 @@ export const CreateUserRequestPhoneNumberList = /*@__PURE__*/ S.Array(
 export type CreateUserRequestPhoneNumberIdentificationStatusItem =
   | "verified"
   | "reserved";
-export const CreateUserRequestPhoneNumberIdentificationStatusItem =
-  /*@__PURE__*/ S.String;
+export const CreateUserRequestPhoneNumberIdentificationStatusItem = S.String;
 
 /** Controls the status each phone number is created with. Runs parallel to `phone_number`: when provided, it must contain exactly one item per phone number, applied by position. When omitted or empty, every phone number is created `verified`. Set an item to `reserved` to create the corresponding phone number reserved instead (unverified but usable for sign-in and locked so no other user can claim it). */
 export type CreateUserRequestPhoneNumberIdentificationStatusList = Array<
@@ -6395,7 +6383,7 @@ export const DeleteApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteApiKeyRequest>;
 
 export type DeleteApiKeyResponseObject = "api_key";
-export const DeleteApiKeyResponseObject = /*@__PURE__*/ S.String;
+export const DeleteApiKeyResponseObject = S.String;
 
 export interface DeleteApiKeyResponse {
   id: string;
@@ -6498,8 +6486,7 @@ export const DeleteDirectoryGroupRoleMappingRequest = /*@__PURE__*/ S.suspend(
 /** String representing the object's type. */
 export type DeleteDirectoryGroupRoleMappingResponseObject =
   "directory_group_role_mapping";
-export const DeleteDirectoryGroupRoleMappingResponseObject =
-  /*@__PURE__*/ S.String;
+export const DeleteDirectoryGroupRoleMappingResponseObject = S.String;
 
 export interface DeleteDirectoryGroupRoleMappingResponse {
   /** String representing the object's type. */
@@ -6623,7 +6610,7 @@ export const DeleteMachineRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. */
 export type DeleteMachineResponseObject = "machine";
-export const DeleteMachineResponseObject = /*@__PURE__*/ S.String;
+export const DeleteMachineResponseObject = S.String;
 
 export interface DeleteMachineResponse {
   /** String representing the object's type. */
@@ -6666,7 +6653,7 @@ export const DeleteMachineScopeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. */
 export type DeleteMachineScopeResponseObject = "machine_scope";
-export const DeleteMachineScopeResponseObject = /*@__PURE__*/ S.String;
+export const DeleteMachineScopeResponseObject = S.String;
 
 export interface DeleteMachineScopeResponse {
   /** String representing the object's type. */
@@ -6893,7 +6880,7 @@ export const DeleteSCIMGroupRoleMappingRequest = /*@__PURE__*/ S.suspend(() =>
 /** String representing the object's type. */
 export type DeleteSCIMGroupRoleMappingResponseObject =
   "scim_group_role_mapping";
-export const DeleteSCIMGroupRoleMappingResponseObject = /*@__PURE__*/ S.String;
+export const DeleteSCIMGroupRoleMappingResponseObject = S.String;
 
 export interface DeleteSCIMGroupRoleMappingResponse {
   /** String representing the object's type. */
@@ -7110,7 +7097,7 @@ export const GetApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApiKeyRequest>;
 
 export type GetApiKeyResponseObject = "api_key";
-export const GetApiKeyResponseObject = /*@__PURE__*/ S.String;
+export const GetApiKeyResponseObject = S.String;
 
 export type GetApiKeyResponseScopesList = Array<string>;
 export const GetApiKeyResponseScopesList = /*@__PURE__*/ S.Array(
@@ -7163,7 +7150,7 @@ export const GetApiKeyResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApiKeyResponse>;
 
 export type GetApiKeysRequestIncludeInvalid = "true" | "false";
-export const GetApiKeysRequestIncludeInvalid = /*@__PURE__*/ S.String;
+export const GetApiKeysRequestIncludeInvalid = S.String;
 
 export interface GetApiKeysRequest {
   type?: string;
@@ -7189,7 +7176,7 @@ export const GetApiKeysRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApiKeysRequest>;
 
 export type GetApiKeysResponseDataItemObject = "api_key";
-export const GetApiKeysResponseDataItemObject = /*@__PURE__*/ S.String;
+export const GetApiKeysResponseDataItemObject = S.String;
 
 export type GetApiKeysResponseDataItemScopesList = Array<string>;
 export const GetApiKeysResponseDataItemScopesList = /*@__PURE__*/ S.Array(
@@ -7345,11 +7332,11 @@ export const GetBillingStatementRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type BillingStatementObject = "commerce_statement";
-export const BillingStatementObject = /*@__PURE__*/ S.String;
+export const BillingStatementObject = S.String;
 
 /** The current status of the statement. */
 export type BillingStatementStatus = "open" | "closed";
-export const BillingStatementStatus = /*@__PURE__*/ S.String;
+export const BillingStatementStatus = S.String;
 
 /** Totals for the statement. */
 export interface BillingStatementTotals {
@@ -7375,15 +7362,15 @@ export const BillingStatementTotals = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type BillingStatementGroupsItemObject = "commerce_statement_group";
-export const BillingStatementGroupsItemObject = /*@__PURE__*/ S.String;
+export const BillingStatementGroupsItemObject = S.String;
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type BillingPaymentAttemptObject = "commerce_payment";
-export const BillingPaymentAttemptObject = /*@__PURE__*/ S.String;
+export const BillingPaymentAttemptObject = S.String;
 
 /** The current status of the payment attempt. */
 export type BillingPaymentAttemptStatus = "pending" | "paid" | "failed";
-export const BillingPaymentAttemptStatus = /*@__PURE__*/ S.String;
+export const BillingPaymentAttemptStatus = S.String;
 
 export interface BillingPaymentAttempt {
   /** String representing the object's type. Objects of the same type share the same value. */
@@ -7632,7 +7619,7 @@ export const GetClientRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type ClientObject = "client";
-export const ClientObject = /*@__PURE__*/ S.String;
+export const ClientObject = S.String;
 
 export type ClientSessionIdsList = Array<string>;
 export const ClientSessionIdsList = /*@__PURE__*/ S.Array(
@@ -7678,7 +7665,7 @@ export const Client = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Client" }) as any as S.Schema<Client>;
 
 export type GetCommercePlanListRequestPayerType = "user" | "org";
-export const GetCommercePlanListRequestPayerType = /*@__PURE__*/ S.String;
+export const GetCommercePlanListRequestPayerType = S.String;
 
 export interface GetCommercePlanListRequest {
   /** Whether to paginate the results. If true, the results will be paginated. If false, the results will not be paginated. */
@@ -7728,12 +7715,10 @@ export type GetCommerceSubscriptionItemListRequestStatus =
   | "past_due"
   | "upcoming"
   | "free_trial";
-export const GetCommerceSubscriptionItemListRequestStatus =
-  /*@__PURE__*/ S.String;
+export const GetCommerceSubscriptionItemListRequestStatus = S.String;
 
 export type GetCommerceSubscriptionItemListRequestPayerType = "user" | "org";
-export const GetCommerceSubscriptionItemListRequestPayerType =
-  /*@__PURE__*/ S.String;
+export const GetCommerceSubscriptionItemListRequestPayerType = S.String;
 
 export interface GetCommerceSubscriptionItemListRequest {
   /** Whether to paginate the results. If true, the results will be paginated. If false, the results will not be paginated. */
@@ -7858,7 +7843,7 @@ export const GetInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type InstanceObject = "instance";
-export const InstanceObject = /*@__PURE__*/ S.String;
+export const InstanceObject = S.String;
 
 export type InstanceAllowedOriginsList = Array<string>;
 export const InstanceAllowedOriginsList = /*@__PURE__*/ S.Array(
@@ -7894,7 +7879,7 @@ export const GetInstanceCommunicationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetInstanceCommunicationRequest>;
 
 export type InstanceCommunicationObject = "instance_communication";
-export const InstanceCommunicationObject = /*@__PURE__*/ S.String;
+export const InstanceCommunicationObject = S.String;
 
 /** ISO 3166-1 alpha-2 country codes that are blocked for SMS delivery on this instance. Codes that aren't recognized are silently dropped. */
 export type InstanceCommunicationBlockedCountryCodesList = Array<string>;
@@ -7934,7 +7919,7 @@ export const GetInstanceOAuthApplicationSettingsRequest =
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type OAuthApplicationSettingsObject = "oauth_application_settings";
-export const OAuthApplicationSettingsObject = /*@__PURE__*/ S.String;
+export const OAuthApplicationSettingsObject = S.String;
 
 /** Default scopes. */
 export type OAuthApplicationSettingsDefaultScopesList = Array<string>;
@@ -7988,14 +7973,13 @@ export const GetInstanceOrganizationSettingsRequest = /*@__PURE__*/ S.suspend(
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type OrganizationSettingsObject = "organization_settings";
-export const OrganizationSettingsObject = /*@__PURE__*/ S.String;
+export const OrganizationSettingsObject = S.String;
 
 export type OrganizationSettingsDomainsEnrollmentModesItem =
   | "manual_invitation"
   | "automatic_invitation"
   | "automatic_suggestion";
-export const OrganizationSettingsDomainsEnrollmentModesItem =
-  /*@__PURE__*/ S.String;
+export const OrganizationSettingsDomainsEnrollmentModesItem = S.String;
 
 export type OrganizationSettingsDomainsEnrollmentModesList =
   Array<OrganizationSettingsDomainsEnrollmentModesItem>;
@@ -8057,7 +8041,7 @@ export const GetInstanceProtectRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetInstanceProtectRequest>;
 
 export type InstanceProtectObject = "instance_protect";
-export const InstanceProtectObject = /*@__PURE__*/ S.String;
+export const InstanceProtectObject = S.String;
 
 export interface InstanceProtect {
   object: InstanceProtectObject;
@@ -8120,10 +8104,10 @@ export const GetJWKSRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetJWKSRequest" }) as any as S.Schema<GetJWKSRequest>;
 
 export type JWKSEd25519PublicKeyKty = "OKP";
-export const JWKSEd25519PublicKeyKty = /*@__PURE__*/ S.String;
+export const JWKSEd25519PublicKeyKty = S.String;
 
 export type JWKSEd25519PublicKeyCrv = "Ed25519";
-export const JWKSEd25519PublicKeyCrv = /*@__PURE__*/ S.String;
+export const JWKSEd25519PublicKeyCrv = S.String;
 
 export type JWKSEd25519PublicKeyX5cList = Array<string>;
 export const JWKSEd25519PublicKeyX5cList = /*@__PURE__*/ S.Array(
@@ -8160,7 +8144,7 @@ export const JWKSEd25519PublicKey = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<JWKSEd25519PublicKey>;
 
 export type JWKSEcdsaPublicKeyKty = "EC";
-export const JWKSEcdsaPublicKeyKty = /*@__PURE__*/ S.String;
+export const JWKSEcdsaPublicKeyKty = S.String;
 
 export type JWKSEcdsaPublicKeyX5cList = Array<string>;
 export const JWKSEcdsaPublicKeyX5cList = /*@__PURE__*/ S.Array(
@@ -8199,7 +8183,7 @@ export const JWKSEcdsaPublicKey = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<JWKSEcdsaPublicKey>;
 
 export type JWKSRsaPublicKeyKty = "RSA";
-export const JWKSRsaPublicKeyKty = /*@__PURE__*/ S.String;
+export const JWKSRsaPublicKeyKty = S.String;
 
 export type JWKSRsaPublicKeyX5cList = Array<string>;
 export const JWKSRsaPublicKeyX5cList = /*@__PURE__*/ S.Array(
@@ -8236,10 +8220,10 @@ export const JWKSRsaPublicKey = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<JWKSRsaPublicKey>;
 
 export type JWKSEd25519PrivateKeyKty = "OKP";
-export const JWKSEd25519PrivateKeyKty = /*@__PURE__*/ S.String;
+export const JWKSEd25519PrivateKeyKty = S.String;
 
 export type JWKSEd25519PrivateKeyCrv = "Ed25519";
-export const JWKSEd25519PrivateKeyCrv = /*@__PURE__*/ S.String;
+export const JWKSEd25519PrivateKeyCrv = S.String;
 
 export type JWKSEd25519PrivateKeyX5cList = Array<string>;
 export const JWKSEd25519PrivateKeyX5cList = /*@__PURE__*/ S.Array(
@@ -8278,7 +8262,7 @@ export const JWKSEd25519PrivateKey = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<JWKSEd25519PrivateKey>;
 
 export type JWKSEcdsaPrivateKeyKty = "EC";
-export const JWKSEcdsaPrivateKeyKty = /*@__PURE__*/ S.String;
+export const JWKSEcdsaPrivateKeyKty = S.String;
 
 export type JWKSEcdsaPrivateKeyX5cList = Array<string>;
 export const JWKSEcdsaPrivateKeyX5cList = /*@__PURE__*/ S.Array(
@@ -8319,7 +8303,7 @@ export const JWKSEcdsaPrivateKey = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<JWKSEcdsaPrivateKey>;
 
 export type JWKSRsaPrivateKeyKty = "RSA";
-export const JWKSRsaPrivateKeyKty = /*@__PURE__*/ S.String;
+export const JWKSRsaPrivateKeyKty = S.String;
 
 export type JWKSRsaPrivateKeyX5cList = Array<string>;
 export const JWKSRsaPrivateKeyX5cList = /*@__PURE__*/ S.Array(
@@ -8368,7 +8352,7 @@ export const JWKSRsaPrivateKey = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<JWKSRsaPrivateKey>;
 
 export type JWKSSymmetricKeyKty = "oct";
-export const JWKSSymmetricKeyKty = /*@__PURE__*/ S.String;
+export const JWKSSymmetricKeyKty = S.String;
 
 export type JWKSSymmetricKeyX5cList = Array<string>;
 export const JWKSSymmetricKeyX5cList = /*@__PURE__*/ S.Array(
@@ -8410,8 +8394,7 @@ export type JWKSKeysItem =
   | JWKSEcdsaPrivateKey
   | JWKSRsaPrivateKey
   | JWKSSymmetricKey;
-export const JWKSKeysItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<JWKSKeysItem>;
+export const JWKSKeysItem = S.Unknown as any as S.Schema<JWKSKeysItem>;
 
 export type JWKSKeysList = Array<JWKSKeysItem>;
 export const JWKSKeysList = /*@__PURE__*/ S.Array(
@@ -8462,7 +8445,7 @@ export const GetM2MTokensRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type GetM2MTokensResponseM2mTokensItemObject =
   "machine_to_machine_token";
-export const GetM2MTokensResponseM2mTokensItemObject = /*@__PURE__*/ S.String;
+export const GetM2MTokensResponseM2mTokensItemObject = S.String;
 
 export type GetM2MTokensResponseM2mTokensItemScopesList = Array<string>;
 export const GetM2MTokensResponseM2mTokensItemScopesList =
@@ -8539,7 +8522,7 @@ export const GetMachineRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetMachineRequest>;
 
 export type GetMachineResponseObject = "machine";
-export const GetMachineResponseObject = /*@__PURE__*/ S.String;
+export const GetMachineResponseObject = S.String;
 
 /** Array of machines this machine has access to. */
 export type GetMachineResponseScopedMachinesList =
@@ -8600,7 +8583,7 @@ export const GetMachineSecretKeyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. */
 export type GetMachineSecretKeyResponseObject = "machine_secret_key";
-export const GetMachineSecretKeyResponseObject = /*@__PURE__*/ S.String;
+export const GetMachineSecretKeyResponseObject = S.String;
 
 export interface GetMachineSecretKeyResponse {
   /** String representing the object's type. */
@@ -8648,7 +8631,7 @@ export const GetOAuthAccessTokenRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOAuthAccessTokenRequest>;
 
 export type OAuthAccessTokenItemObject = "oauth_access_token";
-export const OAuthAccessTokenItemObject = /*@__PURE__*/ S.String;
+export const OAuthAccessTokenItemObject = S.String;
 
 export type OAuthAccessTokenItemPublicMetadataMap = {
   [key: string]: unknown | undefined;
@@ -8734,7 +8717,7 @@ export const GetOAuthApplicationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOAuthApplicationRequest>;
 
 export type OAuthApplicationObject = "oauth_application";
-export const OAuthApplicationObject = /*@__PURE__*/ S.String;
+export const OAuthApplicationObject = S.String;
 
 export type OAuthApplicationRedirectUrisList = Array<string>;
 export const OAuthApplicationRedirectUrisList = /*@__PURE__*/ S.Array(
@@ -8876,7 +8859,7 @@ export const GetOrganizationBillingSubscriptionRequest =
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type CommerceSubscriptionObject = "commerce_subscription";
-export const CommerceSubscriptionObject = /*@__PURE__*/ S.String;
+export const CommerceSubscriptionObject = S.String;
 
 /** The current status of the subscription. */
 export type CommerceSubscriptionStatus =
@@ -8886,7 +8869,7 @@ export type CommerceSubscriptionStatus =
   | "ended"
   | "abandoned"
   | "incomplete";
-export const CommerceSubscriptionStatus = /*@__PURE__*/ S.String;
+export const CommerceSubscriptionStatus = S.String;
 
 /** Array of subscription items in this subscription. */
 export type CommerceSubscriptionSubscriptionItemsList =
@@ -9114,7 +9097,7 @@ export type GetSessionListRequestStatus =
   | "removed"
   | "replaced"
   | "revoked";
-export const GetSessionListRequestStatus = /*@__PURE__*/ S.String;
+export const GetSessionListRequestStatus = S.String;
 
 export interface GetSessionListRequest {
   /** List sessions for the given client */
@@ -9168,10 +9151,10 @@ export const GetSignUpRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSignUpRequest>;
 
 export type SignUpObject = "sign_up_attempt";
-export const SignUpObject = /*@__PURE__*/ S.String;
+export const SignUpObject = S.String;
 
 export type SignUpStatus = "missing_requirements" | "complete" | "abandoned";
-export const SignUpStatus = /*@__PURE__*/ S.String;
+export const SignUpStatus = S.String;
 
 export type SignUpRequiredFieldsList = Array<string>;
 export const SignUpRequiredFieldsList = /*@__PURE__*/ S.Array(
@@ -9197,7 +9180,7 @@ export type SignUpVerificationNextAction =
   | "needs_prepare"
   | "needs_attempt"
   | "";
-export const SignUpVerificationNextAction = /*@__PURE__*/ S.String;
+export const SignUpVerificationNextAction = S.String;
 
 export type SignUpVerificationSupportedStrategiesList = Array<string>;
 export const SignUpVerificationSupportedStrategiesList = /*@__PURE__*/ S.Array(
@@ -9622,7 +9605,7 @@ export const GetUsersCountRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type TotalCountObject = "total_count";
-export const TotalCountObject = /*@__PURE__*/ S.String;
+export const TotalCountObject = S.String;
 
 export interface TotalCount {
   /** String representing the object's type. Objects of the same type share the same value. */
@@ -9698,7 +9681,7 @@ export const InviteWaitlistEntryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InviteWaitlistEntryRequest>;
 
 export type ListAllOrganizationDomainsRequestVerified = "true" | "false";
-export const ListAllOrganizationDomainsRequestVerified = /*@__PURE__*/ S.String;
+export const ListAllOrganizationDomainsRequestVerified = S.String;
 
 export type ListAllOrganizationDomainsRequestEnrollmentModeItem =
   | "manual_invitation"
@@ -9709,8 +9692,7 @@ export type ListAllOrganizationDomainsRequestEnrollmentModeItem =
   | "-automatic_invitation"
   | "-automatic_suggestion"
   | "-enterprise_sso";
-export const ListAllOrganizationDomainsRequestEnrollmentModeItem =
-  /*@__PURE__*/ S.String;
+export const ListAllOrganizationDomainsRequestEnrollmentModeItem = S.String;
 
 export type ListAllOrganizationDomainsRequestEnrollmentModeList = Array<
   ListAllOrganizationDomainsRequestEnrollmentModeItem | (string & {})
@@ -9985,8 +9967,7 @@ export type ListEnterpriseConnectionTestRunsRequestStatusItem =
   | "pending"
   | "success"
   | "failed";
-export const ListEnterpriseConnectionTestRunsRequestStatusItem =
-  /*@__PURE__*/ S.String;
+export const ListEnterpriseConnectionTestRunsRequestStatusItem = S.String;
 
 export type ListEnterpriseConnectionTestRunsRequestStatusList = Array<
   ListEnterpriseConnectionTestRunsRequestStatusItem | (string & {})
@@ -10031,11 +10012,11 @@ export type EnterpriseConnectionTestRunStatus =
   | "pending"
   | "success"
   | "failed";
-export const EnterpriseConnectionTestRunStatus = /*@__PURE__*/ S.String;
+export const EnterpriseConnectionTestRunStatus = S.String;
 
 /** The type of enterprise connection the test run was performed against */
 export type EnterpriseConnectionTestRunConnectionType = "saml" | "oauth";
-export const EnterpriseConnectionTestRunConnectionType = /*@__PURE__*/ S.String;
+export const EnterpriseConnectionTestRunConnectionType = S.String;
 
 /** The user information parsed from the IdP response */
 export interface EnterpriseConnectionTestRunParsedUserInfo {
@@ -10172,8 +10153,7 @@ export type ListInstanceOrganizationInvitationsRequestStatus =
   | "accepted"
   | "revoked"
   | "expired";
-export const ListInstanceOrganizationInvitationsRequestStatus =
-  /*@__PURE__*/ S.String;
+export const ListInstanceOrganizationInvitationsRequestStatus = S.String;
 
 export interface ListInstanceOrganizationInvitationsRequest {
   /** Allows to return organization invitations in a particular order. At the moment, you can order the returned organization invitations either by their `created_at` or `email_address`. In order to specify the direction, you can use the `+/-` symbols prepended in the property to order by. For example, if you want organization invitations to be returned in descending order according to their `created_at` property, you can use `-created_at`. If you don't use `+` or `-`, then `+` is implied. Defaults to `-created_at`. */
@@ -10207,8 +10187,7 @@ export const ListInstanceOrganizationInvitationsRequest =
 /** String representing the object's type. Objects of the same type share the same value. */
 export type OrganizationInvitationWithPublicOrganizationDataObject =
   "organization_invitation";
-export const OrganizationInvitationWithPublicOrganizationDataObject =
-  /*@__PURE__*/ S.String;
+export const OrganizationInvitationWithPublicOrganizationDataObject = S.String;
 
 export type OrganizationInvitationWithPublicOrganizationDataPublicMetadataMap =
   { [key: string]: unknown | undefined };
@@ -10305,7 +10284,7 @@ export type ListInvitationsRequestStatus =
   | "accepted"
   | "revoked"
   | "expired";
-export const ListInvitationsRequestStatus = /*@__PURE__*/ S.String;
+export const ListInvitationsRequestStatus = S.String;
 
 export interface ListInvitationsRequest {
   /** Filter invitations based on their status */
@@ -10398,7 +10377,7 @@ export const ListMachinesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListMachinesRequest>;
 
 export type MachineObject = "machine";
-export const MachineObject = /*@__PURE__*/ S.String;
+export const MachineObject = S.String;
 
 /** Array of machines this machine has access to. */
 export type MachineScopedMachinesList = Array<MachineWithoutScopedMachines>;
@@ -10530,7 +10509,7 @@ export type ListOrganizationInvitationsRequestStatus =
   | "accepted"
   | "revoked"
   | "expired";
-export const ListOrganizationInvitationsRequestStatus = /*@__PURE__*/ S.String;
+export const ListOrganizationInvitationsRequestStatus = S.String;
 
 export interface ListOrganizationInvitationsRequest {
   /** The organization ID. */
@@ -10987,16 +10966,16 @@ export const ListUserTrustedDevicesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. */
 export type TrustedDeviceObject = "trusted_device";
-export const TrustedDeviceObject = /*@__PURE__*/ S.String;
+export const TrustedDeviceObject = S.String;
 
 export type TrustedDevicePlatform = "ios" | "android";
-export const TrustedDevicePlatform = /*@__PURE__*/ S.String;
+export const TrustedDevicePlatform = S.String;
 
 export type TrustedDeviceAlgorithm = "ES256";
-export const TrustedDeviceAlgorithm = /*@__PURE__*/ S.String;
+export const TrustedDeviceAlgorithm = S.String;
 
 export type TrustedDeviceStatus = "active" | "revoked";
-export const TrustedDeviceStatus = /*@__PURE__*/ S.String;
+export const TrustedDeviceStatus = S.String;
 
 export interface TrustedDevice {
   /** String representing the object's type. */
@@ -11056,7 +11035,7 @@ export type ListWaitlistEntriesRequestStatus =
   | "invited"
   | "completed"
   | "rejected";
-export const ListWaitlistEntriesRequestStatus = /*@__PURE__*/ S.String;
+export const ListWaitlistEntriesRequestStatus = S.String;
 
 export interface ListWaitlistEntriesRequest {
   /** Applies a limit to the number of results returned. Can be used for paginating the results together with `offset`. */
@@ -11272,7 +11251,7 @@ export const RefreshSessionRequestRequestHeadersMap = /*@__PURE__*/ S.Record(
 
 /** The format of the response. */
 export type RefreshSessionRequestFormat = "token" | "cookie";
-export const RefreshSessionRequestFormat = /*@__PURE__*/ S.String;
+export const RefreshSessionRequestFormat = S.String;
 
 export interface RefreshSessionRequest {
   /** The ID of the session */
@@ -11314,7 +11293,7 @@ export const RefreshSessionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type TokenObject = "token";
-export const TokenObject = /*@__PURE__*/ S.String;
+export const TokenObject = S.String;
 
 export interface Token {
   /** String representing the object's type. Objects of the same type share the same value. */
@@ -11331,7 +11310,7 @@ export const Token = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type CookiesObject = "cookies";
-export const CookiesObject = /*@__PURE__*/ S.String;
+export const CookiesObject = S.String;
 
 /** Array of cookie directives. */
 export type CookiesCookiesList = Array<string>;
@@ -11353,8 +11332,7 @@ export const Cookies = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Cookies" }) as any as S.Schema<Cookies>;
 
 export type SessionRefresh = Token | Cookies;
-export const SessionRefresh =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionRefresh>;
+export const SessionRefresh = S.Unknown as any as S.Schema<SessionRefresh>;
 
 export type RefreshSessionResponse = SessionRefresh;
 export const RefreshSessionResponse = /*@__PURE__*/ S.suspend(() =>
@@ -11678,8 +11656,7 @@ export type ReplaceUserEmailAddressRequestIdentificationStatus =
   | "verified"
   | "reserved"
   | "unverified";
-export const ReplaceUserEmailAddressRequestIdentificationStatus =
-  /*@__PURE__*/ S.String;
+export const ReplaceUserEmailAddressRequestIdentificationStatus = S.String;
 
 export interface ReplaceUserEmailAddressRequest {
   /** The ID of the user whose email address to replace */
@@ -11766,8 +11743,7 @@ export type ReplaceUserPhoneNumberRequestIdentificationStatus =
   | "verified"
   | "reserved"
   | "unverified";
-export const ReplaceUserPhoneNumberRequestIdentificationStatus =
-  /*@__PURE__*/ S.String;
+export const ReplaceUserPhoneNumberRequestIdentificationStatus = S.String;
 
 export interface ReplaceUserPhoneNumberRequest {
   /** The ID of the user whose phone number to replace */
@@ -11832,7 +11808,7 @@ export const RevokeAdminPortalLinkTokenRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type RevokeAdminPortalLinkTokenResponseObject =
   "admin_portal_link_token";
-export const RevokeAdminPortalLinkTokenResponseObject = /*@__PURE__*/ S.String;
+export const RevokeAdminPortalLinkTokenResponseObject = S.String;
 
 /** Caller-provided scopes for this token. */
 export type RevokeAdminPortalLinkTokenResponseScopesList = Array<string>;
@@ -11917,7 +11893,7 @@ export const RevokeApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RevokeApiKeyRequest>;
 
 export type RevokeApiKeyResponseObject = "api_key";
-export const RevokeApiKeyResponseObject = /*@__PURE__*/ S.String;
+export const RevokeApiKeyResponseObject = S.String;
 
 export type RevokeApiKeyResponseScopesList = Array<string>;
 export const RevokeApiKeyResponseScopesList = /*@__PURE__*/ S.Array(
@@ -11988,7 +11964,7 @@ export const RevokeInvitationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RevokeInvitationRequest>;
 
 export type RevokeInvitationResponseObject = "invitation";
-export const RevokeInvitationResponseObject = /*@__PURE__*/ S.String;
+export const RevokeInvitationResponseObject = S.String;
 
 export type RevokeInvitationResponsePublicMetadataMap = {
   [key: string]: unknown | undefined;
@@ -12003,7 +11979,7 @@ export type RevokeInvitationResponseStatus =
   | "accepted"
   | "revoked"
   | "expired";
-export const RevokeInvitationResponseStatus = /*@__PURE__*/ S.String;
+export const RevokeInvitationResponseStatus = S.String;
 
 export interface RevokeInvitationResponse {
   object: RevokeInvitationResponseObject;
@@ -12057,7 +12033,7 @@ export const RevokeM2MTokenRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RevokeM2MTokenRequest>;
 
 export type RevokeM2MTokenResponseObject = "machine_to_machine_token";
-export const RevokeM2MTokenResponseObject = /*@__PURE__*/ S.String;
+export const RevokeM2MTokenResponseObject = S.String;
 
 export type RevokeM2MTokenResponseScopesList = Array<string>;
 export const RevokeM2MTokenResponseScopesList = /*@__PURE__*/ S.Array(
@@ -12247,7 +12223,7 @@ export const RotateMachineSecretKeyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. */
 export type RotateMachineSecretKeyResponseObject = "machine_secret_key";
-export const RotateMachineSecretKeyResponseObject = /*@__PURE__*/ S.String;
+export const RotateMachineSecretKeyResponseObject = S.String;
 
 export interface RotateMachineSecretKeyResponse {
   /** String representing the object's type. */
@@ -12283,8 +12259,7 @@ export const RotateOAuthApplicationSecretRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RotateOAuthApplicationSecretRequest>;
 
 export type RotateOAuthApplicationSecretResponseObject = "oauth_application";
-export const RotateOAuthApplicationSecretResponseObject =
-  /*@__PURE__*/ S.String;
+export const RotateOAuthApplicationSecretResponseObject = S.String;
 
 export type RotateOAuthApplicationSecretResponseRedirectUrisList =
   Array<string>;
@@ -12511,7 +12486,7 @@ export const UpdateApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApiKeyRequest>;
 
 export type UpdateApiKeyResponseObject = "api_key";
-export const UpdateApiKeyResponseObject = /*@__PURE__*/ S.String;
+export const UpdateApiKeyResponseObject = S.String;
 
 export type UpdateApiKeyResponseScopesList = Array<string>;
 export const UpdateApiKeyResponseScopesList = /*@__PURE__*/ S.Array(
@@ -12667,8 +12642,7 @@ export type UpdateEnterpriseConnectionRequestSamlLoginHintMode =
   | "email_address"
   | "custom_attribute"
   | "off";
-export const UpdateEnterpriseConnectionRequestSamlLoginHintMode =
-  /*@__PURE__*/ S.String;
+export const UpdateEnterpriseConnectionRequestSamlLoginHintMode = S.String;
 
 /** Configuration for the login_hint sent to the IdP on SSO sign-in */
 export interface UpdateEnterpriseConnectionRequestSamlLoginHint {
@@ -12813,7 +12787,7 @@ export type UpdateInstanceRequestPreferredSignInStrategyWhenPasswordRequired =
   | "otp"
   | "";
 export const UpdateInstanceRequestPreferredSignInStrategyWhenPasswordRequired =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateInstanceRequest {
   /** Toggles test mode for this instance, allowing the use of test email addresses and phone numbers. Defaults to true for development instances. */
@@ -12891,7 +12865,7 @@ export const UpdateInstanceAuthConfigRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type UpdateInstanceAuthConfigResponseObject = "instance_settings";
-export const UpdateInstanceAuthConfigResponseObject = /*@__PURE__*/ S.String;
+export const UpdateInstanceAuthConfigResponseObject = S.String;
 
 export interface UpdateInstanceAuthConfigResponse {
   /** String representing the object's type. Objects of the same type share the same value. */
@@ -13074,7 +13048,7 @@ export const UpdateInstanceRestrictionsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** String representing the object's type. Objects of the same type share the same value. */
 export type InstanceRestrictionsObject = "instance_restrictions";
-export const InstanceRestrictionsObject = /*@__PURE__*/ S.String;
+export const InstanceRestrictionsObject = S.String;
 
 export interface InstanceRestrictions {
   /** String representing the object's type. Objects of the same type share the same value. */
@@ -13154,7 +13128,7 @@ export const UpdateMachineRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateMachineRequest>;
 
 export type UpdateMachineResponseObject = "machine";
-export const UpdateMachineResponseObject = /*@__PURE__*/ S.String;
+export const UpdateMachineResponseObject = S.String;
 
 /** Array of machines this machine has access to. */
 export type UpdateMachineResponseScopedMachinesList =
@@ -13477,7 +13451,7 @@ export const UpdatePhoneNumberRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Set to "initial" to make this the default role set for new organizations. Only one role set can be "initial" per instance; setting this will change any existing initial role set to "custom". */
 export type UpdateRoleSetRequestType = "initial";
-export const UpdateRoleSetRequestType = /*@__PURE__*/ S.String;
+export const UpdateRoleSetRequestType = S.String;
 
 export interface UpdateRoleSetRequest {
   /** The key or ID of the role set to update */
@@ -13769,7 +13743,7 @@ export const UploadOrganizationLogoRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UploadOrganizationLogoRequest>;
 
 export type UploadOrganizationLogoResponseObject = "organization";
-export const UploadOrganizationLogoResponseObject = /*@__PURE__*/ S.String;
+export const UploadOrganizationLogoResponseObject = S.String;
 
 export type UploadOrganizationLogoResponsePublicMetadataMap = {
   [key: string]: unknown | undefined;
@@ -13847,8 +13821,7 @@ export type UsersGetOrganizationInvitationsRequestStatus =
   | "accepted"
   | "revoked"
   | "expired";
-export const UsersGetOrganizationInvitationsRequestStatus =
-  /*@__PURE__*/ S.String;
+export const UsersGetOrganizationInvitationsRequestStatus = S.String;
 
 export interface UsersGetOrganizationInvitationsRequest {
   /** The ID of the user whose organization invitations we want to retrieve */
@@ -13917,7 +13890,7 @@ export const VerifyApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VerifyApiKeyRequest>;
 
 export type VerifyApiKeyResponseObject = "api_key";
-export const VerifyApiKeyResponseObject = /*@__PURE__*/ S.String;
+export const VerifyApiKeyResponseObject = S.String;
 
 export type VerifyApiKeyResponseScopesList = Array<string>;
 export const VerifyApiKeyResponseScopesList = /*@__PURE__*/ S.Array(
@@ -13997,7 +13970,7 @@ export const VerifyDomainProxyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VerifyDomainProxyRequest>;
 
 export type ProxyCheckObject = "proxy_check";
-export const ProxyCheckObject = /*@__PURE__*/ S.String;
+export const ProxyCheckObject = S.String;
 
 export interface ProxyCheck {
   object: ProxyCheckObject;
@@ -14037,7 +14010,7 @@ export const VerifyM2MTokenRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VerifyM2MTokenRequest>;
 
 export type VerifyM2MTokenResponseObject = "machine_to_machine_token";
-export const VerifyM2MTokenResponseObject = /*@__PURE__*/ S.String;
+export const VerifyM2MTokenResponseObject = S.String;
 
 export type VerifyM2MTokenResponseScopesList = Array<string>;
 export const VerifyM2MTokenResponseScopesList = /*@__PURE__*/ S.Array(
@@ -14104,8 +14077,7 @@ export const VerifyOAuthAccessTokenRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type VerifyOAuthAccessTokenResponseBodyCase0Object =
   "clerk_idp_oauth_access_token";
-export const VerifyOAuthAccessTokenResponseBodyCase0Object =
-  /*@__PURE__*/ S.String;
+export const VerifyOAuthAccessTokenResponseBodyCase0Object = S.String;
 
 export type VerifyOAuthAccessTokenResponseBodyCase0ScopesList = Array<string>;
 export const VerifyOAuthAccessTokenResponseBodyCase0ScopesList =
@@ -14162,7 +14134,7 @@ export type VerifyOAuthAccessTokenResponseBody =
   | VerifyOAuthAccessTokenResponseBodyCase0
   | VerifyOAuthAccessTokenResponseBodyCase1;
 export const VerifyOAuthAccessTokenResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<VerifyOAuthAccessTokenResponseBody>;
+  S.Unknown as any as S.Schema<VerifyOAuthAccessTokenResponseBody>;
 
 export type VerifyOAuthAccessTokenResponse = VerifyOAuthAccessTokenResponseBody;
 export const VerifyOAuthAccessTokenResponse = /*@__PURE__*/ S.suspend(() =>
@@ -14243,7 +14215,7 @@ export const VerifyTOTPRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VerifyTOTPRequest>;
 
 export type VerifyTOTPResponseCodeType = "totp" | "backup_code";
-export const VerifyTOTPResponseCodeType = /*@__PURE__*/ S.String;
+export const VerifyTOTPResponseCodeType = S.String;
 
 export interface VerifyTOTPResponse {
   verified?: boolean;

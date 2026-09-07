@@ -205,20 +205,19 @@ export type AutonomousDatabasePropertiesDatabaseManagementStateEnum =
   | "NOT_ENABLED"
   | "FAILED_ENABLING"
   | "FAILED_DISABLING";
-export const AutonomousDatabasePropertiesDatabaseManagementStateEnum =
-  /*@__PURE__*/ S.String;
+export const AutonomousDatabasePropertiesDatabaseManagementStateEnum = S.String;
 
 export type AutonomousDatabasePropertiesDbEditionEnum =
   | "DATABASE_EDITION_UNSPECIFIED"
   | "STANDARD_EDITION"
   | "ENTERPRISE_EDITION";
-export const AutonomousDatabasePropertiesDbEditionEnum = /*@__PURE__*/ S.String;
+export const AutonomousDatabasePropertiesDbEditionEnum = S.String;
 
 export type EncryptionKeyProviderEnum =
   | "PROVIDER_UNSPECIFIED"
   | "GOOGLE_MANAGED"
   | "ORACLE_MANAGED";
-export const EncryptionKeyProviderEnum = /*@__PURE__*/ S.String;
+export const EncryptionKeyProviderEnum = S.String;
 
 /** The encryption key used to encrypt the Autonomous Database. */
 export interface EncryptionKey {
@@ -294,28 +293,25 @@ export type AutonomousDatabasePropertiesStateEnum =
   | "UPGRADING"
   | "INACCESSIBLE"
   | "STANDBY";
-export const AutonomousDatabasePropertiesStateEnum = /*@__PURE__*/ S.String;
+export const AutonomousDatabasePropertiesStateEnum = S.String;
 
 export type DatabaseConnectionStringProfileProtocolEnum =
   | "PROTOCOL_UNSPECIFIED"
   | "TCP"
   | "TCPS";
-export const DatabaseConnectionStringProfileProtocolEnum =
-  /*@__PURE__*/ S.String;
+export const DatabaseConnectionStringProfileProtocolEnum = S.String;
 
 export type DatabaseConnectionStringProfileHostFormatEnum =
   | "HOST_FORMAT_UNSPECIFIED"
   | "FQDN"
   | "IP";
-export const DatabaseConnectionStringProfileHostFormatEnum =
-  /*@__PURE__*/ S.String;
+export const DatabaseConnectionStringProfileHostFormatEnum = S.String;
 
 export type DatabaseConnectionStringProfileSessionModeEnum =
   | "SESSION_MODE_UNSPECIFIED"
   | "DIRECT"
   | "INDIRECT";
-export const DatabaseConnectionStringProfileSessionModeEnum =
-  /*@__PURE__*/ S.String;
+export const DatabaseConnectionStringProfileSessionModeEnum = S.String;
 
 export type DatabaseConnectionStringProfileConsumerGroupEnum =
   | "CONSUMER_GROUP_UNSPECIFIED"
@@ -324,23 +320,20 @@ export type DatabaseConnectionStringProfileConsumerGroupEnum =
   | "LOW"
   | "TP"
   | "TPURGENT";
-export const DatabaseConnectionStringProfileConsumerGroupEnum =
-  /*@__PURE__*/ S.String;
+export const DatabaseConnectionStringProfileConsumerGroupEnum = S.String;
 
 export type DatabaseConnectionStringProfileSyntaxFormatEnum =
   | "SYNTAX_FORMAT_UNSPECIFIED"
   | "LONG"
   | "EZCONNECT"
   | "EZCONNECTPLUS";
-export const DatabaseConnectionStringProfileSyntaxFormatEnum =
-  /*@__PURE__*/ S.String;
+export const DatabaseConnectionStringProfileSyntaxFormatEnum = S.String;
 
 export type DatabaseConnectionStringProfileTlsAuthenticationEnum =
   | "TLS_AUTHENTICATION_UNSPECIFIED"
   | "SERVER"
   | "MUTUAL";
-export const DatabaseConnectionStringProfileTlsAuthenticationEnum =
-  /*@__PURE__*/ S.String;
+export const DatabaseConnectionStringProfileTlsAuthenticationEnum = S.String;
 
 /** The connection string profile to allow clients to group. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/DatabaseConnectionStringProfile */
 export interface DatabaseConnectionStringProfile {
@@ -449,14 +442,13 @@ export type AutonomousDatabasePropertiesLicenseTypeEnum =
   | "LICENSE_TYPE_UNSPECIFIED"
   | "LICENSE_INCLUDED"
   | "BRING_YOUR_OWN_LICENSE";
-export const AutonomousDatabasePropertiesLicenseTypeEnum =
-  /*@__PURE__*/ S.String;
+export const AutonomousDatabasePropertiesLicenseTypeEnum = S.String;
 
 export type AutonomousDatabasePropertiesOpenModeEnum =
   | "OPEN_MODE_UNSPECIFIED"
   | "READ_ONLY"
   | "READ_WRITE";
-export const AutonomousDatabasePropertiesOpenModeEnum = /*@__PURE__*/ S.String;
+export const AutonomousDatabasePropertiesOpenModeEnum = S.String;
 
 export type AutonomousDatabaseStandbySummaryStateEnum =
   | "STATE_UNSPECIFIED"
@@ -481,7 +473,7 @@ export type AutonomousDatabaseStandbySummaryStateEnum =
   | "UPGRADING"
   | "INACCESSIBLE"
   | "STANDBY";
-export const AutonomousDatabaseStandbySummaryStateEnum = /*@__PURE__*/ S.String;
+export const AutonomousDatabaseStandbySummaryStateEnum = S.String;
 
 /** Autonomous Data Guard standby database details. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/AutonomousDatabaseStandbySummary */
 export interface AutonomousDatabaseStandbySummary {
@@ -512,15 +504,13 @@ export type AutonomousDatabasePropertiesRefreshableModeEnum =
   | "REFRESHABLE_MODE_UNSPECIFIED"
   | "AUTOMATIC"
   | "MANUAL";
-export const AutonomousDatabasePropertiesRefreshableModeEnum =
-  /*@__PURE__*/ S.String;
+export const AutonomousDatabasePropertiesRefreshableModeEnum = S.String;
 
 export type AutonomousDatabasePropertiesRefreshableStateEnum =
   | "REFRESHABLE_STATE_UNSPECIFIED"
   | "REFRESHING"
   | "NOT_REFRESHING";
-export const AutonomousDatabasePropertiesRefreshableStateEnum =
-  /*@__PURE__*/ S.String;
+export const AutonomousDatabasePropertiesRefreshableStateEnum = S.String;
 
 export type ScheduledOperationDetailsDayOfWeekEnum =
   | "DAY_OF_WEEK_UNSPECIFIED"
@@ -531,7 +521,7 @@ export type ScheduledOperationDetailsDayOfWeekEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const ScheduledOperationDetailsDayOfWeekEnum = /*@__PURE__*/ S.String;
+export const ScheduledOperationDetailsDayOfWeekEnum = S.String;
 
 /** Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. */
 export interface TimeOfDay {
@@ -584,8 +574,7 @@ export type AutonomousDatabasePropertiesDataSafeStateEnum =
   | "DEREGISTERING"
   | "NOT_REGISTERED"
   | "FAILED";
-export const AutonomousDatabasePropertiesDataSafeStateEnum =
-  /*@__PURE__*/ S.String;
+export const AutonomousDatabasePropertiesDataSafeStateEnum = S.String;
 
 /** The CustomerContact reference as defined by Oracle. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/CustomerContact */
 export interface CustomerContact {
@@ -609,8 +598,7 @@ export type AutonomousDatabasePropertiesPermissionLevelEnum =
   | "PERMISSION_LEVEL_UNSPECIFIED"
   | "RESTRICTED"
   | "UNRESTRICTED";
-export const AutonomousDatabasePropertiesPermissionLevelEnum =
-  /*@__PURE__*/ S.String;
+export const AutonomousDatabasePropertiesPermissionLevelEnum = S.String;
 
 export type AutonomousDatabasePropertiesRoleEnum =
   | "ROLE_UNSPECIFIED"
@@ -619,7 +607,7 @@ export type AutonomousDatabasePropertiesRoleEnum =
   | "DISABLED_STANDBY"
   | "BACKUP_COPY"
   | "SNAPSHOT_STANDBY";
-export const AutonomousDatabasePropertiesRoleEnum = /*@__PURE__*/ S.String;
+export const AutonomousDatabasePropertiesRoleEnum = S.String;
 
 export type AutonomousDatabasePropertiesOperationsInsightsStateEnum =
   | "OPERATIONS_INSIGHTS_STATE_UNSPECIFIED"
@@ -629,15 +617,13 @@ export type AutonomousDatabasePropertiesOperationsInsightsStateEnum =
   | "NOT_ENABLED"
   | "FAILED_ENABLING"
   | "FAILED_DISABLING";
-export const AutonomousDatabasePropertiesOperationsInsightsStateEnum =
-  /*@__PURE__*/ S.String;
+export const AutonomousDatabasePropertiesOperationsInsightsStateEnum = S.String;
 
 export type AutonomousDatabasePropertiesMaintenanceScheduleTypeEnum =
   | "MAINTENANCE_SCHEDULE_TYPE_UNSPECIFIED"
   | "EARLY"
   | "REGULAR";
-export const AutonomousDatabasePropertiesMaintenanceScheduleTypeEnum =
-  /*@__PURE__*/ S.String;
+export const AutonomousDatabasePropertiesMaintenanceScheduleTypeEnum = S.String;
 
 /** The URLs for accessing Oracle Application Express (APEX) and SQL Developer Web with a browser from a Compute instance. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/AutonomousDatabaseConnectionUrls */
 export interface AutonomousDatabaseConnectionUrls {
@@ -679,8 +665,7 @@ export type AutonomousDatabasePropertiesDbWorkloadEnum =
   | "DW"
   | "AJD"
   | "APEX";
-export const AutonomousDatabasePropertiesDbWorkloadEnum =
-  /*@__PURE__*/ S.String;
+export const AutonomousDatabasePropertiesDbWorkloadEnum = S.String;
 
 export type AutonomousDatabasePropertiesLocalDisasterRecoveryTypeEnum =
   | "LOCAL_DISASTER_RECOVERY_TYPE_UNSPECIFIED"
@@ -688,7 +673,7 @@ export type AutonomousDatabasePropertiesLocalDisasterRecoveryTypeEnum =
   | "BACKUP_BASED"
   | "NOT_AVAILABLE";
 export const AutonomousDatabasePropertiesLocalDisasterRecoveryTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of an Autonomous Database. */
 export interface AutonomousDatabaseProperties {
@@ -930,7 +915,7 @@ export type SourceConfigRefreshableModeEnum =
   | "REFRESHABLE_MODE_UNSPECIFIED"
   | "AUTOMATIC"
   | "MANUAL";
-export const SourceConfigRefreshableModeEnum = /*@__PURE__*/ S.String;
+export const SourceConfigRefreshableModeEnum = S.String;
 
 export type SourceConfigSourceTypeEnum =
   | "SOURCE_TYPE_UNSPECIFIED"
@@ -939,13 +924,13 @@ export type SourceConfigSourceTypeEnum =
   | "CLONE_TO_REFRESHABLE"
   | "BACKUP_FROM_ID"
   | "BACKUP_FROM_TIMESTAMP";
-export const SourceConfigSourceTypeEnum = /*@__PURE__*/ S.String;
+export const SourceConfigSourceTypeEnum = S.String;
 
 export type SourceConfigCloneTypeEnum =
   | "CLONE_TYPE_UNSPECIFIED"
   | "FULL"
   | "METADATA";
-export const SourceConfigCloneTypeEnum = /*@__PURE__*/ S.String;
+export const SourceConfigCloneTypeEnum = S.String;
 
 /** The source configuration for the standby Autonomous Database. */
 export interface SourceConfig {
@@ -1084,7 +1069,7 @@ export type MaintenanceWindowPatchingModeEnum =
   | "PATCHING_MODE_UNSPECIFIED"
   | "ROLLING"
   | "NON_ROLLING";
-export const MaintenanceWindowPatchingModeEnum = /*@__PURE__*/ S.String;
+export const MaintenanceWindowPatchingModeEnum = S.String;
 
 export type MaintenanceWindowMonthsItemEnum =
   | "MONTH_UNSPECIFIED"
@@ -1100,7 +1085,7 @@ export type MaintenanceWindowMonthsItemEnum =
   | "OCTOBER"
   | "NOVEMBER"
   | "DECEMBER";
-export const MaintenanceWindowMonthsItemEnum = /*@__PURE__*/ S.String;
+export const MaintenanceWindowMonthsItemEnum = S.String;
 
 export type MaintenanceWindowMonthsItemEnumList = Array<
   MaintenanceWindowMonthsItemEnum | (string & {})
@@ -1118,7 +1103,7 @@ export type MaintenanceWindowDaysOfWeekItemEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const MaintenanceWindowDaysOfWeekItemEnum = /*@__PURE__*/ S.String;
+export const MaintenanceWindowDaysOfWeekItemEnum = S.String;
 
 export type MaintenanceWindowDaysOfWeekItemEnumList = Array<
   MaintenanceWindowDaysOfWeekItemEnum | (string & {})
@@ -1131,7 +1116,7 @@ export type MaintenanceWindowPreferenceEnum =
   | "MAINTENANCE_WINDOW_PREFERENCE_UNSPECIFIED"
   | "CUSTOM_PREFERENCE"
   | "NO_PREFERENCE";
-export const MaintenanceWindowPreferenceEnum = /*@__PURE__*/ S.String;
+export const MaintenanceWindowPreferenceEnum = S.String;
 
 export type IntegerList = Array<number>;
 export const IntegerList = /*@__PURE__*/ S.Array(
@@ -1179,8 +1164,7 @@ export type CloudExadataInfrastructurePropertiesComputeModelEnum =
   | "COMPUTE_MODEL_UNSPECIFIED"
   | "COMPUTE_MODEL_ECPU"
   | "COMPUTE_MODEL_OCPU";
-export const CloudExadataInfrastructurePropertiesComputeModelEnum =
-  /*@__PURE__*/ S.String;
+export const CloudExadataInfrastructurePropertiesComputeModelEnum = S.String;
 
 /** Details of the Exascale configuration for the Exadata Infrastructure. */
 export interface ExascaleConfig {
@@ -1211,8 +1195,7 @@ export type CloudExadataInfrastructurePropertiesStateEnum =
   | "TERMINATED"
   | "FAILED"
   | "MAINTENANCE_IN_PROGRESS";
-export const CloudExadataInfrastructurePropertiesStateEnum =
-  /*@__PURE__*/ S.String;
+export const CloudExadataInfrastructurePropertiesStateEnum = S.String;
 
 /** Various properties of Exadata Infrastructure. */
 export interface CloudExadataInfrastructureProperties {
@@ -1387,7 +1370,7 @@ export type IdentityConnectorConnectionStateEnum =
   | "PARTIALLY_CONNECTED"
   | "DISCONNECTED"
   | "UNKNOWN";
-export const IdentityConnectorConnectionStateEnum = /*@__PURE__*/ S.String;
+export const IdentityConnectorConnectionStateEnum = S.String;
 
 /** The identity connector details which will allow OCI to securely access the resources in the customer project. */
 export interface IdentityConnector {
@@ -1409,28 +1392,25 @@ export type CloudVmClusterPropertiesComputeModelEnum =
   | "COMPUTE_MODEL_UNSPECIFIED"
   | "COMPUTE_MODEL_ECPU"
   | "COMPUTE_MODEL_OCPU";
-export const CloudVmClusterPropertiesComputeModelEnum = /*@__PURE__*/ S.String;
+export const CloudVmClusterPropertiesComputeModelEnum = S.String;
 
 export type CloudVmClusterPropertiesVmBackupStorageTypeEnum =
   | "VM_BACKUP_STORAGE_TYPE_UNSPECIFIED"
   | "VM_BACKUP_STORAGE_TYPE_LOCAL"
   | "VM_BACKUP_STORAGE_TYPE_EXASCALE";
-export const CloudVmClusterPropertiesVmBackupStorageTypeEnum =
-  /*@__PURE__*/ S.String;
+export const CloudVmClusterPropertiesVmBackupStorageTypeEnum = S.String;
 
 export type CloudVmClusterPropertiesVmFileSystemStorageTypeEnum =
   | "VM_FILE_SYSTEM_STORAGE_TYPE_UNSPECIFIED"
   | "VM_FILE_SYSTEM_STORAGE_TYPE_LOCAL"
   | "VM_FILE_SYSTEM_STORAGE_TYPE_EXASCALE";
-export const CloudVmClusterPropertiesVmFileSystemStorageTypeEnum =
-  /*@__PURE__*/ S.String;
+export const CloudVmClusterPropertiesVmFileSystemStorageTypeEnum = S.String;
 
 export type CloudVmClusterPropertiesDiskRedundancyEnum =
   | "DISK_REDUNDANCY_UNSPECIFIED"
   | "HIGH"
   | "NORMAL";
-export const CloudVmClusterPropertiesDiskRedundancyEnum =
-  /*@__PURE__*/ S.String;
+export const CloudVmClusterPropertiesDiskRedundancyEnum = S.String;
 
 export type CloudVmClusterPropertiesStateEnum =
   | "STATE_UNSPECIFIED"
@@ -1441,7 +1421,7 @@ export type CloudVmClusterPropertiesStateEnum =
   | "TERMINATED"
   | "FAILED"
   | "MAINTENANCE_IN_PROGRESS";
-export const CloudVmClusterPropertiesStateEnum = /*@__PURE__*/ S.String;
+export const CloudVmClusterPropertiesStateEnum = S.String;
 
 /** Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones). */
 export interface TimeZone {
@@ -1480,14 +1460,13 @@ export type CloudVmClusterPropertiesStorageManagementTypeEnum =
   | "STORAGE_MANAGEMENT_TYPE_UNSPECIFIED"
   | "ASM"
   | "EXASCALE";
-export const CloudVmClusterPropertiesStorageManagementTypeEnum =
-  /*@__PURE__*/ S.String;
+export const CloudVmClusterPropertiesStorageManagementTypeEnum = S.String;
 
 export type CloudVmClusterPropertiesLicenseTypeEnum =
   | "LICENSE_TYPE_UNSPECIFIED"
   | "LICENSE_INCLUDED"
   | "BRING_YOUR_OWN_LICENSE";
-export const CloudVmClusterPropertiesLicenseTypeEnum = /*@__PURE__*/ S.String;
+export const CloudVmClusterPropertiesLicenseTypeEnum = S.String;
 
 /** Various properties and settings associated with Exadata VM cluster. */
 export interface CloudVmClusterProperties {
@@ -1704,13 +1683,13 @@ export type DbSystemPropertiesLicenseModelEnum =
   | "LICENSE_MODEL_UNSPECIFIED"
   | "LICENSE_INCLUDED"
   | "BRING_YOUR_OWN_LICENSE";
-export const DbSystemPropertiesLicenseModelEnum = /*@__PURE__*/ S.String;
+export const DbSystemPropertiesLicenseModelEnum = S.String;
 
 export type DbSystemOptionsStorageManagementEnum =
   | "STORAGE_MANAGEMENT_UNSPECIFIED"
   | "ASM"
   | "LVM";
-export const DbSystemOptionsStorageManagementEnum = /*@__PURE__*/ S.String;
+export const DbSystemOptionsStorageManagementEnum = S.String;
 
 /** Details of the DbSystem Options. */
 export interface DbSystemOptions {
@@ -1753,13 +1732,13 @@ export type DbSystemPropertiesLifecycleStateEnum =
   | "MAINTENANCE_IN_PROGRESS"
   | "NEEDS_ATTENTION"
   | "UPGRADING";
-export const DbSystemPropertiesLifecycleStateEnum = /*@__PURE__*/ S.String;
+export const DbSystemPropertiesLifecycleStateEnum = S.String;
 
 export type DbSystemPropertiesComputeModelEnum =
   | "COMPUTE_MODEL_UNSPECIFIED"
   | "ECPU"
   | "OCPU";
-export const DbSystemPropertiesComputeModelEnum = /*@__PURE__*/ S.String;
+export const DbSystemPropertiesComputeModelEnum = S.String;
 
 export type DatabaseOpsInsightsStatusEnum =
   | "OPERATIONS_INSIGHTS_STATUS_UNSPECIFIED"
@@ -1769,7 +1748,7 @@ export type DatabaseOpsInsightsStatusEnum =
   | "NOT_ENABLED"
   | "FAILED_ENABLING"
   | "FAILED_DISABLING";
-export const DatabaseOpsInsightsStatusEnum = /*@__PURE__*/ S.String;
+export const DatabaseOpsInsightsStatusEnum = S.String;
 
 export type DatabaseManagementConfigManagementStateEnum =
   | "MANAGEMENT_STATE_UNSPECIFIED"
@@ -1781,15 +1760,13 @@ export type DatabaseManagementConfigManagementStateEnum =
   | "FAILED_ENABLING"
   | "FAILED_DISABLING"
   | "FAILED_UPDATING";
-export const DatabaseManagementConfigManagementStateEnum =
-  /*@__PURE__*/ S.String;
+export const DatabaseManagementConfigManagementStateEnum = S.String;
 
 export type DatabaseManagementConfigManagementTypeEnum =
   | "MANAGEMENT_TYPE_UNSPECIFIED"
   | "BASIC"
   | "ADVANCED";
-export const DatabaseManagementConfigManagementTypeEnum =
-  /*@__PURE__*/ S.String;
+export const DatabaseManagementConfigManagementTypeEnum = S.String;
 
 /** The configuration of the Database Management service. */
 export interface DatabaseManagementConfig {
@@ -1814,7 +1791,7 @@ export type BackupDestinationDetailsTypeEnum =
   | "OBJECT_STORE"
   | "LOCAL"
   | "DBRS";
-export const BackupDestinationDetailsTypeEnum = /*@__PURE__*/ S.String;
+export const BackupDestinationDetailsTypeEnum = S.String;
 
 /** The details of the database backup destination. */
 export interface BackupDestinationDetails {
@@ -1838,7 +1815,7 @@ export type DbBackupConfigBackupDeletionPolicyEnum =
   | "BACKUP_DELETION_POLICY_UNSPECIFIED"
   | "DELETE_IMMEDIATELY"
   | "DELETE_AFTER_RETENTION_PERIOD";
-export const DbBackupConfigBackupDeletionPolicyEnum = /*@__PURE__*/ S.String;
+export const DbBackupConfigBackupDeletionPolicyEnum = S.String;
 
 export type DbBackupConfigAutoFullBackupWindowEnum =
   | "BACKUP_WINDOW_UNSPECIFIED"
@@ -1854,7 +1831,7 @@ export type DbBackupConfigAutoFullBackupWindowEnum =
   | "SLOT_TEN"
   | "SLOT_ELEVEN"
   | "SLOT_TWELVE";
-export const DbBackupConfigAutoFullBackupWindowEnum = /*@__PURE__*/ S.String;
+export const DbBackupConfigAutoFullBackupWindowEnum = S.String;
 
 export type DbBackupConfigAutoIncrementalBackupWindowEnum =
   | "BACKUP_WINDOW_UNSPECIFIED"
@@ -1870,8 +1847,7 @@ export type DbBackupConfigAutoIncrementalBackupWindowEnum =
   | "SLOT_TEN"
   | "SLOT_ELEVEN"
   | "SLOT_TWELVE";
-export const DbBackupConfigAutoIncrementalBackupWindowEnum =
-  /*@__PURE__*/ S.String;
+export const DbBackupConfigAutoIncrementalBackupWindowEnum = S.String;
 
 export type DbBackupConfigAutoFullBackupDayEnum =
   | "DAY_OF_WEEK_UNSPECIFIED"
@@ -1882,7 +1858,7 @@ export type DbBackupConfigAutoFullBackupDayEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const DbBackupConfigAutoFullBackupDayEnum = /*@__PURE__*/ S.String;
+export const DbBackupConfigAutoFullBackupDayEnum = S.String;
 
 /** Backup Options for the Database. */
 export interface DbBackupConfig {
@@ -1929,7 +1905,7 @@ export type DatabasePropertiesStateEnum =
   | "TERMINATED"
   | "RESTORE_FAILED"
   | "FAILED";
-export const DatabasePropertiesStateEnum = /*@__PURE__*/ S.String;
+export const DatabasePropertiesStateEnum = S.String;
 
 /** The properties of a Database. */
 export interface DatabaseProperties {
@@ -2040,7 +2016,7 @@ export type DbSystemPropertiesDatabaseEditionEnum =
   | "STANDARD_EDITION"
   | "ENTERPRISE_EDITION"
   | "ENTERPRISE_EDITION_HIGH_PERFORMANCE";
-export const DbSystemPropertiesDatabaseEditionEnum = /*@__PURE__*/ S.String;
+export const DbSystemPropertiesDatabaseEditionEnum = S.String;
 
 /** The properties of a DbSystem. */
 export interface DbSystemProperties {
@@ -2190,21 +2166,19 @@ export type ExadbVmClusterPropertiesLifecycleStateEnum =
   | "TERMINATED"
   | "FAILED"
   | "MAINTENANCE_IN_PROGRESS";
-export const ExadbVmClusterPropertiesLifecycleStateEnum =
-  /*@__PURE__*/ S.String;
+export const ExadbVmClusterPropertiesLifecycleStateEnum = S.String;
 
 export type ExadbVmClusterPropertiesLicenseModelEnum =
   | "LICENSE_MODEL_UNSPECIFIED"
   | "LICENSE_INCLUDED"
   | "BRING_YOUR_OWN_LICENSE";
-export const ExadbVmClusterPropertiesLicenseModelEnum = /*@__PURE__*/ S.String;
+export const ExadbVmClusterPropertiesLicenseModelEnum = S.String;
 
 export type ExadbVmClusterPropertiesShapeAttributeEnum =
   | "SHAPE_ATTRIBUTE_UNSPECIFIED"
   | "SMART_STORAGE"
   | "BLOCK_STORAGE";
-export const ExadbVmClusterPropertiesShapeAttributeEnum =
-  /*@__PURE__*/ S.String;
+export const ExadbVmClusterPropertiesShapeAttributeEnum = S.String;
 
 /** Data collection options for diagnostics. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/DataCollectionOptions */
 export interface DataCollectionOptionsCommon {
@@ -2379,7 +2353,7 @@ export type ExascaleDbStorageVaultPropertiesAvailableShapeAttributesItemEnum =
   | "SMART_STORAGE"
   | "BLOCK_STORAGE";
 export const ExascaleDbStorageVaultPropertiesAvailableShapeAttributesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ExascaleDbStorageVaultPropertiesAvailableShapeAttributesItemEnumList =
   Array<
@@ -2399,7 +2373,7 @@ export type ExascaleDbStorageVaultPropertiesStateEnum =
   | "TERMINATING"
   | "TERMINATED"
   | "FAILED";
-export const ExascaleDbStorageVaultPropertiesStateEnum = /*@__PURE__*/ S.String;
+export const ExascaleDbStorageVaultPropertiesStateEnum = S.String;
 
 /** The storage details of the ExascaleDbStorageVault. */
 export interface ExascaleDbStorageDetails {
@@ -2422,7 +2396,7 @@ export type ExascaleDbStorageVaultPropertiesAttachedShapeAttributesItemEnum =
   | "SMART_STORAGE"
   | "BLOCK_STORAGE";
 export const ExascaleDbStorageVaultPropertiesAttachedShapeAttributesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ExascaleDbStorageVaultPropertiesAttachedShapeAttributesItemEnumList =
   Array<
@@ -2550,8 +2524,7 @@ export type GoldengateConnectionAssignmentPropertiesStateEnum =
   | "FAILED"
   | "UPDATING"
   | "DELETING";
-export const GoldengateConnectionAssignmentPropertiesStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateConnectionAssignmentPropertiesStateEnum = S.String;
 
 /** The properties of a GoldengateConnectionAssignment. */
 export interface GoldengateConnectionAssignmentProperties {
@@ -2657,7 +2630,7 @@ export type GoldengateDatabricksConnectionPropertiesAuthenticationTypeEnum =
   | "PERSONAL_ACCESS_TOKEN"
   | "OAUTH_M2M";
 export const GoldengateDatabricksConnectionPropertiesAuthenticationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of GoldengateDatabricksConnection. */
 export interface GoldengateDatabricksConnectionProperties {
@@ -2721,8 +2694,7 @@ export type GoldengateDb2ConnectionPropertiesSecurityProtocolEnum =
   | "DB2_SECURITY_PROTOCOL_UNSPECIFIED"
   | "PLAIN"
   | "TLS";
-export const GoldengateDb2ConnectionPropertiesSecurityProtocolEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateDb2ConnectionPropertiesSecurityProtocolEnum = S.String;
 
 /** The properties of GoldengateDb2Connection. */
 export interface GoldengateDb2ConnectionProperties {
@@ -2796,7 +2768,7 @@ export type GoldengateMongodbConnectionPropertiesSecurityProtocolEnum =
   | "TLS"
   | "MTLS";
 export const GoldengateMongodbConnectionPropertiesSecurityProtocolEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of GoldengateMongodbConnection. */
 export interface GoldengateMongodbConnectionProperties {
@@ -2854,15 +2826,14 @@ export type GoldengateConnectionPropertiesLifecycleStateEnum =
   | "DELETING"
   | "DELETED"
   | "FAILED";
-export const GoldengateConnectionPropertiesLifecycleStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateConnectionPropertiesLifecycleStateEnum = S.String;
 
 export type GoldengateMicrosoftSqlserverConnectionPropertiesSecurityProtocolEnum =
   | "MICROSOFT_SQLSERVER_SECURITY_PROTOCOL_UNSPECIFIED"
   | "PLAIN"
   | "TLS";
 export const GoldengateMicrosoftSqlserverConnectionPropertiesSecurityProtocolEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of GoldengateMicrosoftSqlserverConnection. */
 export interface GoldengateMicrosoftSqlserverConnectionProperties {
@@ -2917,7 +2888,7 @@ export type GoldengateJavaMessageServiceConnectionPropertiesAuthenticationTypeEn
   | "NONE"
   | "BASIC";
 export const GoldengateJavaMessageServiceConnectionPropertiesAuthenticationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoldengateJavaMessageServiceConnectionPropertiesSecurityProtocolEnum =
   | "JMS_SECURITY_PROTOCOL_UNSPECIFIED"
@@ -2925,7 +2896,7 @@ export type GoldengateJavaMessageServiceConnectionPropertiesSecurityProtocolEnum
   | "TLS"
   | "MTLS";
 export const GoldengateJavaMessageServiceConnectionPropertiesSecurityProtocolEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of GoldengateJavaMessageServiceConnection. */
 export interface GoldengateJavaMessageServiceConnectionProperties {
@@ -3018,7 +2989,7 @@ export type GoldengateKafkaSchemaRegistryConnectionPropertiesAuthenticationTypeE
   | "BASIC"
   | "MUTUAL";
 export const GoldengateKafkaSchemaRegistryConnectionPropertiesAuthenticationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of GoldengateKafkaSchemaRegistryConnection. */
 export interface GoldengateKafkaSchemaRegistryConnectionProperties {
@@ -3118,8 +3089,7 @@ export type GoldengateKafkaConnectionPropertiesSecurityProtocolEnum =
   | "SASL_SSL"
   | "PLAINTEXT"
   | "SASL_PLAINTEXT";
-export const GoldengateKafkaConnectionPropertiesSecurityProtocolEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateKafkaConnectionPropertiesSecurityProtocolEnum = S.String;
 
 /** Represents a Kafka bootstrap server with host name, optional port defaults to 9092, and an optional private ip. */
 export interface KafkaBootstrapServer {
@@ -3222,8 +3192,7 @@ export type GoldengatePostgresqlConnectionPropertiesSslModeEnum =
   | "REQUIRE"
   | "VERIFY_CA"
   | "VERIFY_FULL";
-export const GoldengatePostgresqlConnectionPropertiesSslModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengatePostgresqlConnectionPropertiesSslModeEnum = S.String;
 
 export type GoldengatePostgresqlConnectionPropertiesSecurityProtocolEnum =
   | "POSTGRESQL_SECURITY_PROTOCOL_UNSPECIFIED"
@@ -3231,7 +3200,7 @@ export type GoldengatePostgresqlConnectionPropertiesSecurityProtocolEnum =
   | "TLS"
   | "MTLS";
 export const GoldengatePostgresqlConnectionPropertiesSecurityProtocolEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of GoldengatePostgresqlConnection. */
 export interface GoldengatePostgresqlConnectionProperties {
@@ -3300,7 +3269,7 @@ export type IcebergCatalogCatalogTypeEnum =
   | "NESSIE"
   | "POLARIS"
   | "REST";
-export const IcebergCatalogCatalogTypeEnum = /*@__PURE__*/ S.String;
+export const IcebergCatalogCatalogTypeEnum = S.String;
 
 /** The Nessie Iceberg catalog. */
 export interface NessieIcebergCatalog {
@@ -3441,13 +3410,13 @@ export type IcebergStorageStorageTypeEnum =
   | "AMAZON_S3"
   | "GOOGLE_CLOUD_STORAGE"
   | "AZURE_DATA_LAKE_STORAGE";
-export const IcebergStorageStorageTypeEnum = /*@__PURE__*/ S.String;
+export const IcebergStorageStorageTypeEnum = S.String;
 
 export type AmazonS3IcebergStorageSchemeTypeEnum =
   | "SCHEME_TYPE_UNSPECIFIED"
   | "S3"
   | "S3A";
-export const AmazonS3IcebergStorageSchemeTypeEnum = /*@__PURE__*/ S.String;
+export const AmazonS3IcebergStorageSchemeTypeEnum = S.String;
 
 /** The Amazon S3 Iceberg storage. */
 export interface AmazonS3IcebergStorage {
@@ -3545,16 +3514,14 @@ export type GoldengateMysqlConnectionPropertiesSslModeEnum =
   | "REQUIRED"
   | "VERIFY_CA"
   | "VERIFY_IDENTITY";
-export const GoldengateMysqlConnectionPropertiesSslModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateMysqlConnectionPropertiesSslModeEnum = S.String;
 
 export type GoldengateMysqlConnectionPropertiesSecurityProtocolEnum =
   | "MYSQL_SECURITY_PROTOCOL_UNSPECIFIED"
   | "PLAIN"
   | "TLS"
   | "MTLS";
-export const GoldengateMysqlConnectionPropertiesSecurityProtocolEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateMysqlConnectionPropertiesSecurityProtocolEnum = S.String;
 
 /** Properties of GoldengateMysqlConnection. */
 export interface GoldengateMysqlConnectionProperties {
@@ -3620,7 +3587,7 @@ export type GoldengateSnowflakeConnectionPropertiesAuthenticationTypeEnum =
   | "BASIC"
   | "KEY_PAIR";
 export const GoldengateSnowflakeConnectionPropertiesAuthenticationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of GoldengateSnowflakeConnection. */
 export interface GoldengateSnowflakeConnectionProperties {
@@ -3666,14 +3633,14 @@ export type GoldengateElasticsearchConnectionPropertiesAuthenticationTypeEnum =
   | "NONE"
   | "BASIC";
 export const GoldengateElasticsearchConnectionPropertiesAuthenticationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoldengateElasticsearchConnectionPropertiesSecurityProtocolEnum =
   | "ELASTICSEARCH_SECURITY_PROTOCOL_UNSPECIFIED"
   | "PLAIN"
   | "TLS";
 export const GoldengateElasticsearchConnectionPropertiesSecurityProtocolEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of GoldengateElasticsearchConnection. */
 export interface GoldengateElasticsearchConnectionProperties {
@@ -3749,15 +3716,13 @@ export type GoldengateConnectionPropertiesConnectionTypeEnum =
   | "GOOGLE_PUBSUB"
   | "MICROSOFT_FABRIC"
   | "ICEBERG";
-export const GoldengateConnectionPropertiesConnectionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateConnectionPropertiesConnectionTypeEnum = S.String;
 
 export type GoldengateConnectionPropertiesRoutingMethodEnum =
   | "GOLDENGATE_CONNECTION_ROUTING_METHOD_UNSPECIFIED"
   | "SHARED_DEPLOYMENT_ENDPOINT"
   | "DEDICATED_ENDPOINT";
-export const GoldengateConnectionPropertiesRoutingMethodEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateConnectionPropertiesRoutingMethodEnum = S.String;
 
 /** The properties of GoldengateGoogleCloudStorageConnectionProperties. */
 export interface GoldengateGoogleCloudStorageConnectionProperties {
@@ -3871,14 +3836,13 @@ export type GoldengateOracleConnectionPropertiesAuthenticationModeEnum =
   | "TLS"
   | "MTLS";
 export const GoldengateOracleConnectionPropertiesAuthenticationModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoldengateOracleConnectionPropertiesSessionModeEnum =
   | "SESSION_MODE_UNSPECIFIED"
   | "DIRECT"
   | "REDIRECT";
-export const GoldengateOracleConnectionPropertiesSessionModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateOracleConnectionPropertiesSessionModeEnum = S.String;
 
 /** The properties of Goldengate Oracle Database Connection. */
 export interface GoldengateOracleConnectionProperties {
@@ -4050,15 +4014,14 @@ export type GoldengateRedisConnectionPropertiesAuthenticationTypeEnum =
   | "NONE"
   | "BASIC";
 export const GoldengateRedisConnectionPropertiesAuthenticationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoldengateRedisConnectionPropertiesSecurityProtocolEnum =
   | "REDIS_SECURITY_PROTOCOL_UNSPECIFIED"
   | "PLAIN"
   | "TLS"
   | "MTLS";
-export const GoldengateRedisConnectionPropertiesSecurityProtocolEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateRedisConnectionPropertiesSecurityProtocolEnum = S.String;
 
 /** The properties of GoldengateRedisConnection. */
 export interface GoldengateRedisConnectionProperties {
@@ -4143,7 +4106,7 @@ export type GoldengateAzureDataLakeStorageConnectionPropertiesAuthenticationType
   | "SHARED_ACCESS_SIGNATURE"
   | "AZURE_ACTIVE_DIRECTORY";
 export const GoldengateAzureDataLakeStorageConnectionPropertiesAuthenticationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of GoldengateAzureDataLakeStorageConnection. */
 export interface GoldengateAzureDataLakeStorageConnectionProperties {
@@ -4467,8 +4430,7 @@ export type GoldengateOggDeploymentCredentialStoreEnum =
   | "CREDENTIAL_STORE_UNSPECIFIED"
   | "GOLDENGATE"
   | "IAM";
-export const GoldengateOggDeploymentCredentialStoreEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateOggDeploymentCredentialStoreEnum = S.String;
 
 /** The group to roles mapping of the GoldengateDeployment. */
 export interface GoldengateGroupToRolesMapping {
@@ -4541,7 +4503,7 @@ export type GoldengateMaintenanceWindowDayEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const GoldengateMaintenanceWindowDayEnum = /*@__PURE__*/ S.String;
+export const GoldengateMaintenanceWindowDayEnum = S.String;
 
 /** The maintenance window of the GoldengateDeployment. */
 export interface GoldengateMaintenanceWindow {
@@ -4590,16 +4552,14 @@ export type GoldengateDeploymentPropertiesLifecycleStateEnum =
   | "CANCELLED"
   | "SUCCEEDED"
   | "WAITING";
-export const GoldengateDeploymentPropertiesLifecycleStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateDeploymentPropertiesLifecycleStateEnum = S.String;
 
 export type DeploymentDiagnosticDataDiagnosticStateEnum =
   | "DIAGNOSTIC_STATE_UNSPECIFIED"
   | "IN_PROGRESS"
   | "SUCCEEDED"
   | "FAILED";
-export const DeploymentDiagnosticDataDiagnosticStateEnum =
-  /*@__PURE__*/ S.String;
+export const DeploymentDiagnosticDataDiagnosticStateEnum = S.String;
 
 /** The deployment diagnostic data. */
 export interface DeploymentDiagnosticData {
@@ -4634,8 +4594,7 @@ export type GoldengateBackupScheduleFrequencyBackupScheduledEnum =
   | "DAILY"
   | "WEEKLY"
   | "MONTHLY";
-export const GoldengateBackupScheduleFrequencyBackupScheduledEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateBackupScheduleFrequencyBackupScheduledEnum = S.String;
 
 /** The backup schedule of the GoldengateDeployment. */
 export interface GoldengateBackupSchedule {
@@ -4673,28 +4632,25 @@ export type GoldengateDeploymentPropertiesNextMaintenanceActionTypeEnum =
   | "NEXT_MAINTENANCE_ACTION_TYPE_UNSPECIFIED"
   | "UPGRADE";
 export const GoldengateDeploymentPropertiesNextMaintenanceActionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoldengateDeploymentPropertiesDeploymentRoleEnum =
   | "GOLDENGATE_DEPLOYMENT_ROLE_TYPE_UNSPECIFIED"
   | "PRIMARY"
   | "STANDBY";
-export const GoldengateDeploymentPropertiesDeploymentRoleEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateDeploymentPropertiesDeploymentRoleEnum = S.String;
 
 export type GoldengateDeploymentPropertiesCategoryEnum =
   | "GOLDENGATE_DEPLOYMENT_CATEGORY_UNSPECIFIED"
   | "DATA_REPLICATION"
   | "DATA_TRANSFORMS";
-export const GoldengateDeploymentPropertiesCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateDeploymentPropertiesCategoryEnum = S.String;
 
 export type GoldengateDeploymentPropertiesLicenseModelEnum =
   | "LICENSE_MODEL_UNSPECIFIED"
   | "LICENSE_INCLUDED"
   | "BRING_YOUR_OWN_LICENSE";
-export const GoldengateDeploymentPropertiesLicenseModelEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateDeploymentPropertiesLicenseModelEnum = S.String;
 
 /** The maintenance configuration of the GoldengateDeployment. */
 export interface GoldengateMaintenanceConfig {
@@ -4731,14 +4687,13 @@ export type GoldengateDeploymentPropertiesLifecycleSubStateEnum =
   | "RESTORING"
   | "BACKING_UP"
   | "ROLLING_BACK";
-export const GoldengateDeploymentPropertiesLifecycleSubStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateDeploymentPropertiesLifecycleSubStateEnum = S.String;
 
 export type GoldengateDeploymentLockTypeEnum =
   | "LOCK_TYPE_UNSPECIFIED"
   | "FULL"
   | "DELETE";
-export const GoldengateDeploymentLockTypeEnum = /*@__PURE__*/ S.String;
+export const GoldengateDeploymentLockTypeEnum = S.String;
 
 /** The lock of the GoldengateDeployment. */
 export interface GoldengateDeploymentLock {
@@ -5017,7 +4972,7 @@ export type OdbNetworkStateEnum =
   | "AVAILABLE"
   | "TERMINATING"
   | "FAILED";
-export const OdbNetworkStateEnum = /*@__PURE__*/ S.String;
+export const OdbNetworkStateEnum = S.String;
 
 /** Represents OdbNetwork resource. */
 export interface OdbNetwork {
@@ -5082,13 +5037,13 @@ export type OdbSubnetStateEnum =
   | "AVAILABLE"
   | "TERMINATING"
   | "FAILED";
-export const OdbSubnetStateEnum = /*@__PURE__*/ S.String;
+export const OdbSubnetStateEnum = S.String;
 
 export type OdbSubnetPurposeEnum =
   | "PURPOSE_UNSPECIFIED"
   | "CLIENT_SUBNET"
   | "BACKUP_SUBNET";
-export const OdbSubnetPurposeEnum = /*@__PURE__*/ S.String;
+export const OdbSubnetPurposeEnum = S.String;
 
 /** Represents OdbSubnet resource. */
 export interface OdbSubnet {
@@ -5450,8 +5405,7 @@ export type GenerateAutonomousDatabaseWalletRequestTypeEnum =
   | "GENERATE_TYPE_UNSPECIFIED"
   | "ALL"
   | "SINGLE";
-export const GenerateAutonomousDatabaseWalletRequestTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GenerateAutonomousDatabaseWalletRequestTypeEnum = S.String;
 
 /** The request for `AutonomousDatabase.GenerateWallet`. */
 export interface GenerateAutonomousDatabaseWalletRequest {
@@ -5824,8 +5778,7 @@ export type PluggableDatabaseNodeLevelDetailsOpenModeEnum =
   | "READ_WRITE"
   | "MOUNTED"
   | "MIGRATE";
-export const PluggableDatabaseNodeLevelDetailsOpenModeEnum =
-  /*@__PURE__*/ S.String;
+export const PluggableDatabaseNodeLevelDetailsOpenModeEnum = S.String;
 
 /** The Pluggable Database Node Level Details. */
 export interface PluggableDatabaseNodeLevelDetails {
@@ -5860,8 +5813,7 @@ export type PluggableDatabasePropertiesOperationsInsightsStateEnum =
   | "NOT_ENABLED"
   | "FAILED_ENABLING"
   | "FAILED_DISABLING";
-export const PluggableDatabasePropertiesOperationsInsightsStateEnum =
-  /*@__PURE__*/ S.String;
+export const PluggableDatabasePropertiesOperationsInsightsStateEnum = S.String;
 
 /** The connection strings used to connect to the Oracle Database. */
 export interface PluggableDatabaseConnectionStrings {
@@ -5897,8 +5849,7 @@ export type PluggableDatabasePropertiesLifecycleStateEnum =
   | "RESTORE_FAILED"
   | "BACKUP_IN_PROGRESS"
   | "DISABLED";
-export const PluggableDatabasePropertiesLifecycleStateEnum =
-  /*@__PURE__*/ S.String;
+export const PluggableDatabasePropertiesLifecycleStateEnum = S.String;
 
 /** Wrapper message for the value of a defined tag. */
 export interface DefinedTagValue {
@@ -6136,16 +6087,14 @@ export type AutonomousDatabaseBackupPropertiesLifecycleStateEnum =
   | "DELETED"
   | "FAILED"
   | "UPDATING";
-export const AutonomousDatabaseBackupPropertiesLifecycleStateEnum =
-  /*@__PURE__*/ S.String;
+export const AutonomousDatabaseBackupPropertiesLifecycleStateEnum = S.String;
 
 export type AutonomousDatabaseBackupPropertiesTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "INCREMENTAL"
   | "FULL"
   | "LONG_TERM";
-export const AutonomousDatabaseBackupPropertiesTypeEnum =
-  /*@__PURE__*/ S.String;
+export const AutonomousDatabaseBackupPropertiesTypeEnum = S.String;
 
 /** Properties of the Autonomous Database Backup resource. */
 export interface AutonomousDatabaseBackupProperties {
@@ -6298,8 +6247,7 @@ export type AutonomousDatabaseCharacterSetCharacterSetTypeEnum =
   | "CHARACTER_SET_TYPE_UNSPECIFIED"
   | "DATABASE"
   | "NATIONAL";
-export const AutonomousDatabaseCharacterSetCharacterSetTypeEnum =
-  /*@__PURE__*/ S.String;
+export const AutonomousDatabaseCharacterSetCharacterSetTypeEnum = S.String;
 
 /** Details of the Autonomous Database character set resource. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabaseCharacterSets/ */
 export interface AutonomousDatabaseCharacterSet {
@@ -6433,7 +6381,7 @@ export type AutonomousDbVersionDbWorkloadEnum =
   | "DW"
   | "AJD"
   | "APEX";
-export const AutonomousDbVersionDbWorkloadEnum = /*@__PURE__*/ S.String;
+export const AutonomousDbVersionDbWorkloadEnum = S.String;
 
 /** Details of the Autonomous Database version. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDbVersionSummary/ */
 export interface AutonomousDbVersion {
@@ -6567,7 +6515,7 @@ export type DbServerPropertiesStateEnum =
   | "UNAVAILABLE"
   | "DELETING"
   | "DELETED";
-export const DbServerPropertiesStateEnum = /*@__PURE__*/ S.String;
+export const DbServerPropertiesStateEnum = S.String;
 
 /** Various properties and settings associated with Exadata database server. */
 export interface DbServerProperties {
@@ -6735,7 +6683,7 @@ export type DbNodePropertiesStateEnum =
   | "TERMINATING"
   | "TERMINATED"
   | "FAILED";
-export const DbNodePropertiesStateEnum = /*@__PURE__*/ S.String;
+export const DbNodePropertiesStateEnum = S.String;
 
 /** Various properties and settings associated with Db node. */
 export interface DbNodeProperties {
@@ -6841,7 +6789,7 @@ export type DatabaseCharacterSetCharacterSetTypeEnum =
   | "CHARACTER_SET_TYPE_UNSPECIFIED"
   | "DATABASE"
   | "NATIONAL";
-export const DatabaseCharacterSetCharacterSetTypeEnum = /*@__PURE__*/ S.String;
+export const DatabaseCharacterSetCharacterSetTypeEnum = S.String;
 
 /** Details of the Database character set resource. */
 export interface DatabaseCharacterSet {
@@ -6960,8 +6908,7 @@ export const ListProjectsLocationsDbSystemInitialStorageSizesRequest =
 export type DbSystemInitialStorageSizePropertiesShapeTypeEnum =
   | "SHAPE_TYPE_UNSPECIFIED"
   | "STANDARD_X86";
-export const DbSystemInitialStorageSizePropertiesShapeTypeEnum =
-  /*@__PURE__*/ S.String;
+export const DbSystemInitialStorageSizePropertiesShapeTypeEnum = S.String;
 
 /** The initial storage size, in gigabytes, that is applicable for virtual machine DBSystem. */
 export interface StorageSizeDetails {
@@ -6989,7 +6936,7 @@ export type DbSystemInitialStorageSizePropertiesStorageManagementEnum =
   | "ASM"
   | "LVM";
 export const DbSystemInitialStorageSizePropertiesStorageManagementEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a DbSystem initial storage size summary. */
 export interface DbSystemInitialStorageSizeProperties {
@@ -7331,7 +7278,7 @@ export type EntitlementStateEnum =
   | "ACTIVE"
   | "ACCOUNT_SUSPENDED"
   | "NOT_APPROVED_IN_PRIVATE_MARKETPLACE";
-export const EntitlementStateEnum = /*@__PURE__*/ S.String;
+export const EntitlementStateEnum = S.String;
 
 /** Details of the OCI Cloud Account. */
 export interface CloudAccountDetails {
@@ -7833,8 +7780,7 @@ export type GoldengateConnectionTypeConnectionTypeEnum =
   | "GOOGLE_PUBSUB"
   | "MICROSOFT_FABRIC"
   | "ICEBERG";
-export const GoldengateConnectionTypeConnectionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateConnectionTypeConnectionTypeEnum = S.String;
 
 /** Details of the Goldengate Connection Type resource. */
 export interface GoldengateConnectionType {
@@ -7909,15 +7855,13 @@ export type GoldengateDeploymentEnvironmentEnvironmentTypeEnum =
   | "DEPLOYMENT_ENVIRONMENT_TYPE_UNSPECIFIED"
   | "PRODUCTION"
   | "DEVELOPMENT_OR_TESTING";
-export const GoldengateDeploymentEnvironmentEnvironmentTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateDeploymentEnvironmentEnvironmentTypeEnum = S.String;
 
 export type GoldengateDeploymentEnvironmentCategoryEnum =
   | "DEPLOYMENT_CATEGORY_UNSPECIFIED"
   | "DATA_REPLICATION_CATEGORY"
   | "DATA_TRANSFORMS_CATEGORY";
-export const GoldengateDeploymentEnvironmentCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateDeploymentEnvironmentCategoryEnum = S.String;
 
 /** Details of the Goldengate Deployment Environment resource. */
 export interface GoldengateDeploymentEnvironment {
@@ -8082,7 +8026,7 @@ export type GoldengateDeploymentTypeCategoryEnum =
   | "DEPLOYMENT_CATEGORY_UNSPECIFIED"
   | "DATA_REPLICATION_CATEGORY"
   | "DATA_TRANSFORMS_CATEGORY";
-export const GoldengateDeploymentTypeCategoryEnum = /*@__PURE__*/ S.String;
+export const GoldengateDeploymentTypeCategoryEnum = S.String;
 
 export type GoldengateDeploymentTypeDeploymentTypeEnum =
   | "DEPLOYMENT_TYPE_UNSPECIFIED"
@@ -8096,8 +8040,7 @@ export type GoldengateDeploymentTypeDeploymentTypeEnum =
   | "DATABASE_DB2I"
   | "GGSA"
   | "DATA_TRANSFORMS";
-export const GoldengateDeploymentTypeDeploymentTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateDeploymentTypeDeploymentTypeEnum = S.String;
 
 /** Details of the Goldengate Deployment Type resource. */
 export interface GoldengateDeploymentType {
@@ -8200,8 +8143,7 @@ export type GoldengateDeploymentVersionPropertiesReleaseTypeEnum =
   | "MAJOR"
   | "BUNDLE"
   | "MINOR";
-export const GoldengateDeploymentVersionPropertiesReleaseTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateDeploymentVersionPropertiesReleaseTypeEnum = S.String;
 
 export type GoldengateDeploymentVersionPropertiesDeploymentTypeEnum =
   | "DEPLOYMENT_TYPE_UNSPECIFIED"
@@ -8215,8 +8157,7 @@ export type GoldengateDeploymentVersionPropertiesDeploymentTypeEnum =
   | "DATABASE_DB2I"
   | "GGSA"
   | "DATA_TRANSFORMS";
-export const GoldengateDeploymentVersionPropertiesDeploymentTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoldengateDeploymentVersionPropertiesDeploymentTypeEnum = S.String;
 
 /** Properties of GoldengateDeploymentVersion. */
 export interface GoldengateDeploymentVersionProperties {
@@ -8845,8 +8786,7 @@ export const SwitchoverProjectsLocationsAutonomousDatabasesRequest =
 export type TestGoldengateConnectionAssignmentRequestTypeEnum =
   | "TEST_TYPE_UNSPECIFIED"
   | "DEFAULT";
-export const TestGoldengateConnectionAssignmentRequestTypeEnum =
-  /*@__PURE__*/ S.String;
+export const TestGoldengateConnectionAssignmentRequestTypeEnum = S.String;
 
 /** Request message for TestGoldengateConnectionAssignment. */
 export interface TestGoldengateConnectionAssignmentRequest {
@@ -8920,7 +8860,7 @@ export type TestGoldengateConnectionAssignmentResponseResultTypeEnum =
   | "FAILED"
   | "TIMED_OUT";
 export const TestGoldengateConnectionAssignmentResponseResultTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The result of the connectivity test performed between the Goldengate deployment and the associated database / service. */
 export interface TestGoldengateConnectionAssignmentResponse {

@@ -88,7 +88,7 @@ export type IntegrationKindEnum =
   | "twilio"
   | "vercel"
   | "youtube-analytics";
-export const IntegrationKindEnum = /*@__PURE__*/ S.String;
+export const IntegrationKindEnum = S.String;
 
 export interface CreateIntegrationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -129,14 +129,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -165,7 +165,7 @@ export const UserBasic = /*@__PURE__*/ S.suspend(() =>
 
 /** * `connected` - connected * `unavailable` - unavailable */
 export type InstallationStatusEnum = "connected" | "unavailable";
-export const InstallationStatusEnum = /*@__PURE__*/ S.String;
+export const InstallationStatusEnum = S.String;
 
 /** Standard Integration serializer. */
 export interface IntegrationConfig {
@@ -1303,7 +1303,7 @@ export const IntegrationsEmailVerifyCreateResponse = /*@__PURE__*/ S.suspend(
 
 /** * `posthog_code` - posthog_code */
 export type ConnectFromEnum = "posthog_code";
-export const ConnectFromEnum = /*@__PURE__*/ S.String;
+export const ConnectFromEnum = S.String;
 
 export interface IntegrationsGithubOauthAuthorizeCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1436,7 +1436,7 @@ export type ListIntegrationsRequestKind =
   | "twilio"
   | "vercel"
   | "youtube-analytics";
-export const ListIntegrationsRequestKind = /*@__PURE__*/ S.String;
+export const ListIntegrationsRequestKind = S.String;
 
 export interface ListIntegrationsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

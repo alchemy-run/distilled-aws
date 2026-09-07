@@ -28,7 +28,7 @@ export type AuthenticationMethod =
   | "Anonymous"
   | "Certificate"
   | "UsernamePassword";
-export const AuthenticationMethod = /*@__PURE__*/ S.String;
+export const AuthenticationMethod = S.String;
 
 /** The credentials for authentication mode UsernamePassword. */
 export interface UsernamePasswordCredentials {
@@ -161,7 +161,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -169,7 +169,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -250,7 +250,7 @@ export type ProvisioningState =
   | "Canceled"
   | "Accepted"
   | "Deleting";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Defines the Asset Endpoint Profile properties. */
 export interface AssetEndpointProfileProperties {
@@ -347,7 +347,7 @@ export const AssetPropertiesInputDiscoveredAssetRefsList =
 
 /** When set to 'Keep', messages published to an MQTT broker will have the retain flag set. Default: 'Never'. */
 export type TopicRetain = "Keep" | "Never";
-export const TopicRetain = /*@__PURE__*/ S.String;
+export const TopicRetain = S.String;
 
 /** Object that describes the topic information. */
 export interface Topic {
@@ -370,7 +370,7 @@ export type DataPointObservabilityMode =
   | "Gauge"
   | "Histogram"
   | "Log";
-export const DataPointObservabilityMode = /*@__PURE__*/ S.String;
+export const DataPointObservabilityMode = S.String;
 
 /** Defines the data point properties. */
 export interface DataPoint {
@@ -426,7 +426,7 @@ export const AssetPropertiesInputDatasetsList = /*@__PURE__*/ S.Array(
 
 /** An indication of how the event should be mapped to OpenTelemetry. */
 export type EventObservabilityMode = "None" | "Log";
-export const EventObservabilityMode = /*@__PURE__*/ S.String;
+export const EventObservabilityMode = S.String;
 
 /** Defines the event properties. */
 export interface Event {
@@ -1218,7 +1218,7 @@ export type ManagementActionExecutionStatus =
   | "Failed"
   | "Canceled"
   | "InProgress";
-export const ManagementActionExecutionStatus = /*@__PURE__*/ S.String;
+export const ManagementActionExecutionStatus = S.String;
 
 /** Defines the error details properties. */
 export interface ErrorDetails {
@@ -1622,7 +1622,7 @@ export const NamespaceProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of managed service identity (either system assigned, or none). */
 export type SystemAssignedServiceIdentityType = "None" | "SystemAssigned";
-export const SystemAssignedServiceIdentityType = /*@__PURE__*/ S.String;
+export const SystemAssignedServiceIdentityType = S.String;
 
 /** Managed service identity (either system assigned, or none) */
 export interface GetNamespaceResponseIdentity {
@@ -1750,7 +1750,7 @@ export const NamespaceAssetPropertiesDiscoveredAssetRefsList =
 
 /** The set of supported dataset destinations for an asset. */
 export type DatasetDestinationTarget = "Mqtt" | "BrokerStateStore" | "Storage";
-export const DatasetDestinationTarget = /*@__PURE__*/ S.String;
+export const DatasetDestinationTarget = S.String;
 
 /** The type of the destination. */
 export interface DatasetDestination {
@@ -1775,7 +1775,7 @@ export const NamespaceAssetPropertiesDefaultDatasetsDestinationsList =
 
 /** The set of supported event destinations for an asset. */
 export type EventDestinationTarget = "Mqtt" | "Storage";
-export const EventDestinationTarget = /*@__PURE__*/ S.String;
+export const EventDestinationTarget = S.String;
 
 /** The type of the destination. */
 export interface EventDestination {
@@ -1800,7 +1800,7 @@ export const NamespaceAssetPropertiesDefaultEventsDestinationsList =
 
 /** The set of supported stream destinations for an asset. */
 export type StreamDestinationTarget = "Mqtt" | "Storage";
-export const StreamDestinationTarget = /*@__PURE__*/ S.String;
+export const StreamDestinationTarget = S.String;
 
 /** The type of the destination. */
 export interface StreamDestination {
@@ -2004,7 +2004,7 @@ export const NamespaceAssetPropertiesStreamsList = /*@__PURE__*/ S.Array(
 
 /** The type of the action. */
 export type ManagementActionActionType = "Call" | "Read" | "Write";
-export const ManagementActionActionType = /*@__PURE__*/ S.String;
+export const ManagementActionActionType = S.String;
 
 /** Defines the action properties. */
 export interface ManagementAction {
@@ -2282,7 +2282,7 @@ export const NamespaceAssetStatusManagementGroupsList = /*@__PURE__*/ S.Array(
 
 /** Defines the health state of the resource. */
 export type HealthStatus = "Unknown" | "Available" | "Degraded" | "Unavailable";
-export const HealthStatus = /*@__PURE__*/ S.String;
+export const HealthStatus = S.String;
 
 /** Represents the health state of a resource. */
 export interface HealthState {
@@ -2524,7 +2524,7 @@ export type HostAuthenticationMethod =
   | "Anonymous"
   | "Certificate"
   | "UsernamePassword";
-export const HostAuthenticationMethod = /*@__PURE__*/ S.String;
+export const HostAuthenticationMethod = S.String;
 
 /** The x509 certificate for authentication mode Certificate. */
 export interface X509CertificateCredentials {
@@ -3116,8 +3116,7 @@ export type NamespaceDiscoveredManagementActionActionType =
   | "Call"
   | "Read"
   | "Write";
-export const NamespaceDiscoveredManagementActionActionType =
-  /*@__PURE__*/ S.String;
+export const NamespaceDiscoveredManagementActionActionType = S.String;
 
 /** Defines the action properties. */
 export interface NamespaceDiscoveredManagementAction {
@@ -3383,7 +3382,7 @@ export type AuthenticationMethod2 =
   | "Anonymous"
   | "Certificate"
   | "UsernamePassword";
-export const AuthenticationMethod2 = /*@__PURE__*/ S.String;
+export const AuthenticationMethod2 = S.String;
 
 /** List of supported authentication methods supported by device for Inbound connections. */
 export type DiscoveredInboundEndpointsSupportedAuthenticationMethodsList =
@@ -3746,11 +3745,11 @@ export const GetSchemaRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Defines the schema format. */
 export type Format = "JsonSchema/draft-07" | "Delta/1.0";
-export const Format = /*@__PURE__*/ S.String;
+export const Format = S.String;
 
 /** Defines the schema type. */
 export type SchemaType = "MessageSchema";
-export const SchemaType = /*@__PURE__*/ S.String;
+export const SchemaType = S.String;
 
 /** Schema tags. */
 export type SchemaPropertiesTagsMap = { [key: string]: string | undefined };
@@ -4781,11 +4780,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -5084,7 +5083,7 @@ export const SchemaVersionListResult = /*@__PURE__*/ S.suspend(() =>
 
 /** Scope of the migrate resources operation. */
 export type Scope = "Resources";
-export const Scope = /*@__PURE__*/ S.String;
+export const Scope = S.String;
 
 /** List of asset resources to be migrated. */
 export type MigrateNamespaceRequestResourceIdsList = Array<string>;
@@ -5125,7 +5124,7 @@ export const MigrateNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Result Type of Migrate Operation. */
 export type MigrateResultType = "Succeeded" | "Failed";
-export const MigrateResultType = /*@__PURE__*/ S.String;
+export const MigrateResultType = S.String;
 
 /** Result of Migrate operation of asset resource into Namespace resource. */
 export interface MigrateResult {
@@ -6435,7 +6434,7 @@ export const AssetUpdatePropertiesAttributesMap = /*@__PURE__*/ S.Record(
 
 /** When set to 'Keep', messages published to an MQTT broker will have the retain flag set. Default: 'Never'. */
 export type TopicUpdateRetain = "Keep" | "Never";
-export const TopicUpdateRetain = /*@__PURE__*/ S.String;
+export const TopicUpdateRetain = S.String;
 
 /** Object that describes the topic information. */
 export interface TopicUpdate {
@@ -6609,7 +6608,7 @@ export type AuthenticationUpdateMethod =
   | "Anonymous"
   | "Certificate"
   | "UsernamePassword";
-export const AuthenticationUpdateMethod = /*@__PURE__*/ S.String;
+export const AuthenticationUpdateMethod = S.String;
 
 /** The credentials for authentication mode UsernamePassword. */
 export interface UsernamePasswordCredentialsUpdate {
@@ -7113,7 +7112,7 @@ export type HostAuthenticationUpdateMethod =
   | "Anonymous"
   | "Certificate"
   | "UsernamePassword";
-export const HostAuthenticationUpdateMethod = /*@__PURE__*/ S.String;
+export const HostAuthenticationUpdateMethod = S.String;
 
 /** The x509 certificate for authentication mode Certificate. */
 export interface X509CertificateCredentialsUpdate {

@@ -140,7 +140,7 @@ export const CohortsRemovePersonFromStaticCohortPartialUpdateResponse =
   }) as any as S.Schema<CohortsRemovePersonFromStaticCohortPartialUpdateResponse>;
 
 export type PropertyGroupOperatorEnum = "AND" | "OR";
-export const PropertyGroupOperatorEnum = /*@__PURE__*/ S.String;
+export const PropertyGroupOperatorEnum = S.String;
 
 export type BehavioralFilterBytecodeList = Array<unknown>;
 export const BehavioralFilterBytecodeList = /*@__PURE__*/ S.Array(
@@ -149,14 +149,14 @@ export const BehavioralFilterBytecodeList = /*@__PURE__*/ S.Array(
 
 export type BehavioralFilterKey = string | number;
 export const BehavioralFilterKey =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BehavioralFilterKey>;
+  S.Unknown as any as S.Schema<BehavioralFilterKey>;
 
 export type BehavioralFilterSeqEvent = string | number;
 export const BehavioralFilterSeqEvent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BehavioralFilterSeqEvent>;
+  S.Unknown as any as S.Schema<BehavioralFilterSeqEvent>;
 
 export type EventPropFilterTypeEnum = "event" | "element";
-export const EventPropFilterTypeEnum = /*@__PURE__*/ S.String;
+export const EventPropFilterTypeEnum = S.String;
 
 export interface EventPropFilter {
   type?: EventPropFilterTypeEnum | (string & {});
@@ -190,7 +190,7 @@ export const HogQLFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type BehavioralFilterEventFiltersItem = EventPropFilter | HogQLFilter;
 export const BehavioralFilterEventFiltersItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BehavioralFilterEventFiltersItem>;
+  S.Unknown as any as S.Schema<BehavioralFilterEventFiltersItem>;
 
 export type BehavioralFilterEventFiltersList =
   Array<BehavioralFilterEventFiltersItem>;
@@ -341,7 +341,7 @@ export type CohortFilterGroupValuesItem =
   | PersonMetadataFilter
   | CohortFilterGroup;
 export const CohortFilterGroupValuesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CohortFilterGroupValuesItem>;
+  S.Unknown as any as S.Schema<CohortFilterGroupValuesItem>;
 
 export type CohortFilterGroupValuesList = Array<CohortFilterGroupValuesItem>;
 export const CohortFilterGroupValuesList = /*@__PURE__*/ S.Array(
@@ -380,15 +380,15 @@ export type CohortTypeEnum =
   | "behavioral"
   | "realtime"
   | "analytical";
-export const CohortTypeEnum = /*@__PURE__*/ S.String;
+export const CohortTypeEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 /** Type of cohort based on filter complexity * `static` - static * `person_property` - person_property * `behavioral` - behavioral * `realtime` - realtime * `analytical` - analytical */
 export type CreateCohortRequestCohortType = CohortTypeEnum | BlankEnum;
 export const CreateCohortRequestCohortType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCohortRequestCohortType>;
+  S.Unknown as any as S.Schema<CreateCohortRequestCohortType>;
 
 export type CreateCohortRequestCreateStaticPersonIdsList = Array<string>;
 export const CreateCohortRequestCreateStaticPersonIdsList =
@@ -454,11 +454,11 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -488,7 +488,7 @@ export const UserBasic = /*@__PURE__*/ S.suspend(() =>
 /** Type of cohort based on filter complexity * `static` - static * `person_property` - person_property * `behavioral` - behavioral * `realtime` - realtime * `analytical` - analytical */
 export type CohortOutputCohortType = CohortTypeEnum | BlankEnum;
 export const CohortOutputCohortType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CohortOutputCohortType>;
+  S.Unknown as any as S.Schema<CohortOutputCohortType>;
 
 export interface CohortConditionTypeFlags {
   /** The filters include a person property or person_metadata condition. */
@@ -517,7 +517,7 @@ export const CohortOutputExperimentSetList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CohortOutputExperimentSetList>;
 
 export type SearchMatchTypeEnum = "exact" | "similar";
-export const SearchMatchTypeEnum = /*@__PURE__*/ S.String;
+export const SearchMatchTypeEnum = S.String;
 
 export interface CohortOutput {
   id?: number;
@@ -682,7 +682,7 @@ export const GetCohortsCalculationHistoryResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetCohortsCalculationHistoryResponse>;
 
 export type GetCohortsPersonRequestFormat = "csv" | "json";
-export const GetCohortsPersonRequestFormat = /*@__PURE__*/ S.String;
+export const GetCohortsPersonRequestFormat = S.String;
 
 export interface GetCohortsPersonRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -715,7 +715,7 @@ export const GetCohortsPersonRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `person` - person */
 export type CohortPersonResultTypeEnum = "person";
-export const CohortPersonResultTypeEnum = /*@__PURE__*/ S.String;
+export const CohortPersonResultTypeEnum = S.String;
 
 export type CohortPersonResultDistinctIdsList = Array<string>;
 export const CohortPersonResultDistinctIdsList = /*@__PURE__*/ S.Array(
@@ -1016,7 +1016,7 @@ export const PaginatedCohortListOutput = /*@__PURE__*/ S.suspend(() =>
 /** Type of cohort based on filter complexity * `static` - static * `person_property` - person_property * `behavioral` - behavioral * `realtime` - realtime * `analytical` - analytical */
 export type UpdateCohortRequestCohortType = CohortTypeEnum | BlankEnum;
 export const UpdateCohortRequestCohortType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCohortRequestCohortType>;
+  S.Unknown as any as S.Schema<UpdateCohortRequestCohortType>;
 
 export type UpdateCohortRequestCreateStaticPersonIdsList = Array<string>;
 export const UpdateCohortRequestCreateStaticPersonIdsList =
@@ -1071,7 +1071,7 @@ export const UpdateCohortRequest = /*@__PURE__*/ S.suspend(() =>
 /** Type of cohort based on filter complexity * `static` - static * `person_property` - person_property * `behavioral` - behavioral * `realtime` - realtime * `analytical` - analytical */
 export type UpdateCohortsPartialRequestCohortType = CohortTypeEnum | BlankEnum;
 export const UpdateCohortsPartialRequestCohortType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCohortsPartialRequestCohortType>;
+  S.Unknown as any as S.Schema<UpdateCohortsPartialRequestCohortType>;
 
 export type UpdateCohortsPartialRequestCreateStaticPersonIdsList =
   Array<string>;

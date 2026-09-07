@@ -55,7 +55,7 @@ export const CreateNamespaceDebugRecallResponseGroundTruthItemQueryVectorList =
 
 /** An identifier for a document. */
 export type Id = string | number;
-export const Id = /*@__PURE__*/ S.Unknown as any as S.Schema<Id>;
+export const Id = S.Unknown as any as S.Schema<Id>;
 
 /** A dense vector encoded as an array of floats. */
 export type VectorCase0List = Array<number>;
@@ -65,7 +65,7 @@ export const VectorCase0List = /*@__PURE__*/ S.Array(
 
 /** A vector embedding associated with a document. */
 export type Vector = VectorCase0List | string;
-export const Vector = /*@__PURE__*/ S.Unknown as any as S.Schema<Vector>;
+export const Vector = S.Unknown as any as S.Schema<Vector>;
 
 /** A single document, in a row-based format. */
 export interface Row {
@@ -157,7 +157,7 @@ export const IncludeAttributesCase1List = /*@__PURE__*/ S.Array(
 /** Whether to include attributes in the response. */
 export type IncludeAttributes = boolean | IncludeAttributesCase1List;
 export const IncludeAttributes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IncludeAttributes>;
+  S.Unknown as any as S.Schema<IncludeAttributes>;
 
 /** List of attribute names to exclude from the response. All other attributes will be included in the response. */
 export type CreateNamespaceExplainQueryRequestExcludeAttributesList =
@@ -230,7 +230,7 @@ export const Limit = /*@__PURE__*/ S.suspend(() =>
 
 export type CreateNamespaceExplainQueryRequestLimit = number | Limit;
 export const CreateNamespaceExplainQueryRequestLimit =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateNamespaceExplainQueryRequestLimit>;
+  S.Unknown as any as S.Schema<CreateNamespaceExplainQueryRequestLimit>;
 
 export interface CreateNamespaceExplainQueryRequest {
   /** The name of the namespace. */
@@ -338,7 +338,7 @@ export const CreateNamespaceQueryRequestComputeAttributesMap =
 
 export type CreateNamespaceQueryRequestLimit = number | Limit;
 export const CreateNamespaceQueryRequestLimit =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateNamespaceQueryRequestLimit>;
+  S.Unknown as any as S.Schema<CreateNamespaceQueryRequestLimit>;
 
 export interface CreateNamespaceQueryRequest {
   /** The name of the namespace. */
@@ -518,8 +518,7 @@ export const QueryComputeAttributesMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<QueryComputeAttributesMap>;
 
 export type QueryLimit = number | Limit;
-export const QueryLimit =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryLimit>;
+export const QueryLimit = S.Unknown as any as S.Schema<QueryLimit>;
 
 /** Query, filter, full-text search and vector search documents. */
 export interface Query {
@@ -573,8 +572,7 @@ export const RerankLimitCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RerankLimitCase1>;
 
 export type RerankLimit = number | RerankLimitCase1;
-export const RerankLimit =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RerankLimit>;
+export const RerankLimit = S.Unknown as any as S.Schema<RerankLimit>;
 
 export interface CreateNamespaceQueryRequest2 {
   /** The name of the namespace. */
@@ -698,8 +696,7 @@ export const FullTextSearchConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether this attribute can be used as part of a BM25 full-text search. Requires the `string` or `[]string` type, and by default, BM25-enabled attributes are not filterable. You can override this by setting `filterable: true`. */
 export type FullTextSearch = boolean | FullTextSearchConfig;
-export const FullTextSearch =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FullTextSearch>;
+export const FullTextSearch = S.Unknown as any as S.Schema<FullTextSearch>;
 
 /** Configuration options for ANN (Approximate Nearest Neighbor) indexing. */
 export interface AnnConfig {
@@ -716,7 +713,7 @@ export const AnnConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether to create an approximate nearest neighbor index for the attribute. Can be a boolean or a detailed configuration object. */
 export type Ann = boolean | AnnConfig;
-export const Ann = /*@__PURE__*/ S.Unknown as any as S.Schema<Ann>;
+export const Ann = S.Unknown as any as S.Schema<Ann>;
 
 /** Whether to create a sparse kNN index for the attribute. Requires the `{}f16` type. */
 export interface SparseKnn {
@@ -749,8 +746,7 @@ export const AttributeEmbedConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether to automatically embed this string attribute into a vector attribute. Can be a model name, a detailed configuration object, or `null` to remove an existing embedding configuration. */
 export type AttributeEmbed = string | AttributeEmbedConfig;
-export const AttributeEmbed =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AttributeEmbed>;
+export const AttributeEmbed = S.Unknown as any as S.Schema<AttributeEmbed>;
 
 /** Detailed configuration for an attribute attached to a document. */
 export interface AttributeSchemaConfig {
@@ -786,8 +782,7 @@ export const AttributeSchemaConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** The schema for an attribute attached to a document. */
 export type AttributeSchema = string | AttributeSchemaConfig;
-export const AttributeSchema =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AttributeSchema>;
+export const AttributeSchema = S.Unknown as any as S.Schema<AttributeSchema>;
 
 /** The desired schema for the namespace. */
 export type CreateNamespaceSchemaRequestBodyMap = {
@@ -949,8 +944,7 @@ export const EncryptionCase1 = /*@__PURE__*/ S.suspend(() =>
 
 /** The encryption configuration for a namespace. */
 export type Encryption = EncryptionCase0 | EncryptionCase1;
-export const Encryption =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Encryption>;
+export const Encryption = S.Unknown as any as S.Schema<Encryption>;
 
 export interface NamespaceMetadataIndexCase0 {
   status: unknown;
@@ -981,7 +975,7 @@ export type NamespaceMetadataIndex =
   | NamespaceMetadataIndexCase0
   | NamespaceMetadataIndexCase1;
 export const NamespaceMetadataIndex =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NamespaceMetadataIndex>;
+  S.Unknown as any as S.Schema<NamespaceMetadataIndex>;
 
 /** Operational status for a pinned namespace. */
 export interface PinningStatus {
@@ -1158,8 +1152,7 @@ export const ColumnsVectorCase0List = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ColumnsVectorCase0List>;
 
 export type ColumnsVector = ColumnsVectorCase0List | Vector;
-export const ColumnsVector =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ColumnsVector>;
+export const ColumnsVector = S.Unknown as any as S.Schema<ColumnsVector>;
 
 /** A list of documents in columnar format. Each key is a column name, mapped to an array of values for that column. */
 export interface Columns {
@@ -1212,7 +1205,7 @@ export const BranchFromNamespaceConfig = /*@__PURE__*/ S.suspend(() =>
 
 export type BranchFromNamespaceParams = string | BranchFromNamespaceConfig;
 export const BranchFromNamespaceParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BranchFromNamespaceParams>;
+  S.Unknown as any as S.Schema<BranchFromNamespaceParams>;
 
 export interface CopyFromNamespaceConfig {
   /** The namespace to copy documents from. */
@@ -1234,7 +1227,7 @@ export const CopyFromNamespaceConfig = /*@__PURE__*/ S.suspend(() =>
 
 export type CopyFromNamespaceParams = string | CopyFromNamespaceConfig;
 export const CopyFromNamespaceParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CopyFromNamespaceParams>;
+  S.Unknown as any as S.Schema<CopyFromNamespaceParams>;
 
 export type PatchByFilterPatchMap = { [key: string]: unknown | undefined };
 export const PatchByFilterPatchMap = /*@__PURE__*/ S.Record(
@@ -1461,7 +1454,7 @@ export const PinningConfig = /*@__PURE__*/ S.suspend(() =>
 /** Configuration for namespace pinning. - Missing field: no change to pinning configuration - `null` or `false`: explicitly remove pinning - `true`: enable pinning with default configuration - Object: set pinning configuration */
 export type UpdateNamespaceMetadataRequestPinning = boolean | PinningConfig;
 export const UpdateNamespaceMetadataRequestPinning =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateNamespaceMetadataRequestPinning>;
+  S.Unknown as any as S.Schema<UpdateNamespaceMetadataRequestPinning>;
 
 export interface UpdateNamespaceMetadataRequest {
   /** The name of the namespace. */

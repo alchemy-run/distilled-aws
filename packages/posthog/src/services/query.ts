@@ -41,7 +41,7 @@ export class NotFound
 
 export type BreakdownFilterBreakdownCase1Item = string | number;
 export const BreakdownFilterBreakdownCase1Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BreakdownFilterBreakdownCase1Item>;
+  S.Unknown as any as S.Schema<BreakdownFilterBreakdownCase1Item>;
 
 export type BreakdownFilterBreakdownCase1List =
   Array<BreakdownFilterBreakdownCase1Item>;
@@ -54,7 +54,7 @@ export type BreakdownFilterBreakdown =
   | BreakdownFilterBreakdownCase1List
   | number;
 export const BreakdownFilterBreakdown =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BreakdownFilterBreakdown>;
+  S.Unknown as any as S.Schema<BreakdownFilterBreakdown>;
 
 export type BreakdownType =
   | "cohort"
@@ -67,11 +67,11 @@ export type BreakdownType =
   | "data_warehouse"
   | "data_warehouse_person_property"
   | "revenue_analytics";
-export const BreakdownType = /*@__PURE__*/ S.String;
+export const BreakdownType = S.String;
 
 export type BreakdownProperty = string | number;
 export const BreakdownProperty =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BreakdownProperty>;
+  S.Unknown as any as S.Schema<BreakdownProperty>;
 
 export type MultipleBreakdownType =
   | "person"
@@ -84,7 +84,7 @@ export type MultipleBreakdownType =
   | "revenue_analytics"
   | "data_warehouse"
   | "data_warehouse_person_property";
-export const MultipleBreakdownType = /*@__PURE__*/ S.String;
+export const MultipleBreakdownType = S.String;
 
 export interface Breakdown {
   group_type_index?: number | null;
@@ -144,7 +144,7 @@ export type IntervalType =
   | "month"
   | "quarter"
   | "year";
-export const IntervalType = /*@__PURE__*/ S.String;
+export const IntervalType = S.String;
 
 export type PropertyOperator =
   | "exact"
@@ -185,11 +185,11 @@ export type PropertyOperator =
   | "semver_wildcard"
   | "icontains_multi"
   | "not_icontains_multi";
-export const PropertyOperator = /*@__PURE__*/ S.String;
+export const PropertyOperator = S.String;
 
 export type EventPropertyFilterValueCase0Item = string | number | boolean;
 export const EventPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<EventPropertyFilterValueCase0Item>;
 
 export type EventPropertyFilterValueCase0List =
   Array<EventPropertyFilterValueCase0Item>;
@@ -203,7 +203,7 @@ export type EventPropertyFilterValue =
   | number
   | boolean;
 export const EventPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventPropertyFilterValue>;
+  S.Unknown as any as S.Schema<EventPropertyFilterValue>;
 
 export interface EventPropertyFilter {
   key?: string;
@@ -227,7 +227,7 @@ export const EventPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type PersonPropertyFilterValueCase0Item = string | number | boolean;
 export const PersonPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<PersonPropertyFilterValueCase0Item>;
 
 export type PersonPropertyFilterValueCase0List =
   Array<PersonPropertyFilterValueCase0Item>;
@@ -241,7 +241,7 @@ export type PersonPropertyFilterValue =
   | number
   | boolean;
 export const PersonPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonPropertyFilterValue>;
+  S.Unknown as any as S.Schema<PersonPropertyFilterValue>;
 
 export interface PersonPropertyFilter {
   key?: string;
@@ -268,7 +268,7 @@ export type PersonMetadataPropertyFilterValueCase0Item =
   | number
   | boolean;
 export const PersonMetadataPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonMetadataPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<PersonMetadataPropertyFilterValueCase0Item>;
 
 export type PersonMetadataPropertyFilterValueCase0List =
   Array<PersonMetadataPropertyFilterValueCase0Item>;
@@ -282,7 +282,7 @@ export type PersonMetadataPropertyFilterValue =
   | number
   | boolean;
 export const PersonMetadataPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonMetadataPropertyFilterValue>;
+  S.Unknown as any as S.Schema<PersonMetadataPropertyFilterValue>;
 
 export interface PersonMetadataPropertyFilter {
   key: string;
@@ -305,11 +305,11 @@ export const PersonMetadataPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PersonMetadataPropertyFilter>;
 
 export type Key10 = "tag_name" | "text" | "href" | "selector";
-export const Key10 = /*@__PURE__*/ S.String;
+export const Key10 = S.String;
 
 export type ElementPropertyFilterValueCase0Item = string | number | boolean;
 export const ElementPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ElementPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<ElementPropertyFilterValueCase0Item>;
 
 export type ElementPropertyFilterValueCase0List =
   Array<ElementPropertyFilterValueCase0Item>;
@@ -323,7 +323,7 @@ export type ElementPropertyFilterValue =
   | number
   | boolean;
 export const ElementPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ElementPropertyFilterValue>;
+  S.Unknown as any as S.Schema<ElementPropertyFilterValue>;
 
 export interface ElementPropertyFilter {
   key?: Key10 | (string & {});
@@ -349,7 +349,7 @@ export type EventMetadataPropertyFilterValueCase0Item =
   | number
   | boolean;
 export const EventMetadataPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventMetadataPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<EventMetadataPropertyFilterValueCase0Item>;
 
 export type EventMetadataPropertyFilterValueCase0List =
   Array<EventMetadataPropertyFilterValueCase0Item>;
@@ -363,7 +363,7 @@ export type EventMetadataPropertyFilterValue =
   | number
   | boolean;
 export const EventMetadataPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventMetadataPropertyFilterValue>;
+  S.Unknown as any as S.Schema<EventMetadataPropertyFilterValue>;
 
 export interface EventMetadataPropertyFilter {
   key?: string;
@@ -386,7 +386,7 @@ export const EventMetadataPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type SessionPropertyFilterValueCase0Item = string | number | boolean;
 export const SessionPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<SessionPropertyFilterValueCase0Item>;
 
 export type SessionPropertyFilterValueCase0List =
   Array<SessionPropertyFilterValueCase0Item>;
@@ -400,7 +400,7 @@ export type SessionPropertyFilterValue =
   | number
   | boolean;
 export const SessionPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionPropertyFilterValue>;
+  S.Unknown as any as S.Schema<SessionPropertyFilterValue>;
 
 export interface SessionPropertyFilter {
   key?: string;
@@ -443,15 +443,15 @@ export const CohortPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CohortPropertyFilter>;
 
 export type DurationType = "duration" | "active_seconds" | "inactive_seconds";
-export const DurationType = /*@__PURE__*/ S.String;
+export const DurationType = S.String;
 
 export type RecordingPropertyFilterKey = DurationType | string;
 export const RecordingPropertyFilterKey =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RecordingPropertyFilterKey>;
+  S.Unknown as any as S.Schema<RecordingPropertyFilterKey>;
 
 export type RecordingPropertyFilterValueCase0Item = string | number | boolean;
 export const RecordingPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RecordingPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<RecordingPropertyFilterValueCase0Item>;
 
 export type RecordingPropertyFilterValueCase0List =
   Array<RecordingPropertyFilterValueCase0Item>;
@@ -465,7 +465,7 @@ export type RecordingPropertyFilterValue =
   | number
   | boolean;
 export const RecordingPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RecordingPropertyFilterValue>;
+  S.Unknown as any as S.Schema<RecordingPropertyFilterValue>;
 
 export interface RecordingPropertyFilter {
   key?: RecordingPropertyFilterKey;
@@ -488,7 +488,7 @@ export const RecordingPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type LogEntryPropertyFilterValueCase0Item = string | number | boolean;
 export const LogEntryPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogEntryPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<LogEntryPropertyFilterValueCase0Item>;
 
 export type LogEntryPropertyFilterValueCase0List =
   Array<LogEntryPropertyFilterValueCase0Item>;
@@ -502,7 +502,7 @@ export type LogEntryPropertyFilterValue =
   | number
   | boolean;
 export const LogEntryPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogEntryPropertyFilterValue>;
+  S.Unknown as any as S.Schema<LogEntryPropertyFilterValue>;
 
 export interface LogEntryPropertyFilter {
   key?: string;
@@ -533,7 +533,7 @@ export const GroupPropertyFilterGroupKeyNamesMap = /*@__PURE__*/ S.Record(
 
 export type GroupPropertyFilterValueCase0Item = string | number | boolean;
 export const GroupPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GroupPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<GroupPropertyFilterValueCase0Item>;
 
 export type GroupPropertyFilterValueCase0List =
   Array<GroupPropertyFilterValueCase0Item>;
@@ -547,7 +547,7 @@ export type GroupPropertyFilterValue =
   | number
   | boolean;
 export const GroupPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GroupPropertyFilterValue>;
+  S.Unknown as any as S.Schema<GroupPropertyFilterValue>;
 
 export interface GroupPropertyFilter {
   group_key_names?: GroupPropertyFilterGroupKeyNamesMap | null;
@@ -574,7 +574,7 @@ export const GroupPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type FeaturePropertyFilterValueCase0Item = string | number | boolean;
 export const FeaturePropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeaturePropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<FeaturePropertyFilterValueCase0Item>;
 
 export type FeaturePropertyFilterValueCase0List =
   Array<FeaturePropertyFilterValueCase0Item>;
@@ -588,7 +588,7 @@ export type FeaturePropertyFilterValue =
   | number
   | boolean;
 export const FeaturePropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeaturePropertyFilterValue>;
+  S.Unknown as any as S.Schema<FeaturePropertyFilterValue>;
 
 export interface FeaturePropertyFilter {
   key?: string;
@@ -613,7 +613,7 @@ export const FeaturePropertyFilter = /*@__PURE__*/ S.suspend(() =>
 /** The value can be true, false, or a variant name */
 export type FlagPropertyFilterValue = boolean | string;
 export const FlagPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlagPropertyFilterValue>;
+  S.Unknown as any as S.Schema<FlagPropertyFilterValue>;
 
 export interface FlagPropertyFilter {
   /** The key should be the flag ID */
@@ -640,7 +640,7 @@ export const FlagPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type HogQLPropertyFilterValueCase0Item = string | number | boolean;
 export const HogQLPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<HogQLPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<HogQLPropertyFilterValueCase0Item>;
 
 export type HogQLPropertyFilterValueCase0List =
   Array<HogQLPropertyFilterValueCase0Item>;
@@ -654,7 +654,7 @@ export type HogQLPropertyFilterValue =
   | number
   | boolean;
 export const HogQLPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<HogQLPropertyFilterValue>;
+  S.Unknown as any as S.Schema<HogQLPropertyFilterValue>;
 
 export interface HogQLPropertyFilter {
   key?: string;
@@ -689,7 +689,7 @@ export type DataWarehousePropertyFilterValueCase0Item =
   | number
   | boolean;
 export const DataWarehousePropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataWarehousePropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<DataWarehousePropertyFilterValueCase0Item>;
 
 export type DataWarehousePropertyFilterValueCase0List =
   Array<DataWarehousePropertyFilterValueCase0Item>;
@@ -703,7 +703,7 @@ export type DataWarehousePropertyFilterValue =
   | number
   | boolean;
 export const DataWarehousePropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataWarehousePropertyFilterValue>;
+  S.Unknown as any as S.Schema<DataWarehousePropertyFilterValue>;
 
 export interface DataWarehousePropertyFilter {
   key?: string;
@@ -729,7 +729,7 @@ export type DataWarehousePersonPropertyFilterValueCase0Item =
   | number
   | boolean;
 export const DataWarehousePersonPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataWarehousePersonPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<DataWarehousePersonPropertyFilterValueCase0Item>;
 
 export type DataWarehousePersonPropertyFilterValueCase0List =
   Array<DataWarehousePersonPropertyFilterValueCase0Item>;
@@ -744,7 +744,7 @@ export type DataWarehousePersonPropertyFilterValue =
   | number
   | boolean;
 export const DataWarehousePersonPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataWarehousePersonPropertyFilterValue>;
+  S.Unknown as any as S.Schema<DataWarehousePersonPropertyFilterValue>;
 
 export interface DataWarehousePersonPropertyFilter {
   key?: string;
@@ -767,7 +767,7 @@ export const DataWarehousePersonPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type ErrorTrackingIssueFilterValueCase0Item = string | number | boolean;
 export const ErrorTrackingIssueFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ErrorTrackingIssueFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<ErrorTrackingIssueFilterValueCase0Item>;
 
 export type ErrorTrackingIssueFilterValueCase0List =
   Array<ErrorTrackingIssueFilterValueCase0Item>;
@@ -781,7 +781,7 @@ export type ErrorTrackingIssueFilterValue =
   | number
   | boolean;
 export const ErrorTrackingIssueFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ErrorTrackingIssueFilterValue>;
+  S.Unknown as any as S.Schema<ErrorTrackingIssueFilterValue>;
 
 export interface ErrorTrackingIssueFilter {
   key?: string;
@@ -806,11 +806,11 @@ export type LogPropertyFilterType =
   | "log"
   | "log_attribute"
   | "log_resource_attribute";
-export const LogPropertyFilterType = /*@__PURE__*/ S.String;
+export const LogPropertyFilterType = S.String;
 
 export type LogPropertyFilterValueCase0Item = string | number | boolean;
 export const LogPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<LogPropertyFilterValueCase0Item>;
 
 export type LogPropertyFilterValueCase0List =
   Array<LogPropertyFilterValueCase0Item>;
@@ -824,7 +824,7 @@ export type LogPropertyFilterValue =
   | number
   | boolean;
 export const LogPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogPropertyFilterValue>;
+  S.Unknown as any as S.Schema<LogPropertyFilterValue>;
 
 export interface LogPropertyFilter {
   key?: string;
@@ -847,7 +847,7 @@ export const LogPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type MetricPropertyFilterValueCase0Item = string | number | boolean;
 export const MetricPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<MetricPropertyFilterValueCase0Item>;
 
 export type MetricPropertyFilterValueCase0List =
   Array<MetricPropertyFilterValueCase0Item>;
@@ -861,7 +861,7 @@ export type MetricPropertyFilterValue =
   | number
   | boolean;
 export const MetricPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPropertyFilterValue>;
+  S.Unknown as any as S.Schema<MetricPropertyFilterValue>;
 
 export interface MetricPropertyFilter {
   key: string;
@@ -886,11 +886,11 @@ export type SpanPropertyFilterType =
   | "span"
   | "span_attribute"
   | "span_resource_attribute";
-export const SpanPropertyFilterType = /*@__PURE__*/ S.String;
+export const SpanPropertyFilterType = S.String;
 
 export type SpanPropertyFilterValueCase0Item = string | number | boolean;
 export const SpanPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SpanPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<SpanPropertyFilterValueCase0Item>;
 
 export type SpanPropertyFilterValueCase0List =
   Array<SpanPropertyFilterValueCase0Item>;
@@ -904,7 +904,7 @@ export type SpanPropertyFilterValue =
   | number
   | boolean;
 export const SpanPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SpanPropertyFilterValue>;
+  S.Unknown as any as S.Schema<SpanPropertyFilterValue>;
 
 export interface SpanPropertyFilter {
   key?: string;
@@ -930,7 +930,7 @@ export type RevenueAnalyticsPropertyFilterValueCase0Item =
   | number
   | boolean;
 export const RevenueAnalyticsPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RevenueAnalyticsPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<RevenueAnalyticsPropertyFilterValueCase0Item>;
 
 export type RevenueAnalyticsPropertyFilterValueCase0List =
   Array<RevenueAnalyticsPropertyFilterValueCase0Item>;
@@ -945,7 +945,7 @@ export type RevenueAnalyticsPropertyFilterValue =
   | number
   | boolean;
 export const RevenueAnalyticsPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RevenueAnalyticsPropertyFilterValue>;
+  S.Unknown as any as S.Schema<RevenueAnalyticsPropertyFilterValue>;
 
 export interface RevenueAnalyticsPropertyFilter {
   key?: string;
@@ -971,7 +971,7 @@ export type AccountCustomPropertyFilterValueCase0Item =
   | number
   | boolean;
 export const AccountCustomPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AccountCustomPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<AccountCustomPropertyFilterValueCase0Item>;
 
 export type AccountCustomPropertyFilterValueCase0List =
   Array<AccountCustomPropertyFilterValueCase0Item>;
@@ -985,7 +985,7 @@ export type AccountCustomPropertyFilterValue =
   | number
   | boolean;
 export const AccountCustomPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AccountCustomPropertyFilterValue>;
+  S.Unknown as any as S.Schema<AccountCustomPropertyFilterValue>;
 
 export interface AccountCustomPropertyFilter {
   key: string;
@@ -1012,7 +1012,7 @@ export type WorkflowVariablePropertyFilterValueCase0Item =
   | number
   | boolean;
 export const WorkflowVariablePropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WorkflowVariablePropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<WorkflowVariablePropertyFilterValueCase0Item>;
 
 export type WorkflowVariablePropertyFilterValueCase0List =
   Array<WorkflowVariablePropertyFilterValueCase0Item>;
@@ -1027,7 +1027,7 @@ export type WorkflowVariablePropertyFilterValue =
   | number
   | boolean;
 export const WorkflowVariablePropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WorkflowVariablePropertyFilterValue>;
+  S.Unknown as any as S.Schema<WorkflowVariablePropertyFilterValue>;
 
 export interface WorkflowVariablePropertyFilter {
   key?: string;
@@ -1055,7 +1055,7 @@ export type BehavioralPropertyFilterEventFiltersItem =
   | FeaturePropertyFilter
   | HogQLPropertyFilter;
 export const BehavioralPropertyFilterEventFiltersItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BehavioralPropertyFilterEventFiltersItem>;
+  S.Unknown as any as S.Schema<BehavioralPropertyFilterEventFiltersItem>;
 
 export type BehavioralPropertyFilterEventFiltersList =
   Array<BehavioralPropertyFilterEventFiltersItem>;
@@ -1064,15 +1064,15 @@ export const BehavioralPropertyFilterEventFiltersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<BehavioralPropertyFilterEventFiltersList>;
 
 export type BehavioralEventSource = "events" | "actions";
-export const BehavioralEventSource = /*@__PURE__*/ S.String;
+export const BehavioralEventSource = S.String;
 
 export type TimeUnitType = "day" | "week" | "month" | "year";
-export const TimeUnitType = /*@__PURE__*/ S.String;
+export const TimeUnitType = S.String;
 
 export type InlineBehavioralType =
   | "performed_event"
   | "performed_event_multiple";
-export const InlineBehavioralType = /*@__PURE__*/ S.String;
+export const InlineBehavioralType = S.String;
 
 export interface BehavioralPropertyFilter {
   /** Extra property filters the matching events must satisfy. Deliberately excludes nested behavioral/cohort filters and groups */
@@ -1145,7 +1145,7 @@ export type DashboardFilterPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const DashboardFilterPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DashboardFilterPropertiesItem>;
+  S.Unknown as any as S.Schema<DashboardFilterPropertiesItem>;
 
 export type DashboardFilterPropertiesList =
   Array<DashboardFilterPropertiesItem>;
@@ -1179,7 +1179,7 @@ export const DashboardFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DashboardFilter>;
 
 export type LimitContext = "posthog_ai";
-export const LimitContext = /*@__PURE__*/ S.String;
+export const LimitContext = S.String;
 
 export type EventsNodeFixedPropertiesItem =
   | EventPropertyFilter
@@ -1207,7 +1207,7 @@ export type EventsNodeFixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const EventsNodeFixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsNodeFixedPropertiesItem>;
+  S.Unknown as any as S.Schema<EventsNodeFixedPropertiesItem>;
 
 export type EventsNodeFixedPropertiesList =
   Array<EventsNodeFixedPropertiesItem>;
@@ -1223,13 +1223,13 @@ export type BaseMathType =
   | "unique_session"
   | "first_time_for_user"
   | "first_matching_event_for_user";
-export const BaseMathType = /*@__PURE__*/ S.String;
+export const BaseMathType = S.String;
 
 export type FunnelMathType =
   | "total"
   | "first_time_for_user"
   | "first_time_for_user_with_filters";
-export const FunnelMathType = /*@__PURE__*/ S.String;
+export const FunnelMathType = S.String;
 
 export type PropertyMathType =
   | "avg"
@@ -1241,7 +1241,7 @@ export type PropertyMathType =
   | "p90"
   | "p95"
   | "p99";
-export const PropertyMathType = /*@__PURE__*/ S.String;
+export const PropertyMathType = S.String;
 
 export type CountPerActorMathType =
   | "avg_count_per_actor"
@@ -1252,13 +1252,13 @@ export type CountPerActorMathType =
   | "p90_count_per_actor"
   | "p95_count_per_actor"
   | "p99_count_per_actor";
-export const CountPerActorMathType = /*@__PURE__*/ S.String;
+export const CountPerActorMathType = S.String;
 
 export type GroupMathType =
   | "unique_group"
   | "first_time_for_group"
   | "first_matching_event_for_group";
-export const GroupMathType = /*@__PURE__*/ S.String;
+export const GroupMathType = S.String;
 
 export type ExperimentMetricMathType =
   | "total"
@@ -1270,10 +1270,10 @@ export type ExperimentMetricMathType =
   | "dau"
   | "unique_group"
   | "hogql";
-export const ExperimentMetricMathType = /*@__PURE__*/ S.String;
+export const ExperimentMetricMathType = S.String;
 
 export type CalendarHeatmapMathType = "total" | "dau";
-export const CalendarHeatmapMathType = /*@__PURE__*/ S.String;
+export const CalendarHeatmapMathType = S.String;
 
 export type EventsNodeMath =
   | BaseMathType
@@ -1284,11 +1284,10 @@ export type EventsNodeMath =
   | ExperimentMetricMathType
   | CalendarHeatmapMathType
   | string;
-export const EventsNodeMath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsNodeMath>;
+export const EventsNodeMath = S.Unknown as any as S.Schema<EventsNodeMath>;
 
 export type MathGroupTypeIndex = 0 | 1 | 2 | 3 | 4;
-export const MathGroupTypeIndex = /*@__PURE__*/ S.Number;
+export const MathGroupTypeIndex = S.Number;
 
 export type CurrencyCode =
   | "AED"
@@ -1443,7 +1442,7 @@ export type CurrencyCode =
   | "YER"
   | "ZAR"
   | "ZMW";
-export const CurrencyCode = /*@__PURE__*/ S.String;
+export const CurrencyCode = S.String;
 
 export interface RevenueCurrencyPropertyConfig {
   property?: string | null;
@@ -1489,7 +1488,7 @@ export type EventsNodePropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const EventsNodePropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsNodePropertiesItem>;
+  S.Unknown as any as S.Schema<EventsNodePropertiesItem>;
 
 export type EventsNodePropertiesList = Array<EventsNodePropertiesItem>;
 export const EventsNodePropertiesList = /*@__PURE__*/ S.Array(
@@ -1578,7 +1577,7 @@ export type ActionsNodeFixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ActionsNodeFixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionsNodeFixedPropertiesItem>;
+  S.Unknown as any as S.Schema<ActionsNodeFixedPropertiesItem>;
 
 export type ActionsNodeFixedPropertiesList =
   Array<ActionsNodeFixedPropertiesItem>;
@@ -1595,8 +1594,7 @@ export type ActionsNodeMath =
   | ExperimentMetricMathType
   | CalendarHeatmapMathType
   | string;
-export const ActionsNodeMath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionsNodeMath>;
+export const ActionsNodeMath = S.Unknown as any as S.Schema<ActionsNodeMath>;
 
 export type ActionsNodePropertiesItem =
   | EventPropertyFilter
@@ -1624,7 +1622,7 @@ export type ActionsNodePropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ActionsNodePropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActionsNodePropertiesItem>;
+  S.Unknown as any as S.Schema<ActionsNodePropertiesItem>;
 
 export type ActionsNodePropertiesList = Array<ActionsNodePropertiesItem>;
 export const ActionsNodePropertiesList = /*@__PURE__*/ S.Array(
@@ -1707,7 +1705,7 @@ export type PersonsNodeFixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const PersonsNodeFixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonsNodeFixedPropertiesItem>;
+  S.Unknown as any as S.Schema<PersonsNodeFixedPropertiesItem>;
 
 export type PersonsNodeFixedPropertiesList =
   Array<PersonsNodeFixedPropertiesItem>;
@@ -1719,7 +1717,7 @@ export type BounceRatePageViewMode =
   | "count_pageviews"
   | "uniq_urls"
   | "uniq_page_screen_autocaptures";
-export const BounceRatePageViewMode = /*@__PURE__*/ S.String;
+export const BounceRatePageViewMode = S.String;
 
 export type CustomBotField =
   | "$raw_user_agent"
@@ -1728,10 +1726,10 @@ export type CustomBotField =
   | "$host"
   | "$pathname"
   | "$current_url";
-export const CustomBotField = /*@__PURE__*/ S.String;
+export const CustomBotField = S.String;
 
 export type CustomBotMatcher = "contains" | "regex" | "cidr";
-export const CustomBotMatcher = /*@__PURE__*/ S.String;
+export const CustomBotMatcher = S.String;
 
 export interface CustomBotDefinition {
   /** Reported by `$virt_traffic_category`. Defaults to `custom`. */
@@ -1766,7 +1764,7 @@ export const HogQLQueryModifiersCustomBotDefinitionsList =
   ) as any as S.Schema<HogQLQueryModifiersCustomBotDefinitionsList>;
 
 export type FilterLogicalOperator = "AND" | "OR";
-export const FilterLogicalOperator = /*@__PURE__*/ S.String;
+export const FilterLogicalOperator = S.String;
 
 export type CustomChannelField =
   | "utm_source"
@@ -1776,7 +1774,7 @@ export type CustomChannelField =
   | "url"
   | "pathname"
   | "hostname";
-export const CustomChannelField = /*@__PURE__*/ S.String;
+export const CustomChannelField = S.String;
 
 export type CustomChannelOperator =
   | "exact"
@@ -1787,7 +1785,7 @@ export type CustomChannelOperator =
   | "not_icontains"
   | "regex"
   | "not_regex";
-export const CustomChannelOperator = /*@__PURE__*/ S.String;
+export const CustomChannelOperator = S.String;
 
 export type CustomChannelConditionValueCase1List = Array<string>;
 export const CustomChannelConditionValueCase1List = /*@__PURE__*/ S.Array(
@@ -1798,7 +1796,7 @@ export type CustomChannelConditionValue =
   | string
   | CustomChannelConditionValueCase1List;
 export const CustomChannelConditionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomChannelConditionValue>;
+  S.Unknown as any as S.Schema<CustomChannelConditionValue>;
 
 export interface CustomChannelCondition {
   id?: string;
@@ -1882,20 +1880,20 @@ export type InCohortVia =
   | "leftjoin"
   | "subquery"
   | "leftjoin_conjoined";
-export const InCohortVia = /*@__PURE__*/ S.String;
+export const InCohortVia = S.String;
 
 export type InlineCohortCalculation = "off" | "auto" | "always";
-export const InlineCohortCalculation = /*@__PURE__*/ S.String;
+export const InlineCohortCalculation = S.String;
 
 export type MaterializationMode =
   | "auto"
   | "legacy_null_as_string"
   | "legacy_null_as_null"
   | "disabled";
-export const MaterializationMode = /*@__PURE__*/ S.String;
+export const MaterializationMode = S.String;
 
 export type MaterializedColumnsOptimizationMode = "disabled" | "optimized";
-export const MaterializedColumnsOptimizationMode = /*@__PURE__*/ S.String;
+export const MaterializedColumnsOptimizationMode = S.String;
 
 export type ParserMode =
   | "cpp_only"
@@ -1905,29 +1903,29 @@ export type ParserMode =
   | "rust_only"
   | "rust_py_only"
   | "rust_py_with_cpp_shadow";
-export const ParserMode = /*@__PURE__*/ S.String;
+export const ParserMode = S.String;
 
 export type PersonsArgMaxVersion = "auto" | "v1" | "v2";
-export const PersonsArgMaxVersion = /*@__PURE__*/ S.String;
+export const PersonsArgMaxVersion = S.String;
 
 export type PersonsJoinMode = "inner" | "left";
-export const PersonsJoinMode = /*@__PURE__*/ S.String;
+export const PersonsJoinMode = S.String;
 
 export type PersonsOnEventsMode =
   | "disabled"
   | "person_id_no_override_properties_on_events"
   | "person_id_override_properties_on_events"
   | "person_id_override_properties_joined";
-export const PersonsOnEventsMode = /*@__PURE__*/ S.String;
+export const PersonsOnEventsMode = S.String;
 
 export type PropertyGroupsMode = "enabled" | "disabled" | "optimized";
-export const PropertyGroupsMode = /*@__PURE__*/ S.String;
+export const PropertyGroupsMode = S.String;
 
 export type SessionTableVersion = "auto" | "v1" | "v2" | "v3";
-export const SessionTableVersion = /*@__PURE__*/ S.String;
+export const SessionTableVersion = S.String;
 
 export type SessionsV2JoinMode = "string" | "uuid";
-export const SessionsV2JoinMode = /*@__PURE__*/ S.String;
+export const SessionsV2JoinMode = S.String;
 
 export interface HogQLQueryModifiers {
   bounceRateDurationSeconds?: number | null;
@@ -2053,7 +2051,7 @@ export type PersonsNodePropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const PersonsNodePropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonsNodePropertiesItem>;
+  S.Unknown as any as S.Schema<PersonsNodePropertiesItem>;
 
 export type PersonsNodePropertiesList = Array<PersonsNodePropertiesItem>;
 export const PersonsNodePropertiesList = /*@__PURE__*/ S.Array(
@@ -2143,7 +2141,7 @@ export type DataWarehouseNodeFixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const DataWarehouseNodeFixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataWarehouseNodeFixedPropertiesItem>;
+  S.Unknown as any as S.Schema<DataWarehouseNodeFixedPropertiesItem>;
 
 export type DataWarehouseNodeFixedPropertiesList =
   Array<DataWarehouseNodeFixedPropertiesItem>;
@@ -2161,7 +2159,7 @@ export type DataWarehouseNodeMath =
   | CalendarHeatmapMathType
   | string;
 export const DataWarehouseNodeMath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataWarehouseNodeMath>;
+  S.Unknown as any as S.Schema<DataWarehouseNodeMath>;
 
 export type DataWarehouseNodePropertiesItem =
   | EventPropertyFilter
@@ -2189,7 +2187,7 @@ export type DataWarehouseNodePropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const DataWarehouseNodePropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataWarehouseNodePropertiesItem>;
+  S.Unknown as any as S.Schema<DataWarehouseNodePropertiesItem>;
 
 export type DataWarehouseNodePropertiesList =
   Array<DataWarehouseNodePropertiesItem>;
@@ -2287,7 +2285,7 @@ export type FunnelsDataWarehouseNodeFixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const FunnelsDataWarehouseNodeFixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelsDataWarehouseNodeFixedPropertiesItem>;
+  S.Unknown as any as S.Schema<FunnelsDataWarehouseNodeFixedPropertiesItem>;
 
 export type FunnelsDataWarehouseNodeFixedPropertiesList =
   Array<FunnelsDataWarehouseNodeFixedPropertiesItem>;
@@ -2306,7 +2304,7 @@ export type FunnelsDataWarehouseNodeMath =
   | CalendarHeatmapMathType
   | string;
 export const FunnelsDataWarehouseNodeMath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelsDataWarehouseNodeMath>;
+  S.Unknown as any as S.Schema<FunnelsDataWarehouseNodeMath>;
 
 export type FunnelsDataWarehouseNodePropertiesItem =
   | EventPropertyFilter
@@ -2334,7 +2332,7 @@ export type FunnelsDataWarehouseNodePropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const FunnelsDataWarehouseNodePropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelsDataWarehouseNodePropertiesItem>;
+  S.Unknown as any as S.Schema<FunnelsDataWarehouseNodePropertiesItem>;
 
 export type FunnelsDataWarehouseNodePropertiesList =
   Array<FunnelsDataWarehouseNodePropertiesItem>;
@@ -2434,7 +2432,7 @@ export type LifecycleDataWarehouseNodeFixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const LifecycleDataWarehouseNodeFixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LifecycleDataWarehouseNodeFixedPropertiesItem>;
+  S.Unknown as any as S.Schema<LifecycleDataWarehouseNodeFixedPropertiesItem>;
 
 export type LifecycleDataWarehouseNodeFixedPropertiesList =
   Array<LifecycleDataWarehouseNodeFixedPropertiesItem>;
@@ -2453,7 +2451,7 @@ export type LifecycleDataWarehouseNodeMath =
   | CalendarHeatmapMathType
   | string;
 export const LifecycleDataWarehouseNodeMath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LifecycleDataWarehouseNodeMath>;
+  S.Unknown as any as S.Schema<LifecycleDataWarehouseNodeMath>;
 
 export type LifecycleDataWarehouseNodePropertiesItem =
   | EventPropertyFilter
@@ -2481,7 +2479,7 @@ export type LifecycleDataWarehouseNodePropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const LifecycleDataWarehouseNodePropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LifecycleDataWarehouseNodePropertiesItem>;
+  S.Unknown as any as S.Schema<LifecycleDataWarehouseNodePropertiesItem>;
 
 export type LifecycleDataWarehouseNodePropertiesList =
   Array<LifecycleDataWarehouseNodePropertiesItem>;
@@ -2554,7 +2552,7 @@ export const LifecycleDataWarehouseNode = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LifecycleDataWarehouseNode>;
 
 export type HrefMatching = "contains" | "exact" | "regex";
-export const HrefMatching = /*@__PURE__*/ S.String;
+export const HrefMatching = S.String;
 
 export type EventsQueryActionStepPropertiesItem =
   | EventPropertyFilter
@@ -2582,7 +2580,7 @@ export type EventsQueryActionStepPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const EventsQueryActionStepPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsQueryActionStepPropertiesItem>;
+  S.Unknown as any as S.Schema<EventsQueryActionStepPropertiesItem>;
 
 export type EventsQueryActionStepPropertiesList =
   Array<EventsQueryActionStepPropertiesItem>;
@@ -2591,10 +2589,10 @@ export const EventsQueryActionStepPropertiesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<EventsQueryActionStepPropertiesList>;
 
 export type TextMatching = "contains" | "exact" | "regex";
-export const TextMatching = /*@__PURE__*/ S.String;
+export const TextMatching = S.String;
 
 export type UrlMatching = "contains" | "exact" | "regex";
-export const UrlMatching = /*@__PURE__*/ S.String;
+export const UrlMatching = S.String;
 
 export interface EventsQueryActionStep {
   event?: string | null;
@@ -2662,7 +2660,7 @@ export type PropertyGroupFilterValueValuesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const PropertyGroupFilterValueValuesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PropertyGroupFilterValueValuesItem>;
+  S.Unknown as any as S.Schema<PropertyGroupFilterValueValuesItem>;
 
 export type PropertyGroupFilterValueValuesList =
   Array<PropertyGroupFilterValueValuesItem>;
@@ -2727,14 +2725,14 @@ export type EventsQueryFixedPropertiesItemCase2 =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const EventsQueryFixedPropertiesItemCase2 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsQueryFixedPropertiesItemCase2>;
+  S.Unknown as any as S.Schema<EventsQueryFixedPropertiesItemCase2>;
 
 export type EventsQueryFixedPropertiesItem =
   | PropertyGroupFilter
   | PropertyGroupFilterValue
   | EventsQueryFixedPropertiesItemCase2;
 export const EventsQueryFixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsQueryFixedPropertiesItem>;
+  S.Unknown as any as S.Schema<EventsQueryFixedPropertiesItem>;
 
 export type EventsQueryFixedPropertiesList =
   Array<EventsQueryFixedPropertiesItem>;
@@ -2773,7 +2771,7 @@ export type EventsQueryPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const EventsQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<EventsQueryPropertiesItem>;
 
 export type EventsQueryPropertiesList = Array<EventsQueryPropertiesItem>;
 export const EventsQueryPropertiesList = /*@__PURE__*/ S.Array(
@@ -2987,7 +2985,7 @@ export type EventsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const EventsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<EventsQueryResponseWarningsItem>;
 
 export type EventsQueryResponseWarningsList =
   Array<EventsQueryResponseWarningsItem>;
@@ -3066,14 +3064,14 @@ export type InsightActorsQueryBreakdown =
   | InsightActorsQueryBreakdownCase1List
   | number;
 export const InsightActorsQueryBreakdown =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InsightActorsQueryBreakdown>;
+  S.Unknown as any as S.Schema<InsightActorsQueryBreakdown>;
 
 export type Compare = "current" | "previous";
-export const Compare = /*@__PURE__*/ S.String;
+export const Compare = S.String;
 
 export type InsightActorsQueryDay = string | number;
 export const InsightActorsQueryDay =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InsightActorsQueryDay>;
+  S.Unknown as any as S.Schema<InsightActorsQueryDay>;
 
 export type ActorsQueryResponseColumnsList = Array<unknown>;
 export const ActorsQueryResponseColumnsList = /*@__PURE__*/ S.Array(
@@ -3112,7 +3110,7 @@ export type ActorsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const ActorsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActorsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<ActorsQueryResponseWarningsItem>;
 
 export type ActorsQueryResponseWarningsList =
   Array<ActorsQueryResponseWarningsItem>;
@@ -3226,10 +3224,10 @@ export type TrendsQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const TrendsQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TrendsQueryConversionGoal>;
+  S.Unknown as any as S.Schema<TrendsQueryConversionGoal>;
 
 export type DaysOfWeekEnum = 1 | 2 | 3 | 4 | 5 | 6 | 7;
-export const DaysOfWeekEnum = /*@__PURE__*/ S.Number;
+export const DaysOfWeekEnum = S.Number;
 
 export type DateRangeDaysOfWeekList = Array<DaysOfWeekEnum | (number & {})>;
 export const DateRangeDaysOfWeekList = /*@__PURE__*/ S.Array(
@@ -3284,7 +3282,7 @@ export type TrendsQueryPropertiesCase0Item =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const TrendsQueryPropertiesCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TrendsQueryPropertiesCase0Item>;
+  S.Unknown as any as S.Schema<TrendsQueryPropertiesCase0Item>;
 
 export type TrendsQueryPropertiesCase0List =
   Array<TrendsQueryPropertiesCase0Item>;
@@ -3297,7 +3295,7 @@ export type TrendsQueryProperties =
   | TrendsQueryPropertiesCase0List
   | PropertyGroupFilter;
 export const TrendsQueryProperties =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TrendsQueryProperties>;
+  S.Unknown as any as S.Schema<TrendsQueryProperties>;
 
 export interface BoxPlotDatum {
   day?: string;
@@ -3361,7 +3359,7 @@ export type TrendsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const TrendsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TrendsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<TrendsQueryResponseWarningsItem>;
 
 export type TrendsQueryResponseWarningsList =
   Array<TrendsQueryResponseWarningsItem>;
@@ -3442,7 +3440,7 @@ export type GroupNodeFixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const GroupNodeFixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GroupNodeFixedPropertiesItem>;
+  S.Unknown as any as S.Schema<GroupNodeFixedPropertiesItem>;
 
 export type GroupNodeFixedPropertiesList = Array<GroupNodeFixedPropertiesItem>;
 export const GroupNodeFixedPropertiesList = /*@__PURE__*/ S.Array(
@@ -3458,12 +3456,11 @@ export type GroupNodeMath =
   | ExperimentMetricMathType
   | CalendarHeatmapMathType
   | string;
-export const GroupNodeMath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GroupNodeMath>;
+export const GroupNodeMath = S.Unknown as any as S.Schema<GroupNodeMath>;
 
 export type GroupNodeNodesItem = EventsNode | ActionsNode | DataWarehouseNode;
 export const GroupNodeNodesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GroupNodeNodesItem>;
+  S.Unknown as any as S.Schema<GroupNodeNodesItem>;
 
 /** Entities to combine in this group */
 export type GroupNodeNodesList = Array<GroupNodeNodesItem>;
@@ -3502,7 +3499,7 @@ export type GroupNodePropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const GroupNodePropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GroupNodePropertiesItem>;
+  S.Unknown as any as S.Schema<GroupNodePropertiesItem>;
 
 export type GroupNodePropertiesList = Array<GroupNodePropertiesItem>;
 export const GroupNodePropertiesList = /*@__PURE__*/ S.Array(
@@ -3574,7 +3571,7 @@ export type TrendsQuerySeriesItem =
   | DataWarehouseNode
   | GroupNode;
 export const TrendsQuerySeriesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TrendsQuerySeriesItem>;
+  S.Unknown as any as S.Schema<TrendsQuerySeriesItem>;
 
 /** Events and actions to include */
 export type TrendsQuerySeriesList = Array<TrendsQuerySeriesItem>;
@@ -3591,10 +3588,10 @@ export type AggregationAxisFormat =
   | "percentage_scaled"
   | "currency"
   | "short";
-export const AggregationAxisFormat = /*@__PURE__*/ S.String;
+export const AggregationAxisFormat = S.String;
 
 export type Curve = "linear" | "smooth";
-export const Curve = /*@__PURE__*/ S.String;
+export const Curve = S.String;
 
 export interface ChartStyle {
   /** Line interpolation: straight segments or a smoothed curve through the points. */
@@ -3607,7 +3604,7 @@ export const ChartStyle = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ChartStyle" }) as any as S.Schema<ChartStyle>;
 
 export type DetailedResultsAggregationType = "total" | "average" | "median";
-export const DetailedResultsAggregationType = /*@__PURE__*/ S.String;
+export const DetailedResultsAggregationType = S.String;
 
 export type ChartDisplayType =
   | "Auto"
@@ -3629,7 +3626,7 @@ export type ChartDisplayType =
   | "BoxPlot"
   | "SlopeGraph"
   | "ScatterPlot";
-export const ChartDisplayType = /*@__PURE__*/ S.String;
+export const ChartDisplayType = S.String;
 
 export interface TrendsFormulaNode {
   /** Optional user-defined name for the formula */
@@ -3656,7 +3653,7 @@ export const TrendsFilterFormulasList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TrendsFilterFormulasList>;
 
 export type Position = "start" | "end";
-export const Position = /*@__PURE__*/ S.String;
+export const Position = S.String;
 
 export interface GoalLine {
   borderColor?: string | null;
@@ -3688,13 +3685,13 @@ export const TrendsFilterHiddenLegendIndexesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TrendsFilterHiddenLegendIndexesList>;
 
 export type LegendPosition = "top" | "bottom" | "left" | "right";
-export const LegendPosition = /*@__PURE__*/ S.String;
+export const LegendPosition = S.String;
 
 export type MetricSummary = "total" | "average" | "latest";
-export const MetricSummary = /*@__PURE__*/ S.String;
+export const MetricSummary = S.String;
 
 export type ResultCustomizationBy = "value" | "position";
-export const ResultCustomizationBy = /*@__PURE__*/ S.String;
+export const ResultCustomizationBy = S.String;
 
 export type DataColorToken =
   | "preset-1"
@@ -3712,7 +3709,7 @@ export type DataColorToken =
   | "preset-13"
   | "preset-14"
   | "preset-15";
-export const DataColorToken = /*@__PURE__*/ S.String;
+export const DataColorToken = S.String;
 
 export interface ResultCustomizationByValue {
   assignmentBy?: string;
@@ -3753,10 +3750,10 @@ export type TrendsFilterResultCustomizations =
   | TrendsFilterResultCustomizationsCase0Map
   | TrendsFilterResultCustomizationsCase1Map;
 export const TrendsFilterResultCustomizations =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TrendsFilterResultCustomizations>;
+  S.Unknown as any as S.Schema<TrendsFilterResultCustomizations>;
 
 export type YAxisScaleType = "log10" | "linear";
-export const YAxisScaleType = /*@__PURE__*/ S.String;
+export const YAxisScaleType = S.String;
 
 export interface TrendsFilter {
   /** Y-axis value formatter. Picks a human-friendly unit per value at render time without changing the underlying series values. - `numeric` (default): raw numbers, e.g. `1,234`. - `duration`: values are in seconds; rendered as friendly units per value (`45s`, `2m 12s`, `1h 4m`). Use this whenever the series is in seconds (latency, session length, time-to-event) instead of dividing in `formula` to force minutes or hours. - `duration_ms`: values are in milliseconds; rendered as friendly units (`850ms`, `1.5s`, `1m 4s`). - `percentage`: values are already in the 0-100 range; appends `%`. - `percentage_scaled`: values are a 0-1 ratio; multiplied and rendered as `%`. - `currency`: values are in the project's base currency (set in project settings, defaults to USD); rendered with that currency symbol. For values pinned to a specific currency regardless of project base (e.g. `$ai_total_cost_usd` is always USD), use `aggregationAxisPrefix` instead. - `short`: compact notation for large counts (`1.2K`, `3.4M`). */
@@ -3955,7 +3952,7 @@ export type BreakdownAttributionType =
   | "last_touch"
   | "all_events"
   | "step";
-export const BreakdownAttributionType = /*@__PURE__*/ S.String;
+export const BreakdownAttributionType = S.String;
 
 export type FunnelExclusionEventsNodeFixedPropertiesItem =
   | EventPropertyFilter
@@ -3983,7 +3980,7 @@ export type FunnelExclusionEventsNodeFixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const FunnelExclusionEventsNodeFixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelExclusionEventsNodeFixedPropertiesItem>;
+  S.Unknown as any as S.Schema<FunnelExclusionEventsNodeFixedPropertiesItem>;
 
 export type FunnelExclusionEventsNodeFixedPropertiesList =
   Array<FunnelExclusionEventsNodeFixedPropertiesItem>;
@@ -4002,7 +3999,7 @@ export type FunnelExclusionEventsNodeMath =
   | CalendarHeatmapMathType
   | string;
 export const FunnelExclusionEventsNodeMath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelExclusionEventsNodeMath>;
+  S.Unknown as any as S.Schema<FunnelExclusionEventsNodeMath>;
 
 export type FunnelExclusionEventsNodeOrderByList = Array<string>;
 export const FunnelExclusionEventsNodeOrderByList = /*@__PURE__*/ S.Array(
@@ -4035,7 +4032,7 @@ export type FunnelExclusionEventsNodePropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const FunnelExclusionEventsNodePropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelExclusionEventsNodePropertiesItem>;
+  S.Unknown as any as S.Schema<FunnelExclusionEventsNodePropertiesItem>;
 
 export type FunnelExclusionEventsNodePropertiesList =
   Array<FunnelExclusionEventsNodePropertiesItem>;
@@ -4135,7 +4132,7 @@ export type FunnelExclusionActionsNodeFixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const FunnelExclusionActionsNodeFixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelExclusionActionsNodeFixedPropertiesItem>;
+  S.Unknown as any as S.Schema<FunnelExclusionActionsNodeFixedPropertiesItem>;
 
 export type FunnelExclusionActionsNodeFixedPropertiesList =
   Array<FunnelExclusionActionsNodeFixedPropertiesItem>;
@@ -4154,7 +4151,7 @@ export type FunnelExclusionActionsNodeMath =
   | CalendarHeatmapMathType
   | string;
 export const FunnelExclusionActionsNodeMath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelExclusionActionsNodeMath>;
+  S.Unknown as any as S.Schema<FunnelExclusionActionsNodeMath>;
 
 export type FunnelExclusionActionsNodePropertiesItem =
   | EventPropertyFilter
@@ -4182,7 +4179,7 @@ export type FunnelExclusionActionsNodePropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const FunnelExclusionActionsNodePropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelExclusionActionsNodePropertiesItem>;
+  S.Unknown as any as S.Schema<FunnelExclusionActionsNodePropertiesItem>;
 
 export type FunnelExclusionActionsNodePropertiesList =
   Array<FunnelExclusionActionsNodePropertiesItem>;
@@ -4254,7 +4251,7 @@ export type FunnelsFilterExclusionsItem =
   | FunnelExclusionEventsNode
   | FunnelExclusionActionsNode;
 export const FunnelsFilterExclusionsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelsFilterExclusionsItem>;
+  S.Unknown as any as S.Schema<FunnelsFilterExclusionsItem>;
 
 export type FunnelsFilterExclusionsList = Array<FunnelsFilterExclusionsItem>;
 export const FunnelsFilterExclusionsList = /*@__PURE__*/ S.Array(
@@ -4262,13 +4259,13 @@ export const FunnelsFilterExclusionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FunnelsFilterExclusionsList>;
 
 export type StepOrderValue = "strict" | "unordered" | "ordered";
-export const StepOrderValue = /*@__PURE__*/ S.String;
+export const StepOrderValue = S.String;
 
 export type FunnelStepReference = "total" | "previous";
-export const FunnelStepReference = /*@__PURE__*/ S.String;
+export const FunnelStepReference = S.String;
 
 export type FunnelVizType = "steps" | "time_to_convert" | "trends" | "flow";
-export const FunnelVizType = /*@__PURE__*/ S.String;
+export const FunnelVizType = S.String;
 
 export type FunnelConversionWindowTimeUnit =
   | "second"
@@ -4277,7 +4274,7 @@ export type FunnelConversionWindowTimeUnit =
   | "day"
   | "week"
   | "month";
-export const FunnelConversionWindowTimeUnit = /*@__PURE__*/ S.String;
+export const FunnelConversionWindowTimeUnit = S.String;
 
 export type FunnelsFilterGoalLinesList = Array<GoalLine>;
 export const FunnelsFilterGoalLinesList = /*@__PURE__*/ S.Array(
@@ -4290,7 +4287,7 @@ export const FunnelsFilterHiddenLegendBreakdownsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FunnelsFilterHiddenLegendBreakdownsList>;
 
 export type FunnelLayout = "horizontal" | "vertical";
-export const FunnelLayout = /*@__PURE__*/ S.String;
+export const FunnelLayout = S.String;
 
 export type FunnelsFilterResultCustomizationsMap = {
   [key: string]: ResultCustomizationByValue | undefined;
@@ -4405,7 +4402,7 @@ export type FunnelsQueryPropertiesCase0Item =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const FunnelsQueryPropertiesCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelsQueryPropertiesCase0Item>;
+  S.Unknown as any as S.Schema<FunnelsQueryPropertiesCase0Item>;
 
 export type FunnelsQueryPropertiesCase0List =
   Array<FunnelsQueryPropertiesCase0Item>;
@@ -4418,7 +4415,7 @@ export type FunnelsQueryProperties =
   | FunnelsQueryPropertiesCase0List
   | PropertyGroupFilter;
 export const FunnelsQueryProperties =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelsQueryProperties>;
+  S.Unknown as any as S.Schema<FunnelsQueryProperties>;
 
 export type FunnelsQueryResponseTimingsList = Array<QueryTiming>;
 export const FunnelsQueryResponseTimingsList = /*@__PURE__*/ S.Array(
@@ -4436,7 +4433,7 @@ export type FunnelsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const FunnelsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<FunnelsQueryResponseWarningsItem>;
 
 export type FunnelsQueryResponseWarningsList =
   Array<FunnelsQueryResponseWarningsItem>;
@@ -4495,7 +4492,7 @@ export type FunnelsQuerySeriesItem =
   | FunnelsDataWarehouseNode
   | GroupNode;
 export const FunnelsQuerySeriesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelsQuerySeriesItem>;
+  S.Unknown as any as S.Schema<FunnelsQuerySeriesItem>;
 
 /** Events and actions to include */
 export type FunnelsQuerySeriesList = Array<FunnelsQuerySeriesItem>;
@@ -4582,7 +4579,7 @@ export type RetentionQueryPropertiesCase0Item =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const RetentionQueryPropertiesCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RetentionQueryPropertiesCase0Item>;
+  S.Unknown as any as S.Schema<RetentionQueryPropertiesCase0Item>;
 
 export type RetentionQueryPropertiesCase0List =
   Array<RetentionQueryPropertiesCase0Item>;
@@ -4595,12 +4592,12 @@ export type RetentionQueryProperties =
   | RetentionQueryPropertiesCase0List
   | PropertyGroupFilter;
 export const RetentionQueryProperties =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RetentionQueryProperties>;
+  S.Unknown as any as S.Schema<RetentionQueryProperties>;
 
 /** Optional breakdown value for retention cohorts */
 export type RetentionResultBreakdownValue = string | number;
 export const RetentionResultBreakdownValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RetentionResultBreakdownValue>;
+  S.Unknown as any as S.Schema<RetentionResultBreakdownValue>;
 
 export interface RetentionValue {
   aggregation_value?: number | null;
@@ -4659,7 +4656,7 @@ export type RetentionQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const RetentionQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RetentionQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<RetentionQueryResponseWarningsItem>;
 
 export type RetentionQueryResponseWarningsList =
   Array<RetentionQueryResponseWarningsItem>;
@@ -4710,13 +4707,13 @@ export const RetentionQueryResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RetentionQueryResponse>;
 
 export type AggregationPropertyType = "event" | "person" | "data_warehouse";
-export const AggregationPropertyType = /*@__PURE__*/ S.String;
+export const AggregationPropertyType = S.String;
 
 export type AggregationType = "count" | "sum" | "avg";
-export const AggregationType = /*@__PURE__*/ S.String;
+export const AggregationType = S.String;
 
 export type RetentionDashboardDisplayType = "table_only" | "graph_only" | "all";
-export const RetentionDashboardDisplayType = /*@__PURE__*/ S.String;
+export const RetentionDashboardDisplayType = S.String;
 
 export type RetentionFilterGoalLinesList = Array<GoalLine>;
 export const RetentionFilterGoalLinesList = /*@__PURE__*/ S.Array(
@@ -4724,10 +4721,10 @@ export const RetentionFilterGoalLinesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RetentionFilterGoalLinesList>;
 
 export type MeanRetentionCalculation = "simple" | "weighted" | "none";
-export const MeanRetentionCalculation = /*@__PURE__*/ S.String;
+export const MeanRetentionCalculation = S.String;
 
 export type RetentionPeriod = "Hour" | "Day" | "Week" | "Month";
-export const RetentionPeriod = /*@__PURE__*/ S.String;
+export const RetentionPeriod = S.String;
 
 export type RetentionFilterRetentionCustomBracketsList = Array<number>;
 export const RetentionFilterRetentionCustomBracketsList = /*@__PURE__*/ S.Array(
@@ -4735,20 +4732,20 @@ export const RetentionFilterRetentionCustomBracketsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RetentionFilterRetentionCustomBracketsList>;
 
 export type RetentionReference = "total" | "previous";
-export const RetentionReference = /*@__PURE__*/ S.String;
+export const RetentionReference = S.String;
 
 export type RetentionType =
   | "retention_recurring"
   | "retention_first_time"
   | "retention_first_ever_occurrence";
-export const RetentionType = /*@__PURE__*/ S.String;
+export const RetentionType = S.String;
 
 export type RetentionEntityId = string | number;
 export const RetentionEntityId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RetentionEntityId>;
+  S.Unknown as any as S.Schema<RetentionEntityId>;
 
 export type RetentionEntityKind = "ActionsNode" | "EventsNode";
-export const RetentionEntityKind = /*@__PURE__*/ S.String;
+export const RetentionEntityKind = S.String;
 
 export type RetentionEntityPropertiesItem =
   | EventPropertyFilter
@@ -4776,7 +4773,7 @@ export type RetentionEntityPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const RetentionEntityPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RetentionEntityPropertiesItem>;
+  S.Unknown as any as S.Schema<RetentionEntityPropertiesItem>;
 
 export type RetentionEntityPropertiesList =
   Array<RetentionEntityPropertiesItem>;
@@ -4790,7 +4787,7 @@ export type EntityType =
   | "data_warehouse"
   | "new_entity"
   | "groups";
-export const EntityType = /*@__PURE__*/ S.String;
+export const EntityType = S.String;
 
 export interface RetentionEntity {
   /** Data warehouse field used as the actor identifier */
@@ -4828,7 +4825,7 @@ export const RetentionEntity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RetentionEntity>;
 
 export type TimeWindowMode = "strict_calendar_dates" | "24_hour_windows";
-export const TimeWindowMode = /*@__PURE__*/ S.String;
+export const TimeWindowMode = S.String;
 
 export interface RetentionFilter {
   /** The property to aggregate when aggregationType is sum or avg */
@@ -4944,7 +4941,7 @@ export type FunnelPathType =
   | "funnel_path_before_step"
   | "funnel_path_between_steps"
   | "funnel_path_after_step";
-export const FunnelPathType = /*@__PURE__*/ S.String;
+export const FunnelPathType = S.String;
 
 export interface FunnelPathsFilter {
   funnelPathType?: FunnelPathType | (string & {}) | null;
@@ -4967,7 +4964,7 @@ export const PathsFilterExcludeEventsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PathsFilterExcludeEventsList>;
 
 export type PathType = "$pageview" | "$screen" | "custom_event" | "hogql";
-export const PathType = /*@__PURE__*/ S.String;
+export const PathType = S.String;
 
 export type PathsFilterIncludeEventTypesList = Array<PathType | (string & {})>;
 export const PathsFilterIncludeEventTypesList = /*@__PURE__*/ S.Array(
@@ -5070,7 +5067,7 @@ export type PathsQueryPropertiesCase0Item =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const PathsQueryPropertiesCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PathsQueryPropertiesCase0Item>;
+  S.Unknown as any as S.Schema<PathsQueryPropertiesCase0Item>;
 
 export type PathsQueryPropertiesCase0List =
   Array<PathsQueryPropertiesCase0Item>;
@@ -5083,7 +5080,7 @@ export type PathsQueryProperties =
   | PathsQueryPropertiesCase0List
   | PropertyGroupFilter;
 export const PathsQueryProperties =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PathsQueryProperties>;
+  S.Unknown as any as S.Schema<PathsQueryProperties>;
 
 export interface PathsLink {
   average_conversion_time?: number;
@@ -5121,7 +5118,7 @@ export type PathsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const PathsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PathsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<PathsQueryResponseWarningsItem>;
 
 export type PathsQueryResponseWarningsList =
   Array<PathsQueryResponseWarningsItem>;
@@ -5229,7 +5226,7 @@ export const PathsV2Item = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "PathsV2Item" }) as any as S.Schema<PathsV2Item>;
 
 export type PathsV2AnchorType = "start" | "end";
-export const PathsV2AnchorType = /*@__PURE__*/ S.String;
+export const PathsV2AnchorType = S.String;
 
 export interface PathsV2Anchor {
   /** The path item the chart anchors on. Its event must be one of the step sources. */
@@ -5349,7 +5346,7 @@ export type PathsV2QueryPropertiesCase0Item =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const PathsV2QueryPropertiesCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PathsV2QueryPropertiesCase0Item>;
+  S.Unknown as any as S.Schema<PathsV2QueryPropertiesCase0Item>;
 
 export type PathsV2QueryPropertiesCase0List =
   Array<PathsV2QueryPropertiesCase0Item>;
@@ -5362,7 +5359,7 @@ export type PathsV2QueryProperties =
   | PathsV2QueryPropertiesCase0List
   | PropertyGroupFilter;
 export const PathsV2QueryProperties =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PathsV2QueryProperties>;
+  S.Unknown as any as S.Schema<PathsV2QueryProperties>;
 
 export interface PathsV2Edge {
   /** Unique actors who transition from source to target at any step of any of their whole journeys, the position-free count behind "went source → target at any step". Equals the two-step item-strict funnel's converted count. Only set in open mode on edges between two named items. */
@@ -5488,7 +5485,7 @@ export type PathsV2QueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const PathsV2QueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PathsV2QueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<PathsV2QueryResponseWarningsItem>;
 
 export type PathsV2QueryResponseWarningsList =
   Array<PathsV2QueryResponseWarningsItem>;
@@ -5599,7 +5596,7 @@ export type StickinessQueryPropertiesCase0Item =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const StickinessQueryPropertiesCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StickinessQueryPropertiesCase0Item>;
+  S.Unknown as any as S.Schema<StickinessQueryPropertiesCase0Item>;
 
 export type StickinessQueryPropertiesCase0List =
   Array<StickinessQueryPropertiesCase0Item>;
@@ -5612,7 +5609,7 @@ export type StickinessQueryProperties =
   | StickinessQueryPropertiesCase0List
   | PropertyGroupFilter;
 export const StickinessQueryProperties =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StickinessQueryProperties>;
+  S.Unknown as any as S.Schema<StickinessQueryProperties>;
 
 export type StickinessQueryResponseResultsItemMap = {
   [key: string]: unknown | undefined;
@@ -5644,7 +5641,7 @@ export type StickinessQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const StickinessQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StickinessQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<StickinessQueryResponseWarningsItem>;
 
 export type StickinessQueryResponseWarningsList =
   Array<StickinessQueryResponseWarningsItem>;
@@ -5699,7 +5696,7 @@ export type StickinessQuerySeriesItem =
   | ActionsNode
   | DataWarehouseNode;
 export const StickinessQuerySeriesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StickinessQuerySeriesItem>;
+  S.Unknown as any as S.Schema<StickinessQuerySeriesItem>;
 
 /** Events and actions to include */
 export type StickinessQuerySeriesList = Array<StickinessQuerySeriesItem>;
@@ -5708,7 +5705,7 @@ export const StickinessQuerySeriesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<StickinessQuerySeriesList>;
 
 export type StickinessComputationMode = "non_cumulative" | "cumulative";
-export const StickinessComputationMode = /*@__PURE__*/ S.String;
+export const StickinessComputationMode = S.String;
 
 export type StickinessFilterHiddenLegendIndexesList = Array<number>;
 export const StickinessFilterHiddenLegendIndexesList = /*@__PURE__*/ S.Array(
@@ -5738,10 +5735,10 @@ export type StickinessFilterResultCustomizations =
   | StickinessFilterResultCustomizationsCase0Map
   | StickinessFilterResultCustomizationsCase1Map;
 export const StickinessFilterResultCustomizations =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StickinessFilterResultCustomizations>;
+  S.Unknown as any as S.Schema<StickinessFilterResultCustomizations>;
 
 export type StickinessOperator = "gte" | "lte" | "exact";
-export const StickinessOperator = /*@__PURE__*/ S.String;
+export const StickinessOperator = S.String;
 
 export interface StickinessCriteria {
   operator?: StickinessOperator | (string & {});
@@ -5848,7 +5845,7 @@ export const StickinessQuery = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StickinessQuery>;
 
 export type LifecycleToggle = "new" | "resurrecting" | "returning" | "dormant";
-export const LifecycleToggle = /*@__PURE__*/ S.String;
+export const LifecycleToggle = S.String;
 
 export type LifecycleFilterToggledLifecyclesList = Array<
   LifecycleToggle | (string & {})
@@ -5908,7 +5905,7 @@ export type LifecycleQueryPropertiesCase0Item =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const LifecycleQueryPropertiesCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LifecycleQueryPropertiesCase0Item>;
+  S.Unknown as any as S.Schema<LifecycleQueryPropertiesCase0Item>;
 
 export type LifecycleQueryPropertiesCase0List =
   Array<LifecycleQueryPropertiesCase0Item>;
@@ -5921,7 +5918,7 @@ export type LifecycleQueryProperties =
   | LifecycleQueryPropertiesCase0List
   | PropertyGroupFilter;
 export const LifecycleQueryProperties =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LifecycleQueryProperties>;
+  S.Unknown as any as S.Schema<LifecycleQueryProperties>;
 
 export type LifecycleQueryResponseResultsItemMap = {
   [key: string]: unknown | undefined;
@@ -5953,7 +5950,7 @@ export type LifecycleQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const LifecycleQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LifecycleQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<LifecycleQueryResponseWarningsItem>;
 
 export type LifecycleQueryResponseWarningsList =
   Array<LifecycleQueryResponseWarningsItem>;
@@ -6008,7 +6005,7 @@ export type LifecycleQuerySeriesItem =
   | ActionsNode
   | LifecycleDataWarehouseNode;
 export const LifecycleQuerySeriesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LifecycleQuerySeriesItem>;
+  S.Unknown as any as S.Schema<LifecycleQuerySeriesItem>;
 
 /** Events and actions to include */
 export type LifecycleQuerySeriesList = Array<LifecycleQuerySeriesItem>;
@@ -6100,13 +6097,13 @@ export type WebStatsBreakdown =
   | "Timezone"
   | "Language"
   | "FrustrationMetrics";
-export const WebStatsBreakdown = /*@__PURE__*/ S.String;
+export const WebStatsBreakdown = S.String;
 
 export type WebStatsTableQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const WebStatsTableQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebStatsTableQueryConversionGoal>;
+  S.Unknown as any as S.Schema<WebStatsTableQueryConversionGoal>;
 
 export type WebAnalyticsOrderByFields =
   | "Visitors"
@@ -6123,16 +6120,16 @@ export type WebAnalyticsOrderByFields =
   | "RageClicks"
   | "DeadClicks"
   | "Errors";
-export const WebAnalyticsOrderByFields = /*@__PURE__*/ S.String;
+export const WebAnalyticsOrderByFields = S.String;
 
 export type WebAnalyticsOrderByDirection = "ASC" | "DESC";
-export const WebAnalyticsOrderByDirection = /*@__PURE__*/ S.String;
+export const WebAnalyticsOrderByDirection = S.String;
 
 export type WebStatsTableQueryOrderByItem =
   | WebAnalyticsOrderByFields
   | WebAnalyticsOrderByDirection;
 export const WebStatsTableQueryOrderByItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebStatsTableQueryOrderByItem>;
+  S.Unknown as any as S.Schema<WebStatsTableQueryOrderByItem>;
 
 export type WebStatsTableQueryOrderByList =
   Array<WebStatsTableQueryOrderByItem>;
@@ -6146,7 +6143,7 @@ export type WebStatsTableQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const WebStatsTableQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebStatsTableQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<WebStatsTableQueryPropertiesItem>;
 
 export type WebStatsTableQueryPropertiesList =
   Array<WebStatsTableQueryPropertiesItem>;
@@ -6163,7 +6160,7 @@ export type WebAnalyticsPreComputeStrategy =
   | "pre_aggregated"
   | "lazy_precompute"
   | "live";
-export const WebAnalyticsPreComputeStrategy = /*@__PURE__*/ S.String;
+export const WebAnalyticsPreComputeStrategy = S.String;
 
 export type WebStatsTableQueryResponseResultsList = Array<unknown>;
 export const WebStatsTableQueryResponseResultsList = /*@__PURE__*/ S.Array(
@@ -6202,7 +6199,7 @@ export type WebStatsTableQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const WebStatsTableQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebStatsTableQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<WebStatsTableQueryResponseWarningsItem>;
 
 export type WebStatsTableQueryResponseWarningsList =
   Array<WebStatsTableQueryResponseWarningsItem>;
@@ -6359,13 +6356,13 @@ export type WebOverviewQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const WebOverviewQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebOverviewQueryConversionGoal>;
+  S.Unknown as any as S.Schema<WebOverviewQueryConversionGoal>;
 
 export type WebOverviewQueryOrderByItem =
   | WebAnalyticsOrderByFields
   | WebAnalyticsOrderByDirection;
 export const WebOverviewQueryOrderByItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebOverviewQueryOrderByItem>;
+  S.Unknown as any as S.Schema<WebOverviewQueryOrderByItem>;
 
 export type WebOverviewQueryOrderByList = Array<WebOverviewQueryOrderByItem>;
 export const WebOverviewQueryOrderByList = /*@__PURE__*/ S.Array(
@@ -6378,7 +6375,7 @@ export type WebOverviewQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const WebOverviewQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebOverviewQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<WebOverviewQueryPropertiesItem>;
 
 export type WebOverviewQueryPropertiesList =
   Array<WebOverviewQueryPropertiesItem>;
@@ -6391,7 +6388,7 @@ export type WebAnalyticsItemKind =
   | "duration_s"
   | "percentage"
   | "currency";
-export const WebAnalyticsItemKind = /*@__PURE__*/ S.String;
+export const WebAnalyticsItemKind = S.String;
 
 export interface WebOverviewItem {
   changeFromPreviousPct?: number | null;
@@ -6435,7 +6432,7 @@ export type WebOverviewQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const WebOverviewQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebOverviewQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<WebOverviewQueryResponseWarningsItem>;
 
 export type WebOverviewQueryResponseWarningsList =
   Array<WebOverviewQueryResponseWarningsItem>;
@@ -6563,7 +6560,7 @@ export type InsightActorsQuerySource =
   | WebStatsTableQuery
   | WebOverviewQuery;
 export const InsightActorsQuerySource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InsightActorsQuerySource>;
+  S.Unknown as any as S.Schema<InsightActorsQuerySource>;
 
 export interface InsightActorsQuery {
   breakdown?: InsightActorsQueryBreakdown | null;
@@ -6701,7 +6698,7 @@ export type SessionsQueryEventPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const SessionsQueryEventPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionsQueryEventPropertiesItem>;
+  S.Unknown as any as S.Schema<SessionsQueryEventPropertiesItem>;
 
 export type SessionsQueryEventPropertiesList =
   Array<SessionsQueryEventPropertiesItem>;
@@ -6735,14 +6732,14 @@ export type SessionsQueryFixedPropertiesItemCase2 =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const SessionsQueryFixedPropertiesItemCase2 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionsQueryFixedPropertiesItemCase2>;
+  S.Unknown as any as S.Schema<SessionsQueryFixedPropertiesItemCase2>;
 
 export type SessionsQueryFixedPropertiesItem =
   | PropertyGroupFilter
   | PropertyGroupFilterValue
   | SessionsQueryFixedPropertiesItemCase2;
 export const SessionsQueryFixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionsQueryFixedPropertiesItem>;
+  S.Unknown as any as S.Schema<SessionsQueryFixedPropertiesItem>;
 
 export type SessionsQueryFixedPropertiesList =
   Array<SessionsQueryFixedPropertiesItem>;
@@ -6781,7 +6778,7 @@ export type SessionsQueryPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const SessionsQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionsQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<SessionsQueryPropertiesItem>;
 
 export type SessionsQueryPropertiesList = Array<SessionsQueryPropertiesItem>;
 export const SessionsQueryPropertiesList = /*@__PURE__*/ S.Array(
@@ -6825,7 +6822,7 @@ export type SessionsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const SessionsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<SessionsQueryResponseWarningsItem>;
 
 export type SessionsQueryResponseWarningsList =
   Array<SessionsQueryResponseWarningsItem>;
@@ -6964,7 +6961,7 @@ export type ActorsQueryFixedPropertiesItem =
   | HogQLPropertyFilter
   | EmptyPropertyFilter;
 export const ActorsQueryFixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActorsQueryFixedPropertiesItem>;
+  S.Unknown as any as S.Schema<ActorsQueryFixedPropertiesItem>;
 
 export type ActorsQueryFixedPropertiesList =
   Array<ActorsQueryFixedPropertiesItem>;
@@ -6984,7 +6981,7 @@ export type ActorsQueryPropertiesCase0Item =
   | HogQLPropertyFilter
   | EmptyPropertyFilter;
 export const ActorsQueryPropertiesCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActorsQueryPropertiesCase0Item>;
+  S.Unknown as any as S.Schema<ActorsQueryPropertiesCase0Item>;
 
 export type ActorsQueryPropertiesCase0List =
   Array<ActorsQueryPropertiesCase0Item>;
@@ -6997,7 +6994,7 @@ export type ActorsQueryProperties =
   | ActorsQueryPropertiesCase0List
   | PropertyGroupFilterValue;
 export const ActorsQueryProperties =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActorsQueryProperties>;
+  S.Unknown as any as S.Schema<ActorsQueryProperties>;
 
 export type ActorsQuerySelectList = Array<string>;
 export const ActorsQuerySelectList = /*@__PURE__*/ S.Array(
@@ -7009,7 +7006,7 @@ export type FunnelsActorsQueryFunnelStepBreakdownCase3Item =
   | string
   | number;
 export const FunnelsActorsQueryFunnelStepBreakdownCase3Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelsActorsQueryFunnelStepBreakdownCase3Item>;
+  S.Unknown as any as S.Schema<FunnelsActorsQueryFunnelStepBreakdownCase3Item>;
 
 export type FunnelsActorsQueryFunnelStepBreakdownCase3List =
   Array<FunnelsActorsQueryFunnelStepBreakdownCase3Item>;
@@ -7025,7 +7022,7 @@ export type FunnelsActorsQueryFunnelStepBreakdown =
   | number
   | FunnelsActorsQueryFunnelStepBreakdownCase3List;
 export const FunnelsActorsQueryFunnelStepBreakdown =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelsActorsQueryFunnelStepBreakdown>;
+  S.Unknown as any as S.Schema<FunnelsActorsQueryFunnelStepBreakdown>;
 
 export interface FunnelsActorsQuery {
   /** When the source funnel has compare-to-previous enabled, scopes the actors to a single period. The runner resolves `'previous'` to the shifted date range; `'current'` (or unset) uses the source's own date range. */
@@ -7073,7 +7070,7 @@ export type FunnelCorrelationActorsQueryFunnelCorrelationPersonEntity =
   | ActionsNode
   | DataWarehouseNode;
 export const FunnelCorrelationActorsQueryFunnelCorrelationPersonEntity =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelCorrelationActorsQueryFunnelCorrelationPersonEntity>;
+  S.Unknown as any as S.Schema<FunnelCorrelationActorsQueryFunnelCorrelationPersonEntity>;
 
 export type FunnelCorrelationActorsQueryFunnelCorrelationPropertyValuesItem =
   | EventPropertyFilter
@@ -7101,7 +7098,7 @@ export type FunnelCorrelationActorsQueryFunnelCorrelationPropertyValuesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const FunnelCorrelationActorsQueryFunnelCorrelationPropertyValuesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelCorrelationActorsQueryFunnelCorrelationPropertyValuesItem>;
+  S.Unknown as any as S.Schema<FunnelCorrelationActorsQueryFunnelCorrelationPropertyValuesItem>;
 
 export type FunnelCorrelationActorsQueryFunnelCorrelationPropertyValuesList =
   Array<FunnelCorrelationActorsQueryFunnelCorrelationPropertyValuesItem>;
@@ -7148,7 +7145,7 @@ export type FunnelCorrelationResultsType =
   | "events"
   | "properties"
   | "event_with_properties";
-export const FunnelCorrelationResultsType = /*@__PURE__*/ S.String;
+export const FunnelCorrelationResultsType = S.String;
 
 export type FunnelCorrelationResponseColumnsList = Array<unknown>;
 export const FunnelCorrelationResponseColumnsList = /*@__PURE__*/ S.Array(
@@ -7156,7 +7153,7 @@ export const FunnelCorrelationResponseColumnsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FunnelCorrelationResponseColumnsList>;
 
 export type CorrelationType = "success" | "failure";
-export const CorrelationType = /*@__PURE__*/ S.String;
+export const CorrelationType = S.String;
 
 export type EventDefinitionElementsList = Array<unknown>;
 export const EventDefinitionElementsList = /*@__PURE__*/ S.Array(
@@ -7244,7 +7241,7 @@ export type FunnelCorrelationResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const FunnelCorrelationResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FunnelCorrelationResponseWarningsItem>;
+  S.Unknown as any as S.Schema<FunnelCorrelationResponseWarningsItem>;
 
 export type FunnelCorrelationResponseWarningsList =
   Array<FunnelCorrelationResponseWarningsItem>;
@@ -7407,7 +7404,7 @@ export type ExperimentEventExposureConfigPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ExperimentEventExposureConfigPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentEventExposureConfigPropertiesItem>;
+  S.Unknown as any as S.Schema<ExperimentEventExposureConfigPropertiesItem>;
 
 export type ExperimentEventExposureConfigPropertiesList =
   Array<ExperimentEventExposureConfigPropertiesItem>;
@@ -7449,14 +7446,14 @@ export type ExperimentActorsQueryExposureConfig =
   | ExperimentEventExposureConfig
   | ActionsNode;
 export const ExperimentActorsQueryExposureConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentActorsQueryExposureConfig>;
+  S.Unknown as any as S.Schema<ExperimentActorsQueryExposureConfig>;
 
 export type ExperimentActorsQueryFunnelStepBreakdownCase3Item =
   | number
   | string
   | number;
 export const ExperimentActorsQueryFunnelStepBreakdownCase3Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentActorsQueryFunnelStepBreakdownCase3Item>;
+  S.Unknown as any as S.Schema<ExperimentActorsQueryFunnelStepBreakdownCase3Item>;
 
 export type ExperimentActorsQueryFunnelStepBreakdownCase3List =
   Array<ExperimentActorsQueryFunnelStepBreakdownCase3Item>;
@@ -7472,13 +7469,13 @@ export type ExperimentActorsQueryFunnelStepBreakdown =
   | number
   | ExperimentActorsQueryFunnelStepBreakdownCase3List;
 export const ExperimentActorsQueryFunnelStepBreakdown =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentActorsQueryFunnelStepBreakdown>;
+  S.Unknown as any as S.Schema<ExperimentActorsQueryFunnelStepBreakdown>;
 
 export type MultipleVariantHandling = "exclude" | "first_seen";
-export const MultipleVariantHandling = /*@__PURE__*/ S.String;
+export const MultipleVariantHandling = S.String;
 
 export type ExperimentMetricGoal = "increase" | "decrease";
-export const ExperimentMetricGoal = /*@__PURE__*/ S.String;
+export const ExperimentMetricGoal = S.String;
 
 export type ExperimentMeanMetricResponseMap = {
   [key: string]: unknown | undefined;
@@ -7514,7 +7511,7 @@ export type ExperimentDataWarehouseNodeFixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ExperimentDataWarehouseNodeFixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentDataWarehouseNodeFixedPropertiesItem>;
+  S.Unknown as any as S.Schema<ExperimentDataWarehouseNodeFixedPropertiesItem>;
 
 export type ExperimentDataWarehouseNodeFixedPropertiesList =
   Array<ExperimentDataWarehouseNodeFixedPropertiesItem>;
@@ -7533,7 +7530,7 @@ export type ExperimentDataWarehouseNodeMath =
   | CalendarHeatmapMathType
   | string;
 export const ExperimentDataWarehouseNodeMath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentDataWarehouseNodeMath>;
+  S.Unknown as any as S.Schema<ExperimentDataWarehouseNodeMath>;
 
 export type ExperimentDataWarehouseNodePropertiesItem =
   | EventPropertyFilter
@@ -7561,7 +7558,7 @@ export type ExperimentDataWarehouseNodePropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ExperimentDataWarehouseNodePropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentDataWarehouseNodePropertiesItem>;
+  S.Unknown as any as S.Schema<ExperimentDataWarehouseNodePropertiesItem>;
 
 export type ExperimentDataWarehouseNodePropertiesList =
   Array<ExperimentDataWarehouseNodePropertiesItem>;
@@ -7636,7 +7633,7 @@ export type ExperimentMeanMetricSource =
   | ActionsNode
   | ExperimentDataWarehouseNode;
 export const ExperimentMeanMetricSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentMeanMetricSource>;
+  S.Unknown as any as S.Schema<ExperimentMeanMetricSource>;
 
 export interface ExperimentMeanMetric {
   breakdownFilter?: BreakdownFilter | null;
@@ -7705,7 +7702,7 @@ export type ExperimentFunnelMetricSeriesItem =
   | ActionsNode
   | ExperimentDataWarehouseNode;
 export const ExperimentFunnelMetricSeriesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentFunnelMetricSeriesItem>;
+  S.Unknown as any as S.Schema<ExperimentFunnelMetricSeriesItem>;
 
 export type ExperimentFunnelMetricSeriesList =
   Array<ExperimentFunnelMetricSeriesItem>;
@@ -7769,7 +7766,7 @@ export type ExperimentRatioMetricDenominator =
   | ActionsNode
   | ExperimentDataWarehouseNode;
 export const ExperimentRatioMetricDenominator =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentRatioMetricDenominator>;
+  S.Unknown as any as S.Schema<ExperimentRatioMetricDenominator>;
 
 export interface ExperimentMetricOutlierHandling {
   ignore_zeros?: boolean | null;
@@ -7793,7 +7790,7 @@ export type ExperimentRatioMetricNumerator =
   | ActionsNode
   | ExperimentDataWarehouseNode;
 export const ExperimentRatioMetricNumerator =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentRatioMetricNumerator>;
+  S.Unknown as any as S.Schema<ExperimentRatioMetricNumerator>;
 
 export type ExperimentRatioMetricResponseMap = {
   [key: string]: unknown | undefined;
@@ -7861,7 +7858,7 @@ export type ExperimentRetentionMetricCompletionEvent =
   | ActionsNode
   | ExperimentDataWarehouseNode;
 export const ExperimentRetentionMetricCompletionEvent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentRetentionMetricCompletionEvent>;
+  S.Unknown as any as S.Schema<ExperimentRetentionMetricCompletionEvent>;
 
 export type ExperimentRetentionMetricResponseMap = {
   [key: string]: unknown | undefined;
@@ -7876,10 +7873,10 @@ export type ExperimentRetentionMetricStartEvent =
   | ActionsNode
   | ExperimentDataWarehouseNode;
 export const ExperimentRetentionMetricStartEvent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentRetentionMetricStartEvent>;
+  S.Unknown as any as S.Schema<ExperimentRetentionMetricStartEvent>;
 
 export type StartHandling = "first_seen" | "last_seen";
-export const StartHandling = /*@__PURE__*/ S.String;
+export const StartHandling = S.String;
 
 export interface ExperimentRetentionMetric {
   breakdownFilter?: BreakdownFilter | null;
@@ -7940,10 +7937,10 @@ export type ExperimentQueryMetric =
   | ExperimentRatioMetric
   | ExperimentRetentionMetric;
 export const ExperimentQueryMetric =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentQueryMetric>;
+  S.Unknown as any as S.Schema<ExperimentQueryMetric>;
 
 export type PrecomputationMode = "precomputed" | "direct";
-export const PrecomputationMode = /*@__PURE__*/ S.String;
+export const PrecomputationMode = S.String;
 
 export type ExperimentStatsBaseValidatedStepCountsList = Array<number>;
 export const ExperimentStatsBaseValidatedStepCountsList = /*@__PURE__*/ S.Array(
@@ -7983,7 +7980,7 @@ export type ExperimentStatsValidationFailure =
   | "not-enough-exposures"
   | "baseline-mean-is-zero"
   | "not-enough-metric-data";
-export const ExperimentStatsValidationFailure = /*@__PURE__*/ S.String;
+export const ExperimentStatsValidationFailure = S.String;
 
 export type ExperimentStatsBaseValidatedValidationFailuresList = Array<
   ExperimentStatsValidationFailure | (string & {})
@@ -8039,7 +8036,7 @@ export type ExperimentBreakdownResultBreakdownValueItem =
   | number
   | number;
 export const ExperimentBreakdownResultBreakdownValueItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentBreakdownResultBreakdownValueItem>;
+  S.Unknown as any as S.Schema<ExperimentBreakdownResultBreakdownValueItem>;
 
 /** The breakdown values as an array (e.g., ["MacOS", "Chrome"] for multi-breakdown, ["Chrome"] for single) Although `BreakdownKeyType` could be an array, we only use the array form for the breakdown_value. The way `BreakdownKeyType` is defined is problematic. It should be treated as a primitive and allow for the types using it to define if it's and array or an optional value. */
 export type ExperimentBreakdownResultBreakdownValueList =
@@ -8237,7 +8234,7 @@ export type ExperimentBreakdownResultVariants =
   | ExperimentBreakdownResultVariantsCase0List
   | ExperimentBreakdownResultVariantsCase1List;
 export const ExperimentBreakdownResultVariants =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentBreakdownResultVariants>;
+  S.Unknown as any as S.Schema<ExperimentBreakdownResultVariants>;
 
 export interface ExperimentBreakdownResult {
   /** Control variant stats for this breakdown */
@@ -8299,7 +8296,7 @@ export type ExperimentQueryResponseMetric =
   | ExperimentRatioMetric
   | ExperimentRetentionMetric;
 export const ExperimentQueryResponseMetric =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentQueryResponseMetric>;
+  S.Unknown as any as S.Schema<ExperimentQueryResponseMetric>;
 
 export type ExperimentQueryResponseProbabilityMap = {
   [key: string]: number | undefined;
@@ -8315,7 +8312,7 @@ export type ExperimentSignificanceCode =
   | "low_win_probability"
   | "high_loss"
   | "high_p_value";
-export const ExperimentSignificanceCode = /*@__PURE__*/ S.String;
+export const ExperimentSignificanceCode = S.String;
 
 export type ExperimentQueryResponseVariantResultsCase0List =
   Array<ExperimentVariantResultFrequentist>;
@@ -8335,7 +8332,7 @@ export type ExperimentQueryResponseVariantResults =
   | ExperimentQueryResponseVariantResultsCase0List
   | ExperimentQueryResponseVariantResultsCase1List;
 export const ExperimentQueryResponseVariantResults =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentQueryResponseVariantResults>;
+  S.Unknown as any as S.Schema<ExperimentQueryResponseVariantResults>;
 
 export interface ExperimentVariantTrendsBaseStats {
   absolute_exposure?: number;
@@ -8385,7 +8382,7 @@ export type ExperimentQueryResponseVariants =
   | ExperimentQueryResponseVariantsCase0List
   | ExperimentQueryResponseVariantsCase1List;
 export const ExperimentQueryResponseVariants =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentQueryResponseVariants>;
+  S.Unknown as any as S.Schema<ExperimentQueryResponseVariants>;
 
 export type ExperimentQueryResponseWarningsList =
   Array<DataWarehouseSyncWarning>;
@@ -8518,7 +8515,7 @@ export const ExperimentActorsQuery = /*@__PURE__*/ S.suspend(() =>
 
 export type StickinessActorsQueryDay = string | number;
 export const StickinessActorsQueryDay =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StickinessActorsQueryDay>;
+  S.Unknown as any as S.Schema<StickinessActorsQueryDay>;
 
 export interface StickinessActorsQuery {
   compare?: Compare | (string & {}) | null;
@@ -8564,7 +8561,7 @@ export type PathsV2ElementType =
   | "dropOff"
   | "other"
   | "chain";
-export const PathsV2ElementType = /*@__PURE__*/ S.String;
+export const PathsV2ElementType = S.String;
 
 export interface PathsV2ElementSelector {
   /** Match the source → target transition at any step of any whole journey instead of at one step pair: the position-free set behind an edge's anyStepCount. Requires a named source and target and open mode. Edge elements only. */
@@ -8648,7 +8645,7 @@ export type HogQLFiltersPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const HogQLFiltersPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<HogQLFiltersPropertiesItem>;
+  S.Unknown as any as S.Schema<HogQLFiltersPropertiesItem>;
 
 export type HogQLFiltersPropertiesList = Array<HogQLFiltersPropertiesItem>;
 export const HogQLFiltersPropertiesList = /*@__PURE__*/ S.Array(
@@ -8710,7 +8707,7 @@ export const HogQLMetadataResponseErrorsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<HogQLMetadataResponseErrorsList>;
 
 export type PredicateScope = "event" | "person" | "group" | "unknown";
-export const PredicateScope = /*@__PURE__*/ S.String;
+export const PredicateScope = S.String;
 
 /** Skip indexes this predicate can actually use. */
 export type PredicateIndexUsageUsableIndexesList = Array<string>;
@@ -8724,7 +8721,7 @@ export type PredicateIndexVerdict =
   | "unindexed_column"
   | "unindexed_json"
   | "operator_not_indexable";
-export const PredicateIndexVerdict = /*@__PURE__*/ S.String;
+export const PredicateIndexVerdict = S.String;
 
 export interface PredicateIndexUsage {
   column_name?: string | null;
@@ -8772,7 +8769,7 @@ export const HogQLMetadataResponseIndexUsageList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<HogQLMetadataResponseIndexUsageList>;
 
 export type QueryIndexUsage = "undecisive" | "no" | "partial" | "yes";
-export const QueryIndexUsage = /*@__PURE__*/ S.String;
+export const QueryIndexUsage = S.String;
 
 export type HogQLMetadataResponseNoticesList = Array<HogQLNotice>;
 export const HogQLMetadataResponseNoticesList = /*@__PURE__*/ S.Array(
@@ -8843,7 +8840,7 @@ export type HogQLQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const HogQLQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<HogQLQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<HogQLQueryResponseWarningsItem>;
 
 export type HogQLQueryResponseWarningsList =
   Array<HogQLQueryResponseWarningsItem>;
@@ -8996,7 +8993,7 @@ export type ActorsQuerySource =
   | PathsV2ActorsQuery
   | HogQLQuery;
 export const ActorsQuerySource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActorsQuerySource>;
+  S.Unknown as any as S.Schema<ActorsQuerySource>;
 
 export interface ActorsQuery {
   /** Exclude persons matching the team's "internal and test account" filters. Only person-scoped filters (person properties, cohorts) are applied. Event-scoped test account filters have no meaning in a persons query and are ignored. */
@@ -9047,7 +9044,7 @@ export type GroupsQueryPropertiesItem =
   | GroupPropertyFilter
   | HogQLPropertyFilter;
 export const GroupsQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GroupsQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<GroupsQueryPropertiesItem>;
 
 export type GroupsQueryPropertiesList = Array<GroupsQueryPropertiesItem>;
 export const GroupsQueryPropertiesList = /*@__PURE__*/ S.Array(
@@ -9091,7 +9088,7 @@ export type GroupsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const GroupsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GroupsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<GroupsQueryResponseWarningsItem>;
 
 export type GroupsQueryResponseWarningsList =
   Array<GroupsQueryResponseWarningsItem>;
@@ -9193,7 +9190,7 @@ export const GroupsQuery = /*@__PURE__*/ S.suspend(() =>
 
 export type BreakdownItemValue = string | number;
 export const BreakdownItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BreakdownItemValue>;
+  S.Unknown as any as S.Schema<BreakdownItemValue>;
 
 export interface BreakdownItem {
   label?: string;
@@ -9254,8 +9251,7 @@ export const InsightActorsQueryOptionsResponseCompareList =
   ) as any as S.Schema<InsightActorsQueryOptionsResponseCompareList>;
 
 export type DayItemValue = string | number;
-export const DayItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DayItemValue>;
+export const DayItemValue = S.Unknown as any as S.Schema<DayItemValue>;
 
 export interface DayItem {
   label?: string;
@@ -9366,7 +9362,7 @@ export type InsightActorsQueryOptionsSource =
   | ExperimentActorsQuery
   | PathsV2ActorsQuery;
 export const InsightActorsQueryOptionsSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InsightActorsQueryOptionsSource>;
+  S.Unknown as any as S.Schema<InsightActorsQueryOptionsSource>;
 
 export interface InsightActorsQueryOptions {
   kind?: string;
@@ -9527,7 +9523,7 @@ export type SessionsTimelineQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const SessionsTimelineQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionsTimelineQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<SessionsTimelineQueryResponseWarningsItem>;
 
 export type SessionsTimelineQueryResponseWarningsList =
   Array<SessionsTimelineQueryResponseWarningsItem>;
@@ -9670,7 +9666,7 @@ export type HogLanguage =
   | "hogQLExpr"
   | "hogTemplate"
   | "liquid";
-export const HogLanguage = /*@__PURE__*/ S.String;
+export const HogLanguage = S.String;
 
 export type HogQLAutocompleteGlobalsMap = {
   [key: string]: unknown | undefined;
@@ -9709,7 +9705,7 @@ export type AutocompleteCompletionItemKind =
   | "User"
   | "Issue"
   | "Snippet";
-export const AutocompleteCompletionItemKind = /*@__PURE__*/ S.String;
+export const AutocompleteCompletionItemKind = S.String;
 
 export interface AutocompleteCompletionItem {
   /** A human-readable string with additional information about this item, like type or symbol information. */
@@ -9770,7 +9766,7 @@ export type MarketingAnalyticsTableQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const MarketingAnalyticsTableQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsTableQueryConversionGoal>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsTableQueryConversionGoal>;
 
 export type ConversionGoalFilter1FixedPropertiesItem =
   | EventPropertyFilter
@@ -9798,7 +9794,7 @@ export type ConversionGoalFilter1FixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ConversionGoalFilter1FixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter1FixedPropertiesItem>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter1FixedPropertiesItem>;
 
 export type ConversionGoalFilter1FixedPropertiesList =
   Array<ConversionGoalFilter1FixedPropertiesItem>;
@@ -9816,7 +9812,7 @@ export type ConversionGoalFilter1Math =
   | CalendarHeatmapMathType
   | string;
 export const ConversionGoalFilter1Math =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter1Math>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter1Math>;
 
 export type ConversionGoalFilter1OrderByList = Array<string>;
 export const ConversionGoalFilter1OrderByList = /*@__PURE__*/ S.Array(
@@ -9849,7 +9845,7 @@ export type ConversionGoalFilter1PropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ConversionGoalFilter1PropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter1PropertiesItem>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter1PropertiesItem>;
 
 export type ConversionGoalFilter1PropertiesList =
   Array<ConversionGoalFilter1PropertiesItem>;
@@ -9867,7 +9863,7 @@ export const ConversionGoalFilter1ResponseMap = /*@__PURE__*/ S.Record(
 
 export type ConversionGoalFilter1SchemaMapValue = string | unknown;
 export const ConversionGoalFilter1SchemaMapValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter1SchemaMapValue>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter1SchemaMapValue>;
 
 export type ConversionGoalFilter1SchemaMapMap = {
   [key: string]: ConversionGoalFilter1SchemaMapValue | undefined;
@@ -9969,7 +9965,7 @@ export type ConversionGoalFilter2FixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ConversionGoalFilter2FixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter2FixedPropertiesItem>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter2FixedPropertiesItem>;
 
 export type ConversionGoalFilter2FixedPropertiesList =
   Array<ConversionGoalFilter2FixedPropertiesItem>;
@@ -9987,7 +9983,7 @@ export type ConversionGoalFilter2Math =
   | CalendarHeatmapMathType
   | string;
 export const ConversionGoalFilter2Math =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter2Math>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter2Math>;
 
 export type ConversionGoalFilter2PropertiesItem =
   | EventPropertyFilter
@@ -10015,7 +10011,7 @@ export type ConversionGoalFilter2PropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ConversionGoalFilter2PropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter2PropertiesItem>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter2PropertiesItem>;
 
 export type ConversionGoalFilter2PropertiesList =
   Array<ConversionGoalFilter2PropertiesItem>;
@@ -10033,7 +10029,7 @@ export const ConversionGoalFilter2ResponseMap = /*@__PURE__*/ S.Record(
 
 export type ConversionGoalFilter2SchemaMapValue = string | unknown;
 export const ConversionGoalFilter2SchemaMapValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter2SchemaMapValue>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter2SchemaMapValue>;
 
 export type ConversionGoalFilter2SchemaMapMap = {
   [key: string]: ConversionGoalFilter2SchemaMapValue | undefined;
@@ -10129,7 +10125,7 @@ export type ConversionGoalFilter3FixedPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ConversionGoalFilter3FixedPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter3FixedPropertiesItem>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter3FixedPropertiesItem>;
 
 export type ConversionGoalFilter3FixedPropertiesList =
   Array<ConversionGoalFilter3FixedPropertiesItem>;
@@ -10147,7 +10143,7 @@ export type ConversionGoalFilter3Math =
   | CalendarHeatmapMathType
   | string;
 export const ConversionGoalFilter3Math =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter3Math>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter3Math>;
 
 export type ConversionGoalFilter3PropertiesItem =
   | EventPropertyFilter
@@ -10175,7 +10171,7 @@ export type ConversionGoalFilter3PropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const ConversionGoalFilter3PropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter3PropertiesItem>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter3PropertiesItem>;
 
 export type ConversionGoalFilter3PropertiesList =
   Array<ConversionGoalFilter3PropertiesItem>;
@@ -10193,7 +10189,7 @@ export const ConversionGoalFilter3ResponseMap = /*@__PURE__*/ S.Record(
 
 export type ConversionGoalFilter3SchemaMapValue = string | unknown;
 export const ConversionGoalFilter3SchemaMapValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoalFilter3SchemaMapValue>;
+  S.Unknown as any as S.Schema<ConversionGoalFilter3SchemaMapValue>;
 
 export type ConversionGoalFilter3SchemaMapMap = {
   [key: string]: ConversionGoalFilter3SchemaMapValue | undefined;
@@ -10279,7 +10275,7 @@ export type MarketingAnalyticsTableQueryDraftConversionGoal =
   | ConversionGoalFilter2
   | ConversionGoalFilter3;
 export const MarketingAnalyticsTableQueryDraftConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsTableQueryDraftConversionGoal>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsTableQueryDraftConversionGoal>;
 
 export type MarketingAnalyticsDrillDownLevel =
   | "channel"
@@ -10291,7 +10287,7 @@ export type MarketingAnalyticsDrillDownLevel =
   | "medium"
   | "content"
   | "term";
-export const MarketingAnalyticsDrillDownLevel = /*@__PURE__*/ S.String;
+export const MarketingAnalyticsDrillDownLevel = S.String;
 
 export type IntegrationFilterIntegrationSourceIdsList = Array<string>;
 export const IntegrationFilterIntegrationSourceIdsList = /*@__PURE__*/ S.Array(
@@ -10313,13 +10309,13 @@ export const IntegrationFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IntegrationFilter>;
 
 export type MarketingAnalyticsOrderByEnum = "ASC" | "DESC";
-export const MarketingAnalyticsOrderByEnum = /*@__PURE__*/ S.String;
+export const MarketingAnalyticsOrderByEnum = S.String;
 
 export type MarketingAnalyticsTableQueryOrderByItemItem =
   | string
   | MarketingAnalyticsOrderByEnum;
 export const MarketingAnalyticsTableQueryOrderByItemItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsTableQueryOrderByItemItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsTableQueryOrderByItemItem>;
 
 export type MarketingAnalyticsTableQueryOrderByItemList =
   Array<MarketingAnalyticsTableQueryOrderByItemItem>;
@@ -10340,7 +10336,7 @@ export type MarketingAnalyticsTableQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const MarketingAnalyticsTableQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsTableQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsTableQueryPropertiesItem>;
 
 export type MarketingAnalyticsTableQueryPropertiesList =
   Array<MarketingAnalyticsTableQueryPropertiesItem>;
@@ -10356,11 +10352,11 @@ export const MarketingAnalyticsTableQueryResponseColumnsList =
 
 export type MarketingAnalyticsItemPrevious = number | string;
 export const MarketingAnalyticsItemPrevious =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsItemPrevious>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsItemPrevious>;
 
 export type MarketingAnalyticsItemValue = number | string;
 export const MarketingAnalyticsItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsItemValue>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsItemValue>;
 
 export interface MarketingAnalyticsItem {
   changeFromPreviousPct?: number | null;
@@ -10423,7 +10419,7 @@ export type MarketingAnalyticsTableQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MarketingAnalyticsTableQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsTableQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsTableQueryResponseWarningsItem>;
 
 export type MarketingAnalyticsTableQueryResponseWarningsList =
   Array<MarketingAnalyticsTableQueryResponseWarningsItem>;
@@ -10584,7 +10580,7 @@ export type MarketingAnalyticsAggregatedQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const MarketingAnalyticsAggregatedQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsAggregatedQueryConversionGoal>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsAggregatedQueryConversionGoal>;
 
 /** Draft conversion goal that can be set in the UI without saving */
 export type MarketingAnalyticsAggregatedQueryDraftConversionGoal =
@@ -10592,7 +10588,7 @@ export type MarketingAnalyticsAggregatedQueryDraftConversionGoal =
   | ConversionGoalFilter2
   | ConversionGoalFilter3;
 export const MarketingAnalyticsAggregatedQueryDraftConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsAggregatedQueryDraftConversionGoal>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsAggregatedQueryDraftConversionGoal>;
 
 export type MarketingAnalyticsAggregatedQueryPropertiesItem =
   | EventPropertyFilter
@@ -10600,7 +10596,7 @@ export type MarketingAnalyticsAggregatedQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const MarketingAnalyticsAggregatedQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsAggregatedQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsAggregatedQueryPropertiesItem>;
 
 export type MarketingAnalyticsAggregatedQueryPropertiesList =
   Array<MarketingAnalyticsAggregatedQueryPropertiesItem>;
@@ -10636,7 +10632,7 @@ export type MarketingAnalyticsAggregatedQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MarketingAnalyticsAggregatedQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsAggregatedQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsAggregatedQueryResponseWarningsItem>;
 
 export type MarketingAnalyticsAggregatedQueryResponseWarningsList =
   Array<MarketingAnalyticsAggregatedQueryResponseWarningsItem>;
@@ -10778,13 +10774,13 @@ export type MarketingAnalyticsAttributionBreakdown =
   | "term"
   | "referring_domain"
   | "landing_page";
-export const MarketingAnalyticsAttributionBreakdown = /*@__PURE__*/ S.String;
+export const MarketingAnalyticsAttributionBreakdown = S.String;
 
 export type MarketingAnalyticsAttributionQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const MarketingAnalyticsAttributionQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsAttributionQueryConversionGoal>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsAttributionQueryConversionGoal>;
 
 export type MarketingAnalyticsAttributionQueryPropertiesItem =
   | EventPropertyFilter
@@ -10792,7 +10788,7 @@ export type MarketingAnalyticsAttributionQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const MarketingAnalyticsAttributionQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsAttributionQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsAttributionQueryPropertiesItem>;
 
 export type MarketingAnalyticsAttributionQueryPropertiesList =
   Array<MarketingAnalyticsAttributionQueryPropertiesItem>;
@@ -10807,7 +10803,7 @@ export type AttributionMode =
   | "linear"
   | "time_decay"
   | "position_based";
-export const AttributionMode = /*@__PURE__*/ S.String;
+export const AttributionMode = S.String;
 
 /** Model order for the column groups. */
 export type MarketingAnalyticsAttributionQueryResponseModelsList = Array<
@@ -10893,7 +10889,7 @@ export type MarketingAnalyticsAttributionQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MarketingAnalyticsAttributionQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsAttributionQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsAttributionQueryResponseWarningsItem>;
 
 export type MarketingAnalyticsAttributionQueryResponseWarningsList =
   Array<MarketingAnalyticsAttributionQueryResponseWarningsItem>;
@@ -11055,7 +11051,7 @@ export type MarketingAnalyticsAttributionPathsQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const MarketingAnalyticsAttributionPathsQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsAttributionPathsQueryConversionGoal>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsAttributionPathsQueryConversionGoal>;
 
 export type MarketingAnalyticsAttributionPathsQueryPropertiesItem =
   | EventPropertyFilter
@@ -11063,7 +11059,7 @@ export type MarketingAnalyticsAttributionPathsQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const MarketingAnalyticsAttributionPathsQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsAttributionPathsQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsAttributionPathsQueryPropertiesItem>;
 
 export type MarketingAnalyticsAttributionPathsQueryPropertiesList =
   Array<MarketingAnalyticsAttributionPathsQueryPropertiesItem>;
@@ -11126,7 +11122,7 @@ export type MarketingAnalyticsAttributionPathsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MarketingAnalyticsAttributionPathsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsAttributionPathsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsAttributionPathsQueryResponseWarningsItem>;
 
 export type MarketingAnalyticsAttributionPathsQueryResponseWarningsList =
   Array<MarketingAnalyticsAttributionPathsQueryResponseWarningsItem>;
@@ -11293,7 +11289,7 @@ export type MarketingAnalyticsRetentionQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const MarketingAnalyticsRetentionQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsRetentionQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsRetentionQueryPropertiesItem>;
 
 export type MarketingAnalyticsRetentionQueryPropertiesList =
   Array<MarketingAnalyticsRetentionQueryPropertiesItem>;
@@ -11303,7 +11299,7 @@ export const MarketingAnalyticsRetentionQueryPropertiesList =
   ) as any as S.Schema<MarketingAnalyticsRetentionQueryPropertiesList>;
 
 export type MarketingAnalyticsRetentionInterval = "day" | "week" | "month";
-export const MarketingAnalyticsRetentionInterval = /*@__PURE__*/ S.String;
+export const MarketingAnalyticsRetentionInterval = S.String;
 
 /** Column headers, e.g. ['Week 0', 'Week 1', ...]. */
 export type MarketingAnalyticsRetentionQueryResponseLabelsList = Array<string>;
@@ -11385,7 +11381,7 @@ export type MarketingAnalyticsRetentionQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MarketingAnalyticsRetentionQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsRetentionQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsRetentionQueryResponseWarningsItem>;
 
 export type MarketingAnalyticsRetentionQueryResponseWarningsList =
   Array<MarketingAnalyticsRetentionQueryResponseWarningsItem>;
@@ -11530,7 +11526,7 @@ export type NonIntegratedConversionsTableQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const NonIntegratedConversionsTableQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NonIntegratedConversionsTableQueryConversionGoal>;
+  S.Unknown as any as S.Schema<NonIntegratedConversionsTableQueryConversionGoal>;
 
 /** Draft conversion goal that can be set in the UI without saving */
 export type NonIntegratedConversionsTableQueryDraftConversionGoal =
@@ -11538,13 +11534,13 @@ export type NonIntegratedConversionsTableQueryDraftConversionGoal =
   | ConversionGoalFilter2
   | ConversionGoalFilter3;
 export const NonIntegratedConversionsTableQueryDraftConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NonIntegratedConversionsTableQueryDraftConversionGoal>;
+  S.Unknown as any as S.Schema<NonIntegratedConversionsTableQueryDraftConversionGoal>;
 
 export type NonIntegratedConversionsTableQueryOrderByItemItem =
   | string
   | MarketingAnalyticsOrderByEnum;
 export const NonIntegratedConversionsTableQueryOrderByItemItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NonIntegratedConversionsTableQueryOrderByItemItem>;
+  S.Unknown as any as S.Schema<NonIntegratedConversionsTableQueryOrderByItemItem>;
 
 export type NonIntegratedConversionsTableQueryOrderByItemList =
   Array<NonIntegratedConversionsTableQueryOrderByItemItem>;
@@ -11566,7 +11562,7 @@ export type NonIntegratedConversionsTableQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const NonIntegratedConversionsTableQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NonIntegratedConversionsTableQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<NonIntegratedConversionsTableQueryPropertiesItem>;
 
 export type NonIntegratedConversionsTableQueryPropertiesList =
   Array<NonIntegratedConversionsTableQueryPropertiesItem>;
@@ -11621,7 +11617,7 @@ export type NonIntegratedConversionsTableQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const NonIntegratedConversionsTableQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NonIntegratedConversionsTableQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<NonIntegratedConversionsTableQueryResponseWarningsItem>;
 
 export type NonIntegratedConversionsTableQueryResponseWarningsList =
   Array<NonIntegratedConversionsTableQueryResponseWarningsItem>;
@@ -11781,13 +11777,13 @@ export type WebExternalClicksTableQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const WebExternalClicksTableQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebExternalClicksTableQueryConversionGoal>;
+  S.Unknown as any as S.Schema<WebExternalClicksTableQueryConversionGoal>;
 
 export type WebExternalClicksTableQueryOrderByItem =
   | WebAnalyticsOrderByFields
   | WebAnalyticsOrderByDirection;
 export const WebExternalClicksTableQueryOrderByItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebExternalClicksTableQueryOrderByItem>;
+  S.Unknown as any as S.Schema<WebExternalClicksTableQueryOrderByItem>;
 
 export type WebExternalClicksTableQueryOrderByList =
   Array<WebExternalClicksTableQueryOrderByItem>;
@@ -11801,7 +11797,7 @@ export type WebExternalClicksTableQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const WebExternalClicksTableQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebExternalClicksTableQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<WebExternalClicksTableQueryPropertiesItem>;
 
 export type WebExternalClicksTableQueryPropertiesList =
   Array<WebExternalClicksTableQueryPropertiesItem>;
@@ -11844,7 +11840,7 @@ export type WebExternalClicksTableQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const WebExternalClicksTableQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebExternalClicksTableQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<WebExternalClicksTableQueryResponseWarningsItem>;
 
 export type WebExternalClicksTableQueryResponseWarningsList =
   Array<WebExternalClicksTableQueryResponseWarningsItem>;
@@ -11973,19 +11969,19 @@ export const WebExternalClicksTableQuery = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WebExternalClicksTableQuery>;
 
 export type WebBotsBreakdown = "Crawler" | "Path";
-export const WebBotsBreakdown = /*@__PURE__*/ S.String;
+export const WebBotsBreakdown = S.String;
 
 export type WebBotsTableQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const WebBotsTableQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebBotsTableQueryConversionGoal>;
+  S.Unknown as any as S.Schema<WebBotsTableQueryConversionGoal>;
 
 export type WebBotsTableQueryOrderByItem =
   | WebAnalyticsOrderByFields
   | WebAnalyticsOrderByDirection;
 export const WebBotsTableQueryOrderByItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebBotsTableQueryOrderByItem>;
+  S.Unknown as any as S.Schema<WebBotsTableQueryOrderByItem>;
 
 export type WebBotsTableQueryOrderByList = Array<WebBotsTableQueryOrderByItem>;
 export const WebBotsTableQueryOrderByList = /*@__PURE__*/ S.Array(
@@ -11998,7 +11994,7 @@ export type WebBotsTableQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const WebBotsTableQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebBotsTableQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<WebBotsTableQueryPropertiesItem>;
 
 export type WebBotsTableQueryPropertiesList =
   Array<WebBotsTableQueryPropertiesItem>;
@@ -12037,7 +12033,7 @@ export type WebBotsTableQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const WebBotsTableQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebBotsTableQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<WebBotsTableQueryResponseWarningsItem>;
 
 export type WebBotsTableQueryResponseWarningsList =
   Array<WebBotsTableQueryResponseWarningsItem>;
@@ -12155,19 +12151,19 @@ export const WebBotsTableQuery = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WebBotsTableQuery>;
 
 export type WebAgentContentGrouping = "exact" | "normalized";
-export const WebAgentContentGrouping = /*@__PURE__*/ S.String;
+export const WebAgentContentGrouping = S.String;
 
 export type WebAgentAnalyticsQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const WebAgentAnalyticsQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebAgentAnalyticsQueryConversionGoal>;
+  S.Unknown as any as S.Schema<WebAgentAnalyticsQueryConversionGoal>;
 
 export type WebAgentAnalyticsQueryOrderByItem =
   | WebAnalyticsOrderByFields
   | WebAnalyticsOrderByDirection;
 export const WebAgentAnalyticsQueryOrderByItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebAgentAnalyticsQueryOrderByItem>;
+  S.Unknown as any as S.Schema<WebAgentAnalyticsQueryOrderByItem>;
 
 export type WebAgentAnalyticsQueryOrderByList =
   Array<WebAgentAnalyticsQueryOrderByItem>;
@@ -12181,7 +12177,7 @@ export type WebAgentAnalyticsQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const WebAgentAnalyticsQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebAgentAnalyticsQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<WebAgentAnalyticsQueryPropertiesItem>;
 
 export type WebAgentAnalyticsQueryPropertiesList =
   Array<WebAgentAnalyticsQueryPropertiesItem>;
@@ -12200,7 +12196,7 @@ export type WebAgentAnalyticsQueryType =
   | "journey_summary"
   | "journeys"
   | "journey_detail";
-export const WebAgentAnalyticsQueryType = /*@__PURE__*/ S.String;
+export const WebAgentAnalyticsQueryType = S.String;
 
 export type WebAgentAnalyticsQueryResponseColumnsList = Array<unknown>;
 export const WebAgentAnalyticsQueryResponseColumnsList = /*@__PURE__*/ S.Array(
@@ -12233,7 +12229,7 @@ export type WebAgentAnalyticsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const WebAgentAnalyticsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebAgentAnalyticsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<WebAgentAnalyticsQueryResponseWarningsItem>;
 
 export type WebAgentAnalyticsQueryResponseWarningsList =
   Array<WebAgentAnalyticsQueryResponseWarningsItem>;
@@ -12367,13 +12363,13 @@ export type WebGoalsQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const WebGoalsQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebGoalsQueryConversionGoal>;
+  S.Unknown as any as S.Schema<WebGoalsQueryConversionGoal>;
 
 export type WebGoalsQueryOrderByItem =
   | WebAnalyticsOrderByFields
   | WebAnalyticsOrderByDirection;
 export const WebGoalsQueryOrderByItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebGoalsQueryOrderByItem>;
+  S.Unknown as any as S.Schema<WebGoalsQueryOrderByItem>;
 
 export type WebGoalsQueryOrderByList = Array<WebGoalsQueryOrderByItem>;
 export const WebGoalsQueryOrderByList = /*@__PURE__*/ S.Array(
@@ -12386,7 +12382,7 @@ export type WebGoalsQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const WebGoalsQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebGoalsQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<WebGoalsQueryPropertiesItem>;
 
 export type WebGoalsQueryPropertiesList = Array<WebGoalsQueryPropertiesItem>;
 export const WebGoalsQueryPropertiesList = /*@__PURE__*/ S.Array(
@@ -12424,7 +12420,7 @@ export type WebGoalsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const WebGoalsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebGoalsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<WebGoalsQueryResponseWarningsItem>;
 
 export type WebGoalsQueryResponseWarningsList =
   Array<WebGoalsQueryResponseWarningsItem>;
@@ -12551,13 +12547,13 @@ export type WebVitalsQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const WebVitalsQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebVitalsQueryConversionGoal>;
+  S.Unknown as any as S.Schema<WebVitalsQueryConversionGoal>;
 
 export type WebVitalsQueryOrderByItem =
   | WebAnalyticsOrderByFields
   | WebAnalyticsOrderByDirection;
 export const WebVitalsQueryOrderByItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebVitalsQueryOrderByItem>;
+  S.Unknown as any as S.Schema<WebVitalsQueryOrderByItem>;
 
 export type WebVitalsQueryOrderByList = Array<WebVitalsQueryOrderByItem>;
 export const WebVitalsQueryOrderByList = /*@__PURE__*/ S.Array(
@@ -12570,7 +12566,7 @@ export type WebVitalsQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const WebVitalsQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebVitalsQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<WebVitalsQueryPropertiesItem>;
 
 export type WebVitalsQueryPropertiesList = Array<WebVitalsQueryPropertiesItem>;
 export const WebVitalsQueryPropertiesList = /*@__PURE__*/ S.Array(
@@ -12588,7 +12584,7 @@ export type WebVitalsQuerySource =
   | WebStatsTableQuery
   | WebOverviewQuery;
 export const WebVitalsQuerySource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebVitalsQuerySource>;
+  S.Unknown as any as S.Schema<WebVitalsQuerySource>;
 
 export interface WebVitalsQuery {
   /** Groups aggregation - not used in Web Analytics but required for type compatibility */
@@ -12647,16 +12643,16 @@ export type WebVitalsPathBreakdownQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const WebVitalsPathBreakdownQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebVitalsPathBreakdownQueryConversionGoal>;
+  S.Unknown as any as S.Schema<WebVitalsPathBreakdownQueryConversionGoal>;
 
 export type WebVitalsMetric = "INP" | "LCP" | "CLS" | "FCP";
-export const WebVitalsMetric = /*@__PURE__*/ S.String;
+export const WebVitalsMetric = S.String;
 
 export type WebVitalsPathBreakdownQueryOrderByItem =
   | WebAnalyticsOrderByFields
   | WebAnalyticsOrderByDirection;
 export const WebVitalsPathBreakdownQueryOrderByItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebVitalsPathBreakdownQueryOrderByItem>;
+  S.Unknown as any as S.Schema<WebVitalsPathBreakdownQueryOrderByItem>;
 
 export type WebVitalsPathBreakdownQueryOrderByList =
   Array<WebVitalsPathBreakdownQueryOrderByItem>;
@@ -12665,7 +12661,7 @@ export const WebVitalsPathBreakdownQueryOrderByList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<WebVitalsPathBreakdownQueryOrderByList>;
 
 export type WebVitalsPercentile = "p75" | "p90" | "p99";
-export const WebVitalsPercentile = /*@__PURE__*/ S.String;
+export const WebVitalsPercentile = S.String;
 
 export type WebVitalsPathBreakdownQueryPropertiesItem =
   | EventPropertyFilter
@@ -12673,7 +12669,7 @@ export type WebVitalsPathBreakdownQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const WebVitalsPathBreakdownQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebVitalsPathBreakdownQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<WebVitalsPathBreakdownQueryPropertiesItem>;
 
 export type WebVitalsPathBreakdownQueryPropertiesList =
   Array<WebVitalsPathBreakdownQueryPropertiesItem>;
@@ -12754,7 +12750,7 @@ export type WebVitalsPathBreakdownQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const WebVitalsPathBreakdownQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebVitalsPathBreakdownQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<WebVitalsPathBreakdownQueryResponseWarningsItem>;
 
 export type WebVitalsPathBreakdownQueryResponseWarningsList =
   Array<WebVitalsPathBreakdownQueryResponseWarningsItem>;
@@ -12887,13 +12883,13 @@ export type WebPageURLSearchQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const WebPageURLSearchQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebPageURLSearchQueryConversionGoal>;
+  S.Unknown as any as S.Schema<WebPageURLSearchQueryConversionGoal>;
 
 export type WebPageURLSearchQueryOrderByItem =
   | WebAnalyticsOrderByFields
   | WebAnalyticsOrderByDirection;
 export const WebPageURLSearchQueryOrderByItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebPageURLSearchQueryOrderByItem>;
+  S.Unknown as any as S.Schema<WebPageURLSearchQueryOrderByItem>;
 
 export type WebPageURLSearchQueryOrderByList =
   Array<WebPageURLSearchQueryOrderByItem>;
@@ -12907,7 +12903,7 @@ export type WebPageURLSearchQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const WebPageURLSearchQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebPageURLSearchQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<WebPageURLSearchQueryPropertiesItem>;
 
 export type WebPageURLSearchQueryPropertiesList =
   Array<WebPageURLSearchQueryPropertiesItem>;
@@ -12945,7 +12941,7 @@ export type WebPageURLSearchQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const WebPageURLSearchQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebPageURLSearchQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<WebPageURLSearchQueryResponseWarningsItem>;
 
 export type WebPageURLSearchQueryResponseWarningsList =
   Array<WebPageURLSearchQueryResponseWarningsItem>;
@@ -13066,7 +13062,7 @@ export type WebAnalyticsExternalSummaryQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const WebAnalyticsExternalSummaryQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebAnalyticsExternalSummaryQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<WebAnalyticsExternalSummaryQueryPropertiesItem>;
 
 export type WebAnalyticsExternalSummaryQueryPropertiesList =
   Array<WebAnalyticsExternalSummaryQueryPropertiesItem>;
@@ -13087,7 +13083,7 @@ export const WebAnalyticsExternalSummaryQueryResponseDataMap =
 export type ExternalQueryErrorCode =
   | "platform_access_required"
   | "query_execution_failed";
-export const ExternalQueryErrorCode = /*@__PURE__*/ S.String;
+export const ExternalQueryErrorCode = S.String;
 
 export interface ExternalQueryError {
   code?: ExternalQueryErrorCode | (string & {});
@@ -13103,7 +13099,7 @@ export const ExternalQueryError = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ExternalQueryError>;
 
 export type ExternalQueryStatus = "success" | "error";
-export const ExternalQueryStatus = /*@__PURE__*/ S.String;
+export const ExternalQueryStatus = S.String;
 
 export interface WebAnalyticsExternalSummaryQueryResponse {
   data?: WebAnalyticsExternalSummaryQueryResponseDataMap;
@@ -13145,13 +13141,13 @@ export type WebNotableChangesQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const WebNotableChangesQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebNotableChangesQueryConversionGoal>;
+  S.Unknown as any as S.Schema<WebNotableChangesQueryConversionGoal>;
 
 export type WebNotableChangesQueryOrderByItem =
   | WebAnalyticsOrderByFields
   | WebAnalyticsOrderByDirection;
 export const WebNotableChangesQueryOrderByItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebNotableChangesQueryOrderByItem>;
+  S.Unknown as any as S.Schema<WebNotableChangesQueryOrderByItem>;
 
 export type WebNotableChangesQueryOrderByList =
   Array<WebNotableChangesQueryOrderByItem>;
@@ -13165,7 +13161,7 @@ export type WebNotableChangesQueryPropertiesItem =
   | SessionPropertyFilter
   | CohortPropertyFilter;
 export const WebNotableChangesQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebNotableChangesQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<WebNotableChangesQueryPropertiesItem>;
 
 export type WebNotableChangesQueryPropertiesList =
   Array<WebNotableChangesQueryPropertiesItem>;
@@ -13218,7 +13214,7 @@ export type WebNotableChangesQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const WebNotableChangesQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebNotableChangesQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<WebNotableChangesQueryResponseWarningsItem>;
 
 export type WebNotableChangesQueryResponseWarningsList =
   Array<WebNotableChangesQueryResponseWarningsItem>;
@@ -13351,7 +13347,7 @@ export type SessionAttributionGroupBy =
   | "AdIds"
   | "ReferringDomain"
   | "InitialURL";
-export const SessionAttributionGroupBy = /*@__PURE__*/ S.String;
+export const SessionAttributionGroupBy = S.String;
 
 export type SessionAttributionExplorerQueryGroupByList = Array<
   SessionAttributionGroupBy | (string & {})
@@ -13390,7 +13386,7 @@ export type SessionAttributionExplorerQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const SessionAttributionExplorerQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionAttributionExplorerQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<SessionAttributionExplorerQueryResponseWarningsItem>;
 
 export type SessionAttributionExplorerQueryResponseWarningsList =
   Array<SessionAttributionExplorerQueryResponseWarningsItem>;
@@ -13493,10 +13489,10 @@ export const SessionAttributionExplorerQuery = /*@__PURE__*/ S.suspend(() =>
 
 export type ErrorTrackingIssueAssigneeId = string | number;
 export const ErrorTrackingIssueAssigneeId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ErrorTrackingIssueAssigneeId>;
+  S.Unknown as any as S.Schema<ErrorTrackingIssueAssigneeId>;
 
 export type ErrorTrackingIssueAssigneeType = "user" | "role";
-export const ErrorTrackingIssueAssigneeType = /*@__PURE__*/ S.String;
+export const ErrorTrackingIssueAssigneeType = S.String;
 
 export interface ErrorTrackingIssueAssignee {
   id?: ErrorTrackingIssueAssigneeId;
@@ -13517,17 +13513,17 @@ export type ErrorTrackingOrderBy =
   | "occurrences"
   | "users"
   | "sessions";
-export const ErrorTrackingOrderBy = /*@__PURE__*/ S.String;
+export const ErrorTrackingOrderBy = S.String;
 
 export type OrderDirection2 = "ASC" | "DESC";
-export const OrderDirection2 = /*@__PURE__*/ S.String;
+export const OrderDirection2 = S.String;
 
 export type ErrorTrackingQueryIssueSeverity =
   | "low"
   | "medium"
   | "high"
   | "critical";
-export const ErrorTrackingQueryIssueSeverity = /*@__PURE__*/ S.String;
+export const ErrorTrackingQueryIssueSeverity = S.String;
 
 export interface ErrorTrackingPendingFingerprintIssueStateUpdate {
   assigned_role_id?: string | null;
@@ -13668,7 +13664,7 @@ export type IntegrationKind =
   | "s3-compatible"
   | "snowflake"
   | "youtube-analytics";
-export const IntegrationKind = /*@__PURE__*/ S.String;
+export const IntegrationKind = S.String;
 
 export interface ErrorTrackingExternalReferenceIntegration {
   display_name?: string;
@@ -13731,7 +13727,7 @@ export type ErrorTrackingIssueStatus =
   | "resolved"
   | "pending_release"
   | "suppressed";
-export const ErrorTrackingIssueStatus = /*@__PURE__*/ S.String;
+export const ErrorTrackingIssueStatus = S.String;
 
 export interface ErrorTrackingIssue {
   aggregations?: ErrorTrackingIssueAggregations | null;
@@ -13795,7 +13791,7 @@ export type ErrorTrackingQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const ErrorTrackingQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ErrorTrackingQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<ErrorTrackingQueryResponseWarningsItem>;
 
 export type ErrorTrackingQueryResponseWarningsList =
   Array<ErrorTrackingQueryResponseWarningsItem>;
@@ -13856,7 +13852,7 @@ export const ErrorTrackingQueryResponse = /*@__PURE__*/ S.suspend(() =>
 /** Filter by issue status. */
 export type ErrorTrackingQueryStatus = ErrorTrackingIssueStatus | string;
 export const ErrorTrackingQueryStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ErrorTrackingQueryStatus>;
+  S.Unknown as any as S.Schema<ErrorTrackingQueryStatus>;
 
 export interface ErrorTrackingQuery {
   assignee?: ErrorTrackingIssueAssignee | null;
@@ -13934,7 +13930,7 @@ export const ErrorTrackingQuery = /*@__PURE__*/ S.suspend(() =>
 export type EmbeddingModelName =
   | "text-embedding-3-small-1536"
   | "text-embedding-3-large-3072";
-export const EmbeddingModelName = /*@__PURE__*/ S.String;
+export const EmbeddingModelName = S.String;
 
 export interface SimilarIssue {
   description?: string;
@@ -13982,7 +13978,7 @@ export type ErrorTrackingSimilarIssuesQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const ErrorTrackingSimilarIssuesQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ErrorTrackingSimilarIssuesQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<ErrorTrackingSimilarIssuesQueryResponseWarningsItem>;
 
 export type ErrorTrackingSimilarIssuesQueryResponseWarningsList =
   Array<ErrorTrackingSimilarIssuesQueryResponseWarningsItem>;
@@ -14122,7 +14118,7 @@ export type ErrorTrackingFingerprintProjectionQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const ErrorTrackingFingerprintProjectionQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ErrorTrackingFingerprintProjectionQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<ErrorTrackingFingerprintProjectionQueryResponseWarningsItem>;
 
 export type ErrorTrackingFingerprintProjectionQueryResponseWarningsList =
   Array<ErrorTrackingFingerprintProjectionQueryResponseWarningsItem>;
@@ -14272,7 +14268,7 @@ export type ErrorTrackingBreakdownsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const ErrorTrackingBreakdownsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ErrorTrackingBreakdownsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<ErrorTrackingBreakdownsQueryResponseWarningsItem>;
 
 export type ErrorTrackingBreakdownsQueryResponseWarningsList =
   Array<ErrorTrackingBreakdownsQueryResponseWarningsItem>;
@@ -14366,7 +14362,7 @@ export const ErrorTrackingBreakdownsQuery = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ErrorTrackingBreakdownsQuery>;
 
 export type ErrorTrackingReleasesOrderBy = "latest" | "occurrences";
-export const ErrorTrackingReleasesOrderBy = /*@__PURE__*/ S.String;
+export const ErrorTrackingReleasesOrderBy = S.String;
 
 /** ISO start of each bucket. The first one can start before `date_from`. */
 export type ErrorTrackingReleasesQueryResponseBucketsList = Array<string>;
@@ -14461,7 +14457,7 @@ export type ErrorTrackingReleasesQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const ErrorTrackingReleasesQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ErrorTrackingReleasesQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<ErrorTrackingReleasesQueryResponseWarningsItem>;
 
 export type ErrorTrackingReleasesQueryResponseWarningsList =
   Array<ErrorTrackingReleasesQueryResponseWarningsItem>;
@@ -14685,7 +14681,7 @@ export type ErrorTrackingIssueCorrelationQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const ErrorTrackingIssueCorrelationQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ErrorTrackingIssueCorrelationQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<ErrorTrackingIssueCorrelationQueryResponseWarningsItem>;
 
 export type ErrorTrackingIssueCorrelationQueryResponseWarningsList =
   Array<ErrorTrackingIssueCorrelationQueryResponseWarningsItem>;
@@ -14784,7 +14780,7 @@ export const LogsQueryCustomColumnsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<LogsQueryCustomColumnsList>;
 
 export type LogsOrderBy = "latest" | "earliest";
-export const LogsOrderBy = /*@__PURE__*/ S.String;
+export const LogsOrderBy = S.String;
 
 export type LogsQueryResponseColumnsList = Array<string>;
 export const LogsQueryResponseColumnsList = /*@__PURE__*/ S.Array(
@@ -14807,7 +14803,7 @@ export type LogsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const LogsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<LogsQueryResponseWarningsItem>;
 
 export type LogsQueryResponseWarningsList =
   Array<LogsQueryResponseWarningsItem>;
@@ -14880,7 +14876,7 @@ export type LogSeverityLevel =
   | "warn"
   | "error"
   | "fatal";
-export const LogSeverityLevel = /*@__PURE__*/ S.String;
+export const LogSeverityLevel = S.String;
 
 export type LogsQuerySeverityLevelsList = Array<
   LogSeverityLevel | (string & {})
@@ -14890,10 +14886,10 @@ export const LogsQuerySeverityLevelsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<LogsQuerySeverityLevelsList>;
 
 export type LogsSparklineBreakdownBy = "severity" | "service";
-export const LogsSparklineBreakdownBy = /*@__PURE__*/ S.String;
+export const LogsSparklineBreakdownBy = S.String;
 
 export type LogsSparklineRankBy = "count" | "bytes";
-export const LogsSparklineRankBy = /*@__PURE__*/ S.String;
+export const LogsSparklineRankBy = S.String;
 
 export interface LogsQuery {
   /** Cursor for fetching the next page of results */
@@ -14953,7 +14949,7 @@ export const LogsQuery = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "LogsQuery" }) as any as S.Schema<LogsQuery>;
 
 export type MatchedOn = "key" | "value";
-export const MatchedOn = /*@__PURE__*/ S.String;
+export const MatchedOn = S.String;
 
 export interface LogAttributeResult {
   /** Whether this row matched the search by attribute key or by attribute value. */
@@ -14996,7 +14992,7 @@ export type LogAttributesQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const LogAttributesQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogAttributesQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<LogAttributesQueryResponseWarningsItem>;
 
 export type LogAttributesQueryResponseWarningsList =
   Array<LogAttributesQueryResponseWarningsItem>;
@@ -15135,7 +15131,7 @@ export type LogValuesQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const LogValuesQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogValuesQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<LogValuesQueryResponseWarningsItem>;
 
 export type LogValuesQueryResponseWarningsList =
   Array<LogValuesQueryResponseWarningsItem>;
@@ -15244,13 +15240,13 @@ export type MetricsAggregation =
   | "rate"
   | "increase"
   | "histogram_quantile";
-export const MetricsAggregation = /*@__PURE__*/ S.String;
+export const MetricsAggregation = S.String;
 
 export type MetricsFilterOp = "eq" | "neq" | "regex" | "not_regex";
-export const MetricsFilterOp = /*@__PURE__*/ S.String;
+export const MetricsFilterOp = S.String;
 
 export type MetricsAttributeScope = "resource" | "attribute" | "auto";
-export const MetricsAttributeScope = /*@__PURE__*/ S.String;
+export const MetricsAttributeScope = S.String;
 
 export interface MetricsQueryFilter {
   key: string;
@@ -15298,7 +15294,7 @@ export type MetricsOtelType =
   | "histogram"
   | "exponential_histogram"
   | "summary";
-export const MetricsOtelType = /*@__PURE__*/ S.String;
+export const MetricsOtelType = S.String;
 
 export interface MetricsQueryClause {
   aggregation: MetricsAggregation | (string & {});
@@ -15337,13 +15333,13 @@ export const MetricsDisplaySettingsGoalLinesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<MetricsDisplaySettingsGoalLinesList>;
 
 export type MetricsStatSummary = "latest" | "average" | "total";
-export const MetricsStatSummary = /*@__PURE__*/ S.String;
+export const MetricsStatSummary = S.String;
 
 export type MetricsDisplayType = "line" | "area" | "bar" | "stat";
-export const MetricsDisplayType = /*@__PURE__*/ S.String;
+export const MetricsDisplayType = S.String;
 
 export type MetricsAxisScale = "linear" | "log";
-export const MetricsAxisScale = /*@__PURE__*/ S.String;
+export const MetricsAxisScale = S.String;
 
 export interface MetricsYAxisSettings {
   /** Pins the top of the axis; unset means automatic. Pinning both ends drops the automatic stretch that keeps an off-scale goal line on-plot. */
@@ -15449,7 +15445,7 @@ export type MetricsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MetricsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MetricsQueryResponseWarningsItem>;
 
 export type MetricsQueryResponseWarningsList =
   Array<MetricsQueryResponseWarningsItem>;
@@ -15533,7 +15529,7 @@ export const MetricsQuery = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "MetricsQuery" }) as any as S.Schema<MetricsQuery>;
 
 export type TraceOrderColumn = "timestamp" | "duration";
-export const TraceOrderColumn = /*@__PURE__*/ S.String;
+export const TraceOrderColumn = S.String;
 
 export type TraceSpansQueryResponseTimingsList = Array<QueryTiming>;
 export const TraceSpansQueryResponseTimingsList = /*@__PURE__*/ S.Array(
@@ -15551,7 +15547,7 @@ export type TraceSpansQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const TraceSpansQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TraceSpansQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<TraceSpansQueryResponseWarningsItem>;
 
 export type TraceSpansQueryResponseWarningsList =
   Array<TraceSpansQueryResponseWarningsItem>;
@@ -15735,7 +15731,7 @@ export type TraceSpansAggregationQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const TraceSpansAggregationQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TraceSpansAggregationQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<TraceSpansAggregationQueryResponseWarningsItem>;
 
 export type TraceSpansAggregationQueryResponseWarningsList =
   Array<TraceSpansAggregationQueryResponseWarningsItem>;
@@ -15895,7 +15891,7 @@ export type TraceSpansTreeQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const TraceSpansTreeQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TraceSpansTreeQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<TraceSpansTreeQueryResponseWarningsItem>;
 
 export type TraceSpansTreeQueryResponseWarningsList =
   Array<TraceSpansTreeQueryResponseWarningsItem>;
@@ -15993,10 +15989,10 @@ export type TraceSpanBreakdownType =
   | "span"
   | "span_attribute"
   | "span_resource_attribute";
-export const TraceSpanBreakdownType = /*@__PURE__*/ S.String;
+export const TraceSpanBreakdownType = S.String;
 
 export type TraceSpanBreakdownOrderBy = "count" | "error_count";
-export const TraceSpanBreakdownOrderBy = /*@__PURE__*/ S.String;
+export const TraceSpanBreakdownOrderBy = S.String;
 
 export interface AttributeBreakdownRow {
   count: number;
@@ -16049,7 +16045,7 @@ export type TraceSpansAttributeBreakdownQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const TraceSpansAttributeBreakdownQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TraceSpansAttributeBreakdownQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<TraceSpansAttributeBreakdownQueryResponseWarningsItem>;
 
 export type TraceSpansAttributeBreakdownQueryResponseWarningsList =
   Array<TraceSpansAttributeBreakdownQueryResponseWarningsItem>;
@@ -16419,7 +16415,7 @@ export type CalendarHeatmapQueryConversionGoal =
   | ActionConversionGoal
   | CustomEventConversionGoal;
 export const CalendarHeatmapQueryConversionGoal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CalendarHeatmapQueryConversionGoal>;
+  S.Unknown as any as S.Schema<CalendarHeatmapQueryConversionGoal>;
 
 export type CalendarHeatmapQueryPropertiesCase0Item =
   | EventPropertyFilter
@@ -16447,7 +16443,7 @@ export type CalendarHeatmapQueryPropertiesCase0Item =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const CalendarHeatmapQueryPropertiesCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CalendarHeatmapQueryPropertiesCase0Item>;
+  S.Unknown as any as S.Schema<CalendarHeatmapQueryPropertiesCase0Item>;
 
 export type CalendarHeatmapQueryPropertiesCase0List =
   Array<CalendarHeatmapQueryPropertiesCase0Item>;
@@ -16460,7 +16456,7 @@ export type CalendarHeatmapQueryProperties =
   | CalendarHeatmapQueryPropertiesCase0List
   | PropertyGroupFilter;
 export const CalendarHeatmapQueryProperties =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CalendarHeatmapQueryProperties>;
+  S.Unknown as any as S.Schema<CalendarHeatmapQueryProperties>;
 
 export interface EventsHeatMapColumnAggregationResult {
   column?: number;
@@ -16561,7 +16557,7 @@ export type CalendarHeatmapResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const CalendarHeatmapResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CalendarHeatmapResponseWarningsItem>;
+  S.Unknown as any as S.Schema<CalendarHeatmapResponseWarningsItem>;
 
 export type CalendarHeatmapResponseWarningsList =
   Array<CalendarHeatmapResponseWarningsItem>;
@@ -16619,7 +16615,7 @@ export type CalendarHeatmapQuerySeriesItem =
   | ActionsNode
   | DataWarehouseNode;
 export const CalendarHeatmapQuerySeriesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CalendarHeatmapQuerySeriesItem>;
+  S.Unknown as any as S.Schema<CalendarHeatmapQuerySeriesItem>;
 
 /** Events and actions to include */
 export type CalendarHeatmapQuerySeriesList =
@@ -16759,7 +16755,7 @@ export type RecordingsQueryHavingPredicatesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const RecordingsQueryHavingPredicatesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RecordingsQueryHavingPredicatesItem>;
+  S.Unknown as any as S.Schema<RecordingsQueryHavingPredicatesItem>;
 
 export type RecordingsQueryHavingPredicatesList =
   Array<RecordingsQueryHavingPredicatesItem>;
@@ -16768,7 +16764,7 @@ export const RecordingsQueryHavingPredicatesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RecordingsQueryHavingPredicatesList>;
 
 export type HideViewedRecordings = "current-user" | "any-user";
-export const HideViewedRecordings = /*@__PURE__*/ S.String;
+export const HideViewedRecordings = S.String;
 
 export type RecordingOrder =
   | "duration"
@@ -16783,10 +16779,10 @@ export type RecordingOrder =
   | "activity_score"
   | "recording_ttl"
   | "surfacing_score";
-export const RecordingOrder = /*@__PURE__*/ S.String;
+export const RecordingOrder = S.String;
 
 export type RecordingOrderDirection = "ASC" | "DESC";
-export const RecordingOrderDirection = /*@__PURE__*/ S.String;
+export const RecordingOrderDirection = S.String;
 
 export type RecordingsQueryPropertiesItem =
   | EventPropertyFilter
@@ -16814,7 +16810,7 @@ export type RecordingsQueryPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const RecordingsQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RecordingsQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<RecordingsQueryPropertiesItem>;
 
 export type RecordingsQueryPropertiesList =
   Array<RecordingsQueryPropertiesItem>;
@@ -16934,7 +16930,7 @@ export const PersonType = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "PersonType" }) as any as S.Schema<PersonType>;
 
 export type SnapshotSource = "web" | "mobile" | "unknown";
-export const SnapshotSource = /*@__PURE__*/ S.String;
+export const SnapshotSource = S.String;
 
 /** user ids of other users who have viewed this recording */
 export type SessionRecordingTypeViewersList = Array<string>;
@@ -17054,7 +17050,7 @@ export type RecordingsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const RecordingsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RecordingsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<RecordingsQueryResponseWarningsItem>;
 
 export type RecordingsQueryResponseWarningsList =
   Array<RecordingsQueryResponseWarningsItem>;
@@ -17226,7 +17222,7 @@ export type TracesQueryPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const TracesQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TracesQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<TracesQueryPropertiesItem>;
 
 export type TracesQueryPropertiesList = Array<TracesQueryPropertiesItem>;
 export const TracesQueryPropertiesList = /*@__PURE__*/ S.Array(
@@ -17251,11 +17247,11 @@ export type AIEventType =
   | "$ai_generation_summary"
   | "$ai_trace_clusters"
   | "$ai_generation_clusters";
-export const AIEventType = /*@__PURE__*/ S.String;
+export const AIEventType = S.String;
 
 export type LLMTraceEventEvent = AIEventType | string;
 export const LLMTraceEventEvent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LLMTraceEventEvent>;
+  S.Unknown as any as S.Schema<LLMTraceEventEvent>;
 
 export type LLMTraceEventPropertiesMap = { [key: string]: unknown | undefined };
 export const LLMTraceEventPropertiesMap = /*@__PURE__*/ S.Record(
@@ -17439,7 +17435,7 @@ export type TracesQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const TracesQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TracesQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<TracesQueryResponseWarningsItem>;
 
 export type TracesQueryResponseWarningsList =
   Array<TracesQueryResponseWarningsItem>;
@@ -17572,7 +17568,7 @@ export type TraceQueryPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const TraceQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TraceQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<TraceQueryPropertiesItem>;
 
 export type TraceQueryPropertiesList = Array<TraceQueryPropertiesItem>;
 export const TraceQueryPropertiesList = /*@__PURE__*/ S.Array(
@@ -17605,7 +17601,7 @@ export type TraceQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const TraceQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TraceQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<TraceQueryResponseWarningsItem>;
 
 export type TraceQueryResponseWarningsList =
   Array<TraceQueryResponseWarningsItem>;
@@ -17718,7 +17714,7 @@ export type SessionQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const SessionQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<SessionQueryResponseWarningsItem>;
 
 export type SessionQueryResponseWarningsList =
   Array<SessionQueryResponseWarningsItem>;
@@ -17832,7 +17828,7 @@ export type TraceNeighborsQueryPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const TraceNeighborsQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TraceNeighborsQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<TraceNeighborsQueryPropertiesItem>;
 
 export type TraceNeighborsQueryPropertiesList =
   Array<TraceNeighborsQueryPropertiesItem>;
@@ -17954,7 +17950,7 @@ export type VectorSearchQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const VectorSearchQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<VectorSearchQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<VectorSearchQueryResponseWarningsItem>;
 
 export type VectorSearchQueryResponseWarningsList =
   Array<VectorSearchQueryResponseWarningsItem>;
@@ -18030,10 +18026,10 @@ export const VectorSearchQuery = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VectorSearchQuery>;
 
 export type UsageMetricDisplay = "number" | "sparkline";
-export const UsageMetricDisplay = /*@__PURE__*/ S.String;
+export const UsageMetricDisplay = S.String;
 
 export type UsageMetricFormat = "numeric" | "currency";
-export const UsageMetricFormat = /*@__PURE__*/ S.String;
+export const UsageMetricFormat = S.String;
 
 export type UsageMetricTimeseriesList = Array<number>;
 export const UsageMetricTimeseriesList = /*@__PURE__*/ S.Array(
@@ -18095,7 +18091,7 @@ export type UsageMetricsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const UsageMetricsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UsageMetricsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<UsageMetricsQueryResponseWarningsItem>;
 
 export type UsageMetricsQueryResponseWarningsList =
   Array<UsageMetricsQueryResponseWarningsItem>;
@@ -18232,7 +18228,7 @@ export type AccountsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const AccountsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AccountsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<AccountsQueryResponseWarningsItem>;
 
 export type AccountsQueryResponseWarningsList =
   Array<AccountsQueryResponseWarningsItem>;
@@ -18367,7 +18363,7 @@ export type AccountsTableAccountField =
   | "billing_id"
   | "sfdc_id"
   | "zendesk_id";
-export const AccountsTableAccountField = /*@__PURE__*/ S.String;
+export const AccountsTableAccountField = S.String;
 
 export interface AccountsTableAccountFieldColumn {
   field: AccountsTableAccountField | (string & {});
@@ -18425,7 +18421,7 @@ export const AccountsTableCustomPropertyColumn = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AccountsTableCustomPropertyColumn>;
 
 export type WindowDays = 7 | 14 | 30 | 90;
-export const WindowDays = /*@__PURE__*/ S.Number;
+export const WindowDays = S.Number;
 
 export interface AccountsTableCustomPropertyHistoryColumn {
   /** Team-scoped numeric custom property definition whose write history should be returned. */
@@ -18453,7 +18449,7 @@ export type AccountsTableQueryColumnsItem =
   | AccountsTableCustomPropertyColumn
   | AccountsTableCustomPropertyHistoryColumn;
 export const AccountsTableQueryColumnsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AccountsTableQueryColumnsItem>;
+  S.Unknown as any as S.Schema<AccountsTableQueryColumnsItem>;
 
 /** Columns to load for each account. Account identity fields are always returned. */
 export type AccountsTableQueryColumnsList =
@@ -18526,7 +18522,7 @@ export type AccountsTableRelationshipOperator =
   | "is_not"
   | "is_set"
   | "is_not_set";
-export const AccountsTableRelationshipOperator = /*@__PURE__*/ S.String;
+export const AccountsTableRelationshipOperator = S.String;
 
 export type AccountsTableRelationshipFilterUserIdsList = Array<number>;
 export const AccountsTableRelationshipFilterUserIdsList = /*@__PURE__*/ S.Array(
@@ -18573,7 +18569,7 @@ export type AccountsTableAccountFieldOperator =
   | "is_date_exact"
   | "is_date_before"
   | "is_date_after";
-export const AccountsTableAccountFieldOperator = /*@__PURE__*/ S.String;
+export const AccountsTableAccountFieldOperator = S.String;
 
 export type AccountsTableAccountFieldFilterValuesList = Array<string>;
 export const AccountsTableAccountFieldFilterValuesList = /*@__PURE__*/ S.Array(
@@ -18613,14 +18609,14 @@ export type AccountsTableCustomPropertyOperator =
   | "is_date_exact"
   | "is_date_before"
   | "is_date_after";
-export const AccountsTableCustomPropertyOperator = /*@__PURE__*/ S.String;
+export const AccountsTableCustomPropertyOperator = S.String;
 
 export type AccountsTableCustomPropertyFilterValuesItem =
   | string
   | number
   | boolean;
 export const AccountsTableCustomPropertyFilterValuesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AccountsTableCustomPropertyFilterValuesItem>;
+  S.Unknown as any as S.Schema<AccountsTableCustomPropertyFilterValuesItem>;
 
 export type AccountsTableCustomPropertyFilterValuesList =
   Array<AccountsTableCustomPropertyFilterValuesItem>;
@@ -18658,7 +18654,7 @@ export type AccountsTableQueryFiltersItem =
   | AccountsTableAccountFieldFilter
   | AccountsTableCustomPropertyFilter;
 export const AccountsTableQueryFiltersItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AccountsTableQueryFiltersItem>;
+  S.Unknown as any as S.Schema<AccountsTableQueryFiltersItem>;
 
 export type AccountsTableQueryFiltersList =
   Array<AccountsTableQueryFiltersItem>;
@@ -18670,7 +18666,7 @@ export type AccountsTableCountMetric = AccountsTableTagsColumn;
 export const AccountsTableCountMetric = AccountsTableTagsColumn;
 
 export type AccountsTableAggregation = "sum" | "avg" | "min" | "max" | "median";
-export const AccountsTableAggregation = /*@__PURE__*/ S.String;
+export const AccountsTableAggregation = S.String;
 
 export interface AccountsTableAggregateMetric {
   aggregation: AccountsTableAggregation | (string & {});
@@ -18696,7 +18692,7 @@ export type AccountsTableThresholdOperator =
   | "lte"
   | "exact"
   | "is_not";
-export const AccountsTableThresholdOperator = /*@__PURE__*/ S.String;
+export const AccountsTableThresholdOperator = S.String;
 
 export interface AccountsTableCountThresholdMetric {
   column: AccountsTableCustomPropertyColumn;
@@ -18720,7 +18716,7 @@ export type AccountsTableQueryMetricsItem =
   | AccountsTableAggregateMetric
   | AccountsTableCountThresholdMetric;
 export const AccountsTableQueryMetricsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AccountsTableQueryMetricsItem>;
+  S.Unknown as any as S.Schema<AccountsTableQueryMetricsItem>;
 
 export type AccountsTableQueryMetricsList =
   Array<AccountsTableQueryMetricsItem>;
@@ -18745,7 +18741,7 @@ export const AccountsTableRowAccountFieldsMap = /*@__PURE__*/ S.Record(
 
 export type AccountsTableRowCustomPropertiesValue = string | number | boolean;
 export const AccountsTableRowCustomPropertiesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AccountsTableRowCustomPropertiesValue>;
+  S.Unknown as any as S.Schema<AccountsTableRowCustomPropertiesValue>;
 
 /** Current values keyed by requested custom property definition ID. */
 export type AccountsTableRowCustomPropertiesMap = {
@@ -18862,7 +18858,7 @@ export type AccountsTableQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const AccountsTableQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AccountsTableQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<AccountsTableQueryResponseWarningsItem>;
 
 export type AccountsTableQueryResponseWarningsList =
   Array<AccountsTableQueryResponseWarningsItem>;
@@ -18933,10 +18929,10 @@ export type AccountsTableSortColumn =
   | AccountsTableRelationshipColumn
   | AccountsTableCustomPropertyColumn;
 export const AccountsTableSortColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AccountsTableSortColumn>;
+  S.Unknown as any as S.Schema<AccountsTableSortColumn>;
 
 export type AccountsTableSortDirection = "asc" | "desc";
-export const AccountsTableSortDirection = /*@__PURE__*/ S.String;
+export const AccountsTableSortDirection = S.String;
 
 export interface AccountsTableSort {
   /** A typed column that supports server-side sorting. */
@@ -19001,7 +18997,7 @@ export const EndpointsUsageOverviewQueryEndpointNamesList =
   ) as any as S.Schema<EndpointsUsageOverviewQueryEndpointNamesList>;
 
 export type MaterializationType = "materialized" | "inline";
-export const MaterializationType = /*@__PURE__*/ S.String;
+export const MaterializationType = S.String;
 
 export type EndpointsUsageOverviewItemKey =
   | "total_requests"
@@ -19012,7 +19008,7 @@ export type EndpointsUsageOverviewItemKey =
   | "error_rate"
   | "materialized_requests"
   | "inline_requests";
-export const EndpointsUsageOverviewItemKey = /*@__PURE__*/ S.String;
+export const EndpointsUsageOverviewItemKey = S.String;
 
 export interface EndpointsUsageOverviewItem {
   changeFromPreviousPct?: number | null;
@@ -19055,7 +19051,7 @@ export type EndpointsUsageOverviewQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const EndpointsUsageOverviewQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EndpointsUsageOverviewQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<EndpointsUsageOverviewQueryResponseWarningsItem>;
 
 export type EndpointsUsageOverviewQueryResponseWarningsList =
   Array<EndpointsUsageOverviewQueryResponseWarningsItem>;
@@ -19149,7 +19145,7 @@ export type EndpointsUsageBreakdown =
   | "MaterializationType"
   | "ApiKey"
   | "Status";
-export const EndpointsUsageBreakdown = /*@__PURE__*/ S.String;
+export const EndpointsUsageBreakdown = S.String;
 
 export type EndpointsUsageTableQueryEndpointNamesList = Array<string>;
 export const EndpointsUsageTableQueryEndpointNamesList = /*@__PURE__*/ S.Array(
@@ -19162,16 +19158,16 @@ export type EndpointsUsageOrderByField =
   | "cpu_seconds"
   | "avg_query_duration_ms"
   | "error_rate";
-export const EndpointsUsageOrderByField = /*@__PURE__*/ S.String;
+export const EndpointsUsageOrderByField = S.String;
 
 export type EndpointsUsageOrderByDirection = "ASC" | "DESC";
-export const EndpointsUsageOrderByDirection = /*@__PURE__*/ S.String;
+export const EndpointsUsageOrderByDirection = S.String;
 
 export type EndpointsUsageTableQueryOrderByItem =
   | EndpointsUsageOrderByField
   | EndpointsUsageOrderByDirection;
 export const EndpointsUsageTableQueryOrderByItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EndpointsUsageTableQueryOrderByItem>;
+  S.Unknown as any as S.Schema<EndpointsUsageTableQueryOrderByItem>;
 
 export type EndpointsUsageTableQueryOrderByList =
   Array<EndpointsUsageTableQueryOrderByItem>;
@@ -19213,7 +19209,7 @@ export type EndpointsUsageTableQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const EndpointsUsageTableQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EndpointsUsageTableQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<EndpointsUsageTableQueryResponseWarningsItem>;
 
 export type EndpointsUsageTableQueryResponseWarningsList =
   Array<EndpointsUsageTableQueryResponseWarningsItem>;
@@ -19326,7 +19322,7 @@ export type Metric =
   | "requests"
   | "query_duration"
   | "error_rate";
-export const Metric = /*@__PURE__*/ S.String;
+export const Metric = S.String;
 
 export type EndpointsUsageTrendsQueryResponseResultsItemMap = {
   [key: string]: unknown | undefined;
@@ -19361,7 +19357,7 @@ export type EndpointsUsageTrendsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const EndpointsUsageTrendsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EndpointsUsageTrendsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<EndpointsUsageTrendsQueryResponseWarningsItem>;
 
 export type EndpointsUsageTrendsQueryResponseWarningsList =
   Array<EndpointsUsageTrendsQueryResponseWarningsItem>;
@@ -19483,7 +19479,7 @@ export type MCPToolCallBreakdownQueryPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const MCPToolCallBreakdownQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolCallBreakdownQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<MCPToolCallBreakdownQueryPropertiesItem>;
 
 export type MCPToolCallBreakdownQueryPropertiesList =
   Array<MCPToolCallBreakdownQueryPropertiesItem>;
@@ -19531,7 +19527,7 @@ export type MCPToolCallBreakdownQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPToolCallBreakdownQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolCallBreakdownQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPToolCallBreakdownQueryResponseWarningsItem>;
 
 export type MCPToolCallBreakdownQueryResponseWarningsList =
   Array<MCPToolCallBreakdownQueryResponseWarningsItem>;
@@ -19640,7 +19636,7 @@ export type MCPToolCallsAndErrorsQueryPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const MCPToolCallsAndErrorsQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolCallsAndErrorsQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<MCPToolCallsAndErrorsQueryPropertiesItem>;
 
 export type MCPToolCallsAndErrorsQueryPropertiesList =
   Array<MCPToolCallsAndErrorsQueryPropertiesItem>;
@@ -19688,7 +19684,7 @@ export type MCPToolCallsAndErrorsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPToolCallsAndErrorsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolCallsAndErrorsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPToolCallsAndErrorsQueryResponseWarningsItem>;
 
 export type MCPToolCallsAndErrorsQueryResponseWarningsList =
   Array<MCPToolCallsAndErrorsQueryResponseWarningsItem>;
@@ -19799,7 +19795,7 @@ export type MCPHarnessBreakdownQueryPropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const MCPHarnessBreakdownQueryPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPHarnessBreakdownQueryPropertiesItem>;
+  S.Unknown as any as S.Schema<MCPHarnessBreakdownQueryPropertiesItem>;
 
 export type MCPHarnessBreakdownQueryPropertiesList =
   Array<MCPHarnessBreakdownQueryPropertiesItem>;
@@ -19851,7 +19847,7 @@ export type MCPHarnessBreakdownQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPHarnessBreakdownQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPHarnessBreakdownQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPHarnessBreakdownQueryResponseWarningsItem>;
 
 export type MCPHarnessBreakdownQueryResponseWarningsList =
   Array<MCPHarnessBreakdownQueryResponseWarningsItem>;
@@ -19986,7 +19982,7 @@ export type MCPToolTopUsersQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPToolTopUsersQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolTopUsersQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPToolTopUsersQueryResponseWarningsItem>;
 
 export type MCPToolTopUsersQueryResponseWarningsList =
   Array<MCPToolTopUsersQueryResponseWarningsItem>;
@@ -20114,7 +20110,7 @@ export type MCPToolFailuresQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPToolFailuresQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolFailuresQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPToolFailuresQueryResponseWarningsItem>;
 
 export type MCPToolFailuresQueryResponseWarningsList =
   Array<MCPToolFailuresQueryResponseWarningsItem>;
@@ -20243,7 +20239,7 @@ export type MCPToolFailureOccurrencesQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPToolFailureOccurrencesQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolFailureOccurrencesQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPToolFailureOccurrencesQueryResponseWarningsItem>;
 
 export type MCPToolFailureOccurrencesQueryResponseWarningsList =
   Array<MCPToolFailureOccurrencesQueryResponseWarningsItem>;
@@ -20379,7 +20375,7 @@ export type MCPToolStatsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPToolStatsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolStatsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPToolStatsQueryResponseWarningsItem>;
 
 export type MCPToolStatsQueryResponseWarningsList =
   Array<MCPToolStatsQueryResponseWarningsItem>;
@@ -20501,7 +20497,7 @@ export type MCPToolDailyStatsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPToolDailyStatsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolDailyStatsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPToolDailyStatsQueryResponseWarningsItem>;
 
 export type MCPToolDailyStatsQueryResponseWarningsList =
   Array<MCPToolDailyStatsQueryResponseWarningsItem>;
@@ -20638,7 +20634,7 @@ export type MCPToolQualityRowsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPToolQualityRowsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolQualityRowsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPToolQualityRowsQueryResponseWarningsItem>;
 
 export type MCPToolQualityRowsQueryResponseWarningsList =
   Array<MCPToolQualityRowsQueryResponseWarningsItem>;
@@ -20701,10 +20697,10 @@ export type MCPToolQualitySortColumn =
   | "users"
   | "sessions"
   | "last_seen";
-export const MCPToolQualitySortColumn = /*@__PURE__*/ S.String;
+export const MCPToolQualitySortColumn = S.String;
 
 export type MCPToolQualitySortDirection = "ASC" | "DESC";
-export const MCPToolQualitySortDirection = /*@__PURE__*/ S.String;
+export const MCPToolQualitySortDirection = S.String;
 
 export interface MCPToolQualityRowsQuery {
   /** Restrict to these $mcp_tool_category values; empty or omitted means all categories. */
@@ -20799,7 +20795,7 @@ export type MCPToolQualityDailyStatsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPToolQualityDailyStatsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolQualityDailyStatsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPToolQualityDailyStatsQueryResponseWarningsItem>;
 
 export type MCPToolQualityDailyStatsQueryResponseWarningsList =
   Array<MCPToolQualityDailyStatsQueryResponseWarningsItem>;
@@ -20928,7 +20924,7 @@ export type MCPToolCategoryCountsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPToolCategoryCountsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolCategoryCountsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPToolCategoryCountsQueryResponseWarningsItem>;
 
 export type MCPToolCategoryCountsQueryResponseWarningsList =
   Array<MCPToolCategoryCountsQueryResponseWarningsItem>;
@@ -21039,7 +21035,7 @@ export type MCPToolCategoriesQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPToolCategoriesQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolCategoriesQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPToolCategoriesQueryResponseWarningsItem>;
 
 export type MCPToolCategoriesQueryResponseWarningsList =
   Array<MCPToolCategoriesQueryResponseWarningsItem>;
@@ -21147,7 +21143,7 @@ export type MCPToolCategoryMapQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPToolCategoryMapQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolCategoryMapQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPToolCategoryMapQueryResponseWarningsItem>;
 
 export type MCPToolCategoryMapQueryResponseWarningsList =
   Array<MCPToolCategoryMapQueryResponseWarningsItem>;
@@ -21258,7 +21254,7 @@ export type MCPToolDescriptionsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPToolDescriptionsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolDescriptionsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPToolDescriptionsQueryResponseWarningsItem>;
 
 export type MCPToolDescriptionsQueryResponseWarningsList =
   Array<MCPToolDescriptionsQueryResponseWarningsItem>;
@@ -21380,7 +21376,7 @@ export type MCPToolSampleIntentsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPToolSampleIntentsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolSampleIntentsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPToolSampleIntentsQueryResponseWarningsItem>;
 
 export type MCPToolSampleIntentsQueryResponseWarningsList =
   Array<MCPToolSampleIntentsQueryResponseWarningsItem>;
@@ -21460,7 +21456,7 @@ export const MCPToolSampleIntentsQuery = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MCPToolSampleIntentsQuery>;
 
 export type NeighborDirection = "before" | "after";
-export const NeighborDirection = /*@__PURE__*/ S.String;
+export const NeighborDirection = S.String;
 
 export interface MCPToolNeighborItem {
   co_occurrences: number;
@@ -21497,7 +21493,7 @@ export type MCPToolNeighborsQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPToolNeighborsQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPToolNeighborsQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPToolNeighborsQueryResponseWarningsItem>;
 
 export type MCPToolNeighborsQueryResponseWarningsList =
   Array<MCPToolNeighborsQueryResponseWarningsItem>;
@@ -21625,7 +21621,7 @@ export type MCPMissingCapabilitiesQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const MCPMissingCapabilitiesQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPMissingCapabilitiesQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<MCPMissingCapabilitiesQueryResponseWarningsItem>;
 
 export type MCPMissingCapabilitiesQueryResponseWarningsList =
   Array<MCPMissingCapabilitiesQueryResponseWarningsItem>;
@@ -21795,7 +21791,7 @@ export type HogQLAutocompleteSourceQuery =
   | MCPToolNeighborsQuery
   | MCPMissingCapabilitiesQuery;
 export const HogQLAutocompleteSourceQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<HogQLAutocompleteSourceQuery>;
+  S.Unknown as any as S.Schema<HogQLAutocompleteSourceQuery>;
 
 export interface HogQLAutocomplete {
   /** Optional id of a direct-query-capable external data source to run against instead of ClickHouse — a pure-direct source, or a synced source with direct query enabled. */
@@ -21922,7 +21918,7 @@ export type HogQLMetadataSourceQuery =
   | MCPToolNeighborsQuery
   | MCPMissingCapabilitiesQuery;
 export const HogQLMetadataSourceQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<HogQLMetadataSourceQuery>;
+  S.Unknown as any as S.Schema<HogQLMetadataSourceQuery>;
 
 export type HogQLMetadataVariablesMap = {
   [key: string]: HogQLVariable | undefined;
@@ -21983,13 +21979,13 @@ export type ExperimentExposureCriteriaActivationConfig =
   | ExperimentEventExposureConfig
   | ActionsNode;
 export const ExperimentExposureCriteriaActivationConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentExposureCriteriaActivationConfig>;
+  S.Unknown as any as S.Schema<ExperimentExposureCriteriaActivationConfig>;
 
 export type ExperimentExposureCriteriaExposureConfig =
   | ExperimentEventExposureConfig
   | ActionsNode;
 export const ExperimentExposureCriteriaExposureConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExperimentExposureCriteriaExposureConfig>;
+  S.Unknown as any as S.Schema<ExperimentExposureCriteriaExposureConfig>;
 
 export interface ExperimentExposureCriteria {
   /** Additional event (or action) an entity must emit at/after their first default exposure event before they count as exposed; exposure time becomes this event's timestamp. Only valid with the default exposure event, not a custom `exposure_config`. */
@@ -22038,7 +22034,7 @@ export type HedgehogActorAccessoryOption =
   | "xmas-hat"
   | "xmas-antlers"
   | "xmas-scarf";
-export const HedgehogActorAccessoryOption = /*@__PURE__*/ S.String;
+export const HedgehogActorAccessoryOption = S.String;
 
 export type MinimalHedgehogConfigAccessoriesList = Array<
   HedgehogActorAccessoryOption | (string & {})
@@ -22058,7 +22054,7 @@ export type HedgehogActorColorOption =
   | "sepia"
   | "invert"
   | "rainbow";
-export const HedgehogActorColorOption = /*@__PURE__*/ S.String;
+export const HedgehogActorColorOption = S.String;
 
 export type HedgehogActorSkinOption =
   | "default"
@@ -22066,7 +22062,7 @@ export type HedgehogActorSkinOption =
   | "robohog"
   | "hogzilla"
   | "ghost";
-export const HedgehogActorSkinOption = /*@__PURE__*/ S.String;
+export const HedgehogActorSkinOption = S.String;
 
 export interface MinimalHedgehogConfig {
   accessories?: MinimalHedgehogConfigAccessoriesList | null;
@@ -22136,7 +22132,7 @@ export type FeatureFlagGroupTypePropertiesItem =
   | WorkflowVariablePropertyFilter
   | BehavioralPropertyFilter;
 export const FeatureFlagGroupTypePropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeatureFlagGroupTypePropertiesItem>;
+  S.Unknown as any as S.Schema<FeatureFlagGroupTypePropertiesItem>;
 
 export type FeatureFlagGroupTypePropertiesList =
   Array<FeatureFlagGroupTypePropertiesItem>;
@@ -22185,7 +22181,7 @@ export type AccessControlLevel =
   | "viewer"
   | "editor"
   | "manager";
-export const AccessControlLevel = /*@__PURE__*/ S.String;
+export const AccessControlLevel = S.String;
 
 export interface ExperimentHoldoutType {
   created_at?: string | null;
@@ -22355,7 +22351,7 @@ export const ExperimentExposureQuery = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ExperimentExposureQuery>;
 
 export type DistanceFunc = "L1Distance" | "L2Distance" | "cosineDistance";
-export const DistanceFunc = /*@__PURE__*/ S.String;
+export const DistanceFunc = S.String;
 
 export type DocumentSimilarityQueryDocumentTypesList = Array<string>;
 export const DocumentSimilarityQueryDocumentTypesList = /*@__PURE__*/ S.Array(
@@ -22363,10 +22359,10 @@ export const DocumentSimilarityQueryDocumentTypesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DocumentSimilarityQueryDocumentTypesList>;
 
 export type OrderBy = "distance" | "timestamp";
-export const OrderBy = /*@__PURE__*/ S.String;
+export const OrderBy = S.String;
 
 export type OrderDirection1 = "asc" | "desc";
-export const OrderDirection1 = /*@__PURE__*/ S.String;
+export const OrderDirection1 = S.String;
 
 export interface EmbeddedDocument {
   document_id?: string;
@@ -22453,7 +22449,7 @@ export type DocumentSimilarityQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const DocumentSimilarityQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DocumentSimilarityQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<DocumentSimilarityQueryResponseWarningsItem>;
 
 export type DocumentSimilarityQueryResponseWarningsList =
   Array<DocumentSimilarityQueryResponseWarningsItem>;
@@ -22606,10 +22602,10 @@ export const HeatmapSettingsGradientList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<HeatmapSettingsGradientList>;
 
 export type GradientScaleMode = "absolute" | "relative";
-export const GradientScaleMode = /*@__PURE__*/ S.String;
+export const GradientScaleMode = S.String;
 
 export type HeatmapSortOrder = "asc" | "desc";
-export const HeatmapSortOrder = /*@__PURE__*/ S.String;
+export const HeatmapSortOrder = S.String;
 
 export interface HeatmapSettings {
   gradient?: HeatmapSettingsGradientList | null;
@@ -22645,7 +22641,7 @@ export const HeatmapSettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<HeatmapSettings>;
 
 export type Scale = "linear" | "logarithmic";
-export const Scale = /*@__PURE__*/ S.String;
+export const Scale = S.String;
 
 export interface YAxisSettings {
   label?: string | null;
@@ -22666,10 +22662,10 @@ export const YAxisSettings = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "YAxisSettings" }) as any as S.Schema<YAxisSettings>;
 
 export type SliceContent = "labels" | "values" | "none";
-export const SliceContent = /*@__PURE__*/ S.String;
+export const SliceContent = S.String;
 
 export type ValueDisplay = "absolute" | "percentage";
-export const ValueDisplay = /*@__PURE__*/ S.String;
+export const ValueDisplay = S.String;
 
 export interface PieChartSettings {
   /** Whether to show the aggregation total below the chart. Defaults to on. */
@@ -22698,7 +22694,7 @@ export const ChartSettingsResultCustomizationsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<ChartSettingsResultCustomizationsMap>;
 
 export type XScale = "linear" | "logarithmic";
-export const XScale = /*@__PURE__*/ S.String;
+export const XScale = S.String;
 
 export interface ScatterChartSettings {
   /** Whether to draw a least-squares fit line through each series' points. */
@@ -22719,10 +22715,10 @@ export const ScatterChartSettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ScatterChartSettings>;
 
 export type DisplayType = "auto" | "line" | "bar" | "area";
-export const DisplayType = /*@__PURE__*/ S.String;
+export const DisplayType = S.String;
 
 export type YAxisPosition = "left" | "right";
-export const YAxisPosition = /*@__PURE__*/ S.String;
+export const YAxisPosition = S.String;
 
 export interface ChartSettingsDisplay {
   color?: string | null;
@@ -22744,7 +22740,7 @@ export const ChartSettingsDisplay = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ChartSettingsDisplay>;
 
 export type Style = "none" | "number" | "short" | "percent";
-export const Style = /*@__PURE__*/ S.String;
+export const Style = S.String;
 
 export interface ChartSettingsFormatting {
   decimalPlaces?: number | null;
@@ -22865,7 +22861,7 @@ export const ConditionalFormattingRuleBytecodeList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ConditionalFormattingRuleBytecodeList>;
 
 export type ColorMode = "light" | "dark";
-export const ColorMode = /*@__PURE__*/ S.String;
+export const ColorMode = S.String;
 
 export interface ConditionalFormattingRule {
   bytecode?: ConditionalFormattingRuleBytecodeList;
@@ -22948,7 +22944,7 @@ export const DataTableNodeColumnsList = /*@__PURE__*/ S.Array(
 export type DataTableNodeViewPropsContextType =
   | "event_definition"
   | "team_columns";
-export const DataTableNodeViewPropsContextType = /*@__PURE__*/ S.String;
+export const DataTableNodeViewPropsContextType = S.String;
 
 export interface DataTableNodeViewPropsContext {
   eventDefinitionId?: string | null;
@@ -23021,7 +23017,7 @@ export type ResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const ResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ResponseWarningsItem>;
+  S.Unknown as any as S.Schema<ResponseWarningsItem>;
 
 export type ResponseWarningsList = Array<ResponseWarningsItem>;
 export const ResponseWarningsList = /*@__PURE__*/ S.Array(
@@ -23116,7 +23112,7 @@ export type Response1WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response1WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response1WarningsItem>;
+  S.Unknown as any as S.Schema<Response1WarningsItem>;
 
 export type Response1WarningsList = Array<Response1WarningsItem>;
 export const Response1WarningsList = /*@__PURE__*/ S.Array(
@@ -23210,7 +23206,7 @@ export type Response2WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response2WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response2WarningsItem>;
+  S.Unknown as any as S.Schema<Response2WarningsItem>;
 
 export type Response2WarningsList = Array<Response2WarningsItem>;
 export const Response2WarningsList = /*@__PURE__*/ S.Array(
@@ -23304,7 +23300,7 @@ export type Response3WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response3WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response3WarningsItem>;
+  S.Unknown as any as S.Schema<Response3WarningsItem>;
 
 export type Response3WarningsList = Array<Response3WarningsItem>;
 export const Response3WarningsList = /*@__PURE__*/ S.Array(
@@ -23395,7 +23391,7 @@ export type Response4WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response4WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response4WarningsItem>;
+  S.Unknown as any as S.Schema<Response4WarningsItem>;
 
 export type Response4WarningsList = Array<Response4WarningsItem>;
 export const Response4WarningsList = /*@__PURE__*/ S.Array(
@@ -23483,7 +23479,7 @@ export type Response5WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response5WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response5WarningsItem>;
+  S.Unknown as any as S.Schema<Response5WarningsItem>;
 
 export type Response5WarningsList = Array<Response5WarningsItem>;
 export const Response5WarningsList = /*@__PURE__*/ S.Array(
@@ -23580,7 +23576,7 @@ export type Response6WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response6WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response6WarningsItem>;
+  S.Unknown as any as S.Schema<Response6WarningsItem>;
 
 export type Response6WarningsList = Array<Response6WarningsItem>;
 export const Response6WarningsList = /*@__PURE__*/ S.Array(
@@ -23669,7 +23665,7 @@ export type Response7WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response7WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response7WarningsItem>;
+  S.Unknown as any as S.Schema<Response7WarningsItem>;
 
 export type Response7WarningsList = Array<Response7WarningsItem>;
 export const Response7WarningsList = /*@__PURE__*/ S.Array(
@@ -23756,7 +23752,7 @@ export type Response8WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response8WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response8WarningsItem>;
+  S.Unknown as any as S.Schema<Response8WarningsItem>;
 
 export type Response8WarningsList = Array<Response8WarningsItem>;
 export const Response8WarningsList = /*@__PURE__*/ S.Array(
@@ -23840,7 +23836,7 @@ export type Response9WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response9WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response9WarningsItem>;
+  S.Unknown as any as S.Schema<Response9WarningsItem>;
 
 export type Response9WarningsList = Array<Response9WarningsItem>;
 export const Response9WarningsList = /*@__PURE__*/ S.Array(
@@ -23917,7 +23913,7 @@ export type Response10WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response10WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response10WarningsItem>;
+  S.Unknown as any as S.Schema<Response10WarningsItem>;
 
 export type Response10WarningsList = Array<Response10WarningsItem>;
 export const Response10WarningsList = /*@__PURE__*/ S.Array(
@@ -24009,7 +24005,7 @@ export type Response11WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response11WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response11WarningsItem>;
+  S.Unknown as any as S.Schema<Response11WarningsItem>;
 
 export type Response11WarningsList = Array<Response11WarningsItem>;
 export const Response11WarningsList = /*@__PURE__*/ S.Array(
@@ -24101,7 +24097,7 @@ export type Response12WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response12WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response12WarningsItem>;
+  S.Unknown as any as S.Schema<Response12WarningsItem>;
 
 export type Response12WarningsList = Array<Response12WarningsItem>;
 export const Response12WarningsList = /*@__PURE__*/ S.Array(
@@ -24183,7 +24179,7 @@ export type Response13WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response13WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response13WarningsItem>;
+  S.Unknown as any as S.Schema<Response13WarningsItem>;
 
 export type Response13WarningsList = Array<Response13WarningsItem>;
 export const Response13WarningsList = /*@__PURE__*/ S.Array(
@@ -24267,7 +24263,7 @@ export type Response14WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response14WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response14WarningsItem>;
+  S.Unknown as any as S.Schema<Response14WarningsItem>;
 
 export type Response14WarningsList = Array<Response14WarningsItem>;
 export const Response14WarningsList = /*@__PURE__*/ S.Array(
@@ -24351,7 +24347,7 @@ export type Response15WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response15WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response15WarningsItem>;
+  S.Unknown as any as S.Schema<Response15WarningsItem>;
 
 export type Response15WarningsList = Array<Response15WarningsItem>;
 export const Response15WarningsList = /*@__PURE__*/ S.Array(
@@ -24431,7 +24427,7 @@ export type Response16WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response16WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response16WarningsItem>;
+  S.Unknown as any as S.Schema<Response16WarningsItem>;
 
 export type Response16WarningsList = Array<Response16WarningsItem>;
 export const Response16WarningsList = /*@__PURE__*/ S.Array(
@@ -24660,7 +24656,7 @@ export type Response19WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response19WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response19WarningsItem>;
+  S.Unknown as any as S.Schema<Response19WarningsItem>;
 
 export type Response19WarningsList = Array<Response19WarningsItem>;
 export const Response19WarningsList = /*@__PURE__*/ S.Array(
@@ -24745,7 +24741,7 @@ export type Response21WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response21WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response21WarningsItem>;
+  S.Unknown as any as S.Schema<Response21WarningsItem>;
 
 export type Response21WarningsList = Array<Response21WarningsItem>;
 export const Response21WarningsList = /*@__PURE__*/ S.Array(
@@ -24842,7 +24838,7 @@ export type Response22WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response22WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response22WarningsItem>;
+  S.Unknown as any as S.Schema<Response22WarningsItem>;
 
 export type Response22WarningsList = Array<Response22WarningsItem>;
 export const Response22WarningsList = /*@__PURE__*/ S.Array(
@@ -24929,7 +24925,7 @@ export type Response23WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const Response23WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Response23WarningsItem>;
+  S.Unknown as any as S.Schema<Response23WarningsItem>;
 
 export type Response23WarningsList = Array<Response23WarningsItem>;
 export const Response23WarningsList = /*@__PURE__*/ S.Array(
@@ -25013,7 +25009,7 @@ export type DataTableNodeResponse =
   | Response22
   | Response23;
 export const DataTableNodeResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataTableNodeResponse>;
+  S.Unknown as any as S.Schema<DataTableNodeResponse>;
 
 export type TaxonomicFilterGroupType =
   | "metadata"
@@ -25079,7 +25075,7 @@ export type TaxonomicFilterGroupType =
   | "recent_filters"
   | "pinned_filters"
   | "empty";
-export const TaxonomicFilterGroupType = /*@__PURE__*/ S.String;
+export const TaxonomicFilterGroupType = S.String;
 
 export type DataTableNodeShowPropertyFilterCase1List = Array<
   TaxonomicFilterGroupType | (string & {})
@@ -25093,7 +25089,7 @@ export type DataTableNodeShowPropertyFilter =
   | boolean
   | DataTableNodeShowPropertyFilterCase1List;
 export const DataTableNodeShowPropertyFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataTableNodeShowPropertyFilter>;
+  S.Unknown as any as S.Schema<DataTableNodeShowPropertyFilter>;
 
 /** Source of the events */
 export type DataTableNodeSource =
@@ -25126,7 +25122,7 @@ export type DataTableNodeSource =
   | AccountsQuery
   | AccountsTableQuery;
 export const DataTableNodeSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataTableNodeSource>;
+  S.Unknown as any as S.Schema<DataTableNodeSource>;
 
 export interface DataTableNode {
   /** Can the user click on column headers to sort the table? (default: true) */
@@ -25267,7 +25263,7 @@ export type SavedInsightNodeShowPropertyFilter =
   | boolean
   | SavedInsightNodeShowPropertyFilterCase1List;
 export const SavedInsightNodeShowPropertyFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SavedInsightNodeShowPropertyFilter>;
+  S.Unknown as any as S.Schema<SavedInsightNodeShowPropertyFilter>;
 
 export interface ActionsPie {
   disableHoverOffset?: boolean | null;
@@ -25450,7 +25446,7 @@ export type InsightVizNodeSource =
   | WebStatsTableQuery
   | WebOverviewQuery;
 export const InsightVizNodeSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InsightVizNodeSource>;
+  S.Unknown as any as S.Schema<InsightVizNodeSource>;
 
 export interface InsightVizNode {
   /** Query is embedded inside another bordered component */
@@ -25525,7 +25521,7 @@ export const DatabaseSchemaQueryResponseJoinsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DatabaseSchemaQueryResponseJoinsList>;
 
 export type DatabaseSchemaTableCertificationStatus = "certified" | "deprecated";
-export const DatabaseSchemaTableCertificationStatus = /*@__PURE__*/ S.String;
+export const DatabaseSchemaTableCertificationStatus = S.String;
 
 export interface DatabaseSchemaTableCertification {
   certified_at?: string | null;
@@ -25547,7 +25543,7 @@ export const DatabaseSchemaTableCertification = /*@__PURE__*/ S.suspend(() =>
 
 export type DatabaseSchemaFieldChainItem = string | number;
 export const DatabaseSchemaFieldChainItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DatabaseSchemaFieldChainItem>;
+  S.Unknown as any as S.Schema<DatabaseSchemaFieldChainItem>;
 
 export type DatabaseSchemaFieldChainList = Array<DatabaseSchemaFieldChainItem>;
 export const DatabaseSchemaFieldChainList = /*@__PURE__*/ S.Array(
@@ -25576,7 +25572,7 @@ export type DatabaseSerializedFieldType =
   | "view"
   | "materialized_view"
   | "unknown";
-export const DatabaseSerializedFieldType = /*@__PURE__*/ S.String;
+export const DatabaseSerializedFieldType = S.String;
 
 export interface DatabaseSchemaField {
   chain?: DatabaseSchemaFieldChainList | null;
@@ -25803,7 +25799,7 @@ export type DatabaseSchemaManagedViewTableKind =
   | "revenue_analytics_product"
   | "revenue_analytics_revenue_item"
   | "revenue_analytics_subscription";
-export const DatabaseSchemaManagedViewTableKind = /*@__PURE__*/ S.String;
+export const DatabaseSchemaManagedViewTableKind = S.String;
 
 export interface DatabaseSchemaManagedViewTable {
   /** Present only when the table or view carries a settled data catalog certification. */
@@ -25944,7 +25940,7 @@ export type DatabaseSchemaQueryResponseTablesValue =
   | DatabaseSchemaMaterializedViewTable
   | DatabaseSchemaEndpointTable;
 export const DatabaseSchemaQueryResponseTablesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DatabaseSchemaQueryResponseTablesValue>;
+  S.Unknown as any as S.Schema<DatabaseSchemaQueryResponseTablesValue>;
 
 export type DatabaseSchemaQueryResponseTablesMap = {
   [key: string]: DatabaseSchemaQueryResponseTablesValue | undefined;
@@ -26084,7 +26080,7 @@ export type TeamTaxonomyQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const TeamTaxonomyQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TeamTaxonomyQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<TeamTaxonomyQueryResponseWarningsItem>;
 
 export type TeamTaxonomyQueryResponseWarningsList =
   Array<TeamTaxonomyQueryResponseWarningsItem>;
@@ -26213,7 +26209,7 @@ export type EventTaxonomyQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const EventTaxonomyQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventTaxonomyQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<EventTaxonomyQueryResponseWarningsItem>;
 
 export type EventTaxonomyQueryResponseWarningsList =
   Array<EventTaxonomyQueryResponseWarningsItem>;
@@ -26315,7 +26311,7 @@ export type ActorsPropertyTaxonomyResponseSampleValuesItem =
   | boolean
   | number;
 export const ActorsPropertyTaxonomyResponseSampleValuesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActorsPropertyTaxonomyResponseSampleValuesItem>;
+  S.Unknown as any as S.Schema<ActorsPropertyTaxonomyResponseSampleValuesItem>;
 
 export type ActorsPropertyTaxonomyResponseSampleValuesList =
   Array<ActorsPropertyTaxonomyResponseSampleValuesItem>;
@@ -26348,7 +26344,7 @@ export type ActorsPropertyTaxonomyQueryResponseResults =
   | ActorsPropertyTaxonomyResponse
   | ActorsPropertyTaxonomyQueryResponseResultsCase1List;
 export const ActorsPropertyTaxonomyQueryResponseResults =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActorsPropertyTaxonomyQueryResponseResults>;
+  S.Unknown as any as S.Schema<ActorsPropertyTaxonomyQueryResponseResults>;
 
 export type ActorsPropertyTaxonomyQueryResponseTimingsList = Array<QueryTiming>;
 export const ActorsPropertyTaxonomyQueryResponseTimingsList =
@@ -26367,7 +26363,7 @@ export type ActorsPropertyTaxonomyQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const ActorsPropertyTaxonomyQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActorsPropertyTaxonomyQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<ActorsPropertyTaxonomyQueryResponseWarningsItem>;
 
 export type ActorsPropertyTaxonomyQueryResponseWarningsList =
   Array<ActorsPropertyTaxonomyQueryResponseWarningsItem>;
@@ -26455,11 +26451,11 @@ export const PropertyValuesQueryEventNamesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PropertyValuesQueryEventNamesList>;
 
 export type PropertyType = "event" | "person";
-export const PropertyType = /*@__PURE__*/ S.String;
+export const PropertyType = S.String;
 
 export type PropertyValueItemName = string | number | boolean;
 export const PropertyValueItemName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PropertyValueItemName>;
+  S.Unknown as any as S.Schema<PropertyValueItemName>;
 
 export interface PropertyValueItem {
   count?: number | null;
@@ -26495,7 +26491,7 @@ export type PropertyValuesQueryResponseWarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const PropertyValuesQueryResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PropertyValuesQueryResponseWarningsItem>;
+  S.Unknown as any as S.Schema<PropertyValuesQueryResponseWarningsItem>;
 
 export type PropertyValuesQueryResponseWarningsList =
   Array<PropertyValuesQueryResponseWarningsItem>;
@@ -26680,7 +26676,7 @@ export type CreateQueryRequestQuery =
   | MCPMissingCapabilitiesQuery
   | PropertyValuesQuery;
 export const CreateQueryRequestQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateQueryRequestQuery>;
+  S.Unknown as any as S.Schema<CreateQueryRequestQuery>;
 
 export type RefreshType =
   | "async"
@@ -26690,7 +26686,7 @@ export type RefreshType =
   | "force_blocking"
   | "force_cache"
   | "lazy_async";
-export const RefreshType = /*@__PURE__*/ S.String;
+export const RefreshType = S.String;
 
 export type CreateQueryRequestVariablesOverrideValueMap = {
   [key: string]: unknown | undefined;
@@ -26795,7 +26791,7 @@ export type QueryResponseAlternative1WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative1WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative1WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative1WarningsItem>;
 
 export type QueryResponseAlternative1WarningsList =
   Array<QueryResponseAlternative1WarningsItem>;
@@ -26895,7 +26891,7 @@ export type QueryResponseAlternative2WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative2WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative2WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative2WarningsItem>;
 
 export type QueryResponseAlternative2WarningsList =
   Array<QueryResponseAlternative2WarningsItem>;
@@ -26992,7 +26988,7 @@ export type QueryResponseAlternative3WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative3WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative3WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative3WarningsItem>;
 
 export type QueryResponseAlternative3WarningsList =
   Array<QueryResponseAlternative3WarningsItem>;
@@ -27091,7 +27087,7 @@ export type QueryResponseAlternative4WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative4WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative4WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative4WarningsItem>;
 
 export type QueryResponseAlternative4WarningsList =
   Array<QueryResponseAlternative4WarningsItem>;
@@ -27242,7 +27238,7 @@ export type QueryResponseAlternative6WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative6WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative6WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative6WarningsItem>;
 
 export type QueryResponseAlternative6WarningsList =
   Array<QueryResponseAlternative6WarningsItem>;
@@ -27360,7 +27356,7 @@ export type QueryResponseAlternative8WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative8WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative8WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative8WarningsItem>;
 
 export type QueryResponseAlternative8WarningsList =
   Array<QueryResponseAlternative8WarningsItem>;
@@ -27549,7 +27545,7 @@ export type QueryResponseAlternative11WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative11WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative11WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative11WarningsItem>;
 
 export type QueryResponseAlternative11WarningsList =
   Array<QueryResponseAlternative11WarningsItem>;
@@ -27635,7 +27631,7 @@ export type QueryResponseAlternative12WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative12WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative12WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative12WarningsItem>;
 
 export type QueryResponseAlternative12WarningsList =
   Array<QueryResponseAlternative12WarningsItem>;
@@ -27714,7 +27710,7 @@ export type QueryResponseAlternative13WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative13WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative13WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative13WarningsItem>;
 
 export type QueryResponseAlternative13WarningsList =
   Array<QueryResponseAlternative13WarningsItem>;
@@ -27792,7 +27788,7 @@ export type QueryResponseAlternative14WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative14WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative14WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative14WarningsItem>;
 
 export type QueryResponseAlternative14WarningsList =
   Array<QueryResponseAlternative14WarningsItem>;
@@ -27868,7 +27864,7 @@ export type QueryResponseAlternative15WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative15WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative15WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative15WarningsItem>;
 
 export type QueryResponseAlternative15WarningsList =
   Array<QueryResponseAlternative15WarningsItem>;
@@ -27953,7 +27949,7 @@ export type QueryResponseAlternative16WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative16WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative16WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative16WarningsItem>;
 
 export type QueryResponseAlternative16WarningsList =
   Array<QueryResponseAlternative16WarningsItem>;
@@ -28059,7 +28055,7 @@ export type QueryResponseAlternative17WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative17WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative17WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative17WarningsItem>;
 
 export type QueryResponseAlternative17WarningsList =
   Array<QueryResponseAlternative17WarningsItem>;
@@ -28343,7 +28339,7 @@ export type QueryResponseAlternative20Metric =
   | ExperimentRatioMetric
   | ExperimentRetentionMetric;
 export const QueryResponseAlternative20Metric =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative20Metric>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative20Metric>;
 
 export type QueryResponseAlternative20ProbabilityMap = {
   [key: string]: number | undefined;
@@ -28371,7 +28367,7 @@ export type QueryResponseAlternative20VariantResults =
   | QueryResponseAlternative20VariantResultsCase0List
   | QueryResponseAlternative20VariantResultsCase1List;
 export const QueryResponseAlternative20VariantResults =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative20VariantResults>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative20VariantResults>;
 
 export type QueryResponseAlternative20VariantsCase0List =
   Array<ExperimentVariantTrendsBaseStats>;
@@ -28391,7 +28387,7 @@ export type QueryResponseAlternative20Variants =
   | QueryResponseAlternative20VariantsCase0List
   | QueryResponseAlternative20VariantsCase1List;
 export const QueryResponseAlternative20Variants =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative20Variants>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative20Variants>;
 
 export type QueryResponseAlternative20WarningsList =
   Array<DataWarehouseSyncWarning>;
@@ -28517,7 +28513,7 @@ export type QueryResponseAlternative22WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative22WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative22WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative22WarningsItem>;
 
 export type QueryResponseAlternative22WarningsList =
   Array<QueryResponseAlternative22WarningsItem>;
@@ -28594,7 +28590,7 @@ export type QueryResponseAlternative23WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative23WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative23WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative23WarningsItem>;
 
 export type QueryResponseAlternative23WarningsList =
   Array<QueryResponseAlternative23WarningsItem>;
@@ -28686,7 +28682,7 @@ export type QueryResponseAlternative24WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative24WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative24WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative24WarningsItem>;
 
 export type QueryResponseAlternative24WarningsList =
   Array<QueryResponseAlternative24WarningsItem>;
@@ -28787,7 +28783,7 @@ export type QueryResponseAlternative25WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative25WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative25WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative25WarningsItem>;
 
 export type QueryResponseAlternative25WarningsList =
   Array<QueryResponseAlternative25WarningsItem>;
@@ -28880,7 +28876,7 @@ export type QueryResponseAlternative26WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative26WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative26WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative26WarningsItem>;
 
 export type QueryResponseAlternative26WarningsList =
   Array<QueryResponseAlternative26WarningsItem>;
@@ -28971,7 +28967,7 @@ export type QueryResponseAlternative28WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative28WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative28WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative28WarningsItem>;
 
 export type QueryResponseAlternative28WarningsList =
   Array<QueryResponseAlternative28WarningsItem>;
@@ -29060,7 +29056,7 @@ export type QueryResponseAlternative29WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative29WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative29WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative29WarningsItem>;
 
 export type QueryResponseAlternative29WarningsList =
   Array<QueryResponseAlternative29WarningsItem>;
@@ -29136,7 +29132,7 @@ export type QueryResponseAlternative30WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative30WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative30WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative30WarningsItem>;
 
 export type QueryResponseAlternative30WarningsList =
   Array<QueryResponseAlternative30WarningsItem>;
@@ -29236,7 +29232,7 @@ export type QueryResponseAlternative32WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative32WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative32WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative32WarningsItem>;
 
 export type QueryResponseAlternative32WarningsList =
   Array<QueryResponseAlternative32WarningsItem>;
@@ -29328,7 +29324,7 @@ export type QueryResponseAlternative33WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative33WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative33WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative33WarningsItem>;
 
 export type QueryResponseAlternative33WarningsList =
   Array<QueryResponseAlternative33WarningsItem>;
@@ -29414,7 +29410,7 @@ export type QueryResponseAlternative34WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative34WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative34WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative34WarningsItem>;
 
 export type QueryResponseAlternative34WarningsList =
   Array<QueryResponseAlternative34WarningsItem>;
@@ -29494,7 +29490,7 @@ export type QueryResponseAlternative35WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative35WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative35WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative35WarningsItem>;
 
 export type QueryResponseAlternative35WarningsList =
   Array<QueryResponseAlternative35WarningsItem>;
@@ -29590,7 +29586,7 @@ export type QueryResponseAlternative36WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative36WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative36WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative36WarningsItem>;
 
 export type QueryResponseAlternative36WarningsList =
   Array<QueryResponseAlternative36WarningsItem>;
@@ -29686,7 +29682,7 @@ export type QueryResponseAlternative37WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative37WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative37WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative37WarningsItem>;
 
 export type QueryResponseAlternative37WarningsList =
   Array<QueryResponseAlternative37WarningsItem>;
@@ -29791,7 +29787,7 @@ export type QueryResponseAlternative38WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative38WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative38WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative38WarningsItem>;
 
 export type QueryResponseAlternative38WarningsList =
   Array<QueryResponseAlternative38WarningsItem>;
@@ -29890,7 +29886,7 @@ export type QueryResponseAlternative39WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative39WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative39WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative39WarningsItem>;
 
 export type QueryResponseAlternative39WarningsList =
   Array<QueryResponseAlternative39WarningsItem>;
@@ -29990,7 +29986,7 @@ export type QueryResponseAlternative40WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative40WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative40WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative40WarningsItem>;
 
 export type QueryResponseAlternative40WarningsList =
   Array<QueryResponseAlternative40WarningsItem>;
@@ -30089,7 +30085,7 @@ export type QueryResponseAlternative41WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative41WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative41WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative41WarningsItem>;
 
 export type QueryResponseAlternative41WarningsList =
   Array<QueryResponseAlternative41WarningsItem>;
@@ -30187,7 +30183,7 @@ export type QueryResponseAlternative42WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative42WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative42WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative42WarningsItem>;
 
 export type QueryResponseAlternative42WarningsList =
   Array<QueryResponseAlternative42WarningsItem>;
@@ -30282,7 +30278,7 @@ export type QueryResponseAlternative43WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative43WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative43WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative43WarningsItem>;
 
 export type QueryResponseAlternative43WarningsList =
   Array<QueryResponseAlternative43WarningsItem>;
@@ -30374,7 +30370,7 @@ export type QueryResponseAlternative44WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative44WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative44WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative44WarningsItem>;
 
 export type QueryResponseAlternative44WarningsList =
   Array<QueryResponseAlternative44WarningsItem>;
@@ -30475,7 +30471,7 @@ export type QueryResponseAlternative45WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative45WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative45WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative45WarningsItem>;
 
 export type QueryResponseAlternative45WarningsList =
   Array<QueryResponseAlternative45WarningsItem>;
@@ -30568,7 +30564,7 @@ export type QueryResponseAlternative46WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative46WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative46WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative46WarningsItem>;
 
 export type QueryResponseAlternative46WarningsList =
   Array<QueryResponseAlternative46WarningsItem>;
@@ -30659,7 +30655,7 @@ export type QueryResponseAlternative47WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative47WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative47WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative47WarningsItem>;
 
 export type QueryResponseAlternative47WarningsList =
   Array<QueryResponseAlternative47WarningsItem>;
@@ -30748,7 +30744,7 @@ export type QueryResponseAlternative48WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative48WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative48WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative48WarningsItem>;
 
 export type QueryResponseAlternative48WarningsList =
   Array<QueryResponseAlternative48WarningsItem>;
@@ -30829,7 +30825,7 @@ export type QueryResponseAlternative49WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative49WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative49WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative49WarningsItem>;
 
 export type QueryResponseAlternative49WarningsList =
   Array<QueryResponseAlternative49WarningsItem>;
@@ -30926,7 +30922,7 @@ export type QueryResponseAlternative50WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative50WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative50WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative50WarningsItem>;
 
 export type QueryResponseAlternative50WarningsList =
   Array<QueryResponseAlternative50WarningsItem>;
@@ -31024,7 +31020,7 @@ export type QueryResponseAlternative51WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative51WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative51WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative51WarningsItem>;
 
 export type QueryResponseAlternative51WarningsList =
   Array<QueryResponseAlternative51WarningsItem>;
@@ -31110,7 +31106,7 @@ export type QueryResponseAlternative52WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative52WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative52WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative52WarningsItem>;
 
 export type QueryResponseAlternative52WarningsList =
   Array<QueryResponseAlternative52WarningsItem>;
@@ -31200,7 +31196,7 @@ export type QueryResponseAlternative53WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative53WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative53WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative53WarningsItem>;
 
 export type QueryResponseAlternative53WarningsList =
   Array<QueryResponseAlternative53WarningsItem>;
@@ -31288,7 +31284,7 @@ export type QueryResponseAlternative54WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative54WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative54WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative54WarningsItem>;
 
 export type QueryResponseAlternative54WarningsList =
   Array<QueryResponseAlternative54WarningsItem>;
@@ -31551,7 +31547,7 @@ export type QueryResponseAlternative58WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative58WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative58WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative58WarningsItem>;
 
 export type QueryResponseAlternative58WarningsList =
   Array<QueryResponseAlternative58WarningsItem>;
@@ -31640,7 +31636,7 @@ export type QueryResponseAlternative60WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative60WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative60WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative60WarningsItem>;
 
 export type QueryResponseAlternative60WarningsList =
   Array<QueryResponseAlternative60WarningsItem>;
@@ -31743,7 +31739,7 @@ export type QueryResponseAlternative61WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative61WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative61WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative61WarningsItem>;
 
 export type QueryResponseAlternative61WarningsList =
   Array<QueryResponseAlternative61WarningsItem>;
@@ -31837,7 +31833,7 @@ export type QueryResponseAlternative62WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative62WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative62WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative62WarningsItem>;
 
 export type QueryResponseAlternative62WarningsList =
   Array<QueryResponseAlternative62WarningsItem>;
@@ -31935,7 +31931,7 @@ export type QueryResponseAlternative63WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative63WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative63WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative63WarningsItem>;
 
 export type QueryResponseAlternative63WarningsList =
   Array<QueryResponseAlternative63WarningsItem>;
@@ -32008,7 +32004,7 @@ export type QueryResponseAlternative64WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative64WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative64WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative64WarningsItem>;
 
 export type QueryResponseAlternative64WarningsList =
   Array<QueryResponseAlternative64WarningsItem>;
@@ -32082,7 +32078,7 @@ export type QueryResponseAlternative65WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative65WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative65WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative65WarningsItem>;
 
 export type QueryResponseAlternative65WarningsList =
   Array<QueryResponseAlternative65WarningsItem>;
@@ -32153,7 +32149,7 @@ export type QueryResponseAlternative66WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative66WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative66WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative66WarningsItem>;
 
 export type QueryResponseAlternative66WarningsList =
   Array<QueryResponseAlternative66WarningsItem>;
@@ -32219,7 +32215,7 @@ export type QueryResponseAlternative67WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative67WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative67WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative67WarningsItem>;
 
 export type QueryResponseAlternative67WarningsList =
   Array<QueryResponseAlternative67WarningsItem>;
@@ -32299,7 +32295,7 @@ export type QueryResponseAlternative68WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative68WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative68WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative68WarningsItem>;
 
 export type QueryResponseAlternative68WarningsList =
   Array<QueryResponseAlternative68WarningsItem>;
@@ -32375,7 +32371,7 @@ export type QueryResponseAlternative70WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative70WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative70WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative70WarningsItem>;
 
 export type QueryResponseAlternative70WarningsList =
   Array<QueryResponseAlternative70WarningsItem>;
@@ -32450,7 +32446,7 @@ export type QueryResponseAlternative71TablesValue =
   | DatabaseSchemaMaterializedViewTable
   | DatabaseSchemaEndpointTable;
 export const QueryResponseAlternative71TablesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative71TablesValue>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative71TablesValue>;
 
 export type QueryResponseAlternative71TablesMap = {
   [key: string]: QueryResponseAlternative71TablesValue | undefined;
@@ -32494,7 +32490,7 @@ export type QueryResponseAlternative72WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative72WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative72WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative72WarningsItem>;
 
 export type QueryResponseAlternative72WarningsList =
   Array<QueryResponseAlternative72WarningsItem>;
@@ -32570,7 +32566,7 @@ export type QueryResponseAlternative73WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative73WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative73WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative73WarningsItem>;
 
 export type QueryResponseAlternative73WarningsList =
   Array<QueryResponseAlternative73WarningsItem>;
@@ -32652,7 +32648,7 @@ export type QueryResponseAlternative74WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative74WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative74WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative74WarningsItem>;
 
 export type QueryResponseAlternative74WarningsList =
   Array<QueryResponseAlternative74WarningsItem>;
@@ -32725,7 +32721,7 @@ export type QueryResponseAlternative75WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative75WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative75WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative75WarningsItem>;
 
 export type QueryResponseAlternative75WarningsList =
   Array<QueryResponseAlternative75WarningsItem>;
@@ -32796,7 +32792,7 @@ export type QueryResponseAlternative76WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative76WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative76WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative76WarningsItem>;
 
 export type QueryResponseAlternative76WarningsList =
   Array<QueryResponseAlternative76WarningsItem>;
@@ -32862,7 +32858,7 @@ export type QueryResponseAlternative77WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative77WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative77WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative77WarningsItem>;
 
 export type QueryResponseAlternative77WarningsList =
   Array<QueryResponseAlternative77WarningsItem>;
@@ -32947,7 +32943,7 @@ export type QueryResponseAlternative78WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative78WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative78WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative78WarningsItem>;
 
 export type QueryResponseAlternative78WarningsList =
   Array<QueryResponseAlternative78WarningsItem>;
@@ -33026,7 +33022,7 @@ export type QueryResponseAlternative79WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative79WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative79WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative79WarningsItem>;
 
 export type QueryResponseAlternative79WarningsList =
   Array<QueryResponseAlternative79WarningsItem>;
@@ -33107,7 +33103,7 @@ export type QueryResponseAlternative80WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative80WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative80WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative80WarningsItem>;
 
 export type QueryResponseAlternative80WarningsList =
   Array<QueryResponseAlternative80WarningsItem>;
@@ -33206,7 +33202,7 @@ export type QueryResponseAlternative82WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative82WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative82WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative82WarningsItem>;
 
 export type QueryResponseAlternative82WarningsList =
   Array<QueryResponseAlternative82WarningsItem>;
@@ -33283,7 +33279,7 @@ export type QueryResponseAlternative83WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative83WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative83WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative83WarningsItem>;
 
 export type QueryResponseAlternative83WarningsList =
   Array<QueryResponseAlternative83WarningsItem>;
@@ -33349,7 +33345,7 @@ export type QueryResponseAlternative84Results =
   | ActorsPropertyTaxonomyResponse
   | QueryResponseAlternative84ResultsCase1List;
 export const QueryResponseAlternative84Results =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative84Results>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative84Results>;
 
 export type QueryResponseAlternative84TimingsList = Array<QueryTiming>;
 export const QueryResponseAlternative84TimingsList = /*@__PURE__*/ S.Array(
@@ -33367,7 +33363,7 @@ export type QueryResponseAlternative84WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative84WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative84WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative84WarningsItem>;
 
 export type QueryResponseAlternative84WarningsList =
   Array<QueryResponseAlternative84WarningsItem>;
@@ -33443,7 +33439,7 @@ export type QueryResponseAlternative85WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative85WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative85WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative85WarningsItem>;
 
 export type QueryResponseAlternative85WarningsList =
   Array<QueryResponseAlternative85WarningsItem>;
@@ -33561,7 +33557,7 @@ export type QueryResponseAlternative89WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative89WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative89WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative89WarningsItem>;
 
 export type QueryResponseAlternative89WarningsList =
   Array<QueryResponseAlternative89WarningsItem>;
@@ -33632,7 +33628,7 @@ export type QueryResponseAlternative90WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative90WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative90WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative90WarningsItem>;
 
 export type QueryResponseAlternative90WarningsList =
   Array<QueryResponseAlternative90WarningsItem>;
@@ -33725,7 +33721,7 @@ export type QueryResponseAlternative91WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative91WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative91WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative91WarningsItem>;
 
 export type QueryResponseAlternative91WarningsList =
   Array<QueryResponseAlternative91WarningsItem>;
@@ -33819,7 +33815,7 @@ export type QueryResponseAlternative92WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative92WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative92WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative92WarningsItem>;
 
 export type QueryResponseAlternative92WarningsList =
   Array<QueryResponseAlternative92WarningsItem>;
@@ -33904,7 +33900,7 @@ export type QueryResponseAlternative93WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative93WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative93WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative93WarningsItem>;
 
 export type QueryResponseAlternative93WarningsList =
   Array<QueryResponseAlternative93WarningsItem>;
@@ -33985,7 +33981,7 @@ export type QueryResponseAlternative94WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative94WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative94WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative94WarningsItem>;
 
 export type QueryResponseAlternative94WarningsList =
   Array<QueryResponseAlternative94WarningsItem>;
@@ -34075,7 +34071,7 @@ export type QueryResponseAlternative95WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative95WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative95WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative95WarningsItem>;
 
 export type QueryResponseAlternative95WarningsList =
   Array<QueryResponseAlternative95WarningsItem>;
@@ -34147,7 +34143,7 @@ export type QueryResponseAlternative96WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative96WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative96WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative96WarningsItem>;
 
 export type QueryResponseAlternative96WarningsList =
   Array<QueryResponseAlternative96WarningsItem>;
@@ -34219,7 +34215,7 @@ export type QueryResponseAlternative97WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative97WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative97WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative97WarningsItem>;
 
 export type QueryResponseAlternative97WarningsList =
   Array<QueryResponseAlternative97WarningsItem>;
@@ -34291,7 +34287,7 @@ export type QueryResponseAlternative98WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative98WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative98WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative98WarningsItem>;
 
 export type QueryResponseAlternative98WarningsList =
   Array<QueryResponseAlternative98WarningsItem>;
@@ -34362,7 +34358,7 @@ export type QueryResponseAlternative99WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative99WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative99WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative99WarningsItem>;
 
 export type QueryResponseAlternative99WarningsList =
   Array<QueryResponseAlternative99WarningsItem>;
@@ -34433,7 +34429,7 @@ export type QueryResponseAlternative100WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative100WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative100WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative100WarningsItem>;
 
 export type QueryResponseAlternative100WarningsList =
   Array<QueryResponseAlternative100WarningsItem>;
@@ -34505,7 +34501,7 @@ export type QueryResponseAlternative101WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative101WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative101WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative101WarningsItem>;
 
 export type QueryResponseAlternative101WarningsList =
   Array<QueryResponseAlternative101WarningsItem>;
@@ -34577,7 +34573,7 @@ export type QueryResponseAlternative102WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative102WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative102WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative102WarningsItem>;
 
 export type QueryResponseAlternative102WarningsList =
   Array<QueryResponseAlternative102WarningsItem>;
@@ -34650,7 +34646,7 @@ export type QueryResponseAlternative103WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative103WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative103WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative103WarningsItem>;
 
 export type QueryResponseAlternative103WarningsList =
   Array<QueryResponseAlternative103WarningsItem>;
@@ -34722,7 +34718,7 @@ export type QueryResponseAlternative104WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative104WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative104WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative104WarningsItem>;
 
 export type QueryResponseAlternative104WarningsList =
   Array<QueryResponseAlternative104WarningsItem>;
@@ -34797,7 +34793,7 @@ export type QueryResponseAlternative105WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative105WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative105WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative105WarningsItem>;
 
 export type QueryResponseAlternative105WarningsList =
   Array<QueryResponseAlternative105WarningsItem>;
@@ -34869,7 +34865,7 @@ export type QueryResponseAlternative106WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative106WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative106WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative106WarningsItem>;
 
 export type QueryResponseAlternative106WarningsList =
   Array<QueryResponseAlternative106WarningsItem>;
@@ -34940,7 +34936,7 @@ export type QueryResponseAlternative107WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative107WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative107WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative107WarningsItem>;
 
 export type QueryResponseAlternative107WarningsList =
   Array<QueryResponseAlternative107WarningsItem>;
@@ -35012,7 +35008,7 @@ export type QueryResponseAlternative108WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative108WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative108WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative108WarningsItem>;
 
 export type QueryResponseAlternative108WarningsList =
   Array<QueryResponseAlternative108WarningsItem>;
@@ -35084,7 +35080,7 @@ export type QueryResponseAlternative109WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative109WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative109WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative109WarningsItem>;
 
 export type QueryResponseAlternative109WarningsList =
   Array<QueryResponseAlternative109WarningsItem>;
@@ -35156,7 +35152,7 @@ export type QueryResponseAlternative110WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative110WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative110WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative110WarningsItem>;
 
 export type QueryResponseAlternative110WarningsList =
   Array<QueryResponseAlternative110WarningsItem>;
@@ -35227,7 +35223,7 @@ export type QueryResponseAlternative111WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative111WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative111WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative111WarningsItem>;
 
 export type QueryResponseAlternative111WarningsList =
   Array<QueryResponseAlternative111WarningsItem>;
@@ -35299,7 +35295,7 @@ export type QueryResponseAlternative112WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative112WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative112WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative112WarningsItem>;
 
 export type QueryResponseAlternative112WarningsList =
   Array<QueryResponseAlternative112WarningsItem>;
@@ -35373,7 +35369,7 @@ export type QueryResponseAlternative113WarningsItem =
   | DataWarehouseSyncWarning
   | AccessControlFilterWarning;
 export const QueryResponseAlternative113WarningsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative113WarningsItem>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative113WarningsItem>;
 
 export type QueryResponseAlternative113WarningsList =
   Array<QueryResponseAlternative113WarningsItem>;
@@ -35534,7 +35530,7 @@ export type QueryResponseAlternative =
   | QueryResponseAlternative112
   | QueryResponseAlternative113;
 export const QueryResponseAlternative =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative>;
+  S.Unknown as any as S.Schema<QueryResponseAlternative>;
 
 export type CreateQueryResponse = QueryResponseAlternative;
 export const CreateQueryResponse = /*@__PURE__*/ S.suspend(() =>
@@ -35681,7 +35677,7 @@ export type CreateQueryUpgradeRequestQuery =
   | MCPMissingCapabilitiesQuery
   | PropertyValuesQuery;
 export const CreateQueryUpgradeRequestQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateQueryUpgradeRequestQuery>;
+  S.Unknown as any as S.Schema<CreateQueryUpgradeRequestQuery>;
 
 export interface CreateQueryUpgradeRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -35806,7 +35802,7 @@ export type QueryUpgradeResponseQuery =
   | MCPMissingCapabilitiesQuery
   | PropertyValuesQuery;
 export const QueryUpgradeResponseQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryUpgradeResponseQuery>;
+  S.Unknown as any as S.Schema<QueryUpgradeResponseQuery>;
 
 export interface QueryUpgradeResponse {
   query?: QueryUpgradeResponseQuery;

@@ -72,7 +72,7 @@ export const StringMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<StringMap>;
 
 export type CustomClassStateEnum = "STATE_UNSPECIFIED" | "ACTIVE" | "DELETED";
-export const CustomClassStateEnum = /*@__PURE__*/ S.String;
+export const CustomClassStateEnum = S.String;
 
 /** An item of the class. */
 export interface ClassItem {
@@ -176,7 +176,7 @@ export const CreateProjectsLocationsCustomClassesRequest =
   }) as any as S.Schema<CreateProjectsLocationsCustomClassesRequest>;
 
 export type PhraseSetStateEnum = "STATE_UNSPECIFIED" | "ACTIVE" | "DELETED";
-export const PhraseSetStateEnum = /*@__PURE__*/ S.String;
+export const PhraseSetStateEnum = S.String;
 
 /** A phrases containing words and phrase "hints" so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech-to-text/quotas#content). List items can also include pre-built or custom classes containing groups of words that represent common concepts that occur in natural language. For example, rather than providing a phrase hint for every month of the year (e.g. "i was born in january", "i was born in febuary", ...), use the pre-built `$MONTH` class improves the likelihood of correctly transcribing audio that includes months (e.g. "i was born in $month"). To refer to pre-built classes, use the class' symbol prepended with `$` e.g. `$MONTH`. To refer to custom classes that were defined inline in the request, set the class's `custom_class_id` to a string unique to all class resources and inline classes. Then use the class' id wrapped in $`{...}` e.g. "${my-months}". To refer to custom classes resources, use the class' id wrapped in `${}` (e.g. `${my-months}`). Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or `eu` location value. */
 export interface Phrase {
@@ -669,7 +669,7 @@ export type RecognitionConfigEncodingEnum =
   | "MP3"
   | "WEBM_OPUS"
   | "ALAW";
-export const RecognitionConfigEncodingEnum = /*@__PURE__*/ S.String;
+export const RecognitionConfigEncodingEnum = S.String;
 
 export interface ABNFGrammar {
   /** All declarations and rules of an ABNF grammar broken up into multiple strings that will end up concatenated. */
@@ -727,7 +727,7 @@ export type RecognitionMetadataMicrophoneDistanceEnum =
   | "NEARFIELD"
   | "MIDFIELD"
   | "FARFIELD";
-export const RecognitionMetadataMicrophoneDistanceEnum = /*@__PURE__*/ S.String;
+export const RecognitionMetadataMicrophoneDistanceEnum = S.String;
 
 export type RecognitionMetadataRecordingDeviceTypeEnum =
   | "RECORDING_DEVICE_TYPE_UNSPECIFIED"
@@ -737,8 +737,7 @@ export type RecognitionMetadataRecordingDeviceTypeEnum =
   | "VEHICLE"
   | "OTHER_OUTDOOR_DEVICE"
   | "OTHER_INDOOR_DEVICE";
-export const RecognitionMetadataRecordingDeviceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const RecognitionMetadataRecordingDeviceTypeEnum = S.String;
 
 export type RecognitionMetadataInteractionTypeEnum =
   | "INTERACTION_TYPE_UNSPECIFIED"
@@ -750,13 +749,13 @@ export type RecognitionMetadataInteractionTypeEnum =
   | "VOICE_SEARCH"
   | "VOICE_COMMAND"
   | "DICTATION";
-export const RecognitionMetadataInteractionTypeEnum = /*@__PURE__*/ S.String;
+export const RecognitionMetadataInteractionTypeEnum = S.String;
 
 export type RecognitionMetadataOriginalMediaTypeEnum =
   | "ORIGINAL_MEDIA_TYPE_UNSPECIFIED"
   | "AUDIO"
   | "VIDEO";
-export const RecognitionMetadataOriginalMediaTypeEnum = /*@__PURE__*/ S.String;
+export const RecognitionMetadataOriginalMediaTypeEnum = S.String;
 
 /** Description of audio data to be recognized. */
 export interface RecognitionMetadata {

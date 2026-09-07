@@ -109,7 +109,7 @@ export type ComputeDiffThreatListsConstraints_supportedCompressionsEnum =
   | "RAW"
   | "RICE";
 export const ComputeDiffThreatListsConstraints_supportedCompressionsEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ComputeDiffThreatListsConstraints_supportedCompressionsEnumList =
   Array<
@@ -126,7 +126,7 @@ export type ComputeDiffThreatListsThreatTypeEnum =
   | "SOCIAL_ENGINEERING"
   | "UNWANTED_SOFTWARE"
   | "SOCIAL_ENGINEERING_EXTENDED_COVERAGE";
-export const ComputeDiffThreatListsThreatTypeEnum = /*@__PURE__*/ S.String;
+export const ComputeDiffThreatListsThreatTypeEnum = S.String;
 
 export interface ComputeDiffThreatListsRequest {
   /** The current version token of the client for the requested list (the client version that was received from the last successful diff). If the client does not have a version token (this is the first time calling ComputeThreatListDiff), this may be left empty and a full database snapshot will be returned. */
@@ -169,7 +169,7 @@ export type GoogleCloudWebriskV1ComputeThreatListDiffResponseResponseTypeEnum =
   | "DIFF"
   | "RESET";
 export const GoogleCloudWebriskV1ComputeThreatListDiffResponseResponseTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The Rice-Golomb encoded data. Used for sending compressed 4-byte hashes or compressed removal indices. */
 export interface GoogleCloudWebriskV1RiceDeltaEncoding {
@@ -505,7 +505,7 @@ export type SearchHashesThreatTypesEnum =
   | "SOCIAL_ENGINEERING"
   | "UNWANTED_SOFTWARE"
   | "SOCIAL_ENGINEERING_EXTENDED_COVERAGE";
-export const SearchHashesThreatTypesEnum = /*@__PURE__*/ S.String;
+export const SearchHashesThreatTypesEnum = S.String;
 
 export type SearchHashesThreatTypesEnumList = Array<
   SearchHashesThreatTypesEnum | (string & {})
@@ -542,7 +542,7 @@ export type GoogleCloudWebriskV1SearchHashesResponseThreatHashThreatTypesItemEnu
   | "UNWANTED_SOFTWARE"
   | "SOCIAL_ENGINEERING_EXTENDED_COVERAGE";
 export const GoogleCloudWebriskV1SearchHashesResponseThreatHashThreatTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudWebriskV1SearchHashesResponseThreatHashThreatTypesItemEnumList =
   Array<GoogleCloudWebriskV1SearchHashesResponseThreatHashThreatTypesItemEnum>;
@@ -604,7 +604,7 @@ export type SearchUrisThreatTypesEnum =
   | "SOCIAL_ENGINEERING"
   | "UNWANTED_SOFTWARE"
   | "SOCIAL_ENGINEERING_EXTENDED_COVERAGE";
-export const SearchUrisThreatTypesEnum = /*@__PURE__*/ S.String;
+export const SearchUrisThreatTypesEnum = S.String;
 
 export type SearchUrisThreatTypesEnumList = Array<
   SearchUrisThreatTypesEnum | (string & {})
@@ -641,7 +641,7 @@ export type GoogleCloudWebriskV1SearchUrisResponseThreatUriThreatTypesItemEnum =
   | "UNWANTED_SOFTWARE"
   | "SOCIAL_ENGINEERING_EXTENDED_COVERAGE";
 export const GoogleCloudWebriskV1SearchUrisResponseThreatUriThreatTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudWebriskV1SearchUrisResponseThreatUriThreatTypesItemEnumList =
   Array<GoogleCloudWebriskV1SearchUrisResponseThreatUriThreatTypesItemEnum>;

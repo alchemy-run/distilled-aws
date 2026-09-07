@@ -14,11 +14,11 @@ export type { OvhOpError, OvhOpContext };
 
 /** Ticket request category */
 export type SupportTicketCategoryEnum = "assistance" | "billing" | "incident";
-export const SupportTicketCategoryEnum = /*@__PURE__*/ S.String;
+export const SupportTicketCategoryEnum = S.String;
 
 /** Ticket level of impact or urgency (reserved for Business or Enterprise support level accounts) */
 export type SupportTicketImpactUrgencyEnum = "high" | "low" | "medium";
-export const SupportTicketImpactUrgencyEnum = /*@__PURE__*/ S.String;
+export const SupportTicketImpactUrgencyEnum = S.String;
 
 /** Ticket product */
 export type SupportTicketProductEnum =
@@ -47,7 +47,7 @@ export type SupportTicketProductEnum =
   | "vps"
   | "web-billing"
   | "web-other";
-export const SupportTicketProductEnum = /*@__PURE__*/ S.String;
+export const SupportTicketProductEnum = S.String;
 
 /** Ticket request subcategory */
 export type SupportTicketSubCategoryEnum =
@@ -61,11 +61,11 @@ export type SupportTicketSubCategoryEnum =
   | "perfs"
   | "start"
   | "usage";
-export const SupportTicketSubCategoryEnum = /*@__PURE__*/ S.String;
+export const SupportTicketSubCategoryEnum = S.String;
 
 /** DEPRECATED - Ticket type (criticalIntervention requires VIP support level) */
 export type SupportTicketTypeEnum = "criticalIntervention" | "genericRequest";
-export const SupportTicketTypeEnum = /*@__PURE__*/ S.String;
+export const SupportTicketTypeEnum = S.String;
 
 /** List of e-mail addresses to notify on ticket updates (max. 10) */
 export type CreateSupportTicketRequestWatchersList = Array<string>;
@@ -236,11 +236,11 @@ export const GetSupportTicketRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Message sender type */
 export type SupportMessageSenderEnum = "customer" | "support";
-export const SupportMessageSenderEnum = /*@__PURE__*/ S.String;
+export const SupportMessageSenderEnum = S.String;
 
 /** Support ticket statuses */
 export type SupportTicketStatusEnum = "closed" | "open" | "unknown";
-export const SupportTicketStatusEnum = /*@__PURE__*/ S.String;
+export const SupportTicketStatusEnum = S.String;
 
 /** Support Ticket */
 export interface SupportTicket {

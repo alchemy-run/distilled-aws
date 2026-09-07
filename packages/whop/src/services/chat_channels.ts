@@ -85,11 +85,11 @@ export const ChatChannelExperience = /*@__PURE__*/ S.suspend(() =>
 
 /** Who can post on a chat feed */
 export type WhoCanPostTypes = "everyone" | "admins";
-export const WhoCanPostTypes = /*@__PURE__*/ S.String;
+export const WhoCanPostTypes = S.String;
 
 /** Who can react on a chat feed */
 export type WhoCanReactTypes = "everyone" | "no_one";
-export const WhoCanReactTypes = /*@__PURE__*/ S.String;
+export const WhoCanReactTypes = S.String;
 
 /** A real-time chat feed attached to an experience, with configurable moderation and posting permissions. */
 export interface ChatChannel {

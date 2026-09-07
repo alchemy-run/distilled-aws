@@ -44,8 +44,7 @@ export type WarehouseColumnAnnotationDescriptionSourceEnum =
   | "canonical"
   | "ai_generated"
   | "user_edited";
-export const WarehouseColumnAnnotationDescriptionSourceEnum =
-  /*@__PURE__*/ S.String;
+export const WarehouseColumnAnnotationDescriptionSourceEnum = S.String;
 
 /** Shared serializer for the physical-table and saved-query-view annotation surfaces. Subclasses add a `Meta` (model + fields) and the parent foreign-key field (`table`/`saved_query`), and set `parent_field_name` to that FK's name. The shared field definitions and the immutable-FK-on-update rule live here; column-name validation lives on the viewset so it runs after the editor-access check (avoiding a schema leak to callers denied the parent). */
 export interface WarehouseColumnAnnotation {
