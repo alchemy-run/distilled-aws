@@ -3320,11 +3320,11 @@ export const DeleteRegionsFromActiveActiveSubscriptionRequest =
     identifier: "DeleteRegionsFromActiveActiveSubscriptionRequest",
   }) as any as S.Schema<DeleteRegionsFromActiveActiveSubscriptionRequest>;
 
-export interface DeleteSubscriptionByIdRequest {
+export interface DeleteSubscriptionRequest {
   /** Subscription ID. */
   subscriptionId: number;
 }
-export const DeleteSubscriptionByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.Number.pipe(T.Label()),
   }).pipe(
@@ -3335,8 +3335,8 @@ export const DeleteSubscriptionByIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteSubscriptionByIdRequest",
-}) as any as S.Schema<DeleteSubscriptionByIdRequest>;
+  identifier: "DeleteSubscriptionRequest",
+}) as any as S.Schema<DeleteSubscriptionRequest>;
 
 export interface DeleteSubscriptionById1Request {
   /** Subscription ID. */
@@ -3447,30 +3447,30 @@ export const DeleteTgwAttachmentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteTgwAttachmentResponse>;
 
 export interface DeleteUserRequest {
+  /** User ID. */
+  userId: number;
+}
+export const DeleteUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    userId: S.Number.pipe(T.Label()),
+  }).pipe(T.Http({ method: "DELETE", uri: "/v1/users/{userId}", code: 200 })),
+).annotate({
+  identifier: "DeleteUserRequest",
+}) as any as S.Schema<DeleteUserRequest>;
+
+export interface DeleteUserRequest2 {
   /** Access control user ID. */
   aclUserId: number;
 }
-export const DeleteUserRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteUserRequest2 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     aclUserId: S.Number.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "DELETE", uri: "/v1/acl/users/{aclUserId}", code: 200 }),
   ),
 ).annotate({
-  identifier: "DeleteUserRequest",
-}) as any as S.Schema<DeleteUserRequest>;
-
-export interface DeleteUserByIdRequest {
-  /** User ID. */
-  userId: number;
-}
-export const DeleteUserByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    userId: S.Number.pipe(T.Label()),
-  }).pipe(T.Http({ method: "DELETE", uri: "/v1/users/{userId}", code: 200 })),
-).annotate({
-  identifier: "DeleteUserByIdRequest",
-}) as any as S.Schema<DeleteUserByIdRequest>;
+  identifier: "DeleteUserRequest2",
+}) as any as S.Schema<DeleteUserRequest2>;
 
 export interface DeleteVpcPeeringRequest {
   /** Subscription ID. */
@@ -4305,11 +4305,11 @@ export const GetCidrWhiteListResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetCidrWhiteListResponse",
 }) as any as S.Schema<GetCidrWhiteListResponse>;
 
-export interface GetCloudAccountByIdRequest {
+export interface GetCloudAccountRequest {
   /** Cloud Account Id */
   cloudAccountId: number;
 }
-export const GetCloudAccountByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCloudAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     cloudAccountId: S.Number.pipe(T.Label()),
   }).pipe(
@@ -4320,8 +4320,8 @@ export const GetCloudAccountByIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetCloudAccountByIdRequest",
-}) as any as S.Schema<GetCloudAccountByIdRequest>;
+  identifier: "GetCloudAccountRequest",
+}) as any as S.Schema<GetCloudAccountRequest>;
 
 export type CloudAccountLinksItemMap = { [key: string]: string | undefined };
 export const CloudAccountLinksItemMap = /*@__PURE__*/ S.Record(
@@ -5388,11 +5388,11 @@ export const GetSlowLog1Request = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSlowLog1Request",
 }) as any as S.Schema<GetSlowLog1Request>;
 
-export interface GetSubscriptionByIdRequest {
+export interface GetSubscriptionRequest {
   /** Subscription ID. */
   subscriptionId: number;
 }
-export const GetSubscriptionByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.Number.pipe(T.Label()),
   }).pipe(
@@ -5403,8 +5403,8 @@ export const GetSubscriptionByIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSubscriptionByIdRequest",
-}) as any as S.Schema<GetSubscriptionByIdRequest>;
+  identifier: "GetSubscriptionRequest",
+}) as any as S.Schema<GetSubscriptionRequest>;
 
 export type SubscriptionMemoryStorage = "ram" | "ram-and-flash";
 export const SubscriptionMemoryStorage = /*@__PURE__*/ S.String;
@@ -5601,13 +5601,13 @@ export const FixedSubscription = /*@__PURE__*/ S.suspend(() =>
   identifier: "FixedSubscription",
 }) as any as S.Schema<FixedSubscription>;
 
-export interface GetSubscriptionDatabaseByIDRequest {
+export interface GetSubscriptionDatabaseRequest {
   /** Subscription ID. */
   subscriptionId: number;
   /** Database ID. */
   databaseId: number;
 }
-export const GetSubscriptionDatabaseByIDRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSubscriptionDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.Number.pipe(T.Label()),
     databaseId: S.Number.pipe(T.Label()),
@@ -5619,8 +5619,8 @@ export const GetSubscriptionDatabaseByIDRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSubscriptionDatabaseByIDRequest",
-}) as any as S.Schema<GetSubscriptionDatabaseByIDRequest>;
+  identifier: "GetSubscriptionDatabaseRequest",
+}) as any as S.Schema<GetSubscriptionDatabaseRequest>;
 
 export type DatabaseLinksItemMap = { [key: string]: string | undefined };
 export const DatabaseLinksItemMap = /*@__PURE__*/ S.Record(
@@ -6251,17 +6251,15 @@ export const GetTags1Request = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetTags1Request",
 }) as any as S.Schema<GetTags1Request>;
 
-export interface GetTaskByIdRequest {
+export interface GetTaskRequest {
   /** Task ID. */
   taskId: string;
 }
-export const GetTaskByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetTaskRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     taskId: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/v1/tasks/{taskId}", code: 200 })),
-).annotate({
-  identifier: "GetTaskByIdRequest",
-}) as any as S.Schema<GetTaskByIdRequest>;
+).annotate({ identifier: "GetTaskRequest" }) as any as S.Schema<GetTaskRequest>;
 
 export interface GetTgwsRequest {
   /** Subscription ID. */
@@ -6297,17 +6295,15 @@ export const GetTgwSharedInvitationsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetTgwSharedInvitationsRequest",
 }) as any as S.Schema<GetTgwSharedInvitationsRequest>;
 
-export interface GetUserByIdRequest {
+export interface GetUserRequest {
   /** User ID. */
   userId: number;
 }
-export const GetUserByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetUserRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     userId: S.Number.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/v1/users/{userId}", code: 200 })),
-).annotate({
-  identifier: "GetUserByIdRequest",
-}) as any as S.Schema<GetUserByIdRequest>;
+).annotate({ identifier: "GetUserRequest" }) as any as S.Schema<GetUserRequest>;
 
 /** RedisLabs User options information */
 export interface AccountUserOptions {
@@ -9061,20 +9057,20 @@ export const deleteRegionsFromActiveActiveSubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteSubscriptionByIdError =
+export type DeleteSubscriptionError =
   | BadRequest
   | Forbidden
   | NotFound
   | Conflict
   | RedisCloudOpError;
 /** Delete Pro subscription Delete the specified Pro subscription. All databases in the subscription must be deleted before deleting it. */
-export const deleteSubscriptionById: API.OperationMethod<
-  DeleteSubscriptionByIdRequest,
+export const deleteSubscription: API.OperationMethod<
+  DeleteSubscriptionRequest,
   TaskStateUpdate,
-  DeleteSubscriptionByIdError,
+  DeleteSubscriptionError,
   RedisCloudOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSubscriptionByIdRequest,
+  input: DeleteSubscriptionRequest,
   output: TaskStateUpdate,
   errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownRedisCloudError],
   protocol: RedisCloudProtocol,
@@ -9167,7 +9163,7 @@ export type DeleteUserError =
   | NotFound
   | Conflict
   | RedisCloudOpError;
-/** Delete access control user Deletes a access control user. */
+/** Delete user Deletes a user from this account. */
 export const deleteUser: API.OperationMethod<
   DeleteUserRequest,
   TaskStateUpdate,
@@ -9181,20 +9177,20 @@ export const deleteUser: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteUserByIdError =
+export type DeleteUser2Error =
   | BadRequest
   | Forbidden
   | NotFound
   | Conflict
   | RedisCloudOpError;
-/** Delete user Deletes a user from this account. */
-export const deleteUserById: API.OperationMethod<
-  DeleteUserByIdRequest,
+/** Delete access control user Deletes a access control user. */
+export const deleteUser2: API.OperationMethod<
+  DeleteUserRequest2,
   TaskStateUpdate,
-  DeleteUserByIdError,
+  DeleteUser2Error,
   RedisCloudOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteUserByIdRequest,
+  input: DeleteUserRequest2,
   output: TaskStateUpdate,
   errors: [BadRequest, Forbidden, NotFound, Conflict, UnknownRedisCloudError],
   protocol: RedisCloudProtocol,
@@ -9661,19 +9657,19 @@ export const getCidrWhiteList: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetCloudAccountByIdError =
+export type GetCloudAccountError =
   | BadRequest
   | Forbidden
   | NotFound
   | RedisCloudOpError;
 /** Get a single cloud account Gets details on a single cloud account. */
-export const getCloudAccountById: API.OperationMethod<
-  GetCloudAccountByIdRequest,
+export const getCloudAccount: API.OperationMethod<
+  GetCloudAccountRequest,
   CloudAccount,
-  GetCloudAccountByIdError,
+  GetCloudAccountError,
   RedisCloudOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetCloudAccountByIdRequest,
+  input: GetCloudAccountRequest,
   output: CloudAccount,
   errors: [BadRequest, Forbidden, NotFound, UnknownRedisCloudError],
   protocol: RedisCloudProtocol,
@@ -10269,19 +10265,19 @@ export const getSlowLog1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSubscriptionByIdError =
+export type GetSubscriptionError =
   | BadRequest
   | Forbidden
   | NotFound
   | RedisCloudOpError;
 /** Get a single Pro subscription Gets information on the specified Pro subscription. */
-export const getSubscriptionById: API.OperationMethod<
-  GetSubscriptionByIdRequest,
+export const getSubscription: API.OperationMethod<
+  GetSubscriptionRequest,
   Subscription,
-  GetSubscriptionByIdError,
+  GetSubscriptionError,
   RedisCloudOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSubscriptionByIdRequest,
+  input: GetSubscriptionRequest,
   output: Subscription,
   errors: [BadRequest, Forbidden, NotFound, UnknownRedisCloudError],
   protocol: RedisCloudProtocol,
@@ -10307,19 +10303,19 @@ export const getSubscriptionById1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSubscriptionDatabaseByIDError =
+export type GetSubscriptionDatabaseError =
   | BadRequest
   | Forbidden
   | NotFound
   | RedisCloudOpError;
 /** Get a single Pro database Gets details and settings of a single database in a Pro subscription. */
-export const getSubscriptionDatabaseByID: API.OperationMethod<
-  GetSubscriptionDatabaseByIDRequest,
+export const getSubscriptionDatabase: API.OperationMethod<
+  GetSubscriptionDatabaseRequest,
   Database,
-  GetSubscriptionDatabaseByIDError,
+  GetSubscriptionDatabaseError,
   RedisCloudOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSubscriptionDatabaseByIDRequest,
+  input: GetSubscriptionDatabaseRequest,
   output: Database,
   errors: [BadRequest, Forbidden, NotFound, UnknownRedisCloudError],
   protocol: RedisCloudProtocol,
@@ -10516,19 +10512,19 @@ export const getTags1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetTaskByIdError =
+export type GetTaskError =
   | BadRequest
   | Forbidden
   | NotFound
   | RedisCloudOpError;
 /** Get a single task Gets details and status of a single task by the Task ID. */
-export const getTaskById: API.OperationMethod<
-  GetTaskByIdRequest,
+export const getTask: API.OperationMethod<
+  GetTaskRequest,
   TaskStateUpdate,
-  GetTaskByIdError,
+  GetTaskError,
   RedisCloudOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetTaskByIdRequest,
+  input: GetTaskRequest,
   output: TaskStateUpdate,
   errors: [BadRequest, Forbidden, NotFound, UnknownRedisCloudError],
   protocol: RedisCloudProtocol,
@@ -10573,19 +10569,19 @@ export const getTgwSharedInvitations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetUserByIdError =
+export type GetUserError =
   | BadRequest
   | Forbidden
   | NotFound
   | RedisCloudOpError;
 /** Get a single user Gets details about a single account user. */
-export const getUserById: API.OperationMethod<
-  GetUserByIdRequest,
+export const getUser: API.OperationMethod<
+  GetUserRequest,
   AccountUser,
-  GetUserByIdError,
+  GetUserError,
   RedisCloudOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetUserByIdRequest,
+  input: GetUserRequest,
   output: AccountUser,
   errors: [BadRequest, Forbidden, NotFound, UnknownRedisCloudError],
   protocol: RedisCloudProtocol,

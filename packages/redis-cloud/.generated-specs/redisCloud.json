@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.rediscloud.api#ProxyDataIntegrationWorkspace5Request": {
@@ -334,7 +335,7 @@
         "smithy.api#documentation": "Proxy a Data Integration workspace request\n\nForwards the request to the Data Integration workspace owned by the specified subscription. Path under `data-integration-workspace/**` is forwarded as-is to the Cloud RDI service."
       }
     },
-    "com.rediscloud.api#GetUserByIdRequest": {
+    "com.rediscloud.api#GetUserRequest": {
       "type": "structure",
       "members": {
         "userId": {
@@ -402,10 +403,10 @@
         "smithy.api#documentation": "RedisLabs User options information"
       }
     },
-    "com.rediscloud.api#GetUserById": {
+    "com.rediscloud.api#GetUser": {
       "type": "operation",
       "input": {
-        "target": "com.rediscloud.api#GetUserByIdRequest"
+        "target": "com.rediscloud.api#GetUserRequest"
       },
       "output": {
         "target": "com.rediscloud.api#AccountUser"
@@ -4265,7 +4266,7 @@
         "smithy.api#documentation": "Update a user\n\nUpdates an account user's name or role."
       }
     },
-    "com.rediscloud.api#DeleteUserByIdRequest": {
+    "com.rediscloud.api#DeleteUserRequest": {
       "type": "structure",
       "members": {
         "userId": {
@@ -4281,10 +4282,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.rediscloud.api#DeleteUserById": {
+    "com.rediscloud.api#DeleteUser": {
       "type": "operation",
       "input": {
-        "target": "com.rediscloud.api#DeleteUserByIdRequest"
+        "target": "com.rediscloud.api#DeleteUserRequest"
       },
       "output": {
         "target": "com.rediscloud.api#TaskStateUpdate"
@@ -4312,7 +4313,7 @@
         "smithy.api#documentation": "Delete user\n\nDeletes a user from this account."
       }
     },
-    "com.rediscloud.api#GetSubscriptionByIdRequest": {
+    "com.rediscloud.api#GetSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4472,10 +4473,10 @@
       },
       "traits": {}
     },
-    "com.rediscloud.api#GetSubscriptionById": {
+    "com.rediscloud.api#GetSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.rediscloud.api#GetSubscriptionByIdRequest"
+        "target": "com.rediscloud.api#GetSubscriptionRequest"
       },
       "output": {
         "target": "com.rediscloud.api#Subscription"
@@ -4547,7 +4548,7 @@
         "smithy.api#documentation": "Update Pro subscription\n\nUpdates the specified Pro subscription."
       }
     },
-    "com.rediscloud.api#DeleteSubscriptionByIdRequest": {
+    "com.rediscloud.api#DeleteSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4563,10 +4564,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.rediscloud.api#DeleteSubscriptionById": {
+    "com.rediscloud.api#DeleteSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.rediscloud.api#DeleteSubscriptionByIdRequest"
+        "target": "com.rediscloud.api#DeleteSubscriptionRequest"
       },
       "output": {
         "target": "com.rediscloud.api#TaskStateUpdate"
@@ -6123,7 +6124,7 @@
         "smithy.api#documentation": "Update Pro subscription maintenance windows\n\nUpdates maintenance windows for the specified Pro subscription."
       }
     },
-    "com.rediscloud.api#GetSubscriptionDatabaseByIDRequest": {
+    "com.rediscloud.api#GetSubscriptionDatabaseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6176,10 +6177,10 @@
       },
       "traits": {}
     },
-    "com.rediscloud.api#GetSubscriptionDatabaseByID": {
+    "com.rediscloud.api#GetSubscriptionDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.rediscloud.api#GetSubscriptionDatabaseByIDRequest"
+        "target": "com.rediscloud.api#GetSubscriptionDatabaseRequest"
       },
       "output": {
         "target": "com.rediscloud.api#Database"
@@ -9442,7 +9443,7 @@
         "smithy.api#documentation": "Delete database tag\n\nRemoves the specified tag from the database."
       }
     },
-    "com.rediscloud.api#GetCloudAccountByIdRequest": {
+    "com.rediscloud.api#GetCloudAccountRequest": {
       "type": "structure",
       "members": {
         "cloudAccountId": {
@@ -9531,10 +9532,10 @@
       },
       "traits": {}
     },
-    "com.rediscloud.api#GetCloudAccountById": {
+    "com.rediscloud.api#GetCloudAccount": {
       "type": "operation",
       "input": {
-        "target": "com.rediscloud.api#GetCloudAccountByIdRequest"
+        "target": "com.rediscloud.api#GetCloudAccountRequest"
       },
       "output": {
         "target": "com.rediscloud.api#CloudAccount"
@@ -9840,7 +9841,7 @@
         "smithy.api#documentation": "Update access control user\n\nUpdates a access control user with a different role or database password."
       }
     },
-    "com.rediscloud.api#DeleteUserRequest": {
+    "com.rediscloud.api#DeleteUserRequest2": {
       "type": "structure",
       "members": {
         "aclUserId": {
@@ -9856,10 +9857,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.rediscloud.api#DeleteUser": {
+    "com.rediscloud.api#DeleteUser2": {
       "type": "operation",
       "input": {
-        "target": "com.rediscloud.api#DeleteUserRequest"
+        "target": "com.rediscloud.api#DeleteUserRequest2"
       },
       "output": {
         "target": "com.rediscloud.api#TaskStateUpdate"
@@ -16410,7 +16411,7 @@
         "smithy.api#documentation": "Get tasks\n\nGets a list of all currently running tasks for this account."
       }
     },
-    "com.rediscloud.api#GetTaskByIdRequest": {
+    "com.rediscloud.api#GetTaskRequest": {
       "type": "structure",
       "members": {
         "taskId": {
@@ -16426,10 +16427,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.rediscloud.api#GetTaskById": {
+    "com.rediscloud.api#GetTask": {
       "type": "operation",
       "input": {
-        "target": "com.rediscloud.api#GetTaskByIdRequest"
+        "target": "com.rediscloud.api#GetTaskRequest"
       },
       "output": {
         "target": "com.rediscloud.api#TaskStateUpdate"
@@ -18944,22 +18945,22 @@
           "target": "com.rediscloud.api#ProxyDataIntegrationWorkspace6"
         },
         {
-          "target": "com.rediscloud.api#GetUserById"
+          "target": "com.rediscloud.api#GetUser"
         },
         {
           "target": "com.rediscloud.api#UpdateUser"
         },
         {
-          "target": "com.rediscloud.api#DeleteUserById"
+          "target": "com.rediscloud.api#DeleteUser"
         },
         {
-          "target": "com.rediscloud.api#GetSubscriptionById"
+          "target": "com.rediscloud.api#GetSubscription"
         },
         {
           "target": "com.rediscloud.api#UpdateSubscription"
         },
         {
-          "target": "com.rediscloud.api#DeleteSubscriptionById"
+          "target": "com.rediscloud.api#DeleteSubscription"
         },
         {
           "target": "com.rediscloud.api#CreateTgwAttachment"
@@ -19022,7 +19023,7 @@
           "target": "com.rediscloud.api#UpdateSubscriptionMaintenanceWindows"
         },
         {
-          "target": "com.rediscloud.api#GetSubscriptionDatabaseByID"
+          "target": "com.rediscloud.api#GetSubscriptionDatabase"
         },
         {
           "target": "com.rediscloud.api#UpdateDatabase"
@@ -19094,7 +19095,7 @@
           "target": "com.rediscloud.api#DeleteTag1"
         },
         {
-          "target": "com.rediscloud.api#GetCloudAccountById"
+          "target": "com.rediscloud.api#GetCloudAccount"
         },
         {
           "target": "com.rediscloud.api#UpdateCloudAccount"
@@ -19109,7 +19110,7 @@
           "target": "com.rediscloud.api#UpdateUser1"
         },
         {
-          "target": "com.rediscloud.api#DeleteUser"
+          "target": "com.rediscloud.api#DeleteUser2"
         },
         {
           "target": "com.rediscloud.api#UpdateRole"
@@ -19316,7 +19317,7 @@
           "target": "com.rediscloud.api#GetAllTasks"
         },
         {
-          "target": "com.rediscloud.api#GetTaskById"
+          "target": "com.rediscloud.api#GetTask"
         },
         {
           "target": "com.rediscloud.api#GetTgws"
