@@ -357,6 +357,12 @@
     },
     {
       "path": "./packages/metabase/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/onepassword/tsconfig.json"
+    },
+    {
+      "path": "./packages/onepassword/tsconfig.scripts.json"
     }
   ]
 }
