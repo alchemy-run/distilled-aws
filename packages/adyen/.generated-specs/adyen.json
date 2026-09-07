@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.adyen.checkout#PostApplePaySessionsRequest": {
+    "com.adyen.checkout#CreateApplePaySessionRequest": {
       "type": "structure",
       "members": {
         "idempotencyKey": {
@@ -66,10 +67,10 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PostApplePaySessions": {
+    "com.adyen.checkout#CreateApplePaySession": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostApplePaySessionsRequest"
+        "target": "com.adyen.checkout#CreateApplePaySessionRequest"
       },
       "output": {
         "target": "com.adyen.checkout#ApplePaySessionResponse"
@@ -215,7 +216,7 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PostCancelsRequest": {
+    "com.adyen.checkout#CreateCancelRequest": {
       "type": "structure",
       "members": {
         "idempotencyKey": {
@@ -310,10 +311,10 @@
         "smithy.api#documentation": "The status of your request. This will always have the value **received**."
       }
     },
-    "com.adyen.checkout#PostCancels": {
+    "com.adyen.checkout#CreateCancel": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostCancelsRequest"
+        "target": "com.adyen.checkout#CreateCancelRequest"
       },
       "output": {
         "target": "com.adyen.checkout#StandalonePaymentCancelResponse"
@@ -338,7 +339,7 @@
         "smithy.api#documentation": "Cancel an authorised payment\n\nCancels the authorisation on a payment that has not yet been [captured](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/captures), and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**TECHNICAL_CANCEL** webhook](https://docs.adyen.com/online-payments/cancel#cancellation-webhook).\n\nIf you want to cancel a payment using the [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference), use the [`/payments/{paymentPspReference}/cancels`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/cancels) endpoint instead.\n\nIf you want to cancel a payment but are not sure whether it has been captured, use the [`/payments/{paymentPspReference}/reversals`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/reversals) endpoint instead.\n\nFor more information, refer to [Cancel](https://docs.adyen.com/online-payments/cancel)."
       }
     },
-    "com.adyen.checkout#PostCardDetailsRequestSupportedBrandsList": {
+    "com.adyen.checkout#CreateCardDetailRequestSupportedBrandsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -347,7 +348,7 @@
         "smithy.api#documentation": "The card brands you support. This is the [`brands`](https://docs.adyen.com/api-explorer/Checkout/latest/post/paymentMethods#responses-200-paymentMethods-brands) array from your [`/paymentMethods`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response. \n\nIf not included, our API uses the ones configured for your merchant account and, if provided, the country code."
       }
     },
-    "com.adyen.checkout#PostCardDetailsRequest": {
+    "com.adyen.checkout#CreateCardDetailRequest": {
       "type": "structure",
       "members": {
         "idempotencyKey": {
@@ -383,7 +384,7 @@
           }
         },
         "supportedBrands": {
-          "target": "com.adyen.checkout#PostCardDetailsRequestSupportedBrandsList",
+          "target": "com.adyen.checkout#CreateCardDetailRequestSupportedBrandsList",
           "traits": {
             "smithy.api#documentation": "The card brands you support. This is the [`brands`](https://docs.adyen.com/api-explorer/Checkout/latest/post/paymentMethods#responses-200-paymentMethods-brands) array from your [`/paymentMethods`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response. \n\nIf not included, our API uses the ones configured for your merchant account and, if provided, the country code."
           }
@@ -456,10 +457,10 @@
         "smithy.api#documentation": "The list of brands identified for the card."
       }
     },
-    "com.adyen.checkout#PostCardDetails": {
+    "com.adyen.checkout#CreateCardDetail": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostCardDetailsRequest"
+        "target": "com.adyen.checkout#CreateCardDetailRequest"
       },
       "output": {
         "target": "com.adyen.checkout#CardDetailsResponse"
@@ -473,7 +474,7 @@
         "smithy.api#documentation": "Get the brands and other details of a card\n\nUse this endpoint to get information about the card or network token that enables you to decide on the routing of the transaction and the eligibility of the card for the type of transaction.\n\nIf you include [your supported brands](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/cardDetails__reqParam_supportedBrands) in the request, the response also tells you if you support each [brand that was identified on the card](https://docs.adyen.com/api-explorer/Checkout/latest/post/cardDetails#responses-200-brands).\n\nIf you have an API-only integration and collect card data, use this endpoint to find out if the shopper's card is co-bad. For co-badged cards, you must let the shopper choose the brand to pay with  if you support both brands.\n\n## Server-side API libraries\nWe provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages: \n- PHP\n- Java\n- Node.js\n- .NET\n- Go\n- Python\n- Ruby\n- Apex (beta)\n\nSee our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.\n\n## Developer resources\nBIN Lookup API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**. \n\n[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-677c7679-a695-4ebb-91da-68b4e7c9228a?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-677c7679-a695-4ebb-91da-68b4e7c9228a%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)"
       }
     },
-    "com.adyen.checkout#PostDonationCampaignsRequest": {
+    "com.adyen.checkout#CreateDonationCampaignRequest": {
       "type": "structure",
       "members": {
         "idempotencyKey": {
@@ -689,10 +690,10 @@
         "smithy.api#documentation": "List of active donation campaigns for your merchant account."
       }
     },
-    "com.adyen.checkout#PostDonationCampaigns": {
+    "com.adyen.checkout#CreateDonationCampaign": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostDonationCampaignsRequest"
+        "target": "com.adyen.checkout#CreateDonationCampaignRequest"
       },
       "output": {
         "target": "com.adyen.checkout#DonationCampaignsResponse"
@@ -1349,7 +1350,7 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PostDonationsRequestChannel": {
+    "com.adyen.checkout#CreateDonationRequestChannel": {
       "type": "enum",
       "members": {
         "IOS": {
@@ -1584,7 +1585,7 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PostDonationsRequestLineItemsList": {
+    "com.adyen.checkout#CreateDonationRequestLineItemsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#LineItem"
@@ -1765,7 +1766,7 @@
         "smithy.api#documentation": "The estimated delivery time for the shopper to receive the goods.\nAllowed values:\n* `electronicDelivery`\n* `sameDayShipping`\n* `overnightShipping`\n* `twoOrMoreDaysShipping`"
       }
     },
-    "com.adyen.checkout#PostDonationsRequestMetadataMap": {
+    "com.adyen.checkout#CreateDonationRequestMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2629,7 +2630,7 @@
         "smithy.api#documentation": "**sepadirectdebit**"
       }
     },
-    "com.adyen.checkout#PostDonationsRequestPaymentMethod": {
+    "com.adyen.checkout#CreateDonationRequestPaymentMethod": {
       "type": "union",
       "members": {
         "ApplePayDonations": {
@@ -2655,7 +2656,7 @@
         "smithy.api#documentation": "The type and required details of a payment method to use.\n\nWhen `donationToken` is provided, the payment method is derived from the token and this field becomes optional.\n\nIf you are [PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide), and make donations using raw card details, you must explicitly provide the payment method details."
       }
     },
-    "com.adyen.checkout#PostDonationsRequestRecurringProcessingModel": {
+    "com.adyen.checkout#CreateDonationRequestRecurringProcessingModel": {
       "type": "enum",
       "members": {
         "CARDONFILE": {
@@ -2681,7 +2682,7 @@
         "smithy.api#documentation": "Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details.\nAllowed values:\n* `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule.\n* `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.\n* `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.\n"
       }
     },
-    "com.adyen.checkout#PostDonationsRequestShopperInteraction": {
+    "com.adyen.checkout#CreateDonationRequestShopperInteraction": {
       "type": "enum",
       "members": {
         "ECOMMERCE": {
@@ -3740,7 +3741,7 @@
         "smithy.api#documentation": "Identify the type of the transaction being authenticated."
       }
     },
-    "com.adyen.checkout#PostDonationsRequest": {
+    "com.adyen.checkout#CreateDonationRequest": {
       "type": "structure",
       "members": {
         "idempotencyKey": {
@@ -3788,7 +3789,7 @@
           }
         },
         "channel": {
-          "target": "com.adyen.checkout#PostDonationsRequestChannel",
+          "target": "com.adyen.checkout#CreateDonationRequestChannel",
           "traits": {
             "smithy.api#documentation": "The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`.\n\nPossible values:\n* iOS\n* Android\n* Web"
           }
@@ -3848,7 +3849,7 @@
           }
         },
         "lineItems": {
-          "target": "com.adyen.checkout#PostDonationsRequestLineItemsList",
+          "target": "com.adyen.checkout#CreateDonationRequestLineItemsList",
           "traits": {
             "smithy.api#documentation": "Price and product information about the purchased items, to be included on the invoice sent to the shopper.\n> This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty."
           }
@@ -3867,7 +3868,7 @@
           }
         },
         "metadata": {
-          "target": "com.adyen.checkout#PostDonationsRequestMetadataMap",
+          "target": "com.adyen.checkout#CreateDonationRequestMetadataMap",
           "traits": {
             "smithy.api#documentation": "Metadata consists of entries, each of which includes a key and a value.\nLimits:\n* Maximum 20 key-value pairs per request. When exceeding, the \"177\" error occurs: \"Metadata size exceeds limit\".\n* Maximum 20 characters per key.\n* Maximum 80 characters per value. "
           }
@@ -3885,13 +3886,13 @@
           }
         },
         "paymentMethod": {
-          "target": "com.adyen.checkout#PostDonationsRequestPaymentMethod",
+          "target": "com.adyen.checkout#CreateDonationRequestPaymentMethod",
           "traits": {
             "smithy.api#documentation": "The type and required details of a payment method to use.\n\nWhen `donationToken` is provided, the payment method is derived from the token and this field becomes optional.\n\nIf you are [PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide), and make donations using raw card details, you must explicitly provide the payment method details."
           }
         },
         "recurringProcessingModel": {
-          "target": "com.adyen.checkout#PostDonationsRequestRecurringProcessingModel",
+          "target": "com.adyen.checkout#CreateDonationRequestRecurringProcessingModel",
           "traits": {
             "smithy.api#documentation": "Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details.\nAllowed values:\n* `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule.\n* `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.\n* `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.\n"
           }
@@ -3941,7 +3942,7 @@
           }
         },
         "shopperInteraction": {
-          "target": "com.adyen.checkout#PostDonationsRequestShopperInteraction",
+          "target": "com.adyen.checkout#CreateDonationRequestShopperInteraction",
           "traits": {
             "smithy.api#documentation": "Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer.\nFor the web service API, Adyen assumes Ecommerce shopper interaction by default.\n\nThis field has the following possible values:\n* `Ecommerce` - Online transactions where the cardholder is present (online). For better authorization rates, we recommend sending the card security code (CSC) along with the request.\n* `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorization (one-click payment).\n* `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone.\n* `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal."
           }
@@ -5512,10 +5513,10 @@
         "smithy.api#documentation": "The status of the donation transaction.\n\nPossible values:\n* **completed**\n* **pending**\n* **refused**"
       }
     },
-    "com.adyen.checkout#PostDonations": {
+    "com.adyen.checkout#CreateDonation": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostDonationsRequest"
+        "target": "com.adyen.checkout#CreateDonationRequest"
       },
       "output": {
         "target": "com.adyen.checkout#DonationPaymentResponse"
@@ -5774,7 +5775,7 @@
         "smithy.api#documentation": "The HTTP method to use for the request Adyen makes on your behalf to the third party."
       }
     },
-    "com.adyen.checkout#PostForwardRequest": {
+    "com.adyen.checkout#CreateForwardRequest": {
       "type": "structure",
       "members": {
         "idempotencyKey": {
@@ -5914,10 +5915,10 @@
         "smithy.api#documentation": "The HTTP headers of the response Adyen received from the third party."
       }
     },
-    "com.adyen.checkout#PostForward": {
+    "com.adyen.checkout#CreateForward": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostForwardRequest"
+        "target": "com.adyen.checkout#CreateForwardRequest"
       },
       "output": {
         "target": "com.adyen.checkout#CheckoutForwardResponse"
@@ -5931,7 +5932,7 @@
         "smithy.api#documentation": "Forward stored payment details\n\nForwards the payment details you stored with Adyen to a third-party that you specify and returns the response from the third-party. Supports forwarding stored card details or [network tokens](https://docs.adyen.com/online-payments/network-tokenization). For more information, see [Forward stored payment details](https://docs.adyen.com/online-payments/tokenization/forward-payment-details)."
       }
     },
-    "com.adyen.checkout#PostOrdersRequest": {
+    "com.adyen.checkout#CreateOrderRequest": {
       "type": "structure",
       "members": {
         "idempotencyKey": {
@@ -6070,10 +6071,10 @@
         "smithy.api#documentation": "The result of the order creation request.\n The value is always **Success**."
       }
     },
-    "com.adyen.checkout#PostOrders": {
+    "com.adyen.checkout#CreateOrder": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostOrdersRequest"
+        "target": "com.adyen.checkout#CreateOrderRequest"
       },
       "output": {
         "target": "com.adyen.checkout#CreateOrderResponse"
@@ -6118,7 +6119,7 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PostOrdersCancelRequest": {
+    "com.adyen.checkout#CreateOrdersCancelRequest": {
       "type": "structure",
       "members": {
         "idempotencyKey": {
@@ -6181,10 +6182,10 @@
         "smithy.api#documentation": "The result of the cancellation request.\n\nPossible values:\n\n* **Received** – Indicates the cancellation has successfully been received by Adyen, and will be processed."
       }
     },
-    "com.adyen.checkout#PostOrdersCancel": {
+    "com.adyen.checkout#CreateOrdersCancel": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostOrdersCancelRequest"
+        "target": "com.adyen.checkout#CreateOrdersCancelRequest"
       },
       "output": {
         "target": "com.adyen.checkout#CancelOrderResponse"
@@ -6209,7 +6210,7 @@
         "smithy.api#documentation": "Cancel an order\n\nCancels an order. Cancellation of an order results in an automatic rollback of all payments made in the order, either by canceling or refunding the payment, depending on the type of payment method."
       }
     },
-    "com.adyen.checkout#PostPaymentLinksRequestAllowedPaymentMethodsList": {
+    "com.adyen.checkout#CreatePaymentLinkRequestAllowedPaymentMethodsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -6265,7 +6266,7 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PostPaymentLinksRequestBlockedPaymentMethodsList": {
+    "com.adyen.checkout#CreatePaymentLinkRequestBlockedPaymentMethodsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -6841,7 +6842,7 @@
         "smithy.api#documentation": "An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with `maxValue`."
       }
     },
-    "com.adyen.checkout#PostPaymentLinksRequestInstallmentOptionsMap": {
+    "com.adyen.checkout#CreatePaymentLinkRequestInstallmentOptionsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6853,7 +6854,7 @@
         "smithy.api#documentation": "A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options."
       }
     },
-    "com.adyen.checkout#PostPaymentLinksRequestLineItemsList": {
+    "com.adyen.checkout#CreatePaymentLinkRequestLineItemsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#LineItem"
@@ -6862,7 +6863,7 @@
         "smithy.api#documentation": "Price and product information about the purchased items, to be included on the invoice sent to the shopper.\n> This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty."
       }
     },
-    "com.adyen.checkout#PostPaymentLinksRequestMetadataMap": {
+    "com.adyen.checkout#CreatePaymentLinkRequestMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6924,7 +6925,7 @@
         "smithy.api#documentation": "The method of handling the chargeback.\n\nPossible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**."
       }
     },
-    "com.adyen.checkout#PostPaymentLinksRequestRecurringProcessingModel": {
+    "com.adyen.checkout#CreatePaymentLinkRequestRecurringProcessingModel": {
       "type": "enum",
       "members": {
         "CARDONFILE": {
@@ -6950,7 +6951,7 @@
         "smithy.api#documentation": "Defines a recurring payment type. Required when `storePaymentMethodMode` is set to **askForConsent** or **enabled**.\nPossible values:\n* **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule.\n* **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.\n* **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.\n"
       }
     },
-    "com.adyen.checkout#PostPaymentLinksRequestRequiredShopperFieldsItem": {
+    "com.adyen.checkout#CreatePaymentLinkRequestRequiredShopperFieldsItem": {
       "type": "enum",
       "members": {
         "BILLINGADDRESS": {
@@ -6986,10 +6987,10 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PostPaymentLinksRequestRequiredShopperFieldsList": {
+    "com.adyen.checkout#CreatePaymentLinkRequestRequiredShopperFieldsList": {
       "type": "list",
       "member": {
-        "target": "com.adyen.checkout#PostPaymentLinksRequestRequiredShopperFieldsItem"
+        "target": "com.adyen.checkout#CreatePaymentLinkRequestRequiredShopperFieldsItem"
       },
       "traits": {
         "smithy.api#documentation": "List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).\n\nPossible values:\n* **billingAddress** – The address where to send the invoice.\n* **deliveryAddress** – The address where the purchased goods should be delivered.\n* **shopperEmail** – The shopper's email address.\n* **shopperName** – The shopper's full name.\n* **telephoneNumber** – The shopper's phone number.\n"
@@ -7197,7 +7198,7 @@
         "smithy.api#documentation": "The part of the payment you want to book to the specified `account`.\n\nPossible values for the [Balance Platform](https://docs.adyen.com/adyen-for-platforms-model):\n* **BalanceAccount**: Books part of the payment (specified in `amount`) to the specified `account`.\n* Transaction fees types that you can book to the specified `account`:\n   * **AcquiringFees**: The aggregated amount of the interchange and scheme fees.\n   * **PaymentFee**: The aggregated amount of all transaction fees.\n   * **AdyenFees**: The aggregated amount of Adyen's commission and markup fees.\n   * **AdyenCommission**: The transaction fees due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/interchange-fees-explained).\n   * **AdyenMarkup**: The transaction fees due to Adyen under [Interchange ++ pricing](https://www.adyen.com/knowledge-hub/interchange-fees-explained).\n   * **Interchange**: The fees paid to the issuer for each payment made with the card network.\n   * **SchemeFee**: The fees paid to the card scheme for using their network. \n* **Commission**: Your platform's commission on the payment (specified in `amount`), booked to your liable balance account.\n* **Remainder**: The amount left over after a currency conversion, booked to the specified `account`.\n* **Surcharge**: The payment acceptance fee imposed by the card scheme or debit network provider, paid by your user's customer.\n* **TopUp**: Allows you and your users to top up balance accounts using direct debit, card payments, or other payment methods.\n* **VAT**: The value-added tax charged on the payment, booked to your platforms liable balance account.\n* **Default**: In very specific use cases, allows you to book the specified `amount` to the specified `account`. For more information, contact Adyen support.\n\nPossible values for the [Classic Platforms integration](https://docs.adyen.com/classic-platforms): **Commission**, **Default**, **MarketPlace**, **PaymentFee**, **VAT**."
       }
     },
-    "com.adyen.checkout#PostPaymentLinksRequestSplitsList": {
+    "com.adyen.checkout#CreatePaymentLinkRequestSplitsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#Split"
@@ -7206,7 +7207,7 @@
         "smithy.api#documentation": "An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split)."
       }
     },
-    "com.adyen.checkout#PostPaymentLinksRequestStorePaymentMethodMode": {
+    "com.adyen.checkout#CreatePaymentLinkRequestStorePaymentMethodMode": {
       "type": "enum",
       "members": {
         "ASKFORCONSENT": {
@@ -7306,7 +7307,7 @@
         "smithy.api#documentation": "Indicates whether a challenge is requested for this transaction. Possible values:\n* **01** — No preference\n* **02** — No challenge requested\n* **03** — Challenge requested (3DS Requestor preference)\n* **04** — Challenge requested (Mandate)\n* **05** — No challenge (transactional risk analysis is already performed)\n* **06** — Data Only"
       }
     },
-    "com.adyen.checkout#PostPaymentLinksRequest": {
+    "com.adyen.checkout#CreatePaymentLinkRequest": {
       "type": "structure",
       "members": {
         "idempotencyKey": {
@@ -7317,7 +7318,7 @@
           }
         },
         "allowedPaymentMethods": {
-          "target": "com.adyen.checkout#PostPaymentLinksRequestAllowedPaymentMethodsList",
+          "target": "com.adyen.checkout#CreatePaymentLinkRequestAllowedPaymentMethodsList",
           "traits": {
             "smithy.api#documentation": "List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).\n\nExample: `\"allowedPaymentMethods\":[\"ideal\",\"applepay\"]`"
           }
@@ -7342,7 +7343,7 @@
           }
         },
         "blockedPaymentMethods": {
-          "target": "com.adyen.checkout#PostPaymentLinksRequestBlockedPaymentMethodsList",
+          "target": "com.adyen.checkout#CreatePaymentLinkRequestBlockedPaymentMethodsList",
           "traits": {
             "smithy.api#documentation": "List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).\n\nExample: `\"blockedPaymentMethods\":[\"ideal\",\"applepay\"]`"
           }
@@ -7402,13 +7403,13 @@
           }
         },
         "installmentOptions": {
-          "target": "com.adyen.checkout#PostPaymentLinksRequestInstallmentOptionsMap",
+          "target": "com.adyen.checkout#CreatePaymentLinkRequestInstallmentOptionsMap",
           "traits": {
             "smithy.api#documentation": "A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options."
           }
         },
         "lineItems": {
-          "target": "com.adyen.checkout#PostPaymentLinksRequestLineItemsList",
+          "target": "com.adyen.checkout#CreatePaymentLinkRequestLineItemsList",
           "traits": {
             "smithy.api#documentation": "Price and product information about the purchased items, to be included on the invoice sent to the shopper.\n> This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty."
           }
@@ -7439,7 +7440,7 @@
           }
         },
         "metadata": {
-          "target": "com.adyen.checkout#PostPaymentLinksRequestMetadataMap",
+          "target": "com.adyen.checkout#CreatePaymentLinkRequestMetadataMap",
           "traits": {
             "smithy.api#documentation": "Metadata consists of entries, each of which includes a key and a value.\nLimitations:\n* Maximum 20 key-value pairs per request. Otherwise, error \"177\" occurs: \"Metadata size exceeds limit\"\n* Maximum 20 characters per key. Otherwise, error \"178\" occurs: \"Metadata key size exceeds limit\"\n* A key cannot have the name `checkout.linkId`. Any value that you provide with this key is going to be replaced by the real payment link ID."
           }
@@ -7451,7 +7452,7 @@
           }
         },
         "recurringProcessingModel": {
-          "target": "com.adyen.checkout#PostPaymentLinksRequestRecurringProcessingModel",
+          "target": "com.adyen.checkout#CreatePaymentLinkRequestRecurringProcessingModel",
           "traits": {
             "smithy.api#documentation": "Defines a recurring payment type. Required when `storePaymentMethodMode` is set to **askForConsent** or **enabled**.\nPossible values:\n* **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule.\n* **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.\n* **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.\n"
           }
@@ -7464,7 +7465,7 @@
           }
         },
         "requiredShopperFields": {
-          "target": "com.adyen.checkout#PostPaymentLinksRequestRequiredShopperFieldsList",
+          "target": "com.adyen.checkout#CreatePaymentLinkRequestRequiredShopperFieldsList",
           "traits": {
             "smithy.api#documentation": "List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).\n\nPossible values:\n* **billingAddress** – The address where to send the invoice.\n* **deliveryAddress** – The address where the purchased goods should be delivered.\n* **shopperEmail** – The shopper's email address.\n* **shopperName** – The shopper's full name.\n* **telephoneNumber** – The shopper's phone number.\n"
           }
@@ -7536,7 +7537,7 @@
           }
         },
         "splits": {
-          "target": "com.adyen.checkout#PostPaymentLinksRequestSplitsList",
+          "target": "com.adyen.checkout#CreatePaymentLinkRequestSplitsList",
           "traits": {
             "smithy.api#documentation": "An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split)."
           }
@@ -7548,7 +7549,7 @@
           }
         },
         "storePaymentMethodMode": {
-          "target": "com.adyen.checkout#PostPaymentLinksRequestStorePaymentMethodMode",
+          "target": "com.adyen.checkout#CreatePaymentLinkRequestStorePaymentMethodMode",
           "traits": {
             "smithy.api#documentation": "Indicates if the details of the payment method will be stored for the shopper. Possible values:\n* **disabled** – No details will be stored (default).\n* **askForConsent** – If the `shopperReference` is provided, the Drop-in/Component shows a checkbox where the shopper can select to store their payment details for card payments.\n* **enabled** – If the `shopperReference` is provided, the details will be stored without asking the shopper for consent. \n When set to **askForConsent** or **enabled**, you must also include the `recurringProcessingModel` parameter."
           }
@@ -8059,10 +8060,10 @@
         "smithy.api#documentation": "Indicates if the details of the payment method will be stored for the shopper. Possible values:\n* **disabled** – No details will be stored (default).\n* **askForConsent** – If the `shopperReference` is provided, the Drop-in/Component shows a checkbox where the shopper can select to store their payment details for card payments.\n* **enabled** – If the `shopperReference` is provided, the details will be stored without asking the shopper for consent. \n When set to **askForConsent** or **enabled**, you must also include the `recurringProcessingModel` parameter."
       }
     },
-    "com.adyen.checkout#PostPaymentLinks": {
+    "com.adyen.checkout#CreatePaymentLink": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostPaymentLinksRequest"
+        "target": "com.adyen.checkout#CreatePaymentLinkRequest"
       },
       "output": {
         "target": "com.adyen.checkout#PaymentLinkResponse"
@@ -8087,7 +8088,7 @@
         "smithy.api#documentation": "Create a payment link\n\nCreates a payment link to a [Pay by Link](https://docs.adyen.com/unified-commerce/pay-by-link/) page where the shopper can pay. The list of payment methods presented to the shopper depends on the `currency` and `country` parameters sent in the request.\n\nFor more information, refer to [Pay by Link documentation](https://docs.adyen.com/online-payments/pay-by-link#create-payment-links-through-api)."
       }
     },
-    "com.adyen.checkout#GetPaymentLinksLinkIdRequest": {
+    "com.adyen.checkout#GetPaymentLinkRequest": {
       "type": "structure",
       "members": {
         "linkId": {
@@ -8103,10 +8104,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.adyen.checkout#GetPaymentLinksLinkId": {
+    "com.adyen.checkout#GetPaymentLink": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#GetPaymentLinksLinkIdRequest"
+        "target": "com.adyen.checkout#GetPaymentLinkRequest"
       },
       "output": {
         "target": "com.adyen.checkout#PaymentLinkResponse"
@@ -8131,7 +8132,7 @@
         "smithy.api#documentation": "Get a payment link\n\nRetrieves the payment link details using the payment link `id`."
       }
     },
-    "com.adyen.checkout#PatchPaymentLinksLinkIdRequestStatus": {
+    "com.adyen.checkout#UpdatePaymentLinkRequestStatus": {
       "type": "enum",
       "members": {
         "EXPIRED": {
@@ -8145,7 +8146,7 @@
         "smithy.api#documentation": "Status of the payment link. Possible values:\n* **expired**"
       }
     },
-    "com.adyen.checkout#PatchPaymentLinksLinkIdRequest": {
+    "com.adyen.checkout#UpdatePaymentLinkRequest": {
       "type": "structure",
       "members": {
         "linkId": {
@@ -8157,7 +8158,7 @@
           }
         },
         "status": {
-          "target": "com.adyen.checkout#PatchPaymentLinksLinkIdRequestStatus",
+          "target": "com.adyen.checkout#UpdatePaymentLinkRequestStatus",
           "traits": {
             "smithy.api#documentation": "Status of the payment link. Possible values:\n* **expired**",
             "smithy.api#required": {}
@@ -8168,10 +8169,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.adyen.checkout#PatchPaymentLinksLinkId": {
+    "com.adyen.checkout#UpdatePaymentLink": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PatchPaymentLinksLinkIdRequest"
+        "target": "com.adyen.checkout#UpdatePaymentLinkRequest"
       },
       "output": {
         "target": "com.adyen.checkout#PaymentLinkResponse"
@@ -8196,7 +8197,7 @@
         "smithy.api#documentation": "Update the status of a payment link\n\nUpdates the status of a payment link. Use this endpoint to [force the expiry of a payment link](https://docs.adyen.com/online-payments/pay-by-link#update-payment-link-status)."
       }
     },
-    "com.adyen.checkout#PostPaymentMethodsRequestAdditionalDataMap": {
+    "com.adyen.checkout#CreatePaymentMethodRequestAdditionalDataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8208,7 +8209,7 @@
         "smithy.api#documentation": "This field contains additional data, which may be required for a particular payment request.\n\nThe `additionalData` object consists of entries, each of which includes the key and value."
       }
     },
-    "com.adyen.checkout#PostPaymentMethodsRequestAllowedPaymentMethodsList": {
+    "com.adyen.checkout#CreatePaymentMethodRequestAllowedPaymentMethodsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -8217,7 +8218,7 @@
         "smithy.api#documentation": "List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).\n\nExample: `\"allowedPaymentMethods\":[\"ideal\",\"applepay\"]`"
       }
     },
-    "com.adyen.checkout#PostPaymentMethodsRequestBlockedPaymentMethodsList": {
+    "com.adyen.checkout#CreatePaymentMethodRequestBlockedPaymentMethodsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -8226,7 +8227,7 @@
         "smithy.api#documentation": "List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).\n\nExample: `\"blockedPaymentMethods\":[\"ideal\",\"applepay\"]`"
       }
     },
-    "com.adyen.checkout#PostPaymentMethodsRequestChannel": {
+    "com.adyen.checkout#CreatePaymentMethodRequestChannel": {
       "type": "enum",
       "members": {
         "IOS": {
@@ -8252,7 +8253,7 @@
         "smithy.api#documentation": "The platform where a payment transaction takes place. This field can be used for filtering out payment methods that are only available on specific platforms. Possible values:\n* iOS\n* Android\n* Web"
       }
     },
-    "com.adyen.checkout#PostPaymentMethodsRequestStoreFiltrationMode": {
+    "com.adyen.checkout#CreatePaymentMethodRequestStoreFiltrationMode": {
       "type": "enum",
       "members": {
         "EXCLUSIVE": {
@@ -8278,7 +8279,7 @@
         "smithy.api#documentation": "Specifies how payment methods should be filtered based on the `store` parameter:\n  - **exclusive**: Only payment methods belonging to the specified `store` are returned.\n  - **inclusive**: Payment methods from the `store` and those not associated with any other store are returned."
       }
     },
-    "com.adyen.checkout#PostPaymentMethodsRequest": {
+    "com.adyen.checkout#CreatePaymentMethodRequest": {
       "type": "structure",
       "members": {
         "idempotencyKey": {
@@ -8289,13 +8290,13 @@
           }
         },
         "additionalData": {
-          "target": "com.adyen.checkout#PostPaymentMethodsRequestAdditionalDataMap",
+          "target": "com.adyen.checkout#CreatePaymentMethodRequestAdditionalDataMap",
           "traits": {
             "smithy.api#documentation": "This field contains additional data, which may be required for a particular payment request.\n\nThe `additionalData` object consists of entries, each of which includes the key and value."
           }
         },
         "allowedPaymentMethods": {
-          "target": "com.adyen.checkout#PostPaymentMethodsRequestAllowedPaymentMethodsList",
+          "target": "com.adyen.checkout#CreatePaymentMethodRequestAllowedPaymentMethodsList",
           "traits": {
             "smithy.api#documentation": "List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).\n\nExample: `\"allowedPaymentMethods\":[\"ideal\",\"applepay\"]`"
           }
@@ -8307,7 +8308,7 @@
           }
         },
         "blockedPaymentMethods": {
-          "target": "com.adyen.checkout#PostPaymentMethodsRequestBlockedPaymentMethodsList",
+          "target": "com.adyen.checkout#CreatePaymentMethodRequestBlockedPaymentMethodsList",
           "traits": {
             "smithy.api#documentation": "List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).\n\nExample: `\"blockedPaymentMethods\":[\"ideal\",\"applepay\"]`"
           }
@@ -8319,7 +8320,7 @@
           }
         },
         "channel": {
-          "target": "com.adyen.checkout#PostPaymentMethodsRequestChannel",
+          "target": "com.adyen.checkout#CreatePaymentMethodRequestChannel",
           "traits": {
             "smithy.api#documentation": "The platform where a payment transaction takes place. This field can be used for filtering out payment methods that are only available on specific platforms. Possible values:\n* iOS\n* Android\n* Web"
           }
@@ -8386,7 +8387,7 @@
           }
         },
         "storeFiltrationMode": {
-          "target": "com.adyen.checkout#PostPaymentMethodsRequestStoreFiltrationMode",
+          "target": "com.adyen.checkout#CreatePaymentMethodRequestStoreFiltrationMode",
           "traits": {
             "smithy.api#documentation": "Specifies how payment methods should be filtered based on the `store` parameter:\n  - **exclusive**: Only payment methods belonging to the specified `store` are returned.\n  - **inclusive**: Payment methods from the `store` and those not associated with any other store are returned."
           }
@@ -8996,10 +8997,10 @@
         "smithy.api#documentation": "List of all stored payment methods."
       }
     },
-    "com.adyen.checkout#PostPaymentMethods": {
+    "com.adyen.checkout#CreatePaymentMethod": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostPaymentMethodsRequest"
+        "target": "com.adyen.checkout#CreatePaymentMethodRequest"
       },
       "output": {
         "target": "com.adyen.checkout#PaymentMethodsResponse"
@@ -9024,7 +9025,7 @@
         "smithy.api#documentation": "Get a list of available payment methods\n\nRetrieves the list of available payment methods for the transaction, based on the transaction information like amount, country, and currency."
       }
     },
-    "com.adyen.checkout#PostPaymentMethodsBalanceRequestAdditionalDataMap": {
+    "com.adyen.checkout#CreatePaymentMethodsBalanceRequestAdditionalDataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9209,7 +9210,7 @@
         "smithy.api#documentation": "The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan).\nand [Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico).\nBy default, this is set to **regular**.\n"
       }
     },
-    "com.adyen.checkout#PostPaymentMethodsBalanceRequestLocalizedShopperStatementMap": {
+    "com.adyen.checkout#CreatePaymentMethodsBalanceRequestLocalizedShopperStatementMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9221,7 +9222,7 @@
         "smithy.api#documentation": "The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If this parameter is left empty, not provided, or not applicable (in case of cross-border transactions), then **shopperStatement** is used.\n\nCurrently, `localizedShopperStatement` is only supported for payments with Visa, Mastercard, JCB, Diners, and Discover.\n\n**Supported characters**: Hiragana, Katakana, Kanji, and alphanumeric."
       }
     },
-    "com.adyen.checkout#PostPaymentMethodsBalanceRequestMetadataMap": {
+    "com.adyen.checkout#CreatePaymentMethodsBalanceRequestMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9233,7 +9234,7 @@
         "smithy.api#documentation": "Metadata consists of entries, each of which includes a key and a value.\nLimits:\n* Maximum 20 key-value pairs per request. When exceeding, the \"177\" error occurs: \"Metadata size exceeds limit\".\n* Maximum 20 characters per key.\n* Maximum 80 characters per value. "
       }
     },
-    "com.adyen.checkout#PostPaymentMethodsBalanceRequestPaymentMethodMap": {
+    "com.adyen.checkout#CreatePaymentMethodsBalanceRequestPaymentMethodMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9351,7 +9352,7 @@
         "smithy.api#documentation": "The name of the token service."
       }
     },
-    "com.adyen.checkout#PostPaymentMethodsBalanceRequestRecurringProcessingModel": {
+    "com.adyen.checkout#CreatePaymentMethodsBalanceRequestRecurringProcessingModel": {
       "type": "enum",
       "members": {
         "CARDONFILE": {
@@ -9377,7 +9378,7 @@
         "smithy.api#documentation": "Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details.\nAllowed values:\n* `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule.\n* `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.\n* `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.\n"
       }
     },
-    "com.adyen.checkout#PostPaymentMethodsBalanceRequestShopperInteraction": {
+    "com.adyen.checkout#CreatePaymentMethodsBalanceRequestShopperInteraction": {
       "type": "enum",
       "members": {
         "ECOMMERCE": {
@@ -9409,7 +9410,7 @@
         "smithy.api#documentation": "Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer.\nFor the web service API, Adyen assumes Ecommerce shopper interaction by default.\n\nThis field has the following possible values:\n* `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request.\n* `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment).\n* `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone.\n* `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal."
       }
     },
-    "com.adyen.checkout#PostPaymentMethodsBalanceRequestSplitsList": {
+    "com.adyen.checkout#CreatePaymentMethodsBalanceRequestSplitsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#Split"
@@ -9857,7 +9858,7 @@
         "smithy.api#documentation": "Identify the type of the transaction being authenticated."
       }
     },
-    "com.adyen.checkout#PostPaymentMethodsBalanceRequest": {
+    "com.adyen.checkout#CreatePaymentMethodsBalanceRequest": {
       "type": "structure",
       "members": {
         "idempotencyKey": {
@@ -9880,7 +9881,7 @@
           }
         },
         "additionalData": {
-          "target": "com.adyen.checkout#PostPaymentMethodsBalanceRequestAdditionalDataMap",
+          "target": "com.adyen.checkout#CreatePaymentMethodsBalanceRequestAdditionalDataMap",
           "traits": {
             "smithy.api#documentation": "This field contains additional data, which may be required for a particular payment request.\n\nThe `additionalData` object consists of entries, each of which includes the key and value."
           }
@@ -9959,7 +9960,7 @@
           }
         },
         "localizedShopperStatement": {
-          "target": "com.adyen.checkout#PostPaymentMethodsBalanceRequestLocalizedShopperStatementMap",
+          "target": "com.adyen.checkout#CreatePaymentMethodsBalanceRequestLocalizedShopperStatementMap",
           "traits": {
             "smithy.api#documentation": "The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If this parameter is left empty, not provided, or not applicable (in case of cross-border transactions), then **shopperStatement** is used.\n\nCurrently, `localizedShopperStatement` is only supported for payments with Visa, Mastercard, JCB, Diners, and Discover.\n\n**Supported characters**: Hiragana, Katakana, Kanji, and alphanumeric."
           }
@@ -9990,7 +9991,7 @@
           }
         },
         "metadata": {
-          "target": "com.adyen.checkout#PostPaymentMethodsBalanceRequestMetadataMap",
+          "target": "com.adyen.checkout#CreatePaymentMethodsBalanceRequestMetadataMap",
           "traits": {
             "smithy.api#documentation": "Metadata consists of entries, each of which includes a key and a value.\nLimits:\n* Maximum 20 key-value pairs per request. When exceeding, the \"177\" error occurs: \"Metadata size exceeds limit\".\n* Maximum 20 characters per key.\n* Maximum 80 characters per value. "
           }
@@ -10002,7 +10003,7 @@
           }
         },
         "paymentMethod": {
-          "target": "com.adyen.checkout#PostPaymentMethodsBalanceRequestPaymentMethodMap",
+          "target": "com.adyen.checkout#CreatePaymentMethodsBalanceRequestPaymentMethodMap",
           "traits": {
             "smithy.api#documentation": "The collection that contains the type of the payment method and its specific information.",
             "smithy.api#required": {}
@@ -10015,7 +10016,7 @@
           }
         },
         "recurringProcessingModel": {
-          "target": "com.adyen.checkout#PostPaymentMethodsBalanceRequestRecurringProcessingModel",
+          "target": "com.adyen.checkout#CreatePaymentMethodsBalanceRequestRecurringProcessingModel",
           "traits": {
             "smithy.api#documentation": "Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details.\nAllowed values:\n* `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule.\n* `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.\n* `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.\n"
           }
@@ -10057,7 +10058,7 @@
           }
         },
         "shopperInteraction": {
-          "target": "com.adyen.checkout#PostPaymentMethodsBalanceRequestShopperInteraction",
+          "target": "com.adyen.checkout#CreatePaymentMethodsBalanceRequestShopperInteraction",
           "traits": {
             "smithy.api#documentation": "Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer.\nFor the web service API, Adyen assumes Ecommerce shopper interaction by default.\n\nThis field has the following possible values:\n* `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request.\n* `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment).\n* `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone.\n* `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal."
           }
@@ -10093,7 +10094,7 @@
           }
         },
         "splits": {
-          "target": "com.adyen.checkout#PostPaymentMethodsBalanceRequestSplitsList",
+          "target": "com.adyen.checkout#CreatePaymentMethodsBalanceRequestSplitsList",
           "traits": {
             "smithy.api#documentation": "An array of objects specifying how the payment should be split when using either Adyen for Platforms for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/split-payments), or standalone [Issuing](https://docs.adyen.com/issuing/add-manage-funds#split)."
           }
@@ -10227,10 +10228,10 @@
         "smithy.api#documentation": "The result of the cancellation request.\n\nPossible values:\n\n* **Success** – Indicates that the balance check was successful.\n* **NotEnoughBalance** – Commonly indicates that the card did not have enough balance to pay the amount in the request, or that the currency of the balance on the card did not match the currency of the requested amount.\n* **Failed** – Indicates that the balance check failed."
       }
     },
-    "com.adyen.checkout#PostPaymentMethodsBalance": {
+    "com.adyen.checkout#CreatePaymentMethodsBalance": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostPaymentMethodsBalanceRequest"
+        "target": "com.adyen.checkout#CreatePaymentMethodsBalanceRequest"
       },
       "output": {
         "target": "com.adyen.checkout#BalanceCheckResponse"
@@ -10255,7 +10256,7 @@
         "smithy.api#documentation": "Get the balance of a gift card\n\nRetrieves the balance remaining on a shopper's gift card. To check a gift card's balance, make a POST `/paymentMethods/balance` call and include the gift card's details inside a `paymentMethod` object."
       }
     },
-    "com.adyen.checkout#PostPaymentsRequestAdditionalDataMap": {
+    "com.adyen.checkout#CreatePaymentRequestAdditionalDataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10383,7 +10384,7 @@
         "smithy.api#documentation": "The type of the bank account."
       }
     },
-    "com.adyen.checkout#PostPaymentsRequestChannel": {
+    "com.adyen.checkout#CreatePaymentRequestChannel": {
       "type": "enum",
       "members": {
         "IOS": {
@@ -11300,7 +11301,7 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PostPaymentsRequestEntityType": {
+    "com.adyen.checkout#CreatePaymentRequestEntityType": {
       "type": "enum",
       "members": {
         "NATURALPERSON": {
@@ -11320,7 +11321,7 @@
         "smithy.api#documentation": "The type of the entity the payment is processed for."
       }
     },
-    "com.adyen.checkout#PostPaymentsRequestIndustryUsage": {
+    "com.adyen.checkout#CreatePaymentRequestIndustryUsage": {
       "type": "enum",
       "members": {
         "DELAYEDCHARGE": {
@@ -11346,7 +11347,7 @@
         "smithy.api#documentation": "The reason for the amount update. Possible values: \n* **delayedCharge** \n* **noShow** \n* **installment**"
       }
     },
-    "com.adyen.checkout#PostPaymentsRequestLineItemsList": {
+    "com.adyen.checkout#CreatePaymentRequestLineItemsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#LineItem"
@@ -11355,7 +11356,7 @@
         "smithy.api#documentation": "Price and product information about the purchased items, to be included on the invoice sent to the shopper.\n> This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty."
       }
     },
-    "com.adyen.checkout#PostPaymentsRequestLocalizedShopperStatementMap": {
+    "com.adyen.checkout#CreatePaymentRequestLocalizedShopperStatementMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11532,7 +11533,7 @@
         "smithy.api#documentation": "The frequency with which a shopper should be charged.\n\nPossible values: **adhoc**, **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**."
       }
     },
-    "com.adyen.checkout#PostPaymentsRequestMetadataMap": {
+    "com.adyen.checkout#CreatePaymentRequestMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16425,7 +16426,7 @@
         "smithy.api#documentation": "**zip**"
       }
     },
-    "com.adyen.checkout#PostPaymentsRequestPaymentMethod": {
+    "com.adyen.checkout#CreatePaymentRequestPaymentMethod": {
       "type": "union",
       "members": {
         "AchDetails": {
@@ -16635,7 +16636,7 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PostPaymentsRequestRecurringProcessingModel": {
+    "com.adyen.checkout#CreatePaymentRequestRecurringProcessingModel": {
       "type": "enum",
       "members": {
         "CARDONFILE": {
@@ -16661,7 +16662,7 @@
         "smithy.api#documentation": "Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details.\nAllowed values:\n* `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule.\n* `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.\n* `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.\n"
       }
     },
-    "com.adyen.checkout#PostPaymentsRequestShopperInteraction": {
+    "com.adyen.checkout#CreatePaymentRequestShopperInteraction": {
       "type": "enum",
       "members": {
         "ECOMMERCE": {
@@ -16713,7 +16714,7 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PostPaymentsRequestSplitsList": {
+    "com.adyen.checkout#CreatePaymentRequestSplitsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#Split"
@@ -16785,7 +16786,7 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PostPaymentsRequestSubMerchantsList": {
+    "com.adyen.checkout#CreatePaymentRequestSubMerchantsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#SubMerchantInfo"
@@ -16838,7 +16839,7 @@
         "smithy.api#documentation": "Request-specific parameter values to populate the template placeholders. Each key must match a placeholder defined in the template referenced by `requestTemplateCode`."
       }
     },
-    "com.adyen.checkout#PostPaymentsRequest": {
+    "com.adyen.checkout#CreatePaymentRequest": {
       "type": "structure",
       "members": {
         "idempotencyKey": {
@@ -16861,7 +16862,7 @@
           }
         },
         "additionalData": {
-          "target": "com.adyen.checkout#PostPaymentsRequestAdditionalDataMap",
+          "target": "com.adyen.checkout#CreatePaymentRequestAdditionalDataMap",
           "traits": {
             "smithy.api#documentation": "This field contains additional data, which may be required for a particular payment request.\n\nThe `additionalData` object consists of entries, each of which includes the key and value."
           }
@@ -16910,7 +16911,7 @@
           }
         },
         "channel": {
-          "target": "com.adyen.checkout#PostPaymentsRequestChannel",
+          "target": "com.adyen.checkout#CreatePaymentRequestChannel",
           "traits": {
             "smithy.api#documentation": "The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`.\n\nPossible values:\n* iOS\n* Android\n* Web"
           }
@@ -16994,7 +16995,7 @@
           }
         },
         "entityType": {
-          "target": "com.adyen.checkout#PostPaymentsRequestEntityType",
+          "target": "com.adyen.checkout#CreatePaymentRequestEntityType",
           "traits": {
             "smithy.api#documentation": "The type of the entity the payment is processed for."
           }
@@ -17018,7 +17019,7 @@
           }
         },
         "industryUsage": {
-          "target": "com.adyen.checkout#PostPaymentsRequestIndustryUsage",
+          "target": "com.adyen.checkout#CreatePaymentRequestIndustryUsage",
           "traits": {
             "smithy.api#documentation": "The reason for the amount update. Possible values: \n* **delayedCharge** \n* **noShow** \n* **installment**"
           }
@@ -17030,13 +17031,13 @@
           }
         },
         "lineItems": {
-          "target": "com.adyen.checkout#PostPaymentsRequestLineItemsList",
+          "target": "com.adyen.checkout#CreatePaymentRequestLineItemsList",
           "traits": {
             "smithy.api#documentation": "Price and product information about the purchased items, to be included on the invoice sent to the shopper.\n> This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty."
           }
         },
         "localizedShopperStatement": {
-          "target": "com.adyen.checkout#PostPaymentsRequestLocalizedShopperStatementMap",
+          "target": "com.adyen.checkout#CreatePaymentRequestLocalizedShopperStatementMap",
           "traits": {
             "smithy.api#documentation": "The `localizedShopperStatement` field lets you use dynamic values for your shopper statement in a local character set. If this parameter is left empty, not provided, or not applicable (in case of cross-border transactions), then **shopperStatement** is used.\n\nCurrently, `localizedShopperStatement` is only supported for payments with Visa, Mastercard, JCB, Diners, and Discover.\n\n**Supported characters**: Hiragana, Katakana, Kanji, and alphanumeric."
           }
@@ -17073,7 +17074,7 @@
           }
         },
         "metadata": {
-          "target": "com.adyen.checkout#PostPaymentsRequestMetadataMap",
+          "target": "com.adyen.checkout#CreatePaymentRequestMetadataMap",
           "traits": {
             "smithy.api#documentation": "Metadata consists of entries, each of which includes a key and a value.\nLimits:\n* Maximum 20 key-value pairs per request. When exceeding, the \"177\" error occurs: \"Metadata size exceeds limit\".\n* Maximum 20 characters per key.\n* Maximum 80 characters per value. "
           }
@@ -17103,7 +17104,7 @@
           }
         },
         "paymentMethod": {
-          "target": "com.adyen.checkout#PostPaymentsRequestPaymentMethod",
+          "target": "com.adyen.checkout#CreatePaymentRequestPaymentMethod",
           "traits": {
             "smithy.api#documentation": "The type and required details of a payment method to use.",
             "smithy.api#required": {}
@@ -17134,7 +17135,7 @@
           }
         },
         "recurringProcessingModel": {
-          "target": "com.adyen.checkout#PostPaymentsRequestRecurringProcessingModel",
+          "target": "com.adyen.checkout#CreatePaymentRequestRecurringProcessingModel",
           "traits": {
             "smithy.api#documentation": "Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details.\nAllowed values:\n* `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule.\n* `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.\n* `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.\n"
           }
@@ -17196,7 +17197,7 @@
           }
         },
         "shopperInteraction": {
-          "target": "com.adyen.checkout#PostPaymentsRequestShopperInteraction",
+          "target": "com.adyen.checkout#CreatePaymentRequestShopperInteraction",
           "traits": {
             "smithy.api#documentation": "Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer.\nFor the web service API, Adyen assumes Ecommerce shopper interaction by default.\n\nThis field has the following possible values:\n* `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request.\n* `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment).\n* `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone.\n* `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal."
           }
@@ -17238,7 +17239,7 @@
           }
         },
         "splits": {
-          "target": "com.adyen.checkout#PostPaymentsRequestSplitsList",
+          "target": "com.adyen.checkout#CreatePaymentRequestSplitsList",
           "traits": {
             "smithy.api#documentation": "An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split)."
           }
@@ -17256,7 +17257,7 @@
           }
         },
         "subMerchants": {
-          "target": "com.adyen.checkout#PostPaymentsRequestSubMerchantsList",
+          "target": "com.adyen.checkout#CreatePaymentRequestSubMerchantsList",
           "traits": {
             "smithy.api#documentation": "This field contains additional information on the submerchant, who is onboarded to an acquirer through a payment facilitator or aggregator"
           }
@@ -17302,10 +17303,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.adyen.checkout#PostPayments": {
+    "com.adyen.checkout#CreatePayment": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostPaymentsRequest"
+        "target": "com.adyen.checkout#CreatePaymentRequest"
       },
       "output": {
         "target": "com.adyen.checkout#PaymentResponse"
@@ -17468,7 +17469,7 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PostPaymentsDetailsRequest": {
+    "com.adyen.checkout#CreatePaymentsDetailRequest": {
       "type": "structure",
       "members": {
         "idempotencyKey": {
@@ -17720,10 +17721,10 @@
         "smithy.api#documentation": "The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).\n\nPossible values:\n\n* **AuthenticationFinished** – The payment has been successfully authenticated with 3D Secure 2. Returned for 3D Secure 2 authentication-only transactions.\n* **AuthenticationNotRequired** – The transaction does not require 3D Secure authentication. Returned for [standalone authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only).\n* **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state.\n* **Cancelled** – Indicates the payment has been cancelled (either by the shopper or the merchant) before processing was completed. This is a final state.\n* **ChallengeShopper** – The issuer requires further shopper interaction before the payment can be authenticated. Returned for 3D Secure 2 transactions.\n* **Error** – There was an error when the payment was being processed. The reason is given in the `refusalReason` field. This is a final state.\n* **IdentifyShopper** – The issuer requires the shopper's device fingerprint before the payment can be authenticated. Returned for 3D Secure 2 transactions.\n* **PartiallyAuthorised** – The payment has been authorised for a partial amount.\nThis happens for card payments when the merchant supports Partial Authorisations and the cardholder has insufficient funds.\n* **Pending** – Indicates that it is not possible to obtain the final status of the payment. This can happen if the systems providing final status information for the payment are unavailable, or if the shopper needs to take further action to complete the payment.\n* **PresentToShopper** – Indicates that the response contains additional information that you need to present to a shopper, so that they can use it to complete a payment.\n* **Received** – Indicates the payment has successfully been received by Adyen, and will be processed. This is the initial state for all payments.\n* **RedirectShopper** – Indicates the shopper should be redirected to an external web page or app to complete the authorisation.\n* **Refused** – Indicates the payment was refused. The reason is given in the `refusalReason` field. This is a final state."
       }
     },
-    "com.adyen.checkout#PostPaymentsDetails": {
+    "com.adyen.checkout#CreatePaymentsDetail": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostPaymentsDetailsRequest"
+        "target": "com.adyen.checkout#CreatePaymentsDetailRequest"
       },
       "output": {
         "target": "com.adyen.checkout#PaymentDetailsResponse"
@@ -17748,7 +17749,7 @@
         "smithy.api#documentation": "Submit details for a payment\n\nSubmits details for a payment created using `/payments`. This step is only needed when no final state has been reached on the `/payments` request, for example when the shopper was redirected to another page to complete the payment."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceAmountUpdatesRequestAdjustAuthType": {
+    "com.adyen.checkout#CreatePaymentAmountUpdateRequestAdjustAuthType": {
       "type": "enum",
       "members": {
         "CARDHOLDERINITIATEDTRANSACTION": {
@@ -17768,7 +17769,7 @@
         "smithy.api#documentation": "The type of adjustment. Possible values: \n\n* **cardholderInitiatedTransaction** \n\n* **merchantInitiatedTransaction** \n\n"
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceAmountUpdatesRequestIndustryUsage": {
+    "com.adyen.checkout#CreatePaymentAmountUpdateRequestIndustryUsage": {
       "type": "enum",
       "members": {
         "DELAYEDCHARGE": {
@@ -17794,7 +17795,7 @@
         "smithy.api#documentation": "The reason for the amount update. Possible values: \n* **delayedCharge** \n* **noShow** \n* **installment**"
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceAmountUpdatesRequestLineItemsList": {
+    "com.adyen.checkout#CreatePaymentAmountUpdateRequestLineItemsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#LineItem"
@@ -17803,7 +17804,7 @@
         "smithy.api#documentation": "Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment).\n> This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceAmountUpdatesRequestSplitsList": {
+    "com.adyen.checkout#CreatePaymentAmountUpdateRequestSplitsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#Split"
@@ -17812,7 +17813,7 @@
         "smithy.api#documentation": "An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/process-payments) or [platforms](https://docs.adyen.com/platforms/process-payments)."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceAmountUpdatesRequest": {
+    "com.adyen.checkout#CreatePaymentAmountUpdateRequest": {
       "type": "structure",
       "members": {
         "paymentPspReference": {
@@ -17831,7 +17832,7 @@
           }
         },
         "adjustAuthType": {
-          "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceAmountUpdatesRequestAdjustAuthType",
+          "target": "com.adyen.checkout#CreatePaymentAmountUpdateRequestAdjustAuthType",
           "traits": {
             "smithy.api#documentation": "The type of adjustment. Possible values: \n\n* **cardholderInitiatedTransaction** \n\n* **merchantInitiatedTransaction** \n\n"
           }
@@ -17856,13 +17857,13 @@
           }
         },
         "industryUsage": {
-          "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceAmountUpdatesRequestIndustryUsage",
+          "target": "com.adyen.checkout#CreatePaymentAmountUpdateRequestIndustryUsage",
           "traits": {
             "smithy.api#documentation": "The reason for the amount update. Possible values: \n* **delayedCharge** \n* **noShow** \n* **installment**"
           }
         },
         "lineItems": {
-          "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceAmountUpdatesRequestLineItemsList",
+          "target": "com.adyen.checkout#CreatePaymentAmountUpdateRequestLineItemsList",
           "traits": {
             "smithy.api#documentation": "Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment).\n> This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip."
           }
@@ -17887,7 +17888,7 @@
           }
         },
         "splits": {
-          "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceAmountUpdatesRequestSplitsList",
+          "target": "com.adyen.checkout#CreatePaymentAmountUpdateRequestSplitsList",
           "traits": {
             "smithy.api#documentation": "An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/process-payments) or [platforms](https://docs.adyen.com/platforms/process-payments)."
           }
@@ -18039,10 +18040,10 @@
         "smithy.api#documentation": "The status of your request. \n\nIf you included `adjustAuthorisationData` in your request, possible values are the following: \n\n* **authorised** \n\n* **refused** \n\nOtherwise, the value is **received**."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceAmountUpdates": {
+    "com.adyen.checkout#CreatePaymentAmountUpdate": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceAmountUpdatesRequest"
+        "target": "com.adyen.checkout#CreatePaymentAmountUpdateRequest"
       },
       "output": {
         "target": "com.adyen.checkout#PaymentAmountUpdateResponse"
@@ -18067,7 +18068,7 @@
         "smithy.api#documentation": "Update an authorised amount\n\nIncreases or decreases the authorised payment amount and returns a unique reference for this request. You get the outcome of the request asynchronously, in an [**AUTHORISATION_ADJUSTMENT** webhook](https://docs.adyen.com/development-resources/webhooks/webhook-types/#event-codes).\n\nYou can only update authorised amounts that have not yet been [captured](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/captures).\n\nThe amount you specify in the request is the updated amount, which is larger or smaller than the initial authorised amount.\n\nFor more information, refer to [Authorisation adjustment](https://docs.adyen.com/online-payments/adjust-authorisation#use-cases)."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceCancelsRequest": {
+    "com.adyen.checkout#CreatePaymentCancelRequest": {
       "type": "structure",
       "members": {
         "paymentPspReference": {
@@ -18163,10 +18164,10 @@
         "smithy.api#documentation": "The status of your request. This will always have the value **received**."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceCancels": {
+    "com.adyen.checkout#CreatePaymentCancel": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceCancelsRequest"
+        "target": "com.adyen.checkout#CreatePaymentCancelRequest"
       },
       "output": {
         "target": "com.adyen.checkout#PaymentCancelResponse"
@@ -18191,7 +18192,7 @@
         "smithy.api#documentation": "Cancel an authorised payment\n\nCancels the authorisation on a payment that has not yet been [captured](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/captures), and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**CANCELLATION** webhook](https://docs.adyen.com/online-payments/cancel#cancellation-webhook).\n\nIf you want to cancel a payment but don't have the [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference), use the [`/cancels`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/cancels) endpoint instead.\n\nIf you want to cancel a payment but are not sure whether it has been captured, use the [`/payments/{paymentPspReference}/reversals`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/reversals) endpoint instead.\n\nFor more information, refer to [Cancel](https://docs.adyen.com/online-payments/cancel)."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceCapturesRequestLineItemsList": {
+    "com.adyen.checkout#CreatePaymentCaptureRequestLineItemsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#LineItem"
@@ -18200,7 +18201,7 @@
         "smithy.api#documentation": "Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment).\n> This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceCapturesRequestSplitsList": {
+    "com.adyen.checkout#CreatePaymentCaptureRequestSplitsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#Split"
@@ -18209,7 +18210,7 @@
         "smithy.api#documentation": "An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/)."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceCapturesRequestSubMerchantsList": {
+    "com.adyen.checkout#CreatePaymentCaptureRequestSubMerchantsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#SubMerchantInfo"
@@ -18218,7 +18219,7 @@
         "smithy.api#documentation": "A List of sub-merchants."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceCapturesRequest": {
+    "com.adyen.checkout#CreatePaymentCaptureRequest": {
       "type": "structure",
       "members": {
         "paymentPspReference": {
@@ -18256,7 +18257,7 @@
           }
         },
         "lineItems": {
-          "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceCapturesRequestLineItemsList",
+          "target": "com.adyen.checkout#CreatePaymentCaptureRequestLineItemsList",
           "traits": {
             "smithy.api#documentation": "Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment).\n> This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip."
           }
@@ -18281,13 +18282,13 @@
           }
         },
         "splits": {
-          "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceCapturesRequestSplitsList",
+          "target": "com.adyen.checkout#CreatePaymentCaptureRequestSplitsList",
           "traits": {
             "smithy.api#documentation": "An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/)."
           }
         },
         "subMerchants": {
-          "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceCapturesRequestSubMerchantsList",
+          "target": "com.adyen.checkout#CreatePaymentCaptureRequestSubMerchantsList",
           "traits": {
             "smithy.api#documentation": "A List of sub-merchants."
           }
@@ -18409,10 +18410,10 @@
         "smithy.api#documentation": "List of sub-merchants."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceCaptures": {
+    "com.adyen.checkout#CreatePaymentCapture": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceCapturesRequest"
+        "target": "com.adyen.checkout#CreatePaymentCaptureRequest"
       },
       "output": {
         "target": "com.adyen.checkout#PaymentCaptureResponse"
@@ -18437,7 +18438,7 @@
         "smithy.api#documentation": "Capture an authorised payment\n\nCaptures an authorised payment and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**CAPTURE** webhook](https://docs.adyen.com/online-payments/capture#capture-notification).\n\nYou can capture either the full authorised amount or a part of the authorised amount. By default, any unclaimed amount after a partial capture gets cancelled. This does not apply if you enabled multiple partial captures on your account and the payment method supports multiple partial captures. \n\n[Automatic capture](https://docs.adyen.com/online-payments/capture#automatic-capture) is the default setting for most payment methods. In these cases, you don't need to make capture requests. However, making capture requests for payments that are captured automatically does not result in double charges.\n\nFor more information, refer to [Capture](https://docs.adyen.com/online-payments/capture)."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceRefundsRequestLineItemsList": {
+    "com.adyen.checkout#CreatePaymentRefundRequestLineItemsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#LineItem"
@@ -18446,7 +18447,7 @@
         "smithy.api#documentation": "Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment).\n> This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceRefundsRequestMerchantRefundReason": {
+    "com.adyen.checkout#CreatePaymentRefundRequestMerchantRefundReason": {
       "type": "enum",
       "members": {
         "FRAUD": {
@@ -18484,7 +18485,7 @@
         "smithy.api#documentation": "The reason for the refund request.\n\nPossible values:\n\n* **FRAUD**\n\n* **CUSTOMER REQUEST**\n\n* **RETURN**\n\n* **DUPLICATE**\n\n* **OTHER**\n\n"
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceRefundsRequestSplitsList": {
+    "com.adyen.checkout#CreatePaymentRefundRequestSplitsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#Split"
@@ -18493,7 +18494,7 @@
         "smithy.api#documentation": "An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/)."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceRefundsRequest": {
+    "com.adyen.checkout#CreatePaymentRefundRequest": {
       "type": "structure",
       "members": {
         "paymentPspReference": {
@@ -18537,7 +18538,7 @@
           }
         },
         "lineItems": {
-          "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceRefundsRequestLineItemsList",
+          "target": "com.adyen.checkout#CreatePaymentRefundRequestLineItemsList",
           "traits": {
             "smithy.api#documentation": "Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment).\n> This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip."
           }
@@ -18550,7 +18551,7 @@
           }
         },
         "merchantRefundReason": {
-          "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceRefundsRequestMerchantRefundReason",
+          "target": "com.adyen.checkout#CreatePaymentRefundRequestMerchantRefundReason",
           "traits": {
             "smithy.api#documentation": "The reason for the refund request.\n\nPossible values:\n\n* **FRAUD**\n\n* **CUSTOMER REQUEST**\n\n* **RETURN**\n\n* **DUPLICATE**\n\n* **OTHER**\n\n",
             "com.distilled.openapi#nullable": {}
@@ -18563,7 +18564,7 @@
           }
         },
         "splits": {
-          "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceRefundsRequestSplitsList",
+          "target": "com.adyen.checkout#CreatePaymentRefundRequestSplitsList",
           "traits": {
             "smithy.api#documentation": "An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/)."
           }
@@ -18727,10 +18728,10 @@
         "smithy.api#documentation": "The status of your request. This will always have the value **received**."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceRefunds": {
+    "com.adyen.checkout#CreatePaymentRefund": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceRefundsRequest"
+        "target": "com.adyen.checkout#CreatePaymentRefundRequest"
       },
       "output": {
         "target": "com.adyen.checkout#PaymentRefundResponse"
@@ -18755,7 +18756,7 @@
         "smithy.api#documentation": "Refund a captured payment\n\nRefunds a payment that has been [captured](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/captures), and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**REFUND** webhook](https://docs.adyen.com/online-payments/refund#refund-webhook).\n\nYou can refund either the full captured amount or a part of the captured amount. You can also perform multiple partial refunds, as long as their sum doesn't exceed the captured amount.\n\n> Some payment methods do not support partial refunds. To learn if a payment method supports partial refunds, refer to the payment method page such as [cards](https://docs.adyen.com/payment-methods/cards#supported-cards), [iDEAL](https://docs.adyen.com/payment-methods/ideal), or [Klarna](https://docs.adyen.com/payment-methods/klarna). \n\nIf you want to refund a payment but are not sure whether it has been captured, use the [`/payments/{paymentPspReference}/reversals`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/reversals) endpoint instead.\n\nFor more information, refer to [Refund](https://docs.adyen.com/online-payments/refund)."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceReversalsRequest": {
+    "com.adyen.checkout#CreatePaymentReversalRequest": {
       "type": "structure",
       "members": {
         "paymentPspReference": {
@@ -18851,10 +18852,10 @@
         "smithy.api#documentation": "The status of your request. This will always have the value **received**."
       }
     },
-    "com.adyen.checkout#PostPaymentsPaymentPspReferenceReversals": {
+    "com.adyen.checkout#CreatePaymentReversal": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceReversalsRequest"
+        "target": "com.adyen.checkout#CreatePaymentReversalRequest"
       },
       "output": {
         "target": "com.adyen.checkout#PaymentReversalResponse"
@@ -18929,7 +18930,7 @@
         "smithy.api#documentation": "The type of the delivery method."
       }
     },
-    "com.adyen.checkout#PostPaypalUpdateOrderRequestDeliveryMethodsList": {
+    "com.adyen.checkout#CreatePaypalUpdateOrderRequestDeliveryMethodsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#DeliveryMethod"
@@ -18947,7 +18948,7 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PostPaypalUpdateOrderRequest": {
+    "com.adyen.checkout#CreatePaypalUpdateOrderRequest": {
       "type": "structure",
       "members": {
         "idempotencyKey": {
@@ -18970,7 +18971,7 @@
           }
         },
         "deliveryMethods": {
-          "target": "com.adyen.checkout#PostPaypalUpdateOrderRequestDeliveryMethodsList",
+          "target": "com.adyen.checkout#CreatePaypalUpdateOrderRequestDeliveryMethodsList",
           "traits": {
             "smithy.api#documentation": "The list of new delivery methods and the cost of each."
           }
@@ -19056,10 +19057,10 @@
         "smithy.api#documentation": "The status of the request. This indicates whether the order was successfully updated with PayPal."
       }
     },
-    "com.adyen.checkout#PostPaypalUpdateOrder": {
+    "com.adyen.checkout#CreatePaypalUpdateOrder": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostPaypalUpdateOrderRequest"
+        "target": "com.adyen.checkout#CreatePaypalUpdateOrderRequest"
       },
       "output": {
         "target": "com.adyen.checkout#PaypalUpdateOrderResponse"
@@ -19084,7 +19085,7 @@
         "smithy.api#documentation": "Updates the order for PayPal Express Checkout\n\nUpdates the order for PayPal Express Checkout. This can be used to update the PayPal lightbox with an updated amount and delivery methods based on the delivery address."
       }
     },
-    "com.adyen.checkout#PostSessionsRequestAdditionalDataMap": {
+    "com.adyen.checkout#CreateSessionRequestAdditionalDataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19096,7 +19097,7 @@
         "smithy.api#documentation": "This field contains additional data, which may be required for a particular payment request.\n\nThe `additionalData` object consists of entries, each of which includes the key and value."
       }
     },
-    "com.adyen.checkout#PostSessionsRequestAllowedPaymentMethodsList": {
+    "com.adyen.checkout#CreateSessionRequestAllowedPaymentMethodsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -19105,7 +19106,7 @@
         "smithy.api#documentation": "List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).\n\nExample: `\"allowedPaymentMethods\":[\"ideal\",\"applepay\"]`"
       }
     },
-    "com.adyen.checkout#PostSessionsRequestBlockedPaymentMethodsList": {
+    "com.adyen.checkout#CreateSessionRequestBlockedPaymentMethodsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -19114,7 +19115,7 @@
         "smithy.api#documentation": "List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).\n\nExample: `\"blockedPaymentMethods\":[\"ideal\",\"applepay\"]`"
       }
     },
-    "com.adyen.checkout#PostSessionsRequestChannel": {
+    "com.adyen.checkout#CreateSessionRequestChannel": {
       "type": "enum",
       "members": {
         "IOS": {
@@ -19248,7 +19249,7 @@
         "smithy.api#documentation": "An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with `maxValue`."
       }
     },
-    "com.adyen.checkout#PostSessionsRequestInstallmentOptionsMap": {
+    "com.adyen.checkout#CreateSessionRequestInstallmentOptionsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19260,7 +19261,7 @@
         "smithy.api#documentation": "A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options."
       }
     },
-    "com.adyen.checkout#PostSessionsRequestLineItemsList": {
+    "com.adyen.checkout#CreateSessionRequestLineItemsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#LineItem"
@@ -19269,7 +19270,7 @@
         "smithy.api#documentation": "Price and product information about the purchased items, to be included on the invoice sent to the shopper.\n> This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty."
       }
     },
-    "com.adyen.checkout#PostSessionsRequestMetadataMap": {
+    "com.adyen.checkout#CreateSessionRequestMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19281,7 +19282,7 @@
         "smithy.api#documentation": "Metadata consists of entries, each of which includes a key and a value.\nLimits:\n* Maximum 20 key-value pairs per request.\n* Maximum 20 characters per key.\n* Maximum 80 characters per value. "
       }
     },
-    "com.adyen.checkout#PostSessionsRequestMode": {
+    "com.adyen.checkout#CreateSessionRequestMode": {
       "type": "enum",
       "members": {
         "EMBEDDED": {
@@ -19301,7 +19302,7 @@
         "smithy.api#documentation": "Indicates the type of front end integration. Possible values:\n* **embedded** (default): Drop-in or Components integration\n* **hosted**: Hosted Checkout integration"
       }
     },
-    "com.adyen.checkout#PostSessionsRequestRecurringProcessingModel": {
+    "com.adyen.checkout#CreateSessionRequestRecurringProcessingModel": {
       "type": "enum",
       "members": {
         "CARDONFILE": {
@@ -19327,7 +19328,7 @@
         "smithy.api#documentation": "Defines a recurring payment type. Required when creating a token to store payment details.\nAllowed values:\n* `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule.\n* `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.\n* `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.\n"
       }
     },
-    "com.adyen.checkout#PostSessionsRequestShopperInteraction": {
+    "com.adyen.checkout#CreateSessionRequestShopperInteraction": {
       "type": "enum",
       "members": {
         "ECOMMERCE": {
@@ -19359,7 +19360,7 @@
         "smithy.api#documentation": "Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer.\nFor the web service API, Adyen assumes Ecommerce shopper interaction by default.\n\nThis field has the following possible values:\n* `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request.\n* `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment).\n* `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone.\n* `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal."
       }
     },
-    "com.adyen.checkout#PostSessionsRequestSplitsList": {
+    "com.adyen.checkout#CreateSessionRequestSplitsList": {
       "type": "list",
       "member": {
         "target": "com.adyen.checkout#Split"
@@ -19368,7 +19369,7 @@
         "smithy.api#documentation": "An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split)."
       }
     },
-    "com.adyen.checkout#PostSessionsRequestStoreFiltrationMode": {
+    "com.adyen.checkout#CreateSessionRequestStoreFiltrationMode": {
       "type": "enum",
       "members": {
         "EXCLUSIVE": {
@@ -19394,7 +19395,7 @@
         "smithy.api#documentation": "Specifies how payment methods should be filtered based on the 'store' parameter:\n  - 'exclusive': Only payment methods belonging to the specified 'store' are returned.\n  - 'inclusive': Payment methods from the 'store' and those not associated with any other store are returned."
       }
     },
-    "com.adyen.checkout#PostSessionsRequestStorePaymentMethodMode": {
+    "com.adyen.checkout#CreateSessionRequestStorePaymentMethodMode": {
       "type": "enum",
       "members": {
         "ASKFORCONSENT": {
@@ -19420,7 +19421,7 @@
         "smithy.api#documentation": "Indicates if the details of the payment method will be stored for the shopper. Possible values:\n* **disabled** – No details will be stored (default).\n* **askForConsent** – If the `shopperReference` is provided, the Drop-in/Component shows a checkbox where the shopper can select to store their payment details for card payments.\n* **enabled** – If the `shopperReference` is provided, the details will be stored without asking the shopper for consent."
       }
     },
-    "com.adyen.checkout#PostSessionsRequest": {
+    "com.adyen.checkout#CreateSessionRequest": {
       "type": "structure",
       "members": {
         "idempotencyKey": {
@@ -19443,13 +19444,13 @@
           }
         },
         "additionalData": {
-          "target": "com.adyen.checkout#PostSessionsRequestAdditionalDataMap",
+          "target": "com.adyen.checkout#CreateSessionRequestAdditionalDataMap",
           "traits": {
             "smithy.api#documentation": "This field contains additional data, which may be required for a particular payment request.\n\nThe `additionalData` object consists of entries, each of which includes the key and value."
           }
         },
         "allowedPaymentMethods": {
-          "target": "com.adyen.checkout#PostSessionsRequestAllowedPaymentMethodsList",
+          "target": "com.adyen.checkout#CreateSessionRequestAllowedPaymentMethodsList",
           "traits": {
             "smithy.api#documentation": "List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).\n\nExample: `\"allowedPaymentMethods\":[\"ideal\",\"applepay\"]`"
           }
@@ -19480,7 +19481,7 @@
           }
         },
         "blockedPaymentMethods": {
-          "target": "com.adyen.checkout#PostSessionsRequestBlockedPaymentMethodsList",
+          "target": "com.adyen.checkout#CreateSessionRequestBlockedPaymentMethodsList",
           "traits": {
             "smithy.api#documentation": "List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).\n\nExample: `\"blockedPaymentMethods\":[\"ideal\",\"applepay\"]`"
           }
@@ -19492,7 +19493,7 @@
           }
         },
         "channel": {
-          "target": "com.adyen.checkout#PostSessionsRequestChannel",
+          "target": "com.adyen.checkout#CreateSessionRequestChannel",
           "traits": {
             "smithy.api#documentation": "The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`.\n\nPossible values:\n* **iOS**\n* **Android**\n* **Web**"
           }
@@ -19564,13 +19565,13 @@
           }
         },
         "installmentOptions": {
-          "target": "com.adyen.checkout#PostSessionsRequestInstallmentOptionsMap",
+          "target": "com.adyen.checkout#CreateSessionRequestInstallmentOptionsMap",
           "traits": {
             "smithy.api#documentation": "A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options."
           }
         },
         "lineItems": {
-          "target": "com.adyen.checkout#PostSessionsRequestLineItemsList",
+          "target": "com.adyen.checkout#CreateSessionRequestLineItemsList",
           "traits": {
             "smithy.api#documentation": "Price and product information about the purchased items, to be included on the invoice sent to the shopper.\n> This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty."
           }
@@ -19601,13 +19602,13 @@
           }
         },
         "metadata": {
-          "target": "com.adyen.checkout#PostSessionsRequestMetadataMap",
+          "target": "com.adyen.checkout#CreateSessionRequestMetadataMap",
           "traits": {
             "smithy.api#documentation": "Metadata consists of entries, each of which includes a key and a value.\nLimits:\n* Maximum 20 key-value pairs per request.\n* Maximum 20 characters per key.\n* Maximum 80 characters per value. "
           }
         },
         "mode": {
-          "target": "com.adyen.checkout#PostSessionsRequestMode",
+          "target": "com.adyen.checkout#CreateSessionRequestMode",
           "traits": {
             "smithy.api#documentation": "Indicates the type of front end integration. Possible values:\n* **embedded** (default): Drop-in or Components integration\n* **hosted**: Hosted Checkout integration"
           }
@@ -19637,7 +19638,7 @@
           }
         },
         "recurringProcessingModel": {
-          "target": "com.adyen.checkout#PostSessionsRequestRecurringProcessingModel",
+          "target": "com.adyen.checkout#CreateSessionRequestRecurringProcessingModel",
           "traits": {
             "smithy.api#documentation": "Defines a recurring payment type. Required when creating a token to store payment details.\nAllowed values:\n* `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule.\n* `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.\n* `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.\n"
           }
@@ -19693,7 +19694,7 @@
           }
         },
         "shopperInteraction": {
-          "target": "com.adyen.checkout#PostSessionsRequestShopperInteraction",
+          "target": "com.adyen.checkout#CreateSessionRequestShopperInteraction",
           "traits": {
             "smithy.api#documentation": "Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer.\nFor the web service API, Adyen assumes Ecommerce shopper interaction by default.\n\nThis field has the following possible values:\n* `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request.\n* `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment).\n* `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone.\n* `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal."
           }
@@ -19747,7 +19748,7 @@
           }
         },
         "splits": {
-          "target": "com.adyen.checkout#PostSessionsRequestSplitsList",
+          "target": "com.adyen.checkout#CreateSessionRequestSplitsList",
           "traits": {
             "smithy.api#documentation": "An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split)."
           }
@@ -19759,7 +19760,7 @@
           }
         },
         "storeFiltrationMode": {
-          "target": "com.adyen.checkout#PostSessionsRequestStoreFiltrationMode",
+          "target": "com.adyen.checkout#CreateSessionRequestStoreFiltrationMode",
           "traits": {
             "smithy.api#documentation": "Specifies how payment methods should be filtered based on the 'store' parameter:\n  - 'exclusive': Only payment methods belonging to the specified 'store' are returned.\n  - 'inclusive': Payment methods from the 'store' and those not associated with any other store are returned."
           }
@@ -19771,7 +19772,7 @@
           }
         },
         "storePaymentMethodMode": {
-          "target": "com.adyen.checkout#PostSessionsRequestStorePaymentMethodMode",
+          "target": "com.adyen.checkout#CreateSessionRequestStorePaymentMethodMode",
           "traits": {
             "smithy.api#documentation": "Indicates if the details of the payment method will be stored for the shopper. Possible values:\n* **disabled** – No details will be stored (default).\n* **askForConsent** – If the `shopperReference` is provided, the Drop-in/Component shows a checkbox where the shopper can select to store their payment details for card payments.\n* **enabled** – If the `shopperReference` is provided, the details will be stored without asking the shopper for consent."
           }
@@ -20447,10 +20448,10 @@
         "smithy.api#documentation": "Indicates if the details of the payment method will be stored for the shopper. Possible values:\n* **disabled** – No details will be stored (default).\n* **askForConsent** – If the `shopperReference` is provided, the Drop-in/Component shows a checkbox where the shopper can select to store their payment details for card payments.\n* **enabled** – If the `shopperReference` is provided, the details will be stored without asking the shopper for consent."
       }
     },
-    "com.adyen.checkout#PostSessions": {
+    "com.adyen.checkout#CreateSession": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostSessionsRequest"
+        "target": "com.adyen.checkout#CreateSessionRequest"
       },
       "output": {
         "target": "com.adyen.checkout#CreateCheckoutSessionResponse"
@@ -20464,7 +20465,7 @@
         "smithy.api#documentation": "Create a payment session\n\nCreates a payment session for [Drop-in](https://docs.adyen.com/online-payments/build-your-integration/sessions-flow/?platform=Web&integration=Drop-in), [Components](https://docs.adyen.com/online-payments/build-your-integration/sessions-flow/?platform=Web&integration=Components), and [Hosted Checkout](https://docs.adyen.com/online-payments/build-your-integration/sessions-flow/?platform=Web&integration=Hosted+Checkout) integrations.\n\nThe response contains encrypted payment session data. The front end then uses the session data to make any required server-side calls for the payment flow.\n\nYou get the payment outcome asynchronously, in an [AUTHORISATION](https://docs.adyen.com/api-explorer/#/Webhooks/latest/post/AUTHORISATION) webhook."
       }
     },
-    "com.adyen.checkout#GetSessionsSessionIdRequest": {
+    "com.adyen.checkout#GetSessionRequest": {
       "type": "structure",
       "members": {
         "sessionId": {
@@ -20645,10 +20646,10 @@
         "smithy.api#documentation": "The status of the session. The status included in the response doesn't get updated. Don't make the request again to check for payment status updates.\n\nPossible values:\n* **completed**: the shopper completed the payment, and the payment was authorized.\n* **paymentPending**: the shopper is in the process of making the payment. This applies to payment methods with an asynchronous flow, like voucher payments where the shopper completes the payment in a physical shop.\n* **refused**: the session has been refused, because of too many refused payment attempts. The shopper can no longer complete the payment with this session.\n* **canceled**: the shopper canceled the payment.\n* **expired**: the session expired. The shopper can no longer complete the payment with this session. By default, the session expires one hour after it is created."
       }
     },
-    "com.adyen.checkout#GetSessionsSessionId": {
+    "com.adyen.checkout#GetSession": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#GetSessionsSessionIdRequest"
+        "target": "com.adyen.checkout#GetSessionRequest"
       },
       "output": {
         "target": "com.adyen.checkout#SessionResultResponse"
@@ -20682,7 +20683,7 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PatchSessionsSessionIdRequest": {
+    "com.adyen.checkout#UpdateSessionRequest": {
       "type": "structure",
       "members": {
         "sessionId": {
@@ -20726,10 +20727,10 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PatchSessionsSessionId": {
+    "com.adyen.checkout#UpdateSession": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PatchSessionsSessionIdRequest"
+        "target": "com.adyen.checkout#UpdateSessionRequest"
       },
       "output": {
         "target": "com.adyen.checkout#CheckoutSessionPatchSessionResponse"
@@ -21308,7 +21309,7 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PostStoredPaymentMethodsRequestRecurringProcessingModel": {
+    "com.adyen.checkout#CreateStoredPaymentMethodRequestRecurringProcessingModel": {
       "type": "enum",
       "members": {
         "CARDONFILE": {
@@ -21334,7 +21335,7 @@
         "smithy.api#documentation": "Defines a recurring payment type. Required when creating a token to store payment details.\nAllowed values:\n* `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule.\n* `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.\n* `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.\n"
       }
     },
-    "com.adyen.checkout#PostStoredPaymentMethodsRequest": {
+    "com.adyen.checkout#CreateStoredPaymentMethodRequest": {
       "type": "structure",
       "members": {
         "idempotencyKey": {
@@ -21359,7 +21360,7 @@
           }
         },
         "recurringProcessingModel": {
-          "target": "com.adyen.checkout#PostStoredPaymentMethodsRequestRecurringProcessingModel",
+          "target": "com.adyen.checkout#CreateStoredPaymentMethodRequestRecurringProcessingModel",
           "traits": {
             "smithy.api#documentation": "Defines a recurring payment type. Required when creating a token to store payment details.\nAllowed values:\n* `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule.\n* `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction.\n* `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount.\n",
             "smithy.api#required": {}
@@ -21389,10 +21390,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.adyen.checkout#PostStoredPaymentMethods": {
+    "com.adyen.checkout#CreateStoredPaymentMethod": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostStoredPaymentMethodsRequest"
+        "target": "com.adyen.checkout#CreateStoredPaymentMethodRequest"
       },
       "output": {
         "target": "com.adyen.checkout#StoredPaymentMethodResource"
@@ -21406,7 +21407,7 @@
         "smithy.api#documentation": "Create a token to store payment details\n\nCreates a token to store the shopper's payment details. This token can be used for the shopper's future payments."
       }
     },
-    "com.adyen.checkout#DeleteStoredPaymentMethodsStoredPaymentMethodIdRequest": {
+    "com.adyen.checkout#DeleteStoredPaymentMethodRequest": {
       "type": "structure",
       "members": {
         "storedPaymentMethodId": {
@@ -21438,10 +21439,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.adyen.checkout#DeleteStoredPaymentMethodsStoredPaymentMethodId": {
+    "com.adyen.checkout#DeleteStoredPaymentMethod": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#DeleteStoredPaymentMethodsStoredPaymentMethodIdRequest"
+        "target": "com.adyen.checkout#DeleteStoredPaymentMethodRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -21467,7 +21468,7 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PostValidateShopperIdRequest": {
+    "com.adyen.checkout#CreateValidateShopperIdRequest": {
       "type": "structure",
       "members": {
         "merchantAccount": {
@@ -21546,10 +21547,10 @@
       },
       "traits": {}
     },
-    "com.adyen.checkout#PostValidateShopperId": {
+    "com.adyen.checkout#CreateValidateShopperId": {
       "type": "operation",
       "input": {
-        "target": "com.adyen.checkout#PostValidateShopperIdRequest"
+        "target": "com.adyen.checkout#CreateValidateShopperIdRequest"
       },
       "output": {
         "target": "com.adyen.checkout#ValidateShopperIdResponse"
@@ -21618,88 +21619,88 @@
       "version": "72",
       "operations": [
         {
-          "target": "com.adyen.checkout#PostApplePaySessions"
+          "target": "com.adyen.checkout#CreateApplePaySession"
         },
         {
-          "target": "com.adyen.checkout#PostCancels"
+          "target": "com.adyen.checkout#CreateCancel"
         },
         {
-          "target": "com.adyen.checkout#PostCardDetails"
+          "target": "com.adyen.checkout#CreateCardDetail"
         },
         {
-          "target": "com.adyen.checkout#PostDonationCampaigns"
+          "target": "com.adyen.checkout#CreateDonationCampaign"
         },
         {
-          "target": "com.adyen.checkout#PostDonations"
+          "target": "com.adyen.checkout#CreateDonation"
         },
         {
-          "target": "com.adyen.checkout#PostForward"
+          "target": "com.adyen.checkout#CreateForward"
         },
         {
-          "target": "com.adyen.checkout#PostOrders"
+          "target": "com.adyen.checkout#CreateOrder"
         },
         {
-          "target": "com.adyen.checkout#PostOrdersCancel"
+          "target": "com.adyen.checkout#CreateOrdersCancel"
         },
         {
-          "target": "com.adyen.checkout#PostPaymentLinks"
+          "target": "com.adyen.checkout#CreatePaymentLink"
         },
         {
-          "target": "com.adyen.checkout#GetPaymentLinksLinkId"
+          "target": "com.adyen.checkout#GetPaymentLink"
         },
         {
-          "target": "com.adyen.checkout#PatchPaymentLinksLinkId"
+          "target": "com.adyen.checkout#UpdatePaymentLink"
         },
         {
-          "target": "com.adyen.checkout#PostPaymentMethods"
+          "target": "com.adyen.checkout#CreatePaymentMethod"
         },
         {
-          "target": "com.adyen.checkout#PostPaymentMethodsBalance"
+          "target": "com.adyen.checkout#CreatePaymentMethodsBalance"
         },
         {
-          "target": "com.adyen.checkout#PostPayments"
+          "target": "com.adyen.checkout#CreatePayment"
         },
         {
-          "target": "com.adyen.checkout#PostPaymentsDetails"
+          "target": "com.adyen.checkout#CreatePaymentsDetail"
         },
         {
-          "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceAmountUpdates"
+          "target": "com.adyen.checkout#CreatePaymentAmountUpdate"
         },
         {
-          "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceCancels"
+          "target": "com.adyen.checkout#CreatePaymentCancel"
         },
         {
-          "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceCaptures"
+          "target": "com.adyen.checkout#CreatePaymentCapture"
         },
         {
-          "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceRefunds"
+          "target": "com.adyen.checkout#CreatePaymentRefund"
         },
         {
-          "target": "com.adyen.checkout#PostPaymentsPaymentPspReferenceReversals"
+          "target": "com.adyen.checkout#CreatePaymentReversal"
         },
         {
-          "target": "com.adyen.checkout#PostPaypalUpdateOrder"
+          "target": "com.adyen.checkout#CreatePaypalUpdateOrder"
         },
         {
-          "target": "com.adyen.checkout#PostSessions"
+          "target": "com.adyen.checkout#CreateSession"
         },
         {
-          "target": "com.adyen.checkout#GetSessionsSessionId"
+          "target": "com.adyen.checkout#GetSession"
         },
         {
-          "target": "com.adyen.checkout#PatchSessionsSessionId"
+          "target": "com.adyen.checkout#UpdateSession"
         },
         {
           "target": "com.adyen.checkout#GetStoredPaymentMethods"
         },
         {
-          "target": "com.adyen.checkout#PostStoredPaymentMethods"
+          "target": "com.adyen.checkout#CreateStoredPaymentMethod"
         },
         {
-          "target": "com.adyen.checkout#DeleteStoredPaymentMethodsStoredPaymentMethodId"
+          "target": "com.adyen.checkout#DeleteStoredPaymentMethod"
         },
         {
-          "target": "com.adyen.checkout#PostValidateShopperId"
+          "target": "com.adyen.checkout#CreateValidateShopperId"
         }
       ],
       "traits": {
